@@ -882,15 +882,19 @@ public class CAL_DIZIN extends JFrame {
 				{
 					cmblog.setEnabled(true);
 				}
+				else
+				{
+					cmblog.setEnabled(false);
+				}
 			}
 		});
 		chckbxL_1.setBounds(102, 126, 30, 23);
 		panel.add(chckbxL_1);
 		
 		cmblog = new JComboBox<String>();
-		cmblog.setModel(new DefaultComboBoxModel(new String[] {"Dosyaya Loglama", "Email Atma", "Hepsi"}));
+		cmblog.setModel(new DefaultComboBoxModel(new String[] {"Dosyaya Kayit", "Email Atma", "Hepsi"}));
 		cmblog.setEnabled(false);
-		cmblog.setBounds(135, 125, 124, 22);
+		cmblog.setBounds(133, 130, 126, 22);
 		panel.add(cmblog);
 		
 		//JOptionPane.showMessageDialog(cdz, "Kullanici veya Sifresi Yanlis......!" );
@@ -960,7 +964,9 @@ public class CAL_DIZIN extends JFrame {
 			grd.removeColumn(grd.getColumnModel().getColumn(4));
 			grd.removeColumn(grd.getColumnModel().getColumn(4));
 			grd.removeColumn(grd.getColumnModel().getColumn(4));
-			
+			grd.removeColumn(grd.getColumnModel().getColumn(4));
+			grd.removeColumn(grd.getColumnModel().getColumn(4));
+
 			JTableHeader th = grd.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc = tcm.getColumn(0);
@@ -990,16 +996,11 @@ public class CAL_DIZIN extends JFrame {
     }
 	private static  void doldur_kutu( JTable grd,int satir) throws ClassNotFoundException, SQLException 
 	{
-	
 		if (grd.getRowCount()== 0 ) {  
-	
 			kutu_temizle();
 		    return;
 		} 
-	
 		txtKodu.setText(grd.getModel().getValueAt(satir, 1).toString());
-		
-	
 		txtIp.setText(grd.getModel().getValueAt(satir, 6).toString());
 		txtkul.setText(grd.getModel().getValueAt(satir, 3).toString());
 		txtsifr.setText(grd.getModel().getValueAt(satir, 4).toString());
@@ -1016,6 +1017,18 @@ public class CAL_DIZIN extends JFrame {
 		{
 			chckbxS.setSelected(true);
 			chckbxL.setSelected(false);
+		}
+		int say = Integer.parseInt( grd.getModel().getValueAt(satir,14).toString());
+		if (say == 1)
+		{
+			
+			chckbxL_1.setSelected(true);
+			cmblog.setEnabled(true);
+		}
+		else
+		{
+			chckbxL_1.setSelected(false);
+			cmblog.setEnabled(false);
 		}
 		if (grd.getModel().getValueAt(satir, 10).equals("D"))
 		{
@@ -1056,6 +1069,8 @@ public class CAL_DIZIN extends JFrame {
 			txtdiz.setEnabled(false);
 			btndizsec.setEnabled(false);
 			txtdiz.setText("");
+			chckbxL_1.setSelected(false);
+			cmblog.setSelectedItem("Dosyaya Kayit");
 			cmbhangisql.setSelectedItem("MS SQL");
 			ip_doldur();
 		}
@@ -1353,12 +1368,14 @@ public class CAL_DIZIN extends JFrame {
     {
     	mdb_yaz_2("Gunluk");
      }
+
     oac.uSER_ISL.ip_dos_kont(txtIp.getText());
 }
 	private void mdb_yaz_2(String modul) throws ClassNotFoundException, SQLException
 	{
+		 
 		 oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, modul,chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
-	        oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), txtsifr.getText(), comboBox.getSelectedItem().toString(), txtIp.getText(), "Gunluk",txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, cmblog.getItemAt(cmblog.getSelectedIndex()));
+	     oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), txtsifr.getText(), comboBox.getSelectedItem().toString(), txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, cmblog.getItemAt(cmblog.getSelectedIndex()));
 
 	}
 	private  void dosya_olustur_L() throws IOException, ClassNotFoundException, SQLException

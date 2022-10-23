@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
+
+import javax.swing.JOptionPane;
 public class USER_ISLEMLERI {
 	static  Connection con ;
 	
@@ -175,10 +177,12 @@ public class USER_ISLEMLERI {
 	   	 stmt = con.prepareStatement(sql);
 	        stmt.executeUpdate();
 	    }
+	  
 	    String sql = "INSERT INTO USER_DETAILS (USER_PROG_KODU,USER_NAME,USER_SERVER,USER_PWD_SERVER,USER_INSTANCE_OBS,USER_IP_OBS," +
 	                    "USER_PROG_OBS,DIZIN,YER,DIZIN_CINS,IZINLI_MI,CALISAN_MI,HANGI_SQL,LOG,LOGLA) ";
 	        sql += "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	        {
+	        	
 	       	 stmt = con.prepareStatement(sql);
 	       	 stmt.setString(1, upk);
 	       	 stmt.setString(2, usn);
@@ -193,13 +197,14 @@ public class USER_ISLEMLERI {
 	       	 stmt.setString(11,izli);
 	       	 stmt.setString(12, calmi);
 	       	 stmt.setString(13, hsql);
-	       	stmt.setInt(14, log);
+	       	 stmt.setInt(14, log);
 	       	 stmt.setString(15, logla);
 	       	 
 	        }
 	        stmt.executeUpdate();
 	        stmt.close();
 	        con.close();
+	        
 	}
 	public void user_ekle_degis(String user , String pwd ,String lvl ,String udbi ,String um ,Boolean uyda ,Boolean uydas ) throws ClassNotFoundException, SQLException
 	{

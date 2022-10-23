@@ -177,7 +177,7 @@ public class USER_ISLEMLERI {
 	    }
 	    String sql = "INSERT INTO USER_DETAILS (USER_PROG_KODU,USER_NAME,USER_SERVER,USER_PWD_SERVER,USER_INSTANCE_OBS,USER_IP_OBS," +
 	                    "USER_PROG_OBS,DIZIN,YER,DIZIN_CINS,IZINLI_MI,CALISAN_MI,HANGI_SQL,LOG,LOGLA) ";
-	        sql += "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	        sql += "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	        {
 	       	 stmt = con.prepareStatement(sql);
 	       	 stmt.setString(1, upk);

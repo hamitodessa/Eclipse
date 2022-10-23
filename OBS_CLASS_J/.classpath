@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="SMS"/>
+	<classpathentry kind="src" path="GUNLUK"/>
+	<classpathentry kind="src" path="KAMBIYO"/>
+	<classpathentry kind="src" path="STOK"/>
+	<classpathentry kind="src" path="ADRES"/>
+	<classpathentry kind="src" path="KUR"/>
+	<classpathentry kind="src" path="CARI_HESAP"/>
+	<classpathentry kind="src" path="YARDIMCI_CLS"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/ECL-WORKSPACES/SQL_JAVA/mysql-connector-java-5.1.31-bin.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/Apache_common/commons-net-3.7/commons-net-3.7.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/DIGER/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/DIGER/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/Chart2D_1.9.6k/Chart2D.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

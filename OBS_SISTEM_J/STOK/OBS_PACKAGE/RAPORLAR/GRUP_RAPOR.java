@@ -1250,6 +1250,7 @@ public class GRUP_RAPOR extends JInternalFrame {
 			GLOBAL.g_setNumbersAxisTitleText = FILTRE.comboBox_26.getItemAt(FILTRE.comboBox_26.getSelectedIndex()) ;
 			//*** Dataset
 			GLOBAL.g_dataSet = new Dataset (mdll.getRowCount() -1,mdll.getColumnCount() -2,1);
+			
 			 for (int i= 0 ;i<=mdll.getRowCount() -2 ;i++)
 			 {
 				 for (int y = 1;y<=mdll.getColumnCount() -2;y++)

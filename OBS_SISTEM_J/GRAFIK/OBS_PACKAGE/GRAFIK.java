@@ -97,7 +97,7 @@ public class GRAFIK extends JInternalFrame {
 		    chart2D.setLegendProperties (legendProps);
 		    chart2D.setGraphChart2DProperties (graphChart2DProps);
 		    chart2D.addGraphProperties (graphProps);
-		    JOptionPane.showMessageDialog(null, "1 ", "Grafik", JOptionPane.PLAIN_MESSAGE);
+		    
 		    chart2D.addDataset (GLOBAL.g_dataSet);
 		    chart2D.addMultiColorsProperties (multiColorsProps);
 

@@ -61,8 +61,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.GUNLUK_MSSQL;
 import OBS_C_2025.GUNLUK_MYSQL;
-import OBS_C_2025.ICARI_HESAP;
-import OBS_C_2025.IConnection;
+
 import OBS_C_2025.JTextFieldLimit;
 
 import OBS_C_2025.JTextFieldRegularPopupMenu;

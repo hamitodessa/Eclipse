@@ -40,8 +40,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.event.InternalFrameAdapter;
-import javax.swing.event.InternalFrameEvent;
+
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -831,7 +830,7 @@ public class CEK_CIKIS extends JInternalFrame {
           	      	 vade  = qwe;
           	      	 }
             		
-                    str_4 = textField.getText()+  "'Bordro ile " + model.getValueAt(i , 0).toString() + " Nolu " + vade + " Vadeli Çek" ;
+                    str_4 = textField.getText()+  "'Bordro ile " + model.getValueAt(i , 0).toString() + " Nolu " + vade + " Vadeli ï¿½ek" ;
                     if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
         	        {
         	        	oac.cARI_HESAP_MSSQL.cari_dekont_kaydet(textField_1.getText(),

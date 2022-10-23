@@ -8,6 +8,7 @@ import OBS_C_2025.IConnection;
 import OBS_C_2025.IGUNLUK;
 import OBS_C_2025.IKAMBIYO;
 import OBS_C_2025.IKUR;
+import OBS_C_2025.ILOGGER;
 import OBS_C_2025.ISMS;
 import OBS_C_2025.ISTOK;
 import OBS_C_2025.USER_ISLEMLERI;
@@ -28,6 +29,7 @@ public class OBS_SIS_2025_ANA_CLASS
     public IKAMBIYO _IKambiyo;
     public IGUNLUK _IGunluk;
     public ISMS _ISms;
+    public ILOGGER _ILogger;
    
     public String[] options = {"Tamam......       		!", "Vazgec.....       		!"}; 
     public IConnection _IConn ;

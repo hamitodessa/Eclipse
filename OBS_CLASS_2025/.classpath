@@ -13,6 +13,7 @@
 	<classpathentry kind="src" path="KAMBIYO"/>
 	<classpathentry kind="src" path="GUNLUK"/>
 	<classpathentry kind="src" path="SMS"/>
+	<classpathentry kind="src" path="LOGGER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>

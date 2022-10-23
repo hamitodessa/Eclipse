@@ -310,7 +310,7 @@ public LOGIN() throws IOException {
             {
             calisma_dizini_oku();
             //*** CARI
-           CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar);
+           CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
            c_Access.baglan();
           //*** KUR
            KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur);

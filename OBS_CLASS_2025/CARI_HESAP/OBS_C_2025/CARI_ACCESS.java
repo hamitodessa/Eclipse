@@ -5,9 +5,12 @@ import java.sql.SQLException;
 
 public class CARI_ACCESS {
 	private static  ICARI_HESAP _ICari;
-	public CARI_ACCESS(ICARI_HESAP _ICari)
+	private static ILOGGER _Logger;
+	
+	public CARI_ACCESS(ICARI_HESAP _ICari, ILOGGER _Logger)
 	{
 		this._ICari = _ICari;
+		this._Logger = _Logger;
 	}
 	public static void baglan() throws SQLException
 	
@@ -17,6 +20,7 @@ public class CARI_ACCESS {
 	}
 	public String cari_firma_adi() throws ClassNotFoundException, SQLException {
 		return  _ICari.cari_firma_adi();
+		
 		
 	}
 	public void cari_sifirdan_L (String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,

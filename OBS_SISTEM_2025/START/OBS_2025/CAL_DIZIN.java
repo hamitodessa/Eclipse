@@ -1350,7 +1350,7 @@ public class CAL_DIZIN extends JFrame {
 		 String strAdmin = "";
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
-         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar);
+         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ILogger);
          if (chckbxD.isSelected())
          	{
              	c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText());
@@ -1456,7 +1456,7 @@ public class CAL_DIZIN extends JFrame {
     {
 		String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
-        CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar);
+        CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ILogger);
         if (chckbxD.isSelected())
         	{
         		c_Access.cARI_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin);

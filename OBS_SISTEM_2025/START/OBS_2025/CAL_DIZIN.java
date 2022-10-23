@@ -44,11 +44,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-
 import OBS_C_2025.ADRES_ACCESS;
-
 import OBS_C_2025.CARI_ACCESS;
-import OBS_C_2025.CARI_HESAP_MSSQL;
 import OBS_C_2025.CONNECT;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;

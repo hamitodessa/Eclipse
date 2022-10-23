@@ -79,12 +79,14 @@ public class CAL_DIZIN extends JFrame {
 	private static JComboBox<String> comboBox;
 	private static JComboBox<String> cmbip;
 	private static JComboBox<String> cmbhangisql;
+	private static JComboBox<String> cmblog ;
 	private static JButton btndizsec;
 	private static JButton btnNewButton_1;
 	private static JCheckBox chckbxL ;
 	private static JCheckBox chckbxS ;
 	private static JCheckBox chckbxO ;
 	private static JCheckBox chckbxD ;
+	private static JCheckBox chckbxL_1;
 	
 	
 	private static JTable tblCari;
@@ -376,7 +378,7 @@ public class CAL_DIZIN extends JFrame {
 		
 		txtIp = new JTextField();
 		txtIp.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtIp.setBounds(102, 174, 157, 20);
+		txtIp.setBounds(102, 199, 157, 20);
 		panel.add(txtIp);
 		txtIp.setColumns(10);
 		
@@ -389,18 +391,18 @@ public class CAL_DIZIN extends JFrame {
 		});
 		cmbip.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbip.setEditable(true);
-		cmbip.setBounds(102, 205, 157, 22);
+		cmbip.setBounds(102, 230, 157, 22);
 		panel.add(cmbip);
 		
 		txtkul = new JTextField();
 		txtkul.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtkul.setBounds(102, 238, 157, 20);
+		txtkul.setBounds(102, 263, 157, 20);
 		panel.add(txtkul);
 		txtkul.setColumns(10);
 		
 		txtsifr = new JTextField();
 		txtsifr.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtsifr.setBounds(102, 269, 157, 20);
+		txtsifr.setBounds(102, 294, 157, 20);
 	
 		panel.add(txtsifr);
 		
@@ -425,7 +427,7 @@ public class CAL_DIZIN extends JFrame {
 			}
 		});
 		chckbxD.setSelected(true);
-		chckbxD.setBounds(51, 293, 97, 23);
+		chckbxD.setBounds(51, 318, 97, 23);
 		panel.add(chckbxD);
 		
 		chckbxO = new JCheckBox("Ozel");
@@ -446,12 +448,12 @@ public class CAL_DIZIN extends JFrame {
 				}
 			}
 		});
-		chckbxO.setBounds(162, 293, 97, 23);
+		chckbxO.setBounds(162, 318, 97, 23);
 		panel.add(chckbxO);
 		txtdiz = new JTextField();
 		txtdiz.setEnabled(false);
 		txtdiz.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtdiz.setBounds(51, 323,255,20);
+		txtdiz.setBounds(51, 348,255,20);
 		panel.add(txtdiz);
 		btndizsec = new JButton("Surucu Sec");
 		btndizsec.addActionListener(new ActionListener() {
@@ -478,23 +480,23 @@ public class CAL_DIZIN extends JFrame {
 		});
 		btndizsec.setEnabled(false);
 		
-		btndizsec.setBounds(51, 350, 107, 23);
+		btndizsec.setBounds(51, 375, 107, 23);
 		panel.add(btndizsec);
 		
 		JLabel lblInstance = new JLabel("Instance");
-		lblInstance.setBounds(24, 145, 68, 14);
+		lblInstance.setBounds(24, 170, 68, 14);
 		panel.add(lblInstance);
 		
 		JLabel lblServer = new JLabel("Server");
-		lblServer.setBounds(24, 177, 68, 14);
+		lblServer.setBounds(24, 202, 68, 14);
 		panel.add(lblServer);
 		
 		JLabel lblKullanici = new JLabel("Kullanici");
-		lblKullanici.setBounds(24, 241, 68, 14);
+		lblKullanici.setBounds(24, 266, 68, 14);
 		panel.add(lblKullanici);
 		
 		JLabel lblSifre = new JLabel("Sifre");
-		lblSifre.setBounds(24, 272, 68, 14);
+		lblSifre.setBounds(24, 297, 68, 14);
 		panel.add(lblSifre);
 		
 		JLabel lblUser = new JLabel("....");
@@ -841,7 +843,7 @@ public class CAL_DIZIN extends JFrame {
 		lblUser.setText(GLOBAL.KULL_ADI);
 		comboBox = new JComboBox<String>();
 		comboBox.setEditable(true);
-		comboBox.setBounds(102, 144, 157, 22);
+		comboBox.setBounds(102, 169, 157, 22);
 		panel.add(comboBox);
 		
 		txtcdid = new JTextField();
@@ -868,6 +870,28 @@ public class CAL_DIZIN extends JFrame {
 		cmbhangisql.setModel(new DefaultComboBoxModel<String>(new String[] {"MS SQL", "MY SQL"}));
 		cmbhangisql.setBounds(102, 43, 157, 22);
 		panel.add(cmbhangisql);
+		
+		JLabel lblLoglama = new JLabel("Loglama");
+		lblLoglama.setBounds(24, 130, 68, 14);
+		panel.add(lblLoglama);
+		
+		chckbxL_1 = new JCheckBox("");
+		chckbxL_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (chckbxL_1.isSelected())
+				{
+					cmblog.setEnabled(true);
+				}
+			}
+		});
+		chckbxL_1.setBounds(102, 126, 30, 23);
+		panel.add(chckbxL_1);
+		
+		cmblog = new JComboBox<String>();
+		cmblog.setModel(new DefaultComboBoxModel(new String[] {"Dosyaya Loglama", "Email Atma", "Hepsi"}));
+		cmblog.setEnabled(false);
+		cmblog.setBounds(135, 125, 124, 22);
+		panel.add(cmblog);
 		
 		//JOptionPane.showMessageDialog(cdz, "Kullanici veya Sifresi Yanlis......!" );
 		//System.out.println("Altta");		

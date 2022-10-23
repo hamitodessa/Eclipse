@@ -32,6 +32,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -98,7 +99,7 @@ public class CAL_DIZIN extends JFrame {
 	private static JTable tblKambiyo;
 	private static JTable tblSms;
 	private static JTable tblGunluk;
-	private JTextField txtsif;
+	private JPasswordField txtsif;
 	
 	private static JTabbedPane tabbedPane;
 	private static int activ_sayfa =0;
@@ -401,7 +402,7 @@ public class CAL_DIZIN extends JFrame {
 		panel.add(txtkul);
 		txtkul.setColumns(10);
 		
-		txtsifr = new JTextField();
+		txtsifr = new JPasswordField();
 		txtsifr.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtsifr.setBounds(102, 294, 157, 20);
 	
@@ -786,7 +787,7 @@ public class CAL_DIZIN extends JFrame {
 		lblNewLabel.setBounds(102, 76, 84, 14);
 		panel_1.add(lblNewLabel);
 		
-		txtsif = new JTextField();
+		txtsif = new JPasswordField();
 		txtsif.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -795,9 +796,9 @@ public class CAL_DIZIN extends JFrame {
 					 contentPane.setCursor(WAIT_CURSOR);
 						boolean varmi;
 						try {
-							
-							
-							varmi = oac.uSER_ISL.user_var(GLOBAL.KULL_ADI,txtsif.getText());
+							String passText = new String(txtsif.getPassword());
+							String encodedString = Base64.getEncoder().encodeToString(passText.getBytes());
+							varmi = oac.uSER_ISL.user_var(GLOBAL.KULL_ADI,encodedString);
 							if (varmi == true)
 				            {
 								lblysif.setVisible(true);

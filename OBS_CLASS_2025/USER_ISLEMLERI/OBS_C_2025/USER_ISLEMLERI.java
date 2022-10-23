@@ -18,6 +18,7 @@ public class USER_ISLEMLERI {
 		 result = false;
 		 con = gLB.myConnection();
 		 java.sql.PreparedStatement stmt = con.prepareStatement("SELECT * FROM USERS WHERE USER_NAME=? AND USER_PWD=?");
+		 
 				stmt.setString(1, usr.toString());
 				stmt.setString(2, pwd.toString());
 				ResultSet rs = stmt.executeQuery();

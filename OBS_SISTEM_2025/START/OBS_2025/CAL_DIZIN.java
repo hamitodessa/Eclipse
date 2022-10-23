@@ -20,6 +20,7 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -794,7 +795,11 @@ public class CAL_DIZIN extends JFrame {
 					 contentPane.setCursor(WAIT_CURSOR);
 						boolean varmi;
 						try {
-							varmi = oac.uSER_ISL.user_var(GLOBAL.KULL_ADI,txtsif.getText());
+							String encodedString = Base64.getEncoder().encodeToString(txtsif.getBytes());
+						
+						//	boolean varmi =	oac.uSER_ISL.user_var(txtUser.getText(),encodedString);
+							
+							varmi = oac.uSER_ISL.user_var(GLOBAL.KULL_ADI,encodedString);
 							if (varmi == true)
 				            {
 								lblysif.setVisible(true);

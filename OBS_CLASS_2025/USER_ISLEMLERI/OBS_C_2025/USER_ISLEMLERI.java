@@ -162,7 +162,7 @@ public class USER_ISLEMLERI {
 		 con.close();
 	}
 	public void details_yaz(String upk, String usn, String usserver, String sifre, String instance, String ip, String prog
-	                       ,String dizin, String yer, String dcins, String izli, String calmi, String hsql,String cdid) throws ClassNotFoundException, SQLException
+	                       ,String dizin, String yer, String dcins, String izli, String calmi, String hsql,String cdid,int log,String logla) throws ClassNotFoundException, SQLException
 	{
 		 Class.forName("org.sqlite.JDBC");
 		 con.close();
@@ -176,7 +176,7 @@ public class USER_ISLEMLERI {
 	        stmt.executeUpdate();
 	    }
 	    String sql = "INSERT INTO USER_DETAILS (USER_PROG_KODU,USER_NAME,USER_SERVER,USER_PWD_SERVER,USER_INSTANCE_OBS,USER_IP_OBS," +
-	                    "USER_PROG_OBS,DIZIN,YER,DIZIN_CINS,IZINLI_MI,CALISAN_MI,HANGI_SQL) ";
+	                    "USER_PROG_OBS,DIZIN,YER,DIZIN_CINS,IZINLI_MI,CALISAN_MI,HANGI_SQL,LOG,LOGLA) ";
 	        sql += "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	        {
 	       	 stmt = con.prepareStatement(sql);
@@ -193,6 +193,9 @@ public class USER_ISLEMLERI {
 	       	 stmt.setString(11,izli);
 	       	 stmt.setString(12, calmi);
 	       	 stmt.setString(13, hsql);
+	       	stmt.setInt(14, log);
+	       	 stmt.setString(15, logla);
+	       	 
 	        }
 	        stmt.executeUpdate();
 	        stmt.close();

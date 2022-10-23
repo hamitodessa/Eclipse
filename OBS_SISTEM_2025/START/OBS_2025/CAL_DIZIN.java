@@ -1332,41 +1332,35 @@ public class CAL_DIZIN extends JFrame {
 {
 	if (activ_sayfa == 0)
     {
-       oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI , "Cari Hesap",chckbxL.isSelected() ? "L" : "S"  ) ; // CaLISANMI DOSYA KONTROLU
-       oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), txtsifr.getText(), comboBox.getSelectedItem().toString(), txtIp.getText(), "Cari Hesap", txtdiz.getText() , chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()), txtcdid.getText());
-    }
+		mdb_yaz_2("Cari Hesap");    }
     else if (activ_sayfa == 1)
     {
-       oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, "Fatura", chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
-       oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), txtsifr.getText(), comboBox.getSelectedItem().toString(), txtIp.getText(), "Fatura", txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E", cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText());
-    }
+    	mdb_yaz_2("Fatura");    }
     else if (activ_sayfa == 2)
     {
-       oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, "Adres", chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
-       oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), txtsifr.getText(), comboBox.getSelectedItem().toString(), txtIp.getText(), "Adres", txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E", cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText());
-    }
+    	mdb_yaz_2("Adres");    }
     else if (activ_sayfa == 3)
     {
-       oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, "Kur", chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
-       oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), txtsifr.getText(), comboBox.getSelectedItem().toString(), txtIp.getText(), "Kur", txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E", cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()), txtcdid.getText());
-    }
+    	mdb_yaz_2("Kur");
+    	}
      else if (activ_sayfa == 4)
     {
-       oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, "Kambiyo", chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
-       oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), txtsifr.getText(), comboBox.getSelectedItem().toString(), txtIp.getText(), "Kambiyo",txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E", cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText());
-    }
+    	 mdb_yaz_2("Kambiyo");    }
     else if (activ_sayfa == 5)
     {
-       oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, "Sms",chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
-       oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), txtsifr.getText(), comboBox.getSelectedItem().toString(), txtIp.getText(), "Sms", txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E", cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText());
-    }
+    	mdb_yaz_2("Sms");    }
     else if (activ_sayfa == 6)
     {
-        oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, "Gunluk",chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
-        oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), txtsifr.getText(), comboBox.getSelectedItem().toString(), txtIp.getText(), "Gunluk",txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText());
+    	mdb_yaz_2("Gunluk");
      }
     oac.uSER_ISL.ip_dos_kont(txtIp.getText());
 }
+	private void mdb_yaz_2(String modul) throws ClassNotFoundException, SQLException
+	{
+		 oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, modul,chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
+	        oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), txtsifr.getText(), comboBox.getSelectedItem().toString(), txtIp.getText(), "Gunluk",txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, cmblog.getItemAt(cmblog.getSelectedIndex()));
+
+	}
 	private  void dosya_olustur_L() throws IOException, ClassNotFoundException, SQLException
 {
 	 if (activ_sayfa == 0)

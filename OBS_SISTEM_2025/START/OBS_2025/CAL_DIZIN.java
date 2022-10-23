@@ -795,11 +795,9 @@ public class CAL_DIZIN extends JFrame {
 					 contentPane.setCursor(WAIT_CURSOR);
 						boolean varmi;
 						try {
-							String encodedString = Base64.getEncoder().encodeToString(txtsif.getBytes());
-						
-						//	boolean varmi =	oac.uSER_ISL.user_var(txtUser.getText(),encodedString);
 							
-							varmi = oac.uSER_ISL.user_var(GLOBAL.KULL_ADI,encodedString);
+							
+							varmi = oac.uSER_ISL.user_var(GLOBAL.KULL_ADI,txtsif.getText());
 							if (varmi == true)
 				            {
 								lblysif.setVisible(true);
@@ -808,6 +806,7 @@ public class CAL_DIZIN extends JFrame {
 				            }
 				            else
 				            {
+				                JOptionPane.showMessageDialog(null, "Sifre Yanlis", "Sifre DEgistirme", JOptionPane.PLAIN_MESSAGE);
 				            	lblysif.setVisible(false);
 				                txtyenisif.setVisible(false);
 				                contentPane.setCursor(DEFAULT_CURSOR);
@@ -902,8 +901,7 @@ public class CAL_DIZIN extends JFrame {
 		cmblog.setBounds(133, 130, 126, 22);
 		panel.add(cmblog);
 		
-		//JOptionPane.showMessageDialog(cdz, "Kullanici veya Sifresi Yanlis......!" );
-		//System.out.println("Altta");		
+		
 	}
 	
 	private   void grid_doldur() throws ClassNotFoundException, SQLException

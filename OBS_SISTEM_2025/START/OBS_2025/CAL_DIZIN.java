@@ -1153,7 +1153,7 @@ public class CAL_DIZIN extends JFrame {
 			cmb_maillist.removeAllItems();
 		     ResultSet	rs = null;
 		     USER_ISLEMLERI usr = new USER_ISLEMLERI();
-			usr.log_mail_kont_kayit(GLOBAL.KULL_ADI , txt_Lmaill.getText());
+			rs = usr.log_mail_oku(GLOBAL.KULL_ADI );
 			if (!rs.isBeforeFirst() ) {  
 			    return;
 			} 

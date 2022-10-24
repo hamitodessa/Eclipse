@@ -1034,6 +1034,7 @@ public class CAL_DIZIN extends JFrame {
 			chckbxL_1.setSelected(false);
 			cmblog.setEnabled(false);
 		}
+		 cmblog.setSelectedItem(grd.getModel().getValueAt(satir, 15).toString());
 		if (grd.getModel().getValueAt(satir, 10).equals("D"))
 		{
 			chckbxD.setSelected(true);

@@ -577,6 +577,10 @@ public class CAL_DIZIN extends JFrame {
 					{
 						doldur_kutu(tblGunluk,0);	
 					}
+					else if (activ_sayfa == 8)
+					{
+						mail_doldur();
+					}
 					contentPane.setCursor(DEFAULT_CURSOR);
 
 				} catch (ClassNotFoundException | SQLException e1) {
@@ -895,7 +899,7 @@ public class CAL_DIZIN extends JFrame {
 		
 		txt_Lmaill = new JTextField();
 		txt_Lmaill.setBounds(98, 36, 307, 20);
-		panel_3.add(textField);
+		panel_3.add(txt_Lmaill);
 		txt_Lmaill.setColumns(10);
 		
 		cmb_maillist = new JComboBox<String>();
@@ -1143,6 +1147,25 @@ public class CAL_DIZIN extends JFrame {
 			cmbhangisql.setSelectedItem("MS SQL");
 			ip_doldur();
 		}
+	private static void mail_doldur() throws ClassNotFoundException, SQLException
+	{
+		
+			cmb_maillist.removeAllItems();
+		     ResultSet	rs = null;
+		     USER_ISLEMLERI usr = new USER_ISLEMLERI();
+			usr.log_mail_kont_kayit(GLOBAL.KULL_ADI , txt_Lmaill.getText());
+			if (!rs.isBeforeFirst() ) {  
+			    return;
+			} 
+			else
+			{
+				cmb_maillist.addItem("");
+				 while (rs.next()) {
+					 cmb_maillist.addItem(rs.getString("E_MAIL"));
+			        }
+			}
+			///
+	}
     private static  void ip_doldur() throws ClassNotFoundException, SQLException
 	 {
      cmbip.removeAllItems();

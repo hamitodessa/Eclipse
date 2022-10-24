@@ -1076,8 +1076,12 @@ public class CAL_DIZIN extends JFrame {
 			btndizsec.setEnabled(true);
 			txtdiz.setText(grd.getModel().getValueAt(satir, 8).toString());
 		}
+		
+		ip_doldur();
 		contentPane.setCursor(DEFAULT_CURSOR);
 	}
+	
+	
 	private void  tablo_baslik(JTable table)
 	{
 		JTableHeader th = table.getTableHeader();

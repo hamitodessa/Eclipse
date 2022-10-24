@@ -104,6 +104,9 @@ public class CAL_DIZIN extends JFrame {
 	private static JTable tblGunluk;
 	private JPasswordField txtsif;
 	
+	private static	JTextField txt_Lmaill ;
+	private static JComboBox<String>  cmb_maillist;
+	
 	private static JTabbedPane tabbedPane;
 	private static int activ_sayfa =0;
 	
@@ -310,20 +313,46 @@ public class CAL_DIZIN extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 	            try
 	            {
-	            	String oku = new String(txtyenisif.getText());
-					if (oku.equals(""))
-					{
-						txtsif.requestFocus();
-		                return;
-					}
-	            contentPane.setCursor(WAIT_CURSOR);
-	            oac.uSER_ISL.sifre_degis(GLOBAL.KULL_ADI, txtyenisif.getText());
-	            txtyenisif.setText("");
-	            txtsif.setText("");
-	            txtyenisif.setVisible(false);
-	            lblysif.setVisible(false); 
-	            txtsif.requestFocus();
-	            contentPane.setCursor(DEFAULT_CURSOR);
+	            	if (activ_sayfa == 7)
+	            	{
+	            	 
+	            		String oku = new String(txtyenisif.getText());
+						if (oku.equals(""))
+						{
+							txtsif.requestFocus();
+			                return;
+						}
+		            contentPane.setCursor(WAIT_CURSOR);
+		            oac.uSER_ISL.sifre_degis(GLOBAL.KULL_ADI, txtyenisif.getText());
+		            txtyenisif.setText("");
+		            txtsif.setText("");
+		            txtyenisif.setVisible(false);
+		            lblysif.setVisible(false); 
+		            txtsif.requestFocus();
+		      
+	            	}
+	            	else if (activ_sayfa == 8)
+	            	{
+	            		String oku = new String(txt_Lmaill .getText());
+						if (oku.equals(""))
+						{
+							cmb_maillist.removeAllItems();
+						     ResultSet	rs = null;
+							oac.uSER_ISL.log_mail_kont_kayit(GLOBAL.KULL_ADI , oku);
+							if (!rs.isBeforeFirst() ) {  
+							    return;
+							} 
+							else
+							{
+								cmb_maillist.addItem("");
+								 while (rs.next()) {
+									 cmb_maillist.addItem(rs.getString("E_MAIL"));
+							        }
+							}
+							///
+						}
+	            	}
+	                contentPane.setCursor(DEFAULT_CURSOR);
 	            }
 	            catch (Exception ex)
 	            {
@@ -864,10 +893,14 @@ public class CAL_DIZIN extends JFrame {
 		lblNewLabel_2.setBounds(10, 39, 78, 14);
 		panel_3.add(lblNewLabel_2);
 		
-		textField = new JTextField();
-		textField.setBounds(98, 36, 307, 20);
+		txt_Lmaill = new JTextField();
+		txt_Lmaill.setBounds(98, 36, 307, 20);
 		panel_3.add(textField);
-		textField.setColumns(10);
+		txt_Lmaill.setColumns(10);
+		
+		cmb_maillist = new JComboBox<String>();
+		cmb_maillist.setBounds(98, 67, 307, 22);
+		panel_3.add(cmb_maillist);
 	
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);

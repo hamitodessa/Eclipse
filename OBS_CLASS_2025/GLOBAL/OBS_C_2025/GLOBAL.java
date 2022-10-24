@@ -91,6 +91,8 @@ public  void obs_dosya_olustur() throws Exception {
 	       sorgu = "CREATE TABLE USERS (USER_NAME	CHAR(20),USER_PWD CHAR(50),USER_LEVEL CHAR(2),USER_DB_IZIN CHAR(255),USER_MAIL CHAR(50),USER_YENI_DOSYA_ACMA INTEGER,USER_YENI_DOSYA_ACMA_SERVER INTEGER," 
 		       		+ "	PRIMARY KEY(\"USER_NAME\")); " ;
 	       tablo_yap(sorgu); 
+	       sorgu = "CREATE TABLE LOG_MAIL (USER_NAME	CHAR(20),E_MAIL 	CHAR(50),	PRIMARY KEY(\"USER_NAME\")); " ;
+	       tablo_yap(sorgu); 
 	       sorgu = "CREATE INDEX IDX_USER_NAME  ON USER_DETAILS  (USER_NAME) ; " ;
 	       tablo_yap(sorgu); 
           Class.forName("org.sqlite.JDBC");

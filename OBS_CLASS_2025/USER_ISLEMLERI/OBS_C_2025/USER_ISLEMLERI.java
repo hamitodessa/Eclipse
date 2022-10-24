@@ -254,6 +254,43 @@ public class USER_ISLEMLERI {
 			stmt.close();
 			con.close();
 	}
+	public void log_mail_kont_kayit(String ussr, String mail) throws ClassNotFoundException, SQLException
+	{
+		 Class.forName("org.sqlite.JDBC");
+		 con.close();
+		 con = null;
+		 ResultSet	rss = null;
+		 PreparedStatement stmt = null;
+		 con =  gLB.myConnection();
+		 String sql ="SELECT  * FROM LOG_MAIL WHERE USER_NAME = '" + ussr + "' AND  E_MAIL ='" + mail + "'";
+		 stmt = con.prepareStatement(sql);
+			rss = stmt.executeQuery();
+			int count=0;
+			rss.next();
+			count = rss.getRow();
+			if (count  == 0) 
+	    {
+				stmt = con.prepareStatement("INSERT INTO LOG_MAIL (USER_NAME,E_MAIL) VALUES (?,?)");
+				stmt.setString(1,ussr);
+				stmt.setString(2,mail);
+				stmt.executeUpdate();
+	    }
+			stmt.close();
+			con.close();
+	}
+	public   ResultSet log_mail_oku (String kull ) throws ClassNotFoundException, SQLException
+	{
+		 Class.forName("org.sqlite.JDBC");
+			con.close();
+			con = null;
+			ResultSet	rss = null;
+			PreparedStatement stmt = null;
+			con =  gLB.myConnection();
+			String sql = "SELECT DISTINCT E_MAIL FROM LOG_MAIL  WHERE USER_NAME = '" + kull + "'";
+			stmt = con.prepareStatement(sql);
+			rss = stmt.executeQuery();
+			return rss;
+	}
 	public   ResultSet  ipp (String kull) throws ClassNotFoundException, SQLException
 	{
 		 Class.forName("org.sqlite.JDBC");

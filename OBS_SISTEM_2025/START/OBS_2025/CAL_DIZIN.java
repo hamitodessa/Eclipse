@@ -61,6 +61,9 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.USER_ISLEMLERI;
 import net.proteanit.sql.DbUtils;
+import java.awt.SystemColor;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
 
 
 public class CAL_DIZIN extends JFrame {
@@ -108,6 +111,8 @@ public class CAL_DIZIN extends JFrame {
 	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	private static JTextField txtcdid;
+	private JLabel lblNewLabel_2;
+	private JTextField textField;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -841,6 +846,28 @@ public class CAL_DIZIN extends JFrame {
 		panel_1.add(lblysif);
 		
 		tabbedPane.setEnabledAt(7, true);
+		
+		JScrollPane scrollPane_8 = new JScrollPane();
+		tabbedPane.addTab("Loglama", null, scrollPane_8, null);
+		
+		JPanel panel_2 = new JPanel();
+		scrollPane_8.setViewportView(panel_2);
+		panel_2.setLayout(null);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "E Mail Loglama", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 99, 177)));
+		panel_3.setBounds(10, 42, 545, 111);
+		panel_3.setLayout(null);
+		panel_2.add(panel_3);
+		
+		lblNewLabel_2 = new JLabel("E Mail Adresi");
+		lblNewLabel_2.setBounds(10, 39, 78, 14);
+		panel_3.add(lblNewLabel_2);
+		
+		textField = new JTextField();
+		textField.setBounds(98, 36, 307, 20);
+		panel_3.add(textField);
+		textField.setColumns(10);
 	
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);

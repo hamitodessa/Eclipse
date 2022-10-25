@@ -270,7 +270,6 @@ public class USER_ISLEMLERI {
 			count = rss.getRow();
 			if (count  == 0) 
 	    {
-				 JOptionPane.showMessageDialog(null, "1", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
 				stmt = con.prepareStatement("INSERT INTO LOG_MAIL (USER_NAME,E_MAIL, AKTIV) VALUES (?,?,?)");
 				stmt.setString(1,ussr);
 				stmt.setString(2,mail);
@@ -278,21 +277,17 @@ public class USER_ISLEMLERI {
 				stmt.executeUpdate();
 				stmt = con.prepareStatement("UPDATE LOG_MAIL SET AKTIV = '0' WHERE USER_NAME =   '" + ussr+ "' AND E_MAIL <> '"+ mail +"'");
 				stmt.executeUpdate();
+				stmt.close();
 	    }
 			else
 			{
-				//
-				stmt = con.prepareStatement("UPDATE LOG_MAIL SET AKTIV = '1' WHERE USER_NAME =   '" + ussr+ "' AND E_MAIL = '"+ mail +"'");
-				stmt.executeUpdate();
-				stmt = con.prepareStatement("UPDATE LOG_MAIL SET AKTIV = '0' WHERE USER_NAME =   '" + ussr+ "' AND E_MAIL <> '"+ mail +"'");
-				stmt.executeUpdate();
-			 	 JOptionPane.showMessageDialog(null, "2", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
-				
-				//
-				
-	
+				PreparedStatement stmt1 = null;
+				stmt1 = con.prepareStatement("UPDATE LOG_MAIL SET AKTIV = '1' WHERE USER_NAME =   '" + ussr+ "' AND E_MAIL = '"+ mail +"'");
+				stmt1.executeUpdate();
+				stmt1 = con.prepareStatement("UPDATE LOG_MAIL SET AKTIV = '0' WHERE USER_NAME =   '" + ussr+ "' AND E_MAIL <> '"+ mail +"'");
+				stmt1.executeUpdate();
+				stmt1.close();
 	    }
-			stmt.close();
 			con.close();
 	}
 	public   ResultSet log_mail_oku (String kull ) throws ClassNotFoundException, SQLException

@@ -922,10 +922,28 @@ public class CAL_DIZIN extends JFrame {
 		txt_Lmaill.setColumns(10);
 		
 		cmb_maillist = new JComboBox<String>();
+		cmb_maillist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (cmb_maillist.getItemCount() != 0)
+				{
+					txt_Lmaill.setText(cmb_maillist.getItemAt(cmb_maillist.getSelectedIndex()));
+				}
+				else if (cmb_maillist.getItemCount() == 0) 
+				{
+					txt_Lmaill.setText(cmb_maillist.getItemAt(1));
+				}
+			}
+		});
 		cmb_maillist.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (cmb_maillist.getItemCount() != 0)
-					txt_Lmaill.setText(cmb_maillist.getSelectedItem().toString());
+				{
+					txt_Lmaill.setText(cmb_maillist.getItemAt(cmb_maillist.getSelectedIndex()));
+				}
+				else if (cmb_maillist.getItemCount() == 0) 
+				{
+					txt_Lmaill.setText(cmb_maillist.getItemAt(1));
+				}
 			}
 		});
 		cmb_maillist.setBounds(98, 67, 307, 22);

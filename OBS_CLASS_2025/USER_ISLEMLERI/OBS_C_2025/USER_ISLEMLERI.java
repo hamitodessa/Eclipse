@@ -268,8 +268,10 @@ public class USER_ISLEMLERI {
 			int count=0;
 			rss.next();
 			count = rss.getRow();
+			  JOptionPane.showMessageDialog(null,   "count="  + count , "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
 			if (count  == 0) 
 	    {
+			       JOptionPane.showMessageDialog(null, ussr +  "=="  + mail , "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
 				stmt = con.prepareStatement("INSERT INTO LOG_MAIL (USER_NAME,E_MAIL, AKTIV) VALUES (?,?,?)");
 				stmt.setString(1,ussr);
 				stmt.setString(2,mail);
@@ -304,11 +306,12 @@ public class USER_ISLEMLERI {
 			String sql = "SELECT DISTINCT E_MAIL FROM LOG_MAIL  WHERE USER_NAME = '" + kull + "'  AND AKTIV =1";
 			stmt = con.prepareStatement(sql);
 			rss = stmt.executeQuery();
+			String aktiv = "" ;
 			 while (rss.next()) 
 			 {
-				sql = rss.getString("E_MAIL");
+				 aktiv = rss.getString("E_MAIL");
 		       }
-			return sql;
+			return aktiv;
 	}
 	public   ResultSet  ipp (String kull) throws ClassNotFoundException, SQLException
 	{

@@ -333,7 +333,7 @@ public class CAL_DIZIN extends JFrame {
 	            	}
 	            	else if (activ_sayfa == 8)
 	            	{
-	            		String oku = new String(txt_Lmaill .getText());
+	            		String oku = txt_Lmaill .getText();
 						if (oku.equals(""))
 						{
 							cmb_maillist.removeAllItems();

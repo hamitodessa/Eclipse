@@ -167,7 +167,7 @@ public class CAL_DIZIN extends JFrame {
 		});
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 930, 470);
+		setBounds(100, 100, 981, 470);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	
@@ -176,7 +176,7 @@ public class CAL_DIZIN extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		panel.setBounds(590, 11, 316, 409);
+		panel.setBounds(639, 11, 316, 409);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -593,7 +593,7 @@ public class CAL_DIZIN extends JFrame {
 			}
 		});
 		tabbedPane.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		tabbedPane.setBounds(0, 0, 574, 430);
+		tabbedPane.setBounds(0, 0, 629, 430);
 		tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBorder(UIManager.getBorder("ToolBar.border"));
@@ -905,6 +905,12 @@ public class CAL_DIZIN extends JFrame {
 		txt_Lmaill.setColumns(10);
 		
 		cmb_maillist = new JComboBox<String>();
+		cmb_maillist.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (cmb_maillist.getItemCount() != 0)
+					txt_Lmaill.setText(cmb_maillist.getSelectedItem().toString());
+			}
+		});
 		cmb_maillist.setBounds(98, 67, 307, 22);
 		panel_3.add(cmb_maillist);
 	

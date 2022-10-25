@@ -237,6 +237,8 @@ public class CAL_DIZIN extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				
+				if (activ_sayfa != 8)
+            	{
 				 if (txtcdid.equals("")) return;
 				 
 				 int g = JOptionPane.showOptionDialog(null, "Kayit Silinecek ?" ,
@@ -265,16 +267,34 @@ public class CAL_DIZIN extends JFrame {
 						            doldur_kutu(tblSms, 0);
 						        else if (activ_sayfa == 6)
 						            doldur_kutu(tblGunluk, 0);
-							} catch (NumberFormatException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							} catch (ClassNotFoundException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
+							} catch (Exception ex)
+					        {
+								
 							}
+            	}
+			
+				if (activ_sayfa == 8)
+				{
+					try {
+						
+						 int g = JOptionPane.showOptionDialog(null, "E Mail  Silinecek ?" ,
+								   "Calisma Dizini ", JOptionPane.YES_NO_OPTION,
+								   JOptionPane.QUESTION_MESSAGE, null, 
+								   new String[] {"Yes", "No"}, "No");
+						 // 1 = No   0 = Yes
+			         	  	if(g ==  1) {
+			         	  	    return;
+			         	  	}
+			         	   contentPane.setCursor(WAIT_CURSOR);
+					 USER_ISLEMLERI usr = new USER_ISLEMLERI();
+					 usr.log_mail_sil(GLOBAL.KULL_ADI , txt_Lmaill.getText());
+					 mail_doldur();
+					}
+					catch (Exception ex)
+			        {
+						 JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "E_Mail Silme", JOptionPane.ERROR_MESSAGE);   
+					}
+				}
 					        contentPane.setCursor(DEFAULT_CURSOR);
 			}
 		});

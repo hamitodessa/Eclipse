@@ -308,6 +308,17 @@ public class USER_ISLEMLERI {
 			rss = stmt.executeQuery();
 			return rss;
 	}
+	public void    log_mail_sil (String kull , String mail ) throws SQLException, ClassNotFoundException 
+	{
+		 Class.forName("org.sqlite.JDBC");
+			con.close();
+			con = null;
+			PreparedStatement stmt = null;
+			con =  gLB.myConnection();
+			String sql = "DELETE  FROM LOG_MAIL   WHERE USER_NAME = '" + kull + "' AND E_MAIL = '"+ mail +"'";
+			stmt = con.prepareStatement(sql);
+			 stmt.executeUpdate();
+	}
 	public    String log_mail_aktiv_oku  (String kull ) throws ClassNotFoundException, SQLException 
 	{
 		 Class.forName("org.sqlite.JDBC");

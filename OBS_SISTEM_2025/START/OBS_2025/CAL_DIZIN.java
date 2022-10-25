@@ -91,10 +91,7 @@ public class CAL_DIZIN extends JFrame {
 	private static JCheckBox chckbxO ;
 	private static JCheckBox chckbxD ;
 	private static JCheckBox chckbxL_1;
-	
-	
 	private static JTable tblCari;
-	
 	private static JTable tblFatura;
 	private static JTable tblAdres;
 	private static JTable tblKur;
@@ -154,7 +151,6 @@ public class CAL_DIZIN extends JFrame {
 					contentPane.setCursor(DEFAULT_CURSOR);
 				} catch (ClassNotFoundException | SQLException e1) {
 					contentPane.setCursor(DEFAULT_CURSOR);
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

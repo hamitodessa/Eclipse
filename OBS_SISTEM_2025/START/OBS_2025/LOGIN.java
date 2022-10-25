@@ -245,6 +245,7 @@ public LOGIN() throws IOException {
 				CAL_DIZIN frame = new CAL_DIZIN();
 				frame.setVisible(true);
 				dispose();
+				
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});

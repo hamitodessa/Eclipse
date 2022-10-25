@@ -282,6 +282,8 @@ public class USER_ISLEMLERI {
 			else
 			{
 				//
+				stmt = con.prepareStatement("UPDATE LOG_MAIL SET AKTIV = '1' WHERE USER_NAME =   '" + ussr+ "' AND E_MAIL = '"+ mail +"'");
+				stmt.executeUpdate();
 				stmt = con.prepareStatement("UPDATE LOG_MAIL SET AKTIV = '0' WHERE USER_NAME =   '" + ussr+ "' AND E_MAIL <> '"+ mail +"'");
 				stmt.executeUpdate();
 			 	 JOptionPane.showMessageDialog(null, "2", "Server Baglanti", JOptionPane.ERROR_MESSAGE);

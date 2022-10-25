@@ -268,15 +268,20 @@ public class USER_ISLEMLERI {
 			int count=0;
 			rss.next();
 			count = rss.getRow();
-			  JOptionPane.showMessageDialog(null,   "count="  + count , "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
 			if (count  == 0) 
 	    {
-			       JOptionPane.showMessageDialog(null, ussr +  "=="  + mail , "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
+		
 				stmt = con.prepareStatement("INSERT INTO LOG_MAIL (USER_NAME,E_MAIL, AKTIV) VALUES (?,?,?)");
 				stmt.setString(1,ussr);
 				stmt.setString(2,mail);
 				stmt.setInt(3,1);
 				stmt.executeUpdate();
+				//
+				stmt = con.prepareStatement("UPDATE LOG_MAIL SET AKTIV = '0' WHERE USER_NAME =   '" + ussr+ "' AND E_MAIL <> '"+ mail +"'");
+				stmt.executeUpdate();
+				//
+				
+	
 	    }
 			stmt.close();
 			con.close();
@@ -289,7 +294,7 @@ public class USER_ISLEMLERI {
 			ResultSet	rss = null;
 			PreparedStatement stmt = null;
 			con =  gLB.myConnection();
-			String sql = "SELECT DISTINCT E_MAIL FROM LOG_MAIL  WHERE USER_NAME = '" + kull + "'";
+			String sql = "SELECT DISTINCT E_MAIL FROM LOG_MAIL  WHERE USER_NAME = '" + kull + "' ORDER BY E_MAIL";
 			stmt = con.prepareStatement(sql);
 			rss = stmt.executeQuery();
 			return rss;

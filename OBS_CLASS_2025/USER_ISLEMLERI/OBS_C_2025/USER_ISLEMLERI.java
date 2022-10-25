@@ -262,7 +262,7 @@ public class USER_ISLEMLERI {
 		 ResultSet	rss = null;
 		 PreparedStatement stmt = null;
 		 con =  gLB.myConnection();
-		 String sql ="SELECT  * FROM LOG_MAIL WHERE USER_NAME = '" + ussr + "' AND  E_MAIL ='" + mail + "'";
+		 String sql ="SELECT  * FROM LOG_MAIL WHERE USER_NAME = '" + ussr + "' AND  E_MAIL = '" + mail + "'";
 		 stmt = con.prepareStatement(sql);
 			rss = stmt.executeQuery();
 			int count=0;
@@ -270,15 +270,22 @@ public class USER_ISLEMLERI {
 			count = rss.getRow();
 			if (count  == 0) 
 	    {
-		
+				 JOptionPane.showMessageDialog(null, "1", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
 				stmt = con.prepareStatement("INSERT INTO LOG_MAIL (USER_NAME,E_MAIL, AKTIV) VALUES (?,?,?)");
 				stmt.setString(1,ussr);
 				stmt.setString(2,mail);
 				stmt.setInt(3,1);
 				stmt.executeUpdate();
+				stmt = con.prepareStatement("UPDATE LOG_MAIL SET AKTIV = '0' WHERE USER_NAME =   '" + ussr+ "' AND E_MAIL <> '"+ mail +"'");
+				stmt.executeUpdate();
+	    }
+			else
+			{
 				//
 				stmt = con.prepareStatement("UPDATE LOG_MAIL SET AKTIV = '0' WHERE USER_NAME =   '" + ussr+ "' AND E_MAIL <> '"+ mail +"'");
 				stmt.executeUpdate();
+			 	 JOptionPane.showMessageDialog(null, "2", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+				
 				//
 				
 	
@@ -299,7 +306,7 @@ public class USER_ISLEMLERI {
 			rss = stmt.executeQuery();
 			return rss;
 	}
-	public   static  String log_mail_aktiv_oku  (String kull ) throws ClassNotFoundException, SQLException 
+	public    String log_mail_aktiv_oku  (String kull ) throws ClassNotFoundException, SQLException 
 	{
 		 Class.forName("org.sqlite.JDBC");
 			con.close();

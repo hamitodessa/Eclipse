@@ -61,7 +61,6 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.USER_ISLEMLERI;
 import net.proteanit.sql.DbUtils;
-import java.awt.SystemColor;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 
@@ -103,19 +102,14 @@ public class CAL_DIZIN extends JFrame {
 	private static JTable tblSms;
 	private static JTable tblGunluk;
 	private JPasswordField txtsif;
-	
 	private static	JTextField txt_Lmaill ;
 	private static JComboBox<String>  cmb_maillist;
-	
 	private static JTabbedPane tabbedPane;
 	private static int activ_sayfa =0;
-	
-	
 	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	private static JTextField txtcdid;
 	private JLabel lblNewLabel_2;
-	private JTextField textField;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -336,7 +330,7 @@ public class CAL_DIZIN extends JFrame {
 	            		String oku = txt_Lmaill .getText();
 						if (oku.toString() != "")
 						{
-							cmb_maillist.removeAllItems();
+							
 						     ResultSet	rs = null;
 							oac.uSER_ISL.log_mail_kont_kayit(GLOBAL.KULL_ADI , oku);
 							rs = oac.uSER_ISL.log_mail_oku(GLOBAL.KULL_ADI);
@@ -345,11 +339,14 @@ public class CAL_DIZIN extends JFrame {
 							} 
 							else
 							{
-								cmb_maillist.addItem("");
-								 while (rs.next()) {
+								cmb_maillist.removeAllItems();
+								 while (rs.next()) 
+								 {
 									 cmb_maillist.addItem(rs.getString("E_MAIL"));
 							        }
+								
 							}
+							 txt_Lmaill.setText(oac.uSER_ISL.log_mail_aktiv_oku(GLOBAL.KULL_ADI));
 							///
 						}
 						
@@ -969,7 +966,7 @@ public class CAL_DIZIN extends JFrame {
 		panel.add(chckbxL_1);
 		
 		cmblog = new JComboBox<String>();
-		cmblog.setModel(new DefaultComboBoxModel(new String[] {"Dosyaya Kayit", "Email Atma", "Hepsi"}));
+		cmblog.setModel(new DefaultComboBoxModel<String>(new String[] {"Dosyaya Kayit", "Email Atma", "Hepsi"}));
 		cmblog.setEnabled(false);
 		cmblog.setBounds(133, 130, 126, 22);
 		panel.add(cmblog);

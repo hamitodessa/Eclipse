@@ -1160,9 +1160,13 @@ public class CAL_DIZIN extends JFrame {
 			else
 			{
 				cmb_maillist.addItem("");
-				 while (rs.next()) {
+				 while (rs.next()) 
+				 {
 					 cmb_maillist.addItem(rs.getString("E_MAIL"));
-			        }
+			       }
+			
+				 txt_Lmaill.setText(usr.log_mail_aktiv_oku(GLOBAL.KULL_ADI));
+				 
 			}
 			///
 	}

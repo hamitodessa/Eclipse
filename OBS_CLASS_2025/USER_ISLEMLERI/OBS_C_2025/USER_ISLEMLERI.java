@@ -270,9 +270,10 @@ public class USER_ISLEMLERI {
 			count = rss.getRow();
 			if (count  == 0) 
 	    {
-				stmt = con.prepareStatement("INSERT INTO LOG_MAIL (USER_NAME,E_MAIL) VALUES (?,?)");
+				stmt = con.prepareStatement("INSERT INTO LOG_MAIL (USER_NAME,E_MAIL, AKTIV) VALUES (?,?,?)");
 				stmt.setString(1,ussr);
 				stmt.setString(2,mail);
+				stmt.setInt(3,1);
 				stmt.executeUpdate();
 	    }
 			stmt.close();
@@ -290,6 +291,24 @@ public class USER_ISLEMLERI {
 			stmt = con.prepareStatement(sql);
 			rss = stmt.executeQuery();
 			return rss;
+	}
+	public   static  String log_mail_aktiv_oku  (String kull ) throws ClassNotFoundException, SQLException 
+	{
+		 Class.forName("org.sqlite.JDBC");
+			con.close();
+			con = null;
+			ResultSet	rss = null;
+			PreparedStatement stmt = null;
+			GLOBAL glb = new GLOBAL();
+			con =  glb.myConnection();
+			String sql = "SELECT DISTINCT E_MAIL FROM LOG_MAIL  WHERE USER_NAME = '" + kull + "'  AND AKTIV =1";
+			stmt = con.prepareStatement(sql);
+			rss = stmt.executeQuery();
+			 while (rss.next()) 
+			 {
+				sql = rss.getString("E_MAIL");
+		       }
+			return sql;
 	}
 	public   ResultSet  ipp (String kull) throws ClassNotFoundException, SQLException
 	{

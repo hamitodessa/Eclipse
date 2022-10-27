@@ -51,9 +51,11 @@ import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CARI_HESAP_MSSQL;
 import OBS_C_2025.CARI_HESAP_MYSQL;
 import OBS_C_2025.CONNECT;
+import OBS_C_2025.DOSYA_YAZ;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.GUNLUK_ACCESS;
+import OBS_C_2025.ILOGGER;
 import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
@@ -1547,16 +1549,20 @@ public class CAL_DIZIN extends JFrame {
 				oac._ICar = new CARI_HESAP_MYSQL();
 			}
 		 			 
-		  
+		  // kontrolu yap
+			
+			
+			oac._ILogger = new DOSYA_YAZ();
          //
+			
          CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ILogger);
          if (chckbxD.isSelected())
          	{
-             	c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText());
+             	c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu");
         	 }
         	 else
         	 {
-        		  c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText());
+        		  c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu");
         	 }
      }
      else if (activ_sayfa == 1)

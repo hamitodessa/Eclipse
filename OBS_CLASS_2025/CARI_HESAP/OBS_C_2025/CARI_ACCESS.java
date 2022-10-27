@@ -24,9 +24,10 @@ public class CARI_ACCESS {
 		
 	}
 	public void cari_sifirdan_L (String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
-			String sifre) throws ClassNotFoundException, SQLException 
+			String sifre , String mesaj) throws ClassNotFoundException, SQLException 
 	{
 		 _ICari.cari_sifirdan_L( kod,dizin_yeri, dizin,  fir_adi, ins, kull, sifre);
+		 _Logger.Logla(mesaj);
 	}
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException
 	{

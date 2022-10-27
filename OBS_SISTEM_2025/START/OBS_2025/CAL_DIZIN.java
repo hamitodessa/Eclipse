@@ -429,7 +429,7 @@ public class CAL_DIZIN extends JFrame {
 		
 		txtIp = new JTextField();
 		txtIp.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtIp.setBounds(102, 199, 157, 20);
+		txtIp.setBounds(102, 199, 204, 20);
 		panel.add(txtIp);
 		txtIp.setColumns(10);
 		
@@ -1107,6 +1107,8 @@ public class CAL_DIZIN extends JFrame {
 			kutu_temizle();
 		    return;
 		} 
+		ip_doldur();
+
 		txtKodu.setText(grd.getModel().getValueAt(satir, 1).toString());
 		txtIp.setText(grd.getModel().getValueAt(satir, 6).toString());
 		txtkul.setText(grd.getModel().getValueAt(satir, 3).toString());
@@ -1153,7 +1155,6 @@ public class CAL_DIZIN extends JFrame {
 			txtdiz.setText(grd.getModel().getValueAt(satir, 8).toString());
 		}
 		
-		ip_doldur();
 		contentPane.setCursor(DEFAULT_CURSOR);
 	}
 	
@@ -1220,9 +1221,10 @@ public class CAL_DIZIN extends JFrame {
 		else
 		{
 			cmbip.addItem("");
-			 while (rs.next()) {
+			 while (rs.next())
+			 {
 				 cmbip.addItem(rs.getString("IP"));
-		        }
+		     }
 		}
 }
 	private  void server_control() throws HeadlessException, ClassNotFoundException

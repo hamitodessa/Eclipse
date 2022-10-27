@@ -46,6 +46,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+
+import LOGER_KAYIT.DOSYA_MSSQL;
+import LOGER_KAYIT.DOSYA_MYSQL;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CARI_HESAP_MSSQL;
@@ -1543,16 +1546,18 @@ public class CAL_DIZIN extends JFrame {
 					{
 			
 				oac._ICar = new CARI_HESAP_MSSQL();
+				oac._ILogger = new DOSYA_YAZ(new DOSYA_MSSQL());
 					}
 			else
 			{
 				oac._ICar = new CARI_HESAP_MYSQL();
+				oac._ILogger = new DOSYA_YAZ(new DOSYA_MYSQL());
 			}
 		 			 
 		  // kontrolu yap
 			
 			
-			oac._ILogger = new DOSYA_YAZ();
+			
          //
 			
          CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ILogger);

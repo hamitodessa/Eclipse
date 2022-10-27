@@ -1161,22 +1161,18 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	@Override
 	public void create_table_log() throws SQLException {
 		String sql = "" ;
-	    sql = "CREATE TABLE [dbo].[LOGLAMA]( "
-		 			+ " [TARIH] [datetime] NOT NULL,"
-                    + " [MESAJ] [nvarchar](100) NULL,"
-                    + " [EVRAK] [int] NOT NULL,"
-                    + " [USER] [nvarchar](15) NULL,"
-                    + " STATISTICS_NORECOMPUTE = OFF, "
-                    + " IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]";
+	    sql = "CREATE TABLE [dbo].[LOGLAMA]("
+	    		+ "	[TARIH] [datetime] NOT NULL,"
+	    		+ "	[MESAJ] [nchar](100) NOT NULL,"
+	    		+ "	[EVRAK] [int] NOT NULL,"
+	    		+ "	[USER_NAME] [nchar](15) NULL"
+	    		+ ") ON [PRIMARY]";
 	    	stmt = con.createStatement();  
 	    	stmt.executeUpdate(sql);
-	        sql = "CREATE NONCLUSTERED INDEX [IX_LOGLAMA] ON [dbo].[LOGLAMA]( "
-	          		 + " [HESAP] ASC,"
-	   	                        + " [TARIH] ASC,"
-	   	                        + " [EVRAK] ASC,"
-	   	                        + " [USER] ASC"
-	   	                        + "  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF,"
-	   	                        + "  ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
+	    	 sql = "CREATE NONCLUSTERED INDEX [IDX_LOGLAMA] ON [dbo].[LOGLAMA](	[TARIH] ASC,	[EVRAK] ASC , [USER_NAME] ASC "
+	                  + " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
+
+	    	 
 	           stmt = con.createStatement();  
 	           stmt.executeUpdate(sql);
 	       

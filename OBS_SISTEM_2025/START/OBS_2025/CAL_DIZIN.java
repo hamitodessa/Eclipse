@@ -48,6 +48,8 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.CARI_HESAP_MSSQL;
+import OBS_C_2025.CARI_HESAP_MYSQL;
 import OBS_C_2025.CONNECT;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -209,6 +211,7 @@ public class CAL_DIZIN extends JFrame {
 				try
 				{
 					contentPane.setCursor(WAIT_CURSOR);
+					
 		            database_kontrol();
 		            btnNewButton_1.setEnabled(false);
 		            contentPane.setCursor(DEFAULT_CURSOR);
@@ -1279,7 +1282,18 @@ public class CAL_DIZIN extends JFrame {
 	private  void database_kontrol() throws ClassNotFoundException, HeadlessException, SQLException, IOException
 	{
 		contentPane.setCursor(WAIT_CURSOR);
+		 String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
+			if (hangi == "MS SQL")
+					{
+				oac._IConn = new OBS_ORTAK_MSSQL();
+					}
+			else
+			{
+				oac._IConn = new OBS_ORTAK_MYSQL();
+			}
+		 			 
 		 CONNECT s_CONN = new CONNECT(oac._IConn);
+		 
          String program = "";
           if (activ_sayfa == 0)
              program = "OK_Car" + txtKodu.getText();
@@ -1521,6 +1535,20 @@ public class CAL_DIZIN extends JFrame {
 		 String strAdmin = "";
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
+         //
+         String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
+			if (hangi == "MS SQL")
+					{
+			
+				oac._ICar = new CARI_HESAP_MSSQL();
+					}
+			else
+			{
+				oac._ICar = new CARI_HESAP_MYSQL();
+			}
+		 			 
+		  
+         //
          CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ILogger);
          if (chckbxD.isSelected())
          	{

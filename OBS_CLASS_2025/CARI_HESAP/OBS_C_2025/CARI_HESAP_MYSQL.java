@@ -476,6 +476,11 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public void create_table_log() throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 	

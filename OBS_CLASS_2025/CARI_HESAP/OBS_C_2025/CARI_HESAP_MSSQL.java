@@ -72,7 +72,9 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
           stmt.executeUpdate(sql);
           cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
           con = DriverManager.getConnection(cumle,kull,sifre);
-         //
+          create_table_log();
+          
+          //
          
          stmt.close();
          con.close();
@@ -93,6 +95,14 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
             cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + ";";
             con = DriverManager.getConnection(cumle,kull,sifre);
             create_table(fir_adi);
+            //
+            sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
+            stmt = con.createStatement();  
+            stmt.executeUpdate(sql);
+            cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
+            con = DriverManager.getConnection(cumle,kull,sifre);
+            create_table_log();
+            //
             stmt.close();
             con.close();
 	}
@@ -1145,6 +1155,20 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		    cstmt.execute();
 		    rss = cstmt.getResultSet();
 		    return rss ; 
+	}
+	@Override
+	public void create_table_log() throws SQLException {
+		String sql = "" ;
+	    sql = "CREATE TABLE [dbo].[LOGLAMA]( "
+		 			+ " [TARIH] [datetime] NOT NULL,"
+                    + " [MESAJ] [nvarchar](100) NULL,"
+                    + " [EVRAK] [int] NOT NULL,"
+                    + " [USER] [nvarchar](15) NULL,"
+                    + " CONSTRAINT [IX_TAR] PRIMARY KEY CLUSTERED(	[TARIH] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, "
+                    + " IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]";
+	    	stmt = con.createStatement();  
+	    	stmt.executeUpdate(sql);
+		
 	}
 }
 

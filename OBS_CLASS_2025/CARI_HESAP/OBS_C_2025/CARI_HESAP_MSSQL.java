@@ -123,7 +123,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
         sql = "CREATE TABLE [dbo].[HESAP_DETAY]( "
 	                      + " [D_HESAP] [nvarchar](12) NOT NULL,"
 	                      + " [YETKILI] [nvarchar](30) NULL,"
-                         + " [TC_KIMLIK] [nvarchar](15) NULL,"
+	                      + " [TC_KIMLIK] [nvarchar](15) NULL,"
 	                      + " [ADRES_1] [nvarchar](35) NULL,"
 	                      + " [ADRES_2] [nvarchar](35) NULL,"
 	                      + " [SEMT] [nvarchar](15) NULL,"

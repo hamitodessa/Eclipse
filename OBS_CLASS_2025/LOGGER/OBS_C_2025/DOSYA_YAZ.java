@@ -20,8 +20,8 @@ public class DOSYA_YAZ implements ILOGGER{
 	public void Logla(String mesaj) {
 		// TODO Auto-generated method stub
 		
-		
-				System.out.println(  "Dosyaya Loglama Yapildi");
+		_ILoger_Kayit.Logla(mesaj);
+				
 		
 	}
 

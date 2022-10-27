@@ -1164,10 +1164,20 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
                     + " [MESAJ] [nvarchar](100) NULL,"
                     + " [EVRAK] [int] NOT NULL,"
                     + " [USER] [nvarchar](15) NULL,"
-                    + " CONSTRAINT [IX_TAR] PRIMARY KEY CLUSTERED(	[TARIH] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, "
+                    + " STATISTICS_NORECOMPUTE = OFF, "
                     + " IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]";
 	    	stmt = con.createStatement();  
 	    	stmt.executeUpdate(sql);
+	        sql = "CREATE NONCLUSTERED INDEX [IX_LOGLAMA] ON [dbo].[LOGLAMA]( "
+	          		 + " [HESAP] ASC,"
+	   	                        + " [TARIH] ASC,"
+	   	                        + " [EVRAK] ASC,"
+	   	                        + " [USER] ASC"
+	   	                        + "  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF,"
+	   	                        + "  ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
+	           stmt = con.createStatement();  
+	           stmt.executeUpdate(sql);
+	       
 		
 	}
 }

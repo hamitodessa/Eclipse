@@ -10,13 +10,31 @@ import java.sql.Statement;
 
 public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 
-	static Connection con = null;
+	public static Connection con = null;
+	public static Connection akt_con = null;
+	static Connection SQLitecon = null;
 	static Statement stmt = null;
+	private GLOBAL gLB = new GLOBAL();
+	
 	public void baglan() throws SQLException
 	{
 		String cumle = "jdbc:sqlserver://" + BAGLAN.cariDizin.cONN_STR + ";";
 	    con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 	   
+	}
+	public void akt_baglan(String kod) throws SQLException
+	{
+		String cnnstr = "" ;
+		if (new String( BAGLAN.cariDizin.yER.toString()).equals("L") == true) 
+        { 
+			cnnstr = "localhost;instanceName=" + BAGLAN.cariDizin.iNSTANCE + " ; database=OK_Car" + kod ;
+        }
+        else
+        { 
+        	cnnstr = BAGLAN.cariDizin.sERVER + ";instanceName=" +BAGLAN.cariDizin.iNSTANCE + " ; database=OK_Car" + kod ;
+        }
+		String cumle = "jdbc:mysql://" + cnnstr + ";";
+	    akt_con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 	}
 	@Override
 	public void cari_sifirdan_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
@@ -35,9 +53,20 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
          	sql = "CREATE DATABASE [" + VERITABANI + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_log', FILENAME = N'" + dizin + "\\" + VERITABANI + "_log.ldf' ) ";
          stmt = con.createStatement();  
          stmt.executeUpdate(sql);
-         cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + ";";
+         cumle = "jdbc:mysql://localhost;instanceName=" + ins + ";database=" + VERITABANI + ";";
          con = DriverManager.getConnection(cumle,kull,sifre);
          create_table(fir_adi);
+         //
+         if (dizin_yeri == "default")
+          	sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
+          else
+          	sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG" + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_LOG" + "_log', FILENAME = N'" + dizin + "\\" + VERITABANI + "_LOG" + "_log.ldf' ) ";
+          stmt = con.createStatement();  
+          stmt.executeUpdate(sql);
+          cumle = "jdbc:mysql://localhost;instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
+          con = DriverManager.getConnection(cumle,kull,sifre);
+          create_table_log();
+        
          stmt.close();
          con.close();
 		
@@ -56,9 +85,17 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
             sql = "CREATE DATABASE [" + VERITABANI + "]";
             stmt = con.createStatement();  
             stmt.executeUpdate(sql);
-            cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + ";";
+            cumle = "jdbc:mysql://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + ";";
             con = DriverManager.getConnection(cumle,kull,sifre);
             create_table(fir_adi);
+            //
+            sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
+            stmt = con.createStatement();  
+            stmt.executeUpdate(sql);
+            cumle = "jdbc:mysql://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
+            con = DriverManager.getConnection(cumle,kull,sifre);
+            create_table_log();
+          
             stmt.close();
             con.close();
 		
@@ -479,6 +516,16 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	@Override
 	public void create_table_log() throws SQLException {
 		// TODO Auto-generated method stub
+		String sql = "" ;
+	    sql = "CREATE TABLE [dbo].[LOGLAMA]( "
+		 			+ " [TARIH] [datetime] NOT NULL,"
+                    + " [MESAJ] [nvarchar](100) NULL,"
+                    + " [EVRAK] [int] NOT NULL,"
+                    + " [USER] [nvarchar](15) NULL,"
+                    + " CONSTRAINT [IX_TAR] PRIMARY KEY CLUSTERED(	[TARIH] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, "
+                    + " IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]";
+	    	stmt = con.createStatement();  
+	    	stmt.executeUpdate(sql);
 		
 	}
 	

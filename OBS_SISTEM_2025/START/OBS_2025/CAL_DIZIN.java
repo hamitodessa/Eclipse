@@ -429,7 +429,7 @@ public class CAL_DIZIN extends JFrame {
 		
 		txtIp = new JTextField();
 		txtIp.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtIp.setBounds(102, 199, 204, 20);
+		txtIp.setBounds(102, 199, 157, 20);
 		panel.add(txtIp);
 		txtIp.setColumns(10);
 		

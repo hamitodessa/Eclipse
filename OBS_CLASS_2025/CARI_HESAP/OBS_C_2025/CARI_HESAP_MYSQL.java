@@ -14,8 +14,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	static Statement stmt = null;
 	public void baglan() throws SQLException
 	{
-		//String cumle = "jdbc:sqlserver://" + CONNECTION.caridizinbilgi.conn_str + ";";
-	   // con = DriverManager.getConnection(cumle,CONNECTION.caridizinbilgi.kullanici,CONNECTION.caridizinbilgi.sifresi);
+		String cumle = "jdbc:sqlserver://" + BAGLAN.cariDizin.cONN_STR + ";";
+	    con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 	   
 	}
 	@Override

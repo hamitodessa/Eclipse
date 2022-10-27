@@ -63,6 +63,17 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
          cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + ";";
          con = DriverManager.getConnection(cumle,kull,sifre);
          create_table(fir_adi);
+         //
+         if (dizin_yeri == "default")
+          	sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
+          else
+          	sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG" + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_LOG" + "_log', FILENAME = N'" + dizin + "\\" + VERITABANI + "_LOG" + "_log.ldf' ) ";
+          stmt = con.createStatement();  
+          stmt.executeUpdate(sql);
+          cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
+          con = DriverManager.getConnection(cumle,kull,sifre);
+         //
+         
          stmt.close();
          con.close();
 	}

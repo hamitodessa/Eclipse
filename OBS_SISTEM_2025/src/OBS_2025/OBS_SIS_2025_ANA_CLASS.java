@@ -29,7 +29,7 @@ public class OBS_SIS_2025_ANA_CLASS
     public IKAMBIYO _IKambiyo;
     public IGUNLUK _IGunluk;
     public ISMS _ISms;
-    public ILOGGER _ILogger;
+    public ILOGGER[] _ILogger;
    
     public String[] options = {"Tamam......       		!", "Vazgec.....       		!"}; 
     public IConnection _IConn ;

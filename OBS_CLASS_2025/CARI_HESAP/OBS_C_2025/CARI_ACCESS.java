@@ -5,9 +5,9 @@ import java.sql.SQLException;
 
 public class CARI_ACCESS {
 	private static  ICARI_HESAP _ICari;
-	private static ILOGGER _Logger;
+	private static ILOGGER[] _Logger;
 	
-	public CARI_ACCESS(ICARI_HESAP _ICari, ILOGGER _Logger)
+	public CARI_ACCESS(ICARI_HESAP _ICari, ILOGGER[] _Logger)
 	{
 		this._ICari = _ICari;
 		this._Logger = _Logger;
@@ -28,9 +28,9 @@ public class CARI_ACCESS {
 	{
 		 _ICari.cari_sifirdan_L( kod,dizin_yeri, dizin,  fir_adi, ins, kull, sifre);
 		 
-		// for ( ILOGGER  _Logger : _Logger )
-		  //  	_Logger.Logla(mesaj);
-		 _Logger.Logla(mesaj);
+		 for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(mesaj);
+		// _Logger.Logla(mesaj);
 	     
 	}
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException

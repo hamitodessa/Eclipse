@@ -61,6 +61,7 @@ import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ILOGGER;
 import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.KUR_ACCESS;
+import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.SMS_ACCESS;
@@ -1525,9 +1526,7 @@ public class CAL_DIZIN extends JFrame {
          contentPane.setCursor(WAIT_CURSOR);
          //
          cONN_AKTAR();
-         
          lOGG_AKTAR();
-		 			 
 		  // kontrolu yap
 			
 			
@@ -1541,7 +1540,7 @@ public class CAL_DIZIN extends JFrame {
         	 }
         	 else
         	 {
-        		  c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu");
+        		c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu");
         	 }
      }
      else if (activ_sayfa == 1)
@@ -1732,13 +1731,16 @@ public class CAL_DIZIN extends JFrame {
 	private void lOGG_AKTAR()
 	{
 		  String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
+		  
 			if (hangi == "MS SQL")
 			{
-				oac._ILogger = new DOSYA_YAZ(new DOSYA_MSSQL());
+				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
+				oac._ILogger = ilogg;
 			}
 			else
 			{
-				oac._ILogger = new DOSYA_YAZ(new DOSYA_MYSQL());
+				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()), new MAIL_AT()};
+				oac._ILogger = ilogg;
 			}
 	}
 }

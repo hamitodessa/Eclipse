@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -1729,6 +1730,7 @@ public class CAL_DIZIN extends JFrame {
 	private void lOGG_AKTAR()
 	{
 		  String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
+		  
 			if (hangi == "MS SQL")
 			{
 				oac._ILogger = new DOSYA_YAZ(new DOSYA_MSSQL());

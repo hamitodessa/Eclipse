@@ -1238,15 +1238,7 @@ public class CAL_DIZIN extends JFrame {
 	private  void server_control() throws HeadlessException, ClassNotFoundException
 		{
 			 contentPane.setCursor(WAIT_CURSOR);
-			 String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
-				if (hangi == "MS SQL")
-						{
-					oac._IConn = new OBS_ORTAK_MSSQL();
-						}
-				else
-				{
-					oac._IConn = new OBS_ORTAK_MYSQL();
-				}
+			 cONN_AKTAR();
 			 			 
 			 CONNECT s_CONN = new CONNECT(oac._IConn);
              if (chckbxL.isSelected() )
@@ -1287,16 +1279,7 @@ public class CAL_DIZIN extends JFrame {
 	private  void database_kontrol() throws ClassNotFoundException, HeadlessException, SQLException, IOException
 	{
 		contentPane.setCursor(WAIT_CURSOR);
-		 String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
-			if (hangi == "MS SQL")
-					{
-				oac._IConn = new OBS_ORTAK_MSSQL();
-					}
-			else
-			{
-				oac._IConn = new OBS_ORTAK_MYSQL();
-			}
-		 			 
+		cONN_AKTAR();	 
 		 CONNECT s_CONN = new CONNECT(oac._IConn);
 		 
          String program = "";
@@ -1541,18 +1524,8 @@ public class CAL_DIZIN extends JFrame {
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          //
-         String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
-			if (hangi == "MS SQL")
-					{
-			
-				oac._ICar = new CARI_HESAP_MSSQL();
-				oac._ILogger = new DOSYA_YAZ(new DOSYA_MSSQL());
-					}
-			else
-			{
-				oac._ICar = new CARI_HESAP_MYSQL();
-				oac._ILogger = new DOSYA_YAZ(new DOSYA_MYSQL());
-			}
+         cONN_AKTAR();
+         lOGG_AKTAR();
 		 			 
 		  // kontrolu yap
 			
@@ -1739,6 +1712,32 @@ public class CAL_DIZIN extends JFrame {
         }    
         }
 }
+
+	private void cONN_AKTAR()
+	{
+		 String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
+			if (hangi == "MS SQL")
+					{
+				oac._IConn = new OBS_ORTAK_MSSQL();
+					}
+			else
+			{
+				oac._IConn = new OBS_ORTAK_MYSQL();
+			}
+		 		
+	}
+	private void lOGG_AKTAR()
+	{
+		  String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
+			if (hangi == "MS SQL")
+			{
+				oac._ILogger = new DOSYA_YAZ(new DOSYA_MSSQL());
+			}
+			else
+			{
+				oac._ILogger = new DOSYA_YAZ(new DOSYA_MYSQL());
+			}
+	}
 }
 	class ComboItem
 {

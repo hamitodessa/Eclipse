@@ -61,7 +61,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.GUNLUK_MSSQL;
 import OBS_C_2025.GUNLUK_MYSQL;
-
+import OBS_C_2025.IConnection;
 import OBS_C_2025.JTextFieldLimit;
 
 import OBS_C_2025.JTextFieldRegularPopupMenu;
@@ -539,86 +539,82 @@ void calisma_dizini_oku() throws ClassNotFoundException, SQLException, Interrupt
     int say = 8;
 	bAGLAN.Connect(txtUser.getText());
 
+	// Cari
+	cONN_AKTAR( BAGLAN.cariDizin.hAN_SQL );
 	String hangi_sql =  BAGLAN.cariDizin.hAN_SQL;
     if (hangi_sql.equals("MS SQL"))
     {
-    	oac._IConn = new OBS_ORTAK_MSSQL();
     	oac._ICar = new  CARI_HESAP_MSSQL();
     }
     else
     {
-    	oac._IConn = new OBS_ORTAK_MYSQL();
     	oac._ICar = new  CARI_HESAP_MYSQL();
     }
+    //Kur
+    cONN_AKTAR( BAGLAN.kurDizin.hAN_SQL );
     hangi_sql =  BAGLAN.kurDizin.hAN_SQL;
 
     if (hangi_sql.equals("MS SQL"))
     {
-   
-    	oac._IConn = new OBS_ORTAK_MSSQL();
     	oac._IKur = new KUR_MSSQL();
     }
     else
     {
-    	oac._IConn = new OBS_ORTAK_MYSQL();
     	oac._IKur = new KUR_MYSQL();
     }
-   hangi_sql =  BAGLAN.smsDizin.hAN_SQL;
+    //SMS
+    cONN_AKTAR(BAGLAN.smsDizin.hAN_SQL );
+    hangi_sql =  BAGLAN.smsDizin.hAN_SQL;
     if (hangi_sql.equals("MS SQL"))
     {
-  
-    	oac._IConn = new OBS_ORTAK_MSSQL();
     	oac._ISms = new SMS_MSSQL();
     }
     else
     {
-    	oac._IConn = new OBS_ORTAK_MYSQL();
     	oac._ISms = new SMS_MYSQL();
     }
+    //ADRES
+    cONN_AKTAR( BAGLAN.adrDizin.hAN_SQL );
     hangi_sql =  BAGLAN.adrDizin.hAN_SQL;
     if (hangi_sql.equals("MS SQL"))
     {
-    	oac._IConn = new OBS_ORTAK_MSSQL();
     	oac._IAdres = new ADRES_MSSQL();
     }
     else
     {
-    	oac._IConn = new OBS_ORTAK_MYSQL();
     	oac._IAdres = new ADRES_MYSQL();
     }
+    //FAT
+    cONN_AKTAR(BAGLAN.fatDizin.hAN_SQL );
     hangi_sql =  BAGLAN.fatDizin.hAN_SQL;
-	
     if (hangi_sql.equals("MS SQL"))
     {
-    	oac._IConn = new OBS_ORTAK_MSSQL();
     	oac._Istok = new STOK_MSSQL();
-    
     }
     else
     {
-    	oac._IConn = new OBS_ORTAK_MYSQL();
     	oac._Istok = new STOK_MYSQL();
     }
+    //KAMB
+    cONN_AKTAR(BAGLAN.kamDizin.hAN_SQL );
     hangi_sql =  BAGLAN.kamDizin.hAN_SQL;
     if (hangi_sql.equals("MS SQL"))
     {
-    	oac._IConn = new OBS_ORTAK_MSSQL();
     	oac._IKambiyo = new KAMBIYO_MSSQL();
     }
     else
     {
-    	oac._IConn = new OBS_ORTAK_MYSQL();
     	oac._IKambiyo = new KAMBIYO_MYSQL();
     }
+    //GUN
+    cONN_AKTAR( BAGLAN.gunDizin.hAN_SQL );
     hangi_sql =  BAGLAN.gunDizin.hAN_SQL;
     if (hangi_sql.equals("MS SQL"))
     {
-    	oac._IConn = new OBS_ORTAK_MSSQL();
     	oac._IGunluk = new GUNLUK_MSSQL();
     }
     else
     {
-    	oac._IConn = new OBS_ORTAK_MYSQL();
     	oac._IGunluk = new GUNLUK_MYSQL();
     }
     progressBar.setMaximum(8);
@@ -1024,6 +1020,22 @@ private void versiyon_oku()
         	return ;
       }
 }
+	private void cONN_AKTAR( String dIZIN )
+	{
+	 String hangi = dIZIN  ;
+		if (hangi == "MS SQL")
+				{
+			oac._IConn = new OBS_ORTAK_MSSQL();
+			
+				}
+		else
+		{
+			oac._IConn = new OBS_ORTAK_MYSQL();
+			
+		}
+	 		
+	}
+	
 	private static void addPopup(Component component, final JPopupMenu popup) {
 	component.addMouseListener(new MouseAdapter() {
 		public void mousePressed(MouseEvent e) {

@@ -67,6 +67,8 @@ import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.STOK_MSSQL;
+import OBS_C_2025.STOK_MYSQL;
 import OBS_C_2025.USER_ISLEMLERI;
 import net.proteanit.sql.DbUtils;
 import javax.swing.border.TitledBorder;
@@ -1524,15 +1526,9 @@ public class CAL_DIZIN extends JFrame {
 		 String strAdmin = "";
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
-         //
          cONN_AKTAR();
          lOGG_AKTAR();
-		  // kontrolu yap
-			
-			
-			
-         //
-			
+         mODUL_AKTAR("Cari Hesap");
          CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ILogger);
          if (chckbxD.isSelected())
          	{
@@ -1548,6 +1544,10 @@ public class CAL_DIZIN extends JFrame {
     	 String strAdmin = "";
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
+         cONN_AKTAR();
+         lOGG_AKTAR();
+         mODUL_AKTAR("Stok");
+
          STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok);
          if (chckbxD.isSelected())
          {
@@ -1717,16 +1717,41 @@ public class CAL_DIZIN extends JFrame {
 	{
 		 String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
 			if (hangi == "MS SQL")
-					{
+			{
 				oac._IConn = new OBS_ORTAK_MSSQL();
-				oac._ICar = new CARI_HESAP_MSSQL();
-					}
-			else
+			}
+			else if (hangi == "MY SQL")
 			{
 				oac._IConn = new OBS_ORTAK_MYSQL();
-				oac._ICar = new CARI_HESAP_MYSQL();
 			}
 		 		
+	}
+	private void mODUL_AKTAR(String mODUL)
+	{
+		 String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
+			if (hangi == "MS SQL")
+					{
+				if (mODUL == "Cari Hesap")
+				{
+				oac._ICar = new CARI_HESAP_MSSQL();
+				}
+				else if (mODUL == "Stok")
+				{
+				oac._Istok = new STOK_MSSQL();
+				}
+				
+					}
+			else if (hangi == "MY SQL")
+			{
+				if (mODUL == "Cari Hesap")
+				{
+				oac._ICar = new CARI_HESAP_MYSQL();
+				}
+				else if (mODUL == "Stok")
+				{
+				oac._Istok = new STOK_MYSQL();
+				}
+			}
 	}
 	private void lOGG_AKTAR()
 	{
@@ -1737,7 +1762,7 @@ public class CAL_DIZIN extends JFrame {
 				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
 				oac._ILogger = ilogg;
 			}
-			else
+			else if (hangi == "MY SQL")
 			{
 				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()), new MAIL_AT()};
 				oac._ILogger = ilogg;

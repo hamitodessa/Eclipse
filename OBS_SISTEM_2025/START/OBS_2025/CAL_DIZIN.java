@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
-import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -1526,6 +1525,7 @@ public class CAL_DIZIN extends JFrame {
          contentPane.setCursor(WAIT_CURSOR);
          //
          cONN_AKTAR();
+         
          lOGG_AKTAR();
 		 			 
 		  // kontrolu yap
@@ -1720,17 +1720,18 @@ public class CAL_DIZIN extends JFrame {
 			if (hangi == "MS SQL")
 					{
 				oac._IConn = new OBS_ORTAK_MSSQL();
+				oac._ICar = new CARI_HESAP_MSSQL();
 					}
 			else
 			{
 				oac._IConn = new OBS_ORTAK_MYSQL();
+				oac._ICar = new CARI_HESAP_MYSQL();
 			}
 		 		
 	}
 	private void lOGG_AKTAR()
 	{
 		  String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
-		  
 			if (hangi == "MS SQL")
 			{
 				oac._ILogger = new DOSYA_YAZ(new DOSYA_MSSQL());

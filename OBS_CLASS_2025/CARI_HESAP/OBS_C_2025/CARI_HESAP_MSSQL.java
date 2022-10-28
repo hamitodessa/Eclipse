@@ -1164,7 +1164,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	    sql = "CREATE TABLE [dbo].[LOGLAMA]("
 	    		+ "	[TARIH] [datetime] NOT NULL,"
 	    		+ "	[MESAJ] [nchar](100) NOT NULL,"
-	    		+ "	[EVRAK] [int] NOT NULL,"
+	    		+ "	[EVRAK] [nchar](15) NOT NULL,"
 	    		+ "	[USER_NAME] [nchar](15) NULL"
 	    		+ ") ON [PRIMARY]";
 	    	stmt = con.createStatement();  

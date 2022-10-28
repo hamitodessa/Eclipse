@@ -1,5 +1,7 @@
 package OBS_C_2025;
 
+import java.sql.SQLException;
+
 import LOGER_KAYIT.ILOGER_KAYIT;
 
 public class LOG_YAZ {
@@ -13,11 +15,11 @@ public class LOG_YAZ {
 		this._ILoger_Kayit = _ILoger_Kayit;
 	}
 	
-	public void Logla(String mesaj) {
+	public void Logla(String mesaj, String evrak) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		
 		
-		_ILoger_Kayit.Logla(mesaj);
+		_ILoger_Kayit.Logla(mesaj, evrak);
 			
 		
 	}

@@ -27,7 +27,9 @@ public class CARI_ACCESS {
 			String sifre , String mesaj) throws ClassNotFoundException, SQLException 
 	{
 		 _ICari.cari_sifirdan_L( kod,dizin_yeri, dizin,  fir_adi, ins, kull, sifre);
-		 _Logger.Logla(mesaj);
+		 
+		    	_Logger.Logla(mesaj);
+	     
 	}
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException
 	{

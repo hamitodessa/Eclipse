@@ -9,7 +9,7 @@ public class STRT {
 		// TODO Auto-generated method stub
 
 		BAGLAN bG = new BAGLAN();
-		bG.Connect("Admin");
+		bG.cONNECT("Admin");
 		
 		
 		System.out.println("=" +BAGLAN.cariDizin.sERVER.toString());

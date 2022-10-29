@@ -6,23 +6,22 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import OBS_C_2025.BAGLAN;
+import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.LOG_KAYIT_BILGILERI;
 
 public class DOSYA_MSSQL implements ILOGER_KAYIT{
 	
 	 Connection con = null;
 	
-	public void Logla(String mesaj, String evrak) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		BAGLAN bAGLAN = new BAGLAN();	
-		bAGLAN.Connect(GLOBAL.KULL_ADI);
-		String lOG_Conn_L = "localhost;instanceName=" + BAGLAN.cariDizin.iNSTANCE + " ; database=" + "OK_Car" +  BAGLAN.cariDizin.kOD + "_LOG" ;
-		//String lOG_Conn_S = BAGLAN.cariDizin.sERVER + ";instanceName=" + BAGLAN.cariDizin.iNSTANCE + " ; database=" + "OK_Car" +  BAGLAN.cariDizin.kOD + "_LOG" ;
+	public void Logla(String mesaj, String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
 		
-		System.out.println("cariconn=" + BAGLAN.cariDizin.cONN_STR);
-		System.out.println("conn=" +lOG_Conn_L);
-		String cumle = "jdbc:sqlserver://" + lOG_Conn_L + ";";
-	    con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
+
+		System.out.println("1=" + dBILGI.cONN_STR);
+		System.out.println("11=" + dBILGI.kULLANICI + "=="+dBILGI.sIFRESI);
+		String cumle = "jdbc:sqlserver://" + dBILGI.cONN_STR + ";";
+	    con = DriverManager.getConnection(cumle,dBILGI.kULLANICI,dBILGI.sIFRESI);
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String sql  = "INSERT LOGLAMA (TARIH,EVRAK,MESAJ,[USER_NAME]) " +
     		   		  " VALUES (?,?,?,?)" ;

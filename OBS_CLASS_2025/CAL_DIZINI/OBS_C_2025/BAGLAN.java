@@ -23,7 +23,7 @@ public class BAGLAN {
     public static Connection fihConn ;
     public static DIZIN_BILGILERI fihDizin = new DIZIN_BILGILERI();  // Fihrist
     
-    public  void Connect(String uSER) throws ClassNotFoundException, SQLException
+    public  void cONNECT(String uSER) throws ClassNotFoundException, SQLException
     {
     	BILGI_OKU b_OKU = new BILGI_OKU();
     	

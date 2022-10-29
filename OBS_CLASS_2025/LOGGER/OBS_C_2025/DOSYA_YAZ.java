@@ -19,12 +19,10 @@ public class DOSYA_YAZ implements ILOGGER{
 
 
 	@Override
-	public void Logla(String mesaj, String evrak) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
-		_ILoger_Kayit.Logla(mesaj,evrak);
-				
-		
+	public void Logla(String mesaj, String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
+		_ILoger_Kayit.Logla(mesaj,evrak ,dBILGI);
 	}
 
+
+	
 }

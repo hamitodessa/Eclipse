@@ -50,6 +50,9 @@ import javax.swing.table.TableColumnModel;
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.DOSYA_MYSQL;
 import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.BAGLAN;
+import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.BILGI_OKU_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CARI_HESAP_MSSQL;
 import OBS_C_2025.CARI_HESAP_MYSQL;
@@ -61,6 +64,7 @@ import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ILOGGER;
 import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.KUR_ACCESS;
+import OBS_C_2025.LOG_KAYIT_BILGILERI;
 import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
@@ -1530,13 +1534,23 @@ public class CAL_DIZIN extends JFrame {
          lOGG_AKTAR();
          mODUL_AKTAR("Cari Hesap");
          CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ILogger);
+		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
+		BAGLAN.cariDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.cariDizin.kOD = txtKodu.getText();
+		BAGLAN.cariDizin.yER = "L";
+        BAGLAN_LOG bLog = new BAGLAN_LOG();
+        bLog.cONNECT();
+        
          if (chckbxD.isSelected())
          	{
-             	c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","");
-        	 }
+        	 	c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
+        	 
+         	}
         	 else
         	 {
-        		c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","");
+     
+        		c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
         	 }
      }
      else if (activ_sayfa == 1)

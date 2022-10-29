@@ -53,6 +53,7 @@ import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.ADRES_MSSQL;
 import OBS_C_2025.ADRES_MYSQL;
 import OBS_C_2025.BAGLAN;
+import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CARI_HESAP_MSSQL;
 import OBS_C_2025.CARI_HESAP_MYSQL;
@@ -100,6 +101,7 @@ public class LOGIN extends JFrame {
 	private JButton btncdizin;
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	BAGLAN bAGLAN = new BAGLAN();
+	BAGLAN_LOG bAGLAN_LOG = new BAGLAN_LOG();
 	
 
 
@@ -538,8 +540,8 @@ public LOGIN() throws IOException {
 void calisma_dizini_oku() throws ClassNotFoundException, SQLException, InterruptedException
 {
     int say = 8;
-	bAGLAN.Connect(txtUser.getText());
-
+	bAGLAN.cONNECT(txtUser.getText());
+	bAGLAN_LOG.cONNECT();
 	// Cari
 	cONN_AKTAR( BAGLAN.cariDizin.hAN_SQL );
 	String hangi_sql =  BAGLAN.cariDizin.hAN_SQL;

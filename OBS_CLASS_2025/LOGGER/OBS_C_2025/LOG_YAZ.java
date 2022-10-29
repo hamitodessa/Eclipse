@@ -15,11 +15,11 @@ public class LOG_YAZ {
 		this._ILoger_Kayit = _ILoger_Kayit;
 	}
 	
-	public void Logla(String mesaj, String evrak) throws ClassNotFoundException, SQLException {
+	public void Logla(String mesaj, String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		
 		
-		_ILoger_Kayit.Logla(mesaj, evrak);
+		_ILoger_Kayit.Logla(mesaj, evrak,dBILGI);
 			
 		
 	}

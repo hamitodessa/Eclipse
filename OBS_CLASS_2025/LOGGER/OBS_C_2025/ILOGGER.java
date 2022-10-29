@@ -10,6 +10,6 @@ public interface ILOGGER {
 	
 	
 	
-	public void Logla(String mesaj,String evrak) throws ClassNotFoundException, SQLException;
+	public void Logla(String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException;
 
 }

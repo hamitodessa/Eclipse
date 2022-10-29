@@ -318,10 +318,8 @@ public LOGIN() throws IOException {
            CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
            c_Access.baglan();
           //*** KUR
-           JOptionPane.showMessageDialog(null,  "01",  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);
            KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur, oac._ILogger);
            k_Access.baglan();
-           JOptionPane.showMessageDialog(null,  "02",  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);
           //*** ADRES
            ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres, oac._ILogger);
            a_Access.baglan();

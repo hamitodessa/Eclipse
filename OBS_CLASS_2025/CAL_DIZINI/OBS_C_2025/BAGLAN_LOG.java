@@ -1,7 +1,5 @@
 package OBS_C_2025;
 
-
-
 public class BAGLAN_LOG {
 	
     public static DIZIN_BILGILERI cariLogDizin = new DIZIN_BILGILERI();  // Cari

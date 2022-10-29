@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 
 public class GLOBAL {
 	
-	static String OBS_DOSYA = "OBS_SISTEM.DB";
+	static String OBS_DOSYA = "OBS_SISTEM_2025.DB";
 	static String SQL_BACKUP = "SQL_BACKUP.DB";
 	static String SQL_LOG = "SQL_LOG.DB";
 	static String SURUCU = "C:\\OBS_SISTEM\\";

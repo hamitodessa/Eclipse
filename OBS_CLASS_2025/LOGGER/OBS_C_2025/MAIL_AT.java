@@ -9,7 +9,7 @@ public class MAIL_AT implements ILOGGER{
 	public void Logla(String mesaj, String evrak, DIZIN_BILGILERI dBILGI)
 			throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		System.out.println("Mail loglama");
+	//	System.out.println("Mail loglama");
 
 		
 	}

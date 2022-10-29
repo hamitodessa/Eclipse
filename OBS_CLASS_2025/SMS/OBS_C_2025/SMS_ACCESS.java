@@ -22,8 +22,11 @@ public class SMS_ACCESS {
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
-	public void sMS_SIFIR_S(String server, String ins, String kull, String sifre, String kod) throws ClassNotFoundException, SQLException
+	public void sMS_SIFIR_S(String server, String ins, String kull, String sifre, String kod
+			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_ISms.sMS_SIFIR_S(server, ins, kull, sifre, kod);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
 }

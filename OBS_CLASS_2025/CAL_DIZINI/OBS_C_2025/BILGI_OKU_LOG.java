@@ -15,7 +15,7 @@ public class BILGI_OKU_LOG {
 		   { 
 			dIZIN.kULLANICI = oDIZIN.kULLANICI;
 			dIZIN.sIFRESI = oDIZIN.sIFRESI;
-		   	dIZIN.cONN_STR = dIZIN.sERVER + ";instanceName=" +oDIZIN.iNSTANCE + " ; database=" +  dOSYA_BASLANGIC +oDIZIN.kOD + "_LOG";
+		   	dIZIN.cONN_STR = dIZIN.sERVER + ";instanceName=" +oDIZIN.iNSTANCE + " ; database=" +  dOSYA_BASLANGIC + oDIZIN.kOD + "_LOG";
 		   }
 	}
 	}

@@ -23,8 +23,11 @@ public class ADRES_ACCESS {
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
-	public void aDR_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException
+	public void aDR_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
+			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IAdres.aDR_SIFIR_S(server, ins, kull, sifre, kod, fir_adi);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
 }

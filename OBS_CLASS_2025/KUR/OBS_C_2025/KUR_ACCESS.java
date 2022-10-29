@@ -22,9 +22,13 @@ public class KUR_ACCESS {
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
-	public void kUR_SIFIR_S(String server, String ins, String kull, String sifre, String kod) throws ClassNotFoundException, SQLException
+	public void kUR_SIFIR_S(String server, String ins, String kull, String sifre, String kod
+			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IKur.kUR_SIFIR_S(server, ins, kull, sifre, kod);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla(mesaj,evrak, dBILGI);
+
 	}
 
 }

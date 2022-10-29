@@ -25,8 +25,10 @@ public class GUNLUK_ACCESS {
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
 	public void gUN_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String dizin_yeri,
-			String dizin, String fir_adi) throws ClassNotFoundException, SQLException
+			String dizin, String fir_adi, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IGunluk.gUN_SIFIR_S(server, ins, kull, sifre, kod, dizin_yeri, dizin, fir_adi);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
 }

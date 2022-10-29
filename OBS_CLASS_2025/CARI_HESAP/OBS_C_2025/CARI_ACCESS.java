@@ -33,8 +33,11 @@ public class CARI_ACCESS {
 		// _Logger.Logla(mesaj);
 	     
 	}
-	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException
+	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
+			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		 _ICari.cARI_SIFIR_S(server, kull, sifre, kod, fir_adi, ins);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
 }

@@ -24,8 +24,11 @@ public class KAMBIYO_ACCESS {
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
-	public void kAM_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException
+	public void kAM_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
+			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IKambiyo.kAM_SIFIR_S(server, ins, kull, sifre, kod, fir_adi);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
 }

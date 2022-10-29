@@ -1702,9 +1702,17 @@ public class CAL_DIZIN extends JFrame {
 		String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ILogger);
+		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
+		BAGLAN.cariDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.cariDizin.kOD = txtKodu.getText();
+		BAGLAN.cariDizin.yER = "S";
+        BAGLAN_LOG bLog = new BAGLAN_LOG();
+        bLog.cONNECT();
+
         if (chckbxD.isSelected())
         	{
-        		c_Access.cARI_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin);
+        		c_Access.cARI_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
           }
     }
     else if (activ_sayfa == 1)
@@ -1712,10 +1720,18 @@ public class CAL_DIZIN extends JFrame {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._ILogger);
+		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
+		BAGLAN.fatDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.fatDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.fatDizin.kOD = txtKodu.getText();
+		BAGLAN.fatDizin.yER = "S";
+        BAGLAN_LOG bLog = new BAGLAN_LOG();
+        bLog.cONNECT();
+
         if (chckbxD.isSelected())
         	
         	{
-        		s_Access.fAT_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin);
+        		s_Access.fAT_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
         
         	}
     }
@@ -1724,9 +1740,18 @@ public class CAL_DIZIN extends JFrame {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._ILogger);
+        BAGLAN.adrDizin.kULLANICI = txtkul.getText();
+		BAGLAN.adrDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.adrDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.adrDizin.kOD = txtKodu.getText();
+		BAGLAN.adrDizin.yER = "S";
+        BAGLAN_LOG bLog = new BAGLAN_LOG();
+        bLog.cONNECT();
+
+
         if (chckbxD.isSelected())
     	{
-    		a_Access.aDR_SIFIR_S( txtIp.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin);
+    		a_Access.aDR_SIFIR_S( txtIp.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
     
     	}
           
@@ -1735,9 +1760,18 @@ public class CAL_DIZIN extends JFrame {
     {
     	
     	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._ILogger);
+    	 BAGLAN.kurDizin.kULLANICI = txtkul.getText();
+ 		BAGLAN.kurDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.kurDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+ 		BAGLAN.kurDizin.kOD = txtKodu.getText();
+ 		BAGLAN.kurDizin.yER = "S";
+         BAGLAN_LOG bLog = new BAGLAN_LOG();
+         bLog.cONNECT();
+
+
         if (chckbxD.isSelected())
         {
-      		k_Access.kUR_SIFIR_S( txtIp.getText(),  comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText());
+      		k_Access.kUR_SIFIR_S( txtIp.getText(),  comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
       	  
         	  	}
     }
@@ -1747,18 +1781,36 @@ public class CAL_DIZIN extends JFrame {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._ILogger);
+        BAGLAN.kamDizin.kULLANICI = txtkul.getText();
+		BAGLAN.kamDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.kamDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.kamDizin.kOD = txtKodu.getText();
+		BAGLAN.kamDizin.yER = "S";
+        BAGLAN_LOG bLog = new BAGLAN_LOG();
+        bLog.cONNECT();
+
+
         if (chckbxD.isSelected())
         {
-        	ka_Access.kAM_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin);
+        	ka_Access.kAM_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
         	}
     }
     else if (activ_sayfa == 5)
     {
     	
     	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ILogger);
+    	BAGLAN.smsDizin.kULLANICI = txtkul.getText();
+  		BAGLAN.smsDizin.sIFRESI = txtsifr.getText() ;
+  		BAGLAN.smsDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+  		BAGLAN.smsDizin.kOD = txtKodu.getText();
+  		BAGLAN.smsDizin.yER = "S";
+          BAGLAN_LOG bLog = new BAGLAN_LOG();
+          bLog.cONNECT();
+
+
         if (chckbxD.isSelected())
         {
-        	sms_Access.sMS_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText());
+        	sms_Access.sMS_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
     	
         	}
     }
@@ -1768,9 +1820,18 @@ public class CAL_DIZIN extends JFrame {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._ILogger);
+        BAGLAN.gunDizin.kULLANICI = txtkul.getText();
+		BAGLAN.gunDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.gunDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.gunDizin.kOD = txtKodu.getText();
+		BAGLAN.gunDizin.yER = "S";
+        BAGLAN_LOG bLog = new BAGLAN_LOG();
+        bLog.cONNECT();
+
+
         if (chckbxD.isSelected())
         {
-        	g_Access.gUN_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(), "default", "", strAdmin);
+        	g_Access.gUN_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(), "default", "", strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
         }    
         }
 }

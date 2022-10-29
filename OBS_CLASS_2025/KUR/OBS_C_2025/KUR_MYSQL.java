@@ -120,5 +120,10 @@ public class KUR_MYSQL implements IKUR {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public void create_table_log() throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

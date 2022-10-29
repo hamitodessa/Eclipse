@@ -45,6 +45,19 @@ public class STOK_MSSQL implements ISTOK {
          cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + ";";
          con = DriverManager.getConnection(cumle,kull,sifre);
          create_table(fir_adi);
+         //
+         if (dizin_yeri == "default")
+          	sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
+          else
+          	sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG" + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_LOG" + "_log', FILENAME = N'" + dizin + "\\" + VERITABANI + "_LOG" + "_log.ldf' ) ";
+          stmt = con.createStatement();  
+          stmt.executeUpdate(sql);
+          cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
+          con = DriverManager.getConnection(cumle,kull,sifre);
+          create_table_log();
+          
+          //
+
          stmt.close();
          con.close();
 		
@@ -65,6 +78,14 @@ public class STOK_MSSQL implements ISTOK {
             cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + ";";
             con = DriverManager.getConnection(cumle,kull,sifre);
             create_table(fir_adi);
+            //
+            sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
+            stmt = con.createStatement();  
+            stmt.executeUpdate(sql);
+            cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
+            con = DriverManager.getConnection(cumle,kull,sifre);
+            create_table_log();
+            //
             stmt.close();
             con.close();
 		
@@ -3463,6 +3484,26 @@ public void degisken_degistir(int anagrp,int altgrp, int anaygrp,int altygrp) th
 		return result;
 	}
 	//
+	@Override
+	public void create_table_log() throws SQLException {
+		String sql = "" ;
+	    sql = "CREATE TABLE [dbo].[LOGLAMA]("
+	    		+ "	[TARIH] [datetime] NOT NULL,"
+	    		+ "	[MESAJ] [nchar](100) NOT NULL,"
+	    		+ "	[EVRAK] [nchar](15) NOT NULL,"
+	    		+ "	[USER_NAME] [nchar](15) NULL"
+	    		+ ") ON [PRIMARY]";
+	    	stmt = con.createStatement();  
+	    	stmt.executeUpdate(sql);
+	    	 sql = "CREATE NONCLUSTERED INDEX [IDX_LOGLAMA] ON [dbo].[LOGLAMA](	[TARIH] ASC,	[EVRAK] ASC , [USER_NAME] ASC "
+	                  + " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
+
+	    	 
+	           stmt = con.createStatement();  
+	           stmt.executeUpdate(sql);
+	       
+		
+	}
 	
 	
 }

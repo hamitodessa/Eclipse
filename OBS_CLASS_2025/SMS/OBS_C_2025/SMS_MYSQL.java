@@ -244,5 +244,10 @@ public class SMS_MYSQL implements ISMS{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void create_table_log() throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

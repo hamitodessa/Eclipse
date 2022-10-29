@@ -32,4 +32,5 @@ public interface IKAMBIYO {
             ,  String gtar1 ,  String gtar2 , String cbord1 , String cbord2 , String ctar1, String ctar2 
             ,  String gmus1 , String gmus2 , String cmus1 , String cmus2 , String cin1 , String cin2 
             ,  String dur1 ,  String dur2 ,  String ttar1 ,  String ttar2 , String gozel , String cozel ) throws ClassNotFoundException, SQLException;
+	public void create_table_log() throws SQLException;
 }

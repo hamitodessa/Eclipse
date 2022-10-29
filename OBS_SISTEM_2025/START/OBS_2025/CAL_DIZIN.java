@@ -50,6 +50,8 @@ import javax.swing.table.TableColumnModel;
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.DOSYA_MYSQL;
 import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.ADRES_MSSQL;
+import OBS_C_2025.ADRES_MYSQL;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.BILGI_OKU_LOG;
@@ -61,14 +63,22 @@ import OBS_C_2025.DOSYA_YAZ;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.GUNLUK_ACCESS;
+import OBS_C_2025.GUNLUK_MSSQL;
+import OBS_C_2025.GUNLUK_MYSQL;
 import OBS_C_2025.ILOGGER;
 import OBS_C_2025.KAMBIYO_ACCESS;
+import OBS_C_2025.KAMBIYO_MSSQL;
+import OBS_C_2025.KAMBIYO_MYSQL;
 import OBS_C_2025.KUR_ACCESS;
+import OBS_C_2025.KUR_MSSQL;
+import OBS_C_2025.KUR_MYSQL;
 import OBS_C_2025.LOG_KAYIT_BILGILERI;
 import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.SMS_ACCESS;
+import OBS_C_2025.SMS_MSSQL;
+import OBS_C_2025.SMS_MYSQL;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.STOK_MSSQL;
@@ -1585,6 +1595,9 @@ public class CAL_DIZIN extends JFrame {
     	 String strAdmin = "";
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         contentPane.setCursor(WAIT_CURSOR);
+        cONN_AKTAR();
+        lOGG_AKTAR();
+        mODUL_AKTAR("Adres");
         ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._ILogger);
 		BAGLAN.adrDizin.kULLANICI = txtkul.getText();
  		BAGLAN.adrDizin.sIFRESI = txtsifr.getText() ;
@@ -1598,14 +1611,17 @@ public class CAL_DIZIN extends JFrame {
          {
         	 a_Access.aDR_SIF_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.adrLogDizin);
          }
-        	 else
-        	{
-        		 a_Access.aDR_SIF_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.adrLogDizin);
-         	}
+         else
+        {
+        	 a_Access.aDR_SIF_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.adrLogDizin);
+        }
      }
      else if (activ_sayfa == 3)
      {
     	 contentPane.setCursor(WAIT_CURSOR);
+    	 cONN_AKTAR();
+         lOGG_AKTAR();
+         mODUL_AKTAR("Kur");
     	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._ILogger);
  		BAGLAN.kurDizin.kULLANICI = txtkul.getText();
  		BAGLAN.kurDizin.sIFRESI = txtsifr.getText() ;
@@ -1629,6 +1645,9 @@ public class CAL_DIZIN extends JFrame {
     	 String strAdmin = "";
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
+         cONN_AKTAR();
+         lOGG_AKTAR();
+         mODUL_AKTAR("Kambiyo");
          KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._ILogger);
  		BAGLAN.kamDizin.kULLANICI = txtkul.getText();
  		BAGLAN.kamDizin.sIFRESI = txtsifr.getText() ;
@@ -1651,6 +1670,9 @@ public class CAL_DIZIN extends JFrame {
      else if (activ_sayfa == 5)
      {
     	 contentPane.setCursor(WAIT_CURSOR);
+    	 cONN_AKTAR();
+         lOGG_AKTAR();
+         mODUL_AKTAR("Sms");
     	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ILogger);
   		BAGLAN.smsDizin.kULLANICI = txtkul.getText();
  		BAGLAN.smsDizin.sIFRESI = txtsifr.getText() ;
@@ -1675,6 +1697,9 @@ public class CAL_DIZIN extends JFrame {
     	 String strAdmin = "";
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
+         cONN_AKTAR();
+         lOGG_AKTAR();
+         mODUL_AKTAR("Gunluk");
          GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._ILogger);
  		BAGLAN.gunDizin.kULLANICI = txtkul.getText();
  		BAGLAN.gunDizin.sIFRESI = txtsifr.getText() ;
@@ -1701,6 +1726,9 @@ public class CAL_DIZIN extends JFrame {
     {
 		String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+        cONN_AKTAR();
+        lOGG_AKTAR();
+        mODUL_AKTAR("Cari Hesap");
         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ILogger);
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
 		BAGLAN.cariDizin.sIFRESI = txtsifr.getText() ;
@@ -1719,6 +1747,9 @@ public class CAL_DIZIN extends JFrame {
     {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+        cONN_AKTAR();
+        lOGG_AKTAR();
+        mODUL_AKTAR("Stok");
         STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._ILogger);
 		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
 		BAGLAN.fatDizin.sIFRESI = txtsifr.getText() ;
@@ -1739,6 +1770,9 @@ public class CAL_DIZIN extends JFrame {
     {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+        cONN_AKTAR();
+        lOGG_AKTAR();
+        mODUL_AKTAR("Adres");
         ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._ILogger);
         BAGLAN.adrDizin.kULLANICI = txtkul.getText();
 		BAGLAN.adrDizin.sIFRESI = txtsifr.getText() ;
@@ -1759,6 +1793,9 @@ public class CAL_DIZIN extends JFrame {
     else if (activ_sayfa == 3)
     {
     	
+    	 cONN_AKTAR();
+         lOGG_AKTAR();
+         mODUL_AKTAR("Kur");
     	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._ILogger);
     	 BAGLAN.kurDizin.kULLANICI = txtkul.getText();
  		BAGLAN.kurDizin.sIFRESI = txtsifr.getText() ;
@@ -1780,6 +1817,9 @@ public class CAL_DIZIN extends JFrame {
     {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+        cONN_AKTAR();
+        lOGG_AKTAR();
+        mODUL_AKTAR("Kambiyo");
         KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._ILogger);
         BAGLAN.kamDizin.kULLANICI = txtkul.getText();
 		BAGLAN.kamDizin.sIFRESI = txtsifr.getText() ;
@@ -1797,7 +1837,9 @@ public class CAL_DIZIN extends JFrame {
     }
     else if (activ_sayfa == 5)
     {
-    	
+    	 cONN_AKTAR();
+         lOGG_AKTAR();
+         mODUL_AKTAR("Sms");	
     	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ILogger);
     	BAGLAN.smsDizin.kULLANICI = txtkul.getText();
   		BAGLAN.smsDizin.sIFRESI = txtsifr.getText() ;
@@ -1819,6 +1861,9 @@ public class CAL_DIZIN extends JFrame {
     {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+        cONN_AKTAR();
+        lOGG_AKTAR();
+        mODUL_AKTAR("Gunluk");
         GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._ILogger);
         BAGLAN.gunDizin.kULLANICI = txtkul.getText();
 		BAGLAN.gunDizin.sIFRESI = txtsifr.getText() ;
@@ -1862,7 +1907,26 @@ public class CAL_DIZIN extends JFrame {
 				{
 				oac._Istok = new STOK_MSSQL();
 				}
-				
+				else if (mODUL == "Adres")
+				{
+				oac._IAdres = new ADRES_MSSQL();
+				}
+				else if (mODUL == "Kur")
+				{
+				oac._IKur = new KUR_MSSQL();
+				}
+				else if (mODUL == "Kambiyo")
+				{
+				oac._IKambiyo = new KAMBIYO_MSSQL();
+				}
+				else if (mODUL == "Gunluk")
+				{
+				oac._IGunluk = new GUNLUK_MSSQL();
+				}
+				else if (mODUL == "Sms")
+				{
+				oac._ISms = new SMS_MSSQL();
+				}
 					}
 			else if (hangi == "MY SQL")
 			{
@@ -1873,6 +1937,26 @@ public class CAL_DIZIN extends JFrame {
 				else if (mODUL == "Stok")
 				{
 				oac._Istok = new STOK_MYSQL();
+				}
+				else if (mODUL == "Adres")
+				{
+				oac._IAdres = new ADRES_MYSQL();
+				}
+				else if (mODUL == "Kur")
+				{
+				oac._IKur = new KUR_MYSQL();
+				}
+				else if (mODUL == "Kambiyo")
+				{
+				oac._IKambiyo = new KAMBIYO_MYSQL();
+				}
+				else if (mODUL == "Gunluk")
+				{
+				oac._IGunluk = new GUNLUK_MYSQL();
+				}
+				else if (mODUL == "Sms")
+				{
+				oac._ISms = new SMS_MYSQL();
 				}
 			}
 	}

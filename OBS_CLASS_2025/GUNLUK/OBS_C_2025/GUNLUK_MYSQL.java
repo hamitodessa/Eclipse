@@ -169,5 +169,10 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		}
 		return result;	
 	}
+	@Override
+	public void create_table_log() throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

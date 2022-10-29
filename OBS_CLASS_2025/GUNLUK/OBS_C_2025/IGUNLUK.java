@@ -9,4 +9,5 @@ public interface IGUNLUK {
             String fir_adi) throws ClassNotFoundException, SQLException;
 	public void create_table(  String fir_adi) throws SQLException;
 	public String gun_firma_adi() throws ClassNotFoundException, SQLException;
+	public void create_table_log() throws SQLException;
 }

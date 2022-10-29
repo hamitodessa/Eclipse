@@ -24,4 +24,5 @@ public interface IADRES {
 	public ResultSet sms_adr_hpl(String nerden) throws ClassNotFoundException, SQLException;
 	public ResultSet gdy_oku(String kod) throws ClassNotFoundException, SQLException;
 	public String[] adres_oku (String kodu) throws ClassNotFoundException, SQLException;
+	public void create_table_log() throws SQLException;
 }

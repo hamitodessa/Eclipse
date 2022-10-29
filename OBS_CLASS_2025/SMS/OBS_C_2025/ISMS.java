@@ -24,4 +24,5 @@ public interface ISMS {
 	public void sms_giris_yaz(String tel , String unv ,String grpkod ,String kod,boolean drm , String unm ) throws ClassNotFoundException, SQLException;
 	public ResultSet sms_alici_doldur() throws ClassNotFoundException, SQLException;
 	public void sms_yaz(String uname,String tar ,String msj,String mobile,String hsp, String unv) throws ClassNotFoundException, SQLException;
+	public void create_table_log() throws SQLException;
 }

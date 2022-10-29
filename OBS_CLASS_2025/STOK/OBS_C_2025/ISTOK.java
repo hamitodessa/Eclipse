@@ -206,4 +206,5 @@ public interface ISTOK {
 	public void urun_degisken_alt_grup_sil(int  ID ) throws ClassNotFoundException, SQLException;
 	public void urun_kod_degisken_sil(  String nerden  ,   String hangi_Y, int sira) throws ClassNotFoundException, SQLException;
 	public  boolean alt_grup_kontrol(int anagrp,int altgrp) throws ClassNotFoundException, SQLException;
+	public void create_table_log() throws SQLException ;
 }

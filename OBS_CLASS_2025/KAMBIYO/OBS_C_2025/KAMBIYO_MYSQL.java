@@ -209,5 +209,10 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public void create_table_log() throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

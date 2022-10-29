@@ -1227,6 +1227,11 @@ public class STOK_MYSQL implements ISTOK {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void create_table_log() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 

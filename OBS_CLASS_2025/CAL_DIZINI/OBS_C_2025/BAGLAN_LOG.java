@@ -18,11 +18,11 @@ public class BAGLAN_LOG {
     	BILGI_OKU_LOG b_OKU = new BILGI_OKU_LOG();
     	b_OKU.bILGI_OKU(cariLogDizin,"OK_Car", BAGLAN.cariDizin);
     	b_OKU.bILGI_OKU(kurLogDizin,"OK_Kur", BAGLAN.kurDizin);
-    	b_OKU.bILGI_OKU(fatLogDizin,"OK_Car", BAGLAN.fatDizin);
-    	b_OKU.bILGI_OKU(adrLogDizin,"OK_Car", BAGLAN.adrDizin);
-    	b_OKU.bILGI_OKU(gunLogDizin,"OK_Car", BAGLAN.gunDizin);
-    	b_OKU.bILGI_OKU(kamLogDizin,"OK_Car", BAGLAN.kamDizin);
-    	b_OKU.bILGI_OKU(smsLogDizin,"OK_Car", BAGLAN.smsDizin);
+    	b_OKU.bILGI_OKU(fatLogDizin,"OK_Fat", BAGLAN.fatDizin);
+    	b_OKU.bILGI_OKU(adrLogDizin,"OK_Adr", BAGLAN.adrDizin);
+    	b_OKU.bILGI_OKU(gunLogDizin,"OK_Gun", BAGLAN.gunDizin);
+    	b_OKU.bILGI_OKU(kamLogDizin,"OK_Kam", BAGLAN.kamDizin);
+    	b_OKU.bILGI_OKU(smsLogDizin,"OK_Sms", BAGLAN.smsDizin);
     	
     	
     }

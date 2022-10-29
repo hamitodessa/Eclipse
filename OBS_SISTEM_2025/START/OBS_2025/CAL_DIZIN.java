@@ -1025,7 +1025,7 @@ public class CAL_DIZIN extends JFrame {
 		panel.add(chckbxL_1);
 		
 		cmblog = new JComboBox<String>();
-		cmblog.setModel(new DefaultComboBoxModel<String>(new String[] {"Dosyaya Kayit", "Email Atma", "Hepsi"}));
+		cmblog.setModel(new DefaultComboBoxModel(new String[] {"Dosyaya Kayit", "Email Atma"}));
 		cmblog.setEnabled(false);
 		cmblog.setBounds(133, 130, 126, 22);
 		panel.add(cmblog);

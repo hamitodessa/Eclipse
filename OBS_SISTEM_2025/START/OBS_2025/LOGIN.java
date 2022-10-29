@@ -49,6 +49,7 @@ import javax.swing.plaf.metal.OceanTheme;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
+
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.ADRES_MSSQL;
 import OBS_C_2025.ADRES_MYSQL;
@@ -62,7 +63,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.GUNLUK_MSSQL;
 import OBS_C_2025.GUNLUK_MYSQL;
-import OBS_C_2025.IConnection;
+
 import OBS_C_2025.JTextFieldLimit;
 
 import OBS_C_2025.JTextFieldRegularPopupMenu;
@@ -80,6 +81,7 @@ import OBS_C_2025.SMS_MYSQL;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
+
 
 
 public class LOGIN extends JFrame {
@@ -313,12 +315,13 @@ public LOGIN() throws IOException {
             {
             calisma_dizini_oku();
             //*** CARI
-            
            CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
            c_Access.baglan();
           //*** KUR
+           JOptionPane.showMessageDialog(null,  "01",  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);
            KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur, oac._ILogger);
            k_Access.baglan();
+           JOptionPane.showMessageDialog(null,  "02",  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);
           //*** ADRES
            ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres, oac._ILogger);
            a_Access.baglan();
@@ -335,7 +338,7 @@ public LOGIN() throws IOException {
             SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms, oac._ILogger);
             sms_Access.baglan();
             //***buraya 
-
+            
             OBS_MAIN obmain = new OBS_MAIN();
             Login_Progres_Bar_Temizle();
             String qwe = "";
@@ -556,7 +559,6 @@ void calisma_dizini_oku() throws ClassNotFoundException, SQLException, Interrupt
     //Kur
     cONN_AKTAR( BAGLAN.kurDizin.hAN_SQL );
     hangi_sql =  BAGLAN.kurDizin.hAN_SQL;
-
     if (hangi_sql.equals("MS SQL"))
     {
     	oac._IKur = new KUR_MSSQL();
@@ -620,6 +622,7 @@ void calisma_dizini_oku() throws ClassNotFoundException, SQLException, Interrupt
     {
     	oac._IGunluk = new GUNLUK_MYSQL();
     }
+    lOG_AKTAR();
     progressBar.setMaximum(8);
     progressBar.setStringPainted(true);
     Lgn_Progres_Bar(say, 1);
@@ -1038,7 +1041,12 @@ private void versiyon_oku()
 		}
 	 		
 	}
-	
+	private void lOG_AKTAR() {
+	      BAGLAN_LOG _blog = new BAGLAN_LOG();
+          _blog.cONNECT();
+          
+          
+	}
 	private static void addPopup(Component component, final JPopupMenu popup) {
 	component.addMouseListener(new MouseAdapter() {
 		public void mousePressed(MouseEvent e) {

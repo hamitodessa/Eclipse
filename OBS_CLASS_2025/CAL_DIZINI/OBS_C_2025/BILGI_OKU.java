@@ -37,7 +37,7 @@ public class BILGI_OKU {
 								dIZIN.hAN_SQL = rs.getString("HANGI_SQL").toString();
 								dIZIN.cDID= rs.getInt("CDID"); 
 								dIZIN.lOG = rs.getBoolean("LOG");
-								dIZIN.lOGLA = rs.getString("LOG_YERI").toString();
+								dIZIN.lOGLAMA_YERI = rs.getString("LOG_YERI").toString();
 					            if (new String(dIZIN.yER.toString()).equals("L") == true) 
 					            { 
 					            	dIZIN.cONN_STR =  "localhost;instanceName=" + dIZIN.iNSTANCE + " ; database=" + dOSYA_BASLANGIC  + dIZIN.kOD ;

@@ -1562,14 +1562,22 @@ public class CAL_DIZIN extends JFrame {
          lOGG_AKTAR();
          mODUL_AKTAR("Stok");
 
-         STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok);
+         STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._ILogger);
+ 		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
+ 		BAGLAN.fatDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.fatDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+ 		BAGLAN.fatDizin.kOD = txtKodu.getText();
+ 		BAGLAN.fatDizin.yER = "L";
+         BAGLAN_LOG bLog = new BAGLAN_LOG();
+         bLog.cONNECT();
+
          if (chckbxD.isSelected())
          {
-        	 s_Access.fAT_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText());
+        	 s_Access.fAT_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
          }
         	else
         	{
-        		 s_Access.fAT_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText());
+        		 s_Access.fAT_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
         	}
      }
      else if (activ_sayfa == 2)
@@ -1663,7 +1671,7 @@ public class CAL_DIZIN extends JFrame {
     {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
-        STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok);
+        STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._ILogger);
         if (chckbxD.isSelected())
         	
         	{

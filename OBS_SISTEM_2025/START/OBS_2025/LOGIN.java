@@ -323,7 +323,7 @@ public LOGIN() throws IOException {
            ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres);
            a_Access.baglan();
           //*** FATURA
-            STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok);
+            STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._ILogger);
             s_Access.baglan();
           //*** KAMBIYO
             KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo);

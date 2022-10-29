@@ -317,22 +317,22 @@ public LOGIN() throws IOException {
            CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
            c_Access.baglan();
           //*** KUR
-           KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur);
+           KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur, oac._ILogger);
            k_Access.baglan();
           //*** ADRES
-           ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres);
+           ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres, oac._ILogger);
            a_Access.baglan();
           //*** FATURA
             STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._ILogger);
             s_Access.baglan();
           //*** KAMBIYO
-            KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo);
+            KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo, oac._ILogger);
             ka_Access.baglan();
           //*** GUNLUK
-           GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk);
+           GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk, oac._ILogger);
             g_Access.baglan();
           //*** SMS
-            SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms);
+            SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms, oac._ILogger);
             sms_Access.baglan();
             //***buraya 
 

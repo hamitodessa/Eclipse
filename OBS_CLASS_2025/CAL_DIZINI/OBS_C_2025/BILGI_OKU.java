@@ -47,5 +47,6 @@ public class BILGI_OKU {
 					            	dIZIN.cONN_STR = dIZIN.sERVER + ";instanceName=" +dIZIN.iNSTANCE + " ; database=" +  dOSYA_BASLANGIC +dIZIN.kOD ;
 					            }
 							}
+							con.close();
 	}
 }

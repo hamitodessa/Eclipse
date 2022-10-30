@@ -2407,19 +2407,6 @@ public class OBS_MAIN extends JFrame {
 		button_1.setToolTipText("Giris");
 		toolBar.add(button_1);
 		
-		JButton btnNewButton_21 = new JButton(".....");
-		btnNewButton_21.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GuiUtil.setWaitCursor(tabbedPane,true);
-				JInternalFrame internalFrame;
-				internalFrame  = new Deneme();
-				//internalFrame  = new PDF_GOSTER();
-				desktopPane.add(internalFrame);
-				internalFrame.setVisible(true);
-				GuiUtil.setWaitCursor(tabbedPane,false);
-			}
-		});
-		toolBar.add(btnNewButton_21);
 		
 		JLabel lblNewLabel_8 = new JLabel("          ");
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 11));

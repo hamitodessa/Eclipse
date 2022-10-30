@@ -87,6 +87,8 @@ import OBS_C_2025.USER_ISLEMLERI;
 import net.proteanit.sql.DbUtils;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
+import java.awt.SystemColor;
+import javax.swing.JSeparator;
 
 
 public class CAL_DIZIN extends JFrame {
@@ -131,6 +133,12 @@ public class CAL_DIZIN extends JFrame {
 	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	private static JTextField txtcdid;
 	private JLabel lblNewLabel_2;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -929,7 +937,7 @@ public class CAL_DIZIN extends JFrame {
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "E Mail Loglama", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 99, 177)));
-		panel_3.setBounds(10, 42, 545, 111);
+		panel_3.setBounds(10, 11, 545, 111);
 		panel_3.setLayout(null);
 		panel_2.add(panel_3);
 		
@@ -969,6 +977,91 @@ public class CAL_DIZIN extends JFrame {
 		});
 		cmb_maillist.setBounds(98, 67, 307, 22);
 		panel_3.add(cmb_maillist);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gonderen Hesap ", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+		panel_4.setBounds(10, 136, 545, 235);
+		panel_2.add(panel_4);
+		panel_4.setLayout(null);
+		
+		JLabel lblNewLabel_3 = new JLabel("Mail");
+		lblNewLabel_3.setBounds(20, 25, 48, 14);
+		panel_4.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("Host");
+		lblNewLabel_3_1.setBounds(20, 50, 48, 14);
+		panel_4.add(lblNewLabel_3_1);
+		
+		JLabel lblNewLabel_3_2 = new JLabel("Port");
+		lblNewLabel_3_2.setBounds(20, 74, 48, 14);
+		panel_4.add(lblNewLabel_3_2);
+		
+		JLabel lblNewLabel_3_3 = new JLabel("Sifre");
+		lblNewLabel_3_3.setBounds(20, 99, 48, 14);
+		panel_4.add(lblNewLabel_3_3);
+		
+		JLabel lblNewLabel_3_4 = new JLabel("SSL");
+		lblNewLabel_3_4.setBounds(20, 124, 48, 14);
+		panel_4.add(lblNewLabel_3_4);
+		
+		JLabel lblNewLabel_3_5 = new JLabel("TSL");
+		lblNewLabel_3_5.setBounds(20, 149, 48, 14);
+		panel_4.add(lblNewLabel_3_5);
+		
+		textField = new JTextField();
+		textField.setBounds(100, 22, 302, 20);
+		panel_4.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(100, 47, 302, 20);
+		panel_4.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(100, 71, 302, 20);
+		panel_4.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(100, 96, 302, 20);
+		panel_4.add(textField_3);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("");
+		chckbxNewCheckBox.setBounds(96, 120, 99, 23);
+		panel_4.add(chckbxNewCheckBox);
+		
+		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("");
+		chckbxNewCheckBox_1.setBounds(96, 145, 103, 23);
+		panel_4.add(chckbxNewCheckBox_1);
+		
+		JSeparator separator = new JSeparator();
+		separator.setForeground(new Color(135, 206, 235));
+		separator.setBounds(100, 170, 403, 2);
+		panel_4.add(separator);
+		
+		JLabel lblNewLabel_6 = new JLabel("Hesap");
+		lblNewLabel_6.setBounds(20, 180, 46, 14);
+		panel_4.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("Isim");
+		lblNewLabel_7.setBounds(20, 207, 46, 14);
+		panel_4.add(lblNewLabel_7);
+		
+		textField_4 = new JTextField();
+		textField_4.setForeground(new Color(0, 0, 128));
+		textField_4.setFont(new Font("Tahoma", Font.BOLD, 12));
+		textField_4.setColumns(10);
+		textField_4.setBounds(100, 204, 315, 20);
+		panel_4.add(textField_4);
+		
+		textField_5 = new JTextField();
+		textField_5.setForeground(new Color(0, 0, 128));
+		textField_5.setFont(new Font("Tahoma", Font.BOLD, 12));
+		textField_5.setColumns(10);
+		textField_5.setBounds(100, 177, 315, 20);
+		panel_4.add(textField_5);
 	
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);

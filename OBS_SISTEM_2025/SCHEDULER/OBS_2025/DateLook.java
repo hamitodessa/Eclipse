@@ -28,7 +28,7 @@ import java.io.*;
 /**
  *  Applications main class
  */
-public class DateLook extends JInternalFrame {
+public class DateLook extends JFrame {
 
   JPanel contentPane;
   private DateLookPanel date_look_panel;
@@ -47,6 +47,7 @@ public class DateLook extends JInternalFrame {
       // move old (<1.8) config-files to there
       String dir_name = FileSystemView.getFileSystemView().getDefaultDirectory().getAbsolutePath() + File.separatorChar + ".datelook";
       String old_dir_name = FileSystemView.getFileSystemView().getDefaultDirectory().getAbsolutePath();
+  //    System.out.println(old_dir_name);
       File dir = new File(dir_name);
       if (dir.exists() & !(dir.isDirectory())) {
         dir.delete();  // delete .datelook
@@ -76,7 +77,8 @@ public class DateLook extends JInternalFrame {
       event_memory.read_data_file();     // read dates from file and store in memory
       date_look_panel.set_event_memory(event_memory);
 
-      setIconImage(Toolkit.getDefaultToolkit().createImage(DateLook.class.getResource("dl.png")));
+      //setIconImage(Toolkit.getDefaultToolkit().createImage(DateLook.class.getResource("dl.png")));
+   setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/SCH_ICONS/dl.png")));
       Rectangle rect = (new Settings().get_position_and_size());
       this.setLocation(rect.x, rect.y);
       this.setSize(rect.width, rect.height);
@@ -107,7 +109,7 @@ public class DateLook extends JInternalFrame {
   protected void processWindowEvent(WindowEvent e) {
     if (e.getID() == WindowEvent.WINDOW_CLOSING) {
 //      event_memory.save();
-      super.processWindowEvent(e);
+    super.processWindowEvent(e);
       System.exit(0);
     }
     else {

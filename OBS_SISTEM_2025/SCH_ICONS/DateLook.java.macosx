@@ -1,4 +1,3 @@
-package OBS_2025;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -6,6 +5,7 @@ import java.util.*;
 import javax.swing.UIManager;
 import javax.swing.filechooser.*;
 import java.io.*;
+import com.apple.eawt.*;
 
 
 /*
@@ -41,6 +41,10 @@ public class DateLook extends JFrame {
   public DateLook(String[] args) {
     enableEvents(AWTEvent.WINDOW_EVENT_MASK);
     try {
+      // handle "Quit" on Mac
+      com.apple.eawt.Application app = Application.getApplication();
+      app.addApplicationListener(new QuitAdapter());
+      
       // check args for "-s" and open propper settings
       int i;
       for (i = 0; i < args.length; i++) {
@@ -75,7 +79,7 @@ public class DateLook extends JFrame {
         database_locked = true;
       }
       
-      setIconImage(Toolkit.getDefaultToolkit().createImage(DateLook.class.getResource("/SCH_ICONS/dl.png")));
+      setIconImage(Toolkit.getDefaultToolkit().createImage(DateLook.class.getResource("dl.png")));
       this.setLocation(Settings.get_instance(null).get_frame_x(), Settings.get_instance(null).get_frame_y());
       this.setSize(Settings.get_instance(null).get_frame_width(), 
                    Settings.get_instance(null).get_decor_height() + Settings.get_instance(null).get_number_of_slots() * Settings.get_instance(null).get_slot_height());
@@ -140,6 +144,19 @@ public class DateLook extends JFrame {
       e.printStackTrace();
     }
     new DateLook(args).setVisible(true);
+  }
+  
+  
+  /**
+   *  Handles Quit on Mac
+   */
+  public class QuitAdapter extends ApplicationAdapter {
+    public void handleQuit(ApplicationEvent e) {
+      if (!database_locked) {
+        EventMemory.get_instance(null).save(true);
+      }
+      e.setHandled(true);
+    }
   }
 }
 

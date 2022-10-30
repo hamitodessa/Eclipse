@@ -1,4 +1,3 @@
-package OBS_2025;
 import java.awt.*;
 import java.util.*;
 import java.util.logging.*;

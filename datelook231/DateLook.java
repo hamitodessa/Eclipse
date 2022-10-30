@@ -1,4 +1,3 @@
-package OBS_2025;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -75,7 +74,7 @@ public class DateLook extends JFrame {
         database_locked = true;
       }
       
-      setIconImage(Toolkit.getDefaultToolkit().createImage(DateLook.class.getResource("/SCH_ICONS/dl.png")));
+      setIconImage(Toolkit.getDefaultToolkit().createImage(DateLook.class.getResource("dl.png")));
       this.setLocation(Settings.get_instance(null).get_frame_x(), Settings.get_instance(null).get_frame_y());
       this.setSize(Settings.get_instance(null).get_frame_width(), 
                    Settings.get_instance(null).get_decor_height() + Settings.get_instance(null).get_number_of_slots() * Settings.get_instance(null).get_slot_height());

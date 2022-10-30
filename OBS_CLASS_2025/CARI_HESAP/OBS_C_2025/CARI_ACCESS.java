@@ -4,7 +4,7 @@ package OBS_C_2025;
 import java.sql.SQLException;
 
 public class CARI_ACCESS {
-	private static  ICARI_HESAP _ICari;
+	private static ICARI_HESAP _ICari;
 	private static ILOGGER[] _Logger;
 	
 	public CARI_ACCESS(ICARI_HESAP _ICari, ILOGGER[] _Logger)
@@ -15,7 +15,6 @@ public class CARI_ACCESS {
 	public static void baglan() throws SQLException
 	
 	{
-	
 	 _ICari.baglan();
 	}
 	public String cari_firma_adi() throws ClassNotFoundException, SQLException {
@@ -28,8 +27,6 @@ public class CARI_ACCESS {
 		 
 		 for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(mesaj,evrak, dBILGI);
-		// _Logger.Logla(mesaj);
-	     
 	}
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
 			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException

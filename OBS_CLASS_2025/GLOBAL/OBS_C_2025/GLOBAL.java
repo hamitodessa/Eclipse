@@ -10,10 +10,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
 import java.util.Properties;
@@ -47,7 +44,6 @@ public  Connection myConnection() throws SQLException
         }  
           return conn;  
         }  
-  //*************************************************
   //*************************************************
     @SuppressWarnings("unused")
 	 private static  Connection myBConnection (){
@@ -328,15 +324,5 @@ public boolean internet_kontrol()
 	return result ;
 
 }
-
-
-
-
-
-
-
-
-
-
 
 }

@@ -9,18 +9,6 @@ import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import OBS_PACKAGE.RAPORLAR.ENVANTER;
-import OBS_PACKAGE.RAPORLAR.FATURA_RAPOR;
-import OBS_PACKAGE.RAPORLAR.GRUP_RAPOR;
-import OBS_PACKAGE.RAPORLAR.IMALAT_GRUP_RAPOR;
-import OBS_PACKAGE.RAPORLAR.IMALAT_RAPORLAMA;
-import OBS_PACKAGE.RAPORLAR.IRSALIYE_RAPOR;
-import OBS_PACKAGE.RAPORLAR.ORTALAMA_FIAT;
-import OBS_PACKAGE.RAPORLAR.RECETE_RAPOR;
-import OBS_PACKAGE.RAPORLAR.STOK_DETAY;
-import OBS_PACKAGE.RAPORLAR.STOK_RAPOR;
-import OBS_PACKAGE.RAPORLAR.URUN_LISTE;
-import OBS_PACKAGE.RAPORLAR.ZAYI_RAPOR;
 
 import javax.swing.JDesktopPane;
 import java.awt.Toolkit;
@@ -57,6 +45,9 @@ import javax.swing.UIManager;
 import javax.swing.ScrollPaneConstants;
 
 import org.gpl.JSplitButton.JSplitButton;
+
+import OBS_C_2025.GLOBAL;
+
 import javax.swing.JMenuBar;
 import javax.swing.JSeparator;
 import java.awt.event.MouseMotionAdapter;

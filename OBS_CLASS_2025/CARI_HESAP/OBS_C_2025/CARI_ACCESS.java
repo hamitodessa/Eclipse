@@ -20,8 +20,6 @@ public class CARI_ACCESS {
 	}
 	public String cari_firma_adi() throws ClassNotFoundException, SQLException {
 		return  _ICari.cari_firma_adi();
-		
-		
 	}
 	public void cari_sifirdan_L (String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
 			String sifre , String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 

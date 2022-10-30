@@ -10,6 +10,9 @@ import java.awt.Color;
 
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+
+import OBS_C_2025.BAGLAN;
+
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -93,47 +96,19 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		{
 		if (modul.equals("cari"))
 		{
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		    {
-				textField.setText(oac.cARI_HESAP_MSSQL.cari_firma_adi());
-		    }
-           	else
-           	{
-           		textField.setText(oac.cARI_HESAP_MYSQL.cari_firma_adi());
-           	}
+				textField.setText(oac._ICar.cari_firma_adi() );
 		}
 		else if (modul.equals("kambiyo"))
 		{
-			if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-		    {
-				textField.setText(oac.kAMBIYO_MSSQL.kam_firma_adi());
-		    }
-           	else
-           	{
-           		textField.setText(oac.kAMBIYO_MYSQL.kam_firma_adi());
-           	}
+				textField.setText(oac._IKambiyo.kam_firma_adi());
 		}
 		else if (modul.equals("stok"))
 		{
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    {
-				textField.setText(oac.sTOK_MSSQL.fat_firma_adi());
-		    }
-           	else
-           	{
-           		textField.setText(oac.sTOK_MYSQL.fat_firma_adi());
-           	}
+           		textField.setText(oac._Istok.fat_firma_adi());
 		}
 		else if (modul.equals("adres"))
 		{
-			if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-		    {
-				textField.setText(oac.aDRES_MSSQL.adr_firma_adi());
-		    }
-           	else
-           	{
-           		textField.setText(oac.aDRES_MYSQL.adr_firma_adi());
-           	}
+           		textField.setText(oac._IAdres.adr_firma_adi());
 		}
 		}
 		catch (Exception ex)
@@ -147,56 +122,30 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		{
 		if (modul.equals("cari"))
 		{
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		    {
-				oac.cARI_HESAP_MSSQL.cari_firma_adi_kayit(textField.getText());
-		    }
-           	else
-           	{
-           		oac.cARI_HESAP_MYSQL.cari_firma_adi_kayit(textField.getText());
-           	}
-			CONNECTION.caridizinbilgi.firma_adi = textField.getText();
-		    OBS_MAIN.lblNewLabel_1.setText ( "Cari:" + CONNECTION.caridizinbilgi.kod + "/ " + CONNECTION.caridizinbilgi.firma_adi + "/ " + (CONNECTION.caridizinbilgi.yer == "S" ?  CONNECTION.caridizinbilgi.server : "Lokal"));
+			
+           	oac._ICar.cari_firma_adi_kayit(textField.getText());
+           	BAGLAN.cariDizin.fIRMA_ADI = textField.getText();
+		    OBS_MAIN.lblNewLabel_1.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "/ " + BAGLAN.cariDizin.fIRMA_ADI + "/ " + (BAGLAN.cariDizin.yER == "S" ?  BAGLAN.cariDizin.sERVER : "Lokal"));
 
 		}
 		else if (modul.equals("kambiyo"))
 		{
-			if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-		    {
-				oac.kAMBIYO_MSSQL.kam_firma_adi_kayit(textField.getText());
-		    }
-           	else
-           	{
-           		oac.kAMBIYO_MYSQL.kam_firma_adi_kayit(textField.getText());
-           	}
-			CONNECTION.kamdizinbilgi.firma_adi = textField.getText();
-		    OBS_MAIN.lblNewLabel_23.setText ( "Kambiyo:" + CONNECTION.kamdizinbilgi.kod + "/ " + CONNECTION.kamdizinbilgi.firma_adi + "/ " + (CONNECTION.kamdizinbilgi.yer == "S" ?  CONNECTION.kamdizinbilgi.server : "Lokal"));
+			oac._IKambiyo.kam_firma_adi_kayit(textField.getText());
+           	
+        	BAGLAN.kamDizin.fIRMA_ADI = textField.getText();
+		    OBS_MAIN.lblNewLabel_23.setText ( "Kambiyo:" + BAGLAN.kamDizin.kOD + "/ " + BAGLAN.kamDizin.fIRMA_ADI + "/ " + (BAGLAN.kamDizin.yER == "S" ?  BAGLAN.kamDizin.sERVER : "Lokal"));
 		}
 		else if (modul.equals("stok"))
 		{
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    {
-				oac.sTOK_MSSQL.stk_firma_adi_kayit(textField.getText());
-		    }
-           	else
-           	{
-           		oac.sTOK_MYSQL.stk_firma_adi_kayit(textField.getText());
-           	}
-			CONNECTION.fatdizinbilgi.firma_adi = textField.getText();
-		    OBS_MAIN.lblNewLabel_23.setText ( "Stok:" + CONNECTION.fatdizinbilgi.kod + "/ " + CONNECTION.fatdizinbilgi.firma_adi + "/ " + (CONNECTION.fatdizinbilgi.yer == "S" ?  CONNECTION.fatdizinbilgi.server : "Lokal"));
+           	oac._Istok.stk_firma_adi_kayit(textField.getText());
+           	BAGLAN.fatDizin.fIRMA_ADI = textField.getText();
+		    OBS_MAIN.lblNewLabel_23.setText ( "Stok:" + BAGLAN.fatDizin.kOD + "/ " + BAGLAN.fatDizin.fIRMA_ADI + "/ " + (BAGLAN.fatDizin.yER == "S" ?  BAGLAN.fatDizin.sERVER : "Lokal"));
 		}
 		else if (modul.equals("adres"))
 		{
-			if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-		    {
-				oac.aDRES_MSSQL.adr_firma_adi_kayit(textField.getText());
-		    }
-           	else
-           	{
-           		oac.aDRES_MYSQL.adr_firma_adi_kayit(textField.getText());
-           	}
-			CONNECTION.adrdizinbilgi.firma_adi = textField.getText();
-		    OBS_MAIN.lblNewLabel_22.setText ( "Adres:" + CONNECTION.adrdizinbilgi.kod + "/ " + CONNECTION.adrdizinbilgi.firma_adi + "/ " + (CONNECTION.adrdizinbilgi.yer == "S" ?  CONNECTION.adrdizinbilgi.server : "Lokal"));
+           	oac._IAdres.adr_firma_adi_kayit(textField.getText());
+           	BAGLAN.adrDizin.fIRMA_ADI = textField.getText();
+		    OBS_MAIN.lblNewLabel_22.setText ( "Adres:" + 	BAGLAN.adrDizin.kOD + "/ " + 	BAGLAN.adrDizin.fIRMA_ADI + "/ " + (	BAGLAN.adrDizin.yER == "S" ?  	BAGLAN.adrDizin.sERVER : "Lokal"));
 		}
 		kapat();
 		}

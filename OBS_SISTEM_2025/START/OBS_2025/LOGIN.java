@@ -104,10 +104,6 @@ public class LOGIN extends JFrame {
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	BAGLAN bAGLAN = new BAGLAN();
 	BAGLAN_LOG bAGLAN_LOG = new BAGLAN_LOG();
-	
-
-
-
 	/**
 	 * Launch the application.
 	 */
@@ -116,8 +112,6 @@ public class LOGIN extends JFrame {
 			try {
 				LOGIN frame = new LOGIN();
 				frame.setVisible(true);
-				
-			
 				} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -127,7 +121,6 @@ public class LOGIN extends JFrame {
 public LOGIN() throws IOException {
 	
 	LOGIN.setDefaultLookAndFeelDecorated(true);
-
 	try {
 		if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal"))
 		{

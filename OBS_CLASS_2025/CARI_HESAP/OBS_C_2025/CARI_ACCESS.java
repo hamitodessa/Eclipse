@@ -1,6 +1,7 @@
 package OBS_C_2025;
 
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CARI_ACCESS {
@@ -34,5 +35,10 @@ public class CARI_ACCESS {
 		 _ICari.cARI_SIFIR_S(server, kull, sifre, kod, fir_adi, ins);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
+	}
+	public ResultSet  cari_sonfisno() throws ClassNotFoundException, SQLException
+	{
+		return _ICari.cari_sonfisno();
+		
 	}
 }

@@ -1803,7 +1803,7 @@ public class OBS_MAIN extends JFrame {
 				GuiUtil.setWaitCursor(toolBar,true);
 				String sonuc = pencere_activmi();
 				if (sonuc == "KULLANICI EKLEME") USER_EKLEME.sil();
-               	else if (sonuc == "KULLANICI DETAY EKLEME") 	USER_DETAY_EKLEME.sil();
+               	else if (sonuc == "KULLANICI DETAY EKLEME") USER_DETAY_EKLEME.sil();
             	else if (sonuc == "DEKONT")	DEKONT.yoket();
             	else if (sonuc == "HESAP GIRISI")	H_PLANI.sil();
 				else if (sonuc == "KUR GIRIS")	KUR_GIRIS.sil();

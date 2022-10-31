@@ -28,6 +28,9 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.ORTA;
+import OBS_C_2025.SOLA;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;

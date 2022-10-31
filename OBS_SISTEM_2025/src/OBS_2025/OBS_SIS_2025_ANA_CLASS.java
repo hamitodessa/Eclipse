@@ -1,6 +1,8 @@
 package OBS_2025;
 
 
+import java.awt.Color;
+
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.IADRES;
 import OBS_C_2025.ICARI_HESAP;
@@ -35,6 +37,8 @@ public class OBS_SIS_2025_ANA_CLASS
     public String[] options = {"Tamam......       		!", "Vazgec.....       		!"}; 
     public IConnection _IConn ;
 	 public int txt_yukseklik =20;
+	 public static Color gridcolor ; //=  new Color(0, 191, 255);      //   0,153,204   java.awt.Color[r=204,g=0,b=102]
+	    
 	 public GLOBAL glb  = new GLOBAL();
 	 public USER_ISLEMLERI uSER_ISL = new USER_ISLEMLERI();
 	 

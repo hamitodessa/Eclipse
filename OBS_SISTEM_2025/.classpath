@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="START"/>
 	<classpathentry kind="src" path="GENEL"/>
+	<classpathentry kind="src" path="USER_ISLEMLERI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/OBS_CLASS_2025"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>

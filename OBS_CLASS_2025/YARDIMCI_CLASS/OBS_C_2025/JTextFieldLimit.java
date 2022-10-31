@@ -8,14 +8,18 @@ public class JTextFieldLimit extends PlainDocument {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-private int limit;
+	private int limit;
 
-  JTextFieldLimit(int limit) {
-   super();
-   this.limit = limit;
-   }
+  
 
-  public void insertString( int offset, String  str, AttributeSet attr ) throws BadLocationException {
+  public JTextFieldLimit(int limit) {
+		super();
+		this.limit = limit;
+	}
+
+
+
+public void insertString( int offset, String  str, AttributeSet attr ) throws BadLocationException {
     if (str == null) return;
 
     if ((getLength() + str.length()) <= limit) {

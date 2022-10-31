@@ -43,6 +43,7 @@ public class OBS_SIS_2025_ANA_CLASS
 	public static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	public GLOBAL glb  = new GLOBAL();
 	public USER_ISLEMLERI uSER_ISL = new USER_ISLEMLERI();
+	public static String hsp_hsp_kodu =""; 
 	 
 
 }

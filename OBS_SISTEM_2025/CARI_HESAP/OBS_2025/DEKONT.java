@@ -1265,9 +1265,9 @@ public class DEKONT extends JInternalFrame {
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 						hsp = new HESAP_PLN();
 						hsp.show();
-						if (! oac.glb.hsp_hsp_kodu.equals(""))
+						if (! oac.hsp_hsp_kodu.equals(""))
 						{
-							cmbahes.setSelectedItem( oac.glb.hsp_hsp_kodu);
+							cmbahes.setSelectedItem( oac.hsp_hsp_kodu);
 						}
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();

@@ -36,9 +36,8 @@ public class CARI_ACCESS {
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
-	public ResultSet  cari_sonfisno() throws ClassNotFoundException, SQLException
+	public ResultSet  cari_sonfisno( ) throws ClassNotFoundException, SQLException
 	{
 		return _ICari.cari_sonfisno();
-		
 	}
 }

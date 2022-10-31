@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/Apache_common/commons-net-3.7/commons-net-3.7.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/DIGER/rs2xml.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/BUTTON_DROP/JSplitButton_1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/DIGER/jcalendar-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

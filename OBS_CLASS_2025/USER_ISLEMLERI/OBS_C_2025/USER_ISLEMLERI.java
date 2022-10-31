@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.Base64;
 
 import javax.swing.JOptionPane;
+
+
 public class USER_ISLEMLERI {
 	static  Connection con ;
 	
@@ -386,5 +388,36 @@ public class USER_ISLEMLERI {
 		 rss = stmt.executeQuery();
 		 return rss;
 	}
+	 public void mail_yaz(String hsp,String host,String port,String sifre,String gmail,String ghesap,int ssl,int tsl) throws ClassNotFoundException, SQLException
+     {
+    	 Class.forName("org.sqlite.JDBC");
+    	 con.close();
+		 con = null;
+		 PreparedStatement stmt = null;
+		 con = gLB.myConnection();
+      
+    	   	 String sql = "DELETE FROM E_MAIL_BILGILERI WHERE USER_NAME = ? ";
+        	 stmt = con.prepareStatement(sql);
+        	 stmt.setString(1, GLOBAL.KULL_ADI);
+             stmt.executeUpdate();
+             stmt = null;
+        
+   		 sql = "INSERT INTO E_MAIL_BILGILERI (USER_NAME,HESAP,HOST,PORT,SIFR,GON_MAIL,GON_ISIM,SSL,TSL)" +
+   						"VALUES (?,?,?,?,?,?,?,?,?)";
+   		 
+   			 stmt = con.prepareStatement(sql);
+   			 stmt.setString(1,  GLOBAL.KULL_ADI);
+   			 stmt.setString(2, hsp);
+   			 stmt.setString(3, host);
+   			 stmt.setString(4, port);
+   			 stmt.setString(5, sifre);
+   			 stmt.setString(6, gmail);
+   			 stmt.setString(7, ghesap);
+   			 stmt.setInt(8, ssl);
+   			stmt.setInt(9, tsl);
+   			stmt.executeUpdate();
+   			stmt.close();
+   			con.close();
+     }
 
 }

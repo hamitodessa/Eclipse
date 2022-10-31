@@ -2,6 +2,7 @@ package OBS_2025;
 
 
 import java.awt.Color;
+import java.awt.Cursor;
 
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.IADRES;
@@ -36,11 +37,12 @@ public class OBS_SIS_2025_ANA_CLASS
    
     public String[] options = {"Tamam......       		!", "Vazgec.....       		!"}; 
     public IConnection _IConn ;
-	 public int txt_yukseklik =20;
-	 public static Color gridcolor ; //=  new Color(0, 191, 255);      //   0,153,204   java.awt.Color[r=204,g=0,b=102]
-	    
-	 public GLOBAL glb  = new GLOBAL();
-	 public USER_ISLEMLERI uSER_ISL = new USER_ISLEMLERI();
+	public int txt_yukseklik =20;
+	public static Color gridcolor ; //=  new Color(0, 191, 255);      //   0,153,204   java.awt.Color[r=204,g=0,b=102]
+	public static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
+	public static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+	public GLOBAL glb  = new GLOBAL();
+	public USER_ISLEMLERI uSER_ISL = new USER_ISLEMLERI();
 	 
 
 }

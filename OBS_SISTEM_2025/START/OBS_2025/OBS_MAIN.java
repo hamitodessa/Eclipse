@@ -48,6 +48,7 @@ import javax.swing.ScrollPaneConstants;
 
 import org.gpl.JSplitButton.JSplitButton;
 
+import OBS_C_2025.DesktopScrollPane;
 import OBS_C_2025.GLOBAL;
 
 import javax.swing.JMenuBar;

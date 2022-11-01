@@ -313,7 +313,7 @@ public class EKSTRE extends JInternalFrame {
 			}
 			
 			// DENEME INSERT
-			rs.absolute(0);
+			rs.absolute(1);
 			// rs.moveToInsertRow();
 			
 		      rs.updateDate("TARIH", new java.sql.Date(System.currentTimeMillis()));

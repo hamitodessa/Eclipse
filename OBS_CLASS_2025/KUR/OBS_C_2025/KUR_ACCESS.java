@@ -1,5 +1,6 @@
 package OBS_C_2025;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class KUR_ACCESS {
@@ -29,6 +30,10 @@ public class KUR_ACCESS {
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 
+	}
+	public ResultSet kur_oku (String tar , String kur) throws ClassNotFoundException, SQLException 
+	{
+		return _IKur.kur_oku(tar, kur);
 	}
 
 }

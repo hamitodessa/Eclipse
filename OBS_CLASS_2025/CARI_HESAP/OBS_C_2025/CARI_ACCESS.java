@@ -40,4 +40,16 @@ public class CARI_ACCESS {
 	{
 		return _ICari.cari_sonfisno();
 	}
+	public ResultSet dek_mizan(String kod) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.dek_mizan(kod);
+	}
+	public int cari_fisno_al() throws ClassNotFoundException, SQLException
+	{
+		return _ICari.cari_fisno_al();
+	}
+	public boolean cari_fino_bak(int fisno) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.cari_fino_bak(fisno);
+	}
 }

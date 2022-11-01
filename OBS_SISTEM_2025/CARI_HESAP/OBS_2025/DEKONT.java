@@ -19,6 +19,7 @@ import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
+import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
 
 import javax.swing.JButton;
@@ -96,6 +97,9 @@ public class DEKONT extends JInternalFrame {
 	private static JComboBox<String> cmbbhes;
 	private static JComboBox<String> cmbahes;
 	private static JLabel lblNewLabel ;
+	
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
+
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -1549,7 +1553,7 @@ public class DEKONT extends JInternalFrame {
 	                 return ;
 	         		  }
 	         }
-	        if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL") ? oac.cARI_HESAP_MSSQL.cari_fino_bak(Integer.parseInt(txtevrak.getText())) : oac.cARI_HESAP_MYSQL.cari_fino_bak(Integer.parseInt(txtevrak.getText()))) 
+	        if (c_Access.cari_fino_bak(Integer.parseInt(txtevrak.getText()))) 
 	        		{
 	  
 	        	int g =  JOptionPane.showOptionDialog( null, "Islem Dosyada mevcut Fis eskisi ile degisecek ..", "Cari Fis Kayit",   JOptionPane.YES_NO_OPTION,
@@ -1566,6 +1570,7 @@ public class DEKONT extends JInternalFrame {
 	        {
 	        	oac.cARI_HESAP_MYSQL.evrak_yoket(Integer.parseInt(txtevrak.getText()));
 	        }
+	        
 	        if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
 	        {
 	        	oac.cARI_HESAP_MSSQL.cari_dekont_kaydet(cmbbhes.getSelectedItem().toString(),
@@ -1665,14 +1670,10 @@ public class DEKONT extends JInternalFrame {
 		try
 		{
 		int evr=0;
-		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		{
-			evr = oac.cARI_HESAP_MSSQL.cari_fisno_al();
-		}
-		else
-		{
-			evr = oac.cARI_HESAP_MYSQL.cari_fisno_al();
-		}
+		
+	
+			evr =  c_Access.cari_fisno_al();
+		
 		txtevrak.setText(Integer.toString(evr));
 		kutu_ac();
 	    sifirla();
@@ -1689,14 +1690,8 @@ public class DEKONT extends JInternalFrame {
 		        try
 		{
 		      	ResultSet rs ;
-		       	if (CONNECTION.kurdizinbilgi.han_sql.equals("MS SQL"))
-			    {
-				rs = oac.kUR_MSSQL.kur_oku(TARIH_CEVIR.tarih_geri_SQL(dtc),cins);
-			    }
-				 else
-				 {
-					 rs = oac.kUR_MYSQL.kur_oku(TARIH_CEVIR.tarih_geri_SQL(dtc),cins);
-				 }
+		      	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur , oac._ILogger);
+		 		rs =  k_Access.kur_oku(TARIH_CEVIR.tarih_geri_SQL(dtc),cins);
 				if (!rs.isBeforeFirst() ) {  
 					kur =1 ;
 				} 
@@ -1737,14 +1732,10 @@ public class DEKONT extends JInternalFrame {
 		{
 			kod = cmbahes.getSelectedItem() == null ? "":cmbahes.getSelectedItem().toString();
 		}
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.cARI_HESAP_MSSQL.dek_mizan(kod );
-			}
-			else
-			{
-				rs = oac.cARI_HESAP_MYSQL.dek_mizan( kod );
-			}
+		
+	
+		rs =  c_Access.dek_mizan(kod );
+			
 			if (!rs.isBeforeFirst() ) {  
 				if (cins.equals("B"))
 				{

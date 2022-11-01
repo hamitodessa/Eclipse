@@ -777,9 +777,9 @@ public class DEKONT extends JInternalFrame {
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 						hsp = new HESAP_PLN();
 						hsp.show();
-						if (! oac.glb.hsp_hsp_kodu.equals(""))
+						if (! oac.hsp_hsp_kodu.equals(""))
 						{
-							cmbbhes.setSelectedItem( oac.glb.hsp_hsp_kodu);
+							cmbbhes.setSelectedItem( oac.hsp_hsp_kodu);
 						}
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
@@ -833,9 +833,9 @@ public class DEKONT extends JInternalFrame {
 								getContentPane().setCursor(oac.WAIT_CURSOR);
 								hsp = new HESAP_PLN();
 								hsp.show();
-								if (! oac.glb.hsp_hsp_kodu.equals(""))
+								if (! oac.hsp_hsp_kodu.equals(""))
 								{
-									cmbbhes.setSelectedItem( oac.glb.hsp_hsp_kodu);
+									cmbbhes.setSelectedItem( oac.hsp_hsp_kodu);
 								}
 								getContentPane().setCursor(oac.DEFAULT_CURSOR);
 							} catch (ClassNotFoundException e1) {

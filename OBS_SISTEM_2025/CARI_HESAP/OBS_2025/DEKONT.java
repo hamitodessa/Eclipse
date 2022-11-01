@@ -24,6 +24,7 @@ import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
 
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -761,7 +762,7 @@ public class DEKONT extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				hpl = new String[3];
-				hpl = CARI_ISIM_OKU.isim(cmbbhes.getSelectedItem() == null ? "":cmbbhes.getSelectedItem().toString());
+				hpl = isim(cmbbhes.getSelectedItem() == null ? "":cmbbhes.getSelectedItem().toString());
 				lblNewLabel_2.setText(hpl[0]);
 				lblb.setText(hpl[1]);
 				if (hpl[2].toString().equals("F"))
@@ -1250,7 +1251,7 @@ public class DEKONT extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				hpl = new String[3];
-				hpl = CARI_ISIM_OKU.isim(cmbahes.getSelectedItem() == null ? "":cmbahes.getSelectedItem().toString());
+				hpl = isim(cmbahes.getSelectedItem() == null ? "":cmbahes.getSelectedItem().toString());
 				lblNewLabel_2_1.setText(hpl[0]);
 				lbla.setText(hpl[1]);
 				if (hpl[2].toString().equals("F"))
@@ -1741,6 +1742,32 @@ public class DEKONT extends JInternalFrame {
          {
         	 JOptionPane.showMessageDialog(null, ex.getMessage(),  "Bakiye Doldur", JOptionPane.ERROR_MESSAGE);   
          }
+	}
+	private static String[] isim(String kod)  {
+		String [] sonuc = {"","",""}  ;
+		try
+	  {
+		ResultSet	rs = null;
+		rs = c_Access.hesap_adi_oku(kod);
+		if (!rs.isBeforeFirst() ) {  
+			sonuc [0]= "" ;
+			sonuc [1]= "" ;
+			sonuc [2]= "F" ;
+		} 
+		else
+		{
+		rs.next();
+		sonuc [0] = rs.getString("UNVAN");
+		sonuc [1]=rs.getString("HESAP_CINSI");
+		sonuc [2]= "T" ;
+		}
+		
+	  }
+	  catch (Exception ex)
+	  {
+			JOptionPane.showMessageDialog(null, ex.getMessage() + " clss",  "Hesap Ismi Okuma", JOptionPane.ERROR_MESSAGE);     
+	  }
+	return sonuc;
 	}
 }
 

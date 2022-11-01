@@ -15,8 +15,10 @@ import java.awt.Color;
 import java.awt.Cursor;
 import com.toedter.calendar.JDateChooser;
 
+import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.KUR_ACCESS;
@@ -1450,14 +1452,8 @@ public class DEKONT extends JInternalFrame {
 		}
 		long startTime = System.currentTimeMillis(); 
 		ResultSet rs =null;
-		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		{
-			rs = oac.cARI_HESAP_MSSQL.fiskon(Integer.parseInt(txtevrak.getText()));
-		}
-		else
-		{
-			rs = oac.cARI_HESAP_MYSQL.fiskon(Integer.parseInt(txtevrak.getText()));
-		}
+		
+        rs = c_Access.fiskon(Integer.parseInt(txtevrak.getText()));
 		if (!rs.isBeforeFirst() ) { 
 			sifirla();
 			kutu_kapa();
@@ -1500,14 +1496,7 @@ public class DEKONT extends JInternalFrame {
 		 int g =  JOptionPane.showOptionDialog( null,  "Islem Dosyadan Silinecek ..?", "Cari Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
 	   			 	JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 	 	if(g != 0 ) { return;	}
-	 	if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-	 	{
-	 		oac.cARI_HESAP_MSSQL.evrak_yoket(Integer.parseInt(txtevrak.getText()));
-	 	}
-	 	else
-	 	{
-	 		oac.cARI_HESAP_MYSQL.evrak_yoket(Integer.parseInt(txtevrak.getText()));
-	 	}
+        c_Access.evrak_yoket(Integer.parseInt(txtevrak.getText()),txtevrak.getText() + " Dekont Silme",txtevrak.getText(), BAGLAN_LOG.cariLogDizin);
         sifirla();
         kutu_kapa();
         txtevrak.setText("");
@@ -1562,18 +1551,8 @@ public class DEKONT extends JInternalFrame {
 	    }
 			long startTime = System.currentTimeMillis(); 
 	        String str = TARIH_CEVIR.tarih_geri_saatli(dtc) ;
-	        if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-	        {
-	        	oac.cARI_HESAP_MSSQL.evrak_yoket(Integer.parseInt(txtevrak.getText()));
-	        }
-	        else
-	        {
-	        	oac.cARI_HESAP_MYSQL.evrak_yoket(Integer.parseInt(txtevrak.getText()));
-	        }
-	        
-	        if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-	        {
-	        	oac.cARI_HESAP_MSSQL.cari_dekont_kaydet(cmbbhes.getSelectedItem().toString(),
+	        c_Access.evrak_yoket(Integer.parseInt(txtevrak.getText()),txtevrak.getText() + " Dekont Silme",txtevrak.getText(), BAGLAN_LOG.cariLogDizin);
+        	c_Access.cari_dekont_kaydet(cmbbhes.getSelectedItem().toString(),
 	        		str,
 	        		Integer.parseInt(txtevrak.getText()),
 	        		cmbb.getItemAt(cmbb.getSelectedIndex()).toString(),
@@ -1583,22 +1562,13 @@ public class DEKONT extends JInternalFrame {
 	        		cmba.getItemAt(cmbb.getSelectedIndex()).toString(),
 	        		Double.parseDouble(txtakur.getText()),
 	        		DecimalFormat.getNumberInstance().parse(txtatutar.getText()).doubleValue(),
-	        		txtaciklama.getText(),txtkod.getText() , oac.glb.KULL_ADI);
-	        }
-	        else
-	        {
-	        	oac.cARI_HESAP_MYSQL.cari_dekont_kaydet(cmbbhes.getSelectedItem().toString(),
-		        		str,
-		        		Integer.parseInt(txtevrak.getText()),
-		        		cmbb.getItemAt(cmbb.getSelectedIndex()).toString(),
-		        		Double.parseDouble(txtbkur.getText()),
-		        		DecimalFormat.getNumberInstance().parse(txtbtutar.getText()).doubleValue(),
-		        		cmbahes.getSelectedItem().toString(),
-		        		cmba.getItemAt(cmbb.getSelectedIndex()).toString(),
-		        		Double.parseDouble(txtakur.getText()),
-		        		DecimalFormat.getNumberInstance().parse(txtatutar.getText()).doubleValue(),
-		        		txtaciklama.getText(),txtkod.getText() , oac.glb.KULL_ADI);	
-	        }
+	        		txtaciklama.getText(),txtkod.getText() , GLOBAL.KULL_ADI,
+	        		"Alacakli Hes:" +cmbahes.getSelectedItem().toString() + " Tut:" + DecimalFormat.getNumberInstance().parse(txtatutar.getText()).doubleValue()+
+	        		" Borclu Hes:"+cmbb.getItemAt(cmbb.getSelectedIndex()).toString() + " Tut:" + DecimalFormat.getNumberInstance().parse(txtbtutar.getText()).doubleValue()  ,
+	        		txtevrak.getText() ,
+	        		BAGLAN_LOG.cariLogDizin
+	        		);
+	       
    	      sifirla();
 	      txtevrak.setText("0");
 	      kutu_kapa();

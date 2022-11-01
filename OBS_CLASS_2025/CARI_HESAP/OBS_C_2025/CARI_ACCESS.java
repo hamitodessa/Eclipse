@@ -52,4 +52,22 @@ public class CARI_ACCESS {
 	{
 		return _ICari.cari_fino_bak(fisno);
 	}
+	public void evrak_yoket(int num, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_ICari.evrak_yoket(num);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		
+	}
+	public void cari_dekont_kaydet(String bhes,String tar,int evrak,String bcins,Double bkur,Double borc ,
+			String alhes,String acins,Double alkur,Double alacak,String izahat,String kod,String user, String mesaj,String evrakl, DIZIN_BILGILERI dBILGI) throws SQLException, ClassNotFoundException
+	{
+		_ICari.cari_dekont_kaydet(bhes, tar, evrak, bcins, bkur, borc, alhes, acins, alkur, alacak, izahat, kod, user);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(mesaj,evrakl, dBILGI);
+	}
+	public ResultSet fiskon(int evrakno) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.fiskon(evrakno);
+	}
 }

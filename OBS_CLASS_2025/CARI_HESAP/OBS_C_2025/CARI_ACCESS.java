@@ -70,4 +70,9 @@ public class CARI_ACCESS {
 	{
 		return _ICari.fiskon(evrakno);
 	}
+	public ResultSet hp_pln () throws ClassNotFoundException, SQLException
+	{
+		return _ICari.hp_pln();
+	}
+	
 }

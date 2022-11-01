@@ -260,7 +260,11 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
        
        rss = stmt.executeQuery(query);
        
-      
+       if (rss.getConcurrency() == ResultSet.CONCUR_READ_ONLY) {
+           System.out.println("ResultSet non-updatable.");
+         } else {
+           System.out.println("ResultSet updatable.");
+         }
        
        return rss;	 
         //<<<<<<<<<<<<<<

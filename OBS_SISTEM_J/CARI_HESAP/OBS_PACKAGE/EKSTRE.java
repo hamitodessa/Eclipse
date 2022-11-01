@@ -313,8 +313,8 @@ public class EKSTRE extends JInternalFrame {
 			}
 			
 			// DENEME INSERT
-			rs.absolute(1);
-			// rs.moveToInsertRow();
+			
+			 rs.moveToInsertRow();
 			
 		      rs.updateDate("TARIH", new java.sql.Date(System.currentTimeMillis()));
 		      rs.updateInt("EVRAK", 0);
@@ -325,12 +325,15 @@ public class EKSTRE extends JInternalFrame {
 		      rs.updateDouble("BORC", 1);
 		      rs.updateDouble("ALACAK", 2);
 		      rs.updateDouble(7, 3);
+		     
 		      rs.updateString("USER", "Hamit");
-		    
+		      System.out.println("Row inserted ok1.");
 		      rs.insertRow();
-		      System.out.println("Row inserted ok3.");
+		      System.out.println("Row inserted ok2.");
 		      rs.moveToCurrentRow();
 
+		    
+		     
 		      System.out.println("Row inserted ok.");
 			//
 		      

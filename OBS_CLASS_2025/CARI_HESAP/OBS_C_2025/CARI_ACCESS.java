@@ -84,5 +84,17 @@ public class CARI_ACCESS {
 	{
 		return _ICari.hesap_adi_oku(hesap);
 	}
+	public ResultSet kasa_mizan(String kod,String ilktarih,String sontarih) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.kasa_mizan(kod, ilktarih, sontarih);
+	}
+	public ResultSet mizan (String kod,String ilktarih,String sontarih,String ilkhcins,String sonhcins,String ilkkar,String sonkar) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.mizan(kod, ilktarih, sontarih, ilkhcins, sonhcins, ilkkar, sonkar);
+	}
+	public ResultSet ekstre(String hesap , String t1 ,String t2) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.ekstre(hesap, t1, t2);
+	}
 	
 }

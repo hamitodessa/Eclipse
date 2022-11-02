@@ -17,9 +17,13 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
@@ -51,6 +55,8 @@ public class EKSTRE extends JInternalFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
+
 	
 	public static JTable table;
 	private static JLabel lblNewLabel_3  ;
@@ -307,16 +313,8 @@ public class EKSTRE extends JInternalFrame {
 		double_4 =0 ;
 		try {
 			ResultSet	rs = null;
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-			rs = oac.cARI_HESAP_MSSQL.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
+			rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
 			//rs = oac.cARI_HESAP_MSSQL. ekstre_proc(FILTRE.txtkodu.getText(),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
-			}
-			else
-			{
-			//rs = oac.cARI_HESAP_MYSQL.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
-			//rs = oac.cARI_HESAP_MYSQL. ekstre_proc(FILTRE.txtkodu.getText(),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
-			}
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 			} 
@@ -413,14 +411,7 @@ public class EKSTRE extends JInternalFrame {
 				 String myDate = TARIH_CEVIR.tarih_geri_SQL(FILTRE.dateChooser);
 				 String myDate1 = TARIH_CEVIR.tarih_geri_SQL(FILTRE.dateChooser_1); 
 				rs = null;
-				if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-				{
-					rs = oac.cARI_HESAP_MSSQL.kasa_mizan(FILTRE.txtkodu.getText(), myDate, myDate1);
-				}
-				else 
-				{
-					rs = oac.cARI_HESAP_MYSQL.kasa_mizan(FILTRE.txtkodu.getText(), myDate, myDate1);
-				}
+				rs = c_Access.kasa_mizan(FILTRE.txtkodu.getText(), myDate, myDate1);
 				if (!rs.isBeforeFirst() ) {   
 					double_3 = 0;
 					double_4 = 0;
@@ -475,14 +466,7 @@ public class EKSTRE extends JInternalFrame {
 	private static void onceki_bakiye () throws ClassNotFoundException, SQLException
 	{
 		ResultSet	rs = null;
-		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		{
-			rs = oac.cARI_HESAP_MSSQL.mizan(FILTRE.txtkodu.getText(), "1900/01/01", TARIH_CEVIR.chooser_string_eksi1(FILTRE.dateChooser)  + " 23:59:59.000", "   ", "ZZZ", "     ", "ZZZZZ");
-		}
-		else
-		{
-			rs = oac.cARI_HESAP_MYSQL.mizan(FILTRE.txtkodu.getText(), "1900/01/01", TARIH_CEVIR.chooser_string_eksi1(FILTRE.dateChooser)  + " 23:59:59.000", "   ", "ZZZ", "     ", "ZZZZZ");
-		}
+		rs = c_Access.mizan(FILTRE.txtkodu.getText(), "1900/01/01", TARIH_CEVIR.chooser_string_eksi1(FILTRE.dateChooser)  + " 23:59:59.000", "   ", "ZZZ", "     ", "ZZZZZ");
 		if (!rs.isBeforeFirst() ) {  
 			double_1 = 0;
 			double_2 = 0;

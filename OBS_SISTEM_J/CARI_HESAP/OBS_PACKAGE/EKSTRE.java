@@ -308,34 +308,11 @@ public class EKSTRE extends JInternalFrame {
 			}
 			else
 			{
-			//rs = oac.cARI_HESAP_MYSQL.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
+			rs = oac.cARI_HESAP_MYSQL.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
 			//rs = oac.cARI_HESAP_MYSQL. ekstre_proc(FILTRE.txtkodu.getText(),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
 			}
 			
-			// DENEME INSERT
 			
-			 rs.moveToInsertRow();
-			
-		      rs.updateDate("TARIH", new java.sql.Date(System.currentTimeMillis()));
-		      rs.updateInt("EVRAK", 0);
-		      rs.updateString("IZAHAT", "Onceki Bakiye");
-		      //rs.updateString("Date_Of_Birth", new Date(904694400000L));
-		      rs.updateString("KOD", "");
-		      rs.updateDouble("KUR", 1);
-		      rs.updateDouble("BORC", 1);
-		      rs.updateDouble("ALACAK", 2);
-		      rs.updateDouble(7, 3);
-		     
-		      rs.updateString("USER", "Hamit");
-		      System.out.println("Row inserted ok1.");
-		      rs.insertRow();
-		      System.out.println("Row inserted ok2.");
-		      rs.moveToCurrentRow();
-
-		    
-		     
-		      System.out.println("Row inserted ok.");
-			//
 		      
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  

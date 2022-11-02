@@ -243,33 +243,16 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-       // PreparedStatement stmt = con.prepareStatement(" SELECT TARIH,SATIRLAR.EVRAK ,IZAHAT,KOD,KUR,BORC,ALACAK, "  + 
-      //  		"  CAST(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS DECIMAL(30,2))  AS BAKIYE ,[USER] "  + 
-    	//		"  FROM SATIRLAR WITH (INDEX (IX_SATIRLAR)) INNER JOIN IZAHAT WITH (INDEX (IX_EVRAK)) " + 
-    //			"  ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + hesap + "'" + 
-    //			"  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" + 
-    //			"  ORDER BY TARIH   ");
-       //>>>>>>>>
-        Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-         String query = " SELECT TARIH,SATIRLAR.EVRAK ,IZAHAT,KOD,KUR,BORC,ALACAK, "  + 
-        	        		"  CAST(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS DECIMAL(30,2))  AS BAKIYE ,[USER] "  + 
-        	    			"  FROM SATIRLAR WITH (INDEX (IX_SATIRLAR)) INNER JOIN IZAHAT WITH (INDEX (IX_EVRAK)) " + 
-        	   			"  ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + hesap + "'" + 
-        	   			"  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" + 
-        	   			"  ORDER BY TARIH   ";
+        PreparedStatement stmt = con.prepareStatement(" SELECT TARIH,SATIRLAR.EVRAK ,IZAHAT,KOD,KUR,BORC,ALACAK, "  + 
+        		"  CAST(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS DECIMAL(30,2))  AS BAKIYE ,[USER] "  + 
+    			"  FROM SATIRLAR WITH (INDEX (IX_SATIRLAR)) INNER JOIN IZAHAT WITH (INDEX (IX_EVRAK)) " + 
+    			"  ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + hesap + "'" + 
+    			"  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" + 
+    			"  ORDER BY TARIH   ");
+      
        
-       rss = stmt.executeQuery(query);
-       
-       if (rss.getConcurrency() == ResultSet.CONCUR_READ_ONLY) {
-           System.out.println("ResultSet non-updatable.");
-         } else {
-           System.out.println("ResultSet updatable.");
-         }
-       
-       return rss;	 
-        //<<<<<<<<<<<<<<
-		//rss = stmt.executeQuery();
-		//return rss;	 
+    	rss = stmt.executeQuery();
+		return rss;	 
 	}
 	public ResultSet hesap_adi_oku(String hesap) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

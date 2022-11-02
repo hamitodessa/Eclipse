@@ -1,6 +1,8 @@
 package OBS_C_2025;
 
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -134,4 +136,32 @@ public class CARI_ACCESS {
 		stmt.close();
 		SQLitecon.close();
 		}
+	public String kod_ismi(String kodu) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.kod_ismi(kodu);
+	}
+	public ResultSet hsp_pln(String arama) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.hsp_pln(arama);
+	}
+	public void hsp_sil(String hesap, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_ICari.hsp_sil(hesap);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		
+	}
+	public void hpln_kayit(String kodu,String adi,String karton,String hcins,String usr, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_ICari.hpln_kayit(kodu, adi, karton, hcins, usr);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(mesaj,evrak, dBILGI);
+	}
+	public void hpln_detay_kayit(String kodu ,String yet ,String ad1 ,String ad2 ,String semt,String seh  , String vd , String vn 
+			, String t1 ,String t2 ,String t3 ,String fx ,String o1 ,String o2 ,String o3 , String web 
+			,String mai ,String kim  ,String acik ,boolean sms , InputStream  resim ) throws ClassNotFoundException, SQLException, IOException
+	{
+		_ICari.hpln_detay_kayit(kodu, yet, ad1, ad2, semt, seh, vd, vn, t1, t2, t3, fx, o1, o2, o3, web, mai, kim, acik, sms, resim);
+	}
+	
 }

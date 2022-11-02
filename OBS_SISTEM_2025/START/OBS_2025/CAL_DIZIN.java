@@ -1545,7 +1545,7 @@ public class CAL_DIZIN extends JFrame {
          cONN_AKTAR();
          lOGG_AKTAR();
          mODUL_AKTAR("Cari Hesap");
-         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ILogger);
+        CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ILogger);
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
 		BAGLAN.cariDizin.sIFRESI = txtsifr.getText() ;
 		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();

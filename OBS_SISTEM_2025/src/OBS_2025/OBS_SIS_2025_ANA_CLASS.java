@@ -37,7 +37,7 @@ public class OBS_SIS_2025_ANA_CLASS
     public IGUNLUK _IGunluk;
     public ISMS _ISms;
    // public static ILOGGER[] _ILogger;
-    public static ILOGGER[] _ICari_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
+    public static ILOGGER[] _ICari_Loger = {};
     public static ILOGGER[] _IKur_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
     public static ILOGGER[] _IAdres_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
     public static ILOGGER[] _IFatura_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};

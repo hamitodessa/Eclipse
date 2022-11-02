@@ -726,7 +726,7 @@ public class H_PLANI extends JInternalFrame {
 			  os.flush();
 			  os.close();
 			}
-			
+			System.out.println(oac._ICari_Loger.length);
 			c_Access.hsp_sil(txtkodu.getText(), txtkodu.getText() + " Nolu Hesap Silme , Unvan:" + txtunvan.getText() , "",  BAGLAN_LOG.cariLogDizin);
 			c_Access.hpln_kayit(txtkodu.getText(), txtunvan.getText(), txtkarton.getText(), txthcinsi.getText(),GLOBAL.KULL_ADI
 					, txtkodu.getText() + " Nolu Hesap Kayit , Unvan:" + txtunvan.getText() , "",  BAGLAN_LOG.cariLogDizin);

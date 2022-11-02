@@ -63,6 +63,7 @@ public class CARI_ACCESS {
 		_ICari.evrak_yoket(num);
 		if (BAGLAN.cariDizin.lOG == true)
 		{
+		
 		for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(mesaj,evrak, dBILGI);
 		}
@@ -154,6 +155,7 @@ public class CARI_ACCESS {
 	public void hpln_kayit(String kodu,String adi,String karton,String hcins,String usr, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_ICari.hpln_kayit(kodu, adi, karton, hcins, usr);
+
 		for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}

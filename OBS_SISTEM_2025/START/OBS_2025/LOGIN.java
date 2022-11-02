@@ -659,6 +659,7 @@ void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
             	}
             else
             {
+            	System.out.println("Lcari=" + BAGLAN.cariDizin.lOG);
            	lOGG_AKTAR(oac._ICari_Loger,BAGLAN.cariDizin.hAN_SQL,BAGLAN.cariDizin.lOG,BAGLAN.cariDizin.lOGLAMA_YERI);
             CAR_DOS_VAR = true;
             OBS_SIS_2025_ANA_CLASS.CARI_CONN = true;}
@@ -1055,13 +1056,13 @@ private void versiyon_oku()
           
           
 	}
-	private void lOGG_AKTAR(Object obj , String hangiSQL , Boolean log , String hANGI_LOG)
+	private void lOGG_AKTAR(ILOGGER[] obj , String hangiSQL , Boolean log , String hANGI_LOG)
 	{
 		if (log == false)
 		{
 			ILOGGER[] ilogg = {};
 			obj = ilogg;
-			
+			System.out.println("Login=" + oac._ICari_Loger.length);
 		}
 		else
 		{
@@ -1069,12 +1070,16 @@ private void versiyon_oku()
 			{
 				if (hangiSQL.equals("MS SQL"))
 				{
-					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
+				
+					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
 					obj = ilogg;
+					
+					System.out.println("dsy kayt=" + oac._ICari_Loger.length);
+					System.out.println("dsy kayt=" + obj.length);
 				}
 				else if (hangiSQL.equals("MY SQL"))
 				{
-					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()), new MAIL_AT()};
+					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
 					obj = ilogg;
 				}
 			}

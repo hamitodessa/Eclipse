@@ -491,14 +491,7 @@ public class EKSTRE extends JInternalFrame {
 		Date date = null;
 		SimpleDateFormat sdf;
 	
-		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		{
-			oac.cARI_HESAP_MSSQL.sqlite_sil();
-		}
-		else
-		{
-			oac.cARI_HESAP_MYSQL.sqlite_sil();	
-		}
+		c_Access.sqlite_sil();
 		 Progres_Bar_Temizle();  
 		 OBS_MAIN.progressBar.setStringPainted(true);
 	     OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
@@ -519,16 +512,9 @@ public class EKSTRE extends JInternalFrame {
 			}
 			//double baki = (double) Math.round(Double.parseDouble(model.getValueAt(i , 7).toString())) ;
 			double baki = Math.round(Double.parseDouble(model.getValueAt(i , 7).toString()) * 100.0) / 100.0;
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-				oac.cARI_HESAP_MSSQL.sqlite_yaz(str,Integer.parseInt(model.getValueAt(i , 1).toString()),model.getValueAt(i , 2).toString(),model.getValueAt(i , 3).toString()
+			c_Access.sqlite_yaz(str,Integer.parseInt(model.getValueAt(i , 1).toString()),model.getValueAt(i , 2).toString(),model.getValueAt(i , 3).toString()
 					, Double.parseDouble(model.getValueAt(i , 4).toString())  ,  Double.parseDouble(model.getValueAt(i , 5).toString()), Double.parseDouble(model.getValueAt(i , 6).toString()), baki );
-			}
-			else
-			{
-				oac.cARI_HESAP_MYSQL.sqlite_yaz(str,Integer.parseInt(model.getValueAt(i , 1).toString()),model.getValueAt(i , 2).toString(),model.getValueAt(i , 3).toString()
-						, Double.parseDouble(model.getValueAt(i , 4).toString())  , Double.parseDouble(model.getValueAt(i , 5).toString()), Double.parseDouble(model.getValueAt(i , 6).toString()), baki );
-			}
+			
 		}
          Progres_Bar_Temizle();
 		}

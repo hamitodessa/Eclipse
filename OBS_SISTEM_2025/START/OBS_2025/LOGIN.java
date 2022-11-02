@@ -308,25 +308,25 @@ public LOGIN() throws IOException {
             {
             calisma_dizini_oku();
             //*** CARI
-           CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
+           CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
            c_Access.baglan();
           //*** KUR
-           KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur, oac._ILogger);
+           KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur, oac._IKur_Loger);
            k_Access.baglan();
           //*** ADRES
-           ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres, oac._ILogger);
+           ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres, oac._IAdres_Loger);
            a_Access.baglan();
           //*** FATURA
-            STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._ILogger);
+            STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._IFatura_Loger);
             s_Access.baglan();
           //*** KAMBIYO
-            KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo, oac._ILogger);
+            KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo, oac._IKambiyo_Loger);
             ka_Access.baglan();
           //*** GUNLUK
-           GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk, oac._ILogger);
+           GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk, oac._IGunluk_Loger);
             g_Access.baglan();
           //*** SMS
-            SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms, oac._ILogger);
+            SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms, oac._ISms_Loger);
             sms_Access.baglan();
             //***buraya 
             

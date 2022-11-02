@@ -101,7 +101,7 @@ public class DEKONT extends JInternalFrame {
 	private static JComboBox<String> cmbahes;
 	private static JLabel lblNewLabel ;
 	
-	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 
 	
 	public static void main(String[] args) {
@@ -376,7 +376,7 @@ public class DEKONT extends JInternalFrame {
 				try {
 					getContentPane().setCursor(oac.WAIT_CURSOR);
 					
-					 CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
+				//	 CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
 			         rs =  c_Access.cari_sonfisno();
 			           
 					if (!rs.isBeforeFirst() ) { 
@@ -1663,7 +1663,7 @@ public class DEKONT extends JInternalFrame {
 		        try
 		{
 		      	ResultSet rs ;
-		      	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur , oac._ILogger);
+		      	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur , oac._IKur_Loger);
 		 		rs =  k_Access.kur_oku(TARIH_CEVIR.tarih_geri_SQL(dtc),cins);
 				if (!rs.isBeforeFirst() ) {  
 					kur =1 ;

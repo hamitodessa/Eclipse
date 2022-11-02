@@ -55,7 +55,7 @@ public class EKSTRE extends JInternalFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 
 	
 	public static JTable table;

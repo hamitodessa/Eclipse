@@ -4,6 +4,8 @@ package OBS_2025;
 import java.awt.Color;
 import java.awt.Cursor;
 
+import LOGER_KAYIT.DOSYA_MSSQL;
+import OBS_C_2025.DOSYA_YAZ;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.IADRES;
 import OBS_C_2025.ICARI_HESAP;
@@ -14,6 +16,7 @@ import OBS_C_2025.IKUR;
 import OBS_C_2025.ILOGGER;
 import OBS_C_2025.ISMS;
 import OBS_C_2025.ISTOK;
+import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.USER_ISLEMLERI;
 
 public class OBS_SIS_2025_ANA_CLASS 
@@ -33,7 +36,15 @@ public class OBS_SIS_2025_ANA_CLASS
     public IKAMBIYO _IKambiyo;
     public IGUNLUK _IGunluk;
     public ISMS _ISms;
-    public ILOGGER[] _ILogger;
+   // public static ILOGGER[] _ILogger;
+    public static ILOGGER[] _ICari_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
+    public static ILOGGER[] _IKur_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
+    public static ILOGGER[] _IAdres_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
+    public static ILOGGER[] _IFatura_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
+    public static ILOGGER[] _IKambiyo_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
+    public static ILOGGER[] _ISms_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
+    public static ILOGGER[] _IGunluk_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
+    
    
     public String[] options = {"Tamam......       		!", "Vazgec.....       		!"}; 
     public IConnection _IConn ;

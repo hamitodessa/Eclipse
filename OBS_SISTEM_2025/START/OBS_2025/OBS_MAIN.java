@@ -1768,7 +1768,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "E MAIL BILGILERI")	E_MAIL_BILGILERI.kayit();
 				else if (sonuc == "PARAMETRELER")	PARAMETRELER.kayit();
 				else if (sonuc == "DEKONT")	DEKONT.kaydet();
-				//else if (sonuc == "HESAP GIRISI")	H_PLANI.kayit();
+				else if (sonuc == "HESAP GIRISI")	H_PLANI.kayit();
 				//else if (sonuc == "KUR GIRIS")	KUR_GIRIS.kayit();
 				//else if (sonuc == "EKSIK KUR")	EKSIK_KUR.kaydet();
 				//else if (sonuc == "TOPLU GIRIS")	DISTAN_AKTAR.kaydet_carii();
@@ -1810,7 +1810,7 @@ public class OBS_MAIN extends JFrame {
 				if (sonuc == "KULLANICI EKLEME") USER_EKLEME.sil();
                	else if (sonuc == "KULLANICI DETAY EKLEME") USER_DETAY_EKLEME.sil();
             	else if (sonuc == "DEKONT")	DEKONT.yoket();
-            	//else if (sonuc == "HESAP GIRISI")	H_PLANI.sil();
+            	else if (sonuc == "HESAP GIRISI")	H_PLANI.sil();
 				//else if (sonuc == "KUR GIRIS")	KUR_GIRIS.sil();
 				//else if (sonuc == "CEK GIRIS") 	CEK_GIRIS.sil();
 				//else if (sonuc == "CEK CIKIS") 	CEK_CIKIS.sil();
@@ -2303,7 +2303,7 @@ public class OBS_MAIN extends JFrame {
 				String sonuc = pencere_activmi();
 				if (sonuc == "KULLANICI EKLEME")	USER_EKLEME.yeni();
                 else if (sonuc == "KULLANICI DETAY EKLEME")	USER_DETAY_EKLEME.yeni();
-            //	else if (sonuc == "HESAP GIRISI")	H_PLANI.yeni();
+            	else if (sonuc == "HESAP GIRISI")	H_PLANI.yeni();
 			//	else if (sonuc == "CEK GIRIS")	CEK_GIRIS.satir_ilave();
 			//	else if (sonuc == "CEK CIKIS")	CEK_CIKIS.satir_ilave();
 			//	else if (sonuc == "ADRES GIRISI")	ADRES_GIRIS.yeni();
@@ -2660,7 +2660,7 @@ public class OBS_MAIN extends JFrame {
 		JInternalFrame internalFrame = null;
 		if (pencere.equals("DEKONT")) internalFrame  = new DEKONT();
 		else if (pencere.equals("EKSTRE")) internalFrame  = new EKSTRE();
-		//else if (pencere.equals("HESAP GIRISI")) internalFrame  = new H_PLANI();
+		else if (pencere.equals("HESAP GIRISI")) internalFrame  = new H_PLANI();
 		//else if (pencere.equals("TOPLU GIRIS")) internalFrame  = new DISTAN_AKTAR();
 		//else if (pencere.equals("CARI MIZAN")) internalFrame  = new MIZAN();
 		//else if (pencere.equals("DOVIZE CEVIRME")) internalFrame  = new DVZ_CEVIRME();

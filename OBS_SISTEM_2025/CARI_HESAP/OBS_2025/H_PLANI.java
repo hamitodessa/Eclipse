@@ -28,6 +28,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FIT_IMAGE;
@@ -76,7 +77,9 @@ public class H_PLANI extends JInternalFrame {
 	private static JCheckBox chcicin ;
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
+	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+	
+	//private static CARI_ACCESS  c_Access ;
 	static ResultSet rs = null ;
 	private static int kayit_sayi = 0 ;
 	private JTextField txtarama;
@@ -590,7 +593,10 @@ public class H_PLANI extends JInternalFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(28, 27, 64, 14);
 		panel.add(lblNewLabel);
-		
+	
+		//LOG_AKTARMA lAKTAR = new LOG_AKTARMA();
+		//lAKTAR.lOGG_AKTAR(BAGLAN.cariDizin.hAN_SQL);
+		//c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 		hisset("");
 
 	}

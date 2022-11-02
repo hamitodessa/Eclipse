@@ -54,7 +54,6 @@ import OBS_C_2025.ADRES_MSSQL;
 import OBS_C_2025.ADRES_MYSQL;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
-import OBS_C_2025.BILGI_OKU_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CARI_HESAP_MSSQL;
 import OBS_C_2025.CARI_HESAP_MYSQL;
@@ -72,7 +71,6 @@ import OBS_C_2025.KAMBIYO_MYSQL;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.KUR_MSSQL;
 import OBS_C_2025.KUR_MYSQL;
-import OBS_C_2025.LOG_KAYIT_BILGILERI;
 import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
@@ -87,8 +85,6 @@ import OBS_C_2025.USER_ISLEMLERI;
 import net.proteanit.sql.DbUtils;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
-import java.awt.SystemColor;
-import javax.swing.JSeparator;
 
 
 public class CAL_DIZIN extends JFrame {
@@ -1543,9 +1539,9 @@ public class CAL_DIZIN extends JFrame {
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          cONN_AKTAR();
-         lOGG_AKTAR();
+  //       lOGG_AKTAR();
          mODUL_AKTAR("Cari Hesap");
-        CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ILogger);
+        CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ICari_Loger);
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
 		BAGLAN.cariDizin.sIFRESI = txtsifr.getText() ;
 		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1571,10 +1567,10 @@ public class CAL_DIZIN extends JFrame {
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          cONN_AKTAR();
-         lOGG_AKTAR();
+ //        lOGG_AKTAR();
          mODUL_AKTAR("Stok");
 
-         STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._ILogger);
+         STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._IFatura_Loger);
  		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
  		BAGLAN.fatDizin.sIFRESI = txtsifr.getText() ;
  		BAGLAN.fatDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1600,7 +1596,7 @@ public class CAL_DIZIN extends JFrame {
         cONN_AKTAR();
         lOGG_AKTAR();
         mODUL_AKTAR("Adres");
-        ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._ILogger);
+        ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._IAdres_Loger);
 		BAGLAN.adrDizin.kULLANICI = txtkul.getText();
  		BAGLAN.adrDizin.sIFRESI = txtsifr.getText() ;
  		BAGLAN.adrDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1624,7 +1620,7 @@ public class CAL_DIZIN extends JFrame {
     	 cONN_AKTAR();
          lOGG_AKTAR();
          mODUL_AKTAR("Kur");
-    	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._ILogger);
+    	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._IKur_Loger);
  		BAGLAN.kurDizin.kULLANICI = txtkul.getText();
  		BAGLAN.kurDizin.sIFRESI = txtsifr.getText() ;
  		BAGLAN.kurDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1650,7 +1646,7 @@ public class CAL_DIZIN extends JFrame {
          cONN_AKTAR();
          lOGG_AKTAR();
          mODUL_AKTAR("Kambiyo");
-         KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._ILogger);
+         KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._IKambiyo_Loger);
  		BAGLAN.kamDizin.kULLANICI = txtkul.getText();
  		BAGLAN.kamDizin.sIFRESI = txtsifr.getText() ;
  		BAGLAN.kamDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1675,7 +1671,7 @@ public class CAL_DIZIN extends JFrame {
     	 cONN_AKTAR();
          lOGG_AKTAR();
          mODUL_AKTAR("Sms");
-    	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ILogger);
+    	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ISms_Loger);
   		BAGLAN.smsDizin.kULLANICI = txtkul.getText();
  		BAGLAN.smsDizin.sIFRESI = txtsifr.getText() ;
  		BAGLAN.smsDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1702,7 +1698,7 @@ public class CAL_DIZIN extends JFrame {
          cONN_AKTAR();
          lOGG_AKTAR();
          mODUL_AKTAR("Gunluk");
-         GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._ILogger);
+         GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._IGunluk_Loger);
  		BAGLAN.gunDizin.kULLANICI = txtkul.getText();
  		BAGLAN.gunDizin.sIFRESI = txtsifr.getText() ;
  		BAGLAN.gunDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1731,7 +1727,7 @@ public class CAL_DIZIN extends JFrame {
         cONN_AKTAR();
         lOGG_AKTAR();
         mODUL_AKTAR("Cari Hesap");
-        CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ILogger);
+        CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ICari_Loger);
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
 		BAGLAN.cariDizin.sIFRESI = txtsifr.getText() ;
 		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1752,7 +1748,7 @@ public class CAL_DIZIN extends JFrame {
         cONN_AKTAR();
         lOGG_AKTAR();
         mODUL_AKTAR("Stok");
-        STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._ILogger);
+        STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._IFatura_Loger);
 		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
 		BAGLAN.fatDizin.sIFRESI = txtsifr.getText() ;
 		BAGLAN.fatDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1775,7 +1771,7 @@ public class CAL_DIZIN extends JFrame {
         cONN_AKTAR();
         lOGG_AKTAR();
         mODUL_AKTAR("Adres");
-        ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._ILogger);
+        ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._IAdres_Loger);
         BAGLAN.adrDizin.kULLANICI = txtkul.getText();
 		BAGLAN.adrDizin.sIFRESI = txtsifr.getText() ;
 		BAGLAN.adrDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1798,7 +1794,7 @@ public class CAL_DIZIN extends JFrame {
     	 cONN_AKTAR();
          lOGG_AKTAR();
          mODUL_AKTAR("Kur");
-    	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._ILogger);
+    	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._IKur_Loger);
     	 BAGLAN.kurDizin.kULLANICI = txtkul.getText();
  		BAGLAN.kurDizin.sIFRESI = txtsifr.getText() ;
  		BAGLAN.kurDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1822,7 +1818,7 @@ public class CAL_DIZIN extends JFrame {
         cONN_AKTAR();
         lOGG_AKTAR();
         mODUL_AKTAR("Kambiyo");
-        KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._ILogger);
+        KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._IKambiyo_Loger);
         BAGLAN.kamDizin.kULLANICI = txtkul.getText();
 		BAGLAN.kamDizin.sIFRESI = txtsifr.getText() ;
 		BAGLAN.kamDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1842,7 +1838,7 @@ public class CAL_DIZIN extends JFrame {
     	 cONN_AKTAR();
          lOGG_AKTAR();
          mODUL_AKTAR("Sms");	
-    	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ILogger);
+    	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ISms_Loger);
     	BAGLAN.smsDizin.kULLANICI = txtkul.getText();
   		BAGLAN.smsDizin.sIFRESI = txtsifr.getText() ;
   		BAGLAN.smsDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1866,7 +1862,7 @@ public class CAL_DIZIN extends JFrame {
         cONN_AKTAR();
         lOGG_AKTAR();
         mODUL_AKTAR("Gunluk");
-        GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._ILogger);
+        GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._IGunluk_Loger);
         BAGLAN.gunDizin.kULLANICI = txtkul.getText();
 		BAGLAN.gunDizin.sIFRESI = txtsifr.getText() ;
 		BAGLAN.gunDizin.iNSTANCE =comboBox.getSelectedItem().toString();

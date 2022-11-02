@@ -158,6 +158,9 @@ public class OBS_MAIN extends JFrame {
 	public static JSplitPane splitPane ;
 	public static JLabel lblNewLabel_9;
 	private Rectangle maxBounds;
+	
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -186,6 +189,7 @@ public class OBS_MAIN extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1374, 655);
 		
+  	
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		setJMenuBar(menuBar);

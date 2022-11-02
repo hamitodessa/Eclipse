@@ -542,6 +542,7 @@ void calisma_dizini_oku() throws ClassNotFoundException, SQLException, Interrupt
     if (hangi_sql.equals("MS SQL"))
     {
     	oac._ICar = new  CARI_HESAP_MSSQL();
+  
     }
     else
     {
@@ -655,13 +656,13 @@ void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
             	}
             else
             {
-     
+  
             CAR_DOS_VAR = true;
             OBS_SIS_2025_ANA_CLASS.CARI_CONN = true;}
     	}
     	 else
              OBS_SIS_2025_ANA_CLASS.CARI_CONN = false;
-    }
+    	}
     else if (s_CONN.Server_kontrol_S(BAGLAN.cariDizin.sERVER, BAGLAN.cariDizin.iNSTANCE,BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI) == true )
     {
             if (s_CONN.Dosya_kontrol_S(BAGLAN.cariDizin.sERVER,BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,"OK_Car" + BAGLAN.cariDizin.kOD) == false)
@@ -690,11 +691,11 @@ void kur_calisma_dizini_oku() throws ClassNotFoundException, SQLException
     	{
     		if (s_CONN.Dosya_kontrol_L("OK_Kur" + BAGLAN.kurDizin.kOD,BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI) == false)
             {
-            	CAR_DOS_VAR = false;
+            	KUR_DOS_VAR = false;
             	}
             else
             {
-            CAR_DOS_VAR = true;
+            KUR_DOS_VAR = true;
             OBS_SIS_2025_ANA_CLASS.KUR_CONN = true;}
     	}
     	 else
@@ -716,52 +717,52 @@ void sms_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	
 	    CONNECT s_CONN = new CONNECT(oac._IConn);
 	    
- if (BAGLAN.smsDizin.yER.equals(""))
- {
- 	OBS_SIS_2025_ANA_CLASS.SMS_CONN = false;
-    SMS_DOS_VAR = false;
-     return;
- }
- if (BAGLAN.smsDizin.yER.equals("L"))
- {
- 	if (s_CONN.Server_kontrol_L(BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI) == true)   
- 	{
- 		if (s_CONN.Dosya_kontrol_L("OK_Sms" + BAGLAN.smsDizin.kOD,BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI) == false)
-         {
-         	SMS_DOS_VAR = false;
-         	}
-         else
-         {
-         SMS_DOS_VAR = true;
-         OBS_SIS_2025_ANA_CLASS.SMS_CONN = true;}
- 	}
- 	 else
+	    if (BAGLAN.smsDizin.yER.equals(""))
+	    {
+	    	OBS_SIS_2025_ANA_CLASS.SMS_CONN = false;
+	    	SMS_DOS_VAR = false;
+	    	return;
+	    }
+	    if (BAGLAN.smsDizin.yER.equals("L"))
+	    {
+	    	if (s_CONN.Server_kontrol_L(BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI) == true)   
+	    	{
+	    		if (s_CONN.Dosya_kontrol_L("OK_Sms" + BAGLAN.smsDizin.kOD,BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI) == false)
+	    		{
+	    			SMS_DOS_VAR = false;
+	    		}
+	    		else
+	    		{
+	    			SMS_DOS_VAR = true;
+	    			OBS_SIS_2025_ANA_CLASS.SMS_CONN = true;}
+	    	}
+	    	else
           OBS_SIS_2025_ANA_CLASS.SMS_CONN = false;
- }
- else if (s_CONN.Server_kontrol_S(BAGLAN.smsDizin.sERVER, BAGLAN.smsDizin.iNSTANCE,BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI) == true )
- {
+	    }
+	    else if (s_CONN.Server_kontrol_S(BAGLAN.smsDizin.sERVER, BAGLAN.smsDizin.iNSTANCE,BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI) == true )
+	    {
          if (s_CONN.Dosya_kontrol_S(BAGLAN.smsDizin.sERVER,BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,"OK_Sms" + BAGLAN.smsDizin.kOD) == false)
          SMS_DOS_VAR = false;
-     else
+         else
          SMS_DOS_VAR = true;
          OBS_SIS_2025_ANA_CLASS.SMS_CONN = true;
- }
- else
- 	OBS_SIS_2025_ANA_CLASS.SMS_CONN = false;
+	    }
+	    else
+	    	OBS_SIS_2025_ANA_CLASS.SMS_CONN = false;
 }
 void adr_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
 	 
 	    CONNECT s_CONN = new CONNECT(oac._IConn);
 	    
-if (BAGLAN.adrDizin.yER.equals(""))
-{
+	    if (BAGLAN.adrDizin.yER.equals(""))
+	    {
 	OBS_SIS_2025_ANA_CLASS.ADR_CONN = false;
- ADR_DOS_VAR = false;
-  return;
-}
-if (BAGLAN.adrDizin.yER.equals("L"))
-{
+	ADR_DOS_VAR = false;
+	return;
+	    }
+	    if (BAGLAN.adrDizin.yER.equals("L"))
+	    {
 	if (s_CONN.Server_kontrol_L(BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI) == true)   
 	{
 		if (s_CONN.Dosya_kontrol_L("OK_Adr" + BAGLAN.adrDizin.kOD,BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI) == false)
@@ -1020,7 +1021,7 @@ private void versiyon_oku()
 	private void cONN_AKTAR( String dIZIN )
 	{
 	 String hangi = dIZIN  ;
-		if (hangi == "MS SQL")
+		if (hangi.equals("MS SQL"))
 				{
 			oac._IConn = new OBS_ORTAK_MSSQL();
 			

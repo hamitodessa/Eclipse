@@ -65,7 +65,7 @@ import java.awt.event.FocusEvent;
 
 public class DEKONT extends JInternalFrame {
 	
-	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	public static JTextField txtevrak;
 	private static String [] hpl = {"","",""};
 	NumberFormat nf = NumberFormat.getIntegerInstance(); // Specify specific format here.
@@ -117,7 +117,7 @@ public class DEKONT extends JInternalFrame {
 		});
 	}
 	public DEKONT() {
-		
+	
 		setTitle("DEKONT");
 		setClosable(true);
 		setBounds(0, 0, 723, 465);
@@ -377,7 +377,7 @@ public class DEKONT extends JInternalFrame {
 					getContentPane().setCursor(oac.WAIT_CURSOR);
 					
 					 CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
-			           c_Access.cari_sonfisno();
+			         rs =  c_Access.cari_sonfisno();
 			           
 					if (!rs.isBeforeFirst() ) { 
 						kutu_kapa();

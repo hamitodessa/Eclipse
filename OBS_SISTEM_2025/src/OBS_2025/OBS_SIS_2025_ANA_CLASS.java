@@ -26,7 +26,7 @@ public class OBS_SIS_2025_ANA_CLASS
     public static boolean KAM_CONN;
     public static boolean GUN_CONN;
     
-    public ICARI_HESAP  _ICar ;
+    public static ICARI_HESAP  _ICar ;
     public ISTOK _Istok;
     public IKUR _IKur;
     public IADRES _IAdres;

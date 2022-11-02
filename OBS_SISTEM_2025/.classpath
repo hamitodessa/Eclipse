@@ -5,6 +5,7 @@
 	<classpathentry kind="src" path="GENEL"/>
 	<classpathentry kind="src" path="USER_ISLEMLERI"/>
 	<classpathentry kind="src" path="CARI_HESAP"/>
+	<classpathentry kind="src" path="FILTRE"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/OBS_CLASS_2025"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>

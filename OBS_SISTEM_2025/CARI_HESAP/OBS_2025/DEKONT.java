@@ -443,6 +443,7 @@ public class DEKONT extends JInternalFrame {
 		btnbh = new JButton("");
 		btnbh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (cmbbhes.getItemAt(cmbbhes.getSelectedIndex()).toString() == "") return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				boolean varmi = OBS_MAIN.pencere_bak("EKSTRE");
 				if (varmi  ) 
@@ -943,6 +944,7 @@ public class DEKONT extends JInternalFrame {
 		btnah = new JButton("");
 		btnah.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (cmbbhes.getItemAt(cmbahes.getSelectedIndex()).toString() == "") return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				boolean varmi = OBS_MAIN.pencere_bak("EKSTRE");
 				if (varmi  ) 

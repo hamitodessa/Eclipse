@@ -659,7 +659,7 @@ void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
             	}
             else
             {
-           	lOGG_AKTAR(oac._ICari_Loger,BAGLAN.cariDizin.hAN_SQL);
+           	lOGG_AKTAR(oac._ICari_Loger,BAGLAN.cariDizin.hAN_SQL,BAGLAN.cariDizin.lOG,BAGLAN.cariDizin.lOGLAMA_YERI);
             CAR_DOS_VAR = true;
             OBS_SIS_2025_ANA_CLASS.CARI_CONN = true;}
     	}
@@ -671,7 +671,7 @@ void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
             if (s_CONN.Dosya_kontrol_S(BAGLAN.cariDizin.sERVER,BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,"OK_Car" + BAGLAN.cariDizin.kOD) == false)
             CAR_DOS_VAR = false;
         else
-        	lOGG_AKTAR(oac._ICari_Loger,BAGLAN.cariDizin.hAN_SQL);
+        	lOGG_AKTAR(oac._ICari_Loger,BAGLAN.cariDizin.hAN_SQL,BAGLAN.cariDizin.lOG,BAGLAN.cariDizin.lOGLAMA_YERI);
             CAR_DOS_VAR = true;
             OBS_SIS_2025_ANA_CLASS.CARI_CONN = true;
     }
@@ -699,7 +699,7 @@ void kur_calisma_dizini_oku() throws ClassNotFoundException, SQLException
             	}
             else
             {
-            	lOGG_AKTAR(oac._IKur_Loger,BAGLAN.kurDizin.hAN_SQL);
+            	lOGG_AKTAR(oac._IKur_Loger,BAGLAN.kurDizin.hAN_SQL,BAGLAN.kurDizin.lOG,BAGLAN.kurDizin.lOGLAMA_YERI);
             KUR_DOS_VAR = true;
             OBS_SIS_2025_ANA_CLASS.KUR_CONN = true;}
     	}
@@ -711,7 +711,7 @@ void kur_calisma_dizini_oku() throws ClassNotFoundException, SQLException
             if (s_CONN.Dosya_kontrol_S(BAGLAN.kurDizin.sERVER,BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,"OK_Kur" + BAGLAN.kurDizin.kOD) == false)
             KUR_DOS_VAR = false;
         else
-        	lOGG_AKTAR(oac._IKur_Loger,BAGLAN.kurDizin.hAN_SQL);
+        	lOGG_AKTAR(oac._IKur_Loger,BAGLAN.kurDizin.hAN_SQL,BAGLAN.kurDizin.lOG,BAGLAN.kurDizin.lOGLAMA_YERI);
             KUR_DOS_VAR = true;
             OBS_SIS_2025_ANA_CLASS.KUR_CONN = true;
     }
@@ -739,7 +739,7 @@ void sms_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	    		}
 	    		else
 	    		{
-	    			lOGG_AKTAR(oac._ISms_Loger,BAGLAN.smsDizin.hAN_SQL);
+	    			lOGG_AKTAR(oac._ISms_Loger,BAGLAN.smsDizin.hAN_SQL,BAGLAN.smsDizin.lOG,BAGLAN.smsDizin.lOGLAMA_YERI);
 	    			SMS_DOS_VAR = true;
 	    			OBS_SIS_2025_ANA_CLASS.SMS_CONN = true;}
 	    	}
@@ -751,7 +751,7 @@ void sms_calisma_dizini_oku() throws ClassNotFoundException, SQLException
          if (s_CONN.Dosya_kontrol_S(BAGLAN.smsDizin.sERVER,BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,"OK_Sms" + BAGLAN.smsDizin.kOD) == false)
         	 SMS_DOS_VAR = false;
          else
-        	 	lOGG_AKTAR(oac._ISms_Loger,BAGLAN.smsDizin.hAN_SQL);
+        	 	lOGG_AKTAR(oac._ISms_Loger,BAGLAN.smsDizin.hAN_SQL,BAGLAN.smsDizin.lOG,BAGLAN.smsDizin.lOGLAMA_YERI);
          		SMS_DOS_VAR = true;
          		OBS_SIS_2025_ANA_CLASS.SMS_CONN = true;
 	    }
@@ -779,7 +779,7 @@ void adr_calisma_dizini_oku() throws ClassNotFoundException, SQLException
       	}
       else
       {
-    	  lOGG_AKTAR(oac._IAdres_Loger,BAGLAN.adrDizin.hAN_SQL);
+    	  lOGG_AKTAR(oac._IAdres_Loger,BAGLAN.adrDizin.hAN_SQL,BAGLAN.adrDizin.lOG,BAGLAN.adrDizin.lOGLAMA_YERI);
     	  			ADR_DOS_VAR = true;
     	  			OBS_SIS_2025_ANA_CLASS.ADR_CONN = true;}
 	}
@@ -791,7 +791,7 @@ void adr_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	    	if (s_CONN.Dosya_kontrol_S(BAGLAN.adrDizin.sERVER,BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,"OK_Adr" + BAGLAN.adrDizin.kOD) == false)
 	    		ADR_DOS_VAR = false;
 	    	else
-	    		lOGG_AKTAR(oac._IAdres_Loger,BAGLAN.adrDizin.hAN_SQL);
+	    		lOGG_AKTAR(oac._IAdres_Loger,BAGLAN.adrDizin.hAN_SQL,BAGLAN.adrDizin.lOG,BAGLAN.adrDizin.lOGLAMA_YERI);
 	    	ADR_DOS_VAR = true;
 	    	OBS_SIS_2025_ANA_CLASS.ADR_CONN = true;
 	    }
@@ -820,7 +820,7 @@ void fat_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	    		}
 	    		else
 	    		{
-	    			  lOGG_AKTAR(oac._IFatura_Loger,BAGLAN.fatDizin.hAN_SQL);
+	    			  lOGG_AKTAR(oac._IFatura_Loger,BAGLAN.fatDizin.hAN_SQL,BAGLAN.fatDizin.lOG,BAGLAN.fatDizin.lOGLAMA_YERI);
 	    			FAT_DOS_VAR = true;
 	    			OBS_SIS_2025_ANA_CLASS.FAT_CONN = true;}
 	    	}
@@ -832,7 +832,7 @@ void fat_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	    	if (s_CONN.Dosya_kontrol_S(BAGLAN.fatDizin.sERVER,BAGLAN.fatDizin.iNSTANCE, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,"OK_Fat" + BAGLAN.fatDizin.kOD) == false)
 	    		FAT_DOS_VAR = false;
 	    	else
-	    		 lOGG_AKTAR(oac._IFatura_Loger,BAGLAN.fatDizin.hAN_SQL);
+	    		 lOGG_AKTAR(oac._IFatura_Loger,BAGLAN.fatDizin.hAN_SQL,BAGLAN.fatDizin.lOG,BAGLAN.fatDizin.lOGLAMA_YERI);
 	    		FAT_DOS_VAR = true;
 	    	OBS_SIS_2025_ANA_CLASS.FAT_CONN = true;
 	    }
@@ -860,7 +860,7 @@ void kam_calisma_dizini_oku() throws ClassNotFoundException, SQLException
     		}
     		else
     		{
-    			 lOGG_AKTAR(oac._IKambiyo_Loger,BAGLAN.kamDizin.hAN_SQL);
+    			 lOGG_AKTAR(oac._IKambiyo_Loger,BAGLAN.kamDizin.hAN_SQL,BAGLAN.kamDizin.lOG,BAGLAN.kamDizin.lOGLAMA_YERI);
     			KAM_DOS_VAR = true;
     			OBS_SIS_2025_ANA_CLASS.KAM_CONN = true;}
     	}
@@ -872,7 +872,7 @@ void kam_calisma_dizini_oku() throws ClassNotFoundException, SQLException
     	if (s_CONN.Dosya_kontrol_S(BAGLAN.kamDizin.sERVER,BAGLAN.kamDizin.iNSTANCE, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,"OK_Kam" + BAGLAN.kamDizin.kOD) == false)
     		KAM_DOS_VAR = false;
     	else
-    		 lOGG_AKTAR(oac._IKambiyo_Loger,BAGLAN.kamDizin.hAN_SQL);
+    		 lOGG_AKTAR(oac._IKambiyo_Loger,BAGLAN.kamDizin.hAN_SQL,BAGLAN.kamDizin.lOG,BAGLAN.kamDizin.lOGLAMA_YERI);
     		KAM_DOS_VAR = true;
     	OBS_SIS_2025_ANA_CLASS.KAM_CONN = true;
     }
@@ -900,7 +900,7 @@ void gun_calisma_dizini_oku() throws ClassNotFoundException, SQLException
     		}
     		else
     		{
-    			 lOGG_AKTAR(oac._IGunluk_Loger,BAGLAN.gunDizin.hAN_SQL);
+    			 lOGG_AKTAR(oac._IGunluk_Loger,BAGLAN.gunDizin.hAN_SQL,BAGLAN.gunDizin.lOG,BAGLAN.gunDizin.lOGLAMA_YERI);
     			GUN_DOS_VAR = true;
     			OBS_SIS_2025_ANA_CLASS.GUN_CONN = true;}
     	}
@@ -912,7 +912,7 @@ void gun_calisma_dizini_oku() throws ClassNotFoundException, SQLException
     	if (s_CONN.Dosya_kontrol_S(BAGLAN.gunDizin.sERVER,BAGLAN.gunDizin.iNSTANCE, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,"OK_Gun" + BAGLAN.gunDizin.kOD) == false)
     		GUN_DOS_VAR = false;
     	else
-    		 lOGG_AKTAR(oac._IGunluk_Loger,BAGLAN.gunDizin.hAN_SQL);
+    		 lOGG_AKTAR(oac._IGunluk_Loger,BAGLAN.gunDizin.hAN_SQL,BAGLAN.gunDizin.lOG,BAGLAN.gunDizin.lOGLAMA_YERI);
     		GUN_DOS_VAR = true;
     	OBS_SIS_2025_ANA_CLASS.GUN_CONN = true;
     }
@@ -1055,20 +1055,35 @@ private void versiyon_oku()
           
           
 	}
-	private void lOGG_AKTAR(Object obj , String hangiSQL)
+	private void lOGG_AKTAR(Object obj , String hangiSQL , Boolean log , String hANGI_LOG)
 	{
-		 
-		  
-			if (hangiSQL.equals("MS SQL"))
+		if (log == false)
+		{
+			ILOGGER[] ilogg = {};
+			obj = ilogg;
+			
+		}
+		else
+		{
+			if (hANGI_LOG.equals("Dosyaya Kayit"))
 			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
+				if (hangiSQL.equals("MS SQL"))
+				{
+					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
+					obj = ilogg;
+				}
+				else if (hangiSQL.equals("MY SQL"))
+				{
+					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()), new MAIL_AT()};
+					obj = ilogg;
+				}
+			}
+			else if (hANGI_LOG.equals("Email Atma"))
+			{
+				ILOGGER[] ilogg = { new MAIL_AT()};
 				obj = ilogg;
 			}
-			else if (hangiSQL.equals("MY SQL"))
-			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()), new MAIL_AT()};
-				obj = ilogg;
-			}
+		}
 	}
 	private static void addPopup(Component component, final JPopupMenu popup) {
 	component.addMouseListener(new MouseAdapter() {

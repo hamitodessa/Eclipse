@@ -66,6 +66,8 @@ import java.awt.event.FocusEvent;
 public class DEKONT extends JInternalFrame {
 	
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+
 	public static JTextField txtevrak;
 	private static String [] hpl = {"","",""};
 	NumberFormat nf = NumberFormat.getIntegerInstance(); // Specify specific format here.
@@ -101,8 +103,7 @@ public class DEKONT extends JInternalFrame {
 	private static JComboBox<String> cmbahes;
 	private static JLabel lblNewLabel ;
 	
-	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
-
+	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

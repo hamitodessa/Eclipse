@@ -1539,7 +1539,7 @@ public class CAL_DIZIN extends JFrame {
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          cONN_AKTAR();
-  //       lOGG_AKTAR();
+         lOGG_AKTAR(oac._ICari_Loger);
          mODUL_AKTAR("Cari Hesap");
         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ICari_Loger);
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
@@ -1567,7 +1567,7 @@ public class CAL_DIZIN extends JFrame {
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          cONN_AKTAR();
- //        lOGG_AKTAR();
+        lOGG_AKTAR(oac._IFatura_Loger);
          mODUL_AKTAR("Stok");
 
          STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._IFatura_Loger);
@@ -1594,7 +1594,7 @@ public class CAL_DIZIN extends JFrame {
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         contentPane.setCursor(WAIT_CURSOR);
         cONN_AKTAR();
-        lOGG_AKTAR();
+        lOGG_AKTAR(oac._IAdres_Loger);
         mODUL_AKTAR("Adres");
         ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._IAdres_Loger);
 		BAGLAN.adrDizin.kULLANICI = txtkul.getText();
@@ -1618,7 +1618,7 @@ public class CAL_DIZIN extends JFrame {
      {
     	 contentPane.setCursor(WAIT_CURSOR);
     	 cONN_AKTAR();
-         lOGG_AKTAR();
+         lOGG_AKTAR(oac._IKur_Loger);
          mODUL_AKTAR("Kur");
     	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._IKur_Loger);
  		BAGLAN.kurDizin.kULLANICI = txtkul.getText();
@@ -1644,7 +1644,7 @@ public class CAL_DIZIN extends JFrame {
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          cONN_AKTAR();
-         lOGG_AKTAR();
+         lOGG_AKTAR(oac._IKambiyo_Loger);
          mODUL_AKTAR("Kambiyo");
          KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._IKambiyo_Loger);
  		BAGLAN.kamDizin.kULLANICI = txtkul.getText();
@@ -1669,7 +1669,7 @@ public class CAL_DIZIN extends JFrame {
      {
     	 contentPane.setCursor(WAIT_CURSOR);
     	 cONN_AKTAR();
-         lOGG_AKTAR();
+         lOGG_AKTAR(oac._ISms_Loger);
          mODUL_AKTAR("Sms");
     	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ISms_Loger);
   		BAGLAN.smsDizin.kULLANICI = txtkul.getText();
@@ -1696,7 +1696,7 @@ public class CAL_DIZIN extends JFrame {
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          cONN_AKTAR();
-         lOGG_AKTAR();
+         lOGG_AKTAR(oac._IGunluk_Loger);
          mODUL_AKTAR("Gunluk");
          GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._IGunluk_Loger);
  		BAGLAN.gunDizin.kULLANICI = txtkul.getText();
@@ -1725,7 +1725,7 @@ public class CAL_DIZIN extends JFrame {
 		String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
-        lOGG_AKTAR();
+        lOGG_AKTAR(oac._ICari_Loger);
         mODUL_AKTAR("Cari Hesap");
         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ICari_Loger);
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
@@ -1746,7 +1746,7 @@ public class CAL_DIZIN extends JFrame {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
-        lOGG_AKTAR();
+        lOGG_AKTAR(oac._IFatura_Loger);
         mODUL_AKTAR("Stok");
         STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._IFatura_Loger);
 		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
@@ -1769,7 +1769,7 @@ public class CAL_DIZIN extends JFrame {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
-        lOGG_AKTAR();
+        lOGG_AKTAR(oac._IAdres_Loger);
         mODUL_AKTAR("Adres");
         ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._IAdres_Loger);
         BAGLAN.adrDizin.kULLANICI = txtkul.getText();
@@ -1792,7 +1792,7 @@ public class CAL_DIZIN extends JFrame {
     {
     	
     	 cONN_AKTAR();
-         lOGG_AKTAR();
+         lOGG_AKTAR(oac._IKur_Loger);
          mODUL_AKTAR("Kur");
     	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._IKur_Loger);
     	 BAGLAN.kurDizin.kULLANICI = txtkul.getText();
@@ -1816,7 +1816,7 @@ public class CAL_DIZIN extends JFrame {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
-        lOGG_AKTAR();
+        lOGG_AKTAR(oac._IKambiyo_Loger);
         mODUL_AKTAR("Kambiyo");
         KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._IKambiyo_Loger);
         BAGLAN.kamDizin.kULLANICI = txtkul.getText();
@@ -1836,7 +1836,7 @@ public class CAL_DIZIN extends JFrame {
     else if (activ_sayfa == 5)
     {
     	 cONN_AKTAR();
-         lOGG_AKTAR();
+         lOGG_AKTAR(oac._ISms_Loger);
          mODUL_AKTAR("Sms");	
     	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ISms_Loger);
     	BAGLAN.smsDizin.kULLANICI = txtkul.getText();
@@ -1860,7 +1860,7 @@ public class CAL_DIZIN extends JFrame {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
-        lOGG_AKTAR();
+        lOGG_AKTAR(oac._IGunluk_Loger);
         mODUL_AKTAR("Gunluk");
         GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._IGunluk_Loger);
         BAGLAN.gunDizin.kULLANICI = txtkul.getText();
@@ -1955,22 +1955,23 @@ public class CAL_DIZIN extends JFrame {
 				else if (mODUL == "Sms")
 				{
 				oac._ISms = new SMS_MYSQL();
+			
 				}
 			}
 	}
-	private void lOGG_AKTAR()
+	private void lOGG_AKTAR(Object obj)
 	{
 		  String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
 		  
-			if (hangi == "MS SQL")
+			if (hangi.equals("MS SQL"))
 			{
 				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
-				oac._ILogger = ilogg;
+				obj = ilogg;
 			}
-			else if (hangi == "MY SQL")
+			else if (hangi.equals("MY SQL"))
 			{
 				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()), new MAIL_AT()};
-				oac._ILogger = ilogg;
+				obj = ilogg;
 			}
 	}
 }

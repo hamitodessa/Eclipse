@@ -800,10 +800,8 @@ void adr_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 }
 void fat_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
-	
-
 	    CONNECT s_CONN = new CONNECT(oac._IConn);
-	    
+    
 	    if (BAGLAN.fatDizin.yER.equals(""))
 	    {
 	    	OBS_SIS_2025_ANA_CLASS.FAT_CONN = false;
@@ -1038,22 +1036,17 @@ private void versiyon_oku()
 	{
 	 String hangi = dIZIN  ;
 		if (hangi.equals("MS SQL"))
-				{
+		{
 			oac._IConn = new OBS_ORTAK_MSSQL();
-			
-				}
+		}
 		else
 		{
 			oac._IConn = new OBS_ORTAK_MYSQL();
-			
 		}
-	 		
 	}
 	private void lOG_AKTAR() {
 	      BAGLAN_LOG _blog = new BAGLAN_LOG();
           _blog.cONNECT();
-          
-          
 	}
 	private void lOGG_AKTAR(String mODUL, String hangiSQL , Boolean log , String hANGI_LOG)
 	{
@@ -1087,37 +1080,21 @@ private void versiyon_oku()
 	private void lAktar(String mODUL , ILOGGER[] ilogg)
 	{
 		if (mODUL.equals("Cari Hesap"))
-		{oac._ICari_Loger = ilogg;}
+		{OBS_SIS_2025_ANA_CLASS._ICari_Loger = ilogg;}
 		else if (mODUL.equals("Kur"))
-		{oac._IKur_Loger = ilogg;}
+		{OBS_SIS_2025_ANA_CLASS._IKur_Loger = ilogg;}
 		else if (mODUL.equals("Adres"))
-		{oac._IAdres_Loger = ilogg;}
+		{OBS_SIS_2025_ANA_CLASS._IAdres_Loger = ilogg;}
 		else if (mODUL.equals("Fatura"))
-		{oac._IFatura_Loger = ilogg;}
+		{OBS_SIS_2025_ANA_CLASS._IFatura_Loger = ilogg;}
 		else if (mODUL.equals("Sms"))
-		{oac._ISms_Loger = ilogg;}
+		{OBS_SIS_2025_ANA_CLASS._ISms_Loger = ilogg;}
 		else if (mODUL.equals("Gunluk"))
-		{oac._IGunluk_Loger = ilogg;}
+		{OBS_SIS_2025_ANA_CLASS._IGunluk_Loger = ilogg;}
 		else if (mODUL.equals("Kambiyo"))
-		{oac._IKambiyo_Loger = ilogg;}
+		{OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger = ilogg;}
 	}
-	private static void addPopup(Component component, final JPopupMenu popup) {
-	component.addMouseListener(new MouseAdapter() {
-		public void mousePressed(MouseEvent e) {
-			if (e.isPopupTrigger()) {
-				showMenu(e);
-			}
-		}
-		public void mouseReleased(MouseEvent e) {
-			if (e.isPopupTrigger()) {
-				showMenu(e);
-			}
-		}
-		private void showMenu(MouseEvent e) {
-			popup.show(e.getComponent(), e.getX(), e.getY());
-		}
-	});
-}
+	
 }
 
 

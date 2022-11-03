@@ -3,9 +3,6 @@ package OBS_2025;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.util.ArrayList;
-import java.util.List;
-
 import LOGER_KAYIT.DOSYA_MSSQL;
 import OBS_C_2025.DOSYA_YAZ;
 import OBS_C_2025.GLOBAL;
@@ -31,7 +28,7 @@ public class OBS_SIS_2025_ANA_CLASS
     public static boolean KAM_CONN;
     public static boolean GUN_CONN;
     
-    public static ICARI_HESAP  _ICar ;
+    public ICARI_HESAP  _ICar ;
     public ISTOK _Istok;
     public IKUR _IKur;
     public IADRES _IAdres;

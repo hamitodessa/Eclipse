@@ -165,5 +165,11 @@ public class CARI_ACCESS {
 	{
 		_ICari.hpln_detay_kayit(kodu, yet, ad1, ad2, semt, seh, vd, vn, t1, t2, t3, fx, o1, o2, o3, web, mai, kim, acik, sms, resim);
 	}
-	
+	public ResultSet ekstre_arama(String hes , String acik , String gun ,String ay,String yil ,String kod,String kullanici 
+			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		return _ICari.ekstre_arama(hes, acik, gun, ay, yil, kod, kullanici);
+	}
 }

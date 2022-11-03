@@ -2666,7 +2666,7 @@ public class OBS_MAIN extends JFrame {
 		//else if (pencere.equals("DOVIZE CEVIRME")) internalFrame  = new DVZ_CEVIRME();
 		//else if (pencere.equals("CARI OZEL MIZAN")) internalFrame  = new OZEL_MIZAN();
 		//else if (pencere.equals("HESAP BAK")) internalFrame  = new HESAP_BAK();
-		//else if (pencere.equals("CARI ARAMA")) internalFrame  = new ARAMA();
+		else if (pencere.equals("CARI ARAMA")) internalFrame  = new ARAMA();
 		//else if (pencere.equals("GUNLUK TAKIP")) internalFrame  = new KASA();
 		//else if (pencere.equals("HESAP PLANI DETAY")) internalFrame  = new HESAP_PLANI_DETAY();
 		//else if (pencere.equals("GUNLUK ISLEM")) internalFrame  = new GUNLUK_ISLEM();

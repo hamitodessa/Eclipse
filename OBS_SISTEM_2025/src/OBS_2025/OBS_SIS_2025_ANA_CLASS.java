@@ -3,6 +3,8 @@ package OBS_2025;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.util.ArrayList;
+import java.util.List;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
 import OBS_C_2025.DOSYA_YAZ;
@@ -37,7 +39,8 @@ public class OBS_SIS_2025_ANA_CLASS
     public IGUNLUK _IGunluk;
     public ISMS _ISms;
    // public static ILOGGER[] _ILogger;
-    public static ILOGGER[] _ICari_Loger = {};
+   public static ILOGGER[] _ICari_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
+    //public static List<ILOGGER> _ICari_Logerr =  new ArrayList<ILOGGER>();
     public static ILOGGER[] _IKur_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
     public static ILOGGER[] _IAdres_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
     public static ILOGGER[] _IFatura_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};

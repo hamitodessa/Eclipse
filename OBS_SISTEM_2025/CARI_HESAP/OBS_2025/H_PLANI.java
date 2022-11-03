@@ -28,9 +28,11 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import LOGER_KAYIT.DOSYA_MSSQL;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.DOSYA_YAZ;
 import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
@@ -77,7 +79,7 @@ public class H_PLANI extends JInternalFrame {
 	private static JCheckBox chcicin ;
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	
 	//private static CARI_ACCESS  c_Access ;
 	static ResultSet rs = null ;
@@ -594,6 +596,9 @@ public class H_PLANI extends JInternalFrame {
 		lblNewLabel.setBounds(28, 27, 64, 14);
 		panel.add(lblNewLabel);
 	
+		
+	//	OBS_SIS_2025_ANA_CLASS._ICari_Loger = OBS_SIS_2025_ANA_CLASS._ICari_Logerr();
+		System.out.println("hplKKKK=" + OBS_SIS_2025_ANA_CLASS._ICari_Loger.length);
 		//LOG_AKTARMA lAKTAR = new LOG_AKTARMA();
 		//lAKTAR.lOGG_AKTAR(BAGLAN.cariDizin.hAN_SQL);
 		//c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
@@ -726,7 +731,7 @@ public class H_PLANI extends JInternalFrame {
 			  os.flush();
 			  os.close();
 			}
-			System.out.println(oac._ICari_Loger.length);
+	
 			c_Access.hsp_sil(txtkodu.getText(), txtkodu.getText() + " Nolu Hesap Silme , Unvan:" + txtunvan.getText() , "",  BAGLAN_LOG.cariLogDizin);
 			c_Access.hpln_kayit(txtkodu.getText(), txtunvan.getText(), txtkarton.getText(), txthcinsi.getText(),GLOBAL.KULL_ADI
 					, txtkodu.getText() + " Nolu Hesap Kayit , Unvan:" + txtunvan.getText() , "",  BAGLAN_LOG.cariLogDizin);

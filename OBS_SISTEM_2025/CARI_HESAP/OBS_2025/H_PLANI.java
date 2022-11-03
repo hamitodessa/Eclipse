@@ -596,13 +596,7 @@ public class H_PLANI extends JInternalFrame {
 		lblNewLabel.setBounds(28, 27, 64, 14);
 		panel.add(lblNewLabel);
 	
-		
-	//	OBS_SIS_2025_ANA_CLASS._ICari_Loger = OBS_SIS_2025_ANA_CLASS._ICari_Logerr();
-		System.out.println("hplKKKK=" + OBS_SIS_2025_ANA_CLASS._ICari_Loger.length);
-		//LOG_AKTARMA lAKTAR = new LOG_AKTARMA();
-		//lAKTAR.lOGG_AKTAR(BAGLAN.cariDizin.hAN_SQL);
-		//c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
-		hisset("");
+	hisset("");
 
 	}
 	

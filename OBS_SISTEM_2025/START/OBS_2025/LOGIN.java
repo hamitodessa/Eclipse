@@ -659,7 +659,6 @@ void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
             	}
             else
             {
-            	System.out.println("Lcari=" + BAGLAN.cariDizin.lOG);
            	lOGG_AKTAR("Cari Hesap",BAGLAN.cariDizin.hAN_SQL,BAGLAN.cariDizin.lOG,BAGLAN.cariDizin.lOGLAMA_YERI);
             CAR_DOS_VAR = true;
             OBS_SIS_2025_ANA_CLASS.CARI_CONN = true;}
@@ -1061,13 +1060,7 @@ private void versiyon_oku()
 		if (log == false)
 		{
 			ILOGGER[] ilogg = {};
-			
-			if (mODUL.equals("Cari Hesap"))
-			{oac._ICari_Loger = ilogg;}
-			else if (mODUL.equals("Kur"))
-			{oac._IKur_Loger = ilogg;}
-			else if (mODUL.equals("Adres"))
-			{oac._IAdres_Loger = ilogg;}
+			lAktar(mODUL , ilogg);
 		}
 		else
 		{
@@ -1076,29 +1069,37 @@ private void versiyon_oku()
 				if (hangiSQL.equals("MS SQL"))
 				{
 					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
-					if (mODUL.equals("Cari Hesap"))
-					{
-						oac._ICari_Loger = ilogg;
-					}
+					lAktar(mODUL , ilogg);
 				}
 				else if (hangiSQL.equals("MY SQL"))
 				{
 					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
-					if (mODUL.equals("Cari Hesap"))
-					{
-						oac._ICari_Loger = ilogg;
-					}
+					lAktar(mODUL , ilogg);
 				}
 			}
 			else if (hANGI_LOG.equals("Email Atma"))
 			{
 				ILOGGER[] ilogg = {new MAIL_AT()};
-				if (mODUL.equals("Cari Hesap"))
-				{
-					oac._ICari_Loger = ilogg;
-				}
+				lAktar(mODUL , ilogg);
 			}
 		}
+	}
+	private void lAktar(String mODUL , ILOGGER[] ilogg)
+	{
+		if (mODUL.equals("Cari Hesap"))
+		{oac._ICari_Loger = ilogg;}
+		else if (mODUL.equals("Kur"))
+		{oac._IKur_Loger = ilogg;}
+		else if (mODUL.equals("Adres"))
+		{oac._IAdres_Loger = ilogg;}
+		else if (mODUL.equals("Fatura"))
+		{oac._IFatura_Loger = ilogg;}
+		else if (mODUL.equals("Sms"))
+		{oac._ISms_Loger = ilogg;}
+		else if (mODUL.equals("Gunluk"))
+		{oac._IGunluk_Loger = ilogg;}
+		else if (mODUL.equals("Kambiyo"))
+		{oac._IKambiyo_Loger = ilogg;}
 	}
 	private static void addPopup(Component component, final JPopupMenu popup) {
 	component.addMouseListener(new MouseAdapter() {

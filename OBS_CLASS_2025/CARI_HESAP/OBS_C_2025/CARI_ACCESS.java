@@ -172,4 +172,8 @@ public class CARI_ACCESS {
 		  	_Logger.Logla(mesaj,evrak, dBILGI);
 		return _ICari.ekstre_arama(hes, acik, gun, ay, yil, kod, kullanici);
 	}
+	public ResultSet eksik_kur_okuma(String hesap,String t1,String t2,String kur) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.eksik_kur_okuma(hesap, t1, t2, kur);
+	}
 }

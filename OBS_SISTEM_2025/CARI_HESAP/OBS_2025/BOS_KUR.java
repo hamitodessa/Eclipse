@@ -13,11 +13,17 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 import javax.swing.ListSelectionModel;
 
 public class BOS_KUR extends JInternalFrame {
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+
 	private static JTable table;
 
 	/**
@@ -58,20 +64,11 @@ public class BOS_KUR extends JInternalFrame {
         try 
         {
         	 ResultSet	rs = null;
-        	if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.cARI_HESAP_MSSQL.eksik_kur_okuma(DVZ_CEVIRME.lblkod.getText(),
+        	 rs = c_Access.eksik_kur_okuma(DVZ_CEVIRME.lblkod.getText(),
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_3),
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_4),
 						FILTRE.comboBox_1.getItemAt(FILTRE.comboBox_1.getSelectedIndex()));
-			}
-			else
-			{
-				rs = oac.cARI_HESAP_MYSQL.eksik_kur_okuma(DVZ_CEVIRME.lblkod.getText(),
-						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_3),
-						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_4),
-						FILTRE.comboBox_1.getItemAt(FILTRE.comboBox_1.getSelectedIndex()));
-				}
+        	
         	GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 			    return;

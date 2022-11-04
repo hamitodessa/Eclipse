@@ -32,6 +32,7 @@ public class GLOBAL {
     public static String KULL_ADI = "";
     public static  int filtre_sayfa ;
     public static  String hangi_mizan = "" ;
+    public static String yazici[]; 
 	
 	 //*************************************************
 public static  Connection myConnection() throws SQLException

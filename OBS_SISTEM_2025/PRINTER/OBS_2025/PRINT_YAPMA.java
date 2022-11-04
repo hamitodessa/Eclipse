@@ -31,10 +31,15 @@ import com.crystaldecisions.sdk.occa.report.definition.Paragraphs;
 import com.crystaldecisions.sdk.occa.report.definition.ReportObjects;
 import com.crystaldecisions.sdk.occa.report.lib.ReportObjectKind;
 
+import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.Degisken;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.KAMBIYO_ACCESS;
+import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.sayiyiYaziyaCevir;
 
 import java.awt.BorderLayout;
 import javax.swing.event.InternalFrameAdapter;
@@ -47,10 +52,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 	public static ReportViewerBean reportViewer ;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
-
+	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
+	static STOK_ACCESS fa_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	public static ReportClientDocument clientDoc ;
 	private static ResultSet rs ;
-	private static ArrayList<degisken>  students = new ArrayList<degisken>();
+	private static ArrayList<Degisken>  students = new ArrayList<Degisken>();
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -333,22 +340,11 @@ public class PRINT_YAPMA extends JInternalFrame {
 			            { o1 = " HAVING ROUND(SUM(s.ALACAK - s.BORC),2) <> 0" ;}
 			o2 = " ORDER BY h.HESAP ASC " ;
 			//**************
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-			rs = oac.cARI_HESAP_MSSQL.ozel_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
+			c_Access.ozel_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
 											TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
 											FILTRE.txticins.getText(),FILTRE.txtscins.getText() ,
 											FILTRE.txtikarton.getText(),FILTRE.txtskarton.getText() ,
-											o1 , o2);  	
-			}
-			else
-			{
-				rs = oac.cARI_HESAP_MYSQL.ozel_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
-						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
-						FILTRE.txticins.getText(),FILTRE.txtscins.getText() ,
-						FILTRE.txtikarton.getText(),FILTRE.txtskarton.getText() ,
-						o1 , o2);  	
-			}
+											o1 , o2);
             clientDoc.getDatabaseController().setDataSource(rs);
             com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
             for(int i=0; i< reportObjects.size();i++)
@@ -361,7 +357,7 @@ public class PRINT_YAPMA extends JInternalFrame {
     	        Paragraph oParagraph = new Paragraph();
     	        ParagraphElements oParagraphElements = new ParagraphElements();
     	        ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
-    	        oParagraphTextElement.setText(CONNECTION.caridizinbilgi.firma_adi);
+    	        oParagraphTextElement.setText(BAGLAN.cariDizin.fIRMA_ADI);
     	        oParagraphTextElement.setKind(ParagraphElementKind.text);
     	        oParagraphs.add(oParagraph);
     	        oParagraph.setParagraphElements(oParagraphElements);
@@ -404,21 +400,11 @@ public class PRINT_YAPMA extends JInternalFrame {
                 islem = "*" ;
             }
             ResultSet	rs = null;
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.cARI_HESAP_MSSQL.dvz_cevirme(FILTRE.comboBox_2.getItemAt(FILTRE.comboBox_2.getSelectedIndex()),
+            rs = c_Access.dvz_cevirme(FILTRE.comboBox_2.getItemAt(FILTRE.comboBox_2.getSelectedIndex()),
 							FILTRE.txtdvz.getText(),
 							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_3),
 							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_4),
 							FILTRE.comboBox_1.getItemAt(FILTRE.comboBox_1.getSelectedIndex()), islem);
-			}
-			else
-			{
-				rs = oac.cARI_HESAP_MYSQL.dvz_cevirme(FILTRE.comboBox_2.getItemAt(FILTRE.comboBox_2.getSelectedIndex()),
-						FILTRE.txtdvz.getText(),
-						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_3),
-						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_4),
-						FILTRE.comboBox_1.getItemAt(FILTRE.comboBox_1.getSelectedIndex()), islem);					}
 			clientDoc.getDatabaseController().setDataSource(rs);
             com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
             for(int i=0; i< reportObjects.size();i++)
@@ -466,14 +452,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 		    clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 		    //**************************************************************************
 		    ResultSet	rs = null;
-			if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs= oac.kAMBIYO_MSSQL.kam_bordno("CEK",nasil,"Giris_Bordro");
-			}
-			else
-			{
-				rs= oac.kAMBIYO_MSSQL.kam_bordno("CEK",nasil,"Giris_Bordro");
-			}
+		    rs = ka_Access.kam_bordno("CEK",nasil,"Giris_Bordro");
             clientDoc.getDatabaseController().setDataSource(rs);
             com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
             for(int i=0; i< reportObjects.size();i++)
@@ -609,14 +588,7 @@ public class PRINT_YAPMA extends JInternalFrame {
     		    clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
     		    //**************************************************************************
     		    ResultSet	rs = null;
-    			if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-    			{
-    				rs= oac.kAMBIYO_MSSQL.kam_bordno("CEK",nasil,"Cikis_Bordro");
-    			}
-    			else
-    			{
-    				rs= oac.kAMBIYO_MSSQL.kam_bordno("CEK",nasil,"Cikis_Bordro");
-    			}
+    		    rs = ka_Access.kam_bordno("CEK",nasil,"Cikis_Bordro");
                 clientDoc.getDatabaseController().setDataSource(rs);
                 com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
                 for(int i=0; i< reportObjects.size();i++)
@@ -751,24 +723,12 @@ public class PRINT_YAPMA extends JInternalFrame {
     		    clientDoc.open(file.getPath(), 0);
     		    clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
     		    //**************************************************************************
-    		    if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-    			{
-    		    	rs = oac.sTOK_MSSQL.envanter_rapor_u_kodu(
-    						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_16),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_17),
-    						FILTRE.textField_19.getText(),FILTRE.textField_20.getText() ,
-    						FILTRE.textField_18.getText(),FILTRE.textField_24.getText() ,
-    						 "","",GLOBAL.yazici[0], GLOBAL.yazici[1], GLOBAL.yazici[2],GLOBAL.yazici[3],GLOBAL.yazici[4],GLOBAL.yazici[5],GLOBAL.yazici[6] );
-    			}
-    		    else
-    		    {
-    		    	rs = oac.sTOK_MYSQL.envanter_rapor_u_kodu(
-    						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_16),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_17),
-    						FILTRE.textField_19.getText(),FILTRE.textField_20.getText() ,
-    						FILTRE.textField_18.getText(),FILTRE.textField_24.getText() ,
-    						 "","",GLOBAL.yazici[0], GLOBAL.yazici[1], GLOBAL.yazici[2],GLOBAL.yazici[3],GLOBAL.yazici[4],GLOBAL.yazici[5],GLOBAL.yazici[6] );
-
-    		    }
-                clientDoc.getDatabaseController().setDataSource(rs);
+    		   fa_Access.envanter_rapor_u_kodu(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_16),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_17),
+						FILTRE.textField_19.getText(),FILTRE.textField_20.getText() ,
+						FILTRE.textField_18.getText(),FILTRE.textField_24.getText() ,
+						 "","",GLOBAL.yazici[0], GLOBAL.yazici[1], GLOBAL.yazici[2],GLOBAL.yazici[3],
+						 GLOBAL.yazici[4],GLOBAL.yazici[5],GLOBAL.yazici[6] );
+                    clientDoc.getDatabaseController().setDataSource(rs);
                 com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
                 for(int i=0; i< reportObjects.size();i++)
         		{
@@ -814,43 +774,26 @@ public class PRINT_YAPMA extends JInternalFrame {
       		    if (deger.equals("Adres_Dosya"))
       		    {
       		    	if (FATURA.txtadres.getText().equals("")) return;
-      		    	if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-      				{
-      		    		bilgi = oac.aDRES_MSSQL.adres_oku(FATURA.txtadres.getText());
+      		    	
+      		    		bilgi = a_Access.adres_oku(FATURA.txtadres.getText());
       		    		unvan = FATURA.lblNewLabel_6.getText();
-      				}
-      				else
-      				{
-      					bilgi = oac.aDRES_MYSQL.adres_oku(FATURA.txtadres.getText());
-      					unvan = FATURA.lblNewLabel_6.getText();
-      				}
+      				
       	      
       		    }
       	        else   if (deger.equals("Cari_Dosya"))
       	        {
       	        	if (FATURA.txtcari.getText().equals("")) return;
-      	        	if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-      	  		{
-      	  		bilgi = oac.cARI_HESAP_MSSQL.cari_adres_oku(FATURA.txtcari.getText());
+      	        	
+      	  		bilgi = c_Access.cari_adres_oku(FATURA.txtcari.getText());
       	  		unvan = FATURA.lblNewLabel_3.getText();
-      	  		}
-      	  		else
-      	  		{
-      	  			bilgi = oac.cARI_HESAP_MYSQL.cari_adres_oku(FATURA.txtcari.getText());
-      	  		unvan = FATURA.lblNewLabel_3.getText();
-      	  		}
+      	  	
       	        }
       		    //*******GIDECEGI YER ***********
     		    if ( ! FATURA.textField_8.getText().equals(""))
     		    {
-    		    	if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-      				{
-      		    		gyer_bilgi = oac.aDRES_MSSQL.adres_oku(FATURA.txtadres.getText());
-      				}
-      				else
-      				{
-      					gyer_bilgi = oac.aDRES_MYSQL.adres_oku(FATURA.txtadres.getText());
-      				}
+    		    	
+      		    		gyer_bilgi = a_Access.adres_oku(FATURA.txtadres.getText());
+      			
     		    }
     		    else
     		    {
@@ -2287,7 +2230,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			
 			for (int i = 1; i <= 44;i++)
 			{
-				degisken irs1 = new degisken();
+				Degisken irs1 = new Degisken()
 				irs1.irs_sut = 0 ;
 				irs1.irs_sat = 0;
 				irs1.fat_sut =0 ;

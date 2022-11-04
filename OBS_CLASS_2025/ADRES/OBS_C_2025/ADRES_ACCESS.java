@@ -30,4 +30,8 @@ public class ADRES_ACCESS {
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
+	public String[] adres_oku (String kodu) throws ClassNotFoundException, SQLException 
+	{
+		return _IAdres.adres_oku(kodu);
+	}
 }

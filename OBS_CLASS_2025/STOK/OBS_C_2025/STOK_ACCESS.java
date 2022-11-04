@@ -1,5 +1,6 @@
 package OBS_C_2025;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class STOK_ACCESS {
@@ -32,5 +33,15 @@ public class STOK_ACCESS {
 		_IStok.fAT_SIFIR_S(server, ins, kull, sifre, kod, fir_adi);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
+	}
+	public ResultSet envanter_rapor_u_kodu(String t1 , String t2 , String k1 ,String k2 , String f1 ,String f2,
+			String m1 ,String m2 ,String anagrup,String altgrup ,String depo, String depohar ,String ure,
+			String uanagrp,String ualtgrp) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.envanter_rapor_u_kodu(t1, t2, k1, k2, f1, f2, m1, m2, anagrup, altgrup, depo, depohar, ure, uanagrp, ualtgrp);
+	}
+	public ResultSet fatura_oku_printer(String fno,String cins)
+	{
+		
 	}
 }

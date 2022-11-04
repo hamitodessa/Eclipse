@@ -10,6 +10,11 @@ import java.awt.Cursor;
 
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+
+import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.GLOBAL;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -28,9 +33,8 @@ import java.awt.event.ActionEvent;
 
 public class ORN_HSP_PLN extends JInternalFrame {
 
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 
 	
 	private static JLabel lblNewLabel ;
@@ -88,16 +92,9 @@ public class ORN_HSP_PLN extends JInternalFrame {
 	{
 		try
 		{
-		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		{
-			lblNewLabel.setText(Integer.toString(oac.cARI_HESAP_MSSQL.hesap_plani_kayit_adedi()));
-		}
-		else
-		{
-			lblNewLabel.setText(Integer.toString(oac.cARI_HESAP_MYSQL.hesap_plani_kayit_adedi()));
-
-		}
-		}
+			
+			lblNewLabel.setText(Integer.toString(c_Access.hesap_plani_kayit_adedi()));
+			}
 		catch (Exception ex)
 		{
 			
@@ -120,7 +117,7 @@ public class ORN_HSP_PLN extends JInternalFrame {
     	        Progres_Bar_Temizle();   
     	        OBS_MAIN.progressBar.setMaximum(358); 
     	        int i = 0 ;
-    	        getContentPane().setCursor(WAIT_CURSOR);
+    	        getContentPane().setCursor(oac.WAIT_CURSOR);
     	        Scanner sc = new Scanner(bReader); 
         while (sc.hasNextLine()) 
     	  {
@@ -128,22 +125,16 @@ public class ORN_HSP_PLN extends JInternalFrame {
 	        	String l =  sc.nextLine();  
 	        	
 	            String[] token = l.split("\t");
-	                if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    		  oac.cARI_HESAP_MSSQL.hpln_kayit(token[0], token[1], token[2], token[3],GLOBAL.KULL_ADI);
-		    		  oac.cARI_HESAP_MSSQL.hpln_ilk_detay_kayit(token[0]);
-				    }
-				    else
-				    {
-				    	oac.cARI_HESAP_MYSQL.hpln_kayit(token[0], token[1], token[2], token[3],GLOBAL.KULL_ADI);
-			    		oac.cARI_HESAP_MYSQL.hpln_ilk_detay_kayit(token[0]);					   
-				    }
+	         
+	            c_Access.hpln_kayit(token[0], token[1], token[2], token[3],GLOBAL.KULL_ADI
+	            		, token[0] + " Nolu Hesap Kayit , Unvan:" + token[1] , "",  BAGLAN_LOG.cariLogDizin);
+	            c_Access.hpln_ilk_detay_kayit(token[0]);
 	           i += 1 ;
         }
 	        bReader.close();
 	        Thread.currentThread().isInterrupted();
 	        Progres_Bar_Temizle();
-	        getContentPane().setCursor(DEFAULT_CURSOR);
+	        getContentPane().setCursor(oac.DEFAULT_CURSOR);
 	        JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi ....Hesap Kodu Sayisi =" + i ); 
 	        lblNewLabel.setText(Integer.toString(i));
 

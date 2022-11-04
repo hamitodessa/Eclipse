@@ -24,6 +24,10 @@ public class CARI_ACCESS {
 	{
 	 _ICari.baglan();
 	}
+	public void akt_baglan(String kod) throws SQLException
+	{
+		_ICari.akt_baglan(kod);
+	}
 	public String cari_firma_adi() throws ClassNotFoundException, SQLException {
 		return  _ICari.cari_firma_adi();
 	}
@@ -209,5 +213,17 @@ public class CARI_ACCESS {
 	public ResultSet mizan(String h1 , String h2,String t1,String t2,String c1,String c2,String k1, String k2, String o1 , String o2) throws ClassNotFoundException, SQLException
 	{
 		return _ICari.mizan(h1, h2, t1, t2, c1, c2, k1, k2, o1, o2);
+	}
+	public int hesap_plani_kayit_adedi () throws ClassNotFoundException, SQLException
+	{
+		return _ICari.hesap_plani_kayit_adedi();
+	}
+	public void hpln_ilk_detay_kayit(String kodu) throws ClassNotFoundException, SQLException 
+	{
+		_ICari.hpln_ilk_detay_kayit(kodu);
+	}
+	public ResultSet ozel_mizan(String h1 , String h2,String t1,String t2,String c1,String c2,String k1, String k2, String o1 , String o2) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.ozel_mizan(h1, h2, t1, t2, c1, c2, k1, k2, o1, o2);
 	}
 }

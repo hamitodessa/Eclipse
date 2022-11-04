@@ -53,22 +53,30 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 import com.toedter.calendar.JDateChooser;
+
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.CheckBoxRenderer;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TARIH_CEVIR;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class YIL_SONU extends JInternalFrame {
 	private static final Vector<?> Boolean = null;
 	private static JTable table;
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS() ;
+	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 	private static JTextField textField;
 	private static JTextField textField_1;
 	private JPanel panel_1 ;
 	private JLabel lblNewLabel_1;
 	private static JCheckBox chckbxNewCheckBox ;
 	private static JDateChooser dateChooser ;
-	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	private  JLabel lblNewLabel_3 ;
+		private  JLabel lblNewLabel_3 ;
 
 	/**
 	 * Launch the application.
@@ -242,7 +250,7 @@ public class YIL_SONU extends JInternalFrame {
 					try {
 						hsp = new HESAP_PLN();
 						hsp.show();
-						textField_1.setText( GLOBAL.hsp_hsp_kodu);
+						textField_1.setText( oac.hsp_hsp_kodu);
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
 					} catch (SQLException e1) {
@@ -260,15 +268,15 @@ public class YIL_SONU extends JInternalFrame {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 				lblNewLabel_1.setText(CARI_ISIM_OKU.isim(textField_1.getText())[0]);
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 				lblNewLabel_1.setText(CARI_ISIM_OKU.isim(textField_1.getText())[0]);
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			@Override
 			public void changedUpdate(DocumentEvent e) {
@@ -307,18 +315,11 @@ public class YIL_SONU extends JInternalFrame {
 	{
 		try
 		{
-			getContentPane().setCursor(WAIT_CURSOR);
+			getContentPane().setCursor(oac.WAIT_CURSOR);
 		ResultSet	rs = null;
-		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		{
-			rs =  oac.cARI_HESAP_MSSQL.hp_pln();
-		}
-		else
-		{
-			rs =  oac.cARI_HESAP_MYSQL.hp_pln();
-		}
+		rs = c_Access.hp_pln();
 		if (!rs.isBeforeFirst() ) {  
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		    return;
 		}
 		table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -384,11 +385,11 @@ public class YIL_SONU extends JInternalFrame {
 		parts = deger.split(",");
 		bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 		table.setFont(bigFont);
-		getContentPane().setCursor(DEFAULT_CURSOR);
+		getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		} 
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 		}
 	}
@@ -431,7 +432,7 @@ public class YIL_SONU extends JInternalFrame {
                return ;
 			 }
 		 }
-		 oac.cARI_HESAP_MSSQL.akt_baglan(textField.getText());
+		c_Access.akt_baglan(textField.getText());
 		 int kaysay = 0 ;
 		 DefaultTableModel model = (DefaultTableModel) table.getModel();
 		 for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
@@ -446,15 +447,9 @@ public class YIL_SONU extends JInternalFrame {
        	   		JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
    	        if(g != 0 ) { return;	}	
    	     int sayi = 0 ;
-   	     if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-	     {
-   	    	sayi =oac.cARI_HESAP_MSSQL.aktar_hesap_plani_kayit_adedi() ;
+   	    	sayi =c_Access.hesap_plani_kayit_adedi() ;
 	     }
-   	     else
-   	     {
-   	    	sayi =oac.cARI_HESAP_MYSQL.aktar_hesap_plani_kayit_adedi() ;
-   	     }
-   	     JOptionPane.showMessageDialog(null, "Aktarilacak Dosyadaki Kayit Sayisi.....:" + sayi); 
+  	     JOptionPane.showMessageDialog(null, "Aktarilacak Dosyadaki Kayit Sayisi.....:" + sayi); 
    	     int say   = 0 ;
    	     for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
    	     {

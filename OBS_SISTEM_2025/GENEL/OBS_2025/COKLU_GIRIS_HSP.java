@@ -15,9 +15,13 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import OBS_C_2025.CARI_ACCESS;
+
 
 public class COKLU_GIRIS_HSP extends DefaultCellEditor {
 
+	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+//	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
     private static final Border red = new LineBorder(Color.red);
     private static final Border black = new LineBorder(Color.black);
     private JTextField textField;
@@ -37,7 +41,7 @@ public class COKLU_GIRIS_HSP extends DefaultCellEditor {
 					try {
 						hsp = new HESAP_PLN();
 						hsp.show();
-						textField.setText( GLOBAL.hsp_hsp_kodu);
+						textField.setText( oac.hsp_hsp_kodu);
 					} catch (Exception ex) {} 
 				}
         	}

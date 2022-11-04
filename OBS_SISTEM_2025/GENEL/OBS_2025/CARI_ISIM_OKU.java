@@ -4,21 +4,17 @@ import java.sql.ResultSet;
 
 import javax.swing.JOptionPane;
 
+import OBS_C_2025.CARI_ACCESS;
+
 public class CARI_ISIM_OKU {
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 	public static String[] isim(String kod)  {
 		String [] sonuc = {"","",""}  ;
 		try
 	  {
 		ResultSet	rs = null;
-	    if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-	    {
-	    	rs = oac.cARI_HESAP_MSSQL.hesap_adi_oku(kod);
-	    }
-	    else
-	    {
-	    	rs = oac.cARI_HESAP_MYSQL.hesap_adi_oku(kod);
-	    }
+		rs = c_Access.hesap_adi_oku(kod);
 		if (!rs.isBeforeFirst() ) {  
 			sonuc [0]= "" ;
 			sonuc [1]= "" ;

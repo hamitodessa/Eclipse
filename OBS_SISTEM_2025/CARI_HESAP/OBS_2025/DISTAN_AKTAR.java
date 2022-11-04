@@ -418,7 +418,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					try {
 						hesap_doldur();
 						temadoldur();
-						textField.setText(oac.uSER_ISL.tema_anahesap(comboBox.getSelectedItem().toString()));
+						textField.setText(Tema_Cari.tema_anahesap(comboBox.getSelectedItem().toString()));
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
 					} catch (SQLException e1) {
@@ -461,19 +461,19 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	  
 	    	 GuiUtil.setWaitCursor(splitPane,true);
 	       //**************tema sil
-	       oac.glb.tema_sil(comboBox.getSelectedItem().toString());
+	    	 Tema_Cari.tema_sil(comboBox.getSelectedItem().toString());
 	       //********** KAYIT ********
-	       oac.glb.tema_ana_hes_kayit(comboBox.getSelectedItem().toString(), textField.getText());
+	    	 Tema_Cari.tema_ana_hes_kayit(comboBox.getSelectedItem().toString(), textField.getText());
 		       for(int i = 0 ; i  <= table.getRowCount() -1  ; i ++) 
 		       {
-		       oac.glb.tema_tem_hes_kayit(comboBox.getSelectedItem().toString(),
+		    	   Tema_Cari.tema_tem_hes_kayit(comboBox.getSelectedItem().toString(),
 		    		   table.getModel().getValueAt(i, 0).toString(),
 		    		   table.getModel().getValueAt(i, 1).toString());
 		       }
            //*******HESAPLAR
 		       for( int i = 0 ; i  <= table_1.getRowCount() -1  ; i ++) 
 		       {
-	           oac.glb.tema_hes_kayit(comboBox.getSelectedItem().toString(),
+		    	   Tema_Cari.tema_hes_kayit(comboBox.getSelectedItem().toString(),
 	        		   table_1.getModel().getValueAt(i, 0).toString(),
 	        		   table_1.getModel().getValueAt(i, 1).toString());
 				}
@@ -506,7 +506,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	   		JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
 	        if(g != 0 ) { return;	}	        
 	        getContentPane().setCursor(oac.WAIT_CURSOR);
-	        oac.glb.tema_sil(comboBox.getSelectedItem().toString());
+	        Tema_Cari.tema_sil(comboBox.getSelectedItem().toString());
 	        //ilk = true ;
 	        tema_doldur();
 	        getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -905,7 +905,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			comboBox.addItem(rs.getString("TEMA"));
 		}
 		comboBox.addItem("");
-		textField.setText(oac.glb.tema_anahesap(comboBox.getSelectedItem().toString()));
+		textField.setText(Tema_Cari.tema_anahesap(comboBox.getSelectedItem().toString()));
 		table.enable(true);
 		table_1.enable(true);
 	}
@@ -928,7 +928,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		if (comboBox.getItemCount() == 0) return ;
 		ResultSet rs = null ;
 		GRID_TEMIZLE.grid_temizle(table_1);
-		rs = oac.glb.ttema_oku(comboBox.getSelectedItem().toString());
+		rs = Tema_Cari.ttema_oku(comboBox.getSelectedItem().toString());
 		if (!rs.isBeforeFirst() ) {  
 			return;
 		} 
@@ -951,7 +951,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		if (comboBox.getItemCount() == 0) return ;
 		ResultSet rs = null ;
 		GRID_TEMIZLE.grid_temizle(table);
-		rs = oac.glb.temalar_oku(comboBox.getSelectedItem().toString());
+		rs = Tema_Cari.temalar_oku(comboBox.getSelectedItem().toString());
 		if (!rs.isBeforeFirst() ) {  
 			return;
 		} 

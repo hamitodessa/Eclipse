@@ -226,4 +226,28 @@ public class CARI_ACCESS {
 	{
 		return _ICari.ozel_mizan(h1, h2, t1, t2, c1, c2, k1, k2, o1, o2);
 	}
+	public void yilsonu_hpln_kayit(String kodu,String adi,String karton,String hcins,String usr) throws ClassNotFoundException, SQLException
+	{
+		_ICari.yilsonu_hpln_kayit(kodu, adi, karton, hcins, usr);
+	}
+	public void yilsonu_hpln_detay_kayit(String kodu ,String yet ,String ad1 ,String ad2 ,String semt,String seh  , String vd , String vn 
+			, String t1 ,String t2 ,String t3 ,String fx ,String o1 ,String o2 ,String o3 , String web 
+			,String mai ,String kim  ,String acik   ) throws ClassNotFoundException, SQLException, IOException
+	{
+		_ICari.yilsonu_hpln_detay_kayit(kodu, yet, ad1, ad2, semt, seh, vd, vn, t1, t2, t3, fx, o1, o2, o3, web, mai, kim, acik);
+	}
+	public ResultSet mizan_aktar (String hesap) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.mizan_aktar(hesap);
+	}
+	public int yilsonu_cari_fisno_al() throws ClassNotFoundException, SQLException
+	{
+		return _ICari.yilsonu_cari_fisno_al();
+	}
+	public void yilsonu_cari_dekont_kaydet(String bhes,String tar,int evrak,String bcins,Double bkur,Double borc ,
+
+			String alhes,String acins,Double alkur,Double alacak,String izahat,String kod,String user) throws ClassNotFoundException, SQLException
+	{
+		_ICari.yilsonu_cari_dekont_kaydet(bhes, tar, evrak, bcins, bkur, borc, alhes, acins, alkur, alacak, izahat, kod, user);
+	}
 }

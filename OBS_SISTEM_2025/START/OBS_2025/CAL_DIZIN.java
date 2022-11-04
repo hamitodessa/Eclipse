@@ -1264,7 +1264,7 @@ public class CAL_DIZIN extends JFrame {
                     {
                 	
                 	 contentPane.setCursor(DEFAULT_CURSOR);
-                     JOptionPane.showMessageDialog(null, "Baglanti Saglandi........".toString(), "Server Baglanti", JOptionPane.PLAIN_MESSAGE);
+                    // JOptionPane.showMessageDialog(null, "Baglanti Saglandi........".toString(), "Server Baglanti", JOptionPane.PLAIN_MESSAGE);
                      btnNewButton_1.setEnabled(true);
                     }
                     else
@@ -1280,7 +1280,7 @@ public class CAL_DIZIN extends JFrame {
                     if (s_CONN.Server_kontrol_S(txtIp.getText(),comboBox.getSelectedItem().toString(),txtkul.getText(), txtsifr.getText() ) == true)
                     {
                     	contentPane.setCursor(DEFAULT_CURSOR);
-                    	 JOptionPane.showMessageDialog(null, "Baglanti Saglandi........".toString(), "Server Baglanti", JOptionPane.PLAIN_MESSAGE);
+                    	// JOptionPane.showMessageDialog(null, "Baglanti Saglandi........".toString(), "Server Baglanti", JOptionPane.PLAIN_MESSAGE);
                     	btnNewButton_1.setEnabled(true);
                     }
                     else

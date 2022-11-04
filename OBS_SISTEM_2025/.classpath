@@ -21,6 +21,10 @@
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/XLXS/poi-4.1.2/poi-ooxml-4.1.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/XLXS/poi-4.1.2/poi-ooxml-schemas-4.1.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/XLXS/poi-4.1.2/poi-scratchpad-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/Apache_common/commons-lang3-3.12.0/commons-lang3-3.12.0.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/commons-configuration-1.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/commons-lang-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/commons-logging.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

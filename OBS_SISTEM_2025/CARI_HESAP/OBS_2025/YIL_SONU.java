@@ -448,7 +448,7 @@ public class YIL_SONU extends JInternalFrame {
    	        if(g != 0 ) { return;	}	
    	     int sayi = 0 ;
    	    	sayi =c_Access.hesap_plani_kayit_adedi() ;
-	     }
+	     
   	     JOptionPane.showMessageDialog(null, "Aktarilacak Dosyadaki Kayit Sayisi.....:" + sayi); 
    	     int say   = 0 ;
    	     for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
@@ -456,24 +456,12 @@ public class YIL_SONU extends JInternalFrame {
    	    	 boolean durum =  model.getValueAt(i, 5) != null ?    (boolean) model.getValueAt(i, 5) : false;
 		     if (durum) 
    			{
-   			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		    {
-   				oac.cARI_HESAP_MSSQL.yilsonu_hpln_kayit(model.getValueAt(i, 0).toString(),
+		    	 c_Access.yilsonu_hpln_kayit(model.getValueAt(i, 0).toString(),
    						model.getValueAt(i, 1).toString(), model.getValueAt(i, 2).toString(), 
    						model.getValueAt(i, 3).toString(), GLOBAL.KULL_ADI);
-   				oac.cARI_HESAP_MSSQL.yilsonu_hpln_detay_kayit(model.getValueAt(i, 0).toString(), "", "", "", "", "", "", "" 
+		    	 c_Access.yilsonu_hpln_detay_kayit(model.getValueAt(i, 0).toString(), "", "", "", "", "", "", "" 
                         , "", "", "", "", "", "", "", "", "" 
                        , "", "");
-		    }
-		    else
-		    {
-		    	oac.cARI_HESAP_MYSQL.yilsonu_hpln_kayit(model.getValueAt(i, 0).toString(),
-   						model.getValueAt(i, 1).toString(), model.getValueAt(i, 2).toString(), 
-   						model.getValueAt(i, 3).toString(), GLOBAL.KULL_ADI);
-		    	oac.cARI_HESAP_MYSQL.yilsonu_hpln_detay_kayit(model.getValueAt(i, 0).toString(), "", "", "", "", "", "", "" 
-                        , "", "", "", "", "", "", "", "", "" 
-                       , "", "");
-		    }
             say += 1;
    			}
    	     	}
@@ -506,14 +494,7 @@ public class YIL_SONU extends JInternalFrame {
 	    	  boolean durum =  model.getValueAt(i, 5) != null ?    (boolean) model.getValueAt(i, 5) : false;
 			  if (durum) 
 	    	  {
-            	if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-    		    {
-            		rs = oac.cARI_HESAP_MSSQL.mizan_aktar (model.getValueAt(i, 0).toString());
-    		    }
-            	else
-            	{
-           		 	rs = oac.cARI_HESAP_MYSQL.mizan_aktar (model.getValueAt(i, 0).toString());
-            	}
+				  c_Access.mizan_aktar(model.getValueAt(i, 0).toString());
              bir = 0;
              iki = 0;
              uc = 0;
@@ -523,14 +504,8 @@ public class YIL_SONU extends JInternalFrame {
 	         {
 	        	 say += 1;
 	        	 enumara=0;
-               	if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-    		    {
-              		enumara =oac.cARI_HESAP_MSSQL.yilsonu_cari_fisno_al();
-    		    }
-               	else
-               	{
-               		enumara =oac.cARI_HESAP_MYSQL.yilsonu_cari_fisno_al();
-               	}
+              
+              		enumara = c_Access.yilsonu_cari_fisno_al();
                rs.next();
                bir = rs.getDouble("BORC");
                iki = rs.getDouble("ALACAK");
@@ -538,47 +513,22 @@ public class YIL_SONU extends JInternalFrame {
                if ( bir == iki)   // ' Bakiye Sifir  bir = iki
                {
                		String str =TARIH_CEVIR.tarih_geri(dateChooser);
-               		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-                 	{
-					double sifir = 0 ;
-                   	 oac.cARI_HESAP_MSSQL.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str, 
+ 					double sifir = 0 ;
+                   	c_Access.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str, 
            			enumara, "", 1.0, sifir,textField_1.getText(),"", 1.0,sifir,"Devir Islemi...", "D", GLOBAL.KULL_ADI);
-           		    }
-       		    	else
-       		    	{
-       		    		double sifir = 0 ;
-      		    	oac.cARI_HESAP_MYSQL.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str, 
-             		enumara, "", 1.0, sifir,textField_1.getText(),"", 1.0,sifir,"Devir Islemi...", "D", GLOBAL.KULL_ADI);
-       		    	}
                 }
                else if (uc < 0)  // 'Borclu hesaplar -0.001
                 {
                		String str =TARIH_CEVIR.tarih_geri(dateChooser);
-               		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-               		{
-			         oac.cARI_HESAP_MSSQL.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str,enumara, "",
+			        c_Access.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str,enumara, "",
                   			 1.0, uc, textField_1.getText(),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI);
-           		    }
-          		    else
-          		    {
-       		    	
-       		    	oac.cARI_HESAP_MYSQL.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str, 
-             			enumara, "", 1.0, uc,textField_1.getText(),"", 1.0,uc,"Devir Islemi...", "D", GLOBAL.KULL_ADI);
-       		    	}
-               }
+                }
                else if (uc > 0 )  //   'Alacakli hesaplar  0.001
                {
                    	String str =TARIH_CEVIR.tarih_geri(dateChooser);
-                   	if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			        {
-			         oac.cARI_HESAP_MSSQL.yilsonu_cari_dekont_kaydet(textField_1.getText(), str, 
+                   
+			       c_Access.yilsonu_cari_dekont_kaydet(textField_1.getText(), str, 
                			enumara, "",1.0, uc,rs.getString("HESAP"),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI);
-           		    }
-           		    else
-           		    {
-        		    	oac.cARI_HESAP_MYSQL.yilsonu_cari_dekont_kaydet(textField_1.getText(), str, 
-                   			enumara, "",1.0, uc,rs.getString("HESAP"),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI);
-       		    	}
                }
 		     }
 		      

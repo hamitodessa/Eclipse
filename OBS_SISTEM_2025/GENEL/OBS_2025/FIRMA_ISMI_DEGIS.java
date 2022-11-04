@@ -104,7 +104,7 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		}
 		else if (modul.equals("stok"))
 		{
-           		textField.setText(oac._Istok.fat_firma_adi());
+           		textField.setText(oac._IStok.fat_firma_adi());
 		}
 		else if (modul.equals("adres"))
 		{
@@ -137,7 +137,7 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		}
 		else if (modul.equals("stok"))
 		{
-           	oac._Istok.stk_firma_adi_kayit(textField.getText());
+           	oac._IStok.stk_firma_adi_kayit(textField.getText());
            	BAGLAN.fatDizin.fIRMA_ADI = textField.getText();
 		    OBS_MAIN.lblNewLabel_23.setText ( "Stok:" + BAGLAN.fatDizin.kOD + "/ " + BAGLAN.fatDizin.fIRMA_ADI + "/ " + (BAGLAN.fatDizin.yER == "S" ?  BAGLAN.fatDizin.sERVER : "Lokal"));
 		}

@@ -1232,6 +1232,11 @@ public class STOK_MYSQL implements ISTOK {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public ResultSet fatura_oku_printer(String fno, String cins) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 

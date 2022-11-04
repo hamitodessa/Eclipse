@@ -320,7 +320,7 @@ public LOGIN() throws IOException {
            ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres, oac._IAdres_Loger);
            a_Access.baglan();
           //*** FATURA
-            STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._IFatura_Loger);
+            STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
             s_Access.baglan();
           //*** KAMBIYO
             KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo, oac._IKambiyo_Loger);
@@ -426,7 +426,7 @@ public LOGIN() throws IOException {
                 	}
                 	else
                 	{
-                		BAGLAN.fatDizin.fIRMA_ADI = oac._Istok.fat_firma_adi() ;
+                		BAGLAN.fatDizin.fIRMA_ADI = oac._IStok.fat_firma_adi() ;
                     qwe = BAGLAN.fatDizin.yER.equals("S") ? BAGLAN.fatDizin.sERVER : "Lokal" ;
                     OBS_MAIN.lblNewLabel_2.setText ( "Stok:" + BAGLAN.fatDizin.kOD + "/ " + BAGLAN.fatDizin.fIRMA_ADI + "/ " + qwe);
                     OBS_MAIN.tabbedPane.setEnabledAt(3, true);
@@ -589,11 +589,11 @@ void calisma_dizini_oku() throws ClassNotFoundException, SQLException, Interrupt
     hangi_sql =  BAGLAN.fatDizin.hAN_SQL;
     if (hangi_sql.equals("MS SQL"))
     {
-    	oac._Istok = new STOK_MSSQL();
+    	oac._IStok = new STOK_MSSQL();
     }
     else
     {
-    	oac._Istok = new STOK_MYSQL();
+    	oac._IStok = new STOK_MYSQL();
     }
     //KAMB
     cONN_AKTAR(BAGLAN.kamDizin.hAN_SQL );

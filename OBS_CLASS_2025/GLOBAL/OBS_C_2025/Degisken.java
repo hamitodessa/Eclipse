@@ -1,10 +1,10 @@
 package OBS_C_2025;
 
-public class Degisken {class degisken {
-	   double irs_sut;
-	   double irs_sat;
-	   double fat_sut;
-	   double fat_sat;
-	}
+public class Degisken {
+	   public double irs_sut;
+	   public double irs_sat;
+	   public double fat_sut;
+	   public double fat_sat;
+	
 
 }

@@ -34,7 +34,9 @@ import com.crystaldecisions.sdk.occa.report.lib.ReportObjectKind;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.CRY_TEXT_WIDTH;
 import OBS_C_2025.Degisken;
+import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.STOK_ACCESS;
@@ -847,15 +849,9 @@ public class PRINT_YAPMA extends JInternalFrame {
    				parts = deger.split(",");
    				detailFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
    				String cins = 	  FATURA.cmbcins.getItemAt(FATURA.cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C" :"G";
-   			 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
- 			{
- 		    	rs = oac.sTOK_MSSQL.fatura_oku_printer(FATURA.textField.getText(), cins);
- 			}
- 		    else
- 		    {
- 		    	rs =oac.sTOK_MSSQL.fatura_oku(FATURA.textField.getText(), cins);
- 		    }
-  				clientDoc.getDatabaseController().setDataSource(rs);
+   			
+   		    	rs = fa_Access.fatura_oku_printer(FATURA.textField.getText(), cins);
+   				clientDoc.getDatabaseController().setDataSource(rs);
    				
     	            for (int i = 0; i < reportObjects.size(); i++)
     	            {
@@ -2230,7 +2226,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			
 			for (int i = 1; i <= 44;i++)
 			{
-				Degisken irs1 = new Degisken()
+				Degisken irs1 = new Degisken();
 				irs1.irs_sut = 0 ;
 				irs1.irs_sat = 0;
 				irs1.fat_sut =0 ;
@@ -2240,14 +2236,9 @@ public class PRINT_YAPMA extends JInternalFrame {
 		ResultSet rs =null ;
 		 //***** Fatura SUTUN
 		 rs =null ;
-		 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
- 		 rs = oac.sTOK_MSSQL.parametre_oku("FAT_EVRAK_FORMAT","SUTUN");
-			}
-		 else
-		 {
-			 rs = oac.sTOK_MSSQL.parametre_oku("FAT_EVRAK_FORMAT","SUTUN");
-		 }
+		
+ 		 rs = fa_Access.parametre_oku("FAT_EVRAK_FORMAT","SUTUN");
+		
 		 rs.next();
 		 ResultSetMetaData rsmd = rs.getMetaData();
 		rsmd = rs.getMetaData();
@@ -2257,14 +2248,9 @@ public class PRINT_YAPMA extends JInternalFrame {
 		 }
 		 //***Fatura SATIR
 		 rs =null ;
-		 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
- 		 rs = oac.sTOK_MSSQL.parametre_oku("FAT_EVRAK_FORMAT","SATIR");
-			}
-		 else
-		 {
-			 rs = oac.sTOK_MSSQL.parametre_oku("FAT_EVRAK_FORMAT","SATIR");
-		 }
+		
+ 		 rs = fa_Access.parametre_oku("FAT_EVRAK_FORMAT","SATIR");
+		
 		 rs.next();
 		rsmd = rs.getMetaData();
 		 for (int i =0 ; i <= rsmd.getColumnCount()  - 3;i++)

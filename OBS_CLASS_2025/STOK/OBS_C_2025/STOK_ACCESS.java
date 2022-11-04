@@ -40,8 +40,12 @@ public class STOK_ACCESS {
 	{
 		return _IStok.envanter_rapor_u_kodu(t1, t2, k1, k2, f1, f2, m1, m2, anagrup, altgrup, depo, depohar, ure, uanagrp, ualtgrp);
 	}
-	public ResultSet fatura_oku_printer(String fno,String cins)
+	public ResultSet fatura_oku_printer(String fno,String cins) throws ClassNotFoundException, SQLException
 	{
-		
+		return _IStok.fatura_oku_printer(fno, cins);
+	}
+	public ResultSet parametre_oku(String nerden , String satsut) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.parametre_oku(nerden, satsut);
 	}
 }

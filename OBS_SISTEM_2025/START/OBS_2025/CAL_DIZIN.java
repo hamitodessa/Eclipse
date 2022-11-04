@@ -1570,7 +1570,7 @@ public class CAL_DIZIN extends JFrame {
         lOGG_AKTAR(oac._IFatura_Loger);
          mODUL_AKTAR("Stok");
 
-         STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._IFatura_Loger);
+         STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
  		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
  		BAGLAN.fatDizin.sIFRESI = txtsifr.getText() ;
  		BAGLAN.fatDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1748,7 +1748,7 @@ public class CAL_DIZIN extends JFrame {
         cONN_AKTAR();
         lOGG_AKTAR(oac._IFatura_Loger);
         mODUL_AKTAR("Stok");
-        STOK_ACCESS  s_Access = new STOK_ACCESS(oac._Istok,oac._IFatura_Loger);
+        STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
 		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
 		BAGLAN.fatDizin.sIFRESI = txtsifr.getText() ;
 		BAGLAN.fatDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1903,7 +1903,7 @@ public class CAL_DIZIN extends JFrame {
 				}
 				else if (mODUL == "Stok")
 				{
-				oac._Istok = new STOK_MSSQL();
+				oac._IStok = new STOK_MSSQL();
 				}
 				else if (mODUL == "Adres")
 				{
@@ -1934,7 +1934,7 @@ public class CAL_DIZIN extends JFrame {
 				}
 				else if (mODUL == "Stok")
 				{
-				oac._Istok = new STOK_MYSQL();
+				oac._IStok = new STOK_MYSQL();
 				}
 				else if (mODUL == "Adres")
 				{

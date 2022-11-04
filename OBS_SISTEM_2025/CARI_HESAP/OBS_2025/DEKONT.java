@@ -1568,7 +1568,7 @@ public class DEKONT extends JInternalFrame {
 	        		DecimalFormat.getNumberInstance().parse(txtatutar.getText()).doubleValue(),
 	        		txtaciklama.getText(),txtkod.getText() , GLOBAL.KULL_ADI,
 	        		"Alacakli Hes:" +cmbahes.getSelectedItem().toString() + " Tut:" +txtatutar.getText()+
-	        		" Borclu Hes:"+cmbb.getItemAt(cmbbhes.getSelectedIndex()).toString() + " Tut:" + txtbtutar.getText()  ,
+	        		" Borclu Hes:"+ cmbbhes.getItemAt(cmbbhes.getSelectedIndex()).toString() + " Tut:" + txtbtutar.getText()  ,
 	        		txtevrak.getText() ,
 	        		BAGLAN_LOG.cariLogDizin
 	        		);

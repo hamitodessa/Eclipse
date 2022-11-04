@@ -28,13 +28,13 @@ public class OBS_SIS_2025_ANA_CLASS
     public static boolean KAM_CONN;
     public static boolean GUN_CONN;
     
-    public ICARI_HESAP  _ICar ;
-    public ISTOK _IStok;
-    public IKUR _IKur;
-    public IADRES _IAdres;
-    public IKAMBIYO _IKambiyo;
-    public IGUNLUK _IGunluk;
-    public ISMS _ISms;
+    public static ICARI_HESAP  _ICar ;
+    public static ISTOK _IStok;
+    public static IKUR _IKur;
+    public static IADRES _IAdres;
+    public static IKAMBIYO _IKambiyo;
+    public static IGUNLUK _IGunluk;
+    public static ISMS _ISms;
    // public static ILOGGER[] _ILogger;
     public static ILOGGER[] _ICari_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
     public static ILOGGER[] _IKur_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};

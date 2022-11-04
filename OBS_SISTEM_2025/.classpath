@@ -8,6 +8,11 @@
 	<classpathentry kind="src" path="FILTRE"/>
 	<classpathentry kind="src" path="PRINTER"/>
 	<classpathentry kind="src" path="RPT_DOSYALAR"/>
+	<classpathentry kind="src" path="E_MAIL"/>
+	<classpathentry kind="src" path="KUR"/>
+	<classpathentry kind="src" path="GIDEN_RAPOR"/>
+	<classpathentry kind="src" path="KAMBIYO"/>
+	<classpathentry kind="src" path="ADRES"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/OBS_CLASS_2025"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
@@ -38,5 +43,8 @@
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/logging.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/pfjgraphics.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/sap.com~tc~sec~csi.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/ice/activation.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/ice/javamail-1.4.7/mail.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/DIGER/jsoup-1.13.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

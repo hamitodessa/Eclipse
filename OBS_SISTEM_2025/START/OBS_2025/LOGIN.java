@@ -545,7 +545,6 @@ void calisma_dizini_oku() throws ClassNotFoundException, SQLException, Interrupt
     if (hangi_sql.equals("MS SQL"))
     {
     	oac._ICar = new  CARI_HESAP_MSSQL();
-  
     }
     else
     {
@@ -1080,17 +1079,17 @@ private void versiyon_oku()
 	private void lAktar(String mODUL , ILOGGER[] ilogg)
 	{
 		if (mODUL.equals("Cari Hesap"))
-		{OBS_SIS_2025_ANA_CLASS._ICari_Loger = ilogg;}
+		{oac._ICari_Loger = ilogg;}
 		else if (mODUL.equals("Kur"))
-		{OBS_SIS_2025_ANA_CLASS._IKur_Loger = ilogg;}
+		{oac._IKur_Loger = ilogg;}
 		else if (mODUL.equals("Adres"))
-		{OBS_SIS_2025_ANA_CLASS._IAdres_Loger = ilogg;}
+		{oac._IAdres_Loger = ilogg;}
 		else if (mODUL.equals("Fatura"))
-		{OBS_SIS_2025_ANA_CLASS._IFatura_Loger = ilogg;}
+		{oac._IFatura_Loger = ilogg;}
 		else if (mODUL.equals("Sms"))
-		{OBS_SIS_2025_ANA_CLASS._ISms_Loger = ilogg;}
+		{oac._ISms_Loger = ilogg;}
 		else if (mODUL.equals("Gunluk"))
-		{OBS_SIS_2025_ANA_CLASS._IGunluk_Loger = ilogg;}
+		{oac._IGunluk_Loger = ilogg;}
 		else if (mODUL.equals("Kambiyo"))
 		{OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger = ilogg;}
 	}

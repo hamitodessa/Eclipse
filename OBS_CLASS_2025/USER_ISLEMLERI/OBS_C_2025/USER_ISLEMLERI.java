@@ -1,6 +1,7 @@
 package OBS_C_2025;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -418,6 +419,68 @@ public class USER_ISLEMLERI {
    			stmt.executeUpdate();
    			stmt.close();
    			con.close();
+     }
+	 public ResultSet alici_oku(String usr) throws ClassNotFoundException, SQLException
+     {
+    	 Class.forName("org.sqlite.JDBC");
+   	 	 con.close();
+    	 con = null;
+    	 ResultSet	rss = null;
+    	 PreparedStatement stmt = null;
+    	 con = gLB.myConnection();
+    	 String sql = "SELECT DISTINCT ALICI  " + 
+    			 		"FROM   GIDEN_RAPOR WHERE USER_NAME  LIKE '" + usr + "' ORDER BY ALICI ";
+    	 stmt = con.prepareStatement(sql);
+    	 rss = stmt.executeQuery();
+    	 return rss;
+     }
+	 public void giden_rapor_yaz(Date tar ,String konu,String rapor,String alici,String gond,String aciklama,String uname) throws ClassNotFoundException, SQLException
+     {
+    	 Class.forName("org.sqlite.JDBC");
+    	 con.close();
+		 con = null;
+		 PreparedStatement stmt = null;
+		 con = gLB.myConnection();
+   		 String sql =  "INSERT INTO GIDEN_RAPOR (USER_NAME,TARIH,KONU,RAPOR,ALICI,ACIKLAMA,GONDEREN) " +
+   						"VALUES (?,?,?,?,?,?,?)";
+    		 stmt = con.prepareStatement(sql);
+   			 stmt.setString(1,  uname);
+   			 stmt.setDate(2, (java.sql.Date) tar);
+   			 stmt.setString(3, konu);
+   			 stmt.setString(4, rapor);
+   			 stmt.setString(5, alici);
+   			 stmt.setString(6, aciklama);
+   			 stmt.setString(7, gond);
+   			 stmt.executeUpdate();
+   			 stmt.close();
+   			 con.close();
+     }
+     public void giden_rapor_sil(int id) throws ClassNotFoundException, SQLException
+     {
+    	 Class.forName("org.sqlite.JDBC");
+    	 con.close();
+		 con = null;
+		 PreparedStatement stmt = null;
+		 con = gLB.myConnection();
+		 String sql = "DELETE  FROM GIDEN_RAPOR WHERE ID  =" + id + "";
+		 stmt = con.prepareStatement(sql);
+		 stmt.executeUpdate();
+		 stmt.close();
+		 con.close();	       
+     }
+     public ResultSet giden_rapor(String usr) throws ClassNotFoundException, SQLException
+     {
+    	 Class.forName("org.sqlite.JDBC");
+   	 	 con.close();
+    	 con = null;
+    	 ResultSet	rss = null;
+    	 PreparedStatement stmt = null;
+    	 con = gLB.myConnection();
+    	 String sql = "SELECT ID,TARIH ,KONU ,RAPOR, ALICI ,GONDEREN, ACIKLAMA ,USER_NAME AS [USER] " + 
+    			 		"FROM   GIDEN_RAPOR WHERE USER_NAME  LIKE '" + usr + "' ORDER BY TARIH ";
+    	 stmt = con.prepareStatement(sql);
+    	 rss = stmt.executeQuery();
+    	 return rss;
      }
 
 }

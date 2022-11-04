@@ -2661,18 +2661,18 @@ public class OBS_MAIN extends JFrame {
 		if (pencere.equals("DEKONT")) internalFrame  = new DEKONT();
 		else if (pencere.equals("EKSTRE")) internalFrame  = new EKSTRE();
 		else if (pencere.equals("HESAP GIRISI")) internalFrame  = new H_PLANI();
-		//else if (pencere.equals("TOPLU GIRIS")) internalFrame  = new DISTAN_AKTAR();
-		//else if (pencere.equals("CARI MIZAN")) internalFrame  = new MIZAN();
-		//else if (pencere.equals("DOVIZE CEVIRME")) internalFrame  = new DVZ_CEVIRME();
-		//else if (pencere.equals("CARI OZEL MIZAN")) internalFrame  = new OZEL_MIZAN();
-		//else if (pencere.equals("HESAP BAK")) internalFrame  = new HESAP_BAK();
+		else if (pencere.equals("TOPLU GIRIS")) internalFrame  = new DISTAN_AKTAR();
+		else if (pencere.equals("CARI MIZAN")) internalFrame  = new MIZAN();
+		else if (pencere.equals("DOVIZE CEVIRME")) internalFrame  = new DVZ_CEVIRME();
+		else if (pencere.equals("CARI OZEL MIZAN")) internalFrame  = new OZEL_MIZAN();
+		else if (pencere.equals("HESAP BAK")) internalFrame  = new HESAP_BAK();
 		else if (pencere.equals("CARI ARAMA")) internalFrame  = new ARAMA();
-		//else if (pencere.equals("GUNLUK TAKIP")) internalFrame  = new KASA();
-		//else if (pencere.equals("HESAP PLANI DETAY")) internalFrame  = new HESAP_PLANI_DETAY();
-		//else if (pencere.equals("GUNLUK ISLEM")) internalFrame  = new GUNLUK_ISLEM();
-		//else if (pencere.equals("ORNEK HESAP PLANI")) internalFrame  = new ORN_HSP_PLN();
-		//else if (pencere.equals("KOD DEGISTIRME")) internalFrame  = new KOD_DEGISTIRME();
-		//else if (pencere.equals("YIL SONU AKTARMA")) internalFrame  = new YIL_SONU();
+		else if (pencere.equals("GUNLUK TAKIP")) internalFrame  = new KASA();
+		else if (pencere.equals("HESAP PLANI DETAY")) internalFrame  = new HESAP_PLANI_DETAY();
+		else if (pencere.equals("GUNLUK ISLEM")) internalFrame  = new GUNLUK_ISLEM();
+		else if (pencere.equals("ORNEK HESAP PLANI")) internalFrame  = new ORN_HSP_PLN();
+		else if (pencere.equals("KOD DEGISTIRME")) internalFrame  = new KOD_DEGISTIRME();
+		else if (pencere.equals("YIL SONU AKTARMA")) internalFrame  = new YIL_SONU();
 		 //KUR
 		//else if (pencere.equals("KUR GIRIS")) internalFrame  = new KUR_GIRIS();
 		//else if (pencere.equals("KUR RAPORLAMA")) internalFrame  = new KUR_RAPORLAMA();
@@ -2725,7 +2725,7 @@ public class OBS_MAIN extends JFrame {
 		else if (pencere.equals("PARAMETRELER")) internalFrame  = new  PARAMETRELER();
 		else if (pencere.equals("E MAIL BILGILERI")) internalFrame  = new  E_MAIL_BILGILERI();
 		 //
-//		else if (pencere.equals("FIRMA ISMI DEGIS")) internalFrame  = new FIRMA_ISMI_DEGIS();
+		else if (pencere.equals("FIRMA ISMI DEGIS")) internalFrame  = new FIRMA_ISMI_DEGIS();
 //		else if (pencere.equals("E MAIL GONDERME")) internalFrame  = new E_MAIL_GONDERME();
 //		else if (pencere.equals("DEGISKENLER")) internalFrame  = new DEGISKEN_GIRIS(hangi);
 //		else if (pencere.equals("SQL SORGULAMA")) internalFrame  = new SQL_SORGULAMA(hangi);

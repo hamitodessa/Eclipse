@@ -34,7 +34,7 @@ public class GLOBAL {
     public static  String hangi_mizan = "" ;
 	
 	 //*************************************************
-public  Connection myConnection() throws SQLException
+public static  Connection myConnection() throws SQLException
     {  
         Connection conn = null;  
          try {  

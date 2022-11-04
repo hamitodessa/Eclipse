@@ -17,5 +17,9 @@
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/BUTTON_DROP/JSplitButton_1.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/DIGER/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/AUTOCOMP/swingx-core-1.6.2-AutoCompletition.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/XLXS/poi-4.1.2/poi-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/XLXS/poi-4.1.2/poi-ooxml-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/XLXS/poi-4.1.2/poi-ooxml-schemas-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/XLXS/poi-4.1.2/poi-scratchpad-4.1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -180,4 +180,34 @@ public class CARI_ACCESS {
 	{
 		return _ICari.dvz_cevirme(kcins, hesap, t1, t2, kur, islem);
 	}
+	public int coklu_cari_fisno_al (int adet) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.coklu_cari_fisno_al(adet);
+	}
+	public ResultSet gunisl(String t1,String t2) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.gunisl(t1, t2);
+	}
+	public ResultSet karton_dold(String karton) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.karton_dold(karton);
+	}
+	public ResultSet kasa_kontrol(String hesap,String t1) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.kasa_kontrol(hesap, t1);
+	}
+	public void cari_kod_degis_hesap(String t1,String t2, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		_ICari.cari_kod_degis_hesap(t1, t2);
+	}
+	public void cari_kod_degis_satirlar(String t1,String t2) throws ClassNotFoundException, SQLException
+	{
+		_ICari.cari_kod_degis_satirlar(t1, t2);
+	}
+	public ResultSet mizan(String h1 , String h2,String t1,String t2,String c1,String c2,String k1, String k2, String o1 , String o2) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.mizan(h1, h2, t1, t2, c1, c2, k1, k2, o1, o2);
+	}
 }

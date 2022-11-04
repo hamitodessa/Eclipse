@@ -63,6 +63,7 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.COKLU_GIRIS_TARIH;
 import OBS_C_2025.DoubleEditor;
@@ -73,6 +74,7 @@ import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH_CEVIR;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
@@ -1154,14 +1156,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		 DefaultTableModel model = (DefaultTableModel) tblexcell.getModel();
          int  evr_no  = 0;
          String strg  = "";
-         if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		    {
-        	 	evr_no = oac.cARI_HESAP_MSSQL.coklu_cari_fisno_al(tblexcell.getRowCount());
-		    }
-		    else
-		    {
-		    	evr_no = oac.cARI_HESAP_MYSQL.coklu_cari_fisno_al(tblexcell.getRowCount());
-		    }
+         evr_no = c_Access.coklu_cari_fisno_al(tblexcell.getRowCount());
          double asdd = 0.00 ;
          double dsa = 0.00 ;
          double dds = 0.00 ;
@@ -1190,24 +1185,17 @@ public class DISTAN_AKTAR extends JInternalFrame {
             	 strg = model.getValueAt(i, 1).toString();
              }
          	String strDate = TARIH_CEVIR. dateFormater(model.getValueAt(i , 0).toString() , "yyyy.MM.dd HH:mm:ss.sss", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
-             if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
- 		    {
-            	 oac.cARI_HESAP_MSSQL.cari_dekont_kaydet(model.getValueAt(i, 2).toString(), strDate, 
+            
+         	c_Access.cari_dekont_kaydet(model.getValueAt(i, 2).toString(), strDate, 
             			 evr_no, "",
             			 1.0, asdd, 
             			 model.getValueAt(i, 5).toString(),"", 
             			 1.0,asdd,
-            			 strg, "", GLOBAL.KULL_ADI);
- 		    }
- 		    else
- 		    {
- 		    	oac.cARI_HESAP_MYSQL.cari_dekont_kaydet(model.getValueAt(i, 2).toString(), strDate, 
-           			 evr_no, "",
-           			 1.0, asdd, 
-           			 "", model.getValueAt(i, 5).toString(), 
-           			 1.0,asdd,
-           			 strg, "", GLOBAL.KULL_ADI);
- 		    	}
+            			 strg, "", GLOBAL.KULL_ADI,
+            			 "Alacakli Hes:" + model.getValueAt(i, 2).toString() + " Tut:" + asdd +
+     	        		" Borclu Hes:" + model.getValueAt(i, 5).toString() + " Tut:" + asdd  ,
+     	        		String.valueOf(evr_no) ,
+     	        		BAGLAN_LOG.cariLogDizin);
              model.setValueAt(evr_no,i, 6);
              evr_no += 1;
              asdd = 0;

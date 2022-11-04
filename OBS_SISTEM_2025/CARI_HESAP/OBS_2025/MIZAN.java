@@ -28,6 +28,14 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import org.apache.commons.lang.StringUtils;
 
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
@@ -44,7 +52,8 @@ import javax.swing.border.LineBorder;
 
 public class MIZAN extends JInternalFrame {
 	public static JTable table;
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 
 	private static JLabel lblbakiye ;
 	private static JLabel lblalacak ;
@@ -257,22 +266,13 @@ public class MIZAN extends JInternalFrame {
 			       
 			o2 = " ORDER BY SATIRLAR.HESAP ASC " ;
 			//**************
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.cARI_HESAP_MSSQL.mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
-											TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
-											FILTRE.txticins.getText(),FILTRE.txtscins.getText() ,
-											FILTRE.txtikarton.getText(),FILTRE.txtskarton.getText() ,
-											o1 , o2);
-			}
-			else
-			{
-				rs = oac.cARI_HESAP_MYSQL.mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
-						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
-						FILTRE.txticins.getText(),FILTRE.txtscins.getText() ,
-						FILTRE.txtikarton.getText(),FILTRE.txtskarton.getText() ,
-						o1 , o2);
-			}
+			
+			rs = c_Access.mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
+					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
+					FILTRE.txticins.getText(),FILTRE.txtscins.getText() ,
+					FILTRE.txtikarton.getText(),FILTRE.txtskarton.getText() ,
+					o1 , o2);
+			
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() )
 			{  
@@ -425,15 +425,8 @@ public class MIZAN extends JInternalFrame {
 		try
 		{
 	    ResultSet	rs = null;
-	    
-	    if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-	    {
-	    	rs = oac.cARI_HESAP_MSSQL.hesap_adi_oku(kod);
-	    }
-	    else
-	    {
-	    	rs = oac.cARI_HESAP_MYSQL.hesap_adi_oku(kod);
-	    }
+	    rs = c_Access.hesap_adi_oku(kod);
+	 
 		if (!rs.isBeforeFirst() ) {  
 			sonuc = "" ;
 		} 

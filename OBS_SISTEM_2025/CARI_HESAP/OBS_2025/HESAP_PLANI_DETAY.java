@@ -16,6 +16,10 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SOLA;
 import net.proteanit.sql.DbUtils;
 import javax.swing.JSplitPane;
 import javax.swing.JPanel;
@@ -30,7 +34,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class HESAP_PLANI_DETAY extends JInternalFrame {
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+
 	private JTable table;
 	private JTextField textField;
 	/**
@@ -114,14 +120,7 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		ResultSet rs = null ;
 		try
 		{
-		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		{
-			rs = oac.cARI_HESAP_MSSQL.hsp_pln("");
-		}
-		else
-		{
-			rs = oac.cARI_HESAP_MYSQL.hsp_pln("");
-		}
+			c_Access.hsp_pln("");
 		
 		if (!rs.isBeforeFirst() ) {  
 		    return;

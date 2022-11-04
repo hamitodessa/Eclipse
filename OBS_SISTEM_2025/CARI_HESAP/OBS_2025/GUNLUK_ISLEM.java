@@ -23,6 +23,15 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH;
+import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -32,7 +41,9 @@ import java.awt.event.KeyEvent;
 
 public class GUNLUK_ISLEM extends JInternalFrame {
 	private static JTable table;
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+
 	public static JScrollPane scrollPane;
 	public static JSplitPane splitPane;
 	private static JLabel lblNewLabel_1;
@@ -164,16 +175,8 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 		{
 		long startTime = System.currentTimeMillis(); 
 		ResultSet	rs = null;
-		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		{
-			rs = oac.cARI_HESAP_MSSQL.gunisl( TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_5),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_5_1));
+		rs = c_Access.gunisl(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_5),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_5_1));
 			//rs = oac.cARI_HESAP_MSSQL.gunisl_proc( TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_5),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_5_1));
-		}
-		else
-		{
-			rs = oac.cARI_HESAP_MYSQL.gunisl( TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_5),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_5_1));
-			//rs = oac.cARI_HESAP_MYSQL.gunisl_proc( TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_5),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_5_1));
-		}
 		GRID_TEMIZLE.grid_temizle(table);
 		if (!rs.isBeforeFirst() ) {  
 			lblNewLabel_1.setText(FORMATLAMA.doub_0(0));

@@ -36,6 +36,14 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH;
 import net.proteanit.sql.DbUtils;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -49,11 +57,11 @@ public class HESAP_BAK extends JInternalFrame {
 	private JTextField textField;
 	private JLabel lblNewLabel_1 ;
 	private JLabel lblNewLabel_2_2 ;
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 
-	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -110,17 +118,17 @@ public class HESAP_BAK extends JInternalFrame {
 						if (tblhesap.getRowSorter()!=null) 
 						{
 						    row = tblhesap.getRowSorter().convertRowIndexToModel(row);
-						    tblhesap.setCursor(WAIT_CURSOR);
+						    tblhesap.setCursor(oac.WAIT_CURSOR);
 						    karton_doldur(row);
 							detay_doldur(tblhesap.getModel().getValueAt(row, 0).toString());
-							tblhesap.setCursor(DEFAULT_CURSOR);
+							tblhesap.setCursor(oac.DEFAULT_CURSOR);
 						}
 						else
 						{
-							tblhesap.setCursor(WAIT_CURSOR);
+							tblhesap.setCursor(oac.WAIT_CURSOR);
 							karton_doldur(row);
 							detay_doldur(tblhesap.getModel().getValueAt(row, 0).toString());
-							tblhesap.setCursor(DEFAULT_CURSOR);
+							tblhesap.setCursor(oac.DEFAULT_CURSOR);
 						}
 			        }
 			    }
@@ -178,9 +186,9 @@ public class HESAP_BAK extends JInternalFrame {
 		    public void valueChanged(ListSelectionEvent lse) {
 			        if (!lse.getValueIsAdjusting()) {
 			        	if (tblkarton.getSelectedRow() < 0) return ;
-			        	tblkarton.setCursor(WAIT_CURSOR);
+			        	tblkarton.setCursor(oac.WAIT_CURSOR);
 			        	detay_doldur(tblkarton.getModel().getValueAt(tblkarton.getSelectedRow(), 0).toString());
-			        	tblkarton.setCursor(DEFAULT_CURSOR);
+			        	tblkarton.setCursor(oac.DEFAULT_CURSOR);
 			        }
 			    }
 			});
@@ -334,14 +342,7 @@ public class HESAP_BAK extends JInternalFrame {
            // Cursor = System.Windows.Forms.Cursors.WaitCursor
            // RG1.Visible = False
         	ResultSet	rs = null;
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.cARI_HESAP_MSSQL.hp_pln();
-			}
-			else
-			{
-				rs = oac.cARI_HESAP_MYSQL.hp_pln();
-			}
+        	rs = c_Access.hp_pln();
 			if (!rs.isBeforeFirst() ) {  
 				GRID_TEMIZLE.grid_temizle(tbldetay);
 				GRID_TEMIZLE.grid_temizle(tblkarton);
@@ -406,14 +407,7 @@ public class HESAP_BAK extends JInternalFrame {
         try
         {
         	ResultSet	rs = null;
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.cARI_HESAP_MSSQL.karton_dold(tblhesap.getModel().getValueAt(satir, 2).toString());
-			}
-			else
-			{
-				rs = oac.cARI_HESAP_MYSQL.karton_dold(tblhesap.getModel().getValueAt(satir, 2).toString());
-			}
+        	rs = c_Access.karton_dold(tblhesap.getModel().getValueAt(satir, 2).toString());
 			GRID_TEMIZLE.grid_temizle(tblkarton);
 			if (!rs.isBeforeFirst() ) {  
 				GRID_TEMIZLE.grid_temizle(tbldetay);
@@ -465,16 +459,9 @@ public class HESAP_BAK extends JInternalFrame {
        {
    	   long startTime = System.currentTimeMillis(); 
    			ResultSet	rs = null;
-   		 getContentPane().setCursor(WAIT_CURSOR);
-   			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-   			{
-   				rs = oac.cARI_HESAP_MSSQL.ekstre(hesap,"1900.01.01", "2100.12.31");
-   			}
-   			else
-   			{
-   				rs = oac.cARI_HESAP_MYSQL.ekstre(hesap,"1900.01.01", "2100.12.31");
-   			}
-   		 getContentPane().setCursor(DEFAULT_CURSOR);
+   		 getContentPane().setCursor(oac.WAIT_CURSOR);
+   		 rs = c_Access.ekstre(hesap,"1900.01.01", "2100.12.31");
+   		 getContentPane().setCursor(oac.DEFAULT_CURSOR);
    		GRID_TEMIZLE.grid_temizle(tbldetay);
    			if (!rs.isBeforeFirst() ) {  
    			

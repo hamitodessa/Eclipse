@@ -16,6 +16,15 @@ import javax.swing.JTextField;
 import javax.swing.JSplitPane;
 import com.toedter.calendar.JDateChooser;
 
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.ImageIcon;
@@ -63,9 +72,9 @@ public class KASA extends JInternalFrame {
 	private static JLabel lblNewLabel_5_2_1  ;
 	
 	private static JLabel lblNewLabel_3 ;
-	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+
 	double double_1 = 0 ;
     double double_2 = 0 ;
     double double_3 = 0 ;
@@ -130,11 +139,11 @@ public class KASA extends JInternalFrame {
 					try {
 						hsp = new HESAP_PLN();
 						hsp.show();
-						textField.setText( GLOBAL.hsp_hsp_kodu);
-						getContentPane().setCursor(WAIT_CURSOR);
+						textField.setText( oac.hsp_hsp_kodu);
+						getContentPane().setCursor(oac.WAIT_CURSOR);
 						isimoku_ekstre();
 						yenile() ;
-						getContentPane().setCursor(DEFAULT_CURSOR);
+						getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
 					} catch (SQLException e1) {
@@ -147,10 +156,10 @@ public class KASA extends JInternalFrame {
         textField .getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
 			    try {
-			    	getContentPane().setCursor(WAIT_CURSOR);
+			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 					isimoku_ekstre();
 					yenile() ;
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				} catch (ClassNotFoundException e1) {
 					e1.printStackTrace();
 				} catch (SQLException e1) {
@@ -159,10 +168,10 @@ public class KASA extends JInternalFrame {
 			  }
 			  public void removeUpdate(DocumentEvent e) {
 			    try {
-			    	getContentPane().setCursor(WAIT_CURSOR);
+			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 					isimoku_ekstre();
 					yenile() ;
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				} catch (ClassNotFoundException e1) {
 					e1.printStackTrace();
 				} catch (SQLException e1) {
@@ -171,10 +180,10 @@ public class KASA extends JInternalFrame {
 			  }
 			  public void insertUpdate(DocumentEvent e) {
 			    try {
-			    	getContentPane().setCursor(WAIT_CURSOR);
+			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 					isimoku_ekstre();
 					yenile() ;
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				} catch (ClassNotFoundException e1) {
 					e1.printStackTrace();
 				} catch (SQLException e1) {
@@ -207,9 +216,9 @@ public class KASA extends JInternalFrame {
         	        @Override
         	        public void propertyChange(PropertyChangeEvent e) {
         	      	if ("date".equals(e.getPropertyName())) {
-       	        	getContentPane().setCursor(WAIT_CURSOR);
+       	        	getContentPane().setCursor(oac.WAIT_CURSOR);
   								yenile();
-  					getContentPane().setCursor(DEFAULT_CURSOR);
+  					getContentPane().setCursor(oac.DEFAULT_CURSOR);
         	       	}
      	        }
         	    });
@@ -415,14 +424,7 @@ public class KASA extends JInternalFrame {
 	}
 	 public void isimoku_ekstre() throws ClassNotFoundException, SQLException {
 		    ResultSet	rs = null;
-		    if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		    {
-		    	rs = oac.cARI_HESAP_MSSQL.hesap_adi_oku(textField.getText());
-		    }
-		    else
-		    {
-		    	rs = oac.cARI_HESAP_MYSQL.hesap_adi_oku(textField.getText());
-		    }
+		    rs = c_Access.hesap_adi_oku(textField.getText());
 			if (!rs.isBeforeFirst() ) {  
 				lblNewLabel_1.setText("");
 				lblNewLabel_6.setText("");
@@ -442,14 +444,7 @@ public class KASA extends JInternalFrame {
 		 {
 			long startTime = System.currentTimeMillis(); 
 		   
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.cARI_HESAP_MSSQL.kasa_kontrol(textField.getText(), TARIH_CEVIR.tarih_geri_kasa(dateChooser));
-			}
-			else
-			{
-				rs = oac.cARI_HESAP_MYSQL.kasa_kontrol(textField.getText(), TARIH_CEVIR.tarih_geri_kasa(dateChooser));
-			}
+			rs = c_Access.kasa_kontrol(textField.getText(), TARIH_CEVIR.tarih_geri_kasa(dateChooser));
 			
 			if (!rs.isBeforeFirst() ) {  
    				GRID_TEMIZLE.grid_temizle(table_1);
@@ -525,14 +520,7 @@ public class KASA extends JInternalFrame {
 		myDate = TARIH_CEVIR.tarih_geri_SQL(dateChooser);
 		myDate1 = TARIH_CEVIR.tarih_geri_SQL(dateChooser); 
 		rs = null;
-		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		{
-			rs = oac.cARI_HESAP_MSSQL.kasa_mizan(textField.getText(), myDate, myDate1);
-		}
-		else
-		{
-			rs = oac.cARI_HESAP_MYSQL.kasa_mizan(textField.getText(), myDate, myDate1);
-		}
+		rs = c_Access.kasa_mizan(textField.getText(), myDate, myDate1);
 		if (!rs.isBeforeFirst() ) {  
 			double_1= 0;
 			double_2 = 0;
@@ -552,14 +540,7 @@ public class KASA extends JInternalFrame {
 		    myDate = TARIH_CEVIR.tarih_geri_SQL(dateChooser);
 			myDate1 = TARIH_CEVIR.chooser_string_eksi1(dateChooser)  ;
 			rs = null;
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.cARI_HESAP_MSSQL.kasa_mizan(textField.getText(), "1900.01.01", myDate1);
-			}
-			else
-			{
-				rs = oac.cARI_HESAP_MYSQL.kasa_mizan(textField.getText(), "1900.01.01", myDate1);
-			}
+			rs = c_Access.kasa_mizan(textField.getText(), "1900.01.01", myDate1);
 			if (!rs.isBeforeFirst() ) {  
 				double_3 = 0;
 				double_4 =0;

@@ -9,6 +9,11 @@ import java.awt.BorderLayout;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.JTextFieldLimit;
+
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -30,9 +35,9 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 	private static JTextField textField_1;
 	private static JLabel lblNewLabel ;
 	private static JLabel lblNewLabel_1 ;
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+
 	private JTextField textField_2;
 	/**
 	 * Launch the application.
@@ -86,7 +91,7 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 					try {
 						hsp = new HESAP_PLN();
 						hsp.show();
-						textField_2.setText( GLOBAL.hsp_hsp_kodu);
+						textField_2.setText( oac.hsp_hsp_kodu);
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
 					} catch (SQLException e1) {
@@ -102,24 +107,24 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 				lblNewLabel.setText(CARI_ISIM_OKU.isim(textField_2.getText())[0]);
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 					lblNewLabel.setText(CARI_ISIM_OKU.isim(textField_2.getText())[0]);
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 		
 					lblNewLabel.setText(CARI_ISIM_OKU.isim(textField_2.getText())[0]);
 				
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				
 			}
 			
@@ -143,7 +148,7 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 					try {
 						hsp = new HESAP_PLN();
 						hsp.show();
-						textField_1.setText( GLOBAL.hsp_hsp_kodu);
+						textField_1.setText( oac.hsp_hsp_kodu);
 						//getContentPane().setCursor(WAIT_CURSOR);
 						//lblNewLabel_1.setText(isimoku(textField_1.getText()));
 						//getContentPane().setCursor(DEFAULT_CURSOR);
@@ -165,26 +170,26 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 			
 					lblNewLabel_1.setText(CARI_ISIM_OKU.isim(textField_1.getText())[0]);
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 
 					lblNewLabel_1.setText(CARI_ISIM_OKU.isim(textField_1.getText())[0]);
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 					lblNewLabel_1.setText(CARI_ISIM_OKU.isim(textField_1.getText())[0]);
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		
 		});
@@ -217,25 +222,21 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 		 int g = JOptionPane.showOptionDialog( null,  "Hesap Kodlari Degisecek...?", "Cari Dosyasindan Kod Degisme ",   JOptionPane.YES_NO_OPTION,
 	    	   		JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
    	        if(g != 0 ) { return;	}	
-    	        getContentPane().setCursor(WAIT_CURSOR);
+    	        getContentPane().setCursor(oac.WAIT_CURSOR);
 	        try
 	        {
-	        	if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-	 		    {
-	            	 oac.cARI_HESAP_MSSQL.cari_kod_degis_hesap(textField_2.getText(), textField_1.getText());
-	            	 oac.cARI_HESAP_MSSQL.cari_kod_degis_satirlar(textField_2.getText(), textField_1.getText());		
-	 		    }
-	 		    else
-	 		    {
-	 		    	oac.cARI_HESAP_MYSQL.cari_kod_degis_hesap(textField_2.getText(), textField_1.getText());
-	 		    	oac.cARI_HESAP_MYSQL.cari_kod_degis_satirlar(textField_2.getText(), textField_1.getText());
- 		    	}
-		            getContentPane().setCursor(DEFAULT_CURSOR);
+	        	c_Access.cari_kod_degis_hesap(textField_2.getText(), textField_1.getText()
+	        			,"Kod Degistirme   Eski Kod:" + textField_2.getText()+
+		        		" Yeni Kod:"+textField_1.getText()  ,
+		        		"" ,
+		        		BAGLAN_LOG.cariLogDizin);
+	        	c_Access.cari_kod_degis_satirlar(textField_2.getText(), textField_1.getText());
+		            getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		            JOptionPane.showMessageDialog(null, "Islem Basari ile tamamlandi...." );
 		        }
 		        catch ( Exception ex)
 		        {
-		        	getContentPane().setCursor(DEFAULT_CURSOR);
+		        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		            JOptionPane.showMessageDialog(null, ex.getMessage() ); 
 		        }
 	}

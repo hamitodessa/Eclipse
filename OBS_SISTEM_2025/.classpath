@@ -6,6 +6,8 @@
 	<classpathentry kind="src" path="USER_ISLEMLERI"/>
 	<classpathentry kind="src" path="CARI_HESAP"/>
 	<classpathentry kind="src" path="FILTRE"/>
+	<classpathentry kind="src" path="PRINTER"/>
+	<classpathentry kind="src" path="RPT_DOSYALAR"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/OBS_CLASS_2025"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
@@ -26,5 +28,15 @@
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/commons-configuration-1.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/commons-lang-2.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/CrystalCommon2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/CrystalReportsRuntime.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/cvom.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/DatabaseConnectors.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/icu4j.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/JDBInterface.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/jrcerom.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/logging.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/pfjgraphics.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/sap.com~tc~sec~csi.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

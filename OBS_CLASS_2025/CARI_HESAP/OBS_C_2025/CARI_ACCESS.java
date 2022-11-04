@@ -250,4 +250,8 @@ public class CARI_ACCESS {
 	{
 		_ICari.yilsonu_cari_dekont_kaydet(bhes, tar, evrak, bcins, bkur, borc, alhes, acins, alkur, alacak, izahat, kod, user);
 	}
+	public ResultSet ekstre_sqlite() throws ClassNotFoundException, SQLException
+	{
+		return _ICari.ekstre_sqlite();
+	}
 }

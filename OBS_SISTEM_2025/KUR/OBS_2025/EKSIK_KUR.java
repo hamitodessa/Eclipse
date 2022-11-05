@@ -366,14 +366,7 @@ public class EKSIK_KUR extends JInternalFrame {
 		        try
 		{
 		      	ResultSet rs ;
-		       	if (CONNECTION.kurdizinbilgi.han_sql.equals("MS SQL"))
-			    {
-				rs = oac.kUR_MSSQL.kur_oku(tarih,cins);
-			    }
-				 else
-				 {
-					 rs = oac.kUR_MYSQL.kur_oku(tarih,cins);
-				 }
+				rs = k_Access.kur_oku(tarih,cins);
 				if (!rs.isBeforeFirst() ) {  
 					kur =0.00 ;
 				} 
@@ -425,17 +418,8 @@ public class EKSIK_KUR extends JInternalFrame {
 	{
         try
         {
-     
-        if (CONNECTION.kurdizinbilgi.han_sql.equals("MS SQL"))
-		    {
-			oac.kUR_MSSQL.kur_sil(tarih,cins);
-			oac.kUR_MSSQL.kur_kayit(tarih,cins ,	ma,ms,0,0,0,0);
-		    }
-		 else
-		 {
-			oac.kUR_MYSQL.kur_sil(tarih,cins);
-			oac.kUR_MYSQL.kur_kayit(tarih,cins ,	ma,ms,0,0,0,0);
-		 }
+ 			k_Access.kur_sil(tarih,cins);
+			k_Access.kur_kayit(tarih,cins ,	ma,ms,0,0,0,0);
         }
         catch (Exception ex)
         {

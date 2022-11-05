@@ -360,7 +360,7 @@ public class USER_ISLEMLERI {
 		 stmt = con.prepareStatement(sql);
 		 stmt.executeUpdate();
 		 stmt.close();
-		 con.close();	       
+		       
 	}
 	public ResultSet user_ekleme_bak() throws ClassNotFoundException, SQLException
 	{

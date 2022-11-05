@@ -29,10 +29,19 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.KUR_ACCESS;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TABLO_RENDERER;
+
 
 public class KUR_GRAFIK extends JInternalFrame {
 
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static KUR_ACCESS k_Access = new KUR_ACCESS(oac._IKur , OBS_SIS_2025_ANA_CLASS._IKur_Loger);
+
 	private static JTable table;
 	public static JScrollPane scrollPane ;
 	/**

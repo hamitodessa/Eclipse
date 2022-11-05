@@ -35,5 +35,21 @@ public class KUR_ACCESS {
 	{
 		return _IKur.kur_oku(tar, kur);
 	}
+	public void kur_sil (String tar,String kur) throws ClassNotFoundException, SQLException 
+	{
+		_IKur.kur_oku(tar, kur);
+	}
+	public void kur_kayit(String tar,String kur ,double  ma ,double ms ,double sa ,double ss ,double ba,double bs ) throws ClassNotFoundException, SQLException
+	{
+		_IKur.kur_kayit(tar, kur, ma, ms, sa, ss, ba, bs);
+	}
+	public ResultSet  kur_liste(String tar) throws ClassNotFoundException, SQLException
+	{
+		return _IKur.kur_liste(tar);
+	}
+	public ResultSet kur_rapor(String c1 ,String c2 ,String t1 ,String t2 ) throws ClassNotFoundException, SQLException
+	{
+		return _IKur.kur_rapor(c1, c2, t1, t2);
+	}
 
 }

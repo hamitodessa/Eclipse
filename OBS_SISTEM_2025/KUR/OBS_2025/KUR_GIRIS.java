@@ -14,6 +14,13 @@ import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
 
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.KUR_ACCESS;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JButton;
@@ -53,7 +60,9 @@ import javax.swing.JSeparator;
 
 public class KUR_GIRIS extends JInternalFrame {
 	private static JTable table;
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static KUR_ACCESS k_Access = new KUR_ACCESS(oac._IKur , OBS_SIS_2025_ANA_CLASS._IKur_Loger);
+
 	private static  JDateChooser dateChooser ;
 	private static  JComboBox<String> comboBox ;
 	
@@ -68,8 +77,6 @@ public class KUR_GIRIS extends JInternalFrame {
 	DecimalFormat df = new DecimalFormat(); // And here..
 	NumberFormatter dnff = new NumberFormatter(df);
 	
-	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 
 	/**
 	 * Launch the application.
@@ -122,10 +129,10 @@ public class KUR_GIRIS extends JInternalFrame {
 		comboBox.setForeground(new Color(0, 0, 128));
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
  	        	kur_liste();
  	        	kur_oku();
- 	        	getContentPane().setCursor(DEFAULT_CURSOR);
+ 	        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -153,10 +160,10 @@ public class KUR_GIRIS extends JInternalFrame {
         	        @Override
         	        public void propertyChange(PropertyChangeEvent e) {
         	        	if ("date".equals(e.getPropertyName())) {
-        	        	getContentPane().setCursor(WAIT_CURSOR);
+        	        	getContentPane().setCursor(oac.WAIT_CURSOR);
          	        	kur_liste();
          	        	kur_oku();
-         	        	getContentPane().setCursor(DEFAULT_CURSOR);
+         	        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
         	        	}
      	        }
         	    });
@@ -165,9 +172,9 @@ public class KUR_GIRIS extends JInternalFrame {
 		JButton btnNewButton = new JButton("Merkez");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 				merkez();
-				getContentPane().setCursor(DEFAULT_CURSOR);			
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);			
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -280,14 +287,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		try
 		{
 			 ResultSet rs ;
-			 if (CONNECTION.kurdizinbilgi.han_sql.equals("MS SQL"))
-		     {
-				 rs = oac.kUR_MSSQL.kur_liste(TARIH_CEVIR.tarih_geri_SQL(dateChooser));
-		     }
-			 else
-			 {
-				 rs = oac.kUR_MYSQL.kur_liste(TARIH_CEVIR.tarih_geri_SQL(dateChooser));
-			 }
+						 rs = k_Access.kur_liste(TARIH_CEVIR.tarih_geri_SQL(dateChooser));
 			if (!rs.isBeforeFirst() ) {  
 				GRID_TEMIZLE.grid_temizle(table);
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + 0 + " saniye");
@@ -351,18 +351,12 @@ public class KUR_GIRIS extends JInternalFrame {
 		ResultSet rs ;
 		try
 		{
-		 if (CONNECTION.kurdizinbilgi.han_sql.equals("MS SQL"))
-		    {
-			rs = oac.kUR_MSSQL.kur_oku(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()));
-		    }
-		 else
-		 {
-			 rs = oac.kUR_MYSQL.kur_oku(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()));
-		 }
-		
+		 
+			rs = k_Access.kur_oku(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()));
+	
 		if (!rs.isBeforeFirst() ) {  
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + 0 + " saniye");
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			sifirla ();
 			return ;
 		} 
@@ -406,22 +400,12 @@ public class KUR_GIRIS extends JInternalFrame {
         try
         {
         	long startTime = System.currentTimeMillis(); 
-        if (CONNECTION.kurdizinbilgi.han_sql.equals("MS SQL"))
-		    {
-			oac.kUR_MSSQL.kur_sil(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()));
-			oac.kUR_MSSQL.kur_kayit(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()) ,
+        
+			k_Access.kur_sil(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()));
+			k_Access.kur_kayit(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()) ,
 					Double.parseDouble(formattedTextField.getText ()),Double.parseDouble(formattedTextField_1.getText ()),
 					Double.parseDouble(formattedTextField_2.getText ()),Double.parseDouble(formattedTextField_1_1.getText ()),
 					Double.parseDouble(formattedTextField_3.getText ()),Double.parseDouble(formattedTextField_1_2.getText ()));
-		    }
-		 else
-		 {
-			oac.kUR_MYSQL.kur_sil(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()));
-			oac.kUR_MYSQL.kur_kayit(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()) ,
-					Double.parseDouble(formattedTextField.getText ()),Double.parseDouble(formattedTextField_1.getText ()),
-					Double.parseDouble(formattedTextField_2.getText ()),Double.parseDouble(formattedTextField_1_1.getText ()),
-					Double.parseDouble(formattedTextField_3.getText ()),Double.parseDouble(formattedTextField_1_2.getText ()));
-		 }
              kur_liste();
     		 long endTime = System.currentTimeMillis();
     		 long estimatedTime = endTime - startTime; 
@@ -437,15 +421,8 @@ public class KUR_GIRIS extends JInternalFrame {
 	{
         try
         {
-       	 if (CONNECTION.kurdizinbilgi.han_sql.equals("MS SQL"))
- 		    {
- 			oac.kUR_MSSQL.kur_sil(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()));
- 			
- 		    }
- 		 else
- 		 {
- 			oac.kUR_MYSQL.kur_sil(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()));
- 		 }
+       	
+ 			k_Access.kur_sil(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()));
             kur_liste();
             sifirla();
         }

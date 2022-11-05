@@ -19,32 +19,32 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/ELIF/Apache_common/commons-net-3.7/commons-net-3.7.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/DIGER/rs2xml.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/BUTTON_DROP/JSplitButton_1.2.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/DIGER/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/AUTOCOMP/swingx-core-1.6.2-AutoCompletition.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/XLXS/poi-4.1.2/poi-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/XLXS/poi-4.1.2/poi-ooxml-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/XLXS/poi-4.1.2/poi-ooxml-schemas-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/XLXS/poi-4.1.2/poi-scratchpad-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/Apache_common/commons-lang3-3.12.0/commons-lang3-3.12.0.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/commons-configuration-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/commons-lang-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-net-3.7.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/rs2xml.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/JSplitButton_1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/swingx-core-1.6.2-AutoCompletition.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/poi-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/poi-ooxml-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/poi-ooxml-schemas-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/poi-scratchpad-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-lang3-3.12.0.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-configuration-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-lang-2.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/commons-logging.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/CrystalCommon2.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/CrystalReportsRuntime.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/cvom.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/DatabaseConnectors.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/icu4j.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/JDBInterface.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/jrcerom.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/logging.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/pfjgraphics.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/sap.com~tc~sec~csi.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/ice/activation.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/ice/javamail-1.4.7/mail.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/DIGER/jsoup-1.13.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/CrystalCommon2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/CrystalReportsRuntime.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/cvom.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/DatabaseConnectors.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/icu4j.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/JDBInterface.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/jrcerom.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/logging.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/pfjgraphics.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/sap.com~tc~sec~csi.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/activation.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/mail.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/jsoup-1.15.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

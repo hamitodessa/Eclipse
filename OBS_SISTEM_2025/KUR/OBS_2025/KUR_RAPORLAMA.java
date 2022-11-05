@@ -15,13 +15,24 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.KUR_ACCESS;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH;
+import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KUR_RAPORLAMA extends JInternalFrame {
 
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static KUR_ACCESS k_Access = new KUR_ACCESS(oac._IKur , OBS_SIS_2025_ANA_CLASS._IKur_Loger);
+
 	private static JTable table;
 	public static JScrollPane scrollPane ;
 	/**
@@ -89,16 +100,8 @@ public class KUR_RAPORLAMA extends JInternalFrame {
 		{
 		ResultSet rs ;
 		long startTime = System.currentTimeMillis(); 
-		 if (CONNECTION.kurdizinbilgi.han_sql.equals("MS SQL"))
-	     {
-			 rs = oac.kUR_MSSQL.kur_rapor(FILTRE.txtkc1.getText(), FILTRE.txtkc2.getText(),
+				 rs = k_Access.kur_rapor(FILTRE.txtkc1.getText(), FILTRE.txtkc2.getText(),
 					 TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_11), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_11_1));
-	     }
-		 else
-		 {
-			 rs = oac.kUR_MYSQL.kur_rapor(FILTRE.txtkc1.getText(), FILTRE.txtkc2.getText(),
-					 TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_11), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_11_1));
-		 }
 		if (!rs.isBeforeFirst() ) {  
 			GRID_TEMIZLE.grid_temizle(table);
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + 0 + " saniye");

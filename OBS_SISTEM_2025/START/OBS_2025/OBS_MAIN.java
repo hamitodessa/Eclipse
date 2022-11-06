@@ -1495,10 +1495,10 @@ public class OBS_MAIN extends JFrame {
 		JLabel lblNewLabel_15 = new JLabel("          ");
 		toolBar_5.add(lblNewLabel_15);
 //****************************************************************************
-		JSplitButton splitButton = new JSplitButton("Degiskenler");
-		splitButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-radar-plot-30.png")));
-		splitButton.setSplitWidth(200);
-		toolBar_5.add(splitButton);
+		//JSplitButton splitButton = new JSplitButton("Degiskenler");
+		//splitButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-radar-plot-30.png")));
+		//splitButton.setSplitWidth(200);
+		//toolBar_5.add(splitButton);
 //*****************************************************************************
 		btnNewButton_70 = new JButton("");
 		btnNewButton_70.setToolTipText("Evrak Formatlama");

@@ -1,5 +1,6 @@
 package OBS_C_2025;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SMS_ACCESS {
@@ -28,5 +29,17 @@ public class SMS_ACCESS {
 		_ISms.sMS_SIFIR_S(server, ins, kull, sifre, kod);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
+	}
+	public boolean kod_ismi(String kodu) throws ClassNotFoundException, SQLException
+	{
+		return _ISms.kod_ismi(kodu);
+	}
+	public ResultSet mail_giris_bak() throws ClassNotFoundException, SQLException
+	{
+		return _ISms.mail_giris_bak();
+	}
+	public ResultSet mail_grup_bak() throws ClassNotFoundException, SQLException
+	{
+		return _ISms.mail_grup_bak();
 	}
 }

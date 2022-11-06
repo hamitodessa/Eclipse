@@ -13,6 +13,7 @@
 	<classpathentry kind="src" path="GIDEN_RAPOR"/>
 	<classpathentry kind="src" path="KAMBIYO"/>
 	<classpathentry kind="src" path="ADRES"/>
+	<classpathentry kind="src" path="SMS_MAIL"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/OBS_CLASS_2025"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>

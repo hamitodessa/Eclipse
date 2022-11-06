@@ -28,11 +28,17 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SOLA;
 import net.proteanit.sql.DbUtils;
 
 public class ADRESLER extends JInternalFrame {
 
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	private JTable table;
 	private JTextField textField;
 	/**
@@ -119,15 +125,7 @@ private void hisset()
 	ResultSet rs = null ;
 	try
 	{
-	if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-	{
-		 rs = oac.aDRES_MSSQL.adres("M_Kodu","") ;
-	}
-	else
-	{
-		rs = oac.aDRES_MYSQL.adres("M_Kodu","");
-	}
-	
+		 rs = a_Access.adres("M_Kodu","") ;
 	if (!rs.isBeforeFirst() ) {  
 	    return;
 	}

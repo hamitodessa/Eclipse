@@ -51,6 +51,20 @@ import org.apache.commons.lang.StringUtils;
 
 import com.toedter.calendar.JDateChooser;
 
+import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.COKLU_GIRIS_TARIH;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.KAMBIYO_ACCESS;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH_CEVIR;
+
 public class CEK_CIKIS extends JInternalFrame {
 
 	private static JTable table;
@@ -68,9 +82,10 @@ public class CEK_CIKIS extends JInternalFrame {
 	public static JLabel lblNewLabel_12;
 	private JLabel lblNewLabel_7;
 	
-	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
+	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
+
 	/**
 	 * Launch the application.
 	 */
@@ -261,14 +276,9 @@ public class CEK_CIKIS extends JInternalFrame {
 				{
 					try {
 					int sno = 0 ;
-					if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		             sno  = oac.kAMBIYO_MSSQL.kam_bordro_no_al("CEK_C") ;
-		    		}
-		            else
-		            {
-		             sno  = oac.kAMBIYO_MYSQL.kam_bordro_no_al("CEK_C") ;
-		            }
+				
+		             sno  = ka_Access.kam_bordro_no_al("CEK_C") ;
+		    	
 					int kj = 0 ;
 					kj = 10 - Integer.toString(sno).length() ;
 			        String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
@@ -287,19 +297,19 @@ public class CEK_CIKIS extends JInternalFrame {
 		textField.setDocument(new JTextFieldLimit(10));
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
-			    	getContentPane().setCursor(WAIT_CURSOR);
+			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 					kontrol();
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			  public void removeUpdate(DocumentEvent e) {
-			    	getContentPane().setCursor(WAIT_CURSOR);
+			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 					kontrol();
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			  public void insertUpdate(DocumentEvent e) {
-			    	getContentPane().setCursor(WAIT_CURSOR);
+			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 					kontrol();
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		  }
 			});
 		panel_2.add(textField);
@@ -316,7 +326,7 @@ public class CEK_CIKIS extends JInternalFrame {
 					try {
 						hsp = new HESAP_PLN();
 						hsp.show();
-						textField_1.setText( GLOBAL.hsp_hsp_kodu);
+						textField_1.setText( oac.hsp_hsp_kodu);
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
 					} catch (SQLException e1) {
@@ -330,19 +340,19 @@ public class CEK_CIKIS extends JInternalFrame {
 		textField_1.setDocument(new JTextFieldLimit(12));
         textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
-			    	getContentPane().setCursor(WAIT_CURSOR);
+			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 			    	lblNewLabel_2.setText(CARI_ISIM_OKU.isim(textField_1.getText())[0]);
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			  public void removeUpdate(DocumentEvent e) {
-			    	getContentPane().setCursor(WAIT_CURSOR);
+			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 			    	lblNewLabel_2.setText(CARI_ISIM_OKU.isim(textField_1.getText())[0]);
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			  public void insertUpdate(DocumentEvent e) {
-			    	getContentPane().setCursor(WAIT_CURSOR);
+			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 			    	lblNewLabel_2.setText(CARI_ISIM_OKU.isim(textField_1.getText())[0]);
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		  }
 			});
         
@@ -363,20 +373,11 @@ public class CEK_CIKIS extends JInternalFrame {
 	            String str_2 ="";
 	            String sts ="" ;
 	            //**************** EVRAK NO OKU ************
-	            getContentPane().setCursor(WAIT_CURSOR);
-	            if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-	    		{
-	            
-	             sts  = oac.kAMBIYO_MSSQL.kam_son_bordro_no_al("CEK","Cikis_Bordro") ;
-	    		}
-	            else
-	            {
-	             sts  = oac.kAMBIYO_MYSQL.kam_son_bordro_no_al("CEK","Cikis_Bordro") ;
-	            }
-	           
-	            if ( sts.equals(""))
+	            getContentPane().setCursor(oac.WAIT_CURSOR);
+	             sts  = ka_Access.kam_son_bordro_no_al("CEK","Cikis_Bordro") ;
+	    	    if ( sts.equals(""))
 	            	{
-	            	getContentPane().setCursor(DEFAULT_CURSOR);
+	            	getContentPane().setCursor(oac.DEFAULT_CURSOR);
 	    			JOptionPane.showMessageDialog(null,   "Dosyada Hic Kayit Yok....."); 	
 	            	return ;
 	            	}
@@ -389,11 +390,11 @@ public class CEK_CIKIS extends JInternalFrame {
 	            int_1 = 0;
 	            //********************************************
 	           
-	            getContentPane().setCursor(DEFAULT_CURSOR);
+	            getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			catch (Exception ex)
 			{
-				 getContentPane().setCursor(DEFAULT_CURSOR);
+				 getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				 JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 			 }
 			}
@@ -479,19 +480,19 @@ public class CEK_CIKIS extends JInternalFrame {
 		textField_2.setBounds(39, 24, 44, 20);
 		textField_2.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
-			    	getContentPane().setCursor(WAIT_CURSOR);
+			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 					ort();
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			  public void removeUpdate(DocumentEvent e) {
-			    	getContentPane().setCursor(WAIT_CURSOR);
+			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 					ort();
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			  public void insertUpdate(DocumentEvent e) {
-			    	getContentPane().setCursor(WAIT_CURSOR);
+			    	getContentPane().setCursor(oac.WAIT_CURSOR);
 					ort();
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		  }
 			});
 		
@@ -621,16 +622,9 @@ public class CEK_CIKIS extends JInternalFrame {
 		 }
 		try 
 		{
-			getContentPane().setCursor(WAIT_CURSOR);
+			getContentPane().setCursor(oac.WAIT_CURSOR);
 			ResultSet rs = null ;
-			if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-    	    {
-    	    	rs= oac.kAMBIYO_MSSQL.kam_bordno("CEK",textField.getText(),"Cikis_Bordro");
-    	    }
-    	    else
-    	    {
-    	    	rs= oac.kAMBIYO_MYSQL.kam_bordno("CEK",textField.getText(),"Cikis_Bordro");
-    	    }
+    	    	rs= ka_Access.kam_bordno("CEK",textField.getText(),"Cikis_Bordro");
 			int kayit_sayi = 0 ;
        		 if (!rs.isBeforeFirst() ) {  
        			 textField_1.setText("");
@@ -671,19 +665,11 @@ public class CEK_CIKIS extends JInternalFrame {
       			
            // RG1.CurrentRow = RG1.Rows(ELIF.KA_DTS.Tables(0).Rows.Count)
            //'************ACIKLAMA OKU ***********************************************************
-   			 if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-   	    	    {
-   				 textField_5.setText(oac.kAMBIYO_MSSQL.kam_aciklama_oku("CEK","1",textField.getText(),"C"));
-   				 textField_6.setText(oac.kAMBIYO_MSSQL.kam_aciklama_oku("CEK","2",textField.getText(),"C"));
-   	    	    }
-   	    	    else
-   	    	    {
-   	    	    textField_5.setText(oac.kAMBIYO_MYSQL.kam_aciklama_oku("CEK","1",textField.getText(),"C"));
-   				 textField_6.setText(oac.kAMBIYO_MYSQL.kam_aciklama_oku("CEK","2",textField.getText(),"C"));
-   	    	    }
+   				 textField_5.setText(ka_Access.kam_aciklama_oku("CEK","1",textField.getText(),"C"));
+   				 textField_6.setText(ka_Access.kam_aciklama_oku("CEK","2",textField.getText(),"C"));
       		 }
             topla();
-       		getContentPane().setCursor(WAIT_CURSOR);
+       		getContentPane().setCursor(oac.WAIT_CURSOR);
        		satir_tamamla(Integer.parseInt(GLOBAL.setting_oku("KAM_CEK_CIK").toString()) - kayit_sayi );
 		}
      catch (Exception ex)
@@ -699,44 +685,19 @@ public class CEK_CIKIS extends JInternalFrame {
 		if (mdll.getRowCount() == 0 ) return ;	
 	        try
 	        {
-	        	if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-	    	    {
-    	    	 oac.kAMBIYO_MSSQL.bordro_cikis_sil(textField.getText(),"CEK");
-	    	    }
-	    	    else
-	    	    {
-    	    	 oac.kAMBIYO_MYSQL.bordro_cikis_sil(textField.getText(),"CEK");
-	    	    }
+    	    	 ka_Access.bordro_cikis_sil(textField.getText(),"CEK");
 	            for (int i = 0 ; i <= mdll.getRowCount() - 1 ; i ++)
 	            {
 	            	if (! mdll.getValueAt(i,0).toString().equals(""))
 	            	{
-	            		if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-			    	    {
-			    	   	 oac.kAMBIYO_MSSQL.bordro_cikis_yaz("CEK","Cek_No",mdll.getValueAt(i,0).toString(),
+			    	   	 ka_Access.bordro_cikis_yaz("CEK","Cek_No",mdll.getValueAt(i,0).toString(),
 			    	     textField_1.getText(),textField.getText(),TARIH_CEVIR.tarih_geri(dateChooser),
 			    	     comboBox.getSelectedItem().toString()	 );
-			    	    }
-			    	    else
-			    	    {
-		    	    	 oac.kAMBIYO_MYSQL.bordro_cikis_yaz("CEK","Cek_No",mdll.getValueAt(i,0).toString(),
-    	    			 textField_1.getText(),textField.getText(),TARIH_CEVIR.tarih_geri(dateChooser),
-    	    			 comboBox.getSelectedItem().toString()	 );
-			    	    }
 	            	}
 	            }
-	            if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-	    	    {
-	    			oac.kAMBIYO_MSSQL.kam_aciklama_sil("CEK", textField.getText(), "C");
-	    			oac.kAMBIYO_MSSQL.kam_aciklama_yaz("CEK", 1, textField.getText(), textField_5.getText(), "C");
-	    			oac.kAMBIYO_MSSQL.kam_aciklama_yaz("CEK", 2, textField.getText(), textField_6.getText(), "C");
-	    	    }
-	    		else
-	    		{
-	    			oac.kAMBIYO_MYSQL.kam_aciklama_sil("CEK", textField.getText(), "C");
-	    			oac.kAMBIYO_MYSQL.kam_aciklama_yaz("CEK", 1, textField.getText(), textField_5.getText(), "C");
-	    			oac.kAMBIYO_MYSQL.kam_aciklama_yaz("CEK", 2, textField.getText(), textField_6.getText(), "C");	
-	    		}
+	    			ka_Access.kam_aciklama_sil("CEK", textField.getText(), "C");
+	    			ka_Access.kam_aciklama_yaz("CEK", 1, textField.getText(), textField_5.getText(), "C");
+	    			ka_Access.kam_aciklama_yaz("CEK", 2, textField.getText(), textField_6.getText(), "C");
 	            textField.setText("");
 	    		 long endTime = System.currentTimeMillis();
 	    		 long estimatedTime = endTime - startTime; 
@@ -768,29 +729,14 @@ public class CEK_CIKIS extends JInternalFrame {
         }
         ResultSet rs ;
         //*******************************************************************************
-        if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-	    {
-	    	rs = oac.cARI_HESAP_MSSQL.hesap_adi_oku(alh);
-	    }
-	    else
-	    {
-	    	rs = oac.cARI_HESAP_MYSQL.hesap_adi_oku(alh);
-	    }
+	    	rs = c_Access.hesap_adi_oku(alh);
 		if (!rs.isBeforeFirst() ) {  
 			 JOptionPane.showMessageDialog(null,  "Bu numarada hesaba rastlanmadi!!!!"); 
 			 return ;
 		} 
        //********************************************************************************
 		rs= null;
-		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-	    {
-	    	rs = oac.cARI_HESAP_MSSQL.hesap_adi_oku(textField_1.getText());
-	    }
-	    else
-	    {
-	    	rs = oac.cARI_HESAP_MYSQL.hesap_adi_oku(textField_1.getText());
-	    }
-		
+	    	rs = c_Access.hesap_adi_oku(textField_1.getText());
 		if (!rs.isBeforeFirst() ) {  
 			 JOptionPane.showMessageDialog(null,  "Bu numarada hesaba rastlanmadi!!!!"); 
 			 return;
@@ -811,14 +757,7 @@ public class CEK_CIKIS extends JInternalFrame {
             	if (!  model.getValueAt(i , 0).toString().equals("")) 
                 {
             		int eno =0;
-            		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-            		{
-            			eno = oac.cARI_HESAP_MSSQL.cari_fisno_al();
-            		}
-            		else
-            		{
-            			eno = oac.cARI_HESAP_MYSQL.cari_fisno_al();
-            		}
+            			eno = c_Access.cari_fisno_al();
             		 String vade = "";
           	        if (model.getValueAt(i , 1).toString().length() >  10)
           	      	{
@@ -831,9 +770,7 @@ public class CEK_CIKIS extends JInternalFrame {
           	      	 }
             		
                     str_4 = textField.getText()+  "'Bordro ile " + model.getValueAt(i , 0).toString() + " Nolu " + vade + " Vadeli �ek" ;
-                    if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-        	        {
-        	        	oac.cARI_HESAP_MSSQL.cari_dekont_kaydet(textField_1.getText(),
+        	        	c_Access.cari_dekont_kaydet(textField_1.getText(),
         	        			TARIH_CEVIR.tarih_geri(dateChooser),
         	        		eno,
         	        		"",1.00,
@@ -841,20 +778,10 @@ public class CEK_CIKIS extends JInternalFrame {
         	        		 alh,
         	        		"",1.00,
         	        		Double.parseDouble( model.getValueAt(i, 8).toString()),
-        	        		str_4,"" , GLOBAL.KULL_ADI);
-        	        }
-          	        else
-        	        {
-        	        	oac.cARI_HESAP_MYSQL.cari_dekont_kaydet(textField_1.getText(),
-        	        			TARIH_CEVIR.tarih_geri(dateChooser),
-        	        		eno,
-        	        		"",1.00,
-        	        		 Double.parseDouble( model.getValueAt(i, 8).toString()),
-        	        		 alh,
-        	        		"",1.00,
-        	        		Double.parseDouble( model.getValueAt(i, 8).toString()),
-        	        		str_4,"" , GLOBAL.KULL_ADI);
-        	        }
+        	        		str_4,"" , GLOBAL.KULL_ADI,
+        	        		"Cek Cikis   Alacakli Hes:" + alh + " Tut:" + Double.parseDouble( model.getValueAt(i, 8).toString())  ,
+        	        		textField.getText() ,
+        	        		BAGLAN_LOG.cariLogDizin);
                 }
             }
          Thread.currentThread().isInterrupted();
@@ -885,16 +812,8 @@ public class CEK_CIKIS extends JInternalFrame {
      try 
      {
          long startTime = System.currentTimeMillis(); 
-       	if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-   	    {
-  	    	 oac.kAMBIYO_MSSQL.bordro_cikis_sil(textField.getText(),"CEK");
-   	    	 oac.kAMBIYO_MSSQL.kam_aciklama_sil("CEK", textField.getText(), "C");
-   	    }
-   	    else
-   	    {
-  	    	 oac.kAMBIYO_MYSQL.bordro_cikis_sil(textField.getText(),"CEK");
-   	    	 oac.kAMBIYO_MYSQL.kam_aciklama_sil("CEK", textField.getText(), "C");
-   	    }
+  	    	 ka_Access.bordro_cikis_sil(textField.getText(),"CEK");
+   	    	 ka_Access.kam_aciklama_sil("CEK", textField.getText(), "C");
       	textField.setText("");
   		 long endTime = System.currentTimeMillis();
   		 long estimatedTime = endTime - startTime; 
@@ -913,14 +832,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		try
 		{
 		ResultSet rs = null ;
-		if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-	    {
-	    	rs= oac.kAMBIYO_MSSQL.cek_kontrol(cekno);
-	    }
-	    else
-	    {
-	    	rs= oac.kAMBIYO_MYSQL.cek_kontrol(cekno);
-	    }
+	    	rs= ka_Access.cek_kontrol(cekno);
 		 if (!rs.isBeforeFirst() ) {  
 			 result = false;
 			} 
@@ -1031,7 +943,7 @@ public class CEK_CIKIS extends JInternalFrame {
         	 lblNewLabel_7.setText(FORMATLAMA.doub_2(0.00));
         	 textField_3.setText("");
        	 return;}
-         getContentPane().setCursor(WAIT_CURSOR);
+         getContentPane().setCursor(oac.WAIT_CURSOR);
          double tfaiz ,gun,faiz,orgun,toppara,double_0 ;
          tfaiz = 0;
          gun = 0;
@@ -1068,11 +980,11 @@ public class CEK_CIKIS extends JInternalFrame {
                  lblNewLabel_7.setText(FORMATLAMA.doub_2(tfaiz));
              }
          }
-         getContentPane().setCursor(DEFAULT_CURSOR);
+         getContentPane().setCursor(oac.DEFAULT_CURSOR);
 	}
     catch (Exception ex)
 	{
-   	 getContentPane().setCursor(DEFAULT_CURSOR);
+   	 getContentPane().setCursor(oac.DEFAULT_CURSOR);
    	 JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 	}
 }

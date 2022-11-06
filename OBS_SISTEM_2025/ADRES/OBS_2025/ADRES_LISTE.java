@@ -34,6 +34,10 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
+import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.SOLA;
 import net.proteanit.sql.DbUtils;
 import javax.swing.ListSelectionModel;
 
@@ -41,7 +45,8 @@ public class ADRES_LISTE extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS() ;
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	private JTable table;
 	private JTextField textField;
 
@@ -98,7 +103,7 @@ public class ADRES_LISTE extends JDialog {
 	});
 	textField.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			GLOBAL.hsp_hsp_kodu = 	table.getModel().getValueAt(table.convertRowIndexToModel(0), 0).toString() ;
+			oac.hsp_hsp_kodu = 	table.getModel().getValueAt(table.convertRowIndexToModel(0), 0).toString() ;
 			dispose();
 		}
 	});
@@ -121,7 +126,7 @@ public class ADRES_LISTE extends JDialog {
 	JButton btnNewButton = new JButton("");
 	btnNewButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			GLOBAL.hsp_hsp_kodu = "";
+			oac.hsp_hsp_kodu = "";
 			dispose();
 		}
 	});
@@ -150,12 +155,12 @@ public class ADRES_LISTE extends JDialog {
 			int row = table.getSelectedRow();
 			if (table.getRowSorter()!=null) {
 			    row = table.getRowSorter().convertRowIndexToModel(row);
-			    GLOBAL.hsp_hsp_kodu = 	table.getModel().getValueAt(row, 0).toString() ;
+			    oac.hsp_hsp_kodu = 	table.getModel().getValueAt(row, 0).toString() ;
 				dispose();
 			}
 			else
 			{
-				GLOBAL.hsp_hsp_kodu = 	table.getModel().getValueAt(table.getSelectedRow(), 0).toString() ;
+				oac.hsp_hsp_kodu = 	table.getModel().getValueAt(table.getSelectedRow(), 0).toString() ;
 				dispose();
 			}
 			}
@@ -169,12 +174,12 @@ public class ADRES_LISTE extends JDialog {
 				int row = table.getSelectedRow();
 				if (table.getRowSorter()!=null) {
 				    row = table.getRowSorter().convertRowIndexToModel(row);
-				    GLOBAL.hsp_hsp_kodu = 	table.getModel().getValueAt(row, 0).toString() ;
+				    oac.hsp_hsp_kodu = 	table.getModel().getValueAt(row, 0).toString() ;
 					dispose();
 				}
 				else
 				{
-					GLOBAL.hsp_hsp_kodu = 	table.getModel().getValueAt(table.getSelectedRow(), 0).toString() ;
+					oac.hsp_hsp_kodu = 	table.getModel().getValueAt(table.getSelectedRow(), 0).toString() ;
 					dispose();
 				}
 			}
@@ -182,7 +187,7 @@ public class ADRES_LISTE extends JDialog {
 	});
 	
 	scrollPane.setViewportView(table);
-	GLOBAL.hsp_hsp_kodu = "" ;
+	oac.hsp_hsp_kodu = "" ;
 	hisset("");
 }
 	public void hisset(String sirala) 
@@ -190,14 +195,7 @@ public class ADRES_LISTE extends JDialog {
 		try {
 	         long startTime = System.currentTimeMillis(); 
 	ResultSet	rs = null;
-	if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-	{
-		rs =  oac.aDRES_MSSQL.adr_hpl();
-	}
-	else
-	{
-		rs =  oac.aDRES_MYSQL.adr_hpl();
-	}
+		rs =  a_Access.adr_hpl();
 	if (!rs.isBeforeFirst() ) {  
 	    return;
 	}

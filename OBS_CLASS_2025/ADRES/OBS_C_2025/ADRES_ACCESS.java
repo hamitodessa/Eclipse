@@ -62,4 +62,8 @@ public class ADRES_ACCESS {
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
+	public ResultSet adr_hpl() throws ClassNotFoundException, SQLException
+	{
+		return _IAdres.adr_hpl();
+	}
 }

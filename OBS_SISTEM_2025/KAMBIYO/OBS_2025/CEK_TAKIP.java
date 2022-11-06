@@ -19,6 +19,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import com.toedter.calendar.JDateChooser;
+
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.KAMBIYO_ACCESS;
+import OBS_C_2025.TARIH_CEVIR;
+
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -51,7 +57,8 @@ public class CEK_TAKIP extends JInternalFrame {
 	
 	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
 
 	/**
 	 * Launch the application.
@@ -285,15 +292,7 @@ public class CEK_TAKIP extends JInternalFrame {
 		{
 		ResultSet rs = null ;
 		getContentPane().setCursor(WAIT_CURSOR);
-		if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-	    {
-	    	rs= oac.kAMBIYO_MSSQL.cek_kontrol(textField.getText());
-	    }
-	    else
-	    {
-	    	rs= oac.kAMBIYO_MYSQL.cek_kontrol(textField.getText());
-	    }
-		
+	    	rs= ka_Access.cek_kontrol(textField.getText());
 		 if (!rs.isBeforeFirst() ) {  
 			 getContentPane().setCursor(DEFAULT_CURSOR);
 			temizle();
@@ -380,14 +379,7 @@ public class CEK_TAKIP extends JInternalFrame {
 	   			durum= "";
 			    }
 	       
-        	if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-    	    {
-   			oac.kAMBIYO_MSSQL.kam_durum_yaz(textField.getText(), "cek", "Cek_No", durum,  TARIH_CEVIR.tarih_geri(dateChooser_3));
-    	    }
-    		else
-    		{
-   			oac.kAMBIYO_MSSQL.kam_durum_yaz(textField.getText(), "cek", "Cek_No", durum,  TARIH_CEVIR.tarih_geri(dateChooser_3));
-    		}
+   			ka_Access.kam_durum_yaz(textField.getText(), "cek", "Cek_No", durum,  TARIH_CEVIR.tarih_geri(dateChooser_3));
             textField.setText("");
             textField.requestFocus();
            

@@ -15,13 +15,23 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.KAMBIYO_ACCESS;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH;
+import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class CEK_RAPOR extends JInternalFrame {
 	private static JTable table;
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
 	public static JScrollPane scrollPane ;
 	/**
 	 * Launch the application.
@@ -90,9 +100,7 @@ public class CEK_RAPOR extends JInternalFrame {
 		try {
 		ResultSet rs = null ;
 		long startTime = System.currentTimeMillis(); 
-		if (CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL"))
-	    {
-			rs = oac.kAMBIYO_MSSQL.cek_rapor(FILTRE.txtcn1.getText(), FILTRE.txtcn2.getText(),
+			rs = ka_Access.cek_rapor(FILTRE.txtcn1.getText(), FILTRE.txtcn2.getText(),
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_6), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_6_1),
 					FILTRE.txtgb1.getText(), FILTRE.txtgb2.getText(),
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_7), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_8), 
@@ -105,23 +113,6 @@ public class CEK_RAPOR extends JInternalFrame {
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_6_2), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_6_2_1),
 					FILTRE.cmbg.getItemAt(FILTRE.cmbg.getSelectedIndex()).toString().equals("Bos") ? "" :FILTRE.cmbg.getItemAt(FILTRE.cmbg.getSelectedIndex()).toString() + "%",
 					FILTRE.cmbc.getItemAt(FILTRE.cmbc.getSelectedIndex()).toString().equals("Bos") ? "" :FILTRE.cmbc.getItemAt(FILTRE.cmbc.getSelectedIndex()).toString() + "%");
-	    }
-		else
-		{
-			rs = oac.kAMBIYO_MYSQL.cek_rapor(FILTRE.txtcn1.getText(), FILTRE.txtcn2.getText(),
-					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_6), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_6_1),
-					FILTRE.txtgb1.getText(), FILTRE.txtgb2.getText(),
-					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_7), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_8), 
-					FILTRE.txtcb1.getText(), FILTRE.txtcb2.getText(),
-					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_9), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_10),
-					FILTRE.txtgh1.getText(), FILTRE.txtgh2.getText(),
-					FILTRE.txtch1.getText(), FILTRE.txtch2.getText(),
-					FILTRE.txtc1.getText(), FILTRE.txtc2.getText(),
-					FILTRE.txtd1.getText(), FILTRE.txtd2.getText(),
-					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_6_2), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_6_2_1),
-					FILTRE.cmbg.getItemAt(FILTRE.cmbg.getSelectedIndex()).toString().equals("Bos") ? "" :FILTRE.cmbg.getItemAt(FILTRE.cmbg.getSelectedIndex()).toString() + "%",
-					FILTRE.cmbc.getItemAt(FILTRE.cmbc.getSelectedIndex()).toString().equals("Bos") ? "" :FILTRE.cmbc.getItemAt(FILTRE.cmbc.getSelectedIndex()).toString() + "%");
-		}
 		if (!rs.isBeforeFirst() ) {  
 		    return;
 		} 

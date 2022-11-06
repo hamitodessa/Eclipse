@@ -1495,10 +1495,10 @@ public class OBS_MAIN extends JFrame {
 		JLabel lblNewLabel_15 = new JLabel("          ");
 		toolBar_5.add(lblNewLabel_15);
 //****************************************************************************
-		//JSplitButton splitButton = new JSplitButton("Degiskenler");
-		//splitButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-radar-plot-30.png")));
-		//splitButton.setSplitWidth(200);
-		//toolBar_5.add(splitButton);
+		JSplitButton splitButton = new JSplitButton("Degiskenler");
+		splitButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-radar-plot-30.png")));
+		splitButton.setSplitWidth(200);
+		toolBar_5.add(splitButton);
 //*****************************************************************************
 		btnNewButton_70 = new JButton("");
 		btnNewButton_70.setToolTipText("Evrak Formatlama");
@@ -1769,15 +1769,15 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "PARAMETRELER")	PARAMETRELER.kayit();
 				else if (sonuc == "DEKONT")	DEKONT.kaydet();
 				else if (sonuc == "HESAP GIRISI")	H_PLANI.kayit();
-				//else if (sonuc == "KUR GIRIS")	KUR_GIRIS.kayit();
-				//else if (sonuc == "EKSIK KUR")	EKSIK_KUR.kaydet();
-				//else if (sonuc == "TOPLU GIRIS")	DISTAN_AKTAR.kaydet_carii();
-				//else if (sonuc == "YIL SONU AKTARMA")	YIL_SONU.kaydet();
+				else if (sonuc == "KUR GIRIS")	KUR_GIRIS.kayit();
+				else if (sonuc == "EKSIK KUR")	EKSIK_KUR.kaydet();
+				else if (sonuc == "TOPLU GIRIS")	DISTAN_AKTAR.kaydet_carii();
+				else if (sonuc == "YIL SONU AKTARMA")	YIL_SONU.kaydet();
 				else if (sonuc == "FIRMA ISMI DEGISTIRME")	FIRMA_ISMI_DEGIS.kaydet();
-				//else if (sonuc == "CEK GIRIS") 	CEK_GIRIS.kaydet();
-				//else if (sonuc == "CEK CIKIS") 	CEK_CIKIS.kaydet();
-				//else if (sonuc == "CEK TAKIP")	CEK_TAKIP.kaydet();
-				//else if (sonuc == "ADRES GIRISI")	ADRES_GIRIS.kayit();
+				else if (sonuc == "CEK GIRIS") 	CEK_GIRIS.kaydet();
+				else if (sonuc == "CEK CIKIS") 	CEK_CIKIS.kaydet();
+				else if (sonuc == "CEK TAKIP")	CEK_TAKIP.kaydet();
+				else if (sonuc == "ADRES GIRISI")	ADRES_GIRIS.kayit();
 				//else if (sonuc == "MAIL")	MAIL.giris_kayit();
 				//else if (sonuc == "SMS") 	SMS.giris_kayit();
 				//else if (sonuc == "DEGISKENLER")	DEGISKEN_GIRIS.kayit();
@@ -1811,10 +1811,10 @@ public class OBS_MAIN extends JFrame {
                	else if (sonuc == "KULLANICI DETAY EKLEME") USER_DETAY_EKLEME.sil();
             	else if (sonuc == "DEKONT")	DEKONT.yoket();
             	else if (sonuc == "HESAP GIRISI")	H_PLANI.sil();
-				//else if (sonuc == "KUR GIRIS")	KUR_GIRIS.sil();
-				//else if (sonuc == "CEK GIRIS") 	CEK_GIRIS.sil();
-				//else if (sonuc == "CEK CIKIS") 	CEK_CIKIS.sil();
-				//else if (sonuc == "ADRES GIRISI")	ADRES_GIRIS.sil();
+				else if (sonuc == "KUR GIRIS")	KUR_GIRIS.sil();
+				else if (sonuc == "CEK GIRIS") 	CEK_GIRIS.sil();
+				else if (sonuc == "CEK CIKIS") 	CEK_CIKIS.sil();
+				else if (sonuc == "ADRES GIRISI")	ADRES_GIRIS.sil();
 				//else if (sonuc == "MAIL")	MAIL.sil();
 				//else if (sonuc == "SMS")	SMS.sil();
 				//else if (sonuc == "URUN KARTI")	URUN_KART.sil();
@@ -1826,7 +1826,7 @@ public class OBS_MAIN extends JFrame {
 				//else if (sonuc == "IRSALIYE		- ALIS")	IRSALIYE.irs_sil();
 				//else if (sonuc == "GIDECEGI YER")	GIDECEGI_YER.sil();
 				//else if (sonuc == "ZAYI")	ZAYI.zai_sil();
-				//else if (sonuc == "GIDEN RAPORLAR")	GID_RAPOR.sil();
+				else if (sonuc == "GIDEN RAPORLAR")	GID_RAPOR.sil();
 				//else if (sonuc == "DEGISKENLER")	DEGISKEN_GIRIS.sil();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
@@ -1840,7 +1840,7 @@ public class OBS_MAIN extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GuiUtil.setWaitCursor(toolBar,true);
 				String sonuc = pencere_activmi();
-				//if (sonuc == "BOS KUR")	BOS_KUR.hisset();
+				if (sonuc == "BOS KUR")	BOS_KUR.hisset();
             	//else if (sonuc == "STOK BOS KUR")	FAT_BOS_KUR.hisset();
             	//else if (sonuc == "SQL SORGULAMA")	SQL_SORGULAMA.hisset();
             	GuiUtil.setWaitCursor(toolBar,false);
@@ -2017,10 +2017,10 @@ public class OBS_MAIN extends JFrame {
            	{
 				InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/HSP_PLN.rpt");
 				Files.copy(is, Paths.get("C:\\OBS_SISTEM\\HSP_PLN.rpt"),StandardCopyOption.REPLACE_EXISTING);
-				//internalFrame = new PRINT_YAPMA();
-				//desktopPane.add(internalFrame);
-				//internalFrame.setVisible(true);
-				//PRINT_YAPMA.hisset("hsppln","");
+				internalFrame = new PRINT_YAPMA();
+				desktopPane.add(internalFrame);
+				internalFrame.setVisible(true);
+				PRINT_YAPMA.hisset("hsppln","");
            	}
 			else if (sonuc == "EKSTRE")
        		{
@@ -2032,7 +2032,7 @@ public class OBS_MAIN extends JFrame {
 				  }
 				InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/C_EKSTRE.rpt");
 				Files.copy(is, Paths.get("C:\\OBS_SISTEM\\EKSTRE.rpt"),StandardCopyOption.REPLACE_EXISTING);
-				//internalFrame = new PRINT_YAPMA();
+				internalFrame = new PRINT_YAPMA();
 				if (! TARIH_CEVIR.tarih_geri(FILTRE.dateChooser).equals("1900.01.01"))
 				{
 					//*****
@@ -2044,10 +2044,10 @@ public class OBS_MAIN extends JFrame {
 					 GuiUtil.setWaitCursor(tabbedPane,true); 
 					GuiUtil.setWaitCursor(EKSTRE.pane,true);
 					EKSTRE.sqlite_yaz();
-				//	desktopPane.add(internalFrame);
-				//	internalFrame.setVisible(true);
+					desktopPane.add(internalFrame);
+					internalFrame.setVisible(true);
 					
-					//PRINT_YAPMA.hisset("ekstre","aratarih");
+					PRINT_YAPMA.hisset("ekstre","aratarih");
 					 GuiUtil.setWaitCursor(toolBar,false);
 					 GuiUtil.setWaitCursor(EKSTRE.pane,false);
 					 GuiUtil.setWaitCursor(tabbedPane,false); 
@@ -2066,79 +2066,79 @@ public class OBS_MAIN extends JFrame {
 				}
 				else
 				{
-				//	desktopPane.add(internalFrame);
-				//	internalFrame.setVisible(true);
+					desktopPane.add(internalFrame);
+					internalFrame.setVisible(true);
 					
-					//PRINT_YAPMA.hisset("ekstre","normal");
+				PRINT_YAPMA.hisset("ekstre","normal");
 				}
        		}
 			else if (sonuc == "CARI MIZAN")
        		{
-				  //if ( MIZAN.table.getRowCount() == 0 ) 
-				//	  {
-				//	 GuiUtil.setWaitCursor(toolBar,false);
-				//	 GuiUtil.setWaitCursor(tabbedPane,false); 
-				//	  return ;
-				//	  }
+				  if ( MIZAN.table.getRowCount() == 0 ) 
+				  {
+					 GuiUtil.setWaitCursor(toolBar,false);
+					 GuiUtil.setWaitCursor(tabbedPane,false); 
+					  return ;
+					  }
 					InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/MIZAN.rpt");
 					Files.copy(is, Paths.get("C:\\OBS_SISTEM\\MIZAN.rpt"),StandardCopyOption.REPLACE_EXISTING);
-				//	internalFrame = new PRINT_YAPMA();
-				//	desktopPane.add(internalFrame);
-				//	internalFrame.setVisible(true);
+					internalFrame = new PRINT_YAPMA();
+					desktopPane.add(internalFrame);
+					internalFrame.setVisible(true);
 				
-				//	PRINT_YAPMA.hisset("mizan","");
+					PRINT_YAPMA.hisset("mizan","");
                		}
 			else if (sonuc == "CARI OZEL MIZAN")
        		{
-			//	if ( OZEL_MIZAN.table.getRowCount() == 0 ) 
-			//	  {
-			//	 GuiUtil.setWaitCursor(toolBar,false);
-			//	 GuiUtil.setWaitCursor(tabbedPane,false); 
-			//	  return ;
-			//	  }
+				if ( OZEL_MIZAN.table.getRowCount() == 0 ) 
+				  {
+				 GuiUtil.setWaitCursor(toolBar,false);
+				 GuiUtil.setWaitCursor(tabbedPane,false); 
+				  return ;
+				  }
 					InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/OZEL_MIZAN.rpt");
 					Files.copy(is, Paths.get("C:\\OBS_SISTEM\\OZEL_MIZAN.rpt"),StandardCopyOption.REPLACE_EXISTING);
-			//		internalFrame = new PRINT_YAPMA();
-			//		desktopPane.add(internalFrame);
-			//		internalFrame.setVisible(true);
+					internalFrame = new PRINT_YAPMA();
+					desktopPane.add(internalFrame);
+					internalFrame.setVisible(true);
 				
-			//		PRINT_YAPMA.hisset("ozel_mizan","");
+					PRINT_YAPMA.hisset("ozel_mizan","");
                		}
 			else if (sonuc == "DOVIZE CEVIRME")
                		{
-			//	if ( DVZ_CEVIRME.table.getRowCount() == 0 ) 
-			//	  {
-			//	 GuiUtil.setWaitCursor(toolBar,false);
-			//	 GuiUtil.setWaitCursor(tabbedPane,false); 
-			//	  return ;
-			//	  }
+				if ( DVZ_CEVIRME.table.getRowCount() == 0 ) 
+				  {
+				 GuiUtil.setWaitCursor(toolBar,false);
+				 GuiUtil.setWaitCursor(tabbedPane,false); 
+				  return ;
+				  }
 					InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/DVZ_CEVIRME.rpt");
 					Files.copy(is, Paths.get("C:\\OBS_SISTEM\\DVZ_CEVIRME.rpt"),StandardCopyOption.REPLACE_EXISTING);
-			//		internalFrame = new PRINT_YAPMA();
-			//		desktopPane.add(internalFrame);
-			//		internalFrame.setVisible(true);
+					internalFrame = new PRINT_YAPMA();
+					desktopPane.add(internalFrame);
+					internalFrame.setVisible(true);
 			
-			//		PRINT_YAPMA.hisset("dvzcev","");
+					PRINT_YAPMA.hisset("dvzcev","");
                		}
 			else if (sonuc == "CEK GIRIS")
                 	{
 					InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/BORDRO_CEK.rpt");
 					Files.copy(is, Paths.get("C:\\OBS_SISTEM\\BORDRO.rpt"),StandardCopyOption.REPLACE_EXISTING);
-			//		internalFrame = new PRINT_YAPMA();
-			//		desktopPane.add(internalFrame);
-			//		internalFrame.setVisible(true);
+					internalFrame = new PRINT_YAPMA();
+					desktopPane.add(internalFrame);
+					internalFrame.setVisible(true);
 			
-			//		PRINT_YAPMA.hisset("cekg",CEK_GIRIS.textField.getText());
+					PRINT_YAPMA.hisset("cekg",CEK_GIRIS.textField.getText());
                 	}
 			else if (sonuc == "CEK CIKIS")
                 	{
 					InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/BORDRO_CEK.rpt");
 					Files.copy(is, Paths.get("C:\\OBS_SISTEM\\BORDRO.rpt"),StandardCopyOption.REPLACE_EXISTING);
-			//		internalFrame = new PRINT_YAPMA();
-			//		desktopPane.add(internalFrame);
-			//		internalFrame.setVisible(true);
+					internalFrame = new PRINT_YAPMA();
+					desktopPane.add(internalFrame);
+					internalFrame.setVisible(true);
 			
-			//		PRINT_YAPMA.hisset("cekc",CEK_CIKIS.textField.getText());
+					PRINT_YAPMA.hisset("cekc",CEK_CIKIS.textField.getText());
                 	}
 			else if (sonuc == "STOK_RAPOR")
         	{
@@ -2304,9 +2304,9 @@ public class OBS_MAIN extends JFrame {
 				if (sonuc == "KULLANICI EKLEME")	USER_EKLEME.yeni();
                 else if (sonuc == "KULLANICI DETAY EKLEME")	USER_DETAY_EKLEME.yeni();
             	else if (sonuc == "HESAP GIRISI")	H_PLANI.yeni();
-			//	else if (sonuc == "CEK GIRIS")	CEK_GIRIS.satir_ilave();
-			//	else if (sonuc == "CEK CIKIS")	CEK_CIKIS.satir_ilave();
-			//	else if (sonuc == "ADRES GIRISI")	ADRES_GIRIS.yeni();
+				else if (sonuc == "CEK GIRIS")	CEK_GIRIS.satir_ilave();
+				else if (sonuc == "CEK CIKIS")	CEK_CIKIS.satir_ilave();
+				else if (sonuc == "ADRES GIRISI")	ADRES_GIRIS.yeni();
 			//	else if (sonuc == "MAIL")	MAIL.yeni();
 			//	else if (sonuc == "SMS")	SMS.yeni();
 			//	else if (sonuc == "DEGISKENLER")	DEGISKEN_GIRIS.yeni();
@@ -2325,9 +2325,9 @@ public class OBS_MAIN extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GuiUtil.setWaitCursor(toolBar,true);
 				String sonuc = pencere_activmi();
-			//	if (sonuc == "TOPLU GIRIS")	DISTAN_AKTAR.satir_sil();
-            //    	else if (sonuc == "CEK GIRIS")	CEK_GIRIS.satir_sil();
-			//	else if (sonuc == "CEK CIKIS")	CEK_CIKIS.satir_sil();
+				if (sonuc == "TOPLU GIRIS")	DISTAN_AKTAR.satir_sil();
+                	else if (sonuc == "CEK GIRIS")	CEK_GIRIS.satir_sil();
+				else if (sonuc == "CEK CIKIS")	CEK_CIKIS.satir_sil();
 			//	else if (sonuc == "MAIL")	MAIL.satir_sil();
 			//	else if (sonuc == "SMS")	SMS.satir_sil();
 			//	else if (sonuc == "COKLU IMALAT")	COKLU_IMALAT.satir_sil();
@@ -2346,9 +2346,9 @@ public class OBS_MAIN extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GuiUtil.setWaitCursor(toolBar,true);
 				String sonuc = pencere_activmi();
-			//	if (sonuc == "CEK GIRIS")	CEK_GIRIS.cari_kaydet();
-             //   	else if (sonuc == "CEK CIKIS")	CEK_CIKIS.cari_kaydet();
-            //	else if (sonuc =="FATURA		- SATIS" || sonuc =="FATURA		- ALIS" )	FATURA.cari_kaydet();
+				if (sonuc == "CEK GIRIS")	CEK_GIRIS.cari_kaydet();
+                	else if (sonuc == "CEK CIKIS")	CEK_CIKIS.cari_kaydet();
+            	//else if (sonuc =="FATURA		- SATIS" || sonuc =="FATURA		- ALIS" )	FATURA.cari_kaydet();
             	GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});
@@ -2674,13 +2674,13 @@ public class OBS_MAIN extends JFrame {
 		else if (pencere.equals("KOD DEGISTIRME")) internalFrame  = new KOD_DEGISTIRME();
 		else if (pencere.equals("YIL SONU AKTARMA")) internalFrame  = new YIL_SONU();
 		 //KUR
-		//else if (pencere.equals("KUR GIRIS")) internalFrame  = new KUR_GIRIS();
-		//else if (pencere.equals("KUR RAPORLAMA")) internalFrame  = new KUR_RAPORLAMA();
+		else if (pencere.equals("KUR GIRIS")) internalFrame  = new KUR_GIRIS();
+		else if (pencere.equals("KUR RAPORLAMA")) internalFrame  = new KUR_RAPORLAMA();
 		//else if (pencere.equals("KUR GRAFIK")) internalFrame  = new KUR_GRAFIK();
-		//else if (pencere.equals("EKSIK_KUR")) internalFrame  = new EKSIK_KUR();
+		else if (pencere.equals("EKSIK_KUR")) internalFrame  = new EKSIK_KUR();
 		 //ADRES
-		//else if (pencere.equals("ADRES GIRISI")) internalFrame  = new ADRES_GIRIS();
-		//else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();
+		else if (pencere.equals("ADRES GIRISI")) internalFrame  = new ADRES_GIRIS();
+		else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();
 		 //STOK
 		//else if (pencere.equals("URUN KARTI")) internalFrame  = new URUN_KART();
 		//else if (pencere.equals("IMALAT")) internalFrame  = new IMALAT();
@@ -2708,15 +2708,15 @@ public class OBS_MAIN extends JFrame {
 //		else if (pencere.equals( "DEGISKEN YENILEME")) internalFrame  = new DEGISKEN_DEGIS();
 //		else if (pencere.equals( "STOK YIL SONU")) internalFrame  = new STK_YIL_SONU();
 		 //KAMBIYO
-//		else if (pencere.equals("CEK GIRIS")) internalFrame  = new CEK_GIRIS();
-//		else if (pencere.equals("CEK CIKIS")) internalFrame  = new CEK_CIKIS();
-//		else if (pencere.equals("CEK RAPOR")) internalFrame  = new CEK_RAPOR();
-//		else if (pencere.equals("CEK TAKIP")) internalFrame  = new CEK_TAKIP();
+		else if (pencere.equals("CEK GIRIS")) internalFrame  = new CEK_GIRIS();
+		else if (pencere.equals("CEK CIKIS")) internalFrame  = new CEK_CIKIS();
+		else if (pencere.equals("CEK RAPOR")) internalFrame  = new CEK_RAPOR();
+		else if (pencere.equals("CEK TAKIP")) internalFrame  = new CEK_TAKIP();
 //		 //SMS-MAIL
 //		else if (pencere.equals("SMS")) internalFrame  = new SMS();
 //		else if (pencere.equals("MAIL")) internalFrame  = new MAIL();
 //		 //GENEL
-//		else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
+		else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 //		else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();
 		 //AYARLAR
 		else if (pencere.equals("KULLANICI EKLEME")) internalFrame  = new  USER_EKLEME();
@@ -2726,7 +2726,7 @@ public class OBS_MAIN extends JFrame {
 		else if (pencere.equals("E MAIL BILGILERI")) internalFrame  = new  E_MAIL_BILGILERI();
 		 //
 		else if (pencere.equals("FIRMA ISMI DEGIS")) internalFrame  = new FIRMA_ISMI_DEGIS();
-//		else if (pencere.equals("E MAIL GONDERME")) internalFrame  = new E_MAIL_GONDERME();
+		else if (pencere.equals("E MAIL GONDERME")) internalFrame  = new E_MAIL_GONDERME();
 //		else if (pencere.equals("DEGISKENLER")) internalFrame  = new DEGISKEN_GIRIS(hangi);
 //		else if (pencere.equals("SQL SORGULAMA")) internalFrame  = new SQL_SORGULAMA(hangi);
 //		else if (pencere.equals("HAKKINDA")) internalFrame  = new HAKKINDA();

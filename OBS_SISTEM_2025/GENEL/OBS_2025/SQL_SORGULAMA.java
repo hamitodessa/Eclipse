@@ -17,6 +17,10 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.table.JTableHeader;
 
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.STOK_ACCESS;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JScrollPane;
@@ -25,7 +29,9 @@ import javax.swing.JTextArea;
 
 public class SQL_SORGULAMA extends JInternalFrame {
 	
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 	private static JTable table;
 	private static String modul = "" ;
 	private static JTextArea textArea ;
@@ -103,14 +109,9 @@ public class SQL_SORGULAMA extends JInternalFrame {
 		if (modul.equals("cari"))
 		{
 			
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.cARI_HESAP_MSSQL.sql_sorgu(textArea.getText());
-			}
-			else
-			{
-				rs = oac.cARI_HESAP_MYSQL.sql_sorgu(textArea.getText());
-			}
+			
+				rs = c_Access.sql_sorgu(textArea.getText());
+			
 			if (!rs.isBeforeFirst() ) {  
 				GRID_TEMIZLE.grid_temizle(table);
 			    return;
@@ -118,14 +119,9 @@ public class SQL_SORGULAMA extends JInternalFrame {
 		}
 		else if (modul.equals("stok"))
 		{
-			if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.sql_sorgu(textArea.getText());
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.sql_sorgu(textArea.getText());
-			}
+			
+				rs = f_Access.sql_sorgu(textArea.getText());
+			
 			if (!rs.isBeforeFirst() ) {  
 				GRID_TEMIZLE.grid_temizle(table);
 			    return;

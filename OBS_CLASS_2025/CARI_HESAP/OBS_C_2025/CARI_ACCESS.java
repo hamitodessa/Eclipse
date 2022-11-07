@@ -262,4 +262,8 @@ public class CARI_ACCESS {
 	{
 		return _ICari.evrak_ogren(text);
 	}
+	public ResultSet sql_sorgu(String sql) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.sql_sorgu(sql);
+	}
 }

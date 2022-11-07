@@ -148,4 +148,8 @@ public class STOK_ACCESS {
 	{
 		return _IStok.irsaliye_no_doldur(fno, hareket);
 	}
+	public ResultSet sql_sorgu(String sql) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.sql_sorgu(sql);
+	}
 }

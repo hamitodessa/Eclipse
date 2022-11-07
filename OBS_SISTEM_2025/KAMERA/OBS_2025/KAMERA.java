@@ -92,7 +92,8 @@ private Webcam webcam  ;
 		    	 newImage.paintIcon(null, g, 0, 0);
 				  g.setColor(Color.WHITE);
 				  g.dispose();
-				URUN_KART. imagePanel.setImage(bi);
+				  URUN_KART.imagePanel.setImage(bi);
+			
 				webcam.close();
 				dispose();
 			}

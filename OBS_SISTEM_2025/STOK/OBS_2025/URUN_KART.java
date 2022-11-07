@@ -26,6 +26,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import OBS_C_2025.ImagePanel;
+
 import javax.swing.border.EtchedBorder;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;

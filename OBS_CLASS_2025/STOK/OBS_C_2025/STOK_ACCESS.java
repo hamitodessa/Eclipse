@@ -2,6 +2,7 @@ package OBS_C_2025;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -414,6 +415,30 @@ public class STOK_ACCESS {
             String  barkod ,int mensei,double  agirlik , InputStream resim ,double fiat ,double fiat2 , String recete ,String usr ,double fiat3 ) throws ClassNotFoundException, SQLException, IOException 
 	{
 		_IStok.stk_ur_kayit(kodu, adi, birim, kusurat, sinif, anagrup, altgrup, acik1, acik2, ozkod1, ozkod2, barkod, mensei, agirlik, resim, fiat, fiat2, recete, usr, fiat3);
+	}
+	public ResultSet envanter_rapor(String t1,String t2,String k1 ,String k2 ,String f1 ,String f2 , String m1 ,String m2,
+			String anagrup,String altgrup,String depo,String depohar,String ure ,
+			String uanagrp,String ualtgrp,String calisanpara) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.envanter_rapor(t1, t2, k1, k2, f1, f2, m1, m2, anagrup, altgrup, depo, depohar, ure, uanagrp, ualtgrp, calisanpara);
+	}
+	public ResultSet envanter_rapor_fifo(String t1,String t2,String k1 ,String k2 ,String f1 ,String f2 , String m1 ,String m2,
+			String anagrup,String altgrup,String depo,String depohar,String ure ,
+			String uanagrp,String ualtgrp,String calisanpara) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.envanter_rapor_fifo(t1, t2, k1, k2, f1, f2, m1, m2, anagrup, altgrup, depo, depohar, ure, uanagrp, ualtgrp, calisanpara);
+	}
+	public ResultSet envanter_rapor_fifo_2(String t1,String t2,String k1 ,String k2 ,String f1 ,String f2 , String m1 ,String m2,
+			String anagrup,String altgrup,String depo,String depohar,String ure ,
+			String uanagrp,String ualtgrp,String ukodu,String calisanpara) throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.envanter_rapor_fifo_2(t1, t2, k1, k2, f1, f2, m1, m2, anagrup, altgrup, depo, depohar, ure, uanagrp, ualtgrp, ukodu, calisanpara);
+	}
+	public BigDecimal envanter_rapor_lifo(String t1,String t2,String k1 ,String k2 ,String f1 ,String f2 , String m1 ,String m2,
+			String anagrup,String altgrup,String depo,String depohar,String ure ,
+			String uanagrp,String ualtgrp,String calisanpara) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.envanter_rapor_lifo(t1, t2, k1, k2, f1, f2, m1, m2, anagrup, altgrup, depo, depohar, ure, uanagrp, ualtgrp, calisanpara);
 	}
 	
 }

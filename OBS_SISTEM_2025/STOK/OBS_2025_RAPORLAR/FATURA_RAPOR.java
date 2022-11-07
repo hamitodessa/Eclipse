@@ -13,20 +13,20 @@ import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
-import OBS_PACKAGE.CONNECTION;
-import OBS_PACKAGE.FILE_UZANTI;
-import OBS_PACKAGE.FILTRE;
-import OBS_PACKAGE.FORMATLAMA;
-import OBS_PACKAGE.GLOBAL;
-import OBS_PACKAGE.GRID_TEMIZLE;
-import OBS_PACKAGE.GuiUtil;
-import OBS_PACKAGE.OBS_MAIN;
-import OBS_PACKAGE.OBS_SIS_ANA_CLAS;
-import OBS_PACKAGE.SAGA;
-import OBS_PACKAGE.SOLA;
-import OBS_PACKAGE.TABLO_RENDERER;
-import OBS_PACKAGE.TARIH;
-import OBS_PACKAGE.TARIH_CEVIR;
+import OBS_C_2025.BAGLAN;
+import OBS_C_2025.FILE_UZANTI;
+import OBS_2025.FILTRE;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_2025.GuiUtil;
+import OBS_2025.OBS_MAIN;
+
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH;
+import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JScrollPane;
@@ -56,6 +56,9 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import OBS_2025.OBS_SIS_2025_ANA_CLASS;
+import OBS_C_2025.STOK_ACCESS;
+
 import javax.swing.JSplitPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -72,9 +75,8 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FATURA_RAPOR extends JInternalFrame {
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 	
 	private static JTable table;
 	private static JTable table_1;
@@ -132,9 +134,9 @@ public class FATURA_RAPOR extends JInternalFrame {
 			        	 DefaultTableModel model = (DefaultTableModel)table.getModel();
 			        	 if (model.getRowCount() == 0) return ;
 			        	 if (table.getSelectedRow()  < 0) return;
-			        	 table.setCursor(WAIT_CURSOR);
+			        	 table.setCursor(oac.WAIT_CURSOR);
 			        	 detay_doldur(model.getValueAt(table.getSelectedRow() , 0).toString(),model.getValueAt(table.getSelectedRow() , 1).toString());
-			        	 table.setCursor(DEFAULT_CURSOR);
+			        	 table.setCursor(oac.DEFAULT_CURSOR);
 			        }
 			    }
 			});
@@ -198,7 +200,7 @@ public class FATURA_RAPOR extends JInternalFrame {
 		String deger;
 		String[] parts;
 		Font bigFont;
-			deger = GLOBAL.setting_oku("STK_RAPORLAMA").toString();
+			deger = OBS_C_2025.GLOBAL.setting_oku("STK_RAPORLAMA").toString();
 			deger = deger.substring(1, deger.length()-1);
 			parts = deger.split(",");
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
@@ -226,9 +228,8 @@ public class FATURA_RAPOR extends JInternalFrame {
 		try {
 			ResultSet	rs = null;
 			grup_cevir() ;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.fat_rapor(FILTRE.textField_6.getText(),FILTRE.txtZzzzzzzzzz.getText() ,
+			
+				rs = f_Access.fat_rapor(FILTRE.textField_6.getText(),FILTRE.txtZzzzzzzzzz.getText() ,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_12),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_13),
 						FILTRE.textField_7.getText(),FILTRE.txtZzzzzzzzzzzz.getText() ,
 						FILTRE.textField_12.getText(),FILTRE.textField_13.getText() ,
@@ -237,19 +238,7 @@ public class FATURA_RAPOR extends JInternalFrame {
 						 FILTRE.textField_10.getText(),FILTRE.txtZzzzzzzzzz_1.getText() ,
 						 FILTRE.textField_8.getText(),FILTRE.txtZzzzzzzzzzzz_1.getText() ,
 						 FILTRE.textField_11.getText(),FILTRE.txtZzz.getText() );
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.fat_rapor(FILTRE.textField_6.getText(),FILTRE.txtZzzzzzzzzz.getText() ,
-						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_12),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_13),
-						FILTRE.textField_7.getText(),FILTRE.txtZzzzzzzzzzzz.getText() ,
-						FILTRE.textField_12.getText(),FILTRE.textField_13.getText() ,
-						FILTRE.textField_9.getText(),FILTRE.textField_15.getText() ,
-						 qwq1, qwq2, qwq3, kjk,
-						 FILTRE.textField_10.getText(),FILTRE.txtZzzzzzzzzz_1.getText() ,
-						 FILTRE.textField_8.getText(),FILTRE.txtZzzzzzzzzzzz_1.getText() ,
-						 FILTRE.textField_11.getText(),FILTRE.txtZzz.getText() );	
-				}
+			
 			
 			GRID_TEMIZLE.grid_temizle(table);
 			GRID_TEMIZLE.grid_temizle(table_1);
@@ -378,9 +367,8 @@ public class FATURA_RAPOR extends JInternalFrame {
         }
         else
         {
-        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-    		{
-    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_3.getItemAt(FILTRE.comboBox_3.getSelectedIndex()));
+        	
+    			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_3.getItemAt(FILTRE.comboBox_3.getSelectedIndex()));
     			if (!rs.isBeforeFirst() ) {
     			}
     			else
@@ -388,19 +376,7 @@ public class FATURA_RAPOR extends JInternalFrame {
     				rs.next();
     				qwq1 = "=" + Integer.toString( rs.getInt("AGID_Y"));
     			}
-    		}
-    		else
-    		{
-    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_3.getItemAt(FILTRE.comboBox_3.getSelectedIndex()));
-    			if (!rs.isBeforeFirst() ) {
-    			}
-    			else
-    			{
-    			rs.next();
-    			qwq1 ="=" + Integer.toString(rs.getInt("AGID_Y"));
-    			
-    			}
-    		}
+    		
         }
 		//***********************ALT GRUP
 				if ( FILTRE.comboBox_4.getItemAt(FILTRE.comboBox_4.getSelectedIndex()).equals(""))
@@ -411,9 +387,8 @@ public class FATURA_RAPOR extends JInternalFrame {
 		        {
 		            qwq2 = " = '' " ;
 		        }		        else		        {
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_4.getItemAt(FILTRE.comboBox_4.getSelectedIndex()));
+		        	
+		    			rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_4.getItemAt(FILTRE.comboBox_4.getSelectedIndex()));
 		    			if (!rs.isBeforeFirst() ) {
 		    			}
 		    			else
@@ -421,18 +396,7 @@ public class FATURA_RAPOR extends JInternalFrame {
 		    				rs.next();
 		    				qwq2 ="=" + Integer.toString( rs.getInt("ALID_Y"));
 		    			}
-		    		}
-		    		else
-		    		{
-		    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_4.getItemAt(FILTRE.comboBox_4.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    			rs.next();
-		    			qwq2 = "=" + Integer.toString(rs.getInt("ALID_Y"));
-		    			}
-		    		}
+		    		
 		        }
 				//***********************DEPO
 				if ( FILTRE.comboBox_5.getItemAt(FILTRE.comboBox_5.getSelectedIndex()).equals(""))
@@ -443,9 +407,8 @@ public class FATURA_RAPOR extends JInternalFrame {
 		        {
 		            qwq3 = " = '' " ;
 		        }		        else		        {
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_5.getItemAt(FILTRE.comboBox_5.getSelectedIndex()));
+		        	
+		    			rs = f_Access.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_5.getItemAt(FILTRE.comboBox_5.getSelectedIndex()));
 		    			if (!rs.isBeforeFirst() ) {
 		    			}
 		    			else
@@ -453,18 +416,7 @@ public class FATURA_RAPOR extends JInternalFrame {
 		    				rs.next();
 		    				qwq3 = "=" + Integer.toString( rs.getInt("DPID_Y"));
 		    			}
-		    		}
-		    		else
-		    		{
-		    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_5.getItemAt(FILTRE.comboBox_5.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    			rs.next();
-		    			qwq3 ="=" + Integer.toString(rs.getInt("DPID_Y"));
-		    			}
-		    		}
+		    		
 		        }
 				//***********************TUR
 					if ( FILTRE.comboBox_6.getItemAt(FILTRE.comboBox_6.getSelectedIndex()).equals("GIREN"))
@@ -493,21 +445,20 @@ public class FATURA_RAPOR extends JInternalFrame {
             String qw1, qw2, qw3,c_yer;
            if ( FILTRE.comboBox_8.getItemAt(FILTRE.comboBox_8.getSelectedIndex()).equals("Cari_Firma"))
            {
-                c_yer = "[OK_Car" + CONNECTION.caridizinbilgi.kod + "]" ;
+                c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD + "]" ;
                 qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = FATURA.Cari_Firma  ) as Unvan " ;
                 qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".[dbo].[HESAP_DETAY] WHERE HESAP_DETAY.D_HESAP = FATURA.Cari_Firma  ) as Vergi_No " ;
                 qw3 = "Fatura_No,Gir_Cik,Tarih, Cari_Firma" ;
            }
             else
             {
-                c_yer = "[OK_Adr" + CONNECTION.adrdizinbilgi.kod + "]" ;
+                c_yer = "[OK_Adr" + BAGLAN.cariDizin.kOD + "]" ;
                 qw1 = " ,(SELECT   Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = FATURA.Adres_Firma  ) as Unvan " ;
                 qw2 = " ,(SELECT   Vergi_No FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = FATURA.Adres_Firma  ) as Vergi_No " ;
                 qw3 = "Fatura_No,Gir_Cik,Tarih, Adres_Firma" ;
             }
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL. fat_rapor_fat_tar(FILTRE.textField_6.getText(),FILTRE.txtZzzzzzzzzz.getText() ,
+			
+				rs = f_Access. fat_rapor_fat_tar(FILTRE.textField_6.getText(),FILTRE.txtZzzzzzzzzz.getText() ,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_12),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_13),
 						FILTRE.textField_7.getText(),FILTRE.txtZzzzzzzzzzzz.getText() ,
 						FILTRE.textField_12.getText(),FILTRE.textField_13.getText() ,
@@ -516,19 +467,7 @@ public class FATURA_RAPOR extends JInternalFrame {
 						 FILTRE.textField_10.getText(),FILTRE.txtZzzzzzzzzz_1.getText() ,
 						 FILTRE.textField_8.getText(),FILTRE.txtZzzzzzzzzzzz_1.getText() ,qw1,
 						 FILTRE.textField_11.getText(),FILTRE.txtZzz.getText(),qw2,qw3 );
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL. fat_rapor_fat_tar(FILTRE.textField_6.getText(),FILTRE.txtZzzzzzzzzz.getText() ,
-						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_12),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_13),
-						FILTRE.textField_7.getText(),FILTRE.txtZzzzzzzzzzzz.getText() ,
-						FILTRE.textField_12.getText(),FILTRE.textField_13.getText() ,
-						FILTRE.textField_9.getText(),FILTRE.textField_15.getText() ,
-						 qwq1, qwq2, qwq3, kjk,
-						 FILTRE.textField_10.getText(),FILTRE.txtZzzzzzzzzz_1.getText() ,
-						 FILTRE.textField_8.getText(),FILTRE.txtZzzzzzzzzzzz_1.getText(),qw1,
-						 FILTRE.textField_11.getText(),FILTRE.txtZzz.getText(),qw2,qw3 );
-				}
+			
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -645,19 +584,18 @@ public class FATURA_RAPOR extends JInternalFrame {
             String qw1, qw2, c_yer;
            if ( FILTRE.comboBox_8.getItemAt(FILTRE.comboBox_8.getSelectedIndex()).equals("Cari_Firma"))
            {
-                c_yer = "[OK_Car" + CONNECTION.caridizinbilgi.kod + "]" ;
+                c_yer = "[OK_Car" + BAGLAN.adrDizin.kOD+ "]" ;
                 qw1 = " ,(SELECT TOP 1  UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = FATURA.Cari_Firma  ) as Unvan " ;
                 qw2 =" Cari_Firma" ;
            }
             else
             {
-                c_yer = "[OK_Adr" + CONNECTION.adrdizinbilgi.kod + "]" ;
+                c_yer = "[OK_Adr" + BAGLAN.adrDizin.kOD + "]" ;
                 qw1 = " ,(SELECT Top 1  Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = FATURA.Adres_Firma  ) as Unvan " ;
                 qw2 = " Adres_Firma" ;
             }
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL. fat_rapor_cari_kod(FILTRE.textField_6.getText(),FILTRE.txtZzzzzzzzzz.getText() ,
+			
+				rs = f_Access. fat_rapor_cari_kod(FILTRE.textField_6.getText(),FILTRE.txtZzzzzzzzzz.getText() ,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_12),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_13),
 						FILTRE.textField_7.getText(),FILTRE.txtZzzzzzzzzzzz.getText() ,
 						FILTRE.textField_12.getText(),FILTRE.textField_13.getText() ,
@@ -666,19 +604,7 @@ public class FATURA_RAPOR extends JInternalFrame {
 						 FILTRE.textField_10.getText(),FILTRE.txtZzzzzzzzzz_1.getText() ,
 						 FILTRE.textField_8.getText(),FILTRE.txtZzzzzzzzzzzz_1.getText() ,qw1,
 						 FILTRE.textField_11.getText(),FILTRE.txtZzz.getText(),qw2 );
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL. fat_rapor_cari_kod(FILTRE.textField_6.getText(),FILTRE.txtZzzzzzzzzz.getText() ,
-						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_12),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_13),
-						FILTRE.textField_7.getText(),FILTRE.txtZzzzzzzzzzzz.getText() ,
-						FILTRE.textField_12.getText(),FILTRE.textField_13.getText() ,
-						FILTRE.textField_9.getText(),FILTRE.textField_15.getText() ,
-						 qwq1, qwq2, qwq3, kjk,
-						 FILTRE.textField_10.getText(),FILTRE.txtZzzzzzzzzz_1.getText() ,
-						 FILTRE.textField_8.getText(),FILTRE.txtZzzzzzzzzzzz_1.getText(),qw1,
-						 FILTRE.textField_11.getText(),FILTRE.txtZzz.getText(),qw2 );
-				}
+			
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -793,14 +719,9 @@ public class FATURA_RAPOR extends JInternalFrame {
 		{
 			return;
 		}
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs =oac.sTOK_MSSQL.fat_detay_rapor(fatno,ask);
-			}
-			else
-			{
-				rs = oac.sTOK_MSSQL.fat_detay_rapor(fatno,ask);
-			}
+			
+				rs =f_Access.fat_detay_rapor(fatno,ask);
+			
 			GRID_TEMIZLE.grid_temizle(table_1);
 			if (! rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -1042,7 +963,7 @@ public class FATURA_RAPOR extends JInternalFrame {
 						 sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -1));
 						 Cell baslikname = baslikRow.createCell(0);
 						   
-						   baslikname.setCellValue( CONNECTION.fatdizinbilgi.firma_adi );
+						   baslikname.setCellValue( BAGLAN.fatDizin.fIRMA_ADI );
 						   baslikname.setCellStyle(acikStyle);
 
 						 Row headerRow = sheet.createRow(1);
@@ -1252,7 +1173,7 @@ public class FATURA_RAPOR extends JInternalFrame {
 						 sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -1));
 						 Cell baslikname = baslikRow.createCell(0);
 						   
-						   baslikname.setCellValue( CONNECTION.fatdizinbilgi.firma_adi );
+						   baslikname.setCellValue( BAGLAN.fatDizin.fIRMA_ADI);
 						   baslikname.setCellStyle(acikStyle);
 					 Row headerRow = sheet.createRow(1);
 					 

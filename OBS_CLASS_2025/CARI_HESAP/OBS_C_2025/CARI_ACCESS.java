@@ -258,4 +258,8 @@ public class CARI_ACCESS {
 	{
 		return _ICari.sms_cari_pln(nerden);
 	}
+	public ResultSet evrak_ogren(String text) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.evrak_ogren(text);
+	}
 }

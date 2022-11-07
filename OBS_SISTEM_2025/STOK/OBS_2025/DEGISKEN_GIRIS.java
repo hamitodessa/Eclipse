@@ -25,6 +25,9 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.border.EtchedBorder;
@@ -41,9 +44,9 @@ import java.awt.SystemColor;
 
 public class DEGISKEN_GIRIS extends JInternalFrame {
 	
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+
 	
 	private static JTable table;
 	private static JTextField textField;
@@ -227,26 +230,11 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		
 	        if (hangi.equals("mensei"))
 	        {
-	        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				{
-	        	rs =	oac.sTOK_MSSQL.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-				}
-	        	else
-	        	{
-	        	rs =	oac.sTOK_MYSQL.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-	        	}
-	            
+	        	rs =	f_Access.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
 	        }
 	        else if (hangi.equals("anagrup"))
 	        {
-	        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				{
-	        	rs =	oac.sTOK_MSSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-				}
-	        	else
-	        	{
-	        	rs =	oac.sTOK_MYSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-	        	}
+	        	rs =	f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
 	        }
 	        else if (hangi.equals("altgrup"))
 	        {
@@ -254,36 +242,15 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 	        }
 	        else if (hangi.equals("depo"))
 	        {
-	            	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-		        	rs =	oac.sTOK_MSSQL.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-					}
-		        	else
-		        	{
-		        	rs =	oac.sTOK_MYSQL.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-		        	}
+		        	rs =	f_Access.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
 	        }
 	         else if (hangi.equals("oz1"))
 	        {
-	        	 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-		        	rs =	oac.sTOK_MSSQL.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-					}
-		        	else
-		        	{
-		        	rs =	oac.sTOK_MYSQL.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-		        	}
+		        	rs =	f_Access.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
 	        }
 	        else if (hangi.equals("oz2"))
 	        {
-	        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				{
-	        	rs =	oac.sTOK_MSSQL.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
-				}
-	        	else
-	        	{
-	        	rs =	oac.sTOK_MYSQL.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
-	        	}
+	        	rs =	f_Access.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
 	        }
 	        //***********TABLO DOLDUR
 	        if (!rs.isBeforeFirst() ) {  
@@ -348,14 +315,7 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
         	///////////************Dosya Kontrol
 		 	 int anaG = 0 , altG = 0 ;
 		 	 ResultSet rss = null;
-		 	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-    		{
-    			rss = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-    		}
-    		else
-    		{
-    			rss = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-    		}
+				rss = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
     		if (!rss.isBeforeFirst() ) {      		
 	    	}
 	    	else
@@ -363,15 +323,7 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 	    		rss.next();
         		anaG  = rss.getInt("AGID_Y");
 	    	}
-    		
- 	      	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
- 			{
- 	    		rss = oac.sTOK_MSSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  textField_1.getText());
- 			}
- 			else
- 			{
- 	    		rss = oac.sTOK_MYSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", textField_1.getText());
- 			}
+ 	    		rss = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  textField_1.getText());
  	      	if (!rss.isBeforeFirst() ) {      		
 	    	}
 	    	else
@@ -379,32 +331,16 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 	    		rss.next();
      	      	altG  = rss.getInt("ALID_Y");
 	    	}
- 		 	 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				{
-			   if (oac.sTOK_MSSQL.alt_grup_kontrol(anaG,altG) )
+ 		 	
+			   if (f_Access.alt_grup_kontrol(anaG,altG) )
 				   {
 					JOptionPane.showMessageDialog(null, "Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz....",  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 				   return;
 				   }
-				}
-     	  else
-     	  	{
-     		 if (oac.sTOK_MYSQL.alt_grup_kontrol(anaG,altG) )
-			   {
-				JOptionPane.showMessageDialog(null, "Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz....",  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
-			   return;
-			   }
-     	  	}
+				
+     	  	
 		 	 //*********************
-        	  if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				{
-  			   oac.sTOK_MSSQL.urun_degisken_alt_grup_sil(Integer.parseInt(textField_2.getText()));
-				}
-        	  else
-        	  	{
-			   oac.sTOK_MYSQL.urun_degisken_alt_grup_sil(Integer.parseInt(textField_2.getText()));
-        	  	}
-        	
+  			   f_Access.urun_degisken_alt_grup_sil(Integer.parseInt(textField_2.getText()));
         	  sifirla();
               textField.setText("");
               ana_grup_doldur();
@@ -421,15 +357,7 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		   			 	oac.options[1]); //default button
 		 	 if(g != 0 ) { return;	}
 		 	 
-        	 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				{
-			   oac.sTOK_MSSQL.urun_kod_degisken_sil( "MEID_Y", "MENSEI_DEGISKEN", Integer.parseInt(textField_2.getText()));
-				}
-     	  else
-     	  	{
-			   oac.sTOK_MYSQL.urun_kod_degisken_sil( "MEID_Y", "MENSEI_DEGISKEN", Integer.parseInt(textField_2.getText()));
-     	  	}
-        	
+ 			  f_Access.urun_kod_degisken_sil( "MEID_Y", "MENSEI_DEGISKEN", Integer.parseInt(textField_2.getText()));
         	 sifirla();
              textField.setText("");
              yenile();
@@ -448,15 +376,7 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		   			 	oac.options[1]); //default button
 		 	 if(g != 0 ) { return;	}
 		 	 
-        	 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				{
-			   oac.sTOK_MSSQL.urun_kod_degisken_sil( "DPID_Y", "DEPO_DEGISKEN", Integer.parseInt(textField_2.getText()));
-				}
-     	  else
-     	  	{
-			   oac.sTOK_MYSQL.urun_kod_degisken_sil( "DPID_Y", "DEPO_DEGISKEN", Integer.parseInt(textField_2.getText()));
-     	  	}
-        	
+			   f_Access.urun_kod_degisken_sil( "DPID_Y", "DEPO_DEGISKEN", Integer.parseInt(textField_2.getText()));
         	 sifirla();
              textField.setText("");
              yenile();
@@ -474,16 +394,7 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 			   			 	oac.options,  //button titles
 			   			 	oac.options[1]); //default button
 			 	 if(g != 0 ) { return;	}
-			 	 
-	        	 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-				   oac.sTOK_MSSQL.urun_kod_degisken_sil( "OZ1ID_Y", "OZ_KOD_1_DEGISKEN", Integer.parseInt(textField_2.getText()));
-					}
-	     	  else
-	     	  	{
-				   oac.sTOK_MYSQL.urun_kod_degisken_sil( "OZ1ID_Y", "OZ_KOD_1_DEGISKEN", Integer.parseInt(textField_2.getText()));
-	     	  	}
-	        	
+				   f_Access.urun_kod_degisken_sil( "OZ1ID_Y", "OZ_KOD_1_DEGISKEN", Integer.parseInt(textField_2.getText()));
 	        	 sifirla();
 	             textField.setText("");
 	             yenile();
@@ -501,16 +412,7 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 			   			 	oac.options,  //button titles
 			   			 	oac.options[1]); //default button
 			 	 if(g != 0 ) { return;	}
-			 	 
-	        	 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-				   oac.sTOK_MSSQL.urun_kod_degisken_sil( "OZ2ID_Y", "OZ_KOD_2_DEGISKEN", Integer.parseInt(textField_2.getText()));
-					}
-	     	  else
-	     	  	{
-				   oac.sTOK_MYSQL.urun_kod_degisken_sil( "OZ2ID_Y", "OZ_KOD_2_DEGISKEN", Integer.parseInt(textField_2.getText()));
-	     	  	}
-	        	
+				  f_Access.urun_kod_degisken_sil( "OZ2ID_Y", "OZ_KOD_2_DEGISKEN", Integer.parseInt(textField_2.getText()));
 	        	 sifirla();
 	             textField.setText("");
 	             yenile();
@@ -528,16 +430,7 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 			   			 	oac.options,  //button titles
 			   			 	oac.options[1]); //default button
 			 	 if(g != 0 ) { return;	}
-			 	 
-	        	 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-				   oac.sTOK_MSSQL.urun_kod_degisken_sil( "AGID_Y", "ANA_GRUP_DEGISKEN", Integer.parseInt(textField_2.getText()));
-					}
-	     	  else
-	     	  	{
-				   oac.sTOK_MYSQL.urun_kod_degisken_sil( "AGID_Y", "ANA_GRUP_DEGISKEN", Integer.parseInt(textField_2.getText()));
-	     	  	}
-	        	
+				 f_Access.urun_kod_degisken_sil( "AGID_Y", "ANA_GRUP_DEGISKEN", Integer.parseInt(textField_2.getText()));
 	        	 sifirla();
 	             textField.setText("");
 	             yenile();
@@ -559,10 +452,8 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		try {
 
 		cmbanagrup .removeAllItems();
-		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		{
 			rs=null;
-			rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
+			rs = f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
 			//
 			if (!rs.isBeforeFirst() ) {      		
 	    	}
@@ -574,54 +465,22 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 			    }
 	    	}
 		    
-		}
-		else
-		{
-			rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-			if (!rs.isBeforeFirst() ) {      		
-	    	}
-	    	else
-	    	{
-	    		while (rs.next())
-			    {
-			    	cmbanagrup .addItem(rs.getString("ANA_GRUP"));
-			    }
-	    	}
-		}
 		int in1= 0 ;
-		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		{
 			rs = null ;
-			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
+			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
 			
 			//
-			if (!rs.isBeforeFirst() ) {      		
+			if (!rs.isBeforeFirst() ) 
+			{      		
 	    	}
 	    	else
 	    	{
 	    		rs.next();
 				in1 = rs.getInt("AGID_Y");
 				rs = null ;
-				rs  = oac.sTOK_MSSQL.stk_kod_alt_grup_degisken_oku(in1);
+				rs  = f_Access.stk_kod_alt_grup_degisken_oku(in1);
 	    	}
 			//
-			
-		
-		}
-		else
-		{
-			rs = null ;
-			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
-			if (!rs.isBeforeFirst() ) {      		
-	    	}
-	    	else
-	    	{
-			rs.next();
-			in1 = rs.getInt("AGID_Y");
-			rs = null ;
-			rs = oac.sTOK_MYSQL.stk_kod_alt_grup_degisken_oku(in1);
-	    	}
-		}
 		ilkmi=false;
 
 		}
@@ -634,42 +493,30 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 	private void alt_grup_degis()
 	{
 		try {
-			getContentPane().setCursor(WAIT_CURSOR);
+			getContentPane().setCursor(oac.WAIT_CURSOR);
 		int in1= 0 ;
-		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		{
 			rs = null ;
-			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
+			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
 			rs.next();
 			in1 = rs.getInt("AGID_Y");
 			rs = null ;
-			 rs  = oac.sTOK_MSSQL.stk_kod_alt_grup_degisken_oku(in1);
-		}
-		else
-		{
-			rs = null ;
-			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
-			rs.next();
-			in1 = rs.getInt("AGID_Y");
-			rs = null ;
-			rs = oac.sTOK_MYSQL.stk_kod_alt_grup_degisken_oku(in1);
-		}
-		ilkmi= false ;
+			 rs  = f_Access.stk_kod_alt_grup_degisken_oku(in1);
+			 ilkmi= false ;
 			if (!rs.isBeforeFirst() ) {  
 				textField_1.setText("");
 				textField_2.setText("");
 				GRID_TEMIZLE.grid_temizle(table);
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 }
 			else
 			{
 			 grid_doldur(); 
-			 getContentPane().setCursor(DEFAULT_CURSOR);
+			 getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);    
 		}		
 	}
@@ -712,89 +559,49 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 			           { 
 			        	   if (hangi.equals("mensei"))
 			        	   {
-			        		   if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-								{
-			        			   oac.sTOK_MSSQL.urun_degisken_eski("MENSEI", textField_1.getText(), "MENSEI_DEGISKEN", "MEID_Y",  Integer.parseInt(textField_2.getText()));
-			        			   rs =  oac.sTOK_MSSQL.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-								}
-			        		   else
-			        		   {
-			        			   oac.sTOK_MYSQL.urun_degisken_eski("MENSEI", textField_1.getText(), "MENSEI_DEGISKEN", "MEID_Y",  Integer.parseInt(textField_2.getText()));
-			        			   rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-			        		   }
+			        		  
+			        			   f_Access.urun_degisken_eski("MENSEI", textField_1.getText(), "MENSEI_DEGISKEN", "MEID_Y",  Integer.parseInt(textField_2.getText()));
+			        			   rs =  f_Access.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
+								
 			        	   }
 			        	   else  if (hangi.equals("anagrup"))
 			        	   {
-			        		   if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-								{
-			        			   oac.sTOK_MSSQL.urun_degisken_eski("ANA_GRUP",textField_1.getText(), "ANA_GRUP_DEGISKEN", "AGID_Y", Integer.parseInt(textField_2.getText()));
-			        			   rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-								}
-			        		   else
-			        		   {
-			        			   oac.sTOK_MYSQL.urun_degisken_eski("ANA_GRUP",textField_1.getText(), "ANA_GRUP_DEGISKEN", "AGID_Y",  Integer.parseInt(textField_2.getText()));
-			        			   rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-			        		   }
+			        		   
+			        		   f_Access.urun_degisken_eski("ANA_GRUP",textField_1.getText(), "ANA_GRUP_DEGISKEN", "AGID_Y", Integer.parseInt(textField_2.getText()));
+			        			   rs =  f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
+							
 			        	   }
 			        	   else  if (hangi.equals("altgrup"))
 			        	   {
-			        		   if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-								{
+			        		   
 			        			  int in1  = 0;
-			        	           ResultSet rss = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
+			        	           ResultSet rss =  f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
 			        	           rss.next();
 			        	           in1 = rss.getInt("AGID_Y");
-			        			   oac.sTOK_MSSQL.urun_degisken_alt_grup_eski(textField_1.getText(), in1, Integer.parseInt(textField_2.getText()));
-			        			   rs = oac.sTOK_MSSQL.stk_kod_alt_grup_degisken_oku(in1);
-								}
-			        		   else
-			        		   {
-			        			   int in1  = 0;
-			        	           ResultSet rss = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
-			        	           rss.next();
-			        	           in1 = rss.getInt("AGID_Y");
-			        			   oac.sTOK_MYSQL.urun_degisken_alt_grup_eski(textField_1.getText(), in1, Integer.parseInt(textField_2.getText()));
-			        			   rs = oac.sTOK_MYSQL.stk_kod_alt_grup_degisken_oku(in1);
-			        		   }
+			        	           f_Access.urun_degisken_alt_grup_eski(textField_1.getText(), in1, Integer.parseInt(textField_2.getText()));
+			        			   rs =  f_Access.stk_kod_alt_grup_degisken_oku(in1);
+								
 			        	   }
 			        	   else  if (hangi.equals("depo"))
 			        	   {
-			        		   if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-								{
-			        			   oac.sTOK_MSSQL.urun_degisken_eski("DEPO", textField_1.getText(), "DEPO_DEGISKEN", "DPID_Y",  Integer.parseInt(textField_2.getText()));
-			        			   rs =oac.sTOK_MSSQL.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-								}
-			        		   else
-			        		   {
-			        			   oac.sTOK_MYSQL.urun_degisken_eski("DEPO", textField_1.getText(), "DEPO_DEGISKEN", "DPID_Y",  Integer.parseInt(textField_2.getText()));
-			        			   rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-			        		   }
+			        		   
+			        		   f_Access.urun_degisken_eski("DEPO", textField_1.getText(), "DEPO_DEGISKEN", "DPID_Y",  Integer.parseInt(textField_2.getText()));
+			        			   rs = f_Access.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
+								
 			        	   }
 			        	   else  if (hangi.equals("oz1"))
 			        	   {
-			        		   if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-								{
-			        			   oac.sTOK_MSSQL.urun_degisken_eski("OZEL_KOD_1", textField_1.getText(), "OZ_KOD_1_DEGISKEN", "OZ1ID_Y",  Integer.parseInt(textField_2.getText()));
-			        			   rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-								}
-			        		   else
-			        		   {
-			        			   oac.sTOK_MYSQL.urun_degisken_eski("OZEL_KOD_1", textField_1.getText(), "OZ_KOD_1_DEGISKEN", "OZ1ID_Y",  Integer.parseInt(textField_2.getText()));
-			        			   rs =oac.sTOK_MYSQL.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-			        		   }
+			        		  
+			        		   f_Access.urun_degisken_eski("OZEL_KOD_1", textField_1.getText(), "OZ_KOD_1_DEGISKEN", "OZ1ID_Y",  Integer.parseInt(textField_2.getText()));
+			        			   rs = f_Access.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
+							
 			        	   }
 			        	   else  if (hangi.equals("oz2"))
 			        	   {
-			        		   if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-								{
-			        			   oac.sTOK_MSSQL.urun_degisken_eski("OZEL_KOD_2", textField_1.getText(), "OZ_KOD_2_DEGISKEN", "OZ2ID_Y", Integer.parseInt(textField_2.getText()));
-			        			   rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
-								}
-			        		   else
-			        		   {
-			        			   oac.sTOK_MYSQL.urun_degisken_eski("OZEL_KOD_2", textField_1.getText(), "OZ_KOD_2_DEGISKEN", "OZ2ID_Y",  Integer.parseInt(textField_2.getText()));
-			        			   rs =oac.sTOK_MYSQL.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
-			        		   }
+			        		   
+			        		   f_Access.urun_degisken_eski("OZEL_KOD_2", textField_1.getText(), "OZ_KOD_2_DEGISKEN", "OZ2ID_Y", Integer.parseInt(textField_2.getText()));
+			        			   rs = f_Access.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
+								
 			        	   }
 			           }
 			           else  // YENI KAYIT
@@ -802,93 +609,51 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 			        	  
 			        	   if (hangi.equals("mensei"))
 			        	   {
-			        		   if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-								{
-			        			   oac.sTOK_MSSQL.urun_degisken_kayit("MEID_Y","MENSEI_DEGISKEN", "MENSEI", textField_1.getText());
-			        			   rs =   oac.sTOK_MSSQL.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-								}
-			        		   else
-			        		   {
-			        			   oac.sTOK_MYSQL.urun_degisken_kayit("MEID_Y","MENSEI_DEGISKEN", "MENSEI", textField_1.getText());
-			        			   rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-			        		   }
+			        		   
+			        		   f_Access.urun_degisken_kayit("MEID_Y","MENSEI_DEGISKEN", "MENSEI", textField_1.getText());
+			        			   rs =   f_Access.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
+								
 			        	   }
 			        	   else  if (hangi.equals("anagrup"))
 			        	   {
-			        		   if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-								{
-			        			  oac.sTOK_MSSQL.urun_degisken_kayit("AGID_Y","ANA_GRUP_DEGISKEN", "ANA_GRUP", textField_1.getText());
-				        		  rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-								}
-			        		   else
-			        		   {
-			        			   oac.sTOK_MYSQL.urun_degisken_kayit("AGID_Y","ANA_GRUP_DEGISKEN", "ANA_GRUP", textField_1.getText());
-			        			   rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-			        		   }
+			        		  
+			        		   f_Access.urun_degisken_kayit("AGID_Y","ANA_GRUP_DEGISKEN", "ANA_GRUP", textField_1.getText());
+				        		  rs = f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
+								
 			        	   }
 			        	   else  if (hangi.equals("altgrup"))
 			        	   {
-			        		   if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-								{
+			        		  
 			        			  int in1  = 0;  
-			        	           ResultSet rss = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
+			        	           ResultSet rss = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
 			        	           while (rss.next())
-			        	   	    {
+			        	           		{
 			        	           in1 = rss.getInt("AGID_Y");
-			        			   oac.sTOK_MSSQL.urun_degisken_alt_grup_kayit(textField_1.getText(), in1);
-			        			   rs = oac.sTOK_MSSQL.stk_kod_alt_grup_degisken_oku(in1);
-			        	   	    }
-								}
-			        		   else 
-			        		   {
-			        			   int in1  = 0;
-			        	           ResultSet rss = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
-			        	           while (rss.next())
-			        	   	    {
-			        	           in1 = rss.getInt("AGID_Y");
-			        			   oac.sTOK_MYSQL.urun_degisken_alt_grup_eski(textField_1.getText(), in1, Integer.parseInt(textField_2.getText()));
-			        			   rs = oac.sTOK_MYSQL.stk_kod_alt_grup_degisken_oku(in1);
-			        	   	    }
-			        		   }
+			        	           f_Access.urun_degisken_alt_grup_kayit(textField_1.getText(), in1);
+			        			   rs = f_Access.stk_kod_alt_grup_degisken_oku(in1);
+			        	   	    			}
+								
 			        	   }
 			        	   else  if (hangi.equals("depo"))
 			        	   {
-			        		   if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-								{
-			        			   oac.sTOK_MSSQL.urun_degisken_kayit("DPID_Y","DEPO_DEGISKEN", "DEPO", textField_1.getText());
-			        			   rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-								}
-			        		   else
-			        		   {
-			        			   oac.sTOK_MYSQL.urun_degisken_kayit("DPID_Y","DEPO_DEGISKEN", "DEPO", textField_1.getText());
-			        			   rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-			        		   }
+			        		   
+			        		   f_Access.urun_degisken_kayit("DPID_Y","DEPO_DEGISKEN", "DEPO", textField_1.getText());
+			        			   rs = f_Access.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
+								
 			        	   }
 			        	   else  if (hangi.equals("oz1"))
 			        	   {
-			        		   if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-								{
-			        			   oac.sTOK_MSSQL.urun_degisken_kayit("OZ1ID_Y","OZ_KOD_1_DEGISKEN", "OZEL_KOD_1", textField_1.getText());
-			        			   rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-								}
-			        		   else
-			        		   {
-			        			   oac.sTOK_MYSQL.urun_degisken_kayit("OZ1ID_Y","OZ_KOD_1_DEGISKEN", "OZEL_KOD_1", textField_1.getText());
-			        			   rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-			        		   }
+			        		   
+			        		   f_Access.urun_degisken_kayit("OZ1ID_Y","OZ_KOD_1_DEGISKEN", "OZEL_KOD_1", textField_1.getText());
+			        			   rs = f_Access.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
+								
 			        	   }
 			        	   else  if (hangi.equals("oz2"))
 			        	   {
-			        		   if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-								{
-			        			   oac.sTOK_MSSQL.urun_degisken_kayit("OZ2ID_Y","OZ_KOD_2_DEGISKEN", "OZEL_KOD_2", textField_1.getText());
-			        			   rs =  oac.sTOK_MSSQL.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
-								}
-			        		   else
-			        		   {
-			        			   oac.sTOK_MYSQL.urun_degisken_kayit("OZ2ID_Y","OZ_KOD_2_DEGISKEN", "OZEL_KOD_2", textField_1.getText());
-			        			   rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
-			        		   }
+			        		   
+			        		   f_Access.urun_degisken_kayit("OZ2ID_Y","OZ_KOD_2_DEGISKEN", "OZEL_KOD_2", textField_1.getText());
+			        			   rs =  f_Access.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
+								
 			        	   }
 			           }
 			       	

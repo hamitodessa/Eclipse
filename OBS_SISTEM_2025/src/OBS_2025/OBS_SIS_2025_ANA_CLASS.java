@@ -56,6 +56,7 @@ public class OBS_SIS_2025_ANA_CLASS
 	public GLOBAL glb  = new GLOBAL();
 	public USER_ISLEMLERI uSER_ISL = new USER_ISLEMLERI();
 	public static String hsp_hsp_kodu =""; 
+	public static String stk_kodu =""; 
 	public BufferedImage kam_resmi ;
 
 }

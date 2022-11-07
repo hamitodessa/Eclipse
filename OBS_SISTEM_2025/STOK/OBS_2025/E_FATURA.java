@@ -29,6 +29,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
+
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -49,9 +54,8 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
 public class E_FATURA extends JInternalFrame {
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+
 	private JTable table;
 	private JTextField textField;
 
@@ -119,7 +123,7 @@ public class E_FATURA extends JInternalFrame {
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
 				JFileChooser chooser = new JFileChooser();
 				chooser.setCurrentDirectory(new java.io.File("."));
@@ -130,7 +134,7 @@ public class E_FATURA extends JInternalFrame {
 			    chooser.setApproveButtonToolTipText("Dosya Sec");
 			    chooser.addChoosableFileFilter(new FileNameExtensionFilter("XML Dosya", "xml"));
 			    chooser.setApproveButtonMnemonic('s');
-			    getContentPane().setCursor(DEFAULT_CURSOR);
+			    getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
 			    		 try {
 			    			File file = chooser.getSelectedFile();

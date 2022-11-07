@@ -33,7 +33,7 @@ public class GLOBAL {
     public static  int filtre_sayfa ;
     public static  String hangi_mizan = "" ;
     public static String yazici[]; 
-	
+    public static String nerden ="";
 	 //*************************************************
 public static  Connection myConnection() throws SQLException
     {  

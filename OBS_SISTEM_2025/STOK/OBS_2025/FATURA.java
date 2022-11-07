@@ -21,6 +21,23 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
+
+import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.ImagePanel;
+import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.NextCellActioin;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TABLO_TEXTBOX;
+import OBS_C_2025.TARIH_CEVIR;
+
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import java.awt.Font;
@@ -103,7 +120,11 @@ public class FATURA extends JInternalFrame {
 	
 	private static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	private static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	private static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
+	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
+
 	private ArrayList<String> listSomeString = new ArrayList<String>();
 	private ArrayList<String> listBarkod =  new ArrayList<String>();
 	private ArrayList<String> listdepo = null ;
@@ -192,25 +213,15 @@ public class FATURA extends JInternalFrame {
 					int sno = 0 ;
 					 if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 				        {
-						 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				    		{
-				             sno  = oac.sTOK_MSSQL.fatura_no_al("C") ;
-				    		}
-				            else
-				            {
-				             sno  = oac.sTOK_MYSQL.fatura_no_al("C") ;
-				            }
+						
+				             sno  = f_Access.fatura_no_al("C") ;
+				    		
 				        }
 					 else
 					 {
-						 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				    		{
-				             sno  = oac.sTOK_MSSQL.fatura_no_al("G") ;
-				    		}
-				            else
-				            {
-				             sno  = oac.sTOK_MYSQL.fatura_no_al("G") ;
-				            }
+						
+				             sno  = f_Access.fatura_no_al("G") ;
+				    
 					 }
 					
 					int kj = 0 ;
@@ -296,9 +307,9 @@ public class FATURA extends JInternalFrame {
 					try {
 						hsp = new HESAP_PLN();
 						hsp.setVisible(true);
-						if (! GLOBAL.hsp_hsp_kodu.equals(""))
+						if (! oac.hsp_hsp_kodu.equals(""))
 						{
-							txtcari.setText( GLOBAL.hsp_hsp_kodu);
+							txtcari.setText( oac.hsp_hsp_kodu);
 						}
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
@@ -394,16 +405,10 @@ public class FATURA extends JInternalFrame {
 				  String sonuc = "";
 					try 
 					{
-					if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-					{
-							sonuc = oac.aDRES_MSSQL.kod_ismi(txtadres.getText());
+					
+							sonuc = a_Access.kod_ismi(txtadres.getText());
 							lblNewLabel_6.setText(sonuc);
-					}
-					else
-					{
-							sonuc = oac.aDRES_MYSQL.kod_ismi(txtadres.getText());
-							lblNewLabel_6.setText(sonuc);
-						}
+					
 					}
 						catch (Exception ex)
 						{	
@@ -419,16 +424,9 @@ public class FATURA extends JInternalFrame {
 				  String sonuc = "";
 					try 
 					{
-					if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-					{
-							sonuc = oac.aDRES_MSSQL.kod_ismi(txtadres.getText());
+							sonuc = a_Access.kod_ismi(txtadres.getText());
 							lblNewLabel_6.setText(sonuc);
-					}
-					else
-					{
-							sonuc = oac.aDRES_MYSQL.kod_ismi(txtadres.getText());
-							lblNewLabel_6.setText(sonuc);
-						}
+					
 					}
 						catch (Exception ex)
 						{	
@@ -444,16 +442,10 @@ public class FATURA extends JInternalFrame {
 				  String sonuc = "";
 					try 
 					{
-					if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-					{
-							sonuc = oac.aDRES_MSSQL.kod_ismi(txtadres.getText());
+					
+							sonuc = a_Access.kod_ismi(txtadres.getText());
 							lblNewLabel_6.setText(sonuc);
-					}
-					else
-					{
-							sonuc = oac.aDRES_MYSQL.kod_ismi(txtadres.getText());
-							lblNewLabel_6.setText(sonuc);
-						}
+					
 					}
 						catch (Exception ex)
 						{	
@@ -470,7 +462,7 @@ public class FATURA extends JInternalFrame {
 					ADRES_LISTE asp ;
 					asp = new ADRES_LISTE();
 					asp.setVisible(true);
-					txtadres.setText( GLOBAL.hsp_hsp_kodu);
+					txtadres.setText( oac.hsp_hsp_kodu);
 				}
 			}
 		});
@@ -622,18 +614,11 @@ public class FATURA extends JInternalFrame {
 		textField_8.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
 				  String sonuc = "";
-					if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-					{
+					
 						try {
-							sonuc = oac.aDRES_MSSQL.kod_ismi(textField_8.getText());
+							sonuc =a_Access.kod_ismi(textField_8.getText());
 						} catch (Exception ex) {		}
-					}
-					else
-					{
-						try {
-							sonuc = oac.aDRES_MYSQL.kod_ismi(textField_8.getText());
-						} catch (Exception ex) {		}
-					}
+					
 				
 					if ( ! sonuc.equals("") )
 							{
@@ -646,18 +631,11 @@ public class FATURA extends JInternalFrame {
 			  }
 			  public void removeUpdate(DocumentEvent e) {
 				  String sonuc = "";
-					if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-					{
+					
 						try {
-							sonuc = oac.aDRES_MSSQL.kod_ismi(textField_8.getText());
+							sonuc = a_Access.kod_ismi(textField_8.getText());
 						} catch (Exception ex) {		}
-					}
-					else
-					{
-						try {
-							sonuc = oac.aDRES_MYSQL.kod_ismi(textField_8.getText());
-						} catch (Exception ex) {		}
-					}
+					
 				
 					if ( ! sonuc.equals("") )
 							{
@@ -670,18 +648,11 @@ public class FATURA extends JInternalFrame {
 			  }
 			  public void insertUpdate(DocumentEvent e) {
 				  String sonuc = "";
-					if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-					{
+					
 						try {
-							sonuc = oac.aDRES_MSSQL.kod_ismi(textField_8.getText());
+							sonuc = a_Access.kod_ismi(textField_8.getText());
 						} catch (Exception ex) {		}
-					}
-					else
-					{
-						try {
-							sonuc = oac.aDRES_MYSQL.kod_ismi(textField_8.getText());
-						} catch (Exception ex) {		}
-					}
+					
 				
 					if ( ! sonuc.equals("") )
 							{
@@ -701,7 +672,7 @@ public class FATURA extends JInternalFrame {
 					ADRES_LISTE asp ;
 					asp = new ADRES_LISTE();
 					asp.setVisible(true);
-					textField_8.setText( GLOBAL.hsp_hsp_kodu);
+					textField_8.setText( oac.hsp_hsp_kodu);
 				}
 			}
 		});
@@ -1025,10 +996,10 @@ public class FATURA extends JInternalFrame {
 					arm = new URUN_ARAMA();
 					arm.setVisible(true);
 				getContentPane().setCursor(DEFAULT_CURSOR);
-				if ( !  GLOBAL.stk_kodu.equals(""))
+				if ( !  oac.stk_kodu.equals(""))
 				{
-				table.getModel().setValueAt( GLOBAL.stk_kodu,table.getSelectedRow() , 1) ;
-				bilgi_doldur(GLOBAL.stk_kodu) ;
+				table.getModel().setValueAt( oac.stk_kodu,table.getSelectedRow() , 1) ;
+				bilgi_doldur(oac.stk_kodu) ;
 				}
 						}
 		});
@@ -1469,18 +1440,11 @@ public class FATURA extends JInternalFrame {
 							if ( table.getValueAt(row,1).toString().equals(""))
 							 {	 return ;		 }
 							 boolean durum = false ;
-							if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-								{
+							
 									try {
-									durum = oac.sTOK_MSSQL.stok_bak_kontrol(table.getValueAt(row,1).toString());
+									durum = f_Access.stok_bak_kontrol(table.getValueAt(row,1).toString());
 									} catch (Exception ex) {		} 
-							}
-							else
-							{
-								try {
-									durum = oac.sTOK_MYSQL.stok_bak_kontrol(table.getValueAt(row,1).toString());
-								} catch (Exception ex) {		} 
-							}
+							
 			                  if (durum)
 			                  {
 			                		JOptionPane.showMessageDialog(null, "Bu Urun Bakiyesi Eksi Konumdadir....",   "Stok Bakiye Kontrol", JOptionPane.ERROR_MESSAGE);              
@@ -1507,18 +1471,11 @@ public class FATURA extends JInternalFrame {
 								 return ;
 								 }
 								 boolean durum = false ;
-									if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-									{
+									
 										try {
-											durum = oac.sTOK_MSSQL.stok_bak_kontrol_barcode(table.getValueAt(row,0).toString());
+											durum = f_Access.stok_bak_kontrol_barcode(table.getValueAt(row,0).toString());
 										} catch (Exception ex) {		} 
-									}
-									else
-									{
-										try {
-											durum = oac.sTOK_MYSQL.stok_bak_kontrol_barcode(table.getValueAt(row,0).toString());
-										} catch (Exception ex) {		} 
-									}
+									
 				                  if (durum)
 				                  {
 				                		JOptionPane.showMessageDialog(null, "Bu Urun Bakiyesi Eksi Konumdadir....",   "Stok Bakiye Kontrol", JOptionPane.ERROR_MESSAGE);              
@@ -1564,14 +1521,9 @@ public class FATURA extends JInternalFrame {
         if ( yeni_fat == false ) // ' eski kayit
             {
         	ResultSet rss = null;
-        	if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-        		 rss = oac.cARI_HESAP_MSSQL.evrak_ogren(textField.getText());
-			}
-        	else
-        	{
-        		 rss = oac.cARI_HESAP_MYSQL.evrak_ogren(textField.getText());
-        	}
+        	
+        		 rss = c_Access.evrak_ogren(textField.getText());
+
         	boolean result ;
         	if (!rss.isBeforeFirst() ) {
         		result = false;
@@ -1620,25 +1572,15 @@ public class FATURA extends JInternalFrame {
 		ResultSet rss = null;
 		  if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 	        {
-      	  if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-	 			{
-      		    rss = oac.sTOK_MSSQL.fatura_oku(textField.getText(), "C");
-	 			}
-      	  else
-      	  {
-      		 rss = oac.sTOK_MYSQL.fatura_oku(textField.getText(), "C");
-      	  }
+      	 
+      		    rss = f_Access.fatura_oku(textField.getText(), "C");
+	 		
 	        }
       	  else
       	  {
-      		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
- 			{
-      			 rss = oac.sTOK_MSSQL.fatura_oku(textField.getText(), "G");
- 			}
-      		else
-      		{
-  		 rss = oac.sTOK_MYSQL.fatura_oku(textField.getText(), "G");
-      		}
+      		
+      			 rss = f_Access.fatura_oku(textField.getText(), "G");
+ 			
       	  }
 		  if (!rss.isBeforeFirst() ) {  
 			  txtadres.setText("");
@@ -1663,14 +1605,9 @@ public class FATURA extends JInternalFrame {
 			  cmbozkod.setSelectedItem(rss.getString("Ozel_Kod"));
 			  //  '***********GRUP DOLDUR
 				ResultSet rsa=null;
-				if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				{
-					rsa = oac.sTOK_MSSQL.urun_kod_degisken_ara("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN",String.valueOf(rss.getInt("Ana_Grup")));
-				}
-				else
-				{
-					rsa = oac.sTOK_MYSQL.urun_kod_degisken_ara("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN",String.valueOf(rss.getInt("Ana_Grup")));
-				}
+				
+					rsa = f_Access.urun_kod_degisken_ara("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN",String.valueOf(rss.getInt("Ana_Grup")));
+				
 				if (!rsa.isBeforeFirst() ) {  
 					cmbaltgrup.setEnabled(false);
 					cmbanagrup.setSelectedItem("");
@@ -1683,14 +1620,9 @@ public class FATURA extends JInternalFrame {
 				}
 				//**Alt Grup
 				 rsa = null;
-				if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				{
-					rsa = oac.sTOK_MSSQL.urun_kod_degisken_ara("ALT_GRUP", "ALID_Y", "ALT_GRUP_DEGISKEN",String.valueOf(rss.getInt("Alt_Grup")));
-				}
-				else
-				{
-					rsa = oac.sTOK_MYSQL.urun_kod_degisken_ara("ALT_GRUP", "ALID_Y", "ALT_GRUP_DEGISKEN",String.valueOf(rss.getInt("Alt_Grup")));
-				}
+				
+					rsa = f_Access.urun_kod_degisken_ara("ALT_GRUP", "ALID_Y", "ALT_GRUP_DEGISKEN",String.valueOf(rss.getInt("Alt_Grup")));
+				
 				if (!rsa.isBeforeFirst() ) {  
 					cmbaltgrup.setSelectedItem("");
 				} 
@@ -1702,53 +1634,31 @@ public class FATURA extends JInternalFrame {
 				//  '************ACIKLAMA OKU ***********************************************************
 				if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 				{
-					if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-						textField_9.setText( oac.sTOK_MSSQL.aciklama_oku("FAT", 1, textField.getText(), "C"));
-						textField_10.setText(	 oac.sTOK_MSSQL.aciklama_oku("FAT", 2, textField.getText(), "C"));
-					}
-					else
-					{
-						textField_9.setText(	 oac.sTOK_MYSQL.aciklama_oku("FAT", 1, textField.getText(), "C"));
-						textField_10.setText(	 oac.sTOK_MYSQL.aciklama_oku("FAT", 2, textField.getText(), "C"));
-					}
+					
+						textField_9.setText( f_Access.aciklama_oku("FAT", 1, textField.getText(), "C"));
+						textField_10.setText(f_Access.aciklama_oku("FAT", 2, textField.getText(), "C"));
+					
 				}
 				else
 				{
-					if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-						textField_9.setText(	 oac.sTOK_MSSQL.aciklama_oku("FAT", 1, textField.getText(), "G"));
-						textField_10.setText(	 oac.sTOK_MSSQL.aciklama_oku("FAT", 2, textField.getText(), "G"));
-					}
-					else
-					{
-						textField_9.setText(	 oac.sTOK_MYSQL.aciklama_oku("FAT", 1, textField.getText(), "G"));
-						textField_10.setText(	 oac.sTOK_MYSQL.aciklama_oku("FAT", 2, textField.getText(), "G"));
-					}
+					
+						textField_9.setText(f_Access.aciklama_oku("FAT", 1, textField.getText(), "G"));
+						textField_10.setText(f_Access.aciklama_oku("FAT", 2, textField.getText(), "G"));
+					
 				}
                // '***************** IRSALIYE NOLARI DOLDUR ********************************************
 				 rsa = null;
 				if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 				{
-					if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-						rsa =    oac.sTOK_MSSQL.irsaliye_no_doldur( textField.getText(), "C");
-					}
-					else
-					{
-						rsa =    oac.sTOK_MYSQL.irsaliye_no_doldur( textField.getText(), "C");
-					}
+					
+						rsa =   f_Access.irsaliye_no_doldur( textField.getText(), "C");
+					
 				}
 				else
 				{
-					if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-						rsa =    oac.sTOK_MSSQL.irsaliye_no_doldur( textField.getText(), "G");
-					}
-					else
-					{
-						rsa =    oac.sTOK_MYSQL.irsaliye_no_doldur( textField.getText(), "G");
-					}
+					
+						rsa =   f_Access.irsaliye_no_doldur( textField.getText(), "G");
+					
 				}
 				if (!rsa.isBeforeFirst() ) 
 				{  
@@ -1761,14 +1671,9 @@ public class FATURA extends JInternalFrame {
 				        DefaultTableModel mdl2 = (DefaultTableModel) table_1.getModel();
 				         while (rsa.next())
 				         {
-				        	 if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-				     	    {
-				     	    	rsh = oac.cARI_HESAP_MSSQL.hesap_adi_oku(rsa.getString("Cari_Hesap_Kodu"));
-				     	    }
-				     	    else
-				     	    {
-				     	    	rsh = oac.cARI_HESAP_MYSQL.hesap_adi_oku(rsa.getString("Cari_Hesap_Kodu"));
-				     	    }
+				        	
+				     	    	rsh = c_Access.hesap_adi_oku(rsa.getString("Cari_Hesap_Kodu"));
+				     	    
 			             rsh.next();
 			             mdl2.addRow(new Object [] {rsa.getString("Irsaliye_No"), rsa.getString("Cari_Hesap_Kodu"), rsh.getString("UNVAN") + " / " + rsh.getString("HESAP_CINSI"), rsh.getDate("Tarih")});
 				         }
@@ -1863,14 +1768,9 @@ public class FATURA extends JInternalFrame {
 			 internalFrame.setVisible(true);
         }
 		 ResultSet rss = null;
-     	if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			{
-     		 rss = oac.cARI_HESAP_MSSQL.evrak_ogren(textField.getText());
-			}
-     	else
-     	{
-     		 rss = oac.cARI_HESAP_MYSQL.evrak_ogren(textField.getText());
-     	}
+     	
+     		 rss = c_Access.evrak_ogren(textField.getText());
+		
      	String sonuc = "" ;
      	if (!rss.isBeforeFirst() ) {
 			}

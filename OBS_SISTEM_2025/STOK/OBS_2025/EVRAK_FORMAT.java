@@ -17,13 +17,22 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
+
+import OBS_C_2025.Degisken;
+import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.TABLO_RENDERER;
+
 import java.awt.Font;
 import java.awt.Color;
 
 public class EVRAK_FORMAT extends JInternalFrame {
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+
 	
 	private static JTable table;
 	private static JTable table_1;
@@ -287,17 +296,17 @@ public class EVRAK_FORMAT extends JInternalFrame {
 	    table_2.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane_2.setViewportView(table_2);
 
-		getContentPane().setCursor(WAIT_CURSOR);
+		getContentPane().setCursor(oac.WAIT_CURSOR);
 		doldur();
-		getContentPane().setCursor(DEFAULT_CURSOR);
+		getContentPane().setCursor(oac.DEFAULT_CURSOR);
 	}
 	private void doldur()
 	{
 		try {
-			 ArrayList<degisken>  students = new ArrayList<degisken>();
+			 ArrayList<Degisken>  students = new ArrayList<Degisken>();
 			for (int i = 1; i <= 44;i++)
 			{
-				degisken irs1 = new degisken();
+				Degisken irs1 = new Degisken();
 				irs1.irs_sut = 0 ;
 				irs1.irs_sat = 0;
 				irs1.fat_sut =0 ;
@@ -305,14 +314,8 @@ public class EVRAK_FORMAT extends JInternalFrame {
 				 students.add(irs1);
 			}
 		ResultSet rs =null ;
-		 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
- 		 rs = oac.sTOK_MSSQL.parametre_oku("IRS_EVRAK_FORMAT","SUTUN");
-			}
- 	 else
- 	 {
- 	 rs = oac.sTOK_MSSQL.parametre_oku("IRS_EVRAK_FORMAT","SUTUN");
- 	 }
+ 		 rs = f_Access.parametre_oku("IRS_EVRAK_FORMAT","SUTUN");
+	
 		 rs.next();
 		 ResultSetMetaData rsmd = rs.getMetaData();
 		
@@ -322,14 +325,8 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		 }
 		 /////*** Irsaliye SATIR
 		 rs =null ;
-		 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
- 		 rs = oac.sTOK_MSSQL.parametre_oku("IRS_EVRAK_FORMAT","SATIR");
-			}
- 	 else
- 	 {
- 	 rs = oac.sTOK_MSSQL.parametre_oku("IRS_EVRAK_FORMAT","SATIR");
- 	 }
+		
+ 		 rs = f_Access.parametre_oku("IRS_EVRAK_FORMAT","SATIR");
 		 rs.next();
 		rsmd = rs.getMetaData();
 		 for (int i = 0 ; i <= rsmd.getColumnCount()  - 13;i++)
@@ -338,14 +335,8 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		 }
 		 //***** Fatura SUTUN
 		 rs =null ;
-		 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
- 		 rs = oac.sTOK_MSSQL.parametre_oku("FAT_EVRAK_FORMAT","SUTUN");
-			}
- 	 else
- 	 {
- 	 rs = oac.sTOK_MSSQL.parametre_oku("FAT_EVRAK_FORMAT","SUTUN");
- 	 }
+		
+ 		 rs = f_Access.parametre_oku("FAT_EVRAK_FORMAT","SUTUN");
 		 rs.next();
 		rsmd = rs.getMetaData();
 		 for (int i = 0 ; i <= rsmd.getColumnCount()  - 3;i++)
@@ -354,14 +345,9 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		 }
 		 //***Fatura SATIR
 		 rs =null ;
-		 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
- 		 rs = oac.sTOK_MSSQL.parametre_oku("FAT_EVRAK_FORMAT","SATIR");
-			}
- 	 else
- 	 {
- 	 rs = oac.sTOK_MSSQL.parametre_oku("FAT_EVRAK_FORMAT","SATIR");
- 	 }
+		
+ 		 rs = f_Access.parametre_oku("FAT_EVRAK_FORMAT","SATIR");
+	
 		 rs.next();
 		rsmd = rs.getMetaData();
 		 for (int i =0 ; i <= rsmd.getColumnCount()  - 3;i++)
@@ -399,9 +385,8 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		{
 		 TableModel mdl = (TableModel) table.getModel();
 		 TableModel mdl2 = (TableModel) table_2.getModel();
-		 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-			 oac.sTOK_MSSQL.evr_format_irs("SATIR",Double.parseDouble( mdl.getValueAt(0,1).toString()),
+		
+			f_Access.evr_format_irs("SATIR",Double.parseDouble( mdl.getValueAt(0,1).toString()),
 					 Double.parseDouble( mdl.getValueAt(1,1).toString()),Double.parseDouble( mdl.getValueAt(2,1).toString()),
 					 Double.parseDouble( mdl.getValueAt(3,1).toString()),Double.parseDouble( mdl.getValueAt(4,1).toString()),
 					 Double.parseDouble( mdl.getValueAt(5,1).toString()),Double.parseDouble( mdl.getValueAt(6,1).toString()),
@@ -416,7 +401,7 @@ public class EVRAK_FORMAT extends JInternalFrame {
 					 Double.parseDouble( mdl.getValueAt(23,1).toString()),Double.parseDouble( mdl.getValueAt(24,1).toString()),
 					 Double.parseDouble( mdl.getValueAt(25,1).toString()),Double.parseDouble( mdl.getValueAt(26,1).toString()),
 					 Double.parseDouble( mdl.getValueAt(27,1).toString()),GLOBAL.KULL_ADI);
-			 oac.sTOK_MSSQL.evr_format_irs("SUTUN",Double.parseDouble( mdl.getValueAt(0,2).toString()),
+			f_Access.evr_format_irs("SUTUN",Double.parseDouble( mdl.getValueAt(0,2).toString()),
 					 Double.parseDouble( mdl.getValueAt(1,2).toString()),Double.parseDouble( mdl.getValueAt(2,2).toString()),
 					 Double.parseDouble( mdl.getValueAt(3,2).toString()),Double.parseDouble( mdl.getValueAt(4,2).toString()),
 					 Double.parseDouble( mdl.getValueAt(5,2).toString()),Double.parseDouble( mdl.getValueAt(6,2).toString()),
@@ -435,7 +420,7 @@ public class EVRAK_FORMAT extends JInternalFrame {
 			 ////FATURA
 			 mdl = (TableModel) table_1.getModel();
 			 mdl2 = (TableModel) table_2.getModel();
-			 oac.sTOK_MSSQL.evr_format_fat("SATIR",Double.parseDouble( mdl.getValueAt(0,1).toString()),
+			 f_Access.evr_format_fat("SATIR",Double.parseDouble( mdl.getValueAt(0,1).toString()),
 					 Double.parseDouble( mdl.getValueAt(1,1).toString()),Double.parseDouble( mdl.getValueAt(2,1).toString()),
 					 Double.parseDouble( mdl.getValueAt(3,1).toString()),Double.parseDouble( mdl.getValueAt(4,1).toString()),
 					 Double.parseDouble( mdl.getValueAt(5,1).toString()),Double.parseDouble( mdl.getValueAt(6,1).toString()),
@@ -459,7 +444,7 @@ public class EVRAK_FORMAT extends JInternalFrame {
 					 Double.parseDouble( mdl2.getValueAt(7,1).toString()),Double.parseDouble( mdl2.getValueAt(8,1).toString()),
 					 Double.parseDouble( mdl2.getValueAt(9,1).toString()),GLOBAL.KULL_ADI);
 			 
-			 oac.sTOK_MSSQL.evr_format_fat("SUTUN",Double.parseDouble( mdl.getValueAt(0,2).toString()),
+			 f_Access.evr_format_fat("SUTUN",Double.parseDouble( mdl.getValueAt(0,2).toString()),
 					 Double.parseDouble( mdl.getValueAt(1,2).toString()),Double.parseDouble( mdl.getValueAt(2,2).toString()),
 					 Double.parseDouble( mdl.getValueAt(3,2).toString()),Double.parseDouble( mdl.getValueAt(4,2).toString()),
 					 Double.parseDouble( mdl.getValueAt(5,2).toString()),Double.parseDouble( mdl.getValueAt(6,2).toString()),
@@ -482,92 +467,7 @@ public class EVRAK_FORMAT extends JInternalFrame {
 					 Double.parseDouble( mdl2.getValueAt(5,2).toString()),Double.parseDouble( mdl2.getValueAt(6,2).toString()),
 					 Double.parseDouble( mdl2.getValueAt(7,2).toString()),Double.parseDouble( mdl2.getValueAt(8,2).toString()),
 					 Double.parseDouble( mdl2.getValueAt(9,2).toString()),GLOBAL.KULL_ADI);
-			}
-		 else
-		 {
-			 oac.sTOK_MYSQL.evr_format_irs("SATIR",Double.parseDouble( mdl.getValueAt(0,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(1,1).toString()),Double.parseDouble( mdl.getValueAt(2,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(3,1).toString()),Double.parseDouble( mdl.getValueAt(4,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(5,1).toString()),Double.parseDouble( mdl.getValueAt(6,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(7,1).toString()),Double.parseDouble( mdl.getValueAt(8,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(9,1).toString()),Double.parseDouble( mdl.getValueAt(10,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(11,1).toString()),Double.parseDouble( mdl.getValueAt(12,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(13,1).toString()),Double.parseDouble( mdl.getValueAt(14,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(15,1).toString()),Double.parseDouble( mdl.getValueAt(16,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(17,1).toString()),Double.parseDouble( mdl.getValueAt(18,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(19,1).toString()),Double.parseDouble( mdl.getValueAt(20,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(21,1).toString()),Double.parseDouble( mdl.getValueAt(22,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(23,1).toString()),Double.parseDouble( mdl.getValueAt(24,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(25,1).toString()),Double.parseDouble( mdl.getValueAt(26,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(27,1).toString()),GLOBAL.KULL_ADI);
-			 
-			 oac.sTOK_MYSQL.evr_format_irs("SUTUN",Double.parseDouble( mdl.getValueAt(0,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(1,2).toString()),Double.parseDouble( mdl.getValueAt(2,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(3,2).toString()),Double.parseDouble( mdl.getValueAt(4,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(5,2).toString()),Double.parseDouble( mdl.getValueAt(6,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(7,2).toString()),Double.parseDouble( mdl.getValueAt(8,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(9,2).toString()),Double.parseDouble( mdl.getValueAt(10,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(11,2).toString()),Double.parseDouble( mdl.getValueAt(12,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(13,2).toString()),Double.parseDouble( mdl.getValueAt(14,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(15,2).toString()),Double.parseDouble( mdl.getValueAt(16,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(17,2).toString()),Double.parseDouble( mdl.getValueAt(18,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(19,2).toString()),Double.parseDouble( mdl.getValueAt(20,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(21,2).toString()),Double.parseDouble( mdl.getValueAt(22,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(23,2).toString()),Double.parseDouble( mdl.getValueAt(24,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(25,2).toString()),Double.parseDouble( mdl.getValueAt(26,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(27,2).toString()),GLOBAL.KULL_ADI);
-			 
-			 ////FATURA
-			 mdl = (TableModel) table_1.getModel();
-			 mdl2 = (TableModel) table_2.getModel();
-			 oac.sTOK_MYSQL.evr_format_fat("SATIR",Double.parseDouble( mdl.getValueAt(0,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(1,1).toString()),Double.parseDouble( mdl.getValueAt(2,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(3,1).toString()),Double.parseDouble( mdl.getValueAt(4,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(5,1).toString()),Double.parseDouble( mdl.getValueAt(6,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(7,1).toString()),Double.parseDouble( mdl.getValueAt(8,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(9,1).toString()),Double.parseDouble( mdl.getValueAt(10,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(11,1).toString()),Double.parseDouble( mdl.getValueAt(12,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(13,1).toString()),Double.parseDouble( mdl.getValueAt(14,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(15,1).toString()),Double.parseDouble( mdl.getValueAt(16,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(17,1).toString()),Double.parseDouble( mdl.getValueAt(18,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(19,1).toString()),Double.parseDouble( mdl.getValueAt(20,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(21,1).toString()),Double.parseDouble( mdl.getValueAt(22,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(23,1).toString()),Double.parseDouble( mdl.getValueAt(24,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(25,1).toString()),Double.parseDouble( mdl.getValueAt(26,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(27,1).toString()),Double.parseDouble( mdl.getValueAt(28,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(29,1).toString()),Double.parseDouble( mdl.getValueAt(30,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(31,1).toString()),Double.parseDouble( mdl.getValueAt(32,1).toString()),
-					 Double.parseDouble( mdl.getValueAt(33,1).toString()),Double.parseDouble( mdl2.getValueAt(0,1).toString()),
-					 Double.parseDouble( mdl2.getValueAt(1,1).toString()),Double.parseDouble( mdl2.getValueAt(2,1).toString()),
-					 Double.parseDouble( mdl2.getValueAt(3,1).toString()),Double.parseDouble( mdl2.getValueAt(4,1).toString()),
-					 Double.parseDouble( mdl2.getValueAt(5,1).toString()),Double.parseDouble( mdl2.getValueAt(6,1).toString()),
-					 Double.parseDouble( mdl2.getValueAt(7,1).toString()),Double.parseDouble( mdl2.getValueAt(8,1).toString()),
-					 Double.parseDouble( mdl2.getValueAt(9,1).toString()),GLOBAL.KULL_ADI);
-			 
-			 oac.sTOK_MYSQL.evr_format_fat("SUTUN",Double.parseDouble( mdl.getValueAt(0,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(1,2).toString()),Double.parseDouble( mdl.getValueAt(2,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(3,2).toString()),Double.parseDouble( mdl.getValueAt(4,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(5,2).toString()),Double.parseDouble( mdl.getValueAt(6,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(7,2).toString()),Double.parseDouble( mdl.getValueAt(8,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(9,2).toString()),Double.parseDouble( mdl.getValueAt(10,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(11,2).toString()),Double.parseDouble( mdl.getValueAt(12,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(13,2).toString()),Double.parseDouble( mdl.getValueAt(14,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(15,2).toString()),Double.parseDouble( mdl.getValueAt(16,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(17,2).toString()),Double.parseDouble( mdl.getValueAt(18,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(19,2).toString()),Double.parseDouble( mdl.getValueAt(20,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(21,2).toString()),Double.parseDouble( mdl.getValueAt(22,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(23,2).toString()),Double.parseDouble( mdl.getValueAt(24,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(25,2).toString()),Double.parseDouble( mdl.getValueAt(26,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(27,2).toString()),Double.parseDouble( mdl.getValueAt(28,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(29,2).toString()),Double.parseDouble( mdl.getValueAt(30,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(31,2).toString()),Double.parseDouble( mdl.getValueAt(32,2).toString()),
-					 Double.parseDouble( mdl.getValueAt(33,2).toString()),Double.parseDouble( mdl2.getValueAt(0,2).toString()),
-					 Double.parseDouble( mdl2.getValueAt(1,2).toString()),Double.parseDouble( mdl2.getValueAt(2,2).toString()),
-					 Double.parseDouble( mdl2.getValueAt(3,2).toString()),Double.parseDouble( mdl2.getValueAt(4,2).toString()),
-					 Double.parseDouble( mdl2.getValueAt(5,2).toString()),Double.parseDouble( mdl2.getValueAt(6,2).toString()),
-					 Double.parseDouble( mdl2.getValueAt(7,2).toString()),Double.parseDouble( mdl2.getValueAt(8,2).toString()),
-					 Double.parseDouble( mdl2.getValueAt(9,2).toString()),GLOBAL.KULL_ADI);
-		 }
+		
 		}
 		catch (Exception ex)
 		{
@@ -575,9 +475,9 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		}
 	}
 }
-class degisken {
-	   double irs_sut;
-	   double irs_sat;
-	   double fat_sut;
-	   double fat_sat;
-	}
+//class degisken {
+//	   double irs_sut;
+//	   double irs_sat;
+//	   double fat_sut;
+//	   double fat_sat;
+//	}

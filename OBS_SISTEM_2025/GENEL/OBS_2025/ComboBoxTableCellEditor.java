@@ -19,10 +19,13 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.table.TableCellEditor;
 
+import OBS_C_2025.GLOBAL;
+
 public class ComboBoxTableCellEditor extends AbstractCellEditor implements TableCellEditor {
 
     private JComboBox<String> editor;
     private ArrayList<String>  masterValues;
+    static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
     public ComboBoxTableCellEditor(ArrayList<String> masterValues1,JTable table,String nerden) 
     {
         editor = new JComboBox<String>();
@@ -99,7 +102,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
   					URUN_ARAMA arm ;
   					arm = new URUN_ARAMA();
   					arm.setVisible(true);
-  					editor.setSelectedItem(GLOBAL.stk_kodu);
+  					editor.setSelectedItem(oac.stk_kodu);
   					table.getCellEditor().stopCellEditing();
   				}
   			}});

@@ -21,11 +21,16 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
 import net.proteanit.sql.DbUtils;
 
 public class FAT_BOS_KUR extends JInternalFrame {
 	
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+
 	private static JTable table;
 	private static JComboBox<String> comboBox ;
 	private static JComboBox<String> comboBox_1; 
@@ -93,17 +98,9 @@ public class FAT_BOS_KUR extends JInternalFrame {
         try 
         {
         	 ResultSet	rs = null;
-        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.bos_kur(comboBox.getItemAt(comboBox.getSelectedIndex()).toString(),
+    			rs = f_Access.bos_kur(comboBox.getItemAt(comboBox.getSelectedIndex()).toString(),
 						comboBox_1.getItemAt(comboBox_1.getSelectedIndex()).toString());
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.bos_kur(comboBox.getItemAt(comboBox.getSelectedIndex()).toString(),
-						comboBox_1.getItemAt(comboBox_1.getSelectedIndex()).toString());
-				}
-        	GRID_TEMIZLE.grid_temizle(table);
+	    	GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 			    return;
 			} 

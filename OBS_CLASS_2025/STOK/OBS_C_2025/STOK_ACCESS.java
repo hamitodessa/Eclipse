@@ -152,4 +152,63 @@ public class STOK_ACCESS {
 	{
 		return _IStok.sql_sorgu(sql);
 	}
+	public void fat_giris_sil(String fno,String cins) throws ClassNotFoundException, SQLException 
+	{
+		_IStok.fat_giris_sil(fno, cins);
+	}
+	public void fat_kaydet(String fatno ,String kodu ,int depo ,double  fiat ,double tevkifat  
+            , double miktar ,String gircik ,double tutar,double iskonto ,double kdv  
+            , String tarih, String izah,String doviz,String  adrfirma ,String carfirma  
+            , String ozkod ,double kur ,String cins,int  anagrp,int  altgrp ,String usr) throws ClassNotFoundException, SQLException
+	{
+		_IStok.fat_kaydet(fatno, kodu, depo, fiat, tevkifat, miktar, gircik, tutar, iskonto, kdv, tarih, izah, doviz, adrfirma, carfirma, ozkod, kur, cins, anagrp, altgrp, usr);
+	}
+	public void stok_sil(String eno,String ecins,String cins) throws ClassNotFoundException, SQLException
+	{
+		_IStok.stok_sil(eno, ecins, cins);
+	}
+	public void stk_kaydet(String evrno ,String evrcins , String tarih,int depo,String urnkodu,double miktar,double fiat ,double tutar
+            , double kdvlitut,String hareket ,String izah , int anagrp ,int altgrp ,double kur ,String b1,String doviz 
+            , String hspkodu ,String usr) throws ClassNotFoundException, SQLException
+	{
+		_IStok.stk_kaydet(evrno, evrcins, tarih, depo, urnkodu, miktar, fiat, tutar, kdvlitut, hareket, izah, anagrp, altgrp, kur, b1, doviz, hspkodu, usr);
+	}
+	public void dipnot_yaz(String eno,String bir,String iki,String uc,String tip,String gircik,String usr) throws ClassNotFoundException, SQLException
+	{
+		_IStok.dipnot_yaz(eno, bir, iki, uc, tip, gircik, usr);
+	}
+	public void dipnot_sil(String ino,String cins,String gircik) throws ClassNotFoundException, SQLException
+	{
+		_IStok.dipnot_sil(ino, cins, gircik);
+	}
+	public void aciklama_sil(String evrcins,String evrno,String cins) throws ClassNotFoundException, SQLException
+	{
+		_IStok.aciklama_sil(evrcins, evrno, cins);
+	}
+	public void aciklama_yaz(String evrcins,int satir,String evrno,String aciklama,String gircik) throws ClassNotFoundException, SQLException 
+	{
+		_IStok.aciklama_yaz(evrcins, satir, evrno, aciklama, gircik);
+	}
+	public void  fat_no_yaz(String irsno,String fatno) throws ClassNotFoundException, SQLException
+	{
+		_IStok.fat_no_yaz(irsno, fatno);
+	}
+	public ResultSet irs_son_satis_fiati_oku(String kodu,String muskodu,String gircik) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.irs_son_satis_fiati_oku(kodu, muskodu, gircik);
+	}
+	public ResultSet son_satis_fiati_oku(String kodu,String muskodu,String gircik) throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.son_satis_fiati_oku(kodu, muskodu, gircik);
+	}
+	public ResultSet fat_oz_kod (String cins) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.fat_oz_kod(cins);
+	}
+	public ResultSet dipnot_oku(String ino,String cins ,String gircik) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.dipnot_oku(ino, cins, gircik);
+	}
+	
+	
 }

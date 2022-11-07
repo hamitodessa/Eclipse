@@ -27,6 +27,16 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JComboBox;
@@ -34,10 +44,9 @@ import javax.swing.JDialog;
 import java.awt.Font;
 
 public class IRSALIYE_ARA extends JDialog {
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
-	
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);	
 
 	private JTable table;
 	private JTextField textField;
@@ -100,12 +109,12 @@ public class IRSALIYE_ARA extends JDialog {
 					int row = table.getSelectedRow();
 					if (table.getRowSorter()!=null) {
 					    row = table.getRowSorter().convertRowIndexToModel(row);
-					    GLOBAL.irs_no = 	table.getModel().getValueAt(row, 0).toString() ;
+					    oac.irs_no = 	table.getModel().getValueAt(row, 0).toString() ;
 						dispose();
 					}
 					else
 					{
-						GLOBAL.irs_no = 	table.getModel().getValueAt(table.getSelectedRow(), 0).toString() ;
+						oac.irs_no = 	table.getModel().getValueAt(table.getSelectedRow(), 0).toString() ;
 						dispose();
 					}
 				}
@@ -131,19 +140,19 @@ public class IRSALIYE_ARA extends JDialog {
 		textField.setBounds(88, 10, 113, 20);
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
-				 getContentPane().setCursor(WAIT_CURSOR);
+				 getContentPane().setCursor(oac.WAIT_CURSOR);
 			    hisset();
-			    getContentPane().setCursor(DEFAULT_CURSOR);
+			    getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			  public void removeUpdate(DocumentEvent e) {
-				  getContentPane().setCursor(WAIT_CURSOR);
+				  getContentPane().setCursor(oac.WAIT_CURSOR);
 			    hisset();
-			    getContentPane().setCursor(DEFAULT_CURSOR);
+			    getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			  public void insertUpdate(DocumentEvent e) {
-				  getContentPane().setCursor(WAIT_CURSOR);
+				  getContentPane().setCursor(oac.WAIT_CURSOR);
 			    hisset();
-			    getContentPane().setCursor(DEFAULT_CURSOR);
+			    getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			});
 		panel.add(textField);
@@ -180,17 +189,17 @@ public class IRSALIYE_ARA extends JDialog {
 				{
 					try {
 						HESAP_PLN hsp ;
-						getContentPane().setCursor(WAIT_CURSOR);
+						getContentPane().setCursor(oac.WAIT_CURSOR);
 						hsp = new HESAP_PLN();
 						hsp.show();
-						textField_1.setText( GLOBAL.hsp_hsp_kodu);
+						textField_1.setText( oac.hsp_hsp_kodu);
 						isimoku();
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 			}
 		});
@@ -248,14 +257,8 @@ public class IRSALIYE_ARA extends JDialog {
 		     {
 		     
 		        if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
-		        		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		        		{
-		        			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-		        		}
-		        		else
-		        		{
-		        			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-		        		}
+		        				rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
+		        		
 		        		if (!rs.isBeforeFirst() ) {      		
 		    	    	}
 		    	    	else
@@ -270,14 +273,9 @@ public class IRSALIYE_ARA extends JDialog {
 		    {
 		        if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") )
 		        {
-		     	      	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		     			{
-		     	    		rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-		     			}
-		     			else
-		     			{
-		     	    		rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-		     			}
+		     	      
+		     	    		rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
+		     			
 		     	      	if (!rs.isBeforeFirst() ) {      		
 		    	    	}
 		    	    	else
@@ -291,14 +289,9 @@ public class IRSALIYE_ARA extends JDialog {
 			//
 			
 			String arama = " AND  Irsaliye_No Like '%"+ textField.getText() + "%'  AND Firma Like  '%" + textField_1.getText() + "%'  AND Ana_Grup Like '%"+ angrp + "%' AND Alt_Grup Like '%"+ altgrp + "%' ";
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.irsaliye_faturasiz(FATURA.cmbcins.getItemAt(FATURA.cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G",arama);
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.irsaliye_faturasiz(FATURA.cmbcins.getItemAt(FATURA.cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G",arama);
-			}
+			
+				rs = f_Access.irsaliye_faturasiz(FATURA.cmbcins.getItemAt(FATURA.cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G",arama);
+			
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 			    return;
@@ -381,19 +374,14 @@ public class IRSALIYE_ARA extends JDialog {
 		private void ana_grup_doldur()
 		{
 			try {
-			getContentPane().setCursor(WAIT_CURSOR);
+			getContentPane().setCursor(oac.WAIT_CURSOR);
 			cmbanagrup .removeAllItems();
 			ResultSet rs=null;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-			}
+			
+				rs = f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
+			
 			if (!rs.isBeforeFirst() ) {  
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				cmbaltgrup.setEnabled(false);
 				cmbanagrup .addItem("");
 				cmbanagrup.setSelectedItem("");
@@ -404,24 +392,23 @@ public class IRSALIYE_ARA extends JDialog {
 		    {
 		    	cmbanagrup .addItem(rs.getString("ANA_GRUP"));
 		    }
-		    getContentPane().setCursor(DEFAULT_CURSOR);
+		    getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			catch (Exception ex)
 			{
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 			}
 		}
 		private void alt_grup_doldur()
 		{
 			try {
-			getContentPane().setCursor(WAIT_CURSOR);
+			getContentPane().setCursor(oac.WAIT_CURSOR);
 			cmbaltgrup.removeAllItems();
 			cmbaltgrup .addItem("");
 			ResultSet rs=null;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
+			
+				rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
 				if (!rs.isBeforeFirst() ) {
 				}
 				else
@@ -429,27 +416,14 @@ public class IRSALIYE_ARA extends JDialog {
 					rs.next();
 					int in1 = rs.getInt("AGID_Y");
 					rs =null;
-					rs = oac.sTOK_MSSQL.stk_kod_alt_grup_degisken_oku(in1);
+					rs = f_Access.stk_kod_alt_grup_degisken_oku(in1);
 				}
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
-				if (!rs.isBeforeFirst() ) {
-				}
-				else
-				{
-				rs.next();
-				int in1 =rs.getInt("AGID_Y");
-				rs =null;
-				rs = oac.sTOK_MYSQL.stk_kod_alt_grup_degisken_oku(in1);
-				}
-			}
+			
 			
 			if (!rs.isBeforeFirst() ) {  
 				cmbaltgrup.setSelectedItem("");
 				cmbaltgrup.setEnabled(false);
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			} 
 			else
 			{
@@ -461,11 +435,11 @@ public class IRSALIYE_ARA extends JDialog {
 		    cmbaltgrup.setEnabled(true);
 			}
 			hisset();
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			catch (Exception ex)
 			{
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 			}
 		}
@@ -473,14 +447,9 @@ public class IRSALIYE_ARA extends JDialog {
 		    ResultSet	rs = null;
 		    try
 		    {
-		    if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		    {
-		    	rs = oac.cARI_HESAP_MSSQL.hesap_adi_oku(textField_1.getText());
-		    }
-		    else
-		    {
-		    	rs = oac.cARI_HESAP_MYSQL.hesap_adi_oku(textField_1.getText());
-		    }
+		    
+		    	rs = c_Access.hesap_adi_oku(textField_1.getText());
+		   
 			if (!rs.isBeforeFirst() ) {  
 				lblNewLabel_1.setText("");
 			} 

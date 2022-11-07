@@ -208,4 +208,6 @@ public interface ISTOK {
 	public  boolean alt_grup_kontrol(int anagrp,int altgrp) throws ClassNotFoundException, SQLException;
 	public void create_table_log() throws SQLException ;
 	public ResultSet fatura_oku_printer(String fno,String cins) throws ClassNotFoundException, SQLException;
+	public int zayi_fisno_al() throws ClassNotFoundException, SQLException;
+
 }

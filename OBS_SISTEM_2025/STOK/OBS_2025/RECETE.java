@@ -21,6 +21,17 @@ import javax.swing.table.TableColumn;
 
 import org.apache.commons.lang.StringUtils;
 
+import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.NextCellActioin;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.TABLO_RENDERER;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -53,9 +64,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class RECETE extends JInternalFrame {
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	
 	
 	private ArrayList<String> listkodlar = null ;
 	private static JComboBox<String> cmbanagrup ;
@@ -122,25 +133,20 @@ public class RECETE extends JInternalFrame {
 				if (e.getClickCount() == 2) 
 				{
 					try {
-						getContentPane().setCursor(WAIT_CURSOR);
+						getContentPane().setCursor(oac.WAIT_CURSOR);
 					int sno = 0 ;
-					if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		             sno  = oac.sTOK_MSSQL.recete_no_al() ;
-		    		}
-		            else
-		            {
-		             sno  = oac.sTOK_MYSQL.recete_no_al() ;
-		            }
+					
+		             sno  = f_Access.recete_no_al() ;
+		    		
 					int kj = 0 ;
 					kj = 10 - Integer.toString(sno).length() ;
 					String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
 					textField.setText(str_.equals("0000000000") ? "0000000001":str_);
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					}
 					catch (Exception ex)
 					{
-						getContentPane().setCursor(DEFAULT_CURSOR);
+						getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						 JOptionPane.showMessageDialog(null,  "Recete Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
@@ -149,21 +155,21 @@ public class RECETE extends JInternalFrame {
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 				kontrol();
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 				kontrol();
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 				kontrol();
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			});
 		textField.addAncestorListener(new AncestorListener() {
@@ -192,17 +198,12 @@ public class RECETE extends JInternalFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 try {
-					getContentPane().setCursor(WAIT_CURSOR);
+					getContentPane().setCursor(oac.WAIT_CURSOR);
 		            textField.setText("");
 		            temizle();
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-	        		{
-		        		  textField.setText( oac.sTOK_MSSQL.recete_son_bordro_no_al());
-	        		}
-		        	else
-		        	{
-		        		  textField.setText(oac.sTOK_MYSQL.recete_son_bordro_no_al());
-		        	}
+		        	
+		        		  textField.setText(f_Access.recete_son_bordro_no_al());
+	        		
 		          
 		            if ( textField.getText().equals("0") )
 		            		{
@@ -210,11 +211,11 @@ public class RECETE extends JInternalFrame {
 		            	JOptionPane.showMessageDialog(null,  "Hic Kayit Yok...", "Recete Okuma", JOptionPane.PLAIN_MESSAGE);
 		            	textField.requestFocus();
 		            		}
-		        	getContentPane().setCursor(DEFAULT_CURSOR);
+		        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				 }
 		        catch (Exception ex)
 				 {
-		        	getContentPane().setCursor(DEFAULT_CURSOR);
+		        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		        	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Okuma", JOptionPane.ERROR_MESSAGE);
 				 }
 			}
@@ -301,11 +302,11 @@ public class RECETE extends JInternalFrame {
 				if (e.getClickCount() == 2) 
 				{
 					URUN_ARAMA arm ;
-					getContentPane().setCursor(WAIT_CURSOR);
+					getContentPane().setCursor(oac.WAIT_CURSOR);
 						arm = new URUN_ARAMA();
 						arm.show();
-					getContentPane().setCursor(DEFAULT_CURSOR);
-					textField_1.setText( GLOBAL.stk_kodu);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					textField_1.setText( oac.stk_kodu);
 				}
 			}
 		});
@@ -335,16 +336,11 @@ public class RECETE extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				ResultSet rs = null;
 				try {
-					getContentPane().setCursor(WAIT_CURSOR);
-				if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				{
-		        rs =	 oac.sTOK_MSSQL.imalat_urun_ara(textField_1.getText());
-				}
-		        else
-		        {
-		        rs =	oac.sTOK_MYSQL.imalat_urun_ara(textField_1.getText());
-		        }
-				getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.WAIT_CURSOR);
+				
+		        rs =f_Access.imalat_urun_ara(textField_1.getText());
+				
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 if (! rs.isBeforeFirst() )
 			 	{  }
 			 else
@@ -429,12 +425,12 @@ public class RECETE extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (table.getSelectedRow() < 0 ) return ;
 				URUN_ARAMA arm ;
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 					arm = new URUN_ARAMA();
 					arm.show();
-				getContentPane().setCursor(DEFAULT_CURSOR);
-				table.getModel().setValueAt( GLOBAL.stk_kodu,table.getSelectedRow(), 1) ;
-				bilgi_doldur(GLOBAL.stk_kodu);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				table.getModel().setValueAt( oac.stk_kodu,table.getSelectedRow(), 1) ;
+				bilgi_doldur(oac.stk_kodu);
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon(RECETE.class.getResource("/ICONLAR/icons8-view-16.png")));
@@ -578,19 +574,14 @@ public class RECETE extends JInternalFrame {
 	private void ana_grup_doldur()
 	{
 		try {
-		getContentPane().setCursor(WAIT_CURSOR);
+		getContentPane().setCursor(oac.WAIT_CURSOR);
 		cmbanagrup .removeAllItems();
 		ResultSet rs=null;
-		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		{
-			rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-		}
-		else
-		{
-			rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-		}
+		
+			rs = f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
+		
 		if (!rs.isBeforeFirst() ) {  
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			cmbaltgrup.setEnabled(false);
 			cmbanagrup .addItem("");
 			cmbanagrup.setSelectedItem("");
@@ -602,24 +593,23 @@ public class RECETE extends JInternalFrame {
 	    	cmbanagrup .addItem(rs.getString("ANA_GRUP"));
 	    }
 	    cmbanagrup.setSelectedItem("");
-	    getContentPane().setCursor(DEFAULT_CURSOR);
+	    getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur()
 	{
 		try {
-		getContentPane().setCursor(WAIT_CURSOR);
+		getContentPane().setCursor(oac.WAIT_CURSOR);
 		cmbaltgrup.removeAllItems();
 		cmbaltgrup .addItem("");
 		ResultSet rs=null;
-		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		{
-			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
+		
+			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
 			if (!rs.isBeforeFirst() ) {
 			}
 			else
@@ -627,27 +617,14 @@ public class RECETE extends JInternalFrame {
 				rs.next();
 				int in1 = rs.getInt("AGID_Y");
 				rs =null;
-				rs = oac.sTOK_MSSQL.stk_kod_alt_grup_degisken_oku(in1);
+				rs = f_Access.stk_kod_alt_grup_degisken_oku(in1);
 			}
-		}
-		else
-		{
-			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
-			if (!rs.isBeforeFirst() ) {
-			}
-			else
-			{
-			rs.next();
-			int in1 =rs.getInt("AGID_Y");
-			rs =null;
-			rs = oac.sTOK_MYSQL.stk_kod_alt_grup_degisken_oku(in1);
-			}
-		}
+		
 		
 		if (!rs.isBeforeFirst() ) {  
 			cmbaltgrup.setSelectedItem("");
 			cmbaltgrup.setEnabled(false);
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		} 
 		else
 		{
@@ -658,11 +635,11 @@ public class RECETE extends JInternalFrame {
 	    cmbaltgrup.setSelectedItem(0);
 	    cmbaltgrup.setEnabled(true);
 		}
-		getContentPane().setCursor(DEFAULT_CURSOR);
+		getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
@@ -670,14 +647,9 @@ public class RECETE extends JInternalFrame {
 	{
 		try {
 		ResultSet rs = null;
-		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		{
-	 		rs = oac.sTOK_MSSQL.stk_barkod_kod_oku(field);
-		}
-	 	else
-	 	{
-	 		rs = oac.sTOK_MYSQL.stk_barkod_kod_oku(field);
-	 	}
+		
+	 		rs = f_Access.stk_barkod_kod_oku(field);
+		
 		if (!rs.isBeforeFirst() ) {  
 			if (field.equals("Kodu"))
 			{
@@ -753,14 +725,9 @@ public class RECETE extends JInternalFrame {
 				table.getModel().setValueAt(0.000,table.getSelectedRow(), 4) ;
 				return;
 			}
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.urun_adi_oku(cins,"Kodu");
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.urun_adi_oku(cins,"Kodu");
-			}
+			
+				rs =f_Access.urun_adi_oku(cins,"Kodu");
+			
 		if (!rs.isBeforeFirst() ) 
 		{  
 			table.getModel().setValueAt("Cikan",table.getSelectedRow(), 0) ;
@@ -793,14 +760,9 @@ public class RECETE extends JInternalFrame {
 			ResultSet rs = null;
 
 		
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.urun_adi_oku(textField_1.getText(),"Kodu");
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.urun_adi_oku(textField_1.getText(),"Kodu");
-			}
+			
+				rs = f_Access.urun_adi_oku(textField_1.getText(),"Kodu");
+			
 		if (!rs.isBeforeFirst() ) {  
 			lblNewLabel_4.setText("") ;
 			lblNewLabel_5.setText("") ;
@@ -849,14 +811,9 @@ public class RECETE extends JInternalFrame {
 	private static void koda_recete_yaz()
 	{
 		try {
-		 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-			 oac.sTOK_MSSQL.kod_recete_yaz(textField_1.getText(), textField.getText());
-			}
-		 else
-		 {
-			 oac.sTOK_MSSQL.kod_recete_yaz(textField_1.getText(), textField.getText());
-		 }
+		
+			f_Access.kod_recete_yaz(textField_1.getText(), textField.getText());
+		
 	}
 	   catch (Exception ex)
 	   {
@@ -867,14 +824,9 @@ public class RECETE extends JInternalFrame {
 	{
 		try {
 		 aciklama_sil();
-		 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				oac.sTOK_MSSQL.aciklama_yaz("REC", 1,textField.getText(), textArea.getText(), "G");
-			}
-			else
-			{
-				oac.sTOK_MYSQL.aciklama_yaz("REC", 1, textField.getText(), textArea.getText(), "G");
-			}
+		
+			f_Access.aciklama_yaz("REC", 1,textField.getText(), textArea.getText(), "G");
+		
 	}
 	   catch (Exception ex)
 	   {
@@ -884,14 +836,9 @@ public class RECETE extends JInternalFrame {
 	private static void aciklama_sil()
 	{
 		try {
-		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		{
-			oac.sTOK_MSSQL.aciklama_sil("REC", textField.getText(), "G");
-		}
-		else
-		{
-			oac.sTOK_MYSQL.aciklama_sil("REC", textField.getText(), "G");
-		}
+		
+		f_Access.aciklama_sil("REC", textField.getText(), "G");
+		
 	}
 	   catch (Exception ex)
 	   {
@@ -901,14 +848,9 @@ public class RECETE extends JInternalFrame {
 	private static void satir_yaz_1 () 
 	{
 		try {
-		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		{
-			oac.sTOK_MSSQL.rec_sil(textField.getText());
-		}
-		else
-		{
-			oac.sTOK_MYSQL.rec_sil(textField.getText());
-		}
+		
+		f_Access.rec_sil(textField.getText());
+		
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		  for (int  i = 0 ; i <=  model.getRowCount() - 1 ; i++)
 	       {
@@ -943,14 +885,9 @@ public class RECETE extends JInternalFrame {
 	        if (! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals(""))
 	        {
 	        	 if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
-		        		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		        		{
-		        			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",  cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-		        		}
-		        		else
-		        		{
-		        			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-		        		}
+		        		
+		        			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",  cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
+		        		
 		        		if (!rs.isBeforeFirst() ) {      		
 		    	    	}
 		    	    	else
@@ -963,14 +900,9 @@ public class RECETE extends JInternalFrame {
 	        if (! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals(""))
 	        {
 	        	  if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") ) {
-		     	      	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		     			{
-		     	    		rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-		     			}
-		     			else
-		     			{
-		     	    		rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-		     			}
+		     	      
+		     	    		rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
+		     			
 		     	      	if (!rs.isBeforeFirst() ) {      		
 		    	    	}
 		    	    	else
@@ -981,16 +913,10 @@ public class RECETE extends JInternalFrame {
 		     	}
 	        }
 	        DefaultTableModel model = (DefaultTableModel) table.getModel();
-	        if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
- 			{
-	        	 oac.sTOK_MSSQL.recete_kayit(textField.getText(), drm, "Giren",textField_1.getText(),1.00
+	       
+	        f_Access.recete_kayit(textField.getText(), drm, "Giren",textField_1.getText(),1.00
                          , anagrp, altgrp, GLOBAL.KULL_ADI);
- 			}
-	        else
-	        {
-	        	oac.sTOK_MYSQL.recete_kayit(textField.getText(), drm, "Giren",textField_1.getText(),1.00
-                        , anagrp, altgrp, GLOBAL.KULL_ADI);
-	        }
+ 			
 	}
 	catch (Exception ex)
 	{
@@ -1018,14 +944,9 @@ public class RECETE extends JInternalFrame {
 	        ResultSet rs =null ;
 	        if (! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals(""))
 	        {
-	        		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		        		{
-		        			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",  cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-		        		}
-		        		else
-		        		{
-		        			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-		        		}
+	        		
+		        			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",  cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
+		        		
 		        		if (!rs.isBeforeFirst() ) {      		
 		    	    	}
 		    	    	else
@@ -1036,14 +957,9 @@ public class RECETE extends JInternalFrame {
 	        }
 	        if (! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals(""))
 	        {
-		     	      	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		     			{
-		     	    		rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-		     			}
-		     			else
-		     			{
-		     	    		rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-		     			}
+		     	      
+		     	    		rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
+		     			
 		     	      	if (!rs.isBeforeFirst() ) {      		
 		    	    	}
 		    	    	else
@@ -1052,16 +968,10 @@ public class RECETE extends JInternalFrame {
 			     	      	altgrp  = rs.getInt("ALID_Y");
 		    	    	}
 	        }
-	        if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
- 			{
-	        	 oac.sTOK_MSSQL.recete_kayit(textField.getText(), drm,model.getValueAt(sat,0).toString(),model.getValueAt(sat,1).toString()
+	        
+	        f_Access.recete_kayit(textField.getText(), drm,model.getValueAt(sat,0).toString(),model.getValueAt(sat,1).toString()
                          , miktar, anagrp, altgrp, GLOBAL.KULL_ADI);
- 			}
-	        else
-	        {
-	        	oac.sTOK_MYSQL.recete_kayit(textField.getText(), drm,model.getValueAt(sat,0).toString(),model.getValueAt(sat,1).toString()
-                        , miktar, anagrp, altgrp, GLOBAL.KULL_ADI);
-	        }
+ 			
 	}
 	catch (Exception ex)
 	{
@@ -1080,14 +990,9 @@ public class RECETE extends JInternalFrame {
 		   			 	oac.options,  //button titles
 		   			 	oac.options[1]); //default button
 		 	 if(g != 0 ) { return;	}
-		 	 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-	 			{
-		        	 oac.sTOK_MSSQL.rec_sil(textField.getText());
-	 			}
-		        else
-		        {
-		        	oac.sTOK_MYSQL.rec_sil(textField.getText());
-		        }
+		 	
+		      f_Access.rec_sil(textField.getText());
+	 		
 	        aciklama_sil();
 	        //'***************MAL DOSYASI RECETE SIFIRLA ***************************
 	        DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -1095,14 +1000,9 @@ public class RECETE extends JInternalFrame {
 		       {
 				   if (! model.getValueAt(i,0).toString().equals("Giren"))
 				   {
-					   if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			 			{
-				        	 oac.sTOK_MSSQL.kod_recete_yaz(model.getValueAt(i,1).toString(), "");
-			 			}
-				        else
-				        {
-				        	oac.sTOK_MYSQL.kod_recete_yaz(model.getValueAt(i,1).toString(), "");
-				        }
+					  
+				  f_Access.kod_recete_yaz(model.getValueAt(i,1).toString(), "");
+			 			
 				   }
 		       }	   
 	        //'*********************************************************************
@@ -1119,14 +1019,9 @@ public class RECETE extends JInternalFrame {
 	 try {
 	   
 		 ResultSet rs = null ;
-		 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-	        rs =	 oac.sTOK_MSSQL.recete_oku(textField.getText());
-			}
-	        else
-	        {
-	        rs =	oac.sTOK_MYSQL.recete_oku(textField.getText());
-	        }
+		
+	        rs =	f_Access.recete_oku(textField.getText());
+			
 		 temizle();
 		 if (! rs.isBeforeFirst() )
 		 	{  
@@ -1135,14 +1030,9 @@ public class RECETE extends JInternalFrame {
 			else
 			{
             // '************ACIKLAMA OKU ***********************************************************
-				 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-					 textArea.setText(oac.sTOK_MSSQL.aciklama_oku("REC", 1,textField.getText(), "G").toString());
-					}
-			        else
-			        {
-			        textArea.setText(oac.sTOK_MYSQL.aciklama_oku("REC", 1,textField.getText(), "G").toString());
-			        }
+				
+					 textArea.setText(f_Access.aciklama_oku("REC", 1,textField.getText(), "G").toString());
+					
 				 DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 				 int satir =0 ;
 				 while (rs.next())

@@ -1,5 +1,7 @@
 package OBS_C_2025;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -264,4 +266,154 @@ public class STOK_ACCESS {
 	{
 		return _IStok.stok_oku(eno, cins);
 	}
+	public ResultSet irsaliye_faturasiz(String hareket ,String arama) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.irsaliye_faturasiz(hareket, arama);
+	}
+	public int irsaliye_no_al(String cins) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.irsaliye_no_al(cins);
+	}
+	public void irs_giris_sil(String ino,String hareket) throws ClassNotFoundException, SQLException
+	{
+		_IStok.irs_giris_sil(ino, hareket);
+	}
+	public void irs_kayit(String irsno ,String kodu ,int depo ,double fiat ,double  iskon ,double miktar,double tutar ,
+            double  kdv ,String  tar ,String dvz ,double kur,String firma ,String crhsp ,String sevktar ,String ozkod ,
+            int  anagrp ,int altgrp,String fatno,String harek,String cins ,String usr ,String izahat) throws ClassNotFoundException, SQLException
+	{
+		_IStok.irs_kayit(irsno, kodu, depo, fiat, iskon, miktar, tutar, kdv, tar, dvz, kur, firma, crhsp, sevktar, ozkod, anagrp, altgrp, fatno, harek, cins, usr, izahat);
+	}
+	public ResultSet irs_oz_kod (String cins) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.irs_oz_kod(cins);
+	}
+	public String son_irsno_al(String cins) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.son_irsno_al(cins);
+	}
+	public ResultSet recete_arama() throws ClassNotFoundException, SQLException
+	{
+		return _IStok.recete_arama();
+	}
+	public int recete_no_al() throws ClassNotFoundException, SQLException
+	{
+		return _IStok.recete_no_al();
+	}
+	public String recete_son_bordro_no_al () throws ClassNotFoundException, SQLException
+	{
+		return _IStok.recete_son_bordro_no_al();
+	}
+	public void kod_recete_yaz(String ukodu,String rec) throws ClassNotFoundException, SQLException
+	{
+		_IStok.kod_recete_yaz(ukodu, rec);
+	}
+	public void rec_sil(String rno) throws ClassNotFoundException, SQLException
+	{
+		_IStok.rec_sil(rno);
+	}
+	public void recete_kayit(String recno,boolean durum,String tur,String kodu ,double miktar ,int anagrp,int altgrup ,String usr) throws ClassNotFoundException, SQLException
+	{
+		_IStok.recete_kayit(recno, durum, tur, kodu, miktar, anagrp, altgrup, usr);
+	}
+	public void ana_yaz(String ydosya,String kull) throws ClassNotFoundException, SQLException
+	{
+		_IStok.ana_yaz(ydosya, kull);
+	}
+	public void alt_yaz(String ydosya,String kull) throws ClassNotFoundException, SQLException 
+	{
+		_IStok.alt_yaz(ydosya, kull);
+	}
+	public void gidecegi_yer(String ydosya,String kull) throws ClassNotFoundException, SQLException
+	{
+		_IStok.gidecegi_yer(ydosya, kull);
+	}
+	public void evr_for(String ydosya,String kull) throws ClassNotFoundException, SQLException
+	{
+		_IStok.evr_for(ydosya, kull);
+	}
+	public void mal_yaz(String ydosya,String kull,String eski_ukodu,String yen_ukodu) throws ClassNotFoundException, SQLException
+	{
+		_IStok.mal_yaz(ydosya, kull, eski_ukodu, yen_ukodu);
+	}
+	public void ysonu_fat_kaydet(String fatno ,String kodu ,int depo ,double  fiat ,double tevkifat  
+            , double miktar ,String gircik ,double tutar,double iskonto ,double kdv  
+            , String tarih, String izah,String doviz,String  adrfirma ,String carfirma  
+            , String ozkod ,double kur ,String cins,int  anagrp,int  altgrp ,String usr,String ydosya) throws ClassNotFoundException, SQLException
+	{
+		_IStok.ysonu_fat_kaydet(fatno, kodu, depo, fiat, tevkifat, miktar, gircik, tutar, iskonto, kdv, tarih, izah, doviz, adrfirma, carfirma, ozkod, kur, cins, anagrp, altgrp, usr, ydosya);
+	}
+	public void ysonu_stk_kaydet(String evrno ,String evrcins , String tarih,int depo,String urnkodu,double miktar,double fiat ,double tutar
+            , double kdvlitut,String hareket ,String izah , int anagrp ,int altgrp ,double kur ,String b1,String doviz 
+            , String hspkodu ,String usr,String ydosya) throws ClassNotFoundException, SQLException
+	{
+		_IStok.ysonu_stk_kaydet(evrno, evrcins, tarih, depo, urnkodu, miktar, fiat, tutar, kdvlitut, hareket, izah, anagrp, altgrp, kur, b1, doviz, hspkodu, usr, ydosya);
+	}
+	public ResultSet uret_doldur(String t1,String t2) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.uret_doldur(t1, t2);
+	}
+	public void uret_no_degis(String e_no,String y_no) throws ClassNotFoundException, SQLException
+	{
+		_IStok.uret_no_degis(e_no, y_no);
+	}
+	public void uret_b1_degis(String y_no) throws ClassNotFoundException, SQLException
+	{
+		_IStok.uret_b1_degis(y_no);
+	}
+	public void uret_b1_sifir(String y_no) throws ClassNotFoundException, SQLException 
+	{
+		_IStok.uret_b1_sifir(y_no);
+	}
+	public void uret_izahat_duzelt(String y_no) throws ClassNotFoundException, SQLException
+	{
+		_IStok.uret_izahat_duzelt(y_no);
+	}
+	public void uret_izahat_cikis_duzelt(String y_no,String eski_no) throws ClassNotFoundException, SQLException 
+	{
+		_IStok.uret_izahat_cikis_duzelt(y_no, eski_no);
+	}
+	public void uret_aciklama_duzelt(String y_no,int asid) throws ClassNotFoundException, SQLException 
+	{
+		_IStok.uret_aciklama_duzelt(y_no, asid);
+	}
+	public void uretim_fisno_yapilanma_kayit(int nom) throws ClassNotFoundException, SQLException
+	{
+		_IStok.uretim_fisno_yapilanma_kayit(nom);
+	}
+	public ResultSet urun_arama() throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.urun_arama();
+	}
+	public int zayi_fisno_al() throws ClassNotFoundException, SQLException
+	{
+		return _IStok.zayi_fisno_al();
+	}
+	public ResultSet zayi_oku(String eno,String cins) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.zayi_oku(eno, cins);
+	}
+	public String zayi_son_bordro_no_al () throws ClassNotFoundException, SQLException
+	{
+		return _IStok.zayi_son_bordro_no_al();
+	}
+	public ResultSet ur_kod_bak(String kodu) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.ur_kod_bak(kodu);
+	}
+	public ResultSet stk_urun(String sira,String arama) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.stk_urun(sira, arama);
+	}
+	public void stk_ur_sil(String kodu) throws ClassNotFoundException, SQLException 
+	{
+		_IStok.stk_ur_sil(kodu);
+	}
+	public void stk_ur_kayit(String kodu ,String adi ,String birim ,double kusurat ,String sinif,
+            int anagrup, int altgrup, String acik1 ,String acik2 , int ozkod1 , int ozkod2,
+            String  barkod ,int mensei,double  agirlik , InputStream resim ,double fiat ,double fiat2 , String recete ,String usr ,double fiat3 ) throws ClassNotFoundException, SQLException, IOException 
+	{
+		_IStok.stk_ur_kayit(kodu, adi, birim, kusurat, sinif, anagrup, altgrup, acik1, acik2, ozkod1, ozkod2, barkod, mensei, agirlik, resim, fiat, fiat2, recete, usr, fiat3);
+	}
+	
 }

@@ -62,11 +62,23 @@ import org.apache.commons.lang.StringUtils;
 
 import com.toedter.calendar.JDateChooser;
 
+import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.NextCellActioin;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH_CEVIR;
+
 public class ZAYI extends JInternalFrame {
 
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+
 	private ArrayList<String> listSomeString = null ;
 	private ArrayList<String> listBarkod = null ;
 	private ArrayList<String> listdepo = null ;
@@ -148,25 +160,20 @@ public class ZAYI extends JInternalFrame {
 				if (e.getClickCount() == 2) 
 				{
 					try {
-						getContentPane().setCursor(WAIT_CURSOR);
+						getContentPane().setCursor(oac.WAIT_CURSOR);
 					int sno = 0 ;
-						 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				    		{
-							 sno  = oac.sTOK_MSSQL.zayi_fisno_al() ;
-				    		}
-				            else
-				            {
-				             sno  = oac.sTOK_MSSQL.zayi_fisno_al() ;
-				            }
+						
+							 sno  =f_Access.zayi_fisno_al() ;
+				    	
 					int kj = 0 ;
 					kj = 10 - Integer.toString(sno).length() ;
 					String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
 					textField.setText(str_.equals("0000000000") ? "0000000001":str_);
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					}
 					catch (Exception ex)
 					{
-						getContentPane().setCursor(DEFAULT_CURSOR);
+						getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						 JOptionPane.showMessageDialog(null,  "Zayii Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
@@ -175,19 +182,19 @@ public class ZAYI extends JInternalFrame {
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) 
 			  {
-				  getContentPane().setCursor(WAIT_CURSOR);
+				  getContentPane().setCursor(oac.WAIT_CURSOR);
 				  fiskont();
-				  getContentPane().setCursor(DEFAULT_CURSOR);
+				  getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			  public void removeUpdate(DocumentEvent e) {
-				  	getContentPane().setCursor(WAIT_CURSOR);
+				  	getContentPane().setCursor(oac.WAIT_CURSOR);
 				  	fiskont();
-				  	getContentPane().setCursor(DEFAULT_CURSOR);
+				  	getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			 public void insertUpdate(DocumentEvent e) {
-			  		getContentPane().setCursor(WAIT_CURSOR);
+			  		getContentPane().setCursor(oac.WAIT_CURSOR);
 			  		fiskont();
-			  		getContentPane().setCursor(DEFAULT_CURSOR);
+			  		getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			});
 		textField.addAncestorListener(new AncestorListener() {
@@ -301,27 +308,22 @@ public class ZAYI extends JInternalFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 try {
-						getContentPane().setCursor(WAIT_CURSOR);
+						getContentPane().setCursor(oac.WAIT_CURSOR);
 			            textField.setText("");
-			        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		        		{
-			        		  textField.setText( oac.sTOK_MSSQL.zayi_son_bordro_no_al());
-		        		}
-			        	else
-			        	{
-			        		  textField.setText(oac.sTOK_MYSQL.zayi_son_bordro_no_al());
-			        	}
+			        	
+			        		  textField.setText( f_Access.zayi_son_bordro_no_al());
+		        		
 			            if ( textField.getText().equals("0") )
 			            		{
 			            	 textField.setText("");
 			            	JOptionPane.showMessageDialog(null,  "Hic Kayit Yok...", "Zayi Fisi Okuma", JOptionPane.ERROR_MESSAGE);
 			            	textField.requestFocus();
 			            		}
-			        	getContentPane().setCursor(DEFAULT_CURSOR);
+			        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					 }
 			        catch (Exception ex)
 					 {
-			        	getContentPane().setCursor(DEFAULT_CURSOR);
+			        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			        	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Zayi Fisi Okuma", JOptionPane.ERROR_MESSAGE);
 					 }
 			}
@@ -471,12 +473,12 @@ public class ZAYI extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (table.getSelectedRow() < 0 ) return ;
 				URUN_ARAMA arm ;
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 					arm = new URUN_ARAMA();
 					arm.setVisible(true);
-				getContentPane().setCursor(DEFAULT_CURSOR);
-				table.getModel().setValueAt( GLOBAL.stk_kodu,table.getSelectedRow(), 1) ;
-				bilgi_doldur(GLOBAL.stk_kodu) ;
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				table.getModel().setValueAt( oac.stk_kodu,table.getSelectedRow(), 1) ;
+				bilgi_doldur(oac.stk_kodu) ;
 						}
 		});
 		btnNewButton.setIcon(new ImageIcon(ZAYI.class.getResource("/ICONLAR/icons8-view-16.png")));
@@ -753,14 +755,9 @@ public class ZAYI extends JInternalFrame {
 			// GuiUtil.setWaitCursor(ZAYI.splitPane,true);
 			 long startTime = System.currentTimeMillis();
 			ResultSet rss = null;
-			 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-	 		{
-				 	rss = oac.sTOK_MSSQL.zayi_oku(textField.getText(), "ZAI");
-	 		}
-			 else
-			 {
-				 	rss = oac.sTOK_MYSQL.zayi_oku(textField.getText(), "ZAI");
-			 }
+			
+				 	rss = f_Access.zayi_oku(textField.getText(), "ZAI");
+	 		
 			
 			  if (!rss.isBeforeFirst() ) {  
 	              GRID_TEMIZLE.grid_temizle(table);
@@ -776,16 +773,10 @@ public class ZAYI extends JInternalFrame {
 			  cmbanagrup.setSelectedItem(rss.getString("Ana_Grup") == null ? "" :rss.getString("Ana_Grup"));
 	         cmbaltgrup.setSelectedItem(rss.getString("Alt_Grup") == null ? "" :rss.getString("Alt_Grup"));
 					//  '************ACIKLAMA OKU ***********************************************************
-						if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-						{
-							textField_9.setText( oac.sTOK_MSSQL.aciklama_oku("ZAI", 1, textField.getText(), "C"));
-							textField_10.setText( oac.sTOK_MSSQL.aciklama_oku("ZAI", 2, textField.getText(), "C"));
-						}
-						else
-						{
-							textField_9.setText( oac.sTOK_MYSQL.aciklama_oku("ZAI", 1, textField.getText(), "C"));
-							textField_10.setText( oac.sTOK_MYSQL.aciklama_oku("ZAI", 2, textField.getText(), "C"));
-						}
+						
+							textField_9.setText( f_Access.aciklama_oku("ZAI", 1, textField.getText(), "C"));
+							textField_10.setText( f_Access.aciklama_oku("ZAI", 2, textField.getText(), "C"));
+						
 					 // '*************************************************************************************
 			        rss.first();   
 			    	DefaultTableModel mdl = (DefaultTableModel) table.getModel();
@@ -840,14 +831,9 @@ public class ZAYI extends JInternalFrame {
 	private static void stok_isle() throws ClassNotFoundException, SQLException 
 	{
 		try {
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
- 			{
-			 oac.sTOK_MSSQL.stok_sil(textField.getText(), "ZAI", "C");
- 			}
-			else
-			{
-			 oac.sTOK_MYSQL.stok_sil(textField.getText(), "ZAI", "C");
-			}
+			
+			f_Access.stok_sil(textField.getText(), "ZAI", "C");
+ 			
 		 DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 	       for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
 	    	   if (! mdl.getValueAt(i,1).toString().equals(""))
@@ -875,14 +861,9 @@ public class ZAYI extends JInternalFrame {
 	   		}
 		    else
 		    {
-		    	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				{
-		    		rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN",  mdl.getValueAt(sat,2).toString());
-				}
-				else
-				{
-					rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN",  mdl.getValueAt(sat,2).toString());
-				}
+		    	
+		    		rs = f_Access.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN",  mdl.getValueAt(sat,2).toString());
+				
 		    	if (!rs.isBeforeFirst() ) {      		
     	    	}
     	    	else
@@ -907,14 +888,9 @@ public class ZAYI extends JInternalFrame {
 	            
 	        anagrp = 0 ;
 	        if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
-	        		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-	        		{
-	        			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",  cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-	        		}
-	        		else
-	        		{
-	        			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-	        		}
+	        		
+	        			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",  cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
+	        		
 	        		if (!rs.isBeforeFirst() ) {      		
 	    	    	}
 	        		else
@@ -925,14 +901,9 @@ public class ZAYI extends JInternalFrame {
 	        }
 	        altgrp = 0;
 	        if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") ) {
-	     	      	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-	     			{
-	     	    		rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-	     			}
-	     			else
-	     			{
-	     	    		rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-	     			}
+	     	      
+	     	    		rs =f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
+	     			
 	     	      	if (!rs.isBeforeFirst() ) {      		
 	    	    	}
 	        		else
@@ -943,16 +914,10 @@ public class ZAYI extends JInternalFrame {
 	     	}
 	        double fiat =0 ;
 	         fiat = Double.parseDouble( mdl.getValueAt(sat,3).toString());
-	        if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
- 			{
-	        	oac.sTOK_MSSQL.stk_kaydet(textField.getText(), "ZAI", tar, depo,  mdl.getValueAt(sat,1).toString(), miktar, fiat
+	       
+	        f_Access.stk_kaydet(textField.getText(), "ZAI", tar, depo,  mdl.getValueAt(sat,1).toString(), miktar, fiat
                         ,KUSUR_YUVARLA. round(tutar,2),KUSUR_YUVARLA. round(tutar,2), "C", izah, anagrp, altgrp,0, "","","",GLOBAL.KULL_ADI);
- 			}
-	        else
-	        {
-	        	oac.sTOK_MYSQL.stk_kaydet(textField.getText(), "ZAI", tar, depo,  mdl.getValueAt(sat,1).toString(), miktar, fiat
-                        ,KUSUR_YUVARLA. round(tutar,2),KUSUR_YUVARLA. round(tutar,2), "C", izah, anagrp, altgrp,0, "","","",GLOBAL.KULL_ADI);
-	        }
+ 			
 		}
 		catch (Exception ex)
 		{
@@ -963,16 +928,10 @@ public class ZAYI extends JInternalFrame {
 	{
 		try {
 	        acik_sil();
-	        	 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		 			{
-	        		 oac.sTOK_MSSQL.aciklama_yaz("ZAI", 1, textField.getText(),  textField_9.getText(), "C");
-	        		 oac.sTOK_MSSQL.aciklama_yaz("ZAI", 2, textField.getText(), textField_10.getText(), "C");
-		 			}
-	        	 else
-	        	 {
-	        		 oac.sTOK_MYSQL.aciklama_yaz("ZAI", 1, textField.getText(),  textField_9.getText(), "C");
-	        		 oac.sTOK_MYSQL.aciklama_yaz("ZAI", 2, textField.getText(), textField_10.getText(), "C");
-	        	 }
+	        	
+	        		f_Access.aciklama_yaz("ZAI", 1, textField.getText(),  textField_9.getText(), "C");
+	        		f_Access.aciklama_yaz("ZAI", 2, textField.getText(), textField_10.getText(), "C");
+		 		
 		}
 		catch (Exception ex)
 		{
@@ -982,14 +941,9 @@ public class ZAYI extends JInternalFrame {
 	private static void acik_sil()
 	{
 		try {
-			 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
- 			{
-				 oac.sTOK_MSSQL.aciklama_sil("ZAI", textField.getText(), "C");
- 			}
-			 else
-			 {
-				 oac.sTOK_MYSQL.aciklama_sil("ZAI", textField.getText(), "C");
-			 }
+			
+				f_Access.aciklama_sil("ZAI", textField.getText(), "C");
+ 			
 			}
 			catch (Exception ex)
 			{
@@ -1041,14 +995,9 @@ public class ZAYI extends JInternalFrame {
 					toplam();
 					return;
 				}
-				if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				{
-					rs = oac.sTOK_MSSQL.urun_adi_oku(cins,"Barkod");
-				}
-				else
-				{
-					rs = oac.sTOK_MYSQL.urun_adi_oku(cins,"Barkod");
-				}
+				
+					rs = f_Access.urun_adi_oku(cins,"Barkod");
+				
 		
 			if (!rs.isBeforeFirst() ) {  
 				lblNewLabel_12.setText("");
@@ -1087,14 +1036,9 @@ public class ZAYI extends JInternalFrame {
 					toplam();
 					return;
 				}
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.urun_adi_oku(cins,"Kodu");
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.urun_adi_oku(cins,"Kodu");
-			}
+			
+				rs = f_Access.urun_adi_oku(cins,"Kodu");
+			
 	
 		if (!rs.isBeforeFirst() ) {  
 			lblNewLabel_12.setText("");
@@ -1127,14 +1071,9 @@ public class ZAYI extends JInternalFrame {
 	{
 		try {
 			ResultSet rs = null;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-		 		rs = oac.sTOK_MSSQL.stk_barkod_kod_oku(field);
-			}
-		 	else
-		 	{
-		 		rs = oac.sTOK_MYSQL.stk_barkod_kod_oku(field);
-		 	}
+		
+		 		rs = f_Access.stk_barkod_kod_oku(field);
+			
 			if (!rs.isBeforeFirst() ) {  
 				if (field.equals("Kodu"))
 				{
@@ -1176,14 +1115,9 @@ public class ZAYI extends JInternalFrame {
 	{
 		try {
 		ResultSet rs = null;
-		 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-			   rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-			}
-		   else
-		   {
-			   rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-		   }
+		
+			   rs =f_Access.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
+			
 		if (!rs.isBeforeFirst() ) {  
 			listdepo.add("");
 		}
@@ -1204,19 +1138,14 @@ public class ZAYI extends JInternalFrame {
 	private void ana_grup_doldur()
 	{
 		try {
-		getContentPane().setCursor(WAIT_CURSOR);
+		getContentPane().setCursor(oac.WAIT_CURSOR);
 		cmbanagrup .removeAllItems();
 		ResultSet rs=null;
-		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		{
-			rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-		}
-		else
-		{
-			rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-		}
+		
+			rs =f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
+		
 		if (!rs.isBeforeFirst() ) {  
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			cmbaltgrup.setEnabled(false);
 			cmbanagrup .addItem("");
 			cmbanagrup.setSelectedItem("");
@@ -1227,24 +1156,23 @@ public class ZAYI extends JInternalFrame {
 	    {
 	    	cmbanagrup .addItem(rs.getString("ANA_GRUP"));
 	    }
-	    getContentPane().setCursor(DEFAULT_CURSOR);
+	    getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur()
 	{
 		try {
-		getContentPane().setCursor(WAIT_CURSOR);
+		getContentPane().setCursor(oac.WAIT_CURSOR);
 		cmbaltgrup.removeAllItems();
 		cmbaltgrup .addItem("");
 		ResultSet rs=null;
-		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		{
-			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
+		
+			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
 			if (!rs.isBeforeFirst() ) {
 			}
 			else
@@ -1252,26 +1180,13 @@ public class ZAYI extends JInternalFrame {
 				rs.next();
 				int in1 = rs.getInt("AGID_Y");
 				rs =null;
-				rs = oac.sTOK_MSSQL.stk_kod_alt_grup_degisken_oku(in1);
+				rs = f_Access.stk_kod_alt_grup_degisken_oku(in1);
 			}
-		}
-		else
-		{
-			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
-			if (!rs.isBeforeFirst() ) {
-			}
-			else
-			{
-			rs.next();
-			int in1 =rs.getInt("AGID_Y");
-			rs =null;
-			rs = oac.sTOK_MYSQL.stk_kod_alt_grup_degisken_oku(in1);
-			}
-		}
+		
 		if (!rs.isBeforeFirst() ) {  
 			cmbaltgrup.setSelectedItem("");
 			cmbaltgrup.setEnabled(false);
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		} 
 		else
 		{
@@ -1282,11 +1197,11 @@ public class ZAYI extends JInternalFrame {
 	    cmbaltgrup.setSelectedItem(0);
 	    cmbaltgrup.setEnabled(true);
 		}
-		getContentPane().setCursor(DEFAULT_CURSOR);
+		getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
@@ -1322,14 +1237,9 @@ public class ZAYI extends JInternalFrame {
 	 	 if(g != 0 ) { return;	}
 	 	  long startTime = System.currentTimeMillis();
 	 	
-	 		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-	 			 oac.sTOK_MSSQL.stok_sil(textField.getText(), "ZAI", "C");
-			}
-			else
-			{
-				 oac.sTOK_MYSQL.stok_sil(textField.getText(), "ZAI", "C");
-			}
+	 	
+	 		f_Access.stok_sil(textField.getText(), "ZAI", "C");
+			
         acik_sil();
         long endTime = System.currentTimeMillis();
 		long estimatedTime = endTime - startTime;
@@ -1348,14 +1258,9 @@ public class ZAYI extends JInternalFrame {
 	{
 		try {
 			ResultSet rs = null;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.urun_adi_oku(cins,"Kodu");
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.urun_adi_oku(cins,"Kodu");
-			}
+			
+				rs = f_Access.urun_adi_oku(cins,"Kodu");
+			
 		if (!rs.isBeforeFirst() ) {  
 			lblNewLabel_12.setText("");
 			label_5.setText("");
@@ -1375,17 +1280,12 @@ public class ZAYI extends JInternalFrame {
 	 private void depo_doldur()
 		{
 				try {
-					getContentPane().setCursor(WAIT_CURSOR);
+					getContentPane().setCursor(oac.WAIT_CURSOR);
 					cmbdepo.removeAllItems();
 				ResultSet rs = null;
-				 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-					   rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-					}
-				   else
-				   {
-					   rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-				   }
+				
+					   rs = f_Access.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
+				
 				if (!rs.isBeforeFirst() ) {  
 					cmbdepo.addItem("");
 					cmbdepo.addItem("Bos Olanlar");
@@ -1401,11 +1301,11 @@ public class ZAYI extends JInternalFrame {
 					}
 				}
 				cmbdepo.setSelectedItem("");
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 				catch (Exception ex)
 				{
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
 				}
 			}

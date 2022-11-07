@@ -1237,6 +1237,11 @@ public class STOK_MYSQL implements ISTOK {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public int zayi_fisno_al() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 

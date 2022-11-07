@@ -39,7 +39,17 @@ import javax.swing.JOptionPane;
 
 import com.toedter.calendar.JDateChooser;
 
-import OBS_PACKAGE.RAPORLAR.ENVANTER;
+import OBS_C_2025.CheckBoxRenderer;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH_CEVIR;
+import OBS_2025_RAPORLAR.ENVANTER;
 
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
@@ -62,9 +72,8 @@ import java.awt.SystemColor;
 
 public class STK_YIL_SONU extends JInternalFrame {
 	
-	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 	
 	private static final Vector<?> Boolean = null;
 	public static JTable table;
@@ -260,7 +269,7 @@ public class STK_YIL_SONU extends JInternalFrame {
 					try {
 						hsp = new HESAP_PLN();
 						hsp.setVisible(true);
-						textField_1.setText( GLOBAL.hsp_hsp_kodu);
+						textField_1.setText(oac.hsp_hsp_kodu);
 						lblNewLabel_1.setText(CARI_ISIM_OKU.isim(textField_1.getText())[0]);
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
@@ -451,29 +460,23 @@ public class STK_YIL_SONU extends JInternalFrame {
 	{
 		try
 		{
-			getContentPane().setCursor(WAIT_CURSOR);
+			getContentPane().setCursor(oac.WAIT_CURSOR);
 			if (textField.getText().equals(""))
 			{
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				textField.requestFocus();
 				return;
 			}
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				oac.sTOK_MSSQL.ana_yaz(textField.getText().toString(), GLOBAL.KULL_ADI);
-				oac.sTOK_MSSQL.alt_yaz(textField.getText().toString(), GLOBAL.KULL_ADI);
-			}
-			else 
-			{
-				oac.sTOK_MYSQL.ana_yaz(textField.getText().toString(), GLOBAL.KULL_ADI);
-				oac.sTOK_MYSQL.alt_yaz(textField.getText().toString(), GLOBAL.KULL_ADI);
-				}
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			
+			f_Access.ana_yaz(textField.getText().toString(), GLOBAL.KULL_ADI);
+			f_Access.alt_yaz(textField.getText().toString(), GLOBAL.KULL_ADI);
+			
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null,  "Ana Grup Alt Grup Aktarildi.....", "Yil Sonu Aktarma",JOptionPane.PLAIN_MESSAGE);
 		 }
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -481,29 +484,22 @@ public class STK_YIL_SONU extends JInternalFrame {
 	{
 		try
 		{
-			getContentPane().setCursor(WAIT_CURSOR);
+			getContentPane().setCursor(oac.WAIT_CURSOR);
 			if (textField.getText().equals(""))
 			{
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				textField.requestFocus();
 				return;
 			}
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				oac.sTOK_MSSQL.gidecegi_yer(textField.getText().toString(), GLOBAL.KULL_ADI);
 			
-			}
-			else
-			{
-				oac.sTOK_MYSQL.gidecegi_yer(textField.getText().toString(), GLOBAL.KULL_ADI);
-			
-				}
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			f_Access.gidecegi_yer(textField.getText().toString(), GLOBAL.KULL_ADI);
+		
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null,  "Gidecegi Yer Aktarildi.....", "Yil Sonu Aktarma",JOptionPane.PLAIN_MESSAGE);
 		 }
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -511,27 +507,22 @@ public class STK_YIL_SONU extends JInternalFrame {
 	{
 		try
 		{
-			getContentPane().setCursor(WAIT_CURSOR);
+			getContentPane().setCursor(oac.WAIT_CURSOR);
 			if (textField.getText().equals(""))
 			{
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				textField.requestFocus();
 				return;
 			}
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				oac.sTOK_MSSQL.evr_for(textField.getText().toString(), GLOBAL.KULL_ADI);
-			}
-			else
-			{
-				oac.sTOK_MYSQL.evr_for(textField.getText().toString(), GLOBAL.KULL_ADI);
-			}
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			
+			f_Access.evr_for(textField.getText().toString(), GLOBAL.KULL_ADI);
+			
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null,  "Gidecegi Yer Aktarildi.....", "Yil Sonu Aktarma",JOptionPane.PLAIN_MESSAGE);
 		 }
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -539,16 +530,16 @@ public class STK_YIL_SONU extends JInternalFrame {
 	{
 		try
 		{
-			getContentPane().setCursor(WAIT_CURSOR);
+			getContentPane().setCursor(oac.WAIT_CURSOR);
 			if (textField.getText().equals(""))
 			{
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				textField.requestFocus();
 				return;
 			}
 			if (satir_kontrol() == 0)
 			{
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				JOptionPane.showMessageDialog(null,  "Secili Satir Bulunamadi....", "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
 				return;
 			}
@@ -556,30 +547,19 @@ public class STK_YIL_SONU extends JInternalFrame {
 					"Yil Sonu Aktarma",   JOptionPane.YES_NO_OPTION, 	JOptionPane.QUESTION_MESSAGE, 	null,     //no custom icon
 		   			 	oac.options,  //button titles
 		   			 	oac.options[1]); //default button
-		 	 if(g != 0 ) {getContentPane().setCursor(DEFAULT_CURSOR);  return;	}
+		 	 if(g != 0 ) {getContentPane().setCursor(oac.DEFAULT_CURSOR);  return;	}
 		 	 
 		 	long startTime = System.currentTimeMillis(); 
 		 	DefaultTableModel modell = (DefaultTableModel)table.getModel();
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
+			
 			     for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
 			     {
 			            if ( (boolean) modell.getValueAt(i,0) )
 			            {
-			            	oac.sTOK_MSSQL.mal_yaz(textField.getText().toString(), GLOBAL.KULL_ADI, modell.getValueAt(i,1).toString(),modell.getValueAt(i,2).toString());
+			            	f_Access.mal_yaz(textField.getText().toString(), GLOBAL.KULL_ADI, modell.getValueAt(i,1).toString(),modell.getValueAt(i,2).toString());
 			            }
 			     }
-			}
-			else
-			{
-			     for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
-			     {
-			            if ( (boolean) modell.getValueAt(i,0) )
-			            {
-			            	oac.sTOK_MYSQL.mal_yaz(textField.getText().toString(), GLOBAL.KULL_ADI, modell.getValueAt(i,1).toString(),modell.getValueAt(i,2).toString());
-			            }
-			     }
-			}
+			
 			//**************SATIRLAI KAYIT YAP************
 			tar = TARIH_CEVIR.tarih_geri_saatli(dtc) ;
 	        satir_yaz_1();
@@ -590,12 +570,12 @@ public class STK_YIL_SONU extends JInternalFrame {
     		long estimatedTime = endTime - startTime;
     		double seconds = (double)estimatedTime/1000; 
     		OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null,  "Envanter  Aktarildi.....", "Yil Sonu Aktarma",JOptionPane.PLAIN_MESSAGE);
 		 }
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -634,20 +614,12 @@ public class STK_YIL_SONU extends JInternalFrame {
          fiat = Double.parseDouble( mdl.getValueAt(i,6).toString());
         double isk = 0 ;
         double kdv = 0 ; 
-	        if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
- 			{
-	        	oac.sTOK_MSSQL.ysonu_fat_kaydet("0000000001",  mdl.getValueAt(i,2).toString(), depo,fiat , tevk,
+	      
+	      f_Access.ysonu_fat_kaydet("0000000001",  mdl.getValueAt(i,2).toString(), depo,fiat , tevk,
 	    	            miktar, gircik, tutar ,isk,kdv,
 	    	            tar, izahat, GLOBAL.setting_oku("PRG_PARA").toString(), "",textField_1.getText(), 
 	    	            "", kur, "", angrp, altgrp, GLOBAL.KULL_ADI,textField.getText());
- 			}
-	        else
-	        {
-	        	oac.sTOK_MYSQL.ysonu_fat_kaydet("0000000001",  mdl.getValueAt(i,2).toString(), depo,fiat , tevk,
-	    	            miktar, gircik, tutar ,isk,kdv,
-	    	            tar, izahat, GLOBAL.setting_oku("PRG_PARA").toString(), "",textField_1.getText(), 
-	    	            "", kur, "", angrp, altgrp, GLOBAL.KULL_ADI,textField.getText());
-	        }
+ 			
 		}
 		catch (Exception ex)
 		{
@@ -685,18 +657,11 @@ public class STK_YIL_SONU extends JInternalFrame {
 	        kur = 0;
 	        double fiat =0 ;
 	         fiat = Double.parseDouble( mdl.getValueAt(sat,5).toString());
-	        if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
- 			{
-	        	oac.sTOK_MSSQL.ysonu_stk_kaydet("0000000001", "FAT", tar, depo,  mdl.getValueAt(sat,1).toString(), miktar, fiat
+	        
+	        f_Access.ysonu_stk_kaydet("0000000001", "FAT", tar, depo,  mdl.getValueAt(sat,1).toString(), miktar, fiat
                         ,(double) Math.round(tutar), kdvlitut, har, izah, anagrp, altgrp, kur, ""
                         , GLOBAL.setting_oku("PRG_PARA").toString(), textField_1.getText(),GLOBAL.KULL_ADI,textField.getText());
- 			}
-	        else
-	        {
-	        	oac.sTOK_MYSQL.ysonu_stk_kaydet("0000000001", "FAT", tar, depo,  mdl.getValueAt(sat,1).toString(), miktar, fiat
-                        ,(double) Math.round(tutar), kdvlitut, har, izah, anagrp, altgrp, kur, ""
-                        , GLOBAL.setting_oku("PRG_PARA").toString(), textField_1.getText(),GLOBAL.KULL_ADI,textField.getText());
-	        }
+ 			
 		}
 		catch (Exception ex)
 		{

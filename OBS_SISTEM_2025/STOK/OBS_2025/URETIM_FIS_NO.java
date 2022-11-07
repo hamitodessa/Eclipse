@@ -24,6 +24,15 @@ import org.apache.commons.lang.StringUtils;
 
 import com.toedter.calendar.JDateChooser;
 
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.TARIH_SAATLI;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JFormattedTextField;
@@ -45,9 +54,10 @@ import javax.swing.SwingConstants;
 
 public class URETIM_FIS_NO extends JInternalFrame {
 
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	
+	
 	private JPanel panel_1;
 	private JTable table;
 	private JLabel lbladet;
@@ -105,15 +115,15 @@ public class URETIM_FIS_NO extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (chckbxNewCheckBox.isSelected())
 				{
-					getContentPane().setCursor(WAIT_CURSOR);
+					getContentPane().setCursor(oac.WAIT_CURSOR);
 					hisset(TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1));
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 				else
 				{
-					getContentPane().setCursor(WAIT_CURSOR);
+					getContentPane().setCursor(oac.WAIT_CURSOR);
 					hisset("1900.01.01", "2100.12.31");
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 			}
 		});
@@ -138,9 +148,9 @@ public class URETIM_FIS_NO extends JInternalFrame {
 				   			 	oac.options,  //button titles
 				   			 	oac.options[1]); //default button
 				 	if(g != 0 ) { return;	}
-				 	getContentPane().setCursor(WAIT_CURSOR);
+				 	getContentPane().setCursor(oac.WAIT_CURSOR);
 					kaydet();
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon(URETIM_FIS_NO.class.getResource("/ICONLAR/save.png")));
@@ -243,9 +253,9 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		table = new JTable();
 		table.setGridColor(oac.gridcolor);
 		scrollPane.setViewportView(table);
-		getContentPane().setCursor(WAIT_CURSOR);
+		getContentPane().setCursor(oac.WAIT_CURSOR);
 		hisset("1900.01.01", "2100.12.31");
-		getContentPane().setCursor(DEFAULT_CURSOR);
+		getContentPane().setCursor(oac.DEFAULT_CURSOR);
 	}
 	public void hisset(String t1,String t2)
 	{
@@ -253,14 +263,9 @@ public class URETIM_FIS_NO extends JInternalFrame {
 	try {
 		ResultSet	rs = null;
 
-		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		{
-			rs = oac.sTOK_MSSQL.uret_doldur(t1,t2);
-		}
-		else
-		{
-			rs = oac.sTOK_MSSQL.uret_doldur(t1,t2);
-		}
+		
+			rs = f_Access.uret_doldur(t1,t2);
+		
 		
 		GRID_TEMIZLE.grid_temizle(table);
 		if (!rs.isBeforeFirst() ) {  
@@ -376,14 +381,9 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		    fisno =  mdl.getValueAt(i,0).toString() ;
 		    kj = 10 - Integer.toString(y_no).length() ;
 		    yeni_no =StringUtils.repeat("0", kj)   + Integer.toString(y_no);
-		    if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    	{
-		           	oac.sTOK_MSSQL.uret_no_degis(fisno, yeni_no);
-		    	}
-		    	else
-		    	{
-		    		oac.sTOK_MYSQL.uret_no_degis(fisno, yeni_no);
-		        }          
+		   
+		      f_Access.uret_no_degis(fisno, yeni_no);
+		    	       
 		        y_no += 1;
 		}
 		    //  '************* B1 den evrak noya yaz **************************
@@ -401,14 +401,9 @@ public class URETIM_FIS_NO extends JInternalFrame {
 					Progres_Bar( mdl.getRowCount()  - 1, i);
 				    kj = 10 - Integer.toString(y_no).length() ;
 				    yeni_no =StringUtils.repeat("0", kj)   + Integer.toString(y_no);
-				    if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-				    	{
-				           	oac.sTOK_MSSQL.uret_b1_degis( yeni_no);
-				    	}
-				    	else
-				    	{
-				    		oac.sTOK_MYSQL.uret_b1_degis( yeni_no);
-				        }          
+				   
+				    f_Access.uret_b1_degis( yeni_no);
+				    	        
 				        y_no += 1;
 				}
 		        //  '*************  B1 sifirla **************************
@@ -426,14 +421,9 @@ public class URETIM_FIS_NO extends JInternalFrame {
 						Progres_Bar( mdl.getRowCount()  - 1, i);
 					    kj = 10 - Integer.toString(y_no).length() ;
 					    yeni_no =StringUtils.repeat("0", kj)   + Integer.toString(y_no);
-					    if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					    	{
-					           	oac.sTOK_MSSQL.uret_b1_sifir( yeni_no);
-					    	}
-					    	else
-					    	{
-					    		oac.sTOK_MYSQL.uret_b1_sifir( yeni_no);
-					        }          
+					   
+					     f_Access.uret_b1_sifir( yeni_no);
+					    	        
 					        y_no += 1;
 					}
 				 //  '*************  IZAHAT DUZELT **************************
@@ -451,14 +441,9 @@ public class URETIM_FIS_NO extends JInternalFrame {
 						Progres_Bar( mdl.getRowCount()  - 1, i);
 					    kj = 10 - Integer.toString(y_no).length() ;
 					    yeni_no =StringUtils.repeat("0", kj)   + Integer.toString(y_no);
-					    if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					    	{
-					           	oac.sTOK_MSSQL.uret_izahat_duzelt( yeni_no);
-					    	}
-					    	else
-					    	{
-					    		oac.sTOK_MYSQL.uret_izahat_duzelt( yeni_no);
-					        }          
+					  
+					  f_Access.uret_izahat_duzelt( yeni_no);
+					    	         
 					        y_no += 1;
 					}
 				 //  '*************  IZAHAT CIKIS DUZELT **************************
@@ -476,14 +461,9 @@ public class URETIM_FIS_NO extends JInternalFrame {
 						Progres_Bar( mdl.getRowCount()  - 1, i);
 					    kj = 10 - Integer.toString(y_no).length() ;
 					    yeni_no =StringUtils.repeat("0", kj)   + Integer.toString(y_no);
-					    if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					    	{
-					           	oac.sTOK_MSSQL.uret_izahat_cikis_duzelt( yeni_no, mdl.getValueAt(i,0).toString());
-					    	}
-					    	else
-					    	{
-					    		oac.sTOK_MYSQL.uret_izahat_cikis_duzelt( yeni_no, mdl.getValueAt(i,0).toString());
-					        }          
+					  
+					    f_Access.uret_izahat_cikis_duzelt( yeni_no, mdl.getValueAt(i,0).toString());
+					    	       
 					        y_no += 1;
 					}	
 				 //  '*************  ACIKLAMA  DUZELT **************************
@@ -501,26 +481,16 @@ public class URETIM_FIS_NO extends JInternalFrame {
 						Progres_Bar( mdl.getRowCount()  - 1, i);
 					    kj = 10 - Integer.toString(y_no).length() ;
 					    yeni_no =StringUtils.repeat("0", kj)   + Integer.toString(y_no);
-					    if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					    	{
-					           	oac.sTOK_MSSQL.uret_aciklama_duzelt( yeni_no,  Integer.parseInt( mdl.getValueAt(i,9).toString()));
-					    	}
-					    	else
-					    	{
-					    		oac.sTOK_MYSQL.uret_aciklama_duzelt( yeni_no,  Integer.parseInt( mdl.getValueAt(i,9).toString()));
-					        }          
+					   
+					   f_Access.uret_aciklama_duzelt( yeni_no,  Integer.parseInt( mdl.getValueAt(i,9).toString()));
+					            
 					        y_no += 1;
 					}	
 				 Progres_Bar_Temizle();
 				 //**
-				  if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			    	{
-			           	oac.sTOK_MSSQL.uretim_fisno_yapilanma_kayit(y_no - 1) ;
-			    	}
-			    	else
-			    	{
-			    		oac.sTOK_MYSQL.uretim_fisno_yapilanma_kayit(y_no - 1) ;
-			        }       
+				 
+			       f_Access.uretim_fisno_yapilanma_kayit(y_no - 1) ;
+			    	     
 		
 				 //**
 				  if (chckbxNewCheckBox.isSelected())
@@ -531,12 +501,12 @@ public class URETIM_FIS_NO extends JInternalFrame {
 					{
 						hisset("1900.01.01", "2100.12.31");
 					}
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					JOptionPane.showMessageDialog(null,  "Yeniden Numaralandirma Islemi Basari ile Bitirilmistir",  "Imalat Yeniden Numaralama", JOptionPane.PLAIN_MESSAGE);
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Fis No Degisme", JOptionPane.ERROR_MESSAGE);
 		}
 	    }

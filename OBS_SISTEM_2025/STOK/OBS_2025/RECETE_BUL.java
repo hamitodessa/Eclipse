@@ -30,13 +30,20 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
+import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.TABLO_RENDERER;
 import net.proteanit.sql.DbUtils;
 
 public class RECETE_BUL extends JDialog {
 	private JTable table;
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 	private JTextField textField;
 
 	
@@ -84,19 +91,19 @@ public class RECETE_BUL extends JDialog {
 		textField = new JTextField();
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 			    arama();
-			    getContentPane().setCursor(DEFAULT_CURSOR);
+			    getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			  public void removeUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 			    arama();
-			    getContentPane().setCursor(DEFAULT_CURSOR);
+			    getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			  public void insertUpdate(DocumentEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 			    arama();
-			    getContentPane().setCursor(DEFAULT_CURSOR);
+			    getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			  }
 			});
 		textField.setBounds(58, 8, 292, 20);
@@ -118,12 +125,12 @@ public class RECETE_BUL extends JDialog {
 					int row = table.getSelectedRow();
 					if (table.getRowSorter()!=null) {
 					    row = table.getRowSorter().convertRowIndexToModel(row);
-					    GLOBAL.stk_kodu = 	table.getModel().getValueAt(row, 0).toString() ;
+					    oac.stk_kodu = 	table.getModel().getValueAt(row, 0).toString() ;
 						dispose();
 					}
 					else
 					{
-						GLOBAL.stk_kodu = 	table.getModel().getValueAt(table.getSelectedRow(), 0).toString() ;
+						oac.stk_kodu = 	table.getModel().getValueAt(table.getSelectedRow(), 0).toString() ;
 						dispose();
 					}
 				}
@@ -139,14 +146,9 @@ public void hisset()
 {
 	try {
 	ResultSet rs = null ;
-	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-	{
-		rs = oac.sTOK_MSSQL.recete_arama();
-	}
-	else
-	{
-		rs = oac.sTOK_MYSQL.recete_arama();
-	}
+	
+		rs = f_Access.recete_arama();
+	
 	
 	if (!rs.isBeforeFirst() ) {  
 		

@@ -254,4 +254,8 @@ public class CARI_ACCESS {
 	{
 		return _ICari.ekstre_sqlite();
 	}
+	public ResultSet sms_cari_pln(String nerden) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.sms_cari_pln(nerden);
+	}
 }

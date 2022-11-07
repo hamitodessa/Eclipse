@@ -52,14 +52,18 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.ORTA;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.TARIH_SAATLI;
+import OBS_C_2025.ValidEmailAddress;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.event.ChangeEvent;
@@ -83,7 +87,9 @@ public class MAIL extends JInternalFrame {
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static SMS_ACCESS sms_Access = new SMS_ACCESS(oac._ISms , OBS_SIS_2025_ANA_CLASS._ISms_Loger);
-	
+	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
+
 	private static JTable table;
 	private JTextField txtgonderen;
 	private JTextField txtgonadi;
@@ -623,20 +629,11 @@ public class MAIL extends JInternalFrame {
 	           return ;
 	        }
 	        try {
-	        	if (CONNECTION.smsdizinbilgi.han_sql.equals("MS SQL"))
-			    {
-					 oac.sMS_MSSQL.mail_giris_sil(txtmail.getText());
-					 oac.sMS_MSSQL.mail_giris_yaz(txtmail.getText(), txtunvan.getText(),
+					 sms_Access.mail_giris_sil(txtmail.getText());
+					 sms_Access.mail_giris_yaz(txtmail.getText(), txtunvan.getText(),
 							 comboBox_2.getSelectedItem().toString(),
 							 txtkodu.getText(), chcdurum.isSelected(), GLOBAL.KULL_ADI);
-			    }
-				else
-				{
-					 oac.sMS_MYSQL.mail_giris_sil(txtmail.getText());
-					 oac.sMS_MYSQL.mail_giris_yaz(txtmail.getText(), txtunvan.getText(),
-							 comboBox_2.getSelectedItem().toString(),
-							 txtkodu.getText(), chcdurum.isSelected(), GLOBAL.KULL_ADI);
-				}
+				
 	            kutu_temizle();
 	            giris_doldur();
 	        }
@@ -656,14 +653,7 @@ public class MAIL extends JInternalFrame {
    			 	oac.options[1]); //default button
 	 	 if(g != 0 ) { return;	}
 	        try {
-        	if (CONNECTION.smsdizinbilgi.han_sql.equals("MS SQL"))
-		    {
-				 oac.sMS_MSSQL.mail_giris_sil(txtmail.getText());
-		    }
-			else
-			{
-				 oac.sMS_MYSQL.mail_giris_sil(txtmail.getText());
-			}
+ 				 sms_Access.mail_giris_sil(txtmail.getText());
         	kutu_temizle();
             giris_doldur();
 	        }
@@ -678,36 +668,15 @@ public class MAIL extends JInternalFrame {
 		ResultSet rs = null ;
 	        if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Cari Hesap"))
 	        {
-	        	if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-	    		{
-	    		rs = oac.cARI_HESAP_MSSQL.sms_cari_pln("E_MAIL");
-	    		}
-	    		else
-	    		{
-	    		rs = oac.cARI_HESAP_MYSQL.sms_cari_pln("E_MAIL");
-	    		}
+	    		rs = c_Access.sms_cari_pln("E_MAIL");
 	        }
 	        else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Adres"))
        		{
-	        	if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-    		    {
-    				rs = oac.aDRES_MSSQL.sms_adr_hpl("E_Mail");
-    		    }
-    			else
-    			{
-    				rs = oac.aDRES_MYSQL.sms_adr_hpl("E_Mail");
-    			}
+    				rs = a_Access.sms_adr_hpl("E_Mail");
 	        }
 	        else if(comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Dosyadan"))
 	        {
-	        	if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-    		    {
-    				rs = oac.sMS_MSSQL.mail_alici_doldur();
-    		    }
-    			else
-    			{
-    				rs = oac.sMS_MYSQL.mail_alici_doldur();
-    			}
+    				rs = sms_Access.mail_alici_doldur();
 	        }
 	        if (!rs.isBeforeFirst() ) {  
 	        	lblNewLabel_12.setText("0");
@@ -760,7 +729,7 @@ public class MAIL extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 JOptionPane.showMessageDialog(null,  ex.getMessage(), "Alici Doldurma", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
@@ -785,7 +754,7 @@ public class MAIL extends JInternalFrame {
 		 }
 		 if ( !smtp_bak()  ) // 'SMTP bilgileri yok
   		{
-  		getContentPane().setCursor(DEFAULT_CURSOR);
+  		getContentPane().setCursor(oac.DEFAULT_CURSOR);
      	JOptionPane.showMessageDialog(null,  "SMTP Bilgilerine Ulasilamadi ...",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
          return ;
   		}
@@ -813,7 +782,7 @@ public class MAIL extends JInternalFrame {
     	}
 		 Thread.currentThread().isInterrupted();
          Progres_Bar_Temizle();
-		 getContentPane().setCursor(DEFAULT_CURSOR);
+		 getContentPane().setCursor(oac.DEFAULT_CURSOR);
      	JOptionPane.showMessageDialog(null,  say + " Adet Mailiniz Gonderildi   ",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
      	
 	 }
@@ -836,14 +805,14 @@ public class MAIL extends JInternalFrame {
 		 }
 		 if (txtkonu.getText().equals(""))
 		 {	
-			 getContentPane().setCursor(DEFAULT_CURSOR);
+			 getContentPane().setCursor(oac.DEFAULT_CURSOR);
     	 JOptionPane.showMessageDialog(null,  "Konu Bos...",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
           txtkonu.requestFocus();
         return ;
      	}
 		 if (txtaciklama.getText().equals(""))
 		 {
-		 getContentPane().setCursor(DEFAULT_CURSOR);
+		 getContentPane().setCursor(oac.DEFAULT_CURSOR);
     	 JOptionPane.showMessageDialog(null,  "Aciklama Bos...",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
          txtaciklama.requestFocus();
         return ;
@@ -852,17 +821,17 @@ public class MAIL extends JInternalFrame {
      	{
      		if ( !smtp_bak()  ) // 'SMTP bilgileri yok
      		{
-     			getContentPane().setCursor(DEFAULT_CURSOR);
+     			getContentPane().setCursor(oac.DEFAULT_CURSOR);
         	JOptionPane.showMessageDialog(null,  "SMTP Bilgilerine Ulasilamadi ...",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
             return ;
      		}
      		send_mail(txtalici.getText()) ;
-     		getContentPane().setCursor(DEFAULT_CURSOR);
+     		getContentPane().setCursor(oac.DEFAULT_CURSOR);
      		JOptionPane.showMessageDialog(null,   "Mailiniz Gonderildi   ",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
      	}
      	catch (Exception ex)
      	{
-    	 getContentPane().setCursor(DEFAULT_CURSOR);
+    	 getContentPane().setCursor(oac.DEFAULT_CURSOR);
          JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
      	}
 	}
@@ -871,7 +840,7 @@ public class MAIL extends JInternalFrame {
 		boolean result = false ;
 		try {
 		 ResultSet rs = null;
-		 rs= oac.glb.mail_bak(GLOBAL.KULL_ADI);
+		 rs= oac.uSER_ISL.mail_bak(GLOBAL.KULL_ADI);
 		 if (!rs.isBeforeFirst() ) {  result = false;} 
 	        else {
 	        HESAP = rs.getString("HESAP");
@@ -887,7 +856,7 @@ public class MAIL extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		    JOptionPane.showMessageDialog(null,  ex.getMessage(),  "SMTP Bilgisi Okuma", JOptionPane.PLAIN_MESSAGE);		
 		}
 		return result;
@@ -950,18 +919,11 @@ public class MAIL extends JInternalFrame {
 			   //**********************Raporlama Dosyasina Yaz ***************************
 			   Date zaman = new Date();
 			   DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");  
-			   if (CONNECTION.smsdizinbilgi.han_sql.equals("MS SQL"))
-			    {
-				   oac.sMS_MSSQL.giden_rapor_yaz(GLOBAL.KULL_ADI,dateFormat.format(zaman)  ,txtaciklama.getText(),alici,"", 	"",	txtgonderen.getText(),txtkonu.getText()) ;
-			    }
-			   else
-			   {
-				   oac.sMS_MYSQL.giden_rapor_yaz(GLOBAL.KULL_ADI,dateFormat.format(zaman)  ,txtaciklama.getText(),alici,"", 	"",	txtgonderen.getText(),txtkonu.getText()) ;
-			   }
+				   sms_Access.giden_rapor_yaz(GLOBAL.KULL_ADI,dateFormat.format(zaman)  ,txtaciklama.getText(),alici,"", 	"",	txtgonderen.getText(),txtkonu.getText()) ;
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		    JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
@@ -984,31 +946,17 @@ public class MAIL extends JInternalFrame {
 		 try {
 		 ResultSet rs = null;
 		 long startTime = System.currentTimeMillis(); 
-		 getContentPane().setCursor(WAIT_CURSOR);
+		 getContentPane().setCursor(oac.WAIT_CURSOR);
          if (GLOBAL.KULL_ADI.equals("Admin"))
          {
-        	 if (CONNECTION.smsdizinbilgi.han_sql.equals("MS SQL"))
-			    {
-     		 rs = oac.sMS_MSSQL.mail_giden_bak("");
-			    }
-        	 else
-        	 {
-     		 rs = oac.sMS_MYSQL.mail_giden_bak("");
-        	 }
+     		 rs = sms_Access.mail_giden_bak("");
          }
          else
          {
-        	 if (CONNECTION.smsdizinbilgi.han_sql.equals("MS SQL"))
-			    {
-        		 rs = oac.sMS_MSSQL.mail_giden_bak("  WHERE USER_NAME = '" + GLOBAL.KULL_ADI.toString()  +  "' ");
-			    }
-        	 else
-        	 {
-        		 rs = oac.sMS_MYSQL.mail_giden_bak("  WHERE USER_NAME = '" + GLOBAL.KULL_ADI.toString()  +  "' ");
-        	 }
+         		 rs = sms_Access.mail_giden_bak("  WHERE USER_NAME = '" + GLOBAL.KULL_ADI.toString()  +  "' ");
          }
          if (!rs.isBeforeFirst() ) {  
-        	 getContentPane().setCursor(DEFAULT_CURSOR);
+        	 getContentPane().setCursor(oac.DEFAULT_CURSOR);
         	     GRID_TEMIZLE.grid_temizle(table_1);
 	        	lblNewLabel_12.setText("0");
 			    return;
@@ -1056,7 +1004,7 @@ public class MAIL extends JInternalFrame {
 			table_1.setRowHeight(21);
 			table_1.setSelectionBackground(Color.PINK);
 			table_1.setSelectionForeground(Color.BLUE);
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			
 			lblNewLabel_12.setText(Integer.toString(table_1.getRowCount()));
 			
@@ -1067,7 +1015,7 @@ public class MAIL extends JInternalFrame {
 		 }
      catch (Exception ex)
 		 {
-    	 getContentPane().setCursor(DEFAULT_CURSOR);
+    	 getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		    JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
 		    }
 	}

@@ -66,4 +66,8 @@ public class ADRES_ACCESS {
 	{
 		return _IAdres.adr_hpl();
 	}
+	public ResultSet sms_adr_hpl(String nerden) throws ClassNotFoundException, SQLException
+	{
+		return _IAdres.sms_adr_hpl(nerden);
+	}
 }

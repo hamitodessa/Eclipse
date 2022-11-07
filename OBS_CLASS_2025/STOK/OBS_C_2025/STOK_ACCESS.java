@@ -209,6 +209,59 @@ public class STOK_ACCESS {
 	{
 		return _IStok.dipnot_oku(ino, cins, gircik);
 	}
-	
-	
+	public String son_no_al(String cins) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.son_no_al(cins);
+	}
+	public ResultSet irsaliye_oku (String ino,String hareket) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.irsaliye_oku(ino, hareket);
+	}
+	public ResultSet ggdy_oku() throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.ggdy_oku();
+	}
+	public void gdy_sil(Integer gid) throws ClassNotFoundException, SQLException
+	{
+		_IStok.gdy_sil(gid);
+	}public void gdy_kayit(String isim ,String adres,String semt,String sehir,String usr) throws ClassNotFoundException, SQLException
+	{
+		_IStok.gdy_kayit(isim, adres, semt, sehir, usr);
+	}
+	public int uretim_fisno_al() throws ClassNotFoundException, SQLException
+	{
+		return _IStok.uretim_fisno_al();
+	}
+	public String uret_son_bordro_no_al () throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.uret_son_bordro_no_al();
+	}
+	public double son_imalat_fiati_oku(String kodu) throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.son_imalat_fiati_oku(kodu);
+	}
+	public double gir_ort_fiati_oku(String kodu,String ilkt,String tarih) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.gir_ort_fiati_oku(kodu, ilkt, tarih);
+	}
+	public ResultSet uret_ilk_tarih(String baslangic,String tar,String ukodu) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.uret_ilk_tarih(baslangic, tar, ukodu);
+	}
+	public ResultSet imalat_urun_ara (String kodu) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.imalat_urun_ara(kodu);
+	}
+	public ResultSet resim_oku(String ukodu) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.resim_oku(ukodu);
+	}
+	public ResultSet recete_oku (String rno) throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.recete_oku(rno);
+	}
+	public ResultSet stok_oku(String eno,String cins) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.stok_oku(eno, cins);
+	}
 }

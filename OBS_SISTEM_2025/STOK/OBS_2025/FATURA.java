@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.DoubleEditor;
 import OBS_C_2025.FORMATLAMA;
@@ -2656,14 +2657,14 @@ public class FATURA extends JInternalFrame {
 		BORC_ALACAK hsp ;
 			hsp = new BORC_ALACAK();
 			hsp.setLocationRelativeTo(OBS_MAIN.desktopPane);
-			 GLOBAL.hsp_hsp_kodu = "" ;
+			 oac.hsp_hsp_kodu = "" ;
 			String bh = "",alh="";
 		       // '***************** hsp cinsleri ogren***********************BORCLU HESAP
 			 if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			 {
 				hsp.lblNewLabel.setText("Alacakli Hesap");
 				hsp.setVisible(true);
-				alh =  GLOBAL.hsp_hsp_kodu;
+				alh = oac.hsp_hsp_kodu;
 				bh = txtcari.getText();
 				if (alh.equals("")) return ;
 			 }
@@ -2671,7 +2672,7 @@ public class FATURA extends JInternalFrame {
 			 {
 				hsp.lblNewLabel.setText("Borclu Hesap");
 				hsp.setVisible(true);
-				bh =  GLOBAL.hsp_hsp_kodu;
+				bh = oac.hsp_hsp_kodu;
 				alh = txtcari.getText();
 				if (bh.equals("")) return ;
 			 }
@@ -2679,14 +2680,9 @@ public class FATURA extends JInternalFrame {
 			 if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			 {
 			        //*******************************************************************************
-			        if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-				    {
-				    	rs = oac.cARI_HESAP_MSSQL.hesap_adi_oku(alh);
-				    }
-				    else
-				    {
-				    	rs = oac.cARI_HESAP_MYSQL.hesap_adi_oku(alh);
-				    }
+			        
+				    	rs = c_Access.hesap_adi_oku(alh);
+				  
 					if (!rs.isBeforeFirst() ) {  
 						 JOptionPane.showMessageDialog(null,  "Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 						 return ;
@@ -2696,14 +2692,9 @@ public class FATURA extends JInternalFrame {
 			 else
 			 {
 				//*******************************************************************************
-			        if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-				    {
-				    	rs = oac.cARI_HESAP_MSSQL.hesap_adi_oku(bh);
-				    }
-				    else
-				    {
-				    	rs = oac.cARI_HESAP_MYSQL.hesap_adi_oku(bh);
-				    }
+			       
+				    	rs = c_Access.hesap_adi_oku(bh);
+				   
 					if (!rs.isBeforeFirst() ) {  
 						 JOptionPane.showMessageDialog(null,  "Girilen Borclu Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 						 return ;
@@ -2712,14 +2703,9 @@ public class FATURA extends JInternalFrame {
 			 }
 			//********************************************************************************
 				rs= null;
-				if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-			    {
-			    	rs = oac.cARI_HESAP_MSSQL.hesap_adi_oku(txtcari.getText());
-			    }
-			    else
-			    {
-			    	rs = oac.cARI_HESAP_MYSQL.hesap_adi_oku(txtcari.getText());
-			    }
+				
+			    	rs = c_Access.hesap_adi_oku(txtcari.getText());
+			    
 				if (!rs.isBeforeFirst() ) {  
 					 JOptionPane.showMessageDialog(null, textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 					 return;
@@ -2728,22 +2714,16 @@ public class FATURA extends JInternalFrame {
 		            double sdf =  DecimalFormat.getNumberInstance().parse(label_8.getText()).doubleValue()  ;
 		            String str_4  ="";
 		            int e_number =0;
-            		if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-            		{
-            			e_number = oac.cARI_HESAP_MSSQL.cari_fisno_al();
-            		}
-            		else
-            		{
-            			e_number = oac.cARI_HESAP_MYSQL.cari_fisno_al();
-            		}
+            		
+            			e_number = c_Access.cari_fisno_al();
+            		
             		 DefaultTableModel model = (DefaultTableModel)table.getModel();
 		            double tutar  = DecimalFormat.getNumberInstance().parse(label.getText()).doubleValue()  ;
 		            		 if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 		            		 {
 		                str_4 = textField.getText() + "'Fatura ile " + FORMATLAMA.doub_0(sdf) + " " +  model.getValueAt(0 , 6).toString() + " Urun Satisi" ;
-		                if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-	        	        {
-	        	        	oac.cARI_HESAP_MSSQL.cari_dekont_kaydet(bh,
+		                
+	        	        c_Access.cari_dekont_kaydet(bh,
 	        	        			TARIH_CEVIR.tarih_geri_saatli(dtc),
 	        	        			 e_number,
 	        	        		"",1.00,
@@ -2751,27 +2731,18 @@ public class FATURA extends JInternalFrame {
 	        	        		alh,
 	        	        		"",1.00,
 	        	        		tutar,
-	        	        		str_4,"Satis" , GLOBAL.KULL_ADI);
-	        	        }
-	        	        else
-	        	        {
-	        	        	oac.cARI_HESAP_MYSQL.cari_dekont_kaydet(bh,
-	        	        			TARIH_CEVIR.tarih_geri_saatli(dtc),
-	        	        			 e_number,
-	        	        		"",1.00,
-	        	        		 tutar,
-	        	        		alh,
-	        	        		"",1.00,
-	        	        		tutar,
-	        	        		str_4,"Satis" , GLOBAL.KULL_ADI);
-	        	        }
+	        	        		str_4,"Satis" , GLOBAL.KULL_ADI,
+	        	        		"Alacakli Hes:" +alh + " Tut:" +tutar+
+	        	        		" Borclu Hes:"+ bh   ,
+	        	        		textField.getText() ,
+	        	        		BAGLAN_LOG.cariLogDizin);
+	        	       
 		            		 }
 		                else if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("ALIS") )
 		                {
 			                str_4 = textField.getText() + "'Fatura ile " + FORMATLAMA.doub_0(sdf) + " " +  model.getValueAt(0 , 6).toString() + " Urun Girisi" ;
-		                	if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-		        	        {
-		        	        	oac.cARI_HESAP_MSSQL.cari_dekont_kaydet(bh,
+		                	
+		        	        c_Access.cari_dekont_kaydet(bh,
 		        	        			TARIH_CEVIR.tarih_geri_saatli(dtc),
 		        	        			 e_number,
 		        	        		"",1.00,
@@ -2779,20 +2750,12 @@ public class FATURA extends JInternalFrame {
 		        	        		alh,
 		        	        		"",1.00,
 		        	        		tutar,
-		        	        		str_4,"Alis" , GLOBAL.KULL_ADI);
-		        	        }
-		        	        else
-		        	        {
-		        	        	oac.cARI_HESAP_MYSQL.cari_dekont_kaydet(bh,
-		        	        			TARIH_CEVIR.tarih_geri_saatli(dtc),
-		        	        			 e_number,
-		        	        		"",1.00,
-		        	        		 tutar,
-		        	        		alh,
-		        	        		"",1.00,
-		        	        		tutar,
-		        	        		str_4,"Alis" , GLOBAL.KULL_ADI);
-		        	        }
+		        	        		str_4,"Alis" , GLOBAL.KULL_ADI,
+		        	        		"Alacakli Hes:" +alh + " Tut:" +tutar+
+		        	        		" Borclu Hes:"+ bh   ,
+		        	        		textField.getText() ,
+		        	        		BAGLAN_LOG.cariLogDizin);
+		        	        
 		                }
 		            JOptionPane.showMessageDialog(null,  "Fatura Cari Hesaba Basari ile Kaydedilmistir....",  "Fatura Cari Kaydetme", JOptionPane.INFORMATION_MESSAGE);
 		}
@@ -2805,14 +2768,9 @@ public class FATURA extends JInternalFrame {
 	{
 		try {
 			ResultSet rs = null;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.urun_adi_oku(cins,"Kodu");
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.urun_adi_oku(cins,"Kodu");
-			}
+			
+				rs = f_Access.urun_adi_oku(cins,"Kodu");
+			
 		if (!rs.isBeforeFirst() ) {  
 			lblNewLabel_12.setText("");
 			label_5.setText("");
@@ -2854,14 +2812,9 @@ public class FATURA extends JInternalFrame {
 	{
 		try
 		{
-		if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		{
-			textField.setText( oac.sTOK_MSSQL.son_no_al(cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G"));
-		}
-		else
-		{
-			textField.setText( oac.sTOK_MYSQL.son_no_al(cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G"));
-		}
+		
+			textField.setText( f_Access.son_no_al(cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G"));
+		
 		}
 		catch (Exception ex)
 		{
@@ -2872,23 +2825,18 @@ public class FATURA extends JInternalFrame {
 	{
 		getContentPane().setCursor(oac.WAIT_CURSOR);
 		try {
-			GLOBAL.irs_no = "" ;
+			oac.irs_no = "" ;
 			IRSALIYE_ARA iara ;
 			iara = new IRSALIYE_ARA();
 			iara.setVisible(true);
 			ResultSet rs=null;
 			  //GRID_TEMIZLE.grid_temizle(table);
               //GRID_TEMIZLE.grid_temizle(table_1);
-			if (GLOBAL.irs_no.equals("")) {	getContentPane().setCursor(oac.DEFAULT_CURSOR);  return;}
+			if (oac.irs_no.equals("")) {	getContentPane().setCursor(oac.DEFAULT_CURSOR);  return;}
 			//
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-    		{
-    			rs = oac.sTOK_MSSQL.irsaliye_oku(GLOBAL.irs_no,cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G");
-    		}
-    		else
-    		{
-    			rs = oac.sTOK_MYSQL.irsaliye_oku(GLOBAL.irs_no,cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G");
-    		}
+			
+    			rs = f_Access.irsaliye_oku(oac.irs_no,cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G");
+    		
 			if (!rs.isBeforeFirst() ) {  
 				JOptionPane.showMessageDialog(null,"Bu Numarada Irsaliye Bulunamadi ",  "Irsaliye Okuma", JOptionPane.ERROR_MESSAGE);   
 				return ;
@@ -2941,7 +2889,7 @@ public class FATURA extends JInternalFrame {
 					  }
 					}
 		    	//
-		    	mdll.insertRow(0,new Object[]{GLOBAL.irs_no,rs.getString("Cari_Hesap_Kodu"),unv,tar});
+		    	mdll.insertRow(0,new Object[]{oac.irs_no,rs.getString("Cari_Hesap_Kodu"),unv,tar});
 		        toplam()  ;
 			//
 			

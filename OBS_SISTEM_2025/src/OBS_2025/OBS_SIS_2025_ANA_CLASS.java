@@ -58,5 +58,7 @@ public class OBS_SIS_2025_ANA_CLASS
 	public static String hsp_hsp_kodu =""; 
 	public static String stk_kodu =""; 
 	public BufferedImage kam_resmi ;
+	 public static String irs_no =""; 
+	 public static String nerden ="";
 
 }

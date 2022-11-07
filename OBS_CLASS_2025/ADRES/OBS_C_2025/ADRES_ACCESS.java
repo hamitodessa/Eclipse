@@ -70,4 +70,8 @@ public class ADRES_ACCESS {
 	{
 		return _IAdres.sms_adr_hpl(nerden);
 	}
+	public ResultSet gdy_oku(String kod) throws ClassNotFoundException, SQLException
+	{
+		return _IAdres.gdy_oku(kod);
+	}
 }

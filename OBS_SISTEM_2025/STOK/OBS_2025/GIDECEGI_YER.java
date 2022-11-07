@@ -23,15 +23,22 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
 import net.proteanit.sql.DbUtils;
 
 import java.awt.Font;
 import java.sql.ResultSet;
 
 public class GIDECEGI_YER extends JInternalFrame {
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
+
 	
 	private static JTable table;
 	private static JTextField textField;
@@ -176,14 +183,9 @@ public class GIDECEGI_YER extends JInternalFrame {
 	{
 		try {
 		ResultSet	rs = null;
-		 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-			 rs = oac.sTOK_MSSQL.ggdy_oku();
-			}
-		 else
-		 {
-			 rs = oac.sTOK_MYSQL.ggdy_oku();
-		 }
+		
+			 rs = f_Access.ggdy_oku();
+		
 			GRID_TEMIZLE.grid_temizle(table);
 		 if (!rs.isBeforeFirst() ) {  
 			} 
@@ -269,14 +271,9 @@ public class GIDECEGI_YER extends JInternalFrame {
 		
 			try
 			{
-				 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-					  oac.sTOK_MSSQL.gdy_sil(Integer.parseInt(textField_5.getText()));
-					}
-				 else
-				 {
-					 oac.sTOK_MYSQL.gdy_sil(Integer.parseInt(textField_5.getText()));
-				 }
+				
+					f_Access.gdy_sil(Integer.parseInt(textField_5.getText()));
+				
 				 temizle();
 				doldur();
 					textField.requestFocus();
@@ -293,24 +290,14 @@ public class GIDECEGI_YER extends JInternalFrame {
 		{
 			if ( ! textField_5.getText().equals(""))
 			{
-				 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-					  oac.sTOK_MSSQL.gdy_sil(Integer.parseInt(textField_5.getText()));
-					}
-				 else
-				 {
-					 oac.sTOK_MYSQL.gdy_sil(Integer.parseInt(textField_5.getText()));
-				 }
+				 
+					f_Access.gdy_sil(Integer.parseInt(textField_5.getText()));
+					
 			}
 			
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-			  oac.sTOK_MSSQL.gdy_kayit(textField_1.getText(),textField_2.getText(), textField_3.getText(), textField_4.getText(),GLOBAL.KULL_ADI);
-			}
-		 else
- 		 	{
-			 oac.sTOK_MYSQL.gdy_kayit(textField_1.getText(),textField_2.getText(), textField_3.getText(), textField_4.getText(),GLOBAL.KULL_ADI);
-			}
+			
+			f_Access.gdy_kayit(textField_1.getText(),textField_2.getText(), textField_3.getText(), textField_4.getText(),GLOBAL.KULL_ADI);
+			
 			temizle();
 			doldur();
 			textField.requestFocus();
@@ -325,19 +312,14 @@ public class GIDECEGI_YER extends JInternalFrame {
 		 ResultSet rs =null;
 		 try
 		 {
-		if (GLOBAL.nerden.equals("irs"))
+		if (oac.nerden.equals("irs"))
 				{
 			 if (!  IRSALIYE.textField_8.getText().equals(""))
 			 {
 				
-				 if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-					{
-						rs =  oac.aDRES_MSSQL.gdy_oku(IRSALIYE.textField_8.getText());
-					}
-					else
-					{
-						rs =  oac.aDRES_MYSQL.gdy_oku(IRSALIYE.textField_8.getText());
-					}
+				 
+						rs =  a_Access.gdy_oku(IRSALIYE.textField_8.getText());
+				
 				 if (!rs.isBeforeFirst() ) {  
 						JOptionPane.showMessageDialog(null,  "Adres Dosyasinda Bu Kodda Kayitli Bilgi Yok....","Irsaliye Yazdirma", JOptionPane.PLAIN_MESSAGE);   
 					}
@@ -351,18 +333,13 @@ public class GIDECEGI_YER extends JInternalFrame {
  				 }
 				}
 				}
-            else if  (GLOBAL.nerden.equals("fat"))
+            else if  (oac.nerden.equals("fat"))
             		{
                 if (!  FATURA.textField_8.getText().equals(""))
                 {
-                	 if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
- 					{
- 						rs =  oac.aDRES_MSSQL.gdy_oku(FATURA.textField_8.getText());
- 					}
- 					else
- 					{
- 						rs =  oac.aDRES_MYSQL.gdy_oku(FATURA.textField_8.getText());
- 					}
+                	
+ 						rs = a_Access.gdy_oku(FATURA.textField_8.getText());
+ 					
  				 if (!rs.isBeforeFirst() ) {  
  						JOptionPane.showMessageDialog(null,  "Adres Dosyasinda Bu Kodda Kayitli Bilgi Yok....","Fatura Yazdirma", JOptionPane.PLAIN_MESSAGE);   
  					}

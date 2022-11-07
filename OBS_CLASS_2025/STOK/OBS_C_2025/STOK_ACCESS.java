@@ -440,5 +440,106 @@ public class STOK_ACCESS {
 	{
 		return _IStok.envanter_rapor_lifo(t1, t2, k1, k2, f1, f2, m1, m2, anagrup, altgrup, depo, depohar, ure, uanagrp, ualtgrp, calisanpara);
 	}
+	public ResultSet fat_rapor(String ino1 , String ino2 , String t1 ,String t2 , String m1 ,String m2,
+			String k1 ,String k2 ,String tv1 ,String tv2,String anagrup,String altgrup , String depo,String turu ,String ozel1 ,String ozel2,
+			String a1 ,String a2,String dvz ,String dvz2) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.fat_rapor(ino1, ino2, t1, t2, m1, m2, k1, k2, tv1, tv2, anagrup, altgrup, depo, turu, ozel1, ozel2, a1, a2, dvz, dvz2);
+	}
+	public ResultSet fat_rapor_cari_kod(String ino1 , String ino2 , String t1 ,String t2 , String m1 ,String m2,
+			String k1 ,String k2 ,String tv1 ,String tv2,String anagrup,String altgrup , String depo,String turu ,String ozel1 ,String ozel2,
+			String a1 ,String a2,String cari_yer ,String dvz ,String dvz2, String grp) throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.fat_rapor_cari_kod(ino1, ino2, t1, t2, m1, m2, k1, k2, tv1, tv2, anagrup, altgrup, depo, turu, ozel1, ozel2, a1, a2, cari_yer, dvz, dvz2, grp);
+	}
+	public ResultSet fat_rapor_fat_tar(String ino1 , String ino2 , String t1 ,String t2 , String m1 ,String m2,
+			String k1 ,String k2 ,String tv1 ,String tv2,String anagrup,String altgrup , String depo,String turu ,String ozel1 ,String ozel2,
+			String a1 ,String a2,String bir ,String dvz ,String dvz2,String iki , String grp) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.fat_rapor_fat_tar(ino1, ino2, t1, t2, m1, m2, k1, k2, tv1, tv2, anagrup, altgrup, depo, turu, ozel1, ozel2, a1, a2, bir, dvz, dvz2, iki, grp);
+	}
+	public ResultSet fat_detay_rapor(String fno , String turu) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.fat_detay_rapor(fno, turu);
+	}
+	public ResultSet grp_urn_kodlu(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
+			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.grp_urn_kodlu(sstr_2, sstr_4, kur_dos, jkj, ch1, qwq6, qwq7, qwq8, s1, s2, k1, k2, jkj1, deg1, deg2, t1, t2, sstr_5, sstr_1);
+	}
+	public ResultSet grp_urn_kodlu_yil(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
+			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.grp_urn_kodlu_yil(sstr_2, sstr_4, kur_dos, jkj, ch1, qwq6, qwq7, qwq8, s1, s2, k1, k2, jkj1, deg1, deg2, t1, t2, sstr_5, sstr_1);
+	}
+	public ResultSet grp_mus_kodlu(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
+			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.grp_mus_kodlu(sstr_2, sstr_4, kur_dos, jkj, ch1, qwq6, qwq7, qwq8, s1, s2, k1, k2, jkj1, deg1, deg2, t1, t2, sstr_5, sstr_1);
+	}
+	public ResultSet grp_mus_kodlu_yil(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
+			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.grp_mus_kodlu_yil(sstr_2, sstr_4, kur_dos, jkj, ch1, qwq6, qwq7, qwq8, s1, s2, k1, k2, jkj1, deg1, deg2, t1, t2, sstr_5, sstr_1);
+	}
+	public ResultSet grp_yil_ay(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
+			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.grp_yil_ay(sstr_2, sstr_4, kur_dos, jkj, ch1, qwq6, qwq7, qwq8, s1, s2, k1, k2, jkj1, deg1, deg2, t1, t2, sstr_5, sstr_1);
+	}
+	public ResultSet grp_yil(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
+			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.grp_yil(sstr_2, sstr_4, kur_dos, jkj, ch1, qwq6, qwq7, qwq8, s1, s2, k1, k2, jkj1, deg1, deg2, t1, t2, sstr_5, sstr_1);
+	}
+	public ResultSet grp_ana_grup(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
+			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.grp_ana_grup(sstr_2, sstr_4, kur_dos, jkj, ch1, qwq6, qwq7, qwq8, s1, s2, k1, k2, jkj1, deg1, deg2, t1, t2, sstr_5, sstr_1);
+	}
+	public ResultSet grp_ana_grup_yil(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
+			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.grp_ana_grup_yil(sstr_2, sstr_4, kur_dos, jkj, ch1, qwq6, qwq7, qwq8, s1, s2, k1, k2, jkj1, deg1, deg2, t1, t2, sstr_5, sstr_1);
+	}
+	public ResultSet baslik_bak(String baslik,String ordr,String jkj,String ch1,String k1,String k2,String f1,String f2,String t1,String t2) throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.baslik_bak(baslik, ordr, jkj, ch1, k1, k2, f1, f2, t1, t2);
+	}
+	public ResultSet ima_alt_kod(String slct,String sstr_5,String sstr_2,String sstr_4,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String qwq9,String s1 ,String s2,String k1,String k2,String t1,String t2,
+			String sstr_1,String ordrr,String sstr_55) throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.ima_alt_kod(slct, sstr_5, sstr_2, sstr_4, jkj, ch1, qwq6, qwq7, qwq8, qwq9, s1, s2, k1, k2, t1, t2, sstr_1, ordrr, sstr_55);
+	}
+	public ResultSet ima_baslik_bak(String bas ,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String qwq9,String k1,String k2,String t1,String t2,String ordrr) throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.ima_baslik_bak(bas, jkj, ch1, qwq6, qwq7, qwq8, qwq9, k1, k2, t1, t2, ordrr);
+	}
+	public ResultSet imalat_rapor(String f1 , String f2 , String t1 ,String t2 , String k1 ,String k2,
+			String r1 ,String r2 ,String depo,String anagrp,String altgrp , String b1 ,String b2,
+			String uanagrp,String ualtgrp) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.imalat_rapor(f1, f2, t1, t2, k1, k2, r1, r2, depo, anagrp, altgrp, b1, b2, uanagrp, ualtgrp);
+	}
+	public ResultSet irs_rapor(String ino1 , String ino2 , String t1 ,String t2 , String m1 ,String m2,
+			String k1 ,String k2 ,String turu,String anagrup,String altgrup , String ozkod,
+			String fat1,String fat2,String a1 ,String a2) throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.irs_rapor(ino1, ino2, t1, t2, m1, m2, k1, k2, turu, anagrup, altgrup, ozkod, fat1, fat2, a1, a2);
+	}
+	public ResultSet irs_detay_rapor(String ino , String turu) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.irs_detay_rapor(ino, turu);
+	}
 	
 }

@@ -1242,6 +1242,11 @@ public class STOK_MYSQL implements ISTOK {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	@Override
+	public ResultSet fat_detay_rapor(String fno, String turu) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 

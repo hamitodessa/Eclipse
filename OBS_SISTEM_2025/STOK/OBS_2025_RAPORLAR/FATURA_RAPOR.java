@@ -17,7 +17,7 @@ import OBS_C_2025.BAGLAN;
 import OBS_C_2025.FILE_UZANTI;
 import OBS_2025.FILTRE;
 import OBS_C_2025.FORMATLAMA;
-import OBS_C_2025.GLOBAL;
+
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_2025.GuiUtil;
 import OBS_2025.OBS_MAIN;
@@ -32,7 +32,7 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
+
 import java.awt.Dimension;
 
 import javax.swing.JTable;

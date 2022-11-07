@@ -48,4 +48,28 @@ public class STOK_ACCESS {
 	{
 		return _IStok.parametre_oku(nerden, satsut);
 	}
+	public ResultSet urun_adi_oku (String kodu,String kodbarcode) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.urun_adi_oku(kodu, kodbarcode);
+	}
+	public ResultSet stk_barkod_kod_oku(String sira) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.stk_barkod_kod_oku(sira);
+	}
+	public ResultSet stk_kod_degisken_oku(String fieldd,String sno,String nerden) throws ClassNotFoundException, SQLException
+	{
+		return _IStok.stk_kod_degisken_oku(fieldd, sno, nerden);
+	}
+	public ResultSet urun_kod_degisken_ara(String fieldd,String sno,String nerden,String arama) throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.urun_kod_degisken_ara(fieldd, sno, nerden, arama);
+	}
+	public ResultSet stk_kod_alt_grup_degisken_oku (int sno) throws ClassNotFoundException, SQLException 
+	{
+		return _IStok.stk_kod_alt_grup_degisken_oku(sno);
+	}
+	public void degisken_degistir(int anagrp,int altgrp, int anaygrp,int altygrp) throws ClassNotFoundException, SQLException
+	{
+		_IStok.degisken_degistir(anagrp, altgrp, anaygrp, altygrp);
+	}
 }

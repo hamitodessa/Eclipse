@@ -14,6 +14,9 @@
 	<classpathentry kind="src" path="KAMBIYO"/>
 	<classpathentry kind="src" path="ADRES"/>
 	<classpathentry kind="src" path="SMS_MAIL"/>
+	<classpathentry kind="src" path="KAMERA"/>
+	<classpathentry kind="src" path="PDF_GOSTER"/>
+	<classpathentry kind="src" path="STOK"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/OBS_CLASS_2025"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
@@ -47,5 +50,10 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/activation.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/mail.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jsoup-1.15.3.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/comm-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/bridj-0.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/slf4j-api-1.7.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/webcam-capture-0.3.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

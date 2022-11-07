@@ -3,6 +3,8 @@ package OBS_2025;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.image.BufferedImage;
+
 import LOGER_KAYIT.DOSYA_MSSQL;
 import OBS_C_2025.DOSYA_YAZ;
 import OBS_C_2025.GLOBAL;
@@ -54,6 +56,6 @@ public class OBS_SIS_2025_ANA_CLASS
 	public GLOBAL glb  = new GLOBAL();
 	public USER_ISLEMLERI uSER_ISL = new USER_ISLEMLERI();
 	public static String hsp_hsp_kodu =""; 
-	 
+	public BufferedImage kam_resmi ;
 
 }

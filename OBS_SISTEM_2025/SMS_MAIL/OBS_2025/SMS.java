@@ -50,6 +50,17 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.CheckBoxRenderer;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.ORTA;
+import OBS_C_2025.SMS_ACCESS;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TARIH_SAATLI;
 import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
@@ -60,9 +71,11 @@ import net.proteanit.sql.DbUtils;
 
 public class SMS extends JInternalFrame {
 
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
-	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static SMS_ACCESS sms_Access = new SMS_ACCESS(oac._ISms , OBS_SIS_2025_ANA_CLASS._ISms_Loger);
+	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
+
 	private static JTable table;
 	private JTextField txtgonderen;
 	private JTable table_1;
@@ -254,15 +267,15 @@ public class SMS extends JInternalFrame {
 				}
 				if ( chckbxNewCheckBox.isSelected()) //' Coklu gonderim
 				{
-					getContentPane().setCursor(WAIT_CURSOR);
+					getContentPane().setCursor(oac.WAIT_CURSOR);
 				    coklu_gonder();
-				    getContentPane().setCursor(DEFAULT_CURSOR);
+				    getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 				else  //' Tek Gonderim
 				{
-				   getContentPane().setCursor(WAIT_CURSOR);    
+				   getContentPane().setCursor(oac.WAIT_CURSOR);    
 				   tek_gonder();
-				   getContentPane().setCursor(DEFAULT_CURSOR);  
+				   getContentPane().setCursor(oac.DEFAULT_CURSOR);  
 				}
 				txtgonderen.setText("");
 				txtaciklama.setText("");
@@ -494,30 +507,12 @@ public class SMS extends JInternalFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				boolean sonuc = false;
-				if (CONNECTION.smsdizinbilgi.han_sql.equals("MS SQL"))
-				{
-					try {
-						sonuc = oac.sMS_MSSQL.kod_ismi(txttel.getText());
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-				else
-				{
-					try {
-						sonuc = oac.sMS_MYSQL.kod_ismi(txttel.getText());
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
+						try {
+							sonuc = sms_Access.kod_ismi(txttel.getText());
+						} catch (ClassNotFoundException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 				
 				if ( sonuc )
 						{
@@ -578,10 +573,10 @@ public class SMS extends JInternalFrame {
 		table_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 				kutu_temizle();
 				doldur_kutu(table_2.getSelectedRow());
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
 		table_2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -598,15 +593,7 @@ public class SMS extends JInternalFrame {
 			ResultSet rs = null ;
 			 GRID_TEMIZLE.grid_temizle(table);
 			long startTime = System.currentTimeMillis(); 
-			if (CONNECTION.smsdizinbilgi.han_sql.equals("MS SQL"))
-		    {
-				rs = oac.sMS_MSSQL.sms_giris_bak();
-		    }
-			else
-			{
-				rs = oac.sMS_MYSQL.sms_giris_bak();
-			}
-
+				rs = sms_Access.sms_giris_bak();
 			if (!rs.isBeforeFirst() ) {  
 				kutu_temizle();
 				lblNewLabel_12.setText("0");
@@ -664,14 +651,7 @@ public class SMS extends JInternalFrame {
 			//******* GRUP DOLDUR
 			comboBox_2.removeAllItems();
 			comboBox_2.addItem("");
-			if (CONNECTION.smsdizinbilgi.han_sql.equals("MS SQL"))
-		    {
-				rs = oac.sMS_MSSQL.sms_grup_bak();
-		    }
-			else
-			{
-				rs = oac.sMS_MYSQL.sms_grup_bak();
-			}
+				rs = sms_Access.sms_grup_bak();
 			if (!rs.isBeforeFirst() ) {  
 			} 
 			else
@@ -727,20 +707,10 @@ public class SMS extends JInternalFrame {
 	           return ;
 	        }
 	        try {
-	        	if (CONNECTION.smsdizinbilgi.han_sql.equals("MS SQL"))
-			    {
-					 oac.sMS_MSSQL.sms_giris_sil(txttel.getText());
-					 oac.sMS_MSSQL.sms_giris_yaz(txttel.getText(), 
+					 sms_Access.sms_giris_sil(txttel.getText());
+					 sms_Access.sms_giris_yaz(txttel.getText(), 
 							 comboBox_2.getSelectedItem().toString(),txtunvan.getText(),
 							 txtkodu.getText(), chcdurum.isSelected(), GLOBAL.KULL_ADI);
-			    }
-				else
-				{
-					oac.sMS_MYSQL.sms_giris_sil(txttel.getText());
-					oac.sMS_MYSQL.sms_giris_yaz(txttel.getText(), 
-							 comboBox_2.getSelectedItem().toString(),txtunvan.getText(),
-							 txtkodu.getText(), chcdurum.isSelected(), GLOBAL.KULL_ADI);
-				}
 	            kutu_temizle();
 	            giris_doldur();
 	        }
@@ -760,14 +730,7 @@ public class SMS extends JInternalFrame {
    			 	oac.options[1]); //default button
 	 	 if(g != 0 ) { return;	}
 	        try {
-        	if (CONNECTION.smsdizinbilgi.han_sql.equals("MS SQL"))
-		    {
-				 oac.sMS_MSSQL.sms_giris_sil(txttel.getText());
-		    }
-			else
-			{
-				 oac.sMS_MYSQL.sms_giris_sil(txttel.getText());
-			}
+ 				 sms_Access.sms_giris_sil(txttel.getText());
         	kutu_temizle();
             giris_doldur();
 	        }
@@ -782,36 +745,15 @@ public class SMS extends JInternalFrame {
 		ResultSet rs = null ;
 	        if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Cari Hesap"))
 	        {
-	        	if (CONNECTION.caridizinbilgi.han_sql.equals("MS SQL"))
-	    		{
-	    		rs = oac.cARI_HESAP_MSSQL.sms_cari_pln(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()));
-	    		}
-	    		else
-	    		{
-	    		rs = oac.cARI_HESAP_MYSQL.sms_cari_pln(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()));
-	    		}
+	    		rs = c_Access.sms_cari_pln(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()));
 	        }
 	        else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Adres"))
        		{
-	        	if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-    		    {
-    				rs = oac.aDRES_MSSQL.sms_adr_hpl(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()));
-    		    }
-    			else
-    			{
-    				rs = oac.aDRES_MYSQL.sms_adr_hpl(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()));
-    			}
+    				rs = a_Access.sms_adr_hpl(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()));
 	        }
 	        else if(comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Dosyadan"))
 	        {
-	        	if (CONNECTION.adrdizinbilgi.han_sql.equals("MS SQL"))
-    		    {
-    				rs = oac.sMS_MSSQL.sms_alici_doldur();
-    		    }
-    			else
-    			{
-    				rs = oac.sMS_MYSQL.sms_alici_doldur();
-    			}
+    				rs = sms_Access.sms_alici_doldur();
 	        }
 	        if (!rs.isBeforeFirst() ) {  
 	        	lblNewLabel_12.setText("0");
@@ -864,7 +806,7 @@ public class SMS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			 JOptionPane.showMessageDialog(null,  ex.getMessage(), "Alici Doldurma", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
@@ -905,7 +847,7 @@ public class SMS extends JInternalFrame {
     	}
 		 Thread.currentThread().isInterrupted();
          Progres_Bar_Temizle();
-		 getContentPane().setCursor(DEFAULT_CURSOR);
+		 getContentPane().setCursor(oac.DEFAULT_CURSOR);
      	JOptionPane.showMessageDialog(null,  say + " Adet SMS Gonderildi   ",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
      	
 	 }
@@ -918,14 +860,14 @@ public class SMS extends JInternalFrame {
 	{
 		 if (txtgonderen.getText().equals(""))
 		 {
-		 getContentPane().setCursor(DEFAULT_CURSOR);
+		 getContentPane().setCursor(oac.DEFAULT_CURSOR);
     	 JOptionPane.showMessageDialog(null,  "Alici Numara Bos...",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
          txtgonderen.requestFocus();
         return ;
 		 }
 		 if (txtaciklama.getText().equals(""))
 		 {
-		 getContentPane().setCursor(DEFAULT_CURSOR);
+		 getContentPane().setCursor(oac.DEFAULT_CURSOR);
     	 JOptionPane.showMessageDialog(null,  "Aciklama Bos...",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
          txtaciklama.requestFocus();
         return ;
@@ -933,12 +875,12 @@ public class SMS extends JInternalFrame {
      	try
      	{
      	  send_sms(txtgonderen.getText(),"","") ;
-     		getContentPane().setCursor(DEFAULT_CURSOR);
+     		getContentPane().setCursor(oac.DEFAULT_CURSOR);
      		JOptionPane.showMessageDialog(null,   "SMS 'iniz Gonderildi   ",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
      	}
      	catch (Exception ex)
      	{
-    	 getContentPane().setCursor(DEFAULT_CURSOR);
+    	 getContentPane().setCursor(oac.DEFAULT_CURSOR);
          JOptionPane.showMessageDialog(null,  ex.getMessage(),  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
      	}
 	}
@@ -963,18 +905,11 @@ public class SMS extends JInternalFrame {
 			   //**********************Raporlama Dosyasina Yaz ***************************
 			   Date zaman = new Date();
 			   DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");  
-			   if (CONNECTION.smsdizinbilgi.han_sql.equals("MS SQL"))
-			    {
-				   oac.sMS_MSSQL.sms_yaz(GLOBAL.KULL_ADI,dateFormat.format(zaman)  ,txtaciklama.getText(), numara,dort ,bir ) ;
-			    }
-			   else
-			   {
-				   oac.sMS_MYSQL.sms_yaz(GLOBAL.KULL_ADI,dateFormat.format(zaman)  ,txtaciklama.getText(), numara,dort ,bir ) ;
-				   }
+				  sms_Access.sms_yaz(GLOBAL.KULL_ADI,dateFormat.format(zaman)  ,txtaciklama.getText(), numara,dort ,bir ) ;
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		    JOptionPane.showMessageDialog(null,  ex.getMessage(),  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
@@ -997,28 +932,14 @@ public class SMS extends JInternalFrame {
 		 try {
 		 ResultSet rs = null;
 		 long startTime = System.currentTimeMillis(); 
-		 getContentPane().setCursor(WAIT_CURSOR);
+		 getContentPane().setCursor(oac.WAIT_CURSOR);
          if (GLOBAL.KULL_ADI.equals("Admin"))
          {
-        	 if (CONNECTION.smsdizinbilgi.han_sql.equals("MS SQL"))
-			    {
-     		 rs = oac.sMS_MSSQL.sms_giden_bak("");
-			    }
-        	 else
-        	 {
-     		 rs = oac.sMS_MYSQL.sms_giden_bak("");
-        	 }
+      		 rs = sms_Access.sms_giden_bak("");
          }
          else
          {
-        	 if (CONNECTION.smsdizinbilgi.han_sql.equals("MS SQL"))
-			    {
-        		 rs = oac.sMS_MSSQL.sms_giden_bak("  WHERE USER_NAME = '" + GLOBAL.KULL_ADI.toString()  +  "' ");
-			    }
-        	 else
-        	 {
-        		 rs = oac.sMS_MYSQL.sms_giden_bak("  WHERE USER_NAME = '" + GLOBAL.KULL_ADI.toString()  +  "' ");
-        	 }
+        		 rs = sms_Access.sms_giden_bak("  WHERE USER_NAME = '" + GLOBAL.KULL_ADI.toString()  +  "' ");
          }
          if (!rs.isBeforeFirst() ) {  
         	     GRID_TEMIZLE.grid_temizle(table_1);
@@ -1064,7 +985,7 @@ public class SMS extends JInternalFrame {
 			table_1.setRowHeight(21);
 			table_1.setSelectionBackground(Color.PINK);
 			table_1.setSelectionForeground(Color.BLUE);
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			
 			lblNewLabel_12.setText(Integer.toString(table_1.getRowCount()));
 			
@@ -1075,7 +996,7 @@ public class SMS extends JInternalFrame {
 		 }
      catch (Exception ex)
 		 {
-    	 getContentPane().setCursor(DEFAULT_CURSOR);
+    	 getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		    JOptionPane.showMessageDialog(null,  ex.getMessage(),  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
 		    }
 	}

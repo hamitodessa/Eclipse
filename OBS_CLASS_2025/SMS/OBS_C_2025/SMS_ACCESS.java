@@ -62,4 +62,32 @@ public class SMS_ACCESS {
 	{
 		return _ISms.mail_giden_bak(user);
 	}
+	public ResultSet sms_giris_bak() throws ClassNotFoundException, SQLException
+	{
+		return _ISms.sms_giris_bak();
+	}
+	public ResultSet sms_grup_bak() throws ClassNotFoundException, SQLException
+	{
+		return _ISms.sms_grup_bak();
+	}
+	public void sms_giris_sil(String tel) throws ClassNotFoundException, SQLException
+	{
+		_ISms.sms_giris_sil(tel);
+	}
+	public void sms_giris_yaz(String tel , String unv ,String grpkod ,String kod,boolean drm , String unm ) throws ClassNotFoundException, SQLException
+	{
+		_ISms.sms_giris_yaz(tel, unv, grpkod, kod, drm, unm);
+	}
+	public ResultSet sms_alici_doldur() throws ClassNotFoundException, SQLException
+	{
+		return _ISms.sms_alici_doldur();
+	}
+	public void sms_yaz(String uname,String tar ,String msj,String mobile,String hsp, String unv) throws ClassNotFoundException, SQLException
+	{
+		_ISms.sms_yaz(uname, tar, msj, mobile, hsp, unv);
+	}
+	public ResultSet sms_giden_bak(String user) throws ClassNotFoundException, SQLException
+	{
+		return _ISms.sms_giden_bak(user);
+	}
 }

@@ -95,4 +95,8 @@ public class KAMBIYO_ACCESS {
 	{
 		_IKambiyo.kam_durum_yaz(numara, ceksen_from, ceksen_where, durum, ttarih);
 	}
+	public String kam_firma_adi() throws ClassNotFoundException, SQLException
+	{
+		return _IKambiyo.kam_firma_adi();
+	}
 }

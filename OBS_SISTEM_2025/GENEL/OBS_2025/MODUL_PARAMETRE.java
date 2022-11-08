@@ -277,7 +277,7 @@ private void yukle() throws ClassNotFoundException, SQLException
 			{
 				label_4.setText(BAGLAN.kamDizin.sERVER);	
 			}
-			//label_55.setText( CONNECTION.kamdizinbilgi.han_sql.equals("MS SQL") ? oac.kAMBIYO_MSSQL.kam_firma_adi(): oac.kAMBIYO_MYSQL.kam_firma_adi());
+			label_55.setText( ka_Access.kam_firma_adi());
 
 			// Adres
 			label_6.setText(BAGLAN.adrDizin.kOD);

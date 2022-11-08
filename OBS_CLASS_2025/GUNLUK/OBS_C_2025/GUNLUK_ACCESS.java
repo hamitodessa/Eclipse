@@ -31,4 +31,8 @@ public class GUNLUK_ACCESS {
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
+	public String gun_firma_adi() throws ClassNotFoundException, SQLException
+	{
+		return _IGunluk.gun_firma_adi();
+	}
 }

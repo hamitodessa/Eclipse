@@ -55,5 +55,7 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/bridj-0.6.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/slf4j-api-1.7.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/webcam-capture-0.3.10.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/log4j.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/keycodeDecoder.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

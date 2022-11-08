@@ -585,5 +585,8 @@ public class STOK_ACCESS {
 	{
 		return _IStok.zayi_rapor(t1, t2, k1, k2, f1, f2, anagrp, altgrp, depo, uanagrp, ualtgrp);
 	}
-	
+	public String fat_firma_adi() throws ClassNotFoundException, SQLException
+	{
+		return _IStok.fat_firma_adi();
+	}
 }

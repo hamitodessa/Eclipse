@@ -157,8 +157,9 @@ public class PRINT_YAPMA extends JInternalFrame {
         	}
         	else if (nasil.equals("aratarih"))
         	{
-         	rs = c_Access.ekstre_sqlite();
+        		rs = c_Access.ekstre_sqlite();
         	}
+        
             clientDoc.getDatabaseController().setDataSource(rs);
             com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
             for(int i=0; i< reportObjects.size();i++)

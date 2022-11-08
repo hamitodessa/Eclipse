@@ -74,4 +74,8 @@ public class ADRES_ACCESS {
 	{
 		return _IAdres.gdy_oku(kod);
 	}
+	public String adr_firma_adi() throws ClassNotFoundException, SQLException
+	{
+		return _IAdres.adr_firma_adi();
+	}
 }

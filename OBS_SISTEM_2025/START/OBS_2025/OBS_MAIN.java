@@ -2042,6 +2042,7 @@ public class OBS_MAIN extends JFrame {
 				 GuiUtil.setWaitCursor(tabbedPane,false); 
 				  return ;
 				  }
+				
 				InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/C_EKSTRE.rpt");
 				Files.copy(is, Paths.get("C:\\OBS_SISTEM\\EKSTRE.rpt"),StandardCopyOption.REPLACE_EXISTING);
 				internalFrame = new PRINT_YAPMA();
@@ -2729,7 +2730,7 @@ public class OBS_MAIN extends JFrame {
 		else if (pencere.equals("MAIL")) internalFrame  = new MAIL();
 //		 //GENEL
 		else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
-//		else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();
+		else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();
 		 //AYARLAR
 		else if (pencere.equals("KULLANICI EKLEME")) internalFrame  = new  USER_EKLEME();
 		else if (pencere.equals("KULLANICI DETAY EKLEME")) internalFrame  = new  USER_DETAY_EKLEME();

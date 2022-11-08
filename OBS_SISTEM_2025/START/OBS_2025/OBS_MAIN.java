@@ -2268,8 +2268,8 @@ public class OBS_MAIN extends JFrame {
     				}
      				else 
     				{
-    					 GuiUtil.setWaitCursor(toolBar,false);
-    					 return;
+    				//	 GuiUtil.setWaitCursor(toolBar,false);
+    				//	 return;
     				}
     		//	if (	GLOBAL.g_baslik == "" ) 
     		//		{
@@ -2279,9 +2279,9 @@ public class OBS_MAIN extends JFrame {
     			
     			 
 				JInternalFrame internalFrame;
-			//	internalFrame = new GRAFIK();
-			//	desktopPane.add(internalFrame);
-			//	 internalFrame.setVisible(true);
+				internalFrame = new GRAFIK();
+				desktopPane.add(internalFrame);
+				 internalFrame.setVisible(true);
 				 GuiUtil.setWaitCursor(toolBar,false);
                 }
 				}

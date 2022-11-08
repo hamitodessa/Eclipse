@@ -32,11 +32,10 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/poi-ooxml-4.1.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/poi-ooxml-schemas-4.1.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/poi-scratchpad-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/2025/commons-lang3-3.12.0.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-collections-3.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-configuration-1.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-lang-2.1.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/eclipse/CRYSTAL_REPORT/runt/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-logging.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/CrystalCommon2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/CrystalReportsRuntime.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/cvom.jar"/>
@@ -50,12 +49,13 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/activation.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/mail.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jsoup-1.15.3.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/2025/comm-2.0.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/RXTXcomm.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/bridj-0.6.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/slf4j-api-1.7.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/webcam-capture-0.3.10.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/log4j.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/keycodeDecoder.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/jSerialComm-2.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/QueryBuilder.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

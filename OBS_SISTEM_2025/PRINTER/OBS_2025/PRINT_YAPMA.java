@@ -343,12 +343,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 			            { o1 = " HAVING ROUND(SUM(s.ALACAK - s.BORC),2) <> 0" ;}
 			o2 = " ORDER BY h.HESAP ASC " ;
 			//**************
-			c_Access.ozel_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
+			rs = c_Access.ozel_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
 											TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
 											FILTRE.txticins.getText(),FILTRE.txtscins.getText() ,
 											FILTRE.txtikarton.getText(),FILTRE.txtskarton.getText() ,
 											o1 , o2);
-            clientDoc.getDatabaseController().setDataSource(rs);
+           clientDoc.getDatabaseController().setDataSource(rs);
             com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
             for(int i=0; i< reportObjects.size();i++)
     		{
@@ -368,6 +368,7 @@ public class PRINT_YAPMA extends JInternalFrame {
     	        oTextObject.setParagraphs(oParagraphs);
     	        clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
     		}
+		
     		else if (textObject.getText().equals("PERIYOT"))
     		{
     			ITextObject oTextObject =  (ITextObject) textObject.clone(true);
@@ -383,6 +384,7 @@ public class PRINT_YAPMA extends JInternalFrame {
     	        oParagraphElements.add(oParagraphTextElement);
     	        oTextObject.setParagraphs(oParagraphs);
    	            clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+    		
     		}
     		}
 		}

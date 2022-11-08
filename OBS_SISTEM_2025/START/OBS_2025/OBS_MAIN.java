@@ -2741,8 +2741,8 @@ public class OBS_MAIN extends JFrame {
 		else if (pencere.equals("FIRMA ISMI DEGIS")) internalFrame  = new FIRMA_ISMI_DEGIS();
 		else if (pencere.equals("E MAIL GONDERME")) internalFrame  = new E_MAIL_GONDERME();
 		else if (pencere.equals("DEGISKENLER")) internalFrame  = new DEGISKEN_GIRIS(hangi);
-//		else if (pencere.equals("SQL SORGULAMA")) internalFrame  = new SQL_SORGULAMA(hangi);
-//		else if (pencere.equals("HAKKINDA")) internalFrame  = new HAKKINDA();
+		else if (pencere.equals("SQL SORGULAMA")) internalFrame  = new SQL_SORGULAMA(hangi);
+		else if (pencere.equals("HAKKINDA")) internalFrame  = new HAKKINDA();
 		else if (pencere.equals("PDF GOSTER")) internalFrame  = new PDF_GOSTERR();
 		//3536
 		desktopPane.add(internalFrame);

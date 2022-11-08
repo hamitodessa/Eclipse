@@ -23,7 +23,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/ELIF/2025/commons-net-3.7.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/rs2xml.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/JSplitButton_1.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jcalendar-1.4.jar"/>
@@ -58,5 +57,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/jSerialComm-2.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/QueryBuilder.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jfreechart.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-net-3.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

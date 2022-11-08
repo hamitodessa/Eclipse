@@ -2,25 +2,15 @@ package OBS_2025_RAPORLAR;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -54,8 +44,6 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.crystaldecisions.sdk.occa.report.exportoptions.ReportExportFormat;
-
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.BAGLAN;
@@ -68,10 +56,8 @@ import OBS_2025.GuiUtil;
 import OBS_2025.OBS_MAIN;
 
 import OBS_C_2025.SAGA;
-import OBS_C_2025.SAGA_YANAS;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
-import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 

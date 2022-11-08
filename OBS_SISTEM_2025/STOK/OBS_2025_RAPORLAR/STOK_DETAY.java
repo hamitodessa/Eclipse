@@ -2,7 +2,6 @@ package OBS_2025_RAPORLAR;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -13,8 +12,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -48,27 +45,28 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import OBS_PACKAGE.CONNECTION;
-import OBS_PACKAGE.FILE_UZANTI;
-import OBS_PACKAGE.FILTRE;
-import OBS_PACKAGE.FORMATLAMA;
-import OBS_PACKAGE.GLOBAL;
-import OBS_PACKAGE.GRID_TEMIZLE;
-import OBS_PACKAGE.GuiUtil;
-import OBS_PACKAGE.OBS_MAIN;
-import OBS_PACKAGE.OBS_SIS_ANA_CLAS;
-import OBS_PACKAGE.SAGA;
-import OBS_PACKAGE.SOLA;
-import OBS_PACKAGE.TABLO_RENDERER;
-import OBS_PACKAGE.TARIH;
-import OBS_PACKAGE.TARIH_CEVIR;
+import OBS_C_2025.BAGLAN;
+import OBS_C_2025.FILE_UZANTI;
+import OBS_2025.FILTRE;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_2025.GuiUtil;
+import OBS_2025.OBS_MAIN;
+import OBS_2025.OBS_SIS_2025_ANA_CLASS;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH;
+import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
 public class STOK_DETAY extends JInternalFrame {
 	
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	
 	private static JTable table;
 	private static String qwq1 ="" ;
 	private static String qwq2  = "";
@@ -151,20 +149,12 @@ public class STOK_DETAY extends JInternalFrame {
 		try {
 			ResultSet	rs = null;
 			grup_cevir() ;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.stok_rapor(FILTRE.textField_25.getText(),FILTRE.textField_30.getText() ,
+			
+				rs = f_Access.stok_rapor(FILTRE.textField_25.getText(),FILTRE.textField_30.getText() ,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_18),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_19),
 						FILTRE.textField_26.getText(),FILTRE.textField_29.getText() ,
 						 qwq1, qwq2, qwq3, kjk, qwq4, qwq5, qwq6, qwq7 );
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.stok_rapor(FILTRE.textField_25.getText(),FILTRE.textField_30.getText() ,
-						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_18),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_19),
-						FILTRE.textField_26.getText(),FILTRE.textField_29.getText() ,
-						 qwq1, qwq2, qwq3, kjk, qwq4, qwq5, qwq6, qwq7 );
-				}
+			
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -309,9 +299,8 @@ public class STOK_DETAY extends JInternalFrame {
         }
         else
         {
-        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-    		{
-    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_20.getItemAt(FILTRE.comboBox_20.getSelectedIndex()));
+        	
+    			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_20.getItemAt(FILTRE.comboBox_20.getSelectedIndex()));
     			if (!rs.isBeforeFirst() ) {
     			}
     			else
@@ -319,18 +308,7 @@ public class STOK_DETAY extends JInternalFrame {
     				rs.next();
     				qwq1 =  "= " + Integer.toString( rs.getInt("AGID_Y") );
     			}
-    		}
-    		else
-    		{
-    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_20.getItemAt(FILTRE.comboBox_20.getSelectedIndex()));
-    			if (!rs.isBeforeFirst() ) {
-    			}
-    			else
-    			{
-    			rs.next();
-    			qwq1 = "=" + Integer.toString(rs.getInt("AGID_Y"));
-      			}
-    		}
+    		
         }
 		//***********************ALT GRUP
 				if ( FILTRE.comboBox_21.getItemAt(FILTRE.comboBox_21.getSelectedIndex()).equals(""))
@@ -341,9 +319,8 @@ public class STOK_DETAY extends JInternalFrame {
 		        {
 		            qwq2 = " = '' " ;
 		        }		        else		        {
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_21.getItemAt(FILTRE.comboBox_21.getSelectedIndex()));
+		        	
+		    			rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_21.getItemAt(FILTRE.comboBox_21.getSelectedIndex()));
 		    			if (!rs.isBeforeFirst() ) {
 		    			}
 		    			else
@@ -351,18 +328,7 @@ public class STOK_DETAY extends JInternalFrame {
 		    				rs.next();
 		    				qwq2 ="=" + Integer.toString( rs.getInt("ALID_Y"));
 		    			}
-		    		}
-		    		else
-		    		{
-		    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_21.getItemAt(FILTRE.comboBox_21.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    			rs.next();
-		    			qwq2 ="=" +  Integer.toString(rs.getInt("ALID_Y"));
-		    			}
-		    		}
+		    		
 		        }
 				//***********************DEPO
 				if ( FILTRE.comboBox_22.getItemAt(FILTRE.comboBox_22.getSelectedIndex()).equals(""))
@@ -375,9 +341,8 @@ public class STOK_DETAY extends JInternalFrame {
 		        }		      
 		        else		      
 		        {
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_22.getItemAt(FILTRE.comboBox_22.getSelectedIndex()));
+		        	
+		    			rs = f_Access.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_22.getItemAt(FILTRE.comboBox_22.getSelectedIndex()));
 		    			if (!rs.isBeforeFirst() ) {
 		    			}
 		    			else
@@ -385,18 +350,7 @@ public class STOK_DETAY extends JInternalFrame {
 		    				rs.next();
 		    				qwq3 ="=" + Integer.toString( rs.getInt("DPID_Y"));
 		    			}
-		    		}
-		    		else
-		    		{
-		    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_22.getItemAt(FILTRE.comboBox_22.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    			rs.next();
-		    			qwq3 = "=" + Integer.toString(rs.getInt("DPID_Y"));
-		    			}
-		    		}
+		    		
 		        }
 				//** Urun Ana grup
 				if ( FILTRE.comboBox_23.getItemAt(FILTRE.comboBox_23.getSelectedIndex()).equals(""))
@@ -409,9 +363,8 @@ public class STOK_DETAY extends JInternalFrame {
 		        }
 		        else
 		        {
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_23.getItemAt(FILTRE.comboBox_23.getSelectedIndex()));
+		        	
+		    			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_23.getItemAt(FILTRE.comboBox_23.getSelectedIndex()));
 		    			if (!rs.isBeforeFirst() ) {
 		    			}
 		    			else
@@ -419,19 +372,7 @@ public class STOK_DETAY extends JInternalFrame {
 		    				rs.next();
 		    				qwq6 = "=" + Integer.toString( rs.getInt("AGID_Y"));
 		    			}
-		    		}
-		    		else
-		    		{
-		    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_23.getItemAt(FILTRE.comboBox_23.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    			rs.next();
-		    			qwq6 = "=" + Integer.toString(rs.getInt("AGID_Y"));
-		    			
-		    			}
-		    		}
+		    		
 		        }
 				//** Urun Alt Grup
 				if ( FILTRE.comboBox_24.getItemAt(FILTRE.comboBox_24.getSelectedIndex()).equals(""))
@@ -443,9 +384,8 @@ public class STOK_DETAY extends JInternalFrame {
 		            qwq7 = " = '' " ;
 		        }		        else		      
 		        {
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_24.getItemAt(FILTRE.comboBox_24.getSelectedIndex()));
+		        	
+		    			rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_24.getItemAt(FILTRE.comboBox_24.getSelectedIndex()));
 		    			if (!rs.isBeforeFirst() ) {
 		    			}
 		    			else
@@ -453,18 +393,7 @@ public class STOK_DETAY extends JInternalFrame {
 		    				rs.next();
 		    				qwq7 ="=" + Integer.toString( rs.getInt("ALID_Y"));
 		    			}
-		    		}
-		    		else
-		    		{
-		    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_24.getItemAt(FILTRE.comboBox_24.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    			rs.next();
-		    			qwq7 ="=" + Integer.toString(rs.getInt("ALID_Y"));
-		    			}
-		    		}
+		    		
 		        }
 				//***
 				if (FILTRE.checkBox.isSelected())
@@ -591,7 +520,7 @@ public class STOK_DETAY extends JInternalFrame {
 						 sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -1));
 						 Cell baslikname = baslikRow.createCell(0);
 						   
-						   baslikname.setCellValue( CONNECTION.fatdizinbilgi.firma_adi );
+						   baslikname.setCellValue( BAGLAN.fatDizin.fIRMA_ADI );
 						   baslikname.setCellStyle(acikStyle);
 
 						 Row headerRow = sheet.createRow(1);
@@ -726,7 +655,7 @@ public class STOK_DETAY extends JInternalFrame {
 						 sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -1));
 						 Cell baslikname = baslikRow.createCell(0);
 						   
-						   baslikname.setCellValue( CONNECTION.fatdizinbilgi.firma_adi );
+						   baslikname.setCellValue(BAGLAN.fatDizin.fIRMA_ADI );
 						   baslikname.setCellStyle(acikStyle);
 					 Row headerRow = sheet.createRow(1);
 						for (int q =0;q<= mdl.getColumnCount()-1 ;q++)

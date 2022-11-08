@@ -2,7 +2,6 @@ package OBS_2025_RAPORLAR;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -61,10 +60,8 @@ import OBS_2025.GuiUtil;
 import OBS_2025.OBS_MAIN;
 
 import OBS_C_2025.SAGA;
-import OBS_C_2025.SAGA_YANAS;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
-import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 

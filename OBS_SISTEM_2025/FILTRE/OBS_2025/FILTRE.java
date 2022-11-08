@@ -2,10 +2,8 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Insets;
 import java.awt.SystemColor;
 
 import javax.swing.JButton;
@@ -26,10 +24,23 @@ import javax.swing.SwingUtilities;
 
 import com.toedter.calendar.JDateChooser;
 
+import OBS_2025_RAPORLAR.ENVANTER;
+import OBS_2025_RAPORLAR.FATURA_RAPOR;
+import OBS_2025_RAPORLAR.GRUP_RAPOR;
+import OBS_2025_RAPORLAR.IMALAT_GRUP_RAPOR;
+import OBS_2025_RAPORLAR.IMALAT_RAPORLAMA;
+import OBS_2025_RAPORLAR.IRSALIYE_RAPOR;
+import OBS_2025_RAPORLAR.ORTALAMA_FIAT;
+import OBS_2025_RAPORLAR.RECETE_RAPOR;
+import OBS_2025_RAPORLAR.STOK_DETAY;
+import OBS_2025_RAPORLAR.STOK_RAPOR;
+import OBS_2025_RAPORLAR.URUN_LISTE;
+import OBS_2025_RAPORLAR.ZAYI_RAPOR;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
+import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
 
 import java.awt.event.ActionListener;
@@ -37,7 +48,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -66,10 +76,10 @@ public class FILTRE extends JDialog {
 	/**
 	 * 
 	 */
-	 Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	 Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS() ;
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+	private static STOK_ACCESS  f_Access = new STOK_ACCESS(oac._IStok , oac._IFatura_Loger);
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	public static JButton okButton ;
@@ -581,11 +591,11 @@ public class FILTRE extends JDialog {
 							if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
 							{
 									HESAP_PLN hsp ;
-									getContentPane().setCursor(WAIT_CURSOR);
+									getContentPane().setCursor(oac.WAIT_CURSOR);
 									hsp = new HESAP_PLN();
 									hsp.show();
 									txtkodu.setText(oac.hsp_hsp_kodu);
-									getContentPane().setCursor(DEFAULT_CURSOR);
+									getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			                }
 						}
 						}
@@ -651,11 +661,11 @@ public class FILTRE extends JDialog {
 							if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
 							{
 									HESAP_PLN hsp ;
-									getContentPane().setCursor(WAIT_CURSOR);
+									getContentPane().setCursor(oac.WAIT_CURSOR);
 									hsp = new HESAP_PLN();
 									hsp.show();
 									txtilk.setText(oac.hsp_hsp_kodu);
-									getContentPane().setCursor(DEFAULT_CURSOR);
+									getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			                }
 						}
 						}
@@ -731,11 +741,11 @@ public class FILTRE extends JDialog {
 							if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
 							{
 									HESAP_PLN hsp ;
-									getContentPane().setCursor(WAIT_CURSOR);
+									getContentPane().setCursor(oac.WAIT_CURSOR);
 									hsp = new HESAP_PLN();
 									hsp.show();
 									txtson.setText(oac.hsp_hsp_kodu);
-									getContentPane().setCursor(DEFAULT_CURSOR);
+									getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			                }
 						}
 						}
@@ -1023,11 +1033,11 @@ public class FILTRE extends JDialog {
 						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
 						{
 								HESAP_PLN hsp ;
-								getContentPane().setCursor(WAIT_CURSOR);
+								getContentPane().setCursor(oac.WAIT_CURSOR);
 								hsp = new HESAP_PLN();
 								hsp.show();
 								txtdvz.setText(oac.hsp_hsp_kodu);
-								getContentPane().setCursor(DEFAULT_CURSOR);
+								getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		                }
 					}
 					}
@@ -1241,19 +1251,19 @@ public class FILTRE extends JDialog {
 			textField_1.setBounds(123, 54, 290, 20);
 			textField_1.getDocument().addDocumentListener(new DocumentListener() {
 				  public void changedUpdate(DocumentEvent e) {
-				  contentPanel.setCursor(WAIT_CURSOR);
+				  contentPanel.setCursor(oac.WAIT_CURSOR);
 				  ARAMA.hisset();
-				  contentPanel.setCursor(DEFAULT_CURSOR);
+				  contentPanel.setCursor(oac.DEFAULT_CURSOR);
 				  }
 				  public void removeUpdate(DocumentEvent e) {
-					  contentPanel.setCursor(WAIT_CURSOR);
+					  contentPanel.setCursor(oac.WAIT_CURSOR);
 				    ARAMA.hisset();
-				    contentPanel.setCursor(DEFAULT_CURSOR);
+				    contentPanel.setCursor(oac.DEFAULT_CURSOR);
 				  }
 				  public void insertUpdate(DocumentEvent e) {
-					  contentPanel.setCursor(WAIT_CURSOR);
+					  contentPanel.setCursor(oac.WAIT_CURSOR);
 				    ARAMA.hisset();
-				    contentPanel.setCursor(DEFAULT_CURSOR);
+				    contentPanel.setCursor(oac.DEFAULT_CURSOR);
 				  }
 				});
 			textField_1.addAncestorListener(new AncestorListener() {
@@ -4385,9 +4395,9 @@ public class FILTRE extends JDialog {
 						}
 						else if (sayfa == 19) 
 						{
-						GuiUtil.setWaitCursor(KUR_GRAFIK.scrollPane,true);
-						KUR_GRAFIK.filtrele();   // KUR GRAFIK
-						GuiUtil.setWaitCursor(KUR_GRAFIK.scrollPane,false);
+						//GuiUtil.setWaitCursor(KUR_GRAFIK.scrollPane,true);
+						//KUR_GRAFIK.filtrele();   // KUR GRAFIK
+						//GuiUtil.setWaitCursor(KUR_GRAFIK.scrollPane,false);
 						}
 						GuiUtil.setWaitCursor(getContentPane(),false);
 						dispose();
@@ -4430,7 +4440,7 @@ public class FILTRE extends JDialog {
 		    }
 		    catch (Exception ex)
 		    {
-		    	 getContentPane().setCursor(DEFAULT_CURSOR);
+		    	 getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Isim Okuma", JOptionPane.ERROR_MESSAGE);    	
 		    }
 	  }
@@ -4448,7 +4458,7 @@ public class FILTRE extends JDialog {
 		    }
 		    catch (Exception ex)
 		    {
-		    	getContentPane().setCursor(DEFAULT_CURSOR);
+		    	getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Isim Okuma", JOptionPane.ERROR_MESSAGE);    	
 		    }
 	  }
@@ -4529,19 +4539,14 @@ public class FILTRE extends JDialog {
 	 private void ana_grup_doldur(JComboBox<String> box)
 		{
 			try {
-			getContentPane().setCursor(WAIT_CURSOR);
+			getContentPane().setCursor(oac.WAIT_CURSOR);
 			box .removeAllItems();
 			ResultSet rs=null;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-			}
+			
+				rs = f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
+			
 			if (!rs.isBeforeFirst() ) {  
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 
 				box .addItem("");
 				box.setSelectedItem("");
@@ -4552,24 +4557,23 @@ public class FILTRE extends JDialog {
 		    {
 		    	box .addItem(rs.getString("ANA_GRUP"));
 		    }
-		    getContentPane().setCursor(DEFAULT_CURSOR);
+		    getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			catch (Exception ex)
 			{
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 			}
 		}
 	 private void alt_grup_doldur(JComboBox<String> box,String altgrp)
 		{
 			try {
-			getContentPane().setCursor(WAIT_CURSOR);
+			getContentPane().setCursor(oac.WAIT_CURSOR);
 			box.removeAllItems();
 			box .addItem("");
 			ResultSet rs=null;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",  altgrp);
+			
+				rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",  altgrp);
 				if (!rs.isBeforeFirst() ) {
 				}
 				else
@@ -4577,27 +4581,14 @@ public class FILTRE extends JDialog {
 					rs.next();
 					int in1 = rs.getInt("AGID_Y");
 					rs =null;
-					rs = oac.sTOK_MSSQL.stk_kod_alt_grup_degisken_oku(in1);
+					rs = f_Access.stk_kod_alt_grup_degisken_oku(in1);
 				}
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", altgrp);
-				if (!rs.isBeforeFirst() ) {
-				}
-				else
-				{
-				rs.next();
-				int in1 =rs.getInt("AGID_Y");
-				rs =null;
-				rs = oac.sTOK_MYSQL.stk_kod_alt_grup_degisken_oku(in1);
-				}
-			}
+			
 			
 			if (!rs.isBeforeFirst() ) {  
 				box.setSelectedItem("");
 				box.setEnabled(false);
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			} 
 			else
 			{
@@ -4608,28 +4599,23 @@ public class FILTRE extends JDialog {
 		    box.setSelectedItem(0);
 		    box.setEnabled(true);
 			}
-			getContentPane().setCursor(DEFAULT_CURSOR);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			catch (Exception ex)
 			{
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 			}
 		}
 	 private void depo_doldur(JComboBox<String> box)
 		{
 				try {
-					getContentPane().setCursor(WAIT_CURSOR);
+					getContentPane().setCursor(oac.WAIT_CURSOR);
 					box.removeAllItems();
 				ResultSet rs = null;
-				 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-					   rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-					}
-				   else
-				   {
-					   rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-				   }
+				
+					   rs = f_Access.stk_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
+					
 				if (!rs.isBeforeFirst() ) {  
 					box.addItem("");
 					box.addItem("Bos Olanlar");
@@ -4645,28 +4631,23 @@ public class FILTRE extends JDialog {
 					}
 				}
 				box.setSelectedItem("");
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 				catch (Exception ex)
 				{
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 	 private void oz1_doldur(JComboBox<String> box)
 		{
 				try {
-					getContentPane().setCursor(WAIT_CURSOR);
+					getContentPane().setCursor(oac.WAIT_CURSOR);
 					box.removeAllItems();
 				ResultSet rs = null;
-				 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-					   rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-					}
-				   else
-				   {
-					   rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-				   }
+				
+					   rs =f_Access.stk_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
+					
 				if (!rs.isBeforeFirst() ) {  
 					box.addItem("");
 					box.setSelectedItem("");
@@ -4680,28 +4661,23 @@ public class FILTRE extends JDialog {
 					}
 				}
 				box.setSelectedItem("");
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 				catch (Exception ex)
 				{
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod Doldur", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 	 private void oz2_doldur(JComboBox<String> box)
 		{
 				try {
-					getContentPane().setCursor(WAIT_CURSOR);
+					getContentPane().setCursor(oac.WAIT_CURSOR);
 					box.removeAllItems();
 				ResultSet rs = null;
-				 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-					   rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
-					}
-				   else
-				   {
-					   rs = oac.sTOK_MYSQL.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
-				   }
+				
+					   rs = f_Access.stk_kod_degisken_oku("OZEL_KOD_2", "OZ2ID_Y", "OZ_KOD_2_DEGISKEN");
+					
 				if (!rs.isBeforeFirst() ) {  
 					box.addItem("");
 					box.setSelectedItem("");
@@ -4715,28 +4691,23 @@ public class FILTRE extends JDialog {
 					}
 				}
 				box.setSelectedItem("");
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 				catch (Exception ex)
 				{
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod 2 Doldur", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 	 private void mensei_doldur(JComboBox<String> box)
 		{
 				try {
-					getContentPane().setCursor(WAIT_CURSOR);
+					getContentPane().setCursor(oac.WAIT_CURSOR);
 					box.removeAllItems();
 				ResultSet rs = null;
-				 if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-					{
-					 rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-					}
-				   else
-				   {
-					   rs = oac.sTOK_MSSQL.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-				   }
+				
+					 rs = f_Access.stk_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
+					
 				if (!rs.isBeforeFirst() ) {  
 					box.addItem("");
 					box.setSelectedItem("");
@@ -4750,11 +4721,11 @@ public class FILTRE extends JDialog {
 					}
 				}
 				box.setSelectedItem("");
-				getContentPane().setCursor(DEFAULT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 				catch (Exception ex)
 				{
-					getContentPane().setCursor(DEFAULT_CURSOR);
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod Doldur", JOptionPane.PLAIN_MESSAGE);
 				}
 			}

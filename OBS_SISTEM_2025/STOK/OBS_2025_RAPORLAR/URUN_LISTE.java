@@ -2,7 +2,6 @@ package OBS_2025_RAPORLAR;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -29,24 +28,24 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
-import OBS_PACKAGE.CONNECTION;
-import OBS_PACKAGE.FILTRE;
-import OBS_PACKAGE.FORMATLAMA;
-import OBS_PACKAGE.GLOBAL;
-import OBS_PACKAGE.GRID_TEMIZLE;
-import OBS_PACKAGE.ImagePanel;
-import OBS_PACKAGE.OBS_MAIN;
-import OBS_PACKAGE.OBS_SIS_ANA_CLAS;
-import OBS_PACKAGE.SAGA;
-import OBS_PACKAGE.SOLA;
-import OBS_PACKAGE.TABLO_RENDERER;
+import OBS_2025.FILTRE;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.ImagePanel;
+import OBS_2025.OBS_MAIN;
+import OBS_2025.OBS_SIS_2025_ANA_CLASS;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.TABLO_RENDERER;
 import net.proteanit.sql.DbUtils;
 
 public class URUN_LISTE extends JInternalFrame {
 
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
-	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	
 	private static JTable table;
 	private static String qwq1 ="" ;
 	private static String qwq2  = "";
@@ -103,9 +102,9 @@ public class URUN_LISTE extends JInternalFrame {
 			        	 DefaultTableModel model = (DefaultTableModel)table.getModel();
 			        	 if (model.getRowCount() == 0) return ;
 			        	 if (table.getSelectedRow()  < 0) return;
-			        	 table.setCursor(WAIT_CURSOR);
+			        	 table.setCursor(oac.WAIT_CURSOR);
 			        	 detay_doldur(model.getValueAt(table.getSelectedRow() , 0).toString());
-			        	 table.setCursor(DEFAULT_CURSOR);
+			        	 table.setCursor(oac.DEFAULT_CURSOR);
 			        }
 			    }
 			});
@@ -159,22 +158,13 @@ public class URUN_LISTE extends JInternalFrame {
 		try {
 			ResultSet	rs = null;
 			grup_cevir() ;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rs = oac.sTOK_MSSQL.urun_liste(FILTRE.textField_64.getText(),FILTRE.textField_65.getText() ,
+			
+				rs =f_Access.urun_liste(FILTRE.textField_64.getText(),FILTRE.textField_65.getText() ,
 						FILTRE.textField_61.getText(),FILTRE.textField_66.getText() ,
 						FILTRE.textField_68.getText(),FILTRE.textField_69.getText() ,
 						FILTRE.textField_67.getText(),FILTRE.textField_70.getText() ,
 						qwq1, qwq2, qwq4, qwq5, qwq6, qwq3);
-			}
-			else
-			{
-				rs = oac.sTOK_MYSQL.urun_liste(FILTRE.textField_64.getText(),FILTRE.textField_65.getText() ,
-						FILTRE.textField_61.getText(),FILTRE.textField_66.getText() ,
-						FILTRE.textField_68.getText(),FILTRE.textField_69.getText() ,
-						FILTRE.textField_67.getText(),FILTRE.textField_70.getText() ,
-						qwq1, qwq2, qwq4, qwq5, qwq6, qwq3);
-				}
+			
 			
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -320,9 +310,8 @@ public class URUN_LISTE extends JInternalFrame {
         else
         {
        	
-        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-    		{
-    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_55.getItemAt(FILTRE.comboBox_55.getSelectedIndex()));
+        	
+    			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_55.getItemAt(FILTRE.comboBox_55.getSelectedIndex()));
     			if (!rs.isBeforeFirst() ) {
     			}
     			else
@@ -330,19 +319,7 @@ public class URUN_LISTE extends JInternalFrame {
     				rs.next();
     				qwq1 = "=" + Integer.toString( rs.getInt("AGID_Y"));
     			}
-    		}
-    		else
-    		{
-    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_55.getItemAt(FILTRE.comboBox_55.getSelectedIndex()));
-    			if (!rs.isBeforeFirst() ) {
-    			}
-    			else
-    			{
-    			rs.next();
-    			qwq1 ="=" + Integer.toString(rs.getInt("AGID_Y"));
-    			
-    			}
-    		}
+    		
         }
 		//***********************ALT GRUP
 				if ( FILTRE.comboBox_58.getItemAt(FILTRE.comboBox_58.getSelectedIndex()).equals(""))
@@ -353,9 +330,8 @@ public class URUN_LISTE extends JInternalFrame {
 		        {
 		            qwq2 = " = '' " ;
 		        }		        else		        {
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_58.getItemAt(FILTRE.comboBox_58.getSelectedIndex()));
+		        	
+		    			rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_58.getItemAt(FILTRE.comboBox_58.getSelectedIndex()));
 		    			if (!rs.isBeforeFirst() ) {
 		    			}
 		    			else
@@ -363,18 +339,7 @@ public class URUN_LISTE extends JInternalFrame {
 		    				rs.next();
 		    				qwq2 ="=" + Integer.toString( rs.getInt("ALID_Y"));
 		    			}
-		    		}
-		    		else
-		    		{
-		    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_58.getItemAt(FILTRE.comboBox_58.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    			rs.next();
-		    			qwq2 = "=" + Integer.toString(rs.getInt("ALID_Y"));
-		    			}
-		    		}
+		    		
 		        }
 				//***********************DEPO
 				if ( FILTRE.comboBox_54.getItemAt(FILTRE.comboBox_54.getSelectedIndex()).equals(""))
@@ -387,9 +352,8 @@ public class URUN_LISTE extends JInternalFrame {
 		        }		      
 		        else		      
 		        {
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_54.getItemAt(FILTRE.comboBox_54.getSelectedIndex()));
+		        	
+		    			rs = f_Access.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_54.getItemAt(FILTRE.comboBox_54.getSelectedIndex()));
 		    			if (!rs.isBeforeFirst() ) {
 		    			}
 		    			else
@@ -397,18 +361,7 @@ public class URUN_LISTE extends JInternalFrame {
 		    				rs.next();
 		    				qwq3 ="=" + Integer.toString( rs.getInt("DPID_Y"));
 		    			}
-		    		}
-		    		else
-		    		{
-		    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_54.getItemAt(FILTRE.comboBox_54.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    			rs.next();
-		    			qwq3 = "=" + Integer.toString(rs.getInt("DPID_Y"));
-		    			}
-		    		}
+		    		
 		        }
 				//***********************MENSEI
 				if ( FILTRE.comboBox_52.getItemAt(FILTRE.comboBox_52.getSelectedIndex()).equals(""))
@@ -421,9 +374,8 @@ public class URUN_LISTE extends JInternalFrame {
 		        }		      
 		        else		      
 		        {
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara( "MEID_Y", "MENSEI", "MENSEI_DEGISKEN", FILTRE.comboBox_52.getItemAt(FILTRE.comboBox_52.getSelectedIndex()));
+		        	
+		    			rs = f_Access.urun_kod_degisken_ara( "MEID_Y", "MENSEI", "MENSEI_DEGISKEN", FILTRE.comboBox_52.getItemAt(FILTRE.comboBox_52.getSelectedIndex()));
 		    			if (!rs.isBeforeFirst() ) {
 		    			}
 		    			else
@@ -431,18 +383,7 @@ public class URUN_LISTE extends JInternalFrame {
 		    				rs.next();
 		    				qwq4 ="=" + Integer.toString( rs.getInt("MEID_Y"));
 		    			}
-		    		}
-		    		else
-		    		{
-		    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara( "MEID_Y", "MENSEI", "MENSEI_DEGISKEN", FILTRE.comboBox_52.getItemAt(FILTRE.comboBox_52.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    			rs.next();
-		    			qwq4 = "=" + Integer.toString(rs.getInt("MEID_Y"));
-		    			}
-		    		}
+		    		
 		        }
 				//*********************** OZEL KOD 1
 				if ( FILTRE.comboBox_59.getItemAt(FILTRE.comboBox_59.getSelectedIndex()).equals(""))
@@ -455,9 +396,8 @@ public class URUN_LISTE extends JInternalFrame {
 		        }		      
 		        else		      
 		        {
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara(  "OZ1ID", "OZEL_KOD_1", "OZ_KOD_1_DEGISKEN", FILTRE.comboBox_59.getItemAt(FILTRE.comboBox_59.getSelectedIndex()));
+		        	
+		    			rs = f_Access.urun_kod_degisken_ara(  "OZ1ID", "OZEL_KOD_1", "OZ_KOD_1_DEGISKEN", FILTRE.comboBox_59.getItemAt(FILTRE.comboBox_59.getSelectedIndex()));
 		    			if (!rs.isBeforeFirst() ) {
 		    			}
 		    			else
@@ -465,18 +405,7 @@ public class URUN_LISTE extends JInternalFrame {
 		    				rs.next();
 		    				qwq5 ="=" + Integer.toString( rs.getInt("OZ1ID_Y"));
 		    			}
-		    		}
-		    		else
-		    		{
-		    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara(  "OZ1ID_Y", "OZEL_KOD_1", "OZ_KOD_1_DEGISKEN", FILTRE.comboBox_59.getItemAt(FILTRE.comboBox_59.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    			rs.next();
-		    			qwq5 = "=" + Integer.toString(rs.getInt("OZ1ID_Y"));
-		    			}
-		    		}
+		    	
 		        }
 				//*********************** OZEL KOD 2
 				if ( FILTRE.comboBox_53.getItemAt(FILTRE.comboBox_53.getSelectedIndex()).equals(""))
@@ -489,9 +418,8 @@ public class URUN_LISTE extends JInternalFrame {
 		        }		      
 		        else		      
 		        {
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara(  "OZ2ID_Y", "OZEL_KOD_2", "OZ_KOD_2_DEGISKEN", FILTRE.comboBox_53.getItemAt(FILTRE.comboBox_53.getSelectedIndex()));
+		        	
+		    			rs = f_Access.urun_kod_degisken_ara(  "OZ2ID_Y", "OZEL_KOD_2", "OZ_KOD_2_DEGISKEN", FILTRE.comboBox_53.getItemAt(FILTRE.comboBox_53.getSelectedIndex()));
 		    			if (!rs.isBeforeFirst() ) {
 		    			}
 		    			else
@@ -499,18 +427,7 @@ public class URUN_LISTE extends JInternalFrame {
 		    				rs.next();
 		    				qwq6  ="=" + Integer.toString( rs.getInt("OZ2ID_Y"));
 		    			}
-		    		}
-		    		else
-		    		{
-		    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara(  "OZ2ID_Y", "OZEL_KOD_2", "OZ_KOD_2_DEGISKEN", FILTRE.comboBox_53.getItemAt(FILTRE.comboBox_53.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    			rs.next();
-		    			qwq6  = "=" + Integer.toString(rs.getInt("OZ2ID_Y"));
-		    			}
-		    		}
+		    		
 		        }
 				
 		} catch (Exception ex) {
@@ -521,14 +438,10 @@ public class URUN_LISTE extends JInternalFrame {
 	{
 		try {
 			ResultSet	rss = null;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-				rss =oac.sTOK_MSSQL.resim_oku(kod);
-			}
-			else
-			{
-				rss = oac.sTOK_MYSQL.resim_oku(kod);
-			}
+			
+				rss =f_Access.resim_oku(kod);
+			
+			
 			if (! rss.isBeforeFirst() ) {  
 				imagePanel.setImage(null);
 			} 

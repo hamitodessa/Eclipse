@@ -22,21 +22,24 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
-import OBS_PACKAGE.CONNECTION;
-import OBS_PACKAGE.FILTRE;
-import OBS_PACKAGE.FORMATLAMA;
-import OBS_PACKAGE.GLOBAL;
-import OBS_PACKAGE.GRID_TEMIZLE;
-import OBS_PACKAGE.OBS_SIS_ANA_CLAS;
-import OBS_PACKAGE.SAGA;
-import OBS_PACKAGE.SOLA;
-import OBS_PACKAGE.TABLO_RENDERER;
-import OBS_PACKAGE.TARIH_CEVIR;
+import OBS_2025.OBS_SIS_2025_ANA_CLASS;
+import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.BAGLAN;
+import OBS_2025.FILTRE;
+import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.SOLA;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
 public class ORTALAMA_FIAT extends JInternalFrame {
 	
-	static OBS_SIS_ANA_CLAS oac = new OBS_SIS_ANA_CLAS();
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	
 	private static JTable table;
 	private static String qwq6  = "";
 	private static String qwq7  = "";
@@ -144,24 +147,14 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		try {
 			ResultSet	rs = null;
  			grup_cevir() ;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-					 rs = oac.sTOK_MSSQL.ort_hes_kodu(fdf,qwq6,qwq7,
+		
+					 rs = f_Access.ort_hes_kodu(fdf,qwq6,qwq7,
 							 FILTRE.textField_59.getText(),FILTRE.textField_60.getText() ,
 							 FILTRE.textField_56.getText(),FILTRE.textField_57.getText() ,
 							 FILTRE.textField_51.getText(),FILTRE.textField_52.getText() ,
-							 TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_26),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_27),  CONNECTION.kurdizinbilgi.kod ,
+							 TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_26),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_27),  BAGLAN.kurDizin.kOD ,
 							 FILTRE.comboBox_50.getItemAt(FILTRE.comboBox_50.getSelectedIndex()) );
-					}
-				 else
-				 {
-					 rs = oac.sTOK_MYSQL.ort_hes_kodu(fdf,qwq6,qwq7,
-							 FILTRE.textField_59.getText(),FILTRE.textField_60.getText() ,
-							 FILTRE.textField_56.getText(),FILTRE.textField_57.getText() ,
-							 FILTRE.textField_51.getText(),FILTRE.textField_52.getText() ,
-							 TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_26),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_27),  CONNECTION.kurdizinbilgi.kod ,
-							 FILTRE.comboBox_50.getItemAt(FILTRE.comboBox_50.getSelectedIndex()) );
-				 }
+					
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -233,24 +226,14 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		try {
 			ResultSet	rs = null;
  			grup_cevir() ;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-					 rs = oac.sTOK_MSSQL.ort_hes_ana_kodu(fdf,qwq6,qwq7,
+			
+					 rs = f_Access.ort_hes_ana_kodu(fdf,qwq6,qwq7,
 							 FILTRE.textField_59.getText(),FILTRE.textField_60.getText() ,
 							 FILTRE.textField_56.getText(),FILTRE.textField_57.getText() ,
 							 FILTRE.textField_51.getText(),FILTRE.textField_52.getText() ,
-							 TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_26),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_27),  CONNECTION.kurdizinbilgi.kod ,
+							 TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_26),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_27), BAGLAN.kurDizin.kOD ,
 							 FILTRE.comboBox_50.getItemAt(FILTRE.comboBox_50.getSelectedIndex()) );
-					}
-				 else
-				 {
-					 rs = oac.sTOK_MYSQL.ort_hes_ana_kodu(fdf,qwq6,qwq7,
-							 FILTRE.textField_59.getText(),FILTRE.textField_60.getText() ,
-							 FILTRE.textField_56.getText(),FILTRE.textField_57.getText() ,
-							 FILTRE.textField_51.getText(),FILTRE.textField_52.getText() ,
-							 TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_26),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_27),  CONNECTION.kurdizinbilgi.kod ,
-							 FILTRE.comboBox_50.getItemAt(FILTRE.comboBox_50.getSelectedIndex()) );
-				 }
+				
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -330,24 +313,14 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		try {
 			ResultSet	rs = null;
 			grup_cevir() ;
-			if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-			{
-					 rs = oac.sTOK_MSSQL.ort_diger_kodu(yu,qwq6,qwq7,
+			
+					 rs = f_Access.ort_diger_kodu(yu,qwq6,qwq7,
 							 FILTRE.textField_59.getText(),FILTRE.textField_60.getText() ,
 							 FILTRE.textField_56.getText(),FILTRE.textField_57.getText() ,
 							 FILTRE.textField_51.getText(),FILTRE.textField_52.getText() ,
-							 TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_26),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_27),  CONNECTION.kurdizinbilgi.kod ,
+							 TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_26),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_27),  BAGLAN.kurDizin.kOD ,
 							 FILTRE.comboBox_50.getItemAt(FILTRE.comboBox_50.getSelectedIndex()),iu );
-					}
-				 else
-				 {
-					 rs = oac.sTOK_MYSQL.ort_diger_kodu(yu,qwq6,qwq7,
-							 FILTRE.textField_59.getText(),FILTRE.textField_60.getText() ,
-							 FILTRE.textField_56.getText(),FILTRE.textField_57.getText() ,
-							 FILTRE.textField_51.getText(),FILTRE.textField_52.getText() ,
-							 TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_26),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_27),  CONNECTION.kurdizinbilgi.kod ,
-							 FILTRE.comboBox_50.getItemAt(FILTRE.comboBox_50.getSelectedIndex()),iu );
-				 }
+				
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -468,9 +441,8 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		        }
 		        else
 		        {
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_56.getItemAt(FILTRE.comboBox_56.getSelectedIndex()));
+		        	
+		    			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_56.getItemAt(FILTRE.comboBox_56.getSelectedIndex()));
 		    			if (!rs.isBeforeFirst() ) {
 		    			}
 		    			else
@@ -478,19 +450,7 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		    				rs.next();
 		    				qwq6 = "=" + Integer.toString( rs.getInt("AGID_Y"));
 		    			}
-		    		}
-		    		else
-		    		{
-		    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_56.getItemAt(FILTRE.comboBox_56.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    			rs.next();
-		    			qwq6 = "=" + Integer.toString(rs.getInt("AGID_Y"));
-		    			
-		    			}
-		    		}
+		    		
 		        }
 				//** Urun Alt Grup
 				if ( FILTRE.comboBox_57.getItemAt(FILTRE.comboBox_57.getSelectedIndex()).equals(""))
@@ -502,9 +462,8 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		            qwq7 = " = '' " ;
 		        }		        else		      
 		        {
-		        	if (CONNECTION.fatdizinbilgi.han_sql.equals("MS SQL"))
-		    		{
-		    			rs = oac.sTOK_MSSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_57.getItemAt(FILTRE.comboBox_57.getSelectedIndex()));
+		        	
+		    			rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_57.getItemAt(FILTRE.comboBox_57.getSelectedIndex()));
 		    			if (!rs.isBeforeFirst() ) {
 		    			}
 		    			else
@@ -512,21 +471,10 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		    				rs.next();
 		    				qwq7 ="=" + Integer.toString( rs.getInt("ALID_Y"));
 		    			}
-		    		}
-		    		else
-		    		{
-		    			rs = oac.sTOK_MYSQL.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_57.getItemAt(FILTRE.comboBox_57.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    			rs.next();
-		    			qwq7 ="=" + Integer.toString(rs.getInt("ALID_Y"));
-		    			}
-		    		}
+		    		
 		        }
 			//**
-			 fdf = " (SELECT DISTINCT  UNVAN FROM [OK_Car" + CONNECTION.caridizinbilgi.kod + "].[dbo].[HESAP] WHERE hesap.hesap = FATURA.Cari_Firma   ) as Cari_Adi " ;
+			 fdf = " (SELECT DISTINCT  UNVAN FROM [OK_Car" + BAGLAN.cariDizin.kOD + "].[dbo].[HESAP] WHERE hesap.hesap = FATURA.Cari_Firma   ) as Cari_Adi " ;
 			 //'**************************************************
 			 if (FILTRE.comboBox_51.getItemAt(FILTRE.comboBox_51.getSelectedIndex()).toString().equals("Urun Ana Grup"))
 				{ 

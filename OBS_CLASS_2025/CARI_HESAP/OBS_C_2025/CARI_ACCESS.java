@@ -266,4 +266,8 @@ public class CARI_ACCESS {
 	{
 		return _ICari.sql_sorgu(sql);
 	}
+	public String[] cari_adres_oku (String kodu) throws ClassNotFoundException, SQLException 
+	{
+		return _ICari.cari_adres_oku(kodu);
+	}
 }

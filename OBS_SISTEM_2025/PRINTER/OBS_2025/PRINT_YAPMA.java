@@ -30,6 +30,10 @@ import com.crystaldecisions.sdk.occa.report.definition.ParagraphTextElement;
 import com.crystaldecisions.sdk.occa.report.definition.Paragraphs;
 import com.crystaldecisions.sdk.occa.report.definition.ReportObjects;
 import com.crystaldecisions.sdk.occa.report.lib.ReportObjectKind;
+import java.awt.BorderLayout;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.table.DefaultTableModel;
 
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN;

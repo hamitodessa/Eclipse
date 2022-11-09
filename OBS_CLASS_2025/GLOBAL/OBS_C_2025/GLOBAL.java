@@ -18,6 +18,7 @@ import java.util.Set;
 
 import javax.swing.JOptionPane;
 
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -41,12 +42,13 @@ public class GLOBAL {
     public static String nerden ="";
     
     public static String g_baslik = "";
-    public static String g_legends[];
+    public static String g_legends;
     public static String g_labelsAxisLabels[];
     public static String g_LabelsAxisTitleText = "";
     public static String g_setNumbersAxisTitleText="";
     public static double min_value =0;
-    public static XYSeriesCollection dataset = new XYSeriesCollection();
+   // public static XYSeriesCollection dataset = new XYSeriesCollection();
+    public static DefaultCategoryDataset dataset = new DefaultCategoryDataset();  
 	 //*************************************************
 public static  Connection myConnection() throws SQLException
     {  

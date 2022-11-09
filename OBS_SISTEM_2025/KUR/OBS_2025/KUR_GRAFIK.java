@@ -20,6 +20,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYSeries;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -165,32 +166,36 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.g_baslik = "KUR GRAFIK YILLARA GORE";
 			//***LEGENDS
 			DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-			GLOBAL.g_legends = new String[1];
-			GLOBAL.g_legends[0] = "Yil"  ;
+			GLOBAL.g_legends = "Yil";
+			
 			//*** g_labelsAxisLabels
 			GLOBAL.g_labelsAxisLabels = new String[mdll.getRowCount()];
-			//System.out.println("col =" +  (mdll.getColumnCount() - 2));
-			
-		
 			//*** g_LabelsAxisTitleText
 			GLOBAL.g_LabelsAxisTitleText ="Yillar";
 			//*** g_setNumbersAxisTitleText
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
 			GLOBAL.min_value = Double.parseDouble( mdll.getValueAt(0,2).toString());
 			
-			  XYSeries series = new XYSeries("?");
 			
 			
-				for (int y = 1;y<=mdll.getRowCount() ;y++)
-				 {
-							double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
-				 
-						series.add( Double.parseDouble(mdll.getValueAt(y-1,0).toString()), (float) asd);
-				 }
-				 GLOBAL.dataset.addSeries(series);
-				
+			///
+			 String series1 = "YILLAR";  
+			// String series2 = "Unique Visitor";  
+			 for (int y = 1;y<=mdll.getRowCount() ;y++)
+			 {
+				 double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
+					
+			 GLOBAL.dataset.addValue(asd, series1, mdll.getValueAt(y-1,0).toString());  
+			 }
+			///
 			
-			
+			  //XYSeries series = new XYSeries("?");
+			//	for (int y = 1;y<=mdll.getRowCount() ;y++)
+			//	 {
+			//				double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
+			//			series.add( Double.parseDouble(mdll.getValueAt(y-1,0).toString()), (float) asd);
+			//	 }
+			//	 GLOBAL.dataset.addSeries(series);
 			
 			
 				 
@@ -200,8 +205,8 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.g_baslik = "KUR GRAFIK AYLARA GORE";
 			//***LEGENDS
 			DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-			GLOBAL.g_legends = new String[1];
-			GLOBAL.g_legends[0] = "Ay"  ;
+			GLOBAL.g_legends = "Ay";
+		
 			//*** g_labelsAxisLabels
 			GLOBAL.g_labelsAxisLabels = new String[mdll.getRowCount()];
 			
@@ -211,27 +216,24 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
 			//*** Dataset
 			GLOBAL.min_value = Double.parseDouble( mdll.getValueAt(0,2).toString());
-			for (int i = 0;i<mdll.getRowCount()   ;i++)
-			{
-				System.out.println(mdll.getValueAt(i,0).toString()) ;
-				  XYSeries series = new XYSeries(mdll.getValueAt(i,0).toString());
-				for (int y = 1;y<=mdll.getRowCount() ;y++)
-				 {
-					System.out.println(mdll.getValueAt(y-1,2).toString()) ;
-						double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
-					    series.add(y, (float) asd);
-				 }
-				 GLOBAL.dataset.addSeries(series);
-			
-			}
+			///
+			 String series1 = "AYLAR";  
+			// String series2 = "Unique Visitor";  
+			 for (int y = 1;y<=mdll.getRowCount() ;y++)
+			 {
+				 double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
+					
+			 GLOBAL.dataset.addValue(asd, series1, mdll.getValueAt(y-1,0).toString());  
+			 }
+			///
 		}
 		else if (FILTRE.comboBox_73.getItemAt(FILTRE.comboBox_73.getSelectedIndex()).equals("Gun"))
 		{
 			GLOBAL.g_baslik = "KUR GRAFIK Gunlere GORE";
 			//***LEGENDS
 			DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-			GLOBAL.g_legends = new String[1];
-			GLOBAL.g_legends[0] = "Gun"  ;
+			GLOBAL.g_legends = "Gun";
+		
 			//*** g_labelsAxisLabels
 			GLOBAL.g_labelsAxisLabels = new String[mdll.getRowCount()];
 			//System.out.println("col =" +  (mdll.getColumnCount() - 2));
@@ -245,12 +247,13 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
 			//*** Dataset
 			GLOBAL.min_value = Double.parseDouble( mdll.getValueAt(0,2).toString());
-			XYSeries series[] = null  ;
-			for (int i = 0;i<mdll.getRowCount()   ;i++)
-			{
-				series[i] = new XYSeries(mdll.getValueAt(i,0).toString());
-				//GLOBAL.g_labelsAxisLabels[i] = mdll.getValueAt(i,0).toString() ;
-			}
+			 String series1 = "GUNLER";  
+			 for (int y = 1;y<=mdll.getRowCount() ;y++)
+			 {
+					double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
+					 GLOBAL.dataset.addValue(asd, series1, mdll.getValueAt(y-1,0).toString());  
+					
+			 }
 		}
 	}
 	private static void ay_goster()

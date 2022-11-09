@@ -67,12 +67,12 @@ public class GRAFIK extends JInternalFrame {
 		 
 	}
 	 private void initUI() {
-		  DefaultCategoryDataset dataset = createDataset();  
+		  DefaultCategoryDataset dataset = GLOBAL.dataset;  
 		    // Create chart  
 		    JFreeChart chart = ChartFactory.createLineChart(  
-		        "Site Traffic", // Chart title  
-		        "Date", // X-Axis Label  
-		        "Number of Visitor", // Y-Axis Label  
+		        GLOBAL.g_baslik, // Chart title  
+		       GLOBAL.g_labelsAxisLabels[0] , // X-Axis Label  
+		       GLOBAL.g_setNumbersAxisTitleText, // Y-Axis Label  
 		        dataset ,PlotOrientation.VERTICAL,
                 true,
                 true,
@@ -84,31 +84,7 @@ public class GRAFIK extends JInternalFrame {
 	        
 	    }
 
-	 private DefaultCategoryDataset createDataset() {  
-		  
-		    String series1 = "Visitor";  
-		    String series2 = "Unique Visitor";  
-		  
-		    DefaultCategoryDataset dataset = new DefaultCategoryDataset();  
-		  
-		    dataset.addValue(200, series1, "2016-12-19");  
-		    dataset.addValue(150, series1, "2016-12-20");  
-		    dataset.addValue(100, series1, "2016-12-21");  
-		    dataset.addValue(210, series1, "2016-12-22");  
-		    dataset.addValue(240, series1, "2016-12-23");  
-		    dataset.addValue(195, series1, "2016-12-24");  
-		    dataset.addValue(245, series1, "2016-12-25");  
-		  
-		    dataset.addValue(150, series2, "2016-12-19");  
-		    dataset.addValue(130, series2, "2016-12-20");  
-		    dataset.addValue(95, series2, "2016-12-21");  
-		    dataset.addValue(195, series2, "2016-12-22");  
-		    dataset.addValue(200, series2, "2016-12-23");  
-		    dataset.addValue(180, series2, "2016-12-24");  
-		    dataset.addValue(230, series2, "2016-12-25");  
-		  
-		    return dataset;  
-		  }  
+	 
 	
 		 
  		

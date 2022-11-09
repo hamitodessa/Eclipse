@@ -77,7 +77,7 @@ public class GRAFIK extends JInternalFrame {
 	        pack();
 	        setTitle("Line chart");
 	       // setLocationRelativeTo(null);
-	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	     //   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    }
 
 	    private XYDataset createDataset() {

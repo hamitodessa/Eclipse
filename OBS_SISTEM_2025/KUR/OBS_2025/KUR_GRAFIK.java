@@ -141,7 +141,7 @@ public class KUR_GRAFIK extends JInternalFrame {
 	    
 		if (!rss.isBeforeFirst() ) 
 		{  
-		//	System.out.println("Bos");
+		
 		} 
 		else
 		{

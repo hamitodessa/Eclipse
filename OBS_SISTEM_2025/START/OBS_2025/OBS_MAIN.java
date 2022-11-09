@@ -2264,18 +2264,18 @@ public class OBS_MAIN extends JFrame {
     				}
     				else if (sonuc == "KUR GRAFIK")
     				{
-    				//	KUR_GRAFIK.grafik_kur();
+    					KUR_GRAFIK.grafik_kur();
     				}
      				else 
     				{
-    				//	 GuiUtil.setWaitCursor(toolBar,false);
-    				//	 return;
+    					 GuiUtil.setWaitCursor(toolBar,false);
+    					 return;
     				}
-    		//	if (	GLOBAL.g_baslik == "" ) 
-    		//		{
-    		//		 GuiUtil.setWaitCursor(toolBar,false);
-    		//		return ;
-    		//		}
+    			if (	GLOBAL.g_baslik == "" ) 
+    				{
+    				 GuiUtil.setWaitCursor(toolBar,false);
+    				return ;
+    				}
     			
     			 
 				JInternalFrame internalFrame;
@@ -2689,7 +2689,7 @@ public class OBS_MAIN extends JFrame {
 		 //KUR
 		else if (pencere.equals("KUR GIRIS")) internalFrame  = new KUR_GIRIS();
 		else if (pencere.equals("KUR RAPORLAMA")) internalFrame  = new KUR_RAPORLAMA();
-		//else if (pencere.equals("KUR GRAFIK")) internalFrame  = new KUR_GRAFIK();
+		else if (pencere.equals("KUR GRAFIK")) internalFrame  = new KUR_GRAFIK();
 		else if (pencere.equals("EKSIK_KUR")) internalFrame  = new EKSIK_KUR();
 		 //ADRES
 		else if (pencere.equals("ADRES GIRISI")) internalFrame  = new ADRES_GIRIS();

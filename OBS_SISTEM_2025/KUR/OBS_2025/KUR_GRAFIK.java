@@ -3,11 +3,8 @@ package OBS_2025;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
-import java.util.Date;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
@@ -22,8 +19,6 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.KUR_ACCESS;
@@ -174,7 +169,7 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.g_labelsAxisLabels = new String[mdll.getRowCount()];
 			//System.out.println("col =" +  (mdll.getColumnCount() - 2));
 			
-			XYSeries series[]  ;
+			XYSeries series[] = null  ;
 			for (int i = 0;i<mdll.getRowCount()   ;i++)
 			{
 				series[i] = new XYSeries(mdll.getValueAt(i,0).toString());
@@ -185,10 +180,7 @@ public class KUR_GRAFIK extends JInternalFrame {
 			//*** g_setNumbersAxisTitleText
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
 			GLOBAL.min_value = Double.parseDouble( mdll.getValueAt(0,2).toString());
-			//*** Dataset
-			// var dataset = new XYSeriesCollection();
-	       //  dataset.addSeries(series1);
-			// var series1 = new XYSeries("2014");
+			
 			
 				 for (int y = 1;y<=mdll.getRowCount() ;y++)
 				 {
@@ -219,16 +211,12 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
 			//*** Dataset
 			GLOBAL.min_value = Double.parseDouble( mdll.getValueAt(0,2).toString());
-			GLOBAL.g_dataSet = new Dataset (1,mdll.getRowCount() ,1);
-				 for (int y = 1;y<=mdll.getRowCount() ;y++)
-				 {
-						double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
-						GLOBAL.g_dataSet.set (0,  y-1, 0,(float) asd   )  ; 
-						if (asd < GLOBAL.min_value )
-						{
-							GLOBAL.min_value = asd ;
-						}
-				 }
+			XYSeries series[] = null  ;
+			for (int i = 0;i<mdll.getRowCount()   ;i++)
+			{
+				series[i] = new XYSeries(mdll.getValueAt(i,0).toString());
+				//GLOBAL.g_labelsAxisLabels[i] = mdll.getValueAt(i,0).toString() ;
+			}
 		}
 		else if (FILTRE.comboBox_73.getItemAt(FILTRE.comboBox_73.getSelectedIndex()).equals("Gun"))
 		{
@@ -250,16 +238,12 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
 			//*** Dataset
 			GLOBAL.min_value = Double.parseDouble( mdll.getValueAt(0,2).toString());
-			GLOBAL.g_dataSet = new Dataset (1,mdll.getRowCount() ,1);
-				 for (int y = 1;y<=mdll.getRowCount() ;y++)
-				 {
-						double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
-						GLOBAL.g_dataSet.set (0,  y-1, 0,(float) asd   )  ; 
-						if (asd < GLOBAL.min_value )
-						{
-							GLOBAL.min_value = asd ;
-						}
-				 }
+			XYSeries series[] = null  ;
+			for (int i = 0;i<mdll.getRowCount()   ;i++)
+			{
+				series[i] = new XYSeries(mdll.getValueAt(i,0).toString());
+				//GLOBAL.g_labelsAxisLabels[i] = mdll.getValueAt(i,0).toString() ;
+			}
 		}
 	}
 	private static void ay_goster()

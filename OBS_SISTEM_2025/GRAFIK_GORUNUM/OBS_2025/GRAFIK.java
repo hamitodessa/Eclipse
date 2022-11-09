@@ -23,6 +23,8 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
+import OBS_C_2025.GLOBAL;
+
 
 public class GRAFIK extends JInternalFrame {
 	public static  JFreeChart chart2D;
@@ -108,7 +110,8 @@ public class GRAFIK extends JInternalFrame {
 	    private JFreeChart createChart(XYDataset dataset) {
 
 	        JFreeChart chart = ChartFactory.createXYLineChart(
-	                "Average salary per age",
+	        	
+	        		GLOBAL.g_baslik,
 	                "Age",
 	                "Salary (€)",
 	                dataset,

@@ -68,8 +68,8 @@ public class GRAFIK extends JInternalFrame {
 	}
 	 private void initUI() {
 
-	        XYDataset dataset = createDataset();
-	        JFreeChart chart = createChart(dataset);
+	      //  XYDataset dataset = createDataset();
+	        JFreeChart chart = createChart(GLOBAL.dataset);
 
 	        ChartPanel chartPanel = new ChartPanel(chart);
 	        chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));

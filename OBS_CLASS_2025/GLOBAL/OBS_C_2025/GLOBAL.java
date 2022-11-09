@@ -46,7 +46,7 @@ public class GLOBAL {
     public static String g_LabelsAxisTitleText = "";
     public static String g_setNumbersAxisTitleText="";
     public static double min_value =0;
-  
+    public static XYSeriesCollection dataset = new XYSeriesCollection();
 	 //*************************************************
 public static  Connection myConnection() throws SQLException
     {  

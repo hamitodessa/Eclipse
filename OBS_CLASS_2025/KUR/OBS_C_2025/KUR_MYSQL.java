@@ -127,5 +127,10 @@ public class KUR_MYSQL implements IKUR {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public ResultSet kur_ay_graf_rapor(String c1, String t1, String t2) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

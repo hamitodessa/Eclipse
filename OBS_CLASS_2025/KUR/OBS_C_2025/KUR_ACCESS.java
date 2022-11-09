@@ -51,5 +51,17 @@ public class KUR_ACCESS {
 	{
 		return _IKur.kur_rapor(c1, c2, t1, t2);
 	}
+	public ResultSet kur_graf_rapor(String c1  ,String t1 ,String t2,String cins,String siralama ) throws ClassNotFoundException, SQLException
+	{
+		return _IKur.kur_graf_rapor(c1, t1, t2, cins, siralama);
+	}
+	public ResultSet kur_yil_graf_rapor(String c1  ,String t1 ,String t2 ) throws ClassNotFoundException, SQLException
+	{
+		return _IKur.kur_yil_graf_rapor(c1, t1, t2);
+	}
+	public ResultSet kur_ay_graf_rapor(String c1  ,String t1 ,String t2 ) throws ClassNotFoundException, SQLException
+	{
+		return _IKur.kur_ay_graf_rapor(c1, t1, t2);
+	}
 
 }

@@ -65,7 +65,7 @@ public class GRAFIK extends JInternalFrame {
 		    // Create chart  
 		    JFreeChart chart = ChartFactory.createLineChart(  
 		        GLOBAL.g_baslik, // Chart title  
-		       GLOBAL.g_labelsAxisLabels[0] , // X-Axis Label  
+		        GLOBAL.g_legends , // X-Axis Label  
 		       GLOBAL.g_setNumbersAxisTitleText, // Y-Axis Label  
 		        dataset ,PlotOrientation.VERTICAL,
                 true,
@@ -74,7 +74,7 @@ public class GRAFIK extends JInternalFrame {
 		        );  
 		    CategoryPlot plot = (CategoryPlot) chart.getPlot();
 		    NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-		    rangeAxis.setRange(20, 40);
+		    rangeAxis.setRange(GLOBAL.max_value, GLOBAL.min_value);
 		    
 		 
 		  

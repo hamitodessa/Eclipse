@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JInternalFrame;
@@ -166,52 +168,34 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.g_baslik = "KUR GRAFIK YILLARA GORE";
 			//***LEGENDS
 			DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-			GLOBAL.g_legends = "Yil";
-			
-			//*** g_labelsAxisLabels
-			GLOBAL.g_labelsAxisLabels = new String[mdll.getRowCount()];
-			//*** g_LabelsAxisTitleText
-			GLOBAL.g_LabelsAxisTitleText ="Yillar";
+			GLOBAL.g_legends = "Yillar";
+		
 			//*** g_setNumbersAxisTitleText
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
-			GLOBAL.min_value = Double.parseDouble( mdll.getValueAt(0,2).toString());
-			
-			
-			
+			ArrayList<Double> kur = new ArrayList<Double>();
+			 for (int y = 0;y<mdll.getRowCount() - 1 ;y++)
+			 {
+				kur.add(  mdll.getValueAt(y,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y,2).toString()));
+			 }
+			GLOBAL.min_value =  Collections.max(kur) + (Collections.max(kur) * .10) ;
+			GLOBAL.max_value = Collections.min(kur) - (Collections.min(kur) * .10) ;
 			///
+			Double asd = 0.00 ;
 			 String series1 = "YILLAR";  
 			// String series2 = "Unique Visitor";  
 			 for (int y = 1;y<=mdll.getRowCount() ;y++)
 			 {
-				 double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
-					
-			 GLOBAL.dataset.addValue(asd, series1, mdll.getValueAt(y-1,0).toString());  
+				 asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
+				 GLOBAL.dataset.addValue(asd, series1, mdll.getValueAt(y-1,0).toString());  
 			 }
-			///
-			
-			  //XYSeries series = new XYSeries("?");
-			//	for (int y = 1;y<=mdll.getRowCount() ;y++)
-			//	 {
-			//				double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
-			//			series.add( Double.parseDouble(mdll.getValueAt(y-1,0).toString()), (float) asd);
-			//	 }
-			//	 GLOBAL.dataset.addSeries(series);
-			
-			
-				 
 		}
 		else if (FILTRE.comboBox_73.getItemAt(FILTRE.comboBox_73.getSelectedIndex()).equals("Ay"))
 		{
 			GLOBAL.g_baslik = "KUR GRAFIK AYLARA GORE";
 			//***LEGENDS
 			DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-			GLOBAL.g_legends = "Ay";
-		
-			//*** g_labelsAxisLabels
-			GLOBAL.g_labelsAxisLabels = new String[mdll.getRowCount()];
+			GLOBAL.g_legends = "Aylar";
 			
-			//*** g_LabelsAxisTitleText
-			GLOBAL.g_LabelsAxisTitleText ="Aylar";
 			//*** g_setNumbersAxisTitleText
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
 			//*** Dataset
@@ -219,11 +203,19 @@ public class KUR_GRAFIK extends JInternalFrame {
 			///
 			 String series1 = "AYLAR";  
 			// String series2 = "Unique Visitor";  
+			 ArrayList<Double> kur = new ArrayList<Double>();
+			 for (int y = 0;y<mdll.getRowCount() - 1 ;y++)
+			 {
+				kur.add(  mdll.getValueAt(y,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y,2).toString()));
+			 }
+			GLOBAL.min_value =  Collections.max(kur) + (Collections.max(kur) * .10) ;
+			GLOBAL.max_value = Collections.min(kur) - (Collections.min(kur) * .10) ;
+			///
+			Double asd = 0.00 ;
 			 for (int y = 1;y<=mdll.getRowCount() ;y++)
 			 {
-				 double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
-					
-			 GLOBAL.dataset.addValue(asd, series1, mdll.getValueAt(y-1,0).toString());  
+				 asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
+				 GLOBAL.dataset.addValue(asd, series1, mdll.getValueAt(y-1,0).toString());  
 			 }
 			///
 		}
@@ -232,28 +224,26 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.g_baslik = "KUR GRAFIK Gunlere GORE";
 			//***LEGENDS
 			DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-			GLOBAL.g_legends = "Gun";
-		
-			//*** g_labelsAxisLabels
-			GLOBAL.g_labelsAxisLabels = new String[mdll.getRowCount()];
-			//System.out.println("col =" +  (mdll.getColumnCount() - 2));
-			for (int i = 0;i<mdll.getRowCount()   ;i++)
-			{
-				GLOBAL.g_labelsAxisLabels[i] = mdll.getValueAt(i,0).toString() ;
-			}
-			//*** g_LabelsAxisTitleText
-			GLOBAL.g_LabelsAxisTitleText ="Gunler";
+			GLOBAL.g_legends = "Gunler";
 			//*** g_setNumbersAxisTitleText
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
 			//*** Dataset
-			GLOBAL.min_value = Double.parseDouble( mdll.getValueAt(0,2).toString());
 			 String series1 = "GUNLER";  
+			 ArrayList<Double> kur = new ArrayList<Double>();
+			 for (int y = 0;y<mdll.getRowCount() - 1 ;y++)
+			 {
+				kur.add(  mdll.getValueAt(y,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y,2).toString()));
+			 }
+			GLOBAL.min_value =  Collections.max(kur) + (Collections.max(kur) * .10) ;
+			GLOBAL.max_value = Collections.min(kur) - (Collections.min(kur) * .10) ;
+			///
+			Double asd = 0.00 ;
 			 for (int y = 1;y<=mdll.getRowCount() ;y++)
 			 {
-					double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
-					 GLOBAL.dataset.addValue(asd, series1, mdll.getValueAt(y-1,0).toString());  
-					
+				 asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
+				 GLOBAL.dataset.addValue(asd, series1, mdll.getValueAt(y-1,0).toString());  
 			 }
+			///
 		}
 	}
 	private static void ay_goster()

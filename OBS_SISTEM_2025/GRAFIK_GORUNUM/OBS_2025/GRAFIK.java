@@ -80,6 +80,13 @@ public class GRAFIK extends JInternalFrame {
 	        setTitle("Line chart");
 	       // setLocationRelativeTo(null);
 	     //   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        
+	       // CategoryDataset dataset = DatasetUtils.createCategoryDataset(
+	       // 	    new String[]{"Oil"}, new String[]{"2004", "2005", "2006",
+	       // 	            "2007", "2008", "2009", "2010", "2011", "2012", "2013"},
+	       // 	    data
+	        //	);
+	        
 	    }
 
 	    private XYDataset createDataset() {

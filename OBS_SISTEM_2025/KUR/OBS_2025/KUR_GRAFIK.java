@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
+import java.util.List;
+
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
@@ -128,12 +130,12 @@ public class KUR_GRAFIK extends JInternalFrame {
 					 TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_32), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_32_1));
 	    
 		if (!rs.isBeforeFirst() ) {  
-			return ;
+		return ;
 		} 
 	  //  GRID_TEMIZLE.grid_temizle(table);
 	    DefaultTableModel model = (DefaultTableModel) table.getModel();
 	while (rs.next()) {
-		
+	
 			 rss = k_Access.kur_graf_rapor(FILTRE.comboBox_74.getSelectedItem().toString(),
 				rs.getString("TARIH").toString() + "." + "1" + "." + "1",
 				rs.getString("TARIH").toString() + "." + "1" + "." + "10",
@@ -169,28 +171,29 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.g_labelsAxisLabels = new String[mdll.getRowCount()];
 			//System.out.println("col =" +  (mdll.getColumnCount() - 2));
 			
-			XYSeries series[] = null  ;
-			for (int i = 0;i<mdll.getRowCount()   ;i++)
-			{
-				series[i] = new XYSeries(mdll.getValueAt(i,0).toString());
-				//GLOBAL.g_labelsAxisLabels[i] = mdll.getValueAt(i,0).toString() ;
-			}
+		
 			//*** g_LabelsAxisTitleText
 			GLOBAL.g_LabelsAxisTitleText ="Yillar";
 			//*** g_setNumbersAxisTitleText
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
 			GLOBAL.min_value = Double.parseDouble( mdll.getValueAt(0,2).toString());
 			
+			  XYSeries series = new XYSeries("?");
 			
-				 for (int y = 1;y<=mdll.getRowCount() ;y++)
+			
+				for (int y = 1;y<=mdll.getRowCount() ;y++)
 				 {
-						double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
-					
-						series[y].add( y-1,(float) asd );
-						
-				
+							double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
+				 
+						series.add( Double.parseDouble(mdll.getValueAt(y-1,0).toString()), (float) asd);
 				 }
-				 GLOBAL.dataset.addSeries(series[0]);
+				 GLOBAL.dataset.addSeries(series);
+				
+			
+			
+			
+			
+				 
 		}
 		else if (FILTRE.comboBox_73.getItemAt(FILTRE.comboBox_73.getSelectedIndex()).equals("Ay"))
 		{
@@ -201,21 +204,25 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.g_legends[0] = "Ay"  ;
 			//*** g_labelsAxisLabels
 			GLOBAL.g_labelsAxisLabels = new String[mdll.getRowCount()];
-			for (int i = 0;i<mdll.getRowCount()   ;i++)
-			{
-				GLOBAL.g_labelsAxisLabels[i] = mdll.getValueAt(i,0).toString() ;
-			}
+			
 			//*** g_LabelsAxisTitleText
 			GLOBAL.g_LabelsAxisTitleText ="Aylar";
 			//*** g_setNumbersAxisTitleText
 			GLOBAL.g_setNumbersAxisTitleText = "Kur" ;
 			//*** Dataset
 			GLOBAL.min_value = Double.parseDouble( mdll.getValueAt(0,2).toString());
-			XYSeries series[] = null  ;
 			for (int i = 0;i<mdll.getRowCount()   ;i++)
 			{
-				series[i] = new XYSeries(mdll.getValueAt(i,0).toString());
-				//GLOBAL.g_labelsAxisLabels[i] = mdll.getValueAt(i,0).toString() ;
+				System.out.println(mdll.getValueAt(i,0).toString()) ;
+				  XYSeries series = new XYSeries(mdll.getValueAt(i,0).toString());
+				for (int y = 1;y<=mdll.getRowCount() ;y++)
+				 {
+					System.out.println(mdll.getValueAt(y-1,2).toString()) ;
+						double asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());
+					    series.add(y, (float) asd);
+				 }
+				 GLOBAL.dataset.addSeries(series);
+			
 			}
 		}
 		else if (FILTRE.comboBox_73.getItemAt(FILTRE.comboBox_73.getSelectedIndex()).equals("Gun"))

@@ -4395,9 +4395,9 @@ public class FILTRE extends JDialog {
 						}
 						else if (sayfa == 19) 
 						{
-						//GuiUtil.setWaitCursor(KUR_GRAFIK.scrollPane,true);
-						//KUR_GRAFIK.filtrele();   // KUR GRAFIK
-						//GuiUtil.setWaitCursor(KUR_GRAFIK.scrollPane,false);
+						GuiUtil.setWaitCursor(KUR_GRAFIK.scrollPane,true);
+						KUR_GRAFIK.filtrele();   // KUR GRAFIK
+						GuiUtil.setWaitCursor(KUR_GRAFIK.scrollPane,false);
 						}
 						GuiUtil.setWaitCursor(getContentPane(),false);
 						dispose();

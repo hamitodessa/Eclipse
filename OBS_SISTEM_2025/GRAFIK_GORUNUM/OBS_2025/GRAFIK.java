@@ -67,93 +67,48 @@ public class GRAFIK extends JInternalFrame {
 		 
 	}
 	 private void initUI() {
-
-	      //  XYDataset dataset = createDataset();
-	        JFreeChart chart = createChart(GLOBAL.dataset);
-
-	        ChartPanel chartPanel = new ChartPanel(chart);
-	        chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-	        chartPanel.setBackground(Color.white);
-	        add(chartPanel);
-
-	        pack();
-	        setTitle("Line chart");
-	       // setLocationRelativeTo(null);
-	     //   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        
-	       // CategoryDataset dataset = DatasetUtils.createCategoryDataset(
-	       // 	    new String[]{"Oil"}, new String[]{"2004", "2005", "2006",
-	       // 	            "2007", "2008", "2009", "2010", "2011", "2012", "2013"},
-	       // 	    data
-	        //	);
+		  DefaultCategoryDataset dataset = createDataset();  
+		    // Create chart  
+		    JFreeChart chart = ChartFactory.createLineChart(  
+		        "Site Traffic", // Chart title  
+		        "Date", // X-Axis Label  
+		        "Number of Visitor", // Y-Axis Label  
+		        dataset ,PlotOrientation.VERTICAL,
+                true,
+                true,
+                false 
+		        );  
+		  
+		    ChartPanel panel = new ChartPanel(chart);  
+		    setContentPane(panel);  
 	        
 	    }
 
-	    private XYDataset createDataset() {
-
-	    	 var series1 = new XYSeries("2014");
-	         series1.add(18, 530);
-	         series1.add(20, 580);
-	         series1.add(25, 740);
-	         series1.add(30, 901);
-	         series1.add(40, 1300);
-	         series1.add(50, 2219);
-
-	         var series2 = new XYSeries("2016");
-	         series2.add(18, 567);
-	         series2.add(20, 612);
-	         series2.add(25, 800);
-	         series2.add(30, 980);
-	         series2.add(40, 1210);
-	         series2.add(50, 2350);
-
-	         var dataset = new XYSeriesCollection();
-	         dataset.addSeries(series1);
-	         dataset.addSeries(series2);
-
-	         return dataset;
-	    }
-
-	    private JFreeChart createChart(XYDataset dataset) {
-
-	        JFreeChart chart = ChartFactory.createXYLineChart(
-	        	
-	        		GLOBAL.g_baslik,
-	                "Age",
-	                "Salary (€)",
-	                dataset,
-	                PlotOrientation.VERTICAL,
-	                true,
-	                true,
-	                false
-	        );
-
-	        XYPlot plot = chart.getXYPlot();
-
-	        var renderer = new XYLineAndShapeRenderer();
-	        renderer.setSeriesPaint(0, Color.RED);
-	        renderer.setSeriesStroke(0, new BasicStroke(2.0f));
-	        renderer.setSeriesPaint(1, Color.BLUE);
-	        renderer.setSeriesStroke(1, new BasicStroke(2.0f));
-	        plot.setRenderer(renderer);
-	        
-	        plot.setBackgroundPaint(Color.white);
-
-	        plot.setRangeGridlinesVisible(true);
-	        plot.setRangeGridlinePaint(Color.BLACK);
-
-	        plot.setDomainGridlinesVisible(true);
-	        plot.setDomainGridlinePaint(Color.BLACK);
-
-	       // chart.getLegend().setFrame(BlockBorder.NONE);
-
-	        chart.setTitle(new TextTitle("Average Salary per Age",
-	                        new Font("Serif", java.awt.Font.BOLD, 18)
-	                )
-	        );
-
-	        return chart;
-	    }
+	 private DefaultCategoryDataset createDataset() {  
+		  
+		    String series1 = "Visitor";  
+		    String series2 = "Unique Visitor";  
+		  
+		    DefaultCategoryDataset dataset = new DefaultCategoryDataset();  
+		  
+		    dataset.addValue(200, series1, "2016-12-19");  
+		    dataset.addValue(150, series1, "2016-12-20");  
+		    dataset.addValue(100, series1, "2016-12-21");  
+		    dataset.addValue(210, series1, "2016-12-22");  
+		    dataset.addValue(240, series1, "2016-12-23");  
+		    dataset.addValue(195, series1, "2016-12-24");  
+		    dataset.addValue(245, series1, "2016-12-25");  
+		  
+		    dataset.addValue(150, series2, "2016-12-19");  
+		    dataset.addValue(130, series2, "2016-12-20");  
+		    dataset.addValue(95, series2, "2016-12-21");  
+		    dataset.addValue(195, series2, "2016-12-22");  
+		    dataset.addValue(200, series2, "2016-12-23");  
+		    dataset.addValue(180, series2, "2016-12-24");  
+		    dataset.addValue(230, series2, "2016-12-25");  
+		  
+		    return dataset;  
+		  }  
 	
 		 
  		

@@ -1,28 +1,22 @@
 package OBS_2025;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.beans.PropertyVetoException;
-import java.io.File;
+import java.text.DecimalFormat;
 
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
-import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.NumberTickUnit;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.chart.title.TextTitle;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-
 import OBS_C_2025.GLOBAL;
 
 
@@ -78,7 +72,20 @@ public class GRAFIK extends JInternalFrame {
                 true,
                 false 
 		        );  
-	
+		    CategoryPlot plot = (CategoryPlot) chart.getPlot();
+		    NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+		    rangeAxis.setRange(20, 40);
+		    
+		 
+		  
+		    rangeAxis.setUpperMargin(0.25);
+		    LineAndShapeRenderer lineAndShapeRenderer = (LineAndShapeRenderer)plot.getRenderer();
+		    lineAndShapeRenderer.setBaseItemLabelsVisible(Boolean.TRUE);
+
+		    lineAndShapeRenderer.setItemLabelsVisible(true);      //   .setItemMargin(0.0D);
+		 //   lineAndShapeRenderer.setBaseItemLabelFont(font3);
+		 //   lineAndShapeRenderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+	        
 		    ChartPanel panel = new ChartPanel(chart);  
 		    setContentPane(panel);  
 	        

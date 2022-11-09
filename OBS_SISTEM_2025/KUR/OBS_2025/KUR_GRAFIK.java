@@ -181,6 +181,7 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.max_value = Collections.min(kur) - (Collections.min(kur) * .10) ;
 			///
 			Double asd = 0.00 ;
+			 GLOBAL.dataset = new DefaultCategoryDataset();  
 			 String series1 = "YILLAR";  
 			// String series2 = "Unique Visitor";  
 			 for (int y = 1;y<=mdll.getRowCount() ;y++)
@@ -211,6 +212,7 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.min_value =  Collections.max(kur) + (Collections.max(kur) * .10) ;
 			GLOBAL.max_value = Collections.min(kur) - (Collections.min(kur) * .10) ;
 			///
+			 GLOBAL.dataset = new DefaultCategoryDataset();  
 			Double asd = 0.00 ;
 			 for (int y = 1;y<=mdll.getRowCount() ;y++)
 			 {
@@ -238,6 +240,7 @@ public class KUR_GRAFIK extends JInternalFrame {
 			GLOBAL.max_value = Collections.min(kur) - (Collections.min(kur) * .10) ;
 			///
 			Double asd = 0.00 ;
+			 GLOBAL.dataset = new DefaultCategoryDataset();  
 			 for (int y = 1;y<=mdll.getRowCount() ;y++)
 			 {
 				 asd =  mdll.getValueAt(y-1,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y-1,2).toString());

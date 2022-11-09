@@ -43,7 +43,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/JDBInterface.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jrcerom.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/logging.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/2025/pfjgraphics.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/sap.com~tc~sec~csi.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/activation.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/mail.jar"/>
@@ -58,5 +57,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/QueryBuilder.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jfreechart.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-net-3.7.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/jcommon-1.0.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

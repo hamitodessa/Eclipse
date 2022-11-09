@@ -1,106 +1,106 @@
 package OBS_2025;
-
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Font;
-
-import javax.swing.BorderFactory;
-import javax.swing.JInternalFrame;
-
-
-import org.jfree.chart.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
-import org.jfree.data.*;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-public class LineChartEx extends JInternalFrame{
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 
-    public LineChartEx() {
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
 
-        initUI();
-    }
+public class LineChartEx extends JInternalFrame {
+	 public LineChartEx() {
 
-    private void initUI() {
-    	  XYDataset dataset = createDataset();
-          JFreeChart chart = createChart(dataset);
-          ChartPanel chartPanel = new ChartPanel(chart);
-          chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-          chartPanel.setBackground(Color.white);
-          
-          add(chartPanel);
+	        initUI();
+	    }
+	 private void initUI() {
 
-          pack();
-          setTitle("Line chart");
-       
-        setDefaultCloseOperation(JInternalFrame.EXIT_ON_CLOSE);
-    }
+	        XYDataset dataset = createDataset();
+	        JFreeChart chart = createChart(dataset);
 
-    private XYDataset createDataset() {
+	        ChartPanel chartPanel = new ChartPanel(chart);
+	        chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+	        chartPanel.setBackground(Color.white);
+	        add(chartPanel);
 
-    	 var series1 = new XYSeries("2014");
-         series1.add(18, 530);
-         series1.add(20, 580);
-         series1.add(25, 740);
-         series1.add(30, 901);
-         series1.add(40, 1300);
-         series1.add(50, 2219);
+	        pack();
+	        setTitle("Line chart");
+	       // setLocationRelativeTo(null);
+	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    }
 
-         var series2 = new XYSeries("2016");
-         series2.add(18, 567);
-         series2.add(20, 612);
-         series2.add(25, 800);
-         series2.add(30, 980);
-         series2.add(40, 1210);
-         series2.add(50, 2350);
+	    private XYDataset createDataset() {
 
-         var dataset = new XYSeriesCollection();
-         dataset.addSeries(series1);
-         dataset.addSeries(series2);
+	        var series = new XYSeries("2016");
+	        series.add(18, 567);
+	        series.add(20, 612);
+	        series.add(25, 800);
+	        series.add(30, 980);
+	        series.add(40, 1410);
+	        series.add(50, 2350);
 
-         return dataset;
-    }
+	        var dataset = new XYSeriesCollection();
+	        dataset.addSeries(series);
 
-    private JFreeChart createChart(XYDataset dataset) {
+	        return dataset;
+	    }
 
-    	 JFreeChart chart = ChartFactory.createXYLineChart(
-                 "Average salary per age",
-                 "Age",
-                 "Salary (€)",
-                 dataset,
-                 PlotOrientation.VERTICAL,
-                 true,
-                 true,
-                 false
-         );
+	    private JFreeChart createChart(XYDataset dataset) {
 
-         XYPlot plot = chart.getXYPlot();
+	        JFreeChart chart = ChartFactory.createXYLineChart(
+	                "Average salary per age",
+	                "Age",
+	                "Salary (€)",
+	                dataset,
+	                PlotOrientation.VERTICAL,
+	                true,
+	                true,
+	                false
+	        );
 
-         var renderer = new XYLineAndShapeRenderer();
-         
-              
+	        XYPlot plot = chart.getXYPlot();
 
-         renderer.setSeriesPaint(0, Color.RED);
-         renderer.setSeriesStroke(0, new BasicStroke(2.0f));
-         renderer.setSeriesPaint(1, Color.BLUE);
-         renderer.setSeriesStroke(1, new BasicStroke(2.0f));
+	        var renderer = new XYLineAndShapeRenderer();
+	        renderer.setSeriesPaint(0, Color.RED);
+	        renderer.setSeriesStroke(0, new BasicStroke(2.0f));
 
-         plot.setRenderer(renderer);
-         plot.setBackgroundPaint(Color.white);
-         plot.setRangeGridlinesVisible(false);
-         plot.setDomainGridlinesVisible(false);
+	        plot.setRenderer(renderer);
+	        plot.setBackgroundPaint(Color.white);
 
-       
+	        plot.setRangeGridlinesVisible(true);
+	        plot.setRangeGridlinePaint(Color.BLACK);
 
-         chart.setTitle(new TextTitle("Average Salary per Age",
-                         new Font("Serif", Font.BOLD, 18)
-                 )
-         );
+	        plot.setDomainGridlinesVisible(true);
+	        plot.setDomainGridlinePaint(Color.BLACK);
 
-         return chart;
-    }
+	       // chart.getLegend().setFrame(BlockBorder.NONE);
+
+	        chart.setTitle(new TextTitle("Average Salary per Age",
+	                        new Font("Serif", java.awt.Font.BOLD, 18)
+	                )
+	        );
+
+	        return chart;
+	    }
+
+	    public static void main(String[] args) {
+
+	        EventQueue.invokeLater(() -> {
+
+	            var ex = new LineChartEx();
+	            ex.setVisible(true);
+	        });
+	    }
 }

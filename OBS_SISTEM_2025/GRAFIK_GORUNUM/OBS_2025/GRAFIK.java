@@ -1,26 +1,19 @@
 package OBS_2025;
 
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
 import java.io.File;
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.JFileChooser;
-import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -65,38 +58,92 @@ public class GRAFIK extends JInternalFrame {
 		
 		
 		setMaximum(true);
-		
-		grfk();
+		  var ex = new LineChartEx();
+          ex.setVisible(true);
+          
+		initUI();
 		 
 	}
-         public void grfk ()
-         {
-        	 
-        	 try {
-                 
-                 /* Step - 1: Define the data for the line chart  */
-                 DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
-                 line_chart_dataset.addValue(15, "schools", "1970");
-                 line_chart_dataset.addValue(30, "schools", "1980");
-                 line_chart_dataset.addValue(60, "schools", "1990");
-                 line_chart_dataset.addValue(120, "schools", "2000");
-                 line_chart_dataset.addValue(240, "schools", "2010");                
-                 
-                 /* Step -2:Define the JFreeChart object to create line chart */
-                 JFreeChart lineChartObject=ChartFactory.createLineChart("Schools Vs Years","Year","Schools Count",line_chart_dataset,PlotOrientation.VERTICAL,true,true,false);                
-                           
-                 /* Step -3 : Write line chart to a file */               
-                  int width=640; /* Width of the image */
-                  int height=480; /* Height of the image */                
-                  File lineChart=new File("line_Chart_example.png");              
-                  ChartUtilities.saveChartAsPNG(lineChart,lineChartObject,width,height); 
-          }
-          catch (Exception i)
-          {
-              System.out.println(i);
-          }
-         }
-	
+	 private void initUI() {
+
+	        XYDataset dataset = createDataset();
+	        JFreeChart chart = createChart(dataset);
+
+	        ChartPanel chartPanel = new ChartPanel(chart);
+	        chartPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+	        chartPanel.setBackground(Color.white);
+	        add(chartPanel);
+
+	        pack();
+	        setTitle("Line chart");
+	       // setLocationRelativeTo(null);
+	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    }
+
+	    private XYDataset createDataset() {
+
+	    	 var series1 = new XYSeries("2014");
+	         series1.add(18, 530);
+	         series1.add(20, 580);
+	         series1.add(25, 740);
+	         series1.add(30, 901);
+	         series1.add(40, 1300);
+	         series1.add(50, 2219);
+
+	         var series2 = new XYSeries("2016");
+	         series2.add(18, 567);
+	         series2.add(20, 612);
+	         series2.add(25, 800);
+	         series2.add(30, 980);
+	         series2.add(40, 1210);
+	         series2.add(50, 2350);
+
+	         var dataset = new XYSeriesCollection();
+	         dataset.addSeries(series1);
+	         dataset.addSeries(series2);
+
+	         return dataset;
+	    }
+
+	    private JFreeChart createChart(XYDataset dataset) {
+
+	        JFreeChart chart = ChartFactory.createXYLineChart(
+	                "Average salary per age",
+	                "Age",
+	                "Salary (€)",
+	                dataset,
+	                PlotOrientation.VERTICAL,
+	                true,
+	                true,
+	                false
+	        );
+
+	        XYPlot plot = chart.getXYPlot();
+
+	        var renderer = new XYLineAndShapeRenderer();
+	        renderer.setSeriesPaint(0, Color.RED);
+	        renderer.setSeriesStroke(0, new BasicStroke(2.0f));
+	        renderer.setSeriesPaint(1, Color.BLUE);
+	        renderer.setSeriesStroke(1, new BasicStroke(2.0f));
+	        plot.setRenderer(renderer);
+	        
+	        plot.setBackgroundPaint(Color.white);
+
+	        plot.setRangeGridlinesVisible(true);
+	        plot.setRangeGridlinePaint(Color.BLACK);
+
+	        plot.setDomainGridlinesVisible(true);
+	        plot.setDomainGridlinePaint(Color.BLACK);
+
+	       // chart.getLegend().setFrame(BlockBorder.NONE);
+
+	        chart.setTitle(new TextTitle("Average Salary per Age",
+	                        new Font("Serif", java.awt.Font.BOLD, 18)
+	                )
+	        );
+
+	        return chart;
+	    }
 	
 		 
  		

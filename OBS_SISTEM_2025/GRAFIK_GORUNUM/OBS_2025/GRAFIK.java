@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.beans.PropertyVetoException;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 import javax.swing.JInternalFrame;
 import org.jfree.chart.ChartFactory;
@@ -14,7 +15,10 @@ import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.renderer.category.DefaultCategoryItemRenderer;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.chart.renderer.category.LineRenderer3D;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import OBS_C_2025.GLOBAL;
@@ -78,14 +82,13 @@ public class GRAFIK extends JInternalFrame {
 		    
 		 
 		  
-		    rangeAxis.setUpperMargin(0.25);
-		    LineAndShapeRenderer lineAndShapeRenderer = (LineAndShapeRenderer)plot.getRenderer();
-		    lineAndShapeRenderer.setBaseItemLabelsVisible(Boolean.TRUE);
-
-		    lineAndShapeRenderer.setItemLabelsVisible(true);      //   .setItemMargin(0.0D);
-		 //   lineAndShapeRenderer.setBaseItemLabelFont(font3);
-		 //   lineAndShapeRenderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
-	        
+		    rangeAxis.setUpperMargin(0.50);
+		
+		   // LineAndShapeRenderer lineAndShapeRenderer = (LineAndShapeRenderer)plot.getRenderer();
+		   // lineAndShapeRenderer.setBaseItemLabelsVisible(Boolean.TRUE);
+		   // lineAndShapeRenderer.setItemLabelsVisible(true);      //   .setItemMargin(0.0D);
+		    
+		    
 		    ChartPanel panel = new ChartPanel(chart);  
 		    setContentPane(panel);  
 	        

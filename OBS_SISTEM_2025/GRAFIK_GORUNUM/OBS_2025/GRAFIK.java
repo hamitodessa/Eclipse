@@ -78,7 +78,7 @@ public class GRAFIK extends JInternalFrame {
                 true,
                 false 
 		        );  
-		  
+	
 		    ChartPanel panel = new ChartPanel(chart);  
 		    setContentPane(panel);  
 	        

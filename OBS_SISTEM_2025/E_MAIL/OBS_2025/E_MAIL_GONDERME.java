@@ -12,6 +12,7 @@ import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -25,6 +26,7 @@ import java.util.List;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
+import javax.imageio.ImageIO;
 import javax.mail.Message.RecipientType;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
@@ -168,7 +170,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		comboBox.setBounds(75, 22, 134, 22);
 		panel_1_2.add(comboBox);
 		
-		
+	
 		
 		JPanel panel_1_3 = new JPanel();
 		panel_1_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Konu", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
@@ -237,15 +239,20 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				 }
 				//
 				
-						 boolean varmi = OBS_MAIN.pencere_bak("RAPOR YAZDIRMA");
-						 if (varmi  ) 
+						 if ( OBS_MAIN.pencere_bak("RAPOR YAZDIRMA") == true ) 
 		             		{
 							 gonder();
+		             		}
+						 else if ( OBS_MAIN.pencere_bak("GRAFIK") == true ) 
+		             		{
+							 grf_gonder();
 		             		}
 						 else
 						 {
 						duz_gonder();
 						 }
+						 
+						 
 						dispose();
 						getContentPane().setCursor(DEFAULT_CURSOR);
 			}
@@ -361,7 +368,11 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			{
 				lblNewLabel_2.setText("1 Rapor Ekli");
 			}
-			else
+			else if (grf_kontrol() )
+			{
+				lblNewLabel_2.setText(GLOBAL.g_baslik);
+			}
+			else 
 			{
 				lblNewLabel_2.setText("");
 			}
@@ -596,11 +607,132 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			 JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
+	private void grf_gonder() 
+	{
+		try
+		{
+	         long startTime = System.currentTimeMillis(); 
+		String rapor_dos_adi = GLOBAL.g_baslik ;
+			   //****************************************RAPOR AKTARMA********************************************
+			 ByteArrayOutputStream byteArrayOutputStream = null  ;
+			   //ByteArrayInputStream byteArrayInputStream = null  ;
+			
+			   MimeBodyPart messagePart = null ;
+			   InputStream inputStream = null ;
+			   
+		       //*************************************************************************************************
+		       String[] to = { cmbalici.getSelectedItem().toString()  };
+			   Properties props = System.getProperties();
+			   props.put("mail.smtp.starttls.enable", TSL);
+			   if (SSL)
+			   {
+				   props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
+				   //props.put("mail.smtp.startsls.enable", SSL);
+			   }
+			   props.put("mail.smtp.host", HOST);
+			   props.put("mail.smtp.user", HESAP);
+			   props.put("mail.smtp.password", SIFR);
+			   props.put("mail.smtp.port", PORT);
+			   props.put("mail.smtp.auth", "true");
+			   Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
+                   protected PasswordAuthentication getPasswordAuthentication() {
+                       return new PasswordAuthentication(HESAP, SIFR);
+                   }
+               });
+			   MimeMessage message = new MimeMessage(session);
+			   message.setFrom(new InternetAddress(HESAP,GADI));
+			   InternetAddress[] toAddress = new InternetAddress[to.length];
+			   for (int i = 0; i < to.length; i++) {
+			    toAddress[i] = new InternetAddress(to[i]);
+			   }
+			   for (int i = 0; i < toAddress.length; i++) {
+			    message.setRecipient(RecipientType.TO,  toAddress[i]);
+			   }
+			   messagePart = new MimeBodyPart();
+	           messagePart.setText(txtaciklama.getText(), "UTF-8");
+	           
+	           ByteArrayDataSource ds = null ;
+			   BufferedImage objBufferedImage= GRAFIK.chart.createBufferedImage(600,800);
+			   ByteArrayOutputStream bas = new ByteArrayOutputStream();
+			   ImageIO.write(objBufferedImage, "png", bas);
+			   byte[] byteArray= bas.toByteArray();
+			   InputStream in = new ByteArrayInputStream(byteArray);
+			   ds = new ByteArrayDataSource(in, "application/x-any");
+		       inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
+		       ds = new ByteArrayDataSource(inputStream, "application/x-any");
+			   
+		       MimeBodyPart attachment = new MimeBodyPart();
+		       Multipart multipart = new MimeMultipart();
+		       attachment.setDataHandler(new DataHandler(ds));
+
+			   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
+			   LocalDateTime now = LocalDateTime.now();  
+			   String zaman = dtf.format(now)  ;
+		       if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("PDF") )
+			   {
+			   attachment.setFileName("OBS_SISTEM_" + zaman +".pdf");
+			   rapor_dos_adi ="OBS_SISTEM_" + zaman +".pdf";
+			   }
+		       else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("EXCELL") )
+			   {
+			   attachment.setFileName("OBS_SISTEM_" + zaman +".xls");
+			   rapor_dos_adi ="OBS_SISTEM_" + zaman +".xls" ;
+			   }
+		       else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("WORD") )
+			   {
+			   attachment.setFileName("OBS_SISTEM_" + zaman +".doc");
+			   rapor_dos_adi ="OBS_SISTEM_" + zaman +".doc" ;
+			   }
+			   multipart.addBodyPart(attachment);
+			   //*****
+			   for (int i =0; i< list.getModel().getSize(); i++)
+	            {
+	                try {
+	                	 Object item = list.getModel().getElementAt(i);
+	                	 MimeBodyPart att = new MimeBodyPart();
+	                	 att.attachFile(item.toString());
+	                	 multipart.addBodyPart(att);
+	                } catch (IOException ex) {
+	                    throw ex;
+	                }
+	            } 
+			   //*****
+	           multipart.addBodyPart(messagePart);
+			   message.setSubject(txtkonu.getText(), "UTF-8");
+			   message.setContent(multipart);
+			   Transport.send(message);
+			   message= null;
+			   session = null;
+			   //**********************Raporlama Dosyasina Yaz ***************************
+	            oac.uSER_ISL.giden_rapor_yaz(new java.sql.Date(Calendar.getInstance().getTime().getTime())  ,txtkonu.getText(), rapor_dos_adi, cmbalici.getSelectedItem().toString() ,
+	            						HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;
+	           //*************************************************************************
+	      		 long endTime = System.currentTimeMillis();
+	      		 long estimatedTime = endTime - startTime; 
+	      		 double seconds = (double)estimatedTime/1000; 
+	      		 OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+		}
+		catch (Exception ex)
+		{
+			 JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
 	private boolean  rapor_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
 		
 		if (OBS_MAIN.pencere_bak("RAPOR YAZDIRMA"))
+				{
+			   result = true ;
+				}
+		
+		return result;
+	}
+	private boolean  grf_kontrol() throws ReportSDKException
+	{
+		boolean result  = false;
+		
+		if (OBS_MAIN.pencere_bak("GRAFIK"))
 				{
 			   result = true ;
 				}

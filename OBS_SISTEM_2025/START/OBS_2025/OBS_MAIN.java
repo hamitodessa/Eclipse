@@ -1804,7 +1804,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "GIDECEGI YER")	GIDECEGI_YER.kaydet();
 				else if (sonuc == "EVRAK FORMATLAMA") EVRAK_FORMAT.kaydet();
 				else if (sonuc == "ZAYI")	ZAYI.kaydet();
-				//else if (sonuc == "GRAFIK")	GRAFIK.kaydet();
+				else if (sonuc == "GRAFIK")	GRAFIK.kaydet();
 				else if (sonuc == "DEGISKEN YENILEME")	DEGISKEN_DEGIS.kaydet();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}

@@ -658,8 +658,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			   byte[] byteArray= bas.toByteArray();
 			   InputStream in = new ByteArrayInputStream(byteArray);
 			   ds = new ByteArrayDataSource(in, "application/x-any");
-		       inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
-		       ds = new ByteArrayDataSource(inputStream, "application/x-any");
+		      
 			   
 		       MimeBodyPart attachment = new MimeBodyPart();
 		       Multipart multipart = new MimeMultipart();

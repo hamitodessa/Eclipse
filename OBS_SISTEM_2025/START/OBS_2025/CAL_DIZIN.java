@@ -366,16 +366,13 @@ public class CAL_DIZIN extends JFrame {
 	            	}
 	            	else if (activ_sayfa == 8)
 	            	{
-	            		String oku = txt_Lmaill .getText();
+	            		String oku = txt_Lmaill.getText();
 						if (! oku.equals(""))
 						{
-						    JOptionPane.showMessageDialog(null,  "1", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
 						    ResultSet	rs = null;
 							oac.uSER_ISL.log_mail_kont_kayit(GLOBAL.KULL_ADI , oku);
 							rs = oac.uSER_ISL.log_mail_oku(GLOBAL.KULL_ADI);
 							if (!rs.isBeforeFirst() ) {  
-								   JOptionPane.showMessageDialog(null,  "2", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
-
 							    return;
 							} 
 							else
@@ -383,7 +380,6 @@ public class CAL_DIZIN extends JFrame {
 								cmb_maillist.removeAllItems();
 								 while (rs.next()) 
 								 {
-									    JOptionPane.showMessageDialog(null,  "3", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
 									 cmb_maillist.addItem(rs.getString("E_MAIL"));
 							     }
 								

@@ -93,11 +93,12 @@ public class OBS_ORTAK_MSSQL implements IConnection {
  		String cumle = "";
          cumle =  "jdbc:sqlserver://" + server + ";encrypt=true;integratedSecurity=true;";
         conn = DriverManager.getConnection(cumle,user,pwd);
-        PreparedStatement stmt = conn.prepareStatement("SELECT SERVERPROPERTY ('instancename')");
- 		ResultSet rs = stmt.executeQuery();
+     //   PreparedStatement stmt = conn.prepareStatement("SELECT SERVERPROPERTY ('instancename')");
+ 	//	ResultSet rs = stmt.executeQuery();
  		
- 		stmt.close();
+ 	//	stmt.close();
  		conn.close();
-		return rs;
+	//	return rs;
+		return null;
 	}
 }

@@ -91,7 +91,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
  		Connection conn = null;  
  		String cumle = "";
-         cumle =  "jdbc:sqlserver://" + server + ";Persist Security Info=True;User ID=" + user + ";Password=" + pwd +";";
+         cumle =  "jdbc:sqlserver://" + server + ";encrypt=true;integratedSecurity=true;";
         conn = DriverManager.getConnection(cumle,user,pwd);
         PreparedStatement stmt = conn.prepareStatement("SELECT SERVERPROPERTY ('instancename')");
  		ResultSet rs = stmt.executeQuery();

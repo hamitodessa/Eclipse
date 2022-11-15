@@ -12,7 +12,6 @@ import javax.swing.text.NumberFormatter;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
-import java.awt.Cursor;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.BAGLAN_LOG;

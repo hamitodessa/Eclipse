@@ -71,9 +71,13 @@ public class STOK_ACCESS {
 	{
 		return _IStok.stk_kod_alt_grup_degisken_oku(sno);
 	}
-	public void degisken_degistir(int anagrp,int altgrp, int anaygrp,int altygrp) throws ClassNotFoundException, SQLException
+	public void degisken_degistir(int anagrp,int altgrp, int anaygrp,int altygrp
+			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.degisken_degistir(anagrp, altgrp, anaygrp, altygrp);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla(mesaj,evrak, dBILGI);
+		
 	}
 	public  boolean alt_grup_kontrol(int anagrp,int altgrp) throws ClassNotFoundException, SQLException
 	{

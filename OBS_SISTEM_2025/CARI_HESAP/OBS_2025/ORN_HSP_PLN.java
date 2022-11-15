@@ -38,6 +38,7 @@ public class ORN_HSP_PLN extends JInternalFrame {
 
 	
 	private static JLabel lblNewLabel ;
+	JPanel panel;
 	/**
 	 * Launch the application.
 	 */
@@ -62,7 +63,7 @@ public class ORN_HSP_PLN extends JInternalFrame {
 		setClosable(true);
 		setBounds(0,0, 422, 168);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
@@ -92,12 +93,16 @@ public class ORN_HSP_PLN extends JInternalFrame {
 	{
 		try
 		{
-			
+	        panel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+	    	
 			lblNewLabel.setText(Integer.toString(c_Access.hesap_plani_kayit_adedi()));
+	        panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	    	
 			}
 		catch (Exception ex)
 		{
-			
+	        panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	        JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
 	private void kaydet() 
@@ -117,15 +122,13 @@ public class ORN_HSP_PLN extends JInternalFrame {
     	        Progres_Bar_Temizle();   
     	        OBS_MAIN.progressBar.setMaximum(358); 
     	        int i = 0 ;
-    	        getContentPane().setCursor(oac.WAIT_CURSOR);
+    	        panel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     	        Scanner sc = new Scanner(bReader); 
         while (sc.hasNextLine()) 
     	  {
     		  Progres_Bar(358, i);
 	        	String l =  sc.nextLine();  
-	        	
 	            String[] token = l.split("\t");
-	         
 	            c_Access.hpln_kayit(token[0], token[1], token[2], token[3],GLOBAL.KULL_ADI
 	            		, token[0] + " Nolu Hesap Kayit , Unvan:" + token[1] , "",  BAGLAN_LOG.cariLogDizin);
 	            c_Access.hpln_ilk_detay_kayit(token[0]);
@@ -134,13 +137,16 @@ public class ORN_HSP_PLN extends JInternalFrame {
 	        bReader.close();
 	        Thread.currentThread().isInterrupted();
 	        Progres_Bar_Temizle();
-	        getContentPane().setCursor(oac.DEFAULT_CURSOR);
+	        panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	        
 	        JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi ....Hesap Kodu Sayisi =" + i ); 
 	        lblNewLabel.setText(Integer.toString(i));
 
 		}
 		catch (Exception ex)
 		{
+	        panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	    	
 			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	    }

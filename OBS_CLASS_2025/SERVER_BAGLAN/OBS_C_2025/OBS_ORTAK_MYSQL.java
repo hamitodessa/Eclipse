@@ -30,4 +30,9 @@ public class OBS_ORTAK_MYSQL implements IConnection {
        
             
      }
+	@Override
+	public ResultSet instance(String server, String user, String pwd) throws SQLException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

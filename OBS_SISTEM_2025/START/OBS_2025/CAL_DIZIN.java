@@ -1030,6 +1030,26 @@ public class CAL_DIZIN extends JFrame {
 		cmblog.setBounds(133, 126, 126, 22);
 		panel.add(cmblog);
 		
+		JButton btnNewButton_6 = new JButton("...");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 cONN_AKTAR();
+					
+				 CONNECT s_CONN = new CONNECT(oac._IConn);
+				 ResultSet rs ;
+				try {
+					rs = s_CONN.instance(comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText());
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				   
+			            
+			}
+		});
+		btnNewButton_6.setBounds(269, 166, 30, 23);
+		panel.add(btnNewButton_6);
+		
 		
 	}
 	

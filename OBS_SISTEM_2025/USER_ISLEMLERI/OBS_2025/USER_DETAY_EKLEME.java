@@ -271,7 +271,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		cmbLog_yeri.setFont(new Font("Tahoma", Font.BOLD, 14));
 				
 		cmbLog_yeri.setModel(new DefaultComboBoxModel<String>(new String[] {"Dosyaya Kayit", "Email Atma"}));
-		cmbLog_yeri.setBounds(800, 86, 126, 22);
+		cmbLog_yeri.setBounds(800, 82, 126, 22);
 		panel.add(cmbLog_yeri);
 			String columnheaders[] = { "Kodu", "Kullanici", "Ser.Kullanici" ,"Sifre","Instance", "IP", "Modul" ,
 					"Dizin","Yer","Dizin Cins","Izinli Mi" ,"Calisan Mi","SQL Cinsi" ,"Loglama" ,"Log_Yeri" , "ID"};

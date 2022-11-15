@@ -83,9 +83,11 @@ public class STOK_ACCESS {
 	{
 		return _IStok.alt_grup_kontrol(anagrp, altgrp);
 	}
-	public void urun_degisken_alt_grup_sil(int  ID ) throws ClassNotFoundException, SQLException
+	public void urun_degisken_alt_grup_sil(int  ID , String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.urun_degisken_alt_grup_sil(ID);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
 	public void urun_kod_degisken_sil(   String hangi_Y,String nerden  ,   int sira) throws ClassNotFoundException, SQLException
 	{

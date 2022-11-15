@@ -25,6 +25,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
+import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
@@ -340,7 +341,8 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 				
      	  	
 		 	 //*********************
-  			   f_Access.urun_degisken_alt_grup_sil(Integer.parseInt(textField_2.getText()));
+  			   f_Access.urun_degisken_alt_grup_sil(Integer.parseInt(textField_2.getText()),
+  					 "Alt Grup Silme:" + Integer.parseInt(textField_2.getText()),"",BAGLAN_LOG.fatLogDizin);
         	  sifirla();
               textField.setText("");
               ana_grup_doldur();

@@ -1,15 +1,17 @@
 package OBS_2025;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.InputStream;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 
 import javax.imageio.ImageIO;
-import javax.mail.util.ByteArrayDataSource;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -20,11 +22,14 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.title.LegendTitle;
+import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.DefaultCategoryDataset;
-
-import com.crystaldecisions.sdk.occa.report.exportoptions.ReportExportFormat;
+import org.jfree.ui.RectangleEdge;
 
 import OBS_C_2025.GLOBAL;
 
@@ -85,12 +90,38 @@ public class GRAFIK extends JInternalFrame {
 		    NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
 		    rangeAxis.setRange(GLOBAL.max_value, GLOBAL.min_value);
 		    rangeAxis.setUpperMargin(0.50);
+		    
+		    
+		    
+		    //
+		 	  //
+		    NumberFormat formatter = DecimalFormat.getInstance();
+		    formatter.setMinimumFractionDigits(3);
+		    rangeAxis.setNumberFormatOverride(formatter);
+		    //
+		     
+		    
+		    //
+		    Font font3 = new Font("Arial", Font.BOLD, 25); 
+		    
+		    plot.getDomainAxis().setLabelFont(font3);
+		    plot.getRangeAxis().setLabelFont(font3);
+		    
+		    //
+		  
+		    TextTitle t2 = new TextTitle(  GLOBAL.g_baslik); // BASLIK
+		    t2.setFont(new Font("Dialog", Font.BOLD, 9));
+		    
+		    chart.setTitle(t2);
+		    chart.getTitle().setPaint(Color.BLUE);
+			  
+		    //
 		    ChartPanel panel = new ChartPanel(chart);  
 		    setContentPane(panel);  
 	        
 	    }
 
-	 
+	
 	 public static  void kaydet()
 	  {
 		  try {

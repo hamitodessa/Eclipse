@@ -6,7 +6,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
@@ -879,6 +878,7 @@ public class MAIL extends JInternalFrame {
 			   props.put("mail.smtp.password", SIFR);
 			   props.put("mail.smtp.port", PORT);
 			   props.put("mail.smtp.auth", "true");
+			   props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			   Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
                    protected PasswordAuthentication getPasswordAuthentication() {
                        return new PasswordAuthentication(HESAP, SIFR);

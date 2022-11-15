@@ -11,8 +11,6 @@ import javax.swing.border.LineBorder;
 
 
 import javax.swing.JDesktopPane;
-import javax.swing.JFrame;
-
 import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.BorderFactory;

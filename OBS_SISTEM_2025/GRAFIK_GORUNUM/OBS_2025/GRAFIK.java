@@ -1,5 +1,6 @@
 package OBS_2025;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -26,6 +27,7 @@ import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.title.LegendTitle;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -110,11 +112,15 @@ public class GRAFIK extends JInternalFrame {
 		    //
 		  
 		    TextTitle t2 = new TextTitle(  GLOBAL.g_baslik); // BASLIK
-		    t2.setFont(new Font("Dialog", Font.BOLD, 9));
+		    t2.setFont(new Font("Serif", Font.BOLD, 9));
 		    
 		    chart.setTitle(t2);
 		    chart.getTitle().setPaint(Color.BLUE);
 			  
+		    //
+		   // var renderer = new XYLineAndShapeRenderer();
+	       // renderer.setSeriesPaint(0, Color.RED);
+	       // renderer.setSeriesStroke(0, new BasicStroke(2.0f));
 		    //
 		    ChartPanel panel = new ChartPanel(chart);  
 		    setContentPane(panel);  

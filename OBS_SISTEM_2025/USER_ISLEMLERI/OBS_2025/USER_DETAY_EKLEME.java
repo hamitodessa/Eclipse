@@ -3,6 +3,8 @@ package OBS_2025;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -93,7 +95,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		setBounds(0, 0, 1217, 600);
 		
 		splitPane = new JSplitPane(){
-		    private final int location = 100;
+		    private final int location = 120;
 		    {
 		        setDividerLocation( location );
 		    }
@@ -245,6 +247,8 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		comboBox_2 = new JComboBox<String>();
 		comboBox_2.setForeground(new Color(0, 0, 128));
 		comboBox_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		
+		
 		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"MS SQL", "MY SQL"}));
 		comboBox_2.setBounds(995, 57, 119, 22);
 		panel.add(comboBox_2);
@@ -263,12 +267,14 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		panel.add(lblNewLabel_8_1_1);
 		
 		cmbLog_yeri = new JComboBox<String>();
-		cmbLog_yeri.setModel(new DefaultComboBoxModel(new String[] {"Dosyaya Kayit", "Email Atma"}));
-		cmbLog_yeri.setEnabled(false);
+		cmbLog_yeri.setForeground(new Color(0, 0, 128));
+		cmbLog_yeri.setFont(new Font("Tahoma", Font.BOLD, 14));
+				
+		cmbLog_yeri.setModel(new DefaultComboBoxModel<String>(new String[] {"Dosyaya Kayit", "Email Atma"}));
 		cmbLog_yeri.setBounds(800, 86, 126, 22);
 		panel.add(cmbLog_yeri);
 			String columnheaders[] = { "Kodu", "Kullanici", "Ser.Kullanici" ,"Sifre","Instance", "IP", "Modul" ,
-					"Dizin","Yer","Dizin Cins","Izinli Mi" ,"Calisan Mi","SQL Cinsi" ,"ID"};
+					"Dizin","Yer","Dizin Cins","Izinli Mi" ,"Calisan Mi","SQL Cinsi" ,"Loglama" ,"Log_Yeri" , "ID"};
 			DefaultTableModel model = new DefaultTableModel(null,columnheaders);
 			table_1 = new JTable(model){
 				private static final long serialVersionUID = 1L;
@@ -277,6 +283,19 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 					return String.class;
 				}
 				public boolean isCellEditable(int row, int column) {     return false;          }
+				
+				public void changeSelection(final int row, final int column, boolean toggle, boolean extend)
+	            {
+	                super.changeSelection(row, column, toggle, extend);
+	                kutu_temizle();
+					try {
+						doldur_kutu(row);
+					} catch (ClassNotFoundException | SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	            }	
+				
 				};
 				
 				table_1.addMouseListener(new MouseAdapter() {
@@ -296,7 +315,9 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 						}
 						getContentPane().setCursor(DEFAULT_CURSOR);
 					}
+					
 				});
+				
 				table_1.setGridColor(oac.gridcolor);
 				table_1.setSurrendersFocusOnKeystroke(true);
 				table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -359,6 +380,14 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		      col.setHeaderRenderer(new SOLA());
 		      vColIndex = 13;
 		      col = table_1.getColumnModel().getColumn(vColIndex);
+		      col.setMinWidth(30);
+		      col.setHeaderRenderer(new SOLA());
+		      vColIndex = 14;
+		      col = table_1.getColumnModel().getColumn(vColIndex);
+		      col.setMinWidth(100);
+		      col.setHeaderRenderer(new SOLA());
+		      vColIndex = 15;
+		      col = table_1.getColumnModel().getColumn(vColIndex);
 		      col.setMinWidth(1);
 		      col.setHeaderRenderer(new SOLA());
 		      
@@ -377,12 +406,14 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			  getContentPane().setCursor(WAIT_CURSOR);
 		        try {
 					grid_doldur();
-					table_1.removeColumn(table_1.getColumnModel().getColumn(12));
-					table_1.removeColumn(table_1.getColumnModel().getColumn(12));
+					table_1.removeColumn(table_1.getColumnModel().getColumn(15));
 					table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 					kutu_temizle();
 					doldur();
-					doldur_kutu(0);
+					if (table_1.getRowCount() != 0 ) {  
+						doldur_kutu(0);
+					}
+				
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -391,6 +422,8 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 					e.printStackTrace();
 				}
 		        getContentPane().setCursor(DEFAULT_CURSOR);
+		        
+		        
 	}
 	private static void grid_doldur() throws ClassNotFoundException, SQLException
 	{
@@ -403,9 +436,10 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		DefaultTableModel defaultModel =  (DefaultTableModel) table_1.getModel();
 			while(rs.next())
 			{
-				defaultModel.addRow(new Object[]{rs.getString(2), rs.getString(3)  ,rs.getString(4), rs.getString(5) ,rs.getString(6) ,
-			    		  rs.getString(7), rs.getString(8)  ,rs.getString(9), rs.getString(10) ,rs.getString(11) ,rs.getString(12),rs.getString(13),
-			    		  rs.getString(14),rs.getString(15),rs.getString(16),rs.getInt(1)});
+				defaultModel.addRow(new Object[]{rs.getString(2), rs.getString(3)  ,rs.getString(4), rs.getString(5) ,
+							rs.getString(6) ,			    		  rs.getString(7), rs.getString(8)  ,rs.getString(9), 
+							rs.getString(10) ,rs.getString(11) ,rs.getString(12),rs.getString(13),
+			    		  rs.getString(14),rs.getInt(15),rs.getString(16),rs.getInt(1)});
 			}
 			
 			table_1.requestFocus();
@@ -538,7 +572,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		
 		}
 		//
-		if ( Integer.parseInt(  table_1.getModel().getValueAt(satir, 14).toString()) ==1)
+		if ( Integer.parseInt(  table_1.getModel().getValueAt(satir, 13).toString()) ==1)
 		{
 			chckbxLog.setSelected((boolean) true);
 		}
@@ -547,12 +581,15 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			chckbxLog.setSelected((boolean) false);
 		}
 		//
-		if (table_1.getModel().getValueAt(satir, 15) == null)
-		
+		if (table_1.getModel().getValueAt(satir, 14) == null)
 		{
-			cmbLog_yeri.setSelectedItem(table_1.getModel().getValueAt(satir, 5).toString());
+			
 		}
-		if (  table_1.getModel().getValueAt(satir, 13)== null)
+		else
+		{
+			cmbLog_yeri.setSelectedItem(table_1.getModel().getValueAt(satir, 14).toString());
+		}
+		if (  table_1.getModel().getValueAt(satir, 15)== null)
 		{
 			lblcdid.setText("");
 		}

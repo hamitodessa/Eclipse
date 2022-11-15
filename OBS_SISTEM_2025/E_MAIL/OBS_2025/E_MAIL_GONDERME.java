@@ -436,6 +436,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		   props.put("mail.smtp.password", SIFR);
 		   props.put("mail.smtp.port", PORT);
 		   props.put("mail.smtp.auth", "true");
+		   props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 		   
 		   //
 	//	  
@@ -532,6 +533,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			   props.put("mail.smtp.password", SIFR);
 			   props.put("mail.smtp.port", PORT);
 			   props.put("mail.smtp.auth", "true");
+			   props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			   Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
                    protected PasswordAuthentication getPasswordAuthentication() {
                        return new PasswordAuthentication(HESAP, SIFR);
@@ -634,6 +636,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			   props.put("mail.smtp.password", SIFR);
 			   props.put("mail.smtp.port", PORT);
 			   props.put("mail.smtp.auth", "true");
+			   props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			   Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
                    protected PasswordAuthentication getPasswordAuthentication() {
                        return new PasswordAuthentication(HESAP, SIFR);

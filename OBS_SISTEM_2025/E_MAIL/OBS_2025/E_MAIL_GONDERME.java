@@ -620,7 +620,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			   //ByteArrayInputStream byteArrayInputStream = null  ;
 			
 			   MimeBodyPart messagePart = null ;
-			   InputStream inputStream = null ;
+			 //  InputStream inputStream = null ;
 			   
 		       //*************************************************************************************************
 		       String[] to = { cmbalici.getSelectedItem().toString()  };
@@ -629,7 +629,6 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			   if (SSL)
 			   {
 				   props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
-				   //props.put("mail.smtp.startsls.enable", SSL);
 			   }
 			   props.put("mail.smtp.host", HOST);
 			   props.put("mail.smtp.user", HESAP);
@@ -655,7 +654,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	           messagePart.setText(txtaciklama.getText(), "UTF-8");
 	           
 	           ByteArrayDataSource ds = null ;
-			   BufferedImage objBufferedImage= GRAFIK.chart.createBufferedImage(600,800);
+			   BufferedImage objBufferedImage= GRAFIK.chart.createBufferedImage(800,600);
 			   ByteArrayOutputStream bas = new ByteArrayOutputStream();
 			   ImageIO.write(objBufferedImage, "png", bas);
 			   byte[] byteArray= bas.toByteArray();
@@ -670,21 +669,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
 			   LocalDateTime now = LocalDateTime.now();  
 			   String zaman = dtf.format(now)  ;
-		       if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("PDF") )
-			   {
-			   attachment.setFileName("OBS_SISTEM_" + zaman +".pdf");
-			   rapor_dos_adi ="OBS_SISTEM_" + zaman +".pdf";
-			   }
-		       else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("EXCELL") )
-			   {
-			   attachment.setFileName("OBS_SISTEM_" + zaman +".xls");
-			   rapor_dos_adi ="OBS_SISTEM_" + zaman +".xls" ;
-			   }
-		       else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("WORD") )
-			   {
-			   attachment.setFileName("OBS_SISTEM_" + zaman +".doc");
-			   rapor_dos_adi ="OBS_SISTEM_" + zaman +".doc" ;
-			   }
+		      
+			   attachment.setFileName(GLOBAL.g_baslik + zaman +".png");
+			   rapor_dos_adi =GLOBAL.g_baslik + zaman +".png";
+			  
 			   multipart.addBodyPart(attachment);
 			   //*****
 			   for (int i =0; i< list.getModel().getSize(); i++)

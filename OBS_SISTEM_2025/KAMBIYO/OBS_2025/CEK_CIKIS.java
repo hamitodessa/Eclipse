@@ -2,7 +2,6 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -51,7 +50,6 @@ import org.apache.commons.lang.StringUtils;
 
 import com.toedter.calendar.JDateChooser;
 
-import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.COKLU_GIRIS_TARIH;
@@ -67,7 +65,7 @@ import OBS_C_2025.TARIH_CEVIR;
 
 public class CEK_CIKIS extends JInternalFrame {
 
-	private static JTable table;
+	public static JTable table;
 	public static JTextField textField;
 	public static JTextField textField_1;
 	private static JTextField textField_2;

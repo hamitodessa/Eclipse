@@ -122,7 +122,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 		    //clientDoc.open(is, 0);
 		    clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 			//**************************************
-		    c_Access.hp_pln();
+		    rs = c_Access.hp_pln();
             clientDoc.getDatabaseController().setDataSource(rs);
           ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
           for(int i=0; i< reportObjects.size();i++)
@@ -727,12 +727,13 @@ public class PRINT_YAPMA extends JInternalFrame {
     		}
     		else if (nerden.equals("stok"))
     		{
+    			System.out.println("brd....");
     			//**************************************************************************
     			File file = new File("C:\\OBS_SISTEM\\STOK.rpt");
     		    clientDoc.open(file.getPath(), 0);
     		    clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
     		    //**************************************************************************
-    		   fa_Access.envanter_rapor_u_kodu(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_16),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_17),
+    		  rs = fa_Access.envanter_rapor_u_kodu(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_16),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_17),
 						FILTRE.textField_19.getText(),FILTRE.textField_20.getText() ,
 						FILTRE.textField_18.getText(),FILTRE.textField_24.getText() ,
 						 "","",GLOBAL.yazici[0], GLOBAL.yazici[1], GLOBAL.yazici[2],GLOBAL.yazici[3],

@@ -2133,6 +2133,12 @@ public class OBS_MAIN extends JFrame {
                		}
 			else if (sonuc == "CEK GIRIS")
                 	{
+				if ( CEK_GIRIS.textField.getText().equals("")) 
+				  {
+				 GuiUtil.setWaitCursor(toolBar,false);
+				 GuiUtil.setWaitCursor(tabbedPane,false); 
+				  return ;
+				  }
 					InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/BORDRO_CEK.rpt");
 					Files.copy(is, Paths.get("C:\\OBS_SISTEM\\BORDRO.rpt"),StandardCopyOption.REPLACE_EXISTING);
 					internalFrame = new PRINT_YAPMA();
@@ -2143,6 +2149,12 @@ public class OBS_MAIN extends JFrame {
                 	}
 			else if (sonuc == "CEK CIKIS")
                 	{
+				if ( CEK_CIKIS.textField.getText().equals("") ) 
+				  {
+				 GuiUtil.setWaitCursor(toolBar,false);
+				 GuiUtil.setWaitCursor(tabbedPane,false); 
+				  return ;
+				  }
 					InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/BORDRO_CEK.rpt");
 					Files.copy(is, Paths.get("C:\\OBS_SISTEM\\BORDRO.rpt"),StandardCopyOption.REPLACE_EXISTING);
 					internalFrame = new PRINT_YAPMA();

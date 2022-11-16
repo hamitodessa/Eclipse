@@ -120,7 +120,7 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		ResultSet rs = null ;
 		try
 		{
-			c_Access.hsp_pln("");
+		rs = c_Access.hsp_pln("");
 		
 		if (!rs.isBeforeFirst() ) {  
 		    return;

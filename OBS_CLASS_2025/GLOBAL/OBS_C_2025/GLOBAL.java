@@ -31,7 +31,7 @@ import OBS_2025.Tema_Cari;
 public class GLOBAL {
 	
 	static String OBS_DOSYA = "OBS_SISTEM_2025.DB";
-	static String TEMA_DOSYA = "OBS_TEMA.DB";
+	
 	static String SQL_BACKUP = "SQL_BACKUP.DB";
 	static String SQL_LOG = "SQL_LOG.DB";
 	static String SURUCU = "C:\\OBS_SISTEM\\";
@@ -50,7 +50,6 @@ public class GLOBAL {
     public static double min_value =0;
     public static double max_value =0;
     public static int gkusurat = 0;
-   // public static XYSeriesCollection dataset = new XYSeriesCollection();
     public static DefaultCategoryDataset dataset = new DefaultCategoryDataset();  
 	 //*************************************************
 public static  Connection myConnection() throws SQLException
@@ -65,18 +64,7 @@ public static  Connection myConnection() throws SQLException
         }  
           return conn;  
         }  
-public static  Connection myTemaConnection() throws SQLException
-{  
-    Connection conn = null;  
-     try {  
-        conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + TEMA_DOSYA );  
-    } 
-    catch (SQLException e) 
-    {
-   
-    }  
-      return conn;  
-    }  
+
   //*************************************************
     @SuppressWarnings("unused")
 	 private static  Connection myBConnection (){

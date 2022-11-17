@@ -90,7 +90,7 @@ public class GRAFIK extends JInternalFrame {
 		        );  
 		    CategoryPlot plot = (CategoryPlot) chart.getPlot();
 		    NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-		   // rangeAxis.setRange(GLOBAL.max_value, GLOBAL.min_value);
+		    rangeAxis.setRange(GLOBAL.min_value, GLOBAL.max_value);
 		    rangeAxis.setUpperMargin(0.50);
 		    
 		    

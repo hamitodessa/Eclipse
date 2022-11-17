@@ -1070,20 +1070,19 @@ public class GRUP_RAPOR extends JInternalFrame {
 		if (FILTRE.comboBox_27.getItemAt(FILTRE.comboBox_27.getSelectedIndex()).equals("Yil"))
 		{
 		GLOBAL.g_baslik = "GRUP RAPORLAMA YIL";
-		//***LEGENDS
 		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 		GLOBAL.g_legends = "AYLAR";
-	
-		//*** g_setNumbersAxisTitleText
 		GLOBAL.g_setNumbersAxisTitleText = "Tutar" ;
-//		ArrayList<Double> kur = new ArrayList<Double>();
-//		 for (int y = 0;y<mdll.getRowCount() - 1 ;y++)
-//		 {
-//			kur.add(  mdll.getValueAt(y,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y,2).toString()));
-//		 }
-//		GLOBAL.min_value =  Collections.max(kur) + (Collections.max(kur) * .10) ;
-//		GLOBAL.max_value = Collections.min(kur) - (Collections.min(kur) * .10) ;
-		///
+		ArrayList<Double> tutar = new ArrayList<Double>();
+		 for (int i = 0;i<=mdll.getRowCount() - 2 ;i++)
+		 {
+			 for(int y = 1;y<=mdll.getColumnCount() -2 ;y++)
+			 {
+			tutar.add(  mdll.getValueAt(i,y) == null ? 0: Double.parseDouble( mdll.getValueAt(i,y).toString()));
+			 }
+		 }
+		GLOBAL.max_value =  Collections.max(tutar) + (Collections.max(tutar) * .05) ;
+		GLOBAL.min_value = Collections.min(tutar) - (Collections.min(tutar) * .05) ;
 		Double asd = 0.00 ;
 		GLOBAL.gkusurat = 0;
 		GLOBAL.dataset = new DefaultCategoryDataset();  
@@ -1097,8 +1096,6 @@ public class GRUP_RAPOR extends JInternalFrame {
 					 GLOBAL.dataset.addValue(asd, series1,mdll.getColumnName(y));  
 			 }
 		 }
-		 ///
-		 
 		}
 	}
 	public static void excell_aktar()

@@ -893,7 +893,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private void tema_doldur() throws ClassNotFoundException, SQLException
 	{
 		ResultSet rs = null ;
-		rs = tema_oku();
+
+		rs = Tema_Cari.tema_oku();
 		te_sifirla();
 		if (!rs.isBeforeFirst() ) { 
 			comboBox.addItem("");
@@ -976,19 +977,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		table_1.enable(false);
 		}
 
-	private ResultSet  tema_oku() throws ClassNotFoundException, SQLException
-    	{
-		Connection con = null;
-   	 	Class.forName("org.sqlite.JDBC");
-   	 	con = null;
-   	 	ResultSet	rss = null;
-   	 	PreparedStatement stmt = null;
-   	 	con = GLOBAL.myConnection();
-   	 	String sql = "SELECT DISTINCT TEMA FROM ANA_HESAP ";
-   	 	stmt = con.prepareStatement(sql);
-   	 	rss = stmt.executeQuery();
-   	 	return rss;
-    }
+	
 	private void aciklama_duzelt()
 	{
 		if ( tblexcell.getRowCount() == 0 ) return ;

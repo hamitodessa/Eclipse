@@ -516,6 +516,14 @@ public LOGIN() throws IOException {
 	versiyon_oku();
 	//************SURUCU KONTROL**************************
 	GLOBAL.surucu_kontrol();
+//	Tema_Cari tcr = new Tema_Cari();
+//	try {
+//		tcr.obs_tema_dosya_olustur();
+//	  }
+//	   catch (Exception ex) {  
+//	   	JOptionPane.showMessageDialog(null, ex);  
+//	       }  
+//
 	//************BENI_HATIRLA**	
 		String deger;
 		deger = GLOBAL.setting_oku("BENI_HATIRLA").toString();

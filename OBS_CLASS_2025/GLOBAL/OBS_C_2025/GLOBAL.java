@@ -22,6 +22,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeriesCollection;
 
+import OBS_2025.Tema_Cari;
+
 
 
 
@@ -29,6 +31,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 public class GLOBAL {
 	
 	static String OBS_DOSYA = "OBS_SISTEM_2025.DB";
+	static String TEMA_DOSYA = "OBS_TEMA.DB";
 	static String SQL_BACKUP = "SQL_BACKUP.DB";
 	static String SQL_LOG = "SQL_LOG.DB";
 	static String SURUCU = "C:\\OBS_SISTEM\\";
@@ -62,6 +65,18 @@ public static  Connection myConnection() throws SQLException
         }  
           return conn;  
         }  
+public static  Connection myTemaConnection() throws SQLException
+{  
+    Connection conn = null;  
+     try {  
+        conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + TEMA_DOSYA );  
+    } 
+    catch (SQLException e) 
+    {
+   
+    }  
+      return conn;  
+    }  
   //*************************************************
     @SuppressWarnings("unused")
 	 private static  Connection myBConnection (){
@@ -183,6 +198,8 @@ public static void surucu_kontrol() {
        	try {
        		GLOBAL gLB = new GLOBAL();
        		gLB.obs_dosya_olustur();
+       		Tema_Cari tcr = new Tema_Cari();
+       		tcr.obs_tema_dosya_olustur();
 			//obs_set_olustur();
 				set_ilk() ;
 			} catch (Exception e) {

@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class Tema_Cari {
 
-	static Connection con ;
+	static Connection conn ;
 	static String TEMA_DOSYA = "OBS_TEMA.DB";
 	static String SURUCU = "C:\\OBS_SISTEM\\";
 	
@@ -26,11 +26,15 @@ public class Tema_Cari {
 	      return conn;  
 	    }  
 	
-	public  void obs_tema_dosya_olustur() throws Exception {
+	public static void dosya_yap() throws Exception
+	{
+		obs_tema_dosya_olustur();
+	}
+	public static   void obs_tema_dosya_olustur() throws Exception {
 	   	 try {  
 	   		 Class.forName("org.sqlite.JDBC");
-	       	 con = myTemaConnection();
-	       	 con.close();
+	       	 conn = myTemaConnection();
+	 
 	            	  String sorgu= null;
 	            	  sorgu = "CREATE TABLE ANA_HESAP (TEMA CHAR (25) NOT NULL,	ANA_HESAP CHAR(12) NULL) " ;
 	    	           tablo_yap(sorgu);
@@ -45,27 +49,30 @@ public class Tema_Cari {
 	   	JOptionPane.showMessageDialog(null, ex);  
 	       }  
 		}
-	private void tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {
+	private static void tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {
 	   	Class.forName("org.sqlite.JDBC");
-	   	con.close();
-	   	con = null;
-	   	con = myTemaConnection();
+	
+	   	conn.close();
+	   	conn = null;
+	  
+	  	conn = myTemaConnection();
 	   	java.sql.Statement stmt = null;
-	   	stmt = con.createStatement();  
+	   	stmt = conn.createStatement();  
 	    	stmt.execute(sorgu);  
 	    	stmt.close();
-	       con.close();
+	       conn.close();
 		   }
 	   public static ResultSet  tema_oku() throws ClassNotFoundException, SQLException
 	     {
 	    	 Class.forName("org.sqlite.JDBC");
-	   	 	 con.close();
-	    	 con = null;
+	   	 	 conn.close();
+	    	 conn = null;
 	    	 ResultSet	rss = null;
 	    	 PreparedStatement stmt = null;
-	    	 con = myTemaConnection();
+	    	 conn = myTemaConnection();
+	
 	    	 String sql = "SELECT DISTINCT TEMA FROM ANA_HESAP ";
-	    	 stmt = con.prepareStatement(sql);
+	    	 stmt = conn.prepareStatement(sql);
 	    	 rss = stmt.executeQuery();
 	    	 return rss;
 	     }
@@ -74,13 +81,13 @@ public class Tema_Cari {
 	     public static String tema_anahesap(String tema) throws ClassNotFoundException, SQLException
 	     {
 	    	 Class.forName("org.sqlite.JDBC");
-	   	 	 con.close();
-	    	 con = null;
+	   	 	 conn.close();
+	    	 conn = null;
 	    	 ResultSet	rss = null;
 	    	 PreparedStatement stmt = null;
-	    	 con =myTemaConnection();
+	    	 conn =myTemaConnection();
 	    	 String sql = "SELECT ANA_HESAP FROM ANA_HESAP WHERE TEMA = '" + tema + "'";
-	    	 stmt = con.prepareStatement(sql);
+	    	 stmt = conn.prepareStatement(sql);
 	    	 rss = stmt.executeQuery();
 	    	 String hesap = "" ;
 	    	 rss.next();
@@ -90,108 +97,108 @@ public class Tema_Cari {
 				hesap = rss.getString("ANA_HESAP");	
 			 }
 			 rss.close();
-			 con.close();
+			 conn.close();
 			 return hesap ;
 	     }
 	     public static ResultSet ttema_oku(String tema) throws ClassNotFoundException, SQLException
 	     {
 	    	 Class.forName("org.sqlite.JDBC");
-	   	 	 con.close();
-	    	 con = null;
+	   	 	 conn.close();
+	    	 conn = null;
 	    	 ResultSet	rss = null;
 	    	 PreparedStatement stmt = null;
-	    	 con =myTemaConnection();
+	    	 conn =myTemaConnection();
 	    	 String sql = "SELECT  ARANACAK,HESAP_KODU  FROM HESAPLAR WHERE TEMA ='" + tema + "' ORDER BY ARANACAK";
-	    	 stmt = con.prepareStatement(sql);
+	    	 stmt = conn.prepareStatement(sql);
 	    	 rss = stmt.executeQuery();
 	    	 return rss;
 	     }
 	     public static ResultSet temalar_oku(String tema) throws ClassNotFoundException, SQLException
 	     {
 	    	 Class.forName("org.sqlite.JDBC");
-	   	 	 con.close();
-	    	 con = null;
+	   	 	 conn.close();
+	    	 conn = null;
 	    	 ResultSet	rss = null;
 	    	 PreparedStatement stmt = null;
-	    	 con =myTemaConnection();
+	    	 conn =myTemaConnection();
 	    	 String sql ="SELECT ARANACAK,YAZILACAK  FROM TEMA WHERE TEMA = '" + tema + "'";
-	    	 stmt = con.prepareStatement(sql);
+	    	 stmt = conn.prepareStatement(sql);
 	    	 rss = stmt.executeQuery();
 	    	 return rss;
 	     }
 	     public static void tema_sil(String tema) throws ClassNotFoundException, SQLException
 	     {
 	    	 Class.forName("org.sqlite.JDBC");
-	    	 con.close();
-			 con = null;
+	    	 conn.close();
+			 conn = null;
 			 PreparedStatement stmt = null;
-			 con = myTemaConnection();
+			 conn = myTemaConnection();
 			 String sql = "" ;
 	    	  sql = "DELETE    FROM TEMA WHERE TEMA = '" + tema + "'";
-	         stmt = con.prepareStatement(sql);
+	         stmt = conn.prepareStatement(sql);
 	         stmt.executeUpdate();
 	         stmt = null;
 	             
 	         sql = "DELETE    FROM ANA_HESAP WHERE TEMA = '" + tema + "'";
-	         stmt = con.prepareStatement(sql);
+	         stmt = conn.prepareStatement(sql);
 	         stmt.executeUpdate();
 	         stmt = null;
 	            
 	         sql = "DELETE    FROM HESAPLAR WHERE TEMA = '" + tema + "'";
-	         stmt = con.prepareStatement(sql);
+	         stmt = conn.prepareStatement(sql);
 	         stmt.executeUpdate();
 	         stmt.close();
-	    	 con.close();
+	    	 conn.close();
 	     }
 	     public static void tema_ana_hes_kayit(String tema,String hesap) throws ClassNotFoundException, SQLException
 	     {
 	    	 Class.forName("org.sqlite.JDBC");
-	    	 con.close();
-			 con = null;
+	    	 conn.close();
+			 conn = null;
 			 PreparedStatement stmt = null;
-			 con = myTemaConnection();
+			 conn = myTemaConnection();
 	   		 String sql =  "INSERT INTO ANA_HESAP (TEMA,ANA_HESAP) " +
 	   						"VALUES (?,?)";
-	    	 stmt = con.prepareStatement(sql);
+	    	 stmt = conn.prepareStatement(sql);
 	   		 stmt.setString(1, tema);
 	   		 stmt.setString(2, hesap);
 	   		 stmt.executeUpdate();
 	   		stmt.close();
-	   		con.close();
+	   		conn.close();
 	     }
 	     public static void tema_tem_hes_kayit(String tema,String aranan,String yazilan) throws SQLException, ClassNotFoundException
 	     {
 	    	 Class.forName("org.sqlite.JDBC");
-	    	 con.close();
-			 con = null;
+	    	 conn.close();
+			 conn = null;
 			 PreparedStatement stmt = null;
-			 con = myTemaConnection();
+			 conn = myTemaConnection();
 	   		 String sql = "INSERT INTO TEMA (TEMA,ARANACAK,YAZILACAK) " +
 	   						"VALUES (?,?,?)";
-	    	 stmt = con.prepareStatement(sql);
+	    	 stmt = conn.prepareStatement(sql);
 	   		 stmt.setString(1,  tema);
 	   		 stmt.setString(2, aranan);
 	   		 stmt.setString(3, yazilan);
 	   		 stmt.executeUpdate();
 	   		 stmt.close();
-	   		 con.close();
+	   		 conn.close();
 	     }
 	     public static void tema_hes_kayit(String tema,String aranan,String yazilan) throws ClassNotFoundException, SQLException
 	     {
 	    	 Class.forName("org.sqlite.JDBC");
-	    	 con.close();
-			 con = null;
+	    	 conn.close();
+			 conn = null;
 			 PreparedStatement stmt = null;
-			 con = myTemaConnection();
+			 conn = myTemaConnection();
 	   		 String sql = "INSERT INTO HESAPLAR (TEMA,ARANACAK,HESAP_KODU) " +
 	   						"VALUES (?,?,?)";
-	    	 stmt = con.prepareStatement(sql);
+	    	 stmt = conn.prepareStatement(sql);
 	   		 stmt.setString(1,  tema);
 	   		 stmt.setString(2, aranan);
 	   		 stmt.setString(3, yazilan);
 	   		 stmt.executeUpdate();
 	   		 stmt.close();
-	   		 con.close();
+	   		 conn.close();
 	     }
 
 }

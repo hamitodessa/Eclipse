@@ -516,13 +516,14 @@ public LOGIN() throws IOException {
 	versiyon_oku();
 	//************SURUCU KONTROL**************************
 	GLOBAL.surucu_kontrol();
-//	Tema_Cari tcr = new Tema_Cari();
-//	try {
-//		tcr.obs_tema_dosya_olustur();
-//	  }
-//	   catch (Exception ex) {  
-//	   	JOptionPane.showMessageDialog(null, ex);  
-//	       }  
+ 
+	try {
+	 
+		Tema_Cari.dosya_yap();
+	  }
+	   catch (Exception ex) {  
+			 JOptionPane.showMessageDialog(null, "fdsfdsfdsfdsfsd");
+	       }  
 //
 	//************BENI_HATIRLA**	
 		String deger;

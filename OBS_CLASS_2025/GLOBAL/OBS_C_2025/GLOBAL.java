@@ -186,8 +186,7 @@ public static void surucu_kontrol() {
        	try {
        		GLOBAL gLB = new GLOBAL();
        		gLB.obs_dosya_olustur();
-       		Tema_Cari tcr = new Tema_Cari();
-       		tcr.obs_tema_dosya_olustur();
+       		Tema_Cari.dosya_yap();
 			//obs_set_olustur();
 				set_ilk() ;
 			} catch (Exception e) {

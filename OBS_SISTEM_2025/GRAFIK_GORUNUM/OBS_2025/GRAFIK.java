@@ -90,7 +90,7 @@ public class GRAFIK extends JInternalFrame {
 		        );  
 		    CategoryPlot plot = (CategoryPlot) chart.getPlot();
 		    NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-		    rangeAxis.setRange(GLOBAL.max_value, GLOBAL.min_value);
+		   // rangeAxis.setRange(GLOBAL.max_value, GLOBAL.min_value);
 		    rangeAxis.setUpperMargin(0.50);
 		    
 		    
@@ -98,7 +98,7 @@ public class GRAFIK extends JInternalFrame {
 		    //
 		 	  //
 		    NumberFormat formatter = DecimalFormat.getInstance();
-		    formatter.setMinimumFractionDigits(3);
+		    formatter.setMinimumFractionDigits(GLOBAL.gkusurat);
 		    rangeAxis.setNumberFormatOverride(formatter);
 		    //
 		     

@@ -46,6 +46,7 @@ public class GLOBAL {
     public static String g_setNumbersAxisTitleText="";
     public static double min_value =0;
     public static double max_value =0;
+    public static int gkusurat = 0;
    // public static XYSeriesCollection dataset = new XYSeriesCollection();
     public static DefaultCategoryDataset dataset = new DefaultCategoryDataset();  
 	 //*************************************************

@@ -163,6 +163,7 @@ public class KUR_GRAFIK extends JInternalFrame {
 	}
 	public static void grafik_kur()
 	{
+		GLOBAL.gkusurat = 3;
 		if (FILTRE.comboBox_73.getItemAt(FILTRE.comboBox_73.getSelectedIndex()).equals("Yil"))
 		{
 			GLOBAL.g_baslik = "KUR GRAFIK YILLARA GORE";

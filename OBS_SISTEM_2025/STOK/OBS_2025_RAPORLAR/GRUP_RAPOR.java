@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
@@ -44,6 +46,7 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.STOK_ACCESS;
@@ -1064,7 +1067,39 @@ public class GRUP_RAPOR extends JInternalFrame {
 	}
 	public static void grafik()
 	{
-		
+		if (FILTRE.comboBox_27.getItemAt(FILTRE.comboBox_27.getSelectedIndex()).equals("Yil"))
+		{
+		GLOBAL.g_baslik = "GRUP RAPORLAMA YIL";
+		//***LEGENDS
+		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+		GLOBAL.g_legends = "AYLAR";
+	
+		//*** g_setNumbersAxisTitleText
+		GLOBAL.g_setNumbersAxisTitleText = "Tutar" ;
+//		ArrayList<Double> kur = new ArrayList<Double>();
+//		 for (int y = 0;y<mdll.getRowCount() - 1 ;y++)
+//		 {
+//			kur.add(  mdll.getValueAt(y,2) == null ? 0: Double.parseDouble( mdll.getValueAt(y,2).toString()));
+//		 }
+//		GLOBAL.min_value =  Collections.max(kur) + (Collections.max(kur) * .10) ;
+//		GLOBAL.max_value = Collections.min(kur) - (Collections.min(kur) * .10) ;
+		///
+		Double asd = 0.00 ;
+		GLOBAL.gkusurat = 0;
+		GLOBAL.dataset = new DefaultCategoryDataset();  
+		String series1 = "";  
+		 for (int i= 0 ;i<=mdll.getRowCount() -2 ;i++)
+		 {
+			 series1 =  mdll.getValueAt(i,0).toString();
+			 for (int y = 1;y<=mdll.getColumnCount() -2;y++)
+			 {
+					 asd =  mdll.getValueAt(i,y) == null ? 0: Double.parseDouble( mdll.getValueAt(i,y).toString());
+					 GLOBAL.dataset.addValue(asd, series1,mdll.getColumnName(y));  
+			 }
+		 }
+		 ///
+		 
+		}
 	}
 	public static void excell_aktar()
 	{

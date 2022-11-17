@@ -2266,7 +2266,7 @@ public class OBS_MAIN extends JFrame {
     				String sonuc = pencere_activmi();
     				if (sonuc == "GRUP RAPOR")
     				{
-    				//	GRUP_RAPOR.grafik();
+    					GRUP_RAPOR.grafik();
     				}
     				else if (sonuc == "IMALAT GRUP RAPOR")
     				{

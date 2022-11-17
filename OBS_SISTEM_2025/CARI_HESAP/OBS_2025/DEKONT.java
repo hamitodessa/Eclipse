@@ -375,26 +375,19 @@ public class DEKONT extends JInternalFrame {
 				ResultSet rs = null;
 				try {
 					getContentPane().setCursor(oac.WAIT_CURSOR);
-					
-				//	 CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ILogger);
 			         rs =  c_Access.cari_sonfisno();
-			           
-					if (!rs.isBeforeFirst() ) { 
+					rs.next();
+					if ( rs.getInt("MAX_NO") == 0 ) { 
 						kutu_kapa();
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						 JOptionPane.showMessageDialog(null, "Dosyada Hic Kayit Yok",  "Cari Hesap", JOptionPane.ERROR_MESSAGE);  
 					    return; // Kayit Yok
 					} 
-					rs.next();
 					int evr = rs.getInt("MAX_NO");
-					txtevrak.setText(Integer.toString(evr));
+						txtevrak.setText(Integer.toString(evr));
 					fiskont();
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+				} catch (Exception ex) {
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 			}
@@ -412,7 +405,11 @@ public class DEKONT extends JInternalFrame {
 
 					int evr = Integer.parseInt(txtevrak.getText());
 					evr -=1 ;
-					if (evr < 1) evr = 1 ;
+					if (evr < 1)
+						{
+						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						return;
+						}
 					txtevrak.setText(Integer.toString(evr));
 					fiskont();
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);

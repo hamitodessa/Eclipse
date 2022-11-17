@@ -62,7 +62,7 @@ public class Tema_Cari {
 	    	stmt.close();
 	       conn.close();
 		   }
-	public  static ResultSet  tema_oku() throws ClassNotFoundException, SQLException
+	public static   ResultSet  tema_oku() throws ClassNotFoundException, SQLException
 	{
 		 Class.forName("org.sqlite.JDBC");
    	 	 conn.close();

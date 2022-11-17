@@ -903,7 +903,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		} 
 		while(rs.next())
 		{
-			comboBox.addItem(rs.getString("TEMA"));
+			comboBox.addItem(rs.getString("TEMA").toString());
 		}
 		comboBox.addItem("");
 		textField.setText(Tema_Cari.tema_anahesap(comboBox.getSelectedItem().toString()));

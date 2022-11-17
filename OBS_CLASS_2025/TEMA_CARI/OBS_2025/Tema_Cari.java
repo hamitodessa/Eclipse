@@ -62,10 +62,8 @@ public class Tema_Cari {
 	    	stmt.close();
 	       conn.close();
 		   }
-	public  ResultSet  tema_oku() throws ClassNotFoundException, SQLException
+	public  static ResultSet  tema_oku() throws ClassNotFoundException, SQLException
 	{
-		
-		
 		 Class.forName("org.sqlite.JDBC");
    	 	 conn.close();
     	 conn = null;
@@ -77,7 +75,7 @@ public class Tema_Cari {
     	 rss = stmt.executeQuery();
     	 return rss;
 	
-}
+	}
 
 	   
 	     public static String tema_anahesap(String tema) throws ClassNotFoundException, SQLException

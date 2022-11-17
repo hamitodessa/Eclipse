@@ -519,7 +519,7 @@ public LOGIN() throws IOException {
 	
 	try 
 	{
-		oac.t_Cari.conn =    Tema_Cari.myTemaConnection();
+		Tema_Cari.conn =    Tema_Cari.myTemaConnection();
 	  }
 	   catch (Exception ex) {  
 	       }  

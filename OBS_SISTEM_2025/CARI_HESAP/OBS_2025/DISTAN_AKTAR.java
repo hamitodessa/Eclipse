@@ -199,10 +199,10 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					try {
 						hsp = new HESAP_PLN();
 						hsp.show(); 
-						txtkod.setText( oac.hsp_hsp_kodu);
-						getContentPane().setCursor(oac.WAIT_CURSOR);
+						txtkod.setText( OBS_SIS_2025_ANA_CLASS.hsp_hsp_kodu);
+						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 						lblunvan.setText(CARI_ISIM_OKU.isim(txtkod.getText())[0]);
-						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
 					} catch (SQLException e1) {
@@ -214,23 +214,23 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		txtkod .getDocument().addDocumentListener(new DocumentListener() {
 		 public void changedUpdate(DocumentEvent e) {
 		  
-			    	getContentPane().setCursor(oac.WAIT_CURSOR);
+			    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 			    	lblunvan.setText(CARI_ISIM_OKU.isim(txtkod.getText())[0]);
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				
 		  }
 		  public void removeUpdate(DocumentEvent e) {
 		    
-			    	getContentPane().setCursor(oac.WAIT_CURSOR);
+			    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 			    	lblunvan.setText(CARI_ISIM_OKU.isim(txtkod.getText())[0]);
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				
 			  }
 		  public void insertUpdate(DocumentEvent e) {
 		    
-			    	getContentPane().setCursor(oac.WAIT_CURSOR);
+			    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 			    	lblunvan.setText(CARI_ISIM_OKU.isim(txtkod.getText())[0]);
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				
 			  }
 			});
@@ -262,14 +262,14 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		DefaultTableModel model = new DefaultTableModel() ;
 		tblexcell = new JTable(model) ;
 		tblexcell.getTableHeader().setReorderingAllowed(false);
-		tblexcell.setGridColor(oac.gridcolor);
+		tblexcell.setGridColor(OBS_SIS_2025_ANA_CLASS.gridcolor);
 		tblexcell.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			getContentPane().setCursor(oac.WAIT_CURSOR);
+			getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 			doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 2).toString(),"B");
 			doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 5).toString(),"A");
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 		    	}
 		    });
 	    tblexcell.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -505,15 +505,15 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			int g =  JOptionPane.showOptionDialog( null,  "Tema Silme Islemi......Silme ? ", "Cari Coklu Kayit",   JOptionPane.YES_NO_OPTION,
 	   		JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
 	        if(g != 0 ) { return;	}	        
-	        getContentPane().setCursor(oac.WAIT_CURSOR);
+	        getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 	        Tema_Cari.tema_sil(comboBox.getSelectedItem().toString());
 	        //ilk = true ;
 	        tema_doldur();
-	        getContentPane().setCursor(oac.DEFAULT_CURSOR);
+	        getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 		}
 	    catch (Exception ex)
 	    {
-	    	 getContentPane().setCursor(oac.DEFAULT_CURSOR);
+	    	 getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 	 		JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 	    }
 			}
@@ -531,10 +531,10 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				try {
 					hsp = new HESAP_PLN();
 					hsp.show();
-					textField.setText( oac.hsp_hsp_kodu);
-					getContentPane().setCursor(oac.WAIT_CURSOR);
+					textField.setText( OBS_SIS_2025_ANA_CLASS.hsp_hsp_kodu);
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 					//lblNewLabel.setText(isimoku(textField.getText()));
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				} catch (ClassNotFoundException e1) {
 					e1.printStackTrace();
 				} catch (SQLException e1) {
@@ -550,21 +550,21 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 		@Override
 		public void insertUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 					lblNewLabel.setText(CARI_ISIM_OKU.isim(textField.getText())[0]);
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 			}
 		@Override
 		public void removeUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 					lblNewLabel.setText(CARI_ISIM_OKU.isim(textField.getText())[0]);
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 			}
 		@Override
 		public void changedUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 					lblNewLabel.setText(CARI_ISIM_OKU.isim(textField.getText())[0]);
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 			}
 		});
 		panel_2.add(textField);
@@ -587,7 +587,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		
 		DefaultTableModel mdl = new DefaultTableModel() ;
 		table_1 = new JTable(mdl);
-		table_1.setGridColor(oac.gridcolor);
+		table_1.setGridColor(OBS_SIS_2025_ANA_CLASS.gridcolor);
 		table_1.setCellSelectionEnabled(true);
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
@@ -657,7 +657,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		
 		DefaultTableModel mdlt = new DefaultTableModel() ;
 		table = new JTable(mdlt);
-		table.setGridColor(oac.gridcolor);
+		table.setGridColor(OBS_SIS_2025_ANA_CLASS.gridcolor);
 		table.setCellSelectionEnabled(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			 mdlt.addColumn("Aranacak", new String []{null});
@@ -742,7 +742,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		panel_3.add(lblsatir);
 		GRID_TEMIZLE.grid_temizle(tblexcell);
 		
-			 getContentPane().setCursor(oac.WAIT_CURSOR);
+			 getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 			try {
 				te_sifirla();
 				
@@ -754,7 +754,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-			 getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			 getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 	}
 	public static void doldur(String kod,String tur)
 	{
@@ -894,7 +894,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private void tema_doldur() throws ClassNotFoundException, SQLException
 	{
 		ResultSet rs = null ;
-		rs = oac.t_Cari.tema_oku();
+		rs = Tema_Cari.tema_oku();
 		te_sifirla();
 		if (!rs.isBeforeFirst() ) { 
 			comboBox.addItem("");
@@ -941,7 +941,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-		 getContentPane().setCursor(oac.DEFAULT_CURSOR);
+		 getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -964,7 +964,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			 getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			 getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktarma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -986,7 +986,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	    	 try {
 	    	String iki,ass ,degisen= "" ;
 	    	DefaultTableModel model = (DefaultTableModel) tblexcell.getModel();
-	    	getContentPane().setCursor(oac.WAIT_CURSOR);
+	    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 	    	Progres_Bar_Temizle();
 	    	OBS_MAIN.progressBar.setMaximum(tblexcell.getRowCount() - 1);
 	      for( int i = 0 ; i <= tblexcell.getRowCount() - 1;i ++)
@@ -1019,7 +1019,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	           }
 	      }
 	     Thread.currentThread().isInterrupted();
-	     getContentPane().setCursor(oac.DEFAULT_CURSOR);   
+	     getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);   
 	    	 }  catch (Exception ex) {
 		    		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Distan Aktarma", JOptionPane.ERROR_MESSAGE);
 				}
@@ -1041,7 +1041,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		 int sat = 0 ;
 		 DefaultTableModel mdl = (DefaultTableModel) table_1.getModel();
 		 DefaultTableModel model = (DefaultTableModel) tblexcell.getModel();
-		 getContentPane().setCursor(oac.WAIT_CURSOR);  
+		 getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);  
 		 Progres_Bar_Temizle();
 		 OBS_MAIN.progressBar.setStringPainted(true);
 		OBS_MAIN.progressBar.setMaximum(table_1.getRowCount() - 1);
@@ -1088,7 +1088,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
             }  
             tblexcell.setRowSorter(null);
 		 }
-		  getContentPane().setCursor(oac.DEFAULT_CURSOR);  
+		  getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);  
 		 Thread.currentThread().isInterrupted();
 		Progres_Bar_Temizle();
 		    	} 

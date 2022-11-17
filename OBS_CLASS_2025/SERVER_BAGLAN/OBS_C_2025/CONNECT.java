@@ -1,9 +1,6 @@
 package OBS_C_2025;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.swing.JOptionPane;
 
 public class CONNECT {
 	
@@ -32,9 +29,5 @@ public class CONNECT {
 	{
 		return _IConnect.Dosyakontrol_S(server,  inst,  kull,  sifre,prog);
 	}
-	public ResultSet instance(String server, String user, String pwd) throws ClassNotFoundException, SQLException 
-	{
-		return _IConnect.instance(server, user, pwd);
-		
-	}
+	
 }

@@ -86,21 +86,5 @@ public class OBS_ORTAK_MSSQL implements IConnection {
  		conn.close();
  		return result;
      }
-	@Override
-	public ResultSet instance(String server, String user, String pwd) throws SQLException, ClassNotFoundException {
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
- 		
-		Connection conn = null;  
- 		String cumle = "";
-         cumle =  "jdbc:sqlserver://" + server + ";encrypt=true;integratedSecurity=true;";
-        conn = DriverManager.getConnection(cumle,user,pwd);
-        System.out.println("hfhfhfhf");
-     //   PreparedStatement stmt = conn.prepareStatement("SELECT SERVERPROPERTY ('instancename')");
- 	//	ResultSet rs = stmt.executeQuery();
- 		
- 	//	stmt.close();
- 		conn.close();
-	//	return rs;
-		return null;
-	}
+	
 }

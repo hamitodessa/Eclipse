@@ -62,21 +62,23 @@ public class Tema_Cari {
 	    	stmt.close();
 	       conn.close();
 		   }
-	   public static ResultSet  tema_oku() throws ClassNotFoundException, SQLException
-	     {
-	    	 Class.forName("org.sqlite.JDBC");
-	   	 	 conn.close();
-	    	 conn = null;
-	    	 ResultSet	rss = null;
-	    	 PreparedStatement stmt = null;
-	    	 conn = myTemaConnection();
+	public  ResultSet  tema_oku() throws ClassNotFoundException, SQLException
+	{
+		
+		
+		 Class.forName("org.sqlite.JDBC");
+   	 	 conn.close();
+    	 conn = null;
+    	 ResultSet	rss = null;
+    	 PreparedStatement stmt = null;
+    	 conn =myTemaConnection();
+    	 String sql = "SELECT DISTINCT TEMA FROM ANA_HESAP ";
+    	 stmt = conn.prepareStatement(sql);
+    	 rss = stmt.executeQuery();
+    	 return rss;
 	
-	    	 String sql = "SELECT DISTINCT TEMA FROM ANA_HESAP ";
-	    	 stmt = conn.prepareStatement(sql);
-	    	 rss = stmt.executeQuery();
-	    	 return rss;
-	     }
-	
+}
+
 	   
 	     public static String tema_anahesap(String tema) throws ClassNotFoundException, SQLException
 	     {

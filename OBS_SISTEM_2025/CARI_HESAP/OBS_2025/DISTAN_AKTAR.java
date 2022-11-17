@@ -745,6 +745,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			 getContentPane().setCursor(oac.WAIT_CURSOR);
 			try {
 				te_sifirla();
+				
 				tema_doldur();
 				hesap_doldur();
 				temadoldur();
@@ -893,8 +894,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private void tema_doldur() throws ClassNotFoundException, SQLException
 	{
 		ResultSet rs = null ;
-
-		rs = Tema_Cari.tema_oku();
+		rs = oac.t_Cari.tema_oku();
 		te_sifirla();
 		if (!rs.isBeforeFirst() ) { 
 			comboBox.addItem("");

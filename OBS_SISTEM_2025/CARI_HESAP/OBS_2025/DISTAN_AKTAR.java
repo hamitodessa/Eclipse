@@ -101,7 +101,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private static JTable table;
 	private static JTable table_1;
 	private JTextField textField;
-	//private static boolean ilk = true;
+	private static boolean ilk = true;
 	public static JSplitPane splitPane ;
 	/**
 	 * Launch the application.
@@ -405,23 +405,21 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		comboBox.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			if (comboBox.getItemCount()<1) return;
-			//if (comboBox.getSelectedItem() == null ) return;
-				//if (ilk)
-				//{
-				//	ilk = false ;
-				//}
-				//else
-				//{
+			if (comboBox.getSelectedItem() == null ) return;
+				if (ilk)
+				{
+					ilk = false ;
+				}
+				else
+				{
 					try {
-						hesap_doldur();
-						temadoldur();
-						textField.setText(Tema_Cari.tema_anahesap(comboBox.getSelectedItem().toString()));
-					} catch (ClassNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (SQLException e1) {
+				hesap_doldur();
+				temadoldur();
+				textField.setText(oac.tCR.tema_anahesap(comboBox.getSelectedItem().toString()));
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
-				//}
+				}
 			}
 		});
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -893,8 +891,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		try {
 			te_sifirla();
 		ResultSet rs = null ;
-		Tema_Cari tCR = new Tema_Cari();
-		rs = tCR.tema_oku();
+	
+		rs = oac.tCR.tema_oku();
 		
 		if (!rs.isBeforeFirst() ) { 
 			comboBox.addItem("");

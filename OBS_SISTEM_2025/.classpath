@@ -51,7 +51,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/bridj-0.6.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/slf4j-api-1.7.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/webcam-capture-0.3.10.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/2025/log4j.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/keycodeDecoder.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jSerialComm-2.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/QueryBuilder.jar"/>
@@ -59,5 +58,8 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-net-3.7.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/pfjgraphics.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jcommon-1.0.8.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-compress-1.22.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/log4j.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

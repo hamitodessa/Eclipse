@@ -29,9 +29,6 @@ import javax.swing.JFileChooser;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Cursor;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -893,9 +890,12 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	}
 	private void tema_doldur() throws ClassNotFoundException, SQLException
 	{
+		try {
+			te_sifirla();
 		ResultSet rs = null ;
-		rs = Tema_Cari.tema_oku();
-		te_sifirla();
+		Tema_Cari tCR = new Tema_Cari();
+		rs = tCR.tema_oku();
+		
 		if (!rs.isBeforeFirst() ) { 
 			comboBox.addItem("");
 			textField.setText("");
@@ -909,6 +909,9 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		textField.setText(Tema_Cari.tema_anahesap(comboBox.getSelectedItem().toString()));
 		table.enable(true);
 		table_1.enable(true);
+	} catch (Exception ex) {
+		JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);   
+	}
 	}
 	private void sol_tablo_ilave(JTable tbl)
 	{

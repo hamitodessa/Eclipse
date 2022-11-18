@@ -516,14 +516,6 @@ public LOGIN() throws IOException {
 	versiyon_oku();
 	//************SURUCU KONTROL**************************
 	GLOBAL.surucu_kontrol();
-	
-	try 
-	{
-		Tema_Cari.conn =    Tema_Cari.myTemaConnection();
-	  }
-	   catch (Exception ex) {  
-	       }  
-//
 	//************BENI_HATIRLA**	
 		String deger;
 		deger = GLOBAL.setting_oku("BENI_HATIRLA").toString();
@@ -644,6 +636,7 @@ void calisma_dizini_oku() throws ClassNotFoundException, SQLException, Interrupt
 void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
     CONNECT s_CONN = new CONNECT(oac._IConn);
+    Tema_Cari.conn =    Tema_Cari.myTemaConnection();
     if (BAGLAN.cariDizin.yER.equals(""))
     {
         OBS_SIS_2025_ANA_CLASS.CARI_CONN = false;

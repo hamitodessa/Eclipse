@@ -459,24 +459,24 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	  
 	    	 GuiUtil.setWaitCursor(splitPane,true);
 	       //**************tema sil
-	    	 Tema_Cari.tema_sil(comboBox.getSelectedItem().toString());
+	    	oac.tCR.tema_sil(comboBox.getSelectedItem().toString());
 	       //********** KAYIT ********
-	    	 Tema_Cari.tema_ana_hes_kayit(comboBox.getSelectedItem().toString(), textField.getText());
+	    	 oac.tCR.tema_ana_hes_kayit(comboBox.getSelectedItem().toString(), textField.getText());
 		       for(int i = 0 ; i  <= table.getRowCount() -1  ; i ++) 
 		       {
-		    	   Tema_Cari.tema_tem_hes_kayit(comboBox.getSelectedItem().toString(),
+		    	   oac.tCR.tema_tem_hes_kayit(comboBox.getSelectedItem().toString(),
 		    		   table.getModel().getValueAt(i, 0).toString(),
 		    		   table.getModel().getValueAt(i, 1).toString());
 		       }
            //*******HESAPLAR
 		       for( int i = 0 ; i  <= table_1.getRowCount() -1  ; i ++) 
 		       {
-		    	   Tema_Cari.tema_hes_kayit(comboBox.getSelectedItem().toString(),
+		    	   oac.tCR.tema_hes_kayit(comboBox.getSelectedItem().toString(),
 	        		   table_1.getModel().getValueAt(i, 0).toString(),
 	        		   table_1.getModel().getValueAt(i, 1).toString());
 				}
 	        //***************
-	       //ilk = true ;
+	       ilk = true ;
 	       te_sifirla();
 	       tema_doldur();
 	       hesap_doldur();
@@ -504,8 +504,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	   		JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
 	        if(g != 0 ) { return;	}	        
 	        getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-	        Tema_Cari.tema_sil(comboBox.getSelectedItem().toString());
-	        //ilk = true ;
+	       oac.tCR.tema_sil(comboBox.getSelectedItem().toString());
+	        ilk = true ;
 	        tema_doldur();
 	        getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 		}
@@ -907,6 +907,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		{
 			comboBox.addItem(rs.getString("TEMA").toString());
 		}
+		oac.tCR.conn.close();
 		comboBox.addItem("");
 		textField.setText(Tema_Cari.tema_anahesap(comboBox.getSelectedItem().toString()));
 		table.enable(true);

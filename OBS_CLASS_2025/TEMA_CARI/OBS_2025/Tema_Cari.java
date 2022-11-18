@@ -73,6 +73,7 @@ public class Tema_Cari {
     	 String sql = "SELECT DISTINCT TEMA FROM ANA_HESAP ";
     	 stmt = conn.prepareStatement(sql);
     	 rss = stmt.executeQuery();
+      
     	 return rss;
 	
 	}

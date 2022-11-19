@@ -214,14 +214,14 @@ public class ANA_MENU extends JDialog {
 				txtdiz.requestFocus();
 				return;
 			}
-			 String serverAddress = "ftp.okumus.gen.tr";
-	         String userId ="u5789784";
-	         String password ="4wX.5Wx53-Y..nlG";
-	         String remoteDirectory ="OBS_SISTEM_2025/";
-	         String localDirectory = "C:\\" ;
-//            String serverAddress = "78.26.149.175";
-//            String userId ="hamitadmin";
-//            String password ="SDFks9hfji3#DEd";
+//			 String serverAddress = "ftp.okumus.gen.tr";
+//	         String userId ="u5789784";
+//	         String password ="4wX.5Wx53-Y..nlG";
+//	         String remoteDirectory ="OBS_SISTEM_2025/";
+//	         String localDirectory = "C:\\" ;
+            String serverAddress = "78.26.149.175";
+            String userId ="hamitadmin";
+            String password ="SDFks9hfji3#DEd";
             //try to connect
             ftp.connect(serverAddress);
             //login to server

@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
+
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
@@ -327,7 +329,7 @@ public class ANA_MENU extends JDialog {
 	         String remoteDirectory ="OBS_SISTEM_2025/";
 	         String localDirectory = "C:\\" ;
             //try to connect
-            ftp.connect(serverAddress);
+            ftp.connect(serverAddress,21);
             //login to server
             if(!ftp.login(userId, password))
             {
@@ -344,37 +346,26 @@ public class ANA_MENU extends JDialog {
      
             ftp.enterLocalPassiveMode();
             boolean success ;
-            //******************************
-         // Changes working directory
-            ftp.changeWorkingDirectory("/OBS_SISTEM_2025");
-//            if (success) {
-//                System.out.println("Successfully changed working directory.");
-//            } else {
-//                System.out.println("Failed to change working directory. See server's reply.");
-//            }
-            // 
-            double toplam = 0 ;
-            FTPFile[] files = ftp.listFiles();
-            for (FTPFile file : files)
-            {
-              if (file.getName().equals("OBS_SISTEM_2025.jar"))  
-              { 
-            	  toplam = file.getSize();
-            	  double topl =  toplam ;
-          	  lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
-              }
-           }
+             double toplam = 0 ;
+            String filePath = "/OBS_SISTEM_2025/OBS_SISTEM_2025.jar";
+    //        FTPFile file = ftp.mlistFile(filePath);
+   //          toplam = file.getSize();
+          
+             
+            lblboyut.setText(FORMATLAMA.doub_0(toplam /1024)+ " KBytes");
+            System.out.println("File size = " + toplam);
+  
         	contentPane.setCursor(WAIT_CURSOR);
-            String remoteFile2 =  ftp.printWorkingDirectory() + "/OBS_SISTEM_2025.jar";
             File downloadFile2 = new File(txtdiz.getText() + "/OBS_SISTEM_2025.jar");
             OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
-            InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
+            InputStream inputStream = ftp.retrieveFileStream(filePath );
            double inen= 0;
             byte[] bytesArray = new byte[4096];
             int bytesRead = -1;
             progressBar.setMaximum((int) toplam);
             progressBar.setStringPainted(true);
             Long start = System.currentTimeMillis();
+        
             long timeInSecs = 0;
             while ((bytesRead = inputStream.read(bytesArray)) != -1)
             {
@@ -392,7 +383,7 @@ public class ANA_MENU extends JDialog {
             outputStream2.close();
             inputStream.close();
             //Version dosyasi Indir
-            String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
+            String remoteFile1 = "/OBS_SISTEM_2025/OBS_VERSION.txt";
             File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSION.txt");
             OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
             ftp.retrieveFile(remoteFile1, outputStream1);

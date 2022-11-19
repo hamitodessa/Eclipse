@@ -346,7 +346,7 @@ public class ANA_MENU extends JDialog {
             boolean success ;
             //******************************
          // Changes working directory
-            success = ftp.changeWorkingDirectory("/OBS_SISTEM_2025");
+            ftp.changeWorkingDirectory("/OBS_SISTEM_2025");
 //            if (success) {
 //                System.out.println("Successfully changed working directory.");
 //            } else {
@@ -361,7 +361,7 @@ public class ANA_MENU extends JDialog {
               { 
             	  toplam = file.getSize();
             	  double topl =  toplam ;
-            	  lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
+          	  lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
               }
            }
         	contentPane.setCursor(WAIT_CURSOR);

@@ -98,7 +98,8 @@ public class ANA_MENU extends JDialog {
 		btnNewButton.setForeground(new Color(0, 0, 205));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				indir();
+				//indir();
+				indir_natro();
 			}
 		});
 		btnNewButton.setBounds(318, 119, 67, 23);
@@ -194,6 +195,7 @@ public class ANA_MENU extends JDialog {
 		lblHiz.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblHiz.setBounds(52, 128, 85, 14);
 		panel.add(lblHiz);
+	
 	}
 	private void indir()
 	{
@@ -250,8 +252,8 @@ public class ANA_MENU extends JDialog {
               lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
            }
         	contentPane.setCursor(WAIT_CURSOR);
-            String remoteFile2 =  ftp.printWorkingDirectory() + "/OBS_SISTEM.jar";
-            File downloadFile2 = new File(txtdiz.getText() + "/OBS_SISTEM.jar");
+            String remoteFile2 =  ftp.printWorkingDirectory() + "/OBS_SISTEM_2025.jar";
+            File downloadFile2 = new File(txtdiz.getText() + "/OBS_SISTEM_2025.jar");
             OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
             InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
            double inen= 0;
@@ -300,6 +302,120 @@ public class ANA_MENU extends JDialog {
 	    Thread t = new Thread(runner, "Code Executer");
 	    t.start();
 	}
+	private void indir_natro()
+	{
+		 ///// Progres Bsr olayi
+		Runnable runner = new Runnable()
+	    { 
+		public void run() {
+	        /////  
+		  FTPClient ftp = new FTPClient();
+		try {
+			   lblboyut.setText(FORMATLAMA.doub_0(0) + " bytes");
+			   lblinen.setText(FORMATLAMA.doub_0(0)+ " bytes");
+			   lblkalan.setText(FORMATLAMA.doub_0(0)+ " bytes");
+			   Login_Progres_Bar_Temizle();
+			if (txtdiz.getText().equals(""))
+			{
+				JOptionPane.showMessageDialog(null, "Dizin Secilmemis....",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+				txtdiz.requestFocus();
+				return;
+			}
+			 String serverAddress = "ftp.okumus.gen.tr";
+	         String userId ="u5789784";
+	         String password ="4wX.5Wx53-Y..nlG";
+	         String remoteDirectory ="OBS_SISTEM_2025/";
+	         String localDirectory = "C:\\" ;
+            //try to connect
+            ftp.connect(serverAddress);
+            //login to server
+            if(!ftp.login(userId, password))
+            {
+                ftp.logout();
+            	JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+            }
+            int reply = ftp.getReplyCode();
+    
+            if (!FTPReply.isPositiveCompletion(reply))
+            {
+                ftp.disconnect();
+            	JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+            }
+     
+            ftp.enterLocalPassiveMode();
+            boolean success ;
+            //******************************
+         // Changes working directory
+            success = ftp.changeWorkingDirectory("/OBS_SISTEM_2025");
+//            if (success) {
+//                System.out.println("Successfully changed working directory.");
+//            } else {
+//                System.out.println("Failed to change working directory. See server's reply.");
+//            }
+            // 
+            double toplam = 0 ;
+            FTPFile[] files = ftp.listFiles();
+            for (FTPFile file : files)
+            {
+              if (file.getName().equals("OBS_SISTEM_2025.jar"))  
+              { 
+            	  toplam = file.getSize();
+            	  double topl =  toplam ;
+            	  lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
+              }
+           }
+        	contentPane.setCursor(WAIT_CURSOR);
+            String remoteFile2 =  ftp.printWorkingDirectory() + "/OBS_SISTEM_2025.jar";
+            File downloadFile2 = new File(txtdiz.getText() + "/OBS_SISTEM_2025.jar");
+            OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
+            InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
+           double inen= 0;
+            byte[] bytesArray = new byte[4096];
+            int bytesRead = -1;
+            progressBar.setMaximum((int) toplam);
+            progressBar.setStringPainted(true);
+            Long start = System.currentTimeMillis();
+            long timeInSecs = 0;
+            while ((bytesRead = inputStream.read(bytesArray)) != -1)
+            {
+                outputStream2.write(bytesArray, 0, bytesRead);
+                inen += bytesRead ;
+                lblinen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
+                lblkalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
+                Lgn_Progres_Bar((int) toplam,(int) inen);
+                double speedInKBps = 0.00;
+                timeInSecs = (System.currentTimeMillis() - start) ; //converting millis to seconds as 1000m in 1 second
+                speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
+                label.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
+             }
+            success = ftp.completePendingCommand();
+            outputStream2.close();
+            inputStream.close();
+            //Version dosyasi Indir
+            String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
+            File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSION.txt");
+            OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
+            ftp.retrieveFile(remoteFile1, outputStream1);
+            outputStream1.close();
+            //*******************************
+            if (success) {
+            	JOptionPane.showMessageDialog(null, "Indirme Islemi Basari ile tamamlandi....",  "OBS Indirme", JOptionPane.PLAIN_MESSAGE);   
+            }
+        	contentPane.setCursor(DEFAULT_CURSOR);
+        	  Thread.currentThread().isInterrupted();
+  			System.exit(1);
+        }
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+			} 
+	    }
+	    };
+	    //// Progress Bar
+	    Thread t = new Thread(runner, "Code Executer");
+	    t.start();
+	}
+	
 	 void Lgn_Progres_Bar(int max, int deger) throws InterruptedException
 	    {
 	 	   	progressBar.setValue(deger);

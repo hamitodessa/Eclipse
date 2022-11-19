@@ -743,7 +743,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			 getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 			try {
 				te_sifirla();
-				
+				ilk = true;
 				tema_doldur();
 				hesap_doldur();
 				temadoldur();
@@ -935,7 +935,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		if (comboBox.getItemCount() == 0) return ;
 		ResultSet rs = null ;
 		GRID_TEMIZLE.grid_temizle(table_1);
-		rs = Tema_Cari.ttema_oku(comboBox.getSelectedItem().toString());
+		rs =  oac.tCR.ttema_oku(comboBox.getSelectedItem().toString());
 		if (!rs.isBeforeFirst() ) {  
 			return;
 		} 
@@ -944,6 +944,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		 {
 			 mdl.addRow(new Object[]{rs.getString("ARANACAK"),rs.getString("HESAP_KODU")}); 
 		 }
+		 oac.tCR.conn.close();
 		}
 		catch (Exception ex)
 		{
@@ -958,7 +959,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		if (comboBox.getItemCount() == 0) return ;
 		ResultSet rs = null ;
 		GRID_TEMIZLE.grid_temizle(table);
-		rs = Tema_Cari.temalar_oku(comboBox.getSelectedItem().toString());
+		rs =  oac.tCR.temalar_oku(comboBox.getSelectedItem().toString());
 		if (!rs.isBeforeFirst() ) {  
 			return;
 		} 
@@ -967,6 +968,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		 {
 			 mdl.addRow(new Object[]{rs.getString("ARANACAK"),rs.getString("YAZILACAK")}); 
 		 }
+		 oac.tCR.conn.close();
 		}
 		catch (Exception ex)
 		{

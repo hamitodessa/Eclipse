@@ -214,14 +214,14 @@ public class ANA_MENU extends JDialog {
 				txtdiz.requestFocus();
 				return;
 			}
-			 //String serverAddress = "ftp.okumus.gen.tr";
-	           // String userId ="u5789784";
-	            //String password ="oOk271972";
-	            //String remoteDirectory ="PLAST_BAK_2019/";
-	            //String localDirectory = "C:\\" ;
-            String serverAddress = "78.26.149.175";
-            String userId ="hamitadmin";
-            String password ="SDFks9hfji3#DEd";
+			 String serverAddress = "ftp.okumus.gen.tr";
+	         String userId ="u5789784";
+	         String password ="4wX.5Wx53-Y..nlG";
+	         String remoteDirectory ="OBS_SISTEM_2025/";
+	         String localDirectory = "C:\\" ;
+//            String serverAddress = "78.26.149.175";
+//            String userId ="hamitadmin";
+//            String password ="SDFks9hfji3#DEd";
             //try to connect
             ftp.connect(serverAddress);
             //login to server
@@ -244,7 +244,7 @@ public class ANA_MENU extends JDialog {
             double toplam = 0 ;
             FTPFile[] files = ftp.listFiles();
             for (FTPFile file : files) {
-              if (file.getName().equals("OBS_SISTEM.jar"))  
+              if (file.getName().equals("OBS_SISTEM_2025.jar"))  
              toplam = file.getSize();
              double topl =  toplam ;
               lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");

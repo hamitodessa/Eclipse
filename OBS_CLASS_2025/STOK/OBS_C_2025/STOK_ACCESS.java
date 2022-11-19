@@ -77,7 +77,6 @@ public class STOK_ACCESS {
 		_IStok.degisken_degistir(anagrp, altgrp, anaygrp, altygrp);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
-		
 	}
 	public  boolean alt_grup_kontrol(int anagrp,int altgrp) throws ClassNotFoundException, SQLException
 	{
@@ -92,6 +91,7 @@ public class STOK_ACCESS {
 	public void urun_kod_degisken_sil(   String hangi_Y,String nerden  ,   int sira) throws ClassNotFoundException, SQLException
 	{
 		_IStok.urun_kod_degisken_sil(nerden, hangi_Y, sira);
+		
 	}
 	public void urun_degisken_eski(String fieldd ,String degisken_adi ,String nerden ,String sno ,int ID ) throws ClassNotFoundException, SQLException 
 	{
@@ -161,16 +161,21 @@ public class STOK_ACCESS {
 	{
 		return _IStok.sql_sorgu(sql);
 	}
-	public void fat_giris_sil(String fno,String cins) throws ClassNotFoundException, SQLException 
+	public void fat_giris_sil(String fno,String cins , String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
 	{
 		_IStok.fat_giris_sil(fno, cins);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
 	public void fat_kaydet(String fatno ,String kodu ,int depo ,double  fiat ,double tevkifat  
             , double miktar ,String gircik ,double tutar,double iskonto ,double kdv  
             , String tarih, String izah,String doviz,String  adrfirma ,String carfirma  
-            , String ozkod ,double kur ,String cins,int  anagrp,int  altgrp ,String usr) throws ClassNotFoundException, SQLException
+            , String ozkod ,double kur ,String cins,int  anagrp,int  altgrp ,String usr
+            , String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.fat_kaydet(fatno, kodu, depo, fiat, tevkifat, miktar, gircik, tutar, iskonto, kdv, tarih, izah, doviz, adrfirma, carfirma, ozkod, kur, cins, anagrp, altgrp, usr);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
 	public void stok_sil(String eno,String ecins,String cins) throws ClassNotFoundException, SQLException
 	{

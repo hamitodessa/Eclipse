@@ -1793,13 +1793,13 @@ public class FATURA extends JInternalFrame {
 		if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 		{
 			
-				f_Access.fat_giris_sil(textField.getText(), "C");
+				f_Access.fat_giris_sil(textField.getText(), "C" ,textField.getText() + " Nolu Cikis Fatura Silindi",textField.getText(),BAGLAN_LOG.fatLogDizin);
 			
 		}
 		else
 		{
 			
-				 f_Access.fat_giris_sil(textField.getText(), "G");
+				 f_Access.fat_giris_sil(textField.getText(), "G" ,textField.getText() + " Nolu Giris Fatura Silindi",textField.getText(),BAGLAN_LOG.fatLogDizin);
 			
 		}
 		 DefaultTableModel mdl = (DefaultTableModel) table.getModel();
@@ -1906,7 +1906,8 @@ public class FATURA extends JInternalFrame {
 	        	f_Access.fat_kaydet(textField.getText(),  mdl.getValueAt(i,1).toString(), depo,fiat , tevk,
 	    	            miktar, gircik, tutar ,isk,kdv,
 	    	            tar, izahat, txtdoviz.getText(), txtadres.getText(), txtcari.getText(), 
-	    	            cmbozkod.getItemAt(cmbozkod.getSelectedIndex()).toString(), kur, "", angrp, altgrp, GLOBAL.KULL_ADI);
+	    	            cmbozkod.getItemAt(cmbozkod.getSelectedIndex()).toString(), kur, "", angrp, altgrp, GLOBAL.KULL_ADI
+	    	            ,gircik + " Fatura Kayit" +  mdl.getValueAt(i,1).toString() + " Mik=" + miktar + " Tut=" + tutar,textField.getText(),BAGLAN_LOG.fatLogDizin);
  		
 		}
 		catch (Exception ex)
@@ -2587,13 +2588,13 @@ public class FATURA extends JInternalFrame {
 	 	if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 		{
 	 		
-				f_Access.fat_giris_sil(textField.getText(), "C");
+				f_Access.fat_giris_sil(textField.getText(), "C" ,textField.getText() + " Nolu Cikis Fatura Silindi",textField.getText(),BAGLAN_LOG.fatLogDizin);
 			
 		}
 	 	else
 	 	{
 	 		
-				f_Access.fat_giris_sil(textField.getText(), "G");
+				f_Access.fat_giris_sil(textField.getText(), "G" ,textField.getText() + " Nolu Giris Fatura Silindi",textField.getText(),BAGLAN_LOG.fatLogDizin);
 			
 	 	}
       

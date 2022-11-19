@@ -1800,7 +1800,8 @@ public class STOK_MSSQL implements ISTOK {
                                     " AND Stok.Depo " + depo +
                                     " AND Stok.Evrak_Cins " + wee +
                                     " AND Stok.Evrak_Cins " + ure1 +
-                " Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim";
+                " Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim " +
+                " ORDER by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim ";
     	PreparedStatement stmt = con.prepareStatement(sql);
  		rss = stmt.executeQuery();
 		return rss;	

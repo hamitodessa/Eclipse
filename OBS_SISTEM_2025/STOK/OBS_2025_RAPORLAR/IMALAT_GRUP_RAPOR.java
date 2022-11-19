@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -43,6 +46,7 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.STOK_ACCESS;
@@ -60,6 +64,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+
 
 
 public class IMALAT_GRUP_RAPOR extends JInternalFrame {
@@ -1070,7 +1075,45 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 	public static void grafik()
 	{
 
+		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 		
+		if (mdl.getRowCount() == 0 )
+		{
+		JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
+		GLOBAL.g_baslik = "";
+		return;
+		}
+		
+		if (FILTRE.comboBox_35.getItemAt(FILTRE.comboBox_35.getSelectedIndex()).equals("Yil"))
+		{
+		GLOBAL.g_baslik = "IMALAT GRUP RAPORLAMA YIL";
+		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+		GLOBAL.g_legends = FILTRE.comboBox_36.getItemAt(FILTRE.comboBox_36.getSelectedIndex());
+		GLOBAL.g_setNumbersAxisTitleText =FILTRE.comboBox_34.getItemAt(FILTRE.comboBox_34.getSelectedIndex());
+		ArrayList<Double> tutar = new ArrayList<Double>();
+		 for (int i = 0;i<=mdll.getRowCount() - 2 ;i++)
+		 {
+			 for(int y = 1;y<=mdll.getColumnCount() -2 ;y++)
+			 {
+			tutar.add(  mdll.getValueAt(i,y) == null ? 0: Double.parseDouble( mdll.getValueAt(i,y).toString()));
+			 }
+		 }
+		GLOBAL.max_value =  Collections.max(tutar) + (Collections.max(tutar) * .05) ;
+		GLOBAL.min_value = Collections.min(tutar) - (Collections.min(tutar) * .05) ;
+		Double asd = 0.00 ;
+		GLOBAL.gkusurat = 0;
+		GLOBAL.dataset = new DefaultCategoryDataset();  
+		String series1 = "";  
+		 for (int i= 0 ;i<=mdll.getRowCount() -2 ;i++)
+		 {
+			 series1 =  mdll.getValueAt(i,0).toString();
+			 for (int y = 1;y<=mdll.getColumnCount() -2;y++)
+			 {
+					 asd =  mdll.getValueAt(i,y) == null ? 0: Double.parseDouble( mdll.getValueAt(i,y).toString());
+					 GLOBAL.dataset.addValue(asd, series1,mdll.getColumnName(y));  
+			 }
+		 }
+		}
 	}
 	public static void excell_aktar()
 	{

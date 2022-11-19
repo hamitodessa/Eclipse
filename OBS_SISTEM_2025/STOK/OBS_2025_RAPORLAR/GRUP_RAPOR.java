@@ -1067,6 +1067,15 @@ public class GRUP_RAPOR extends JInternalFrame {
 	}
 	public static void grafik()
 	{
+	DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+		
+		if (mdl.getRowCount() == 0 )
+		{
+		JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
+		GLOBAL.g_baslik = "";
+		return;
+		}
+		
 		if (FILTRE.comboBox_27.getItemAt(FILTRE.comboBox_27.getSelectedIndex()).equals("Yil"))
 		{
 		GLOBAL.g_baslik = "GRUP RAPORLAMA YIL";

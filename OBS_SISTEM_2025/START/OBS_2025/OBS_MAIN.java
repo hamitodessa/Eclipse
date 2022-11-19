@@ -2270,7 +2270,7 @@ public class OBS_MAIN extends JFrame {
     				}
     				else if (sonuc == "IMALAT GRUP RAPOR")
     				{
-    				//	IMALAT_GRUP_RAPOR.grafik();
+    					IMALAT_GRUP_RAPOR.grafik();
     				}
     				else if (sonuc == "KUR GRAFIK")
     				{

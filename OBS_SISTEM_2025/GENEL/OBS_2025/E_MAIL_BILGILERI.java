@@ -158,7 +158,7 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 	private void doldur() 
 	{
 		try {
-		
+		oac.uSER_ISL.mail_bak();
 		  txtmail.setText(MAIL_SETTINGS.HESAP);
           txthost.setText(MAIL_SETTINGS.HOST);
           txtport.setText(MAIL_SETTINGS.PORT);
@@ -166,8 +166,8 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
           txtgonhesap.setText(MAIL_SETTINGS.GHESAP);
           txtgonisim.setText(MAIL_SETTINGS.GADI);
          // 
-          chckbxNewCheckBox.setSelected((boolean) (MAIL_SETTINGS.SSL == false ? false :true ));
-          chckbxNewCheckBox_1.setSelected((boolean) (MAIL_SETTINGS.TSL == false ? false :true ));
+      chckbxNewCheckBox.setSelected( ((boolean) MAIL_SETTINGS.SSL  ? true : false ));
+       chckbxNewCheckBox_1.setSelected((boolean) (MAIL_SETTINGS.TSL ? true : false ));
 		}
 		catch (Exception ex)
 		{

@@ -841,14 +841,11 @@ public class MAIL extends JInternalFrame {
 		}
 		else
 		{
-			  oac.uSER_ISL.mail_bak(GLOBAL.KULL_ADI);
+			  oac.uSER_ISL.mail_bak();
 		      txtgonderen.setText(MAIL_SETTINGS.GHESAP);
 		      txtgonadi.setText(MAIL_SETTINGS.GADI);
 		      result =true ;
 		}
-	
-         
-	     
 		}
 		catch (Exception ex)
 		{

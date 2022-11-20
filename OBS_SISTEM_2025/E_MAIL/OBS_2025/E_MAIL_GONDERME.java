@@ -64,6 +64,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.MAIL_SETTINGS;
+import OBS_C_2025.USER_ISLEMLERI;
 import OBS_C_2025.ValidEmailAddress;
 
 import javax.swing.SwingConstants;
@@ -387,7 +388,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	{
 		try
 		{
-	
+		oac.uSER_ISL.mail_bak();
         txtgonhesap.setText(MAIL_SETTINGS.GHESAP);
         txtgonisim.setText(MAIL_SETTINGS.GADI);
         cmbalici.removeAllItems();

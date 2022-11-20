@@ -375,7 +375,7 @@ public class USER_ISLEMLERI {
 		 rss = stmt.executeQuery();
 		 return rss;
 	}
-	public void mail_bak(String user) throws ClassNotFoundException, SQLException
+	public void mail_bak() throws ClassNotFoundException, SQLException
 	{
 		 Class.forName("org.sqlite.JDBC");
 		 	 con.close();
@@ -385,9 +385,8 @@ public class USER_ISLEMLERI {
 		 con =  gLB.myConnection();
 		 String sql = "SELECT  * FROM E_MAIL_BILGILERI WHERE USER_NAME = ? ";
 		 stmt = con.prepareStatement(sql);
-		 stmt.setString(1,user);
+		 stmt.setString(1,gLB.KULL_ADI);
 		 rss = stmt.executeQuery();
-		 
 		 int count=0;
 			rss.next();
 			count = rss.getRow();
@@ -408,8 +407,8 @@ public class USER_ISLEMLERI {
 				MAIL_SETTINGS. HOST =rss.getString("HOST").toString() ;
 				MAIL_SETTINGS.PORT =rss.getString("PORT").toString() ;
 				MAIL_SETTINGS.PWD = rss.getString("SIFR").toString() ;
-				MAIL_SETTINGS.SSL = rss.getBoolean("SSL");
-				MAIL_SETTINGS. TSL = rss.getBoolean("TSL");
+				MAIL_SETTINGS.SSL = (boolean) (rss.getInt("SSL") == -1 ? false :true );
+				MAIL_SETTINGS. TSL = (boolean) (rss.getInt("TSL") == -1 ? false :true );
 				MAIL_SETTINGS.GHESAP = rss.getString("GON_MAIL").toString();
 				MAIL_SETTINGS. GADI = rss.getString("GON_ISIM").toString();
 			}

@@ -529,7 +529,7 @@ public LOGIN() throws IOException {
 			txtpwd.setText(decodedString);
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
-
+		
 }
 void calisma_dizini_oku() throws ClassNotFoundException, SQLException, InterruptedException
 {
@@ -873,9 +873,9 @@ void kam_calisma_dizini_oku() throws ClassNotFoundException, SQLException
     }
     else
     	OBS_SIS_2025_ANA_CLASS.KAM_CONN = false;
-}
-void gun_calisma_dizini_oku() throws ClassNotFoundException, SQLException
-{
+	}
+	void gun_calisma_dizini_oku() throws ClassNotFoundException, SQLException
+	{
 	
     CONNECT s_CONN = new CONNECT(oac._IConn);
     
@@ -913,18 +913,18 @@ void gun_calisma_dizini_oku() throws ClassNotFoundException, SQLException
     }
     else
     	OBS_SIS_2025_ANA_CLASS.GUN_CONN = false;
-}
-void Lgn_Progres_Bar(int max, int deger) throws InterruptedException
-{
+	}
+	void Lgn_Progres_Bar(int max, int deger) throws InterruptedException
+	{
 	   	progressBar.setValue(deger);
-}
-void Login_Progres_Bar_Temizle()
-{
+	}
+	void Login_Progres_Bar_Temizle()
+	{
 	progressBar.setMaximum(0);
 	progressBar.setValue(0);
 	progressBar.setStringPainted(false);
-}
-private void versiyon_oku()
+	}
+	private void versiyon_oku()
 {
 	if (oac.glb.internet_kontrol() == false)
 	{
@@ -1069,6 +1069,7 @@ private void versiyon_oku()
 			}
 			else if (hANGI_LOG.equals("Email Atma"))
 			{
+	
 				LOG_MAIL_OKU.mail_oku();
 				if (GLOBAL.Log_Mail.equals(""))
 				{

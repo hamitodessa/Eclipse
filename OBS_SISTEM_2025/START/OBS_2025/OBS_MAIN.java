@@ -2305,16 +2305,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_26.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-edit-graph-report-16.png")));
 		toolBar.add(btnNewButton_26);
 		
-		JButton btnNewButton_35 = new JButton("");
-		btnNewButton_35.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("PDF GOSTER","");
-			}
-		});
-		btnNewButton_35.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-pdf-16.png")));
-		btnNewButton_35.setToolTipText("PDF");
-		toolBar.add(btnNewButton_35);
-		
+			
 		JLabel lblNewLabel_5 = new JLabel("          ");
 		toolBar.add(lblNewLabel_5);
 		
@@ -2753,7 +2744,6 @@ public class OBS_MAIN extends JFrame {
 		else if (pencere.equals("DEGISKENLER")) internalFrame  = new DEGISKEN_GIRIS(hangi);
 		else if (pencere.equals("SQL SORGULAMA")) internalFrame  = new SQL_SORGULAMA(hangi);
 		else if (pencere.equals("HAKKINDA")) internalFrame  = new HAKKINDA();
-		else if (pencere.equals("PDF GOSTER")) internalFrame  = new PDF_GOSTERR();
 		//3536
 		desktopPane.add(internalFrame);
 		internalFrame.setVisible(true);

@@ -95,16 +95,16 @@ public class ANA_MENU extends JDialog {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Indir");
+		JButton btnNewButton = new JButton("Indir 2");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setForeground(new Color(0, 0, 205));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//indir();
-				indir_natro();
+				indir();
+		
 			}
 		});
-		btnNewButton.setBounds(318, 119, 67, 23);
+		btnNewButton.setBounds(314, 119, 80, 23);
 		panel.add(btnNewButton);
 		
 		progressBar = new JProgressBar();
@@ -112,7 +112,7 @@ public class ANA_MENU extends JDialog {
 		progressBar.setBorder(new LineBorder(new Color(0, 191, 255)));
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		progressBar.setBounds(52, 153, 333, 25);
+		progressBar.setBounds(52, 153, 342, 25);
 		panel.add(progressBar);
 		
 		txtdiz = new JTextField();
@@ -147,7 +147,7 @@ public class ANA_MENU extends JDialog {
 				}
 			
 		});
-		btnNewButton_1.setBounds(343, 23, 42, 23);
+		btnNewButton_1.setBounds(343, 23, 51, 23);
 		panel.add(btnNewButton_1);
 		
 		JLabel lblNewLabel = new JLabel("Kalan");
@@ -197,6 +197,17 @@ public class ANA_MENU extends JDialog {
 		lblHiz.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblHiz.setBounds(52, 128, 85, 14);
 		panel.add(lblHiz);
+		
+		JButton btnIndir = new JButton("Indir 1");
+		btnIndir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				indir_natro();
+			}
+		});
+		btnIndir.setForeground(new Color(0, 0, 205));
+		btnIndir.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnIndir.setBounds(314, 95, 80, 23);
+		panel.add(btnIndir);
 	
 	}
 	private void indir()
@@ -326,18 +337,14 @@ public class ANA_MENU extends JDialog {
 			 String serverAddress = "ftp.okumus.gen.tr";
 	         String userId ="u5789784";
 	         String password ="4wX.5Wx53-Y..nlG";
-	         String remoteDirectory ="OBS_SISTEM_2025/";
-	         String localDirectory = "C:\\" ;
-            //try to connect
-            ftp.connect(serverAddress,21);
-            //login to server
+
+	         ftp.connect(serverAddress);
             if(!ftp.login(userId, password))
             {
                 ftp.logout();
             	JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
             }
             int reply = ftp.getReplyCode();
-    
             if (!FTPReply.isPositiveCompletion(reply))
             {
                 ftp.disconnect();
@@ -348,12 +355,10 @@ public class ANA_MENU extends JDialog {
             boolean success ;
              double toplam = 0 ;
             String filePath = "/OBS_SISTEM_2025/OBS_SISTEM_2025.jar";
-    //        FTPFile file = ftp.mlistFile(filePath);
-   //          toplam = file.getSize();
-          
-             
+            FTPFile file = ftp.mlistFile(filePath);
+             toplam = file.getSize();
+             ftp.setFileType(FTP.BINARY_FILE_TYPE);
             lblboyut.setText(FORMATLAMA.doub_0(toplam /1024)+ " KBytes");
-            System.out.println("File size = " + toplam);
   
         	contentPane.setCursor(WAIT_CURSOR);
             File downloadFile2 = new File(txtdiz.getText() + "/OBS_SISTEM_2025.jar");

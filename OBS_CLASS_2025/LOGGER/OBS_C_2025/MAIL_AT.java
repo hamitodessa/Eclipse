@@ -47,7 +47,7 @@ public class MAIL_AT implements ILOGGER{
                }
            });
 		   MimeMessage message = new MimeMessage(session);
-		   message.setFrom(new InternetAddress(GLOBAL.Log_Mail));
+		   message.setFrom(new InternetAddress(MAIL_SETTINGS.GHESAP ,MAIL_SETTINGS.GADI));
 		   InternetAddress[] toAddress = new InternetAddress[to.length];
 		   for (int i = 0; i < to.length; i++) {
 		    toAddress[i] = new InternetAddress(to[i]);

@@ -85,6 +85,8 @@ import OBS_C_2025.USER_ISLEMLERI;
 import net.proteanit.sql.DbUtils;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 
 public class CAL_DIZIN extends JFrame {
@@ -582,11 +584,11 @@ public class CAL_DIZIN extends JFrame {
 		panel.add(lblUser);
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		tabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
 				activ_sayfa =tabbedPane.getSelectedIndex();
 				try {
+					if (txtcdid== null) return;
 					contentPane.setCursor(WAIT_CURSOR);
 					grid_doldur();
 					if (activ_sayfa == 0)
@@ -628,6 +630,12 @@ public class CAL_DIZIN extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+			}
+		});
+		tabbedPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+		
 			}
 		});
 		tabbedPane.setFont(new Font("Segoe UI", Font.BOLD, 14));

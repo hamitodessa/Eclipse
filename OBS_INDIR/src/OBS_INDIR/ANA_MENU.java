@@ -212,7 +212,7 @@ public class ANA_MENU extends JDialog {
 	}
 	private void indir()
 	{
-		 ///// Progres Bsr olayi
+
 		Runnable runner = new Runnable()
 	    { 
 		public void run() {
@@ -229,30 +229,22 @@ public class ANA_MENU extends JDialog {
 				txtdiz.requestFocus();
 				return;
 			}
-//			 String serverAddress = "ftp.okumus.gen.tr";
-//	         String userId ="u5789784";
-//	         String password ="4wX.5Wx53-Y..nlG";
-//	         String remoteDirectory ="OBS_SISTEM_2025/";
-//	         String localDirectory = "C:\\" ;
             String serverAddress = "78.26.149.175";
             String userId ="hamitadmin";
             String password ="SDFks9hfji3#DEd";
-            //try to connect
             ftp.connect(serverAddress);
-            //login to server
             if(!ftp.login(userId, password))
             {
                 ftp.logout();
             	JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
             }
             int reply = ftp.getReplyCode();
-            //FTPReply stores a set of constants for FTP reply codes. 
             if (!FTPReply.isPositiveCompletion(reply))
             {
                 ftp.disconnect();
             	JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
             }
-            //enter passive mode
+            ftp.setFileType(FTP.BINARY_FILE_TYPE);
             ftp.enterLocalPassiveMode();
             boolean success ;
             //******************************
@@ -350,7 +342,7 @@ public class ANA_MENU extends JDialog {
                 ftp.disconnect();
             	JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
             }
-     
+            ftp.setFileType(FTP.BINARY_FILE_TYPE);
             ftp.enterLocalPassiveMode();
             boolean success ;
              double toplam = 0 ;

@@ -45,7 +45,7 @@ public class OBS_SIS_2025_ANA_CLASS
     public static ILOGGER[] _IKambiyo_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
     public static ILOGGER[] _ISms_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
     public static ILOGGER[] _IGunluk_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
-    
+   
    
     public String[] options = {"Tamam......       		!", "Vazgec.....       		!"}; 
     public IConnection _IConn ;

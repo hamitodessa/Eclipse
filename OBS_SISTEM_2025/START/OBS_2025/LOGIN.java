@@ -71,6 +71,7 @@ import OBS_C_2025.KAMBIYO_MYSQL;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.KUR_MSSQL;
 import OBS_C_2025.KUR_MYSQL;
+import OBS_C_2025.LOG_MAIL_OKU;
 import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
@@ -525,8 +526,8 @@ public LOGIN() throws IOException {
 			byte[] decodedBytes = Base64.getDecoder().decode(GLOBAL.setting_oku("SIFRE").toString());
 			String decodedString = new String(decodedBytes);
 			txtUser.setText(GLOBAL.setting_oku("ISIM").toString());
-				txtpwd.setText(decodedString);
-				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			txtpwd.setText(decodedString);
+			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 
 }
@@ -1044,7 +1045,7 @@ private void versiyon_oku()
 	      BAGLAN_LOG _blog = new BAGLAN_LOG();
           _blog.cONNECT();
 	}
-	private void lOGG_AKTAR(String mODUL, String hangiSQL , Boolean log , String hANGI_LOG)
+	private void lOGG_AKTAR(String mODUL, String hangiSQL , Boolean log , String hANGI_LOG) throws ClassNotFoundException, SQLException
 	{
 		if (log == false)
 		{
@@ -1068,9 +1069,18 @@ private void versiyon_oku()
 			}
 			else if (hANGI_LOG.equals("Email Atma"))
 			{
-				ILOGGER[] ilogg = {new MAIL_AT()};
-				lAktar(mODUL , ilogg);
-			}
+				LOG_MAIL_OKU.mail_oku();
+				if (GLOBAL.Log_Mail.equals(""))
+				{
+					ILOGGER[] ilogg = {};
+					lAktar(mODUL , ilogg);
+				}
+				else
+				{
+					ILOGGER[] ilogg = {new MAIL_AT()};
+					lAktar(mODUL , ilogg);
+				}
+		}
 		}
 	}
 	private void lAktar(String mODUL , ILOGGER[] ilogg)

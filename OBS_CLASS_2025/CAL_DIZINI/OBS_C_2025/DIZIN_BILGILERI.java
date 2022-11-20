@@ -15,5 +15,5 @@ public class DIZIN_BILGILERI
 	public  String fIRMA_ADI ="" ;
 	public boolean lOG = false;
 	public String lOGLAMA_YERI = "";
-    public  int cDID =0;
+	public  int cDID =0;
 }

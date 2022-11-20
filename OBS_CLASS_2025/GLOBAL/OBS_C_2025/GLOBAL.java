@@ -39,6 +39,7 @@ public class GLOBAL {
     static Connection con ;
     static String ayarlar[][]; // = new String[5][5];
     public static String KULL_ADI = "";
+    public static String Log_Mail ="";
     public static  int filtre_sayfa ;
     public static  String hangi_mizan = "" ;
     public static String yazici[]; 

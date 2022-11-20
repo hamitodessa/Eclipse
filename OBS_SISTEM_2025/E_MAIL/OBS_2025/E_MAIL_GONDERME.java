@@ -370,10 +370,12 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			}
 			else if (grf_kontrol() )
 			{
+				comboBox.enable(false);
 				lblNewLabel_2.setText(GLOBAL.g_baslik);
 			}
 			else 
 			{
+				comboBox.enable(false);
 				lblNewLabel_2.setText("");
 			}
 		} catch (ReportSDKException e1) {

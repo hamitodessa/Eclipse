@@ -375,7 +375,7 @@ public class USER_ISLEMLERI {
 		 rss = stmt.executeQuery();
 		 return rss;
 	}
-	public ResultSet mail_bak(String user) throws ClassNotFoundException, SQLException
+	public void mail_bak(String user) throws ClassNotFoundException, SQLException
 	{
 		 Class.forName("org.sqlite.JDBC");
 		 	 con.close();
@@ -387,7 +387,32 @@ public class USER_ISLEMLERI {
 		 stmt = con.prepareStatement(sql);
 		 stmt.setString(1,user);
 		 rss = stmt.executeQuery();
-		 return rss;
+		 
+		 int count=0;
+			rss.next();
+			count = rss.getRow();
+			if (count  == 0)
+			{
+				MAIL_SETTINGS.HESAP= "";
+				MAIL_SETTINGS. HOST ="";
+				MAIL_SETTINGS.PORT ="";
+				MAIL_SETTINGS.PWD = "";
+				MAIL_SETTINGS.SSL = false;
+				MAIL_SETTINGS. TSL = false;
+				MAIL_SETTINGS.GHESAP ="";
+				MAIL_SETTINGS. GADI = "";
+			}
+			else
+			{
+				MAIL_SETTINGS.HESAP= rss.getString("HESAP").toString();
+				MAIL_SETTINGS. HOST =rss.getString("HOST").toString() ;
+				MAIL_SETTINGS.PORT =rss.getString("PORT").toString() ;
+				MAIL_SETTINGS.PWD = rss.getString("SIFR").toString() ;
+				MAIL_SETTINGS.SSL = rss.getBoolean("SSL");
+				MAIL_SETTINGS. TSL = rss.getBoolean("TSL");
+				MAIL_SETTINGS.GHESAP = rss.getString("GON_MAIL").toString();
+				MAIL_SETTINGS. GADI = rss.getString("GON_ISIM").toString();
+			}
 	}
 	 public void mail_yaz(String hsp,String host,String port,String sifre,String gmail,String ghesap,int ssl,int tsl) throws ClassNotFoundException, SQLException
      {

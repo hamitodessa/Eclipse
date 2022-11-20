@@ -58,6 +58,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.MAIL_SETTINGS;
 import OBS_C_2025.ORTA;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SOLA;
@@ -106,12 +107,7 @@ public class MAIL extends JInternalFrame {
 	private JComboBox<String> comboBox ;
 	private JTextArea txtaciklama  ;
 	
-	private String HESAP;
-	private String HOST;
-	private String  PORT;
-	private String  SIFR;
-	private boolean  SSL;
-	private boolean  TSL;
+	
 	private static JTabbedPane tabbedPane ;
 	private static JCheckBox chckbxNewCheckBox ;
 	/**
@@ -836,22 +832,23 @@ public class MAIL extends JInternalFrame {
 	}
 	private boolean smtp_bak ()
 	{
-		boolean result = false ;
+		boolean result = false;
 		try {
-		 ResultSet rs = null;
-		 rs= oac.uSER_ISL.mail_bak(GLOBAL.KULL_ADI);
-		 if (!rs.isBeforeFirst() ) {  result = false;} 
-	        else {
-	        HESAP = rs.getString("HESAP");
-	        HOST = rs.getString("HOST");
-	        PORT = rs.getString("PORT");
-	        SIFR = rs.getString("SIFR");
-	        SSL = rs.getBoolean("SSL");
-	        TSL = rs.getBoolean("TSL");
-	        txtgonderen.setText(rs.getString("GON_MAIL"));
-	        txtgonadi.setText(rs.getString("GON_ISIM"));
-            result = true ;
-	        }
+		
+		if (MAIL_SETTINGS.HESAP.equals(""))
+		{
+			result = false;
+		}
+		else
+		{
+			  oac.uSER_ISL.mail_bak(GLOBAL.KULL_ADI);
+		      txtgonderen.setText(MAIL_SETTINGS.GHESAP);
+		      txtgonadi.setText(MAIL_SETTINGS.GADI);
+		      result =true ;
+		}
+	
+         
+	     
 		}
 		catch (Exception ex)
 		{
@@ -859,6 +856,7 @@ public class MAIL extends JInternalFrame {
 		    JOptionPane.showMessageDialog(null,  ex.getMessage(),  "SMTP Bilgisi Okuma", JOptionPane.PLAIN_MESSAGE);		
 		}
 		return result;
+	
 	}
 	private void send_mail(String alici)
 	{
@@ -867,21 +865,21 @@ public class MAIL extends JInternalFrame {
 			   MimeBodyPart messagePart = null ;
 		       String[] to = { alici };
 			   Properties props = System.getProperties();
-			   props.put("mail.smtp.starttls.enable", TSL);
-			   if (SSL)
+			   props.put("mail.smtp.starttls.enable", MAIL_SETTINGS.TSL);
+			   if (MAIL_SETTINGS.SSL)
 			   {
 				   props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
 				   //props.put("mail.smtp.startsls.enable", SSL);
 			   }
-			   props.put("mail.smtp.host", HOST);
-			   props.put("mail.smtp.user", HESAP);
-			   props.put("mail.smtp.password", SIFR);
-			   props.put("mail.smtp.port", PORT);
+			   props.put("mail.smtp.host", MAIL_SETTINGS.HOST);
+			   props.put("mail.smtp.user", MAIL_SETTINGS.HESAP);
+			   props.put("mail.smtp.password", MAIL_SETTINGS.PWD);
+			   props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
 			   props.put("mail.smtp.auth", "true");
 			   props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			   Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
                    protected PasswordAuthentication getPasswordAuthentication() {
-                       return new PasswordAuthentication(HESAP, SIFR);
+                       return new PasswordAuthentication(MAIL_SETTINGS.HESAP, MAIL_SETTINGS.PWD);
                    }
                });
 			   MimeMessage message = new MimeMessage(session);

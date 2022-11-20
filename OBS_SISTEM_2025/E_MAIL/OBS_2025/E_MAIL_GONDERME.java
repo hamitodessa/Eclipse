@@ -63,6 +63,7 @@ import com.crystaldecisions.sdk.occa.report.lib.ReportSDKException;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.MAIL_SETTINGS;
 import OBS_C_2025.ValidEmailAddress;
 
 import javax.swing.SwingConstants;
@@ -80,14 +81,14 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	
-	private String HESAP;
-	private String HOST;
-	private String  PORT;
-	private String  SIFR;
-	private boolean  SSL;
-	private boolean  TSL;
-	private String GHESAP;
-	private String GADI;
+//	private String HESAP;
+//	private String HOST;
+//	private String  PORT;
+//	private String  SIFR;
+//	private boolean  SSL;
+//	private boolean  TSL;
+//	private String GHESAP;
+//	private String GADI;
 	
 
 	/**
@@ -386,21 +387,9 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	{
 		try
 		{
-		ResultSet rs = oac.uSER_ISL.mail_bak(GLOBAL.KULL_ADI);
-		int count=0;
-		rs.next();
-		count = rs.getRow();
-		if (count  == 0) return;
-		HESAP= rs.getString("HESAP").toString();
-        HOST =rs.getString("HOST").toString() ;
-        PORT =rs.getString("PORT").toString() ;
-        SIFR = rs.getString("SIFR").toString() ;
-        SSL = rs.getBoolean("SSL");
-        TSL = rs.getBoolean("TSL");
-        GHESAP = rs.getString("GON_MAIL").toString();
-        GADI = rs.getString("GON_ISIM").toString();
-        txtgonhesap.setText(GHESAP);
-        txtgonisim.setText(GADI);
+	
+        txtgonhesap.setText(MAIL_SETTINGS.GHESAP);
+        txtgonisim.setText(MAIL_SETTINGS.GADI);
         cmbalici.removeAllItems();
         cmbalici.addItem("");
          //
@@ -427,16 +416,16 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		   String[] to = { cmbalici.getSelectedItem().toString() };
 		   MimeBodyPart messagePart = null ;
 		   Properties props = System.getProperties();
-		   props.put("mail.smtp.starttls.enable", TSL);
-		   if (SSL)
+		   props.put("mail.smtp.starttls.enable", MAIL_SETTINGS.TSL);
+		   if (MAIL_SETTINGS.SSL)
 		   {
 			   props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
 			   //props.put("mail.smtp.startsls.enable", SSL);
 		   }
-		   props.put("mail.smtp.host", HOST);
-		   props.put("mail.smtp.user", HESAP);
-		   props.put("mail.smtp.password", SIFR);
-		   props.put("mail.smtp.port", PORT);
+		   props.put("mail.smtp.host", MAIL_SETTINGS.HOST);
+		   props.put("mail.smtp.user", MAIL_SETTINGS.HESAP);
+		   props.put("mail.smtp.password", MAIL_SETTINGS.PWD);
+		   props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
 		   props.put("mail.smtp.auth", "true");
 		   props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 		   
@@ -445,7 +434,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		   //
 		   Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
                protected PasswordAuthentication getPasswordAuthentication() {
-                   return new PasswordAuthentication(HESAP, SIFR);
+                   return new PasswordAuthentication(MAIL_SETTINGS.HESAP,MAIL_SETTINGS.PWD);
                }
            });
 		   MimeMessage message = new MimeMessage(session);
@@ -480,7 +469,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		   session = null;
 		   //**********************Raporlama Dosyasina Yaz ***************************
 		   oac.uSER_ISL.giden_rapor_yaz(new java.sql.Date(Calendar.getInstance().getTime().getTime())  ,txtkonu.getText(), rapor_dos_adi,  cmbalici.getSelectedItem().toString()  ,
-				   						HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;
+				   MAIL_SETTINGS.HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;
 		   //*************************************************************************
 	}
 	catch (Exception ex)
@@ -524,25 +513,25 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		       //*************************************************************************************************
 		       String[] to = { cmbalici.getSelectedItem().toString()  };
 			   Properties props = System.getProperties();
-			   props.put("mail.smtp.starttls.enable", TSL);
-			   if (SSL)
+			   props.put("mail.smtp.starttls.enable", MAIL_SETTINGS.TSL);
+			   if (MAIL_SETTINGS.SSL)
 			   {
 				   props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
 				   //props.put("mail.smtp.startsls.enable", SSL);
 			   }
-			   props.put("mail.smtp.host", HOST);
-			   props.put("mail.smtp.user", HESAP);
-			   props.put("mail.smtp.password", SIFR);
-			   props.put("mail.smtp.port", PORT);
+			   props.put("mail.smtp.host", MAIL_SETTINGS.HOST);
+			   props.put("mail.smtp.user", MAIL_SETTINGS.HESAP);
+			   props.put("mail.smtp.password",MAIL_SETTINGS.PWD);
+			   props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
 			   props.put("mail.smtp.auth", "true");
 			   props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			   Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
                    protected PasswordAuthentication getPasswordAuthentication() {
-                       return new PasswordAuthentication(HESAP, SIFR);
+                       return new PasswordAuthentication(MAIL_SETTINGS.HESAP, MAIL_SETTINGS.PWD);
                    }
                });
 			   MimeMessage message = new MimeMessage(session);
-			   message.setFrom(new InternetAddress(HESAP,GADI));
+			   message.setFrom(new InternetAddress(MAIL_SETTINGS.HESAP,MAIL_SETTINGS.GADI));
 			   InternetAddress[] toAddress = new InternetAddress[to.length];
 			   for (int i = 0; i < to.length; i++) {
 			    toAddress[i] = new InternetAddress(to[i]);
@@ -599,7 +588,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			   session = null;
 			   //**********************Raporlama Dosyasina Yaz ***************************
 	            oac.uSER_ISL.giden_rapor_yaz(new java.sql.Date(Calendar.getInstance().getTime().getTime())  ,txtkonu.getText(), rapor_dos_adi, cmbalici.getSelectedItem().toString() ,
-	            						HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;
+	            		MAIL_SETTINGS.HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;
 	           //*************************************************************************
 	      		 long endTime = System.currentTimeMillis();
 	      		 long estimatedTime = endTime - startTime; 
@@ -627,24 +616,24 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		       //*************************************************************************************************
 		       String[] to = { cmbalici.getSelectedItem().toString()  };
 			   Properties props = System.getProperties();
-			   props.put("mail.smtp.starttls.enable", TSL);
-			   if (SSL)
+			   props.put("mail.smtp.starttls.enable", MAIL_SETTINGS.TSL);
+			   if (MAIL_SETTINGS.SSL)
 			   {
 				   props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
 			   }
-			   props.put("mail.smtp.host", HOST);
-			   props.put("mail.smtp.user", HESAP);
-			   props.put("mail.smtp.password", SIFR);
-			   props.put("mail.smtp.port", PORT);
+			   props.put("mail.smtp.host",MAIL_SETTINGS.HOST);
+			   props.put("mail.smtp.user", MAIL_SETTINGS.HESAP);
+			   props.put("mail.smtp.password", MAIL_SETTINGS.PWD);
+			   props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
 			   props.put("mail.smtp.auth", "true");
 			   props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			   Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
                    protected PasswordAuthentication getPasswordAuthentication() {
-                       return new PasswordAuthentication(HESAP, SIFR);
+                       return new PasswordAuthentication(MAIL_SETTINGS.HESAP, MAIL_SETTINGS.PWD);
                    }
                });
 			   MimeMessage message = new MimeMessage(session);
-			   message.setFrom(new InternetAddress(HESAP,GADI));
+			   message.setFrom(new InternetAddress(MAIL_SETTINGS.HESAP,MAIL_SETTINGS.GADI));
 			   InternetAddress[] toAddress = new InternetAddress[to.length];
 			   for (int i = 0; i < to.length; i++) {
 			    toAddress[i] = new InternetAddress(to[i]);
@@ -697,7 +686,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			   session = null;
 			   //**********************Raporlama Dosyasina Yaz ***************************
 	            oac.uSER_ISL.giden_rapor_yaz(new java.sql.Date(Calendar.getInstance().getTime().getTime())  ,txtkonu.getText(), rapor_dos_adi, cmbalici.getSelectedItem().toString() ,
-	            						HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;
+	            		MAIL_SETTINGS.HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;
 	           //*************************************************************************
 	      		 long endTime = System.currentTimeMillis();
 	      		 long estimatedTime = endTime - startTime; 

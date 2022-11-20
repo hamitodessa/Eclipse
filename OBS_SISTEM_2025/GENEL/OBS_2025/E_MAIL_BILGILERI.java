@@ -13,6 +13,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.MAIL_SETTINGS;
 
 import javax.swing.JSeparator;
 import java.awt.Font;
@@ -157,20 +158,16 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 	private void doldur() 
 	{
 		try {
-		ResultSet rs = oac.uSER_ISL.mail_bak(GLOBAL.KULL_ADI);
-		int count=0;
-		rs.next();
-		count = rs.getRow();
-		if (count  == 0) return;
-		  txtmail.setText(rs.getString("HESAP").toString());
-          txthost.setText(rs.getString("HOST").toString());
-          txtport.setText(rs.getString("PORT").toString());
-          txtsifre.setText(rs.getString("SIFR").toString());
-          txtgonhesap.setText(rs.getString("GON_MAIL").toString());
-          txtgonisim.setText(rs.getString("GON_ISIM").toString());
+		
+		  txtmail.setText(MAIL_SETTINGS.HESAP);
+          txthost.setText(MAIL_SETTINGS.HOST);
+          txtport.setText(MAIL_SETTINGS.PORT);
+          txtsifre.setText(MAIL_SETTINGS.PWD);
+          txtgonhesap.setText(MAIL_SETTINGS.GHESAP);
+          txtgonisim.setText(MAIL_SETTINGS.GADI);
          // 
-          chckbxNewCheckBox.setSelected((boolean) (rs.getInt("SSL") == -1 ? false :true ));
-          chckbxNewCheckBox_1.setSelected((boolean) (rs.getInt("TSL") == -1 ? false :true ));
+          chckbxNewCheckBox.setSelected((boolean) (MAIL_SETTINGS.SSL == false ? false :true ));
+          chckbxNewCheckBox_1.setSelected((boolean) (MAIL_SETTINGS.TSL == false ? false :true ));
 		}
 		catch (Exception ex)
 		{

@@ -62,5 +62,8 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/poi-ooxml-schemas-4.1.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-math3-3.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/xmlbeans-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/icepdf-core-4.3.3.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/icepdf-viewer-4.3.3.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/icepdf-core.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

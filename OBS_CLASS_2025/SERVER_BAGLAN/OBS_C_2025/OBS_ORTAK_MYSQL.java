@@ -14,7 +14,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 	
 	public boolean Server_kontrol_L(String inst, String kull, String sifre) throws ClassNotFoundException
     {
-		
+		 Class.forName("com.mysql.cj.jdbc.Driver");
 		  String url = "jdbc:mysql://localhost:3306"; //pointing to no database.
 //		    String username = "root";
 //		    String password = "197227oOk";

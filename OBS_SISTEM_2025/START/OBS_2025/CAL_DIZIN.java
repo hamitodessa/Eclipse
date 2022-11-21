@@ -211,8 +211,12 @@ public class CAL_DIZIN extends JFrame {
 				{
 		            if (txtKodu.getText().equals(""))
 		                return;
-		            if (comboBox.getSelectedItem().toString().equals(""))
-		                return;
+		            
+		            if (cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).toString().equals("MS SQL"))
+		            {
+		            if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
+		               return;
+		            }
 						try {
 							server_control();
 						} catch  (Exception ex)
@@ -1273,8 +1277,7 @@ public class CAL_DIZIN extends JFrame {
                 	   
                    if ( s_CONN.Server_kontrol_L(comboBox.getSelectedItem().toString(),txtkul.getText(), txtsifr.getText()) == true  )
                     {
-                	
-                	 contentPane.setCursor(DEFAULT_CURSOR);
+                  	 contentPane.setCursor(DEFAULT_CURSOR);
                     // JOptionPane.showMessageDialog(null, "Baglanti Saglandi........".toString(), "Server Baglanti", JOptionPane.PLAIN_MESSAGE);
                      btnNewButton_1.setEnabled(true);
                     }

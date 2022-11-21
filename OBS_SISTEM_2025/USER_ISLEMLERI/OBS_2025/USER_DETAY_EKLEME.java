@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
@@ -496,7 +497,9 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		}
 		else
 		{
-			txtsifre.setText(table_1.getModel().getValueAt(satir, 3).toString());
+			byte[] decodedBytes = Base64.getDecoder().decode(table_1.getModel().getValueAt(satir, 3).toString());
+			String decodedString = new String(decodedBytes);
+			txtsifre.setText(decodedString);
 		}
 		if (table_1.getModel().getValueAt(satir, 4) == null)
 		{

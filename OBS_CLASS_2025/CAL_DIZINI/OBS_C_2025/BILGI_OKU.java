@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
 
 public class BILGI_OKU {
 	
@@ -29,7 +30,9 @@ public class BILGI_OKU {
 								dIZIN.kOD = rs.getString("USER_PROG_KODU").toString();
 								dIZIN.sERVER =  rs.getString("USER_IP_OBS").toString();
 								dIZIN.kULLANICI = rs.getString("USER_SERVER").toString();
-								dIZIN.sIFRESI = rs.getString("USER_PWD_SERVER").toString();
+								byte[] decodedBytes = Base64.getDecoder().decode(rs.getString("USER_PWD_SERVER").toString());
+								String decodedString = new String(decodedBytes);
+								dIZIN.sIFRESI = decodedString;
 								dIZIN.yER = rs.getString("YER").toString();
 								dIZIN.iNSTANCE = rs.getString("USER_INSTANCE_OBS").toString();
 								dIZIN.dIZIN_CINS = rs.getString("DIZIN_CINS").toString();

@@ -191,7 +191,8 @@ public class USER_ISLEMLERI {
 	       	 stmt.setString(1, upk);
 	       	 stmt.setString(2, usn);
 	       	 stmt.setString(3, usserver);
-	       	 stmt.setString(4, sifre);
+	       	String encodedString = Base64.getEncoder().encodeToString(sifre.getBytes());
+	       	 stmt.setString(4, encodedString);
 	       	 stmt.setString(5, instance);
 	       	 stmt.setString(6, ip);
 	       	 stmt.setString(7, prog);

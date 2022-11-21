@@ -288,7 +288,6 @@ public class USER_EKLEME extends JInternalFrame {
 			{
 				boolean liz;
 				boolean siz;
-				// String uname = rs.getString("COF_NAME");
 				byte[] decodedBytes = Base64.getDecoder().decode(rs.getString(2));
 				String decodedString = new String(decodedBytes);
 		            String uname = rs.getString(1);

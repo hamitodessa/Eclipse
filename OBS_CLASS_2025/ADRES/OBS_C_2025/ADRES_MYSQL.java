@@ -157,10 +157,7 @@ public class ADRES_MYSQL implements IADRES {
 		return null;
 	}
 	@Override
-	public void adres_kayit(String kodu, String adi, String adr1, String adr2, String semt, String sehir, String vd,
-			String vn, String fax, String tel1, String tel2, String ozel, String yet, String e_ma, String n1, String n2,
-			String n3, InputStream resim, String tel3, String acik, boolean sms, boolean mailg, String ok1, String ok2,
-			String web, String pkodu, String usr) throws ClassNotFoundException, SQLException, IOException {
+	public void adres_kayit(ADRESS_DEGISKENLER aDEGIS) throws ClassNotFoundException, SQLException, IOException {
 		// TODO Auto-generated method stub
 		
 	}

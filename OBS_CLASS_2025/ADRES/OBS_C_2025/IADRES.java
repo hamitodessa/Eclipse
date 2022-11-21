@@ -16,9 +16,7 @@ public interface IADRES {
 	public void adr_firma_adi_kayit(String fadi) throws ClassNotFoundException, SQLException;
 	public ResultSet adres(String sira,String arama) throws ClassNotFoundException, SQLException;
 	public String kod_ismi(String kodu) throws ClassNotFoundException, SQLException;
-	public void adres_kayit(String kodu ,String adi ,String adr1 ,String adr2 ,String semt,String sehir  , String vd , String vn ,
-			String fax, String tel1 ,String tel2 ,String ozel ,String yet ,String e_ma,String n1 ,String n2 ,String n3 ,  InputStream  resim   
-			,String tel3 ,String acik   ,boolean sms  ,boolean mailg,String ok1 ,String ok2,String web ,String pkodu ,String usr) throws ClassNotFoundException, SQLException, IOException;
+	public void adres_kayit(ADRESS_DEGISKENLER aDEGIS) throws ClassNotFoundException, SQLException, IOException;
 	public void sil(String kod ,String adi) throws ClassNotFoundException, SQLException;
 	public ResultSet adr_hpl() throws ClassNotFoundException, SQLException;
 	public ResultSet sms_adr_hpl(String nerden) throws ClassNotFoundException, SQLException;

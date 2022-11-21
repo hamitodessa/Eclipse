@@ -194,9 +194,7 @@ public class ADRES_MSSQL implements IADRES {
 		}
 		return result;	
 	}
-	public void adres_kayit(String kodu ,String adi ,String adr1 ,String adr2 ,String semt,String sehir  , String vd , String vn ,
-			String fax, String tel1 ,String tel2 ,String ozel ,String yet ,String e_ma,String n1 ,String n2 ,String n3 ,  InputStream  resim   
-			,String tel3 ,String acik   ,boolean sms  ,boolean mailg,String ok1 ,String ok2,String web ,String pkodu ,String usr) throws ClassNotFoundException, SQLException, IOException
+	public void adres_kayit(ADRESS_DEGISKENLER aDEGIS) throws ClassNotFoundException, SQLException, IOException
 
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -205,37 +203,37 @@ public class ADRES_MSSQL implements IADRES {
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
-		stmt.setString(1, kodu);
-		stmt.setString(2,adi);
-		stmt.setString(3, adr1);
-		stmt.setString(4, adr2);
-		stmt.setString(5, semt);
-		stmt.setString(6, sehir);
-		stmt.setString(7, pkodu);
-		stmt.setString(8, vd);
-		stmt.setString(9, vn);
-		stmt.setString(10, fax);
-		stmt.setString(11, tel1);
-		stmt.setString(12, tel2);
-		stmt.setString(13, tel3);
-		stmt.setString(14, ozel);
-		stmt.setString(15, yet);
-		stmt.setString(16, e_ma);
-		stmt.setString(17, n1);
-		stmt.setString(18, n2);
-		stmt.setString(19, n3);
-		stmt.setString(20, acik);
-		stmt.setBoolean(21, sms);
-		stmt.setBoolean(22, mailg);
-		stmt.setString(23, ok1);
-		stmt.setString(24, ok2);
-		stmt.setString(25, web);
-		stmt.setString(26, usr);
-		if (  resim != null)
+		stmt.setString(1, aDEGIS.kodu);
+		stmt.setString(2, aDEGIS.adi);
+		stmt.setString(3,  aDEGIS.adr1);
+		stmt.setString(4,  aDEGIS.adr2);
+		stmt.setString(5,  aDEGIS.semt);
+		stmt.setString(6,  aDEGIS.sehir);
+		stmt.setString(7,  aDEGIS.pkodu);
+		stmt.setString(8,  aDEGIS.vd);
+		stmt.setString(9,  aDEGIS.vn);
+		stmt.setString(10,  aDEGIS.fax);
+		stmt.setString(11,  aDEGIS.tel1);
+		stmt.setString(12,  aDEGIS.tel2);
+		stmt.setString(13,  aDEGIS.tel3);
+		stmt.setString(14,  aDEGIS.ozel);
+		stmt.setString(15,  aDEGIS.yet);
+		stmt.setString(16,  aDEGIS.e_ma);
+		stmt.setString(17,  aDEGIS.n1);
+		stmt.setString(18,  aDEGIS.n2);
+		stmt.setString(19,  aDEGIS.n3);
+		stmt.setString(20,  aDEGIS.acik);
+		stmt.setBoolean(21,  aDEGIS.sms);
+		stmt.setBoolean(22,  aDEGIS.mailg);
+		stmt.setString(23,  aDEGIS.ok1);
+		stmt.setString(24,  aDEGIS.ok2);
+		stmt.setString(25,  aDEGIS.web);
+		stmt.setString(26,  aDEGIS.usr);
+		if (   aDEGIS.resim != null)
 		{
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			byte[] buf = new byte[1024];
-			for (int readNum; (readNum = resim.read(buf)) != -1;)
+			for (int readNum; (readNum =  aDEGIS.resim.read(buf)) != -1;)
 			{
 				bos.write(buf, 0, readNum);
 			}

@@ -38,6 +38,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import OBS_C_2025.ADRESS_DEGISKENLER;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
@@ -819,11 +820,36 @@ public class ADRES_GIRIS extends JInternalFrame {
 	    	   
 	    		 a_Access.sil(txtkodu.getText(),txtunvan.getText(),
 	    				"Hesap Kodu:" + txtkodu.getText() + " Hesap Silme","", BAGLAN_LOG.adrLogDizin);
-	    		 a_Access.adres_kayit(txtkodu.getText(), txtunvan.getText(),txtadres1.getText(), txtadres2.getText(), 
-	    				   txtsemt.getText(), txtsehir.getText(), txtvd.getText(), txtvn.getText(), txtfax.getText(), txttel1.getText(),
-	    				   txttel2.getText(), txtozel.getText(),txtyetkili.getText(), txtmail.getText(),txtn1.getText(), txtn2.getText(),
-	    				   txtn3.getText(), fis, txttel3.getText(), txtaciklama.getText(), chcsms.isSelected(), chcmail.isSelected(),
-	    				   txtoz1.getText(), txtoz2.getText(),txtweb.getText(), txtpkodu.getText(), GLOBAL.KULL_ADI,
+	    		 
+	    		 ADRESS_DEGISKENLER aDEG = new ADRESS_DEGISKENLER();
+	    		 aDEG.kodu = txtkodu.getText();
+	    		 aDEG.adi = txtunvan.getText();
+	    		 aDEG.adr1 = txtadres1.getText();
+	    		 aDEG.adr2 =  txtadres2.getText();
+	    		 aDEG.semt =  txtsemt.getText();
+	    		 aDEG.sehir =  txtsehir.getText();
+	    		 aDEG.pkodu = txtpkodu.getText() ;
+	    		 aDEG.vd = txtvd.getText() ;
+	    		 aDEG.vn = txtvn.getText();
+	    		 aDEG.fax = txtfax.getText() ;
+	    		 aDEG.tel1 = txttel1.getText();
+	    		 aDEG.tel2 =txttel2.getText() ;
+	    		 aDEG.tel3 = txttel3.getText();
+	    		 aDEG.ozel = txtozel.getText() ;
+	    		 aDEG.yet = txtyetkili.getText();
+	    		 aDEG.e_ma =txtmail.getText();
+	    		 aDEG.n1 =txtn1.getText();
+	    		 aDEG.n2 = txtn2.getText();
+	    		 aDEG.n3 =  txtn3.getText();
+	    		 aDEG.acik = txtaciklama.getText();
+	    		 aDEG.sms = chcsms.isSelected();
+	    		 aDEG.mailg =  chcmail.isSelected();
+	    		 aDEG.ok1 =txtoz1.getText();
+	    		 aDEG.ok2 =txtoz2.getText();
+	    		 aDEG.web = txtweb.getText();
+	    		 aDEG.usr = GLOBAL.KULL_ADI;
+	    		 aDEG.resim = fis ;
+	    		 a_Access.adres_kayit(aDEG,
 	    				   "Hesap Kodu:" + txtkodu.getText() + " Hesap Unvan:" + txtunvan.getText(),"", BAGLAN_LOG.adrLogDizin);
 			   
 			            temizle();

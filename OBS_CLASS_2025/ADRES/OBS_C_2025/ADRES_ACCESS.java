@@ -51,14 +51,10 @@ public class ADRES_ACCESS {
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
-	public void adres_kayit(String kodu ,String adi ,String adr1 ,String adr2 ,String semt,String sehir  , String vd , String vn ,
-			String fax, String tel1 ,String tel2 ,String ozel ,String yet ,String e_ma,String n1 ,String n2 ,String n3 ,  InputStream  resim   
-			,String tel3 ,String acik   ,boolean sms  ,boolean mailg,String ok1 ,String ok2,
-			String web ,String pkodu ,String usr
+	public void adres_kayit(ADRESS_DEGISKENLER aDEGIS
 			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException, IOException
 	{
-		_IAdres.adres_kayit(kodu, adi, adr1, adr2, semt, sehir, vd, vn, fax, tel1, tel2, ozel, yet, e_ma, n1, n2, n3, resim, 
-				tel3, acik, sms, mailg, ok1, ok2, web, pkodu, usr);
+		_IAdres.adres_kayit(aDEGIS);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}

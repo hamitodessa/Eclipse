@@ -1274,8 +1274,17 @@ public class CAL_DIZIN extends JFrame {
              if (chckbxL.isSelected() )
                 {
                 	contentPane.setCursor(WAIT_CURSOR);
-                	   
-                   if ( s_CONN.Server_kontrol_L(comboBox.getSelectedItem().toString(),txtkul.getText(), txtsifr.getText()) == true  )
+                	String inst = "" ;
+                	
+                	 if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
+                	 {
+  		             inst = "" ;
+  		            }
+                	 else
+                	 {
+                		 inst = comboBox.getSelectedItem().toString();
+                	 }
+                 if ( s_CONN.Server_kontrol_L(inst,txtkul.getText(), txtsifr.getText()) == true  )
                     {
                   	 contentPane.setCursor(DEFAULT_CURSOR);
                     // JOptionPane.showMessageDialog(null, "Baglanti Saglandi........".toString(), "Server Baglanti", JOptionPane.PLAIN_MESSAGE);
@@ -1291,7 +1300,17 @@ public class CAL_DIZIN extends JFrame {
 	           else
 	             {
 	                contentPane.setCursor(WAIT_CURSOR);
-                    if (s_CONN.Server_kontrol_S(txtIp.getText(),comboBox.getSelectedItem().toString(),txtkul.getText(), txtsifr.getText() ) == true)
+	             	String inst = "" ;
+                	
+               	 if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
+               	 {
+ 		             inst = "" ;
+ 		            }
+               	 else
+               	 {
+               		 inst = comboBox.getSelectedItem().toString();
+               	 }
+                    if (s_CONN.Server_kontrol_S(txtIp.getText(),inst,txtkul.getText(), txtsifr.getText() ) == true)
                     {
                     	contentPane.setCursor(DEFAULT_CURSOR);
                     	// JOptionPane.showMessageDialog(null, "Baglanti Saglandi........".toString(), "Server Baglanti", JOptionPane.PLAIN_MESSAGE);

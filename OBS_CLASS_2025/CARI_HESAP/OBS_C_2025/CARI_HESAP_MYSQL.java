@@ -18,7 +18,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	
 	public void baglan() throws SQLException
 	{
-		String cumle = "jdbc:sqlserver://" + BAGLAN.cariDizin.cONN_STR + ";";
+		String cumle = "jdbc:mysql://" + BAGLAN.cariDizin.cONN_STR + ";";
 	    con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 	   
 	}
@@ -56,16 +56,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
          cumle = "jdbc:mysql://localhost;instanceName=" + ins + ";database=" + VERITABANI + ";";
          con = DriverManager.getConnection(cumle,kull,sifre);
          create_table(fir_adi);
-         //
-         if (dizin_yeri == "default")
-          	sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
-          else
-          	sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG" + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_LOG" + "_log', FILENAME = N'" + dizin + "\\" + VERITABANI + "_LOG" + "_log.ldf' ) ";
-          stmt = con.createStatement();  
-          stmt.executeUpdate(sql);
-          cumle = "jdbc:mysql://localhost;instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
-          con = DriverManager.getConnection(cumle,kull,sifre);
-          create_table_log();
+     
         
          stmt.close();
          con.close();

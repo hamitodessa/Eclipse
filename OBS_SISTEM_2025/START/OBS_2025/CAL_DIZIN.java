@@ -1347,8 +1347,16 @@ public class CAL_DIZIN extends JFrame {
              program = "OK_Gun" + txtKodu.getText();
          if (chckbxL.isSelected())
          {
-  
-            if ( s_CONN.Dosya_kontrol_L(program, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText()) == true)
+        	 String inst = "" ;
+        	 if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
+        	 {
+	             inst = "" ;
+	            }
+        	 else
+        	 {
+        		 inst = comboBox.getSelectedItem().toString();
+        	 }
+            if ( s_CONN.Dosya_kontrol_L(program, inst,txtkul.getText(),txtsifr.getText()) == true)
              {
      
                  if (activ_sayfa == 0)
@@ -1440,7 +1448,16 @@ public class CAL_DIZIN extends JFrame {
          else  // Server
          {
         
-             if (	 s_CONN.Dosya_kontrol_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(),txtsifr.getText(), program) ==true)
+        	 String inst = "" ;
+        	 if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
+        	 {
+	             inst = "" ;
+	            }
+        	 else
+        	 {
+        		 inst = comboBox.getSelectedItem().toString();
+        	 }
+             if (	 s_CONN.Dosya_kontrol_S(txtIp.getText(), inst, txtkul.getText(),txtsifr.getText(), program) ==true)
              {
      
                  if (activ_sayfa == 0)

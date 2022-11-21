@@ -56,22 +56,15 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		    		
 		    		 stmt = conn.createStatement();
 		    		 resultset = stmt.executeQuery("SHOW DATABASES;");
-//		             if (stmt.execute("SHOW DATABASES;")) 
-//		             {
-//		                 resultset = stmt.getResultSet();
-//		             }
-		             result =false;
+		    		 result =false;
 		             while (resultset.next()) 
 		             {
-		                // System.out.print(rs.getString(1));
 		            	 if(resultset.getString("Database").equals(db))
 		            	 {
 		            		 result = true;
 		            	 }
 		            
 		             }
-		    		
-		        	
 		    } catch (SQLException e)
 		    {
 		    result =false;
@@ -105,6 +98,11 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		            	 }
 		            
 		             }
+		             
+		                  
+	                 
+		             
+		             
 		    } catch (SQLException e)
 		    {
 		    result =false;

@@ -570,7 +570,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	public void hpln_detay_kayit(String kodu ,String yet ,String ad1 ,String ad2 ,String semt,String seh  , String vd , String vn 
 								, String t1 ,String t2 ,String t3 ,String fx ,String o1 ,String o2 ,String o3 , String web 
 								,String mai ,String kim  ,String acik ,boolean sms , InputStream  resim ) throws ClassNotFoundException, SQLException, IOException
-	
+
 	{
 	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
     String sql  = "INSERT INTO HESAP_DETAY (D_HESAP,YETKILI,ADRES_1,ADRES_2,SEMT,SEHIR,VERGI_DAIRESI,VERGI_NO,TEL_1,TEL_2, " + 
@@ -605,7 +605,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
           byte[] buf = new byte[1024];
           for (int readNum; (readNum = resim.read(buf)) != -1;) {
               bos.write(buf, 0, readNum);
-              //System.out.println("read " + readNum + " bytes,");
               }
            byte[] bytes = bos.toByteArray();
     	  stmt.setBytes(21,bytes);

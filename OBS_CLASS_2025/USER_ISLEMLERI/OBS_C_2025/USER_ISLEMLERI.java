@@ -361,7 +361,6 @@ public class USER_ISLEMLERI {
 		 stmt = con.prepareStatement(sql);
 		 stmt.executeUpdate();
 		 stmt.close();
-		       
 	}
 	public ResultSet user_ekleme_bak() throws ClassNotFoundException, SQLException
 	{
@@ -407,7 +406,9 @@ public class USER_ISLEMLERI {
 				MAIL_SETTINGS.HESAP= rss.getString("HESAP").toString();
 				MAIL_SETTINGS. HOST =rss.getString("HOST").toString() ;
 				MAIL_SETTINGS.PORT =rss.getString("PORT").toString() ;
-				MAIL_SETTINGS.PWD = rss.getString("SIFR").toString() ;
+				byte[] decodedBytes = Base64.getDecoder().decode(rss.getString("SIFR").toString());
+				String decodedString = new String(decodedBytes);
+				MAIL_SETTINGS.PWD = decodedString  ;
 				MAIL_SETTINGS.SSL = (boolean) (rss.getInt("SSL") == -1 ? false :true );
 				MAIL_SETTINGS. TSL = (boolean) (rss.getInt("TSL") == -1 ? false :true );
 				MAIL_SETTINGS.GHESAP = rss.getString("GON_MAIL").toString();
@@ -436,7 +437,8 @@ public class USER_ISLEMLERI {
    			 stmt.setString(2, hsp);
    			 stmt.setString(3, host);
    			 stmt.setString(4, port);
-   			 stmt.setString(5, sifre);
+   			String encodedString = Base64.getEncoder().encodeToString(sifre.getBytes());
+			 stmt.setString(5, encodedString);
    			 stmt.setString(6, gmail);
    			 stmt.setString(7, ghesap);
    			 stmt.setInt(8, ssl);

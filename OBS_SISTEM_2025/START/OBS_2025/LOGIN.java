@@ -531,7 +531,7 @@ public LOGIN() throws IOException {
 		}
 		
 }
-void calisma_dizini_oku() throws ClassNotFoundException, SQLException, InterruptedException
+	void calisma_dizini_oku() throws ClassNotFoundException, SQLException, InterruptedException
 {
     int say = 8;
 	bAGLAN.cONNECT(txtUser.getText());
@@ -634,7 +634,7 @@ void calisma_dizini_oku() throws ClassNotFoundException, SQLException, Interrupt
 
 
 }
-void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
+	void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
     CONNECT s_CONN = new CONNECT(oac._IConn);
     Tema_Cari.conn =    Tema_Cari.myTemaConnection();
@@ -675,7 +675,7 @@ void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
     else
     	OBS_SIS_2025_ANA_CLASS.CARI_CONN = false;
 	}
-void kur_calisma_dizini_oku() throws ClassNotFoundException, SQLException
+	void kur_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
 	
 	    CONNECT s_CONN = new CONNECT(oac._IConn);
@@ -715,7 +715,7 @@ void kur_calisma_dizini_oku() throws ClassNotFoundException, SQLException
     else
     	OBS_SIS_2025_ANA_CLASS.KUR_CONN = false;
 }
-void sms_calisma_dizini_oku() throws ClassNotFoundException, SQLException
+	void sms_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
 	
 	    CONNECT s_CONN = new CONNECT(oac._IConn);
@@ -755,7 +755,7 @@ void sms_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	    else
 	    	OBS_SIS_2025_ANA_CLASS.SMS_CONN = false;
 }
-void adr_calisma_dizini_oku() throws ClassNotFoundException, SQLException
+	void adr_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
 	 
 	    CONNECT s_CONN = new CONNECT(oac._IConn);
@@ -795,7 +795,7 @@ void adr_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	    else
 	OBS_SIS_2025_ANA_CLASS.ADR_CONN = false;
 }
-void fat_calisma_dizini_oku() throws ClassNotFoundException, SQLException
+	void fat_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
 	    CONNECT s_CONN = new CONNECT(oac._IConn);
     
@@ -834,7 +834,7 @@ void fat_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	    else
 	    	OBS_SIS_2025_ANA_CLASS.FAT_CONN = false;
 	}
-void kam_calisma_dizini_oku() throws ClassNotFoundException, SQLException
+	void kam_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
 	
     CONNECT s_CONN = new CONNECT(oac._IConn);
@@ -958,77 +958,78 @@ void kam_calisma_dizini_oku() throws ClassNotFoundException, SQLException
     	bufferedReader.close();
     //******************************************************************
 	// DOSYA INDIR
-	String serverAddress = "78.26.149.175";
-    String userId ="hamitadmin";
-    String password ="SDFks9hfji3#DEd";
-    FTPClient ftp = new FTPClient();
-    ftp.connect(serverAddress);
-    //login to server
-    if(!ftp.login(userId, password))
-    {
-        ftp.logout();
-    	return ;
-    }
-    int reply = ftp.getReplyCode();
-    if (!FTPReply.isPositiveCompletion(reply))
-    {
-        ftp.disconnect();
-    	return ;
-    }
+	 
+    	String serverAddress = "ftp.okumus.gen.tr";
+    	String userId ="u5789784";
+    	String password ="4wX.5Wx53-Y..nlG";
+    	FTPClient ftp = new FTPClient();
+    	ftp.connect(serverAddress);
+    	//login to server
+    	if(!ftp.login(userId, password))
+    		{
+    		ftp.logout();
+    		return ;
+    		}
+    	int reply = ftp.getReplyCode();
+    	if (!FTPReply.isPositiveCompletion(reply))
+    	{
+    		ftp.disconnect();
+    		return ;
+    	}
 
-  ftp.enterLocalPassiveMode();
-  String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
-  File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");
-  OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
-  boolean success = ftp.retrieveFile(remoteFile1, outputStream1);
-  outputStream1.close();
-  if (success == false ) return ;
-	//************************************
-  fileName = "" ;
-  fileName = "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt";
-  fileReader = null;
-  fileReader =  new FileReader(fileName);
-   // Always wrap FileReader in BufferedReader.
-  bufferedReader = null;
-  bufferedReader =    new BufferedReader(fileReader);
-  counter = 0;
-	while((line = bufferedReader.readLine()) != null) {
-        counter++;
-        if(counter == 1)
-        {
-        	 yenitar = line.toString();
-        }
-        else  if(counter == 2)
-        {
-       	 yeniver = line.toString();
-       }
-    }   
-	bufferedReader.close();
- 	if (eskiver.equals(yeniver))
-	{
-		File f= new File("C:/OBS_SISTEM/OBS_VERSIONS.txt");           //file to be delete  
-		success = f.delete();  
-	}
-	else
-	{
-		File f= new File("C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");           //file to be delete  
-		f.delete();  
+    	ftp.enterLocalPassiveMode();
+    	String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
+    	File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");
+    	OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
+    	boolean success = ftp.retrieveFile(remoteFile1, outputStream1);
+    	outputStream1.close();
+    	if (success == false ) return ;
+    	//************************************
+    	fileName = "" ;
+    	fileName = "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt";
+    	fileReader = null;
+    	fileReader =  new FileReader(fileName);
+    	// Always wrap FileReader in BufferedReader.
+    	bufferedReader = null;
+    	bufferedReader =    new BufferedReader(fileReader);
+    	counter = 0;
+    	while((line = bufferedReader.readLine()) != null) {
+    		counter++;
+    		if(counter == 1)
+    		{
+    			yenitar = line.toString();
+    		}
+    		else  if(counter == 2)
+    		{
+    			yeniver = line.toString();
+    		}
+    	}   
+    	bufferedReader.close();
+    	if (eskiver.equals(yeniver))
+    	{
+    		File f= new File("C:/OBS_SISTEM/OBS_VERSIONS.txt");           //file to be delete  
+    		success = f.delete();  
+    	}
+    	else
+    	{
+    		File f= new File("C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");           //file to be delete  
+    		f.delete();  
 		
-		String html = "<html><body width='%1s'><h1>OBS SISTEM</h1>"
-               + "Yeni Versiyon Mevcut.......	 "
-               + "<br><br> "
-                + "Mevcut Version = " +eskiver + "      "
-                + "<br><br> "
-                 + "Yeni Version = " + yeniver + "" ;
+    		String html = "<html><body width='%1s'><h1>OBS SISTEM</h1>"
+    				+ "Yeni Versiyon Mevcut.......	 "
+    				+ "<br><br> "
+    				+ "Mevcut Version = " +eskiver + "      "
+    				+ "<br><br> "
+    				+ "Yeni Version = " + yeniver + "" ;
 		   JOptionPane.showMessageDialog(null, String.format(html, "OBS SISTEM", JOptionPane.PLAIN_MESSAGE));
 		//JOptionPane.showMessageDialog(null,"Yeni Versiyon Mevcut.......		Versiyon=" + yeniver,  "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);   
+    	}
+	  	}
+	  	catch (Exception ex)
+	  	{
+	  			return ;
+	  	}
 	}
-	  }
-      catch (Exception ex)
-      {
-        	return ;
-      }
-}
 	private void cONN_AKTAR( String dIZIN )
 	{
 	 String hangi = dIZIN  ;
@@ -1099,7 +1100,7 @@ void kam_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 		else if (mODUL.equals("Gunluk"))
 		{oac._IGunluk_Loger = ilogg;}
 		else if (mODUL.equals("Kambiyo"))
-		{OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger = ilogg;}
+		{oac._IKambiyo_Loger = ilogg;}
 	}
 	
 }

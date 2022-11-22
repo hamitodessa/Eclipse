@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 
 	public static Connection con = null;
@@ -30,7 +32,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
         }
         else
         { 
-        	cnnstr = BAGLAN.cariDizin.sERVER + " ; database=OK_Car" + kod ;
+        	cnnstr = BAGLAN.cariDizin.sERVER + " ; database=ok_car" + kod ;
         }
 		String cumle = "jdbc:mysql://" + cnnstr + ";";
 	    akt_con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
@@ -43,7 +45,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
  		String cumle = "";
          cumle = "jdbc:mysql://localhost:" +port ;
          con = DriverManager.getConnection(cumle,kull,sifre);
-        String VERITABANI = "OK_Car" + kod;
+        String VERITABANI = "ok_car" + kod;
          stmt = null;
          String sql =null;
      	sql = "CREATE DATABASE " + VERITABANI ;
@@ -53,16 +55,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
          
         cumle = "jdbc:mysql://localhost/" +VERITABANI ;
         con = DriverManager.getConnection(cumle,kull,sifre);
-//        stmt = con.createStatement();  
-//         Connection con = DriverManager.getConnection("jdbc:mysql://localhost/sqldatabase", "amit", "amitabh");  
-//         Statement s = con.createStatement();  
-//         s.execute("create table student ( stud_id integer,stud_name varchar(20),stud_address varchar(30) )"); // create a table  
-//         s.execute("insert into student values(001,'ARman','Delhi')"); // insert first row into the table   
-//         s.execute("insert into student values(002,'Robert','Canada')"); // insert second row into the table   
-//         s.execute("insert into student values(003,'Ahuja','Karnal')"); // insert third row into the table   
-//   
-         
-         ///
    
          create_table(fir_adi);
         
@@ -75,7 +67,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
  		con = null;  
- 		String VERITABANI = "OK_Car" + kod;
+ 		String VERITABANI = "ok_car" + kod;
  		String cumle = "";
  		stmt = null;
         String sql =null;
@@ -103,85 +95,83 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
-        sql = "CREATE TABLE HESAP(HESAP varchar(12) NOT NULL,UNVAN varchar(50) NULL, "
-	                    + " KARTON varchar(5) NULL,HESAP_CINSI varchar(3) NULL,USER varchar(15) NULL,"
-	                    + " CONSTRAINT [IX_HESAP] PRIMARY KEY CLUSTERED (HESAP ASC)WITH (PAD_INDEX = OFF,"
-                       + " STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]"
-                       + ") ON [PRIMARY]";
+        sql = "CREATE TABLE `hesap` ("
+        		+ "  `HESAP` NVARCHAR(12) NOT NULL,"
+        		+ "  `UNVAN` NVARCHAR(50) NULL,"
+        		+ "  `KARTON` NVARCHAR(5) NULL,"
+        		+ "  `HESAP_CINSI` NVARCHAR(3) NULL,"
+        		+ "  `USER` NVARCHAR(15) NULL,"
+        		+ "  PRIMARY KEY (`HESAP`),"
+        		+ "  UNIQUE INDEX `HESAP_UNIQUE` (`HESAP` ASC) INVISIBLE,"
+        		+ "  INDEX `IX_HESAP` (`HESAP` ASC) INVISIBLE);";
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
-        sql = "CREATE NONCLUSTERED INDEX [IDX_HESAP] ON [dbo].[HESAP](	[HESAP] ASC,	[UNVAN] ASC "
-                  + " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
+
+        sql = "CREATE TABLE `HESAP_DETAY` ( "
+	                      + " `D_HESAP` NVARCHAR(12) NOT NULL,"
+	                      + " `YETKILI` NVARCHAR(30) NULL,"
+                          + " `TC_KIMLIK` NVARCHAR(15) NULL,"
+	                      + " `ADRES_1` NVARCHAR(35) NULL,"
+	                      + " `ADRES_2` NVARCHAR(35) NULL,"
+	                      + " `SEMT` NVARCHAR(15) NULL,"
+	                      + " `SEHIR` NVARCHAR(15) NULL,"
+	                      + " `VERGI_DAIRESI` NVARCHAR(25) NULL,"
+	                      + " `VERGI_NO` NVARCHAR(15) NULL,"
+	                      + " `FAX` NVARCHAR(25) NULL,"
+	                      + " `TEL_1` NVARCHAR(25) NULL,"
+	                      + " `TEL_2` NVARCHAR(25) NULL,"
+	                      + " `TEL_3` NVARCHAR(25) NULL,"
+	                      + " `OZEL_KOD_1` NVARCHAR(15) NULL,"
+	                      + " `OZEL_KOD_2` NVARCHAR(15) NULL,"
+	                      + " `OZEL_KOD_3` NVARCHAR(15) NULL,"
+	                      + " `ACIKLAMA` NVARCHAR(30) NULL,"
+	                      + " `WEB` NVARCHAR(50) NULL,"
+	                      + " `E_MAIL` NVARCHAR(30) NULL,"
+	                      + " `SMS_GONDER` TINYINT NULL,"
+	                      + " `RESIM` MEDIUMBLOB NULL,"
+	                      + "  PRIMARY KEY (`D_HESAP`),"
+	              		+ "  UNIQUE INDEX `D_HESAP_UNIQUE` (`D_HESAP` ASC) INVISIBLE,"
+	              		+ "  INDEX `IX_DHESAP` (`D_HESAP` ASC) INVISIBLE);";
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
-        sql = "CREATE TABLE [dbo].[HESAP_DETAY]( "
-	                      + " [D_HESAP] [nvarchar](12) NOT NULL,"
-	                      + " [YETKILI] [nvarchar](30) NULL,"
-                         + " [TC_KIMLIK] [nvarchar](15) NULL,"
-	                      + " [ADRES_1] [nvarchar](35) NULL,"
-	                      + " [ADRES_2] [nvarchar](35) NULL,"
-	                      + " [SEMT] [nvarchar](15) NULL,"
-	                      + " [SEHIR] [nvarchar](15) NULL,"
-	                      + " [VERGI_DAIRESI] [nvarchar](25) NULL,"
-	                      + " [VERGI_NO] [nvarchar](15) NULL,"
-	                      + " [FAX] [nvarchar](25) NULL,"
-	                      + " [TEL_1] [nvarchar](25) NULL,"
-	                      + " [TEL_2] [nvarchar](25) NULL,"
-	                      + " [TEL_3] [nvarchar](25) NULL,"
-	                      + " [OZEL_KOD_1] [nvarchar](15) NULL,"
-	                      + " [OZEL_KOD_2] [nvarchar](15) NULL,"
-	                      + " [OZEL_KOD_3] [nvarchar](15) NULL,"
-	                      + " [ACIKLAMA] [nvarchar](30) NULL,"
-	                      + " [WEB] [nvarchar](50) NULL,"
-	                      + " [E_MAIL] [nvarchar](30) NULL,"
-	                      + " [SMS_GONDER] [bit] NULL,"
-	                      + " [RESIM] [image] NULL,"
-                         + " CONSTRAINT [D_HESAP] PRIMARY KEY CLUSTERED(	[D_HESAP] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF,"
-                         + "  ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY] ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]";
+        sql = "CREATE TABLE `SATIRLAR` ("
+        		+ "  `SID` INT NOT NULL,"
+        		+ "  `HESAP` VARCHAR(12) NOT NULL,"
+        		+ "  `TARIH` DATETIME NULL,"
+        		+ "  `H` VARCHAR(1) NULL,"
+        		+ "  `EVRAK` INT NOT NULL,"
+        		+ "  `CINS` VARCHAR(2) NULL,"
+        		+ "  `KUR` FLOAT NULL,"
+        		+ "  `BORC` FLOAT NULL,"
+        		+ "  `ALACAK` FLOAT NULL,"
+        		+ "  `KOD` VARCHAR(5) NULL,"
+        		+ "  `USER` VARCHAR(15) NULL,"
+        		+ "  `SATIRLARcol` VARCHAR(45) NULL,"
+        		+ "  PRIMARY KEY (`SID`),"
+        		+ "  UNIQUE INDEX `SID_UNIQUE` (`SID` ASC) VISIBLE,"
+        		+ "  INDEX `IX_SATIRLAR` (`TARIH` ASC, `EVRAK` ASC, `CINS` ASC, `USER` ASC, `HESAP` ASC) INVISIBLE);";
+                         
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
-        sql = "CREATE TABLE [dbo].[SATIRLAR]( "
-       		 			+ " [SID] [int] IDENTITY(1,1) NOT NULL,"
-       		 			+ " [HESAP] [nvarchar](12) NOT NULL,"
-	                        + " [TARIH] [datetime] NULL,"
-	                        + " [H] [nvarchar](1) NULL,"
-	                        + " [EVRAK] [int] NOT NULL,"
-	                        + " [CINS] [nvarchar](2) NULL,"
-	                        + " [KUR] [float] NULL,"
-	                        + " [BORC] [float] NULL,"
-	                        + " [ALACAK] [float] NULL,"
-	                        + " [KOD] [nvarchar](5) NULL,"
-	                        + " [USER] [nvarchar](15) NULL,"
-                           + " CONSTRAINT [IX_SID] PRIMARY KEY CLUSTERED(	[SID] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, "
-                           + " IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]";
+        
+        sql = "CREATE TABLE `IZAHAT`(	`EVRAK` int NOT NULL,	`IZAHAT` nvarchar(100) NULL,"
+        		+ "  PRIMARY KEY (`EVRAK`),"
+        		+ "  UNIQUE INDEX `EVRAK_UNIQUE` (`EVRAK` ASC) VISIBLE,"
+        		+ "  INDEX `IX_IZAHAT` ( `EVRAK` ASC) INVISIBLE);";
+          stmt = con.createStatement();  
+        stmt.executeUpdate(sql);
+        sql = "CREATE TABLE `EVRAK_NO` (EID INTEGER AUTO_INCREMENT PRIMARY KEY ,`EVRAK` integer )";
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
-        sql = "CREATE NONCLUSTERED INDEX [IX_SATIRLAR] ON [dbo].[SATIRLAR]( "
-       		 + " [HESAP] ASC,"
-	                        + " [TARIH] ASC,"
-	                        + " [EVRAK] ASC,"
-	                        + " [CINS] ASC,"
-	                        + " [USER] ASC"
-	                        + "  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF,"
-	                        + "  ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
-        stmt = con.createStatement();  
+        sql = "CREATE TABLE `OZEL`(`OZID` INTEGER AUTO_INCREMENT PRIMARY KEY ,"
+       		 		  + "`YONETICI` nvarchar(25) NULL,"
+	                      + "`YON_SIFRE` nvarchar(15) NULL,"
+	                      + "`FIRMA_ADI` nvarchar(50) NULL,"
+	                      + "  PRIMARY KEY (`OZID`),"
+	              		+ "  UNIQUE INDEX `OZID_UNIQUE` (`OZID` ASC) VISIBLE);";
+         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
-        sql = "CREATE TABLE [dbo].[IZAHAT](	[EVRAK] [int] NOT NULL,	[IZAHAT] [nvarchar](100) NULL,"
-       		 		  + " CONSTRAINT [IX_EVRAK] PRIMARY KEY CLUSTERED ([EVRAK] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF,"
-                         + " IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]";
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
-        sql = "CREATE TABLE EVRAK_NO(EID int identity(1,1) CONSTRAINT PKeyEID PRIMARY KEY,EVRAK integer )";
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
-        sql = "CREATE TABLE [dbo].[OZEL]([OZID] [int] IDENTITY(1,1) NOT NULL,"
-       		 		  + "[YONETICI] [nvarchar](25) NULL,"
-	                      + "[YON_SIFRE] [nvarchar](15) NULL,"
-	                      + "[FIRMA_ADI] [nvarchar](50) NULL,"
-                         + " CONSTRAINT [PKeyOZID] PRIMARY KEY CLUSTERED (	[OZID] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF,"
-                         + "IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]";
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
+        JOptionPane.showMessageDialog(null,"Yeni Versiyon Mevcu","ddssdsd" , JOptionPane.PLAIN_MESSAGE);   
        sql = "CREATE TABLE [dbo].[YETKILER]( "
        		 + "[YETID] [int] IDENTITY(1,1) NOT NULL,"
 	                         + "[KULLANICI] [nvarchar](25) NULL,"

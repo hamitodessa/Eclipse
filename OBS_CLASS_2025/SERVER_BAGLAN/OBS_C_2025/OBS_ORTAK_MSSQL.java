@@ -16,8 +16,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		Connection conn = null;  
         try
         {
-        	
-            String cumle = "";
+           String cumle = "";
             cumle = "jdbc:sqlserver://localhost;instanceName=" + inst + ";";
             conn = DriverManager.getConnection(cumle,kull,sifre);
     		conn.close();

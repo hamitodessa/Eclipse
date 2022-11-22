@@ -50,6 +50,16 @@ public class OBS_SIS_2025_ANA_CLASS
    
     public String[] options = {"Tamam......       		!", "Vazgec.....       		!"}; 
     public IConnection _IConn ;
+    public IConnection _ICariCon ;
+    public IConnection _IStokCon ;
+    public IConnection _IKurCon ;
+    public IConnection _IAdresCon ;
+    public IConnection _IKambiyoCon ;
+    public IConnection _IGunlukCon ;
+    public IConnection _ISmsCon ;
+    
+    
+    
 	public int txt_yukseklik =20;
 	public static Color gridcolor ; //=  new Color(0, 191, 255);      //   0,153,204   java.awt.Color[r=204,g=0,b=102]
 	public static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);

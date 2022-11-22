@@ -18,24 +18,17 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	static Statement stmt = null;
 	private GLOBAL gLB = new GLOBAL();
 	
-	public void baglan() throws SQLException
+	public void baglan() throws SQLException, ClassNotFoundException
 	{
-		String cumle = "jdbc:mysql://" + BAGLAN.cariDizin.cONN_STR + ";";
+		 Class.forName("com.mysql.cj.jdbc.Driver");
+
+		//String cumle = "jdbc:mysql://" + BAGLAN.cariDizin.cONN_STR + ";";
+		String cumle = "jdbc:mysql://" + BAGLAN.cariDizin.cONN_STR ;
 	    con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
-	}
+			}
 	public void akt_baglan(String kod) throws SQLException
 	{
-		String cnnstr = "" ;
-		if (new String( BAGLAN.cariDizin.yER.toString()).equals("L") == true) 
-        { 
-			cnnstr = "localhost:" + BAGLAN.cariDizin.sERVER + " ; database=OK_Car" + kod ;
-        }
-        else
-        { 
-        	cnnstr = BAGLAN.cariDizin.sERVER + " ; database=ok_car" + kod ;
-        }
-		String cumle = "jdbc:mysql://" + cnnstr + ";";
-	    akt_con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
+	
 	}
 	@Override
 	public void cari_sifirdan_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
@@ -74,19 +67,19 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
  		String cumle = "";
  		stmt = null;
         String sql =null;
- 		cumle = "jdbc:mysql://" + server + ";instanceName=" + ins + ";";
+ 		cumle = "jdbc:mysql://" + server ;
         con = DriverManager.getConnection(cumle,kull,sifre);
-            sql = "CREATE DATABASE [" + VERITABANI + "]";
+            sql = "CREATE DATABASE " + VERITABANI ;
             stmt = con.createStatement();  
             stmt.executeUpdate(sql);
-            cumle = "jdbc:mysql://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + ";";
+            cumle = "jdbc:mysql://" + server + "/" + VERITABANI + ";";
             con = DriverManager.getConnection(cumle,kull,sifre);
             create_table(fir_adi);
             //
-            sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
+            sql = "CREATE DATABASE " + VERITABANI + "_LOG" ;
             stmt = con.createStatement();  
             stmt.executeUpdate(sql);
-            cumle = "jdbc:mysql://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
+            cumle = "jdbc:mysql://" + server + "/" + VERITABANI + "_LOG" ;
             con = DriverManager.getConnection(cumle,kull,sifre);
             create_table_log();
           
@@ -98,7 +91,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
-        sql = "CREATE TABLE `hesap` ("
+        sql = "CREATE TABLE `HESAP` ("
         		+ "  `HESAP` NVARCHAR(12) NOT NULL,"
         		+ "  `UNVAN` NVARCHAR(50) NULL,"
         		+ "  `KARTON` NVARCHAR(5) NULL,"
@@ -207,11 +200,11 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 
 	@Override
 	public String cari_firma_adi() throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 	 	con = null;
 		ResultSet	rss = null;
-		String cumle = "jdbc:mysql://" + BAGLAN.cariDizin.cONN_STR + ";";
-       con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
+		String cumle = "jdbc:mysql://" + BAGLAN.cariDizin.cONN_STR ;
+      con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
     	PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();
 		rss.next();

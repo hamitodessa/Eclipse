@@ -1318,7 +1318,7 @@ public class CAL_DIZIN extends JFrame {
 		 
          String program = "";
           if (activ_sayfa == 0)
-             program = "OK_Car" + txtKodu.getText();
+             program = "ok_car" + txtKodu.getText();
          else if (activ_sayfa == 1)
              program = "OK_Fat" + txtKodu.getText();
          else if (activ_sayfa == 2)

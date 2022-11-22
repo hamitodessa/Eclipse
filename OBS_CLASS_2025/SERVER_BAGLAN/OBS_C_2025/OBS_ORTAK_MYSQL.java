@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 
 
 
@@ -16,6 +18,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
     {
 		 Class.forName("com.mysql.cj.jdbc.Driver");
 		 Connection conn = null;  
+
 		  String url = "jdbc:mysql://localhost:" + port ; //pointing to no database.
 		    try 
 		    {
@@ -52,15 +55,18 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		  String url = "jdbc:mysql://localhost:" + port ; //pointing to no database.
 		    try 
 		    {
+		          
 		    		conn = DriverManager.getConnection(url, kull, sifre);
 		    		 stmt = conn.createStatement();
 		    		 resultset = stmt.executeQuery("SHOW DATABASES;");
 		    		 result =false;
 		             while (resultset.next()) 
 		             {
-		            	 if(resultset.getString("Database").equals(db))
+			            	 if(resultset.getString("Database").equals(db))
 		            	 {
+		            				   
 		            		 result = true;
+		            		 
 		            	 }
 		             }
 		    } catch (SQLException e)

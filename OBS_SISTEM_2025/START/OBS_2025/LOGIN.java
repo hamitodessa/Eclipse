@@ -308,8 +308,10 @@ public LOGIN() throws IOException {
             {
             calisma_dizini_oku();
             //*** CARI
+      
            CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
            c_Access.baglan();
+    
           //*** KUR
            KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur, oac._IKur_Loger);
            k_Access.baglan();
@@ -329,7 +331,7 @@ public LOGIN() throws IOException {
             SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms, oac._ISms_Loger);
             sms_Access.baglan();
             //***buraya 
-            
+    
             OBS_MAIN obmain = new OBS_MAIN();
             Login_Progres_Bar_Temizle();
             String qwe = "";
@@ -345,6 +347,7 @@ public LOGIN() throws IOException {
                         }
                     else 
                         { 
+  
                     	BAGLAN.cariDizin.fIRMA_ADI =  oac._ICar.cari_firma_adi() ;
                        qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
                        OBS_MAIN.lblNewLabel_1.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "/ " + BAGLAN.cariDizin.fIRMA_ADI + "/ " + qwe );
@@ -539,6 +542,7 @@ public LOGIN() throws IOException {
 	// Cari
 	cONN_AKTAR( BAGLAN.cariDizin.hAN_SQL );
 	String hangi_sql =  BAGLAN.cariDizin.hAN_SQL;
+    oac._ICariCon = oac._IConn ;
     if (hangi_sql.equals("MS SQL"))
     {
     	oac._ICar = new  CARI_HESAP_MSSQL();
@@ -550,6 +554,7 @@ public LOGIN() throws IOException {
     //Kur
     cONN_AKTAR( BAGLAN.kurDizin.hAN_SQL );
     hangi_sql =  BAGLAN.kurDizin.hAN_SQL;
+    oac._IKurCon = oac._IConn ;
     if (hangi_sql.equals("MS SQL"))
     {
     	oac._IKur = new KUR_MSSQL();
@@ -561,6 +566,7 @@ public LOGIN() throws IOException {
     //SMS
     cONN_AKTAR(BAGLAN.smsDizin.hAN_SQL );
     hangi_sql =  BAGLAN.smsDizin.hAN_SQL;
+    oac._ISmsCon = oac._IConn ;
     if (hangi_sql.equals("MS SQL"))
     {
     	oac._ISms = new SMS_MSSQL();
@@ -572,6 +578,7 @@ public LOGIN() throws IOException {
     //ADRES
     cONN_AKTAR( BAGLAN.adrDizin.hAN_SQL );
     hangi_sql =  BAGLAN.adrDizin.hAN_SQL;
+    oac._IAdresCon = oac._IConn ;
     if (hangi_sql.equals("MS SQL"))
     {
     	oac._IAdres = new ADRES_MSSQL();
@@ -583,6 +590,7 @@ public LOGIN() throws IOException {
     //FAT
     cONN_AKTAR(BAGLAN.fatDizin.hAN_SQL );
     hangi_sql =  BAGLAN.fatDizin.hAN_SQL;
+    oac._IStokCon = oac._IConn ;
     if (hangi_sql.equals("MS SQL"))
     {
     	oac._IStok = new STOK_MSSQL();
@@ -594,6 +602,7 @@ public LOGIN() throws IOException {
     //KAMB
     cONN_AKTAR(BAGLAN.kamDizin.hAN_SQL );
     hangi_sql =  BAGLAN.kamDizin.hAN_SQL;
+    oac._IKambiyoCon = oac._IConn ;
     if (hangi_sql.equals("MS SQL"))
     {
     	oac._IKambiyo = new KAMBIYO_MSSQL();
@@ -605,6 +614,7 @@ public LOGIN() throws IOException {
     //GUN
     cONN_AKTAR( BAGLAN.gunDizin.hAN_SQL );
     hangi_sql =  BAGLAN.gunDizin.hAN_SQL;
+    oac._IGunlukCon = oac._IConn ;
     if (hangi_sql.equals("MS SQL"))
     {
     	oac._IGunluk = new GUNLUK_MSSQL();
@@ -618,6 +628,7 @@ public LOGIN() throws IOException {
     progressBar.setStringPainted(true);
     Lgn_Progres_Bar(say, 1);
     cari_calisma_dizini_oku();
+	
     Lgn_Progres_Bar(say, 2);
     kur_calisma_dizini_oku();
     Lgn_Progres_Bar(say, 3);
@@ -631,12 +642,12 @@ public LOGIN() throws IOException {
     Lgn_Progres_Bar(say, 7);
     gun_calisma_dizini_oku();
     Lgn_Progres_Bar(say, 8);
-
+  
 
 }
 	void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
-    CONNECT s_CONN = new CONNECT(oac._IConn);
+    CONNECT s_CONN = new CONNECT( oac._ICariCon);
     Tema_Cari.conn =    Tema_Cari.myTemaConnection();
     if (BAGLAN.cariDizin.yER.equals(""))
     {
@@ -647,15 +658,16 @@ public LOGIN() throws IOException {
     if (BAGLAN.cariDizin.yER.equals("L"))
     	
     {
-    
+
     	if (s_CONN.Server_kontrol_L(BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
     	{
-    		if (s_CONN.Dosya_kontrol_L("OK_Car" + BAGLAN.cariDizin.kOD,BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
+     		if (s_CONN.Dosya_kontrol_L("ok_car" + BAGLAN.cariDizin.kOD,BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
             {
             	CAR_DOS_VAR = false;
             	}
             else
             {
+      			
            	lOGG_AKTAR("Cari Hesap",BAGLAN.cariDizin.hAN_SQL,BAGLAN.cariDizin.lOG,BAGLAN.cariDizin.lOGLAMA_YERI);
             CAR_DOS_VAR = true;
             OBS_SIS_2025_ANA_CLASS.CARI_CONN = true;}
@@ -665,7 +677,7 @@ public LOGIN() throws IOException {
     	}
     else if (s_CONN.Server_kontrol_S(BAGLAN.cariDizin.sERVER, BAGLAN.cariDizin.iNSTANCE,BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
     {
-            if (s_CONN.Dosya_kontrol_S(BAGLAN.cariDizin.sERVER,BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,"OK_Car" + BAGLAN.cariDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
+            if (s_CONN.Dosya_kontrol_S(BAGLAN.cariDizin.sERVER,BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,"ok_car" + BAGLAN.cariDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
             CAR_DOS_VAR = false;
         else
         	lOGG_AKTAR("Cari Hesap",BAGLAN.cariDizin.hAN_SQL,BAGLAN.cariDizin.lOG,BAGLAN.cariDizin.lOGLAMA_YERI);
@@ -1035,6 +1047,7 @@ public LOGIN() throws IOException {
 	 String hangi = dIZIN  ;
 		if (hangi.equals("MS SQL"))
 		{
+	
 			oac._IConn = new OBS_ORTAK_MSSQL();
 		}
 		else

@@ -1424,8 +1424,11 @@ public class CAL_DIZIN extends JFrame {
      		 	 if(g != 0 ) { return;	}
             	  	Thread.yield();
                      dosya_olustur_L();
+                     JOptionPane.showMessageDialog(null, "1", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
                      mdb_yaz();
+                     JOptionPane.showMessageDialog(null, "2", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
                      grid_doldur();
+                     JOptionPane.showMessageDialog(null, "3", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
                      if (activ_sayfa == 0)
                     	 doldur_kutu(tblCari, 0);
                      else if (activ_sayfa == 1)

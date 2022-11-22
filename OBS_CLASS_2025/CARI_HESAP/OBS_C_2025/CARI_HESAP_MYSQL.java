@@ -163,32 +163,28 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
         sql = "CREATE TABLE `EVRAK_NO` (EID INTEGER AUTO_INCREMENT PRIMARY KEY ,`EVRAK` integer )";
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
-        sql = "CREATE TABLE `OZEL`(`OZID` INTEGER AUTO_INCREMENT PRIMARY KEY ,"
-       		 		  + "`YONETICI` nvarchar(25) NULL,"
-	                      + "`YON_SIFRE` nvarchar(15) NULL,"
-	                      + "`FIRMA_ADI` nvarchar(50) NULL,"
-	                      + "  PRIMARY KEY (`OZID`),"
-	              		+ "  UNIQUE INDEX `OZID_UNIQUE` (`OZID` ASC) VISIBLE);";
+        sql = "CREATE TABLE `OZEL` ("
+        		+ "  `OZID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
+        		+ "  `YONETICI` VARCHAR(25) NULL,"
+        		+ "  `YON_SIFRE` VARCHAR(15) NULL,"
+        		+ "  `FIRMA_ADI` VARCHAR(50) NULL);";
          stmt = con.createStatement();  
         stmt.executeUpdate(sql);
         JOptionPane.showMessageDialog(null,"Yeni Versiyon Mevcu","ddssdsd" , JOptionPane.PLAIN_MESSAGE);   
-       sql = "CREATE TABLE [dbo].[YETKILER]( "
-       		 + "[YETID] [int] IDENTITY(1,1) NOT NULL,"
-	                         + "[KULLANICI] [nvarchar](25) NULL,"
-	                         + "[KARTON] [nvarchar](5) NULL,"
-	                         + "[TAM_YETKI] [bit] NULL,"
-	                         + "[GORUNTU] [bit] NULL,"
-	                         + " CONSTRAINT [PK_YETID] PRIMARY KEY CLUSTERED "
-	                         + " ([YETID] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,"
-	                         + " ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]";
+       sql = "CREATE TABLE `YETKILER`( "
+       		 + " `YETID INTEGER AUTO_INCREMENT PRIMARY KEY,"
+	                         + "`KULLANICI` nvarchar(25) NULL,"
+	                         + "`KARTON` nvarchar(5) NULL,"
+	                         + "`TAM_YETKI` TINYINT NULL,"
+	                         + "`GORUNTU` TINYINT NULL);";
        stmt = con.createStatement();  
        stmt.executeUpdate(sql);
-        sql= "CREATE TABLE [dbo].[ANA_GRUP_DEGISKEN]( "
-       		 + "[ANA_GRUP] [nvarchar](25) NOT NULL,"
-	                   + "     [USER] [nvarchar](15) NOT NULL,"
-                      + "  CONSTRAINT [IX_ANA_GRUP] PRIMARY KEY CLUSTERED " 
-                      + "  ([ANA_GRUP] ASC) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, " 
-                      + "  ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]";
+        sql= "CREATE TABLE `ANA_GRUP_DEGISKEN`( "
+       		 + "`ANA_GRUP` nvarchar(25) NOT NULL,"
+	                   + " `USER` nvarchar`(15) NOT NULL,"
+	                   + "  PRIMARY KEY (`SID`),"
+	           		+ "  UNIQUE INDEX `SID_UNIQUE` (`SID` ASC) VISIBLE,"
+	           		+ "  INDEX `IX_SATIRLAR` (`TARIH` ASC, `EVRAK` ASC, `CINS` ASC, `USER` ASC, `HESAP` ASC) INVISIBLE);";
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
         sql = "CREATE TABLE [dbo].[ALT_GRUP_DEGISKEN]( "

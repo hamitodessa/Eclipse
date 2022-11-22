@@ -61,7 +61,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
         cumle = "jdbc:mysql://localhost/" +VERITABANI + "_LOG" ;
         con = DriverManager.getConnection(cumle,kull,sifre);
         create_table_log();
-        //
+      //
         stmt.close();
         con.close();
  	}
@@ -506,9 +506,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	    sql = "CREATE TABLE  `loglama` ("
 	    		+ "  `TARIH` DATETIME NOT NULL,"
 	    		+ "  `MESAJ` VARCHAR(100) NULL,"
-	    		+ "  `EVRAK` INT NULL,"
-	    		+ "  `USER` VARCHAR(15) NULL,"
-	    		+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER` ASC) INVISIBLE);";
+	    		+ "  `EVRAK` VARCHAR(15) NULL,"
+	    		+ "  `USER_NAME` VARCHAR(15) NULL,"
+	    		+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) INVISIBLE);";
 	    	stmt = con.createStatement();  
 	    	stmt.executeUpdate(sql);
 		

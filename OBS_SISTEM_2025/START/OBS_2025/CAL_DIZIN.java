@@ -1424,11 +1424,8 @@ public class CAL_DIZIN extends JFrame {
      		 	 if(g != 0 ) { return;	}
             	  	Thread.yield();
                      dosya_olustur_L();
-  
-                     mdb_yaz();
-       
+                    mdb_yaz();
                      grid_doldur();
-      
                      if (activ_sayfa == 0)
                     	 doldur_kutu(tblCari, 0);
                      else if (activ_sayfa == 1)
@@ -1594,6 +1591,7 @@ public class CAL_DIZIN extends JFrame {
 	     oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), txtsifr.getText(),  inst, txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, cmblog.getItemAt(cmblog.getSelectedIndex()));
 
 	}
+	
 	private  void dosya_olustur_L() throws IOException, ClassNotFoundException, SQLException
 {
 	 if (activ_sayfa == 0)
@@ -1602,12 +1600,13 @@ public class CAL_DIZIN extends JFrame {
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          cONN_AKTAR();
-         lOGG_AKTAR(oac._ICari_Loger);
+         lOGG_AKTAR("Cari Hesap");
          mODUL_AKTAR("Cari Hesap");
         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ICari_Loger);
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
 		BAGLAN.cariDizin.sIFRESI = txtsifr.getText() ;
-	
+		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.cariDizin.sERVER = txtIp.getText();
 		BAGLAN.cariDizin.kOD = txtKodu.getText();
 		BAGLAN.cariDizin.yER = "L";
         BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -1631,7 +1630,6 @@ public class CAL_DIZIN extends JFrame {
          	}
         	 else
         	 {
-     
         		c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, inst,txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
         	 }
      }
@@ -1641,12 +1639,14 @@ public class CAL_DIZIN extends JFrame {
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          cONN_AKTAR();
-        lOGG_AKTAR(oac._IFatura_Loger);
+        lOGG_AKTAR("Stok");
          mODUL_AKTAR("Stok");
 
          STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
  		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
  		BAGLAN.fatDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.fatDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+ 		BAGLAN.fatDizin.sERVER = txtIp.getText();
  		BAGLAN.fatDizin.iNSTANCE =comboBox.getSelectedItem().toString();
  		BAGLAN.fatDizin.kOD = txtKodu.getText();
  		BAGLAN.fatDizin.yER = "L";
@@ -1668,11 +1668,13 @@ public class CAL_DIZIN extends JFrame {
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         contentPane.setCursor(WAIT_CURSOR);
         cONN_AKTAR();
-        lOGG_AKTAR(oac._IAdres_Loger);
+        lOGG_AKTAR("Adres");
         mODUL_AKTAR("Adres");
         ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._IAdres_Loger);
 		BAGLAN.adrDizin.kULLANICI = txtkul.getText();
  		BAGLAN.adrDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.adrDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+ 		BAGLAN.adrDizin.sERVER = txtIp.getText();
  		BAGLAN.adrDizin.iNSTANCE =comboBox.getSelectedItem().toString();
  		BAGLAN.adrDizin.kOD = txtKodu.getText();
  		BAGLAN.adrDizin.yER = "L";
@@ -1692,11 +1694,13 @@ public class CAL_DIZIN extends JFrame {
      {
     	 contentPane.setCursor(WAIT_CURSOR);
     	 cONN_AKTAR();
-         lOGG_AKTAR(oac._IKur_Loger);
+         lOGG_AKTAR("Kur");
          mODUL_AKTAR("Kur");
     	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._IKur_Loger);
  		BAGLAN.kurDizin.kULLANICI = txtkul.getText();
  		BAGLAN.kurDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.kurDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+ 		BAGLAN.kurDizin.sERVER = txtIp.getText();
  		BAGLAN.kurDizin.iNSTANCE =comboBox.getSelectedItem().toString();
  		BAGLAN.kurDizin.kOD = txtKodu.getText();
  		BAGLAN.kurDizin.yER = "L";
@@ -1718,11 +1722,13 @@ public class CAL_DIZIN extends JFrame {
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          cONN_AKTAR();
-         lOGG_AKTAR(oac._IKambiyo_Loger);
+         lOGG_AKTAR("Kambiyo");
          mODUL_AKTAR("Kambiyo");
          KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._IKambiyo_Loger);
  		BAGLAN.kamDizin.kULLANICI = txtkul.getText();
  		BAGLAN.kamDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.kamDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+ 		BAGLAN.kamDizin.sERVER = txtIp.getText();
  		BAGLAN.kamDizin.iNSTANCE =comboBox.getSelectedItem().toString();
  		BAGLAN.kamDizin.kOD = txtKodu.getText();
  		BAGLAN.kamDizin.yER = "L";
@@ -1743,11 +1749,13 @@ public class CAL_DIZIN extends JFrame {
      {
     	 contentPane.setCursor(WAIT_CURSOR);
     	 cONN_AKTAR();
-         lOGG_AKTAR(oac._ISms_Loger);
+         lOGG_AKTAR("Sms");
          mODUL_AKTAR("Sms");
     	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ISms_Loger);
   		BAGLAN.smsDizin.kULLANICI = txtkul.getText();
  		BAGLAN.smsDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.smsDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+ 		BAGLAN.smsDizin.sERVER = txtIp.getText();
  		BAGLAN.smsDizin.iNSTANCE =comboBox.getSelectedItem().toString();
  		BAGLAN.smsDizin.kOD = txtKodu.getText();
  		BAGLAN.smsDizin.yER = "L";
@@ -1770,11 +1778,13 @@ public class CAL_DIZIN extends JFrame {
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          cONN_AKTAR();
-         lOGG_AKTAR(oac._IGunluk_Loger);
+         lOGG_AKTAR("Gunluk");
          mODUL_AKTAR("Gunluk");
          GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._IGunluk_Loger);
  		BAGLAN.gunDizin.kULLANICI = txtkul.getText();
  		BAGLAN.gunDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.gunDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+ 		BAGLAN.gunDizin.sERVER = txtIp.getText();
  		BAGLAN.gunDizin.iNSTANCE =comboBox.getSelectedItem().toString();
  		BAGLAN.gunDizin.kOD = txtKodu.getText();
  		BAGLAN.gunDizin.yER = "L";
@@ -1798,12 +1808,12 @@ public class CAL_DIZIN extends JFrame {
 		String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
-        lOGG_AKTAR(oac._ICari_Loger);
+        lOGG_AKTAR("Cari Hesap");
         mODUL_AKTAR("Cari Hesap");
         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ICari_Loger);
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
 		BAGLAN.cariDizin.sIFRESI = txtsifr.getText() ;
-		
+		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.cariDizin.kOD = txtKodu.getText();
 		BAGLAN.cariDizin.yER = "S";
         BAGLAN_LOG bLog = new BAGLAN_LOG();
@@ -1831,11 +1841,12 @@ public class CAL_DIZIN extends JFrame {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
-        lOGG_AKTAR(oac._IFatura_Loger);
+        lOGG_AKTAR("Stok");
         mODUL_AKTAR("Stok");
         STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
 		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
 		BAGLAN.fatDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.fatDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.fatDizin.kOD = txtKodu.getText();
 		BAGLAN.fatDizin.yER = "S";
@@ -1854,11 +1865,12 @@ public class CAL_DIZIN extends JFrame {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
-        lOGG_AKTAR(oac._IAdres_Loger);
+        lOGG_AKTAR("Adres");
         mODUL_AKTAR("Adres");
         ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._IAdres_Loger);
         BAGLAN.adrDizin.kULLANICI = txtkul.getText();
 		BAGLAN.adrDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.adrDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.adrDizin.kOD = txtKodu.getText();
 		BAGLAN.adrDizin.yER = "S";
@@ -1877,11 +1889,12 @@ public class CAL_DIZIN extends JFrame {
     {
     	
     	 cONN_AKTAR();
-         lOGG_AKTAR(oac._IKur_Loger);
+         lOGG_AKTAR("Kur");
          mODUL_AKTAR("Kur");
     	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._IKur_Loger);
     	 BAGLAN.kurDizin.kULLANICI = txtkul.getText();
  		BAGLAN.kurDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
  		BAGLAN.kurDizin.iNSTANCE =comboBox.getSelectedItem().toString();
  		BAGLAN.kurDizin.kOD = txtKodu.getText();
  		BAGLAN.kurDizin.yER = "S";
@@ -1901,11 +1914,12 @@ public class CAL_DIZIN extends JFrame {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
-        lOGG_AKTAR(oac._IKambiyo_Loger);
+        lOGG_AKTAR("Kambiyo");
         mODUL_AKTAR("Kambiyo");
         KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._IKambiyo_Loger);
         BAGLAN.kamDizin.kULLANICI = txtkul.getText();
 		BAGLAN.kamDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.kamDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.kamDizin.kOD = txtKodu.getText();
 		BAGLAN.kamDizin.yER = "S";
@@ -1921,11 +1935,12 @@ public class CAL_DIZIN extends JFrame {
     else if (activ_sayfa == 5)
     {
     	 cONN_AKTAR();
-         lOGG_AKTAR(oac._ISms_Loger);
+         lOGG_AKTAR("Sms");
          mODUL_AKTAR("Sms");	
     	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ISms_Loger);
     	BAGLAN.smsDizin.kULLANICI = txtkul.getText();
   		BAGLAN.smsDizin.sIFRESI = txtsifr.getText() ;
+  		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
   		BAGLAN.smsDizin.iNSTANCE =comboBox.getSelectedItem().toString();
   		BAGLAN.smsDizin.kOD = txtKodu.getText();
   		BAGLAN.smsDizin.yER = "S";
@@ -1945,11 +1960,12 @@ public class CAL_DIZIN extends JFrame {
     	String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
-        lOGG_AKTAR(oac._IGunluk_Loger);
+        lOGG_AKTAR("Gunluk");
         mODUL_AKTAR("Gunluk");
         GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._IGunluk_Loger);
         BAGLAN.gunDizin.kULLANICI = txtkul.getText();
 		BAGLAN.gunDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.gunDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.gunDizin.kOD = txtKodu.getText();
 		BAGLAN.gunDizin.yER = "S";
@@ -2044,19 +2060,86 @@ public class CAL_DIZIN extends JFrame {
 				}
 			}
 	}
-	private void lOGG_AKTAR(Object obj)
+	private void lOGG_AKTAR(String mODUL)
 	{
 		  String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
-		  
+
 			if (hangi.equals("MS SQL"))
 			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
-				obj = ilogg;
-			}
+				if (mODUL == "Cari Hesap")
+				{
+					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
+					oac._ICari_Loger  = ilogg;
+				}
+				else 	if (mODUL == "Stok")
+				{
+					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
+					oac._IFatura_Loger  = ilogg;
+				}
+				else 	if (mODUL == "Adres")
+				{
+					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
+					oac._IAdres_Loger  = ilogg;
+				}
+				else 	if (mODUL == "Kur")
+				{
+					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
+					oac._IKur_Loger  = ilogg;
+				}
+				else 	if (mODUL == "Kambiyo")
+				{
+					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
+					oac._IKambiyo_Loger  = ilogg;
+				}
+					else 	if (mODUL == "Gunluk")
+					{
+						ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
+						oac._IGunluk_Loger  = ilogg;
+					}
+					else 	if (mODUL == "Sms")
+					{
+						ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
+						oac._ISms_Loger  = ilogg;
+					}
+				}
+			
 			else if (hangi.equals("MY SQL"))
 			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()), new MAIL_AT()};
-				obj = ilogg;
+				if (mODUL == "Cari Hesap")
+				{
+				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
+					oac._ICari_Loger  = ilogg;
+				}
+				else 	if (mODUL == "Stok")
+				{
+					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
+					oac._IFatura_Loger  = ilogg;
+				}
+				else 	if (mODUL == "Adres")
+				{
+					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
+					oac._IAdres_Loger  = ilogg;
+				}
+				else 	if (mODUL == "Kur")
+				{
+					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
+					oac._IKur_Loger  = ilogg;
+				}
+				else 	if (mODUL == "Kambiyo")
+				{
+					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
+					oac._IKambiyo_Loger  = ilogg;
+				}
+					else 	if (mODUL == "Gunluk")
+					{
+						ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
+						oac._IGunluk_Loger  = ilogg;
+					}
+					else 	if (mODUL == "Sms")
+					{
+						ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
+						oac._ISms_Loger  = ilogg;
+					}
 			}
 	}
 }

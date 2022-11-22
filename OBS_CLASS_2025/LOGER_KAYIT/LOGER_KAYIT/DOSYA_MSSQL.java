@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
 
 import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;

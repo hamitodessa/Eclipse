@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 public class CARI_ACCESS {
 	private static ICARI_HESAP _ICari;
 	private static ILOGGER[] _Logger;
@@ -36,7 +38,7 @@ public class CARI_ACCESS {
 	{
 		 _ICari.cari_sifirdan_L( kod,dizin_yeri, dizin,  fir_adi, ins, kull, sifre,port);
 		 
-		 for ( ILOGGER  _Logger : _Logger )
+			 for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi

@@ -55,13 +55,10 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
          
         cumle = "jdbc:mysql://localhost/" +VERITABANI ;
         con = DriverManager.getConnection(cumle,kull,sifre);
-   
          create_table(fir_adi);
-        
-         stmt.close();
+          stmt.close();
          con.close();
-		
-	}
+ 	}
 
 	@Override
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException {

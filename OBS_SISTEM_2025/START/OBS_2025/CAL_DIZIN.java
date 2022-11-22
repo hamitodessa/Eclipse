@@ -1424,11 +1424,11 @@ public class CAL_DIZIN extends JFrame {
      		 	 if(g != 0 ) { return;	}
             	  	Thread.yield();
                      dosya_olustur_L();
-                     JOptionPane.showMessageDialog(null, "1", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
+  
                      mdb_yaz();
-                     JOptionPane.showMessageDialog(null, "2", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
+       
                      grid_doldur();
-                     JOptionPane.showMessageDialog(null, "3", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
+      
                      if (activ_sayfa == 0)
                     	 doldur_kutu(tblCari, 0);
                      else if (activ_sayfa == 1)
@@ -1628,7 +1628,6 @@ public class CAL_DIZIN extends JFrame {
          if (chckbxD.isSelected())
          	{
         	 	c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin,  inst,txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
-        	 
          	}
         	 else
         	 {
@@ -1789,7 +1788,6 @@ public class CAL_DIZIN extends JFrame {
         	 else
         	 {
         	 g_Access.gUN_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
-
         	 }
      }
  }

@@ -43,11 +43,25 @@ public class BILGI_OKU {
 								dIZIN.lOGLAMA_YERI = rs.getString("LOG_YERI").toString();
 					            if (new String(dIZIN.yER.toString()).equals("L") == true) 
 					            { 
-					            	dIZIN.cONN_STR =  "localhost;instanceName=" + dIZIN.iNSTANCE + " ; database=" + dOSYA_BASLANGIC  + dIZIN.kOD ;
+					            	  if (new String(dIZIN.hAN_SQL.toString()).equals("MS SQL") == true) 
+					            	  {
+					            		  dIZIN.cONN_STR =  "localhost;instanceName=" + dIZIN.iNSTANCE + " ; database=" + dOSYA_BASLANGIC  + dIZIN.kOD ;
+					            	  }
+					            	  else   if (new String(dIZIN.hAN_SQL.toString()).equals("MY SQL") == true) 
+					            	  {
+					            		  dIZIN.cONN_STR =  "localhost:" + dIZIN.sERVER + " ; database=" + dOSYA_BASLANGIC  + dIZIN.kOD ;
+					            	  }
 					            }
 					            else
 					            { 
-					            	dIZIN.cONN_STR = dIZIN.sERVER + ";instanceName=" +dIZIN.iNSTANCE + " ; database=" +  dOSYA_BASLANGIC +dIZIN.kOD ;
+					            	 if (new String(dIZIN.hAN_SQL.toString()).equals("MS SQL") == true) 
+					            	  {
+					            		 dIZIN.cONN_STR = dIZIN.sERVER + ";instanceName=" +dIZIN.iNSTANCE + " ; database=" +  dOSYA_BASLANGIC +dIZIN.kOD ;
+					            	  }
+					            	 else  if (new String(dIZIN.hAN_SQL.toString()).equals("MS SQL") == true) 
+					            	 {
+					            		 dIZIN.cONN_STR = dIZIN.sERVER + " ; database=" +  dOSYA_BASLANGIC +dIZIN.kOD ;
+					            	 }
 					            }
 							}
 							con.close();

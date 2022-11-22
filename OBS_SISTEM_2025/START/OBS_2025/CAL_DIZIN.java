@@ -237,7 +237,6 @@ public class CAL_DIZIN extends JFrame {
 				try
 				{
 					contentPane.setCursor(WAIT_CURSOR);
-					
 		            database_kontrol();
 		            btnNewButton_1.setEnabled(false);
 		            contentPane.setCursor(DEFAULT_CURSOR);
@@ -1354,8 +1353,9 @@ public class CAL_DIZIN extends JFrame {
 	            }
         	 else
         	 {
-        		 inst = comboBox.getSelectedItem().toString();
+         		 inst = comboBox.getSelectedItem().toString();
         	 }
+        	 
             if ( s_CONN.Dosya_kontrol_L(program, inst,txtkul.getText(),txtsifr.getText(),txtIp.getText()) == true)
              {
      
@@ -1594,21 +1594,33 @@ public class CAL_DIZIN extends JFrame {
         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ICari_Loger);
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
 		BAGLAN.cariDizin.sIFRESI = txtsifr.getText() ;
-		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+	
 		BAGLAN.cariDizin.kOD = txtKodu.getText();
 		BAGLAN.cariDizin.yER = "L";
         BAGLAN_LOG bLog = new BAGLAN_LOG();
         bLog.cONNECT();
         
+        String inst = "" ;
+   	 	if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
+   	 		{
+            inst = "" ;
+        	BAGLAN.cariDizin.iNSTANCE ="";
+           }
+   	 	else
+   	 	{
+   		 inst = comboBox.getSelectedItem().toString();
+   		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+   	 	}
+   	 
          if (chckbxD.isSelected())
          	{
-        	 	c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
+        	 	c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin,  inst,txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
         	 
          	}
         	 else
         	 {
      
-        		c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
+        		c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, inst,txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
         	 }
      }
      else if (activ_sayfa == 1)
@@ -1780,15 +1792,27 @@ public class CAL_DIZIN extends JFrame {
         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ICari_Loger);
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
 		BAGLAN.cariDizin.sIFRESI = txtsifr.getText() ;
-		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		
 		BAGLAN.cariDizin.kOD = txtKodu.getText();
 		BAGLAN.cariDizin.yER = "S";
         BAGLAN_LOG bLog = new BAGLAN_LOG();
         bLog.cONNECT();
 
+        String inst = "" ;
+   	 	if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
+   	 		{
+            inst = "" ;
+            BAGLAN.cariDizin.iNSTANCE ="";
+           }
+   	 	else
+   	 	{
+   		 inst = comboBox.getSelectedItem().toString();
+   		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+   	 	}
+   	 	
         if (chckbxD.isSelected())
         	{
-        		c_Access.cARI_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
+        		c_Access.cARI_SIFIR_S(txtIp.getText(), inst, txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
           }
     }
     else if (activ_sayfa == 1)

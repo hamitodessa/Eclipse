@@ -20,43 +20,51 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	{
 		String cumle = "jdbc:mysql://" + BAGLAN.cariDizin.cONN_STR + ";";
 	    con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
-	   
 	}
 	public void akt_baglan(String kod) throws SQLException
 	{
 		String cnnstr = "" ;
 		if (new String( BAGLAN.cariDizin.yER.toString()).equals("L") == true) 
         { 
-			cnnstr = "localhost;instanceName=" + BAGLAN.cariDizin.iNSTANCE + " ; database=OK_Car" + kod ;
+			cnnstr = "localhost:" + BAGLAN.cariDizin.sERVER + " ; database=OK_Car" + kod ;
         }
         else
         { 
-        	cnnstr = BAGLAN.cariDizin.sERVER + ";instanceName=" +BAGLAN.cariDizin.iNSTANCE + " ; database=OK_Car" + kod ;
+        	cnnstr = BAGLAN.cariDizin.sERVER + " ; database=OK_Car" + kod ;
         }
 		String cumle = "jdbc:mysql://" + cnnstr + ";";
 	    akt_con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 	}
 	@Override
 	public void cari_sifirdan_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
-			String sifre) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+			String sifre,String port) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
  		con = null;  
  		String cumle = "";
-         cumle = "jdbc:mysql://localhost;instanceName=" + ins + ";";
+         cumle = "jdbc:mysql://localhost:" +port ;
          con = DriverManager.getConnection(cumle,kull,sifre);
         String VERITABANI = "OK_Car" + kod;
          stmt = null;
          String sql =null;
-         if (dizin_yeri == "default")
-         	sql = "CREATE DATABASE [" + VERITABANI + "]";
-         else
-         	sql = "CREATE DATABASE [" + VERITABANI + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_log', FILENAME = N'" + dizin + "\\" + VERITABANI + "_log.ldf' ) ";
-         stmt = con.createStatement();  
-         stmt.executeUpdate(sql);
-         cumle = "jdbc:mysql://localhost;instanceName=" + ins + ";database=" + VERITABANI + ";";
-         con = DriverManager.getConnection(cumle,kull,sifre);
+     	sql = "CREATE DATABASE " + VERITABANI ;
+        stmt = con.createStatement();  
+        stmt.execute(sql);
+         ///
+         
+        cumle = "jdbc:mysql://localhost/" +VERITABANI ;
+        con = DriverManager.getConnection(cumle,kull,sifre);
+//        stmt = con.createStatement();  
+//         Connection con = DriverManager.getConnection("jdbc:mysql://localhost/sqldatabase", "amit", "amitabh");  
+//         Statement s = con.createStatement();  
+//         s.execute("create table student ( stud_id integer,stud_name varchar(20),stud_address varchar(30) )"); // create a table  
+//         s.execute("insert into student values(001,'ARman','Delhi')"); // insert first row into the table   
+//         s.execute("insert into student values(002,'Robert','Canada')"); // insert second row into the table   
+//         s.execute("insert into student values(003,'Ahuja','Karnal')"); // insert third row into the table   
+//   
+         
+         ///
+   
          create_table(fir_adi);
-     
         
          stmt.close();
          con.close();
@@ -65,7 +73,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 
 	@Override
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
  		con = null;  
  		String VERITABANI = "OK_Car" + kod;
  		String cumle = "";
@@ -95,9 +103,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
-        sql = "CREATE TABLE [dbo].[HESAP]([HESAP] [nvarchar](12) NOT NULL,[UNVAN] [nvarchar](50) NULL, "
-	                    + " [KARTON] [nvarchar](5) NULL,[HESAP_CINSI] [nvarchar](3) NULL,[USER] [nvarchar](15) NULL,"
-	                    + " CONSTRAINT [IX_HESAP] PRIMARY KEY CLUSTERED ([HESAP] ASC)WITH (PAD_INDEX = OFF,"
+        sql = "CREATE TABLE HESAP(HESAP varchar(12) NOT NULL,UNVAN varchar(50) NULL, "
+	                    + " KARTON varchar(5) NULL,HESAP_CINSI varchar(3) NULL,USER varchar(15) NULL,"
+	                    + " CONSTRAINT [IX_HESAP] PRIMARY KEY CLUSTERED (HESAP ASC)WITH (PAD_INDEX = OFF,"
                        + " STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]"
                        + ") ON [PRIMARY]";
         stmt = con.createStatement();  

@@ -32,9 +32,9 @@ public class CARI_ACCESS {
 		return  _ICari.cari_firma_adi();
 	}
 	public void cari_sifirdan_L (String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
-			String sifre , String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+			String sifre , String mesaj,String evrak, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException 
 	{
-		 _ICari.cari_sifirdan_L( kod,dizin_yeri, dizin,  fir_adi, ins, kull, sifre);
+		 _ICari.cari_sifirdan_L( kod,dizin_yeri, dizin,  fir_adi, ins, kull, sifre,port);
 		 
 		 for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(mesaj,evrak, dBILGI);

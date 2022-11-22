@@ -12,7 +12,7 @@ public interface ICARI_HESAP {
 
 	public void baglan() throws SQLException;
 	public void akt_baglan(String kod) throws SQLException;
-	public void cari_sifirdan_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins,String kull,String sifre) throws ClassNotFoundException, SQLException;
+	public void cari_sifirdan_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins,String kull,String sifre,String port) throws ClassNotFoundException, SQLException;
 	public void cARI_SIFIR_S(String server, String kull, String sifre, String kod, String fir_adi, String ins) throws ClassNotFoundException, SQLException;
 	public void create_table(String fir_adi) throws SQLException;
 	public void create_table_log() throws SQLException;

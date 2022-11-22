@@ -7,15 +7,34 @@ public class BILGI_OKU_LOG {
 	{
 		if (new String(oDIZIN.yER.toString()).equals("L") == true) 
 		   { 
-			dIZIN.kULLANICI = oDIZIN.kULLANICI;
-			dIZIN.sIFRESI = oDIZIN.sIFRESI;
-		   	dIZIN.cONN_STR =  "localhost;instanceName=" + oDIZIN.iNSTANCE + " ; database=" + dOSYA_BASLANGIC  + oDIZIN.kOD + "_LOG";
+			if (oDIZIN.hAN_SQL.toString().equals("MS SQL") == true)
+			{
+				dIZIN.kULLANICI = oDIZIN.kULLANICI;
+				dIZIN.sIFRESI = oDIZIN.sIFRESI;
+			   	dIZIN.cONN_STR =  "localhost;instanceName=" + oDIZIN.iNSTANCE + " ; database=" + dOSYA_BASLANGIC  + oDIZIN.kOD + "_LOG";
+			}
+			else  if (oDIZIN.hAN_SQL.toString().equals("MY SQL") == true)
+			{
+				dIZIN.kULLANICI = oDIZIN.kULLANICI;
+				dIZIN.sIFRESI = oDIZIN.sIFRESI;
+			   	dIZIN.cONN_STR =  "jdbc:mysql://llocalhost:" + oDIZIN.sERVER + " ; database=" + dOSYA_BASLANGIC  + oDIZIN.kOD + "_LOG";
+			}
 		   }
 		else
 		   { 
-			dIZIN.kULLANICI = oDIZIN.kULLANICI;
-			dIZIN.sIFRESI = oDIZIN.sIFRESI;
-		   	dIZIN.cONN_STR = dIZIN.sERVER + ";instanceName=" +oDIZIN.iNSTANCE + " ; database=" +  dOSYA_BASLANGIC + oDIZIN.kOD + "_LOG";
+			if (oDIZIN.hAN_SQL.toString().equals("MS SQL") == true)
+			{
+				dIZIN.kULLANICI = oDIZIN.kULLANICI;
+				dIZIN.sIFRESI = oDIZIN.sIFRESI;
+				dIZIN.cONN_STR = dIZIN.sERVER + ";instanceName=" +oDIZIN.iNSTANCE + " ; database=" +  dOSYA_BASLANGIC + oDIZIN.kOD + "_LOG";
+			}
+			else  if (oDIZIN.hAN_SQL.toString().equals("MY SQL") == true)
+			{
+				dIZIN.kULLANICI = oDIZIN.kULLANICI;
+				dIZIN.sIFRESI = oDIZIN.sIFRESI;
+			   	dIZIN.cONN_STR = "jdbc:mysql://" + dIZIN.sERVER + "; database=" +  dOSYA_BASLANGIC + oDIZIN.kOD + "_LOG";
+
+			}
 		   }
 	}
 	}

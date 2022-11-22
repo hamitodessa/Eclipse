@@ -39,25 +39,31 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	}
 	@Override
 	public void cari_sifirdan_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
-			String sifre,String port) throws ClassNotFoundException, SQLException {
+					String sifre,String port) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
  		con = null;  
  		String cumle = "";
-         cumle = "jdbc:mysql://localhost:" +port ;
-         con = DriverManager.getConnection(cumle,kull,sifre);
+        cumle = "jdbc:mysql://localhost:" + port ;
+        con = DriverManager.getConnection(cumle,kull,sifre);
         String VERITABANI = "ok_car" + kod;
-         stmt = null;
-         String sql =null;
+        stmt = null;
+        String sql =null;
      	sql = "CREATE DATABASE " + VERITABANI ;
         stmt = con.createStatement();  
         stmt.execute(sql);
-         ///
-         
         cumle = "jdbc:mysql://localhost/" +VERITABANI ;
         con = DriverManager.getConnection(cumle,kull,sifre);
-         create_table(fir_adi);
-          stmt.close();
-         con.close();
+        create_table(fir_adi);
+        //
+        sql = "CREATE DATABASE " + VERITABANI + "_LOG" ;
+        stmt = con.createStatement();  
+        stmt.execute(sql);
+        cumle = "jdbc:mysql://localhost/" +VERITABANI + "_LOG" ;
+        con = DriverManager.getConnection(cumle,kull,sifre);
+        create_table_log();
+        //
+        stmt.close();
+        con.close();
  	}
 
 	@Override
@@ -497,13 +503,12 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public void create_table_log() throws SQLException {
 		// TODO Auto-generated method stub
 		String sql = "" ;
-	    sql = "CREATE TABLE [dbo].[LOGLAMA]( "
-		 			+ " [TARIH] [datetime] NOT NULL,"
-                    + " [MESAJ] [nvarchar](100) NULL,"
-                    + " [EVRAK] [int] NOT NULL,"
-                    + " [USER] [nvarchar](15) NULL,"
-                    + " CONSTRAINT [IX_TAR] PRIMARY KEY CLUSTERED(	[TARIH] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, "
-                    + " IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]";
+	    sql = "CREATE TABLE  `loglama` ("
+	    		+ "  `TARIH` DATETIME NOT NULL,"
+	    		+ "  `MESAJ` VARCHAR(100) NULL,"
+	    		+ "  `EVRAK` INT NULL,"
+	    		+ "  `USER` VARCHAR(15) NULL,"
+	    		+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER` ASC) INVISIBLE);";
 	    	stmt = con.createStatement();  
 	    	stmt.executeUpdate(sql);
 		

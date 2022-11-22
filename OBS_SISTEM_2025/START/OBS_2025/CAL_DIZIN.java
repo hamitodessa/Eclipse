@@ -74,6 +74,7 @@ import OBS_C_2025.KUR_MYSQL;
 import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
+import OBS_C_2025.SIFRE_DONDUR;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SMS_MSSQL;
 import OBS_C_2025.SMS_MYSQL;
@@ -99,7 +100,7 @@ public class CAL_DIZIN extends JFrame {
 	private static JTextField txtKodu;
 	private static JTextField txtIp;
 	private static JTextField txtkul;
-	private static JTextField txtsifr;
+	private static JPasswordField txtsifr;
 	private static JTextField txtdiz;
 	private static JLabel lblysif;
 	private static JTextField txtyenisif;
@@ -1002,10 +1003,13 @@ public class CAL_DIZIN extends JFrame {
 				String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
 				if (hangi == "MS SQL")
 						{
+					comboBox.removeAllItems();
 					comboBox.setEnabled(true);
 						}
 				else
 				{
+					comboBox.removeAllItems();
+					comboBox.addItem("");
 					comboBox.setEnabled(false);
 				}
 				
@@ -1149,7 +1153,10 @@ public class CAL_DIZIN extends JFrame {
 		txtKodu.setText(grd.getModel().getValueAt(satir, 1).toString());
 		txtIp.setText(grd.getModel().getValueAt(satir, 6).toString());
 		txtkul.setText(grd.getModel().getValueAt(satir, 3).toString());
-		txtsifr.setText(grd.getModel().getValueAt(satir, 4).toString());
+		
+		byte[] decodedBytes = Base64.getDecoder().decode(grd.getModel().getValueAt(satir, 4).toString());
+		String decodedString = new String(decodedBytes);
+		txtsifr.setText(decodedString);
 		txtcdid.setText(grd.getModel().getValueAt(satir, 0).toString());
 		cmbhangisql.setSelectedItem(grd.getModel().getValueAt(satir, 13).toString());
 		comboBox.removeAllItems();
@@ -1264,6 +1271,7 @@ public class CAL_DIZIN extends JFrame {
 		     }
 		}
 }
+    
 	private  void server_control() throws HeadlessException, ClassNotFoundException
 		{
 			 contentPane.setCursor(WAIT_CURSOR);
@@ -1273,21 +1281,10 @@ public class CAL_DIZIN extends JFrame {
              if (chckbxL.isSelected() )
                 {
                 	contentPane.setCursor(WAIT_CURSOR);
-                	String inst = "" ;
-                	
-                	 if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
-                	 {
-  		             inst = "" ;
-  		            }
-                	 else
-                	 {
-                		 inst = comboBox.getSelectedItem().toString();
-                	 }
-                 if ( s_CONN.Server_kontrol_L(inst,txtkul.getText(), txtsifr.getText() ,txtIp.getText()) == true  )
+                     if ( s_CONN.Server_kontrol_L(comboBox.getItemAt( comboBox.getSelectedIndex()),txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr) ,txtIp.getText()) == true  )
                     {
                   	 contentPane.setCursor(DEFAULT_CURSOR);
-                    // JOptionPane.showMessageDialog(null, "Baglanti Saglandi........".toString(), "Server Baglanti", JOptionPane.PLAIN_MESSAGE);
-                     btnNewButton_1.setEnabled(true);
+                      btnNewButton_1.setEnabled(true);
                     }
                     else
                     {
@@ -1299,17 +1296,7 @@ public class CAL_DIZIN extends JFrame {
 	           else
 	             {
 	                contentPane.setCursor(WAIT_CURSOR);
-	             	String inst = "" ;
-                	
-               	 if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
-               	 {
- 		             inst = "" ;
- 		            }
-               	 else
-               	 {
-               		 inst = comboBox.getSelectedItem().toString();
-               	 }
-                    if (s_CONN.Server_kontrol_S(txtIp.getText(),inst,txtkul.getText(), txtsifr.getText(),txtIp.getText() ) == true)
+	              if (s_CONN.Server_kontrol_S(txtIp.getText(),comboBox.getItemAt( comboBox.getSelectedIndex()),txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr),txtIp.getText() ) == true)
                     {
                     	contentPane.setCursor(DEFAULT_CURSOR);
                     	// JOptionPane.showMessageDialog(null, "Baglanti Saglandi........".toString(), "Server Baglanti", JOptionPane.PLAIN_MESSAGE);
@@ -1346,17 +1333,8 @@ public class CAL_DIZIN extends JFrame {
              program = "OK_Gun" + txtKodu.getText();
          if (chckbxL.isSelected())
          {
-        	 String inst = "" ;
-        	 if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
-        	 {
-	             inst = "" ;
-	            }
-        	 else
-        	 {
-         		 inst = comboBox.getSelectedItem().toString();
-        	 }
-        	 
-            if ( s_CONN.Dosya_kontrol_L(program, inst,txtkul.getText(),txtsifr.getText(),txtIp.getText()) == true)
+       
+            if ( s_CONN.Dosya_kontrol_L(program,comboBox.getItemAt( comboBox.getSelectedIndex()) ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),txtIp.getText()) == true)
              {
      
                  if (activ_sayfa == 0)
@@ -1447,17 +1425,7 @@ public class CAL_DIZIN extends JFrame {
          }
          else  // Server
          {
-        
-        	 String inst = "" ;
-        	 if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
-        	 {
-	             inst = "" ;
-	            }
-        	 else
-        	 {
-        		 inst = comboBox.getSelectedItem().toString();
-        	 }
-             if (	 s_CONN.Dosya_kontrol_S(txtIp.getText(), inst, txtkul.getText(),txtsifr.getText(), program,txtIp.getText()) ==true)
+               if (	 s_CONN.Dosya_kontrol_S(txtIp.getText(),comboBox.getItemAt( comboBox.getSelectedIndex()), txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr), program,txtIp.getText()) ==true)
              {
      
                  if (activ_sayfa == 0)
@@ -1578,17 +1546,7 @@ public class CAL_DIZIN extends JFrame {
 	{
 		 
 		 oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, modul,chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
-		 String inst;
-		 if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
-    	 {
-             inst = "" ;
-            }
-    	 else
-    	 {
-    		 inst = comboBox.getSelectedItem().toString();
-    	 }
-		 
-	     oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), txtsifr.getText(),  inst, txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, cmblog.getItemAt(cmblog.getSelectedIndex()));
+	     oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), comboBox.getItemAt( comboBox.getSelectedIndex()) , txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, cmblog.getItemAt(cmblog.getSelectedIndex()));
 
 	}
 	
@@ -1604,33 +1562,24 @@ public class CAL_DIZIN extends JFrame {
          mODUL_AKTAR("Cari Hesap");
         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ICari_Loger);
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
-		BAGLAN.cariDizin.sIFRESI = txtsifr.getText() ;
+		
+		BAGLAN.cariDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.cariDizin.sERVER = txtIp.getText();
 		BAGLAN.cariDizin.kOD = txtKodu.getText();
 		BAGLAN.cariDizin.yER = "L";
+		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
         BAGLAN_LOG bLog = new BAGLAN_LOG();
         bLog.cONNECT();
-        
-        String inst = "" ;
-   	 	if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
-   	 		{
-            inst = "" ;
-        	BAGLAN.cariDizin.iNSTANCE ="";
-           }
-   	 	else
-   	 	{
-   		 inst = comboBox.getSelectedItem().toString();
-   		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
-   	 	}
+   	
    	 
          if (chckbxD.isSelected())
          	{
-        	 	c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin,  inst,txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
+        	 	c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getItemAt( comboBox.getSelectedIndex()) ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
          	}
         	 else
         	 {
-        		c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, inst,txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
+        		c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getItemAt( comboBox.getSelectedIndex()),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
         	 }
      }
      else if (activ_sayfa == 1)
@@ -1644,7 +1593,7 @@ public class CAL_DIZIN extends JFrame {
 
          STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
  		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
- 		BAGLAN.fatDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.fatDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
  		BAGLAN.fatDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
  		BAGLAN.fatDizin.sERVER = txtIp.getText();
  		BAGLAN.fatDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1655,11 +1604,11 @@ public class CAL_DIZIN extends JFrame {
 
          if (chckbxD.isSelected())
          {
-        	 s_Access.fAT_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.fatLogDizin);
+        	 s_Access.fAT_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.fatLogDizin);
          }
         	else
         	{
-        		 s_Access.fAT_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.fatLogDizin);
+        		 s_Access.fAT_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.fatLogDizin);
         	}
      }
      else if (activ_sayfa == 2)
@@ -1672,7 +1621,7 @@ public class CAL_DIZIN extends JFrame {
         mODUL_AKTAR("Adres");
         ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._IAdres_Loger);
 		BAGLAN.adrDizin.kULLANICI = txtkul.getText();
- 		BAGLAN.adrDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.adrDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
  		BAGLAN.adrDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
  		BAGLAN.adrDizin.sERVER = txtIp.getText();
  		BAGLAN.adrDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1683,11 +1632,11 @@ public class CAL_DIZIN extends JFrame {
 
          if (chckbxD.isSelected())
          {
-        	 a_Access.aDR_SIF_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.adrLogDizin);
+        	 a_Access.aDR_SIF_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.adrLogDizin);
          }
          else
         {
-        	 a_Access.aDR_SIF_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.adrLogDizin);
+        	 a_Access.aDR_SIF_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.adrLogDizin);
         }
      }
      else if (activ_sayfa == 3)
@@ -1698,7 +1647,7 @@ public class CAL_DIZIN extends JFrame {
          mODUL_AKTAR("Kur");
     	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._IKur_Loger);
  		BAGLAN.kurDizin.kULLANICI = txtkul.getText();
- 		BAGLAN.kurDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.kurDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
  		BAGLAN.kurDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
  		BAGLAN.kurDizin.sERVER = txtIp.getText();
  		BAGLAN.kurDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1709,11 +1658,11 @@ public class CAL_DIZIN extends JFrame {
 
          if (chckbxD.isSelected())
           	 {
-        		 k_Access.kUR_SIFIR_L(txtKodu.getText(), "default", "", comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.kurLogDizin);
+        		 k_Access.kUR_SIFIR_L(txtKodu.getText(), "default", "", comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.kurLogDizin);
         	 }
         	  	 else
          	{
-        	  		 k_Access.kUR_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.kurLogDizin);
+        	  		 k_Access.kUR_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.kurLogDizin);
             	}
      }
      else if (activ_sayfa == 4)
@@ -1726,7 +1675,7 @@ public class CAL_DIZIN extends JFrame {
          mODUL_AKTAR("Kambiyo");
          KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._IKambiyo_Loger);
  		BAGLAN.kamDizin.kULLANICI = txtkul.getText();
- 		BAGLAN.kamDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.kamDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
  		BAGLAN.kamDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
  		BAGLAN.kamDizin.sERVER = txtIp.getText();
  		BAGLAN.kamDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1737,11 +1686,11 @@ public class CAL_DIZIN extends JFrame {
 
          if (chckbxD.isSelected())
          {
-        	 ka_Access.kAM_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.kamLogDizin);
+        	 ka_Access.kAM_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.kamLogDizin);
          }  
          else
         	 {
-        	 ka_Access.kAM_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.kamLogDizin);
+        	 ka_Access.kAM_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.kamLogDizin);
      
         	 }
      }
@@ -1753,7 +1702,7 @@ public class CAL_DIZIN extends JFrame {
          mODUL_AKTAR("Sms");
     	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ISms_Loger);
   		BAGLAN.smsDizin.kULLANICI = txtkul.getText();
- 		BAGLAN.smsDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.smsDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
  		BAGLAN.smsDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
  		BAGLAN.smsDizin.sERVER = txtIp.getText();
  		BAGLAN.smsDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1764,11 +1713,11 @@ public class CAL_DIZIN extends JFrame {
 
          if (chckbxD.isSelected())
          {
-        	 sms_Access.sMS_SIFIR_L(txtKodu.getText(), "default", "", comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.smsLogDizin);
+        	 sms_Access.sMS_SIFIR_L(txtKodu.getText(), "default", "", comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.smsLogDizin);
          }
         	 else
         	 {
-       		 sms_Access.sMS_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.smsLogDizin);
+       		 sms_Access.sMS_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.smsLogDizin);
       
         	 }
      }
@@ -1782,7 +1731,7 @@ public class CAL_DIZIN extends JFrame {
          mODUL_AKTAR("Gunluk");
          GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._IGunluk_Loger);
  		BAGLAN.gunDizin.kULLANICI = txtkul.getText();
- 		BAGLAN.gunDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.gunDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
  		BAGLAN.gunDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
  		BAGLAN.gunDizin.sERVER = txtIp.getText();
  		BAGLAN.gunDizin.iNSTANCE =comboBox.getSelectedItem().toString();
@@ -1793,11 +1742,11 @@ public class CAL_DIZIN extends JFrame {
 
          if (chckbxD.isSelected())
          {
-        	 g_Access.gUN_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
+        	 g_Access.gUN_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
          }
         	 else
         	 {
-        	 g_Access.gUN_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),txtsifr.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
+        	 g_Access.gUN_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
         	 }
      }
  }
@@ -1812,7 +1761,7 @@ public class CAL_DIZIN extends JFrame {
         mODUL_AKTAR("Cari Hesap");
         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ICari_Loger);
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
-		BAGLAN.cariDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.cariDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.cariDizin.kOD = txtKodu.getText();
 		BAGLAN.cariDizin.yER = "S";
@@ -1833,7 +1782,7 @@ public class CAL_DIZIN extends JFrame {
    	 	
         if (chckbxD.isSelected())
         	{
-        		c_Access.cARI_SIFIR_S(txtIp.getText(), inst, txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
+        		c_Access.cARI_SIFIR_S(txtIp.getText(), inst, txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
           }
     }
     else if (activ_sayfa == 1)
@@ -1845,7 +1794,7 @@ public class CAL_DIZIN extends JFrame {
         mODUL_AKTAR("Stok");
         STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
 		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
-		BAGLAN.fatDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.fatDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.fatDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.fatDizin.kOD = txtKodu.getText();
@@ -1856,7 +1805,7 @@ public class CAL_DIZIN extends JFrame {
         if (chckbxD.isSelected())
         	
         	{
-        		s_Access.fAT_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
+        		s_Access.fAT_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
         
         	}
     }
@@ -1869,7 +1818,7 @@ public class CAL_DIZIN extends JFrame {
         mODUL_AKTAR("Adres");
         ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._IAdres_Loger);
         BAGLAN.adrDizin.kULLANICI = txtkul.getText();
-		BAGLAN.adrDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.adrDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.adrDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.adrDizin.kOD = txtKodu.getText();
@@ -1880,7 +1829,7 @@ public class CAL_DIZIN extends JFrame {
 
         if (chckbxD.isSelected())
     	{
-    		a_Access.aDR_SIFIR_S( txtIp.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
+    		a_Access.aDR_SIFIR_S( txtIp.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
     
     	}
           
@@ -1893,7 +1842,7 @@ public class CAL_DIZIN extends JFrame {
          mODUL_AKTAR("Kur");
     	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._IKur_Loger);
     	 BAGLAN.kurDizin.kULLANICI = txtkul.getText();
- 		BAGLAN.kurDizin.sIFRESI = txtsifr.getText() ;
+ 		BAGLAN.kurDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
  		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
  		BAGLAN.kurDizin.iNSTANCE =comboBox.getSelectedItem().toString();
  		BAGLAN.kurDizin.kOD = txtKodu.getText();
@@ -1904,7 +1853,7 @@ public class CAL_DIZIN extends JFrame {
 
         if (chckbxD.isSelected())
         {
-      		k_Access.kUR_SIFIR_S( txtIp.getText(),  comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
+      		k_Access.kUR_SIFIR_S( txtIp.getText(),  comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
       	  
         	  	}
     }
@@ -1918,7 +1867,7 @@ public class CAL_DIZIN extends JFrame {
         mODUL_AKTAR("Kambiyo");
         KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._IKambiyo_Loger);
         BAGLAN.kamDizin.kULLANICI = txtkul.getText();
-		BAGLAN.kamDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.kamDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.kamDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.kamDizin.kOD = txtKodu.getText();
@@ -1929,7 +1878,7 @@ public class CAL_DIZIN extends JFrame {
 
         if (chckbxD.isSelected())
         {
-        	ka_Access.kAM_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
+        	ka_Access.kAM_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
         	}
     }
     else if (activ_sayfa == 5)
@@ -1939,7 +1888,7 @@ public class CAL_DIZIN extends JFrame {
          mODUL_AKTAR("Sms");	
     	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ISms_Loger);
     	BAGLAN.smsDizin.kULLANICI = txtkul.getText();
-  		BAGLAN.smsDizin.sIFRESI = txtsifr.getText() ;
+  		BAGLAN.smsDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
   		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
   		BAGLAN.smsDizin.iNSTANCE =comboBox.getSelectedItem().toString();
   		BAGLAN.smsDizin.kOD = txtKodu.getText();
@@ -1950,7 +1899,7 @@ public class CAL_DIZIN extends JFrame {
 
         if (chckbxD.isSelected())
         {
-        	sms_Access.sMS_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
+        	sms_Access.sMS_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
     	
         	}
     }
@@ -1964,7 +1913,7 @@ public class CAL_DIZIN extends JFrame {
         mODUL_AKTAR("Gunluk");
         GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._IGunluk_Loger);
         BAGLAN.gunDizin.kULLANICI = txtkul.getText();
-		BAGLAN.gunDizin.sIFRESI = txtsifr.getText() ;
+		BAGLAN.gunDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.gunDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.gunDizin.kOD = txtKodu.getText();
@@ -1975,7 +1924,7 @@ public class CAL_DIZIN extends JFrame {
 
         if (chckbxD.isSelected())
         {
-        	g_Access.gUN_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), txtsifr.getText(), txtKodu.getText(), "default", "", strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
+        	g_Access.gUN_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(), "default", "", strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
         }    
         }
 }

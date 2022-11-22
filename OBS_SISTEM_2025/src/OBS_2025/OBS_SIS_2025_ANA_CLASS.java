@@ -18,6 +18,7 @@ import OBS_C_2025.ILOGGER;
 import OBS_C_2025.ISMS;
 import OBS_C_2025.ISTOK;
 import OBS_C_2025.MAIL_AT;
+import OBS_C_2025.SIFRE_DONDUR;
 import OBS_C_2025.USER_ISLEMLERI;
 
 public class OBS_SIS_2025_ANA_CLASS 
@@ -56,7 +57,7 @@ public class OBS_SIS_2025_ANA_CLASS
 	public GLOBAL glb  = new GLOBAL();
 	public USER_ISLEMLERI uSER_ISL = new USER_ISLEMLERI();
 	public Tema_Cari tCR = new Tema_Cari();
-	
+	public   SIFRE_DONDUR sDONDUR = new     SIFRE_DONDUR();
 	public static String hsp_hsp_kodu =""; 
 	public static String stk_kodu =""; 
 	public BufferedImage kam_resmi ;

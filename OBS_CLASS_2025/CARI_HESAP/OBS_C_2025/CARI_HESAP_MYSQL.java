@@ -170,35 +170,33 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
         		+ "  `FIRMA_ADI` VARCHAR(50) NULL);";
          stmt = con.createStatement();  
         stmt.executeUpdate(sql);
-        JOptionPane.showMessageDialog(null,"Yeni Versiyon Mevcu","ddssdsd" , JOptionPane.PLAIN_MESSAGE);   
+   
        sql = "CREATE TABLE `YETKILER`( "
-       		 + " `YETID INTEGER AUTO_INCREMENT PRIMARY KEY,"
+       		 + " `YETID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
 	                         + "`KULLANICI` nvarchar(25) NULL,"
 	                         + "`KARTON` nvarchar(5) NULL,"
 	                         + "`TAM_YETKI` TINYINT NULL,"
 	                         + "`GORUNTU` TINYINT NULL);";
        stmt = con.createStatement();  
        stmt.executeUpdate(sql);
-        sql= "CREATE TABLE `ANA_GRUP_DEGISKEN`( "
-       		 + "`ANA_GRUP` nvarchar(25) NOT NULL,"
-	                   + " `USER` nvarchar`(15) NOT NULL,"
-	                   + "  PRIMARY KEY (`SID`),"
-	           		+ "  UNIQUE INDEX `SID_UNIQUE` (`SID` ASC) VISIBLE,"
-	           		+ "  INDEX `IX_SATIRLAR` (`TARIH` ASC, `EVRAK` ASC, `CINS` ASC, `USER` ASC, `HESAP` ASC) INVISIBLE);";
+        sql= "CREATE TABLE `ANA_GRUP_DEGISKEN` ("
+        		+ "  `ANA_GRUP` VARCHAR(25) NOT NULL,"
+        		+ "  `USER` VARCHAR(15) NULL,"
+        		+ "  PRIMARY KEY (`ANA_GRUP`));";
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
-        sql = "CREATE TABLE [dbo].[ALT_GRUP_DEGISKEN]( "
-       		 			+ "[ANA_GRUP] [int] NOT NULL, "
-	                        + "[ALT_GRUP] [nvarchar](25) NOT NULL, "
-	                        + "[USER] [nvarchar](15) NOT NULL) ON [PRIMARY]";
+        sql = "CREATE TABLE `ALT_GRUP_DEGISKEN`( "
+       		 			+ "`ANA_GRUP` int NOT NULL, "
+	                        + "`ALT_GRUP` nvarchar(25) NOT NULL, "
+	                        + "  `USER` VARCHAR(15) NULL);";
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
         // ***************EVRAK NO YAZ ************
-        sql = "INSERT INTO  EVRAK_NO(EVRAK) VALUES ('0')";
+        sql = "INSERT INTO  `EVRAK_NO` (`EVRAK`) VALUES ('0')";
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
         // ***************OZEL NO YAZ ************
-        sql = "INSERT INTO  OZEL(YONETICI,YON_SIFRE,FIRMA_ADI) VALUES ('" + GLOBAL.KULL_ADI  + "','12345' , '" + fir_adi + "')";
+        sql = "INSERT INTO  `OZEL` (`YONETICI`,`YON_SIFRE`,`FIRMA_ADI`) VALUES ('" + GLOBAL.KULL_ADI  + "','12345' , '" + fir_adi + "')";
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
 		

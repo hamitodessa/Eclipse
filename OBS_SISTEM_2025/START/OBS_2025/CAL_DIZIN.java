@@ -569,8 +569,8 @@ public class CAL_DIZIN extends JFrame {
 		lblInstance.setBounds(24, 170, 68, 14);
 		panel.add(lblInstance);
 		
-		JLabel lblServer = new JLabel("Server");
-		lblServer.setBounds(24, 202, 68, 14);
+		JLabel lblServer = new JLabel("Server / Port");
+		lblServer.setBounds(24, 202, 78, 14);
 		panel.add(lblServer);
 		
 		JLabel lblKullanici = new JLabel("Kullanici");
@@ -1284,7 +1284,7 @@ public class CAL_DIZIN extends JFrame {
                 	 {
                 		 inst = comboBox.getSelectedItem().toString();
                 	 }
-                 if ( s_CONN.Server_kontrol_L(inst,txtkul.getText(), txtsifr.getText()) == true  )
+                 if ( s_CONN.Server_kontrol_L(inst,txtkul.getText(), txtsifr.getText() ,txtIp.getText()) == true  )
                     {
                   	 contentPane.setCursor(DEFAULT_CURSOR);
                     // JOptionPane.showMessageDialog(null, "Baglanti Saglandi........".toString(), "Server Baglanti", JOptionPane.PLAIN_MESSAGE);
@@ -1310,7 +1310,7 @@ public class CAL_DIZIN extends JFrame {
                	 {
                		 inst = comboBox.getSelectedItem().toString();
                	 }
-                    if (s_CONN.Server_kontrol_S(txtIp.getText(),inst,txtkul.getText(), txtsifr.getText() ) == true)
+                    if (s_CONN.Server_kontrol_S(txtIp.getText(),inst,txtkul.getText(), txtsifr.getText(),txtIp.getText() ) == true)
                     {
                     	contentPane.setCursor(DEFAULT_CURSOR);
                     	// JOptionPane.showMessageDialog(null, "Baglanti Saglandi........".toString(), "Server Baglanti", JOptionPane.PLAIN_MESSAGE);
@@ -1356,7 +1356,7 @@ public class CAL_DIZIN extends JFrame {
         	 {
         		 inst = comboBox.getSelectedItem().toString();
         	 }
-            if ( s_CONN.Dosya_kontrol_L(program, inst,txtkul.getText(),txtsifr.getText()) == true)
+            if ( s_CONN.Dosya_kontrol_L(program, inst,txtkul.getText(),txtsifr.getText(),txtIp.getText()) == true)
              {
      
                  if (activ_sayfa == 0)
@@ -1457,7 +1457,7 @@ public class CAL_DIZIN extends JFrame {
         	 {
         		 inst = comboBox.getSelectedItem().toString();
         	 }
-             if (	 s_CONN.Dosya_kontrol_S(txtIp.getText(), inst, txtkul.getText(),txtsifr.getText(), program) ==true)
+             if (	 s_CONN.Dosya_kontrol_S(txtIp.getText(), inst, txtkul.getText(),txtsifr.getText(), program,txtIp.getText()) ==true)
              {
      
                  if (activ_sayfa == 0)

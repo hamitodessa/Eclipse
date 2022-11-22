@@ -10,7 +10,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 
 	private  boolean result;
 	
-	public boolean Server_kontrol_L(String inst, String kull, String sifre) throws ClassNotFoundException
+	public boolean Server_kontrol_L(String inst, String kull, String sifre, String port) throws ClassNotFoundException
     {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null;  
@@ -28,7 +28,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
         return false;  
         }  
     }
-	public boolean Server_kontrol_S(String server,  String inst,String kull, String sifre) throws ClassNotFoundException
+	public boolean Server_kontrol_S(String server,  String inst,String kull, String sifre, String port) throws ClassNotFoundException
     {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null;  
@@ -45,7 +45,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
         return false;  
         }  
     }
-	public boolean Dosyakontrol_L(String db, String inst, String kull, String sifre) throws ClassNotFoundException, SQLException 
+	public boolean Dosyakontrol_L(String db, String inst, String kull, String sifre, String port) throws ClassNotFoundException, SQLException 
      {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null;  
@@ -66,7 +66,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		conn.close();
 		return result;
      }
-    public boolean Dosyakontrol_S(String server, String inst, String kull, String sifre, String prog) throws ClassNotFoundException, SQLException
+    public boolean Dosyakontrol_S(String server, String inst, String kull, String sifre, String prog, String port) throws ClassNotFoundException, SQLException
      {
     	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
  		Connection conn = null;  

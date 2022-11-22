@@ -12,11 +12,11 @@ import java.sql.Statement;
 public class OBS_ORTAK_MYSQL implements IConnection {
 	private static boolean result;
 	
-	public boolean Server_kontrol_L(String inst, String kull, String sifre) throws ClassNotFoundException
+	public boolean Server_kontrol_L(String inst, String kull, String sifre, String port) throws ClassNotFoundException
     {
 		 Class.forName("com.mysql.cj.jdbc.Driver");
 		 Connection conn = null;  
-		  String url = "jdbc:mysql://localhost:3306"; //pointing to no database.
+		  String url = "jdbc:mysql://localhost:" + port + ";"; //pointing to no database.
 		    try 
 		    {
 		    		conn = DriverManager.getConnection(url, kull, sifre);
@@ -28,7 +28,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 			return result;
     }
 	@SuppressWarnings("unused")
-	public boolean Server_kontrol_S(String server, String inst, String kull, String sifre) throws ClassNotFoundException
+	public boolean Server_kontrol_S(String server, String inst, String kull, String sifre, String port) throws ClassNotFoundException
     {
 		 Class.forName("com.mysql.cj.jdbc.Driver");
 		 Connection conn = null;  
@@ -43,17 +43,16 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		    }
 			return result;
     }
-	public boolean Dosyakontrol_L(String db, String inst, String kull, String sifre) throws ClassNotFoundException, SQLException 
+	public boolean Dosyakontrol_L(String db, String inst, String kull, String sifre, String port) throws ClassNotFoundException, SQLException 
      {
 		 Class.forName("com.mysql.cj.jdbc.Driver");
 		 Connection conn = null;  
 		  Statement stmt = null;
 	        ResultSet resultset = null;
-		  String url = "jdbc:mysql://localhost:3306"; //pointing to no database.
+		  String url = "jdbc:mysql://localhost:" + port + ";"; //pointing to no database.
 		    try 
 		    {
 		    		conn = DriverManager.getConnection(url, kull, sifre);
-		    		
 		    		 stmt = conn.createStatement();
 		    		 resultset = stmt.executeQuery("SHOW DATABASES;");
 		    		 result =false;
@@ -63,7 +62,6 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		            	 {
 		            		 result = true;
 		            	 }
-		            
 		             }
 		    } catch (SQLException e)
 		    {
@@ -72,7 +70,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 			return result;
 		
      }
-    public boolean Dosyakontrol_S(String server, String inst, String kull, String sifre, String prog) throws ClassNotFoundException, SQLException
+    public boolean Dosyakontrol_S(String server, String inst, String kull, String sifre, String prog, String port) throws ClassNotFoundException, SQLException
      {
     	 Class.forName("com.mysql.cj.jdbc.Driver");
 		 Connection conn = null;  
@@ -84,10 +82,6 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		    		conn = DriverManager.getConnection(url, kull, sifre);
 		    		 stmt = conn.createStatement();
 		    		 resultset = stmt.executeQuery("SHOW DATABASES;");
-//		             if (stmt.execute("SHOW DATABASES;")) 
-//		             {
-//		                 resultset = stmt.getResultSet();
-//		             }
 		             result =false;
 		             while (resultset.next()) 
 		             {
@@ -96,13 +90,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		            	 {
 		            		 result = true;
 		            	 }
-		            
 		             }
-		             
-		                  
-	                 
-		             
-		             
 		    } catch (SQLException e)
 		    {
 		    result =false;

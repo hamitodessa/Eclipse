@@ -10,21 +10,21 @@ public class CONNECT {
 	{
 		this._IConnect = _IConnect;
 	}
-	public boolean Server_kontrol_L(String inst, String kull, String sifre) throws ClassNotFoundException 
+	public boolean Server_kontrol_L(String inst, String kull, String sifre, String port) throws ClassNotFoundException 
 	{
-		return _IConnect.Server_kontrol_L(inst, kull, sifre);
+		return _IConnect.Server_kontrol_L(inst, kull, sifre,port);
 	}
-	public boolean Dosya_kontrol_L(String db, String inst, String kull, String sifre) throws ClassNotFoundException, SQLException 
+	public boolean Dosya_kontrol_L(String db, String inst, String kull, String sifre, String port) throws ClassNotFoundException, SQLException 
 	{
-		return _IConnect.Dosyakontrol_L(db,  inst,  kull,  sifre);
+		return _IConnect.Dosyakontrol_L(db,  inst,  kull,  sifre,port);
 	}
-	public boolean Server_kontrol_S(String server,  String inst,String kull, String sifre) throws ClassNotFoundException
+	public boolean Server_kontrol_S(String server,  String inst,String kull, String sifre, String port) throws ClassNotFoundException
 	{
-		return _IConnect.Server_kontrol_S(server,  inst,  kull,  sifre);
+		return _IConnect.Server_kontrol_S(server,  inst,  kull,  sifre,port);
 	}
-	public boolean Dosya_kontrol_S(String server, String inst, String kull, String sifre, String prog) throws ClassNotFoundException, SQLException 
+	public boolean Dosya_kontrol_S(String server, String inst, String kull, String sifre, String prog, String port) throws ClassNotFoundException, SQLException 
 	{
-		return _IConnect.Dosyakontrol_S(server,  inst,  kull,  sifre,prog);
+		return _IConnect.Dosyakontrol_S(server,  inst,  kull,  sifre,prog,port);
 	}
 	
 }

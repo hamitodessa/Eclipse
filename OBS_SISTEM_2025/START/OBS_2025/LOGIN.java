@@ -648,9 +648,9 @@ public LOGIN() throws IOException {
     	
     {
     
-    	if (s_CONN.Server_kontrol_L(BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI) == true)   
+    	if (s_CONN.Server_kontrol_L(BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
     	{
-    		if (s_CONN.Dosya_kontrol_L("OK_Car" + BAGLAN.cariDizin.kOD,BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI) == false)
+    		if (s_CONN.Dosya_kontrol_L("OK_Car" + BAGLAN.cariDizin.kOD,BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
             {
             	CAR_DOS_VAR = false;
             	}
@@ -663,9 +663,9 @@ public LOGIN() throws IOException {
     	 else
              OBS_SIS_2025_ANA_CLASS.CARI_CONN = false;
     	}
-    else if (s_CONN.Server_kontrol_S(BAGLAN.cariDizin.sERVER, BAGLAN.cariDizin.iNSTANCE,BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI) == true )
+    else if (s_CONN.Server_kontrol_S(BAGLAN.cariDizin.sERVER, BAGLAN.cariDizin.iNSTANCE,BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
     {
-            if (s_CONN.Dosya_kontrol_S(BAGLAN.cariDizin.sERVER,BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,"OK_Car" + BAGLAN.cariDizin.kOD) == false)
+            if (s_CONN.Dosya_kontrol_S(BAGLAN.cariDizin.sERVER,BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,"OK_Car" + BAGLAN.cariDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
             CAR_DOS_VAR = false;
         else
         	lOGG_AKTAR("Cari Hesap",BAGLAN.cariDizin.hAN_SQL,BAGLAN.cariDizin.lOG,BAGLAN.cariDizin.lOGLAMA_YERI);
@@ -688,9 +688,9 @@ public LOGIN() throws IOException {
     }
     if (BAGLAN.kurDizin.yER.equals("L"))
     {
-    	if (s_CONN.Server_kontrol_L(BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI) == true)   
+    	if (s_CONN.Server_kontrol_L(BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
     	{
-    		if (s_CONN.Dosya_kontrol_L("OK_Kur" + BAGLAN.kurDizin.kOD,BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI) == false)
+    		if (s_CONN.Dosya_kontrol_L("OK_Kur" + BAGLAN.kurDizin.kOD,BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
             {
             	KUR_DOS_VAR = false;
             	}
@@ -703,9 +703,9 @@ public LOGIN() throws IOException {
     	 else
              OBS_SIS_2025_ANA_CLASS.KUR_CONN = false;
     }
-    else if (s_CONN.Server_kontrol_S(BAGLAN.kurDizin.sERVER, BAGLAN.kurDizin.iNSTANCE,BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI) == true )
+    else if (s_CONN.Server_kontrol_S(BAGLAN.kurDizin.sERVER, BAGLAN.kurDizin.iNSTANCE,BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
     {
-            if (s_CONN.Dosya_kontrol_S(BAGLAN.kurDizin.sERVER,BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,"OK_Kur" + BAGLAN.kurDizin.kOD) == false)
+            if (s_CONN.Dosya_kontrol_S(BAGLAN.kurDizin.sERVER,BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,"OK_Kur" + BAGLAN.kurDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
             KUR_DOS_VAR = false;
         else
         	lOGG_AKTAR("Kur",BAGLAN.kurDizin.hAN_SQL,BAGLAN.kurDizin.lOG,BAGLAN.kurDizin.lOGLAMA_YERI);
@@ -728,9 +728,9 @@ public LOGIN() throws IOException {
 	    }
 	    if (BAGLAN.smsDizin.yER.equals("L"))
 	    {
-	    	if (s_CONN.Server_kontrol_L(BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI) == true)   
+	    	if (s_CONN.Server_kontrol_L(BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
 	    	{
-	    		if (s_CONN.Dosya_kontrol_L("OK_Sms" + BAGLAN.smsDizin.kOD,BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI) == false)
+	    		if (s_CONN.Dosya_kontrol_L("OK_Sms" + BAGLAN.smsDizin.kOD,BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
 	    		{
 	    			SMS_DOS_VAR = false;
 	    		}
@@ -743,9 +743,9 @@ public LOGIN() throws IOException {
 	    	else
           OBS_SIS_2025_ANA_CLASS.SMS_CONN = false;
 	    }
-	    else if (s_CONN.Server_kontrol_S(BAGLAN.smsDizin.sERVER, BAGLAN.smsDizin.iNSTANCE,BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI) == true )
+	    else if (s_CONN.Server_kontrol_S(BAGLAN.smsDizin.sERVER, BAGLAN.smsDizin.iNSTANCE,BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
 	    {
-         if (s_CONN.Dosya_kontrol_S(BAGLAN.smsDizin.sERVER,BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,"OK_Sms" + BAGLAN.smsDizin.kOD) == false)
+         if (s_CONN.Dosya_kontrol_S(BAGLAN.smsDizin.sERVER,BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,"OK_Sms" + BAGLAN.smsDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
         	 SMS_DOS_VAR = false;
          else
         	 	lOGG_AKTAR("Sms",BAGLAN.smsDizin.hAN_SQL,BAGLAN.smsDizin.lOG,BAGLAN.smsDizin.lOGLAMA_YERI);
@@ -768,9 +768,9 @@ public LOGIN() throws IOException {
 	    }
 	    if (BAGLAN.adrDizin.yER.equals("L"))
 	    {
-	if (s_CONN.Server_kontrol_L(BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI) == true)   
+	if (s_CONN.Server_kontrol_L(BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
 	{
-		if (s_CONN.Dosya_kontrol_L("OK_Adr" + BAGLAN.adrDizin.kOD,BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI) == false)
+		if (s_CONN.Dosya_kontrol_L("OK_Adr" + BAGLAN.adrDizin.kOD,BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
       {
       	ADR_DOS_VAR = false;
       	}
@@ -783,9 +783,9 @@ public LOGIN() throws IOException {
 	 else
        OBS_SIS_2025_ANA_CLASS.ADR_CONN = false;
 	    }
-	    else if (s_CONN.Server_kontrol_S(BAGLAN.adrDizin.sERVER, BAGLAN.adrDizin.iNSTANCE,BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI) == true )
+	    else if (s_CONN.Server_kontrol_S(BAGLAN.adrDizin.sERVER, BAGLAN.adrDizin.iNSTANCE,BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
 	    {
-	    	if (s_CONN.Dosya_kontrol_S(BAGLAN.adrDizin.sERVER,BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,"OK_Adr" + BAGLAN.adrDizin.kOD) == false)
+	    	if (s_CONN.Dosya_kontrol_S(BAGLAN.adrDizin.sERVER,BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,"OK_Adr" + BAGLAN.adrDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
 	    		ADR_DOS_VAR = false;
 	    	else
 	   		lOGG_AKTAR("Adres",BAGLAN.adrDizin.hAN_SQL,BAGLAN.adrDizin.lOG,BAGLAN.adrDizin.lOGLAMA_YERI);
@@ -807,9 +807,9 @@ public LOGIN() throws IOException {
 	    }
 	    if (BAGLAN.fatDizin.yER.equals("L"))
 	    {
-	    	if (s_CONN.Server_kontrol_L(BAGLAN.fatDizin.iNSTANCE, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI) == true)   
+	    	if (s_CONN.Server_kontrol_L(BAGLAN.fatDizin.iNSTANCE, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
 	    	{
-	    		if (s_CONN.Dosya_kontrol_L("OK_Fat" + BAGLAN.fatDizin.kOD,BAGLAN.fatDizin.iNSTANCE, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI) == false)
+	    		if (s_CONN.Dosya_kontrol_L("OK_Fat" + BAGLAN.fatDizin.kOD,BAGLAN.fatDizin.iNSTANCE, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
 	    		{
 	    			FAT_DOS_VAR = false;
 	    		}
@@ -822,9 +822,9 @@ public LOGIN() throws IOException {
 	    	else
 	    		OBS_SIS_2025_ANA_CLASS.FAT_CONN = false;
 	    }
-	    else if (s_CONN.Server_kontrol_S(BAGLAN.fatDizin.sERVER, BAGLAN.fatDizin.iNSTANCE,BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI) == true )
+	    else if (s_CONN.Server_kontrol_S(BAGLAN.fatDizin.sERVER, BAGLAN.fatDizin.iNSTANCE,BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
 	    {
-	    	if (s_CONN.Dosya_kontrol_S(BAGLAN.fatDizin.sERVER,BAGLAN.fatDizin.iNSTANCE, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,"OK_Fat" + BAGLAN.fatDizin.kOD) == false)
+	    	if (s_CONN.Dosya_kontrol_S(BAGLAN.fatDizin.sERVER,BAGLAN.fatDizin.iNSTANCE, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,"OK_Fat" + BAGLAN.fatDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
 	    		FAT_DOS_VAR = false;
 	    	else
 	    		 lOGG_AKTAR("Fatura",BAGLAN.fatDizin.hAN_SQL,BAGLAN.fatDizin.lOG,BAGLAN.fatDizin.lOGLAMA_YERI);
@@ -847,9 +847,9 @@ public LOGIN() throws IOException {
     }
     if (BAGLAN.kamDizin.yER.equals("L"))
     {
-    	if (s_CONN.Server_kontrol_L(BAGLAN.kamDizin.iNSTANCE, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI) == true)   
+    	if (s_CONN.Server_kontrol_L(BAGLAN.kamDizin.iNSTANCE, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
     	{
-    		if (s_CONN.Dosya_kontrol_L("OK_Kam" + BAGLAN.kamDizin.kOD,BAGLAN.kamDizin.iNSTANCE, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI) == false)
+    		if (s_CONN.Dosya_kontrol_L("OK_Kam" + BAGLAN.kamDizin.kOD,BAGLAN.kamDizin.iNSTANCE, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
     		{
     			KAM_DOS_VAR = false;
     		}
@@ -862,9 +862,9 @@ public LOGIN() throws IOException {
     	else
     		OBS_SIS_2025_ANA_CLASS.KAM_CONN = false;
     }
-    else if (s_CONN.Server_kontrol_S(BAGLAN.kamDizin.sERVER, BAGLAN.kamDizin.iNSTANCE,BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI) == true )
+    else if (s_CONN.Server_kontrol_S(BAGLAN.kamDizin.sERVER, BAGLAN.kamDizin.iNSTANCE,BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
     {
-    	if (s_CONN.Dosya_kontrol_S(BAGLAN.kamDizin.sERVER,BAGLAN.kamDizin.iNSTANCE, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,"OK_Kam" + BAGLAN.kamDizin.kOD) == false)
+    	if (s_CONN.Dosya_kontrol_S(BAGLAN.kamDizin.sERVER,BAGLAN.kamDizin.iNSTANCE, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,"OK_Kam" + BAGLAN.kamDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
     		KAM_DOS_VAR = false;
     	else
    		 lOGG_AKTAR("Kambiyo",BAGLAN.kamDizin.hAN_SQL,BAGLAN.kamDizin.lOG,BAGLAN.kamDizin.lOGLAMA_YERI);
@@ -887,9 +887,9 @@ public LOGIN() throws IOException {
     }
     if (BAGLAN.gunDizin.yER.equals("L"))
     {
-    	if (s_CONN.Server_kontrol_L(BAGLAN.gunDizin.iNSTANCE, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI) == true)   
+    	if (s_CONN.Server_kontrol_L(BAGLAN.gunDizin.iNSTANCE, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
     	{
-    		if (s_CONN.Dosya_kontrol_L("OK_Gun" + BAGLAN.gunDizin.kOD,BAGLAN.gunDizin.iNSTANCE, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI) == false)
+    		if (s_CONN.Dosya_kontrol_L("OK_Gun" + BAGLAN.gunDizin.kOD,BAGLAN.gunDizin.iNSTANCE, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
     		{
     			GUN_DOS_VAR = false;
     		}
@@ -902,9 +902,9 @@ public LOGIN() throws IOException {
     	else
     		OBS_SIS_2025_ANA_CLASS.GUN_CONN = false;
     }
-    else if (s_CONN.Server_kontrol_S(BAGLAN.gunDizin.sERVER, BAGLAN.gunDizin.iNSTANCE,BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI) == true )
+    else if (s_CONN.Server_kontrol_S(BAGLAN.gunDizin.sERVER, BAGLAN.gunDizin.iNSTANCE,BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
     {
-    	if (s_CONN.Dosya_kontrol_S(BAGLAN.gunDizin.sERVER,BAGLAN.gunDizin.iNSTANCE, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,"OK_Gun" + BAGLAN.gunDizin.kOD) == false)
+    	if (s_CONN.Dosya_kontrol_S(BAGLAN.gunDizin.sERVER,BAGLAN.gunDizin.iNSTANCE, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,"OK_Gun" + BAGLAN.gunDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
     		GUN_DOS_VAR = false;
     	else
    		 lOGG_AKTAR("Gunluk",BAGLAN.gunDizin.hAN_SQL,BAGLAN.gunDizin.lOG,BAGLAN.gunDizin.lOGLAMA_YERI);

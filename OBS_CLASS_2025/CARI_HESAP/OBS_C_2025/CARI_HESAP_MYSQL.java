@@ -237,7 +237,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
     	PreparedStatement stmt = con.prepareStatement(" SELECT TARIH,SATIRLAR.EVRAK ,IZAHAT,KOD,KUR,BORC,ALACAK, "  + 
-        		"  CAST(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS DECIMAL(30,2))  AS BAKIYE ,[USER] "  + 
+        		"  CAST(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS DECIMAL(30,2))  AS BAKIYE ,USER "  + 
     			"  FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  INNER JOIN IZAHAT  USE INDEX (IX_EVRAK)  " + 
     			"  ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + hesap + "'" + 
     			"  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" + 
@@ -639,7 +639,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
                       " SUM(((s.ALACAK - s.BORC ) * s.KUR) " + islem + " ISNULL(NULLIF(k." + kcins + ",0), 1)) OVER(ORDER BY s.TARIH " + 
                       " ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as DOVIZ_BAKIYE , " +
                       " CAST(SUM(s.ALACAK-s.BORC) OVER(ORDER BY s.TARIH  ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS DECIMAL (30,2)) as BAKIYE ,  " +
-                      " s.KUR, BORC, ALACAK ,s.[USER] " +
+                      " s.KUR, BORC, ALACAK ,s.USER " +
                       " FROM (SATIRLAR as s USE INDEX (IX_SATIRLAR)  LEFT OUTER JOIN IZAHAT as I USE INDEX (IX_EVRAK) on s.EVRAK = I.EVRAK) " +
                       " LEFT OUTER JOIN " + str1 + " as k USE INDEX (IX_KUR) ON Convert(VARCHAR(25), s.TARIH, 121) = k.Tarih  " +
                       " WHERE HESAP  = N'" + hesap + "' AND s.TARIH  BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998' AND (k.kur IS NULL OR k.KUR ='" + kur + "') " +
@@ -663,7 +663,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public ResultSet ekstre_arama(String hes , String acik , String gun ,String ay,String yil ,String kod,String kullanici ) throws ClassNotFoundException, SQLException
 	{
 		 StringBuilder stb = new StringBuilder();
-	            stb.append(" SELECT SATIRLAR.HESAP, HESAP.UNVAN, SATIRLAR.TARIH , SATIRLAR.EVRAK, IZAHAT, KOD, KUR, SATIRLAR.BORC, SATIRLAR.ALACAK ,SATIRLAR.[USER] " ); 
+	            stb.append(" SELECT SATIRLAR.HESAP, HESAP.UNVAN, SATIRLAR.TARIH , SATIRLAR.EVRAK, IZAHAT, KOD, KUR, SATIRLAR.BORC, SATIRLAR.ALACAK ,SATIRLAR.USER " ); 
 	            stb.append(" FROM   SATIRLAR USE INDEX (IX_SATIRLAR) , HESAP USE INDEX (IX_HESAP) , IZAHAT USE INDEX (IX_EVRAK)") ; 
 	            stb.append(" WHERE SATIRLAR.HESAP = HESAP.HESAP AND SATIRLAR.EVRAK = IZAHAT.EVRAK ") ;
 	            if ( ! hes.equals("%") && ! hes.equals("%&"))
@@ -689,7 +689,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	            }
 	            if ( ! kullanici.equals("%") &&  ! kullanici.equals("%%")) 
 	            {
-	                stb.append(" AND SATIRLAR.[USER] LIKE '" + kullanici + "'");
+	                stb.append(" AND SATIRLAR.USER LIKE '" + kullanici + "'");
 	            }
 	            stb.append(" ORDER BY SATIRLAR.TARIH ,SATIRLAR.EVRAK ") ;
 	           	Class.forName("com.mysql.cj.jdbc.Driver");
@@ -703,7 +703,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql = " SELECT SATIRLAR.EVRAK ,IZAHAT,KOD,BORC,ALACAK ,[USER] " +
+        String sql = " SELECT SATIRLAR.EVRAK ,IZAHAT,KOD,BORC,ALACAK ,USER " +
                 " FROM SATIRLAR USE INDEX (IX_SATIRLAR) ,IZAHAT USE INDEX (IX_EVRAK) " +
                 " WHERE SATIRLAR.EVRAK = IZAHAT.EVRAK and  HESAP =N'" + hesap + "'" +
                 " AND CONVERT(VARCHAR(25), TARIH, 121) LIKE  '" + t1 + "%'" +
@@ -750,7 +750,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql = "SELECT SATIRLAR.HESAP,TARIH, SATIRLAR.EVRAK ,IZAHAT,KOD,BORC,ALACAK ,SATIRLAR.[USER] " +
+        String sql = "SELECT SATIRLAR.HESAP,TARIH, SATIRLAR.EVRAK ,IZAHAT,KOD,BORC,ALACAK ,SATIRLAR.USER " +
                 " FROM SATIRLAR  USE INDEX (IX_SATIRLAR) ,IZAHAT  USE INDEX (IX_EVRAK)  ,HESAP  USE INDEX (IX_HESAP) " +
                 " WHERE SATIRLAR.EVRAK = IZAHAT.EVRAK " +
                 " AND SATIRLAR.HESAP = HESAP.HESAP " +
@@ -823,7 +823,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public void yilsonu_hpln_kayit(String kodu,String adi,String karton,String hcins,String usr) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-        String sql  = "INSERT INTO HESAP (HESAP,UNVAN,KARTON,HESAP_CINSI,[USER]) " +
+        String sql  = "INSERT INTO HESAP (HESAP,UNVAN,KARTON,HESAP_CINSI,USER) " +
     		   		  " VALUES (?,?,?,?,?)" ;
     	PreparedStatement stmt = null;
     	stmt = akt_con.prepareStatement(sql);
@@ -907,7 +907,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			String alhes,String acins,Double alkur,Double alacak,String izahat,String kod,String user) throws SQLException, ClassNotFoundException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		String sql  = "INSERT INTO SATIRLAR (HESAP,TARIH,H,EVRAK,CINS,KUR,BORC,ALACAK,KOD,[USER]) " +
+		String sql  = "INSERT INTO SATIRLAR (HESAP,TARIH,H,EVRAK,CINS,KUR,BORC,ALACAK,KOD,USER) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = akt_con.prepareStatement(sql);
@@ -924,7 +924,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.executeUpdate();
 		//**********************************
 		PreparedStatement stmt2 = null;
-		sql  = "INSERT INTO SATIRLAR (HESAP,TARIH,H,EVRAK,CINS,KUR,BORC,ALACAK,KOD,[USER]) " +
+		sql  = "INSERT INTO SATIRLAR (HESAP,TARIH,H,EVRAK,CINS,KUR,BORC,ALACAK,KOD,USER) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?)" ; 
 		stmt2 = akt_con.prepareStatement(sql);
 		stmt2.setString(1, alhes);
@@ -974,7 +974,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
         String sql = "SELECT " + nerden + " ,UNVAN ,'' AS GRUP ,'' AS DURUM ,HESAP.HESAP ,'' as GON_ZAMANI," + 
-        			"[USER] FROM HESAP  LEFT OUTER JOIN HESAP_DETAY on HESAP.HESAP = HESAP_DETAY.D_HESAP " + 
+        			"USER FROM HESAP  LEFT OUTER JOIN HESAP_DETAY on HESAP.HESAP = HESAP_DETAY.D_HESAP " + 
         			" WHERE SMS_GONDER = 'TRUE' ORDER BY HESAP ";
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

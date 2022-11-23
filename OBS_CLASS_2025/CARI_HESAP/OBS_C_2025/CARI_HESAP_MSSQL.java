@@ -27,10 +27,8 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	
 	public void baglan() throws SQLException
 	{
-      
 		String cumle = "jdbc:sqlserver://" + BAGLAN.cariDizin.cONN_STR + ";";
 	    con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
-	
 	}
 	public void akt_baglan(String kod) throws SQLException
 	{

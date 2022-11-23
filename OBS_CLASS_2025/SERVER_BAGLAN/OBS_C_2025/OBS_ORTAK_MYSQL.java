@@ -55,6 +55,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		  String url = "jdbc:mysql://localhost:" + port ; //pointing to no database.
 		    try 
 		    {
+		  
 		    		conn = DriverManager.getConnection(url, kull, sifre);
 		    		 stmt = conn.createStatement();
 		    		 resultset = stmt.executeQuery("SHOW DATABASES;");
@@ -78,7 +79,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		 Connection conn = null;  
 		  Statement stmt = null;
 	        ResultSet resultset = null;
-		  String url = "jdbc:mysql://" + server +";"; //pointing to no database.
+		  String url = "jdbc:mysql://" + server ; //pointing to no database.
 		    try 
 		    {
 		    		conn = DriverManager.getConnection(url, kull, sifre);

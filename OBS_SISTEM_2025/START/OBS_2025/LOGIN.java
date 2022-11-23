@@ -232,7 +232,6 @@ public LOGIN() throws IOException {
 				}
 		});
 		btncikis.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		
 		btncdizin = new JButton("Calisma Dizini");
 		btncdizin.setBounds(207, 122, 110, 23);
 		panel.add(btncdizin);
@@ -242,7 +241,6 @@ public LOGIN() throws IOException {
 				CAL_DIZIN frame = new CAL_DIZIN();
 				frame.setVisible(true);
 				dispose();
-				
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
@@ -308,10 +306,8 @@ public LOGIN() throws IOException {
             {
             calisma_dizini_oku();
             //*** CARI
-      
            CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
            c_Access.baglan();
-    
           //*** KUR
            KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur, oac._IKur_Loger);
            k_Access.baglan();
@@ -331,160 +327,22 @@ public LOGIN() throws IOException {
             SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms, oac._ISms_Loger);
             sms_Access.baglan();
             //***buraya 
-    
             OBS_MAIN obmain = new OBS_MAIN();
             Login_Progres_Bar_Temizle();
             String qwe = "";
-                if (OBS_SIS_2025_ANA_CLASS .CARI_CONN == true)
-                {
-                    if (CAR_DOS_VAR == false)
-                        {
-                    	contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                    	JOptionPane.showMessageDialog(null, "Calisilan Cari -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
-                    	qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
-         	           OBS_MAIN.lblNewLabel_1.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "/ " + BAGLAN.cariDizin.fIRMA_ADI + "/ " + qwe );
-        	           OBS_MAIN.tabbedPane.setEnabledAt(0, true);
-                        }
-                    else 
-                        { 
-  
-                    	BAGLAN.cariDizin.fIRMA_ADI =  oac._ICar.cari_firma_adi() ;
-                       qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
-                       OBS_MAIN.lblNewLabel_1.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "/ " + BAGLAN.cariDizin.fIRMA_ADI + "/ " + qwe );
-        	           OBS_MAIN.tabbedPane.setEnabledAt(0, true);
-                        }
-                 }
-                else
-                {
-                    	JOptionPane.showMessageDialog(null,  "Cari Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
-                    	OBS_MAIN.tabbedPane.setEnabledAt(0, false);
-                }
-                if (OBS_SIS_2025_ANA_CLASS.KUR_CONN == true)
-                {
-                	if (KUR_DOS_VAR == false)
-                		{
-                		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                		JOptionPane.showMessageDialog(null, "Calisilan Kur -" + BAGLAN.kurDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
-                		}
-                	else
-                		{
-                		qwe =   BAGLAN.kurDizin.yER.equals("S") ?  BAGLAN.kurDizin.sERVER : "Lokal";
-                		OBS_MAIN.lblNewLabel_3.setText ("Kur:" + BAGLAN.kurDizin.kOD + "/ "  + qwe );
-                		OBS_MAIN.tabbedPane.setEnabledAt(1, true);
-                		}
-                }
-                else
-                {
-                		JOptionPane.showMessageDialog(null,  "Kur Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
-                		OBS_MAIN.tabbedPane.setEnabledAt(1, false);
-                }
-                if (OBS_SIS_2025_ANA_CLASS.SMS_CONN == true)
-                {
-                	if (SMS_DOS_VAR == false)
-                	{
-                		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                  	JOptionPane.showMessageDialog(null, "Calisilan Sms -" + BAGLAN.smsDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
-                	}
-                	else
-                	{
-                		qwe = BAGLAN.smsDizin.yER.equals("S") ? BAGLAN.smsDizin.sERVER : "Lokal" ;
-                		OBS_MAIN.lblNewLabel_21.setText ("Sms:" + BAGLAN.smsDizin.kOD + "/ "  + qwe);
-                		OBS_MAIN.tabbedPane.setEnabledAt(6, true);
-                	}
-                }
-                else
-                {
-                	JOptionPane.showMessageDialog(null,  "Sms Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
-                	OBS_MAIN.tabbedPane.setEnabledAt(6, true);
-                }
-                if (OBS_SIS_2025_ANA_CLASS.ADR_CONN == true)
-                {
-                	if (ADR_DOS_VAR == false)
-                	{
-                		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                  	JOptionPane.showMessageDialog(null, "Calisilan Adres -" + BAGLAN.adrDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
-                	}
-                	else
-                	{
-                		BAGLAN.adrDizin.fIRMA_ADI =    oac._IAdres.adr_firma_adi() ;
-                    qwe = BAGLAN.adrDizin.yER.equals("S") ? BAGLAN.adrDizin.sERVER : "Lokal" ;
-                	OBS_MAIN.lblNewLabel_22.setText ("Adres:" + BAGLAN.adrDizin.kOD + "/ " + BAGLAN.adrDizin.fIRMA_ADI + "/ " + qwe);
-                	OBS_MAIN.tabbedPane.setEnabledAt(2, true);
-                	}
-                }
-                else
-                {
-                	JOptionPane.showMessageDialog(null,  "Adres Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
-                	OBS_MAIN.tabbedPane.setEnabledAt(2, true);
-                }
-                if (OBS_SIS_2025_ANA_CLASS.FAT_CONN == true)
-                {
-                if (FAT_DOS_VAR == false)
-                	{
-                	contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                  	 JOptionPane.showMessageDialog(null, "Calisilan Stok -" + BAGLAN.fatDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
-                	}
-                	else
-                	{
-                		BAGLAN.fatDizin.fIRMA_ADI = oac._IStok.fat_firma_adi() ;
-                    qwe = BAGLAN.fatDizin.yER.equals("S") ? BAGLAN.fatDizin.sERVER : "Lokal" ;
-                    OBS_MAIN.lblNewLabel_2.setText ( "Stok:" + BAGLAN.fatDizin.kOD + "/ " + BAGLAN.fatDizin.fIRMA_ADI + "/ " + qwe);
-                    OBS_MAIN.tabbedPane.setEnabledAt(3, true);
-                	}
-                }
-                else
-                {
-                	JOptionPane.showMessageDialog(null,  "Stok Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
-                	OBS_MAIN.tabbedPane.setEnabledAt(3, true);
-                }
-            if (OBS_SIS_2025_ANA_CLASS.KAM_CONN == true)
-            	{
-                if (KAM_DOS_VAR == false)
-                {
-                	contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                  	 JOptionPane.showMessageDialog(null, "Calisilan Kambiyo -" +BAGLAN.kamDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
-                }
-                else
-                {
-                	BAGLAN.kamDizin.fIRMA_ADI =  oac._IKambiyo.kam_firma_adi() ;
-                    qwe =  BAGLAN.kamDizin.yER.equals("S") ? BAGLAN.kamDizin.sERVER : "Lokal" ;
-                	OBS_MAIN.lblNewLabel_23.setText ("Kambiyo:" + BAGLAN.kamDizin.kOD + "/ " + BAGLAN.kamDizin.fIRMA_ADI + "/ " + qwe);
-                	OBS_MAIN.tabbedPane.setEnabledAt(4, true);
-                }
-            	}
-            	else
-            	{
-                JOptionPane.showMessageDialog(null,  "Kambiyo Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
-                OBS_MAIN.tabbedPane.setEnabledAt(4, true);
-            	}
-            if (OBS_SIS_2025_ANA_CLASS.GUN_CONN == true)
-            {
-                if (GUN_DOS_VAR == false)
-                {
-                	contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                  	 JOptionPane.showMessageDialog(null, "Calisilan Gunluk -" + BAGLAN.gunDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
-                }
-                else
-                {
-                	BAGLAN.gunDizin.fIRMA_ADI = oac._IGunluk.gun_firma_adi() ;
-                   qwe =BAGLAN.gunDizin.yER.equals("S") ? BAGLAN.gunDizin.sERVER : "Lokal" ;
-                 OBS_MAIN.lblNewLabel_24.setText ( "Gunluk:" + BAGLAN.gunDizin.kOD + "/ " + BAGLAN.gunDizin.fIRMA_ADI + "/ " + qwe);
-              	 OBS_MAIN.tabbedPane.setEnabledAt(5, true);
-                }
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null,  "Gunluk Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
-                OBS_MAIN.tabbedPane.setEnabledAt(5, true);
-            }
+            cari_kont();
+             kur_kont();
+             sms_kont();
+             adr_kont(); 
+             fat_kont();
+             kam_kont();
+             gun_kont();
           
             Thread.currentThread().isInterrupted();
            ///************************************
            obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
            obmain.setTitle("OBS SISTEM" + "               " + GLOBAL.KULL_ADI);
            obmain.setVisible(true);
-            
-            
             // 
             
            dispose();
@@ -507,7 +365,6 @@ public LOGIN() throws IOException {
 		btndevam.setVisible(false);
 		btndevam.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/icons8-jog-forward-16.png")));
 		btndevam.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		
 		progressBar = new JProgressBar();
 		splitPane.setRightComponent(progressBar);
 		progressBar.setForeground(new Color(166, 55, 55));
@@ -534,6 +391,176 @@ public LOGIN() throws IOException {
 		}
 		
 }
+	void cari_kont() throws ClassNotFoundException, SQLException
+	{
+		String qwe = "" ;
+	    if (OBS_SIS_2025_ANA_CLASS .CARI_CONN == true)
+        {
+            if (CAR_DOS_VAR == false)
+                {
+            	contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            	JOptionPane.showMessageDialog(null, "Calisilan Cari -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+            	qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
+ 	           OBS_MAIN.lblNewLabel_1.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "/ " + BAGLAN.cariDizin.fIRMA_ADI + "/ " + qwe );
+	           OBS_MAIN.tabbedPane.setEnabledAt(0, true);
+                }
+            else 
+                { 
+
+            	BAGLAN.cariDizin.fIRMA_ADI =  oac._ICar.cari_firma_adi() ;
+               qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
+               OBS_MAIN.lblNewLabel_1.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "/ " + BAGLAN.cariDizin.fIRMA_ADI + "/ " + qwe );
+	           OBS_MAIN.tabbedPane.setEnabledAt(0, true);
+                }
+         }
+        else
+        {
+            	JOptionPane.showMessageDialog(null,  "Cari Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
+            	OBS_MAIN.tabbedPane.setEnabledAt(0, false);
+        }
+	}
+	void kur_kont()
+	{
+		String qwe = "" ;
+		   if (OBS_SIS_2025_ANA_CLASS.KUR_CONN == true)
+           {
+           	if (KUR_DOS_VAR == false)
+           		{
+           		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+           		JOptionPane.showMessageDialog(null, "Calisilan Kur -" + BAGLAN.kurDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+           		}
+           	else
+           		{
+           		qwe =   BAGLAN.kurDizin.yER.equals("S") ?  BAGLAN.kurDizin.sERVER : "Lokal";
+           		OBS_MAIN.lblNewLabel_3.setText ("Kur:" + BAGLAN.kurDizin.kOD + "/ "  + qwe );
+           		OBS_MAIN.tabbedPane.setEnabledAt(1, true);
+           		}
+           }
+           else
+           {
+           		JOptionPane.showMessageDialog(null,  "Kur Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
+           		OBS_MAIN.tabbedPane.setEnabledAt(1, false);
+           }
+	}
+	void sms_kont()
+	{
+		String qwe = "" ;
+		   if (OBS_SIS_2025_ANA_CLASS.SMS_CONN == true)
+           {
+           	if (SMS_DOS_VAR == false)
+           	{
+           		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+             	JOptionPane.showMessageDialog(null, "Calisilan Sms -" + BAGLAN.smsDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+           	}
+           	else
+           	{
+           		qwe = BAGLAN.smsDizin.yER.equals("S") ? BAGLAN.smsDizin.sERVER : "Lokal" ;
+           		OBS_MAIN.lblNewLabel_21.setText ("Sms:" + BAGLAN.smsDizin.kOD + "/ "  + qwe);
+           		OBS_MAIN.tabbedPane.setEnabledAt(6, true);
+           	}
+           }
+           else
+           {
+           	JOptionPane.showMessageDialog(null,  "Sms Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
+           	OBS_MAIN.tabbedPane.setEnabledAt(6, true);
+           }
+	}
+	void adr_kont() throws ClassNotFoundException, SQLException
+	{
+		String qwe = "" ;
+		  if (OBS_SIS_2025_ANA_CLASS.ADR_CONN == true)
+          {
+          	if (ADR_DOS_VAR == false)
+          	{
+          		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            	JOptionPane.showMessageDialog(null, "Calisilan Adres -" + BAGLAN.adrDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+          	}
+          	else
+          	{
+          		BAGLAN.adrDizin.fIRMA_ADI =    oac._IAdres.adr_firma_adi() ;
+              qwe = BAGLAN.adrDizin.yER.equals("S") ? BAGLAN.adrDizin.sERVER : "Lokal" ;
+          	OBS_MAIN.lblNewLabel_22.setText ("Adres:" + BAGLAN.adrDizin.kOD + "/ " + BAGLAN.adrDizin.fIRMA_ADI + "/ " + qwe);
+          	OBS_MAIN.tabbedPane.setEnabledAt(2, true);
+          	}
+          }
+          else
+          {
+          	JOptionPane.showMessageDialog(null,  "Adres Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
+          	OBS_MAIN.tabbedPane.setEnabledAt(2, true);
+          }
+	}
+	void fat_kont() throws ClassNotFoundException, SQLException
+	{
+		String qwe = "" ;
+		   if (OBS_SIS_2025_ANA_CLASS.FAT_CONN == true)
+           {
+           if (FAT_DOS_VAR == false)
+           	{
+           	contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+             	 JOptionPane.showMessageDialog(null, "Calisilan Stok -" + BAGLAN.fatDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+           	}
+           	else
+           	{
+           		BAGLAN.fatDizin.fIRMA_ADI = oac._IStok.fat_firma_adi() ;
+               qwe = BAGLAN.fatDizin.yER.equals("S") ? BAGLAN.fatDizin.sERVER : "Lokal" ;
+               OBS_MAIN.lblNewLabel_2.setText ( "Stok:" + BAGLAN.fatDizin.kOD + "/ " + BAGLAN.fatDizin.fIRMA_ADI + "/ " + qwe);
+               OBS_MAIN.tabbedPane.setEnabledAt(3, true);
+           	}
+           }
+           else
+           {
+           	JOptionPane.showMessageDialog(null,  "Stok Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
+           	OBS_MAIN.tabbedPane.setEnabledAt(3, true);
+           }
+	}
+	void kam_kont() throws ClassNotFoundException, SQLException
+	{
+		String qwe = "" ;
+		if (OBS_SIS_2025_ANA_CLASS.KAM_CONN == true)
+    	{
+        if (KAM_DOS_VAR == false)
+        {
+        	contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+          	 JOptionPane.showMessageDialog(null, "Calisilan Kambiyo -" +BAGLAN.kamDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+        }
+        else
+        {
+        	BAGLAN.kamDizin.fIRMA_ADI =  oac._IKambiyo.kam_firma_adi() ;
+            qwe =  BAGLAN.kamDizin.yER.equals("S") ? BAGLAN.kamDizin.sERVER : "Lokal" ;
+        	OBS_MAIN.lblNewLabel_23.setText ("Kambiyo:" + BAGLAN.kamDizin.kOD + "/ " + BAGLAN.kamDizin.fIRMA_ADI + "/ " + qwe);
+        	OBS_MAIN.tabbedPane.setEnabledAt(4, true);
+        }
+    	}
+    	else
+    	{
+        JOptionPane.showMessageDialog(null,  "Kambiyo Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
+        OBS_MAIN.tabbedPane.setEnabledAt(4, true);
+    	}
+	}
+	void gun_kont() throws ClassNotFoundException, SQLException
+	{
+		String qwe = "" ;
+		 if (OBS_SIS_2025_ANA_CLASS.GUN_CONN == true)
+         {
+             if (GUN_DOS_VAR == false)
+             {
+             	contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+               	 JOptionPane.showMessageDialog(null, "Calisilan Gunluk -" + BAGLAN.gunDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+             }
+             else
+             {
+             	BAGLAN.gunDizin.fIRMA_ADI = oac._IGunluk.gun_firma_adi() ;
+                qwe =BAGLAN.gunDizin.yER.equals("S") ? BAGLAN.gunDizin.sERVER : "Lokal" ;
+              OBS_MAIN.lblNewLabel_24.setText ( "Gunluk:" + BAGLAN.gunDizin.kOD + "/ " + BAGLAN.gunDizin.fIRMA_ADI + "/ " + qwe);
+           	 OBS_MAIN.tabbedPane.setEnabledAt(5, true);
+             }
+         }
+         else
+         {
+             JOptionPane.showMessageDialog(null,  "Gunluk Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
+             OBS_MAIN.tabbedPane.setEnabledAt(5, true);
+         }
+	}
 	void calisma_dizini_oku() throws ClassNotFoundException, SQLException, InterruptedException
 {
     int say = 8;
@@ -628,7 +655,6 @@ public LOGIN() throws IOException {
     progressBar.setStringPainted(true);
     Lgn_Progres_Bar(say, 1);
     cari_calisma_dizini_oku();
-	
     Lgn_Progres_Bar(say, 2);
     kur_calisma_dizini_oku();
     Lgn_Progres_Bar(say, 3);
@@ -642,8 +668,6 @@ public LOGIN() throws IOException {
     Lgn_Progres_Bar(say, 7);
     gun_calisma_dizini_oku();
     Lgn_Progres_Bar(say, 8);
-  
-
 }
 	void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
@@ -661,7 +685,7 @@ public LOGIN() throws IOException {
 
     	if (s_CONN.Server_kontrol_L(BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
     	{
-     		if (s_CONN.Dosya_kontrol_L("ok_car" + BAGLAN.cariDizin.kOD,BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
+     		if (s_CONN.Dosya_kontrol_L("OK_Car" + BAGLAN.cariDizin.kOD,BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
             {
             	CAR_DOS_VAR = false;
             	}
@@ -1047,7 +1071,6 @@ public LOGIN() throws IOException {
 	 String hangi = dIZIN  ;
 		if (hangi.equals("MS SQL"))
 		{
-	
 			oac._IConn = new OBS_ORTAK_MSSQL();
 		}
 		else

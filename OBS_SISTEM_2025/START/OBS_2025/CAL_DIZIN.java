@@ -71,10 +71,8 @@ import OBS_C_2025.KAMBIYO_MYSQL;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.KUR_MSSQL;
 import OBS_C_2025.KUR_MYSQL;
-import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
-import OBS_C_2025.SIFRE_DONDUR;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SMS_MSSQL;
 import OBS_C_2025.SMS_MYSQL;
@@ -388,23 +386,19 @@ public class CAL_DIZIN extends JFrame {
 								 {
 									 cmb_maillist.addItem(rs.getString("E_MAIL"));
 							     }
-								
 							}
 							 txt_Lmaill.setText(oac.uSER_ISL.log_mail_aktiv_oku(GLOBAL.KULL_ADI));
 							///
 						}
-						
 	            	}
 	                contentPane.setCursor(DEFAULT_CURSOR);
 	            }
 	            catch (Exception ex)
-			  	
 	            {
 	            contentPane.setCursor(DEFAULT_CURSOR);
 	            JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Kaydet", JOptionPane.PLAIN_MESSAGE);
-	  	      
 	            txtsif.requestFocus();		
-}				}
+	            }				}
 			
 		});
 		btnNewButton_4.setToolTipText("Kaydet");
@@ -665,14 +659,9 @@ public class CAL_DIZIN extends JFrame {
 					kutu_temizle();
 					doldur_kutu(tblCari,tblCari.getSelectedRow());
 					contentPane.setCursor(DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				
 				contentPane.setCursor(DEFAULT_CURSOR);
 			}
 		});
@@ -698,14 +687,9 @@ public class CAL_DIZIN extends JFrame {
 					kutu_temizle();
 					doldur_kutu(tblFatura,tblFatura.getSelectedRow());
 					contentPane.setCursor(DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
+				} 
 				contentPane.setCursor(DEFAULT_CURSOR);
 			}
 		});
@@ -728,14 +712,9 @@ public class CAL_DIZIN extends JFrame {
 					kutu_temizle();
 					doldur_kutu(tblAdres,tblAdres.getSelectedRow());
 					contentPane.setCursor(DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
+				} 
 				contentPane.setCursor(DEFAULT_CURSOR);
 			}
 		});
@@ -759,13 +738,10 @@ public class CAL_DIZIN extends JFrame {
 					kutu_temizle();
 					doldur_kutu(tblKur,tblKur.getSelectedRow());
 				
-				} catch (ClassNotFoundException e1) {
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				} 
 				contentPane.setCursor(DEFAULT_CURSOR);
 			}
 		});
@@ -789,10 +765,7 @@ public class CAL_DIZIN extends JFrame {
 					kutu_temizle();
 					doldur_kutu(tblKambiyo,tblKambiyo.getSelectedRow());
 					contentPane.setCursor(DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SQLException e1) {
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -819,14 +792,9 @@ public class CAL_DIZIN extends JFrame {
 					kutu_temizle();
 					doldur_kutu(tblSms,tblSms.getSelectedRow());
 					contentPane.setCursor(DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
+				} 
 				contentPane.setCursor(DEFAULT_CURSOR);
 			}
 		});
@@ -850,13 +818,9 @@ public class CAL_DIZIN extends JFrame {
 					kutu_temizle();
 					doldur_kutu(tblGunluk,tblGunluk.getSelectedRow());
 					contentPane.setCursor(DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				} 
 				contentPane.setCursor(DEFAULT_CURSOR);
 			}
 		});
@@ -897,18 +861,14 @@ public class CAL_DIZIN extends JFrame {
 				            }
 				            else
 				            {
-				                JOptionPane.showMessageDialog(null, "Sifre Yanlis", "Sifre DEgistirme", JOptionPane.PLAIN_MESSAGE);
+				                JOptionPane.showMessageDialog(null, "Sifre Yanlis", "Sifre Degistirme", JOptionPane.PLAIN_MESSAGE);
 				            	lblysif.setVisible(false);
 				                txtyenisif.setVisible(false);
 				                contentPane.setCursor(DEFAULT_CURSOR);
 				            }
-						} catch (ClassNotFoundException e1) {
-							// TODO Auto-generated catch block
+						} catch (Exception e1) {
 							e1.printStackTrace();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						} 
 				 }
 			}
 		});
@@ -1044,9 +1004,6 @@ public class CAL_DIZIN extends JFrame {
 		cmblog.setEnabled(false);
 		cmblog.setBounds(133, 126, 126, 22);
 		panel.add(cmblog);
-		
-		
-		
 	}
 	
 	private   void grid_doldur() throws ClassNotFoundException, SQLException
@@ -1055,9 +1012,7 @@ public class CAL_DIZIN extends JFrame {
 		kutu_temizle();
 		if ( activ_sayfa == 0)
 			{
-		
 			GRID_TEMIZLE.grid_temizle(tblCari);
-		
 			grid_ortak_doldur(tblCari, "Cari Hesap");
        		}
 		else if ( activ_sayfa == 1)
@@ -1090,17 +1045,14 @@ public class CAL_DIZIN extends JFrame {
 			GRID_TEMIZLE.grid_temizle(tblGunluk);
 	       grid_ortak_doldur(tblGunluk, "Gunluk");
 	       }
-	
 	}
 	private   void grid_ortak_doldur( JTable grd,String prg) throws ClassNotFoundException, SQLException 
 	{
-		
 			ResultSet	rs = null;
 			rs = oac.uSER_ISL.user_db_izinleri(GLOBAL.KULL_ADI, prg);
 			if (!rs.isBeforeFirst() ) {  
 				    return;
 			} 
-			
 			grd.setModel(DbUtils.resultSetToTableModel(rs));
 			grd.removeColumn(grd.getColumnModel().getColumn(0));
 			grd.removeColumn(grd.getColumnModel().getColumn(1));
@@ -1198,11 +1150,8 @@ public class CAL_DIZIN extends JFrame {
 			btndizsec.setEnabled(true);
 			txtdiz.setText(grd.getModel().getValueAt(satir, 8).toString());
 		}
-		
 		contentPane.setCursor(DEFAULT_CURSOR);
 	}
-	
-	
 	private void  tablo_baslik(JTable table)
 	{
 		JTableHeader th = table.getTableHeader();
@@ -1233,7 +1182,6 @@ public class CAL_DIZIN extends JFrame {
 		}
 	private static void mail_doldur() throws ClassNotFoundException, SQLException
 	{
-		
 			cmb_maillist.removeAllItems();
 		     ResultSet	rs = null;
 		     USER_ISLEMLERI usr = new USER_ISLEMLERI();
@@ -1247,11 +1195,8 @@ public class CAL_DIZIN extends JFrame {
 				 {
 					 cmb_maillist.addItem(rs.getString("E_MAIL"));
 			       }
-			
 				 txt_Lmaill.setText(usr.log_mail_aktiv_oku(GLOBAL.KULL_ADI));
-				 
 			}
-			///
 	}
     private static  void ip_doldur() throws ClassNotFoundException, SQLException
 	 {
@@ -1270,13 +1215,11 @@ public class CAL_DIZIN extends JFrame {
 				 cmbip.addItem(rs.getString("IP"));
 		     }
 		}
-}
-    
+	 }
 	private  void server_control() throws HeadlessException, ClassNotFoundException
 		{
 			 contentPane.setCursor(WAIT_CURSOR);
 			 cONN_AKTAR();
-			 			 
 			 CONNECT s_CONN = new CONNECT(oac._IConn);
              if (chckbxL.isSelected() )
                 {
@@ -1299,7 +1242,6 @@ public class CAL_DIZIN extends JFrame {
 	              if (s_CONN.Server_kontrol_S(txtIp.getText(),comboBox.getItemAt( comboBox.getSelectedIndex()),txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr),txtIp.getText() ) == true)
                     {
                     	contentPane.setCursor(DEFAULT_CURSOR);
-                    	// JOptionPane.showMessageDialog(null, "Baglanti Saglandi........".toString(), "Server Baglanti", JOptionPane.PLAIN_MESSAGE);
                     	btnNewButton_1.setEnabled(true);
                     }
                     else
@@ -1317,6 +1259,22 @@ public class CAL_DIZIN extends JFrame {
 		 CONNECT s_CONN = new CONNECT(oac._IConn);
 		 
          String program = "";
+         String modul = "";
+         if (activ_sayfa == 0)
+             modul = "Cari Hesap";
+         else if (activ_sayfa == 1)
+        	 modul = "Fatura";
+         else if (activ_sayfa == 2)
+        	 modul = "Adres";
+         else if (activ_sayfa == 3)
+        	 modul = "Kur";
+         else if (activ_sayfa == 4)
+        	 modul = "Kambiyo";
+         else if (activ_sayfa == 5)
+        	 modul = "Sms";
+         else if (activ_sayfa == 6)
+        	 modul = "Gunluk";
+         
           if (activ_sayfa == 0)
              program = "ok_car" + txtKodu.getText();
          else if (activ_sayfa == 1)
@@ -1333,35 +1291,19 @@ public class CAL_DIZIN extends JFrame {
              program = "OK_Gun" + txtKodu.getText();
          if (chckbxL.isSelected())
          {
-       
+        	 /////////////////////LOCAL DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
             if ( s_CONN.Dosya_kontrol_L(program,comboBox.getItemAt( comboBox.getSelectedIndex()) ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),txtIp.getText()) == true)
              {
-     
-                 if (activ_sayfa == 0)
-                     program = "Cari Hesap";
-                 else if (activ_sayfa == 1)
-                     program = "Fatura";
-                 else if (activ_sayfa == 2)
-                     program = "Adres";
-                 else if (activ_sayfa == 3)
-                     program = "Kur";
-                 else if (activ_sayfa == 4)
-                     program = "Kambiyo";
-                 else if (activ_sayfa == 5)
-                     program = "Sms";
-                 else if (activ_sayfa == 6)
-                     program = "Gunluk";
+                
                  boolean izinli = true;
                  if ( !GLOBAL.KULL_ADI.equals("Admin") )
                  		{
                 	 ResultSet	rs = null;
-                	 rs = oac.uSER_ISL.user_details_izinleri(GLOBAL.KULL_ADI, program, "YER = 'L'");
+                	 rs = oac.uSER_ISL.user_details_izinleri(GLOBAL.KULL_ADI, modul, "YER = 'L'");
                 	 if (!rs.isBeforeFirst() ) {  
                 		 izinli = false;
                 	 	} 
                  }
-               
-                 
                  if (izinli == false)
                  {
                 	 contentPane.setCursor(DEFAULT_CURSOR);
@@ -1370,7 +1312,6 @@ public class CAL_DIZIN extends JFrame {
                      txtKodu.requestFocus();
                      return;
                  }
-                
                  mdb_yaz();
                  grid_doldur();
                  if (activ_sayfa == 0)
@@ -1395,10 +1336,7 @@ public class CAL_DIZIN extends JFrame {
              {
             	 contentPane.setCursor(DEFAULT_CURSOR);
      		   	 int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu.?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
-     		   			 	JOptionPane.QUESTION_MESSAGE,
-     		   			 	null,     //no custom icon
-     		   			 	oac.options,  //button titles
-     		   			 	oac.options[1]); //default button
+     		   			 	JOptionPane.QUESTION_MESSAGE,	 	null,    	oac.options,  	 	oac.options[1]); 
      		 	 if(g != 0 ) { return;	}
             	  	Thread.yield();
                      dosya_olustur_L();
@@ -1423,29 +1361,16 @@ public class CAL_DIZIN extends JFrame {
                      return;
              }
          }
+////////////////////SERVER DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
          else  // Server
          {
                if (	 s_CONN.Dosya_kontrol_S(txtIp.getText(),comboBox.getItemAt( comboBox.getSelectedIndex()), txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr), program,txtIp.getText()) ==true)
              {
-     
-                 if (activ_sayfa == 0)
-                     program = "Cari Hesap";
-                 else if (activ_sayfa == 1)
-                     program = "Fatura";
-                 else if (activ_sayfa == 2)
-                     program = "Adres";
-                 else if (activ_sayfa == 3)
-                     program = "Kur";
-                 else if (activ_sayfa == 4)
-                     program = "Kambiyo";
-                 else if (activ_sayfa == 5)
-                     program = "Sms";
-                 else if (activ_sayfa == 6)
-                     program = "Gunluk";
+  
                  boolean izinli = true;
                  if ( !GLOBAL.KULL_ADI.equals("Admin") )
                  {
-                	 ResultSet rs = oac.uSER_ISL.user_details_izinleri(GLOBAL.KULL_ADI, program, "YER = 'S'");
+                	 ResultSet rs = oac.uSER_ISL.user_details_izinleri(GLOBAL.KULL_ADI, modul, "YER = 'S'");
                 	 if (!rs.isBeforeFirst() ) {  
                 		 izinli = false;
                 	 } 
@@ -1481,11 +1406,8 @@ public class CAL_DIZIN extends JFrame {
              else
              {
             	 contentPane.setCursor(DEFAULT_CURSOR);
-            	     		   	 int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu.?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
-      							JOptionPane.QUESTION_MESSAGE,
-      			   				null,     //no custom icon
-      			   				oac.options,  //button titles
-      			   				oac.options[1]); //default button
+            	 	 int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu.?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
+      							JOptionPane.QUESTION_MESSAGE,null, oac.options, 	oac.options[1]); 
       		   if(g != 0 ) { return;	}
                  {
                 	 contentPane.setCursor(WAIT_CURSOR);
@@ -1539,21 +1461,46 @@ public class CAL_DIZIN extends JFrame {
     {
     	mdb_yaz_2("Gunluk");
      }
-
     oac.uSER_ISL.ip_dos_kont(txtIp.getText());
 }
 	private void mdb_yaz_2(String modul) throws ClassNotFoundException, SQLException
 	{
-		 
 		 oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, modul,chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
 	     oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), comboBox.getItemAt( comboBox.getSelectedIndex()) , txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, cmblog.getItemAt(cmblog.getSelectedIndex()));
-
 	}
-	
 	private  void dosya_olustur_L() throws IOException, ClassNotFoundException, SQLException
 {
 	 if (activ_sayfa == 0)
      {
+		car_olustur();
+     }
+     else if (activ_sayfa == 1)
+     {
+    	stok_olustur();
+     }
+     else if (activ_sayfa == 2)
+     {
+    	adr_olustur();
+     }
+     else if (activ_sayfa == 3)
+     {
+    	kur_olustur();
+     }
+     else if (activ_sayfa == 4)
+     {
+    	kam_olustur();
+     }
+     else if (activ_sayfa == 5)
+     {
+    	sms_olustur();
+     }
+     else if (activ_sayfa == 6)
+     {
+    	gun_olustur();
+     }
+	}
+	void car_olustur() throws ClassNotFoundException, SQLException
+	{
 		 String strAdmin = "";
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
@@ -1562,7 +1509,6 @@ public class CAL_DIZIN extends JFrame {
          mODUL_AKTAR("Cari Hesap");
         CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar,oac._ICari_Loger);
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
-		
 		BAGLAN.cariDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
 		BAGLAN.cariDizin.sERVER = txtIp.getText();
@@ -1571,9 +1517,7 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
         BAGLAN_LOG bLog = new BAGLAN_LOG();
         bLog.cONNECT();
-   	
-   	 
-         if (chckbxD.isSelected())
+           if (chckbxD.isSelected())
          	{
         	 	c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getItemAt( comboBox.getSelectedIndex()) ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
          	}
@@ -1581,10 +1525,10 @@ public class CAL_DIZIN extends JFrame {
         	 {
         		c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getItemAt( comboBox.getSelectedIndex()),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
         	 }
-     }
-     else if (activ_sayfa == 1)
-     {
-    	 String strAdmin = "";
+	}
+	void stok_olustur() throws ClassNotFoundException, SQLException
+	{
+		 String strAdmin = "";
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          cONN_AKTAR();
@@ -1610,10 +1554,10 @@ public class CAL_DIZIN extends JFrame {
         	{
         		 s_Access.fAT_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.fatLogDizin);
         	}
-     }
-     else if (activ_sayfa == 2)
-     {
-    	 String strAdmin = "";
+	}
+	void adr_olustur() throws ClassNotFoundException, SQLException
+	{
+		 String strAdmin = "";
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         contentPane.setCursor(WAIT_CURSOR);
         cONN_AKTAR();
@@ -1638,10 +1582,10 @@ public class CAL_DIZIN extends JFrame {
         {
         	 a_Access.aDR_SIF_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.adrLogDizin);
         }
-     }
-     else if (activ_sayfa == 3)
-     {
-    	 contentPane.setCursor(WAIT_CURSOR);
+	}
+	void kur_olustur() throws ClassNotFoundException, SQLException
+	{
+		 contentPane.setCursor(WAIT_CURSOR);
     	 cONN_AKTAR();
          lOGG_AKTAR("Kur");
          mODUL_AKTAR("Kur");
@@ -1664,10 +1608,10 @@ public class CAL_DIZIN extends JFrame {
          	{
         	  		 k_Access.kUR_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.kurLogDizin);
             	}
-     }
-     else if (activ_sayfa == 4)
-     {
-    	 String strAdmin = "";
+	}
+	void kam_olustur() throws ClassNotFoundException, SQLException
+	{
+		 String strAdmin = "";
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          cONN_AKTAR();
@@ -1693,10 +1637,10 @@ public class CAL_DIZIN extends JFrame {
         	 ka_Access.kAM_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.kamLogDizin);
      
         	 }
-     }
-     else if (activ_sayfa == 5)
-     {
-    	 contentPane.setCursor(WAIT_CURSOR);
+	}
+	void sms_olustur() throws ClassNotFoundException, SQLException
+	{
+		 contentPane.setCursor(WAIT_CURSOR);
     	 cONN_AKTAR();
          lOGG_AKTAR("Sms");
          mODUL_AKTAR("Sms");
@@ -1720,10 +1664,10 @@ public class CAL_DIZIN extends JFrame {
        		 sms_Access.sMS_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.smsLogDizin);
       
         	 }
-     }
-     else if (activ_sayfa == 6)
-     {
-    	 String strAdmin = "";
+	}
+	void gun_olustur() throws ClassNotFoundException, SQLException
+	{
+		 String strAdmin = "";
          strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
          contentPane.setCursor(WAIT_CURSOR);
          cONN_AKTAR();
@@ -1748,12 +1692,9 @@ public class CAL_DIZIN extends JFrame {
         	 {
         	 g_Access.gUN_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
         	 }
-     }
- }
-	private  void dosya_olustur_S() throws IOException, ClassNotFoundException, SQLException
-{
-	if (activ_sayfa == 0)
-    {
+	}
+	void cari_s_olustur() throws ClassNotFoundException, SQLException
+	{
 		String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
@@ -1763,31 +1704,19 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
 		BAGLAN.cariDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.cariDizin.kOD = txtKodu.getText();
 		BAGLAN.cariDizin.yER = "S";
         BAGLAN_LOG bLog = new BAGLAN_LOG();
         bLog.cONNECT();
-
-        String inst = "" ;
-   	 	if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
-   	 		{
-            inst = "" ;
-            BAGLAN.cariDizin.iNSTANCE ="";
-           }
-   	 	else
-   	 	{
-   		 inst = comboBox.getSelectedItem().toString();
-   		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
-   	 	}
-   	 	
         if (chckbxD.isSelected())
         	{
-        		c_Access.cARI_SIFIR_S(txtIp.getText(), inst, txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
+        		c_Access.cARI_SIFIR_S(txtIp.getText(),comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
           }
-    }
-    else if (activ_sayfa == 1)
-    {
-    	String strAdmin = "";
+	}
+	void stok_s_olustur() throws ClassNotFoundException, SQLException
+	{
+		String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
         lOGG_AKTAR("Stok");
@@ -1801,17 +1730,14 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.fatDizin.yER = "S";
         BAGLAN_LOG bLog = new BAGLAN_LOG();
         bLog.cONNECT();
-
         if (chckbxD.isSelected())
-        	
         	{
         		s_Access.fAT_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
-        
         	}
-    }
-    else if (activ_sayfa == 2)
-    {
-    	String strAdmin = "";
+	}
+	void adr_s_olustur() throws ClassNotFoundException, SQLException
+	{
+		String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
         lOGG_AKTAR("Adres");
@@ -1825,19 +1751,14 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.adrDizin.yER = "S";
         BAGLAN_LOG bLog = new BAGLAN_LOG();
         bLog.cONNECT();
-
-
         if (chckbxD.isSelected())
     	{
     		a_Access.aDR_SIFIR_S( txtIp.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
-    
     	}
-          
-    }
-    else if (activ_sayfa == 3)
-    {
-    	
-    	 cONN_AKTAR();
+	}
+	void kur_s_olustur() throws ClassNotFoundException, SQLException
+	{
+	 	 cONN_AKTAR();
          lOGG_AKTAR("Kur");
          mODUL_AKTAR("Kur");
     	 KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._IKur_Loger);
@@ -1849,18 +1770,14 @@ public class CAL_DIZIN extends JFrame {
  		BAGLAN.kurDizin.yER = "S";
          BAGLAN_LOG bLog = new BAGLAN_LOG();
          bLog.cONNECT();
-
-
         if (chckbxD.isSelected())
         {
       		k_Access.kUR_SIFIR_S( txtIp.getText(),  comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
-      	  
-        	  	}
-    }
-    
-    else if (activ_sayfa == 4)
-    {
-    	String strAdmin = "";
+      	  	}
+	}
+	void kam_s_olustur() throws ClassNotFoundException, SQLException
+	{
+		String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
         lOGG_AKTAR("Kambiyo");
@@ -1874,16 +1791,14 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.kamDizin.yER = "S";
         BAGLAN_LOG bLog = new BAGLAN_LOG();
         bLog.cONNECT();
-
-
-        if (chckbxD.isSelected())
+       if (chckbxD.isSelected())
         {
         	ka_Access.kAM_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
         	}
-    }
-    else if (activ_sayfa == 5)
-    {
-    	 cONN_AKTAR();
+	}
+	void sms_s_olustur() throws ClassNotFoundException, SQLException
+	{
+	 	 cONN_AKTAR();
          lOGG_AKTAR("Sms");
          mODUL_AKTAR("Sms");	
     	  SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ISms_Loger);
@@ -1895,18 +1810,14 @@ public class CAL_DIZIN extends JFrame {
   		BAGLAN.smsDizin.yER = "S";
           BAGLAN_LOG bLog = new BAGLAN_LOG();
           bLog.cONNECT();
-
-
         if (chckbxD.isSelected())
         {
         	sms_Access.sMS_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
-    	
         	}
-    }
-    
-    else if (activ_sayfa == 6)
-    {
-    	String strAdmin = "";
+	}
+	void gun_s_olustur() throws ClassNotFoundException, SQLException
+	{
+		String strAdmin = "";
         strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
         cONN_AKTAR();
         lOGG_AKTAR("Gunluk");
@@ -1920,15 +1831,42 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.gunDizin.yER = "S";
         BAGLAN_LOG bLog = new BAGLAN_LOG();
         bLog.cONNECT();
-
-
         if (chckbxD.isSelected())
         {
         	g_Access.gUN_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(), "default", "", strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
         }    
-        }
+	}
+	private  void dosya_olustur_S() throws IOException, ClassNotFoundException, SQLException
+{
+	if (activ_sayfa == 0)
+    {
+		cari_s_olustur();
+    }
+    else if (activ_sayfa == 1)
+    {
+    	stok_s_olustur();
+    }
+    else if (activ_sayfa == 2)
+    {
+    	adr_s_olustur();
+     }
+    else if (activ_sayfa == 3)
+    {
+    	kur_s_olustur();
+    }
+    else if (activ_sayfa == 4)
+    {
+    	kam_s_olustur();
+    }
+    else if (activ_sayfa == 5)
+    {
+    	sms_s_olustur();
+    }
+    else if (activ_sayfa == 6)
+    {
+    	gun_s_olustur();
+     }
 }
-
 	private void cONN_AKTAR()
 	{
 		 String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
@@ -1940,7 +1878,6 @@ public class CAL_DIZIN extends JFrame {
 			{
 				oac._IConn = new OBS_ORTAK_MYSQL();
 			}
-		 		
 	}
 	private void mODUL_AKTAR(String mODUL)
 	{
@@ -2005,7 +1942,6 @@ public class CAL_DIZIN extends JFrame {
 				else if (mODUL == "Sms")
 				{
 				oac._ISms = new SMS_MYSQL();
-			
 				}
 			}
 	}

@@ -55,18 +55,15 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		  String url = "jdbc:mysql://localhost:" + port ; //pointing to no database.
 		    try 
 		    {
-		          
 		    		conn = DriverManager.getConnection(url, kull, sifre);
 		    		 stmt = conn.createStatement();
 		    		 resultset = stmt.executeQuery("SHOW DATABASES;");
 		    		 result =false;
 		             while (resultset.next()) 
 		             {
-			            	 if(resultset.getString("Database").equals(db))
+			            	 if(resultset.getString("Database").equals(db.toLowerCase()))
 		            	 {
-		            				   
 		            		 result = true;
-		            		 
 		            	 }
 		             }
 		    } catch (SQLException e)
@@ -74,7 +71,6 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		    result =false;
 		    }
 			return result;
-		
      }
     public boolean Dosyakontrol_S(String server, String inst, String kull, String sifre, String prog, String port) throws ClassNotFoundException, SQLException
      {
@@ -91,8 +87,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		             result =false;
 		             while (resultset.next()) 
 		             {
-		                // System.out.print(rs.getString(1));
-		            	 if(resultset.getString("Database").equals(prog))
+		            	 if(resultset.getString("Database").equals(prog.toLowerCase()))
 		            	 {
 		            		 result = true;
 		            	 }

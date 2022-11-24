@@ -1,14 +1,11 @@
 package OBS_C_2025;
 
-import javax.swing.JOptionPane;
-
 public class BILGI_OKU_LOG {
 	
 	public  void bILGI_OKU(DIZIN_BILGILERI dIZIN, String  dOSYA_BASLANGIC, DIZIN_BILGILERI oDIZIN) 
 	{
 		if (new String(oDIZIN.yER.toString()).equals("L") == true) 
 		   { 
-		
 			if (oDIZIN.hAN_SQL.toString().equals("MS SQL") == true)
 			{
 				dIZIN.kULLANICI = oDIZIN.kULLANICI;
@@ -17,10 +14,9 @@ public class BILGI_OKU_LOG {
 			}
 			else  if (oDIZIN.hAN_SQL.toString().equals("MY SQL") == true)
 			{
-			
 				dIZIN.kULLANICI = oDIZIN.kULLANICI;
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
-			   	dIZIN.cONN_STR =  "localhost/" + dOSYA_BASLANGIC  + oDIZIN.kOD + "_LOG";
+			   	dIZIN.cONN_STR =  "localhost/" + dOSYA_BASLANGIC  + oDIZIN.kOD + "_log";
 			}
 		   }
 		else
@@ -35,8 +31,7 @@ public class BILGI_OKU_LOG {
 			{
 				dIZIN.kULLANICI = oDIZIN.kULLANICI;
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
-			   	dIZIN.cONN_STR =  dIZIN.sERVER + "/" +  dOSYA_BASLANGIC + oDIZIN.kOD + "_LOG";
-
+			   	dIZIN.cONN_STR =  dIZIN.sERVER + "/" +  dOSYA_BASLANGIC + oDIZIN.kOD + "_log";
 			}
 		   }
 	}

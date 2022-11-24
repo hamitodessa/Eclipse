@@ -18,7 +18,7 @@ public class SMS_MSSQL implements ISMS{
 	    con = DriverManager.getConnection(cumle,BAGLAN.smsDizin.kULLANICI,BAGLAN.smsDizin.sIFRESI);
 	}
 	@Override
-	public void sMS_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins, String kull, String sifre) throws ClassNotFoundException, SQLException {
+	public void sMS_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins, String kull, String sifre,String port) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
  		con = null;  
  		String cumle = "";

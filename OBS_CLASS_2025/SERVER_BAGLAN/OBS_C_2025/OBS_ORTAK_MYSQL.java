@@ -18,7 +18,6 @@ public class OBS_ORTAK_MYSQL implements IConnection {
     {
 		 Class.forName("com.mysql.cj.jdbc.Driver");
 		 Connection conn = null;  
-
 		  String url = "jdbc:mysql://localhost:" + port ; //pointing to no database.
 		    try 
 		    {

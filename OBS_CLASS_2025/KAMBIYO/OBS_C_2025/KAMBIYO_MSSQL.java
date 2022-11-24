@@ -20,7 +20,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 	}
 	@Override
 	public void kAM_SIFIR_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
-			String sifre) throws ClassNotFoundException, SQLException {
+			String sifre,String port) throws ClassNotFoundException, SQLException {
 		 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	 		con = null;  
 	 		String cumle = "";

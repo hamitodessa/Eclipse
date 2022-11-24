@@ -12,14 +12,14 @@ public class KUR_ACCESS {
 		this._IKur = _IKur;
 		this._Logger = _Logger;
 	}
-	public static void baglan() throws SQLException
+	public static void baglan() throws SQLException, ClassNotFoundException
 	{
 	_IKur.baglan();
 	}
 	public void kUR_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins, String kull, String sifre
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException
 	{
-		_IKur.kUR_SIFIR_L(kod, dizin_yeri, dizin, ins, kull, sifre);
+		_IKur.kUR_SIFIR_L(kod, dizin_yeri, dizin, ins, kull, sifre, port);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}

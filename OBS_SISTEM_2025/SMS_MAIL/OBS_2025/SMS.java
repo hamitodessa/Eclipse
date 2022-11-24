@@ -2,7 +2,6 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -575,7 +574,7 @@ public class SMS extends JInternalFrame {
 			public void mouseClicked(MouseEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				kutu_temizle();
-				doldur_kutu(table_2.getSelectedRow());
+			    doldur_kutu(table_2.getSelectedRow());
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
@@ -624,11 +623,10 @@ public class SMS extends JInternalFrame {
 			tc.setHeaderRenderer(new SOLA());
 			
 			tc.setMinWidth(80);
-			
 			tc = tcm.getColumn(4);
 			tc.setHeaderRenderer(new ORTA());
 			 CheckBoxRenderer checkBoxRenderer = new CheckBoxRenderer();
-			 table_2.getColumnModel().getColumn(4).setCellRenderer(checkBoxRenderer);
+		   table_2.getColumnModel().getColumn(4).setCellRenderer(checkBoxRenderer);
 			tc.setMinWidth(50);
 			
 			tc = tcm.getColumn(5);
@@ -663,7 +661,8 @@ public class SMS extends JInternalFrame {
 			}
 			//*******
 			kutu_temizle();
-			doldur_kutu(0);
+	
+	doldur_kutu(0);
 				
 		}
 		catch (Exception ex)
@@ -688,39 +687,45 @@ public class SMS extends JInternalFrame {
 			} 
 			txttel.setText(table_2.getModel().getValueAt(satir, 0).toString());
 			txtunvan.setText(table_2.getModel().getValueAt(satir, 1).toString());
-			
 			comboBox_2.setSelectedItem(table_2.getModel().getValueAt(satir, 2).toString());
 			txtkodu.setText(table_2.getModel().getValueAt(satir, 3).toString());
-			chcdurum.setSelected((boolean) table_2.getModel().getValueAt(satir, 4));
+		if (table_2.getModel().getValueAt(satir, 4).toString().equals("0")) chcdurum.setSelected(false);
+		else if (table_2.getModel().getValueAt(satir, 4).toString().equals("1")) chcdurum.setSelected(true);
+		else if (table_2.getModel().getValueAt(satir, 4).toString().equals("false")) chcdurum.setSelected(false);
+		else if (table_2.getModel().getValueAt(satir, 4).toString().equals("true")) chcdurum.setSelected(true);
+	
+	
 	}
 	public static void yeni ()
 	{
-		if (tabbedPane.getSelectedIndex() != 2) return ;
+		if (tabbedPane.getSelectedIndex() != 3) return ;
 		kutu_temizle();
 		txttel.requestFocus();
 	}
 	public static void giris_kayit()
 	{
-		if (tabbedPane.getSelectedIndex() != 2) return ;
+			if (tabbedPane.getSelectedIndex() != 3) return ;
 	        if (txttel.getText().equals("")) {
 	            txttel.requestFocus();
 	           return ;
 	        }
 	        try {
+	        	
 					 sms_Access.sms_giris_sil(txttel.getText());
 					 sms_Access.sms_giris_yaz(txttel.getText(), 
-							 comboBox_2.getSelectedItem().toString(),txtunvan.getText(),
+							txtunvan.getText(), comboBox_2.getSelectedItem().toString(),
 							 txtkodu.getText(), chcdurum.isSelected(), GLOBAL.KULL_ADI);
 	            kutu_temizle();
 	            giris_doldur();
 	        }
 	        catch (Exception ex)
 	        {
-        	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Giris", JOptionPane.PLAIN_MESSAGE);			        }
+        	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Giris", JOptionPane.PLAIN_MESSAGE);		
+        	}
 			}
 	public static void sil()
 	{
-		if (tabbedPane.getSelectedIndex() != 2) return ;
+		if (tabbedPane.getSelectedIndex() != 3) return ;
 		if (txttel.getText().equals("")) {
             txttel.requestFocus();
            return ;

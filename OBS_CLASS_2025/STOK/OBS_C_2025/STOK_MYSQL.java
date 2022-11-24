@@ -22,7 +22,7 @@ public class STOK_MYSQL implements ISTOK {
 	}
 	@Override
 	public void fAT_SIFIR_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
-			String sifre) throws ClassNotFoundException, SQLException {
+			String sifre,String port) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
  		con = null;  
  		String cumle = "";

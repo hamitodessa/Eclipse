@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public interface ISTOK {
 
 	public void baglan() throws SQLException;
-	public void fAT_SIFIR_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins,String kull,String sifre) throws ClassNotFoundException, SQLException;
+	public void fAT_SIFIR_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins,String kull,String sifre,String port) throws ClassNotFoundException, SQLException;
 	public void fAT_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException;
 	public void create_table(String fir_adi) throws SQLException;
 	public String fat_firma_adi() throws ClassNotFoundException, SQLException;

@@ -22,9 +22,9 @@ public class STOK_ACCESS {
 		_IStok.baglan();
 	}
 	public void fAT_SIFIR_L (String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
-			String sifre, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+			String sifre, String mesaj,String evrak, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException 
 	{
-		 _IStok.fAT_SIFIR_L( kod,dizin_yeri, dizin,  fir_adi, ins, kull, sifre);
+		 _IStok.fAT_SIFIR_L( kod,dizin_yeri, dizin,  fir_adi, ins, kull, sifre,port);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 			// _Logger.Logla(mesaj);

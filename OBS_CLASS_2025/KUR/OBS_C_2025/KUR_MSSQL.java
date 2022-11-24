@@ -20,7 +20,7 @@ public class KUR_MSSQL implements IKUR{
 	    con = DriverManager.getConnection(cumle,BAGLAN.kurDizin.kULLANICI,BAGLAN.kurDizin.sIFRESI);
 	}
 	@Override
-	public void kUR_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins, String kull, String sifre) throws ClassNotFoundException, SQLException {
+	public void kUR_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins, String kull, String sifre,String port) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
  		con = null;  
  		String cumle = "";
@@ -104,7 +104,7 @@ public class KUR_MSSQL implements IKUR{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
         String sql = " SELECT Kur , MA , MS, SA, SS,BA, BS " +
-                " FROM Kurlar WITH (INDEX (IX_KUR)) " +
+                " FROM KURLAR WITH (INDEX (IX_KUR)) " +
                 " WHERE Tarih ='" + tar + "' ORDER BY  Kur ";
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

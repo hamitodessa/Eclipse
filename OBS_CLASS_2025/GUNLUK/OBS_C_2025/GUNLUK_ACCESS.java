@@ -18,9 +18,9 @@ public class GUNLUK_ACCESS {
 	_IGunluk.baglan();
 	}
 	public void gUN_SIFIR_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull, String sifre
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException
 	{
-		_IGunluk.gUN_SIFIR_L(kod, dizin_yeri, dizin, fir_adi, ins, kull, sifre);
+		_IGunluk.gUN_SIFIR_L(kod, dizin_yeri, dizin, fir_adi, ins, kull, sifre,port);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}

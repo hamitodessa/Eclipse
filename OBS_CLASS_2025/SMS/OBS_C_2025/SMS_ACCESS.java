@@ -17,9 +17,9 @@ public class SMS_ACCESS {
 	_ISms.baglan();
 	}
 	public void sMS_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins, String kull, String sifre
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException 
 	{
-		_ISms.sMS_SIFIR_L(kod, dizin_yeri, dizin, ins, kull, sifre);
+		_ISms.sMS_SIFIR_L(kod, dizin_yeri, dizin, ins, kull, sifre,port);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}

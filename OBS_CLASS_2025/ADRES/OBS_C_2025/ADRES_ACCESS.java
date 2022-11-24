@@ -20,9 +20,9 @@ public class ADRES_ACCESS {
 	_IAdres.baglan();
 	}
 	public void aDR_SIF_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,String sifre
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException
 	{
-		_IAdres.aDR_SIF_L( kod,dizin_yeri,  dizin,  fir_adi,  ins,  kull, sifre);
+		_IAdres.aDR_SIF_L( kod,dizin_yeri,  dizin,  fir_adi,  ins,  kull, sifre, port);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}

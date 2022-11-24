@@ -585,7 +585,7 @@ public class MAIL extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			 JOptionPane.showMessageDialog(null, ex.getMessage());   
+		 	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Giris", JOptionPane.PLAIN_MESSAGE);			 
 		}
 	}
 	private static void kutu_temizle() 
@@ -608,7 +608,14 @@ public class MAIL extends JInternalFrame {
 			
 			comboBox_2.setSelectedItem(table_2.getModel().getValueAt(satir, 2).toString());
 			txtkodu.setText(table_2.getModel().getValueAt(satir, 3).toString());
-			chcdurum.setSelected((boolean) table_2.getModel().getValueAt(satir, 4));
+			//chcdurum.setSelected((boolean) table_2.getModel().getValueAt(satir, 4));
+			
+			if (table_2.getModel().getValueAt(satir, 4).toString().equals("0")) chcdurum.setSelected(false);
+			else if (table_2.getModel().getValueAt(satir, 4).toString().equals("1")) chcdurum.setSelected(true);
+			else if (table_2.getModel().getValueAt(satir, 4).toString().equals("false")) chcdurum.setSelected(false);
+			else if (table_2.getModel().getValueAt(satir, 4).toString().equals("true")) chcdurum.setSelected(true);
+		
+		
 	}
 	public static void yeni ()
 	{
@@ -626,15 +633,16 @@ public class MAIL extends JInternalFrame {
 	        try {
 					 sms_Access.mail_giris_sil(txtmail.getText());
 					 sms_Access.mail_giris_yaz(txtmail.getText(), txtunvan.getText(),
-							 comboBox_2.getSelectedItem().toString(),
-							 txtkodu.getText(), chcdurum.isSelected(), GLOBAL.KULL_ADI);
+					 comboBox_2.getSelectedItem().toString(),
+					 txtkodu.getText(), chcdurum.isSelected(), GLOBAL.KULL_ADI);
 				
 	            kutu_temizle();
 	            giris_doldur();
 	        }
 	        catch (Exception ex)
 	        {
-        	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Giris", JOptionPane.PLAIN_MESSAGE);			        }
+        	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Giris", JOptionPane.PLAIN_MESSAGE);	
+        	}
 			}
 	public static void sil()
 	{

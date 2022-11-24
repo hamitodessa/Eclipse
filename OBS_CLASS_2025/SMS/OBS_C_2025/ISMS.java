@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public interface ISMS {
 
 	public void baglan() throws SQLException;
-	public void sMS_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins,String kull,String sifre) throws ClassNotFoundException, SQLException;
+	public void sMS_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins,String kull,String sifre,String port) throws ClassNotFoundException, SQLException;
 	public void sMS_SIFIR_S(String server,  String ins, String kull, String sifre, String kod) throws ClassNotFoundException, SQLException;
 	public void create_table() throws SQLException ;
 	public ResultSet mail_giris_bak() throws ClassNotFoundException, SQLException;
@@ -24,5 +24,5 @@ public interface ISMS {
 	public void sms_giris_yaz(String tel , String unv ,String grpkod ,String kod,boolean drm , String unm ) throws ClassNotFoundException, SQLException;
 	public ResultSet sms_alici_doldur() throws ClassNotFoundException, SQLException;
 	public void sms_yaz(String uname,String tar ,String msj,String mobile,String hsp, String unv) throws ClassNotFoundException, SQLException;
-	public void create_table_log() throws SQLException;
+	public void create_table_log() throws SQLException, ClassNotFoundException;
 }

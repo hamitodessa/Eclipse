@@ -291,7 +291,6 @@ public LOGIN() throws IOException {
 			}
 		});
 		btngiris.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		
 		btndevam = new JButton("Devam");
 		btndevam.setBounds(324, 122, 110, 23);
 		panel.add(btndevam);
@@ -314,7 +313,7 @@ public LOGIN() throws IOException {
           //*** ADRES
            ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres, oac._IAdres_Loger);
            a_Access.baglan();
-          //*** FATURA
+            //*** FATURA
             STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
             s_Access.baglan();
           //*** KAMBIYO
@@ -680,9 +679,7 @@ public LOGIN() throws IOException {
         return;
     }
     if (BAGLAN.cariDizin.yER.equals("L"))
-    	
-    {
-
+     {
     	if (s_CONN.Server_kontrol_L(BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
     	{
      		if (s_CONN.Dosya_kontrol_L("OK_Car" + BAGLAN.cariDizin.kOD,BAGLAN.cariDizin.iNSTANCE, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
@@ -691,7 +688,6 @@ public LOGIN() throws IOException {
             	}
             else
             {
-      			
            	lOGG_AKTAR("Cari Hesap",BAGLAN.cariDizin.hAN_SQL,BAGLAN.cariDizin.lOG,BAGLAN.cariDizin.lOGLAMA_YERI);
             CAR_DOS_VAR = true;
             OBS_SIS_2025_ANA_CLASS.CARI_CONN = true;}
@@ -713,10 +709,8 @@ public LOGIN() throws IOException {
 	}
 	void kur_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
-	
-	    CONNECT s_CONN = new CONNECT(oac._IConn);
-	    
-    if (BAGLAN.kurDizin.yER.equals(""))
+	  CONNECT s_CONN = new CONNECT(oac._IKurCon);
+	if (BAGLAN.kurDizin.yER.equals(""))
     {
     	OBS_SIS_2025_ANA_CLASS.KUR_CONN = false;
         KUR_DOS_VAR = false;
@@ -724,11 +718,13 @@ public LOGIN() throws IOException {
     }
     if (BAGLAN.kurDizin.yER.equals("L"))
     {
-    	if (s_CONN.Server_kontrol_L(BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
+   
+    	if (s_CONN.Server_kontrol_L(BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,BAGLAN.kurDizin.sERVER) == true)   
     	{
-    		if (s_CONN.Dosya_kontrol_L("OK_Kur" + BAGLAN.kurDizin.kOD,BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
+
+    		if (s_CONN.Dosya_kontrol_L("OK_Kur" + BAGLAN.kurDizin.kOD,BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,BAGLAN.kurDizin.sERVER) == false)
             {
-            	KUR_DOS_VAR = false;
+           	KUR_DOS_VAR = false;
             	}
             else
             {
@@ -739,9 +735,9 @@ public LOGIN() throws IOException {
     	 else
              OBS_SIS_2025_ANA_CLASS.KUR_CONN = false;
     }
-    else if (s_CONN.Server_kontrol_S(BAGLAN.kurDizin.sERVER, BAGLAN.kurDizin.iNSTANCE,BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
+    else if (s_CONN.Server_kontrol_S(BAGLAN.kurDizin.sERVER, BAGLAN.kurDizin.iNSTANCE,BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,BAGLAN.kurDizin.sERVER) == true )
     {
-            if (s_CONN.Dosya_kontrol_S(BAGLAN.kurDizin.sERVER,BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,"OK_Kur" + BAGLAN.kurDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
+            if (s_CONN.Dosya_kontrol_S(BAGLAN.kurDizin.sERVER,BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,"OK_Kur" + BAGLAN.kurDizin.kOD,BAGLAN.kurDizin.sERVER) == false)
             KUR_DOS_VAR = false;
         else
         	lOGG_AKTAR("Kur",BAGLAN.kurDizin.hAN_SQL,BAGLAN.kurDizin.lOG,BAGLAN.kurDizin.lOGLAMA_YERI);
@@ -754,7 +750,7 @@ public LOGIN() throws IOException {
 	void sms_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
 	
-	    CONNECT s_CONN = new CONNECT(oac._IConn);
+	    CONNECT s_CONN = new CONNECT(oac._ISmsCon);
 	    
 	    if (BAGLAN.smsDizin.yER.equals(""))
 	    {
@@ -764,9 +760,9 @@ public LOGIN() throws IOException {
 	    }
 	    if (BAGLAN.smsDizin.yER.equals("L"))
 	    {
-	    	if (s_CONN.Server_kontrol_L(BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
+	    	if (s_CONN.Server_kontrol_L(BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,BAGLAN.smsDizin.sERVER) == true)   
 	    	{
-	    		if (s_CONN.Dosya_kontrol_L("OK_Sms" + BAGLAN.smsDizin.kOD,BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
+	    		if (s_CONN.Dosya_kontrol_L("OK_Sms" + BAGLAN.smsDizin.kOD,BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,BAGLAN.smsDizin.sERVER) == false)
 	    		{
 	    			SMS_DOS_VAR = false;
 	    		}
@@ -779,9 +775,9 @@ public LOGIN() throws IOException {
 	    	else
           OBS_SIS_2025_ANA_CLASS.SMS_CONN = false;
 	    }
-	    else if (s_CONN.Server_kontrol_S(BAGLAN.smsDizin.sERVER, BAGLAN.smsDizin.iNSTANCE,BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
+	    else if (s_CONN.Server_kontrol_S(BAGLAN.smsDizin.sERVER, BAGLAN.smsDizin.iNSTANCE,BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,BAGLAN.smsDizin.sERVER) == true )
 	    {
-         if (s_CONN.Dosya_kontrol_S(BAGLAN.smsDizin.sERVER,BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,"OK_Sms" + BAGLAN.smsDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
+         if (s_CONN.Dosya_kontrol_S(BAGLAN.smsDizin.sERVER,BAGLAN.smsDizin.iNSTANCE, BAGLAN.smsDizin.kULLANICI, BAGLAN.smsDizin.sIFRESI,"OK_Sms" + BAGLAN.smsDizin.kOD,BAGLAN.smsDizin.sERVER) == false)
         	 SMS_DOS_VAR = false;
          else
         	 	lOGG_AKTAR("Sms",BAGLAN.smsDizin.hAN_SQL,BAGLAN.smsDizin.lOG,BAGLAN.smsDizin.lOGLAMA_YERI);
@@ -793,8 +789,7 @@ public LOGIN() throws IOException {
 }
 	void adr_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
-	 
-	    CONNECT s_CONN = new CONNECT(oac._IConn);
+	    CONNECT s_CONN = new CONNECT(oac._IAdresCon);
 	    
 	    if (BAGLAN.adrDizin.yER.equals(""))
 	    {
@@ -804,9 +799,9 @@ public LOGIN() throws IOException {
 	    }
 	    if (BAGLAN.adrDizin.yER.equals("L"))
 	    {
-	if (s_CONN.Server_kontrol_L(BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
+	if (s_CONN.Server_kontrol_L(BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,BAGLAN.adrDizin.sERVER) == true)   
 	{
-		if (s_CONN.Dosya_kontrol_L("OK_Adr" + BAGLAN.adrDizin.kOD,BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
+		if (s_CONN.Dosya_kontrol_L("OK_Adr" + BAGLAN.adrDizin.kOD,BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,BAGLAN.adrDizin.sERVER) == false)
       {
       	ADR_DOS_VAR = false;
       	}
@@ -819,9 +814,9 @@ public LOGIN() throws IOException {
 	 else
        OBS_SIS_2025_ANA_CLASS.ADR_CONN = false;
 	    }
-	    else if (s_CONN.Server_kontrol_S(BAGLAN.adrDizin.sERVER, BAGLAN.adrDizin.iNSTANCE,BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
+	    else if (s_CONN.Server_kontrol_S(BAGLAN.adrDizin.sERVER, BAGLAN.adrDizin.iNSTANCE,BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,BAGLAN.adrDizin.sERVER) == true )
 	    {
-	    	if (s_CONN.Dosya_kontrol_S(BAGLAN.adrDizin.sERVER,BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,"OK_Adr" + BAGLAN.adrDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
+	    	if (s_CONN.Dosya_kontrol_S(BAGLAN.adrDizin.sERVER,BAGLAN.adrDizin.iNSTANCE, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI,"OK_Adr" + BAGLAN.adrDizin.kOD,BAGLAN.adrDizin.sERVER) == false)
 	    		ADR_DOS_VAR = false;
 	    	else
 	   		lOGG_AKTAR("Adres",BAGLAN.adrDizin.hAN_SQL,BAGLAN.adrDizin.lOG,BAGLAN.adrDizin.lOGLAMA_YERI);
@@ -833,7 +828,7 @@ public LOGIN() throws IOException {
 }
 	void fat_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
-	    CONNECT s_CONN = new CONNECT(oac._IConn);
+	    CONNECT s_CONN = new CONNECT(oac._IStokCon);
     
 	    if (BAGLAN.fatDizin.yER.equals(""))
 	    {
@@ -843,9 +838,9 @@ public LOGIN() throws IOException {
 	    }
 	    if (BAGLAN.fatDizin.yER.equals("L"))
 	    {
-	    	if (s_CONN.Server_kontrol_L(BAGLAN.fatDizin.iNSTANCE, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
+	    	if (s_CONN.Server_kontrol_L(BAGLAN.fatDizin.iNSTANCE, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,BAGLAN.fatDizin.sERVER) == true)   
 	    	{
-	    		if (s_CONN.Dosya_kontrol_L("OK_Fat" + BAGLAN.fatDizin.kOD,BAGLAN.fatDizin.iNSTANCE, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
+	    		if (s_CONN.Dosya_kontrol_L("OK_Fat" + BAGLAN.fatDizin.kOD,BAGLAN.fatDizin.iNSTANCE, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,BAGLAN.fatDizin.sERVER) == false)
 	    		{
 	    			FAT_DOS_VAR = false;
 	    		}
@@ -858,9 +853,9 @@ public LOGIN() throws IOException {
 	    	else
 	    		OBS_SIS_2025_ANA_CLASS.FAT_CONN = false;
 	    }
-	    else if (s_CONN.Server_kontrol_S(BAGLAN.fatDizin.sERVER, BAGLAN.fatDizin.iNSTANCE,BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
+	    else if (s_CONN.Server_kontrol_S(BAGLAN.fatDizin.sERVER, BAGLAN.fatDizin.iNSTANCE,BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,BAGLAN.fatDizin.sERVER) == true )
 	    {
-	    	if (s_CONN.Dosya_kontrol_S(BAGLAN.fatDizin.sERVER,BAGLAN.fatDizin.iNSTANCE, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,"OK_Fat" + BAGLAN.fatDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
+	    	if (s_CONN.Dosya_kontrol_S(BAGLAN.fatDizin.sERVER,BAGLAN.fatDizin.iNSTANCE, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI,"OK_Fat" + BAGLAN.fatDizin.kOD,BAGLAN.fatDizin.sERVER) == false)
 	    		FAT_DOS_VAR = false;
 	    	else
 	    		 lOGG_AKTAR("Fatura",BAGLAN.fatDizin.hAN_SQL,BAGLAN.fatDizin.lOG,BAGLAN.fatDizin.lOGLAMA_YERI);
@@ -873,7 +868,7 @@ public LOGIN() throws IOException {
 	void kam_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 {
 	
-    CONNECT s_CONN = new CONNECT(oac._IConn);
+    CONNECT s_CONN = new CONNECT(oac._IKambiyoCon);
     
     if (BAGLAN.kamDizin.yER.equals(""))
     {
@@ -883,9 +878,9 @@ public LOGIN() throws IOException {
     }
     if (BAGLAN.kamDizin.yER.equals("L"))
     {
-    	if (s_CONN.Server_kontrol_L(BAGLAN.kamDizin.iNSTANCE, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
+    	if (s_CONN.Server_kontrol_L(BAGLAN.kamDizin.iNSTANCE, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,BAGLAN.kamDizin.sERVER) == true)   
     	{
-    		if (s_CONN.Dosya_kontrol_L("OK_Kam" + BAGLAN.kamDizin.kOD,BAGLAN.kamDizin.iNSTANCE, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
+    		if (s_CONN.Dosya_kontrol_L("OK_Kam" + BAGLAN.kamDizin.kOD,BAGLAN.kamDizin.iNSTANCE, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,BAGLAN.kamDizin.sERVER) == false)
     		{
     			KAM_DOS_VAR = false;
     		}
@@ -898,9 +893,9 @@ public LOGIN() throws IOException {
     	else
     		OBS_SIS_2025_ANA_CLASS.KAM_CONN = false;
     }
-    else if (s_CONN.Server_kontrol_S(BAGLAN.kamDizin.sERVER, BAGLAN.kamDizin.iNSTANCE,BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
+    else if (s_CONN.Server_kontrol_S(BAGLAN.kamDizin.sERVER, BAGLAN.kamDizin.iNSTANCE,BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,BAGLAN.kamDizin.sERVER) == true )
     {
-    	if (s_CONN.Dosya_kontrol_S(BAGLAN.kamDizin.sERVER,BAGLAN.kamDizin.iNSTANCE, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,"OK_Kam" + BAGLAN.kamDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
+    	if (s_CONN.Dosya_kontrol_S(BAGLAN.kamDizin.sERVER,BAGLAN.kamDizin.iNSTANCE, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI,"OK_Kam" + BAGLAN.kamDizin.kOD,BAGLAN.kamDizin.sERVER) == false)
     		KAM_DOS_VAR = false;
     	else
    		 lOGG_AKTAR("Kambiyo",BAGLAN.kamDizin.hAN_SQL,BAGLAN.kamDizin.lOG,BAGLAN.kamDizin.lOGLAMA_YERI);
@@ -913,7 +908,7 @@ public LOGIN() throws IOException {
 	void gun_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
 	
-    CONNECT s_CONN = new CONNECT(oac._IConn);
+    CONNECT s_CONN = new CONNECT(oac._IGunlukCon);
     
     if (BAGLAN.gunDizin.yER.equals(""))
     {
@@ -923,9 +918,9 @@ public LOGIN() throws IOException {
     }
     if (BAGLAN.gunDizin.yER.equals("L"))
     {
-    	if (s_CONN.Server_kontrol_L(BAGLAN.gunDizin.iNSTANCE, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true)   
+    	if (s_CONN.Server_kontrol_L(BAGLAN.gunDizin.iNSTANCE, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,BAGLAN.gunDizin.sERVER) == true)   
     	{
-    		if (s_CONN.Dosya_kontrol_L("OK_Gun" + BAGLAN.gunDizin.kOD,BAGLAN.gunDizin.iNSTANCE, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == false)
+    		if (s_CONN.Dosya_kontrol_L("OK_Gun" + BAGLAN.gunDizin.kOD,BAGLAN.gunDizin.iNSTANCE, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,BAGLAN.gunDizin.sERVER) == false)
     		{
     			GUN_DOS_VAR = false;
     		}
@@ -938,9 +933,9 @@ public LOGIN() throws IOException {
     	else
     		OBS_SIS_2025_ANA_CLASS.GUN_CONN = false;
     }
-    else if (s_CONN.Server_kontrol_S(BAGLAN.gunDizin.sERVER, BAGLAN.gunDizin.iNSTANCE,BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,BAGLAN.cariDizin.sERVER) == true )
+    else if (s_CONN.Server_kontrol_S(BAGLAN.gunDizin.sERVER, BAGLAN.gunDizin.iNSTANCE,BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,BAGLAN.gunDizin.sERVER) == true )
     {
-    	if (s_CONN.Dosya_kontrol_S(BAGLAN.gunDizin.sERVER,BAGLAN.gunDizin.iNSTANCE, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,"OK_Gun" + BAGLAN.gunDizin.kOD,BAGLAN.cariDizin.sERVER) == false)
+    	if (s_CONN.Dosya_kontrol_S(BAGLAN.gunDizin.sERVER,BAGLAN.gunDizin.iNSTANCE, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI,"OK_Gun" + BAGLAN.gunDizin.kOD,BAGLAN.gunDizin.sERVER) == false)
     		GUN_DOS_VAR = false;
     	else
    		 lOGG_AKTAR("Gunluk",BAGLAN.gunDizin.hAN_SQL,BAGLAN.gunDizin.lOG,BAGLAN.gunDizin.lOGLAMA_YERI);
@@ -1058,8 +1053,7 @@ public LOGIN() throws IOException {
     				+ "<br><br> "
     				+ "Yeni Version = " + yeniver + "" ;
 		   JOptionPane.showMessageDialog(null, String.format(html, "OBS SISTEM", JOptionPane.PLAIN_MESSAGE));
-		//JOptionPane.showMessageDialog(null,"Yeni Versiyon Mevcut.......		Versiyon=" + yeniver,  "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);   
-    	}
+   	}
 	  	}
 	  	catch (Exception ex)
 	  	{

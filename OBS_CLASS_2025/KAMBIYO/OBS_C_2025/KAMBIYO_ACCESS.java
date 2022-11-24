@@ -19,9 +19,9 @@ public class KAMBIYO_ACCESS {
 	_IKambiyo.baglan();
 	}
 	public void kAM_SIFIR_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
-			String sifre, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			String sifre, String mesaj,String evrak, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException
 	{
-		_IKambiyo.kAM_SIFIR_L(kod, dizin_yeri, dizin, fir_adi, ins, kull, sifre);
+		_IKambiyo.kAM_SIFIR_L(kod, dizin_yeri, dizin, fir_adi, ins, kull, sifre,port);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}

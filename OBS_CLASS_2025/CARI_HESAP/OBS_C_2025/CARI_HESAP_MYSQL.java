@@ -24,8 +24,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public void baglan() throws SQLException, ClassNotFoundException
 	{
 		 Class.forName("com.mysql.cj.jdbc.Driver");
-
-		//String cumle = "jdbc:mysql://" + BAGLAN.cariDizin.cONN_STR + ";";
 		String cumle = "jdbc:mysql://" + BAGLAN.cariDizin.cONN_STR ;
 	    con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 			}
@@ -61,10 +59,10 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
         con = DriverManager.getConnection(cumle,kull,sifre);
         create_table(fir_adi);
         //
-        sql = "CREATE DATABASE " + VERITABANI + "_LOG" ;
+        sql = "CREATE DATABASE " + VERITABANI + "_log" ;
         stmt = con.createStatement();  
         stmt.execute(sql);
-        cumle = "jdbc:mysql://localhost/" +VERITABANI + "_LOG" ;
+        cumle = "jdbc:mysql://localhost/" +VERITABANI + "_log" ;
         con = DriverManager.getConnection(cumle,kull,sifre);
         create_table_log();
       //
@@ -89,10 +87,10 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
             con = DriverManager.getConnection(cumle,kull,sifre);
             create_table(fir_adi);
             //
-            sql = "CREATE DATABASE " + VERITABANI + "_LOG" ;
+            sql = "CREATE DATABASE " + VERITABANI + "_log" ;
             stmt = con.createStatement();  
             stmt.executeUpdate(sql);
-            cumle = "jdbc:mysql://" + server + "/" + VERITABANI + "_LOG" ;
+            cumle = "jdbc:mysql://" + server + "/" + VERITABANI + "_log" ;
             con = DriverManager.getConnection(cumle,kull,sifre);
             create_table_log();
           
@@ -169,7 +167,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
         		+ "  INDEX `IX_IZAHAT` ( `EVRAK` ASC) VISIBLE);";
           stmt = con.createStatement();  
         stmt.executeUpdate(sql);
-        sql = "CREATE TABLE `EVRAK_NO` (EID INTEGER AUTO_INCREMENT PRIMARY KEY ,`EVRAK` integer )";
+        sql = "CREATE TABLE `EVRAK_NO` (EID INTEGER AUTO_INCREMENT PRIMARY KEY ,`EVRAK` integer ) ;";
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
         sql = "CREATE TABLE `OZEL` ("
@@ -633,7 +631,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	          }
 	          Class.forName("com.mysql.cj.jdbc.Driver");
 	  		ResultSet	rss = null;
-	          String sql = str2 + "SELECT s.TARIH, s.EVRAK ,I.IZAHAT , " +
+	          String sql = "SELECT s.TARIH, s.EVRAK ,I.IZAHAT , " +
                       " ISNULL(IIF(k." + kcins + " = 0,1,k." + kcins + " ), 1) as CEV_KUR , " +
                       " ((s.ALACAK - s.BORC ) " + islem + " ISNULL(NULLIF(k." + kcins + ",0), 1)) as DOVIZ_TUTAR , " +
                       " SUM(((s.ALACAK - s.BORC ) * s.KUR) " + islem + " ISNULL(NULLIF(k." + kcins + ",0), 1)) OVER(ORDER BY s.TARIH " + 
@@ -644,6 +642,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
                       " LEFT OUTER JOIN " + str1 + " as k USE INDEX (IX_KUR) ON Convert(VARCHAR(25), s.TARIH, 121) = k.Tarih  " +
                       " WHERE HESAP  = N'" + hesap + "' AND s.TARIH  BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998' AND (k.kur IS NULL OR k.KUR ='" + kur + "') " +
                       " ORDER BY TARIH ";
+	          System.out.println(sql);
 	      	PreparedStatement stmt = con.prepareStatement(sql);
 	  		rss = stmt.executeQuery();
 	  		return rss;	
@@ -1148,14 +1147,13 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	}
 	@Override
 	public void create_table_log() throws SQLException {
-		// TODO Auto-generated method stub
 		String sql = "" ;
 	    sql = "CREATE TABLE  `loglama` ("
 	    		+ "  `TARIH` DATETIME NOT NULL,"
 	    		+ "  `MESAJ` VARCHAR(100) NULL,"
 	    		+ "  `EVRAK` VARCHAR(15) NULL,"
 	    		+ "  `USER_NAME` VARCHAR(15) NULL,"
-	    		+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) INVISIBLE);";
+	    		+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) VISIBLE);";
 	    	stmt = con.createStatement();  
 	    	stmt.executeUpdate(sql);
 		

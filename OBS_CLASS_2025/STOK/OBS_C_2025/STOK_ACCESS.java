@@ -16,7 +16,7 @@ public class STOK_ACCESS {
 		this._Logger = _Logger;;
 	}
 	
-	public static void baglan() throws SQLException
+	public static void baglan() throws SQLException, ClassNotFoundException
 	{
 	
 		_IStok.baglan();

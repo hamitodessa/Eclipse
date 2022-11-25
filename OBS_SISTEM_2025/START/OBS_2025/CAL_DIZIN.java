@@ -978,8 +978,7 @@ public class CAL_DIZIN extends JFrame {
 					comboBox.addItem("");
 					comboBox.setEnabled(false);
 				}
-				
-			}
+				}
 		});
 		cmbhangisql.setModel(new DefaultComboBoxModel<String>(new String[] {"MS SQL", "MY SQL"}));
 		cmbhangisql.setBounds(102, 43, 157, 22);

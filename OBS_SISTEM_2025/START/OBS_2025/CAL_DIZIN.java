@@ -1472,7 +1472,7 @@ public class CAL_DIZIN extends JFrame {
 	private void mdb_yaz_2(String modul) throws ClassNotFoundException, SQLException
 	{
 		 oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, modul,chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
-	     oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), comboBox.getItemAt( comboBox.getSelectedIndex()) , txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, cmblog.getItemAt(cmblog.getSelectedIndex()));
+	     oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), comboBox.getSelectedItem().toString() , txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, cmblog.getItemAt(cmblog.getSelectedIndex()));
 	}
 	private  void dosya_olustur_L() throws IOException, ClassNotFoundException, SQLException
 {
@@ -1525,11 +1525,11 @@ public class CAL_DIZIN extends JFrame {
         bLog.cONNECT();
            if (chckbxD.isSelected())
          	{
-        	 	c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getItemAt( comboBox.getSelectedIndex()) ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
+        	 	c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString() ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
          	}
         	 else
         	 {
-        		c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getItemAt( comboBox.getSelectedIndex()),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
+        		c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
         	 }
 	}
 	void stok_olustur() throws ClassNotFoundException, SQLException

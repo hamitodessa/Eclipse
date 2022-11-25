@@ -213,7 +213,7 @@ public class CAL_DIZIN extends JFrame {
 		            
 		            if (cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).toString().equals("MS SQL"))
 		            {
-		            if (comboBox.getItemAt( comboBox.getSelectedIndex()) == null)
+		            if (comboBox.getSelectedItem().toString() == null)
 		               return;
 		            }
 						try {
@@ -969,6 +969,7 @@ public class CAL_DIZIN extends JFrame {
 				if (hangi == "MS SQL")
 						{
 					comboBox.removeAllItems();
+					comboBox.addItem("");
 					comboBox.setEnabled(true);
 						}
 				else
@@ -1229,7 +1230,7 @@ public class CAL_DIZIN extends JFrame {
              if (chckbxL.isSelected() )
                 {
                 	contentPane.setCursor(WAIT_CURSOR);
-                     if ( s_CONN.Server_kontrol_L(comboBox.getItemAt( comboBox.getSelectedIndex()),txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr) ,txtIp.getText()) == true  )
+                     if ( s_CONN.Server_kontrol_L(comboBox.getSelectedItem().toString(),txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr) ,txtIp.getText()) == true  )
                     {
                   	 contentPane.setCursor(DEFAULT_CURSOR);
                       btnNewButton_1.setEnabled(true);
@@ -1244,7 +1245,7 @@ public class CAL_DIZIN extends JFrame {
 	           else
 	             {
 	                contentPane.setCursor(WAIT_CURSOR);
-	              if (s_CONN.Server_kontrol_S(txtIp.getText(),comboBox.getItemAt( comboBox.getSelectedIndex()),txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr),txtIp.getText() ) == true)
+	              if (s_CONN.Server_kontrol_S(txtIp.getText(),comboBox.getSelectedItem().toString(),txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr),txtIp.getText() ) == true)
                     {
                     	contentPane.setCursor(DEFAULT_CURSOR);
                     	btnNewButton_1.setEnabled(true);
@@ -1297,7 +1298,7 @@ public class CAL_DIZIN extends JFrame {
          if (chckbxL.isSelected())
          {
         	 /////////////////////LOCAL DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-            if ( s_CONN.Dosya_kontrol_L(program,comboBox.getItemAt( comboBox.getSelectedIndex()) ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),txtIp.getText()) == true)
+            if ( s_CONN.Dosya_kontrol_L(program,comboBox.getSelectedItem().toString() ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),txtIp.getText()) == true)
              {
                 
                  boolean izinli = true;
@@ -1369,7 +1370,7 @@ public class CAL_DIZIN extends JFrame {
 ////////////////////SERVER DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
          else  // Server
          {
-               if (	 s_CONN.Dosya_kontrol_S(txtIp.getText(),comboBox.getItemAt( comboBox.getSelectedIndex()), txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr), program,txtIp.getText()) ==true)
+               if (	 s_CONN.Dosya_kontrol_S(txtIp.getText(),comboBox.getSelectedItem().toString(), txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr), program,txtIp.getText()) ==true)
              {
   
                  boolean izinli = true;

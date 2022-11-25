@@ -269,13 +269,14 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-        PreparedStatement stmt = con.prepareStatement(" SELECT TARIH,SATIRLAR.EVRAK ,IZAHAT,KOD,KUR,BORC,ALACAK, "  + 
+		String sql = " SELECT TARIH,SATIRLAR.EVRAK ,IZAHAT,KOD,KUR,BORC,ALACAK, "  + 
         		"  CAST(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS DECIMAL(30,2))  AS BAKIYE ,[USER] "  + 
     			"  FROM SATIRLAR WITH (INDEX (IX_SATIRLAR)) INNER JOIN IZAHAT WITH (INDEX (IX_EVRAK)) " + 
     			"  ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + hesap + "'" + 
     			"  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" + 
-    			"  ORDER BY TARIH   ");
-		rss = stmt.executeQuery();
+    			"  ORDER BY TARIH   ";
+        PreparedStatement stmt = con.prepareStatement(sql);
+   	rss = stmt.executeQuery();
 		return rss;	 
 	}
 	public ResultSet hesap_adi_oku(String hesap) throws ClassNotFoundException, SQLException {
@@ -633,10 +634,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	               }
 	                else
 	                {
-	                    str2 = "EXEC sp_configure 'show advanced options', 1 " +
-	                        " RECONFIGURE GO " +
-	                        " EXEC sp_configure 'ad hoc distributed queries', 1 " +
-	                        " RECONFIGURE GO ";
 	                    str1 = "OPENROWSET('SQLOLEDB','" + BAGLAN.kurDizin.sERVER + "\\" + BAGLAN.kurDizin.iNSTANCE + "';'" + BAGLAN.kurDizin.kULLANICI +  "';'" + BAGLAN.kurDizin.sIFRESI + 
 	                    				  "','SELECT * FROM [OK_Kur" + BAGLAN.kurDizin.kOD + "].[dbo].[kurlar]  ') ";
 	                }
@@ -654,6 +651,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
                       " LEFT OUTER JOIN " + str1 + " as k WITH (INDEX (IX_KUR)) ON Convert(VARCHAR(25), s.TARIH, 121) = k.Tarih  " +
                       " WHERE HESAP  = N'" + hesap + "' AND s.TARIH  BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998' AND (k.kur IS NULL OR k.KUR ='" + kur + "') " +
                       " ORDER BY TARIH ";
+	          System.out.println(sql);
 	      	PreparedStatement stmt = con.prepareStatement(sql);
 	  		rss = stmt.executeQuery();
 	  		return rss;	

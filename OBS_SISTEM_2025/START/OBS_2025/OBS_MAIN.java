@@ -2378,8 +2378,25 @@ public class OBS_MAIN extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			        try {
 			        	GuiUtil.setWaitCursor(toolBar,true);
-					//	Runtime.getRuntime().exec("calc");
-			        	JInternalFrame internalFrame;
+						Runtime.getRuntime().exec("calc");
+						GuiUtil.setWaitCursor(toolBar,false);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+			}
+		});
+		btnNewButton_30.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-calculator-16.png")));
+		toolBar.add(btnNewButton_30);
+		
+		JButton btnaktarma = new JButton("...");
+		btnaktarma.setToolTipText("Aktarma");
+		btnaktarma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			        try {
+			        	GuiUtil.setWaitCursor(toolBar,true);
+			       //
+			        	
+			         	JInternalFrame internalFrame;
 						internalFrame = new MSSQL_TO_MYSQL();
 						desktopPane.add(internalFrame);
 						 internalFrame.setVisible(true);
@@ -2392,8 +2409,9 @@ public class OBS_MAIN extends JFrame {
 					}
 			}
 		});
-		btnNewButton_30.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-calculator-16.png")));
-		toolBar.add(btnNewButton_30);
+		toolBar.add(btnaktarma);
+		
+		
 		
 		final Dimension size = label.getPreferredSize();
 		

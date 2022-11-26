@@ -1032,32 +1032,32 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	          str2 = "" ;
 	          if (BAGLAN.kurDizin.dIZIN_CINS.equals("L"))
 	        		  {
-	                str1 = "OK_Kur" + BAGLAN.kurDizin.kOD + ".dbo.kurlar  " ;
+	                str1 = "ok_kur" + BAGLAN.kurDizin.kOD   ;
 	        		  }
 	          else
 	          {
 	               if ( BAGLAN.cariDizin.sERVER.equals(BAGLAN.kurDizin.sERVER))
 	               {
-	                   str1 = "OK_Kur" + BAGLAN.kurDizin.kOD + ".dbo.kurlar  " ;
+	                   str1 = "ok_kur" + BAGLAN.kurDizin.kOD  ;
 	                   str2 = "";
 	               }
 	                else
 	                {
-	                    str2 = "EXEC sp_configure 'show advanced options', 1 " +
-	                        " RECONFIGURE GO " +
-	                        " EXEC sp_configure 'ad hoc distributed queries', 1 " +
-	                        " RECONFIGURE GO ";
-	                    str1 = "OPENROWSET('SQLOLEDB','" + BAGLAN.kurDizin.sERVER + "\\" + BAGLAN.kurDizin.iNSTANCE + "';'" + BAGLAN.kurDizin.kULLANICI +  "';'" + BAGLAN.kurDizin.sIFRESI +  "','SELECT * FROM [OK_Kur" + BAGLAN.kurDizin.kOD + "].[dbo].[kurlar]  ') ";
+//	                    str2 = "EXEC sp_configure 'show advanced options', 1 " +
+//	                        " RECONFIGURE GO " +
+//	                        " EXEC sp_configure 'ad hoc distributed queries', 1 " +
+//	                        " RECONFIGURE GO ";
+//	                    str1 = "OPENROWSET('SQLOLEDB','" + BAGLAN.kurDizin.sERVER + "\\" + BAGLAN.kurDizin.iNSTANCE + "';'" + BAGLAN.kurDizin.kULLANICI +  "';'" + BAGLAN.kurDizin.sIFRESI +  "','SELECT * FROM [OK_Kur" + BAGLAN.kurDizin.kOD + "].[dbo].[kurlar]  ') ";
 	                }
 	          }
 	          Class.forName("com.mysql.cj.jdbc.Driver");
 	  		ResultSet	rss = null;
-	          String sql = str2 +  " SELECT DISTINCT  CONVERT(char(10), SATIRLAR.TARIH,104) AS TARIH" +
-                      " FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  LEFT OUTER JOIN " + str1 + " AS k  USE INDEX (IX_KUR)   " +
-                      " ON k.Tarih = CONVERT(VARCHAR(25), SATIRLAR.TARIH, 121) AND k.Kur = '" + kur + "' " +
+	          String sql =  " SELECT DISTINCT DATE( SATIRLAR.TARIH) AS TARIH" +
+                      " FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  LEFT OUTER JOIN " + str1 + ".Kurlar  AS k  USE INDEX (IX_KUR)   " +
+                      " ON k.Tarih = DATE( SATIRLAR.TARIH) AND k.Kur = '" + kur + "' " +
                       " WHERE HESAP ='" + hesap + "' AND  k.kur IS NULL " +
                       " AND SATIRLAR.TARIH BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998'" +
-                      " ORDER BY CONVERT(char(10), SATIRLAR.TARIH,104) ";
+                      " ORDER BY DATE( SATIRLAR.TARIH) ";
 	      	PreparedStatement stmt = con.prepareStatement(sql);
 	  		rss = stmt.executeQuery();
 	  		return rss;	

@@ -32,6 +32,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 
 	Connection MS_conn = null;  
 	Connection MY_conn = null;  
+	
 	/**
 	 * Launch the application.
 	 */
@@ -165,22 +166,57 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		});
 		btnOzel.setBounds(75, 200, 202, 23);
 		panel.add(btnOzel);
+		
+		JButton btnNewButton_2 = new JButton("Kur");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					kur();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_2.setBounds(75, 294, 123, 23);
+		panel.add(btnNewButton_2);
+		
+		JButton btnNewButton_1_1 = new JButton("BAGLAN");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					kur_baglan();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_1_1.setBounds(75, 271, 123, 23);
+		panel.add(btnNewButton_1_1);
 	}
 	public void baglan() throws ClassNotFoundException
 	{
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		 mssql_baglan();
-		 mysql_baglan();
+		 mssql_baglan("Car");
+		 mysql_baglan("Car");
 		 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
-	void mssql_baglan() throws ClassNotFoundException
+	public void kur_baglan() throws ClassNotFoundException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		 mssql_baglan("Kur");
+		 mysql_baglan("Kur");
+		 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	void mssql_baglan(String modul) throws ClassNotFoundException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		
         try
         {
             String cumle = "";
-            cumle = "jdbc:sqlserver://localhost;instanceName=SQLEXPRESS;database=OK_Car" + textField.getText() ;
+            cumle = "jdbc:sqlserver://localhost;instanceName=SQLEXPRESS;database=OK_" + modul + textField.getText() ;
             MS_conn = DriverManager.getConnection(cumle,"sa","197227oOk");
         } 
         catch (Exception e)
@@ -188,11 +224,11 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
     		JOptionPane.showMessageDialog(null,e.getMessage(), "MS SQL baglan", JOptionPane.ERROR_MESSAGE);
         }  
 	}
-	void mysql_baglan() throws ClassNotFoundException
+	void mysql_baglan(String modul) throws ClassNotFoundException
 	{
 		 Class.forName("com.mysql.cj.jdbc.Driver");
 	
-		  String url = "jdbc:mysql://localhost:3306/ok_car" + textField_1.getText()  ; //pointing to no database.
+		  String url = "jdbc:mysql://localhost:3306/ok_" + modul + textField_1.getText()  ; //pointing to no database.
 		    try 
 		    {
 		    		MY_conn = DriverManager.getConnection(url, "root","197227oOk");
@@ -412,6 +448,33 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 						  stmt2 =MY_conn.prepareStatement(sql);
 				    		stmt2.executeUpdate();
 						 }
+		 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	void kur () throws ClassNotFoundException, SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+	
+		ResultSet	rs = null;
+		ResultSet	rss = null;
+    	PreparedStatement stmt2; 
+  		String sql = "SELECT * FROM Kurlar    ORDER BY  Tarih ";
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		 while(rss.next()){
+		 sql  ="INSERT INTO KURLAR (Tarih,Kur,MA,MS,SA,SS,BA,BS) " +
+			   		  " VALUES (?,?,?,?,?,?,?,?)" ;
+		 stmt2= null;
+		 stmt2 = MY_conn.prepareStatement(sql);
+		 stmt2.setDate(1,  rss.getDate("Tarih"));
+		 stmt2.setString(2,  rss.getString("Kur"));
+		 stmt2.setDouble(3, rss.getDouble("MA"));
+		 stmt2.setDouble(4, rss.getDouble("MS"));
+		 stmt2.setDouble(5, rss.getDouble("SA"));
+		 stmt2.setDouble(6, rss.getDouble("SS"));
+		 stmt2.setDouble(7,rss.getDouble("BA"));
+		 stmt2.setDouble(8, rss.getDouble("BS"));
+		stmt2.executeUpdate();
+        }
 		 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 }

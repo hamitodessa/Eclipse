@@ -624,7 +624,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	          }
 	          Class.forName("com.mysql.cj.jdbc.Driver");
 	  
-	          String sql = "SELECT s.TARIH, s.EVRAK ,I.IZAHAT , " +
+	          String sql = "SELECT DATE(s.TARIH) as TARIH, s.EVRAK ,I.IZAHAT , " +
                       " IFNULL(IF(k." + kcins + " = 0,1,k." + kcins + " ), 1) as CEV_KUR , " +
                       " ((s.ALACAK - s.BORC ) " + islem + " IFNULL(NULLIF(k." + kcins + ",0), 1)) as DOVIZ_TUTAR , " +
                       " SUM(((s.ALACAK - s.BORC ) * s.KUR) " + islem + " IFNULL(NULLIF(k." + kcins + ",0), 1)) OVER(ORDER BY s.TARIH " + 
@@ -632,7 +632,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
                       " CAST(SUM(s.ALACAK-s.BORC) OVER(ORDER BY s.TARIH  ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS DECIMAL (30,2)) as BAKIYE ,  " +
                       " s.KUR, BORC, ALACAK ,s.USER " +
                       " FROM (SATIRLAR as s USE INDEX (IX_SATIRLAR)  LEFT OUTER JOIN IZAHAT as I USE INDEX (IX_IZAHAT) on s.EVRAK = I.EVRAK) " +
-                      " LEFT OUTER JOIN " + str1 + " as k USE INDEX (IX_KUR) ON STR_TO_DATE(s.TARIH, '%Y-%m-%d %T.%f') = k.Tarih  " +
+                      " LEFT OUTER JOIN " + str1 + " as k USE INDEX (IX_KUR) ON DATE(s.TARIH) = k.Tarih  " +
                       " WHERE HESAP  = N'" + hesap + "' AND s.TARIH  BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998' AND (k.kur IS NULL OR k.KUR ='" + kur + "') " +
                       " ORDER BY TARIH ";
 	      	PreparedStatement stmt = con.prepareStatement(sql);

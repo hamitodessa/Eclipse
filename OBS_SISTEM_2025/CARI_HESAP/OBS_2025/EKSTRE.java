@@ -17,6 +17,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
@@ -392,17 +393,28 @@ public class EKSTRE extends JInternalFrame {
 					data.add(double_2 - double_1);
 					data.add("Admin");
   				    model.insertRow(0,data);
-  				    ///*************************************************************************
+  	 				    ///*************************************************************************
   				 double tutar = 0 ;
   				 double borc = 0 ;
   				 double alacak =0 ;
   				 for (int i = 1; i < table.getRowCount()  ; i ++)
   				 {
-  					borc = (double) model.getValueAt(i , 5) ;
-  					alacak = (double) model.getValueAt(i , 6);
-  					tutar = (double) model.getValueAt(i - 1 , 7) + (  alacak - borc ); 
-  					//Math.round(top2 * 100.0) / 100.0
-  					table.setValueAt((double) Math.round(tutar * 100.0) / 100.0, i, 7);
+  					 if(BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
+  					 {
+  				borc =  (double) model.getValueAt(i , 5) ;
+   				alacak = (double) model.getValueAt(i , 6);
+  				tutar = (double) model.getValueAt(i - 1 , 7) + (  alacak - borc ); 
+  					 }
+  					 else if (BAGLAN.cariDizin.hAN_SQL.equals("MY SQL")) 
+  					 {
+  		 					borc = Double.parseDouble(Float.toString((float) model.getValueAt(i , 5)));
+  		  				    alacak = Double.parseDouble(Float.toString((float) model.getValueAt(i , 6)));
+  		  				    double d =  (double) model.getValueAt(i - 1 , 7) ;
+  		  				    float f = (float)d;
+  		  				    tutar = f +  (  alacak - borc ) ;
+  					 }
+ 					
+  				table.setValueAt((double) Math.round(tutar * 100.0) / 100.0, i, 7);
   					borc = 0;
   					alacak=0; 
   				 }
@@ -535,5 +547,4 @@ public class EKSTRE extends JInternalFrame {
     	OBS_MAIN.progressBar.setStringPainted(false);
     }
 }
-
 

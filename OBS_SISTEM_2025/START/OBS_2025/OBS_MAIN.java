@@ -2378,9 +2378,16 @@ public class OBS_MAIN extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			        try {
 			        	GuiUtil.setWaitCursor(toolBar,true);
-						Runtime.getRuntime().exec("calc");
+					//	Runtime.getRuntime().exec("calc");
+			        	JInternalFrame internalFrame;
+						internalFrame = new MSSQL_TO_MYSQL();
+						desktopPane.add(internalFrame);
+						 internalFrame.setVisible(true);
+						 GuiUtil.setWaitCursor(toolBar,false);
+
+			        	//
 						GuiUtil.setWaitCursor(toolBar,false);
-					} catch (IOException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 			}

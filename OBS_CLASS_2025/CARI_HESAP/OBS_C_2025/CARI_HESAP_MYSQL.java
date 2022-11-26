@@ -1010,6 +1010,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
         		"        		AND h.HESAP_CINSI BETWEEN N'"+ c1 + "' AND '"+ c2 +"'" + 
         		"              AND h.KARTON BETWEEN N'"+ k1 + "' AND N'" + k2 + "'" + 
         		"              GROUP BY h.HESAP, h.UNVAN, h.HESAP_CINSI" + o1 + " " + o2 + "" ;
+        
+ 
       	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

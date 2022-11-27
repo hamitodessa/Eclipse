@@ -399,20 +399,23 @@ public class EKSTRE extends JInternalFrame {
   				 double alacak =0 ;
   				 for (int i = 1; i < table.getRowCount()  ; i ++)
   				 {
-  					 if(BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
-  					 {
+  					// if(BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
+  					// {
   				borc =  (double) model.getValueAt(i , 5) ;
    				alacak = (double) model.getValueAt(i , 6);
   				tutar = (double) model.getValueAt(i - 1 , 7) + (  alacak - borc ); 
-  					 }
-  					 else if (BAGLAN.cariDizin.hAN_SQL.equals("MY SQL")) 
-  					 {
-  		 					borc = Double.parseDouble(Float.toString((float) model.getValueAt(i , 5)));
-  		  				    alacak = Double.parseDouble(Float.toString((float) model.getValueAt(i , 6)));
-  		  				    double d =  (double) model.getValueAt(i - 1 , 7) ;
-  		  				    float f = (float)d;
-  		  				    tutar = f +  (  alacak - borc ) ;
-  					 }
+  					// }
+  					// else if (BAGLAN.cariDizin.hAN_SQL.equals("MY SQL")) 
+  					// {
+//  		 					borc = Double.parseDouble(Float.toString((float) model.getValueAt(i , 5)));
+//  		  				    alacak = Double.parseDouble(Float.toString((float) model.getValueAt(i , 6)));
+//  		  				    double d =  (double) model.getValueAt(i - 1 , 7) ;
+//  		  				    float f = (float)d;
+//  		  				    tutar = f +  (  alacak - borc ) ;
+  					//	borc =  (double) model.getValueAt(i , 5) ;
+  		   			//	alacak = (double) model.getValueAt(i , 6);
+  		  			//	tutar = (double) model.getValueAt(i - 1 , 7) + (  alacak - borc ); 
+  					// }
  					
   				table.setValueAt((double) Math.round(tutar * 100.0) / 100.0, i, 7);
   					borc = 0;

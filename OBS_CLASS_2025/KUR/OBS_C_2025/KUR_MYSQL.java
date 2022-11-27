@@ -165,7 +165,7 @@ public class KUR_MYSQL implements IKUR {
 	public ResultSet kur_yil_graf_rapor(String c1, String t1, String t2) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet rss = null;
-        String sql = "SELECT DISTINCT DATEPART(YEAR,Tarih) as TARIH "  + 
+        String sql = "SELECT DISTINCT YEAR(Tarih) as TARIH "  + 
 				" FROM KURLAR USE INDEX (IX_KUR)  " + 
 				" WHERE Tarih >= '" + t1 + "' AND  Tarih <= '" + t2 + "'" + 
 				" AND Kur = '" + c1 +"'    ORDER BY Tarih  ";
@@ -178,7 +178,7 @@ public class KUR_MYSQL implements IKUR {
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet rss = null;
-        String sql ="SELECT DATEPART(" + siralama + ",Tarih) as Tarih,Kur, " +  cins + " " + 
+        String sql ="SELECT " + siralama + "(Tarih) as Tarih,Kur, " +  cins + " " + 
         		" FROM KURLAR USE INDEX (IX_KUR)  "  + 
         		" WHERE Tarih >= '" + t1 +"' AND  Tarih <= '" + t2 + "'" + 
         		" AND Kur = '" + c1 + "'  ORDER BY Tarih  ";
@@ -202,7 +202,7 @@ public class KUR_MYSQL implements IKUR {
 	public ResultSet kur_ay_graf_rapor(String c1, String t1, String t2) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet rss = null;
-        String sql = "SELECT DISTINCT DATEPART(MONTH,Tarih) as TARIH "  + 
+        String sql = "SELECT DISTINCT MONTH(Tarih) as TARIH "  + 
 				" FROM kurlar USE INDEX (IX_KUR)   " + 
 				" WHERE Tarih >= '" + t1 + "' AND  Tarih <= '" + t2 + "'" + 
 				" AND Kur = '" + c1 +"'    ORDER BY Tarih  ";

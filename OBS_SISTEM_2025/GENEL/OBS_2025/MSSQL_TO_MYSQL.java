@@ -60,41 +60,27 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		panel.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(75, 22, 96, 20);
+		textField.setBounds(207, 33, 96, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Dosya");
-		lblNewLabel.setBounds(10, 25, 48, 14);
+		lblNewLabel.setBounds(142, 36, 48, 14);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("MSSQL");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(10, 0, 161, 14);
+		lblNewLabel_1.setBounds(207, 11, 96, 14);
 		panel.add(lblNewLabel_1);
-		
-		JButton btnNewButton = new JButton("Hesap Plani");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					hsp_pln();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton.setBounds(75, 80, 202, 23);
-		panel.add(btnNewButton);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("MYSQL");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setBounds(181, 0, 96, 14);
+		lblNewLabel_1_1.setBounds(313, 11, 96, 14);
 		panel.add(lblNewLabel_1_1);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(181, 22, 96, 20);
+		textField_1.setBounds(313, 33, 96, 20);
 		panel.add(textField_1);
 		
 		JButton btnNewButton_1 = new JButton("BAGLAN");
@@ -108,78 +94,8 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_1.setBounds(75, 50, 202, 23);
+		btnNewButton_1.setBounds(75, 79, 222, 23);
 		panel.add(btnNewButton_1);
-		
-		JButton btnHesapDetay = new JButton("Hesap Detay");
-		btnHesapDetay.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					hsp_detay();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnHesapDetay.setBounds(75, 110, 202, 23);
-		panel.add(btnHesapDetay);
-		
-		JButton btnSatirlar = new JButton("Satirlar");
-		btnSatirlar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					satirlar();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnSatirlar.setBounds(75, 140, 202, 23);
-		panel.add(btnSatirlar);
-		
-		JButton btnIzahat = new JButton("Izahat");
-		btnIzahat.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					izahat();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnIzahat.setBounds(75, 170, 202, 23);
-		panel.add(btnIzahat);
-		
-		JButton btnOzel = new JButton("Ozel");
-		btnOzel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					ozel();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnOzel.setBounds(75, 200, 202, 23);
-		panel.add(btnOzel);
-		
-		JButton btnNewButton_2 = new JButton("Kur");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					kur();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton_2.setBounds(75, 294, 123, 23);
-		panel.add(btnNewButton_2);
 		
 		JButton btnNewButton_1_1 = new JButton("BAGLAN");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
@@ -192,8 +108,102 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_1_1.setBounds(75, 271, 123, 23);
+		btnNewButton_1_1.setBounds(307, 79, 143, 23);
 		panel.add(btnNewButton_1_1);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(75, 113, 222, 167);
+		panel_1.setLayout(null);
+		panel.add(panel_1);
+		
+		JButton btnNewButton = new JButton("Hesap Plani");
+		btnNewButton.setBounds(10, 11, 202, 23);
+		panel_1.add(btnNewButton);
+		
+		JButton btnHesapDetay = new JButton("Hesap Detay");
+		btnHesapDetay.setBounds(10, 41, 202, 23);
+		panel_1.add(btnHesapDetay);
+		
+		JButton btnSatirlar = new JButton("Satirlar");
+		btnSatirlar.setBounds(10, 71, 202, 23);
+		panel_1.add(btnSatirlar);
+		
+		JButton btnIzahat = new JButton("Izahat");
+		btnIzahat.setBounds(10, 101, 202, 23);
+		panel_1.add(btnIzahat);
+		
+		JButton btnOzel = new JButton("Ozel");
+		btnOzel.setBounds(10, 131, 202, 23);
+		panel_1.add(btnOzel);
+		
+		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setLayout(null);
+		panel_1_1.setBounds(307, 113, 143, 167);
+		panel.add(panel_1_1);
+		
+		JButton btnNewButton_2 = new JButton("Kur");
+		btnNewButton_2.setBounds(10, 11, 123, 23);
+		panel_1_1.add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					kur();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnOzel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ozel();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnIzahat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					izahat();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnSatirlar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					satirlar();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnHesapDetay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					hsp_detay();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					hsp_pln();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 	}
 	public void baglan() throws ClassNotFoundException
 	{

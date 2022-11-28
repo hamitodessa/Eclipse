@@ -94,7 +94,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_1.setBounds(75, 79, 222, 23);
+		btnNewButton_1.setBounds(35, 79, 159, 23);
 		panel.add(btnNewButton_1);
 		
 		JButton btnNewButton_1_1 = new JButton("BAGLAN");
@@ -108,42 +108,149 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_1_1.setBounds(307, 79, 143, 23);
+		btnNewButton_1_1.setBounds(229, 79, 123, 23);
 		panel.add(btnNewButton_1_1);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(75, 113, 222, 167);
+		panel_1.setBounds(28, 113, 182, 167);
 		panel_1.setLayout(null);
 		panel.add(panel_1);
 		
 		JButton btnNewButton = new JButton("Hesap Plani");
-		btnNewButton.setBounds(10, 11, 202, 23);
+		btnNewButton.setBounds(10, 11, 159, 23);
 		panel_1.add(btnNewButton);
 		
 		JButton btnHesapDetay = new JButton("Hesap Detay");
-		btnHesapDetay.setBounds(10, 41, 202, 23);
+		btnHesapDetay.setBounds(10, 41, 159, 23);
 		panel_1.add(btnHesapDetay);
 		
 		JButton btnSatirlar = new JButton("Satirlar");
-		btnSatirlar.setBounds(10, 71, 202, 23);
+		btnSatirlar.setBounds(10, 71, 159, 23);
 		panel_1.add(btnSatirlar);
 		
 		JButton btnIzahat = new JButton("Izahat");
-		btnIzahat.setBounds(10, 101, 202, 23);
+		btnIzahat.setBounds(10, 101, 159, 23);
 		panel_1.add(btnIzahat);
 		
 		JButton btnOzel = new JButton("Ozel");
-		btnOzel.setBounds(10, 131, 202, 23);
+		btnOzel.setBounds(10, 131, 159, 23);
 		panel_1.add(btnOzel);
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBounds(307, 113, 143, 167);
+		panel_1_1.setBounds(222, 113, 143, 167);
 		panel.add(panel_1_1);
 		
 		JButton btnNewButton_2 = new JButton("Kur");
 		btnNewButton_2.setBounds(10, 11, 123, 23);
 		panel_1_1.add(btnNewButton_2);
+		
+		JPanel panel_1_1_1 = new JPanel();
+		panel_1_1_1.setLayout(null);
+		panel_1_1_1.setBounds(375, 113, 143, 199);
+		panel.add(panel_1_1_1);
+		
+		JButton btnNewButton_2_1 = new JButton("Mal");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					mal();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_2_1.setBounds(10, 11, 123, 23);
+		panel_1_1_1.add(btnNewButton_2_1);
+		
+		JButton btnNewButton_2_1_1 = new JButton("Diger");
+		btnNewButton_2_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					diger();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_2_1_1.setBounds(10, 33, 123, 23);
+		panel_1_1_1.add(btnNewButton_2_1_1);
+		
+		JButton btnNewButton_2_1_1_1 = new JButton("Bozuk Mal");
+		btnNewButton_2_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					bozukmal();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_2_1_1_1.setBounds(10, 59, 123, 23);
+		panel_1_1_1.add(btnNewButton_2_1_1_1);
+		
+		JButton btnNewButton_2_1_1_1_1 = new JButton("Fatura");
+		btnNewButton_2_1_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					fatura();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_2_1_1_1_1.setBounds(10, 81, 123, 23);
+		panel_1_1_1.add(btnNewButton_2_1_1_1_1);
+		
+		JButton btnNewButton_2_1_1_1_1_1 = new JButton("Irsaliye");
+		btnNewButton_2_1_1_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					irsaliye();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_2_1_1_1_1_1.setBounds(10, 106, 123, 23);
+		panel_1_1_1.add(btnNewButton_2_1_1_1_1_1);
+		
+		JButton btnNewButton_2_1_1_1_1_1_1 = new JButton("Recete");
+		btnNewButton_2_1_1_1_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					recete();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_2_1_1_1_1_1_1.setBounds(10, 133, 123, 23);
+		panel_1_1_1.add(btnNewButton_2_1_1_1_1_1_1);
+		
+		JButton btnNewButton_2_1_1_1_1_1_1_1 = new JButton("Stok");
+		btnNewButton_2_1_1_1_1_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					stok();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_2_1_1_1_1_1_1_1.setBounds(10, 165, 123, 23);
+		panel_1_1_1.add(btnNewButton_2_1_1_1_1_1_1_1);
+		
+		JButton btnNewButton_1_1_1 = new JButton("BAGLAN");
+		btnNewButton_1_1_1.setBounds(382, 79, 123, 23);
+		panel.add(btnNewButton_1_1_1);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -217,6 +324,13 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		 mssql_baglan("Kur");
 		 mysql_baglan("Kur");
+		 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	public void stk_baglan() throws ClassNotFoundException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		 mssql_baglan("Fat");
+		 mysql_baglan("Fat");
 		 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void mssql_baglan(String modul) throws ClassNotFoundException
@@ -454,7 +568,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 					    stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 						rss = stmt.executeQuery(sql);
 						 while(rss.next()){
-						sql  = "UPDATE EVRAK_NO SET EVRAK =" +  rss.getInt("EVRAK") + "  WHERE EID = 1"; ;
+						sql  = "UPDATE EVRAK_NO SET EVRAK =" +  rss.getInt("EVRAK") + "  WHERE EID = 1";;
 						  stmt2 =MY_conn.prepareStatement(sql);
 				    		stmt2.executeUpdate();
 						 }
@@ -484,6 +598,452 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		 stmt2.setDouble(7,rss.getDouble("BA"));
 		 stmt2.setDouble(8, rss.getDouble("BS"));
 		stmt2.executeUpdate();
+        }
+		 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	void mal () throws ClassNotFoundException, SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+	
+		ResultSet	rs = null;
+		ResultSet	rss = null;
+    	PreparedStatement stmt2; 
+  		String sql = "SELECT * FROM Mal    ORDER BY  Tarih ";
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		 while(rss.next()){
+		 sql  = "INSERT INTO MAL (Kodu,Adi,Birim,Kusurat,Sinif,Ana_Grup,Alt_Grup,Aciklama_1,Aciklama_2,Ozel_Kod_1 " +
+		                " ,Ozel_Kod_2,Barkod,Mensei,Agirlik,Fiat,Fiat_2,Fiat_3,Recete,Kdv,Resim,Depo , Ozel_Kod_3,USER) " +
+		    		   		  " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+		 		stmt2= null;
+		 		stmt2 = MY_conn.prepareStatement(sql);
+				stmt2.setString(1, rss.getString("Kodu"));
+				stmt2.setString(2, rss.getString("Adi"));
+				stmt2.setString(3,  rss.getString("Birim"));
+				stmt2.setDouble(4,  rss.getDouble("Kusurat"));
+				stmt2.setString(5,  rss.getString("Sinif"));
+				stmt2.setInt(6,  rss.getInt("Ana_Grup"));
+				stmt2.setInt(7, rss.getInt("Alt_Grup"));
+				stmt2.setString(8,  rss.getString("Aciklama_1"));
+				stmt2.setString(9,  rss.getString("Aciklama_2"));
+				stmt2.setInt(10,  rss.getInt("Ozel_Kod_1"));
+				stmt2.setInt(11, rss.getInt("Ozel_Kod_2"));
+				stmt2.setString(12, rss.getString("Barkod"));
+				stmt2.setInt(13, rss.getInt("Mensei"));
+				stmt2.setDouble(14, rss.getDouble("Agirlik"));
+				stmt2.setDouble(15, rss.getDouble("Fiat"));
+				stmt2.setDouble(16, rss.getDouble("Fiat_2"));
+				stmt2.setDouble(17, rss.getDouble("Fiat_3"));
+				stmt2.setString(18, rss.getString("Recete"));
+				stmt2.setDouble(19, 0.0);
+				   if (  rss.getBytes("RESIM") != null)
+				      {
+				    	  stmt2.setBytes(21,rss.getBytes("RESIM"));
+				      }
+				       else
+				       {
+				    	   stmt2.setBytes(21,null);
+				       }
+				 stmt2.setInt(21,0);
+					stmt2.setInt(22, 0);
+				stmt2.setString(23, rss.getString("USER"));
+				stmt2.executeUpdate();
+        }
+		 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	void diger () throws ClassNotFoundException, SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		ResultSet	rss = null;
+    	PreparedStatement stmt2; 
+  		String sql = "SELECT * FROM Aciklama   ORDER BY  EVRAK_NO ";
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		 while(rss.next())
+		 {
+		 sql  ="INSERT INTO ACIKLAMA (EVRAK_CINS,SATIR,EVRAK_NO,ACIKLAMA,Gir_Cik) " +
+    		   		  " VALUES (?,?,?,?,?)" ;
+			  stmt2= null;
+		 		stmt2 = MY_conn.prepareStatement(sql);
+		stmt2.setString(1,  rss.getString("EVRAK_CINS"));
+		stmt2.setInt(2, rss.getInt("SATIR"));
+		stmt2.setString(3, rss.getString("EVRAK_NO"));
+		stmt2.setString(4,  rss.getString("ACIKLAMA"));
+		stmt2.setString(5,  rss.getString("Gir_Cik"));
+		stmt2.executeUpdate();
+		 }
+		//ALt GRUP
+		 sql = "SELECT * FROM ALT_GRUP_DEGISKEN    ";
+			rss = null;
+			rss = stmt.executeQuery(sql);
+			 while(rss.next())
+			 {
+			 sql  ="INSERT INTO ALT_GRUP_DEGISKEN (ALID_Y,ANA_GRUP,ALT_GRUP,USER) " +
+	    		   		  " VALUES (?,?,?,?)" ;
+				  stmt2= null;
+			 		stmt2 = MY_conn.prepareStatement(sql);
+			stmt2.setInt(1,  rss.getInt("ALID_Y"));
+			stmt2.setInt(2, rss.getInt("ANA_GRUP"));
+			stmt2.setString(3, rss.getString("ALT_GRUP"));
+			stmt2.setString(4,  rss.getString("USER"));
+			stmt2.executeUpdate();
+			 }
+			//ANA GRUP
+			 sql = "SELECT * FROM ANA_GRUP_DEGISKEN    ";
+				rss = null;
+				rss = stmt.executeQuery(sql);
+				 while(rss.next())
+				 {
+				 sql  ="INSERT INTO ANA_GRUP_DEGISKEN (AGID_Y,ANA_GRUP,USER) " +
+		    		   		  " VALUES (?,?,?)" ;
+					  stmt2= null;
+				 		stmt2 = MY_conn.prepareStatement(sql);
+				stmt2.setInt(1,  rss.getInt("AGID_Y"));
+				stmt2.setInt(2,  rss.getInt("ANA_GRUP"));
+				stmt2.setString(3,  rss.getString("USER"));
+				stmt2.executeUpdate();
+				 }
+				//DEPO
+				 sql = "SELECT * FROM DEPO_DEGISKEN    ";
+					rss = null;
+					rss = stmt.executeQuery(sql);
+					 while(rss.next())
+					 {
+					 sql  ="INSERT INTO DEPO_DEGISKEN  (DPID_Y,DEPO,USER) " +
+			    		   		  " VALUES (?,?,?)" ;
+						  stmt2= null;
+					 		stmt2 = MY_conn.prepareStatement(sql);
+					stmt2.setInt(1,  rss.getInt("DPID_Y"));
+					stmt2.setInt(2,  rss.getInt("DEPO"));
+					stmt2.setString(3,  rss.getString("USER"));
+					stmt2.executeUpdate();
+					 }
+					//DEPO EVRAK
+					 sql = "SELECT * FROM DEPOEVRAK    ";
+						rss = null;
+						rss = stmt.executeQuery(sql);
+						 while(rss.next())
+						 {
+							 sql  = "UPDATE DEPOEVRAK SET E_No =" +  rss.getInt("E_No")  ;
+							  stmt2 =MY_conn.prepareStatement(sql);
+					    		stmt2.executeUpdate();
+						 }
+							//DPN
+						 sql = "SELECT * FROM DPN   ";
+							rss = null;
+							rss = stmt.executeQuery(sql);
+							 while(rss.next())
+							 {
+							 sql  ="INSERT INTO DPN  (Evrak_No,Tip,Bir,Iki,Uc,Gir_Cik,USER) " +
+					    		   		  " VALUES (?,?,?,?,?,?,?" ;
+								  stmt2= null;
+							 		stmt2 = MY_conn.prepareStatement(sql);
+							stmt2.setString(1,  rss.getString("Evrak_No"));
+							stmt2.setString(2, rss.getString("Tip"));
+							stmt2.setString(3,  rss.getString("Bir"));
+							stmt2.setString(4,  rss.getString("Iki"));
+							stmt2.setString(5,  rss.getString("Uc"));
+							stmt2.setString(6,  rss.getString("Gir_Cik"));
+							stmt2.setString(7,  rss.getString("USER"));
+							stmt2.executeUpdate();
+							
+			
+							 }
+							 
+								//GDY
+							 sql = "SELECT * FROM GDY   ";
+								rss = null;
+								rss = stmt.executeQuery(sql);
+								 while(rss.next())
+								 {
+								 sql  ="INSERT INTO GDY  (Isim,Adres,Semt,Sehir,USER) " +
+						    		   		  " VALUES (?,?,?,?,?)" ;
+									  stmt2= null;
+								 		stmt2 = MY_conn.prepareStatement(sql);
+								stmt2.setString(1,  rss.getString("Isim"));
+								stmt2.setString(2, rss.getString("Adres"));
+								stmt2.setString(3,  rss.getString("Semt"));
+								stmt2.setString(4,  rss.getString("Sehir"));
+								stmt2.setString(5,  rss.getString("USER"));
+								stmt2.executeUpdate();
+								 }
+								//MENSEI
+								 sql = "SELECT * FROM MENSEI_DEGISKEN    ";
+									rss = null;
+									rss = stmt.executeQuery(sql);
+									 while(rss.next())
+									 {
+									 sql  ="INSERT INTO MENSEI_DEGISKEN  (MEID_Y,MENSEI,USER) " +
+							    		   		  " VALUES (?,?,?)" ;
+										  stmt2= null;
+									 		stmt2 = MY_conn.prepareStatement(sql);
+									stmt2.setInt(1,  rss.getInt("MEID_Y"));
+									stmt2.setInt(2,  rss.getInt("MENSEI"));
+									stmt2.setString(3,  rss.getString("USER"));
+									stmt2.executeUpdate();
+									 }					 
+										//OZ KOD !
+									 sql = "SELECT * FROM OZ_KOD_1_DEGISKEN    ";
+										rss = null;
+										rss = stmt.executeQuery(sql);
+										 while(rss.next())
+										 {
+										 sql  ="INSERT INTO OZ_KOD_1_DEGISKEN  (OZ1ID_Y,OZEL_KOD_1,USER) " +
+								    		   		  " VALUES (?,?,?)" ;
+											  stmt2= null;
+										 		stmt2 = MY_conn.prepareStatement(sql);
+										stmt2.setInt(1,  rss.getInt("OZ1ID_Y"));
+										stmt2.setInt(2,  rss.getInt("OZEL_KOD_1"));
+										stmt2.setString(3,  rss.getString("USER"));
+										stmt2.executeUpdate();
+										 }					 
+											//OZ KOD2
+										 sql = "SELECT * FROM OZ_KOD_2_DEGISKEN    ";
+											rss = null;
+											rss = stmt.executeQuery(sql);
+											 while(rss.next())
+											 {
+											 sql  ="INSERT INTO OZ_KOD_2_DEGISKEN  (OZ2ID_Y,OZEL_KOD_2,USER) " +
+									    		   		  " VALUES (?,?,?)" ;
+												  stmt2= null;
+											 		stmt2 = MY_conn.prepareStatement(sql);
+											stmt2.setInt(1,  rss.getInt("OZ2ID_Y"));
+											stmt2.setInt(2,  rss.getInt("OZEL_KOD_2"));
+											stmt2.setString(3,  rss.getString("USER"));
+											stmt2.executeUpdate();
+											 }		
+											 
+				//OZEL
+												 sql = "SELECT * FROM OZEL    ";
+												rss = stmt.executeQuery(sql);
+												 while(rss.next()){
+												sql  = "INSERT INTO OZEL (YONETICI,YON_SIFRE,FIRMA_ADI) " +
+										    		   		  " VALUES (?,?,?)" ;
+											     
+										    	stmt2 = null;
+										    	stmt2 = MY_conn.prepareStatement(sql);
+										 		stmt2.setString(1, rss.getString("YONETICI"));
+												stmt2.setString(2,  rss.getString("YON_SIFRE"));
+												stmt2.setString(3,  rss.getString("FIRMA_ADI"));
+												stmt2.executeUpdate();
+										        }
+													//URET EVRAK
+												 sql = "SELECT * FROM URET_EVRAK    ";
+													rss = null;
+													rss = stmt.executeQuery(sql);
+													 while(rss.next())
+													 {
+														 sql  = "UPDATE URET_EVRAK SET E_No =" +  rss.getInt("E_No")  ;
+														  stmt2 =MY_conn.prepareStatement(sql);
+												    		stmt2.executeUpdate();
+													 }						 
+													 // YETKILER
+														sql = "SELECT * FROM YETKILER    ";
+													    stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+														rss = stmt.executeQuery(sql);
+														 while(rss.next()){
+														sql  = "INSERT INTO YETKILER (KULLANICI,KARTON,TAM_YETKI,GORUNTU) " +
+												    		   		  " VALUES (?,?,?,?)" ;
+												    	stmt2 = null;
+												    	stmt2 = MY_conn.prepareStatement(sql);
+												 		stmt2.setString(1, rss.getString("YONETICI"));
+														stmt2.setString(2,  rss.getString("YON_SIFRE"));
+														stmt2.setBoolean(3,  rss.getBoolean("TAM_YETKI"));
+														stmt2.setBoolean(4,  rss.getBoolean("GORUNTU"));
+														stmt2.executeUpdate();
+												        }				
+				// ZAYI EVRAK
+					
+						sql = "SELECT * FROM ZAYI_EVRAK    ";
+						rss = null;
+						rss = stmt.executeQuery(sql);
+						 while(rss.next())
+						 {
+							 sql  = "UPDATE ZAYI_EVRAK SET E_No =" +  rss.getInt("E_No")  ;
+							  stmt2 =MY_conn.prepareStatement(sql);
+					    		stmt2.executeUpdate();
+						 }			
+				 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        }
+		
+	void bozukmal () throws ClassNotFoundException, SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+	
+		ResultSet	rs = null;
+		ResultSet	rss = null;
+    	PreparedStatement stmt2; 
+  		String sql = "SELECT * FROM BOZUK_MALl    ";
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		 while(rss.next()){
+		 sql  = "INSERT INTO MAL (Evrak_No,Kodu,Tarih,Miktar,Fiat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod " +
+		                " ,Izahat,Cins,,USER) " +
+		    		   		  " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)" ;
+		 		stmt2= null;
+		 		stmt2 = MY_conn.prepareStatement(sql);
+				stmt2.setString(1, rss.getString("Evrak_no"));
+				stmt2.setString(2, rss.getString("Kodu"));
+				stmt2.setDate(3,  rss.getDate("Tarih"));
+				stmt2.setFloat(4,  rss.getFloat("Miktar"));
+				stmt2.setInt(5,  rss.getInt("Fiat"));
+				stmt2.setInt(6,  rss.getInt("Ana_Grup"));
+				stmt2.setInt(7, rss.getInt("Alt_Grup"));
+				stmt2.setInt(8,  rss.getInt("Depo"));
+				stmt2.setString(9,  rss.getString("Ozel_Kod"));
+				stmt2.setInt(10,  rss.getInt("Izahat"));
+				stmt2.setInt(11, rss.getInt("Cins"));
+				stmt2.setString(12, rss.getString("USER"));
+				stmt2.executeUpdate();
+        }
+		 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	void fatura () throws ClassNotFoundException, SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+	
+		ResultSet	rs = null;
+		ResultSet	rss = null;
+    	PreparedStatement stmt2; 
+  		String sql = "SELECT * FROM FATURA   ";
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		 while(rss.next()){
+		sql  ="INSERT INTO FATURA (Fatura_No,Kodu,Depo,Fiat,Tevkifat,Miktar,Gir_Cik,Tutar,Iskonto,Kdv,Tarih,Izahat " +
+		                " ,Doviz,Adres_Firma,Cari_Firma,Ozel_Kod,Kur,Cins,Ana_Grup,Alt_Grup, USER ) " +
+		    		   		  " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+		stmt2= null;
+ 		stmt2 = MY_conn.prepareStatement(sql);
+				stmt2.setString(1, rss.getString("Fatura_No"));
+				stmt2.setString(2, rss.getString("Kodu"));
+				stmt2.setInt(3,rss.getInt("Depo"));
+				stmt2.setFloat(4, rss.getFloat("Fiat"));
+				stmt2.setFloat(5,rss.getFloat("Tevkifat"));
+				stmt2.setFloat(6, rss.getFloat("Miktar"));
+				stmt2.setString(7, rss.getString("Gir_Cik"));
+				stmt2.setFloat(8, rss.getFloat("Tutar"));
+				stmt2.setFloat(9, rss.getFloat("Iskonto"));
+				stmt2.setFloat(10, rss.getFloat("Kdv"));
+				stmt2.setDate(11, rss.getDate("Tarih"));
+				stmt2.setString(12, rss.getString("Izahat"));
+				stmt2.setString(13, rss.getString("Doviz"));
+				stmt2.setString(14, rss.getString("Adres_Firma"));
+				stmt2.setString(15, rss.getString("Cari_Firma"));
+				stmt2.setString(16,rss.getString("Ozel_Kod"));
+				stmt2.setFloat(17,rss.getFloat("Kur"));
+				stmt2.setString(18, rss.getString("Cins"));
+				stmt2.setInt(19,rss.getInt("Ana_Grup"));
+				stmt2.setInt(20,rss.getInt("Alt_Grup"));
+				stmt2.setString(21,rss.getString("USER"));
+				stmt2.executeUpdate();
+        }
+		 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	void irsaliye () throws ClassNotFoundException, SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+	
+		ResultSet	rs = null;
+		ResultSet	rss = null;
+    	PreparedStatement stmt2; 
+  		String sql = "SELECT * FROM IRSALIYE    ";
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		 while(rss.next()){
+		sql  ="INSERT INTO IRSALIYE (Irsaliye_No,Kodu,Depo,Fiat,Iskonto,Miktar,Tutar,Kdv, Tarih,Doviz,Kur,Firma " +
+		                ",Cari_Hesap_Kodu,Sevk_Tarihi,Ozel_Kod,Ana_Grup,Alt_Grup,Fatura_No,Hareket,Cins, USER ,Izahat) " +
+		    		   		  " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+		stmt2= null;
+ 		stmt2 = MY_conn.prepareStatement(sql);
+ 		stmt2.setString(1,rss.getString("Irsaliye_No"));
+		stmt2.setString(2, rss.getString("Kodu"));
+		stmt2.setInt(3,rss.getInt("Depo"));
+		stmt2.setFloat(4,rss.getFloat("Fiat"));
+		stmt2.setFloat(5, rss.getFloat("Iskonto"));
+		stmt2.setFloat(6, rss.getFloat("Miktar"));
+		stmt2.setFloat(7, rss.getFloat("Tutar"));
+		stmt2.setFloat(8, rss.getFloat("Kdv"));
+		stmt2.setDate(9, rss.getDate("Tarih"));
+		stmt2.setString(10,rss.getString("Doviz"));
+		stmt2.setFloat(11, rss.getFloat("Kur"));
+		stmt2.setString(12,rss.getString("Firma"));
+		stmt2.setString(13,rss.getString("Cari_Hesap_Kodu"));
+		stmt2.setDate(14,rss.getDate("Sevk_Tarihi"));
+		stmt2.setString(15,rss.getString("Ozel_Kod"));
+		stmt2.setInt(16,rss.getInt("Ana_Grup"));
+		stmt2.setInt(17,rss.getInt("Alt_Grup"));
+		stmt2.setString(18,rss.getString("Fatura_No"));
+		stmt2.setString(19,rss.getString("Hareket"));
+		stmt2.setString(20,rss.getString("Cins"));
+		stmt2.setString(21,rss.getString("USER"));
+		stmt2.setString(22,rss.getString("Izahat"));
+				stmt2.executeUpdate();
+        }
+		 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	void recete () throws ClassNotFoundException, SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+	
+		ResultSet	rs = null;
+		ResultSet	rss = null;
+    	PreparedStatement stmt2; 
+  		String sql = "SELECT * FROM RECETE   ";
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		 while(rss.next()){
+		 sql  ="INSERT INTO RECETE (Recete_No,Durum,Tur,Kodu,Miktar,Ana_Grup,Alt_Grup, USER ) " +
+	    		   		  " VALUES (?,?,?,?,?,?,?,?)" ;
+		stmt2= null;
+ 		stmt2 = MY_conn.prepareStatement(sql);
+ 		stmt2.setString(1,rss.getString("Recete_No"));
+		stmt2.setBoolean(2, rss.getBoolean("Durum"));
+		stmt2.setString(3, rss.getString("Tur"));
+		stmt2.setString(4, rss.getString("Kodu"));
+		stmt2.setFloat(5, rss.getFloat("Miktar"));
+		stmt2.setInt(6, rss.getInt("Ana_Grup"));
+		stmt2.setInt(7, rss.getInt("Alt_Grup"));
+		stmt2.setString(8,rss.getString("USER"));
+				stmt2.executeUpdate();
+        }
+		 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	void  stok () throws ClassNotFoundException, SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+	
+		ResultSet	rs = null;
+		ResultSet	rss = null;
+    	PreparedStatement stmt2; 
+  		String sql = "SELECT * FROM RECETE   ";
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		 while(rss.next()){
+		sql  ="INSERT INTO STOK (Evrak_No,Evrak_Cins,Tarih,Depo,Urun_Kodu,Miktar,Fiat,Tutar,Kdvli_Tutar,Hareket,Izahat " +
+		                " ,Ana_Grup,Alt_Grup,Kur,B1,Doviz,Hesap_Kodu, USER ) " +
+		    		   		  " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+				stmt2= null;
+		 		stmt2 = MY_conn.prepareStatement(sql);
+				stmt2.setString(1, rss.getString("Evrak_No"));
+				stmt2.setString(2, rss.getString("Evrak_Cins"));
+				stmt2.setDate(3, rss.getDate("Tarih"));
+				stmt2.setInt(4,rss.getInt("Depo"));
+				stmt2.setString(5, rss.getString("Urun_Kodu"));
+				stmt2.setFloat(6, rss.getFloat("Miktar"));
+				stmt2.setFloat(7, rss.getFloat("Fiat"));
+				stmt2.setFloat(8, rss.getFloat("Tutar"));
+				stmt2.setFloat(9, rss.getFloat("Kdvli_Tutar"));
+				stmt2.setString(10,rss.getString("Hareket"));
+				stmt2.setString(11, rss.getString("Izahat"));
+				stmt2.setInt(12, rss.getInt("Ana_Grup"));
+				stmt2.setInt(13, rss.getInt("Alt_Grup"));
+				stmt2.setFloat(14, rss.getFloat("Kur"));
+				stmt2.setString(15,  rss.getString("B1"));
+				stmt2.setString(16, rss.getString("Doviz"));
+				stmt2.setString(17,  rss.getString("Hesap_Kodu"));
+				stmt2.setString(18,  rss.getString("USER"));
+				stmt2.executeUpdate();
+	
         }
 		 getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}

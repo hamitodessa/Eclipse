@@ -13,8 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 
-import javax.swing.JOptionPane;
-
 public class STOK_MYSQL implements ISTOK {
 
 	static Connection con = null;
@@ -3355,22 +3353,14 @@ public void degisken_degistir(int anagrp,int altgrp, int anaygrp,int altygrp) th
 	@Override
 	public void create_table_log() throws SQLException {
 		String sql = "" ;
-	    sql = "CREATE TABLE [dbo].[LOGLAMA]("
-	    		+ "	[TARIH] [datetime] NOT NULL,"
-	    		+ "	[MESAJ] [nchar](100) NOT NULL,"
-	    		+ "	[EVRAK] [nchar](15) NOT NULL,"
-	    		+ "	[USER_NAME] [nchar](15) NULL"
-	    		+ ") ON [PRIMARY]";
+	    sql = "CREATE TABLE  `loglama` ("
+	    		+ "  `TARIH` DATETIME NOT NULL,"
+	    		+ "  `MESAJ` VARCHAR(100) NULL,"
+	    		+ "  `EVRAK` VARCHAR(15) NULL,"
+	    		+ "  `USER_NAME` VARCHAR(15) NULL,"
+	    		+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) VISIBLE);";
 	    	stmt = con.createStatement();  
-	    	stmt.executeUpdate(sql);
-	    	 sql = "CREATE NONCLUSTERED INDEX [IDX_LOGLAMA] ON [dbo].[LOGLAMA](	[TARIH] ASC,	[EVRAK] ASC , [USER_NAME] ASC "
-	                  + " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
-
-	    	 
-	           stmt = con.createStatement();  
-	           stmt.executeUpdate(sql);
-	       
-		
+	    	stmt.executeUpdate(sql);		
 	}
 
 

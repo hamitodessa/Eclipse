@@ -515,7 +515,6 @@ public class STOK_MYSQL implements ISTOK {
 				ResultSet	rss = null;
 				int maks = 0 ;
 		        String sql =   "SELECT max(" +fieldd +")  as maks  FROM "+ nerden+ "" ; 
-		        System.out.println(sql);
 		    	PreparedStatement stmt = con.prepareStatement(sql);
 				rss = stmt.executeQuery();
 				rss.next();

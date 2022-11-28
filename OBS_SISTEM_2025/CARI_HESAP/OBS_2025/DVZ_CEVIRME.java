@@ -318,6 +318,10 @@ public class DVZ_CEVIRME extends JInternalFrame {
 								TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_4),
 								FILTRE.comboBox_1.getItemAt(FILTRE.comboBox_1.getSelectedIndex()), islem);
 					GRID_TEMIZLE.grid_temizle(table);
+					if (rs == null)
+					{
+						return;
+					}
 					if (!rs.isBeforeFirst() ) {  
 						label_1.setText("...");
 						lblboskur.setText("...");

@@ -978,36 +978,35 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
         String sql = "SELECT h.HESAP,h.UNVAN,h.HESAP_CINSI AS H_CINSI," + 
-        		"        		IFNULL( (SELECT ROUND(SUM(SATIRLAR.ALACAK),2)  - ROUND(SUM(SATIRLAR.BORC),2)   FROM HESAP  USE INDEX (IX_HESAP)  , SATIRLAR  " + 
-        		"        		 WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP " + 
+        		"        		IFNULL( (SELECT ROUND(SUM(SATIRLAR.ALACAK),2)  - ROUND(SUM(SATIRLAR.BORC),2)   FROM SATIRLAR  USE INDEX (IXS_HESAP) " + 
+        		"        		 WHERE   SATIRLAR.HESAP    = h.HESAP " + 
         		"        		 AND TARIH <  '"+ t1 + "'  ) ,0) as ONCEKI_BAKIYE " + 
         		"				 ," +  
-        		"				 IFNULL( (SELECT SUM(SATIRLAR.BORC)  FROM HESAP  USE INDEX (IX_HESAP)  , SATIRLAR   " + 
-        		"        		 WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP" + 
+        		"				 IFNULL( (SELECT SUM(SATIRLAR.BORC)  FROM   SATIRLAR  USE INDEX (IXS_HESAP) " + 
+        		"        		 WHERE   SATIRLAR.HESAP    = h.HESAP " + 
         		"        		 AND TARIH BETWEEN  '"+ t1 + "' AND  '"+ t2 + " 23:59:59.998'  ) ,0)as BORC" + 
         		"				 ," + 
-        		"				 IFNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM HESAP  USE INDEX (IX_HESAP)  , SATIRLAR    " + 
-        		"        		 WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP " + 
+        		"				 IFNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM SATIRLAR  USE INDEX (IXS_HESAP)    " + 
+        		"        		 WHERE  SATIRLAR.HESAP    = h.HESAP " + 
         		"        		 AND TARIH BETWEEN '"+ t1 + "' AND '"+ t2 + " 23:59:59.998'  ) ,0)as ALACAK" + 
         		"				 ," + 
-        		"				ROUND(IFNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM HESAP  USE INDEX (IX_HESAP)  , SATIRLAR     " + 
-        		"				WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP         		 AND TARIH BETWEEN " + 
+        		"				ROUND(IFNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM SATIRLAR  USE INDEX (IXS_HESAP)     " + 
+        		"				WHERE  SATIRLAR.HESAP    = h.HESAP     		 AND TARIH BETWEEN " + 
         		"				 '"+ t1 + "' AND  '"+ t2 + " 23:59:59.998'  ) ,0) -	" + 
-        		"				IFNULL( (SELECT SUM(SATIRLAR.BORC)  FROM HESAP  USE INDEX (IX_HESAP)  , SATIRLAR      " + 
-        		"				WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP        		 AND TARIH BETWEEN " + 
+        		"				IFNULL( (SELECT SUM(SATIRLAR.BORC)  FROM SATIRLAR  USE INDEX (IXS_HESAP)     " + 
+        		"				WHERE  SATIRLAR.HESAP    = h.HESAP    		 AND TARIH BETWEEN " + 
         		"				  '"+ t1 + "' AND  '"+ t2 + " 23:59:59.998'  ) ,0),2)  as BAK_KVARTAL" + 
         		"				 ," +  
         		"				ROUND(IFNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  " + 
-        		" 				FROM HESAP  USE INDEX (IX_HESAP)  , SATIRLAR  USE INDEX (IX_SATIRLAR)          		" + 
-        		" 				WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP     " + 
+        		" 				FROM SATIRLAR  USE INDEX (IXS_HESAP)     		" + 
+        		" 				WHERE   SATIRLAR.HESAP    = h.HESAP    " + 
         		" 				AND TARIH <  '"+ t1 + "'  ) ,0),2)  + " + 
-        		"  				ROUND(IFNULL( (SELECT SUM(SATIRLAR.ALACAK)   FROM HESAP  USE INDEX (IX_HESAP)  , SATIRLAR           		 WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP  " + 
+        		"  				ROUND(IFNULL( (SELECT SUM(SATIRLAR.ALACAK)   FROM SATIRLAR  USE INDEX (IXS_HESAP)        		 WHERE  SATIRLAR.HESAP    = h.HESAP  " + 
         		"				AND TARIH BETWEEN '"+ t1 + "' AND '"+ t2 + " 23:59:59.998'  ) ,0)  - 	" + 
-        		"				( IFNULL( (SELECT SUM(SATIRLAR.BORC) FROM HESAP  USE INDEX (IX_HESAP)  , SATIRLAR    WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP     " + 
+        		"				( IFNULL( (SELECT SUM(SATIRLAR.BORC) FROM SATIRLAR  USE INDEX (IXS_HESAP)    WHERE   SATIRLAR.HESAP    = h.HESAP     " + 
         		"				AND TARIH BETWEEN '"+ t1 + "' AND '"+ t2 + " 23:59:59.998'  ) ,0)),2)  as BAKIYE     " + 
-        		"        		FROM HESAP h  USE INDEX (IX_HESAP)   ,SATIRLAR s    " + 
-        		"        		WHERE h.HESAP = s.HESAP" +     
-        		"        		AND s.HESAP BETWEEN N'"+ h1 +"' AND N'"+ h2+ "'" + 
+        		"        		FROM HESAP h  USE INDEX (IX_HESAP)     " + 
+        		"        		WHERE  h.HESAP BETWEEN N'"+ h1 +"' AND N'"+ h2+ "'" + 
         		"        		AND h.HESAP_CINSI BETWEEN N'"+ c1 + "' AND '"+ c2 +"'" + 
         		"              AND h.KARTON BETWEEN N'"+ k1 + "' AND N'" + k2 + "'" + 
         		"              GROUP BY h.HESAP, h.UNVAN, h.HESAP_CINSI" + o1 + " " + o2 + "" ;

@@ -691,7 +691,7 @@ public class STOK_MYSQL implements ISTOK {
                 " WHERE  Cari_Firma = N'" + muskodu + "'" +
                 " AND  Kodu = N'" + kodu + "'" +
                 " AND Gir_Cik = '" + gircik + "'" +
-                " ORDER BY  Tarih desc  OPTION (FAST 1)";
+                " ORDER BY  Tarih desc   LIMIT 1 ";
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1035,7 +1035,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String E_NUMBER = "" ;
-        String sql =  "SELECT MAX(Recete_No) as NO  FROM RECETE   OPTION (FAST 1) ";
+        String sql =  "SELECT MAX(Recete_No) as NO  FROM RECETE   LIMIT 1";
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -1141,7 +1141,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String E_NUMBER = "" ;
-        String sql =   "SELECT max(Evrak_No )  as NO FROM STOK  where Evrak_Cins = 'URE' OPTION (FAST 1) ";
+        String sql =   "SELECT max(Evrak_No )  as NO FROM STOK  where Evrak_Cins = 'URE' LIMIT 1 ";
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -1176,7 +1176,7 @@ public class STOK_MYSQL implements ISTOK {
                 " FROM STOK USE INDEX (IX_STOK) " +
                 " WHERE Evrak_Cins = 'URE' and Hareket ='C'  " +
                 " AND Urun_Kodu = N'" + kodu + "' " +
-                " ORDER BY  Tarih DESC OPTION (FAST 1)";
+                " ORDER BY  Tarih DESC LIMIT 1";
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -1326,7 +1326,7 @@ public class STOK_MYSQL implements ISTOK {
                 " WHERE  Cari_Hesap_Kodu = N'" + muskodu + "'" +
                 " AND  Kodu = N'" + kodu + "'" +
                 " AND Hareket = '" + gircik + "'" +
-                " ORDER BY  Tarih desc  OPTION (FAST 1)";
+                " ORDER BY  Tarih desc  LIMIT 1";
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2166,7 +2166,7 @@ public class STOK_MYSQL implements ISTOK {
                 " (SELECT ANA_GRUP from ANA_GRUP_DEGISKEN WHERE AGID_Y = RECETE.Ana_Grup ) as Ana_Grup , " +
                 " (SELECT ALT_GRUP from ALT_GRUP_DEGISKEN WHERE ALID_Y = RECETE.Alt_Grup ) as Alt_Grup  , " +
                 " (Select ACIKLAMA from ACIKLAMA where EVRAK_CINS ='REC' and RECETE.Recete_No = ACIKLAMA.EVRAK_NO AND ACIKLAMA.Gir_Cik='G' ) as Aciklama   , " +
-                " iif(Durum = 1,'Aktif', 'Pasif') as Durum,RECETE. USER  " +
+                " IF(Durum = 1,'Aktif', 'Pasif') as Durum,RECETE. USER  " +
                 " FROM RECETE ,MAL USE INDEX (IX_MAL)" +
                 " WHERE  Tur = 'Giren' " +
                 " AND RECETE.Kodu = MAL.Kodu  " +
@@ -2191,7 +2191,7 @@ public class STOK_MYSQL implements ISTOK {
                 " (SELECT ANA_GRUP from ANA_GRUP_DEGISKEN WHERE AGID_Y = MAL.Ana_Grup ) as Ana_Grup , " +
                 " (SELECT ALT_GRUP from ALT_GRUP_DEGISKEN WHERE ALID_Y = MAL.Alt_Grup ) as Alt_Grup  , " +
                 " Barkod  , " +
-                " iif(Durum = 1,'Aktif','Pasif') as Durum,RECETE. USER  " +
+                " IF(Durum = 1,'Aktif','Pasif') as Durum,RECETE. USER  " +
                  " FROM RECETE ,MAL USE INDEX (IX_MAL) " +
                 " WHERE  Tur = 'Cikan' " +
                 " AND RECETE.Kodu = MAL.Kodu  " +
@@ -2393,9 +2393,9 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql =   "SELECT  STOK.[Evrak_No], Tarih,[Urun_Kodu],[Miktar],[Fiat],[Tutar],iif([Hareket] = 'C','Cikan','Giren') As Hareket ,[Izahat] " +
+        String sql =   "SELECT  STOK.Evrak_No, DATE(Tarih),Urun_Kodu,Miktar,Fiat,Tutar,IF(Hareket = 'C','Cikan','Giren') As Hareket ,Izahat " +
                 " , USER  ,ACID " +
-                " FROM [STOK] USE INDEX (IX_STOK) LEFT JOIN  [ACIKLAMA] on STOK.Evrak_No = ACIKLAMA.EVRAK_NO and STOK.Hareket = ACIKLAMA .Gir_Cik AND STOK.Evrak_Cins = ACIKLAMA.EVRAK_CINS  " +
+                " FROM  STOK USE INDEX (IX_STOK) LEFT JOIN  ACIKLAMA on STOK.Evrak_No = ACIKLAMA.EVRAK_NO and STOK.Hareket = ACIKLAMA .Gir_Cik AND STOK.Evrak_Cins = ACIKLAMA.EVRAK_CINS  " +
                 " WHERE STOK.Evrak_Cins = 'URE'  AND Hareket = 'G' " +
                 " AND Tarih >= '" + t1 + "' AND Tarih <= '" + t2 + " 23:59:59.998' " +
                 " ORDER BY Tarih " ;
@@ -2511,7 +2511,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String E_NUMBER = "" ;
-        String sql =   "SELECT max(Evrak_No )  as NO FROM STOK  where Evrak_Cins = 'ZAI' OPTION (FAST 1) ";
+        String sql =   "SELECT max(Evrak_No )  as NO FROM STOK  where Evrak_Cins = 'ZAI'  LIMIT 1  ";
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();

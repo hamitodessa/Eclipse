@@ -154,8 +154,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
         		+ "  `KOD` VARCHAR(5) NULL,"
         		+ "  `USER` VARCHAR(15) NULL,"
         		+ "  UNIQUE INDEX `SID_UNIQUE` (`SID` ASC) VISIBLE,"
-        		+ "  INDEX `IX_SATIRLAR` (`TARIH` ASC, `EVRAK` ASC, `CINS` ASC, `USER` ASC, `HESAP` ASC) VISIBLE) ,"
-        		+ "  INDEX `IXS_HESAP` ( `HESAP` ASC ,`TARIH` ASC ) VISIBLE);";
+        		+ "  INDEX `IX_SATIRLAR` (`TARIH` ASC, `EVRAK` ASC, `CINS` ASC, `USER` ASC, `HESAP` ASC) VISIBLE ,"
+        		+ "  INDEX `IXS_HESAP` (`HESAP` ASC ,`TARIH` ASC ) VISIBLE);";
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
         

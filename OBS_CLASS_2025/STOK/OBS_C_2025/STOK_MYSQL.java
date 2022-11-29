@@ -1602,7 +1602,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
         String sql =   "SELECT Evrak_No, DATE(Tarih),Urun_Kodu, Adi , " +
-                " Miktar,  Birim ,(Miktar * Mal.Agirlik) as Agirlik ," +
+                " CONVERT(Miktar,Double),  Birim ,  CONVERT((Miktar * Mal.Agirlik),double) as Agirlik ," +
                 " (SELECT DEPO from DEPO_DEGISKEN WHERE DPID_Y = STOK.DEPO ) as Depo , " +
                 " (SELECT ANA_GRUP from ANA_GRUP_DEGISKEN WHERE AGID_Y = STOK.Ana_Grup ) as Ana_Grup , " +
                 " (SELECT ALT_GRUP from ALT_GRUP_DEGISKEN WHERE ALID_Y = STOK.Alt_Grup ) as Alt_Grup  , " +
@@ -1623,8 +1623,7 @@ public class STOK_MYSQL implements ISTOK {
                 " AND STOK.Alt_Grup " + altgrp +
                 " AND STOK.Depo " + depo +
                 " ORDER BY Evrak_No ";
-        System.out.println(sql);
-    	PreparedStatement stmt = con.prepareStatement(sql);
+     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -1652,7 +1651,7 @@ public class STOK_MYSQL implements ISTOK {
                 " SUM(IF(Hareket = 'C', abs(miktar), 0 ) * MAL.Agirlik)  as Cikis_Agirlik, " +
                 " SUM(IF( Hareket = 'G' ,miktar, 0 )) -  SUM(IF(Hareket = 'C',abs( miktar), 0 )) as Stok_Miktari," +
                 " SUM(IF( Hareket = 'G' ,miktar, 0 )* mal.Agirlik) -  SUM(IF(Hareket = 'C',abs( miktar), 0 )* mal.Agirlik)     as Stok_Agirlik  " +
-                " From [STOK] USE INDEX (IX_STOK) ,[MAL] USE INDEX (IX_MAL) " +
+                " From STOK USE INDEX (IX_STOK) ,MAL USE INDEX (IX_MAL) " +
                 " where mal.Kodu = stok.Urun_Kodu " +
                 " And   Kodu >= N'" + k1 + "' AND  Kodu <= N'" + k2 + "' " +
                                     " AND Mal.Ana_Grup " + uanagrp +
@@ -1742,9 +1741,9 @@ public class STOK_MYSQL implements ISTOK {
 		else
 		       kjk1 = " Evrak_Cins <> 'URE' " ;
         String sql =  " SELECT Urun_Kodu ,  Barkod , Adi,  Izahat,Evrak_No , " +
-                " iif(STOK.Evrak_Cins= 'URE','',(SELECT TOP 1 IFNULL(Cari_Firma,'') FROM FATURA  WHERE  Fatura.Fatura_No = " +
-                  "STOK.Evrak_No  and Gir_cik = stok.hareket )) as Hesap_Kodu, " +
-                 " Evrak_Cins,Tarih ,Miktar ,  Birim , STOK.Fiat ,STOK.Doviz , " +
+                " IF(STOK.Evrak_Cins= 'URE','',(SELECT  IFNULL(Cari_Firma,'') FROM FATURA  WHERE  Fatura.Fatura_No = " +
+                  "STOK.Evrak_No  and Gir_cik = stok.hareket LIMIT 1)) as Hesap_Kodu, " +
+                 " Evrak_Cins,DATE(Tarih) as Tarih ,Miktar ,  Birim , STOK.Fiat ,STOK.Doviz , " +
                  " SUM(Miktar) OVER(ORDER BY Tarih  ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Miktar_Bakiye , " +
                  " Tutar ," +
                  " SUM(Tutar) OVER(ORDER BY Tarih  ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Tutar_Bakiye , " +
@@ -1765,6 +1764,7 @@ public class STOK_MYSQL implements ISTOK {
                  " AND " + kjk1 +
                  " AND STOK.Hareket Like '" + turu + "%' " +
                  " Order by Tarih ";
+        System.out.println(sql);
      	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

@@ -2227,7 +2227,7 @@ public class STOK_MYSQL implements ISTOK {
                 " sum( (abs(tutar) - (abs(tutar) * Iskonto /100) ) / kurlar.MA) as  " + kurc + "_Tutar  ," +
                 "  sum((abs(tutar) - (abs(tutar) * Iskonto /100) ) )   /   NULLIF( (sum(abs(Miktar) * Agirlik)),0) as Ort_Satis ," + 
                 "  sum(((abs(tutar - (tutar * Iskonto /100) )) / kurlar.MA ))   /   NULLIF( (sum(abs(Miktar) * Agirlik)),0)   As  Kg_"+ kurc +" " +
-                "  FROM  [FATURA] ,  OK_Kur"+ kurkod +".dbo.kurlar , MAL  "  + 
+                "  FROM  FATURA ,  ok_kur"+ kurkod +".kurlar , MAL  "  + 
                 "  WHERE   MAL.Ana_Grup  " + qwq6 +
                 " And MAL.Alt_Grup  " + qwq7 +
                 " And  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" + 
@@ -2236,7 +2236,7 @@ public class STOK_MYSQL implements ISTOK {
                 " and  MAL.Kodu = Fatura.Kodu " +
                 " AND FATURA.Cari_Firma  between  N'" + m1 + "' and N'" + m2 + "'" + 
                 " AND Fatura.Tarih BETWEEN '" + t1 + "' AND '" + t2 +" 23:59:59.998' " +  
-                " AND kurlar.Tarih = convert(varchar(10),Fatura.Tarih, 120) and kurlar.Kur = '" + kurc + "' " +
+                " AND kurlar.Tarih =DATE(Fatura.Tarih) and kurlar.Kur = '" + kurc + "' " +
                 " GROUP BY FATURA.Cari_Firma  " +
                 " ORDER BY FATURA.Cari_Firma  ";
    
@@ -2257,7 +2257,7 @@ public class STOK_MYSQL implements ISTOK {
                 " sum( (abs(tutar) - (abs(tutar) * Iskonto /100) ) / kurlar.MA) as  " + kurc + "_Tutar  ," +
                 "  sum((abs(tutar) - (abs(tutar) * Iskonto /100) ) )   /   NULLIF( (sum(abs(Miktar) * Agirlik)),0) as Ort_Satis ," + 
                 "  sum(((abs(tutar - (tutar * Iskonto /100) )) / kurlar.MA ))   /   NULLIF( (sum(abs(Miktar) * Agirlik)),0)   As  Kg_"+ kurc +" " +
-                "  FROM  [FATURA] ,  OK_Kur"+ kurkod +".dbo.kurlar , MAL  "  + 
+                "  FROM  FATURA ,  ok_kur"+ kurkod +".dbo.kurlar , MAL  "  + 
                 "  WHERE   MAL.Ana_Grup  " + qwq6 +
                 " And MAL.Alt_Grup  " + qwq7 +
                 " And  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" + 
@@ -2266,7 +2266,7 @@ public class STOK_MYSQL implements ISTOK {
                 " and  MAL.Kodu = Fatura.Kodu " +
                 " AND FATURA.Cari_Firma  between  N'" + m1 + "' and N'" + m2 + "'" + 
                 " AND Fatura.Tarih BETWEEN '" + t1 + "' AND '" + t2 +" 23:59:59.998' " +  
-                " AND kurlar.Tarih = convert(varchar(10),Fatura.Tarih, 120) and kurlar.Kur = '" + kurc + "' " +
+                " AND kurlar.Tarih = DATE(Fatura.Tarih) and kurlar.Kur = '" + kurc + "' " +
                 " GROUP BY FATURA.Cari_Firma , MAL.Ana_Grup,MAL.Alt_Grup " +
                 " ORDER BY FATURA.Cari_Firma , MAL.Ana_Grup,MAL.Alt_Grup ";
    

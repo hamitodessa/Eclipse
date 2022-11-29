@@ -994,40 +994,41 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
         String sql = "SELECT h.HESAP,h.UNVAN,h.HESAP_CINSI AS H_CINSI," + 
-        		"        		ISNULL( (SELECT ROUND(SUM(SATIRLAR.ALACAK),2)  - ROUND(SUM(SATIRLAR.BORC),2)   FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR)) " + 
-        		"        		 WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP " + 
+        		"        		ISNULL( (SELECT ROUND(SUM(SATIRLAR.ALACAK),2)  - ROUND(SUM(SATIRLAR.BORC),2)   FROM SATIRLAR WITH (INDEX (IX_SATIRLAR)) " + 
+        		"        		 WHERE   SATIRLAR.HESAP  = h.HESAP " + 
         		"        		 AND TARIH <  '"+ t1 + "'  ) ,0) as ONCEKI_BAKIYE " + 
         		"				 ," +  
-        		"				 ISNULL( (SELECT SUM(SATIRLAR.BORC)  FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR))" + 
-        		"        		 WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP" + 
+        		"				 ISNULL( (SELECT SUM(SATIRLAR.BORC)  FROM   SATIRLAR WITH (INDEX (IX_SATIRLAR))" + 
+        		"        		 WHERE  SATIRLAR.HESAP  = h.HESAP" + 
         		"        		 AND TARIH BETWEEN  '"+ t1 + "' AND  '"+ t2 + " 23:59:59.998'  ) ,0)as BORC" + 
         		"				 ," + 
-        		"				 ISNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR)) " + 
-        		"        		 WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP " + 
+        		"				 ISNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM  SATIRLAR WITH (INDEX (IX_SATIRLAR)) " + 
+        		"        		 WHERE  SATIRLAR.HESAP  = h.HESAP " + 
         		"        		 AND TARIH BETWEEN '"+ t1 + "' AND '"+ t2 + " 23:59:59.998'  ) ,0)as ALACAK" + 
         		"				 ," + 
-        		"				ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR))   " + 
-        		"				WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP         		 AND TARIH BETWEEN " + 
+        		"				ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK)    FROM SATIRLAR WITH (INDEX (IX_SATIRLAR))   " + 
+        		"				WHERE  SATIRLAR.HESAP  = h.HESAP       		 AND TARIH BETWEEN " + 
         		"				 '"+ t1 + "' AND  '"+ t2 + " 23:59:59.998'  ) ,0) -	" + 
-        		"				ISNULL( (SELECT SUM(SATIRLAR.BORC)  FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR))    " + 
-        		"				WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP        		 AND TARIH BETWEEN " + 
+        		"				ISNULL( (SELECT SUM(SATIRLAR.BORC)   FROM SATIRLAR WITH (INDEX (IX_SATIRLAR))    " + 
+        		"				WHERE  SATIRLAR.HESAP  = h.HESAP      		 AND TARIH BETWEEN " + 
         		"				  '"+ t1 + "' AND  '"+ t2 + " 23:59:59.998'  ) ,0),2)  as BAK_KVARTAL" + 
         		"				 ," +  
         		"				ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  " + 
-        		" 				FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR))         		" + 
-        		" 				WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP     " + 
+        		" 				FROM  SATIRLAR WITH (INDEX (IX_SATIRLAR))         		" + 
+        		" 				WHERE  SATIRLAR.HESAP  = h.HESAP     " + 
         		" 				AND TARIH <  '"+ t1 + "'  ) ,0),2)  + " + 
-        		"  				ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK)   FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR))        		 WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP  " + 
+        		"  				ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK)     FROM SATIRLAR WITH (INDEX (IX_SATIRLAR))        " + 
+        		"				WHERE  SATIRLAR.HESAP  = h.HESAP  " + 
         		"				AND TARIH BETWEEN '"+ t1 + "' AND '"+ t2 + " 23:59:59.998'  ) ,0)  - 	" + 
-        		"				( ISNULL( (SELECT SUM(SATIRLAR.BORC) FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR))  WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP     " + 
+        		"				( ISNULL( (SELECT SUM(SATIRLAR.BORC)   FROM SATIRLAR WITH (INDEX (IX_SATIRLAR))  " + 
+        		"				WHERE   SATIRLAR.HESAP  = h.HESAP    " + 
         		"				AND TARIH BETWEEN '"+ t1 + "' AND '"+ t2 + " 23:59:59.998'  ) ,0)),2)  as BAKIYE     " + 
-        		"        		FROM HESAP h WITH (INDEX (IX_HESAP))  ,SATIRLAR s WITH (INDEX (IX_SATIRLAR)) " + 
-        		"        		WHERE h.HESAP = s.HESAP" +     
-        		"        		AND s.HESAP BETWEEN N'"+ h1 +"' AND N'"+ h2+ "'" + 
+        		"        		FROM HESAP h WITH (INDEX (IX_HESAP))  " + 
+        		"        		WHERE h.HESAP BETWEEN N'"+ h1 +"' AND N'"+ h2+ "'" + 
         		"        		AND h.HESAP_CINSI BETWEEN N'"+ c1 + "' AND '"+ c2 +"'" + 
         		"              AND h.KARTON BETWEEN N'"+ k1 + "' AND N'" + k2 + "'" + 
         		"              GROUP BY h.HESAP, h.UNVAN, h.HESAP_CINSI" + o1 + " " + o2 + "" ;
-      	PreparedStatement stmt = con.prepareStatement(sql);
+       	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}

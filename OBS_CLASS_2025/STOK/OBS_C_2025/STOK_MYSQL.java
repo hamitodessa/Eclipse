@@ -2805,24 +2805,13 @@ public class STOK_MYSQL implements ISTOK {
                 " AND d.Evrak_Cins " + wee +
                 " AND d.Evrak_Cins " + ure1 +
                 " )),0) AS Tutar " +
-                " FROM MAL USE INDEX (IX_MAL) ,STOK USE INDEX (IX_STOK) " +
+                " FROM MAL USE INDEX (IX_MAL) " +
                 " WHERE   Kodu >= N'" + k1 + "' AND  Kodu <= N'" + k2 + "' " +
-                 " AND Stok.Urun_Kodu = MAL.Kodu " +
                                    " AND MAL.Ana_Grup " + uanagrp +
                                    " AND MAL.Alt_Grup " + ualtgrp +
-                                   " AND Stok.Tarih >= '" + t1 + "' AND  Stok.Tarih <= '" + t2 + " 23:59:59.999'" +
-                                   " AND Stok.Urun_Kodu >= N'" + k1 + "' AND Stok.Urun_Kodu <= N'" + k2 + "' " +
-                                   " AND Stok.Evrak_No >= '" + f1 + "' AND Stok.Evrak_No <= '" + f2 + "' " +
-                                   " AND Stok.Ana_Grup " + anagrup +
-                                   " AND Stok.Alt_Grup " + altgrup +
-                                   " AND Stok.Depo " + depo +
-                                   " AND stok.Evrak_Cins " + wee +
-                                   " AND stok.Evrak_Cins " + ure1 +
-                " GROUP BY mal.kodu,mal.barkod,mal.adi,mal.birim,mal.kusurat " +
+               " GROUP BY mal.kodu,mal.barkod,mal.adi,mal.birim,mal.kusurat " +
                 " ORDER BY mal.kodu ";
-        System.out.println(sql);
-
-        PreparedStatement stmt = con.prepareStatement(sql);
+         PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}

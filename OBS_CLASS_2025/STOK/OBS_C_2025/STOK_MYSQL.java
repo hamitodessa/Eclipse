@@ -1509,7 +1509,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql =   " SELECT Fatura_No ,IF(Gir_Cik = 'C','Satis','Alis') as Hareket,Tarih ,Cari_Firma ,Adres_Firma,Doviz , sum(Miktar) as Miktar ,sum(Fiat * Miktar) as Tutar, " +
+        String sql =   " SELECT Fatura_No ,IF(Gir_Cik = 'C','Satis','Alis') as Hareket,DATE(Tarih) as Tarih,Cari_Firma ,Adres_Firma,Doviz , sum(Miktar) as Miktar ,sum(Fiat * Miktar) as Tutar, " +
                 " SUM(Fiat * Miktar) - sum(((Fiat * Miktar) * Iskonto)/100) as Iskontolu_Tutar " +
                 " FROM FATURA USE INDEX (IX_FATURA) " +
                 " WHERE FATURA.Fatura_No >= N'" + ino1 + "' AND  FATURA.Fatura_No <= N'" + ino2 + "'" +
@@ -1526,8 +1526,7 @@ public class STOK_MYSQL implements ISTOK {
                 " AND FATURA.Gir_Cik Like '" + turu + "%'" +
                 " GROUP BY Fatura_No,Gir_Cik,Tarih ,Cari_Firma,Adres_Firma,Doviz  " +
                 " ORDER BY  Fatura_No";
-        System.out.println(sql);
-    	PreparedStatement stmt = con.prepareStatement(sql);
+     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -1537,14 +1536,14 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql =  " SELECT Fatura_No,IIF(Gir_Cik = 'C','Satis','Alis') as Hareket,Tarih " +
+        String sql =  " SELECT Fatura_No,IF(Gir_Cik = 'C','Satis','Alis') as Hareket,DATE(Tarih) as Tarih " +
                 " " + bir + "" +
                 " " + iki + "" +
                 " , sum( Miktar) as Miktar " +
-                " ,sum([Fiat] * [Miktar]) as Tutar " +
+                " ,sum( Fiat  *  Miktar ) as Tutar " +
                 " ,sum((Fiat * Miktar) - ((Fiat * Miktar) * Iskonto)/100) as Iskontolu_Tutar  " +
                 " ,sum((((Fiat * Miktar) - ((Fiat * Miktar) * Iskonto)/100) * Fatura.kdv)/100)  AS Kdv_Tutar " +
-                " ,sum((Fiat * Miktar) - ((Fiat * Miktar) * Iskonto)/100 +   (((Fatura.Fiat * [Miktar]) - ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100) * Fatura.kdv ) / 100)    as Toplam_Tutar " +
+                " ,sum((Fiat * Miktar) - ((Fiat * Miktar) * Iskonto)/100 +   (((Fatura.Fiat *  Miktar ) - ((Fatura.Fiat *  Miktar ) *  Iskonto ) / 100) * Fatura.kdv ) / 100)    as Toplam_Tutar " +
                 " FROM FATURA USE INDEX (IX_FATURA) " +
                  " WHERE FATURA.Fatura_No >= '" + ino1 + "' AND  FATURA.Fatura_No <= '" + ino2 + "'" +
                  " AND FATURA.Tarih >= '" + t1 + "' AND  FATURA.Tarih <= '" + t2 + " 23:59:59.998'" +
@@ -1570,13 +1569,13 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql =  " SELECT  " + grp + " ,IIF(Gir_Cik = 'C','Satis','Alis') as Hareket " +
+        String sql =  " SELECT  " + grp + " ,IF(Gir_Cik = 'C','Satis','Alis') as Hareket " +
                 "  " + cari_yer + " " +
-                " ,sum([Miktar]) as Miktar " +
-                " ,sum([Fiat] * [Miktar]) as Tutar " +
+                " ,sum( Miktar ) as Miktar " +
+                " ,sum( Fiat  *  Miktar ) as Tutar " +
                 " ,SUM(Fiat * Miktar) - sum(((Fiat * Miktar) * Iskonto)/100) as Iskontolu_Tutar " +
-                " ,sum((((Fatura.Fiat * [Miktar]) - ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100) * Fatura.kdv ) / 100)  AS Kdv_Tutar " +
-                " ,SUM(Fiat * Miktar) - sum(((Fiat * Miktar) * Iskonto)/100) +   sum((((Fatura.Fiat * [Miktar]) - ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100) * Fatura.kdv ) / 100)    as Toplam_Tutar" +
+                " ,sum((((Fatura.Fiat *  Miktar ) - ((Fatura.Fiat *  Miktar ) *  Iskonto ) / 100) * Fatura.kdv ) / 100)  AS Kdv_Tutar " +
+                " ,SUM(Fiat * Miktar) - sum(((Fiat * Miktar) * Iskonto)/100) +   sum((((Fatura.Fiat *  Miktar ) - ((Fatura.Fiat *  Miktar ) *  Iskonto ) / 100) * Fatura.kdv ) / 100)    as Toplam_Tutar" +
                 " FROM FATURA USE INDEX (IX_FATURA) " +
                  " WHERE FATURA.Fatura_No >= '" + ino1 + "' AND  FATURA.Fatura_No <= '" + ino2 + "'" +
                  " AND FATURA.Tarih >= '" + t1 + "' AND  FATURA.Tarih <= '" + t2 + " 23:59:59.998'" +
@@ -1646,12 +1645,12 @@ public class STOK_MYSQL implements ISTOK {
 		else
 		       ure1 = " <> 'URE' " ;
 		
-        String sql =   " SELECT STOK.Urun_Kodu as Kodu  , mal.Adi ,Mal.Birim as Simge, SUM(iif( Hareket = 'G' ,miktar, 0 )) as Giris_Miktari," +
-                " SUM(iif( Hareket = 'G' , miktar , 0 ) * mal.Agirlik )  as Giris_Agirlik," +
-                " SUM(iif(Hareket = 'C', abs(miktar), 0 )) as Cikis_Miktari, " +
-                " SUM(iif(Hareket = 'C', abs(miktar), 0 ) * MAL.Agirlik)  as Cikis_Agirlik, " +
-                " SUM(iif( Hareket = 'G' ,miktar, 0 )) -  SUM(iif(Hareket = 'C',abs( miktar), 0 )) as Stok_Miktari," +
-                " SUM(iif( Hareket = 'G' ,miktar, 0 )* mal.Agirlik) -  SUM(iif(Hareket = 'C',abs( miktar), 0 )* mal.Agirlik)     as Stok_Agirlik  " +
+        String sql =   " SELECT STOK.Urun_Kodu as Kodu  , mal.Adi ,Mal.Birim as Simge, SUM(IF( Hareket = 'G' ,miktar, 0 )) as Giris_Miktari," +
+                " SUM(IF( Hareket = 'G' , miktar , 0 ) * mal.Agirlik )  as Giris_Agirlik," +
+                " SUM(IF(Hareket = 'C', abs(miktar), 0 )) as Cikis_Miktari, " +
+                " SUM(IF(Hareket = 'C', abs(miktar), 0 ) * MAL.Agirlik)  as Cikis_Agirlik, " +
+                " SUM(IF( Hareket = 'G' ,miktar, 0 )) -  SUM(IF(Hareket = 'C',abs( miktar), 0 )) as Stok_Miktari," +
+                " SUM(IF( Hareket = 'G' ,miktar, 0 )* mal.Agirlik) -  SUM(IF(Hareket = 'C',abs( miktar), 0 )* mal.Agirlik)     as Stok_Agirlik  " +
                 " From [STOK] USE INDEX (IX_STOK) ,[MAL] USE INDEX (IX_MAL) " +
                 " where mal.Kodu = stok.Urun_Kodu " +
                 " And   Kodu >= N'" + k1 + "' AND  Kodu <= N'" + k2 + "' " +
@@ -1667,7 +1666,7 @@ public class STOK_MYSQL implements ISTOK {
                                     " AND Stok.Evrak_Cins " + ure1 +
                 " Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim " +
                 " ORDER by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim ";
-    	PreparedStatement stmt = con.prepareStatement(sql);
+        PreparedStatement stmt = con.prepareStatement(sql);
  		rss = stmt.executeQuery();
 		return rss;	
 
@@ -2133,9 +2132,9 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql =   "SELECT IRSALIYE.Irsaliye_No, IIF(Hareket = 'C','Satis','Alis') as Hareket , IRSALIYE.Tarih,IRSALIYE.Cari_Hesap_Kodu,IRSALIYE.Firma as Adres_Firma,  " +
+        String sql =   "SELECT IRSALIYE.Irsaliye_No, IF(Hareket = 'C','Satis','Alis') as Hareket , DATE(IRSALIYE.Tarih) as Tarih ,IRSALIYE.Cari_Hesap_Kodu,IRSALIYE.Firma as Adres_Firma,  " +
                 " mal.Birim, SUM(IRSALIYE.Miktar) AS Miktar ,sum((IRSALIYE.Miktar * IRSALIYE.Fiat)) as Tutar " +
-                " FROM  IRSALIYE USE INDEX (IX_IRSALIYE)) , MAL USE INDEX (IX_MAL) " +
+                " FROM  IRSALIYE USE INDEX (IX_IRSALIYE) , MAL USE INDEX (IX_MAL) " +
                 " WHERE IRSALIYE.Kodu = mal.Kodu " +
                 " AND  IRSALIYE.Irsaliye_No >= '" + ino1 + "' AND  IRSALIYE.Irsaliye_No <= '" + ino2 + "'" +
                 " AND  IRSALIYE.Tarih >= '" + t1 + "' AND  IRSALIYE.Tarih <= '" + t2 + " 23:59:59.998'" +
@@ -2317,24 +2316,24 @@ public class STOK_MYSQL implements ISTOK {
                 " (SELECT Birim FROM MAL WHERE FATURA.KODU = MAL.KODU ) AS Birim , " +
                 " Fatura.Fiat ,Doviz,Fatura.Fiat * Miktar as Tutar , " +
                 " Iskonto , " +
-                " ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100 as Iskonto_Tutar , " +
-                " (Fatura.Fiat * [Miktar]) - ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100 as Iskontolu_Tutar , " +
+                " ((Fatura.Fiat * Miktar) * Iskonto) / 100 as Iskonto_Tutar , " +
+                " (Fatura.Fiat *  Miktar ) - ((Fatura.Fiat *  Miktar ) *  Iskonto ) / 100 as Iskontolu_Tutar , " +
                 " Fatura.Kdv , " +
-                " (((Fatura.Fiat * [Miktar]) - ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100) * Fatura.kdv ) / 100  AS Kdv_Tutar , " +
+                " (((Fatura.Fiat *  Miktar ) - ((Fatura.Fiat *  Miktar ) *  Iskonto ) / 100) * Fatura.kdv ) / 100  AS Kdv_Tutar , " +
                 " Tevkifat , " +
-                " (((((Fatura.Fiat * [Miktar]) - ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100) * Fatura.kdv ) / 100)/ 10 ) * [Tevkifat] as Tev_Edilen_KDV , " +
-                " ((Fatura.Fiat * [Miktar]) - ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100) + ((((Fatura.Fiat * [Miktar]) - ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100) * Fatura.kdv ) / 100) as Tev_Dah_Top_Tutar , " +
-                " ((((Fatura.Fiat * [Miktar]) - ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100) * Fatura.kdv ) / 100) - ((((((Fatura.Fiat * [Miktar]) - ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100) * Fatura.kdv ) / 100)/ 10 ) * [Tevkifat] ) as Beyan_Edilen_KDV , " +
-                " (((Fatura.Fiat * [Miktar]) - ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100) + ((((Fatura.Fiat * [Miktar]) - ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100) * Fatura.kdv ) / 100)) - ((((((Fatura.Fiat * [Miktar]) - ((Fatura.Fiat * [Miktar]) * [Iskonto]) / 100) * Fatura.kdv ) / 100)/ 10 ) * [Tevkifat]) as Tev_Har_Top_Tutar , " +
+                " (((((Fatura.Fiat *  Miktar ) - ((Fatura.Fiat *  Miktar ) *  Iskonto ) / 100) * Fatura.kdv ) / 100)/ 10 ) *  Tevkifat  as Tev_Edilen_KDV , " +
+                " ((Fatura.Fiat *  Miktar ) - ((Fatura.Fiat *  Miktar ) *  Iskonto ) / 100) + ((((Fatura.Fiat *  Miktar ) - ((Fatura.Fiat *  Miktar ) *  Iskonto ) / 100) * Fatura.kdv ) / 100) as Tev_Dah_Top_Tutar , " +
+                " ((((Fatura.Fiat *  Miktar ) - ((Fatura.Fiat *  Miktar ) *  Iskonto ) / 100) * Fatura.kdv ) / 100) - ((((((Fatura.Fiat *  Miktar ) - ((Fatura.Fiat *  Miktar ) *  Iskonto ) / 100) * Fatura.kdv ) / 100)/ 10 ) *  Tevkifat  ) as Beyan_Edilen_KDV , " +
+                " (((Fatura.Fiat *  Miktar ) - ((Fatura.Fiat *  Miktar ) *  Iskonto ) / 100) + ((((Fatura.Fiat *  Miktar ) - ((Fatura.Fiat *  Miktar ) *  Iskonto ) / 100) * Fatura.kdv ) / 100)) - ((((((Fatura.Fiat *  Miktar ) - ((Fatura.Fiat *  Miktar ) *  Iskonto ) / 100) * Fatura.kdv ) / 100)/ 10 ) *  Tevkifat ) as Tev_Har_Top_Tutar , " +
                 " IFNULL((SELECT Ana_Grup FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = MAL.Ana_Grup),'') AS Ana_Grup  , " +
                 " IFNULL((SELECT Alt_Grup FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = MAL.Alt_Grup),'') AS Alt_Grup  , " +
                 " IFNULL((SELECT Depo FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = FATURA.Depo),'') AS Depo , " +
-                " Ozel_Kod ,Izahat, IIF(Gir_Cik = 'C','Satis','Alis') as Hareket ,FATURA. USER " +
+                " Ozel_Kod ,Izahat, IF(Gir_Cik = 'C','Satis','Alis') as Hareket ,FATURA. USER " +
                 " FROM FATURA,MAL " +
                 " WHERE FATURA.Fatura_No = '" + fno + "' " + 
                 " AND FATURA.Gir_Cik Like '" + turu + "%'" +
                 " AND FATURA .Kodu = mal.Kodu " ;
-    	PreparedStatement stmt = con.prepareStatement(sql);
+      	PreparedStatement stmt = con.prepareStatement(sql);
  		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -2681,7 +2680,7 @@ public class STOK_MYSQL implements ISTOK {
                 " AND d.Evrak_Cins " + ure1 +
                 " ),0),'N3') " +
                 " End As Cikis_Miktari , " +
-                " IFNULL((Select sum(iif(d.Doviz = '" + calisanpara + "',abs(Tutar),abs(Tutar)* d.Kur))  " + //' sum(abs(Tutar))
+                " IFNULL((Select sum(IF(d.Doviz = '" + calisanpara + "',abs(Tutar),abs(Tutar)* d.Kur))  " + //' sum(abs(Tutar))
                 " FROM STOK d " +  // " IFNULL((Select IIF(d.Doviz = 'TL',sum(abs(Tutar)),sum(abs(Tutar) * d.Kur))  " + ' sum(abs(Tutar))
                 " WHERE  d.Urun_Kodu=mal.kodu And  d.Hareket='C' " +
                 " AND d.Tarih >= '" + t1 + "' AND  d.Tarih <= '" + t2 + " 23:59:59.998'" +
@@ -2704,7 +2703,7 @@ public class STOK_MYSQL implements ISTOK {
                 " AND d.Evrak_Cins " + wee +
                 " AND d.Evrak_Cins " + ure1 +
                 " ),0) *  " +
-                " IFNULL((SELECT  sum(Tutar)/ sum(iif(miktar=0 ,1,miktar)) " +
+                " IFNULL((SELECT  sum(Tutar)/ sum(IF(miktar=0 ,1,miktar)) " +
                 " FROM STOK d " +
                 " WHERE  d.Urun_Kodu=mal.kodu AND  d.Hareket='G' " +
                 " AND d.Tarih >= '" + t1 + "' AND  d.Tarih <= '" + t2 + " 23:59:59.998'" +
@@ -2762,7 +2761,7 @@ public class STOK_MYSQL implements ISTOK {
                 " AND d.Evrak_Cins " + ure1 +
                 " ),0),'N3') " +
                 " End  As Stok_Miktari, " +
-                " IFNULL((Select  sum(Tutar)/ sum(iif(miktar=0 ,1,miktar)) " +
+                " IFNULL((Select  sum(Tutar)/ sum(IF(miktar=0 ,1,miktar)) " +
                 " FROM STOK d " +
                 " WHERE  d.Urun_Kodu=mal.kodu And  d.Hareket='G' " +
                 " AND d.Tarih >= '" + t1 + "' AND  d.Tarih <= '" + t2 + " 23:59:59.998'" +
@@ -2794,7 +2793,7 @@ public class STOK_MYSQL implements ISTOK {
                 " AND d.Depo " + depo +
                 " AND d.Evrak_Cins " + wee +
                 " AND d.Evrak_Cins " + ure1 +
-                " ),0) ) ) * ((SELECT  sum(Tutar)/ sum(iif(miktar=0 ,1,miktar)) " +
+                " ),0) ) ) * ((SELECT  sum(Tutar)/ sum(IF(miktar=0 ,1,miktar)) " +
                 " FROM STOK d " +
                 " WHERE  d.Urun_Kodu=mal.kodu AND  d.Hareket='G' " +
                 " AND d.Tarih >= '" + t1 + "' AND  d.Tarih <= '" + t2 + " 23:59:59.999'" +
@@ -2821,6 +2820,8 @@ public class STOK_MYSQL implements ISTOK {
                                    " AND stok.Evrak_Cins " + ure1 +
                 " GROUP BY mal.kodu,mal.barkod,mal.adi,mal.birim,mal.kusurat " +
                 " ORDER BY mal.kodu ";
+        System.out.println(sql);
+
         PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

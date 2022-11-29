@@ -2342,10 +2342,10 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql =  "SELECT DISTINCT convert(varchar(10), s.Tarih, 104) as Tarih  " +
-                " FROM STOK s left outer join OK_Kur" +  BAGLAN.kurDizin.kOD + ".dbo.kurlar k on convert(varchar(10), k.Tarih, 102) = convert(varchar(10), s.Tarih, 102) and k.Kur = '" + kur + "'" +
+        String sql =  "SELECT DISTINCT DATE( s.Tarih) as Tarih  " +
+                " FROM STOK s left outer join ok_kur" +  BAGLAN.kurDizin.kOD + ".kurlar k on DATE( k.Tarih) = DATE( s.Tarih) and k.Kur = '" + kur + "'" +
                 " WHERE k." + cins + " IS NULL OR k." + cins + " =0 " +
-                " ORDER BY  convert(varchar(10), s.Tarih, 104)  " ;
+                " ORDER BY DATE(s.Tarih)  " ;
     	PreparedStatement stmt = con.prepareStatement(sql);
  		rss = stmt.executeQuery();
 		return rss;	
@@ -2823,7 +2823,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		
         String sql =  " SELECT Urun_Kodu ,  Barkod , Adi, Evrak_No , " +
-                 " Tarih ,Miktar ,  Birim , Miktar * (SELECT Agirlik From Mal Where mal.Kodu = stok.Urun_Kodu)  As Agirlik  ,STOK.Fiat  , " +
+                 " DATE(Tarih) ,CONVERT(Miktar,double) ,  Birim , CONVERT(Miktar * (SELECT Agirlik From Mal Where mal.Kodu = stok.Urun_Kodu) ,double)  As Agirlik  ,STOK.Fiat  , " +
                  " Tutar ," +
                  " IFNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = MAL.Ana_Grup),'') Ana_Grup , " +
                  " IFNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = MAL.Alt_Grup),'') AS Alt_Grup , " +

@@ -1023,7 +1023,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		ResultSet	rs = null;
 		ResultSet	rss = null;
     	PreparedStatement stmt2; 
-  		String sql = "SELECT * FROM STOK  ORDER BY Evrak_No ";
+  		String sql = "SELECT * FROM STOK  ORDER BY Tarih ";
 		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		 while(rss.next()){

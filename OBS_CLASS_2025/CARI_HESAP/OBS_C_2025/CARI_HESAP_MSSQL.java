@@ -1024,7 +1024,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
         		"				WHERE   SATIRLAR.HESAP  = h.HESAP    " + 
         		"				AND TARIH BETWEEN '"+ t1 + "' AND '"+ t2 + " 23:59:59.998'  ) ,0)),2)  as BAKIYE     " + 
         		"        		FROM HESAP h WITH (INDEX (IX_HESAP))  " + 
-        		"        		WHERE h.HESAP BETWEEN N'"+ h1 +"' AND N'"+ h2+ "'" + 
+        		"        		WHERE h.HESAP > N'"+ h1 +"' AND  h.HESAP < N'"+ h2+ "'" + 
         		"        		AND h.HESAP_CINSI BETWEEN N'"+ c1 + "' AND '"+ c2 +"'" + 
         		"              AND h.KARTON BETWEEN N'"+ k1 + "' AND N'" + k2 + "'" + 
         		"              GROUP BY h.HESAP, h.UNVAN, h.HESAP_CINSI" + o1 + " " + o2 + "" ;

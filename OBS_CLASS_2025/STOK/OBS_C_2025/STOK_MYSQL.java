@@ -2284,10 +2284,10 @@ public class STOK_MYSQL implements ISTOK {
         		"  SUM(abs(STOK.Tutar / kurlar.MA)) as "+ kurc +"_Tutar , " +
                 " SUM(abs(STOK.Miktar))  As Miktar, " +
                 " SUM(abs(STOK.Miktar) * MAL.Agirlik) As Agirlik, " +
-                " SUM(abs(STOK.Tutar)) /  iif( sum( abs(STOK.Miktar)  * MAL.Agirlik   ) = 0,1, " +
+                " SUM(abs(STOK.Tutar)) /  IF( sum( abs(STOK.Miktar)  * MAL.Agirlik   ) = 0,1, " +
                 " SUM(abs(STOK.Miktar) * MAL.Agirlik)) As Kg_Satis , " +
                 " (	 SUM(abs(STOK.Tutar / kurlar.MA)) /      NULLIF(      SUM(abs(STOK.Miktar) * MAL.Agirlik),0))  As Kg_"+ kurc +" " +
-                " From STOK,    MAL ,OK_Kur" + kurkod +".dbo.kurlar  " +
+                " From STOK,    MAL ,ok_kur" + kurkod +".kurlar  " +
                 " WHERE    STOK.Hareket = 'C' " +
                 " And Evrak_Cins = 'FAT' " +
                  " And MAL.Ana_Grup " + qwq6 +
@@ -2299,7 +2299,7 @@ public class STOK_MYSQL implements ISTOK {
                 "  AND Fatura.Gir_Cik = 'C' )  between N'" + m1 + "' and N'" + m2 + "'" +
                 "  and STOK.Tarih BETWEEN '" + t1 + "'" +
                 "  AND '" + t2 + " 23:59:59.998'"  +
-                "  AND kurlar.Tarih = convert(varchar(10), STOK.Tarih, 120) and kurlar.Kur = '" + kurc + "'  " +
+                "  AND kurlar.Tarih = DATE(STOK.Tarih) and kurlar.Kur = '" + kurc + "'  " +
                "  GROUP BY  " + iu ;
  
     	PreparedStatement stmt = con.prepareStatement(sql);

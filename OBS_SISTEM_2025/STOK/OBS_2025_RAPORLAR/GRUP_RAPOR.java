@@ -798,43 +798,87 @@ public class GRUP_RAPOR extends JInternalFrame {
 	     ResultSet rs= null ;
 	     if (FILTRE.comboBox_28.getItemAt(FILTRE.comboBox_28.getSelectedIndex()).equals("Yil"))
 	     {
-	    	 
+	    		if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+	       		{
 	    			rs = f_Access.baslik_bak("DISTINCT datepart(yyyy,STOK.Tarih)","order by datepart(yyyy,STOK.Tarih)",jkj,ch1,
 	    					FILTRE.textField_32.getText(),FILTRE.textField_33.getText() ,
 	    					FILTRE.textField_31.getText(),FILTRE.textField_34.getText() ,
 	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21));
-				
-	           sstr_2 = " datepart(yyyy,STOK.Tarih)" ;
+		           sstr_2 = " datepart(yyyy,STOK.Tarih)" ;
+	       		}
+	    		else 	if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+	       		{
+	    			rs = f_Access.baslik_bak("DISTINCT YEAR(STOK.Tarih)","order by YEAR(STOK.Tarih)",jkj,ch1,
+	    					FILTRE.textField_32.getText(),FILTRE.textField_33.getText() ,
+	    					FILTRE.textField_31.getText(),FILTRE.textField_34.getText() ,
+	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21));
+		           sstr_2 = "YEAR(STOK.Tarih)" ;
+
+	       		}
 	     }
 	     else if (FILTRE.comboBox_28.getItemAt(FILTRE.comboBox_28.getSelectedIndex()).equals("Ay"))
 	     {
-	    	
+	    	 if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+	       		{
 	    			rs = f_Access.baslik_bak("DISTINCT datepart(mm,STOK.Tarih)", "order by datepart(mm,STOK.Tarih)",jkj,ch1,
 	    					FILTRE.textField_32.getText(),FILTRE.textField_33.getText() ,
 	    					FILTRE.textField_31.getText(),FILTRE.textField_34.getText() ,
 	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21));
 				
 	           sstr_2 = "datepart(mm,STOK.Tarih)" ;
+	       		}
+	    	 else if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+	       		{
+	    			rs = f_Access.baslik_bak("DISTINCT MONTH(STOK.Tarih)", "order by MONTH(STOK.Tarih)",jkj,ch1,
+	    					FILTRE.textField_32.getText(),FILTRE.textField_33.getText() ,
+	    					FILTRE.textField_31.getText(),FILTRE.textField_34.getText() ,
+	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21));
+				
+	           sstr_2 = "MONTH(STOK.Tarih)" ;
+
+	       		}
 	     }
 	     else if (FILTRE.comboBox_28.getItemAt(FILTRE.comboBox_28.getSelectedIndex()).equals("Gun"))
 	     {
-	    	
+	    	 if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+	       		{
 	    			rs = f_Access.baslik_bak("DISTINCT datepart(dd,STOK.Tarih)", "order by datepart(dd,STOK.Tarih)",jkj,ch1,
 	    					FILTRE.textField_32.getText(),FILTRE.textField_33.getText() ,
 	    					FILTRE.textField_31.getText(),FILTRE.textField_34.getText() ,
 	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21));
 				
 	           sstr_2 = "datepart(dd,STOK.Tarih)" ;
-	     }
-	     else if (FILTRE.comboBox_28.getItemAt(FILTRE.comboBox_28.getSelectedIndex()).equals("Ana Grup"))
-	     {
-	    	
-	    			rs = f_Access.baslik_bak("DISTINCT ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID = STOK.Ana_Grup),'---') as Ana_Grup", "order by Ana_Grup",jkj,ch1,
+	       		}
+	    	 else  if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+	       		{
+	    			rs = f_Access.baslik_bak("DISTINCT DAY(STOK.Tarih)", "order by DAY(STOK.Tarih)",jkj,ch1,
 	    					FILTRE.textField_32.getText(),FILTRE.textField_33.getText() ,
 	    					FILTRE.textField_31.getText(),FILTRE.textField_34.getText() ,
 	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21));
 				
-	           sstr_2 = " ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID = STOK.Ana_Grup),'---')  " ;
+	           sstr_2 = "DAY(STOK.Tarih)" ;
+
+	       		}
+	     }
+	     else if (FILTRE.comboBox_28.getItemAt(FILTRE.comboBox_28.getSelectedIndex()).equals("Ana Grup"))
+	     {
+    		 String ifnul = "";
+	    	 if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+	       		{
+
+	    		 ifnul = "ISNULL";
+	       		}
+	    	 else  if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+	    	 {
+	    		 ifnul = "IFNULL";
+	    	 }
+	    			rs = f_Access.baslik_bak("DISTINCT "+ ifnul +"((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID = STOK.Ana_Grup),'---') as Ana_Grup", "order by Ana_Grup",jkj,ch1,
+	    					FILTRE.textField_32.getText(),FILTRE.textField_33.getText() ,
+	    					FILTRE.textField_31.getText(),FILTRE.textField_34.getText() ,
+	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21));
+				
+	           sstr_2 =  ifnul + "((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID = STOK.Ana_Grup),'---')  " ;
+	       	
 	     }
 	     else if (FILTRE.comboBox_28.getItemAt(FILTRE.comboBox_28.getSelectedIndex()).equals("Hesap Kodu"))
 	     {
@@ -1018,7 +1062,14 @@ public class GRUP_RAPOR extends JInternalFrame {
 	{
         if (FILTRE.chckbxIstenenAy.isSelected())
         {
+        	if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+        	{
 		   jkj = " datepart(mm,STOK.Tarih) like '" + FILTRE.textField_37.getText() + "'  AND STOK.Hareket = 'C' " ;
+        	}
+        	else if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+        	{
+        		   jkj = " MONTH(STOK.Tarih) like '" + FILTRE.textField_37.getText() + "'  AND STOK.Hareket = 'C' " ;
+        	}
         }
 		 else
 		 {
@@ -1030,7 +1081,14 @@ public class GRUP_RAPOR extends JInternalFrame {
        {
        	 if (FILTRE.chckbxDovizeCevirme.isSelected())
        	 {
+       		if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+       		{
 		           sstr_4 = " ABS(STOK.Tutar / iif(k." + FILTRE.comboBox_33.getItemAt(FILTRE.comboBox_33.getSelectedIndex())+ " = 0 ,1, k." + FILTRE.comboBox_33.getItemAt(FILTRE.comboBox_33.getSelectedIndex()) + ")) as Tutar ";
+       		}
+       		else if (BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+       		{
+		           sstr_4 = " ABS(STOK.Tutar / IF(k." + FILTRE.comboBox_33.getItemAt(FILTRE.comboBox_33.getSelectedIndex())+ " = 0 ,1, k." + FILTRE.comboBox_33.getItemAt(FILTRE.comboBox_33.getSelectedIndex()) + ")) as Tutar ";
+       		}
        	 }
 		       else
 		       {
@@ -1053,7 +1111,14 @@ public class GRUP_RAPOR extends JInternalFrame {
   	 {
   		 if (FILTRE.comboBox_26.getItemAt(FILTRE.comboBox_26.getSelectedIndex()).equals("Tutar"))
   		 {
+  			if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+       		{
               kur_dos = "  left outer join OK_Kur" + BAGLAN .kurDizin.kOD + ".dbo.kurlar k on k.Tarih = convert(varchar(10), STOK.Tarih, 120) and (k.kur IS NULL OR k.KUR ='" + FILTRE.comboBox_32.getItemAt(FILTRE.comboBox_32.getSelectedIndex())+ "') ";
+       		}
+  			else if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+       		{
+  	             kur_dos = "  left outer join ok_kur" + BAGLAN .kurDizin.kOD + ".kurlar k on k.Tarih = DATE( STOK.Tarih) and (k.kur IF NULL OR k.KUR ='" + FILTRE.comboBox_32.getItemAt(FILTRE.comboBox_32.getSelectedIndex())+ "') ";
+       		}
   		 }
           else
           {

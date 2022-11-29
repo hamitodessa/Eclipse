@@ -2678,7 +2678,7 @@ public class OBS_MAIN extends JFrame {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-	
+		form_ac("CALISMA DIZINLERI","");
 		//
   	}
 	

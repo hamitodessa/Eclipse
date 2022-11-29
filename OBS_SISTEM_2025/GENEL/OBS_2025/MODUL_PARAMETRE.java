@@ -34,6 +34,12 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_4;
+	private JLabel lblNewLabel_1 = new JLabel(".....");
+	private JLabel lblNewLabel_1_1 = new JLabel(".....");
+	private JLabel lblNewLabel_1_2 = new JLabel(".....");
+	private JLabel lblNewLabel_1_3 = new JLabel(".....");
+	private JLabel lblNewLabel_1_4 = new JLabel(".....");
+	private JLabel lblNewLabel_1_5 = new JLabel(".....");
 	private JLabel label;
 	private JLabel label_1;
 	private JLabel label_2;
@@ -99,6 +105,10 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_4.setForeground(Color.RED);
 		panel.add(lblNewLabel_4);
 		
+		lblNewLabel_1 = new JLabel(".....");
+		lblNewLabel_1.setBounds(664, 20, 100, 14);
+		panel.add(lblNewLabel_1);
+		
 		
 		
 		JPanel panel_1 = new JPanel();
@@ -126,6 +136,10 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label_2.setForeground(Color.RED);
 		panel_1.add(label_2);
 		
+		lblNewLabel_1_1 = new JLabel(".....");
+		lblNewLabel_1_1.setBounds(664, 20, 100, 14);
+		panel_1.add(lblNewLabel_1_1);
+		
 	
 		
 		JPanel panel_2 = new JPanel();
@@ -151,6 +165,10 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label_55.setForeground(Color.RED);
 		label_55.setBounds(250, 20, 404, 14);
 		panel_2.add(label_55);
+		
+		lblNewLabel_1_2 = new JLabel(".....");
+		lblNewLabel_1_2.setBounds(664, 20, 100, 14);
+		panel_2.add(lblNewLabel_1_2);
 		
 	
 		
@@ -179,6 +197,10 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label_8.setForeground(Color.RED);
 		panel_3.add(label_8);
 		
+		lblNewLabel_1_3 = new JLabel(".....");
+		lblNewLabel_1_3.setBounds(664, 20, 100, 14);
+		panel_3.add(lblNewLabel_1_3);
+		
 		
 		
 		JPanel panel_4 = new JPanel();
@@ -205,6 +227,10 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label_11.setForeground(Color.RED);
 		panel_4.add(label_11);
 		
+		lblNewLabel_1_4 = new JLabel(".....");
+		lblNewLabel_1_4.setBounds(664, 20, 100, 14);
+		panel_4.add(lblNewLabel_1_4);
+		
 	
 		JPanel panel_5 = new JPanel();
 		panel_5.setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(135, 206, 250)), "Gunluk", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -230,6 +256,10 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label_14.setForeground(Color.RED);
 		panel_5.add(label_14);
 		
+		lblNewLabel_1_5 = new JLabel(".....");
+		lblNewLabel_1_5.setBounds(664, 20, 100, 14);
+		panel_5.add(lblNewLabel_1_5);
+		
 		try {
 			yukle();
 		} catch (ClassNotFoundException e) {
@@ -246,6 +276,7 @@ private void yukle() throws ClassNotFoundException, SQLException
 {
 			// Cari
 			lblNewLabel.setText(BAGLAN.cariDizin.kOD);
+			lblNewLabel_1.setText(BAGLAN.cariDizin.hAN_SQL);
 			if (BAGLAN.cariDizin.yER.equals("L"))
 			{
 				lblNewLabel_2.setText(BAGLAN.cariDizin.yER);
@@ -258,6 +289,7 @@ private void yukle() throws ClassNotFoundException, SQLException
 
 			// Stok
 			label.setText(BAGLAN.fatDizin.kOD);
+			lblNewLabel_1_1.setText(BAGLAN.fatDizin.hAN_SQL);
 			if (BAGLAN.fatDizin.yER.equals("L"))
 			{
 				label_1.setText(BAGLAN.fatDizin.yER);
@@ -269,6 +301,7 @@ private void yukle() throws ClassNotFoundException, SQLException
 			label_2.setText( f_Access.fat_firma_adi() );
 			// Kambiyo 
 			label_3.setText(BAGLAN.kamDizin.kOD);
+			lblNewLabel_1_2.setText(BAGLAN.kamDizin.hAN_SQL);
 			if (BAGLAN.kamDizin.yER.equals("L"))
 			{
 				label_4.setText(BAGLAN.kamDizin.yER);
@@ -281,6 +314,7 @@ private void yukle() throws ClassNotFoundException, SQLException
 
 			// Adres
 			label_6.setText(BAGLAN.adrDizin.kOD);
+			lblNewLabel_1_3.setText(BAGLAN.adrDizin.hAN_SQL);
 			if (BAGLAN.adrDizin.yER.equals("L"))
 			{
 				label_7.setText(BAGLAN.adrDizin.yER);
@@ -292,6 +326,7 @@ private void yukle() throws ClassNotFoundException, SQLException
 			label_8.setText( a_Access.adr_firma_adi() );
 			// Kur
 			label_9.setText(BAGLAN.kurDizin.kOD);
+			lblNewLabel_1_4.setText(BAGLAN.kurDizin.hAN_SQL);
 			if (BAGLAN.kurDizin.yER.equals("L"))
 			{
 				label_10.setText(BAGLAN.kurDizin.yER);
@@ -303,6 +338,7 @@ private void yukle() throws ClassNotFoundException, SQLException
 			label_11.setText("");
 			// Gunluk
 			label_12.setText(BAGLAN.gunDizin.kOD);
+			lblNewLabel_1_5.setText(BAGLAN.gunDizin.hAN_SQL);
 			if (BAGLAN.gunDizin.yER.equals("L"))
 			{
 				label_13.setText(BAGLAN.gunDizin.yER);

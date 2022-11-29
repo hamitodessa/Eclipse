@@ -1816,6 +1816,7 @@ public class STOK_MYSQL implements ISTOK {
                 "    ) " +
                 " AS p" +
                 " ORDER BY Urun_Kodu ";
+   
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1828,7 +1829,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
         String sql =  "SELECT * " +
                 " FROM  (SELECT MAL.Kodu as Urun_Kodu, Adi as Urun_Adi , Birim ," +
-                " DATEPART(yyyy,STOK.Tarih) as Yil  , " + sstr_2 + " as  degisken , " + sstr_4 +
+                " YEAR(STOK.Tarih) as Yil  , " + sstr_2 + " as  degisken , " + sstr_4 +
                 "  FROM STOK " + kur_dos + ",MAL " +
                 " WHERE " + jkj +
                 "  AND " + ch1 +
@@ -1851,6 +1852,7 @@ public class STOK_MYSQL implements ISTOK {
                 " ) " +
                 " AS p" +
                 " ORDER BY Urun_Kodu, Yil ";
+        System.out.println(sql);
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1938,7 +1940,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
         String sql = "SELECT * " +
-                " FROM  (SELECT datepart(yy,STOK.Tarih) as Yil , datepart(mm,STOK.Tarih) as Ay  " +
+                " FROM  (SELECT YEAR(STOK.Tarih) as Yil , MONTH(STOK.Tarih) as Ay  " +
                 " ,  " + sstr_2 + " as  degisken , " + sstr_4 +
                 " FROM STOK " + kur_dos + ",MAL " +
                 " WHERE " + jkj +
@@ -1962,6 +1964,7 @@ public class STOK_MYSQL implements ISTOK {
                 "    ) " +
                 " AS p" +
                 " ORDER BY Yil,Ay ";
+        System.out.println(sql);
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1973,7 +1976,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
         String sql = "SELECT * " +
-                " FROM  (SELECT  datepart(yyyy,STOK.Tarih) as Yil , " + sstr_2 + " as  degisken , " + sstr_4 +
+                " FROM  (SELECT  YEAR(STOK.Tarih) as Yil , " + sstr_2 + " as  degisken , " + sstr_4 +
                " FROM STOK " + kur_dos + ",MAL " +
                 " WHERE   " + jkj +
                 " AND " + ch1 +
@@ -1996,6 +1999,7 @@ public class STOK_MYSQL implements ISTOK {
                 "    ) " +
                 " AS p" +
                 " ORDER BY Yil ";
+        System.out.println(sql);
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

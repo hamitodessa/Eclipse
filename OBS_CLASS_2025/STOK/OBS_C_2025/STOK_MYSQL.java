@@ -1601,7 +1601,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql =   "SELECT Evrak_No, Tarih,Urun_Kodu, Adi , " +
+        String sql =   "SELECT Evrak_No, DATE(Tarih),Urun_Kodu, Adi , " +
                 " Miktar,  Birim ,(Miktar * Mal.Agirlik) as Agirlik ," +
                 " (SELECT DEPO from DEPO_DEGISKEN WHERE DPID_Y = STOK.DEPO ) as Depo , " +
                 " (SELECT ANA_GRUP from ANA_GRUP_DEGISKEN WHERE AGID_Y = STOK.Ana_Grup ) as Ana_Grup , " +
@@ -1623,6 +1623,7 @@ public class STOK_MYSQL implements ISTOK {
                 " AND STOK.Alt_Grup " + altgrp +
                 " AND STOK.Depo " + depo +
                 " ORDER BY Evrak_No ";
+        System.out.println(sql);
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

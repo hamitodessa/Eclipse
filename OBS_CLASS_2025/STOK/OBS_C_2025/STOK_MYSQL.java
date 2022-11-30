@@ -1980,7 +1980,7 @@ public class STOK_MYSQL implements ISTOK {
        String[] tokens =replaceString2.split(",");
 
  	   String baslik = "IFNULL(YEAR(Tarih),'') as Yil , " + sstr_2 + "," + replaceString2  + ",";
- 	   System.out.println(baslik);
+ 	   System.out.println( sstr_4);
  	   String cASE = "" ;
        for (String t : tokens)
        {
@@ -2006,9 +2006,9 @@ public class STOK_MYSQL implements ISTOK {
        		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
        		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
        		+" AND  '" + t2 + " 23:59:59.998'" 
-       		+ "  GROUP BY YEAR  WITH ROLLUP ;";
+       		+ "  GROUP BY YEAR   ;";
        	
- 
+	//	+ "  GROUP BY YEAR  WITH ROLLUP ;";
 
         System.out.println(sql);
         //

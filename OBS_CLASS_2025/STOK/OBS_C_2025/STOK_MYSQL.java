@@ -1791,32 +1791,53 @@ public class STOK_MYSQL implements ISTOK {
 			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
+		
 		ResultSet	rss = null;
-        String sql =   "SELECT * " +
-                " FROM  (SELECT MAL.Kodu as Urun_Kodu, Adi as Urun_Adi , Birim ," + sstr_2 + " as  degisken , " + sstr_4 +
-                " FROM STOK " + kur_dos + ",MAL " +
-                " WHERE   " + jkj +
-                  "  AND " + ch1 +
-                   " AND MAL.Ana_Grup " + qwq6 +
-                " AND MAL.Alt_Grup " + qwq7 +
-                   " AND Mal.Ozel_Kod_1 " + qwq8 +
-                " AND STOK.Urun_Kodu = MAL.Kodu " +
-                " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" +
-                " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" +
-                " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " +
-                " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" +
-                " AND  STOK.Tarih BETWEEN '" +t1 + "'" +
-                " AND  '" + t2 + " 23:59:59.998'" +
-                 "  ) as s  " +
-                " PIVOT " +
-                " ( " +
-                " SUM(" + sstr_5 + ") " +
-                " FOR degisken " +
-                " IN ( " + sstr_1 + ") " +
-                "    ) " +
-                " AS p" +
-                " ORDER BY Urun_Kodu ";
-   
+		     String replaceString=sstr_1.replace("[","");//replaces all occurrences of 'a' to 'e'  
+	        String replaceString2=replaceString.replace("]","");//replaces all occurrences of 'a' to 'e'  
+	        String[] tokens =replaceString2.split(",");
+	 	//   String baslik = "IFNULL(YEAR(Tarih),'') as Yil , " + sstr_2 + "," + replaceString2  + ",";
+	
+	 	  if(sstr_4.equals(" (ABS(STOK.Miktar) * MAL.Agirlik)  as Agirlik"))
+	 	  {
+	 		  sstr_4 =  "(ABS(STOK.Miktar) * MAL.Agirlik)" ;
+	 	  }
+	 	  else  if(sstr_4.equals(" ABS(STOK.Tutar) as Tutar"))
+	 	  {
+	 		  sstr_4 =  "(ABS(Tutar))" ;
+	 	  }
+	 	 else  if(sstr_4.equals(" ABS(STOK.Miktar) as Miktar"))
+		  {
+			  sstr_4 =  "(ABS(Miktar))" ;
+		  }
+	 	 else  if(sstr_4.equals(" ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA)) as Tutar "))
+		  {
+			  sstr_4 =  " ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA))" ;
+		  }
+	 	   String cASE = "" ;
+	       for (String t : tokens)
+	       {
+	         cASE  = cASE + "Sum(CASE WHEN  " + sstr_2 + "  = '"  + t.trim() + "' THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
+	       }
+	      cASE = cASE.substring(0, cASE.length() - 1);
+	       String sql = 
+	       		 "  SELECT "
+	       		+ "    MAL.Kodu as Urun_Kodu, Adi as Urun_Adi , Birim ,  " + 	cASE
+	       		+ " FROM STOK " + kur_dos + ",MAL " 
+	       		+ " WHERE   " + jkj 
+	       		+ " AND " + ch1 
+	       		+ " AND MAL.Ana_Grup " + qwq6 
+	       		+ " AND MAL.Alt_Grup " + qwq7 
+	       		+ " AND Mal.Ozel_Kod_1 " + qwq8 
+	       		+ " AND STOK.Urun_Kodu = MAL.Kodu " 
+	       		+ " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" 
+	       		+ " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" 
+	       		+ " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " 
+	       		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
+	       		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
+	       		+" AND  '" + t2 + " 23:59:59.998'" 
+	       		+ "  GROUP BY Urun_Kodu , Urun_Adi , Birim   ;";
+ 
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1826,160 +1847,12 @@ public class STOK_MYSQL implements ISTOK {
 			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		ResultSet	rss = null;
-        String sql =  "SELECT * " +
-                " FROM  (SELECT MAL.Kodu as Urun_Kodu, Adi as Urun_Adi , Birim ," +
-                " YEAR(STOK.Tarih) as Yil  , " + sstr_2 + " as  degisken , " + sstr_4 +
-                "  FROM STOK " + kur_dos + ",MAL " +
-                " WHERE " + jkj +
-                "  AND " + ch1 +
-                " AND MAL.Ana_Grup " + qwq6 +
-                " AND MAL.Alt_Grup " + qwq7 +
-                   " AND Mal.Ozel_Kod_1 " + qwq8 +
-                " AND STOK.Urun_Kodu = MAL.Kodu " +
-                " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" +
-                " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" +
-                " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " +
-                " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" +
-                " AND  STOK.Tarih BETWEEN '" + t1 + "'" +
-                " AND  '" + t2 + " 23:59:59.998'" +
-                " ) as s  " +
-                " PIVOT " +
-                " ( " +
-                " SUM(" + sstr_5 + ") " +
-                " FOR degisken " +
-                " IN ( " + sstr_1 + ") " +
-                " ) " +
-                " AS p" +
-                " ORDER BY Urun_Kodu, Yil ";
-        System.out.println(sql);
-    	PreparedStatement stmt = con.prepareStatement(sql);
-		rss = stmt.executeQuery();
-		return rss;	
-	}
-	public ResultSet grp_mus_kodlu(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
-			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
-			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
-	{
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		ResultSet	rss = null;
-        String sql =  "SELECT * " +
-                " FROM  (SELECT (SELECT TOP 1 Cari_Firma FROM FATURA " +
-                " WHERE STOK.Evrak_No = FATURA.Fatura_No   AND " + jkj1 +
-                " ) as Musteri_Kodu  ,'' as Musteri_Adi , " + sstr_2 + " as  degisken , " + sstr_4 +
-                "  FROM STOK " + kur_dos + ",MAL " +
-                " WHERE " + jkj +
-                "  AND " + ch1 +
-                "  AND " + ch1 +
-                " AND MAL.Ozel_Kod_1 " + qwq8 +
-                " AND MAL.Ana_Grup " + qwq6 +
-                " AND STOK.Urun_Kodu = MAL.Kodu " +
-                " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" +
-                " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" +
-                " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " +
-                " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" +
-                " AND  STOK.Tarih BETWEEN '" + t1 + "'" +
-                " AND  '" + t2 + " 23:59:59.998'" +
-                " ) as s  " +
-                " PIVOT " +
-                " ( " +
-                " SUM(" + sstr_5 + ") " +
-                " FOR degisken " +
-                " IN ( " + sstr_1 + ") " +
-                " ) " +
-                " AS p" +
-                " ORDER BY Musteri_Kodu ";
-    	PreparedStatement stmt = con.prepareStatement(sql);
-		rss = stmt.executeQuery();
-		return rss;	
-	}
-	public ResultSet grp_mus_kodlu_yil(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
-			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
-			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
-	{
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		ResultSet	rss = null;
-        String sql = "SELECT * " +
-                " FROM  (SELECT (SELECT TOP 1 Cari_Firma FROM FATURA " +
-                " WHERE STOK.Evrak_No = FATURA.Fatura_No   AND " + jkj1 +
-                " ) as Musteri_Kodu  ," +
-                "  (SELECT DISTINCT  UNVAN FROM [OK_Car" +  BAGLAN.cariDizin.kOD + "].[dbo].[HESAP] WHERE hesap.hesap = (SELECT TOP 1 Cari_Firma " +
-                " FROM FATURA " +
-                " WHERE STOK.Evrak_No = FATURA.Fatura_No   And  " + jkj1 + "  )  ) as Musteri_Adi  " +
-                " ,datepart(yyyy,STOK.Tarih) as Yil  , " + sstr_2 + " as  degisken , " + sstr_4 +
-                "  FROM STOK " + kur_dos + ",MAL " +
-                " WHERE " + jkj +
-                "  AND " + ch1 +
-                " AND MAL.Ana_Grup " + qwq6 +
-                " AND MAL.Alt_Grup " + qwq7 +
-                   " AND Mal.Ozel_Kod_1 " + qwq8 +
-                " AND STOK.Urun_Kodu = MAL.Kodu " +
-                " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" +
-                " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" +
-                " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " +
-                " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" +
-                " AND  STOK.Tarih BETWEEN '" + t1 + "'" +
-                " AND  '" + t2 + " 23:59:59.998'" +
-                " ) as s  " +
-                " PIVOT " +
-                " ( " +
-                " SUM(" + sstr_5 + ") " +
-                " FOR degisken " +
-                " IN ( " + sstr_1 + ") " +
-                " ) " +
-                " AS p" +
-                " ORDER BY Musteri_Kodu, Yil ";
-    	PreparedStatement stmt = con.prepareStatement(sql);
-		rss = stmt.executeQuery();
-		return rss;	
-	}
-	public ResultSet grp_yil_ay(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
-			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
-			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
-	{
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		ResultSet	rss = null;
-        String sql = "SELECT * " +
-                " FROM  (SELECT YEAR(STOK.Tarih) as Yil , MONTH(STOK.Tarih) as Ay  " +
-                " ,  " + sstr_2 + " as  degisken , " + sstr_4 +
-                " FROM STOK " + kur_dos + ",MAL " +
-                " WHERE " + jkj +
-                " AND " + ch1 +
-                 " AND MAL.Ana_Grup " + qwq6 +
-                " AND MAL.Alt_Grup " + qwq7 +
-                " AND Mal.Ozel_Kod_1 " + qwq8 +
-                " AND STOK.Urun_Kodu = MAL.Kodu " +
-                " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" +
-                " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" +
-                " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " +
-                " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" +
-                " AND  STOK.Tarih BETWEEN '" + t1 + "'" +
-                " AND  '" + t2 + " 23:59:59.998'" +
-                "  ) as s  " +
-                " PIVOT " +
-                " ( " +
-                " SUM(" + sstr_5 + ") " +
-                " FOR degisken " +
-                " IN ( " + sstr_1 + ") " +
-                "    ) " +
-                " AS p" +
-                " ORDER BY Yil,Ay ";
-        System.out.println(sql);
-    	PreparedStatement stmt = con.prepareStatement(sql);
-		rss = stmt.executeQuery();
-		return rss;	
-	}
-	public ResultSet grp_yil(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
-			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
-			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
-	{
-		Class.forName("com.mysql.cj.jdbc.Driver");
+	//
 		ResultSet	rss = null;
         String replaceString=sstr_1.replace('[',' ');//replaces all occurrences of 'a' to 'e'  
         String replaceString2=replaceString.replace(']',' ');//replaces all occurrences of 'a' to 'e'  
         String[] tokens =replaceString2.split(",");
  	//   String baslik = "IFNULL(YEAR(Tarih),'') as Yil , " + sstr_2 + "," + replaceString2  + ",";
-        System.out.println(sstr_4);
  	  if(sstr_4.equals(" (ABS(STOK.Miktar) * MAL.Agirlik)  as Agirlik"))
  	  {
  		  sstr_4 =  "(ABS(STOK.Miktar) * MAL.Agirlik)" ;
@@ -1996,11 +1869,233 @@ public class STOK_MYSQL implements ISTOK {
 	  {
 		  sstr_4 =  " ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA))" ;
 	  }
-      System.out.println(sstr_4);
  	   String cASE = "" ;
        for (String t : tokens)
        {
-         cASE  = cASE + " Round(Sum(CASE WHEN Month(STOK.Tarih)= " + t + " THEN " + sstr_4 + " ELSE 0 END),2) AS '"+ t.trim() + "',";
+         cASE  = cASE + "Sum(CASE WHEN " + sstr_2 + "  = '" + t.trim() + "'  THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
+       }
+      cASE = cASE.substring(0, cASE.length() - 1);
+       String sql = 
+       		 "  SELECT "
+       		+ "    MAL.Kodu as Urun_Kodu, Adi as Urun_Adi , Birim , YEAR(STOK.Tarih) as Yil ," + 	cASE
+       		+ " FROM STOK " + kur_dos + ",MAL " 
+       		+ " WHERE   " + jkj 
+       		+ " AND " + ch1 
+       		+ " AND MAL.Ana_Grup " + qwq6 
+       		+ " AND MAL.Alt_Grup " + qwq7 
+       		+ " AND Mal.Ozel_Kod_1 " + qwq8 
+       		+ " AND STOK.Urun_Kodu = MAL.Kodu " 
+       		+ " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" 
+       		+ " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" 
+       		+ " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " 
+       		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
+       		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
+       		+" AND  '" + t2 + " 23:59:59.998'" 
+       		+ "  GROUP BY  Urun_Kodu , Urun_Adi , Birim  ORDER BY Urun_Kodu  ;";
+		//
+       	PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+	public ResultSet grp_mus_kodlu(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
+			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		ResultSet	rss = null;
+	      String replaceString=sstr_1.replace('[',' ');//replaces all occurrences of 'a' to 'e'  
+      String replaceString2=replaceString.replace(']',' ');//replaces all occurrences of 'a' to 'e'  
+      String[] tokens =replaceString2.split(",");
+	//   String baslik = "IFNULL(YEAR(Tarih),'') as Yil , " + sstr_2 + "," + replaceString2  + ",";
+	  if(sstr_4.equals(" (ABS(STOK.Miktar) * MAL.Agirlik)  as Agirlik"))
+	  {
+		  sstr_4 =  "(ABS(STOK.Miktar) * MAL.Agirlik)" ;
+	  }
+	  else  if(sstr_4.equals(" ABS(STOK.Tutar) as Tutar"))
+	  {
+		  sstr_4 =  "(ABS(Tutar))" ;
+	  }
+	 else  if(sstr_4.equals(" ABS(STOK.Miktar) as Miktar"))
+	  {
+		  sstr_4 =  "(ABS(Miktar))" ;
+	  }
+	 else  if(sstr_4.equals(" ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA)) as Tutar "))
+	  {
+		  sstr_4 =  " ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA))" ;
+	  }
+	   String cASE = "" ;
+     for (String t : tokens)
+     {
+       cASE  = cASE + "Sum(CASE WHEN " + sstr_2 + "  = '" + t.trim() + "'  THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
+     }
+    cASE = cASE.substring(0, cASE.length() - 1);
+     String sql = 
+     		 "  SELECT "
+     		+ "   (SELECT  Cari_Firma FROM FATURA  WHERE STOK.Evrak_No = FATURA.Fatura_No   AND "
+     		+ "Fatura.Gir_Cik = 'C' LIMIT 1 ) as Musteri_Kodu  ,''  as Musteri_Adi  , " + 	cASE
+     		+ " FROM STOK " + kur_dos + ",MAL " 
+     		+ " WHERE   " + jkj 
+     		+ " AND " + ch1 
+     		+ " AND MAL.Ana_Grup " + qwq6 
+     		+ " AND MAL.Alt_Grup " + qwq7 
+     		+ " AND Mal.Ozel_Kod_1 " + qwq8 
+     		+ " AND STOK.Urun_Kodu = MAL.Kodu " 
+     		+ " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" 
+     		+ " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" 
+     		+ " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " 
+     		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
+     		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
+     		+" AND  '" + t2 + " 23:59:59.998'" 
+     		+ "  GROUP BY Musteri_Kodu ,Musteri_Adi order by Musteri_Kodu  ;";
+		//
+     	PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+	public ResultSet grp_mus_kodlu_yil(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
+			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+	      String replaceString=sstr_1.replace('[',' ');//replaces all occurrences of 'a' to 'e'  
+        String replaceString2=replaceString.replace(']',' ');//replaces all occurrences of 'a' to 'e'  
+        String[] tokens =replaceString2.split(",");
+ 	//   String baslik = "IFNULL(YEAR(Tarih),'') as Yil , " + sstr_2 + "," + replaceString2  + ",";
+ 	  if(sstr_4.equals(" (ABS(STOK.Miktar) * MAL.Agirlik)  as Agirlik"))
+ 	  {
+ 		  sstr_4 =  "(ABS(STOK.Miktar) * MAL.Agirlik)" ;
+ 	  }
+ 	  else  if(sstr_4.equals(" ABS(STOK.Tutar) as Tutar"))
+ 	  {
+ 		  sstr_4 =  "(ABS(Tutar))" ;
+ 	  }
+ 	 else  if(sstr_4.equals(" ABS(STOK.Miktar) as Miktar"))
+	  {
+		  sstr_4 =  "(ABS(Miktar))" ;
+	  }
+ 	 else  if(sstr_4.equals(" ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA)) as Tutar "))
+	  {
+		  sstr_4 =  " ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA))" ;
+	  }
+ 	   String cASE = "" ;
+       for (String t : tokens)
+       {
+         cASE  = cASE + "Sum(CASE WHEN " + sstr_2 + "  = '" + t.trim() + "'  THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
+       }
+      cASE = cASE.substring(0, cASE.length() - 1);
+       String sql = 
+       		 "  SELECT "
+       		+ "   (SELECT  Cari_Firma FROM FATURA  WHERE STOK.Evrak_No = FATURA.Fatura_No   AND "
+       		+ "Fatura.Gir_Cik = 'C' LIMIT 1 ) as Musteri_Kodu  ,(SELECT DISTINCT  UNVAN FROM ok_car" +  BAGLAN.cariDizin.kOD + ".HESAP WHERE hesap.hesap = (SELECT Cari_Firma  \r\n"
+       		+ "FROM FATURA  WHERE STOK.Evrak_No = FATURA.Fatura_No   And   Fatura.Gir_Cik = 'C'  LIMIT 1 )  ) as Musteri_Adi  , YEAR(Tarih) as Yil, " + 	cASE
+       		+ " FROM STOK " + kur_dos + ",MAL " 
+       		+ " WHERE   " + jkj 
+       		+ " AND " + ch1 
+       		+ " AND MAL.Ana_Grup " + qwq6 
+       		+ " AND MAL.Alt_Grup " + qwq7 
+       		+ " AND Mal.Ozel_Kod_1 " + qwq8 
+       		+ " AND STOK.Urun_Kodu = MAL.Kodu " 
+       		+ " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" 
+       		+ " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" 
+       		+ " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " 
+       		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
+       		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
+       		+" AND  '" + t2 + " 23:59:59.998'" 
+       		+ "  GROUP BY Musteri_Kodu ,Musteri_Adi,  YEAR(Tarih) order by Musteri_Kodu  ;";
+		//
+
+    	PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+	public ResultSet grp_yil_ay(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
+			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		ResultSet	rss = null;
+        String replaceString=sstr_1.replace('[',' ');//replaces all occurrences of 'a' to 'e'  
+        String replaceString2=replaceString.replace(']',' ');//replaces all occurrences of 'a' to 'e'  
+        String[] tokens =replaceString2.split(",");
+ 	//   String baslik = "IFNULL(YEAR(Tarih),'') as Yil , " + sstr_2 + "," + replaceString2  + ",";
+ 	  if(sstr_4.equals(" (ABS(STOK.Miktar) * MAL.Agirlik)  as Agirlik"))
+ 	  {
+ 		  sstr_4 =  "(ABS(STOK.Miktar) * MAL.Agirlik)" ;
+ 	  }
+ 	  else  if(sstr_4.equals(" ABS(STOK.Tutar) as Tutar"))
+ 	  {
+ 		  sstr_4 =  "(ABS(Tutar))" ;
+ 	  }
+ 	 else  if(sstr_4.equals(" ABS(STOK.Miktar) as Miktar"))
+	  {
+		  sstr_4 =  "(ABS(Miktar))" ;
+	  }
+ 	 else  if(sstr_4.equals(" ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA)) as Tutar "))
+	  {
+		  sstr_4 =  " ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA))" ;
+	  }
+ 	   String cASE = "" ;
+       for (String t : tokens)
+       {
+         cASE  = cASE + "Sum(CASE WHEN " + sstr_2 + "  = '" + t .trim()+ "' THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
+       }
+      cASE = cASE.substring(0, cASE.length() - 1);
+       String sql = 
+       		 "  SELECT "
+       		+ "     YEAR(STOK.Tarih) as Yil ,MONTH(STOK.Tarih)as Ay ," + 	cASE
+       		+ " FROM STOK " + kur_dos + ",MAL " 
+       		+ " WHERE   " + jkj 
+       		+ " AND " + ch1 
+       		+ " AND MAL.Ana_Grup " + qwq6 
+       		+ " AND MAL.Alt_Grup " + qwq7 
+       		+ " AND Mal.Ozel_Kod_1 " + qwq8 
+       		+ " AND STOK.Urun_Kodu = MAL.Kodu " 
+       		+ " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" 
+       		+ " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" 
+       		+ " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " 
+       		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
+       		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
+       		+" AND  '" + t2 + " 23:59:59.998'" 
+       		+ "  GROUP BY  Yil,Ay  ORDER BY Yil  ;";
+		//
+ 
+    	PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+	public ResultSet grp_yil(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
+			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
+			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+        String replaceString=sstr_1.replace('[',' ');//replaces all occurrences of 'a' to 'e'  
+        String replaceString2=replaceString.replace(']',' ');//replaces all occurrences of 'a' to 'e'  
+        String[] tokens =replaceString2.split(",");
+ 	//   String baslik = "IFNULL(YEAR(Tarih),'') as Yil , " + sstr_2 + "," + replaceString2  + ",";
+ 	  if(sstr_4.equals(" (ABS(STOK.Miktar) * MAL.Agirlik)  as Agirlik"))
+ 	  {
+ 		  sstr_4 =  "(ABS(STOK.Miktar) * MAL.Agirlik)" ;
+ 	  }
+ 	  else  if(sstr_4.equals(" ABS(STOK.Tutar) as Tutar"))
+ 	  {
+ 		  sstr_4 =  "(ABS(Tutar))" ;
+ 	  }
+ 	 else  if(sstr_4.equals(" ABS(STOK.Miktar) as Miktar"))
+	  {
+		  sstr_4 =  "(ABS(Miktar))" ;
+	  }
+ 	 else  if(sstr_4.equals(" ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA)) as Tutar "))
+	  {
+		  sstr_4 =  " ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA))" ;
+	  }
+ 	   String cASE = "" ;
+       for (String t : tokens)
+       {
+         cASE  = cASE + "Sum(CASE WHEN " + sstr_2 + "  = '" + t + "'  THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
        }
       cASE = cASE.substring(0, cASE.length() - 1);
        String sql = 
@@ -2020,9 +2115,7 @@ public class STOK_MYSQL implements ISTOK {
        		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
        		+" AND  '" + t2 + " 23:59:59.998'" 
        		+ "  GROUP BY YEAR   ;";
-       	
-       System.out.println(sql);
-	//	+ "  GROUP BY YEAR  WITH ROLLUP ;";
+ 	//	+ "  GROUP BY YEAR  WITH ROLLUP ;";
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2032,34 +2125,54 @@ public class STOK_MYSQL implements ISTOK {
 			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
+		
 		ResultSet	rss = null;
-        String sql =  "SELECT * " +
-                " FROM  (SELECT  (SELECT DISTINCT  ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = MAL.Ana_Grup ) as Ana_Grup  " +
-                " ,(SELECT DISTINCT  ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = MAL.Alt_Grup ) as Alt_Grup, " +
-                " " + sstr_2 + " as  degisken , " + sstr_4 +
-                "  FROM STOK " + kur_dos + ",MAL " +
-                " WHERE " + jkj +
-                "  AND " + ch1 +
-               " AND MAL.Ana_Grup " + qwq6 +
-                " AND MAL.Alt_Grup " + qwq7 +
-                   " AND Mal.Ozel_Kod_1 " + qwq8 +
-                " AND STOK.Urun_Kodu = MAL.Kodu " +
-                " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" +
-                " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" +
-                " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " +
-                " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" +
-                " AND  STOK.Tarih BETWEEN '" + t1 + "'" +
-                " AND  '" + t2 + " 23:59:59.998'" +
-                " ) as s  " +
-                " PIVOT " +
-                " ( " +
-                " SUM(" + sstr_5 + ") " +
-                " FOR degisken " +
-                " IN ( " + sstr_1 + ") " +
-                " ) " +
-                " AS p" +
-              " ORDER BY Ana_Grup ,Alt_Grup";
-    	PreparedStatement stmt = con.prepareStatement(sql);
+	      String replaceString=sstr_1.replace('[',' ');//replaces all occurrences of 'a' to 'e'  
+      String replaceString2=replaceString.replace(']',' ');//replaces all occurrences of 'a' to 'e'  
+      String[] tokens =replaceString2.split(",");
+	//   String baslik = "IFNULL(YEAR(Tarih),'') as Yil , " + sstr_2 + "," + replaceString2  + ",";
+	  if(sstr_4.equals(" (ABS(STOK.Miktar) * MAL.Agirlik)  as Agirlik"))
+	  {
+		  sstr_4 =  "(ABS(STOK.Miktar) * MAL.Agirlik)" ;
+	  }
+	  else  if(sstr_4.equals(" ABS(STOK.Tutar) as Tutar"))
+	  {
+		  sstr_4 =  "(ABS(Tutar))" ;
+	  }
+	 else  if(sstr_4.equals(" ABS(STOK.Miktar) as Miktar"))
+	  {
+		  sstr_4 =  "(ABS(Miktar))" ;
+	  }
+	 else  if(sstr_4.equals(" ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA)) as Tutar "))
+	  {
+		  sstr_4 =  " ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA))" ;
+	  }
+	   String cASE = "" ;
+     for (String t : tokens)
+     {
+       cASE  = cASE + "Sum(CASE WHEN " + sstr_2 + "  = '" + t.trim() + "'  THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
+     }
+    cASE = cASE.substring(0, cASE.length() - 1);
+     String sql = 
+     		 "  SELECT "
+     		+ "    (SELECT DISTINCT  ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = MAL.Ana_Grup ) as Ana_Grup ," 
+     		+	"  (SELECT DISTINCT  ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = MAL.Alt_Grup ) as Alt_Grup , " + 	cASE
+     		+ " FROM STOK " + kur_dos + ",MAL " 
+     		+ " WHERE   " + jkj 
+     		+ " AND " + ch1 
+     		+ " AND MAL.Ana_Grup " + qwq6 
+     		+ " AND MAL.Alt_Grup " + qwq7 
+     		+ " AND Mal.Ozel_Kod_1 " + qwq8 
+     		+ " AND STOK.Urun_Kodu = MAL.Kodu " 
+     		+ " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" 
+     		+ " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" 
+     		+ " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " 
+     		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
+     		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
+     		+" AND  '" + t2 + " 23:59:59.998'" 
+     		+ "  GROUP BY Ana_Grup , Alt_Grup   ;";
+		//
+      	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -2069,33 +2182,51 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql =  "SELECT * " +
-                " FROM  (SELECT  (SELECT DISTINCT  ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = MAL.Ana_Grup ) as Ana_Grup  " +
-                " ,(SELECT DISTINCT  ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = MAL.Alt_Grup ) as Alt_Grup, " +
-                " datepart(yyyy,STOK.Tarih) as Yil  , " +
-                " " + sstr_2 + " as  degisken , " + sstr_4 +
-                "  FROM STOK " + kur_dos + ",MAL " +
-                " WHERE " + jkj +
-                "  AND " + ch1 +
-               " AND MAL.Ana_Grup " + qwq6 +
-                " AND MAL.Alt_Grup " + qwq7 +
-                   " AND Mal.Ozel_Kod_1 " + qwq8 +
-                " AND STOK.Urun_Kodu = MAL.Kodu " +
-                " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" +
-                " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" +
-                " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " +
-                " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" +
-                " AND  STOK.Tarih BETWEEN '" + t1 + "'" +
-                " AND  '" + t2 + " 23:59:59.998'" +
-                " ) as s  " +
-                " PIVOT " +
-                " ( " +
-                " SUM(" + sstr_5 + ") " +
-                " FOR degisken " +
-                " IN ( " + sstr_1 + ") " +
-                " ) " +
-                " AS p" +
-            " ORDER BY Ana_Grup ,Alt_Grup, Yil";
+	      String replaceString=sstr_1.replace('[',' ');//replaces all occurrences of 'a' to 'e'  
+    String replaceString2=replaceString.replace(']',' ');//replaces all occurrences of 'a' to 'e'  
+    String[] tokens =replaceString2.split(",");
+	//   String baslik = "IFNULL(YEAR(Tarih),'') as Yil , " + sstr_2 + "," + replaceString2  + ",";
+	  if(sstr_4.equals(" (ABS(STOK.Miktar) * MAL.Agirlik)  as Agirlik"))
+	  {
+		  sstr_4 =  "(ABS(STOK.Miktar) * MAL.Agirlik)" ;
+	  }
+	  else  if(sstr_4.equals(" ABS(STOK.Tutar) as Tutar"))
+	  {
+		  sstr_4 =  "(ABS(Tutar))" ;
+	  }
+	 else  if(sstr_4.equals(" ABS(STOK.Miktar) as Miktar"))
+	  {
+		  sstr_4 =  "(ABS(Miktar))" ;
+	  }
+	 else  if(sstr_4.equals(" ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA)) as Tutar "))
+	  {
+		  sstr_4 =  " ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA))" ;
+	  }
+	   String cASE = "" ;
+   for (String t : tokens)
+   {
+     cASE  = cASE + "Sum(CASE WHEN " + sstr_2 + "  = '" + t.trim() + "'  THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
+   }
+  cASE = cASE.substring(0, cASE.length() - 1);
+   String sql = 
+   		 "  SELECT "
+   		+ "    (SELECT DISTINCT  ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = MAL.Ana_Grup ) as Ana_Grup ," 
+   		+	"  (SELECT DISTINCT  ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = MAL.Alt_Grup ) as Alt_Grup ,  YEAR(Tarih) as Yil" + 	cASE
+   		+ " FROM STOK " + kur_dos + ",MAL " 
+   		+ " WHERE   " + jkj 
+   		+ " AND " + ch1 
+   		+ " AND MAL.Ana_Grup " + qwq6 
+   		+ " AND MAL.Alt_Grup " + qwq7 
+   		+ " AND Mal.Ozel_Kod_1 " + qwq8 
+   		+ " AND STOK.Urun_Kodu = MAL.Kodu " 
+   		+ " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" 
+   		+ " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" 
+   		+ " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " 
+   		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
+   		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
+   		+" AND  '" + t2 + " 23:59:59.998'" 
+   		+ "  GROUP BY Ana_Grup , Alt_Grup,Yil   ;";
+		//
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

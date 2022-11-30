@@ -1951,7 +1951,7 @@ public class STOK_MSSQL implements ISTOK {
                 "    ) " +
                 " AS p" +
                 " ORDER BY Urun_Kodu ";
-    	PreparedStatement stmt = con.prepareStatement(sql);
+   	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -2062,7 +2062,8 @@ public class STOK_MSSQL implements ISTOK {
                 " ) " +
                 " AS p" +
                 " ORDER BY Musteri_Kodu, Yil ";
-    	PreparedStatement stmt = con.prepareStatement(sql);
+        System.out.println(sql);
+     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}

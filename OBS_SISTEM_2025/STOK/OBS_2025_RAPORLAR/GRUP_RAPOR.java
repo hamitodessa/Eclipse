@@ -1117,7 +1117,7 @@ public class GRUP_RAPOR extends JInternalFrame {
        		}
   			else if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
        		{
-  	             kur_dos = "  left outer join ok_kur" + BAGLAN .kurDizin.kOD + ".kurlar k on k.Tarih = DATE( STOK.Tarih) and (k.kur IF NULL OR k.KUR ='" + FILTRE.comboBox_32.getItemAt(FILTRE.comboBox_32.getSelectedIndex())+ "') ";
+  	             kur_dos = "  left outer join ok_kur" + BAGLAN .kurDizin.kOD + ".kurlar k on k.Tarih = DATE( STOK.Tarih) and  k.kur ='" + FILTRE.comboBox_32.getItemAt(FILTRE.comboBox_32.getSelectedIndex())+ "' ";
        		}
   		 }
           else

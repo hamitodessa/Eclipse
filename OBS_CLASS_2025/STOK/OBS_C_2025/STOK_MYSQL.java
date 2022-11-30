@@ -1975,31 +1975,48 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql = "SELECT * " +
-                " FROM  (SELECT  YEAR(STOK.Tarih) as Yil , " + sstr_2 + " as  degisken , " + sstr_4 +
-               " FROM STOK " + kur_dos + ",MAL " +
-                " WHERE   " + jkj +
-                " AND " + ch1 +
-                " AND MAL.Ana_Grup " + qwq6 +
-                " AND MAL.Alt_Grup " + qwq7 +
-                   " AND Mal.Ozel_Kod_1 " + qwq8 +
-                " AND STOK.Urun_Kodu = MAL.Kodu " +
-                " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" +
-                " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" +
-                " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " +
-                " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" +
-                " AND  STOK.Tarih BETWEEN '" + t1 + "'" +
-                " AND  '" + t2 + " 23:59:59.998'" +
-                "  ) as s  " +
-                " PIVOT " +
-                " ( " +
-                " SUM(" + sstr_5 + ") " +
-                " FOR degisken " +
-                " IN ( " + sstr_1 + ") " +
-                "    ) " +
-                " AS p" +
-                " ORDER BY Yil ";
+        String replaceString=sstr_1.replace('[',' ');//replaces all occurrences of 'a' to 'e'  
+       String replaceString2=replaceString.replace(']',' ');//replaces all occurrences of 'a' to 'e'  
+       String[] tokens =replaceString2.split(",");
+
+ 	   String baslik = "IFNULL(YEAR(Tarih),'') as Yil , " + sstr_2 + "," + replaceString2  + ",";
+ 	   System.out.println(baslik);
+ 	   String cASE = "" ;
+       for (String t : tokens)
+       {
+ //        System.out.println(t);
+         cASE  = cASE + " Round(Sum(CASE WHEN Month(Tarih)= " + t + " THEN " + sstr_5 + " ELSE 0 END),2) AS "+ t + ",";
+       }
+     
+       System.out.println(cASE);
+       
+       String sql = "SELECT " + baslik 
+       		     		+ "  Qty AS Count, "
+       		+ "  Yrly as 'Yrly Total'"
+       		+ "FROM ("
+       		+ "  SELECT "
+       		+ "    YEAR(Tarih) AS 'Year',  " + 	cASE
+       		+ "    Count(*) AS Qty,"
+       		+ "    Round(Sum("+ sstr_5  + "),2) AS Yrly"
+       		+ " FROM STOK " + kur_dos + ",MAL " 
+       		+ " WHERE   " + jkj 
+       		+ " AND " + ch1 
+       		+ " AND MAL.Ana_Grup " + qwq6 
+       		+ " AND MAL.Alt_Grup " + qwq7 
+       		+ " AND Mal.Ozel_Kod_1 " + qwq8 
+       		+ " AND STOK.Urun_Kodu = MAL.Kodu " 
+       		+ " AND  MAL.Sinif BETWEEN N'" + s1 + "' and N'" + s2 + "'" 
+       		+ " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" 
+       		+ " AND (select distinct FATURA.Cari_Firma from fatura where fatura.Fatura_No = stok.Evrak_No   " 
+       		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
+       		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
+       		+" AND  '" + t2 + " 23:59:59.998'" 
+       		+ "  GROUP BY YEAR  WITH ROLLUP"
+       		+ ") AS sums ;" ;
+ 
+
         System.out.println(sql);
+        //
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

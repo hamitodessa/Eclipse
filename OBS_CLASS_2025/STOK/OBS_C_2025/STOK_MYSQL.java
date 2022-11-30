@@ -1110,7 +1110,7 @@ public class STOK_MYSQL implements ISTOK {
                 " ,(Select Ana_Grup FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = Recete.Ana_Grup) AS Ana_Grup " +
                 " ,(Select Alt_Grup FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = Recete.Alt_Grup) AS Alt_Grup " +
                 " ,(Select ACIKLAMA FROM ACIKLAMA WHERE ACIKLAMA.EVRAK_NO = Recete.Recete_No AND ACIKLAMA.EVRAK_CINS = 'REC' ) AS ACIKLAMA " +
-                " ,iif(Durum = '1' , 'Aktif' ,'Pasif') AS Durum " +
+                " ,IF(Durum = '1' , 'Aktif' ,'Pasif') AS Durum " +
                 " FROM RECETE " +
                 " WHERE Tur = 'Giren' ";
     	PreparedStatement stmt = con.prepareStatement(sql);
@@ -3138,7 +3138,7 @@ public class STOK_MYSQL implements ISTOK {
                    " SUM(CASE WHEN PrevTotal > COALESCE(out.Qty,0) " +
                    " THEN rt.Miktar ELSE rt.Total - COALESCE(out.Qty,0) END),'N3') " +
                    " END as Cikis_Miktari " +
-                   " ,(SELECT sum(iif(Doviz = '" + calisanpara + "',abs(Tutar),abs(Tutar)* Kur)) " +
+                   " ,(SELECT sum(IF(Doviz = '" + calisanpara + "',abs(Tutar),abs(Tutar)* Kur)) " +
                    " From [STOK] WITH ( INDEX ( IX_Cikan ) ) " +
                    " where Hareket ='C'  " +
                    " AND Urun_Kodu = rt.Urun_Kodu   " +
@@ -3206,13 +3206,13 @@ public class STOK_MYSQL implements ISTOK {
 		                ure1 = " <> 'URE' " ;
 		          }
 		String sql = " SELECT Urun_Kodu ,Evrak_No , " +
-                " iif(STOK.Evrak_Cins= 'URE','',(SELECT TOP 1 IFNULL(Cari_Firma,'') FROM FATURA  WHERE  Fatura.Fatura_No = " +
+                " IF(STOK.Evrak_Cins= 'URE','',(SELECT TOP 1 IFNULL(Cari_Firma,'') FROM FATURA  WHERE  Fatura.Fatura_No = " +
                 "STOK.Evrak_No  and Gir_cik = stok.hareket )) as Hesap_Kodu, " +
                " Evrak_Cins,Tarih ,Miktar ,  Birim , STOK.Fiat , " +
                " SUM(Miktar) OVER(ORDER BY Tarih  ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Miktar_Bakiye , " +
                " Tutar ,Doviz," +
-               " iif(Doviz = '" + calisanpara + "',Tutar,(Tutar * Kur)) as TL_Tutar ," +
-               " SUM(iif(Doviz = '" + calisanpara + "',Tutar,(Tutar * Kur))) OVER(ORDER BY Tarih  ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Tutar_Bakiye , " +
+               " IF(Doviz = '" + calisanpara + "',Tutar,(Tutar * Kur)) as TL_Tutar ," +
+               " SUM(IF(Doviz = '" + calisanpara + "',Tutar,(Tutar * Kur))) OVER(ORDER BY Tarih  ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Tutar_Bakiye , " +
                " stok. USER ,MAL.Kusurat " +
                " FROM STOK ,MAL " +
                " WHERE  mal.kodu = stok.Urun_Kodu " +

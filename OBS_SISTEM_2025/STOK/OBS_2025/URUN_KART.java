@@ -1174,11 +1174,11 @@ public class URUN_KART extends JInternalFrame {
 		}
 		if (chcbas.isSelected())
 		{
-		hisset(ara, "WHERE  [Kodu] like  N'" + textField_1.getText() + "%' OR  [Adi] Like N'" + textField_1.getText() + "%'");
+		hisset(ara, "WHERE  Kodu like  N'" + textField_1.getText() + "%' OR  Adi Like N'" + textField_1.getText() + "%'");
 		}
 		else
 		{
-		hisset(ara, "WHERE  [Kodu] like  N'%" + textField_1.getText() + "%' OR  [Adi] Like N'%" + textField_1.getText() + "%'");
+		hisset(ara, "WHERE  Kodu like  N'%" + textField_1.getText() + "%' OR  Adi Like N'%" + textField_1.getText() + "%'");
 		}
 	}
 	public static void sil()

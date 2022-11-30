@@ -1979,6 +1979,7 @@ public class STOK_MYSQL implements ISTOK {
         String replaceString2=replaceString.replace(']',' ');//replaces all occurrences of 'a' to 'e'  
         String[] tokens =replaceString2.split(",");
  	//   String baslik = "IFNULL(YEAR(Tarih),'') as Yil , " + sstr_2 + "," + replaceString2  + ",";
+        System.out.println(sstr_4);
  	  if(sstr_5.equals("Agirlik"))
  	  {
  		  sstr_5 =  "(ABS(Miktar) * Agirlik)" ;

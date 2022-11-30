@@ -2131,7 +2131,7 @@ public class STOK_MSSQL implements ISTOK {
                 "    ) " +
                 " AS p" +
                 " ORDER BY Yil ";
-    	PreparedStatement stmt = con.prepareStatement(sql);
+     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}

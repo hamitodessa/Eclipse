@@ -2000,12 +2000,12 @@ public class STOK_MYSQL implements ISTOK {
  	   String cASE = "" ;
        for (String t : tokens)
        {
-         cASE  = cASE + " Round(Sum(CASE WHEN Month(Tarih)= " + t + " THEN " + sstr_4 + " ELSE 0 END),2) AS '"+ t.trim() + "',";
+         cASE  = cASE + " Round(Sum(CASE WHEN Month(STOK.Tarih)= " + t + " THEN " + sstr_4 + " ELSE 0 END),2) AS '"+ t.trim() + "',";
        }
       cASE = cASE.substring(0, cASE.length() - 1);
        String sql = 
        		 "  SELECT "
-       		+ "    YEAR(Tarih) AS 'Year',  " + 	cASE
+       		+ "    YEAR(STOK.Tarih) AS 'Year',  " + 	cASE
        		+ " FROM STOK " + kur_dos + ",MAL " 
        		+ " WHERE   " + jkj 
        		+ " AND " + ch1 

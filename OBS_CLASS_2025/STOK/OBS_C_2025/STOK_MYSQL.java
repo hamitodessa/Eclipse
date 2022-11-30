@@ -2256,6 +2256,13 @@ public class STOK_MYSQL implements ISTOK {
 			String qwq7,String qwq8,String qwq9,String s1 ,String s2,String k1,String k2,String t1,String t2,
 			String sstr_1,String ordrr,String sstr_55) throws ClassNotFoundException, SQLException
 	{
+		
+		System.out.println(slct);
+		System.out.println(sstr_5);
+		System.out.println(sstr_2);
+		System.out.println(sstr_4);
+		System.out.println(sstr_55);
+		System.out.println(sstr_1);
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
         String sql = "SELECT * " +
@@ -2281,6 +2288,7 @@ public class STOK_MYSQL implements ISTOK {
                 "    ) " +
                 " AS p" +
                 " ORDER BY " + ordrr + " ";
+//        System.out.println(sql);
         PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

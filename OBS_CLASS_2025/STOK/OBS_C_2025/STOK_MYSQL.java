@@ -1985,16 +1985,13 @@ public class STOK_MYSQL implements ISTOK {
        for (String t : tokens)
        {
  //        System.out.println(t);
-         cASE  = cASE + " Round(Sum(CASE WHEN Month(Tarih)= " + t + " THEN " + sstr_5 + " ELSE 0 END),2) AS "+ t + ",";
+         cASE  = cASE + " Round(Sum(CASE WHEN Month(Tarih)= " + t + " THEN " + sstr_5 + " ELSE 0 END),2) AS '"+ t + "',";
        }
      
        System.out.println(cASE);
        
-       String sql = "SELECT " + baslik 
-       		     		+ "  Qty AS Count, "
-       		+ "  Yrly as 'Yrly Total'"
-       		+ "FROM ("
-       		+ "  SELECT "
+       String sql = 
+       		 "  SELECT "
        		+ "    YEAR(Tarih) AS 'Year',  " + 	cASE
        		+ "    Count(*) AS Qty,"
        		+ "    Round(Sum("+ sstr_5  + "),2) AS Yrly"
@@ -2011,8 +2008,8 @@ public class STOK_MYSQL implements ISTOK {
        		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
        		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
        		+" AND  '" + t2 + " 23:59:59.998'" 
-       		+ "  GROUP BY YEAR  WITH ROLLUP"
-       		+ ") AS sums ;" ;
+       		+ "  GROUP BY YEAR  WITH ROLLUP ;";
+       	
  
 
         System.out.println(sql);

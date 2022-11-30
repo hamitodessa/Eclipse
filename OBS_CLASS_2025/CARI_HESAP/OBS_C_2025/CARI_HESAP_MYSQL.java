@@ -699,7 +699,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
         String sql = " SELECT SATIRLAR.EVRAK ,IZAHAT,KOD,BORC,ALACAK ,USER " +
                 " FROM SATIRLAR USE INDEX (IX_SATIRLAR) ,IZAHAT USE INDEX (IX_IZAHAT) " +
                 " WHERE SATIRLAR.EVRAK = IZAHAT.EVRAK and  HESAP =N'" + hesap + "'" +
-                " AND CONVERT(VARCHAR(25), TARIH, 121) LIKE  '" + t1 + "%'" +
+                " AND DATE( TARIH) LIKE  '" + t1 + "%'" +
                 " ORDER BY SATIRLAR.EVRAK  ";
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

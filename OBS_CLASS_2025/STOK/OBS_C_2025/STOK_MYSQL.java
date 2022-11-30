@@ -1989,7 +1989,7 @@ public class STOK_MYSQL implements ISTOK {
        }
      
        System.out.println(cASE);
-       
+      cASE = cASE.substring(0, cASE.length() - 1);
        String sql = 
        		 "  SELECT "
        		+ "    YEAR(Tarih) AS 'Year',  " + 	cASE

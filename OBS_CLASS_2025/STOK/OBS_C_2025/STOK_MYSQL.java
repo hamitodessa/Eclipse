@@ -1980,22 +1980,27 @@ public class STOK_MYSQL implements ISTOK {
         String[] tokens =replaceString2.split(",");
  	//   String baslik = "IFNULL(YEAR(Tarih),'') as Yil , " + sstr_2 + "," + replaceString2  + ",";
         System.out.println(sstr_4);
- 	  if(sstr_5.equals("Agirlik"))
+ 	  if(sstr_4.equals(" (ABS(STOK.Miktar) * MAL.Agirlik)  as Agirlik"))
  	  {
- 		  sstr_5 =  "(ABS(Miktar) * Agirlik)" ;
+ 		  sstr_4 =  "(ABS(STOK.Miktar) * MAL.Agirlik)" ;
  	  }
- 	  else  if(sstr_5.equals("Tutar"))
+ 	  else  if(sstr_4.equals(" ABS(STOK.Tutar) as Tutar"))
  	  {
- 		  sstr_5 =  "(ABS(Tutar))" ;
+ 		  sstr_4 =  "(ABS(Tutar))" ;
  	  }
- 	 else  if(sstr_5.equals("Miktar"))
+ 	 else  if(sstr_4.equals(" ABS(STOK.Miktar) as Miktar"))
 	  {
-		  sstr_5 =  "(ABS(Miktar))" ;
+		  sstr_4 =  "(ABS(Miktar))" ;
 	  }
+ 	 else  if(sstr_4.equals(" ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA)) as Tutar "))
+	  {
+		  sstr_4 =  " ABS(STOK.Tutar / IF(k.MA = 0 ,1, k.MA))" ;
+	  }
+      System.out.println(sstr_4);
  	   String cASE = "" ;
        for (String t : tokens)
        {
-         cASE  = cASE + " Round(Sum(CASE WHEN Month(Tarih)= " + t + " THEN " + sstr_5 + " ELSE 0 END),2) AS '"+ t.trim() + "',";
+         cASE  = cASE + " Round(Sum(CASE WHEN Month(Tarih)= " + t + " THEN " + sstr_4 + " ELSE 0 END),2) AS '"+ t.trim() + "',";
        }
       cASE = cASE.substring(0, cASE.length() - 1);
        String sql = 
@@ -2016,6 +2021,7 @@ public class STOK_MYSQL implements ISTOK {
        		+" AND  '" + t2 + " 23:59:59.998'" 
        		+ "  GROUP BY YEAR   ;";
        	
+       System.out.println(sql);
 	//	+ "  GROUP BY YEAR  WITH ROLLUP ;";
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

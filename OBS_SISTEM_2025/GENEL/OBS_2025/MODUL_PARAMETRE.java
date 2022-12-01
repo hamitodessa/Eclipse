@@ -89,13 +89,13 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		lblNewLabel = new JLabel("...");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setBounds(10, 20, 90, 14);
+		lblNewLabel.setBounds(10, 20, 55, 14);
 		lblNewLabel.setForeground(Color.BLUE);
 		panel.add(lblNewLabel);
 		
 		lblNewLabel_2 = new JLabel("...");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_2.setBounds(113, 20, 100, 14);
+		lblNewLabel_2.setBounds(63, 20, 170, 14);
 		lblNewLabel_2.setForeground(new Color(0, 128, 128));
 		panel.add(lblNewLabel_2);
 		
@@ -122,13 +122,13 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		label = new JLabel("...");
 		label.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label.setBounds(10, 20, 90, 14);
+		label.setBounds(10, 20, 55, 14);
 		label.setForeground(Color.BLUE);
 		panel_1.add(label);
 		
 		label_1 = new JLabel("...");
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_1.setBounds(113, 20, 100, 14);
+		label_1.setBounds(63, 20, 170, 14);
 		label_1.setForeground(new Color(0, 128, 128));
 		panel_1.add(label_1);
 		
@@ -154,13 +154,13 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		label_3 = new JLabel("...");
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_3.setBounds(10, 20, 90, 14);
+		label_3.setBounds(10, 20, 55, 14);
 		label_3.setForeground(Color.BLUE);
 		panel_2.add(label_3);
 		
 		label_4 = new JLabel("...");
 		label_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_4.setBounds(113, 20, 100, 14);
+		label_4.setBounds(63, 20, 170, 14);
 		label_4.setForeground(new Color(0, 128, 128));
 		panel_2.add(label_4);
 		
@@ -187,13 +187,13 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		label_6 = new JLabel("...");
 		label_6.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_6.setBounds(10, 20, 90, 14);
+		label_6.setBounds(10, 20, 55, 14);
 		label_6.setForeground(Color.BLUE);
 		panel_3.add(label_6);
 		
 		label_7 = new JLabel("...");
 		label_7.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_7.setBounds(113, 20, 100, 14);
+		label_7.setBounds(63, 20, 170, 14);
 		label_7.setForeground(new Color(0, 128, 128));
 		panel_3.add(label_7);
 		
@@ -220,13 +220,13 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		label_9 = new JLabel("...");
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_9.setBounds(10, 20, 90, 14);
+		label_9.setBounds(10, 20, 55, 14);
 		label_9.setForeground(Color.BLUE);
 		panel_4.add(label_9);
 		
 		label_10 = new JLabel("...");
 		label_10.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_10.setBounds(113, 20, 100, 14);
+		label_10.setBounds(63, 20, 170, 14);
 		label_10.setForeground(new Color(0, 128, 128));
 		panel_4.add(label_10);
 		
@@ -250,13 +250,13 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		label_12 = new JLabel("...");
 		label_12.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_12.setBounds(10, 20, 90, 14);
+		label_12.setBounds(10, 20, 55, 14);
 		label_12.setForeground(Color.BLUE);
 		panel_5.add(label_12);
 		
 		label_13 = new JLabel("...");
 		label_13.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_13.setBounds(113, 20, 100, 14);
+		label_13.setBounds(63, 20, 170, 14);
 		label_13.setForeground(new Color(0, 128, 128));
 		panel_5.add(label_13);
 		

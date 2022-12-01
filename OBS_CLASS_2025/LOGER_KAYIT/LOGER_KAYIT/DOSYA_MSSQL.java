@@ -3,6 +3,7 @@ package LOGER_KAYIT;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -37,5 +38,14 @@ public class DOSYA_MSSQL implements ILOGER_KAYIT{
 		stmt.close();
 		
 	}
+
+	
+	public ResultSet log_rapor(String t1, String t2, String aciklama, String evrak ,String user, DIZIN_BILGILERI dBILGI)
+			throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

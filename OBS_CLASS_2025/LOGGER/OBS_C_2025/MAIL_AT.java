@@ -1,5 +1,6 @@
 package OBS_C_2025;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Properties;
@@ -71,5 +72,6 @@ public class MAIL_AT implements ILOGGER{
 				 JOptionPane.showMessageDialog(null,  ex.getMessage(), "Loglama Mail Gonderme", JOptionPane.ERROR_MESSAGE);
 			}
 	}
+
 
 }

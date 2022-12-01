@@ -272,4 +272,5 @@ public class CARI_ACCESS {
 	{
 		return _ICari.cari_adres_oku(kodu);
 	}
+	
 }

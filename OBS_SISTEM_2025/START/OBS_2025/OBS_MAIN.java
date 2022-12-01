@@ -1692,6 +1692,7 @@ public class OBS_MAIN extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(! GLOBAL.KULL_ADI.equals("Admin"))
 				{
+					JOptionPane.showMessageDialog(null, "Sadece Admin Gorebilir","Log Sorgulama", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
 				form_ac("LOG RAPORLAMA","");
@@ -1867,6 +1868,7 @@ public class OBS_MAIN extends JFrame {
 				if (sonuc == "BOS KUR")	BOS_KUR.hisset();
             	else if (sonuc == "STOK BOS KUR")	FAT_BOS_KUR.hisset();
             	else if (sonuc == "SQL SORGULAMA")	SQL_SORGULAMA.hisset();
+            	else if (sonuc == "LOG RAPORLAMA")	LOGLAMA_RAPOR.hisset();
             	GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});

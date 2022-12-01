@@ -3,6 +3,7 @@ package LOGER_KAYIT;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import OBS_C_2025.DIZIN_BILGILERI;
@@ -26,5 +27,34 @@ public class DOSYA_MYSQL implements ILOGER_KAYIT{
 		stmt.setString(4, GLOBAL.KULL_ADI);
 		stmt.executeUpdate();
 		stmt.close();
+	}
+	
+	public ResultSet log_rapor(String t1, String t2, String aciklama, String evrak , String user, DIZIN_BILGILERI dBILGI)
+			throws ClassNotFoundException, SQLException {
+		 StringBuilder stb = new StringBuilder();
+         stb.append(" SELECT * " ); 
+         stb.append(" FROM   loglama  USE INDEX (IX_LOGLAMA) ") ; 
+       
+         stb.append(" WHERE  loglama.mesaj  LIKE N'" + aciklama + "'") ;
+         if ( ! t1.equals(""))
+         		{
+             stb.append(" AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998' ") ;
+         		}
+         if ( ! evrak.equals("%") &&  ! evrak.equals("%%")) 
+         {
+             stb.append(" AND EVRAK  LIKE '" + user + "'");
+         }
+        if ( ! user.equals("%") &&  ! user.equals("%%")) 
+         {
+             stb.append(" AND USER_NAME  LIKE '" + user + "'");
+         }
+         stb.append(" ORDER BY TARIH ") ;
+     	String cumle = "jdbc:mysql://" + dBILGI.cONN_STR ;
+	    con = DriverManager.getConnection(cumle,dBILGI.kULLANICI,dBILGI.sIFRESI);
+ 		ResultSet	rss = null;
+         String sql = stb.toString() ;
+     	PreparedStatement stmt = con.prepareStatement(sql);
+ 		rss = stmt.executeQuery();
+ 		return rss;	
 	}
 }

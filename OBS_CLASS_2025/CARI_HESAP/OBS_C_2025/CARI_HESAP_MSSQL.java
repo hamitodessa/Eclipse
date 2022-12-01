@@ -1175,6 +1175,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	       
 		
 	}
+	
 }
 
 

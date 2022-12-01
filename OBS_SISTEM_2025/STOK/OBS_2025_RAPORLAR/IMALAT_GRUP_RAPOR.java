@@ -365,12 +365,22 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 			
 				sstr_55= sstr_5 ;
 				sstr_5 = "" ;
+				if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+				{
 				rs = f_Access.ima_alt_kod("datepart(yyyy,STOK.Tarih) as Yil,",sstr_5,sstr_2,sstr_4, jkj, ch1,  qwq6,  qwq7,  qwq8,qwq9,
 						FILTRE.textField_42.getText(), FILTRE.textField_43.getText(),
 						FILTRE.textField_39.getText(),FILTRE.textField_40.getText(),
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
 						 sstr_1," Yil",sstr_55);
-			
+				}
+				else 	if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+				{
+					rs = f_Access.ima_alt_kod("YEAR(STOK.Tarih) as Yil,",sstr_5,sstr_2,sstr_4, jkj, ch1,  qwq6,  qwq7,  qwq8,qwq9,
+							FILTRE.textField_42.getText(), FILTRE.textField_43.getText(),
+							FILTRE.textField_39.getText(),FILTRE.textField_40.getText(),
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
+							 sstr_1," Yil",sstr_55);
+				}
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -671,7 +681,6 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 						FILTRE.textField_39.getText(),FILTRE.textField_40.getText(),
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
 						 sstr_1," Yil_Ay,Ana_Grup ,Alt_Grup",sstr_55);
-			
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -746,12 +755,23 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		
 				sstr_55= sstr_5 ;
 				sstr_5 = "" ;
+				if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+				{
 				rs = f_Access.ima_alt_kod(" datepart(yyyy,STOK.Tarih) as Yil ,datepart(mm,STOK.Tarih) as Ay,",sstr_5,sstr_2,sstr_4, jkj, ch1,  qwq6,  qwq7,  qwq8,qwq9,
 						FILTRE.textField_42.getText(), FILTRE.textField_43.getText(),
 						FILTRE.textField_39.getText(),FILTRE.textField_40.getText(),
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
 						 sstr_1," Yil,Ay",sstr_55);
-			
+				}
+				else 	if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+				{
+					rs = f_Access.ima_alt_kod(" YEAR(STOK.Tarih) as Yil ,MONTH(STOK.Tarih) as Ay,",sstr_5,sstr_2,sstr_4, jkj, ch1,  qwq6,  qwq7,  qwq8,qwq9,
+							FILTRE.textField_42.getText(), FILTRE.textField_43.getText(),
+							FILTRE.textField_39.getText(),FILTRE.textField_40.getText(),
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
+							 sstr_1," Yil,Ay",sstr_55);
+
+				}
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -812,33 +832,61 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 	     ResultSet rs= null ;
 	     if (FILTRE.comboBox_36.getItemAt(FILTRE.comboBox_36.getSelectedIndex()).equals("Yil"))
 	     {
-	    	
+	    	if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+	    	{
 	    			rs = f_Access.ima_baslik_bak("DISTINCT datepart(yyyy,STOK.Tarih)",jkj,ch1,
 	    					qwq6,qwq7,qwq8,qwq9,FILTRE.textField_39.getText(),FILTRE.textField_40.getText() ,
 	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
 	    					"order by datepart(yyyy,STOK.Tarih)");
-				
-	           sstr_2 =" datepart(yyyy,STOK.Tarih)" ;
+		           sstr_2 =" datepart(yyyy,STOK.Tarih)" ;
+	    	}
+	    	else if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+	    	{
+	    		rs = f_Access.ima_baslik_bak("DISTINCT YEAR(STOK.Tarih)",jkj,ch1,
+    					qwq6,qwq7,qwq8,qwq9,FILTRE.textField_39.getText(),FILTRE.textField_40.getText() ,
+    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
+    					"order by YEAR(STOK.Tarih)");
+	           sstr_2 =" YEAR(STOK.Tarih)" ;
+	    	}
 	     }
 	     else if (FILTRE.comboBox_36.getItemAt(FILTRE.comboBox_36.getSelectedIndex()).equals("Ay"))
 	     {
-	    	
+	    	 if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+		    	{
 	    			rs = f_Access.ima_baslik_bak("DISTINCT datepart(mm,STOK.Tarih)",jkj,ch1,
 	    					qwq6,qwq7,qwq8,qwq9,FILTRE.textField_39.getText(),FILTRE.textField_40.getText() ,
 	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
 	    					"order by datepart(mm,STOK.Tarih)");
-				
 	           sstr_2 = "datepart(mm,STOK.Tarih)";
+		    	}
+	    	 else if(BAGLAN.fatDizin.hAN_SQL.equals( "MY SQL"))
+		    	{
+	    			rs = f_Access.ima_baslik_bak("DISTINCT MONTH(STOK.Tarih)",jkj,ch1,
+	    					qwq6,qwq7,qwq8,qwq9,FILTRE.textField_39.getText(),FILTRE.textField_40.getText() ,
+	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
+	    					"order by MONTH(STOK.Tarih)");
+	           sstr_2 = " MONTH(STOK.Tarih)";
+
+		    	}
 	     }
 	     else if (FILTRE.comboBox_36.getItemAt(FILTRE.comboBox_36.getSelectedIndex()).equals("Gun"))
 	     {
-	    	
+	    	 if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+		    	{
 	    			rs =f_Access.ima_baslik_bak("DISTINCT datepart(dd,STOK.Tarih)",jkj,ch1,
 	    					qwq6,qwq7,qwq8,qwq9,FILTRE.textField_39.getText(),FILTRE.textField_40.getText() ,
 	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
 	    					"order by datepart(dd,STOK.Tarih)");
-			
 	           sstr_2 = "datepart(dd,STOK.Tarih)";
+		    	}
+	    	 else if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+		    	{
+	    			rs =f_Access.ima_baslik_bak("DISTINCT DAY(STOK.Tarih)",jkj,ch1,
+	    					qwq6,qwq7,qwq8,qwq9,FILTRE.textField_39.getText(),FILTRE.textField_40.getText() ,
+	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
+	    					"order by DAY(STOK.Tarih)");
+	           sstr_2 = "DAY(STOK.Tarih)";
+		    	}
 	     }
 	     else if (FILTRE.comboBox_36.getItemAt(FILTRE.comboBox_36.getSelectedIndex()).equals("Depo"))
 	     {

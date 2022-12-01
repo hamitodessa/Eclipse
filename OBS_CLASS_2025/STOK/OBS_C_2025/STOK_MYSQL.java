@@ -2289,6 +2289,12 @@ System.out.println(sstr_55);
         cASE  = cASE + "Sum(CASE WHEN  " + sstr_2 + "  = '"  + t.trim() + "' THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
       }
      cASE = cASE.substring(0, cASE.length() - 1);
+	   String gRUP = "" ;
+     if (slct.equals("YEAR(STOK.Tarih) as Yil,"))
+     {
+    	 gRUP = slct.replace(" as Yil"," ");
+     }
+  
       String sql = 
       		 "  SELECT "
       		+    slct +  	cASE
@@ -2304,7 +2310,7 @@ System.out.println(sstr_55);
             + " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" 
             + " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
             + " AND  '" + t2 + " 23:59:59.998'" 
-            	+ "  GROUP BY " + slct  + "   ;";
+            	+ "  GROUP BY " + gRUP  + "   ;";
  //     		+ "  GROUP BY Urun_Kodu , Urun_Adi , Birim   ;";
       System.out.println(sql);
         PreparedStatement stmt = con.prepareStatement(sql);

@@ -367,7 +367,7 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 				sstr_5 = "" ;
 				if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
 				{
-				rs = f_Access.ima_alt_kod("datepart(yyyy,STOK.Tarih) as Yil,",sstr_5,sstr_2,sstr_4, jkj, ch1,  qwq6,  qwq7,  qwq8,qwq9,
+				rs = f_Access.ima_alt_kod("datepart(yyyy,STOK.Tarih) as Yil, ",sstr_5,sstr_2,sstr_4, jkj, ch1,  qwq6,  qwq7,  qwq8,qwq9,
 						FILTRE.textField_42.getText(), FILTRE.textField_43.getText(),
 						FILTRE.textField_39.getText(),FILTRE.textField_40.getText(),
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
@@ -375,7 +375,7 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 				}
 				else 	if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
 				{
-					rs = f_Access.ima_alt_kod("YEAR(STOK.Tarih) as Yil,",sstr_5,sstr_2,sstr_4, jkj, ch1,  qwq6,  qwq7,  qwq8,qwq9,
+					rs = f_Access.ima_alt_kod("YEAR(STOK.Tarih) as Yil",sstr_5,sstr_2,sstr_4, jkj, ch1,  qwq6,  qwq7,  qwq8,qwq9,
 							FILTRE.textField_42.getText(), FILTRE.textField_43.getText(),
 							FILTRE.textField_39.getText(),FILTRE.textField_40.getText(),
 							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
@@ -592,6 +592,8 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 			
 				sstr_55= sstr_5 ;
 				sstr_5 = ",'" + sstr_5 + "' as Birim," ;
+				if (BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+				{
 				rs = f_Access.ima_alt_kod("(SELECT DISTINCT  ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID = STOK.Ana_Grup ) as Ana_Grup  ,"  + 
 						" (SELECT DISTINCT  ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID = STOK.Alt_Grup ) as Alt_Grup , "  + 
 						"  datepart(yyyy,STOK.Tarih) as Yil",sstr_5,sstr_2,sstr_4, jkj, ch1,  qwq6,  qwq7,  qwq8,qwq9,
@@ -599,7 +601,18 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 						FILTRE.textField_39.getText(),FILTRE.textField_40.getText(),
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
 						 sstr_1," Yil,Ana_Grup ,Alt_Grup",sstr_55);
-			
+				}
+				else if (BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+				{
+					rs = f_Access.ima_alt_kod("(SELECT DISTINCT  ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID = STOK.Ana_Grup ) as Ana_Grup  ,"  + 
+							" (SELECT DISTINCT  ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID = STOK.Alt_Grup ) as Alt_Grup , "  + 
+							"  YEAR(STOK.Tarih) as Yil",sstr_5,sstr_2,sstr_4, jkj, ch1,  qwq6,  qwq7,  qwq8,qwq9,
+							FILTRE.textField_42.getText(), FILTRE.textField_43.getText(),
+							FILTRE.textField_39.getText(),FILTRE.textField_40.getText(),
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
+							 sstr_1," Yil,Ana_Grup ,Alt_Grup",sstr_55);
+
+				}
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));

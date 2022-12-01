@@ -2262,11 +2262,6 @@ public class STOK_MYSQL implements ISTOK {
        String replaceString2=replaceString.replace("]","");//replaces all occurrences of 'a' to 'e'  
        String[] tokens =replaceString2.split(",");
 	//   String baslik = "IFNULL(YEAR(Tarih),'') as Yil , " + sstr_2 + "," + replaceString2  + ",";
-System.out.println(slct);
-System.out.println(sstr_5);
-System.out.println(sstr_2);
-System.out.println(sstr_4);
-System.out.println(sstr_55);
 	  if(sstr_4.equals(" (ABS(STOK.Miktar) * MAL.Agirlik)  as Agirlik"))
 	  {
 		  sstr_4 =  "(ABS(STOK.Miktar) * MAL.Agirlik)" ;
@@ -2289,15 +2284,9 @@ System.out.println(sstr_55);
         cASE  = cASE + "Sum(CASE WHEN  " + sstr_2 + "  = '"  + t.trim() + "' THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
       }
      cASE = cASE.substring(0, cASE.length() - 1);
-	   String gRUP = "" ;
-     if (slct.equals("YEAR(STOK.Tarih) as Yil,"))
-     {
-    	 gRUP = slct.replace(" as Yil"," ");
-     }
-  
       String sql = 
       		 "  SELECT "
-      		+    slct +  	cASE
+      		+    slct + "," + 	cASE
       		+ " FROM STOK  ,MAL " 
       		+ " WHERE   " + jkj 
             + " AND " + ch1 
@@ -2310,7 +2299,7 @@ System.out.println(sstr_55);
             + " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" 
             + " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
             + " AND  '" + t2 + " 23:59:59.998'" 
-            	+ "  GROUP BY " + gRUP  + "   ;";
+            	+ "  GROUP BY " + slct.split("as")[0]  + "   ;";
  //     		+ "  GROUP BY Urun_Kodu , Urun_Adi , Birim   ;";
       System.out.println(sql);
         PreparedStatement stmt = con.prepareStatement(sql);

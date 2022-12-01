@@ -4,12 +4,17 @@ package OBS_2025;
 import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
+
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+
+import OBS_C_2025.GLOBAL;
+
 import java.awt.Font;
 import java.awt.Color;
 
@@ -212,10 +217,13 @@ public class USER_KOPYALA extends JInternalFrame {
 	{
 		 rss =  oac.uSER_ISL.user_db_izinleri(comboBox.getItemAt(comboBox.getSelectedIndex()).toString(), mODUL);
          rss.next();
+         
+     	byte[] decodedBytes = Base64.getDecoder().decode( rss.getString("USER_PWD_SERVER").toString ());
+		String decodedString = new String(decodedBytes);
 	            oac.uSER_ISL.details_yaz(rss.getString("USER_PROG_KODU").toString() 
 	            , comboBox_1.getItemAt(comboBox_1.getSelectedIndex()).toString()
 	            , rss.getString("USER_SERVER").toString ()
-	            , rss.getString("USER_PWD_SERVER").toString ()
+	            , decodedString
 	            , rss.getString("USER_INSTANCE_OBS").toString ()
 	            , rss.getString("USER_IP_OBS").toString ()
 	            , rss.getString("USER_PROG_OBS").toString ()

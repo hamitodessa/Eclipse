@@ -1690,6 +1690,10 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_86_1.setToolTipText("Log Raporlama");
 		btnNewButton_86_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(! GLOBAL.KULL_ADI.equals("Admin"))
+				{
+					return;
+				}
 				form_ac("LOG RAPORLAMA","");
 			}
 		});
@@ -2644,7 +2648,15 @@ public class OBS_MAIN extends JFrame {
 		toolBar_5.add(lbldeg);
 		
 //****************************************************************************
-	
+		JSplitButton splitButton = new JSplitButton("Degiskenler             ");
+		splitButton.setForeground( Color.MAGENTA);
+		splitButton.setArrowSize(10);
+		splitButton.setBorder(new LineBorder(new Color(0, 191, 255)));
+		splitButton.setFont(new Font("Tahoma", Font.BOLD, 10));
+		splitButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-radar-plot-30.png")));
+		toolBar_5.add(splitButton);
+		splitButton.setPopupMenu(popupMenu); //add this control to panel
+
 		/**
 		JSplitButton splitButton = new JSplitButton("Degiskenler             ");
 		splitButton.setForeground( Color.MAGENTA);

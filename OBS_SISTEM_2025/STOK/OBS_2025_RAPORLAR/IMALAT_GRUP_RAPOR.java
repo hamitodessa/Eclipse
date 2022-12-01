@@ -903,23 +903,46 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 	     }
 	     else if (FILTRE.comboBox_36.getItemAt(FILTRE.comboBox_36.getSelectedIndex()).equals("Depo"))
 	     {
-	    	
+	    	 if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+		    	{
 	    			rs = f_Access.ima_baslik_bak("DISTINCT ISNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID = STOK.Depo),'---') as Depo",jkj,ch1,
 	    					qwq6,qwq7,qwq8,qwq9,FILTRE.textField_39.getText(),FILTRE.textField_40.getText() ,
 	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
 	    					" order by Depo ");
 				
 	           sstr_2 = " ISNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y= STOK.Depo) ,'---') ";
+		    	}
+	    	 else  if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+		    	{
+	    			rs = f_Access.ima_baslik_bak("DISTINCT IFNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID = STOK.Depo),'---') as Depo",jkj,ch1,
+	    					qwq6,qwq7,qwq8,qwq9,FILTRE.textField_39.getText(),FILTRE.textField_40.getText() ,
+	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
+	    					" order by Depo ");
+				
+	           sstr_2 = " IFNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y= STOK.Depo) ,'---') ";
+		    	}
 	     }
 	     else if (FILTRE.comboBox_36.getItemAt(FILTRE.comboBox_36.getSelectedIndex()).equals("Ana Grup"))
 	     {
-	    	
+	    	 if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
+		    	{
 	    			rs = f_Access.ima_baslik_bak("DISTINCT ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = STOK.Ana_Grup),'---') as Ana_Grup",jkj,ch1,
 	    					qwq6,qwq7,qwq8,qwq9,FILTRE.textField_39.getText(),FILTRE.textField_40.getText() ,
 	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
 	    					"  order by Ana_Grup  ");
 				
 	           sstr_2 = "  ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = STOK.Ana_Grup),'---')  ";
+		    	}
+	    	 else  if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+		    	{
+	    			rs = f_Access.ima_baslik_bak("DISTINCT IFNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = STOK.Ana_Grup),'---') as Ana_Grup",jkj,ch1,
+	    					qwq6,qwq7,qwq8,qwq9,FILTRE.textField_39.getText(),FILTRE.textField_40.getText() ,
+	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_22),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_23),
+	    					"  order by Ana_Grup  ");
+				
+	           sstr_2 = "  IFNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = STOK.Ana_Grup),'---')  ";
+
+		    	}
 	     }
 	        sstr_1 = "";
         String text = "" ;

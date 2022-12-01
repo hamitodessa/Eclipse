@@ -2248,7 +2248,7 @@ public class STOK_MYSQL implements ISTOK {
                 " AND  STOK.Tarih BETWEEN '" + t1 + "'" +
                 " AND  '" + t2 + " 23:59:59.998'" +
                 "" + ordrr + " ";
-    	PreparedStatement stmt = con.prepareStatement(sql);
+     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -2284,9 +2284,14 @@ public class STOK_MYSQL implements ISTOK {
         cASE  = cASE + "Sum(CASE WHEN  " + sstr_2 + "  = '"  + t.trim() + "' THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
       }
      cASE = cASE.substring(0, cASE.length() - 1);
-      String sql = 
+     String qwer = "";
+     if(sstr_5.length() != 0 )
+     {
+     qwer =sstr_5.substring(0, sstr_5.length() - 1) ;
+     }
+       String sql = 
       		 "  SELECT "
-      		+    slct + "," + 	cASE
+      		+    slct + qwer  +  "," + 	cASE
       		+ " FROM STOK  ,MAL " 
       		+ " WHERE   " + jkj 
             + " AND " + ch1 
@@ -2301,7 +2306,6 @@ public class STOK_MYSQL implements ISTOK {
             + " AND  '" + t2 + " 23:59:59.998'" 
             	+ "  GROUP BY " + slct.split("as")[0]  + "   ;";
  //     		+ "  GROUP BY Urun_Kodu , Urun_Adi , Birim   ;";
-      System.out.println(sql);
         PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

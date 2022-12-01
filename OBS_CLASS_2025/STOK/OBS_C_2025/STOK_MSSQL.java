@@ -650,7 +650,6 @@ public class STOK_MSSQL implements ISTOK {
 				ResultSet	rss = null;
 				int maks = 0 ;
 		        String sql =   "SELECT max(" +fieldd +")  as maks  FROM "+ nerden+ "" ; 
-		        System.out.println(sql);
 		    	PreparedStatement stmt = con.prepareStatement(sql);
 				rss = stmt.executeQuery();
 				rss.next();
@@ -2062,8 +2061,7 @@ public class STOK_MSSQL implements ISTOK {
                 " ) " +
                 " AS p" +
                 " ORDER BY Musteri_Kodu, Yil ";
-        System.out.println(sql);
-     	PreparedStatement stmt = con.prepareStatement(sql);
+      	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}
@@ -2258,7 +2256,7 @@ public class STOK_MSSQL implements ISTOK {
                 " IN ( " + sstr_1 + ") " +
                 "    ) " +
                 " AS p" +
-                " ORDER BY " + ordrr + " ";
+                " ORDER BY  " + ordrr + " ";
         PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2518,8 +2516,7 @@ public class STOK_MSSQL implements ISTOK {
                 " AND Depo " + depo +
                 " ORDER BY Kodu " ;
     	PreparedStatement stmt = con.prepareStatement(sql);
-    	System.out.println(sql );
- 		rss = stmt.executeQuery();
+  		rss = stmt.executeQuery();
 		return rss;	
 	}
 	public ResultSet uret_doldur(String t1,String t2) throws ClassNotFoundException, SQLException

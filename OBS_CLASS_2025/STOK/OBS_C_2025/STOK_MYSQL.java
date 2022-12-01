@@ -1764,7 +1764,6 @@ public class STOK_MYSQL implements ISTOK {
                  " AND " + kjk1 +
                  " AND STOK.Hareket Like '" + turu + "%' " +
                  " Order by Tarih ";
-        System.out.println(sql);
      	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2289,7 +2288,24 @@ public class STOK_MYSQL implements ISTOK {
      {
      qwer =sstr_5.substring(0, sstr_5.length() - 1) ;
      }
-       String sql = 
+      String gRUP = "" ;
+     if (ordrr.trim().equals("Yil")  && slct.trim().equals("YEAR(STOK.Tarih) as Yil")) {
+    	 gRUP = "Yil ORDER BY Yil";}
+     else   if (ordrr.trim().equals("Urun_Kodu")  && slct.trim().equals("MAL.Kodu as Urun_Kodu, Adi as Urun_Adi")) {
+    	 gRUP = "Urun_Kodu,  Urun_Adi , Birim ORDER BY Urun_Kodu";  }
+     else   if (ordrr.trim().equals("Yil,Ay")  && slct.trim().equals("YEAR(STOK.Tarih) as Yil ,MONTH(STOK.Tarih) as Ay")) {
+    	 gRUP = " Yil , Ay ORDER BY Yil, Ay";    }
+     else   if (ordrr.trim().equals("Ana_Grup")  && slct.trim().equals("(SELECT DISTINCT  ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = STOK.Ana_Grup ) as Ana_Grup")) {
+    	 gRUP = " Ana_Grup ,Birim  ORDER BY Ana_Grup";  }
+     else   if (ordrr.trim().equals("Ana_Grup")  && slct.trim().equals("(SELECT DISTINCT  ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = STOK.Ana_Grup ) as Ana_Grup ,  (SELECT DISTINCT  ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID = STOK.Alt_Grup ) as Alt_Grup")) {
+    	 gRUP = " Ana_Grup ,Alt_Grup,Birim  ORDER BY Ana_Grup , Alt_Grup";  }
+     else   if (ordrr.trim().equals("Yil,Ana_Grup ,Alt_Grup")  && slct.trim().equals("(SELECT DISTINCT  ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID = STOK.Ana_Grup ) as Ana_Grup  , (SELECT DISTINCT  ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID = STOK.Alt_Grup ) as Alt_Grup ,   YEAR(STOK.Tarih) as Yil")) {
+    	 gRUP = " Ana_Grup ,Alt_Grup,Yil , Birim  ORDER BY Ana_Grup , Alt_Grup";  }
+     else   if (ordrr.trim().equals("Yil_Ay,Ana_Grup ,Alt_Grup")  && slct.trim().equals("(SELECT DISTINCT  ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID = STOK.Ana_Grup ) as Ana_Grup  , (SELECT DISTINCT  ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID = STOK.Alt_Grup ) as Alt_Grup ,  DATE_FORMAT(stok.tarih, '%Y / %m') as Yil_Ay")) {
+    	 gRUP = " Ana_Grup ,Alt_Grup,Yil_Ay ,Birim ORDER BY Ana_Grup ,Alt_Grup,Yil_Ay";  }
+     else   if (ordrr.trim().equals("Depo")  && slct.trim().equals("(SELECT DISTINCT  DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = STOK.Depo ) as Depo")) {
+    	 gRUP = " Depo , Birim ORDER BY  Depo , Birim";  }
+        String sql = 
       		 "  SELECT "
       		+    slct + qwer  +  "," + 	cASE
       		+ " FROM STOK  ,MAL " 
@@ -2304,9 +2320,11 @@ public class STOK_MYSQL implements ISTOK {
             + " AND Urun_Kodu between N'" + k1 + "' and N'" + k2 + "'" 
             + " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
             + " AND  '" + t2 + " 23:59:59.998'" 
-            	+ "  GROUP BY " + slct.split("as")[0]  + "   ;";
+            + "  GROUP BY " + gRUP  + "   ;";
+            
+ //          	+ "  GROUP BY " + slct.split("as")[0]  + "   ;";
  //     		+ "  GROUP BY Urun_Kodu , Urun_Adi , Birim   ;";
-        PreparedStatement stmt = con.prepareStatement(sql);
+    		   PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 	}

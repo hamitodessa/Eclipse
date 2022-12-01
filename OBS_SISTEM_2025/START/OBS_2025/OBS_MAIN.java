@@ -1686,6 +1686,16 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_86.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-database-administrator-30.png")));
 		toolBar_9.add(btnNewButton_86);
 		
+		JButton btnNewButton_86_1 = new JButton("");
+		btnNewButton_86_1.setToolTipText("Log Raporlama");
+		btnNewButton_86_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("LOG RAPORLAMA","");
+			}
+		});
+		btnNewButton_86_1.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-data-sheet-filled-30.png")));
+		toolBar_9.add(btnNewButton_86_1);
+		
 		JToolBar toolBar_10 = new JToolBar();
 		toolBar_10.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_10.setFloatable(false);
@@ -2634,15 +2644,7 @@ public class OBS_MAIN extends JFrame {
 		toolBar_5.add(lbldeg);
 		
 //****************************************************************************
-		JSplitButton splitButton = new JSplitButton("Degiskenler             ");
-		splitButton.setForeground( Color.MAGENTA);
-		splitButton.setArrowSize(10);
-		splitButton.setBorder(new LineBorder(new Color(0, 191, 255)));
-		splitButton.setFont(new Font("Tahoma", Font.BOLD, 10));
-		splitButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-radar-plot-30.png")));
-		toolBar_5.add(splitButton);
-		splitButton.setPopupMenu(popupMenu); //add this control to panel
-
+	
 		/**
 		JSplitButton splitButton = new JSplitButton("Degiskenler             ");
 		splitButton.setForeground( Color.MAGENTA);
@@ -2768,6 +2770,7 @@ public class OBS_MAIN extends JFrame {
 		else if (pencere.equals("E MAIL GONDERME")) internalFrame  = new E_MAIL_GONDERME();
 		else if (pencere.equals("DEGISKENLER")) internalFrame  = new DEGISKEN_GIRIS(hangi);
 		else if (pencere.equals("SQL SORGULAMA")) internalFrame  = new SQL_SORGULAMA(hangi);
+		else if (pencere.equals("LOG RAPORLAMA")) internalFrame  = new LOGLAMA_RAPOR();
 		else if (pencere.equals("HAKKINDA")) internalFrame  = new HAKKINDA();
 		//3536
 		desktopPane.add(internalFrame);

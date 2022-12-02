@@ -38,6 +38,7 @@ import javax.swing.table.TableColumnModel;
 
 import org.apache.commons.lang.StringUtils;
 
+import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
@@ -105,16 +106,21 @@ public OZEL_MIZAN()
 		public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
             Component c = super.prepareRenderer(renderer, row, col);
             String status = (String)getValueAt(row,0);
-            if (status.length() == 3) {
-            	c.setBackground(Color.PINK);
-		            c.setForeground(Color.BLUE);
-		            Font fnt = new Font(table.getFont().getFontName(),1 ,12);
-		            c.setFont(fnt);
-             } else 
-             {
-                c.setBackground(super.getBackground());
-                c.setForeground(super.getForeground());
-            }
+            try {
+				if (status.length() ==  Integer.parseInt( GLOBAL.setting_oku("CARI_MIZ_GRUP").toString())) {
+					c.setBackground(Color.PINK);
+				        c.setForeground(Color.BLUE);
+				        Font fnt = new Font(table.getFont().getFontName(),1 ,12);
+				        c.setFont(fnt);
+				 } else 
+				 {
+				    c.setBackground(super.getBackground());
+				    c.setForeground(super.getForeground());
+				}
+			} catch (NumberFormatException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             if (col == 7)
             {
             	if (getValueAt(row,7) != null)
@@ -255,44 +261,59 @@ public static void hisset ()
 		String o1 = "" ;
 		String o2 = "" ;
 		String hangi_tur = FILTRE.comboBox.getItemAt(FILTRE.comboBox.getSelectedIndex());
+		String mIDX1 = "" ;
+		String mIDX2 = "" ;
+		String mINUL="";
+		if (BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
+		{
+			mIDX1 = "WITH (INDEX (IX_HESAP))" ;
+			mIDX2 = "WITH (INDEX (IX_SATIRLAR))" ;
+			mINUL = "ISNULL" ;
+		}
+		if (BAGLAN.cariDizin.hAN_SQL.equals("MY SQL"))
+		{
+			mIDX1 = " USE INDEX (IX_HESAP)" ;
+			mIDX2 = " USE INDEX (IX_SATIRLAR)" ;
+			mINUL = "IFNULL" ;
+		}
 		if (hangi_tur.equals("Borclu Hesaplar") )
-		{ o1 = " HAVING ( ROUND((IFNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM HESAP WITH (INDEX (IX_HESAP)) , " + 
-				"SATIRLAR WITH (INDEX (IX_SATIRLAR)) WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP 	AND " + 
+		{ o1 = " HAVING ( ROUND((" + mINUL + "( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM HESAP " + mIDX1 +" , " + 
+				"SATIRLAR " + mIDX2 + " WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP 	AND " + 
 				"TARIH <  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2) + "'  ) ,0)) + " + 
-				"(IFNULL( (SELECT SUM(SATIRLAR.ALACAK)   FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR)) " + 
+				"(" + mINUL + "( (SELECT SUM(SATIRLAR.ALACAK)   FROM HESAP " + mIDX1 +" , SATIRLAR  " + mIDX2 +  
 				"WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP AND TARIH " + 
 				"BETWEEN  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2) + "' AND  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) + " 23:59:59.998'  ) ,0)  -  " + 
-				"IFNULL( (SELECT SUM(SATIRLAR.BORC)  FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR)) " + 
+				 mINUL + "( (SELECT SUM(SATIRLAR.BORC)  FROM HESAP " + mIDX1 +" , SATIRLAR " + mIDX2 +  
 				"WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP  AND TARIH " + 
 				"BETWEEN  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2) + "' AND  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) + " 23:59:59.998'  ) ,0)),2))  < 0 " ; }
 		 else if (hangi_tur.equals("Alacakli Hesaplar"))  
-		{ o1 = " HAVING ( ROUND((IFNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM HESAP WITH (INDEX (IX_HESAP)) , " + 
-				"SATIRLAR WITH (INDEX (IX_SATIRLAR)) WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP 	AND " + 
+		{ o1 = " HAVING ( ROUND((" + mINUL + "( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM HESAP " + mIDX1 +"  , " + 
+				"SATIRLAR " + mIDX2 +"  WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP 	AND " + 
 				"TARIH <  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2) + "'  ) ,0)) + " + 
-				"(IFNULL( (SELECT SUM(SATIRLAR.ALACAK)   FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR)) " + 
+				"(" + mINUL + "( (SELECT SUM(SATIRLAR.ALACAK)   FROM HESAP " + mIDX1 +"  , SATIRLAR " + mIDX2 +"  " + 
 				"WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP AND TARIH " + 
 				"BETWEEN  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2) + "' AND  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) + " 23:59:59.998'  ) ,0)  -  " + 
-				"IFNULL( (SELECT SUM(SATIRLAR.BORC)  FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR)) " + 
+				"" + mINUL + "( (SELECT SUM(SATIRLAR.BORC)  FROM HESAP " + mIDX1 +"  , SATIRLAR " + mIDX2 +"  " + 
 				"WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP  AND TARIH " + 
 				"BETWEEN  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2) + "' AND  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) + " 23:59:59.998'  ) ,0)),2))  > 0 " ; }
 		else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" ))     
-		{ o1 = " HAVING ( ROUND((IFNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM HESAP WITH (INDEX (IX_HESAP)) , " + 
-				"SATIRLAR WITH (INDEX (IX_SATIRLAR)) WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP 	AND " + 
+		{ o1 = " HAVING ( ROUND((" + mINUL + "( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM HESAP " + mIDX1 +"  , " + 
+				"SATIRLAR " + mIDX2 +"  WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP 	AND " + 
 				"TARIH <  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2) + "'  ) ,0)) + " + 
-				"(IFNULL( (SELECT SUM(SATIRLAR.ALACAK)   FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR)) " + 
+				"(" + mINUL + "( (SELECT SUM(SATIRLAR.ALACAK)   FROM HESAP " + mIDX1 +"  , SATIRLAR " + mIDX2 +"  " + 
 				"WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP AND TARIH " + 
 				"BETWEEN  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2) + "' AND  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) + " 23:59:59.998'  ) ,0)  -  " + 
-				"IFNULL( (SELECT SUM(SATIRLAR.BORC)  FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR)) " + 
+				"" + mINUL + "( (SELECT SUM(SATIRLAR.BORC)  FROM HESAP " + mIDX1 +"  , SATIRLAR " + mIDX2 +"  " + 
 				"WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP  AND TARIH " + 
 				"BETWEEN  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2) + "' AND  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) + " 23:59:59.998'  ) ,0)),2))  = 0 " ; }
 		else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
-		{ o1 = " HAVING ( ROUND((IFNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM HESAP WITH (INDEX (IX_HESAP)) , " + 
-				"SATIRLAR WITH (INDEX (IX_SATIRLAR)) WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP 	AND " + 
+		{ o1 = " HAVING ( ROUND((" + mINUL + "( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM HESAP " + mIDX1 +"  , " + 
+				"SATIRLAR " + mIDX2 +"  WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP 	AND " + 
 				"TARIH <  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2) + "'  ) ,0)) + " + 
-				"(IFNULL( (SELECT SUM(SATIRLAR.ALACAK)   FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR)) " + 
+				"(" + mINUL + "( (SELECT SUM(SATIRLAR.ALACAK)   FROM HESAP " + mIDX1 +"  , SATIRLAR " + mIDX2 +"  " + 
 				"WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP AND TARIH " + 
 				"BETWEEN  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2) + "' AND  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) + " 23:59:59.998'  ) ,0)  -  " + 
-				"IFNULL( (SELECT SUM(SATIRLAR.BORC)  FROM HESAP WITH (INDEX (IX_HESAP)) , SATIRLAR WITH (INDEX (IX_SATIRLAR)) " + 
+				" " + mINUL + "( (SELECT SUM(SATIRLAR.BORC)  FROM HESAP " + mIDX1 +"  , SATIRLAR " + mIDX2 +"  " + 
 				"WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP  AND TARIH " + 
 				"BETWEEN  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2) + "' AND  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) + " 23:59:59.998'  ) ,0)),2))  <> 0 " ; }
 		
@@ -309,7 +330,7 @@ public static void hisset ()
 		    return;
 		} 
 		table.setModel(DbUtils.resultSetToTableModel(rs));
-		ara_ayir();
+	ara_ayir();
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
@@ -406,10 +427,10 @@ public static void hisset ()
 		JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 	}
 }
-private static void ara_ayir()
+private static void ara_ayir() throws NumberFormatException, IOException
 {
-	try
-	{
+try
+{
 		DefaultTableModel model = (DefaultTableModel)table.getModel();
 		Vector<Object> data = new Vector<Object>();
 		int satir = table.getRowCount() - 1 ;
@@ -426,7 +447,9 @@ private static void ara_ayir()
 			else
 			{
 				onceki = model.getValueAt((i) - 1 , 0).toString().substring(0, deger   );
+	
 			}
+	
 			if (! model.getValueAt(i , 0).toString().substring(0, model.getValueAt(i  , 0).toString().length() < deger  ? model.getValueAt(i  , 0).toString().length()  : deger ).equals(onceki)) 
 			{
 				data = new Vector<Object>();
@@ -443,8 +466,21 @@ private static void ara_ayir()
 		}
 		//*****
 		data = new Vector<Object>();
-		data.add(model.getValueAt(0 , 0).toString().substring(0,deger));
-		data.add(isimoku(model.getValueAt(0 , 0).toString().substring(0,deger)));
+		if (model.getValueAt(0 , 0).toString().length() < deger)
+		{
+			int kj = 0 ;
+			kj = deger  - model.getValueAt(0 , 0).toString().trim().length() ;
+		//	String str_ =  model.getValueAt(0 , 0).toString() +  StringUtils.repeat("-", kj)     ;
+			String str_ =  model.getValueAt(0 , 0).toString()     ;
+			data.add(str_);
+			data.add(isimoku(model.getValueAt(0 , 0).toString()));
+		}
+		else
+		{
+			data.add(model.getValueAt(0 , 0).toString().substring(0,deger));
+			data.add(isimoku(model.getValueAt(0 , 0).toString().substring(0,deger)));
+			
+		}
 		data.add("---");
 		double doub = 0 ;
 		data.add(doub);
@@ -453,6 +489,8 @@ private static void ara_ayir()
 		data.add(doub);
 		data.add(doub);
 	    model.addRow(data);
+		
+		
 		//*****
 		   table.setAutoCreateRowSorter(true);
 	       DefaultRowSorter<?, ?> sorter = ((DefaultRowSorter<?, ?>)table.getRowSorter()); 

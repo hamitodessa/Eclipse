@@ -1659,7 +1659,6 @@ public class GRUP_RAPOR extends JInternalFrame {
 					   Cell hname = satirRow.createCell(s);
 					   if ( mdl.getValueAt(i, s) != null)
 					   {
-						   ////////////
 						   if (s > sutun)
 						   {
 							   if (FILTRE.comboBox_26.getItemAt(FILTRE.comboBox_26.getSelectedIndex()).equals("Tutar"))
@@ -1683,7 +1682,6 @@ public class GRUP_RAPOR extends JInternalFrame {
 							   hname.setCellValue( mdl.getValueAt(i,s).toString());
 							   hname.setCellStyle(solaStyle); 
 						   }
-						   ///////////
 					   }
 					   else
 					   {
@@ -1695,18 +1693,12 @@ public class GRUP_RAPOR extends JInternalFrame {
 			for (int i=0; i<= mdl.getColumnCount()-1; i++){
 				sheet.autoSizeColumn(i);
 				}
-		   //
-		
-	    //
-	   
 	    ByteArrayOutputStream bos = new ByteArrayOutputStream();
 	     workbook.write(bos);
 	     byte[] byteArray= bos.toByteArray();
 		 InputStream in = new ByteArrayInputStream(byteArray);
 		 ds = new ByteArrayDataSource(in, "application/x-any");
 		   bos.close();
-	    //
-	    
 		 }
 		  catch (Exception ex)
 		  {

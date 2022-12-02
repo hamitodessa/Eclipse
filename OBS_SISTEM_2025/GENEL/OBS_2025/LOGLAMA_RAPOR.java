@@ -213,7 +213,21 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 									  BAGLAN_LOG.fatLogDizin);
 			    		 }
 		            }
-		    	 
+		            else if (  comboBox.getSelectedItem().toString().equals("Kambiyo"))
+		            {
+		            	 if(BAGLAN.kamDizin.hAN_SQL.equals("MS SQL"))
+			    		 {
+		            	rs  = 	mSSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+								  "%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+								  BAGLAN_LOG.kamLogDizin);
+			    		 }
+		            	 else if(BAGLAN.kamDizin.hAN_SQL.equals("MY SQL"))
+			    		 {
+		            		 rs  = 	mYSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+									  "%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+									  BAGLAN_LOG.kamLogDizin);
+			    		 }
+		            }
 	   			if (!rs.isBeforeFirst() ) {  
 	   				GRID_TEMIZLE.grid_temizle(table);
 	   		//		lblNewLabel_1.setText("0");

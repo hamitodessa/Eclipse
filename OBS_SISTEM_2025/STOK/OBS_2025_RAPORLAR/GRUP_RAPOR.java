@@ -1543,7 +1543,7 @@ public class GRUP_RAPOR extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Grup Raporlama", JOptionPane.ERROR_MESSAGE);
 	  }
 	  }
-	public void  mail_at()
+	public static void  mail_at()
 	{
 		try {
 		  //************************************** XLXS *****************************************************

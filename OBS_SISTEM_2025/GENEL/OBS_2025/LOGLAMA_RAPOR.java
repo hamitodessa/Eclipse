@@ -40,6 +40,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.TARIH_SAATLI;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JComboBox;
@@ -244,8 +245,8 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
-					tc.setCellRenderer(new TARIH());
-					tc.setMinWidth(80);
+					tc.setCellRenderer(new TARIH_SAATLI());
+					tc.setMinWidth(110);
 					
 					tc = tcm.getColumn(1);
 					tc.setHeaderRenderer(new SOLA());

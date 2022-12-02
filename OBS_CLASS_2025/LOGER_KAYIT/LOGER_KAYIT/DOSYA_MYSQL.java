@@ -32,24 +32,22 @@ public class DOSYA_MYSQL implements ILOGER_KAYIT{
 	public ResultSet log_rapor(String t1, String t2, String aciklama, String evrak , String user, DIZIN_BILGILERI dBILGI)
 			throws ClassNotFoundException, SQLException {
 		
-	    
 		 StringBuilder stb = new StringBuilder();
          stb.append(" SELECT DATE_FORMAT(TARIH, '%d.%m.%Y %H:%i:%s') AS TARIH ,MESAJ,EVRAK,USER_NAME " ); 
          stb.append(" FROM   loglama  USE INDEX (IX_LOGLAMA) ") ; 
-       
          stb.append(" WHERE  loglama.mesaj  LIKE N'" + aciklama + "'") ;
          if ( ! t1.equals(""))
          		{
              stb.append(" AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998' ") ;
          		}
          if ( ! evrak.equals("%") &&  ! evrak.equals("%%")) 
-         {
-             stb.append(" AND EVRAK  LIKE '" + user + "'");
-         }
+         	{
+             stb.append(" AND EVRAK  LIKE '" + evrak + "'");
+         	}
         if ( ! user.equals("%") &&  ! user.equals("%%")) 
-         {
+         	{
              stb.append(" AND USER_NAME  LIKE '" + user + "'");
-         }
+         	}
          stb.append(" ORDER BY TARIH ") ;
      	String cumle = "jdbc:mysql://" + dBILGI.cONN_STR ;
 	    con = DriverManager.getConnection(cumle,dBILGI.kULLANICI,dBILGI.sIFRESI);

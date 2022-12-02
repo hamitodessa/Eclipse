@@ -42,7 +42,7 @@ public class DOSYA_MSSQL implements ILOGER_KAYIT{
 			throws ClassNotFoundException, SQLException {
 		  
 		 StringBuilder stb = new StringBuilder();
-        stb.append(" SELECT DATE_FORMAT(TARIH, '%d.%m.%Y %H:%i:%s') AS TARIH ,MESAJ,EVRAK,[USER_NAME] " ); 
+        stb.append(" SELECT  TARIH ,MESAJ,EVRAK,[USER_NAME] " ); 
         stb.append(" FROM   loglama  USE INDEX (IX_LOGLAMA) ") ; 
       
         stb.append(" WHERE  loglama.mesaj  LIKE N'" + aciklama + "'") ;
@@ -52,7 +52,7 @@ public class DOSYA_MSSQL implements ILOGER_KAYIT{
         		}
         if ( ! evrak.equals("%") &&  ! evrak.equals("%%")) 
         {
-            stb.append(" AND EVRAK  LIKE '" + user + "'");
+            stb.append(" AND EVRAK  LIKE '" + evrak + "'");
         }
        if ( ! user.equals("%") &&  ! user.equals("%%")) 
         {
@@ -67,9 +67,4 @@ public class DOSYA_MSSQL implements ILOGER_KAYIT{
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
-	
-
-	
-
 }

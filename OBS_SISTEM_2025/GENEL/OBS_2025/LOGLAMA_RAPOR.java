@@ -57,9 +57,9 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	 static JTable table;
 	 static JComboBox<String> comboBox = new JComboBox<String>();
 	 private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	 static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 		
-
+	 static DOSYA_MYSQL mYSQL = new DOSYA_MYSQL ();
+	 DOSYA_MSSQL mSSQL = new DOSYA_MSSQL ();
 	 private static JTextField textField;
 	 private static JTextField textField_1;
 	 private static JTextField textField_2;
@@ -158,6 +158,10 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		textField_2.setBounds(1108, 12, 96, 20);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
+		
+		JLabel lblKullanici = new JLabel("Kullanici");
+		lblKullanici.setBounds(1050, 15, 48, 14);
+		panel.add(lblKullanici);
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
 		table = new JTable(){
@@ -181,12 +185,9 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		    	 if (  comboBox.getSelectedItem().toString().equals("Cari Hesap"))
 		            {
 		    		 	
-								rs  = 	oac._ILoger.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+								rs  = 	mYSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 								  "%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 								  BAGLAN_LOG.cariLogDizin);
-							
-	   				   		
-		            
 		            }
 		            else
 		            {
@@ -216,7 +217,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 					
 					tc = tcm.getColumn(1);
 					tc.setHeaderRenderer(new SOLA());
-					tc.setMinWidth(400);
+					tc.setMinWidth(600);
 
 					tc = tcm.getColumn(2);
 					tc.setHeaderRenderer(new SOLA());

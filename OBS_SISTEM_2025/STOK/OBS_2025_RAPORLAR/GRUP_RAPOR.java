@@ -5,15 +5,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.mail.util.ByteArrayDataSource;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -1528,6 +1532,15 @@ public class GRUP_RAPOR extends JInternalFrame {
 					   //
 					   FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile()  + "_" + zaman + uzanti));
 					    workbook.write(out);
+					    //
+//					    ByteArrayDataSource ds = null ;
+//					    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//					        workbook.write(bos);
+//					        byte[] byteArray= bos.toByteArray();
+//						   InputStream in = new ByteArrayInputStream(byteArray);
+//						   ds = new ByteArrayDataSource(in, "application/x-any");
+					    //
+					    
 					   out.close();
 		    		  //**************************************
 		    	  }

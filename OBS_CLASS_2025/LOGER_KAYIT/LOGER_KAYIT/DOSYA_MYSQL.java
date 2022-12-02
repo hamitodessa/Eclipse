@@ -34,7 +34,7 @@ public class DOSYA_MYSQL implements ILOGER_KAYIT{
 		
 	    
 		 StringBuilder stb = new StringBuilder();
-         stb.append(" SELECT DATE_FORMAT(TARIH, '%d.%m.%Y %H:%i:%s'),MESAJ,EVRAK,USER_NAME " ); 
+         stb.append(" SELECT DATE_FORMAT(TARIH, '%d.%m.%Y %H:%i:%s') AS TARIH ,MESAJ,EVRAK,USER_NAME " ); 
          stb.append(" FROM   loglama  USE INDEX (IX_LOGLAMA) ") ; 
        
          stb.append(" WHERE  loglama.mesaj  LIKE N'" + aciklama + "'") ;

@@ -3154,7 +3154,6 @@ public class STOK_MSSQL implements ISTOK {
    " Order by rt.Urun_Kodu asc   option (maxrecursion 0) ";
 		  
 		 PreparedStatement stmt = con.prepareStatement(sql);
-
 			rss = stmt.executeQuery();
 			return rss;	
 	}

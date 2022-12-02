@@ -3211,6 +3211,8 @@ public class STOK_MYSQL implements ISTOK {
    " GROUP BY rt.Urun_Kodu " +
    " Order by rt.Urun_Kodu asc   option (maxrecursion 0) ";
 		  
+		  
+
 		 PreparedStatement stmt = con.prepareStatement(sql);
 
 			rss = stmt.executeQuery();

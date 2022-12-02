@@ -1732,7 +1732,7 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		     byte[] byteArray= bos.toByteArray();
 			 InputStream in = new ByteArrayInputStream(byteArray);
 			 ds = new ByteArrayDataSource(in, "application/x-any");
-			   bos.close();
+			 bos.close();
 			 }
 			  catch (Exception ex)
 			  {

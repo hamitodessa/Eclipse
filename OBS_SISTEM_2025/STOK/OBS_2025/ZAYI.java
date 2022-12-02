@@ -162,9 +162,7 @@ public class ZAYI extends JInternalFrame {
 					try {
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 					int sno = 0 ;
-						
 							 sno  =f_Access.zayi_fisno_al() ;
-				    	
 					int kj = 0 ;
 					kj = 10 - Integer.toString(sno).length() ;
 					String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);

@@ -2670,7 +2670,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		int E_NUMBER ;
-        String sql =  "SELECT  E_No FROM ZAYI_EVRAK WITH (HOLDLOCK, ROWLOCK) ";
+        String sql =  "SELECT  E_No FROM ZAYI_EVRAK  ";
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();

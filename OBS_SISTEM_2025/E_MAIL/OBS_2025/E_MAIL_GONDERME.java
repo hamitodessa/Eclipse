@@ -60,6 +60,7 @@ import javax.swing.border.TitledBorder;
 import com.crystaldecisions.sdk.occa.report.exportoptions.ReportExportFormat;
 import com.crystaldecisions.sdk.occa.report.lib.ReportSDKException;
 
+import OBS_2025_RAPORLAR.GRUP_RAPOR;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
@@ -378,6 +379,11 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			{
 				comboBox.enable(false);
 				lblNewLabel_2.setText(GLOBAL.g_baslik);
+			}
+			else if (grup_kontrol() )
+			{
+				comboBox.enable(false);
+				lblNewLabel_2.setText("Grup Rapor");
 			}
 			else 
 			{
@@ -708,7 +714,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		try
 		{
 	         long startTime = System.currentTimeMillis(); 
-		String rapor_dos_adi = GLOBAL.g_baslik ;
+	         String rapor_dos_adi = GLOBAL.g_baslik ;
 			   //****************************************RAPOR AKTARMA********************************************
 			 ByteArrayOutputStream byteArrayOutputStream = null  ;
 			   //ByteArrayInputStream byteArrayInputStream = null  ;
@@ -747,25 +753,25 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			   messagePart = new MimeBodyPart();
 	           messagePart.setText(txtaciklama.getText(), "UTF-8");
 	           
-	           ByteArrayDataSource ds = null ;
-			   BufferedImage objBufferedImage= GRAFIK.chart.createBufferedImage(800,600);
-			   ByteArrayOutputStream bas = new ByteArrayOutputStream();
-			   ImageIO.write(objBufferedImage, "png", bas);
-			   byte[] byteArray= bas.toByteArray();
-			   InputStream in = new ByteArrayInputStream(byteArray);
-			   ds = new ByteArrayDataSource(in, "application/x-any");
+//	           ByteArrayDataSource ds = null ;
+//			   BufferedImage objBufferedImage= GRAFIK.chart.createBufferedImage(800,600);
+//			   ByteArrayOutputStream bas = new ByteArrayOutputStream();
+//			   ImageIO.write(objBufferedImage, "png", bas);
+//			   byte[] byteArray= bas.toByteArray();
+//			   InputStream in = new ByteArrayInputStream(byteArray);
+//			   ds = new ByteArrayDataSource(in, "application/x-any");
 		      
 			   
 		       MimeBodyPart attachment = new MimeBodyPart();
 		       Multipart multipart = new MimeMultipart();
-		       attachment.setDataHandler(new DataHandler(ds));
+		       attachment.setDataHandler(new DataHandler(GRUP_RAPOR.ds));
 
 			   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
 			   LocalDateTime now = LocalDateTime.now();  
 			   String zaman = dtf.format(now)  ;
 		      
-			   attachment.setFileName(GLOBAL.g_baslik + zaman +".png");
-			   rapor_dos_adi =GLOBAL.g_baslik + zaman +".png";
+			   attachment.setFileName("Grup_Rapor" + zaman +".xlxs");
+			   rapor_dos_adi ="Grup_Rapor" + zaman +".xlsx";
 			  
 			   multipart.addBodyPart(attachment);
 			   //*****
@@ -817,6 +823,17 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		boolean result  = false;
 		
 		if (OBS_MAIN.pencere_bak("GRAFIK"))
+				{
+			   result = true ;
+				}
+		
+		return result;
+	}
+	private boolean  grup_kontrol() throws ReportSDKException
+	{
+		boolean result  = false;
+		
+		if (OBS_MAIN.pencere_bak("GRUP RAPOR"))
 				{
 			   result = true ;
 				}

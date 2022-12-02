@@ -27,6 +27,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.DOSYA_YAZ;
@@ -59,7 +60,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	 private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 		
 	 static DOSYA_MYSQL mYSQL = new DOSYA_MYSQL ();
-	 DOSYA_MSSQL mSSQL = new DOSYA_MSSQL ();
+	 static DOSYA_MSSQL mSSQL = new DOSYA_MSSQL ();
 	 private static JTextField textField;
 	 private static JTextField textField_1;
 	 private static JTextField textField_2;
@@ -178,24 +179,41 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	{
 		   try 
 		    {
-		
-				
 		    	long startTime = System.currentTimeMillis(); 
 		    	ResultSet	rs = null;
+		    	
 		    	 if (  comboBox.getSelectedItem().toString().equals("Cari Hesap"))
 		            {
-		    		 	
-								rs  = 	mYSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+		    		 if(BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
+		    		 {
+								rs  = 	mSSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 								  "%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 								  BAGLAN_LOG.cariLogDizin);
+		    		 }
+		    		 else 
+		    			 if(BAGLAN.cariDizin.hAN_SQL.equals("MY SQL"))
+			    		 {
+		    				 rs  = 	mYSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+									  "%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+									  BAGLAN_LOG.cariLogDizin);
+			    		 }
 		            }
-		            else
+		            else if (  comboBox.getSelectedItem().toString().equals("Fatura"))
 		            {
-		            
-		         
+		            	 if(BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
+			    		 {
+		            	rs  = 	mSSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+								  "%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+								  BAGLAN_LOG.fatLogDizin);
+			    		 }
+		            	 else if(BAGLAN.cariDizin.hAN_SQL.equals("MY SQL"))
+			    		 {
+		            		 rs  = 	mYSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+									  "%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+									  BAGLAN_LOG.fatLogDizin);
+			    		 }
 		            }
-	   			
-	   		
+		    	 
 	   			if (!rs.isBeforeFirst() ) {  
 	   				GRID_TEMIZLE.grid_temizle(table);
 	   		//		lblNewLabel_1.setText("0");

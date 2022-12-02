@@ -310,9 +310,7 @@ public class ZAYI extends JInternalFrame {
 				 try {
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 			            textField.setText("");
-			        	
 			        		  textField.setText( f_Access.zayi_son_bordro_no_al());
-		        		
 			            if ( textField.getText().equals("0") )
 			            		{
 			            	 textField.setText("");
@@ -755,10 +753,7 @@ public class ZAYI extends JInternalFrame {
 			// GuiUtil.setWaitCursor(ZAYI.splitPane,true);
 			 long startTime = System.currentTimeMillis();
 			ResultSet rss = null;
-			
 				 	rss = f_Access.zayi_oku(textField.getText(), "ZAI");
-	 		
-			
 			  if (!rss.isBeforeFirst() ) {  
 	              GRID_TEMIZLE.grid_temizle(table);
 	              sifirla();

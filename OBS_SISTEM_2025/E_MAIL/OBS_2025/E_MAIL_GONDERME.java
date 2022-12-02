@@ -218,7 +218,6 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					 txtgonhesap.requestFocus();
 					return;
 				}
-				
 				if (ValidEmailAddress.isValid(cmbalici.getSelectedItem().toString()) == false)
 						{
 					 JOptionPane.showMessageDialog(null,  "Alici Hesap , Mail formatina uymamaktadir", "Mail Gonderme", JOptionPane.ERROR_MESSAGE);
@@ -226,8 +225,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					 cmbalici.requestFocus();
 					return;
 						}
-				//
-				 if (txtkonu.getText().equals(""))
+			 if (txtkonu.getText().equals(""))
 				 {	
 					 getContentPane().setCursor(DEFAULT_CURSOR);
 		    	 JOptionPane.showMessageDialog(null,  "Konu Bos...",  "Mail Gonderme", JOptionPane.ERROR_MESSAGE);	
@@ -241,8 +239,6 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		         txtaciklama.requestFocus();
 		        return ;
 				 }
-				//
-				
 						 if ( OBS_MAIN.pencere_bak("RAPOR YAZDIRMA") == true ) 
 		             		{
 							 gonder();
@@ -255,13 +251,15 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		             		{
 								 grup_gonder();
 		             		}
+						 else if ( OBS_MAIN.pencere_bak("IMALAT GRUP RAPOR") == true ) 
+		             		{
+								 ima_grup_gonder();
+		             		}
 						 else
 						 {
 						duz_gonder();
 						 }
-						 
-						 
-						dispose();
+						 dispose();
 						getContentPane().setCursor(DEFAULT_CURSOR);
 			}
 		});
@@ -893,19 +891,16 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				{
 			   result = true ;
 				}
-		
-		return result;
+			return result;
 	}
 	private boolean  grf_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-		
 		if (OBS_MAIN.pencere_bak("GRAFIK"))
 				{
 			   result = true ;
 				}
-		
-		return result;
+			return result;
 	}
 	private boolean  grup_kontrol() throws ReportSDKException
 	{
@@ -915,18 +910,15 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				{
 			   result = true ;
 				}
-		
 		return result;
 	}
 	private boolean  ima_grup_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-		
 		if (OBS_MAIN.pencere_bak("IMALAT GRUP RAPOR"))
 				{
 			   result = true ;
 				}
-		
 		return result;
 	}
 }

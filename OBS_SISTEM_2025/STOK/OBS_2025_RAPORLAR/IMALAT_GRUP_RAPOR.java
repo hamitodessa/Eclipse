@@ -1695,7 +1695,6 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 					   Cell hname = satirRow.createCell(s);
 					   if ( mdl.getValueAt(i, s) != null)
 					   {
-						   ////////////
 						   if (s > sutun)
 						   {
 							   if (FILTRE.comboBox_34.getItemAt(FILTRE.comboBox_34.getSelectedIndex()).equals("Tutar"))

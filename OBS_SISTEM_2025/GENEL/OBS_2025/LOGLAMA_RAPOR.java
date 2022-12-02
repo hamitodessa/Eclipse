@@ -245,7 +245,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
-					tc.setCellRenderer(new TARIH_SAATLI());
+					//tc.setCellRenderer(new TARIH_SAATLI());
 					tc.setMinWidth(110);
 					
 					tc = tcm.getColumn(1);

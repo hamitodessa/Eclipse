@@ -322,24 +322,51 @@ public static void hisset ()
 		}
 		else if (BAGLAN.cariDizin.hAN_SQL.equals("MY SQL"))
 		{
-		
-				o1 = "   " ;
-		
-			o2 = "  " ;  
+			if (hangi_tur.equals("Borclu Hesaplar") )
+				{ 
+					o1= " HAVING BAKIYE  < 0 " ;
+				}
+			 else if (hangi_tur.equals("Alacakli Hesaplar"))  
+				{
+					o1= " HAVING BAKIYE  > 0 " ;
+				}
+			 else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" ))     
+				{
+					o1= " HAVING BAKIYE  =  0 " ;
+				}
+			 else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
+				{ 
+					o1= " HAVING BAKIYE  <>  0 " ;
+				}
+			o2 = " ORDER BY SATIRLAR.HESAP  " ;  
 		}
 	
 		//**************
-		
+		if(BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
+		{
 			rs = c_Access.ozel_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
 										TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
 										FILTRE.txticins.getText(),FILTRE.txtscins.getText() ,
 										FILTRE.txtikarton.getText(),FILTRE.txtskarton.getText() ,
 										o1 , o2);
+		}
+		else if(BAGLAN.cariDizin.hAN_SQL.equals("MY SQL"))
+		{
+			rs = c_Access.ozel_mizan2(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
+										TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
+										FILTRE.txticins.getText(),FILTRE.txtscins.getText() ,
+										FILTRE.txtikarton.getText(),FILTRE.txtskarton.getText() ,
+										o1 , o2);
+		}
+		
 		GRID_TEMIZLE.grid_temizle(table);
 		if (!rs.isBeforeFirst() ) {  
 		    return;
 		} 
 		table.setModel(DbUtils.resultSetToTableModel(rs));
+		if(BAGLAN.cariDizin.hAN_SQL.equals("MY SQL"))
+		{table.removeColumn(table.getColumnModel().getColumn(8));}
+
 	ara_ayir();
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
@@ -389,7 +416,7 @@ public static void hisset ()
 			
 			//***
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-			double borc = 0,alacak = 0,bakiye = 0,bakkvartal =0,onceki = 0 ;
+				double borc = 0,alacak = 0,bakiye = 0,bakkvartal =0,onceki = 0 ;
 			for (int i = 0 ; i <= mdl.getRowCount()-1;i++)
 			{
 				onceki  += (double) mdl.getValueAt(i , 3);

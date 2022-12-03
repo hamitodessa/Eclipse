@@ -1175,6 +1175,12 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	       
 		
 	}
+	@Override
+	public ResultSet ozel_mizan2(String h1, String h2, String t1, String t2, String c1, String c2, String k1, String k2,
+			String o1, String o2) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
 

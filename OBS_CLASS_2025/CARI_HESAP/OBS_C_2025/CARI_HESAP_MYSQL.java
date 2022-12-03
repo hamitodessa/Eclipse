@@ -1151,10 +1151,45 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	    	stmt.executeUpdate(sql);
 		
 	}
-	
-	
-
-	
-
-
+	@Override
+	public ResultSet ozel_mizan2(String h1, String h2, String t1, String t2, String c1, String c2, String k1, String k2,
+			String o1, String o2) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+        String sql = "SELECT SATIRLAR.HESAP,HESAP.UNVAN,HESAP.HESAP_CINSI AS H_CINSI," + 
+        		"        		IFNULL( (SELECT ROUND(SUM(SATIRLAR.ALACAK),2)  - ROUND(SUM(SATIRLAR.BORC),2)   FROM SATIRLAR  USE INDEX (IXS_HESAP) " +
+        		"				 WHERE  SATIRLAR.HESAP = HESAP.HESAP  and TARIH <  '" +t1  +"'  ) ,0) as ONCEKI_BAKIYE  ," +
+         		"				 IFNULL( (SELECT SUM(SATIRLAR.BORC)  FROM   SATIRLAR  USE INDEX (IXS_HESAP) " + 
+        		"        		 WHERE   SATIRLAR.HESAP    = HESAP.HESAP " + 
+        		"        		 AND TARIH BETWEEN  '"+ t1 + "' AND  '"+ t2 + " 23:59:59.998'  ) ,0)as BORC " + 
+        		"				 ," + 
+        		"				 IFNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM SATIRLAR  USE INDEX (IXS_HESAP)    " + 
+        		"        		 WHERE  SATIRLAR.HESAP    = HESAP.HESAP " + 
+        		"        		 AND TARIH BETWEEN '"+ t1 + "' AND '"+ t2 + " 23:59:59.998'  ) ,0)as ALACAK" + 
+        		"				 ," + 
+        		"				ROUND(IFNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM SATIRLAR  USE INDEX (IXS_HESAP)     " + 
+        		"				WHERE  SATIRLAR.HESAP    = HESAP.HESAP     		 AND TARIH BETWEEN " + 
+        		"				 '"+ t1 + "' AND  '"+ t2 + " 23:59:59.998'  ) ,0) -	" + 
+        		"				IFNULL( (SELECT SUM(SATIRLAR.BORC)  FROM SATIRLAR  USE INDEX (IXS_HESAP)     " + 
+        		"				WHERE  SATIRLAR.HESAP    = HESAP.HESAP    		 AND TARIH BETWEEN " + 
+        		"				  '"+ t1 + "' AND  '"+ t2 + " 23:59:59.998'  ) ,0),2)  as BAK_KVARTAL" + 
+        		"				 ," +  
+        		"				ROUND(IFNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  " + 
+        		" 				FROM SATIRLAR  USE INDEX (IXS_HESAP)     		" + 
+        		" 				WHERE   SATIRLAR.HESAP    = HESAP.HESAP    " + 
+        		" 				AND TARIH <  '"+ t1 + "'  ) ,0),2)  + " + 
+        		"  				ROUND(IFNULL( (SELECT SUM(SATIRLAR.ALACAK)   FROM SATIRLAR  USE INDEX (IXS_HESAP)        		 WHERE  SATIRLAR.HESAP    = HESAP.HESAP  " + 
+        		"				AND TARIH BETWEEN '"+ t1 + "' AND '"+ t2 + " 23:59:59.998'  ) ,0)  - 	" + 
+        		"				( IFNULL( (SELECT SUM(SATIRLAR.BORC) FROM SATIRLAR  USE INDEX (IXS_HESAP)    WHERE   SATIRLAR.HESAP    = HESAP.HESAP     " + 
+        		"				AND TARIH BETWEEN '"+ t1 + "' AND '"+ t2 + " 23:59:59.998'  ) ,0)),2)  as BAKIYE  ,   " + 
+        		"				COUNT(SATIRLAR.ALACAK) AS SATIR  "		+		
+        		"        		FROM SATIRLAR USE INDEX (IX_SATIRLAR) ,HESAP USE INDEX (IX_HESAP)     " + 
+        		"        		WHERE  SATIRLAR.HESAP = HESAP.HESAP  AND SATIRLAR.HESAP > N'"+ h1 +"' AND  SATIRLAR.HESAP < N'"+ h2+ "'" + 
+        		"        		AND HESAP.HESAP_CINSI BETWEEN N'"+ c1 + "' AND '"+ c2 +"'" + 
+        		"              AND HESAP.KARTON BETWEEN N'"+ k1 + "' AND N'" + k2 + "'" + 
+        		"              GROUP BY SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " + o1 + " " + o2 + "" ;
+        	PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
 }

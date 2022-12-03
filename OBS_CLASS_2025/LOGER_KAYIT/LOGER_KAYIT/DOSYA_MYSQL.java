@@ -48,7 +48,7 @@ public class DOSYA_MYSQL implements ILOGER_KAYIT{
          	{
              stb.append(" AND USER_NAME  LIKE '" + user + "'");
          	}
-         stb.append(" ORDER BY TARIH ") ;
+         stb.append(" ORDER BY DATE(TARIH) ") ;
      	String cumle = "jdbc:mysql://" + dBILGI.cONN_STR ;
 	    con = DriverManager.getConnection(cumle,dBILGI.kULLANICI,dBILGI.sIFRESI);
  		ResultSet	rss = null;

@@ -5,13 +5,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import javax.mail.util.ByteArrayDataSource;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -66,7 +72,7 @@ public class STOK_DETAY extends JInternalFrame {
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
-	
+	public static  ByteArrayDataSource ds = null ;
 	private static JTable table;
 	private static String qwq1 ="" ;
 	private static String qwq2  = "";
@@ -751,6 +757,144 @@ public class STOK_DETAY extends JInternalFrame {
 	    t.start();
 	    //
 	  }
+	public static void mail_at() throws IOException
+	{
+		  //************************************** XLXS *****************************************************
+		  XSSFWorkbook workbook = new XSSFWorkbook();
+		   XSSFSheet sheet = workbook.createSheet("Stok_Detay");
+		   XSSFFont headerFont = workbook.createFont();
+		   headerFont.setBold(true);
+		   headerFont.setColor(IndexedColors.BLUE.getIndex()); 
+		   XSSFCellStyle headerStyle = workbook.createCellStyle();
+		   XSSFCellStyle headerSolaStyle = workbook.createCellStyle();
+		   headerStyle.setFont(headerFont);
+		   headerStyle.setAlignment(HorizontalAlignment.RIGHT);
+		   
+		   XSSFFont solaFont = workbook.createFont();
+		   solaFont.setFontName("Arial Narrow");
+		   solaFont. setFontHeight((short)(10*20));
+		   XSSFCellStyle solaStyle = workbook.createCellStyle();
+		   solaStyle.setFont(solaFont);
+		   solaStyle.setAlignment(HorizontalAlignment.LEFT);
+		   
+		   XSSFFont headerSolaFont = workbook.createFont();
+		   headerSolaFont.setBold(true);
+		   headerSolaFont.setColor(IndexedColors.BLUE.getIndex()); 
+		   headerSolaStyle.setFont(headerSolaFont);
+		   headerSolaStyle.setAlignment(HorizontalAlignment.LEFT);
+		   
+		   XSSFCellStyle satirStyle = workbook.createCellStyle();
+		   XSSFCellStyle satirStyle3 = workbook.createCellStyle();
+		   XSSFCellStyle satirStyle2 = workbook.createCellStyle();
+		   XSSFFont satirFont = workbook.createFont();
+		   satirFont.setFontName("Arial Narrow");
+		   satirFont. setFontHeight((short)(10*20));
+		   satirStyle.setFont(satirFont);
+		   satirStyle.setAlignment(HorizontalAlignment.RIGHT);
+		   satirStyle3.setFont(satirFont);
+		   satirStyle2.setFont(satirFont);
+		   satirStyle3.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
+		   satirStyle2.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
+		   satirStyle3.setAlignment(HorizontalAlignment.RIGHT);
+		   satirStyle2.setAlignment(HorizontalAlignment.RIGHT);
+			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+			XSSFCellStyle acikStyle = workbook.createCellStyle();
+			XSSFFont acikFont = workbook.createFont();
+			   acikFont.setColor(IndexedColors.RED.getIndex()); 
+			   acikFont.setBold(true);
+			   acikFont.setFontName("Arial");
+			   acikFont. setFontHeight((short)(22*20));
+			   acikStyle.setFont(acikFont);
+			   acikStyle.setAlignment(HorizontalAlignment.CENTER);
+			   
+			 Row baslikRow = sheet.createRow(0);
+			 sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -1));
+			 Cell baslikname = baslikRow.createCell(0);
+			   
+			   baslikname.setCellValue(BAGLAN.fatDizin.fIRMA_ADI );
+			   baslikname.setCellStyle(acikStyle);
+		 Row headerRow = sheet.createRow(1);
+			for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
+			{
+				 Cell bname = headerRow.createCell(q);
+				 if (q == 8 || q ==10 || q == 12 || q == 13 || q == 14)
+				 {
+				 bname.setCellValue(mdl.getColumnName(q));
+				 bname.setCellStyle(headerStyle);
+				 }
+				 else
+				 {
+					 bname.setCellValue(mdl.getColumnName(q));
+					 bname.setCellStyle(headerSolaStyle);
+				 }
+			}
+			//
+			
+			for (int i =0;i <= mdl.getRowCount()-1 ;i++)
+			{
+	
+				 Row satirRow = sheet.createRow(i+2);
+				for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
+				{
+					   Cell hname = satirRow.createCell(s);
+					   if ( mdl.getValueAt(i, s) != null)
+					   {
+						   if (s== 8) 
+						   {
+							   hname.setCellStyle(satirStyle3);
+							   hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+						   }
+						   else  if (s== 10) 
+						   {
+							   hname.setCellStyle(satirStyle2);
+							   hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+						   }
+						   else  if (s== 12) 
+						   {
+							   hname.setCellStyle(satirStyle3);
+							   hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+						   }
+						   else  if (s== 13) 
+						   {
+							   hname.setCellStyle(satirStyle2);
+							   hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+						   }
+						   else  if (s== 14) 
+						   {
+							   hname.setCellStyle(satirStyle2);
+							   hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+					
+						   }
+						   else  if (s== 7) 
+						   {
+						   DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+							  hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
+							  hname.setCellStyle(satirStyle);
+						   }
+						   else
+						   {
+							   hname.setCellValue( mdl.getValueAt(i,s).toString());
+							   hname.setCellStyle(solaStyle); 
+						   }
+					   }
+					   else
+					   {
+						   hname.setCellValue("");
+						   hname.setCellStyle(satirStyle);
+					   }
+				}
+			}
+			for (int i=0; i<= mdl.getColumnCount()-1; i++)
+			{
+				sheet.autoSizeColumn(i);
+			}
+			 ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		     workbook.write(bos);
+		     byte[] byteArray= bos.toByteArray();
+			 InputStream in = new ByteArrayInputStream(byteArray);
+			 ds = new ByteArrayDataSource(in, "application/x-any");
+			   bos.close();
+	}
 	static void Progres_Bar(int max, int deger) throws InterruptedException
     {
  	    OBS_MAIN.progressBar.setValue(deger);

@@ -184,10 +184,8 @@ public class ARAMA extends JInternalFrame {
 						   FILTRE.textField_4.getText(),
 						   FILTRE.textField_5.getText() + "%",
 						   FILTRE.textField_79.getText() + "%"
-						   ,FILTRE.textField.getText()+ " Aranan Kelime","", BAGLAN_LOG.cariLogDizin );
-   				   		
-	            
-	            }
+						   ,FILTRE.textField.getText()+ " Aranan Kelime=" +  FILTRE.textField_1.getText(),"", BAGLAN_LOG.cariLogDizin );
+ 	            }
 	            else
 	            {
 	            	rs = c_Access.ekstre_arama("%" +FILTRE.textField.getText() + "%",
@@ -197,7 +195,7 @@ public class ARAMA extends JInternalFrame {
 							   FILTRE.textField_4.getText(),
 							   "%" + FILTRE.textField_5.getText() + "%",
 							   FILTRE.textField_79.getText() + "%"
-							   ,FILTRE.textField.getText()+ " Aranan Kelime","", BAGLAN_LOG.cariLogDizin );
+							   ,FILTRE.textField.getText()+ " Aranan Kelime=" +  FILTRE.textField_1.getText(),"", BAGLAN_LOG.cariLogDizin );
 	            }
    			
    		

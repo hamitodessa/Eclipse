@@ -1184,7 +1184,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_34 = new JButton("");
 		btnNewButton_34.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				form_ac("KUR GRAFIK","");
+			form_ac("KUR GRAFIK","");
 			}
 		});
 		btnNewButton_34.setToolTipText("Grafik");

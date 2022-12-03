@@ -276,6 +276,8 @@ public static void hisset ()
 			mIDX2 = " USE INDEX (IX_SATIRLAR)" ;
 			mINUL = "IFNULL" ;
 		}
+		if (BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
+		{
 		if (hangi_tur.equals("Borclu Hesaplar") )
 		{ o1 = " HAVING ( ROUND((" + mINUL + "( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM HESAP " + mIDX1 +" , " + 
 				"SATIRLAR " + mIDX2 + " WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP 	AND " + 
@@ -316,8 +318,16 @@ public static void hisset ()
 				" " + mINUL + "( (SELECT SUM(SATIRLAR.BORC)  FROM HESAP " + mIDX1 +"  , SATIRLAR " + mIDX2 +"  " + 
 				"WHERE   HESAP.HESAP = SATIRLAR.HESAP   AND HESAP.HESAP = h.HESAP  AND TARIH " + 
 				"BETWEEN  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2) + "' AND  '"+ TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) + " 23:59:59.998'  ) ,0)),2))  <> 0 " ; }
-		
 		o2 = " ORDER BY h.HESAP ASC " ;  
+		}
+		else if (BAGLAN.cariDizin.hAN_SQL.equals("MY SQL"))
+		{
+		
+				o1 = "   " ;
+		
+			o2 = "  " ;  
+		}
+	
 		//**************
 		
 			rs = c_Access.ozel_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,

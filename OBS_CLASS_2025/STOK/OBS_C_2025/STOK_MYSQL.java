@@ -3324,10 +3324,10 @@ public class STOK_MYSQL implements ISTOK {
 	public void ana_yaz(String ydosya,String kull) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-        String sql =  " INSERT INTO [OK_Fat" + ydosya + "].dbo.ANA_GRUP_DEGISKEN " +
-                " ( AGID_Y,ANA_GRUP , USER  ) " +
-                " SELECT  AGID_Y,ANA_GRUP  ,'" + kull + "' " +
-                " FROM ANA_GRUP_DEGISKEN ";
+        String sql =  " INSERT INTO ok_fat" + ydosya + ".ANA_GRUP_DEGISKEN " +
+                "  ( AGID_Y,ANA_GRUP , USER  ) " +
+                "  SELECT  AGID_Y,ANA_GRUP  ,'" + kull + "' " +
+                "  FROM ANA_GRUP_DEGISKEN ";
     	PreparedStatement stmt = con.prepareStatement(sql);
     	stmt.executeUpdate();
 		stmt.close();
@@ -3335,7 +3335,7 @@ public class STOK_MYSQL implements ISTOK {
 	public void alt_yaz(String ydosya,String kull) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-	        String sql =  " INSERT INTO [OK_Fat" + ydosya + "].dbo.ALT_GRUP_DEGISKEN " +
+	        String sql =  " INSERT INTO ok_fat" + ydosya + ".ALT_GRUP_DEGISKEN " +
                 " ( ALID_Y,ANA_GRUP,ALT_GRUP , USER  ) " +
                 " SELECT  ALID_Y,ANA_GRUP  ,ALT_GRUP ,'" + kull + "' " +
                 " FROM ALT_GRUP_DEGISKEN ";
@@ -3346,7 +3346,7 @@ public class STOK_MYSQL implements ISTOK {
 	public void gidecegi_yer(String ydosya,String kull) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-	        String sql =  " INSERT INTO [OK_Fat" + ydosya + "].dbo.GDY " +
+	        String sql =  " INSERT INTO ok_fat" + ydosya + ".GDY " +
                     " ( Isim,Adres,Semt,Sehir, USER   ) " +
                     " SELECT Isim,Adres,Semt,Sehir ,'" + kull + "' " +
                     " FROM GDY ";
@@ -3358,36 +3358,36 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		 String sql = "" ;
-	     sql = "DELETE [OK_Fat" + ydosya + "].dbo.IRS_EVRAK_FORMAT ";
+	     sql = "DELETE ok_fat" + ydosya + ".IRS_EVRAK_FORMAT ";
     	PreparedStatement stmt = con.prepareStatement(sql);
     	stmt.executeUpdate();
     	
-    	sql = "DELETE [OK_Fat"  + ydosya + "].dbo.FAT_EVRAK_FORMAT ";
+    	sql = "DELETE ok_fat"  + ydosya + ".FAT_EVRAK_FORMAT ";
      	stmt = con.prepareStatement(sql);
      	stmt.executeUpdate();
      	
-     	sql = " INSERT INTO [OK_Fat" +  ydosya  + "].dbo.FAT_EVRAK_FORMAT " +
-                " ( [SAT_SUT],[TARIH] ,[FIRMA_KODU]      ,[FIRMA_UNVANI]      ,[VERGI_DAIRESI]      ,[VERGI_NO]      ,[GIDECEGI_YER]      ,[NOT_1]      ,[NOT_2]      ,[NOT_3]      ,[BASLIK_BOLUM]      ,[BARKOD] " +
-                " ,[URUN_KODU]      ,[URUN_ADI]      ,[DEPO]      ,[IZAHAT]      ,[SIMGE]      ,[BIRIM_FIAT]      ,[ISKONTO]      ,[MIKTAR]      ,[K_D_V]      ,[TUTAR]      ,[TUTAR_TOPLAM] " +
-                " ,[ISKONTO_TOPLAMI]      ,[BAKIYE]      ,[K_D_V_TOPLAMI]      ,[BELGE_TOPLAMI]      ,[TEVKIFAT_ORANI]      ,[AL_TAR_TEV_ED_KDV]      ,[TEV_DAH_TOP_TUTAR]      ,[BEYAN_ED_KDV] " +
-                " ,[TEV_HAR_TOP_TUT]      ,[YAZI_ILE]      ,[TEV_KASESI]      ,[ALT_BOLUM]      ,[N1]      ,[N2]      ,[N3]      ,[N4]      ,[N5]      ,[N6]      ,[N7]      ,[N8]      ,[N9]      ,[N10], USER   ) " +
-                " SELECT [SAT_SUT]      ,[TARIH]      ,[FIRMA_KODU]      ,[FIRMA_UNVANI]      ,[VERGI_DAIRESI]      ,[VERGI_NO]      ,[GIDECEGI_YER]      ,[NOT_1]      ,[NOT_2]      ,[NOT_3]      ,[BASLIK_BOLUM] " +
-                " ,[BARKOD]      ,[URUN_KODU]      ,[URUN_ADI]      ,[DEPO]      ,[IZAHAT]      ,[SIMGE]      ,[BIRIM_FIAT]      ,[ISKONTO]      ,[MIKTAR]      ,[K_D_V]      ,[TUTAR]      ,[TUTAR_TOPLAM] " +
-                " ,[ISKONTO_TOPLAMI]      ,[BAKIYE]      ,[K_D_V_TOPLAMI]      ,[BELGE_TOPLAMI]      ,[TEVKIFAT_ORANI]      ,[AL_TAR_TEV_ED_KDV]      ,[TEV_DAH_TOP_TUTAR]      ,[BEYAN_ED_KDV]      ,[TEV_HAR_TOP_TUT] " +
-                " ,[YAZI_ILE]      ,[TEV_KASESI]      ,[ALT_BOLUM]      ,[N1]      ,[N2]      ,[N3]      ,[N4]      ,[N5]      ,[N6]      ,[N7]      ,[N8]      ,[N9]      ,[N10],'" + kull + "' " +
+     	sql = " INSERT INTO ok_fat" +  ydosya  + ".FAT_EVRAK_FORMAT " +
+                " ( `SAT_SUT`,`TARIH` ,`FIRMA_KODU`      ,`FIRMA_UNVANI`      ,`VERGI_DAIRESI`      ,`VERGI_NO`      ,`GIDECEGI_YER`      ,`NOT_1`      ,`NOT_2`      ,`NOT_3`      ,`BASLIK_BOLUM`      ,`BARKOD` " +
+                " ,`URUN_KODU`      ,`URUN_ADI`      ,`DEPO`      ,`IZAHAT`      ,`SIMGE`      ,`BIRIM_FIAT`      ,`ISKONTO`      ,`MIKTAR`      ,`K_D_V`      ,`TUTAR`      ,`TUTAR_TOPLAM` " +
+                " ,`ISKONTO_TOPLAMI`      ,`BAKIYE`      ,`K_D_V_TOPLAMI`      ,`BELGE_TOPLAMI`      ,`TEVKIFAT_ORANI`      ,`AL_TAR_TEV_ED_KDV`      ,`TEV_DAH_TOP_TUTAR`      ,`BEYAN_ED_KDV` " +
+                " ,`TEV_HAR_TOP_TUT`      ,`YAZI_ILE`      ,`TEV_KASESI`      ,`ALT_BOLUM`      ,`N1`      ,`N2`      ,`N3`      ,`N4`      ,`N5`      ,`N6`      ,`N7`      ,`N8`      ,`N9`      ,`N10`, USER   ) " +
+                " SELECT `SAT_SUT`      ,`TARIH`      ,`FIRMA_KODU`      ,`FIRMA_UNVANI`      ,`VERGI_DAIRESI`      ,`VERGI_NO`      ,`GIDECEGI_YER`      ,`NOT_1`      ,`NOT_2`      ,`NOT_3`      ,`BASLIK_BOLUM` " +
+                " ,`BARKOD`      ,`URUN_KODU`      ,`URUN_ADI`      ,`DEPO`      ,`IZAHAT`      ,`SIMGE`      ,`BIRIM_FIAT`      ,`ISKONTO`      ,`MIKTAR`      ,`K_D_V`      ,`TUTAR`      ,`TUTAR_TOPLAM` " +
+                " ,`ISKONTO_TOPLAMI`      ,`BAKIYE`      ,`K_D_V_TOPLAMI`      ,`BELGE_TOPLAMI`      ,`TEVKIFAT_ORANI`      ,`AL_TAR_TEV_ED_KDV`      ,`TEV_DAH_TOP_TUTAR`      ,`BEYAN_ED_KDV`      ,`TEV_HAR_TOP_TUT` " +
+                " ,`YAZI_ILE`      ,`TEV_KASESI`      ,`ALT_BOLUM`      ,`N1`      ,`N2`      ,`N3`      ,`N4`      ,`N5`      ,`N6`      ,`N7`      ,`N8`      ,`N9`      ,`N10`,'" + kull + "' " +
                 " FROM FAT_EVRAK_FORMAT ";
      	stmt = con.prepareStatement(sql);
      	stmt.executeUpdate();
      	
-     	sql = " INSERT INTO [OK_Fat" + ydosya + "].dbo.IRS_EVRAK_FORMAT " +
-                " ( [SAT_SUT]      ,[TARIH]      ,[SEVK_TARIH]      ,[FIRMA_KODU]      ,[FIRMA_UNVANI]      ,[VERGI_DAIRESI]      ,[VERGI_NO]      ,[GIDECEGI_YER]      ,[NOT_1]      ,[NOT_2]      ,[NOT_3] " +
-                " ,[BASLIK_BOLUM]      ,[BARKOD]      ,[URUN_KODU]      ,[URUN_ADI]      ,[DEPO]      ,[SIMGE]      ,[BIRIM_FIAT]      ,[ISKONTO]      ,[MIKTAR]      ,[K_D_V]      ,[TUTAR]      ,[TUTAR_TOPLAM] " +
-                " ,[ISKONTO_TOPLAMI]      ,[BAKIYE]      ,[K_D_V_TOPLAMI]      ,[BELGE_TOPLAMI]      ,[YAZI_ILE]      ,[ALT_BOLUM]      ,[N1]      ,[N2]      ,[N3]      ,[N4]      ,[N5] " +
-                " ,[N6]      ,[N7]      ,[N8]      ,[N9]      ,[N10], USER  ) " +
-                " SELECT [SAT_SUT]      ,[TARIH]      ,[SEVK_TARIH]      ,[FIRMA_KODU]      ,[FIRMA_UNVANI]      ,[VERGI_DAIRESI]      ,[VERGI_NO]      ,[GIDECEGI_YER]      ,[NOT_1]      ,[NOT_2]      ,[NOT_3] " +
-                " ,[BASLIK_BOLUM]      ,[BARKOD]      ,[URUN_KODU]      ,[URUN_ADI]      ,[DEPO]      ,[SIMGE]      ,[BIRIM_FIAT]      ,[ISKONTO]      ,[MIKTAR]      ,[K_D_V]      ,[TUTAR]      ,[TUTAR_TOPLAM] " +
-                " ,[ISKONTO_TOPLAMI]      ,[BAKIYE]      ,[K_D_V_TOPLAMI]      ,[BELGE_TOPLAMI]      ,[YAZI_ILE]      ,[ALT_BOLUM]      ,[N1]      ,[N2]      ,[N3]      ,[N4]      ,[N5] " +
-                " ,[N6]      ,[N7]      ,[N8]      ,[N9]      ,[N10],'" + kull + "' " +
+     	sql = " INSERT INTO ok_fat" + ydosya + ".IRS_EVRAK_FORMAT " +
+                " ( `SAT_SUT`      ,`TARIH`      ,`SEVK_TARIH`      ,`FIRMA_KODU`      ,`FIRMA_UNVANI`      ,`VERGI_DAIRESI`      ,`VERGI_NO`      ,`GIDECEGI_YER`      ,`NOT_1`      ,`NOT_2`      ,`NOT_3` " +
+                " ,`BASLIK_BOLUM`      ,`BARKOD`      ,`URUN_KODU`      ,`URUN_ADI`      ,`DEPO`      ,`SIMGE`      ,`BIRIM_FIAT`      ,`ISKONTO`      ,`MIKTAR`      ,`K_D_V`      ,`TUTAR`      ,`TUTAR_TOPLAM` " +
+                " ,`ISKONTO_TOPLAMI`      ,`BAKIYE`      ,`K_D_V_TOPLAMI`      ,`BELGE_TOPLAMI`      ,`YAZI_ILE`      ,`ALT_BOLUM`      ,`N1`      ,`N2`      ,`N3`      ,`N4`      ,`N5` " +
+                " ,`N6`      ,`N7`      ,`N8`      ,`N9`      ,`N10`, USER  ) " +
+                " SELECT `SAT_SUT`      ,`TARIH`      ,`SEVK_TARIH`      ,`FIRMA_KODU`      ,`FIRMA_UNVANI`      ,`VERGI_DAIRESI`      ,`VERGI_NO`      ,`GIDECEGI_YER`      ,`NOT_1`      ,`NOT_2`      ,`NOT_3` " +
+                " ,`BASLIK_BOLUM`      ,`BARKOD`      ,`URUN_KODU`      ,`URUN_ADI`      ,`DEPO`      ,`SIMGE`      ,`BIRIM_FIAT`      ,`ISKONTO`      ,`MIKTAR`      ,`K_D_V`      ,`TUTAR`      ,`TUTAR_TOPLAM` " +
+                " ,`ISKONTO_TOPLAMI`      ,`BAKIYE`      ,`K_D_V_TOPLAMI`      ,`BELGE_TOPLAMI`      ,`YAZI_ILE`      ,`ALT_BOLUM`      ,`N1`      ,`N2`      ,`N3`      ,`N4`      ,`N5` " +
+                " ,`N6`      ,`N7`      ,`N8`      ,`N9`      ,`N10`,'" + kull + "' " +
                 " FROM  IRS_EVRAK_FORMAT ";
      	stmt = con.prepareStatement(sql);
      	stmt.executeUpdate();
@@ -3396,12 +3396,12 @@ public class STOK_MYSQL implements ISTOK {
 	public void mal_yaz(String ydosya,String kull,String eski_ukodu,String yen_ukodu) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-	        String sql =   " INSERT INTO [OK_Fat" + ydosya + "].dbo.MAL " +
+	        String sql =   " INSERT INTO ok_fat" + ydosya + ".MAL " +
                     " ( Kodu, Adi, Birim, Kusurat,Resim,Sinif,Ana_Grup ,Alt_Grup ,Aciklama_1 ,Aciklama_2 ,Ozel_Kod_1 ,Ozel_Kod_2,Ozel_Kod_3  ,KDV , " + 
 	        		" Barkod,Mensei,Agirlik,Depo,Fiat,Fiat_2 ,Fiat_3 ,Recete ,  USER   ) " +
                     " SELECT '" + yen_ukodu + "',Adi,Birim,Kusurat,Resim, Sinif, Ana_Grup, Alt_Grup,Aciklama_1,Aciklama_2,Ozel_Kod_1,Ozel_Kod_2,Ozel_Kod_3,KDV, " +  
 	        		" Barkod,Mensei,Agirlik,Depo,Fiat,Fiat_2 ,Fiat_3,Recete ,'" + kull + "' " +
-                    " FROM [MAL] Where Kodu =N'" + eski_ukodu + "' ";
+                    " FROM MAL Where Kodu =N'" + eski_ukodu + "' ";
     	PreparedStatement stmt = con.prepareStatement(sql);
     	stmt.executeUpdate();
 		stmt.close();
@@ -3412,7 +3412,7 @@ public class STOK_MYSQL implements ISTOK {
             , String ozkod ,double kur ,String cins,int  anagrp,int  altgrp ,String usr,String ydosya) throws ClassNotFoundException, SQLException
 {
 	Class.forName("com.mysql.cj.jdbc.Driver");
-   String sql  ="INSERT INTO [OK_Fat" + ydosya + "].dbo.FATURA (Fatura_No,Kodu,Depo,Fiat,Tevkifat,Miktar,Gir_Cik,Tutar,Iskonto,Kdv,Tarih,Izahat " +
+   String sql  ="INSERT INTO ok_fat" + ydosya + ".FATURA (Fatura_No,Kodu,Depo,Fiat,Tevkifat,Miktar,Gir_Cik,Tutar,Iskonto,Kdv,Tarih,Izahat " +
            " ,Doviz,Adres_Firma,Cari_Firma,Ozel_Kod,Kur,Cins,Ana_Grup,Alt_Grup, USER ) " +
 		   		  " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 	PreparedStatement stmt = null;
@@ -3447,7 +3447,7 @@ public class STOK_MYSQL implements ISTOK {
             , String hspkodu ,String usr,String ydosya) throws ClassNotFoundException, SQLException
 {
 	Class.forName("com.mysql.cj.jdbc.Driver");
-    String sql  ="INSERT INTO [OK_Fat" + ydosya + "].dbo.STOK (Evrak_No,Evrak_Cins,Tarih,Depo,Urun_Kodu,Miktar,Fiat,Tutar,Kdvli_Tutar,Hareket,Izahat " +
+    String sql  ="INSERT INTO ok_fat" + ydosya + ".STOK (Evrak_No,Evrak_Cins,Tarih,Depo,Urun_Kodu,Miktar,Fiat,Tutar,Kdvli_Tutar,Hareket,Izahat " +
             " ,Ana_Grup,Alt_Grup,Kur,B1,Doviz,Hesap_Kodu, USER ) " +
 		   		  " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 	PreparedStatement stmt = null;

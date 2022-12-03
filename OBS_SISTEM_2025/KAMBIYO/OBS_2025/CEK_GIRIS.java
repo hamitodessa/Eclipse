@@ -284,7 +284,9 @@ public class CEK_GIRIS extends JInternalFrame {
 				{
 					try {
 					int sno = 0 ;
+			
 		             sno  = ka_Access.kam_bordro_no_al("CEK_G") ;
+		    
 					int kj = 0 ;
 					kj = 10 - Integer.toString(sno).length() ;
 					String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
@@ -684,10 +686,13 @@ public class CEK_GIRIS extends JInternalFrame {
 	      		 vade  = qwe;
 	      	  }
 	        	String gtt = TARIH_CEVIR.tarih_geri(dateChooser);
-	  
+	        	String cMB ="";
+	        			if( comboBox.getSelectedItem() != null ) {
+	        				cMB = comboBox.getSelectedItem().toString();
+	     	        	}
 		    	 ka_Access.cek_kayit(mdll.getValueAt(i,0).toString(), vade,
 		    			 textField.getText(), textField_1.getText(),
-		    			 gtt,   comboBox.getSelectedItem().toString(),
+		    			 gtt,    cMB,
 		    			 asd, cbo, cmus, cozk,mdll.getValueAt(i,2).toString()
 		    			 , mdll.getValueAt(i,3).toString(), (double) mdll.getValueAt(i,8),
 		    			 mdll.getValueAt(i,7).toString(),mdll.getValueAt(i,4).toString(), mdll.getValueAt(i,5).toString()

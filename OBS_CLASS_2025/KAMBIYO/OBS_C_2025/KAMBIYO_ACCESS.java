@@ -38,7 +38,7 @@ public class KAMBIYO_ACCESS {
 	}
 	public int kam_bordro_no_al(String cins) throws ClassNotFoundException, SQLException
 	{
-		_IKambiyo.kam_son_bordro_no_al(cins, cins);
+		_IKambiyo.kam_bordro_no_al(cins);
 		return 0;
 	}
 	public String kam_son_bordro_no_al(String cins ,String tur) throws ClassNotFoundException, SQLException

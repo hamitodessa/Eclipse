@@ -145,9 +145,10 @@ public class EKSIK_KUR extends JInternalFrame {
 		panel.add(btnNewButton);
 		
 		 lblkayit = new JLabel("0");
-		 lblkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
+		 lblkayit.setForeground(new Color(0, 0, 205));
+		 lblkayit.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		 lblkayit.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblkayit.setBounds(322, 79, 29, 14);
+		lblkayit.setBounds(316, 79, 45, 14);
 		panel.add(lblkayit);
 		
 		JButton btnMerkezOku = new JButton("Merkez Oku");

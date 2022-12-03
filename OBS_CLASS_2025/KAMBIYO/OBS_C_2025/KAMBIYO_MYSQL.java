@@ -212,7 +212,7 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		Class.forName("com.mysql.cj.jdbc.Driver");
     String sql  = "INSERT INTO CEK ( Cek_No,Vade,Giris_Bordro,Giris_Musteri,Giris_Tarihi,Giris_Ozel_Kod,Cikis_Tarihi " +
             " ,Cikis_Bordro,Cikis_Musteri,Cikis_Ozel_Kod,Banka,Sube,Tutar,Cins,Seri_No " +
-            " ,Ilk_Borclu,Cek_Hesap_No,Durum,T_Tarih,[USER])" +
+            " ,Ilk_Borclu,Cek_Hesap_No,Durum,T_Tarih,USER)" +
             "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 	
     PreparedStatement stmt = null;
@@ -367,9 +367,9 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		ResultSet	rss = null;
         String sql = " SELECT  Cek_No, Vade, Giris_Bordro,Giris_Tarihi, " +
                 " Giris_Musteri, Banka, Sube, Cins, Tutar, Durum, " +
-                " IIF(T_Tarih = '1753.01.01', '',right(T_Tarih,2) +  '.' + Substring(Convert(nvarchar, T_Tarih), 6, 2) + '.' + left(T_Tarih,4) ) as T_Tarih, " +
+                " IF(T_Tarih = '1900.01.01', '',DATE_FORMAT(T_Tarih,  '%d.%m.%Y') ) as T_Tarih, " +
                 " Giris_Ozel_Kod ,Cikis_Bordro , " + 
-                " IIF(Cikis_Tarihi = '1753.01.01', '',right(Cikis_Tarihi,2) +  '.' + Substring(Convert(nvarchar, Cikis_Tarihi), 6, 2) + '.' + left(Cikis_Tarihi,4) ) as Cikis_Tarihi," +
+                " IF(Cikis_Tarihi = '1900.01.01', '',DATE_FORMAT(Cikis_Tarihi,  '%d.%m.%Y') ) as Cikis_Tarihi," +
                 " Cikis_Musteri, Cikis_Ozel_Kod,CEK.USER " +
                 " FROM CEK " +
                 " WHERE Cek_No >='" + cekno1 + "' AND Cek_No <='" + cekno2 + "'" +
@@ -386,7 +386,7 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
                 " AND Giris_Ozel_Kod  LIKE '" + gozel + "'" +
                 " AND Cikis_Ozel_Kod  LIKE '" + cozel + "'" +
                 " ORDER BY Cek_No ";
-    	PreparedStatement stmt = con.prepareStatement(sql);
+       	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
 		

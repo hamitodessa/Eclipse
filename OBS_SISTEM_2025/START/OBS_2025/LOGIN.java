@@ -44,6 +44,8 @@ import javax.swing.plaf.metal.OceanTheme;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.DOSYA_MYSQL;
@@ -85,7 +87,7 @@ import OBS_C_2025.STOK_MYSQL;
 
 
 public class LOGIN extends JFrame {
-	
+		
 	boolean CAR_DOS_VAR;
 	boolean KUR_DOS_VAR;
 	boolean SMS_DOS_VAR;
@@ -364,6 +366,7 @@ public LOGIN() throws IOException {
 		btndevam.setVisible(false);
 		btndevam.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/icons8-jog-forward-16.png")));
 		btndevam.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		
 		progressBar = new JProgressBar();
 		splitPane.setRightComponent(progressBar);
 		progressBar.setForeground(new Color(166, 55, 55));
@@ -1132,7 +1135,6 @@ public LOGIN() throws IOException {
 		else if (mODUL.equals("Kambiyo"))
 		{oac._IKambiyo_Loger = ilogg;}
 	}
-	
 }
 
 

@@ -1166,14 +1166,10 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	    		+ ") ON [PRIMARY]";
 	    	stmt = con.createStatement();  
 	    	stmt.executeUpdate(sql);
-	    	 sql = "CREATE NONCLUSTERED INDEX [IDX_LOGLAMA] ON [dbo].[LOGLAMA](	[TARIH] ASC,	[EVRAK] ASC , [USER_NAME] ASC "
+	    	 sql = "CREATE NONCLUSTERED INDEX [IX_LOGLAMA] ON [dbo].[LOGLAMA](	[TARIH] ASC,	[EVRAK] ASC , [USER_NAME] ASC "
 	                  + " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
-
-	    	 
 	           stmt = con.createStatement();  
 	           stmt.executeUpdate(sql);
-	       
-		
 	}
 	@Override
 	public ResultSet ozel_mizan2(String h1, String h2, String t1, String t2, String c1, String c2, String k1, String k2,

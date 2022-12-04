@@ -583,7 +583,7 @@ public class STOK_DETAY extends JInternalFrame {
 									   {
 									   DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 										  hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
-										  hname.setCellStyle(satirStyle);
+										  hname.setCellStyle(solaStyle);
 									   }
 									   else
 									   {
@@ -719,7 +719,7 @@ public class STOK_DETAY extends JInternalFrame {
 									   {
 									   DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 										  hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
-										  hname.setCellStyle(satirStyle);
+										  hname.setCellStyle(solaStyle);
 									   }
 									   else
 									   {

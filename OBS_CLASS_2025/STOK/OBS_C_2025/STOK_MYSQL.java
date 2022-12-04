@@ -1601,8 +1601,8 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql =   "SELECT Evrak_No, DATE(Tarih),Urun_Kodu, Adi , " +
-                " CONVERT(Miktar,Double),  Birim ,  CONVERT((Miktar * Mal.Agirlik),double) as Agirlik ," +
+        String sql =   "SELECT Evrak_No, DATE(Tarih) as Tarih,Urun_Kodu, Adi , " +
+                " CONVERT(Miktar,Double) as Miktar,  Birim ,  CONVERT((Miktar * Mal.Agirlik),double) as Agirlik ," +
                 " (SELECT DEPO from DEPO_DEGISKEN WHERE DPID_Y = STOK.DEPO ) as Depo , " +
                 " (SELECT ANA_GRUP from ANA_GRUP_DEGISKEN WHERE AGID_Y = STOK.Ana_Grup ) as Ana_Grup , " +
                 " (SELECT ALT_GRUP from ALT_GRUP_DEGISKEN WHERE ALID_Y = STOK.Alt_Grup ) as Alt_Grup  , " +

@@ -2260,6 +2260,10 @@ public class OBS_MAIN extends JFrame {
             	{
 				ENVANTER.excell_aktar() ;
             	}
+				else if (sonuc == "IMALAT RAPORLAMA")
+            	{
+				IMALAT_RAPORLAMA.excell_aktar() ;
+            	}
 					GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});

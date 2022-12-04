@@ -2264,6 +2264,10 @@ public class OBS_MAIN extends JFrame {
             	{
 				IMALAT_RAPORLAMA.excell_aktar() ;
             	}
+				else if (sonuc == "STOK_RAPOR")
+            	{
+				STOK_RAPOR.excell_aktar() ;
+            	}
 					GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});

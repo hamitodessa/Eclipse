@@ -47,11 +47,6 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.sayiyiYaziyaCevir;
 
-import java.awt.BorderLayout;
-import javax.swing.event.InternalFrameAdapter;
-import javax.swing.event.InternalFrameEvent;
-import javax.swing.table.DefaultTableModel;
-
 public class PRINT_YAPMA extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;

@@ -290,6 +290,24 @@ public class DEKONT extends JInternalFrame {
 				{	
 					cmbbhes.requestFocus();
 				}
+				else if (KeyEvent.getKeyText(e.getKeyCode()) == "Page Up" )
+				{	
+					getContentPane().setCursor(oac.WAIT_CURSOR);
+					int evr = Integer.parseInt(txtevrak.getText());
+					evr +=1 ;
+					txtevrak.setText(Integer.toString(evr));
+					fiskont();
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				}
+				else if (KeyEvent.getKeyText(e.getKeyCode()) == "Page Down" )
+				{	
+					getContentPane().setCursor(oac.WAIT_CURSOR);
+					int evr = Integer.parseInt(txtevrak.getText());
+					evr -=1 ;
+					txtevrak.setText(Integer.toString(evr));
+					fiskont();
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				}
 				else
 				{
 					String[] parts;

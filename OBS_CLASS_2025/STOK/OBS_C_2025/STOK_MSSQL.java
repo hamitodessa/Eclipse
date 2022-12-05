@@ -2480,7 +2480,7 @@ public class STOK_MSSQL implements ISTOK {
                 " FROM STOK s left outer join OK_Kur" +  BAGLAN.kurDizin.kOD + ".dbo.kurlar k on convert(varchar(10), k.Tarih, 102) = convert(varchar(10), s.Tarih, 102) and k.Kur = '" + kur + "'" +
                 " WHERE k." + cins + " IS NULL OR k." + cins + " =0 " +
                 " ORDER BY  convert(varchar(10), s.Tarih, 104)  " ;
-    	PreparedStatement stmt = con.prepareStatement(sql);
+     	PreparedStatement stmt = con.prepareStatement(sql);
  		rss = stmt.executeQuery();
 		return rss;	
 	}

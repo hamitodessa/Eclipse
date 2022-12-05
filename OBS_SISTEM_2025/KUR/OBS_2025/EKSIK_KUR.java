@@ -2,6 +2,7 @@ package OBS_2025;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Insets;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -131,6 +132,7 @@ public class EKSIK_KUR extends JInternalFrame {
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnNewButton.setForeground(new Color(0, 0, 128));
+		btnNewButton.setMargin(new Insets(2, 1, 2, 1));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

@@ -141,14 +141,14 @@ public class EKSIK_KUR extends JInternalFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(21, 75, 120, 23);
+		btnNewButton.setBounds(21, 75, 100, 23);
 		panel.add(btnNewButton);
 		
 		 lblkayit = new JLabel("0");
 		 lblkayit.setForeground(new Color(0, 0, 205));
 		 lblkayit.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		 lblkayit.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblkayit.setBounds(316, 79, 45, 14);
+		lblkayit.setBounds(300, 79, 40, 14);
 		panel.add(lblkayit);
 		
 		JButton btnMerkezOku = new JButton("Merkez Oku");
@@ -161,12 +161,12 @@ public class EKSIK_KUR extends JInternalFrame {
 				getContentPane().setCursor(DEFAULT_CURSOR);			
 			}
 		});
-		btnMerkezOku.setBounds(151, 75, 120, 23);
+		btnMerkezOku.setBounds(140, 75, 100, 23);
 		panel.add(btnMerkezOku);
 		
 		JLabel lblNewLabel = new JLabel("Satir :");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(270, 79, 42, 14);
+		lblNewLabel.setBounds(250, 79, 42, 14);
 		panel.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();

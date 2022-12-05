@@ -421,8 +421,7 @@ public class KUR_GIRIS extends JInternalFrame {
 	{
         try
         {
-       	
- 			k_Access.kur_sil(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()));
+  			k_Access.kur_sil(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()));
             kur_liste();
             sifirla();
         }

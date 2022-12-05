@@ -127,7 +127,7 @@ public class KUR_MSSQL implements IKUR{
         String sql = " DELETE " +
                 " FROM kurlar " +
                 " WHERE Tarih ='" + tar + "' AND Kur =N'" + kur + "'" ;
-        PreparedStatement stmt = con.prepareStatement(sql);
+          PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
 	public void kur_kayit(String tar,String kur ,double  ma ,double ms ,double sa ,double ss ,double ba,double bs ) throws ClassNotFoundException, SQLException

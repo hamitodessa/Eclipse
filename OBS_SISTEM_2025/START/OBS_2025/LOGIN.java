@@ -83,6 +83,10 @@ import OBS_C_2025.STOK_MYSQL;
 
 
 public class LOGIN extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	boolean CAR_DOS_VAR;
 	boolean KUR_DOS_VAR;
 	boolean SMS_DOS_VAR;

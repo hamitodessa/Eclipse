@@ -344,7 +344,12 @@ public class MAIL extends JInternalFrame {
 		JButton btnNewButton_2 = new JButton("Gonder");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if ( chckbxNewCheckBox.isSelected()) //' Coklu gonderim
+				if (oac.glb.internet_kontrol() == false)
+				{
+					 JOptionPane.showMessageDialog(null,  "Internet Baglantisi Yok ",  "Mail Gonderme ", JOptionPane.ERROR_MESSAGE);	
+					return ;
+				}
+			if ( chckbxNewCheckBox.isSelected()) //' Coklu gonderim
 				{
 					getContentPane().setCursor(oac.WAIT_CURSOR);
 				        coklu_gonder();

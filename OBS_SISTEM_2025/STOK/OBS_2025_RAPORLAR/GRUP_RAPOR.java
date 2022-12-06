@@ -79,7 +79,7 @@ public class GRUP_RAPOR extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
-	public static  ByteArrayDataSource ds = null ;
+
 	private static JTable table;
 	private static String qwq6  = "";
 	private static String qwq7  = "";
@@ -1697,7 +1697,7 @@ public class GRUP_RAPOR extends JInternalFrame {
 	     workbook.write(bos);
 	     byte[] byteArray= bos.toByteArray();
 		 InputStream in = new ByteArrayInputStream(byteArray);
-		 ds = new ByteArrayDataSource(in, "application/x-any");
+		 oac.ds = new ByteArrayDataSource(in, "application/x-any");
 		   bos.close();
 		 }
 		  catch (Exception ex)

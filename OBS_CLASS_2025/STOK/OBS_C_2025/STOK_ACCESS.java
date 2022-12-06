@@ -27,13 +27,22 @@ public class STOK_ACCESS {
 		 _IStok.fAT_SIFIR_L( kod,dizin_yeri, dizin,  fir_adi, ins, kull, sifre,port);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
-			// _Logger.Logla(mesaj);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
 
 	}
 	public void fAT_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
 			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.fAT_SIFIR_S(server, ins, kull, sifre, kod, fir_adi);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla(mesaj,evrak, dBILGI);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
+	}
+	public void stk_firma_adi_kayit(String fadi, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IStok.stk_firma_adi_kayit(fadi);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}

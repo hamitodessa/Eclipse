@@ -17,7 +17,8 @@ public class TARIH extends DefaultTableCellRenderer {
             int row, int column) {
     	
        // if( value instanceof Date) {
-    	setHorizontalAlignment(JLabel.LEFT);
+    	//System.out.println(value);
+     	setHorizontalAlignment(JLabel.LEFT);
          value = f.format(value);
        // }
         return super.getTableCellRendererComponent(table, value, isSelected,

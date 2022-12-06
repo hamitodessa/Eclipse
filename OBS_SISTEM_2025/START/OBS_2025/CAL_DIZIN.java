@@ -971,12 +971,16 @@ public class CAL_DIZIN extends JFrame {
 					comboBox.removeAllItems();
 					comboBox.addItem("");
 					comboBox.setEnabled(true);
+					chckbxD.setEnabled(true);
+					chckbxO.setEnabled(true);
 						}
 				else
 				{
 					comboBox.removeAllItems();
 					comboBox.addItem("");
 					comboBox.setEnabled(false);
+					chckbxD.setEnabled(false);
+					chckbxO.setEnabled(false);
 				}
 				}
 		});

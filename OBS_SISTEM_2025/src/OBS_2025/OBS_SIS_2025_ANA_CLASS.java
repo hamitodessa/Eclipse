@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.image.BufferedImage;
 
+import javax.mail.util.ByteArrayDataSource;
+
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import OBS_C_2025.DOSYA_YAZ;
@@ -59,7 +61,7 @@ public class OBS_SIS_2025_ANA_CLASS
     public IConnection _IGunlukCon ;
     public IConnection _ISmsCon ;
     
-    
+	public static  ByteArrayDataSource ds = null ;
     
 	public int txt_yukseklik =20;
 	public static Color gridcolor ; //=  new Color(0, 191, 255);      //   0,153,204   java.awt.Color[r=204,g=0,b=102]

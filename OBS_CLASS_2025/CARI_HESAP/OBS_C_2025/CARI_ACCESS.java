@@ -40,6 +40,8 @@ public class CARI_ACCESS {
 		 
 			 for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(mesaj,evrak, dBILGI);
+			 for ( ILOGGER  _Logger : _Logger )
+				  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
 	}
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
 			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
@@ -47,6 +49,8 @@ public class CARI_ACCESS {
 		 _ICari.cARI_SIFIR_S(server, kull, sifre, kod, fir_adi, ins);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
 	}
 	public ResultSet  cari_sonfisno( ) throws ClassNotFoundException, SQLException
 	{
@@ -276,5 +280,10 @@ public class CARI_ACCESS {
 	{
 		return _ICari.ozel_mizan2(h1, h2, t1, t2, c1, c2, k1, k2, o1, o2);
 	}
-
+	public void cari_firma_adi_kayit(String fadi,String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_ICari.cari_firma_adi_kayit(fadi);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(mesaj,evrak, dBILGI);
+	}
 }

@@ -74,7 +74,6 @@ public class IMALAT_RAPORLAMA extends JInternalFrame {
 	private static JTable table;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
-	public static  ByteArrayDataSource ds = null ;
 	private static String qwq1 ="" ;
 	private static String qwq2  = "";
 	private static String qwq3  = "";
@@ -813,7 +812,7 @@ public class IMALAT_RAPORLAMA extends JInternalFrame {
 		     workbook.write(bos);
 		     byte[] byteArray= bos.toByteArray();
 			 InputStream in = new ByteArrayInputStream(byteArray);
-			 ds = new ByteArrayDataSource(in, "application/x-any");
+			 oac.ds = new ByteArrayDataSource(in, "application/x-any");
 			   bos.close();
 
 	}

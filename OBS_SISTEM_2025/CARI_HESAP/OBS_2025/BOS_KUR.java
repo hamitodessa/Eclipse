@@ -13,10 +13,13 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.TARIH_SAATLI;
 import net.proteanit.sql.DbUtils;
 import javax.swing.ListSelectionModel;
 
@@ -73,13 +76,15 @@ public class BOS_KUR extends JInternalFrame {
 			if (!rs.isBeforeFirst() ) {  
 			    return;
 			} 
-			
-			table.setModel(DbUtils.resultSetToTableModel(rs));
+				table.setModel(DbUtils.resultSetToTableModel(rs));
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
 			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(new SOLA());
+			if(BAGLAN.cariDizin.hAN_SQL.equals("MY SQL")) {			
+				tc.setCellRenderer(new TARIH ());
+			}
 			Dimension dd = th.getPreferredSize();
 		    dd.height = 30;
 		    th.setPreferredSize(dd); 

@@ -201,6 +201,12 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if (oac.glb.internet_kontrol() == false)
+				{
+					 JOptionPane.showMessageDialog(null,  "Internet Baglantisi Yok ",  "Mail Gonderme", JOptionPane.ERROR_MESSAGE);	
+					return ;
+				}
 				if (txtgonhesap.getText().equals("") || cmbalici.getSelectedItem().toString() .equals("")) return ;
 						getContentPane().setCursor(WAIT_CURSOR);
 						
@@ -730,81 +736,9 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	{
 		try
 		{
-	         long startTime = System.currentTimeMillis(); 
-	         String rapor_dos_adi = GLOBAL.g_baslik ;
-			   //****************************************RAPOR AKTARMA********************************************
-			   MimeBodyPart messagePart = null ;
-		       //*************************************************************************************************
-		       String[] to = { cmbalici.getSelectedItem().toString()  };
-			   Properties props = System.getProperties();
-			   props.put("mail.smtp.starttls.enable", MAIL_SETTINGS.TSL);
-			   if (MAIL_SETTINGS.SSL)
-			   {
-				   props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
-			   }
-			   props.put("mail.smtp.host",MAIL_SETTINGS.HOST);
-			   props.put("mail.smtp.user", MAIL_SETTINGS.HESAP);
-			   props.put("mail.smtp.password", MAIL_SETTINGS.PWD);
-			   props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
-			   props.put("mail.smtp.auth", "true");
-			   props.put("mail.smtp.ssl.protocols", "TLSv1.2");
-			   Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
-                   protected PasswordAuthentication getPasswordAuthentication() {
-                       return new PasswordAuthentication(MAIL_SETTINGS.HESAP, MAIL_SETTINGS.PWD);
-                   }
-               });
-			   MimeMessage message = new MimeMessage(session);
-			   message.setFrom(new InternetAddress(MAIL_SETTINGS.HESAP,MAIL_SETTINGS.GADI));
-			   InternetAddress[] toAddress = new InternetAddress[to.length];
-			   for (int i = 0; i < to.length; i++) {
-			    toAddress[i] = new InternetAddress(to[i]);
-			   }
-			   for (int i = 0; i < toAddress.length; i++) {
-			    message.setRecipient(RecipientType.TO,  toAddress[i]);
-			   }
-			   messagePart = new MimeBodyPart();
-	           messagePart.setText(txtaciklama.getText(), "UTF-8");
-		      GRUP_RAPOR. mail_at();
-			   
-		       MimeBodyPart attachment = new MimeBodyPart();
-		       Multipart multipart = new MimeMultipart();
-		       attachment.setDataHandler(new DataHandler(GRUP_RAPOR.ds));
-
-			   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
-			   LocalDateTime now = LocalDateTime.now();  
-			   String zaman = dtf.format(now)  ;
-		      
-			   attachment.setFileName("Grup_Rapor" + zaman +".xlsx");
-			   rapor_dos_adi ="Grup_Rapor" + zaman +".xlsx";
-			  
-			   multipart.addBodyPart(attachment);
-			   //*****
-			   for (int i =0; i< list.getModel().getSize(); i++)
-	            {
-	                try {
-	                	 Object item = list.getModel().getElementAt(i);
-	                	 MimeBodyPart att = new MimeBodyPart();
-	                	 att.attachFile(item.toString());
-	                	 multipart.addBodyPart(att);
-	                } catch (IOException ex) {
-	                    throw ex;
-	                }
-	            } 
-			   //*****
-	           multipart.addBodyPart(messagePart);
-			   message.setSubject(txtkonu.getText(), "UTF-8");
-			   message.setContent(multipart);
-			   Transport.send(message);
-			   message= null;
-			   session = null;
-			   //**********************Raporlama Dosyasina Yaz ***************************
-	            oac.uSER_ISL.giden_rapor_yaz(new java.sql.Date(Calendar.getInstance().getTime().getTime())  ,txtkonu.getText(), rapor_dos_adi, cmbalici.getSelectedItem().toString() ,
-	            		MAIL_SETTINGS.HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;
-	           //*************************************************************************
-	      		 long endTime = System.currentTimeMillis();
-	      		 long estimatedTime = endTime - startTime; 
-	      		 double seconds = (double)estimatedTime/1000; 
-	      		 OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+	   		    GRUP_RAPOR. mail_at();
+			   xl_gonder("Grup_Rapor" );
+	
 		}
 		catch (Exception ex)
 		{
@@ -815,81 +749,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	{
 		try
 		{
-	         long startTime = System.currentTimeMillis(); 
-	         String rapor_dos_adi = GLOBAL.g_baslik ;
-			   //****************************************RAPOR AKTARMA********************************************
-			   MimeBodyPart messagePart = null ;
-		       //*************************************************************************************************
-		       String[] to = { cmbalici.getSelectedItem().toString()  };
-			   Properties props = System.getProperties();
-			   props.put("mail.smtp.starttls.enable", MAIL_SETTINGS.TSL);
-			   if (MAIL_SETTINGS.SSL)
-			   {
-				   props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
-			   }
-			   props.put("mail.smtp.host",MAIL_SETTINGS.HOST);
-			   props.put("mail.smtp.user", MAIL_SETTINGS.HESAP);
-			   props.put("mail.smtp.password", MAIL_SETTINGS.PWD);
-			   props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
-			   props.put("mail.smtp.auth", "true");
-			   props.put("mail.smtp.ssl.protocols", "TLSv1.2");
-			   Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
-                   protected PasswordAuthentication getPasswordAuthentication() {
-                       return new PasswordAuthentication(MAIL_SETTINGS.HESAP, MAIL_SETTINGS.PWD);
-                   }
-               });
-			   MimeMessage message = new MimeMessage(session);
-			   message.setFrom(new InternetAddress(MAIL_SETTINGS.HESAP,MAIL_SETTINGS.GADI));
-			   InternetAddress[] toAddress = new InternetAddress[to.length];
-			   for (int i = 0; i < to.length; i++) {
-			    toAddress[i] = new InternetAddress(to[i]);
-			   }
-			   for (int i = 0; i < toAddress.length; i++) {
-			    message.setRecipient(RecipientType.TO,  toAddress[i]);
-			   }
-			   messagePart = new MimeBodyPart();
-	           messagePart.setText(txtaciklama.getText(), "UTF-8");
-		      STOK_DETAY. mail_at();
-			   
-		       MimeBodyPart attachment = new MimeBodyPart();
-		       Multipart multipart = new MimeMultipart();
-		       attachment.setDataHandler(new DataHandler( STOK_DETAY.ds));
-
-			   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
-			   LocalDateTime now = LocalDateTime.now();  
-			   String zaman = dtf.format(now)  ;
-		      
-			   attachment.setFileName("Stok_Detay" + zaman +".xlsx");
-			   rapor_dos_adi ="Stok_Detay" + zaman +".xlsx";
-			  
-			   multipart.addBodyPart(attachment);
-			   //*****
-			   for (int i =0; i< list.getModel().getSize(); i++)
-	            {
-	                try {
-	                	 Object item = list.getModel().getElementAt(i);
-	                	 MimeBodyPart att = new MimeBodyPart();
-	                	 att.attachFile(item.toString());
-	                	 multipart.addBodyPart(att);
-	                } catch (IOException ex) {
-	                    throw ex;
-	                }
-	            } 
-			   //*****
-	           multipart.addBodyPart(messagePart);
-			   message.setSubject(txtkonu.getText(), "UTF-8");
-			   message.setContent(multipart);
-			   Transport.send(message);
-			   message= null;
-			   session = null;
-			   //**********************Raporlama Dosyasina Yaz ***************************
-	            oac.uSER_ISL.giden_rapor_yaz(new java.sql.Date(Calendar.getInstance().getTime().getTime())  ,txtkonu.getText(), rapor_dos_adi, cmbalici.getSelectedItem().toString() ,
-	            		MAIL_SETTINGS.HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;
-	           //*************************************************************************
-	      		 long endTime = System.currentTimeMillis();
-	      		 long estimatedTime = endTime - startTime; 
-	      		 double seconds = (double)estimatedTime/1000; 
-	      		 OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+			  STOK_DETAY. mail_at();
+			   xl_gonder("Stok_Detay" );
 		}
 		catch (Exception ex)
 		{
@@ -900,81 +761,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	{
 		try
 		{
-	         long startTime = System.currentTimeMillis(); 
-	         String rapor_dos_adi = GLOBAL.g_baslik ;
-			   //****************************************RAPOR AKTARMA********************************************
-			   MimeBodyPart messagePart = null ;
-		       //*************************************************************************************************
-		       String[] to = { cmbalici.getSelectedItem().toString()  };
-			   Properties props = System.getProperties();
-			   props.put("mail.smtp.starttls.enable", MAIL_SETTINGS.TSL);
-			   if (MAIL_SETTINGS.SSL)
-			   {
-				   props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
-			   }
-			   props.put("mail.smtp.host",MAIL_SETTINGS.HOST);
-			   props.put("mail.smtp.user", MAIL_SETTINGS.HESAP);
-			   props.put("mail.smtp.password", MAIL_SETTINGS.PWD);
-			   props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
-			   props.put("mail.smtp.auth", "true");
-			   props.put("mail.smtp.ssl.protocols", "TLSv1.2");
-			   Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
-                   protected PasswordAuthentication getPasswordAuthentication() {
-                       return new PasswordAuthentication(MAIL_SETTINGS.HESAP, MAIL_SETTINGS.PWD);
-                   }
-               });
-			   MimeMessage message = new MimeMessage(session);
-			   message.setFrom(new InternetAddress(MAIL_SETTINGS.HESAP,MAIL_SETTINGS.GADI));
-			   InternetAddress[] toAddress = new InternetAddress[to.length];
-			   for (int i = 0; i < to.length; i++) {
-			    toAddress[i] = new InternetAddress(to[i]);
-			   }
-			   for (int i = 0; i < toAddress.length; i++) {
-			    message.setRecipient(RecipientType.TO,  toAddress[i]);
-			   }
-			   messagePart = new MimeBodyPart();
-	           messagePart.setText(txtaciklama.getText(), "UTF-8");
-		      STOK_RAPOR. mail_at();
-			   
-		       MimeBodyPart attachment = new MimeBodyPart();
-		       Multipart multipart = new MimeMultipart();
-		       attachment.setDataHandler(new DataHandler(STOK_RAPOR.ds));
-
-			   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
-			   LocalDateTime now = LocalDateTime.now();  
-			   String zaman = dtf.format(now)  ;
-		      
-			   attachment.setFileName("Stok_Rapor" + zaman +".xlsx");
-			   rapor_dos_adi ="Stok_Rapor" + zaman +".xlsx";
-			  
-			   multipart.addBodyPart(attachment);
-			   //*****
-			   for (int i =0; i< list.getModel().getSize(); i++)
-	            {
-	                try {
-	                	 Object item = list.getModel().getElementAt(i);
-	                	 MimeBodyPart att = new MimeBodyPart();
-	                	 att.attachFile(item.toString());
-	                	 multipart.addBodyPart(att);
-	                } catch (IOException ex) {
-	                    throw ex;
-	                }
-	            } 
-			   //*****
-	           multipart.addBodyPart(messagePart);
-			   message.setSubject(txtkonu.getText(), "UTF-8");
-			   message.setContent(multipart);
-			   Transport.send(message);
-			   message= null;
-			   session = null;
-			   //**********************Raporlama Dosyasina Yaz ***************************
-	            oac.uSER_ISL.giden_rapor_yaz(new java.sql.Date(Calendar.getInstance().getTime().getTime())  ,txtkonu.getText(), rapor_dos_adi, cmbalici.getSelectedItem().toString() ,
-	            		MAIL_SETTINGS.HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;
-	           //*************************************************************************
-	      		 long endTime = System.currentTimeMillis();
-	      		 long estimatedTime = endTime - startTime; 
-	      		 double seconds = (double)estimatedTime/1000; 
-	      		 OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+			  STOK_RAPOR. mail_at();
+			   xl_gonder("Stok_Rapor" );
 		}
 		catch (Exception ex)
 		{
@@ -985,81 +773,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	{
 		try
 		{
-	         long startTime = System.currentTimeMillis(); 
-	         String rapor_dos_adi = GLOBAL.g_baslik ;
-			   //****************************************RAPOR AKTARMA********************************************
-			   MimeBodyPart messagePart = null ;
-		       //*************************************************************************************************
-		       String[] to = { cmbalici.getSelectedItem().toString()  };
-			   Properties props = System.getProperties();
-			   props.put("mail.smtp.starttls.enable", MAIL_SETTINGS.TSL);
-			   if (MAIL_SETTINGS.SSL)
-			   {
-				   props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
-			   }
-			   props.put("mail.smtp.host",MAIL_SETTINGS.HOST);
-			   props.put("mail.smtp.user", MAIL_SETTINGS.HESAP);
-			   props.put("mail.smtp.password", MAIL_SETTINGS.PWD);
-			   props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
-			   props.put("mail.smtp.auth", "true");
-			   props.put("mail.smtp.ssl.protocols", "TLSv1.2");
-			   Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
-                   protected PasswordAuthentication getPasswordAuthentication() {
-                       return new PasswordAuthentication(MAIL_SETTINGS.HESAP, MAIL_SETTINGS.PWD);
-                   }
-               });
-			   MimeMessage message = new MimeMessage(session);
-			   message.setFrom(new InternetAddress(MAIL_SETTINGS.HESAP,MAIL_SETTINGS.GADI));
-			   InternetAddress[] toAddress = new InternetAddress[to.length];
-			   for (int i = 0; i < to.length; i++) {
-			    toAddress[i] = new InternetAddress(to[i]);
-			   }
-			   for (int i = 0; i < toAddress.length; i++) {
-			    message.setRecipient(RecipientType.TO,  toAddress[i]);
-			   }
-			   messagePart = new MimeBodyPart();
-	           messagePart.setText(txtaciklama.getText(), "UTF-8");
-		      IMALAT_GRUP_RAPOR. mail_at();
-			   
-		       MimeBodyPart attachment = new MimeBodyPart();
-		       Multipart multipart = new MimeMultipart();
-		       attachment.setDataHandler(new DataHandler(IMALAT_GRUP_RAPOR.ds));
-
-			   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
-			   LocalDateTime now = LocalDateTime.now();  
-			   String zaman = dtf.format(now)  ;
-		      
-			   attachment.setFileName("Imalat_Grup_Rapor" + zaman +".xlsx");
-			   rapor_dos_adi ="Imalat_Grup_Rapor" + zaman +".xlsx";
-			  
-			   multipart.addBodyPart(attachment);
-			   //*****
-			   for (int i =0; i< list.getModel().getSize(); i++)
-	            {
-	                try {
-	                	 Object item = list.getModel().getElementAt(i);
-	                	 MimeBodyPart att = new MimeBodyPart();
-	                	 att.attachFile(item.toString());
-	                	 multipart.addBodyPart(att);
-	                } catch (IOException ex) {
-	                    throw ex;
-	                }
-	            } 
-			   //*****
-	           multipart.addBodyPart(messagePart);
-			   message.setSubject(txtkonu.getText(), "UTF-8");
-			   message.setContent(multipart);
-			   Transport.send(message);
-			   message= null;
-			   session = null;
-			   //**********************Raporlama Dosyasina Yaz ***************************
-	            oac.uSER_ISL.giden_rapor_yaz(new java.sql.Date(Calendar.getInstance().getTime().getTime())  ,txtkonu.getText(), rapor_dos_adi, cmbalici.getSelectedItem().toString() ,
-	            		MAIL_SETTINGS.HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;
-	           //*************************************************************************
-	      		 long endTime = System.currentTimeMillis();
-	      		 long estimatedTime = endTime - startTime; 
-	      		 double seconds = (double)estimatedTime/1000; 
-	      		 OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+			  IMALAT_GRUP_RAPOR. mail_at();
+			   xl_gonder("Imalat_Grup_Rapor" );
 		}
 		catch (Exception ex)
 		{
@@ -1067,6 +782,18 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 	}
 	private void ima_gonder() 
+	{
+		try
+		{
+			  IMALAT_RAPORLAMA. mail_at();
+			   xl_gonder("Imalat_Rapor" );
+		}
+		catch (Exception ex)
+		{
+			 JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
+	private void xl_gonder(String dadi)
 	{
 		try
 		{
@@ -1088,6 +815,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			   props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
 			   props.put("mail.smtp.auth", "true");
 			   props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+			   
 			   Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
                    protected PasswordAuthentication getPasswordAuthentication() {
                        return new PasswordAuthentication(MAIL_SETTINGS.HESAP, MAIL_SETTINGS.PWD);
@@ -1104,18 +832,17 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			   }
 			   messagePart = new MimeBodyPart();
 	           messagePart.setText(txtaciklama.getText(), "UTF-8");
-		      IMALAT_RAPORLAMA. mail_at();
 			   
 		       MimeBodyPart attachment = new MimeBodyPart();
 		       Multipart multipart = new MimeMultipart();
-		       attachment.setDataHandler(new DataHandler(IMALAT_RAPORLAMA.ds));
+		       attachment.setDataHandler(new DataHandler( oac.ds));
 
 			   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
 			   LocalDateTime now = LocalDateTime.now();  
 			   String zaman = dtf.format(now)  ;
 		      
-			   attachment.setFileName("Imalat_Rapor" + zaman +".xlsx");
-			   rapor_dos_adi ="Imalat_Rapor" + zaman +".xlsx";
+			   attachment.setFileName(dadi  + zaman +".xlsx");
+			   rapor_dos_adi =dadi + zaman +".xlsx";
 			  
 			   multipart.addBodyPart(attachment);
 			   //*****
@@ -1134,7 +861,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	           multipart.addBodyPart(messagePart);
 			   message.setSubject(txtkonu.getText(), "UTF-8");
 			   message.setContent(multipart);
-			   Transport.send(message);
+				   Transport.send(message);
 			   message= null;
 			   session = null;
 			   //**********************Raporlama Dosyasina Yaz ***************************

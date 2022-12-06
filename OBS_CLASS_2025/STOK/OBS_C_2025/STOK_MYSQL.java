@@ -2547,7 +2547,7 @@ public class STOK_MYSQL implements ISTOK {
                 " FROM STOK s left outer join ok_kur" +  BAGLAN.kurDizin.kOD + ".kurlar k on DATE( k.Tarih) = DATE( s.Tarih) and k.Kur = '" + kur + "'" +
                 " WHERE k." + cins + " IS NULL OR k." + cins + " =0 " +
                 " ORDER BY DATE(s.Tarih)  " ;
-    	PreparedStatement stmt = con.prepareStatement(sql);
+          PreparedStatement stmt = con.prepareStatement(sql);
  		rss = stmt.executeQuery();
 		return rss;	
 	}

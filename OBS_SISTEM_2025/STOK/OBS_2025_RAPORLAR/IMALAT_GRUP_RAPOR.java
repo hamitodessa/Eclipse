@@ -75,8 +75,7 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
-	public static  ByteArrayDataSource ds = null ;
-	private static JTable table;
+		private static JTable table;
 	private static String qwq6  = "";
 	private static String qwq7  = "";
 	private static String qwq8  = "";
@@ -1731,7 +1730,7 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		     workbook.write(bos);
 		     byte[] byteArray= bos.toByteArray();
 			 InputStream in = new ByteArrayInputStream(byteArray);
-			 ds = new ByteArrayDataSource(in, "application/x-any");
+			 oac.ds = new ByteArrayDataSource(in, "application/x-any");
 			 bos.close();
 			 }
 			  catch (Exception ex)

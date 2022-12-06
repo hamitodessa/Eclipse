@@ -107,7 +107,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		
 		comboBox = new JComboBox();
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo"}));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo","Adres"}));
 		comboBox.setBounds(10, 11, 142, 22);
 		panel.add(comboBox);
 		
@@ -227,6 +227,21 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		            		 rs  = 	mYSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 									  "%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 									  BAGLAN_LOG.kamLogDizin);
+			    		 }
+		            }
+		            else if (  comboBox.getSelectedItem().toString().equals("Adres"))
+		            {
+		            	 if(BAGLAN.kamDizin.hAN_SQL.equals("MS SQL"))
+			    		 {
+		            	rs  = 	mSSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+								  "%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+								  BAGLAN_LOG.adrLogDizin);
+			    		 }
+		            	 else if(BAGLAN.kamDizin.hAN_SQL.equals("MY SQL"))
+			    		 {
+		            		 rs  = 	mYSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+									  "%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+									  BAGLAN_LOG.adrLogDizin);
 			    		 }
 		            }
 	   			if (!rs.isBeforeFirst() ) {  

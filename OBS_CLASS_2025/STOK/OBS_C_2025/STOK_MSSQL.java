@@ -55,10 +55,7 @@ public class STOK_MSSQL implements ISTOK {
           cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
           con = DriverManager.getConnection(cumle,kull,sifre);
           create_table_log();
-          
-          //
-
-         stmt.close();
+          stmt.close();
          con.close();
 		
 	}
@@ -2476,11 +2473,12 @@ public class STOK_MSSQL implements ISTOK {
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-        String sql =  "SELECT DISTINCT convert(varchar(10), s.Tarih, 104) as Tarih  " +
+        String sql =  "SELECT DISTINCT convert(varchar(10), s.Tarih, 102) as Tarih     " +
                 " FROM STOK s left outer join OK_Kur" +  BAGLAN.kurDizin.kOD + ".dbo.kurlar k on convert(varchar(10), k.Tarih, 102) = convert(varchar(10), s.Tarih, 102) and k.Kur = '" + kur + "'" +
                 " WHERE k." + cins + " IS NULL OR k." + cins + " =0 " +
-                " ORDER BY  convert(varchar(10), s.Tarih, 104)  " ;
-     	PreparedStatement stmt = con.prepareStatement(sql);
+                " ORDER BY  convert(varchar(10), s.Tarih, 102)  " ;
+  
+       	PreparedStatement stmt = con.prepareStatement(sql);
  		rss = stmt.executeQuery();
 		return rss;	
 	}

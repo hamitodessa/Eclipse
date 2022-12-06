@@ -1067,13 +1067,13 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	          }
 	          Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	  		ResultSet	rss = null;
-	          String sql = str2 +  " SELECT DISTINCT  CONVERT(char(10), SATIRLAR.TARIH,104) AS TARIH" +
+	          String sql = str2 +  " SELECT DISTINCT   convert(varchar(10), SATIRLAR.TARIH, 102) as Tarih  " +
                       " FROM SATIRLAR WITH (INDEX (IX_SATIRLAR)) LEFT OUTER JOIN " + str1 + " AS k WITH (INDEX (IX_KUR))  " +
                       " ON k.Tarih = CONVERT(VARCHAR(25), SATIRLAR.TARIH, 121) AND k.Kur = '" + kur + "' " +
                       " WHERE HESAP ='" + hesap + "' AND  k.kur IS NULL " +
                       " AND SATIRLAR.TARIH BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998'" +
-                      " ORDER BY CONVERT(char(10), SATIRLAR.TARIH,104) ";
-	      	PreparedStatement stmt = con.prepareStatement(sql);
+                      " ORDER BY   convert(varchar(10), SATIRLAR.TARIH, 102) ";
+      	PreparedStatement stmt = con.prepareStatement(sql);
 	  		rss = stmt.executeQuery();
 	  		return rss;	
 	}

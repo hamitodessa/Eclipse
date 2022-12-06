@@ -172,6 +172,11 @@ public class KUR_GIRIS extends JInternalFrame {
 		JButton btnNewButton = new JButton("Merkez");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (oac.glb.internet_kontrol() == false)
+				{
+					 JOptionPane.showMessageDialog(null,  "Internet Baglantisi Yok ",  "Merkez Bankasi Kur Okuma", JOptionPane.ERROR_MESSAGE);	
+					return ;
+				}
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				merkez();
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);			

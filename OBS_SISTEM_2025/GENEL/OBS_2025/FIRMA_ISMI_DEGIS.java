@@ -11,7 +11,12 @@ import java.awt.Color;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
+import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN;
+import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.KAMBIYO_ACCESS;
+import OBS_C_2025.STOK_ACCESS;
 
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -23,6 +28,10 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 	private static JTextField textField;
 	private static JPanel panel_1;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS() ;
+	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
+	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	/**
 	 * Launch the application.
 	 */
@@ -122,29 +131,30 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		{
 		if (modul.equals("cari"))
 		{
-			
-           	oac._ICar.cari_firma_adi_kayit(textField.getText());
+			c_Access.cari_firma_adi_kayit(textField.getText(), "Firma Ismi :" +textField.getText() ,"", BAGLAN_LOG.cariLogDizin);
+           	//oac._ICar.cari_firma_adi_kayit(textField.getText());
            	BAGLAN.cariDizin.fIRMA_ADI = textField.getText();
 		    OBS_MAIN.lblNewLabel_1.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "/ " + BAGLAN.cariDizin.fIRMA_ADI + "/ " + (BAGLAN.cariDizin.yER == "S" ?  BAGLAN.cariDizin.sERVER : "Lokal"));
-
 		}
 		else if (modul.equals("kambiyo"))
 		{
-			oac._IKambiyo.kam_firma_adi_kayit(textField.getText());
-           	
-        	BAGLAN.kamDizin.fIRMA_ADI = textField.getText();
+			//oac._IKambiyo.kam_firma_adi_kayit(textField.getText());
+			ka_Access.kam_firma_adi_kayit(textField.getText(), "Firma Ismi :" +textField.getText() ,"", BAGLAN_LOG.kamLogDizin);
+      	BAGLAN.kamDizin.fIRMA_ADI = textField.getText();
 		    OBS_MAIN.lblNewLabel_23.setText ( "Kambiyo:" + BAGLAN.kamDizin.kOD + "/ " + BAGLAN.kamDizin.fIRMA_ADI + "/ " + (BAGLAN.kamDizin.yER == "S" ?  BAGLAN.kamDizin.sERVER : "Lokal"));
 		}
 		else if (modul.equals("stok"))
 		{
-           	oac._IStok.stk_firma_adi_kayit(textField.getText());
+           //	oac._IStok.stk_firma_adi_kayit(textField.getText());
+			f_Access.stk_firma_adi_kayit(textField.getText(), "Firma Ismi :" +textField.getText() ,"", BAGLAN_LOG.fatLogDizin);
            	BAGLAN.fatDizin.fIRMA_ADI = textField.getText();
 		    OBS_MAIN.lblNewLabel_23.setText ( "Stok:" + BAGLAN.fatDizin.kOD + "/ " + BAGLAN.fatDizin.fIRMA_ADI + "/ " + (BAGLAN.fatDizin.yER == "S" ?  BAGLAN.fatDizin.sERVER : "Lokal"));
 		}
 		else if (modul.equals("adres"))
 		{
-           	oac._IAdres.adr_firma_adi_kayit(textField.getText());
-           	BAGLAN.adrDizin.fIRMA_ADI = textField.getText();
+          // 	oac._IAdres.adr_firma_adi_kayit(textField.getText());
+			a_Access.adr_firma_adi_kayit(textField.getText(), "Firma Ismi :" +textField.getText() ,"", BAGLAN_LOG.adrLogDizin);
+          	BAGLAN.adrDizin.fIRMA_ADI = textField.getText();
 		    OBS_MAIN.lblNewLabel_22.setText ( "Adres:" + 	BAGLAN.adrDizin.kOD + "/ " + 	BAGLAN.adrDizin.fIRMA_ADI + "/ " + (	BAGLAN.adrDizin.yER == "S" ?  	BAGLAN.adrDizin.sERVER : "Lokal"));
 		}
 		kapat();

@@ -24,6 +24,8 @@ public class KAMBIYO_ACCESS {
 		_IKambiyo.kAM_SIFIR_L(kod, dizin_yeri, dizin, fir_adi, ins, kull, sifre,port);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
 	}
 	public void kAM_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
 			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
@@ -31,6 +33,8 @@ public class KAMBIYO_ACCESS {
 		_IKambiyo.kAM_SIFIR_S(server, ins, kull, sifre, kod, fir_adi);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
 	}
 	public ResultSet kam_bordno(String cins,String bno,String gircik) throws ClassNotFoundException, SQLException
 	{
@@ -98,5 +102,12 @@ public class KAMBIYO_ACCESS {
 	public String kam_firma_adi() throws ClassNotFoundException, SQLException
 	{
 		return _IKambiyo.kam_firma_adi();
+	}
+	public void kam_firma_adi_kayit(String fadi , String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+	{
+		 _IKambiyo.kam_firma_adi_kayit(fadi);
+		 
+		 for ( ILOGGER  _Logger : _Logger )
+			  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
 }

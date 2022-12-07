@@ -2268,6 +2268,10 @@ public class OBS_MAIN extends JFrame {
             	{
 				STOK_RAPOR.excell_aktar() ;
             	}
+				else if (sonuc == "CARI OZEL MIZAN")
+            	{
+				OZEL_MIZAN.excell_aktar() ;
+            	}
 					GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});

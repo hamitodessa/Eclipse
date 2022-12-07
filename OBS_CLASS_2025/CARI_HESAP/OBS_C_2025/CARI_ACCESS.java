@@ -276,11 +276,7 @@ public class CARI_ACCESS {
 	{
 		return _ICari.cari_adres_oku(kodu);
 	}
-	public ResultSet ozel_mizan2(String h1 , String h2,String t1,String t2,String c1,String c2,String k1, String k2, String o1 , String o2) throws ClassNotFoundException, SQLException
-	{
-		return _ICari.ozel_mizan2(h1, h2, t1, t2, c1, c2, k1, k2, o1, o2);
-	}
-	public void cari_firma_adi_kayit(String fadi,String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+		public void cari_firma_adi_kayit(String fadi,String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_ICari.cari_firma_adi_kayit(fadi);
 		for ( ILOGGER  _Logger : _Logger )

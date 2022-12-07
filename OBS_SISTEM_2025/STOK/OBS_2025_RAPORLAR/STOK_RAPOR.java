@@ -764,11 +764,11 @@ public class STOK_RAPOR extends JInternalFrame {
 		    		  //**************************************
 		    	  }
 		    		GuiUtil.setWaitCursor(splitPane,false);
-			JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Stok Rapor", JOptionPane.PLAIN_MESSAGE);
 	  }
 	  catch (Exception ex)
 	  {
-			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Stok Rapor", JOptionPane.PLAIN_MESSAGE);
 	  }
 	  }
 	public static void mail_at() throws IOException

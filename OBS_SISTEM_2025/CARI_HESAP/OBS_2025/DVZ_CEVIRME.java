@@ -335,7 +335,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 					
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
-					//tc.setCellRenderer(new TARIH());
+					tc.setCellRenderer(new TARIH());
 					tc.setMinWidth(70);
 					
 					tc = tcm.getColumn(1);

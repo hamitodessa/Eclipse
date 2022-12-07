@@ -16,10 +16,13 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import net.proteanit.sql.DbUtils;
 
@@ -135,6 +138,19 @@ public class SQL_SORGULAMA extends JInternalFrame {
 	    dd.height = 30;
 	    th.setPreferredSize(dd); 
 		th.repaint();
+		
+		TableColumnModel tcm = th.getColumnModel();
+		TableColumn tc;
+			
+
+		tc = tcm.getColumn(0);
+		tc.setHeaderRenderer(new SOLA());
+		tc.setMinWidth(100);
+		tc.setMaxWidth(100);
+		
+		tc = tcm.getColumn(1);
+		tc.setHeaderRenderer(new SOLA());
+		
 		table.setRowSelectionInterval(0, 0);
 		table.setRowHeight(21);
 	

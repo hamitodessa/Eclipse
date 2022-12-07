@@ -19,14 +19,7 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeriesCollection;
-
 import OBS_2025.Tema_Cari;
-
-
-
-
 
 public class GLOBAL {
 	
@@ -328,24 +321,22 @@ private static void  set_ilk()
 			 JOptionPane.showMessageDialog(null, e2.toString()  );
 		} catch (IOException e1) {
 		}
-}
-public boolean internet_kontrol()
-{
+	}
+		public boolean internet_kontrol()
+			{
 	 boolean result = false ;
 	 try {
-		
-        URL url = new URL("http://www.google.com");
+       URL url = new URL("http://www.google.com");
         URLConnection connection = url.openConnection();
         connection.connect();
         result = true ;
-  
-     } 
-	 catch (Exception ex)
-	 {
-   	  result = false;
-     }
-	return result ;
+      		} 
+	 	catch (Exception ex)
+	 	{
+	 		result = false;
+	 	}
+	 return result ;
 
-}
+	}
 
-}
+	}

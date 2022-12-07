@@ -266,6 +266,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		             		{
 								 stk_rpr_gonder();
 		             		}
+						 else if ( OBS_MAIN.pencere_bak("CARI OZEL MIZAN") == true ) 
+		             		{
+								 ozmiz_gonder();
+		             		}
 						 else
 						 {
 						duz_gonder();
@@ -414,6 +418,11 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			{
 				comboBox.enable(false);
 				lblNewLabel_2.setText("Stok Rapor");
+			}
+			else if (ozmiz_kontrol() )
+			{
+				comboBox.enable(false);
+				lblNewLabel_2.setText("Ozel Mizan");
 			}
 			else 
 			{
@@ -793,6 +802,18 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			 JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
+	private void ozmiz_gonder() 
+	{
+		try
+		{
+			 OZEL_MIZAN. mail_at();
+			   xl_gonder("Ozel_Mizan" );
+		}
+		catch (Exception ex)
+		{
+			 JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
 	private void xl_gonder(String dadi)
 	{
 		try
@@ -940,6 +961,16 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		boolean result  = false;
 		
 		if (OBS_MAIN.pencere_bak("STOK_RAPOR"))
+				{
+			   result = true ;
+				}
+		return result;
+	}
+	private boolean  ozmiz_kontrol() throws ReportSDKException
+	{
+		boolean result  = false;
+		
+		if (OBS_MAIN.pencere_bak("CARI OZEL MIZAN"))
 				{
 			   result = true ;
 				}

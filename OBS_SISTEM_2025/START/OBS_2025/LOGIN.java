@@ -830,9 +830,9 @@ public LOGIN() throws IOException {
 	OBS_SIS_2025_ANA_CLASS.ADR_CONN = false;
 }
 	void fat_calisma_dizini_oku() throws ClassNotFoundException, SQLException
-{
+	{
 	    CONNECT s_CONN = new CONNECT(oac._IStokCon);
-    
+  
 	    if (BAGLAN.fatDizin.yER.equals(""))
 	    {
 	    	OBS_SIS_2025_ANA_CLASS.FAT_CONN = false;
@@ -954,115 +954,112 @@ public LOGIN() throws IOException {
 	}
 	void Login_Progres_Bar_Temizle()
 	{
-	progressBar.setMaximum(0);
-	progressBar.setValue(0);
-	progressBar.setStringPainted(false);
+		progressBar.setMaximum(0);
+		progressBar.setValue(0);
+		progressBar.setStringPainted(false);
 	}
 	private void versiyon_oku()
-{
-	if (oac.glb.internet_kontrol() == false)
-	{
-		return ;
-	}
-	  try 
-	  {
-	 //************************************
-    String eskitar = "" ;
-	String eskiver = "";
-	String yenitar = "" ;
- 	String yeniver = "";
-	String fileName = "C:/OBS_SISTEM" + "/OBS_VERSION.txt";
-	String line = null;
-	FileReader fileReader = null;
-	
-	 int counter = 0;
-	fileReader =  new FileReader(fileName);
-        BufferedReader bufferedReader =    new BufferedReader(fileReader);
-        while((line = bufferedReader.readLine()) != null) {
-            counter++;
-            if(counter == 1)
-            {
-            	 eskitar = line.toString();
-             }
-            else  if(counter == 2)
-            {
-           	 eskiver = line.toString();
-           }
-        }   
-    	bufferedReader.close();
-    //******************************************************************
-	// DOSYA INDIR
-	 
-    	String serverAddress = "ftp.okumus.gen.tr";
-    	String userId ="u5789784";
-    	String password ="4wX.5Wx53-Y..nlG";
-    	FTPClient ftp = new FTPClient();
-    	ftp.connect(serverAddress);
-    	//login to server
-    	if(!ftp.login(userId, password))
-    		{
-    		ftp.logout();
-    		return ;
-    		}
-    	int reply = ftp.getReplyCode();
-    	if (!FTPReply.isPositiveCompletion(reply))
-    	{
-    		ftp.disconnect();
-    		return ;
-    	}
+		{
+			if (oac.glb.internet_kontrol() == false)
+			{
+				return ;
+			}
+			try 
+			{
+				//************************************
+				String eskitar = "" ;
+				String eskiver = "";
+				String yenitar = "" ;
+				String yeniver = "";
+				String fileName = "C:/OBS_SISTEM" + "/OBS_VERSION.txt";
+				String line = null;
+				FileReader fileReader = null;
+				int counter = 0;
+				fileReader =  new FileReader(fileName);
+				BufferedReader bufferedReader =    new BufferedReader(fileReader);
+				while((line = bufferedReader.readLine()) != null) {
+					counter++;
+					if(counter == 1)
+					{
+						eskitar = line.toString();
+					}
+					else  if(counter == 2)
+					{
+						eskiver = line.toString();
+					}
+				}   
+				bufferedReader.close();
+				//******************************************************************
+				// DOSYA INDIR
+				String serverAddress = "ftp.okumus.gen.tr";
+				String userId ="u5789784";
+				String password ="4wX.5Wx53-Y..nlG";
+				FTPClient ftp = new FTPClient();
+				ftp.connect(serverAddress);
+				//login to server
+				if(!ftp.login(userId, password))
+				{
+					ftp.logout();
+					return ;
+				}
+				int reply = ftp.getReplyCode();
+				if (!FTPReply.isPositiveCompletion(reply))
+				{
+					ftp.disconnect();
+					return ;
+				}
 
-    	ftp.enterLocalPassiveMode();
-    	String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
-    	File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");
-    	OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
-    	boolean success = ftp.retrieveFile(remoteFile1, outputStream1);
-    	outputStream1.close();
-    	if (success == false ) return ;
-    	//************************************
-    	fileName = "" ;
-    	fileName = "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt";
-    	fileReader = null;
-    	fileReader =  new FileReader(fileName);
-    	// Always wrap FileReader in BufferedReader.
-    	bufferedReader = null;
-    	bufferedReader =    new BufferedReader(fileReader);
-    	counter = 0;
-    	while((line = bufferedReader.readLine()) != null) {
-    		counter++;
-    		if(counter == 1)
-    		{
-    			yenitar = line.toString();
-    		}
-    		else  if(counter == 2)
-    		{
-    			yeniver = line.toString();
-    		}
-    	}   
-    	bufferedReader.close();
-    	if (eskiver.equals(yeniver))
-    	{
-    		File f= new File("C:/OBS_SISTEM/OBS_VERSIONS.txt");           //file to be delete  
-    		success = f.delete();  
-    	}
-    	else
-    	{
-    		File f= new File("C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");           //file to be delete  
-    		f.delete();  
-		
-    		String html = "<html><body width='%1s'><h1>OBS SISTEM</h1>"
+				ftp.enterLocalPassiveMode();
+				String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
+				File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");
+				OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
+				boolean success = ftp.retrieveFile(remoteFile1, outputStream1);
+				outputStream1.close();
+				if (success == false ) return ;
+				//************************************
+				fileName = "" ;
+				fileName = "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt";
+				fileReader = null;
+				fileReader =  new FileReader(fileName);
+				// Always wrap FileReader in BufferedReader.
+				bufferedReader = null;
+				bufferedReader =    new BufferedReader(fileReader);
+				counter = 0;
+				while((line = bufferedReader.readLine()) != null) {
+					counter++;
+					if(counter == 1)
+					{
+						yenitar = line.toString();
+					}
+					else  if(counter == 2)
+					{
+						yeniver = line.toString();
+					}
+				}   
+				bufferedReader.close();
+				if (eskiver.equals(yeniver))
+				{
+					File f= new File("C:/OBS_SISTEM/OBS_VERSIONS.txt");           //file to be delete  
+					success = f.delete();  
+				}
+				else
+				{
+					File f= new File("C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");           //file to be delete  
+					f.delete();  
+					String html = "<html><body width='%1s'><h1>OBS SISTEM</h1>"
     				+ "Yeni Versiyon Mevcut.......	 "
     				+ "<br><br> "
     				+ "Mevcut Version = " +eskiver + "      "
     				+ "<br><br> "
     				+ "Yeni Version = " + yeniver + "" ;
-		   JOptionPane.showMessageDialog(null, String.format(html, "OBS SISTEM", JOptionPane.PLAIN_MESSAGE));
-   	}
-	  	}
-	  	catch (Exception ex)
-	  	{
+					JOptionPane.showMessageDialog(null, String.format(html, "OBS SISTEM", JOptionPane.PLAIN_MESSAGE));
+				}
+			}
+			catch (Exception ex)
+			{
 	  			return ;
-	  	}
-	}
+			}
+		}
 	private void cONN_AKTAR( String dIZIN )
 	{
 	 String hangi = dIZIN  ;

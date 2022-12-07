@@ -16,20 +16,17 @@ public class TARIH extends DefaultTableCellRenderer {
     public Component getTableCellRendererComponent(JTable table,
             Object value, boolean isSelected, boolean hasFocus,
             int row, int column) {
-    	Date date1 ;
-       if( value instanceof Date) 
+        if( value instanceof Date) 
        {
          value = f.format(value);
        }
        else
        {
     	   try {
-				date1 = new SimpleDateFormat("yyyy.MM.dd").parse(value.toString());
+  				Date date1 = new SimpleDateFormat("yyyy.MM.dd").parse(value.toString());
 			    SimpleDateFormat DateFor = new SimpleDateFormat("dd.MM.yyyy");
-			    String stringDate= DateFor.format(date1);
-		         value = stringDate;
-    	   } catch (Exception e) {e.printStackTrace();
-			}  
+		         value = DateFor.format(date1);
+    	   } catch (Exception e) {e.printStackTrace();			}  
        }
 		setHorizontalAlignment(JLabel.LEFT);
         return super.getTableCellRendererComponent(table, value, isSelected,

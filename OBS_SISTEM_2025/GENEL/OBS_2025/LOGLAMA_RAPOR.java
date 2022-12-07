@@ -106,13 +106,14 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		panel.setLayout(null);
 		
 		comboBox = new JComboBox();
-		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
+		comboBox.setForeground(new Color(0, 0, 255));
+		comboBox.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo","Adres"}));
 		comboBox.setBounds(10, 11, 142, 22);
 		panel.add(comboBox);
 		
 		 dateChooser = new JDateChooser();
-		dateChooser.setBounds(178, 11, 109, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
+		dateChooser.setBounds(178, 12, 130, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
@@ -127,7 +128,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		panel.add(dateChooser);
 		
 		 dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(297, 11, 109, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
+		dateChooser_1.setBounds(320, 12, 130, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
@@ -142,17 +143,17 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		panel.add(dateChooser_1);
 		
 		textField = new JTextField();
-		textField.setBounds(424, 12, 349, 20);
+		textField.setBounds(455, 12, 351, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(874, 12, 134, 20);
+		textField_1.setBounds(912, 12, 96, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Evrak");
-		lblNewLabel.setBounds(816, 15, 48, 14);
+		lblNewLabel.setBounds(854, 15, 48, 14);
 		panel.add(lblNewLabel);
 		
 		textField_2 = new JTextField();
@@ -173,7 +174,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		table.setGridColor(oac.gridcolor);
 		
 		
-		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+	//	table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane.setViewportView(table);
 	}
 	public static void hisset()
@@ -261,20 +262,22 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
 					//tc.setCellRenderer(new TARIH_SAATLI());
-					tc.setMinWidth(110);
+					tc.setMinWidth(140);
+					tc.setMaxWidth(140);
 					
 					tc = tcm.getColumn(1);
 					tc.setHeaderRenderer(new SOLA());
-					tc.setMinWidth(600);
+					//tc.setMinWidth(600);
 
 					tc = tcm.getColumn(2);
 					tc.setHeaderRenderer(new SOLA());
 					tc.setMinWidth(100);
+					tc.setMaxWidth(100);
 
 					tc = tcm.getColumn(3);
 					tc.setHeaderRenderer(new SOLA());
 					tc.setMinWidth(100);
-					
+					tc.setMaxWidth(100);
 						
 						
 						Dimension dd = th.getPreferredSize();

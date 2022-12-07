@@ -70,7 +70,6 @@ public interface ICARI_HESAP {
 	public ResultSet hesap_adi_auto(String hesap) throws ClassNotFoundException, SQLException;
 	public ResultSet ekstre_proc(String hesap , String t1 ,String t2) throws ClassNotFoundException, SQLException;
 	public ResultSet gunisl_proc(String t1 ,String t2) throws ClassNotFoundException, SQLException;
-	public ResultSet ozel_mizan2(String h1 , String h2,String t1,String t2,String c1,String c2,String k1, String k2, String o1 , String o2) throws ClassNotFoundException, SQLException;
-
+	
 }
 	

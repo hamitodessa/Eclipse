@@ -332,17 +332,45 @@ public class PRINT_YAPMA extends JInternalFrame {
             String hangi_tur = FILTRE.comboBox.getItemAt(FILTRE.comboBox.getSelectedIndex());
             String o1 = "" ;
             String o2 = "" ;
+            
+        	if (BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
+    		{
 			if (hangi_tur.equals("Borclu Hesaplar") )
-			            { o1 = " HAVING ROUND(SUM(s.ALACAK - s.BORC),2) < 0 " ; }
-			        else if (hangi_tur.equals("Alacakli Hesaplar")) 
-			            {o1 = " HAVING ROUND(SUM(s.ALACAK - s.BORC),2) > 0 " ;}
-					else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" )) 
-						{ o1 = " HAVING ROUND(SUM(s.ALACAK - s.BORC),2) = 0" ;}
-					else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
-			            { o1 = " HAVING ROUND(SUM(s.ALACAK - s.BORC),2) <> 0" ;}
-			o2 = " ORDER BY h.HESAP ASC " ;
+					{ o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR  WITH (INDEX(IX_SATIRLAR))   "
+							+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  < 0 " ; }
+	        else if (hangi_tur.equals("Alacakli Hesaplar")) 
+			            {o1 =  "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR  WITH (INDEX(IX_SATIRLAR))   "
+								+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  > 0 " ;}
+			else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" )) 
+						{ o1 =  "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR  WITH (INDEX(IX_SATIRLAR))   "
+								+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  = 0" ;}
+			else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
+			            { o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR  WITH (INDEX(IX_SATIRLAR))   "
+								+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  <> 0" ;}
+			o2 = " ORDER BY s.HESAP ASC " ;
+    		}
+        	else 	if (BAGLAN.cariDizin.hAN_SQL.equals("MY SQL"))
+    		{
+        		if (hangi_tur.equals("Borclu Hesaplar") )
+				{ 
+					o1= " HAVING BAKIYE  < 0 " ;
+				}
+			 else if (hangi_tur.equals("Alacakli Hesaplar"))  
+				{
+					o1= " HAVING BAKIYE  > 0 " ;
+				}
+			 else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" ))     
+				{
+					o1= " HAVING BAKIYE  =  0 " ;
+				}
+			 else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
+				{ 
+					o1= " HAVING BAKIYE  <>  0 " ;
+				}
+			o2 = " ORDER BY s.HESAP  " ;  
+    		}
 			//**************
-			rs = c_Access.ozel_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
+ 			rs = c_Access.ozel_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
 											TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
 											FILTRE.txticins.getText(),FILTRE.txtscins.getText() ,
 											FILTRE.txtikarton.getText(),FILTRE.txtskarton.getText() ,

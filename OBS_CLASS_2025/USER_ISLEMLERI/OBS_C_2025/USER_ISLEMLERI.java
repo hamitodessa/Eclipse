@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
 
-import javax.swing.JOptionPane;
-
 
 public class USER_ISLEMLERI {
 	static  Connection con ;

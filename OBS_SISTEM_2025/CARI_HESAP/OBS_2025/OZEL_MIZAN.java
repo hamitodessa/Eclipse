@@ -912,7 +912,6 @@ public static void excell_aktar()
 					 bname.setCellStyle(headerSolaStyle);
 				 }
 			}
-			
 			for (int i =0;i< mdl.getRowCount() ;i++)
 			{
 				 Row satirRow = sheet.createRow(i+4);
@@ -932,15 +931,12 @@ public static void excell_aktar()
 							   hname.setCellValue( mdl.getValueAt(i,s).toString());
 							   hname.setCellStyle(solaStyle); 
 						   }
-						
-						   ///////////
 					   }
 					   else
 					   {
 						   hname.setCellValue("");
 						   hname.setCellStyle(satirStyle);
 					   }
-					
 				}
 			}
 			for (int i=0; i<= mdl.getColumnCount()-1; i++){

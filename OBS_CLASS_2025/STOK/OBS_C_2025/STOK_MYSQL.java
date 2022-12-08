@@ -1835,7 +1835,7 @@ public class STOK_MYSQL implements ISTOK {
 	       		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
 	       		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
 	       		+" AND  '" + t2 + " 23:59:59.998'" 
-	       		+ "  GROUP BY Urun_Kodu , Urun_Adi , Birim   ;";
+	       		+ "  GROUP BY Urun_Kodu , Urun_Adi , Birim  ORDER BY  Urun_Kodu  ;";
  
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -2058,7 +2058,7 @@ public class STOK_MYSQL implements ISTOK {
        		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
        		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
        		+" AND  '" + t2 + " 23:59:59.998'" 
-       		+ "  GROUP BY  Yil,Ay  ORDER BY Yil  ;";
+       		+ "  GROUP BY  Yil,Ay  ORDER BY Yil,Ay  ;";
 		//
  
     	PreparedStatement stmt = con.prepareStatement(sql);
@@ -2113,7 +2113,7 @@ public class STOK_MYSQL implements ISTOK {
        		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
        		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
        		+" AND  '" + t2 + " 23:59:59.998'" 
-       		+ "  GROUP BY YEAR   ;";
+       		+ "  GROUP BY YEAR ORDER BY YEAR   ;";
  	//	+ "  GROUP BY YEAR  WITH ROLLUP ;";
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -2169,7 +2169,7 @@ public class STOK_MYSQL implements ISTOK {
      		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
      		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
      		+" AND  '" + t2 + " 23:59:59.998'" 
-     		+ "  GROUP BY Ana_Grup , Alt_Grup   ;";
+     		+ "  GROUP BY Ana_Grup , Alt_Grup  ORDER BY Ana_Grup , Alt_Grup ;";
 		//
       	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -2224,7 +2224,7 @@ public class STOK_MYSQL implements ISTOK {
    		+ " AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" 
    		+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
    		+" AND  '" + t2 + " 23:59:59.998'" 
-   		+ "  GROUP BY Ana_Grup , Alt_Grup,Yil   ;";
+   		+ "  GROUP BY Ana_Grup , Alt_Grup,Yil  ORDER BY  Ana_Grup , Alt_Grup,Yil   ;";
 		//
     	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

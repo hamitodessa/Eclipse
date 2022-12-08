@@ -23,8 +23,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	static Connection SQLitecon = null;
 	static Statement stmt = null;
 	private GLOBAL gLB = new GLOBAL();
-	
-	
+		
 	public void baglan() throws SQLException
 	{
 		String cumle = "jdbc:sqlserver://" + BAGLAN.cariDizin.cONN_STR + ";";

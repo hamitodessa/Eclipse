@@ -14,7 +14,6 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class CARI_HESAP_MYSQL implements ICARI_HESAP {
-
 	public static Connection con = null;
 	public static Connection akt_con = null;
 	static Connection SQLitecon = null;

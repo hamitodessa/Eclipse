@@ -382,7 +382,7 @@ public class EKSTRE extends JInternalFrame {
 					 onceki_bakiye ();
 					DefaultTableModel model = (DefaultTableModel)table.getModel();
 					Vector<Object> data = new Vector<Object>();
-					data.add(TARIH_CEVIR.chooser_milis(FILTRE.dateChooser));
+					data.add(TARIH_CEVIR.tarih_ekstre(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser)));
 					data.add(0);
 					data.add("Onceki Bakiye");
 					data.add("");

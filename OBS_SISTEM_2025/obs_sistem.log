@@ -1,443 +1,513 @@
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 38, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=3078>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=3078>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0TARIH)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0EVRAK>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=864><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10944><height=3078>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0EVRAK)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0IZAHAT>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=1555><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10253><height=3078>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0IZAHAT)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0BAKIYE>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=10230><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=1578><height=3078>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0BAKIYE)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 38, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=3078>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 38, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 40
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 40
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 39, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 39, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 39, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=3078>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 39, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2819>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 39, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2819>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=2819>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0TARIH)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0EVRAK>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=864><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10944><height=2819>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0EVRAK)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0IZAHAT>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=1555><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10253><height=2819>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0IZAHAT)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0BAKIYE>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=10230><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=1578><height=2819>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0BAKIYE)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 39, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2819>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 39, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 41
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 41
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 40, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 40, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 40, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2819>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 40, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2560>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 40, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2560>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=2560>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0TARIH)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0EVRAK>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=864><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10944><height=2560>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0EVRAK)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0IZAHAT>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=1555><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10253><height=2560>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0IZAHAT)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0BAKIYE>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=10230><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=1578><height=2560>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0BAKIYE)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 40, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2560>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 40, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 42
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 42
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 41, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 41, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 41, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2560>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 41, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2301>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 41, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2301>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=2301>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0TARIH)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0EVRAK>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=864><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10944><height=2301>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0EVRAK)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0IZAHAT>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=1555><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10253><height=2301>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0IZAHAT)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0BAKIYE>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=10230><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=1578><height=2301>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0BAKIYE)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 41, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2301>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 41, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 43
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 43
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 42, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 42, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 42, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2301>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 42, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2042>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 42, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2042>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=2042>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0TARIH)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0EVRAK>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=864><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10944><height=2042>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0EVRAK)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0IZAHAT>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=1555><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10253><height=2042>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0IZAHAT)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0BAKIYE>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=10230><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=1578><height=2042>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0BAKIYE)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 42, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2042>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 42, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 44
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 44
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 43, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 43, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 43, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2042>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 43, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1783>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 43, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1783>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=1783>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0TARIH)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0EVRAK>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=864><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10944><height=1783>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0EVRAK)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0IZAHAT>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=1555><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10253><height=1783>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0IZAHAT)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0BAKIYE>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=10230><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=1578><height=1783>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0BAKIYE)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 43, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1783>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 43, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 45
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 45
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 44, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 44, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 44, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1783>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 44, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1524>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 44, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1524>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=1524>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0TARIH)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0EVRAK>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=864><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10944><height=1524>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0EVRAK)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0IZAHAT>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=1555><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10253><height=1524>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0IZAHAT)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0BAKIYE>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=10230><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=1578><height=1524>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0BAKIYE)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 44, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1524>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 44, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 46
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 46
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 45, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 45, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 45, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1524>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 45, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1265>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 45, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1265>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=1265>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0TARIH)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0EVRAK>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=864><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10944><height=1265>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0EVRAK)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0IZAHAT>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=1555><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10253><height=1265>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0IZAHAT)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0BAKIYE>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=10230><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=1578><height=1265>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0BAKIYE)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 45, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1265>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 45, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 47
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 47
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 46, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 46, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 46, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1265>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 46, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1006>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 46, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1006>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=1006>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0TARIH)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0EVRAK>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=864><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10944><height=1006>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0EVRAK)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0IZAHAT>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=1555><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10253><height=1006>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0IZAHAT)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0BAKIYE>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=10230><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=1578><height=1006>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0BAKIYE)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 46, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1006>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 46, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 48
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 48
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 47, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - ### Added PrintState to cache for section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 47, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 47, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 47, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=1006>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 47, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=747>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 47, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=747>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=747>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0TARIH)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0EVRAK>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=864><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10944><height=747>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0EVRAK)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0IZAHAT>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=1555><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10253><height=747>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0IZAHAT)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0BAKIYE>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=10230><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=1578><height=747>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0BAKIYE)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 47, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=747>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 47, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 49
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 49
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=747>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=488>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=488>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=488>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0TARIH)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0EVRAK>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=864><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10944><height=488>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0EVRAK)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0IZAHAT>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=1555><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10253><height=488>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0IZAHAT)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0BAKIYE>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=10230><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=1578><height=488>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0BAKIYE)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=488>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 50
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 50
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=488>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=229>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=229>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=229>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Unable to cut object: Formatted other field object (SQL_Scrapbook_0TARIH)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter - Roll back ReportObject:<name=SQL_Scrapbook_0TARIH>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter - Changed maximumSectionHeight to 0
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter - ##Cutting container vertically: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Rolling back all items in container.
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - # Target DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - # Achieved DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (DetailArea1 : Details )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Rolling back to position section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 46
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 47
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 48
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - ### Rolling back to position: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 47, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 49
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 49
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - # Target DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - # Achieved DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.paginator - #### Page break inserted Page break: position before PF: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, position after PH: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - moveToPageFooter (setCurrentState) : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=600>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=600>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=PageNumber>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=9710><y=90>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=2098><height=510>
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (PageNumber)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (PageFooterSection1 : PageFooterSection1 : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted section object (PageFooterSection1 : PageFooterSection1 : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - moveFromPageFooter (betweenPageFooterAndHeader = TRUE) : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 50
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 50
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 2
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 2
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - moveFromPageHeader (currentPageBreak = null) : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 2
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 2
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 2
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 46
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 47
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 48
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - ### Rolling back to position: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 47, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 49
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 49
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - moveToPageFooter (setCurrentState) : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - # Target DataPosition: section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - # Achieved DataPosition: section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - moveFromPageFooter (betweenPageFooterAndHeader = TRUE) : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=false><sectionN=0>, printRecordNumber = 48, pageN = 1
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 50
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 50
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 2
-DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 2
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 2
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (PageFooterArea1 : Page Footer )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted area object (PageFooterArea1 : Page Footer )
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=pageAreaPair><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 49, pageN = 2
-INFO TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.paginator - Page 1 formatted.
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.encapsulation - Storing image block 0(0 images)
-DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.encapsulation - Storing flash block 0(0 flashobjects)
-INFO TSLVReader #1 com.businessobjects.reports.sdk.JRCCommunicationAdapter.JRCLicenseThrottler -  releasing engine request
-DEBUG TSLVReader #1 com.crystaldecisions.reports.common.commandmanager - command SETUP: NotUndoableCommand
-DEBUG TSLVReader #1 com.crystaldecisions.reports.common.commandmanager - command PERFORM: NotUndoableCommand
-DEBUG TSLVReader #1 com.crystaldecisions.reports.common.commandmanager - -- command is NOT UNDOABLE -> purge undo stack
-INFO TSLVReader #2 com.businessobjects.reports.sdk.JRCCommunicationAdapter -  received request: fetchReportTotallerRequest
-INFO TSLVReader #2 com.businessobjects.reports.sdk.JRCCommunicationAdapter.JRCLicenseThrottler -  attempting to send engine request
-INFO TSLVReader #2 com.businessobjects.reports.sdk.JRCCommunicationAdapter.JRCLicenseThrottler -  successfully sent engine request
-INFO TSLVReader #2 com.crystaldecisions.reports.dataengine.datasource - Encapsulating totaller
-DEBUG TSLVReader #2 com.crystaldecisions.reports.dataengine.GroupTreeEncapsulator - Encapsulating Totaller: maxNNodes = [I@25a404ad nGroupAreaPairs = 0 nRecords = 279
-INFO TSLVReader #2 com.businessobjects.reports.sdk.JRCCommunicationAdapter.JRCLicenseThrottler -  releasing engine request
-DEBUG TSLVReader #2 com.crystaldecisions.reports.common.commandmanager - command SETUP: NotUndoableCommand
-DEBUG TSLVReader #2 com.crystaldecisions.reports.common.commandmanager - command PERFORM: NotUndoableCommand
-DEBUG TSLVReader #2 com.crystaldecisions.reports.common.commandmanager - -- command is NOT UNDOABLE -> purge undo stack
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'minimum (any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'minimum (any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'minimum (any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'count (any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'count (any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'count (any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'count (any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'count (any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'count (any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'distinctcount (any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'distinctcount (any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'distinctcount (any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'distinctcount (any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'distinctcount (any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'distinctcount (any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'correlation (any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'correlation (any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'correlation (any field, any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'correlation (any field, any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'correlation (any field, any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'correlation (any field, any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'covariance (any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'covariance (any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'covariance (any field, any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'covariance (any field, any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'covariance (any field, any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'covariance (any field, any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'weightedaverage (any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'weightedaverage (any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'weightedaverage (any field, any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'weightedaverage (any field, any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'weightedaverage (any field, any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'weightedaverage (any field, any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'pthpercentile (number value, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'pthpercentile (number value, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'pthpercentile (number value, any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'pthpercentile (number value, any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'pthpercentile (number value, any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'pthpercentile (number value, any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'nthlargest (number value, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'nthlargest (number value, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'nthlargest (number value, any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'nthlargest (number value, any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'nthlargest (number value, any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'nthlargest (number value, any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'nthsmallest (number value, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'nthsmallest (number value, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'nthsmallest (number value, any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'nthsmallest (number value, any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'nthsmallest (number value, any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'nthsmallest (number value, any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'nthmostfrequent (number value, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'nthmostfrequent (number value, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'nthmostfrequent (number value, any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'nthmostfrequent (number value, any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'nthmostfrequent (number value, any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'nthmostfrequent (number value, any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofsum (any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofsum (any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofsum (any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofsum (any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofsum (any field, any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofsum (any field, any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofsum (any field, any field, string value, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofsum (any field, any field, string value, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofsum (any field, any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofsum (any field, any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofsum (any field, any field, string value, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofsum (any field, any field, string value, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofaverage (any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofaverage (any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofaverage (any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofaverage (any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofaverage (any field, any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofaverage (any field, any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofaverage (any field, any field, string value, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofaverage (any field, any field, string value, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofaverage (any field, any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofaverage (any field, any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofaverage (any field, any field, string value, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofaverage (any field, any field, string value, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofmaximum (any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofmaximum (any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofmaximum (any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofmaximum (any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofmaximum (any field, any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofmaximum (any field, any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofmaximum (any field, any field, string value, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofmaximum (any field, any field, string value, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofmaximum (any field, any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofmaximum (any field, any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofmaximum (any field, any field, string value, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofmaximum (any field, any field, string value, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofminimum (any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofminimum (any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofminimum (any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofminimum (any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofminimum (any field, any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofminimum (any field, any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofminimum (any field, any field, string value, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofminimum (any field, any field, string value, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofminimum (any field, any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofminimum (any field, any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofminimum (any field, any field, string value, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofminimum (any field, any field, string value, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofcount (any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofcount (any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofcount (any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofcount (any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofcount (any field, any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofcount (any field, any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofcount (any field, any field, string value, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofcount (any field, any field, string value, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofcount (any field, any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofcount (any field, any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofcount (any field, any field, string value, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofcount (any field, any field, string value, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofdistinctcount (any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofdistinctcount (any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofdistinctcount (any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofdistinctcount (any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofdistinctcount (any field, any field, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofdistinctcount (any field, any field, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofdistinctcount (any field, any field, string value, any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofdistinctcount (any field, any field, string value, any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofdistinctcount (any field, any field, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofdistinctcount (any field, any field, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'percentofdistinctcount (any field, any field, string value, any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'percentofdistinctcount (any field, any field, string value, any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'groupname (any field, string value) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'groupname (any field, string value) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'groupname (any field) FieldFunction'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'groupname (any field) FieldFunction'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (boolean value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (boolean value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (number value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (number value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (number value, number value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (number value, number value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (number value, number value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (number value, number value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (number value, number value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (number value, number value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (currency value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (currency value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (currency value, number value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (currency value, number value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (currency value, number value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (currency value, number value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (currency value, number value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (currency value, number value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (number value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (number value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (number value, string value, number value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (number value, string value, number value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (number value, string value, number value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (number value, string value, number value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (number value, string value, number value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (number value, string value, number value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (currency value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (currency value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (currency value, string value, number value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (currency value, string value, number value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (currency value, string value, number value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (currency value, string value, number value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (currency value, string value, number value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (currency value, string value, number value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (date value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (date value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (date value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (date value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (time value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (time value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (time value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (time value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (time value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (time value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (time value, string value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (time value, string value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (dateTime value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (dateTime value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (dateTime value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (dateTime value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (dateTime value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (dateTime value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'totext (dateTime value, string value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'totext (dateTime value, string value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (boolean value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (boolean value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (number value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (number value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (number value, number value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (number value, number value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (number value, number value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (number value, number value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (number value, number value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (number value, number value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (currency value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (currency value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (currency value, number value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (currency value, number value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (currency value, number value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (currency value, number value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (currency value, number value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (currency value, number value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (number value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (number value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (number value, string value, number value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (number value, string value, number value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (number value, string value, number value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (number value, string value, number value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (number value, string value, number value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (number value, string value, number value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (currency value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (currency value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (currency value, string value, number value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (currency value, string value, number value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (currency value, string value, number value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (currency value, string value, number value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (currency value, string value, number value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (currency value, string value, number value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (date value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (date value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (date value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (date value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (time value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (time value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (time value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (time value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (time value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (time value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (time value, string value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (time value, string value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (dateTime value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (dateTime value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (dateTime value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (dateTime value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (dateTime value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (dateTime value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'cstr (dateTime value, string value, string value, string value) allowNullArguments'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'cstr (dateTime value, string value, string value, string value) allowNullArguments'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'towords (currency value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'towords (currency value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'towords (currency value, number value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'towords (currency value, number value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'towords (currency value, number value, number value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'towords (currency value, number value, number value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmldata (string value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmldata (string value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlcolumn (string value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlcolumn (string value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlrow (string value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlrow (string value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmldata (boolean value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmldata (boolean value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlcolumn (boolean value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlcolumn (boolean value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlrow (boolean value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlrow (boolean value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmldata (number value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmldata (number value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlcolumn (number value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlcolumn (number value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlrow (number value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlrow (number value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmldata (currency value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmldata (currency value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlcolumn (currency value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlcolumn (currency value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlrow (currency value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlrow (currency value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmldata (date value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmldata (date value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlcolumn (date value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlcolumn (date value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlrow (date value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlrow (date value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmldata (time value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmldata (time value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlcolumn (time value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlcolumn (time value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlrow (time value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlrow (time value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmldata (dateTime value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmldata (dateTime value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlcolumn (dateTime value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlcolumn (dateTime value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'toxmlrow (dateTime value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'toxmlrow (dateTime value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'isalertenabled (string value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'isalertenabled (string value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'isalerttriggered (string value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'isalerttriggered (string value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'alertmessage (string value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'alertmessage (string value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'crascendingorder ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'crascendingorder ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'crdescendingorder ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'crdescendingorder ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'croriginalorder ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'croriginalorder ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'weektodatefromsun ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'weektodatefromsun ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'monthtodate ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'monthtodate ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'yeartodate ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'yeartodate ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'last7days ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'last7days ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'last4weekstosun ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'last4weekstosun ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'lastfullweek ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'lastfullweek ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'lastfullmonth ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'lastfullmonth ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'alldatestotoday ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'alldatestotoday ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'alldatestoyesterday ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'alldatestoyesterday ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'alldatesfromtoday ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'alldatesfromtoday ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'alldatesfromtomorrow ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'alldatesfromtomorrow ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'aged0to30days ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'aged0to30days ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'aged31to60days ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'aged31to60days ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'aged61to90days ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'aged61to90days ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'over90days ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'over90days ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'next30days ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'next30days ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'next31to60days ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'next31to60days ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'next61to90days ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'next61to90days ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'next91to365days ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'next91to365days ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'calendar1stqtr ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'calendar1stqtr ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'calendar2ndqtr ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'calendar2ndqtr ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'calendar3rdqtr ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'calendar3rdqtr ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'calendar4thqtr ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'calendar4thqtr ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'calendar1sthalf ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'calendar1sthalf ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'calendar2ndhalf ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'calendar2ndhalf ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'lastyearmtd ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'lastyearmtd ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'lastyearytd ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'lastyearytd ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'timer ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'timer ()'
+DEBUG Code Executer com.crystaldecisions.reports.common.engine.config - New observer registered with the configuration manager.
+DEBUG Code Executer com.crystaldecisions.reports.common.classjail - New ClassJail instanciated and registered with ConfigurationManager
+DEBUG Code Executer com.crystaldecisions.reports.common.classjail - Creating a new Class Loader based on current configuration
+DEBUG Code Executer com.crystaldecisions.reports.common.engine.config - Configuration queried; key="classpath", result="null"
+DEBUG Code Executer com.crystaldecisions.reports.common.classjail - classpath: 
+ERROR Code Executer com.crystaldecisions.reports.reportdefinition.ReportDocument - Error adding azalea functions from Library
+com.crystaldecisions.reports.formulas.FormulaFunctionSetupException: The class com.azalea.ufl.BarcodeLibrary could not be instantiated as a FormulaFunctionLibrary.
+	at com.crystaldecisions.reports.formulas.FunctionManager.createExternalFunctionLibrary(SourceFile:163)
+	at com.crystaldecisions.reports.reportdefinition.ReportDocument.a2(SourceFile:160)
+	at com.crystaldecisions.reports.reportdefinition.ReportDocument.<clinit>(SourceFile:119)
+	at com.crystaldecisions.reports.dataengine.DataSourceManager.<clinit>(SourceFile:129)
+	at com.crystaldecisions.reports.dataengine.DataSourceManagerFactory.a(SourceFile:37)
+	at com.businessobjects.reports.reportconverter.v12.V12SaveLoader.a(SourceFile:236)
+	at com.businessobjects.reports.loader.ReportLoader.a(SourceFile:205)
+	at com.businessobjects.reports.sdk.JRCReportLoader.a(SourceFile:137)
+	at com.businessobjects.reports.sdk.JRCReportLoader.a(SourceFile:76)
+	at com.businessobjects.reports.sdk.requesthandler.ReportDocumentRequestHandler.a(SourceFile:142)
+	at com.businessobjects.reports.sdk.JRCCommunicationAdapter.<init>(SourceFile:228)
+	at com.businessobjects.sdk.erom.jrc.a.<init>(SourceFile:43)
+	at com.businessobjects.sdk.erom.jrc.ReportAgentFactory.createAgent(SourceFile:46)
+	at com.crystaldecisions.proxy.remoteagent.RemoteAgent$a.<init>(SourceFile:703)
+	at com.crystaldecisions.proxy.remoteagent.RemoteAgent.a(SourceFile:662)
+	at com.crystaldecisions.proxy.remoteagent.RemoteAgent.a(SourceFile:632)
+	at com.crystaldecisions.sdk.occa.report.application.ClientDocument.if(SourceFile:504)
+	at com.crystaldecisions.sdk.occa.report.application.ClientDocument.open(SourceFile:669)
+	at OBS_2025.PRINT_YAPMA.hisset(PRINT_YAPMA.java:150)
+	at OBS_2025.OBS_MAIN$154$1.run(OBS_MAIN.java:2077)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+DEBUG Code Executer com.crystaldecisions.reports.common.engine.config - New observer registered with the configuration manager.
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportDocument - 0 External Function Libraries have been found.
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'gridvalueat (number value, number value, number value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'gridvalueat (number value, number value, number value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'gridlabelat (string value, number value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'gridlabelat (string value, number value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getnumcolumngroups ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getnumcolumngroups ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getnumrowgroups ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getnumrowgroups ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getnumrows ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getnumrows ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getnumcolumns ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getnumcolumns ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getnumsummaries ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getnumsummaries ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'currentrowindex ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'currentrowindex ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'currentcolumnindex ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'currentcolumnindex ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'currentsummaryindex ()'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'currentsummaryindex ()'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'gridrowcolumnvalue (string value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'gridrowcolumnvalue (string value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'gridrowcolumnvalue (string value, number value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'gridrowcolumnvalue (string value, number value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'gettotalvaluefor (string value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'gettotalvaluefor (string value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'gettotalvaluefor (string value, number value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'gettotalvaluefor (string value, number value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getcolumngroupindexof (number value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getcolumngroupindexof (number value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getrowgroupindexof (number value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getrowgroupindexof (number value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getrowpathindexof (any value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getrowpathindexof (any value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getrowpathindexof (any value, any value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getrowpathindexof (any value, any value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getrowpathindexof (any value, any value, ...)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getrowpathindexof (any value, any value, ...)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getcolumnpathindexof (any value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getcolumnpathindexof (any value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getcolumnpathindexof (any value, any value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getcolumnpathindexof (any value, any value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getcolumnpathindexof (any value, any value, ...)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getcolumnpathindexof (any value, any value, ...)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getindexof (string value, any value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getindexof (string value, any value)'
+DEBUG Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defining 'getindexof (string value, any value, number value)'...
+INFO Code Executer com.crystaldecisions.reports.formulas.FunctionManager - Defined 'getindexof (string value, any value, number value)'
+DEBUG Code Executer com.crystaldecisions.reports.common.engine.config - Configuration queried; key="ThreadProtectorFactory", result="null"
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition - Changing report structure - BEGIN
+DEBUG Code Executer com.crystaldecisions.reports.common.Notification - Adding com.crystaldecisions.reports.reportdefinition.InteractiveSortManager@24115eca as a dependent to com.crystaldecisions.reports.reportdefinition.o@6c0357a
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition - Changing report structure - END
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition - Build fieldsInUse list - update field manager: false
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition - FieldsInUse cache empty; building cache...
+DEBUG Code Executer com.crystaldecisions.reports.formulas.Compiler - Compiling formula {@Record_Selection}...
+INFO Code Executer com.crystaldecisions.reports.formulas.Compiler - Formula {@Record_Selection} compiled.
+DEBUG Code Executer com.crystaldecisions.reports.formulas.Compiler - Compiling formula {@Saved_Data_Selection}...
+INFO Code Executer com.crystaldecisions.reports.formulas.Compiler - Formula {@Saved_Data_Selection} compiled.
+DEBUG Code Executer com.crystaldecisions.reports.formulas.Compiler - Compiling formula {@Group_Selection}...
+INFO Code Executer com.crystaldecisions.reports.formulas.Compiler - Formula {@Group_Selection} compiled.
+DEBUG Code Executer com.crystaldecisions.reports.formulas.Compiler - Compiling formula {@View_Time_Selection}...
+INFO Code Executer com.crystaldecisions.reports.formulas.Compiler - Formula {@View_Time_Selection} compiled.
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition -   fieldsInUse list includes FieldDefinition:<name=View_Time_Selection>
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition -   fieldsInUse list includes FieldDefinition:<name=Saved_Data_Selection>
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition -   fieldsInUse list includes FieldDefinition:<name=Record_Selection>
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition -   fieldsInUse list includes FieldDefinition:<name=Group_Selection>
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition - Invalidate fieldsInUse list
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition - Build fieldsInUse list - update field manager: false
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition - FieldsInUse cache empty; building cache...
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition -   fieldsInUse list includes FieldDefinition:<name=View_Time_Selection>
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition -   fieldsInUse list includes FieldDefinition:<name=Saved_Data_Selection>
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition -   fieldsInUse list includes FieldDefinition:<name=Record_Selection>
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition -   fieldsInUse list includes FieldDefinition:<name=Group_Selection>
+INFO Code Executer com.businessobjects.reports.reportconverter.v12.V12Converter - Converting from version 12 started
+DEBUG Code Executer com.businessobjects.reports.reportconverter.v12.V12ReportDefConverter - Converting report definition started
+DEBUG Code Executer com.crystaldecisions.reports.reportdefinition.ReportDefinition - Changing report structure - BEGIN
+DEBUG Code Executer com.businessobjects.reports.reportconverter.v12.V12DataInterfaceConverter - Converting data interface started
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.CreateDataConnectionCommand - CreateDataConnectionCommand,0,Enter CreateCommand,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.CreateDataConnectionCommand - CreateDataConnectionCommand,627545015,Exit CreateCommand,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - command SETUP: CreateDataConnectionCommand
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.CreateDataConnectionCommand - CreateDataConnectionCommand,627545015,Enter setup,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.CreateDataConnectionCommand - CreateDataConnectionCommand,627545015,Exit setup,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - command PERFORM: CreateDataConnectionCommand
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.CreateDataConnectionCommand - CreateDataConnectionCommand,627545015,Enter perform,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.CreateDataConnectionCommand - CreateDataConnectionCommand,627545015,Exit perform,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - -- command is undoable -> purge redo stack
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.SetDataConnectionPropertyCommand - SetDataConnectionPropertyCommand,0,Enter CreateCommand,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;<connection=Connection:<state=closed>>;<property=Database DLL>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.SetDataConnectionPropertyCommand - SetDataConnectionPropertyCommand,1329267425,Enter CreateCommand,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - command SETUP: SetDataConnectionPropertyCommand
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.SetDataConnectionPropertyCommand - SetDataConnectionPropertyCommand,1329267425,Enter setup,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.SetDataConnectionPropertyCommand - SetDataConnectionPropertyCommand,1329267425,Exit setup,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - command PERFORM: SetDataConnectionPropertyCommand
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.SetDataConnectionPropertyCommand - SetDataConnectionPropertyCommand,1329267425,Enter perform,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.SetDataConnectionPropertyCommand - SetDataConnectionPropertyCommand,1329267425,Exit perform,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - -- command is undoable -> purge redo stack
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.SetDataConnectionPropertyCommand - SetDataConnectionPropertyCommand,0,Enter CreateCommand,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;<connection=Connection:<state=closed><databaseDriverName=crdb_jdbc.dll>>;<property=PreQEServerName>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.SetDataConnectionPropertyCommand - SetDataConnectionPropertyCommand,285129543,Enter CreateCommand,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - command SETUP: SetDataConnectionPropertyCommand
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.SetDataConnectionPropertyCommand - SetDataConnectionPropertyCommand,285129543,Enter setup,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.SetDataConnectionPropertyCommand - SetDataConnectionPropertyCommand,285129543,Exit setup,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - command PERFORM: SetDataConnectionPropertyCommand
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.SetDataConnectionPropertyCommand - SetDataConnectionPropertyCommand,285129543,Enter perform,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.SetDataConnectionPropertyCommand - SetDataConnectionPropertyCommand,285129543,Exit perform,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - -- command is undoable -> purge redo stack
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.AddDatabaseTableCommand - AddDatabaseTableCommand,0,Enter CreateCommand,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;<connection=Connection:<databaseType=JDBC (JNDI)><serverName=jdbc:sqlserver://localhost;instanceName=SQLEXPRESS;database=OK_Car019><state=closed><databaseDriverName=crdb_jdbc.dll>>;<tableName=SQL Scrapbook 0>;<description=>;<qualifiedName=SQL Scrapbook 0>;<tableAlias=SQL_Scrapbook_0>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.AddDatabaseTableCommand - AddDatabaseTableCommand,1367580273,Exit CreateCommand,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - command SETUP: AddDatabaseTableCommand
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - command PERFORM: AddDatabaseTableCommand
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.AddDatabaseTableCommand - AddDatabaseTableCommand,1367580273,Enter perform,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.AddDatabaseTableCommand - AddDatabaseTableCommand,1367580273,Exit perform,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - -- command is undoable -> purge redo stack
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.ChangeLinkEditorPropertiesCommand - ChangeLinkEditorPropertiesCommand,0,Enter CreateCommand,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;<newLinkEditorProperties=>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.ChangeLinkEditorPropertiesCommand - ChangeLinkEditorPropertiesCommand,1486228196,Exit CreateCommand,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - command SETUP: ChangeLinkEditorPropertiesCommand
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.ChangeLinkEditorPropertiesCommand - ChangeLinkEditorPropertiesCommand,1486228196,Enter setup,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.ChangeLinkEditorPropertiesCommand - ChangeLinkEditorPropertiesCommand,1486228196,Exit setup,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - command PERFORM: ChangeLinkEditorPropertiesCommand
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.ChangeLinkEditorPropertiesCommand - ChangeLinkEditorPropertiesCommand,1486228196,Enter perform,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+INFO Code Executer com.crystaldecisions.reports.reportdefinition.ReportCommand.ChangeLinkEditorPropertiesCommand - ChangeLinkEditorPropertiesCommand,1486228196,Exit perform,<document=ReportDocument:<report=main><reportPath=C:\OBS_SISTEM\EKSTRE.rpt>>;
+DEBUG Code Executer com.crystaldecisions.reports.common.commandmanager - -- command is undoable -> purge redo stack
+DEBUG Code Executer com.businessobjects.reports.reportconverter.v12.V12DataInterfaceConverter - Converting data interface finished
+DEBUG Code Executer com.businessobjects.reports.reportconverter.v12.V12ReportDefConverter - Converting printer settings started

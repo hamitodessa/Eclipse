@@ -23,6 +23,19 @@ public static  Date tarih(String tar) {
 		return tarih;
 		
 	}
+public static  Date tarih_ekstre(String tar) {
+	
+	DateFormat df = new SimpleDateFormat("yyyy.MM.dd");
+    Date tarih = null;
+  
+	try {
+		tarih = df.parse(tar);
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
+	return tarih;
+	
+}
 public static String tarih_sql(String tar) {
 	String gun,ay,yil,tarih = "";
 	

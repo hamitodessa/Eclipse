@@ -1,0 +1,43 @@
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 38, pageN = 1
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=3078>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=3078>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0TARIH)
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0EVRAK>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=864><y=0>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10944><height=3078>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0EVRAK)
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0IZAHAT>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=1555><y=0>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10253><height=3078>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0IZAHAT)
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0BAKIYE>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=10230><y=0>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=1578><height=3078>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0BAKIYE)
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 38, pageN = 1)
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=3078>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted section object (DetailSection1 : DetailSection1 : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 38, pageN = 1)
+DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Getting recurring record for record number: 40
+DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Evaluating group selection
+DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.datasource - Can Keep record: true The print time record number is 40
+DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 39, pageN = 1
+DEBUG TSLVReader #1 com.crystaldecisions.reports.dataengine.dataprocessor - Next VALID Section : section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 39, pageN = 1
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 39, pageN = 1
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Next Object is: Formatted area object (DetailArea1 : Details )
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=3078>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - ADDING FORMATTED OBJECT TO CONTAINER : Formatted area object (DetailArea1 : Details )
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 39, pageN = 1
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2819>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter - Current DataPosition: section = SectionCode:<kind=detailArea><groupN=0><isHeader=true><sectionN=0>, printRecordNumber = 39, pageN = 1
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.containerformatter.object - Maximum Size For Current Object: TwipSize:<width=11808><height=2819>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0TARIH>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=90><y=0>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=11718><height=2819>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0TARIH)
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQL_Scrapbook_0EVRAK>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adjusted Position For Report Object: TwipPoint:<x=864><y=0>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Maximum Space For Report Object: TwipSize:<width=10944><height=2819>
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Adding Formatted Object to Section: Formatted other field object (SQL_Scrapbook_0EVRAK)
+DEBUG TSLVReader #1 com.crystaldecisions.reports.formatter.formatter.objectformatter.sectionformatter.object - Formatting Report Object: ReportObject:<name=SQ

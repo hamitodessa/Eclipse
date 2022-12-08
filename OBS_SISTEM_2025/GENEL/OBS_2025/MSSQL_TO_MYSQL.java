@@ -21,6 +21,9 @@ import OBS_C_2025.BAGLAN;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.TARIH_CEVIR;
 
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.ByteArrayOutputStream;
@@ -260,6 +263,32 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		});
 		btnNewButton_1_1_1.setBounds(382, 79, 123, 23);
 		panel.add(btnNewButton_1_1_1);
+		
+		JButton btnNewButton_3 = new JButton("New button");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 try{
+			            KeyGenerator keygenerator = KeyGenerator.getInstance("DES");
+			            SecretKey myDesKey = keygenerator.generateKey();
+			            Cipher desCipher;
+			            desCipher = Cipher.getInstance("DES");
+			            byte[] text = "No body can see me.".getBytes("UTF8");
+			            desCipher.init(Cipher.ENCRYPT_MODE, myDesKey);
+			            byte[] textEncrypted = desCipher.doFinal(text);
+			            String s = new String(textEncrypted);
+			            System.out.println(s);
+		            desCipher.init(Cipher.DECRYPT_MODE, myDesKey);
+			            byte[] textDecrypted = desCipher.doFinal(textEncrypted);
+			            s = new String(textDecrypted);
+			            System.out.println(s);
+			        }catch(Exception ex)
+			        {
+			            System.out.println("Exception");
+			        }
+			}
+		});
+		btnNewButton_3.setBounds(35, 382, 89, 23);
+		panel.add(btnNewButton_3);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

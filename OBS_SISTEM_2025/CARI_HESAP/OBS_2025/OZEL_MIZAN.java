@@ -614,20 +614,20 @@ public static void excell_aktar()
 					   acikStyle.setAlignment(HorizontalAlignment.CENTER);
 					   
 					 Row baslikRow = sheet.createRow(0);
-					 sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -3));
+					 sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -2));
 					 Cell baslikname = baslikRow.createCell(0);
 					   baslikname.setCellValue(BAGLAN.cariDizin.fIRMA_ADI );
 					   baslikname.setCellStyle(acikStyle);
 					   
-					   Cell tarih = baslikRow.createCell(6);
+					   Cell tarih = baslikRow.createCell(7);
 					   SimpleDateFormat DateFor = new SimpleDateFormat("dd.MM.yyyy");
 					  tarih.setCellValue(DateFor.format(new Date() ));
 					  tarih.setCellStyle(satirStyle);
 					  
 						 Row acikRow = sheet.createRow(1);
-						 sheet.addMergedRegion(new CellRangeAddress(1,1,5,mdl.getColumnCount() -2));
+						 sheet.addMergedRegion(new CellRangeAddress(1,1,6,mdl.getColumnCount() -1));
 		      	        String yazi = "Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2_1);
-		      	        Cell acik  = acikRow.createCell(5);
+		      	        Cell acik  = acikRow.createCell(6);
 		      	        acik.setCellStyle(satirStyle);
 						acik.setCellValue(yazi );
 					//  BOS SATIR
@@ -636,7 +636,7 @@ public static void excell_aktar()
 						int sutun = 2 ;
 						//
 					 Row headerRow = sheet.createRow(3);
-					for (int q =0;q<= mdl.getColumnCount()-2 ;q++)
+					for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
 					{
 						 Cell bname = headerRow.createCell(q);
 						 if (q > sutun)
@@ -654,7 +654,7 @@ public static void excell_aktar()
 					for (int i =0;i< mdl.getRowCount() ;i++)
 					{
 						 Row satirRow = sheet.createRow(i+4);
-						for (int s =0;s<= mdl.getColumnCount()-2 ;s++)
+						for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
 						{
 							   Cell hname = satirRow.createCell(s);
 							   if ( mdl.getValueAt(i, s) != null)
@@ -740,21 +740,21 @@ public static void excell_aktar()
 					   acikStyle.setAlignment(HorizontalAlignment.CENTER);
 					   
 					 Row baslikRow = sheet.createRow(0);
-					 sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -3));
+					 sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -2));
 					Cell baslikname = baslikRow.createCell(0);
 					   
 					   baslikname.setCellValue(BAGLAN.cariDizin.fIRMA_ADI);
 					   baslikname.setCellStyle(acikStyle);
 					   
-					   Cell tarih = baslikRow.createCell(6);
+					   Cell tarih = baslikRow.createCell(7);
 					   SimpleDateFormat DateFor = new SimpleDateFormat("dd.MM.yyyy");
 					  tarih.setCellValue(DateFor.format(new Date() ));
 					  tarih.setCellStyle(satirStyle);
 					  
 						 Row acikRow = sheet.createRow(1);
-						 sheet.addMergedRegion(new CellRangeAddress(1,1,5,mdl.getColumnCount() -2));
+						 sheet.addMergedRegion(new CellRangeAddress(1,1,6,mdl.getColumnCount() -2));
 		      	        String yazi = "Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2_1);
-		      	        Cell acik  = acikRow.createCell(5);
+		      	        Cell acik  = acikRow.createCell(6);
 		      	        acik.setCellStyle(satirStyle);
 						acik.setCellValue(yazi );
 					//  BOS SATIR
@@ -762,7 +762,7 @@ public static void excell_aktar()
 					   //
 						int sutun = 2 ;
 					 Row headerRow = sheet.createRow(3);
-					for (int q =0;q<= mdl.getColumnCount()-2 ;q++)
+					for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
 					{
 						 Cell bname = headerRow.createCell(q);
 						 if (q > sutun)
@@ -776,16 +776,14 @@ public static void excell_aktar()
 							 bname.setCellStyle(headerSolaStyle);
 						 }
 					}
-					
-					for (int i =0;i< mdl.getRowCount() ;i++)
+						for (int i =0;i< mdl.getRowCount() ;i++)
 					{
 						 Row satirRow = sheet.createRow(i+4);
-						for (int s =0;s<= mdl.getColumnCount()-2 ;s++)
+						for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
 						{
 							   Cell hname = satirRow.createCell(s);
 							   if ( mdl.getValueAt(i, s) != null)
 							   {
-								   ////////////
 								   if (s > sutun)
 								   {
 									   hname.setCellStyle(satirStyle2);
@@ -796,15 +794,12 @@ public static void excell_aktar()
 									   hname.setCellValue( mdl.getValueAt(i,s).toString());
 									   hname.setCellStyle(solaStyle); 
 								   }
-								
-								   ///////////
-							   }
+								   }
 							   else
 							   {
 								   hname.setCellValue("");
 								   hname.setCellStyle(satirStyle);
 							   }
-							
 						}
 					}
 					for (int i=0; i<= mdl.getColumnCount()-1; i++){

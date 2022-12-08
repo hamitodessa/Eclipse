@@ -35,6 +35,7 @@ import javax.swing.JOptionPane;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
@@ -515,8 +516,10 @@ public class EKSTRE extends JInternalFrame {
 			 Progres_Bar(table.getRowCount()-1, i);
 			if (i == 0)
 			{
-				Long trh = (Long) model.getValueAt(i , 0);
-				str = TARIH_CEVIR.milis_ddMMyyyy(trh);
+				DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
+				Date date1 = (Date)formatter.parse( model.getValueAt(i , 0).toString());
+				DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");  
+				str = dateFormat.format(date1);  
 			}
 			else
 			{

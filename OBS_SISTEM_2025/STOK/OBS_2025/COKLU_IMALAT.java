@@ -16,7 +16,6 @@ import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -35,15 +34,12 @@ import javax.swing.table.TableModel;
 
 import com.toedter.calendar.JDateChooser;
 
-import OBS_C_2025.ADRES_ACCESS;
-import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.DoubleEditor;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.SAGA;
-import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TABLO_RENDERER;
@@ -249,7 +245,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 				sifirla();
 			}
 		});
-		btnNewButton.setBounds(10, 11, 89, 23);
+		btnNewButton.setBounds(10, 11, 103, 23);
 		panel_2.add(btnNewButton);
 		
 				

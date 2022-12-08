@@ -1005,9 +1005,9 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
         		+ " ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM SATIRLAR  WITH (INDEX(IX_SATIRLAR))  	WHERE  SATIRLAR.HESAP    = s.HESAP     		 AND TARIH BETWEEN 				\r\n"
         		+ " '"+ t1 +"' AND  '"+ t2 +"'  ) ,0) -	"
         		+ " ISNULL( (SELECT SUM(SATIRLAR.BORC)  FROM SATIRLAR  WITH (INDEX(IX_SATIRLAR))   				WHERE  SATIRLAR.HESAP    = s.HESAP  "
-        		+ " AND TARIH BETWEEN 	  '"+ t1 +"' AND  '"+t2 +" 23:59:59.998'  ) ,0),2)  as BAK_KVARTAL				 ,"
+        		+ " AND TARIH BETWEEN 	  '"+ t1 +"' AND  '"+t2 + " 23:59:59.998'  ) ,0),2)  as BAK_KVARTAL				 ,"
         		+ " ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)   				FROM SATIRLAR  WITH (INDEX(IX_SATIRLAR))   "
-        		+ "WHERE    SATIRLAR.HESAP    = s.HESAP     	 ) ,0),2)   as BAKIYE"
+        		+ "WHERE    SATIRLAR.HESAP    = s.HESAP     and TARIH <  '"+ t2 + "  23:59:59.998' 	 ) ,0),2)   as BAKIYE"
           		+ "	FROM SATIRLAR s  WITH (INDEX(IX_SATIRLAR))   "  
         		+ "  WHERE s.HESAP > N'"+ h1 +"' AND  s.HESAP < N'"+ h2+"'  "
         		+ "  GROUP BY s.HESAP " + o1 + " " + o2 + "" ;

@@ -993,7 +993,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
         		+ " IFNULL( (SELECT SUM(SATIRLAR.BORC)  FROM SATIRLAR  USE INDEX (IXS_HESAP)     				WHERE  SATIRLAR.HESAP    = s.HESAP    	"
         		+ "   ) ,0),2)  as BAK_KVARTAL				 ,"
         		+ " ROUND( IFNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)   				FROM SATIRLAR  USE INDEX (IXS_HESAP)     		"
-        		+ " WHERE   SATIRLAR.HESAP    = s.HESAP      ) ,0)  ,2)  as BAKIYE"
+        		+ " WHERE   SATIRLAR.HESAP    = s.HESAP    and TARIH <  '"+ t2 + "  23:59:59.998'    ) ,0)  ,2)  as BAKIYE"
         		+ "  FROM SATIRLAR s USE INDEX(IXS_HESAP)"
         		+ "   WHERE  s.HESAP > N'"+ h1 +"' AND  s.HESAP < N'"+ h2+ "'" + 
          		"              GROUP BY s.HESAP " + o1 + " " + o2 + "" ;

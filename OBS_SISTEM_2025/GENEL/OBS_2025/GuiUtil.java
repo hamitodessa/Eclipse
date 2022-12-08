@@ -18,6 +18,7 @@ public class GuiUtil {
 		OBS_MAIN.desktopPane.setCursor(yesno ? waitCursor : defCursor);
 		OBS_MAIN.toolBar.setCursor(yesno ? waitCursor : defCursor);
 		OBS_MAIN.toolBar_1.setCursor(yesno ? waitCursor : defCursor);
+	
 	    c.setCursor(yesno ? waitCursor : defCursor);
 	    getFrame(c).setCursor(yesno ? waitCursor : defCursor);
 	  }

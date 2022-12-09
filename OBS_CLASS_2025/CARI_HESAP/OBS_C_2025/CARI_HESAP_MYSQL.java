@@ -29,16 +29,15 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public void akt_baglan(String kod) throws SQLException
 	{
 		String cnnstr = "" ;
-		if (new String( BAGLAN.cariDizin.yER.toString()).equals("L") == true) 
-        { 
-			cnnstr = "jdbc:mysql://localhost/ok_car" + kod ;
-        }
+		if (BAGLAN.cariDizin.yER.equals("L"))
+		{
+			cnnstr = "jdbc:mysql://localhost:" + BAGLAN.cariDizin.sERVER +"/ok_car" + kod ;
+       }
         else
         { 
         	cnnstr =  "jdbc:mysql://" + BAGLAN.cariDizin.sERVER + "/ok_car" + kod ;
         }
-		String cumle = "jdbc:sqlserver://" + cnnstr + ";";
-	    akt_con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
+	    akt_con = DriverManager.getConnection(cnnstr,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 	}
 	@Override
 	public void cari_sifirdan_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
@@ -757,7 +756,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
         String sql = "SELECT COUNT( HESAP) AS SAYI FROM HESAP ";
-    	PreparedStatement stmt = con.prepareStatement(sql);
+    	PreparedStatement stmt = akt_con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
 		return rss.getInt("SAYI");
@@ -867,7 +866,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
         String sql =" SELECT HESAP,SUM(BORC) AS BORC, SUM(ALACAK) AS ALACAK " +
-                " FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  " +
+                " FROM SATIRLAR  USE INDEX (IXS_HESAP)  " +
                 " WHERE HESAP= N'" + hesap + "'" +
                 " GROUP BY HESAP  ORDER BY HESAP ";
     	PreparedStatement stmt = con.prepareStatement(sql);
@@ -880,7 +879,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		int E_NUMBER ;
-        String sql = "SELECT  EVRAK FROM EVRAK_NO WITH (HOLDLOCK, ROWLOCK) ";
+        String sql = "SELECT  EVRAK FROM EVRAK_NO   ";
     	PreparedStatement stmt = akt_con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -909,7 +908,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.setInt(4, evrak);
 		stmt.setString(5, bcins);
 		stmt.setDouble(6, bkur);
-		stmt.setDouble(7, (double) Math.round(borc * 100) / 100);
+		stmt.setDouble(7,  Math.abs(borc));
 		stmt.setDouble(8, 0);
 		stmt.setString(9, kod);
 		stmt.setString(10, user);
@@ -926,7 +925,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	stmt2.setString(5, acins);
 	stmt2.setDouble(6, alkur);
 	stmt2.setDouble(7, 0);
-	stmt2.setDouble(8, (double) Math.round(alacak * 100) / 100);
+	stmt2.setDouble(8, Math.abs(alacak) );
 	stmt2.setString(9, kod);
 	stmt2.setString(10, user);
 	stmt2.executeUpdate();

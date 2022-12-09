@@ -54,6 +54,7 @@ import javax.swing.event.TableModelListener;
 
 import com.toedter.calendar.JDateChooser;
 
+import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
@@ -494,18 +495,17 @@ public class YIL_SONU extends JInternalFrame {
 	    	  boolean durum =  model.getValueAt(i, 5) != null ?    (boolean) model.getValueAt(i, 5) : false;
 			  if (durum) 
 	    	  {
-				  c_Access.mizan_aktar(model.getValueAt(i, 0).toString());
+			rs =	  c_Access.mizan_aktar(model.getValueAt(i, 0).toString());
              bir = 0;
              iki = 0;
              uc = 0;
-             if (!rs.isBeforeFirst() ) {  
+              if (!rs.isBeforeFirst() ) {  
              }  
 	         else
 	         {
-	        	 say += 1;
-	        	 enumara=0;
-              
-              		enumara = c_Access.yilsonu_cari_fisno_al();
+	        	say += 1;
+	        	enumara=0;
+              	enumara = c_Access.yilsonu_cari_fisno_al();
                rs.next();
                bir = rs.getDouble("BORC");
                iki = rs.getDouble("ALACAK");
@@ -526,8 +526,7 @@ public class YIL_SONU extends JInternalFrame {
                else if (uc > 0 )  //   'Alacakli hesaplar  0.001
                {
                    	String str =TARIH_CEVIR.tarih_geri(dateChooser);
-                   
-			       c_Access.yilsonu_cari_dekont_kaydet(textField_1.getText(), str, 
+ 			       c_Access.yilsonu_cari_dekont_kaydet(textField_1.getText(), str, 
                			enumara, "",1.0, uc,rs.getString("HESAP"),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI);
                }
 		     }

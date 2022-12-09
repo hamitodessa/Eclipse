@@ -771,7 +771,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
         String sql = "SELECT COUNT( HESAP) AS SAYI FROM HESAP ";
-    	PreparedStatement stmt = con.prepareStatement(sql);
+    	PreparedStatement stmt = akt_con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
 		return rss.getInt("SAYI");
@@ -923,7 +923,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt.setInt(4, evrak);
 		stmt.setString(5, bcins);
 		stmt.setDouble(6, bkur);
-		stmt.setDouble(7, (double) Math.round(borc * 100) / 100);
+		stmt.setDouble(7,  Math.abs(borc ));
 		stmt.setDouble(8, 0);
 		stmt.setString(9, kod);
 		stmt.setString(10, user);
@@ -940,7 +940,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	stmt2.setString(5, acins);
 	stmt2.setDouble(6, alkur);
 	stmt2.setDouble(7, 0);
-	stmt2.setDouble(8, (double) Math.round(alacak * 100) / 100);
+	stmt2.setDouble(8,  Math.abs(alacak ));
 	stmt2.setString(9, kod);
 	stmt2.setString(10, user);
 	stmt2.executeUpdate();

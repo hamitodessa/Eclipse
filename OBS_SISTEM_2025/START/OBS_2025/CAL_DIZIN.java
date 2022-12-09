@@ -1009,7 +1009,7 @@ public class CAL_DIZIN extends JFrame {
 									panel.add(chckbxL_1);
 
 									cmblog = new JComboBox<String>();
-									cmblog.setModel(new DefaultComboBoxModel<String>(new String[] {"Dosyaya Kayit", "Email Atma"}));
+									cmblog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani Kayit", "Text Dosya","Email Atma"}));
 									cmblog.setEnabled(false);
 									cmblog.setBounds(133, 126, 126, 22);
 									panel.add(cmblog);
@@ -1185,7 +1185,7 @@ public class CAL_DIZIN extends JFrame {
 		btndizsec.setEnabled(false);
 		txtdiz.setText("");
 		chckbxL_1.setSelected(false);
-		cmblog.setSelectedItem("Dosyaya Kayit");
+		cmblog.setSelectedItem("Veritabani Kayit");
 		cmbhangisql.setSelectedItem("MS SQL");
 		ip_doldur();
 	}

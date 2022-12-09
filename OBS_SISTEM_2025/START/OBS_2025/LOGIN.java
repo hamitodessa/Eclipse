@@ -79,6 +79,7 @@ import OBS_C_2025.SMS_MYSQL;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
+import OBS_C_2025.TEXT_DOSYA;
 
 
 
@@ -1083,7 +1084,7 @@ public class LOGIN extends JFrame {
 		}
 		else
 		{
-			if (hANGI_LOG.equals("Dosyaya Kayit"))
+			if (hANGI_LOG.equals("Veritabani Kayit"))
 			{
 				if (hangiSQL.equals("MS SQL"))
 				{
@@ -1096,9 +1097,14 @@ public class LOGIN extends JFrame {
 					lAktar(mODUL , ilogg);
 				}
 			}
+			//Text Dosya
+			else if (hANGI_LOG.equals("Text Dosya"))
+			{
+				ILOGGER[] ilogg = {new TEXT_DOSYA()};
+				lAktar(mODUL , ilogg);
+			}
 			else if (hANGI_LOG.equals("Email Atma"))
 			{
-
 				LOG_MAIL_OKU.mail_oku();
 				if (GLOBAL.Log_Mail.equals(""))
 				{

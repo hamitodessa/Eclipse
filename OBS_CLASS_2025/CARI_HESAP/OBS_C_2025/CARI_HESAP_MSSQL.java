@@ -74,8 +74,11 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
           con = DriverManager.getConnection(cumle,kull,sifre);
           create_table_log();
           //SQLITE LOG DOSYASI OLUSTUR
-     	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + ".DB"   ) ;
-     	 GLOBAL.create_table_log(sQLITEconn);
+          if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
+          {
+          	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + ".DB"   ) ;
+          	 GLOBAL.create_table_log(sQLITEconn);
+          }
           //
          stmt.close();
          con.close();
@@ -105,9 +108,11 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
             create_table_log();
             //
             //SQLITE LOG DOSYASI OLUSTUR
-        	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + ".DB"   ) ;
-        	 sQLITEconn.close();
-        	 GLOBAL.create_table_log(sQLITEconn);
+            if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
+            {
+            	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + ".DB"   ) ;
+            	 GLOBAL.create_table_log(sQLITEconn);
+            }
              //
             stmt.close();
             con.close();

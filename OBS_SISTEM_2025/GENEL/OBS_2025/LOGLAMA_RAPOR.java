@@ -37,8 +37,7 @@ import com.toedter.calendar.JDateChooser;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.DOSYA_MYSQL;
-import LOGER_KAYIT.TXT_LOG;
-
+import LOGER_KAYIT.SQLITE_LOG;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -50,7 +49,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 
 	static DOSYA_MYSQL mYSQL = new DOSYA_MYSQL ();
 	static DOSYA_MSSQL mSSQL = new DOSYA_MSSQL ();
-	static  TXT_LOG tXT = new TXT_LOG();
+	static  SQLITE_LOG tXT = new SQLITE_LOG();
 	private static JTextField textField;
 	private static JTextField textField_1;
 	private static JTextField textField_2;

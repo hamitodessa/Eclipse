@@ -13,7 +13,7 @@ import java.util.Scanner;
 import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
 
-public class TXT_LOG implements ILOGER_KAYIT{
+public class SQLITE_LOG implements ILOGER_KAYIT{
 
 	@Override
 	public void Logla(String mesaj, String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {

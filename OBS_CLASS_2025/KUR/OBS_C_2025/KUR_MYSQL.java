@@ -78,7 +78,10 @@ public class KUR_MYSQL implements IKUR {
             cumle = "jdbc:mysql://" + server + "/" + VERITABANI + "_log" ;
             con = DriverManager.getConnection(cumle,kull,sifre);
             create_table_log();
-          
+            //SQLITE LOG DOSYASI OLUSTUR
+        	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + ".DB"   ) ;
+        	 GLOBAL.create_table_log(sQLITEconn);
+             //
             stmt.close();
             con.close();
 	}

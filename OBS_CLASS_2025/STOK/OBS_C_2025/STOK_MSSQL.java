@@ -55,6 +55,10 @@ public class STOK_MSSQL implements ISTOK {
           cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
           con = DriverManager.getConnection(cumle,kull,sifre);
           create_table_log();
+          //SQLITE LOG DOSYASI OLUSTUR
+      	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + ".DB"   ) ;
+      	 GLOBAL.create_table_log(sQLITEconn);
+           //
           stmt.close();
          con.close();
 		

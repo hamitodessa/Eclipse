@@ -48,7 +48,7 @@ public class KUR_MYSQL implements IKUR {
         //SQLITE LOG DOSYASI OLUSTUR
         if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
         {
-        	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + ".DB"   ) ;
+        	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI+ "_mYSQL" + ".DB"   ) ;
         	 GLOBAL.create_table_log(sQLITEconn);
         }
         //
@@ -84,7 +84,7 @@ public class KUR_MYSQL implements IKUR {
             //SQLITE LOG DOSYASI OLUSTUR
             if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
             {
-            	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + ".DB"   ) ;
+            	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI+ "_mYSQL" + ".DB"   ) ;
             	 GLOBAL.create_table_log(sQLITEconn);
             }
             //

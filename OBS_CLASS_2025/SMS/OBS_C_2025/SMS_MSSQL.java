@@ -51,7 +51,7 @@ public class SMS_MSSQL implements ISMS{
           //SQLITE LOG DOSYASI OLUSTUR
           if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
           {
-          	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + ".DB"   ) ;
+          	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + "_mSSQL"+ ".DB"   ) ;
           	 GLOBAL.create_table_log(sQLITEconn);
           }
           //
@@ -86,7 +86,7 @@ public class SMS_MSSQL implements ISMS{
              //SQLITE LOG DOSYASI OLUSTUR
              if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
              {
-             	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + ".DB"   ) ;
+             	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + "_mSSQL"+ ".DB"   ) ;
              	 GLOBAL.create_table_log(sQLITEconn);
              }
           //

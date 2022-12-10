@@ -2,7 +2,6 @@ package OBS_C_2025;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,155 +9,153 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JOptionPane;
-
 public class ADRES_MYSQL implements IADRES {
 
 	static Connection con = null;
 	static Statement stmt = null;
-	
+
 	public void baglan() throws SQLException
 	{
-			String cumle = "jdbc:mysql://" + BAGLAN.adrDizin.cONN_STR ;
-	    con = DriverManager.getConnection(cumle,BAGLAN.adrDizin.kULLANICI,BAGLAN.adrDizin.sIFRESI);
+		String cumle = "jdbc:mysql://" + BAGLAN.adrDizin.cONN_STR ;
+		con = DriverManager.getConnection(cumle,BAGLAN.adrDizin.kULLANICI,BAGLAN.adrDizin.sIFRESI);
 	}
 	@Override
 	public void aDR_SIF_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
 			String sifre,String port) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
- 		con = null;  
- 		String cumle = "";
-        cumle = "jdbc:mysql://localhost:" + port ;
-        con = DriverManager.getConnection(cumle,kull,sifre);
-        String VERITABANI = "ok_adr" + kod;
-        stmt = null;
-        String sql =null;
-     	sql = "CREATE DATABASE " + VERITABANI ;
-        stmt = con.createStatement();  
-        stmt.execute(sql);
-        cumle = "jdbc:mysql://localhost/" +VERITABANI ;
-        con = DriverManager.getConnection(cumle,kull,sifre);
-        create_table(fir_adi);
-        //
-        sql = "CREATE DATABASE " + VERITABANI + "_log" ;
-        stmt = con.createStatement();  
-        stmt.execute(sql);
-        cumle = "jdbc:mysql://localhost/" +VERITABANI + "_log" ;
-        con = DriverManager.getConnection(cumle,kull,sifre);
-        create_table_log();
-              //
-        //SQLITE LOG DOSYASI OLUSTUR
-        if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
-        {
-        	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI+ "_mYSQL" + ".DB"   ) ;
-        	 GLOBAL.create_table_log(sQLITEconn);
-        }
-         //
-        stmt.close();
-        con.close();
-		
+		con = null;  
+		String cumle = "";
+		cumle = "jdbc:mysql://localhost:" + port ;
+		con = DriverManager.getConnection(cumle,kull,sifre);
+		String VERITABANI = "ok_adr" + kod;
+		stmt = null;
+		String sql =null;
+		sql = "CREATE DATABASE " + VERITABANI ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);
+		cumle = "jdbc:mysql://localhost/" +VERITABANI ;
+		con = DriverManager.getConnection(cumle,kull,sifre);
+		create_table(fir_adi);
+		//
+		sql = "CREATE DATABASE " + VERITABANI + "_log" ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);
+		cumle = "jdbc:mysql://localhost/" +VERITABANI + "_log" ;
+		con = DriverManager.getConnection(cumle,kull,sifre);
+		create_table_log();
+		//
+		//SQLITE LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
+		{
+			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI+ "_mYSQL" + ".DB"   ) ;
+			GLOBAL.create_table_log(sQLITEconn);
+		}
+		//
+		stmt.close();
+		con.close();
+
 	}
 
 	@Override
 	public void aDR_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi)
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
- 		con = null;  
- 		String VERITABANI = "ok_adr" + kod;
- 		String cumle = "";
- 		stmt = null;
-        String sql =null;
- 		cumle = "jdbc:mysql://" + server ;
-        con = DriverManager.getConnection(cumle,kull,sifre);
-            sql = "CREATE DATABASE " + VERITABANI ;
-            stmt = con.createStatement();  
-            stmt.executeUpdate(sql);
-            cumle = "jdbc:mysql://" + server + "/" + VERITABANI ;
-            con = DriverManager.getConnection(cumle,kull,sifre);
-            create_table(fir_adi);
-            //
-            sql = "CREATE DATABASE " + VERITABANI + "_log" ;
-            stmt = con.createStatement();  
-            stmt.executeUpdate(sql);
-            cumle = "jdbc:mysql://" + server + "/" + VERITABANI + "_log" ;
-            con = DriverManager.getConnection(cumle,kull,sifre);
-            create_table_log();
-            //SQLITE LOG DOSYASI OLUSTUR
-            if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
-            {
-            	 Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + "_mYSQL" + ".DB"   ) ;
-            	 GLOBAL.create_table_log(sQLITEconn);
-            }
-         //
-            stmt.close();
-            con.close();
-		
+		con = null;  
+		String VERITABANI = "ok_adr" + kod;
+		String cumle = "";
+		stmt = null;
+		String sql =null;
+		cumle = "jdbc:mysql://" + server ;
+		con = DriverManager.getConnection(cumle,kull,sifre);
+		sql = "CREATE DATABASE " + VERITABANI ;
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		cumle = "jdbc:mysql://" + server + "/" + VERITABANI ;
+		con = DriverManager.getConnection(cumle,kull,sifre);
+		create_table(fir_adi);
+		//
+		sql = "CREATE DATABASE " + VERITABANI + "_log" ;
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		cumle = "jdbc:mysql://" + server + "/" + VERITABANI + "_log" ;
+		con = DriverManager.getConnection(cumle,kull,sifre);
+		create_table_log();
+		//SQLITE LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
+		{
+			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI + "_mYSQL" + ".DB"   ) ;
+			GLOBAL.create_table_log(sQLITEconn);
+		}
+		//
+		stmt.close();
+		con.close();
+
 	}
 
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
-        sql = "CREATE TABLE `Adres`( "
-                      + " `M_Kodu`  nvarchar (12) NOT NULL, "
-                      + " `Adi`  nvarchar (35) NULL,"
-                      + " `Adres_1`  nvarchar (35) NULL,"
-                      + " `Adres_2`  nvarchar (35) NULL,"
-                      + " `Semt`  nvarchar (25) NULL,"
-                      + " `Sehir`  nvarchar (25) NULL,"
-                      + " `Posta_Kodu`  nvarchar (10) NULL,"
-                      + " `Vergi_Dairesi`  nvarchar (25) NULL,"
-                      + " `Vergi_No`  nvarchar (15) NULL,"
-                      + " `Fax`  nvarchar (25) NULL,"
-                      + " `Tel_1`  nvarchar (25) NULL,"
-                      + " `Tel_2`  nvarchar (25) NULL,"
-                      + " `Tel_3`  nvarchar (25) NULL,"
-                      + " `Ozel`  nvarchar (30) NULL,"
-                      + " `Yetkili`  nvarchar (30) NULL,"
-                      + " `E_Mail`  nvarchar (30) NULL,"
-                      + " `Not_1`  nvarchar (30) NULL,"
-                      + " `Not_2`  nvarchar (30) NULL,"
-                      + " `Not_3`  nvarchar (30) NULL,"
-                      + " `Aciklama`  nvarchar (50) NULL,"
-                      + " `Sms_Gonder` TINYINT NULL,"
-                      + " `Mail_Gonder` TINYINT NULL,"
-                      + " `Ozel_Kod_1`  nvarchar (15) NULL,"
-                      + " `Ozel_Kod_2`  nvarchar (15) NULL,"
-                      + " `Web`  nvarchar (50) NULL,"
-                      + " `USER`  nvarchar (15) NULL,"
-                      + " `Resim` MEDIUMBLOB NULL,"
-                      + "  PRIMARY KEY (`M_Kodu`),"
-                      + "  UNIQUE INDEX `M_Kodu_UNIQUE` (`M_Kodu` ASC) VISIBLE,"
-	              		+ "  INDEX `IX_Adres` (`M_Kodu` ASC , `Adi` ASC) VISIBLE);";
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
-        sql = "CREATE TABLE `OZEL` ("
-        		+ "  `OZID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
-        		+ "  `YONETICI` VARCHAR(25) NULL,"
-        		+ "  `YON_SIFRE` VARCHAR(15) NULL,"
-        		+ "  `FIRMA_ADI` VARCHAR(50) NULL);";
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
-        sql = "CREATE TABLE `YETKILER`( "
-          		 + " `YETID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
-   	                         + "`KULLANICI` nvarchar(25) NULL,"
-   	                         + "`KARTON` nvarchar(5) NULL,"
-   	                         + "`TAM_YETKI` TINYINT NULL,"
-   	                         + "`GORUNTU` TINYINT NULL);";
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
-        // ***************OZEL NO YAZ ************
-        sql = "INSERT INTO  `OZEL` (`YONETICI`,`YON_SIFRE`,`FIRMA_ADI`) VALUES ('" + GLOBAL.KULL_ADI  + "','12345' , '" + fir_adi + "')";
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
-		
-		
+		sql = "CREATE TABLE `Adres`( "
+				+ " `M_Kodu`  nvarchar (12) NOT NULL, "
+				+ " `Adi`  nvarchar (35) NULL,"
+				+ " `Adres_1`  nvarchar (35) NULL,"
+				+ " `Adres_2`  nvarchar (35) NULL,"
+				+ " `Semt`  nvarchar (25) NULL,"
+				+ " `Sehir`  nvarchar (25) NULL,"
+				+ " `Posta_Kodu`  nvarchar (10) NULL,"
+				+ " `Vergi_Dairesi`  nvarchar (25) NULL,"
+				+ " `Vergi_No`  nvarchar (15) NULL,"
+				+ " `Fax`  nvarchar (25) NULL,"
+				+ " `Tel_1`  nvarchar (25) NULL,"
+				+ " `Tel_2`  nvarchar (25) NULL,"
+				+ " `Tel_3`  nvarchar (25) NULL,"
+				+ " `Ozel`  nvarchar (30) NULL,"
+				+ " `Yetkili`  nvarchar (30) NULL,"
+				+ " `E_Mail`  nvarchar (30) NULL,"
+				+ " `Not_1`  nvarchar (30) NULL,"
+				+ " `Not_2`  nvarchar (30) NULL,"
+				+ " `Not_3`  nvarchar (30) NULL,"
+				+ " `Aciklama`  nvarchar (50) NULL,"
+				+ " `Sms_Gonder` TINYINT NULL,"
+				+ " `Mail_Gonder` TINYINT NULL,"
+				+ " `Ozel_Kod_1`  nvarchar (15) NULL,"
+				+ " `Ozel_Kod_2`  nvarchar (15) NULL,"
+				+ " `Web`  nvarchar (50) NULL,"
+				+ " `USER`  nvarchar (15) NULL,"
+				+ " `Resim` MEDIUMBLOB NULL,"
+				+ "  PRIMARY KEY (`M_Kodu`),"
+				+ "  UNIQUE INDEX `M_Kodu_UNIQUE` (`M_Kodu` ASC) VISIBLE,"
+				+ "  INDEX `IX_Adres` (`M_Kodu` ASC , `Adi` ASC) VISIBLE);";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE `OZEL` ("
+				+ "  `OZID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
+				+ "  `YONETICI` VARCHAR(25) NULL,"
+				+ "  `YON_SIFRE` VARCHAR(15) NULL,"
+				+ "  `FIRMA_ADI` VARCHAR(50) NULL);";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE `YETKILER`( "
+				+ " `YETID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
+				+ "`KULLANICI` nvarchar(25) NULL,"
+				+ "`KARTON` nvarchar(5) NULL,"
+				+ "`TAM_YETKI` TINYINT NULL,"
+				+ "`GORUNTU` TINYINT NULL);";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		// ***************OZEL NO YAZ ************
+		sql = "INSERT INTO  `OZEL` (`YONETICI`,`YON_SIFRE`,`FIRMA_ADI`) VALUES ('" + GLOBAL.KULL_ADI  + "','12345' , '" + fir_adi + "')";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+
+
 	}
 
 	@Override
 	public String adr_firma_adi() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-   	    PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
+		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();
 		rss.next();
 		int count=0;
@@ -178,8 +175,8 @@ public class ADRES_MYSQL implements IADRES {
 	@Override
 	public void adr_firma_adi_kayit(String fadi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-        String sql = "UPDATE OZEL SET FIRMA_ADI = N'" + fadi + "'";
-        PreparedStatement stmt = con.prepareStatement(sql);
+		String sql = "UPDATE OZEL SET FIRMA_ADI = N'" + fadi + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
 
@@ -187,21 +184,21 @@ public class ADRES_MYSQL implements IADRES {
 	public ResultSet adres(String sira, String arama) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-    	String sql =" SELECT M_Kodu,Adi,Adres_1,Adres_2,Semt,Sehir,Vergi_Dairesi ," +
-                " Vergi_No, Fax,Tel_1,Tel_2,Tel_3,Ozel,Yetkili,E_Mail,Not_1,Not_2,Not_3 ,Aciklama,Sms_Gonder,Mail_Gonder,Ozel_Kod_1,Ozel_Kod_2" +
-                " ,Web ,Posta_Kodu ,Resim" +
-                " FROM Adres " +
-                  arama +
-                " ORDER by " + sira;
-    	 Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
- 		 rss = stmt.executeQuery(sql);
- 		return rss ;
+		String sql =" SELECT M_Kodu,Adi,Adres_1,Adres_2,Semt,Sehir,Vergi_Dairesi ," +
+				" Vergi_No, Fax,Tel_1,Tel_2,Tel_3,Ozel,Yetkili,E_Mail,Not_1,Not_2,Not_3 ,Aciklama,Sms_Gonder,Mail_Gonder,Ozel_Kod_1,Ozel_Kod_2" +
+				" ,Web ,Posta_Kodu ,Resim" +
+				" FROM Adres " +
+				arama +
+				" ORDER by " + sira;
+		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		return rss ;
 	}
 	@Override
 	public String kod_ismi(String kodu) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-   	    PreparedStatement stmt = con.prepareStatement("SELECT Adi  FROM Adres WHERE M_Kodu =N'" + kodu + "'");
+		PreparedStatement stmt = con.prepareStatement("SELECT Adi  FROM Adres WHERE M_Kodu =N'" + kodu + "'");
 		rss = stmt.executeQuery();
 		rss.next();
 		int count=0;
@@ -221,7 +218,7 @@ public class ADRES_MYSQL implements IADRES {
 	public void adres_kayit(ADRESS_DEGISKENLER aDEGIS) throws ClassNotFoundException, SQLException, IOException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql  = "INSERT INTO Adres (M_Kodu,Adi,Adres_1,Adres_2,Semt,Sehir,Posta_Kodu,Vergi_Dairesi,Vergi_No,Fax,Tel_1" +
-		        " ,Tel_2,Tel_3,Ozel,Yetkili,E_Mail,Not_1,Not_2,Not_3,Aciklama,Sms_Gonder,Mail_Gonder,Ozel_Kod_1,Ozel_Kod_2,Web,USER,Resim) " +
+				" ,Tel_2,Tel_3,Ozel,Yetkili,E_Mail,Not_1,Not_2,Not_3,Aciklama,Sms_Gonder,Mail_Gonder,Ozel_Kod_1,Ozel_Kod_2,Web,USER,Resim) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
@@ -268,42 +265,42 @@ public class ADRES_MYSQL implements IADRES {
 		}
 		stmt.executeUpdate();
 		stmt.close();
-		}
+	}
 	public void sil(String kod ,String adi) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-       String sql = " DELETE  FROM Adres WHERE M_Kodu = '" + kod.trim() +"'"  ;
-        PreparedStatement stmt = con.prepareStatement(sql);
+		String sql = " DELETE  FROM Adres WHERE M_Kodu = '" + kod.trim() +"'"  ;
+		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
 	public ResultSet adr_hpl() throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql = "SELECT M_Kodu,Adi  FROM Adres  ORDER BY M_Kodu";
-        PreparedStatement  stmt = con.prepareStatement (sql);
-        rss = stmt.executeQuery();
+		String sql = "SELECT M_Kodu,Adi  FROM Adres  ORDER BY M_Kodu";
+		PreparedStatement  stmt = con.prepareStatement (sql);
+		rss = stmt.executeQuery();
 		return rss;
 	}
 	public ResultSet sms_adr_hpl(String nerden) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql = "SELECT " + nerden + " ,Adi ,'' AS GRUP ,'' AS DURUM ,M_Kodu ," + 
-        				" '' as GON_ZAMANI,[USER] FROM Adres   WHERE Mail_Gonder = 'TRUE' ORDER BY M_Kodu ";
-        PreparedStatement  stmt = con.prepareStatement (sql);
-        rss = stmt.executeQuery();
+		String sql = "SELECT " + nerden + " ,Adi ,'' AS GRUP ,'' AS DURUM ,M_Kodu ," + 
+				" '' as GON_ZAMANI,[USER] FROM Adres   WHERE Mail_Gonder = 'TRUE' ORDER BY M_Kodu ";
+		PreparedStatement  stmt = con.prepareStatement (sql);
+		rss = stmt.executeQuery();
 		return rss;	 
 	}
 	public ResultSet gdy_oku(String kod) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-        String sql = " SELECT M_Kodu,Adi,Adres_1,Adres_2,Semt,Sehir,Vergi_Dairesi ," +
-                " Vergi_No, Fax,Tel_1,Tel_2,Ozel,Yetkili,E_Mail,Not_1,Not_2,Not_3 " +
-                " FROM Adres " +
-                " WHERE M_Kodu = N'" + kod + "'";
-        PreparedStatement  stmt = con.prepareStatement (sql);
+		String sql = " SELECT M_Kodu,Adi,Adres_1,Adres_2,Semt,Sehir,Vergi_Dairesi ," +
+				" Vergi_No, Fax,Tel_1,Tel_2,Ozel,Yetkili,E_Mail,Not_1,Not_2,Not_3 " +
+				" FROM Adres " +
+				" WHERE M_Kodu = N'" + kod + "'";
+		PreparedStatement  stmt = con.prepareStatement (sql);
 		rss = stmt.executeQuery(sql);
 		return rss;
 	}
@@ -313,10 +310,10 @@ public class ADRES_MYSQL implements IADRES {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = " SELECT M_Kodu,Adi,Adres_1,Adres_2,Semt,Sehir,Vergi_Dairesi ," +
-                " Vergi_No, Fax,Tel_1,Tel_2,Ozel,Yetkili,E_Mail,Not_1,Not_2,Not_3 " +
-                " FROM Adres " +
-                " WHERE M_Kodu = N'" + kodu + "'" ;
-     	PreparedStatement stmt = con.prepareStatement(sql);
+				" Vergi_No, Fax,Tel_1,Tel_2,Ozel,Yetkili,E_Mail,Not_1,Not_2,Not_3 " +
+				" FROM Adres " +
+				" WHERE M_Kodu = N'" + kodu + "'" ;
+		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
 		}
@@ -336,15 +333,13 @@ public class ADRES_MYSQL implements IADRES {
 	public void create_table_log() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "" ;
-	    sql = "CREATE TABLE  `loglama` ("
-	    		+ "  `TARIH` DATETIME NOT NULL,"
-	    		+ "  `MESAJ` VARCHAR(100) NULL,"
-	    		+ "  `EVRAK` VARCHAR(15) NULL,"
-	    		+ "  `USER_NAME` VARCHAR(15) NULL,"
-	    		+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) VISIBLE);";
-	    	stmt = con.createStatement();  
-	    	stmt.executeUpdate(sql);
-		
+		sql = "CREATE TABLE  `loglama` ("
+				+ "  `TARIH` DATETIME NOT NULL,"
+				+ "  `MESAJ` VARCHAR(100) NULL,"
+				+ "  `EVRAK` VARCHAR(15) NULL,"
+				+ "  `USER_NAME` VARCHAR(15) NULL,"
+				+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) VISIBLE);";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 	}
-
 }

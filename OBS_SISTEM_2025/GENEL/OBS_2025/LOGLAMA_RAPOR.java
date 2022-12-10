@@ -199,6 +199,9 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			}
 			else if (  comboBox.getSelectedItem().toString().equals("Fatura"))
 			{
+				System.out.println(BAGLAN.fatDizin.lOGLAMA_YERI);
+
+
 				if(BAGLAN.fatDizin.lOGLAMA_YERI.equals("Veritabani Kayit"))
 				{
 					if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))
@@ -209,8 +212,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 					}
 					else if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
 					{
-						System.out.println(BAGLAN.fatDizin.lOGLAMA_YERI);
-
 						rs  = 	mYSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 								"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 								BAGLAN_LOG.fatLogDizin);

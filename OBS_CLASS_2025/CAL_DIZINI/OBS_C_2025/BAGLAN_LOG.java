@@ -15,7 +15,7 @@ public class BAGLAN_LOG {
     {
     	BILGI_OKU_LOG b_OKU = new BILGI_OKU_LOG();
     	b_OKU.bILGI_OKU(cariLogDizin,"OK_Car", BAGLAN.cariDizin);
-    	b_OKU.bILGI_OKU(kurLogDizin,"OK_Kur", BAGLAN.kurDizin);
+     	b_OKU.bILGI_OKU(kurLogDizin,"OK_Kur", BAGLAN.kurDizin);
      	b_OKU.bILGI_OKU(fatLogDizin,"OK_Fat", BAGLAN.fatDizin);
     	b_OKU.bILGI_OKU(adrLogDizin,"OK_Adr", BAGLAN.adrDizin);
     	b_OKU.bILGI_OKU(gunLogDizin,"OK_Gun", BAGLAN.gunDizin);

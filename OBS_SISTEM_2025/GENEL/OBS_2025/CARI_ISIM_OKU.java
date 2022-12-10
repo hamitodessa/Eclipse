@@ -12,27 +12,27 @@ public class CARI_ISIM_OKU {
 	public static String[] isim(String kod)  {
 		String [] sonuc = {"","",""}  ;
 		try
-	  {
-		ResultSet	rs = null;
-		rs = c_Access.hesap_adi_oku(kod);
-		if (!rs.isBeforeFirst() ) {  
-			sonuc [0]= "" ;
-			sonuc [1]= "" ;
-			sonuc [2]= "F" ;
-		} 
-		else
 		{
-		rs.next();
-		sonuc [0] = rs.getString("UNVAN");
-		sonuc [1]=rs.getString("HESAP_CINSI");
-		sonuc [2]= "T" ;
+			ResultSet	rs = null;
+			rs = c_Access.hesap_adi_oku(kod);
+			if (!rs.isBeforeFirst() ) {  
+				sonuc [0]= "" ;
+				sonuc [1]= "" ;
+				sonuc [2]= "F" ;
+			} 
+			else
+			{
+				rs.next();
+				sonuc [0] = rs.getString("UNVAN");
+				sonuc [1]=rs.getString("HESAP_CINSI");
+				sonuc [2]= "T" ;
+			}
+
 		}
-		
-	  }
-	  catch (Exception ex)
-	  {
+		catch (Exception ex)
+		{
 			JOptionPane.showMessageDialog(null, ex.getMessage() + " clss",  "Hesap Ismi Okuma", JOptionPane.ERROR_MESSAGE);     
-	  }
-	return sonuc;
+		}
+		return sonuc;
 	}
 }

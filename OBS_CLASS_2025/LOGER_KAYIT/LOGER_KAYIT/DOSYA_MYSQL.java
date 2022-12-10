@@ -51,8 +51,6 @@ public class DOSYA_MYSQL implements ILOGER_KAYIT{
 		}
 		stb.append(" ORDER BY DATE(TARIH) ") ;
 		String cumle = "jdbc:mysql://" + dBILGI.cONN_STR ;
-		System.out.println(cumle);
-
 		con = DriverManager.getConnection(cumle,dBILGI.kULLANICI,dBILGI.sIFRESI);
 		ResultSet	rss = null;
 		String sql = stb.toString() ;

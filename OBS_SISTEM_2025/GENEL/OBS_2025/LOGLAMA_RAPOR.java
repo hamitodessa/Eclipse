@@ -199,9 +199,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			}
 			else if (  comboBox.getSelectedItem().toString().equals("Fatura"))
 			{
-				System.out.println(BAGLAN.fatDizin.lOGLAMA_YERI);
-
-
 				if(BAGLAN.fatDizin.lOGLAMA_YERI.equals("Veritabani Kayit"))
 				{
 					if(BAGLAN.fatDizin.hAN_SQL.equals("MS SQL"))

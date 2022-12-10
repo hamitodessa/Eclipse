@@ -171,7 +171,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		{
 			long startTime = System.currentTimeMillis(); 
 			ResultSet	rs = null;
-
+			/////////////CARI///////////////////////////////////////////////
 			if (  comboBox.getSelectedItem().toString().equals("Cari Hesap"))
 			{
 				if(BAGLAN.cariDizin.lOGLAMA_YERI.equals("Veritabani Kayit"))
@@ -190,13 +190,14 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 									BAGLAN_LOG.cariLogDizin);
 						}
 				}
-				else //SQLITE Dosyasi
+				else if(BAGLAN.cariDizin.lOGLAMA_YERI.equals("Dosya")) //SQLITE Dosyasi
 				{
 					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.cariLogDizin);
 				}
 			}
+			/////////////STOK///////////////////////////////////////////////
 			else if (  comboBox.getSelectedItem().toString().equals("Fatura"))
 			{
 				if(BAGLAN.fatDizin.lOGLAMA_YERI.equals("Veritabani Kayit"))
@@ -239,7 +240,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.kamLogDizin);
 					}
 				}
-				else // sQLITE Dosyasi
+				else if(BAGLAN.kamDizin.lOGLAMA_YERI.equals("Dosya"))// sQLITE Dosyasi
 				{
 					rs  = sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
@@ -247,7 +248,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 				}
 			}
 			/////////////ADRES///////////////////////////////////////////////
-
 			else if (  comboBox.getSelectedItem().toString().equals("Adres"))
 			{
 				if(BAGLAN.adrDizin.lOGLAMA_YERI.equals("Veritabani Kayit"))
@@ -265,7 +265,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.adrLogDizin);
 					}
 				}
-				else //sQLITE Dosyasi
+				else if(BAGLAN.adrDizin.lOGLAMA_YERI.equals("Dosya"))// sQLITE Dosyas
 				{
 					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
@@ -273,7 +273,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 				}
 			}
 			/////////////KUR///////////////////////////////////////////////
-
 			else if (  comboBox.getSelectedItem().toString().equals("Kur"))
 			{
 				if(BAGLAN.kurDizin.lOGLAMA_YERI.equals("Veritabani Kayit"))
@@ -291,7 +290,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.kurLogDizin);
 					}
 				}
-				else //sQLITE Dosyasi
+				else if(BAGLAN.kurDizin.lOGLAMA_YERI.equals("Dosya"))// sQLITE Dosyas
 				{
 					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
@@ -299,7 +298,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 				}
 			}
 			/////////////SMS MAIL///////////////////////////////////////////////
-
 			else if (  comboBox.getSelectedItem().toString().equals("Sms-Mail"))
 			{
 				if(BAGLAN.smsDizin.lOGLAMA_YERI.equals("Veritabani Kayit"))
@@ -317,7 +315,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.smsLogDizin);
 					}
 				}
-				else //sQLITE Dosyasi
+				else if(BAGLAN.smsDizin.lOGLAMA_YERI.equals("Dosya"))// sQLITE Dosyas
 				{
 					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 

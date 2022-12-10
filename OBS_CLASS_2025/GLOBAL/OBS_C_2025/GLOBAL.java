@@ -20,6 +20,9 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 
 import org.jfree.data.category.DefaultCategoryDataset;
+
+import LOGER_KAYIT.ILOGER_KAYIT;
+import LOGER_KAYIT.SQLITE_LOG;
 import OBS_2025.Tema_Cari;
 
 public class GLOBAL {
@@ -260,7 +263,7 @@ public class GLOBAL {
 		iss.close();
 		return donen;
 	}
-	public static void create_table_log(Connection con) throws SQLException {
+	public static void create_table_log(String dosya,String fadi,DIZIN_BILGILERI dBILGI) throws SQLException, ClassNotFoundException {
 		String sql = "" ;
 		sql = "CREATE TABLE LOGLAMA("
 				+ "	TARIH DATETIME NOT NULL,"
@@ -268,13 +271,18 @@ public class GLOBAL {
 				+ "	EVRAK CHAR(15) NOT NULL,"
 				+ "	USER_NAME CHAR(15) NULL"
 				+ ") ";
-
-		Statement stmt = con.createStatement();  
-		stmt.executeUpdate(sql);
+		Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dosya  ) ;
+	Statement stmt =sQLITEconn.createStatement();  
+		stmt.execute(sql);
+		stmt.close();
 		sql = "CREATE INDEX IX_LOGLAMA  ON LOGLAMA  (TARIH,EVRAK) ; " ;
-		stmt = con.createStatement();  
-		stmt.executeUpdate(sql);
-		con.close();
+		stmt = sQLITEconn.createStatement();  
+		stmt.execute(sql);
+		sQLITEconn.close();
+		
+		ILOGER_KAYIT  sQLOG= new SQLITE_LOG();
+		sQLOG.Logla("Dosya Olusturuldu" ,"", dBILGI);
+		sQLOG.Logla("Firma Adi:" + fadi,"", dBILGI);
 	}
 	private static void  set_ilk() 
 	{
@@ -356,7 +364,7 @@ public class GLOBAL {
 	}
 	public static boolean dos_kontrol(String dosya)
 	{
-	       File  tmpDir = new File(SURUCU + OBS_DOSYA);
+	       File  tmpDir = new File( dosya);
 	        boolean exists = tmpDir.exists();
 	        if (exists)
 	        {   

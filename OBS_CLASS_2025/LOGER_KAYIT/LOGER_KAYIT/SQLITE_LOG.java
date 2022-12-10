@@ -58,8 +58,8 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 		   	 Date d = f.parse(t1);
 		   	 long  tt1 = d.getTime();
 			StringBuilder stb = new StringBuilder();
-			f =  new SimpleDateFormat ("yyyy.MM.dd hh:mm:ss");
-			 d = f.parse(t2 + " 23:59:59");
+			f =  new SimpleDateFormat ("yyyy.MM.dd HH:mm:ss.sss");
+			 d = f.parse(t2 + " 23:59:59.998");
 			 long  tt2 = d.getTime();
 			stb.append(" SELECT strftime('%d-%m-%Y',datetime(TARIH/1000,'unixepoch')) as TARIH ,MESAJ,EVRAK,[USER_NAME] " ); 
 			stb.append(" FROM   loglama  ") ; 

@@ -61,7 +61,7 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 			f =  new SimpleDateFormat ("yyyy.MM.dd HH:mm:ss.sss");
 			 d = f.parse(t2 + " 23:59:59.998");
 			 long  tt2 = d.getTime();
-			stb.append(" SELECT strftime('%d-%m-%Y',datetime(TARIH/1000,'unixepoch')) as TARIH ,MESAJ,EVRAK,[USER_NAME] " ); 
+			stb.append(" SELECT strftime('%d.%m.%Y %H:%M:%S',datetime(TARIH/1000,'unixepoch')) as TARIH ,MESAJ,EVRAK,[USER_NAME] " ); 
 			stb.append(" FROM   loglama  ") ; 
 
 			stb.append(" WHERE  loglama.mesaj  LIKE '" + aciklama + "'") ;

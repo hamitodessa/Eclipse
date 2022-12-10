@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import LOGER_KAYIT.ILOGER_KAYIT;
 
 public class LOG_YAZ {
-	
+
 	private static  ILOGER_KAYIT _ILoger_Kayit;
 	public LOG_YAZ( ILOGER_KAYIT _ILoger_Kayit)
 	{

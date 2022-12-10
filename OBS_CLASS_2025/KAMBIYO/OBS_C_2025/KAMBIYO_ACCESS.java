@@ -3,6 +3,9 @@ package OBS_C_2025;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import LOGER_KAYIT.ILOGER_KAYIT;
+import LOGER_KAYIT.SQLITE_LOG;
+
 public class KAMBIYO_ACCESS {
 	
 	private static IKAMBIYO  _IKambiyo;
@@ -26,6 +29,10 @@ public class KAMBIYO_ACCESS {
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
+		 ILOGER_KAYIT asd = new SQLITE_LOG();
+		 asd.Logla(mesaj, evrak, dBILGI);
+		 asd.Logla("Firma Adi:" + fir_adi, evrak, dBILGI);
+
 	}
 	public void kAM_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
 			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
@@ -35,6 +42,10 @@ public class KAMBIYO_ACCESS {
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
+		 ILOGER_KAYIT asd = new SQLITE_LOG();
+		 asd.Logla(mesaj, evrak, dBILGI);
+		 asd.Logla("Firma Adi:" + fir_adi, evrak, dBILGI);
+
 	}
 	public ResultSet kam_bordno(String cins,String bno,String gircik) throws ClassNotFoundException, SQLException
 	{

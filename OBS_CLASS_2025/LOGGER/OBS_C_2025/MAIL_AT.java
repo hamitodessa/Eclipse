@@ -26,7 +26,6 @@ public class MAIL_AT implements ILOGGER{
 		 {
 		try
 		{
-		   String rapor_dos_adi = "" ;
 		   String[] to = { GLOBAL.Log_Mail };
 		   MimeBodyPart messagePart = null ;
 		   Properties props = System.getProperties();
@@ -59,8 +58,7 @@ public class MAIL_AT implements ILOGGER{
 		   messagePart = new MimeBodyPart();
            messagePart.setText(mesaj,"UTF-8");
 	       Multipart multipart = new MimeMultipart();
-		
-           multipart.addBodyPart(messagePart);
+          multipart.addBodyPart(messagePart);
            message.setSubject("Loglama", "UTF-8");
 		   message.setContent(multipart);
 		   Transport.send(message);

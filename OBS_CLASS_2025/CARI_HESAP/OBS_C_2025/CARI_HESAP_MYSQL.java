@@ -1,7 +1,6 @@
 package OBS_C_2025;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.CallableStatement;
@@ -11,8 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.swing.JOptionPane;
 
 public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public static Connection con = null;
@@ -1080,9 +1077,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
-
 		}
-
 		else
 		{
 			rss.next();
@@ -1094,7 +1089,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			bilgi[5] = rss.getString("VERGI_NO");
 		}
 		return bilgi;
-
 	}
 	public ResultSet hesap_adi_auto(String hesap) throws ClassNotFoundException, SQLException
 	{

@@ -32,6 +32,10 @@ public class STOK_ACCESS {
 			_Logger.Logla(mesaj,evrak, dBILGI);
 		for ( ILOGGER  _Logger : _Logger )
 			_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
+		 ILOGER_KAYIT asd = new SQLITE_LOG();
+		 asd.Logla(mesaj, evrak, dBILGI);
+		 asd.Logla("Firma Adi:" + fir_adi, evrak, dBILGI);
+
 	}
 	public void fAT_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
 			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
@@ -41,6 +45,10 @@ public class STOK_ACCESS {
 			_Logger.Logla(mesaj,evrak, dBILGI);
 		for ( ILOGGER  _Logger : _Logger )
 			_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
+		 ILOGER_KAYIT asd = new SQLITE_LOG();
+		 asd.Logla(mesaj, evrak, dBILGI);
+		 asd.Logla("Firma Adi:" + fir_adi, evrak, dBILGI);
+
 	}
 	public void stk_firma_adi_kayit(String fadi, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{

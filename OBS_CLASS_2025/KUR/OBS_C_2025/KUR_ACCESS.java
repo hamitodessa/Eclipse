@@ -3,6 +3,9 @@ package OBS_C_2025;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import LOGER_KAYIT.ILOGER_KAYIT;
+import LOGER_KAYIT.SQLITE_LOG;
+
 public class KUR_ACCESS {
 	
 	private static IKUR  _IKur;
@@ -22,15 +25,18 @@ public class KUR_ACCESS {
 		_IKur.kUR_SIFIR_L(kod, dizin_yeri, dizin, ins, kull, sifre, port);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
-	}
+		 ILOGER_KAYIT asd = new SQLITE_LOG();
+		 asd.Logla(mesaj, evrak, dBILGI);
+		}
 	public void kUR_SIFIR_S(String server, String ins, String kull, String sifre, String kod
 			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IKur.kUR_SIFIR_S(server, ins, kull, sifre, kod);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
-
-	}
+		 ILOGER_KAYIT asd = new SQLITE_LOG();
+		 asd.Logla(mesaj, evrak, dBILGI);
+		}
 	public ResultSet kur_oku (String tar , String kur) throws ClassNotFoundException, SQLException 
 	{
 		return _IKur.kur_oku(tar, kur);

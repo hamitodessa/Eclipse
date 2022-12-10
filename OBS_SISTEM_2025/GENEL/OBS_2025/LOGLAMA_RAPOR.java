@@ -93,10 +93,10 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		panel.setMaximumSize(new Dimension(0, 50));
 		panel.setLayout(null);
 
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<String>();
 		comboBox.setForeground(new Color(0, 0, 255));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo","Adres"}));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo","Adres","Kur","Sms-Mail"}));
 		comboBox.setBounds(10, 11, 142, 22);
 		panel.add(comboBox);
 
@@ -221,6 +221,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 							BAGLAN_LOG.fatLogDizin);
 				}
 			}
+			/////////////KAMBIYO///////////////////////////////////////////////
 			else if (  comboBox.getSelectedItem().toString().equals("Kambiyo"))
 			{
 				if(BAGLAN.kamDizin.lOGLAMA_YERI.equals("Veritabani Kayit"))
@@ -245,6 +246,8 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 							BAGLAN_LOG.kamLogDizin);
 				}
 			}
+			/////////////ADRES///////////////////////////////////////////////
+
 			else if (  comboBox.getSelectedItem().toString().equals("Adres"))
 			{
 				if(BAGLAN.adrDizin.lOGLAMA_YERI.equals("Veritabani Kayit"))
@@ -267,6 +270,58 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.adrLogDizin);
+				}
+			}
+			/////////////KUR///////////////////////////////////////////////
+
+			else if (  comboBox.getSelectedItem().toString().equals("Kur"))
+			{
+				if(BAGLAN.kurDizin.lOGLAMA_YERI.equals("Veritabani Kayit"))
+				{
+					if(BAGLAN.kurDizin.hAN_SQL.equals("MS SQL"))
+					{
+						rs  = 	mSSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+								"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+								BAGLAN_LOG.kurLogDizin);
+					}
+					else if(BAGLAN.kurDizin.hAN_SQL.equals("MY SQL"))
+					{
+						rs  = 	mYSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+								"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+								BAGLAN_LOG.kurLogDizin);
+					}
+				}
+				else //sQLITE Dosyasi
+				{
+					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+							BAGLAN_LOG.kurLogDizin);
+				}
+			}
+			/////////////SMS MAIL///////////////////////////////////////////////
+
+			else if (  comboBox.getSelectedItem().toString().equals("Sms-Mail"))
+			{
+				if(BAGLAN.smsDizin.lOGLAMA_YERI.equals("Veritabani Kayit"))
+				{
+					if(BAGLAN.smsDizin.hAN_SQL.equals("MS SQL"))
+					{
+						rs  = 	mSSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+								"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+								BAGLAN_LOG.smsLogDizin);
+					}
+					else if(BAGLAN.smsDizin.hAN_SQL.equals("MY SQL"))
+					{
+						rs  = 	mYSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+								"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+								BAGLAN_LOG.smsLogDizin);
+					}
+				}
+				else //sQLITE Dosyasi
+				{
+					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+							BAGLAN_LOG.smsLogDizin);
 				}
 			}
 			if (!rs.isBeforeFirst() ) {  

@@ -49,7 +49,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 
 	static DOSYA_MYSQL mYSQL = new DOSYA_MYSQL ();
 	static DOSYA_MSSQL mSSQL = new DOSYA_MSSQL ();
-	static  SQLITE_LOG tXT = new SQLITE_LOG();
+	static  SQLITE_LOG sQLITE = new SQLITE_LOG();
 	private static JTextField textField;
 	private static JTextField textField_1;
 	private static JTextField textField_2;
@@ -190,9 +190,9 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 									BAGLAN_LOG.cariLogDizin);
 						}
 				}
-				else // Text Dosyasi
+				else //SQLITE Dosyasi
 				{
-					rs  = 	tXT.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.cariLogDizin);
 				}
@@ -214,9 +214,9 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.fatLogDizin);
 					}
 				}
-				else //TEXT Dosyasi
+				else //sQLITE Dosyasi
 				{
-					rs  = 	tXT.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+					rs  = sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.fatLogDizin);
 				}
@@ -238,9 +238,9 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.kamLogDizin);
 					}
 				}
-				else // TEXT Dosyasi
+				else // sQLITE Dosyasi
 				{
-					rs  = 	tXT.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+					rs  = sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.kamLogDizin);
 				}
@@ -262,9 +262,9 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.adrLogDizin);
 					}
 				}
-				else //TEXT Dosyasi
+				else //sQLITE Dosyasi
 				{
-					rs  = 	tXT.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.adrLogDizin);
 				}

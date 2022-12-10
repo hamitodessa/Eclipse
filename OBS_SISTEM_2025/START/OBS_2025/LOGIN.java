@@ -1096,8 +1096,8 @@ public class LOGIN extends JFrame {
 					lAktar(mODUL , ilogg);
 				}
 			}
-			//Text Dosya
-			else if (hANGI_LOG.equals("Text Dosya"))
+			//SQLITE Dosya
+			else if (hANGI_LOG.equals("Dosya"))
 			{
 				ILOGGER[] ilogg =  {new DOSYA_YAZ(new SQLITE_LOG())};
 				lAktar(mODUL , ilogg);

@@ -12,6 +12,7 @@ import java.net.URLConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Base64;
 import java.util.Properties;
 import java.util.Set;
@@ -27,7 +28,7 @@ public class GLOBAL {
 	
 	static String SQL_BACKUP = "SQL_BACKUP.DB";
 	static String SQL_LOG = "SQL_LOG.DB";
-	static String SURUCU = "C:\\OBS_SISTEM\\";
+	public static String SURUCU = "C:\\OBS_SISTEM\\";
     static String DBYERI = "C:\\OBS_DATABASES\\";
     static Connection con ;
     static String ayarlar[][]; // = new String[5][5];
@@ -258,6 +259,22 @@ public static String setting_oku(String anahtar) throws IOException
 			donen = adminProps.getProperty(anahtar).toString();
 			iss.close();
 			return donen;
+}
+public static void create_table_log(Connection con) throws SQLException {
+	String sql = "" ;
+    sql = "CREATE TABLE LOGLAMA("
+    		+ "	TARIH DATETIME NOT NULL,"
+    		+ "	MESAJ CHAR(100) NOT NULL,"
+    		+ "	EVRAK CHAR(15) NOT NULL,"
+    		+ "	USER_NAME CHAR(15) NULL"
+    		+ ") ";
+
+    Statement stmt = con.createStatement();  
+    	stmt.executeUpdate(sql);
+    	 sql = "CREATE INDEX IX_LOGLAMA  ON LOGLAMA  (TARIH,EVRAK) ; " ;
+	       stmt = con.createStatement();  
+           stmt.executeUpdate(sql);
+           con.close();
 }
 private static void  set_ilk() 
 {

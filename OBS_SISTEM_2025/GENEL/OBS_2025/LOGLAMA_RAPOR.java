@@ -214,8 +214,9 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 								BAGLAN_LOG.fatLogDizin);
 					}
 				}
-				else //sQLITE Dosyasi
+				else if(BAGLAN.fatDizin.lOGLAMA_YERI.equals("Dosya"))//sQLITE Dosyasi
 				{
+					System.out.println(BAGLAN.fatDizin.lOGLAMA_YERI);
 					rs  = sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.fatLogDizin);

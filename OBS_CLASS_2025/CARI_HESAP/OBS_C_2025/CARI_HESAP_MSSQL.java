@@ -777,7 +777,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
         String sql = "SELECT COUNT( HESAP) AS SAYI FROM HESAP ";
-    	PreparedStatement stmt = akt_con.prepareStatement(sql);
+    	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
 		return rss.getInt("SAYI");

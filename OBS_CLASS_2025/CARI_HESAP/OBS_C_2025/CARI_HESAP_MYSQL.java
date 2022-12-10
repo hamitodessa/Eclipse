@@ -756,7 +756,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
         String sql = "SELECT COUNT( HESAP) AS SAYI FROM HESAP ";
-    	PreparedStatement stmt = akt_con.prepareStatement(sql);
+    	PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
 		return rss.getInt("SAYI");

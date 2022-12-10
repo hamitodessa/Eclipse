@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import OBS_C_2025.BAGLAN;
 import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
 public class DOSYA_MYSQL implements ILOGER_KAYIT{
@@ -50,6 +51,8 @@ public class DOSYA_MYSQL implements ILOGER_KAYIT{
 		}
 		stb.append(" ORDER BY DATE(TARIH) ") ;
 		String cumle = "jdbc:mysql://" + dBILGI.cONN_STR ;
+		System.out.println(cumle);
+
 		con = DriverManager.getConnection(cumle,dBILGI.kULLANICI,dBILGI.sIFRESI);
 		ResultSet	rss = null;
 		String sql = stb.toString() ;

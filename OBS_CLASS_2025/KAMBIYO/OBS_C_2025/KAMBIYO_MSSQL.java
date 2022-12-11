@@ -32,7 +32,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		if (dizin_yeri == "default")
 			sql = "CREATE DATABASE [" + VERITABANI + "]";
 		else
-			sql = "CREATE DATABASE [" + VERITABANI + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_log', FILENAME = N'" + dizin + "\\" + VERITABANI + "_log.ldf' ) ";
+			sql = "CREATE DATABASE [" + VERITABANI + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf' ) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + ";";
@@ -42,7 +42,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		if (dizin_yeri == "default")
 			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
 		else
-			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG" + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_LOG" + "_log', FILENAME = N'" + dizin + "\\" + VERITABANI + "_LOG" + "_log.ldf' ) ";
+			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG" + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + "_LOG" + ".mdf ' ) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";

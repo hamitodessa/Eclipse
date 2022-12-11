@@ -37,7 +37,7 @@ public class DOSYA_MSSQL implements ILOGER_KAYIT{
 
 		StringBuilder stb = new StringBuilder();
 		stb.append(" SELECT  TARIH ,MESAJ,EVRAK,[USER_NAME] " ); 
-		stb.append(" FROM   loglama  WITH (INDEX (IX_LOGLAMA) )") ; 
+		stb.append(" FROM   loglama  WITH (INDEX (IDX_LOGLAMA) )") ; 
 
 		stb.append(" WHERE  loglama.mesaj  LIKE N'" + aciklama + "'") ;
 		if ( ! t1.equals(""))

@@ -97,6 +97,8 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		create_table(fir_adi);
 		//
 		sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
+		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";";
+		con = DriverManager.getConnection(cumle,kull,sifre);
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";

@@ -44,6 +44,8 @@ public class ADRES_MSSQL implements IADRES {
 			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
 		else
 			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG" + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + "_LOG" + ".mdf' ) ";
+		cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";";
+		con = DriverManager.getConnection(cumle,kull,sifre);
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
@@ -80,6 +82,8 @@ public class ADRES_MSSQL implements IADRES {
 		create_table(fir_adi);
 		//
 		sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
+		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";";
+		con = DriverManager.getConnection(cumle,kull,sifre);
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";

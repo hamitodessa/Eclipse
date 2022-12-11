@@ -44,7 +44,7 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 		ResultSet	rss = null;
 		try
 		{
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU +  dBILGI.mODUL   ) ;
+			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + GLOBAL.SURUCU +  dBILGI.mODUL   ) ;
 			SimpleDateFormat f = new SimpleDateFormat ("yyyy.MM.dd");
 			Date d = f.parse(t1);
 			long  tt1 = d.getTime();
@@ -72,16 +72,13 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 			String sql = stb.toString() ;
 			PreparedStatement stmt =  sQLITEconn.prepareStatement(sql);
 			rss = stmt.executeQuery();
-
 		}
 		catch (Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 		}
 		//
 		return rss;
-
 	}
-
 }
 
 //File file = new File("C:\\OBS_SISTEM\\" + dBILGI.mODUL + ".txt");

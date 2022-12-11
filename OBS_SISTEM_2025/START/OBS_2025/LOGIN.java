@@ -46,6 +46,7 @@ import org.apache.commons.net.ftp.FTPReply;
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.SQLITE_LOG;
+import LOGER_KAYIT.TXT_LOG;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.ADRES_MSSQL;
 import OBS_C_2025.ADRES_MYSQL;
@@ -1100,6 +1101,12 @@ public class LOGIN extends JFrame {
 			else if (hANGI_LOG.equals("Dosya"))
 			{
 				ILOGGER[] ilogg =  {new DOSYA_YAZ(new SQLITE_LOG())};
+				lAktar(mODUL , ilogg);
+			}
+			//TEXT  Dosya
+			else if (hANGI_LOG.equals("Text Dosya"))
+			{
+				ILOGGER[] ilogg =  {new DOSYA_YAZ(new TXT_LOG())};
 				lAktar(mODUL , ilogg);
 			}
 			else if (hANGI_LOG.equals("Email Atma"))

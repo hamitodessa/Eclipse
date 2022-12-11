@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -38,6 +39,8 @@ import com.toedter.calendar.JDateChooser;
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.SQLITE_LOG;
+import LOGER_KAYIT.TXT_LOG;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -50,6 +53,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	static DOSYA_MYSQL mYSQL = new DOSYA_MYSQL ();
 	static DOSYA_MSSQL mSSQL = new DOSYA_MSSQL ();
 	static  SQLITE_LOG sQLITE = new SQLITE_LOG();
+	static TXT_LOG tEXT = new TXT_LOG();
 	private static JTextField textField;
 	private static JTextField textField_1;
 	private static JTextField textField_2;
@@ -196,6 +200,13 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.cariLogDizin);
 				}
+				else if(BAGLAN.cariDizin.lOGLAMA_YERI.equals("Text Dosya")) //Text  Dosyasi
+				{
+		DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+							BAGLAN_LOG.cariLogDizin);
+		table.setModel(tbm);
+				}
 			}
 			/////////////STOK///////////////////////////////////////////////
 			else if (  comboBox.getSelectedItem().toString().equals("Fatura"))
@@ -322,15 +333,22 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 							BAGLAN_LOG.smsLogDizin);
 				}
 			}
-			if (!rs.isBeforeFirst() ) {  
-				GRID_TEMIZLE.grid_temizle(table);
-				//		lblNewLabel_1.setText("0");
-				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + 0 + " saniye");
-				return;
+			 if(BAGLAN.cariDizin.lOGLAMA_YERI.equals("Text Dosya"))
+			 {
+				 
+			 }
+			 else
+			 {
+					if (!rs.isBeforeFirst() ) {  
+						GRID_TEMIZLE.grid_temizle(table);
+						//		lblNewLabel_1.setText("0");
+						OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + 0 + " saniye");
+						return;
+			 }
+		
 			} 
-
-			GRID_TEMIZLE.grid_temizle(table);
-			table.setModel(DbUtils.resultSetToTableModel(rs));
+		//	GRID_TEMIZLE.grid_temizle(table);
+		//	table.setModel(DbUtils.resultSetToTableModel(rs));
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;

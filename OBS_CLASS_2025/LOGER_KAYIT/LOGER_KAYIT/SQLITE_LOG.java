@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
@@ -78,6 +79,13 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 		}
 		//
 		return rss;
+	}
+
+	@Override
+	public DefaultTableModel log_txt_rapor(String t1, String t2, String aciklama, String evrak, String user,
+			DIZIN_BILGILERI dBILGI) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

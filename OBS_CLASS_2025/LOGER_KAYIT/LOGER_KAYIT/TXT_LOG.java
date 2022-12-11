@@ -23,9 +23,9 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 	@Override
 	public void Logla(String mesaj, String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
 
-		try
+			try
 		{
-			File file = new File("C:\\OBS_SISTEM\\" + dBILGI.mODULADI + ".txt");
+			File file = new File("C:\\OBS_SISTEM\\" + dBILGI.mODULADI + "_log" + ".txt");
 			if (!file.exists()) {
 				file.createNewFile();
 			}
@@ -43,18 +43,22 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 	@Override
 	public ResultSet log_rapor(String t1, String t2, String aciklama, String evrak, String user, DIZIN_BILGILERI dBILGI)
 			throws ClassNotFoundException, SQLException {
-		boolean result = false;
+				return null;
+	
+	}
+
+	@Override
+	public DefaultTableModel log_txt_rapor(String t1, String t2, String aciklama, String evrak, String user,
+			DIZIN_BILGILERI dBILGI) {
 		DefaultTableModel model =new DefaultTableModel(new String[] {"TARIH", "MESAJ", "EVRAK", "USER_NAME"}, 0);
-
-
-		Vector<String> data = new Vector<String>();
+	
 		try
 		{
 			//File file = new File("C:\\OBS_SISTEM\\" + dBILGI.mODULADI + ".txt");  //OK_Car019_log.txt
-			File file = new File("C:\\OBS_SISTEM\\OK_Car019_log.txt");  //OK_Car019_log.txt
+			File file = new File("C:\\OBS_SISTEM\\"+ dBILGI.mODULADI + "_log" + ".txt");  //OK_Car019_log.txt
 			if (!file.exists())
 			{
-				result = false;
+	
 			}
 			else
 			{
@@ -65,15 +69,15 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 					{
 						String l =  sc.nextLine();  
 						String[] token = l.split("\t");
+						Vector<String> data = new Vector<String>();
 						data.add( token[0]);
 						data.add( token[1]);
 						data.add( token[2]);
 						data.add( token[3]);
 						model.addRow(data);
-						System.out.print( "= " + model.getRowCount());
 					}
 				} 
-				result = true;
+	
 				br.close();
 			}
 
@@ -81,7 +85,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 		catch (Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 		}
-		return null;
+		return model ;
 	}
 
 

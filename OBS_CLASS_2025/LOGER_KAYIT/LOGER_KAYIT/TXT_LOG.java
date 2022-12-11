@@ -8,8 +8,12 @@ import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.Vector;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 
 import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
@@ -39,27 +43,47 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 	@Override
 	public ResultSet log_rapor(String t1, String t2, String aciklama, String evrak, String user, DIZIN_BILGILERI dBILGI)
 			throws ClassNotFoundException, SQLException {
+		boolean result = false;
+		DefaultTableModel model =new DefaultTableModel(new String[] {"TARIH", "MESAJ", "EVRAK", "USER_NAME"}, 0);
+
+
+		Vector<String> data = new Vector<String>();
 		try
 		{
-			File file = new File("C:\\OBS_SISTEM\\" + dBILGI.mODULADI + ".txt");
-			if (!file.exists()) {
-				file.createNewFile();
+			//File file = new File("C:\\OBS_SISTEM\\" + dBILGI.mODULADI + ".txt");  //OK_Car019_log.txt
+			File file = new File("C:\\OBS_SISTEM\\OK_Car019_log.txt");  //OK_Car019_log.txt
+			if (!file.exists())
+			{
+				result = false;
 			}
-			FileReader fileReader = new FileReader(file);
-			BufferedReader br = new BufferedReader( fileReader );
-			try (Scanner sc = new Scanner(br)) {
-				while (sc.hasNextLine()) 
-				{
-					String l =  sc.nextLine();  
-					String[] token = l.split("\t");
-					//System.out.println( token[0] + "=" +token[1] +  "=" + token[2] +  "=" +token[3] );
-				}
-			} 
-			br.close();
+			else
+			{
+				FileReader fileReader = new FileReader(file);
+				BufferedReader br = new BufferedReader( fileReader );
+				try (Scanner sc = new Scanner(br)) {
+					while (sc.hasNextLine()) 
+					{
+						String l =  sc.nextLine();  
+						String[] token = l.split("\t");
+						data.add( token[0]);
+						data.add( token[1]);
+						data.add( token[2]);
+						data.add( token[3]);
+						model.addRow(data);
+						System.out.print( "= " + model.getRowCount());
+					}
+				} 
+				result = true;
+				br.close();
+			}
+
 		}
 		catch (Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 		}
 		return null;
 	}
+
+
 }
+

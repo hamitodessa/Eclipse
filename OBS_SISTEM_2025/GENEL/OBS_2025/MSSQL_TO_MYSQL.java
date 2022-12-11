@@ -17,6 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
+import LOGER_KAYIT.TXT_LOG;
+import OBS_C_2025.BAGLAN_LOG;
+
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -284,6 +287,21 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		});
 		btnNewButton_3.setBounds(35, 382, 89, 23);
 		panel.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("New button");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TXT_LOG tlog = new TXT_LOG();
+				try {
+					tlog.log_rapor("1900.01.01","2100.01.01","","","",BAGLAN_LOG.cariLogDizin);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_4.setBounds(167, 382, 89, 23);
+		panel.add(btnNewButton_4);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

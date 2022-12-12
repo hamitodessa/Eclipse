@@ -76,14 +76,15 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 						Date asLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t2);  
 						Date iLKT =  new SimpleDateFormat("dd-MM-yyyy").parse(token[0].substring(0,10));  
 						Date sLKT =  new SimpleDateFormat("dd-MM-yyyy").parse(token[0].substring(0,10));  
-						
-						
-						System.out.println(aiLKT.toString());
-						data.add( token[0]);
-						data.add( token[1]);
-						data.add( token[2]);
-						data.add( token[3]);
-						model.addRow(data);
+						System.out.println(aiLKT.toString() + "==" +iLKT.toString() );
+						if (  iLKT.after(aiLKT) || sLKT.before(asLKT))
+						{
+							data.add( token[0]);
+							data.add( token[1]);
+							data.add( token[2]);
+							data.add( token[3]);
+							model.addRow(data);
+						}
 					}
 				} 
 				br.close();

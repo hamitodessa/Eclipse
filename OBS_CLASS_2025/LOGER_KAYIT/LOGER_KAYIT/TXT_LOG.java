@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -17,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.TARIH_CEVIR;
 
 public class TXT_LOG  implements ILOGER_KAYIT {
 
@@ -69,6 +72,13 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 						String l =  sc.nextLine();  
 						String[] token = l.split("\t");
 						Vector<String> data = new Vector<String>();
+						Date aiLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t1);  
+						Date asLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t2);  
+						Date iLKT =  new SimpleDateFormat("dd-MM-yyyy").parse(token[0].substring(0,10));  
+						Date sLKT =  new SimpleDateFormat("dd-MM-yyyy").parse(token[0].substring(0,10));  
+						
+						
+						System.out.println(aiLKT.toString());
 						data.add( token[0]);
 						data.add( token[1]);
 						data.add( token[2]);

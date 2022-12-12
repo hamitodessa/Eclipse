@@ -203,11 +203,11 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 				}
 				else if(BAGLAN.cariDizin.lOGLAMA_YERI.equals("Text Dosya")) //Text  Dosyasi
 				{
-		DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+					DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.cariLogDizin);
-		table.setModel(tbm);
-		txtmi = true ;
+					table.setModel(tbm);
+					txtmi = true ;
 				}
 			}
 			/////////////STOK///////////////////////////////////////////////
@@ -236,11 +236,11 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 				}
 				else if(BAGLAN.fatDizin.lOGLAMA_YERI.equals("Text Dosya")) //Text  Dosyasi
 				{
-		DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+					DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.fatLogDizin);
-		table.setModel(tbm);
-		txtmi = true ;
+					table.setModel(tbm);
+					txtmi = true ;
 				}
 			}
 			/////////////KAMBIYO///////////////////////////////////////////////
@@ -269,11 +269,11 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 				}
 				else if(BAGLAN.kamDizin.lOGLAMA_YERI.equals("Text Dosya")) //Text  Dosyasi
 				{
-		DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+					DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.kamLogDizin);
-		table.setModel(tbm);
-		txtmi = true ;
+					table.setModel(tbm);
+					txtmi = true ;
 				}
 			}
 			/////////////ADRES///////////////////////////////////////////////
@@ -302,11 +302,11 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 				}
 				else if(BAGLAN.adrDizin.lOGLAMA_YERI.equals("Text Dosya")) //Text  Dosyasi
 				{
-		DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+					DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.adrLogDizin);
-		table.setModel(tbm);
-		txtmi = true ;
+					table.setModel(tbm);
+					txtmi = true ;
 				}
 			}
 			/////////////KUR///////////////////////////////////////////////
@@ -335,11 +335,11 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 				}
 				else if(BAGLAN.kurDizin.lOGLAMA_YERI.equals("Text Dosya")) //Text  Dosyasi
 				{
-		DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+					DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.kurLogDizin);
-		table.setModel(tbm);
-		txtmi = true ;
+					table.setModel(tbm);
+					txtmi = true ;
 				}
 			}
 			/////////////SMS MAIL///////////////////////////////////////////////
@@ -368,34 +368,34 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 				}
 				else if(BAGLAN.smsDizin.lOGLAMA_YERI.equals("Text Dosya")) //Text  Dosyasi
 				{
-		DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+					DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.smsLogDizin);
-		table.setModel(tbm);
-		txtmi = true ;
+					table.setModel(tbm);
+					txtmi = true ;
 				}
 			}
 			if(txtmi == false )
-			 {
+			{
 				if (!rs.isBeforeFirst() ) {  
 					GRID_TEMIZLE.grid_temizle(table);
 					//		lblNewLabel_1.setText("0");
 					OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + 0 + " saniye");
 					return;
-			 }
-			
-			
-			 if(txtmi == true)
-			 {
-				 
-			 }
-			 else
-			 {
-				 table.setModel(DbUtils.resultSetToTableModel(rs));
-			 }
-		
+				}
+
+
+				if(txtmi == true)
+				{
+
+				}
+				else
+				{
+					table.setModel(DbUtils.resultSetToTableModel(rs));
+				}
+
 			} 
-		//	GRID_TEMIZLE.grid_temizle(table);
+			//	GRID_TEMIZLE.grid_temizle(table);
 			txtmi = false ;
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();

@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import LOGER_KAYIT.ILOGER_KAYIT;
+import LOGER_KAYIT.TXT_LOG;
+
 public class KUR_MYSQL implements IKUR {
 
 	static Connection con = null;
@@ -50,7 +53,11 @@ public class KUR_MYSQL implements IKUR {
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy  ) ;
 			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
 		}
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kurLogDizin);
 		//
+
 		stmt.close();
 		con.close();
 

@@ -13,6 +13,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 
+import LOGER_KAYIT.ILOGER_KAYIT;
+import LOGER_KAYIT.TXT_LOG;
+
 
 
 public class STOK_MSSQL implements ISTOK {
@@ -65,6 +68,12 @@ public class STOK_MSSQL implements ISTOK {
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.fatLogDizin);
 		}
 		//
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.fatLogDizin);
+		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.fatLogDizin);
+		//
+
 		stmt.close();
 		con.close();
 
@@ -102,7 +111,12 @@ public class STOK_MSSQL implements ISTOK {
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy  ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.fatLogDizin);
 		}
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.fatLogDizin);
+		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.fatLogDizin);
 		//
+
 		stmt.close();
 		con.close();
 

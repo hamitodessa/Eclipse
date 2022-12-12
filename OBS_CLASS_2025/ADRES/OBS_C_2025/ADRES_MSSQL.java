@@ -9,6 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import LOGER_KAYIT.ILOGER_KAYIT;
+import LOGER_KAYIT.TXT_LOG;
+
 public class ADRES_MSSQL implements IADRES {
 
 	static Connection con = null;
@@ -59,7 +62,12 @@ public class ADRES_MSSQL implements IADRES {
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy  ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.adrLogDizin);
 		}
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.adrLogDizin);
+		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.adrLogDizin);
 		//
+
 		stmt.close();
 		con.close();
 
@@ -97,7 +105,12 @@ public class ADRES_MSSQL implements IADRES {
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.adrLogDizin);
 		}
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.adrLogDizin);
+		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.adrLogDizin);
 		//
+
 		stmt.close();
 		con.close();
 

@@ -1690,7 +1690,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_86_1.setToolTipText("Log Raporlama");
 		btnNewButton_86_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(! GLOBAL.KULL_ADI.equals("Admin"))
+				if(! GLOBAL.KULL_ADI.equals("Admin") && ! GLOBAL.KULL_ADI.equals("hamit"))
 				{
 					JOptionPane.showMessageDialog(null, "Sadece Admin Gorebilir","Log Sorgulama", JOptionPane.INFORMATION_MESSAGE);
 					return;

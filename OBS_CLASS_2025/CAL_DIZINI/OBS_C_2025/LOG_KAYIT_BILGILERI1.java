@@ -1,6 +1,6 @@
 package OBS_C_2025;
 
-public class LOG_KAYIT_BILGILERI {
+public class LOG_KAYIT_BILGILERI1 {
 
 	public static String cONN_STR = "";
 	public static String uSER = "" ;

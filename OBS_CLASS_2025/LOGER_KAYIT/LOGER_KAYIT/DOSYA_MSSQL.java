@@ -30,7 +30,6 @@ public class DOSYA_MSSQL implements ILOGER_KAYIT{
 		stmt.setString(4, GLOBAL.KULL_ADI);
 		stmt.executeUpdate();
 		stmt.close();
-
 	}
 
 	@Override

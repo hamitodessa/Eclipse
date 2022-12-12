@@ -89,31 +89,3 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 	}
 }
 
-//File file = new File("C:\\OBS_SISTEM\\" + dBILGI.mODUL + ".txt");
-//if (!file.exists()) {
-//	file.createNewFile();
-//}
-//FileWriter fileWriter = new FileWriter(file, true);
-//BufferedWriter bWriter = new BufferedWriter(fileWriter);
-//String msj=  new java.sql.Timestamp(new java.util.Date().getTime()) +"\t"+mesaj  +"\t" + evrak +"\t"+ GLOBAL.KULL_ADI + "\n";
-//bWriter.write(msj);
-//bWriter.close();
-
-// okuma
-
-//File file = new File("C:\\OBS_SISTEM\\" + dBILGI.mODUL + ".txt");
-//if (!file.exists()) {
-//	file.createNewFile();
-//}
-//FileReader fileReader = new FileReader(file);
-//BufferedReader br = new BufferedReader( fileReader );
-//try (Scanner sc = new Scanner(br)) {
-//	while (sc.hasNextLine()) 
-//	{
-//		String l =  sc.nextLine();  
-//		String[] token = l.split("\t");
-//		//System.out.println( token[0] + "=" +token[1] +  "=" + token[2] +  "=" +token[3] );
-//	}
-//} 
-//br.close();
-

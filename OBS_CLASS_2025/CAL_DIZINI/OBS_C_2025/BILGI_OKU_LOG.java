@@ -19,7 +19,7 @@ public class BILGI_OKU_LOG {
 				dIZIN.kULLANICI = oDIZIN.kULLANICI;
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
 				dIZIN.cONN_STR =  "localhost/" + dOSYA_BASLANGIC  + oDIZIN.kOD + "_log";
-				dIZIN.mODULADI =    dOSYA_BASLANGIC  + oDIZIN.kOD  ;
+				dIZIN.mODULADI =  dOSYA_BASLANGIC  + oDIZIN.kOD  ;
 				dIZIN.mODUL =    dOSYA_BASLANGIC  + oDIZIN.kOD + "_mYSQL" + ".DB" ;
 			}
 		}

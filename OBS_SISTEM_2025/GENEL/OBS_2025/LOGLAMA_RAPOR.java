@@ -386,23 +386,20 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 					txtmi = false;
 					return;
 				}
-				if(txtmi == true)
-				{
-			
-				}
-				else
-				{
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-				}
-
 			} 
-			//	GRID_TEMIZLE.grid_temizle(table);
+			if(txtmi == true)
+			{
+
+			}
+			else
+			{
+				GRID_TEMIZLE.grid_temizle(table);
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+			}
 			txtmi = false ;
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
-
-
 			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(new SOLA());
 			//tc.setCellRenderer(new TARIH_SAATLI());

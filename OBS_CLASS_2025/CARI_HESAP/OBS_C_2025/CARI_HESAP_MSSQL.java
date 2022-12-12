@@ -10,6 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import LOGER_KAYIT.ILOGER_KAYIT;
+import LOGER_KAYIT.SQLITE_LOG;
+import LOGER_KAYIT.TXT_LOG;
 public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 
 	public static Connection con = null;
@@ -75,6 +79,10 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.cariLogDizin);
 			sQLITEconn.close();
 		}
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);
+		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.cariLogDizin);
 		//
 		stmt.close();
 		con.close();

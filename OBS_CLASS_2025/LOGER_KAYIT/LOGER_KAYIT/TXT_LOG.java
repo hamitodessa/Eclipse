@@ -53,7 +53,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 	@Override
 	public DefaultTableModel log_txt_rapor(String t1, String t2, String aciklama, String evrak, String user,
 			DIZIN_BILGILERI dBILGI) {
-		DefaultTableModel model =new DefaultTableModel(new String[] {"TARIH", "MESAJ", "EVRAK", "USER_NAME"}, 1);
+		DefaultTableModel model =new DefaultTableModel(new String[] {"TARIH", "MESAJ", "EVRAK", "USER_NAME"}, 0);
 		try
 		{
 			//File file = new File("C:\\OBS_SISTEM\\" + dBILGI.mODULADI + ".txt");  //OK_Car019_log.txt

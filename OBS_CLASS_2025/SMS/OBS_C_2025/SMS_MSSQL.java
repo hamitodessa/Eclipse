@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import LOGER_KAYIT.ILOGER_KAYIT;
+import LOGER_KAYIT.TXT_LOG;
+
 public class SMS_MSSQL implements ISMS{
 
 	static Connection con = null;
@@ -57,7 +60,11 @@ public class SMS_MSSQL implements ISMS{
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy   ) ;
 			GLOBAL.create_table_log(dsy ,"",BAGLAN_LOG.smsLogDizin);
 		}
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.smsLogDizin);
 		//
+
 		stmt.close();
 		con.close();
 	}
@@ -95,7 +102,11 @@ public class SMS_MSSQL implements ISMS{
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy  ) ;
 			GLOBAL.create_table_log(dsy ,"",BAGLAN_LOG.smsLogDizin);
 		}
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.smsLogDizin);
 		//
+
 		stmt.close();
 		con.close();
 

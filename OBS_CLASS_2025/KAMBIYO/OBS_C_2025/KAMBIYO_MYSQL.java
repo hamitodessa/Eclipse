@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import LOGER_KAYIT.ILOGER_KAYIT;
+import LOGER_KAYIT.TXT_LOG;
+
 public class KAMBIYO_MYSQL implements IKAMBIYO {
 
 	static Connection con = null;
@@ -50,7 +53,12 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy  ) ;
 			GLOBAL.create_table_log(dsy ,fir_adi,BAGLAN_LOG.kamLogDizin);
 		}
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kamLogDizin);
+		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.kamLogDizin);
 		//
+
 		stmt.close();
 		con.close();
 	}
@@ -86,7 +94,12 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy ) ;
 			GLOBAL.create_table_log(dsy ,fir_adi,BAGLAN_LOG.kamLogDizin);
 		}
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kamLogDizin);
+		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.kamLogDizin);
 		//
+
 		stmt.close();
 		con.close();
 

@@ -375,19 +375,20 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 					txtmi = true ;
 				}
 			}
+			
 			if(txtmi == false )
 			{
-				if (!rs.isBeforeFirst() ) {  
+				if (!rs.isBeforeFirst() ) 
+				{  
 					GRID_TEMIZLE.grid_temizle(table);
 					//		lblNewLabel_1.setText("0");
 					OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + 0 + " saniye");
+					txtmi = false;
 					return;
 				}
-
-
 				if(txtmi == true)
 				{
-
+			
 				}
 				else
 				{

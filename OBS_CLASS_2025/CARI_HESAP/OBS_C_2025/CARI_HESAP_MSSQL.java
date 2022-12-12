@@ -121,6 +121,11 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.cariLogDizin);
 		}
 		//
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);
+		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.cariLogDizin);
+		//
 		stmt.close();
 		con.close();
 	}

@@ -1,7 +1,7 @@
 package OBS_C_2025;
 
 public class MAIL_SETTINGS {
-	
+
 	public static String HESAP= "" ;
 	public static String HOST = "" ;
 	public static String PORT = "" ;
@@ -58,5 +58,5 @@ public class MAIL_SETTINGS {
 	public void setGADI(String gADI) {
 		GADI = gADI;
 	}
-	
+
 }

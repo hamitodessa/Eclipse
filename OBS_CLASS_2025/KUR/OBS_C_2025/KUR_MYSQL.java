@@ -57,8 +57,7 @@ public class KUR_MYSQL implements IKUR {
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kurLogDizin);
 		//
-
-		stmt.close();
+	stmt.close();
 		con.close();
 
 	}
@@ -88,12 +87,17 @@ public class KUR_MYSQL implements IKUR {
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + BAGLAN_LOG.kurLogDizin.sERVER + VERITABANI + ".DB") == false)
 		{
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.SURUCU + VERITABANI+ "_mYSQL" + ".DB"   ) ;
-			GLOBAL.create_table_log(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB","",BAGLAN_LOG.kurLogDizin);
-		}
+			String dsy = GLOBAL.LOG_SURUCU + BAGLAN_LOG.kurLogDizin.sERVER + VERITABANI + "_mYSQL"+ ".DB" ;
+			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy ) ;
+			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);		}
 		//
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kurLogDizin);
+	//
+
 		stmt.close();
 		con.close();
 	}

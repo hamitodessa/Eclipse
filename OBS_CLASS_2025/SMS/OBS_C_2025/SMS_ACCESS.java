@@ -25,9 +25,6 @@ public class SMS_ACCESS {
 		_ISms.sMS_SIFIR_L(kod, dizin_yeri, dizin, ins, kull, sifre,port);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
-		 ILOGER_KAYIT asd = new SQLITE_LOG();
-		 asd.Logla(mesaj, evrak, dBILGI);
-	
 	}
 	public void sMS_SIFIR_S(String server, String ins, String kull, String sifre, String kod
 			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
@@ -35,10 +32,7 @@ public class SMS_ACCESS {
 		_ISms.sMS_SIFIR_S(server, ins, kull, sifre, kod);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
-		 ILOGER_KAYIT asd = new SQLITE_LOG();
-		 asd.Logla(mesaj, evrak, dBILGI);
-	
-	}
+		}
 	public boolean kod_ismi(String kodu) throws ClassNotFoundException, SQLException
 	{
 		return _ISms.kod_ismi(kodu);

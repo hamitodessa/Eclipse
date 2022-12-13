@@ -6,9 +6,6 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import LOGER_KAYIT.ILOGER_KAYIT;
-import LOGER_KAYIT.SQLITE_LOG;
-
 public class STOK_ACCESS {
 	private static  ISTOK _IStok;
 	private static ILOGGER[] _Logger;
@@ -21,7 +18,6 @@ public class STOK_ACCESS {
 
 	public static void baglan() throws SQLException, ClassNotFoundException
 	{
-
 		_IStok.baglan();
 	}
 	public void fAT_SIFIR_L (String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
@@ -32,10 +28,6 @@ public class STOK_ACCESS {
 			_Logger.Logla(mesaj,evrak, dBILGI);
 		for ( ILOGGER  _Logger : _Logger )
 			_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
-		 ILOGER_KAYIT asd = new SQLITE_LOG();
-		 asd.Logla(mesaj, evrak, dBILGI);
-		 asd.Logla("Firma Adi:" + fir_adi, evrak, dBILGI);
-
 	}
 	public void fAT_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
 			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
@@ -45,10 +37,6 @@ public class STOK_ACCESS {
 			_Logger.Logla(mesaj,evrak, dBILGI);
 		for ( ILOGGER  _Logger : _Logger )
 			_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
-		 ILOGER_KAYIT asd = new SQLITE_LOG();
-		 asd.Logla(mesaj, evrak, dBILGI);
-		 asd.Logla("Firma Adi:" + fir_adi, evrak, dBILGI);
-
 	}
 	public void stk_firma_adi_kayit(String fadi, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{

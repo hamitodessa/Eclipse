@@ -275,14 +275,14 @@ public class GLOBAL {
 				+ "	USER_NAME CHAR(15) NULL"
 				+ ") ";
 		Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dosya  ) ;
-	Statement stmt =sQLITEconn.createStatement();  
+		Statement stmt =sQLITEconn.createStatement();  
 		stmt.execute(sql);
 		stmt.close();
 		sql = "CREATE INDEX IX_LOGLAMA  ON LOGLAMA  (TARIH,EVRAK) ; " ;
 		stmt = sQLITEconn.createStatement();  
 		stmt.execute(sql);
 		sQLITEconn.close();
-		
+
 		ILOGER_KAYIT  sQLOG= new SQLITE_LOG();
 		sQLOG.Logla("Dosya Olusturuldu" ,"", dBILGI);
 		sQLOG.Logla("Firma Adi:" + fadi,"", dBILGI);
@@ -367,16 +367,16 @@ public class GLOBAL {
 	}
 	public static boolean dos_kontrol(String dosya)
 	{
-	       File  tmpDir = new File( dosya);
-	        boolean exists = tmpDir.exists();
-	        if (exists)
-	        {   
-	        	return true;
-	        }
-	        else
-	        {
-	        	return false;
-	        }
+		File  tmpDir = new File( dosya);
+		boolean exists = tmpDir.exists();
+		if (exists)
+		{   
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 }

@@ -73,7 +73,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 						Date asLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t2);  
 						Date iLKT =  new SimpleDateFormat("dd-MM-yyyy").parse(token[0].substring(0,10));  
 						Date sLKT =  new SimpleDateFormat("dd-MM-yyyy").parse(token[0].substring(0,10));  
-					if (  iLKT.after(aiLKT) && sLKT.before(asLKT))  // TARIH
+						if (  iLKT.after(aiLKT) && sLKT.before(asLKT))  // TARIH
 						{
 							if(evrak.equals("%%"))  // EVRAK
 							{

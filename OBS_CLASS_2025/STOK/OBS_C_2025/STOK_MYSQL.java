@@ -94,9 +94,9 @@ public class STOK_MYSQL implements ISTOK {
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + BAGLAN_LOG.fatLogDizin.sERVER + VERITABANI + ".DB") == false)
 		{
-			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
+			String dsy = GLOBAL.LOG_SURUCU  + BAGLAN_LOG.fatLogDizin.sERVER+ VERITABANI + "_mYSQL"+ ".DB" ;
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy  ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.fatLogDizin);
 		}
@@ -105,7 +105,6 @@ public class STOK_MYSQL implements ISTOK {
 		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.fatLogDizin);
 		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.fatLogDizin);
 		//
-
 		stmt.close();
 		con.close();
 	}

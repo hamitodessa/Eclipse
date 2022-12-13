@@ -19,6 +19,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
@@ -111,7 +112,18 @@ public class SQL_SORGULAMA extends JInternalFrame {
 			ResultSet rs =null;
 			if (modul.equals("cari"))
 			{
-				rs = c_Access.sql_sorgu(textArea.getText());
+				String mesaj = "Aranan:" ;
+				String mesaj1 = textArea.getText();
+				if( mesaj1.length() <= 93)
+				{
+					mesaj = mesaj +  mesaj1 ;
+				}
+				else
+				{
+					mesaj = mesaj +  mesaj1.substring(0, 93  -(mesaj.length())) ;
+				}
+
+				rs = c_Access.sql_sorgu(textArea.getText(),mesaj,"",BAGLAN_LOG.cariLogDizin);
 
 				if (!rs.isBeforeFirst() ) {  
 					GRID_TEMIZLE.grid_temizle(table);
@@ -120,8 +132,17 @@ public class SQL_SORGULAMA extends JInternalFrame {
 			}
 			else if (modul.equals("stok"))
 			{
-
-				rs = f_Access.sql_sorgu(textArea.getText());
+				String mesaj = "Aranan:" ;
+				String mesaj1 = textArea.getText();
+				if( mesaj1.length() <= 93)
+				{
+					mesaj = mesaj +  mesaj1 ;
+				}
+				else
+				{
+					mesaj = mesaj +  mesaj1.substring(0, 93  -(mesaj.length())) ;
+				}
+			rs = f_Access.sql_sorgu(textArea.getText(),mesaj,"",BAGLAN_LOG.fatLogDizin);
 
 				if (!rs.isBeforeFirst() ) {  
 					GRID_TEMIZLE.grid_temizle(table);

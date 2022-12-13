@@ -5,21 +5,17 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.Vector;
-
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-
 import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
-import OBS_C_2025.TARIH_CEVIR;
 
 public class TXT_LOG  implements ILOGER_KAYIT {
 
@@ -32,7 +28,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			if (!file.exists()) {
 				file.createNewFile();
 			}
-			FileWriter fileWriter = new FileWriter(file, true);
+			FileWriter fileWriter = new FileWriter(file,  StandardCharsets.UTF_8);
 			BufferedWriter bWriter = new BufferedWriter(fileWriter);
 			String msj=  new java.sql.Timestamp(new java.util.Date().getTime()) +"\t"+mesaj  +"\t" + evrak +"\t"+ GLOBAL.KULL_ADI + "\n";
 			bWriter.write(msj);
@@ -56,7 +52,6 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 		DefaultTableModel model =new DefaultTableModel(new String[] {"TARIH", "MESAJ", "EVRAK", "USER_NAME"}, 0);
 		try
 		{
-			//File file = new File("C:\\OBS_SISTEM\\" + dBILGI.mODULADI + ".txt");  //OK_Car019_log.txt
 			File file = new File(GLOBAL.LOG_SURUCU + dBILGI.mODULADI + "_log" + ".txt");  //OK_Car019_log.txt
 			if (!file.exists())
 			{
@@ -64,9 +59,8 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			}
 			else
 			{
-				FileReader fileReader = new FileReader(file);
+				FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8);
 				BufferedReader br = new BufferedReader( fileReader );
-
 				try (Scanner sc = new Scanner(br)) {
 					while (sc.hasNextLine()) 
 					{

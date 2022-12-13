@@ -1581,9 +1581,6 @@ public class DEKONT extends JInternalFrame {
 			{
 				mesaj = mesaj + " Msj:" + mesaj1.substring(0, 95  -(mesaj.length())) ;
 			}
-			
-			
-			JOptionPane.showMessageDialog(null,  mesaj  + "="+ mesaj.length(), "Dekont Kaydetme", JOptionPane.ERROR_MESSAGE);
 			c_Access.evrak_yoket(Integer.parseInt(txtevrak.getText()),txtevrak.getText() + " Dekont Silme",txtevrak.getText(), BAGLAN_LOG.cariLogDizin);
 			c_Access.cari_dekont_kaydet(cmbbhes.getSelectedItem().toString(),
 					str,

@@ -28,7 +28,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 
 			try
 		{
-			File file = new File("C:\\OBS_SISTEM\\" + dBILGI.mODULADI + "_log" + ".txt");
+			File file = new File(GLOBAL.LOG_SURUCU  + dBILGI.mODULADI + "_log" + ".txt");
 			if (!file.exists()) {
 				file.createNewFile();
 			}
@@ -57,7 +57,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 		try
 		{
 			//File file = new File("C:\\OBS_SISTEM\\" + dBILGI.mODULADI + ".txt");  //OK_Car019_log.txt
-			File file = new File("C:\\OBS_SISTEM\\"+ dBILGI.mODULADI + "_log" + ".txt");  //OK_Car019_log.txt
+			File file = new File(GLOBAL.LOG_SURUCU + dBILGI.mODULADI + "_log" + ".txt");  //OK_Car019_log.txt
 			if (!file.exists())
 			{
 	
@@ -89,14 +89,11 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 				} 
 				br.close();
 			}
-
 		}
 		catch (Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 		}
 		return model ;
 	}
-
-
 }
 

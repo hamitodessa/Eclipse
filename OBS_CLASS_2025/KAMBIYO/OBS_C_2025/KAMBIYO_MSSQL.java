@@ -55,9 +55,9 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		create_table_log();
 		//
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU+ VERITABANI + ".DB") == false)
 		{
-			String dsy = GLOBAL.SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy   ) ;
 			GLOBAL.create_table_log(dsy ,fir_adi,BAGLAN_LOG.kamLogDizin);
 		}
@@ -99,9 +99,9 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		create_table_log();
 		//
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
 		{
-			String dsy = GLOBAL.SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy) ;
 			GLOBAL.create_table_log(dsy ,fir_adi,BAGLAN_LOG.kamLogDizin);
 		}

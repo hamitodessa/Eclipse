@@ -63,9 +63,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		create_table_log();
 		//
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
 		{
-			String dsy = GLOBAL.SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy   ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.cariLogDizin);
 		}
@@ -99,9 +99,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		create_table_log();
 		//
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
 		{
-			String dsy = GLOBAL.SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy   ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.cariLogDizin);
 		}

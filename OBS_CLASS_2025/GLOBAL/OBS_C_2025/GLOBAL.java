@@ -32,6 +32,7 @@ public class GLOBAL {
 	static String SQL_BACKUP = "SQL_BACKUP.DB";
 	static String SQL_LOG = "SQL_LOG.DB";
 	public static String SURUCU = "C:\\OBS_SISTEM\\";
+	public static String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
 	static String DBYERI = "C:\\OBS_DATABASES\\";
 	static Connection con ;
 	static String ayarlar[][]; // = new String[5][5];
@@ -152,6 +153,8 @@ public class GLOBAL {
 			else
 			{
 				tmpDir.mkdirs();
+				File logDir = new File(LOG_SURUCU);
+				logDir.mkdirs();
 			}
 			tmpDir = new File(DBYERI);
 			exists = tmpDir.exists();

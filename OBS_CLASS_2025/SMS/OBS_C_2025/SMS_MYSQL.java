@@ -46,9 +46,9 @@ public class SMS_MYSQL implements ISMS{
 		create_table_log();
 		//
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
 		{
-			String dsy = GLOBAL.SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy  ) ;
 			GLOBAL.create_table_log(dsy ,"",BAGLAN_LOG.smsLogDizin);
 		}
@@ -86,9 +86,9 @@ public class SMS_MYSQL implements ISMS{
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU+ VERITABANI + ".DB") == false)
 		{
-			String dsy = GLOBAL.SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy  ) ;
 			GLOBAL.create_table_log(dsy ,"",BAGLAN_LOG.smsLogDizin);
 		}

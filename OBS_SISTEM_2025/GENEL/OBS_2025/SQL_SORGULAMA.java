@@ -161,15 +161,12 @@ public class SQL_SORGULAMA extends JInternalFrame {
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
 
-
-			tc = tcm.getColumn(0);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(100);
-			tc.setMaxWidth(100);
-
-			tc = tcm.getColumn(1);
-			tc.setHeaderRenderer(new SOLA());
-
+			for (int i = 0; i < table.getColumnCount()  ; i ++)
+			 {
+				tc = tcm.getColumn(i);
+				tc.setHeaderRenderer(new SOLA());
+			 }
+				table.setAutoResizeMode( JTable.AUTO_RESIZE_ALL_COLUMNS );
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
 

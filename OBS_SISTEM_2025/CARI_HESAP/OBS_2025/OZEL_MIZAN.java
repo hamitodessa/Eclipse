@@ -752,7 +752,7 @@ public static void excell_aktar()
 					  tarih.setCellStyle(satirStyle);
 					  
 						 Row acikRow = sheet.createRow(1);
-						 sheet.addMergedRegion(new CellRangeAddress(1,1,6,mdl.getColumnCount() -2));
+						 sheet.addMergedRegion(new CellRangeAddress(1,1,6,mdl.getColumnCount() -1));
 		      	        String yazi = "Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2_1);
 		      	        Cell acik  = acikRow.createCell(6);
 		      	        acik.setCellStyle(satirStyle);
@@ -870,70 +870,82 @@ public static void excell_aktar()
 			   acikStyle.setFont(acikFont);
 			   acikStyle.setAlignment(HorizontalAlignment.CENTER);
 			   
-			 Row baslikRow = sheet.createRow(0);
-			 sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -2));
-			Cell baslikname = baslikRow.createCell(0);
-			   
-			   baslikname.setCellValue(BAGLAN.cariDizin.fIRMA_ADI);
-			   baslikname.setCellStyle(acikStyle);
-			   
-			   Cell tarih = baslikRow.createCell(7);
-			   SimpleDateFormat DateFor = new SimpleDateFormat("dd.MM.yyyy");
-			  tarih.setCellValue(DateFor.format(new Date() ));
-			  tarih.setCellStyle(satirStyle);
-			  
-				 Row acikRow = sheet.createRow(1);
-				 sheet.addMergedRegion(new CellRangeAddress(1,1,5,mdl.getColumnCount() -2));
-      	        String yazi = "Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2_1);
-      	        Cell acik  = acikRow.createCell(6);
-      	        acik.setCellStyle(satirStyle);
-				acik.setCellValue(yazi );
-			//  BOS SATIR
-				 Row bosRow = sheet.createRow(2);
-			   //
-				int sutun = 2 ;
-			 Row headerRow = sheet.createRow(3);
-			for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
-			{
-				 Cell bname = headerRow.createCell(q);
-				 if (q > sutun)
-				 {
-				 bname.setCellValue(mdl.getColumnName(q));
-				 bname.setCellStyle(headerStyle);
-				 }
-				 else
-				 {
-					 bname.setCellValue(mdl.getColumnName(q));
-					 bname.setCellStyle(headerSolaStyle);
-				 }
-			}
-			for (int i =0;i< mdl.getRowCount() ;i++)
-			{
-				 Row satirRow = sheet.createRow(i+4);
-				for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
+			   Row baslikRow = sheet.createRow(0);
+				 sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -2));
+				Cell baslikname = baslikRow.createCell(0);
+				   
+				   baslikname.setCellValue(BAGLAN.cariDizin.fIRMA_ADI);
+				   baslikname.setCellStyle(acikStyle);
+				   
+				   Cell tarih = baslikRow.createCell(7);
+				   SimpleDateFormat DateFor = new SimpleDateFormat("dd.MM.yyyy");
+				  tarih.setCellValue(DateFor.format(new Date() ));
+				  tarih.setCellStyle(satirStyle);
+				  
+					 Row acikRow = sheet.createRow(1);
+					 sheet.addMergedRegion(new CellRangeAddress(1,1,6,mdl.getColumnCount() -1));
+	      	        String yazi = "Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2_1);
+	      	        Cell acik  = acikRow.createCell(6);
+	      	        acik.setCellStyle(satirStyle);
+					acik.setCellValue(yazi );
+					
+					//  BOS SATIR
+					 Row bosRow = sheet.createRow(2);
+				   //
+					int sutun = 2 ;
+				 Row headerRow = sheet.createRow(3);
+				for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
 				{
-					   Cell hname = satirRow.createCell(s);
-					   if ( mdl.getValueAt(i, s) != null)
-					   {
-						   ////////////
-						   if (s > sutun)
+					 Cell bname = headerRow.createCell(q);
+					 if (q > sutun)
+					 {
+					 bname.setCellValue(mdl.getColumnName(q));
+					 bname.setCellStyle(headerStyle);
+					 }
+					 else
+					 {
+						 bname.setCellValue(mdl.getColumnName(q));
+						 bname.setCellStyle(headerSolaStyle);
+					 }
+				}
+					for (int i =0;i< mdl.getRowCount() ;i++)
+				{
+					 Row satirRow = sheet.createRow(i+4);
+					for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
+					{
+						   Cell hname = satirRow.createCell(s);
+						   if ( mdl.getValueAt(i, s) != null)
 						   {
-							   hname.setCellStyle(satirStyle2);
-							   hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
-					   }
+							   if (s > sutun)
+							   {
+								   hname.setCellStyle(satirStyle2);
+								   hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+						   }
+							   else
+							   {
+								   hname.setCellValue( mdl.getValueAt(i,s).toString());
+								   hname.setCellStyle(solaStyle); 
+							   }
+							   }
 						   else
 						   {
-							   hname.setCellValue( mdl.getValueAt(i,s).toString());
-							   hname.setCellStyle(solaStyle); 
+							   hname.setCellValue("");
+							   hname.setCellStyle(satirStyle);
 						   }
-					   }
-					   else
-					   {
-						   hname.setCellValue("");
-						   hname.setCellStyle(satirStyle);
-					   }
-				}
-			}
+					}
+				}			// ALT TOPLAM
+			 Row topRow = sheet.createRow( mdl.getRowCount()+5);
+			 Cell hname = topRow.createCell(3);
+			 hname.setCellValue( lblonceki.getText());
+			 hname = topRow.createCell(4);
+			 hname.setCellValue( lblborc.getText());
+			 hname = topRow.createCell(5);
+			 hname.setCellValue(lblalacak.getText());
+			 hname = topRow.createCell(6);
+			 hname.setCellValue(lblbakkvartal.getText());
+			 hname = topRow.createCell(7);
+			 hname.setCellValue(lblbakiye.getText());
+			 
 			for (int i=0; i<= mdl.getColumnCount()-1; i++){
 				sheet.autoSizeColumn(i);
 				}

@@ -1569,6 +1569,21 @@ public class DEKONT extends JInternalFrame {
 			}
 			long startTime = System.currentTimeMillis(); 
 			String str = TARIH_CEVIR.tarih_geri_saatli(dtc) ;
+			String mesaj = "A. Hes:" + cmbahes.getSelectedItem().toString() + " Tut:" +txtatutar.getText() +
+					" B. Hes:"+ cmbbhes.getItemAt(cmbbhes.getSelectedIndex()).toString() + " Tut:" + txtbtutar.getText();
+			String mesaj1 = txtaciklama.getText();
+			//int alinacak = mesaj.length() + mesaj1.length() < 95 ? mesaj1.length() : 95 -( mesaj.length() + mesaj1.length());
+			if( mesaj.length() + mesaj1.length() < 95)
+			{
+				mesaj = mesaj + " Msj:" + mesaj1 ;
+			}
+			else
+			{
+				mesaj = mesaj + " Msj:" + mesaj1.substring(0, 95  -(mesaj.length())) ;
+			}
+			
+			
+			JOptionPane.showMessageDialog(null,  mesaj  + "="+ mesaj.length(), "Dekont Kaydetme", JOptionPane.ERROR_MESSAGE);
 			c_Access.evrak_yoket(Integer.parseInt(txtevrak.getText()),txtevrak.getText() + " Dekont Silme",txtevrak.getText(), BAGLAN_LOG.cariLogDizin);
 			c_Access.cari_dekont_kaydet(cmbbhes.getSelectedItem().toString(),
 					str,
@@ -1581,8 +1596,7 @@ public class DEKONT extends JInternalFrame {
 					Double.parseDouble(txtakur.getText()),
 					DecimalFormat.getNumberInstance().parse(txtatutar.getText()).doubleValue(),
 					txtaciklama.getText(),txtkod.getText() , GLOBAL.KULL_ADI,
-					"Alacakli Hes:" +cmbahes.getSelectedItem().toString() + " Tut:" +txtatutar.getText()+
-					" Borclu Hes:"+ cmbbhes.getItemAt(cmbbhes.getSelectedIndex()).toString() + " Tut:" + txtbtutar.getText()  ,
+					 mesaj ,
 					txtevrak.getText() ,
 					BAGLAN_LOG.cariLogDizin
 					);

@@ -3,9 +3,13 @@ package LOGER_KAYIT;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -28,9 +32,8 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			if (!file.exists()) {
 				file.createNewFile();
 			}
-			FileWriter fileWriter = new FileWriter(file,  StandardCharsets.UTF_8);
-			BufferedWriter bWriter = new BufferedWriter(fileWriter);
-			String msj=  new java.sql.Timestamp(new java.util.Date().getTime()) +"\t"+mesaj  +"\t" + evrak +"\t"+ GLOBAL.KULL_ADI + "\n";
+			Writer bWriter = new BufferedWriter(new OutputStreamWriter( new FileOutputStream(file, true), StandardCharsets.UTF_8));
+			String msj=   new java.sql.Timestamp(new java.util.Date().getTime()) +"\t" + mesaj  +"\t" + evrak +"\t"+ GLOBAL.KULL_ADI + "\r\n";
 			bWriter.write(msj);
 			bWriter.close();
 		}
@@ -55,7 +58,6 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			File file = new File(GLOBAL.LOG_SURUCU + dBILGI.mODULADI + "_log" + ".txt");  //OK_Car019_log.txt
 			if (!file.exists())
 			{
-
 			}
 			else
 			{

@@ -934,17 +934,22 @@ public static void excell_aktar()
 						   }
 					}
 				}			// ALT TOPLAM
-			 Row topRow = sheet.createRow( mdl.getRowCount()+5);
+			 Row topRow = sheet.createRow( mdl.getRowCount()+4);
 			 Cell hname = topRow.createCell(3);
 			 hname.setCellValue( lblonceki.getText());
+			 hname.setCellStyle(satirStyle);
 			 hname = topRow.createCell(4);
 			 hname.setCellValue( lblborc.getText());
+			 hname.setCellStyle(satirStyle);
 			 hname = topRow.createCell(5);
 			 hname.setCellValue(lblalacak.getText());
+			 hname.setCellStyle(satirStyle);
 			 hname = topRow.createCell(6);
 			 hname.setCellValue(lblbakkvartal.getText());
+			 hname.setCellStyle(satirStyle);
 			 hname = topRow.createCell(7);
 			 hname.setCellValue(lblbakiye.getText());
+			 hname.setCellStyle(satirStyle);
 			 
 			for (int i=0; i<= mdl.getColumnCount()-1; i++){
 				sheet.autoSizeColumn(i);

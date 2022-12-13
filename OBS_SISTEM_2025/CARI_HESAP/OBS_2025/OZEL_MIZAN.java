@@ -681,20 +681,20 @@ public static void excell_aktar()
 					}
 					 Row topRow = sheet.createRow( mdl.getRowCount()+4);
 					 Cell hname = topRow.createCell(3);
-					 hname.setCellValue(Double.parseDouble( lblonceki.getText()));
-					 hname.setCellStyle(satirStyle);
-					 hname = topRow.createCell(4);
-					 hname.setCellValue( Double.parseDouble(lblborc.getText()));
-					 hname.setCellStyle(satirStyle);
-					 hname = topRow.createCell(5);
-					 hname.setCellValue(Double.parseDouble(lblalacak.getText()));
-					 hname.setCellStyle(satirStyle);
-					 hname = topRow.createCell(6);
-					 hname.setCellValue(Double.parseDouble(lblbakkvartal.getText()));
-					 hname.setCellStyle(satirStyle);
-					 hname = topRow.createCell(7);
-					 hname.setCellValue(Double.parseDouble(lblbakiye.getText()));
-					 hname.setCellStyle(satirStyle);
+					 hname.setCellValue(lblonceki.getText().toString());
+					 hname.setCellStyle(satirStyle2);
+//					 hname = topRow.createCell(4);
+//					 hname.setCellValue( Double.parseDouble(lblborc.getText().toString()));
+//					 hname.setCellStyle(satirStyle);
+//					 hname = topRow.createCell(5);
+//					 hname.setCellValue(Double.parseDouble(lblalacak.getText().toString()));
+//					 hname.setCellStyle(satirStyle);
+//					 hname = topRow.createCell(6);
+//					 hname.setCellValue(Double.parseDouble(lblbakkvartal.getText().toString()));
+//					 hname.setCellStyle(satirStyle);
+//					 hname = topRow.createCell(7);
+//					 hname.setCellValue(Double.parseDouble(lblbakiye.getText().toString()));
+//					 hname.setCellStyle(satirStyle);
 
 					for (int i=0; i<= mdl.getColumnCount()-1; i++){
 						sheet.autoSizeColumn(i);
@@ -821,19 +821,19 @@ public static void excell_aktar()
 					}
 						 Row topRow = sheet.createRow( mdl.getRowCount()+4);
 						 Cell hname = topRow.createCell(3);
-						 hname.setCellValue(Double.parseDouble( lblonceki.getText()));
+						 hname.setCellValue(Double.parseDouble( lblonceki.getText().toString()));
 						 hname.setCellStyle(satirStyle);
 						 hname = topRow.createCell(4);
-						 hname.setCellValue( Double.parseDouble(lblborc.getText()));
+						 hname.setCellValue( Double.parseDouble(lblborc.getText().toString()));
 						 hname.setCellStyle(satirStyle);
 						 hname = topRow.createCell(5);
-						 hname.setCellValue(Double.parseDouble(lblalacak.getText()));
+						 hname.setCellValue(Double.parseDouble(lblalacak.getText().toString()));
 						 hname.setCellStyle(satirStyle);
 						 hname = topRow.createCell(6);
-						 hname.setCellValue(Double.parseDouble(lblbakkvartal.getText()));
+						 hname.setCellValue(Double.parseDouble(lblbakkvartal.getText().toString()));
 						 hname.setCellStyle(satirStyle);
 						 hname = topRow.createCell(7);
-						 hname.setCellValue(Double.parseDouble(lblbakiye.getText()));
+						 hname.setCellValue(Double.parseDouble(lblbakiye.getText().toString()));
 						 hname.setCellStyle(satirStyle);
 
 					for (int i=0; i<= mdl.getColumnCount()-1; i++){
@@ -850,7 +850,7 @@ public static void excell_aktar()
   }
   catch (Exception ex)
   {
-		JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Ozel Mizan", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan", JOptionPane.PLAIN_MESSAGE);
   }
   }
 	public static void mail_at() throws IOException

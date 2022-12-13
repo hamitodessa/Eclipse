@@ -26,7 +26,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 	@Override
 	public void Logla(String mesaj, String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
 
-			try
+		try
 		{
 			File file = new File(GLOBAL.LOG_SURUCU  + dBILGI.mODULADI + "_log" + ".txt");
 			if (!file.exists()) {
@@ -46,8 +46,8 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 	@Override
 	public ResultSet log_rapor(String t1, String t2, String aciklama, String evrak, String user, DIZIN_BILGILERI dBILGI)
 			throws ClassNotFoundException, SQLException {
-				return null;
-	
+		return null;
+
 	}
 
 	@Override
@@ -60,12 +60,13 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			File file = new File(GLOBAL.LOG_SURUCU + dBILGI.mODULADI + "_log" + ".txt");  //OK_Car019_log.txt
 			if (!file.exists())
 			{
-	
+
 			}
 			else
 			{
 				FileReader fileReader = new FileReader(file);
 				BufferedReader br = new BufferedReader( fileReader );
+
 				try (Scanner sc = new Scanner(br)) {
 					while (sc.hasNextLine()) 
 					{
@@ -76,15 +77,135 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 						Date asLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t2);  
 						Date iLKT =  new SimpleDateFormat("dd-MM-yyyy").parse(token[0].substring(0,10));  
 						Date sLKT =  new SimpleDateFormat("dd-MM-yyyy").parse(token[0].substring(0,10));  
-						System.out.println(aiLKT.toString() + "==" +iLKT.toString() );
-						if (  iLKT.after(aiLKT) || sLKT.before(asLKT))
+
+						if (  iLKT.after(aiLKT) || sLKT.before(asLKT))  // TARIH
 						{
-							data.add( token[0]);
-							data.add( token[1]);
-							data.add( token[2]);
-							data.add( token[3]);
-							model.addRow(data);
-						}
+							if(evrak.equals("%%"))  // EVRAK
+							{
+								if(user.equals("%%"))  // USER
+								{
+									// MESAJ KONTROL 
+									if(aciklama.equals("%%"))
+									{
+										data.add( token[0]);
+										data.add( token[1]);
+										data.add( token[2]);
+										data.add( token[3]);
+										model.addRow(data);
+									}
+									else 
+									{
+										String aranan =aciklama.substring(1, aciklama.length()) ;
+										aranan = aranan.substring(0,aranan.length() -1);
+										if ( token[1].toUpperCase().contains(aranan.toUpperCase() ) )
+										{
+											data.add( token[0]);
+											data.add( token[1]);
+											data.add( token[2]);
+											data.add( token[3]);
+											model.addRow(data);
+										}
+									} // MESAJ KONTROL
+								}
+								else // USER ARANAN VARSA
+								{
+									String aranan =user.substring(1, user.length()) ;
+									aranan = aranan.substring(0,aranan.length() -1);
+									if ( token[3].toUpperCase().contains(aranan.toUpperCase() ) )
+									{
+										// MESAJ KONTROL 
+										if(aciklama.equals("%%"))
+										{
+											data.add( token[0]);
+											data.add( token[1]);
+											data.add( token[2]);
+											data.add( token[3]);
+											model.addRow(data);
+										}
+										else 
+										{
+											String arana =aciklama.substring(1, aciklama.length()) ;
+											arana = arana.substring(0,arana.length() -1);
+											if ( token[1].toUpperCase().contains(aranan.toUpperCase() ) )
+											{
+												data.add( token[0]);
+												data.add( token[1]);
+												data.add( token[2]);
+												data.add( token[3]);
+												model.addRow(data);
+											}
+										} // MESAJ KONTROL
+									}
+								} // USER
+							}
+							else  // EVRAK
+							{
+								String aran =evrak.substring(1, evrak.length()) ;
+								aran = aran.substring(0,aran.length() -1);
+								if ( token[2].toUpperCase().contains(aran.toUpperCase() ) )  // EVRAK VAR
+								{
+									if(user.equals("%%"))  // USER
+									{
+										// MESAJ KONTROL 
+										if(aciklama.equals("%%"))
+										{
+											data.add( token[0]);
+											data.add( token[1]);
+											data.add( token[2]);
+											data.add( token[3]);
+											model.addRow(data);
+										}
+										else 
+										{
+											String aranan =aciklama.substring(1, aciklama.length()) ;
+											aranan = aranan.substring(0,aranan.length() -1);
+											if ( token[1].toUpperCase().contains(aranan.toUpperCase() ) )
+											{
+												data.add( token[0]);
+												data.add( token[1]);
+												data.add( token[2]);
+												data.add( token[3]);
+												model.addRow(data);
+											}
+										} // MESAJ KONTROL
+									}
+									else // USER ARANAN VARSA
+									{
+										String aranan =user.substring(1, user.length()) ;
+										aranan = aranan.substring(0,aranan.length() -1);
+										if ( token[3].toUpperCase().contains(aranan.toUpperCase() ) )
+										{
+											// MESAJ KONTROL 
+											if(aciklama.equals("%%"))
+											{
+												data.add( token[0]);
+												data.add( token[1]);
+												data.add( token[2]);
+												data.add( token[3]);
+												model.addRow(data);
+											}
+											else 
+											{
+												String arana =aciklama.substring(1, aciklama.length()) ;
+												arana = arana.substring(0,arana.length() -1);
+												if ( token[1].toUpperCase().contains(aranan.toUpperCase() ) )
+												{
+													data.add( token[0]);
+													data.add( token[1]);
+													data.add( token[2]);
+													data.add( token[3]);
+													model.addRow(data);
+												}
+											} // MESAJ KONTROL
+										}
+									} // USER
+								}
+								else // EVRAK yok
+								{
+
+								}
+							}
+						} // TARIH
 					}
 				} 
 				br.close();

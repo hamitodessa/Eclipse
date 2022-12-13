@@ -425,14 +425,14 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			dd.height = 30;
 			th.setPreferredSize(dd); 
 			th.repaint();
-			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
-
-
-			int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
-			table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
-			table.setRowSelectionInterval(lastRow, lastRow);
-
+			if(table.getRowCount() > 0)
+			{
+				table.setRowSelectionInterval(0, 0);
+				int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
+				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
+				table.setRowSelectionInterval(lastRow, lastRow);
+			}
 			table.setSelectionBackground(Color.PINK);
 			table.setSelectionForeground(Color.BLUE);
 			//			lblNewLabel_1.setText(FORMATLAMA.doub_0(table.getRowCount()));

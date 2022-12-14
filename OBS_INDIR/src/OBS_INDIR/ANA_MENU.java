@@ -84,29 +84,29 @@ public class ANA_MENU extends JDialog {
 
 		MetalLookAndFeel.setCurrentTheme(new  DefaultMetalTheme());
 		UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-		
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
+
 		JButton btnNewButton = new JButton("Indir 2");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setForeground(new Color(0, 0, 205));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				indir();
-		
+
 			}
 		});
 		btnNewButton.setBounds(314, 119, 80, 23);
 		panel.add(btnNewButton);
-		
+
 		progressBar = new JProgressBar();
 		progressBar.setForeground(new Color(39, 45, 61));
 		progressBar.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -114,7 +114,7 @@ public class ANA_MENU extends JDialog {
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		progressBar.setBounds(52, 153, 342, 25);
 		panel.add(progressBar);
-		
+
 		txtdiz = new JTextField();
 		txtdiz.setForeground(new Color(0, 0, 128));
 		txtdiz.setText("C:\\OBS_SISTEM");
@@ -122,7 +122,7 @@ public class ANA_MENU extends JDialog {
 		txtdiz.setBounds(52, 24, 281, 20);
 		panel.add(txtdiz);
 		txtdiz.setColumns(10);
-		
+
 		JButton btnNewButton_1 = new JButton(".....");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -131,73 +131,73 @@ public class ANA_MENU extends JDialog {
 				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
 				JFileChooser chooser = new JFileChooser();
 				chooser.setCurrentDirectory(new java.io.File("."));
-			    chooser.setDialogTitle("Surucu Seciniz");
-			    chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			    chooser.setAcceptAllFileFilterUsed(false);
-			    chooser.setApproveButtonText("Surucu Sec");
-			    chooser.setApproveButtonToolTipText("Surucu Sec");
-			    chooser.setApproveButtonMnemonic('s');
-			    contentPane.setCursor(DEFAULT_CURSOR);
-			    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
-			    	txtdiz.setText(chooser.getSelectedFile().toString());
-			       }
-			      else {
-			       // System.out.println("No Selection ");
-			        }
+				chooser.setDialogTitle("Surucu Seciniz");
+				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				chooser.setAcceptAllFileFilterUsed(false);
+				chooser.setApproveButtonText("Surucu Sec");
+				chooser.setApproveButtonToolTipText("Surucu Sec");
+				chooser.setApproveButtonMnemonic('s');
+				contentPane.setCursor(DEFAULT_CURSOR);
+				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+					txtdiz.setText(chooser.getSelectedFile().toString());
 				}
-			
+				else {
+					// System.out.println("No Selection ");
+				}
+			}
+
 		});
 		btnNewButton_1.setBounds(343, 23, 51, 23);
 		panel.add(btnNewButton_1);
-		
+
 		JLabel lblNewLabel = new JLabel("Kalan");
 		lblNewLabel.setForeground(new Color(128, 0, 0));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(52, 103, 85, 14);
 		panel.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Dosya Boyutu");
 		lblNewLabel_1.setForeground(new Color(128, 0, 0));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_1.setBounds(52, 55, 85, 14);
 		panel.add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Indirilen");
 		lblNewLabel_2.setForeground(new Color(128, 0, 0));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_2.setBounds(52, 80, 85, 14);
 		panel.add(lblNewLabel_2);
-		
+
 		lblboyut = new JLabel("");
 		lblboyut.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblboyut.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblboyut.setBounds(146, 55, 115, 14);
 		panel.add(lblboyut);
-		
+
 		lblinen = new JLabel("");
 		lblinen.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblinen.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblinen.setBounds(146, 80, 115, 14);
 		panel.add(lblinen);
-		
+
 		lblkalan = new JLabel("");
 		lblkalan.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblkalan.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblkalan.setBounds(146, 103, 115, 14);
 		panel.add(lblkalan);
-		
+
 		label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		label.setBounds(146, 128, 115, 14);
 		panel.add(label);
-		
+
 		lblHiz = new JLabel("Hiz   Saniye");
 		lblHiz.setForeground(new Color(128, 0, 0));
 		lblHiz.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblHiz.setBounds(52, 128, 85, 14);
 		panel.add(lblHiz);
-		
+
 		JButton btnIndir = new JButton("Indir 1");
 		btnIndir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -208,212 +208,212 @@ public class ANA_MENU extends JDialog {
 		btnIndir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnIndir.setBounds(314, 95, 80, 23);
 		panel.add(btnIndir);
-	
+
 	}
 	private void indir()
 	{
 
 		Runnable runner = new Runnable()
-	    { 
-		public void run() {
-	        /////  
-		  FTPClient ftp = new FTPClient();
-		try {
-			   lblboyut.setText(FORMATLAMA.doub_0(0) + " bytes");
-			   lblinen.setText(FORMATLAMA.doub_0(0)+ " bytes");
-			   lblkalan.setText(FORMATLAMA.doub_0(0)+ " bytes");
-			   Login_Progres_Bar_Temizle();
-			if (txtdiz.getText().equals(""))
-			{
-				JOptionPane.showMessageDialog(null, "Dizin Secilmemis....",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
-				txtdiz.requestFocus();
-				return;
+		{ 
+			public void run() {
+				/////  
+				FTPClient ftp = new FTPClient();
+				try {
+					lblboyut.setText(FORMATLAMA.doub_0(0) + " bytes");
+					lblinen.setText(FORMATLAMA.doub_0(0)+ " bytes");
+					lblkalan.setText(FORMATLAMA.doub_0(0)+ " bytes");
+					Login_Progres_Bar_Temizle();
+					if (txtdiz.getText().equals(""))
+					{
+						JOptionPane.showMessageDialog(null, "Dizin Secilmemis....",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+						txtdiz.requestFocus();
+						return;
+					}
+					String serverAddress = "78.26.149.175";
+					String userId ="hamitadmin";
+					String password ="SDFks9hfji3#DEd";
+					ftp.connect(serverAddress);
+					if(!ftp.login(userId, password))
+					{
+						ftp.logout();
+						JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+					}
+					int reply = ftp.getReplyCode();
+					if (!FTPReply.isPositiveCompletion(reply))
+					{
+						ftp.disconnect();
+						JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+					}
+					ftp.setFileType(FTP.BINARY_FILE_TYPE);
+					ftp.enterLocalPassiveMode();
+					boolean success ;
+					//******************************
+					double toplam = 0 ;
+					FTPFile[] files = ftp.listFiles();
+					for (FTPFile file : files) {
+						if (file.getName().equals("OBS_SISTEM_2025.jar"))  
+							toplam = file.getSize();
+						double topl =  toplam ;
+						lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
+					}
+					contentPane.setCursor(WAIT_CURSOR);
+					String remoteFile2 =  ftp.printWorkingDirectory() + "/OBS_SISTEM_2025.jar";
+					File downloadFile2 = new File(txtdiz.getText() + "/OBS_SISTEM_2025.jar");
+					OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
+					InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
+					double inen= 0;
+					byte[] bytesArray = new byte[4096];
+					int bytesRead = -1;
+					progressBar.setMaximum((int) toplam);
+					progressBar.setStringPainted(true);
+					Long start = System.currentTimeMillis();
+					long timeInSecs = 0;
+					while ((bytesRead = inputStream.read(bytesArray)) != -1)
+					{
+						outputStream2.write(bytesArray, 0, bytesRead);
+						inen += bytesRead ;
+						lblinen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
+						lblkalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
+						Lgn_Progres_Bar((int) toplam,(int) inen);
+						double speedInKBps = 0.00;
+						timeInSecs = (System.currentTimeMillis() - start) ; //converting millis to seconds as 1000m in 1 second
+						speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
+						label.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
+					}
+					success = ftp.completePendingCommand();
+					outputStream2.close();
+					inputStream.close();
+					//Version dosyasi Indir
+					String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
+					File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSION.txt");
+					OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
+					ftp.retrieveFile(remoteFile1, outputStream1);
+					outputStream1.close();
+					//*******************************
+					if (success) {
+						JOptionPane.showMessageDialog(null, "Indirme Islemi Basari ile tamamlandi....",  "OBS Indirme", JOptionPane.PLAIN_MESSAGE);   
+					}
+					contentPane.setCursor(DEFAULT_CURSOR);
+					Thread.currentThread().isInterrupted();
+					System.exit(1);
+				}
+				catch (Exception ex)
+				{
+					JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+				} 
 			}
-            String serverAddress = "78.26.149.175";
-            String userId ="hamitadmin";
-            String password ="SDFks9hfji3#DEd";
-            ftp.connect(serverAddress);
-            if(!ftp.login(userId, password))
-            {
-                ftp.logout();
-            	JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
-            }
-            int reply = ftp.getReplyCode();
-            if (!FTPReply.isPositiveCompletion(reply))
-            {
-                ftp.disconnect();
-            	JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
-            }
-            ftp.setFileType(FTP.BINARY_FILE_TYPE);
-            ftp.enterLocalPassiveMode();
-            boolean success ;
-            //******************************
-            double toplam = 0 ;
-            FTPFile[] files = ftp.listFiles();
-            for (FTPFile file : files) {
-              if (file.getName().equals("OBS_SISTEM_2025.jar"))  
-             toplam = file.getSize();
-             double topl =  toplam ;
-              lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
-           }
-        	contentPane.setCursor(WAIT_CURSOR);
-            String remoteFile2 =  ftp.printWorkingDirectory() + "/OBS_SISTEM_2025.jar";
-            File downloadFile2 = new File(txtdiz.getText() + "/OBS_SISTEM_2025.jar");
-            OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
-            InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
-           double inen= 0;
-            byte[] bytesArray = new byte[4096];
-            int bytesRead = -1;
-            progressBar.setMaximum((int) toplam);
-            progressBar.setStringPainted(true);
-            Long start = System.currentTimeMillis();
-            long timeInSecs = 0;
-            while ((bytesRead = inputStream.read(bytesArray)) != -1)
-            {
-                outputStream2.write(bytesArray, 0, bytesRead);
-                inen += bytesRead ;
-                lblinen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
-                lblkalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
-                Lgn_Progres_Bar((int) toplam,(int) inen);
-                double speedInKBps = 0.00;
-                timeInSecs = (System.currentTimeMillis() - start) ; //converting millis to seconds as 1000m in 1 second
-                speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
-                label.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
-             }
-            success = ftp.completePendingCommand();
-            outputStream2.close();
-            inputStream.close();
-            //Version dosyasi Indir
-            String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
-            File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSION.txt");
-            OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
-            ftp.retrieveFile(remoteFile1, outputStream1);
-            outputStream1.close();
-            //*******************************
-            if (success) {
-            	JOptionPane.showMessageDialog(null, "Indirme Islemi Basari ile tamamlandi....",  "OBS Indirme", JOptionPane.PLAIN_MESSAGE);   
-            }
-        	contentPane.setCursor(DEFAULT_CURSOR);
-        	  Thread.currentThread().isInterrupted();
-  			System.exit(1);
-        }
-		catch (Exception ex)
-		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
-			} 
-	    }
-	    };
-	    //// Progress Bar
-	    Thread t = new Thread(runner, "Code Executer");
-	    t.start();
+		};
+		//// Progress Bar
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
 	}
 	private void indir_natro()
 	{
-		 ///// Progres Bsr olayi
+		///// Progres Bsr olayi
 		Runnable runner = new Runnable()
-	    { 
-		public void run() {
-	        /////  
-		  FTPClient ftp = new FTPClient();
-		try {
-			   lblboyut.setText(FORMATLAMA.doub_0(0) + " bytes");
-			   lblinen.setText(FORMATLAMA.doub_0(0)+ " bytes");
-			   lblkalan.setText(FORMATLAMA.doub_0(0)+ " bytes");
-			   Login_Progres_Bar_Temizle();
-			if (txtdiz.getText().equals(""))
-			{
-				JOptionPane.showMessageDialog(null, "Dizin Secilmemis....",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
-				txtdiz.requestFocus();
-				return;
-			}
-			 String serverAddress = "ftp.okumus.gen.tr";
-	         String userId ="u5789784";
-	         String password ="4wX.5Wx53-Y..nlG";
+		{ 
+			public void run() {
+				/////  
+				FTPClient ftp = new FTPClient();
+				try {
+					lblboyut.setText(FORMATLAMA.doub_0(0) + " bytes");
+					lblinen.setText(FORMATLAMA.doub_0(0)+ " bytes");
+					lblkalan.setText(FORMATLAMA.doub_0(0)+ " bytes");
+					Login_Progres_Bar_Temizle();
+					if (txtdiz.getText().equals(""))
+					{
+						JOptionPane.showMessageDialog(null, "Dizin Secilmemis....",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+						txtdiz.requestFocus();
+						return;
+					}
+					String serverAddress = "ftp.okumus.gen.tr";
+					String userId ="u5789784";
+					String password ="4wX.5Wx53-Y..nlG";
 
-	         ftp.connect(serverAddress);
-            if(!ftp.login(userId, password))
-            {
-                ftp.logout();
-            	JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
-            }
-            int reply = ftp.getReplyCode();
-            if (!FTPReply.isPositiveCompletion(reply))
-            {
-                ftp.disconnect();
-            	JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
-            }
-            ftp.setFileType(FTP.BINARY_FILE_TYPE);
-            ftp.enterLocalPassiveMode();
-            boolean success ;
-             double toplam = 0 ;
-            String filePath = "/OBS_SISTEM_2025/OBS_SISTEM_2025.jar";
-            FTPFile file = ftp.mlistFile(filePath);
-             toplam = file.getSize();
-             ftp.setFileType(FTP.BINARY_FILE_TYPE);
-            lblboyut.setText(FORMATLAMA.doub_0(toplam /1024)+ " KBytes");
-  
-        	contentPane.setCursor(WAIT_CURSOR);
-            File downloadFile2 = new File(txtdiz.getText() + "/OBS_SISTEM_2025.jar");
-            OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
-            InputStream inputStream = ftp.retrieveFileStream(filePath );
-           double inen= 0;
-            byte[] bytesArray = new byte[4096];
-            int bytesRead = -1;
-            progressBar.setMaximum((int) toplam);
-            progressBar.setStringPainted(true);
-            Long start = System.currentTimeMillis();
-        
-            long timeInSecs = 0;
-            while ((bytesRead = inputStream.read(bytesArray)) != -1)
-            {
-                outputStream2.write(bytesArray, 0, bytesRead);
-                inen += bytesRead ;
-                lblinen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
-                lblkalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
-                Lgn_Progres_Bar((int) toplam,(int) inen);
-                double speedInKBps = 0.00;
-                timeInSecs = (System.currentTimeMillis() - start) ; //converting millis to seconds as 1000m in 1 second
-                speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
-                label.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
-             }
-            success = ftp.completePendingCommand();
-            outputStream2.close();
-            inputStream.close();
-            //Version dosyasi Indir
-            String remoteFile1 = "/OBS_SISTEM_2025/OBS_VERSION.txt";
-            File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSION.txt");
-            OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
-            ftp.retrieveFile(remoteFile1, outputStream1);
-            outputStream1.close();
-            //*******************************
-            if (success) {
-            	JOptionPane.showMessageDialog(null, "Indirme Islemi Basari ile tamamlandi....",  "OBS Indirme", JOptionPane.PLAIN_MESSAGE);   
-            }
-        	contentPane.setCursor(DEFAULT_CURSOR);
-        	  Thread.currentThread().isInterrupted();
-  			System.exit(1);
-        }
-		catch (Exception ex)
-		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
-			} 
-	    }
-	    };
-	    //// Progress Bar
-	    Thread t = new Thread(runner, "Code Executer");
-	    t.start();
+					ftp.connect(serverAddress);
+					if(!ftp.login(userId, password))
+					{
+						ftp.logout();
+						JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+					}
+					int reply = ftp.getReplyCode();
+					if (!FTPReply.isPositiveCompletion(reply))
+					{
+						ftp.disconnect();
+						JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+					}
+					ftp.setFileType(FTP.BINARY_FILE_TYPE);
+					ftp.enterLocalPassiveMode();
+					boolean success ;
+					double toplam = 0 ;
+					String filePath = "/OBS_SISTEM_2025/OBS_SISTEM_2025.jar";
+					FTPFile file = ftp.mlistFile(filePath);
+					toplam = file.getSize();
+					ftp.setFileType(FTP.BINARY_FILE_TYPE);
+					lblboyut.setText(FORMATLAMA.doub_0(toplam /1024)+ " KBytes");
+
+					contentPane.setCursor(WAIT_CURSOR);
+					File downloadFile2 = new File(txtdiz.getText() + "/OBS_SISTEM_2025.jar");
+					OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
+					InputStream inputStream = ftp.retrieveFileStream(filePath );
+					double inen= 0;
+					byte[] bytesArray = new byte[4096];
+					int bytesRead = -1;
+					progressBar.setMaximum((int) toplam);
+					progressBar.setStringPainted(true);
+					Long start = System.currentTimeMillis();
+
+					long timeInSecs = 0;
+					while ((bytesRead = inputStream.read(bytesArray)) != -1)
+					{
+						outputStream2.write(bytesArray, 0, bytesRead);
+						inen += bytesRead ;
+						lblinen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
+						lblkalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
+						Lgn_Progres_Bar((int) toplam,(int) inen);
+						double speedInKBps = 0.00;
+						timeInSecs = (System.currentTimeMillis() - start) ; //converting millis to seconds as 1000m in 1 second
+						speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
+						label.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
+					}
+					success = ftp.completePendingCommand();
+					outputStream2.close();
+					inputStream.close();
+					//Version dosyasi Indir
+					String remoteFile1 = "/OBS_SISTEM_2025/OBS_VERSION.txt";
+					File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSION.txt");
+					OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
+					ftp.retrieveFile(remoteFile1, outputStream1);
+					outputStream1.close();
+					//*******************************
+					if (success) {
+						JOptionPane.showMessageDialog(null, "Indirme Islemi Basari ile tamamlandi....",  "OBS Indirme", JOptionPane.PLAIN_MESSAGE);   
+					}
+					contentPane.setCursor(DEFAULT_CURSOR);
+					Thread.currentThread().isInterrupted();
+					System.exit(1);
+				}
+				catch (Exception ex)
+				{
+					JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+				} 
+			}
+		};
+		//// Progress Bar
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
 	}
-	
-	 void Lgn_Progres_Bar(int max, int deger) throws InterruptedException
-	    {
-	 	   	progressBar.setValue(deger);
-	    }
-	    void Login_Progres_Bar_Temizle()
-	    {
-	    	progressBar.setMaximum(0);
-	    	progressBar.setValue(0);
-	    	progressBar.setStringPainted(false);
-	    }
+
+	void Lgn_Progres_Bar(int max, int deger) throws InterruptedException
+	{
+		progressBar.setValue(deger);
+	}
+	void Login_Progres_Bar_Temizle()
+	{
+		progressBar.setMaximum(0);
+		progressBar.setValue(0);
+		progressBar.setStringPainted(false);
+	}
 }
 
 //*****************************

@@ -3,9 +3,9 @@ package OBS_C_2025;
 import java.sql.SQLException;
 
 public class CONNECT {
-	
+
 	private IConnection _IConnect;
-	
+
 	public CONNECT(IConnection _IConnect) 
 	{
 		this._IConnect = _IConnect;
@@ -26,5 +26,5 @@ public class CONNECT {
 	{
 		return _IConnect.Dosyakontrol_S(server,  inst,  kull,  sifre,prog,port);
 	}
-	
+
 }

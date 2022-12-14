@@ -63,7 +63,6 @@ public class GLOBAL {
 		}  
 		return conn;  
 	}  
-
 	//*************************************************
 	@SuppressWarnings("unused")
 	private static  Connection myBConnection (){
@@ -178,8 +177,7 @@ public class GLOBAL {
 				}
 				else
 				{
-					//obs_set_olustur();
-					set_ilk() ;
+					set_ilk() ;//obs_set_olustur();
 				}
 			}
 			else
@@ -188,8 +186,7 @@ public class GLOBAL {
 					GLOBAL gLB = new GLOBAL();
 					gLB.obs_dosya_olustur();
 					Tema_Cari.dosya_yap();
-					//obs_set_olustur();
-					set_ilk() ;
+					set_ilk() ; //obs_set_olustur();
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
@@ -253,10 +250,8 @@ public class GLOBAL {
 		}
 		else
 		{
-			//obs_set_olustur();
-			set_ilk() ;
+			set_ilk() ; //obs_set_olustur();
 		}
-
 		String donen="";
 		FileInputStream iss;
 		iss =  new FileInputStream( GLOBAL.SURUCU + "/admin.properties");
@@ -378,5 +373,4 @@ public class GLOBAL {
 			return false;
 		}
 	}
-
 }

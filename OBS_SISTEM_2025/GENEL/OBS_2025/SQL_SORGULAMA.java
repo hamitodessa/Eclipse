@@ -59,6 +59,7 @@ public class SQL_SORGULAMA extends JInternalFrame {
 	 * Create the frame.
 	 */
 
+	@SuppressWarnings("static-access")
 	public SQL_SORGULAMA(String nerden) {
 		setTitle("SQL SORGULAMA");
 		setResizable(true);
@@ -77,6 +78,11 @@ public class SQL_SORGULAMA extends JInternalFrame {
 		splitPane.setRightComponent(scrollPane);
 
 		table = new JTable(){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		//table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );

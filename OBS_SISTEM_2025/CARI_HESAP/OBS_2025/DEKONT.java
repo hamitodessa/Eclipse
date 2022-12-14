@@ -1573,7 +1573,7 @@ public class DEKONT extends JInternalFrame {
 					" B. Hes:"+ cmbbhes.getItemAt(cmbbhes.getSelectedIndex()).toString() + " Tut:" + txtbtutar.getText();
 			String mesaj1 = txtaciklama.getText();
 			//int alinacak = mesaj.length() + mesaj1.length() < 95 ? mesaj1.length() : 95 -( mesaj.length() + mesaj1.length());
-			if( mesaj.length() + mesaj1.length() < 95)
+			if( mesaj.length() + mesaj1.length() <= 95)
 			{
 				mesaj = mesaj + " Msj:" + mesaj1 ;
 			}

@@ -965,7 +965,6 @@ public class CEK_GIRIS extends JInternalFrame {
 							String qwe =model.getValueAt(i , 1).toString()  ;
 							vade  = qwe;
 						}
-
 						str_4 = textField.getText()+  "'Bordro ile " + model.getValueAt(i , 0).toString() + " Nolu " + vade + " Vadeli Çek" ;
 						c_Access.cari_dekont_kaydet(bh,
 								TARIH_CEVIR.tarih_geri_saatli(dateChooser),
@@ -987,7 +986,6 @@ public class CEK_GIRIS extends JInternalFrame {
 			}
 			catch (Exception ex)
 			{
-
 				JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.ERROR_MESSAGE);
 			}
 		}
@@ -1023,17 +1021,13 @@ public class CEK_GIRIS extends JInternalFrame {
 					JOptionPane.showMessageDialog(null, "Bu Cek " + bno + " 'nolu Bordroda Giris Yapilmis.."); 
 					result = true ;
 				}
-
 			}
-
 		}
 		catch (Exception ex)
 		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.ERROR_MESSAGE);
 		}
 		return result ;
-
-
 	}
 	static void Progres_Bar(int max, int deger) throws InterruptedException
 	{

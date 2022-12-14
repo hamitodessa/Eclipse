@@ -4747,7 +4747,6 @@ public class FILTRE extends JDialog {
 				sonuc [1]=rs.getString("HESAP_CINSI");
 				sonuc [2]= "T" ;
 			}
-
 		}
 		catch (Exception ex)
 		{

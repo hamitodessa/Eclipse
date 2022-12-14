@@ -44,7 +44,7 @@ import javax.swing.ListSelectionModel;
 public class ADRES_LISTE extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	
+
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	private JTable table;
@@ -72,24 +72,24 @@ public class ADRES_LISTE extends JDialog {
 	setBounds(100, 100, 493, 513);
 	getContentPane().setLayout(new BorderLayout());
 	setLocationRelativeTo(null);
-	
+
 	contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 	getContentPane().add(contentPanel, BorderLayout.CENTER);
 	contentPanel.setLayout(new BorderLayout(0, 0));
-	
+
 	JSplitPane splitPane = new JSplitPane();
 	splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-	
+
 	splitPane.setDividerSize(1);
 	contentPanel.add(splitPane, BorderLayout.CENTER);
-	
+
 	JPanel panel = new JPanel();
 	splitPane.setLeftComponent(panel);
 	panel.setBorder(new LineBorder(new Color(0, 191, 255)));
 	panel.setMinimumSize(new Dimension(0, 40));
 	panel.setMaximumSize(new Dimension(0, 40));
 	panel.setLayout(null);
-	
+
 	textField = new JTextField();
 	textField.addKeyListener(new KeyAdapter() {
 		@Override
@@ -110,19 +110,19 @@ public class ADRES_LISTE extends JDialog {
 	textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 	textField.setBounds(83, 11, 326, 20);
 	textField.getDocument().addDocumentListener(new DocumentListener() {
-		  public void changedUpdate(DocumentEvent e) {
-		    arama();
-		  }
-		  public void removeUpdate(DocumentEvent e) {
-		    arama();
-		  }
-		  public void insertUpdate(DocumentEvent e) {
-		    arama();
-		  }
-		});
+		public void changedUpdate(DocumentEvent e) {
+			arama();
+		}
+		public void removeUpdate(DocumentEvent e) {
+			arama();
+		}
+		public void insertUpdate(DocumentEvent e) {
+			arama();
+		}
+	});
 	panel.add(textField);
 	textField.setColumns(10);
-	
+
 	JButton btnNewButton = new JButton("");
 	btnNewButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
@@ -133,14 +133,14 @@ public class ADRES_LISTE extends JDialog {
 	btnNewButton.setIcon(new ImageIcon(HESAP_PLN.class.getResource("/ICONLAR/exit.png")));
 	btnNewButton.setBounds(430, 8, 31, 23);
 	panel.add(btnNewButton);
-	
+
 	JLabel lblNewLabel = new JLabel("Arama");
 	lblNewLabel.setBounds(10, 14, 63, 14);
 	panel.add(lblNewLabel);
-	
+
 	JScrollPane scrollPane = new JScrollPane();
 	splitPane.setRightComponent(scrollPane);
-	
+
 	table = new JTable() {
 		public boolean isCellEditable(int row, int column) {     return false;          }
 	};
@@ -152,29 +152,10 @@ public class ADRES_LISTE extends JDialog {
 		public void keyPressed(KeyEvent e) {
 			if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
 			{
-			int row = table.getSelectedRow();
-			if (table.getRowSorter()!=null) {
-			    row = table.getRowSorter().convertRowIndexToModel(row);
-			    oac.hsp_hsp_kodu = 	table.getModel().getValueAt(row, 0).toString() ;
-				dispose();
-			}
-			else
-			{
-				oac.hsp_hsp_kodu = 	table.getModel().getValueAt(table.getSelectedRow(), 0).toString() ;
-				dispose();
-			}
-			}
-		}
-	});
-	table.addMouseListener(new MouseAdapter() {
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			if (e.getClickCount() == 2) 
-			{
 				int row = table.getSelectedRow();
 				if (table.getRowSorter()!=null) {
-				    row = table.getRowSorter().convertRowIndexToModel(row);
-				    oac.hsp_hsp_kodu = 	table.getModel().getValueAt(row, 0).toString() ;
+					row = table.getRowSorter().convertRowIndexToModel(row);
+					oac.hsp_hsp_kodu = 	table.getModel().getValueAt(row, 0).toString() ;
 					dispose();
 				}
 				else
@@ -185,81 +166,100 @@ public class ADRES_LISTE extends JDialog {
 			}
 		}
 	});
-	
+	table.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if (e.getClickCount() == 2) 
+			{
+				int row = table.getSelectedRow();
+				if (table.getRowSorter()!=null) {
+					row = table.getRowSorter().convertRowIndexToModel(row);
+					oac.hsp_hsp_kodu = 	table.getModel().getValueAt(row, 0).toString() ;
+					dispose();
+				}
+				else
+				{
+					oac.hsp_hsp_kodu = 	table.getModel().getValueAt(table.getSelectedRow(), 0).toString() ;
+					dispose();
+				}
+			}
+		}
+	});
+
 	scrollPane.setViewportView(table);
 	oac.hsp_hsp_kodu = "" ;
 	hisset("");
-}
+	}
 	public void hisset(String sirala) 
 	{
 		try {
-	         long startTime = System.currentTimeMillis(); 
-	ResultSet	rs = null;
-		rs =  a_Access.adr_hpl();
-	if (!rs.isBeforeFirst() ) {  
-	    return;
-	}
-	table.setModel(DbUtils.resultSetToTableModel(rs));
-	JTableHeader th = table.getTableHeader();
-	TableColumnModel tcm = th.getColumnModel();
-	TableColumn tc;
-	tc = tcm.getColumn(0);
-	tc.setHeaderRenderer(new SOLA());
-	tc.setMinWidth(80);
-	
-	tc = tcm.getColumn(1);
-	tc.setHeaderRenderer(new SOLA());
-	tc.setMinWidth(275);
+			long startTime = System.currentTimeMillis(); 
+			ResultSet	rs = null;
+			rs =  a_Access.adr_hpl();
+			if (!rs.isBeforeFirst() ) {  
+				return;
+			}
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+			JTableHeader th = table.getTableHeader();
+			TableColumnModel tcm = th.getColumnModel();
+			TableColumn tc;
+			tc = tcm.getColumn(0);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(80);
 
-	
-	th.repaint();
-	table.setRowSelectionInterval(0, 0);
-	table.setRowHeight(22);
-	
-    Dimension dd = table.getPreferredSize();
-    dd.height = 30;
-    th.setPreferredSize(dd); 
-    th.repaint();
-    
-	table.setSelectionBackground(Color.PINK);
-	table.setSelectionForeground(Color.BLUE);
-	
-	
-		 String deger;
-		 String[] parts;
-		Font bigFont;
-		deger = GLOBAL.setting_oku("CARI_HSPPLN").toString();
-		deger = deger.substring(1, deger.length()-1);
-		parts = deger.split(",");
-		bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-		table.setFont(bigFont);
-  		 long endTime = System.currentTimeMillis();
-  		 long estimatedTime = endTime - startTime; 
-  		 double seconds = (double)estimatedTime/1000; 
-  		 OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+			tc = tcm.getColumn(1);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(275);
 
-	} catch (Exception ex) {
-		 JOptionPane.showMessageDialog(null, ex.getMessage()); 
+
+			th.repaint();
+			table.setRowSelectionInterval(0, 0);
+			table.setRowHeight(22);
+
+			Dimension dd = table.getPreferredSize();
+			dd.height = 30;
+			th.setPreferredSize(dd); 
+			th.repaint();
+
+			table.setSelectionBackground(Color.PINK);
+			table.setSelectionForeground(Color.BLUE);
+
+
+			String deger;
+			String[] parts;
+			Font bigFont;
+			deger = GLOBAL.setting_oku("CARI_HSPPLN").toString();
+			deger = deger.substring(1, deger.length()-1);
+			parts = deger.split(",");
+			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			table.setFont(bigFont);
+			long endTime = System.currentTimeMillis();
+			long estimatedTime = endTime - startTime; 
+			double seconds = (double)estimatedTime/1000; 
+			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage()); 
+		}
 	}
-}
-	
+
 	public void arama()  
 	{	
-	if (textField.getText().equals(""))
-	{
-		table.setRowSorter(null);
+		if (textField.getText().equals(""))
+		{
+			table.setRowSorter(null);
+		}
+		else
+		{
+			TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
+			sorter.setStringConverter(new TableStringConverter() {
+				@Override
+				public String toString(TableModel model, int row, int column) {
+					return model.getValueAt(row, column).toString().toLowerCase();
+				}
+			});
+			sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText().toLowerCase()));
+			table.setRowSorter(sorter);
+		}
 	}
-	else
-	{
-	TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
-	sorter.setStringConverter(new TableStringConverter() {
-        @Override
-        public String toString(TableModel model, int row, int column) {
-            return model.getValueAt(row, column).toString().toLowerCase();
-        }
-    });
-    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText().toLowerCase()));
-    table.setRowSorter(sorter);
-	}
-}
 }

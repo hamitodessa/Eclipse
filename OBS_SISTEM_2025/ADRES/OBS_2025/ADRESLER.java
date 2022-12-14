@@ -72,130 +72,130 @@ public class ADRESLER extends JInternalFrame {
 	setIconifiable(true);
 	setClosable(true);
 	setBounds(0, 0, 1000, 600);
-	
+
 	JSplitPane splitPane = new JSplitPane();
 	splitPane.setDividerSize(1);
 	splitPane.setResizeWeight(0.0);
 	splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 	getContentPane().add(splitPane, BorderLayout.CENTER);
-	
+
 	JScrollPane scrollPane = new JScrollPane();
 	splitPane.setRightComponent(scrollPane);
-	
+
 	table = new JTable(){
 		public boolean isCellEditable(int row, int column) {     return false;          }
 	};
 	table.setGridColor(oac.gridcolor);
 	table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 	scrollPane.setViewportView(table);
-	
+
 	JPanel panel = new JPanel();
 	splitPane.setLeftComponent(panel);
 	panel.setMinimumSize(new Dimension(0, 30));
 	panel.setMaximumSize(new Dimension(0, 30));
 	panel.setBorder(new LineBorder(new Color(0, 191, 255)));
 	panel.setLayout(null);
-	
+
 	JLabel lblNewLabel = new JLabel("Arama");
 	lblNewLabel.setBounds(21, 7, 46, 14);
 	panel.add(lblNewLabel);
-	
+
 	textField = new JTextField();
 	textField.getDocument().addDocumentListener(new DocumentListener() {
-		  public void changedUpdate(DocumentEvent e) {
-		    arama();
-		  }
-		  public void removeUpdate(DocumentEvent e) {
-		    arama();
-		  }
-		  public void insertUpdate(DocumentEvent e) {
-		    arama();
-		  }
-		});
+		public void changedUpdate(DocumentEvent e) {
+			arama();
+		}
+		public void removeUpdate(DocumentEvent e) {
+			arama();
+		}
+		public void insertUpdate(DocumentEvent e) {
+			arama();
+		}
+	});
 	textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 	textField.setBounds(83, 4, 321, 20);
 	panel.add(textField);
 	textField.setColumns(10);
 	hisset();
-	
-}
-private void hisset() 
-{
-	long startTime = System.currentTimeMillis(); 
-	ResultSet rs = null ;
-	try
-	{
-		 rs = a_Access.adres("M_Kodu","") ;
-	if (!rs.isBeforeFirst() ) {  
-	    return;
-	}
-	GRID_TEMIZLE.grid_temizle(table);
-	table.setModel(DbUtils.resultSetToTableModel(rs));
-		JTableHeader th = table.getTableHeader();
-		TableColumnModel tcm = th.getColumnModel();
-		TableColumn tc;
-		
-		tc = tcm.getColumn(0);
-		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(100);
-		
-		tc = tcm.getColumn(1);
-		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(275);
 
-		tc = tcm.getColumn(2);
-		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(90);
-		
-		tc = tcm.getColumn(3);
-		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(70);
-		
-		Dimension dd = th.getPreferredSize();
-	    dd.height = 30;
-	    th.setPreferredSize(dd); 
-		th.repaint();
-		table.setRowSelectionInterval(0, 0);
-		table.setRowHeight(21);
-		table.setSelectionBackground(Color.PINK);
-		table.setSelectionForeground(Color.BLUE);
-		
-		for (int i = 4; i<= 24; i++)
+	}
+	private void hisset() 
+	{
+		long startTime = System.currentTimeMillis(); 
+		ResultSet rs = null ;
+		try
 		{
-			tc = tcm.getColumn(i);
+			rs = a_Access.adres("M_Kodu","") ;
+			if (!rs.isBeforeFirst() ) {  
+				return;
+			}
+			GRID_TEMIZLE.grid_temizle(table);
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+			JTableHeader th = table.getTableHeader();
+			TableColumnModel tcm = th.getColumnModel();
+			TableColumn tc;
+
+			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(100);
-		}
-		 long endTime = System.currentTimeMillis();
-		 long estimatedTime = endTime - startTime;
-		 double seconds = (double)estimatedTime/1000; 
-		 OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-		 
-		 String deger;
+
+			tc = tcm.getColumn(1);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(275);
+
+			tc = tcm.getColumn(2);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(90);
+
+			tc = tcm.getColumn(3);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(70);
+
+			Dimension dd = th.getPreferredSize();
+			dd.height = 30;
+			th.setPreferredSize(dd); 
+			th.repaint();
+			table.setRowSelectionInterval(0, 0);
+			table.setRowHeight(21);
+			table.setSelectionBackground(Color.PINK);
+			table.setSelectionForeground(Color.BLUE);
+
+			for (int i = 4; i<= 24; i++)
+			{
+				tc = tcm.getColumn(i);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(100);
+			}
+			long endTime = System.currentTimeMillis();
+			long estimatedTime = endTime - startTime;
+			double seconds = (double)estimatedTime/1000; 
+			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+
+			String deger;
 			String[] parts;
 			Font bigFont;
-				deger = GLOBAL.setting_oku("CARI_HSPPLN").toString();
-				deger = deger.substring(1, deger.length()-1);
-				parts = deger.split(",");
-				bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-				table.setFont(bigFont);
+			deger = GLOBAL.setting_oku("CARI_HSPPLN").toString();
+			deger = deger.substring(1, deger.length()-1);
+			parts = deger.split(",");
+			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			table.setFont(bigFont);
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage());
+		}
 	}
-	catch (Exception ex)
+	public void arama()  
 	{
-		JOptionPane.showMessageDialog(null, ex.getMessage());
+		if (textField.getText().equals(""))
+		{
+			table.setRowSorter(null);
+		}
+		else
+		{
+			TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
+			sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText()));
+			table.setRowSorter(sorter);
+		}
 	}
-}
-public void arama()  
-{
-	if (textField.getText().equals(""))
-	{
-		table.setRowSorter(null);
-	}
-	else
-	{
-	TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
-    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText()));
-    table.setRowSorter(sorter);
-	}
-}
 }

@@ -62,13 +62,10 @@ public class GRAFIK extends JInternalFrame {
 		setMaximum(true);
 		var ex = new LineChartEx();
 		ex.setVisible(true);
-
 		initUI();
-
 	}
 	private void initUI() {
 		DefaultCategoryDataset dataset = GLOBAL.dataset;  
-		// Create chart  
 		chart = ChartFactory.createLineChart(  
 				GLOBAL.g_baslik, // Chart title  
 				GLOBAL.g_legends , // X-Axis Label  
@@ -82,42 +79,24 @@ public class GRAFIK extends JInternalFrame {
 		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
 		rangeAxis.setRange(GLOBAL.min_value, GLOBAL.max_value);
 		rangeAxis.setUpperMargin(0.50);
-
-
-
 		//
 		//
 		NumberFormat formatter = DecimalFormat.getInstance();
 		formatter.setMinimumFractionDigits(GLOBAL.gkusurat);
 		rangeAxis.setNumberFormatOverride(formatter);
 		//
-
-
 		//
 		Font font3 = new Font("Arial", Font.BOLD, 25); 
-
 		plot.getDomainAxis().setLabelFont(font3);
 		plot.getRangeAxis().setLabelFont(font3);
-
 		//
-
 		TextTitle t2 = new TextTitle(  GLOBAL.g_baslik); // BASLIK
 		t2.setFont(new Font("Serif", Font.BOLD, 9));
-
 		chart.setTitle(t2);
 		chart.getTitle().setPaint(Color.BLUE);
-
-		//
-		// var renderer = new XYLineAndShapeRenderer();
-		// renderer.setSeriesPaint(0, Color.RED);
-		// renderer.setSeriesStroke(0, new BasicStroke(2.0f));
-		//
 		ChartPanel panel = new ChartPanel(chart);  
 		setContentPane(panel);  
-
 	}
-
-
 	public static  void kaydet()
 	{
 		try {
@@ -132,17 +111,13 @@ public class GRAFIK extends JInternalFrame {
 			fileChooser.setDialogTitle("Grafik Kayit");   
 			File outputfile = new File(GLOBAL.g_baslik);
 			fileChooser.setSelectedFile(outputfile);
-
-
 			BufferedImage lbImage = chart.createBufferedImage( 600, 400, null); 
-
 			int returnVal = fileChooser.showSaveDialog(null);
 			if ( returnVal == JFileChooser.APPROVE_OPTION )
 			{
 				File file = new File(fileChooser.getSelectedFile() + ".jpg");
 				ImageIO.write( lbImage , "jpg", file);
 			}
-
 			/////
 			//		   ByteArrayDataSource ds = null ;
 			//		   BufferedImage objBufferedImage= chart.createBufferedImage(600,800);
@@ -158,9 +133,6 @@ public class GRAFIK extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(), "Grafik", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
-
-
-
 }
 
 

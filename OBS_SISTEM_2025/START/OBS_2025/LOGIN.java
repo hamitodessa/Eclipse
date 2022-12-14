@@ -722,10 +722,8 @@ public class LOGIN extends JFrame {
 		}
 		if (BAGLAN.kurDizin.yER.equals("L"))
 		{
-
 			if (s_CONN.Server_kontrol_L(BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,BAGLAN.kurDizin.sERVER) == true)   
 			{
-
 				if (s_CONN.Dosya_kontrol_L("OK_Kur" + BAGLAN.kurDizin.kOD,BAGLAN.kurDizin.iNSTANCE, BAGLAN.kurDizin.kULLANICI, BAGLAN.kurDizin.sIFRESI,BAGLAN.kurDizin.sERVER) == false)
 				{
 					KUR_DOS_VAR = false;
@@ -792,7 +790,6 @@ public class LOGIN extends JFrame {
 	void adr_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
 		CONNECT s_CONN = new CONNECT(oac._IAdresCon);
-
 		if (BAGLAN.adrDizin.yER.equals(""))
 		{
 			OBS_SIS_2025_ANA_CLASS.ADR_CONN = false;
@@ -831,7 +828,6 @@ public class LOGIN extends JFrame {
 	void fat_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
 		CONNECT s_CONN = new CONNECT(oac._IStokCon);
-
 		if (BAGLAN.fatDizin.yER.equals(""))
 		{
 			OBS_SIS_2025_ANA_CLASS.FAT_CONN = false;
@@ -869,9 +865,7 @@ public class LOGIN extends JFrame {
 	}
 	void kam_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
-
 		CONNECT s_CONN = new CONNECT(oac._IKambiyoCon);
-
 		if (BAGLAN.kamDizin.yER.equals(""))
 		{
 			OBS_SIS_2025_ANA_CLASS.KAM_CONN = false;

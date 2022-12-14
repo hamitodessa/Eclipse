@@ -69,6 +69,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
+			@SuppressWarnings("unused")
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy   ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.cariLogDizin);
 		}
@@ -111,6 +112,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + BAGLAN_LOG.cariLogDizin.sERVER + VERITABANI + ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + BAGLAN_LOG.cariLogDizin.sERVER + VERITABANI + "_mYSQL"+ ".DB" ;
+			@SuppressWarnings("unused")
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy   ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.cariLogDizin);
 		}
@@ -322,6 +324,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		return rss;	 
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void sqlite_yaz(String tar, int evr, String iza, String kodu, double kur,double borc, double alac, double bak) throws SQLException, ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
@@ -342,10 +345,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			stmt.setDouble(8, bak);
 		}
 		stmt.executeUpdate();
-
 	}
 
-	@Override
+	@SuppressWarnings("static-access")
 	public void sqlite_sil() throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
 		SQLitecon = null;
@@ -356,10 +358,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.executeUpdate();
 		stmt.close();
 		SQLitecon.close();
-
 	}
-
-	@Override
+	@SuppressWarnings("static-access")
 	public ResultSet ekstre_sqlite() throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
 		SQLitecon = null;
@@ -631,10 +631,11 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	}
 	public ResultSet dvz_cevirme(String kcins,String hesap,String t1,String t2,String kur,String islem) throws ClassNotFoundException, SQLException
 	{
-		String str1, str2 ;
+		String str1 ="" ;
+		//String  str2 = "";
 		ResultSet	rss = null;
 		str1 = "" ;
-		str2 = "" ;
+		//str2 = "" ;
 		if (BAGLAN.kurDizin.dIZIN_CINS.equals("L"))
 		{
 			str1 = "ok_kur" + BAGLAN.kurDizin.kOD + ".dbo.kurlar  " ;
@@ -644,7 +645,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			if ( BAGLAN.cariDizin.sERVER.equals(BAGLAN.kurDizin.sERVER))
 			{
 				str1 = "ok_kur" + BAGLAN.kurDizin.kOD + ".kurlar  " ;
-				str2 = "";
+				//str2 = "";
 			}
 			else
 			{
@@ -1039,9 +1040,10 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	}
 	public ResultSet eksik_kur_okuma(String hesap,String t1,String t2,String kur) throws ClassNotFoundException, SQLException
 	{
-		String str1, str2 ;
+		String str1;
+		//, str2 ;
 		str1 = "" ;
-		str2 = "" ;
+		//str2 = "" ;
 		if (BAGLAN.kurDizin.dIZIN_CINS.equals("L"))
 		{
 			str1 = "ok_kur" + BAGLAN.kurDizin.kOD   ;
@@ -1051,7 +1053,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			if ( BAGLAN.cariDizin.sERVER.equals(BAGLAN.kurDizin.sERVER))
 			{
 				str1 = "ok_kur" + BAGLAN.kurDizin.kOD  ;
-				str2 = "";
+				//str2 = "";
 			}
 			else
 			{

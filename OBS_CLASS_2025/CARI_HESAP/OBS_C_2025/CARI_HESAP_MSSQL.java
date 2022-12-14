@@ -10,9 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import LOGER_KAYIT.ILOGER_KAYIT;
-import LOGER_KAYIT.SQLITE_LOG;
 import LOGER_KAYIT.TXT_LOG;
 public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 
@@ -117,6 +115,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + BAGLAN_LOG.cariLogDizin.sERVER + VERITABANI + ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + BAGLAN_LOG.cariLogDizin.sERVER + VERITABANI + "_mSSQL"+ ".DB" ;
+			@SuppressWarnings("unused")
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy   ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.cariLogDizin);
 		}
@@ -344,6 +343,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
+	@SuppressWarnings("static-access")
 	public void sqlite_yaz(String tar, int evr, String iza, String kodu,double kur, double borc, double alac ,double bak) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
@@ -366,6 +366,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt.executeUpdate();
 
 	}
+	@SuppressWarnings("static-access")
 	public void sqlite_sil() throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
@@ -378,6 +379,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt.close();
 		SQLitecon.close();
 	}
+	@SuppressWarnings("static-access")
 	public ResultSet ekstre_sqlite() throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");

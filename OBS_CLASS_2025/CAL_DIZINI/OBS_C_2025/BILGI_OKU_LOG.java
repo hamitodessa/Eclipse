@@ -31,7 +31,6 @@ public class BILGI_OKU_LOG {
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
 				dIZIN.cONN_STR = oDIZIN.sERVER + ";instanceName=" + oDIZIN.iNSTANCE + " ; database=" +  dOSYA_BASLANGIC + oDIZIN.kOD + "_LOG";
 				dIZIN.mODUL =    oDIZIN.sERVER +  dOSYA_BASLANGIC  + oDIZIN.kOD + "_mSSQL" + ".DB" ;
-				dIZIN.mODULADI =   oDIZIN.sERVER + dOSYA_BASLANGIC  + oDIZIN.kOD  ;
 			}
 			else  if (oDIZIN.hAN_SQL.toString().equals("MY SQL") == true)
 			{
@@ -39,7 +38,6 @@ public class BILGI_OKU_LOG {
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
 				dIZIN.cONN_STR =  oDIZIN.sERVER + "/" +  dOSYA_BASLANGIC + oDIZIN.kOD + "_log";
 				dIZIN.mODUL =    oDIZIN.sERVER +  dOSYA_BASLANGIC  + oDIZIN.kOD + "_mYSQL" + ".DB" ;
-				dIZIN.mODULADI =   oDIZIN.sERVER + dOSYA_BASLANGIC  + oDIZIN.kOD  ;
 			}
 		}
 	}

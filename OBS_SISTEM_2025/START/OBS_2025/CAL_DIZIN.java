@@ -1018,7 +1018,7 @@ public class CAL_DIZIN extends JFrame {
 										}
 									});
 									cmblog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani Kayit", "Dosya", "Text Dosya", "Email Atma"}));
-									cmblog.setEnabled(false);
+//									cmblog.setEnabled(false);
 									cmblog.setBounds(133, 126, 126, 22);
 									panel.add(cmblog);
 	}
@@ -1145,12 +1145,12 @@ public class CAL_DIZIN extends JFrame {
 		{
 
 			chckbxL_1.setSelected(true);
-			cmblog.setEnabled(true);
+			//cmblog.setEnabled(true);
 		}
 		else
 		{
 			chckbxL_1.setSelected(false);
-			cmblog.setEnabled(false);
+			//cmblog.setEnabled(false);
 		}
 		cmblog.setSelectedItem(grd.getModel().getValueAt(satir, 15).toString());
 		if (grd.getModel().getValueAt(satir, 10).equals("D"))

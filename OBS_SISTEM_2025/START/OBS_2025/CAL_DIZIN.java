@@ -966,6 +966,7 @@ public class CAL_DIZIN extends JFrame {
 									txtcdid.setColumns(10);
 
 									cmbhangisql = new JComboBox<String>();
+									cmbhangisql.setFont(new Font("Tahoma", Font.BOLD, 11));
 									cmbhangisql.addItemListener(new ItemListener() {
 										public void itemStateChanged(ItemEvent e) {
 											String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
@@ -1005,6 +1006,7 @@ public class CAL_DIZIN extends JFrame {
 									panel.add(chckbxL_1);
 
 									cmblog = new JComboBox<String>();
+									cmblog.setFont(new Font("Tahoma", Font.BOLD, 11));
 									cmblog.addActionListener(new ActionListener() {
 										public void actionPerformed(ActionEvent e) {
 //											if (chckbxS.isSelected() )
@@ -1021,6 +1023,10 @@ public class CAL_DIZIN extends JFrame {
 //									cmblog.setEnabled(false);
 									cmblog.setBounds(133, 126, 126, 22);
 									panel.add(cmblog);
+									
+									JLabel lblKayitserver = new JLabel("Serverler");
+									lblKayitserver.setBounds(24, 234, 78, 14);
+									panel.add(lblKayitserver);
 	}
 
 	private   void grid_doldur() throws ClassNotFoundException, SQLException

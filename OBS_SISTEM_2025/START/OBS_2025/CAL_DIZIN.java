@@ -434,6 +434,17 @@ public class CAL_DIZIN extends JFrame {
 				if (chckbxL.isSelected())
 				{
 					chckbxS.setSelected(false);
+					cmblog.removeAllItems();
+						cmblog.addItem("Veritabani Kayit");
+						cmblog.addItem("Dosya");
+						cmblog.addItem("Text Dosya");
+						cmblog.addItem("Email Atma");
+				}
+				else
+				{
+					cmblog.removeAllItems();
+					cmblog.addItem("Veritabani Kayit");
+					cmblog.addItem("Email Atma");
 				}
 			}
 		});
@@ -446,11 +457,16 @@ public class CAL_DIZIN extends JFrame {
 				if (chckbxS.isSelected())
 				{
 					chckbxL.setSelected(false);
-
+					cmblog.removeAllItems();
+					cmblog.addItem("Veritabani Kayit");
+					cmblog.addItem("Email Atma");
 				}
 				else
 				{
-
+					cmblog.addItem("Veritabani Kayit");
+					cmblog.addItem("Dosya");
+					cmblog.addItem("Text Dosya");
+					cmblog.addItem("Email Atma");
 				}
 			}
 		});

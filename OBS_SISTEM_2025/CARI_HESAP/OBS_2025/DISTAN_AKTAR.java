@@ -1183,15 +1183,23 @@ public class DISTAN_AKTAR extends JInternalFrame {
              }
          	String strDate = TARIH_CEVIR. dateFormater(model.getValueAt(i , 0).toString() , "yyyy.MM.dd HH:mm:ss.sss", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
             
-         	c_Access.cari_dekont_kaydet(model.getValueAt(i, 2).toString(), strDate, 
+			String mesaj = "A. Hes:" +  model.getValueAt(i, 2).toString() + " Tut:" + asdd  +
+					" B. Hes:"+  model.getValueAt(i, 5).toString() + " Tut:" +asdd;
+			if( mesaj.length() + strg.length() <= 95)
+			{
+				mesaj = mesaj + " Msj:" + strg ;
+			}
+			else
+			{
+				mesaj = mesaj + " Msj:" + strg.substring(0, 95  -(mesaj.length())) ;
+			}
+       	c_Access.cari_dekont_kaydet(model.getValueAt(i, 2).toString(), strDate, 
             			 evr_no, "",
             			 1.0, asdd, 
             			 model.getValueAt(i, 5).toString(),"", 
             			 1.0,asdd,
             			 strg, "", GLOBAL.KULL_ADI,
-            			 "Alacakli Hes:" + model.getValueAt(i, 2).toString() + " Tut:" + asdd +
-     	        		" Borclu Hes:" + model.getValueAt(i, 5).toString() + " Tut:" + asdd  ,
-     	        		String.valueOf(evr_no) ,
+            			mesaj  , 		String.valueOf(evr_no) ,
      	        		BAGLAN_LOG.cariLogDizin);
              model.setValueAt(evr_no,i, 6);
              evr_no += 1;

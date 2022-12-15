@@ -106,7 +106,6 @@ public class LOGIN extends JFrame {
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	BAGLAN bAGLAN = new BAGLAN();
 	BAGLAN_LOG bAGLAN_LOG = new BAGLAN_LOG();
-	private JButton btnNewButton;
 	/**
 	 * Launch the application.
 	 */

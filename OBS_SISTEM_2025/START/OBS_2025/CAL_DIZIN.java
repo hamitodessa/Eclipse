@@ -1007,14 +1007,14 @@ public class CAL_DIZIN extends JFrame {
 									cmblog = new JComboBox<String>();
 									cmblog.addActionListener(new ActionListener() {
 										public void actionPerformed(ActionEvent e) {
-											if (chckbxS.isSelected() )
-											{
-												if(cmblog.getSelectedItem().toString() == "Text Dosya" ||  cmblog.getSelectedItem().toString() == "Dosya")
-												{
-													JOptionPane.showMessageDialog(null,  "Server Seciminde Loglama Dosya ve Text Dosya  Secilemez", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
-													cmblog.setSelectedItem("Veritabani Kayit");
-												}
-											}
+//											if (chckbxS.isSelected() )
+//											{
+//												if(cmblog.getSelectedItem().toString() == "Text Dosya" ||  cmblog.getSelectedItem().toString() == "Dosya")
+//												{
+//													JOptionPane.showMessageDialog(null,  "Server Seciminde Loglama Dosya ve Text Dosya  Secilemez", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
+//													cmblog.setSelectedItem("Veritabani Kayit");
+//												}
+//											}
 										}
 									});
 									cmblog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani Kayit", "Dosya", "Text Dosya", "Email Atma"}));

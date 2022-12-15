@@ -86,6 +86,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 
 	@Override
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException {
+		
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = null;  
 		String VERITABANI = "ok_car" + kod;

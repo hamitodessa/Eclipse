@@ -1721,6 +1721,7 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.cariDizin.kULLANICI = txtkul.getText();
 		BAGLAN.cariDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
 		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.cariDizin.sERVER = txtIp.getText();
 		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.cariDizin.kOD = txtKodu.getText();
 		BAGLAN.cariDizin.yER = "S";
@@ -1741,7 +1742,8 @@ public class CAL_DIZIN extends JFrame {
 		STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
 		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
 		BAGLAN.fatDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
-		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.fatDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.fatDizin.sERVER = txtIp.getText();
 		BAGLAN.fatDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.fatDizin.kOD = txtKodu.getText();
 		BAGLAN.fatDizin.yER = "S";
@@ -1762,7 +1764,8 @@ public class CAL_DIZIN extends JFrame {
 		ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres,oac._IAdres_Loger);
 		BAGLAN.adrDizin.kULLANICI = txtkul.getText();
 		BAGLAN.adrDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
-		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.adrDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.adrDizin.sERVER = txtIp.getText();
 		BAGLAN.adrDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.adrDizin.kOD = txtKodu.getText();
 		BAGLAN.adrDizin.yER = "S";
@@ -1781,7 +1784,8 @@ public class CAL_DIZIN extends JFrame {
 		KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur,oac._IKur_Loger);
 		BAGLAN.kurDizin.kULLANICI = txtkul.getText();
 		BAGLAN.kurDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
-		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.kurDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.kurDizin.sERVER = txtIp.getText();
 		BAGLAN.kurDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.kurDizin.kOD = txtKodu.getText();
 		BAGLAN.kurDizin.yER = "S";
@@ -1802,7 +1806,8 @@ public class CAL_DIZIN extends JFrame {
 		KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo,oac._IKambiyo_Loger);
 		BAGLAN.kamDizin.kULLANICI = txtkul.getText();
 		BAGLAN.kamDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
-		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.kamDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.kamDizin.sERVER = txtIp.getText();
 		BAGLAN.kamDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.kamDizin.kOD = txtKodu.getText();
 		BAGLAN.kamDizin.yER = "S";
@@ -1821,7 +1826,8 @@ public class CAL_DIZIN extends JFrame {
 		SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms,oac._ISms_Loger);
 		BAGLAN.smsDizin.kULLANICI = txtkul.getText();
 		BAGLAN.smsDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
-		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.smsDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.smsDizin.sERVER = txtIp.getText();
 		BAGLAN.smsDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.smsDizin.kOD = txtKodu.getText();
 		BAGLAN.smsDizin.yER = "S";
@@ -1842,7 +1848,8 @@ public class CAL_DIZIN extends JFrame {
 		GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk,oac._IGunluk_Loger);
 		BAGLAN.gunDizin.kULLANICI = txtkul.getText();
 		BAGLAN.gunDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
-		BAGLAN.cariDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.gunDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.gunDizin.sERVER = txtIp.getText();
 		BAGLAN.gunDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN.gunDizin.kOD = txtKodu.getText();
 		BAGLAN.gunDizin.yER = "S";

@@ -50,7 +50,7 @@ public class CARI_ACCESS {
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
 			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
-		 _ICari.cARI_SIFIR_S(server, kull, sifre, kod, fir_adi, ins);
+		 _ICari.cARI_SIFIR_S(server,ins, kull, sifre, kod, fir_adi);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 		 for ( ILOGGER  _Logger : _Logger )

@@ -434,17 +434,10 @@ public class CAL_DIZIN extends JFrame {
 				if (chckbxL.isSelected())
 				{
 					chckbxS.setSelected(false);
-					cmblog.removeAllItems();
-						cmblog.addItem("Veritabani Kayit");
-						cmblog.addItem("Dosya");
-						cmblog.addItem("Text Dosya");
-						cmblog.addItem("Email Atma");
 				}
 				else
 				{
-					cmblog.removeAllItems();
-					cmblog.addItem("Veritabani Kayit");
-					cmblog.addItem("Email Atma");
+					chckbxS.setSelected(true);
 				}
 			}
 		});
@@ -457,16 +450,10 @@ public class CAL_DIZIN extends JFrame {
 				if (chckbxS.isSelected())
 				{
 					chckbxL.setSelected(false);
-					cmblog.removeAllItems();
-					cmblog.addItem("Veritabani Kayit");
-					cmblog.addItem("Email Atma");
 				}
 				else
 				{
-					cmblog.addItem("Veritabani Kayit");
-					cmblog.addItem("Dosya");
-					cmblog.addItem("Text Dosya");
-					cmblog.addItem("Email Atma");
+					chckbxL.setSelected(true);
 				}
 			}
 		});
@@ -1025,7 +1012,7 @@ public class CAL_DIZIN extends JFrame {
 									panel.add(chckbxL_1);
 
 									cmblog = new JComboBox<String>();
-									cmblog.setModel(new DefaultComboBoxModel(new String[] {"Veritabani Kayit", "Dosya", "Text Dosya", "Email Atma"}));
+									cmblog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani Kayit", "Dosya", "Text Dosya", "Email Atma"}));
 									cmblog.setEnabled(false);
 									cmblog.setBounds(133, 126, 126, 22);
 									panel.add(cmblog);

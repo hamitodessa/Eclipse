@@ -4,11 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
 import OBS_C_2025.DIZIN_BILGILERI;
-
-
 
 public interface ILOGER_KAYIT 
 {

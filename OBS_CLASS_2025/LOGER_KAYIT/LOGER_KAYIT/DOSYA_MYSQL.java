@@ -8,7 +8,6 @@ import java.sql.SQLException;
 
 import javax.swing.table.DefaultTableModel;
 
-import OBS_C_2025.BAGLAN;
 import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
 public class DOSYA_MYSQL implements ILOGER_KAYIT{

@@ -21,7 +21,7 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +GLOBAL.LOG_SURUCU +  dBILGI.mODUL   ) ;
+			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + GLOBAL.LOG_SURUCU +  dBILGI.mODUL   ) ;
 			PreparedStatement stmt = null;
 			String sql =  "INSERT INTO LOGLAMA (TARIH,MESAJ,EVRAK,USER_NAME) " +
 					"VALUES (?,?,?,?)";

@@ -51,6 +51,7 @@ public class ADRES_MYSQL implements IADRES {
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
 		{
 			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
+			@SuppressWarnings("unused")
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy   ) ;
 			GLOBAL.create_table_log(dsy ,fir_adi,BAGLAN_LOG.adrLogDizin);
 		}
@@ -90,9 +91,10 @@ public class ADRES_MYSQL implements IADRES {
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + BAGLAN_LOG.adrLogDizin.sERVER + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.char_degis(  GLOBAL.LOG_SURUCU + BAGLAN_LOG.adrLogDizin.sERVER) + VERITABANI + ".DB") == false)
 		{
-			String dsy = GLOBAL.LOG_SURUCU + BAGLAN_LOG.adrLogDizin.sERVER+ VERITABANI + "_mYSQL"+ ".DB" ;
+			String dsy =GLOBAL.char_degis(  GLOBAL.LOG_SURUCU + BAGLAN_LOG.adrLogDizin.sERVER)+ VERITABANI + "_mYSQL"+ ".DB" ;
+			@SuppressWarnings("unused")
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy  ) ;
 			GLOBAL.create_table_log(dsy ,fir_adi,BAGLAN_LOG.adrLogDizin);
 		}

@@ -373,4 +373,8 @@ public class GLOBAL {
 			return false;
 		}
 	}
+	public static String char_degis (String degisken)
+	{
+		return degisken.replace(":","_");
+	}
 }

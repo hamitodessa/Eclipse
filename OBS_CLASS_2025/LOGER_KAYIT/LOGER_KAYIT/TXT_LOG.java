@@ -31,7 +31,10 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 				file.createNewFile();
 			}
 			Writer bWriter = new BufferedWriter(new OutputStreamWriter( new FileOutputStream(file, true), StandardCharsets.UTF_8));
-			String msj=   new java.sql.Timestamp(new java.util.Date().getTime()) +"\t" + mesaj  +"\t" + evrak +"\t"+ GLOBAL.KULL_ADI + "\r\n";
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss sss");
+			String formatli = formatter.format(new Date());
+			String msj=  formatli +"\t" + mesaj  +"\t" + evrak +"\t"+ GLOBAL.KULL_ADI + "\r\n";
+			//String msj=   new java.sql.Timestamp(new java.util.Date().getTime()) +"\t" + mesaj  +"\t" + evrak +"\t"+ GLOBAL.KULL_ADI + "\r\n";
 			bWriter.write(msj);
 			bWriter.close();
 		}
@@ -69,8 +72,8 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 						Vector<String> data = new Vector<String>();
 						Date aiLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t1);  
 						Date asLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t2);  
-						Date iLKT =  new SimpleDateFormat("dd-MM-yyyy").parse(token[0].substring(0,10));  
-						Date sLKT =  new SimpleDateFormat("dd-MM-yyyy").parse(token[0].substring(0,10));  
+						Date iLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(token[0].substring(0,10));  
+						Date sLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(token[0].substring(0,10));  
 						if (  iLKT.after(aiLKT) && sLKT.before(asLKT))  // TARIH
 						{
 							if(evrak.equals("%%"))  // EVRAK

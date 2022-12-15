@@ -96,9 +96,9 @@ public class KUR_MSSQL implements IKUR{
 		create_table_log();
 		//
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.char_degis(  GLOBAL.LOG_SURUCU + BAGLAN_LOG.kurLogDizin.sERVER) + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU +GLOBAL.char_degis( BAGLAN_LOG.kurLogDizin.sERVER) + VERITABANI + ".DB") == false)
 		{
-			String dsy = GLOBAL.char_degis(  GLOBAL.LOG_SURUCU + BAGLAN_LOG.kurLogDizin.sERVER) + VERITABANI + "_mSSQL"+ ".DB" ;
+			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.kurLogDizin.sERVER) + VERITABANI + "_mSSQL"+ ".DB" ;
 			@SuppressWarnings("unused")
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy ) ;
 			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);

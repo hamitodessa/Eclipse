@@ -30,6 +30,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.TARIH_SAATLI;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JComboBox;

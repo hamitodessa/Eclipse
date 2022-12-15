@@ -95,9 +95,9 @@ public class STOK_MYSQL implements ISTOK {
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.char_degis(  GLOBAL.LOG_SURUCU + BAGLAN_LOG.fatLogDizin.sERVER) + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.fatLogDizin.sERVER) + VERITABANI + ".DB") == false)
 		{
-			String dsy = GLOBAL.char_degis(  GLOBAL.LOG_SURUCU + BAGLAN_LOG.fatLogDizin.sERVER)+ VERITABANI + "_mYSQL"+ ".DB" ;
+			String dsy =   GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.fatLogDizin.sERVER)+ VERITABANI + "_mYSQL"+ ".DB" ;
 			@SuppressWarnings("unused")
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy  ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.fatLogDizin);

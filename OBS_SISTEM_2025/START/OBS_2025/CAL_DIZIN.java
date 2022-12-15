@@ -998,20 +998,27 @@ public class CAL_DIZIN extends JFrame {
 									chckbxL_1 = new JCheckBox("");
 									chckbxL_1.addActionListener(new ActionListener() {
 										public void actionPerformed(ActionEvent e) {
-											if (chckbxL_1.isSelected())
-											{
-												cmblog.setEnabled(true);
-											}
-											else
-											{
-												cmblog.setEnabled(false);
-											}
-										}
+											
+												}
 									});
 									chckbxL_1.setBounds(102, 126, 30, 23);
 									panel.add(chckbxL_1);
 
 									cmblog = new JComboBox<String>();
+									cmblog.addActionListener(new ActionListener() {
+										public void actionPerformed(ActionEvent e) {
+											if (chckbxS.isSelected() && cmblog.getSelectedItem().toString() == "Text Dosya" ||  cmblog.getSelectedItem().toString() == "Dosya")
+											{
+												JOptionPane.showMessageDialog(null,  "Server Seciminde Loglama Dosya ve Text Dosya  Secilemez", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
+												cmblog.setSelectedItem("Veritabani Kayit");
+											}
+										}
+									});
+									cmblog.addItemListener(new ItemListener() {
+										public void itemStateChanged(ItemEvent e) {
+											
+										}
+									});
 									cmblog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani Kayit", "Dosya", "Text Dosya", "Email Atma"}));
 									cmblog.setEnabled(false);
 									cmblog.setBounds(133, 126, 126, 22);

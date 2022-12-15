@@ -1790,13 +1790,15 @@ public class IRSALIYE extends JInternalFrame {
 	          if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 		        {
 	        	  
-				f_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_8.getText(), "I", "C",GLOBAL.KULL_ADI);
+				f_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_8.getText(), "I", "C",GLOBAL.KULL_ADI,
+						 "Irsaliye Dipnot Yaz C "   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
 		 			
 		        }
 	          else
 	          {
 	        	 
-	        		f_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_8.getText(), "I", "G",GLOBAL.KULL_ADI);
+	        		f_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_8.getText(), "I", "G",GLOBAL.KULL_ADI,
+	        				 "Irsaliye Dipnot Yaz G "   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
 		 			
 	          }
 		}
@@ -1811,13 +1813,15 @@ public class IRSALIYE extends JInternalFrame {
 		 if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 	        {
 			 
-			f_Access.dipnot_sil(textField.getText(), "I", "C");
+			f_Access.dipnot_sil(textField.getText(), "I", "C",
+					 "Irsaliye Dipnot Sil  C "   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
 	 			
 	        }
 		 else
 		 {
 			 
-			f_Access.dipnot_sil(textField.getText(), "I", "G");
+			f_Access.dipnot_sil(textField.getText(), "I", "G",
+					 "Irsaliye Dipnot Sil G "   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
 	 			
 		 }
 		}
@@ -1833,15 +1837,19 @@ public class IRSALIYE extends JInternalFrame {
 	        if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 	        {
 	        	 
-	        		f_Access.aciklama_yaz("IRS", 1, textField.getText(),  textField_9.getText(), "C");
-	        		f_Access.aciklama_yaz("IRS", 2, textField.getText(), textField_10.getText(), "C");
+	        		f_Access.aciklama_yaz("IRS", 1, textField.getText(),  textField_9.getText(), "C",
+	        				 "Irsaliye Aciklama Yaz C : " + textField_9.getText()   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+	        		f_Access.aciklama_yaz("IRS", 2, textField.getText(), textField_10.getText(), "C",
+	        				 "Irsaliye Aciklama Yaz C : " + textField_10.getText()   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
 		 			
 	        }
 	        else
 	        {
 	        	 
-	        	f_Access.aciklama_yaz("IRS", 1, textField.getText(),  textField_9.getText(), "G");
-	        	f_Access.aciklama_yaz("IRS", 2, textField.getText(), textField_10.getText(), "G");
+	        	f_Access.aciklama_yaz("IRS", 1, textField.getText(),  textField_9.getText(), "G",
+	        			 "Irsaliye Aciklama Yaz G : " + textField_9.getText()   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+	        	f_Access.aciklama_yaz("IRS", 2, textField.getText(), textField_10.getText(), "G",
+	        			 "Irsaliye Aciklama Yaz G : " + textField_10.getText()   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
 		 			
 	        }
 		}
@@ -1856,13 +1864,15 @@ public class IRSALIYE extends JInternalFrame {
 			 if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 		        {
 				 
-				 f_Access.aciklama_sil("IRS", textField.getText(), "C");
+				 f_Access.aciklama_sil("IRS", textField.getText(), "C",
+						 "Irsaliye Aciklama Sil  C"    , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
 		 			
 		        }
 			 else
 			 {
 				 
-				 f_Access.aciklama_sil("IRS", textField.getText(), "G");
+				 f_Access.aciklama_sil("IRS", textField.getText(), "G",
+						 "Irsaliye Aciklama Sil  G"    , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
 		 			
 			 }
 			}

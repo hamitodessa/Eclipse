@@ -24,6 +24,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -272,7 +273,8 @@ public class GIDECEGI_YER extends JInternalFrame {
 			try
 			{
 				
-					f_Access.gdy_sil(Integer.parseInt(textField_5.getText()));
+					f_Access.gdy_sil(Integer.parseInt(textField_5.getText()),
+							 "Gid Yer  Sil"    ,textField_5.getText() ,BAGLAN_LOG.fatLogDizin);
 				
 				 temizle();
 				doldur();
@@ -291,12 +293,14 @@ public class GIDECEGI_YER extends JInternalFrame {
 			if ( ! textField_5.getText().equals(""))
 			{
 				 
-					f_Access.gdy_sil(Integer.parseInt(textField_5.getText()));
+					f_Access.gdy_sil(Integer.parseInt(textField_5.getText()),
+							 "Gid Yer  Sil"    ,textField_5.getText() ,BAGLAN_LOG.fatLogDizin);
 					
 			}
 			
 			
-			f_Access.gdy_kayit(textField_1.getText(),textField_2.getText(), textField_3.getText(), textField_4.getText(),GLOBAL.KULL_ADI);
+			f_Access.gdy_kayit(textField_1.getText(),textField_2.getText(), textField_3.getText(), textField_4.getText(),GLOBAL.KULL_ADI,
+					 "Gid Yer  Kayit :"  + textField_1.getText()  ,"" ,BAGLAN_LOG.fatLogDizin);
 			
 			temizle();
 			doldur();

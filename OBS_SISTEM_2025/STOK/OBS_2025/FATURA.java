@@ -1920,13 +1920,12 @@ public class FATURA extends JInternalFrame {
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
 
-				f_Access.stok_sil(textField.getText(), "FAT", "C");
-
+				f_Access.stok_sil(textField.getText(), "FAT", "C","Fatura Stok Silme", textField.getText(), BAGLAN_LOG.fatLogDizin);
 			}
 			else
 			{
 
-				f_Access.stok_sil(textField.getText(), "FAT", "G");
+				f_Access.stok_sil(textField.getText(), "FAT", "G","Fatura Stok Silme", textField.getText(), BAGLAN_LOG.fatLogDizin);
 
 			}
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
@@ -2025,7 +2024,8 @@ public class FATURA extends JInternalFrame {
 			fiat = Double.parseDouble( mdl.getValueAt(sat,3).toString());
 
 			f_Access.stk_kaydet(textField.getText(), "FAT", tar, depo,  mdl.getValueAt(sat,1).toString(), miktar, fiat
-					,(double) Math.round(tutar), kdvlitut, har, izah, anagrp, altgrp, kur, "", txtdoviz.getText(), txtcari.getText(),GLOBAL.KULL_ADI);
+					,(double) Math.round(tutar), kdvlitut, har, izah, anagrp, altgrp, kur, "", txtdoviz.getText(), txtcari.getText(),GLOBAL.KULL_ADI,
+				 "Fatura Stok Kayit  H:"+ har + "   Kod:" + mdl.getValueAt(sat,1).toString() + " Miktar:" + miktar + " Fiat:" + fiat  ,textField.getText(),BAGLAN_LOG.fatLogDizin);
 
 		}
 		catch (Exception ex)
@@ -2050,14 +2050,14 @@ public class FATURA extends JInternalFrame {
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
 
-				f_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_8.getText(), "F", "C",GLOBAL.KULL_ADI);
+				f_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_8.getText(), "F", "C",GLOBAL.KULL_ADI,
+						 "Fatura Dip Not Yaz : "  +textField_5.getText()  ,textField.getText(),BAGLAN_LOG.fatLogDizin);
 
 			}
 			else
 			{
-
-				f_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_8.getText(), "F", "G",GLOBAL.KULL_ADI);
-
+				f_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_8.getText(), "F", "G",GLOBAL.KULL_ADI,
+						 "Fatura Dip Not Kayit :"+ textField_5.getText()    ,textField.getText(),BAGLAN_LOG.fatLogDizin);
 			}
 		}
 		catch (Exception ex)
@@ -2071,13 +2071,14 @@ public class FATURA extends JInternalFrame {
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
 
-				f_Access.dipnot_sil(textField.getText(), "F", "C");
-
+				f_Access.dipnot_sil(textField.getText(), "F", "C",
+						 "Fatura Dip Not Sil "    ,textField.getText(),BAGLAN_LOG.fatLogDizin);
 			}
 			else
 			{
 
-				f_Access.dipnot_sil(textField.getText(), "F", "G");
+				f_Access.dipnot_sil(textField.getText(), "F", "G",
+						 "Fatura Dip Not Sil "   ,textField.getText(),BAGLAN_LOG.fatLogDizin);
 
 			}
 		}
@@ -2093,15 +2094,19 @@ public class FATURA extends JInternalFrame {
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
 
-				f_Access.aciklama_yaz("FAT", 1, textField.getText(),  textField_9.getText(), "C");
-				f_Access.aciklama_yaz("FAT", 2, textField.getText(), textField_10.getText(), "C");
+				f_Access.aciklama_yaz("FAT", 1, textField.getText(),  textField_9.getText(), "C" ,
+						 "Fatura Aciklama Yaz  C : "  +  textField_9.getText()  ,textField.getText(),BAGLAN_LOG.fatLogDizin);
+				f_Access.aciklama_yaz("FAT", 2, textField.getText(), textField_10.getText(), "C",
+						 "Fatura Aciklama Yaz  C : "  +  textField_10.getText()  ,textField.getText(),BAGLAN_LOG.fatLogDizin);
 
 			}
 			else
 			{
 
-				f_Access.aciklama_yaz("FAT", 1, textField.getText(),  textField_9.getText(), "G");
-				f_Access.aciklama_yaz("FAT", 2, textField.getText(), textField_10.getText(), "G");
+				f_Access.aciklama_yaz("FAT", 1, textField.getText(),  textField_9.getText(), "G",
+						 "Fatura Aciklama Yaz  Giris :" + textField_9.getText()    ,textField.getText(),BAGLAN_LOG.fatLogDizin);
+				f_Access.aciklama_yaz("FAT", 2, textField.getText(), textField_10.getText(), "G",
+						 "Fatura Aciklama Yaz  Giris :" + textField_10.getText()    ,textField.getText(),BAGLAN_LOG.fatLogDizin);
 
 			}
 		}
@@ -2116,14 +2121,14 @@ public class FATURA extends JInternalFrame {
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
 
-				f_Access.aciklama_sil("FAT", textField.getText(), "C");
-
+				f_Access.aciklama_sil("FAT", textField.getText(), "C",
+						 "Fatura Aciklama Sil  Cikis "    ,textField.getText(),BAGLAN_LOG.fatLogDizin);
 			}
 			else
 			{
 
-				f_Access.aciklama_sil("FAT", textField.getText(), "G");
-
+				f_Access.aciklama_sil("FAT", textField.getText(), "G",
+						 "Fatura Aciklama Sil  Giris "    ,textField.getText(),BAGLAN_LOG.fatLogDizin);
 			}
 		}
 		catch (Exception ex)

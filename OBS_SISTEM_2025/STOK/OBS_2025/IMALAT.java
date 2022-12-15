@@ -28,6 +28,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
+import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.DoubleEditor;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
@@ -1416,7 +1417,7 @@ public class IMALAT extends JInternalFrame {
 	{
 		try {
 
-			f_Access.stok_sil(textField.getText(), "URE", "C");
+			f_Access.stok_sil(textField.getText(), "URE", "C","Imalat Stok Silme", textField.getText(), BAGLAN_LOG.fatLogDizin);
 
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
@@ -1497,7 +1498,8 @@ public class IMALAT extends JInternalFrame {
 			}
 
 			f_Access.stk_kaydet(textField.getText(), "URE", tar, depo,  mdl.getValueAt(i,1).toString(), miktar, fiat
-					,KUSUR_YUVARLA. round(tutar,2),KUSUR_YUVARLA. round(tutar,2), "C", izahat, angrp, altgrp,0, "", txtdoviz.getText(),"",GLOBAL.KULL_ADI);
+					,KUSUR_YUVARLA. round(tutar,2),KUSUR_YUVARLA. round(tutar,2), "C", izahat, angrp, altgrp,0, "", txtdoviz.getText(),"",GLOBAL.KULL_ADI,
+					 "Imalat Stok Cikan Kayit  Kod:" + mdl.getValueAt(i,1).toString() + " Miktar:" + miktar + " Fiat:" + fiat  ,textField.getText(),BAGLAN_LOG.fatLogDizin);
 
 		}
 		catch (Exception ex)
@@ -1509,7 +1511,7 @@ public class IMALAT extends JInternalFrame {
 	{
 		try {
 
-			f_Access.stok_sil(textField.getText(), "URE", "G");
+			f_Access.stok_sil(textField.getText(), "URE", "G","Imalat Stok Silme", textField.getText(), BAGLAN_LOG.fatLogDizin);
 
 			double  miktar, tutar,fiat ;
 			int angrp, altgrp, depo;
@@ -1558,7 +1560,8 @@ public class IMALAT extends JInternalFrame {
 			}
 
 			f_Access.stk_kaydet(textField.getText(), "URE", tar, depo,textField_1.getText()  , miktar, fiat
-					, KUSUR_YUVARLA.round(tutar,2),KUSUR_YUVARLA.round(tutar,2), "G", textField.getText() + " Nolu Fis Ile Uretim ", angrp, altgrp,0, "", txtdoviz.getText(),"",GLOBAL.KULL_ADI);
+					, KUSUR_YUVARLA.round(tutar,2),KUSUR_YUVARLA.round(tutar,2), "G", textField.getText() + " Nolu Fis Ile Uretim ", angrp, altgrp,0, "", txtdoviz.getText(),"",GLOBAL.KULL_ADI,
+					 "Imalat Stok Giren Kayit  Kod:" + textField_1.getText()  + " Miktar:" + miktar + " Fiat:" + fiat  ,textField.getText(),BAGLAN_LOG.fatLogDizin);
 
 		}
 		catch (Exception ex)
@@ -1571,7 +1574,8 @@ public class IMALAT extends JInternalFrame {
 		try {
 			acik_sil();
 
-			f_Access.aciklama_yaz("URE", 1, textField.getText(),  textArea.getText(), "G");
+			f_Access.aciklama_yaz("URE", 1, textField.getText(),  textArea.getText(), "G",
+					 "Imalat Acik Yaz G :"  + textArea.getText() , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
 
 		}
 		catch (Exception ex)
@@ -1583,7 +1587,8 @@ public class IMALAT extends JInternalFrame {
 	{
 		try {
 
-			f_Access.aciklama_sil("URE", textField.getText(), "G");
+			f_Access.aciklama_sil("URE", textField.getText(), "G",
+					 "Imalat Acik Sil  G "   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
 
 		}
 		catch (Exception ex)
@@ -1630,8 +1635,8 @@ public class IMALAT extends JInternalFrame {
 			if(g != 0 ) { return;	}
 			long startTime = System.currentTimeMillis();
 
-			f_Access.stok_sil(textField.getText(),  "URE", "G");
-			f_Access.stok_sil(textField.getText(),  "URE", "C");
+			f_Access.stok_sil(textField.getText(),  "URE", "G","Imalat Stok Silme", textField.getText(), BAGLAN_LOG.fatLogDizin);
+			f_Access.stok_sil(textField.getText(),  "URE", "C","Imalat Stok Silme", textField.getText(), BAGLAN_LOG.fatLogDizin);
 
 			acik_sil();
 			textField.setText("");

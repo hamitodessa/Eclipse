@@ -55,6 +55,7 @@ import javax.swing.event.TableModelListener;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.BAGLAN;
+import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
@@ -515,19 +516,28 @@ public class YIL_SONU extends JInternalFrame {
                		String str =TARIH_CEVIR.tarih_geri(dateChooser);
  					double sifir = 0 ;
                    	c_Access.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str, 
-           			enumara, "", 1.0, sifir,textField_1.getText(),"", 1.0,sifir,"Devir Islemi...", "D", GLOBAL.KULL_ADI);
+           			enumara, "", 1.0, sifir,textField_1.getText(),"", 1.0,sifir,"Devir Islemi...", "D", GLOBAL.KULL_ADI,
+           			"A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +sifir + " Msj:" +"Devir Islemi..." ,
+           			String.valueOf(enumara) ,
+					BAGLAN_LOG.cariLogDizin);
                 }
                else if (uc < 0)  // 'Borclu hesaplar -0.001
                 {
                		String str =TARIH_CEVIR.tarih_geri(dateChooser);
 			        c_Access.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str,enumara, "",
-                  			 1.0, uc, textField_1.getText(),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI);
+                  			 1.0, uc, textField_1.getText(),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI,
+                  			"A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +uc + " Msj:" +"Devir Islemi..." ,
+                   			String.valueOf(enumara) ,
+        					BAGLAN_LOG.cariLogDizin);
                 }
                else if (uc > 0 )  //   'Alacakli hesaplar  0.001
                {
                    	String str =TARIH_CEVIR.tarih_geri(dateChooser);
  			       c_Access.yilsonu_cari_dekont_kaydet(textField_1.getText(), str, 
-               			enumara, "",1.0, uc,rs.getString("HESAP"),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI);
+               			enumara, "",1.0, uc,rs.getString("HESAP"),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI,
+               			"A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +uc + " Msj:" +"Devir Islemi..." ,
+               			String.valueOf(enumara) ,
+    					BAGLAN_LOG.cariLogDizin);
                }
 		     }
 		      

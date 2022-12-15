@@ -21,6 +21,7 @@ import javax.swing.table.TableColumn;
 
 import org.apache.commons.lang.StringUtils;
 
+import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.DoubleEditor;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
@@ -825,7 +826,8 @@ public class RECETE extends JInternalFrame {
 		try {
 		 aciklama_sil();
 		
-			f_Access.aciklama_yaz("REC", 1,textField.getText(), textArea.getText(), "G");
+			f_Access.aciklama_yaz("REC", 1,textField.getText(), textArea.getText(), "G",
+					 "Recete Aciklama Yaz  G :" +  textArea.getText()   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
 		
 	}
 	   catch (Exception ex)
@@ -837,7 +839,8 @@ public class RECETE extends JInternalFrame {
 	{
 		try {
 		
-		f_Access.aciklama_sil("REC", textField.getText(), "G");
+		f_Access.aciklama_sil("REC", textField.getText(), "G",
+				 "Recete Aciklama Sil G"    , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
 		
 	}
 	   catch (Exception ex)

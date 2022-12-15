@@ -11,16 +11,16 @@ public class BILGI_OKU_LOG {
 				dIZIN.kULLANICI = oDIZIN.kULLANICI;
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
 				dIZIN.cONN_STR =  "localhost;instanceName=" + oDIZIN.iNSTANCE + " ; database=" + dOSYA_BASLANGIC  + oDIZIN.kOD + "_LOG";
-				dIZIN.mODUL =    dOSYA_BASLANGIC  + oDIZIN.kOD + "_mSSQL" + ".DB" ;
-				dIZIN.mODULADI =    dOSYA_BASLANGIC  + oDIZIN.kOD  ;
+				dIZIN.mODUL =    dOSYA_BASLANGIC  + oDIZIN.kOD + "_mSSQL" + ".DB" ;   //SQLITE
+				dIZIN.mODULADI =    dOSYA_BASLANGIC  + oDIZIN.kOD  ;//TEXT DOSYA
 			}
 			else  if (oDIZIN.hAN_SQL.toString().equals("MY SQL") == true)
 			{
 				dIZIN.kULLANICI = oDIZIN.kULLANICI;
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
 				dIZIN.cONN_STR =  "localhost/" + dOSYA_BASLANGIC  + oDIZIN.kOD + "_log";
-				dIZIN.mODUL =    dOSYA_BASLANGIC  + oDIZIN.kOD + "_mYSQL" + ".DB" ;
-				dIZIN.mODULADI =  dOSYA_BASLANGIC  + oDIZIN.kOD  ;
+				dIZIN.mODUL =    dOSYA_BASLANGIC  + oDIZIN.kOD + "_mYSQL" + ".DB" ;//SQLITE
+				dIZIN.mODULADI =  dOSYA_BASLANGIC  + oDIZIN.kOD  ;//TEXT DOSYA
 			}
 		}
 		else
@@ -30,16 +30,16 @@ public class BILGI_OKU_LOG {
 				dIZIN.kULLANICI = oDIZIN.kULLANICI;
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
 				dIZIN.cONN_STR = oDIZIN.sERVER + ";instanceName=" + oDIZIN.iNSTANCE + " ; database=" +  dOSYA_BASLANGIC + oDIZIN.kOD + "_LOG";
-				dIZIN.mODUL =   GLOBAL.char_degis( oDIZIN.sERVER) +  dOSYA_BASLANGIC  + oDIZIN.kOD + "_mSSQL" + ".DB" ;
-				dIZIN.mODULADI =  GLOBAL.char_degis( oDIZIN.sERVER) +  dOSYA_BASLANGIC  + oDIZIN.kOD  ;
+				dIZIN.mODUL =   GLOBAL.char_degis( oDIZIN.sERVER) +  dOSYA_BASLANGIC  + oDIZIN.kOD + "_mSSQL" + ".DB" ;//SQLITE
+				dIZIN.mODULADI =  GLOBAL.char_degis( oDIZIN.sERVER) +  dOSYA_BASLANGIC  + oDIZIN.kOD  ;//TEXT DOSYA
 			}
 			else  if (oDIZIN.hAN_SQL.toString().equals("MY SQL") == true)
 			{
 				dIZIN.kULLANICI = oDIZIN.kULLANICI;
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
 				dIZIN.cONN_STR =  oDIZIN.sERVER + "/" +  dOSYA_BASLANGIC + oDIZIN.kOD + "_log";
-				dIZIN.mODUL =   GLOBAL.char_degis( oDIZIN.sERVER) +  dOSYA_BASLANGIC  + oDIZIN.kOD + "_mYSQL" + ".DB" ;
-				dIZIN.mODULADI =   GLOBAL.char_degis( oDIZIN.sERVER) + dOSYA_BASLANGIC  + oDIZIN.kOD  ;
+				dIZIN.mODUL =   GLOBAL.char_degis( oDIZIN.sERVER) +  dOSYA_BASLANGIC  + oDIZIN.kOD + "_mYSQL" + ".DB" ;//SQLITE
+				dIZIN.mODULADI =   GLOBAL.char_degis( oDIZIN.sERVER) + dOSYA_BASLANGIC  + oDIZIN.kOD  ;//TEXT DOSYA
 			}
 		}
 	}

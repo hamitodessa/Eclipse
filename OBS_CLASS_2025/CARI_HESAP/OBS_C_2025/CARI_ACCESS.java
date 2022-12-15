@@ -78,7 +78,6 @@ public class CARI_ACCESS {
 		_ICari.evrak_yoket(num);
 		if (BAGLAN.cariDizin.lOG == true)
 		{
-		
 		for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(mesaj,evrak, dBILGI);
 		}
@@ -165,12 +164,10 @@ public class CARI_ACCESS {
 		_ICari.hsp_sil(hesap);
 		for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(mesaj,evrak, dBILGI);
-		
 	}
 	public void hpln_kayit(String kodu,String adi,String karton,String hcins,String usr, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_ICari.hpln_kayit(kodu, adi, karton, hcins, usr);
-
 		for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
@@ -257,9 +254,12 @@ public class CARI_ACCESS {
 	}
 	public void yilsonu_cari_dekont_kaydet(String bhes,String tar,int evrak,String bcins,Double bkur,Double borc ,
 
-			String alhes,String acins,Double alkur,Double alacak,String izahat,String kod,String user) throws ClassNotFoundException, SQLException
+			String alhes,String acins,Double alkur,Double alacak,String izahat,String kod,String user
+			, String mesaj,String evrakk, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_ICari.yilsonu_cari_dekont_kaydet(bhes, tar, evrak, bcins, bkur, borc, alhes, acins, alkur, alacak, izahat, kod, user);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(mesaj,evrakk, dBILGI);
 	}
 	public ResultSet ekstre_sqlite() throws ClassNotFoundException, SQLException
 	{

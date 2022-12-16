@@ -112,9 +112,9 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		create_table_log();
 		//
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.cariLogDizin.sERVER) + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.cariLogDizin.mODUL)) == false)
 		{
-			String dsy =  GLOBAL.LOG_SURUCU +  GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.sERVER) + VERITABANI + "_mSSQL"+ ".DB" ;
+			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODUL) ;
 			@SuppressWarnings("unused")
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy   ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.cariLogDizin);

@@ -99,9 +99,9 @@ public class ADRES_MSSQL implements IADRES {
 		create_table_log();
 		//
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol( GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.adrLogDizin.sERVER)+ VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol( GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.adrLogDizin.mODUL)) == false)
 		{
-			String dsy =   GLOBAL.LOG_SURUCU +GLOBAL.char_degis( BAGLAN_LOG.adrLogDizin.sERVER)+ VERITABANI + "_mSSQL"+ ".DB" ;
+			String dsy =   GLOBAL.LOG_SURUCU +GLOBAL.char_degis( BAGLAN_LOG.adrLogDizin.mODUL) ;
 			@SuppressWarnings("unused")
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.adrLogDizin);

@@ -1985,7 +1985,6 @@ public class CAL_DIZIN extends JFrame {
 	private void lOGG_AKTAR(String mODUL)
 	{
 		String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
-
 		if (hangi.equals("MS SQL"))
 		{
 			if (mODUL == "Cari Hesap")
@@ -2024,7 +2023,6 @@ public class CAL_DIZIN extends JFrame {
 				oac._ISms_Loger  = ilogg;
 			}
 		}
-
 		else if (hangi.equals("MY SQL"))
 		{
 			if (mODUL == "Cari Hesap")

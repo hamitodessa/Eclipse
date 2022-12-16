@@ -99,7 +99,6 @@ public class LOGIN extends JFrame {
 	private JTextField txtUser;
 	private JPasswordField txtpwd;
 	private JProgressBar progressBar;
-
 	private static  JCheckBox chckbxhatirla;
 	private JButton btndevam;
 	private JButton btncdizin;
@@ -121,7 +120,6 @@ public class LOGIN extends JFrame {
 	});
 	}
 	public LOGIN() throws IOException {
-
 		LOGIN.setDefaultLookAndFeelDecorated(true);
 		try {
 			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal"))
@@ -150,9 +148,7 @@ public class LOGIN extends JFrame {
 						oac.txt_yukseklik = 25;
 					}
 				}
-
 			}
-
 		} 
 		catch (Exception ex) 
 		{
@@ -163,8 +159,6 @@ public class LOGIN extends JFrame {
 		setTitle("OBS SISTEM GIRIS");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 493, 229);
-
-
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -184,7 +178,6 @@ public class LOGIN extends JFrame {
 		panel.setBorder(null);
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
-
 
 		JLabel lblicon = new JLabel("");
 		lblicon.setBounds(29, 11, 137, 134);
@@ -261,7 +254,6 @@ public class LOGIN extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				try {
-
 					String passText = new String(txtpwd.getPassword());
 					String encodedString = Base64.getEncoder().encodeToString(passText.getBytes());
 					boolean varmi =	oac.uSER_ISL.user_var(txtUser.getText(),encodedString);
@@ -338,14 +330,12 @@ public class LOGIN extends JFrame {
 						fat_kont();
 						kam_kont();
 						gun_kont();
-
 						Thread.currentThread().isInterrupted();
 						///************************************
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
 						obmain.setTitle("OBS SISTEM" + "               " + GLOBAL.KULL_ADI);
 						obmain.setVisible(true);
 						// 
-
 						dispose();
 						//*************************************
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -391,7 +381,6 @@ public class LOGIN extends JFrame {
 			txtpwd.setText(decodedString);
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
-
 	}
 	void cari_kont() throws ClassNotFoundException, SQLException
 	{
@@ -408,7 +397,6 @@ public class LOGIN extends JFrame {
 			}
 			else 
 			{ 
-
 				BAGLAN.cariDizin.fIRMA_ADI =  oac._ICar.cari_firma_adi() ;
 				qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
 				OBS_MAIN.lblNewLabel_1.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "/ " + BAGLAN.cariDizin.fIRMA_ADI + "/ " + qwe );
@@ -902,9 +890,7 @@ public class LOGIN extends JFrame {
 	}
 	void gun_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
-
 		CONNECT s_CONN = new CONNECT(oac._IGunlukCon);
-
 		if (BAGLAN.gunDizin.yER.equals(""))
 		{
 			OBS_SIS_2025_ANA_CLASS.GUN_CONN = false;

@@ -82,7 +82,6 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
 
-
 public class LOGIN extends JFrame {
 	/**
 	 * 

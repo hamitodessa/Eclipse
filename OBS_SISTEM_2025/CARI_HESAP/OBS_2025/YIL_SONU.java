@@ -28,7 +28,6 @@ import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
@@ -54,7 +53,6 @@ import javax.swing.event.TableModelListener;
 
 import com.toedter.calendar.JDateChooser;
 
-import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
@@ -105,72 +103,72 @@ public class YIL_SONU extends JInternalFrame {
 		setIconifiable(true);
 		setTitle("YIL SONU AKTARMA");
 		setBounds(0, 0, 700, 600);
-		
+
 		JSplitPane splitPaneana = new JSplitPane();
 		splitPaneana.setDividerSize(0);
 		splitPaneana.setResizeWeight(1.0);
 		splitPaneana.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPaneana, BorderLayout.CENTER);
-		
+
 		JSplitPane splitPane1 = new JSplitPane();
 		splitPane1.setDividerSize(1);
 		splitPane1.setResizeWeight(0.0);
 		splitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPaneana.setLeftComponent(splitPane1);
-		
+
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(new Color(0, 191, 255)));
 		panel_3.setMinimumSize(new Dimension(0, 25));
 		panel_3.setMaximumSize(new Dimension(0, 25));
-			
+
 		splitPaneana.setRightComponent(panel_3);
 		panel_3.setLayout(null);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Secilen Kayit Sayisi:");
 		lblNewLabel_2.setBounds(10, 5, 118, 14);
 		panel_3.add(lblNewLabel_2);
-		
+
 		lblNewLabel_3 = new JLabel("0");
 		lblNewLabel_3.setBounds(138, 5, 56, 14);
 		panel_3.add(lblNewLabel_3);
 		lblNewLabel_3.setForeground(Color.BLUE);
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane1.setRightComponent(scrollPane);
-	
+
 		table = new JTable(){
 			@Override
 			public boolean isCellEditable(int row, int column) {  
-				 switch (column) {
-		         case 0:
-		             return true;
-		           default:
-		             return false;
-		      }
+				switch (column) {
+				case 0:
+					return true;
+				default:
+					return false;
 				}
+			}
 		};
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setGridColor(oac.gridcolor);
 		scrollPane.setViewportView(table);
-		
+
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 80));
 		panel.setMaximumSize(new Dimension(0, 80));
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		splitPane1.setLeftComponent(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Yazilacak Firma Kodu");
 		lblNewLabel.setBounds(10, 11, 136, 14);
 		panel.add(lblNewLabel);
-		
+
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setBounds(10, 30, 77, 20);
 		panel.add(textField);
 		textField.setColumns(10);
-		
+
 		chckbxNewCheckBox = new JCheckBox("Mizan Aktar");
 		chckbxNewCheckBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -186,62 +184,62 @@ public class YIL_SONU extends JInternalFrame {
 		});
 		chckbxNewCheckBox.setBounds(160, 7, 115, 23);
 		panel.add(chckbxNewCheckBox);
-		
+
 		panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mizan Devir Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		panel_1.setBounds(281, 5, 391, 63);
 		panel_1.setVisible(false);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
-		
+
 		dateChooser = new JDateChooser();
 		dateChooser.setBounds(10, 20, 114, 22);
 		dateChooser.setDateFormatString("dd.MM.yyyy");
-        dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
-        dateChooser.setDate(new Date());
-        
-        dateChooser.getComponent(1).addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-            @Override
-            public void keyPressed(KeyEvent e) {
-            	if(e.getKeyCode()==KeyEvent.VK_DOWN) {
-                	SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
-            		Date date;
-    				try {
-    					date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dateChooser));
-    					Calendar cal = Calendar.getInstance();
-    	        		cal.setTime(date);
-    	        		cal.add(Calendar.DAY_OF_MONTH, -1); 
-    	        		dateChooser.setDate(new Date(cal.getTimeInMillis()));
-    				} catch (ParseException e1) {
-    					// TODO Auto-generated catch block
-    					e1.printStackTrace();
-    				}
-                }
-            	else if(e.getKeyCode()==KeyEvent.VK_UP) {
-                	SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
-            		Date date;
-    				try {
-    					date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dateChooser));
-    					Calendar cal = Calendar.getInstance();
-    	        		cal.setTime(date);
-    	        		cal.add(Calendar.DAY_OF_MONTH, 1); // Add 30 days
-    	        			        		
-    	        		dateChooser.setDate(new Date(cal.getTimeInMillis()));
-    				} catch (ParseException e1) {
-    					// TODO Auto-generated catch block
-    					e1.printStackTrace();
-    				}
-                }
-            }
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
+		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
+		dateChooser.setDate(new Date());
+
+		dateChooser.getComponent(1).addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
+					Date date;
+					try {
+						date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dateChooser));
+						Calendar cal = Calendar.getInstance();
+						cal.setTime(date);
+						cal.add(Calendar.DAY_OF_MONTH, -1); 
+						dateChooser.setDate(new Date(cal.getTimeInMillis()));
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else if(e.getKeyCode()==KeyEvent.VK_UP) {
+					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
+					Date date;
+					try {
+						date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dateChooser));
+						Calendar cal = Calendar.getInstance();
+						cal.setTime(date);
+						cal.add(Calendar.DAY_OF_MONTH, 1); // Add 30 days
+
+						dateChooser.setDate(new Date(cal.getTimeInMillis()));
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 		panel_1.add(dateChooser);
-		
+
 		textField_1 = new JTextField();
 		textField_1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -284,271 +282,271 @@ public class YIL_SONU extends JInternalFrame {
 			public void changedUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
 			}
-			
+
 		});
 		panel_1.add(textField_1);
-		
+
 		lblNewLabel_1 = new JLabel("....");
 		lblNewLabel_1.setBounds(148, 42, 233, 14);
 		panel_1.add(lblNewLabel_1);
-		
-		doldur();
-		
-		//***********
-				table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
-		       			{
 
-					public void tableChanged(TableModelEvent e) 
-	       			{
-	 	   				  TableModel model = (TableModel)e.getSource();
-	  			   			if (model.getRowCount() > 0) {
-	   			   			int row;
-	 		   				row = table.getSelectedRow();     //e.getFirstRow();
-	   			   		    int column = e.getColumn();
-	   			   		  //      Object data = model.getValueAt(row, column);
-	   			   		 secilen_satir();
-	  						}
-	       						}
-						
-		  		   			});
-			//****
+		doldur();
+
+		//***********
+		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
+		{
+
+			public void tableChanged(TableModelEvent e) 
+			{
+				TableModel model = (TableModel)e.getSource();
+				if (model.getRowCount() > 0) {
+					int row;
+					row = table.getSelectedRow();     //e.getFirstRow();
+					int column = e.getColumn();
+					//      Object data = model.getValueAt(row, column);
+					secilen_satir();
+				}
+			}
+
+		});
+		//****
 	}
 	private void doldur()
 	{
 		try
 		{
 			getContentPane().setCursor(oac.WAIT_CURSOR);
-		ResultSet	rs = null;
-		rs = c_Access.hp_pln();
-		if (!rs.isBeforeFirst() ) {  
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-		    return;
-		}
-		table.setModel(DbUtils.resultSetToTableModel(rs));
-		
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		model.addColumn("Sec",Boolean);
-	    table.moveColumn(table.getColumnCount()-1, 0);
-		
-        JTableHeader th = table.getTableHeader();
-		TableColumnModel tcm = th.getColumnModel();
-        TableColumn tc;
-        
-        tc = tcm.getColumn(0);
-		tc.setHeaderRenderer(new SOLA());
-		JCheckBox checkBox = new JCheckBox();
-		checkBox.setHorizontalAlignment(JCheckBox.CENTER);
-		DefaultCellEditor dce = new DefaultCellEditor( checkBox );
-		table.getColumnModel().getColumn(0).setCellEditor(dce);
-	    tc.setCellRenderer(new CheckBoxRenderer());
-		tc.setMinWidth(50);
-       
-		tc = tcm.getColumn(1);
-		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(100);
-		
-		tc = tcm.getColumn(2);
-		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(275);
+			ResultSet	rs = null;
+			rs = c_Access.hp_pln();
+			if (!rs.isBeforeFirst() ) {  
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				return;
+			}
+			table.setModel(DbUtils.resultSetToTableModel(rs));
 
-		tc = tcm.getColumn(3);
-		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(50);
-		
-		tc = tcm.getColumn(4);
-		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(60);
-		
-		tc = tcm.getColumn(5);
-		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(50);
-		
-		th.repaint();
-		table.setRowSelectionInterval(0, 0);
-		table.setRowHeight(22);
-		
-	    Dimension dd = table.getPreferredSize();
-	    dd.height = 30;
-	    th.setPreferredSize(dd); 
-	    //
-	    tc = tcm.getColumn(0);
-		tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
-	    //
-	    th.repaint();
-	    
-		table.setSelectionBackground(Color.PINK);
-		table.setSelectionForeground(Color.BLUE);
-		
-		String deger;
-		String[] parts;
-		Font bigFont;
-		deger = GLOBAL.setting_oku("CARI_HSPPLN").toString();
-		deger = deger.substring(1, deger.length()-1);
-		parts = deger.split(",");
-		bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-		table.setFont(bigFont);
-		getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addColumn("Sec",Boolean);
+			table.moveColumn(table.getColumnCount()-1, 0);
+
+			JTableHeader th = table.getTableHeader();
+			TableColumnModel tcm = th.getColumnModel();
+			TableColumn tc;
+
+			tc = tcm.getColumn(0);
+			tc.setHeaderRenderer(new SOLA());
+			JCheckBox checkBox = new JCheckBox();
+			checkBox.setHorizontalAlignment(JCheckBox.CENTER);
+			DefaultCellEditor dce = new DefaultCellEditor( checkBox );
+			table.getColumnModel().getColumn(0).setCellEditor(dce);
+			tc.setCellRenderer(new CheckBoxRenderer());
+			tc.setMinWidth(50);
+
+			tc = tcm.getColumn(1);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(100);
+
+			tc = tcm.getColumn(2);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(275);
+
+			tc = tcm.getColumn(3);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(50);
+
+			tc = tcm.getColumn(4);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(60);
+
+			tc = tcm.getColumn(5);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(50);
+
+			th.repaint();
+			table.setRowSelectionInterval(0, 0);
+			table.setRowHeight(22);
+
+			Dimension dd = table.getPreferredSize();
+			dd.height = 30;
+			th.setPreferredSize(dd); 
+			//
+			tc = tcm.getColumn(0);
+			tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+			//
+			th.repaint();
+
+			table.setSelectionBackground(Color.PINK);
+			table.setSelectionForeground(Color.BLUE);
+
+			String deger;
+			String[] parts;
+			Font bigFont;
+			deger = GLOBAL.setting_oku("CARI_HSPPLN").toString();
+			deger = deger.substring(1, deger.length()-1);
+			parts = deger.split(",");
+			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			table.setFont(bigFont);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		} 
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			 JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
+			JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 		}
 	}
 	private int satir_kontrol()
 	{
-		 int satir = 0 ;
-		 DefaultTableModel modell = (DefaultTableModel)table.getModel();
-	     for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
-	     {
-	    	if ( modell.getValueAt(i,5) != null) 
-	    		{
-	    		if (  (boolean) modell.getValueAt(i,5) )
-	            {
- 	                satir += 1 ;
-	            }
-	    		};
-            
-	     }
-	        return satir ;
+		int satir = 0 ;
+		DefaultTableModel modell = (DefaultTableModel)table.getModel();
+		for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
+		{
+			if ( modell.getValueAt(i,5) != null) 
+			{
+				if (  (boolean) modell.getValueAt(i,5) )
+				{
+					satir += 1 ;
+				}
+			};
+
+		}
+		return satir ;
 	}
 	private void secilen_satir()
 	{
-	
+
 		lblNewLabel_3.setText(FORMATLAMA.doub_0(satir_kontrol()));
 	}
 	public static void kaydet()
 	{
 		try 
 		{
-		  if (textField.getText().equals(""))
-		  {
-            JOptionPane.showMessageDialog(null,  "Aktarma Yapilacak Veritabani Kodu Bos..."); 	
-            return ;
-		  }     
-		 if (chckbxNewCheckBox.isSelected() )
-		 {
-			 if (textField_1.getText().equals(""))
-			 {
-               JOptionPane.showMessageDialog(null, "Devir Karsi Hesap Kodu Bos..."); 	
-               return ;
-			 }
-		 }
-		c_Access.akt_baglan(textField.getText());
-		 int kaysay = 0 ;
-		 DefaultTableModel model = (DefaultTableModel) table.getModel();
-		 for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
-		 {
-			 boolean durum =  model.getValueAt(i, 5) != null ?    (boolean) model.getValueAt(i, 5) : false;
-		     if (durum) 
-            {
-                kaysay += 1 ;
-            }
-		 }
-       	int g = JOptionPane.showOptionDialog( null,  "Aktarilacak Kayit Sayisi.. =" + kaysay, "Aktarma",   JOptionPane.YES_NO_OPTION,
-       	   		JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
-   	        if(g != 0 ) { return;	}	
-   	     int sayi = 0 ;
-   	    	sayi =c_Access.hesap_plani_kayit_adedi() ;
-	     
-  	     JOptionPane.showMessageDialog(null, "Aktarilacak Dosyadaki Kayit Sayisi.....:" + sayi); 
-   	     int say   = 0 ;
-   	     for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
-   	     {
-   	    	 boolean durum =  model.getValueAt(i, 5) != null ?    (boolean) model.getValueAt(i, 5) : false;
-		     if (durum) 
-   			{
-		    	 c_Access.yilsonu_hpln_kayit(model.getValueAt(i, 0).toString(),
-   						model.getValueAt(i, 1).toString(), model.getValueAt(i, 2).toString(), 
-   						model.getValueAt(i, 3).toString(), GLOBAL.KULL_ADI);
-		    	 c_Access.yilsonu_hpln_detay_kayit(model.getValueAt(i, 0).toString(), "", "", "", "", "", "", "" 
-                        , "", "", "", "", "", "", "", "", "" 
-                       , "", "");
-            say += 1;
-   			}
-   	     	}
-   	  		JOptionPane.showMessageDialog(null,  "Hesap Plani Aktarma Islemi Basari ile gerceklestirildi...." 
-   	  						+ System.lineSeparator() + System.lineSeparator()  + "Aktarilan Hesap Sayisi...: " + say); 
-   	  		//'*****MIZAN AKTARMA YAP '******
-    		if (chckbxNewCheckBox.isSelected() )
-    		{
-    			mizan_aktar() ;
-    		}
+			if (textField.getText().equals(""))
+			{
+				JOptionPane.showMessageDialog(null,  "Aktarma Yapilacak Veritabani Kodu Bos..."); 	
+				return ;
+			}     
+			if (chckbxNewCheckBox.isSelected() )
+			{
+				if (textField_1.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Devir Karsi Hesap Kodu Bos..."); 	
+					return ;
+				}
+			}
+			c_Access.akt_baglan(textField.getText());
+			int kaysay = 0 ;
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
+			{
+				boolean durum =  model.getValueAt(i, 5) != null ?    (boolean) model.getValueAt(i, 5) : false;
+				if (durum) 
+				{
+					kaysay += 1 ;
+				}
+			}
+			int g = JOptionPane.showOptionDialog( null,  "Aktarilacak Kayit Sayisi.. =" + kaysay, "Aktarma",   JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
+			if(g != 0 ) { return;	}	
+			int sayi = 0 ;
+			sayi =c_Access.hesap_plani_kayit_adedi() ;
+
+			JOptionPane.showMessageDialog(null, "Aktarilacak Dosyadaki Kayit Sayisi.....:" + sayi); 
+			int say   = 0 ;
+			for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
+			{
+				boolean durum =  model.getValueAt(i, 5) != null ?    (boolean) model.getValueAt(i, 5) : false;
+				if (durum) 
+				{
+					c_Access.yilsonu_hpln_kayit(model.getValueAt(i, 0).toString(),
+							model.getValueAt(i, 1).toString(), model.getValueAt(i, 2).toString(), 
+							model.getValueAt(i, 3).toString(), GLOBAL.KULL_ADI);
+					c_Access.yilsonu_hpln_detay_kayit(model.getValueAt(i, 0).toString(), "", "", "", "", "", "", "" 
+							, "", "", "", "", "", "", "", "", "" 
+							, "", "");
+					say += 1;
+				}
+			}
+			JOptionPane.showMessageDialog(null,  "Hesap Plani Aktarma Islemi Basari ile gerceklestirildi...." 
+					+ System.lineSeparator() + System.lineSeparator()  + "Aktarilan Hesap Sayisi...: " + say); 
+			//'*****MIZAN AKTARMA YAP '******
+			if (chckbxNewCheckBox.isSelected() )
+			{
+				mizan_aktar() ;
+			}
 		}
-    	catch (Exception ex)
-    	{
-    	JOptionPane.showMessageDialog(null,  ex.getMessage()); 
-    	}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
+		}
 	}
 	private static void mizan_aktar()
 	{
 		try
 		{
-		  double  bir = 0 ;
-		  double  iki = 0 ;
-		  double  uc = 0 ;
-		  int  say = 0 ;
-	      int enumara = 0 ;
-	      ResultSet rs = null ;
-	      DefaultTableModel model = (DefaultTableModel) table.getModel();
-	      for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
-	      {
-	    	  boolean durum =  model.getValueAt(i, 5) != null ?    (boolean) model.getValueAt(i, 5) : false;
-			  if (durum) 
-	    	  {
-			rs =	  c_Access.mizan_aktar(model.getValueAt(i, 0).toString());
-             bir = 0;
-             iki = 0;
-             uc = 0;
-              if (!rs.isBeforeFirst() ) {  
-             }  
-	         else
-	         {
-	        	say += 1;
-	        	enumara=0;
-              	enumara = c_Access.yilsonu_cari_fisno_al();
-               rs.next();
-               bir = rs.getDouble("BORC");
-               iki = rs.getDouble("ALACAK");
-               uc = iki - bir ;
-               if ( bir == iki)   // ' Bakiye Sifir  bir = iki
-               {
-               		String str =TARIH_CEVIR.tarih_geri(dateChooser);
- 					double sifir = 0 ;
-                   	c_Access.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str, 
-           			enumara, "", 1.0, sifir,textField_1.getText(),"", 1.0,sifir,"Devir Islemi...", "D", GLOBAL.KULL_ADI,
-           			"A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +sifir + " Msj:" +"Devir Islemi..." ,
-           			String.valueOf(enumara) ,
-					BAGLAN_LOG.cariLogDizin);
-                }
-               else if (uc < 0)  // 'Borclu hesaplar -0.001
-                {
-               		String str =TARIH_CEVIR.tarih_geri(dateChooser);
-			        c_Access.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str,enumara, "",
-                  			 1.0, uc, textField_1.getText(),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI,
-                  			"A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +uc + " Msj:" +"Devir Islemi..." ,
-                   			String.valueOf(enumara) ,
-        					BAGLAN_LOG.cariLogDizin);
-                }
-               else if (uc > 0 )  //   'Alacakli hesaplar  0.001
-               {
-                   	String str =TARIH_CEVIR.tarih_geri(dateChooser);
- 			       c_Access.yilsonu_cari_dekont_kaydet(textField_1.getText(), str, 
-               			enumara, "",1.0, uc,rs.getString("HESAP"),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI,
-               			"A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +uc + " Msj:" +"Devir Islemi..." ,
-               			String.valueOf(enumara) ,
-    					BAGLAN_LOG.cariLogDizin);
-               }
-		     }
-		      
-             }
-	            else
-	            {
-	                   // ' Hesaba iliskin kayit Yok 0 olarak islenecek
-	            }
-	     
-	            }  // ilk For INT
-		JOptionPane.showMessageDialog(null,  "Mizan Aktarma Islemi Basari ile Tamamlandi...."  + System.lineSeparator() + System.lineSeparator() + "Aktarilan Hesap Sayisi...: " + say); 
+			double  bir = 0 ;
+			double  iki = 0 ;
+			double  uc = 0 ;
+			int  say = 0 ;
+			int enumara = 0 ;
+			ResultSet rs = null ;
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
+			{
+				boolean durum =  model.getValueAt(i, 5) != null ?    (boolean) model.getValueAt(i, 5) : false;
+				if (durum) 
+				{
+					rs =	  c_Access.mizan_aktar(model.getValueAt(i, 0).toString());
+					bir = 0;
+					iki = 0;
+					uc = 0;
+					if (!rs.isBeforeFirst() ) {  
+					}  
+					else
+					{
+						say += 1;
+						enumara=0;
+						enumara = c_Access.yilsonu_cari_fisno_al();
+						rs.next();
+						bir = rs.getDouble("BORC");
+						iki = rs.getDouble("ALACAK");
+						uc = iki - bir ;
+						if ( bir == iki)   // ' Bakiye Sifir  bir = iki
+						{
+							String str =TARIH_CEVIR.tarih_geri(dateChooser);
+							double sifir = 0 ;
+							c_Access.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str, 
+									enumara, "", 1.0, sifir,textField_1.getText(),"", 1.0,sifir,"Devir Islemi...", "D", GLOBAL.KULL_ADI,
+									"A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +sifir + " Msj:" +"Devir Islemi..." ,
+									String.valueOf(enumara) ,
+									BAGLAN_LOG.cariLogDizin);
+						}
+						else if (uc < 0)  // 'Borclu hesaplar -0.001
+						{
+							String str =TARIH_CEVIR.tarih_geri(dateChooser);
+							c_Access.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str,enumara, "",
+									1.0, uc, textField_1.getText(),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI,
+									"A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +uc + " Msj:" +"Devir Islemi..." ,
+									String.valueOf(enumara) ,
+									BAGLAN_LOG.cariLogDizin);
+						}
+						else if (uc > 0 )  //   'Alacakli hesaplar  0.001
+						{
+							String str =TARIH_CEVIR.tarih_geri(dateChooser);
+							c_Access.yilsonu_cari_dekont_kaydet(textField_1.getText(), str, 
+									enumara, "",1.0, uc,rs.getString("HESAP"),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI,
+									"A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +uc + " Msj:" +"Devir Islemi..." ,
+									String.valueOf(enumara) ,
+									BAGLAN_LOG.cariLogDizin);
+						}
+					}
+
+				}
+				else
+				{
+					// ' Hesaba iliskin kayit Yok 0 olarak islenecek
+				}
+
+			}  // ilk For INT
+			JOptionPane.showMessageDialog(null,  "Mizan Aktarma Islemi Basari ile Tamamlandi...."  + System.lineSeparator() + System.lineSeparator() + "Aktarilan Hesap Sayisi...: " + say); 
 		}
 		catch (Exception ex)
 		{
@@ -557,19 +555,19 @@ public class YIL_SONU extends JInternalFrame {
 	}
 	///********
 	class MyItemListener implements ItemListener
-	  {
+	{
 		@Override
-	    public void itemStateChanged(ItemEvent e) {
-	      Object source = e.getSource();
-	      if (source instanceof AbstractButton == false) return;
-	      boolean checked = e.getStateChange() == ItemEvent.SELECTED;
-	      for(int x = 0, y = table.getRowCount(); x < y; x++)
-	      {
-	        table.setValueAt(new Boolean(checked),x,0);
-	      }
-	    }
-	  }
-	  
+		public void itemStateChanged(ItemEvent e) {
+			Object source = e.getSource();
+			if (source instanceof AbstractButton == false) return;
+			boolean checked = e.getStateChange() == ItemEvent.SELECTED;
+			for(int x = 0, y = table.getRowCount(); x < y; x++)
+			{
+				table.setValueAt(new Boolean(checked),x,0);
+			}
+		}
+	}
+
 	//*
 	class CheckBoxHeader extends JCheckBox   implements TableCellRenderer, MouseListener {
 		protected CheckBoxHeader rendererComponent;
@@ -580,57 +578,57 @@ public class YIL_SONU extends JInternalFrame {
 			rendererComponent.addItemListener(itemListener);
 		}
 		public Component getTableCellRendererComponent(
-      JTable table, Object value,
-      boolean isSelected, boolean hasFocus, int row, int column) {
+				JTable table, Object value,
+				boolean isSelected, boolean hasFocus, int row, int column) {
 			if (table != null) {
-			JTableHeader header = table.getTableHeader();
-      if (header != null) {
-        rendererComponent.setForeground(header.getForeground());
-        rendererComponent.setBackground(header.getBackground());
-        rendererComponent.setFont(header.getFont());
-        header.addMouseListener(rendererComponent);
-      }
-    }
-    setColumn(column);
-   
-    setHorizontalAlignment(JLabel.CENTER);
-  
-    setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-   //setSelected(true);
-    return rendererComponent;
-  }
-  protected void setColumn(int column) {
-    this.column = column;
-  }
-  public int getColumn() {
-    return column;
-  }
-  protected void handleClickEvent(MouseEvent e) {
-    if (mousePressed) {
-      mousePressed=false;
-      JTableHeader header = (JTableHeader)(e.getSource());
-      JTable tableView = header.getTable();
-      TableColumnModel columnModel = tableView.getColumnModel();
-      int viewColumn = columnModel.getColumnIndexAtX(e.getX());
-      int column = tableView.convertColumnIndexToModel(viewColumn);
-  
-      if (viewColumn == this.column && e.getClickCount() == 1 && column != -1) {
-        doClick();
-      }
-    }
-  }
-  public void mouseClicked(MouseEvent e) {
-    handleClickEvent(e);
-    ((JTableHeader)e.getSource()).repaint();
-  }
-  public void mousePressed(MouseEvent e) {
-    mousePressed = true;
-  }
-  public void mouseReleased(MouseEvent e) {
-  }
-  public void mouseEntered(MouseEvent e) {
-  }
-  public void mouseExited(MouseEvent e) {
-  }
-}
+				JTableHeader header = table.getTableHeader();
+				if (header != null) {
+					rendererComponent.setForeground(header.getForeground());
+					rendererComponent.setBackground(header.getBackground());
+					rendererComponent.setFont(header.getFont());
+					header.addMouseListener(rendererComponent);
+				}
+			}
+			setColumn(column);
+
+			setHorizontalAlignment(JLabel.CENTER);
+
+			setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+			//setSelected(true);
+			return rendererComponent;
+		}
+		protected void setColumn(int column) {
+			this.column = column;
+		}
+		public int getColumn() {
+			return column;
+		}
+		protected void handleClickEvent(MouseEvent e) {
+			if (mousePressed) {
+				mousePressed=false;
+				JTableHeader header = (JTableHeader)(e.getSource());
+				JTable tableView = header.getTable();
+				TableColumnModel columnModel = tableView.getColumnModel();
+				int viewColumn = columnModel.getColumnIndexAtX(e.getX());
+				int column = tableView.convertColumnIndexToModel(viewColumn);
+
+				if (viewColumn == this.column && e.getClickCount() == 1 && column != -1) {
+					doClick();
+				}
+			}
+		}
+		public void mouseClicked(MouseEvent e) {
+			handleClickEvent(e);
+			((JTableHeader)e.getSource()).repaint();
+		}
+		public void mousePressed(MouseEvent e) {
+			mousePressed = true;
+		}
+		public void mouseReleased(MouseEvent e) {
+		}
+		public void mouseEntered(MouseEvent e) {
+		}
+		public void mouseExited(MouseEvent e) {
+		}
+	}
 }

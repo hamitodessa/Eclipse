@@ -28,7 +28,6 @@ import OBS_2025.Tema_Cari;
 public class GLOBAL {
 
 	static String OBS_DOSYA = "OBS_SISTEM_2025.DB";
-
 	static String SQL_BACKUP = "SQL_BACKUP.DB";
 	static String SQL_LOG = "SQL_LOG.DB";
 	public static String SURUCU = "C:\\OBS_SISTEM\\";

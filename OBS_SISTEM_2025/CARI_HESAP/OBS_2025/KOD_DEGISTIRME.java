@@ -17,7 +17,6 @@ import OBS_C_2025.JTextFieldLimit;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.SystemColor;
 
@@ -117,17 +116,12 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 					lblNewLabel.setText(CARI_ISIM_OKU.isim(textField_2.getText())[0]);
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
-
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
-		
-					lblNewLabel.setText(CARI_ISIM_OKU.isim(textField_2.getText())[0]);
-				
+				lblNewLabel.setText(CARI_ISIM_OKU.isim(textField_2.getText())[0]);
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				
 			}
-			
 		});
 		panel_1.add(textField_2);
 		textField_2.setColumns(10);
@@ -160,24 +154,18 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 				}
 				}
 			});
-		
-		
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_1.setColumns(10);
 		textField_1.setBounds(28, 21, 150, 20);
 		textField_1.setDocument(new JTextFieldLimit(12));
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
-
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
-			
 					lblNewLabel_1.setText(CARI_ISIM_OKU.isim(textField_1.getText())[0]);
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-
 			}
-
-			@Override
+		@Override
 			public void removeUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 

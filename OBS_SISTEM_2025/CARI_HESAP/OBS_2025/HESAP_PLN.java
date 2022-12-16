@@ -309,7 +309,6 @@ public class HESAP_PLN extends JDialog {
 	    });
 	    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText().toLowerCase()));
 	    table.setRowSorter(sorter);
-  	    
 		}
 	}
 }

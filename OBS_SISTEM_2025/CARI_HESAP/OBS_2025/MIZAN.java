@@ -103,13 +103,8 @@ public class MIZAN extends JInternalFrame {
 				int deger = 0 ;
 				try {
 					deger = Integer.parseInt( GLOBAL.setting_oku("CARI_MIZ_GRUP").toString());
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				} catch (Exception e) {
+					e.printStackTrace();}
 				if (status.length() == deger) 
 				{
 					c.setBackground(Color.PINK);
@@ -351,7 +346,6 @@ public class MIZAN extends JInternalFrame {
 			parts = deger.split(",");
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table.setFont(bigFont);
-
 		}
 		catch (Exception ex)
 		{
@@ -424,7 +418,6 @@ public class MIZAN extends JInternalFrame {
 		{
 			ResultSet	rs = null;
 			rs = c_Access.hesap_adi_oku(kod);
-
 			if (!rs.isBeforeFirst() ) {  
 				sonuc = "" ;
 			} 

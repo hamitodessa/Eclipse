@@ -20,7 +20,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
@@ -28,11 +27,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import LOGER_KAYIT.DOSYA_MSSQL;
-import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
-import OBS_C_2025.DOSYA_YAZ;
 import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
@@ -604,7 +600,6 @@ public class H_PLANI extends JInternalFrame {
 	{
 		try {
 			rs = c_Access.hsp_pln(arama);
-
 			if (!rs.isBeforeFirst() ) {  
 				return;
 			} 
@@ -613,7 +608,6 @@ public class H_PLANI extends JInternalFrame {
 				rs.last();
 				kayit_sayi = rs.getRow();
 				rs.first();
-
 				doldur("ILK");
 			}
 		}
@@ -725,7 +719,6 @@ public class H_PLANI extends JInternalFrame {
 				os.flush();
 				os.close();
 			}
-
 			c_Access.hsp_sil(txtkodu.getText(), txtkodu.getText() + " Nolu Hesap Silme , Unvan:" + txtunvan.getText() , "",  BAGLAN_LOG.cariLogDizin);
 			c_Access.hpln_kayit(txtkodu.getText(), txtunvan.getText(), txtkarton.getText(), txthcinsi.getText(),GLOBAL.KULL_ADI
 					, txtkodu.getText() + " Nolu Hesap Kayit , Unvan:" + txtunvan.getText() , "",  BAGLAN_LOG.cariLogDizin);
@@ -744,7 +737,6 @@ public class H_PLANI extends JInternalFrame {
 		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
 		}
-
 	}
 	public static void sil()
 	{
@@ -752,11 +744,8 @@ public class H_PLANI extends JInternalFrame {
 
 		int g =  JOptionPane.showOptionDialog( null,  "Kayit Dosyadan Silinecek ..?" + System.lineSeparator() + System.lineSeparator()  + 
 				"Oncelikle Bu Hesaba Ait Fisleri Silmeniz" + System.lineSeparator() + System.lineSeparator() +"Tavsiye Olunur ...." ,
-				"Cari Hesap Plani Silme",   JOptionPane.YES_NO_OPTION,
-				JOptionPane.QUESTION_MESSAGE,
-				null,     //no custom icon
-				oac.options,  //button titles
-				oac.options[1]); //default button
+				"Cari Hesap Plani Silme",   JOptionPane.YES_NO_OPTION,	JOptionPane.QUESTION_MESSAGE,
+				null,  	oac.options, 	oac.options[1]); //default button
 
 		if(g != 0 ) { return;	}
 		try
@@ -801,12 +790,11 @@ public class H_PLANI extends JInternalFrame {
 	{
 		if (chcbas.isSelected())
 		{
-			hisset( "WHERE  [HESAP] like  '" + txtarama.getText() + "%' OR  [UNVAN] Like '" + txtarama.getText() + "%'");
+			hisset( "WHERE  HESAP like  '" + txtarama.getText() + "%' OR  UNVAN Like '" + txtarama.getText() + "%'");
 		}
 		else
 		{
-			hisset( "WHERE  [HESAP] like  '%" + txtarama.getText() + "%' OR  [UNVAN] Like '%" + txtarama.getText() + "%'");
+			hisset( "WHERE  HESAP like  '%" + txtarama.getText() + "%' OR  UNVAN Like '%" + txtarama.getText() + "%'");
 		}
 	}
-
 }

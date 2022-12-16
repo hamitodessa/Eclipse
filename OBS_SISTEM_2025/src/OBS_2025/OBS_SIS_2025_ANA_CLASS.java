@@ -50,7 +50,7 @@ public class OBS_SIS_2025_ANA_CLASS
 	public static ILOGGER[] _IGunluk_Loger = {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};
 	//public static  ILOGER_KAYIT _ILoger ;
 
-	public String[] options = {"Tamam......       		!", "Vazgec.....       		!"}; 
+	public String[] options = {"Tamam......       		!	", "Vazgec......       		!	"}; 
 	public IConnection _IConn ;
 	public IConnection _ICariCon ;
 	public IConnection _IStokCon ;

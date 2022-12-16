@@ -1149,7 +1149,6 @@ public class CAL_DIZIN extends JFrame {
 		int say = Integer.parseInt( grd.getModel().getValueAt(satir,14).toString());
 		if (say == 1)
 		{
-
 			chckbxL_1.setSelected(true);
 			//cmblog.setEnabled(true);
 		}
@@ -1280,7 +1279,6 @@ public class CAL_DIZIN extends JFrame {
 		contentPane.setCursor(WAIT_CURSOR);
 		cONN_AKTAR();	 
 		CONNECT s_CONN = new CONNECT(oac._IConn);
-
 		String program = "";
 		String modul = "";
 		if (activ_sayfa == 0)
@@ -1315,54 +1313,137 @@ public class CAL_DIZIN extends JFrame {
 		if (chckbxL.isSelected())
 		{
 			/////////////////////LOCAL DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-			if ( s_CONN.Dosya_kontrol_L(program,comboBox.getSelectedItem().toString() ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),txtIp.getText()) == true)
-			{
+			lokal_dosya(s_CONN,program,modul);
+		}
+		else  // Server
+		{
+			////////////////////SERVER DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+			server_dosya(s_CONN,program,modul);
+		}
+	}
+	private void lokal_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
+	{
+		if ( s_CONN.Dosya_kontrol_L(program,comboBox.getSelectedItem().toString() ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),txtIp.getText()) == true)
+		{
 
-				boolean izinli = true;
-				if ( !GLOBAL.KULL_ADI.equals("Admin") )
-				{
-					ResultSet	rs = null;
-					rs = oac.uSER_ISL.user_details_izinleri(GLOBAL.KULL_ADI, modul, "YER = 'L'");
-					if (!rs.isBeforeFirst() ) {  
-						izinli = false;
-					} 
-				}
-				if (izinli == false)
-				{
-					contentPane.setCursor(DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null, "Bu Dosyayi Kullanmaya Izniniz Yok" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir...", "Dosya Olusturma", JOptionPane.ERROR_MESSAGE);
-					btnNewButton_1.setEnabled(false);
-					txtKodu.requestFocus();
-					return;
-				}
-				mdb_yaz();
-				grid_doldur();
-				if (activ_sayfa == 0)
-					doldur_kutu(tblCari, 0);
-				else if (activ_sayfa == 1)
-					doldur_kutu(tblFatura, 0);
-				else if (activ_sayfa == 2)
-					doldur_kutu(tblAdres, 0);
-				else if (activ_sayfa == 3)
-					doldur_kutu(tblKur, 0);
-				else if (activ_sayfa == 4)
-					doldur_kutu(tblKambiyo, 0);
-				else if (activ_sayfa == 5)
-					doldur_kutu(tblSms, 0);
-				else if (activ_sayfa == 6)
-					doldur_kutu(tblGunluk, 0);
+			boolean izinli = true;
+			if ( !GLOBAL.KULL_ADI.equals("Admin") )
+			{
+				ResultSet	rs = null;
+				rs = oac.uSER_ISL.user_details_izinleri(GLOBAL.KULL_ADI, modul, "YER = 'L'");
+				if (!rs.isBeforeFirst() ) {  
+					izinli = false;
+				} 
+			}
+			if (izinli == false)
+			{
 				contentPane.setCursor(DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null, "Veritabani Baglantisi gerceklestirildi", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bu Dosyayi Kullanmaya Izniniz Yok" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir...", "Dosya Olusturma", JOptionPane.ERROR_MESSAGE);
+				btnNewButton_1.setEnabled(false);
+				txtKodu.requestFocus();
 				return;
 			}
-			else
+			mdb_yaz();
+			grid_doldur();
+			if (activ_sayfa == 0)
+				doldur_kutu(tblCari, 0);
+			else if (activ_sayfa == 1)
+				doldur_kutu(tblFatura, 0);
+			else if (activ_sayfa == 2)
+				doldur_kutu(tblAdres, 0);
+			else if (activ_sayfa == 3)
+				doldur_kutu(tblKur, 0);
+			else if (activ_sayfa == 4)
+				doldur_kutu(tblKambiyo, 0);
+			else if (activ_sayfa == 5)
+				doldur_kutu(tblSms, 0);
+			else if (activ_sayfa == 6)
+				doldur_kutu(tblGunluk, 0);
+			contentPane.setCursor(DEFAULT_CURSOR);
+			JOptionPane.showMessageDialog(null, "Veritabani Baglantisi gerceklestirildi", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
+			return;
+		}
+		else
+		{
+			contentPane.setCursor(DEFAULT_CURSOR);
+			int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu.?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,	 	null,    	oac.options,  	 	oac.options[1]); 
+			if(g != 0 ) { return;	}
+			Thread.yield();
+			dosya_olustur_L();
+			mdb_yaz();
+			grid_doldur();
+			if (activ_sayfa == 0)
+				doldur_kutu(tblCari, 0);
+			else if (activ_sayfa == 1)
+				doldur_kutu(tblFatura, 0);
+			else if (activ_sayfa == 2)
+				doldur_kutu(tblAdres, 0);
+			else if (activ_sayfa == 3)
+				doldur_kutu(tblKur, 0);
+			else if (activ_sayfa == 4)
+				doldur_kutu(tblKambiyo, 0);
+			else if (activ_sayfa == 5)
+				doldur_kutu(tblSms, 0);
+			else if (activ_sayfa == 6)
+				doldur_kutu(tblGunluk, 0);
+			contentPane.setCursor(DEFAULT_CURSOR);
+			JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ...", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
+			return;
+		}
+
+	}
+	private void server_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
+	{
+		if (	 s_CONN.Dosya_kontrol_S(txtIp.getText(),comboBox.getSelectedItem().toString(), txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr), program,txtIp.getText()) ==true)
+		{
+
+			boolean izinli = true;
+			if ( !GLOBAL.KULL_ADI.equals("Admin") )
+			{
+				ResultSet rs = oac.uSER_ISL.user_details_izinleri(GLOBAL.KULL_ADI, modul, "YER = 'S'");
+				if (!rs.isBeforeFirst() ) {  
+					izinli = false;
+				} 
+			}
+			if (izinli == false)
 			{
 				contentPane.setCursor(DEFAULT_CURSOR);
-				int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu.?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE,	 	null,    	oac.options,  	 	oac.options[1]); 
-				if(g != 0 ) { return;	}
+				JOptionPane.showMessageDialog(null, "Bu Dosyayi Kullanmaya Izniniz Yok" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir...", "Dosya Olusturma", JOptionPane.ERROR_MESSAGE);
+				btnNewButton_1.setEnabled(false);
+				txtKodu.requestFocus();
+				return;
+			}
+			mdb_yaz();
+			grid_doldur();
+			if (activ_sayfa == 0)
+				doldur_kutu(tblCari, 0);
+			else if (activ_sayfa == 1)
+				doldur_kutu(tblFatura, 0);
+			else if (activ_sayfa == 2)
+				doldur_kutu(tblAdres, 0);
+			else if (activ_sayfa == 3)
+				doldur_kutu(tblKur, 0);
+			else if (activ_sayfa == 4)
+				doldur_kutu(tblKambiyo, 0);
+			else if (activ_sayfa == 5)
+				doldur_kutu(tblSms, 0);
+			else if (activ_sayfa == 6)
+				doldur_kutu(tblGunluk, 0);
+			contentPane.setCursor(DEFAULT_CURSOR);
+			JOptionPane.showMessageDialog(null, "Veritabani Baglantisi gerceklestirildi", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
+			return;
+		}
+		else
+		{
+			contentPane.setCursor(DEFAULT_CURSOR);
+			int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu.?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,null, oac.options, 	oac.options[1]); 
+			if(g != 0 ) { return;	}
+			{
+				contentPane.setCursor(WAIT_CURSOR);
 				Thread.yield();
-				dosya_olustur_L();
+				dosya_olustur_S();
 				mdb_yaz();
 				grid_doldur();
 				if (activ_sayfa == 0)
@@ -1382,80 +1463,6 @@ public class CAL_DIZIN extends JFrame {
 				contentPane.setCursor(DEFAULT_CURSOR);
 				JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ...", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
 				return;
-			}
-		}
-		////////////////////SERVER DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-		else  // Server
-		{
-			if (	 s_CONN.Dosya_kontrol_S(txtIp.getText(),comboBox.getSelectedItem().toString(), txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr), program,txtIp.getText()) ==true)
-			{
-
-				boolean izinli = true;
-				if ( !GLOBAL.KULL_ADI.equals("Admin") )
-				{
-					ResultSet rs = oac.uSER_ISL.user_details_izinleri(GLOBAL.KULL_ADI, modul, "YER = 'S'");
-					if (!rs.isBeforeFirst() ) {  
-						izinli = false;
-					} 
-				}
-				if (izinli == false)
-				{
-					contentPane.setCursor(DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null, "Bu Dosyayi Kullanmaya Izniniz Yok" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir...", "Dosya Olusturma", JOptionPane.ERROR_MESSAGE);
-					btnNewButton_1.setEnabled(false);
-					txtKodu.requestFocus();
-					return;
-				}
-				mdb_yaz();
-				grid_doldur();
-				if (activ_sayfa == 0)
-					doldur_kutu(tblCari, 0);
-				else if (activ_sayfa == 1)
-					doldur_kutu(tblFatura, 0);
-				else if (activ_sayfa == 2)
-					doldur_kutu(tblAdres, 0);
-				else if (activ_sayfa == 3)
-					doldur_kutu(tblKur, 0);
-				else if (activ_sayfa == 4)
-					doldur_kutu(tblKambiyo, 0);
-				else if (activ_sayfa == 5)
-					doldur_kutu(tblSms, 0);
-				else if (activ_sayfa == 6)
-					doldur_kutu(tblGunluk, 0);
-				contentPane.setCursor(DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null, "Veritabani Baglantisi gerceklestirildi", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
-				return;
-			}
-			else
-			{
-				contentPane.setCursor(DEFAULT_CURSOR);
-				int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu.?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE,null, oac.options, 	oac.options[1]); 
-				if(g != 0 ) { return;	}
-				{
-					contentPane.setCursor(WAIT_CURSOR);
-					Thread.yield();
-					dosya_olustur_S();
-					mdb_yaz();
-					grid_doldur();
-					if (activ_sayfa == 0)
-						doldur_kutu(tblCari, 0);
-					else if (activ_sayfa == 1)
-						doldur_kutu(tblFatura, 0);
-					else if (activ_sayfa == 2)
-						doldur_kutu(tblAdres, 0);
-					else if (activ_sayfa == 3)
-						doldur_kutu(tblKur, 0);
-					else if (activ_sayfa == 4)
-						doldur_kutu(tblKambiyo, 0);
-					else if (activ_sayfa == 5)
-						doldur_kutu(tblSms, 0);
-					else if (activ_sayfa == 6)
-						doldur_kutu(tblGunluk, 0);
-					contentPane.setCursor(DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ...", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
-					return;
-				}
 			}
 		}
 	}

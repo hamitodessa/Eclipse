@@ -102,7 +102,6 @@ public class CAL_DIZIN extends JFrame {
 	private static JTextField txtdiz;
 	private static JLabel lblysif;
 	private static JTextField txtyenisif;
-
 	private static JComboBox<String> comboBox;
 	private static JComboBox<String> cmbip;
 	private static JComboBox<String> cmbhangisql;
@@ -161,7 +160,6 @@ public class CAL_DIZIN extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-
 			}
 			@Override
 			public void windowOpened(WindowEvent e) {
@@ -170,7 +168,6 @@ public class CAL_DIZIN extends JFrame {
 					activ_sayfa =0;
 					grid_doldur();
 					doldur_kutu(tblCari,0);
-
 					contentPane.setCursor(DEFAULT_CURSOR);
 				} catch (ClassNotFoundException | SQLException e1) {
 					contentPane.setCursor(DEFAULT_CURSOR);
@@ -210,7 +207,6 @@ public class CAL_DIZIN extends JFrame {
 				{
 					if (txtKodu.getText().equals(""))
 						return;
-
 					if (cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).toString().equals("MS SQL"))
 					{
 						if (comboBox.getSelectedItem().toString() == null)
@@ -252,14 +248,10 @@ public class CAL_DIZIN extends JFrame {
 		btnNewButton_1.setEnabled(false);
 		btnNewButton_1.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/db.png")));
 		toolBar.add(btnNewButton_1);
-
-
-
 		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
 				if (activ_sayfa != 8)
 				{
 					if (txtcdid.equals("")) return;
@@ -292,10 +284,8 @@ public class CAL_DIZIN extends JFrame {
 							doldur_kutu(tblGunluk, 0);
 					} catch (Exception ex)
 					{
-
 					}
 				}
-
 				if (activ_sayfa == 8)
 				{
 					try {

@@ -12,27 +12,52 @@ import java.sql.Statement;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.event.MenuEvent;
 
+import LOGER_KAYIT.DOSYA_MSSQL;
+import LOGER_KAYIT.DOSYA_MYSQL;
+import LOGER_KAYIT.SQLITE_LOG;
 import LOGER_KAYIT.TXT_LOG;
 import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.DOSYA_YAZ;
+import OBS_C_2025.ILOGGER;
+import OBS_C_2025.MAIL_AT;
+import OBS_C_2025.StayOpenCheckBoxMenuItemUI;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.swing.AbstractAction;
+import javax.swing.AbstractButton;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
+
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 public class MSSQL_TO_MYSQL extends JInternalFrame {
 	private JTextField textField;
 	private JTextField textField_1;
-
+	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	Connection MS_conn = null;  
 	Connection MY_conn = null;  
+	boolean vt = false;
+	boolean ds = false;
+	boolean tx = false;
+	boolean em = false;
 
 	/**
 	 * Launch the application.
@@ -302,6 +327,8 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		});
 		btnNewButton_4.setBounds(167, 382, 89, 23);
 		panel.add(btnNewButton_4);
+		
+		
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -357,6 +384,264 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
+		
+		JPopupMenu menu;
+		menu = new JPopupMenu("A Menu");
+		menu.addSeparator();
+		JCheckBoxMenuItem cbVeritabani = new JCheckBoxMenuItem("Veritabani Kayit");
+		cbVeritabani.setMnemonic(KeyEvent.VK_C);
+		cbVeritabani.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbVeritabani.addItemListener(e -> {
+			//System.out.println(  e.getStateChange() == 1 ? "Veritabani = " +"True" : "Veritabani = " +"False");
+			vt = (e.getStateChange() == 1 ? true:false);    	
+			System.out.println("= " + vt + ds+tx+em);
+			// {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};//new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()
+		});
+		menu.add(cbVeritabani);
+
+		JCheckBoxMenuItem cbDosya = new JCheckBoxMenuItem("Dosya");
+		cbDosya.setMnemonic(KeyEvent.VK_H);
+		cbDosya.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbDosya.addItemListener(e -> {
+			//System.out.println(  e.getStateChange() == 1 ? "Dosya = " +"True" : "Dosya = " +"False");
+		
+			ds = (e.getStateChange() == 1 ? true:false);    	
+			System.out.println("= " + vt + ds+tx+em);
+		});
+		menu.add(cbDosya);
+
+		JCheckBoxMenuItem cbText = new JCheckBoxMenuItem("Text Dosya");
+		cbText.setMnemonic(KeyEvent.VK_H);
+		cbText.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbText.addItemListener(e -> {
+			//System.out.println(  e.getStateChange() == 1 ? "Text Dosya = " +"True" : "Text Dosya = " +"False");
+			tx = (e.getStateChange() == 1 ? true:false);    	
+			System.out.println("= " + vt + ds+tx+em);
+		});
+		menu.add(cbText);
+
+		JCheckBoxMenuItem cbMail = new JCheckBoxMenuItem("Email Atma");
+		cbMail.setMnemonic(KeyEvent.VK_H);
+		cbMail.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbMail.addItemListener(e -> {
+		//	System.out.println(  e.getStateChange() == 1 ? "Mail = " +"True" : "Mail= " +"False");
+			em = (e.getStateChange() == 1 ? true:false);    
+			System.out.println("= " + vt + ds+tx+em);
+		});
+		menu.add(cbMail);
+
+		JButton button = new JButton();
+		button.setAction(new AbstractAction("Loglama") {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				menu.show(button, 0, button.getHeight());
+				}
+		});
+
+
+		 button.setBounds(344, 382, 89, 23);
+		panel.add( button);
+		
+		JButton btnNewButton_5 = new JButton("New button");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String hangi = "MS SQL" ;
+				String mODUL = "";
+				if (vt )
+				{
+					if (hangi == "MS SQL")
+					{
+						if (ds)
+						{
+							if(tx)
+							{
+								if(em)
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+									System.out.println("= " +ilogg.length);
+								}
+								else
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
+									System.out.println("= " +ilogg.length);
+								}
+							}
+							else
+							{
+								if(em)
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
+									System.out.println("= " +ilogg.length);
+								}
+								else
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG())};
+									System.out.println("= " +ilogg.length);
+
+								}
+							}
+						}
+						else // DOSYA YOK 
+						{
+							if(tx)
+							{
+								if(em)
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+									System.out.println("= " +ilogg.length);
+								}
+								else
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new TXT_LOG())};
+									System.out.println("= " +ilogg.length);
+								}
+							}
+							else
+							{
+								if(em)
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new MAIL_AT()};
+									System.out.println("= " +ilogg.length);
+								}
+								else
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
+									System.out.println("= " +ilogg.length);
+								}
+							}
+						}
+					}
+					////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					else  // MYSQL
+					{
+						if (ds)
+						{
+							if(tx)
+							{
+								if(em)
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+									System.out.println("= " +ilogg.length);
+								}
+								else
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
+									System.out.println("= " +ilogg.length);
+								}
+							}
+							else
+							{
+								if(em)
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
+									System.out.println("= " +ilogg.length);
+								}
+								else
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG())};
+									System.out.println("= " +ilogg.length);
+								}
+							}
+						}
+						else // DOSYA YOK 
+						{
+							if(tx)
+							{
+								if(em)
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+									System.out.println("= " +ilogg.length);
+								}
+								else
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new TXT_LOG())};
+									System.out.println("= " +ilogg.length);
+								}
+							}
+							else
+							{
+								if(em)
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new MAIL_AT()};
+									System.out.println("= " +ilogg.length);
+								}
+								else
+								{
+									ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
+									System.out.println("= " +ilogg.length);
+								}
+							}
+						}
+					}
+				}
+				////////////////////////////////////////////////////////////////////////////////
+				else // VT YOK
+				{
+					if (ds)
+					{
+						if(tx)
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								System.out.println("= " +ilogg.length);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
+								System.out.println("= " +ilogg.length);
+							}
+						}
+						else
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
+								System.out.println("= " +ilogg.length);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG())};
+								System.out.println("= " +ilogg.length);
+							}
+						}
+					}
+					else // DOSYA YOK 
+					{
+						if(tx)
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								System.out.println("= " +ilogg.length);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new TXT_LOG())};
+								System.out.println("= " +ilogg.length);
+							}
+						}
+						else
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new MAIL_AT()};
+								System.out.println("= " +ilogg.length);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {};
+								System.out.println("= " +ilogg.length);
+							}
+						}
+					}
+
+				}
+			}
+		});
+		btnNewButton_5.setBounds(462, 382, 89, 23);
+		panel.add(btnNewButton_5);
+
 	}
 	public void baglan() throws ClassNotFoundException
 	{
@@ -1098,3 +1383,4 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 }
+

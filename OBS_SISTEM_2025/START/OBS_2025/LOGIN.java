@@ -104,6 +104,10 @@ public class LOGIN extends JFrame {
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	BAGLAN bAGLAN = new BAGLAN();
 	BAGLAN_LOG bAGLAN_LOG = new BAGLAN_LOG();
+	boolean vt = false;
+	boolean ds = false;
+	boolean tx = false;
+	boolean em = false;
 	/**
 	 * Launch the application.
 	 */
@@ -1055,6 +1059,11 @@ public class LOGIN extends JFrame {
 	}
 	private void lOGG_AKTAR(String mODUL, String hangiSQL , Boolean log , String hANGI_LOG) throws ClassNotFoundException, SQLException
 	{
+		String[] token = hANGI_LOG.split(",");
+		vt =  (token[0].equals("Veritabani Kayit") ? true:false);	//token[0], token[1], token[2], token[3]
+		ds = (token[0].equals("Dosya") ? true:false);
+		tx = (token[0].equals("Text Dosya") ? true:false);
+		em =  (token[0].equals("Email Atma") ? true:false);
 		if (log == false)
 		{
 			ILOGGER[] ilogg = {};
@@ -1062,45 +1071,198 @@ public class LOGIN extends JFrame {
 		}
 		else
 		{
-			if (hANGI_LOG.equals("Veritabani Kayit"))
+///////
+			if (vt )
 			{
-				if (hangiSQL.equals("MS SQL"))
+				if (hangiSQL == "MS SQL")
 				{
-					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
-					lAktar(mODUL , ilogg);
+					if (ds)
+					{
+						if(tx)
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+						else
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG())};
+								lAktar(mODUL , ilogg);
+
+							}
+						}
+					}
+					else // DOSYA YOK 
+					{
+						if(tx)
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+						else
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+					}
 				}
-				else if (hangiSQL.equals("MY SQL"))
+				////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				else  // MYSQL
 				{
-					ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
-					lAktar(mODUL , ilogg);
+					if (ds)
+					{
+						if(tx)
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+						else
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+					}
+					else // DOSYA YOK 
+					{
+						if(tx)
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new TXT_LOG())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+						else
+						{
+							if(em)
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new MAIL_AT()};
+								lAktar(mODUL , ilogg);
+							}
+							else
+							{
+								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
+								lAktar(mODUL , ilogg);
+							}
+						}
+					}
 				}
 			}
-			//SQLITE Dosya
-			else if (hANGI_LOG.equals("Dosya"))
+			////////////////////////////////////////////////////////////////////////////////
+			else // VT YOK
 			{
-				ILOGGER[] ilogg =  {new DOSYA_YAZ(new SQLITE_LOG())};
-				lAktar(mODUL , ilogg);
-			}
-			//TEXT  Dosya
-			else if (hANGI_LOG.equals("Text Dosya"))
-			{
-				ILOGGER[] ilogg =  {new DOSYA_YAZ(new TXT_LOG())};
-				lAktar(mODUL , ilogg);
-			}
-			else if (hANGI_LOG.equals("Email Atma"))
-			{
-				LOG_MAIL_OKU.mail_oku();
-				if (GLOBAL.Log_Mail.equals(""))
+				if (ds)
 				{
-					ILOGGER[] ilogg = {};
-					lAktar(mODUL , ilogg);
+					if(tx)
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
+							lAktar(mODUL , ilogg);
+						}
+					}
+					else
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG())};
+							lAktar(mODUL , ilogg);
+						}
+					}
 				}
-				else
+				else // DOSYA YOK 
 				{
-					ILOGGER[] ilogg = {new MAIL_AT()};
-					lAktar(mODUL , ilogg);
+					if(tx)
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new TXT_LOG())};
+							lAktar(mODUL , ilogg);
+						}
+					}
+					else
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {};
+							lAktar(mODUL , ilogg);
+						}
+					}
 				}
-			}
+
+			}		
+///////
 		}
 	}
 	private void lAktar(String mODUL , ILOGGER[] ilogg)

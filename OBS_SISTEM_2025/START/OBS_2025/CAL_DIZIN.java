@@ -22,10 +22,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
 
+import javax.swing.AbstractAction;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -33,6 +35,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -49,6 +52,8 @@ import javax.swing.table.TableColumnModel;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.DOSYA_MYSQL;
+import LOGER_KAYIT.SQLITE_LOG;
+import LOGER_KAYIT.TXT_LOG;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.ADRES_MSSQL;
 import OBS_C_2025.ADRES_MYSQL;
@@ -71,6 +76,7 @@ import OBS_C_2025.KAMBIYO_MYSQL;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.KUR_MSSQL;
 import OBS_C_2025.KUR_MYSQL;
+import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.SMS_ACCESS;
@@ -80,6 +86,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
+import OBS_C_2025.StayOpenCheckBoxMenuItemUI;
 import OBS_C_2025.USER_ISLEMLERI;
 import net.proteanit.sql.DbUtils;
 import javax.swing.border.TitledBorder;
@@ -129,7 +136,14 @@ public class CAL_DIZIN extends JFrame {
 	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	private static JTextField txtcdid;
 	private JLabel lblNewLabel_2;
-
+	boolean vt = false;
+	boolean ds = false;
+	boolean tx = false;
+	boolean em = false;
+	static JCheckBoxMenuItem cbVeritabani ;
+	static JCheckBoxMenuItem cbDosya;
+	static JCheckBoxMenuItem cbText;
+	static JCheckBoxMenuItem cbMail;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -989,34 +1003,81 @@ public class CAL_DIZIN extends JFrame {
 									chckbxL_1 = new JCheckBox("");
 									chckbxL_1.addActionListener(new ActionListener() {
 										public void actionPerformed(ActionEvent e) {
-											
-												}
+
+										}
 									});
 									chckbxL_1.setBounds(102, 126, 30, 23);
 									panel.add(chckbxL_1);
 
 									cmblog = new JComboBox<String>();
 									cmblog.setFont(new Font("Tahoma", Font.BOLD, 11));
-									cmblog.addActionListener(new ActionListener() {
-										public void actionPerformed(ActionEvent e) {
-//											if (chckbxS.isSelected() )
-//											{
-//												if(cmblog.getSelectedItem().toString() == "Text Dosya" ||  cmblog.getSelectedItem().toString() == "Dosya")
-//												{
-//													JOptionPane.showMessageDialog(null,  "Server Seciminde Loglama Dosya ve Text Dosya  Secilemez", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
-//													cmblog.setSelectedItem("Veritabani Kayit");
-//												}
-//											}
-										}
-									});
 									cmblog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani Kayit", "Dosya", "Text Dosya", "Email Atma"}));
-//									cmblog.setEnabled(false);
-									cmblog.setBounds(133, 126, 126, 22);
+									//									cmblog.setEnabled(false);
+									cmblog.setBounds(276, 95, 30, 22);
 									panel.add(cmblog);
-									
+
 									JLabel lblKayitserver = new JLabel("Serverler");
 									lblKayitserver.setBounds(24, 234, 78, 14);
 									panel.add(lblKayitserver);
+
+									/////////////////////////////////////////////////LOGLAMA BUTTON /////////////////////
+									JPopupMenu menu;
+									menu = new JPopupMenu("A Menu");
+									menu.addSeparator();
+									cbVeritabani = new JCheckBoxMenuItem("Veritabani Kayit");
+									cbVeritabani.setMnemonic(KeyEvent.VK_C);
+									cbVeritabani.setUI(new StayOpenCheckBoxMenuItemUI());
+									cbVeritabani.addItemListener(new ItemListener() {
+										public void itemStateChanged(ItemEvent e) {
+											vt = ( cbVeritabani.isSelected() == true ? true:false);    	
+											System.out.println("= " + vt + ds+tx+em);
+										}
+									});
+									cbVeritabani.setSelected(true);
+									menu.add(cbVeritabani);
+
+									cbDosya = new JCheckBoxMenuItem("Dosya");
+									cbDosya.setMnemonic(KeyEvent.VK_H);
+									cbDosya.setUI(new StayOpenCheckBoxMenuItemUI());
+									cbDosya.addItemListener(new ItemListener() {
+										public void itemStateChanged(ItemEvent e) {
+											ds = ( cbVeritabani.isSelected() == true ? true:false);    	
+											System.out.println("= " + vt + ds+tx+em);
+										}
+									});
+									menu.add(cbDosya);
+
+									 cbText = new JCheckBoxMenuItem("Text Dosya");
+									cbText.setMnemonic(KeyEvent.VK_H);
+									cbText.setUI(new StayOpenCheckBoxMenuItemUI());
+									cbText.addItemListener(new ItemListener() {
+										public void itemStateChanged(ItemEvent e) {
+											tx = (e.getStateChange() == 1 ? true:false);    	
+											System.out.println("= " + vt + ds+tx+em);
+										}
+									});
+									menu.add(cbText);
+
+									cbMail = new JCheckBoxMenuItem("Email Atma");
+									cbMail.setMnemonic(KeyEvent.VK_H);
+									cbMail.setUI(new StayOpenCheckBoxMenuItemUI());
+									cbMail.addItemListener(new ItemListener() {
+										public void itemStateChanged(ItemEvent e) {
+											em = (e.getStateChange() == 1 ? true:false);    
+											System.out.println("= " + vt + ds+tx+em);
+										}
+									});
+									menu.add(cbMail);
+									JButton btnNewButton_6 = new JButton();
+									btnNewButton_6.setText("Loglama Secimi");
+									btnNewButton_6.setBounds(138, 125, 121, 23);
+									btnNewButton_6.setAction(new AbstractAction("Loglama Secimi") {
+										@Override
+										public void actionPerformed(ActionEvent e) {
+											menu.show(btnNewButton_6, 0, btnNewButton_6.getHeight());
+										}
+									});
+									panel.add(btnNewButton_6);
 	}
 
 	private   void grid_doldur() throws ClassNotFoundException, SQLException
@@ -1147,7 +1208,12 @@ public class CAL_DIZIN extends JFrame {
 			chckbxL_1.setSelected(false);
 			//cmblog.setEnabled(false);
 		}
-		cmblog.setSelectedItem(grd.getModel().getValueAt(satir, 15).toString());
+		String[] token = grd.getModel().getValueAt(satir, 15).toString().split(",");
+		cbVeritabani.setSelected( (token[0].equals("Veritabani Kayit") ? true:false));	//token[0], token[1], token[2], token[3]
+		cbDosya.setSelected( (token[0].equals("Dosya") ? true:false));
+		cbText.setSelected( (token[0].equals("Text Dosya") ? true:false));
+		cbMail.setSelected( (token[0].equals("Email Atma") ? true:false));
+//		cmblog.setSelectedItem(grd.getModel().getValueAt(satir, 15).toString());
 		if (grd.getModel().getValueAt(satir, 10).equals("D"))
 		{
 			chckbxD.setSelected(true);
@@ -1189,6 +1255,10 @@ public class CAL_DIZIN extends JFrame {
 		txtdiz.setText("");
 		chckbxL_1.setSelected(false);
 		cmblog.setSelectedItem("Veritabani Kayit");
+		cbVeritabani.setSelected( false);	//token[0], token[1], token[2], token[3]
+		cbDosya.setSelected( false);
+		cbText.setSelected( false);
+		cbMail.setSelected(false);
 		cmbhangisql.setSelectedItem("MS SQL");
 		ip_doldur();
 	}
@@ -1485,8 +1555,9 @@ public class CAL_DIZIN extends JFrame {
 	}
 	private void mdb_yaz_2(String modul) throws ClassNotFoundException, SQLException
 	{
+		String loglama = (vt == true ? "Veritbani Kayit," : "") + (ds == true ? "Dosya," : "") + (tx ==true ? "Text Dosya," : "") + (em == true ? "Email Atma ":"");
 		oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, modul,chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
-		oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), comboBox.getSelectedItem().toString() , txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, cmblog.getItemAt(cmblog.getSelectedIndex()));
+		oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), comboBox.getSelectedItem().toString() , txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, loglama);
 	}
 	private  void dosya_olustur_L() throws IOException, ClassNotFoundException, SQLException
 	{
@@ -1975,82 +2046,212 @@ public class CAL_DIZIN extends JFrame {
 	private void lOGG_AKTAR(String mODUL)
 	{
 		String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
-		if (hangi.equals("MS SQL"))
+		if (vt )
 		{
-			if (mODUL == "Cari Hesap")
+			if (hangi == "MS SQL")
 			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
-				oac._ICari_Loger  = ilogg;
+				if (ds)
+				{
+					if(tx)
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
+							lAktar(mODUL , ilogg);
+						}
+					}
+					else
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG())};
+							lAktar(mODUL , ilogg);
+
+						}
+					}
+				}
+				else // DOSYA YOK 
+				{
+					if(tx)
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new TXT_LOG())};
+							lAktar(mODUL , ilogg);
+						}
+					}
+					else
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
+							lAktar(mODUL , ilogg);
+						}
+					}
+				}
 			}
-			else 	if (mODUL == "Stok")
+			////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			else  // MYSQL
 			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
-				oac._IFatura_Loger  = ilogg;
-			}
-			else 	if (mODUL == "Adres")
-			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
-				oac._IAdres_Loger  = ilogg;
-			}
-			else 	if (mODUL == "Kur")
-			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
-				oac._IKur_Loger  = ilogg;
-			}
-			else 	if (mODUL == "Kambiyo")
-			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
-				oac._IKambiyo_Loger  = ilogg;
-			}
-			else 	if (mODUL == "Gunluk")
-			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
-				oac._IGunluk_Loger  = ilogg;
-			}
-			else 	if (mODUL == "Sms")
-			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL())};
-				oac._ISms_Loger  = ilogg;
+				if (ds)
+				{
+					if(tx)
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
+							lAktar(mODUL , ilogg);
+						}
+					}
+					else
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new SQLITE_LOG())};
+							lAktar(mODUL , ilogg);
+						}
+					}
+				}
+				else // DOSYA YOK 
+				{
+					if(tx)
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new DOSYA_YAZ(new TXT_LOG())};
+							lAktar(mODUL , ilogg);
+						}
+					}
+					else
+					{
+						if(em)
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL()),new MAIL_AT()};
+							lAktar(mODUL , ilogg);
+						}
+						else
+						{
+							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
+							lAktar(mODUL , ilogg);
+						}
+					}
+				}
 			}
 		}
-		else if (hangi.equals("MY SQL"))
+		////////////////////////////////////////////////////////////////////////////////
+		else // VT YOK
 		{
-			if (mODUL == "Cari Hesap")
+			if (ds)
 			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
-				oac._ICari_Loger  = ilogg;
+				if(tx)
+				{
+					if(em)
+					{
+						ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+						lAktar(mODUL , ilogg);
+					}
+					else
+					{
+						ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG())};
+						lAktar(mODUL , ilogg);
+					}
+				}
+				else
+				{
+					if(em)
+					{
+						ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG()),new MAIL_AT()};
+						lAktar(mODUL , ilogg);
+					}
+					else
+					{
+						ILOGGER[] ilogg = {new DOSYA_YAZ(new SQLITE_LOG())};
+						lAktar(mODUL , ilogg);
+					}
+				}
 			}
-			else 	if (mODUL == "Stok")
+			else // DOSYA YOK 
 			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
-				oac._IFatura_Loger  = ilogg;
-			}
-			else 	if (mODUL == "Adres")
-			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
-				oac._IAdres_Loger  = ilogg;
-			}
-			else 	if (mODUL == "Kur")
-			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
-				oac._IKur_Loger  = ilogg;
-			}
-			else 	if (mODUL == "Kambiyo")
-			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
-				oac._IKambiyo_Loger  = ilogg;
-			}
-			else 	if (mODUL == "Gunluk")
-			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
-				oac._IGunluk_Loger  = ilogg;
-			}
-			else 	if (mODUL == "Sms")
-			{
-				ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MYSQL())};
-				oac._ISms_Loger  = ilogg;
+				if(tx)
+				{
+					if(em)
+					{
+						ILOGGER[] ilogg = {new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
+						lAktar(mODUL , ilogg);
+					}
+					else
+					{
+						ILOGGER[] ilogg = {new DOSYA_YAZ(new TXT_LOG())};
+						lAktar(mODUL , ilogg);
+					}
+				}
+				else
+				{
+					if(em)
+					{
+						ILOGGER[] ilogg = {new MAIL_AT()};
+						lAktar(mODUL , ilogg);
+					}
+					else
+					{
+						ILOGGER[] ilogg = {};
+						lAktar(mODUL , ilogg);
+					}
+				}
 			}
 		}
+		}
+	private void lAktar(String mODUL , ILOGGER[] ilogg)
+	{
+		if (mODUL.equals("Cari Hesap"))
+		{oac._ICari_Loger = ilogg;}
+		else if (mODUL.equals("Kur"))
+		{oac._IKur_Loger = ilogg;}
+		else if (mODUL.equals("Adres"))
+		{oac._IAdres_Loger = ilogg;}
+		else if (mODUL.equals("Fatura"))
+		{oac._IFatura_Loger = ilogg;}
+		else if (mODUL.equals("Sms"))
+		{oac._ISms_Loger = ilogg;}
+		else if (mODUL.equals("Gunluk"))
+		{oac._IGunluk_Loger = ilogg;}
+		else if (mODUL.equals("Kambiyo"))
+		{oac._IKambiyo_Loger = ilogg;}
 	}
 }
 class ComboItem

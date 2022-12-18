@@ -45,6 +45,8 @@ import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
@@ -391,42 +393,45 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		JCheckBoxMenuItem cbVeritabani = new JCheckBoxMenuItem("Veritabani Kayit");
 		cbVeritabani.setMnemonic(KeyEvent.VK_C);
 		cbVeritabani.setUI(new StayOpenCheckBoxMenuItemUI());
-		cbVeritabani.addItemListener(e -> {
-			//System.out.println(  e.getStateChange() == 1 ? "Veritabani = " +"True" : "Veritabani = " +"False");
-			vt = (e.getStateChange() == 1 ? true:false);    	
-			System.out.println("= " + vt + ds+tx+em);
-			// {new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()};//new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()
-		});
+		cbVeritabani.addItemListener(new ItemListener() {
+		      public void itemStateChanged(ItemEvent e) {
+		    	vt = ( cbVeritabani.isSelected() == true ? true:false);    	
+				System.out.println("= " + vt + ds+tx+em);
+		      }
+		    });
+		cbVeritabani.setSelected(true);
 		menu.add(cbVeritabani);
-
+	
 		JCheckBoxMenuItem cbDosya = new JCheckBoxMenuItem("Dosya");
 		cbDosya.setMnemonic(KeyEvent.VK_H);
 		cbDosya.setUI(new StayOpenCheckBoxMenuItemUI());
-		cbDosya.addItemListener(e -> {
-			//System.out.println(  e.getStateChange() == 1 ? "Dosya = " +"True" : "Dosya = " +"False");
-		
-			ds = (e.getStateChange() == 1 ? true:false);    	
+		cbDosya.addItemListener(new ItemListener() {
+			   public void itemStateChanged(ItemEvent e) {
+			ds = ( cbVeritabani.isSelected() == true ? true:false);    	
 			System.out.println("= " + vt + ds+tx+em);
+			   }
 		});
 		menu.add(cbDosya);
 
 		JCheckBoxMenuItem cbText = new JCheckBoxMenuItem("Text Dosya");
 		cbText.setMnemonic(KeyEvent.VK_H);
 		cbText.setUI(new StayOpenCheckBoxMenuItemUI());
-		cbText.addItemListener(e -> {
-			//System.out.println(  e.getStateChange() == 1 ? "Text Dosya = " +"True" : "Text Dosya = " +"False");
+		cbText.addItemListener(new ItemListener() {
+			   public void itemStateChanged(ItemEvent e) {
 			tx = (e.getStateChange() == 1 ? true:false);    	
 			System.out.println("= " + vt + ds+tx+em);
+			   }
 		});
 		menu.add(cbText);
 
 		JCheckBoxMenuItem cbMail = new JCheckBoxMenuItem("Email Atma");
 		cbMail.setMnemonic(KeyEvent.VK_H);
 		cbMail.setUI(new StayOpenCheckBoxMenuItemUI());
-		cbMail.addItemListener(e -> {
-		//	System.out.println(  e.getStateChange() == 1 ? "Mail = " +"True" : "Mail= " +"False");
+		cbMail.addItemListener(new ItemListener() {
+			   public void itemStateChanged(ItemEvent e) {
 			em = (e.getStateChange() == 1 ? true:false);    
 			System.out.println("= " + vt + ds+tx+em);
+			   }
 		});
 		menu.add(cbMail);
 

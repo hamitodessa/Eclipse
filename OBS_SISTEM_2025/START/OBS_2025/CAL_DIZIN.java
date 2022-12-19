@@ -1014,42 +1014,38 @@ public class CAL_DIZIN extends JFrame {
 			menu = new JPopupMenu("");
 			menu.addSeparator();
 			cbVeritabani = new JCheckBoxMenuItem("Veritabani Kayit");
-			cbVeritabani.setMnemonic(KeyEvent.VK_C);
 			cbVeritabani.setUI(new StayOpenCheckBoxMenuItemUI());
 			cbVeritabani.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent e) {
-					vt = ( cbVeritabani.isSelected() == true ? true:false);    	
+					vt = (e.getStateChange() == 1 ? true:false);    	
 				}
 			});
 			cbVeritabani.setSelected(true);
 			menu.add(cbVeritabani);
 
 			cbDosya = new JCheckBoxMenuItem("Dosya");
-			cbDosya.setMnemonic(KeyEvent.VK_H);
 			cbDosya.setUI(new StayOpenCheckBoxMenuItemUI());
 			cbDosya.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent e) {
-					ds = (cbDosya.isSelected() == true ? true:false);    	
+					ds = (e.getStateChange() == 1 ? true:false);    	
 				}
 			});
 			menu.add(cbDosya);
 
 			cbText = new JCheckBoxMenuItem("Text Dosya");
-			cbText.setMnemonic(KeyEvent.VK_H);
 			cbText.setUI(new StayOpenCheckBoxMenuItemUI());
 			cbText.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent e) {
-					ds = (cbText.isSelected() == true ? true:false);    	
+					tx = (e.getStateChange() == 1 ? true:false);    	
 				}
 			});
 			menu.add(cbText);
 
 			cbMail = new JCheckBoxMenuItem("Email Atma");
-			cbMail.setMnemonic(KeyEvent.VK_H);
 			cbMail.setUI(new StayOpenCheckBoxMenuItemUI());
 			cbMail.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent e) {
-					ds = (cbMail.isSelected() == true ? true:false);    	
+					em = (e.getStateChange() == 1 ? true:false);    	
 				}
 			});
 			menu.add(cbMail);

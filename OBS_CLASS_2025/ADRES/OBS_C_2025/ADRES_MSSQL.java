@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
-
+@SuppressWarnings("static-access")
 public class ADRES_MSSQL implements IADRES {
 
 	static Connection con = null;
@@ -59,6 +59,7 @@ public class ADRES_MSSQL implements IADRES {
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
 		{
 			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
+			@SuppressWarnings("unused")
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy  ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.adrLogDizin);
 		}

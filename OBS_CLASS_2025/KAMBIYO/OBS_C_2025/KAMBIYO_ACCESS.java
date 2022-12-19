@@ -2,10 +2,7 @@ package OBS_C_2025;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import LOGER_KAYIT.ILOGER_KAYIT;
-import LOGER_KAYIT.SQLITE_LOG;
-
+@SuppressWarnings("static-access")
 public class KAMBIYO_ACCESS {
 	
 	private static IKAMBIYO  _IKambiyo;

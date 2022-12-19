@@ -7,12 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.swing.JOptionPane;
-
-import LOGER_KAYIT.ILOGER_KAYIT;
-import LOGER_KAYIT.SQLITE_LOG;
-
+@SuppressWarnings("static-access")
 public class CARI_ACCESS {
 	private static ICARI_HESAP _ICari;
 	private static ILOGGER[] _Logger;

@@ -1,7 +1,7 @@
 package OBS_C_2025;
 
 import java.sql.SQLException;
-
+@SuppressWarnings("static-access")
 public class GUNLUK_ACCESS {
 
 	private static IGUNLUK  _IGunluk;

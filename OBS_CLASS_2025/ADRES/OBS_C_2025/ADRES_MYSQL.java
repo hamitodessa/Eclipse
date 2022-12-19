@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
-
+@SuppressWarnings("static-access")
 public class ADRES_MYSQL implements IADRES {
 
 	static Connection con = null;

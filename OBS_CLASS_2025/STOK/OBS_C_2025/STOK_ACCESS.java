@@ -5,11 +5,12 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+@SuppressWarnings("static-access")
 public class STOK_ACCESS {
 	private static  ISTOK _IStok;
 	private static ILOGGER[] _Logger;
 
+	
 	public STOK_ACCESS(ISTOK _IStok, ILOGGER[] _Logger)
 	{
 		this._IStok = _IStok;

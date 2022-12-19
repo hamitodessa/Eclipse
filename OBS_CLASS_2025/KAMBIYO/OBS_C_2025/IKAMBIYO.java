@@ -1,6 +1,5 @@
 package OBS_C_2025;
 
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

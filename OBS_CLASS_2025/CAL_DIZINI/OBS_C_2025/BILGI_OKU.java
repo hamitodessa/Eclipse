@@ -11,6 +11,7 @@ public class BILGI_OKU {
 	static ResultSet rs = null;
 	static Connection con ;
 	private GLOBAL gLB = new GLOBAL();
+	@SuppressWarnings("static-access")
 	public  void bILGI_OKU(String uSER,String pROG ,   DIZIN_BILGILERI dIZIN, String  dOSYA_BASLANGIC) throws SQLException, ClassNotFoundException
 	{
 		rs = null;

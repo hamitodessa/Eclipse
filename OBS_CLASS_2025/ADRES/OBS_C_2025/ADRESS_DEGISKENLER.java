@@ -4,8 +4,6 @@ import java.io.InputStream;
 
 public class ADRESS_DEGISKENLER {
 
-
-		
 		public static String kodu = "" ;
 		public static String adi = "" ;
 		public static String adr1 = "" ;

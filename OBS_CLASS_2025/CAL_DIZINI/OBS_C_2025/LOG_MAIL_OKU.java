@@ -10,6 +10,7 @@ public class LOG_MAIL_OKU {
 
 	private static GLOBAL gLB = new GLOBAL();
 
+	@SuppressWarnings("static-access")
 	public static  void mail_oku() throws SQLException, ClassNotFoundException
 
 	{

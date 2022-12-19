@@ -34,7 +34,6 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss sss");
 			String formatli = formatter.format(new Date());
 			String msj=  formatli +"\t" + mesaj  +"\t" + evrak +"\t"+ GLOBAL.KULL_ADI + "\r\n";
-			//String msj=   new java.sql.Timestamp(new java.util.Date().getTime()) +"\t" + mesaj  +"\t" + evrak +"\t"+ GLOBAL.KULL_ADI + "\r\n";
 			bWriter.write(msj);
 			bWriter.close();
 		}
@@ -42,14 +41,11 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
-
 	@Override
 	public ResultSet log_rapor(String t1, String t2, String aciklama, String evrak, String user, DIZIN_BILGILERI dBILGI)
 			throws ClassNotFoundException, SQLException {
 		return null;
-
 	}
-
 	@Override
 	public DefaultTableModel log_txt_rapor(String t1, String t2, String aciklama, String evrak, String user,
 			DIZIN_BILGILERI dBILGI) {

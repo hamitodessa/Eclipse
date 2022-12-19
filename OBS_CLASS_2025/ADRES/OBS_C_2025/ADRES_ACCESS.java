@@ -1,13 +1,10 @@
 package OBS_C_2025;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import LOGER_KAYIT.ILOGER_KAYIT;
-import LOGER_KAYIT.SQLITE_LOG;
-
+@SuppressWarnings("static-access")
 public class ADRES_ACCESS {
 
 	private static IADRES  _IAdres;

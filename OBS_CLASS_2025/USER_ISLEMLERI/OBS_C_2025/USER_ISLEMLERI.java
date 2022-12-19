@@ -7,12 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
 
-
+@SuppressWarnings("static-access")
 public class USER_ISLEMLERI {
 	static  Connection con ;
 
 	static boolean result = false;
 	private GLOBAL gLB = new GLOBAL();
+
 	public  Boolean user_var(String usr,String pwd) throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
 		con = null;
@@ -31,6 +32,7 @@ public class USER_ISLEMLERI {
 		con.close();
 		return result;
 	}
+	
 	public void user_sil(String usr) throws SQLException, ClassNotFoundException
 	{
 		Class.forName("org.sqlite.JDBC");

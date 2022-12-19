@@ -21,6 +21,7 @@ public class KUR_MYSQL implements IKUR {
 		String cumle = "jdbc:mysql://" + BAGLAN.kurDizin.cONN_STR ;
 		con = DriverManager.getConnection(cumle,BAGLAN.kurDizin.kULLANICI,BAGLAN.kurDizin.sIFRESI);
 	}
+	@SuppressWarnings("unused")
 	@Override
 	public void kUR_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins, String kull, String sifre,String port)
 			throws ClassNotFoundException, SQLException {

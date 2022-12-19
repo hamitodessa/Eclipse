@@ -108,7 +108,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_1 = new JLabel(".....");
 		lblNewLabel_1.setForeground(new Color(0, 0, 205));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setBounds(664, 20, 100, 14);
+		lblNewLabel_1.setBounds(730, 20, 50, 14);
 		panel.add(lblNewLabel_1);
 
 
@@ -141,7 +141,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_1_1 = new JLabel(".....");
 		lblNewLabel_1_1.setForeground(new Color(0, 0, 205));
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1_1.setBounds(664, 20, 100, 14);
+		lblNewLabel_1_1.setBounds(730, 20, 50, 14);
 		panel_1.add(lblNewLabel_1_1);
 
 
@@ -173,7 +173,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_1_2 = new JLabel(".....");
 		lblNewLabel_1_2.setForeground(new Color(0, 0, 205));
 		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1_2.setBounds(664, 20, 100, 14);
+		lblNewLabel_1_2.setBounds(730, 20, 50, 14);
 		panel_2.add(lblNewLabel_1_2);
 
 
@@ -206,7 +206,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_1_3 = new JLabel(".....");
 		lblNewLabel_1_3.setForeground(new Color(0, 0, 205));
 		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1_3.setBounds(664, 20, 100, 14);
+		lblNewLabel_1_3.setBounds(730, 20, 50, 14);
 		panel_3.add(lblNewLabel_1_3);
 
 
@@ -238,7 +238,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_1_4 = new JLabel(".....");
 		lblNewLabel_1_4.setForeground(new Color(0, 0, 205));
 		lblNewLabel_1_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1_4.setBounds(664, 20, 100, 14);
+		lblNewLabel_1_4.setBounds(730, 20, 50, 14);
 		panel_4.add(lblNewLabel_1_4);
 
 
@@ -269,7 +269,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_1_5 = new JLabel(".....");
 		lblNewLabel_1_5.setForeground(new Color(0, 0, 205));
 		lblNewLabel_1_5.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1_5.setBounds(664, 20, 100, 14);
+		lblNewLabel_1_5.setBounds(730, 20, 50, 14);
 		panel_5.add(lblNewLabel_1_5);
 
 		try {

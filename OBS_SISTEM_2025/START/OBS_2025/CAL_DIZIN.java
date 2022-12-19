@@ -1194,7 +1194,7 @@ public class CAL_DIZIN extends JFrame {
 			chckbxL_1.setSelected(false);
 		}
 		String[] token = grd.getModel().getValueAt(satir, 15).toString().split(",");
-		cbVeritabani.setSelected( (token[0].equals("true") ? true:false));	//token[0], token[1], token[2], token[3]
+		cbVeritabani.setSelected( (token[0].equals("true") ? true:false));	
 		cbDosya.setSelected( (token[1].equals("true") ? true:false));
 		cbText.setSelected( (token[2].equals("true") ? true:false));
 		cbMail.setSelected( (token[3].equals("true") ? true:false));
@@ -1238,9 +1238,9 @@ public class CAL_DIZIN extends JFrame {
 		btndizsec.setEnabled(false);
 		txtdiz.setText("");
 		chckbxL_1.setSelected(false);
-		cbVeritabani.setSelected( false);	//token[0], token[1], token[2], token[3]
-		cbDosya.setSelected( false);
-		cbText.setSelected( false);
+		cbVeritabani.setSelected(false);	
+		cbDosya.setSelected(false);
+		cbText.setSelected(false);
 		cbMail.setSelected(false);
 		cmbhangisql.setSelectedItem("MS SQL");
 		ip_doldur();
@@ -1538,7 +1538,7 @@ public class CAL_DIZIN extends JFrame {
 	}
 	private void mdb_yaz_2(String modul) throws ClassNotFoundException, SQLException
 	{
-		String loglama = (vt == true ? "true," : "false,") + (ds == true ? "true," : "false,") + (tx ==true ? "true," : "false,") + (em == true ? "true":"false,");
+		String loglama = (vt == true ? "true," : "false,") + (ds == true ? "true," : "false,") + (tx ==true ? "true," : "false,") + (em == true ? "true":"false");
 		oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, modul,chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
 		oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), comboBox.getSelectedItem().toString() , txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, loglama);
 	}

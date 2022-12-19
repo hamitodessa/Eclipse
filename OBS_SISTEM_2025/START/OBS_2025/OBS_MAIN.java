@@ -2403,6 +2403,7 @@ public class OBS_MAIN extends JFrame {
 		JButton btnNewButton_30 = new JButton("");
 		btnNewButton_30.setToolTipText("Hesap Makinasi");
 		btnNewButton_30.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
 					GuiUtil.setWaitCursor(toolBar,true);

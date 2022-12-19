@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.image.BufferedImage;
 import javax.mail.util.ByteArrayDataSource;
-import LOGER_KAYIT.DOSYA_MSSQL;
-import OBS_C_2025.DOSYA_YAZ;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.IADRES;
 import OBS_C_2025.ICARI_HESAP;
@@ -17,7 +15,6 @@ import OBS_C_2025.IKUR;
 import OBS_C_2025.ILOGGER;
 import OBS_C_2025.ISMS;
 import OBS_C_2025.ISTOK;
-import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.SIFRE_DONDUR;
 import OBS_C_2025.USER_ISLEMLERI;
 

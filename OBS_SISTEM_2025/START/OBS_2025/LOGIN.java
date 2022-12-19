@@ -71,7 +71,6 @@ import OBS_C_2025.KAMBIYO_MYSQL;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.KUR_MSSQL;
 import OBS_C_2025.KUR_MYSQL;
-import OBS_C_2025.LOG_MAIL_OKU;
 import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
@@ -81,7 +80,7 @@ import OBS_C_2025.SMS_MYSQL;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
-
+@SuppressWarnings("static-access")
 public class LOGIN extends JFrame {
 	/**
 	 * 
@@ -325,7 +324,6 @@ public class LOGIN extends JFrame {
 						//***buraya 
 						OBS_MAIN obmain = new OBS_MAIN();
 						Login_Progres_Bar_Temizle();
-						String qwe = "";
 						cari_kont();
 						kur_kont();
 						sms_kont();
@@ -950,7 +948,7 @@ public class LOGIN extends JFrame {
 			//************************************
 			String eskitar = "" ;
 			String eskiver = "";
-			String yenitar = "" ;
+			
 			String yeniver = "";
 			String fileName = "C:/OBS_SISTEM" + "/OBS_VERSION.txt";
 			String line = null;
@@ -1006,6 +1004,7 @@ public class LOGIN extends JFrame {
 			bufferedReader = null;
 			bufferedReader =    new BufferedReader(fileReader);
 			counter = 0;
+			String yenitar = "" ;
 			while((line = bufferedReader.readLine()) != null) {
 				counter++;
 				if(counter == 1)

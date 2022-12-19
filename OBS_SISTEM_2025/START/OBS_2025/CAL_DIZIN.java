@@ -94,7 +94,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
-
+@SuppressWarnings("static-access")
 public class CAL_DIZIN extends JFrame {
 
 
@@ -158,6 +158,7 @@ public class CAL_DIZIN extends JFrame {
 			}
 		});
 	}
+	@SuppressWarnings("serial")
 	public CAL_DIZIN() {
 		setTitle("CALISMA DIZINI");
 		//setAlwaysOnTop(true);

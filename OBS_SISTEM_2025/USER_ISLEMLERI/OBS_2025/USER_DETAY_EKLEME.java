@@ -3,8 +3,6 @@ package OBS_2025;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -88,6 +86,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("static-access")
 	public USER_DETAY_EKLEME() {
 
 		setResizable(true);
@@ -279,6 +278,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		DefaultTableModel model = new DefaultTableModel(null,columnheaders);
 		table_1 = new JTable(model){
 			private static final long serialVersionUID = 1L;
+			@SuppressWarnings({ "unchecked", "rawtypes" })
 			@Override
 			public Class getColumnClass(int column) {
 				return String.class;

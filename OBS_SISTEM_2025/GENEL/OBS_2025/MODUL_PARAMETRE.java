@@ -291,7 +291,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_1.setText(BAGLAN.cariDizin.hAN_SQL);
 		if (BAGLAN.cariDizin.yER.equals("L"))
 		{
-			lblNewLabel_2.setText(BAGLAN.cariDizin.yER);
+			lblNewLabel_2.setText(BAGLAN.cariDizin.yER); 
 		}
 		else
 		{

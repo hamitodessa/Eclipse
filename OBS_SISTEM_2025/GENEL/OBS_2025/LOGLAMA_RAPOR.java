@@ -45,6 +45,10 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 public class LOGLAMA_RAPOR extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static JSplitPane splitPane ;
 	static JTable table;
 	static JComboBox<String> comboBox = new JComboBox<String>();
@@ -79,6 +83,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("static-access")
 	public LOGLAMA_RAPOR() {
 		setTitle("LOG RAPORLAMA");
 		setClosable(true);
@@ -102,7 +107,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		comboBox.setForeground(new Color(0, 0, 139));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo","Adres","Kur","Sms-Mail"}));
-		comboBox.setBounds(140, 11, 110, 22);
+		comboBox.setBounds(10, 11, 110, 22);
 		panel.add(comboBox);
 
 		dateChooser = new JDateChooser();
@@ -163,11 +168,16 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		cmbLog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani", "Dosya", "Text Dosya"}));
 		cmbLog.setForeground(new Color(165, 42, 42));
 		cmbLog.setFont(new Font("Tahoma", Font.BOLD, 12));
-		cmbLog.setBounds(10, 11, 120, 22);
+		cmbLog.setBounds(140, 11, 110, 22);
 		panel.add(cmbLog);
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
 		table = new JTable(){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table.getTableHeader().setReorderingAllowed(false);

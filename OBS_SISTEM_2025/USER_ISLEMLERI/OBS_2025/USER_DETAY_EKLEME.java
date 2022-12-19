@@ -3,6 +3,9 @@ package OBS_2025;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -18,16 +21,19 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
+import javax.swing.AbstractAction;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -36,6 +42,9 @@ import javax.swing.table.TableColumn;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.StayOpenCheckBoxMenuItemUI;
+
+import javax.swing.JButton;
 
 
 @SuppressWarnings("serial")
@@ -58,13 +67,22 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 	private static JCheckBox chckbxNewCheckBox;
 	private static JCheckBox chckbxNewCheckBox_1;
 	private static JCheckBox chckbxLog ;
-	private static JComboBox<String> cmbLog_yeri ;
 
 	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static JComboBox<String> comboBox_2;
+	
+	static boolean vt = false;
+	static boolean ds = false;
+	static boolean tx = false;
+	static boolean em = false;
+	static JCheckBoxMenuItem cbVeritabani ;
+	static JCheckBoxMenuItem cbDosya;
+	static JCheckBoxMenuItem cbText;
+	static JCheckBoxMenuItem cbMail;
+
 
 	/**
 	 * Launch the application.
@@ -265,14 +283,59 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		JLabel lblNewLabel_8_1_1 = new JLabel("Loglama Yeri");
 		lblNewLabel_8_1_1.setBounds(718, 86, 80, 14);
 		panel.add(lblNewLabel_8_1_1);
+		
+		/////////////////////////////////////////////////LOGLAMA BUTTON /////////////////////
+		JPopupMenu menu;
+		menu = new JPopupMenu("");
+		menu.addSeparator();
+		cbVeritabani = new JCheckBoxMenuItem("Veritabani Kayit");
+		cbVeritabani.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbVeritabani.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				vt = (e.getStateChange() == 1 ? true:false);    	
+			}
+		});
+		cbVeritabani.setSelected(true);
+		menu.add(cbVeritabani);
 
-		cmbLog_yeri = new JComboBox<String>();
-		cmbLog_yeri.setForeground(new Color(0, 0, 128));
-		cmbLog_yeri.setFont(new Font("Tahoma", Font.BOLD, 14));
+		cbDosya = new JCheckBoxMenuItem("Dosya");
+		cbDosya.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbDosya.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				ds = (e.getStateChange() == 1 ? true:false);    	
+			}
+		});
+		menu.add(cbDosya);
 
-		cmbLog_yeri.setModel(new DefaultComboBoxModel<String>(new String[] {"Dosyaya Kayit", "Email Atma"}));
-		cmbLog_yeri.setBounds(800, 82, 126, 22);
-		panel.add(cmbLog_yeri);
+		cbText = new JCheckBoxMenuItem("Text Dosya");
+		cbText.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbText.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				tx = (e.getStateChange() == 1 ? true:false);    	
+			}
+		});
+		menu.add(cbText);
+
+		cbMail = new JCheckBoxMenuItem("Email Atma");
+		cbMail.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbMail.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				em = (e.getStateChange() == 1 ? true:false);    	
+			}
+		});
+		menu.add(cbMail);
+		JButton btnNewButton_6 = new JButton();
+		btnNewButton_6.setText("Loglama Secimi");
+		btnNewButton_6.setBounds(800, 82, 110, 23);
+		btnNewButton_6.setAction(new AbstractAction("Loglama Secimi") {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				menu.show(btnNewButton_6, 0, btnNewButton_6.getHeight());
+			}
+		});
+		panel.add(btnNewButton_6);
+		
+		
 		String columnheaders[] = { "Kodu", "Kullanici", "Ser.Kullanici" ,"Sifre","Instance", "IP", "Modul" ,
 				"Dizin","Yer","Dizin Cins","Izinli Mi" ,"Calisan Mi","SQL Cinsi" ,"Loglama" ,"Log_Yeri" , "ID"};
 		DefaultTableModel model = new DefaultTableModel(null,columnheaders);
@@ -590,7 +653,12 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		}
 		else
 		{
-			cmbLog_yeri.setSelectedItem(table_1.getModel().getValueAt(satir, 14).toString());
+			
+			String[] token =table_1.getModel().getValueAt(satir, 14).toString().split(",");
+			cbVeritabani.setSelected( (token[0].equals("true") ? true:false));	
+			cbDosya.setSelected( (token[1].equals("true") ? true:false));
+			cbText.setSelected( (token[2].equals("true") ? true:false));
+			cbMail.setSelected( (token[3].equals("true") ? true:false));
 		}
 		if (  table_1.getModel().getValueAt(satir, 15)== null)
 		{
@@ -640,10 +708,11 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		try
 		{
 			splitPane.setCursor(WAIT_CURSOR);
+			String loglama = (vt == true ? "true," : "false,") + (ds == true ? "true," : "false,") + (tx ==true ? "true," : "false,") + (em == true ? "true":"false");
 			oac.uSER_ISL.details_yaz(txtkodu.getText(), comboBox.getItemAt(comboBox.getSelectedIndex()).toString(), txtskull.getText(), txtsifre.getText(),txtins.getText(),
 					txtip.getText(),comboBox_1.getItemAt(comboBox_1.getSelectedIndex()), txtdiz.getText(), 
 					txtyer.getText(), txtdcins.getText(), chckbxNewCheckBox.isSelected() ?   "E" : "",chckbxNewCheckBox_1.isSelected() ?   "E" : "",comboBox_2.getItemAt(comboBox_2.getSelectedIndex()).toString() ,lblcdid.getText()
-							, chckbxLog.isSelected() ?   1 : 0, cmbLog_yeri.getItemAt(cmbLog_yeri.getSelectedIndex()).toString());
+							, chckbxLog.isSelected() ?   1 : 0,loglama);
 			grid_doldur();
 			kutu_temizle();
 			doldur();

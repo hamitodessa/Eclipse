@@ -69,7 +69,7 @@ public class USER_ISLEMLERI {
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con = gLB.myConnection();
-		String sql = "SELECT  * FROM USER_DETAILS WHERE USER_PROG_OBS <> 'Fihrist'  ";
+		String sql = "SELECT  * FROM USER_DETAILS WHERE USER_PROG_OBS <> 'Fihrist'  ORDER BY USER_NAME ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;

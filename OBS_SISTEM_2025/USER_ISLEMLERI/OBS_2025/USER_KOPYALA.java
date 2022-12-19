@@ -12,9 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-
-import OBS_C_2025.GLOBAL;
-
 import java.awt.Font;
 import java.awt.Color;
 
@@ -49,6 +46,7 @@ public class USER_KOPYALA extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("static-access")
 	public USER_KOPYALA() {
 		setTitle("KULLANICI KOPYALA");
 		setClosable(true);
@@ -101,6 +99,7 @@ public class USER_KOPYALA extends JInternalFrame {
 			comboBox_1.addItem(rs.getString("USER_NAME"));
 		}  
 	}
+	@SuppressWarnings("static-access")
 	public static void kaydet() 
 	{
 		try 

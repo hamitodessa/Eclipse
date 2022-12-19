@@ -112,7 +112,6 @@ public class CAL_DIZIN extends JFrame {
 	private static JComboBox<String> comboBox;
 	private static JComboBox<String> cmbip;
 	private static JComboBox<String> cmbhangisql;
-	private static JComboBox<String> cmblog ;
 	private static JButton btndizsec;
 	private static JButton btnNewButton_1;
 	private static JCheckBox chckbxL ;
@@ -1009,20 +1008,13 @@ public class CAL_DIZIN extends JFrame {
 									chckbxL_1.setBounds(102, 126, 30, 23);
 									panel.add(chckbxL_1);
 
-									cmblog = new JComboBox<String>();
-									cmblog.setFont(new Font("Tahoma", Font.BOLD, 11));
-									cmblog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani Kayit", "Dosya", "Text Dosya", "Email Atma"}));
-									//									cmblog.setEnabled(false);
-									cmblog.setBounds(276, 95, 30, 22);
-									panel.add(cmblog);
-
 									JLabel lblKayitserver = new JLabel("Serverler");
 									lblKayitserver.setBounds(24, 234, 78, 14);
 									panel.add(lblKayitserver);
 
 									/////////////////////////////////////////////////LOGLAMA BUTTON /////////////////////
 									JPopupMenu menu;
-									menu = new JPopupMenu("A Menu");
+									menu = new JPopupMenu("");
 									menu.addSeparator();
 									cbVeritabani = new JCheckBoxMenuItem("Veritabani Kayit");
 									cbVeritabani.setMnemonic(KeyEvent.VK_C);
@@ -1030,7 +1022,6 @@ public class CAL_DIZIN extends JFrame {
 									cbVeritabani.addItemListener(new ItemListener() {
 										public void itemStateChanged(ItemEvent e) {
 											vt = ( cbVeritabani.isSelected() == true ? true:false);    	
-											System.out.println("= " + vt + ds+tx+em);
 										}
 									});
 									cbVeritabani.setSelected(true);
@@ -1042,18 +1033,16 @@ public class CAL_DIZIN extends JFrame {
 									cbDosya.addItemListener(new ItemListener() {
 										public void itemStateChanged(ItemEvent e) {
 											ds = ( cbVeritabani.isSelected() == true ? true:false);    	
-											System.out.println("= " + vt + ds+tx+em);
 										}
 									});
 									menu.add(cbDosya);
 
-									 cbText = new JCheckBoxMenuItem("Text Dosya");
+									cbText = new JCheckBoxMenuItem("Text Dosya");
 									cbText.setMnemonic(KeyEvent.VK_H);
 									cbText.setUI(new StayOpenCheckBoxMenuItemUI());
 									cbText.addItemListener(new ItemListener() {
 										public void itemStateChanged(ItemEvent e) {
 											tx = (e.getStateChange() == 1 ? true:false);    	
-											System.out.println("= " + vt + ds+tx+em);
 										}
 									});
 									menu.add(cbText);
@@ -1064,7 +1053,6 @@ public class CAL_DIZIN extends JFrame {
 									cbMail.addItemListener(new ItemListener() {
 										public void itemStateChanged(ItemEvent e) {
 											em = (e.getStateChange() == 1 ? true:false);    
-											System.out.println("= " + vt + ds+tx+em);
 										}
 									});
 									menu.add(cbMail);
@@ -1082,7 +1070,6 @@ public class CAL_DIZIN extends JFrame {
 
 	private   void grid_doldur() throws ClassNotFoundException, SQLException
 	{
-
 		kutu_temizle();
 		if ( activ_sayfa == 0)
 		{
@@ -1201,19 +1188,16 @@ public class CAL_DIZIN extends JFrame {
 		if (say == 1)
 		{
 			chckbxL_1.setSelected(true);
-			//cmblog.setEnabled(true);
 		}
 		else
 		{
 			chckbxL_1.setSelected(false);
-			//cmblog.setEnabled(false);
 		}
 		String[] token = grd.getModel().getValueAt(satir, 15).toString().split(",");
-		cbVeritabani.setSelected( (token[0].equals("Veritabani Kayit") ? true:false));	//token[0], token[1], token[2], token[3]
-		cbDosya.setSelected( (token[0].equals("Dosya") ? true:false));
-		cbText.setSelected( (token[0].equals("Text Dosya") ? true:false));
-		cbMail.setSelected( (token[0].equals("Email Atma") ? true:false));
-//		cmblog.setSelectedItem(grd.getModel().getValueAt(satir, 15).toString());
+		cbVeritabani.setSelected( (token[0].equals("true") ? true:false));	//token[0], token[1], token[2], token[3]
+		cbDosya.setSelected( (token[1].equals("true") ? true:false));
+		cbText.setSelected( (token[2].equals("true") ? true:false));
+		cbMail.setSelected( (token[3].equals("true") ? true:false));
 		if (grd.getModel().getValueAt(satir, 10).equals("D"))
 		{
 			chckbxD.setSelected(true);
@@ -1254,7 +1238,6 @@ public class CAL_DIZIN extends JFrame {
 		btndizsec.setEnabled(false);
 		txtdiz.setText("");
 		chckbxL_1.setSelected(false);
-		cmblog.setSelectedItem("Veritabani Kayit");
 		cbVeritabani.setSelected( false);	//token[0], token[1], token[2], token[3]
 		cbDosya.setSelected( false);
 		cbText.setSelected( false);
@@ -1555,7 +1538,7 @@ public class CAL_DIZIN extends JFrame {
 	}
 	private void mdb_yaz_2(String modul) throws ClassNotFoundException, SQLException
 	{
-		String loglama = (vt == true ? "Veritbani Kayit," : "") + (ds == true ? "Dosya," : "") + (tx ==true ? "Text Dosya," : "") + (em == true ? "Email Atma ":"");
+		String loglama = (vt == true ? "true," : "false,") + (ds == true ? "true," : "false,") + (tx ==true ? "true," : "false,") + (em == true ? "true":"false,");
 		oac.uSER_ISL.calisanmi_degis(GLOBAL.KULL_ADI, modul,chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
 		oac.uSER_ISL.details_yaz(txtKodu.getText(),GLOBAL.KULL_ADI, txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), comboBox.getSelectedItem().toString() , txtIp.getText(), modul,txtdiz.getText(), chckbxL.isSelected() ? "L" : "S", chckbxD.isSelected() ? "D" : "O", "E", "E",cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()),  txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, loglama);
 	}
@@ -2076,7 +2059,6 @@ public class CAL_DIZIN extends JFrame {
 						{
 							ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG())};
 							lAktar(mODUL , ilogg);
-
 						}
 					}
 				}
@@ -2235,7 +2217,7 @@ public class CAL_DIZIN extends JFrame {
 				}
 			}
 		}
-		}
+	}
 	private void lAktar(String mODUL , ILOGGER[] ilogg)
 	{
 		if (mODUL.equals("Cari Hesap"))

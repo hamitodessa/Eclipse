@@ -1060,10 +1060,10 @@ public class LOGIN extends JFrame {
 	private void lOGG_AKTAR(String mODUL, String hangiSQL , Boolean log , String hANGI_LOG) throws ClassNotFoundException, SQLException
 	{
 		String[] token = hANGI_LOG.split(",");
-		vt =  (token[0].equals("Veritabani Kayit") ? true:false);	//token[0], token[1], token[2], token[3]
-		ds = (token[0].equals("Dosya") ? true:false);
-		tx = (token[0].equals("Text Dosya") ? true:false);
-		em =  (token[0].equals("Email Atma") ? true:false);
+		vt =  (token[0].equals("true") ? true:false);	//token[0], token[1], token[2], token[3]
+		ds = (token[1].equals("true") ? true:false);
+		tx = (token[2].equals("true") ? true:false);
+		em =  (token[3].equals("true") ? true:false);
 		if (log == false)
 		{
 			ILOGGER[] ilogg = {};
@@ -1102,7 +1102,6 @@ public class LOGIN extends JFrame {
 							{
 								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG())};
 								lAktar(mODUL , ilogg);
-
 							}
 						}
 					}
@@ -1260,7 +1259,6 @@ public class LOGIN extends JFrame {
 						}
 					}
 				}
-
 			}		
 ///////
 		}

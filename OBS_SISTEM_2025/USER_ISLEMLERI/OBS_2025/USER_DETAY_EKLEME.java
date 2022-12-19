@@ -326,7 +326,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		menu.add(cbMail);
 		JButton btnNewButton_6 = new JButton();
 		btnNewButton_6.setText("Loglama Secimi");
-		btnNewButton_6.setBounds(800, 82, 110, 23);
+		btnNewButton_6.setBounds(800, 82, 130, 23);
 		btnNewButton_6.setAction(new AbstractAction("Loglama Secimi") {
 			@Override
 			public void actionPerformed(ActionEvent e) {

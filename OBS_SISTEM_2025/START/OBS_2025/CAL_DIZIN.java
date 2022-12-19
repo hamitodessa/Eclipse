@@ -1003,7 +1003,7 @@ public class CAL_DIZIN extends JFrame {
 
 				}
 			});
-			chckbxL_1.setBounds(102, 126, 30, 23);
+			chckbxL_1.setBounds(102, 126, 25, 23);
 			panel.add(chckbxL_1);
 
 			JLabel lblKayitserver = new JLabel("Serverler");
@@ -1052,7 +1052,7 @@ public class CAL_DIZIN extends JFrame {
 			menu.add(cbMail);
 			JButton btnNewButton_6 = new JButton();
 			btnNewButton_6.setText("Loglama Secimi");
-			btnNewButton_6.setBounds(138, 125, 121, 23);
+			btnNewButton_6.setBounds(130, 125, 129, 23);
 			btnNewButton_6.setAction(new AbstractAction("Loglama Secimi") {
 				@Override
 				public void actionPerformed(ActionEvent e) {

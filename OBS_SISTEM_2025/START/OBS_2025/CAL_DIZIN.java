@@ -1061,7 +1061,6 @@ public class CAL_DIZIN extends JFrame {
 			});
 			panel.add(btnNewButton_6);
 	}
-
 	private   void grid_doldur() throws ClassNotFoundException, SQLException
 	{
 		kutu_temizle();
@@ -1121,7 +1120,6 @@ public class CAL_DIZIN extends JFrame {
 		grd.removeColumn(grd.getColumnModel().getColumn(4));
 		grd.removeColumn(grd.getColumnModel().getColumn(4));
 		grd.removeColumn(grd.getColumnModel().getColumn(4));
-
 		JTableHeader th = grd.getTableHeader();
 		TableColumnModel tcm = th.getColumnModel();
 		TableColumn tc = tcm.getColumn(0);
@@ -1141,7 +1139,6 @@ public class CAL_DIZIN extends JFrame {
 		grd.setRowSelectionInterval(0, 0);
 		grd.setSelectionBackground(Color.PINK);
 		grd.setSelectionForeground(Color.BLUE);
-
 	}
 	public static void HeaderRenderer(JTable table) {
 		DefaultTableCellRenderer renderer;
@@ -1156,11 +1153,9 @@ public class CAL_DIZIN extends JFrame {
 			return;
 		} 
 		ip_doldur();
-
 		txtKodu.setText(grd.getModel().getValueAt(satir, 1).toString());
 		txtIp.setText(grd.getModel().getValueAt(satir, 6).toString());
 		txtkul.setText(grd.getModel().getValueAt(satir, 3).toString());
-
 		byte[] decodedBytes = Base64.getDecoder().decode(grd.getModel().getValueAt(satir, 4).toString());
 		String decodedString = new String(decodedBytes);
 		txtsifr.setText(decodedString);
@@ -1428,13 +1423,11 @@ public class CAL_DIZIN extends JFrame {
 			JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ...", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
 			return;
 		}
-
 	}
 	private void server_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
 	{
 		if (	 s_CONN.Dosya_kontrol_S(txtIp.getText(),comboBox.getSelectedItem().toString(), txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr), program,txtIp.getText()) ==true)
 		{
-
 			boolean izinli = true;
 			if ( !GLOBAL.KULL_ADI.equals("Admin") )
 			{
@@ -1602,7 +1595,6 @@ public class CAL_DIZIN extends JFrame {
 		cONN_AKTAR();
 		lOGG_AKTAR("Stok");
 		mODUL_AKTAR("Stok");
-
 		STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
 		BAGLAN.fatDizin.kULLANICI = txtkul.getText();
 		BAGLAN.fatDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
@@ -1613,7 +1605,6 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.fatDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
-
 		if (chckbxD.isSelected())
 		{
 			s_Access.fAT_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.fatLogDizin,txtIp.getText());
@@ -1703,7 +1694,6 @@ public class CAL_DIZIN extends JFrame {
 		else
 		{
 			ka_Access.kAM_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.kamLogDizin,txtIp.getText());
-
 		}
 	}
 	void sms_olustur() throws ClassNotFoundException, SQLException

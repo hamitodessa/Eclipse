@@ -1059,7 +1059,7 @@ public class LOGIN extends JFrame {
 	private void lOGG_AKTAR(String mODUL, String hangiSQL , Boolean log , String hANGI_LOG) throws ClassNotFoundException, SQLException
 	{
 		String[] token = hANGI_LOG.split(",");
-		vt =  (token[0].equals("true") ? true:false);	//token[0], token[1], token[2], token[3]
+		vt =  (token[0].equals("true") ? true:false);
 		ds = (token[1].equals("true") ? true:false);
 		tx = (token[2].equals("true") ? true:false);
 		em =  (token[3].equals("true") ? true:false);
@@ -1070,16 +1070,15 @@ public class LOGIN extends JFrame {
 		}
 		else
 		{
-///////
-			if (vt )
+			if (vt ) // VERITABANI KONTROL
 			{
-				if (hangiSQL == "MS SQL")
+				if (hangiSQL.equals("MS SQL"))
 				{
-					if (ds)
+					if (ds) // SQLITE DOSYA KONTROL
 					{
-						if(tx)
+						if(tx) // TEXT DOSYA KONTROL
 						{
-							if(em)
+							if(em) // EMAIL KONTROL
 							{
 								ILOGGER[] ilogg = {new DOSYA_YAZ(new DOSYA_MSSQL()),new DOSYA_YAZ(new SQLITE_LOG()),new DOSYA_YAZ(new TXT_LOG()),new MAIL_AT()};
 								lAktar(mODUL , ilogg);
@@ -1134,7 +1133,6 @@ public class LOGIN extends JFrame {
 						}
 					}
 				}
-				////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				else  // MYSQL
 				{
 					if (ds)
@@ -1197,7 +1195,6 @@ public class LOGIN extends JFrame {
 					}
 				}
 			}
-			////////////////////////////////////////////////////////////////////////////////
 			else // VT YOK
 			{
 				if (ds)
@@ -1259,7 +1256,6 @@ public class LOGIN extends JFrame {
 					}
 				}
 			}		
-///////
 		}
 	}
 	private void lAktar(String mODUL , ILOGGER[] ilogg)

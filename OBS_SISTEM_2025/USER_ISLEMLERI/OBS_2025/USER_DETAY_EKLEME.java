@@ -345,7 +345,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 				try {
 					doldur_kutu(row);
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}	
@@ -360,11 +359,9 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 					kutu_temizle();
 					doldur_kutu(table_1.getSelectedRow());
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				getContentPane().setCursor(DEFAULT_CURSOR);
@@ -471,11 +468,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 				doldur_kutu(0);
 			}
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		getContentPane().setCursor(DEFAULT_CURSOR);
@@ -511,7 +504,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table_1.setFont(bigFont);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

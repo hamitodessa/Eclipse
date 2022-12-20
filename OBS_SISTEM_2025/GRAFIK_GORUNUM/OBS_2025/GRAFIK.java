@@ -26,6 +26,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import OBS_C_2025.GLOBAL;
 
 
+@SuppressWarnings("serial")
 public class GRAFIK extends JInternalFrame {
 	public static  JFreeChart chart;
 
@@ -57,8 +58,6 @@ public class GRAFIK extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0,1000, 600);
-
-
 		setMaximum(true);
 		var ex = new LineChartEx();
 		ex.setVisible(true);

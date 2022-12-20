@@ -90,7 +90,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		setResizable(true);
 		setMaximizable(true);
 		setIconifiable(true);
-		setBounds(0, 0, 1250, 600);
+		setBounds(0, 0, 1063, 600);
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
@@ -146,22 +146,22 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
-		textField_1.setBounds(912, 12, 96, 20);
+		textField_1.setBounds(852, 12, 58, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Evrak");
-		lblNewLabel.setBounds(854, 15, 48, 14);
+		lblNewLabel.setBounds(816, 15, 37, 14);
 		panel.add(lblNewLabel);
 
 		textField_2 = new JTextField();
 		textField_2.setText("");
-		textField_2.setBounds(1108, 12, 96, 20);
+		textField_2.setBounds(968, 12, 63, 20);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 
 		JLabel lblKullanici = new JLabel("Kullanici");
-		lblKullanici.setBounds(1050, 15, 48, 14);
+		lblKullanici.setBounds(920, 15, 52, 14);
 		panel.add(lblKullanici);
 		
 		cmbLog = new JComboBox<String>();

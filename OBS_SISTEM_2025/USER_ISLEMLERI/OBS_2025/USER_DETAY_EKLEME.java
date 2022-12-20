@@ -112,26 +112,16 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		setClosable(true);
 		setBounds(0, 0, 1217, 600);
 
-		splitPane = new JSplitPane(){
-			private final int location = 120;
-			{
-				setDividerLocation( location );
-			}
-			@Override
-			public int getDividerLocation() {
-				return location ;
-			}
-			@Override
-			public int getLastDividerLocation() {
-				return location ;
-			}
-		};
-		splitPane.setResizeWeight(0.8);
+		splitPane = new JSplitPane();
+		splitPane.setDividerSize(0);
+		splitPane.setResizeWeight(0.0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setMinimumSize(new Dimension(0, 120));
+		panel.setMaximumSize(new Dimension(0, 120));
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
 
@@ -259,7 +249,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		panel.add(lblcdid);
 
 		JLabel lblNewLabel_12 = new JLabel("SQL Cinsi");
-		lblNewLabel_12.setBounds(919, 61, 66, 14);
+		lblNewLabel_12.setBounds(250, 86, 66, 14);
 		panel.add(lblNewLabel_12);
 
 		comboBox_2 = new JComboBox<String>();
@@ -268,7 +258,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 
 
 		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"MS SQL", "MY SQL"}));
-		comboBox_2.setBounds(995, 57, 119, 22);
+		comboBox_2.setBounds(357, 82, 100, 22);
 		panel.add(comboBox_2);
 
 		JLabel lblNewLabel_8_1 = new JLabel("Log");
@@ -336,8 +326,8 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		panel.add(btnNewButton_6);
 		
 		
-		String columnheaders[] = { "Kodu", "Kullanici", "Ser.Kullanici" ,"Sifre","Instance", "IP", "Modul" ,
-				"Dizin","Yer","Dizin Cins","Izinli Mi" ,"Calisan Mi","SQL Cinsi" ,"Loglama" ,"Log_Yeri" , "ID"};
+		String columnheaders[] = { "KODU", "KULLANICI", "SER.KULLANICI" ,"SIFRE","INSTANCE", "IP", "MODUL" ,
+				"DIZIN","YER","DIZIN CINS","IZINLI MI" ,"CALISAN MI","SQL CINSI" ,"LOGLAMA" ,"LOG_YERI" , "ID"};
 		DefaultTableModel model = new DefaultTableModel(null,columnheaders);
 		table_1 = new JTable(model){
 			private static final long serialVersionUID = 1L;
@@ -444,15 +434,18 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		col.setHeaderRenderer(new SOLA());
 		vColIndex = 13;
 		col = table_1.getColumnModel().getColumn(vColIndex);
-		col.setMinWidth(30);
+		col.setMinWidth(1);
+		col.setMaxWidth(1);
 		col.setHeaderRenderer(new SOLA());
 		vColIndex = 14;
 		col = table_1.getColumnModel().getColumn(vColIndex);
-		col.setMinWidth(100);
+		col.setMinWidth(1);
+		col.setMaxWidth(1);
 		col.setHeaderRenderer(new SOLA());
 		vColIndex = 15;
 		col = table_1.getColumnModel().getColumn(vColIndex);
 		col.setMinWidth(1);
+		col.setMaxWidth(1);
 		col.setHeaderRenderer(new SOLA());
 
 		JTableHeader header = table_1.getTableHeader();

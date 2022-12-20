@@ -35,12 +35,10 @@ public class CARI_ACCESS {
 			String sifre , String mesaj,String evrak, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException 
 	{
 		 _ICari.cari_sifirdan_L( kod,dizin_yeri, dizin,  fir_adi, ins, kull, sifre,port);
-		 
 			 for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(mesaj,evrak, dBILGI);
 			 for ( ILOGGER  _Logger : _Logger )
 				  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
-	
 	}
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
 			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
@@ -50,7 +48,6 @@ public class CARI_ACCESS {
 			  	_Logger.Logla(mesaj,evrak, dBILGI);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
-	
 	}
 	public ResultSet  cari_sonfisno( ) throws ClassNotFoundException, SQLException
 	{
@@ -76,7 +73,6 @@ public class CARI_ACCESS {
 		for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(mesaj,evrak, dBILGI);
 		}
-		
 	}
 	public void cari_dekont_kaydet(String bhes,String tar,int evrak,String bcins,Double bkur,Double borc ,
 			String alhes,String acins,Double alkur,Double alacak,String izahat,String kod,String user, String mesaj,String evrakl, DIZIN_BILGILERI dBILGI) throws SQLException, ClassNotFoundException
@@ -248,7 +244,6 @@ public class CARI_ACCESS {
 		return _ICari.yilsonu_cari_fisno_al();
 	}
 	public void yilsonu_cari_dekont_kaydet(String bhes,String tar,int evrak,String bcins,Double bkur,Double borc ,
-
 			String alhes,String acins,Double alkur,Double alacak,String izahat,String kod,String user
 			, String mesaj,String evrakk, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{

@@ -19,6 +19,7 @@ public class MAIL_AT implements ILOGGER{
 	@Override
 	public void Logla(String mesaj, String evrak, DIZIN_BILGILERI dBILGI)
 	{
+		if ( GLOBAL.Log_Mail.toString().equals("") ) return ;
 		try
 		{
 			String[] to = { GLOBAL.Log_Mail };
@@ -28,7 +29,6 @@ public class MAIL_AT implements ILOGGER{
 			if (MAIL_SETTINGS.SSL)
 			{
 				props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
-				//props.put("mail.smtp.startsls.enable", SSL);
 			}
 			props.put("mail.smtp.host", MAIL_SETTINGS.HOST);
 			props.put("mail.smtp.user", MAIL_SETTINGS.HESAP);
@@ -36,6 +36,7 @@ public class MAIL_AT implements ILOGGER{
 			props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
 			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+			
 			Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication(MAIL_SETTINGS.HESAP, MAIL_SETTINGS.PWD);

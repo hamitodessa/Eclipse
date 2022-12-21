@@ -23,7 +23,6 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 
 	@Override
 	public void Logla(String mesaj, String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
-
 		try
 		{
 			File file = new File(GLOBAL.LOG_SURUCU  + dBILGI.mODULADI  + ".txt");
@@ -50,6 +49,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 	public DefaultTableModel log_txt_rapor(String t1, String t2, String aciklama, String evrak, String user,
 			DIZIN_BILGILERI dBILGI) {
 		DefaultTableModel model =new DefaultTableModel(new String[] {"TARIH", "MESAJ", "EVRAK", "USER_NAME"}, 0);
+		String nerde = "" ;
 		try
 		{
 			File file = new File(GLOBAL.LOG_SURUCU + dBILGI.mODULADI  + ".txt");  //OK_Car019_log.txt
@@ -60,11 +60,13 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			{
 				FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8);
 				BufferedReader br = new BufferedReader( fileReader );
+				
 				try (Scanner sc = new Scanner(br)) {
 					while (sc.hasNextLine()) 
 					{
 						String l =  sc.nextLine();  
 						String[] token = l.split("\t");
+						nerde =  token[0] ;
 						Vector<String> data = new Vector<String>();
 						Date aiLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t1);  
 						Date asLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t2);  
@@ -204,7 +206,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			}
 		}
 		catch (Exception e){
-			JOptionPane.showMessageDialog(null, e.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(null,  "== " + nerde , "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 		}
 		return model ;
 	}

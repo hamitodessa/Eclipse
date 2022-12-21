@@ -71,6 +71,7 @@ import OBS_C_2025.KAMBIYO_MYSQL;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.KUR_MSSQL;
 import OBS_C_2025.KUR_MYSQL;
+import OBS_C_2025.LOG_MAIL_OKU;
 import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
@@ -642,6 +643,8 @@ public class LOGIN extends JFrame {
 			oac._IGunluk = new GUNLUK_MYSQL();
 		}
 		lOG_AKTAR();
+		oac.uSER_ISL.mail_bak(); // MAIL AYARLARI OKUMA
+		LOG_MAIL_OKU.mail_oku(); // LOGLAMA MAILI OKUMA
 		progressBar.setMaximum(8);
 		progressBar.setStringPainted(true);
 		Lgn_Progres_Bar(say, 1);

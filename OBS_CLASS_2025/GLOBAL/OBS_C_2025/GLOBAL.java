@@ -41,7 +41,6 @@ public class GLOBAL {
 	public static  String hangi_mizan = "" ;
 	public static String yazici[]; 
 	public static String nerden ="";
-
 	public static String g_baslik = "";
 	public static String g_legends;
 	public static String g_setNumbersAxisTitleText="";
@@ -57,9 +56,7 @@ public class GLOBAL {
 			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + OBS_DOSYA );  
 		} 
 		catch (SQLException e) 
-		{
-
-		}  
+		{	}  
 		return conn;  
 	}  
 	//*************************************************

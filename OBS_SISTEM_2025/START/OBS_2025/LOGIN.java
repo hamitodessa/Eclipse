@@ -940,6 +940,7 @@ public class LOGIN extends JFrame {
 		progressBar.setValue(0);
 		progressBar.setStringPainted(false);
 	}
+	@SuppressWarnings("unused")
 	private void versiyon_oku()
 	{
 		if (oac.glb.internet_kontrol() == false)
@@ -951,7 +952,6 @@ public class LOGIN extends JFrame {
 			//************************************
 			String eskitar = "" ;
 			String eskiver = "";
-			
 			String yeniver = "";
 			String fileName = "C:/OBS_SISTEM" + "/OBS_VERSION.txt";
 			String line = null;

@@ -73,6 +73,7 @@ import OBS_C_2025.ValidEmailAddress;
 
 import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class E_MAIL_GONDERME extends JInternalFrame {
 	private JTextField txtkonu;
 	private JTextField txtgonhesap;

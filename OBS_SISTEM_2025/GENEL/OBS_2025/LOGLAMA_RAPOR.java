@@ -54,7 +54,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	static JTable table;
 	static JComboBox<String> comboBox = new JComboBox<String>();
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-
 	static DOSYA_MYSQL mYSQL = new DOSYA_MYSQL ();
 	static DOSYA_MSSQL mSSQL = new DOSYA_MSSQL ();
 	static  SQLITE_LOG sQLITE = new SQLITE_LOG();
@@ -190,8 +189,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		};
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setGridColor(oac.gridcolor);
-
-
 		//	table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane.setViewportView(table);
 	}

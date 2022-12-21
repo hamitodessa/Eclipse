@@ -43,6 +43,7 @@ import LOGER_KAYIT.TXT_LOG;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class LOGLAMA_RAPOR extends JInternalFrame {
 	/**
@@ -63,6 +64,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	private static JTextField textField_2;
 	private static 	JDateChooser dateChooser ;
 	private static JDateChooser dateChooser_1 ;
+	private static JLabel lblSatir = new JLabel("0");
 	static JComboBox<String> cmbLog = new JComboBox<String>();
 	/**
 	 * Launch the application.
@@ -111,7 +113,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		panel.add(comboBox);
 
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(270, 12, 110, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
+		dateChooser.setBounds(260, 12, 110, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
@@ -126,7 +128,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		panel.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(400, 12, 110, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
+		dateChooser_1.setBounds(380, 12, 110, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
@@ -141,27 +143,27 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		panel.add(dateChooser_1);
 
 		textField = new JTextField();
-		textField.setBounds(528, 12, 278, 20);
+		textField.setBounds(500, 12, 278, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
-		textField_1.setBounds(852, 12, 58, 20);
+		textField_1.setBounds(820, 12, 58, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Evrak");
-		lblNewLabel.setBounds(816, 15, 37, 14);
+		lblNewLabel.setBounds(785, 15, 37, 14);
 		panel.add(lblNewLabel);
 
 		textField_2 = new JTextField();
 		textField_2.setText("");
-		textField_2.setBounds(968, 12, 63, 20);
+		textField_2.setBounds(930, 12, 63, 20);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 
 		JLabel lblKullanici = new JLabel("Kullanici");
-		lblKullanici.setBounds(920, 15, 52, 14);
+		lblKullanici.setBounds(885, 15, 52, 14);
 		panel.add(lblKullanici);
 		
 		cmbLog = new JComboBox<String>();
@@ -170,6 +172,12 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		cmbLog.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbLog.setBounds(140, 11, 110, 22);
 		panel.add(cmbLog);
+		
+		lblSatir = new JLabel("0");
+		lblSatir.setForeground(new Color(0, 0, 128));
+		lblSatir.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSatir.setBounds(998, 15, 40, 14);
+		panel.add(lblSatir);
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
 		table = new JTable(){
@@ -399,7 +407,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 				if (!rs.isBeforeFirst() ) 
 				{  
 					GRID_TEMIZLE.grid_temizle(table);
-					//		lblNewLabel_1.setText("0");
+					lblSatir.setText("0");
 					OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + 0 + " saniye");
 					txtmi = false;
 					return;
@@ -415,6 +423,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 				table.setModel(DbUtils.resultSetToTableModel(rs));
 			}
 			txtmi = false ;
+			lblSatir.setText(String.format("%,d %n" ,  table.getRowCount()));
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;

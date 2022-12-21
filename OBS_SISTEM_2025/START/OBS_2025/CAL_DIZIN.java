@@ -1521,7 +1521,10 @@ public class CAL_DIZIN extends JFrame {
 		{
 			mdb_yaz_2("Gunluk");
 		}
+		if(! txtIp.getText().equals(""))
+		{
 		oac.uSER_ISL.ip_dos_kont(txtIp.getText());
+		}
 	}
 	private void mdb_yaz_2(String modul) throws ClassNotFoundException, SQLException
 	{

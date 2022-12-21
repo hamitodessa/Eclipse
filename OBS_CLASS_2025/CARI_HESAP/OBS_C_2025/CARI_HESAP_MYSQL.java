@@ -40,7 +40,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		}
 		akt_con = DriverManager.getConnection(cnnstr,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 	}
-	@Override
 	public void cari_sifirdan_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
 			String sifre,String port) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -84,8 +83,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		con.close();
 	}
 
-	@Override
-	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException {
+		public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException {
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = null;  
@@ -128,8 +126,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		con.close();
 
 	}
-
-	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
 		sql = "CREATE TABLE `HESAP` ("
@@ -236,9 +232,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.executeUpdate(sql);
 
 	}
-
-	@Override
-	public String cari_firma_adi() throws ClassNotFoundException, SQLException {
+		public String cari_firma_adi() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
@@ -257,8 +251,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		}
 		return result;	
 	}
-
-	@Override
 	public ResultSet ekstre(String hesap, String t1, String t2) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
@@ -271,8 +263,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
-
-	@Override
 	public ResultSet hesap_adi_oku(String hesap) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -282,8 +272,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
-
-	@Override
 	public ResultSet hp_pln() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -292,8 +280,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
-
-	@Override
 	public ResultSet mizan(String kod, String ilktarih, String sontarih, String ilkhcins, String sonhcins,
 			String ilkkar, String sonkar) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -310,8 +296,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
-
-	@Override
 	public ResultSet kasa_mizan(String kod, String ilktarih, String sontarih) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
@@ -326,7 +310,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	}
 
 	@SuppressWarnings("static-access")
-	@Override
 	public void sqlite_yaz(String tar, int evr, String iza, String kodu, double kur,double borc, double alac, double bak) throws SQLException, ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
 		SQLitecon = null;
@@ -372,8 +355,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;
 	}
-
-	@Override
 	public ResultSet mizan(String h1, String h2, String t1, String t2, String c1, String c2, String k1, String k2,
 			String o1, String o2) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -392,8 +373,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
-
-	@Override
 	public ResultSet fiskon(int evrakno) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
@@ -405,8 +384,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
-
-	@Override
 	public ResultSet cari_sonfisno() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
@@ -415,8 +392,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
-	@Override
 	public int cari_fisno_al() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
@@ -435,8 +410,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		//**************
 		return E_NUMBER;	
 	}
-
-	@Override
 	public void evrak_yoket(int num) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "DELETE FROM SATIRLAR  WHERE  EVRAK = " + num;
@@ -446,8 +419,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
-
-	@Override
 	public boolean cari_fino_bak(int fisno) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
@@ -468,8 +439,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		}
 		return result;	
 	}
-
-	@Override
 	public void cari_dekont_kaydet(String bhes, String tar, int evrak, String bcins, Double bkur, Double borc,
 			String alhes, String acins, Double alkur, Double alacak, String izahat, String kod, String user)
 					throws SQLException, ClassNotFoundException {
@@ -517,8 +486,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt3.close();
 
 	}
-
-	@Override
 	public ResultSet hsp_pln(String arama) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet rss = null;
@@ -529,11 +496,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				"HESAP.HESAP = HESAP_DETAY.D_HESAP "+ arama + " ORDER BY HESAP ";
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
-
 		return rss;	
 	}
-
-	@Override
 	public void hsp_sil(String hesap) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "DELETE FROM HESAP WHERE HESAP =N'" + hesap + "'" ;
@@ -543,7 +507,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
-
 	public String kod_ismi(String kodu) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -564,7 +527,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			result = "";
 		}
 		return result;	
-
 	}
 	public void hpln_kayit(String kodu,String adi,String karton,String hcins,String usr) throws ClassNotFoundException, SQLException
 	{
@@ -584,7 +546,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public void hpln_detay_kayit(String kodu ,String yet ,String ad1 ,String ad2 ,String semt,String seh  , String vd , String vn 
 			, String t1 ,String t2 ,String t3 ,String fx ,String o1 ,String o2 ,String o3 , String web 
 			,String mai ,String kim  ,String acik ,boolean sms , InputStream  resim ) throws ClassNotFoundException, SQLException, IOException
-
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql  = "INSERT INTO HESAP_DETAY (D_HESAP,YETKILI,ADRES_1,ADRES_2,SEMT,SEHIR,VERGI_DAIRESI,VERGI_NO,TEL_1,TEL_2, " + 
@@ -612,7 +573,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.setString(18, kim);
 		stmt.setString(19, acik);
 		stmt.setBoolean(20, sms);
-
 		if (  resim != null)
 		{
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -654,7 +614,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 			}
 		}
 		Class.forName("com.mysql.cj.jdbc.Driver");
-
 		String sql = "SELECT DATE(s.TARIH) as TARIH, s.EVRAK ,I.IZAHAT , " +
 				" IFNULL(IF(k." + kcins + " = 0,1,k." + kcins + " ), 1) as CEV_KUR , " +
 				" ((s.ALACAK - s.BORC ) " + islem + " IFNULL(NULLIF(k." + kcins + ",0), 1)) as DOVIZ_TUTAR , " +

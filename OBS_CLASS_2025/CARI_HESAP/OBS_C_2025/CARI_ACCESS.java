@@ -20,7 +20,6 @@ public class CARI_ACCESS {
 		this._Logger = _Logger;
 	}
 	public static void baglan() throws SQLException, ClassNotFoundException
-	
 	{
 	 _ICari.baglan();
 	}

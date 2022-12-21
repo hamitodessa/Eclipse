@@ -39,7 +39,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		String cumle = "jdbc:sqlserver://" + cnnstr + ";";
 		akt_con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 	}
-	@Override
 	public void cari_sifirdan_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
 			String sifre,String port) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -85,7 +84,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt.close();
 		con.close();
 	}
-	@Override
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
@@ -128,7 +126,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt.close();
 		con.close();
 	}
-	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
 		sql = "CREATE TABLE [dbo].[HESAP]([HESAP] [nvarchar](12) NOT NULL,[UNVAN] [nvarchar](50) NULL, "
@@ -934,7 +931,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		return E_NUMBER;	
 	}
 	public void yilsonu_cari_dekont_kaydet(String bhes,String tar,int evrak,String bcins,Double bkur,Double borc ,
-
 			String alhes,String acins,Double alkur,Double alacak,String izahat,String kod,String user) throws SQLException, ClassNotFoundException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1162,8 +1158,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		rss = cstmt.getResultSet();
 		return rss ; 
 	}
-	@Override
-	public void create_table_log() throws SQLException {
+		public void create_table_log() throws SQLException {
 		String sql = "" ;
 		sql = "CREATE TABLE [dbo].[LOGLAMA]("
 				+ "	[TARIH] [datetime] NOT NULL,"
@@ -1178,8 +1173,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 	}
-
-
 }
 
 

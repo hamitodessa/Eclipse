@@ -162,7 +162,6 @@ public class LOGIN extends JFrame {
 		setTitle("OBS SISTEM GIRIS");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 493, 229);
-
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		contentPane = new JPanel();

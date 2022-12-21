@@ -50,13 +50,14 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
+@SuppressWarnings("static-access")
 public class EKSTRE extends JInternalFrame {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 
 	
@@ -98,6 +99,7 @@ public class EKSTRE extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("serial")
 	public EKSTRE() {
 		setTitle("EKSTRE");
 		setResizable(true);
@@ -244,6 +246,7 @@ public class EKSTRE extends JInternalFrame {
 		};
 		table.setGridColor(oac.gridcolor);
 		table.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {
@@ -277,7 +280,6 @@ public class EKSTRE extends JInternalFrame {
 	             	try {
 	             		OBS_MAIN.pencere_aktiv_yap("DEKONT");
 						} catch (PropertyVetoException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 	              	}

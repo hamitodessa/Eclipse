@@ -323,7 +323,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 				}
 				o2 = " ORDER BY s.HESAP  " ;  
 			}
-
 			//**************
 			rs = c_Access.ozel_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
@@ -335,8 +334,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 				return;
 			} 
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			//	if(BAGLAN.cariDizin.hAN_SQL.equals("MY SQL"))
-			//		{table.removeColumn(table.getColumnModel().getColumn(8));}
 
 			ara_ayir();
 			JTableHeader th = table.getTableHeader();

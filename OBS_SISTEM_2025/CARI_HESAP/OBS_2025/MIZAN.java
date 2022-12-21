@@ -259,7 +259,6 @@ public class MIZAN extends JInternalFrame {
 
 			o2 = " ORDER BY SATIRLAR.HESAP ASC " ;
 			//**************
-
 			rs = c_Access.mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
 					FILTRE.txticins.getText(),FILTRE.txtscins.getText() ,
@@ -271,7 +270,6 @@ public class MIZAN extends JInternalFrame {
 			{  
 				return;
 			} 
-
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			ara_ayir();
 
@@ -313,11 +311,9 @@ public class MIZAN extends JInternalFrame {
 
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
-
 			int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
 			table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 			table.setRowSelectionInterval(lastRow, lastRow);
-
 			table.setSelectionBackground(Color.GREEN);
 			table.setSelectionForeground(Color.BLUE);
 

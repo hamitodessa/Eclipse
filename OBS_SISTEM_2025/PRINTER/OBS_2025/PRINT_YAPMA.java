@@ -47,6 +47,7 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.sayiyiYaziyaCevir;
 
+@SuppressWarnings("static-access")
 public class PRINT_YAPMA extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -158,7 +159,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 				{
 					rs = c_Access.ekstre_sqlite();
 				}
-
 				clientDoc.getDatabaseController().setDataSource(rs);
 				com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
 				for(int i=0; i< reportObjects.size();i++)
@@ -256,8 +256,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
 				}
-				//**
-
 			}
 			else if (nerden.equals("mizan"))
 			{
@@ -332,7 +330,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 				String hangi_tur = FILTRE.comboBox.getItemAt(FILTRE.comboBox.getSelectedIndex());
 				String o1 = "" ;
 				String o2 = "" ;
-
 				if (BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
 				{
 					if (hangi_tur.equals("Borclu Hesaplar") )
@@ -441,9 +438,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 				com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
 				for(int i=0; i< reportObjects.size();i++)
 				{
-
 					ITextObject textObject = (ITextObject)reportObjects.get(i);
-
 					if (textObject.getText().equals("HESAP"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
@@ -750,7 +745,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 			}
 			else if (nerden.equals("stok"))
 			{
-				System.out.println("brd....");
 				//**************************************************************************
 				File file = new File("C:\\OBS_SISTEM\\STOK.rpt");
 				clientDoc.open(file.getPath(), 0);
@@ -807,26 +801,19 @@ public class PRINT_YAPMA extends JInternalFrame {
 				if (deger.equals("Adres_Dosya"))
 				{
 					if (FATURA.txtadres.getText().equals("")) return;
-
 					bilgi = a_Access.adres_oku(FATURA.txtadres.getText());
 					unvan = FATURA.lblNewLabel_6.getText();
-
-
 				}
 				else   if (deger.equals("Cari_Dosya"))
 				{
 					if (FATURA.txtcari.getText().equals("")) return;
-
 					bilgi = c_Access.cari_adres_oku(FATURA.txtcari.getText());
 					unvan = FATURA.lblNewLabel_3.getText();
-
 				}
 				//*******GIDECEGI YER ***********
 				if ( ! FATURA.textField_8.getText().equals(""))
 				{
-
 					gyer_bilgi = a_Access.adres_oku(FATURA.txtadres.getText());
-
 				}
 				else
 				{
@@ -846,10 +833,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						gyer_bilgi[3] = "";
 					}
 				}
-				//** FORMAT BILGI OKU *************************
 				doldur();
-				//** 1 inch = 1440 Twips
-				//** 1 Millimeters to Twips = 56.6929
 				//**** BASLIK BOLUMU - PageHeaderSection1
 				ISection baslik = (ISection)clientDoc.getReportDefController().getReportDefinition().getPageHeaderArea().getSections().getSection(0);
 				clientDoc.getReportDefController().getReportSectionController().setProperty( (ISection) baslik, ReportSectionPropertyEnum.height,(int) students.get(9).fat_sat);
@@ -934,7 +918,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 								oParagraph.setParagraphElements(oParagraphElements);
 								oParagraphElements.add(oParagraphTextElement);
 								oTextObject.setParagraphs(oParagraphs);
-
 								newFontColor = oTextObject.getFontColor();
 								newFontColor.setFont(baslikFont);
 								oTextObject.setFontColor(newFontColor);
@@ -955,7 +938,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 								ParagraphElements oParagraphElements = new ParagraphElements();
 								ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 								IFontColor newFontColor ;
-
 								oTextObject.setLeft((int) students.get(2).fat_sut);
 								oTextObject.setTop((int) students.get(2).fat_sat);
 								oParagraphTextElement.setText("");
@@ -965,7 +947,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 								oParagraph.setParagraphElements(oParagraphElements);
 								oParagraphElements.add(oParagraphTextElement);
 								oTextObject.setParagraphs(oParagraphs);
-
 								newFontColor = oTextObject.getFontColor();
 								newFontColor.setFont(baslikFont);
 								oTextObject.setFontColor(newFontColor);
@@ -995,7 +976,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 								oParagraph.setParagraphElements(oParagraphElements);
 								oParagraphElements.add(oParagraphTextElement);
 								oTextObject.setParagraphs(oParagraphs);
-
 								newFontColor = oTextObject.getFontColor();
 								newFontColor.setFont(baslikFont);
 								oTextObject.setFontColor(newFontColor);
@@ -1016,7 +996,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 								ParagraphElements oParagraphElements = new ParagraphElements();
 								ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 								IFontColor newFontColor ;
-
 								oTextObject.setLeft((int) students.get(2).fat_sut);
 								oTextObject.setTop((int) students.get(2).fat_sat + 630);
 								oParagraphTextElement.setText("");
@@ -1026,7 +1005,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 								oParagraph.setParagraphElements(oParagraphElements);
 								oParagraphElements.add(oParagraphTextElement);
 								oTextObject.setParagraphs(oParagraphs);
-
 								newFontColor = oTextObject.getFontColor();
 								newFontColor.setFont(baslikFont);
 								oTextObject.setFontColor(newFontColor);
@@ -1034,7 +1012,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 							}
 						}
 						else  if (reportObject.getName().equals("txtsemt"))
-
 						{
 							if (students.get(2).fat_sut == 0 && students.get(2).fat_sat == 0 )
 							{
@@ -1048,7 +1025,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 								ParagraphElements oParagraphElements = new ParagraphElements();
 								ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 								IFontColor newFontColor ;
-
 								oTextObject.setLeft((int) students.get(2).fat_sut);
 								oTextObject.setTop((int) students.get(2).fat_sat + 945);
 								oParagraphTextElement.setText("");
@@ -1110,7 +1086,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 								ParagraphElements oParagraphElements = new ParagraphElements();
 								ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 								IFontColor newFontColor ;
-
 								oTextObject.setLeft((int) students.get(3).fat_sut );
 								oTextObject.setTop((int) students.get(3).fat_sat);
 								oParagraphTextElement.setText("");
@@ -1120,7 +1095,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 								oParagraph.setParagraphElements(oParagraphElements);
 								oParagraphElements.add(oParagraphTextElement);
 								oTextObject.setParagraphs(oParagraphs);
-
 								newFontColor = oTextObject.getFontColor();
 								newFontColor.setFont(baslikFont);
 								oTextObject.setFontColor(newFontColor);
@@ -1572,7 +1546,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 								IFontColor newFontColor ;
 								oTextObject.setLeft((int) students.get(18).fat_sut );
 								oTextObject.setTop(0);
-
 								oParagraphTextElement.setText("0.000");
 								oParagraphTextElement.setText(FATURA. label_8.getText());
 								oParagraphTextElement.setKind(ParagraphElementKind.text);
@@ -1632,7 +1605,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 								oParagraph.setAlignment(Alignment.right);
 								oParagraphElements = new ParagraphElements();
 								oParagraphTextElement = new ParagraphTextElement();
-
 								oTextObject.setLeft((int) students.get(21).fat_sut );
 								oTextObject.setTop((int) students.get(21).fat_sat );
 								oParagraphTextElement.setText("0.00");

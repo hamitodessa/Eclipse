@@ -5,9 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -28,7 +26,7 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 			String sql =  "INSERT INTO LOGLAMA (TARIH,MESAJ,EVRAK,USER_NAME) " +
 					"VALUES (?,?,?,?)";
 			stmt = sQLITEconn.prepareStatement(sql);
-			stmt.setTimestamp(1,new java.sql.Timestamp(new java.util.Date().getTime()));
+			stmt.setDate(1,(java.sql.Date) new java.sql.Date(Calendar.getInstance().getTime().getTime()) );
 			stmt.setString(2, mesaj);
 			stmt.setString(3, evrak);
 			stmt.setString(4, GLOBAL.KULL_ADI);

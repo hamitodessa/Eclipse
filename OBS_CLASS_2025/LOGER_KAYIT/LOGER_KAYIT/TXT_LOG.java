@@ -82,8 +82,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 							{
 								if(user.equals("%%"))  // USER
 								{
-									// MESAJ KONTROL 
-									if(aciklama.equals("%%"))
+									if(aciklama.equals("%%"))// MESAJ KONTROL 
 									{
 										data.add( token[0]);
 										data.add( token[1]);

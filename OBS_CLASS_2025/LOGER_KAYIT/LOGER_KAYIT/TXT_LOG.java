@@ -65,6 +65,10 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 					while (sc.hasNextLine()) 
 					{
 						String l =  sc.nextLine();  
+						if (l.trim().isEmpty())
+						{					}
+						else
+						{
 						String[] token = l.split("\t");
 						nerde =  token[0] ;
 						Vector<String> data = new Vector<String>();
@@ -200,6 +204,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 								}
 							}
 						} // TARIH
+						} // SATIR BOSSA
 					}
 				} 
 				br.close();

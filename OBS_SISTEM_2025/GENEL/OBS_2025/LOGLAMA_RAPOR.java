@@ -92,24 +92,39 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setBounds(0, 0, 1063, 600);
-		splitPane = new JSplitPane();
-		splitPane.setDividerSize(0);
-		splitPane.setResizeWeight(0.0);
-		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		getContentPane().add(splitPane, BorderLayout.CENTER);
-		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 50));
-		panel.setMaximumSize(new Dimension(0, 50));
-		panel.setLayout(null);
+		JPanel leftPanel = new JPanel();
+		leftPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		leftPanel.setMinimumSize(new Dimension(0, 50));
+		leftPanel.setMaximumSize(new Dimension(0, 50));
+		JScrollPane centerPanel = new JScrollPane();
+		JPanel rightPanel = new JPanel();
+		rightPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		rightPanel.setMinimumSize(new Dimension(0, 20));
+		rightPanel.setMaximumSize(new Dimension(0, 20));
+		JSplitPane sp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, leftPanel, centerPanel);
+		leftPanel.setLayout(null);
+		JSplitPane sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, rightPanel);
+		rightPanel.setLayout(null);
+		
+		lblSatir = new JLabel("0");
+		lblSatir.setBounds(72, 3, 47, 14);
+		rightPanel.add(lblSatir);
+		lblSatir.setForeground(new Color(0, 0, 128));
+		lblSatir.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		JLabel lblNewLabel_1 = new JLabel("Satir Sayisi :");
+		lblNewLabel_1.setBounds(10, 3, 67, 14);
+		rightPanel.add(lblNewLabel_1);
+		sp2.setDividerSize(1);
+		sp2.setResizeWeight(1.0);
+		getContentPane().add(sp2, BorderLayout.CENTER);
 
 		comboBox = new JComboBox<String>();
 		comboBox.setForeground(new Color(0, 0, 139));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo","Adres","Kur","Sms-Mail"}));
 		comboBox.setBounds(10, 11, 110, 22);
-		panel.add(comboBox);
+		leftPanel.add(comboBox);
 
 		dateChooser = new JDateChooser();
 		dateChooser.setBounds(260, 12, 110, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
@@ -124,7 +139,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dateChooser.setDate(TARIH_CEVIR.tarih("01.01.1900"));
-		panel.add(dateChooser);
+		leftPanel.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
 		dateChooser_1.setBounds(380, 12, 110, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
@@ -139,46 +154,38 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		dateChooser_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dateChooser_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
-		panel.add(dateChooser_1);
+		leftPanel.add(dateChooser_1);
 
 		textField = new JTextField();
 		textField.setBounds(500, 12, 278, 20);
-		panel.add(textField);
+		leftPanel.add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
 		textField_1.setBounds(820, 12, 58, 20);
-		panel.add(textField_1);
+		leftPanel.add(textField_1);
 		textField_1.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Evrak");
 		lblNewLabel.setBounds(785, 15, 37, 14);
-		panel.add(lblNewLabel);
+		leftPanel.add(lblNewLabel);
 
 		textField_2 = new JTextField();
 		textField_2.setText("");
 		textField_2.setBounds(930, 12, 63, 20);
-		panel.add(textField_2);
+		leftPanel.add(textField_2);
 		textField_2.setColumns(10);
 
 		JLabel lblKullanici = new JLabel("Kullanici");
 		lblKullanici.setBounds(885, 15, 52, 14);
-		panel.add(lblKullanici);
+		leftPanel.add(lblKullanici);
 		
 		cmbLog = new JComboBox<String>();
 		cmbLog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani", "Dosya", "Text Dosya"}));
 		cmbLog.setForeground(new Color(165, 42, 42));
 		cmbLog.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbLog.setBounds(140, 11, 110, 22);
-		panel.add(cmbLog);
-		
-		lblSatir = new JLabel("0");
-		lblSatir.setForeground(new Color(0, 0, 128));
-		lblSatir.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblSatir.setBounds(998, 15, 40, 14);
-		panel.add(lblSatir);
-		JScrollPane scrollPane = new JScrollPane();
-		splitPane.setRightComponent(scrollPane);
+		leftPanel.add(cmbLog);
 		table = new JTable(){
 			/**
 			 * 
@@ -190,7 +197,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setGridColor(oac.gridcolor);
 		//	table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		scrollPane.setViewportView(table);
+		centerPanel.setViewportView(table);
 	}
 	public static void hisset()
 	{

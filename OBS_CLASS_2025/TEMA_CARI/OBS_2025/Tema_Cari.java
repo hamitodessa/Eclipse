@@ -25,7 +25,6 @@ public class Tema_Cari {
 		}  
 		return conn;  
 	}  
-
 	public static void dosya_yap() throws Exception
 	{
 		obs_tema_dosya_olustur();
@@ -34,7 +33,6 @@ public class Tema_Cari {
 		try {  
 			Class.forName("org.sqlite.JDBC");
 			conn = myTemaConnection();
-
 			String sorgu= null;
 			sorgu = "CREATE TABLE ANA_HESAP (TEMA CHAR (25) NOT NULL,	ANA_HESAP CHAR(12) NULL) " ;
 			tablo_yap(sorgu);
@@ -51,10 +49,8 @@ public class Tema_Cari {
 	}
 	private static void tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
-
 		conn.close();
 		conn = null;
-
 		conn = myTemaConnection();
 		java.sql.Statement stmt = null;
 		stmt = conn.createStatement();  
@@ -73,12 +69,8 @@ public class Tema_Cari {
 		String sql = "SELECT DISTINCT TEMA FROM ANA_HESAP ";
 		stmt = conn.prepareStatement(sql);
 		rss = stmt.executeQuery();
-
 		return rss;
-
 	}
-
-
 	public static String tema_anahesap(String tema) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");

@@ -60,7 +60,6 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			{
 				FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8);
 				BufferedReader br = new BufferedReader( fileReader );
-				
 				try (Scanner sc = new Scanner(br)) {
 					while (sc.hasNextLine()) 
 					{

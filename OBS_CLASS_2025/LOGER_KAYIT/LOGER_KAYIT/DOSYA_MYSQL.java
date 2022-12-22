@@ -59,7 +59,6 @@ public class DOSYA_MYSQL implements ILOGER_KAYIT{
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public DefaultTableModel log_txt_rapor(String t1, String t2, String aciklama, String evrak, String user,
 			DIZIN_BILGILERI dBILGI) {

@@ -110,8 +110,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 									aranan = aranan.substring(0,aranan.length() -1);
 									if ( token[3].toUpperCase().contains(aranan.toUpperCase() ) )
 									{
-										// MESAJ KONTROL 
-										if(aciklama.equals("%%"))
+										if(aciklama.equals("%%"))// MESAJ KONTROL 
 										{
 											data.add( token[0]);
 											data.add( token[1]);
@@ -143,8 +142,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 								{
 									if(user.equals("%%"))  // USER
 									{
-										// MESAJ KONTROL 
-										if(aciklama.equals("%%"))
+										if(aciklama.equals("%%"))// MESAJ KONTROL 
 										{
 											data.add( token[0]);
 											data.add( token[1]);
@@ -172,8 +170,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 										aranan = aranan.substring(0,aranan.length() -1);
 										if ( token[3].toUpperCase().contains(aranan.toUpperCase() ) )
 										{
-											// MESAJ KONTROL 
-											if(aciklama.equals("%%"))
+												if(aciklama.equals("%%"))// MESAJ KONTROL 
 											{
 												data.add( token[0]);
 												data.add( token[1]);
@@ -210,7 +207,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			}
 		}
 		catch (Exception e){
-			JOptionPane.showMessageDialog(null,  "== " + nerde , "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(null,  e.getMessage() , "Text Dosyasi Log Okuma", JOptionPane.PLAIN_MESSAGE);
 		}
 		return model ;
 	}

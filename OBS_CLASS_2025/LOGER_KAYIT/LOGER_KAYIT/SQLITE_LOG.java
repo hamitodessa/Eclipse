@@ -38,7 +38,6 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 			JOptionPane.showMessageDialog(null, e.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
-
 	@Override
 	public ResultSet log_rapor(String t1, String t2, String aciklama, String evrak, String user, DIZIN_BILGILERI dBILGI)
 			throws ClassNotFoundException, SQLException {
@@ -77,10 +76,8 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 		catch (Exception e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 		}
-		//
 		return rss;
 	}
-
 	@Override
 	public DefaultTableModel log_txt_rapor(String t1, String t2, String aciklama, String evrak, String user,
 			DIZIN_BILGILERI dBILGI) {

@@ -31,11 +31,9 @@ public class DOSYA_MSSQL implements ILOGER_KAYIT{
 		stmt.executeUpdate();
 		stmt.close();
 	}
-
 	@Override
 	public ResultSet log_rapor(String t1, String t2, String aciklama, String evrak, String user, DIZIN_BILGILERI dBILGI)
 			throws ClassNotFoundException, SQLException {
-
 		StringBuilder stb = new StringBuilder();
 		stb.append(" SELECT  TARIH ,MESAJ,EVRAK,[USER_NAME] " ); 
 		stb.append(" FROM   loglama  WITH (INDEX (IX_LOGLAMA) )") ; 
@@ -62,7 +60,6 @@ public class DOSYA_MSSQL implements ILOGER_KAYIT{
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
 	@Override
 	public DefaultTableModel log_txt_rapor(String t1, String t2, String aciklama, String evrak, String user,
 			DIZIN_BILGILERI dBILGI) {

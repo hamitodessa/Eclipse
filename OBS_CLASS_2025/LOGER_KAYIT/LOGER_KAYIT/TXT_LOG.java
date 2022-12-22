@@ -74,8 +74,8 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 						Vector<String> data = new Vector<String>();
 						Date aiLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t1);  
 						Date asLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t2);  
-						Date iLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(token[0].substring(0,10));  
-						Date sLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(token[0].substring(0,10));  
+						Date iLKT =  new SimpleDateFormat("yyyy.MM.dd").parse(token[0].substring(0,10));  
+						Date sLKT =  new SimpleDateFormat("yyyy.MM.dd").parse(token[0].substring(0,10));  
 						if (  iLKT.after(aiLKT) && sLKT.before(asLKT))  // TARIH
 						{
 							if(evrak.equals("%%"))  // EVRAK

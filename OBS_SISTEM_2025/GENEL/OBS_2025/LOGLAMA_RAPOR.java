@@ -439,7 +439,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 
 			tc = tcm.getColumn(1);
 			tc.setHeaderRenderer(new SOLA());
-			//tc.setMinWidth(600);
 
 			tc = tcm.getColumn(2);
 			tc.setHeaderRenderer(new SOLA());

@@ -35,7 +35,7 @@ public class DOSYA_MSSQL implements ILOGER_KAYIT{
 	public ResultSet log_rapor(String t1, String t2, String aciklama, String evrak, String user, DIZIN_BILGILERI dBILGI)
 			throws ClassNotFoundException, SQLException {
 		StringBuilder stb = new StringBuilder();
-		stb.append(" SELECT  TARIH ,MESAJ,EVRAK,[USER_NAME] " ); 
+		stb.append(" SELECT  FORMAT (TARIH, 'dd.MM.yyyy hh:mm:ss fff') AS TARIH ,MESAJ,EVRAK,[USER_NAME] " ); 
 		stb.append(" FROM   loglama  WITH (INDEX (IX_LOGLAMA) )") ; 
 
 		stb.append(" WHERE  loglama.mesaj  LIKE N'" + aciklama + "'") ;

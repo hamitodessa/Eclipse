@@ -9,6 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -522,7 +525,15 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2 = null;
 			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setString(1, rss.getString("HESAP"));
-			stmt2.setDate(2, rss.getDate("TARIH"));
+			Timestamp timestamp =rss.getTimestamp("TARIH");
+			Date    date1 = null;
+			String formatli = "";
+			if (timestamp != null)
+			{date1 = new java.util.Date(timestamp.getTime());
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss.ss");
+			formatli = formatter.format(date1);
+			}
+			stmt2.setString(2, formatli);
 			stmt2.setString(3,  rss.getString("H"));
 			stmt2.setInt(4, rss.getInt("EVRAK"));
 			stmt2.setString(5,  rss.getString("CINS"));

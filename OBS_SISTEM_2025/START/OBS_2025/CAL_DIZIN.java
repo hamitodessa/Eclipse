@@ -950,6 +950,26 @@ public class CAL_DIZIN extends JFrame {
 			});
 			cmb_maillist.setBounds(98, 67, 307, 22);
 			panel_3.add(cmb_maillist);
+			
+			JButton btnNewButton_7 = new JButton("Mail Gonder");
+			btnNewButton_7.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(txt_Lmaill.getText().equals("")) return ;
+					MAIL_AT mAT = new MAIL_AT();
+					try {
+						contentPane.setCursor(WAIT_CURSOR);
+						oac.uSER_ISL.mail_bak();
+						GLOBAL.Log_Mail = txt_Lmaill.getText();
+						mAT.Logla("Deneme Maili","",BAGLAN_LOG.cariLogDizin);
+						contentPane.setCursor(DEFAULT_CURSOR);
+					} catch (Exception e1) {
+						contentPane.setCursor(DEFAULT_CURSOR);
+						JOptionPane.showMessageDialog(null,  e1.getMessage(), "OBS SISTEM", JOptionPane.WARNING_MESSAGE);
+					} 
+				}
+			});
+			btnNewButton_7.setBounds(415, 35, 120, 23);
+			panel_3.add(btnNewButton_7);
 
 			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 			this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);

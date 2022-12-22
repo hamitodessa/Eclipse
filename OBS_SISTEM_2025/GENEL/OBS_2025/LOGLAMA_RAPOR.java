@@ -107,13 +107,13 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		rightPanel.setLayout(null);
 		
 		lblSatir = new JLabel("0");
-		lblSatir.setBounds(72, 3, 47, 14);
+		lblSatir.setBounds(97, 3, 47, 14);
 		rightPanel.add(lblSatir);
 		lblSatir.setForeground(new Color(0, 0, 128));
 		lblSatir.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JLabel lblNewLabel_1 = new JLabel("Satir Sayisi :");
-		lblNewLabel_1.setBounds(10, 3, 67, 14);
+		lblNewLabel_1.setBounds(10, 3, 76, 14);
 		rightPanel.add(lblNewLabel_1);
 		sp2.setDividerSize(1);
 		sp2.setResizeWeight(1.0);

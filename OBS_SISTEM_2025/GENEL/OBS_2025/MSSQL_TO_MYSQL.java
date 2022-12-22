@@ -23,6 +23,7 @@ import LOGER_KAYIT.TXT_LOG;
 import OBS_C_2025.BACKUP_MYSQL;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
+import OBS_C_2025.TARIH_CEVIR;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -273,7 +274,17 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		btnNewButton_1_1_1.setBounds(382, 79, 123, 23);
 		panel.add(btnNewButton_1_1_1);
 		
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btnNewButton_3 = new JButton("New button");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			System.out.println(	TARIH_CEVIR.milis_yyyymmss(System.currentTimeMillis()));
+			}
+		});
+		btnNewButton_3.setBounds(35, 340, 89, 23);
+		panel.add(btnNewButton_3);
+		
+			btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					kur();

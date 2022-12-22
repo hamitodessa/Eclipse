@@ -272,51 +272,6 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		});
 		btnNewButton_1_1_1.setBounds(382, 79, 123, 23);
 		panel.add(btnNewButton_1_1_1);
-
-		JButton btnNewButton_3 = new JButton("Sifreleme");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
-//					KeyGenerator keygenerator = KeyGenerator.getInstance("DES");
-//					SecretKey myDesKey = keygenerator.generateKey();
-//					Cipher desCipher;
-//					desCipher = Cipher.getInstance("DES");
-//					byte[] text = "Hamit Okumus".getBytes("UTF8");
-//					desCipher.init(Cipher.ENCRYPT_MODE, myDesKey);
-//					byte[] textEncrypted = desCipher.doFinal(text);
-//					String s = new String(textEncrypted);
-//					System.out.println(s);
-//					desCipher.init(Cipher.DECRYPT_MODE, myDesKey);
-//					byte[] textDecrypted = desCipher.doFinal(textEncrypted);
-//					s = new String(textDecrypted);
-					String qwe = ENCRYPT_DECRYPT_STRING.eNCRYPT("Hamit Okumus") ;
-					String asd = ENCRYPT_DECRYPT_STRING.dCRYPT(qwe.getBytes()) ;
-					System.out.println(asd);
-				}
-				catch(Exception ex)
-				{
-					System.out.println("==" +ex.getMessage());
-				}
-			}
-		});
-		btnNewButton_3.setBounds(35, 382, 89, 23);
-		panel.add(btnNewButton_3);
-		
-		JButton btnNewButton_3_1 = new JButton("Key");
-		btnNewButton_3_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 try {
-					ENCRYPT_DECRYPT_STRING.kEY();
-				} catch (NoSuchAlgorithmException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton_3_1.setBounds(35, 348, 89, 23);
-		panel.add(btnNewButton_3_1);
-		
-
 		
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

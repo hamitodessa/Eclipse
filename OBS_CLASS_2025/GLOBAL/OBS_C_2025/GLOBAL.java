@@ -282,7 +282,7 @@ public class GLOBAL {
 	{
 		OutputStream output;
 		try {
-			output = new FileOutputStream( GLOBAL.SURUCU + "/admin.properties");
+			output = new FileOutputStream( GLOBAL.SURUCU + "/" +KULL_ADI +".properties");
 			Properties prop = new Properties();
 			prop.setProperty("BENI_HATIRLA", "");
 			prop.setProperty("ISIM", "");

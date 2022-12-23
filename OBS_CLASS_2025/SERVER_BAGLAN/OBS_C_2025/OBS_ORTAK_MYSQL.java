@@ -8,7 +8,6 @@ import java.sql.Statement;
 
 public class OBS_ORTAK_MYSQL implements IConnection {
 	private static boolean result;
-
 	@SuppressWarnings("unused")
 	public boolean Server_kontrol_L(String inst, String kull, String sifre, String port) throws ClassNotFoundException
 	{

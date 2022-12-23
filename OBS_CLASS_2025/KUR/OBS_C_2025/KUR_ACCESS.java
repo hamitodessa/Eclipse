@@ -63,5 +63,4 @@ public class KUR_ACCESS {
 	{
 		return _IKur.kur_ay_graf_rapor(c1, t1, t2);
 	}
-
 }

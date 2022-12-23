@@ -33,7 +33,6 @@ public class DOSYA_MYSQL implements ILOGER_KAYIT{
 
 	public ResultSet log_rapor(String t1, String t2, String aciklama, String evrak , String user, DIZIN_BILGILERI dBILGI)
 			throws ClassNotFoundException, SQLException {
-
 		StringBuilder stb = new StringBuilder();
 		stb.append(" SELECT DATE_FORMAT(TARIH, '%d.%m.%Y %H:%i:%s') AS TARIH ,MESAJ,EVRAK,USER_NAME " ); 
 		stb.append(" FROM   loglama  USE INDEX (IX_LOGLAMA) ") ; 

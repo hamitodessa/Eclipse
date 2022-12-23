@@ -9,7 +9,6 @@ import java.sql.SQLException;
 public class OBS_ORTAK_MSSQL implements IConnection {
 
 	private  boolean result;
-
 	public boolean Server_kontrol_L(String inst, String kull, String sifre, String port) throws ClassNotFoundException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

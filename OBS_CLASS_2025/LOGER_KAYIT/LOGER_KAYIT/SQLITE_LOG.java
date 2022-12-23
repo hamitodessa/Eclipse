@@ -24,7 +24,7 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + GLOBAL.LOG_SURUCU +  dBILGI.mODUL   ) ;
 			PreparedStatement stmt = null;
 			String sql =  "INSERT INTO LOGLAMA (TARIH,MESAJ,EVRAK,USER_NAME) " +
-					"VALUES (?,?,?,?)";
+									"VALUES (?,?,?,?)";
 			stmt = sQLITEconn.prepareStatement(sql);
 			stmt.setDate(1,(java.sql.Date) new java.sql.Date(Calendar.getInstance().getTime().getTime()) );
 			stmt.setString(2, mesaj);
@@ -54,7 +54,6 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 			long  tt2 = d.getTime();
 			stb.append(" SELECT strftime('%d.%m.%Y %H:%M:%S',datetime(TARIH/1000,'unixepoch'),'+2 hours') as TARIH ,MESAJ,EVRAK,[USER_NAME] " ); 
 			stb.append(" FROM   loglama  ") ; 
-
 			stb.append(" WHERE  loglama.mesaj  LIKE '" + aciklama + "'") ;
 			if ( ! t1.equals(""))
 			{

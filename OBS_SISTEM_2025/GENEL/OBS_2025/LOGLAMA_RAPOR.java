@@ -127,7 +127,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.add(comboBox);
 
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(260, 12, 110, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
+		dateChooser.setBounds(260, 12, 115, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
@@ -142,7 +142,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(380, 12, 110, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
+		dateChooser_1.setBounds(380, 12, 115, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
@@ -172,7 +172,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 
 		textField_2 = new JTextField();
 		textField_2.setText("");
-		textField_2.setBounds(930, 12, 63, 20);
+		textField_2.setBounds(940, 12, 63, 20);
 		leftPanel.add(textField_2);
 		textField_2.setColumns(10);
 

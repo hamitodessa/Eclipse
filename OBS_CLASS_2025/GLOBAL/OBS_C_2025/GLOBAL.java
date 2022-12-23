@@ -260,7 +260,7 @@ public class GLOBAL {
 	public static void create_table_log(String dosya,String fadi,DIZIN_BILGILERI dBILGI) throws SQLException, ClassNotFoundException {
 		String sql = "" ;
 		sql = "CREATE TABLE LOGLAMA("
-				+ "	TARIH DATETIME NOT NULL,"
+				+ "	TARIH DATE NOT NULL,"
 				+ "	MESAJ CHAR(100) NOT NULL,"
 				+ "	EVRAK CHAR(15) NOT NULL,"
 				+ "	USER_NAME CHAR(15) NULL"

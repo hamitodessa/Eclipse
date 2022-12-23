@@ -200,7 +200,7 @@ public class LOGIN extends JFrame {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
 		txtUser = new JTextField();
-		txtUser.setBounds(311, 11, 118, oac.txt_yukseklik);
+		txtUser.setBounds(310, 11, 110, 20);
 		txtUser.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtUser.setDocument(new JTextFieldLimit(10));
 		txtUser.setColumns(10);
@@ -209,18 +209,18 @@ public class LOGIN extends JFrame {
 		panel.add(txtUser);
 
 		txtpwd = new JPasswordField();
-		txtpwd.setBounds(311, 37, 118, oac.txt_yukseklik);
+		txtpwd.setBounds(310, 37, 110, 20);
 		panel.add(txtpwd);
 		txtpwd.setFont(new Font("Tahoma", Font.BOLD, 12));
 		JTextFieldRegularPopupMenu.addTo(txtpwd);
 
 		chckbxhatirla = new JCheckBox("Beni Hatirla");
 		chckbxhatirla.setForeground(new Color(0, 0, 128));
-		chckbxhatirla.setBounds(308, 60, 112, 23);
+		chckbxhatirla.setBounds(307, 60, 112, 23);
 		panel.add(chckbxhatirla);
 
 		JButton btncikis = new JButton("Cikis");
-		btncikis.setBounds(207, 92, 110, 23);
+		btncikis.setBounds(190, 92, 110, 23);
 		panel.add(btncikis);
 		btncikis.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/exit.png")));
 		btncikis.addActionListener(new ActionListener() {
@@ -230,7 +230,7 @@ public class LOGIN extends JFrame {
 		});
 		btncikis.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btncdizin = new JButton("Calisma Dizini");
-		btncdizin.setBounds(207, 122, 110, 23);
+		btncdizin.setBounds(190, 122, 110, 23);
 		panel.add(btncdizin);
 		btncdizin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -249,7 +249,7 @@ public class LOGIN extends JFrame {
 		btncdizin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
 		JButton btngiris = new JButton("Giris");
-		btngiris.setBounds(324, 92, 110, 23);
+		btngiris.setBounds(310, 92, 110, 23);
 		panel.add(btngiris);
 		btngiris.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/add-user-16.png")));
 		btngiris.addActionListener(new ActionListener() {
@@ -288,7 +288,7 @@ public class LOGIN extends JFrame {
 		});
 		btngiris.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btndevam = new JButton("Devam");
-		btndevam.setBounds(324, 122, 110, 23);
+		btndevam.setBounds(310, 122, 110, 23);
 		panel.add(btndevam);
 		btndevam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import LOGER_KAYIT.TXT_LOG;
 import OBS_C_2025.BACKUP_MYSQL;
+import OBS_C_2025.BACKUP_RESTORE;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.TARIH_CEVIR;
@@ -283,6 +284,15 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		});
 		btnNewButton_3.setBounds(35, 340, 89, 23);
 		panel.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("backup");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BACKUP_RESTORE.Backupdbtosql();
+			}
+		});
+		btnNewButton_4.setBounds(162, 340, 89, 23);
+		panel.add(btnNewButton_4);
 		
 			btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -14,7 +14,7 @@ import javax.swing.border.TitledBorder;
 
 public class GOREV {
 
-	 JPanel getShowRoomPanel(int num,String isim) {
+	public static  JPanel getShowRoomPanel(int num,String isim) {
 	        JPanel p = new JPanel(new GridBagLayout());
 	        p.setBorder(new TitledBorder("GridBagLayout"));
 

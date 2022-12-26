@@ -1,16 +1,8 @@
 package OBS_C_2025;
 
-import java.io.File;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.security.CodeSource;
-import java.sql.Connection;
-
-import javax.swing.JOptionPane;
-
 public class BACKUP_RESTORE {
 	
+	@SuppressWarnings("deprecation")
 	public static void Backupdbtosql() {
 	 
 
@@ -29,7 +21,6 @@ public class BACKUP_RESTORE {
 	        Process runtimeProcess;
 	        try {
 	        	Runtime runtime = Runtime.getRuntime();
-	        	 File dir = new File("c:/");
 	        	 
 	        	runtimeProcess = runtime.exec(executeCmd);
 	            System.out.println(executeCmd);

@@ -294,6 +294,18 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		btnNewButton_4.setBounds(162, 340, 89, 23);
 		panel.add(btnNewButton_4);
 		
+		JButton btnNewButton_5 = new JButton("New button");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Date qwe = new Date();
+				
+				System.out.println(qwe.getHours() + ":" +qwe.getMinutes()+ ":" + qwe.getSeconds());
+			}
+		});
+		btnNewButton_5.setBounds(276, 340, 89, 23);
+		panel.add(btnNewButton_5);
+		
 			btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

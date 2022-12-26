@@ -1183,6 +1183,9 @@ public class DISTAN_AKTAR extends JInternalFrame {
              }
          	String strDate = TARIH_CEVIR. dateFormater(model.getValueAt(i , 0).toString() , "yyyy.MM.dd HH:mm:ss.sss", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
             
+          	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.sss");
+         	String str = sdf.format(new Date());
+         	strDate = strDate.substring(0, 10) +  " " + str ;
 			String mesaj = "A. Hes:" +  model.getValueAt(i, 2).toString() + " Tut:" + asdd  +
 					" B. Hes:"+  model.getValueAt(i, 5).toString() + " Tut:" +asdd;
 			if( mesaj.length() + strg.length() <= 95)

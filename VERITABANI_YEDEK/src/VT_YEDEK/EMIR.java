@@ -6,11 +6,13 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.ListCellRenderer;
@@ -20,10 +22,11 @@ import javax.swing.JList;
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 
+@SuppressWarnings("serial")
 public class EMIR extends JFrame {
 
 	private JPanel contentPane;
-
+	private JList<CheckListItem> list ;
 	/**
 	 * Launch the application.
 	 */
@@ -64,12 +67,20 @@ public class EMIR extends JFrame {
 		comboBox.setBounds(10, 11, 130, 22);
 		panel.add(comboBox);
 		
-		@SuppressWarnings("rawtypes")
-		JList list = new JList(new CheckListItem[] { new CheckListItem("apple"),
-		        new CheckListItem("orange"), new CheckListItem("banana") });
+	
+		list = new JList<CheckListItem>();
 		
 		    list.setCellRenderer(new CheckListRenderer());
 		    list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		    list.addListSelectionListener(new ListSelectionListener() {
+		    	 @SuppressWarnings("deprecation")
+				public void valueChanged(ListSelectionEvent e) {
+				      if (!e.getValueIsAdjusting()) {
+				        System.out.println(Arrays.toString(list.getSelectedValues()));
+				      }
+				    }
+		    	
+		    });
 		    list.addMouseListener(new MouseAdapter() {
 		      @SuppressWarnings("rawtypes")
 			@Override
@@ -88,8 +99,9 @@ public class EMIR extends JFrame {
 		panel.add(list);
 		
 		///
-		DefaultListModel demoList = new DefaultListModel();
+		DefaultListModel<CheckListItem> demoList = new DefaultListModel<CheckListItem>();
 		 demoList.addElement( new CheckListItem("mango"));
+		 demoList.addElement( new CheckListItem("elma"));
 		 list.setModel(demoList);
 		//
 		
@@ -100,6 +112,7 @@ public class EMIR extends JFrame {
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("New tab", null, panel_1, null);
 	}
+	
 }
 
 @SuppressWarnings({ "serial", "rawtypes" })

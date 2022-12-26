@@ -10,16 +10,8 @@ public class BACKUP_RESTORE {
 	        String dbUser = "hamit";
 	        String dbPass = "197227oOk";
 
-
-	        /*NOTE: Creating Path Constraints for backup saving*/
-	        /*NOTE: Here the backup is saved in a folder called backup with the name backup.sql*/
-	         String savePath = "C:/OBS_SISTEM/" + "obsbackup.sql";
-	      
-	        /*NOTE: Used to create a cmd command*/
-	//      mysqldump.exe -uroot -p197227oOk -B ok_car019 > c:\obsbackup.sql    -h localhost
+         String savePath = "C:/OBS_SISTEM/" + "obsbackup.sql";
 	        String executeCmd = "C:/Program Files/MySQL/MySQL Workbench 8.0/mysqldump.exe -u" + dbUser + " -p" + dbPass + " -B " + dbName + " -r " + savePath;
-	        //String executeCmd = "C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\mysqldump.exe -u" + dbUser + " -h localhost -B " + dbName + " > " + savePath;
-
 	        Process runtimeProcess;
 	        try {
 	        	Runtime runtime = Runtime.getRuntime();

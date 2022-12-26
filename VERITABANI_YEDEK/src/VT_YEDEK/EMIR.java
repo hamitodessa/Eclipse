@@ -42,7 +42,6 @@ public class EMIR extends JFrame {
 			}
 		});
 	}
-
 	/**
 	 * Create the frame.
 	 */

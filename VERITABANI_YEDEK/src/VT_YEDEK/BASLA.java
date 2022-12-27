@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+
 import OBS_C_2025.GLOBAL;
 
 import javax.swing.JSplitPane;
@@ -82,6 +83,17 @@ public class BASLA extends JFrame {
 			btnNewButton_1.setBounds(10, 204, 89, 23);
 			panel.add(btnNewButton_1);
 			
+			JButton btnNewButton = new JButton("New button");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					EMIR emr = new EMIR();
+					emr.setVisible(true);
+					dispose();
+				}
+			});
+			btnNewButton.setBounds(10, 26, 80, 23);
+			panel.add(btnNewButton);
+			
 		//
 			@SuppressWarnings("static-access")
 			File tmpDir = new File(glb.SURUCU + glb.SQL_BACKUP);
@@ -93,5 +105,4 @@ public class BASLA extends JFrame {
 			
 			
 	}
-	
 }

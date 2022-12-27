@@ -6,6 +6,10 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Arrays;
 
 import javax.swing.JFrame;
@@ -32,7 +36,7 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class EMIR extends JFrame {
-
+	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	private JPanel contentPane;
 	private JList<CheckListItem> list ;
 	/**
@@ -42,6 +46,9 @@ public class EMIR extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					BASLA bsl = new BASLA();
+					bsl.setVisible(false);
+					bsl.dispose();
 					EMIR frame = new EMIR();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -55,7 +62,31 @@ public class EMIR extends JFrame {
 	 */
 	@SuppressWarnings("unchecked")
 	public EMIR() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				
+				try {
+					BASLA frame = new BASLA();
+					frame.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			@Override
+			public void windowOpened(WindowEvent e) {
+				
+					contentPane.setCursor(oac.WAIT_CURSOR);
+					//activ_sayfa =0;
+					//grid_doldur();
+					//doldur_kutu(tblCari,0);
+					contentPane.setCursor(oac.DEFAULT_CURSOR);
+				
+			}
+		});
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 		setBounds(100, 100, 758, 443);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -121,6 +152,7 @@ public class EMIR extends JFrame {
 		 		SQL_BILGI hsp ;
 				hsp = new SQL_BILGI();
 				hsp.show();
+				dispose();
 		 	}
 		 });
 		 btnNewButton.setBounds(114, 11, 26, 23);

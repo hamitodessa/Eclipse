@@ -3,27 +3,25 @@ package VT_YEDEK;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import OBS_C_2025.GLOBAL;
+
 import javax.swing.JSplitPane;
 
 public class BASLA extends JFrame {
 
 	private JPanel contentPane;
-
+	
 
 	/**
 	 * Launch the application.
@@ -57,7 +55,7 @@ public class BASLA extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(100,0));
-		panel.setLayout(new BorderLayout(0, 0));
+		panel.setLayout(null);
 		splitPane.setLeftComponent(panel);
 	
 		
@@ -81,7 +79,23 @@ public class BASLA extends JFrame {
 				     scrollPane.repaint();
 				}
 			});
-			panel.add(btnNewButton_1, BorderLayout.CENTER);
+			btnNewButton_1.setBounds(10, 204, 89, 23);
+			panel.add(btnNewButton_1);
+			
+			JButton btnNewButton = new JButton("Dosya Olustur");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GLOBAL glb = new GLOBAL();;
+					try {
+						glb.backup_dosya_olustur();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
+			btnNewButton.setBounds(10, 304, 89, 23);
+			panel.add(btnNewButton);
 		//
 	
 		

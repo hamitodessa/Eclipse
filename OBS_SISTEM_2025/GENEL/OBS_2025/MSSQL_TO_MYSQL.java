@@ -288,7 +288,9 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		JButton btnNewButton_4 = new JButton("backup");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BACKUP_RESTORE.Backupdbtosql();
+				getContentPane().setCursor(oac.WAIT_CURSOR);
+				BACKUP_RESTORE.Backupdbtosql("ok_car019","hamit","197227oOk", "C:/Program Files/MySQL/MySQL Workbench 8.0");
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
 		btnNewButton_4.setBounds(162, 340, 89, 23);

@@ -28,12 +28,13 @@ import OBS_2025.Tema_Cari;
 public class GLOBAL {
 
 	static String OBS_DOSYA = "OBS_SISTEM_2025.DB";
+	
 	static String SQL_BACKUP = "SQL_BACKUP.DB";
-	static String SQL_LOG = "SQL_LOG.DB";
 	public static String SURUCU = "C:\\OBS_SISTEM\\";
 	public static String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
 	static String DBYERI = "C:\\OBS_DATABASES\\";
 	static Connection con ;
+	static Connection bACKUPCONN ;
 	static String ayarlar[][]; // = new String[5][5];
 	public static String KULL_ADI = "";
 	public static String Log_Mail ="";
@@ -61,24 +62,57 @@ public class GLOBAL {
 	}  
 	//*************************************************
 	@SuppressWarnings("unused")
-	private static  Connection myBConnection (){
+	private static  Connection myBackupConnection () {
 		Connection conn = null;  
 		try{
-			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + SQL_BACKUP );
+			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + SQL_BACKUP);
 		} catch (SQLException e) {  
 		}  
 		return conn;  
 	}  
-	//*************************************************
+	public   void backup_dosya_olustur() throws Exception {
+		try {  
+			Class.forName("org.sqlite.JDBC");
+			bACKUPCONN = myBackupConnection();
+			bACKUPCONN.close();
+			String sorgu= null;
+			sorgu = "CREATE TABLE EMIRLER (EMIR_ISMI nvarchar(30)  PRIMARY KEY,DURUM BLOB,EMIR_ACIKLAMA nvarchar(50),INSTANCE nvarchar(30),SON_DURUM BLOB ,SON_YUKLEME DATETIME,SQL_YEDEK BLOB ) ; " ;
+			backup_tablo_yap(sorgu);
+			sorgu = "CREATE TABLE FTP ( EMIR_ISMI nvarchar(30),NERESI nvarchar(3),HOST nvarchar(30) ,KULLANICI nvarchar(50),SIFRE nvarchar(50),SURUCU nvarchar(50),PORT nvarchar(3),ZMN_ASIMI nvarchar(10),ESKI_YEDEK nvarchar(3),SURUCU_YER nvarchar(100)) ; " ;
+			backup_tablo_yap(sorgu);
+			sorgu = "CREATE TABLE BILGILENDIRME ( EMIR_ISMI nvarchar(30) ,DURUM BIT,GONDERILDIGINDE BIT,HATA_DURUMUNDA BIT ,GON_ISIM  nvarchar(50),GON_HESAP nvarchar(30), ALICI nvarchar(30), KONU nvarchar(50), SMTP nvarchar(30), SMTP_PORT nvarchar(3), KULLANICI nvarchar(30), SIFRE nvarchar(30), SSL BLOB,TSL BLOB) ;";
+			backup_tablo_yap(sorgu);
+			sorgu = "CREATE TABLE YEDEKLEME (EMIR_ISMI nvarchar(30) , SAAT nvarchar(2),P_TESI BLOB,SALI BLOB " 
+				    +" ,CARS BLOB,PERS BLOB,CUMA BLOB,C_TESI BLOB,PAZAR BLOB,BASLAMA DATETIME,BITIS DATETIME ) ; ";
+			backup_tablo_yap(sorgu);
+			sorgu = "CREATE TABLE SERVER (  EMIR_ISMI nvarchar(30) ,INSTANCE nvarchar(50) " 
+				     +  " ,WIN BLOB,SERV BLOB,KULLANICI nvarchar(50) " 
+				     +  " ,SIFRE nvarchar(50)) ;" ;
+			backup_tablo_yap(sorgu);
+			sorgu ="CREATE TABLE DB_ISIM (  EMIR_ISMI nvarchar(30) ,DB_ADI nvarchar(50)); ";
+			backup_tablo_yap(sorgu);
+			sorgu ="CREATE TABLE DIGER_DOSYA_ISIM (  EMIR_ISMI nvarchar(30) ,DOSYA_ADI nvarchar(50),DOSYA_PATH nvarchar(200)) ; ";
+			backup_tablo_yap(sorgu);
+			sorgu ="CREATE TABLE DUMP_YERI ( DUMP_PATH nvarchar(200) ) ; ";
+			backup_tablo_yap(sorgu);
+
+		}
+		catch (SQLException ex) {  
+			JOptionPane.showMessageDialog(null, ex);  
+		}  
+	}
 	@SuppressWarnings("unused")
-	private static  Connection myLConnection () {
-		Connection conn = null;  
-		try{
-			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + SQL_LOG);
-		} catch (SQLException e) {  
-		}  
-		return conn;  
-	}  
+	private void backup_tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {
+		Class.forName("org.sqlite.JDBC");
+		bACKUPCONN.close();
+		bACKUPCONN = null;
+		bACKUPCONN = myBackupConnection();
+		java.sql.Statement stmt = null;
+		stmt = bACKUPCONN.createStatement();  
+		stmt.execute(sorgu);  
+		stmt.close();
+		bACKUPCONN.close();
+	}
 	//*************************************************
 	public  void obs_dosya_olustur() throws Exception {
 		try {  

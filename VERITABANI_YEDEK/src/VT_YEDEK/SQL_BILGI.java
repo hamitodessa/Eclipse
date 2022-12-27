@@ -1,8 +1,10 @@
 package VT_YEDEK;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,6 +12,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.border.TitledBorder;
+
 
 import OBS_C_2025.CONNECT;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
@@ -25,6 +28,9 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -65,6 +71,40 @@ public class SQL_BILGI extends JDialog {
 	 * Create the frame.
 	 */
 	public SQL_BILGI() {
+
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				//				
+				//				try {
+				//					EMIR frame = new EMIR();
+				//					frame.setVisible(true);
+				//				} catch (Exception e1) {
+				//					// TODO Auto-generated catch block
+				//					e1.printStackTrace();
+				//				}
+			}
+			@Override
+			public void windowOpened(WindowEvent e) {
+
+				contentPane.setCursor(oac.WAIT_CURSOR);
+				if(EMIR. cmbSQL.getSelectedItem().toString() == "MS SQL")
+				{
+					tabbedPane.setSelectedIndex(0);
+					tabbedPane.setEnabledAt(1, false);
+				}
+				else
+				{
+					tabbedPane.setSelectedIndex(1);
+					tabbedPane.setEnabledAt(0, false);
+
+				}
+				//grid_doldur();
+				//doldur_kutu(tblCari,0);
+				contentPane.setCursor(oac.DEFAULT_CURSOR);
+
+			}
+		});
 		setTitle("SQL SERVER BAGLANTI");
 		setResizable(false);
 		setBounds(100, 100, 534, 342);
@@ -73,46 +113,49 @@ public class SQL_BILGI extends JDialog {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+
+
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
-		
+
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		tabbedPane.addTab("MS SQL", null, panel, null);
-		
+
 		comboBox = new JComboBox<String>();
 		comboBox.setEditable(true);
 		comboBox.setBounds(72, 25, 260, 22);
 		panel.add(comboBox);
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Baglanti Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(72, 58, 372, 171);
 		panel_2.setLayout(null);
 		panel.add(panel_2);
-		
+
 		JLabel lblNewLabel = new JLabel("Kullanici");
 		lblNewLabel.setBounds(10, 50, 74, 14);
 		panel_2.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Sifre");
 		lblNewLabel_1.setBounds(10, 82, 46, 14);
 		panel_2.add(lblNewLabel_1);
-		
+
 		textField = new JTextField();
 		textField.setBounds(98, 47, 130, 20);
 		panel_2.add(textField);
 		textField.setColumns(10);
-		
+
 		passwordField = new JPasswordField();
 		passwordField.setEchoChar('*');
 		passwordField.setBounds(98, 79, 130, 20);
 		panel_2.add(passwordField);
-		
+
 		JButton btnNewButton = new JButton("Baglanti Test");
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(oac.WAIT_CURSOR);
 				try {
@@ -126,10 +169,10 @@ public class SQL_BILGI extends JDialog {
 		});
 		btnNewButton.setBounds(98, 117, 130, 23);
 		panel_2.add(btnNewButton);
-		
+
 		JButton btnNewButton_1 = new JButton("Kaydet");
 		btnNewButton_1.addActionListener(new ActionListener() {
-		
+
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(oac.WAIT_CURSOR);
 				try {
@@ -140,8 +183,9 @@ public class SQL_BILGI extends JDialog {
 					else
 					{
 						msSQL_KAYDET();
+						dispose();
 					}
-					
+
 				} catch (HeadlessException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -151,39 +195,44 @@ public class SQL_BILGI extends JDialog {
 		});
 		btnNewButton_1.setBounds(228, 240, 89, 23);
 		panel.add(btnNewButton_1);
-		
+
 		JButton btnNewButton_2 = new JButton("Vazgec");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnNewButton_2.setBounds(355, 240, 89, 23);
 		panel.add(btnNewButton_2);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		tabbedPane.addTab("MY SQL", null, panel_1, null);
-		
+
 		JPanel panel_2_1 = new JPanel();
 		panel_2_1.setLayout(null);
 		panel_2_1.setBorder(new TitledBorder(null, "Baglanti Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2_1.setBounds(72, 58, 372, 171);
 		panel_1.add(panel_2_1);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Kullanici");
 		lblNewLabel_2.setBounds(10, 50, 74, 14);
 		panel_2_1.add(lblNewLabel_2);
-		
+
 		JLabel lblNewLabel_1_1 = new JLabel("Sifre");
 		lblNewLabel_1_1.setBounds(10, 82, 46, 14);
 		panel_2_1.add(lblNewLabel_1_1);
-		
+
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
 		textField_1.setBounds(98, 47, 130, 20);
 		panel_2_1.add(textField_1);
-		
+
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setEchoChar('*');
 		passwordField_1.setBounds(98, 79, 130, 20);
 		panel_2_1.add(passwordField_1);
-		
+
 		JButton btnNewButton_3 = new JButton("Baglanti Test");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -199,7 +248,7 @@ public class SQL_BILGI extends JDialog {
 		});
 		btnNewButton_3.setBounds(98, 117, 130, 23);
 		panel_2_1.add(btnNewButton_3);
-		
+
 		JButton btnNewButton_1_1 = new JButton("Kaydet");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -212,8 +261,9 @@ public class SQL_BILGI extends JDialog {
 					else
 					{
 						mySQL_KAYDET();
+						dispose();
 					}
-					
+
 				} catch (HeadlessException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -223,16 +273,16 @@ public class SQL_BILGI extends JDialog {
 		});
 		btnNewButton_1_1.setBounds(228, 240, 89, 23);
 		panel_1.add(btnNewButton_1_1);
-		
+
 		JButton btnNewButton_2_1 = new JButton("Vazgec");
 		btnNewButton_2_1.setBounds(355, 240, 89, 23);
 		panel_1.add(btnNewButton_2_1);
-		
+
 		textField_2 = new JTextField();
 		textField_2.setBounds(170, 27, 130, 20);
 		panel_1.add(textField_2);
 		textField_2.setColumns(10);
-		
+
 		JLabel lblServer = new JLabel("Server / Port");
 		lblServer.setBounds(72, 30, 78, 14);
 		panel_1.add(lblServer);
@@ -266,36 +316,41 @@ public class SQL_BILGI extends JDialog {
 		int hangi = tabbedPane.getSelectedIndex();
 		if (hangi == 0) // MSSQL
 		{
-			if(	s_CONN.Server_kontrol_L(comboBox.getSelectedItem().toString(),textField.getText(), oac.sDONDUR.sDONDUR(passwordField) ,"") == true)
-			{ // BAGLANDI
-				JOptionPane.showMessageDialog(null, "MsSQL Baglanti Saglandi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
-			}
+			if (comboBox.getSelectedItem() == null || textField.getText().equals("") || oac.sDONDUR.sDONDUR(passwordField).equals("") )
+			{			}
 			else
-			{// BAGLANMADI
-				JOptionPane.showMessageDialog(null, "MsSQL Baglanti Saglanmadi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+			{
+				if(	s_CONN.Server_kontrol_L(comboBox.getSelectedItem().toString(),textField.getText(), oac.sDONDUR.sDONDUR(passwordField) ,"") == true)
+				{ // BAGLANDI
+					JOptionPane.showMessageDialog(null, "MsSQL Baglanti Saglandi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{// BAGLANMADI
+					JOptionPane.showMessageDialog(null, "MsSQL Baglanti Saglanmadi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
-		else
-		{
-		}
+
 	}
 	private void mySQL_BAGLAN() throws HeadlessException, ClassNotFoundException
 	{
 		cONN_AKTAR();
 		CONNECT s_CONN = new CONNECT(oac._IConn);
 		int hangi = tabbedPane.getSelectedIndex();
-		if (hangi == 0) // MSSQL
+		if (hangi ==1) // MSSQL
 		{
-		}
-		else
-		{
-			if(	s_CONN.Server_kontrol_L("",textField_1.getText(), oac.sDONDUR.sDONDUR(passwordField_1) ,textField_2.getText()) == true)
-			{ // BAGLANDI
-				JOptionPane.showMessageDialog(null, "MySQL Baglanti Saglandi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
-			}
+			if (comboBox.getSelectedItem() == null || textField_1.getText().equals("") || oac.sDONDUR.sDONDUR(passwordField_1).equals("") )
+			{	}
 			else
-			{// BAGLANMADI
-				JOptionPane.showMessageDialog(null, "MySQL Baglanti Saglanmadi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+			{
+				if(	s_CONN.Server_kontrol_L("",textField_1.getText(), oac.sDONDUR.sDONDUR(passwordField_1) ,textField_2.getText()) == true)
+				{ // BAGLANDI
+					JOptionPane.showMessageDialog(null, "MySQL Baglanti Saglandi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{// BAGLANMADI
+					JOptionPane.showMessageDialog(null, "MySQL Baglanti Saglanmadi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 	}

@@ -26,10 +26,10 @@ public class ENCRYPT_DECRYPT_STRING {
 	//	System.out.println( myDesKey);
 		
 		//
-		SecretKey secretKey = KeyGenerator.getInstance("DES").generateKey();
-		String encodedKey = Base64.getEncoder().encodeToString(secretKey.getEncoded());
-		//System.out.println( encodedKey);
-		byte[] decodedKey = Base64.getDecoder().decode("zdBrtqgsI6Q=");
+	//	SecretKey secretKey = KeyGenerator.getInstance("DES").generateKey();
+	//	String encodedKey = Base64.getEncoder().encodeToString(secretKey.getEncoded());
+	//	System.out.println( encodedKey);
+		byte[] decodedKey = Base64.getDecoder().decode("rsJ6ouC6CCA=");
 		myDesKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "DES");
 		//
 	}
@@ -40,6 +40,7 @@ public class ENCRYPT_DECRYPT_STRING {
 		byte[] text = kelime.getBytes("UTF8");
 		desCipher.init(Cipher.ENCRYPT_MODE, myDesKey);
 		byte[] textEncrypted = desCipher.doFinal(text);
+		System.out.println(new String(textEncrypted));
 		return  new String(textEncrypted);
 	}
 	public static String dCRYPT(byte[] kelime) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
@@ -50,24 +51,27 @@ public class ENCRYPT_DECRYPT_STRING {
 		byte[] textDecrypted = desCipher.doFinal(kelime);
 		return  new String(textDecrypted);
 	}
-	public static  String eNCRYPT_manual(String kelime) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	public static  byte[] eNCRYPT_manual(String kelime) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		String key = "Bar54321Bar54321";
 		Key aesKey = new SecretKeySpec(key.getBytes(), "AES");
 		Cipher cipher = Cipher.getInstance("AES");
 		cipher.init(Cipher.ENCRYPT_MODE, aesKey);
 		byte[] encrypted = cipher.doFinal(kelime.getBytes());
-		//System.err.println(new String(encrypted));
-		return  new String(encrypted);
+		System.err.println(new String(encrypted));
+		System.err.println("1="+encrypted);
+		return  encrypted;
+		//return  new String(encrypted);
 	}
 	public static String dCRYPT_manual(byte[] kelime) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
+		System.err.println("2=" +kelime);
 		String key = "Bar54321Bar54321";
 		Key aesKey = new SecretKeySpec(key.getBytes(), "AES");
 		Cipher cipher = Cipher.getInstance("AES");
 		cipher.init(Cipher.DECRYPT_MODE, aesKey);
 		String decrypted = new String(cipher.doFinal(kelime));
-		//System.err.println(decrypted);
+		System.err.println(decrypted);
 		return  new String(decrypted);
 	}
 

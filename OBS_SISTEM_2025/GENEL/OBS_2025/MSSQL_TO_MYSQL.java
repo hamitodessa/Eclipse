@@ -26,12 +26,17 @@ import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.TARIH_CEVIR;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.awt.event.ActionEvent;
 
@@ -279,7 +284,19 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-			System.out.println(	TARIH_CEVIR.milis_yyyymmss(System.currentTimeMillis()));
+			String qwe;
+			try {
+				qwe = "«¯&dòCg”œëqÐ)uçT";
+		
+				String asd = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(qwe.getBytes()) ;
+					System.out.println("AES=" +asd);
+			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+				/////
 			}
 		});
 		btnNewButton_3.setBounds(35, 340, 89, 23);

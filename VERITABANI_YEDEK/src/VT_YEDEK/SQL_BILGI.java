@@ -238,7 +238,7 @@ public class SQL_BILGI extends JDialog {
 			return ;
 		}
 		bck.server_kayit_sil(oac.EMIR_ADI);
-		bck.server_ismi_kayit(oac.EMIR_ADI,"MY SQL" ,textField_2.getText(), false, true, textField.getText(), oac.sDONDUR.sDONDUR(passwordField));
+		bck.server_ismi_kayit(oac.EMIR_ADI,"MY SQL" ,textField_2.getText(), false, true, textField_1.getText(), oac.sDONDUR.sDONDUR(passwordField));
 	}
 	private void msSQL_BAGLAN() throws HeadlessException, ClassNotFoundException
 	{

@@ -61,8 +61,8 @@ public class GLOBAL {
 		return conn;  
 	}  
 	//*************************************************
-	@SuppressWarnings("unused")
-	private static  Connection myBackupConnection () {
+	
+	public static  Connection myBackupConnection () {
 		Connection conn = null;  
 		try{
 			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + SQL_BACKUP);

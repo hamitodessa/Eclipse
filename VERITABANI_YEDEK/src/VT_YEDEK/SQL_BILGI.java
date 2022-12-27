@@ -13,21 +13,30 @@ import javax.swing.JDialog;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.CONNECT;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
+import OBS_C_2025.SQL_BACKUP;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class SQL_BILGI extends JDialog {
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
-	
+	SQL_BACKUP bck = new SQL_BACKUP();
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
@@ -119,6 +128,18 @@ public class SQL_BILGI extends JDialog {
 		panel_2.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Kaydet");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor(oac.WAIT_CURSOR);
+				try {
+					msSQL_KAYDET();
+				} catch (HeadlessException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	
+				contentPane.setCursor(oac.DEFAULT_CURSOR);
+			}
+		});
 		btnNewButton_1.setBounds(228, 240, 89, 23);
 		panel.add(btnNewButton_1);
 		
@@ -171,6 +192,18 @@ public class SQL_BILGI extends JDialog {
 		panel_2_1.add(btnNewButton_3);
 		
 		JButton btnNewButton_1_1 = new JButton("Kaydet");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor(oac.WAIT_CURSOR);
+				try {
+					mySQL_KAYDET();
+				} catch (HeadlessException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	
+				contentPane.setCursor(oac.DEFAULT_CURSOR);
+			}
+		});
 		btnNewButton_1_1.setBounds(228, 240, 89, 23);
 		panel_1.add(btnNewButton_1_1);
 		
@@ -186,6 +219,26 @@ public class SQL_BILGI extends JDialog {
 		JLabel lblServer = new JLabel("Server / Port");
 		lblServer.setBounds(72, 30, 78, 14);
 		panel_1.add(lblServer);
+	}
+	private void msSQL_KAYDET() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		if(oac.EMIR_ADI.equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Emir Adi Bos Olamaz........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+			return ;
+		}
+		bck.server_kayit_sil(oac.EMIR_ADI);
+		bck.server_ismi_kayit(oac.EMIR_ADI,"MS SQL" ,comboBox.getSelectedItem().toString(), false, true, textField.getText(), oac.sDONDUR.sDONDUR(passwordField));
+	}
+	private void mySQL_KAYDET() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		if(oac.EMIR_ADI.equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "Emir Adi Bos Olamaz........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+			return ;
+		}
+		bck.server_kayit_sil(oac.EMIR_ADI);
+		bck.server_ismi_kayit(oac.EMIR_ADI,"MY SQL" ,textField_2.getText(), false, true, textField.getText(), oac.sDONDUR.sDONDUR(passwordField));
 	}
 	private void msSQL_BAGLAN() throws HeadlessException, ClassNotFoundException
 	{

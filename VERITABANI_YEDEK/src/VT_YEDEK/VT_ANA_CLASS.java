@@ -11,4 +11,5 @@ public class VT_ANA_CLASS {
 	public static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	public   SIFRE_DONDUR sDONDUR = new     SIFRE_DONDUR();
 	public IConnection _IConn ;
+	public static String EMIR_ADI = "" ; 
 }

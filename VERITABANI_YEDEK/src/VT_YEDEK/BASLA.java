@@ -23,8 +23,8 @@ import javax.swing.JSplitPane;
 public class BASLA extends JFrame {
 
 	private JPanel contentPane;
-	GLOBAL glb = new GLOBAL();;
-
+	GLOBAL glb = new GLOBAL();
+	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	/**
 	 * Launch the application.
 	 */
@@ -103,6 +103,6 @@ public class BASLA extends JFrame {
 				glb.backup_dosya_olustur();
 			}
 			
-			
+			oac.EMIR_ADI = "hamit";
 	}
 }

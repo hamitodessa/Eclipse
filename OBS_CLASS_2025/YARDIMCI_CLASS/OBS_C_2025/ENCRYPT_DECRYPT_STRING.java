@@ -57,7 +57,7 @@ public class ENCRYPT_DECRYPT_STRING {
 		Cipher cipher = Cipher.getInstance("AES");
 		cipher.init(Cipher.ENCRYPT_MODE, aesKey);
 		byte[] encrypted = cipher.doFinal(kelime.getBytes());
-		System.err.println(new String(encrypted));
+		//System.err.println(new String(encrypted));
 		return  new String(encrypted);
 	}
 	public static String dCRYPT_manual(byte[] kelime) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
@@ -67,7 +67,7 @@ public class ENCRYPT_DECRYPT_STRING {
 		Cipher cipher = Cipher.getInstance("AES");
 		cipher.init(Cipher.DECRYPT_MODE, aesKey);
 		String decrypted = new String(cipher.doFinal(kelime));
-		System.err.println(decrypted);
+		//System.err.println(decrypted);
 		return  new String(decrypted);
 	}
 

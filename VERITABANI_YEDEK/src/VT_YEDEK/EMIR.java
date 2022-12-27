@@ -13,14 +13,22 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class EMIR extends JFrame {
@@ -62,9 +70,13 @@ public class EMIR extends JFrame {
 		panel.setLayout(null);
 		splitPane.setLeftComponent(panel);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(10, 11, 130, 22);
-		panel.add(comboBox);
+		JComboBox<String> cmbSQL = new JComboBox<String>();
+		
+		cmbSQL.setForeground(new Color(0, 0, 139));
+		cmbSQL.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cmbSQL.setModel(new DefaultComboBoxModel<String>(new String[] {"MS SQL", "MY SQL"}));
+		cmbSQL.setBounds(10, 11, 89, 22);
+		panel.add(cmbSQL);
 		
 	
 		list = new JList<CheckListItem>();
@@ -102,6 +114,17 @@ public class EMIR extends JFrame {
 		 demoList.addElement( new CheckListItem("mango"));
 		 demoList.addElement( new CheckListItem("elma"));
 		 list.setModel(demoList);
+		 
+		 JButton btnNewButton = new JButton("New button");
+		 btnNewButton.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 		SQL_BILGI hsp ;
+				hsp = new SQL_BILGI();
+				hsp.show();
+		 	}
+		 });
+		 btnNewButton.setBounds(114, 11, 26, 23);
+		 panel.add(btnNewButton);
 		//
 		
 		

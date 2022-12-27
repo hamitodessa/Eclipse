@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,7 +22,7 @@ import javax.swing.JSplitPane;
 public class BASLA extends JFrame {
 
 	private JPanel contentPane;
-	
+	GLOBAL glb = new GLOBAL();;
 
 	/**
 	 * Launch the application.
@@ -41,8 +42,9 @@ public class BASLA extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws Exception 
 	 */
-	public BASLA() {
+	public BASLA() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 400);
 		contentPane = new JPanel();
@@ -57,8 +59,6 @@ public class BASLA extends JFrame {
 		panel.setMinimumSize(new Dimension(100,0));
 		panel.setLayout(null);
 		splitPane.setLeftComponent(panel);
-	
-		
 		  JPanel pList = new JPanel(new GridLayout(0, 1, 3, 3));
 	        pList.setBorder(new TitledBorder("GridLayout"));
         
@@ -82,23 +82,16 @@ public class BASLA extends JFrame {
 			btnNewButton_1.setBounds(10, 204, 89, 23);
 			panel.add(btnNewButton_1);
 			
-			JButton btnNewButton = new JButton("Dosya Olustur");
-			btnNewButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					GLOBAL glb = new GLOBAL();;
-					try {
-						glb.backup_dosya_olustur();
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-			});
-			btnNewButton.setBounds(10, 304, 89, 23);
-			panel.add(btnNewButton);
 		//
-	
-		
+			@SuppressWarnings("static-access")
+			File tmpDir = new File(glb.SURUCU + glb.SQL_BACKUP);
+			boolean exists = tmpDir.exists();
+			if (exists == false )
+			{   
+				glb.backup_dosya_olustur();
+			}
+			
+			
 	}
 	
 }

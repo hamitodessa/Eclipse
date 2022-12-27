@@ -29,7 +29,7 @@ public class GLOBAL {
 
 	static String OBS_DOSYA = "OBS_SISTEM_2025.DB";
 	
-	static String SQL_BACKUP = "SQL_BACKUP.DB";
+	public static String SQL_BACKUP = "SQL_BACKUP.DB";
 	public static String SURUCU = "C:\\OBS_SISTEM\\";
 	public static String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
 	static String DBYERI = "C:\\OBS_DATABASES\\";

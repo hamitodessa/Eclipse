@@ -165,6 +165,10 @@ public static String tarih_sql(String tar) {
 	            date = dateFormat.parse(dateFromJSON);
 	            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(expectedFormat);
 	            convertedDate = simpleDateFormat.format(date);
+	            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.sss");
+	         	String str = sdf.format(new Date());
+	         	convertedDate = convertedDate.substring(0, 10) +  " " + str ;
+	         	
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }

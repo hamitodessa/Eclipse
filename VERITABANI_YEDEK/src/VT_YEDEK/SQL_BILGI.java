@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
@@ -13,7 +12,6 @@ import javax.swing.JDialog;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.CONNECT;
-import OBS_C_2025.GLOBAL;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.SQL_BACKUP;
@@ -33,7 +31,8 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
-@SuppressWarnings("serial")
+
+@SuppressWarnings({ "static-access", "serial" })
 public class SQL_BILGI extends JDialog {
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	SQL_BACKUP bck = new SQL_BACKUP();
@@ -113,6 +112,7 @@ public class SQL_BILGI extends JDialog {
 		
 		JButton btnNewButton = new JButton("Baglanti Test");
 		btnNewButton.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(oac.WAIT_CURSOR);
 				try {
@@ -129,10 +129,19 @@ public class SQL_BILGI extends JDialog {
 		
 		JButton btnNewButton_1 = new JButton("Kaydet");
 		btnNewButton_1.addActionListener(new ActionListener() {
+		
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(oac.WAIT_CURSOR);
 				try {
-					msSQL_KAYDET();
+					if (comboBox.getSelectedItem() == null || textField.getText().equals("") || oac.sDONDUR.sDONDUR(passwordField).equals("") )
+					{
+						JOptionPane.showMessageDialog(null, "Bos Bilgi Mevcut........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+					}
+					else
+					{
+						msSQL_KAYDET();
+					}
+					
 				} catch (HeadlessException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -196,7 +205,15 @@ public class SQL_BILGI extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(oac.WAIT_CURSOR);
 				try {
-					mySQL_KAYDET();
+					if (textField_2.getText().equals("") || textField_1.getText().equals("") || oac.sDONDUR.sDONDUR(passwordField_1).equals("") )
+					{
+						JOptionPane.showMessageDialog(null, "Bos Bilgi Mevcut........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+					}
+					else
+					{
+						mySQL_KAYDET();
+					}
+					
 				} catch (HeadlessException | InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -220,6 +237,7 @@ public class SQL_BILGI extends JDialog {
 		lblServer.setBounds(72, 30, 78, 14);
 		panel_1.add(lblServer);
 	}
+	@SuppressWarnings("static-access")
 	private void msSQL_KAYDET() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		if(oac.EMIR_ADI.equals(""))
@@ -230,6 +248,7 @@ public class SQL_BILGI extends JDialog {
 		bck.server_kayit_sil(oac.EMIR_ADI);
 		bck.server_ismi_kayit(oac.EMIR_ADI,"MS SQL" ,comboBox.getSelectedItem().toString(), false, true, textField.getText(), oac.sDONDUR.sDONDUR(passwordField));
 	}
+	@SuppressWarnings("static-access")
 	private void mySQL_KAYDET() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		if(oac.EMIR_ADI.equals(""))

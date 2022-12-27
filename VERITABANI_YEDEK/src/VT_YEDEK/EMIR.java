@@ -33,12 +33,34 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
 public class EMIR extends JFrame {
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	private JPanel contentPane;
 	private JList<CheckListItem> list ;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
+	private JTextField textField_11;
+	private JTextField textField_12;
+	private JTextField textField_13;
+	private JTextField textField_14;
+	private JTextField textField_15;
+	private JTextField textField_16;
+	private JTextField textField_17;
 	/**
 	 * Launch the application.
 	 */
@@ -87,7 +109,7 @@ public class EMIR extends JFrame {
 		});
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		setBounds(100, 100, 758, 443);
+		setBounds(100, 100, 758, 565);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -164,9 +186,386 @@ public class EMIR extends JFrame {
 		splitPane.setRightComponent(tabbedPane);
 		
 		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_1, null);
+		panel_1.setLayout(null);
+		tabbedPane.addTab("Genel", null, panel_1, null);
+		
+		JLabel lblNewLabel = new JLabel("Durum");
+		lblNewLabel.setBounds(29, 52, 46, 14);
+		panel_1.add(lblNewLabel);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Aktif / Pasif");
+		chckbxNewCheckBox.setBounds(83, 48, 153, 23);
+		panel_1.add(chckbxNewCheckBox);
+		
+		JLabel lblNewLabel_1 = new JLabel("Emir Ismi");
+		lblNewLabel_1.setBounds(29, 100, 46, 14);
+		panel_1.add(lblNewLabel_1);
+		
+		textField = new JTextField();
+		textField.setBounds(83, 97, 248, 20);
+		panel_1.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setBounds(29, 149, 46, 14);
+		panel_1.add(lblNewLabel_2);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(83, 143, 248, 70);
+		panel_1.add(textPane);
+		
+		JLabel lblNewLabel_3 = new JLabel("Dosya Sayisi");
+		lblNewLabel_3.setBounds(29, 339, 73, 14);
+		panel_1.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("0");
+		lblNewLabel_4.setBounds(112, 339, 46, 14);
+		panel_1.add(lblNewLabel_4);
+		
+		JButton btnNewButton_1 = new JButton("Kaydet");
+		btnNewButton_1.setBounds(369, 330, 89, 23);
+		panel_1.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Vazgec");
+		btnNewButton_2.setBounds(471, 330, 89, 23);
+		panel_1.add(btnNewButton_2);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		tabbedPane.addTab("Surucu Ayarlari", null, panel_2, null);
+		
+		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("FTP");
+		chckbxNewCheckBox_1.setBounds(40, 18, 97, 23);
+		panel_2.add(chckbxNewCheckBox_1);
+		
+		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Yerel");
+		chckbxNewCheckBox_2.setBounds(235, 18, 97, 23);
+		panel_2.add(chckbxNewCheckBox_2);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBorder(new TitledBorder(null, "FTP Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_6.setLayout(null);
+		panel_6.setBounds(10, 62, 537, 239);
+		panel_2.add(panel_6);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBorder(new TitledBorder(null, "FTP Ayar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_7.setLayout(null);
+		panel_7.setBounds(10, 24, 517, 107);
+		panel_6.add(panel_7);
+		
+		JLabel lblNewLabel_5 = new JLabel("Host");
+		lblNewLabel_5.setBounds(10, 25, 46, 14);
+		panel_7.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("Kullanici");
+		lblNewLabel_6.setBounds(10, 52, 46, 14);
+		panel_7.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("Sifre");
+		lblNewLabel_7.setBounds(10, 78, 46, 14);
+		panel_7.add(lblNewLabel_7);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(88, 22, 158, 20);
+		panel_7.add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(88, 50, 158, 20);
+		panel_7.add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setText("");
+		textField_3.setBounds(88, 76, 158, 20);
+		panel_7.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JPanel panel_8 = new JPanel();
+		panel_8.setBorder(new TitledBorder(null, "Diger Ayarlar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_8.setBounds(10, 142, 517, 90);
+		panel_8.setLayout(null);
+		panel_6.add(panel_8);
+		
+		JLabel lblNewLabel_8 = new JLabel("Sunucu");
+		lblNewLabel_8.setBounds(10, 24, 65, 14);
+		panel_8.add(lblNewLabel_8);
+		
+		textField_4 = new JTextField();
+		textField_4.setBounds(88, 21, 222, 20);
+		panel_8.add(textField_4);
+		textField_4.setColumns(10);
+		
+		JLabel lblNewLabel_9 = new JLabel("Zaman Asimi");
+		lblNewLabel_9.setBounds(10, 56, 75, 14);
+		panel_8.add(lblNewLabel_9);
+		
+		textField_5 = new JTextField();
+		textField_5.setBounds(88, 53, 55, 20);
+		panel_8.add(textField_5);
+		textField_5.setColumns(10);
+		
+		JLabel lblNewLabel_10 = new JLabel("Port");
+		lblNewLabel_10.setBounds(166, 56, 46, 14);
+		panel_8.add(lblNewLabel_10);
+		
+		textField_6 = new JTextField();
+		textField_6.setBounds(222, 52, 86, 20);
+		panel_8.add(textField_6);
+		textField_6.setColumns(10);
+		
+		JButton btnNewButton_5 = new JButton("Surucu Kontrol");
+		btnNewButton_5.setBounds(398, 52, 109, 23);
+		panel_8.add(btnNewButton_5);
+		
+		JPanel panel_9 = new JPanel();
+		panel_9.setBorder(new TitledBorder(null, "Yerel Surucu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_9.setBounds(10, 305, 537, 75);
+		panel_9.setLayout(null);
+		panel_2.add(panel_9);
+		
+		JLabel lblNewLabel_11 = new JLabel("Surucu");
+		lblNewLabel_11.setBounds(10, 21, 46, 14);
+		panel_9.add(lblNewLabel_11);
+		
+		textField_7 = new JTextField();
+		textField_7.setBounds(100, 18, 345, 20);
+		panel_9.add(textField_7);
+		textField_7.setColumns(10);
+		
+		JButton btnNewButton_6 = new JButton("New button");
+		btnNewButton_6.setBounds(481, 17, 46, 23);
+		panel_9.add(btnNewButton_6);
+		
+		JButton btnNewButton_7 = new JButton("Surucu Sec");
+		btnNewButton_7.setBounds(100, 44, 89, 23);
+		panel_9.add(btnNewButton_7);
+		
+		JPanel panel_10 = new JPanel();
+		panel_10.setBorder(new TitledBorder(null, "Eski Yedek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_10.setBounds(10, 391, 537, 49);
+		panel_10.setLayout(null);
+		panel_2.add(panel_10);
+		
+		JLabel lblNewLabel_12 = new JLabel("Eski Yedekleri Silme");
+		lblNewLabel_12.setBounds(10, 24, 108, 14);
+		panel_10.add(lblNewLabel_12);
+		
+		textField_8 = new JTextField();
+		textField_8.setBounds(128, 21, 86, 20);
+		panel_10.add(textField_8);
+		textField_8.setColumns(10);
+		
+		JLabel lblNewLabel_13 = new JLabel("gunden eski olanlar(0 Silinmez)");
+		lblNewLabel_13.setBounds(224, 24, 209, 14);
+		panel_10.add(lblNewLabel_13);
+		
+		JButton btnNewButton_3 = new JButton("Baglanti Test");
+		btnNewButton_3.setBounds(20, 452, 117, 23);
+		panel_2.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("Kaydet");
+		btnNewButton_4.setBounds(458, 451, 89, 23);
+		panel_2.add(btnNewButton_4);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setLayout(null);
+		tabbedPane.addTab("Bilgilendirme", null, panel_3, null);
+		
+		JLabel lblNewLabel_14 = new JLabel("Durum");
+		lblNewLabel_14.setBounds(30, 22, 46, 14);
+		panel_3.add(lblNewLabel_14);
+		
+		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("Aktif / Pasif");
+		chckbxNewCheckBox_3.setBounds(100, 18, 153, 23);
+		panel_3.add(chckbxNewCheckBox_3);
+		
+		JPanel panel_11 = new JPanel();
+		panel_11.setBorder(new TitledBorder(null, "Gonderme Durumu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_11.setBounds(30, 60, 530, 61);
+		panel_11.setLayout(null);
+		panel_3.add(panel_11);
+		
+		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("Gonderildiginde");
+		chckbxNewCheckBox_4.setBounds(46, 26, 152, 23);
+		panel_11.add(chckbxNewCheckBox_4);
+		
+		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("Hata Durumunda");
+		chckbxNewCheckBox_5.setBounds(286, 26, 152, 23);
+		panel_11.add(chckbxNewCheckBox_5);
+		
+		JPanel panel_12 = new JPanel();
+		panel_12.setBorder(new TitledBorder(null, "Mail Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_12.setBounds(30, 132, 530, 144);
+		panel_12.setLayout(null);
+		panel_3.add(panel_12);
+		
+		JLabel lblNewLabel_15 = new JLabel("Gonderen Isim");
+		lblNewLabel_15.setBounds(10, 23, 76, 14);
+		panel_12.add(lblNewLabel_15);
+		
+		textField_9 = new JTextField();
+		textField_9.setBounds(106, 20, 325, 20);
+		panel_12.add(textField_9);
+		textField_9.setColumns(10);
+		
+		textField_10 = new JTextField();
+		textField_10.setBounds(106, 51, 325, 20);
+		panel_12.add(textField_10);
+		textField_10.setColumns(10);
+		
+		textField_11 = new JTextField();
+		textField_11.setBounds(106, 82, 325, 20);
+		panel_12.add(textField_11);
+		textField_11.setColumns(10);
+		
+		textField_12 = new JTextField();
+		textField_12.setBounds(106, 113, 325, 20);
+		panel_12.add(textField_12);
+		textField_12.setColumns(10);
+		
+		JLabel lblNewLabel_16 = new JLabel("Gonderen Adres");
+		lblNewLabel_16.setBounds(10, 54, 92, 14);
+		panel_12.add(lblNewLabel_16);
+		
+		JLabel lblNewLabel_17 = new JLabel("Alici");
+		lblNewLabel_17.setBounds(10, 85, 46, 14);
+		panel_12.add(lblNewLabel_17);
+		
+		JLabel lblNewLabel_18 = new JLabel("Konu");
+		lblNewLabel_18.setBounds(10, 116, 46, 14);
+		panel_12.add(lblNewLabel_18);
+		
+		JPanel panel_13 = new JPanel();
+		panel_13.setBorder(new TitledBorder(null, "Server Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_13.setBounds(30, 287, 530, 144);
+		panel_13.setLayout(null);
+		panel_3.add(panel_13);
+		
+		textField_13 = new JTextField();
+		textField_13.setBounds(109, 22, 103, 20);
+		panel_13.add(textField_13);
+		textField_13.setColumns(10);
+		
+		textField_14 = new JTextField();
+		textField_14.setBounds(346, 22, 86, 20);
+		panel_13.add(textField_14);
+		textField_14.setColumns(10);
+		
+		textField_15 = new JTextField();
+		textField_15.setBounds(109, 53, 323, 20);
+		panel_13.add(textField_15);
+		textField_15.setColumns(10);
+		
+		textField_16 = new JTextField();
+		textField_16.setBounds(109, 84, 323, 20);
+		panel_13.add(textField_16);
+		textField_16.setColumns(10);
+		
+		JCheckBox chckbxNewCheckBox_6 = new JCheckBox("SSL");
+		chckbxNewCheckBox_6.setBounds(109, 111, 97, 23);
+		panel_13.add(chckbxNewCheckBox_6);
+		
+		JCheckBox chckbxNewCheckBox_7 = new JCheckBox("TSL");
+		chckbxNewCheckBox_7.setBounds(248, 111, 63, 23);
+		panel_13.add(chckbxNewCheckBox_7);
+		
+		JLabel lblNewLabel_19 = new JLabel("SMTP Server");
+		lblNewLabel_19.setBounds(10, 25, 89, 14);
+		panel_13.add(lblNewLabel_19);
+		
+		JLabel lblNewLabel_20 = new JLabel("Kullanici");
+		lblNewLabel_20.setBounds(10, 56, 89, 14);
+		panel_13.add(lblNewLabel_20);
+		
+		JLabel lblNewLabel_21 = new JLabel("Sifre");
+		lblNewLabel_21.setBounds(10, 87, 89, 14);
+		panel_13.add(lblNewLabel_21);
+		
+		JLabel lblNewLabel_22 = new JLabel("SMTP Port");
+		lblNewLabel_22.setBounds(273, 25, 63, 14);
+		panel_13.add(lblNewLabel_22);
+		
+		JButton btnNewButton_8 = new JButton("Deneme");
+		btnNewButton_8.setBounds(346, 111, 86, 23);
+		panel_13.add(btnNewButton_8);
+		
+		JButton btnNewButton_9 = new JButton("Kayit");
+		btnNewButton_9.setBounds(471, 452, 89, 23);
+		panel_3.add(btnNewButton_9);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setLayout(null);
+		tabbedPane.addTab("Yedekleme Araligi", null, panel_4, null);
+		
+		JLabel lblNewLabel_23 = new JLabel("Her");
+		lblNewLabel_23.setBounds(36, 32, 46, 14);
+		panel_4.add(lblNewLabel_23);
+		
+		textField_17 = new JTextField();
+		textField_17.setBounds(118, 29, 46, 20);
+		panel_4.add(textField_17);
+		textField_17.setColumns(10);
+		
+		JLabel lblNewLabel_24 = new JLabel("Dakkada bir");
+		lblNewLabel_24.setBounds(189, 32, 105, 14);
+		panel_4.add(lblNewLabel_24);
+		
+		JLabel lblNewLabel_25 = new JLabel("Gunler");
+		lblNewLabel_25.setBounds(36, 79, 46, 14);
+		panel_4.add(lblNewLabel_25);
+		
+		JCheckBox chckbxNewCheckBox_8 = new JCheckBox("Pazartesi");
+		chckbxNewCheckBox_8.setBounds(118, 75, 97, 23);
+		panel_4.add(chckbxNewCheckBox_8);
+		
+		JCheckBox chckbxNewCheckBox_9 = new JCheckBox("Sali");
+		chckbxNewCheckBox_9.setBounds(118, 101, 97, 23);
+		panel_4.add(chckbxNewCheckBox_9);
+		
+		JCheckBox chckbxNewCheckBox_10 = new JCheckBox("Carsamba");
+		chckbxNewCheckBox_10.setBounds(118, 127, 97, 23);
+		panel_4.add(chckbxNewCheckBox_10);
+		
+		JCheckBox chckbxNewCheckBox_11 = new JCheckBox("Persembe");
+		chckbxNewCheckBox_11.setBounds(118, 153, 97, 23);
+		panel_4.add(chckbxNewCheckBox_11);
+		
+		JCheckBox chckbxNewCheckBox_12 = new JCheckBox("Cuma");
+		chckbxNewCheckBox_12.setBounds(118, 179, 97, 23);
+		panel_4.add(chckbxNewCheckBox_12);
+		
+		JCheckBox chckbxNewCheckBox_13 = new JCheckBox("Cumartesi");
+		chckbxNewCheckBox_13.setBounds(118, 205, 97, 23);
+		panel_4.add(chckbxNewCheckBox_13);
+		
+		JCheckBox chckbxNewCheckBox_14 = new JCheckBox("Pazar");
+		chckbxNewCheckBox_14.setBounds(118, 231, 97, 23);
+		panel_4.add(chckbxNewCheckBox_14);
+		
+		JPanel panel_14 = new JPanel();
+		panel_14.setBorder(new TitledBorder(null, "Yedekleme Araligi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_14.setBounds(36, 299, 383, 122);
+		panel_14.setLayout(null);
+		panel_4.add(panel_14);
+		
+		JLabel lblNewLabel_26 = new JLabel("Baslangic");
+		lblNewLabel_26.setBounds(10, 31, 76, 14);
+		panel_14.add(lblNewLabel_26);
+		
+		JLabel lblNewLabel_27 = new JLabel("Bitis");
+		lblNewLabel_27.setBounds(10, 56, 46, 14);
+		panel_14.add(lblNewLabel_27);
+		
+		JButton btnNewButton_10 = new JButton("Kayit");
+		btnNewButton_10.setBounds(471, 452, 89, 23);
+		panel_4.add(btnNewButton_10);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setLayout(null);
+		tabbedPane.addTab("Emir Kopyala", null, panel_5, null);
 	}
-	
 }
 
 @SuppressWarnings({ "serial", "rawtypes" })

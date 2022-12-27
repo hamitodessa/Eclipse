@@ -47,7 +47,7 @@ public class BASLA extends JFrame {
 	 */
 	public BASLA() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 700, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -57,7 +57,7 @@ public class BASLA extends JFrame {
 		contentPane.add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(100,0));
+		panel.setMinimumSize(new Dimension(150,0));
 		panel.setLayout(null);
 		splitPane.setLeftComponent(panel);
 		  JPanel pList = new JPanel(new GridLayout(0, 1, 3, 3));
@@ -83,7 +83,7 @@ public class BASLA extends JFrame {
 			btnNewButton_1.setBounds(10, 204, 89, 23);
 			panel.add(btnNewButton_1);
 			
-			JButton btnNewButton = new JButton("New button");
+			JButton btnNewButton = new JButton("Yeni Emir");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					EMIR emr = new EMIR();
@@ -91,7 +91,7 @@ public class BASLA extends JFrame {
 					dispose();
 				}
 			});
-			btnNewButton.setBounds(10, 26, 80, 23);
+			btnNewButton.setBounds(10, 26, 130, 23);
 			panel.add(btnNewButton);
 			
 		//

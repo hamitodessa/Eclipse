@@ -1,31 +1,41 @@
 package VT_YEDEK;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.JTabbedPane;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.border.TitledBorder;
-import javax.swing.JCheckBox;
+
+import OBS_C_2025.CONNECT;
+import OBS_C_2025.OBS_ORTAK_MSSQL;
+import OBS_C_2025.OBS_ORTAK_MYSQL;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class SQL_BILGI extends JFrame {
-
+@SuppressWarnings("serial")
+public class SQL_BILGI extends JDialog {
+	VT_ANA_CLASS oac = new VT_ANA_CLASS();
+	
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private JTextField textField_1;
 	private JPasswordField passwordField_1;
 	private JTextField textField_2;
-
+	JTabbedPane tabbedPane ;
+	JComboBox<String> comboBox;
 	/**
 	 * Launch the application.
 	 */
@@ -33,8 +43,9 @@ public class SQL_BILGI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SQL_BILGI frame = new SQL_BILGI();
-					frame.setVisible(true);
+					SQL_BILGI dialog = new SQL_BILGI();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -48,21 +59,21 @@ public class SQL_BILGI extends JFrame {
 	public SQL_BILGI() {
 		setTitle("SQL SERVER BAGLANTI");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 534, 342);
+		setModal(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		tabbedPane.addTab("MS SQL", null, panel, null);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox = new JComboBox<String>();
 		comboBox.setEditable(true);
 		comboBox.setBounds(72, 25, 260, 22);
 		panel.add(comboBox);
@@ -92,6 +103,18 @@ public class SQL_BILGI extends JFrame {
 		panel_2.add(passwordField);
 		
 		JButton btnNewButton = new JButton("Baglanti Test");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor(oac.WAIT_CURSOR);
+				try {
+					msSQL_BAGLAN();
+				} catch (HeadlessException | ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	
+				contentPane.setCursor(oac.DEFAULT_CURSOR);
+			}
+		});
 		btnNewButton.setBounds(98, 117, 130, 23);
 		panel_2.add(btnNewButton);
 		
@@ -132,6 +155,18 @@ public class SQL_BILGI extends JFrame {
 		panel_2_1.add(passwordField_1);
 		
 		JButton btnNewButton_3 = new JButton("Baglanti Test");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor(oac.WAIT_CURSOR);
+				try {
+					mySQL_BAGLAN();
+				} catch (HeadlessException | ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				contentPane.setCursor(oac.DEFAULT_CURSOR);
+			}
+		});
 		btnNewButton_3.setBounds(98, 117, 130, 23);
 		panel_2_1.add(btnNewButton_3);
 		
@@ -151,5 +186,58 @@ public class SQL_BILGI extends JFrame {
 		JLabel lblServer = new JLabel("Server / Port");
 		lblServer.setBounds(72, 30, 78, 14);
 		panel_1.add(lblServer);
+	}
+	private void msSQL_BAGLAN() throws HeadlessException, ClassNotFoundException
+	{
+		cONN_AKTAR();
+		CONNECT s_CONN = new CONNECT(oac._IConn);
+		int hangi = tabbedPane.getSelectedIndex();
+		if (hangi == 0) // MSSQL
+		{
+			if(	s_CONN.Server_kontrol_L(comboBox.getSelectedItem().toString(),textField.getText(), oac.sDONDUR.sDONDUR(passwordField) ,"") == true)
+			{ // BAGLANDI
+				JOptionPane.showMessageDialog(null, "MsSQL Baglanti Saglandi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+			}
+			else
+			{// BAGLANMADI
+				JOptionPane.showMessageDialog(null, "MsSQL Baglanti Saglanmadi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		else
+		{
+		}
+	}
+	private void mySQL_BAGLAN() throws HeadlessException, ClassNotFoundException
+	{
+		cONN_AKTAR();
+		CONNECT s_CONN = new CONNECT(oac._IConn);
+		int hangi = tabbedPane.getSelectedIndex();
+		if (hangi == 0) // MSSQL
+		{
+		}
+		else
+		{
+			if(	s_CONN.Server_kontrol_L("",textField_1.getText(), oac.sDONDUR.sDONDUR(passwordField_1) ,textField_2.getText()) == true)
+			{ // BAGLANDI
+				JOptionPane.showMessageDialog(null, "MySQL Baglanti Saglandi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+			}
+			else
+			{// BAGLANMADI
+				JOptionPane.showMessageDialog(null, "MySQL Baglanti Saglanmadi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+
+	private void cONN_AKTAR()
+	{
+		int hangi = tabbedPane.getSelectedIndex();
+		if (hangi == 0)
+		{
+			oac._IConn = new OBS_ORTAK_MSSQL();
+		}
+		else if (hangi == 1)
+		{
+			oac._IConn = new OBS_ORTAK_MYSQL();
+		}
 	}
 }

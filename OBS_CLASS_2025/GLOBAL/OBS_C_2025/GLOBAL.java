@@ -85,7 +85,7 @@ public class GLOBAL {
 			sorgu = "CREATE TABLE YEDEKLEME (EMIR_ISMI nvarchar(30) , SAAT nvarchar(2),P_TESI BLOB,SALI BLOB " 
 				    +" ,CARS BLOB,PERS BLOB,CUMA BLOB,C_TESI BLOB,PAZAR BLOB,BASLAMA DATETIME,BITIS DATETIME ) ; ";
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE SERVER (  EMIR_ISMI nvarchar(30) ,INSTANCE nvarchar(50) " 
+			sorgu = "CREATE TABLE SERVER (  EMIR_ISMI nvarchar(30) ,HANGI_SQL nvarchar(3),INSTANCE nvarchar(50) " 
 				     +  " ,WIN BLOB,SERV BLOB,KULLANICI nvarchar(50) " 
 				     +  " ,SIFRE nvarchar(50)) ;" ;
 			backup_tablo_yap(sorgu);

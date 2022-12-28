@@ -420,6 +420,7 @@ public class EMIR extends JFrame {
 		panel_8.add(lblNewLabel_10);
 		
 		txtPORT = new JTextField();
+		txtPORT.setText("21");
 		txtPORT.setBounds(222, 52, 86, 20);
 		panel_8.add(txtPORT);
 		txtPORT.setColumns(10);
@@ -429,9 +430,8 @@ public class EMIR extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				FTPClient ftp = new FTPClient();
 				try {
-					ftp.connect(txtHOST.getText());
+					ftp.connect(txtHOST.getText(),Integer.parseInt(txtPORT.getText()));
 					if(ftp.login(txtKULL.getText(),oac.sDONDUR.sDONDUR(txtPWD)))            
-
 						if(ftp.cwd(txtSUNUCU.getText()) == 250)
 						{
 							JOptionPane.showMessageDialog(null, "Surucu Bulundu..........",  "OBS Indirme", JOptionPane.INFORMATION_MESSAGE);
@@ -870,7 +870,7 @@ public class EMIR extends JFrame {
 		try
 		{
 		FTPClient ftp = new FTPClient();
-		ftp.connect(txtHOST.getText());
+		ftp.connect(txtHOST.getText(),Integer.parseInt(txtPORT.getText()));
 		if(!ftp.login(txtKULL.getText(),oac.sDONDUR.sDONDUR(txtPWD)))
 		{
 			ftp.logout();

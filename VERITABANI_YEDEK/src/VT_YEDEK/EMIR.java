@@ -27,6 +27,11 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.ftp.FTPReply;
+
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
@@ -61,6 +66,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
 public class EMIR extends JFrame {
@@ -69,7 +75,6 @@ public class EMIR extends JFrame {
 	private JTextField txtEMIR_ISMI;
 	private JTextField txtHOST;
 	private JTextField txtKULL;
-	private JTextField txtPWD;
 	private JTextField txtSUNUCU;
 	private JTextField txtZMNASIMI;
 	private JTextField txtPORT;
@@ -91,6 +96,8 @@ public class EMIR extends JFrame {
 	private JCheckBox chckbxDURUM  ;
 	private JTextPane txtAciklama ;
 	private JCheckBox chckbxFTP;
+	private JPasswordField txtPWD;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -367,20 +374,20 @@ public class EMIR extends JFrame {
 		panel_7.add(lblNewLabel_7);
 		
 		txtHOST = new JTextField();
+		txtHOST.setText("okumus.gen.tr");
 		txtHOST.setBounds(88, 22, 158, 20);
 		panel_7.add(txtHOST);
 		txtHOST.setColumns(10);
 		
 		txtKULL = new JTextField();
+		txtKULL.setText("u5789784");
 		txtKULL.setBounds(88, 50, 158, 20);
 		panel_7.add(txtKULL);
 		txtKULL.setColumns(10);
 		
-		txtPWD = new JTextField();
-		txtPWD.setText("");
-		txtPWD.setBounds(88, 76, 158, 20);
+		txtPWD = new JPasswordField();
+		txtPWD.setBounds(88, 75, 158, 20);
 		panel_7.add(txtPWD);
-		txtPWD.setColumns(10);
 		
 		JPanel panel_8 = new JPanel();
 		panel_8.setBorder(new TitledBorder(null, "Diger Ayarlar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -393,6 +400,7 @@ public class EMIR extends JFrame {
 		panel_8.add(lblNewLabel_8);
 		
 		txtSUNUCU = new JTextField();
+		txtSUNUCU.setText("PLAST_BAK_2022/");
 		txtSUNUCU.setBounds(88, 21, 222, 20);
 		panel_8.add(txtSUNUCU);
 		txtSUNUCU.setColumns(10);
@@ -402,6 +410,7 @@ public class EMIR extends JFrame {
 		panel_8.add(lblNewLabel_9);
 		
 		txtZMNASIMI = new JTextField();
+		txtZMNASIMI.setText("300");
 		txtZMNASIMI.setBounds(88, 53, 55, 20);
 		panel_8.add(txtZMNASIMI);
 		txtZMNASIMI.setColumns(10);
@@ -416,7 +425,29 @@ public class EMIR extends JFrame {
 		txtPORT.setColumns(10);
 		
 		JButton btnNewButton_5 = new JButton("Surucu Kontrol");
-		btnNewButton_5.setBounds(398, 52, 109, 23);
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FTPClient ftp = new FTPClient();
+				try {
+					ftp.connect(txtHOST.getText());
+					if(ftp.login(txtKULL.getText(),oac.sDONDUR.sDONDUR(txtPWD)))            
+
+						if(ftp.cwd(txtSUNUCU.getText()) == 250)
+						{
+							JOptionPane.showMessageDialog(null, "Surucu Bulundu..........",  "OBS Indirme", JOptionPane.INFORMATION_MESSAGE);
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "Surucu Bulunamadi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+						}
+				} 
+				catch (Exception e1) 
+				{
+					JOptionPane.showMessageDialog(null, "Baglanti Hatasi ....." + e1.getMessage() ,  "OBS Indirme", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		btnNewButton_5.setBounds(385, 52, 122, 23);
 		panel_8.add(btnNewButton_5);
 		
 		JPanel panel_9 = new JPanel();
@@ -439,7 +470,7 @@ public class EMIR extends JFrame {
 		panel_9.add(btnNewButton_6);
 		
 		JButton btnNewButton_7 = new JButton("Surucu Sec");
-		btnNewButton_7.setBounds(100, 44, 89, 23);
+		btnNewButton_7.setBounds(100, 44, 110, 23);
 		panel_9.add(btnNewButton_7);
 		
 		JPanel panel_10 = new JPanel();
@@ -462,7 +493,18 @@ public class EMIR extends JFrame {
 		panel_10.add(lblNewLabel_13);
 		
 		JButton btnNewButton_3 = new JButton("Baglanti Test");
-		btnNewButton_3.setBounds(20, 452, 117, 23);
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					ftpKONTROL();
+				} catch (HeadlessException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_3.setBounds(20, 452, 136, 23);
 		panel_2.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Kaydet");
@@ -760,7 +802,7 @@ public class EMIR extends JFrame {
           {
               neresi = "SUR";
           }
-         sqll.ftp_ismi_kayit(txtEMIR_ISMI.getText(), txtHOST.getText(),txtKULL.getText(), txtPWD.getText(),txtSUNUCU.getText(), txtPORT.getText(),
+         sqll.ftp_ismi_kayit(txtEMIR_ISMI.getText(), txtHOST.getText(),txtKULL.getText(),oac.sDONDUR.sDONDUR(txtPWD),txtSUNUCU.getText(), txtPORT.getText(),
         		 			Integer.parseInt(txtZMNASIMI.getText()),txtZMNASIMI.getText(), neresi,txtSURUCU.getText());
  	}
 	@SuppressWarnings("rawtypes")
@@ -822,6 +864,29 @@ public class EMIR extends JFrame {
         listModel.removeAllElements();
 		e1.printStackTrace();
 	}	
+	}
+	private void ftpKONTROL() throws HeadlessException, IOException
+	{
+		try
+		{
+		FTPClient ftp = new FTPClient();
+		ftp.connect(txtHOST.getText());
+		if(!ftp.login(txtKULL.getText(),oac.sDONDUR.sDONDUR(txtPWD)))
+		{
+			ftp.logout();
+			JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+		}
+		else
+		{
+			ftp.logout();
+			JOptionPane.showMessageDialog(null, "Baglanti Gerceklesti.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);  
+		}
+	} 
+	catch (Exception e1)
+	{
+		JOptionPane.showMessageDialog(null, e1.getMessage(),  "OBS Backup", JOptionPane.ERROR_MESSAGE);  
+	}	
+		
 	}
 }
 @SuppressWarnings({ "serial", "rawtypes" })

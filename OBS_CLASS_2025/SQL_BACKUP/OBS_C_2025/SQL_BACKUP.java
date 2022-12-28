@@ -220,7 +220,7 @@ public class SQL_BACKUP {
 			stmt.setString(1, eismi);
 			stmt.setString(2, hst);
 			stmt.setString(3, kll);
-			stmt.setString(4, sif);
+			stmt.setBytes(4,  ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sif));
 			stmt.setString(5, sur);
 			stmt.setString(6, prt);
 			stmt.setInt(7, zmn);

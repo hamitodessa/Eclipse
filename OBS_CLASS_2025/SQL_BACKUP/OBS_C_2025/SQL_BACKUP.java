@@ -55,6 +55,7 @@ public class SQL_BACKUP {
 		stmt.close();
 		con.close();
 	}
+	@SuppressWarnings("static-access")
 	public ResultSet serBILGI(String emir) throws ClassNotFoundException, SQLException
 	{
 
@@ -74,7 +75,6 @@ public class SQL_BACKUP {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		cumle = "jdbc:sqlserver://localhost;instanceName=" + inst + ";";
 		Connection conn = DriverManager.getConnection(cumle,kull,sifre);
-		
 		ResultSet	rss = null;
 		String sql ="SELECT NAME FROM master.dbo.sysdatabases ORDER BY NAME";
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -88,7 +88,6 @@ public class SQL_BACKUP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		cumle = "jdbc:mysql://localhost:" + port ; //pointing to no database.
 		Connection conn = DriverManager.getConnection(cumle,kull,sifre);
-		
 		ResultSet	rss = null;
 		Statement  stmt = conn.createStatement();
 		rss  = stmt.executeQuery("SHOW DATABASES;");

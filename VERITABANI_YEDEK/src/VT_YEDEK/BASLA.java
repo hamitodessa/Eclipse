@@ -91,6 +91,7 @@ public class BASLA extends JFrame {
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					EMIR emr = new EMIR();
+					emr.cmbSQL.setSelectedIndex(1);
 					emr.setVisible(true);
 					dispose();
 				}

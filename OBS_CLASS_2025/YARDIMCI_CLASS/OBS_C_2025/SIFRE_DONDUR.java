@@ -1,7 +1,5 @@
 package OBS_C_2025;
 
-import java.util.Base64;
-
 import javax.swing.JPasswordField;
 
 public class SIFRE_DONDUR {
@@ -10,6 +8,5 @@ public class SIFRE_DONDUR {
 	{
 	 	String passText = new String(sifre.getPassword());
   		return passText;
-		
 	}
 }

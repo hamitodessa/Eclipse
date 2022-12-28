@@ -43,6 +43,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -52,6 +53,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.TitledBorder;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 @SuppressWarnings("serial")
 public class EMIR extends JFrame {
@@ -75,9 +78,9 @@ public class EMIR extends JFrame {
 	private JTextField textField_15;
 	private JTextField textField_16;
 	private JTextField textField_17;
-	private JList<CheckListItem> list ;
+	private static JList<CheckListItem> list ;
 	public static JComboBox<String> cmbSQL;
-	SQL_BACKUP sqll = new SQL_BACKUP();
+	static SQL_BACKUP sqll = new SQL_BACKUP();
 	/**
 	 * Launch the application.
 	 */
@@ -133,7 +136,7 @@ public class EMIR extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 758, 565);
+		setBounds(100, 100, 800, 565);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -149,15 +152,27 @@ public class EMIR extends JFrame {
 		splitPane.setLeftComponent(splitPanesol);
 		
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(140,40));
+		panel.setMinimumSize(new Dimension(175,40));
 		panel.setLayout(null);
 		splitPanesol.setLeftComponent(panel);
 		
 		cmbSQL = new JComboBox<String>();
+		cmbSQL.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				try {
+					serBILGILERI();
+				} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
+						| NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException
+						| BadPaddingException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		cmbSQL.setForeground(new Color(0, 0, 139));
 		cmbSQL.setFont(new Font("Tahoma", Font.BOLD, 11));
-		cmbSQL.setModel(new DefaultComboBoxModel(new String[] {"MY SQL", "MS SQL"}));
-		cmbSQL.setBounds(10, 11, 79, 22);
+		cmbSQL.setModel(new DefaultComboBoxModel(new String[] {"MS SQL", "MY SQL"}));
+		cmbSQL.setBounds(10, 11, 106, 22);
 		panel.add(cmbSQL);
 		
 		JButton btnNewButton = new JButton(".....");
@@ -172,7 +187,7 @@ public class EMIR extends JFrame {
 				
 				}
 		});
-		btnNewButton.setBounds(99, 11, 31, 23);
+		btnNewButton.setBounds(126, 11, 39, 23);
 		panel.add(btnNewButton);
 		
 		list = new JList<CheckListItem>();
@@ -212,8 +227,7 @@ public class EMIR extends JFrame {
 		 demoList.addElement( new CheckListItem("elma"));
 		 list.setModel(demoList);
 		//
-		
-		
+	
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		splitPane.setRightComponent(tabbedPane);
 		
@@ -621,10 +635,6 @@ public class EMIR extends JFrame {
 		spinner_1.setBounds(119, 53, 52, 20);
 		panel_14.add(spinner_1);
 		
-	
-		
-		
-		
 		JButton btnNewButton_10 = new JButton("Kayit");
 		btnNewButton_10.setBounds(471, 452, 89, 23);
 		panel_4.add(btnNewButton_10);
@@ -634,50 +644,65 @@ public class EMIR extends JFrame {
 		tabbedPane.addTab("Emir Kopyala", null, panel_5, null);
 
 	}
-	public void dbDOLDUR (String ipp , String user , String pwd) throws ClassNotFoundException, SQLException
+	@SuppressWarnings("rawtypes")
+	public static void dbDOLDUR (String ipp , String user , String pwd) throws ClassNotFoundException, SQLException
 	{
-		ResultSet rss = null;
-		DefaultListModel<CheckListItem> demoList = new DefaultListModel<CheckListItem>();
-		list.removeAll();
-		String hangisql = cmbSQL.getSelectedItem().toString();
-		if(hangisql.toString().equals("MS SQL"))
+		try
 		{
-			oac._IConn = new OBS_ORTAK_MSSQL();
-	
-			rss = sqll.msSQLDB(ipp,user,pwd);
-			while (rss.next()) 
+			ResultSet rss = null;
+			DefaultListModel<CheckListItem> demoList = new DefaultListModel<CheckListItem>();
+			demoList.removeAllElements();
+			String hangisql = cmbSQL.getSelectedItem().toString();
+			if(hangisql.toString().equals("MS SQL"))
 			{
-				 demoList.addElement( new CheckListItem(rss.getString("name")));
+				VT_ANA_CLASS._IConn = new OBS_ORTAK_MSSQL();
+				rss = sqll.msSQLDB(ipp,user,pwd);
+				while (rss.next()) 
+				{
+					demoList.addElement( new CheckListItem(rss.getString("name")));
+				}
 			}
-		}
-		else
+			else
+			{
+				VT_ANA_CLASS._IConn = new OBS_ORTAK_MYSQL();
+				rss = sqll.mySQLDB(ipp,user,pwd);
+				while (rss.next()) 
+				{
+					demoList.addElement( new CheckListItem(rss.getString("Database")));
+				}
+			}
+			list.setModel(demoList);
+		} 
+		catch (Exception e1)
 		{
-			oac._IConn = new OBS_ORTAK_MYSQL();
-			rss = sqll.mySQLDB(ipp,user,pwd);
-			while (rss.next()) 
-			{
-				 demoList.addElement( new CheckListItem(rss.getString("Database")));
-			}
-		}
-		
-		 list.setModel(demoList);
+			DefaultListModel listModel = (DefaultListModel) list.getModel();
+	        listModel.removeAllElements();
+			e1.printStackTrace();
+		}	
 	}
-	public void serBILGILERI() throws InvalidKeyException, ClassNotFoundException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, SQLException
+	@SuppressWarnings("rawtypes")
+	public static void serBILGILERI() throws InvalidKeyException, ClassNotFoundException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, SQLException
 	{
-		ResultSet rss = sqll.serBILGI(oac.EMIR_ADI);
-		if (!rss.isBeforeFirst() ) {  
-			list.removeAll();
-		}
-		else
+		try
 		{
-			System.out.println("burd");
-			dbDOLDUR(rss.getString("INSTANCE") , rss.getString("KULLANICI"), ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rss.getBytes("SIFRE")));
-	
-		}
-		
+			ResultSet rss = sqll.serBILGI(VT_ANA_CLASS.EMIR_ADI);
+			if (!rss.isBeforeFirst() ) {  
+				DefaultListModel listModel = (DefaultListModel) list.getModel();
+				listModel.removeAllElements();
+			}
+			else
+			{
+				dbDOLDUR(rss.getString("INSTANCE") , rss.getString("KULLANICI"), ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rss.getBytes("SIFRE")));
+			}
+		} 
+	catch (Exception e1)
+	{
+		DefaultListModel listModel = (DefaultListModel) list.getModel();
+        listModel.removeAllElements();
+		e1.printStackTrace();
+	}	
 	}
 }
-
 @SuppressWarnings({ "serial", "rawtypes" })
 class CheckListRenderer extends JCheckBox implements ListCellRenderer {
 	  public Component getListCellRendererComponent(JList list, Object value,

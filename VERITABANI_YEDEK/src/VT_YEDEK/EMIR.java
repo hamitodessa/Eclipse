@@ -2,6 +2,7 @@ package VT_YEDEK;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
@@ -81,9 +82,12 @@ public class EMIR extends JFrame {
 	private JTextField textField_15;
 	private JTextField textField_16;
 	private JTextField textField_17;
+	private static boolean kontrol;
 	private static JList<CheckListItem> list ;
 	public static JComboBox<String> cmbSQL;
 	static SQL_BACKUP sqll = new SQL_BACKUP();
+	private JCheckBox chckbxDURUM  ;
+	private JTextPane txtAciklama ;
 	/**
 	 * Launch the application.
 	 */
@@ -250,9 +254,9 @@ public class EMIR extends JFrame {
 		lblNewLabel.setBounds(29, 52, 46, 14);
 		panel_1.add(lblNewLabel);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Aktif / Pasif");
-		chckbxNewCheckBox.setBounds(100, 48, 156, 23);
-		panel_1.add(chckbxNewCheckBox);
+		chckbxDURUM = new JCheckBox("Aktif / Pasif");
+		chckbxDURUM.setBounds(100, 48, 156, 23);
+		panel_1.add(chckbxDURUM);
 		
 		JLabel lblNewLabel_1 = new JLabel("Emir Ismi");
 		lblNewLabel_1.setBounds(29, 100, 64, 14);
@@ -278,9 +282,9 @@ public class EMIR extends JFrame {
 		lblNewLabel_2.setBounds(29, 149, 64, 14);
 		panel_1.add(lblNewLabel_2);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(103, 143, 322, 70);
-		panel_1.add(textPane);
+		txtAciklama = new JTextPane();
+		txtAciklama.setBounds(103, 143, 322, 70);
+		panel_1.add(txtAciklama);
 		
 		JLabel lblNewLabel_3 = new JLabel("Dosya Sayisi");
 		lblNewLabel_3.setBounds(22, 456, 73, 14);
@@ -291,6 +295,18 @@ public class EMIR extends JFrame {
 		panel_1.add(lblNewLabel_4);
 		
 		JButton btnNewButton_1 = new JButton("Kaydet");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					kayDET();
+				} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
+						| NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException
+						| BadPaddingException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton_1.setBounds(381, 456, 89, 23);
 		panel_1.add(btnNewButton_1);
 		
@@ -665,6 +681,57 @@ public class EMIR extends JFrame {
 		panel_5.setLayout(null);
 		tabbedPane.addTab("Emir Kopyala", null, panel_5, null);
 
+	}
+	@SuppressWarnings("unused")
+	private void kayDET() throws SQLException, ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		try
+		{
+		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		ResultSet rs = null;
+		rs = sqll.emirBILGI(txtEMIR_ISMI.getText());
+   
+		Boolean sondurum = false ; 
+		Date sonyuk = null  ;
+		if (!rs.isBeforeFirst() ) 
+		{ 
+			kontrol = false ;
+		}
+		else
+		{
+			 sondurum = rs.getBoolean("SON_DURUM");
+		     sonyuk = rs.getDate("SON_YUKLEME");
+		             kontrol = true;
+		}
+	
+       sqll.genel_kayit_sil(txtEMIR_ISMI.getText());
+       sqll.genel_kayit(txtEMIR_ISMI.getText(), chckbxDURUM.isSelected(), txtAciklama.getText(),cmbSQL.getSelectedItem().toString(), true);
+       sqll.genel_kayit_durum(txtEMIR_ISMI.getText(), false, sonyuk);
+       
+       if ( kontrol )
+       {
+    	   sqll.genel_kayit_durum(txtEMIR_ISMI.getText(), sondurum, sonyuk);
+       }
+       sqll.db_adi_kayit_sil(txtEMIR_ISMI.getText());
+       for (int i = 0; i < list.getModel().getSize(); i++)
+       {
+    	   
+    	   CheckListItem item = (CheckListItem) list.getModel()
+   	            .getElementAt(i);
+   	      if(!item.isSelected())
+   	      {
+   	    	 sqll.db_ismi_kayit(txtEMIR_ISMI.getText(), item.toString());
+   	      }
+     	
+    	 }
+           
+   		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	} 
+	catch (Exception e1)
+	{
+		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		e1.printStackTrace();
+	}	
 	}
 	@SuppressWarnings("rawtypes")
 	public static void dbDOLDUR (String ipp , String user , String pwd) throws ClassNotFoundException, SQLException

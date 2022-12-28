@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -22,7 +23,7 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public void server_kayit_sil(String eismi) throws SQLException, ClassNotFoundException
 	{
-		if (con.isClosed() == false) con.close();
+		if (con != null && con.isClosed() == false) con.close();
 		Class.forName("org.sqlite.JDBC");
 		PreparedStatement stmt = null;
 		con =  gLB.myBackupConnection();
@@ -36,6 +37,7 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public void server_ismi_kayit(String eismi,String hangisql, String ins, boolean wi, boolean ser, String kull, String sif) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
+		if (con != null && con.isClosed() == false) con.close();
 		Class.forName("org.sqlite.JDBC");
 		PreparedStatement stmt = null;
 		con = gLB.myBackupConnection();
@@ -58,6 +60,7 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public ResultSet serBILGI(String emir) throws ClassNotFoundException, SQLException
 	{
+		if (con != null && con.isClosed() == false) con.close();
 		Class.forName("org.sqlite.JDBC");
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
@@ -68,8 +71,22 @@ public class SQL_BACKUP {
 	
 		return rss;
 	}
+	@SuppressWarnings("static-access")
+	public ResultSet emirBILGI(String emir) throws ClassNotFoundException, SQLException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		ResultSet	rss = null;
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "SELECT * FROM EMIRLER WHERE  EMIR_ISMI ='" + emir + "'";
+		stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;
+	}
 	public  ResultSet msSQLDB(String inst , String kull,String sifre) throws ClassNotFoundException, SQLException
 	{
+		if (con != null && con.isClosed() == false) con.close();
 		String cumle = "";
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		cumle = "jdbc:sqlserver://localhost;instanceName=" + inst + ";";
@@ -83,6 +100,7 @@ public class SQL_BACKUP {
 	}
 	public ResultSet mySQLDB(String port , String kull,String sifre) throws ClassNotFoundException, SQLException
 	{
+		if (con != null && con.isClosed() == false) con.close();
 		String cumle = "";
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		cumle = "jdbc:mysql://localhost:" + port ; //pointing to no database.
@@ -92,5 +110,86 @@ public class SQL_BACKUP {
 		rss  = stmt.executeQuery("SHOW DATABASES;");
 		return rss;	 
 		
+	}
+	@SuppressWarnings("static-access")
+	public void genel_kayit_sil(String eismi) throws SQLException, ClassNotFoundException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con =  gLB.myBackupConnection();
+		String sql = "DELETE FROM EMIRLER  WHERE EMIR_ISMI = ? ";
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1,eismi);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
+	@SuppressWarnings("static-access")
+	public void genel_kayit(String eismi , boolean drm, String konu, String inst , boolean  sqlyed ) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "INSERT INTO EMIRLER (EMIR_ISMI,DURUM,EMIR_ACIKLAMA,INSTANCE,SQL_YEDEK) ";
+		sql += "VALUES (?,?,?,?,?)";
+		{
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, eismi);
+			stmt.setBoolean(2,  drm);
+			stmt.setString(3, konu);
+			stmt.setString(4, inst);
+			stmt.setBoolean(5, sqlyed);
+		}
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
+	@SuppressWarnings("static-access")
+	public void genel_kayit_durum(String eismi ,boolean drm, Date yuk ) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "UPDATE EMIRLER SET SON_DURUM = ? , SON_YUKLEME = ? WHERE EMIR_ISMI = '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
+		stmt.setBoolean(1,drm);
+		stmt.setDate(2, (java.sql.Date) yuk);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
+	@SuppressWarnings("static-access")
+	public void db_adi_kayit_sil(String eismi) throws SQLException, ClassNotFoundException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con =  gLB.myBackupConnection();
+		String sql = "DELETE FROM DB_ISIM WHERE EMIR_ISMI ='" + eismi + "'";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
+	@SuppressWarnings("static-access")
+	public void db_ismi_kayit(String eismi ,  String dad ) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "INSERT INTO DB_ISIM (EMIR_ISMI,DB_ADI) ";
+		sql += "VALUES (?,?)";
+		{
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, eismi);
+			stmt.setString(2, dad);
+		}
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
 	}
 }

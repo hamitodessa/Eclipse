@@ -90,12 +90,12 @@ public class SQL_BILGI extends JDialog {
 				if(EMIR. cmbSQL.getSelectedItem().toString() == "MS SQL")
 				{
 					tabbedPane.setSelectedIndex(0);
-					tabbedPane.setEnabledAt(1, false);
+					//tabbedPane.setEnabledAt(1, false);
 				}
 				else
 				{
 					tabbedPane.setSelectedIndex(1);
-					tabbedPane.setEnabledAt(0, false);
+					//tabbedPane.setEnabledAt(0, false);
 
 				}
 				//grid_doldur();

@@ -121,7 +121,11 @@ public class EMIR extends JFrame {
 				
 					contentPane.setCursor(oac.WAIT_CURSOR);
 					try {
-						serBILGILERI();
+						if (! oac.EMIR_ADI.equals(""))
+						{
+							serBILGILERI();
+						}
+					
 					} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
 							| NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException
 							| BadPaddingException | SQLException e1) {
@@ -157,18 +161,7 @@ public class EMIR extends JFrame {
 		splitPanesol.setLeftComponent(panel);
 		
 		cmbSQL = new JComboBox<String>();
-		cmbSQL.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				try {
-					serBILGILERI();
-				} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
-						| NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException
-						| BadPaddingException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
+		cmbSQL.setEnabled(false);
 		cmbSQL.setForeground(new Color(0, 0, 139));
 		cmbSQL.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbSQL.setModel(new DefaultComboBoxModel(new String[] {"MS SQL", "MY SQL"}));
@@ -181,10 +174,6 @@ public class EMIR extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 		SQL_BILGI hsp = new SQL_BILGI();
 		hsp.show();
-					
-						//	serBILGILERI();
-					
-				
 				}
 		});
 		btnNewButton.setBounds(126, 11, 39, 23);
@@ -692,6 +681,7 @@ public class EMIR extends JFrame {
 			}
 			else
 			{
+				cmbSQL.setSelectedItem(rss.getString("HANGI_SQL").toString());
 				dbDOLDUR(rss.getString("INSTANCE") , rss.getString("KULLANICI"), ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rss.getBytes("SIFRE")));
 			}
 		} 

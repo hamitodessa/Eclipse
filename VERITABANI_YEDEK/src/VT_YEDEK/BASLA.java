@@ -90,6 +90,8 @@ public class BASLA extends JFrame {
 			JButton btnNewButton = new JButton("Yeni Emir");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					
+					oac.yENI_EMIR = true ;
 					EMIR emr = new EMIR();
 				
 					emr.setVisible(true);

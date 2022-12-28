@@ -21,6 +21,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -36,6 +38,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerDateModel;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -60,7 +63,7 @@ import java.awt.event.ItemEvent;
 public class EMIR extends JFrame {
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField txtEMIR_ISMI;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -121,10 +124,21 @@ public class EMIR extends JFrame {
 				
 					contentPane.setCursor(oac.WAIT_CURSOR);
 					try {
-						if (! oac.EMIR_ADI.equals(""))
+						
+						if(oac.yENI_EMIR == true)
+						{
+							DefaultListModel listModel = (DefaultListModel) list.getModel();
+							listModel.removeAllElements();
+						}
+						else
 						{
 							serBILGILERI();
 						}
+						
+//						if (! oac.EMIR_ADI.equals("") )
+//						{
+//							serBILGILERI();
+//						}
 					
 					} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
 							| NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException
@@ -172,9 +186,17 @@ public class EMIR extends JFrame {
 		btnNewButton.setToolTipText("Server Baglanti");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		SQL_BILGI hsp = new SQL_BILGI();
-		hsp.show();
+				if(txtEMIR_ISMI.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Emir Ismi Bos........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
 				}
+				else
+				{
+					SQL_BILGI hsp = new SQL_BILGI();
+					hsp.show();
+				}
+
+			}
 		});
 		btnNewButton.setBounds(126, 11, 39, 23);
 		panel.add(btnNewButton);
@@ -236,10 +258,21 @@ public class EMIR extends JFrame {
 		lblNewLabel_1.setBounds(29, 100, 64, 14);
 		panel_1.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(103, 97, 322, 20);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		txtEMIR_ISMI = new JTextField();
+		txtEMIR_ISMI.setBounds(103, 97, 322, 20);
+		txtEMIR_ISMI.getDocument().addDocumentListener(new DocumentListener() {
+			  public void changedUpdate(DocumentEvent e) {
+				  VT_ANA_CLASS.EMIR_ADI = txtEMIR_ISMI.getText();
+			  }
+			  public void removeUpdate(DocumentEvent e) {
+				  VT_ANA_CLASS.EMIR_ADI = txtEMIR_ISMI.getText();
+			  }
+			  public void insertUpdate(DocumentEvent e) {
+				  VT_ANA_CLASS.EMIR_ADI = txtEMIR_ISMI.getText();
+			  }
+			});
+		panel_1.add(txtEMIR_ISMI);
+		txtEMIR_ISMI.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Aciklama");
 		lblNewLabel_2.setBounds(29, 149, 64, 14);
@@ -672,6 +705,7 @@ public class EMIR extends JFrame {
 	@SuppressWarnings("rawtypes")
 	public static void serBILGILERI() throws InvalidKeyException, ClassNotFoundException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, SQLException
 	{
+		
 		try
 		{
 			ResultSet rss = sqll.serBILGI(VT_ANA_CLASS.EMIR_ADI);

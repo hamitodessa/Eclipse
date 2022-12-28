@@ -58,9 +58,8 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public ResultSet serBILGI(String emir) throws ClassNotFoundException, SQLException
 	{
-
 		Class.forName("org.sqlite.JDBC");
-			ResultSet	rss = null;
+		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con = gLB.myBackupConnection();
 		String sql = "SELECT  * FROM SERVER  WHERE EMIR_ISMI = '" + emir + "'";

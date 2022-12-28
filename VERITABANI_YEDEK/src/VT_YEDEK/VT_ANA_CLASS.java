@@ -12,4 +12,5 @@ public class VT_ANA_CLASS {
 	public   SIFRE_DONDUR sDONDUR = new     SIFRE_DONDUR();
 	public static IConnection _IConn ;
 	public static String EMIR_ADI = "" ; 
+	public static boolean yENI_EMIR = false ; 
 }

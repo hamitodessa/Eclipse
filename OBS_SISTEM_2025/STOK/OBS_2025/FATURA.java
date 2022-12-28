@@ -1767,9 +1767,7 @@ public class FATURA extends JInternalFrame {
 				internalFrame.setVisible(true);
 			}
 			ResultSet rss = null;
-
 			rss = c_Access.evrak_ogren(textField.getText());
-
 			String sonuc = "" ;
 			if (!rss.isBeforeFirst() ) {
 			}
@@ -1791,15 +1789,11 @@ public class FATURA extends JInternalFrame {
 		try {
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
-
 				f_Access.fat_giris_sil(textField.getText(), "C" ,textField.getText() + " Nolu Cikis Fatura Silindi",textField.getText(),BAGLAN_LOG.fatLogDizin);
-
 			}
 			else
 			{
-
 				f_Access.fat_giris_sil(textField.getText(), "G" ,textField.getText() + " Nolu Giris Fatura Silindi",textField.getText(),BAGLAN_LOG.fatLogDizin);
-
 			}
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
@@ -1832,10 +1826,7 @@ public class FATURA extends JInternalFrame {
 			}
 			else
 			{
-
 				rs = f_Access.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN",  mdl.getValueAt(i,2).toString());
-
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1919,14 +1910,11 @@ public class FATURA extends JInternalFrame {
 		try {
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
-
 				f_Access.stok_sil(textField.getText(), "FAT", "C","Fatura Stok Silme", textField.getText(), BAGLAN_LOG.fatLogDizin);
 			}
 			else
 			{
-
 				f_Access.stok_sil(textField.getText(), "FAT", "G","Fatura Stok Silme", textField.getText(), BAGLAN_LOG.fatLogDizin);
-
 			}
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
@@ -2049,10 +2037,8 @@ public class FATURA extends JInternalFrame {
 			dipnot_sil();
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
-
 				f_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_8.getText(), "F", "C",GLOBAL.KULL_ADI,
 						 "Fatura Dip Not Yaz : "  +textField_5.getText()  ,textField.getText(),BAGLAN_LOG.fatLogDizin);
-
 			}
 			else
 			{
@@ -2070,16 +2056,13 @@ public class FATURA extends JInternalFrame {
 		try {
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
-
 				f_Access.dipnot_sil(textField.getText(), "F", "C",
 						 "Fatura Dip Not Sil "    ,textField.getText(),BAGLAN_LOG.fatLogDizin);
 			}
 			else
 			{
-
 				f_Access.dipnot_sil(textField.getText(), "F", "G",
 						 "Fatura Dip Not Sil "   ,textField.getText(),BAGLAN_LOG.fatLogDizin);
-
 			}
 		}
 		catch (Exception ex)
@@ -2719,15 +2702,12 @@ public class FATURA extends JInternalFrame {
 			double sdf =  DecimalFormat.getNumberInstance().parse(label_8.getText()).doubleValue()  ;
 			String str_4  ="";
 			int e_number =0;
-
 			e_number = c_Access.cari_fisno_al();
-
 			DefaultTableModel model = (DefaultTableModel)table.getModel();
 			double tutar  = DecimalFormat.getNumberInstance().parse(label.getText()).doubleValue()  ;
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
 				str_4 = textField.getText() + "'Fatura ile " + FORMATLAMA.doub_0(sdf) + " " +  model.getValueAt(0 , 6).toString() + " Urun Satisi" ;
-
 				c_Access.cari_dekont_kaydet(bh,
 						TARIH_CEVIR.tarih_geri_saatli(dtc),
 						e_number,
@@ -2738,10 +2718,9 @@ public class FATURA extends JInternalFrame {
 						tutar,
 						str_4,"Satis" , GLOBAL.KULL_ADI,
 						"Alacakli Hes:" +alh + " Tut:" +tutar+
-						" Borclu Hes:"+ bh   ,
-						textField.getText() ,
+						" Borclu Hes:"+ bh  + " Evrak No:" + textField.getText() ,
+						String.valueOf(e_number) ,
 						BAGLAN_LOG.cariLogDizin);
-
 			}
 			else if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("ALIS") )
 			{
@@ -2817,9 +2796,7 @@ public class FATURA extends JInternalFrame {
 	{
 		try
 		{
-
 			textField.setText( f_Access.son_no_al(cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G"));
-
 		}
 		catch (Exception ex)
 		{

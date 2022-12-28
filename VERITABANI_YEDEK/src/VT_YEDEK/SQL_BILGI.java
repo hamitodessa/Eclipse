@@ -15,6 +15,7 @@ import javax.swing.border.TitledBorder;
 
 
 import OBS_C_2025.CONNECT;
+import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.SQL_BACKUP;
@@ -26,6 +27,7 @@ import javax.swing.JPasswordField;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -33,6 +35,7 @@ import java.awt.event.WindowEvent;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
@@ -287,6 +290,51 @@ public class SQL_BILGI extends JDialog {
 		JLabel lblServer = new JLabel("Server / Port");
 		lblServer.setBounds(72, 30, 78, 14);
 		panel_1.add(lblServer);
+		dOLDUR();
+	}
+	private void dOLDUR()
+	{
+		if (VT_ANA_CLASS.EMIR_ADI.equals("")) return ;
+		try
+		
+		{
+			ResultSet rss = bck.serBILGI(VT_ANA_CLASS.EMIR_ADI);
+			if (!rss.isBeforeFirst() )
+			{  
+			temIZLE();
+			}
+			else
+			{
+				rss.next() ;
+				if (rss.getString("HANGI_SQL").toString().equals("MS SQL"))
+				{
+					comboBox.setSelectedItem(rss.getString("INSTANCE").toString()) ;
+					txtMSUSER.setText( rss.getString("KULLANICI").toString()) ;
+					txtMSPWD.setText(ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rss.getBytes("SIFRE"))) ;
+				}
+				else
+				{
+					txtPort.setText(rss.getString("INSTANCE").toString()) ;
+					txtMYUSER.setText( rss.getString("KULLANICI").toString()) ;
+					txtMYPWD.setText(ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rss.getBytes("SIFRE"))) ;
+				}
+			
+			}
+		} 
+	catch (Exception e1)
+	{
+
+		e1.printStackTrace();
+	}	
+	}
+	private void temIZLE()
+	{
+		comboBox.setSelectedItem("") ;
+		txtMSUSER.setText("") ;
+		txtMSPWD.setText("") ;
+		txtPort.setText("") ; 
+		txtMYUSER.setText("") ; 
+		txtMYPWD.setText("") ;
 	}
 	private void msSQL_KAYDET() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{

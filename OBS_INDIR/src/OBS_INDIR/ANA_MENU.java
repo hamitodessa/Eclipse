@@ -96,6 +96,7 @@ public class ANA_MENU extends JDialog {
 		panel.setLayout(null);
 
 		JButton btnNewButton = new JButton("Indir 2");
+		btnNewButton.setEnabled(false);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setForeground(new Color(0, 0, 205));
 		btnNewButton.addActionListener(new ActionListener() {

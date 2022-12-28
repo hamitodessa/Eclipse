@@ -59,20 +59,22 @@ import javax.swing.JTextPane;
 import javax.swing.border.TitledBorder;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class EMIR extends JFrame {
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	private JPanel contentPane;
 	private JTextField txtEMIR_ISMI;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	private JTextField txtHOST;
+	private JTextField txtKULL;
+	private JTextField txtPWD;
+	private JTextField txtSUNUCU;
+	private JTextField txtZMNASIMI;
+	private JTextField txtPORT;
+	private JTextField txtSURUCU;
+	private JTextField txtESKIYEDEK;
 	private JTextField textField_9;
 	private JTextField textField_10;
 	private JTextField textField_11;
@@ -88,6 +90,7 @@ public class EMIR extends JFrame {
 	static SQL_BACKUP sqll = new SQL_BACKUP();
 	private JCheckBox chckbxDURUM  ;
 	private JTextPane txtAciklama ;
+	private JCheckBox chckbxFTP;
 	/**
 	 * Launch the application.
 	 */
@@ -298,6 +301,7 @@ public class EMIR extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if (txtEMIR_ISMI.getText().equals("")) return ;
 					kayDET();
 				} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
 						| NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException
@@ -330,9 +334,9 @@ public class EMIR extends JFrame {
 		panel_2.setLayout(null);
 		tabbedPane.addTab("Surucu Ayarlari", null, panel_2, null);
 		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("FTP");
-		chckbxNewCheckBox_1.setBounds(40, 18, 97, 23);
-		panel_2.add(chckbxNewCheckBox_1);
+		chckbxFTP = new JCheckBox("FTP");
+		chckbxFTP.setBounds(40, 18, 97, 23);
+		panel_2.add(chckbxFTP);
 		
 		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Yerel");
 		chckbxNewCheckBox_2.setBounds(235, 18, 97, 23);
@@ -362,21 +366,21 @@ public class EMIR extends JFrame {
 		lblNewLabel_7.setBounds(10, 78, 46, 14);
 		panel_7.add(lblNewLabel_7);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(88, 22, 158, 20);
-		panel_7.add(textField_1);
-		textField_1.setColumns(10);
+		txtHOST = new JTextField();
+		txtHOST.setBounds(88, 22, 158, 20);
+		panel_7.add(txtHOST);
+		txtHOST.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(88, 50, 158, 20);
-		panel_7.add(textField_2);
-		textField_2.setColumns(10);
+		txtKULL = new JTextField();
+		txtKULL.setBounds(88, 50, 158, 20);
+		panel_7.add(txtKULL);
+		txtKULL.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setText("");
-		textField_3.setBounds(88, 76, 158, 20);
-		panel_7.add(textField_3);
-		textField_3.setColumns(10);
+		txtPWD = new JTextField();
+		txtPWD.setText("");
+		txtPWD.setBounds(88, 76, 158, 20);
+		panel_7.add(txtPWD);
+		txtPWD.setColumns(10);
 		
 		JPanel panel_8 = new JPanel();
 		panel_8.setBorder(new TitledBorder(null, "Diger Ayarlar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -388,28 +392,28 @@ public class EMIR extends JFrame {
 		lblNewLabel_8.setBounds(10, 24, 65, 14);
 		panel_8.add(lblNewLabel_8);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(88, 21, 222, 20);
-		panel_8.add(textField_4);
-		textField_4.setColumns(10);
+		txtSUNUCU = new JTextField();
+		txtSUNUCU.setBounds(88, 21, 222, 20);
+		panel_8.add(txtSUNUCU);
+		txtSUNUCU.setColumns(10);
 		
 		JLabel lblNewLabel_9 = new JLabel("Zaman Asimi");
 		lblNewLabel_9.setBounds(10, 56, 75, 14);
 		panel_8.add(lblNewLabel_9);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(88, 53, 55, 20);
-		panel_8.add(textField_5);
-		textField_5.setColumns(10);
+		txtZMNASIMI = new JTextField();
+		txtZMNASIMI.setBounds(88, 53, 55, 20);
+		panel_8.add(txtZMNASIMI);
+		txtZMNASIMI.setColumns(10);
 		
 		JLabel lblNewLabel_10 = new JLabel("Port");
 		lblNewLabel_10.setBounds(166, 56, 46, 14);
 		panel_8.add(lblNewLabel_10);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(222, 52, 86, 20);
-		panel_8.add(textField_6);
-		textField_6.setColumns(10);
+		txtPORT = new JTextField();
+		txtPORT.setBounds(222, 52, 86, 20);
+		panel_8.add(txtPORT);
+		txtPORT.setColumns(10);
 		
 		JButton btnNewButton_5 = new JButton("Surucu Kontrol");
 		btnNewButton_5.setBounds(398, 52, 109, 23);
@@ -425,10 +429,10 @@ public class EMIR extends JFrame {
 		lblNewLabel_11.setBounds(10, 21, 46, 14);
 		panel_9.add(lblNewLabel_11);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(100, 18, 345, 20);
-		panel_9.add(textField_7);
-		textField_7.setColumns(10);
+		txtSURUCU = new JTextField();
+		txtSURUCU.setBounds(100, 18, 345, 20);
+		panel_9.add(txtSURUCU);
+		txtSURUCU.setColumns(10);
 		
 		JButton btnNewButton_6 = new JButton("New button");
 		btnNewButton_6.setBounds(481, 17, 46, 23);
@@ -448,10 +452,10 @@ public class EMIR extends JFrame {
 		lblNewLabel_12.setBounds(10, 24, 108, 14);
 		panel_10.add(lblNewLabel_12);
 		
-		textField_8 = new JTextField();
-		textField_8.setBounds(128, 21, 86, 20);
-		panel_10.add(textField_8);
-		textField_8.setColumns(10);
+		txtESKIYEDEK = new JTextField();
+		txtESKIYEDEK.setBounds(128, 21, 86, 20);
+		panel_10.add(txtESKIYEDEK);
+		txtESKIYEDEK.setColumns(10);
 		
 		JLabel lblNewLabel_13 = new JLabel("gunden eski olanlar(0 Silinmez)");
 		lblNewLabel_13.setBounds(224, 24, 209, 14);
@@ -462,6 +466,20 @@ public class EMIR extends JFrame {
 		panel_2.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("Kaydet");
+		
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (txtEMIR_ISMI.getText().equals("")) return ;
+				try {
+					ftpKAYDET();
+				} catch (InvalidKeyException | NumberFormatException | ClassNotFoundException | NoSuchAlgorithmException
+						| NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException
+						| BadPaddingException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton_4.setBounds(458, 451, 89, 23);
 		panel_2.add(btnNewButton_4);
 		
@@ -687,6 +705,7 @@ public class EMIR extends JFrame {
 	{
 		try
 		{
+			
 		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		ResultSet rs = null;
 		rs = sqll.emirBILGI(txtEMIR_ISMI.getText());
@@ -729,6 +748,21 @@ public class EMIR extends JFrame {
 		e1.printStackTrace();
 	}	
 	}
+	private void ftpKAYDET() throws InvalidKeyException, NumberFormatException, ClassNotFoundException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, SQLException
+	{
+		sqll.ftp_kayit_sil(txtEMIR_ISMI.getText());
+		String neresi ;
+         if(chckbxFTP.isSelected())
+         {
+              neresi = "FTP";
+         }
+          else
+          {
+              neresi = "SUR";
+          }
+         sqll.ftp_ismi_kayit(txtEMIR_ISMI.getText(), txtHOST.getText(),txtKULL.getText(), txtPWD.getText(),txtSUNUCU.getText(), txtPORT.getText(),
+        		 			Integer.parseInt(txtZMNASIMI.getText()),txtZMNASIMI.getText(), neresi,txtSURUCU.getText());
+ 	}
 	@SuppressWarnings("rawtypes")
 	public static void dbDOLDUR (String ipp , String user , String pwd) throws ClassNotFoundException, SQLException
 	{

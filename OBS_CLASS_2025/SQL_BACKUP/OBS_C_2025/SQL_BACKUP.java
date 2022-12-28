@@ -192,4 +192,44 @@ public class SQL_BACKUP {
 		stmt.close();
 		con.close();
 	}
+	@SuppressWarnings("static-access")
+	public void ftp_kayit_sil(String eismi) throws SQLException, ClassNotFoundException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con =  gLB.myBackupConnection();
+		String sql = "DELETE FROM FTP  WHERE EMIR_ISMI ='" + eismi + "'";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
+	@SuppressWarnings("static-access")
+	public void ftp_ismi_kayit(String eismi , String hst, String kll , String sif , String sur  
+            , String prt , int  zmn , String esy ,String neresi, String surucu ) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "INSERT INTO FTP (EMIR_ISMI,HOST,KULLANICI,SIFRE,SURUCU,PORT,ZMN_ASIMI,ESKI_YEDEK,NERESI,SURUCU_YER) ";
+		sql += "VALUES (?,?,?,?,?,?,?,?,?,?)";
+		{
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, eismi);
+			stmt.setString(2, hst);
+			stmt.setString(3, kll);
+			stmt.setString(4, sif);
+			stmt.setString(5, sur);
+			stmt.setString(6, prt);
+			stmt.setInt(7, zmn);
+			stmt.setString(8, esy);
+			stmt.setString(9, neresi);
+			stmt.setString(10, surucu);
+		}
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
 }

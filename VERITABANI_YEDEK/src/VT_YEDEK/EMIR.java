@@ -715,16 +715,12 @@ public class EMIR extends JFrame {
        sqll.db_adi_kayit_sil(txtEMIR_ISMI.getText());
        for (int i = 0; i < list.getModel().getSize(); i++)
        {
-    	   
-    	   CheckListItem item = (CheckListItem) list.getModel()
-   	            .getElementAt(i);
-   	      if(!item.isSelected())
-   	      {
-   	    	 sqll.db_ismi_kayit(txtEMIR_ISMI.getText(), item.toString());
-   	      }
-     	
-    	 }
-           
+    	   CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
+    	   if(item.isSelected())
+    	   {
+    		   sqll.db_ismi_kayit(txtEMIR_ISMI.getText(), item.toString());
+    	   }
+       }
    		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	} 
 	catch (Exception e1)

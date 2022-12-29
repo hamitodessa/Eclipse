@@ -37,6 +37,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.awt.event.ActionEvent;
@@ -286,12 +287,30 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				String qwe;
 				 try {
-				byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972") ;
-				System.out.println("Array=" +Arrays.toString(qaz));
-				byte[] ewq = {-90, -12, -3, -79, 32, -23, 64, -33, -73, 94, -3, 26, -36, -105, 120, -46};
-		
-				qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(ewq) ;
-			System.out.println(qwe);
+//				byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972") ;
+//				System.out.println("Array=" +Arrays.toString(qaz));
+//				byte[] ewq = {-90, -12, -3, -79, 32, -23, 64, -33, -73, 94, -3, 26, -36, -105, 120, -46};
+//				qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(ewq) ;
+//				System.out.println(qwe);
+			
+			
+			 String str = "oOk271972";
+
+		      // string to byte[]
+		      byte[] bytes = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972");
+
+		      System.out.println("Text : " + str);
+		      System.out.println("Text [Byte Format] : " + bytes);
+
+		      // no, don't do this, it returns the address of the object in memory
+		      System.out.println("Text [Byte Format] toString() : " + bytes.toString());
+
+		      // convert byte[] to string
+		      String s = 	 new String( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes)) ;
+		     
+		      System.out.println("Output : " +  s);
+		      
+		      
 				} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 						| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e1) {
 					// TODO Auto-generated catch block

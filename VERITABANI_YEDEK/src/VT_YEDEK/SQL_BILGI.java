@@ -279,6 +279,11 @@ public class SQL_BILGI extends JDialog {
 		panel_1.add(btnNewButton_1_1);
 
 		JButton btnNewButton_2_1 = new JButton("Vazgec");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnNewButton_2_1.setBounds(355, 240, 89, 23);
 		panel_1.add(btnNewButton_2_1);
 

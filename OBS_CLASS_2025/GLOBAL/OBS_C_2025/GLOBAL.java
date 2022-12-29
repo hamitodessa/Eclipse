@@ -78,7 +78,7 @@ public class GLOBAL {
 			String sorgu= null;
 			sorgu = "CREATE TABLE EMIRLER (EMIR_ISMI nvarchar(30)  PRIMARY KEY,DURUM BLOB,EMIR_ACIKLAMA nvarchar(50),INSTANCE nvarchar(30),SON_DURUM BLOB ,SON_YUKLEME DATETIME,SQL_YEDEK BLOB ) ; " ;
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE FTP ( EMIR_ISMI nvarchar(30),NERESI nvarchar(3),HOST nvarchar(30) ,KULLANICI nvarchar(50),SIFRE nvarchar(50),SURUCU nvarchar(50),PORT nvarchar(3),ZMN_ASIMI nvarchar(10),ESKI_YEDEK nvarchar(3),SURUCU_YER nvarchar(100)) ; " ;
+			sorgu = "CREATE TABLE FTP ( EMIR_ISMI nvarchar(30),NERESI nvarchar(3),HOST nvarchar(30) ,KULLANICI nvarchar(50),SIFRE BLOB,SURUCU nvarchar(50),PORT nvarchar(3),ZMN_ASIMI nvarchar(10),ESKI_YEDEK nvarchar(3),SURUCU_YER nvarchar(100)) ; " ;
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE BILGILENDIRME ( EMIR_ISMI nvarchar(30) ,DURUM BIT,GONDERILDIGINDE BIT,HATA_DURUMUNDA BIT ,GON_ISIM  nvarchar(50),GON_HESAP nvarchar(30), ALICI nvarchar(30), KONU nvarchar(50), SMTP nvarchar(30), SMTP_PORT nvarchar(3), KULLANICI nvarchar(30), SIFRE nvarchar(30), SSL BLOB,TSL BLOB) ;";
 			backup_tablo_yap(sorgu);
@@ -87,7 +87,7 @@ public class GLOBAL {
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE SERVER (  EMIR_ISMI nvarchar(30) ,HANGI_SQL nvarchar(3),INSTANCE nvarchar(50) " 
 				     +  " ,WIN BLOB,SERV BLOB,KULLANICI nvarchar(50) " 
-				     +  " ,SIFRE nvarchar(50)) ;" ;
+				     +  " ,SIFRE BLOB) ;" ;
 			backup_tablo_yap(sorgu);
 			sorgu ="CREATE TABLE DB_ISIM (  EMIR_ISMI nvarchar(30) ,DB_ADI nvarchar(50)); ";
 			backup_tablo_yap(sorgu);

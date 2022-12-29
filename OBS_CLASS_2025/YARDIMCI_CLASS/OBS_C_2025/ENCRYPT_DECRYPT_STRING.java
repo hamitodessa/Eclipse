@@ -58,6 +58,7 @@ public class ENCRYPT_DECRYPT_STRING {
 		Cipher cipher = Cipher.getInstance("AES");
 		cipher.init(Cipher.ENCRYPT_MODE, aesKey);
 		byte[] encrypted = cipher.doFinal(kelime.getBytes());
+		//System.out.println(new String( new String(encrypted)));
 		return  encrypted;
 		//return  new String(encrypted);
 	}

@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.swing.JInternalFrame;
@@ -280,22 +281,27 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		btnNewButton_1_1_1.setBounds(382, 79, 123, 23);
 		panel.add(btnNewButton_1_1_1);
 		
-		JButton btnNewButton_3 = new JButton("New button");
+		JButton btnNewButton_3 = new JButton("sifre");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-			String qwe;
-			try {
-				qwe = "«¯&dòCg”œëqÐ)uçT";
+				String qwe;
+				 try {
+				byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972") ;
+				System.out.println("Array=" +Arrays.toString(qaz));
+				byte[] ewq = {-90, -12, -3, -79, 32, -23, 64, -33, -73, 94, -3, 26, -36, -105, 120, -46};
 		
-				String asd = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(qwe.getBytes()) ;
-					System.out.println("AES=" +asd);
-			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
-					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+				qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(ewq) ;
+			System.out.println(qwe);
+				} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+						| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			
+			
+				
+				
+		
 				/////
 			}
 		});

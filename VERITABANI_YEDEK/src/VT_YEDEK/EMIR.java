@@ -28,11 +28,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPFile;
-import org.apache.commons.net.ftp.FTPReply;
-
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
@@ -64,12 +60,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.border.TitledBorder;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 
@@ -214,7 +205,7 @@ public class EMIR extends JFrame {
 		cmbSQL.setForeground(new Color(0, 0, 139));
 		cmbSQL.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbSQL.setModel(new DefaultComboBoxModel(new String[] {"MS SQL", "MY SQL"}));
-		cmbSQL.setBounds(77, 11, 39, 22);
+		cmbSQL.setBounds(1, 1, 1, 22);
 		panel.add(cmbSQL);
 		
 		JButton btnNewButton = new JButton(".....");
@@ -667,12 +658,12 @@ public class EMIR extends JFrame {
 		panel_3.add(panel_13);
 		
 		txtSMTP = new JTextField();
-		txtSMTP.setBounds(126, 22, 86, 20);
+		txtSMTP.setBounds(126, 22, 185, 20);
 		panel_13.add(txtSMTP);
 		txtSMTP.setColumns(10);
 		
 		txtSMTP_PORT = new JTextField();
-		txtSMTP_PORT.setBounds(346, 22, 86, 20);
+		txtSMTP_PORT.setBounds(388, 22, 44, 20);
 		panel_13.add(txtSMTP_PORT);
 		txtSMTP_PORT.setColumns(10);
 		
@@ -702,7 +693,8 @@ public class EMIR extends JFrame {
 		panel_13.add(lblNewLabel_21);
 		
 		JLabel lblNewLabel_22 = new JLabel("SMTP Port");
-		lblNewLabel_22.setBounds(273, 25, 63, 14);
+		lblNewLabel_22.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_22.setBounds(318, 25, 71, 14);
 		panel_13.add(lblNewLabel_22);
 		
 		JButton btnNewButton_8 = new JButton("Deneme");
@@ -990,31 +982,31 @@ public class EMIR extends JFrame {
 		 boolean  drm  = false ;
 		           if(chckbxPTESI.isSelected())
 		           {
-		        	   drm = false;
+		        	   drm = true;
 		           }
 		           if(chckbxSALI.isSelected())
 		           {
-		        	   drm = false;
+		        	   drm = true;
 		           }
 		           if(chckbxCAR.isSelected())
 		           {
-		        	   drm = false;
+		        	   drm = true;
 		           }
 		           if(chckbxPER.isSelected())
 		           {
-		        	   drm = false;
+		        	   drm = true;
 		           }
 		           if(chckbxCUM.isSelected())
 		           {
-		        	   drm = false;
+		        	   drm = true;
 		           }
 		           if(chckbxCTESI.isSelected())
 		           {
-		        	   drm = false;
+		        	   drm =true;
 		           }
 		           if(chckbxPAZ.isSelected())
 		           {
-		        	   drm = false;
+		        	   drm = true;
 		           }
 		          if( drm == false)
 		          {

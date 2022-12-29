@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.border.TitledBorder;
 
 
@@ -23,6 +24,7 @@ import OBS_C_2025.SQL_BACKUP;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JPasswordField;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -52,6 +54,7 @@ public class SQL_BILGI extends JDialog {
 	private JTextField txtPort;
 	JTabbedPane tabbedPane ;
 	JComboBox<String> comboBox;
+	private JTextField txtDUMP;
 	/**
 	 * Launch the application.
 	 */
@@ -214,25 +217,25 @@ public class SQL_BILGI extends JDialog {
 		JPanel panel_2_1 = new JPanel();
 		panel_2_1.setLayout(null);
 		panel_2_1.setBorder(new TitledBorder(null, "Baglanti Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2_1.setBounds(72, 58, 372, 171);
+		panel_2_1.setBounds(20, 42, 424, 114);
 		panel_1.add(panel_2_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Kullanici");
-		lblNewLabel_2.setBounds(10, 50, 74, 14);
+		lblNewLabel_2.setBounds(10, 33, 74, 14);
 		panel_2_1.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_1_1 = new JLabel("Sifre");
-		lblNewLabel_1_1.setBounds(10, 82, 46, 14);
+		lblNewLabel_1_1.setBounds(10, 60, 46, 14);
 		panel_2_1.add(lblNewLabel_1_1);
 
 		txtMYUSER = new JTextField();
 		txtMYUSER.setColumns(10);
-		txtMYUSER.setBounds(98, 47, 130, 20);
+		txtMYUSER.setBounds(98, 30, 130, 20);
 		panel_2_1.add(txtMYUSER);
 
 		txtMYPWD = new JPasswordField();
 		txtMYPWD.setEchoChar('*');
-		txtMYPWD.setBounds(98, 79, 130, 20);
+		txtMYPWD.setBounds(98, 57, 130, 20);
 		panel_2_1.add(txtMYPWD);
 
 		JButton btnNewButton_3 = new JButton("Baglanti Test");
@@ -248,7 +251,7 @@ public class SQL_BILGI extends JDialog {
 				contentPane.setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
-		btnNewButton_3.setBounds(98, 117, 130, 23);
+		btnNewButton_3.setBounds(98, 83, 130, 23);
 		panel_2_1.add(btnNewButton_3);
 
 		JButton btnNewButton_1_1 = new JButton("Kaydet");
@@ -288,13 +291,47 @@ public class SQL_BILGI extends JDialog {
 		panel_1.add(btnNewButton_2_1);
 
 		txtPort = new JTextField();
-		txtPort.setBounds(170, 27, 130, 20);
+		txtPort.setBounds(170, 11, 130, 20);
 		panel_1.add(txtPort);
 		txtPort.setColumns(10);
 
 		JLabel lblServer = new JLabel("Server / Port");
-		lblServer.setBounds(72, 30, 78, 14);
+		lblServer.setBounds(72, 14, 78, 14);
 		panel_1.add(lblServer);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new TitledBorder(null, "MySql Dump ", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBounds(20, 156, 477, 80);
+		panel_1.add(panel_3);
+		panel_3.setLayout(null);
+		
+		txtDUMP = new JTextField();
+		txtDUMP.setBounds(13, 22, 454, 20);
+		panel_3.add(txtDUMP);
+		txtDUMP.setColumns(10);
+		
+		JButton btnNewButton_4 = new JButton("Surucu");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new java.io.File("."));
+				chooser.setDialogTitle("Surucu Seciniz");
+				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				chooser.setAcceptAllFileFilterUsed(false);
+				chooser.setApproveButtonText("Surucu Sec");
+				chooser.setApproveButtonToolTipText("Surucu Sec");
+				chooser.setApproveButtonMnemonic('s');
+				contentPane.setCursor(oac.DEFAULT_CURSOR);
+				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+					txtDUMP.setText(chooser.getSelectedFile().toString());
+				}
+				else {
+				}
+			}
+		});
+		btnNewButton_4.setBounds(13, 45, 78, 23);
+		panel_3.add(btnNewButton_4);
 		dOLDUR();
 	}
 	private void dOLDUR()
@@ -353,13 +390,15 @@ public class SQL_BILGI extends JDialog {
 	}
 	private void mySQL_KAYDET() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
-		if(oac.EMIR_ADI.equals(""))
+		if(oac.EMIR_ADI.equals("") || txtDUMP.getText().equals("") )
 		{
-			JOptionPane.showMessageDialog(null, "Emir Adi Bos Olamaz........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Emir Adi veya MySQL Dump yeribos olamaz Bos Olamaz........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
 			return ;
 		}
 		bck.server_kayit_sil(oac.EMIR_ADI);
+		bck.dump_sil(txtDUMP.getText());
 		bck.server_ismi_kayit(oac.EMIR_ADI,"MY SQL" ,txtPort.getText(), false, true, txtMYUSER.getText(), oac.sDONDUR.sDONDUR(txtMYPWD));
+		bck.dump_kayit(oac.EMIR_ADI,txtDUMP.getText());
 	}
 	private void msSQL_BAGLAN() throws HeadlessException, ClassNotFoundException
 	{

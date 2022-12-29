@@ -292,4 +292,36 @@ public class SQL_BACKUP {
 		stmt.close();
 		con.close();
 	}
+	@SuppressWarnings("static-access")
+	public void dump_sil(String eismi) throws SQLException, ClassNotFoundException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con =  gLB.myBackupConnection();
+		String sql = "DELETE FROM DUMP_YERI  WHERE EMIR_ISMI =  ? ";
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1,eismi);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
+	@SuppressWarnings("static-access")
+	public void dump_kayit(String eismi , String dump ) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "INSERT INTO DUMP_YERI  (EMIR_ISMI,DUMP_PATH) ";
+		sql += "VALUES (?,?)";
+		{
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, eismi);
+			stmt.setString(2, dump);
+		}
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
 }

@@ -232,4 +232,64 @@ public class SQL_BACKUP {
 		stmt.close();
 		con.close();
 	}
+	@SuppressWarnings("static-access")
+	public void bilgilendirme_kayit_sil(String eismi) throws SQLException, ClassNotFoundException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con =  gLB.myBackupConnection();
+		String sql = "DELETE FROM BILGILENDIRME  WHERE EMIR_ISMI = '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
+	@SuppressWarnings("static-access")
+	public void bilgilendirme_ismi_kayit(String eismi, boolean drm , boolean  gon, boolean hta , String gismi 
+            , String ghes , String  alic , String  konu , String  smtp , String smtppo 
+            , String kull, String sif , boolean ssl , boolean tsl  ) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "INSERT INTO BILGILENDIRME (EMIR_ISMI,DURUM,GONDERILDIGINDE,HATA_DURUMUNDA,GON_ISIM,GON_HESAP,"
+				+ "ALICI,KONU,SMTP,SMTP_PORT,KULLANICI,SIFRE,SSL,TSL) ";
+		sql += "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		{
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, eismi);
+			stmt.setBoolean(2, drm);
+			stmt.setBoolean(3, gon);
+			stmt.setBoolean(4,  hta);
+			stmt.setString(5, gismi);
+			stmt.setString(6, ghes);
+			stmt.setString(7, alic);
+			stmt.setString(8, konu);
+			stmt.setString(9, smtp);
+			stmt.setString(10, smtppo);
+			stmt.setString(11,kull );
+			stmt.setBytes(12,  ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sif));
+			stmt.setBoolean(13,ssl);
+			stmt.setBoolean(14,tsl);
+		}
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
+	@SuppressWarnings("static-access")
+	public void durum_kayit_durum(String eismi ,boolean drm ) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "UPDATE EMIRLER SET DURUM = ?  WHERE EMIR_ISMI =  '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
+		stmt.setBoolean(1,drm);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
 }

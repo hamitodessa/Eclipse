@@ -80,14 +80,13 @@ public class EMIR extends JFrame {
 	private JTextField txtPORT;
 	private JTextField txtSURUCU;
 	private JTextField txtESKIYEDEK;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
+	private JTextField txtGON_ISIM;
+	private JTextField txtGON_ADRES;
+	private JTextField txtALICI;
+	private JTextField txtKONU;
+	private JTextField txtSMTP;
+	private JTextField txtSMTP_PORT;
+	private JTextField txtSMTP_KULL;
 	private JTextField textField_17;
 	private static boolean kontrol;
 	private static JList<CheckListItem> list ;
@@ -97,6 +96,21 @@ public class EMIR extends JFrame {
 	private JTextPane txtAciklama ;
 	private JCheckBox chckbxFTP;
 	private JPasswordField txtPWD;
+	private JPasswordField txtSMTP_PWD;
+	private JCheckBox chckbxGON;
+	private JCheckBox chckbxHATA;
+	private JCheckBox chckbxSSL;
+	private JCheckBox chckbxTSL;
+	private JCheckBox chckbxPTESI;
+	private JCheckBox chckbxSALI;
+	private JCheckBox chckbxCAR;
+	private JCheckBox chckbxPER;
+	private JCheckBox chckbxCUM;
+	private JCheckBox chckbxCTESI;
+	private JCheckBox chckbxPAZ;
+	private JSpinner.DateEditor de_spinBAS;
+	private JSpinner.DateEditor de_spinBIT;
+	private  	JSpinner.DateEditor timeEditor_1;
 	
 	/**
 	 * Launch the application.
@@ -533,9 +547,9 @@ public class EMIR extends JFrame {
 		lblNewLabel_14.setBounds(30, 22, 46, 14);
 		panel_3.add(lblNewLabel_14);
 		
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("Aktif / Pasif");
-		chckbxNewCheckBox_3.setBounds(100, 18, 153, 23);
-		panel_3.add(chckbxNewCheckBox_3);
+		JCheckBox chckbxDRM = new JCheckBox("Aktif / Pasif");
+		chckbxDRM.setBounds(100, 18, 153, 23);
+		panel_3.add(chckbxDRM);
 		
 		JPanel panel_11 = new JPanel();
 		panel_11.setBorder(new TitledBorder(null, "Gonderme Durumu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -543,13 +557,13 @@ public class EMIR extends JFrame {
 		panel_11.setLayout(null);
 		panel_3.add(panel_11);
 		
-		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("Gonderildiginde");
-		chckbxNewCheckBox_4.setBounds(46, 26, 152, 23);
-		panel_11.add(chckbxNewCheckBox_4);
+		chckbxGON = new JCheckBox("Gonderildiginde");
+		chckbxGON.setBounds(46, 26, 152, 23);
+		panel_11.add(chckbxGON);
 		
-		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("Hata Durumunda");
-		chckbxNewCheckBox_5.setBounds(286, 26, 152, 23);
-		panel_11.add(chckbxNewCheckBox_5);
+		chckbxHATA = new JCheckBox("Hata Durumunda");
+		chckbxHATA.setBounds(286, 26, 152, 23);
+		panel_11.add(chckbxHATA);
 		
 		JPanel panel_12 = new JPanel();
 		panel_12.setBorder(new TitledBorder(null, "Mail Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -561,25 +575,25 @@ public class EMIR extends JFrame {
 		lblNewLabel_15.setBounds(10, 23, 76, 14);
 		panel_12.add(lblNewLabel_15);
 		
-		textField_9 = new JTextField();
-		textField_9.setBounds(106, 20, 325, 20);
-		panel_12.add(textField_9);
-		textField_9.setColumns(10);
+		txtGON_ISIM = new JTextField();
+		txtGON_ISIM.setBounds(106, 20, 325, 20);
+		panel_12.add(txtGON_ISIM);
+		txtGON_ISIM.setColumns(10);
 		
-		textField_10 = new JTextField();
-		textField_10.setBounds(106, 51, 325, 20);
-		panel_12.add(textField_10);
-		textField_10.setColumns(10);
+		txtGON_ADRES = new JTextField();
+		txtGON_ADRES.setBounds(106, 51, 325, 20);
+		panel_12.add(txtGON_ADRES);
+		txtGON_ADRES.setColumns(10);
 		
-		textField_11 = new JTextField();
-		textField_11.setBounds(106, 82, 325, 20);
-		panel_12.add(textField_11);
-		textField_11.setColumns(10);
+		txtALICI = new JTextField();
+		txtALICI.setBounds(106, 82, 325, 20);
+		panel_12.add(txtALICI);
+		txtALICI.setColumns(10);
 		
-		textField_12 = new JTextField();
-		textField_12.setBounds(106, 113, 325, 20);
-		panel_12.add(textField_12);
-		textField_12.setColumns(10);
+		txtKONU = new JTextField();
+		txtKONU.setBounds(106, 113, 325, 20);
+		panel_12.add(txtKONU);
+		txtKONU.setColumns(10);
 		
 		JLabel lblNewLabel_16 = new JLabel("Gonderen Adres");
 		lblNewLabel_16.setBounds(10, 54, 92, 14);
@@ -599,33 +613,28 @@ public class EMIR extends JFrame {
 		panel_13.setLayout(null);
 		panel_3.add(panel_13);
 		
-		textField_13 = new JTextField();
-		textField_13.setBounds(109, 22, 103, 20);
-		panel_13.add(textField_13);
-		textField_13.setColumns(10);
+		txtSMTP = new JTextField();
+		txtSMTP.setBounds(109, 22, 103, 20);
+		panel_13.add(txtSMTP);
+		txtSMTP.setColumns(10);
 		
-		textField_14 = new JTextField();
-		textField_14.setBounds(346, 22, 86, 20);
-		panel_13.add(textField_14);
-		textField_14.setColumns(10);
+		txtSMTP_PORT = new JTextField();
+		txtSMTP_PORT.setBounds(346, 22, 86, 20);
+		panel_13.add(txtSMTP_PORT);
+		txtSMTP_PORT.setColumns(10);
 		
-		textField_15 = new JTextField();
-		textField_15.setBounds(109, 53, 323, 20);
-		panel_13.add(textField_15);
-		textField_15.setColumns(10);
+		txtSMTP_KULL = new JTextField();
+		txtSMTP_KULL.setBounds(109, 53, 323, 20);
+		panel_13.add(txtSMTP_KULL);
+		txtSMTP_KULL.setColumns(10);
 		
-		textField_16 = new JTextField();
-		textField_16.setBounds(109, 84, 323, 20);
-		panel_13.add(textField_16);
-		textField_16.setColumns(10);
+		chckbxSSL = new JCheckBox("SSL");
+		chckbxSSL.setBounds(109, 111, 97, 23);
+		panel_13.add(chckbxSSL);
 		
-		JCheckBox chckbxNewCheckBox_6 = new JCheckBox("SSL");
-		chckbxNewCheckBox_6.setBounds(109, 111, 97, 23);
-		panel_13.add(chckbxNewCheckBox_6);
-		
-		JCheckBox chckbxNewCheckBox_7 = new JCheckBox("TSL");
-		chckbxNewCheckBox_7.setBounds(248, 111, 63, 23);
-		panel_13.add(chckbxNewCheckBox_7);
+		chckbxTSL = new JCheckBox("TSL");
+		chckbxTSL.setBounds(248, 111, 63, 23);
+		panel_13.add(chckbxTSL);
 		
 		JLabel lblNewLabel_19 = new JLabel("SMTP Server");
 		lblNewLabel_19.setBounds(10, 25, 89, 14);
@@ -647,7 +656,23 @@ public class EMIR extends JFrame {
 		btnNewButton_8.setBounds(346, 111, 86, 23);
 		panel_13.add(btnNewButton_8);
 		
+		txtSMTP_PWD = new JPasswordField();
+		txtSMTP_PWD.setBounds(109, 84, 166, 20);
+		panel_13.add(txtSMTP_PWD);
+		
 		JButton btnNewButton_9 = new JButton("Kayit");
+		btnNewButton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if (txtEMIR_ISMI.getText().equals("")) return ;
+					bilgiKAYIT();
+				} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
+						| NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException
+						| BadPaddingException | SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton_9.setBounds(471, 452, 89, 23);
 		panel_3.add(btnNewButton_9);
 		
@@ -672,33 +697,33 @@ public class EMIR extends JFrame {
 		lblNewLabel_25.setBounds(36, 79, 46, 14);
 		panel_4.add(lblNewLabel_25);
 		
-		JCheckBox chckbxNewCheckBox_8 = new JCheckBox("Pazartesi");
-		chckbxNewCheckBox_8.setBounds(118, 75, 97, 23);
-		panel_4.add(chckbxNewCheckBox_8);
+		chckbxPTESI = new JCheckBox("Pazartesi");
+		chckbxPTESI.setBounds(118, 75, 97, 23);
+		panel_4.add(chckbxPTESI);
 		
-		JCheckBox chckbxNewCheckBox_9 = new JCheckBox("Sali");
-		chckbxNewCheckBox_9.setBounds(118, 101, 97, 23);
-		panel_4.add(chckbxNewCheckBox_9);
+		chckbxSALI = new JCheckBox("Sali");
+		chckbxSALI.setBounds(118, 101, 97, 23);
+		panel_4.add(chckbxSALI);
 		
-		JCheckBox chckbxNewCheckBox_10 = new JCheckBox("Carsamba");
-		chckbxNewCheckBox_10.setBounds(118, 127, 97, 23);
-		panel_4.add(chckbxNewCheckBox_10);
+		chckbxCAR = new JCheckBox("Carsamba");
+		chckbxCAR.setBounds(118, 127, 97, 23);
+		panel_4.add(chckbxCAR);
 		
-		JCheckBox chckbxNewCheckBox_11 = new JCheckBox("Persembe");
-		chckbxNewCheckBox_11.setBounds(118, 153, 97, 23);
-		panel_4.add(chckbxNewCheckBox_11);
+		chckbxPER = new JCheckBox("Persembe");
+		chckbxPER.setBounds(118, 153, 97, 23);
+		panel_4.add(chckbxPER);
 		
-		JCheckBox chckbxNewCheckBox_12 = new JCheckBox("Cuma");
-		chckbxNewCheckBox_12.setBounds(118, 179, 97, 23);
-		panel_4.add(chckbxNewCheckBox_12);
+		chckbxCUM = new JCheckBox("Cuma");
+		chckbxCUM.setBounds(118, 179, 97, 23);
+		panel_4.add(chckbxCUM);
 		
-		JCheckBox chckbxNewCheckBox_13 = new JCheckBox("Cumartesi");
-		chckbxNewCheckBox_13.setBounds(118, 205, 97, 23);
-		panel_4.add(chckbxNewCheckBox_13);
+		JCheckBox chckbxCTESI = new JCheckBox("Cumartesi");
+		chckbxCTESI.setBounds(118, 205, 97, 23);
+		panel_4.add(chckbxCTESI);
 		
-		JCheckBox chckbxNewCheckBox_14 = new JCheckBox("Pazar");
-		chckbxNewCheckBox_14.setBounds(118, 231, 97, 23);
-		panel_4.add(chckbxNewCheckBox_14);
+		JCheckBox chckbxPAZ = new JCheckBox("Pazar");
+		chckbxPAZ.setBounds(118, 231, 97, 23);
+		panel_4.add(chckbxPAZ);
 		
 		JPanel panel_14 = new JPanel();
 		panel_14.setBorder(new TitledBorder(null, "Yedekleme Araligi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -714,26 +739,38 @@ public class EMIR extends JFrame {
 		lblNewLabel_27.setBounds(10, 56, 46, 14);
 		panel_14.add(lblNewLabel_27);
 		
-		JSpinner spinner = new JSpinner( new SpinnerDateModel() );
-		JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(spinner, "mm");
-		spinner.setEditor(timeEditor);
+		JSpinner spinBAS = new JSpinner( new SpinnerDateModel() );
+		de_spinBAS = new JSpinner.DateEditor(spinBAS, "mm");
+		spinBAS.setEditor(de_spinBAS);
 		Date d = new Date();
 		  d.setHours(0);
 		  d.setMinutes(0);
-		spinner.setValue(d); 
-		spinner.setBounds(119, 28, 52, 20);
-		panel_14.add(spinner);
+		spinBAS.setValue(d); 
+		spinBAS.setBounds(119, 28, 52, 20);
+		panel_14.add(spinBAS);
 		
-		JSpinner spinner_1 = new JSpinner( new SpinnerDateModel() );
-		 timeEditor = new JSpinner.DateEditor(spinner_1, "mm");
-		spinner_1.setEditor(timeEditor);
+		JSpinner spinBIT = new JSpinner( new SpinnerDateModel() );
+		 de_spinBIT = new JSpinner.DateEditor(spinBIT, "mm");
+		spinBIT.setEditor(spinBIT);
 		  d.setHours(0);
 		  d.setMinutes(0);
-		spinner_1.setValue(d); 
-		spinner_1.setBounds(119, 53, 52, 20);
-		panel_14.add(spinner_1);
+		spinBIT.setValue(d); 
+		spinBIT.setBounds(119, 53, 52, 20);
+		panel_14.add(spinBIT);
 		
 		JButton btnNewButton_10 = new JButton("Kayit");
+		btnNewButton_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if (txtEMIR_ISMI.getText().equals("")) return ;
+					yedeklemeKAYIT();
+				} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
+						| NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException
+						| BadPaddingException | SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton_10.setBounds(471, 452, 89, 23);
 		panel_4.add(btnNewButton_10);
 		
@@ -886,6 +923,54 @@ public class EMIR extends JFrame {
 	{
 		JOptionPane.showMessageDialog(null, e1.getMessage(),  "OBS Backup", JOptionPane.ERROR_MESSAGE);  
 	}	
+		
+	}
+	private void bilgiKAYIT() throws InvalidKeyException, ClassNotFoundException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, SQLException
+	{
+		 sqll.bilgilendirme_kayit_sil(txtEMIR_ISMI.getText());
+         sqll.bilgilendirme_ismi_kayit(txtEMIR_ISMI.getText(), chckbxDURUM.isSelected(), chckbxGON.isSelected(), chckbxHATA.isSelected(), txtGON_ISIM.getText(),
+        		 txtGON_ADRES.getText(),txtALICI.getText(), txtKONU.getText(), txtSMTP.getText(), txtSMTP_PORT.getText(), 
+        		 				txtKULL.getText(),oac.sDONDUR.sDONDUR(txtPWD), chckbxSSL.isSelected(), chckbxTSL.isSelected());
+	}
+	private void yedeklemeKAYIT() throws InvalidKeyException, ClassNotFoundException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, SQLException
+	{
+		 boolean  drm  = false ;
+		           if(chckbxPTESI.isSelected())
+		           {
+		        	   drm = false;
+		           }
+		           if(chckbxSALI.isSelected())
+		           {
+		        	   drm = false;
+		           }
+		           if(chckbxCAR.isSelected())
+		           {
+		        	   drm = false;
+		           }
+		           if(chckbxPER.isSelected())
+		           {
+		        	   drm = false;
+		           }
+		           if(chckbxCUM.isSelected())
+		           {
+		        	   drm = false;
+		           }
+		           if(chckbxCTESI.isSelected())
+		           {
+		        	   drm = false;
+		           }
+		           if(chckbxPAZ.isSelected())
+		           {
+		        	   drm = false;
+		           }
+		          if( drm == false)
+		          {
+		        	  sqll.durum_kayit_durum(txtEMIR_ISMI.getText(), false);
+		          }
+		          else
+		          {
+		        	  sqll.durum_kayit_durum(txtEMIR_ISMI.getText(), true);
+		          }
 		
 	}
 }

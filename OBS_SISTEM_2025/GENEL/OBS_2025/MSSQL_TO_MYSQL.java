@@ -283,33 +283,18 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				 try {
 			
 			
-			 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("197227oOk") ;
-			 String response = Arrays.toString(qaz);
-			 System.out.println(response);
-			 
-			 response = GLOBAL.setting_oku("PRG_PARA").toString();
-			 String[] byteValues = response.substring(1, response.length() - 1).split(",");
-			 byte[] bytes = new byte[byteValues.length];
-			 for (int i=0, len=bytes.length; i<len; i++) {
-			    bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			 }
-			 qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
-			System.out.println(qwe);
-			
-					 
-//					 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972") ;
-//					 String response = new String(qaz);
-//					 System.out.println(response);
-//					 byte[] den1 = response.getBytes();
-//					 System.out.println(new String(den1));
-//					 
-//					 String[] byteValues = response.substring(1, response.length() - 1).split(",");
-//					 byte[] bytes = new byte[byteValues.length];
-//					 for (int i=0, len=bytes.length; i<len; i++) {
-//					    bytes[i] = Byte.parseByte(byteValues[i].trim());     
-//					 }
-//					 qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(den1) ;
-//					System.out.println(qwe);
+				 
+					byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("197227oOk") ;
+					String response = Arrays.toString(qaz);
+				
+					System.out.println(response);
+					String[] byteValues = response.substring(1, response.length() - 1).split(",");
+					byte[] bytes = new byte[byteValues.length];
+					for (int i=0, len=bytes.length; i<len; i++) {
+					   bytes[i] = Byte.parseByte(byteValues[i].trim());     
+					}
+					qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
+					System.out.println(qwe);
 
 					
 		      

@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Base64;
 
 import javax.crypto.BadPaddingException;
@@ -68,6 +69,7 @@ public class ENCRYPT_DECRYPT_STRING {
 		Cipher cipher = Cipher.getInstance("AES");
 		cipher.init(Cipher.DECRYPT_MODE, aesKey);
 		String decrypted = new String(cipher.doFinal(kelime));
+		
 		return  new String(decrypted);
 	}
 
@@ -87,6 +89,18 @@ public class ENCRYPT_DECRYPT_STRING {
 //System.out.println("Array=" +Arrays.toString(qaz));
 //byte[] ewq = {-90, -12, -3, -79, 32, -23, 64, -33, -73, 94, -3, 26, -36, -105, 120, -46};
 //qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(ewq) ;
+//System.out.println(qwe);
+
+
+//byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("197227oOk") ;
+//String response = Arrays.toString(qaz);
+//System.out.println(response);
+//String[] byteValues = response.substring(1, response.length() - 1).split(",");
+//byte[] bytes = new byte[byteValues.length];
+//for (int i=0, len=bytes.length; i<len; i++) {
+//   bytes[i] = Byte.parseByte(byteValues[i].trim());     
+//}
+//qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 //System.out.println(qwe);
 
 

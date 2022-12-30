@@ -24,8 +24,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.Base64;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -179,7 +177,6 @@ public class CAL_DIZIN extends JFrame {
 					frame = new LOGIN();
 					frame.setVisible(true);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -272,12 +269,11 @@ public class CAL_DIZIN extends JFrame {
 		toolBar.add(btnNewButton_1);
 		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.addActionListener(new ActionListener() {
-
+			@SuppressWarnings("unlikely-arg-type")
 			public void actionPerformed(ActionEvent e) {
 				if (activ_sayfa != 8)
 				{
 					if (txtcdid.equals("")) return;
-
 					int g = JOptionPane.showOptionDialog(null, "Kayit Silinecek ?" ,
 							"Calisma Dizini ", JOptionPane.YES_NO_OPTION,
 							JOptionPane.QUESTION_MESSAGE, null, 
@@ -311,7 +307,6 @@ public class CAL_DIZIN extends JFrame {
 				if (activ_sayfa == 8)
 				{
 					try {
-
 						int g = JOptionPane.showOptionDialog(null, "E Mail  Silinecek ?" ,
 								"Calisma Dizini ", JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE, null, 
@@ -344,10 +339,8 @@ public class CAL_DIZIN extends JFrame {
 					kutu_temizle();
 					ip_doldur();
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -427,7 +420,6 @@ public class CAL_DIZIN extends JFrame {
 					LOGIN frame = new LOGIN();
 					frame.setVisible(true);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -645,7 +637,6 @@ public class CAL_DIZIN extends JFrame {
 
 				} catch (ClassNotFoundException | SQLException e1) {
 					contentPane.setCursor(DEFAULT_CURSOR);
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -758,7 +749,6 @@ public class CAL_DIZIN extends JFrame {
 							doldur_kutu(tblKur,tblKur.getSelectedRow());
 
 						} catch (Exception e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						} 
 						contentPane.setCursor(DEFAULT_CURSOR);
@@ -785,7 +775,6 @@ public class CAL_DIZIN extends JFrame {
 								doldur_kutu(tblKambiyo,tblKambiyo.getSelectedRow());
 								contentPane.setCursor(DEFAULT_CURSOR);
 							} catch (Exception e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 							contentPane.setCursor(DEFAULT_CURSOR);
@@ -1184,21 +1173,16 @@ public class CAL_DIZIN extends JFrame {
 		txtIp.setText(grd.getModel().getValueAt(satir, 6).toString());
 		txtkul.setText(grd.getModel().getValueAt(satir, 3).toString());
 		
-		//byte[] decodedBytes = Base64.getDecoder().decode(grd.getModel().getValueAt(satir, 4).toString());
-		//String decodedString = new String(decodedBytes);
-		//
 		String decodedString = grd.getModel().getValueAt(satir, 4).toString();
 		String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 		byte[] bytes = new byte[byteValues.length];
 		for (int i=0, len=bytes.length; i<len; i++) {
 		   bytes[i] = Byte.parseByte(byteValues[i].trim());     
 		}
-	
 		try {
 			txtsifr.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
 		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException
 				| IllegalBlockSizeException | BadPaddingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		txtcdid.setText(grd.getModel().getValueAt(satir, 0).toString());

@@ -262,8 +262,8 @@ public class LOGIN extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				try {
-					 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(oac.sDONDUR.sDONDUR(txtpwd)) ;
-						String response = Arrays.toString(qaz);
+					byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(oac.sDONDUR.sDONDUR(txtpwd)) ;
+					String response = Arrays.toString(qaz);
 					boolean varmi =	oac.uSER_ISL.user_var(txtUser.getText(),response);
 					if (varmi == true)
 					{
@@ -382,8 +382,6 @@ public class LOGIN extends JFrame {
 		if (new String(deger).equals("E") == true) 
 		{
 			chckbxhatirla.setSelected(true);
-			//byte[] decodedBytes = Base64.getDecoder().decode(GLOBAL.setting_oku("SIFRE").toString());
-			//String decodedString = new String(decodedBytes);
 			String decodedString = GLOBAL.setting_oku("SIFRE").toString();
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
@@ -395,7 +393,6 @@ public class LOGIN extends JFrame {
 				txtpwd.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
 			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

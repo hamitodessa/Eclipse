@@ -16,6 +16,7 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 
+@SuppressWarnings("serial")
 public class E_MAIL_BILGILERI extends JInternalFrame {
 	private static JTextField txtmail;
 	private static JTextField txthost;
@@ -47,6 +48,7 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("static-access")
 	public E_MAIL_BILGILERI() {
 		setTitle("E MAIL BILGILERI");
 		setClosable(true);
@@ -167,6 +169,7 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(), "Mail Bilgi Kayit", JOptionPane.WARNING_MESSAGE);
 		}
 	}
+	@SuppressWarnings("static-access")
 	public static void kayit () 
 	{
 		try

@@ -9,8 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.Base64;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -136,14 +134,12 @@ public class USER_ISLEMLERI {
 		con =  gLB.myConnection();
 		String sql ="UPDATE  USERS  SET USER_PWD=?  WHERE USER_NAME=?";
 		stmt = con.prepareStatement(sql);
-		//String encodedString = Base64.getEncoder().encodeToString(sifre.getBytes());
 		 byte[] qaz;
 			try {
 				qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
 				encodedString = Arrays.toString(qaz);
 			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
@@ -211,10 +207,8 @@ public class USER_ISLEMLERI {
 				encodedString = Arrays.toString(qaz);
 			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//String encodedString = Base64.getEncoder().encodeToString(sifre.getBytes());
 			stmt.setString(4, encodedString);
 			stmt.setString(5, instance);
 			stmt.setString(6, ip);
@@ -251,7 +245,6 @@ public class USER_ISLEMLERI {
 					encodedString = Arrays.toString(qaz);
 				} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 						| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			stmt.setString(2, encodedString);
@@ -448,10 +441,8 @@ public class USER_ISLEMLERI {
 				decodedString =  ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
 			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-				
 			MAIL_SETTINGS.PWD = decodedString  ;
 			MAIL_SETTINGS.SSL = (boolean) (rss.getInt("SSL") == -1 ? false :true );
 			MAIL_SETTINGS. TSL = (boolean) (rss.getInt("TSL") == -1 ? false :true );

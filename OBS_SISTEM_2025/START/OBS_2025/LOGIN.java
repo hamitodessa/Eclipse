@@ -19,9 +19,14 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.Base64;
-
+import java.util.Arrays;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -57,6 +62,7 @@ import OBS_C_2025.CARI_HESAP_MSSQL;
 import OBS_C_2025.CARI_HESAP_MYSQL;
 import OBS_C_2025.CONNECT;
 import OBS_C_2025.DOSYA_YAZ;
+import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.GUNLUK_MSSQL;
@@ -256,9 +262,9 @@ public class LOGIN extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				try {
-					String passText = new String(txtpwd.getPassword());
-					String encodedString = Base64.getEncoder().encodeToString(passText.getBytes());
-					boolean varmi =	oac.uSER_ISL.user_var(txtUser.getText(),encodedString);
+					 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(oac.sDONDUR.sDONDUR(txtpwd)) ;
+						String response = Arrays.toString(qaz);
+					boolean varmi =	oac.uSER_ISL.user_var(txtUser.getText(),response);
 					if (varmi == true)
 					{
 						btndevam.setVisible(true);
@@ -268,7 +274,7 @@ public class LOGIN extends JFrame {
 						{ 
 							GLOBAL.setting_yaz("BENI_HATIRLA", "E");	
 							GLOBAL.setting_yaz("ISIM", txtUser.getText());
-							GLOBAL.setting_yaz("SIFRE", encodedString);
+							GLOBAL.setting_yaz("SIFRE", response);
 						}
 						else
 						{GLOBAL.setting_yaz("BENI_HATIRLA", "");	
@@ -376,10 +382,22 @@ public class LOGIN extends JFrame {
 		if (new String(deger).equals("E") == true) 
 		{
 			chckbxhatirla.setSelected(true);
-			byte[] decodedBytes = Base64.getDecoder().decode(GLOBAL.setting_oku("SIFRE").toString());
-			String decodedString = new String(decodedBytes);
+			//byte[] decodedBytes = Base64.getDecoder().decode(GLOBAL.setting_oku("SIFRE").toString());
+			//String decodedString = new String(decodedBytes);
+			String decodedString = GLOBAL.setting_oku("SIFRE").toString();
+			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+			byte[] bytes = new byte[byteValues.length];
+			for (int i=0, len=bytes.length; i<len; i++) {
+			   bytes[i] = Byte.parseByte(byteValues[i].trim());     
+			}
 			txtUser.setText(GLOBAL.setting_oku("ISIM").toString());
-			txtpwd.setText(decodedString);
+			try {
+				txtpwd.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
+			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 	}
@@ -646,6 +664,7 @@ public class LOGIN extends JFrame {
 		LOG_MAIL_OKU.mail_oku(); // LOGLAMA MAILI OKUMA
 		progressBar.setMaximum(8);
 		progressBar.setStringPainted(true);
+	 
 		Lgn_Progres_Bar(say, 1);
 		cari_calisma_dizini_oku();
 		Lgn_Progres_Bar(say, 2);

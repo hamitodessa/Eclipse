@@ -1,10 +1,18 @@
 package OBS_C_2025;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Base64;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 public class BILGI_OKU {
 
@@ -31,9 +39,23 @@ public class BILGI_OKU {
 			dIZIN.kOD = rs.getString("USER_PROG_KODU").toString();
 			dIZIN.sERVER =  rs.getString("USER_IP_OBS").toString();
 			dIZIN.kULLANICI = rs.getString("USER_SERVER").toString();
-			byte[] decodedBytes = Base64.getDecoder().decode(rs.getString("USER_PWD_SERVER").toString());
-			String decodedString = new String(decodedBytes);
-			dIZIN.sIFRESI = decodedString;
+//			byte[] decodedBytes = Base64.getDecoder().decode(rs.getString("USER_PWD_SERVER").toString());
+//			String decodedString = new String(decodedBytes);
+			//
+			String decodedString = rs.getString("USER_PWD_SERVER").toString();
+			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+			byte[] bytes = new byte[byteValues.length];
+			for (int i=0, len=bytes.length; i<len; i++) {
+			   bytes[i] = Byte.parseByte(byteValues[i].trim());    
+			}
+			//	
+			try {
+				dIZIN.sIFRESI =  ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
+			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			dIZIN.yER = rs.getString("YER").toString();
 			dIZIN.iNSTANCE = rs.getString("USER_INSTANCE_OBS").toString();
 			dIZIN.dIZIN_CINS = rs.getString("DIZIN_CINS").toString();

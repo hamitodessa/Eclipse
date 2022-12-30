@@ -9,6 +9,9 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
@@ -33,18 +36,23 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 import javax.swing.ImageIcon;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.AbstractAction;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
+import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.StayOpenCheckBoxMenuItemUI;
 
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
 
 
 @SuppressWarnings("serial")
@@ -56,7 +64,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 	private static JComboBox<String> comboBox;
 	private static JTextField txtkodu;
 	private static JTextField txtskull;
-	private static JTextField txtsifre;
 	private static JTextField txtins;
 	private static JTextField txtip;
 	private static JTextField txtdiz;
@@ -82,6 +89,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 	static JCheckBoxMenuItem cbDosya;
 	static JCheckBoxMenuItem cbText;
 	static JCheckBoxMenuItem cbMail;
+	private static JPasswordField passwordField;
 
 
 	/**
@@ -173,12 +181,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		txtskull.setBounds(357, 8, 125, 20);
 		panel.add(txtskull);
 		txtskull.setColumns(10);
-
-		txtsifre = new JTextField();
-		txtsifre.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtsifre.setBounds(357, 33, 125, 20);
-		panel.add(txtsifre);
-		txtsifre.setColumns(10);
 
 		txtins = new JTextField();
 		txtins.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -324,6 +326,10 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			}
 		});
 		panel.add(btnNewButton_6);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(357, 33, 125, 20);
+		panel.add(passwordField);
 		
 		
 		String columnheaders[] = { "KODU", "KULLANICI", "SER.KULLANICI" ,"SIFRE","INSTANCE", "IP", "MODUL" ,
@@ -541,13 +547,29 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		}
 		if (table_1.getModel().getValueAt(satir, 3) == null)
 		{
-			txtsifre.setText("");
+			passwordField.setText("");
 		}
 		else
 		{
-			byte[] decodedBytes = Base64.getDecoder().decode(table_1.getModel().getValueAt(satir, 3).toString());
-			String decodedString = new String(decodedBytes);
-			txtsifre.setText(decodedString);
+			//byte[] decodedBytes = Base64.getDecoder().decode(table_1.getModel().getValueAt(satir, 3).toString());
+			//String decodedString = new String(decodedBytes);
+			
+			String decodedString = table_1.getModel().getValueAt(satir, 3).toString();
+			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+			byte[] bytes = new byte[byteValues.length];
+			for (int i=0, len=bytes.length; i<len; i++) {
+			   bytes[i] = Byte.parseByte(byteValues[i].trim());     
+			}
+			
+			try {
+				decodedString = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
+			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
+			passwordField.setText(decodedString);
 		}
 		if (table_1.getModel().getValueAt(satir, 4) == null)
 		{
@@ -670,7 +692,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 	{
 		txtkodu.setText("");
 		txtskull.setText("");
-		txtsifre.setText("");
 		txtins.setText("");
 		txtip.setText("");
 		txtdiz.setText("");
@@ -694,7 +715,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		{
 			splitPane.setCursor(WAIT_CURSOR);
 			String loglama = (vt == true ? "true," : "false,") + (ds == true ? "true," : "false,") + (tx ==true ? "true," : "false,") + (em == true ? "true":"false");
-			oac.uSER_ISL.details_yaz(txtkodu.getText(), comboBox.getItemAt(comboBox.getSelectedIndex()).toString(), txtskull.getText(), txtsifre.getText(),txtins.getText(),
+			oac.uSER_ISL.details_yaz(txtkodu.getText(), comboBox.getItemAt(comboBox.getSelectedIndex()).toString(), txtskull.getText(), oac.sDONDUR.sDONDUR(passwordField),txtins.getText(),
 					txtip.getText(),comboBox_1.getItemAt(comboBox_1.getSelectedIndex()), txtdiz.getText(), 
 					txtyer.getText(), txtdcins.getText(), chckbxNewCheckBox.isSelected() ?   "E" : "",chckbxNewCheckBox_1.isSelected() ?   "E" : "",comboBox_2.getItemAt(comboBox_2.getSelectedIndex()).toString() ,lblcdid.getText()
 							, chckbxLog.isSelected() ?   1 : 0,loglama);

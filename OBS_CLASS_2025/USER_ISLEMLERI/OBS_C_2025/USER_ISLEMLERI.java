@@ -1,11 +1,19 @@
 package OBS_C_2025;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Base64;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 @SuppressWarnings("static-access")
 public class USER_ISLEMLERI {
@@ -13,7 +21,7 @@ public class USER_ISLEMLERI {
 
 	static boolean result = false;
 	private GLOBAL gLB = new GLOBAL();
-
+	String encodedString;
 	public  Boolean user_var(String usr,String pwd) throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
 		con = null;
@@ -128,7 +136,17 @@ public class USER_ISLEMLERI {
 		con =  gLB.myConnection();
 		String sql ="UPDATE  USERS  SET USER_PWD=?  WHERE USER_NAME=?";
 		stmt = con.prepareStatement(sql);
-		String encodedString = Base64.getEncoder().encodeToString(sifre.getBytes());
+		//String encodedString = Base64.getEncoder().encodeToString(sifre.getBytes());
+		 byte[] qaz;
+			try {
+				qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
+				encodedString = Arrays.toString(qaz);
+			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		stmt.setString(1, encodedString);
 		stmt.setString(2, user.toString());
 		stmt.executeUpdate();
@@ -187,7 +205,16 @@ public class USER_ISLEMLERI {
 			stmt.setString(1, upk);
 			stmt.setString(2, usn);
 			stmt.setString(3, usserver);
-			String encodedString = Base64.getEncoder().encodeToString(sifre.getBytes());
+			 byte[] qaz;
+			try {
+				qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
+				encodedString = Arrays.toString(qaz);
+			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//String encodedString = Base64.getEncoder().encodeToString(sifre.getBytes());
 			stmt.setString(4, encodedString);
 			stmt.setString(5, instance);
 			stmt.setString(6, ip);
@@ -217,7 +244,16 @@ public class USER_ISLEMLERI {
 		{
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, user);
-			String encodedString = Base64.getEncoder().encodeToString(pwd.getBytes());
+			//String encodedString = Base64.getEncoder().encodeToString(pwd.getBytes());
+			 byte[] qaz;
+				try {
+					qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(pwd);
+					encodedString = Arrays.toString(qaz);
+				} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+						| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			stmt.setString(2, encodedString);
 			stmt.setString(3, lvl);
 			stmt.setString(4, udbi);

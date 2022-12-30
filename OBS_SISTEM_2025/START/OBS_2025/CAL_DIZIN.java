@@ -18,10 +18,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Base64;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.AbstractAction;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -64,6 +71,7 @@ import OBS_C_2025.CARI_HESAP_MSSQL;
 import OBS_C_2025.CARI_HESAP_MYSQL;
 import OBS_C_2025.CONNECT;
 import OBS_C_2025.DOSYA_YAZ;
+import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.GUNLUK_ACCESS;
@@ -859,9 +867,8 @@ public class CAL_DIZIN extends JFrame {
 						contentPane.setCursor(WAIT_CURSOR);
 						boolean varmi;
 						try {
-							String passText = new String(txtsif.getPassword());
-							String encodedString = Base64.getEncoder().encodeToString(passText.getBytes());
-							varmi = oac.uSER_ISL.user_var(GLOBAL.KULL_ADI,encodedString);
+							 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(oac.sDONDUR.sDONDUR(txtsif)) ;
+							varmi = oac.uSER_ISL.user_var(GLOBAL.KULL_ADI, Arrays.toString(qaz));
 							if (varmi == true)
 							{
 								lblysif.setVisible(true);
@@ -1176,9 +1183,24 @@ public class CAL_DIZIN extends JFrame {
 		txtKodu.setText(grd.getModel().getValueAt(satir, 1).toString());
 		txtIp.setText(grd.getModel().getValueAt(satir, 6).toString());
 		txtkul.setText(grd.getModel().getValueAt(satir, 3).toString());
-		byte[] decodedBytes = Base64.getDecoder().decode(grd.getModel().getValueAt(satir, 4).toString());
-		String decodedString = new String(decodedBytes);
-		txtsifr.setText(decodedString);
+		
+		//byte[] decodedBytes = Base64.getDecoder().decode(grd.getModel().getValueAt(satir, 4).toString());
+		//String decodedString = new String(decodedBytes);
+		//
+		String decodedString = grd.getModel().getValueAt(satir, 4).toString();
+		String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+		byte[] bytes = new byte[byteValues.length];
+		for (int i=0, len=bytes.length; i<len; i++) {
+		   bytes[i] = Byte.parseByte(byteValues[i].trim());     
+		}
+	
+		try {
+			txtsifr.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
+		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException
+				| IllegalBlockSizeException | BadPaddingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		txtcdid.setText(grd.getModel().getValueAt(satir, 0).toString());
 		cmbhangisql.setSelectedItem(grd.getModel().getValueAt(satir, 13).toString());
 		comboBox.removeAllItems();

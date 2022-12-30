@@ -281,12 +281,10 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				String qwe;
 				 try {
-			
-			
-				 
-					byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("197227oOk") ;
+//[-128, 112, -83, -117, 30, 48, -23, -38, 87, 45, -91, 122, 47, -32, -1, 81]    197227oOk
+//[12, -101, 24, -121, -123, -79, -97, 31, -27, 81, -82, 32, 3, -67, -68, -100]    obs 
+					 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("obs") ;
 					String response = Arrays.toString(qaz);
-				
 					System.out.println(response);
 					String[] byteValues = response.substring(1, response.length() - 1).split(",");
 					byte[] bytes = new byte[byteValues.length];

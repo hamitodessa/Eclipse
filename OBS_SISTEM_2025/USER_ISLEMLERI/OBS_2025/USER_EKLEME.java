@@ -21,12 +21,16 @@ import javax.swing.JTable;
 import javax.swing.JSplitPane;
 import java.awt.Dimension;
 import javax.swing.JTextField;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
+import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.ORTA;
@@ -38,6 +42,9 @@ import javax.swing.border.LineBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 @SuppressWarnings("serial")
 public class USER_EKLEME extends JInternalFrame {
@@ -282,10 +289,24 @@ public class USER_EKLEME extends JInternalFrame {
 		{
 			boolean liz;
 			boolean siz;
-			byte[] decodedBytes = Base64.getDecoder().decode(rs.getString(2));
-			String decodedString = new String(decodedBytes);
+			//byte[] decodedBytes = Base64.getDecoder().decode(rs.getString(2));
+			
+			
+			String decodedString = rs.getString(2);
+			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+			byte[] bytes = new byte[byteValues.length];
+			for (int i=0, len=bytes.length; i<len; i++) {
+			   bytes[i] = Byte.parseByte(byteValues[i].trim());     
+			}
+			try {
+				decodedString = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
+			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String uname = rs.getString(1);
-			String sif = decodedString;
+			String sif =decodedString ;
 			String sev = rs.getString(3);
 			String dbiz = rs.getString(4);
 			String mail = rs.getString(5);

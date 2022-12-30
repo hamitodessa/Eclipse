@@ -22,11 +22,14 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import OBS_C_2025.BACKUP_RESTORE;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
+import OBS_C_2025.GLOBAL;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
@@ -280,36 +283,38 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				 try {
 			
 			
-//			 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972") ;
-//			 String response = Arrays.toString(qaz);
-//			 System.out.println(response);
-//			 String[] byteValues = response.substring(1, response.length() - 1).split(",");
-//			 byte[] bytes = new byte[byteValues.length];
-//			 for (int i=0, len=bytes.length; i<len; i++) {
-//			    bytes[i] = Byte.parseByte(byteValues[i].trim());     
-//			 }
-//			 qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
-//			System.out.println(qwe);
+			 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972") ;
+			 String response = Arrays.toString(qaz);
+			 System.out.println(response);
+			 
+			 response = GLOBAL.setting_oku("PRG_PARA").toString();
+			 String[] byteValues = response.substring(1, response.length() - 1).split(",");
+			 byte[] bytes = new byte[byteValues.length];
+			 for (int i=0, len=bytes.length; i<len; i++) {
+			    bytes[i] = Byte.parseByte(byteValues[i].trim());     
+			 }
+			 qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
+			System.out.println(qwe);
 			
 					 
-					 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972") ;
-					 String response = new String(qaz);
-					 System.out.println(response);
-					 byte[] den1 = response.getBytes();
-					 System.out.println(new String(den1));
-					 
-					// String[] byteValues = response.substring(1, response.length() - 1).split(",");
-				//	 byte[] bytes = new byte[byteValues.length];
-				//	 for (int i=0, len=bytes.length; i<len; i++) {
-				//	    bytes[i] = Byte.parseByte(byteValues[i].trim());     
-				//	 }
-					 qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(den1) ;
-					System.out.println(qwe);
+//					 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972") ;
+//					 String response = new String(qaz);
+//					 System.out.println(response);
+//					 byte[] den1 = response.getBytes();
+//					 System.out.println(new String(den1));
+//					 
+//					 String[] byteValues = response.substring(1, response.length() - 1).split(",");
+//					 byte[] bytes = new byte[byteValues.length];
+//					 for (int i=0, len=bytes.length; i<len; i++) {
+//					    bytes[i] = Byte.parseByte(byteValues[i].trim());     
+//					 }
+//					 qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(den1) ;
+//					System.out.println(qwe);
 
 					
 		      
 				} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
-						| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e1) {
+						| IOException | IllegalBlockSizeException | BadPaddingException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}

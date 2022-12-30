@@ -14,12 +14,12 @@ import OBS_C_2025.MAIL_SETTINGS;
 import javax.swing.JSeparator;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JPasswordField;
 
 public class E_MAIL_BILGILERI extends JInternalFrame {
 	private static JTextField txtmail;
 	private static JTextField txthost;
 	private static JTextField txtport;
-	private static JTextField txtsifre;
 	private static JTextField txtgonhesap;
 	private static JTextField txtgonisim;
 	private static JCheckBox chckbxNewCheckBox_1;
@@ -27,6 +27,7 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 	private static JPanel panel ;
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static JPasswordField passwordField;
 	/**
 	 * Launch the application.
 	 */
@@ -108,13 +109,6 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 		panel.add(txtport);
 		txtport.setColumns(10);
 
-		txtsifre = new JTextField();
-		txtsifre.setForeground(new Color(0, 0, 128));
-		txtsifre.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtsifre.setBounds(133, 103, 197, 20);
-		panel.add(txtsifre);
-		txtsifre.setColumns(10);
-
 		JLabel lblNewLabel_6 = new JLabel("Hesap");
 		lblNewLabel_6.setBounds(45, 197, 46, 14);
 		panel.add(lblNewLabel_6);
@@ -145,6 +139,10 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(465, 176, -17, -163);
 		panel.add(separator_2);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(133, 103, 279, 20);
+		panel.add(passwordField);
 
 
 		getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -158,10 +156,9 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 			txtmail.setText(MAIL_SETTINGS.HESAP);
 			txthost.setText(MAIL_SETTINGS.HOST);
 			txtport.setText(MAIL_SETTINGS.PORT);
-			txtsifre.setText(MAIL_SETTINGS.PWD);
 			txtgonhesap.setText(MAIL_SETTINGS.GHESAP);
 			txtgonisim.setText(MAIL_SETTINGS.GADI);
-			// 
+			passwordField.setText(MAIL_SETTINGS.PWD);
 			chckbxNewCheckBox.setSelected( ((boolean) MAIL_SETTINGS.SSL  ? true : false ));
 			chckbxNewCheckBox_1.setSelected((boolean) (MAIL_SETTINGS.TSL ? true : false ));
 		}
@@ -175,7 +172,7 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 		try
 		{
 			panel.setCursor(oac.WAIT_CURSOR);
-			oac.uSER_ISL.mail_yaz(txtmail.getText(), txthost.getText(), txtport.getText(),txtsifre.getText(), 
+			oac.uSER_ISL.mail_yaz(txtmail.getText(), txthost.getText(), txtport.getText(),oac.sDONDUR.sDONDUR(passwordField), 
 					txtgonhesap.getText(),txtgonisim.getText(), chckbxNewCheckBox.isSelected() ? 1 : -1 , chckbxNewCheckBox_1.isSelected() ? 1 : -1);
 			panel.setCursor(oac.DEFAULT_CURSOR);
 		}

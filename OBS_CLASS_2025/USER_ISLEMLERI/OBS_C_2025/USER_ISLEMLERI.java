@@ -436,8 +436,22 @@ public class USER_ISLEMLERI {
 			MAIL_SETTINGS.HESAP= rss.getString("HESAP").toString();
 			MAIL_SETTINGS. HOST =rss.getString("HOST").toString() ;
 			MAIL_SETTINGS.PORT =rss.getString("PORT").toString() ;
-			byte[] decodedBytes = Base64.getDecoder().decode(rss.getString("SIFR").toString());
-			String decodedString = new String(decodedBytes);
+			
+			String decodedString = rss.getString("SIFR").toString();
+			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+			byte[] bytes = new byte[byteValues.length];
+			for (int i=0, len=bytes.length; i<len; i++) {
+			   bytes[i] = Byte.parseByte(byteValues[i].trim());     
+			}
+			
+			try {
+				decodedString =  ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
+			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
 			MAIL_SETTINGS.PWD = decodedString  ;
 			MAIL_SETTINGS.SSL = (boolean) (rss.getInt("SSL") == -1 ? false :true );
 			MAIL_SETTINGS. TSL = (boolean) (rss.getInt("TSL") == -1 ? false :true );
@@ -464,7 +478,14 @@ public class USER_ISLEMLERI {
 		stmt.setString(2, hsp);
 		stmt.setString(3, host);
 		stmt.setString(4, port);
-		String encodedString = Base64.getEncoder().encodeToString(sifre.getBytes());
+		 byte[] qaz;
+			try {
+				qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
+				encodedString = Arrays.toString(qaz);
+			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+				e.printStackTrace();
+			}
 		stmt.setString(5, encodedString);
 		stmt.setString(6, gmail);
 		stmt.setString(7, ghesap);

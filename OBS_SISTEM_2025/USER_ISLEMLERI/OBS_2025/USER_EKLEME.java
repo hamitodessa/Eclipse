@@ -45,13 +45,13 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
 public class USER_EKLEME extends JInternalFrame {
 
 	private static JTable table_1;
 	private static JTextField txtkull;
-	private static JTextField txtsif;
 	private static JTextField txtsev;
 	private static JTextField txtmail;
 	private static JTextField txtdb;
@@ -62,6 +62,7 @@ public class USER_EKLEME extends JInternalFrame {
 	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	private static JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -134,9 +135,7 @@ public class USER_EKLEME extends JInternalFrame {
 					kutu_temizle();
 					doldur_kutu(table_1,table_1.getSelectedRow());
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
-
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -219,12 +218,6 @@ public class USER_EKLEME extends JInternalFrame {
 		panel.add(txtkull);
 		txtkull.setColumns(10);
 
-		txtsif = new JTextField();
-		txtsif.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtsif.setBounds(105, 33, 113, 20);
-		panel.add(txtsif);
-		txtsif.setColumns(10);
-
 		JLabel lblNewLabel_2 = new JLabel("Seviye");
 		lblNewLabel_2.setBounds(432, 14, 58, 14);
 		panel.add(lblNewLabel_2);
@@ -264,6 +257,10 @@ public class USER_EKLEME extends JInternalFrame {
 		chckbxs.setSelected(true);
 		chckbxs.setBounds(273, 36, 97, 23);
 		panel.add(chckbxs);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(105, 33, 113, 20);
+		panel.add(passwordField);
 
 		getContentPane().setCursor(WAIT_CURSOR);
 		try {
@@ -354,11 +351,11 @@ public class USER_EKLEME extends JInternalFrame {
 		}
 		if (grd.getModel().getValueAt(satir, 1) == null)
 		{
-			txtsif.setText("");
+			passwordField.setText("");
 		}
 		else
 		{
-			txtsif.setText(grd.getModel().getValueAt(satir, 1).toString());
+			passwordField.setText(grd.getModel().getValueAt(satir, 1).toString());
 		}
 		if (grd.getModel().getValueAt(satir, 2) == null)
 		{
@@ -391,7 +388,6 @@ public class USER_EKLEME extends JInternalFrame {
 	private static void kutu_temizle() 
 	{
 		txtkull.setText("");
-		txtsif.setText("");
 		txtsev.setText("");
 		txtmail.setText("");
 		txtdb.setText("");
@@ -415,7 +411,7 @@ public class USER_EKLEME extends JInternalFrame {
 			{
 				oac.uSER_ISL.user_sil(txtkull.getText());
 			}
-			oac.uSER_ISL.user_ekle_degis(txtkull.getText(),txtsif.getText(), txtsev.getText(), txtdb.getText(), txtmail.getText(),  chckbxl.isSelected()  ? true : false,  chckbxs.isSelected()  ? true :false);
+			oac.uSER_ISL.user_ekle_degis(txtkull.getText(),oac.sDONDUR.sDONDUR(passwordField), txtsev.getText(), txtdb.getText(), txtmail.getText(),  chckbxl.isSelected()  ? true : false,  chckbxs.isSelected()  ? true :false);
 			grid_doldur();
 			kutu_temizle();
 			doldur_kutu(table_1,0);

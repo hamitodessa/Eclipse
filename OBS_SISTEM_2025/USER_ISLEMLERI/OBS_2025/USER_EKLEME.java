@@ -13,8 +13,6 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Base64;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;

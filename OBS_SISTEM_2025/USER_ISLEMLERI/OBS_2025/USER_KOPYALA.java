@@ -4,8 +4,6 @@ package OBS_2025;
 import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Base64;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,8 +15,6 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
-import OBS_C_2025.GLOBAL;
-
 import java.awt.Font;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
@@ -226,20 +222,16 @@ public class USER_KOPYALA extends JInternalFrame {
 	{
 		rss =  oac.uSER_ISL.user_db_izinleri(comboBox.getItemAt(comboBox.getSelectedIndex()).toString(), mODUL);
 		rss.next();
-		//byte[] decodedBytes = Base64.getDecoder().decode( rss.getString("USER_PWD_SERVER").toString ());
-		//String decodedString = new String(decodedBytes);
 		String decodedString = rss.getString("USER_PWD_SERVER").toString ();
 		String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 		byte[] bytes = new byte[byteValues.length];
 		for (int i=0, len=bytes.length; i<len; i++) {
 		   bytes[i] = Byte.parseByte(byteValues[i].trim());     
 		}
-		
 		try {
 			decodedString=  ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
 		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException
 				| IllegalBlockSizeException | BadPaddingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 			oac.uSER_ISL.details_yaz(rss.getString("USER_PROG_KODU").toString() 

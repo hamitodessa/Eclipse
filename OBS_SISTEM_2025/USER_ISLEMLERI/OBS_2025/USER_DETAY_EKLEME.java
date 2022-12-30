@@ -14,8 +14,6 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Base64;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
@@ -328,6 +326,8 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		panel.add(btnNewButton_6);
 		
 		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		passwordField.setEchoChar('*');
 		passwordField.setBounds(357, 33, 125, 20);
 		panel.add(passwordField);
 		

@@ -1,6 +1,7 @@
 package OBS_C_2025;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
@@ -58,9 +59,7 @@ public class ENCRYPT_DECRYPT_STRING {
 		Cipher cipher = Cipher.getInstance("AES");
 		cipher.init(Cipher.ENCRYPT_MODE, aesKey);
 		byte[] encrypted = cipher.doFinal(kelime.getBytes());
-		//System.out.println(new String( new String(encrypted)));
 		return  encrypted;
-		//return  new String(encrypted);
 	}
 	public static String dCRYPT_manual(byte[] kelime) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
@@ -69,7 +68,6 @@ public class ENCRYPT_DECRYPT_STRING {
 		Cipher cipher = Cipher.getInstance("AES");
 		cipher.init(Cipher.DECRYPT_MODE, aesKey);
 		String decrypted = new String(cipher.doFinal(kelime));
-		//System.out.println(new String( new String(decrypted)));
 		return  new String(decrypted);
 	}
 
@@ -85,4 +83,10 @@ public class ENCRYPT_DECRYPT_STRING {
 //asd = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(qwe.getBytes()) ;
 //System.out.println("AES=" +asd);
 /////
+//byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972") ;
+//System.out.println("Array=" +Arrays.toString(qaz));
+//byte[] ewq = {-90, -12, -3, -79, 32, -23, 64, -33, -73, 94, -3, 26, -36, -105, 120, -46};
+//qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(ewq) ;
+//System.out.println(qwe);
+
 

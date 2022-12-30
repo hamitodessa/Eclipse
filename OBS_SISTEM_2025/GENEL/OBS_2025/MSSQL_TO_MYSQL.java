@@ -20,22 +20,13 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import LOGER_KAYIT.TXT_LOG;
-
 import OBS_C_2025.BACKUP_RESTORE;
-import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
-import OBS_C_2025.TARIH_CEVIR;
-
 import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
@@ -287,29 +278,35 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				String qwe;
 				 try {
-//				byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972") ;
-//				System.out.println("Array=" +Arrays.toString(qaz));
-//				byte[] ewq = {-90, -12, -3, -79, 32, -23, 64, -33, -73, 94, -3, 26, -36, -105, 120, -46};
-//				qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(ewq) ;
-//				System.out.println(qwe);
 			
 			
-			 String str = "oOk271972";
+//			 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972") ;
+//			 String response = Arrays.toString(qaz);
+//			 System.out.println(response);
+//			 String[] byteValues = response.substring(1, response.length() - 1).split(",");
+//			 byte[] bytes = new byte[byteValues.length];
+//			 for (int i=0, len=bytes.length; i<len; i++) {
+//			    bytes[i] = Byte.parseByte(byteValues[i].trim());     
+//			 }
+//			 qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
+//			System.out.println(qwe);
+			
+					 
+					 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972") ;
+					 String response = new String(qaz);
+					 System.out.println(response);
+					 byte[] den1 = response.getBytes();
+					 System.out.println(new String(den1));
+					 
+					// String[] byteValues = response.substring(1, response.length() - 1).split(",");
+				//	 byte[] bytes = new byte[byteValues.length];
+				//	 for (int i=0, len=bytes.length; i<len; i++) {
+				//	    bytes[i] = Byte.parseByte(byteValues[i].trim());     
+				//	 }
+					 qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(den1) ;
+					System.out.println(qwe);
 
-		      // string to byte[]
-		      byte[] bytes = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("oOk271972");
-
-		      System.out.println("Text : " + str);
-		      System.out.println("Text [Byte Format] : " + bytes);
-
-		      // no, don't do this, it returns the address of the object in memory
-		      System.out.println("Text [Byte Format] toString() : " + bytes.toString());
-
-		      // convert byte[] to string
-		      String s = 	 new String( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes)) ;
-		     
-		      System.out.println("Output : " +  s);
-		      
+					
 		      
 				} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 						| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e1) {

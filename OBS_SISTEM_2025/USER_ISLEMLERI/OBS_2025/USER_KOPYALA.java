@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import java.awt.Font;
+import java.security.InvalidKeyException;
 import java.awt.Color;
 
 public class USER_KOPYALA extends JInternalFrame {
@@ -218,21 +219,21 @@ public class USER_KOPYALA extends JInternalFrame {
 		rss.next();
 		byte[] decodedBytes = Base64.getDecoder().decode( rss.getString("USER_PWD_SERVER").toString ());
 		String decodedString = new String(decodedBytes);
-		oac.uSER_ISL.details_yaz(rss.getString("USER_PROG_KODU").toString() 
-				, comboBox_1.getItemAt(comboBox_1.getSelectedIndex()).toString()
-				, rss.getString("USER_SERVER").toString ()
-				, decodedString
-				, rss.getString("USER_INSTANCE_OBS").toString ()
-				, rss.getString("USER_IP_OBS").toString ()
-				, rss.getString("USER_PROG_OBS").toString ()
-				, rss.getString("DIZIN").toString ()
-				, rss.getString("YER").toString ()
-				, rss.getString("DIZIN_CINS").toString ()
-				, rss.getString("IZINLI_MI").toString ()
-				, rss.getString("CALISAN_MI").toString ()
-				, rss.getString("HANGI_SQL").toString ()
-				, ""
-				, rss.getInt("LOG") 
-				, rss.getString("LOG_YERI").toString());		
+			oac.uSER_ISL.details_yaz(rss.getString("USER_PROG_KODU").toString() 
+					, comboBox_1.getItemAt(comboBox_1.getSelectedIndex()).toString()
+					, rss.getString("USER_SERVER").toString ()
+					, decodedString
+					, rss.getString("USER_INSTANCE_OBS").toString ()
+					, rss.getString("USER_IP_OBS").toString ()
+					, rss.getString("USER_PROG_OBS").toString ()
+					, rss.getString("DIZIN").toString ()
+					, rss.getString("YER").toString ()
+					, rss.getString("DIZIN_CINS").toString ()
+					, rss.getString("IZINLI_MI").toString ()
+					, rss.getString("CALISAN_MI").toString ()
+					, rss.getString("HANGI_SQL").toString ()
+					, ""
+					, rss.getInt("LOG") 
+					, rss.getString("LOG_YERI").toString());
 	}
 }

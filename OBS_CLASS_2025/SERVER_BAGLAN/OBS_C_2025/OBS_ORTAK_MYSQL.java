@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 public class OBS_ORTAK_MYSQL implements IConnection {
 	private static boolean result;
 	@SuppressWarnings("unused")
@@ -20,6 +22,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 			result = true;
 		} catch (SQLException e)
 		{
+			JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti", JOptionPane.ERROR_MESSAGE);     
 			result =false;
 		}
 		return result;
@@ -36,6 +39,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 			result = true;
 		} catch (SQLException e)
 		{
+			JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti", JOptionPane.ERROR_MESSAGE);     
 			result =false;
 		}
 		return result;

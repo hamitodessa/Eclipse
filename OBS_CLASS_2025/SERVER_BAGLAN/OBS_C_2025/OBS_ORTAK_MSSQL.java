@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 public class OBS_ORTAK_MSSQL implements IConnection {
 
 	private  boolean result;
@@ -23,6 +25,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		} 
 		catch (SQLException e)
 		{  
+			JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti", JOptionPane.ERROR_MESSAGE);      
 			result = false;  
 		}  
 		return result;
@@ -41,6 +44,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		} 
 		catch (SQLException e)
 		{  
+			JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti", JOptionPane.ERROR_MESSAGE);     
 			result =  false;  
 		}  
 		return result;

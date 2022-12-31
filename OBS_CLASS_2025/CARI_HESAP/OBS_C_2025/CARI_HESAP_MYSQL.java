@@ -29,7 +29,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		String cumle = "jdbc:mysql://" + BAGLAN.cariDizin.cONN_STR ;
 		con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 	}
-	public void akt_baglan(String kod) throws SQLException
+	public void akt_baglan(String kod, String port) throws SQLException
 	{
 		String cnnstr = "" ;
 		if (BAGLAN.cariDizin.yER.equals("L"))

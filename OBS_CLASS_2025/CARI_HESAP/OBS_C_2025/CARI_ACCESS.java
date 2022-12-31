@@ -23,9 +23,9 @@ public class CARI_ACCESS {
 	{
 	 _ICari.baglan();
 	}
-	public void akt_baglan(String kod) throws SQLException
+	public void akt_baglan(String kod, String port) throws SQLException
 	{
-		_ICari.akt_baglan(kod);
+		_ICari.akt_baglan(kod , port);
 	}
 	public String cari_firma_adi() throws ClassNotFoundException, SQLException {
 		return  _ICari.cari_firma_adi();

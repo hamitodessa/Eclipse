@@ -77,9 +77,11 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.JSplitPane;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class OZEL_MIZAN extends JInternalFrame {
 	public static JTable table;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	@SuppressWarnings("static-access")
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 
 	private static JLabel lblonceki ;
@@ -108,6 +110,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("static-access")
 	public OZEL_MIZAN() 
 	{
 
@@ -170,6 +173,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 		};
 		table.setGridColor(oac.gridcolor);
 		table.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {
@@ -432,6 +436,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	@SuppressWarnings("unused")
 	private static void ara_ayir() throws NumberFormatException, IOException
 	{
 		try
@@ -523,6 +528,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 			write() ;	
 		}
 	}
+	@SuppressWarnings({ "unused", "resource" })
 	public static void write()
 	{
 		try 
@@ -559,6 +565,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 			//
 			if  (uzanti.equals(".xls") )
 			{
+				@SuppressWarnings("resource")
 				HSSFWorkbook workbook = new HSSFWorkbook();
 				HSSFSheet sheet = workbook.createSheet("Ozel_Mizan");
 				HSSFFont headerFont = workbook.createFont();
@@ -848,6 +855,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
+	@SuppressWarnings({ "resource", "unused", "static-access" })
 	public static void mail_at() throws IOException
 	{
 		XSSFWorkbook workbook = new XSSFWorkbook();

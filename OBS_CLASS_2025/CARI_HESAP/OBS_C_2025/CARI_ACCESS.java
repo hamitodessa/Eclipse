@@ -35,7 +35,8 @@ public class CARI_ACCESS {
 	{
 		 _ICari.cari_sifirdan_L( kod,dizin_yeri, dizin,  fir_adi, ins, kull, sifre,port);
 			 for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrak, dBILGI);
+				 _Logger.Logla(mesaj,evrak, dBILGI);
+			 
 			 for ( ILOGGER  _Logger : _Logger )
 				  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
 	}

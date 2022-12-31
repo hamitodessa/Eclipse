@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
 public class CARI_HESAP_MSSQL implements ICARI_HESAP {
@@ -44,7 +46,11 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
 		String cumle = "";
-		cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";";
+		if ( ! port.toString().equals("") )
+		{
+			port =  ":" + port ;
+		}
+		cumle = "jdbc:sqlserver://localhost" + port + ";instanceName=" + ins + ";";
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		String VERITABANI = "OK_Car" + kod;
 		stmt = null;
@@ -68,6 +74,10 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
+		//  VERITABANI DOSYASI ILK ACILIS
+			ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
+			vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);
+			vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.cariLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
 		{
@@ -78,12 +88,13 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);
-		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.cariLogDizin);
+		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);
+		tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.cariLogDizin);
 		//
 		stmt.close();
 		con.close();
 	}
+	@SuppressWarnings("unused")
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
@@ -108,16 +119,17 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
-		//
+		//  VERITABANI DOSYASI ILK ACILIS
+		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
+		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);
+		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.cariLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.cariLogDizin.mODUL)) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODUL) ;
-			@SuppressWarnings("unused")
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy   ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.cariLogDizin);
 		}
-		//
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);

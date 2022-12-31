@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import LOGER_KAYIT.DOSYA_MSSQL;
+import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
 
@@ -25,7 +27,11 @@ public class SMS_MSSQL implements ISMS{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
 		String cumle = "";
-		cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";";
+		if ( ! port.toString().equals("") )
+		{
+			port =  ":" + port ;
+		}
+		cumle = "jdbc:sqlserver://localhost"+ port +";instanceName=" + ins + ";";
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		String VERITABANI = "OK_Sms" + kod;
 		stmt = null;
@@ -51,8 +57,9 @@ public class SMS_MSSQL implements ISMS{
 		cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
-
-		//
+		//  VERITABANI DOSYASI ILK ACILIS
+		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
+		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.smsLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
 		{
@@ -95,7 +102,9 @@ public class SMS_MSSQL implements ISMS{
 		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
-		//
+		//  VERITABANI DOSYASI ILK ACILIS
+		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
+		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.smsLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU +GLOBAL.char_degis( BAGLAN_LOG.smsLogDizin.mODUL) ) == false)
 		{

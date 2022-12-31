@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 
+import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
 
@@ -34,7 +35,11 @@ public class STOK_MSSQL implements ISTOK {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
 		String cumle = "";
-		cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";";
+		if ( ! port.toString().equals("") )
+		{
+			port =  ":" + port ;
+		}
+		cumle = "jdbc:sqlserver://localhost" + port + ";instanceName=" + ins + ";";
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		String VERITABANI = "OK_Fat" + kod;
 		stmt = null;
@@ -60,6 +65,11 @@ public class STOK_MSSQL implements ISTOK {
 		cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
+		//  VERITABANI DOSYASI ILK ACILIS
+		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
+		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.fatLogDizin);
+		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.fatLogDizin);
+
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
 		{
@@ -104,7 +114,10 @@ public class STOK_MSSQL implements ISTOK {
 		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
-		//
+		//  VERITABANI DOSYASI ILK ACILIS
+		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
+		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.fatLogDizin);
+		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.fatLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol( GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.fatLogDizin.mODUL)) == false)
 		{

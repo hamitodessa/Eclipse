@@ -23,7 +23,11 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
  		con = null;  
  		String cumle = "";
-         cumle = "jdbc:sqlserver://localhost;instanceName=" + ins + ";";
+ 		if ( ! port.toString().equals("") )
+		{
+			port =  ":" + port ;
+		}
+         cumle = "jdbc:sqlserver://localhost"+ port +";instanceName=" + ins + ";";
          con = DriverManager.getConnection(cumle,kull,sifre);
          String VERITABANI = "OK_Gun" + kod;
          stmt = null;

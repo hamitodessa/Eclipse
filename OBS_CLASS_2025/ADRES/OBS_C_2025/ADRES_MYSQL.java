@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
 @SuppressWarnings("static-access")
@@ -46,7 +47,11 @@ public class ADRES_MYSQL implements IADRES {
 		cumle = "jdbc:mysql://localhost/" +VERITABANI + "_log" ;
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
-		//
+		//  VERITABANI DOSYASI ILK ACILIS
+		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
+		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.adrLogDizin);
+		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.adrLogDizin);
+
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
 		{
@@ -90,6 +95,11 @@ public class ADRES_MYSQL implements IADRES {
 		cumle = "jdbc:mysql://" + server + "/" + VERITABANI + "_log" ;
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
+		//  VERITABANI DOSYASI ILK ACILIS
+		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
+		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.adrLogDizin);
+		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.adrLogDizin);
+
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol( GLOBAL.LOG_SURUCU + GLOBAL.char_degis(  BAGLAN_LOG.adrLogDizin.mODUL) ) == false)
 		{

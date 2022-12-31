@@ -46,6 +46,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
 import OBS_C_2025.JTextFieldLimit;
 
+@SuppressWarnings("serial")
 public class ADRES_GIRIS extends JInternalFrame {
 
 	private static JTextField txtkayit;
@@ -460,6 +461,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		btnNewButton_4.setIcon(new ImageIcon(H_PLANI.class.getResource("/ICONLAR/icons8-camera-16.png")));
 		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNewButton_4.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
@@ -504,6 +506,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 		JButton btnNewButton_6 = new JButton("");
 		btnNewButton_6.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				ADRES_LISTE asp ;
@@ -792,6 +795,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		double seconds = (double)estimatedTime/1000; 
 		OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 	}
+	@SuppressWarnings("static-access")
 	public static void kayit()
 	{
 		if (  txtkodu.getText().equals("") &&  txtunvan.getText().equals("") ) return ;

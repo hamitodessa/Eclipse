@@ -57,9 +57,11 @@ import org.jsoup.select.Elements;
 import javax.swing.JSeparator;
 
 
+@SuppressWarnings("serial")
 public class KUR_GIRIS extends JInternalFrame {
 	private static JTable table;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	@SuppressWarnings("static-access")
 	static KUR_ACCESS k_Access = new KUR_ACCESS(oac._IKur , OBS_SIS_2025_ANA_CLASS._IKur_Loger);
 
 	private static  JDateChooser dateChooser ;
@@ -96,6 +98,7 @@ public class KUR_GIRIS extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("static-access")
 	public KUR_GIRIS() {
 		setIconifiable(true);
 		setResizable(true);
@@ -350,6 +353,7 @@ public class KUR_GIRIS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
+	@SuppressWarnings("static-access")
 	private void kur_oku()
 	{
 		ResultSet rs ;

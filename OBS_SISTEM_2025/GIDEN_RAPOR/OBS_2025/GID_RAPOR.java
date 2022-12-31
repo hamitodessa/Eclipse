@@ -35,6 +35,7 @@ import javax.swing.event.DocumentListener;
 
 import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class GID_RAPOR extends JInternalFrame {
 	private static JTable table;
 	public static JSplitPane splitPane ;
@@ -60,6 +61,7 @@ public class GID_RAPOR extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("static-access")
 	public GID_RAPOR() {
 		setTitle("GIDEN RAPORLAR");
 		setResizable(true);

@@ -47,10 +47,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class EKSIK_KUR extends JInternalFrame {
 
 	private static JTable table;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	@SuppressWarnings("static-access")
 	static KUR_ACCESS k_Access = new KUR_ACCESS(oac._IKur , OBS_SIS_2025_ANA_CLASS._IKur_Loger);
 
 	static  JDateChooser dateChooser ;
@@ -79,6 +81,7 @@ public class EKSIK_KUR extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "static-access", "removal" })
 	public EKSIK_KUR() {
 		setIconifiable(true);
 		setResizable(true);
@@ -280,6 +283,7 @@ public class EKSIK_KUR extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kur Okuma", JOptionPane.ERROR_MESSAGE);   		
 		}
 	}
+	@SuppressWarnings("deprecation")
 	private void te_sifirla()
 	{
 		GRID_TEMIZLE.grid_temizle(table);

@@ -30,9 +30,11 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 
 
+@SuppressWarnings("serial")
 public class KUR_GRAFIK extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	@SuppressWarnings("static-access")
 	static KUR_ACCESS k_Access = new KUR_ACCESS(oac._IKur , OBS_SIS_2025_ANA_CLASS._IKur_Loger);
 
 	private static JTable table;
@@ -57,6 +59,7 @@ public class KUR_GRAFIK extends JInternalFrame {
 	 * Create the frame.
 	 * @throws PropertyVetoException 
 	 */
+	@SuppressWarnings({ "removal", "static-access" })
 	public KUR_GRAFIK()   {
 		setTitle("KUR GRAFIK");
 		setClosable(true);

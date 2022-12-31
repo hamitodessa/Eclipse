@@ -83,11 +83,15 @@ import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class MAIL extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	@SuppressWarnings("static-access")
 	static SMS_ACCESS sms_Access = new SMS_ACCESS(oac._ISms , OBS_SIS_2025_ANA_CLASS._ISms_Loger);
+	@SuppressWarnings("static-access")
 	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
+	@SuppressWarnings("static-access")
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 
 	private static JTable table;
@@ -129,6 +133,7 @@ public class MAIL extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("static-access")
 	public MAIL() {
 		setTitle("MAIL");
 		setResizable(true);
@@ -291,6 +296,7 @@ public class MAIL extends JInternalFrame {
 		comboBox_1.setForeground(new Color(0, 0, 128));
 		comboBox_1.setBounds(565, 56, 278, 22);
 		comboBox_1.setDropTarget(new DropTarget() {
+			@SuppressWarnings("rawtypes")
 			public synchronized void drop(DropTargetDropEvent evt) {
 				try {
 					evt.acceptDrop(DnDConstants.ACTION_COPY);
@@ -670,6 +676,7 @@ public class MAIL extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Silme", JOptionPane.PLAIN_MESSAGE);		        
 		}
 	}
+	@SuppressWarnings("static-access")
 	private void isim_doldur() 
 	{
 		try {
@@ -741,6 +748,7 @@ public class MAIL extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Alici Doldurma", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
+	@SuppressWarnings("static-access")
 	private void coklu_gonder()
 	{
 		if ( ! ValidEmailAddress.isValid(txtgonderen.getText()))
@@ -799,6 +807,7 @@ public class MAIL extends JInternalFrame {
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
 	}
+	@SuppressWarnings("static-access")
 	private void tek_gonder()
 	{
 		if ( ! ValidEmailAddress.isValid(txtgonderen.getText()))
@@ -843,6 +852,7 @@ public class MAIL extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
+	@SuppressWarnings("static-access")
 	private boolean smtp_bak ()
 	{
 		boolean result = false;
@@ -868,6 +878,7 @@ public class MAIL extends JInternalFrame {
 		return result;
 
 	}
+	@SuppressWarnings("static-access")
 	private void send_mail(String alici)
 	{
 		try
@@ -949,6 +960,7 @@ public class MAIL extends JInternalFrame {
 			txtalici.setEnabled(true);
 		}
 	}
+	@SuppressWarnings("static-access")
 	private void giden_doldur()
 	{
 		try {

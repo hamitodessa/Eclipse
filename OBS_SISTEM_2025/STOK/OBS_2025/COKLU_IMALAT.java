@@ -61,8 +61,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+@SuppressWarnings("serial")
 public class COKLU_IMALAT extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	@SuppressWarnings("static-access")
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 
 	private static JTable table;
@@ -95,6 +97,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("static-access")
 	public COKLU_IMALAT() {
 		setResizable(true);
 		setTitle("COKLU IMALAT");
@@ -399,7 +402,8 @@ public class COKLU_IMALAT extends JInternalFrame {
 		table.getColumnModel().getColumn(1).setCellRenderer(r);
 		table.repaint();
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
-		{		@Override
+		{		@SuppressWarnings("unused")
+		@Override
 			public void tableChanged(TableModelEvent e) {
 			TableModel model = (TableModel)e.getSource();
 			if (model.getRowCount() > 0) {
@@ -550,10 +554,12 @@ public class COKLU_IMALAT extends JInternalFrame {
 		if(g != 0 ) { return;	}	
 		///// Progres Bsr olayi
 		Runnable runner = new Runnable()
-		{ public void run() {
+		{ 
+		public void run() {
 			/////  
 			try {
 				GuiUtil.setWaitCursor(splitPane,true);
+				@SuppressWarnings("unused")
 				JInternalFrame internalFrame ;
 				internalFrame  = new IMALAT();
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
@@ -631,6 +637,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 		OBS_MAIN.progressBar.setValue(0);
 		OBS_MAIN.progressBar.setStringPainted(false);
 	}
+	@SuppressWarnings("static-access")
 	private void ana_grup_doldur()
 	{
 		try {
@@ -660,6 +667,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
+	@SuppressWarnings("static-access")
 	private void alt_grup_doldur()
 	{
 		try {
@@ -699,6 +707,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
+	@SuppressWarnings("static-access")
 	private void depo_doldur()
 	{
 		try {

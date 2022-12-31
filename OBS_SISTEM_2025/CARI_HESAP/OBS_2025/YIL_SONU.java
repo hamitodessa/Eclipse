@@ -53,6 +53,7 @@ import javax.swing.event.TableModelListener;
 
 import com.toedter.calendar.JDateChooser;
 
+import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
@@ -432,7 +433,8 @@ public class YIL_SONU extends JInternalFrame {
 					return ;
 				}
 			}
-			c_Access.akt_baglan(textField.getText());
+			
+			c_Access.akt_baglan(textField.getText() ,BAGLAN.cariDizin.sERVER);
 			int kaysay = 0 ;
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)

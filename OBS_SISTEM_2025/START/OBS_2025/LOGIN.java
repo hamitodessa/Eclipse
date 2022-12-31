@@ -964,7 +964,6 @@ public class LOGIN extends JFrame {
 		}
 		try 
 		{
-			//************************************
 			String eskitar = "" ;
 			String eskiver = "";
 			String yeniver = "";

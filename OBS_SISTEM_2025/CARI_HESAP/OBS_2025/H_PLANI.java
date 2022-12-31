@@ -45,6 +45,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+@SuppressWarnings("serial")
 public class H_PLANI extends JInternalFrame {
 	private static JTextField txtkayit;
 	private static JTextField txtkodu;

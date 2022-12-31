@@ -99,6 +99,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.JSeparator;
 
 @SuppressWarnings("static-access")
 public class CAL_DIZIN extends JFrame {
@@ -149,6 +150,7 @@ public class CAL_DIZIN extends JFrame {
 	static JCheckBoxMenuItem cbDosya;
 	static JCheckBoxMenuItem cbText;
 	static JCheckBoxMenuItem cbMail;
+	private JSeparator separator;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -217,7 +219,7 @@ public class CAL_DIZIN extends JFrame {
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
-		toolBar.setBounds(5, 5, 274, 27);
+		toolBar.setBounds(100, 5, 179, 27);
 		panel.add(toolBar);
 
 		JButton btnNewButton = new JButton("");
@@ -983,6 +985,7 @@ public class CAL_DIZIN extends JFrame {
 			txtcdid.setColumns(10);
 
 			cmbhangisql = new JComboBox<String>();
+			cmbhangisql.setForeground(new Color(0, 0, 139));
 			cmbhangisql.setFont(new Font("Tahoma", Font.BOLD, 11));
 			cmbhangisql.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent e) {
@@ -1076,6 +1079,11 @@ public class CAL_DIZIN extends JFrame {
 				}
 			});
 			panel.add(btnNewButton_6);
+			
+			separator = new JSeparator();
+			separator.setForeground(new Color(0, 191, 255));
+			separator.setBounds(24, 32, 260, 2);
+			panel.add(separator);
 	}
 	private   void grid_doldur() throws ClassNotFoundException, SQLException
 	{

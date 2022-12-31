@@ -19,12 +19,13 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 			cumle = "jdbc:sqlserver://localhost;instanceName=" + inst + ";";
 			conn = DriverManager.getConnection(cumle,kull,sifre);
 			conn.close();
-			return true;
+			result = true;
 		} 
 		catch (SQLException e)
 		{  
-			return false;  
+			result = false;  
 		}  
+		return result;
 	}
 	public boolean Server_kontrol_S(String server,  String inst,String kull, String sifre, String port) throws ClassNotFoundException
 	{
@@ -36,12 +37,13 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 			cumle = "jdbc:sqlserver://" + server + ";instanceName=" + inst + ";";
 			conn = DriverManager.getConnection(cumle,kull,sifre);
 			conn.close();
-			return true;
+			result =  true;
 		} 
 		catch (SQLException e)
 		{  
-			return false;  
+			result =  false;  
 		}  
+		return result;
 	}
 	public boolean Dosyakontrol_L(String db, String inst, String kull, String sifre, String port) throws ClassNotFoundException, SQLException 
 	{

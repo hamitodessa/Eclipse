@@ -277,7 +277,7 @@ public class ANA_MENU extends JDialog {
 						lblkalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
 						Lgn_Progres_Bar((int) toplam,(int) inen);
 						double speedInKBps = 0.00;
-						timeInSecs = (System.currentTimeMillis() - start) ; //converting millis to seconds as 1000m in 1 second
+						timeInSecs = (System.currentTimeMillis() - start) ; 
 						speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
 						label.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
 					}
@@ -300,21 +300,19 @@ public class ANA_MENU extends JDialog {
 				}
 				catch (Exception ex)
 				{
+					contentPane.setCursor(DEFAULT_CURSOR);
 					JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
 				} 
 			}
 		};
-		//// Progress Bar
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
 	}
 	private void indir_natro()
 	{
-		///// Progres Bsr olayi
 		Runnable runner = new Runnable()
 		{ 
 			public void run() {
-				/////  
 				FTPClient ftp = new FTPClient();
 				try {
 					lblboyut.setText(FORMATLAMA.doub_0(0) + " bytes");
@@ -373,7 +371,7 @@ public class ANA_MENU extends JDialog {
 						lblkalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
 						Lgn_Progres_Bar((int) toplam,(int) inen);
 						double speedInKBps = 0.00;
-						timeInSecs = (System.currentTimeMillis() - start) ; //converting millis to seconds as 1000m in 1 second
+						timeInSecs = (System.currentTimeMillis() - start) ; 
 						speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
 						label.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
 					}
@@ -396,6 +394,7 @@ public class ANA_MENU extends JDialog {
 				}
 				catch (Exception ex)
 				{
+					contentPane.setCursor(DEFAULT_CURSOR);
 					JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
 				} 
 			}

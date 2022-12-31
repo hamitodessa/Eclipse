@@ -14,7 +14,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.Properties;
 import java.util.Set;
 
@@ -138,15 +137,15 @@ public class GLOBAL {
 			tablo_yap(sorgu); 
 			sorgu = "CREATE TABLE LOG_MAIL (USER_NAME	CHAR(20),E_MAIL 	CHAR(50), AKTIV  INTEGER); " ;
 			tablo_yap(sorgu); 
-			sorgu = "CREATE INDEX IDX_USER_NAME  ON USER_DETAILS  (USER_NAME) ; " ;
-			tablo_yap(sorgu); 
+			//sorgu = "CREATE INDEX IDX_USER_NAME  ON USER_DETAILS  (USER_NAME) ; " ;
+			//tablo_yap(sorgu); 
 			Class.forName("org.sqlite.JDBC");
 			Connection conn = null;
 			conn = myConnection();
 			sorgu = "INSERT INTO USERS(USER_NAME,USER_PWD,USER_LEVEL,USER_DB_IZIN,USER_MAIL,USER_YENI_DOSYA_ACMA,USER_YENI_DOSYA_ACMA_SERVER)  VALUES(?,?,?,?,?,?,?); " ;
 			java.sql.PreparedStatement pstmt = conn.prepareStatement(sorgu) ;
 			pstmt.setString(1, "Admin");
-				byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("obs") ;
+			byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("obs") ;
 			String encodedString = Arrays.toString(qaz);
 			pstmt.setString(2, encodedString);
 			pstmt.setString(3, "1");
@@ -236,7 +235,6 @@ public class GLOBAL {
 			{
 				if (new String(ayarlar[i][0].toString()).equals(anahtar.toString()) == true) 
 				{
-					//	String qwe =  anahtar.toString().equals("SIFRE") ? ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(deger).toString() : deger;
 					ayarlar[i][1] = deger;
 					varmi = true;
 				}
@@ -251,6 +249,7 @@ public class GLOBAL {
 		} catch (IOException e1) {
 		}
 	}
+	@SuppressWarnings("unused")
 	public static void set_doldur() throws IOException {
 		InputStream input;
 		Properties prop = new Properties();
@@ -258,7 +257,7 @@ public class GLOBAL {
 		prop.load(input);
 		final Set<String> keys =  prop.stringPropertyNames(); 
 		int kac_satir = 0;
-		for (@SuppressWarnings("unused") final String key : keys) kac_satir += 1 ;
+		for ( final String key : keys) kac_satir += 1 ;
 		ayarlar  = new String[kac_satir][kac_satir];
 		int satir = 0;
 		for (final String key : keys)
@@ -318,7 +317,7 @@ public class GLOBAL {
 	{
 		OutputStream output;
 		try {
-			output = new FileOutputStream( GLOBAL.SURUCU + "/" +KULL_ADI +".properties");
+			output = new FileOutputStream( GLOBAL.SURUCU + "/admin.properties");
 			Properties prop = new Properties();
 			prop.setProperty("BENI_HATIRLA", "");
 			prop.setProperty("ISIM", "");

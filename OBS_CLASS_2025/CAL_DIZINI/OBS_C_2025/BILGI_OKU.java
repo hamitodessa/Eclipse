@@ -60,7 +60,12 @@ public class BILGI_OKU {
 			{ 
 				if (dIZIN.hAN_SQL.toString().equals("MS SQL") == true) 
 				{
-					dIZIN.cONN_STR =  "localhost;instanceName=" + dIZIN.iNSTANCE + " ; database=" + dOSYA_BASLANGIC  + dIZIN.kOD ;
+					String  port = dIZIN.sERVER ;
+					if ( ! port.toString().equals("") )
+					{
+						port =  ":" + port ;
+					}
+					dIZIN.cONN_STR =  "localhost "+ port +";instanceName=" + dIZIN.iNSTANCE + " ; database=" + dOSYA_BASLANGIC  + dIZIN.kOD ;
 				}
 				else   if (dIZIN.hAN_SQL.toString().equals("MY SQL") == true) 
 				{

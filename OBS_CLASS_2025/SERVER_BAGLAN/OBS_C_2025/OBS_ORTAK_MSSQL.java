@@ -14,11 +14,15 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 	public boolean Server_kontrol_L(String inst, String kull, String sifre, String port) throws ClassNotFoundException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		Connection conn = null;  
+		Connection conn = null; 
+		if ( ! port.toString().equals("") )
+		{
+			port =  ":" + port ;
+		}
 		try
 		{
 			String cumle = "";
-			cumle = "jdbc:sqlserver://localhost;instanceName=" + inst + ";";
+			cumle = "jdbc:sqlserver://localhost" + port  +";instanceName=" + inst + ";";
 			conn = DriverManager.getConnection(cumle,kull,sifre);
 			conn.close();
 			result = true;

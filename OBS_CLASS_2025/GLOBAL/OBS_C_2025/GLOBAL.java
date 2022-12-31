@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.Properties;
 import java.util.Set;
@@ -145,7 +146,8 @@ public class GLOBAL {
 			sorgu = "INSERT INTO USERS(USER_NAME,USER_PWD,USER_LEVEL,USER_DB_IZIN,USER_MAIL,USER_YENI_DOSYA_ACMA,USER_YENI_DOSYA_ACMA_SERVER)  VALUES(?,?,?,?,?,?,?); " ;
 			java.sql.PreparedStatement pstmt = conn.prepareStatement(sorgu) ;
 			pstmt.setString(1, "Admin");
-			String encodedString = Base64.getEncoder().encodeToString("obs".getBytes());
+				byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("obs") ;
+			String encodedString = Arrays.toString(qaz);
 			pstmt.setString(2, encodedString);
 			pstmt.setString(3, "1");
 			pstmt.setString(4, "");

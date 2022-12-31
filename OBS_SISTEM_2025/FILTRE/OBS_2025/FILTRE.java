@@ -71,6 +71,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
+@SuppressWarnings("static-access")
 public class FILTRE extends JDialog {
 
 	/**
@@ -79,6 +80,7 @@ public class FILTRE extends JDialog {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS() ;
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+	
 	private static STOK_ACCESS  f_Access = new STOK_ACCESS(oac._IStok , oac._IFatura_Loger);
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -374,6 +376,7 @@ public class FILTRE extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	@SuppressWarnings("deprecation")
 	public FILTRE() {
 
 		setTitle("FILTRE");
@@ -450,7 +453,6 @@ public class FILTRE extends JDialog {
 								cal.add(Calendar.DAY_OF_MONTH, -1); 
 								dateChooser.setDate(new Date(cal.getTimeInMillis()));
 							} catch (ParseException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 						}
@@ -464,7 +466,6 @@ public class FILTRE extends JDialog {
 								cal.add(Calendar.DAY_OF_MONTH, 1); // Add 30 days
 								dateChooser.setDate(new Date(cal.getTimeInMillis()));
 							} catch (ParseException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 						}
@@ -3087,7 +3088,7 @@ public class FILTRE extends JDialog {
 			comboBox_34 = new JComboBox<String>();
 			comboBox_34.setForeground(new Color(0, 0, 128));
 			comboBox_34.setFont(new Font("Tahoma", Font.BOLD, 12));
-			comboBox_34.setModel(new DefaultComboBoxModel(new String[] {"Agirlik", "Tutar", "Miktar"}));
+			comboBox_34.setModel(new DefaultComboBoxModel<String>(new String[] {"Agirlik", "Tutar", "Miktar"}));
 			comboBox_34.setBounds(90, 92, 125, 22);
 			panel_13.add(comboBox_34);
 
@@ -3099,7 +3100,7 @@ public class FILTRE extends JDialog {
 			comboBox_35 = new JComboBox<String>();
 			comboBox_35.setForeground(new Color(0, 0, 128));
 			comboBox_35.setFont(new Font("Tahoma", Font.BOLD, 12));
-			comboBox_35.setModel(new DefaultComboBoxModel(new String[] {"Urun Kodu", "Yil_Ay", "Yil", "Ana_Grup", "Alt_Grup", "Alt_Grup_Yil", "Alt_Grup_Yil_Ay", "Depo"}));
+			comboBox_35.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu", "Yil_Ay", "Yil", "Ana_Grup", "Alt_Grup", "Alt_Grup_Yil", "Alt_Grup_Yil_Ay", "Depo"}));
 			comboBox_35.setSelectedIndex(2);
 			comboBox_35.setBounds(90, 118, 125, 22);
 			panel_13.add(comboBox_35);
@@ -3649,6 +3650,7 @@ public class FILTRE extends JDialog {
 			textField_60.setColumns(10);
 			textField_60.setBounds(248, 91, 125, 20);
 			textField_60.addMouseListener(new MouseAdapter() {
+			
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					if (e.getClickCount() == 2) 
@@ -3992,7 +3994,7 @@ public class FILTRE extends JDialog {
 
 			comboBox_65 = new JComboBox<String>();
 			comboBox_65.setForeground(new Color(0, 0, 128));
-			comboBox_65.setModel(new DefaultComboBoxModel(new String[] {"Urun Kodu"}));
+			comboBox_65.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu"}));
 			comboBox_65.setFont(new Font("Tahoma", Font.BOLD, 12));
 			comboBox_65.setBounds(571, 92, 149, 22);
 			panel_21.add(comboBox_65);
@@ -4217,24 +4219,24 @@ public class FILTRE extends JDialog {
 			lblNewLabel_35_1.setBounds(26, 55, 62, 14);
 			panel_23.add(lblNewLabel_35_1);
 
-			comboBox_72 = new JComboBox();
+			comboBox_72 = new JComboBox<String>();
 			comboBox_72.setFont(new Font("Tahoma", Font.BOLD, 12));
 			comboBox_72.setForeground(new Color(0, 0, 128));
-			comboBox_72.setModel(new DefaultComboBoxModel(new String[] {"MA", "MS", "SA", "SS", "BA", "BB"}));
+			comboBox_72.setModel(new DefaultComboBoxModel<String>(new String[] {"MA", "MS", "SA", "SS", "BA", "BB"}));
 			comboBox_72.setBounds(110, 90, 62, 22);
 			panel_23.add(comboBox_72);
 
-			comboBox_73 = new JComboBox();
+			comboBox_73 = new JComboBox<String>();
 			comboBox_73.setFont(new Font("Tahoma", Font.BOLD, 12));
 			comboBox_73.setForeground(new Color(0, 0, 128));
-			comboBox_73.setModel(new DefaultComboBoxModel(new String[] {"Gun", "Ay", "Yil"}));
+			comboBox_73.setModel(new DefaultComboBoxModel<String>(new String[] {"Gun", "Ay", "Yil"}));
 			comboBox_73.setBounds(110, 123, 62, 22);
 			panel_23.add(comboBox_73);
 
 			comboBox_74 = new JComboBox<String>();
 			comboBox_74.setForeground(new Color(25, 25, 112));
 			comboBox_74.setFont(new Font("Tahoma", Font.BOLD, 12));
-			comboBox_74.setModel(new DefaultComboBoxModel(new String[] {"USD", "EUR"}));
+			comboBox_74.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR"}));
 			comboBox_74.setEditable(true);
 			comboBox_74.setBounds(110, 53, 62, 22);
 			panel_23.add(comboBox_74);

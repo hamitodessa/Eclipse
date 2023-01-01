@@ -131,7 +131,7 @@ public class EMIR extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	public EMIR() {
 		addWindowListener(new WindowAdapter() {
 			@Override

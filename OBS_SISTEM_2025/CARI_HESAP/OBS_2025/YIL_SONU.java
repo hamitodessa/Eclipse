@@ -80,6 +80,8 @@ public class YIL_SONU extends JInternalFrame {
 	private static JDateChooser dateChooser ;
 	private  JLabel lblNewLabel_3 ;
 	private static JSplitPane splitPaneana ;
+	private static JPanel panel ;
+	private JScrollPane scrollPane ;
 
 	/**
 	 * Launch the application.
@@ -137,7 +139,7 @@ public class YIL_SONU extends JInternalFrame {
 		lblNewLabel_3.setForeground(Color.BLUE);
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		splitPane1.setRightComponent(scrollPane);
 
 		table = new JTable(){
@@ -155,7 +157,7 @@ public class YIL_SONU extends JInternalFrame {
 		table.setGridColor(oac.gridcolor);
 		scrollPane.setViewportView(table);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 80));
 		panel.setMaximumSize(new Dimension(0, 80));
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -422,10 +424,8 @@ public class YIL_SONU extends JInternalFrame {
 		
 		try 
 		{
-			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,true);
 			if (textField.getText().equals(""))
 			{
-				GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 				JOptionPane.showMessageDialog(null,  "Aktarma Yapilacak Veritabani Kodu Bos..."); 	
 				return ;
 			}     
@@ -433,12 +433,10 @@ public class YIL_SONU extends JInternalFrame {
 			{
 				if (textField_1.getText().equals(""))
 				{
-					GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 					JOptionPane.showMessageDialog(null, "Devir Karsi Hesap Kodu Bos..."); 	
 					return ;
 				}
 			}
-			
 			c_Access.akt_baglan(textField.getText() ,BAGLAN.cariDizin.sERVER);
 			int kaysay = 0 ;
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -450,7 +448,6 @@ public class YIL_SONU extends JInternalFrame {
 					kaysay += 1 ;
 				}
 			}
-			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 			int g = JOptionPane.showOptionDialog( null,  "Aktarilacak Kayit Sayisi.. =" + kaysay, "Aktarma",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
 			if(g != 0 ) { return;	}	
@@ -458,7 +455,6 @@ public class YIL_SONU extends JInternalFrame {
 			sayi =c_Access.yilsonu_hesap_plani_kayit_adedi() ;
 
 			JOptionPane.showMessageDialog(null, "Aktarilacak Dosyadaki Kayit Sayisi.....:" + sayi); 
-			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,true);
 			int say   = 0 ;
 			for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
 			{
@@ -474,7 +470,6 @@ public class YIL_SONU extends JInternalFrame {
 					say += 1;
 				}
 			}
-			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 			JOptionPane.showMessageDialog(null,  "Hesap Plani Aktarma Islemi Basari ile gerceklestirildi...." 
 					+ System.lineSeparator() + System.lineSeparator()  + "Aktarilan Hesap Sayisi...: " + say); 
 			//'*****MIZAN AKTARMA YAP '******
@@ -485,7 +480,6 @@ public class YIL_SONU extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
@@ -493,7 +487,6 @@ public class YIL_SONU extends JInternalFrame {
 	{
 		try
 		{
-			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,true);
 			double  bir = 0 ;
 			double  iki = 0 ;
 			double  uc = 0 ;
@@ -558,12 +551,10 @@ public class YIL_SONU extends JInternalFrame {
 				}
 
 			}  // ilk For INT
-			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 			JOptionPane.showMessageDialog(null,  "Mizan Aktarma Islemi Basari ile Tamamlandi...."  + System.lineSeparator() + System.lineSeparator() + "Aktarilan Hesap Sayisi...: " + say); 
 		}
 		catch (Exception ex)
 		{
-			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
@@ -582,8 +573,6 @@ public class YIL_SONU extends JInternalFrame {
 			}
 		}
 	}
-
-	//*
 	class CheckBoxHeader extends JCheckBox   implements TableCellRenderer, MouseListener {
 		protected CheckBoxHeader rendererComponent;
 		protected int column;

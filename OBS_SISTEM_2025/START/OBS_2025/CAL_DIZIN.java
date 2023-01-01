@@ -1391,7 +1391,6 @@ public class CAL_DIZIN extends JFrame {
 	{
 		if ( s_CONN.Dosya_kontrol_L(program,comboBox.getSelectedItem().toString() ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),txtIp.getText()) == true)
 		{
-
 			boolean izinli = true;
 			if ( !GLOBAL.KULL_ADI.equals("Admin") )
 			{

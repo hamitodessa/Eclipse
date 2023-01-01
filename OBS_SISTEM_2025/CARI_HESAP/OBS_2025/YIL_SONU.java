@@ -419,9 +419,8 @@ public class YIL_SONU extends JInternalFrame {
 
 		lblNewLabel_3.setText(FORMATLAMA.doub_0(satir_kontrol()));
 	}
-	public static void kaydet()
+	public static  void kaydet()
 	{
-		
 		try 
 		{
 			if (textField.getText().equals(""))
@@ -453,7 +452,6 @@ public class YIL_SONU extends JInternalFrame {
 			if(g != 0 ) { return;	}	
 			int sayi = 0 ;
 			sayi =c_Access.yilsonu_hesap_plani_kayit_adedi() ;
-
 			JOptionPane.showMessageDialog(null, "Aktarilacak Dosyadaki Kayit Sayisi.....:" + sayi); 
 			int say   = 0 ;
 			for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)

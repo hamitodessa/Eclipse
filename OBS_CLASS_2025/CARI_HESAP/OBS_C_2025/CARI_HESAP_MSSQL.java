@@ -55,7 +55,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			port =  ":" + port ;
 		}
 		cumle = "jdbc:sqlserver://localhost" + port + ";instanceName=" + ins + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		con = DriverManager.getConnection(cumle,kull,sifre);   // SERVER BAGLANDI
 		String VERITABANI = "OK_Car" + kod;
 		stmt = null;
 		String sql =null;
@@ -65,7 +65,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			sql = "CREATE DATABASE [" + VERITABANI + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf ' ) " ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:sqlserver://localhost" + port + ";instanceName=" + ins + ";database=" + VERITABANI + ";";
+		cumle = "jdbc:sqlserver://localhost" + port + ";instanceName=" + ins + ";database=" + VERITABANI + ";";  // DATABASE BAGLANDI
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table(fir_adi);
 		//
@@ -73,10 +73,10 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
 		else
 			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG" + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + "_LOG" + ".mdf' ) ";
-		cumle = "jdbc:sqlserver://localhost" + port + ";instanceName=" + ins + ";";
+		cumle = "jdbc:sqlserver://localhost" + port + ";instanceName=" + ins + ";";  // SERVER BAGLANDI
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:sqlserver://localhost" + port + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
+		cumle = "jdbc:sqlserver://localhost" + port + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";  // DATABASE BAGLANDI
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS

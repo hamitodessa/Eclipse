@@ -47,7 +47,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = null;  
 		String cumle = "";
-		cumle = "jdbc:mysql://localhost:" + port ;
+		cumle = "jdbc:mysql://localhost:" + port ;  // SERVER BAGLANDI
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		String VERITABANI = "ok_car" + kod;
 		stmt = null;
@@ -56,7 +56,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt = con.createStatement();  
 		stmt.execute(sql);
 		cumle = "jdbc:mysql://localhost/" +VERITABANI ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		con = DriverManager.getConnection(cumle,kull,sifre);  // DATABASE BAGLANDI
 		create_table(fir_adi);
 		//
 		sql = "CREATE DATABASE " + VERITABANI + "_log" ;

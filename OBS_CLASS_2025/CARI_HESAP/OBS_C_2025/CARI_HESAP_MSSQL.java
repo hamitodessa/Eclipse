@@ -41,9 +41,11 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		else
 		{ 
 			cnnstr = BAGLAN.cariDizin.sERVER + ";instanceName=" +BAGLAN.cariDizin.iNSTANCE + " ; database=OK_Car" + kod ;
+			//cnnstr = "localhost;instanceName=SQLEXPRESS ; database=OK_Car2023" ;
 		}
 		String cumle = "jdbc:sqlserver://" + cnnstr + ";";
 		akt_con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
+		//akt_con = DriverManager.getConnection(cumle,"sa","197227oOk");
 	}
 	public void cari_sifirdan_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
 			String sifre,String port) throws ClassNotFoundException, SQLException {

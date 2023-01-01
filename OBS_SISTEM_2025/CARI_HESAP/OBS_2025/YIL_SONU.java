@@ -66,6 +66,7 @@ import OBS_C_2025.TARIH_CEVIR;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings({"serial" , "static-access" ,"deprecation" ,"unused"})
 public class YIL_SONU extends JInternalFrame {
 	private static final Vector<?> Boolean = null;
 	private static JTable table;
@@ -77,7 +78,8 @@ public class YIL_SONU extends JInternalFrame {
 	private JLabel lblNewLabel_1;
 	private static JCheckBox chckbxNewCheckBox ;
 	private static JDateChooser dateChooser ;
-		private  JLabel lblNewLabel_3 ;
+	private  JLabel lblNewLabel_3 ;
+	private static JSplitPane splitPaneana ;
 
 	/**
 	 * Launch the application.
@@ -105,7 +107,7 @@ public class YIL_SONU extends JInternalFrame {
 		setTitle("YIL SONU AKTARMA");
 		setBounds(0, 0, 700, 600);
 
-		JSplitPane splitPaneana = new JSplitPane();
+		splitPaneana = new JSplitPane();
 		splitPaneana.setDividerSize(0);
 		splitPaneana.setResizeWeight(1.0);
 		splitPaneana.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -296,7 +298,6 @@ public class YIL_SONU extends JInternalFrame {
 		//***********
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
 		{
-
 			public void tableChanged(TableModelEvent e) 
 			{
 				TableModel model = (TableModel)e.getSource();
@@ -418,10 +419,13 @@ public class YIL_SONU extends JInternalFrame {
 	}
 	public static void kaydet()
 	{
+		
 		try 
 		{
+			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,true);
 			if (textField.getText().equals(""))
 			{
+				GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 				JOptionPane.showMessageDialog(null,  "Aktarma Yapilacak Veritabani Kodu Bos..."); 	
 				return ;
 			}     
@@ -429,6 +433,7 @@ public class YIL_SONU extends JInternalFrame {
 			{
 				if (textField_1.getText().equals(""))
 				{
+					GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 					JOptionPane.showMessageDialog(null, "Devir Karsi Hesap Kodu Bos..."); 	
 					return ;
 				}
@@ -445,13 +450,15 @@ public class YIL_SONU extends JInternalFrame {
 					kaysay += 1 ;
 				}
 			}
+			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 			int g = JOptionPane.showOptionDialog( null,  "Aktarilacak Kayit Sayisi.. =" + kaysay, "Aktarma",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
 			if(g != 0 ) { return;	}	
 			int sayi = 0 ;
-			sayi =c_Access.hesap_plani_kayit_adedi() ;
+			sayi =c_Access.yilsonu_hesap_plani_kayit_adedi() ;
 
 			JOptionPane.showMessageDialog(null, "Aktarilacak Dosyadaki Kayit Sayisi.....:" + sayi); 
+			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,true);
 			int say   = 0 ;
 			for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
 			{
@@ -467,6 +474,7 @@ public class YIL_SONU extends JInternalFrame {
 					say += 1;
 				}
 			}
+			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 			JOptionPane.showMessageDialog(null,  "Hesap Plani Aktarma Islemi Basari ile gerceklestirildi...." 
 					+ System.lineSeparator() + System.lineSeparator()  + "Aktarilan Hesap Sayisi...: " + say); 
 			//'*****MIZAN AKTARMA YAP '******
@@ -477,6 +485,7 @@ public class YIL_SONU extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
+			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
@@ -484,6 +493,7 @@ public class YIL_SONU extends JInternalFrame {
 	{
 		try
 		{
+			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,true);
 			double  bir = 0 ;
 			double  iki = 0 ;
 			double  uc = 0 ;
@@ -548,16 +558,19 @@ public class YIL_SONU extends JInternalFrame {
 				}
 
 			}  // ilk For INT
+			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 			JOptionPane.showMessageDialog(null,  "Mizan Aktarma Islemi Basari ile Tamamlandi...."  + System.lineSeparator() + System.lineSeparator() + "Aktarilan Hesap Sayisi...: " + say); 
 		}
 		catch (Exception ex)
 		{
+			GuiUtil.setWaitCursor(YIL_SONU.splitPaneana,false);
 			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
 	///********
 	class MyItemListener implements ItemListener
 	{
+		@SuppressWarnings("removal")
 		@Override
 		public void itemStateChanged(ItemEvent e) {
 			Object source = e.getSource();

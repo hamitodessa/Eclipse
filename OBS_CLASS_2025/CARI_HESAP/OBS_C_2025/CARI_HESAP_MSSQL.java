@@ -865,6 +865,16 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
+	public int yilsonu_hesap_plani_kayit_adedi () throws ClassNotFoundException, SQLException
+	{
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = "SELECT COUNT( HESAP) AS SAYI FROM HESAP ";
+		PreparedStatement stmt = akt_con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		rss.next();
+		return rss.getInt("SAYI");
+	}
 	public void yilsonu_hpln_kayit(String kodu,String adi,String karton,String hcins,String usr) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

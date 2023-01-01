@@ -217,6 +217,10 @@ public class CARI_ACCESS {
 	{
 		return _ICari.hesap_plani_kayit_adedi();
 	}
+	public int yilsonu_hesap_plani_kayit_adedi () throws ClassNotFoundException, SQLException
+	{
+		return _ICari.yilsonu_hesap_plani_kayit_adedi();
+	}
 	public void hpln_ilk_detay_kayit(String kodu) throws ClassNotFoundException, SQLException 
 	{
 		_ICari.hpln_ilk_detay_kayit(kodu);

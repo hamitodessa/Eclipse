@@ -55,6 +55,7 @@ public interface ICARI_HESAP {
 	public void yilsonu_hpln_detay_kayit(String kodu ,String yet ,String ad1 ,String ad2 ,String semt,String seh  , String vd , String vn 
 			, String t1 ,String t2 ,String t3 ,String fx ,String o1 ,String o2 ,String o3 , String web 
 			,String mai ,String kim  ,String acik  ) throws ClassNotFoundException, SQLException, IOException;
+	public int yilsonu_hesap_plani_kayit_adedi () throws ClassNotFoundException, SQLException;
 	public ResultSet mizan_aktar (String hesap) throws ClassNotFoundException, SQLException;
 	public int yilsonu_cari_fisno_al() throws ClassNotFoundException, SQLException;
 	public void yilsonu_cari_dekont_kaydet(String bhes,String tar,int evrak,String bcins,Double bkur,Double borc ,

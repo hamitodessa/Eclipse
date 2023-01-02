@@ -23,13 +23,20 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
+import org.xml.sax.helpers.DefaultHandler;
+import org.xml.sax.*;
+import org.xml.sax.helpers.*;
 
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
@@ -39,6 +46,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.JTree;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.RowSorter;
@@ -49,13 +57,17 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -269,7 +281,7 @@ public class E_FATURA extends JInternalFrame {
 				    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
 				    		 try {
 				    			File file = chooser.getSelectedFile();
-				    			doldur2(file);
+				    			doldur3(file);
 							} catch (Exception ex) {
 								JOptionPane.showMessageDialog(null, ex.getMessage());
 							}
@@ -296,6 +308,9 @@ public class E_FATURA extends JInternalFrame {
 			table1.setBorder(null);
 			scrollPane2.add(table1);
 		
+			//
+			
+			
 	}
 	private void doldur(File dosya) 
 	{
@@ -386,6 +401,28 @@ public class E_FATURA extends JInternalFrame {
 	            System.out.print("error");
 	        }
 	}
+	private void doldur3(File dosya) throws ParserConfigurationException, SAXException, IOException
+	{
+		InputStream inputStream= new FileInputStream(dosya);
+        Reader reader = new InputStreamReader(inputStream,"UTF-8");
+        InputSource is = new InputSource(reader);
+        is.setEncoding("UTF-8");
+
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document doc = dBuilder.parse(is);
+        
+         
+		 Node companyNode = doc.getElementsByTagName("cac:InvoiceLine").item(0);
+		    NodeList companyChildNodes = companyNode.getChildNodes();
+		    for (int i = 0; i < companyChildNodes.getLength(); i++) {
+		        Node node = companyChildNodes.item(i);
+		      //  if (node.getNodeType() == Node.ELEMENT_NODE && Objects.equals("cbc:Name", node.getNodeName())) {
+		            System.out.println(node.getNodeName() + "="+ node.getTextContent());
+		         //   break;
+			    }
+       
+	}
 	public void arama()  
 	{
 		if (textField.getText().equals(""))
@@ -406,3 +443,4 @@ public class E_FATURA extends JInternalFrame {
 		}
 	}
 }
+

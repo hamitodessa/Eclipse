@@ -377,17 +377,7 @@ public class E_FATURA extends JInternalFrame {
 	      
 	             table1.setModel(model1);
 	             
-	             String xml = "<a><o><u>ok</u></o></a>";
-	           doc = 
-	              DocumentBuilderFactory
-	              .newInstance()
-	              .newDocumentBuilder()
-	              .parse(new InputSource(new StringReader(xml)));
-	             NodeList nl = doc.getElementsByTagName("*");
-	             for (int i = 0; i < nl.getLength(); i++)
-	             {
-	               System.out.println("name is : "+nl.item(i).getNodeName());
-	             }
+	           
 
 	        }
 	        catch(Exception ex)

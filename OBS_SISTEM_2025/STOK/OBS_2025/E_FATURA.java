@@ -421,6 +421,13 @@ public class E_FATURA extends JInternalFrame {
 		            System.out.println(node.getNodeName() + "="+ node.getTextContent());
 		         //   break;
 			    }
+		    
+		    for(int i=0;i<companyChildNodes.getLength();i++){
+		        Node n=companyChildNodes.item(i);
+		        if(n.getNodeType()==Node.ELEMENT_NODE){
+		           System.out.println(n.getNodeName()+"\t"+n.getTextContent());
+		        }
+		    }
        
 	}
 	public void arama()  

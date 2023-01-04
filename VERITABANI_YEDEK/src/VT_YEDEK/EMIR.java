@@ -108,8 +108,7 @@ public class EMIR extends JFrame {
 	private JCheckBox chckbxYEREL;
 	private JSpinner.DateEditor de_spinBAS;
 	private JSpinner.DateEditor de_spinBIT;
-	private  	JSpinner.DateEditor timeEditor_1;
-	
+		
 	/**
 	 * Launch the application.
 	 */
@@ -145,6 +144,7 @@ public class EMIR extends JFrame {
 					e1.printStackTrace();
 				}
 			}
+			@SuppressWarnings("static-access")
 			@Override
 			public void windowOpened(WindowEvent e) {
 				
@@ -153,7 +153,7 @@ public class EMIR extends JFrame {
 						
 						if(oac.yENI_EMIR == true)
 						{
-							DefaultListModel listModel = (DefaultListModel) list.getModel();
+							DefaultListModel<CheckListItem> listModel = (DefaultListModel<CheckListItem>) list.getModel();
 							listModel.removeAllElements();
 						}
 						else
@@ -204,7 +204,7 @@ public class EMIR extends JFrame {
 		cmbSQL.setEnabled(false);
 		cmbSQL.setForeground(new Color(0, 0, 139));
 		cmbSQL.setFont(new Font("Tahoma", Font.BOLD, 11));
-		cmbSQL.setModel(new DefaultComboBoxModel(new String[] {"MS SQL", "MY SQL"}));
+		cmbSQL.setModel(new DefaultComboBoxModel<String>(new String[] {"MS SQL", "MY SQL"}));
 		cmbSQL.setBounds(1, 1, 1, 22);
 		panel.add(cmbSQL);
 		
@@ -234,7 +234,6 @@ public class EMIR extends JFrame {
 	    list.setCellRenderer(new CheckListRenderer());
 	    list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	    list.addListSelectionListener(new ListSelectionListener() {
-	    	 @SuppressWarnings("deprecation")
 			public void valueChanged(ListSelectionEvent e) {
 			      if (!e.getValueIsAdjusting()) {
 			        System.out.println(Arrays.toString(list.getSelectedValues()));
@@ -823,8 +822,9 @@ public class EMIR extends JFrame {
 		panel_5.setLayout(null);
 		tabbedPane.addTab("Emir Kopyala", null, panel_5, null);
 
+		
+		
 	}
-	@SuppressWarnings("unused")
 	private void kayDET() throws SQLException, ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		try

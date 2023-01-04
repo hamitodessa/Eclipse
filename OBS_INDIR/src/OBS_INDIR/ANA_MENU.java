@@ -381,12 +381,26 @@ public class ANA_MENU extends JDialog {
 					inputStream.close();
 					//Version dosyasi Indir
 					String remoteFile1 = "/OBS_SISTEM_2025/OBS_VERSION.txt";
+					File tmpDir = new File( "C:\\OBS_SISTEM\\" );
+					boolean exists = tmpDir.exists();
+					if (! exists)
+					{
+						tmpDir.mkdirs();
+						File logDir = new File("C:\\OBS_SISTEM\\");
+						logDir.mkdirs();
+					}
 					File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSION.txt");
+					//
+					if (!downloadFile1.exists()) {
+						downloadFile1.createNewFile();
+					}
+					//
 					OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
 					ftp.retrieveFile(remoteFile1, outputStream1);
 					outputStream1.close();
 					//*******************************
 					if (success) {
+						contentPane.setCursor(DEFAULT_CURSOR);
 						JOptionPane.showMessageDialog(null, "Indirme Islemi Basari ile tamamlandi....",  "OBS Indirme", JOptionPane.PLAIN_MESSAGE);   
 					}
 					contentPane.setCursor(DEFAULT_CURSOR);

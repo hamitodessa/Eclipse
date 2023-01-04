@@ -218,7 +218,7 @@ public class GLOBAL {
 					Tema_Cari.dosya_yap();
 					set_ilk() ; //obs_set_olustur();
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, e.getMessage());
+					JOptionPane.showMessageDialog(null, "burdaa"+e.getMessage());
 				}
 			}
 		}

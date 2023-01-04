@@ -129,40 +129,7 @@ public class LOGIN extends JFrame {
 	});
 	}
 	public LOGIN() throws IOException {
-		LOGIN.setDefaultLookAndFeelDecorated(true);
-		try {
-			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal"))
-			{
-				MetalLookAndFeel.setCurrentTheme(new  DefaultMetalTheme());
-				UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-				oac.txt_yukseklik = 20;
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal Klasik"))
-			{
-				MetalLookAndFeel.setCurrentTheme(new OceanTheme());
-				UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-				oac.txt_yukseklik = 20;
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows"))
-			{
-				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-				oac.txt_yukseklik = 20;
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Nimbus"))
-			{
-				for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-					if ("Nimbus".equals(info.getName())) 
-					{
-						javax.swing.UIManager.setLookAndFeel(info.getClassName());
-						oac.txt_yukseklik = 25;
-					}
-				}
-			}
-		} 
-		catch (Exception ex) 
-		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "PRG_GORUNUM", JOptionPane.ERROR_MESSAGE);        
-		}
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/obs_p.png")));
 		setResizable(false);
 		setTitle("OBS SISTEM GIRIS");
@@ -375,7 +342,43 @@ public class LOGIN extends JFrame {
 		//VERSION KONTROL/////
 		versiyon_oku();
 		//************SURUCU KONTROL**************************
-		GLOBAL.surucu_kontrol();
+			GLOBAL.surucu_kontrol();
+			///////////
+			LOGIN.setDefaultLookAndFeelDecorated(true);
+			try 
+			{
+				if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal"))
+				{
+					MetalLookAndFeel.setCurrentTheme(new  DefaultMetalTheme());
+					UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+					oac.txt_yukseklik = 20;
+				}
+				else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal Klasik"))
+				{
+					MetalLookAndFeel.setCurrentTheme(new OceanTheme());
+					UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+					oac.txt_yukseklik = 20;
+				}
+				else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows"))
+				{
+					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+					oac.txt_yukseklik = 20;
+				}
+				else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Nimbus"))
+				{
+					for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+						if ("Nimbus".equals(info.getName())) 
+						{
+							javax.swing.UIManager.setLookAndFeel(info.getClassName());
+							oac.txt_yukseklik = 25;
+						}
+					}
+				}
+			} 
+			catch (Exception ex) 
+			{
+				JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "PRG_GORUNUM", JOptionPane.ERROR_MESSAGE);        
+			}
 		//************BENI_HATIRLA**	
 		String deger;
 		deger = GLOBAL.setting_oku("BENI_HATIRLA").toString();

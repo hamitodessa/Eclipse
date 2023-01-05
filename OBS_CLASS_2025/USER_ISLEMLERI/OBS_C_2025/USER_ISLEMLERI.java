@@ -22,7 +22,7 @@ public class USER_ISLEMLERI {
 	String encodedString;
 	public  Boolean user_var(String usr,String pwd) throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
-		con = null;
+		if (con != null && con.isClosed() == false) con.close();
 		result = false;
 		con = gLB.myConnection();
 		java.sql.PreparedStatement stmt = con.prepareStatement("SELECT * FROM USERS WHERE USER_NAME=? AND USER_PWD=?");
@@ -41,8 +41,7 @@ public class USER_ISLEMLERI {
 	public void user_sil(String usr) throws SQLException, ClassNotFoundException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();
 		String sql = "DELETE FROM USERS WHERE USER_NAME = ? ";
@@ -55,8 +54,7 @@ public class USER_ISLEMLERI {
 	public void user_details_sil(String user) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = gLB.myConnection();
 		String sql = "DELETE  FROM USER_DETAILS WHERE USER_NAME =?";
@@ -69,8 +67,7 @@ public class USER_ISLEMLERI {
 	public ResultSet user_details_bak() throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con = gLB.myConnection();
@@ -82,8 +79,7 @@ public class USER_ISLEMLERI {
 	public ResultSet user_isim_doldur() throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con = gLB.myConnection();
@@ -95,8 +91,7 @@ public class USER_ISLEMLERI {
 	public Boolean user_bak(String usr) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		result = false;
 		con = gLB.myConnection();
 		PreparedStatement stmt = con.prepareStatement("SELECT * FROM USERS WHERE USER_NAME=?");
@@ -113,8 +108,7 @@ public class USER_ISLEMLERI {
 	public ResultSet user_db_izinleri(String username,String prg) throws SQLException, ClassNotFoundException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();
@@ -129,8 +123,7 @@ public class USER_ISLEMLERI {
 	{
 		Class.forName("org.sqlite.JDBC");
 		PreparedStatement stmt = null;
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		con =  gLB.myConnection();
 		String sql ="UPDATE  USERS  SET USER_PWD=?  WHERE USER_NAME=?";
 		stmt = con.prepareStatement(sql);
@@ -152,7 +145,7 @@ public class USER_ISLEMLERI {
 	public  ResultSet user_details_izinleri(String kull, String modul, String nerde) throws SQLException, ClassNotFoundException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
+		if (con != null && ! con.isClosed()) con.close();
 		gLB.myConnection().close();
 		con = null;
 		ResultSet	rss = null;
@@ -166,8 +159,7 @@ public class USER_ISLEMLERI {
 	public void calisanmi_degis(String user , String program,String yer ) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();
 		String sql = "UPDATE  USER_DETAILS  SET CALISAN_MI=?  WHERE USER_NAME =?  AND USER_PROG_OBS=?";
@@ -183,8 +175,7 @@ public class USER_ISLEMLERI {
 			,String dizin, String yer, String dcins, String izli, String calmi, String hsql,String cdid,int log,String logla) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = gLB. myConnection();
 		if (!cdid.equals(""))
@@ -229,8 +220,7 @@ public class USER_ISLEMLERI {
 	public void user_ekle_degis(String user , String pwd ,String lvl ,String udbi ,String um ,Boolean uyda ,Boolean uydas ) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();
 		String sql = "INSERT INTO USERS (USER_NAME,USER_PWD,USER_LEVEL,USER_DB_IZIN,USER_MAIL,USER_YENI_DOSYA_ACMA,USER_YENI_DOSYA_ACMA_SERVER)" +
@@ -261,8 +251,7 @@ public class USER_ISLEMLERI {
 	public void ip_dos_kont(String ip) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();
@@ -284,8 +273,7 @@ public class USER_ISLEMLERI {
 	public void log_mail_kont_kayit(String ussr, String mail) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();
@@ -320,8 +308,7 @@ public class USER_ISLEMLERI {
 	public   ResultSet log_mail_oku (String kull ) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();
@@ -333,8 +320,7 @@ public class USER_ISLEMLERI {
 	public void    log_mail_sil (String kull , String mail ) throws SQLException, ClassNotFoundException 
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();
 		String sql = "DELETE  FROM LOG_MAIL   WHERE USER_NAME = '" + kull + "' AND E_MAIL = '"+ mail +"'";
@@ -344,8 +330,7 @@ public class USER_ISLEMLERI {
 	public    String log_mail_aktiv_oku  (String kull ) throws ClassNotFoundException, SQLException 
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		GLOBAL glb = new GLOBAL();
@@ -363,8 +348,7 @@ public class USER_ISLEMLERI {
 	public   ResultSet  ipp (String kull) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();
@@ -376,8 +360,7 @@ public class USER_ISLEMLERI {
 	public void cd_sil(int cdid) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();
 		String sql ="DELETE  FROM USER_DETAILS WHERE CDID =" + cdid + "";
@@ -388,8 +371,7 @@ public class USER_ISLEMLERI {
 	public ResultSet user_ekleme_bak() throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();
@@ -401,8 +383,7 @@ public class USER_ISLEMLERI {
 	public void mail_bak() throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();
@@ -453,8 +434,7 @@ public class USER_ISLEMLERI {
 	public void mail_yaz(String hsp,String host,String port,String sifre,String gmail,String ghesap,int ssl,int tsl) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = gLB.myConnection();
 		String sql = "DELETE FROM E_MAIL_BILGILERI WHERE USER_NAME = ? ";
@@ -489,8 +469,7 @@ public class USER_ISLEMLERI {
 	public ResultSet alici_oku(String usr) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con = gLB.myConnection();
@@ -503,8 +482,7 @@ public class USER_ISLEMLERI {
 	public void giden_rapor_yaz(Date tar ,String konu,String rapor,String alici,String gond,String aciklama,String uname) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = gLB.myConnection();
 		String sql =  "INSERT INTO GIDEN_RAPOR (USER_NAME,TARIH,KONU,RAPOR,ALICI,ACIKLAMA,GONDEREN) " +
@@ -524,8 +502,7 @@ public class USER_ISLEMLERI {
 	public void giden_rapor_sil(int id) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = gLB.myConnection();
 		String sql = "DELETE  FROM GIDEN_RAPOR WHERE ID  =" + id + "";
@@ -537,8 +514,7 @@ public class USER_ISLEMLERI {
 	public ResultSet giden_rapor(String usr) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
-		con.close();
-		con = null;
+		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con = gLB.myConnection();

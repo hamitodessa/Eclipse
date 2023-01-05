@@ -87,6 +87,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
+@SuppressWarnings("serial")
 public class FATURA extends JInternalFrame {
 
 	public static JTextField textField;

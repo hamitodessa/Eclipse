@@ -101,6 +101,21 @@ public class BASLA extends JFrame {
 			btnNewButton.setBounds(10, 26, 130, 23);
 			panel.add(btnNewButton);
 			
+			JButton btnNewButton_2 = new JButton("olan emir");
+			btnNewButton_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					oac.yENI_EMIR = false ;
+					VT_ANA_CLASS.EMIR_ADI="hamit" ;
+					EMIR emr = new EMIR();
+				
+					emr.setVisible(true);
+					dispose();
+				}
+			});
+			btnNewButton_2.setBounds(10, 60, 130, 23);
+			panel.add(btnNewButton_2);
+			
 		//
 			@SuppressWarnings("static-access")
 			File tmpDir = new File(glb.SURUCU + glb.SQL_BACKUP);

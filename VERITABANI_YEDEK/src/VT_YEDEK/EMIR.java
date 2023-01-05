@@ -68,7 +68,7 @@ import javax.swing.SwingConstants;
 public class EMIR extends JFrame {
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	private JPanel contentPane;
-	private JTextField txtEMIR_ISMI;
+	private static JTextField txtEMIR_ISMI;
 	private JTextField txtHOST;
 	private JTextField txtKULL;
 	private JTextField txtSUNUCU;
@@ -88,8 +88,8 @@ public class EMIR extends JFrame {
 	private static JList<CheckListItem> list ;
 	public static JComboBox<String> cmbSQL;
 	static SQL_BACKUP sqll = new SQL_BACKUP();
-	private JCheckBox chckbxDURUM  ;
-	private JTextArea txtAciklama ;
+	private static JCheckBox chckbxDURUM  ;
+	private static JTextArea txtAciklama ;
 	private JCheckBox chckbxFTP;
 	private JPasswordField txtPWD;
 	private JPasswordField txtSMTP_PWD;
@@ -104,7 +104,7 @@ public class EMIR extends JFrame {
 	private JCheckBox chckbxCUM;
 	private JCheckBox chckbxCTESI;
 	private JCheckBox chckbxPAZ;
-	private JCheckBox chckbxHANGI;
+	private static JCheckBox chckbxHANGI;
 	private JCheckBox chckbxYEREL;
 	private JSpinner.DateEditor de_spinBAS;
 	private JSpinner.DateEditor de_spinBIT;
@@ -939,6 +939,11 @@ public class EMIR extends JFrame {
 				cmbSQL.setSelectedItem(rss.getString("HANGI_SQL").toString());
 				dbDOLDUR(rss.getString("INSTANCE") , rss.getString("KULLANICI"), ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rss.getBytes("SIFRE")));
 			}
+			rss = sqll.emirBILGI(VT_ANA_CLASS.EMIR_ADI);
+			genel_DOLDUR(rss);
+			rss = sqll.dbLISTE(VT_ANA_CLASS.EMIR_ADI);
+			db_DOLDUR(rss);
+			
 		} 
 	catch (Exception e1)
 	{
@@ -946,6 +951,44 @@ public class EMIR extends JFrame {
         listModel.removeAllElements();
 		e1.printStackTrace();
 	}	
+	}
+	private static void genel_DOLDUR(ResultSet rss) throws SQLException
+	{
+		if(rss.getBoolean("SQL_YEDEK"))
+		{
+			chckbxHANGI.setSelected(true);
+		}
+		else
+		{
+			chckbxHANGI.setSelected(false);
+		}
+		if(rss.getBoolean("DURUM"))
+		{
+			chckbxDURUM.setSelected(true);
+		}
+		else
+		{
+			chckbxDURUM.setSelected(false);
+		}
+		txtEMIR_ISMI.setText(rss.getString("EMIR_ISMI"));
+		txtAciklama.setText("EMIR_ACIKLAMA");
+	}
+	private static void db_DOLDUR(ResultSet rss) throws SQLException
+	{
+		
+	    
+		while(rss.next())
+		{
+			for (int i = 0;  i < list.getModel().getSize(); i++) {
+				  
+				if (rss.getString("DB_ADI").equals(list.getModel().getElementAt(i).toString()))
+				{
+					  CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
+				        item.setSelected(true); // Toggle
+				}
+				
+				}
+		}
 	}
 	private void ftpKONTROL() throws HeadlessException, IOException
 	{

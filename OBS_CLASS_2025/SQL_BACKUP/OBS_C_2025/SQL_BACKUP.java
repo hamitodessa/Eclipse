@@ -84,6 +84,19 @@ public class SQL_BACKUP {
 		rss = stmt.executeQuery();
 		return rss;
 	}
+	@SuppressWarnings("static-access")
+	public ResultSet dbLISTE(String emir) throws ClassNotFoundException, SQLException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		ResultSet	rss = null;
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "SELECT * FROM DB_ISIM WHERE  EMIR_ISMI ='" + emir + "'";
+		stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;
+	}
 	public  ResultSet msSQLDB(String inst , String kull,String sifre) throws ClassNotFoundException, SQLException
 	{
 		if (con != null && con.isClosed() == false) con.close();

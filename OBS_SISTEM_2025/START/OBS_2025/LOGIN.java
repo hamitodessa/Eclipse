@@ -1009,7 +1009,7 @@ public class LOGIN extends JFrame {
 			}
 
 			ftp.enterLocalPassiveMode();
-			String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
+			String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_SISTEM_2025/OBS_VERSION.txt";
 			File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");
 			OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
 			boolean success = ftp.retrieveFile(remoteFile1, outputStream1);
@@ -1037,14 +1037,16 @@ public class LOGIN extends JFrame {
 				}
 			}   
 			bufferedReader.close();
+		
 			if (eskiver.equals(yeniver))
 			{
+			
 				File f= new File("C:/OBS_SISTEM/OBS_VERSIONS.txt");           //file to be delete  
 				success = f.delete();  
 			}
 			else
 			{
-				File f= new File("C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");           //file to be delete  
+				File f= new File("C:/OBS_SISTEM/" + "OBS_VERSIONS.txt");           //file to be delete  
 				f.delete();  
 				String html = "<html><body width='%1s'><h1>OBS SISTEM</h1>"
 						+ "Yeni Versiyon Mevcut.......	 "

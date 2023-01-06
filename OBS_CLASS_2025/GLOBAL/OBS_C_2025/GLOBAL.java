@@ -80,7 +80,7 @@ public class GLOBAL {
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE FTP ( EMIR_ISMI nvarchar(30),NERESI nvarchar(3),HOST nvarchar(30) ,KULLANICI nvarchar(50),SIFRE BLOB,SURUCU nvarchar(50),PORT nvarchar(3),ZMN_ASIMI nvarchar(10),ESKI_YEDEK nvarchar(3),SURUCU_YER nvarchar(100)) ; " ;
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE BILGILENDIRME ( EMIR_ISMI nvarchar(30) ,DURUM BIT,GONDERILDIGINDE BIT,HATA_DURUMUNDA BIT ,GON_ISIM  nvarchar(50),GON_HESAP nvarchar(30), ALICI nvarchar(30), KONU nvarchar(50), SMTP nvarchar(30), SMTP_PORT nvarchar(3), KULLANICI nvarchar(30), SIFRE nvarchar(30), SSL BLOB,TSL BLOB) ;";
+			sorgu = "CREATE TABLE BILGILENDIRME ( EMIR_ISMI nvarchar(30) ,DURUM BIT,GONDERILDIGINDE BIT,HATA_DURUMUNDA BIT ,GON_ISIM  nvarchar(50),GON_HESAP nvarchar(30), ALICI nvarchar(30), KONU nvarchar(50), SMTP nvarchar(30), SMTP_PORT nvarchar(3), KULLANICI nvarchar(30), SIFRE BLOB, SSL BLOB,TSL BLOB) ;";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE YEDEKLEME (EMIR_ISMI nvarchar(30) , SAAT nvarchar(2),P_TESI BLOB,SALI BLOB " 
 				    +" ,CARS BLOB,PERS BLOB,CUMA BLOB,C_TESI BLOB,PAZAR BLOB,BASLAMA DATETIME,BITIS DATETIME ) ; ";

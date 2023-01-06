@@ -13,8 +13,11 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -69,43 +72,46 @@ public class EMIR extends JFrame {
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	private JPanel contentPane;
 	private static JTextField txtEMIR_ISMI;
-	private JTextField txtHOST;
-	private JTextField txtKULL;
-	private JTextField txtSUNUCU;
-	private JTextField txtZMNASIMI;
-	private JTextField txtPORT;
-	private JTextField txtSURUCU;
-	private JTextField txtESKIYEDEK;
-	private JTextField txtGON_ISIM;
-	private JTextField txtGON_ADRES;
-	private JTextField txtALICI;
-	private JTextField txtKONU;
-	private JTextField txtSMTP;
-	private JTextField txtSMTP_PORT;
-	private JTextField txtSMTP_KULL;
-	private JTextField textField_17;
+	private static JTextField txtHOST;
+	private static JTextField txtKULL;
+	private static JTextField txtSUNUCU;
+	private static JTextField txtZMNASIMI;
+	private static JTextField txtPORT;
+	private static JTextField txtSURUCU;
+	private static JTextField txtESKIYEDEK;
+	private static JTextField txtGON_ISIM;
+	private static JTextField txtGON_ADRES;
+	private static JTextField txtALICI;
+	private static JTextField txtKONU;
+	private static JTextField txtSMTP;
+	private static JTextField txtSMTP_PORT;
+	private static JTextField txtSMTP_KULL;
+	private static JCheckBox chckbxDRM ;
+	private static JTextField txtHER;
 	private static boolean kontrol;
 	private static JList<CheckListItem> list ;
 	public static JComboBox<String> cmbSQL;
 	static SQL_BACKUP sqll = new SQL_BACKUP();
 	private static JCheckBox chckbxDURUM  ;
 	private static JTextArea txtAciklama ;
-	private JCheckBox chckbxFTP;
-	private JPasswordField txtPWD;
-	private JPasswordField txtSMTP_PWD;
-	private JCheckBox chckbxGON;
-	private JCheckBox chckbxHATA;
-	private JCheckBox chckbxSSL;
-	private JCheckBox chckbxTSL;
-	private JCheckBox chckbxPTESI;
-	private JCheckBox chckbxSALI;
-	private JCheckBox chckbxCAR;
-	private JCheckBox chckbxPER;
-	private JCheckBox chckbxCUM;
-	private JCheckBox chckbxCTESI;
-	private JCheckBox chckbxPAZ;
+	private static JCheckBox chckbxFTP;
+	private static JPasswordField txtPWD;
+	private static JPasswordField txtSMTP_PWD;
+	private static JCheckBox chckbxGON;
+	private static JCheckBox chckbxHATA;
+	private static JCheckBox chckbxSSL;
+	private static JCheckBox chckbxTSL;
+	private static JCheckBox chckbxPTESI;
+	private static JCheckBox chckbxSALI;
+	private static JCheckBox chckbxCAR;
+	private static JCheckBox chckbxPER;
+	private static JCheckBox chckbxCUM;
+	private static JCheckBox chckbxCTESI;
+	private static JCheckBox chckbxPAZ;
+	private static JSpinner spinBAS ;
+	private static JSpinner spinBIT ;
 	private static JCheckBox chckbxHANGI;
-	private JCheckBox chckbxYEREL;
+	private static JCheckBox chckbxYEREL;
 	private JSpinner.DateEditor de_spinBAS;
 	private JSpinner.DateEditor de_spinBIT;
 		
@@ -415,13 +421,11 @@ public class EMIR extends JFrame {
 		panel_7.add(lblNewLabel_7);
 		
 		txtHOST = new JTextField();
-		txtHOST.setText("okumus.gen.tr");
 		txtHOST.setBounds(88, 22, 158, 20);
 		panel_7.add(txtHOST);
 		txtHOST.setColumns(10);
 		
 		txtKULL = new JTextField();
-		txtKULL.setText("u5789784");
 		txtKULL.setBounds(88, 50, 158, 20);
 		panel_7.add(txtKULL);
 		txtKULL.setColumns(10);
@@ -441,7 +445,6 @@ public class EMIR extends JFrame {
 		panel_8.add(lblNewLabel_8);
 		
 		txtSUNUCU = new JTextField();
-		txtSUNUCU.setText("PLAST_BAK_2022/");
 		txtSUNUCU.setBounds(88, 21, 222, 20);
 		panel_8.add(txtSUNUCU);
 		txtSUNUCU.setColumns(10);
@@ -451,7 +454,6 @@ public class EMIR extends JFrame {
 		panel_8.add(lblNewLabel_9);
 		
 		txtZMNASIMI = new JTextField();
-		txtZMNASIMI.setText("300");
 		txtZMNASIMI.setBounds(88, 53, 55, 20);
 		panel_8.add(txtZMNASIMI);
 		txtZMNASIMI.setColumns(10);
@@ -461,7 +463,6 @@ public class EMIR extends JFrame {
 		panel_8.add(lblNewLabel_10);
 		
 		txtPORT = new JTextField();
-		txtPORT.setText("21");
 		txtPORT.setBounds(222, 52, 86, 20);
 		panel_8.add(txtPORT);
 		txtPORT.setColumns(10);
@@ -574,7 +575,7 @@ public class EMIR extends JFrame {
 		lblNewLabel_14.setBounds(30, 22, 46, 14);
 		panel_3.add(lblNewLabel_14);
 		
-		JCheckBox chckbxDRM = new JCheckBox("Aktif / Pasif");
+		chckbxDRM = new JCheckBox("Aktif / Pasif");
 		chckbxDRM.setBounds(100, 18, 153, 23);
 		panel_3.add(chckbxDRM);
 		
@@ -728,10 +729,10 @@ public class EMIR extends JFrame {
 		lblNewLabel_23.setBounds(36, 32, 46, 14);
 		panel_4.add(lblNewLabel_23);
 		
-		textField_17 = new JTextField();
-		textField_17.setBounds(118, 29, 46, 20);
-		panel_4.add(textField_17);
-		textField_17.setColumns(10);
+		txtHER = new JTextField();
+		txtHER.setBounds(118, 29, 46, 20);
+		panel_4.add(txtHER);
+		txtHER.setColumns(10);
 		
 		JLabel lblNewLabel_24 = new JLabel("Dakkada bir");
 		lblNewLabel_24.setBounds(189, 32, 105, 14);
@@ -783,17 +784,17 @@ public class EMIR extends JFrame {
 		lblNewLabel_27.setBounds(10, 56, 46, 14);
 		panel_14.add(lblNewLabel_27);
 		
-		JSpinner spinBAS = new JSpinner( new SpinnerDateModel() );
+		spinBAS = new JSpinner( new SpinnerDateModel() );
 		de_spinBAS = new JSpinner.DateEditor(spinBAS, "HH:mm");
 		spinBAS.setEditor(de_spinBAS);
 		Date d = new Date();
-		  d.setHours(0);
+		 d.setHours(0);
 		  d.setMinutes(0);
 		spinBAS.setValue(d); 
 		spinBAS.setBounds(119, 28, 63, 20);
 		panel_14.add(spinBAS);
 		
-		JSpinner spinBIT = new JSpinner( new SpinnerDateModel() );
+		spinBIT = new JSpinner( new SpinnerDateModel() );
 		 de_spinBIT = new JSpinner.DateEditor(spinBIT, "HH:mm");
 		spinBIT.setEditor(de_spinBIT);
 		  d.setHours(0);
@@ -811,6 +812,9 @@ public class EMIR extends JFrame {
 				} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
 						| NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException
 						| BadPaddingException | SQLException e1) {
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -943,7 +947,12 @@ public class EMIR extends JFrame {
 			genel_DOLDUR(rss);
 			rss = sqll.dbLISTE(VT_ANA_CLASS.EMIR_ADI);
 			db_DOLDUR(rss);
-			
+			rss = sqll.surBILGI(VT_ANA_CLASS.EMIR_ADI);
+			sur_DOLDUR(rss);
+			rss = sqll.bilgilendirmeBILGI(VT_ANA_CLASS.EMIR_ADI);
+			bilgi_DOLDUR(rss);
+			rss = sqll.yedeklemeBILGI(VT_ANA_CLASS.EMIR_ADI);
+			yedek_DOLDUR(rss);
 		} 
 	catch (Exception e1)
 	{
@@ -954,6 +963,9 @@ public class EMIR extends JFrame {
 	}
 	private static void genel_DOLDUR(ResultSet rss) throws SQLException
 	{
+		if (!rss.isBeforeFirst() ) {  
+			return;
+		} 
 		if(rss.getBoolean("SQL_YEDEK"))
 		{
 			chckbxHANGI.setSelected(true);
@@ -976,7 +988,9 @@ public class EMIR extends JFrame {
 	private static void db_DOLDUR(ResultSet rss) throws SQLException
 	{
 		
-	    
+		if (!rss.isBeforeFirst() ) {  
+			return;
+		} 
 		while(rss.next())
 		{
 			for (int i = 0;  i < list.getModel().getSize(); i++) {
@@ -989,6 +1003,28 @@ public class EMIR extends JFrame {
 				
 				}
 		}
+	}
+	private static void sur_DOLDUR(ResultSet rss) throws SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		if (!rss.isBeforeFirst() ) {  
+			return;
+		} 
+		if(rss.getString("NERESI").equals("FTP"))
+		{
+			chckbxFTP.isSelected();
+		}
+		else
+		{
+			chckbxYEREL.isSelected();
+		}
+		txtHOST.setText(rss.getString("HOST"));
+		txtKULL.setText(rss.getString("KULLANICI"));
+		txtPWD.setText(ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rss.getBytes("SIFRE"))) ;
+		txtSUNUCU.setText(rss.getString("SURUCU"));
+		txtZMNASIMI.setText(rss.getString("ZMN_ASIMI"));
+		txtPORT.setText(rss.getString("PORT"));
+		txtSURUCU.setText(rss.getString("SURUCU_YER"));
+		txtESKIYEDEK.setText(rss.getString("ESKI_YEDEK"));
 	}
 	private void ftpKONTROL() throws HeadlessException, IOException
 	{
@@ -1013,14 +1049,66 @@ public class EMIR extends JFrame {
 	}	
 		
 	}
+	private static void bilgi_DOLDUR(ResultSet rss) throws SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		if (!rss.isBeforeFirst() ) {  
+			return;
+		} 
+		if(rss.getBoolean("DURUM"))
+		{
+			chckbxDRM.setSelected(true);
+		}
+		else
+		{
+			chckbxDRM.setSelected(false);
+		}
+		if(rss.getBoolean("GONDERILDIGINDE"))
+		{
+			chckbxGON.setSelected(true);
+		}
+		else
+		{
+			chckbxHATA.setSelected(false);
+		}
+		
+		
+		txtGON_ISIM.setText(rss.getString("GON_ISIM"));
+		txtGON_ADRES.setText(rss.getString("GON_HESAP"));
+		txtALICI.setText(rss.getString("ALICI"));
+		txtKONU.setText(rss.getString("KONU"));
+		txtSMTP.setText(rss.getString("SMTP"));
+		txtSMTP_PORT.setText(rss.getString("SMTP_PORT"));
+		txtSMTP_KULL.setText(rss.getString("KULLANICI"));
+		txtSMTP_PWD.setText(ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rss.getBytes("SIFRE"))) ;
+		chckbxSSL.setSelected(rss.getBoolean("SSL"));
+		chckbxTSL.setSelected(rss.getBoolean("TSL"));
+	}
+	private static void yedek_DOLDUR(ResultSet rss) throws SQLException
+	{
+		if (!rss.isBeforeFirst() ) {  
+			return;
+		} 
+		txtHER.setText(rss.getString("SAAT"));
+		chckbxPTESI.setSelected(rss.getBoolean("P_TESI"));
+		chckbxSALI.setSelected(rss.getBoolean("SALI"));
+		chckbxCAR.setSelected(rss.getBoolean("CARS"));
+		chckbxPER.setSelected(rss.getBoolean("PERS"));
+		chckbxCUM.setSelected(rss.getBoolean("CUMA"));
+		chckbxCTESI.setSelected(rss.getBoolean("C_TESI"));
+		chckbxPAZ.setSelected(rss.getBoolean("PAZAR"));
+		
+		spinBAS.setValue(rss.getDate("BASLAMA")); 
+		spinBIT.setValue(rss.getDate("BITIS")); 
+
+	}
 	private void bilgiKAYIT() throws InvalidKeyException, ClassNotFoundException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, SQLException
 	{
 		 sqll.bilgilendirme_kayit_sil(txtEMIR_ISMI.getText());
          sqll.bilgilendirme_ismi_kayit(txtEMIR_ISMI.getText(), chckbxDURUM.isSelected(), chckbxGON.isSelected(), chckbxHATA.isSelected(), txtGON_ISIM.getText(),
         		 txtGON_ADRES.getText(),txtALICI.getText(), txtKONU.getText(), txtSMTP.getText(), txtSMTP_PORT.getText(), 
-        		 				txtKULL.getText(),oac.sDONDUR.sDONDUR(txtPWD), chckbxSSL.isSelected(), chckbxTSL.isSelected());
+        		 				txtKULL.getText(),oac.sDONDUR.sDONDUR(txtSMTP_PWD), chckbxSSL.isSelected(), chckbxTSL.isSelected());
 	}
-	private void yedeklemeKAYIT() throws InvalidKeyException, ClassNotFoundException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, SQLException
+	private void yedeklemeKAYIT() throws InvalidKeyException, ClassNotFoundException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, SQLException, ParseException
 	{
 		 boolean  drm  = false ;
 		           if(chckbxPTESI.isSelected())
@@ -1059,6 +1147,37 @@ public class EMIR extends JFrame {
 		          {
 		        	  sqll.durum_kayit_durum(txtEMIR_ISMI.getText(), true);
 		          }
+		          
+		        //  If RTBaslama.Value > RTBitis.Value Then
+	           //     RadMessageBox.Show(Me, "Bitis Zamani Baslangic Zamanindan Kucuk olamaz", "Yedekleme Bilgileri", MessageBoxButtons.OK, RadMessageIcon.Exclamation, MessageBoxDefaultButton.Button1, RightToLeft.No)
+	         //       Exit Sub
+	          //  End If
+	          
+	           sqll.yedekleme_kayit_sil(txtEMIR_ISMI.getText());
+	           // Dim bir, iki As TimeSpan
+	          //  bir = New TimeSpan(RTBaslama.Value.Value.Hour, RTBaslama.Value.Value.Minute, 0)
+	          //  iki = New TimeSpan(RTBitis.Value.Value.Hour, RTBitis.Value.Value.Minute, 0)
+	
+	           Object value = spinBAS.getValue();
+	           Object value2 = spinBIT.getValue();
+	           Date dateBAS = null;
+	           Date dateBIT = null;
+               SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+               
+               if (value instanceof Date) {
+                   Date date = (Date)value;
+                    String time = format.format(date);
+                    dateBAS = (Date) format.parse(time);      
+                  
+                   Date date2 = (Date)value2;
+                   String time2 = format.format(date2);
+                    dateBIT = (Date) format.parse(time2);     
+               }
+         
+             
+	          sqll.yedekleme_ismi_kayit(txtEMIR_ISMI.getText(),txtHER.getText(),	chckbxPTESI.isSelected(), chckbxSALI.isSelected(), chckbxCAR.isSelected(),
+	        		  chckbxPER.isSelected(), chckbxCUM.isSelected(),chckbxCTESI.isSelected(), chckbxPAZ.isSelected(), dateBAS,dateBIT);
+
 		
 	}
 }

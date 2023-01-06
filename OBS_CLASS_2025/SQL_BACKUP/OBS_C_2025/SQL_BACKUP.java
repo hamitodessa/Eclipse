@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -85,6 +86,46 @@ public class SQL_BACKUP {
 		return rss;
 	}
 	@SuppressWarnings("static-access")
+	public ResultSet surBILGI(String emir) throws ClassNotFoundException, SQLException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		ResultSet	rss = null;
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "SELECT  * FROM FTP  WHERE EMIR_ISMI = '" + emir + "'";
+		stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+	
+		return rss;
+	}
+	@SuppressWarnings("static-access")
+	public ResultSet bilgilendirmeBILGI(String emir) throws ClassNotFoundException, SQLException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		ResultSet	rss = null;
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "SELECT  * FROM BILGILENDIRME  WHERE EMIR_ISMI = '" + emir + "'";
+		stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;
+	}
+	@SuppressWarnings("static-access")
+	public ResultSet yedeklemeBILGI(String emir) throws ClassNotFoundException, SQLException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		ResultSet	rss = null;
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "SELECT  * FROM YEDEKLEME  WHERE EMIR_ISMI = '" + emir + "'";
+		stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;
+	}
+	@SuppressWarnings("static-access")
 	public ResultSet dbLISTE(String emir) throws ClassNotFoundException, SQLException
 	{
 		if (con != null && con.isClosed() == false) con.close();
@@ -139,6 +180,20 @@ public class SQL_BACKUP {
 		con.close();
 	}
 	@SuppressWarnings("static-access")
+	public void yedekleme_kayit_sil(String eismi) throws SQLException, ClassNotFoundException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con =  gLB.myBackupConnection();
+		String sql = "DELETE FROM YEDEKLEME  WHERE EMIR_ISMI = ? ";
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1,eismi);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
+	@SuppressWarnings("static-access")
 	public void genel_kayit(String eismi , boolean drm, String konu, String inst , boolean  sqlyed ) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		if (con != null && con.isClosed() == false) con.close();
@@ -154,6 +209,35 @@ public class SQL_BACKUP {
 			stmt.setString(3, konu);
 			stmt.setString(4, inst);
 			stmt.setBoolean(5, sqlyed);
+		}
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
+	@SuppressWarnings("static-access")
+	public void yedekleme_ismi_kayit(String  eismi , String  saa , boolean  pt ,boolean  sa ,boolean  ca 
+            ,boolean  pe ,boolean  cu ,boolean  ct ,boolean  pz ,Date  bas , Date  bit ) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "INSERT INTO YEDEKLEME  (EMIR_ISMI,SAAT,P_TESI,SALI,CARS,PERS,CUMA,C_TESI,PAZAR,BASLAMA,BITIS) ";
+		sql += "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+		{
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, eismi);
+			stmt.setString(2,  saa);
+			stmt.setBoolean(3,pt);
+			stmt.setBoolean(4,sa);
+			stmt.setBoolean(5, ca);
+			stmt.setBoolean(6,pe);
+			stmt.setBoolean(7,cu);
+			stmt.setBoolean(8,ct);
+			stmt.setBoolean(9,pz);
+			stmt.setDate(10,   new java.sql.Date(bas.getTime()));
+			stmt.setDate(11,  new java.sql.Date(bit.getTime()));
+			
 		}
 		stmt.executeUpdate();
 		stmt.close();

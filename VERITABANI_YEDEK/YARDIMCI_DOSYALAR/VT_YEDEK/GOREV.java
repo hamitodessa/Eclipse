@@ -16,7 +16,9 @@ import javax.swing.border.TitledBorder;
 
 public class GOREV {
 
-	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,int num,String isim) {
+	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,String surUCU,
+			String acikLAMA)
+	{
 	        JPanel p = new JPanel(new GridBagLayout());
 	        p.setBorder(new TitledBorder(emirAdi));
 	        ((javax.swing.border.TitledBorder) p.getBorder()).setTitleFont(new Font("Arial", Font.BOLD, 14));
@@ -31,11 +33,11 @@ public class GOREV {
 	        p.add(new JLabel(sonDurum), gbc);
 	
 	        gbc.gridx = 2;
-	        p.add(new JLabel("Son Yedekleme :" ), gbc);
+	        p.add(new JLabel("          Son Yedekleme :" ), gbc);
 	        
 	        gbc.gridx = 3;
 	        JLabel lblson = new JLabel(sonYEDEK );
-	        lblson.setForeground(Color.GREEN);
+	        lblson.setForeground(Color.green);
 	        p.add(lblson, gbc);
 
 	        gbc.gridy = 1;
@@ -46,7 +48,7 @@ public class GOREV {
 	        p.add(new JLabel(Integer.toString(dosyaSayisi) + " Adet Dosya" ), gbc);
 
 	        gbc.gridx = 2;
-	        p.add(new JLabel("Gelecek Yedekleme :" ), gbc);
+	        p.add(new JLabel("          Gelecek Yedekleme :" ), gbc);
 	        gbc.gridx = 3;
 	        
 	        JLabel lblgel = new JLabel(gelYEDEK );
@@ -56,14 +58,21 @@ public class GOREV {
 	        gbc.gridy = 2;
 	        gbc.gridx = 0;
 	        gbc.weightx = 0.0;
-	        gbc.gridwidth = 3;
-	        p.add(new JLabel("Surucu / FTP  hjljgjgf jgldsho hgoih gh ghofh hgiroh guire:" ), gbc);
+	        gbc.gridwidth = 2;
+	        p.add(new JLabel("Surucu / FTP  :" ), gbc);
+	        
+	        gbc.gridx = 1;
+	        p.add(new JLabel(surUCU), gbc);
 	        
 	        gbc.gridy = 3;
 	        gbc.gridx = 0;
 	        gbc.weightx = 0.0;
 	        gbc.gridwidth = 3;
-	        p.add(new JLabel("Surucu / FTP  hjljgjgf jgldsho hgoih gh ghofh hgiroh guire:" ), gbc);
+	        p.add(new JLabel("Aciklama:" ), gbc);
+	        
+	        gbc.gridx = 1;
+	        p.add(new JLabel(acikLAMA ), gbc);
+	        
 	        
 	        gbc.gridy = 4;
 	        gbc.gridx = 0;

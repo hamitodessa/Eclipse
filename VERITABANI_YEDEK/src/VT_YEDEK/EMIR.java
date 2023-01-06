@@ -114,6 +114,7 @@ public class EMIR extends JFrame {
 	private static JCheckBox chckbxYEREL;
 	private JSpinner.DateEditor de_spinBAS;
 	private JSpinner.DateEditor de_spinBIT;
+	private static JLabel lblNewLabel_4;
 		
 	/**
 	 * Launch the application.
@@ -243,6 +244,7 @@ public class EMIR extends JFrame {
 			public void valueChanged(ListSelectionEvent e) {
 			      if (!e.getValueIsAdjusting()) {
 			        System.out.println(Arrays.toString(list.getSelectedValues()));
+			        dosyaSAY();
 			      }
 			    }
 	    	
@@ -324,7 +326,7 @@ public class EMIR extends JFrame {
 		lblNewLabel_3.setBounds(22, 456, 81, 14);
 		panel_1.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("0");
+		lblNewLabel_4 = new JLabel("0");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_4.setBounds(113, 456, 38, 14);
 		panel_1.add(lblNewLabel_4);
@@ -876,6 +878,21 @@ public class EMIR extends JFrame {
 		e1.printStackTrace();
 	}	
 	}
+	private static void dosyaSAY()
+	{
+		
+		int say= 0 ;
+		  for (int i = 0; i < list.getModel().getSize(); i++)
+	       {
+	    	   CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
+	    	   if(item.isSelected())
+	    	   {
+	    		  say = say +1  ;
+	    		  
+	    	   }
+	       }
+		 lblNewLabel_4.setText(Integer.toString( say));
+	}
 	private void ftpKAYDET() throws InvalidKeyException, NumberFormatException, ClassNotFoundException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, SQLException
 	{
 		sqll.ftp_kayit_sil(txtEMIR_ISMI.getText());
@@ -1003,6 +1020,7 @@ public class EMIR extends JFrame {
 				
 				}
 		}
+		dosyaSAY();
 	}
 	private static void sur_DOLDUR(ResultSet rss) throws SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
@@ -1011,11 +1029,11 @@ public class EMIR extends JFrame {
 		} 
 		if(rss.getString("NERESI").equals("FTP"))
 		{
-			chckbxFTP.isSelected();
+			chckbxFTP.setSelected(true);
 		}
 		else
 		{
-			chckbxYEREL.isSelected();
+			chckbxYEREL.setSelected(true);
 		}
 		txtHOST.setText(rss.getString("HOST"));
 		txtKULL.setText(rss.getString("KULLANICI"));

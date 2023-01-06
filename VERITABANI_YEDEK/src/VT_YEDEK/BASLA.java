@@ -65,7 +65,7 @@ public class BASLA extends JFrame {
 		panel.setLayout(null);
 		splitPane.setLeftComponent(panel);
 		  JPanel pList = new JPanel(new GridLayout(0, 1, 3, 3));
-	        pList.setBorder(new TitledBorder("GridLayout"));
+	        pList.setBorder(new TitledBorder("Emirler"));
         
 	        JScrollPane scrollPane = new JScrollPane(pList,
 	                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -78,7 +78,7 @@ public class BASLA extends JFrame {
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				     for (int ii = 1; ii < 6; ii++) {
-				            pList.add(GOREV.getShowRoomPanel(ii,"hhh"));
+				            pList.add(GOREV.getShowRoomPanel("hamit","Yedeklendi"  , 8  ,"05.01.2022 15.04"  ,"06.01.2023 15.04"   ,ii,"hhh"));
 				        }
 				     scrollPane.revalidate();
 				     scrollPane.repaint();

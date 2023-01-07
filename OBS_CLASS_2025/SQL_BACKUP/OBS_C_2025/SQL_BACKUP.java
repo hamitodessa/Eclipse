@@ -168,6 +168,21 @@ public class SQL_BACKUP {
 		rss = stmt.executeQuery();
 		return rss;
 	}
+	@SuppressWarnings("static-access")
+	public int dbSAYISI(String emir) throws ClassNotFoundException, SQLException
+	{
+		Class.forName("org.sqlite.JDBC");
+		ResultSet	rss = null;
+		PreparedStatement stmt = null;
+		Connection conn = gLB.myBackupConnection();
+		String sql = "SELECT COUNT(DB_ADI) as ADET FROM DB_ISIM WHERE  EMIR_ISMI ='" + emir + "'";
+		stmt = conn.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		rss.next();
+		int adet = rss.getInt("ADET");
+		conn.close();
+			return adet;
+	}
 	public  ResultSet msSQLDB(String inst , String kull,String sifre) throws ClassNotFoundException, SQLException
 	{
 		if (con != null && con.isClosed() == false) con.close();

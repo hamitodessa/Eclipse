@@ -214,14 +214,15 @@ public class BASLA extends JFrame {
 
 		while(rss.next())
 		{
-			String  tarih ="30.12.1899 00:00" ;
+			String  tarih ="" ;
 			if(rss.getDate("SON_YUKLEME") != null)
 			{
 				SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 				tarih = f.format(	rss.getDate("SON_YUKLEME"));
 			}
 		
-			pPanel.add(GOREV.getShowRoomPanel(rss.getString("EMIR_ISMI"),rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi"  , 8  ,
+			pPanel.add(GOREV.getShowRoomPanel(rss.getString("EMIR_ISMI"),rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi"  , 
+					sqll.dbSAYISI(rss.getString("EMIR_ISMI"))  ,
 					tarih,"06.01.2023 15.04"   ,rss.getString("EMIR_ACIKLAMA") ,rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv",
 							sqll.ftp_NERESI(rss.getString("EMIR_ISMI"))));
 		}

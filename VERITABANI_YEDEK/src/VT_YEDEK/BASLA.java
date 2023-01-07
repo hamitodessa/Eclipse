@@ -203,7 +203,7 @@ public class BASLA extends JFrame {
 			
 			emirDOLDUR();
 	}
-	public void emirDOLDUR() throws ClassNotFoundException, SQLException
+	public void emirDOLDUR() throws ClassNotFoundException, SQLException, InterruptedException
 	{
 		ResultSet rss ;
 		rss = sqll.emirLER();

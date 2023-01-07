@@ -85,8 +85,9 @@ public class GOREV {
 	        JButton btnNewButton = new JButton("go");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					   JOptionPane.showMessageDialog(null,  emirAdi,  "Eksik Kur Okuma", JOptionPane.ERROR_MESSAGE);
-					
+					   System.out.println("="+BASLA.gorevLER.size());
+					BASLA.gorevLER.add(emirAdi);
+					   System.out.println("==" +BASLA.gorevLER.size());
 				}
 			});
 	        p.add(btnNewButton, gbc);

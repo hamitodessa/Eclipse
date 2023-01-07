@@ -11,6 +11,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,6 +31,7 @@ public class BASLA extends JFrame {
 	private JPanel contentPane;
 	GLOBAL glb = new GLOBAL();
 	public   JPanel pPanel;
+	public  static List<String> gorevLER  = new ArrayList<>();
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	/**
 	 * Launch the application.
@@ -128,31 +131,31 @@ public class BASLA extends JFrame {
 					 String compoName;
 					 for (Component compoo : components) {
 				            compoName = compoo.getClass().getName();
-					            System.out.println(compoo.getClass().getName().substring(compoName.indexOf("swing.") + "swing.".length(), compoName.length()));
-					           ///
-					                if (compoo  instanceof JPanel)
+						                if (compoo  instanceof JPanel)
 					                {
 					                   JPanel dp = (JPanel) compoo;
+					                   String emirAdi = "hamit";
 					                System.out.println(   ((TitledBorder) dp.getBorder()).getTitle());
-					                   Font font2 = new Font("Verdana", Font.ITALIC, 12);
-					                   TitledBorder border = new TitledBorder("hamit");
-					                   border.setTitleFont(font2);
-					                   
-					                   TitledBorder titledBorder = new TitledBorder("Hamit Emir");
-					                   dp.setBorder(titledBorder);
-					              
+					                if( ((TitledBorder) dp.getBorder()).getTitle().equals(emirAdi))
+					                {
+					           //     Font font2 = new Font("Verdana", Font.ITALIC, 12);
+					          //         TitledBorder border = new TitledBorder("hamit");
+					          //         border.setTitleFont(font2);
+					                   ((TitledBorder) dp.getBorder()).setTitle("Hamit Emir");
+					                }
+					                dp.repaint();
 					                }
 				            ///
 					 }
 					
 					/////////////////////
 					
-					Component[] components2 = ((Container) components[0]).getComponents();
+					Component[] emirPanel = ((Container) components[0]).getComponents();
 					
 					 String componentName;
-					 for (Component compo : components2) {
+					 for (Component compo : emirPanel) {
 				            componentName = compo.getClass().getName();
-					            System.out.println(compo.getClass().getName().substring(componentName.indexOf("swing.") + "swing.".length(), componentName.length()));
+					         //   System.out.println(compo.getClass().getName().substring(componentName.indexOf("swing.") + "swing.".length(), componentName.length()));
 					           ///
 					                if (compo  instanceof JButton)
 					                {
@@ -167,6 +170,21 @@ public class BASLA extends JFrame {
 			});
 			btnNewButton_3.setBounds(10, 275, 89, 23);
 			panel.add(btnNewButton_3);
+			
+			JButton btnNewButton_4 = new JButton("emiradi donus");
+			btnNewButton_4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+			
+					for (int i = 0; i < gorevLER.size(); i++) {
+					    String stringss = gorevLER.get(i);
+					   
+					    System.out.println(stringss);
+					}
+				
+				}
+			});
+			btnNewButton_4.setBounds(10, 330, 130, 23);
+			panel.add(btnNewButton_4);
 			
 		//
 			@SuppressWarnings("static-access")

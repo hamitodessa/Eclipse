@@ -7,6 +7,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,7 +22,7 @@ public class GOREV {
 	
 	
 	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,
-			String acikLAMA,String durUM,String surUCU)
+			String acikLAMA,String durUM,String surUCU) throws InterruptedException
 	{
 	        JPanel p = new JPanel(new GridBagLayout());
 	        p.setBorder(new TitledBorder(emirAdi));
@@ -108,7 +111,22 @@ public class GOREV {
 				}
 			});
 	        p.add(btnNewButton, gbc);
-
+	        basla();
 	        return p;
 	    }
+	public static void basla() throws InterruptedException
+	{
+		TimerTask timerTask = new TimerTask() {
+			@Override
+			public void run() {
+			System.out.println(new Date());
+			}
+			};
+			Timer timer = new Timer();
+			timer.schedule(timerTask, 0, 1000);
+		
+			
+			
+			
+	}
 }

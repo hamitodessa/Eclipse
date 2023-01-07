@@ -7,6 +7,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -19,11 +22,15 @@ import javax.swing.border.TitledBorder;
 
 public class GOREV {
 
+	static Timer timer ;
 	
+	static JLabel lblgel ;
+	 static  JLabel lblson ;
 	
 	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,
 			String acikLAMA,String durUM,String surUCU) throws InterruptedException
 	{
+		durdur();
 	        JPanel p = new JPanel(new GridBagLayout());
 	        p.setBorder(new TitledBorder(emirAdi));
 	        ((javax.swing.border.TitledBorder) p.getBorder()).setTitleFont(new Font("Arial", Font.BOLD, 14));
@@ -38,10 +45,10 @@ public class GOREV {
 	        p.add(new JLabel(sonDurum), gbc);
 	
 	        gbc.gridx = 2;
-	        p.add(new JLabel("          Son Yedekleme :" ), gbc);
+	        p.add(new JLabel("          Son Yedekleme :" ) , gbc);
 	        
 	        gbc.gridx = 3;
-	        JLabel lblson = new JLabel(sonYEDEK );
+	        lblson = new JLabel(sonYEDEK );
 	        lblson.setForeground(Color.green.darker());
 	        p.add(lblson, gbc);
 
@@ -56,7 +63,7 @@ public class GOREV {
 	        p.add(new JLabel("          Gelecek Yedekleme :" ), gbc);
 	        gbc.gridx = 3;
 	        
-	        JLabel lblgel = new JLabel(gelYEDEK );
+	        lblgel = new JLabel(gelYEDEK );
 	        lblgel.setForeground(Color.RED);
 	        p.add(lblgel, gbc);
 
@@ -119,11 +126,39 @@ public class GOREV {
 		TimerTask timerTask = new TimerTask() {
 			@Override
 			public void run() {
-			System.out.println(new Date());
-			}
-			};
-			Timer timer = new Timer();
-			timer.schedule(timerTask, 0, 1000);
+				//System.out.println(new Date());
+				DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+				String simDI = df.format(new Date());
+				 String gelYEDEK="08.01.2023 01:27:00";  
+								//Date date1=new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(lblgel.getText() + ":00");
+		
+								System.out.println(simDI + "==" + gelYEDEK);
+								
+								
+							if (simDI.equals(gelYEDEK)) // YEDEKLEME ZAMANI 
+							{
+							
+								timer.cancel();
+								timer.purge();
+								System.out.println("esit");
+								
+								DateFormat dff = new SimpleDateFormat("dd.MM.yyyy HH:mm");				
+								simDI = dff.format(new Date());
+								lblson.setText(simDI);
+							}
 				
+			}
+		};
+		timer = new Timer();
+		timer.schedule(timerTask, 0, 1000);
+
+	}
+	private static void durdur()
+	{
+		if (timer != null)
+		{	
+			timer.cancel();
+			timer.purge();
+		}
 	}
 }

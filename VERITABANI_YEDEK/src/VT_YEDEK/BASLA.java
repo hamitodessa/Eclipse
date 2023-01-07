@@ -208,6 +208,9 @@ public class BASLA extends JFrame {
 		ResultSet rss ;
 		rss = sqll.emirLER();
 
+		pPanel.removeAll();
+		pPanel.revalidate();
+		pPanel.repaint();
 		if (!rss.isBeforeFirst() ) {  
 			return;
 		} 

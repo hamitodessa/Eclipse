@@ -86,6 +86,19 @@ public class SQL_BACKUP {
 		return rss;
 	}
 	@SuppressWarnings("static-access")
+	public ResultSet emirLER(String emir) throws ClassNotFoundException, SQLException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		ResultSet	rss = null;
+		PreparedStatement stmt = null;
+		con = gLB.myBackupConnection();
+		String sql = "SELECT * FROM EMIRLER ORDER BY DURUM";
+		stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;
+	}
+	@SuppressWarnings("static-access")
 	public ResultSet surBILGI(String emir) throws ClassNotFoundException, SQLException
 	{
 		if (con != null && con.isClosed() == false) con.close();

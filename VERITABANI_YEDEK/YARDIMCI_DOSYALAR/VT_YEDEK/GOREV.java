@@ -17,7 +17,7 @@ import javax.swing.border.TitledBorder;
 public class GOREV {
 
 	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,String surUCU,
-			String acikLAMA)
+			String acikLAMA,String durUM)
 	{
 	        JPanel p = new JPanel(new GridBagLayout());
 	        p.setBorder(new TitledBorder(emirAdi));
@@ -80,7 +80,12 @@ public class GOREV {
 	        gbc.gridwidth = 3;
 	        p.add(new JLabel( ), gbc);
 	        
-	        gbc.gridy = 5;
+	        gbc.gridx = 0;
+	        p.add(new JLabel("Durum" ), gbc);
+	        gbc.gridx = 1;
+	        p.add(new JLabel(durUM), gbc);
+	        
+	        gbc.gridy = 6;
 	        gbc.gridx = 0;
 	        JButton btnNewButton = new JButton("go");
 			btnNewButton.addActionListener(new ActionListener() {

@@ -11,6 +11,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,11 +25,12 @@ import javax.swing.border.TitledBorder;
 
 
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.SQL_BACKUP;
 
 import javax.swing.JSplitPane;
 
 public class BASLA extends JFrame {
-
+	static SQL_BACKUP sqll = new SQL_BACKUP();
 	private JPanel contentPane;
 	GLOBAL glb = new GLOBAL();
 	public   JPanel pPanel;
@@ -85,7 +88,7 @@ public class BASLA extends JFrame {
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				  //   for (int ii = 1; ii < 6; ii++) {
-				            pPanel.add(GOREV.getShowRoomPanel("hamit","Yedeklendi"  , 8  ,"05.01.2022 15.04"  ,"06.01.2023 15.04"   ,"C:\\OBS_SISTEM\\","Deneme Yuklemesi" ));
+				            pPanel.add(GOREV.getShowRoomPanel("hamit","Yedeklendi"  , 8  ,"05.01.2022 15.04"  ,"06.01.2023 15.04"   ,"C:\\OBS_SISTEM\\","Deneme Yuklemesi" ,"Aktiv"));
 				      //  }
 				     scrollPane.revalidate();
 				     scrollPane.repaint();
@@ -196,5 +199,27 @@ public class BASLA extends JFrame {
 			}
 			
 			oac.EMIR_ADI = "hamit";
+			
+			emirDOLDUR();
+	}
+	public void emirDOLDUR() throws ClassNotFoundException, SQLException
+	{
+		ResultSet rss = sqll.emirLER(getName());
+		if (!rss.isBeforeFirst() ) {  
+			return;
+		} 
+		
+		while(rss.next())
+		{
+			
+            pPanel.add(GOREV.getShowRoomPanel(rss.getString("EMIR_ISMI"),rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi"  , 8  ,
+            		rss.getDate("SON_YEDEK").toString() ,"06.01.2023 15.04"   ,"C:\\OBS_SISTEM\\",rss.getString("EMIR_ACIKLAMA") ,rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv"));
+
+			
+			
+			
+		}
+		
+		
 	}
 }

@@ -89,7 +89,7 @@ public class BASLA extends JFrame {
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				  //   for (int ii = 1; ii < 6; ii++) {
-				            pPanel.add(GOREV.getShowRoomPanel("hamit","Yedeklendi"  , 8  ,"05.01.2022 15.04"  ,"06.01.2023 15.04"   ,"C:\\OBS_SISTEM\\","Deneme Yuklemesi" ,"Aktiv"));
+				//            pPanel.add(GOREV.getShowRoomPanel("hamit","Yedeklendi"  , 8  ,"05.01.2022 15.04"  ,"06.01.2023 15.04"   ,"C:\\OBS_SISTEM\\","Deneme Yuklemesi" ,"Aktiv"));
 				      //  }
 				     scrollPane.revalidate();
 				     scrollPane.repaint();

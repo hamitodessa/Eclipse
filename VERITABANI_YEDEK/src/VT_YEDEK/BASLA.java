@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -51,7 +52,7 @@ public class BASLA extends JFrame {
 	 */
 	public BASLA() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 400);
+		setBounds(100, 100, 900, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -123,6 +124,28 @@ public class BASLA extends JFrame {
 			btnNewButton_3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Component[] components = pPanel.getComponents();
+					/////////////////////
+					 String compoName;
+					 for (Component compoo : components) {
+				            compoName = compoo.getClass().getName();
+					            System.out.println(compoo.getClass().getName().substring(compoName.indexOf("swing.") + "swing.".length(), compoName.length()));
+					           ///
+					                if (compoo  instanceof JPanel)
+					                {
+					                   JPanel dp = (JPanel) compoo;
+					                System.out.println(   ((TitledBorder) dp.getBorder()).getTitle());
+					                   Font font2 = new Font("Verdana", Font.ITALIC, 12);
+					                   TitledBorder border = new TitledBorder("hamit");
+					                   border.setTitleFont(font2);
+					                   
+					                   TitledBorder titledBorder = new TitledBorder("Hamit Emir");
+					                   dp.setBorder(titledBorder);
+					              
+					                }
+				            ///
+					 }
+					
+					/////////////////////
 					
 					Component[] components2 = ((Container) components[0]).getComponents();
 					
@@ -130,18 +153,14 @@ public class BASLA extends JFrame {
 					 for (Component compo : components2) {
 				            componentName = compo.getClass().getName();
 					            System.out.println(compo.getClass().getName().substring(componentName.indexOf("swing.") + "swing.".length(), componentName.length()));
-				 
 					           ///
-					            
-					           
 					                if (compo  instanceof JButton)
 					                {
 					                   JButton dp = (JButton) compo;
 					                   System.out.println(dp.getText());
 					               dp.setText("Deneme");
 					                }
-					         
-					            ///
+				            ///
 					 }
 					       
 				}

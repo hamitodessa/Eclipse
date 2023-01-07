@@ -28,7 +28,7 @@ public class GOREV {
 	        gbc.insets = new Insets(5, 5, 5, 5);
 	        gbc.anchor = GridBagConstraints.WEST;
 
-	        p.add(new JLabel("Son Durum :" ), gbc);
+	        p.add(new JLabel("Son Durum:" ), gbc);
 	        gbc.gridx = 1 ;
 	        p.add(new JLabel(sonDurum), gbc);
 	
@@ -42,7 +42,7 @@ public class GOREV {
 
 	        gbc.gridy = 1;
 	        gbc.gridx = 0;
-	        p.add(new JLabel("Dosya Sayisi :"), gbc);
+	        p.add(new JLabel("Dosya Sayisi   :"), gbc);
 
 	        gbc.gridx = 1;
 	        p.add(new JLabel(Integer.toString(dosyaSayisi) + " Adet Dosya" ), gbc);

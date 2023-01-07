@@ -146,6 +146,7 @@ public class EMIR extends JFrame {
 				try {
 					BASLA frame = new BASLA();
 					frame.setVisible(true);
+					 frame.emirDOLDUR();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -854,6 +855,7 @@ public class EMIR extends JFrame {
 		}
 	
        sqll.genel_kayit_sil(txtEMIR_ISMI.getText());
+       System.out.println( txtAciklama.getText());
        sqll.genel_kayit(txtEMIR_ISMI.getText(), chckbxDURUM.isSelected(), txtAciklama.getText(),cmbSQL.getSelectedItem().toString(), chckbxHANGI.isSelected());
        sqll.genel_kayit_durum(txtEMIR_ISMI.getText(), false, sonyuk);
        
@@ -1000,7 +1002,7 @@ public class EMIR extends JFrame {
 			chckbxDURUM.setSelected(false);
 		}
 		txtEMIR_ISMI.setText(rss.getString("EMIR_ISMI"));
-		txtAciklama.setText("EMIR_ACIKLAMA");
+		txtAciklama.setText(rss.getString("EMIR_ACIKLAMA"));
 	}
 	private static void db_DOLDUR(ResultSet rss) throws SQLException
 	{

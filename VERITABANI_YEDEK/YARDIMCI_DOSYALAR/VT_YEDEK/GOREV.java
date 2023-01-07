@@ -16,8 +16,10 @@ import javax.swing.border.TitledBorder;
 
 public class GOREV {
 
-	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,String surUCU,
-			String acikLAMA,String durUM)
+	
+	
+	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,
+			String acikLAMA,String durUM,String surUCU)
 	{
 	        JPanel p = new JPanel(new GridBagLayout());
 	        p.setBorder(new TitledBorder(emirAdi));
@@ -37,7 +39,7 @@ public class GOREV {
 	        
 	        gbc.gridx = 3;
 	        JLabel lblson = new JLabel(sonYEDEK );
-	        lblson.setForeground(Color.green);
+	        lblson.setForeground(Color.green.darker());
 	        p.add(lblson, gbc);
 
 	        gbc.gridy = 1;
@@ -87,12 +89,22 @@ public class GOREV {
 	        
 	        gbc.gridy = 6;
 	        gbc.gridx = 0;
-	        JButton btnNewButton = new JButton("go");
+	        JButton btnNewButton = new JButton("Emir Duzelt");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					   System.out.println("="+BASLA.gorevLER.size());
-					BASLA.gorevLER.add(emirAdi);
-					   System.out.println("==" +BASLA.gorevLER.size());
+					
+					
+				
+					VT_ANA_CLASS.yENI_EMIR = false ;
+					VT_ANA_CLASS.EMIR_ADI= emirAdi;
+					EMIR emr = new EMIR();
+				
+					emr.setVisible(true);
+			
+					
+					//   System.out.println("="+BASLA.gorevLER.size());
+				//	BASLA.gorevLER.add(emirAdi);
+					//   System.out.println("==" +BASLA.gorevLER.size());
 				}
 			});
 	        p.add(btnNewButton, gbc);

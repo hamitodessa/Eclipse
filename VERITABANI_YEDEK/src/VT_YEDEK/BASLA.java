@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -204,22 +205,25 @@ public class BASLA extends JFrame {
 	}
 	public void emirDOLDUR() throws ClassNotFoundException, SQLException
 	{
-		ResultSet rss = sqll.emirLER(getName());
+		ResultSet rss ;
+		rss = sqll.emirLER();
+
 		if (!rss.isBeforeFirst() ) {  
 			return;
 		} 
-		
+
 		while(rss.next())
 		{
-			
-            pPanel.add(GOREV.getShowRoomPanel(rss.getString("EMIR_ISMI"),rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi"  , 8  ,
-            		rss.getDate("SON_YEDEK").toString() ,"06.01.2023 15.04"   ,"C:\\OBS_SISTEM\\",rss.getString("EMIR_ACIKLAMA") ,rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv"));
-
-			
-			
-			
+			String  tarih ="30.12.1899 00:00" ;
+			if(rss.getDate("SON_YUKLEME") != null)
+			{
+				SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+				tarih = f.format(	rss.getDate("SON_YUKLEME"));
+			}
+		
+			pPanel.add(GOREV.getShowRoomPanel(rss.getString("EMIR_ISMI"),rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi"  , 8  ,
+					tarih,"06.01.2023 15.04"   ,rss.getString("EMIR_ACIKLAMA") ,rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv",
+							sqll.ftp_NERESI(rss.getString("EMIR_ISMI"))));
 		}
-		
-		
 	}
 }

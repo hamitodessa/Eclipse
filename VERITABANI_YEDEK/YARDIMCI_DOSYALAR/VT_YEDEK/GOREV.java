@@ -45,7 +45,7 @@ public class GOREV {
 	static ResultSet rss  ;
 	static boolean varmi = false;
 	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,
-			String acikLAMA,String durUM,String surUCU) throws InterruptedException
+			String acikLAMA,String durUM,String surUCU) throws InterruptedException, NumberFormatException, ClassNotFoundException, SQLException, ParseException
 	{
 		durdur();
 		//emirAdii = emirAdi;
@@ -135,6 +135,7 @@ public class GOREV {
 				}
 			});
 	        p.add(btnNewButton, gbc);
+	        sonrakiYEDEK();
 	        basla();
 	        return p;
 	    }
@@ -146,15 +147,17 @@ public class GOREV {
 				//System.out.println(new Date());
 				DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 				String simDI = df.format(new Date());
-				 String gelYEDEK="08.01.2023 14:54:00";  
+				// String gelYEDEK="08.01.2023 14:54:00";  
 							
-							//if (simDI.equals(gelYEDEK)) // YEDEKLEME ZAMANI 
-							//{
+				
+				System.out.println(simDI + "== " + lblgel.getText()+ ":00" ) ;
+							if (simDI.equals(lblgel.getText() + ":00")) // YEDEKLEME ZAMANI 
+							{
 								timer.cancel();
 								timer.purge();
 							//YEDEKLE
 									try {
-										sonrakiYEDEK();
+							sonrakiYEDEK();
 									} catch (Exception e) {
 										System.out.println(e.getMessage());
 									}
@@ -163,7 +166,7 @@ public class GOREV {
 								DateFormat dff = new SimpleDateFormat("dd.MM.yyyy HH:mm");				
 								simDI = dff.format(new Date());
 								lblson.setText(simDI);
-							//}
+							}
 				
 			}
 		};
@@ -278,9 +281,7 @@ public class GOREV {
 		LocalDate date = LocalDate.now();
 		DayOfWeek dayOfWeek = date.getDayOfWeek();
 		int hangiGUNDEYIZ = dayOfWeek.getValue(); // 6
-		String dayOfWeekName = dayOfWeek.name(); // SATURDAY
-
-		System.out.println(hangiGUNDEYIZ + "=" + dayOfWeek.name());
+		//String dayOfWeekName = dayOfWeek.name(); // SATURDAY
 		int eklgun = 0 ;
 		if(hangiGUNDEYIZ == 1)
 		{
@@ -301,7 +302,6 @@ public class GOREV {
 				if (varmi ==false)
 				{
 					gunEKLE(rss.getDate("BASLAMA") ,7);
-
 				}
 			}
 		}

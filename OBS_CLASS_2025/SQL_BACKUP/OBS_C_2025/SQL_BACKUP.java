@@ -105,13 +105,13 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public ResultSet emirLER() throws ClassNotFoundException, SQLException
 	{
-		if (con != null && con.isClosed() == false) con.close();
+		//if (con != null && con.isClosed() == false) con.close();
 		Class.forName("org.sqlite.JDBC");
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
-		con = gLB.myBackupConnection();
+		Connection ccon = gLB.myBackupConnection();
 		String sql = "SELECT * FROM EMIRLER ";
-		stmt = con.prepareStatement(sql);
+		stmt = ccon.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
 	}
@@ -298,7 +298,8 @@ public class SQL_BACKUP {
 		String sql = "UPDATE EMIRLER SET SON_DURUM = ? , SON_YUKLEME = ? WHERE EMIR_ISMI = '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.setBoolean(1,drm);
-		stmt.setDate(2, (java.sql.Date) yuk);
+		java.sql.Date sDate = new java.sql.Date(yuk.getTime());
+		stmt.setDate(2,  sDate);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();

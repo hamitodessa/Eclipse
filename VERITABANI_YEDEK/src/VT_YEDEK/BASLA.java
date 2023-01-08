@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -203,7 +204,7 @@ public class BASLA extends JFrame {
 			
 			emirDOLDUR();
 	}
-	public static void emirDOLDUR() throws ClassNotFoundException, SQLException, InterruptedException
+	public static void emirDOLDUR() throws ClassNotFoundException, SQLException, InterruptedException, NumberFormatException, ParseException
 	{
 		ResultSet rss ;
 		rss = sqll.emirLER();
@@ -226,7 +227,7 @@ public class BASLA extends JFrame {
 		
 			pPanel.add(GOREV.getShowRoomPanel(rss.getString("EMIR_ISMI"),rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi"  , 
 					sqll.dbSAYISI(rss.getString("EMIR_ISMI"))  ,
-					tarih,"06.01.2023 15.04"   ,rss.getString("EMIR_ACIKLAMA") ,rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv",
+					tarih,""   ,rss.getString("EMIR_ACIKLAMA") ,rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv",
 							sqll.ftp_NERESI(rss.getString("EMIR_ISMI"))));
 		}
 	}

@@ -16,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -842,7 +843,12 @@ public class EMIR extends JFrame {
 		rs = sqll.emirBILGI(txtEMIR_ISMI.getText());
    
 		Boolean sondurum = false ; 
-		Date sonyuk = null  ;
+		
+			Date sonyuk = new Date();
+		sonyuk.setHours(0);
+		sonyuk.setMinutes(0);
+		sonyuk.setSeconds(0);
+
 		if (!rs.isBeforeFirst() ) 
 		{ 
 			kontrol = false ;
@@ -851,11 +857,10 @@ public class EMIR extends JFrame {
 		{
 			 sondurum = rs.getBoolean("SON_DURUM");
 		     sonyuk = rs.getDate("SON_YUKLEME");
-		             kontrol = true;
+		     kontrol = true;
 		}
 	
        sqll.genel_kayit_sil(txtEMIR_ISMI.getText());
-       System.out.println( txtAciklama.getText());
        sqll.genel_kayit(txtEMIR_ISMI.getText(), chckbxDURUM.isSelected(), txtAciklama.getText(),cmbSQL.getSelectedItem().toString(), chckbxHANGI.isSelected());
        sqll.genel_kayit_durum(txtEMIR_ISMI.getText(), false, sonyuk);
        

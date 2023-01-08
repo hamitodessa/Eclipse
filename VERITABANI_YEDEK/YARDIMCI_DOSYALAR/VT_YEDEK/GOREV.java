@@ -11,10 +11,13 @@ import java.security.Timestamp;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.DateFormatSymbols;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -37,14 +40,14 @@ public class GOREV {
 	static SQL_BACKUP sqll = new SQL_BACKUP();
 	static JLabel lblgel ;
 	static  JLabel lblson ;
-	static String emirAdii = "";
+	//static String emirAdii = "";
 	static JPanel p ;
 	static ResultSet rss  ;
 	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,
 			String acikLAMA,String durUM,String surUCU) throws InterruptedException
 	{
 		durdur();
-		emirAdii = emirAdi;
+		//emirAdii = emirAdi;
 	        p = new JPanel(new GridBagLayout());
 	        p.setBorder(new TitledBorder(emirAdi));
 	        ((javax.swing.border.TitledBorder) p.getBorder()).setTitleFont(new Font("Arial", Font.BOLD, 14));
@@ -177,55 +180,58 @@ public class GOREV {
 	}
 	private static void sonrakiYEDEK() throws ClassNotFoundException, SQLException, NumberFormatException, ParseException
 	{
-		Format f = new SimpleDateFormat("EEEE");  
-		String str = f.format(new Date());  
-		//prints day name  
-		System.out.println("Day Name: "+str + "==" +emirAdii);  
+			  
+		  LocalDate date = LocalDate.now();
+		    DayOfWeek dayOfWeek = date.getDayOfWeek();
+		    String str = dayOfWeek.name(); // SATURDAY
 	
-		rss = sqll.yedeklemeBILGI(emirAdii);
-		if (str.equals("Monday")) 
+		//prints day name  
+		System.out.println("Day Name: "+str + "==" +  ((javax.swing.border.TitledBorder) p.getBorder()).getTitle());  
+	
+		rss = sqll.yedeklemeBILGI(  ((javax.swing.border.TitledBorder) p.getBorder()).getTitle());
+		if (str.equals("MONDAY")) 
 		{
 			if (rss.getBoolean("P_TESI"))
 			{
 				yedekLE();
 			}
 		}
-		if (str.equals("Tuesday")) 
+		if (str.equals("TUESDAY")) 
 		{
 			if (rss.getBoolean("SALI"))
 			{
 				yedekLE();
 			}
 		}
-		if (str.equals("Wednesday")) 
+		if (str.equals("WEDNESDAY")) 
 		{
 			if (rss.getBoolean("CARS"))
 			{
 				yedekLE();
 			}
 		}
-		if (str.equals("Thursday")) 
+		if (str.equals("THURSDAY")) 
 		{
 			if (rss.getBoolean("PERS"))
 			{
 				yedekLE();
 			}
 		}
-		if (str.equals("Friday")) 
+		if (str.equals("FRIDAY")) 
 		{
 			if (rss.getBoolean("CUMA"))
 			{
 				yedekLE();
 			}
 		}
-		if (str.equals("Saturday")) 
+		if (str.equals("SATURDAY")) 
 		{
 			if (rss.getBoolean("C_TESI"))
 			{
 				yedekLE();
 			}
 		}
-		if (str.equals("Sunday")) 
+		if (str.equals("SUNDAY")) 
 		{
 			if (rss.getBoolean("PAZAR"))
 			{
@@ -252,18 +258,134 @@ public class GOREV {
 		  sonSAAT.setHours(date1.getHours());
 		  sonSAAT.setMinutes(date1.getMinutes());
 		  sonSAAT.setSeconds(0);
-		
 		  long sonSAATL = sonSAAT.getTime();
 		  //
 	
-		 	  
+		  if (gelecekSAATL <= sonSAATL)   // SON yedekleme saatinden kucuk
+		  {
+			   df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+			  lblgel.setText(df.format( gelecekSAAT));
+		  }
+		  else
+		  {
+			 // df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+			 // lblgel.setText(df.format( sonSAAT));
+		  }
 		  
 		  
-			
-			
-		System.out.println("===" +gelecekSAATL + "==="+ sonSAATL);
-		  
+		  ///
+		  LocalDate date = LocalDate.now();
+		    DayOfWeek dayOfWeek = date.getDayOfWeek();
+		    int hangiGUNDEYIZ = dayOfWeek.getValue(); // 6
+		    String dayOfWeekName = dayOfWeek.name(); // SATURDAY
+		    
+		    System.out.println(hangiGUNDEYIZ + "=" + dayOfWeek.name());
+		int eklgun = 0 ;
+		  if(hangiGUNDEYIZ == 1)
+		  {
+			   if (rss.getBoolean("P_TESI"))
+			   {
+				   gunEKLE(rss.getDate("BASLAMA") , 0);
+				   eklgun = 1 ;
+			   }
+			   else
+			   {
+				   eklgun = 1 ;
+			   }
+		  }
+		  else if(hangiGUNDEYIZ == 2)
+		  {
+			   if (rss.getBoolean("SALI"))
+			   {
+				   gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						   eklgun = eklgun + 1 ;
+			   }
+			   else
+			   {
+				   eklgun = eklgun + 1 ;
+			   }
+		  }
+		  else if(hangiGUNDEYIZ == 3)
+		  {
+			   if (rss.getBoolean("CARS"))
+			   {
+				   gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						   eklgun = eklgun + 1 ;
+			   }
+			   else
+			   {
+				   eklgun = eklgun + 1 ;
+			   }
+		  }
+		  else if(hangiGUNDEYIZ == 4)
+		  {
+			   if (rss.getBoolean("PERS"))
+			   {
+				   gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						   eklgun = eklgun + 1 ;
+			   }
+			   else
+			   {
+				   eklgun = eklgun + 1 ;
+			   }
+		  }
+		  else if(hangiGUNDEYIZ == 5)
+		  {
+			   if (rss.getBoolean("CUMA"))
+			   {
+				   gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						   eklgun = eklgun + 1 ;
+			   }
+			   else
+			   {
+				   eklgun = eklgun + 1 ;
+			   }
+		  }
+		  else if(hangiGUNDEYIZ == 6)
+		  {
+			   if (rss.getBoolean("C_TESI"))
+			   {
+				   gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						   eklgun = eklgun + 1 ;
+			   }
+			   else
+			   {
+				   eklgun = eklgun + 1 ;
+			   }
+		  }
+		  else if(hangiGUNDEYIZ == 7)
+		  {
+			   if (rss.getBoolean("PAZAR"))
+			   {
+				   gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						   eklgun = eklgun + 1 ;
+			   }
+			   else
+			   {
+				   eklgun = eklgun + 1 ;
+			   }
+		  }
+	}
 	
+	private static void gunEKLE(Date basLA, int gun) throws ParseException
+	{
+		 DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+		  String simDI = df.format(basLA);
+		  Date date1=new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(simDI);  
+			  
+		  
+		  Date dtt = new Date();
+		  Calendar c = Calendar.getInstance(); 
+		  c.setTime(dtt); 
+		  c.add(Calendar.DATE, gun);
+		  dtt = c.getTime();
+	
+				  dtt.setHours(date1.getHours());
+			  dtt.setMinutes(date1.getMinutes());
+			  dtt.setSeconds(0);
+			  
+			  df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+			  lblgel.setText(df.format(dtt));
 	}
 	private static void yedekLE()
 	{

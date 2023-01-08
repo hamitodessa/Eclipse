@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,6 +30,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.SQL_BACKUP;
 
 import javax.swing.JSplitPane;
+import javax.swing.JProgressBar;
 
 @SuppressWarnings("serial")
 public class BASLA extends JFrame {
@@ -90,12 +92,26 @@ public class BASLA extends JFrame {
 	        splitPane.setRightComponent(sagPane);
 	    	sagPane.setLeftComponent(scrollPane);
 	      
+	    	
+	    	JProgressBar progressBar = new JProgressBar();
+	    	progressBar.setBounds(0, 24, 714, 20);
+	    	JProgressBar progressBar1 = new JProgressBar();
+	    	progressBar1.setBounds(0, 2, 714, 20);
 	    	JPanel sagaltPane = new JPanel();
-	        sagaltPane .setMinimumSize(new Dimension(0,40));
+	        sagaltPane .setMinimumSize(new Dimension(0,50));
 	        sagaltPane .setLayout(null);
 	        
 	        
 	    	sagPane.setRightComponent(sagaltPane);
+	    	
+	    	////
+	    	//sagaltPane.setLayout(new BoxLayout(sagaltPane, BoxLayout.Y_AXIS));
+	    	
+	    	///
+	    	
+	    	//progressBar.setBounds(0, 20, 714, 18);
+	    	sagaltPane.add(progressBar);
+	    	sagaltPane.add(progressBar1);
 	    	
 	    	
 	    	JButton btnNewButton_1 = new JButton("New button");

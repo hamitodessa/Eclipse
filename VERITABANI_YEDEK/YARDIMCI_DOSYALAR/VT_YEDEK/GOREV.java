@@ -7,12 +7,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.Timestamp;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
-import java.text.DateFormatSymbols;
-import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -28,7 +25,6 @@ import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -40,7 +36,6 @@ public class GOREV {
 	static SQL_BACKUP sqll = new SQL_BACKUP();
 	static JLabel lblgel ;
 	static  JLabel lblson ;
-	//static String emirAdii = "";
 	static JPanel p ;
 	static ResultSet rss  ;
 	static boolean varmi = false;
@@ -48,7 +43,6 @@ public class GOREV {
 			String acikLAMA,String durUM,String surUCU) throws InterruptedException, NumberFormatException, ClassNotFoundException, SQLException, ParseException
 	{
 		durdur();
-		//emirAdii = emirAdi;
 	        p = new JPanel(new GridBagLayout());
 	        p.setBorder(new TitledBorder(emirAdi));
 	        ((javax.swing.border.TitledBorder) p.getBorder()).setTitleFont(new Font("Arial", Font.BOLD, 14));
@@ -120,22 +114,21 @@ public class GOREV {
 	        JButton btnNewButton = new JButton("Emir Duzelt");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+
 					timer.cancel();
 					timer.purge();
 					VT_ANA_CLASS.yENI_EMIR = false ;
 					VT_ANA_CLASS.EMIR_ADI= emirAdi;
 					EMIR emr = new EMIR();
-				emr.setVisible(true);
-				
-					
+					emr.setVisible(true);
 					//   System.out.println("="+BASLA.gorevLER.size());
-				//	BASLA.gorevLER.add(emirAdi);
+					//	BASLA.gorevLER.add(emirAdi);
 					//   System.out.println("==" +BASLA.gorevLER.size());
 				}
 			});
 	        p.add(btnNewButton, gbc);
-	        sonrakiYEDEK();
+	        rss = sqll.yedeklemeBILGI(  ((javax.swing.border.TitledBorder) p.getBorder()).getTitle());
+	        sonRAKI_YEDEK();
 	        basla();
 	        return p;
 	    }
@@ -147,32 +140,27 @@ public class GOREV {
 				//System.out.println(new Date());
 				DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 				String simDI = df.format(new Date());
-				// String gelYEDEK="08.01.2023 14:54:00";  
-							
-				
 				System.out.println(simDI + "== " + lblgel.getText()+ ":00" ) ;
-							if (simDI.equals(lblgel.getText() + ":00")) // YEDEKLEME ZAMANI 
-							{
-								timer.cancel();
-								timer.purge();
-							//YEDEKLE
-									try {
-							sonrakiYEDEK();
-									} catch (Exception e) {
-										System.out.println(e.getMessage());
-									}
-							
-							//
-								DateFormat dff = new SimpleDateFormat("dd.MM.yyyy HH:mm");				
-								simDI = dff.format(new Date());
-								lblson.setText(simDI);
-							}
-				
+				if (simDI.equals(lblgel.getText() + ":00")) // YEDEKLEME ZAMANI 
+				{
+					timer.cancel();
+					timer.purge();
+					//YEDEKLE
+					try {
+						sonrakiYEDEK();
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
+					//
+					DateFormat dff = new SimpleDateFormat("dd.MM.yyyy HH:mm");				
+					simDI = dff.format(new Date());
+					lblson.setText(simDI);
+				}
+
 			}
 		};
 		timer = new Timer();
 		timer.schedule(timerTask, 0, 1000);
-
 	}
 	private static void durdur()
 	{
@@ -184,14 +172,10 @@ public class GOREV {
 	}
 	private static void sonrakiYEDEK() throws ClassNotFoundException, SQLException, NumberFormatException, ParseException
 	{
-			  
-		  LocalDate date = LocalDate.now();
-		    DayOfWeek dayOfWeek = date.getDayOfWeek();
-		    String str = dayOfWeek.name(); // SATURDAY
-	
-		//prints day name  
-		System.out.println("Day Name: "+str + "==" +  ((javax.swing.border.TitledBorder) p.getBorder()).getTitle());  
-	
+		LocalDate date = LocalDate.now();
+		DayOfWeek dayOfWeek = date.getDayOfWeek();
+		String str = dayOfWeek.name(); // SATURDAY
+
 		rss = sqll.yedeklemeBILGI(  ((javax.swing.border.TitledBorder) p.getBorder()).getTitle());
 		if (str.equals("MONDAY")) 
 		{
@@ -243,9 +227,10 @@ public class GOREV {
 			}
 		}
 		// SONRAKI
-		
+
 		sonRAKI_YEDEK();
 	}
+	@SuppressWarnings("deprecation")
 	private static void  sonRAKI_YEDEK() throws NumberFormatException, SQLException, ParseException
 	{
 		int kacDAKKA = Integer.parseInt(rss.getString("SAAT"));
@@ -477,6 +462,7 @@ public class GOREV {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	private static void gunEKLE(Date basLA, int gun) throws ParseException
 	{
 		DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");

@@ -77,13 +77,25 @@ public class BASLA extends JFrame {
 		panel.setLayout(null);
 		splitPane.setLeftComponent(panel);
 		 pPanel = new JPanel(new GridLayout(0, 1, 3, 3));
-	        pPanel.setBorder(new TitledBorder("Emirler"));
+	     pPanel.setBorder(new TitledBorder("Emirler"));
         
-	        JScrollPane scrollPane = new JScrollPane(pPanel,
-	                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-	                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	     JSplitPane sagPane = new JSplitPane();
+	     sagPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+	     sagPane.setDividerSize(0);
+	     sagPane.setResizeWeight(1.0);
+	     sagPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+	     
+	        JScrollPane scrollPane = new JScrollPane(pPanel,	        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,	                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	        
-	    	splitPane.setRightComponent(scrollPane);
+	        splitPane.setRightComponent(sagPane);
+	    	sagPane.setLeftComponent(scrollPane);
+	      
+	    	JPanel sagaltPane = new JPanel();
+	        sagaltPane .setMinimumSize(new Dimension(0,40));
+	        sagaltPane .setLayout(null);
+	        
+	        
+	    	sagPane.setRightComponent(sagaltPane);
 	    	
 	    	
 	    	JButton btnNewButton_1 = new JButton("New button");
@@ -101,6 +113,7 @@ public class BASLA extends JFrame {
 			
 			JButton btnNewButton = new JButton("Yeni Emir");
 			btnNewButton.addActionListener(new ActionListener() {
+				@SuppressWarnings("static-access")
 				public void actionPerformed(ActionEvent e) {
 					
 					oac.yENI_EMIR = true ;
@@ -115,6 +128,7 @@ public class BASLA extends JFrame {
 			
 			JButton btnNewButton_2 = new JButton("olan emir");
 			btnNewButton_2.addActionListener(new ActionListener() {
+				@SuppressWarnings("static-access")
 				public void actionPerformed(ActionEvent e) {
 					
 					oac.yENI_EMIR = false ;
@@ -133,7 +147,7 @@ public class BASLA extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					Component[] components = pPanel.getComponents();
 					/////////////////////
-					 String compoName;
+					String compoName = "";
 					 for (Component compoo : components) {
 				            compoName = compoo.getClass().getName();
 						                if (compoo  instanceof JPanel)
@@ -224,7 +238,6 @@ public class BASLA extends JFrame {
 				SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 				tarih = f.format(	rss.getDate("SON_YUKLEME"));
 			}
-		
 			pPanel.add(GOREV.getShowRoomPanel(rss.getString("EMIR_ISMI"),rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi"  , 
 					sqll.dbSAYISI(rss.getString("EMIR_ISMI"))  ,
 					tarih,""   ,rss.getString("EMIR_ACIKLAMA") ,rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv",

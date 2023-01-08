@@ -16,7 +16,6 @@ import java.security.NoSuchAlgorithmException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -833,6 +832,7 @@ public class EMIR extends JFrame {
 		
 		
 	}
+	@SuppressWarnings("deprecation")
 	private void kayDET() throws SQLException, ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		try

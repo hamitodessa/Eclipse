@@ -246,256 +246,256 @@ public class GOREV {
 	private static void  sonRAKI_YEDEK() throws NumberFormatException, SQLException, ParseException
 	{
 		int kacDAKKA = Integer.parseInt(rss.getString("SAAT"));
-	
-		 LocalDateTime dateTime = LocalDateTime.now().plus(Duration.of(kacDAKKA, ChronoUnit.MINUTES));
-		  Date gelecekSAAT  = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
-		  long gelecekSAATL = gelecekSAAT.getTime();
-		  //
-		  DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-		  String simDI = df.format(rss.getDate("BITIS"));
-		  Date date1=new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(simDI);  
-			
-		  Date sonSAAT = new Date();
-		  sonSAAT.setHours(date1.getHours());
-		  sonSAAT.setMinutes(date1.getMinutes());
-		  sonSAAT.setSeconds(0);
-		  long sonSAATL = sonSAAT.getTime();
-		  //
-	
-		  if (gelecekSAATL <= sonSAATL)   // SON yedekleme saatinden kucuk
-		  {
-			   df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-			  lblgel.setText(df.format( gelecekSAAT));
-		  }
-		  else
-		  {
-			 // df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-			 // lblgel.setText(df.format( sonSAAT));
-		  }
-		  
-		  
-		  ///
-		  LocalDate date = LocalDate.now();
-		    DayOfWeek dayOfWeek = date.getDayOfWeek();
-		    int hangiGUNDEYIZ = dayOfWeek.getValue(); // 6
-		    String dayOfWeekName = dayOfWeek.name(); // SATURDAY
-		    
-		    System.out.println(hangiGUNDEYIZ + "=" + dayOfWeek.name());
+
+		LocalDateTime dateTime = LocalDateTime.now().plus(Duration.of(kacDAKKA, ChronoUnit.MINUTES));
+		Date gelecekSAAT  = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
+		long gelecekSAATL = gelecekSAAT.getTime();
+		//
+		DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+		String simDI = df.format(rss.getDate("BITIS"));
+		Date date1=new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(simDI);  
+
+		Date sonSAAT = new Date();
+		sonSAAT.setHours(date1.getHours());
+		sonSAAT.setMinutes(date1.getMinutes());
+		sonSAAT.setSeconds(0);
+		long sonSAATL = sonSAAT.getTime();
+		//
+
+		if (gelecekSAATL <= sonSAATL)   // SON yedekleme saatinden kucuk
+		{
+			df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+			lblgel.setText(df.format( gelecekSAAT));
+		}
+		else
+		{
+			// df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+			// lblgel.setText(df.format( sonSAAT));
+		}
+
+
+		///
+		LocalDate date = LocalDate.now();
+		DayOfWeek dayOfWeek = date.getDayOfWeek();
+		int hangiGUNDEYIZ = dayOfWeek.getValue(); // 6
+		String dayOfWeekName = dayOfWeek.name(); // SATURDAY
+
+		System.out.println(hangiGUNDEYIZ + "=" + dayOfWeek.name());
 		int eklgun = 0 ;
-		  if(hangiGUNDEYIZ == 1)
-		  {
-			   if (rss.getBoolean("P_TESI"))
-			   {
-					  eklgun = 0;
-					  for(int i= 2 ; i < 9; i++)
-					  {
-						  eklgun += 1 ;
-						  if(rss.getBoolean(i))
-						  {
-							  varmi = true;
-							  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-							  break ;
-						  }
-					  }
-					  eklgun = 0 ;
-					  if (varmi ==false)
-					  {
-						  gunEKLE(rss.getDate("BASLAMA") ,7);
-						  
-					  }
-			   }
-		  }
-		  else if(hangiGUNDEYIZ == 2)
-		  {
-			   if (rss.getBoolean("SALI"))
-			   {
-					  eklgun = 0;
-					  for(int i= 3 ; i < 9; i++)
-					  {
-						  eklgun += 1 ;
-						  if(rss.getBoolean(i))
-						  {
-							  varmi = true;
-							  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-							  break ;
-						  }
-					  }
-					  eklgun = 0 ;
-					  if (varmi ==false)
-					  {
-						  for(int i= 2 ; i < 3; i++)
-						  {
-							  eklgun += 1 ;
-							  if(rss.getBoolean(i))
-							  {
-								  varmi = true;
-								  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-								  break ;
-							  }
-						  }
-					  }
-			   }
-		  }
-		  else if(hangiGUNDEYIZ == 3)
-		  {
-			   if (rss.getBoolean("CARS"))
-			   {
-					  eklgun = 0;
-					  for(int i= 4 ; i < 9; i++)
-					  {
-						  eklgun += 1 ;
-						  if(rss.getBoolean(i))
-						  {
-							  varmi = true;
-							  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-							  break ;
-						  }
-					  }
-					  eklgun = 0 ;
-					  if (varmi ==false)
-					  {
-						  for(int i= 2 ; i <4; i++)
-						  {
-							  eklgun += 1 ;
-							  if(rss.getBoolean(i))
-							  {
-								  varmi = true;
-								  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-								  break ;
-							  }
-						  }
-					  }
-			   }
-		  }
-		  else if(hangiGUNDEYIZ == 4)
-		  {
-			   if (rss.getBoolean("PERS"))
-			   {
-					  eklgun = 0;
-					  for(int i= 5 ; i < 9; i++)
-					  {
-						  eklgun += 1 ;
-						  if(rss.getBoolean(i))
-						  {
-							  varmi = true;
-							  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-							  break ;
-						  }
-					  }
-					  eklgun = 0 ;
-					  if (varmi ==false)
-					  {
-						  for(int i= 2 ; i < 5; i++)
-						  {
-							  eklgun += 1 ;
-							  if(rss.getBoolean(i))
-							  {
-								  varmi = true;
-								  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-								  break ;
-							  }
-						  }
-					  }
-			   }
-		  }
-		  else if(hangiGUNDEYIZ == 5)
-		  {
-			   if (rss.getBoolean("CUMA"))
-			   {
-					  eklgun = 0;
-					  for(int i= 6 ; i < 9; i++)
-					  {
-						  eklgun += 1 ;
-						  if(rss.getBoolean(i))
-						  {
-							  varmi = true;
-							  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-							  break ;
-						  }
-					  }
-					  eklgun = 0 ;
-					  if (varmi ==false)
-					  {
-						  for(int i= 2 ; i < 6; i++)
-						  {
-							  eklgun += 1 ;
-							  if(rss.getBoolean(i))
-							  {
-								  varmi = true;
-								  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-								  break ;
-							  }
-						  }
-					  }
-			   }
-		  }
-		  else if(hangiGUNDEYIZ == 6)
-		  {
-			  if (rss.getBoolean("C_TESI"))
-			  {
-					  eklgun = 0;
-				  for(int i= 7 ; i < 9; i++)
-				  {
-					  eklgun += 1 ;
-					  if(rss.getBoolean(i))
-					  {
-						  varmi = true;
-						  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-						  break ;
-					  }
-				  }
-				  eklgun = 0 ;
-				  if (varmi ==false)
-				  {
-					  for(int i= 2 ; i < 7; i++)
-					  {
-						  eklgun += 1 ;
-						  if(rss.getBoolean(i))
-						  {
-							  varmi = true;
-							  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-							  break ;
-						  }
-					  }
-				  }
-			  }
-		  }
-		  else if(hangiGUNDEYIZ == 7)
-		  {
-			  if (rss.getBoolean("PAZAR"))
-			  {
-				  eklgun = 0;
-				  for(int i= 2 ; i < 9; i++){
-					  eklgun += 1 ;
-					  if(rss.getBoolean(i))
-					  {
-						  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-						  break ;
-					  }
-				  }
-			  }
-		  }
+		if(hangiGUNDEYIZ == 1)
+		{
+			if (rss.getBoolean("P_TESI"))
+			{
+				eklgun = 0;
+				for(int i= 2 ; i < 9; i++)
+				{
+					eklgun += 1 ;
+					if(rss.getBoolean(i))
+					{
+						varmi = true;
+						gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						break ;
+					}
+				}
+				eklgun = 0 ;
+				if (varmi ==false)
+				{
+					gunEKLE(rss.getDate("BASLAMA") ,7);
+
+				}
+			}
+		}
+		else if(hangiGUNDEYIZ == 2)
+		{
+			if (rss.getBoolean("SALI"))
+			{
+				eklgun = 0;
+				for(int i= 3 ; i < 9; i++)
+				{
+					eklgun += 1 ;
+					if(rss.getBoolean(i))
+					{
+						varmi = true;
+						gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						break ;
+					}
+				}
+				eklgun = 0 ;
+				if (varmi ==false)
+				{
+					for(int i= 2 ; i < 3; i++)
+					{
+						eklgun += 1 ;
+						if(rss.getBoolean(i))
+						{
+							varmi = true;
+							gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+							break ;
+						}
+					}
+				}
+			}
+		}
+		else if(hangiGUNDEYIZ == 3)
+		{
+			if (rss.getBoolean("CARS"))
+			{
+				eklgun = 0;
+				for(int i= 4 ; i < 9; i++)
+				{
+					eklgun += 1 ;
+					if(rss.getBoolean(i))
+					{
+						varmi = true;
+						gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						break ;
+					}
+				}
+				eklgun = 0 ;
+				if (varmi ==false)
+				{
+					for(int i= 2 ; i <4; i++)
+					{
+						eklgun += 1 ;
+						if(rss.getBoolean(i))
+						{
+							varmi = true;
+							gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+							break ;
+						}
+					}
+				}
+			}
+		}
+		else if(hangiGUNDEYIZ == 4)
+		{
+			if (rss.getBoolean("PERS"))
+			{
+				eklgun = 0;
+				for(int i= 5 ; i < 9; i++)
+				{
+					eklgun += 1 ;
+					if(rss.getBoolean(i))
+					{
+						varmi = true;
+						gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						break ;
+					}
+				}
+				eklgun = 0 ;
+				if (varmi ==false)
+				{
+					for(int i= 2 ; i < 5; i++)
+					{
+						eklgun += 1 ;
+						if(rss.getBoolean(i))
+						{
+							varmi = true;
+							gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+							break ;
+						}
+					}
+				}
+			}
+		}
+		else if(hangiGUNDEYIZ == 5)
+		{
+			if (rss.getBoolean("CUMA"))
+			{
+				eklgun = 0;
+				for(int i= 6 ; i < 9; i++)
+				{
+					eklgun += 1 ;
+					if(rss.getBoolean(i))
+					{
+						varmi = true;
+						gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						break ;
+					}
+				}
+				eklgun = 0 ;
+				if (varmi ==false)
+				{
+					for(int i= 2 ; i < 6; i++)
+					{
+						eklgun += 1 ;
+						if(rss.getBoolean(i))
+						{
+							varmi = true;
+							gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+							break ;
+						}
+					}
+				}
+			}
+		}
+		else if(hangiGUNDEYIZ == 6)
+		{
+			if (rss.getBoolean("C_TESI"))
+			{
+				eklgun = 0;
+				for(int i= 7 ; i < 9; i++)
+				{
+					eklgun += 1 ;
+					if(rss.getBoolean(i))
+					{
+						varmi = true;
+						gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						break ;
+					}
+				}
+				eklgun = 0 ;
+				if (varmi ==false)
+				{
+					for(int i= 2 ; i < 7; i++)
+					{
+						eklgun += 1 ;
+						if(rss.getBoolean(i))
+						{
+							varmi = true;
+							gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+							break ;
+						}
+					}
+				}
+			}
+		}
+		else if(hangiGUNDEYIZ == 7)
+		{
+			if (rss.getBoolean("PAZAR"))
+			{
+				eklgun = 0;
+				for(int i= 2 ; i < 9; i++){
+					eklgun += 1 ;
+					if(rss.getBoolean(i))
+					{
+						gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						break ;
+					}
+				}
+			}
+		}
 	}
-	
+
 	private static void gunEKLE(Date basLA, int gun) throws ParseException
 	{
-		 DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-		  String simDI = df.format(basLA);
-		  Date date1=new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(simDI);  
-			  
-		  
-		  Date dtt = new Date();
-		  Calendar c = Calendar.getInstance(); 
-		  c.setTime(dtt); 
-		  c.add(Calendar.DATE, gun);
-		  dtt = c.getTime();
-	
-				  dtt.setHours(date1.getHours());
-			  dtt.setMinutes(date1.getMinutes());
-			  dtt.setSeconds(0);
-			  
-			  df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-			  lblgel.setText(df.format(dtt));
+		DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+		String simDI = df.format(basLA);
+		Date date1=new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(simDI);  
+
+
+		Date dtt = new Date();
+		Calendar c = Calendar.getInstance(); 
+		c.setTime(dtt); 
+		c.add(Calendar.DATE, gun);
+		dtt = c.getTime();
+
+		dtt.setHours(date1.getHours());
+		dtt.setMinutes(date1.getMinutes());
+		dtt.setSeconds(0);
+
+		df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+		lblgel.setText(df.format(dtt));
 	}
 	private static void yedekLE()
 	{

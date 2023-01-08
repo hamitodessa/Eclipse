@@ -43,6 +43,7 @@ public class GOREV {
 	//static String emirAdii = "";
 	static JPanel p ;
 	static ResultSet rss  ;
+	static boolean varmi = false;
 	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,
 			String acikLAMA,String durUM,String surUCU) throws InterruptedException
 	{
@@ -285,85 +286,194 @@ public class GOREV {
 		  {
 			   if (rss.getBoolean("P_TESI"))
 			   {
-				   gunEKLE(rss.getDate("BASLAMA") , 0);
-				   eklgun = 1 ;
-			   }
-			   else
-			   {
-				   eklgun = 1 ;
+					  eklgun = 0;
+					  for(int i= 2 ; i < 9; i++)
+					  {
+						  eklgun += 1 ;
+						  if(rss.getBoolean(i))
+						  {
+							  varmi = true;
+							  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+							  break ;
+						  }
+					  }
+					  eklgun = 0 ;
+					  if (varmi ==false)
+					  {
+						  gunEKLE(rss.getDate("BASLAMA") ,7);
+						  
+					  }
 			   }
 		  }
 		  else if(hangiGUNDEYIZ == 2)
 		  {
 			   if (rss.getBoolean("SALI"))
 			   {
-				   gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-						   eklgun = eklgun + 1 ;
-			   }
-			   else
-			   {
-				   eklgun = eklgun + 1 ;
+					  eklgun = 0;
+					  for(int i= 3 ; i < 9; i++)
+					  {
+						  eklgun += 1 ;
+						  if(rss.getBoolean(i))
+						  {
+							  varmi = true;
+							  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+							  break ;
+						  }
+					  }
+					  eklgun = 0 ;
+					  if (varmi ==false)
+					  {
+						  for(int i= 2 ; i < 3; i++)
+						  {
+							  eklgun += 1 ;
+							  if(rss.getBoolean(i))
+							  {
+								  varmi = true;
+								  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+								  break ;
+							  }
+						  }
+					  }
 			   }
 		  }
 		  else if(hangiGUNDEYIZ == 3)
 		  {
 			   if (rss.getBoolean("CARS"))
 			   {
-				   gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-						   eklgun = eklgun + 1 ;
-			   }
-			   else
-			   {
-				   eklgun = eklgun + 1 ;
+					  eklgun = 0;
+					  for(int i= 4 ; i < 9; i++)
+					  {
+						  eklgun += 1 ;
+						  if(rss.getBoolean(i))
+						  {
+							  varmi = true;
+							  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+							  break ;
+						  }
+					  }
+					  eklgun = 0 ;
+					  if (varmi ==false)
+					  {
+						  for(int i= 2 ; i <4; i++)
+						  {
+							  eklgun += 1 ;
+							  if(rss.getBoolean(i))
+							  {
+								  varmi = true;
+								  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+								  break ;
+							  }
+						  }
+					  }
 			   }
 		  }
 		  else if(hangiGUNDEYIZ == 4)
 		  {
 			   if (rss.getBoolean("PERS"))
 			   {
-				   gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-						   eklgun = eklgun + 1 ;
-			   }
-			   else
-			   {
-				   eklgun = eklgun + 1 ;
+					  eklgun = 0;
+					  for(int i= 5 ; i < 9; i++)
+					  {
+						  eklgun += 1 ;
+						  if(rss.getBoolean(i))
+						  {
+							  varmi = true;
+							  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+							  break ;
+						  }
+					  }
+					  eklgun = 0 ;
+					  if (varmi ==false)
+					  {
+						  for(int i= 2 ; i < 5; i++)
+						  {
+							  eklgun += 1 ;
+							  if(rss.getBoolean(i))
+							  {
+								  varmi = true;
+								  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+								  break ;
+							  }
+						  }
+					  }
 			   }
 		  }
 		  else if(hangiGUNDEYIZ == 5)
 		  {
 			   if (rss.getBoolean("CUMA"))
 			   {
-				   gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-						   eklgun = eklgun + 1 ;
-			   }
-			   else
-			   {
-				   eklgun = eklgun + 1 ;
+					  eklgun = 0;
+					  for(int i= 6 ; i < 9; i++)
+					  {
+						  eklgun += 1 ;
+						  if(rss.getBoolean(i))
+						  {
+							  varmi = true;
+							  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+							  break ;
+						  }
+					  }
+					  eklgun = 0 ;
+					  if (varmi ==false)
+					  {
+						  for(int i= 2 ; i < 6; i++)
+						  {
+							  eklgun += 1 ;
+							  if(rss.getBoolean(i))
+							  {
+								  varmi = true;
+								  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+								  break ;
+							  }
+						  }
+					  }
 			   }
 		  }
 		  else if(hangiGUNDEYIZ == 6)
 		  {
-			   if (rss.getBoolean("C_TESI"))
-			   {
-				   gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-						   eklgun = eklgun + 1 ;
-			   }
-			   else
-			   {
-				   eklgun = eklgun + 1 ;
-			   }
+			  if (rss.getBoolean("C_TESI"))
+			  {
+					  eklgun = 0;
+				  for(int i= 7 ; i < 9; i++)
+				  {
+					  eklgun += 1 ;
+					  if(rss.getBoolean(i))
+					  {
+						  varmi = true;
+						  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						  break ;
+					  }
+				  }
+				  eklgun = 0 ;
+				  if (varmi ==false)
+				  {
+					  for(int i= 2 ; i < 7; i++)
+					  {
+						  eklgun += 1 ;
+						  if(rss.getBoolean(i))
+						  {
+							  varmi = true;
+							  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+							  break ;
+						  }
+					  }
+				  }
+			  }
 		  }
 		  else if(hangiGUNDEYIZ == 7)
 		  {
-			   if (rss.getBoolean("PAZAR"))
-			   {
-				   gunEKLE(rss.getDate("BASLAMA") ,eklgun);
-						   eklgun = eklgun + 1 ;
-			   }
-			   else
-			   {
-				   eklgun = eklgun + 1 ;
-			   }
+			  if (rss.getBoolean("PAZAR"))
+			  {
+				  eklgun = 0;
+				  for(int i= 2 ; i < 9; i++){
+					  eklgun += 1 ;
+					  if(rss.getBoolean(i))
+					  {
+						  gunEKLE(rss.getDate("BASLAMA") ,eklgun);
+						  break ;
+					  }
+				  }
+			  }
 		  }
 	}
 	

@@ -7,9 +7,18 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.Timestamp;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -20,18 +29,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import OBS_C_2025.SQL_BACKUP;
+
 public class GOREV {
 
 	static Timer timer ;
-	
+	static SQL_BACKUP sqll = new SQL_BACKUP();
 	static JLabel lblgel ;
-	 static  JLabel lblson ;
-	
+	static  JLabel lblson ;
+	static String emirAdii = "";
+	static JPanel p ;
+	static ResultSet rss  ;
 	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,
 			String acikLAMA,String durUM,String surUCU) throws InterruptedException
 	{
 		durdur();
-	        JPanel p = new JPanel(new GridBagLayout());
+		emirAdii = emirAdi;
+	        p = new JPanel(new GridBagLayout());
 	        p.setBorder(new TitledBorder(emirAdi));
 	        ((javax.swing.border.TitledBorder) p.getBorder()).setTitleFont(new Font("Arial", Font.BOLD, 14));
 	         ((TitledBorder) p.getBorder()).setTitleColor(Color.BLUE);
@@ -103,14 +117,13 @@ public class GOREV {
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					
-				
+					timer.cancel();
+					timer.purge();
 					VT_ANA_CLASS.yENI_EMIR = false ;
 					VT_ANA_CLASS.EMIR_ADI= emirAdi;
 					EMIR emr = new EMIR();
+				emr.setVisible(true);
 				
-					emr.setVisible(true);
-			
 					
 					//   System.out.println("="+BASLA.gorevLER.size());
 				//	BASLA.gorevLER.add(emirAdi);
@@ -129,23 +142,24 @@ public class GOREV {
 				//System.out.println(new Date());
 				DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 				String simDI = df.format(new Date());
-				 String gelYEDEK="08.01.2023 01:27:00";  
-								//Date date1=new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(lblgel.getText() + ":00");
-		
-								System.out.println(simDI + "==" + gelYEDEK);
-								
-								
-							if (simDI.equals(gelYEDEK)) // YEDEKLEME ZAMANI 
-							{
+				 String gelYEDEK="08.01.2023 14:54:00";  
 							
+							//if (simDI.equals(gelYEDEK)) // YEDEKLEME ZAMANI 
+							//{
 								timer.cancel();
 								timer.purge();
-								System.out.println("esit");
-								
+							//YEDEKLE
+									try {
+										sonrakiYEDEK();
+									} catch (Exception e) {
+										System.out.println(e.getMessage());
+									}
+							
+							//
 								DateFormat dff = new SimpleDateFormat("dd.MM.yyyy HH:mm");				
 								simDI = dff.format(new Date());
 								lblson.setText(simDI);
-							}
+							//}
 				
 			}
 		};
@@ -160,5 +174,99 @@ public class GOREV {
 			timer.cancel();
 			timer.purge();
 		}
+	}
+	private static void sonrakiYEDEK() throws ClassNotFoundException, SQLException, NumberFormatException, ParseException
+	{
+		Format f = new SimpleDateFormat("EEEE");  
+		String str = f.format(new Date());  
+		//prints day name  
+		System.out.println("Day Name: "+str + "==" +emirAdii);  
+	
+		rss = sqll.yedeklemeBILGI(emirAdii);
+		if (str.equals("Monday")) 
+		{
+			if (rss.getBoolean("P_TESI"))
+			{
+				yedekLE();
+			}
+		}
+		if (str.equals("Tuesday")) 
+		{
+			if (rss.getBoolean("SALI"))
+			{
+				yedekLE();
+			}
+		}
+		if (str.equals("Wednesday")) 
+		{
+			if (rss.getBoolean("CARS"))
+			{
+				yedekLE();
+			}
+		}
+		if (str.equals("Thursday")) 
+		{
+			if (rss.getBoolean("PERS"))
+			{
+				yedekLE();
+			}
+		}
+		if (str.equals("Friday")) 
+		{
+			if (rss.getBoolean("CUMA"))
+			{
+				yedekLE();
+			}
+		}
+		if (str.equals("Saturday")) 
+		{
+			if (rss.getBoolean("C_TESI"))
+			{
+				yedekLE();
+			}
+		}
+		if (str.equals("Sunday")) 
+		{
+			if (rss.getBoolean("PAZAR"))
+			{
+				yedekLE();
+			}
+		}
+		// SONRAKI
+		
+		sonRAKI_YEDEK();
+	}
+	private static void  sonRAKI_YEDEK() throws NumberFormatException, SQLException, ParseException
+	{
+		int kacDAKKA = Integer.parseInt(rss.getString("SAAT"));
+	
+		 LocalDateTime dateTime = LocalDateTime.now().plus(Duration.of(kacDAKKA, ChronoUnit.MINUTES));
+		  Date gelecekSAAT  = Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
+		  long gelecekSAATL = gelecekSAAT.getTime();
+		  //
+		  DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+		  String simDI = df.format(rss.getDate("BITIS"));
+		  Date date1=new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(simDI);  
+			
+		  Date sonSAAT = new Date();
+		  sonSAAT.setHours(date1.getHours());
+		  sonSAAT.setMinutes(date1.getMinutes());
+		  sonSAAT.setSeconds(0);
+		
+		  long sonSAATL = sonSAAT.getTime();
+		  //
+	
+		 	  
+		  
+		  
+			
+			
+		System.out.println("===" +gelecekSAATL + "==="+ sonSAATL);
+		  
+	
+	}
+	private static void yedekLE()
+	{
+		System.out.println("Yedekleme..");  
 	}
 }

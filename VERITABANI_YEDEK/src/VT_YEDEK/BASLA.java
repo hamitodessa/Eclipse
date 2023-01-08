@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -30,11 +29,12 @@ import OBS_C_2025.SQL_BACKUP;
 
 import javax.swing.JSplitPane;
 
+@SuppressWarnings("serial")
 public class BASLA extends JFrame {
 	static SQL_BACKUP sqll = new SQL_BACKUP();
 	private JPanel contentPane;
 	GLOBAL glb = new GLOBAL();
-	public   JPanel pPanel;
+	public static   JPanel pPanel;
 	public  static List<String> gorevLER  = new ArrayList<>();
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	/**
@@ -203,7 +203,7 @@ public class BASLA extends JFrame {
 			
 			emirDOLDUR();
 	}
-	public void emirDOLDUR() throws ClassNotFoundException, SQLException, InterruptedException
+	public static void emirDOLDUR() throws ClassNotFoundException, SQLException, InterruptedException
 	{
 		ResultSet rss ;
 		rss = sqll.emirLER();

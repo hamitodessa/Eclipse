@@ -144,9 +144,9 @@ public class EMIR extends JFrame {
 			public void windowClosing(WindowEvent e) {
 				
 				try {
-					BASLA frame = new BASLA();
-					frame.setVisible(true);
-					 frame.emirDOLDUR();
+				//	BASLA frame = new BASLA();
+				//	frame.setVisible(true);
+					BASLA.emirDOLDUR();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

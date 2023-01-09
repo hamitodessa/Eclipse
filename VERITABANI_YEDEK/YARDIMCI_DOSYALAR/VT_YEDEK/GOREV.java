@@ -147,7 +147,7 @@ public class GOREV {
 					timer.purge();
 					//YEDEKLE
 					try {
-						sonrakiYEDEK();
+						yedekLE();
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
@@ -267,15 +267,18 @@ private static void gunLERE_BAK() throws SQLException, ParseException, Interrupt
 	int hangiGUNDEYIZ = dayOfWeek.getValue(); // 6
 	//String dayOfWeekName = dayOfWeek.name(); // SATURDAY
 
+	System.out.println("270=" + hangiGUNDEYIZ);
 	if(hangiGUNDEYIZ == 1)
 	{
-		if (rss.getBoolean("P_TESI"))
-		{
+		//if (rss.getBoolean("P_TESI"))
+		//{
+			
 			for(int i= 4 ; i < 10; i++)
 			{
 				if(rss.getBoolean(i))
 				{
 					varmi = true;
+					System.out.println("280=" + i);
 					gunEKLE(rss.getDate("BASLAMA") ,i-3); // Sali 4
 					break ;
 				}
@@ -284,7 +287,7 @@ private static void gunLERE_BAK() throws SQLException, ParseException, Interrupt
 			{
 				gunEKLE(rss.getDate("BASLAMA") ,7);
 			}
-		}
+		//}
 	}
 	else if(hangiGUNDEYIZ == 2)
 	{

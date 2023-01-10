@@ -51,12 +51,15 @@ public class GOREV {
 		gbc.insets = new Insets(5, 5, 5, 5);
 		gbc.anchor = GridBagConstraints.WEST;
 
-		p.add(new JLabel("Son Durum:" ), gbc);
+		p.add(new JLabel("Son Durum                      		" ), gbc);
 		gbc.gridx = 1 ;
-		p.add(new JLabel(sonDurum), gbc);
+		
+		JLabel sDURUM = new JLabel(sonDurum);
+	
+		p.add(sDURUM, gbc);
 
 		gbc.gridx = 2;
-		p.add(new JLabel("          Son Yedekleme :" ) , gbc);
+		p.add(new JLabel("          Son Yedekleme " ) , gbc);
 
 		gbc.gridx = 3;
 		lblson = new JLabel(sonYEDEK );
@@ -65,13 +68,13 @@ public class GOREV {
 
 		gbc.gridy = 1;
 		gbc.gridx = 0;
-		p.add(new JLabel("Dosya Sayisi   :"), gbc);
+		p.add(new JLabel("Dosya Sayisi  "), gbc);
 
 		gbc.gridx = 1;
 		p.add(new JLabel(Integer.toString(dosyaSayisi) + " Adet Dosya" ), gbc);
 
 		gbc.gridx = 2;
-		p.add(new JLabel("          Gelecek Yedekleme :" ), gbc);
+		p.add(new JLabel("          Gelecek Yedekleme " ), gbc);
 		gbc.gridx = 3;
 
 		lblgel = new JLabel(gelYEDEK );
@@ -82,7 +85,7 @@ public class GOREV {
 		gbc.gridx = 0;
 		gbc.weightx = 0.0;
 		gbc.gridwidth = 2;
-		p.add(new JLabel("Surucu / FTP  :" ), gbc);
+		p.add(new JLabel("Surucu / FTP :" ), gbc);
 
 		gbc.gridx = 1;
 		p.add(new JLabel(surUCU), gbc);
@@ -113,16 +116,12 @@ public class GOREV {
 		JButton btnNewButton = new JButton("Emir Duzelt");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				timer.cancel();
+			timer.cancel();
 				timer.purge();
 				VT_ANA_CLASS.yENI_EMIR = false ;
 				VT_ANA_CLASS.EMIR_ADI= emirAdi;
 				EMIR emr = new EMIR();
 				emr.setVisible(true);
-				//   System.out.println("="+BASLA.gorevLER.size());
-				//	BASLA.gorevLER.add(emirAdi);
-				//   System.out.println("==" +BASLA.gorevLER.size());
 			}
 		});
 		p.add(btnNewButton, gbc);
@@ -484,6 +483,7 @@ public class GOREV {
 	private static void yedekLE()
 	{
 		System.out.println("Yedekleme..");  
+		BASLA.gorevLER.add(  ((javax.swing.border.TitledBorder) p.getBorder()).getTitle());
 	}
 
 }

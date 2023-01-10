@@ -114,18 +114,7 @@ public class BASLA extends JFrame {
 	    	sagaltPane.add(progressBar1);
 	    	
 	    	
-	    	JButton btnNewButton_1 = new JButton("New button");
-			btnNewButton_1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				  //   for (int ii = 1; ii < 6; ii++) {
-				//            pPanel.add(GOREV.getShowRoomPanel("hamit","Yedeklendi"  , 8  ,"05.01.2022 15.04"  ,"06.01.2023 15.04"   ,"C:\\OBS_SISTEM\\","Deneme Yuklemesi" ,"Aktiv"));
-				      //  }
-				     scrollPane.revalidate();
-				     scrollPane.repaint();
-				}
-			});
-			btnNewButton_1.setBounds(10, 204, 89, 23);
-			panel.add(btnNewButton_1);
+	    
 			
 			JButton btnNewButton = new JButton("Yeni Emir");
 			btnNewButton.addActionListener(new ActionListener() {

@@ -10,11 +10,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.swing.JOptionPane;
 
 public class SQL_BACKUP {
 	static  Connection con ;
@@ -488,5 +490,25 @@ public class SQL_BACKUP {
 		 stmt.executeUpdate();
 		stmt.close();
 		conn.close();
+	}
+	public void Logla(String emirADI , String mesaj) throws ClassNotFoundException, SQLException {
+		try
+		{
+			Class.forName("org.sqlite.JDBC");   //
+			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + GLOBAL.BACKUP_SURUCU + GLOBAL.BACKUP_LOG_DOSYA   ) ;
+			PreparedStatement stmt = null;
+			String sql =  "INSERT INTO LOG (EMIR_ISMI,TARIH, ,MESAJ) " +
+									"VALUES (?,?,?)";
+			stmt = sQLITEconn.prepareStatement(sql);
+			stmt.setString(1,emirADI);
+			stmt.setDate(2,(java.sql.Date) new java.sql.Date(Calendar.getInstance().getTime().getTime()) );
+			stmt.setString(3, mesaj);
+				stmt.executeUpdate();
+			stmt.close();
+			sQLITEconn.close();
+		}
+		catch (Exception e){ 
+			JOptionPane.showMessageDialog(null, e.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
+		}
 	}
 }

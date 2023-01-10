@@ -310,19 +310,19 @@ public class BASLA extends JFrame {
 	{
 		ResultSet rss = sqll.dbLISTE(emirADI);
 		if (!rss.isBeforeFirst() ) {  
-		//	sqll.log_kayit(RadLabel1.Text, Now, "Yuklenecek Dosya Secilmemis....")
+			sqll.Logla(emirADI,  "Yuklenecek Dosya Secilmemis....");
 			return;
 		} 
 		GLOBAL glb = new GLOBAL();
 		if (glb.internet_kontrol() == false)
 		{
-//			sqll.log_kayit(RadLabel1.Text, Now, "Yuklenecek Dosya Secilmemis....")
+			sqll.Logla(emirADI,  "Internet Baglantisi Yok");
 			return ;
 		}
 		
 		ResultSet rs = sqll.surBILGI(emirADI);
 		if (!rs.isBeforeFirst() ) {  
-			//	sqll.log_kayit(RadLabel1.Text, Now, "ftp bos")
+			sqll.Logla(emirADI,  "FTP Bos");
 				return;
 			} 
 		String neresi = rs.getString("NERESI");

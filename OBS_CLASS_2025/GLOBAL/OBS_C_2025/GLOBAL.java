@@ -31,10 +31,13 @@ public class GLOBAL {
 	
 	public static String SQL_BACKUP = "SQL_BACKUP.DB";
 	public static String SURUCU = "C:\\OBS_SISTEM\\";
+	public static String BACKUP_SURUCU = "C:\\OBS_SISTEM\\";
+	public static String BACKUP_LOG_DOSYA = "OBS_BACKUP_LOG.DB" ;
 	public static String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
 	static String DBYERI = "C:\\OBS_DATABASES\\";
 	static Connection con ;
 	static Connection bACKUPCONN ;
+	static Connection bACKUPLOGCONN ;
 	static String ayarlar[][]; // = new String[5][5];
 	public static String KULL_ADI = "";
 	public static String Log_Mail ="";
@@ -70,6 +73,14 @@ public class GLOBAL {
 		}  
 		return conn;  
 	}  
+	public static  Connection myBackupLogConnection () {
+		Connection conn = null;  
+		try{
+			conn = DriverManager.getConnection("jdbc:sqlite:" + BACKUP_SURUCU + BACKUP_LOG_DOSYA);
+		} catch (SQLException e) {  
+		}  
+		return conn;  
+	}  
 	public   void backup_dosya_olustur() throws Exception {
 		try {  
 			Class.forName("org.sqlite.JDBC");
@@ -86,7 +97,7 @@ public class GLOBAL {
 				    +" ,CARS BLOB,PERS BLOB,CUMA BLOB,C_TESI BLOB,PAZAR BLOB,BASLAMA DATETIME,BITIS DATETIME ) ; ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE SERVER (  EMIR_ISMI nvarchar(30) ,HANGI_SQL nvarchar(3),INSTANCE nvarchar(50) " 
-				     +  " ,WIN BLOB,SERV BLOB,KULLANICI nvarchar(50)  ," 
+				     +  " ,WIN BLOB,SERV BLOB,KULLANICI nvarchar(50) " 
 				     +  " ,SIFRE BLOB,PORT nvarchar(10)) ;" ;
 			backup_tablo_yap(sorgu);
 			sorgu ="CREATE TABLE DB_ISIM (  EMIR_ISMI nvarchar(30) ,DB_ADI nvarchar(50)); ";
@@ -95,7 +106,24 @@ public class GLOBAL {
 			backup_tablo_yap(sorgu);
 			sorgu ="CREATE TABLE DUMP_YERI ( EMIR_ISMI nvarchar(30) , DUMP_PATH nvarchar(200) ) ; ";
 			backup_tablo_yap(sorgu);
-
+			
+			//// LOG DOSYA
+		
+			Class.forName("org.sqlite.JDBC");
+			 bACKUPLOGCONN = myBackupLogConnection();
+			 bACKUPLOGCONN.close();
+			String sql = null;
+			
+			sql = "CREATE TABLE LOG(	EMIR_ISMI  nvarchar(30)  ,	TARIH DATETIME, 	MESAJ nvarchar(150) ) ;";
+			bACKUPLOGCONN.close();
+			bACKUPLOGCONN = null;
+			bACKUPLOGCONN = myBackupLogConnection();
+			java.sql.Statement stmt = null;
+			stmt = bACKUPLOGCONN.createStatement();  
+			stmt.execute(sql);  
+			stmt.close();
+			bACKUPLOGCONN.close();
+			
 		}
 		catch (SQLException ex) {  
 			JOptionPane.showMessageDialog(null, ex);  

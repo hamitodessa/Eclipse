@@ -138,7 +138,7 @@ public class GOREV {
 			{
 				DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 				String simDI = df.format(new Date());
-				System.out.println(simDI + "=basla= " + lblgel.getText()+ ":00" ) ;
+			//	System.out.println(simDI + "=basla= " + lblgel.getText()+ ":00" ) ;
 			
 				if (simDI.equals(lblgel.getText() + ":00")) // YEDEKLEME ZAMANI 
 				{

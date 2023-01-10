@@ -16,7 +16,12 @@
 	<classpathentry kind="src" path="LOGGER"/>
 	<classpathentry kind="src" path="LOGER_KAYIT"/>
 	<classpathentry kind="src" path="TEMA_CARI"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="SQL_BACKUP"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="C:/ELIF/2025/sqlite-jdbc-3.30.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/sqljdbc4-4.0.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jcalendar-1.4.jar"/>
@@ -24,6 +29,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/jfreechart.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/mail.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/mysql-connector-j-8.0.31.jar"/>
-	<classpathentry kind="src" path="SQL_BACKUP"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-net-3.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

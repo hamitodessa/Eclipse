@@ -467,4 +467,23 @@ public class SQL_BACKUP {
 		stmt.close();
 		con.close();
 	}
+	public void msBackup(String port , String inst , String kull , String sifre, String dbismi, String dbyer) throws SQLException, ClassNotFoundException
+	{
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		Connection conn = null;  
+		String cumle = "";
+		if ( ! port.toString().equals("") )
+		{
+			port =  ":" + port ;
+		}
+		cumle ="jdbc:sqlserver://localhost" + port + ";instanceName=" + inst + ";";
+		conn = DriverManager.getConnection(cumle,kull,sifre);
+		String sql =  "BACKUP DATABASE [" + dbismi + "] TO  DISK = N'C:\\OBS_SISTEM\\BACKUP\\" + dbyer + ".bak' "
+            +    " WITH NOFORMAT , NOINIT , NAME = N'" + dbismi + "' , SKIP , NOREWIND " 
+              +   " ,NOUNLOAD , STATS = 10 " ;
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		stmt.close();
+		conn.close();
+	}
 }

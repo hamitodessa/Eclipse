@@ -134,17 +134,19 @@ public class GOREV {
 	{
 		TimerTask timerTask = new TimerTask() {
 			@Override
-			public void run() {
+			public void run()
+			{
 				DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 				String simDI = df.format(new Date());
 				System.out.println(simDI + "=basla= " + lblgel.getText()+ ":00" ) ;
+			
 				if (simDI.equals(lblgel.getText() + ":00")) // YEDEKLEME ZAMANI 
 				{
 					timer.cancel();
 					timer.purge();
 					//YEDEKLE
 					try {
-						yedekLE();
+						yedekLEE();
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
@@ -152,15 +154,12 @@ public class GOREV {
 					DateFormat dff = new SimpleDateFormat("dd.MM.yyyy HH:mm");				
 					simDI = dff.format(new Date());
 					lblson.setText(simDI);
-					
 					try {
 						rss = sqll.yedeklemeBILGI(  ((javax.swing.border.TitledBorder) p.getBorder()).getTitle());
 						sonRAKI_YEDEK(Integer.parseInt(rss.getString("SAAT")));
 					} catch (ClassNotFoundException | SQLException | NumberFormatException | ParseException | InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				
 				}
 			}
 		};
@@ -477,10 +476,8 @@ public class GOREV {
 		lblgel.setText(df.format(dtt));
 		basla();
 	}
-	private static void yedekLE()
+	private static void yedekLEE()
 	{
-		System.out.println("Yedekleme..");  
 		BASLA.gorevLER.add(  ((javax.swing.border.TitledBorder) p.getBorder()).getTitle());
 	}
-
 }

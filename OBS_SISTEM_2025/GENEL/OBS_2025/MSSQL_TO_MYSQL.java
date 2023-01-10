@@ -317,7 +317,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
-				BACKUP_RESTORE.Backupdbtosql("ok_car019","hamit","197227oOk", "C:/Program Files/MySQL/MySQL Workbench 8.0");
+				BACKUP_RESTORE.BackupdbtoMYsql("ok_car019","hamit","197227oOk", "C:/Program Files/MySQL/MySQL Workbench 8.0");
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});

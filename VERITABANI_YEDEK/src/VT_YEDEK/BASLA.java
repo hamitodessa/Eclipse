@@ -10,13 +10,24 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,7 +36,8 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-
+import OBS_C_2025.BACKUP_RESTORE;
+import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.SQL_BACKUP;
 
@@ -40,6 +52,7 @@ public class BASLA extends JFrame {
 	public static   JPanel pPanel;
 	public  static List<String> gorevLER  = new ArrayList<>();
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
+	static Timer timerr ;
 	/**
 	 * Launch the application.
 	 */
@@ -222,6 +235,8 @@ public class BASLA extends JFrame {
 			oac.EMIR_ADI = "hamit";
 			
 			emirDOLDUR();
+			
+			baslat();
 	}
 	public static void emirDOLDUR() throws ClassNotFoundException, SQLException, InterruptedException, NumberFormatException, ParseException
 	{
@@ -248,5 +263,128 @@ public class BASLA extends JFrame {
 					tarih,""   ,rss.getString("EMIR_ACIKLAMA") ,rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv",
 							sqll.ftp_NERESI(rss.getString("EMIR_ISMI"))));
 		}
+	}
+	private void yedekLE() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
+	{
+		durdur() ;
+		for (int i = 0; i < gorevLER.size(); i++) 
+		{
+		    backUP(gorevLER.get(i));
+		    
+		    gorevLER.remove(gorevLER.get(i));
+		}
+		baslat();
+	}
+	private void backUP(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
+	{
+		ResultSet rs = sqll.emirBILGI(emirADI);
+		
+		boolean  SQL_YEDEK_MI = true ;
+		SQL_YEDEK_MI = rs.getBoolean("SQL_YEDEK");
+		        if (SQL_YEDEK_MI == false )
+		        {
+		       //     diger_dosya()   ;
+		            return ;
+		        }
+		 
+	if (rs.getString("INSTANCE").equals("MS SQL"))
+	{
+		msSQL(emirADI);
+	}
+	else   if (rs.getString("INSTANCE").equals("MY SQL"))
+	{
+		mySQL(emirADI);
+	}
+
+	}
+	private void msSQL(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
+	{
+		ResultSet rss = sqll.dbLISTE(emirADI);
+		if (!rss.isBeforeFirst() ) {  
+		//	sqll.log_kayit(RadLabel1.Text, Now, "Yuklenecek Dosya Secilmemis....")
+			return;
+		} 
+		GLOBAL glb = new GLOBAL();
+		if (glb.internet_kontrol() == false)
+		{
+//			sqll.log_kayit(RadLabel1.Text, Now, "Yuklenecek Dosya Secilmemis....")
+			return ;
+		}
+		
+		ResultSet rs = sqll.surBILGI(emirADI);
+		if (!rs.isBeforeFirst() ) {  
+			//	sqll.log_kayit(RadLabel1.Text, Now, "ftp bos")
+				return;
+			} 
+		String neresi = rs.getString("NERESI");
+		
+		if (neresi.equals("FTP"))
+		{
+			msSQL_FTP(emirADI);
+		}
+		else // yerel surucu
+		{
+			
+		}
+	}
+	private void msSQL_FTP(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
+	{
+		ResultSet rss = sqll.dbLISTE(emirADI);
+		ResultSet rs =  sqll.serBILGI(emirADI);
+		ResultSet rrs =  sqll.surBILGI(emirADI);
+		Date tar = new Date();
+		DateFormat  df = new SimpleDateFormat("ddMMyyyyHHmm");
+		String tarih = df.format(tar);
+
+
+		while(rss.next())
+		{
+			sqll.msBackup(emirADI, rs.getString("INSTANCE")  ,rs.getString("KULLANICI"), ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rs.getBytes("SIFRE")), 
+																					rss.getString("DB_ADI")	  ,	tarih + "_" + rss.getString("DB_ADI"));
+
+			//
+			String  dosya,dzip ;
+			dosya =  "C:\\OBS_SISTEM\\BACKUP\\" + tarih +  "_"  +  rss.getString("DB_ADI") + ".bak" ;
+			dzip = tarih + "_" + rss.getString("DB_ADI") + ".zip" ;
+			BACKUP_RESTORE. BackupdbtoZIP(dosya , dzip);
+
+			BACKUP_RESTORE.upLOADtoFTP(rrs.getString("HOST") , Integer.parseInt(rrs.getString("PORT")),rrs.getString("KULLANICI"), ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rrs.getBytes("SIFRE"))
+						, dzip ,rrs.getString("SURUCU") ) ;
+			//
+		}
+
+
+	}
+	private void mySQL(String emirADI)
+	{
+		
+	}
+	private static void durdur()
+	{
+		if (timerr != null)
+		{	
+			timerr.cancel();
+			timerr.purge();
+		}
+	}
+	
+	private void baslat()
+	{
+		TimerTask timerTask = new TimerTask() {
+			@Override
+			public void run() {
+				try {
+					yedekLE();
+				} catch (ClassNotFoundException | SQLException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+		timerr = new Timer();
+		timerr.schedule(timerTask, 0, 1000);
 	}
 }

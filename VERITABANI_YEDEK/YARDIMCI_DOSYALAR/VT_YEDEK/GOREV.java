@@ -126,9 +126,7 @@ public class GOREV {
 		});
 		p.add(btnNewButton, gbc);
 		rss = sqll.yedeklemeBILGI(  ((javax.swing.border.TitledBorder) p.getBorder()).getTitle());
-		System.out.println("baslama");   
 		sonRAKI_YEDEK(Integer.parseInt(rss.getString("SAAT")));
-
 		basla();
 		return p;
 	}
@@ -154,8 +152,16 @@ public class GOREV {
 					DateFormat dff = new SimpleDateFormat("dd.MM.yyyy HH:mm");				
 					simDI = dff.format(new Date());
 					lblson.setText(simDI);
+					
+					try {
+						rss = sqll.yedeklemeBILGI(  ((javax.swing.border.TitledBorder) p.getBorder()).getTitle());
+						sonRAKI_YEDEK(Integer.parseInt(rss.getString("SAAT")));
+					} catch (ClassNotFoundException | SQLException | NumberFormatException | ParseException | InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
 				}
-
 			}
 		};
 		timer = new Timer();
@@ -169,8 +175,6 @@ public class GOREV {
 			timer.purge();
 		}
 	}
-
-
 	@SuppressWarnings("deprecation")
 	private static void   sonRAKI_YEDEK(int kacDAKKA) throws NumberFormatException, SQLException, ParseException, InterruptedException, ClassNotFoundException
 	{
@@ -196,7 +200,6 @@ public class GOREV {
 
 		if  (kontROLL > biTISL )
 		{
-			System.out.println("burda");
 			gunLERE_BAK();
 		}
 		else
@@ -208,11 +211,9 @@ public class GOREV {
 				long suANL ;
 				suAN.setSeconds(0);
 				suANL = suAN.getTime();
-				//System.out.println(new Date(i) +"==+==" + suAN);
 				if ( i > suANL)
 				{
 					Date currentDate = new Date(i);
-					//System.out.println("burda=" + currentDate);
 					DateFormat  df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 					lblgel.setText(df.format(currentDate));
 					break ;
@@ -308,7 +309,6 @@ public class GOREV {
 		}
 		else
 		{
-			//System.out.println("318");
 			hangiGUN_CARS();
 		}
 	}
@@ -395,7 +395,6 @@ public class GOREV {
 					if(rss.getBoolean(i))
 					{
 						varmi = true;
-						//System.out.println(" 413= " +(i-2)  + "===" + hangiGUNDEYIZ );
 						gunEKLE(rss.getDate("BASLAMA") , (i-2) - hangiGUNDEYIZ);
 						break ;
 					}
@@ -404,7 +403,6 @@ public class GOREV {
 		}
 		else
 		{
-			//System.out.println("420");
 			hangiGUN_C_TESI();
 		}
 	}
@@ -436,7 +434,6 @@ public class GOREV {
 		}
 		else
 		{
-			System.out.println("451");
 			hangiGUN_PAZAR();
 		}
 	}

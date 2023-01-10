@@ -86,8 +86,8 @@ public class GLOBAL {
 				    +" ,CARS BLOB,PERS BLOB,CUMA BLOB,C_TESI BLOB,PAZAR BLOB,BASLAMA DATETIME,BITIS DATETIME ) ; ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE SERVER (  EMIR_ISMI nvarchar(30) ,HANGI_SQL nvarchar(3),INSTANCE nvarchar(50) " 
-				     +  " ,WIN BLOB,SERV BLOB,KULLANICI nvarchar(50) " 
-				     +  " ,SIFRE BLOB) ;" ;
+				     +  " ,WIN BLOB,SERV BLOB,KULLANICI nvarchar(50)  ," 
+				     +  " ,SIFRE BLOB,PORT nvarchar(10)) ;" ;
 			backup_tablo_yap(sorgu);
 			sorgu ="CREATE TABLE DB_ISIM (  EMIR_ISMI nvarchar(30) ,DB_ADI nvarchar(50)); ";
 			backup_tablo_yap(sorgu);

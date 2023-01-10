@@ -18,6 +18,7 @@ import javax.crypto.NoSuchPaddingException;
 
 public class SQL_BACKUP {
 	static  Connection con ;
+	public static  Connection ccon ;
 	static boolean result = false;
 	private GLOBAL gLB = new GLOBAL();
 
@@ -36,14 +37,14 @@ public class SQL_BACKUP {
 		con.close();
 	}
 	@SuppressWarnings("static-access")
-	public void server_ismi_kayit(String eismi,String hangisql, String ins, boolean wi, boolean ser, String kull, String sif) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	public void server_ismi_kayit(String eismi,String hangisql, String ins, boolean wi, boolean ser, String kull, String sif,String port) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		if (con != null && con.isClosed() == false) con.close();
 		Class.forName("org.sqlite.JDBC");
 		PreparedStatement stmt = null;
 		con = gLB.myBackupConnection();
-		String sql = "INSERT INTO SERVER (EMIR_ISMI,HANGI_SQL,INSTANCE,WIN,SERV,KULLANICI,SIFRE) ";
-		sql += "VALUES (?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO SERVER (EMIR_ISMI,HANGI_SQL,INSTANCE,WIN,SERV,KULLANICI,SIFRE,PORT) ";
+		sql += "VALUES (?,?,?,?,?,?,?,?)";
 		{
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, eismi);
@@ -53,21 +54,22 @@ public class SQL_BACKUP {
 			stmt.setBoolean(5, ser);
 			stmt.setString(6, kull);
 			stmt.setBytes(7, ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sif));
+			stmt.setString(8, port);
 		}
-		stmt.executeUpdate();
+		stmt.execute();
 		stmt.close();
 		con.close();
 	}
 	@SuppressWarnings("static-access")
 	public ResultSet serBILGI(String emir) throws ClassNotFoundException, SQLException
 	{
-		if (con != null && con.isClosed() == false) con.close();
+		if (ccon != null && ccon.isClosed() == false) con.close();
 		Class.forName("org.sqlite.JDBC");
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
-		con = gLB.myBackupConnection();
+		ccon = gLB.myBackupConnection();
 		String sql = "SELECT  * FROM SERVER  WHERE EMIR_ISMI = '" + emir + "'";
-		stmt = con.prepareStatement(sql);
+		stmt = ccon.prepareStatement(sql);
 		rss = stmt.executeQuery();
 	
 		return rss;
@@ -84,11 +86,11 @@ public class SQL_BACKUP {
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
+		
 	}
 	@SuppressWarnings("static-access")
 	public String  ftp_NERESI(String emir) throws ClassNotFoundException, SQLException
 	{
-	
 		Class.forName("org.sqlite.JDBC");
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
@@ -158,15 +160,16 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public ResultSet dbLISTE(String emir) throws ClassNotFoundException, SQLException
 	{
-		if (con != null && con.isClosed() == false) con.close();
+		if (ccon != null && ccon.isClosed() == false) ccon.close();
 		Class.forName("org.sqlite.JDBC");
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
-		con = gLB.myBackupConnection();
+		ccon = gLB.myBackupConnection();
 		String sql = "SELECT * FROM DB_ISIM WHERE  EMIR_ISMI ='" + emir + "'";
-		stmt = con.prepareStatement(sql);
+		stmt = ccon.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
+		
 	}
 	@SuppressWarnings("static-access")
 	public int dbSAYISI(String emir) throws ClassNotFoundException, SQLException
@@ -482,7 +485,7 @@ public class SQL_BACKUP {
             +    " WITH NOFORMAT , NOINIT , NAME = N'" + dbismi + "' , SKIP , NOREWIND " 
               +   " ,NOUNLOAD , STATS = 10 " ;
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		ResultSet rs = stmt.executeQuery();
+		 stmt.executeUpdate();
 		stmt.close();
 		conn.close();
 	}

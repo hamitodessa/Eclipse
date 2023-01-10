@@ -62,40 +62,31 @@ public class BACKUP_RESTORE {
 	}
 	public static void BackupdbtoZIP(String dbName , String savePath) throws IOException {
 
-					FileOutputStream fos = new FileOutputStream( dbName );
-				ZipOutputStream zipOut = new ZipOutputStream(fos);
+		String sourceFile = dbName;
+        FileOutputStream fos = new FileOutputStream(savePath);
+        ZipOutputStream zipOut = new ZipOutputStream(fos);
 
-				File fileToZip = new File(savePath);
-				FileInputStream fis = new FileInputStream(fileToZip);
-				ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
-				zipOut.putNextEntry(zipEntry);
+        File fileToZip = new File(sourceFile);
+        FileInputStream fis = new FileInputStream(fileToZip);
+        ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
+        zipOut.putNextEntry(zipEntry);
 
-				byte[] bytes = new byte[1024];
-				int length;
-				while((length = fis.read(bytes)) >= 0) {
-					zipOut.write(bytes, 0, length);
-				}
-				zipOut.close();
-				fis.close();
-				fos.close();
-				//
-				File file = new File(savePath);
-				Files.deleteIfExists(file.toPath());
-				//System.out.println("Backup created successfully");
+        byte[] bytes = new byte[1024];
+        int length;
+        while((length = fis.read(bytes)) >= 0) {
+            zipOut.write(bytes, 0, length);
+        }
+
+        zipOut.close();
+        fis.close();
+        fos.close();
 			
 		
 	}
 	public static void upLOADtoFTP(String server , int port , String user , String pass , String okunacakDB , String ftpSURUCU )
 	{
-	
-//	        String server = "www.myserver.com";
-//	        int port = 21;
-//	        String user = "user";
-//	        String pass = "pass";
-	 
 	        FTPClient ftpClient = new FTPClient();
 	        try {
-	 
 	            ftpClient.connect(server, port);
 	            ftpClient.login(user, pass);
 	            ftpClient.enterLocalPassiveMode();
@@ -107,8 +98,7 @@ public class BACKUP_RESTORE {
 	            String secondRemoteFile =  ftpSURUCU +  "/" + okunacakDB ;
 	            InputStream inputStream = new FileInputStream(secondLocalFile);
 	 
-	            System.out.println("Start uploading second file");
-	            OutputStream outputStream = ftpClient.storeFileStream(secondRemoteFile);
+            OutputStream outputStream = ftpClient.storeFileStream(secondRemoteFile);
 	            byte[] bytesIn = new byte[4096];
 	            int read = 0;
 	 

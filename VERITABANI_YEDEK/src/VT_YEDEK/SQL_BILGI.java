@@ -55,6 +55,7 @@ public class SQL_BILGI extends JDialog {
 	JTabbedPane tabbedPane ;
 	JComboBox<String> comboBox;
 	private JTextField txtDUMP;
+	private JTextField txtPORT;
 	/**
 	 * Launch the application.
 	 */
@@ -131,7 +132,7 @@ public class SQL_BILGI extends JDialog {
 
 		comboBox = new JComboBox<String>();
 		comboBox.setEditable(true);
-		comboBox.setBounds(72, 25, 260, 22);
+		comboBox.setBounds(72, 25, 164, 22);
 		panel.add(comboBox);
 
 		JPanel panel_2 = new JPanel();
@@ -209,6 +210,15 @@ public class SQL_BILGI extends JDialog {
 		});
 		btnNewButton_2.setBounds(355, 240, 89, 23);
 		panel.add(btnNewButton_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Port");
+		lblNewLabel_3.setBounds(280, 29, 58, 14);
+		panel.add(lblNewLabel_3);
+		
+		txtPORT = new JTextField();
+		txtPORT.setBounds(348, 26, 96, 20);
+		panel.add(txtPORT);
+		txtPORT.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
@@ -353,6 +363,7 @@ public class SQL_BILGI extends JDialog {
 					comboBox.setSelectedItem(rss.getString("INSTANCE").toString()) ;
 					txtMSUSER.setText( rss.getString("KULLANICI").toString()) ;
 					txtMSPWD.setText(ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rss.getBytes("SIFRE"))) ;
+					txtPORT.setText(rss.getString("PORT"));
 				}
 				else
 				{
@@ -377,6 +388,7 @@ public class SQL_BILGI extends JDialog {
 		txtPort.setText("") ; 
 		txtMYUSER.setText("") ; 
 		txtMYPWD.setText("") ;
+		txtPORT.setText("");
 	}
 	private void msSQL_KAYDET() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
@@ -386,7 +398,7 @@ public class SQL_BILGI extends JDialog {
 			return ;
 		}
 		bck.server_kayit_sil(oac.EMIR_ADI);
-		bck.server_ismi_kayit(oac.EMIR_ADI,"MS SQL" ,comboBox.getSelectedItem().toString(), false, true, txtMSUSER.getText(), oac.sDONDUR.sDONDUR(txtMSPWD));
+		bck.server_ismi_kayit(oac.EMIR_ADI,"MS SQL" ,comboBox.getSelectedItem().toString(), false, true, txtMSUSER.getText(), oac.sDONDUR.sDONDUR(txtMSPWD),txtPORT.getText());
 	}
 	private void mySQL_KAYDET() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
@@ -397,7 +409,7 @@ public class SQL_BILGI extends JDialog {
 		}
 		bck.server_kayit_sil(oac.EMIR_ADI);
 		bck.dump_sil(txtDUMP.getText());
-		bck.server_ismi_kayit(oac.EMIR_ADI,"MY SQL" ,txtPort.getText(), false, true, txtMYUSER.getText(), oac.sDONDUR.sDONDUR(txtMYPWD));
+		bck.server_ismi_kayit(oac.EMIR_ADI,"MY SQL" ,txtPort.getText(), false, true, txtMYUSER.getText(), oac.sDONDUR.sDONDUR(txtMYPWD),"");
 		bck.dump_kayit(oac.EMIR_ADI,txtDUMP.getText());
 	}
 	private void msSQL_BAGLAN() throws HeadlessException, ClassNotFoundException

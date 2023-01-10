@@ -840,11 +840,12 @@ public class EMIR extends JFrame {
 			
 		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		ResultSet rs = null;
-		rs = sqll.emirBILGI(txtEMIR_ISMI.getText());
+		SQL_BACKUP qwe = new SQL_BACKUP();
+		rs = qwe.emirBILGI(txtEMIR_ISMI.getText());
    
 		Boolean sondurum = false ; 
 		
-			Date sonyuk = new Date();
+		Date sonyuk = new Date();
 		sonyuk.setHours(0);
 		sonyuk.setMinutes(0);
 		sonyuk.setSeconds(0);
@@ -863,7 +864,7 @@ public class EMIR extends JFrame {
        sqll.genel_kayit_sil(txtEMIR_ISMI.getText());
        sqll.genel_kayit(txtEMIR_ISMI.getText(), chckbxDURUM.isSelected(), txtAciklama.getText(),cmbSQL.getSelectedItem().toString(), chckbxHANGI.isSelected());
        sqll.genel_kayit_durum(txtEMIR_ISMI.getText(), false, sonyuk);
-       
+   
        if ( kontrol )
        {
     	   sqll.genel_kayit_durum(txtEMIR_ISMI.getText(), sondurum, sonyuk);

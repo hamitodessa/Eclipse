@@ -223,6 +223,15 @@ public class BASLA extends JFrame {
 			btnNewButton_4.setBounds(10, 330, 130, 23);
 			panel.add(btnNewButton_4);
 			
+			JButton btnNewButton_1 = new JButton("ftp deneme");
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					gorevLER.add("hamit");
+				}
+			});
+			btnNewButton_1.setBounds(10, 455, 89, 23);
+			panel.add(btnNewButton_1);
+			
 		//
 			@SuppressWarnings("static-access")
 			File tmpDir = new File(glb.SURUCU + glb.SQL_BACKUP);
@@ -277,8 +286,8 @@ public class BASLA extends JFrame {
 	}
 	private void backUP(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
 	{
+	
 		ResultSet rs = sqll.emirBILGI(emirADI);
-		
 		boolean  SQL_YEDEK_MI = true ;
 		SQL_YEDEK_MI = rs.getBoolean("SQL_YEDEK");
 		        if (SQL_YEDEK_MI == false )
@@ -327,37 +336,46 @@ public class BASLA extends JFrame {
 			
 		}
 	}
+	@SuppressWarnings("static-access")
 	private void msSQL_FTP(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
 	{
-		ResultSet rss = sqll.dbLISTE(emirADI);
 		ResultSet rs =  sqll.serBILGI(emirADI);
+		String port =  rs.getString("PORT");
+		String  insT = rs.getString("INSTANCE");
+		String kulL = rs.getString("KULLANICI");
+		String pwD = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rs.getBytes("SIFRE"));
+		sqll.ccon.close();
 		ResultSet rrs =  sqll.surBILGI(emirADI);
+		ResultSet rss = sqll.dbLISTE(emirADI);
+
+		List<String> dbList  = new ArrayList<>();
+		while(rss.next())
+		{
+			dbList.add(rss.getString("DB_ADI"));
+		}
+		sqll.ccon.close();
 		Date tar = new Date();
 		DateFormat  df = new SimpleDateFormat("ddMMyyyyHHmm");
 		String tarih = df.format(tar);
-
-
-		while(rss.next())
-		{
-			sqll.msBackup(emirADI, rs.getString("INSTANCE")  ,rs.getString("KULLANICI"), ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rs.getBytes("SIFRE")), 
-																					rss.getString("DB_ADI")	  ,	tarih + "_" + rss.getString("DB_ADI"));
-
-			//
+		for(int i= 0  ; i < dbList.size() ; i++){
+			sqll.msBackup(port,insT  ,kulL,pwD,dbList.get(i)  ,	tarih + "_" + dbList.get(i));
 			String  dosya,dzip ;
-			dosya =  "C:\\OBS_SISTEM\\BACKUP\\" + tarih +  "_"  +  rss.getString("DB_ADI") + ".bak" ;
-			dzip = tarih + "_" + rss.getString("DB_ADI") + ".zip" ;
+			dosya =  "C:\\OBS_SISTEM\\BACKUP\\" + tarih +  "_"  +   dbList.get(i) + ".bak" ;
+			dzip =  tarih + "_" + dbList.get(i) + ".zip" ;
 			BACKUP_RESTORE. BackupdbtoZIP(dosya , dzip);
-
 			BACKUP_RESTORE.upLOADtoFTP(rrs.getString("HOST") , Integer.parseInt(rrs.getString("PORT")),rrs.getString("KULLANICI"), ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rrs.getBytes("SIFRE"))
-						, dzip ,rrs.getString("SURUCU") ) ;
-			//
+					, dzip ,rrs.getString("SURUCU") ) ;
+			
+			File myObj = new File(dosya); 
+		    myObj.delete();
+		    myObj = new File(  "C:\\OBS_SISTEM\\BACKUP\\" + dzip); 
+		    myObj.delete();
+		    
 		}
-
-
 	}
 	private void mySQL(String emirADI)
 	{
-		
+
 	}
 	private static void durdur()
 	{
@@ -367,7 +385,7 @@ public class BASLA extends JFrame {
 			timerr.purge();
 		}
 	}
-	
+
 	private void baslat()
 	{
 		TimerTask timerTask = new TimerTask() {
@@ -375,6 +393,7 @@ public class BASLA extends JFrame {
 			public void run() {
 				try {
 					yedekLE();
+					  
 				} catch (ClassNotFoundException | SQLException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

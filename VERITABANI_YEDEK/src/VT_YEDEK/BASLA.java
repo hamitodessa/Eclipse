@@ -3,6 +3,7 @@ package VT_YEDEK;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -10,8 +11,15 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
@@ -24,6 +32,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -31,10 +41,14 @@ import javax.crypto.NoSuchPaddingException;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
 
 import OBS_C_2025.BACKUP_RESTORE;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
@@ -53,6 +67,8 @@ public class BASLA extends JFrame {
 	public  static List<String> gorevLER  = new ArrayList<>();
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	static Timer timerr ;
+	static JProgressBar progressBar ;
+	static JProgressBar progressBar1 ;
 	/**
 	 * Launch the application.
 	 */
@@ -73,6 +89,7 @@ public class BASLA extends JFrame {
 	 * Create the frame.
 	 * @throws Exception 
 	 */
+	@SuppressWarnings("static-access")
 	public BASLA() throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 600);
@@ -106,9 +123,9 @@ public class BASLA extends JFrame {
 	    	sagPane.setLeftComponent(scrollPane);
 	      
 	    	
-	    	JProgressBar progressBar = new JProgressBar();
+	    	progressBar = new JProgressBar();
 	    	progressBar.setBounds(0, 24, 714, 20);
-	    	JProgressBar progressBar1 = new JProgressBar();
+	    	progressBar1 = new JProgressBar();
 	    	progressBar1.setBounds(0, 2, 714, 20);
 	    	JPanel sagaltPane = new JPanel();
 	        sagaltPane .setMinimumSize(new Dimension(0,50));
@@ -233,7 +250,6 @@ public class BASLA extends JFrame {
 			panel.add(btnNewButton_1);
 			
 		//
-			@SuppressWarnings("static-access")
 			File tmpDir = new File(glb.SURUCU + glb.SQL_BACKUP);
 			boolean exists = tmpDir.exists();
 			if (exists == false )
@@ -278,9 +294,12 @@ public class BASLA extends JFrame {
 		durdur() ;
 		for (int i = 0; i < gorevLER.size(); i++) 
 		{
+			String  emir = gorevLER.get(i) ;
 		    backUP(gorevLER.get(i));
-		    
 		    gorevLER.remove(gorevLER.get(i));
+		    //
+		    
+		    //
 		}
 		baslat();
 	}
@@ -298,6 +317,7 @@ public class BASLA extends JFrame {
 		 
 	if (rs.getString("INSTANCE").equals("MS SQL"))
 	{
+	
 		msSQL(emirADI);
 	}
 	else   if (rs.getString("INSTANCE").equals("MY SQL"))
@@ -326,7 +346,7 @@ public class BASLA extends JFrame {
 				return;
 			} 
 		String neresi = rs.getString("NERESI");
-		
+	
 		if (neresi.equals("FTP"))
 		{
 			msSQL_FTP(emirADI);
@@ -339,39 +359,73 @@ public class BASLA extends JFrame {
 	@SuppressWarnings("static-access")
 	private void msSQL_FTP(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
 	{
-		ResultSet rs =  sqll.serBILGI(emirADI);
-		String port =  rs.getString("PORT");
-		String  insT = rs.getString("INSTANCE");
-		String kulL = rs.getString("KULLANICI");
-		String pwD = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rs.getBytes("SIFRE"));
-		sqll.ccon.close();
-		ResultSet rrs =  sqll.surBILGI(emirADI);
-		ResultSet rss = sqll.dbLISTE(emirADI);
+		Runnable runner = new Runnable()
+		{ 
+			public void run() {
 
-		List<String> dbList  = new ArrayList<>();
-		while(rss.next())
-		{
-			dbList.add(rss.getString("DB_ADI"));
-		}
-		sqll.ccon.close();
-		Date tar = new Date();
-		DateFormat  df = new SimpleDateFormat("ddMMyyyyHHmm");
-		String tarih = df.format(tar);
-		for(int i= 0  ; i < dbList.size() ; i++){
-			sqll.msBackup(port,insT  ,kulL,pwD,dbList.get(i)  ,	tarih + "_" + dbList.get(i));
-			String  dosya,dzip ;
-			dosya =  "C:\\OBS_SISTEM\\BACKUP\\" + tarih +  "_"  +   dbList.get(i) + ".bak" ;
-			dzip =  tarih + "_" + dbList.get(i) + ".zip" ;
-			BACKUP_RESTORE. BackupdbtoZIP(dosya , dzip);
-			BACKUP_RESTORE.upLOADtoFTP(rrs.getString("HOST") , Integer.parseInt(rrs.getString("PORT")),rrs.getString("KULLANICI"), ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rrs.getBytes("SIFRE"))
-					, dzip ,rrs.getString("SURUCU") ) ;
-			
-			File myObj = new File(dosya); 
-		    myObj.delete();
-		    myObj = new File(  "C:\\OBS_SISTEM\\BACKUP\\" + dzip); 
-		    myObj.delete();
-		    
-		}
+				try
+				{
+					Login_Progres_Bar_Temizle1();
+					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					ResultSet rs =  sqll.serBILGI(emirADI);
+					String port =  rs.getString("PORT");
+					String  insT = rs.getString("INSTANCE");
+					String kulL = rs.getString("KULLANICI");
+					String pwD = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rs.getBytes("SIFRE"));
+					sqll.ccon.close();
+					ResultSet rrs =  sqll.surBILGI(emirADI);
+					ResultSet rss = sqll.dbLISTE(emirADI);
+					
+					List<String> dbList  = new ArrayList<>();
+					while(rss.next())
+					{
+						dbList.add(rss.getString("DB_ADI"));
+					}
+					sqll.ccon.close();
+					Date tar = new Date();
+					DateFormat  df = new SimpleDateFormat("ddMMyyyyHHmm");
+					String tarih = df.format(tar);
+					sqll.Logla(emirADI,  "Yedeklenmeye Baslandi........");
+					//
+					progressBar1.setMaximum((int) dbList.size());
+					progressBar1.setStringPainted(true);
+						//
+					for(int i= 0  ; i < dbList.size() ; i++)
+					{
+						Lgn_Progres_Bar1((int) dbList.size(),(int) i+1);
+						sqll.msBackup(port,insT  ,kulL,pwD,dbList.get(i)  ,	tarih + "_" + dbList.get(i));
+						sqll.Logla(emirADI, dbList.get(i) +  "Backup Alindi........");
+						String  dosya,dzip ;
+						dosya =  "C:\\OBS_SISTEM\\BACKUP\\" + tarih +  "_"  +   dbList.get(i) + ".bak" ;
+						dzip =  tarih + "_" + dbList.get(i) + ".zip" ;
+						BACKUP_RESTORE. BackupdbtoZIP(dosya , dzip);
+						sqll.Logla(emirADI,  tarih + "_" + dbList.get(i) + ".zip" + "   Zip Haline Getirildi.....");
+						upLOADtoFTP(rrs.getString("HOST") , Integer.parseInt(rrs.getString("PORT")),rrs.getString("KULLANICI"), ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rrs.getBytes("SIFRE"))
+								, dzip ,rrs.getString("SURUCU"),emirADI ) ;
+						sqll.Logla(emirADI,  tarih + "_" + dbList.get(i) + ".zip" + "   FTP Yuklemesi Yapildi.....");
+						File myObj = new File(dosya); 
+						myObj.delete();
+						sqll.Logla(emirADI, dbList.get(i) + ".bak"  +"Backup Dosyasi silindi.......");
+						myObj = new File(  "C:\\OBS_SISTEM\\BACKUP\\" + dzip); 
+						myObj.delete();
+						sqll.Logla(emirADI,  tarih + "_" + dbList.get(i) + ".zip" + "   Zip  Dosyasi Silindii.....");
+					}
+					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				}
+				catch (SQLException | InvalidKeyException  | NoSuchAlgorithmException | NoSuchPaddingException | IOException | IllegalBlockSizeException | BadPaddingException | ClassNotFoundException | NumberFormatException | InterruptedException e)
+				{
+					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+						try {
+							sqll.Logla(emirADI, e.getMessage());
+						} catch (ClassNotFoundException | SQLException e1) {
+							e1.printStackTrace();
+						}    // 
+				} 
+			}
+		};
+		//// Progress Bar
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
 	}
 	private void mySQL(String emirADI)
 	{
@@ -385,7 +439,26 @@ public class BASLA extends JFrame {
 			timerr.purge();
 		}
 	}
-
+	static void Lgn_Progres_Bar(int max, int deger) throws InterruptedException
+	{
+		progressBar.setValue(deger);
+	}
+	static void Login_Progres_Bar_Temizle()
+	{
+		progressBar.setMaximum(0);
+		progressBar.setValue(0);
+		progressBar.setStringPainted(false);
+	}
+	static void Lgn_Progres_Bar1(int max, int deger) throws InterruptedException
+	{
+		progressBar1.setValue(deger);
+	}
+	static void Login_Progres_Bar_Temizle1()
+	{
+		progressBar1.setMaximum(0);
+		progressBar1.setValue(0);
+		progressBar1.setStringPainted(false);
+	}
 	private void baslat()
 	{
 		TimerTask timerTask = new TimerTask() {
@@ -406,4 +479,66 @@ public class BASLA extends JFrame {
 		timerr = new Timer();
 		timerr.schedule(timerTask, 0, 1000);
 	}
+	public static void upLOADtoFTP(String server , int port , String user , String pass , String okunacakDB , String ftpSURUCU,String emirADI ) throws InterruptedException, ClassNotFoundException, SQLException
+	{
+				FTPClient ftpClient = new FTPClient();
+				try {
+					ftpClient.connect(server, port);
+					ftpClient.login(user, pass);
+					ftpClient.enterLocalPassiveMode();
+					ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+
+					File secondLocalFile = new File(okunacakDB);
+					String secondRemoteFile =  ftpSURUCU +  "/" + okunacakDB ;
+					InputStream inputStream = new FileInputStream(secondLocalFile);
+
+					OutputStream outputStream = ftpClient.storeFileStream(secondRemoteFile);
+					byte[] bytesIn = new byte[4096];
+					int read = 0;
+
+					//////
+					Login_Progres_Bar_Temizle();
+					Path path = Paths.get(okunacakDB);
+					long bytes = Files.size(path);
+					progressBar.setMaximum((int) bytes);
+					progressBar.setStringPainted(true);
+					int inen= 0 ;
+					while ((read = inputStream.read(bytesIn)) != -1) 
+					{
+						inen += read ;
+						Lgn_Progres_Bar((int) bytes,(int) inen);
+						outputStream.write(bytesIn, 0, read);
+					}
+					inputStream.close();
+					outputStream.close();
+
+					boolean completed = ftpClient.completePendingCommand();
+					if (completed) {
+						sqll.Logla(emirADI,  "The file is uploaded successfully.");
+					}
+
+				} catch (IOException | InterruptedException | ClassNotFoundException | SQLException ex) {
+					try {
+						sqll.Logla(emirADI,   ex.getMessage());
+					} catch (ClassNotFoundException | SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					ex.printStackTrace();
+				} finally {
+					try {
+						if (ftpClient.isConnected()) {
+							ftpClient.logout();
+							ftpClient.disconnect();
+						}
+					} catch (IOException ex) {
+						try {
+							sqll.Logla(emirADI,  ex.getMessage());
+						} catch (ClassNotFoundException | SQLException e) {
+							e.printStackTrace();
+						}
+						ex.printStackTrace();
+					}
+				}
+		}
 }

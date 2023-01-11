@@ -497,7 +497,7 @@ public class SQL_BACKUP {
 			Class.forName("org.sqlite.JDBC");   //
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + GLOBAL.BACKUP_SURUCU + GLOBAL.BACKUP_LOG_DOSYA   ) ;
 			PreparedStatement stmt = null;
-			String sql =  "INSERT INTO LOG (EMIR_ISMI,TARIH, ,MESAJ) " +
+			String sql =  "INSERT INTO LOG (EMIR_ISMI,TARIH ,MESAJ) " +
 									"VALUES (?,?,?)";
 			stmt = sQLITEconn.prepareStatement(sql);
 			stmt.setString(1,emirADI);

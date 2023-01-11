@@ -148,7 +148,12 @@ public class GOREV {
 					try {
 						yedekLEE();
 					} catch (Exception e) {
-						System.out.println(e.getMessage());
+						try {
+							sqll.Logla( ((javax.swing.border.TitledBorder) p.getBorder()).getTitle(),  e.getMessage());
+						} catch (ClassNotFoundException | SQLException e1) {
+							e1.printStackTrace();
+						}
+					
 					}
 					//
 					DateFormat dff = new SimpleDateFormat("dd.MM.yyyy HH:mm");				

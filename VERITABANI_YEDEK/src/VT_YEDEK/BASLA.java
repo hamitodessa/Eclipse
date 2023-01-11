@@ -40,6 +40,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -181,41 +182,72 @@ public class BASLA extends JFrame {
 					/////////////////////
 					String compoName = "";
 					 for (Component compoo : components) {
+						 
+						 for(int i = 0 ; i < components.length;i++)
+						 {
+							   System.out.println(  i + "== "+  ((TitledBorder) ((JComponent) components[i]).getBorder()).getTitle()  ) ;
+						 }
 				            compoName = compoo.getClass().getName();
+				     //       System.out.println(   compoName ) ;
 						                if (compoo  instanceof JPanel)
 					                {
 					                   JPanel dp = (JPanel) compoo;
-					                   String emirAdi = "hamit";
-					                System.out.println(   ((TitledBorder) dp.getBorder()).getTitle());
-					                if( ((TitledBorder) dp.getBorder()).getTitle().equals(emirAdi))
+					                   String emirAdi = "Suadiye Yedekleme";
+					               if( ((TitledBorder) dp.getBorder()).getTitle().equals(emirAdi))
 					                {
+					            	   System.out.println(   ((TitledBorder) dp.getBorder()).getTitle());
+					            		Component[] emirPanel = ((Container) components[0]).getComponents();
+										
+										 String componentName;
+										 for (Component compo : emirPanel) 
+										 {
+									            componentName = compo.getClass().getName();
+										         //   System.out.println(compo.getClass().getName().substring(componentName.indexOf("swing.") + "swing.".length(), componentName.length()));
+										           ///
+										                if (compo  instanceof JButton)
+										                {
+										                   JButton dpp = (JButton) compo;
+										                   if (dpp.getName() == "kontROL")
+										                   {
+										                  System.out.println(dpp.getName());
+										                   dpp.doClick();
+										                   }
+										           //    dpp.setText("Deneme");
+										                }
+									            ///
+										 }
+
+					            	   
+					            	   
+					            	   
 					           //     Font font2 = new Font("Verdana", Font.ITALIC, 12);
 					          //         TitledBorder border = new TitledBorder("hamit");
 					          //         border.setTitleFont(font2);
-					                   ((TitledBorder) dp.getBorder()).setTitle("Hamit Emir");
-					                }
-					                dp.repaint();
+					            //       ((TitledBorder) dp.getBorder()).setTitle("Hamit Emir");
+					               }
+					           //     dp.repaint();
 					                }
 				            ///
 					 }
 					
 					/////////////////////
 					
-					Component[] emirPanel = ((Container) components[0]).getComponents();
-					
-					 String componentName;
-					 for (Component compo : emirPanel) {
-				            componentName = compo.getClass().getName();
-					         //   System.out.println(compo.getClass().getName().substring(componentName.indexOf("swing.") + "swing.".length(), componentName.length()));
-					           ///
-					                if (compo  instanceof JButton)
-					                {
-					                   JButton dp = (JButton) compo;
-					                   System.out.println(dp.getText());
-					               dp.setText("Deneme");
-					                }
-				            ///
-					 }
+//					Component[] emirPanel = ((Container) components[0]).getComponents();
+//					
+//					 String componentName;
+//					 for (Component compo : emirPanel) 
+//					 {
+//				            componentName = compo.getClass().getName();
+//					         //   System.out.println(compo.getClass().getName().substring(componentName.indexOf("swing.") + "swing.".length(), componentName.length()));
+//					           ///
+//					                if (compo  instanceof JButton)
+//					                {
+//					                   JButton dp = (JButton) compo;
+//					                   System.out.println(dp.getText());
+//					               dp.setText("Deneme");
+//					                }
+//				            ///
+//					 }
 					       
 				}
 			});
@@ -262,16 +294,15 @@ public class BASLA extends JFrame {
 			{   
 				glb.backup_dosya_olustur();
 			}
-			System.out.println("bbaslanin basi") ;
 			emirDOLDUR();
 			
 			baslat();
 	}
+	@SuppressWarnings("static-access")
 	public static void emirDOLDUR() throws ClassNotFoundException, SQLException, InterruptedException, NumberFormatException, ParseException
 	{
 		ResultSet rss ;
 		rss = sqll.emirLER();
-		System.out.println("buralarda") ;
 		pPanel.removeAll();
 		pPanel.revalidate();
 		pPanel.repaint();
@@ -288,10 +319,15 @@ public class BASLA extends JFrame {
 					SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 					tarih = f.format(	rss.getDate("SON_YUKLEME"));
 				}
-				pPanel.add(GOREV.getShowRoomPanel(rss.getString("EMIR_ISMI"),rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi"  , 
+				
+				GOREV  tt = new GOREV();
+				
+				pPanel.add(tt.getShowRoomPanel(rss.getString("EMIR_ISMI"),rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi"  , 
 						sqll.dbSAYISI(rss.getString("EMIR_ISMI"))  ,
 						tarih,""   ,rss.getString("EMIR_ACIKLAMA") ,rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv",
 								sqll.ftp_NERESI(rss.getString("EMIR_ISMI"))));
+
+				
 
 			}
 		} catch (NumberFormatException | ClassNotFoundException | SQLException | InterruptedException
@@ -300,15 +336,6 @@ public class BASLA extends JFrame {
 		System.out.println("basla hata   302");
 		}
 		
-//		Runnable runner = new Runnable()
-//		{ 
-//			public void run() {
-		// buraya kodlar
-//			}
-//		};
-//		//// Progress Bar
-//		Thread t = new Thread(runner, "Code Executer");
-//		t.start();
 	}
 	private static void yedekLE() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
 	{

@@ -36,7 +36,6 @@ import OBS_C_2025.SQL_BACKUP;
 
 public class GOREV {
 
-	static Timer timer ;
 	static SQL_BACKUP sqll = new SQL_BACKUP();
 	static JLabel lblgel ;
 	static  JLabel lblson ;
@@ -50,8 +49,6 @@ public class GOREV {
 	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,
 			String acikLAMA,String durUM,String surUCU) throws InterruptedException, NumberFormatException, ClassNotFoundException, SQLException, ParseException
 	{
-		
-		durdur();
 		p = new JPanel(new GridBagLayout());
 		denemADI = emirAdi ;
 		p.setBorder(new TitledBorder(emirAdi));
@@ -126,7 +123,6 @@ public class GOREV {
 		JButton btnNewButton = new JButton("Emir Duzelt");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				durdur();
 				VT_ANA_CLASS.yENI_EMIR = false ;
 				VT_ANA_CLASS.EMIR_ADI= emirAdi;
 	
@@ -140,8 +136,7 @@ public class GOREV {
 		JButton btnsil = new JButton("Emir Sil");
 		btnsil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			durdur();
-				
+					
 				BASLA.durdur();
 				String[] options = {"Tamam......       		!	", "Vazgec......       		!	"};
 				int g =  JOptionPane.showOptionDialog( null,  emirAdi +  " Isimli Emir Islem Dosyadan Silinecek ..?", "Cari Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
@@ -189,35 +184,50 @@ public class GOREV {
 				}
 		});
 		p.add(btnsil, gbc);
+		
+		//
+		gbc.gridx = 2;
+		JButton btnkontrol = new JButton("Kontrol");
+		btnkontrol.setName("kontROL");
+		btnkontrol.setVisible(false);
+		btnkontrol.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					
+		System.out.println("++++++" + emirAdi) ;
+				try {
+					basla();
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				}
+		});
+		p.add(btnkontrol, gbc);
+		
+		//
 		rss = sqll.yedeklemeBILGI(emirAdi);
 //		if (VT_ANA_CLASS.emirDENMI)
 //		{
 //			System.out.println(emirAdi + "=true");
-//			gunLERE_BAK(); 
+			gunLERE_BAK(); 
 //		}
 //		else
 //		{
 //			System.out.println(emirAdi +"=false");
-			sonRAKI_YEDEK(Integer.parseInt(rss.getString("SAAT")));
+//			sonRAKI_YEDEK(Integer.parseInt(rss.getString("SAAT")));
 //		}
 		VT_ANA_CLASS.emirDENMI = false ;
-		basla();
+		//basla();
 		return p;
 	}
 	public static void basla() throws InterruptedException
 	{
 		
-		TimerTask timerTask = new TimerTask() {
-			@Override
-			public void run()
-			{
 				DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 				String simDI = df.format(new Date());
 				System.out.println( denemADI + " gorev run");
 				if (simDI.equals(lblgel.getText() + ":00")) // YEDEKLEME ZAMANI 
 				{
-					timer.cancel();
-					timer.purge();
 						yedekLEE();
 					
 					DateFormat dff = new SimpleDateFormat("dd.MM.yyyy HH:mm");				
@@ -232,19 +242,8 @@ public class GOREV {
 						System.out.println("gorevler de hata ");
 					}
 				}
-			}
-		};
-		timer = new Timer();
-		timer.schedule(timerTask, 0, 1000);
 	}
-	private static void durdur()
-	{
-		if (timer != null)
-		{	
-			timer.cancel();
-			timer.purge();
-		}
-	}
+	
 	@SuppressWarnings("deprecation")
 	private static void   sonRAKI_YEDEK(int kacDAKKA) throws NumberFormatException, SQLException, ParseException, InterruptedException, ClassNotFoundException
 	{

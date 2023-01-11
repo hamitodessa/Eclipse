@@ -45,6 +45,7 @@ import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerDateModel;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.crypto.BadPaddingException;
@@ -68,7 +69,7 @@ import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class EMIR extends JFrame {
+public class EMIR extends JDialog{
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	private JPanel contentPane;
 	private static JTextField txtEMIR_ISMI;
@@ -144,9 +145,11 @@ public class EMIR extends JFrame {
 			public void windowClosing(WindowEvent e) {
 				
 				try {
+					VT_ANA_CLASS.emirDENMI = true ;
 				//	BASLA frame = new BASLA();
 				//	frame.setVisible(true);
 					BASLA.emirDOLDUR();
+					//BASLA.baslat();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -168,12 +171,6 @@ public class EMIR extends JFrame {
 						{
 							serBILGILERI();
 						}
-						
-//						if (! oac.EMIR_ADI.equals("") )
-//						{
-//							serBILGILERI();
-//						}
-					
 					} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
 							| NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException
 							| BadPaddingException | SQLException e1) {
@@ -187,6 +184,7 @@ public class EMIR extends JFrame {
 				
 			}
 		});
+		setModal(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 565);
 		contentPane = new JPanel();

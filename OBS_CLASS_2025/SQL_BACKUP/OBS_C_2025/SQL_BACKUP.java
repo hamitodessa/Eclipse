@@ -296,18 +296,18 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public void genel_kayit_durum(String eismi ,boolean drm, Date yuk ) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
-		if (con != null && con.isClosed() == false) con.close();
+		//if (con != null && con.isClosed() == false) con.close();
 		Class.forName("org.sqlite.JDBC");
 		PreparedStatement stmt = null;
-		con = gLB.myBackupConnection();
+		Connection ccon = gLB.myBackupConnection();
 		String sql = "UPDATE EMIRLER SET SON_DURUM = ? , SON_YUKLEME = ? WHERE EMIR_ISMI = '" + eismi + "'";
-		stmt = con.prepareStatement(sql);
+		stmt = ccon.prepareStatement(sql);
 		stmt.setBoolean(1,drm);
 		java.sql.Date sDate = new java.sql.Date(yuk.getTime());
 		stmt.setDate(2,  sDate);
 		stmt.executeUpdate();
 		stmt.close();
-		con.close();
+		ccon.close();
 	}
 	@SuppressWarnings("static-access")
 	public void db_adi_kayit_sil(String eismi) throws SQLException, ClassNotFoundException
@@ -348,6 +348,19 @@ public class SQL_BACKUP {
 		PreparedStatement stmt = null;
 		con =  gLB.myBackupConnection();
 		String sql = "DELETE FROM FTP  WHERE EMIR_ISMI ='" + eismi + "'";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
+	@SuppressWarnings("static-access")
+	public void diger_dosya_adi_kayit_sil(String eismi) throws SQLException, ClassNotFoundException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con =  gLB.myBackupConnection();
+		String sql = "DELETE FROM DIGER_DOSYA_ISIM WHERE EMIR_ISMI ='" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();

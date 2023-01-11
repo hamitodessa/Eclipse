@@ -13,4 +13,5 @@ public class VT_ANA_CLASS {
 	public static IConnection _IConn ;
 	public static String EMIR_ADI = "" ; 
 	public static boolean yENI_EMIR = false ; 
+	public static boolean emirDENMI = false ;
 }

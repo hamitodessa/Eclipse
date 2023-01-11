@@ -61,7 +61,7 @@ import javax.swing.JProgressBar;
 @SuppressWarnings("serial")
 public class BASLA extends JFrame {
 	static SQL_BACKUP sqll = new SQL_BACKUP();
-	private JPanel contentPane;
+	private static JPanel contentPane;
 	GLOBAL glb = new GLOBAL();
 	public static   JPanel pPanel;
 	public  static List<String> gorevLER  = new ArrayList<>();
@@ -148,14 +148,11 @@ public class BASLA extends JFrame {
 			
 			JButton btnNewButton = new JButton("Yeni Emir");
 			btnNewButton.addActionListener(new ActionListener() {
-				@SuppressWarnings("static-access")
 				public void actionPerformed(ActionEvent e) {
-					
 					oac.yENI_EMIR = true ;
 					EMIR emr = new EMIR();
-				
+					durdur();
 					emr.setVisible(true);
-					dispose();
 				}
 			});
 			btnNewButton.setBounds(10, 26, 130, 23);
@@ -243,7 +240,16 @@ public class BASLA extends JFrame {
 			JButton btnNewButton_1 = new JButton("ftp deneme");
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					gorevLER.add("hamit");
+				
+					 try {
+						sqll.genel_kayit_durum( "Suadiye Yedekleme", true, new Date());
+					} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
+							| NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException
+							| BadPaddingException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					//	gorevLER.add("hamit");
 				}
 			});
 			btnNewButton_1.setBounds(10, 455, 89, 23);
@@ -256,9 +262,7 @@ public class BASLA extends JFrame {
 			{   
 				glb.backup_dosya_olustur();
 			}
-			
-			oac.EMIR_ADI = "hamit";
-			
+			System.out.println("bbaslanin basi") ;
 			emirDOLDUR();
 			
 			baslat();
@@ -267,7 +271,7 @@ public class BASLA extends JFrame {
 	{
 		ResultSet rss ;
 		rss = sqll.emirLER();
-
+		System.out.println("buralarda") ;
 		pPanel.removeAll();
 		pPanel.revalidate();
 		pPanel.repaint();
@@ -275,26 +279,49 @@ public class BASLA extends JFrame {
 			return;
 		} 
 
-		while(rss.next())
-		{
-			String  tarih ="" ;
-			if(rss.getDate("SON_YUKLEME") != null)
+		try {
+			while(rss.next())
 			{
-				SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-				tarih = f.format(	rss.getDate("SON_YUKLEME"));
+					String  tarih ="" ;
+				if(rss.getDate("SON_YUKLEME") != null)
+				{
+					SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+					tarih = f.format(	rss.getDate("SON_YUKLEME"));
+				}
+				pPanel.add(GOREV.getShowRoomPanel(rss.getString("EMIR_ISMI"),rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi"  , 
+						sqll.dbSAYISI(rss.getString("EMIR_ISMI"))  ,
+						tarih,""   ,rss.getString("EMIR_ACIKLAMA") ,rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv",
+								sqll.ftp_NERESI(rss.getString("EMIR_ISMI"))));
+
 			}
-			pPanel.add(GOREV.getShowRoomPanel(rss.getString("EMIR_ISMI"),rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi"  , 
-					sqll.dbSAYISI(rss.getString("EMIR_ISMI"))  ,
-					tarih,""   ,rss.getString("EMIR_ACIKLAMA") ,rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv",
-							sqll.ftp_NERESI(rss.getString("EMIR_ISMI"))));
+		} catch (NumberFormatException | ClassNotFoundException | SQLException | InterruptedException
+				| ParseException e) {
+			// TODO Auto-generated catch block
+		System.out.println("basla hata   302");
 		}
+		
+//		Runnable runner = new Runnable()
+//		{ 
+//			public void run() {
+		// buraya kodlar
+//			}
+//		};
+//		//// Progress Bar
+//		Thread t = new Thread(runner, "Code Executer");
+//		t.start();
 	}
-	private void yedekLE() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
+	private static void yedekLE() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
 	{
 		durdur() ;
+		if (gorevLER.size() !=0)
+		{
+			System.out.println(gorevLER.size() +" == gorev adeti ");
+		
+		}
+		
 		for (int i = 0; i < gorevLER.size(); i++) 
 		{
-			String  emir = gorevLER.get(i) ;
+		System.out.println(gorevLER.get(i) +" == "+ i);
 		    backUP(gorevLER.get(i));
 		    gorevLER.remove(gorevLER.get(i));
 		    //
@@ -303,7 +330,7 @@ public class BASLA extends JFrame {
 		}
 		baslat();
 	}
-	private void backUP(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
+	private static void backUP(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
 	{
 	
 		ResultSet rs = sqll.emirBILGI(emirADI);
@@ -326,7 +353,7 @@ public class BASLA extends JFrame {
 	}
 
 	}
-	private void msSQL(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
+	private static void msSQL(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
 	{
 		ResultSet rss = sqll.dbLISTE(emirADI);
 		if (!rss.isBeforeFirst() ) {  
@@ -357,7 +384,7 @@ public class BASLA extends JFrame {
 		}
 	}
 	@SuppressWarnings("static-access")
-	private void msSQL_FTP(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
+	private static void msSQL_FTP(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
 	{
 		Runnable runner = new Runnable()
 		{ 
@@ -394,7 +421,7 @@ public class BASLA extends JFrame {
 					{
 						Lgn_Progres_Bar1((int) dbList.size(),(int) i+1);
 						sqll.msBackup(port,insT  ,kulL,pwD,dbList.get(i)  ,	tarih + "_" + dbList.get(i));
-						sqll.Logla(emirADI, dbList.get(i) +  "Backup Alindi........");
+						sqll.Logla(emirADI, dbList.get(i) +  "    Backup Alindi........");
 						String  dosya,dzip ;
 						dosya =  "C:\\OBS_SISTEM\\BACKUP\\" + tarih +  "_"  +   dbList.get(i) + ".bak" ;
 						dzip =  tarih + "_" + dbList.get(i) + ".zip" ;
@@ -405,11 +432,13 @@ public class BASLA extends JFrame {
 						sqll.Logla(emirADI,  tarih + "_" + dbList.get(i) + ".zip" + "   FTP Yuklemesi Yapildi.....");
 						File myObj = new File(dosya); 
 						myObj.delete();
-						sqll.Logla(emirADI, dbList.get(i) + ".bak"  +"Backup Dosyasi silindi.......");
+						sqll.Logla(emirADI, dbList.get(i) + ".bak"  +"     Backup Dosyasi silindi.......");
 						myObj = new File(  "C:\\OBS_SISTEM\\BACKUP\\" + dzip); 
 						myObj.delete();
 						sqll.Logla(emirADI,  tarih + "_" + dbList.get(i) + ".zip" + "   Zip  Dosyasi Silindii.....");
 					}
+					Login_Progres_Bar_Temizle1();
+					Login_Progres_Bar_Temizle();
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
 				catch (SQLException | InvalidKeyException  | NoSuchAlgorithmException | NoSuchPaddingException | IOException | IllegalBlockSizeException | BadPaddingException | ClassNotFoundException | NumberFormatException | InterruptedException e)
@@ -427,11 +456,11 @@ public class BASLA extends JFrame {
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
 	}
-	private void mySQL(String emirADI)
+	private static void mySQL(String emirADI)
 	{
 
 	}
-	private static void durdur()
+	static void durdur()
 	{
 		if (timerr != null)
 		{	
@@ -459,7 +488,7 @@ public class BASLA extends JFrame {
 		progressBar1.setValue(0);
 		progressBar1.setStringPainted(false);
 	}
-	private void baslat()
+	static  void baslat()
 	{
 		TimerTask timerTask = new TimerTask() {
 			@Override

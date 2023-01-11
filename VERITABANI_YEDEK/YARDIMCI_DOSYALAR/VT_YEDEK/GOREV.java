@@ -7,6 +7,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -20,8 +23,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -38,11 +45,15 @@ public class GOREV {
 	static boolean varmi = false;
 	Date    sonrakitar = new Date();
 	static int hangiGUNDEYIZ ;
+	static String denemADI = "" ;
+	
 	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,
 			String acikLAMA,String durUM,String surUCU) throws InterruptedException, NumberFormatException, ClassNotFoundException, SQLException, ParseException
 	{
+		
 		durdur();
 		p = new JPanel(new GridBagLayout());
+		denemADI = emirAdi ;
 		p.setBorder(new TitledBorder(emirAdi));
 		((javax.swing.border.TitledBorder) p.getBorder()).setTitleFont(new Font("Arial", Font.BOLD, 14));
 		((TitledBorder) p.getBorder()).setTitleColor(Color.BLUE);
@@ -50,7 +61,6 @@ public class GOREV {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(5, 5, 5, 5);
 		gbc.anchor = GridBagConstraints.WEST;
-
 		p.add(new JLabel("Son Durum                      		" ), gbc);
 		gbc.gridx = 1 ;
 		
@@ -116,54 +126,110 @@ public class GOREV {
 		JButton btnNewButton = new JButton("Emir Duzelt");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			timer.cancel();
-				timer.purge();
+				durdur();
 				VT_ANA_CLASS.yENI_EMIR = false ;
 				VT_ANA_CLASS.EMIR_ADI= emirAdi;
+	
+				BASLA.durdur();
 				EMIR emr = new EMIR();
 				emr.setVisible(true);
-			}
+				}
 		});
 		p.add(btnNewButton, gbc);
-		rss = sqll.yedeklemeBILGI(  ((javax.swing.border.TitledBorder) p.getBorder()).getTitle());
-		sonRAKI_YEDEK(Integer.parseInt(rss.getString("SAAT")));
+		gbc.gridx = 1;
+		JButton btnsil = new JButton("Emir Sil");
+		btnsil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			durdur();
+				
+				BASLA.durdur();
+				String[] options = {"Tamam......       		!	", "Vazgec......       		!	"};
+				int g =  JOptionPane.showOptionDialog( null,  emirAdi +  " Isimli Emir Islem Dosyadan Silinecek ..?", "Cari Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,	   			 	null,   	options,   	options[1]); 
+				if(g != 0 ) {
+					try {
+						basla();
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					BASLA.baslat();
+					return;
+				}
+				for (int i = 0; i < BASLA.gorevLER.size(); i++) 
+				{
+					String  emir = BASLA.gorevLER.get(i) ;
+				  
+					if (emir.equals(emirAdi))
+					{
+					    BASLA.gorevLER.remove(emir);
+					}
+					}
+				SQL_BACKUP sqll = new SQL_BACKUP();
+				String emr =emirAdi;
+				 
+				try {
+					sqll.Logla(emr, "Emir Silme Islemine Baslandi...");
+					sqll.genel_kayit_sil(emr);
+			         sqll.db_adi_kayit_sil(emr);
+			         sqll.ftp_kayit_sil(emr);
+			         sqll.bilgilendirme_kayit_sil(emr);
+			         sqll.yedekleme_kayit_sil(emr);
+			         sqll.server_kayit_sil(emr);
+			         sqll.diger_dosya_adi_kayit_sil(emr);
+			         sqll.Logla(emr, "Emir Islemi Silindi...");
+			         
+			         BASLA.emirDOLDUR();
+				} catch (ClassNotFoundException | SQLException | NumberFormatException | InterruptedException | ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		       
+				
+				}
+		});
+		p.add(btnsil, gbc);
+		rss = sqll.yedeklemeBILGI(emirAdi);
+//		if (VT_ANA_CLASS.emirDENMI)
+//		{
+//			System.out.println(emirAdi + "=true");
+//			gunLERE_BAK(); 
+//		}
+//		else
+//		{
+//			System.out.println(emirAdi +"=false");
+			sonRAKI_YEDEK(Integer.parseInt(rss.getString("SAAT")));
+//		}
+		VT_ANA_CLASS.emirDENMI = false ;
 		basla();
 		return p;
 	}
 	public static void basla() throws InterruptedException
 	{
+		
 		TimerTask timerTask = new TimerTask() {
 			@Override
 			public void run()
 			{
 				DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 				String simDI = df.format(new Date());
-			//	System.out.println(simDI + "=basla= " + lblgel.getText()+ ":00" ) ;
-			
+				System.out.println( denemADI + " gorev run");
 				if (simDI.equals(lblgel.getText() + ":00")) // YEDEKLEME ZAMANI 
 				{
 					timer.cancel();
 					timer.purge();
-					//YEDEKLE
-					try {
 						yedekLEE();
-					} catch (Exception e) {
-						try {
-							sqll.Logla( ((javax.swing.border.TitledBorder) p.getBorder()).getTitle(),  e.getMessage());
-						} catch (ClassNotFoundException | SQLException e1) {
-							e1.printStackTrace();
-						}
 					
-					}
-					//
 					DateFormat dff = new SimpleDateFormat("dd.MM.yyyy HH:mm");				
 					simDI = dff.format(new Date());
 					lblson.setText(simDI);
-					try {
-						rss = sqll.yedeklemeBILGI(  ((javax.swing.border.TitledBorder) p.getBorder()).getTitle());
+						try {
+							System.out.println( denemADI + " emir ad gorevlerde");
+						 sqll.genel_kayit_durum( denemADI, true, new Date());
+						rss = sqll.yedeklemeBILGI( denemADI);
 						sonRAKI_YEDEK(Integer.parseInt(rss.getString("SAAT")));
-					} catch (ClassNotFoundException | SQLException | NumberFormatException | ParseException | InterruptedException e) {
-						e.printStackTrace();
+					} catch (ClassNotFoundException | SQLException | NumberFormatException | ParseException | InterruptedException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+						System.out.println("gorevler de hata ");
 					}
 				}
 			}
@@ -201,7 +267,7 @@ public class GOREV {
 		Date kontROL = new Date();;
 		long kontROLL ;
 		kontROLL  = kontROL.getTime();
-
+System.out.println(kontROL +"=="+ biTISS);
 		if  (kontROLL > biTISL )
 		{
 			gunLERE_BAK();
@@ -483,6 +549,6 @@ public class GOREV {
 	}
 	private static void yedekLEE()
 	{
-		BASLA.gorevLER.add(  ((javax.swing.border.TitledBorder) p.getBorder()).getTitle());
+		BASLA.gorevLER.add( denemADI);
 	}
 }

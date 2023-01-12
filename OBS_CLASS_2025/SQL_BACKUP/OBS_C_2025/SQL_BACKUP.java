@@ -65,7 +65,7 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public ResultSet serBILGI(String emir) throws ClassNotFoundException, SQLException
 	{
-		if (ccon != null && ccon.isClosed() == false) con.close();
+		if (ccon != null && ccon.isClosed() == false) ccon.close();
 		Class.forName("org.sqlite.JDBC");
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
@@ -79,13 +79,13 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public ResultSet emirBILGI(String emir) throws ClassNotFoundException, SQLException
 	{
-		if (con != null && con.isClosed() == false) con.close();
+		if (ccon != null && ccon.isClosed() == false) ccon.close();
 		Class.forName("org.sqlite.JDBC");
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
-		con = gLB.myBackupConnection();
+		ccon = gLB.myBackupConnection();
 		String sql = "SELECT * FROM EMIRLER WHERE  EMIR_ISMI ='" + emir + "'";
-		stmt = con.prepareStatement(sql);
+		stmt = ccon.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
 		
@@ -103,17 +103,17 @@ public class SQL_BACKUP {
 		rss.next();
 		String neresi = rss.getString("HOST");
 		conn.close();
-			return neresi;
+		return neresi;
 	
 	}
 	@SuppressWarnings("static-access")
 	public ResultSet emirLER() throws ClassNotFoundException, SQLException
 	{
-		//if (con != null && con.isClosed() == false) con.close();
+		if (ccon != null && ccon.isClosed() == false) ccon.close();
 		Class.forName("org.sqlite.JDBC");
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
-		Connection ccon = gLB.myBackupConnection();
+		ccon = gLB.myBackupConnection();
 		String sql = "SELECT * FROM EMIRLER ";
 		stmt = ccon.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -122,13 +122,13 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public ResultSet surBILGI(String emir) throws ClassNotFoundException, SQLException
 	{
-		if (con != null && con.isClosed() == false) con.close();
+		if (ccon != null && ccon.isClosed() == false) ccon.close();
 		Class.forName("org.sqlite.JDBC");
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
-		con = gLB.myBackupConnection();
+		ccon = gLB.myBackupConnection();
 		String sql = "SELECT  * FROM FTP  WHERE EMIR_ISMI = '" + emir + "'";
-		stmt = con.prepareStatement(sql);
+		stmt = ccon.prepareStatement(sql);
 		rss = stmt.executeQuery();
 	
 		return rss;
@@ -136,26 +136,26 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public ResultSet bilgilendirmeBILGI(String emir) throws ClassNotFoundException, SQLException
 	{
-		if (con != null && con.isClosed() == false) con.close();
+		if (ccon != null && ccon.isClosed() == false) ccon.close();
 		Class.forName("org.sqlite.JDBC");
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
-		con = gLB.myBackupConnection();
+		ccon = gLB.myBackupConnection();
 		String sql = "SELECT  * FROM BILGILENDIRME  WHERE EMIR_ISMI = '" + emir + "'";
-		stmt = con.prepareStatement(sql);
+		stmt = ccon.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
 	}
 	@SuppressWarnings("static-access")
 	public ResultSet yedeklemeBILGI(String emir) throws ClassNotFoundException, SQLException
 	{
-		if (con != null && con.isClosed() == false) con.close();
+		if (ccon != null && ccon.isClosed() == false) ccon.close();
 		Class.forName("org.sqlite.JDBC");
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
-		con = gLB.myBackupConnection();
+		ccon = gLB.myBackupConnection();
 		String sql = "SELECT  * FROM YEDEKLEME  WHERE EMIR_ISMI = '" + emir + "'";
-		stmt = con.prepareStatement(sql);
+		stmt = ccon.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
 	}
@@ -218,16 +218,16 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public void genel_kayit_sil(String eismi) throws SQLException, ClassNotFoundException
 	{
-		if (con != null && con.isClosed() == false) con.close();
+		//if (ccon != null && ccon.isClosed() == false) ccon.close();
 		Class.forName("org.sqlite.JDBC");
 		PreparedStatement stmt = null;
-		con =  gLB.myBackupConnection();
+		 Connection ccon =  gLB.myBackupConnection();
 		String sql = "DELETE FROM EMIRLER  WHERE EMIR_ISMI = ? ";
-		stmt = con.prepareStatement(sql);
+		stmt = ccon.prepareStatement(sql);
 		stmt.setString(1,eismi);
 		stmt.executeUpdate();
 		stmt.close();
-		con.close();
+		ccon.close();
 	}
 	@SuppressWarnings("static-access")
 	public void yedekleme_kayit_sil(String eismi) throws SQLException, ClassNotFoundException
@@ -296,18 +296,18 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public void genel_kayit_durum(String eismi ,boolean drm, Date yuk ) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
-		if (con != null && con.isClosed() == false) con.close();
+		//if (con != null && con.isClosed() == false) con.close();
 		Class.forName("org.sqlite.JDBC");
 		PreparedStatement stmt = null;
-		con = gLB.myBackupConnection();
+		Connection ccon = gLB.myBackupConnection();
 		String sql = "UPDATE EMIRLER SET SON_DURUM = ? , SON_YUKLEME = ? WHERE EMIR_ISMI = '" + eismi + "'";
-		stmt = con.prepareStatement(sql);
+		stmt = ccon.prepareStatement(sql);
 		stmt.setBoolean(1,drm);
 		java.sql.Date sDate = new java.sql.Date(yuk.getTime());
 		stmt.setDate(2,  sDate);
 		stmt.executeUpdate();
 		stmt.close();
-		con.close();
+		ccon.close();
 	}
 	@SuppressWarnings("static-access")
 	public void db_adi_kayit_sil(String eismi) throws SQLException, ClassNotFoundException
@@ -348,6 +348,19 @@ public class SQL_BACKUP {
 		PreparedStatement stmt = null;
 		con =  gLB.myBackupConnection();
 		String sql = "DELETE FROM FTP  WHERE EMIR_ISMI ='" + eismi + "'";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
+	@SuppressWarnings("static-access")
+	public void diger_dosya_adi_kayit_sil(String eismi) throws SQLException, ClassNotFoundException
+	{
+		if (con != null && con.isClosed() == false) con.close();
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		con =  gLB.myBackupConnection();
+		String sql = "DELETE FROM DIGER_DOSYA_ISIM WHERE EMIR_ISMI ='" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -429,16 +442,16 @@ public class SQL_BACKUP {
 	@SuppressWarnings("static-access")
 	public void durum_kayit_durum(String eismi ,boolean drm ) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
-		if (con != null && con.isClosed() == false) con.close();
+		if (ccon != null && ccon.isClosed() == false) ccon.close();
 		Class.forName("org.sqlite.JDBC");
 		PreparedStatement stmt = null;
-		con = gLB.myBackupConnection();
+		ccon = gLB.myBackupConnection();
 		String sql = "UPDATE EMIRLER SET DURUM = ?  WHERE EMIR_ISMI =  '" + eismi + "'";
-		stmt = con.prepareStatement(sql);
+		stmt = ccon.prepareStatement(sql);
 		stmt.setBoolean(1,drm);
 		stmt.executeUpdate();
 		stmt.close();
-		con.close();
+		ccon.close();
 	}
 	@SuppressWarnings("static-access")
 	public void dump_sil(String eismi) throws SQLException, ClassNotFoundException
@@ -503,7 +516,7 @@ public class SQL_BACKUP {
 			stmt.setString(1,emirADI);
 			stmt.setDate(2,(java.sql.Date) new java.sql.Date(Calendar.getInstance().getTime().getTime()) );
 			stmt.setString(3, mesaj);
-				stmt.executeUpdate();
+			stmt.executeUpdate();
 			stmt.close();
 			sQLITEconn.close();
 		}

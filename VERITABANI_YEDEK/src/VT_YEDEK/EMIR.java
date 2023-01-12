@@ -161,7 +161,6 @@ public class EMIR extends JDialog{
 				
 					contentPane.setCursor(oac.WAIT_CURSOR);
 					try {
-						
 						if(oac.yENI_EMIR == true)
 						{
 							DefaultListModel<CheckListItem> listModel = (DefaultListModel<CheckListItem>) list.getModel();
@@ -826,23 +825,20 @@ public class EMIR extends JDialog{
 		JPanel panel_5 = new JPanel();
 		panel_5.setLayout(null);
 		tabbedPane.addTab("Emir Kopyala", null, panel_5, null);
-
-		
-		
 	}
-	@SuppressWarnings("deprecation")
+	
+	
+	@SuppressWarnings({ "deprecation", "static-access" })
 	private void kayDET() throws SQLException, ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		try
 		{
-			
+		
 		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		ResultSet rs = null;
-		SQL_BACKUP qwe = new SQL_BACKUP();
-		rs = qwe.emirBILGI(txtEMIR_ISMI.getText());
-   
-		Boolean sondurum = false ; 
-		
+	
+		rs = sqll.emirBILGI(txtEMIR_ISMI.getText());
+ 		Boolean sondurum = false ; 
 		Date sonyuk = new Date();
 		sonyuk.setHours(0);
 		sonyuk.setMinutes(0);
@@ -858,7 +854,7 @@ public class EMIR extends JDialog{
 		     sonyuk = rs.getDate("SON_YUKLEME");
 		     kontrol = true;
 		}
-	
+		sqll.ccon.close();
        sqll.genel_kayit_sil(txtEMIR_ISMI.getText());
        sqll.genel_kayit(txtEMIR_ISMI.getText(), chckbxDURUM.isSelected(), txtAciklama.getText(),cmbSQL.getSelectedItem().toString(), chckbxHANGI.isSelected());
        sqll.genel_kayit_durum(txtEMIR_ISMI.getText(), false, sonyuk);
@@ -976,6 +972,7 @@ public class EMIR extends JDialog{
 			bilgi_DOLDUR(rss);
 			rss = sqll.yedeklemeBILGI(VT_ANA_CLASS.EMIR_ADI);
 			yedek_DOLDUR(rss);
+		
 		} 
 	catch (Exception e1)
 	{
@@ -1171,7 +1168,7 @@ public class EMIR extends JDialog{
 		          {
 		        	  sqll.durum_kayit_durum(txtEMIR_ISMI.getText(), true);
 		          }
-		          
+		          sqll.ccon.close();
 		        //  If RTBaslama.Value > RTBitis.Value Then
 	           //     RadMessageBox.Show(Me, "Bitis Zamani Baslangic Zamanindan Kucuk olamaz", "Yedekleme Bilgileri", MessageBoxButtons.OK, RadMessageIcon.Exclamation, MessageBoxDefaultButton.Button1, RightToLeft.No)
 	         //       Exit Sub

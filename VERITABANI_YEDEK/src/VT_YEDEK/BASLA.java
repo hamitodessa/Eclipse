@@ -62,6 +62,7 @@ public class BASLA extends JFrame {
 	public  static List<String> gorevLER  = new ArrayList<>();
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	static Timer timerr ;
+	
 	static JProgressBar progressBar ;
 	static JProgressBar progressBar1 ;
 	/**
@@ -172,15 +173,20 @@ public class BASLA extends JFrame {
 			JButton btnNewButton_3 = new JButton("deger degis");
 			btnNewButton_3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					
+					
+					
 					Component[] components = pPanel.getComponents();
 					/////////////////////
 					String compoName = "";
-					 for (Component compoo : components) {
+					int i = 0;
+					 for (Component compoo : components) 
+					 {
 						 
-						 for(int i = 0 ; i < components.length;i++)
-						 {
+						// for(int i = 0 ; i < components.length;i++)
+						// {
 							   System.out.println(  i + "== "+  ((TitledBorder) ((JComponent) components[i]).getBorder()).getTitle()  ) ;
-						 }
+						// }
 				            compoName = compoo.getClass().getName();
 				     //       System.out.println(   compoName ) ;
 						                if (compoo  instanceof JPanel)
@@ -190,7 +196,7 @@ public class BASLA extends JFrame {
 					               if( ((TitledBorder) dp.getBorder()).getTitle().equals(emirAdi))
 					                {
 					            	   System.out.println(   ((TitledBorder) dp.getBorder()).getTitle());
-					            		Component[] emirPanel = ((Container) components[0]).getComponents();
+					            		Component[] emirPanel = ((Container) components[i]).getComponents();
 										
 										 String componentName;
 										 for (Component compo : emirPanel) 
@@ -222,6 +228,7 @@ public class BASLA extends JFrame {
 					           //     dp.repaint();
 					                }
 				            ///
+						                i = i +1 ;
 					 }
 					
 					/////////////////////
@@ -245,7 +252,7 @@ public class BASLA extends JFrame {
 					       
 				}
 			});
-			btnNewButton_3.setBounds(10, 275, 89, 23);
+			btnNewButton_3.setBounds(10, 275, 130, 23);
 			panel.add(btnNewButton_3);
 			
 			JButton btnNewButton_4 = new JButton("emiradi donus");
@@ -281,6 +288,8 @@ public class BASLA extends JFrame {
 			btnNewButton_1.setBounds(10, 455, 89, 23);
 			panel.add(btnNewButton_1);
 			
+		
+			
 		//
 			File tmpDir = new File(glb.SURUCU + glb.SQL_BACKUP);
 			boolean exists = tmpDir.exists();
@@ -289,8 +298,8 @@ public class BASLA extends JFrame {
 				glb.backup_dosya_olustur();
 			}
 			emirDOLDUR();
-			
 			baslat();
+	
 	}
 	@SuppressWarnings("static-access")
 	public static void emirDOLDUR() throws ClassNotFoundException, SQLException, InterruptedException, NumberFormatException, ParseException
@@ -304,30 +313,42 @@ public class BASLA extends JFrame {
 			return;
 		} 
 
-		try {
-			while(rss.next())
+		List<Emir_Bilgiler> emirlerr = new ArrayList<Emir_Bilgiler>();
+		
+		int i = 0;
+		while (rss.next())
+		{
+			String  tarih ="" ;
+			if(rss.getDate("SON_YUKLEME") != null)
 			{
-					String  tarih ="" ;
-				if(rss.getDate("SON_YUKLEME") != null)
-				{
-					SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-					tarih = f.format(	rss.getDate("SON_YUKLEME"));
-				}
+				SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+				tarih = f.format(	rss.getDate("SON_YUKLEME"));
+			}
+			System.out.println(rss.getString("EMIR_ISMI"));
+			String drm = rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv" ;
+			emirlerr.add( new Emir_Bilgiler(rss.getString("EMIR_ISMI"), rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi",
+					2,tarih,"",rss.getString("EMIR_ACIKLAMA"), drm,sqll.ftp_NERESI(rss.getString("EMIR_ISMI"))));
+					
+		}
+	sqll.ccon.close();
+		try {
+			 for(int y = 0; y < emirlerr.size(); y++) 
+			{
 				
 				GOREV  tt = new GOREV();
-				
-				pPanel.add(tt.getShowRoomPanel(rss.getString("EMIR_ISMI"),rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi"  , 
-						sqll.dbSAYISI(rss.getString("EMIR_ISMI"))  ,
-						tarih,""   ,rss.getString("EMIR_ACIKLAMA") ,rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv",
-								sqll.ftp_NERESI(rss.getString("EMIR_ISMI"))));
-
-				
+				pPanel.add(tt.getShowRoomPanel(emirlerr.get(y).getEmirAdi(),emirlerr.get(y).getSondurUM()  , 
+						emirlerr.get(y).getDbSAYI()  ,
+						emirlerr.get(y).getTarIH(),""   ,emirlerr.get(y).getAcikLAMA() ,emirlerr.get(y).getDurUM(),
+						emirlerr.get(y).getFtpNERESI()));
+			
 
 			}
+		
+		
 		} catch (NumberFormatException | ClassNotFoundException | SQLException | InterruptedException
 				| ParseException e) {
 			// TODO Auto-generated catch block
-		System.out.println("basla hata   302");
+		System.out.println("basla hata   302" + e.getMessage());
 		}
 		
 	}
@@ -391,10 +412,11 @@ public class BASLA extends JFrame {
 		ResultSet rs = sqll.surBILGI(emirADI);
 		if (!rs.isBeforeFirst() ) {  
 			sqll.Logla(emirADI,  "FTP Bos");
+			sqll.ccon.close();
 				return;
 			} 
 		String neresi = rs.getString("NERESI");
-	
+		sqll.ccon.close();
 		if (neresi.equals("FTP"))
 		{
 			msSQL_FTP(emirADI);
@@ -421,15 +443,16 @@ public class BASLA extends JFrame {
 					String kulL = rs.getString("KULLANICI");
 					String pwD = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(rs.getBytes("SIFRE"));
 					sqll.ccon.close();
-					ResultSet rrs =  sqll.surBILGI(emirADI);
-					ResultSet rss = sqll.dbLISTE(emirADI);
 					
+					ResultSet rss = sqll.dbLISTE(emirADI);
 					List<String> dbList  = new ArrayList<>();
 					while(rss.next())
 					{
 						dbList.add(rss.getString("DB_ADI"));
 					}
 					sqll.ccon.close();
+					
+					ResultSet rrs =  sqll.surBILGI(emirADI);
 					Date tar = new Date();
 					DateFormat  df = new SimpleDateFormat("ddMMyyyyHHmm");
 					String tarih = df.format(tar);
@@ -458,6 +481,7 @@ public class BASLA extends JFrame {
 						myObj.delete();
 						sqll.Logla(emirADI,  tarih + "_" + dbList.get(i) + ".zip" + "   Zip  Dosyasi Silindii.....");
 					}
+					sqll.ccon.close();
 					Login_Progres_Bar_Temizle1();
 					Login_Progres_Bar_Temizle();
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -513,22 +537,19 @@ public class BASLA extends JFrame {
 	{
 		TimerTask timerTask = new TimerTask() {
 			@Override
-			public void run() {
+			public void run()
+			{
 				try {
 					yedekLE();
-					  
-				} catch (ClassNotFoundException | SQLException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} catch (ClassNotFoundException | SQLException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | IOException | IllegalBlockSizeException | BadPaddingException e) {
+						e.printStackTrace();
 				}
 			}
 		};
 		timerr = new Timer();
 		timerr.schedule(timerTask, 0, 1000);
 	}
+	
 	public static void upLOADtoFTP(String server , int port , String user , String pass , String okunacakDB , String ftpSURUCU,String emirADI ) throws InterruptedException, ClassNotFoundException, SQLException
 	{
 				FTPClient ftpClient = new FTPClient();
@@ -591,4 +612,5 @@ public class BASLA extends JFrame {
 					}
 				}
 		}
+
 }

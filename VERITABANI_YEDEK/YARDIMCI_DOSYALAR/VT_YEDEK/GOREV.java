@@ -45,11 +45,12 @@ public class GOREV {
 	Date    sonrakitar = new Date();
 	static int hangiGUNDEYIZ ;
 	static String denemADI = "" ;
-	
+	static Timer timer ;
 	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,
 			String acikLAMA,String durUM,String surUCU) throws InterruptedException, NumberFormatException, ClassNotFoundException, SQLException, ParseException
 	{
 		p = new JPanel(new GridBagLayout());
+		p.setName( emirAdi);
 		denemADI = emirAdi ;
 		p.setBorder(new TitledBorder(emirAdi));
 		((javax.swing.border.TitledBorder) p.getBorder()).setTitleFont(new Font("Arial", Font.BOLD, 14));
@@ -125,8 +126,7 @@ public class GOREV {
 			public void actionPerformed(ActionEvent e) {
 				VT_ANA_CLASS.yENI_EMIR = false ;
 				VT_ANA_CLASS.EMIR_ADI= emirAdi;
-	
-				BASLA.durdur();
+			BASLA.durdur();
 				EMIR emr = new EMIR();
 				emr.setVisible(true);
 				}
@@ -141,11 +141,13 @@ public class GOREV {
 				String[] options = {"Tamam......       		!	", "Vazgec......       		!	"};
 				int g =  JOptionPane.showOptionDialog( null,  emirAdi +  " Isimli Emir Islem Dosyadan Silinecek ..?", "Cari Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE,	   			 	null,   	options,   	options[1]); 
-				if(g != 0 ) {
+				if(g != 0 ) 
+				{
 					try {
+						BASLA.baslat();
 						basla();
 					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
+
 						e1.printStackTrace();
 					}
 					BASLA.baslat();
@@ -165,7 +167,9 @@ public class GOREV {
 				 
 				try {
 					sqll.Logla(emr, "Emir Silme Islemine Baslandi...");
+					System.out.println("170");
 					sqll.genel_kayit_sil(emr);
+					System.out.println("172");
 			         sqll.db_adi_kayit_sil(emr);
 			         sqll.ftp_kayit_sil(emr);
 			         sqll.bilgilendirme_kayit_sil(emr);
@@ -193,7 +197,7 @@ public class GOREV {
 		btnkontrol.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					
-		System.out.println("++++++" + emirAdi) ;
+	//	System.out.println("++++++" + emirAdi) ;
 				try {
 					basla();
 				} catch (InterruptedException e1) {
@@ -203,29 +207,31 @@ public class GOREV {
 				}
 		});
 		p.add(btnkontrol, gbc);
-		
-		//
 		rss = sqll.yedeklemeBILGI(emirAdi);
-//		if (VT_ANA_CLASS.emirDENMI)
-//		{
-//			System.out.println(emirAdi + "=true");
+		if (VT_ANA_CLASS.emirDENMI)
+		{
+			System.out.println(emirAdi + "=true   212");
 			gunLERE_BAK(); 
-//		}
-//		else
-//		{
-//			System.out.println(emirAdi +"=false");
-//			sonRAKI_YEDEK(Integer.parseInt(rss.getString("SAAT")));
-//		}
+		}
+		else
+		{
+			sonRAKI_YEDEK(Integer.parseInt(rss.getString("SAAT")));
+		}
 		VT_ANA_CLASS.emirDENMI = false ;
-		//basla();
+		sqll.ccon.close();
+		basla();
 		return p;
 	}
 	public static void basla() throws InterruptedException
 	{
-		
+		TimerTask timerTask = new TimerTask() {
+			@Override
+			public void run()
+			{
 				DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 				String simDI = df.format(new Date());
 				System.out.println( denemADI + " gorev run");
+				System.out.println(simDI +"=227="+ lblgel.getText());
 				if (simDI.equals(lblgel.getText() + ":00")) // YEDEKLEME ZAMANI 
 				{
 						yedekLEE();
@@ -234,14 +240,17 @@ public class GOREV {
 					simDI = dff.format(new Date());
 					lblson.setText(simDI);
 						try {
-							System.out.println( denemADI + " emir ad gorevlerde");
-						 sqll.genel_kayit_durum( denemADI, true, new Date());
+					 sqll.genel_kayit_durum( denemADI, true, new Date());
 						rss = sqll.yedeklemeBILGI( denemADI);
 						sonRAKI_YEDEK(Integer.parseInt(rss.getString("SAAT")));
 					} catch (ClassNotFoundException | SQLException | NumberFormatException | ParseException | InterruptedException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-						System.out.println("gorevler de hata ");
+		//				System.out.println("gorevler de hata ");
 					}
 				}
+			}
+		};
+		timer = new Timer(true);
+		timer.schedule(timerTask, 0, 1000);
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -266,7 +275,7 @@ public class GOREV {
 		Date kontROL = new Date();;
 		long kontROLL ;
 		kontROLL  = kontROL.getTime();
-System.out.println(kontROL +"=="+ biTISS);
+		//System.out.println(kontROL +"=266  gorev="+ biTISS);
 		if  (kontROLL > biTISL )
 		{
 			gunLERE_BAK();

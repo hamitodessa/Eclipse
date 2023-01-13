@@ -37,6 +37,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -62,9 +63,10 @@ public class BASLA extends JFrame {
 	public  static List<String> gorevLER  = new ArrayList<>();
 	VT_ANA_CLASS oac = new VT_ANA_CLASS();
 	static Timer timerr ;
-	
+	static Timer timerEMIR;
 	static JProgressBar progressBar ;
 	static JProgressBar progressBar1 ;
+	public String geleCEKTAR ;
 	/**
 	 * Launch the application.
 	 */
@@ -172,11 +174,9 @@ public class BASLA extends JFrame {
 			
 			JButton btnNewButton_3 = new JButton("deger degis");
 			btnNewButton_3.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-					
-					
-					Component[] components = pPanel.getComponents();
+				public void actionPerformed(ActionEvent e) 
+				{
+						Component[] components = pPanel.getComponents();
 					/////////////////////
 					String compoName = "";
 					int i = 0;
@@ -192,39 +192,36 @@ public class BASLA extends JFrame {
 						                if (compoo  instanceof JPanel)
 					                {
 					                   JPanel dp = (JPanel) compoo;
-					                   String emirAdi = "Suadiye Yedekleme";
-					               if( ((TitledBorder) dp.getBorder()).getTitle().equals(emirAdi))
-					                {
-					            	   System.out.println(   ((TitledBorder) dp.getBorder()).getTitle());
-					            		Component[] emirPanel = ((Container) components[i]).getComponents();
-										
-										 String componentName;
+					                   String emirAdi =  ((TitledBorder) ((JComponent) components[i]).getBorder()).getTitle()  ;
+//					               if( ((TitledBorder) dp.getBorder()).getTitle().equals(emirAdi))
+//					                {
+//					            	   System.out.println( "198=" +  ((TitledBorder) dp.getBorder()).getTitle());
+				            		Component[] emirPanel = ((Container) components[i]).getComponents();
 										 for (Component compo : emirPanel) 
 										 {
-									            componentName = compo.getClass().getName();
-										         //   System.out.println(compo.getClass().getName().substring(componentName.indexOf("swing.") + "swing.".length(), componentName.length()));
-										           ///
-										                if (compo  instanceof JButton)
-										                {
-										                   JButton dpp = (JButton) compo;
-										                   if (dpp.getName() == "kontROL")
-										                   {
-										                  System.out.println(dpp.getName());
-										                   dpp.doClick();
-										                   }
-										           //    dpp.setText("Deneme");
-										                }
-									            ///
+											 System.out.println(compo.getName());
+//										         
+											 ///
+//										                if (compo  instanceof JButton)
+//										                {
+//										                   JButton dpp = (JButton) compo;
+//										                   System.out.println("208========" +dpp.getText());
+//										                   String qwe = dpp.getText().trim();
+//										                   if (qwe.equals( ((TitledBorder) ((JComponent) components[i]).getBorder()).getTitle()))
+//										                   {
+//										                	   GOREV.denemADI=   ((TitledBorder) ((JComponent) components[i]).getBorder()).getTitle()  ;
+//										                  System.out.println("+++++++++" +dpp.getText());
+//										                   dpp.doClick();
+//										                   }
+//										           //    dpp.setText("Deneme");
+//										                }
+//									            ///
 										 }
-
-					            	   
-					            	   
-					            	   
-					           //     Font font2 = new Font("Verdana", Font.ITALIC, 12);
-					          //         TitledBorder border = new TitledBorder("hamit");
-					          //         border.setTitleFont(font2);
-					            //       ((TitledBorder) dp.getBorder()).setTitle("Hamit Emir");
-					               }
+//					           //     Font font2 = new Font("Verdana", Font.ITALIC, 12);
+//					          //         TitledBorder border = new TitledBorder("hamit");
+//					          //         border.setTitleFont(font2);
+//					            //       ((TitledBorder) dp.getBorder()).setTitle("Hamit Emir");
+//					               }
 					           //     dp.repaint();
 					                }
 				            ///
@@ -255,20 +252,7 @@ public class BASLA extends JFrame {
 			btnNewButton_3.setBounds(10, 275, 130, 23);
 			panel.add(btnNewButton_3);
 			
-			JButton btnNewButton_4 = new JButton("emiradi donus");
-			btnNewButton_4.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
 			
-					for (int i = 0; i < gorevLER.size(); i++) {
-					    String stringss = gorevLER.get(i);
-					   
-					    System.out.println(stringss);
-					}
-				
-				}
-			});
-			btnNewButton_4.setBounds(10, 330, 130, 23);
-			panel.add(btnNewButton_4);
 			
 			JButton btnNewButton_1 = new JButton("ftp deneme");
 			btnNewButton_1.addActionListener(new ActionListener() {
@@ -299,9 +283,9 @@ public class BASLA extends JFrame {
 			}
 			emirDOLDUR();
 			baslat();
-	
+			emirKONTROL();
 	}
-	@SuppressWarnings("static-access")
+	@SuppressWarnings({ "static-access", "unused" })
 	public static void emirDOLDUR() throws ClassNotFoundException, SQLException, InterruptedException, NumberFormatException, ParseException
 	{
 		ResultSet rss ;
@@ -324,7 +308,7 @@ public class BASLA extends JFrame {
 				SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 				tarih = f.format(	rss.getDate("SON_YUKLEME"));
 			}
-			System.out.println(rss.getString("EMIR_ISMI"));
+			//System.out.println(rss.getString("EMIR_ISMI"));
 			String drm = rss.getBoolean("DURUM") == true ? "Aktiv" : "Pasiv" ;
 			emirlerr.add( new Emir_Bilgiler(rss.getString("EMIR_ISMI"), rss.getBoolean("SON_DURUM") == true ? "Yedeklendi" : "Yedeklenmedi",
 					2,tarih,"",rss.getString("EMIR_ACIKLAMA"), drm,sqll.ftp_NERESI(rss.getString("EMIR_ISMI"))));
@@ -358,50 +342,71 @@ public class BASLA extends JFrame {
 		if (gorevLER.size() !=0)
 		{
 			System.out.println(gorevLER.size() +" == gorev adeti ");
-		
 		}
-		
+
 		for (int i = 0; i < gorevLER.size(); i++) 
 		{
-		System.out.println(gorevLER.get(i) +" == "+ i);
-		    backUP(gorevLER.get(i));
-		    gorevLER.remove(gorevLER.get(i));
-		    //
-		    
-		    //
+			durdur2();
+			System.out.println(gorevLER.get(i) +" =BACKUP ALINIYOR= "+ i);
+			backUP(gorevLER.get(i));
+			
+			///
+			DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+			String simDI = df.format(new Date());
+			DateFormat dff = new SimpleDateFormat("dd.MM.yyyy HH:mm");				
+			simDI = dff.format(new Date());
+			
+			gelecekDEGIS(gorevLER.get(i),""  ,simDI);
+			emirKONTROL();
+			try {
+				sqll.genel_kayit_durum(gorevLER.get(i), true, new Date());
+				
+			} catch (ClassNotFoundException | SQLException | NumberFormatException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+			}
+			
+			
+			///
+			gorevLER.remove(gorevLER.get(i));
+			//
+
+			//
 		}
 		baslat();
 	}
+	@SuppressWarnings("static-access")
 	private static void backUP(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
 	{
-	
 		ResultSet rs = sqll.emirBILGI(emirADI);
 		boolean  SQL_YEDEK_MI = true ;
 		SQL_YEDEK_MI = rs.getBoolean("SQL_YEDEK");
 		        if (SQL_YEDEK_MI == false )
 		        {
-		       //     diger_dosya()   ;
+		     sqll.ccon.close();
 		            return ;
 		        }
 		 
 	if (rs.getString("INSTANCE").equals("MS SQL"))
 	{
-	
+		   sqll.ccon.close();
 		msSQL(emirADI);
 	}
 	else   if (rs.getString("INSTANCE").equals("MY SQL"))
 	{
+		   sqll.ccon.close();
 		mySQL(emirADI);
 	}
 
 	}
+	@SuppressWarnings("static-access")
 	private static void msSQL(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException
 	{
 		ResultSet rss = sqll.dbLISTE(emirADI);
 		if (!rss.isBeforeFirst() ) {  
+			sqll.ccon.close();
 			sqll.Logla(emirADI,  "Yuklenecek Dosya Secilmemis....");
 			return;
 		} 
+		sqll.ccon.close();
 		GLOBAL glb = new GLOBAL();
 		if (glb.internet_kontrol() == false)
 		{
@@ -513,6 +518,14 @@ public class BASLA extends JFrame {
 			timerr.purge();
 		}
 	}
+	static void durdur2()
+	{
+		if (timerEMIR != null)
+		{	
+			timerEMIR.cancel();
+			timerEMIR.purge();
+		}
+	}
 	static void Lgn_Progres_Bar(int max, int deger) throws InterruptedException
 	{
 		progressBar.setValue(deger);
@@ -547,9 +560,49 @@ public class BASLA extends JFrame {
 			}
 		};
 		timerr = new Timer();
-		timerr.schedule(timerTask, 0, 1000);
+		timerr.schedule(timerTask, 0, 5000);
 	}
-	
+	private static void emirKONTROL()
+	{
+		TimerTask timerTask = new TimerTask() {
+			@Override
+			public void run()
+			{
+				Component[] components = pPanel.getComponents();
+				int i = 0;
+				for (Component compoo : components) 
+				{
+					if (compoo  instanceof JPanel)
+					{
+						JPanel dp = (JPanel) compoo;
+						String emirAdi =  ((TitledBorder) ((JComponent) components[i]).getBorder()).getTitle()  ;
+						if( ((TitledBorder) dp.getBorder()).getTitle().equals(emirAdi))
+						{
+							Component[] emirPanel = ((Container) components[i]).getComponents();
+							for (Component compo : emirPanel) 
+							{
+								///
+								if (compo  instanceof JButton)
+								{
+									JButton dpp = (JButton) compo;
+									String qwe = dpp.getText().trim();
+									if (qwe.equals( ((TitledBorder) ((JComponent) components[i]).getBorder()).getTitle()))
+									{
+										GOREV.denemADI=   ((TitledBorder) ((JComponent) components[i]).getBorder()).getTitle()  ;
+										//System.out.println("+++++++++" +dpp.getText());
+										dpp.doClick();
+									}
+								}
+							}
+						}
+					}
+					i = i +1 ;
+				}
+			}
+		};
+		timerEMIR = new Timer();
+		timerEMIR.schedule(timerTask, 0, 800);
+	}
 	public static void upLOADtoFTP(String server , int port , String user , String pass , String okunacakDB , String ftpSURUCU,String emirADI ) throws InterruptedException, ClassNotFoundException, SQLException
 	{
 				FTPClient ftpClient = new FTPClient();
@@ -612,5 +665,34 @@ public class BASLA extends JFrame {
 					}
 				}
 		}
-
+private static void gelecekDEGIS(String emirADI , String eskiTAR, String geleCEK)
+{
+	Component[] components = pPanel.getComponents();
+	int i = 0;
+	for (Component compoo : components) 
+	{
+		if (compoo  instanceof JPanel)
+		{
+			JPanel dp = (JPanel) compoo;
+			if( ((TitledBorder) dp.getBorder()).getTitle().equals(emirADI))
+			{
+				Component[] emirPanel = ((Container) components[i]).getComponents();
+				for (Component compo : emirPanel) 
+				{
+					 System.out.println(compo.getName());
+						if (compo  instanceof JLabel)
+					{
+						JLabel dpp = (JLabel) compo;
+							if (compo.getName() == ("lblgel"))
+						{
+							dpp.setText(geleCEK);
+							break;
+						}
+					}
+				}
+			}
+		}
+		i = i +1 ;
+	}
+}
 }

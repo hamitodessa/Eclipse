@@ -44,8 +44,9 @@ public class GOREV {
 	static boolean varmi = false;
 	Date    sonrakitar = new Date();
 	static int hangiGUNDEYIZ ;
-	static String denemADI = "" ;
+	public static String denemADI = "" ;
 	static Timer timer ;
+	@SuppressWarnings("static-access")
 	public static  JPanel getShowRoomPanel(String emirAdi ,String sonDurum,int dosyaSayisi,String sonYEDEK , String gelYEDEK,
 			String acikLAMA,String durUM,String surUCU) throws InterruptedException, NumberFormatException, ClassNotFoundException, SQLException, ParseException
 	{
@@ -86,6 +87,7 @@ public class GOREV {
 		gbc.gridx = 3;
 
 		lblgel = new JLabel(gelYEDEK );
+		lblgel.setName("lblgel");
 		lblgel.setForeground(Color.RED);
 		p.add(lblgel, gbc);
 
@@ -126,17 +128,16 @@ public class GOREV {
 			public void actionPerformed(ActionEvent e) {
 				VT_ANA_CLASS.yENI_EMIR = false ;
 				VT_ANA_CLASS.EMIR_ADI= emirAdi;
-			BASLA.durdur();
+				BASLA.durdur();
 				EMIR emr = new EMIR();
 				emr.setVisible(true);
-				}
+			}
 		});
 		p.add(btnNewButton, gbc);
 		gbc.gridx = 1;
 		JButton btnsil = new JButton("Emir Sil");
 		btnsil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					
 				BASLA.durdur();
 				String[] options = {"Tamam......       		!	", "Vazgec......       		!	"};
 				int g =  JOptionPane.showOptionDialog( null,  emirAdi +  " Isimli Emir Islem Dosyadan Silinecek ..?", "Cari Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
@@ -146,7 +147,7 @@ public class GOREV {
 					try {
 						BASLA.baslat();
 						basla();
-					} catch (InterruptedException e1) {
+					} catch (InterruptedException | NumberFormatException | ClassNotFoundException | SQLException | ParseException e1) {
 
 						e1.printStackTrace();
 					}
@@ -156,61 +157,54 @@ public class GOREV {
 				for (int i = 0; i < BASLA.gorevLER.size(); i++) 
 				{
 					String  emir = BASLA.gorevLER.get(i) ;
-				  
+
 					if (emir.equals(emirAdi))
 					{
-					    BASLA.gorevLER.remove(emir);
+						BASLA.gorevLER.remove(emir);
 					}
-					}
+				}
 				SQL_BACKUP sqll = new SQL_BACKUP();
 				String emr =emirAdi;
-				 
+
 				try {
 					sqll.Logla(emr, "Emir Silme Islemine Baslandi...");
-					System.out.println("170");
 					sqll.genel_kayit_sil(emr);
-					System.out.println("172");
-			         sqll.db_adi_kayit_sil(emr);
-			         sqll.ftp_kayit_sil(emr);
-			         sqll.bilgilendirme_kayit_sil(emr);
-			         sqll.yedekleme_kayit_sil(emr);
-			         sqll.server_kayit_sil(emr);
-			         sqll.diger_dosya_adi_kayit_sil(emr);
-			         sqll.Logla(emr, "Emir Islemi Silindi...");
-			         
-			         BASLA.emirDOLDUR();
+					sqll.db_adi_kayit_sil(emr);
+					sqll.ftp_kayit_sil(emr);
+					sqll.bilgilendirme_kayit_sil(emr);
+					sqll.yedekleme_kayit_sil(emr);
+					sqll.server_kayit_sil(emr);
+					sqll.diger_dosya_adi_kayit_sil(emr);
+					sqll.Logla(emr, "Emir Islemi Silindi...");
+
+					BASLA.emirDOLDUR();
 				} catch (ClassNotFoundException | SQLException | NumberFormatException | InterruptedException | ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-		       
-				
-				}
+			}
 		});
 		p.add(btnsil, gbc);
 		
 		//
 		gbc.gridx = 2;
-		JButton btnkontrol = new JButton("Kontrol");
-		btnkontrol.setName("kontROL");
+		JButton btnkontrol = new JButton(emirAdi );
+		//btnkontrol.setName(emirAdi +"kontROL");
 		btnkontrol.setVisible(false);
 		btnkontrol.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					
-	//	System.out.println("++++++" + emirAdi) ;
+			public void actionPerformed(ActionEvent e) 
+			{
 				try {
 					basla();
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
+				} catch (InterruptedException | NumberFormatException | ClassNotFoundException | SQLException | ParseException e1) {
 					e1.printStackTrace();
 				}
-				}
+			}
 		});
 		p.add(btnkontrol, gbc);
 		rss = sqll.yedeklemeBILGI(emirAdi);
 		if (VT_ANA_CLASS.emirDENMI)
 		{
-			System.out.println(emirAdi + "=true   212");
 			gunLERE_BAK(); 
 		}
 		else
@@ -222,40 +216,29 @@ public class GOREV {
 		basla();
 		return p;
 	}
-	public static void basla() throws InterruptedException
+	public static void basla() throws InterruptedException, NumberFormatException, ClassNotFoundException, SQLException, ParseException
 	{
-		TimerTask timerTask = new TimerTask() {
-			@Override
-			public void run()
-			{
+//		TimerTask timerTask = new TimerTask() {
+//			@Override
+//			public void run()
+//			{
 				DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 				String simDI = df.format(new Date());
-				System.out.println( denemADI + " gorev run");
-				System.out.println(simDI +"=227="+ lblgel.getText());
+				System.out.println(simDI +"=227="+ lblgel.getText()  + ":00"+ denemADI + " gorev run");
 				if (simDI.equals(lblgel.getText() + ":00")) // YEDEKLEME ZAMANI 
 				{
-						yedekLEE();
+					yedekLEE();
 					
-					DateFormat dff = new SimpleDateFormat("dd.MM.yyyy HH:mm");				
-					simDI = dff.format(new Date());
-					lblson.setText(simDI);
-						try {
-					 sqll.genel_kayit_durum( denemADI, true, new Date());
-						rss = sqll.yedeklemeBILGI( denemADI);
-						sonRAKI_YEDEK(Integer.parseInt(rss.getString("SAAT")));
-					} catch (ClassNotFoundException | SQLException | NumberFormatException | ParseException | InterruptedException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-		//				System.out.println("gorevler de hata ");
-					}
 				}
-			}
-		};
-		timer = new Timer(true);
-		timer.schedule(timerTask, 0, 1000);
+//			}
+//		};
+//		timer = new Timer(true);
+//		timer.schedule(timerTask, 0, 1000);
 	}
-	
 	@SuppressWarnings("deprecation")
 	private static void   sonRAKI_YEDEK(int kacDAKKA) throws NumberFormatException, SQLException, ParseException, InterruptedException, ClassNotFoundException
 	{
+		ResultSet rss = sqll.yedeklemeBILGI(denemADI);
 		DateFormat dff = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		String basLA= dff.format(rss.getDate("BASLAMA"));
 		Date basLAA=new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(basLA);  
@@ -271,6 +254,7 @@ public class GOREV {
 		biTISS.setHours(biTIS.getHours());
 		biTISS.setMinutes(biTIS.getMinutes());
 		long biTISL =biTISS.getTime();
+		sqll.ccon.close();
 		///////
 		Date kontROL = new Date();;
 		long kontROLL ;
@@ -299,8 +283,7 @@ public class GOREV {
 			}
 		}
 	}
-
-	private static void gunLERE_BAK() throws SQLException, ParseException, InterruptedException
+	private static void gunLERE_BAK() throws SQLException, ParseException, InterruptedException, NumberFormatException, ClassNotFoundException
 	{
 		LocalDate date = LocalDate.now();
 		DayOfWeek dayOfWeek = date.getDayOfWeek();
@@ -336,7 +319,7 @@ public class GOREV {
 			hangiGUN_PAZAR();
 		}
 	}
-	private static void hangiGUN_P_TESI() throws SQLException, ParseException, InterruptedException
+	private static void hangiGUN_P_TESI() throws SQLException, ParseException, InterruptedException, NumberFormatException, ClassNotFoundException
 	{
 		if (rss.getBoolean("P_TESI"))
 		{
@@ -359,7 +342,7 @@ public class GOREV {
 			hangiGUN_SALI();
 		}
 	}
-	private static void hangiGUN_SALI() throws SQLException, ParseException, InterruptedException
+	private static void hangiGUN_SALI() throws SQLException, ParseException, InterruptedException, NumberFormatException, ClassNotFoundException
 	{
 		if (rss.getBoolean("SALI"))
 		{
@@ -390,7 +373,7 @@ public class GOREV {
 			hangiGUN_CARS();
 		}
 	}
-	private static void hangiGUN_CARS() throws ParseException, InterruptedException, SQLException
+	private static void hangiGUN_CARS() throws ParseException, InterruptedException, SQLException, NumberFormatException, ClassNotFoundException
 	{
 		if (rss.getBoolean("CARS"))
 		{
@@ -421,7 +404,7 @@ public class GOREV {
 			hangiGUN_PERS();
 		}
 	}
-	private static void hangiGUN_PERS() throws SQLException, ParseException, InterruptedException
+	private static void hangiGUN_PERS() throws SQLException, ParseException, InterruptedException, NumberFormatException, ClassNotFoundException
 	{
 		if (rss.getBoolean("PERS"))
 		{
@@ -453,7 +436,7 @@ public class GOREV {
 			hangiGUN_CUMA();
 		}
 	}
-	private static void hangiGUN_CUMA() throws SQLException, ParseException, InterruptedException
+	private static void hangiGUN_CUMA() throws SQLException, ParseException, InterruptedException, NumberFormatException, ClassNotFoundException
 	{
 		if (rss.getBoolean("CUMA"))
 		{
@@ -484,7 +467,7 @@ public class GOREV {
 			hangiGUN_C_TESI();
 		}
 	}
-	private static void hangiGUN_C_TESI() throws SQLException, ParseException, InterruptedException
+	private static void hangiGUN_C_TESI() throws SQLException, ParseException, InterruptedException, NumberFormatException, ClassNotFoundException
 	{
 		if (rss.getBoolean("C_TESI"))
 		{
@@ -515,7 +498,7 @@ public class GOREV {
 			hangiGUN_PAZAR();
 		}
 	}
-	private static void hangiGUN_PAZAR() throws SQLException, ParseException, InterruptedException
+	private static void hangiGUN_PAZAR() throws SQLException, ParseException, InterruptedException, NumberFormatException, ClassNotFoundException
 	{
 		if (rss.getBoolean("PAZAR"))
 		{
@@ -533,7 +516,7 @@ public class GOREV {
 		}
 	}
 	@SuppressWarnings("deprecation")
-	private static void gunEKLE(Date basLA, int gun) throws ParseException, InterruptedException
+	private static void gunEKLE(Date basLA, int gun) throws ParseException, InterruptedException, NumberFormatException, ClassNotFoundException, SQLException
 	{
 		DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		String simDI = df.format(basLA);
@@ -545,18 +528,26 @@ public class GOREV {
 		c.add(Calendar.DATE, gun );
 		dtt = c.getTime();
 
-
 		dtt.setHours(date1.getHours());
 		dtt.setMinutes(date1.getMinutes());
 		dtt.setSeconds(0);
 
 		df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-
 		lblgel.setText(df.format(dtt));
 		basla();
 	}
-	private static void yedekLEE()
+	private static void yedekLEE() throws ClassNotFoundException, SQLException, NumberFormatException, ParseException, InterruptedException
 	{
-		BASLA.gorevLER.add( denemADI);
+		System.out.println(denemADI + "=Gorev  Ekleme Oncesi Gorev Adedi  ===" +BASLA.gorevLER.size());
+		
+		//BASLA.timerr.cancel();
+		BASLA.gorevLER.add(denemADI);
+		//BASLA.baslat();
+		System.out.println("Gorev  Ekleme Sonrasi  Gorev Adedi  ===" +BASLA.gorevLER.size());
+		ResultSet rss = sqll.yedeklemeBILGI(denemADI);
+		int  saat = Integer.parseInt(rss.getString("SAAT")) ;
+		sqll.ccon.close();
+		sonRAKI_YEDEK(saat);
+
 	}
 }

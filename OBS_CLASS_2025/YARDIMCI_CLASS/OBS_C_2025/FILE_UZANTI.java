@@ -17,10 +17,8 @@ public class FILE_UZANTI {
 	                return file; // if yes, return as-is
 	            }
 	        }
-	        // if not, append the first extension from the selected filter
 	        file = new File(file.toString() + '.' + exts[0]);
 	    }
 	    return file;
 	}
-
 }

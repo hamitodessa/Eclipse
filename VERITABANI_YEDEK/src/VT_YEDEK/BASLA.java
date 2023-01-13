@@ -113,7 +113,7 @@ public class BASLA extends JFrame {
 	     sagPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 	     sagPane.setDividerSize(0);
 	     sagPane.setResizeWeight(1.0);
-	     sagPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+	 
 	     
 	        JScrollPane scrollPane = new JScrollPane(pPanel,	        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,	                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	        
@@ -589,7 +589,14 @@ public class BASLA extends JFrame {
 									if (qwe.equals( ((TitledBorder) ((JComponent) components[i]).getBorder()).getTitle()))
 									{
 										GOREV.denemADI=   ((TitledBorder) ((JComponent) components[i]).getBorder()).getTitle()  ;
-										//System.out.println("+++++++++" +dpp.getText());
+										
+										try {
+											Thread.sleep(500);
+										} catch (InterruptedException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										System.out.println("++++599+++++" +dpp.getText());
 										dpp.doClick();
 									}
 								}

@@ -1128,9 +1128,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
-
 		}
-
 		else
 		{
 			rss.next();
@@ -1142,7 +1140,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			bilgi[5] = rss.getString("VERGI_NO");
 		}
 		return bilgi;
-
 	}
 	public ResultSet hesap_adi_auto(String hesap) throws ClassNotFoundException, SQLException
 	{

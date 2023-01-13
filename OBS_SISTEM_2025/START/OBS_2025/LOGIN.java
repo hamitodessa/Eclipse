@@ -333,7 +333,7 @@ public class LOGIN extends JFrame {
 
 		progressBar = new JProgressBar();
 		splitPane.setRightComponent(progressBar);
-		progressBar.setForeground(new Color(166, 55, 55));
+		//progressBar.setForeground(new Color(166, 55, 55));
 		progressBar.setBorder(new LineBorder(new Color(0, 191, 255)));
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -1007,7 +1007,6 @@ public class LOGIN extends JFrame {
 				ftp.disconnect();
 				return ;
 			}
-
 			ftp.enterLocalPassiveMode();
 			String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_SISTEM_2025/OBS_VERSION.txt";
 			File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");

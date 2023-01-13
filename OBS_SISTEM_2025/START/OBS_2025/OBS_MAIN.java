@@ -2506,9 +2506,8 @@ public class OBS_MAIN extends JFrame {
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		//progressBar.setBorder(new LineBorder(new Color(0, 191, 255)));
 		progressBar.setBorder(BorderFactory.createEmptyBorder(1, 0, 0, 1));   
-
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		progressBar.setForeground(new Color(166, 55, 55));
+		//progressBar.setForeground(new Color(166, 55, 55));
 		progressBar.setMaximumSize(new Dimension(350, 30));
 		progressBar.setMinimumSize(new Dimension(350, 30));
 

@@ -135,12 +135,13 @@ public class USER_ISLEMLERI {
 					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
 				e.printStackTrace();
 			}
-		
 		stmt.setString(1, encodedString);
 		stmt.setString(2, user.toString());
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
+		con = null;
+		
 	}
 	public  ResultSet user_details_izinleri(String kull, String modul, String nerde) throws SQLException, ClassNotFoundException
 	{
@@ -170,6 +171,7 @@ public class USER_ISLEMLERI {
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
+		con = null;
 	}
 	public void details_yaz(String upk, String usn, String usserver, String sifre, String instance, String ip, String prog
 			,String dizin, String yer, String dcins, String izli, String calmi, String hsql,String cdid,int log,String logla) throws ClassNotFoundException, SQLException
@@ -216,6 +218,7 @@ public class USER_ISLEMLERI {
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
+		con = null;
 	}
 	public void user_ekle_degis(String user , String pwd ,String lvl ,String udbi ,String um ,Boolean uyda ,Boolean uydas ) throws ClassNotFoundException, SQLException
 	{
@@ -247,6 +250,7 @@ public class USER_ISLEMLERI {
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
+		con = null;
 	}
 	public void ip_dos_kont(String ip) throws ClassNotFoundException, SQLException
 	{
@@ -269,6 +273,7 @@ public class USER_ISLEMLERI {
 		}
 		stmt.close();
 		con.close();
+		con = null;
 	}
 	public void log_mail_kont_kayit(String ussr, String mail) throws ClassNotFoundException, SQLException
 	{
@@ -304,6 +309,7 @@ public class USER_ISLEMLERI {
 			stmt1.close();
 		}
 		con.close();
+		con = null;
 	}
 	public   ResultSet log_mail_oku (String kull ) throws ClassNotFoundException, SQLException
 	{
@@ -326,6 +332,8 @@ public class USER_ISLEMLERI {
 		String sql = "DELETE  FROM LOG_MAIL   WHERE USER_NAME = '" + kull + "' AND E_MAIL = '"+ mail +"'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
+		con.close();
+		con = null;
 	}
 	public    String log_mail_aktiv_oku  (String kull ) throws ClassNotFoundException, SQLException 
 	{
@@ -343,6 +351,8 @@ public class USER_ISLEMLERI {
 		{
 			aktiv = rss.getString("E_MAIL");
 		}
+		con.close();
+		con = null;
 		return aktiv;
 	}
 	public   ResultSet  ipp (String kull) throws ClassNotFoundException, SQLException
@@ -367,6 +377,8 @@ public class USER_ISLEMLERI {
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
+		con.close();
+		con = null;
 	}
 	public ResultSet user_ekleme_bak() throws ClassNotFoundException, SQLException
 	{
@@ -430,6 +442,8 @@ public class USER_ISLEMLERI {
 			MAIL_SETTINGS.GHESAP = rss.getString("GON_MAIL").toString();
 			MAIL_SETTINGS. GADI = rss.getString("GON_ISIM").toString();
 		}
+		con.close();
+		con = null;
 	}
 	public void mail_yaz(String hsp,String host,String port,String sifre,String gmail,String ghesap,int ssl,int tsl) throws ClassNotFoundException, SQLException
 	{
@@ -465,6 +479,7 @@ public class USER_ISLEMLERI {
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
+		con = null;
 	}
 	public ResultSet alici_oku(String usr) throws ClassNotFoundException, SQLException
 	{
@@ -498,6 +513,7 @@ public class USER_ISLEMLERI {
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
+		con = null;
 	}
 	public void giden_rapor_sil(int id) throws ClassNotFoundException, SQLException
 	{
@@ -509,7 +525,9 @@ public class USER_ISLEMLERI {
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
-		con.close();	       
+		con.close();
+		con = null;
+		
 	}
 	public ResultSet giden_rapor(String usr) throws ClassNotFoundException, SQLException
 	{

@@ -110,6 +110,7 @@ public class CARI_ACCESS {
 	}
 	public void sqlite_yaz(String tar, int evr, String iza, String kodu,double kur, double borc, double alac ,double bak) throws ClassNotFoundException, SQLException
 	{
+		if (SQLitecon != null && SQLitecon.isClosed() == false) SQLitecon.close();
 	Class.forName("org.sqlite.JDBC");
 	SQLitecon = null;
 	SQLitecon = gLB.myConnection();
@@ -128,10 +129,11 @@ public class CARI_ACCESS {
 		stmt.setDouble(8, bak);
 	}
 	stmt.executeUpdate();
-
+	SQLitecon .close();
 	}
 	public void sqlite_sil() throws ClassNotFoundException, SQLException
 	{
+		if (SQLitecon != null && SQLitecon.isClosed() == false) SQLitecon.close();
 		Class.forName("org.sqlite.JDBC");
 		SQLitecon = null;
 		PreparedStatement stmt = null;

@@ -82,7 +82,6 @@ public class BASLA extends JFrame {
 			}
 		});
 	}
-
 	/**
 	 * Create the frame.
 	 * @throws Exception 

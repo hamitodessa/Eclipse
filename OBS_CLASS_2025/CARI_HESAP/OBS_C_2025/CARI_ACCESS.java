@@ -110,9 +110,9 @@ public class CARI_ACCESS {
 	}
 	public void sqlite_yaz(String tar, int evr, String iza, String kodu,double kur, double borc, double alac ,double bak) throws ClassNotFoundException, SQLException
 	{
-		if (SQLitecon != null && SQLitecon.isClosed() == false) SQLitecon.close();
+	////	if (SQLitecon != null && SQLitecon.isClosed() == false) SQLitecon.close();
 	Class.forName("org.sqlite.JDBC");
-	SQLitecon = null;
+	//SQLitecon = null;
 	SQLitecon = gLB.myConnection();
 	PreparedStatement stmt = null;
 	String sqll = "INSERT INTO EKSTRE (TARIH,EVRAK,IZAHAT,KOD,KUR,BORC,ALACAK,BAKIYE) ";
@@ -129,7 +129,7 @@ public class CARI_ACCESS {
 		stmt.setDouble(8, bak);
 	}
 	stmt.executeUpdate();
-	SQLitecon .close();
+	//SQLitecon .close();
 	}
 	public void sqlite_sil() throws ClassNotFoundException, SQLException
 	{
@@ -143,6 +143,7 @@ public class CARI_ACCESS {
 		stmt.executeUpdate();
 		stmt.close();
 		SQLitecon.close();
+		SQLitecon = null ;
 		}
 	public String kod_ismi(String kodu) throws ClassNotFoundException, SQLException
 	{

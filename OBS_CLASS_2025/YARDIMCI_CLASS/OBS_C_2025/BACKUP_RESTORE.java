@@ -22,6 +22,7 @@ public class BACKUP_RESTORE {
 
 		String savePath = "C:/OBS_SISTEM/" + dbName +".sql";
 		String executeCmd = myDUMP +"/mysqldump.exe -u" + dbUser + " -p" + dbPass + " -B " + dbName + " -r " + savePath;
+		System.out.println(myDUMP +"/mysqldump.exe -u" + dbUser + " -p" + dbPass + " -B " + dbName + " -r " + savePath);
 		Process runtimeProcess;
 		try {
 			Runtime runtime = Runtime.getRuntime();

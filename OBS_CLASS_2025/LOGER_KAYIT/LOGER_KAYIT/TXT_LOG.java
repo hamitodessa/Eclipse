@@ -32,7 +32,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			Writer bWriter = new BufferedWriter(new OutputStreamWriter( new FileOutputStream(file, true), StandardCharsets.UTF_8));
 			SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss sss");
 			String formatli = formatter.format(new Date());
-			String msj=  formatli +"\t" + mesaj  +"\t" + evrak +"\t"+ GLOBAL.KULL_ADI + "\r\n";
+			String msj=  formatli +"\t" + mesaj.replace("\t", "").toString().trim()  + "\t" + evrak +"\t"+ GLOBAL.KULL_ADI + "\r\n";
 			bWriter.write(msj);
 			bWriter.close();
 		}

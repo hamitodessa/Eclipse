@@ -97,7 +97,6 @@ public class ANA_MENU extends JDialog {
 		panel.setLayout(null);
 
 		JButton btnNewButton = new JButton("Indir 2");
-		btnNewButton.setEnabled(false);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setForeground(new Color(0, 0, 205));
 		btnNewButton.addActionListener(new ActionListener() {
@@ -231,7 +230,7 @@ public class ANA_MENU extends JDialog {
 						txtdiz.requestFocus();
 						return;
 					}
-					String serverAddress = "78.26.149.175";
+					String serverAddress = "78.189.76.247";
 					String userId ="hamitadmin";
 					String password ="SDFks9hfji3#DEd";
 					ftp.connect(serverAddress);

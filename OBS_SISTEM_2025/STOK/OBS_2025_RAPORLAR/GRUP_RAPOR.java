@@ -1202,13 +1202,13 @@ public class GRUP_RAPOR extends JInternalFrame {
           FileFilter xlxs = new FileNameExtensionFilter("Microsoft Excel Worksheet (.xlsx) ", "xlsx");
 		  fileChooser.addChoosableFileFilter(xls);
 		  fileChooser.addChoosableFileFilter(xlxs);
-		  fileChooser.setCurrentDirectory(new java.io.File("."));
+		  fileChooser.setCurrentDirectory(new java.io.File("C:\\OBS_SISTEM\\"));
 		  fileChooser.setApproveButtonText("Kaydet");
 		  fileChooser.setDialogTitle("Excell Kayit");   
 		  
 		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
-		   LocalDateTime now = LocalDateTime.now();  
-		   String zaman = dtf.format(now)  ;
+		  LocalDateTime now = LocalDateTime.now();  
+		  String zaman = dtf.format(now)  ;
 		   
 		  File outputfile = new File("Grup_Rapor");
 		  fileChooser.setSelectedFile(outputfile);

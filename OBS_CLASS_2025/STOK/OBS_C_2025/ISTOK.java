@@ -112,6 +112,9 @@ public interface ISTOK {
 	public ResultSet envanter_rapor_u_kodu(String t1 , String t2 , String k1 ,String k2 , String f1 ,String f2,
 			String m1 ,String m2 ,String anagrup,String altgrup ,String depo, String depohar ,String ure,
 			String uanagrp,String ualtgrp) throws ClassNotFoundException, SQLException;
+	public ResultSet envanter_rapor_u_kodu_oncekitarih(String t1 , String t2 , String k1 ,String k2 , String f1 ,String f2,
+			String m1 ,String m2 ,String anagrup,String altgrup ,String depo, String depohar ,String ure,
+			String uanagrp,String ualtgrp) throws ClassNotFoundException, SQLException;
 	public ResultSet envanter_rapor_ana_grup_alt_grup(String t1 , String t2 , String k1 ,String k2 , String f1 ,String f2,
 			String m1 ,String m2 ,String anagrup,String altgrup ,String depo, String depohar ,String ure,
 			String uanagrp,String ualtgrp) throws ClassNotFoundException, SQLException;

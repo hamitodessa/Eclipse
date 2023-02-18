@@ -426,7 +426,7 @@ public class IMALAT_RAPORLAMA extends JInternalFrame {
           FileFilter xlxs = new FileNameExtensionFilter("Microsoft Excel Worksheet (.xlsx) ", "xlsx");
 		  fileChooser.addChoosableFileFilter(xls);
 		  fileChooser.addChoosableFileFilter(xlxs);
-		  fileChooser.setCurrentDirectory(new java.io.File("."));
+		  fileChooser.setCurrentDirectory(new java.io.File("C:\\OBS_SISTEM\\"));
 		  fileChooser.setApproveButtonText("Kaydet");
 		  fileChooser.setDialogTitle("Excell Kayit");   
 		  

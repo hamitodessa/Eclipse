@@ -217,6 +217,7 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_19 ;
 	public static JCheckBox chckbxNewCheckBox ;
 	public static JCheckBox chckbxNewCheckBox_1 ;
+	public static JCheckBox chckbxNewCheckBox_2;
 	//** STOK_DETAY
 	public static  JTextField textField_25;
 	public static  JTextField textField_26;
@@ -2569,6 +2570,10 @@ public class FILTRE extends JDialog {
 			chckbxNewCheckBox_1.setSelected(true);
 			chckbxNewCheckBox_1.setBounds(75, 202, 194, 23);
 			panel_9.add(chckbxNewCheckBox_1);
+			
+			chckbxNewCheckBox_2 = new JCheckBox("Onceki Tarih Bakiyeli");
+			chckbxNewCheckBox_2.setBounds(484, 179, 149, 23);
+			panel_9.add(chckbxNewCheckBox_2);
 
 			JPanel panel_11 = new JPanel();
 			panel_11.setLayout(null);

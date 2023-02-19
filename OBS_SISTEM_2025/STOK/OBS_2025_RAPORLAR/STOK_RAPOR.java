@@ -413,123 +413,123 @@ public class STOK_RAPOR extends JInternalFrame {
 	private static void grup_cevir()
 	{
 		try {
-		ResultSet	rs = null;
-		//***********************ANA GRUP
-		if ( FILTRE.comboBox_14.getItemAt(FILTRE.comboBox_14.getSelectedIndex()).equals(""))
-		{
-            qwq1 = " Like  '%' " ;
-		}
-        else if  ( FILTRE.comboBox_14.getItemAt(FILTRE.comboBox_14.getSelectedIndex()).equals("Bos Olanlar"))
-        {
-            qwq1 = " = '' " ;
-        }
-        else
-        {
-        	
-    			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_14.getItemAt(FILTRE.comboBox_14.getSelectedIndex()));
-    			if (!rs.isBeforeFirst() ) {
-    			}
-    			else
-    			{
-    				rs.next();
-    				qwq1 =  "= " + Integer.toString( rs.getInt("AGID_Y") );
-    			}
-    		
-        }
-		//***********************ALT GRUP
-				if ( FILTRE.comboBox_15.getItemAt(FILTRE.comboBox_15.getSelectedIndex()).equals(""))
-				{
-		            qwq2 = " Like  '%' " ;
+			ResultSet	rs = null;
+			//***********************ANA GRUP
+			if ( FILTRE.comboBox_14.getItemAt(FILTRE.comboBox_14.getSelectedIndex()).equals(""))
+			{
+				qwq1 = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_14.getItemAt(FILTRE.comboBox_14.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				qwq1 = " = '' " ;
+			}
+			else
+			{
+
+				rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_14.getItemAt(FILTRE.comboBox_14.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
 				}
-		        else if  ( FILTRE.comboBox_15.getItemAt(FILTRE.comboBox_15.getSelectedIndex()).equals("Bos Olanlar"))
-		        {
-		            qwq2 = " = '' " ;
-		        }		        else		        {
-		        	
-		    			rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_15.getItemAt(FILTRE.comboBox_15.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    				rs.next();
-		    				qwq2 ="=" + Integer.toString( rs.getInt("ALID_Y"));
-		    			}
-		    		
-		        }
-				//***********************DEPO
-				if ( FILTRE.comboBox_16.getItemAt(FILTRE.comboBox_16.getSelectedIndex()).equals(""))
+				else
 				{
-		            qwq3 = " Like  '%' " ;
+					rs.next();
+					qwq1 =  "= " + Integer.toString( rs.getInt("AGID_Y") );
 				}
-		        else if  ( FILTRE.comboBox_16.getItemAt(FILTRE.comboBox_16.getSelectedIndex()).equals("Bos Olanlar"))
-		        {
-		            qwq3 = " = '' " ;
-		        }		      
-		        else		      
-		        {
-		        	
-		    			rs = f_Access.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_16.getItemAt(FILTRE.comboBox_16.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    				rs.next();
-		    				qwq3 ="=" + Integer.toString( rs.getInt("DPID_Y"));
-		    			}
-		    		
-		        }
-				//** Urun Ana grup
-				if ( FILTRE.comboBox_17.getItemAt(FILTRE.comboBox_17.getSelectedIndex()).equals(""))
+
+			}
+			//***********************ALT GRUP
+			if ( FILTRE.comboBox_15.getItemAt(FILTRE.comboBox_15.getSelectedIndex()).equals(""))
+			{
+				qwq2 = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_15.getItemAt(FILTRE.comboBox_15.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				qwq2 = " = '' " ;
+			}		        else		        {
+
+				rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_15.getItemAt(FILTRE.comboBox_15.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
 				{
-		            qwq6 = " Like  '%' " ;
+					rs.next();
+					qwq2 ="=" + Integer.toString( rs.getInt("ALID_Y"));
 				}
-		        else if  ( FILTRE.comboBox_17.getItemAt(FILTRE.comboBox_17.getSelectedIndex()).equals("Bos Olanlar"))
-		        {
-		            qwq6 = " = '' " ;
-		        }
-		        else
-		        {
-		        	
-		    			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_17.getItemAt(FILTRE.comboBox_17.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    				rs.next();
-		    				qwq6 = "=" + Integer.toString( rs.getInt("AGID_Y"));
-		    			}
-		    		
-		        }
-				//** Urun Alt Grup
-				if ( FILTRE.comboBox_18.getItemAt(FILTRE.comboBox_18.getSelectedIndex()).equals(""))
+
+			}
+			//***********************DEPO
+			if ( FILTRE.comboBox_16.getItemAt(FILTRE.comboBox_16.getSelectedIndex()).equals(""))
+			{
+				qwq3 = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_16.getItemAt(FILTRE.comboBox_16.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				qwq3 = " = '' " ;
+			}		      
+			else		      
+			{
+
+				rs = f_Access.urun_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_16.getItemAt(FILTRE.comboBox_16.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
 				{
-		            qwq7 = " Like  '%' " ;
+					rs.next();
+					qwq3 ="=" + Integer.toString( rs.getInt("DPID_Y"));
 				}
-		        else if  ( FILTRE.comboBox_18.getItemAt(FILTRE.comboBox_18.getSelectedIndex()).equals("Bos Olanlar"))
-		        {
-		            qwq7 = " = '' " ;
-		        }		        else		      
-		        {
-		        	
-		    			rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_18.getItemAt(FILTRE.comboBox_18.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    				rs.next();
-		    				qwq7 ="=" + Integer.toString( rs.getInt("ALID_Y"));
-		    			}
-		    		
-		        }
-				//***
-				if (FILTRE.chckbxNewCheckBox.isSelected())
-	                    qwq4 = "E" ;
-	                else
-	                    qwq4 = "H";
-				if (FILTRE.chckbxNewCheckBox_1.isSelected())
-	                    qwq5 = "E" ;
-	                else
-	                    qwq5 = "H";
+
+			}
+			//** Urun Ana grup
+			if ( FILTRE.comboBox_17.getItemAt(FILTRE.comboBox_17.getSelectedIndex()).equals(""))
+			{
+				qwq6 = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_17.getItemAt(FILTRE.comboBox_17.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				qwq6 = " = '' " ;
+			}
+			else
+			{
+
+				rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_17.getItemAt(FILTRE.comboBox_17.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
+				{
+					rs.next();
+					qwq6 = "=" + Integer.toString( rs.getInt("AGID_Y"));
+				}
+
+			}
+			//** Urun Alt Grup
+			if ( FILTRE.comboBox_18.getItemAt(FILTRE.comboBox_18.getSelectedIndex()).equals(""))
+			{
+				qwq7 = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_18.getItemAt(FILTRE.comboBox_18.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				qwq7 = " = '' " ;
+			}	
+			else		      
+			{
+				rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_18.getItemAt(FILTRE.comboBox_18.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
+				{
+					rs.next();
+					qwq7 ="=" + Integer.toString( rs.getInt("ALID_Y"));
+				}
+
+			}
+			//***
+			if (FILTRE.chckbxNewCheckBox.isSelected())
+				qwq4 = "E" ;
+			else
+				qwq4 = "H";
+			if (FILTRE.chckbxNewCheckBox_1.isSelected())
+				qwq5 = "E" ;
+			else
+				qwq5 = "H";
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama",JOptionPane.ERROR_MESSAGE);
 		} 

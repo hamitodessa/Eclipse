@@ -1363,7 +1363,7 @@ public class CAL_DIZIN extends JFrame {
 			modul = "Gunluk";
 
 		if (activ_sayfa == 0)
-			program = "ok_car" + txtKodu.getText();
+			program = "OK_Car" + txtKodu.getText();
 		else if (activ_sayfa == 1)
 			program = "OK_Fat" + txtKodu.getText();
 		else if (activ_sayfa == 2)

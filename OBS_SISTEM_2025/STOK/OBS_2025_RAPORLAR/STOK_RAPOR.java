@@ -364,7 +364,7 @@ public class STOK_RAPOR extends JInternalFrame {
 					d3 += (double) mdl.getValueAt(i , 4);
 					d4 += (double) mdl.getValueAt(i , 5);
 					d5 += (double) mdl.getValueAt(i , 6);
-					
+					d6 += (double) mdl.getValueAt(i , 7);
 				}
 			}
 			//***

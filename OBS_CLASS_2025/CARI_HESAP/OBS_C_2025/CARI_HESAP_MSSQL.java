@@ -84,7 +84,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);
 			vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.cariLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+  ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +  dsy) ;

@@ -61,7 +61,7 @@ public class SMS_MSSQL implements ISMS{
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
 		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.smsLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL" + ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
 			@SuppressWarnings("unused")

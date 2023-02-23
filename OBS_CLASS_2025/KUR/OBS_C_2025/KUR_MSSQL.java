@@ -63,7 +63,7 @@ public class KUR_MSSQL implements IKUR{
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
 		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kurLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL" + ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy  ) ;

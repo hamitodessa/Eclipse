@@ -51,7 +51,7 @@ public class KUR_MYSQL implements IKUR {
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
 		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kurLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL" + ".DB") == false)
 		{
 			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy  ) ;

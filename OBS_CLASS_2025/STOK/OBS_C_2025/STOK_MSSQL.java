@@ -71,7 +71,7 @@ public class STOK_MSSQL implements ISTOK {
 		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.fatLogDizin);
 
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
 			@SuppressWarnings("unused")

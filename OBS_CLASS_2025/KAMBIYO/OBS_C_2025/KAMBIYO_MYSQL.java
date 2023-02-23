@@ -52,7 +52,7 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.kamLogDizin);
 
 		//SQLITE LOG DOSYASI OLUSTUR
-		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + ".DB") == false)
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL" + ".DB") == false)
 		{
 			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
 			@SuppressWarnings("unused")

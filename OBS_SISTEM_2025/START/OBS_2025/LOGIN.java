@@ -412,7 +412,11 @@ public class LOGIN extends JFrame {
 				JOptionPane.showMessageDialog(null, "Calisilan Cari -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
 				qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
 				OBS_MAIN.lblNewLabel_1.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "/ " + BAGLAN.cariDizin.fIRMA_ADI + "/ " + qwe );
+<<<<<<< Upstream, based on branch 'master' of https://github.com/hamitodessa/Eclipse.git
 				OBS_MAIN.tabbedPane.setEnabledAt(0,false);
+=======
+				OBS_MAIN.tabbedPane.setEnabledAt(0, false);
+>>>>>>> 49360bf 1
 			}
 			else 
 			{ 
@@ -437,6 +441,7 @@ public class LOGIN extends JFrame {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				JOptionPane.showMessageDialog(null, "Calisilan Kur -" + BAGLAN.kurDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+				OBS_MAIN.tabbedPane.setEnabledAt(1, false);
 			}
 			else
 			{
@@ -460,6 +465,7 @@ public class LOGIN extends JFrame {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				JOptionPane.showMessageDialog(null, "Calisilan Sms -" + BAGLAN.smsDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+				OBS_MAIN.tabbedPane.setEnabledAt(6, false);
 			}
 			else
 			{
@@ -471,7 +477,7 @@ public class LOGIN extends JFrame {
 		else
 		{
 			JOptionPane.showMessageDialog(null,  "Sms Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
-			OBS_MAIN.tabbedPane.setEnabledAt(6, true);
+			OBS_MAIN.tabbedPane.setEnabledAt(6, false);
 		}
 	}
 	void adr_kont() throws ClassNotFoundException, SQLException
@@ -483,6 +489,7 @@ public class LOGIN extends JFrame {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				JOptionPane.showMessageDialog(null, "Calisilan Adres -" + BAGLAN.adrDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+				OBS_MAIN.tabbedPane.setEnabledAt(2, false);
 			}
 			else
 			{
@@ -495,7 +502,7 @@ public class LOGIN extends JFrame {
 		else
 		{
 			JOptionPane.showMessageDialog(null,  "Adres Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
-			OBS_MAIN.tabbedPane.setEnabledAt(2, true);
+			OBS_MAIN.tabbedPane.setEnabledAt(2, false);
 		}
 	}
 	void fat_kont() throws ClassNotFoundException, SQLException
@@ -507,6 +514,7 @@ public class LOGIN extends JFrame {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				JOptionPane.showMessageDialog(null, "Calisilan Stok -" + BAGLAN.fatDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+				OBS_MAIN.tabbedPane.setEnabledAt(3, false);
 			}
 			else
 			{
@@ -519,7 +527,7 @@ public class LOGIN extends JFrame {
 		else
 		{
 			JOptionPane.showMessageDialog(null,  "Stok Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
-			OBS_MAIN.tabbedPane.setEnabledAt(3, true);
+			OBS_MAIN.tabbedPane.setEnabledAt(3, false);
 		}
 	}
 	void kam_kont() throws ClassNotFoundException, SQLException
@@ -531,6 +539,7 @@ public class LOGIN extends JFrame {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				JOptionPane.showMessageDialog(null, "Calisilan Kambiyo -" +BAGLAN.kamDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+				OBS_MAIN.tabbedPane.setEnabledAt(4, false);
 			}
 			else
 			{
@@ -543,7 +552,7 @@ public class LOGIN extends JFrame {
 		else
 		{
 			JOptionPane.showMessageDialog(null,  "Kambiyo Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
-			OBS_MAIN.tabbedPane.setEnabledAt(4, true);
+			OBS_MAIN.tabbedPane.setEnabledAt(4, false);
 		}
 	}
 	void gun_kont() throws ClassNotFoundException, SQLException
@@ -555,6 +564,7 @@ public class LOGIN extends JFrame {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				JOptionPane.showMessageDialog(null, "Calisilan Gunluk -" + BAGLAN.gunDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+				OBS_MAIN.tabbedPane.setEnabledAt(5, false);
 			}
 			else
 			{
@@ -567,7 +577,7 @@ public class LOGIN extends JFrame {
 		else
 		{
 			JOptionPane.showMessageDialog(null,  "Gunluk Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
-			OBS_MAIN.tabbedPane.setEnabledAt(5, true);
+			OBS_MAIN.tabbedPane.setEnabledAt(5, false);
 		}
 	}
 	void calisma_dizini_oku() throws ClassNotFoundException, SQLException, InterruptedException

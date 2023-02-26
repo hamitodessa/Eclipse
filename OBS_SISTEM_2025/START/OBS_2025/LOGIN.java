@@ -412,11 +412,7 @@ public class LOGIN extends JFrame {
 				JOptionPane.showMessageDialog(null, "Calisilan Cari -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
 				qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
 				OBS_MAIN.lblNewLabel_1.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "/ " + BAGLAN.cariDizin.fIRMA_ADI + "/ " + qwe );
-<<<<<<< Upstream, based on branch 'master' of https://github.com/hamitodessa/Eclipse.git
 				OBS_MAIN.tabbedPane.setEnabledAt(0,false);
-=======
-				OBS_MAIN.tabbedPane.setEnabledAt(0, false);
->>>>>>> 49360bf 1
 			}
 			else 
 			{ 

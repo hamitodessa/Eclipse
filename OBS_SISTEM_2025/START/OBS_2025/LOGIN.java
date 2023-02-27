@@ -129,7 +129,7 @@ public class LOGIN extends JFrame {
 	});
 	}
 	public LOGIN() throws IOException {
-		
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/obs_p.png")));
 		setResizable(false);
 		setTitle("OBS SISTEM GIRIS");
@@ -342,43 +342,43 @@ public class LOGIN extends JFrame {
 		//VERSION KONTROL/////
 		versiyon_oku();
 		//************SURUCU KONTROL**************************
-			GLOBAL.surucu_kontrol();
-			///////////
-			LOGIN.setDefaultLookAndFeelDecorated(true);
-			try 
+		GLOBAL.surucu_kontrol();
+		///////////
+		LOGIN.setDefaultLookAndFeelDecorated(true);
+		try 
+		{
+			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal"))
 			{
-				if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal"))
-				{
-					MetalLookAndFeel.setCurrentTheme(new  DefaultMetalTheme());
-					UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-					oac.txt_yukseklik = 20;
-				}
-				else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal Klasik"))
-				{
-					MetalLookAndFeel.setCurrentTheme(new OceanTheme());
-					UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-					oac.txt_yukseklik = 20;
-				}
-				else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows"))
-				{
-					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-					oac.txt_yukseklik = 20;
-				}
-				else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Nimbus"))
-				{
-					for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-						if ("Nimbus".equals(info.getName())) 
-						{
-							javax.swing.UIManager.setLookAndFeel(info.getClassName());
-							oac.txt_yukseklik = 25;
-						}
+				MetalLookAndFeel.setCurrentTheme(new  DefaultMetalTheme());
+				UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+				oac.txt_yukseklik = 20;
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal Klasik"))
+			{
+				MetalLookAndFeel.setCurrentTheme(new OceanTheme());
+				UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+				oac.txt_yukseklik = 20;
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows"))
+			{
+				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+				oac.txt_yukseklik = 20;
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Nimbus"))
+			{
+				for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+					if ("Nimbus".equals(info.getName())) 
+					{
+						javax.swing.UIManager.setLookAndFeel(info.getClassName());
+						oac.txt_yukseklik = 25;
 					}
 				}
-			} 
-			catch (Exception ex) 
-			{
-				JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "PRG_GORUNUM", JOptionPane.ERROR_MESSAGE);        
 			}
+		} 
+		catch (Exception ex) 
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "PRG_GORUNUM", JOptionPane.ERROR_MESSAGE);        
+		}
 		//************BENI_HATIRLA**	
 		String deger;
 		deger = GLOBAL.setting_oku("BENI_HATIRLA").toString();
@@ -389,7 +389,7 @@ public class LOGIN extends JFrame {
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
 			for (int i=0, len=bytes.length; i<len; i++) {
-			   bytes[i] = Byte.parseByte(byteValues[i].trim());     
+				bytes[i] = Byte.parseByte(byteValues[i].trim());     
 			}
 			txtUser.setText(GLOBAL.setting_oku("ISIM").toString());
 			try {
@@ -664,7 +664,7 @@ public class LOGIN extends JFrame {
 		LOG_MAIL_OKU.mail_oku(); // LOGLAMA MAILI OKUMA
 		progressBar.setMaximum(8);
 		progressBar.setStringPainted(true);
-	 
+
 		Lgn_Progres_Bar(say, 1);
 		cari_calisma_dizini_oku();
 		Lgn_Progres_Bar(say, 2);
@@ -1036,10 +1036,10 @@ public class LOGIN extends JFrame {
 				}
 			}   
 			bufferedReader.close();
-		
+
 			if (eskiver.equals(yeniver))
 			{
-			
+
 				File f= new File("C:/OBS_SISTEM/OBS_VERSIONS.txt");           //file to be delete  
 				success = f.delete();  
 			}

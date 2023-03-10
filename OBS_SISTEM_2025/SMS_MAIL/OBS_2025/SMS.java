@@ -65,13 +65,14 @@ import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import net.proteanit.sql.DbUtils;
 
+
+@SuppressWarnings({ "static-access", "serial" })
 public class SMS extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static SMS_ACCESS sms_Access = new SMS_ACCESS(oac._ISms , OBS_SIS_2025_ANA_CLASS._ISms_Loger);
 	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
-
 	private static JTable table;
 	private JTextField txtgonderen;
 	private JTable table_1;
@@ -946,6 +947,7 @@ public class SMS extends JInternalFrame {
 			if (!rs.isBeforeFirst() ) {  
 				GRID_TEMIZLE.grid_temizle(table_1);
 				lblNewLabel_12.setText("0");
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				return;
 			} 
 			GRID_TEMIZLE.grid_temizle(table_1);

@@ -48,7 +48,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class EKSIK_KUR extends JInternalFrame {
+public class EKSIK_KUR extends JInternalFrame 
+{
 
 	private static JTable table;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -65,8 +66,10 @@ public class EKSIK_KUR extends JInternalFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
 			public void run() {
 				try {
 					EKSIK_KUR frame = new EKSIK_KUR();
@@ -82,7 +85,8 @@ public class EKSIK_KUR extends JInternalFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings({ "static-access", "removal" })
-	public EKSIK_KUR() {
+	public EKSIK_KUR() 
+	{
 		setIconifiable(true);
 		setResizable(true);
 		setTitle("EKSIK KUR");
@@ -129,14 +133,14 @@ public class EKSIK_KUR extends JInternalFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnNewButton.setForeground(new Color(0, 0, 128));
 		btnNewButton.setMargin(new Insets(2, 1, 2, 1));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
+		btnNewButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				getContentPane().setCursor(WAIT_CURSOR);
 				te_sifirla();
 				oku();
 				getContentPane().setCursor(DEFAULT_CURSOR);			
-
 			}
 		});
 		btnNewButton.setBounds(21, 75, 100, 23);

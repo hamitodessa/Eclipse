@@ -23,7 +23,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 
-public class KAMERA extends JInternalFrame {
+@SuppressWarnings("serial")
+public class KAMERA extends JInternalFrame 
+{
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private Webcam webcam  ;
 	/**
@@ -81,8 +83,10 @@ public class KAMERA extends JInternalFrame {
 		panel_1.setLayout(null);
 
 		JButton btnNewButton = new JButton("Resim Al");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnNewButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				oac.kam_resmi = webcam.getImage();
 				Image im = webcam.getImage();
 				Image myImg =  fitimage(im,230,175); // im.getScaledInstance(230, 175,Image.SCALE_SMOOTH);
@@ -102,8 +106,10 @@ public class KAMERA extends JInternalFrame {
 		panel_1.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Vazgec");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnNewButton_1.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				webcam.close();
 				dispose();
 			}

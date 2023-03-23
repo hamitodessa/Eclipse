@@ -63,7 +63,8 @@ public class GRAFIK extends JInternalFrame {
 		ex.setVisible(true);
 		initUI();
 	}
-	private void initUI() {
+	private void initUI() 
+	{
 		DefaultCategoryDataset dataset = GLOBAL.dataset;  
 		chart = ChartFactory.createLineChart(  
 				GLOBAL.g_baslik, // Chart title  

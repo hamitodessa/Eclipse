@@ -1004,9 +1004,11 @@ public class SMS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
+	@SuppressWarnings("rawtypes")
 	private void port_doldur()
 	{
-		try {
+		try 
+		{
 			Enumeration thePorts = CommPortIdentifier.getPortIdentifiers();
 			while (thePorts.hasMoreElements())
 			{
@@ -1023,8 +1025,10 @@ public class SMS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Com  Port Baglanti Okuma", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
-	public void setDatabits(int databits) throws IllegalArgumentException {
-		switch (databits) {
+	public void setDatabits(int databits) throws IllegalArgumentException 
+	{
+		switch (databits) 
+		{
 		case 5:
 			m_Databits = SerialPort.DATABITS_5;
 			break;
@@ -1042,29 +1046,49 @@ public class SMS extends JInternalFrame {
 			break;
 		}
 	}
-	public void setStopbits(double stopbits) throws IllegalArgumentException {
-		if (stopbits == 1) {
+	public void setStopbits(double stopbits) throws IllegalArgumentException 
+	{
+		if (stopbits == 1) 
+		{
 			m_Stopbits = SerialPort.STOPBITS_1;
-		} else if (stopbits == 1.5) {
+		} 
+		else if (stopbits == 1.5) 
+		{
 			m_Stopbits = SerialPort.STOPBITS_1_5;
-		} else if (stopbits == 2) {
+		} 
+		else if (stopbits == 2) 
+		{
 			m_Stopbits = SerialPort.STOPBITS_2;
-		} else {
+		} 
+		else 
+		{
 			m_Stopbits = SerialPort.STOPBITS_1;
 		}
 	}// setStopbits
-	public void setParity(String parity) throws IllegalArgumentException {
-		if (parity.equals("None") ) {
+	public void setParity(String parity) throws IllegalArgumentException 
+	{
+		if (parity.equals("None") ) 
+		{
 			intParity = SerialPort.PARITY_NONE;
-		} else if (parity.equals("Even") ) {
+		} 
+		else if (parity.equals("Even") ) 
+		{
 			intParity = SerialPort.PARITY_EVEN;
-		} else if (parity.equals("Odd") ) {
+		} 
+		else if (parity.equals("Odd") ) 
+		{
 			intParity = SerialPort.PARITY_ODD;
-		} else if (parity.equals("Space") ) {
+		} 
+		else if (parity.equals("Space") ) 
+		{
 			intParity = SerialPort.PARITY_SPACE;
-		} else if (parity.equals("Mark") ) {
+		} 
+		else if (parity.equals("Mark") ) 
+		{
 			intParity = SerialPort.PARITY_MARK; 
-		} else {
+		} 
+		else 
+		{
 			throw new IllegalArgumentException("unknown parity string '" + parity + "'");
 		}
 	}

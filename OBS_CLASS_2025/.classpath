@@ -16,7 +16,6 @@
 	<classpathentry kind="src" path="LOGGER"/>
 	<classpathentry kind="src" path="LOGER_KAYIT"/>
 	<classpathentry kind="src" path="TEMA_CARI"/>
-	<classpathentry kind="src" path="SQL_BACKUP"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>

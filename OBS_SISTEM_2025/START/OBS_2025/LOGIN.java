@@ -196,8 +196,10 @@ public class LOGIN extends JFrame {
 		btncikis.setBounds(190, 92, 110, 23);
 		panel.add(btncikis);
 		btncikis.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/exit.png")));
-		btncikis.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btncikis.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				System.exit(1);
 			}
 		});
@@ -205,8 +207,10 @@ public class LOGIN extends JFrame {
 		btncdizin = new JButton("Calisma Dizini");
 		btncdizin.setBounds(190, 122, 110, 23);
 		panel.add(btncdizin);
-		btncdizin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btncdizin.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				CAL_DIZIN frame = new CAL_DIZIN();
 				frame.setVisible(true);
@@ -225,10 +229,13 @@ public class LOGIN extends JFrame {
 		btngiris.setBounds(310, 92, 110, 23);
 		panel.add(btngiris);
 		btngiris.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/add-user-16.png")));
-		btngiris.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btngiris.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				try {
+				try 
+				{
 					byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(oac.sDONDUR.sDONDUR(txtpwd)) ;
 					String response = Arrays.toString(qaz);
 					boolean varmi =	oac.uSER_ISL.user_var(txtUser.getText(),response);
@@ -265,36 +272,26 @@ public class LOGIN extends JFrame {
 		panel.add(btndevam);
 		btndevam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				///// Progres Bsr olayi
 				Runnable runner = new Runnable()
 				{ public void run() {
-					/////  
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					try
 					{
 						calisma_dizini_oku();
-						//*** CARI
 						CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 						c_Access.baglan();
-						//*** KUR
 						KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur, oac._IKur_Loger);
 						k_Access.baglan();
-						//*** ADRES
 						ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres, oac._IAdres_Loger);
 						a_Access.baglan();
-						//*** FATURA
 						STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
 						s_Access.baglan();
-						//*** KAMBIYO
 						KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo, oac._IKambiyo_Loger);
 						ka_Access.baglan();
-						//*** GUNLUK
 						GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk, oac._IGunluk_Loger);
 						g_Access.baglan();
-						//*** SMS
 						SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms, oac._ISms_Loger);
 						sms_Access.baglan();
-						//***buraya 
 						OBS_MAIN obmain = new OBS_MAIN();
 						Login_Progres_Bar_Temizle();
 						cari_kont();
@@ -305,13 +302,10 @@ public class LOGIN extends JFrame {
 						kam_kont();
 						gun_kont();
 						Thread.currentThread().isInterrupted();
-						///************************************
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
 						obmain.setTitle("OBS SISTEM" + "               " + GLOBAL.KULL_ADI);
 						obmain.setVisible(true);
-						// 
 						dispose();
-						//*************************************
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					}
 					catch (Exception ex)
@@ -321,10 +315,8 @@ public class LOGIN extends JFrame {
 					}
 				}
 				};
-				//// Progress Bar
 				Thread t = new Thread(runner, "Code Executer");
 				t.start();
-				////
 			}
 		});
 		btndevam.setVisible(false);
@@ -392,7 +384,8 @@ public class LOGIN extends JFrame {
 				bytes[i] = Byte.parseByte(byteValues[i].trim());     
 			}
 			txtUser.setText(GLOBAL.setting_oku("ISIM").toString());
-			try {
+			try 
+			{
 				txtpwd.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
 			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
 					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e1) {
@@ -1079,7 +1072,8 @@ public class LOGIN extends JFrame {
 			oac._IConn = new OBS_ORTAK_MYSQL();
 		}
 	}
-	private void lOG_AKTAR() {
+	private void lOG_AKTAR() 
+	{
 		BAGLAN_LOG _blog = new BAGLAN_LOG();
 		_blog.cONNECT();
 	}

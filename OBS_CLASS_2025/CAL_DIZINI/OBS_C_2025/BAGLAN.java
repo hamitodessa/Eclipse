@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class BAGLAN {
 	
-	public static Connection kurConn ;
+	//public static Connection kurConn ;
     public static DIZIN_BILGILERI kurDizin = new DIZIN_BILGILERI();  // Kur
     public static Connection cariConn  ;
     public static DIZIN_BILGILERI cariDizin = new DIZIN_BILGILERI();  // Cari

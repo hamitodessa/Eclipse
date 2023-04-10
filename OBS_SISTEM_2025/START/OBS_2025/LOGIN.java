@@ -353,7 +353,8 @@ public class LOGIN extends JFrame {
 			}
 			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows"))
 			{
-				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+				//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+				UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 				oac.txt_yukseklik = 20;
 			}
 			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Nimbus"))

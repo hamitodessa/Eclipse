@@ -1241,15 +1241,15 @@ public class OBS_MAIN extends JFrame {
 		//stkscrol.setViewportBorder(UIManager.getBorder("ToolBar.border"));
 		stkscrol.setBorder(new LineBorder(new Color(0, 191, 255)));
 		stkscrol.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		//************************************************************************************
+		//***********************************************************************************************************************
 		JPanel qwer = new JPanel();
-		qwer.setPreferredSize(new Dimension(0, 50));
+		qwer.setPreferredSize(new Dimension(0, 55));
 		qwer.setLayout(new BorderLayout(0, 0));
 		qwer.add(stkscrol);
 		//*************************************************************************************		
 		JToolBar toolBar_5 = new JToolBar();
-		toolBar_5.setMinimumSize(new Dimension(0, 40));
-		toolBar_5.setMaximumSize(new Dimension(0, 40));
+		toolBar_5.setMinimumSize(new Dimension(0, 45));
+		toolBar_5.setMaximumSize(new Dimension(0, 45));
 		toolBar_5.setFloatable(false);
 		stkscrol.add(toolBar_5);
 		stkscrol.setViewportView(toolBar_5);

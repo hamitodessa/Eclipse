@@ -404,6 +404,7 @@ public class FILTRE extends JDialog {
 		        }
 		      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 		    });
+		    
 			contentPanel.add(tabbedPane, BorderLayout.CENTER);
 			{	
 				JPanel panel = new JPanel();
@@ -4442,6 +4443,10 @@ public class FILTRE extends JDialog {
 		if (GLOBAL.filtre_sayfa == 0)
 		{
 			txtkodu.requestFocus();
+		}
+		for(int i = 0;i <= tabbedPane.getTabCount() - 1;i++)
+		{
+			tabbedPane.setEnabledAt(i, false);
 		}
 		
 	}

@@ -378,7 +378,7 @@ public class IRSALIYE extends JInternalFrame {
             public void keyReleased(KeyEvent e) {
             }
         });
-		dtc.setBounds(383, 8, 110, 20);
+		dtc.setBounds(383, 8, 125, 20);
 		dtc.setDateFormatString("dd.MM.yyyy");
 		dtc.setFont(new Font("Tahoma", Font.BOLD, 12));
 		dtc.setDate(new Date());
@@ -451,7 +451,7 @@ public class IRSALIYE extends JInternalFrame {
 			}
 		});
 		txtadres.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtadres.setBounds(383, 33, 110, 20);
+		txtadres.setBounds(383, 33, 125, 20);
 		panel_2.add(txtadres);
 		txtadres.setColumns(10);
 		

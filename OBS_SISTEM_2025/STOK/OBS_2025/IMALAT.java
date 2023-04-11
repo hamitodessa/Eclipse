@@ -328,7 +328,7 @@ public class IMALAT extends JInternalFrame {
 			public void keyReleased(KeyEvent e) {
 			}
 		});
-		dtc.setBounds(285, 8, 114, 20);
+		dtc.setBounds(275, 8, 125, 20);
 		dtc.setDateFormatString("dd.MM.yyyy");
 		dtc.setFont(new Font("Tahoma", Font.BOLD, 12));
 		dtc.setDate(new Date());

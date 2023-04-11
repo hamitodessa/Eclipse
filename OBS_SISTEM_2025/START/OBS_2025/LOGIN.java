@@ -142,6 +142,72 @@ public class LOGIN extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
+		//************************************************************************
+		try {
+			LOGIN.setDefaultLookAndFeelDecorated(true);
+			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("TextureLookAndFeel"))
+			{
+				UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("SmartLookAndFeel"))
+			{
+				UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("NoireLookAndFeel"))
+			{
+				UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AcrylLookAndFeel"))
+			{
+				UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AeroLookAndFeel"))
+			{
+				UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AluminiumLookAndFeel"))
+			{
+				UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("BernsteinLookAndFeel"))
+			{
+				UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FastLookAndFeel"))
+			{
+				UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("GraphiteLookAndFeel"))
+			{
+				UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("HiFiLookAndFeel"))
+			{
+				UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("LunaLookAndFeel"))
+			{
+				UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("McWinLookAndFeel"))
+			{
+				UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("MintLookAndFeel"))
+			{
+				UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
+			}
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+		//************************************************************************
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
 		splitPane.setDividerSize(0);
@@ -311,7 +377,7 @@ public class LOGIN extends JFrame {
 					catch (Exception ex)
 					{
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);        
+						JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "OBS SISTEM1", JOptionPane.ERROR_MESSAGE);        
 					}
 				}
 				};
@@ -335,56 +401,6 @@ public class LOGIN extends JFrame {
 		versiyon_oku();
 		//************SURUCU KONTROL**************************
 		GLOBAL.surucu_kontrol();
-		///////////
-		LOGIN.setDefaultLookAndFeelDecorated(true);
-		try 
-		{
-			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal"))
-			{
-				MetalLookAndFeel.setCurrentTheme(new  DefaultMetalTheme());
-				UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-				oac.txt_yukseklik = 20;
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal Klasik"))
-			{
-				MetalLookAndFeel.setCurrentTheme(new OceanTheme());
-				UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-				oac.txt_yukseklik = 20;
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows"))
-			{
-				//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-				UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-				oac.txt_yukseklik = 20;
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Nimbus"))
-			{
-				for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-					if ("Nimbus".equals(info.getName())) 
-					{
-						javax.swing.UIManager.setLookAndFeel(info.getClassName());
-						oac.txt_yukseklik = 25;
-					}
-				}
-			}
-			try {
-	            //here you can put the selected theme class name in JTattoo
-	            UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
-	 
-	        } catch (ClassNotFoundException ex) {
-	            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	        } catch (InstantiationException ex) {
-	            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	        } catch (IllegalAccessException ex) {
-	            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-	            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	        }
-		} 
-		catch (Exception ex) 
-		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "PRG_GORUNUM", JOptionPane.ERROR_MESSAGE);        
-		}
 		//************BENI_HATIRLA**	
 		String deger;
 		deger = GLOBAL.setting_oku("BENI_HATIRLA").toString();

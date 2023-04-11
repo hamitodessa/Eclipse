@@ -193,7 +193,7 @@ public class OBS_MAIN extends JFrame {
 	 * Create the frame.
 	 */
 	public OBS_MAIN() {
-
+//2663 satir
 		setFont(new Font("Dialog", Font.BOLD, 12));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_MAIN.class.getResource("/ICONLAR/obs_p.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -212,11 +212,8 @@ public class OBS_MAIN extends JFrame {
 				tabbedPane.setSelectedIndex(0);
 			}
 		});
-
 		mnCari.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-
 		menuBar.add(mnCari);
-
 		JMenuItem mntmHpln = new JMenuItem("Hesap Plani");
 		mntmHpln.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/user-16.png")));
 		mntmHpln.addActionListener(new ActionListener() {
@@ -225,7 +222,6 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnCari.add(mntmHpln);
-
 		JMenuItem mntmDekont = new JMenuItem("Dekont");
 		mntmDekont.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -233,7 +229,6 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnCari.add(mntmDekont );
-
 		JMenuItem mntmCgiris = new JMenuItem("Coklu Giris");
 		mntmCgiris.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -241,9 +236,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnCari.add(mntmCgiris);
-
 		mnCari.addSeparator();
-
 		JMenuItem mntmEkstre = new JMenuItem("Cari Ekstre");
 		mntmEkstre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -251,7 +244,6 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnCari.add(mntmEkstre);
-
 		JMenuItem mntmMizan = new JMenuItem("Cari Mizan");
 		mntmMizan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -259,7 +251,6 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnCari.add(mntmMizan);
-
 		JMenuItem mntmOmizan = new JMenuItem("Cari Ozel Mizan");
 		mntmOmizan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -267,7 +258,6 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnCari.add(mntmOmizan);
-
 		JMenuItem mntmDcevir = new JMenuItem("Cari Dovize Cevirme");
 		mntmDcevir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -275,7 +265,6 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnCari.add(mntmDcevir);
-
 		JMenuItem mntmHdokum = new JMenuItem("Hesap Dokum");
 		mntmHdokum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -361,9 +350,6 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnCari.add(mntmFismi);
-
-
-
 		JMenu mnKur = new JMenu("Kur Islemleri");
 		mnKur.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -405,9 +391,6 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnKur.add(mntmKeksik);
-
-
-
 		JMenu mnAdres = new JMenu("Adres");
 		mnAdres.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -417,7 +400,6 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnAdres.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		menuBar.add(mnAdres);
-
 		JMenuItem mntmAgiris = new JMenuItem("Adres Giris");
 		mntmAgiris.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -425,7 +407,6 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnAdres.add(mntmAgiris);
-
 		JMenuItem mntmAdetay = new JMenuItem("Adres Detay");
 		mntmAdetay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -702,12 +683,8 @@ public class OBS_MAIN extends JFrame {
 
 		JSeparator separator_8 = new JSeparator();
 		mnFatura.add(separator_8);
-
-
-
 		JMenu mnDegiskenler = new JMenu("Degiskenler");
 		mnFatura .add(mnDegiskenler);
-
 		JMenuItem mntmAgrp = new JMenuItem("Ana Grup");
 		mntmAgrp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -953,16 +930,15 @@ public class OBS_MAIN extends JFrame {
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-		tabbedPane.setBorder(UIManager.getBorder("ToolBar.border"));
+		//tabbedPane.setBorder(UIManager.getBorder("ToolBar.border"));
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setFont(new Font("Calibri", Font.BOLD, 20));
-
+		
+		
 		splitPane.setLeftComponent(tabbedPane);
-
 		toolBar_2 = new JToolBar();
 		toolBar_2.setFloatable(false);
-
 		toolBar_2.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		toolBar_2.setName("");
@@ -1242,7 +1218,7 @@ public class OBS_MAIN extends JFrame {
 		toolBar_4.add(btnNewButton_41);
 
 		JScrollPane stkscrol = new JScrollPane();
-		stkscrol.setViewportBorder(UIManager.getBorder("ToolBar.border"));
+		//stkscrol.setViewportBorder(UIManager.getBorder("ToolBar.border"));
 		stkscrol.setBorder(new LineBorder(new Color(0, 191, 255)));
 		stkscrol.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
@@ -1252,7 +1228,7 @@ public class OBS_MAIN extends JFrame {
 		stkscrol.add(toolBar_5);
 		stkscrol.setViewportView(toolBar_5);
 		tabbedPane.addTab("Fatura", null, stkscrol, null);
-
+		
 		btnNewButton_42 = new JButton("");
 		btnNewButton_42.setToolTipText("Urun Karti");
 		btnNewButton_42.addActionListener(new ActionListener() {
@@ -1574,7 +1550,6 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_75.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-check-book-30.png")));
 		toolBar_6.add(btnNewButton_75);
-
 		btnNewButton_76 = new JButton("");
 		btnNewButton_76.setToolTipText("Cek Cikis");
 		btnNewButton_76.addActionListener(new ActionListener() {
@@ -2333,7 +2308,6 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_26.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-edit-graph-report-16.png")));
 		toolBar.add(btnNewButton_26);
 
-
 		JLabel lblNewLabel_5 = new JLabel("          ");
 		toolBar.add(lblNewLabel_5);
 
@@ -2670,7 +2644,6 @@ public class OBS_MAIN extends JFrame {
 		splitButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-radar-plot-30.png")));
 		toolBar_5.add(splitButton);
 		splitButton.setPopupMenu(popupMenu); //add this control to panel
-
 		/**
 		JSplitButton splitButton = new JSplitButton("Degiskenler             ");
 		splitButton.setForeground( Color.MAGENTA);

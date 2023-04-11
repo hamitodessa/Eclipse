@@ -653,7 +653,6 @@ public class CAL_DIZIN extends JFrame {
 		tabbedPane.setBounds(0, 0, 629, 420);
 		tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-		tabbedPane.setBorder(UIManager.getBorder("ToolBar.border"));
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
 
 		contentPane.add(tabbedPane);

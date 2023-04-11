@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.SystemColor;
 
 import javax.swing.JButton;
@@ -390,9 +391,19 @@ public class FILTRE extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-			//*********
-			tabbedPane.setLayout( new CardLayout() );
-			//*********
+			//Control Header space area..
+		    final boolean showTabsHeader = false;
+		    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI(){
+		        @Override
+		        protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
+		            if (showTabsHeader) {
+		                return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
+		            } else {
+		                return 0;
+		            }
+		        }
+		      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
+		    });
 			contentPanel.add(tabbedPane, BorderLayout.CENTER);
 			{	
 				JPanel panel = new JPanel();
@@ -4432,7 +4443,7 @@ public class FILTRE extends JDialog {
 		{
 			txtkodu.requestFocus();
 		}
-
+		
 	}
 	public void isimoku_ekstre()  {
 		try

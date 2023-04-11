@@ -156,7 +156,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 16));
 		dateChooser.setDate(new Date());
-		dateChooser.setBounds(190, 9, 135, 30);
+		dateChooser.setBounds(190, 9, 150, 30);
 		dateChooser.getDateEditor().addPropertyChangeListener(
 				new PropertyChangeListener() {
 					@Override

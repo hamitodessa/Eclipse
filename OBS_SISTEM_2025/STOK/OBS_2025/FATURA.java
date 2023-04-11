@@ -383,7 +383,7 @@ public class FATURA extends JInternalFrame {
 			public void keyReleased(KeyEvent e) {
 			}
 		});
-		dtc.setBounds(353, 8, 110, 20);
+		dtc.setBounds(353, 8, 127, 20);
 		dtc.setDateFormatString("dd.MM.yyyy");
 		dtc.setFont(new Font("Tahoma", Font.BOLD, 12));
 		dtc.setDate(new Date());
@@ -467,7 +467,7 @@ public class FATURA extends JInternalFrame {
 			}
 		});
 		txtadres.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtadres.setBounds(353, 33, 110, 20);
+		txtadres.setBounds(353, 33, 127, 20);
 		panel_2.add(txtadres);
 		txtadres.setColumns(10);
 

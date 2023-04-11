@@ -26,6 +26,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Font;
 import java.awt.Frame;
@@ -34,6 +35,8 @@ import java.awt.Rectangle;
 import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -919,18 +922,35 @@ public class OBS_MAIN extends JFrame {
 		JMenuItem mntmHakkinda = new JMenuItem("Hakkinda");
 		mnHakkinda.add(mntmHakkinda);
 
+		//**********************************************************************************************************************************************
+		//**********************************************************************************************************************************************
+
+		
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-
+		
 		splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		
+        
 		contentPane.add(splitPane, BorderLayout.NORTH);
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.addComponentListener(new ComponentAdapter() {
+		    @Override
+		    public void componentResized(ComponentEvent e) {
+		        JTabbedPane tabbedPane = (JTabbedPane) e.getComponent();
+		        int tabCount = tabbedPane.getTabCount();
+		        for (int i = 0; i < tabCount; i++) {
+		            Component c = tabbedPane.getComponentAt(i);
+		            c.setPreferredSize(new Dimension(c.getSize().width, c.getPreferredSize().height));
+		        }
+		    }
+		});
+		
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-		//tabbedPane.setBorder(UIManager.getBorder("ToolBar.border"));
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setFont(new Font("Calibri", Font.BOLD, 20));
@@ -1221,13 +1241,19 @@ public class OBS_MAIN extends JFrame {
 		//stkscrol.setViewportBorder(UIManager.getBorder("ToolBar.border"));
 		stkscrol.setBorder(new LineBorder(new Color(0, 191, 255)));
 		stkscrol.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
+		//************************************************************************************
+		JPanel qwer = new JPanel();
+		qwer.setPreferredSize(new Dimension(0, 50));
+		qwer.setLayout(new BorderLayout(0, 0));
+		qwer.add(stkscrol);
 		//*************************************************************************************		
 		JToolBar toolBar_5 = new JToolBar();
+		toolBar_5.setMinimumSize(new Dimension(0, 40));
+		toolBar_5.setMaximumSize(new Dimension(0, 40));
 		toolBar_5.setFloatable(false);
 		stkscrol.add(toolBar_5);
 		stkscrol.setViewportView(toolBar_5);
-		tabbedPane.addTab("Fatura", null, stkscrol, null);
+		tabbedPane.addTab("Fatura", null, qwer, null);
 		
 		btnNewButton_42 = new JButton("");
 		btnNewButton_42.setToolTipText("Urun Karti");
@@ -2644,6 +2670,8 @@ public class OBS_MAIN extends JFrame {
 		splitButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-radar-plot-30.png")));
 		toolBar_5.add(splitButton);
 		splitButton.setPopupMenu(popupMenu); //add this control to panel
+		toolBar_1.setMinimumSize(new Dimension(0, 30));
+		toolBar_1.setMaximumSize(new Dimension(0, 30));
 		/**
 		JSplitButton splitButton = new JSplitButton("Degiskenler             ");
 		splitButton.setForeground( Color.MAGENTA);
@@ -2653,9 +2681,10 @@ public class OBS_MAIN extends JFrame {
 		splitButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-radar-plot-30.png")));
 		toolBar_5.add(splitButton);
 		splitButton.setPopupMenu(popupMenu); //add this control to panel
+		toolBar_1.setMinimumSize(new Dimension(0, 30));
+		toolBar_1.setMaximumSize(new Dimension(0, 30));
 		 */
-		progressBar.setMaximum(0);
-		progressBar.setValue(0);
+		
 		progressBar.setStringPainted(false);
 		try {
 			if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal"))

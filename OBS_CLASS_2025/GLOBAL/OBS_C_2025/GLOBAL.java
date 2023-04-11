@@ -319,7 +319,7 @@ public class GLOBAL {
 			prop.setProperty("PRG_YENILE",  ",, ");
 			prop.setProperty("PRG_KAYDET",  ",, ");
 			prop.setProperty("PRG_SIL",  ",, ");
-			prop.setProperty("PRG_GORUNUM",  "Metal");
+			prop.setProperty("PRG_GORUNUM",  "McWinLookAndFeel");
 			prop.setProperty("PRG_GRID_RENK",  "0, 191, 255");
 			prop.store(output, "OBS AYARLAR");
 			output.close();

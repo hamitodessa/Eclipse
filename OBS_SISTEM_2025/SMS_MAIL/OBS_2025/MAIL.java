@@ -989,7 +989,7 @@ public class MAIL extends JInternalFrame {
 
 			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(new SOLA());
-			tc.setCellRenderer(new TARIH_SAATLI());
+			//tc.setCellRenderer(new TARIH_SAATLI());
 			tc.setMinWidth(150);
 
 			tc = tcm.getColumn(1);

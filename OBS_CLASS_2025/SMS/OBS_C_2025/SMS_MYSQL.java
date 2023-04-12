@@ -243,7 +243,7 @@ public class SMS_MYSQL implements ISMS{
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String sql = "SELECT TARIH,MAIL,KONU,MESAJ,HESAP,UNVAN,USER_NAME AS  USER   FROM MAIL_BILGILERI ";
+		String sql = "SELECT DATE_FORMAT(TARIH, '%d.%m.%Y %H:%m:%s') as TARIH,MAIL,KONU,MESAJ,HESAP,UNVAN,USER_NAME AS  USER   FROM MAIL_BILGILERI ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;

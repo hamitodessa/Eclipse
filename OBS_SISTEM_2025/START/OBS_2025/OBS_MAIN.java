@@ -952,9 +952,10 @@ public class OBS_MAIN extends JFrame {
 		
 		
 		splitPane.setLeftComponent(tabbedPane);
+//******************************************************* CARI HESAP *******************************************************
 		toolBar_2 = new JToolBar();
 		toolBar_2.setFloatable(false);
-		toolBar_2.setBorder(new LineBorder(new Color(0, 191, 255)));
+		//toolBar_2.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		toolBar_2.setName("");
 		toolBar_2.setToolTipText("");
@@ -1144,9 +1145,9 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_22.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
 		toolBar_2.add(btnNewButton_22);
-
+//**********************************************************************KUR ********************************************************************
 		JToolBar toolBar_3 = new JToolBar();
-		toolBar_3.setBorder(new LineBorder(new Color(0, 191, 255)));
+		//toolBar_3.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_3.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		toolBar_3.setFloatable(false);
 		tabbedPane.addTab("Kur", null, toolBar_3, null);
@@ -1191,10 +1192,10 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_92.setToolTipText("Eksik Kur");
 		btnNewButton_92.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-data-transfer-30.png")));
 		toolBar_3.add(btnNewButton_92);
-
+//************************************************************ADRES *********************************************************************************
 		JToolBar toolBar_4 = new JToolBar();
 		toolBar_4.setFloatable(false);
-		toolBar_4.setBorder(new LineBorder(new Color(0, 191, 255)));
+		//toolBar_4.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane.addTab("Adres", null, toolBar_4, null);
 
 		btnNewButton_36 = new JButton("");
@@ -1234,7 +1235,7 @@ public class OBS_MAIN extends JFrame {
 
 		JScrollPane stkscrol = new JScrollPane();
 		//stkscrol.setViewportBorder(UIManager.getBorder("ToolBar.border"));
-		stkscrol.setBorder(new LineBorder(new Color(0, 191, 255)));
+		//stkscrol.setBorder(new LineBorder(new Color(0, 191, 255)));
 		stkscrol.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		stkscrol.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
 		//***********************************************************************************************************************
@@ -1588,11 +1589,9 @@ public class OBS_MAIN extends JFrame {
 		});
 		comboDegisken.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Ozel Kod 2"}));
 		toolBar_5.add(comboDegisken);
-		//*****************************************************************************
-
-		//******************************************************************
+		//************************************************************KAMBIYO *********************************************************************************
 		JToolBar toolBar_6 = new JToolBar();
-		toolBar_6.setBorder(new LineBorder(new Color(0, 191, 255)));
+		//toolBar_6.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_6.setFloatable(false);
 		tabbedPane.addTab("Kambiyo", null, toolBar_6, null);
 
@@ -1654,6 +1653,7 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_80.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
 		toolBar_6.add(btnNewButton_80);
+		//************************************************************GUNLUK *********************************************************************************
 
 		JToolBar toolBar_7 = new JToolBar();
 		toolBar_7.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -1667,9 +1667,10 @@ public class OBS_MAIN extends JFrame {
 		JButton btnNewButton_82 = new JButton("");
 		btnNewButton_82.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-active-directory-30.png")));
 		toolBar_7.add(btnNewButton_82);
+		//************************************************************SMS*********************************************************************************
 
 		JToolBar toolBar_8 = new JToolBar();
-		toolBar_8.setBorder(new LineBorder(new Color(0, 191, 255)));
+		//toolBar_8.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_8.setFloatable(false);
 		tabbedPane.addTab("Sms/Mail", null, toolBar_8, null);
 
@@ -1690,9 +1691,10 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_84.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-post-30.png")));
 		toolBar_8.add(btnNewButton_84);
+		//*********************************************************** GIDEN RAPOR *********************************************************************************
 
 		JToolBar toolBar_9 = new JToolBar();
-		toolBar_9.setBorder(new LineBorder(new Color(0, 191, 255)));
+		//toolBar_9.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_9.setFloatable(false);
 		tabbedPane.addTab("Genel", null, toolBar_9, null);
 
@@ -1730,9 +1732,10 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_86_1.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-data-sheet-filled-30.png")));
 		toolBar_9.add(btnNewButton_86_1);
+		//************************************************************AYARLAR*********************************************************************************
 
 		JToolBar toolBar_10 = new JToolBar();
-		toolBar_10.setBorder(new LineBorder(new Color(0, 191, 255)));
+		//toolBar_10.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_10.setFloatable(false);
 		tabbedPane.addTab("Ayarlar", null, toolBar_10, null);
 
@@ -1791,6 +1794,7 @@ public class OBS_MAIN extends JFrame {
 
 		btnNewButton_91.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-mailbox-opened-flag-up-30.png")));
 		toolBar_10.add(btnNewButton_91);
+		//************************************************************HAKKINDA *********************************************************************************
 
 		JToolBar toolBar_11 = new JToolBar();
 		toolBar_11.setBorder(new LineBorder(new Color(0, 191, 255)));

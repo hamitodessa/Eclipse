@@ -7,6 +7,9 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+import GUNLUK.Gunluk;
+
 import javax.swing.JDesktopPane;
 import java.awt.Toolkit;
 import javax.swing.JButton;
@@ -931,9 +934,10 @@ public class OBS_MAIN extends JFrame {
 		
         
 		contentPane.add(splitPane, BorderLayout.NORTH);
-
+//***************************************GORUNTU ICIN ASAGIDAKI BLOGU KALDIR********************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.addComponentListener(new ComponentAdapter() {
+		tabbedPane.addComponentListener(new ComponentAdapter() 
+		{
 		    @Override
 		    public void componentResized(ComponentEvent e) {
 		        JTabbedPane tabbedPane = (JTabbedPane) e.getComponent();
@@ -944,7 +948,22 @@ public class OBS_MAIN extends JFrame {
 		        }
 		    }
 		});
-		
+
+		///*******
+		//tabbedPane.addComponentListener(new ComponentAdapter() 
+		//{
+		//    @Override
+		//    public void componentResized(ComponentEvent e) {
+		//        JTabbedPane tabbedPane = (JTabbedPane) e.getComponent();
+		//        int tabCount = tabbedPane.getTabCount();
+		//        for (int i = 0; i < tabCount; i++) {
+		//            Component c = tabbedPane.getComponentAt(i);
+		//            c.setPreferredSize(new Dimension(c.getSize().width, c.getPreferredSize().height));
+		//        }
+		//    }
+		//});
+
+		///*******
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane.setForeground(new Color(25, 25, 112));
@@ -1661,6 +1680,12 @@ public class OBS_MAIN extends JFrame {
 		tabbedPane.addTab("Gunluk", null, toolBar_7, null);
 
 		JButton btnNewButton_81 = new JButton("");
+		btnNewButton_81.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				form_ac("GUNLUK","");
+			}
+		});
 		btnNewButton_81.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-schedule-30.png")));
 		toolBar_7.add(btnNewButton_81);
 
@@ -2694,6 +2719,8 @@ public class OBS_MAIN extends JFrame {
 			//ADRES
 			else if (pencere.equals("ADRES GIRISI")) internalFrame  = new ADRES_GIRIS();
 			else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();
+			//GUNLUK
+			else if (pencere.equals("GUNLUK")) internalFrame  = new Gunluk();
 			//STOK
 			else if (pencere.equals("URUN KARTI")) internalFrame  = new URUN_KART();
 			else if (pencere.equals("IMALAT")) internalFrame  = new IMALAT();

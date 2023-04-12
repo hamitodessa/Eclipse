@@ -16,6 +16,7 @@
 	<classpathentry kind="src" path="KAMERA"/>
 	<classpathentry kind="src" path="STOK"/>
 	<classpathentry kind="src" path="GRAFIK_GORUNUM"/>
+	<classpathentry kind="src" path="GUNLUK"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/OBS_CLASS_2025"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>

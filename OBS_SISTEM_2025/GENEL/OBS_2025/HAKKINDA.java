@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -22,6 +24,7 @@ import javax.swing.JSeparator;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+@SuppressWarnings("serial")
 public class HAKKINDA extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private JLabel lbljava;
@@ -188,7 +191,7 @@ public class HAKKINDA extends JInternalFrame {
 	        	bufferedReader.close();
 		 }catch (Exception ex)
 		 {
-			 
+			 JOptionPane.showMessageDialog(null,  "Versiyon Dosyasi Okunamadi.....",  "Versiyon Okuma", JOptionPane.ERROR_MESSAGE);    
 		 }
 	     
 	    }

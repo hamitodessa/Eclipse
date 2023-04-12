@@ -5,15 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
-
 import javax.swing.JDesktopPane;
 import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JToolBar;
 import javax.swing.JTabbedPane;
@@ -24,7 +22,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
-
+import javax.swing.JComboBox;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.ComponentOrientation;
@@ -37,6 +35,8 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,10 +44,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.awt.event.ActionEvent;
-import javax.swing.UIManager;
 import javax.swing.ScrollPaneConstants;
-
-import org.gpl.JSplitButton.JSplitButton;
 
 import OBS_2025_RAPORLAR.ENVANTER;
 import OBS_2025_RAPORLAR.FATURA_RAPOR;
@@ -206,8 +203,6 @@ public class OBS_MAIN extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		setJMenuBar(menuBar);
-
-
 		JMenu mnCari = new JMenu("Cari Hesap");
 		mnCari.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -2596,95 +2591,45 @@ public class OBS_MAIN extends JFrame {
 		ortapane.setRightComponent(qaz);
 		contentPane.add( ortapane, BorderLayout.CENTER);
 
-		JPopupMenu popupMenu = new JPopupMenu();
-		//1485 Satir
-		ImageIcon icon = new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-conference-30.png"));
-		JMenuItem anaGrup = new JMenuItem("Ana Grup");
-
-		anaGrup.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("DEGISKENLER","anagrup");
-			}
-		});
-		popupMenu.add(anaGrup).setIcon(icon);
-
-		JMenuItem altGrup = new JMenuItem("Alt Grup");
-		icon = new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-queue-30.png"));
-		popupMenu.add(altGrup).setIcon(icon);
-		altGrup.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("DEGISKENLER","altgrup");
-			}
-		});
-		popupMenu.addSeparator();
-
-		icon = new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-new-resume-template-30.png"));
-		JMenuItem mEnsei = new JMenuItem("Mensei");
-		popupMenu.add(mEnsei).setIcon(icon);
-		mEnsei.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("DEGISKENLER","mensei");
-			}
-		});
-		popupMenu.add(mEnsei ).setIcon(icon);
-
-		icon = new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-small-business-30.png"));
-		JMenuItem dPo = new JMenuItem("Depo");
-		popupMenu.add(dPo ).setIcon(icon);
-		dPo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("DEGISKENLER","depo");
-			}
-		});
-		popupMenu.add(dPo).setIcon(icon);
-
-		// Separator
-		popupMenu.addSeparator();
-		icon = new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-code-file-30.png"));
-		JMenuItem oZkod1 = new JMenuItem("Ozel Kod 1");
-		oZkod1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("DEGISKENLER","oz1");
-			}
-		});
-		popupMenu.add(oZkod1).setIcon(icon);
-
-		icon = new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-code-file-30.png"));
-		JMenuItem oZkod2 = new JMenuItem("Ozel Kod 2");
-		oZkod2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("DEGISKENLER","oz2");
-			}
-		});
-		popupMenu.add(oZkod2).setIcon(icon);
-
 		JLabel lbldeg = new JLabel("          ");
 		toolBar_5.add(lbldeg);
-
 		//****************************************************************************
-		JSplitButton splitButton = new JSplitButton("Degiskenler             ");
-		splitButton.setForeground( Color.MAGENTA);
-		splitButton.setArrowSize(10);
-		splitButton.setBorder(new LineBorder(new Color(0, 191, 255)));
-		splitButton.setFont(new Font("Tahoma", Font.BOLD, 10));
-		splitButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-radar-plot-30.png")));
-		toolBar_5.add(splitButton);
-		splitButton.setPopupMenu(popupMenu); //add this control to panel
-		toolBar_1.setMinimumSize(new Dimension(0, 30));
-		toolBar_1.setMaximumSize(new Dimension(0, 30));
-		/**
-		JSplitButton splitButton = new JSplitButton("Degiskenler             ");
-		splitButton.setForeground( Color.MAGENTA);
-		splitButton.setArrowSize(10);
-		splitButton.setBorder(new LineBorder(new Color(0, 191, 255)));
-		splitButton.setFont(new Font("Tahoma", Font.BOLD, 10));
-		splitButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-radar-plot-30.png")));
-		toolBar_5.add(splitButton);
-		splitButton.setPopupMenu(popupMenu); //add this control to panel
-		toolBar_1.setMinimumSize(new Dimension(0, 30));
-		toolBar_1.setMaximumSize(new Dimension(0, 30));
-		 */
-		
+		JComboBox<String> comboDegisken = new JComboBox<String>();
+		comboDegisken.setBorder(new LineBorder(new Color(0, 191, 255)));
+		comboDegisken.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		comboDegisken.setMaximumSize(new Dimension(200, 40));
+		comboDegisken.addItemListener(new ItemListener() 
+		{
+			public void itemStateChanged(ItemEvent e) {
+				String hangi = (String) comboDegisken.getItemAt(comboDegisken.getSelectedIndex())  ;
+				if (hangi == "Ana Grup")
+				{
+					form_ac("DEGISKENLER","anagrup");
+				}
+				else if (hangi == "Alt Grup")
+				{
+					form_ac("DEGISKENLER","altgrup");
+				}
+				else if (hangi == "Mensei")
+				{
+					form_ac("DEGISKENLER","mensei");
+				}
+				else if (hangi == "Depo")
+				{
+					form_ac("DEGISKENLER","depo");
+				}
+				else if (hangi == "Ozel Kod 1")
+				{
+					form_ac("DEGISKENLER","oz1");
+				}
+				else if (hangi == "Ozel Kod 2")
+				{
+					form_ac("DEGISKENLER","oz2");
+				}
+			}
+		});
+		comboDegisken.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Ozel Kod 2"}));
+		toolBar_5.add(comboDegisken);
 		progressBar.setStringPainted(false);
 		try {
 			if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal"))

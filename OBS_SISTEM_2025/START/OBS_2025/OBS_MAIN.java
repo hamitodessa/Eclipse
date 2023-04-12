@@ -1260,7 +1260,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_42.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-product-30.png")));
 		toolBar_5.add(btnNewButton_42);
 
-		JLabel lblNewLabel_12 = new JLabel("          ");
+		JLabel lblNewLabel_12 = new JLabel("     ");
 		toolBar_5.add(lblNewLabel_12);
 
 		btnNewButton_43 = new JButton("");
@@ -1303,7 +1303,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_45.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-data-transfer-30.png")));
 		toolBar_5.add(btnNewButton_45);
 
-		JLabel lblNewLabel_13 = new JLabel("          ");
+		JLabel lblNewLabel_13 = new JLabel("     ");
 		toolBar_5.add(lblNewLabel_13);
 
 		btnNewButton_46 = new JButton("");
@@ -1341,7 +1341,7 @@ public class OBS_MAIN extends JFrame {
 		btnzayi.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-equity-security-30.png")));
 		toolBar_5.add(btnzayi);
 
-		JLabel lblNewLabel_14 = new JLabel("          ");
+		JLabel lblNewLabel_14 = new JLabel("     ");
 		toolBar_5.add(lblNewLabel_14);
 
 		btnNewButton_49 = new JButton("");
@@ -1402,7 +1402,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 
-		JLabel lblNewLabel_34 = new JLabel("  ");
+		JLabel lblNewLabel_34 = new JLabel("     ");
 		toolBar_5.add(lblNewLabel_34);
 		btnNewButton_54.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-robot-30.png")));
 		toolBar_5.add(btnNewButton_54);
@@ -1499,14 +1499,6 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_61.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-currency-exchange-30.png")));
 		toolBar_5.add(btnNewButton_61);
 
-		JLabel lblNewLabel_15 = new JLabel("          ");
-		toolBar_5.add(lblNewLabel_15);
-		//****************************************************************************
-		//JSplitButton splitButton = new JSplitButton("Degiskenler");
-		//splitButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-radar-plot-30.png")));
-		//splitButton.setSplitWidth(200);
-		//toolBar_5.add(splitButton);
-		//*****************************************************************************
 		btnNewButton_70 = new JButton("");
 		btnNewButton_70.setToolTipText("Evrak Formatlama");
 		btnNewButton_70.addActionListener(new ActionListener() {
@@ -1527,7 +1519,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_31.setToolTipText("Degisken Yenileme");
 		toolBar_5.add(btnNewButton_31);
 
-		JLabel lblNewLabel_16 = new JLabel("          ");
+		JLabel lblNewLabel_16 = new JLabel("  ");
 		toolBar_5.add(lblNewLabel_16);
 
 		btnNewButton_73 = new JButton("");
@@ -1556,6 +1548,47 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_74.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-static-view-level2-30.png")));
 		toolBar_5.add(btnNewButton_74);
+		JLabel lblNewLabel_15 = new JLabel("      ");
+		toolBar_5.add(lblNewLabel_15);
+		//****************************************************************************
+		JComboBox<String> comboDegisken = new JComboBox<String>();
+		comboDegisken.setBorder(new LineBorder(new Color(0, 191, 255)));
+		comboDegisken.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		comboDegisken.setMaximumSize(new Dimension(200, 35));
+		comboDegisken.addItemListener(new ItemListener() 
+		{
+			public void itemStateChanged(ItemEvent e) {
+				String hangi = (String) comboDegisken.getItemAt(comboDegisken.getSelectedIndex())  ;
+				if (hangi == "Ana Grup")
+				{
+					form_ac("DEGISKENLER","anagrup");
+				}
+				else if (hangi == "Alt Grup")
+				{
+					form_ac("DEGISKENLER","altgrup");
+				}
+				else if (hangi == "Mensei")
+				{
+					form_ac("DEGISKENLER","mensei");
+				}
+				else if (hangi == "Depo")
+				{
+					form_ac("DEGISKENLER","depo");
+				}
+				else if (hangi == "Ozel Kod 1")
+				{
+					form_ac("DEGISKENLER","oz1");
+				}
+				else if (hangi == "Ozel Kod 2")
+				{
+					form_ac("DEGISKENLER","oz2");
+				}
+			}
+		});
+		comboDegisken.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Ozel Kod 2"}));
+		toolBar_5.add(comboDegisken);
+		//*****************************************************************************
+
 		//******************************************************************
 		JToolBar toolBar_6 = new JToolBar();
 		toolBar_6.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -2591,45 +2624,7 @@ public class OBS_MAIN extends JFrame {
 		ortapane.setRightComponent(qaz);
 		contentPane.add( ortapane, BorderLayout.CENTER);
 
-		JLabel lbldeg = new JLabel("          ");
-		toolBar_5.add(lbldeg);
-		//****************************************************************************
-		JComboBox<String> comboDegisken = new JComboBox<String>();
-		comboDegisken.setBorder(new LineBorder(new Color(0, 191, 255)));
-		comboDegisken.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		comboDegisken.setMaximumSize(new Dimension(200, 40));
-		comboDegisken.addItemListener(new ItemListener() 
-		{
-			public void itemStateChanged(ItemEvent e) {
-				String hangi = (String) comboDegisken.getItemAt(comboDegisken.getSelectedIndex())  ;
-				if (hangi == "Ana Grup")
-				{
-					form_ac("DEGISKENLER","anagrup");
-				}
-				else if (hangi == "Alt Grup")
-				{
-					form_ac("DEGISKENLER","altgrup");
-				}
-				else if (hangi == "Mensei")
-				{
-					form_ac("DEGISKENLER","mensei");
-				}
-				else if (hangi == "Depo")
-				{
-					form_ac("DEGISKENLER","depo");
-				}
-				else if (hangi == "Ozel Kod 1")
-				{
-					form_ac("DEGISKENLER","oz1");
-				}
-				else if (hangi == "Ozel Kod 2")
-				{
-					form_ac("DEGISKENLER","oz2");
-				}
-			}
-		});
-		comboDegisken.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Ozel Kod 2"}));
-		toolBar_5.add(comboDegisken);
+		
 		progressBar.setStringPainted(false);
 		try {
 			if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal"))

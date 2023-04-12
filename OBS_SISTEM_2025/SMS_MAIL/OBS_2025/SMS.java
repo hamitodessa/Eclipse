@@ -1013,10 +1013,14 @@ public class SMS extends JInternalFrame {
 			while (thePorts.hasMoreElements())
 			{
 				com = (CommPortIdentifier) thePorts.nextElement();
+				if (com.getPortType() == CommPortIdentifier.PORT_SERIAL)
+				{
+					comboBox_3.addItem(com.getName());	
+				}
 				//  switch (com.getPortType())
 				//  {
 				//     case CommPortIdentifier.PORT_SERIAL:
-				comboBox_3.addItem(com.getName());
+				
 				//  }
 			}
 		}

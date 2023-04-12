@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -391,9 +390,10 @@ public class FILTRE extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-			//Control Header space area..
+// Goruntu icin asagidaki blogu kaldir ****************************************************************************
 		    final boolean showTabsHeader = false;
-		    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI(){
+		    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
+		    {
 		        @Override
 		        protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
 		            if (showTabsHeader) {
@@ -404,7 +404,7 @@ public class FILTRE extends JDialog {
 		        }
 		      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 		    });
-		    
+//*****************************************************************************************************************		    
 			contentPanel.add(tabbedPane, BorderLayout.CENTER);
 			{	
 				JPanel panel = new JPanel();
@@ -2584,7 +2584,8 @@ public class FILTRE extends JDialog {
 			panel_9.add(chckbxNewCheckBox_1);
 			
 			chckbxNewCheckBox_2 = new JCheckBox("Onceki Tarih Bakiyeli");
-			chckbxNewCheckBox_2.setBounds(484, 179, 149, 23);
+			chckbxNewCheckBox_2.setBounds(484, 179, 175, 23);
+			chckbxNewCheckBox_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			panel_9.add(chckbxNewCheckBox_2);
 
 			JPanel panel_11 = new JPanel();
@@ -4263,7 +4264,6 @@ public class FILTRE extends JDialog {
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBorder(new LineBorder(new Color(0, 191, 255)));
-			//buttonPane.setBorder(new LineBorder(new Color(0, 191, 255), 0));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

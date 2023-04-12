@@ -16,8 +16,7 @@ public class TARIH_SAATLI extends DefaultTableCellRenderer {
             Object value, boolean isSelected, boolean hasFocus,
             int row, int column) {
     	
-       // if( value instanceof Date) {
-    	setHorizontalAlignment(JLabel.LEFT);
+       // if( value instanceof Date) {    	setHorizontalAlignment(JLabel.LEFT);
             value = f.format(value);
        // }
         return super.getTableCellRendererComponent(table, value, isSelected,

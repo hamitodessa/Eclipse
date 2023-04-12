@@ -333,7 +333,7 @@ public class SMS_MSSQL implements ISMS{
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		String sql = "SELECT TARIH,MOBILE,MESAJ,HESAP,UNVAN,USER_NAME AS [USER]  FROM SMS_BILGILERI ";
+		String sql = "SELECT FORMAT(TARIH,'dd.mm.yyyy HH:m:s' )  AS TARIH,MOBILE,MESAJ,HESAP,UNVAN,USER_NAME AS [USER]  FROM SMS_BILGILERI ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;

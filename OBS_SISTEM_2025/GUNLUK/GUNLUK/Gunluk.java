@@ -2,7 +2,6 @@ package GUNLUK;
 
 import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,10 +10,22 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import com.toedter.calendar.JCalendar;
+
+import OBS_C_2025.COLUMN_RENDERER;
+import OBS_C_2025.GLOBAL;
+import OBS_C_2025.ROW_RENDERER;
+import OBS_C_2025.SAGA;
+import OBS_C_2025.TABLO_RENDERER;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
@@ -47,7 +58,7 @@ public class Gunluk extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0,0, 1100, 600);
+		setBounds(0,0, 1100, 650);
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -102,34 +113,33 @@ public class Gunluk extends JInternalFrame {
 		
 		//*****************************************************
 		
-		table = new JTable();
+		table = new JTable() {
+			public boolean isCellEditable(int row, int column) {     return false;          }
+			
+		};
+				
+		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		table.setRowSelectionAllowed(false);
-		table.setTableHeader(null);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
+				{"06:00", null, null, null, null, null, null, null},
+				{"07:00", null, null, null, null, null, null, null},
+				{"08:00", null, null, null, null, null, null, null},
+				{"09:00", null, null, null, null, null, null, null},
+				{"10:00", null, null, null, null, null, null, null},
+				{"11:00", null, null, null, null, null, null, null},
+				{"12:00", null, null, null, null, null, null, null},
+				{"13:00", null, null, null, null, null, null, null},
+				{"14:00", null, null, null, null, null, null, null},
+				{"15:00", null, null, null, null, null, null, null},
+				{"16:00", null, null, null, null, null, null, null},
+				{"17:00", null, null, null, null, null, null, null},
+				{"18:00", null, null, null, null, null, null, null},
+				{"19:00", null, null, null, null, null, null, null},
+				{"20:00", null, null, null, null, null, null, null},
+				{"21:00", null, null, null, null, null, null, null},
+				{"22:00", null, null, null, null, null, null, null},
+				{"23:00", null, null, null, null, null, null, null},
 			},
 			new String[] {
 				"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
@@ -137,26 +147,61 @@ public class Gunluk extends JInternalFrame {
 		));
 		table.getColumnModel().getColumn(0).setMaxWidth(100);
 		table.getColumnModel().getColumn(0).setMinWidth(100);
+		for (int row = 0; row < table.getRowCount(); row++)
+	    {
+	        table.setRowHeight(row, 30);
+	    }
+		JTableHeader th = table.getTableHeader();
+		TableColumnModel tcm = th.getColumnModel();
+		TableColumn tc;
+		tc = tcm.getColumn(0);
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(39, 45, 61),Color.WHITE));
+		
+		table.setTableHeader(null);
 
+//***************************************************************************		
 		scrollPane.setViewportView(table);
 		
-		table_1 = new JTable();
+		table_1 = new JTable(){
+			public boolean isCellEditable(int row, int column) {     return false;          }
+			
+		};
+		
 		table_1.setRowSelectionAllowed(false);
-		table_1.setTableHeader(null);
+		
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
+				{"Saat", "Pazartesi","Sali", "Carsamba", "Persembe", "Cuma", "Cumartesi", "Pazar"},
 			},
 			new String[] {
 				"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
 			}
 		));
+		table_1.setRowHeight(0, 30);
+		table_1.setRowHeight(1, 30);
 		table_1.getColumnModel().getColumn(0).setMaxWidth(100);
 		table_1.getColumnModel().getColumn(0).setMinWidth(100);
+		JTableHeader ttt = table_1.getTableHeader();
+		TableColumnModel tcc = ttt.getColumnModel();
+		TableColumn tc1;
+		tc1 = tcc.getColumn(1);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(39, 45, 61),Color.WHITE));
+		
+		table_1.setTableHeader(null);
+//**************************************************************		
 		splitPane_3.setLeftComponent(table_1);
 		
+		//updateRowHeights();
 		
+	}
+	
+	private void updateRowHeights()
+	{
+	    for (int row = 0; row < table.getRowCount(); row++)
+	    {
+	        table.setRowHeight(row, 30);
+	    }
 	}
 
 }

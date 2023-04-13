@@ -100,6 +100,12 @@ public class Gunluk extends JInternalFrame {
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		calendar = new JCalendar();
+		calendar.getDayChooser().getDayPanel().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				 System.out.println("==="+ calendar.getDate());
+			}
+		});
 		calendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
 			   // System.out.println("==="+ calendar.getDate());
@@ -114,7 +120,7 @@ public class Gunluk extends JInternalFrame {
 		dateChooser = new JDateChooser();
 		dateChooser.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
-				doldur(dateChooser.getDate().toString());
+				//doldur(dateChooser.getDate().toString());
 				//System.out.println("==="+dateChooser.getDate());
 			}
 		});

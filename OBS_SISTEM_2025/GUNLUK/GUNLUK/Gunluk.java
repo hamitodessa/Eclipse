@@ -1,6 +1,9 @@
 package GUNLUK;
 
 import java.awt.EventQueue;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
@@ -37,6 +40,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import com.toedter.calendar.JDateChooser;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
@@ -44,6 +48,7 @@ public class Gunluk extends JInternalFrame {
 	private JTable table_1;
 	JCalendar calendar ;
 	boolean kontrol = false;
+	JDateChooser dateChooser ;
 	/**
 	 * Launch the application.
 	 */
@@ -95,39 +100,25 @@ public class Gunluk extends JInternalFrame {
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		calendar = new JCalendar();
-		calendar.getDayChooser().getDayPanel().addPropertyChangeListener(new PropertyChangeListener() {
+		calendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
-				System.out.println(evt.getPropertyName()
-		                + ": " + evt.getNewValue());
-		        doldur(calendar.getDate().toString());
+			   // System.out.println("==="+ calendar.getDate());
+			    dateChooser.setDate(calendar.getDate());
 			}
 		});
 		calendar.getDayChooser().setAlwaysFireDayProperty(true);
 		
-		calendar.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
-
-		    @Override
-		    public void propertyChange(PropertyChangeEvent e) {
-		        
-
-		    }
-		});
-		
-		calendar.addPropertyChangeListener(new PropertyChangeListener() {
-	        @Override
-	        public void propertyChange(PropertyChangeEvent evt) {
-	          
-	         
-	         
-	        	doldur(calendar.getDate().toString());
-	         
-	
-	         
-	          
-	        }
-	 }); 
 		
 		panel_1.add(calendar, BorderLayout.CENTER);
+		
+		dateChooser = new JDateChooser();
+		dateChooser.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				doldur(dateChooser.getDate().toString());
+				//System.out.println("==="+dateChooser.getDate());
+			}
+		});
+//**********************************************************************************		
 		
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);

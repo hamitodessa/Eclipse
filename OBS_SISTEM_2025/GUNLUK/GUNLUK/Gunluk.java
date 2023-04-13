@@ -16,6 +16,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ROW_RENDERER;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH_CEVIR;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -25,14 +26,24 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import org.apache.poi.ss.formula.functions.Now;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.awt.Font;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
 	private JTable table;
 	private JTable table_1;
-
-
+	JCalendar calendar ;
+	boolean kontrol = false;
 	/**
 	 * Launch the application.
 	 */
@@ -83,7 +94,39 @@ public class Gunluk extends JInternalFrame {
 		splitPane_1.setLeftComponent(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
-		JCalendar calendar = new JCalendar();
+		calendar = new JCalendar();
+		calendar.getDayChooser().getDayPanel().addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				System.out.println(evt.getPropertyName()
+		                + ": " + evt.getNewValue());
+		        doldur(calendar.getDate().toString());
+			}
+		});
+		calendar.getDayChooser().setAlwaysFireDayProperty(true);
+		
+		calendar.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
+
+		    @Override
+		    public void propertyChange(PropertyChangeEvent e) {
+		        
+
+		    }
+		});
+		
+		calendar.addPropertyChangeListener(new PropertyChangeListener() {
+	        @Override
+	        public void propertyChange(PropertyChangeEvent evt) {
+	          
+	         
+	         
+	        	doldur(calendar.getDate().toString());
+	         
+	
+	         
+	          
+	        }
+	 }); 
+		
 		panel_1.add(calendar, BorderLayout.CENTER);
 		
 		JSplitPane splitPane_2 = new JSplitPane();
@@ -155,7 +198,7 @@ public class Gunluk extends JInternalFrame {
 		TableColumnModel tcm = th.getColumnModel();
 		TableColumn tc;
 		tc = tcm.getColumn(0);
-		tc.setCellRenderer(new COLUMN_RENDERER(new Color(39, 45, 61),Color.WHITE));
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(80, 92, 124),Color.WHITE));
 		
 		table.setTableHeader(null);
 
@@ -172,7 +215,7 @@ public class Gunluk extends JInternalFrame {
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null, null, null},
-				{"Saat", "Pazartesi","Sali", "Carsamba", "Persembe", "Cuma", "Cumartesi", "Pazar"},
+				{"", "Pazartesi","Sali", "Carsamba", "Persembe", "Cuma", "Cumartesi", "Pazar"},
 			},
 			new String[] {
 				"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
@@ -186,16 +229,60 @@ public class Gunluk extends JInternalFrame {
 		TableColumnModel tcc = ttt.getColumnModel();
 		TableColumn tc1;
 		tc1 = tcc.getColumn(1);
-		tc1.setCellRenderer(new ROW_RENDERER(new Color(39, 45, 61),Color.WHITE));
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		
+		tc1 = tcc.getColumn(2);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		
+		tc1 = tcc.getColumn(3);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		
+		tc1 = tcc.getColumn(4);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		
+		tc1 = tcc.getColumn(5);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		
+		tc1 = tcc.getColumn(6);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		
+		tc1 = tcc.getColumn(7);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		
 		
 		table_1.setTableHeader(null);
+		
 //**************************************************************		
 		splitPane_3.setLeftComponent(table_1);
 		
 		//updateRowHeights();
 		
 	}
-	
+	private void doldur(String tarih)
+	{
+		if (kontrol) return ;
+		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+        System.out.println("1="+ calendar.getDate());
+        // Output "Wed Sep 26 14:23:28 EST 2012"
+
+        String formatted = format1.format(calendar.getDate());
+        System.out.println("2="+formatted);
+		try {
+			Date qwe = new SimpleDateFormat("dd.MM.yyyy").parse(formatted);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(qwe);
+			cal.add(Calendar.DAY_OF_MONTH, -1); 
+			
+			calendar.setDate(new Date(cal.getTimeInMillis()));
+			 
+			 System.out.println("1="+calendar.getDate());
+			 kontrol = true ;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+        
+	}
 	private void updateRowHeights()
 	{
 	    for (int row = 0; row < table.getRowCount(); row++)

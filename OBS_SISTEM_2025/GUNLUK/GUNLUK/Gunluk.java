@@ -32,6 +32,7 @@ import javax.swing.JToolBar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
@@ -65,8 +66,32 @@ public class Gunluk extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0,0, 1100, 650);
+		setBounds(0,0, 1100, 672);
 
+		JToolBar jtbar = new JToolBar();
+		jtbar.setFloatable(false);
+		getContentPane().add(jtbar, BorderLayout.NORTH);
+		
+		JButton btnNewButton = new JButton("");
+		jtbar.add(btnNewButton);
+		btnNewButton.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_geri-24.png")));
+		
+		JLabel lblNewLabel = new JLabel("                        ");
+		jtbar.add(lblNewLabel);
+
+		JButton btnNewButton_1 = new JButton("");
+		jtbar.add(btnNewButton_1);
+		btnNewButton_1.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_ileri-24.png")));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ileri();
+			}
+		});
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				geri();
+			}
+		});
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
@@ -122,35 +147,6 @@ public class Gunluk extends JInternalFrame {
 		panel_2.setMaximumSize(new Dimension(200, 0));
 		splitPane_2.setRightComponent(panel_2);
 		panel_2.setLayout(new BorderLayout(0, 0));
-
-		JToolBar toolBar = new JToolBar();
-		panel_2.add(toolBar, BorderLayout.NORTH);
-
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\hamit\\git\\Eclipse\\OBS_SISTEM_2025\\src\\ICONLAR\\icons8-double-left-30.png"));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				geri();
-			}
-		});
-		toolBar.add(btnNewButton);
-
-		JButton btnNewButton_2 = new JButton(".....");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				doldur("10.04.2023");
-			}
-		});
-		toolBar.add(btnNewButton_2);
-
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\hamit\\git\\Eclipse\\OBS_SISTEM_2025\\src\\ICONLAR\\icons8-double-right-30.png"));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ileri();
-			}
-		});
-		toolBar.add(btnNewButton_1);
 
 		JPanel panel_3 = new JPanel();
 		splitPane_2.setLeftComponent(panel_3);
@@ -370,20 +366,6 @@ public class Gunluk extends JInternalFrame {
 			cal.add(Calendar.DAY_OF_MONTH, -1); 
 			calendar.setDate(new Date(cal.getTimeInMillis()));
 		} catch (ParseException e) {
-		}  
-	}
-	private void doldur(String tarih)
-	{
-		if (kontrol) return ;
-		try 
-		{
-			Date qwe = new SimpleDateFormat("dd.MM.yyyy").parse(tarih);
-			kontrol = true ;
-			calendar.setDate(qwe);
-			kontrol = false ;
-		} 
-		catch (ParseException e) 
-		{
 		}  
 	}
 }

@@ -7,6 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import LOGER_KAYIT.DOSYA_MYSQL;
+import LOGER_KAYIT.ILOGER_KAYIT;
+import LOGER_KAYIT.TXT_LOG;
+
 public class GUNLUK_MYSQL implements IGUNLUK{
 
 	static Connection con = null;
@@ -22,23 +26,41 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		Class.forName("com.mysql.jdbc.Driver");
  		con = null;  
  		String cumle = "";
-         cumle = "jdbc:mysql://localhost;instanceName=" + ins + ";";
-         con = DriverManager.getConnection(cumle,kull,sifre);
-         String VERITABANI = "OK_Gun" + kod;
-         stmt = null;
-         String sql =null;
-         if (dizin_yeri == "default")
-         	sql = "CREATE DATABASE [" + VERITABANI + "]";
-         else
-         	sql = "CREATE DATABASE [" + VERITABANI + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_log', FILENAME = N'" + dizin + "\\" + VERITABANI + "_log.ldf' ) ";
-         stmt = con.createStatement();  
-         stmt.executeUpdate(sql);
-         cumle = "jdbc:mysql://localhost;instanceName=" + ins + ";database=" + VERITABANI + ";";
-         con = DriverManager.getConnection(cumle,kull,sifre);
-         create_table(fir_adi);
-         stmt.close();
-         con.close();
-		
+ 		cumle = "jdbc:mysql://localhost:" + port ;  // SERVER BAGLANDI
+		con = DriverManager.getConnection(cumle,kull,sifre);
+		String VERITABANI = "ok_gun" + kod;
+		stmt = null;
+		String sql =null;
+		sql = "CREATE DATABASE " + VERITABANI ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);
+		cumle = "jdbc:mysql://localhost/" +VERITABANI ;
+		con = DriverManager.getConnection(cumle,kull,sifre);  // DATABASE BAGLANDI
+		create_table(fir_adi);
+		//
+		sql = "CREATE DATABASE " + VERITABANI + "_log" ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);
+		cumle = "jdbc:mysql://localhost/" +VERITABANI + "_log" ;
+		con = DriverManager.getConnection(cumle,kull,sifre);
+		create_table_log();
+		//  VERITABANI DOSYASI ILK ACILIS
+		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
+		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
+		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.gunLogDizin);
+		//SQLITE LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB") == false)
+		{
+			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
+			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.gunLogDizin);
+		}
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
+		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.gunLogDizin);
+		//
+		stmt.close();
+		con.close();
 	}
 
 	@Override
@@ -46,92 +68,49 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 			String dizin, String fir_adi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
  		con = null;  
- 		 String VERITABANI = "OK_Gun" + kod;
+ 		 String VERITABANI = "ok_gun" + kod;
  		String cumle = "";
- 		stmt = null;
-         String sql =null;
- 		cumle = "jdbc:mysql://" + server + ";instanceName=" + ins + ";";
- 		con = DriverManager.getConnection(cumle,kull,sifre);
-            sql = "CREATE DATABASE [" + VERITABANI + "]";
-            stmt = con.createStatement();  
-            stmt.executeUpdate(sql);
-            cumle = "jdbc:mysql://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + ";";
-            con = DriverManager.getConnection(cumle,kull,sifre);
-            create_table(fir_adi);
-            stmt.close();
-            con.close();
-		
+		stmt = null;
+		String sql =null;
+		cumle = "jdbc:mysql://" + server ;
+		con = DriverManager.getConnection(cumle,kull,sifre);
+		sql = "CREATE DATABASE " + VERITABANI ;
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		cumle = "jdbc:mysql://" + server + "/" + VERITABANI ;
+		con = DriverManager.getConnection(cumle,kull,sifre);
+		create_table(fir_adi);
+		//
+		sql = "CREATE DATABASE " + VERITABANI + "_log" ;
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		cumle = "jdbc:mysql://" + server + "/" + VERITABANI + "_log" ;
+		con = DriverManager.getConnection(cumle,kull,sifre);
+		create_table_log();
+		//  VERITABANI DOSYASI ILK ACILIS
+		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
+		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
+		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.gunLogDizin);
+		//SQLITE LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.gunLogDizin.mODUL)) == false)
+		{
+			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.gunLogDizin.mODUL) ;
+			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.gunLogDizin);
+		}
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
+		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.gunLogDizin);
+		//
+		stmt.close();
+		con.close();
 	}
 
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
-        sql = "SET ANSI_NULLS ON\r\n" + 
-        		"\r\n" + 
-        		"SET QUOTED_IDENTIFIER ON\r\n" + 
-        		"\r\n" + 
-        		"CREATE TABLE [dbo].[AppointmentsResources](\r\n" + 
-        		"	[AppointmentID] [int] NOT NULL,\r\n" + 
-        		"	[ResourceID] [int] NOT NULL,\r\n" + 
-        		" CONSTRAINT [PK_AppointmentsResources] PRIMARY KEY CLUSTERED \r\n" + 
-        		"(\r\n" + 
-        		"	[AppointmentID] ASC,\r\n" + 
-        		"	[ResourceID] ASC\r\n" + 
-        		")WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]\r\n" + 
-        		") ON [PRIMARY]\r\n" + 
-        		"\r\n" + 
-        		"ALTER TABLE [dbo].[AppointmentsResources]  WITH NOCHECK ADD  CONSTRAINT [AppointmentsResourcesAppointments] FOREIGN KEY([AppointmentID])\r\n" + 
-        		"REFERENCES [dbo].[Appointments] ([ID])\r\n" + 
-        		"\r\n" + 
-        		"ALTER TABLE [dbo].[AppointmentsResources] NOCHECK CONSTRAINT [AppointmentsResourcesAppointments]" ;
+        sql = "CREATE TABLE GUNLUK (TARIH DATE , SAAT nvarchar(5),ISIM nvarchar(20),GOREV nvarchar(20),MESAJ nvarchar(100) , YON_SIFRE nvarchar(15) , FIRMA_ADI nvarchar(50),[USER] nvarchar(15) NULL)" ;  
         stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
-        sql = "SET ANSI_NULLS ON\r\n" + 
-        		"\r\n" + 
-        		"SET QUOTED_IDENTIFIER ON\r\n" + 
-        		"\r\n" + 
-        		"SET ANSI_PADDING ON\r\n" + 
-        		"\r\n" + 
-        		"CREATE TABLE [dbo].[Resources](\r\n" + 
-        		"      [ID] [int] IDENTITY(1,1) NOT NULL,\r\n" + 
-        		"      [ResourceName] [nvarchar](255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\r\n" + 
-        		"       CONSTRAINT [PK_Resources] PRIMARY KEY CLUSTERED\r\n" + 
-        		"(\r\n" + 
-        		"      [ID] ASC\r\n" + 
-        		")WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]\r\n" + 
-        		") ON [PRIMARY]\r\n" + 
-        		"\r\n" + 
-        		"SET ANSI_PADDING OFF";
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
-        sql = "SET ANSI_NULLS ON\r\n" + 
-        		"SET QUOTED_IDENTIFIER ON\r\n" + 
-        		"\r\n" + 
-        		"CREATE TABLE [dbo].[Appointments](\r\n" + 
-        		"	[ID] [int] IDENTITY(1,1) NOT NULL,\r\n" + 
-        		"	[Summary] [nvarchar](255) NULL,\r\n" + 
-        		"	[Start] [datetime] NOT NULL,\r\n" + 
-        		"	[End] [datetime] NOT NULL,\r\n" + 
-        		"	[RecurrenceRule] [nvarchar](255) NULL,\r\n" + 
-        		"	[MasterEventID] [int] NULL,\r\n" + 
-        		"	[Location] [nvarchar](255) NULL,\r\n" + 
-        		"	[Description] [nvarchar](1000) NULL,\r\n" + 
-        		"	[BackgroundID] [int] NOT NULL CONSTRAINT [DF_Appointments_BackgroundId]  DEFAULT ((1)),\r\n" + 
-        		"	[StatusID] [int] NULL,\r\n" + 
-        		"	[ParentID] [int] NULL,\r\n" + 
-        		"	[Email] [nvarchar](255) NULL,\r\n" + 
-        		"	[Visible] [bit] NOT NULL,\r\n" + 
-        		" CONSTRAINT [PK_Appointments] PRIMARY KEY CLUSTERED \r\n" + 
-        		"(\r\n" + 
-        		"	[ID] ASC\r\n" + 
-        		")WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]\r\n" + 
-        		") ON [PRIMARY]\r\n" + 
-        		"\r\n" + 
-        		"ALTER TABLE [dbo].[Appointments]  WITH NOCHECK ADD  CONSTRAINT [AppointmentsAppointments] FOREIGN KEY([ParentID])\r\n" + 
-        		"REFERENCES [dbo].[Appointments] ([ID])\r\n" + 
-        		"\r\n" + 
-        		"ALTER TABLE [dbo].[Appointments] NOCHECK CONSTRAINT [AppointmentsAppointments]\r\n" + 
-        		"";        stmt = con.createStatement();  
         stmt.executeUpdate(sql);
         sql= "CREATE TABLE OZEL(OZID int identity(1,1) CONSTRAINT PKeyOZID PRIMARY KEY,YONETICI nvarchar(25), YON_SIFRE nvarchar(15) , FIRMA_ADI nvarchar(50))";
         stmt = con.createStatement();  
@@ -143,7 +122,6 @@ public class GUNLUK_MYSQL implements IGUNLUK{
         sql = "INSERT INTO  OZEL(YONETICI,YON_SIFRE,FIRMA_ADI) VALUES ('" + GLOBAL.KULL_ADI  + "','12345' , '" + fir_adi + "')";
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
-		
 	}
 
 	@Override

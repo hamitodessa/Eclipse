@@ -87,9 +87,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+  ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +  dsy) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.cariLogDizin);
-			sQLITEconn.close();
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
@@ -99,7 +97,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt.close();
 		con.close();
 	}
-	@SuppressWarnings("unused")
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
@@ -132,13 +129,13 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.cariLogDizin.mODUL)) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODUL) ;
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy   ) ;
+			//Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy   ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.cariLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);
-		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.cariLogDizin);
+		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);
+		tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.cariLogDizin);
 		//
 		stmt.close();
 		con.close();

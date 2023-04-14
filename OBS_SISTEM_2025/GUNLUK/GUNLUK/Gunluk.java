@@ -1,17 +1,14 @@
 package GUNLUK;
 
 import java.awt.EventQueue;
-
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.JPanel;
 import com.toedter.calendar.JCalendar;
-
 import OBS_C_2025.COLUMN_RENDERER;
 import OBS_C_2025.ROW_RENDERER;
 import javax.swing.JScrollPane;
@@ -20,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -126,16 +122,8 @@ public class Gunluk extends JInternalFrame {
 		});
 		calendar.setTodayButtonText("Bugun");
 		calendar.setTodayButtonVisible(true);
-		calendar.getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
-			@Override
-			public void propertyChange(PropertyChangeEvent e) {
-
-			}
-		});
 		panel_1.add(calendar, BorderLayout.CENTER);
-
 		//**********************************************************************************		
-
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
 		splitPane_2.setDividerSize(0);
@@ -160,15 +148,11 @@ public class Gunluk extends JInternalFrame {
 
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane_3.setRightComponent(scrollPane);
-
-
 		//*****************************************************
-
 		table = new JTable() {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 
 		};
-
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		table.setRowSelectionAllowed(false);
 		table.setModel(new DefaultTableModel(
@@ -284,7 +268,6 @@ public class Gunluk extends JInternalFrame {
 			Date qwe = new SimpleDateFormat("dd.MM.yyyy").parse(tar);	
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(qwe);
-
 			if (cal.get(Calendar.DAY_OF_WEEK) ==1)
 			{
 				tarr=  "Pazar";
@@ -315,12 +298,8 @@ public class Gunluk extends JInternalFrame {
 			}
 
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return tarr;
-
-
 	}
 	private String tarih_ileri_geri(String tarih , String nereye)
 	{

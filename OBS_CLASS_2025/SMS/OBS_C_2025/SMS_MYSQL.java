@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import LOGER_KAYIT.DOSYA_MSSQL;
+import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
 
@@ -44,20 +46,19 @@ public class SMS_MYSQL implements ISMS{
 		cumle = "jdbc:mysql://localhost/" +VERITABANI + "_log" ;
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
-		//
+		//  VERITABANI DOSYASI ILK ACILIS
+		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
+		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.smsLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL" + ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
-			@SuppressWarnings("unused")
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy  ) ;
 			GLOBAL.create_table_log(dsy ,"",BAGLAN_LOG.smsLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.smsLogDizin);
+		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.smsLogDizin);
 		//
-
 		stmt.close();
 		con.close();
 	}
@@ -90,18 +91,14 @@ public class SMS_MYSQL implements ISMS{
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.smsLogDizin.mODUL) ) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.smsLogDizin.mODUL) ;
-			@SuppressWarnings("unused")
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy  ) ;
 			GLOBAL.create_table_log(dsy ,"",BAGLAN_LOG.smsLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.smsLogDizin);
+		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.smsLogDizin);
 		//
-
 		stmt.close();
 		con.close();
-
 	}
 
 	@Override

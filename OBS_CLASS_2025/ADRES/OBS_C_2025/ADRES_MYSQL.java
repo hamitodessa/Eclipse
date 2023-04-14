@@ -56,19 +56,15 @@ public class ADRES_MYSQL implements IADRES {
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL" + ".DB") == false)
 		{
 			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
-			@SuppressWarnings("unused")
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy   ) ;
 			GLOBAL.create_table_log(dsy ,fir_adi,BAGLAN_LOG.adrLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.adrLogDizin);
-		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.adrLogDizin);
+		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.adrLogDizin);
+		tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.adrLogDizin);
 		//
-
 		stmt.close();
 		con.close();
-
 	}
 
 	@Override

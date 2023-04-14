@@ -74,20 +74,15 @@ public class STOK_MSSQL implements ISTOK {
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
-			@SuppressWarnings("unused")
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.fatLogDizin);
 		}
-		//
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.fatLogDizin);
 		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.fatLogDizin);
 		//
-
 		stmt.close();
 		con.close();
-
 	}
 	@Override
 	public void fAT_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi) throws ClassNotFoundException, SQLException {
@@ -122,19 +117,15 @@ public class STOK_MSSQL implements ISTOK {
 		if (GLOBAL.dos_kontrol( GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.fatLogDizin.mODUL)) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.fatLogDizin.mODUL) ;
-			@SuppressWarnings("unused")
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy  ) ;
 			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.fatLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.fatLogDizin);
-		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.fatLogDizin);
+		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.fatLogDizin);
+		tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.fatLogDizin);
 		//
-
 		stmt.close();
 		con.close();
-
 	}
 	@Override
 	public void create_table(String fir_adi) throws SQLException {

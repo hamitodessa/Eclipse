@@ -68,18 +68,15 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU+ VERITABANI + "_mSSQL" + ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy   ) ;
 			GLOBAL.create_table_log(dsy ,fir_adi,BAGLAN_LOG.kamLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kamLogDizin);
-		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.kamLogDizin);
+		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kamLogDizin);
+		tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.kamLogDizin);
 		//
-
 		stmt.close();
 		con.close();
-
 	}
 
 	@Override
@@ -116,19 +113,15 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + GLOBAL.char_degis(  BAGLAN_LOG.kamLogDizin.mODUL) ) == false)
 		{
 			String dsy =   GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kamLogDizin.mODUL)  ;
-			@SuppressWarnings("unused")
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy) ;
 			GLOBAL.create_table_log(dsy ,fir_adi,BAGLAN_LOG.kamLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kamLogDizin);
-		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.kamLogDizin);
+		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kamLogDizin);
+		tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.kamLogDizin);
 		//
-
 		stmt.close();
 		con.close();
-
 	}
 
 	@Override

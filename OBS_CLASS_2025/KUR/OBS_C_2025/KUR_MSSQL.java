@@ -22,7 +22,6 @@ public class KUR_MSSQL implements IKUR{
 		String cumle = "jdbc:sqlserver://" + BAGLAN.kurDizin.cONN_STR + ";";
 		con = DriverManager.getConnection(cumle,BAGLAN.kurDizin.kULLANICI,BAGLAN.kurDizin.sIFRESI);
 	}
-	@SuppressWarnings("unused")
 	@Override
 	public void kUR_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins, String kull, String sifre,String port) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -58,7 +57,6 @@ public class KUR_MSSQL implements IKUR{
 		cumle = "jdbc:sqlserver://localhost " + port + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
-
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
 		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kurLogDizin);
@@ -66,17 +64,15 @@ public class KUR_MSSQL implements IKUR{
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL" + ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy  ) ;
+			//Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy  ) ;
 			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kurLogDizin);
 		//
-
 		stmt.close();
 		con.close();
-
 	}
 	@Override
 	public void kUR_SIFIR_S(String server, String ins, String kull, String sifre, String kod) throws ClassNotFoundException, SQLException {
@@ -110,18 +106,14 @@ public class KUR_MSSQL implements IKUR{
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU +GLOBAL.char_degis(  BAGLAN_LOG.kurLogDizin.mODUL) ) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.kurLogDizin.mODUL)  ;
-			@SuppressWarnings("unused")
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy ) ;
 			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kurLogDizin);
 		//
-
 		stmt.close();
 		con.close();
-
 	}
 	@Override
 	public void create_table() throws SQLException {

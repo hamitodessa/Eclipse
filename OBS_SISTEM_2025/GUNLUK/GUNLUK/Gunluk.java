@@ -81,7 +81,7 @@ public class Gunluk extends JInternalFrame {
 		jtbar.add(btnNewButton);
 		btnNewButton.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_geri-24.png")));
 		
-		JLabel lblNewLabel = new JLabel("                        ");
+		JLabel lblNewLabel = new JLabel("                                         ");
 		jtbar.add(lblNewLabel);
 
 		JButton btnNewButton_1 = new JButton("");
@@ -213,6 +213,27 @@ public class Gunluk extends JInternalFrame {
 		tc = tcm.getColumn(0);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(80, 92, 124),Color.WHITE));
 
+		tc = tcm.getColumn(1);
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(255, 177, 190),new Color(204, 0, 29)));
+		
+		tc = tcm.getColumn(2);
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(86, 177, 220),new Color(171, 216, 237)));
+		
+		tc = tcm.getColumn(3);
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(107, 173, 132),new Color(173, 209, 204)));
+		
+		tc = tcm.getColumn(4);
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209)));
+		
+		tc = tcm.getColumn(5);
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(225, 207, 208),new Color(126, 78, 80)));
+		
+		tc = tcm.getColumn(6);
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(198, 201, 234),new Color(55, 64, 149)));
+		
+		tc = tcm.getColumn(7);
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104)));
+		
 		table.setTableHeader(null);
 
 		//***************************************************************************		

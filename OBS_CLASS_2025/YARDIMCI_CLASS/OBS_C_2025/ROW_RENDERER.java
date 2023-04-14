@@ -2,6 +2,7 @@ package OBS_C_2025;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -22,10 +23,12 @@ public class ROW_RENDERER extends DefaultTableCellRenderer {
 	      cell.setBackground(backgroundColor);
 	      cell.setForeground(foregroundColor);
 	      }
-	      else
+	      else if (row ==0)
 	      {
-	    	  cell.setBackground(table.getBackground());
-	          cell.setForeground(table.getForeground());
+	    	  cell.setBackground(new Color(188, 225, 244));
+	          cell.setForeground(new Color(29, 125, 175));
+	          Font fnt = new Font(table.getFont().getFontName(), 1 ,12);
+				cell.setFont(fnt);
 	      }
 	     
 	      return cell;

@@ -109,7 +109,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
-        sql = "CREATE TABLE GUNLUK (TARIH DATE , SAAT nvarchar(5),ISIM nvarchar(20),GOREV nvarchar(20),MESAJ nvarchar(100) , YON_SIFRE nvarchar(15) , FIRMA_ADI nvarchar(50),[USER] nvarchar(15) NULL)" ;  
+        sql = "CREATE TABLE GUNLUK ([GID] [int] IDENTITY(1,1) NOT NULL,TARIH DATE , SAAT nvarchar(5),ISIM nvarchar(20),GOREV nvarchar(20),MESAJ nvarchar(100) , YON_SIFRE nvarchar(15) , FIRMA_ADI nvarchar(50),[USER] nvarchar(15) NULL)" ;  
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
         sql= "CREATE TABLE OZEL(OZID int identity(1,1) CONSTRAINT PKeyOZID PRIMARY KEY,YONETICI nvarchar(25), YON_SIFRE nvarchar(15) , FIRMA_ADI nvarchar(50))";
@@ -149,6 +149,24 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	}
 	@Override
 	public void create_table_log() throws SQLException {
+		String sql = "" ;
+		sql = "CREATE TABLE  `loglama` ("
+				+ "  `TARIH` DATETIME NOT NULL,"
+				+ "  `MESAJ` VARCHAR(100) NULL,"
+				+ "  `EVRAK` VARCHAR(15) NULL,"
+				+ "  `USER_NAME` VARCHAR(15) NULL,"
+				+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) VISIBLE);";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+	}
+	@Override
+	public void gorev_kayit(String tarih, String saat, String isim, String gorev, String mesaj ,String user) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void gorev_sil(int id) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		
 	}

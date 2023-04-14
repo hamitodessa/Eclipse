@@ -121,7 +121,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
-        sql = "CREATE TABLE GUNLUK (TARIH DATE , SAAT nvarchar(5),ISIM nvarchar(20),GOREV nvarchar(20),MESAJ nvarchar(100) , YON_SIFRE nvarchar(15) , FIRMA_ADI nvarchar(50),[USER] nvarchar(15) NULL)" ;  
+        sql = "CREATE TABLE GUNLUK ([GID] [int] IDENTITY(1,1) NOT NULL , TARIH DATE , SAAT nvarchar(5),ISIM nvarchar(20),GOREV nvarchar(20),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
         sql= "CREATE TABLE OZEL(OZID int identity(1,1) CONSTRAINT PKeyOZID PRIMARY KEY,YONETICI nvarchar(25), YON_SIFRE nvarchar(15) , FIRMA_ADI nvarchar(50))";
@@ -162,7 +162,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	}
 	@Override
 	public void create_table_log() throws SQLException {
-		// TODO Auto-generated method stub
 		String sql = "" ;
 	    sql = "CREATE TABLE [dbo].[LOGLAMA]("
 	    		+ "	[TARIH] [datetime] NOT NULL,"
@@ -174,14 +173,33 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	    	stmt.executeUpdate(sql);
 	    	 sql = "CREATE NONCLUSTERED INDEX [IDX_LOGLAMA] ON [dbo].[LOGLAMA](	[TARIH] ASC,	[EVRAK] ASC , [USER_NAME] ASC "
 	                  + " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
-
-	    	 
 	           stmt = con.createStatement();  
 	           stmt.executeUpdate(sql);
-	       
+	}
+	@Override
+	public void gorev_kayit(String tarih, String saat, String isim, String gorev, String mesaj ,String user) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql  = "INSERT INTO GUNLUK (TARIH,SAAT,ISIM,GOREV,MESAJ,[USER]) " +
+				" VALUES (?,?,?,?,?,?)" ;
+		PreparedStatement stmt = null;
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, tarih);
+		stmt.setString(2, saat);
+		stmt.setString(3, isim);
+		stmt.setString(4, gorev);
+		stmt.setString(5, mesaj);
+		stmt.setString(6, user);
+		stmt.executeUpdate();
+		stmt.close();
+		   
+	}
+	@Override
+	public void gorev_sil(int id) throws ClassNotFoundException, SQLException 
+	{
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql = "DELETE GUNLUK  WHERE  GID = " + id;
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
 		
 	}
-
-	
-
 }

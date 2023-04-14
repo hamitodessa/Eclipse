@@ -323,7 +323,8 @@ public class Gunluk extends JInternalFrame {
 		}
 		return trh1;  
 	}
-	private void ileri() {
+	private void ileri() 
+	{
 		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
 		String formatted = format1.format(calendar.getDate());
 		try {
@@ -335,7 +336,8 @@ public class Gunluk extends JInternalFrame {
 		} catch (ParseException e) {
 		}  
 	}
-	private void geri() {
+	private void geri() 
+	{
 		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
 		String formatted = format1.format(calendar.getDate());
 		try {

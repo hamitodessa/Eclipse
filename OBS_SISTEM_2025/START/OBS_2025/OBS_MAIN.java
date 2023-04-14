@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import GUNLUK.GOREV_GIRIS;
 import GUNLUK.Gunluk;
 
 import javax.swing.JDesktopPane;
@@ -1690,6 +1691,12 @@ public class OBS_MAIN extends JFrame {
 		toolBar_7.add(btnNewButton_81);
 
 		JButton btnNewButton_82 = new JButton("");
+		
+		btnNewButton_82.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("GOREV GIRIS","");
+			}
+		});
 		btnNewButton_82.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-active-directory-30.png")));
 		toolBar_7.add(btnNewButton_82);
 		//************************************************************SMS*********************************************************************************
@@ -1878,6 +1885,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "ZAYI")	ZAYI.kaydet();
 				else if (sonuc == "GRAFIK")	GRAFIK.kaydet();
 				else if (sonuc == "DEGISKEN YENILEME")	DEGISKEN_DEGIS.kaydet();
+				else if (sonuc == "GOREV GIRIS")	GOREV_GIRIS.kaydet();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});
@@ -1912,6 +1920,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "ZAYI")	ZAYI.zai_sil();
 				else if (sonuc == "GIDEN RAPORLAR")	GID_RAPOR.sil();
 				else if (sonuc == "DEGISKENLER")	DEGISKEN_GIRIS.sil();
+				else if (sonuc == "GOREV GIRIS")	GOREV_GIRIS.sil();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});
@@ -2721,6 +2730,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();
 			//GUNLUK
 			else if (pencere.equals("GUNLUK")) internalFrame  = new Gunluk();
+			else if (pencere.equals("GOREV GIRIS")) internalFrame  = new GOREV_GIRIS();
 			//STOK
 			else if (pencere.equals("URUN KARTI")) internalFrame  = new URUN_KART();
 			else if (pencere.equals("IMALAT")) internalFrame  = new IMALAT();

@@ -35,4 +35,12 @@ public class GUNLUK_ACCESS {
 	{
 		return _IGunluk.gun_firma_adi();
 	}
+	public void gorev_kayit(String tarih, String saat, String isim, String gorev, String mesaj ,String user) throws ClassNotFoundException, SQLException
+	{
+		_IGunluk.gorev_kayit(tarih, saat, isim, gorev, mesaj, user);
+	}
+	public void gorev_sil(int id) throws ClassNotFoundException, SQLException
+	{
+		_IGunluk.gorev_sil(id);
+	}
 }

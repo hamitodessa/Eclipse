@@ -8,5 +8,7 @@ public class Gunluk_Bilgi {
 	public String gorev;
 	public String mesaj;
 	public String user;
+	
+	
 
 }

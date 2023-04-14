@@ -13,6 +13,6 @@ public interface IGUNLUK {
 	public void create_table_log() throws SQLException;
 	public void gorev_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException;
 	public void gorev_sil(int id) throws ClassNotFoundException, SQLException;
-	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi);
+	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException;
 }
 

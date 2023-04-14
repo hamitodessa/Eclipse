@@ -10,10 +10,13 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import com.toedter.calendar.JCalendar;
 import OBS_C_2025.Gunluk_Bilgi;
+import OBS_2025.FILTRE;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.COLUMN_RENDERER;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ROW_RENDERER;
+import OBS_C_2025.TARIH_CEVIR;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -27,11 +30,15 @@ import java.util.Date;
 import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JToolBar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
@@ -84,6 +91,19 @@ public class Gunluk extends JInternalFrame {
 		JButton btnNewButton_1 = new JButton("");
 		jtbar.add(btnNewButton_1);
 		btnNewButton_1.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_ileri-24.png")));
+		
+		JButton btnNewButton_2 = new JButton("New button");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					gorev_oku();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		jtbar.add(btnNewButton_2);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ileri();
@@ -355,10 +375,23 @@ public class Gunluk extends JInternalFrame {
 		} catch (ParseException e) {
 		}  
 	}
-	private void gorev_oku()
+	private void gorev_oku() throws ClassNotFoundException, SQLException
 	{
 		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
-		g_Access.gorev_oku(gbilgi);
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
+		String formatted = format1.format(calendar.getDate());
+		gbilgi.tarih = formatted ;
+		ResultSet rs = g_Access.gorev_oku(gbilgi);
+		
+		if (!rs.isBeforeFirst() ) { 
+			return; // Kayit Yok
+		} 
+		
+		while(rs.next()){
+			   System.out.println(rs.getString(1));
+			   System.out.println(rs.getString(2));
+			}
+		
 	}
 }
 

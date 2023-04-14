@@ -124,6 +124,10 @@ public class GUNLUK_MSSQL implements IGUNLUK {
         sql = "CREATE TABLE GUNLUK ([GID] [int] IDENTITY(1,1) NOT NULL , TARIH DATE , SAAT nvarchar(5),ISIM nvarchar(20),GOREV nvarchar(20),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
+        sql = "CREATE NONCLUSTERED INDEX [IDX_GUNLUK] ON [dbo].[GUNLUK](	[TARIH] ASC "
+                + " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
+        stmt = con.createStatement();  
+        stmt.executeUpdate(sql);
         sql= "CREATE TABLE OZEL(OZID int identity(1,1) CONSTRAINT PKeyOZID PRIMARY KEY,YONETICI nvarchar(25), YON_SIFRE nvarchar(15) , FIRMA_ADI nvarchar(50))";
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
@@ -203,8 +207,19 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		
 	}
 	@Override
-	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi) {
-		return null;
+	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException 
+	{
+		
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = "SELECT *  " +
+				" FROM GUNLUK  " +
+				" WHERE TARIH >=  '" + gbilgi.tarih + "'" +
+				" ORDER BY TARIH  ";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	
 		// TODO Auto-generated method stub
 		
 	}

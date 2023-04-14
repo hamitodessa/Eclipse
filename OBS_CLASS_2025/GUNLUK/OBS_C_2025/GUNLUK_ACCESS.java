@@ -44,7 +44,7 @@ public class GUNLUK_ACCESS {
 	{
 		_IGunluk.gorev_sil(id);
 	}
-	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi)
+	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
 	{
 		return _IGunluk.gorev_oku(gbilgi);
 	}

@@ -212,7 +212,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		String sql = "SELECT *  " +
+		String sql = "SELECT FORMAT (TARIH, 'dd.MM.yyyy') as TARIH, SAAT,ISIM,GOREV,MESAJ  " +
 				" FROM GUNLUK  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih + "'" +
 				" ORDER BY TARIH  ";

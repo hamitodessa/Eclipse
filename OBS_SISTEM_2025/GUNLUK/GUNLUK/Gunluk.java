@@ -386,10 +386,29 @@ public class Gunluk extends JInternalFrame {
 		if (!rs.isBeforeFirst() ) { 
 			return; // Kayit Yok
 		} 
+		DefaultTableModel mdlBaslik = (DefaultTableModel) table_1.getModel();
+		DefaultTableModel mdlGunluk = (DefaultTableModel) table.getModel();
 		
 		while(rs.next()){
-			   System.out.println(rs.getString(1));
-			   System.out.println(rs.getString(2));
+			
+			for (int qqq = 1; qqq <= mdlBaslik.getColumnCount() -1;qqq++)
+			{
+				if ( mdlBaslik.getValueAt(0,qqq).toString().equals(rs.getString("TARIH")))
+				{
+					for (int stt = 0 ; stt <= mdlGunluk.getRowCount() -1;stt ++)
+					{
+						if ( mdlGunluk.getValueAt(stt,0).toString().equals(rs.getString("SAAT")))
+						{
+							mdlGunluk.setValueAt(rs.getString("GOREV"),stt,qqq);
+						}
+					}
+				}
+			}
+			  // System.out.println(rs.getString("TARIH"));
+			  // System.out.println(rs.getString("SAAT"));
+			  // System.out.println(rs.getString("ISIM"));
+			  // System.out.println(rs.getString("GOREV"));
+			  // System.out.println(rs.getString("MESAJ"));
 			}
 		
 	}

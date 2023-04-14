@@ -10,14 +10,10 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import com.toedter.calendar.JCalendar;
 import OBS_C_2025.Gunluk_Bilgi;
-import OBS_2025.FILTRE;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.COLUMN_RENDERER;
-import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ROW_RENDERER;
-import OBS_C_2025.TARIH_CEVIR;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -39,7 +35,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
@@ -429,6 +424,7 @@ public class Gunluk extends JInternalFrame {
 					}
 				}
 			}
+			
 			  // System.out.println(rs.getString("TARIH"));
 			  // System.out.println(rs.getString("SAAT"));
 			  // System.out.println(rs.getString("ISIM"));

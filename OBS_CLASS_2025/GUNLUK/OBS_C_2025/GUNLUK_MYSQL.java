@@ -160,13 +160,19 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		stmt.executeUpdate(sql);
 	}
 	@Override
-	public void gorev_kayit(String tarih, String saat, String isim, String gorev, String mesaj ,String user) 
+	public void gorev_kayit(Gunluk_Bilgi gbilgi) 
 	{
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
 	public void gorev_sil(int id) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

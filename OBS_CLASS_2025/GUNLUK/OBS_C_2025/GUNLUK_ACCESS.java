@@ -1,5 +1,6 @@
 package OBS_C_2025;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 @SuppressWarnings("static-access")
 public class GUNLUK_ACCESS {
@@ -35,12 +36,16 @@ public class GUNLUK_ACCESS {
 	{
 		return _IGunluk.gun_firma_adi();
 	}
-	public void gorev_kayit(String tarih, String saat, String isim, String gorev, String mesaj ,String user) throws ClassNotFoundException, SQLException
+	public void gorev_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
 	{
-		_IGunluk.gorev_kayit(tarih, saat, isim, gorev, mesaj, user);
+		_IGunluk.gorev_kayit(gbilgi);
 	}
 	public void gorev_sil(int id) throws ClassNotFoundException, SQLException
 	{
 		_IGunluk.gorev_sil(id);
+	}
+	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi)
+	{
+		return _IGunluk.gorev_oku(gbilgi);
 	}
 }

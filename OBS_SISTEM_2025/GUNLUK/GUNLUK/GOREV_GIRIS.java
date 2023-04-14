@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,6 +28,7 @@ import javax.swing.text.JTextComponent;
 
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
+import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.TARIH_CEVIR;
@@ -248,8 +248,15 @@ public class GOREV_GIRIS extends JInternalFrame {
 				g_Access.gorev_sil(Integer.parseInt(txtGID.getText())  );
 			}
 			String str = TARIH_CEVIR.tarih_geri_saatli(dtc) ;
-			g_Access.gorev_kayit(str,cmbSaat.getSelectedItem().toString() ,
-					txtIsim.getText(), txtGorev.getText(), txtMesaj.getText(), GLOBAL.KULL_ADI);
+			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi() ;
+			
+			gbilgi.tarih = str;
+			gbilgi.saat =cmbSaat.getSelectedItem().toString() ;
+			gbilgi.isim = txtIsim.getText();
+			gbilgi.gorev = txtGorev.getText();
+			gbilgi.mesaj = txtMesaj.getText() ;
+			gbilgi.user =  GLOBAL.KULL_ADI ;
+			g_Access.gorev_kayit(gbilgi);
 			sifirla();
 		}
 		catch (Exception ex)

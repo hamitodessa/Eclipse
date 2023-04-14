@@ -1,5 +1,6 @@
 package OBS_C_2025;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public interface IGUNLUK {
@@ -10,7 +11,8 @@ public interface IGUNLUK {
 	public void create_table(  String fir_adi) throws SQLException;
 	public String gun_firma_adi() throws ClassNotFoundException, SQLException;
 	public void create_table_log() throws SQLException;
-	public void gorev_kayit(String tarih, String saat, String isim, String gorev, String mesaj ,String user) throws ClassNotFoundException, SQLException;
+	public void gorev_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException;
 	public void gorev_sil(int id) throws ClassNotFoundException, SQLException;
+	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi);
 }
 

@@ -9,7 +9,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import com.toedter.calendar.JCalendar;
+import OBS_C_2025.Gunluk_Bilgi;
+import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.COLUMN_RENDERER;
+import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ROW_RENDERER;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -32,6 +35,9 @@ import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
+	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	@SuppressWarnings({ "unused", "static-access" })
+	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	private JTable table;
 	private JTable table_1;
 	JCalendar calendar ;
@@ -348,6 +354,11 @@ public class Gunluk extends JInternalFrame {
 			calendar.setDate(new Date(cal.getTimeInMillis()));
 		} catch (ParseException e) {
 		}  
+	}
+	private void gorev_oku()
+	{
+		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
+		g_Access.gorev_oku(gbilgi);
 	}
 }
 

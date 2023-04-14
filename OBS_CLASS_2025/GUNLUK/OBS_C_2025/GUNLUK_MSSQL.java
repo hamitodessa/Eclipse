@@ -177,18 +177,18 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	           stmt.executeUpdate(sql);
 	}
 	@Override
-	public void gorev_kayit(String tarih, String saat, String isim, String gorev, String mesaj ,String user) throws ClassNotFoundException, SQLException {
+	public void gorev_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String sql  = "INSERT INTO GUNLUK (TARIH,SAAT,ISIM,GOREV,MESAJ,[USER]) " +
 				" VALUES (?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
-		stmt.setString(1, tarih);
-		stmt.setString(2, saat);
-		stmt.setString(3, isim);
-		stmt.setString(4, gorev);
-		stmt.setString(5, mesaj);
-		stmt.setString(6, user);
+		stmt.setString(1, gbilgi.tarih);
+		stmt.setString(2, gbilgi.saat);
+		stmt.setString(3, gbilgi.isim);
+		stmt.setString(4, gbilgi.gorev);
+		stmt.setString(5, gbilgi.mesaj);
+		stmt.setString(6, gbilgi.user);
 		stmt.executeUpdate();
 		stmt.close();
 		   
@@ -200,6 +200,12 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		String sql = "DELETE GUNLUK  WHERE  GID = " + id;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
+		
+	}
+	@Override
+	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi) {
+		return null;
+		// TODO Auto-generated method stub
 		
 	}
 }

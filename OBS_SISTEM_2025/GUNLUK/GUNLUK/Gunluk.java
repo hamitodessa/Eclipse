@@ -133,12 +133,27 @@ public class Gunluk extends JInternalFrame {
 		panel_1.setLayout(new BorderLayout(0, 0));
 
 		calendar = new JCalendar();
+		calendar.getDayChooser().getDayPanel().addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				try {
+					basla();
+				} catch (ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		calendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
 				if (evt.getNewValue() == evt.getOldValue()) return;
 
 				//doldur(e.getNewValue().toString());
-				basla();
+				try {
+					basla();
+				} catch (ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		calendar.setTodayButtonText("Bugun");
@@ -297,8 +312,9 @@ public class Gunluk extends JInternalFrame {
 			e1.printStackTrace();
 		}
 	}
-	private void basla()
+	private void basla() throws ClassNotFoundException, SQLException
 	{
+		temizle();
 		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
 		trh1 = format1.format(calendar.getDate());
 		DefaultTableModel mdl1 = (DefaultTableModel) table_1.getModel();
@@ -309,6 +325,7 @@ public class Gunluk extends JInternalFrame {
 			mdl1.setValueAt(tarih_ileri_geri(trh1,"I"),0,i);
 			mdl1.setValueAt(getDayNumber(trh1),1,i);
 		}
+		gorev_oku();
 	}
 	private String getDayNumber(String tar) 
 	{

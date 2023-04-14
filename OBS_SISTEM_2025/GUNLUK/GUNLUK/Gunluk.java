@@ -13,6 +13,7 @@ import OBS_C_2025.Gunluk_Bilgi;
 import OBS_2025.FILTRE;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.COLUMN_RENDERER;
+import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ROW_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
@@ -92,26 +93,25 @@ public class Gunluk extends JInternalFrame {
 		jtbar.add(btnNewButton_1);
 		btnNewButton_1.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_ileri-24.png")));
 		
-		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		
+		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					gorev_oku();
+					ileri();
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		jtbar.add(btnNewButton_2);
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ileri();
-			}
-		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				geri();
+				try {
+					geri();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		JSplitPane splitPane = new JSplitPane();
@@ -272,6 +272,14 @@ public class Gunluk extends JInternalFrame {
 
 		//**************************************************************		
 		splitPane_3.setLeftComponent(table_1);
+		temizle();
+		calendar.setDate(new Date());
+		try {
+			gorev_oku();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 	private void basla()
 	{
@@ -349,8 +357,9 @@ public class Gunluk extends JInternalFrame {
 		}
 		return trh1;  
 	}
-	private void ileri() 
+	private void ileri() throws ClassNotFoundException, SQLException 
 	{
+		temizle();
 		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
 		String formatted = format1.format(calendar.getDate());
 		try {
@@ -359,11 +368,13 @@ public class Gunluk extends JInternalFrame {
 			cal.setTime(qwe);
 			cal.add(Calendar.DAY_OF_MONTH, 1); 
 			calendar.setDate(new Date(cal.getTimeInMillis()));
+			gorev_oku();
 		} catch (ParseException e) {
 		}  
 	}
-	private void geri() 
+	private void geri() throws ClassNotFoundException, SQLException 
 	{
+		temizle();
 		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
 		String formatted = format1.format(calendar.getDate());
 		try {
@@ -372,8 +383,22 @@ public class Gunluk extends JInternalFrame {
 			cal.setTime(qwe);
 			cal.add(Calendar.DAY_OF_MONTH, -1); 
 			calendar.setDate(new Date(cal.getTimeInMillis()));
+			gorev_oku();
 		} catch (ParseException e) {
 		}  
+	}
+	private void temizle()
+	{
+		DefaultTableModel mdlGunluk = (DefaultTableModel) table.getModel();
+		DefaultTableModel mdlBaslik = (DefaultTableModel) table_1.getModel();
+
+		for (int qqq = 1; qqq <= mdlBaslik.getColumnCount() -1;qqq++)
+		{
+			for (int stt = 0 ; stt <= mdlGunluk.getRowCount() -1;stt ++)
+			{
+				mdlGunluk.setValueAt("",stt,qqq);
+			}
+		}
 	}
 	private void gorev_oku() throws ClassNotFoundException, SQLException
 	{

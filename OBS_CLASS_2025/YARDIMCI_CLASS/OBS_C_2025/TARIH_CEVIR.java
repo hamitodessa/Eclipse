@@ -94,6 +94,16 @@ public static String tarih_sql(String tar) {
 			return null;
 		}
 		}
+	public static String  gunluk_t_ffmmyyyy(JDateChooser dc) {
+		DateFormat df = new SimpleDateFormat("yyyy.MM.dd");
+		if (dc.getDate() != null) {
+			return	df.format(dc.getDate());
+		}
+		else
+		{
+			return null;
+		}
+		}
 	public static String chooser_string_eksi1(JDateChooser dc)
 	{
 		String myDate = tarih_geri_SQL(dc); //"2019/01/01";

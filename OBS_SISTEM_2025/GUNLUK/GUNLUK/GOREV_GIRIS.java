@@ -60,7 +60,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 	private static JComboBox<String> cmbBitisSaat ;
 	private static JCheckBox chckbxTekrarla ;
 	private JLabel lblBitis;
-	private JTextField txtYer;
+	private static JTextField txtYer;
 
 	/**
 	 * Launch the application.
@@ -272,6 +272,100 @@ public class GOREV_GIRIS extends JInternalFrame {
 		dtcBitis.setDate(new Date());
 		dtcBitis.setBounds(100, 210, 115, 20);
 		dtcBitis.setEnabled(false);
+		dtcBitis.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
+			@Override
+			public void focusGained(FocusEvent evt) {
+				final JTextComponent textComponent=((JTextComponent)evt.getSource());
+				SwingUtilities.invokeLater(new Runnable(){
+					public void run() {
+						textComponent.selectAll();
+					}});
+			}
+		});
+		dtcBitis.getComponent(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) 
+				{
+					dtcBitis.setDate(new Date());
+				}
+			}
+		});
+		dtcBitis.getComponent(1).addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtcBitis) == null)
+					{
+						return;
+					}
+					final JTextComponent textComponent=((JTextComponent)e.getSource());
+					int currentCaretPosition = textComponent.getCaretPosition();
+					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
+					Date date;
+					try {
+						date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dtcBitis));
+						Calendar cal = Calendar.getInstance();
+						cal.setTime(date);
+						if (currentCaretPosition >=0 && currentCaretPosition <3)
+						{
+							cal.add(Calendar.DAY_OF_MONTH, -1); 
+						}
+						else if (currentCaretPosition >=3 && currentCaretPosition <=5)
+						{
+							cal.add(Calendar.MONTH,-1);
+						}
+						else if (currentCaretPosition >=6 )
+						{
+							cal.add(Calendar.YEAR, -1); 
+						}
+						dtcBitis.setDate(new Date(cal.getTimeInMillis()));
+						textComponent.setCaretPosition(currentCaretPosition);
+					} catch (ParseException e1) {
+						e1.printStackTrace();
+					}
+				}
+				else if(e.getKeyCode()==KeyEvent.VK_UP) {
+					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtcBitis) == null)
+					{
+						return;
+					}
+					final JTextComponent textComponent1=((JTextComponent)e.getSource());
+					int currentCaretPosition = textComponent1.getCaretPosition();
+
+					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
+					Date date;
+					try {
+						date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dtcBitis));
+						Calendar cal = Calendar.getInstance();
+						cal.setTime(date);
+						if (currentCaretPosition >=0 && currentCaretPosition <3)
+						{
+							cal.add(Calendar.DAY_OF_MONTH, 1); 
+						}
+						else if (currentCaretPosition >=3 && currentCaretPosition <=5)
+						{
+							cal.add(Calendar.MONTH,1);
+						}
+						else if (currentCaretPosition >=6 )
+						{
+							cal.add(Calendar.YEAR, 1); 
+						}
+						dtcBitis.setDate(new Date(cal.getTimeInMillis()));
+						textComponent1.setCaretPosition(currentCaretPosition);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 		panel.add(dtcBitis);
 		
 		JLabel lblNewLabel_3 = new JLabel("Yer");
@@ -294,7 +388,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		
 		cmbBitisSaat = new JComboBox<String>();
 		cmbBitisSaat.setEnabled(false);
-		cmbBitisSaat.setModel(new DefaultComboBoxModel(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
+		cmbBitisSaat.setModel(new DefaultComboBoxModel<String>(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
 		cmbBitisSaat.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbBitisSaat.setBounds(288, 210, 80, 22);
 		panel.add(cmbBitisSaat);
@@ -315,8 +409,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 				if(g != 0 ) { return;	}
 				g_Access.gorev_sil(Integer.parseInt(txtGID.getText())  );
 			}
-			String str1 = TARIH_CEVIR.tarih_geri_saatli(dtcBaslama) ;
-			String str2 = TARIH_CEVIR.tarih_geri_saatli(dtcBitis) ;
+			String str1 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBaslama) ;
+			String str2 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBitis) ;
 			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi() ;
 			
 			gbilgi.tarih1 = str1;
@@ -329,12 +423,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 			gbilgi.mesaj = txtMesaj.getText() ;
 			gbilgi.user =  GLOBAL.KULL_ADI ;
 			
-			if(chckbxTekrarla.isSelected())
-			{
-				
-			}
 			g_Access.gorev_kayit(gbilgi);
-			
 			gbilgi.gid = g_Access.gid_ogren(gbilgi);
 			g_Access.gunluk_kayit(gbilgi);
 			sifirla();
@@ -369,7 +458,11 @@ public class GOREV_GIRIS extends JInternalFrame {
 		txtIsim.setText("");
 		txtGorev.setText("");
 		txtMesaj.setText("");
+		txtYer.setText("");
 		cmbBaslamaSaat.setSelectedItem("06:00");
 		dtcBaslama.setDate(new Date());
+		cmbBitisSaat.setSelectedItem("06:00");
+		dtcBitis.setDate(new Date());
+		chckbxTekrarla.setSelected(false);
 	}
 }

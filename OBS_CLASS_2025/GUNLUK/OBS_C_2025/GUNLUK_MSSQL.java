@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
@@ -190,7 +191,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void gorev_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String sql  = "INSERT INTO GUNLUK (BASL_TARIH,BASL_SAAT,BIT_TARIH,BIT_SAAT,TEKRARLA,ISIM,GOREV,MESAJ,[USER]) " +
+		String sql  = "INSERT INTO GOREV (BASL_TARIH,BASL_SAAT,BIT_TARIH,BIT_SAAT,TEKRARLA,ISIM,GOREV,MESAJ,[USER]) " +
 				" VALUES (?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
@@ -210,39 +211,44 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void gunluk_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException, ParseException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	
-		
 		//***********************KAYIT TEKRARINA GORE KAYIT YAP **************************
 		if (gbilgi.tekrarla)
 		{
-			Date son_tarih = new SimpleDateFormat("dd.MM.yyyy").parse(gbilgi.tarih2);
+			Date son_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih2);
 			long son_t = son_tarih.getTime();
-			Long anl_t = null  ;
-			Date bas_tarih = new SimpleDateFormat("dd.MM.yyyy").parse(gbilgi.tarih1);
-			do{   
-				
-				/////////////////
+			Date anl_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih1);
+			Long anl_t = anl_tarih.getTime();
+			SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
+			String  anl_tS =  format1.format(anl_tarih);
+			PreparedStatement stmt = null;
+			while (anl_t <= son_t)
+			{
 				String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,MESAJ,[USER]) " +
-						" VALUES (?,?,?,?,?,?)" ;
-				PreparedStatement stmt = null;
+						" VALUES (?,?,?,?,?,?,?)" ;
+				
 				stmt = con.prepareStatement(sql);
 				stmt.setInt(1, gbilgi.gid);
-				stmt.setString(2, gbilgi.tarih1);
+				stmt.setString(2, anl_tS);
 				stmt.setString(3, gbilgi.saat1);
 				stmt.setString(4, gbilgi.isim);
 				stmt.setString(5, gbilgi.gorev);
 				stmt.setString(6, gbilgi.mesaj);
 				stmt.setString(7, gbilgi.user);
 				stmt.executeUpdate();
-				////////////////
-				//code to be executed / loop body  
-				//update statement   
-				}while (anl_t < son_t);    
+				
+				Calendar c = Calendar.getInstance(); 
+				c.setTime(anl_tarih); 
+				c.add(Calendar.DATE, 1);
+				anl_tarih = c.getTime();
+				anl_tS =  format1.format(anl_tarih);
+				anl_t = anl_tarih.getTime() ;
+			};    
+			stmt.close();
 		}
 		else
 		{
 			String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,MESAJ,[USER]) " +
-					" VALUES (?,?,?,?,?,?)" ;
+					" VALUES (?,?,?,?,?,?,?)" ;
 			PreparedStatement stmt = null;
 			stmt = con.prepareStatement(sql);
 			stmt.setInt(1, gbilgi.gid);
@@ -253,12 +259,8 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 			stmt.setString(6, gbilgi.mesaj);
 			stmt.setString(7, gbilgi.user);
 			stmt.executeUpdate();
+			stmt.close();
 		}
-		//***********************GUNLUK KAYIT ********************************************
-		
-		
-		stmt.close();
-		   
 	}
 
 	@Override
@@ -292,10 +294,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 
 		if (count  != 0) 
 		{
-			gid = 0 ;
-		}
-		else
-		{
+			
 			gid =  rss.getInt("GID");
 		}
 		return gid;	

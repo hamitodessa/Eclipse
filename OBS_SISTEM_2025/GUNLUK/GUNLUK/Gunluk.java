@@ -12,6 +12,7 @@ import com.toedter.calendar.JCalendar;
 import OBS_C_2025.Gunluk_Bilgi;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.COLUMN_RENDERER;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ROW_RENDERER;
 import javax.swing.JScrollPane;
@@ -20,6 +21,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -31,10 +35,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JToolBar;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+import javax.swing.JTree;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
@@ -46,6 +60,9 @@ public class Gunluk extends JInternalFrame {
 	JCalendar calendar ;
 	boolean kontrol = false;
 	String trh1 = "" ;
+	boolean ilk = true;
+	private JComboBox<String> comboIsim;
+	private JTree treeGovev ;
 	/**
 	 * Launch the application.
 	 */
@@ -170,8 +187,59 @@ public class Gunluk extends JInternalFrame {
 		panel_2.setMinimumSize(new Dimension(200, 0));
 		panel_2.setMaximumSize(new Dimension(200, 0));
 		splitPane_2.setRightComponent(panel_2);
-		panel_2.setLayout(new BorderLayout(0, 0));
+		panel_2.setLayout(null);
+		
+		comboIsim = new JComboBox<String>();
+		comboIsim.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		    	
+				if (table.getRowCount() != 0)
+				{
+					
+					if (ilk == false)
+					{
+						try {
+							basla();
+						} catch (ClassNotFoundException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					
+				}
+			}
+		});
+		comboIsim.setModel(new DefaultComboBoxModel<String>(new String[] {"Hepsi"}));
+		comboIsim.setBounds(10, 11, 180, 22);
+		panel_2.add(comboIsim);
+		
+		treeGovev = new JTree();
+		treeGovev.setModel(new DefaultTreeModel(
+			new DefaultMutableTreeNode("Gorevler") {
+				{
+				}
+			}
+		));
+		
+		treeGovev.setBounds(10, 44, 180, 290);
+		treeGovev.scrollRowToVisible(2);
+		panel_2.add(treeGovev);
+		
+		JButton btnNewButton_2 = new JButton("New button");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DefaultTreeModel model = (DefaultTreeModel)treeGovev.getModel();
+				DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
+				  model.insertNodeInto(new DefaultMutableTreeNode("6==1"), root, 1);
+			}
+		});
+		btnNewButton_2.setBounds(10, 365, 89, 23);
+		panel_2.add(btnNewButton_2);
 
+		
+		
+		
+		
 		JPanel panel_3 = new JPanel();
 		splitPane_2.setLeftComponent(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
@@ -189,6 +257,22 @@ public class Gunluk extends JInternalFrame {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 
 		};
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (table.getSelectedRow() < 0) return ;
+			
+				detay_doldur(table.getSelectedRow(),table.getSelectedColumn());
+			
+			}
+		});
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent lse) {
+				if (!lse.getValueIsAdjusting()) {
+					
+				}
+			}
+		});
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		table.setRowSelectionAllowed(false);
 		table.setModel(new DefaultTableModel(
@@ -306,7 +390,8 @@ public class Gunluk extends JInternalFrame {
 		temizle();
 		calendar.setDate(new Date());
 		try {
-			gorev_oku();
+			isim_doldur();
+			basla();
 		} catch (ClassNotFoundException | SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -439,16 +524,23 @@ public class Gunluk extends JInternalFrame {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
 		String formatted = format1.format(calendar.getDate());
 		gbilgi.tarih1 = formatted ;
+		if (comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString().equals("Hepsi"))
+		{
+			gbilgi.isim = "" ;
+		}
+		else 
+		{
+			gbilgi.isim = " AND ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' " ;
+		}
 		ResultSet rs = g_Access.gorev_oku(gbilgi);
-		
+
 		if (!rs.isBeforeFirst() ) { 
 			return; // Kayit Yok
 		} 
 		DefaultTableModel mdlBaslik = (DefaultTableModel) table_1.getModel();
 		DefaultTableModel mdlGunluk = (DefaultTableModel) table.getModel();
-		
+
 		while(rs.next()){
-			
 			for (int qqq = 1; qqq <= mdlBaslik.getColumnCount() -1;qqq++)
 			{
 				if ( mdlBaslik.getValueAt(0,qqq).toString().equals(rs.getString("TARIH")))
@@ -457,19 +549,62 @@ public class Gunluk extends JInternalFrame {
 					{
 						if ( mdlGunluk.getValueAt(stt,0).toString().equals(rs.getString("SAAT")))
 						{
-							mdlGunluk.setValueAt(rs.getString("GOREV"),stt,qqq);
+							if(mdlGunluk.getValueAt(stt, qqq).toString() != "")
+							{
+								mdlGunluk.setValueAt(mdlGunluk.getValueAt(stt, qqq).toString() + "{"+rs.getString("GOREV")+"} ",stt,qqq);
+							}
+							else 
+							{
+								mdlGunluk.setValueAt("{" +rs.getString("GOREV")+"} ",stt,qqq);
+
+							}
 						}
 					}
 				}
 			}
-			
-			  // System.out.println(rs.getString("TARIH"));
-			  // System.out.println(rs.getString("SAAT"));
-			  // System.out.println(rs.getString("ISIM"));
-			  // System.out.println(rs.getString("GOREV"));
-			  // System.out.println(rs.getString("MESAJ"));
-			}
+		}
+	}
+	private void detay_doldur(int satir , int sutun)
+	{
+		System.out.println(satir +"=="+ sutun);
+		treeGovev.removeAll();
 		
+		//DefaultTreeModel model = (DefaultTreeModel)treeGovev.getModel();
+		//DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
+	
+		//root.add(new DefaultMutableTreeNode(satir +"=="+ sutun));
+		//model.reload(root);
+		
+		
+
+		DefaultTreeModel model = (DefaultTreeModel)treeGovev.getModel();
+		   DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
+	        DefaultMutableTreeNode bird = new DefaultMutableTreeNode("Birds");
+	        DefaultMutableTreeNode bird2 = new DefaultMutableTreeNode("gfgfdgdf");
+	      
+	        bird.add(bird2);
+	        root.add(bird);
+	        
+	        
+	        model.reload(root);
+	
+		 
+	}
+	private void isim_doldur() throws ClassNotFoundException, SQLException
+	{
+		ResultSet rs = g_Access.isim_oku();
+		if (!rs.isBeforeFirst() ) {  
+		} 
+		else
+		{
+			comboIsim.removeAllItems();
+			comboIsim.addItem("Hepsi");
+			while (rs.next()) 
+			{
+				comboIsim.addItem(rs.getString("ISIM"));
+			}
+			ilk= false;
+		}
 	}
 }
 

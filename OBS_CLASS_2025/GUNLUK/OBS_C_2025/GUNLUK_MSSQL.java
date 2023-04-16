@@ -191,19 +191,18 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void gorev_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String sql  = "INSERT INTO GOREV (BASL_TARIH,BASL_SAAT,BIT_TARIH,BIT_SAAT,TEKRARLA,ISIM,GOREV,MESAJ,[USER]) " +
-				" VALUES (?,?,?,?,?,?,?,?,?)" ;
+		String sql  = "INSERT INTO GOREV (BASL_TARIH,BASL_SAAT,BIT_TARIH,TEKRARLA,ISIM,GOREV,MESAJ,[USER]) " +
+				" VALUES (?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, gbilgi.tarih1);
 		stmt.setString(2, gbilgi.saat1);
 		stmt.setString(3, gbilgi.tarih2);
-		stmt.setString(4, gbilgi.saat2);
-		stmt.setBoolean(5, gbilgi.tekrarla);
-		stmt.setString(6, gbilgi.isim);
-		stmt.setString(7, gbilgi.gorev);
-		stmt.setString(8, gbilgi.mesaj);
-		stmt.setString(9, gbilgi.user);
+		stmt.setBoolean(4, gbilgi.tekrarla);
+		stmt.setString(5, gbilgi.isim);
+		stmt.setString(6, gbilgi.gorev);
+		stmt.setString(7, gbilgi.mesaj);
+		stmt.setString(8, gbilgi.user);
 		stmt.executeUpdate();
 		stmt.close();
 
@@ -303,18 +302,25 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException 
 	{
-		
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT FORMAT (TARIH, 'dd.MM.yyyy') as TARIH, SAAT,ISIM,GOREV,MESAJ  " +
 				" FROM GUNLUK  " +
-				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" +
+				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
 				" ORDER BY TARIH  ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
-	
-		// TODO Auto-generated method stub
-		
+	}
+	@Override
+	public ResultSet isim_oku() throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = "SELECT ISIM  " +
+				" FROM GOREV  " +
+				" ORDER BY ISIM  ";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
 	}
 }

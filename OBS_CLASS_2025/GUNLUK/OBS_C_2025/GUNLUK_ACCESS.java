@@ -57,4 +57,8 @@ public class GUNLUK_ACCESS {
 	{
 		return _IGunluk.gorev_oku(gbilgi);
 	}
+	public ResultSet isim_oku() throws ClassNotFoundException, SQLException
+	{
+		return _IGunluk.isim_oku();
+	}
 }

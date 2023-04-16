@@ -189,5 +189,10 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public ResultSet isim_oku() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

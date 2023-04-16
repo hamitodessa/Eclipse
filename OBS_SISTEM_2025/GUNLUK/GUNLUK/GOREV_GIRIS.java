@@ -57,7 +57,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 	private static JDateChooser dtcBaslama ;
 	private static JDateChooser dtcBitis;
 	private static JComboBox<String> cmbBaslamaSaat ;
-	private static JComboBox<String> cmbBitisSaat ;
 	private static JCheckBox chckbxTekrarla ;
 	private JLabel lblBitis;
 	private static JTextField txtYer;
@@ -251,13 +250,11 @@ public class GOREV_GIRIS extends JInternalFrame {
 				if (chckbxTekrarla.isSelected())
 				{
 					dtcBitis.setEnabled(true);
-					cmbBitisSaat.setEnabled(true);
 					lblBitis.setEnabled(true);
 				}
 				else
 				{
 					dtcBitis.setEnabled(false);
-					cmbBitisSaat.setEnabled(false);
 					lblBitis.setEnabled(false);
 				}
 				
@@ -386,13 +383,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 		lblBitis.setBounds(10, 215, 48, 14);
 		panel.add(lblBitis);
 		
-		cmbBitisSaat = new JComboBox<String>();
-		cmbBitisSaat.setEnabled(false);
-		cmbBitisSaat.setModel(new DefaultComboBoxModel<String>(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
-		cmbBitisSaat.setFont(new Font("Tahoma", Font.BOLD, 11));
-		cmbBitisSaat.setBounds(288, 210, 80, 22);
-		panel.add(cmbBitisSaat);
-		
 		
 		
 		sifirla();
@@ -416,7 +406,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 			gbilgi.tarih1 = str1;
 			gbilgi.tarih2 = str2;
 			gbilgi.saat1 =cmbBaslamaSaat.getSelectedItem().toString() ;
-			gbilgi.saat2 =cmbBitisSaat.getSelectedItem().toString() ;
 			gbilgi.tekrarla = chckbxTekrarla.isSelected() ? true : false;
 			gbilgi.isim = txtIsim.getText();
 			gbilgi.gorev = txtGorev.getText();
@@ -461,7 +450,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 		txtYer.setText("");
 		cmbBaslamaSaat.setSelectedItem("06:00");
 		dtcBaslama.setDate(new Date());
-		cmbBitisSaat.setSelectedItem("06:00");
 		dtcBitis.setDate(new Date());
 		chckbxTekrarla.setSelected(false);
 	}

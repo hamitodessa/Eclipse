@@ -438,7 +438,7 @@ public class Gunluk extends JInternalFrame {
 		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
 		String formatted = format1.format(calendar.getDate());
-		gbilgi.tarih = formatted ;
+		gbilgi.tarih1 = formatted ;
 		ResultSet rs = g_Access.gorev_oku(gbilgi);
 		
 		if (!rs.isBeforeFirst() ) { 

@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
@@ -121,9 +124,13 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
-        sql = "CREATE TABLE GUNLUK ([GID] [int] IDENTITY(1,1) NOT NULL , TARIH DATE , SAAT nvarchar(5),ISIM nvarchar(20),GOREV nvarchar(20),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
+        sql = "CREATE TABLE GOREV ([GID] [int] IDENTITY(1,1) NOT NULL , BASL_TARIH DATE , BASL_SAAT nvarchar(5), BIT_TARIH DATE , BIT_SAAT nvarchar(5),TEKRARLA bit,ISIM nvarchar(20),GOREV nvarchar(20),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
+        sql = "CREATE TABLE GUNLUK ([GID] [int]  , TARIH DATE ,SAAT nvarchar(5),ISIM nvarchar(20),GOREV nvarchar(20),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
+        stmt = con.createStatement();  
+        stmt.executeUpdate(sql);
+
         sql = "CREATE NONCLUSTERED INDEX [IDX_GUNLUK] ON [dbo].[GUNLUK](	[TARIH] ASC "
                 + " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
         stmt = con.createStatement();  
@@ -183,27 +190,115 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void gorev_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String sql  = "INSERT INTO GUNLUK (TARIH,SAAT,ISIM,GOREV,MESAJ,[USER]) " +
-				" VALUES (?,?,?,?,?,?)" ;
+		String sql  = "INSERT INTO GUNLUK (BASL_TARIH,BASL_SAAT,BIT_TARIH,BIT_SAAT,TEKRARLA,ISIM,GOREV,MESAJ,[USER]) " +
+				" VALUES (?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
-		stmt.setString(1, gbilgi.tarih);
-		stmt.setString(2, gbilgi.saat);
-		stmt.setString(3, gbilgi.isim);
-		stmt.setString(4, gbilgi.gorev);
-		stmt.setString(5, gbilgi.mesaj);
-		stmt.setString(6, gbilgi.user);
+		stmt.setString(1, gbilgi.tarih1);
+		stmt.setString(2, gbilgi.saat1);
+		stmt.setString(3, gbilgi.tarih2);
+		stmt.setString(4, gbilgi.saat2);
+		stmt.setBoolean(5, gbilgi.tekrarla);
+		stmt.setString(6, gbilgi.isim);
+		stmt.setString(7, gbilgi.gorev);
+		stmt.setString(8, gbilgi.mesaj);
+		stmt.setString(9, gbilgi.user);
 		stmt.executeUpdate();
+		stmt.close();
+
+	}
+	@Override
+	public void gunluk_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException, ParseException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	
+		
+		//***********************KAYIT TEKRARINA GORE KAYIT YAP **************************
+		if (gbilgi.tekrarla)
+		{
+			Date son_tarih = new SimpleDateFormat("dd.MM.yyyy").parse(gbilgi.tarih2);
+			long son_t = son_tarih.getTime();
+			Long anl_t = null  ;
+			Date bas_tarih = new SimpleDateFormat("dd.MM.yyyy").parse(gbilgi.tarih1);
+			do{   
+				
+				/////////////////
+				String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,MESAJ,[USER]) " +
+						" VALUES (?,?,?,?,?,?)" ;
+				PreparedStatement stmt = null;
+				stmt = con.prepareStatement(sql);
+				stmt.setInt(1, gbilgi.gid);
+				stmt.setString(2, gbilgi.tarih1);
+				stmt.setString(3, gbilgi.saat1);
+				stmt.setString(4, gbilgi.isim);
+				stmt.setString(5, gbilgi.gorev);
+				stmt.setString(6, gbilgi.mesaj);
+				stmt.setString(7, gbilgi.user);
+				stmt.executeUpdate();
+				////////////////
+				//code to be executed / loop body  
+				//update statement   
+				}while (anl_t < son_t);    
+		}
+		else
+		{
+			String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,MESAJ,[USER]) " +
+					" VALUES (?,?,?,?,?,?)" ;
+			PreparedStatement stmt = null;
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, gbilgi.gid);
+			stmt.setString(2, gbilgi.tarih1);
+			stmt.setString(3, gbilgi.saat1);
+			stmt.setString(4, gbilgi.isim);
+			stmt.setString(5, gbilgi.gorev);
+			stmt.setString(6, gbilgi.mesaj);
+			stmt.setString(7, gbilgi.user);
+			stmt.executeUpdate();
+		}
+		//***********************GUNLUK KAYIT ********************************************
+		
+		
 		stmt.close();
 		   
 	}
+
 	@Override
 	public void gorev_sil(int id) throws ClassNotFoundException, SQLException 
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String sql = "DELETE GUNLUK  WHERE  GID = " + id;
+		String sql = "DELETE GOREV  WHERE  GID = " + id;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
+		
+		sql = "DELETE GUNLUK  WHERE  GID = " + id;
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
+	}
+	@Override
+	public int gid_ogren(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
+	{
+		int gid = 0;
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = "SELECT GID  " +
+				" FROM GOREV  " +
+				" WHERE ISIM =  '" + gbilgi.isim + "' AND GOREV = '" + gbilgi.gorev+ "'" +
+				" AND BASL_TARIH = '" + gbilgi.tarih1 + "' AND BIT_TARIH = '" + gbilgi.tarih2 + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		rss.next();
+		int count=0;
+		count = rss.getRow();
+
+		if (count  != 0) 
+		{
+			gid = 0 ;
+		}
+		else
+		{
+			gid =  rss.getInt("GID");
+		}
+		return gid;	
 		
 	}
 	@Override
@@ -214,7 +309,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		ResultSet	rss = null;
 		String sql = "SELECT FORMAT (TARIH, 'dd.MM.yyyy') as TARIH, SAAT,ISIM,GOREV,MESAJ  " +
 				" FROM GUNLUK  " +
-				" WHERE TARIH >=  '" + gbilgi.tarih + "'" +
+				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" +
 				" ORDER BY TARIH  ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

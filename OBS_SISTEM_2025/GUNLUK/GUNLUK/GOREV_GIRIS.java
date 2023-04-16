@@ -54,12 +54,13 @@ public class GOREV_GIRIS extends JInternalFrame {
 	private static JTextField txtGorev;
 	private static JTextArea txtMesaj;
 	private static JTextField txtGID;
-	private static JDateChooser dtc ;
+	private static JDateChooser dtcBaslama ;
 	private static JDateChooser dtcBitis;
-	private static JComboBox<String> cmbSaat ;
-	private JTextField txtKacgun;
-	private JLabel lblkacgun;
+	private static JComboBox<String> cmbBaslamaSaat ;
+	private static JComboBox<String> cmbBitisSaat ;
 	private static JCheckBox chckbxTekrarla ;
+	private JLabel lblBitis;
+	private JTextField txtYer;
 
 	/**
 	 * Launch the application.
@@ -83,7 +84,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 	public GOREV_GIRIS() {
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(100, 100, 450, 299);
+		setBounds(100, 100, 514, 299);
 		setTitle("GOREV GIRIS");
 
 		JPanel panel = new JPanel();
@@ -95,7 +96,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Gorev");
-		lblNewLabel_1.setBounds(10, 54, 46, 14);
+		lblNewLabel_1.setBounds(10, 58, 46, 14);
 		panel.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Mesaj");
@@ -103,17 +104,17 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(lblNewLabel_2);
 
 		txtIsim = new JTextField(20);
-		txtIsim.setBounds(66, 26, 134, 20);
+		txtIsim.setBounds(100, 26, 134, 20);
 		panel.add(txtIsim);
 		txtIsim.setColumns(10);
 
 		txtGorev = new JTextField(20);
-		txtGorev.setBounds(66, 51, 134, 20);
+		txtGorev.setBounds(100, 55, 134, 20);
 		panel.add(txtGorev);
 		txtGorev.setColumns(10);
 
 		txtMesaj = new JTextArea();
-		txtMesaj.setBounds(66, 95, 319, 75);
+		txtMesaj.setBounds(100, 95, 339, 75);
 		txtMesaj.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -129,9 +130,9 @@ public class GOREV_GIRIS extends JInternalFrame {
 
 		panel.add(txtMesaj);
 
-		dtc = new JDateChooser();
-		dtc.setBounds(66, 181, 105, 20);
-		dtc.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
+		dtcBaslama = new JDateChooser();
+		dtcBaslama.setBounds(100, 180, 115, 20);
+		dtcBaslama.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
 			public void focusGained(FocusEvent evt) {
 				final JTextComponent textComponent=((JTextComponent)evt.getSource());
@@ -141,23 +142,23 @@ public class GOREV_GIRIS extends JInternalFrame {
 					}});
 			}
 		});
-		dtc.getComponent(1).addMouseListener(new MouseAdapter() {
+		dtcBaslama.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
 				{
-					dtc.setDate(new Date());
+					dtcBaslama.setDate(new Date());
 				}
 			}
 		});
-		dtc.getComponent(1).addKeyListener(new KeyListener() {
+		dtcBaslama.getComponent(1).addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 			}
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
-					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc) == null)
+					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtcBaslama) == null)
 					{
 						return;
 					}
@@ -166,7 +167,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
 					try {
-						date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc));
+						date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dtcBaslama));
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
 						if (currentCaretPosition >=0 && currentCaretPosition <3)
@@ -181,14 +182,14 @@ public class GOREV_GIRIS extends JInternalFrame {
 						{
 							cal.add(Calendar.YEAR, -1); 
 						}
-						dtc.setDate(new Date(cal.getTimeInMillis()));
+						dtcBaslama.setDate(new Date(cal.getTimeInMillis()));
 						textComponent.setCaretPosition(currentCaretPosition);
 					} catch (ParseException e1) {
 						e1.printStackTrace();
 					}
 				}
 				else if(e.getKeyCode()==KeyEvent.VK_UP) {
-					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc) == null)
+					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtcBaslama) == null)
 					{
 						return;
 					}
@@ -198,7 +199,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
 					try {
-						date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc));
+						date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dtcBaslama));
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
 						if (currentCaretPosition >=0 && currentCaretPosition <3)
@@ -213,7 +214,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 						{
 							cal.add(Calendar.YEAR, 1); 
 						}
-						dtc.setDate(new Date(cal.getTimeInMillis()));
+						dtcBaslama.setDate(new Date(cal.getTimeInMillis()));
 						textComponent1.setCaretPosition(currentCaretPosition);
 					} catch (ParseException e1) {
 						// TODO Auto-generated catch block
@@ -225,64 +226,78 @@ public class GOREV_GIRIS extends JInternalFrame {
 			public void keyReleased(KeyEvent e) {
 			}
 		});
-		dtc.setDateFormatString("dd.MM.yyyy");
-		dtc.setFont(new Font("Tahoma", Font.BOLD, 11));
-		dtc.setDate(new Date());
+		dtcBaslama.setDateFormatString("dd.MM.yyyy");
+		dtcBaslama.setFont(new Font("Tahoma", Font.BOLD, 11));
+		dtcBaslama.setDate(new Date());
 
-		panel.add(dtc);
+		panel.add(dtcBaslama);
 
-		cmbSaat = new JComboBox<String>();
-		cmbSaat.setFont(new Font("Tahoma", Font.BOLD, 11));
-		cmbSaat.setModel(new DefaultComboBoxModel<String>(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
-		cmbSaat.setBounds(66, 211, 80, 22);
-		panel.add(cmbSaat);
+		cmbBaslamaSaat = new JComboBox<String>();
+		cmbBaslamaSaat.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cmbBaslamaSaat.setModel(new DefaultComboBoxModel<String>(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
+		cmbBaslamaSaat.setBounds(288, 180, 80, 22);
+		panel.add(cmbBaslamaSaat);
 
 		txtGID = new JTextField();
-		txtGID.setBounds(210, 26, 39, 20);
+		txtGID.setBounds(10, 135, 39, 20);
 
 		txtGID.setVisible(false);
 		panel.add(txtGID);
 		
 		chckbxTekrarla = new JCheckBox("Tekrarla");
-		chckbxTekrarla.setHorizontalAlignment(SwingConstants.RIGHT);
+		chckbxTekrarla.setHorizontalAlignment(SwingConstants.LEFT);
 		chckbxTekrarla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chckbxTekrarla.isSelected())
 				{
-					dtcBitis.setVisible(true);
-					txtKacgun.setVisible(true);
-					lblkacgun.setVisible(true);
+					dtcBitis.setEnabled(true);
+					cmbBitisSaat.setEnabled(true);
+					lblBitis.setEnabled(true);
 				}
 				else
 				{
-					dtcBitis.setVisible(false);
-					txtKacgun.setVisible(false);
-					lblkacgun.setVisible(false);
+					dtcBitis.setEnabled(false);
+					cmbBitisSaat.setEnabled(false);
+					lblBitis.setEnabled(false);
 				}
 				
 			}
 		});
-		chckbxTekrarla.setBounds(289, 178, 99, 23);
+		chckbxTekrarla.setBounds(100, 235, 99, 23);
 		panel.add(chckbxTekrarla);
 		
 		dtcBitis = new JDateChooser();
 		dtcBitis.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dtcBitis.setDateFormatString("dd.MM.yyyy");
 		dtcBitis.setDate(new Date());
-		dtcBitis.setBounds(280, 239, 105, 20);
-		dtcBitis.setVisible(false);
+		dtcBitis.setBounds(100, 210, 115, 20);
+		dtcBitis.setEnabled(false);
 		panel.add(dtcBitis);
 		
-		txtKacgun = new JTextField();
-		txtKacgun.setBounds(330, 212, 55, 20);
-		txtKacgun.setVisible(false);
-		panel.add(txtKacgun);
-		txtKacgun.setColumns(3);
+		JLabel lblNewLabel_3 = new JLabel("Yer");
+		lblNewLabel_3.setBounds(251, 29, 39, 14);
+		panel.add(lblNewLabel_3);
 		
-		lblkacgun = new JLabel("Kac Gunde ");
-		lblkacgun.setBounds(250, 215, 70, 14);
-		lblkacgun.setVisible(false);
-		panel.add(lblkacgun);
+		txtYer = new JTextField();
+		txtYer.setBounds(300, 26, 135, 20);
+		panel.add(txtYer);
+		txtYer.setColumns(10);
+		
+		JLabel lblNewLabel_4 = new JLabel("Baslama");
+		lblNewLabel_4.setBounds(10, 187, 69, 14);
+		panel.add(lblNewLabel_4);
+		
+		lblBitis = new JLabel("Bitis");
+		lblBitis.setEnabled(false);
+		lblBitis.setBounds(10, 215, 48, 14);
+		panel.add(lblBitis);
+		
+		cmbBitisSaat = new JComboBox<String>();
+		cmbBitisSaat.setEnabled(false);
+		cmbBitisSaat.setModel(new DefaultComboBoxModel(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
+		cmbBitisSaat.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cmbBitisSaat.setBounds(288, 210, 80, 22);
+		panel.add(cmbBitisSaat);
 		
 		
 		
@@ -300,11 +315,15 @@ public class GOREV_GIRIS extends JInternalFrame {
 				if(g != 0 ) { return;	}
 				g_Access.gorev_sil(Integer.parseInt(txtGID.getText())  );
 			}
-			String str = TARIH_CEVIR.tarih_geri_saatli(dtc) ;
+			String str1 = TARIH_CEVIR.tarih_geri_saatli(dtcBaslama) ;
+			String str2 = TARIH_CEVIR.tarih_geri_saatli(dtcBitis) ;
 			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi() ;
 			
-			gbilgi.tarih = str;
-			gbilgi.saat =cmbSaat.getSelectedItem().toString() ;
+			gbilgi.tarih1 = str1;
+			gbilgi.tarih2 = str2;
+			gbilgi.saat1 =cmbBaslamaSaat.getSelectedItem().toString() ;
+			gbilgi.saat2 =cmbBitisSaat.getSelectedItem().toString() ;
+			gbilgi.tekrarla = chckbxTekrarla.isSelected() ? true : false;
 			gbilgi.isim = txtIsim.getText();
 			gbilgi.gorev = txtGorev.getText();
 			gbilgi.mesaj = txtMesaj.getText() ;
@@ -315,6 +334,9 @@ public class GOREV_GIRIS extends JInternalFrame {
 				
 			}
 			g_Access.gorev_kayit(gbilgi);
+			
+			gbilgi.gid = g_Access.gid_ogren(gbilgi);
+			g_Access.gunluk_kayit(gbilgi);
 			sifirla();
 		}
 		catch (Exception ex)
@@ -347,7 +369,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		txtIsim.setText("");
 		txtGorev.setText("");
 		txtMesaj.setText("");
-		cmbSaat.setSelectedItem("06:00");
-		dtc.setDate(new Date());
+		cmbBaslamaSaat.setSelectedItem("06:00");
+		dtcBaslama.setDate(new Date());
 	}
 }

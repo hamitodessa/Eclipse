@@ -47,6 +47,7 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 			cell.setBackground(Color.WHITE);
 			cell.setForeground(Color.WHITE);
 		}
+		
 		return cell;
 	}
 }

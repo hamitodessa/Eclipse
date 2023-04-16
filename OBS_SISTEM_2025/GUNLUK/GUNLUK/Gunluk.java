@@ -6,6 +6,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import com.toedter.calendar.JCalendar;
@@ -23,13 +24,17 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+import javax.swing.text.Position;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Enumeration;
 import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -39,6 +44,8 @@ import java.sql.SQLException;
 import javax.swing.JToolBar;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -51,6 +58,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JTree;
+import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
@@ -227,6 +235,35 @@ public class Gunluk extends JInternalFrame {
 		splitPane_6.setLeftComponent(scrollPane_1);
 		
 		treeGovev = new JTree();
+		treeGovev.addTreeSelectionListener(new TreeSelectionListener(){
+		    @Override
+		    public void valueChanged(TreeSelectionEvent tse) {
+		       DefaultMutableTreeNode node =  (DefaultMutableTreeNode) treeGovev.getLastSelectedPathComponent();
+		       // System.out.println(node.toString());
+		       // TreePath[] paths = treeGovev.getSelectionPaths();
+		     
+		    //    for (int i=0; i<paths.length; i++) {
+		         
+		      //      System.out.println(paths[i]);
+		       // }
+		      
+		      int sayi = node.getDepth();
+		      System.out.println(sayi);
+		        Enumeration en = node.depthFirstEnumeration();
+		        while (en.hasMoreElements()) {
+
+		         
+		          DefaultMutableTreeNode nod1 = (DefaultMutableTreeNode) en.nextElement();
+		          System.out.println(nod1);
+		        }
+		        //
+		       
+		        //
+		    }
+		});
+		
+		
+		
 		scrollPane_1.setViewportView(treeGovev);
 		treeGovev.setModel(new DefaultTreeModel(
 			new DefaultMutableTreeNode("Gorevler") {
@@ -235,8 +272,8 @@ public class Gunluk extends JInternalFrame {
 			}
 		));
 		treeGovev.getAutoscrolls();
+		treeGovev.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
-		
 		
 		
 		
@@ -259,17 +296,23 @@ public class Gunluk extends JInternalFrame {
 		};
 		table.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) 
+			{
 				if (table.getSelectedRow() < 0) return ;
 				if (table.getSelectedColumn() == 0) return ;
-				  if (table.equals(e.getSource())) {
-				try {
-					detay_doldur(table.getSelectedRow(),table.getSelectedColumn());
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				if (table.equals(e.getSource())) 
+				{
+					try 
+					{
+						table.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				
+						detay_doldur(table.getSelectedRow(),table.getSelectedColumn());
+						table.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+					} catch (ClassNotFoundException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
-				  }
 			}
 		});
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -335,7 +378,7 @@ public class Gunluk extends JInternalFrame {
 		table.setTableHeader(null);
 
 		//***************************************************************************		
-		scrollPane.setViewportView(table);
+		scrollPane.setRowHeaderView(table);
 
 		table_1 = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }

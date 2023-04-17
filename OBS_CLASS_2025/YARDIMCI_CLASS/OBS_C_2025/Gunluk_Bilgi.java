@@ -5,6 +5,7 @@ public class Gunluk_Bilgi {
 	public String tarih1;
 	public String saat1;
 	public String tarih2;
+	public String saat2;
 	public String isim;
 	public String gorev;
 	public String yer;

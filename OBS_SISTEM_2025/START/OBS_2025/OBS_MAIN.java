@@ -10,6 +10,7 @@ import javax.swing.border.LineBorder;
 
 import GUNLUK.GOREV_GIRIS;
 import GUNLUK.Gunluk;
+import GUNLUK.HAZIR_GOREVLER;
 
 import javax.swing.JDesktopPane;
 import java.awt.Toolkit;
@@ -1699,6 +1700,16 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_82.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-active-directory-30.png")));
 		toolBar_7.add(btnNewButton_82);
+		
+		JButton btnNewButton_21 = new JButton("");
+		btnNewButton_21.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("HAZIR GOREVLER","");
+			}
+		});
+		btnNewButton_21.setToolTipText("Hazir Gorevler");
+		btnNewButton_21.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-news-30.png")));
+		toolBar_7.add(btnNewButton_21);
 		//************************************************************SMS*********************************************************************************
 
 		JToolBar toolBar_8 = new JToolBar();
@@ -2731,6 +2742,7 @@ public class OBS_MAIN extends JFrame {
 			//GUNLUK
 			else if (pencere.equals("GUNLUK")) internalFrame  = new Gunluk();
 			else if (pencere.equals("GOREV GIRIS")) internalFrame  = new GOREV_GIRIS();
+			else if (pencere.equals("HAZIR GOREVLER")) internalFrame  = new HAZIR_GOREVLER();
 			//STOK
 			else if (pencere.equals("URUN KARTI")) internalFrame  = new URUN_KART();
 			else if (pencere.equals("IMALAT")) internalFrame  = new IMALAT();

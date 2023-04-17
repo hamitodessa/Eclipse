@@ -128,7 +128,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
         sql = "CREATE TABLE GOREV ([GID] [int] IDENTITY(1,1) NOT NULL , BASL_TARIH DATE , BASL_SAAT nvarchar(5), BIT_TARIH DATE , BIT_SAAT nvarchar(5),TEKRARLA bit,ISIM nvarchar(20),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
-        sql = "CREATE TABLE GUNLUK ([GID] [int]  , TARIH DATE ,SAAT nvarchar(5),ISIM nvarchar(20),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
+        sql = "CREATE TABLE GUNLUK ( [GRVID] [int] IDENTITY(1,1) NOT NULL  ,  [GID] [int]  , TARIH DATE ,SAAT nvarchar(5),ISIM nvarchar(20),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
 
@@ -368,6 +368,20 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		String sql = "SELECT *  " +
 				" FROM GOREV  " +
 				" WHERE GID =  " + gbilgi.gid + "";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+	@Override
+	public ResultSet hazir_gorevler(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = "SELECT  *  " +
+				" FROM GUNLUK  " +
+				" WHERE TARIH BETWEEN  '" + gbilgi.tarih1 + "' AND  '" + gbilgi.tarih2 +"' AND SAAT BETWEEN '" + gbilgi.saat1 + "' AND  '" + gbilgi.saat2 + "'" +
+				" AND ISIM " + gbilgi.isim + " " +
+				" ORDER BY TARIH  ";
+		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

@@ -278,7 +278,47 @@ public class Gunluk extends JInternalFrame {
 		splitPane_3.setDividerSize(0);
 		splitPane_3.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		panel_3.add(splitPane_3, BorderLayout.CENTER);
+///*********************************************************************************************************************		
+		table_1 = new JTable(){
+			public boolean isCellEditable(int row, int column) {     return false;          }
 
+		};
+		table_1.setModel(new DefaultTableModel(
+				new Object[][] {
+					{null, null, null, null, null, null, null, null},
+					{"", "Pazartesi","Sali", "Carsamba", "Persembe", "Cuma", "Cumartesi", "Pazar"},
+				},
+				new String[] {
+						"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
+				}
+				));
+		table_1.setRowSelectionAllowed(false);
+		
+		table_1.setRowHeight(0, 30);
+		table_1.setRowHeight(1, 30);
+		table_1.getColumnModel().getColumn(0).setMaxWidth(100);
+		table_1.getColumnModel().getColumn(0).setMinWidth(100);
+		JTableHeader ttt = table_1.getTableHeader();
+		TableColumnModel tcc = ttt.getColumnModel();
+		TableColumn tc1;
+		tc1 = tcc.getColumn(1);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		tc1 = tcc.getColumn(2);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		tc1 = tcc.getColumn(3);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		tc1 = tcc.getColumn(4);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		tc1 = tcc.getColumn(5);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		tc1 = tcc.getColumn(6);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		tc1 = tcc.getColumn(7);
+		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
+		table_1.setTableHeader(null);
+		//*****************************************************************************************************************		
+		splitPane_3.setLeftComponent(table_1);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane_3.setRightComponent(scrollPane);
 		//*****************************************************
@@ -286,6 +326,8 @@ public class Gunluk extends JInternalFrame {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 
 		};
+		
+		scrollPane.setViewportView(table);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
@@ -345,82 +387,22 @@ public class Gunluk extends JInternalFrame {
 		TableColumn tc;
 		tc = tcm.getColumn(0);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(80, 92, 124),Color.WHITE));
-
 		tc = tcm.getColumn(1);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(255, 177, 190),new Color(204, 0, 29)));
-
 		tc = tcm.getColumn(2);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(86, 177, 220),new Color(171, 216, 237)));
-
 		tc = tcm.getColumn(3);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(107, 173, 132),new Color(173, 209, 204)));
-
 		tc = tcm.getColumn(4);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209)));
-
 		tc = tcm.getColumn(5);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(225, 207, 208),new Color(126, 78, 80)));
-
 		tc = tcm.getColumn(6);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(198, 201, 234),new Color(55, 64, 149)));
-
 		tc = tcm.getColumn(7);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104)));
 
 		table.setTableHeader(null);
-
-		//***************************************************************************		
-		scrollPane.setRowHeaderView(table);
-
-		table_1 = new JTable(){
-			public boolean isCellEditable(int row, int column) {     return false;          }
-
-		};
-
-		table_1.setRowSelectionAllowed(false);
-
-		table_1.setModel(new DefaultTableModel(
-				new Object[][] {
-					{null, null, null, null, null, null, null, null},
-					{"", "Pazartesi","Sali", "Carsamba", "Persembe", "Cuma", "Cumartesi", "Pazar"},
-				},
-				new String[] {
-						"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
-				}
-				));
-		table_1.setRowHeight(0, 30);
-		table_1.setRowHeight(1, 30);
-		table_1.getColumnModel().getColumn(0).setMaxWidth(100);
-		table_1.getColumnModel().getColumn(0).setMinWidth(100);
-		JTableHeader ttt = table_1.getTableHeader();
-		TableColumnModel tcc = ttt.getColumnModel();
-		TableColumn tc1;
-		tc1 = tcc.getColumn(1);
-		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
-
-		tc1 = tcc.getColumn(2);
-		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
-
-		tc1 = tcc.getColumn(3);
-		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
-
-		tc1 = tcc.getColumn(4);
-		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
-
-		tc1 = tcc.getColumn(5);
-		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
-
-		tc1 = tcc.getColumn(6);
-		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
-
-		tc1 = tcc.getColumn(7);
-		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
-
-
-		table_1.setTableHeader(null);
-
-		//**************************************************************		
-		splitPane_3.setLeftComponent(table_1);
 		temizle();
 		calendar.setDate(new Date());
 		try {

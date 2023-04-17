@@ -13,7 +13,6 @@ import com.toedter.calendar.JCalendar;
 import OBS_C_2025.Gunluk_Bilgi;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.COLUMN_RENDERER;
-import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ROW_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
@@ -24,7 +23,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-import javax.swing.text.Position;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -32,6 +30,7 @@ import javax.swing.tree.TreeSelectionModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
@@ -42,8 +41,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JToolBar;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
@@ -55,10 +52,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 import javax.swing.JTree;
-import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
@@ -103,19 +97,19 @@ public class Gunluk extends JInternalFrame {
 		JToolBar jtbar = new JToolBar();
 		jtbar.setFloatable(false);
 		getContentPane().add(jtbar, BorderLayout.NORTH);
-		
+
 		JButton btnNewButton = new JButton("");
 		jtbar.add(btnNewButton);
 		btnNewButton.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_geri-24.png")));
-		
+
 		JLabel lblNewLabel = new JLabel("                                         ");
 		jtbar.add(lblNewLabel);
 
 		JButton btnNewButton_1 = new JButton("");
 		jtbar.add(btnNewButton_1);
 		btnNewButton_1.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_ileri-24.png")));
-		
-		
+
+
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -198,20 +192,20 @@ public class Gunluk extends JInternalFrame {
 		panel_2.setMaximumSize(new Dimension(200, 0));
 		splitPane_2.setRightComponent(panel_2);
 		panel_2.setLayout(new BorderLayout(0, 0));
-		
+
 		JSplitPane splitPane_5 = new JSplitPane();
 		splitPane_5.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		panel_2.add(splitPane_5, BorderLayout.CENTER);
-		
+
 		comboIsim = new JComboBox<String>();
 		splitPane_5.setLeftComponent(comboIsim);
 		comboIsim.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		comboIsim.addActionListener (new ActionListener () {
-		    public void actionPerformed(ActionEvent e) {
-		    	
+			public void actionPerformed(ActionEvent e) {
+
 				if (table.getRowCount() != 0)
 				{
-					
+
 					if (ilk == false)
 					{
 						try {
@@ -221,62 +215,60 @@ public class Gunluk extends JInternalFrame {
 							e1.printStackTrace();
 						}
 					}
-					
+
 				}
 			}
 		});
 		comboIsim.setModel(new DefaultComboBoxModel<String>(new String[] {"Hepsi"}));
-		
+
 		JSplitPane splitPane_6 = new JSplitPane();
 		splitPane_6.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane_5.setRightComponent(splitPane_6);
-		
+
 		JScrollPane scrollPane_1 = new JScrollPane();
 		splitPane_6.setLeftComponent(scrollPane_1);
-		
-		treeGovev = new JTree();
-		treeGovev.addTreeSelectionListener(new TreeSelectionListener(){
-		    @Override
-		    public void valueChanged(TreeSelectionEvent tse) {
-		       DefaultMutableTreeNode node =  (DefaultMutableTreeNode) treeGovev.getLastSelectedPathComponent();
-		       // System.out.println(node.toString());
-		       // TreePath[] paths = treeGovev.getSelectionPaths();
-		     
-		    //    for (int i=0; i<paths.length; i++) {
-		         
-		      //      System.out.println(paths[i]);
-		       // }
-		      
-		      int sayi = node.getDepth();
-		      System.out.println(sayi);
-		        Enumeration en = node.depthFirstEnumeration();
-		        while (en.hasMoreElements()) {
 
-		         
-		          DefaultMutableTreeNode nod1 = (DefaultMutableTreeNode) en.nextElement();
-		          System.out.println(nod1);
-		        }
-		        //
-		       
-		        //
-		    }
-		});
-		
-		
-		
-		scrollPane_1.setViewportView(treeGovev);
-		treeGovev.setModel(new DefaultTreeModel(
-			new DefaultMutableTreeNode("Gorevler") {
+		treeGovev = new JTree();
+		treeGovev.setToggleClickCount(0);
+		treeGovev.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selRow = treeGovev.getRowForLocation(e.getX(), e.getY());
+				//TreePath selPath = treeGovev.getPathForLocation(e.getX(), e.getY());
+				if( selRow > 0) 
 				{
+					if(e.getClickCount() == 1) {
+						// mySingleClick(selRow, selPath);
+						//treeOgren();
+						// System.out.println(selRow  +"=="+ selPath);
+					}
+					else if(e.getClickCount() == 2) {
+						//myDoubleClick(selRow, selPath);
+						treeOgren();
+						//  System.out.println(selRow  +"=double="+ selPath);
+					}
 				}
 			}
-		));
+		});
+		treeGovev.addTreeSelectionListener(new TreeSelectionListener(){
+			@Override
+			public void valueChanged(TreeSelectionEvent tse) {
+				//1
+			}
+		});
+		scrollPane_1.setViewportView(treeGovev);
+		treeGovev.setModel(new DefaultTreeModel(
+				new DefaultMutableTreeNode("Gorevler") {
+					{
+					}
+				}
+				));
 		treeGovev.getAutoscrolls();
 		treeGovev.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
-		
-		
-		
+
+
+
 		JPanel panel_3 = new JPanel();
 		splitPane_2.setLeftComponent(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
@@ -305,7 +297,7 @@ public class Gunluk extends JInternalFrame {
 					try 
 					{
 						table.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				
+
 						detay_doldur(table.getSelectedRow(),table.getSelectedColumn());
 						table.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (ClassNotFoundException | SQLException e1) {
@@ -356,25 +348,25 @@ public class Gunluk extends JInternalFrame {
 
 		tc = tcm.getColumn(1);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(255, 177, 190),new Color(204, 0, 29)));
-		
+
 		tc = tcm.getColumn(2);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(86, 177, 220),new Color(171, 216, 237)));
-		
+
 		tc = tcm.getColumn(3);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(107, 173, 132),new Color(173, 209, 204)));
-		
+
 		tc = tcm.getColumn(4);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209)));
-		
+
 		tc = tcm.getColumn(5);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(225, 207, 208),new Color(126, 78, 80)));
-		
+
 		tc = tcm.getColumn(6);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(198, 201, 234),new Color(55, 64, 149)));
-		
+
 		tc = tcm.getColumn(7);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104)));
-		
+
 		table.setTableHeader(null);
 
 		//***************************************************************************		
@@ -608,40 +600,33 @@ public class Gunluk extends JInternalFrame {
 	}
 	private void detay_doldur(int satir , int sutun) throws ClassNotFoundException, SQLException
 	{
-		 
-		    
 		DefaultTableModel mdlGunluk = (DefaultTableModel) table.getModel();
 		DefaultTableModel mdlBaslik = (DefaultTableModel) table_1.getModel();
 		DefaultTreeModel model = (DefaultTreeModel)treeGovev.getModel();
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
 		root.removeAllChildren(); //this removes all nodes
-	    model.reload(); //this notifies the listeners and changes the GUI
+		model.reload(); //this notifies the listeners and changes the GUI
 		if (mdlGunluk.getValueAt(satir, 0).toString().equals("") ) return;
-		
+
 		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
-		
+
 		gbilgi.tarih1 = TARIH_CEVIR.tarih_sql(mdlBaslik.getValueAt(0, sutun).toString());
 		gbilgi.saat1 = mdlGunluk.getValueAt(satir, 0).toString() ;
-		
+
 		ResultSet rSet = g_Access.gorev_oku_tarih(gbilgi);
 		if (!rSet.isBeforeFirst() ) { 
 			return; // Kayit Yok
 		} 
-
-		
 		while (rSet.next())
 		{
-			 DefaultMutableTreeNode iSIM = new DefaultMutableTreeNode(rSet.getString("ISIM"));
-		     DefaultMutableTreeNode gOREV = new DefaultMutableTreeNode(rSet.getString("GOREV"));
-		     DefaultMutableTreeNode mESAJ = new DefaultMutableTreeNode(rSet.getString("MESAJ")); 
-		     gOREV.add(mESAJ);
-		     iSIM.add(gOREV);
-		     root.add(iSIM);
+			DefaultMutableTreeNode iSIM = new DefaultMutableTreeNode(rSet.getString("ISIM"));
+			DefaultMutableTreeNode gOREV = new DefaultMutableTreeNode(rSet.getString("GOREV"));
+			DefaultMutableTreeNode mESAJ = new DefaultMutableTreeNode(rSet.getString("MESAJ")); 
+			gOREV.add(mESAJ);
+			iSIM.add(gOREV);
+			root.add(iSIM);
 		}
-		 model.reload(root);
-		 
-
-		 
+		model.reload(root);
 	}
 	private void isim_doldur() throws ClassNotFoundException, SQLException
 	{
@@ -657,6 +642,51 @@ public class Gunluk extends JInternalFrame {
 				comboIsim.addItem(rs.getString("ISIM"));
 			}
 			ilk= false;
+		}
+	}
+	private void treeOgren()
+	{
+		TreePath path = treeGovev.getSelectionPath();
+		if (path == null) return;
+		int count = path.getPathCount();
+		String gOREV[] = new String[3];
+		if (count== 4)
+		{
+			gOREV[0] = path.getPathComponent(count - 3).toString();
+			gOREV[1] =  path.getPathComponent(count - 2).toString();
+			gOREV[2] = path.getPathComponent(count - 1).toString();
+			System.out.println(gOREV[0] + "/" + gOREV[1] + "/" + gOREV[2]);
+		}
+		if (count== 3)
+		{
+			gOREV[0]= path.getPathComponent(count - 2).toString();
+			gOREV[1] = path.getPathComponent(count - 1).toString();
+
+			DefaultMutableTreeNode node =  (DefaultMutableTreeNode) treeGovev.getLastSelectedPathComponent();
+			Enumeration en = node.depthFirstEnumeration();
+			ArrayList str = new ArrayList();
+			while (en.hasMoreElements()) 
+			{
+				DefaultMutableTreeNode nod1 = (DefaultMutableTreeNode) en.nextElement();
+				str.add(nod1.toString()); //this adds an element to the list.
+			}
+			gOREV[2] =(String) str.get(0) ;
+			System.out.println(gOREV[0] + "/" + gOREV[1] + "/" + gOREV[2]);
+		}
+		if (count== 2)
+		{
+			DefaultMutableTreeNode node =  (DefaultMutableTreeNode) treeGovev.getLastSelectedPathComponent();
+			Enumeration en = node.depthFirstEnumeration();
+			ArrayList str = new ArrayList();
+			while (en.hasMoreElements()) 
+			{
+				DefaultMutableTreeNode nod1 = (DefaultMutableTreeNode) en.nextElement();
+				str.add(nod1.toString()); //this adds an element to the list.
+			}
+			gOREV[0] =(String) str.get(2);
+			gOREV[1] = (String) str.get(1);
+			gOREV[2] = (String) str.get(0);
+			System.out.println(gOREV[0] + "/" + gOREV[1] + "/" + gOREV[2]);
 		}
 	}
 }

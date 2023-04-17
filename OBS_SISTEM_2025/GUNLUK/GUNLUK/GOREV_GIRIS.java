@@ -397,7 +397,10 @@ public class GOREV_GIRIS extends JInternalFrame {
 			{
 				int g =  JOptionPane.showOptionDialog( null,  "Gorev Onceden Kayitli Guncellenecek  ..?", "Bilgi Guncelleme",   JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
-				if(g != 0 ) { return;	}
+				if(g != 0 )
+				{ 
+					return;	
+				}
 				g_Access.gorev_sil(Integer.parseInt(txtGID.getText())  );
 			}
 			String str1 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBaslama) ;

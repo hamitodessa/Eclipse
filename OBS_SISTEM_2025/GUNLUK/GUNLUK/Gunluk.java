@@ -40,6 +40,7 @@ import java.util.Enumeration;
 import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -96,44 +97,6 @@ public class Gunluk extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0,0, 1100, 672);
-
-		JToolBar jtbar = new JToolBar();
-		jtbar.setFloatable(false);
-		getContentPane().add(jtbar, BorderLayout.NORTH);
-
-		JButton btnNewButton = new JButton("");
-		jtbar.add(btnNewButton);
-		btnNewButton.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_geri-24.png")));
-
-		JLabel lblNewLabel = new JLabel("                                         ");
-		jtbar.add(lblNewLabel);
-
-		JButton btnNewButton_1 = new JButton("");
-		jtbar.add(btnNewButton_1);
-		btnNewButton_1.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_ileri-24.png")));
-
-
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					ileri();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					
-					geri();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
@@ -152,11 +115,56 @@ public class Gunluk extends JInternalFrame {
 		panel.add(splitPane_1, BorderLayout.CENTER);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setMinimumSize(new Dimension(0, 300));
-		panel_1.setMaximumSize(new Dimension(0, 300));
+		panel_1.setMinimumSize(new Dimension(0, 400));
+		panel_1.setMaximumSize(new Dimension(0, 400));
 		splitPane_1.setLeftComponent(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 
+		////
+		JSplitPane splitSolUst = new JSplitPane();
+		splitSolUst.setDividerSize(0);
+		splitSolUst.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		panel_1.add(splitSolUst, BorderLayout.CENTER);
+		
+		JPanel panelToolbar= new JPanel();
+		panelToolbar.setMinimumSize(new Dimension(0, 35));
+		panelToolbar.setMaximumSize(new Dimension(0, 35));
+		panelToolbar.setLayout(null);
+		splitSolUst.setLeftComponent(panelToolbar);
+		
+				JButton btnNewButton = new JButton("");
+				btnNewButton.setBounds(1, 2, 99, 31);
+				panelToolbar.add(btnNewButton);
+				btnNewButton.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_geri-24.png")));
+				
+						JButton btnNewButton_1 = new JButton("");
+						btnNewButton_1.setBounds(102, 2, 99, 31);
+						panelToolbar.add(btnNewButton_1);
+						btnNewButton_1.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_ileri-24.png")));
+						
+						
+								btnNewButton_1.addActionListener(new ActionListener() {
+									public void actionPerformed(ActionEvent e) {
+										try {
+											ileri();
+										} catch (ClassNotFoundException | SQLException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										}
+									}
+								});
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+							
+							geri();
+						} catch (ClassNotFoundException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				});
+		///
 		calendar = new JCalendar();
 		calendar.getDayChooser().getDayPanel().addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
@@ -183,7 +191,8 @@ public class Gunluk extends JInternalFrame {
 		});
 		calendar.setTodayButtonText("Bugun");
 		calendar.setTodayButtonVisible(true);
-		panel_1.add(calendar, BorderLayout.CENTER);
+		//panel_1.add(calendar, BorderLayout.CENTER);
+		splitSolUst.setRightComponent(calendar);
 		//**********************************************************************************		
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
@@ -252,9 +261,8 @@ public class Gunluk extends JInternalFrame {
 						//myDoubleClick(selRow, selPath);
 						try {
 							treeOgren();
-						} catch (ClassNotFoundException | SQLException e1) {
+						} catch (ClassNotFoundException | SQLException  | PropertyVetoException e2) {
 							// TODO Auto-generated catch block
-							e1.printStackTrace();
 						}
 						//  System.out.println(selRow  +"=double="+ selPath);
 					}
@@ -636,7 +644,7 @@ public class Gunluk extends JInternalFrame {
 			ilk= false;
 		}
 	}
-	private void treeOgren() throws ClassNotFoundException, SQLException
+	private void treeOgren() throws ClassNotFoundException, SQLException, PropertyVetoException
 	{
 		TreePath path = treeGovev.getSelectionPath();
 		if (path == null) return;
@@ -688,13 +696,18 @@ public class Gunluk extends JInternalFrame {
 	
 		
 		int gid = g_Access.gorev_bul(gbilgi);
-		//System.out.println(gid);
-		///
+		boolean varmi = OBS_MAIN.pencere_bak("GOREV_GIRIS");
+		if (varmi  ) 
+ 		{
+ 		OBS_MAIN.pencere_aktiv_yap("DEKONT");
+ 		}
+		else 
+		{
 		 JInternalFrame internalFrame;
 		 internalFrame  = new GOREV_GIRIS();
 		 OBS_MAIN.desktopPane.add(internalFrame);
 		 internalFrame.setVisible(true);
-   
+		}
 		GOREV_GIRIS.txtGID.setText(String.valueOf(gid));
 		GOREV_GIRIS.gOKU();
 		

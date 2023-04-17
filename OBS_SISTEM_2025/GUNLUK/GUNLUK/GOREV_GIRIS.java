@@ -53,7 +53,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 	private static JTextField txtIsim;
 	private static JTextField txtGorev;
 	private static JTextArea txtMesaj;
-	private static JTextField txtGID;
+	public static JTextField txtGID;
 	private static JDateChooser dtcBaslama ;
 	private static JDateChooser dtcBitis;
 	private static JComboBox<String> cmbBaslamaSaat ;
@@ -441,6 +441,10 @@ public class GOREV_GIRIS extends JInternalFrame {
 		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gorev  Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	public static void gOKU()
+	{
+		System.out.println(txtGID.getText());
 	}
 	private static void sifirla()
 	{

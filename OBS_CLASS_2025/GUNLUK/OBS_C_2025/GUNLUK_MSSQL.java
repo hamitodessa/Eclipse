@@ -345,8 +345,9 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		ResultSet	rss = null;
 		String sql = "SELECT GID  " +
 				" FROM GOREV  " +
-				" WHERE ISIM =  '" + gbilgi.isim + "' AND GOREV = '" + gbilgi.gorev+ "' AND YER ='" + gbilgi.yer + "'" +
-				" AND BASL_TARIH = '" + gbilgi.tarih1 + "' AND BIT_TARIH = '" + gbilgi.tarih2 + "'";
+				" WHERE ISIM =  '" + gbilgi.isim + "' AND GOREV = '" + gbilgi.gorev +   "' AND YER ='" + gbilgi.yer + "'"; //+
+				//" AND BASL_TARIH = '" + gbilgi.tarih1 + "' AND BIT_TARIH = '" + gbilgi.tarih2 + "'";
+		
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();

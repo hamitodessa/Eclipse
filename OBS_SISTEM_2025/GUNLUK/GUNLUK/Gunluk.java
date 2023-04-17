@@ -11,6 +11,8 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import com.toedter.calendar.JCalendar;
 import OBS_C_2025.Gunluk_Bilgi;
+import OBS_2025.DEKONT;
+import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.COLUMN_RENDERER;
 import OBS_C_2025.GUNLUK_ACCESS;
@@ -248,7 +250,12 @@ public class Gunluk extends JInternalFrame {
 					}
 					else if(e.getClickCount() == 2) {
 						//myDoubleClick(selRow, selPath);
-						treeOgren();
+						try {
+							treeOgren();
+						} catch (ClassNotFoundException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						//  System.out.println(selRow  +"=double="+ selPath);
 					}
 				}
@@ -533,7 +540,6 @@ public class Gunluk extends JInternalFrame {
 				mdlGunluk.setValueAt("",stt,qqq);
 			}
 		}
-		
 		DefaultTreeModel model = (DefaultTreeModel)treeGovev.getModel();
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
 		root.removeAllChildren(); //this removes all nodes
@@ -607,8 +613,8 @@ public class Gunluk extends JInternalFrame {
 		{
 			DefaultMutableTreeNode iSIM = new DefaultMutableTreeNode(rSet.getString("ISIM"));
 			DefaultMutableTreeNode gOREV = new DefaultMutableTreeNode(rSet.getString("GOREV"));
-			DefaultMutableTreeNode mESAJ = new DefaultMutableTreeNode(rSet.getString("MESAJ")); 
-			gOREV.add(mESAJ);
+			DefaultMutableTreeNode yER = new DefaultMutableTreeNode(rSet.getString("YER")); 
+			gOREV.add(yER);
 			iSIM.add(gOREV);
 			root.add(iSIM);
 		}
@@ -630,7 +636,7 @@ public class Gunluk extends JInternalFrame {
 			ilk= false;
 		}
 	}
-	private void treeOgren()
+	private void treeOgren() throws ClassNotFoundException, SQLException
 	{
 		TreePath path = treeGovev.getSelectionPath();
 		if (path == null) return;
@@ -641,7 +647,7 @@ public class Gunluk extends JInternalFrame {
 			gOREV[0] = path.getPathComponent(count - 3).toString();
 			gOREV[1] =  path.getPathComponent(count - 2).toString();
 			gOREV[2] = path.getPathComponent(count - 1).toString();
-			System.out.println(gOREV[0] + "/" + gOREV[1] + "/" + gOREV[2]);
+			//System.out.println(gOREV[0] + "/" + gOREV[1] + "/" + gOREV[2]);
 		}
 		if (count== 3)
 		{
@@ -657,7 +663,7 @@ public class Gunluk extends JInternalFrame {
 				str.add(nod1.toString()); //this adds an element to the list.
 			}
 			gOREV[2] =(String) str.get(0) ;
-			System.out.println(gOREV[0] + "/" + gOREV[1] + "/" + gOREV[2]);
+			//System.out.println(gOREV[0] + "/" + gOREV[1] + "/" + gOREV[2]);
 		}
 		if (count== 2)
 		{
@@ -672,8 +678,27 @@ public class Gunluk extends JInternalFrame {
 			gOREV[0] =(String) str.get(2);
 			gOREV[1] = (String) str.get(1);
 			gOREV[2] = (String) str.get(0);
-			System.out.println(gOREV[0] + "/" + gOREV[1] + "/" + gOREV[2]);
+			//System.out.println(gOREV[0] + "/" + gOREV[1] + "/" + gOREV[2]);
 		}
+		
+		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
+		gbilgi.isim = gOREV[0];
+		gbilgi.gorev = gOREV[1];
+		gbilgi.yer = gOREV[2];
+	
+		
+		int gid = g_Access.gorev_bul(gbilgi);
+		//System.out.println(gid);
+		///
+		 JInternalFrame internalFrame;
+		 internalFrame  = new GOREV_GIRIS();
+		 OBS_MAIN.desktopPane.add(internalFrame);
+		 internalFrame.setVisible(true);
+   
+		GOREV_GIRIS.txtGID.setText(String.valueOf(gid));
+		GOREV_GIRIS.gOKU();
+		
+		///
 	}
 }
 

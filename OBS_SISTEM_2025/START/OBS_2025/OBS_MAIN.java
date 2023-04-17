@@ -2089,6 +2089,12 @@ public class OBS_MAIN extends JFrame {
 					ft = new FILTRE();
 					ft.setVisible(true);
 				}
+				else if (sonuc == "HAZIR GOREVLER")
+				{
+					GLOBAL.filtre_sayfa = 20 ;
+					ft = new FILTRE();
+					ft.setVisible(true);
+				}
 
 				GuiUtil.setWaitCursor(toolBar,false);
 			}

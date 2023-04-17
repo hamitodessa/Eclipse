@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
 
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
@@ -21,11 +22,14 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import com.toedter.calendar.JDateChooser;
+
 import OBS_2025.DEKONT;
 import OBS_2025.FILTRE;
 import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.SOLA;
@@ -34,10 +38,11 @@ import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
 public class HAZIR_GOREVLER extends JInternalFrame {
-	private JTable table;
+	private static JTable table;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	@SuppressWarnings({ "unused", "static-access" })
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
+	public static JScrollPane scrollPane;
 	/**
 	 * Launch the application.
 	 */
@@ -69,7 +74,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		splitPane.setResizeWeight(1.0);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		splitPane.setLeftComponent(scrollPane);
 		
 		table = new JTable(){
@@ -112,23 +117,28 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			}
 		});
 		scrollPane.setViewportView(table);
-		
-		
-		
-		hisset();
+
 	}
-	public void hisset()
+	public static void hisset()
 	{
 		try {
 			ResultSet	rs = null;
 			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
-			gbilgi.isim = " LIKE '%' ";
-			gbilgi.saat1 = "06:00" ;
-			gbilgi.saat2 = "23:00" ;
-			//TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_12)
-			gbilgi.tarih1 = "1800.01.01";
-			gbilgi.tarih2 = "2100.12.31" ;
+			if (FILTRE.cmbGrv_Isim.getSelectedItem().toString().equals(""))
+			{
+				gbilgi.isim = " LikE '%' ";
+			}
+			else
+			{
+				gbilgi.isim = " ='" + FILTRE.cmbGrv_Isim.getSelectedItem().toString() + "'";
+			}
+			
+			gbilgi.saat1 = FILTRE.comboBox_75.getSelectedItem().toString();
+			gbilgi.saat2 = FILTRE.comboBox_76.getSelectedItem().toString();
+			gbilgi.tarih1 = TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_33);
+			gbilgi.tarih2 = TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_34);
 			rs = g_Access.hazir_gorevler(gbilgi);
+			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 			    return;
 			}

@@ -381,7 +381,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 				" WHERE TARIH BETWEEN  '" + gbilgi.tarih1 + "' AND  '" + gbilgi.tarih2 +"' AND SAAT BETWEEN '" + gbilgi.saat1 + "' AND  '" + gbilgi.saat2 + "'" +
 				" AND ISIM " + gbilgi.isim + " " +
 				" ORDER BY TARIH  ";
-		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

@@ -24,6 +24,7 @@ import javax.swing.SwingUtilities;
 
 import com.toedter.calendar.JDateChooser;
 
+import GUNLUK.HAZIR_GOREVLER;
 import OBS_2025_RAPORLAR.ENVANTER;
 import OBS_2025_RAPORLAR.FATURA_RAPOR;
 import OBS_2025_RAPORLAR.GRUP_RAPOR;
@@ -38,6 +39,7 @@ import OBS_2025_RAPORLAR.URUN_LISTE;
 import OBS_2025_RAPORLAR.ZAYI_RAPOR;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.STOK_ACCESS;
@@ -80,7 +82,7 @@ public class FILTRE extends JDialog {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS() ;
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
-	
+	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	private static STOK_ACCESS  f_Access = new STOK_ACCESS(oac._IStok , oac._IFatura_Loger);
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -359,8 +361,12 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_72;
 	public static JComboBox<String> comboBox_73;
 	public static JComboBox<String> comboBox_74;
-
-
+	//GUNLUK
+	public static JComboBox<String> cmbGrv_Isim;
+	public static JDateChooser dateChooser_33;
+	public static JDateChooser dateChooser_34;
+	public static JComboBox<String> comboBox_75;
+	public static JComboBox<String> comboBox_76;
 	/**
 	 * Launch the application.
 	 */
@@ -390,18 +396,15 @@ public class FILTRE extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-// Goruntu icin asagidaki blogu kaldir ****************************************************************************
+//*****************************************************************************************************************
+// Goruntu icin asagidaki blogu kaldir 
 		    final boolean showTabsHeader = false;
 		    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
 		    {
 		        @Override
 		        protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
-		            if (showTabsHeader) {
-		                return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
-		            } else {
-		                return 0;
-		            }
-		        }
+		            if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
+		            } else {return 0;}	        }
 		      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 		    });
 //*****************************************************************************************************************		    
@@ -4189,7 +4192,7 @@ public class FILTRE extends JDialog {
 			comboBox_71.setEnabled(false);
 			comboBox_71.setBounds(571, 34, 149, 22);
 			panel_22.add(comboBox_71);
-
+//*************************************************KUR ***************************************************
 			JPanel panel_23 = new JPanel();
 			panel_23.setBorder(new LineBorder(new Color(0, 191, 255)));
 			tabbedPane.addTab("Kur_Grafik", null, panel_23, null);
@@ -4259,6 +4262,61 @@ public class FILTRE extends JDialog {
 			comboBox_74.setBounds(110, 53, 62, 22);
 			panel_23.add(comboBox_74);
 
+//***********************************************GUNLUK ********************************************************************	
+			JPanel panel_GUNLUK = new JPanel();
+			panel_GUNLUK.setBorder(new LineBorder(new Color(0, 191, 255)));
+			tabbedPane.addTab("Hazir_Gorev", null, panel_GUNLUK, null);
+			panel_GUNLUK.setLayout(null);
+			
+			JLabel lblNewLabel_36 = new JLabel("Isim");
+			lblNewLabel_36.setBounds(21, 23, 48, 14);
+			panel_GUNLUK.add(lblNewLabel_36);
+			
+			cmbGrv_Isim = new JComboBox<String>();
+			cmbGrv_Isim.setBounds(100, 20, 150, 22);
+			panel_GUNLUK.add(cmbGrv_Isim);
+			
+			JLabel lblNewLabel_37 = new JLabel("Ilk Tarih");
+			lblNewLabel_37.setBounds(21, 63, 65, 14);
+			panel_GUNLUK.add(lblNewLabel_37);
+			
+			dateChooser_33 = new JDateChooser();
+			dateChooser_33.setFont(new Font("Tahoma", Font.BOLD, 11));
+			dateChooser_33.setDateFormatString("dd.MM.yyyy");
+			dateChooser_33.setDate(TARIH_CEVIR.tarih("01.01.1900"));
+			dateChooser_33.setBounds(100, 60, 150, 20);
+			panel_GUNLUK.add(dateChooser_33);
+			
+			JLabel lblNewLabel_38 = new JLabel("Son Tarih");
+			lblNewLabel_38.setBounds(285, 63, 48, 14);
+			panel_GUNLUK.add(lblNewLabel_38);
+			
+			dateChooser_34 = new JDateChooser();
+			dateChooser_34.setBounds(354, 62, 128, 20);
+			dateChooser_34.setFont(new Font("Tahoma", Font.BOLD, 11));
+			dateChooser_34.setDateFormatString("dd.MM.yyyy");
+			dateChooser_34.setDate(TARIH_CEVIR.tarih("31.12.2100"));
+			panel_GUNLUK.add(dateChooser_34);
+			
+			JLabel lblNewLabel_39 = new JLabel("Ilk Saat");
+			lblNewLabel_39.setBounds(21, 99, 65, 14);
+			panel_GUNLUK.add(lblNewLabel_39);
+			
+			JLabel lblNewLabel_40 = new JLabel("Son Saat");
+			lblNewLabel_40.setBounds(285, 99, 48, 14);
+			panel_GUNLUK.add(lblNewLabel_40);
+			
+			comboBox_75 = new JComboBox<String>();
+			comboBox_75.setModel(new DefaultComboBoxModel<String>(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
+
+			comboBox_75.setBounds(100, 96, 75, 22);
+			panel_GUNLUK.add(comboBox_75);
+			
+			comboBox_76 = new JComboBox<String>();
+			comboBox_76.setBounds(354, 96, 75, 22);
+			comboBox_76.setModel(new DefaultComboBoxModel<String>(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
+			comboBox_76.setSelectedItem("23:00");
+			panel_GUNLUK.add(comboBox_76);
 		}
 
 		{
@@ -4418,6 +4476,12 @@ public class FILTRE extends JDialog {
 							KUR_GRAFIK.filtrele();   // KUR GRAFIK
 							GuiUtil.setWaitCursor(KUR_GRAFIK.scrollPane,false);
 						}
+						else if (sayfa == 20) 
+						{
+							GuiUtil.setWaitCursor(HAZIR_GOREVLER.scrollPane,true);
+							HAZIR_GOREVLER.hisset();   // KUR GRAFIK
+							GuiUtil.setWaitCursor(HAZIR_GOREVLER.scrollPane,false);
+						}
 						GuiUtil.setWaitCursor(getContentPane(),false);
 						dispose();
 					}
@@ -4553,6 +4617,11 @@ public class FILTRE extends JDialog {
 			ana_grup_doldur(comboBox_67);
 			ana_grup_doldur(comboBox_70);
 			depo_doldur(comboBox_69);
+		}
+		else if (syfa == 20)
+		{
+			gun_isim_doldur();
+			
 		}
 	}
 	public static void kapat ()
@@ -4722,6 +4791,37 @@ public class FILTRE extends JDialog {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod 2 Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
+	private void gun_isim_doldur()
+	{
+		try {
+			getContentPane().setCursor(oac.WAIT_CURSOR);
+			cmbGrv_Isim.removeAllItems();
+			ResultSet rs = null;
+
+			rs =  g_Access.isim_oku();
+
+			if (!rs.isBeforeFirst() ) {  
+				cmbGrv_Isim.addItem("");
+				cmbGrv_Isim.setSelectedItem("");
+			}
+			else
+			{
+				cmbGrv_Isim.addItem("");
+				while (rs.next())
+				{
+					cmbGrv_Isim.addItem(rs.getString("ISIM"));
+				}
+			}
+			cmbGrv_Isim.setSelectedItem("");
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+		}
+		catch (Exception ex)
+		{
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod 2 Doldur", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
+
 	private void mensei_doldur(JComboBox<String> box)
 	{
 		try {

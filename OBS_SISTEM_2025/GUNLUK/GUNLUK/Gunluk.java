@@ -321,14 +321,14 @@ public class Gunluk extends JInternalFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane_3.setRightComponent(scrollPane);
-		//*****************************************************
+		//*****************************************************************************************************************
 		table = new JTable() {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 
 		};
-		
 		scrollPane.setViewportView(table);
-		table.addMouseListener(new MouseAdapter() {
+		table.addMouseListener(new MouseAdapter() 
+		{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
@@ -339,11 +339,9 @@ public class Gunluk extends JInternalFrame {
 					try 
 					{
 						table.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
 						detay_doldur(table.getSelectedRow(),table.getSelectedColumn());
 						table.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (ClassNotFoundException | SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -351,8 +349,8 @@ public class Gunluk extends JInternalFrame {
 		});
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		table.setRowSelectionAllowed(false);
-		table.setModel(new DefaultTableModel(
-				new Object[][] {
+		table.setModel(new DefaultTableModel(	new Object[][] 
+				{
 					{"06:00", null, null, null, null, null, null, null},
 					{"07:00", null, null, null, null, null, null, null},
 					{"08:00", null, null, null, null, null, null, null},

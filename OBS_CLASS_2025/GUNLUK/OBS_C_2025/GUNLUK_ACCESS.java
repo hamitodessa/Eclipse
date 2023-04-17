@@ -65,4 +65,8 @@ public class GUNLUK_ACCESS {
 	{
 		return _IGunluk.gorev_oku_tarih(gbilgi);
 	}
+	public int gorev_bul(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
+	{
+		return _IGunluk.gorev_bul(gbilgi);
+	}
 }

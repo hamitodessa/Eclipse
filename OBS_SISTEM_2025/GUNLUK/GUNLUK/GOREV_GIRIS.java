@@ -250,12 +250,12 @@ public class GOREV_GIRIS extends JInternalFrame {
 				if (chckbxTekrarla.isSelected())
 				{
 					dtcBitis.setEnabled(true);
-					lblBitis.setEnabled(true);
+
 				}
 				else
 				{
 					dtcBitis.setEnabled(false);
-					lblBitis.setEnabled(false);
+
 				}
 				
 			}
@@ -409,6 +409,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 			gbilgi.tekrarla = chckbxTekrarla.isSelected() ? true : false;
 			gbilgi.isim = txtIsim.getText();
 			gbilgi.gorev = txtGorev.getText();
+			gbilgi.yer = txtYer.getText();
 			gbilgi.mesaj = txtMesaj.getText() ;
 			gbilgi.user =  GLOBAL.KULL_ADI ;
 			
@@ -452,5 +453,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 		dtcBaslama.setDate(new Date());
 		dtcBitis.setDate(new Date());
 		chckbxTekrarla.setSelected(false);
+		dtcBitis.setEnabled(false);
 	}
 }

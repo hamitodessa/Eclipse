@@ -25,6 +25,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
@@ -123,6 +124,7 @@ public class Gunluk extends JInternalFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					
 					geri();
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block
@@ -198,6 +200,8 @@ public class Gunluk extends JInternalFrame {
 		panel_2.add(splitPane_5, BorderLayout.CENTER);
 
 		comboIsim = new JComboBox<String>();
+		comboIsim.setMinimumSize(new Dimension(0, 30));
+		comboIsim.setMaximumSize(new Dimension(0, 30));
 		splitPane_5.setLeftComponent(comboIsim);
 		comboIsim.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		comboIsim.addActionListener (new ActionListener () {
@@ -500,7 +504,6 @@ public class Gunluk extends JInternalFrame {
 			cal.setTime(qwe);
 			cal.add(Calendar.DAY_OF_MONTH, 1); 
 			calendar.setDate(new Date(cal.getTimeInMillis()));
-			gorev_oku();
 		} catch (ParseException e) {
 		}  
 	}
@@ -515,7 +518,6 @@ public class Gunluk extends JInternalFrame {
 			cal.setTime(qwe);
 			cal.add(Calendar.DAY_OF_MONTH, -1); 
 			calendar.setDate(new Date(cal.getTimeInMillis()));
-			gorev_oku();
 		} catch (ParseException e) {
 		}  
 	}
@@ -531,6 +533,11 @@ public class Gunluk extends JInternalFrame {
 				mdlGunluk.setValueAt("",stt,qqq);
 			}
 		}
+		
+		DefaultTreeModel model = (DefaultTreeModel)treeGovev.getModel();
+		DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
+		root.removeAllChildren(); //this removes all nodes
+		model.reload(); //this notifies the listeners and changes the GUI
 	}
 	private void gorev_oku() throws ClassNotFoundException, SQLException
 	{
@@ -563,14 +570,13 @@ public class Gunluk extends JInternalFrame {
 					{
 						if ( mdlGunluk.getValueAt(stt,0).toString().equals(rs.getString("SAAT")))
 						{
-							if(mdlGunluk.getValueAt(stt, qqq).toString() != "")
+							if(! mdlGunluk.getValueAt(stt, qqq).toString().equals(""))
 							{
 								mdlGunluk.setValueAt(mdlGunluk.getValueAt(stt, qqq).toString() + "{"+rs.getString("GOREV")+"},",stt,qqq);
 							}
 							else 
 							{
-								mdlGunluk.setValueAt("{" +rs.getString("GOREV")+"},",stt,qqq);
-
+								mdlGunluk.setValueAt("{" + rs.getString("GOREV")+"},",stt,qqq);
 							}
 						}
 					}
@@ -643,8 +649,8 @@ public class Gunluk extends JInternalFrame {
 			gOREV[1] = path.getPathComponent(count - 1).toString();
 
 			DefaultMutableTreeNode node =  (DefaultMutableTreeNode) treeGovev.getLastSelectedPathComponent();
-			Enumeration en = node.depthFirstEnumeration();
-			ArrayList str = new ArrayList();
+			Enumeration<TreeNode> en = node.depthFirstEnumeration();
+			ArrayList<String> str = new ArrayList<String>();
 			while (en.hasMoreElements()) 
 			{
 				DefaultMutableTreeNode nod1 = (DefaultMutableTreeNode) en.nextElement();
@@ -656,8 +662,8 @@ public class Gunluk extends JInternalFrame {
 		if (count== 2)
 		{
 			DefaultMutableTreeNode node =  (DefaultMutableTreeNode) treeGovev.getLastSelectedPathComponent();
-			Enumeration en = node.depthFirstEnumeration();
-			ArrayList str = new ArrayList();
+			Enumeration<TreeNode> en = node.depthFirstEnumeration();
+			ArrayList<String> str = new ArrayList<String>();
 			while (en.hasMoreElements()) 
 			{
 				DefaultMutableTreeNode nod1 = (DefaultMutableTreeNode) en.nextElement();

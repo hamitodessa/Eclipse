@@ -20,5 +20,6 @@ public interface IGUNLUK {
 	public ResultSet isim_oku() throws ClassNotFoundException, SQLException;
 	public ResultSet gorev_oku_tarih(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException;
 	public int gorev_bul(Gunluk_Bilgi gbilgi)throws ClassNotFoundException, SQLException;
+	public ResultSet gID_oku(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException;
 }
 

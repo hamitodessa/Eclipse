@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -379,7 +381,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(lblNewLabel_4);
 		
 		lblBitis = new JLabel("Bitis");
-		lblBitis.setEnabled(false);
 		lblBitis.setBounds(10, 215, 48, 14);
 		panel.add(lblBitis);
 		
@@ -442,9 +443,34 @@ public class GOREV_GIRIS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gorev  Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	public static void gOKU()
+	public static void gOKU() throws ClassNotFoundException, SQLException
 	{
-		System.out.println(txtGID.getText());
+		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
+		gbilgi.gid = Integer.parseInt(txtGID.getText());
+		ResultSet rSet = g_Access.gID_OKU(gbilgi);
+		if (!rSet.isBeforeFirst() ) {  
+			sifirla();
+		} 
+		else
+		{
+			rSet.next();
+			txtIsim.setText(rSet.getString("ISIM"));
+			txtGorev.setText(rSet.getString("GOREV"));
+			txtYer.setText(rSet.getString("YER"));
+			txtMesaj.setText(rSet.getString("MESAJ"));
+			dtcBaslama.setDate(rSet.getDate("BASL_TARIH"));
+			dtcBitis.setDate(rSet.getDate("BIT_TARIH"));
+			cmbBaslamaSaat.setSelectedItem(rSet.getString("BASL_SAAT"));
+			chckbxTekrarla.setSelected(rSet.getBoolean("TEKRARLA"));
+			if(chckbxTekrarla.isSelected())
+			{
+				dtcBitis.setEnabled(true);
+			}
+			else 
+			{
+				dtcBitis.setEnabled(false);
+			}
+		}
 	}
 	private static void sifirla()
 	{

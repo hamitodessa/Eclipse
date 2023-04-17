@@ -361,4 +361,15 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		}
 		return gid;	
 	}
+	@Override
+	public ResultSet gID_oku(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = "SELECT *  " +
+				" FROM GOREV  " +
+				" WHERE GID =  " + gbilgi.gid + "";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
 }

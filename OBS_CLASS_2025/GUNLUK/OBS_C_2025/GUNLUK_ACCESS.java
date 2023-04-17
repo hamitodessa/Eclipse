@@ -77,4 +77,8 @@ public class GUNLUK_ACCESS {
 	{
 		return _IGunluk.hazir_gorevler(gbilgi);
 	}
+	public void gorev_tek_sil(int id) throws ClassNotFoundException, SQLException
+	{
+		_IGunluk.gorev_tek_sil(id);
+	}
 }

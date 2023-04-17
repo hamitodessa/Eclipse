@@ -359,6 +359,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 			
 			gid =  rss.getInt("GID");
 		}
+		stmt.close();
 		return gid;	
 	}
 	@Override
@@ -384,5 +385,13 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
+	}
+	@Override
+	public void gorev_tek_sil(int id) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql = "DELETE GUNLUK  WHERE  GRVID = " + id;
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
 	}
 }

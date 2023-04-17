@@ -4288,7 +4288,7 @@ public class FILTRE extends JDialog {
 			panel_GUNLUK.add(dateChooser_33);
 			
 			JLabel lblNewLabel_38 = new JLabel("Son Tarih");
-			lblNewLabel_38.setBounds(285, 63, 48, 14);
+			lblNewLabel_38.setBounds(285, 63, 65, 14);
 			panel_GUNLUK.add(lblNewLabel_38);
 			
 			dateChooser_34 = new JDateChooser();
@@ -4303,7 +4303,7 @@ public class FILTRE extends JDialog {
 			panel_GUNLUK.add(lblNewLabel_39);
 			
 			JLabel lblNewLabel_40 = new JLabel("Son Saat");
-			lblNewLabel_40.setBounds(285, 99, 48, 14);
+			lblNewLabel_40.setBounds(285, 99, 65, 14);
 			panel_GUNLUK.add(lblNewLabel_40);
 			
 			comboBox_75 = new JComboBox<String>();

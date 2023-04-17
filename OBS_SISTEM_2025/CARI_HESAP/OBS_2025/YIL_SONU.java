@@ -561,7 +561,8 @@ public class YIL_SONU extends JInternalFrame {
 	{
 		@SuppressWarnings("removal")
 		@Override
-		public void itemStateChanged(ItemEvent e) {
+		public void itemStateChanged(ItemEvent e)
+		{
 			Object source = e.getSource();
 			if (source instanceof AbstractButton == false) return;
 			boolean checked = e.getStateChange() == ItemEvent.SELECTED;
@@ -571,7 +572,8 @@ public class YIL_SONU extends JInternalFrame {
 			}
 		}
 	}
-	class CheckBoxHeader extends JCheckBox   implements TableCellRenderer, MouseListener {
+	class CheckBoxHeader extends JCheckBox   implements TableCellRenderer, MouseListener 
+	{
 		protected CheckBoxHeader rendererComponent;
 		protected int column;
 		protected boolean mousePressed = false;
@@ -630,7 +632,8 @@ public class YIL_SONU extends JInternalFrame {
 		}
 		public void mouseEntered(MouseEvent e) {
 		}
-		public void mouseExited(MouseEvent e) {
+		public void mouseExited(MouseEvent e) 
+		{
 		}
 	}
 }

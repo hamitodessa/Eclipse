@@ -214,5 +214,10 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public void gorev_tek_sil(int id) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

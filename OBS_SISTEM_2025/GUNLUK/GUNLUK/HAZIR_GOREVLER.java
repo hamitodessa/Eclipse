@@ -2,32 +2,48 @@ package GUNLUK;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import javax.swing.JComboBox;
+import javax.swing.AbstractButton;
+import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.Popup;
+import javax.swing.UIManager;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-
-import com.toedter.calendar.JDateChooser;
 
 import OBS_2025.DEKONT;
 import OBS_2025.FILTRE;
 import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
+
+import OBS_C_2025.CheckBoxRenderer;
+import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.GUNLUK_ACCESS;
@@ -36,6 +52,10 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 
 public class HAZIR_GOREVLER extends JInternalFrame {
 	private static JTable table;
@@ -43,6 +63,8 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 	@SuppressWarnings({ "unused", "static-access" })
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	public static JScrollPane scrollPane;
+	private JPanel panel;
+	private static JLabel lblNewLabel;
 	/**
 	 * Launch the application.
 	 */
@@ -73,55 +95,88 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(1.0);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
-		
+
 		scrollPane = new JScrollPane();
 		splitPane.setLeftComponent(scrollPane);
-		
+///***************************
+		JPopupMenu popup = new JPopupMenu();
+        // New project menu item
+        JMenuItem menuItem = new JMenuItem("Tek Gorev Sil..", new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-reduce-16.png")));
+        menuItem.setMnemonic(KeyEvent.VK_T);
+        menuItem.getAccessibleContext().setAccessibleDescription( "Tek Gorev Sil");
+        
+        menuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	try {
+					grv_tek_sil();
+				} catch (NumberFormatException | ClassNotFoundException | SQLException e1) {
+					e1.printStackTrace();
+				}
+            }
+        });
+        popup.add(menuItem);  //
+        menuItem = new JMenuItem("Gorev Degistir / Sil",new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/sil.png")));
+        menuItem.setMnemonic(KeyEvent.VK_S);
+        menuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	try {
+					grv_degis_sil();
+				} catch (ClassNotFoundException | PropertyVetoException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+              }
+        });
+        popup.add(menuItem);
+///***********************************************************************************************************************
 		table = new JTable(){
-			public boolean isCellEditable(int row, int column) {     return false;          }
+			@Override
+			public boolean isCellEditable(int row, int column) {  
+					return false;
+			}
 		};
-		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setSurrendersFocusOnKeystroke(true);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					 boolean varmi = OBS_MAIN.pencere_bak("DEKONT");
-					 if (varmi  ) 
-	             		{
-	             	try {
-	             		OBS_MAIN.pencere_aktiv_yap("DEKONT");
-						} catch (PropertyVetoException e1) {
-							e1.printStackTrace();
-						}
-	              	}
-					 else
-	                {
-						 JInternalFrame internalFrame;
-						 internalFrame  = new DEKONT();
-						 OBS_MAIN.desktopPane.add(internalFrame);
-						 internalFrame.setVisible(true);
-		            }
-					try 
-					{
-						DEKONT.txtevrak.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
-						DEKONT.fiskont();
-					} 
-					catch (NumberFormatException e1) 
-					{
-						e1.printStackTrace();
-					}
 					
 				}
 			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+				int r = table.rowAtPoint(e.getPoint());
+		        if (r >= 0 && r < table.getRowCount()) {
+		            table.setRowSelectionInterval(r, r);
+		        } else {
+		            table.clearSelection();
+		        }
+		        int rowindex = table.getSelectedRow();
+		        if (rowindex < 0)
+		            return;
+		        if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
+		            popup.show(e.getComponent(), e.getX(), e.getY());
+		        }
+			}
 		});
 		scrollPane.setViewportView(table);
+		panel = new JPanel();
+		panel.setMinimumSize(new Dimension(0, 25));
+		panel.setMaximumSize(new Dimension(0, 25));
+		panel.setLayout(null);
+		splitPane.setRightComponent(panel);
+
+		lblNewLabel = new JLabel("Kayit Sayisi :");
+		lblNewLabel.setBounds(10, 5, 150, 14);
+		panel.add(lblNewLabel);
 
 	}
 	public static void hisset()
 	{
 		try {
+			long startTime = System.currentTimeMillis();
 			ResultSet	rs = null;
 			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
 			if (FILTRE.cmbGrv_Isim.getSelectedItem().toString().equals(""))
@@ -132,7 +187,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			{
 				gbilgi.isim = " ='" + FILTRE.cmbGrv_Isim.getSelectedItem().toString() + "'";
 			}
-			
+
 			gbilgi.saat1 = FILTRE.comboBox_75.getSelectedItem().toString();
 			gbilgi.saat2 = FILTRE.comboBox_76.getSelectedItem().toString();
 			gbilgi.tarih1 = TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_33);
@@ -140,69 +195,102 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			rs = g_Access.hazir_gorevler(gbilgi);
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
-			    return;
+				lblNewLabel.setText("Satir Sayisi : ");
+				return;
 			}
-			
+
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
-			
+
 			tc = tcm.getColumn(2);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setCellRenderer(new TARIH());
 			tc.setMinWidth(80);
-			
+
 			tc = tcm.getColumn(3);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(80);
-			
+
 			tc = tcm.getColumn(4);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(150);
-			
+
 			tc = tcm.getColumn(5);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(150);
-			
+
 			tc = tcm.getColumn(6);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(150);
-			
+
 			tc = tcm.getColumn(7);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(300);
-			
-			
-			
-			
+
+			th.repaint();
+
+
 			table.removeColumn(table.getColumnModel().getColumn(0));
 			table.removeColumn(table.getColumnModel().getColumn(0));
-			
+
 			th.repaint();
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(22);
-			
-		    Dimension dd = table.getPreferredSize();
-		    dd.height = 30;
-		    th.setPreferredSize(dd); 
-		    th.repaint();
-		    
+
+			Dimension dd = table.getPreferredSize();
+			dd.height = 30;
+			th.setPreferredSize(dd); 
+			th.repaint();
+
 			table.setSelectionBackground(Color.PINK);
 			table.setSelectionForeground(Color.BLUE);
-			
-			
-				 String deger;
-				 String[] parts;
-				Font bigFont;
-				deger = GLOBAL.setting_oku("CARI_HSPPLN").toString();
-				deger = deger.substring(1, deger.length()-1);
-				parts = deger.split(",");
-				bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-				table.setFont(bigFont);
-			} catch (Exception ex) {
-				 JOptionPane.showMessageDialog(null, ex.getMessage()); 
-			}
-	}
+			lblNewLabel.setText( String.format("Satir Sayisi : %,d %n" ,  table.getRowCount()));
 
+			String deger;
+			String[] parts;
+			Font bigFont;
+			deger = GLOBAL.setting_oku("CARI_HSPPLN").toString();
+			deger = deger.substring(1, deger.length()-1);
+			parts = deger.split(",");
+			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			table.setFont(bigFont);
+
+			long endTime = System.currentTimeMillis();
+			long estimatedTime = endTime - startTime; 
+			double seconds = (double)estimatedTime/1000; 
+			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+
+		} catch (Exception ex) 
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage()); 
+		}
+	}
+	private void grv_degis_sil() throws PropertyVetoException, ClassNotFoundException, SQLException
+	{
+		boolean varmi = OBS_MAIN.pencere_bak("GOREV GIRIS");
+		if (varmi  ) 
+		{
+				OBS_MAIN.pencere_aktiv_yap("GOREV GIRIS");
+		}
+		else
+		{
+			JInternalFrame internalFrame;
+			internalFrame  = new GOREV_GIRIS();
+			OBS_MAIN.desktopPane.add(internalFrame);
+			internalFrame.setVisible(true);
+		}
+			GOREV_GIRIS.txtGID.setText(String.valueOf(table.getModel().getValueAt(table.getSelectedRow(), 1).toString()));
+			GOREV_GIRIS.gOKU();
+	}
+	private void grv_tek_sil() throws NumberFormatException, ClassNotFoundException, SQLException
+	{
+		int g =  JOptionPane.showOptionDialog( null,  "Gorev  Dosyadan Silinecek ..?", "Gunluk Dosyasindan Gorev Silme",   JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
+		if(g != 0 ) { return;	}
+		
+		g_Access.gorev_tek_sil(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()));
+		hisset();
+	}
 }

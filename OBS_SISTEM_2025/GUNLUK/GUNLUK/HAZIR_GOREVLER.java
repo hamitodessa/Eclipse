@@ -4,45 +4,32 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.AbstractButton;
-import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.Popup;
-import javax.swing.UIManager;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
-import OBS_2025.DEKONT;
 import OBS_2025.FILTRE;
 import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 
-import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -86,7 +73,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 	 */
 	public HAZIR_GOREVLER() {
 		setResizable(true);
-		setBounds(100, 100, 800, 400);
+		setBounds(100, 100, 900, 400);
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("HAZIR GOREVLER");
@@ -130,12 +117,18 @@ public class HAZIR_GOREVLER extends JInternalFrame {
         popup.add(menuItem);
 ///***********************************************************************************************************************
 		table = new JTable(){
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public boolean isCellEditable(int row, int column) {  
 					return false;
 			}
 		};
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		//table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSurrendersFocusOnKeystroke(true);
 		table.addMouseListener(new MouseAdapter() {
 			@Override

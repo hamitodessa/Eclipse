@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import com.toedter.calendar.JCalendar;
 import OBS_C_2025.Gunluk_Bilgi;
+import OBS_C_2025.MyTreeCellRenderer;
 import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.COLUMN_RENDERER;
@@ -259,7 +260,8 @@ public class Gunluk extends JInternalFrame {
 		splitPane_6.setLeftComponent(scrollPane_1);
 
 		treeGovev = new JTree();
-		treeGovev.setForeground(new Color(0, 128, 128));
+		treeGovev.setFont(new Font("Tahoma", Font.BOLD, 11));
+		treeGovev.setCellRenderer(new MyTreeCellRenderer());
 		treeGovev.setToggleClickCount(0);
 		treeGovev.addMouseListener(new MouseAdapter() {
 			@Override

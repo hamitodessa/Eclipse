@@ -225,10 +225,11 @@ public class Gunluk extends JInternalFrame {
 		panel_2.add(splitPane_5, BorderLayout.CENTER);
 
 		comboIsim = new JComboBox<String>();
+		comboIsim.setForeground(new Color(0, 0, 139));
 		comboIsim.setMinimumSize(new Dimension(0, 30));
 		comboIsim.setMaximumSize(new Dimension(0, 30));
 		splitPane_5.setLeftComponent(comboIsim);
-		comboIsim.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		comboIsim.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboIsim.addActionListener (new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
 
@@ -258,6 +259,7 @@ public class Gunluk extends JInternalFrame {
 		splitPane_6.setLeftComponent(scrollPane_1);
 
 		treeGovev = new JTree();
+		treeGovev.setForeground(new Color(0, 128, 128));
 		treeGovev.setToggleClickCount(0);
 		treeGovev.addMouseListener(new MouseAdapter() {
 			@Override

@@ -19,12 +19,12 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 
 	static Connection con = null;
 	static Statement stmt = null;
-	
+
 	@Override
 	public void baglan() throws SQLException {
 		String cumle = "jdbc:sqlserver://" + BAGLAN.gunDizin.cONN_STR + ";";
-	    con = DriverManager.getConnection(cumle,BAGLAN.gunDizin.kULLANICI,BAGLAN.gunDizin.sIFRESI);
-		
+		con = DriverManager.getConnection(cumle,BAGLAN.gunDizin.kULLANICI,BAGLAN.gunDizin.sIFRESI);
+
 	}
 	@Override
 	public void gUN_SIFIR_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull, String sifre,String port) throws ClassNotFoundException, SQLException {
@@ -125,38 +125,38 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
-        sql = "CREATE TABLE GOREV ([GID] [int] IDENTITY(1,1) NOT NULL , BASL_TARIH DATE , BASL_SAAT nvarchar(5), BIT_TARIH DATE , BIT_SAAT nvarchar(5),TEKRARLA bit,ISIM nvarchar(30),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,SECENEK nvarchar(10),DEGER int ,[USER] nvarchar(15) NULL)" ;  
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
-        sql = "CREATE TABLE GUNLUK ( [GRVID] [int] IDENTITY(1,1) NOT NULL  ,  [GID] [int]  , TARIH DATE ,SAAT nvarchar(5),ISIM nvarchar(30),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
+		sql = "CREATE TABLE GOREV ([GID] [int] IDENTITY(1,1) NOT NULL , BASL_TARIH DATE , BASL_SAAT nvarchar(5), BIT_TARIH DATE , BIT_SAAT nvarchar(5),TEKRARLA bit,ISIM nvarchar(30),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,SECENEK nvarchar(10),DEGER int ,[USER] nvarchar(15) NULL)" ;  
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE GUNLUK ( [GRVID] [int] IDENTITY(1,1) NOT NULL  ,  [GID] [int]  , TARIH DATE ,SAAT nvarchar(5),ISIM nvarchar(30),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 
-        sql = "CREATE NONCLUSTERED INDEX [IDX_GUNLUK] ON [dbo].[GUNLUK](	[TARIH] ASC "
-                + " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
-        sql= "CREATE TABLE OZEL(OZID int identity(1,1) CONSTRAINT PKeyOZID PRIMARY KEY,YONETICI nvarchar(25), YON_SIFRE nvarchar(15) , FIRMA_ADI nvarchar(50))";
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
-        sql = "CREATE TABLE YETKILER(YETID int identity(1,1) CONSTRAINT PKeyYETID PRIMARY KEY,KULLANICI nvarchar(25), HESAP nvarchar(12), TAM_YETKI bit, GORUNTU bit )";
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
-        // ***************OZEL NO YAZ ************
-        sql = "INSERT INTO  OZEL(YONETICI,YON_SIFRE,FIRMA_ADI) VALUES ('" + GLOBAL.KULL_ADI  + "','12345' , '" + fir_adi + "')";
-        stmt = con.createStatement();  
-        stmt.executeUpdate(sql);
-		
+		sql = "CREATE NONCLUSTERED INDEX [IDX_GUNLUK] ON [dbo].[GUNLUK](	[TARIH] ASC "
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql= "CREATE TABLE OZEL(OZID int identity(1,1) CONSTRAINT PKeyOZID PRIMARY KEY,YONETICI nvarchar(25), YON_SIFRE nvarchar(15) , FIRMA_ADI nvarchar(50))";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE YETKILER(YETID int identity(1,1) CONSTRAINT PKeyYETID PRIMARY KEY,KULLANICI nvarchar(25), HESAP nvarchar(12), TAM_YETKI bit, GORUNTU bit )";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		// ***************OZEL NO YAZ ************
+		sql = "INSERT INTO  OZEL(YONETICI,YON_SIFRE,FIRMA_ADI) VALUES ('" + GLOBAL.KULL_ADI  + "','12345' , '" + fir_adi + "')";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+
 	}
 
 	@Override
 	public String gun_firma_adi() throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	 	con = null;
+		con = null;
 		ResultSet	rss = null;
 		String cumle = "jdbc:sqlserver://" + BAGLAN.gunDizin.cONN_STR + ";";
-        con = DriverManager.getConnection(cumle,BAGLAN.gunDizin.kULLANICI,BAGLAN.gunDizin.sIFRESI);
-   	    PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
+		con = DriverManager.getConnection(cumle,BAGLAN.gunDizin.kULLANICI,BAGLAN.gunDizin.sIFRESI);
+		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();
 		rss.next();
 		int count=0;
@@ -175,18 +175,18 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void create_table_log() throws SQLException {
 		String sql = "" ;
-	    sql = "CREATE TABLE [dbo].[LOGLAMA]("
-	    		+ "	[TARIH] [datetime] NOT NULL,"
-	    		+ "	[MESAJ] [nchar](100) NOT NULL,"
-	    		+ "	[EVRAK] [nchar](15) NOT NULL,"
-	    		+ "	[USER_NAME] [nchar](15) NULL"
-	    		+ ") ON [PRIMARY]";
-	    	stmt = con.createStatement();  
-	    	stmt.executeUpdate(sql);
-	    	 sql = "CREATE NONCLUSTERED INDEX [IDX_LOGLAMA] ON [dbo].[LOGLAMA](	[TARIH] ASC,	[EVRAK] ASC , [USER_NAME] ASC "
-	                  + " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
-	           stmt = con.createStatement();  
-	           stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[LOGLAMA]("
+				+ "	[TARIH] [datetime] NOT NULL,"
+				+ "	[MESAJ] [nchar](100) NOT NULL,"
+				+ "	[EVRAK] [nchar](15) NOT NULL,"
+				+ "	[USER_NAME] [nchar](15) NULL"
+				+ ") ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE NONCLUSTERED INDEX [IDX_LOGLAMA] ON [dbo].[LOGLAMA](	[TARIH] ASC,	[EVRAK] ASC , [USER_NAME] ASC "
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 	}
 	@Override
 	public void gorev_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
@@ -227,7 +227,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 			{
 				String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,[USER]) " +
 						" VALUES (?,?,?,?,?,?,?,?)" ;
-				
+
 				stmt = con.prepareStatement(sql);
 				stmt.setInt(1, gbilgi.gid);
 				stmt.setString(2, anl_tS);
@@ -238,7 +238,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 				stmt.setString(7, gbilgi.mesaj);
 				stmt.setString(8, gbilgi.user);
 				stmt.executeUpdate();
-				
+
 				Calendar c = Calendar.getInstance(); 
 				c.setTime(anl_tarih); 
 				c.add(Calendar.DATE, 1);
@@ -274,11 +274,11 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		String sql = "DELETE GOREV  WHERE  GID = " + id;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
+
 		sql = "DELETE GUNLUK  WHERE  GID = " + id;
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
+
 	}
 	@Override
 	public int gid_ogren(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
@@ -298,11 +298,11 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 
 		if (count  != 0) 
 		{
-			
+
 			gid =  rss.getInt("GID");
 		}
 		return gid;	
-		
+
 	}
 	@Override
 	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException 
@@ -348,8 +348,8 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		String sql = "SELECT GID  " +
 				" FROM GOREV  " +
 				" WHERE ISIM =  '" + gbilgi.isim + "' AND GOREV = '" + gbilgi.gorev +   "' AND YER ='" + gbilgi.yer + "'"; //+
-				//" AND BASL_TARIH = '" + gbilgi.tarih1 + "' AND BIT_TARIH = '" + gbilgi.tarih2 + "'";
-		
+		//" AND BASL_TARIH = '" + gbilgi.tarih1 + "' AND BIT_TARIH = '" + gbilgi.tarih2 + "'";
+
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -358,7 +358,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 
 		if (count  != 0) 
 		{
-			
+
 			gid =  rss.getInt("GID");
 		}
 		stmt.close();
@@ -400,53 +400,53 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	public void gunluk_farkli_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException, ParseException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		//***********************KAYIT TEKRARINA GORE KAYIT YAP **************************
-		
-			Date son_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih2);
-			long son_t = son_tarih.getTime();
-			Date anl_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih1);
-			Long anl_t = anl_tarih.getTime();
-			SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
-			String  anl_tS =  format1.format(anl_tarih);
-			PreparedStatement stmt = null;
-			while (anl_t <= son_t)
+
+		Date son_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih2);
+		long son_t = son_tarih.getTime();
+		Date anl_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih1);
+		Long anl_t = anl_tarih.getTime();
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
+		String  anl_tS =  format1.format(anl_tarih);
+		PreparedStatement stmt = null;
+		while (anl_t <= son_t)
+		{
+			String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,[USER]) " +
+					" VALUES (?,?,?,?,?,?,?,?)" ;
+
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, gbilgi.gid);
+			stmt.setString(2, anl_tS);
+			stmt.setString(3, gbilgi.saat1);
+			stmt.setString(4, gbilgi.isim);
+			stmt.setString(5, gbilgi.gorev);
+			stmt.setString(6, gbilgi.yer);
+			stmt.setString(7, gbilgi.mesaj);
+			stmt.setString(8, gbilgi.user);
+			stmt.executeUpdate();
+
+			Calendar c = Calendar.getInstance(); 
+			c.setTime(anl_tarih); 
+			if(gbilgi.secenek =="Ayda")
 			{
-				String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,[USER]) " +
-						" VALUES (?,?,?,?,?,?,?,?)" ;
-				
-				stmt = con.prepareStatement(sql);
-				stmt.setInt(1, gbilgi.gid);
-				stmt.setString(2, anl_tS);
-				stmt.setString(3, gbilgi.saat1);
-				stmt.setString(4, gbilgi.isim);
-				stmt.setString(5, gbilgi.gorev);
-				stmt.setString(6, gbilgi.yer);
-				stmt.setString(7, gbilgi.mesaj);
-				stmt.setString(8, gbilgi.user);
-				stmt.executeUpdate();
-				
-				Calendar c = Calendar.getInstance(); 
-				c.setTime(anl_tarih); 
-				if(gbilgi.secenek =="Ayda")
-				{
-					System.out.println(gbilgi.deger);
-					c.add(Calendar.MONTH, gbilgi.deger);
-				}
-				else if(gbilgi.secenek =="Haftada")
-				{
-					c.add(Calendar.DATE, gbilgi.deger * 7);
-				}
-				else if(gbilgi.secenek =="Gunde")
-				{
-					c.add(Calendar.DATE, gbilgi.deger );
-				}
-				else if(gbilgi.secenek =="Saatte")
-				{
-					c.add(Calendar.HOUR, gbilgi.deger );
-				}
-				anl_tarih = c.getTime();
-				anl_tS =  format1.format(anl_tarih);
-				anl_t = anl_tarih.getTime() ;
-			};    
-			stmt.close();
+				System.out.println(gbilgi.deger);
+				c.add(Calendar.MONTH, gbilgi.deger);
+			}
+			else if(gbilgi.secenek =="Haftada")
+			{
+				c.add(Calendar.DATE, gbilgi.deger * 7);
+			}
+			else if(gbilgi.secenek =="Gunde")
+			{
+				c.add(Calendar.DATE, gbilgi.deger );
+			}
+			else if(gbilgi.secenek =="Saatte")
+			{
+				c.add(Calendar.HOUR, gbilgi.deger );
+			}
+			anl_tarih = c.getTime();
+			anl_tS =  format1.format(anl_tarih);
+			anl_t = anl_tarih.getTime() ;
+		};    
+		stmt.close();
 	}
 }

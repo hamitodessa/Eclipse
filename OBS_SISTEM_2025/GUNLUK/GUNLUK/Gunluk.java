@@ -36,8 +36,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -56,11 +54,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTree;
-import java.awt.FlowLayout;
-import java.awt.CardLayout;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
@@ -104,7 +98,7 @@ public class Gunluk extends JInternalFrame {
 		setBounds(0,0, 1100, 635);
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
-		splitPane.setResizeWeight(0.0);
+		//splitPane.setResizeWeight(0.0);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();

@@ -125,10 +125,10 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
-        sql = "CREATE TABLE GOREV ([GID] [int] IDENTITY(1,1) NOT NULL , BASL_TARIH DATE , BASL_SAAT nvarchar(5), BIT_TARIH DATE , BIT_SAAT nvarchar(5),TEKRARLA bit,ISIM nvarchar(20),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
+        sql = "CREATE TABLE GOREV ([GID] [int] IDENTITY(1,1) NOT NULL , BASL_TARIH DATE , BASL_SAAT nvarchar(5), BIT_TARIH DATE , BIT_SAAT nvarchar(5),TEKRARLA bit,ISIM nvarchar(30),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,SECENEK nvarchar(10),DEGER int ,[USER] nvarchar(15) NULL)" ;  
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
-        sql = "CREATE TABLE GUNLUK ( [GRVID] [int] IDENTITY(1,1) NOT NULL  ,  [GID] [int]  , TARIH DATE ,SAAT nvarchar(5),ISIM nvarchar(20),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
+        sql = "CREATE TABLE GUNLUK ( [GRVID] [int] IDENTITY(1,1) NOT NULL  ,  [GID] [int]  , TARIH DATE ,SAAT nvarchar(5),ISIM nvarchar(30),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
         stmt = con.createStatement();  
         stmt.executeUpdate(sql);
 
@@ -191,8 +191,8 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void gorev_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String sql  = "INSERT INTO GOREV (BASL_TARIH,BASL_SAAT,BIT_TARIH,TEKRARLA,ISIM,GOREV,YER,MESAJ,[USER]) " +
-				" VALUES (?,?,?,?,?,?,?,?,?)" ;
+		String sql  = "INSERT INTO GOREV (BASL_TARIH,BASL_SAAT,BIT_TARIH,TEKRARLA,ISIM,GOREV,YER,MESAJ,SECENEK,DEGER,[USER]) " +
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, gbilgi.tarih1);
@@ -203,7 +203,9 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		stmt.setString(6, gbilgi.gorev);
 		stmt.setString(7, gbilgi.yer);
 		stmt.setString(8, gbilgi.mesaj);
-		stmt.setString(9, gbilgi.user);
+		stmt.setString(9, gbilgi.secenek);
+		stmt.setInt(10, gbilgi.deger);
+		stmt.setString(11, gbilgi.user);
 		stmt.executeUpdate();
 		stmt.close();
 

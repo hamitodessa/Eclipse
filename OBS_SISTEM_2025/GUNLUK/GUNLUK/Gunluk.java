@@ -101,7 +101,7 @@ public class Gunluk extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0,0, 1100, 672);
+		setBounds(0,0, 1100, 635);
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
@@ -181,10 +181,11 @@ public class Gunluk extends JInternalFrame {
        
         
 		calendar = new JCalendar();
-		//calendar.getDayChooser().setCalendar(cal);
+		calendar.getDayChooser().setDayBordersVisible(true);
+		
 		calendar.getMonthChooser().getComboBox().setFont(new Font("Tahoma", Font.BOLD, 11));
-		calendar.getYearChooser().getSpinner().setFont(new Font("Tahoma", Font.BOLD, 11));
-		calendar.getMonthChooser().getSpinner().setFont(new Font("Tahoma", Font.PLAIN, 11));
+		
+		calendar.getYearChooser().setFont(new Font("Tahoma", Font.BOLD, 11));
 		calendar.getDayChooser().getDayPanel().addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
 				try {
@@ -299,6 +300,9 @@ public class Gunluk extends JInternalFrame {
 				new DefaultMutableTreeNode("Gorevler") {
 				}
 				));
+		
+		JPanel panel_5 = new JPanel();
+		splitPane_6.setRightComponent(panel_5);
 		treeGovev.getAutoscrolls();
 		treeGovev.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 		JPanel panel_3 = new JPanel();
@@ -435,6 +439,9 @@ public class Gunluk extends JInternalFrame {
 		table.setTableHeader(null);
 		temizle();
 		calendar.setDate(new Date());
+		
+		JPanel panel_4 = new JPanel();
+		splitPane_1.setRightComponent(panel_4);
 		try 
 		{
 			isim_doldur();
@@ -702,10 +709,10 @@ public class Gunluk extends JInternalFrame {
 		gbilgi.gorev = gOREV[1];
 		gbilgi.yer = gOREV[2];
 		int gid = g_Access.gorev_bul(gbilgi);
-		boolean varmi = OBS_MAIN.pencere_bak("GOREV_GIRIS");
+		boolean varmi = OBS_MAIN.pencere_bak("GOREV GIRIS");
 		if (varmi  ) 
  		{
- 		OBS_MAIN.pencere_aktiv_yap("DEKONT");
+ 		OBS_MAIN.pencere_aktiv_yap("GOREV GIRIS");
  		}
 		else 
 		{

@@ -1,7 +1,11 @@
 package GUNLUK;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
@@ -16,36 +20,29 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.Color;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.text.JTextComponent;
 
+import com.toedter.calendar.JDateChooser;
+
+import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.TARIH_CEVIR;
-
-import javax.swing.JTextArea;
-import com.toedter.calendar.JDateChooser;
-
-import OBS_2025.OBS_SIS_2025_ANA_CLASS;
-
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JCheckBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class GOREV_GIRIS extends JInternalFrame {
@@ -59,10 +56,10 @@ public class GOREV_GIRIS extends JInternalFrame {
 	private static JDateChooser dtcBaslama ;
 	private static JDateChooser dtcBitis;
 	private static JComboBox<String> cmbBaslamaSaat ;
-	private static JCheckBox chckbxTekrarla ;
+	private static JComboBox<String> cmbSecenek;
 	private JLabel lblBitis;
 	private static JTextField txtYer;
-
+	private static JTextField txtDeger;
 	/**
 	 * Launch the application.
 	 */
@@ -85,9 +82,9 @@ public class GOREV_GIRIS extends JInternalFrame {
 	public GOREV_GIRIS() {
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(100, 100, 514, 299);
+		setBounds(100, 100, 514, 279);
 		setTitle("GOREV GIRIS");
-
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		getContentPane().add(panel, BorderLayout.CENTER);
@@ -109,20 +106,20 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(txtIsim);
 		txtIsim.setColumns(10);
 
-		txtGorev = new JTextField(20);
-		txtGorev.setBounds(100, 55, 134, 20);
+		txtGorev = new JTextField(30);
+		txtGorev.setBounds(100, 55, 201, 20);
 		panel.add(txtGorev);
 		txtGorev.setColumns(10);
 
 		txtMesaj = new JTextArea();
-		txtMesaj.setBounds(100, 95, 339, 75);
+		txtMesaj.setBounds(100, 95, 361, 75);
 		txtMesaj.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				txtMesaj.selectAll();
 			}
 		});
-		txtMesaj.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtMesaj.setFont(new Font("Monospaced", Font.BOLD, 13));
 		txtMesaj.setLineWrap(true);
 		txtMesaj.setDocument(new JTextFieldLimit(100));
 		JTextFieldRegularPopupMenu.addTo(txtMesaj);
@@ -240,7 +237,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		cmbBaslamaSaat = new JComboBox<String>();
 		cmbBaslamaSaat.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbBaslamaSaat.setModel(new DefaultComboBoxModel<String>(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
-		cmbBaslamaSaat.setBounds(288, 180, 80, 22);
+		cmbBaslamaSaat.setBounds(225, 181, 63, 22);
 		panel.add(cmbBaslamaSaat);
 
 		txtGID = new JTextField();
@@ -249,30 +246,11 @@ public class GOREV_GIRIS extends JInternalFrame {
 		txtGID.setVisible(false);
 		panel.add(txtGID);
 		
-		chckbxTekrarla = new JCheckBox("Tekrarla");
-		chckbxTekrarla.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxTekrarla.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (chckbxTekrarla.isSelected())
-				{
-					dtcBitis.setEnabled(true);
-				}
-				else
-				{
-					dtcBitis.setEnabled(false);
-				}
-				
-			}
-		});
-		chckbxTekrarla.setBounds(100, 235, 99, 23);
-		panel.add(chckbxTekrarla);
-		
 		dtcBitis = new JDateChooser();
 		dtcBitis.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dtcBitis.setDateFormatString("dd.MM.yyyy");
 		dtcBitis.setDate(new Date());
 		dtcBitis.setBounds(100, 210, 115, 20);
-		dtcBitis.setEnabled(false);
 		dtcBitis.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
 			public void focusGained(FocusEvent evt) {
@@ -373,8 +351,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 		lblNewLabel_3.setBounds(251, 29, 39, 14);
 		panel.add(lblNewLabel_3);
 		
-		txtYer = new JTextField();
-		txtYer.setBounds(300, 26, 135, 20);
+		txtYer = new JTextField(30);
+		txtYer.setBounds(300, 26, 161, 20);
 		panel.add(txtYer);
 		txtYer.setColumns(10);
 		
@@ -385,7 +363,24 @@ public class GOREV_GIRIS extends JInternalFrame {
 		lblBitis = new JLabel("Bitis");
 		lblBitis.setBounds(10, 215, 48, 14);
 		panel.add(lblBitis);
+		
+		cmbSecenek = new JComboBox<String>();
+		cmbSecenek.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cmbSecenek.setModel(new DefaultComboBoxModel(new String[] {"Ayda", "Haftada", "Gunde", "Saatte"}));
+		cmbSecenek.setBounds(355, 181, 106, 22);
+		panel.add(cmbSecenek);
+		
+		txtDeger = new JTextField();
+		txtDeger.setBounds(415, 210, 46, 20);
+		panel.add(txtDeger);
+		txtDeger.setColumns(10);
+		
+		JLabel lblNewLabel_5 = new JLabel("Deger");
+		lblNewLabel_5.setBounds(355, 213, 50, 14);
+		panel.add(lblNewLabel_5);
 		sifirla();
+
+
 	}
 	public static  void kaydet()
 	{
@@ -408,16 +403,18 @@ public class GOREV_GIRIS extends JInternalFrame {
 			gbilgi.tarih1 = str1;
 			gbilgi.tarih2 = str2;
 			gbilgi.saat1 =cmbBaslamaSaat.getSelectedItem().toString() ;
-			gbilgi.tekrarla = chckbxTekrarla.isSelected() ? true : false;
 			gbilgi.isim = txtIsim.getText();
 			gbilgi.gorev = txtGorev.getText();
+			gbilgi.tekrarla = true;
 			gbilgi.yer = txtYer.getText();
 			gbilgi.mesaj = txtMesaj.getText() ;
 			gbilgi.user =  GLOBAL.KULL_ADI ;
+			gbilgi.secenek = cmbSecenek.getSelectedItem().toString();
+			gbilgi.deger = Integer.parseInt(txtDeger.getText());
 			
 			g_Access.gorev_kayit(gbilgi);
 			gbilgi.gid = g_Access.gid_ogren(gbilgi);
-			g_Access.gunluk_kayit(gbilgi);
+			g_Access.gunluk_farkli_kayit(gbilgi);
 			sifirla();
 		}
 		catch (Exception ex)
@@ -462,15 +459,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 			dtcBaslama.setDate(rSet.getDate("BASL_TARIH"));
 			dtcBitis.setDate(rSet.getDate("BIT_TARIH"));
 			cmbBaslamaSaat.setSelectedItem(rSet.getString("BASL_SAAT"));
-			chckbxTekrarla.setSelected(rSet.getBoolean("TEKRARLA"));
-			if(chckbxTekrarla.isSelected())
-			{
-				dtcBitis.setEnabled(true);
-			}
-			else 
-			{
-				dtcBitis.setEnabled(false);
-			}
+			cmbSecenek.setSelectedItem(rSet.getString("SECENEK"));
+			txtDeger.setText(Integer.toString(rSet.getInt("DEGER")));
 		}
 	}
 	private static void sifirla()
@@ -483,7 +473,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		cmbBaslamaSaat.setSelectedItem("06:00");
 		dtcBaslama.setDate(new Date());
 		dtcBitis.setDate(new Date());
-		chckbxTekrarla.setSelected(false);
-		dtcBitis.setEnabled(false);
+		cmbSecenek.setSelectedItem("Ayda");
+		txtDeger.setText("");
 	}
 }

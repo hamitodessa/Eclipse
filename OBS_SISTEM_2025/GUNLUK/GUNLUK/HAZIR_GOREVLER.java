@@ -48,7 +48,7 @@ import javax.swing.JMenuItem;
 public class HAZIR_GOREVLER extends JInternalFrame {
 	private static JTable table;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	@SuppressWarnings({ "unused", "static-access" })
+	@SuppressWarnings({ "static-access" })
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	public static JScrollPane scrollPane;
 	private JPanel panel;
@@ -244,14 +244,6 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			table.setSelectionForeground(Color.BLUE);
 			lblNewLabel.setText( String.format("Satir Sayisi : %,d %n" ,  table.getRowCount()));
 
-			String deger;
-			String[] parts;
-			Font bigFont;
-			deger = GLOBAL.setting_oku("CARI_HSPPLN").toString();
-			deger = deger.substring(1, deger.length()-1);
-			parts = deger.split(",");
-			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-			table.setFont(bigFont);
 
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 

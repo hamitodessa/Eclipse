@@ -129,6 +129,14 @@ public class GLOBAL {
 			boolean exists = tmpDir.exists();
 			if (exists)
 			{    
+				tmpDir = new File(LOG_SURUCU);
+				exists = tmpDir.exists();
+				if (exists)
+				{
+					tmpDir.mkdirs();
+					File logDir = new File(LOG_SURUCU);
+					logDir.mkdirs();
+				}
 			}
 			else
 			{

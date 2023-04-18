@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.GregorianCalendar;
 import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -55,6 +56,10 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTree;
 import java.awt.FlowLayout;
+import java.awt.CardLayout;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
@@ -128,15 +133,28 @@ public class Gunluk extends JInternalFrame {
 		panelToolbar.setMinimumSize(new Dimension(0, 35));
 		panelToolbar.setMaximumSize(new Dimension(0, 35));
 		splitSolUst.setLeftComponent(panelToolbar);
-		panelToolbar.setLayout(null);
 		
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setBounds(35, 1, 60, 33);
-		panelToolbar.add(btnNewButton);
+		//btnNewButton.setMinimumSize(new Dimension(60, 0));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+
+					geri();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		panelToolbar.setLayout(new GridLayout(1, 1, 0, 0));
 		btnNewButton.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_geri-24.png")));
+		panelToolbar.add(btnNewButton);
+		
+		
+		
 
 		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setBounds(105, 1, 60, 33);
 		panelToolbar.add(btnNewButton_1);
 		btnNewButton_1.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_ileri-24.png")));
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -149,19 +167,13 @@ public class Gunluk extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-
-					geri();
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
+		
 		///
 		calendar = new JCalendar();
+		
+		calendar.getMonthChooser().getComboBox().setFont(new Font("Tahoma", Font.BOLD, 11));
+		calendar.getYearChooser().getSpinner().setFont(new Font("Tahoma", Font.BOLD, 11));
+		calendar.getMonthChooser().getSpinner().setFont(new Font("Tahoma", Font.PLAIN, 11));
 		calendar.getDayChooser().getDayPanel().addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
 				try {

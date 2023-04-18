@@ -37,6 +37,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -93,6 +94,7 @@ public class Gunluk extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("static-access")
 	public Gunluk() {
 		setTitle("GUNLUK");
 		setResizable(true);
@@ -169,8 +171,17 @@ public class Gunluk extends JInternalFrame {
 		});
 		
 		///
+		//Locale locale = Locale.forLanguageTag("tr-TR"); 
+        //Calendar cal = Calendar.getInstance(locale);
+        //cal.setTime(new Date());
+        //set first day of week
+        //int firstWeekDay = Calendar.MONDAY;
+        //cal.setFirstDayOfWeek(firstWeekDay);
+        
+       
+        
 		calendar = new JCalendar();
-		
+		//calendar.getDayChooser().setCalendar(cal);
 		calendar.getMonthChooser().getComboBox().setFont(new Font("Tahoma", Font.BOLD, 11));
 		calendar.getYearChooser().getSpinner().setFont(new Font("Tahoma", Font.BOLD, 11));
 		calendar.getMonthChooser().getSpinner().setFont(new Font("Tahoma", Font.PLAIN, 11));

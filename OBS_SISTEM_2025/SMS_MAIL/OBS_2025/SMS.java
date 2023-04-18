@@ -49,7 +49,10 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import com.sms.api.Messenger;
+
 import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.App;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
@@ -1105,5 +1108,10 @@ public class SMS extends JInternalFrame {
 		OBS_MAIN.progressBar.setMaximum(0);
 		OBS_MAIN.progressBar.setValue(0);
 		OBS_MAIN.progressBar.setStringPainted(false);
+	}
+	public void deneme()
+	{
+		Messenger messenger = new Messenger("hostAdress", "username", "password");
+	
 	}
 }

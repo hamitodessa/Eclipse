@@ -29,5 +29,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/mail.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/mysql-connector-j-8.0.31.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-net-3.7.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/smsApi-Java-1.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

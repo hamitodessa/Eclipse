@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
@@ -21,7 +19,6 @@ import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -29,7 +26,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.text.JTextComponent;
@@ -101,7 +97,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		lblNewLabel_2.setBounds(10, 95, 46, 14);
 		panel.add(lblNewLabel_2);
 
-		txtIsim = new JTextField(20);
+		txtIsim = new JTextField(30);
 		txtIsim.setBounds(100, 26, 134, 20);
 		panel.add(txtIsim);
 		txtIsim.setColumns(10);

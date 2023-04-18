@@ -153,6 +153,10 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_77;//Raporlama
 	private JButton btnNewButton_78;//Cek Kontrol
 	private JButton btnNewButton_80;//Firma Ismi
+	//GUNLUK
+	private JButton btnNewButton_81;//Gunluk
+	private JButton btnNewButton_82;//Gorev Kayit
+	private JButton btnNewButton_21;//Kayitli Gorevler
 	//
 	public static JLabel lblNewLabel_1 ;
 	public static JLabel lblNewLabel_2 ;
@@ -742,7 +746,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnDegiskenler .add(mntmO2 );
-
+//*************************************************************KAMBIYO  *************************************************
 		JMenu mnKambiyo = new JMenu("Kambiyo");
 		mnKambiyo.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -801,7 +805,38 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnKambiyo.add(mntmCfirma);
-
+		//************************************************************* GUNLUK **************************************************
+		JMenu mnGunluk = new JMenu("Gunluk");
+		mnGunluk.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				tabbedPane.setSelectedIndex(5);
+			}
+		});
+		mnGunluk.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		menuBar.add(mnGunluk);
+		JMenuItem mntmGunluk = new JMenuItem("Gunluk");
+		mntmGunluk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_81.doClick();
+			}
+		});
+		mnGunluk.add(mntmGunluk);
+		JMenuItem mntmGrvgiris = new JMenuItem("Gorev Giris");
+		mntmGrvgiris.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_82.doClick();
+			}
+		});
+		mnGunluk.add(mntmGrvgiris);
+		JMenuItem mntmKayitli = new JMenuItem("Kayitli Gorevler");
+		mntmKayitli.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_21.doClick();
+			}
+		});
+		mnGunluk.add(mntmKayitli);
+        //************************************************************************************************
 		JMenu mnSms = new JMenu("Sms / Mail");
 		mnSms.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -1682,7 +1717,8 @@ public class OBS_MAIN extends JFrame {
 		toolBar_7.setFloatable(false);
 		tabbedPane.addTab("Gunluk", null, toolBar_7, null);
 
-		JButton btnNewButton_81 = new JButton("");
+		btnNewButton_81 = new JButton("");
+		btnNewButton_81.setToolTipText("Gunluk");
 		btnNewButton_81.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -1692,7 +1728,8 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_81.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-schedule-30.png")));
 		toolBar_7.add(btnNewButton_81);
 
-		JButton btnNewButton_82 = new JButton("");
+		btnNewButton_82 = new JButton("");
+		btnNewButton_82.setToolTipText("Gorev Girisi");
 		
 		btnNewButton_82.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1702,7 +1739,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_82.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-active-directory-30.png")));
 		toolBar_7.add(btnNewButton_82);
 		
-		JButton btnNewButton_21 = new JButton("");
+		btnNewButton_21 = new JButton("");
 		btnNewButton_21.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("HAZIR GOREVLER","");

@@ -166,13 +166,6 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		
 	}
 	@Override
-	public void gunluk_kayit(Gunluk_Bilgi gbilgi) 
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void gorev_sil(int id) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		

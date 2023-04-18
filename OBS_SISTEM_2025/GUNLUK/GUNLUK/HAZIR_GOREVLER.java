@@ -73,6 +73,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public HAZIR_GOREVLER() {
+		setMaximizable(true);
 		setResizable(true);
 		setBounds(100, 100, 900, 400);
 		setIconifiable(true);

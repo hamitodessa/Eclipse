@@ -41,11 +41,7 @@ public class GUNLUK_ACCESS {
 	{
 		_IGunluk.gorev_kayit(gbilgi);
 	}
-	public void gunluk_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException, ParseException
-	{
-		_IGunluk.gunluk_kayit(gbilgi);
-	}
-	public void gorev_sil(int id) throws ClassNotFoundException, SQLException
+		public void gorev_sil(int id) throws ClassNotFoundException, SQLException
 	{
 		_IGunluk.gorev_sil(id);
 	}

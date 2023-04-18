@@ -394,4 +394,57 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		stmt.executeUpdate();
 		stmt.close();
 	}
+	@Override
+	public void gunluk_farkli_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException, ParseException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		//***********************KAYIT TEKRARINA GORE KAYIT YAP **************************
+		
+			Date son_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih2);
+			long son_t = son_tarih.getTime();
+			Date anl_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih1);
+			Long anl_t = anl_tarih.getTime();
+			SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
+			String  anl_tS =  format1.format(anl_tarih);
+			PreparedStatement stmt = null;
+			while (anl_t <= son_t)
+			{
+				String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,[USER]) " +
+						" VALUES (?,?,?,?,?,?,?,?)" ;
+				
+				stmt = con.prepareStatement(sql);
+				stmt.setInt(1, gbilgi.gid);
+				stmt.setString(2, anl_tS);
+				stmt.setString(3, gbilgi.saat1);
+				stmt.setString(4, gbilgi.isim);
+				stmt.setString(5, gbilgi.gorev);
+				stmt.setString(6, gbilgi.yer);
+				stmt.setString(7, gbilgi.mesaj);
+				stmt.setString(8, gbilgi.user);
+				stmt.executeUpdate();
+				
+				Calendar c = Calendar.getInstance(); 
+				c.setTime(anl_tarih); 
+				if(gbilgi.secenek =="Ayda")
+				{
+					System.out.println(gbilgi.deger);
+					c.add(Calendar.MONTH, gbilgi.deger);
+				}
+				else if(gbilgi.secenek =="Haftada")
+				{
+					c.add(Calendar.DATE, gbilgi.deger * 7);
+				}
+				else if(gbilgi.secenek =="Gunde")
+				{
+					c.add(Calendar.DATE, gbilgi.deger );
+				}
+				else if(gbilgi.secenek =="Saatte")
+				{
+					c.add(Calendar.HOUR, gbilgi.deger );
+				}
+				anl_tarih = c.getTime();
+				anl_tS =  format1.format(anl_tarih);
+				anl_t = anl_tarih.getTime() ;
+			};    
+			stmt.close();
+	}
 }

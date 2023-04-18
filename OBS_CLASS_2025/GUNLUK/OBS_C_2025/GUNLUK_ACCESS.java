@@ -81,4 +81,8 @@ public class GUNLUK_ACCESS {
 	{
 		_IGunluk.gorev_tek_sil(id);
 	}
+	public void gunluk_farkli_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException, ParseException
+	{
+		_IGunluk.gunluk_farkli_kayit(gbilgi);
+	}
 }

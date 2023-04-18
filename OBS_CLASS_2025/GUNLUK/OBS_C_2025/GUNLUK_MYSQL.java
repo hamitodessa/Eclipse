@@ -219,5 +219,10 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void gunluk_farkli_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

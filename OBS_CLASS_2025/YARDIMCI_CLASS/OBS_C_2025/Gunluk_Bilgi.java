@@ -12,6 +12,7 @@ public class Gunluk_Bilgi {
 	public String mesaj;
 	public String user;
 	public Boolean tekrarla;
-	
+	public String secenek;
+	public int deger;
 
 }

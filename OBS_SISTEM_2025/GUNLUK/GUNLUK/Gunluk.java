@@ -11,7 +11,6 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import com.toedter.calendar.JCalendar;
 import OBS_C_2025.Gunluk_Bilgi;
-import OBS_2025.DEKONT;
 import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.COLUMN_RENDERER;
@@ -44,24 +43,23 @@ import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JToolBar;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTree;
+import java.awt.FlowLayout;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	@SuppressWarnings({ "unused", "static-access" })
+	@SuppressWarnings({ "static-access" })
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	private JTable table;
 	private JTable table_1;
@@ -129,41 +127,39 @@ public class Gunluk extends JInternalFrame {
 		JPanel panelToolbar= new JPanel();
 		panelToolbar.setMinimumSize(new Dimension(0, 35));
 		panelToolbar.setMaximumSize(new Dimension(0, 35));
-		panelToolbar.setLayout(null);
 		splitSolUst.setLeftComponent(panelToolbar);
+		panelToolbar.setLayout(null);
 		
-				JButton btnNewButton = new JButton("");
-				btnNewButton.setBounds(1, 2, 99, 31);
-				panelToolbar.add(btnNewButton);
-				btnNewButton.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_geri-24.png")));
-				
-						JButton btnNewButton_1 = new JButton("");
-						btnNewButton_1.setBounds(102, 2, 99, 31);
-						panelToolbar.add(btnNewButton_1);
-						btnNewButton_1.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_ileri-24.png")));
-						
-						
-								btnNewButton_1.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
-										try {
-											ileri();
-										} catch (ClassNotFoundException | SQLException e1) {
-											// TODO Auto-generated catch block
-											e1.printStackTrace();
-										}
-									}
-								});
-				btnNewButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						try {
-							
-							geri();
-						} catch (ClassNotFoundException | SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-				});
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBounds(35, 1, 60, 33);
+		panelToolbar.add(btnNewButton);
+		btnNewButton.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_geri-24.png")));
+
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBounds(105, 1, 60, 33);
+		panelToolbar.add(btnNewButton_1);
+		btnNewButton_1.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_ileri-24.png")));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ileri();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+
+					geri();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		///
 		calendar = new JCalendar();
 		calendar.getDayChooser().getDayPanel().addPropertyChangeListener(new PropertyChangeListener() {
@@ -278,16 +274,10 @@ public class Gunluk extends JInternalFrame {
 		scrollPane_1.setViewportView(treeGovev);
 		treeGovev.setModel(new DefaultTreeModel(
 				new DefaultMutableTreeNode("Gorevler") {
-					{
-					}
 				}
 				));
 		treeGovev.getAutoscrolls();
 		treeGovev.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-
-
-
-
 		JPanel panel_3 = new JPanel();
 		splitPane_2.setLeftComponent(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
@@ -422,11 +412,11 @@ public class Gunluk extends JInternalFrame {
 		table.setTableHeader(null);
 		temizle();
 		calendar.setDate(new Date());
-		try {
+		try 
+		{
 			isim_doldur();
 			basla();
 		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
@@ -440,7 +430,7 @@ public class Gunluk extends JInternalFrame {
 		mdl1.setValueAt(getDayNumber(trh1),1,1);
 		for (int i = 2 ;i <=7;i++)
 		{
-			mdl1.setValueAt(tarih_ileri_geri(trh1,"I"),0,i);
+			mdl1.setValueAt(tarih_ileri_geri(trh1),0,i);
 			mdl1.setValueAt(getDayNumber(trh1),1,i);
 		}
 		gorev_oku();
@@ -486,24 +476,17 @@ public class Gunluk extends JInternalFrame {
 		}
 		return tarr;
 	}
-	private String tarih_ileri_geri(String tarih , String nereye)
+	private String tarih_ileri_geri(String tarih )
 	{
 		try
 		{
-			if (nereye == "G")
-			{
+			Date qwe = new SimpleDateFormat("dd.MM.yyyy").parse(tarih);	
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(qwe);
+			cal.add(Calendar.DAY_OF_MONTH, 1); 
+			SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+			trh1 =  format1.format(cal.getTime());
 
-			}
-			else if (nereye == "I")
-			{
-				Date qwe = new SimpleDateFormat("dd.MM.yyyy").parse(tarih);	
-				Calendar cal = Calendar.getInstance();
-				cal.setTime(qwe);
-				cal.add(Calendar.DAY_OF_MONTH, 1); 
-				//System.out.println(cal.getTime());
-				SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
-				trh1 =  format1.format(cal.getTime());
-			}
 		} catch (ParseException e) {
 		}
 		return trh1;  
@@ -513,7 +496,8 @@ public class Gunluk extends JInternalFrame {
 		temizle();
 		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
 		String formatted = format1.format(calendar.getDate());
-		try {
+		try 
+		{
 			Date qwe = new SimpleDateFormat("dd.MM.yyyy").parse(formatted);
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(qwe);
@@ -533,14 +517,15 @@ public class Gunluk extends JInternalFrame {
 			cal.setTime(qwe);
 			cal.add(Calendar.DAY_OF_MONTH, -1); 
 			calendar.setDate(new Date(cal.getTimeInMillis()));
-		} catch (ParseException e) {
+		} 
+		catch (ParseException e) 
+		{
 		}  
 	}
 	private void temizle()
 	{
 		DefaultTableModel mdlGunluk = (DefaultTableModel) table.getModel();
 		DefaultTableModel mdlBaslik = (DefaultTableModel) table_1.getModel();
-
 		for (int qqq = 1; qqq <= mdlBaslik.getColumnCount() -1;qqq++)
 		{
 			for (int stt = 0 ; stt <= mdlGunluk.getRowCount() -1;stt ++)
@@ -693,8 +678,6 @@ public class Gunluk extends JInternalFrame {
 		gbilgi.isim = gOREV[0];
 		gbilgi.gorev = gOREV[1];
 		gbilgi.yer = gOREV[2];
-	
-		
 		int gid = g_Access.gorev_bul(gbilgi);
 		boolean varmi = OBS_MAIN.pencere_bak("GOREV_GIRIS");
 		if (varmi  ) 
@@ -710,8 +693,6 @@ public class Gunluk extends JInternalFrame {
 		}
 		GOREV_GIRIS.txtGID.setText(String.valueOf(gid));
 		GOREV_GIRIS.gOKU();
-		
-		///
 	}
 }
 

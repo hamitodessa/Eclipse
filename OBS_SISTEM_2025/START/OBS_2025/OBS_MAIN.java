@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import GUNLUK.GOREV_FARKLI_GIRIS;
 import GUNLUK.GOREV_GIRIS;
 import GUNLUK.Gunluk;
 import GUNLUK.HAZIR_GOREVLER;
@@ -1710,6 +1711,8 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_21.setToolTipText("Hazir Gorevler");
 		btnNewButton_21.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-news-30.png")));
 		toolBar_7.add(btnNewButton_21);
+		
+		
 		//************************************************************SMS*********************************************************************************
 
 		JToolBar toolBar_8 = new JToolBar();
@@ -1896,7 +1899,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "ZAYI")	ZAYI.kaydet();
 				else if (sonuc == "GRAFIK")	GRAFIK.kaydet();
 				else if (sonuc == "DEGISKEN YENILEME")	DEGISKEN_DEGIS.kaydet();
-				else if (sonuc == "GOREV GIRIS")	GOREV_GIRIS.kaydet();
+				else if (sonuc == "GOREV GIRIS")	GOREV_FARKLI_GIRIS.kaydet();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});
@@ -1931,7 +1934,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "ZAYI")	ZAYI.zai_sil();
 				else if (sonuc == "GIDEN RAPORLAR")	GID_RAPOR.sil();
 				else if (sonuc == "DEGISKENLER")	DEGISKEN_GIRIS.sil();
-				else if (sonuc == "GOREV GIRIS")	GOREV_GIRIS.sil();
+				else if (sonuc == "GOREV GIRIS")	GOREV_FARKLI_GIRIS.sil();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});
@@ -2747,7 +2750,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();
 			//GUNLUK
 			else if (pencere.equals("GUNLUK")) internalFrame  = new Gunluk();
-			else if (pencere.equals("GOREV GIRIS")) internalFrame  = new GOREV_GIRIS();
+			else if (pencere.equals("GOREV GIRIS")) internalFrame  = new GOREV_FARKLI_GIRIS();
 			else if (pencere.equals("HAZIR GOREVLER")) internalFrame  = new HAZIR_GOREVLER();
 			//STOK
 			else if (pencere.equals("URUN KARTI")) internalFrame  = new URUN_KART();

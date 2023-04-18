@@ -44,6 +44,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 
+@SuppressWarnings("serial")
 public class HAZIR_GOREVLER extends JInternalFrame {
 	private static JTable table;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -85,37 +86,40 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 
 		scrollPane = new JScrollPane();
 		splitPane.setLeftComponent(scrollPane);
-///***************************
+		///***************************
 		JPopupMenu popup = new JPopupMenu();
-        // New project menu item
-        JMenuItem menuItem = new JMenuItem("Tek Gorev Sil..", new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-reduce-16.png")));
-        menuItem.setMnemonic(KeyEvent.VK_T);
-        menuItem.getAccessibleContext().setAccessibleDescription( "Tek Gorev Sil");
-        
-        menuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	try {
+		JMenuItem menuItem = new JMenuItem("Tek Gorev Sil..", new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-reduce-16.png")));
+		menuItem.setMnemonic(KeyEvent.VK_T);
+		menuItem.getAccessibleContext().setAccessibleDescription( "Tek Gorev Sil");
+
+		menuItem.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				try 
+				{
 					grv_tek_sil();
-				} catch (NumberFormatException | ClassNotFoundException | SQLException e1) {
+				} catch (NumberFormatException | ClassNotFoundException | SQLException e1) 
+				{
 					e1.printStackTrace();
 				}
-            }
-        });
-        popup.add(menuItem);  //
-        menuItem = new JMenuItem("Gorev Degistir / Sil",new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/sil.png")));
-        menuItem.setMnemonic(KeyEvent.VK_S);
-        menuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	try {
+			}
+		});
+		popup.add(menuItem);  //
+		menuItem = new JMenuItem("Gorev Degistir / Sil",new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/sil.png")));
+		menuItem.setMnemonic(KeyEvent.VK_S);
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
 					grv_degis_sil();
 				} catch (ClassNotFoundException | PropertyVetoException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-              }
-        });
-        popup.add(menuItem);
-///***********************************************************************************************************************
+			}
+		});
+		popup.add(menuItem);
+		///***********************************************************************************************************************
 		table = new JTable(){
 			/**
 			 * 
@@ -124,7 +128,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 
 			@Override
 			public boolean isCellEditable(int row, int column) {  
-					return false;
+				return false;
 			}
 		};
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -134,24 +138,24 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					
+
 				}
 			}
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				
+			public void mouseReleased(MouseEvent e) 
+			{
 				int r = table.rowAtPoint(e.getPoint());
-		        if (r >= 0 && r < table.getRowCount()) {
-		            table.setRowSelectionInterval(r, r);
-		        } else {
-		            table.clearSelection();
-		        }
-		        int rowindex = table.getSelectedRow();
-		        if (rowindex < 0)
-		            return;
-		        if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
-		            popup.show(e.getComponent(), e.getX(), e.getY());
-		        }
+				if (r >= 0 && r < table.getRowCount()) {
+					table.setRowSelectionInterval(r, r);
+				} else {
+					table.clearSelection();
+				}
+				int rowindex = table.getSelectedRow();
+				if (rowindex < 0)
+					return;
+				if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
+					popup.show(e.getComponent(), e.getX(), e.getY());
+				}
 			}
 		});
 		scrollPane.setViewportView(table);
@@ -168,7 +172,8 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 	}
 	public static void hisset()
 	{
-		try {
+		try 
+		{
 			long startTime = System.currentTimeMillis();
 			ResultSet	rs = null;
 			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
@@ -223,8 +228,6 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			tc.setMinWidth(300);
 
 			th.repaint();
-
-
 			table.removeColumn(table.getColumnModel().getColumn(0));
 			table.removeColumn(table.getColumnModel().getColumn(0));
 
@@ -254,10 +257,10 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-
-		} catch (Exception ex) 
+		} 
+		catch (Exception ex) 
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage()); 
+			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Hazir Gorevler", JOptionPane.ERROR_MESSAGE); 
 		}
 	}
 	private void grv_degis_sil() throws PropertyVetoException, ClassNotFoundException, SQLException
@@ -265,7 +268,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		boolean varmi = OBS_MAIN.pencere_bak("GOREV GIRIS");
 		if (varmi  ) 
 		{
-				OBS_MAIN.pencere_aktiv_yap("GOREV GIRIS");
+			OBS_MAIN.pencere_aktiv_yap("GOREV GIRIS");
 		}
 		else
 		{
@@ -274,16 +277,23 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			OBS_MAIN.desktopPane.add(internalFrame);
 			internalFrame.setVisible(true);
 		}
-			GOREV_GIRIS.txtGID.setText(String.valueOf(table.getModel().getValueAt(table.getSelectedRow(), 1).toString()));
-			GOREV_GIRIS.gOKU();
+		GOREV_GIRIS.txtGID.setText(String.valueOf(table.getModel().getValueAt(table.getSelectedRow(), 1).toString()));
+		GOREV_GIRIS.gOKU();
 	}
 	private void grv_tek_sil() throws NumberFormatException, ClassNotFoundException, SQLException
 	{
-		int g =  JOptionPane.showOptionDialog( null,  "Gorev  Dosyadan Silinecek ..?", "Gunluk Dosyasindan Gorev Silme",   JOptionPane.YES_NO_OPTION,
-				JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
-		if(g != 0 ) { return;	}
-		
-		g_Access.gorev_tek_sil(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()));
-		hisset();
+		try
+		{
+			int g =  JOptionPane.showOptionDialog( null,  "Gorev  Dosyadan Silinecek ..?", "Gunluk Dosyasindan Gorev Silme",   JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
+			if(g != 0 ) { return;	}
+
+			g_Access.gorev_tek_sil(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()));
+			hisset();
+		} 
+		catch (Exception ex) 
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Gorev Silme", JOptionPane.ERROR_MESSAGE); 
+		}
 	}
 }

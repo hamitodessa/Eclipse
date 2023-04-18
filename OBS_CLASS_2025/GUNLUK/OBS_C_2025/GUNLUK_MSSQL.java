@@ -324,7 +324,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		ResultSet	rss = null;
 		String sql = "SELECT  *  " +
 				" FROM GUNLUK  " +
-				" WHERE TARIH BETWEEN  '" + gbilgi.tarih1 + "' AND  '" + gbilgi.tarih2 +"' AND SAAT BETWEEN '" + gbilgi.saat1 + "' AND  '" + gbilgi.saat2 + "'" +
+				" WHERE TARIH >=  '" + gbilgi.tarih1 + "' AND TARIH <= '" + gbilgi.tarih2 +"' AND SAAT >= '" + gbilgi.saat1 + "' AND SAAT <= '" + gbilgi.saat2 + "'" +
 				" AND ISIM " + gbilgi.isim + " " +
 				" ORDER BY TARIH  ";
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -343,15 +343,31 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	public void gunluk_farkli_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException, ParseException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		//***********************KAYIT TEKRARINA GORE KAYIT YAP **************************
-
-		Date son_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih2);
+		Date son_tarih ;
+		if (gbilgi.secenek == "Saatte")
+		{
+			son_tarih = new SimpleDateFormat("yyyy.MM.dd HH:mm").parse(gbilgi.tarih2 + " 23:00");
+			Calendar qwe = Calendar.getInstance();
+			qwe.setTime(son_tarih);
+			qwe.add(Calendar.DATE, -1 );
+			son_tarih = qwe.getTime();
+		}
+		else
+		{
+			son_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih2 );
+		}
+		//
 		long son_t = son_tarih.getTime();
 		Date anl_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih1);
+		//
+		Date secSAAT = new SimpleDateFormat("yyyy.MM.dd HH:mm").parse(gbilgi.tarih1 + " " + gbilgi.saat1);
+		Calendar saatCalendar = Calendar.getInstance();
+		//
 		Long anl_t = anl_tarih.getTime();
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
 		String  anl_tS =  format1.format(anl_tarih);
 		PreparedStatement stmt = null;
-		while (anl_t <= son_t)
+		while (anl_t <= son_t)  
 		{
 			String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,[USER]) " +
 					" VALUES (?,?,?,?,?,?,?,?)" ;
@@ -371,25 +387,31 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 			c.setTime(anl_tarih); 
 			if(gbilgi.secenek =="Ayda")
 			{
-				System.out.println(gbilgi.deger);
 				c.add(Calendar.MONTH, gbilgi.deger);
+				anl_tarih = c.getTime();
 			}
 			else if(gbilgi.secenek =="Haftada")
 			{
 				c.add(Calendar.DATE, gbilgi.deger * 7);
+				anl_tarih = c.getTime();
 			}
 			else if(gbilgi.secenek =="Gunde")
 			{
 				c.add(Calendar.DATE, gbilgi.deger );
+				anl_tarih = c.getTime();
 			}
 			else if(gbilgi.secenek =="Saatte")
 			{
-				c.add(Calendar.HOUR, gbilgi.deger );
+				saatCalendar.setTime(secSAAT);
+				saatCalendar.add(Calendar.HOUR, gbilgi.deger );
+				anl_tarih = saatCalendar.getTime();
+				secSAAT = anl_tarih;
+				SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
+				gbilgi.saat1 =  format2.format(saatCalendar.getTime());
 			}
-			anl_tarih = c.getTime();
 			anl_tS =  format1.format(anl_tarih);
 			anl_t = anl_tarih.getTime() ;
-		};    
+		}
 		stmt.close();
 	}
 }

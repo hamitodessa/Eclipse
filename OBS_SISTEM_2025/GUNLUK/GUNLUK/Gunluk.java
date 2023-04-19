@@ -635,9 +635,12 @@ public class Gunluk extends JInternalFrame {
 			DefaultMutableTreeNode iSIM = new DefaultMutableTreeNode(rSet.getString("ISIM"));
 			DefaultMutableTreeNode gOREV = new DefaultMutableTreeNode(rSet.getString("GOREV"));
 			DefaultMutableTreeNode yER = new DefaultMutableTreeNode(rSet.getString("YER")); 
+			DefaultMutableTreeNode mESAJ = new DefaultMutableTreeNode(rSet.getString("MESAJ"));
+			yER.add(mESAJ);
 			gOREV.add(yER);
 			iSIM.add(gOREV);
 			root.add(iSIM);
+			
 		}
 		model.reload(root);
 	}

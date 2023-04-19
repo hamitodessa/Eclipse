@@ -665,19 +665,19 @@ public class Gunluk extends JInternalFrame {
 		TreePath path = treeGovev.getSelectionPath();
 		if (path == null) return;
 		int count = path.getPathCount();
-		String gOREV[] = new String[3];
+		String gOREV[] = new String[4];
+		if (count== 5)
+		{
+			gOREV[0] = path.getPathComponent(count - 4).toString();
+			gOREV[1] = path.getPathComponent(count - 3).toString();
+			gOREV[2] = path.getPathComponent(count - 2).toString();
+			gOREV[3] = path.getPathComponent(count -1 ).toString();
+		}
 		if (count== 4)
 		{
-			gOREV[0] = path.getPathComponent(count - 3).toString();
-			gOREV[1] =  path.getPathComponent(count - 2).toString();
+			gOREV[0]= path.getPathComponent(count - 3).toString();
+			gOREV[1] = path.getPathComponent(count - 2).toString();
 			gOREV[2] = path.getPathComponent(count - 1).toString();
-			//System.out.println(gOREV[0] + "/" + gOREV[1] + "/" + gOREV[2]);
-		}
-		if (count== 3)
-		{
-			gOREV[0]= path.getPathComponent(count - 2).toString();
-			gOREV[1] = path.getPathComponent(count - 1).toString();
-
 			DefaultMutableTreeNode node =  (DefaultMutableTreeNode) treeGovev.getLastSelectedPathComponent();
 			Enumeration<TreeNode> en = node.depthFirstEnumeration();
 			ArrayList<String> str = new ArrayList<String>();
@@ -686,8 +686,22 @@ public class Gunluk extends JInternalFrame {
 				DefaultMutableTreeNode nod1 = (DefaultMutableTreeNode) en.nextElement();
 				str.add(nod1.toString()); //this adds an element to the list.
 			}
-			gOREV[2] =(String) str.get(0) ;
-			//System.out.println(gOREV[0] + "/" + gOREV[1] + "/" + gOREV[2]);
+			gOREV[3] =(String) str.get(0) ;
+		}
+		if (count== 3)
+		{
+			gOREV[0]= path.getPathComponent(count - 2).toString();
+			gOREV[1] = path.getPathComponent(count - 1).toString();
+			DefaultMutableTreeNode node =  (DefaultMutableTreeNode) treeGovev.getLastSelectedPathComponent();
+			Enumeration<TreeNode> en = node.depthFirstEnumeration();
+			ArrayList<String> str = new ArrayList<String>();
+			while (en.hasMoreElements()) 
+			{
+				DefaultMutableTreeNode nod1 = (DefaultMutableTreeNode) en.nextElement();
+				str.add(nod1.toString()); //this adds an element to the list.
+			}
+			gOREV[2] =(String) str.get(1) ;
+			gOREV[3] =(String) str.get(0) ;
 		}
 		if (count== 2)
 		{
@@ -699,16 +713,17 @@ public class Gunluk extends JInternalFrame {
 				DefaultMutableTreeNode nod1 = (DefaultMutableTreeNode) en.nextElement();
 				str.add(nod1.toString()); //this adds an element to the list.
 			}
-			gOREV[0] =(String) str.get(2);
-			gOREV[1] = (String) str.get(1);
-			gOREV[2] = (String) str.get(0);
-			//System.out.println(gOREV[0] + "/" + gOREV[1] + "/" + gOREV[2]);
+			gOREV[0] =(String) str.get(3);
+			gOREV[1] = (String) str.get(2);
+			gOREV[2] = (String) str.get(1);
+			gOREV[3] = (String) str.get(0);
 		}
-		
 		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
 		gbilgi.isim = gOREV[0];
 		gbilgi.gorev = gOREV[1];
 		gbilgi.yer = gOREV[2];
+		gbilgi.mesaj = gOREV[3];
+		
 		int gid = g_Access.gorev_bul(gbilgi);
 		boolean varmi = OBS_MAIN.pencere_bak("GOREV GIRIS");
 		if (varmi  ) 

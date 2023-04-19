@@ -1736,6 +1736,9 @@ public class OBS_MAIN extends JFrame {
 				form_ac("GOREV GIRIS","");
 			}
 		});
+		
+		JLabel lblNewLabel_37 = new JLabel("     ");
+		toolBar_7.add(lblNewLabel_37);
 		btnNewButton_82.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-active-directory-30.png")));
 		toolBar_7.add(btnNewButton_82);
 		
@@ -1745,6 +1748,9 @@ public class OBS_MAIN extends JFrame {
 				form_ac("HAZIR GOREVLER","");
 			}
 		});
+		
+		JLabel lblNewLabel_36 = new JLabel("     ");
+		toolBar_7.add(lblNewLabel_36);
 		btnNewButton_21.setToolTipText("Hazir Gorevler");
 		btnNewButton_21.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-news-30.png")));
 		toolBar_7.add(btnNewButton_21);

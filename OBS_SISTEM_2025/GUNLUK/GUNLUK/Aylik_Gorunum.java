@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -28,38 +29,30 @@ public class Aylik_Gorunum extends JPanel{
 		{
 		gridRow = 4;
 		}
-    	
-    	
     	setPreferredSize( new Dimension(600, 400) );
         setBorder(new LineBorder(new Color(0, 191, 255)));
         setLayout(new GridLayout(gridRow, gridColumn, 2, 2));
-        
-  
         JButton button  ;
        int gunler = 1 ;
         for (int i = 0; i < gridRow; i++)
         {
             for (int j = 0; j < gridColumn; j++)
-            	
             {
             	if (i == 0 && j < sayi -1   )
             	{
-            		button = new JButton();
+            		button = new JButton("");
             	}
             	else {
 					
             		if (  gunler > sayi2)
             		{
-            			button = new JButton();
+            			button = new JButton("");
             		}
             		else {
-						
-            		
 					String qweString = Integer.toString(gunler) ;
-					String twoLines =  "<p style=text-align:center;> <font color = blue > <b> " + qweString + " </b> <br> </p> <p style=text-align:left;> <font color = black > " +" Deneme Lines" 
-							+ "<br>" +  "<font color = red > " +" abc  </p>";
+					String twoLines =  "<html><p style=text-align:center;> <font color = blue > <b> " + qweString + " </b> <br> </p></html>";
 					
-            		 button = new JButton("<html>" + twoLines + "</html>");
+            		 button = new JButton( twoLines );
             		 button.setName(Integer.toString(gunler));
             		 button.setActionCommand("" + Integer.toString(gunler) + "");
                      button.addActionListener(new ActionListener()
@@ -67,29 +60,25 @@ public class Aylik_Gorunum extends JPanel{
                          public void actionPerformed(ActionEvent ae)
                          {
                              JButton but = (JButton) ae.getSource();
-                      Gunluk.aYLIK();
-                             System.out.println(but.getActionCommand() + ADDED_TEXT);
+                             try {
+                            	 if (! but.getName().equals(""))
+                            	 {
+                            	Gunluk.aYLIK(but.getActionCommand());
+                            	 }
+							} catch (ClassNotFoundException | SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+//                             System.out.println(but.getActionCommand() + ADDED_TEXT);
                          }
                      });
                      gunler +=1 ;
             		}
 				}
-                
-               
                add(button);
             }
-       
         }
-     
- 
-        
-        
-        //JButton btngiris = new JButton("Giris");
-		//btngiris.setBounds(10, 30, 110, 23);
-		
-        
-	
-        //???
+       //String twoLines =  "<p style=text-align:center;> <font color = blue > <b> " + qweString + " </b> <br> </p> <p style=text-align:left;> <font color = black > " +" Deneme Lines" 
+	//	+ "<br>" +  "<font color = red > " +" abc  </p>";
     }
-
 }

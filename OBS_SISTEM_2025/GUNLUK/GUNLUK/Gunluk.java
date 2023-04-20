@@ -35,8 +35,13 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
+import org.apache.commons.compress.harmony.unpack200.bytecode.forms.ThisFieldRefForm;
+
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -45,6 +50,7 @@ import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
+import java.lang.invoke.StringConcatFactory;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -60,6 +66,10 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTree;
 import java.awt.GridLayout;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
@@ -68,12 +78,14 @@ public class Gunluk extends JInternalFrame {
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	private JTable table;
 	private JTable table_1;
-	JCalendar calendar ;
+	static JCalendar calendar ;
 	boolean kontrol = false;
 	String trh1 = "" ;
 	boolean ilk = true;
-	private JComboBox<String> comboIsim;
-	private JTree treeGovev ;
+	private static JComboBox<String> comboIsim;
+	private static JTree treeGovev ;
+	private JScrollPane scrolAylik;
+	private JTabbedPane tabloTabbedPane;
 	/**
 	 * Launch the application.
 	 */
@@ -140,11 +152,19 @@ public class Gunluk extends JInternalFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
+					if (activ_sayfa == 0)
+					{
+						geri();
+					}
+					else
+					{
+						ay_geri();
+					}
 
-					geri();
+				
 				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				
 				}
 			}
 		});
@@ -161,7 +181,15 @@ public class Gunluk extends JInternalFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ileri();
+					int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
+					if (activ_sayfa == 0)
+					{
+						ileri();
+					}
+					else 
+					{
+						ay_ileri();
+					}
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -180,6 +208,17 @@ public class Gunluk extends JInternalFrame {
        
         
 		calendar = new JCalendar();
+		calendar.getYearChooser().getSpinner().addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				
+			}
+		});
+		
+		calendar.getMonthChooser().getComboBox().addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				
+			}
+		});
 		calendar.getDayChooser().setDayBordersVisible(true);
 		
 		calendar.getMonthChooser().getComboBox().setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -187,22 +226,30 @@ public class Gunluk extends JInternalFrame {
 		calendar.getYearChooser().setFont(new Font("Tahoma", Font.BOLD, 11));
 		calendar.getDayChooser().getDayPanel().addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
-				try {
-					basla();
-				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
 			}
 		});
 		calendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
 				if (evt.getNewValue() == evt.getOldValue()) return;
-
-				//doldur(e.getNewValue().toString());
+				if (ilk == true)
+				{
+					return;
+				}
 				try {
+					int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
+					if (activ_sayfa == 0)
+					{
 					basla();
+					}
+					else 
+					{
+						aylik_gorunum_doldur();
+					}
 				} catch (ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -232,6 +279,7 @@ public class Gunluk extends JInternalFrame {
 		panel_2.add(splitPane_5, BorderLayout.CENTER);
 
 		comboIsim = new JComboBox<String>();
+		
 		comboIsim.setForeground(new Color(0, 0, 139));
 		comboIsim.setMinimumSize(new Dimension(0, 30));
 		comboIsim.setMaximumSize(new Dimension(0, 30));
@@ -242,12 +290,23 @@ public class Gunluk extends JInternalFrame {
 
 				if (table.getRowCount() != 0)
 				{
-
 					if (ilk == false)
 					{
-						try {
-							basla();
-						} catch (ClassNotFoundException | SQLException e1) {
+						try 
+						{
+							int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
+							if (activ_sayfa == 0)
+							{
+								basla();
+							}
+							else {
+								aylik_gorunum_doldur();
+							}
+						} catch (ClassNotFoundException | SQLException e1) 
+						{
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
@@ -314,7 +373,7 @@ public class Gunluk extends JInternalFrame {
 		panel_3.setLayout(new BorderLayout(0, 0));
 
 //*************************************************TABLOLARIN TABBED PANE **********************************************
-		JTabbedPane tabloTabbedPane = new JTabbedPane();
+		tabloTabbedPane = new JTabbedPane();
 		panel_3.add(tabloTabbedPane, BorderLayout.CENTER);
 //*************************************************Tablolarin Spliti
 		JSplitPane splitPane_3 = new JSplitPane();
@@ -383,6 +442,7 @@ public class Gunluk extends JInternalFrame {
 					try 
 					{
 						table.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+						
 						detay_doldur(table.getSelectedRow(),table.getSelectedColumn());
 						table.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (ClassNotFoundException | SQLException e1) {
@@ -446,16 +506,9 @@ public class Gunluk extends JInternalFrame {
 
 		table.setTableHeader(null);
 		//****************************************Aylik***********************************
-		JPanel aylikPanel = new JPanel();
-		JScrollPane scrolAylik = new JScrollPane();
+		scrolAylik = new JScrollPane();
 		tabloTabbedPane.addTab("Aylik", null, scrolAylik, null);
 		
-		//aylikPanel.add(scrolAylik, BorderLayout.CENTER);
-		
-		JPanel qweJPanel =  new Aylik_Gorunum(3,31);
-		
-		
-		scrolAylik.setViewportView(qweJPanel);
 		
 		//********************************************************************************
 		temizle();
@@ -463,6 +516,38 @@ public class Gunluk extends JInternalFrame {
 		
 		JPanel panel_4 = new JPanel();
 		splitPane_1.setRightComponent(panel_4);
+		///
+		tabloTabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				int	activ_sayfa =tabloTabbedPane.getSelectedIndex();
+				try {
+					DefaultTreeModel model = (DefaultTreeModel)treeGovev.getModel();
+					DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
+					root.removeAllChildren(); //this removes all nodes
+					model.reload(); //this notifies the listeners and changes the GUI
+				if (activ_sayfa == 0)
+				{
+							basla();
+						
+				}
+				else if (activ_sayfa == 1)  //Aylik Gorunum
+				{
+					
+						aylik_gorunum_doldur();
+					
+				}
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		
+		///
 		try 
 		{
 			isim_doldur();
@@ -557,6 +642,21 @@ public class Gunluk extends JInternalFrame {
 		} catch (ParseException e) {
 		}  
 	}
+	private void ay_ileri() throws ClassNotFoundException, SQLException 
+	{
+		temizle();
+		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+		String formatted = format1.format(calendar.getDate());
+		try 
+		{
+			Date qwe = new SimpleDateFormat("dd.MM.yyyy").parse(formatted);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(qwe);
+			cal.add(Calendar.MONTH, 1); 
+			calendar.setDate(new Date(cal.getTimeInMillis()));
+		} catch (ParseException e) {
+		}  
+	}
 	private void geri() throws ClassNotFoundException, SQLException 
 	{
 		temizle();
@@ -567,6 +667,22 @@ public class Gunluk extends JInternalFrame {
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(qwe);
 			cal.add(Calendar.DAY_OF_MONTH, -1); 
+			calendar.setDate(new Date(cal.getTimeInMillis()));
+		} 
+		catch (ParseException e) 
+		{
+		}  
+	}
+	private void ay_geri() throws ClassNotFoundException, SQLException 
+	{
+		temizle();
+		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+		String formatted = format1.format(calendar.getDate());
+		try {
+			Date qwe = new SimpleDateFormat("dd.MM.yyyy").parse(formatted);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(qwe);
+			cal.add(Calendar.MONTH, -1); 
 			calendar.setDate(new Date(cal.getTimeInMillis()));
 		} 
 		catch (ParseException e) 
@@ -763,9 +879,150 @@ public class Gunluk extends JInternalFrame {
 		GOREV_GIRIS.txtGID.setText(String.valueOf(gid));
 		GOREV_GIRIS.gOKU();
 	}
-	public static void aYLIK()
+	private void aylik_gorunum_doldur() throws SQLException, ClassNotFoundException, ParseException
 	{
+
+		//int ay = calendar.getMonthChooser().getMonth();
+		Date qwe = calendar.getDate();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(qwe);
+		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+		int hangiGUN =  cal.get(Calendar.DAY_OF_WEEK);
+		int gunSAYISI = cal. getActualMaximum(Calendar. DATE);
+
+		JPanel qweJPanel =  new Aylik_Gorunum(hangiGUN,gunSAYISI);
+		scrolAylik.setViewportView(qweJPanel);
+
+		///////////////
+		ResultSet rSet = aylik_gorev_oku();
+
+		if (!rSet.isBeforeFirst() ) { 
+			return; // Kayit Yok
+		} 
+
+		////************************************************************************************************
+
+		while(rSet.next()){
+
+			String tarString= rSet.getString("TARIH").toString();
+
+			Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(tarString);  
+			DateFormat formatter = new SimpleDateFormat ("d");
+			String ewqString = formatter.format(date1);
+			//System.out.println(ewqString);
+
+			Component[] comp = qweJPanel.getComponents();
+			for (int i = 0;i<comp.length;i++) {
+				if (comp[i] instanceof JButton) {
+
+					if ( ((JButton)comp[i]).getName()!= null)
+					{
+						//System.out.println("name=" +((JButton)comp[i]).getName());
+						if ( ((JButton)comp[i]).getName().equals(ewqString))
+						{
+							//System.out.println(((JButton)comp[i]).getText() +"==="+ "<html><p style=text-align:center;> <font color = blue > <b> " + ewqString + " </b> <br> </p></html>");
+							if(((JButton)comp[i]).getText().equals("<html><p style=text-align:center;> <font color = blue > <b> " + ewqString + " </b> <br> </p></html>"))
+							{
+							
+								String qweString = "<html><p style=text-align:center;> <font color = blue > <b> " + ewqString + " </b> <br> </p>" ;
+								qweString = qweString + "<p style=text-align:left;> <font color = black > " +   rSet.getString("GOREV")  
+								+ "<br>" +  "<font color = red > " +" abc  </p></html>";
+								((JButton)comp[i]).setText(qweString );
+							}
+							else
+							{
+								String dEVAM = ((JButton)comp[i]).getText().substring(0, ((JButton)comp[i]).getText().length() - 7);
+								//System.out.println(dEVAM);
+								dEVAM = dEVAM + "<p style=text-align:left;> <font color = black > " +   rSet.getString("GOREV")  
+								+ "<br>" +  "<font color = red > " +" abc  </p></html>";
+								//System.out.println(dEVAM);
+								((JButton)comp[i]).setText(dEVAM );
+							}
+
+						}
+					}
+
+				}
+			}
+
+
+		}
+		////************************************************************************************************
+	}
+	private ResultSet aylik_gorev_oku() throws ClassNotFoundException, SQLException
+	{
+		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
+		Date qwe = calendar.getDate();
+		qwe.setDate(1);
 		
+		String formatted = format1.format(qwe);
+		gbilgi.tarih1 = formatted ;
+		if (comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString().equals("Hepsi"))
+		{
+			gbilgi.isim = "" ;
+		}
+		else 
+		{
+			gbilgi.isim = " ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' AND " ;
+		}
+        LocalDate givenDate = LocalDate.parse(formatted, DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+        LocalDate lastDayOfMonthDateGivenDate  = givenDate.withDayOfMonth(
+                                                 givenDate.getMonth().length(givenDate.isLeapYear()));
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        String formattedDate = lastDayOfMonthDateGivenDate.format(dateTimeFormatter);  //17-02-2022
+        
+        
+        gbilgi.tarih2 =  formattedDate;
+        //
+		ResultSet rs = g_Access.gorev_oku_aylik(gbilgi);
+		return rs;
+	}
+	public static void aYLIK(String tarih) throws ClassNotFoundException, SQLException
+	{
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
+		String formatted = format1.format(calendar.getDate());
+		if (tarih.length() == 1)
+		{
+			formatted = formatted.substring(0, 8) + "0" +tarih;
+		}
+		else 
+		{
+			formatted = formatted.substring(0, 8) + tarih;
+		}
+		DefaultTreeModel model = (DefaultTreeModel)treeGovev.getModel();
+		DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
+		root.removeAllChildren(); //this removes all nodes
+		model.reload(); //this notifies the listeners and changes the GUI
+		
+		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
+
+		gbilgi.tarih1 = formatted;
+		gbilgi.tarih2 = formatted;
+		if (comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString().equals("Hepsi"))
+		{
+			gbilgi.isim = "" ;
+		}
+		else 
+		{
+			gbilgi.isim = " ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' AND " ;
+		}
+		ResultSet rSet = g_Access.gorev_oku_aylik(gbilgi);
+		if (!rSet.isBeforeFirst() ) { 
+			return; // Kayit Yok
+		} 
+		while (rSet.next())
+		{
+			DefaultMutableTreeNode iSIM = new DefaultMutableTreeNode(rSet.getString("ISIM"));
+			DefaultMutableTreeNode gOREV = new DefaultMutableTreeNode(rSet.getString("GOREV"));
+			DefaultMutableTreeNode yER = new DefaultMutableTreeNode(rSet.getString("YER")); 
+			DefaultMutableTreeNode mESAJ = new DefaultMutableTreeNode(rSet.getString("MESAJ"));
+			yER.add(mESAJ);
+			gOREV.add(yER);
+			iSIM.add(gOREV);
+			root.add(iSIM);
+		}
+		model.reload(root);
 	}
 }
 

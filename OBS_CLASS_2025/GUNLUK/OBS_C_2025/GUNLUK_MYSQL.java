@@ -217,5 +217,10 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public ResultSet gorev_oku_aylik(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

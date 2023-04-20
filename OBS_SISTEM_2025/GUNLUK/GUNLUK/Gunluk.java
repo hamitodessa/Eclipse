@@ -4,8 +4,11 @@ import java.awt.EventQueue;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.JPanel;
@@ -216,6 +219,8 @@ public class Gunluk extends JInternalFrame {
 		splitPane_2.setResizeWeight(1.0);
 		splitPane.setRightComponent(splitPane_2);
 
+		
+//**********************************************************************************************		
 		JPanel panel_2 = new JPanel();
 		panel_2.setMinimumSize(new Dimension(200, 0));
 		panel_2.setMaximumSize(new Dimension(200, 0));
@@ -308,11 +313,15 @@ public class Gunluk extends JInternalFrame {
 		splitPane_2.setLeftComponent(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 
+//*************************************************TABLOLARIN TABBED PANE **********************************************
+		JTabbedPane tabloTabbedPane = new JTabbedPane();
+		panel_3.add(tabloTabbedPane, BorderLayout.CENTER);
+//*************************************************Tablolarin Spliti
 		JSplitPane splitPane_3 = new JSplitPane();
-
+		tabloTabbedPane.addTab("Gunluk", null, splitPane_3, null);  // Gunluk tab paneli koy
 		splitPane_3.setDividerSize(0);
 		splitPane_3.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		panel_3.add(splitPane_3, BorderLayout.CENTER);
+		//panel_3.add(splitPane_3, BorderLayout.CENTER);
 ///*********************************************************************************************************************		
 		table_1 = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
@@ -436,6 +445,19 @@ public class Gunluk extends JInternalFrame {
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104)));
 
 		table.setTableHeader(null);
+		//****************************************Aylik***********************************
+		JPanel aylikPanel = new JPanel();
+		JScrollPane scrolAylik = new JScrollPane();
+		tabloTabbedPane.addTab("Aylik", null, scrolAylik, null);
+		
+		//aylikPanel.add(scrolAylik, BorderLayout.CENTER);
+		
+		JPanel qweJPanel =  new Aylik_Gorunum(3,31);
+		
+		
+		scrolAylik.setViewportView(qweJPanel);
+		
+		//********************************************************************************
 		temizle();
 		calendar.setDate(new Date());
 		

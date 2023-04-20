@@ -14,6 +14,7 @@ import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.MyTreeCellRenderer;
 import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
+
 import OBS_C_2025.COLUMN_RENDERER;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ROW_RENDERER;
@@ -739,6 +740,10 @@ public class Gunluk extends JInternalFrame {
 		}
 		GOREV_GIRIS.txtGID.setText(String.valueOf(gid));
 		GOREV_GIRIS.gOKU();
+	}
+	public static void aYLIK()
+	{
+		
 	}
 }
 

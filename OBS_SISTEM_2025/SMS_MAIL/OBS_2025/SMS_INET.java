@@ -23,7 +23,7 @@ import com.sms.api.model.Sender;
 import com.sms.api.model.SmsReportItem;
 import com.sms.api.model.SmsReportList;
 
-import OBS_C_2025.Aylik_Gorunum;
+import GUNLUK.Aylik_Gorunum;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

@@ -1,4 +1,4 @@
-package OBS_C_2025;
+package GUNLUK;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+
 public class Aylik_Gorunum extends JPanel{
 	
 	int gridRow = 5;
@@ -19,10 +20,6 @@ public class Aylik_Gorunum extends JPanel{
     private static final String ADDED_TEXT = " was Pressed";
     
     public Aylik_Gorunum(int sayi, int sayi2){
-    	//if (sayi >= 6 && sayi2 <= 30) gridRow = 5;
-    	//if (sayi > 6 && sayi2 == 30) gridRow = 6;
-    	//if (sayi < 3 ) gridRow = 5;
-    	
     	if ((sayi + sayi2 ) > 35) 
     		{
     		gridRow = 6;
@@ -70,7 +67,7 @@ public class Aylik_Gorunum extends JPanel{
                          public void actionPerformed(ActionEvent ae)
                          {
                              JButton but = (JButton) ae.getSource();
-                      
+                      Gunluk.aYLIK();
                              System.out.println(but.getActionCommand() + ADDED_TEXT);
                          }
                      });

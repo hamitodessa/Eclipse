@@ -63,6 +63,7 @@ public class Aylik_Gorunum extends JPanel{
 							+ "<br>" +  "<font color = red > " +" abc  </p>";
 					
             		 button = new JButton("<html>" + twoLines + "</html>");
+            		 button.setName(Integer.toString(gunler));
             		 button.setActionCommand("" + Integer.toString(gunler) + "");
                      button.addActionListener(new ActionListener()
                      {

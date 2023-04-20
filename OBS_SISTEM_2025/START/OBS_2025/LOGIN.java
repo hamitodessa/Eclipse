@@ -84,6 +84,8 @@ import OBS_C_2025.SMS_MYSQL;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 @SuppressWarnings("static-access")
 public class LOGIN extends JFrame {
 	/**
@@ -230,6 +232,7 @@ public class LOGIN extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
 		JLabel lblNewLabel_1 = new JLabel("Sifre");
+		
 		lblNewLabel_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_1.setBounds(229, 41, 46, 14);
 		panel.add(lblNewLabel_1);

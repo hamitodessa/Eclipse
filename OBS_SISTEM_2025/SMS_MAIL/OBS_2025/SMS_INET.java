@@ -20,6 +20,8 @@ import com.sms.api.model.Sender;
 import com.sms.api.model.SmsReportItem;
 import com.sms.api.model.SmsReportList;
 
+import OBS_C_2025.Aylik_Gorunum;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -76,7 +78,13 @@ public class SMS_INET extends JInternalFrame {
 		btnNewButton.setBounds(10, 11, 89, 23);
 		panel.add(btnNewButton);
 
-
+		
+		///JPanel panel2 = new JPanel();
+		//panel.setLayout(new BorderLayout());
+		//.add(new Aylik_Gorunum(7,30), BorderLayout.CENTER);
+	
+		splitPane.setRightComponent(new Aylik_Gorunum(3,31));
+		
 	}
 	public void hisset()
 	{

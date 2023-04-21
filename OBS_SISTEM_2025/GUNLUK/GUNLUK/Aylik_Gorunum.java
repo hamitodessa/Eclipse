@@ -9,17 +9,15 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 
+@SuppressWarnings("serial")
 public class Aylik_Gorunum extends JPanel{
 	
 	int gridRow = 5;
 	int gridColumn = 7;
-	private static final String INITIAL_TEXT = "Nothing Pressed";
-    private static final String ADDED_TEXT = " was Pressed";
     
     public Aylik_Gorunum(int sayi, int sayi2){
     	if ((sayi + sayi2 ) > 35) 
@@ -70,11 +68,10 @@ public class Aylik_Gorunum extends JPanel{
                             	Gunluk.aYLIK(but.getActionCommand());
                             	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
                             	 }
-							} catch (ClassNotFoundException | SQLException e) {
-								// TODO Auto-generated catch block
+							} catch (ClassNotFoundException | SQLException e) 
+                             {
 								e.printStackTrace();
 							}
-//                             System.out.println(but.getActionCommand() + ADDED_TEXT);
                          }
                      });
                      gunler +=1 ;
@@ -83,7 +80,5 @@ public class Aylik_Gorunum extends JPanel{
                add(button);
             }
         }
-       //String twoLines =  "<p style=text-align:center;> <font color = blue > <b> " + qweString + " </b> <br> </p> <p style=text-align:left;> <font color = black > " +" Deneme Lines" 
-	//	+ "<br>" +  "<font color = red > " +" abc  </p>";
     }
 }

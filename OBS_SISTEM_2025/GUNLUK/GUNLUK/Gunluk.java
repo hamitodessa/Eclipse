@@ -35,8 +35,6 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import org.apache.commons.compress.harmony.unpack200.bytecode.forms.ThisFieldRefForm;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -50,12 +48,8 @@ import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
-import java.lang.invoke.StringConcatFactory;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -68,8 +62,6 @@ import javax.swing.JTree;
 import java.awt.GridLayout;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 
 @SuppressWarnings("serial")
 public class Gunluk extends JInternalFrame {
@@ -153,6 +145,7 @@ public class Gunluk extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
 					if (activ_sayfa == 0)
 					{
 						geri();
@@ -161,7 +154,7 @@ public class Gunluk extends JInternalFrame {
 					{
 						ay_geri();
 					}
-
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 				
 				} catch (ClassNotFoundException | SQLException e1) {
 				
@@ -171,9 +164,6 @@ public class Gunluk extends JInternalFrame {
 		panelToolbar.setLayout(new GridLayout(1, 1, 0, 0));
 		btnNewButton.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_geri-24.png")));
 		panelToolbar.add(btnNewButton);
-		
-		
-		
 
 		JButton btnNewButton_1 = new JButton("");
 		panelToolbar.add(btnNewButton_1);
@@ -182,6 +172,7 @@ public class Gunluk extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
 					if (activ_sayfa == 0)
 					{
 						ileri();
@@ -190,13 +181,13 @@ public class Gunluk extends JInternalFrame {
 					{
 						ay_ileri();
 					}
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		
 		///
 		//Locale locale = Locale.forLanguageTag("tr-TR"); 
         //Calendar cal = Calendar.getInstance(locale);
@@ -204,31 +195,10 @@ public class Gunluk extends JInternalFrame {
         //set first day of week
         //int firstWeekDay = Calendar.MONDAY;
         //cal.setFirstDayOfWeek(firstWeekDay);
-        
-       
-        
 		calendar = new JCalendar();
-		calendar.getYearChooser().getSpinner().addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
-				
-			}
-		});
-		
-		calendar.getMonthChooser().getComboBox().addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
-				
-			}
-		});
 		calendar.getDayChooser().setDayBordersVisible(true);
-		
 		calendar.getMonthChooser().getComboBox().setFont(new Font("Tahoma", Font.BOLD, 11));
-		
 		calendar.getYearChooser().setFont(new Font("Tahoma", Font.BOLD, 11));
-		calendar.getDayChooser().getDayPanel().addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
-				
-			}
-		});
 		calendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
 				if (evt.getNewValue() == evt.getOldValue()) return;
@@ -238,14 +208,16 @@ public class Gunluk extends JInternalFrame {
 				}
 				try {
 					int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
 					if (activ_sayfa == 0)
 					{
-					basla();
+						basla();
 					}
 					else 
 					{
 						aylik_gorunum_doldur();
 					}
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 				} catch (ClassNotFoundException | SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -343,19 +315,15 @@ public class Gunluk extends JInternalFrame {
 					else if(e.getClickCount() == 2) {
 						//myDoubleClick(selRow, selPath);
 						try {
+							setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
 							treeOgren();
+							setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 						} catch (ClassNotFoundException | SQLException  | PropertyVetoException e2) {
 							// TODO Auto-generated catch block
 						}
 						//  System.out.println(selRow  +"=double="+ selPath);
 					}
 				}
-			}
-		});
-		treeGovev.addTreeSelectionListener(new TreeSelectionListener(){
-			@Override
-			public void valueChanged(TreeSelectionEvent tse) {
-				//1
 			}
 		});
 		scrollPane_1.setViewportView(treeGovev);
@@ -525,11 +493,15 @@ public class Gunluk extends JInternalFrame {
 					model.reload(); //this notifies the listeners and changes the GUI
 				if (activ_sayfa == 0)
 				{
-							basla();
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
+					basla();
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 				}
 				else if (activ_sayfa == 1)  //Aylik Gorunum
 				{
-						aylik_gorunum_doldur();
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					aylik_gorunum_doldur();
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 				}
 				} catch (ClassNotFoundException | SQLException e1) {
 					e1.printStackTrace();
@@ -540,8 +512,10 @@ public class Gunluk extends JInternalFrame {
 		});
 		try 
 		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
 			isim_doldur();
 			basla();
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 		} catch (ClassNotFoundException | SQLException e1) {
 			e1.printStackTrace();
 		}
@@ -871,32 +845,21 @@ public class Gunluk extends JInternalFrame {
 	}
 	private void aylik_gorunum_doldur() throws SQLException, ClassNotFoundException, ParseException
 	{
-
-		//int ay = calendar.getMonthChooser().getMonth();
 		Date qwe = calendar.getDate();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(qwe);
 		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
 		int hangiGUN =  cal.get(Calendar.DAY_OF_WEEK);
 		int gunSAYISI = cal. getActualMaximum(Calendar. DATE);
-
 		JPanel qweJPanel =  new Aylik_Gorunum(hangiGUN,gunSAYISI);
 		scrolAylik.setViewportView(qweJPanel);
-
-		///////////////
 		ResultSet rSet = aylik_gorev_oku();
-
 		if (!rSet.isBeforeFirst() ) { 
 			return; // Kayit Yok
 		} 
-
-		////************************************************************************************************
-
 		while(rSet.next())
 		{
-
 			String tarString= rSet.getString("TARIH").toString();
-
 			Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(tarString);  
 			DateFormat formatter = new SimpleDateFormat ("d");
 			String ewqString = formatter.format(date1);
@@ -949,10 +912,7 @@ public class Gunluk extends JInternalFrame {
                                                  givenDate.getMonth().length(givenDate.isLeapYear()));
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         String formattedDate = lastDayOfMonthDateGivenDate.format(dateTimeFormatter);  //17-02-2022
-        
-        
         gbilgi.tarih2 =  formattedDate;
-        //
 		ResultSet rs = g_Access.gorev_oku_aylik_grup(gbilgi);
 		return rs;
 	}

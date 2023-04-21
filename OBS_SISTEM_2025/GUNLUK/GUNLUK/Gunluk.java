@@ -112,7 +112,7 @@ public class Gunluk extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0,0, 1100, 635);
+		setBounds(0,0, 1100, 665);
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		//splitPane.setResizeWeight(0.0);

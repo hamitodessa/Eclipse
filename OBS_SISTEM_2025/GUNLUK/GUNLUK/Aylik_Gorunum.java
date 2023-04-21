@@ -1,6 +1,7 @@
 package GUNLUK;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -41,12 +42,14 @@ public class Aylik_Gorunum extends JPanel{
             	if (i == 0 && j < sayi -1   )
             	{
             		button = new JButton("");
+            		button.setEnabled(false);
             	}
             	else {
 					
             		if (  gunler > sayi2)
             		{
             			button = new JButton("");
+            			button.setEnabled(false);
             		}
             		else {
 					String qweString = Integer.toString(gunler) ;
@@ -63,7 +66,9 @@ public class Aylik_Gorunum extends JPanel{
                              try {
                             	 if (! but.getName().equals(""))
                             	 {
+                            	setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
                             	Gunluk.aYLIK(but.getActionCommand());
+                            	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
                             	 }
 							} catch (ClassNotFoundException | SQLException e) {
 								// TODO Auto-generated catch block

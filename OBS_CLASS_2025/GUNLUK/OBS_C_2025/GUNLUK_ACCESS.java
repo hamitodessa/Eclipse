@@ -81,8 +81,8 @@ public class GUNLUK_ACCESS {
 	{
 		_IGunluk.gunluk_farkli_kayit(gbilgi);
 	}
-	public ResultSet gorev_oku_aylik(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
+	public ResultSet gorev_oku_aylik_grup(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
 	{
-		return _IGunluk.gorev_oku_aylik(gbilgi);
+		return _IGunluk.gorev_oku_aylik_grup(gbilgi);
 	}
 }

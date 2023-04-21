@@ -50,7 +50,7 @@ public class Aylik_Gorunum extends JPanel{
             		}
             		else {
 					String qweString = Integer.toString(gunler) ;
-					String twoLines =  "<html><p style=text-align:center;> <font color = blue > <b> " + qweString + " </b> <br> </p></html>";
+					String twoLines =  "<html><p style=text-align:center;> <font color = #303A68 > <b> " + qweString + " </b> <br> </p></html>";
 					
             		 button = new JButton( twoLines );
             		 button.setName(Integer.toString(gunler));

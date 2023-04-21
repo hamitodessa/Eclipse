@@ -374,6 +374,7 @@ public class Gunluk extends JInternalFrame {
 
 //*************************************************TABLOLARIN TABBED PANE **********************************************
 		tabloTabbedPane = new JTabbedPane();
+		tabloTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel_3.add(tabloTabbedPane, BorderLayout.CENTER);
 //*************************************************Tablolarin Spliti
 		JSplitPane splitPane_3 = new JSplitPane();
@@ -442,7 +443,6 @@ public class Gunluk extends JInternalFrame {
 					try 
 					{
 						table.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-						
 						detay_doldur(table.getSelectedRow(),table.getSelectedColumn());
 						table.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (ClassNotFoundException | SQLException e1) {
@@ -508,8 +508,6 @@ public class Gunluk extends JInternalFrame {
 		//****************************************Aylik***********************************
 		scrolAylik = new JScrollPane();
 		tabloTabbedPane.addTab("Aylik", null, scrolAylik, null);
-		
-		
 		//********************************************************************************
 		temizle();
 		calendar.setDate(new Date());
@@ -528,26 +526,18 @@ public class Gunluk extends JInternalFrame {
 				if (activ_sayfa == 0)
 				{
 							basla();
-						
 				}
 				else if (activ_sayfa == 1)  //Aylik Gorunum
 				{
-					
 						aylik_gorunum_doldur();
-					
 				}
 				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-
-		
-		///
 		try 
 		{
 			isim_doldur();
@@ -902,52 +892,40 @@ public class Gunluk extends JInternalFrame {
 
 		////************************************************************************************************
 
-		while(rSet.next()){
+		while(rSet.next())
+		{
 
 			String tarString= rSet.getString("TARIH").toString();
 
 			Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(tarString);  
 			DateFormat formatter = new SimpleDateFormat ("d");
 			String ewqString = formatter.format(date1);
-			//System.out.println(ewqString);
-
 			Component[] comp = qweJPanel.getComponents();
 			for (int i = 0;i<comp.length;i++) {
 				if (comp[i] instanceof JButton) {
-
 					if ( ((JButton)comp[i]).getName()!= null)
 					{
-						//System.out.println("name=" +((JButton)comp[i]).getName());
 						if ( ((JButton)comp[i]).getName().equals(ewqString))
 						{
-							//System.out.println(((JButton)comp[i]).getText() +"==="+ "<html><p style=text-align:center;> <font color = blue > <b> " + ewqString + " </b> <br> </p></html>");
-							if(((JButton)comp[i]).getText().equals("<html><p style=text-align:center;> <font color = blue > <b> " + ewqString + " </b> <br> </p></html>"))
+							if(((JButton)comp[i]).getText().equals("<html><p style=text-align:center;> <font color = #303A68 > <b> " + ewqString + "</b> <br> </p></html>"))
 							{
-							
-								String qweString = "<html><p style=text-align:center;> <font color = blue > <b> " + ewqString + " </b> <br> </p>" ;
-								qweString = qweString + "<p style=text-align:left;> <font color = black > " +   rSet.getString("GOREV")  
-								+ "<br>" +  "<font color = red > " +" abc  </p></html>";
+								String qweString = "<html><p style=text-align:center;> <font color = #303A68 > <b> " + ewqString + " </b> <br> </p>" ;
+								qweString = qweString + "<p style=text-align:left;> <font color = #9C487F > " +   rSet.getString("GOREV")  
+								+  "</p></html>";
 								((JButton)comp[i]).setText(qweString );
 							}
 							else
 							{
 								String dEVAM = ((JButton)comp[i]).getText().substring(0, ((JButton)comp[i]).getText().length() - 7);
-								//System.out.println(dEVAM);
-								dEVAM = dEVAM + "<p style=text-align:left;> <font color = black > " +   rSet.getString("GOREV")  
-								+ "<br>" +  "<font color = red > " +" abc  </p></html>";
-								//System.out.println(dEVAM);
+								dEVAM = dEVAM + "<p style=text-align:left;> <font color = #9C487F > " +   rSet.getString("GOREV")  
+								+ "</p></br></html>";
 								((JButton)comp[i]).setText(dEVAM );
 							}
-
 						}
 					}
-
 				}
 			}
-
-
 		}
-		////************************************************************************************************
 	}
 	private ResultSet aylik_gorev_oku() throws ClassNotFoundException, SQLException
 	{
@@ -975,7 +953,7 @@ public class Gunluk extends JInternalFrame {
         
         gbilgi.tarih2 =  formattedDate;
         //
-		ResultSet rs = g_Access.gorev_oku_aylik(gbilgi);
+		ResultSet rs = g_Access.gorev_oku_aylik_grup(gbilgi);
 		return rs;
 	}
 	public static void aYLIK(String tarih) throws ClassNotFoundException, SQLException
@@ -1007,7 +985,7 @@ public class Gunluk extends JInternalFrame {
 		{
 			gbilgi.isim = " ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' AND " ;
 		}
-		ResultSet rSet = g_Access.gorev_oku_aylik(gbilgi);
+		ResultSet rSet = g_Access.gorev_oku_aylik_grup(gbilgi);
 		if (!rSet.isBeforeFirst() ) { 
 			return; // Kayit Yok
 		} 

@@ -13,6 +13,9 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDayChooser;
+import com.toedter.calendar.JMonthChooser;
+
 import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.MyTreeCellRenderer;
 import OBS_2025.OBS_MAIN;
@@ -34,6 +37,8 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
+
+import org.apache.poi.util.SystemOutLogger;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -104,7 +109,7 @@ public class Gunluk extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0,0, 1100, 665);
+		setBounds(0,0, 1250, 670);
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		//splitPane.setResizeWeight(0.0);
@@ -123,8 +128,8 @@ public class Gunluk extends JInternalFrame {
 		panel.add(splitPane_1, BorderLayout.CENTER);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setMinimumSize(new Dimension(0, 400));
-		panel_1.setMaximumSize(new Dimension(0, 400));
+		panel_1.setMinimumSize(new Dimension(0, 600));
+		panel_1.setMaximumSize(new Dimension(0, 600));
 		splitPane_1.setLeftComponent(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 
@@ -197,11 +202,21 @@ public class Gunluk extends JInternalFrame {
         //cal.setFirstDayOfWeek(firstWeekDay);
 		calendar = new JCalendar();
 		calendar.getDayChooser().setDayBordersVisible(true);
+		JDayChooser dayChooser = calendar.getDayChooser();
+		dayChooser.setAlwaysFireDayProperty(true); // here is the key
+		
+		//dayChooser.addPropertyChangeListener("day",new PropertyChangeListener() {
+		//	public void propertyChange(PropertyChangeEvent evt) {
+		//		System.out.println("day");
+		//	}
+			
+		//});
 		calendar.getMonthChooser().getComboBox().setFont(new Font("Tahoma", Font.BOLD, 11));
 		calendar.getYearChooser().setFont(new Font("Tahoma", Font.BOLD, 11));
 		calendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
-				if (evt.getNewValue() == evt.getOldValue()) return;
+				//if (evt.getNewValue() == evt.getOldValue()) return;
+			
 				if (ilk == true)
 				{
 					return;
@@ -272,6 +287,7 @@ public class Gunluk extends JInternalFrame {
 								basla();
 							}
 							else {
+								tree_temizle();
 								aylik_gorunum_doldur();
 							}
 						} catch (ClassNotFoundException | SQLException e1) 
@@ -479,9 +495,6 @@ public class Gunluk extends JInternalFrame {
 		//********************************************************************************
 		temizle();
 		calendar.setDate(new Date());
-		
-		JPanel panel_4 = new JPanel();
-		splitPane_1.setRightComponent(panel_4);
 		///
 		tabloTabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -664,6 +677,10 @@ public class Gunluk extends JInternalFrame {
 				mdlGunluk.setValueAt("",stt,qqq);
 			}
 		}
+		tree_temizle();
+	}
+	private void tree_temizle()
+	{
 		DefaultTreeModel model = (DefaultTreeModel)treeGovev.getModel();
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
 		root.removeAllChildren(); //this removes all nodes
@@ -873,14 +890,14 @@ public class Gunluk extends JInternalFrame {
 							if(((JButton)comp[i]).getText().equals("<html><p style=text-align:center;> <font color = #303A68 > <b> " + ewqString + "</b> <br> </p></html>"))
 							{
 								String qweString = "<html><p style=text-align:center;> <font color = #303A68 > <b> " + ewqString + " </b> <br> </p>" ;
-								qweString = qweString + "<p style=text-align:left;> <font color = #9C487F > " +   rSet.getString("GOREV")  
+								qweString = qweString + "<p style=text-align:left;> <font color = #9C487F > " + rSet.getString("ISIM") +" / " +  rSet.getString("GOREV")  
 								+  "</p></html>";
 								((JButton)comp[i]).setText(qweString );
 							}
 							else
 							{
 								String dEVAM = ((JButton)comp[i]).getText().substring(0, ((JButton)comp[i]).getText().length() - 7);
-								dEVAM = dEVAM + "<p style=text-align:left;> <font color = #9C487F > " +   rSet.getString("GOREV")  
+								dEVAM = dEVAM + "<p style=text-align:left;> <font color = #9C487F > "  + rSet.getString("ISIM") + " -  <font color = #81B1A1 >" +  rSet.getString("GOREV")  
 								+ "</p></br></html>";
 								((JButton)comp[i]).setText(dEVAM );
 							}

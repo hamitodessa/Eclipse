@@ -116,8 +116,8 @@ public class Gunluk extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(200, 0));
-		panel.setMaximumSize(new Dimension(200, 0));
+		panel.setMinimumSize(new Dimension(250, 0));
+		panel.setMaximumSize(new Dimension(250, 0));
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 
@@ -160,9 +160,7 @@ public class Gunluk extends JInternalFrame {
 						ay_geri();
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
-				
 				} catch (ClassNotFoundException | SQLException e1) {
-				
 				}
 			}
 		});
@@ -201,16 +199,17 @@ public class Gunluk extends JInternalFrame {
         //int firstWeekDay = Calendar.MONDAY;
         //cal.setFirstDayOfWeek(firstWeekDay);
 		calendar = new JCalendar();
+		calendar.setForeground(new Color(0, 128, 128));
 		calendar.getDayChooser().setDayBordersVisible(true);
 		JDayChooser dayChooser = calendar.getDayChooser();
 		dayChooser.setAlwaysFireDayProperty(true); // here is the key
 		
-		//dayChooser.addPropertyChangeListener("day",new PropertyChangeListener() {
-		//	public void propertyChange(PropertyChangeEvent evt) {
-		//		System.out.println("day");
-		//	}
+		dayChooser.addPropertyChangeListener("day",new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				System.out.println("day");
+			}
 			
-		//});
+		});
 		calendar.getMonthChooser().getComboBox().setFont(new Font("Tahoma", Font.BOLD, 11));
 		calendar.getYearChooser().setFont(new Font("Tahoma", Font.BOLD, 11));
 		calendar.addPropertyChangeListener(new PropertyChangeListener() {
@@ -262,6 +261,7 @@ public class Gunluk extends JInternalFrame {
 		panel_2.setLayout(new BorderLayout(0, 0));
 
 		JSplitPane splitPane_5 = new JSplitPane();
+		splitPane_5.setDividerSize(0);
 		splitPane_5.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		panel_2.add(splitPane_5, BorderLayout.CENTER);
 
@@ -306,6 +306,7 @@ public class Gunluk extends JInternalFrame {
 		comboIsim.setModel(new DefaultComboBoxModel<String>(new String[] {"Hepsi"}));
 
 		JSplitPane splitPane_6 = new JSplitPane();
+		splitPane_6.setDividerSize(0);
 		splitPane_6.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane_5.setRightComponent(splitPane_6);
 

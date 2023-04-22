@@ -20,11 +20,12 @@ public class Aylik_Gorunum extends JPanel{
 	int gridColumn = 7;
     
     public Aylik_Gorunum(int sayi, int sayi2){
-    	if ((sayi + sayi2 ) > 35) 
+    	//System.out.println(sayi +"=="+ sayi2);
+    	if ((sayi + sayi2 ) > 37) 
     		{
     		gridRow = 6;
     		}
-    	else if ((sayi + sayi2 ) <= 29) 
+    	else if ((sayi + sayi2 ) <= 30) 
 		{
 		gridRow = 4;
 		}

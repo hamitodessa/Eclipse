@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -33,6 +34,7 @@ import javax.swing.text.JTextComponent;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
+import OBS_C_2025.Degisken;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.Gunluk_Bilgi;
@@ -362,7 +364,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		
 		cmbSecenek = new JComboBox<String>();
 		cmbSecenek.setFont(new Font("Tahoma", Font.BOLD, 11));
-		cmbSecenek.setModel(new DefaultComboBoxModel(new String[] {"Ayda", "Haftada", "Gunde", "Saatte"}));
+		cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] {"Ayda", "Haftada", "Gunde", "Saatte"}));
 		cmbSecenek.setBounds(355, 181, 106, 22);
 		panel.add(cmbSecenek);
 		
@@ -382,6 +384,12 @@ public class GOREV_GIRIS extends JInternalFrame {
 	{
 		try
 		{
+			if (txtIsim.getText().equals(""))return;
+			if (txtGorev.getText().equals(""))return;
+			if (txtDeger.getText().equals(""))return;
+			boolean isInteger = Pattern.matches("^\\d*$", txtDeger.getText());
+			if(! isInteger) return;
+		    	 
 			if (! txtGID.getText().toString().equals(""))
 			{
 				int g =  JOptionPane.showOptionDialog( null,  "Gorev Onceden Kayitli Guncellenecek  ..?", "Bilgi Guncelleme",   JOptionPane.YES_NO_OPTION,
@@ -395,7 +403,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 			String str1 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBaslama) ;
 			String str2 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBitis) ;
 			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi() ;
-			
 			gbilgi.tarih1 = str1;
 			gbilgi.tarih2 = str2;
 			gbilgi.saat1 =cmbBaslamaSaat.getSelectedItem().toString() ;
@@ -434,7 +441,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gorev  Kaydetme", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gorev  Silme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void gOKU() throws ClassNotFoundException, SQLException

@@ -407,6 +407,18 @@ public class FILTRE extends JDialog {
 		            } else {return 0;}	        }
 		      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 		    });
+
+		    //
+		    //final boolean showTabsHeader = false;
+		    //tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
+		    //{
+		    //    @Override
+		    //    protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
+		    //        if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
+		    //        } else {return 0;}	        }
+		    //  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
+		    //});
+
 //*****************************************************************************************************************		    
 			contentPanel.add(tabbedPane, BorderLayout.CENTER);
 			{	
@@ -521,7 +533,6 @@ public class FILTRE extends JDialog {
 								cal.add(Calendar.DAY_OF_MONTH, -1); 
 								dateChooser_1.setDate(new Date(cal.getTimeInMillis()));
 							} catch (ParseException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 						}
@@ -535,7 +546,6 @@ public class FILTRE extends JDialog {
 								cal.add(Calendar.DAY_OF_MONTH, 1); // Add 30 days
 								dateChooser_1.setDate(new Date(cal.getTimeInMillis()));
 							} catch (ParseException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 						}
@@ -4307,12 +4317,14 @@ public class FILTRE extends JDialog {
 			panel_GUNLUK.add(lblNewLabel_40);
 			
 			comboBox_75 = new JComboBox<String>();
+			comboBox_75.setFont(new Font("Tahoma", Font.BOLD, 11));
 			comboBox_75.setModel(new DefaultComboBoxModel<String>(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
 
 			comboBox_75.setBounds(100, 96, 75, 22);
 			panel_GUNLUK.add(comboBox_75);
 			
 			comboBox_76 = new JComboBox<String>();
+			comboBox_76.setFont(new Font("Tahoma", Font.BOLD, 11));
 			comboBox_76.setBounds(354, 96, 75, 22);
 			comboBox_76.setModel(new DefaultComboBoxModel<String>(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
 			comboBox_76.setSelectedItem("23:00");

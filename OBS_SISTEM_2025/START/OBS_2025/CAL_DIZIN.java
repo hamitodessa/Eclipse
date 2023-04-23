@@ -92,6 +92,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
+import OBS_C_2025.Server_Bilgi;
 import OBS_C_2025.StayOpenCheckBoxMenuItemUI;
 import OBS_C_2025.USER_ISLEMLERI;
 import net.proteanit.sql.DbUtils;
@@ -1777,13 +1778,25 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
 
+		Server_Bilgi sbilgi = new Server_Bilgi();
+		sbilgi.kod = txtKodu.getText();
+		sbilgi.fir_adi =strAdmin;
+		sbilgi.ins = comboBox.getSelectedItem().toString();
+		sbilgi.kull =txtkul.getText() ;
+		sbilgi.sifre =oac.sDONDUR.sDONDUR(txtsifr) ;
+		sbilgi.port = txtIp.getText() ;
+
 		if (chckbxD.isSelected())
 		{
-			g_Access.gUN_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin,txtIp.getText());
+			sbilgi.dizin_yeri = "default";
+			sbilgi.dizin ="";
+			g_Access.gUN_SIFIR_L(sbilgi ,"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
 		}
 		else
 		{
-			g_Access.gUN_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin,txtIp.getText());
+			sbilgi.dizin_yeri = "";
+			sbilgi.dizin =txtdiz.getText();
+			g_Access.gUN_SIFIR_L(sbilgi,"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
 		}
 	}
 	void cari_s_olustur() throws ClassNotFoundException, SQLException
@@ -1931,9 +1944,20 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.gunDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
+		
+		Server_Bilgi sbilgi = new Server_Bilgi();
+		sbilgi.kod = txtKodu.getText();
+		sbilgi.fir_adi =strAdmin;
+		sbilgi.ins = comboBox.getSelectedItem().toString();
+		sbilgi.kull =txtkul.getText() ;
+		sbilgi.sifre =oac.sDONDUR.sDONDUR(txtsifr) ;
+		sbilgi.server = txtIp.getText() ;
+		sbilgi.dizin_yeri = "default";
+		sbilgi.dizin ="";
+
 		if (chckbxD.isSelected())
 		{
-			g_Access.gUN_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(), "default", "", strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
+			g_Access.gUN_SIFIR_S(sbilgi, "Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
 		}    
 	}
 	private  void dosya_olustur_S() throws IOException, ClassNotFoundException, SQLException

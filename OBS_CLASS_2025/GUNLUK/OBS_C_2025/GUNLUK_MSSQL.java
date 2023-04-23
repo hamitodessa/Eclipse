@@ -27,54 +27,54 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 
 	}
 	@Override
-	public void gUN_SIFIR_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull, String sifre,String port) throws ClassNotFoundException, SQLException {
+	public void gUN_SIFIR_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
 		String cumle = "";
-		if ( ! port.toString().equals("") )
+		if ( ! sbilgi.port.toString().equals("") )
 		{
-			port =  ":" + port ;
+			sbilgi.port =  ":" + sbilgi.port ;
 		}
-		cumle = "jdbc:sqlserver://localhost"+ port +";instanceName=" + ins + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
-		String VERITABANI = "OK_Gun" + kod;
+		cumle = "jdbc:sqlserver://localhost"+ sbilgi.port +";instanceName=" + sbilgi.ins + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
+		String VERITABANI = "OK_Gun" + sbilgi.kod;
 		stmt = null;
 		String sql =null;
-		if (dizin_yeri == "default")
+		if (sbilgi.dizin_yeri == "default")
 			sql = "CREATE DATABASE [" + VERITABANI + "]";
 		else
-			sql = "CREATE DATABASE [" + VERITABANI + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_log', FILENAME = N'" + dizin + "\\" + VERITABANI + "_log.ldf' ) ";
+			sql = "CREATE DATABASE [" + VERITABANI + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "', FILENAME = N'" + sbilgi.dizin 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_log', FILENAME = N'" + sbilgi.dizin + "\\" + VERITABANI + "_log.ldf' ) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:sqlserver://localhost" + port + ";instanceName=" + ins + ";database=" + VERITABANI + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
-		create_table(fir_adi);
+		cumle = "jdbc:sqlserver://localhost" + sbilgi.port + ";instanceName=" + sbilgi.ins + ";database=" + VERITABANI + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
+		create_table(sbilgi.fir_adi);
 		//
-		if (dizin_yeri == "default")
+		if (sbilgi.dizin_yeri == "default")
 			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
 		else
-			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG" + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_LOG" + "_log', FILENAME = N'" + dizin + "\\" + VERITABANI + "_LOG" + "_log.ldf' ) ";
+			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG" + "', FILENAME = N'" + sbilgi.dizin 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_LOG" + "_log', FILENAME = N'" + sbilgi.dizin + "\\" + VERITABANI + "_LOG" + "_log.ldf' ) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:sqlserver://localhost" + port + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:sqlserver://localhost" + sbilgi.port + ";instanceName=" + sbilgi.ins + ";database=" + VERITABANI + "_LOG" + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
 		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
-		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.gunLogDizin);
+		vTLOG.Logla("Firma Adi:" + sbilgi.fir_adi ,"", BAGLAN_LOG.gunLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+  ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +  dsy) ;
-			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.gunLogDizin);
+			GLOBAL.create_table_log(dsy,sbilgi.fir_adi,BAGLAN_LOG.gunLogDizin);
 			sQLITEconn.close();
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
-		tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.gunLogDizin);
+		tEXLOG.Logla("Firma Adi:" + sbilgi.fir_adi ,"", BAGLAN_LOG.gunLogDizin);
 		//
 		stmt.close();
 		con.close();
@@ -82,41 +82,40 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	}
 
 	@Override
-	public void gUN_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String dizin_yeri,
-			String dizin, String fir_adi) throws ClassNotFoundException, SQLException {
+	public void gUN_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
-		String VERITABANI = "OK_Gun" + kod;
+		String VERITABANI = "OK_Gun" + sbilgi.kod;
 		String cumle = "";
 		stmt = null;
 		String sql =null;
-		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:sqlserver://" + sbilgi.server + ";instanceName=" + sbilgi.ins + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
 		sql = "CREATE DATABASE [" + VERITABANI + "]";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
-		create_table(fir_adi);
+		cumle = "jdbc:sqlserver://" + sbilgi.server + ";instanceName=" + sbilgi.ins + ";database=" + VERITABANI + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
+		create_table(sbilgi.fir_adi);
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:sqlserver://" + sbilgi.server + ";instanceName=" + sbilgi.ins + ";database=" + VERITABANI + "_LOG" + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
 		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
-		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.gunLogDizin);
+		vTLOG.Logla("Firma Adi:" + sbilgi.fir_adi ,"", BAGLAN_LOG.gunLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.gunLogDizin.mODUL)) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.gunLogDizin.mODUL) ;
-			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.gunLogDizin);
+			GLOBAL.create_table_log(dsy,sbilgi.fir_adi,BAGLAN_LOG.gunLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
-		tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.gunLogDizin);
+		tEXLOG.Logla("Firma Adi:" + sbilgi.fir_adi ,"", BAGLAN_LOG.gunLogDizin);
 		//
 		stmt.close();
 		con.close();

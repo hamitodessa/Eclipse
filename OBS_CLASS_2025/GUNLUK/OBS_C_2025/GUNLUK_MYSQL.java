@@ -22,85 +22,84 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	    con = DriverManager.getConnection(cumle,BAGLAN.gunDizin.kULLANICI,BAGLAN.gunDizin.sIFRESI);
 	}
 	@Override
-	public void gUN_SIFIR_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins,  String kull, String sifre,String port) throws ClassNotFoundException, SQLException {
+	public void gUN_SIFIR_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
  		con = null;  
  		String cumle = "";
- 		cumle = "jdbc:mysql://localhost:" + port ;  // SERVER BAGLANDI
-		con = DriverManager.getConnection(cumle,kull,sifre);
-		String VERITABANI = "ok_gun" + kod;
+ 		cumle = "jdbc:mysql://localhost:" + sbilgi.port ;  // SERVER BAGLANDI
+		con = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
+		String VERITABANI = "ok_gun" + sbilgi.kod;
 		stmt = null;
 		String sql =null;
 		sql = "CREATE DATABASE " + VERITABANI ;
 		stmt = con.createStatement();  
 		stmt.execute(sql);
 		cumle = "jdbc:mysql://localhost/" +VERITABANI ;
-		con = DriverManager.getConnection(cumle,kull,sifre);  // DATABASE BAGLANDI
-		create_table(fir_adi);
+		con = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);  // DATABASE BAGLANDI
+		create_table(sbilgi.fir_adi);
 		//
 		sql = "CREATE DATABASE " + VERITABANI + "_log" ;
 		stmt = con.createStatement();  
 		stmt.execute(sql);
 		cumle = "jdbc:mysql://localhost/" +VERITABANI + "_log" ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		con = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
 		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
-		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.gunLogDizin);
+		vTLOG.Logla("Firma Adi:" + sbilgi.fir_adi ,"", BAGLAN_LOG.gunLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
-			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.gunLogDizin);
+			GLOBAL.create_table_log(dsy,sbilgi.fir_adi,BAGLAN_LOG.gunLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
-		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.gunLogDizin);
+		 tEXLOG.Logla("Firma Adi:" + sbilgi.fir_adi ,"", BAGLAN_LOG.gunLogDizin);
 		//
 		stmt.close();
 		con.close();
 	}
 
 	@Override
-	public void gUN_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String dizin_yeri,
-			String dizin, String fir_adi) throws ClassNotFoundException, SQLException {
+	public void gUN_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
  		con = null;  
- 		 String VERITABANI = "ok_gun" + kod;
+ 		 String VERITABANI = "ok_gun" + sbilgi.kod;
  		String cumle = "";
 		stmt = null;
 		String sql =null;
-		cumle = "jdbc:mysql://" + server ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:mysql://" + sbilgi.server ;
+		con = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
 		sql = "CREATE DATABASE " + VERITABANI ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:mysql://" + server + "/" + VERITABANI ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
-		create_table(fir_adi);
+		cumle = "jdbc:mysql://" + sbilgi.server + "/" + VERITABANI ;
+		con = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
+		create_table(sbilgi.fir_adi);
 		//
 		sql = "CREATE DATABASE " + VERITABANI + "_log" ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:mysql://" + server + "/" + VERITABANI + "_log" ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:mysql://" + sbilgi.server + "/" + VERITABANI + "_log" ;
+		con = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
 		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
-		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.gunLogDizin);
+		vTLOG.Logla("Firma Adi:" + sbilgi.fir_adi ,"", BAGLAN_LOG.gunLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.gunLogDizin.mODUL)) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.gunLogDizin.mODUL) ;
-			GLOBAL.create_table_log(dsy,fir_adi,BAGLAN_LOG.gunLogDizin);
+			GLOBAL.create_table_log(dsy,sbilgi.fir_adi,BAGLAN_LOG.gunLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		 tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
-		 tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.gunLogDizin);
+		 tEXLOG.Logla("Firma Adi:" + sbilgi.fir_adi ,"", BAGLAN_LOG.gunLogDizin);
 		//
 		stmt.close();
 		con.close();

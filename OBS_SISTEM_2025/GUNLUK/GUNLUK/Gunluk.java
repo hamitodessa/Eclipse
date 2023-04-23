@@ -40,7 +40,11 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -858,9 +862,10 @@ public class Gunluk extends JInternalFrame {
 		try 
 		{
 			Date qwe = calendar.getDate();
-			Calendar cal = Calendar.getInstance();
+			Calendar cal = Calendar.getInstance(Locale.UK);  
 			cal.setTime(qwe);
 			cal.set(Calendar.DATE, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+		
 			int hangiGUN =  cal.get(Calendar.DAY_OF_WEEK);
 			
 			if (hangiGUN != 1)

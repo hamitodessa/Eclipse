@@ -40,11 +40,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAdjusters;
-import java.time.temporal.TemporalField;
-import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -542,6 +538,7 @@ public class Gunluk extends JInternalFrame {
 		} 
 		catch (Exception ex) 
 		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -700,6 +697,7 @@ public class Gunluk extends JInternalFrame {
 		ResultSet rs = g_Access.gorev_oku(gbilgi);
 
 		if (!rs.isBeforeFirst() ) { 
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 			return; // Kayit Yok
 		} 
 		DefaultTableModel mdlBaslik = (DefaultTableModel) table_1.getModel();
@@ -745,6 +743,7 @@ public class Gunluk extends JInternalFrame {
 
 		ResultSet rSet = g_Access.gorev_oku_tarih(gbilgi);
 		if (!rSet.isBeforeFirst() ) { 
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 			return; // Kayit Yok
 		} 
 		while (rSet.next())
@@ -864,10 +863,8 @@ public class Gunluk extends JInternalFrame {
 			Date qwe = calendar.getDate();
 			Calendar cal = Calendar.getInstance(Locale.UK);  
 			cal.setTime(qwe);
-			cal.set(Calendar.DATE, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
-		
+			cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
 			int hangiGUN =  cal.get(Calendar.DAY_OF_WEEK);
-			
 			if (hangiGUN != 1)
 			{
 				hangiGUN -= 1; 

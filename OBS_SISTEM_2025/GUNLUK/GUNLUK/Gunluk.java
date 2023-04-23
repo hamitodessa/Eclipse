@@ -99,22 +99,22 @@ public class Gunluk extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("static-access")
+	
 	public Gunluk() {
 		setTitle("GUNLUK");
 		setResizable(true);
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0,0, 1250, 670);
+		setBounds(0,0, 1250, 675);
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setDividerSize(0);
+		splitPane.setDividerSize(1);
 		//splitPane.setResizeWeight(0.0);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(250, 0));
-		panel.setMaximumSize(new Dimension(250, 0));
+		//panel.setMaximumSize(new Dimension(250, 0));
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 
@@ -125,8 +125,8 @@ public class Gunluk extends JInternalFrame {
 		panel.add(splitPane_1, BorderLayout.CENTER);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setMinimumSize(new Dimension(0, 600));
-		panel_1.setMaximumSize(new Dimension(0, 600));
+		panel_1.setMinimumSize(new Dimension(0, 550));
+		panel_1.setMaximumSize(new Dimension(0, 550));
 		splitPane_1.setLeftComponent(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 
@@ -342,7 +342,7 @@ public class Gunluk extends JInternalFrame {
 
 //*************************************************TABLOLARIN TABBED PANE **********************************************
 		tabloTabbedPane = new JTabbedPane();
-		tabloTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 11));
+		tabloTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel_3.add(tabloTabbedPane, BorderLayout.CENTER);
 //*************************************************Tablolarin Spliti
 		JSplitPane splitPane_3 = new JSplitPane();
@@ -356,7 +356,8 @@ public class Gunluk extends JInternalFrame {
 
 		};
 		table_1.setModel(new DefaultTableModel(
-				new Object[][] {
+				new Object[][] 
+				{
 					{null, null, null, null, null, null, null, null},
 					{"", "Pazartesi","Sali", "Carsamba", "Persembe", "Cuma", "Cumartesi", "Pazar"},
 				},
@@ -919,6 +920,7 @@ public class Gunluk extends JInternalFrame {
 		}
 
 	}
+	@SuppressWarnings("deprecation")
 	private ResultSet aylik_gorev_oku() throws ClassNotFoundException, SQLException
 	{
 		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();

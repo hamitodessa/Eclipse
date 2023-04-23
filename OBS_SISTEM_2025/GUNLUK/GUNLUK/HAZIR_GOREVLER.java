@@ -1,7 +1,6 @@
 package GUNLUK;
 
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -31,7 +30,6 @@ import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 
 import OBS_C_2025.FORMATLAMA;
-import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.Gunluk_Bilgi;
@@ -43,6 +41,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import java.awt.event.KeyAdapter;
 
 @SuppressWarnings("serial")
 public class HAZIR_GOREVLER extends JInternalFrame {
@@ -132,6 +131,20 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 				return false;
 			}
 		};
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				if( e.getKeyCode() ==127)
+				{
+					try {
+						grv_tek_sil();
+					} catch (NumberFormatException | ClassNotFoundException | SQLException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		//table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSurrendersFocusOnKeystroke(true);
@@ -194,7 +207,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			rs = g_Access.hazir_gorevler(gbilgi);
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
-				lblNewLabel.setText("Satir Sayisi : ");
+				lblNewLabel.setText( String.format("Satir Sayisi : %,d %n" ,  0));
 				return;
 			}
 

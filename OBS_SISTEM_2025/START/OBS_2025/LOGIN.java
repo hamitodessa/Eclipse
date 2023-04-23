@@ -397,10 +397,11 @@ public class LOGIN extends JFrame {
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		progressBar.setMinimumSize(new Dimension(0, 25));
 		progressBar.setMaximumSize(new Dimension(0, 25));
-		//VERSION KONTROL/////
-		versiyon_oku();
+		
 		//************SURUCU KONTROL**************************
 		GLOBAL.surucu_kontrol();
+		//VERSION KONTROL/////
+		versiyon_oku();
 		//************BENI_HATIRLA**	
 		String deger;
 		deger = GLOBAL.setting_oku("BENI_HATIRLA").toString();
@@ -1019,9 +1020,12 @@ public class LOGIN extends JFrame {
 			bufferedReader.close();
 			//******************************************************************
 			// DOSYA INDIR
-			String serverAddress = "ftp.okumus.gen.tr";
-			String userId ="u5789784";
-			String password ="4wX.5Wx53-Y..nlG";
+			//String serverAddress = "ftp.okumus.gen.tr";
+			//String userId ="u5789784";
+			//String password ="4wX.5Wx53-Y..nlG";
+			String serverAddress = "78.189.76.247";
+			String userId ="hamitadmin";
+			String password ="SDFks9hfji3#DEd";
 			FTPClient ftp = new FTPClient();
 			ftp.connect(serverAddress);
 			//login to server
@@ -1065,7 +1069,6 @@ public class LOGIN extends JFrame {
 				}
 			}   
 			bufferedReader.close();
-
 			if (eskiver.equals(yeniver))
 			{
 

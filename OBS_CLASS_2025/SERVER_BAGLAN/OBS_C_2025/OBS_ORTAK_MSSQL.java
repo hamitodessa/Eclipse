@@ -11,19 +11,19 @@ import javax.swing.JOptionPane;
 public class OBS_ORTAK_MSSQL implements IConnection {
 
 	private  boolean result;
-	public boolean Server_kontrol_L(String inst, String kull, String sifre, String port) throws ClassNotFoundException
+	public boolean Server_kontrol_L(Server_Bilgi sbilgi) throws ClassNotFoundException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null; 
-		if ( ! port.toString().equals("") )
+		if ( ! sbilgi.port.equals("") )
 		{
-			port =  ":" + port ;
+			sbilgi.port =  ":" + sbilgi.port ;
 		}
 		try
 		{
 			String cumle = "";
-			cumle = "jdbc:sqlserver://localhost" + port  +";instanceName=" + inst + ";";
-			conn = DriverManager.getConnection(cumle,kull,sifre);
+			cumle = "jdbc:sqlserver://localhost" + sbilgi.port  +";instanceName=" + sbilgi.ins + ";";
+			conn = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
 			conn.close();
 			result = true;
 		} 
@@ -34,37 +34,37 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		}  
 		return result;
 	}
-	public boolean Server_kontrol_S(String server,  String inst,String kull, String sifre, String port) throws ClassNotFoundException
+	public boolean Server_kontrol_S(Server_Bilgi sbilgi) throws ClassNotFoundException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null;  
 		try
 		{
 			String cumle = "";
-			cumle = "jdbc:sqlserver://" + server + ";instanceName=" + inst + ";";
-			conn = DriverManager.getConnection(cumle,kull,sifre);
+			cumle = "jdbc:sqlserver://" + sbilgi.server + ";instanceName=" + sbilgi.ins + ";";
+			conn = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
 			conn.close();
 			result =  true;
 		} 
 		catch (SQLException e)
 		{  
-			JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti", JOptionPane.ERROR_MESSAGE);     
+			JOptionPane.showMessageDialog(null, e.getMessage(),  "Server Baglanti_S", JOptionPane.ERROR_MESSAGE);     
 			result =  false;  
 		}  
 		return result;
 	}
-	public boolean Dosyakontrol_L(String db, String inst, String kull, String sifre, String port) throws ClassNotFoundException, SQLException 
+	public boolean Dosyakontrol_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException 
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null;  
 		String cumle = "";
-		if ( ! port.toString().equals("") )
+		if ( ! sbilgi.port.toString().equals("") )
 		{
-			port =  ":" + port ;
+			sbilgi.port =  ":" + sbilgi.port ;
 		}
-		cumle ="jdbc:sqlserver://localhost" + port + ";instanceName=" + inst + ";";
-		conn = DriverManager.getConnection(cumle,kull,sifre);
-		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM sys.databases where name = '" + db + "'");
+		cumle ="jdbc:sqlserver://localhost" + sbilgi.port + ";instanceName=" + sbilgi.ins + ";";
+		conn = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
+		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM sys.databases where name = '" + sbilgi.db + "'");
 		ResultSet rs = stmt.executeQuery();
 		if (!rs.isBeforeFirst() ) {  
 			result = false;
@@ -77,14 +77,14 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		conn.close();
 		return result;
 	}
-	public boolean Dosyakontrol_S(String server, String inst, String kull, String sifre, String prog, String port) throws ClassNotFoundException, SQLException
+	public boolean Dosyakontrol_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null;  
 		String cumle = "";
-		cumle =  "jdbc:sqlserver://" + server + ";instanceName=" + inst + ";";
-		conn = DriverManager.getConnection(cumle,kull,sifre);
-		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM sys.databases where name = '" + prog + "'");
+		cumle =  "jdbc:sqlserver://" + sbilgi.server + ";instanceName=" + sbilgi.ins + ";";
+		conn = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
+		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM sys.databases where name = '" + sbilgi.db + "'");
 		ResultSet rs = stmt.executeQuery();
 		if (!rs.isBeforeFirst() ) {  
 			result = false;

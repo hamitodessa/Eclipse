@@ -36,13 +36,17 @@ public class GUNLUK_ACCESS {
 	{
 		return _IGunluk.gun_firma_adi();
 	}
-	public void gorev_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
+	public void gorev_kayit(Gunluk_Bilgi gbilgi, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IGunluk.gorev_kayit(gbilgi);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
-		public void gorev_sil(int id) throws ClassNotFoundException, SQLException
+		public void gorev_sil(int id, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IGunluk.gorev_sil(id);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
 	public int gid_ogren(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
 	{

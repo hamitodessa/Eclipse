@@ -1,7 +1,15 @@
 package OBS_C_2025;
 
 
+import java.awt.HeadlessException;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -12,7 +20,8 @@ import javax.swing.KeyStroke;
 import javax.swing.undo.UndoManager;
 
 public class JTextFieldRegularPopupMenu {
-    public static void addTo(JTextField txtField ) 
+    @SuppressWarnings("serial")
+	public static void addTo(JTextField txtField ) 
     {
         JPopupMenu popup = new JPopupMenu();
         UndoManager undoManager = new UndoManager();
@@ -94,7 +103,8 @@ public class JTextFieldRegularPopupMenu {
 
        txtField.setComponentPopupMenu(popup);
     }
-    public static void addTo(JTextArea txtField ) 
+    @SuppressWarnings("serial")
+	public static void addTo(JTextArea txtField ,int limit) 
     {
     	  JPopupMenu popup = new JPopupMenu();
           UndoManager undoManager = new UndoManager();
@@ -140,6 +150,23 @@ public class JTextFieldRegularPopupMenu {
           Action pasteAction = new AbstractAction("Yapistir") {
               @Override
               public void actionPerformed(ActionEvent ae) {
+            	 
+					String data = "";
+					try {
+						data = (String) Toolkit.getDefaultToolkit()
+						          .getSystemClipboard().getData(DataFlavor.stringFlavor);
+				
+					} catch (HeadlessException | UnsupportedFlavorException | IOException e) {
+					
+					}
+				//	System.out.println(txtField.getColumns());
+				if (data.length() > limit)
+				{
+					String myString = data;
+					StringSelection stringSelection = new StringSelection(myString.substring(0,100));
+					Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+					clipboard.setContents(stringSelection, null);
+				}
                   txtField.paste();
               }
           };

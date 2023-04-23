@@ -122,7 +122,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		comboBox = new JComboBox<String>();
 		comboBox.setForeground(new Color(0, 0, 139));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo","Adres","Kur","Sms-Mail"}));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo", "Adres", "Kur", "Sms-Mail", "Gunluk"}));
 		comboBox.setBounds(10, 11, 110, 22);
 		leftPanel.add(comboBox);
 
@@ -401,6 +401,38 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 					DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
 							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
 							BAGLAN_LOG.smsLogDizin);
+					table.setModel(tbm);
+					txtmi = true ;
+				}
+			}
+			else if (  comboBox.getSelectedItem().toString().equals("Gunluk"))
+			{
+				if(cmbLog.getSelectedItem().toString().equals("Veritabani"))
+				{
+					if(BAGLAN.gunDizin.hAN_SQL.equals("MS SQL"))
+					{
+						rs  = 	mSSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+								"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+								BAGLAN_LOG.gunLogDizin);
+					}
+					else if(BAGLAN.gunDizin.hAN_SQL.equals("MY SQL"))
+					{
+						rs  = 	mYSQL.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+								"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+								BAGLAN_LOG.gunLogDizin);
+					}
+				}
+				else if(cmbLog.getSelectedItem().toString().equals("Dosya"))// sQLITE Dosyas
+				{
+					rs  = 	sQLITE.log_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+							BAGLAN_LOG.gunLogDizin);
+				}
+				else if(cmbLog.getSelectedItem().toString().equals("Text Dosya")) //Text  Dosyasi
+				{
+					DefaultTableModel tbm   = 	tEXT.log_txt_rapor( TARIH_CEVIR.tarih_geri(dateChooser), TARIH_CEVIR.tarih_geri(dateChooser_1),
+							"%" + textField.getText()   + "%",   "%" + textField_1.getText()  + "%" ,"%" + textField_2.getText()  + "%", 
+							BAGLAN_LOG.gunLogDizin);
 					table.setModel(tbm);
 					txtmi = true ;
 				}

@@ -908,11 +908,10 @@ public class DEKONT extends JInternalFrame {
 		txtaciklama.setEnabled(false);
 		txtaciklama.setLineWrap(true);
 		txtaciklama.setDocument(new JTextFieldLimit(100));
-		JTextFieldRegularPopupMenu.addTo(txtaciklama);
+		JTextFieldRegularPopupMenu.addTo(txtaciklama,100);
 		Border borderr = BorderFactory.createLineBorder(Color.GRAY);
 		txtaciklama.setBorder(BorderFactory.createCompoundBorder(borderr, BorderFactory.createEmptyBorder(2, 2, 2, 2)));
 		txtaciklama.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {

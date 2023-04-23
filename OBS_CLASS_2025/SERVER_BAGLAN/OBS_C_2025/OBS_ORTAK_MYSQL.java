@@ -11,14 +11,14 @@ import javax.swing.JOptionPane;
 public class OBS_ORTAK_MYSQL implements IConnection {
 	private static boolean result;
 	@SuppressWarnings("unused")
-	public boolean Server_kontrol_L(String inst, String kull, String sifre, String port) throws ClassNotFoundException
+	public boolean Server_kontrol_L(Server_Bilgi sbilgi) throws ClassNotFoundException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = null;  
-		String url = "jdbc:mysql://localhost:" + port ; //pointing to no database.
+		String url = "jdbc:mysql://localhost:" + sbilgi.port ; //pointing to no database.
 		try 
 		{
-			conn = DriverManager.getConnection(url, kull, sifre);
+			conn = DriverManager.getConnection(url, sbilgi.kull, sbilgi.sifre);
 			result = true;
 		} catch (SQLException e)
 		{
@@ -28,14 +28,14 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		return result;
 	}
 	@SuppressWarnings("unused")
-	public boolean Server_kontrol_S(String server, String inst, String kull, String sifre, String port) throws ClassNotFoundException
+	public boolean Server_kontrol_S(Server_Bilgi sbilgi) throws ClassNotFoundException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = null;  
-		String url = "jdbc:mysql://" + server ; //pointing to no database.
+		String url = "jdbc:mysql://" + sbilgi.server ; //pointing to no database.
 		try 
 		{
-			conn = DriverManager.getConnection(url, kull, sifre);
+			conn = DriverManager.getConnection(url, sbilgi.kull, sbilgi.sifre);
 			result = true;
 		} catch (SQLException e)
 		{
@@ -44,22 +44,22 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		}
 		return result;
 	}
-	public boolean Dosyakontrol_L(String db, String inst, String kull, String sifre, String port) throws ClassNotFoundException, SQLException 
+	public boolean Dosyakontrol_L(Server_Bilgi  sbilgi) throws ClassNotFoundException, SQLException 
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = null;  
 		Statement stmt = null;
 		ResultSet resultset = null;
-		String url = "jdbc:mysql://localhost:" + port ; //pointing to no database.
+		String url = "jdbc:mysql://localhost:" + sbilgi.port ; //pointing to no database.
 		try 
 		{
-			conn = DriverManager.getConnection(url, kull, sifre);
+			conn = DriverManager.getConnection(url, sbilgi.kull, sbilgi.sifre);
 			stmt = conn.createStatement();
 			resultset = stmt.executeQuery("SHOW DATABASES;");
 			result =false;
 			while (resultset.next()) 
 			{
-				if(resultset.getString("Database").equals(db.toLowerCase()))
+				if(resultset.getString("Database").equals(sbilgi.db.toLowerCase()))
 				{
 					result = true;
 				}
@@ -70,22 +70,22 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		}
 		return result;
 	}
-	public boolean Dosyakontrol_S(String server, String inst, String kull, String sifre, String prog, String port) throws ClassNotFoundException, SQLException
+	public boolean Dosyakontrol_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = null;  
 		Statement stmt = null;
 		ResultSet resultset = null;
-		String url = "jdbc:mysql://" + server ; //pointing to no database.
+		String url = "jdbc:mysql://" + sbilgi.server ; //pointing to no database.
 		try 
 		{
-			conn = DriverManager.getConnection(url, kull, sifre);
+			conn = DriverManager.getConnection(url, sbilgi.kull, sbilgi.sifre);
 			stmt = conn.createStatement();
 			resultset = stmt.executeQuery("SHOW DATABASES;");
 			result =false;
 			while (resultset.next()) 
 			{
-				if(resultset.getString("Database").equals(prog.toLowerCase()))
+				if(resultset.getString("Database").equals(sbilgi.db.toLowerCase()))
 				{
 					result = true;
 				}

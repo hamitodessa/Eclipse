@@ -152,6 +152,7 @@ public class CAL_DIZIN extends JFrame {
 	static JCheckBoxMenuItem cbText;
 	static JCheckBoxMenuItem cbMail;
 	private JSeparator separator;
+	private JPopupMenu menu;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -190,6 +191,8 @@ public class CAL_DIZIN extends JFrame {
 					activ_sayfa =0;
 					grid_doldur();
 					doldur_kutu(tblCari,0);
+					
+					
 					contentPane.setCursor(DEFAULT_CURSOR);
 				} catch (ClassNotFoundException | SQLException e1) {
 					contentPane.setCursor(DEFAULT_CURSOR);
@@ -1030,10 +1033,11 @@ public class CAL_DIZIN extends JFrame {
 			panel.add(lblKayitserver);
 
 			/////////////////////////////////////////////////LOGLAMA BUTTON /////////////////////
-			JPopupMenu menu;
+			
 			menu = new JPopupMenu("");
 			menu.addSeparator();
 			cbVeritabani = new JCheckBoxMenuItem("Veritabani Kayit");
+			cbVeritabani.setForeground(new Color(0, 128, 128));
 			cbVeritabani.setUI(new StayOpenCheckBoxMenuItemUI());
 			cbVeritabani.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent e) {
@@ -1044,6 +1048,7 @@ public class CAL_DIZIN extends JFrame {
 			menu.add(cbVeritabani);
 
 			cbDosya = new JCheckBoxMenuItem("Dosya");
+			cbDosya.setForeground(new Color(0, 128, 128));
 			cbDosya.setUI(new StayOpenCheckBoxMenuItemUI());
 			cbDosya.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent e) {
@@ -1051,8 +1056,8 @@ public class CAL_DIZIN extends JFrame {
 				}
 			});
 			menu.add(cbDosya);
-
 			cbText = new JCheckBoxMenuItem("Text Dosya");
+			cbText.setForeground(new Color(0, 128, 128));
 			cbText.setUI(new StayOpenCheckBoxMenuItemUI());
 			cbText.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent e) {
@@ -1062,6 +1067,7 @@ public class CAL_DIZIN extends JFrame {
 			menu.add(cbText);
 
 			cbMail = new JCheckBoxMenuItem("Email Atma");
+			cbMail.setForeground(new Color(0, 128, 128));
 			cbMail.setUI(new StayOpenCheckBoxMenuItemUI());
 			cbMail.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent e) {
@@ -1070,6 +1076,8 @@ public class CAL_DIZIN extends JFrame {
 			});
 			menu.add(cbMail);
 			JButton btnNewButton_6 = new JButton();
+			btnNewButton_6.setForeground(new Color(0, 0, 128));
+			
 			btnNewButton_6.setText("Loglama Secimi");
 			btnNewButton_6.setBounds(130, 125, 129, 23);
 			btnNewButton_6.setAction(new AbstractAction("Loglama Secimi") {
@@ -1311,8 +1319,13 @@ public class CAL_DIZIN extends JFrame {
 		CONNECT s_CONN = new CONNECT(oac._IConn);
 		if (chckbxL.isSelected() )
 		{
+			Server_Bilgi sBilgi = new Server_Bilgi() ;
+			sBilgi.ins = comboBox.getSelectedItem().toString() ;
+			sBilgi.kull = txtkul.getText() ;
+			sBilgi.sifre =  oac.sDONDUR.sDONDUR(txtsifr);
+			sBilgi.port = txtIp.getText();
 			contentPane.setCursor(WAIT_CURSOR);
-			if ( s_CONN.Server_kontrol_L(comboBox.getSelectedItem().toString(),txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr) ,txtIp.getText()) == true  )
+			if ( s_CONN.Server_kontrol_L( sBilgi) == true  )
 			{
 				contentPane.setCursor(DEFAULT_CURSOR);
 				btnNewButton_1.setEnabled(true);
@@ -1327,7 +1340,14 @@ public class CAL_DIZIN extends JFrame {
 		else
 		{
 			contentPane.setCursor(WAIT_CURSOR);
-			if (s_CONN.Server_kontrol_S(txtIp.getText(),comboBox.getSelectedItem().toString(),txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr),txtIp.getText() ) == true)
+			Server_Bilgi sBilgi = new Server_Bilgi() ;
+			sBilgi.server =txtIp.getText();
+			sBilgi.ins = comboBox.getSelectedItem().toString() ;
+			sBilgi.kull = txtkul.getText() ;
+			sBilgi.sifre =  oac.sDONDUR.sDONDUR(txtsifr);
+
+
+			if (s_CONN.Server_kontrol_S(sBilgi ) == true)
 			{
 				contentPane.setCursor(DEFAULT_CURSOR);
 				btnNewButton_1.setEnabled(true);
@@ -1389,7 +1409,15 @@ public class CAL_DIZIN extends JFrame {
 	}
 	private void lokal_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
 	{
-		if ( s_CONN.Dosya_kontrol_L(program,comboBox.getSelectedItem().toString() ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),txtIp.getText()) == true)
+		Server_Bilgi sBilgi = new Server_Bilgi() ;
+		sBilgi.db = program ;
+		sBilgi.kull = txtkul.getText() ;
+		sBilgi.sifre =  oac.sDONDUR.sDONDUR(txtsifr);
+		sBilgi.ins = comboBox.getSelectedItem().toString() ;
+		sBilgi.port = txtIp.getText();
+
+		
+		if ( s_CONN.Dosya_kontrol_L(sBilgi) == true)
 		{
 			boolean izinli = true;
 			if ( !GLOBAL.KULL_ADI.equals("Admin") )
@@ -1459,7 +1487,17 @@ public class CAL_DIZIN extends JFrame {
 	}
 	private void server_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
 	{
-		if (	 s_CONN.Dosya_kontrol_S(txtIp.getText(),comboBox.getSelectedItem().toString(), txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr), program,txtIp.getText()) ==true)
+		Server_Bilgi sBilgi = new Server_Bilgi() ;
+		sBilgi.server = txtIp.getText();
+		sBilgi.ins = comboBox.getSelectedItem().toString() ;
+		sBilgi.kull = txtkul.getText() ;
+		sBilgi.sifre =  oac.sDONDUR.sDONDUR(txtsifr);
+		sBilgi.db = program ;
+		sBilgi.port = txtIp.getText();
+
+		
+		
+		if (	 s_CONN.Dosya_kontrol_S(sBilgi) ==true)
 		{
 			boolean izinli = true;
 			if ( !GLOBAL.KULL_ADI.equals("Admin") )

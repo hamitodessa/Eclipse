@@ -34,7 +34,7 @@ import javax.swing.text.JTextComponent;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
-import OBS_C_2025.Degisken;
+import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.Gunluk_Bilgi;
@@ -120,7 +120,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		txtMesaj.setFont(new Font("Monospaced", Font.BOLD, 13));
 		txtMesaj.setLineWrap(true);
 		txtMesaj.setDocument(new JTextFieldLimit(100));
-		JTextFieldRegularPopupMenu.addTo(txtMesaj);
+		JTextFieldRegularPopupMenu.addTo(txtMesaj,100);
 		Border borderr = BorderFactory.createLineBorder(Color.GRAY);
 		txtMesaj.setBorder(BorderFactory.createCompoundBorder(borderr, BorderFactory.createEmptyBorder(2, 2, 2, 2)));
 
@@ -398,7 +398,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 				{ 
 					return;	
 				}
-				g_Access.gorev_sil(Integer.parseInt(txtGID.getText())  );
+				g_Access.gorev_sil(Integer.parseInt(txtGID.getText()),"Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + " Mesaj="+ txtMesaj.getText() + " Silme "  ,txtGID.getText(), BAGLAN_LOG.gunLogDizin  );
 			}
 			String str1 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBaslama) ;
 			String str2 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBitis) ;
@@ -415,7 +415,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 			gbilgi.secenek = cmbSecenek.getSelectedItem().toString();
 			gbilgi.deger = Integer.parseInt(txtDeger.getText());
 			
-			g_Access.gorev_kayit(gbilgi);
+			g_Access.gorev_kayit(gbilgi,"Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + " Mesaj="+ txtMesaj.getText() + " Kayit "  ,"", BAGLAN_LOG.gunLogDizin );
 			gbilgi.gid = g_Access.gid_ogren(gbilgi);
 			g_Access.gunluk_farkli_kayit(gbilgi);
 			sifirla();
@@ -436,7 +436,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 			int g =  JOptionPane.showOptionDialog( null,  "Islem Dosyadan Silinecek ..?", "Gunluk Dosyasindan Gorev Silme",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 			if(g != 0 ) { return;	}
-			g_Access.gorev_sil(Integer.parseInt(txtGID.getText())  );
+			g_Access.gorev_sil(Integer.parseInt(txtGID.getText())  ,"Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + " Mesaj="+ txtMesaj.getText() + " Silme "  ,txtGID.getText(), BAGLAN_LOG.gunLogDizin  );
 			sifirla();
 		}
 		catch (Exception ex)

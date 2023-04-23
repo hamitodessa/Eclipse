@@ -190,14 +190,13 @@ public class Gunluk extends JInternalFrame {
 		///
         
         calendar = new JCalendar(Locale.UK);
-        
 		calendar.setForeground(new Color(0, 128, 128));
 		calendar.getDayChooser().setDayBordersVisible(true);
 		calendar.getMonthChooser().getComboBox().setFont(new Font("Tahoma", Font.BOLD, 11));
 		calendar.getYearChooser().setFont(new Font("Tahoma", Font.BOLD, 11));
 		calendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
-				//if (evt.getNewValue() == evt.getOldValue()) return;
+				if (evt.getNewValue() == evt.getOldValue()) return;
 				if (ilk == true)
 				{
 					return;

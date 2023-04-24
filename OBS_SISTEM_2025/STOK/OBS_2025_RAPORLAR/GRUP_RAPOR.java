@@ -72,7 +72,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
-
+@SuppressWarnings({"serial" , "static-access"})
 public class GRUP_RAPOR extends JInternalFrame {
 	
 
@@ -1189,6 +1189,7 @@ public class GRUP_RAPOR extends JInternalFrame {
 			write() ;	
 		}
 	}
+	@SuppressWarnings("resource")
 	public static void write()
 	 {
 	  try 
@@ -1543,6 +1544,7 @@ public class GRUP_RAPOR extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Grup Raporlama", JOptionPane.ERROR_MESSAGE);
 	  }
 	  }
+	@SuppressWarnings("resource")
 	public static void  mail_at()
 	{
 		try {

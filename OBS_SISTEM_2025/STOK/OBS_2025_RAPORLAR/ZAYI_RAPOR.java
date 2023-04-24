@@ -37,6 +37,7 @@ import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
+@SuppressWarnings({"serial" , "static-access"})
 public class ZAYI_RAPOR extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -374,7 +375,7 @@ public class ZAYI_RAPOR extends JInternalFrame {
 		    		
 		        }
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Stok Detay", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Zayi Rapor", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 }

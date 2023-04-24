@@ -2,7 +2,6 @@ package OBS_2025;
 
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -48,6 +47,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+@SuppressWarnings({"serial" , "static-access" , "deprecation"})
 public class MIZAN extends JInternalFrame {
 	public static JTable table;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();

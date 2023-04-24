@@ -68,6 +68,7 @@ import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
+@SuppressWarnings({"serial" , "static-access"})
 public class STOK_DETAY extends JInternalFrame {
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -438,7 +439,8 @@ public class STOK_DETAY extends JInternalFrame {
 	 {
 	///// Progres Bsr olayi
 		Runnable runner = new Runnable()
-	    { public void run() {
+	    { @SuppressWarnings("resource")
+		public void run() {
 	        /////  
 	  try 
 	  {
@@ -757,6 +759,7 @@ public class STOK_DETAY extends JInternalFrame {
 	    t.start();
 	    //
 	  }
+	@SuppressWarnings("resource")
 	public static void mail_at() throws IOException
 	{
 		  //************************************** XLXS *****************************************************

@@ -9,7 +9,6 @@ import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
@@ -45,6 +44,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings({"serial" , "static-access" , "deprecation"})
 public class DVZ_CEVIRME extends JInternalFrame {
 	
 	

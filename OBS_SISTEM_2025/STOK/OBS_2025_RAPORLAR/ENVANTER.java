@@ -1,12 +1,12 @@
 package OBS_2025_RAPORLAR;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.math.BigDecimal;
@@ -367,14 +367,14 @@ public class ENVANTER extends JInternalFrame {
 		panel.add(lbl1);
 
 		JLabel lblNewLabel = new JLabel("Kayit Sayisi :");
-		lblNewLabel.setBounds(10, 5, 71, 14);
+		lblNewLabel.setBounds(10, 5, 81, 14);
 		panel.add(lblNewLabel);
 
 		lbladet = new JLabel("0");
 		lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
-		lbladet.setBounds(91, 5, 71, 14);
+		lbladet.setBounds(101, 5, 61, 14);
 		panel.add(lbladet);
 
 		lbl4 = new JLabel("0.00");
@@ -404,7 +404,21 @@ public class ENVANTER extends JInternalFrame {
 		lbl7.setFont(new Font("Arial Narrow", Font.BOLD, 16));
 		lbl7.setBounds(1050, 5, 145, 14);
 		panel.add(lbl7);
-		tabbedPane.setLayout( new CardLayout() );
+		//tabbedPane.setLayout( new CardLayout() );
+	    final boolean showTabsHeader = false;
+	    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
+	    {
+	        @Override
+	        protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
+	            if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
+	            } else {return 0;}	        }
+	      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
+	    });
+	    for(int i = 0;i <= tabbedPane.getTabCount() - 1;i++)
+		{
+			tabbedPane.setEnabledAt(i, false);
+		}
+
 
 	}
 	public static void hisset()
@@ -1304,7 +1318,8 @@ public class ENVANTER extends JInternalFrame {
 	{
 		///// Progres Bsr olayi
 		Runnable runner = new Runnable()
-		{ public void run() {
+		{ @SuppressWarnings("resource")
+		public void run() {
 			/////  
 			try 
 			{

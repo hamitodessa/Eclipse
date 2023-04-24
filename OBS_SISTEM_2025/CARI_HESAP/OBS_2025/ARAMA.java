@@ -39,6 +39,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+@SuppressWarnings({"serial" , "static-access"})
 public class ARAMA extends JInternalFrame {
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -90,6 +91,7 @@ public class ARAMA extends JInternalFrame {
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setGridColor(oac.gridcolor);
 		table.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {

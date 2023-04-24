@@ -70,6 +70,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+@SuppressWarnings({"serial" , "static-access"})
 public class IMALAT_RAPORLAMA extends JInternalFrame {
 	private static JTable table;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -412,6 +413,7 @@ public class IMALAT_RAPORLAMA extends JInternalFrame {
 			write() ;	
 		}
 	}
+	@SuppressWarnings("resource")
 	public static void write()
 	 {
 	
@@ -692,6 +694,7 @@ public class IMALAT_RAPORLAMA extends JInternalFrame {
 	  }
 	    }
 	
+	@SuppressWarnings("resource")
 	public static void mail_at() throws IOException 
 	{
 	

@@ -70,7 +70,7 @@ import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
 
-
+@SuppressWarnings({"serial" , "static-access"})
 public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -1228,6 +1228,7 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 			write() ;	
 		}
 	}
+	@SuppressWarnings("resource")
 	public static void write()
 	 {
 	  try 
@@ -1581,6 +1582,7 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 	  }
 	  }
+	@SuppressWarnings("resource")
 	public static void mail_at()
 	{
 		try {

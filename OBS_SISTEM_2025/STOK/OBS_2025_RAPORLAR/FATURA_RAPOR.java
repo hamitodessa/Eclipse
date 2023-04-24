@@ -74,6 +74,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+@SuppressWarnings({"serial" , "static-access"})
 public class FATURA_RAPOR extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
@@ -883,7 +884,8 @@ public class FATURA_RAPOR extends JInternalFrame {
 	 {
 	///// Progres Bsr olayi
 		Runnable runner = new Runnable()
-	    { public void run() {
+	    { @SuppressWarnings("resource")
+		public void run() {
 	        /////  
 	  try 
 	  {

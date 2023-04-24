@@ -29,6 +29,7 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
+@SuppressWarnings({"serial" , "static-access" , "deprecation"})
 public class KOD_DEGISTIRME extends JInternalFrame {
 	
 	private static JTextField textField_1;

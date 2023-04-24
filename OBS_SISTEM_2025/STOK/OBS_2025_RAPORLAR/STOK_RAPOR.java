@@ -66,11 +66,10 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial" , "static-access"})
 public class STOK_RAPOR extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	@SuppressWarnings("static-access")
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 	public static JTable table;
 	private static String qwq1 ="" ;
@@ -547,6 +546,7 @@ public class STOK_RAPOR extends JInternalFrame {
 			write() ;	
 		}
 	}
+	@SuppressWarnings("resource")
 	public static void write()
 	{
 		try 

@@ -39,6 +39,7 @@ import java.beans.PropertyVetoException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+@SuppressWarnings({"serial" , "static-access" , "deprecation"})
 public class GUNLUK_ISLEM extends JInternalFrame {
 	private static JTable table;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();

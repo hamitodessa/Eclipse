@@ -52,6 +52,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+@SuppressWarnings({"serial" , "static-access" , "deprecation"})
 public class KASA extends JInternalFrame {
 
 	private JTable table_1;

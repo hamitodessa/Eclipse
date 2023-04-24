@@ -48,6 +48,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 
+@SuppressWarnings({"serial" , "static-access"})
 public class HESAP_BAK extends JInternalFrame {
 	
 	private JTable tblhesap;

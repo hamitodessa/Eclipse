@@ -37,6 +37,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import net.proteanit.sql.DbUtils;
 
+@SuppressWarnings({"serial" , "static-access"})
 public class RECETE_RAPOR extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();

@@ -41,6 +41,7 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TABLO_RENDERER;
 import net.proteanit.sql.DbUtils;
 
+@SuppressWarnings({"serial" , "static-access"})
 public class URUN_LISTE extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();

@@ -82,40 +82,7 @@ public class SMS_INET extends JInternalFrame {
 		panel.add(btnNewButton);
 		
 //*************************************************************************************		
-		JPanel qweJPanel =  new Aylik_Gorunum(3,31);
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				 Component[] comp = qweJPanel.getComponents();
-				    for (int i = 0;i<comp.length;i++) {
-				        if (comp[i] instanceof JButton) {
-
-				        	if ( ((JButton)comp[i]).getName()!= null)
-				        	{
-				        	if ( ((JButton)comp[i]).getName().equals("1"))
-				        	{
-				        		System.out.println("="+((JButton)comp[i]).getName()+"=");
-				        		((JButton)comp[i]).setText("ELMA");
-				        	}
-				        	}
-				        
-				    }
-				    }
-				    
-			}
-		});
-		btnNewButton_1.setBounds(131, 11, 89, 23);
-		panel.add(btnNewButton_1);
-
-		
-		///JPanel panel2 = new JPanel();
-		//panel.setLayout(new BorderLayout());
-		//.add(new Aylik_Gorunum(7,30), BorderLayout.CENTER);
 	
-		
-		splitPane.setRightComponent(qweJPanel);
-		
 		
 		
 	}

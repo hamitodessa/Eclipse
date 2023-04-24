@@ -44,6 +44,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+@SuppressWarnings({"serial" , "static-access" })
 public class HESAP_PLN extends JDialog {
 
 	/**

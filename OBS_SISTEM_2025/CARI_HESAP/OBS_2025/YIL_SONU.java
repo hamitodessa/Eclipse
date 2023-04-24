@@ -497,7 +497,7 @@ public class YIL_SONU extends JInternalFrame {
 				boolean durum =  model.getValueAt(i, 5) != null ?    (boolean) model.getValueAt(i, 5) : false;
 				if (durum) 
 				{
-					rs =	  c_Access.mizan_aktar(model.getValueAt(i, 0).toString());
+					rs =  c_Access.mizan_aktar(model.getValueAt(i, 0).toString());
 					bir = 0;
 					iki = 0;
 					uc = 0;

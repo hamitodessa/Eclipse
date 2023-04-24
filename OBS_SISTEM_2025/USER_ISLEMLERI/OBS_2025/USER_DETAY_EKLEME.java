@@ -280,6 +280,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		menu.addSeparator();
 		cbVeritabani = new JCheckBoxMenuItem("Veritabani Kayit");
 		cbVeritabani.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbVeritabani.setForeground(new Color(0, 128, 128));
 		cbVeritabani.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				vt = (e.getStateChange() == 1 ? true:false);    	
@@ -290,6 +291,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 
 		cbDosya = new JCheckBoxMenuItem("Dosya");
 		cbDosya.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbDosya.setForeground(new Color(0, 128, 128));
 		cbDosya.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				ds = (e.getStateChange() == 1 ? true:false);    	
@@ -299,6 +301,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 
 		cbText = new JCheckBoxMenuItem("Text Dosya");
 		cbText.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbText.setForeground(new Color(0, 128, 128));
 		cbText.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				tx = (e.getStateChange() == 1 ? true:false);    	
@@ -307,6 +310,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		menu.add(cbText);
 
 		cbMail = new JCheckBoxMenuItem("Email Atma");
+		cbMail.setForeground(new Color(0, 128, 128));
 		cbMail.setUI(new StayOpenCheckBoxMenuItemUI());
 		cbMail.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -315,6 +319,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		});
 		menu.add(cbMail);
 		JButton btnNewButton_6 = new JButton();
+		btnNewButton_6.setForeground(new Color(0, 128, 128));
 		btnNewButton_6.setText("Loglama Secimi");
 		btnNewButton_6.setBounds(800, 82, 130, 23);
 		btnNewButton_6.setAction(new AbstractAction("Loglama Secimi") {

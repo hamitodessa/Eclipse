@@ -77,13 +77,11 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.JSplitPane;
 import javax.swing.JPanel;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial" , "static-access" , "deprecation"})
 public class OZEL_MIZAN extends JInternalFrame {
 	public static JTable table;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	@SuppressWarnings("static-access")
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
-
 	private static JLabel lblonceki ;
 	private static JLabel lblborc ;
 	private static JLabel lblalacak ;
@@ -173,7 +171,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 		};
 		table.setGridColor(oac.gridcolor);
 		table.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("deprecation")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {

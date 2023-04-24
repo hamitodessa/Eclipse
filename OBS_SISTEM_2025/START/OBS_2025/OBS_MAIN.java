@@ -1755,6 +1755,19 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_21.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-news-30.png")));
 		toolBar_7.add(btnNewButton_21);
 		
+		JLabel lblNewLabel_38 = new JLabel("          ");
+		toolBar_7.add(lblNewLabel_38);
+		
+		JButton btnNewButton_38 = new JButton("");
+		btnNewButton_38.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("FIRMA ISMI DEGIS","");
+				FIRMA_ISMI_DEGIS.modul("gunluk");
+			}
+		});
+		btnNewButton_38.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
+		toolBar_7.add(btnNewButton_38);
+		
 		
 		//************************************************************SMS*********************************************************************************
 

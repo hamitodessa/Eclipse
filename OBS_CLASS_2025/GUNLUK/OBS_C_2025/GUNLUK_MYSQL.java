@@ -226,5 +226,10 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public void gun_firma_adi_kayit(String fadi) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

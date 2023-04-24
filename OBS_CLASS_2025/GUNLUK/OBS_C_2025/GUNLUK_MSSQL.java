@@ -216,11 +216,9 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		String sql = "DELETE GOREV  WHERE  GID = " + id;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-
 		sql = "DELETE GUNLUK  WHERE  GID = " + id;
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-
 	}
 	@Override
 	public int gid_ogren(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
@@ -240,11 +238,9 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 
 		if (count  != 0) 
 		{
-
 			gid =  rss.getInt("GID");
 		}
 		return gid;	
-
 	}
 	@Override
 	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException 
@@ -433,5 +429,15 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
+	}
+	@Override
+	public void gun_firma_adi_kayit(String fadi) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql  = "UPDATE OZEL SET FIRMA_ADI = N'" + fadi + "'" ;
+		PreparedStatement stmt = null;
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		
 	}
 }

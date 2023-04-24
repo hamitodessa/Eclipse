@@ -92,4 +92,10 @@ public class GUNLUK_ACCESS {
 	{
 		return _IGunluk.gorev_oku_sonraki(gbilgi);
 	}
+	public void gun_firma_adi_kayit(String fadi,String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IGunluk.gun_firma_adi_kayit(fadi);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(mesaj,evrak, dBILGI);
+	}
 }

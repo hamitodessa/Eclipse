@@ -538,7 +538,7 @@ public class Gunluk extends JInternalFrame {
 			e1.printStackTrace();
 		}
 	}
-	private void basla() throws ClassNotFoundException, SQLException
+	public void basla() throws ClassNotFoundException, SQLException
 	{
 		try 
 		{

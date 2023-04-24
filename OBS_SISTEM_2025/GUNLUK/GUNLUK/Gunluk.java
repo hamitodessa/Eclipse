@@ -141,6 +141,31 @@ public class Gunluk extends JInternalFrame {
 		panelToolbar.setMaximumSize(new Dimension(0, 35));
 		splitSolUst.setLeftComponent(panelToolbar);
 		
+		
+		panelToolbar.setLayout(new GridLayout(1, 1, 0, 0));
+		
+		JButton btnNewButton_3 = new JButton("");
+		btnNewButton_3.setToolTipText("Yenile");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try 
+				{
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
+					ilk= true;
+					temizle();
+					calendar.setDate(new Date());
+					isim_doldur();
+					basla();
+					ilk= false;
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
+				} catch (ClassNotFoundException | SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_3.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/refresh-24.png")));
+		panelToolbar.add(btnNewButton_3);
+		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setToolTipText("Geri");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -161,25 +186,12 @@ public class Gunluk extends JInternalFrame {
 				}
 			}
 		});
-		panelToolbar.setLayout(new GridLayout(1, 1, 0, 0));
 		btnNewButton.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_geri-24.png")));
 		panelToolbar.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setToolTipText("Ileri");
-		panelToolbar.add(btnNewButton_1);
 		btnNewButton_1.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_ileri-24.png")));
-		
-		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.setToolTipText("Sonraki ilk Gorev");
-		btnNewButton_2.setMaximumSize(new Dimension(30,0));
-		panelToolbar.add(btnNewButton_2);
-		btnNewButton_2.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/forwardson.png")));
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				sonraki_gorev_bul();
-			}
-		});
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -198,6 +210,19 @@ public class Gunluk extends JInternalFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+			}
+		});
+
+		panelToolbar.add(btnNewButton_1);
+
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setToolTipText("Sonraki ilk Gorev");
+		btnNewButton_2.setMaximumSize(new Dimension(30,0));
+		panelToolbar.add(btnNewButton_2);
+		btnNewButton_2.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/forwardson.png")));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sonraki_gorev_bul();
 			}
 		});
 		///

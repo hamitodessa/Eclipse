@@ -1196,7 +1196,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_22.setToolTipText("Firma Ismi");
 		btnNewButton_22.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				form_ac("FIRMA ISMI DEGIS","");
+				form_ac("FIRMA ISMI DEGISTIRME","");
 				FIRMA_ISMI_DEGIS.modul("cari");
 			}
 		});
@@ -1283,7 +1283,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_41 = new JButton("");
 		btnNewButton_41.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				form_ac("FIRMA ISMI DEGIS","");
+				form_ac("FIRMA ISMI DEGISTIRME","");
 				FIRMA_ISMI_DEGIS.modul("adres");
 			}
 		});
@@ -1585,7 +1585,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_73.setToolTipText("Firma Ismi");
 		btnNewButton_73.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				form_ac("FIRMA ISMI DEGIS","");
+				form_ac("FIRMA ISMI DEGISTIRME","");
 				FIRMA_ISMI_DEGIS.modul("stok");
 			}
 		});
@@ -1704,7 +1704,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_80.setToolTipText("Firma Ismi");
 		btnNewButton_80.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				form_ac("FIRMA ISMI DEGIS","");
+				form_ac("FIRMA ISMI DEGISTIRME","");
 				FIRMA_ISMI_DEGIS.modul("kambiyo");
 			}
 		});
@@ -1761,7 +1761,7 @@ public class OBS_MAIN extends JFrame {
 		JButton btnNewButton_38 = new JButton("");
 		btnNewButton_38.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				form_ac("FIRMA ISMI DEGIS","");
+				form_ac("FIRMA ISMI DEGISTIRME","");
 				FIRMA_ISMI_DEGIS.modul("gunluk");
 			}
 		});
@@ -2861,7 +2861,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("PARAMETRELER")) internalFrame  = new  PARAMETRELER();
 			else if (pencere.equals("E MAIL BILGILERI")) internalFrame  = new  E_MAIL_BILGILERI();
 			//
-			else if (pencere.equals("FIRMA ISMI DEGIS")) internalFrame  = new FIRMA_ISMI_DEGIS();
+			else if (pencere.equals("FIRMA ISMI DEGISTIRME")) internalFrame  = new FIRMA_ISMI_DEGIS();
 			else if (pencere.equals("E MAIL GONDERME")) internalFrame  = new E_MAIL_GONDERME();
 			else if (pencere.equals("DEGISKENLER")) internalFrame  = new DEGISKEN_GIRIS(hangi);
 			else if (pencere.equals("SQL SORGULAMA")) internalFrame  = new SQL_SORGULAMA(hangi);

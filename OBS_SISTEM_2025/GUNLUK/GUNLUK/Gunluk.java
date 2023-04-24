@@ -165,8 +165,20 @@ public class Gunluk extends JInternalFrame {
 		panelToolbar.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setToolTipText("Ileri");
 		panelToolbar.add(btnNewButton_1);
 		btnNewButton_1.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/icons_ileri-24.png")));
+		
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setToolTipText("Sonraki ilk Gorev");
+		btnNewButton_2.setMaximumSize(new Dimension(30,0));
+		panelToolbar.add(btnNewButton_2);
+		btnNewButton_2.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/forwardson.png")));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sonraki_gorev_bul();
+			}
+		});
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -479,6 +491,9 @@ public class Gunluk extends JInternalFrame {
 		//********************************************************************************
 		temizle();
 		calendar.setDate(new Date());
+		
+		JPanel panel_4 = new JPanel();
+		splitPane_1.setRightComponent(panel_4);
 		///
 		tabloTabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -991,6 +1006,46 @@ public class Gunluk extends JInternalFrame {
 			root.add(iSIM);
 		}
 		model.reload(root);
+	}
+	private void sonraki_gorev_bul()
+	{
+		try 
+		{
+			SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+			trh1 = format1.format(calendar.getDate());
+			Date qwe = new SimpleDateFormat("dd.MM.yyyy").parse(trh1);	
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(qwe);
+			cal.add(Calendar.DAY_OF_MONTH, 1); 
+			SimpleDateFormat format2 = new SimpleDateFormat("yyyy.MM.dd");
+			trh1 =  format2.format(cal.getTime());
+			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
+			if (comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString().equals("Hepsi"))
+			{
+				gbilgi.isim = "" ;
+			}
+			else 
+			{
+				gbilgi.isim = " AND ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' " ;
+			}
+			gbilgi.tarih1 = trh1 ;
+			ResultSet rs = g_Access.gorev_oku_sonraki(gbilgi);
+			if (!rs.isBeforeFirst() ) { 
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
+				return; // Kayit Yok
+			} 
+			rs.next();
+			Date qwee = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("TARIH"));
+			cal = Calendar.getInstance();
+			cal.setTime(qwee);
+			calendar.setDate(new Date(cal.getTimeInMillis()));
+			///
+		} 
+		catch (Exception ex) 
+		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }
 

@@ -257,7 +257,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 				" ORDER BY TARIH  ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		return rss;	
+			return rss;	
 	}
 	@Override
 	public ResultSet isim_oku() throws ClassNotFoundException, SQLException {
@@ -418,6 +418,18 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 				" FROM GUNLUK  " +
 				" WHERE "+ gbilgi.isim +" TARIH BETWEEN   '" + gbilgi.tarih1 + "' AND '" + gbilgi.tarih2 + "'" +
 				" GROUP BY TARIH,ISIM,GOREV,YER,MESAJ  ORDER BY TARIH   ";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+	@Override
+	public ResultSet gorev_oku_sonraki(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = "SELECT  TARIH, SAAT,ISIM,GOREV,MESAJ  " +
+				" FROM GUNLUK  " +
+				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
+				" ORDER BY TARIH  ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

@@ -125,8 +125,8 @@ public class Gunluk extends JInternalFrame {
 		panel.add(splitPane_1, BorderLayout.CENTER);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setMinimumSize(new Dimension(0, 550));
-		panel_1.setMaximumSize(new Dimension(0, 550));
+		panel_1.setMinimumSize(new Dimension(0, 525));
+		panel_1.setMaximumSize(new Dimension(0, 525));
 		splitPane_1.setLeftComponent(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 
@@ -142,6 +142,7 @@ public class Gunluk extends JInternalFrame {
 		splitSolUst.setLeftComponent(panelToolbar);
 		
 		JButton btnNewButton = new JButton("");
+		btnNewButton.setToolTipText("Geri");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -344,6 +345,11 @@ public class Gunluk extends JInternalFrame {
 		
 		JPanel panel_5 = new JPanel();
 		splitPane_6.setRightComponent(panel_5);
+		panel_5.setLayout(new BorderLayout(0, 0));
+		
+		JCalendar sagCalendar = new JCalendar();
+		sagCalendar.setDate(new Date());
+		panel_5.add(sagCalendar);
 		
 		treeGovev.getAutoscrolls();
 		treeGovev.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
@@ -525,11 +531,9 @@ public class Gunluk extends JInternalFrame {
 		});
 		try 
 		{
-			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
 			isim_doldur();
 			basla();
 			ilk=false;
-			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 		} catch (ClassNotFoundException | SQLException e1) {
 			e1.printStackTrace();
 		}

@@ -289,7 +289,7 @@ public class ADRES_MSSQL implements IADRES {
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = " DELETE " +
-				" FROM Adres WHERE M_Kodu = '" + kod.trim()   ;
+				" FROM Adres WHERE M_Kodu = '" + kod.trim() +"'"  ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 

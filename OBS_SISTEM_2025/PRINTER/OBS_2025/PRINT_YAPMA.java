@@ -483,21 +483,28 @@ public class PRINT_YAPMA extends JInternalFrame {
 				//*******************
 				
 				ResultSet	rs = null;
-				rs = a_Access.adr_hpl();
+				rs = a_Access.adr_etiket();
 				clientDoc.getDatabaseController().setDataSource(rs);
 				com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.field);
+				
 				
 				System.out.println("=="+reportObjects.size());
 				for(int i=0; i< reportObjects.size();i++)
 				{
 					IFieldObject textObject = (IFieldObject)reportObjects.get(i);
 					//ITextObject textObject = (ITextObject)reportObjects.get(i);
-					System.out.println(textObject.getName());
-					System.out.println(textObject.getLeft());
-					
-						
-					
+					System.out.println(textObject.getName() +"==="+textObject.getLeft());
+			
 				}
+				
+				//ReportObjects reportObjects1 =  clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
+				//for(int i=0; i< reportObjects1.size();i++)
+				//{
+				//ITextObject textObject1 = (ITextObject)reportObjects.get(i);
+				//System.out.println(textObject1.getName());
+			//	}
+				
+				
 			}
 //*********************************************************************************************************************
 			else if (nerden.equals("cekg"))

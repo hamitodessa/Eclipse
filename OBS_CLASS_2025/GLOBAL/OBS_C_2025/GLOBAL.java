@@ -329,6 +329,13 @@ public class GLOBAL {
 			prop.setProperty("PRG_SIL",  ",, ");
 			prop.setProperty("PRG_GORUNUM",  "McWinLookAndFeel");
 			prop.setProperty("PRG_GRID_RENK",  "0, 191, 255");
+			prop.setProperty("SOL BOSLUK", "0");
+			prop.setProperty("SAG BOSLUK", "0");
+			prop.setProperty("UST BOSLUK", "0");
+			prop.setProperty("ALT BOSLUK", "0");
+			prop.setProperty("ETIKET YUK", "0");
+			prop.setProperty("ETIKET GEN", "0");
+			prop.setProperty("ETIKET ARA BOSLUK", "0");
 			prop.store(output, "OBS AYARLAR");
 			output.close();
 		} catch (FileNotFoundException e2) {

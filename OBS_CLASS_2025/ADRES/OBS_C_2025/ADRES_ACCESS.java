@@ -84,4 +84,8 @@ public class ADRES_ACCESS {
 	{
 		return _IAdres.adr_firma_adi();
 	}
+	public ResultSet adr_etiket() throws ClassNotFoundException, SQLException
+	{
+		return _IAdres.adr_etiket();
+	}
 }

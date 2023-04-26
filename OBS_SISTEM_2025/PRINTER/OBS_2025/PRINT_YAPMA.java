@@ -42,6 +42,7 @@ import OBS_C_2025.CRY_TEXT_WIDTH;
 import OBS_C_2025.Degisken;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
@@ -57,6 +58,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
 	static STOK_ACCESS fa_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
+	static GUNLUK_ACCESS g_Access = new GUNLUK_ACCESS(oac._IGunluk , OBS_SIS_2025_ANA_CLASS._IGunluk_Loger);
 	public static ReportClientDocument clientDoc ;
 	private static ResultSet rs ;
 	private static ArrayList<Degisken>  students = new ArrayList<Degisken>();
@@ -93,6 +95,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 		reportViewer.setHasRefreshButton(false);
 		getContentPane().add(reportViewer, BorderLayout.CENTER);
 	}
+	@SuppressWarnings("unused")
 	public static   void hisset (String nerden,String nasil) 
 	{
 		try 
@@ -470,6 +473,20 @@ public class PRINT_YAPMA extends JInternalFrame {
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
 				}
+			}
+			else if (nerden.equals("etiket"))
+			{
+				//**************************************************************************
+				File file = new File("C:\\OBS_SISTEM\\ETIKET.rpt");
+				clientDoc.open(file.getPath(), 0);
+				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
+				//*******************
+				
+				ResultSet	rs = null;
+				rs = a_Access.adr_hpl();
+				clientDoc.getDatabaseController().setDataSource(rs);
+				com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
+				
 			}
 			else if (nerden.equals("cekg"))
 			{

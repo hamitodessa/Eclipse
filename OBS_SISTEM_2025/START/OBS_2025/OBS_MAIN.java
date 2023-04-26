@@ -49,7 +49,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
 
@@ -1277,6 +1276,14 @@ public class OBS_MAIN extends JFrame {
 
 		JLabel lblNewLabel_10 = new JLabel("          ");
 		toolBar_4.add(lblNewLabel_10);
+		
+		JButton btnNewButton_39 = new JButton("New button");
+		btnNewButton_39.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("ETIKET","");
+			}
+		});
+		toolBar_4.add(btnNewButton_39);
 
 		JLabel lblNewLabel_11 = new JLabel("          ");
 		toolBar_4.add(lblNewLabel_11);
@@ -2332,6 +2339,17 @@ public class OBS_MAIN extends JFrame {
 
 						PRINT_YAPMA.hisset("cekc",CEK_CIKIS.textField.getText());
 					}
+					else if (sonuc == "ETIKET")
+					{
+						
+						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket.rpt");
+						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						internalFrame = new PRINT_YAPMA();
+						desktopPane.add(internalFrame);
+						internalFrame.setVisible(true);
+
+						PRINT_YAPMA.hisset("etiket","");
+					}
 					else if (sonuc == "STOK_RAPOR")
 					{
 						if ( STOK_RAPOR.table.getRowCount() == 0 ) 
@@ -2813,6 +2831,7 @@ public class OBS_MAIN extends JFrame {
 			//ADRES
 			else if (pencere.equals("ADRES GIRISI")) internalFrame  = new ADRES_GIRIS();
 			else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();
+			else if (pencere.equals("ETIKET")) internalFrame  = new ETIKET();
 			//GUNLUK
 			else if (pencere.equals("GUNLUK")) internalFrame  = new Gunluk();
 			else if (pencere.equals("GOREV GIRIS")) internalFrame  = new GOREV_GIRIS();

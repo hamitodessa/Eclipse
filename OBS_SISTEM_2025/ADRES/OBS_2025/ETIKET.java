@@ -1,17 +1,13 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
+@SuppressWarnings("serial")
 public class ETIKET extends JInternalFrame {
 
 	/**

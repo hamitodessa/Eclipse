@@ -1295,6 +1295,15 @@ public class OBS_MAIN extends JFrame {
 				FIRMA_ISMI_DEGIS.modul("adres");
 			}
 		});
+		
+		JButton btnNewButton_40 = new JButton("Etiket Ayar");
+		btnNewButton_40.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("ETIKET AYAR","");
+				
+			}
+		});
+		toolBar_4.add(btnNewButton_40);
 		btnNewButton_41.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
 		toolBar_4.add(btnNewButton_41);
 
@@ -2832,6 +2841,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("ADRES GIRISI")) internalFrame  = new ADRES_GIRIS();
 			else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();
 			else if (pencere.equals("ETIKET")) internalFrame  = new ETIKET();
+			else if (pencere.equals("ETIKET AYAR")) internalFrame  = new ETIKET_AYAR();
 			//GUNLUK
 			else if (pencere.equals("GUNLUK")) internalFrame  = new Gunluk();
 			else if (pencere.equals("GOREV GIRIS")) internalFrame  = new GOREV_GIRIS();

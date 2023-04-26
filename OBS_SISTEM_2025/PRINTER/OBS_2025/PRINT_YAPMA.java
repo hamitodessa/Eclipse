@@ -482,6 +482,8 @@ public class PRINT_YAPMA extends JInternalFrame {
 				}
 			}
 //*********************************************************ETIKET *******************
+			// inch to TWIP
+			// 1 == 1440
 			else if (nerden.equals("etiket"))
 			{
 				//**************************************************************************
@@ -499,14 +501,27 @@ public class PRINT_YAPMA extends JInternalFrame {
 				///
 				for (int i = 0; i < clientDoc.getReportDefController().getReportDefinition().getAreas().size(); i++)
 				{
-				System.out.println(i+"=="+clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(i).getName());
+				//System.out.println(i+"=="+clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(i).getName());
 				}
 				
-				System.out.println(clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).getName());
+				//
+				String qweString = clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(0).getName() ;
+				ISection zaqISection = (ISection)clientDoc.getReportDefController().getReportDefinition().getReportHeaderArea().getSections().getSection(0);
+				
+				
+				System.out.println(qweString + "===" + zaqISection.getName() +" =Genislik===="+ zaqISection.getWidth() +" Yukseklik ="+ zaqISection.getHeight());
+				//////////////
+				ISection baslikk = (ISection)clientDoc.getReportDefController().getReportDefinition().getPageHeaderArea().getSections().getSection(0);
+
+				
+				System.out.println("Baslik ------- "+baslikk.getName() +" =Genislik===="+ baslikk.getWidth() +" Yukseklik ="+ baslikk.getHeight());
+				
+				///
+				String detailBolumString = clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).getName();
 				IArea areaqw =clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2);
 				IDetailAreaFormat kokAreaFormat = (IDetailAreaFormat) areaqw.getFormat();
-				System.out.println("===="+ kokAreaFormat.getHorizontalGap()+ "===" + kokAreaFormat.getVerticalGap());
-				System.out.println("===="+ kokAreaFormat.getDetailWidth());
+				System.out.println(detailBolumString + "===HorizontalGap===="+ kokAreaFormat.getHorizontalGap()+ "===VerticalGap==" + kokAreaFormat.getVerticalGap()+"  Detail Genislik ===="+ kokAreaFormat.getDetailWidth() );
+			
 				
 			//
 				IArea area =clientDoc.getReportDefController().getReportDefinition().getDetailArea();
@@ -522,9 +537,9 @@ public class PRINT_YAPMA extends JInternalFrame {
 				///
 		         
 				
-				System.out.println(clientDoc.getReportDefController().getReportDefinition().getDetailArea().getSections().size());
-				ISection baslik = (ISection)clientDoc.getReportDefController().getReportDefinition().getDetailArea().getSections().getSection(0);
-				System.out.println(baslik.getName() +" =="+ baslik.getHeight() + "==");
+				//System.out.println(clientDoc.getReportDefController().getReportDefinition().getDetailArea().getSections().size());
+				//ISection baslik = (ISection)clientDoc.getReportDefController().getReportDefinition().getDetailArea().getSections().getSection(0);
+				//System.out.println(baslik.getName() +" =="+ baslik.getHeight() + "==");
 				
 				ReportObjects reportObject = clientDoc.getReportDefController().getReportObjectController().getAllReportObjects();
 				if (reportObject != null )
@@ -533,7 +548,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 					{
 						IReportObject reportObjec = reportObject.getReportObject(i);
 						
-						System.out.println(reportObjec.getSectionName() +"===" +reportObjec.getLeft() +"==="  +reportObjec.getWidth() +"===" +reportObjec.getHeight()+ "===" + reportObjec.getName());
+						System.out.println(reportObjec.getSectionName() +"==Left==" +reportObjec.getLeft() +"==Width=="  +reportObjec.getWidth() +"==Height=" +reportObjec.getHeight()+ "===" + reportObjec.getName());
 					}
 				}
 				

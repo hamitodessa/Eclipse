@@ -95,7 +95,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 		reportViewer.setHasRefreshButton(false);
 		getContentPane().add(reportViewer, BorderLayout.CENTER);
 	}
-	@SuppressWarnings("unused")
 	public static   void hisset (String nerden,String nasil) 
 	{
 		try 
@@ -474,6 +473,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 					}
 				}
 			}
+//*********************************************************ETIKET *******************
 			else if (nerden.equals("etiket"))
 			{
 				//**************************************************************************
@@ -485,9 +485,21 @@ public class PRINT_YAPMA extends JInternalFrame {
 				ResultSet	rs = null;
 				rs = a_Access.adr_hpl();
 				clientDoc.getDatabaseController().setDataSource(rs);
-				com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
+				com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.field);
 				
+				System.out.println("=="+reportObjects.size());
+				for(int i=0; i< reportObjects.size();i++)
+				{
+					IFieldObject textObject = (IFieldObject)reportObjects.get(i);
+					//ITextObject textObject = (ITextObject)reportObjects.get(i);
+					System.out.println(textObject.getName());
+					System.out.println(textObject.getLeft());
+					
+						
+					
+				}
 			}
+//*********************************************************************************************************************
 			else if (nerden.equals("cekg"))
 			{
 				//**************************************************************************

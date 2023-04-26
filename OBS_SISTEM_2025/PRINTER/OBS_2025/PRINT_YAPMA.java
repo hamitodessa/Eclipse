@@ -17,6 +17,9 @@ import com.crystaldecisions.sdk.occa.report.application.OpenReportOptions;
 import com.crystaldecisions.sdk.occa.report.application.ReportClientDocument;
 import com.crystaldecisions.sdk.occa.report.application.ReportSectionPropertyEnum;
 import com.crystaldecisions.sdk.occa.report.definition.Alignment;
+import com.crystaldecisions.sdk.occa.report.definition.IArea;
+import com.crystaldecisions.sdk.occa.report.definition.IAreaFormat;
+import com.crystaldecisions.sdk.occa.report.definition.IDetailAreaFormat;
 import com.crystaldecisions.sdk.occa.report.definition.IFieldObject;
 import com.crystaldecisions.sdk.occa.report.definition.IFontColor;
 import com.crystaldecisions.sdk.occa.report.definition.IReportObject;
@@ -29,11 +32,16 @@ import com.crystaldecisions.sdk.occa.report.definition.ParagraphElements;
 import com.crystaldecisions.sdk.occa.report.definition.ParagraphTextElement;
 import com.crystaldecisions.sdk.occa.report.definition.Paragraphs;
 import com.crystaldecisions.sdk.occa.report.definition.ReportObjects;
+import com.crystaldecisions.sdk.occa.report.definition.Section;
 import com.crystaldecisions.sdk.occa.report.lib.ReportObjectKind;
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.table.DefaultTableModel;
+
+import org.apache.poi.util.SystemOutLogger;
 
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN;
@@ -488,12 +496,54 @@ public class PRINT_YAPMA extends JInternalFrame {
 				com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.field);
 				
 				
-				System.out.println("=="+reportObjects.size());
+				///
+				for (int i = 0; i < clientDoc.getReportDefController().getReportDefinition().getAreas().size(); i++)
+				{
+				System.out.println(i+"=="+clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(i).getName());
+				}
+				
+				System.out.println(clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).getName());
+				IArea areaqw =clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2);
+				IDetailAreaFormat kokAreaFormat = (IDetailAreaFormat) areaqw.getFormat();
+				System.out.println("===="+ kokAreaFormat.getHorizontalGap()+ "===" + kokAreaFormat.getVerticalGap());
+				System.out.println("===="+ kokAreaFormat.getDetailWidth());
+				
+			//
+				IArea area =clientDoc.getReportDefController().getReportDefinition().getDetailArea();
+				Section sec =(Section)area.getSections().getSection(4);
+				ISection newSection =(ISection)sec.clone(true);
+				ISectionFormat format =sec.getFormat();
+				ISectionFormat newformat =(ISectionFormat)format.clone(true);
+				newformat.setBackgroundColor(Color.BLUE);
+				//newSection.setHeight(996);
+				newSection.setFormat(newformat);
+				clientDoc.getReportDefController().getReportSectionController().remove(sec);
+				clientDoc.getReportDefController().getReportSectionController().add(newSection, area, -1);
+				///
+		         
+				
+				System.out.println(clientDoc.getReportDefController().getReportDefinition().getDetailArea().getSections().size());
+				ISection baslik = (ISection)clientDoc.getReportDefController().getReportDefinition().getDetailArea().getSections().getSection(0);
+				System.out.println(baslik.getName() +" =="+ baslik.getHeight() + "==");
+				
+				ReportObjects reportObject = clientDoc.getReportDefController().getReportObjectController().getAllReportObjects();
+				if (reportObject != null )
+				{
+					for (int i = 0; i < reportObject.size(); i++)
+					{
+						IReportObject reportObjec = reportObject.getReportObject(i);
+						
+						System.out.println(reportObjec.getSectionName() +"===" +reportObjec.getLeft() +"==="  +reportObjec.getWidth() +"===" +reportObjec.getHeight()+ "===" + reportObjec.getName());
+					}
+				}
+				
+				
+				//System.out.println("=="+reportObjects.size());
 				for(int i=0; i< reportObjects.size();i++)
 				{
 					IFieldObject textObject = (IFieldObject)reportObjects.get(i);
 					//ITextObject textObject = (ITextObject)reportObjects.get(i);
-					System.out.println(textObject.getName() +"==="+textObject.getLeft());
+				//	System.out.println(textObject.getName() +"==="+textObject.getLeft());
 			
 				}
 				

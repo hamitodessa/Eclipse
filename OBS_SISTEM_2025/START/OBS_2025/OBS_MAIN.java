@@ -1277,10 +1277,13 @@ public class OBS_MAIN extends JFrame {
 		JLabel lblNewLabel_10 = new JLabel("          ");
 		toolBar_4.add(lblNewLabel_10);
 		
-		JButton btnNewButton_39 = new JButton("New button");
+		JButton btnNewButton_39 = new JButton("");
+		
+		btnNewButton_39.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-print-address-label-30.png")));
 		btnNewButton_39.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				form_ac("ETIKET","");
+			//	form_ac("ETIKET","");
+				form_ac("ETIKET PRINT","");
 			}
 		});
 		toolBar_4.add(btnNewButton_39);
@@ -1296,7 +1299,8 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		
-		JButton btnNewButton_40 = new JButton("Etiket Ayar");
+		JButton btnNewButton_40 = new JButton("");
+		btnNewButton_40.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-pincode-keyboard-30.png")));
 		btnNewButton_40.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("ETIKET AYAR","");
@@ -1964,6 +1968,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "CEK CIKIS") 	CEK_CIKIS.kaydet();
 				else if (sonuc == "CEK TAKIP")	CEK_TAKIP.kaydet();
 				else if (sonuc == "ADRES GIRISI")	ADRES_GIRIS.kayit();
+				else if (sonuc == "ETIKET AYAR") ETIKET_AYAR.kaydet();
 				else if (sonuc == "MAIL")	MAIL.giris_kayit();
 				else if (sonuc == "SMS") 	SMS.giris_kayit();
 				else if (sonuc == "DEGISKENLER")	DEGISKEN_GIRIS.kayit();
@@ -2841,6 +2846,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("ADRES GIRISI")) internalFrame  = new ADRES_GIRIS();
 			else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();
 			else if (pencere.equals("ETIKET")) internalFrame  = new ETIKET();
+			else if (pencere.equals("ETIKET PRINT")) internalFrame  = new ETIKET_PRINT();
 			else if (pencere.equals("ETIKET AYAR")) internalFrame  = new ETIKET_AYAR();
 			//GUNLUK
 			else if (pencere.equals("GUNLUK")) internalFrame  = new Gunluk();

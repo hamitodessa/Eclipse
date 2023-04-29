@@ -9,6 +9,8 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.ArrayList;
@@ -20,9 +22,18 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.text.JTextComponent;
 
+import OBS_C_2025.GLOBAL;
+
 @SuppressWarnings("serial")
 public class ETIKET_AYAR extends JInternalFrame {
 	 public static final SelectOnFocusGainedHandler SHARED_INSTANCE = new SelectOnFocusGainedHandler();
+private static JSpinner spnSolB;
+private static JSpinner spnUstB ;
+private static JSpinner spnSagB ;
+private static JSpinner spnAltB ;
+private static JSpinner spnEtYUK;
+private static JSpinner spnEtGEN;
+private static JSpinner spnEtBOSLUK;
 
 	/**
 	 * Launch the application.
@@ -79,40 +90,72 @@ public class ETIKET_AYAR extends JInternalFrame {
 		JLabel lblNewLabel_2_1 = new JLabel("Etiket Genisligi");
 		lblNewLabel_2_1.setBounds(293, 95, 97, 14);
 		panel.add(lblNewLabel_2_1);
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-		spinner.setBounds(170, 30, 60, 20);
-		panel.add(spinner);
-		installFocusListener(spinner);
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setBounds(170, 60, 60, 20);
-		panel.add(spinner_1);
-		installFocusListener(spinner_1);
-		JSpinner spinner_2 = new JSpinner();
-		spinner_2.setBounds(170, 90, 60, 20);
-		panel.add(spinner_2);
-		installFocusListener(spinner_2);
-		JSpinner spinner_3 = new JSpinner();
-		spinner_3.setBounds(403, 30, 60, 20);
-		panel.add(spinner_3);
-		installFocusListener(spinner_3);
-		JSpinner spinner_1_1 = new JSpinner();
-		spinner_1_1.setBounds(403, 60, 60, 20);
-		panel.add(spinner_1_1);
-		installFocusListener(spinner_1_1);
-		JSpinner spinner_2_1 = new JSpinner();
-		spinner_2_1.setBounds(403, 90, 60, 20);
-		panel.add(spinner_2_1);
-		installFocusListener(spinner_2_1);
+		spnSolB = new JSpinner();
+		spnSolB.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+		spnSolB.setBounds(170, 30, 60, 20);
+		panel.add(spnSolB);
+		installFocusListener(spnSolB);
+		spnUstB = new JSpinner();
+		spnUstB.setBounds(170, 60, 60, 20);
+		panel.add(spnUstB);
+		installFocusListener(spnUstB);
+		spnEtYUK = new JSpinner();
+		spnEtYUK.setBounds(170, 90, 60, 20);
+		panel.add(spnEtYUK);
+		installFocusListener(spnEtYUK);
+		spnSagB = new JSpinner();
+		spnSagB.setBounds(403, 30, 60, 20);
+		panel.add(spnSagB);
+		installFocusListener(spnSagB);
+		spnAltB = new JSpinner();
+		spnAltB.setBounds(403, 60, 60, 20);
+		panel.add(spnAltB);
+		installFocusListener(spnAltB);
+		spnEtGEN = new JSpinner();
+		spnEtGEN.setBounds(403, 90, 60, 20);
+		panel.add(spnEtGEN);
+		installFocusListener(spnEtGEN);
 		JLabel lblNewLabel_2_2 = new JLabel("Etiket Arasi Bosluk(Dikey)");
 		lblNewLabel_2_2.setBounds(24, 125, 125, 14);
 		panel.add(lblNewLabel_2_2);
 		
-		JSpinner spinner_2_2 = new JSpinner();
-		spinner_2_2.setBounds(170, 120, 60, 20);
-		panel.add(spinner_2_2);
-		installFocusListener(spinner_2_2);
+		spnEtBOSLUK = new JSpinner();
+		spnEtBOSLUK.setBounds(170, 120, 60, 20);
+		panel.add(spnEtBOSLUK);
+		installFocusListener(spnEtBOSLUK);
 
+		doldur();
+	}
+	public static void kaydet()
+	{
+		try 
+		{
+			
+		GLOBAL.setting_yaz("SOL_BOSLUK",String.valueOf( spnSolB.getValue()));
+		GLOBAL.setting_yaz("SAG_BOSLUK",String.valueOf( spnSagB.getValue()));
+		GLOBAL.setting_yaz("UST_BOSLUK", String.valueOf( spnUstB.getValue()));
+		GLOBAL.setting_yaz("ALT_BOSLUK", String.valueOf( spnAltB.getValue()));
+		GLOBAL.setting_yaz("ETIKET_YUK", String.valueOf( spnEtYUK.getValue()));
+		GLOBAL.setting_yaz("ETIKET_GEN",  String.valueOf( spnEtGEN.getValue()));
+		GLOBAL.setting_yaz("ETIKET_ARA_BOSLUK",  String.valueOf( spnEtBOSLUK.getValue()));
+	} catch (Exception ex) {
+		JOptionPane.showMessageDialog(null, ex.getMessage(),  "Etiket Ayar Kayit", JOptionPane.ERROR_MESSAGE);   
+	}
+	}
+	private void doldur()
+	{
+		try 
+		{
+			spnSolB.setValue(Integer.parseInt(GLOBAL.setting_oku("SOL_BOSLUK")));
+			spnSagB.setValue(Integer.parseInt(GLOBAL.setting_oku("SAG_BOSLUK")));
+			spnUstB.setValue(Integer.parseInt(GLOBAL.setting_oku("UST_BOSLUK")));
+			spnAltB.setValue(Integer.parseInt(GLOBAL.setting_oku("ALT_BOSLUK")));
+			spnEtYUK.setValue(Integer.parseInt(GLOBAL.setting_oku("ETIKET_YUK")));
+			spnEtGEN.setValue(Integer.parseInt(GLOBAL.setting_oku("ETIKET_GEN")));
+			spnEtBOSLUK.setValue(Integer.parseInt(GLOBAL.setting_oku("ETIKET_ARA_BOSLUK")));
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Etiket Ayar Okuma", JOptionPane.ERROR_MESSAGE);   
+		}
 	}
 	 public void installFocusListener(JSpinner spinner) {
 	        JComponent spinnerEditor = spinner.getEditor();

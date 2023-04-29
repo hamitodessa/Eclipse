@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.beans.PropertyVetoException;
 import java.io.File;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.text.DecimalFormat;
@@ -11,14 +12,30 @@ import java.util.ArrayList;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 import com.crystaldecisions.ReportViewer.ReportViewerBean;
+import com.crystaldecisions.reports.formattedcontentmodel.IFCMSection;
+import com.crystaldecisions.reports.sdk.PrintOutputController;
 import com.crystaldecisions.sdk.occa.report.application.OpenReportOptions;
+import com.crystaldecisions.sdk.occa.report.application.ReportAreaController;
+import com.crystaldecisions.sdk.occa.report.application.ReportAreaPropertyEnum;
 import com.crystaldecisions.sdk.occa.report.application.ReportClientDocument;
+import com.crystaldecisions.sdk.occa.report.application.ReportSectionController;
 import com.crystaldecisions.sdk.occa.report.application.ReportSectionPropertyEnum;
+import com.crystaldecisions.sdk.occa.report.data.FormulaSyntax;
+import com.crystaldecisions.sdk.occa.report.data.TopNConditionFormulaType;
+import com.crystaldecisions.sdk.occa.report.data.TopNConditionFormulas;
 import com.crystaldecisions.sdk.occa.report.definition.Alignment;
+import com.crystaldecisions.sdk.occa.report.definition.Area;
+import com.crystaldecisions.sdk.occa.report.definition.AreaFormat;
+import com.crystaldecisions.sdk.occa.report.definition.AreaSectionKind;
+import com.crystaldecisions.sdk.occa.report.definition.Areas;
+import com.crystaldecisions.sdk.occa.report.definition.ConditionFormula;
+import com.crystaldecisions.sdk.occa.report.definition.FieldObject;
 import com.crystaldecisions.sdk.occa.report.definition.IArea;
 import com.crystaldecisions.sdk.occa.report.definition.IAreaFormat;
+import com.crystaldecisions.sdk.occa.report.definition.IConditionFormula;
 import com.crystaldecisions.sdk.occa.report.definition.IDetailAreaFormat;
 import com.crystaldecisions.sdk.occa.report.definition.IFieldObject;
 import com.crystaldecisions.sdk.occa.report.definition.IFontColor;
@@ -31,11 +48,18 @@ import com.crystaldecisions.sdk.occa.report.definition.ParagraphElementKind;
 import com.crystaldecisions.sdk.occa.report.definition.ParagraphElements;
 import com.crystaldecisions.sdk.occa.report.definition.ParagraphTextElement;
 import com.crystaldecisions.sdk.occa.report.definition.Paragraphs;
+import com.crystaldecisions.sdk.occa.report.definition.ReportDefinition;
+import com.crystaldecisions.sdk.occa.report.definition.ReportObject;
 import com.crystaldecisions.sdk.occa.report.definition.ReportObjects;
 import com.crystaldecisions.sdk.occa.report.definition.Section;
+import com.crystaldecisions.sdk.occa.report.definition.Sections;
+import com.crystaldecisions.sdk.occa.report.document.IPageMargins;
+import com.crystaldecisions.sdk.occa.report.document.IPrintOptions;
+import com.crystaldecisions.sdk.occa.report.document.ReportDocument;
 import com.crystaldecisions.sdk.occa.report.lib.ReportObjectKind;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
@@ -157,8 +181,8 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("ekstre"))
 			{
 				//**************************************************************************
+				EKSTRE.table.print();
 				File file = new File("C:\\OBS_SISTEM\\EKSTRE.rpt");
-				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//**************************************************************************
 				if (nasil.equals("normal"))
@@ -495,81 +519,66 @@ public class PRINT_YAPMA extends JInternalFrame {
 				ResultSet	rs = null;
 				rs = a_Access.adr_etiket();
 				clientDoc.getDatabaseController().setDataSource(rs);
-				com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.field);
+				//com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.field);
 				
+				com.crystaldecisions.sdk.occa.report.application.PrintOutputController printOutputController = clientDoc.getPrintOutputController();
+				 IPrintOptions printOptions = printOutputController.getPrintOptions();
+				 //System.out.println( printOptions.getPageMargins().getLeft() +"="+  printOptions.getPageMargins().getRight() + "=" +
+				//		 printOptions.getPageMargins().getTop() +"="+  printOptions.getPageMargins().getBottom());
+				 IPrintOptions newPrintOptions = (IPrintOptions) printOptions.clone(true);
+				 IPageMargins newMargins = newPrintOptions.getPageMargins();
 				
-				///
-				for (int i = 0; i < clientDoc.getReportDefController().getReportDefinition().getAreas().size(); i++)
-				{
-				//System.out.println(i+"=="+clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(i).getName());
-				}
+				 newMargins.setLeft( Integer.valueOf( GLOBAL.setting_oku("SOL_BOSLUK")));
+				 newMargins.setRight(Integer.valueOf( GLOBAL.setting_oku("SAG_BOSLUK")));
+				 newMargins.setTop(Integer.valueOf( GLOBAL.setting_oku("UST_BOSLUK")));
+				 newMargins.setBottom(Integer.valueOf( GLOBAL.setting_oku("ALT_BOSLUK")));
+				 newPrintOptions.setPageMargins(newMargins);
+				 printOutputController.modifyPrintOptions(newPrintOptions);
+				 
+				 //
+					String detailBolumString = clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).getName();
+					IArea areaqw =clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2);
+					IDetailAreaFormat kokAreaFormat = (IDetailAreaFormat) areaqw.getFormat();
+					System.out.println(detailBolumString + "===HorizontalGap===="+ kokAreaFormat.getHorizontalGap()+ "===VerticalGap==" + kokAreaFormat.getVerticalGap()+"  Detail Genislik ===="+ kokAreaFormat.getDetailWidth()  );
+				 //
+					
+					
+					
+				//ReportClientDocument clientDoc ;	
+					
+				IArea detArea =clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2);
 				
-				//
-				String qweString = clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(0).getName() ;
-				ISection zaqISection = (ISection)clientDoc.getReportDefController().getReportDefinition().getReportHeaderArea().getSections().getSection(0);
-				
-				
-				System.out.println(qweString + "===" + zaqISection.getName() +" =Genislik===="+ zaqISection.getWidth() +" Yukseklik ="+ zaqISection.getHeight());
-				//////////////
-				ISection baslikk = (ISection)clientDoc.getReportDefController().getReportDefinition().getPageHeaderArea().getSections().getSection(0);
+				IArea yenArea = (IArea) detArea.clone(true);
+				IDetailAreaFormat detAreaFormat = (IDetailAreaFormat) detArea.getFormat();
+				IDetailAreaFormat xswAreaFormat = (IDetailAreaFormat) detAreaFormat.clone(true);
+				xswAreaFormat.setDetailWidth((Integer.valueOf( GLOBAL.setting_oku("ETIKET_GEN"))));
+				//xswAreaFormat.setVerticalGap((Integer.valueOf( GLOBAL.setting_oku("ETIKET_ARA_BOSLUK"))));
+				xswAreaFormat.setVerticalGap(100);
+				xswAreaFormat.setHorizontalGap(100);
 
+				clientDoc.getReportDefController().getReportDefinition().getDetailArea().setFormat(xswAreaFormat);
 				
-				System.out.println("Baslik ------- "+baslikk.getName() +" =Genislik===="+ baslikk.getWidth() +" Yukseklik ="+ baslikk.getHeight());
 				
-				///
-				String detailBolumString = clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).getName();
-				IArea areaqw =clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2);
-				IDetailAreaFormat kokAreaFormat = (IDetailAreaFormat) areaqw.getFormat();
-				System.out.println(detailBolumString + "===HorizontalGap===="+ kokAreaFormat.getHorizontalGap()+ "===VerticalGap==" + kokAreaFormat.getVerticalGap()+"  Detail Genislik ===="+ kokAreaFormat.getDetailWidth() );
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				//clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).setFormat(xswAreaFormat);
 			
 				
-			//
-				IArea area =clientDoc.getReportDefController().getReportDefinition().getDetailArea();
-				Section sec =(Section)area.getSections().getSection(4);
-				ISection newSection =(ISection)sec.clone(true);
-				ISectionFormat format =sec.getFormat();
-				ISectionFormat newformat =(ISectionFormat)format.clone(true);
-				newformat.setBackgroundColor(Color.BLUE);
-				//newSection.setHeight(996);
-				newSection.setFormat(newformat);
-				clientDoc.getReportDefController().getReportSectionController().remove(sec);
-				clientDoc.getReportDefController().getReportSectionController().add(newSection, area, -1);
-				///
-		         
-				
-				//System.out.println(clientDoc.getReportDefController().getReportDefinition().getDetailArea().getSections().size());
-				//ISection baslik = (ISection)clientDoc.getReportDefController().getReportDefinition().getDetailArea().getSections().getSection(0);
-				//System.out.println(baslik.getName() +" =="+ baslik.getHeight() + "==");
-				
-				ReportObjects reportObject = clientDoc.getReportDefController().getReportObjectController().getAllReportObjects();
-				if (reportObject != null )
-				{
-					for (int i = 0; i < reportObject.size(); i++)
-					{
-						IReportObject reportObjec = reportObject.getReportObject(i);
-						
-						System.out.println(reportObjec.getSectionName() +"==Left==" +reportObjec.getLeft() +"==Width=="  +reportObjec.getWidth() +"==Height=" +reportObjec.getHeight()+ "===" + reportObjec.getName());
-					}
-				}
-				
-				
-				//System.out.println("=="+reportObjects.size());
-				for(int i=0; i< reportObjects.size();i++)
-				{
-					IFieldObject textObject = (IFieldObject)reportObjects.get(i);
-					//ITextObject textObject = (ITextObject)reportObjects.get(i);
-				//	System.out.println(textObject.getName() +"==="+textObject.getLeft());
-			
-				}
-				
-				//ReportObjects reportObjects1 =  clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
-				//for(int i=0; i< reportObjects1.size();i++)
-				//{
-				//ITextObject textObject1 = (ITextObject)reportObjects.get(i);
-				//System.out.println(textObject1.getName());
-			//	}
-				
-				
+				 //*****************************************************************
+					detailBolumString = clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).getName();
+					areaqw =clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2);
+					kokAreaFormat = (IDetailAreaFormat) areaqw.getFormat();
+					System.out.println(detailBolumString + "===HorizontalGap===="+ kokAreaFormat.getHorizontalGap()+ "===VerticalGap==" + kokAreaFormat.getVerticalGap()+"  Detail Genislik ===="+ kokAreaFormat.getDetailWidth()  );
+				//******************************************************************
+
+					
 			}
 //*********************************************************************************************************************
 			else if (nerden.equals("cekg"))

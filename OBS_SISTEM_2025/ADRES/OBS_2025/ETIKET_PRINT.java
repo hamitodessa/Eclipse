@@ -3,17 +3,18 @@ package OBS_2025;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.io.File;
+import java.awt.Font;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.GLOBAL;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.base.JRBaseElementGroup;
 import net.sf.jasperreports.engine.design.JRDesignBand;
 import net.sf.jasperreports.engine.design.JRDesignElement;
 import net.sf.jasperreports.engine.design.JRDesignSection;
@@ -27,18 +28,6 @@ import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.view.JasperViewer;
 import javax.swing.JPanel;
-
-import javax.xml.XMLConstants;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.apache.commons.compress.harmony.pack200.BandSet.BandAnalysisResults;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 public class ETIKET_PRINT extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -85,22 +74,43 @@ public class ETIKET_PRINT extends JInternalFrame {
 			
 			JasperDesign jasper = JRXmlLoader.load(this.getClass().getClassLoader().getResourceAsStream("RPT\\ADRES_RPT\\Etiket.jrxml"));
 			System.out.println( jasper.getColumnWidth()+"=spacing=="+jasper.getColumnSpacing());
-			
+			//
+			//jasper.setPageHeight(842);
+			jasper.setColumnWidth(Integer.valueOf( GLOBAL.setting_oku("ETIKET_GEN")));
+			jasper.setColumnSpacing(Integer.valueOf( GLOBAL.setting_oku("ETIKET_ARA_BOSLUK")));
+			jasper.setLeftMargin( Integer.valueOf( GLOBAL.setting_oku("SOL_BOSLUK")));
+			jasper.setRightMargin(Integer.valueOf( GLOBAL.setting_oku("SAG_BOSLUK")));
+			jasper.setTopMargin(Integer.valueOf( GLOBAL.setting_oku("UST_BOSLUK")));
+			jasper.setBottomMargin(Integer.valueOf( GLOBAL.setting_oku("ALT_BOSLUK")));
+
 			JRDesignSection designSection = (JRDesignSection) jasper.getDetailSection();
 			JRBand[] bands =  jasper.getDetailSection().getBands();
 			JRDesignBand qweBand = (JRDesignBand) bands[0].clone();
-			qweBand.setHeight(100);
+			qweBand.setHeight(Integer.valueOf( GLOBAL.setting_oku("ETIKET_YUK")));
 			
-			qweBand.getElementByKey("Adi").setForecolor(Color.RED);
-			JRElement[] column = bands[0].getElements();
 			
-			for(int i=0;i< column.length;i++)
+			//**************************ADI*************************************************
+			 qweBand.getElementByKey("Adi").setForecolor(Color.BLUE);
+			 qweBand.getElementByKey("Adi").getStyle().setFontName("Arial");
+			 qweBand.getElementByKey("Adi").getStyle().setBold(true);
+			//**************************ADRES1**********************************************
+			 
+			//**************************ADRES2**********************************************
+			 
+			//**************************SEMT************************************************
+			 
+			//**************************SEHIR***********************************************
+
+			 
+			 
+			JRElement[] eleMENT = bands[0].getElements();
+			for(int i=0;i< eleMENT.length;i++)
 			{
-			System.out.println(column[i].getKey() +"==="+column[i].getWidth() + "==" + column[i].getHeight());
+			System.out.println(eleMENT[i].getKey() +"==="+eleMENT[i].getWidth() + "==" + eleMENT[i].getHeight());
 			}
-			
 			designSection.removeBand(bands[0]);
 			designSection.addBand(qweBand);
+			
 			//JasperReport jr = JasperCompileManager.compileReport(this.getClass().getClassLoader().getResourceAsStream("RPT\\ADRES_RPT\\Etiket.jrxml"));
 			JasperReport jr = JasperCompileManager.compileReport(jasper);
 			
@@ -108,7 +118,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 			JasperPrint jp = JasperFillManager.fillReport(jr,null, new JRResultSetDataSource(rSet));
 			getContentPane().add(new JRViewer(jp), BorderLayout.CENTER);
 			
-		} catch (SQLException | JRException  | ClassNotFoundException ex) {
+		} catch (SQLException | JRException  | NumberFormatException | ClassNotFoundException | IOException ex) {
 		
 		}
 	}

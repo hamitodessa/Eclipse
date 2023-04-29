@@ -3,6 +3,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Etiket" columnCount="2" printOrder="Horizontal" pageWidth="612" pageHeight="792" columnWidth="280" columnSpacing="10" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7dc58891-00f9-4a8b-9fee-e362721686a5">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Adres"/>
+	<style name="Style1"/>
 	<queryString language="SQL">
 		<![CDATA[Select * From Adres]]>
 	</queryString>
@@ -30,10 +31,10 @@
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="45" splitType="Stretch">
+		<band height="70" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement key="Adi" x="0" y="0" width="100" height="15" uuid="e7b64311-71fc-40fc-a4f5-40726a66ab09">
+				<reportElement key="Adi" style="Style1" x="0" y="0" width="100" height="15" uuid="e7b64311-71fc-40fc-a4f5-40726a66ab09">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="deee698a-7a26-4ee0-a9b3-51b2f60eb1ef"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -47,12 +48,24 @@
 				<textFieldExpression><![CDATA[$F{Adres_1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement key="Semt" x="0" y="30" width="100" height="15" uuid="d1f66d00-f290-4dfc-8ce3-9cd51869c3c1">
+				<reportElement key="Semt" x="0" y="45" width="130" height="15" uuid="d1f66d00-f290-4dfc-8ce3-9cd51869c3c1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9f32866b-ed8d-490d-95ef-0cd6e03988b2"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{Semt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="30" width="100" height="15" uuid="5013181b-1e86-45e8-aa1d-1e4f5ceeb7f5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Adres_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="45" width="150" height="15" uuid="1e011308-71ad-49b6-8ef3-ba8c226faed5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{Sehir}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

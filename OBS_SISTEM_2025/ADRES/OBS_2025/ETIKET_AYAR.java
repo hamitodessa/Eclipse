@@ -76,7 +76,7 @@ private static JSpinner spnEtBOSLUK;
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Etiket Yuksekligi");
-		lblNewLabel_2.setBounds(24, 95, 86, 14);
+		lblNewLabel_2.setBounds(24, 95, 136, 14);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Sag Bostluk");
@@ -88,19 +88,19 @@ private static JSpinner spnEtBOSLUK;
 		panel.add(lblNewLabel_1_1);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Etiket Genisligi");
-		lblNewLabel_2_1.setBounds(293, 95, 97, 14);
+		lblNewLabel_2_1.setBounds(293, 95, 112, 14);
 		panel.add(lblNewLabel_2_1);
 		spnSolB = new JSpinner();
 		spnSolB.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-		spnSolB.setBounds(170, 30, 60, 20);
+		spnSolB.setBounds(200, 30, 60, 20);
 		panel.add(spnSolB);
 		installFocusListener(spnSolB);
 		spnUstB = new JSpinner();
-		spnUstB.setBounds(170, 60, 60, 20);
+		spnUstB.setBounds(200, 60, 60, 20);
 		panel.add(spnUstB);
 		installFocusListener(spnUstB);
 		spnEtYUK = new JSpinner();
-		spnEtYUK.setBounds(170, 90, 60, 20);
+		spnEtYUK.setBounds(200, 90, 60, 20);
 		panel.add(spnEtYUK);
 		installFocusListener(spnEtYUK);
 		spnSagB = new JSpinner();
@@ -116,11 +116,11 @@ private static JSpinner spnEtBOSLUK;
 		panel.add(spnEtGEN);
 		installFocusListener(spnEtGEN);
 		JLabel lblNewLabel_2_2 = new JLabel("Etiket Arasi Bosluk(Dikey)");
-		lblNewLabel_2_2.setBounds(24, 125, 125, 14);
+		lblNewLabel_2_2.setBounds(24, 125, 176, 14);
 		panel.add(lblNewLabel_2_2);
 		
 		spnEtBOSLUK = new JSpinner();
-		spnEtBOSLUK.setBounds(170, 120, 60, 20);
+		spnEtBOSLUK.setBounds(200, 120, 60, 20);
 		panel.add(spnEtBOSLUK);
 		installFocusListener(spnEtBOSLUK);
 

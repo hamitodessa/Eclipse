@@ -72,6 +72,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JSeparator;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
 
 public class OBS_MAIN extends JFrame {
 
@@ -1282,8 +1284,8 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_39.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-print-address-label-30.png")));
 		btnNewButton_39.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	form_ac("ETIKET","");
-				form_ac("ETIKET PRINT","");
+				form_ac("ETIKET","");
+			//	form_ac("ETIKET PRINT","");
 			}
 		});
 		toolBar_4.add(btnNewButton_39);
@@ -2846,7 +2848,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("ADRES GIRISI")) internalFrame  = new ADRES_GIRIS();
 			else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();
 			else if (pencere.equals("ETIKET")) internalFrame  = new ETIKET();
-			else if (pencere.equals("ETIKET PRINT")) internalFrame  = new ETIKET_PRINT();
+			//else if (pencere.equals("ETIKET PRINT")) internalFrame  = new ETIKET_PRINT();
 			else if (pencere.equals("ETIKET AYAR")) internalFrame  = new ETIKET_AYAR();
 			//GUNLUK
 			else if (pencere.equals("GUNLUK")) internalFrame  = new Gunluk();

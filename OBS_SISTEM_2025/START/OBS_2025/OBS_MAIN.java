@@ -1280,12 +1280,11 @@ public class OBS_MAIN extends JFrame {
 		toolBar_4.add(lblNewLabel_10);
 		
 		JButton btnNewButton_39 = new JButton("");
-		
 		btnNewButton_39.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-print-address-label-30.png")));
 		btnNewButton_39.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("ETIKET","");
-			//	form_ac("ETIKET PRINT","");
+			
 			}
 		});
 		toolBar_4.add(btnNewButton_39);
@@ -2358,13 +2357,14 @@ public class OBS_MAIN extends JFrame {
 					else if (sonuc == "ETIKET")
 					{
 						
-						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket.rpt");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.rpt"),StandardCopyOption.REPLACE_EXISTING);
-						internalFrame = new PRINT_YAPMA();
-						desktopPane.add(internalFrame);
-						internalFrame.setVisible(true);
+						//InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket.rpt");
+						//Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						//internalFrame = new PRINT_YAPMA();
+						//desktopPane.add(internalFrame);
+						//internalFrame.setVisible(true);
 
-						PRINT_YAPMA.hisset("etiket","");
+						//PRINT_YAPMA.hisset("etiket","");
+						form_ac("ETIKET PRINT","");
 					}
 					else if (sonuc == "STOK_RAPOR")
 					{
@@ -2848,7 +2848,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("ADRES GIRISI")) internalFrame  = new ADRES_GIRIS();
 			else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();
 			else if (pencere.equals("ETIKET")) internalFrame  = new ETIKET();
-			//else if (pencere.equals("ETIKET PRINT")) internalFrame  = new ETIKET_PRINT();
+			else if (pencere.equals("ETIKET PRINT")) internalFrame  = new ETIKET_PRINT();
 			else if (pencere.equals("ETIKET AYAR")) internalFrame  = new ETIKET_AYAR();
 			//GUNLUK
 			else if (pencere.equals("GUNLUK")) internalFrame  = new Gunluk();

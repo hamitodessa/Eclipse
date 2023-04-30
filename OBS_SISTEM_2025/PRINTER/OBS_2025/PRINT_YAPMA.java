@@ -517,7 +517,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 				//*******************
 				
 				ResultSet	rs = null;
-				rs = a_Access.adr_etiket();
+				rs = a_Access.adr_etiket("Adi");
 				clientDoc.getDatabaseController().setDataSource(rs);
 				//com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.field);
 				

@@ -366,7 +366,7 @@ public class ADRES_MYSQL implements IADRES {
 		stmt.executeUpdate(sql);
 	}
 	@Override
-	public ResultSet adr_etiket() throws ClassNotFoundException, SQLException {
+	public ResultSet adr_etiket(String siralama) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT Adi , Adres_1 ,Adres_2 ,Semt ,Sehir  FROM Adres  ORDER BY Adi";

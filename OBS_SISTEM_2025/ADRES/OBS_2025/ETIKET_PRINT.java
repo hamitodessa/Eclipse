@@ -35,7 +35,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","unused","static-access"})
 public class ETIKET_PRINT extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
@@ -121,7 +121,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 			//JasperReport jr = JasperCompileManager.compileReport(this.getClass().getClassLoader().getResourceAsStream("RPT\\ADRES_RPT\\Etiket.jrxml"));
 			JasperReport jr = JasperCompileManager.compileReport(jasper);
 			
-			ResultSet rSet = a_Access.adr_etiket();
+			ResultSet rSet = a_Access.adr_etiket("Adi");
 			JasperPrint jp = JasperFillManager.fillReport(jr,null, new JRResultSetDataSource(rSet));
 			getContentPane().add(new JRViewer(jp), BorderLayout.CENTER);
 			

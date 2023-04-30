@@ -23,6 +23,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -31,7 +33,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-
+import javax.swing.table.TableRowSorter;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
@@ -40,6 +42,9 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import net.proteanit.sql.DbUtils;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
 
 @SuppressWarnings({"serial","static-access"})
 public class ETIKET extends JInternalFrame {
@@ -49,6 +54,7 @@ static ResultSet rs = null ;
 private static final Vector<?> Boolean = null;
 private static JTable table;
 private JLabel lbladet;
+private JTextField textField;
 	/**
 	 * Launch the application.
 	 */
@@ -79,12 +85,13 @@ private JLabel lbladet;
 		setBounds(0, 0, 1200, 600);
 		
 		JSplitPane splitPane = new JSplitPane();
+		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		JSplitPane splitPane_1 = new JSplitPane();
-		splitPane_1.setResizeWeight(0.0);
+		splitPane_1.setDividerSize(0);
 		splitPane_1.setResizeWeight(1.0);
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setRightComponent(splitPane_1);
@@ -101,17 +108,38 @@ private JLabel lbladet;
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Secilen Kayit Sayisi :");
-		lblNewLabel.setBounds(10, 3, 124, 14);
+		lblNewLabel.setBounds(10, 2, 124, 14);
 		panel.add(lblNewLabel);
 		
 		lbladet = new JLabel("0");
-		lbladet.setBounds(144, 3, 48, 14);
+		lbladet.setBounds(144, 2, 48, 14);
 		panel.add(lbladet);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setMinimumSize(new Dimension(0, 60));
-		panel_1.setMaximumSize(new Dimension(0, 60));
+		panel_1.setMinimumSize(new Dimension(0, 50));
+		panel_1.setMaximumSize(new Dimension(0, 50));
 		splitPane.setLeftComponent(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Arama");
+		lblNewLabel_1.setBounds(10, 14, 48, 14);
+		panel_1.add(lblNewLabel_1);
+		
+		textField = new JTextField();
+		textField.setBounds(87, 11, 259, 20);
+		textField.getDocument().addDocumentListener(new DocumentListener() {
+			  public void changedUpdate(DocumentEvent e) {
+			    arama();
+			  }
+			  public void removeUpdate(DocumentEvent e) {
+			    arama();
+			  }
+			  public void insertUpdate(DocumentEvent e) {
+			    arama();
+			  }
+			});
+		panel_1.add(textField);
+		textField.setColumns(10);
 		
 		//
 		
@@ -149,7 +177,7 @@ private JLabel lbladet;
 		long startTime = System.currentTimeMillis(); 
 		try {
 			ResultSet	rs = null;
-			rs = a_Access.adr_etiket();
+			rs = a_Access.adr_etiket("Adi");
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -252,6 +280,20 @@ private JLabel lbladet;
 			};
 		}
 		return satir ;
+	}
+	public void arama()  
+	{
+		if (textField.getText().equals(""))
+		{
+			table.setRowSorter(null);
+		}
+		else
+		{
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
+		
+	    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText().toLowerCase()));
+	    table.setRowSorter(sorter);
+		}
 	}
 	private void secilen_satir()
 	{

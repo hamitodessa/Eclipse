@@ -305,7 +305,11 @@ public class HESAP_PLN extends JDialog {
 		sorter.setStringConverter(new TableStringConverter() {
 	        @Override
 	        public String toString(TableModel model, int row, int column) {
+	        	
+	        	
 	            return model.getValueAt(row, column).toString().toLowerCase();
+	        	
+			
 	        }
 	    });
 	    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText().toLowerCase()));

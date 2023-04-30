@@ -32,26 +32,23 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
-import OBS_2025.YIL_SONU.CheckBoxHeader;
-import OBS_2025.YIL_SONU.MyItemListener;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
-import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
-import OBS_C_2025.TABLO_RENDERER;
-import OBS_C_2025.TARIH_SAATLI;
 import net.proteanit.sql.DbUtils;
+import javax.swing.JPanel;
 
 @SuppressWarnings({"serial","static-access"})
 public class ETIKET extends JInternalFrame {
-private JTable table;
 static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 static ResultSet rs = null ;
 private static final Vector<?> Boolean = null;
+private static JTable table;
+private JLabel lbladet;
 	/**
 	 * Launch the application.
 	 */
@@ -80,18 +77,44 @@ private static final Vector<?> Boolean = null;
 	
 		setClosable(true);
 		setBounds(0, 0, 1200, 600);
-
+		
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setDividerSize(1);
 		splitPane.setResizeWeight(0.0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
-
+		
+		JSplitPane splitPane_1 = new JSplitPane();
+		splitPane_1.setResizeWeight(0.0);
+		splitPane_1.setResizeWeight(1.0);
+		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane.setRightComponent(splitPane_1);
+		
 		JScrollPane scrollPane = new JScrollPane();
-		splitPane.setRightComponent(scrollPane);
-
-
-
+		splitPane_1.setLeftComponent(scrollPane);
+		
+		
+		
+		JPanel panel = new JPanel();
+		panel.setMinimumSize(new Dimension(0, 20));
+		panel.setMaximumSize(new Dimension(0, 20));
+		splitPane_1.setRightComponent(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Secilen Kayit Sayisi :");
+		lblNewLabel.setBounds(10, 3, 124, 14);
+		panel.add(lblNewLabel);
+		
+		lbladet = new JLabel("0");
+		lbladet.setBounds(144, 3, 48, 14);
+		panel.add(lbladet);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setMinimumSize(new Dimension(0, 60));
+		panel_1.setMaximumSize(new Dimension(0, 60));
+		splitPane.setLeftComponent(panel_1);
+		
+		//
+		
 		table = new JTable(){
 			@Override
 			public boolean isCellEditable(int row, int column) {  
@@ -103,8 +126,10 @@ private static final Vector<?> Boolean = null;
 				}
 			}
 		};
+		hisset();
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
 		{
+			@SuppressWarnings("unused")
 			public void tableChanged(TableModelEvent e) 
 			{
 				TableModel model = (TableModel)e.getSource();
@@ -112,16 +137,12 @@ private static final Vector<?> Boolean = null;
 					int row;
 					row = table.getSelectedRow();     //e.getFirstRow();
 					int column = e.getColumn();
-				
-					//secilen_satir();
+					secilen_satir();
 				}
 			}
-
 		});
 		table.getTableHeader().setReorderingAllowed(false);
 		scrollPane.setViewportView(table);
-		
-		hisset();
 	}
 	public void hisset()
 	{
@@ -131,7 +152,7 @@ private static final Vector<?> Boolean = null;
 			rs = a_Access.adr_etiket();
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
-			//	lbladet.setText(FORMATLAMA.doub_0(0));
+				lbladet.setText(FORMATLAMA.doub_0(0));
 			} 
 			else
 			{
@@ -196,8 +217,6 @@ private static final Vector<?> Boolean = null;
 				table.setSelectionForeground(Color.BLUE);
 
 				//***
-				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-				//lbladet.setText(FORMATLAMA.doub_0(mdl.getRowCount()));
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 
@@ -217,6 +236,26 @@ private static final Vector<?> Boolean = null;
 		catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	private int satir_kontrol()
+	{
+		int satir = 0 ;
+		DefaultTableModel modell = (DefaultTableModel)table.getModel();
+		for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
+		{
+			if ( modell.getValueAt(i,5) != null) 
+			{
+				if (  (boolean) modell.getValueAt(i,5) )
+				{
+					satir += 1 ;
+				}
+			};
+		}
+		return satir ;
+	}
+	private void secilen_satir()
+	{
+		lbladet.setText(FORMATLAMA.doub_0(satir_kontrol()));
 	}
 	///********
 	class MyItemListener implements ItemListener

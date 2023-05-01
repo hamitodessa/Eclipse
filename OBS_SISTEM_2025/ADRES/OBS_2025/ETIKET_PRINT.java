@@ -12,7 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.GLOBAL;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -39,7 +42,7 @@ import javax.swing.table.DefaultTableModel;
 public class ETIKET_PRINT extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
-
+	List<ETIKET_ISIM> etISIM = new ArrayList<ETIKET_ISIM>();
 	private static JasperViewer jviewer ;
 	JPanel panel;
 	
@@ -71,7 +74,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 		setClosable(true);
 		setTitle("ETIKET PRINT");
 		setBounds(100, 100, 800, 600);
-		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			doldur();
 		
 	}
@@ -79,8 +82,8 @@ public class ETIKET_PRINT extends JInternalFrame {
 	{
 		try {
 			
-			JasperDesign jasper = JRXmlLoader.load(this.getClass().getClassLoader().getResourceAsStream("RPT\\ADRES_RPT\\Etiket.jrxml"));
-			System.out.println( jasper.getColumnWidth()+"=spacing=="+jasper.getColumnSpacing());
+			JasperDesign jasper = JRXmlLoader.load(this.getClass().getClassLoader().getResourceAsStream("RPT\\ADRES_RPT\\Etiket2.jrxml"));
+			//System.out.println( jasper.getColumnWidth()+"=spacing=="+jasper.getColumnSpacing());
 			//
 			//jasper.setPageHeight(842);
 			jasper.setColumnWidth(Integer.valueOf( GLOBAL.setting_oku("ETIKET_GEN")));
@@ -120,14 +123,38 @@ public class ETIKET_PRINT extends JInternalFrame {
 			
 			//JasperReport jr = JasperCompileManager.compileReport(this.getClass().getClassLoader().getResourceAsStream("RPT\\ADRES_RPT\\Etiket.jrxml"));
 			JasperReport jr = JasperCompileManager.compileReport(jasper);
-			
 			ResultSet rSet = a_Access.adr_etiket("Adi");
-			JasperPrint jp = JasperFillManager.fillReport(jr,null, new JRResultSetDataSource(rSet));
+			//
+			satir_kontrol();	
+			JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(etISIM);
+			JasperPrint jp = JasperFillManager.fillReport(jr,null, qazBe);
+		
+			//
+			//JasperPrint jp = JasperFillManager.fillReport(jr,null, new JRResultSetDataSource(rSet));
 			getContentPane().add(new JRViewer(jp), BorderLayout.CENTER);
 			
-		} catch (SQLException | JRException  | NumberFormatException | ClassNotFoundException | IOException ex) {
-		
+		} catch (SQLException | JRException  | NumberFormatException | ClassNotFoundException | IOException ex) 
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
+	private void satir_kontrol()
+	{
+		DefaultTableModel modell = (DefaultTableModel)ETIKET.table.getModel();
+		for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
+		{
+			if ( modell.getValueAt(i,5) != null) 
+			{
+				if (  (boolean) modell.getValueAt(i,5) )
+				{
+					ETIKET_ISIM ets1  = new ETIKET_ISIM(modell.getValueAt(i, 0).toString(),
+							modell.getValueAt(i, 1).toString(),
+							modell.getValueAt(i, 2).toString(),
+							modell.getValueAt(i, 3).toString(),
+							modell.getValueAt(i, 4).toString());
+					etISIM.add(ets1);
+				}
+			}
+		}
+	}
 }

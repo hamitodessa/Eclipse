@@ -52,7 +52,7 @@ static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 static ResultSet rs = null ;
 private static final Vector<?> Boolean = null;
-private static JTable table;
+public static JTable table;
 private JLabel lbladet;
 private JTextField textField;
 	/**

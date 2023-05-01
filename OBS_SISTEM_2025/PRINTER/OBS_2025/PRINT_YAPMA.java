@@ -551,24 +551,17 @@ public class PRINT_YAPMA extends JInternalFrame {
 				IArea yenArea = (IArea) detArea.clone(true);
 				IDetailAreaFormat detAreaFormat = (IDetailAreaFormat) detArea.getFormat();
 				IDetailAreaFormat xswAreaFormat = (IDetailAreaFormat) detAreaFormat.clone(true);
-				xswAreaFormat.setDetailWidth((Integer.valueOf( GLOBAL.setting_oku("ETIKET_GEN"))));
+				//xswAreaFormat.setDetailWidth((Integer.valueOf( GLOBAL.setting_oku("ETIKET_GEN"))));
 				//xswAreaFormat.setVerticalGap((Integer.valueOf( GLOBAL.setting_oku("ETIKET_ARA_BOSLUK"))));
-				xswAreaFormat.setVerticalGap(100);
-				xswAreaFormat.setHorizontalGap(100);
+				xswAreaFormat.setDetailWidth(3000);
+				xswAreaFormat.setVerticalGap(500);
+				xswAreaFormat.setHorizontalGap(500);
 
 				clientDoc.getReportDefController().getReportDefinition().getDetailArea().setFormat(xswAreaFormat);
 				
+					
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				//clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).setFormat(xswAreaFormat);
+				clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).setFormat(xswAreaFormat);
 			
 				
 				 //*****************************************************************

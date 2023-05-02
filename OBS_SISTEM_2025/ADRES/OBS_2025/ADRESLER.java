@@ -35,6 +35,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import net.proteanit.sql.DbUtils;
 
+@SuppressWarnings({"serial","static-access"})
 public class ADRESLER extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();

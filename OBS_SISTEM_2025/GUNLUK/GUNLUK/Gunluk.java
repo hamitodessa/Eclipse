@@ -20,6 +20,7 @@ import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 
 import OBS_C_2025.COLUMN_RENDERER;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ROW_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
@@ -50,6 +51,7 @@ import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -98,6 +100,7 @@ public class Gunluk extends JInternalFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws IOException 
 	 */
 	
 	public Gunluk() {
@@ -113,7 +116,20 @@ public class Gunluk extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(250, 0));
+		try {
+			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("McWinLookAndFeel") ||  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("MintLookAndFeel"))
+			{
+				panel.setMinimumSize(new Dimension(400, 0));
+			}
+			else
+			{
+				panel.setMinimumSize(new Dimension(250, 0));
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		//panel.setMaximumSize(new Dimension(250, 0));
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(new BorderLayout(0, 0));
@@ -274,8 +290,22 @@ public class Gunluk extends JInternalFrame {
 		
 //**********************************************************************************************		
 		JPanel panel_2 = new JPanel();
-		panel_2.setMinimumSize(new Dimension(200, 0));
-		panel_2.setMaximumSize(new Dimension(200, 0));
+		try {
+			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("McWinLookAndFeel") ||  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("MintLookAndFeel"))
+			{
+				panel_2.setMinimumSize(new Dimension(300, 0));
+			}
+			else
+			{
+				panel_2.setMinimumSize(new Dimension(200, 0));
+			}
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+		//panel_2.setMinimumSize(new Dimension(200, 0));
+		//panel_2.setMaximumSize(new Dimension(200, 0));
 		splitPane_2.setRightComponent(panel_2);
 		panel_2.setLayout(new BorderLayout(0, 0));
 

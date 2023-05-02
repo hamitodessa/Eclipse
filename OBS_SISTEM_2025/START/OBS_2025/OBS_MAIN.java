@@ -72,8 +72,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JSeparator;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.event.AncestorListener;
-import javax.swing.event.AncestorEvent;
 
 public class OBS_MAIN extends JFrame {
 

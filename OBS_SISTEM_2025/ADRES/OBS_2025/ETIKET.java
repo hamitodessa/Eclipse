@@ -42,7 +42,6 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import net.proteanit.sql.DbUtils;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
 

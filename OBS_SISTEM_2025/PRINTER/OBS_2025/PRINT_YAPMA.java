@@ -127,6 +127,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 		reportViewer.setHasRefreshButton(false);
 		getContentPane().add(reportViewer, BorderLayout.CENTER);
 	}
+	@SuppressWarnings("unused")
 	public static   void hisset (String nerden,String nasil) 
 	{
 		try 
@@ -181,8 +182,8 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("ekstre"))
 			{
 				//**************************************************************************
-				EKSTRE.table.print();
 				File file = new File("C:\\OBS_SISTEM\\EKSTRE.rpt");
+				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//**************************************************************************
 				if (nasil.equals("normal"))

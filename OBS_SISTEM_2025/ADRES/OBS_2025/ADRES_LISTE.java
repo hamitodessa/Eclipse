@@ -41,6 +41,7 @@ import OBS_C_2025.SOLA;
 import net.proteanit.sql.DbUtils;
 import javax.swing.ListSelectionModel;
 
+@SuppressWarnings({"serial","static-access"})
 public class ADRES_LISTE extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();

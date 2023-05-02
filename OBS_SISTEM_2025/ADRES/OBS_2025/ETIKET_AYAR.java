@@ -80,11 +80,11 @@ private static JSpinner spnEtBOSLUK;
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Sag Bostluk");
-		lblNewLabel_3.setBounds(293, 35, 70, 14);
+		lblNewLabel_3.setBounds(293, 35, 100, 14);
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Alt Bosluk");
-		lblNewLabel_1_1.setBounds(293, 65, 70, 14);
+		lblNewLabel_1_1.setBounds(293, 65, 100, 14);
 		panel.add(lblNewLabel_1_1);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Etiket Genisligi");

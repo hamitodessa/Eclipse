@@ -20,8 +20,7 @@ public class Aylik_Gorunum extends JPanel{
 	int gridColumn = 7;
     
     public Aylik_Gorunum(int sayi, int sayi2){
-    	//System.out.println(sayi +"=="+ sayi2);
-    	if ((sayi + sayi2 ) > 37) 
+     	if ((sayi + sayi2 ) > 37) 
     		{
     		gridRow = 6;
     		}

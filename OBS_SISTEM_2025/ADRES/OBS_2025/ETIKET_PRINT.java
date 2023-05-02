@@ -4,8 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -35,6 +38,7 @@ import net.sf.jasperreports.engine.JRElement;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.view.JasperViewer;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -45,6 +49,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	List<ETIKET_ISIM> etISIM = new ArrayList<ETIKET_ISIM>();
 	private static JasperViewer jviewer ;
+	private JasperPrint jp;
 	JPanel panel;
 	
 	/**
@@ -128,7 +133,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 			//
 			satir_kontrol();	
 			JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(etISIM);
-			JasperPrint jp = JasperFillManager.fillReport(jr,null, qazBe);
+			jp = JasperFillManager.fillReport(jr,null, qazBe);
 		
 			//
 			//JasperPrint jp = JasperFillManager.fillReport(jr,null, new JRResultSetDataSource(rSet));
@@ -157,5 +162,13 @@ public class ETIKET_PRINT extends JInternalFrame {
 				}
 			}
 		}
+	}
+	public void export_to(String forMAT) throws IOException, JRException
+	{
+		File pdf = File.createTempFile("output.", ".pdf");
+		ByteArrayInputStream byteArrayInputStream = null  ;
+		JasperExportManager.exportReportToPdfStream(jp, new FileOutputStream(pdf));
+			
+		
 	}
 }

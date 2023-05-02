@@ -42,10 +42,9 @@ import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.TARIH_CEVIR;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "static-access","serial" })
 public class GOREV_GIRIS extends JInternalFrame {
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	@SuppressWarnings({ "static-access" })
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	private static JTextField txtIsim;
 	private static JTextField txtGorev;

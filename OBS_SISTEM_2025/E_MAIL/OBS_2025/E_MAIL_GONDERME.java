@@ -106,6 +106,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("deprecation")
 	public E_MAIL_GONDERME() {
 		setTitle("E MAIL GONDERME");
 		setClosable(true);
@@ -290,10 +291,11 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		list.setBounds(338, 11, 239, 218);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setDropTarget(new DropTarget() {
+			@SuppressWarnings("unchecked")
 			public synchronized void drop(DropTargetDropEvent evt) {
 				try {
 					evt.acceptDrop(DnDConstants.ACTION_COPY);
-					List droppedFiles = (List) evt .getTransferable().getTransferData(  DataFlavor.javaFileListFlavor);
+					List<File> droppedFiles = (List<File>) evt .getTransferable().getTransferData(  DataFlavor.javaFileListFlavor);
 					if(droppedFiles.size() > 1){
 						JOptionPane.showMessageDialog(null,  "Tek Seferde 1 Dosya Ekleyebilirsiniz.....!!", "Dosya Ekleme", JOptionPane.PLAIN_MESSAGE);
 					}
@@ -808,6 +810,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
+	@SuppressWarnings("static-access")
 	private void xl_gonder(String dadi)
 	{
 		try

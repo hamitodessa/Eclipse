@@ -240,6 +240,9 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			tc = tcm.getColumn(7);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(300);
+			
+			tc = tcm.getColumn(8);
+			tc.setHeaderRenderer(new SOLA());
 
 			th.repaint();
 			table.removeColumn(table.getColumnModel().getColumn(0));

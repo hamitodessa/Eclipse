@@ -2355,8 +2355,8 @@ public class OBS_MAIN extends JFrame {
 					else if (sonuc == "ETIKET")
 					{
 						
-						//InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket.rpt");
-						//Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket2.jrxml");
+						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.jrxml"),StandardCopyOption.REPLACE_EXISTING);
 						//internalFrame = new PRINT_YAPMA();
 						//desktopPane.add(internalFrame);
 						//internalFrame.setVisible(true);

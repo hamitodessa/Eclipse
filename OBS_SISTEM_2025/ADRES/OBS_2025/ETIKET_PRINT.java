@@ -15,6 +15,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.JarFile;
 
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.util.ByteArrayDataSource;
@@ -45,6 +46,7 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.view.JasperViewer;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -179,16 +181,24 @@ public class ETIKET_PRINT extends JInternalFrame {
 		InputStream inputStream = null ;
 		
 		//JasperExportManager.exportReportToPdfStream(jp,byteArrayOutputStream);
-		
+
 		//
 		JRPdfExporter exporter = new JRPdfExporter();
 		exporter.setExporterInput(new SimpleExporterInput(jp));
 		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(byteArrayOutputStream));
 		exporter.exportReport();
-		
 		//
-		byte byteArray[] = new byte[byteArrayInputStream.available()];
+		
+		byte[] byteArray = byteArrayOutputStream.toByteArray();
+		
+		//ByteArrayInputStream bais = new ByteArrayInputStream(byteArray);
+	
+		byteArrayInputStream = new ByteArrayInputStream(byteArray);
+		
+		System.out.println("=="+byteArrayInputStream.available());
+		
 		byteArrayOutputStream = new ByteArrayOutputStream(byteArrayInputStream.available());
+		
 		int x = byteArrayInputStream.read(byteArray, 0, byteArrayInputStream.available());
 		byteArrayOutputStream.write(byteArray, 0, x);
 		byteArrayInputStream.close();
@@ -196,5 +206,9 @@ public class ETIKET_PRINT extends JInternalFrame {
 		inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
 		ds = new ByteArrayDataSource(inputStream, "application/x-any");
 		return ds;
+		
+
+		///
 	}
+	
 }

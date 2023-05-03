@@ -65,11 +65,12 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/slf4j-simple-1.7.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/JTattoo-1.6.13.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/smsApi-Java-1.8.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/2025/jasperreports-6.20.3.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-digester-2.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-beanutils-1.9.4.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-collections4-4.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jackson-databind-2.14.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/itext-2.1.7.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/jasperreports-fonts-6.20.3.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/jasperreports-6.18.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,6 +16,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.util.ByteArrayDataSource;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -39,6 +42,9 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.view.JasperViewer;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -49,7 +55,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	List<ETIKET_ISIM> etISIM = new ArrayList<ETIKET_ISIM>();
 	private static JasperViewer jviewer ;
-	private JasperPrint jp;
+	private static JasperPrint jp;
 	JPanel panel;
 	
 	/**
@@ -163,12 +169,32 @@ public class ETIKET_PRINT extends JInternalFrame {
 			}
 		}
 	}
-	public void export_to(String forMAT) throws IOException, JRException
+	@SuppressWarnings("null")
+	public static ByteArrayDataSource export_to(String forMAT) throws IOException, JRException
 	{
-		File pdf = File.createTempFile("output.", ".pdf");
-		ByteArrayInputStream byteArrayInputStream = null  ;
-		JasperExportManager.exportReportToPdfStream(jp, new FileOutputStream(pdf));
-			
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		ByteArrayInputStream byteArrayInputStream = null;
+		ByteArrayDataSource ds = null ;
+		MimeBodyPart messagePart = null ;
+		InputStream inputStream = null ;
 		
+		//JasperExportManager.exportReportToPdfStream(jp,byteArrayOutputStream);
+		
+		//
+		JRPdfExporter exporter = new JRPdfExporter();
+		exporter.setExporterInput(new SimpleExporterInput(jp));
+		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(byteArrayOutputStream));
+		exporter.exportReport();
+		
+		//
+		byte byteArray[] = new byte[byteArrayInputStream.available()];
+		byteArrayOutputStream = new ByteArrayOutputStream(byteArrayInputStream.available());
+		int x = byteArrayInputStream.read(byteArray, 0, byteArrayInputStream.available());
+		byteArrayOutputStream.write(byteArray, 0, x);
+		byteArrayInputStream.close();
+		byteArrayOutputStream.close();
+		inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
+		ds = new ByteArrayDataSource(inputStream, "application/x-any");
+		return ds;
 	}
 }

@@ -83,7 +83,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	private JComboBox<String> comboBox ;
 	private JComboBox<String> cmbalici ;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-
+	private boolean etiketten = false;
 	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 
@@ -239,7 +239,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					txtaciklama.requestFocus();
 					return ;
 				}
-				if ( OBS_MAIN.pencere_bak("RAPOR YAZDIRMA") == true ) 
+				if ( OBS_MAIN.pencere_bak("RAPOR YAZDIRMA") == true  || etiketten ==true) 
 				{
 					gonder();
 				}
@@ -426,6 +426,12 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				comboBox.enable(false);
 				lblNewLabel_2.setText("Ozel Mizan");
 			}
+			else if (etiket_kontrol() )
+			{
+				comboBox.enable(false);
+				//etiketten = true ;
+				//lblNewLabel_2.setText("Etiket");
+			}
 			else 
 			{
 				comboBox.enable(false);
@@ -536,6 +542,12 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			ByteArrayDataSource ds = null ;
 			MimeBodyPart messagePart = null ;
 			InputStream inputStream = null ;
+			if (etiketten )
+			{
+				ds = ETIKET_PRINT.export_to("PDF");
+			}
+			else
+			{
 			if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("PDF") )
 			{
 				byteArrayInputStream = (ByteArrayInputStream) PRINT_YAPMA.clientDoc
@@ -557,6 +569,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			byteArrayOutputStream.write(byteArray, 0, x);
 			byteArrayInputStream.close();
 			byteArrayOutputStream.close();
+			}
 			//*************************************************************************************************
 			String[] to = { cmbalici.getSelectedItem().toString()  };
 			Properties props = System.getProperties();
@@ -967,6 +980,15 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	{
 		boolean result  = false;
 		if (OBS_MAIN.pencere_bak("CARI OZEL MIZAN"))
+		{
+			result = true ;
+		}
+		return result;
+	}
+	private boolean  etiket_kontrol() throws ReportSDKException
+	{
+		boolean result  = false;
+		if (OBS_MAIN.pencere_bak("ETIKET PRINT"))
 		{
 			result = true ;
 		}

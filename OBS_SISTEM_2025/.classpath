@@ -70,5 +70,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-beanutils-1.9.4.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-collections4-4.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jackson-databind-2.14.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/groovy-all-2.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

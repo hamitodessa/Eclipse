@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
-import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
 @SuppressWarnings("static-access")
@@ -64,7 +63,6 @@ public class ADRES_MSSQL implements IADRES {
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
 		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.adrLogDizin);
 		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.adrLogDizin);
-
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL" + ".DB") == false)
 		{

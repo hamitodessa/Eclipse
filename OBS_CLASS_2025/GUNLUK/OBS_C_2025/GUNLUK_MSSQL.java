@@ -67,9 +67,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+  ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
-			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +  dsy) ;
 			GLOBAL.create_table_log(dsy,sbilgi.fir_adi,BAGLAN_LOG.gunLogDizin);
-			sQLITEconn.close();
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
@@ -130,7 +128,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		sql = "CREATE TABLE GUNLUK ( [GRVID] [int] IDENTITY(1,1) NOT NULL  ,  [GID] [int]  , TARIH DATE ,SAAT nvarchar(5),ISIM nvarchar(30),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-
 		sql = "CREATE NONCLUSTERED INDEX [IDX_GUNLUK] ON [dbo].[GUNLUK](	[TARIH] ASC "
 				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
 		stmt = con.createStatement();  
@@ -223,8 +220,8 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public int gid_ogren(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
 	{
-		int gid = 0;
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		int gid = 0;
 		ResultSet	rss = null;
 		String sql = "SELECT GID  " +
 				" FROM GOREV  " +
@@ -248,7 +245,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT FORMAT (TARIH, 'dd.MM.yyyy') as TARIH, SAAT,ISIM,GOREV,MESAJ  " +
-				" FROM GUNLUK  " +
+				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
 				" ORDER BY TARIH  ";
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -271,7 +268,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT    TARIH,SAAT,ISIM,GOREV,YER,MESAJ   " +
-				" FROM GUNLUK  " +
+				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
 				" WHERE TARIH =  '" + gbilgi.tarih1 + "' AND SAAT ='" + gbilgi.saat1 + "'" +
 				" GROUP BY  TARIH,SAAT,ISIM,GOREV,YER,MESAJ ORDER BY ISIM  ";
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -280,8 +277,9 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	}
 	@Override
 	public int gorev_bul(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
-		int gid = 0;
+		
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		int gid = 0;
 		ResultSet	rss = null;
 		String sql = "SELECT GID  " +
 				" FROM GOREV  " +
@@ -315,7 +313,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT  *  " +
-				" FROM GUNLUK  " +
+				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "' AND TARIH <= '" + gbilgi.tarih2 +"' AND SAAT >= '" + gbilgi.saat1 + "' AND SAAT <= '" + gbilgi.saat2 + "'" +
 				" AND ISIM " + gbilgi.isim + " " +
 				" ORDER BY TARIH  ";
@@ -411,7 +409,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT  TARIH,ISIM,GOREV,YER,MESAJ   " +
-				" FROM GUNLUK  " +
+				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
 				" WHERE "+ gbilgi.isim +" TARIH BETWEEN   '" + gbilgi.tarih1 + "' AND '" + gbilgi.tarih2 + "'" +
 				" GROUP BY TARIH,ISIM,GOREV,YER,MESAJ  ORDER BY TARIH   ";
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -423,7 +421,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT  TARIH, SAAT,ISIM,GOREV,MESAJ  " +
-				" FROM GUNLUK  " +
+				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
 				" ORDER BY TARIH  ";
 		PreparedStatement stmt = con.prepareStatement(sql);

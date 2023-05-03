@@ -193,15 +193,15 @@ public class LOGIN extends JFrame {
 			{
 				UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
 			}
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+		} catch (ClassNotFoundException ex) {
+			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		} catch (InstantiationException ex) {
+			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		} catch (IllegalAccessException ex) {
+			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		}
 
 		//************************************************************************
 		JSplitPane splitPane = new JSplitPane();
@@ -229,7 +229,7 @@ public class LOGIN extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
 		JLabel lblNewLabel_1 = new JLabel("Sifre");
-		
+
 		lblNewLabel_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_1.setBounds(229, 41, 46, 14);
 		panel.add(lblNewLabel_1);
@@ -364,7 +364,7 @@ public class LOGIN extends JFrame {
 						fat_kont();
 						kam_kont();
 						gun_kont();
-						
+
 						Thread.currentThread().isInterrupted();
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
 						obmain.setTitle("OBS SISTEM" + "               " + GLOBAL.KULL_ADI);
@@ -397,7 +397,7 @@ public class LOGIN extends JFrame {
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		progressBar.setMinimumSize(new Dimension(0, 25));
 		progressBar.setMaximumSize(new Dimension(0, 25));
-		
+
 		//************SURUCU KONTROL**************************
 		GLOBAL.surucu_kontrol();
 		//VERSION KONTROL/////
@@ -730,7 +730,7 @@ public class LOGIN extends JFrame {
 		sBilgi.db = "OK_Car" + BAGLAN.cariDizin.kOD;
 		if (BAGLAN.cariDizin.yER.equals("L"))
 		{
-			
+
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
 				if (s_CONN.Dosya_kontrol_L( sBilgi) == false)

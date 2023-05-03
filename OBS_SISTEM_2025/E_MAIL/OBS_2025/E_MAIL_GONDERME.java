@@ -429,8 +429,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			else if (etiket_kontrol() )
 			{
 				comboBox.enable(false);
-				//etiketten = true ;
-				//lblNewLabel_2.setText("Etiket");
+				etiketten = true ;
+				lblNewLabel_2.setText("Etiket");
 			}
 			else 
 			{

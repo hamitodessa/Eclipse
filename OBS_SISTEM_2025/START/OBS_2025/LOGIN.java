@@ -127,7 +127,6 @@ public class LOGIN extends JFrame {
 	});
 	}
 	public LOGIN() throws IOException {
-
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/obs_p.png")));
 		setResizable(false);
 		setTitle("OBS SISTEM GIRIS");
@@ -139,7 +138,6 @@ public class LOGIN extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-
 		//************************************************************************
 		try {
 			LOGIN.setDefaultLookAndFeelDecorated(true);
@@ -366,10 +364,13 @@ public class LOGIN extends JFrame {
 						fat_kont();
 						kam_kont();
 						gun_kont();
+						
 						Thread.currentThread().isInterrupted();
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
 						obmain.setTitle("OBS SISTEM" + "               " + GLOBAL.KULL_ADI);
 						obmain.setVisible(true);
+
+
 						dispose();
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					}
@@ -998,12 +999,14 @@ public class LOGIN extends JFrame {
 		sBilgi.port = BAGLAN.gunDizin.sERVER;
 		sBilgi.db = "OK_Gun" + BAGLAN.gunDizin.kOD ;				
 		sBilgi.server = BAGLAN.gunDizin.sERVER;
+
 		if (BAGLAN.gunDizin.yER.equals("L"))
 		{
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
 				if (s_CONN.Dosya_kontrol_L(sBilgi) == false)
 				{
+					System.out.println("1006");
 					GUN_DOS_VAR = false;
 				}
 				else

@@ -156,8 +156,6 @@ public class Gunluk extends JInternalFrame {
 		panelToolbar.setMinimumSize(new Dimension(0, 35));
 		panelToolbar.setMaximumSize(new Dimension(0, 35));
 		splitSolUst.setLeftComponent(panelToolbar);
-		
-		
 		panelToolbar.setLayout(new GridLayout(1, 1, 0, 0));
 		
 		JButton btnNewButton_3 = new JButton("");

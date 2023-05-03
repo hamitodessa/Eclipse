@@ -15,7 +15,7 @@ public class GUNLUK_ACCESS {
 		
 	}
 	
-	public static void baglan() throws SQLException
+	public static void baglan() throws SQLException, ClassNotFoundException
 	{
 	_IGunluk.baglan();
 	}

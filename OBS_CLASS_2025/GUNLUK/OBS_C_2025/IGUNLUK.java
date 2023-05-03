@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 public interface IGUNLUK {
-	public void baglan() throws SQLException;
+	public void baglan() throws SQLException, ClassNotFoundException;
 	public void gUN_SIFIR_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException;
 	public void gUN_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException;
 	public void create_table(  String fir_adi) throws SQLException;

@@ -20,14 +20,15 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	static Connection con = null;
 	static Statement stmt = null;
 
-	public void baglan() throws SQLException
+	public void baglan() throws SQLException, ClassNotFoundException
 	{
-		String cumle = "jdbc:sqlserver://" + BAGLAN.gunDizin.cONN_STR + ";";
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String cumle = "jdbc:mysql://" + BAGLAN.gunDizin.cONN_STR ;
 		con = DriverManager.getConnection(cumle,BAGLAN.gunDizin.kULLANICI,BAGLAN.gunDizin.sIFRESI);
 	}
 	@Override
 	public void gUN_SIFIR_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = null;  
 		String cumle = "";
 		cumle = "jdbc:mysql://localhost:" + sbilgi.port ;  // SERVER BAGLANDI
@@ -69,7 +70,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 
 	@Override
 	public void gUN_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = null;  
 		String VERITABANI = "ok_gun" + sbilgi.kod;
 		String cumle = "";
@@ -110,34 +111,43 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	}
 
 	@Override
-	public void create_table(String fir_adi) throws SQLException {
+	public void create_table(String fir_adi) throws SQLException { //`ACID`  INTEGER AUTO_INCREMENT PRIMARY KEY
 		String sql = null;
-		sql = "CREATE TABLE GOREV ([GID] [int] IDENTITY(1,1) NOT NULL , BASL_TARIH DATE , BASL_SAAT nvarchar(5), BIT_TARIH DATE , BIT_SAAT nvarchar(5),TEKRARLA bit,ISIM nvarchar(30),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,SECENEK nvarchar(10),DEGER int ,[USER] nvarchar(15) NULL)" ;  
+		sql = "CREATE TABLE `GOREV` (`GID` INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY , `BASL_TARIH` DATE , `BASL_SAAT` nvarchar(5), `BIT_TARIH` DATE , `BIT_SAAT` nvarchar(5),`TEKRARLA` bit,`ISIM` nvarchar(30),`GOREV` nvarchar(30),`YER` nvarchar(30),`MESAJ` nvarchar(100) ,`SECENEK` nvarchar(10),`DEGER` INTEGER ,`USER` nvarchar(15) NULL)" ;  
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE GUNLUK ( [GRVID] [int] IDENTITY(1,1) NOT NULL  ,  [GID] [int]  , TARIH DATE ,SAAT nvarchar(5),ISIM nvarchar(30),"
-				+ " GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL,"
+		sql = "CREATE TABLE GUNLUK ( `GRVID` INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY ,  `GID` INTEGER  , `TARIH` DATE ,`SAAT` nvarchar(5),`ISIM` nvarchar(30),"
+				+ " `GOREV` nvarchar(30),`YER` nvarchar(30),`MESAJ` nvarchar(100) ,`USER` nvarchar(15) NULL,"
 				+ " INDEX `IDX_GUNLUK` (`TARIH` ASC) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql= "CREATE TABLE OZEL(OZID int identity(1,1) CONSTRAINT PKeyOZID PRIMARY KEY,YONETICI nvarchar(25), YON_SIFRE nvarchar(15) , FIRMA_ADI nvarchar(50))";
+		sql = "CREATE TABLE `OZEL` ("
+				+ "  `OZID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
+				+ "  `YONETICI` VARCHAR(25) NULL,"
+				+ "  `YON_SIFRE` VARCHAR(15) NULL,"
+				+ "  `FIRMA_ADI` VARCHAR(50) NULL)";  
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE YETKILER(YETID int identity(1,1) CONSTRAINT PKeyYETID PRIMARY KEY,KULLANICI nvarchar(25), HESAP nvarchar(12), TAM_YETKI bit, GORUNTU bit )";
+		sql = "CREATE TABLE `YETKILER`( "
+				+ " `YETID` INTEGER AUTO_INCREMENT PRIMARY KEY,"
+				+ "`KULLANICI` nvarchar(25) NULL,"
+				+ "`KARTON` nvarchar(5) NULL,"
+				+ "`TAM_YETKI` TINYINT NULL,"
+				+ "`GORUNTU` TINYINT NULL);";     
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		// ***************OZEL NO YAZ ************
-		sql = "INSERT INTO  OZEL(YONETICI,YON_SIFRE,FIRMA_ADI) VALUES ('" + GLOBAL.KULL_ADI  + "','12345' , '" + fir_adi + "')";
+		sql = "INSERT INTO  `OZEL` (`YONETICI`,`YON_SIFRE`,`FIRMA_ADI`) VALUES ('" + GLOBAL.KULL_ADI  + "','12345' , '" + fir_adi + "')";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 	}
 
 	@Override
 	public String gun_firma_adi() throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = null;
 		ResultSet	rss = null;
-		String cumle = "jdbc:mysql://" + BAGLAN.gunDizin.cONN_STR + ";";
+		String cumle = "jdbc:mysql://" + BAGLAN.gunDizin.cONN_STR ;
 		con = DriverManager.getConnection(cumle, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI);
 		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();
@@ -170,8 +180,8 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	@Override
 	public void gorev_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException 
 	{
-		Class.forName("com.mysql.jdbc.Driver");
-		String sql  = "INSERT INTO GOREV (BASL_TARIH,BASL_SAAT,BIT_TARIH,TEKRARLA,ISIM,GOREV,YER,MESAJ,SECENEK,DEGER,[USER]) " +
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String sql  = "INSERT INTO GOREV (BASL_TARIH,BASL_SAAT,BIT_TARIH,TEKRARLA,ISIM,GOREV,YER,MESAJ,SECENEK,DEGER,USER) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
@@ -192,7 +202,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	}
 	@Override
 	public void gorev_sil(int id) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "DELETE GOREV  WHERE  GID = " + id;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -203,7 +213,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	@Override
 	public int gid_ogren(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
 	{
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		int gid = 0;
 		ResultSet	rss = null;
 		String sql = "SELECT GID  " +
@@ -225,9 +235,9 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	}
 	@Override
 	public ResultSet gorev_oku(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String sql = "SELECT FORMAT (TARIH, 'dd.MM.yyyy') as TARIH, SAAT,ISIM,GOREV,MESAJ  " +
+		String sql = "SELECT DATE_FORMAT(TARIH, '%d.%m.%Y') as TARIH, SAAT,ISIM,GOREV,MESAJ  " +
 				" FROM GUNLUK  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
 				" ORDER BY TARIH  ";
@@ -237,7 +247,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	}
 	@Override
 	public ResultSet isim_oku() throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT DISTINCT  ISIM  " +
 				" FROM GOREV  " +
@@ -248,7 +258,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	}
 	@Override
 	public ResultSet gorev_oku_tarih(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT    TARIH,SAAT,ISIM,GOREV,YER,MESAJ   " +
 				" FROM GUNLUK  " +
@@ -260,7 +270,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	}
 	@Override
 	public int gorev_bul(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		int gid = 0;
 		ResultSet	rss = null;
 		String sql = "SELECT GID  " +
@@ -282,7 +292,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	}
 	@Override
 	public ResultSet gID_oku(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT *  " +
 				" FROM GOREV  " +
@@ -295,7 +305,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 
 	@Override
 	public ResultSet hazir_gorevler(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT  *  " +
 				" FROM GUNLUK  " +
@@ -308,7 +318,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	}
 	@Override
 	public void gorev_tek_sil(int id) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "DELETE GUNLUK  WHERE  GRVID = " + id;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -316,7 +326,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	}
 	@Override
 	public void gunluk_farkli_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException, ParseException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		//***********************KAYIT TEKRARINA GORE KAYIT YAP **************************
 		Date son_tarih ;
 		if (gbilgi.secenek == "Saatte")
@@ -344,7 +354,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		PreparedStatement stmt = null;
 		while (anl_t <= son_t)  
 		{
-			String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,[USER]) " +
+			String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,USER) " +
 					" VALUES (?,?,?,?,?,?,?,?)" ;
 
 			stmt = con.prepareStatement(sql);
@@ -391,7 +401,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	}
 	@Override
 	public ResultSet gorev_oku_aylik_grup(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT  TARIH,ISIM,GOREV,YER,MESAJ   " +
 				" FROM GUNLUK  " +
@@ -403,7 +413,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	}
 	@Override
 	public ResultSet gorev_oku_sonraki(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT  TARIH, SAAT,ISIM,GOREV,MESAJ  " +
 				" FROM GUNLUK  " +
@@ -415,7 +425,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	}
 	@Override
 	public void gun_firma_adi_kayit(String fadi) throws ClassNotFoundException, SQLException {
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql  = "UPDATE OZEL SET FIRMA_ADI = N'" + fadi + "'" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);

@@ -544,8 +544,18 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			InputStream inputStream = null ;
 			if (etiketten )
 			{
-				//ds = ETIKET_PRINT.export_to("PDF");
-				ds = ETIKET_PRINT.export_xls();
+				if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("PDF") )
+				{
+					ds = ETIKET_PRINT.export_to();
+				}
+				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("EXCELL") )
+				{
+					ds = ETIKET_PRINT.export_xls();
+				}
+				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("WORD") )
+				{
+					ds = ETIKET_PRINT.export_docx();
+				}
 			}
 			else
 			{

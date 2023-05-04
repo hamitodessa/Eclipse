@@ -49,6 +49,7 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimpleXlsExporterConfiguration;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.view.JasperViewer;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -94,6 +95,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 			doldur();
 		
 	}
+	@SuppressWarnings("deprecation")
 	private void doldur()
 	{
 		try {
@@ -173,7 +175,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 			}
 		}
 	}
-	public static ByteArrayDataSource export_to(String forMAT) throws IOException, JRException
+	public static ByteArrayDataSource export_to() throws IOException, JRException
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 	    JasperExportManager.exportReportToPdfStream(jp, baos);
@@ -183,26 +185,32 @@ public class ETIKET_PRINT extends JInternalFrame {
 	}
 	public static ByteArrayDataSource export_xls() throws JRException, IOException
 	{
-		File outputFile = new File("output.xlsx");
+		File outputFile = new File("etiket.xlsx");
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 		FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
-					
 		JRXlsExporter exporter = new JRXlsExporter();
 		exporter.setExporterInput(new SimpleExporterInput(jp));
 		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(byteArrayOutputStream));
-		   
 		exporter.exportReport();
    	    byteArrayOutputStream.writeTo(fileOutputStream);
-		 
-		 
 		byteArrayOutputStream.close();
-		   
 		ByteArrayInputStream inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
 		ByteArrayDataSource ds = new ByteArrayDataSource(inputStream, "application/x-any");
 		return ds;
-		
-		
-		
-		
+	}
+	public static ByteArrayDataSource export_docx() throws IOException, JRException
+	{
+		File outputFile = new File("etiket.docx");
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
+	    JRDocxExporter exporter = new JRDocxExporter();   
+	    exporter.setExporterInput(new SimpleExporterInput(jp));
+		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(byteArrayOutputStream));
+		exporter.exportReport();
+	   	byteArrayOutputStream.writeTo(fileOutputStream);
+		byteArrayOutputStream.close();
+		ByteArrayInputStream inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
+		ByteArrayDataSource ds = new ByteArrayDataSource(inputStream, "application/x-any");
+		return ds;
 	}
 }

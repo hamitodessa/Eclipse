@@ -428,7 +428,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			}
 			else if (etiket_kontrol() )
 			{
-				comboBox.enable(false);
+				comboBox.enable(true);
 				etiketten = true ;
 				lblNewLabel_2.setText("Etiket");
 			}
@@ -544,7 +544,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			InputStream inputStream = null ;
 			if (etiketten )
 			{
-				ds = ETIKET_PRINT.export_to("PDF");
+				//ds = ETIKET_PRINT.export_to("PDF");
+				ds = ETIKET_PRINT.export_xls();
 			}
 			else
 			{
@@ -569,6 +570,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			byteArrayOutputStream.write(byteArray, 0, x);
 			byteArrayInputStream.close();
 			byteArrayOutputStream.close();
+			inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
+			ds = new ByteArrayDataSource(inputStream, "application/x-any");
 			}
 			//*************************************************************************************************
 			String[] to = { cmbalici.getSelectedItem().toString()  };
@@ -601,8 +604,6 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			}
 			messagePart = new MimeBodyPart();
 			messagePart.setText(txtaciklama.getText(), "UTF-8");
-			inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
-			ds = new ByteArrayDataSource(inputStream, "application/x-any");
 
 			MimeBodyPart attachment = new MimeBodyPart();
 			Multipart multipart = new MimeMultipart();

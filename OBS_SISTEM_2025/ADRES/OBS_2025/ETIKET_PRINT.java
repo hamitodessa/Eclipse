@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.spec.DSAGenParameterSpec;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -45,6 +46,7 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimpleXlsExporterConfiguration;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.view.JasperViewer;
@@ -173,30 +175,34 @@ public class ETIKET_PRINT extends JInternalFrame {
 	}
 	public static ByteArrayDataSource export_to(String forMAT) throws IOException, JRException
 	{
-		 //JasperExportManager.exportReportToPdfFile(jp, "C:\\OBS_SISTEM\\invoice.pdf");
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	    JasperExportManager.exportReportToPdfStream(jp, baos);
+	    ByteArrayDataSource ds =  new ByteArrayDataSource(baos.toByteArray(), "application/pdf");
+	 //JasperExportManager.exportReportToPdfFile(jp, "C:\\OBS_SISTEM\\invoice.pdf");
+		return ds;
+	}
+	public static ByteArrayDataSource export_xls() throws JRException, IOException
+	{
+		File outputFile = new File("output.xlsx");
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-		ByteArrayInputStream byteArrayInputStream = null;
-		ByteArrayDataSource ds = null ;
-		MimeBodyPart messagePart = null ;
-		InputStream inputStream = null ;
-		
-		JasperExportManager.exportReportToPdfStream(jp,byteArrayOutputStream);
+		FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
+					
+		JRXlsExporter exporter = new JRXlsExporter();
+		exporter.setExporterInput(new SimpleExporterInput(jp));
+		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(byteArrayOutputStream));
+		   
+		exporter.exportReport();
+   	    byteArrayOutputStream.writeTo(fileOutputStream);
+		 
+		 
 		byteArrayOutputStream.close();
-		//
-		//JRPdfExporter exporter = new JRPdfExporter();
-		//exporter.setExporterInput(new SimpleExporterInput(jp));
-		//exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(byteArrayOutputStream));
-		//exporter.exportReport();
-		//
-		
-		byte byteArray[] = byteArrayOutputStream.toByteArray();
-		InputStream is = new ByteArrayInputStream(byteArray);
-		
-		ds = new ByteArrayDataSource(is, "application/x-any");
+		   
+		ByteArrayInputStream inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
+		ByteArrayDataSource ds = new ByteArrayDataSource(inputStream, "application/x-any");
 		return ds;
 		
-
-		///
+		
+		
+		
 	}
-	
 }

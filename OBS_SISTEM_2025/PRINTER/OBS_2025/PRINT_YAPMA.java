@@ -531,9 +531,9 @@ public class PRINT_YAPMA extends JInternalFrame {
 
 				clientDoc.getReportDefController().getReportDefinition().getDetailArea().setFormat(xswAreaFormat);
 				
-					
+					clientDoc.refreshReportDocument();
 				
-				clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).setFormat(xswAreaFormat);
+			//	clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).setFormat(xswAreaFormat);
 			
 				
 				 //*****************************************************************

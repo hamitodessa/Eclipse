@@ -1309,6 +1309,18 @@ public class OBS_MAIN extends JFrame {
 		});
 		toolBar_4.add(btnNewButton_39);
 
+		
+		
+		btnNewButton_40 = new JButton("");
+		btnNewButton_40.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-pincode-keyboard-30.png")));
+		btnNewButton_40.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("ETIKET AYAR","");
+				
+			}
+		});
+		toolBar_4.add(btnNewButton_40);
+		
 		JLabel lblNewLabel_11 = new JLabel("          ");
 		toolBar_4.add(lblNewLabel_11);
 
@@ -1321,18 +1333,6 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		toolBar_4.add(btnNewButton_41);
-		
-		btnNewButton_40 = new JButton("");
-		btnNewButton_40.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-pincode-keyboard-30.png")));
-		btnNewButton_40.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("ETIKET AYAR","");
-				
-			}
-		});
-		toolBar_4.add(btnNewButton_40);
-		
-
 		JScrollPane stkscrol = new JScrollPane();
 		//stkscrol.setViewportBorder(UIManager.getBorder("ToolBar.border"));
 		//stkscrol.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -2377,14 +2377,15 @@ public class OBS_MAIN extends JFrame {
 					}
 					else if (sonuc == "ETIKET")
 					{
-						
-						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket2.jrxml");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.jrxml"),StandardCopyOption.REPLACE_EXISTING);
+						//InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket.rpt");
+						//Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.rpt"),StandardCopyOption.REPLACE_EXISTING);
 						//internalFrame = new PRINT_YAPMA();
 						//desktopPane.add(internalFrame);
 						//internalFrame.setVisible(true);
-
 						//PRINT_YAPMA.hisset("etiket","");
+						
+						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket2.jrxml");
+						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.jrxml"),StandardCopyOption.REPLACE_EXISTING);
 						form_ac("ETIKET PRINT","");
 					}
 					else if (sonuc == "STOK_RAPOR")

@@ -185,7 +185,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 	}
 	public static ByteArrayDataSource export_xls() throws JRException, IOException
 	{
-		File outputFile = new File("etiket.xlsx");
+		File outputFile = new File("etiket.xls");
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 		FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
 		JRXlsExporter exporter = new JRXlsExporter();
@@ -200,7 +200,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 	}
 	public static ByteArrayDataSource export_docx() throws IOException, JRException
 	{
-		File outputFile = new File("etiket.docx");
+		File outputFile = new File("etiket.doc");
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 		FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
 	    JRDocxExporter exporter = new JRDocxExporter();   

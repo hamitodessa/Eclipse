@@ -551,11 +551,24 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("EXCELL") )
 				{
 					ds = ETIKET_PRINT.export_xls();
+					File outputFile = new File("etiket.xls");
+					boolean exists = outputFile.exists();
+					if (exists)
+					{    
+						 outputFile.delete();
+					}
 				}
 				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("WORD") )
 				{
 					ds = ETIKET_PRINT.export_docx();
+					File outputFile = new File("etiket.doc");
+					boolean exists = outputFile.exists();
+					if (exists)
+					{    
+						 outputFile.delete();
+					}
 				}
+				
 			}
 			else
 			{

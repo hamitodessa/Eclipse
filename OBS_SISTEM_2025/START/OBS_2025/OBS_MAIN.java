@@ -105,6 +105,8 @@ public class OBS_MAIN extends JFrame {
 	//ADRES
 	private JButton btnNewButton_36;//Adres Giris
 	private JButton btnNewButton_37;//Adres Detay
+	private JButton btnNewButton_39;//Adres Etiket
+	private JButton btnNewButton_40;//Adres Etiket Ayar
 	private JButton btnNewButton_41;//Adres Firma
 	//FATURA
 	private JButton btnNewButton_42;//Urun Karti
@@ -398,6 +400,7 @@ public class OBS_MAIN extends JFrame {
 				btnNewButton_92.doClick();
 			}
 		});
+//************************************************************ADRES ******************************
 		mnKur.add(mntmKeksik);
 		JMenu mnAdres = new JMenu("Adres");
 		mnAdres.addMouseMotionListener(new MouseMotionAdapter() {
@@ -425,6 +428,25 @@ public class OBS_MAIN extends JFrame {
 
 		JSeparator separator = new JSeparator();
 		mnAdres.add(separator);
+		
+		JMenuItem mntmEtiket = new JMenuItem("Etiket Yazdirma");
+		mntmEtiket.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_39.doClick();
+			}
+		});
+		mnAdres.add(mntmEtiket);
+		
+		JMenuItem mntmEtiketAyar = new JMenuItem("Etiket Ayar");
+		mntmEtiketAyar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			btnNewButton_40.doClick();
+			}
+		});
+		mnAdres.add(mntmEtiketAyar);
+		
+		JSeparator separator1 = new JSeparator();
+		mnAdres.add(separator1);
 
 		JMenuItem mntmAfismi = new JMenuItem("Firma Ismi");
 		mntmAfismi.addActionListener(new ActionListener() {
@@ -433,7 +455,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnAdres.add(mntmAfismi);
-
+//****************************************STOK ****************************************************************
 		JMenu mnFatura = new JMenu("Fatura / Stok Islemleri");
 		mnFatura.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -836,7 +858,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnGunluk.add(mntmKayitli);
-        //************************************************************************************************
+//************************************************************************************************
 		JMenu mnSms = new JMenu("Sms / Mail");
 		mnSms.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -1277,7 +1299,7 @@ public class OBS_MAIN extends JFrame {
 		JLabel lblNewLabel_10 = new JLabel("          ");
 		toolBar_4.add(lblNewLabel_10);
 		
-		JButton btnNewButton_39 = new JButton("");
+		btnNewButton_39 = new JButton("");
 		btnNewButton_39.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-print-address-label-30.png")));
 		btnNewButton_39.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1291,14 +1313,16 @@ public class OBS_MAIN extends JFrame {
 		toolBar_4.add(lblNewLabel_11);
 
 		btnNewButton_41 = new JButton("");
+		btnNewButton_41.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
 		btnNewButton_41.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("FIRMA ISMI DEGISTIRME","");
 				FIRMA_ISMI_DEGIS.modul("adres");
 			}
 		});
+		toolBar_4.add(btnNewButton_41);
 		
-		JButton btnNewButton_40 = new JButton("");
+		btnNewButton_40 = new JButton("");
 		btnNewButton_40.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-pincode-keyboard-30.png")));
 		btnNewButton_40.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1307,8 +1331,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		toolBar_4.add(btnNewButton_40);
-		btnNewButton_41.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
-		toolBar_4.add(btnNewButton_41);
+		
 
 		JScrollPane stkscrol = new JScrollPane();
 		//stkscrol.setViewportBorder(UIManager.getBorder("ToolBar.border"));

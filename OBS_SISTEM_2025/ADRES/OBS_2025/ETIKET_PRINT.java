@@ -92,7 +92,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 		setTitle("ETIKET PRINT");
 		setBounds(100, 100, 800, 600);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			doldur();
+		doldur();
 		
 	}
 	@SuppressWarnings("deprecation")
@@ -158,21 +158,56 @@ public class ETIKET_PRINT extends JInternalFrame {
 	}
 	private void satir_kontrol()
 	{
+		int i = 0 ;
+		String kodString = "";
+		try 
+		{
 		DefaultTableModel modell = (DefaultTableModel)ETIKET.table.getModel();
-		for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
+		for (  i = 0; i <=  modell.getRowCount() - 1;i++)
 		{
 			if ( modell.getValueAt(i,5) != null) 
 			{
 				if (  (boolean) modell.getValueAt(i,5) )
 				{
-					ETIKET_ISIM ets1  = new ETIKET_ISIM(modell.getValueAt(i, 0).toString(),
-							modell.getValueAt(i, 1).toString(),
-							modell.getValueAt(i, 2).toString(),
-							modell.getValueAt(i, 3).toString(),
-							modell.getValueAt(i, 4).toString());
+					kodString =modell.getValueAt(i, 0).toString();
+					String iSIM ="";
+					String aDR1 = "" ;
+					String aDR2 = "" ;
+					String sEMT = "" ;
+					String sEHIR = "";
+					
+					if (modell.getValueAt(i, 0) != null)
+					{
+						iSIM = modell.getValueAt(i, 0).toString();
+						
+					}
+					if (modell.getValueAt(i, 1) != null)
+					{
+						aDR1 = modell.getValueAt(i, 1).toString();
+						
+					}
+					if (modell.getValueAt(i, 2) != null)
+					{
+						aDR2 = modell.getValueAt(i, 2).toString();
+						
+					}
+					if (modell.getValueAt(i, 3) != null)
+					{
+						sEMT = modell.getValueAt(i, 3).toString();
+						
+					}
+					if (modell.getValueAt(i, 4) != null)
+					{
+						sEHIR = modell.getValueAt(i, 4).toString();
+						
+					}
+					ETIKET_ISIM ets1  = new ETIKET_ISIM(iSIM,aDR1,aDR2,sEMT,sEHIR);
 					etISIM.add(ets1);
 				}
 			}
+		}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, i + " Nolu Satir da Kodu =" + kodString + " Problemli Veri", "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static ByteArrayDataSource export_to() throws IOException, JRException

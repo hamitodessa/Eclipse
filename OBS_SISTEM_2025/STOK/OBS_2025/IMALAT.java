@@ -46,6 +46,8 @@ import OBS_C_2025.TARIH_CEVIR;
 import javax.swing.JComboBox;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
@@ -85,6 +87,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings({"serial","static-access"})
 public class IMALAT extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
@@ -147,6 +150,7 @@ public class IMALAT extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("removal")
 	public IMALAT() {
 		setClosable(true);
 		setResizable(true);
@@ -187,7 +191,7 @@ public class IMALAT extends JInternalFrame {
 				if (e.getClickCount() == 2) 
 				{
 					try {
-						getContentPane().setCursor(oac.WAIT_CURSOR);
+						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 						int sno = 0 ;
 
 						sno  = f_Access.uretim_fisno_al() ;
@@ -196,11 +200,11 @@ public class IMALAT extends JInternalFrame {
 						kj = 10 - Integer.toString(sno).length() ;
 						String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
 						textField.setText(str_.equals("0000000000") ? "0000000001":str_);
-						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					}
 					catch (Exception ex)
 					{
-						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 						JOptionPane.showMessageDialog(null,  "Numaralarda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
@@ -230,21 +234,21 @@ public class IMALAT extends JInternalFrame {
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				kontrol();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				kontrol();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				kontrol();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		textField.setBounds(96, 8, 90, 20);
@@ -255,7 +259,7 @@ public class IMALAT extends JInternalFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					getContentPane().setCursor(oac.WAIT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					textField.setText("");
 					//sifirla();
 
@@ -268,11 +272,11 @@ public class IMALAT extends JInternalFrame {
 						JOptionPane.showMessageDialog(null,  "Hic Kayit Yok...", "Imalat Okuma", JOptionPane.ERROR_MESSAGE);
 						textField.requestFocus();
 					}
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
 				catch (Exception ex)
 				{
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Okuma", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -399,15 +403,16 @@ public class IMALAT extends JInternalFrame {
 
 		textField_1 = new JTextField();
 		textField_1.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
 				{
 					URUN_ARAMA arm ;
-					getContentPane().setCursor(oac.WAIT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					arm = new URUN_ARAMA();
 					arm.show();
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					textField_1.setText( oac.stk_kodu);
 				}
 			}
@@ -416,21 +421,21 @@ public class IMALAT extends JInternalFrame {
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				isimoku();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				isimoku();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				isimoku();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -440,12 +445,13 @@ public class IMALAT extends JInternalFrame {
 
 		JButton button_3 = new JButton("");
 		button_3.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				URUN_ARAMA arm ;
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				arm = new URUN_ARAMA();
 				arm.show();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				textField_1.setText( oac.stk_kodu) ;
 			}
 		});
@@ -467,12 +473,13 @@ public class IMALAT extends JInternalFrame {
 
 		JButton button_4 = new JButton("");
 		button_4.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				RECETE_BUL rct ;
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				rct = new RECETE_BUL();
 				rct.show();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				txtrecete.setText( oac.stk_kodu) ;
 			}
 		});
@@ -882,7 +889,7 @@ public class IMALAT extends JInternalFrame {
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						getContentPane().setCursor(oac.WAIT_CURSOR);
+						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 						int sno = 0 ;
 
 						sno  = f_Access.uretim_fisno_al() ;
@@ -891,11 +898,11 @@ public class IMALAT extends JInternalFrame {
 						kj = 10 - Integer.toString(sno).length() ;
 						String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
 						textField.setText(str_.equals("0000000000") ? "0000000001":str_);
-						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					}
 					catch (Exception ex)
 					{
-						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 						JOptionPane.showMessageDialog(null,  "Numaralarda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
@@ -1008,14 +1015,14 @@ public class IMALAT extends JInternalFrame {
 	private void ana_grup_doldur()
 	{
 		try {
-			getContentPane().setCursor(oac.WAIT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			cmbanagrup .removeAllItems();
 			ResultSet rs=null;
 
 			rs = f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
 
 			if (!rs.isBeforeFirst() ) {  
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				cmbaltgrup.setEnabled(false);
 				cmbanagrup .addItem("");
 				cmbanagrup.setSelectedItem("");
@@ -1028,18 +1035,18 @@ public class IMALAT extends JInternalFrame {
 				cmbanagrup .addItem(rs.getString("ANA_GRUP"));
 			}
 			cmbanagrup.setSelectedItem("");
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur()
 	{
 		try {
-			getContentPane().setCursor(oac.WAIT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			cmbaltgrup.removeAllItems();
 			cmbaltgrup .addItem("");
 			ResultSet rs=null;
@@ -1059,7 +1066,7 @@ public class IMALAT extends JInternalFrame {
 			if (!rs.isBeforeFirst() ) {  
 				cmbaltgrup.setSelectedItem("");
 				cmbaltgrup.setEnabled(false);
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			} 
 			else
 			{
@@ -1070,11 +1077,11 @@ public class IMALAT extends JInternalFrame {
 				cmbaltgrup.setSelectedItem(0);
 				cmbaltgrup.setEnabled(true);
 			}
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
@@ -1716,7 +1723,7 @@ public class IMALAT extends JInternalFrame {
 	private void depo_doldur()
 	{
 		try {
-			getContentPane().setCursor(oac.WAIT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			cmbdepo .removeAllItems();
 			ResultSet rs = null;
 
@@ -1735,7 +1742,7 @@ public class IMALAT extends JInternalFrame {
 				}
 			}
 			cmbdepo.setSelectedItem("");
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 		catch (Exception ex)
 		{

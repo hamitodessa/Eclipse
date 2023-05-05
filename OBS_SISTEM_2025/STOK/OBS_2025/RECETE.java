@@ -64,6 +64,7 @@ import javax.swing.border.EtchedBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+@SuppressWarnings({"serial","static-access","deprecation"})
 public class RECETE extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
@@ -104,6 +105,7 @@ public class RECETE extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "removal", "unused" })
 	public RECETE() {
 		setTitle("RECETE");
 		setIconifiable(true);
@@ -133,8 +135,9 @@ public class RECETE extends JInternalFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
 				{
-					try {
-						getContentPane().setCursor(oac.WAIT_CURSOR);
+					try 
+					{
+						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					int sno = 0 ;
 					
 		             sno  = f_Access.recete_no_al() ;
@@ -143,11 +146,11 @@ public class RECETE extends JInternalFrame {
 					kj = 10 - Integer.toString(sno).length() ;
 					String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
 					textField.setText(str_.equals("0000000000") ? "0000000001":str_);
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					}
 					catch (Exception ex)
 					{
-						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 						 JOptionPane.showMessageDialog(null,  "Recete Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
@@ -156,21 +159,21 @@ public class RECETE extends JInternalFrame {
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				kontrol();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				kontrol();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				kontrol();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 			});
 		textField.addAncestorListener(new AncestorListener() {
@@ -199,7 +202,7 @@ public class RECETE extends JInternalFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 try {
-					getContentPane().setCursor(oac.WAIT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		            textField.setText("");
 		            temizle();
 		        	
@@ -212,11 +215,11 @@ public class RECETE extends JInternalFrame {
 		            	JOptionPane.showMessageDialog(null,  "Hic Kayit Yok...", "Recete Okuma", JOptionPane.PLAIN_MESSAGE);
 		            	textField.requestFocus();
 		            		}
-		        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
+		        	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				 }
 		        catch (Exception ex)
 				 {
-		        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
+		        	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		        	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Okuma", JOptionPane.ERROR_MESSAGE);
 				 }
 			}
@@ -303,10 +306,10 @@ public class RECETE extends JInternalFrame {
 				if (e.getClickCount() == 2) 
 				{
 					URUN_ARAMA arm ;
-					getContentPane().setCursor(oac.WAIT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 						arm = new URUN_ARAMA();
 						arm.show();
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					textField_1.setText( oac.stk_kodu);
 				}
 			}
@@ -337,11 +340,11 @@ public class RECETE extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				ResultSet rs = null;
 				try {
-					getContentPane().setCursor(oac.WAIT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				
 		        rs =f_Access.imalat_urun_ara(textField_1.getText());
 				
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			 if (! rs.isBeforeFirst() )
 			 	{  }
 			 else
@@ -426,10 +429,10 @@ public class RECETE extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (table.getSelectedRow() < 0 ) return ;
 				URUN_ARAMA arm ;
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					arm = new URUN_ARAMA();
 					arm.show();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				table.getModel().setValueAt( oac.stk_kodu,table.getSelectedRow(), 1) ;
 				bilgi_doldur(oac.stk_kodu);
 			}
@@ -575,14 +578,14 @@ public class RECETE extends JInternalFrame {
 	private void ana_grup_doldur()
 	{
 		try {
-		getContentPane().setCursor(oac.WAIT_CURSOR);
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		cmbanagrup .removeAllItems();
 		ResultSet rs=null;
 		
 			rs = f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
 		
 		if (!rs.isBeforeFirst() ) {  
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			cmbaltgrup.setEnabled(false);
 			cmbanagrup .addItem("");
 			cmbanagrup.setSelectedItem("");
@@ -594,18 +597,18 @@ public class RECETE extends JInternalFrame {
 	    	cmbanagrup .addItem(rs.getString("ANA_GRUP"));
 	    }
 	    cmbanagrup.setSelectedItem("");
-	    getContentPane().setCursor(oac.DEFAULT_CURSOR);
+	    setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur()
 	{
 		try {
-		getContentPane().setCursor(oac.WAIT_CURSOR);
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		cmbaltgrup.removeAllItems();
 		cmbaltgrup .addItem("");
 		ResultSet rs=null;
@@ -625,7 +628,7 @@ public class RECETE extends JInternalFrame {
 		if (!rs.isBeforeFirst() ) {  
 			cmbaltgrup.setSelectedItem("");
 			cmbaltgrup.setEnabled(false);
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		} 
 		else
 		{
@@ -636,11 +639,11 @@ public class RECETE extends JInternalFrame {
 	    cmbaltgrup.setSelectedItem(0);
 	    cmbaltgrup.setEnabled(true);
 		}
-		getContentPane().setCursor(oac.DEFAULT_CURSOR);
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
@@ -915,8 +918,6 @@ public class RECETE extends JInternalFrame {
 		    	    	}
 		     	}
 	        }
-	        DefaultTableModel model = (DefaultTableModel) table.getModel();
-	       
 	        f_Access.recete_kayit(textField.getText(), drm, "Giren",textField_1.getText(),1.00
                          , anagrp, altgrp, GLOBAL.KULL_ADI);
  			

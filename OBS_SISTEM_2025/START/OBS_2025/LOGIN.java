@@ -126,6 +126,7 @@ public class LOGIN extends JFrame {
 		}
 	});
 	}
+//setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 	public LOGIN() throws IOException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/obs_p.png")));
 		setResizable(false);

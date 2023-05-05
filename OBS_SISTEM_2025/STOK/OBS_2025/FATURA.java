@@ -3,6 +3,7 @@ package OBS_2025;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
@@ -87,7 +88,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","static-access"})
 public class FATURA extends JInternalFrame {
 
 	public static JTextField textField;
@@ -124,7 +125,6 @@ public class FATURA extends JInternalFrame {
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
-
 	private ArrayList<String> listSomeString = new ArrayList<String>();
 	private ArrayList<String> listBarkod =  new ArrayList<String>();
 	private ArrayList<String> listdepo = null ;
@@ -209,7 +209,7 @@ public class FATURA extends JInternalFrame {
 				if (e.getClickCount() == 2) 
 				{
 					try {
-						getContentPane().setCursor(oac.WAIT_CURSOR);
+						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 						int sno = 0 ;
 						if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 						{
@@ -229,11 +229,11 @@ public class FATURA extends JInternalFrame {
 						String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
 
 						textField.setText(str_.equals("0000000000") ? "0000000001":str_);
-						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 					}
 					catch (Exception ex)
 					{
-						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 						JOptionPane.showMessageDialog(null,  "Fatura Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
@@ -241,19 +241,19 @@ public class FATURA extends JInternalFrame {
 		});
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				fiskont();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void removeUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				fiskont();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void insertUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				fiskont();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 		});
 		textField.addAncestorListener(new AncestorListener() {
@@ -703,13 +703,13 @@ public class FATURA extends JInternalFrame {
 				}
 				else
 				{
-					getContentPane().setCursor(oac.WAIT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 					JInternalFrame internalFrame;
 					GLOBAL.nerden = "fat" ;
 					internalFrame  = new GIDECEGI_YER();
 					OBS_MAIN.desktopPane.add(internalFrame);
 					internalFrame.setVisible(true);
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				}
 			}
 		});
@@ -992,10 +992,10 @@ public class FATURA extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (table.getSelectedRow() < 0 ) return ;
 				URUN_ARAMA arm ;
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				arm = new URUN_ARAMA();
 				arm.setVisible(true);
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				if ( !  oac.stk_kodu.equals(""))
 				{
 					table.getModel().setValueAt( oac.stk_kodu,table.getSelectedRow() , 1) ;
@@ -1174,10 +1174,10 @@ public class FATURA extends JInternalFrame {
 				{
 					if (table.getSelectedRow() < 0 ) return ;
 					URUN_ARAMA arm ;
-					getContentPane().setCursor(oac.WAIT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 					arm = new URUN_ARAMA();
 					arm.setVisible(true);
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 					JTextField zaq = (  JTextField )  comboBox1.getEditor().getEditorComponent();
 					zaq.setText(GLOBAL.stk_kodu);
 					table.getCellEditor().stopCellEditing();
@@ -1404,7 +1404,8 @@ public class FATURA extends JInternalFrame {
 		}
 		//***********
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
-		{		@Override
+		{		@SuppressWarnings("unused")
+		@Override
 			public void tableChanged(TableModelEvent e) {
 			TableModel model = (TableModel)e.getSource();
 			if (model.getRowCount() > 0) {
@@ -1428,7 +1429,7 @@ public class FATURA extends JInternalFrame {
 				}
 				//** Bakiye Kontrol
 				String deger ="";
-				Integer sat_sayi;
+				Integer sat_sayi = 0;
 				if (column == 1)
 				{
 					try {
@@ -2393,14 +2394,14 @@ public class FATURA extends JInternalFrame {
 	private void ana_grup_doldur()
 	{
 		try {
-			getContentPane().setCursor(oac.WAIT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			cmbanagrup .removeAllItems();
 			ResultSet rs=null;
 
 			rs = f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
 
 			if (!rs.isBeforeFirst() ) {  
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				cmbaltgrup.setEnabled(false);
 				cmbanagrup .addItem("");
 				cmbanagrup.setSelectedItem("");
@@ -2411,18 +2412,18 @@ public class FATURA extends JInternalFrame {
 			{
 				cmbanagrup .addItem(rs.getString("ANA_GRUP"));
 			}
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur()
 	{
 		try {
-			getContentPane().setCursor(oac.WAIT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			cmbaltgrup.removeAllItems();
 			cmbaltgrup .addItem("");
 			ResultSet rs=null;
@@ -2442,7 +2443,7 @@ public class FATURA extends JInternalFrame {
 			if (!rs.isBeforeFirst() ) {  
 				cmbaltgrup.setSelectedItem("");
 				cmbaltgrup.setEnabled(false);
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			} 
 			else
 			{
@@ -2453,25 +2454,25 @@ public class FATURA extends JInternalFrame {
 				cmbaltgrup.setSelectedItem(0);
 				cmbaltgrup.setEnabled(true);
 			}
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private void fat_oz_kod()
 	{
 		try {
-			getContentPane().setCursor(oac.WAIT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			cmbozkod .removeAllItems();
 			ResultSet rs=null;
 
 			rs = f_Access.fat_oz_kod(cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C" : "G");
 
 			if (!rs.isBeforeFirst() ) {  
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				cmbozkod .addItem("");
 				return;
 			} 
@@ -2480,11 +2481,11 @@ public class FATURA extends JInternalFrame {
 			{
 				cmbozkod .addItem(rs.getString("Ozel_Kod"));
 			}
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ozel Kod", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -2797,7 +2798,9 @@ public class FATURA extends JInternalFrame {
 	{
 		try
 		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			textField.setText( f_Access.son_no_al(cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G"));
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
 		{
@@ -2806,7 +2809,7 @@ public class FATURA extends JInternalFrame {
 	}
 	private void irs_aktar()
 	{
-		getContentPane().setCursor(oac.WAIT_CURSOR);
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 		try {
 			oac.irs_no = "" ;
 			IRSALIYE_ARA iara ;
@@ -2815,7 +2818,7 @@ public class FATURA extends JInternalFrame {
 			ResultSet rs=null;
 			//GRID_TEMIZLE.grid_temizle(table);
 			//GRID_TEMIZLE.grid_temizle(table_1);
-			if (oac.irs_no.equals("")) {	getContentPane().setCursor(oac.DEFAULT_CURSOR);  return;}
+			if (oac.irs_no.equals("")) {	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	  return;}
 			//
 
 			rs = f_Access.irsaliye_oku(oac.irs_no,cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G");
@@ -2880,7 +2883,7 @@ public class FATURA extends JInternalFrame {
 		{
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Irsaliye  Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
-		getContentPane().setCursor(oac.DEFAULT_CURSOR);
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 	}
 }
 

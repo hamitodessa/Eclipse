@@ -3,6 +3,7 @@ package OBS_2025;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -308,10 +309,12 @@ private JTextField textField;
 			Object source = e.getSource();
 			if (source instanceof AbstractButton == false) return;
 			boolean checked = e.getStateChange() == ItemEvent.SELECTED;
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			for(int x = 0, y = table.getRowCount(); x < y; x++)
 			{
 				table.setValueAt(new Boolean(checked),x,0);
 			}
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 	}
 	class CheckBoxHeader extends JCheckBox   implements TableCellRenderer, MouseListener 
@@ -357,8 +360,8 @@ private JTextField textField;
 				TableColumnModel columnModel = tableView.getColumnModel();
 				int viewColumn = columnModel.getColumnIndexAtX(e.getX());
 				int column = tableView.convertColumnIndexToModel(viewColumn);
-
-				if (viewColumn == this.column && e.getClickCount() == 1 && column != -1) {
+				if (viewColumn == this.column && e.getClickCount() == 1 && column != -1) 
+				{
 					doClick();
 				}
 			}

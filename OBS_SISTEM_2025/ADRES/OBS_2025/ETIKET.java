@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
@@ -45,6 +46,8 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
+import javax.swing.border.TitledBorder;
+import javax.swing.JSpinner;
 
 @SuppressWarnings({"serial","static-access"})
 public class ETIKET extends JInternalFrame {
@@ -55,6 +58,12 @@ private static final Vector<?> Boolean = null;
 public static JTable table;
 private JLabel lbladet;
 private JTextField textField;
+private JTextField textField_1;
+private JTextField textField_2;
+private JTextField textField_3;
+private JTextField textField_4;
+private JTextField textField_5;
+private JTextField textField_6;
 	/**
 	 * Launch the application.
 	 */
@@ -96,11 +105,89 @@ private JTextField textField;
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setRightComponent(splitPane_1);
 		
+		//
 		JScrollPane scrollPane = new JScrollPane();
-		splitPane_1.setLeftComponent(scrollPane);
+		JTabbedPane orTabbedPane = new JTabbedPane();
+		orTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
+		orTabbedPane.addTab("Genel", null,scrollPane , null);  //
+		JPanel tekPanel = new JPanel();
+		tekPanel.setLayout(null);
+		orTabbedPane.addTab("Tek Etiket", null,tekPanel , null);  //
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(null, "Bilgiler", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBounds(43, 37, 431, 207);
+		tekPanel.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JLabel lblNewLabel_3 = new JLabel("Unvan");
+		lblNewLabel_3.setBounds(10, 37, 67, 14);
+		panel_2.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Adres_1");
+		lblNewLabel_4.setBounds(10, 62, 67, 14);
+		panel_2.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Adres_2");
+		lblNewLabel_5.setBounds(10, 87, 46, 14);
+		panel_2.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("Telefon");
+		lblNewLabel_6.setBounds(10, 112, 46, 14);
+		panel_2.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("Semt");
+		lblNewLabel_7.setBounds(10, 137, 46, 14);
+		panel_2.add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_8 = new JLabel("Sehir");
+		lblNewLabel_8.setBounds(10, 162, 46, 14);
+		panel_2.add(lblNewLabel_8);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(111, 34, 267, 20);
+		panel_2.add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(111, 59, 267, 20);
+		panel_2.add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(111, 84, 267, 20);
+		panel_2.add(textField_3);
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		textField_4.setBounds(111, 109, 267, 20);
+		panel_2.add(textField_4);
+		textField_4.setColumns(10);
+		
+		textField_5 = new JTextField();
+		textField_5.setBounds(111, 134, 267, 20);
+		panel_2.add(textField_5);
+		textField_5.setColumns(10);
+		
+		textField_6 = new JTextField();
+		textField_6.setBounds(111, 159, 267, 20);
+		panel_2.add(textField_6);
+		textField_6.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Yazdirma Adedi");
+		lblNewLabel_2.setBounds(497, 37, 88, 14);
+		tekPanel.add(lblNewLabel_2);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setBounds(615, 34, 49, 20);
+		tekPanel.add(spinner);
+		
+		splitPane_1.setLeftComponent(orTabbedPane);
+		
+		//
 		
 		
-		
+		//splitPane_1.setLeftComponent(scrollPane);
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 20));
 		panel.setMaximumSize(new Dimension(0, 20));

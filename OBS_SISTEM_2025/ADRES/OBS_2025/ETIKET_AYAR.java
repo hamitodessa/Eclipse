@@ -23,10 +23,12 @@ import javax.swing.SwingUtilities;
 import javax.swing.text.JTextComponent;
 
 import OBS_C_2025.GLOBAL;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","unchecked"})
 public class ETIKET_AYAR extends JInternalFrame {
-	 public static final SelectOnFocusGainedHandler SHARED_INSTANCE = new SelectOnFocusGainedHandler();
+public static final SelectOnFocusGainedHandler SHARED_INSTANCE = new SelectOnFocusGainedHandler();
 private static JSpinner spnSolB;
 private static JSpinner spnUstB ;
 private static JSpinner spnSagB ;
@@ -34,6 +36,7 @@ private static JSpinner spnAltB ;
 private static JSpinner spnEtYUK;
 private static JSpinner spnEtGEN;
 private static JSpinner spnEtBOSLUK;
+private static JComboBox<String> eTIKETYAZIMBox ;
 
 	/**
 	 * Launch the application.
@@ -59,10 +62,6 @@ private static JSpinner spnEtBOSLUK;
 		setClosable(true);
 		setTitle("ETIKET AYAR");
 		setBounds(100, 100, 588, 190);
-		
-		
-		
-		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -123,6 +122,15 @@ private static JSpinner spnEtBOSLUK;
 		spnEtBOSLUK.setBounds(200, 120, 60, 20);
 		panel.add(spnEtBOSLUK);
 		installFocusListener(spnEtBOSLUK);
+		
+		JLabel lblNewLabel_2_1_1 = new JLabel("Etiket Yazim");
+		lblNewLabel_2_1_1.setBounds(293, 125, 112, 14);
+		panel.add(lblNewLabel_2_1_1);
+		
+		eTIKETYAZIMBox = new JComboBox<String>();
+		eTIKETYAZIMBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Yatay", "Dikey"}));
+		eTIKETYAZIMBox.setBounds(403, 121, 60, 22);
+		panel.add(eTIKETYAZIMBox);
 
 		doldur();
 	}
@@ -130,7 +138,6 @@ private static JSpinner spnEtBOSLUK;
 	{
 		try 
 		{
-			
 		GLOBAL.setting_yaz("SOL_BOSLUK",String.valueOf( spnSolB.getValue()));
 		GLOBAL.setting_yaz("SAG_BOSLUK",String.valueOf( spnSagB.getValue()));
 		GLOBAL.setting_yaz("UST_BOSLUK", String.valueOf( spnUstB.getValue()));
@@ -138,6 +145,7 @@ private static JSpinner spnEtBOSLUK;
 		GLOBAL.setting_yaz("ETIKET_YUK", String.valueOf( spnEtYUK.getValue()));
 		GLOBAL.setting_yaz("ETIKET_GEN",  String.valueOf( spnEtGEN.getValue()));
 		GLOBAL.setting_yaz("ETIKET_ARA_BOSLUK",  String.valueOf( spnEtBOSLUK.getValue()));
+		GLOBAL.setting_yaz("ETIKET_YAZIM", eTIKETYAZIMBox.getSelectedItem().toString());
 	} catch (Exception ex) {
 		JOptionPane.showMessageDialog(null, ex.getMessage(),  "Etiket Ayar Kayit", JOptionPane.ERROR_MESSAGE);   
 	}
@@ -153,6 +161,7 @@ private static JSpinner spnEtBOSLUK;
 			spnEtYUK.setValue(Integer.parseInt(GLOBAL.setting_oku("ETIKET_YUK")));
 			spnEtGEN.setValue(Integer.parseInt(GLOBAL.setting_oku("ETIKET_GEN")));
 			spnEtBOSLUK.setValue(Integer.parseInt(GLOBAL.setting_oku("ETIKET_ARA_BOSLUK")));
+			eTIKETYAZIMBox.setSelectedItem(GLOBAL.setting_oku("ETIKET_YAZIM"));
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Etiket Ayar Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
@@ -167,7 +176,6 @@ private static JSpinner spnEtBOSLUK;
 	            }
 	        }
 	    }
-	 @SuppressWarnings("unchecked")
 	public static <T extends Component> List<T> findAllChildren(JComponent component, Class<T> clazz) {
 	        List<T> lstChildren = new ArrayList<T>(5);
 	        for (Component comp : component.getComponents()) {

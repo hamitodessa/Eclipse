@@ -373,7 +373,7 @@ public class ADRES_MSSQL implements IADRES {
 	public ResultSet adr_etiket(String siralama) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		String sql = "SELECT Adi , Adres_1 ,Adres_2 ,Semt ,Sehir  FROM Adres  ORDER BY " + siralama +"";
+		String sql = "SELECT Adi , Adres_1 ,Adres_2 , Tel_1,Semt ,Sehir  FROM Adres  ORDER BY " + siralama +"";
 		Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		rss = stmt.executeQuery(sql);
 		return rss;

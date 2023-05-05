@@ -50,6 +50,7 @@ import net.sf.jasperreports.export.SimpleXlsExporterConfiguration;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
+import net.sf.jasperreports.engine.type.PrintOrderEnum;
 import net.sf.jasperreports.view.JasperViewer;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -95,7 +96,6 @@ public class ETIKET_PRINT extends JInternalFrame {
 		doldur();
 		
 	}
-	@SuppressWarnings("deprecation")
 	private void doldur()
 	{
 		try {
@@ -103,7 +103,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 			//JasperDesign jasper = JRXmlLoader.load(this.getClass().getClassLoader().getResourceAsStream("RPT\\ADRES_RPT\\Etiket2.jrxml"));
 			File file = new File("C:\\OBS_SISTEM\\ETIKET.jrxml");
 			JasperDesign jasper = JRXmlLoader.load(file);
-			//System.out.println( jasper.getColumnWidth()+"=spacing=="+jasper.getColumnSpacing());
+			
 			//
 			//jasper.setPageHeight(842);
 			jasper.setColumnWidth(Integer.valueOf( GLOBAL.setting_oku("ETIKET_GEN")));
@@ -112,15 +112,22 @@ public class ETIKET_PRINT extends JInternalFrame {
 			jasper.setRightMargin(Integer.valueOf( GLOBAL.setting_oku("SAG_BOSLUK")));
 			jasper.setTopMargin(Integer.valueOf( GLOBAL.setting_oku("UST_BOSLUK")));
 			jasper.setBottomMargin(Integer.valueOf( GLOBAL.setting_oku("ALT_BOSLUK")));
-
+			if(GLOBAL.setting_oku("ETIKET_YAZIM") == "Yatay")
+			{
+				jasper.setPrintOrder(PrintOrderEnum.HORIZONTAL);
+			}
+			else 
+			{
+				jasper.setPrintOrder(PrintOrderEnum.VERTICAL);
+			}
 			JRDesignSection designSection = (JRDesignSection) jasper.getDetailSection();
 			JRBand[] bands =  jasper.getDetailSection().getBands();
 			JRDesignBand qweBand = (JRDesignBand) bands[0].clone();
 			qweBand.setHeight(Integer.valueOf( GLOBAL.setting_oku("ETIKET_YUK")));
 			//**************************ADI*************************************************
-			 qweBand.getElementByKey("Adi").setForecolor(Color.BLUE);
-			 qweBand.getElementByKey("Adi").getStyle().setFontName("Arial");
-			 qweBand.getElementByKey("Adi").getStyle().setBold(true);
+			 //qweBand.getElementByKey("Adi").setForecolor(Color.BLUE);
+			 //qweBand.getElementByKey("Adi").getStyle().setFontName("Arial");
+			 //qweBand.getElementByKey("Adi").getStyle().setBold(true);
 			//**************************ADRES1**********************************************
 			 
 			//**************************ADRES2**********************************************
@@ -129,7 +136,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 			 
 			//**************************SEHIR***********************************************
 
-			 
+			
 			 
 			JRElement[] eleMENT = bands[0].getElements();
 			for(int i=0;i< eleMENT.length;i++)
@@ -138,6 +145,10 @@ public class ETIKET_PRINT extends JInternalFrame {
 			}
 			designSection.removeBand(bands[0]);
 			designSection.addBand(qweBand);
+			
+			
+			//System.out.println( jasper.getColumnWidth()+"=spacing=="+jasper.getColumnSpacing());
+			//System.out.println(jasper.getPageWidth() + "==" + jasper.getBottomMargin()+ "==" + jasper.getTopMargin());
 			
 			//JasperReport jr = JasperCompileManager.compileReport(this.getClass().getClassLoader().getResourceAsStream("RPT\\ADRES_RPT\\Etiket.jrxml"));
 			JasperReport jr = JasperCompileManager.compileReport(jasper);
@@ -165,43 +176,43 @@ public class ETIKET_PRINT extends JInternalFrame {
 		DefaultTableModel modell = (DefaultTableModel)ETIKET.table.getModel();
 		for (  i = 0; i <=  modell.getRowCount() - 1;i++)
 		{
-			if ( modell.getValueAt(i,5) != null) 
+			if ( modell.getValueAt(i,6) != null) 
 			{
-				if (  (boolean) modell.getValueAt(i,5) )
+				if (  (boolean) modell.getValueAt(i,6) )
 				{
 					kodString =modell.getValueAt(i, 0).toString();
 					String iSIM ="";
 					String aDR1 = "" ;
 					String aDR2 = "" ;
+					String tELEF = "" ;
 					String sEMT = "" ;
 					String sEHIR = "";
 					
 					if (modell.getValueAt(i, 0) != null)
 					{
 						iSIM = modell.getValueAt(i, 0).toString();
-						
 					}
 					if (modell.getValueAt(i, 1) != null)
 					{
 						aDR1 = modell.getValueAt(i, 1).toString();
-						
 					}
 					if (modell.getValueAt(i, 2) != null)
 					{
 						aDR2 = modell.getValueAt(i, 2).toString();
-						
 					}
 					if (modell.getValueAt(i, 3) != null)
 					{
-						sEMT = modell.getValueAt(i, 3).toString();
-						
+						tELEF = modell.getValueAt(i, 3).toString();
 					}
 					if (modell.getValueAt(i, 4) != null)
 					{
-						sEHIR = modell.getValueAt(i, 4).toString();
-						
+						sEMT = modell.getValueAt(i, 4).toString();
 					}
-					ETIKET_ISIM ets1  = new ETIKET_ISIM(iSIM,aDR1,aDR2,sEMT,sEHIR);
+					if (modell.getValueAt(i, 5) != null)
+					{
+						sEHIR = modell.getValueAt(i, 5).toString();
+					}
+					ETIKET_ISIM ets1  = new ETIKET_ISIM(iSIM,aDR1,aDR2 ,sEMT,sEHIR,tELEF);
 					etISIM.add(ets1);
 				}
 			}

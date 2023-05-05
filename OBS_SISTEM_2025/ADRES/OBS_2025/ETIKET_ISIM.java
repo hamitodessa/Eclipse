@@ -5,15 +5,18 @@ public class ETIKET_ISIM {
 	private String adi ;
 	private String adres1;
 	private String adres2;
+	
 	private String semt;
 	private String sehir;
+	private String telefon;
 	
-	public ETIKET_ISIM(String adi, String adres1, String adres2, String semt, String sehir) {
+	public ETIKET_ISIM(String adi, String adres1, String adres2, String semt, String sehir,String telefon) {
 		this.adi = adi;
 		this.adres1 = adres1;
 		this.adres2 = adres2;
 		this.semt = semt;
 		this.sehir = sehir;
+		this.telefon = telefon;
 	}
 	public String getAdi() {
 		return adi;
@@ -33,6 +36,7 @@ public class ETIKET_ISIM {
 	public void setAdres2(String adres2) {
 		this.adres2 = adres2;
 	}
+	
 	public String getSemt() {
 		return semt;
 	}
@@ -45,6 +49,11 @@ public class ETIKET_ISIM {
 	public void setSehir(String sehir) {
 		this.sehir = sehir;
 	}
-	
+	public String getTelefon() {
+		return telefon;
+	}
+	public void setTelefon(String telefon) {
+		this.telefon = telefon;
+	}
 
 }

@@ -159,6 +159,7 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_81;//Gunluk
 	private JButton btnNewButton_82;//Gorev Kayit
 	private JButton btnNewButton_21;//Kayitli Gorevler
+	private JButton btnNewButton_38;//Firma Ismi
 	//
 	public static JLabel lblNewLabel_1 ;
 	public static JLabel lblNewLabel_2 ;
@@ -858,6 +859,17 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnGunluk.add(mntmKayitli);
+		
+		JSeparator separator_13 = new JSeparator();
+		mnGunluk.add(separator_13);
+		
+		JMenuItem mntmFirma = new JMenuItem("Firma Ismi");
+		mntmFirma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_38.doClick();
+			}
+		});
+		mnGunluk.add(mntmFirma);
 //************************************************************************************************
 		JMenu mnSms = new JMenu("Sms / Mail");
 		mnSms.addMouseMotionListener(new MouseMotionAdapter() {
@@ -1801,7 +1813,7 @@ public class OBS_MAIN extends JFrame {
 		JLabel lblNewLabel_38 = new JLabel("          ");
 		toolBar_7.add(lblNewLabel_38);
 		
-		JButton btnNewButton_38 = new JButton("");
+		btnNewButton_38 = new JButton("");
 		btnNewButton_38.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("FIRMA ISMI DEGISTIRME","");
@@ -2227,7 +2239,6 @@ public class OBS_MAIN extends JFrame {
 					try {
 						pencere_aktiv_yap("RAPOR YAZDIRMA");
 					} catch (PropertyVetoException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}

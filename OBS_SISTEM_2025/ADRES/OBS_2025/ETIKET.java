@@ -108,11 +108,11 @@ private JTextField textField;
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Secilen Kayit Sayisi :");
-		lblNewLabel.setBounds(10, 2, 124, 14);
+		lblNewLabel.setBounds(10, 2, 140, 14);
 		panel.add(lblNewLabel);
 		
 		lbladet = new JLabel("0");
-		lbladet.setBounds(144, 2, 48, 14);
+		lbladet.setBounds(160, 2, 32, 14);
 		panel.add(lbladet);
 		
 		JPanel panel_1 = new JPanel();
@@ -219,8 +219,12 @@ private JTextField textField;
 				tc = tcm.getColumn(4);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(150);
-
+				
 				tc = tcm.getColumn(5);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(150);
+
+				tc = tcm.getColumn(6);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(150);
 
@@ -271,9 +275,9 @@ private JTextField textField;
 		DefaultTableModel modell = (DefaultTableModel)table.getModel();
 		for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
 		{
-			if ( modell.getValueAt(i,5) != null) 
+			if ( modell.getValueAt(i,6) != null) 
 			{
-				if (  (boolean) modell.getValueAt(i,5) )
+				if (  (boolean) modell.getValueAt(i,6) )
 				{
 					satir += 1 ;
 				}

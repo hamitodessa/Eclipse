@@ -106,6 +106,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private JTextField textField;
 	private static boolean ilk = true;
 	public static JSplitPane splitPane ;
+	private JTextField textField_1;
+	private JTextField textField_2;
 	/**
 	 * Launch the application.
 	 */
@@ -243,6 +245,16 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		lblunvan = new JLabel("...");
 		lblunvan.setBounds(170, 35, 267, 14);
 		panel.add(lblunvan);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(603, 21, 100, 20);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(942, 21, 100, 20);
+		panel.add(textField_2);
+		textField_2.setColumns(10);
 		
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setDividerSize(1);
@@ -1044,7 +1056,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		if ( tblexcell.getRowCount() == 0 ) return ;
 		Runnable runner = new Runnable()
 		{ public void run() {
-			//
+			//************
 			try {
 				String iki = "",bir,uc = "" ;
 				int sat = 0 ;
@@ -1062,6 +1074,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					//sorter = new TableRowSorter<TableModel>(model);
 					RowFilter<TableModel, Object> rf = null;
 					rf = RowFilter.regexFilter("(?i)" + Pattern.quote(bir) , 1);
+					
 					sorter.setRowFilter(rf);
 					tblexcell.setRowSorter(sorter);
 					if ( tblexcell.getRowCount() > 0 )
@@ -1094,7 +1107,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 								}
 							}
 						}
-					}  
+					}
+					Thread.sleep(1);
 					tblexcell.setRowSorter(null);
 				}
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);  
@@ -1105,6 +1119,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			{
 				JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Distan Aktarma", JOptionPane.ERROR_MESSAGE);
 			}
+//***********			
 		}
 		};
 		//// Progress Bar
@@ -1233,7 +1248,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
     	OBS_MAIN.progressBar.setValue(0);
     	OBS_MAIN.progressBar.setStringPainted(false);
     }
-   
 }
 //IIf(RG2.Rows(t).Cells(0).Value.ToString = "vbLf", vbLf, RG2.Rows(t).Cells(0).Value.ToString), RG2.Rows(t).Cells(1).Value.ToString)
 //System.lineSeparator()

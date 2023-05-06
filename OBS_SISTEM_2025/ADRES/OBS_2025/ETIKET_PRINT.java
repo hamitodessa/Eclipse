@@ -93,17 +93,16 @@ public class ETIKET_PRINT extends JInternalFrame {
 		setTitle("ETIKET PRINT");
 		setBounds(100, 100, 800, 600);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
 		doldur();
 		
 	}
 	private void doldur()
 	{
 		try {
-			
 			//JasperDesign jasper = JRXmlLoader.load(this.getClass().getClassLoader().getResourceAsStream("RPT\\ADRES_RPT\\Etiket2.jrxml"));
 			File file = new File("C:\\OBS_SISTEM\\ETIKET.jrxml");
 			JasperDesign jasper = JRXmlLoader.load(file);
-			
 			//
 			//jasper.setPageHeight(842);
 			jasper.setColumnWidth(Integer.valueOf( GLOBAL.setting_oku("ETIKET_GEN")));
@@ -112,7 +111,8 @@ public class ETIKET_PRINT extends JInternalFrame {
 			jasper.setRightMargin(Integer.valueOf( GLOBAL.setting_oku("SAG_BOSLUK")));
 			jasper.setTopMargin(Integer.valueOf( GLOBAL.setting_oku("UST_BOSLUK")));
 			jasper.setBottomMargin(Integer.valueOf( GLOBAL.setting_oku("ALT_BOSLUK")));
-			if(GLOBAL.setting_oku("ETIKET_YAZIM") == "Yatay")
+			
+			if(GLOBAL.setting_oku("ETIKET_YAZIM").toString().equals("Yatay"))
 			{
 				jasper.setPrintOrder(PrintOrderEnum.HORIZONTAL);
 			}
@@ -154,7 +154,15 @@ public class ETIKET_PRINT extends JInternalFrame {
 			JasperReport jr = JasperCompileManager.compileReport(jasper);
 			ResultSet rSet = a_Access.adr_etiket("Adi");
 			//
-			satir_kontrol();	
+			if(ETIKET.orTabbedPane.getSelectedIndex() == 0)
+			{
+				satir_kontrol();	
+			}
+			else
+			{
+				satir_kontrol_tek();
+			}
+			
 			JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(etISIM);
 			jp = JasperFillManager.fillReport(jr,null, qazBe);
 		
@@ -221,6 +229,26 @@ public class ETIKET_PRINT extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, i + " Nolu Satir da Kodu =" + kodString + " Problemli Veri", "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	private void satir_kontrol_tek()
+	{
+		try 
+		{
+			String iSIM = ETIKET.textField_1.getText();
+			String aDR1 = ETIKET.textField_2.getText();
+			String aDR2 = ETIKET.textField_3.getText();
+			String tELEF = ETIKET.textField_4.getText();
+			String sEMT = ETIKET.textField_5.getText();
+			String sEHIR = ETIKET.textField_6.getText();
+			for (int i = 0;i < (int) ETIKET.spinner.getValue() ;i++)
+			{
+				ETIKET_ISIM ets1  = new ETIKET_ISIM(iSIM,aDR1,aDR2 ,sEMT,sEHIR,tELEF);
+				etISIM.add(ets1);
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
 	public static ByteArrayDataSource export_to() throws IOException, JRException
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();

@@ -88,4 +88,8 @@ public class ADRES_ACCESS {
 	{
 		return _IAdres.adr_etiket(siralama);
 	}
+	public ResultSet adr_etiket_arama(String arama) throws ClassNotFoundException, SQLException
+	{
+		return _IAdres.adr_etiket_arama( arama);
+	}
 }

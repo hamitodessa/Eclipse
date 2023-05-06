@@ -379,4 +379,14 @@ public class ADRES_MSSQL implements IADRES {
 		return rss;
 		
 	}
+	@Override
+	public ResultSet adr_etiket_arama(String arama) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = "SELECT Adi , Adres_1 ,Adres_2 , Tel_1,Semt ,Sehir  FROM Adres "
+				+ " WHERE Adi Like '%" + arama + "%'";
+		Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		rss = stmt.executeQuery(sql);
+		return rss;
+	}
 }

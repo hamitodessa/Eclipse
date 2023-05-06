@@ -12,6 +12,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.AbstractButton;
@@ -36,6 +37,8 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+
+
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
@@ -48,6 +51,7 @@ import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.border.TitledBorder;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 @SuppressWarnings({"serial","static-access"})
 public class ETIKET extends JInternalFrame {
@@ -58,12 +62,14 @@ private static final Vector<?> Boolean = null;
 public static JTable table;
 private JLabel lbladet;
 private JTextField textField;
-private JTextField textField_1;
-private JTextField textField_2;
-private JTextField textField_3;
-private JTextField textField_4;
-private JTextField textField_5;
-private JTextField textField_6;
+public static JTextField textField_1;
+public static JTextField textField_2;
+public static JTextField textField_3;
+public static JTextField textField_4;
+public static JTextField textField_5;
+public static JTextField textField_6;
+public static JSpinner spinner;
+public static JTabbedPane orTabbedPane;
 	/**
 	 * Launch the application.
 	 */
@@ -107,7 +113,7 @@ private JTextField textField_6;
 		
 		//
 		JScrollPane scrollPane = new JScrollPane();
-		JTabbedPane orTabbedPane = new JTabbedPane();
+		orTabbedPane = new JTabbedPane();
 		orTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		orTabbedPane.addTab("Genel", null,scrollPane , null);  //
 		JPanel tekPanel = new JPanel();
@@ -121,27 +127,27 @@ private JTextField textField_6;
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_3 = new JLabel("Unvan");
-		lblNewLabel_3.setBounds(10, 37, 67, 14);
+		lblNewLabel_3.setBounds(10, 37, 91, 14);
 		panel_2.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Adres_1");
-		lblNewLabel_4.setBounds(10, 62, 67, 14);
+		lblNewLabel_4.setBounds(10, 62, 91, 14);
 		panel_2.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Adres_2");
-		lblNewLabel_5.setBounds(10, 87, 46, 14);
+		lblNewLabel_5.setBounds(10, 87, 91, 14);
 		panel_2.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("Telefon");
-		lblNewLabel_6.setBounds(10, 112, 46, 14);
+		lblNewLabel_6.setBounds(10, 112, 91, 14);
 		panel_2.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_7 = new JLabel("Semt");
-		lblNewLabel_7.setBounds(10, 137, 46, 14);
+		lblNewLabel_7.setBounds(10, 137, 91, 14);
 		panel_2.add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_8 = new JLabel("Sehir");
-		lblNewLabel_8.setBounds(10, 162, 46, 14);
+		lblNewLabel_8.setBounds(10, 162, 91, 14);
 		panel_2.add(lblNewLabel_8);
 		
 		textField_1 = new JTextField();
@@ -175,11 +181,12 @@ private JTextField textField_6;
 		textField_6.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Yazdirma Adedi");
-		lblNewLabel_2.setBounds(497, 37, 88, 14);
+		lblNewLabel_2.setBounds(496, 47, 108, 14);
 		tekPanel.add(lblNewLabel_2);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(615, 34, 49, 20);
+		spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+		spinner.setBounds(613, 44, 49, 20);
 		tekPanel.add(spinner);
 		
 		splitPane_1.setLeftComponent(orTabbedPane);
@@ -214,20 +221,35 @@ private JTextField textField_6;
 		
 		textField = new JTextField();
 		textField.setBounds(87, 11, 259, 20);
-		textField.getDocument().addDocumentListener(new DocumentListener() {
-			  public void changedUpdate(DocumentEvent e) {
-			    arama();
+		textField.getDocument().addDocumentListener(new DocumentListener() 
+		{
+			  public void changedUpdate(DocumentEvent e) 
+			  {
+			    try {
+					arama();
+				} catch (ClassNotFoundException | SQLException e1) {
+					e1.printStackTrace();
+				}
 			  }
-			  public void removeUpdate(DocumentEvent e) {
-			    arama();
+			  public void removeUpdate(DocumentEvent e) 
+			  {
+			    try {
+					arama();
+				} catch (ClassNotFoundException | SQLException e1) {
+					e1.printStackTrace();
+				}
 			  }
-			  public void insertUpdate(DocumentEvent e) {
-			    arama();
+			  public void insertUpdate(DocumentEvent e) 
+			  {
+			    try {
+					arama();
+				} catch (ClassNotFoundException | SQLException e1) {
+					e1.printStackTrace();
+				}
 			  }
-			});
+		});
 		panel_1.add(textField);
 		textField.setColumns(10);
-		
 		//
 		
 		table = new JTable(){
@@ -372,19 +394,53 @@ private JTextField textField_6;
 		}
 		return satir ;
 	}
-	public void arama()  
+	public void arama() throws ClassNotFoundException, SQLException  
 	{
-		if (textField.getText().equals(""))
+		if(ETIKET.orTabbedPane.getSelectedIndex() == 0)
 		{
-			table.setRowSorter(null);
+			if (textField.getText().equals(""))
+			{
+				table.setRowSorter(null);
+			}
+			else
+			{
+				TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
+				sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText().toLowerCase()));
+				table.setRowSorter(sorter);
+			}
 		}
 		else
 		{
-		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
-		
-	    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText().toLowerCase()));
-	    table.setRowSorter(sorter);
+			if(textField.getText().equals("")) 
+			{
+				temizle();
+				return;
+			}
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+			ResultSet rstResultSet = a_Access.adr_etiket_arama(textField.getText());
+			if (!rstResultSet.isBeforeFirst() ) { 
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+				temizle();
+				return; // Kayit Yok
+			} 
+			rstResultSet.next();
+			textField_1.setText(rstResultSet.getString("Adi"));
+			textField_2.setText(rstResultSet.getString("Adres_1"));
+			textField_3.setText(rstResultSet.getString("Adres_2"));
+			textField_4.setText(rstResultSet.getString("Tel_1"));
+			textField_5.setText(rstResultSet.getString("Semt"));
+			textField_6.setText(rstResultSet.getString("Sehir"));
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
+	}
+	private void temizle()
+	{
+	textField_1.setText("");
+	textField_2.setText("");
+	textField_3.setText("");
+	textField_4.setText("");
+	textField_5.setText("");
+	textField_6.setText("");
 	}
 	private void secilen_satir()
 	{

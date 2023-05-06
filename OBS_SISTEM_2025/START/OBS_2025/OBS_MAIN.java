@@ -149,6 +149,7 @@ public class OBS_MAIN extends JFrame {
 	//GENEL
 	private JButton btnNewButton_85;//Gonderilmis Raporlar
 	private JButton btnNewButton_86;//Calisma Dizinleri
+	private JButton btnNewButton_86_1;//Log Raporlama
 	//KAMBIYO
 	private JButton btnNewButton_75;//Cek Giris
 	private JButton btnNewButton_76;//Cek Cikis
@@ -896,7 +897,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnSms.add(mntmMail);
-
+//***************************************************GENEL *************************************************
 		JMenu mnGenel = new JMenu("Genel");
 		mnGenel.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -915,13 +916,21 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnGenel.add(mntmGrap);
 
-		JMenuItem mntmCdizin = new JMenuItem("Calisma Dizini");
+		JMenuItem mntmCdizin = new JMenuItem("Calisma Dizinleri");
 		mntmCdizin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnNewButton_86.doClick();
 			}
 		});
 		mnGenel.add(mntmCdizin);
+		
+		JMenuItem mntmLog = new JMenuItem("Log Raporlama");
+		mntmLog.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_86_1.doClick();
+			}
+		});
+		mnGenel.add(mntmLog);
 
 		JMenu mnAyarlar = new JMenu("Ayarlar");
 		mnAyarlar.addMouseMotionListener(new MouseMotionAdapter() {
@@ -1883,7 +1892,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_86.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-database-administrator-30.png")));
 		toolBar_9.add(btnNewButton_86);
 
-		JButton btnNewButton_86_1 = new JButton("");
+		btnNewButton_86_1 = new JButton("");
 		btnNewButton_86_1.setToolTipText("Log Raporlama");
 		btnNewButton_86_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

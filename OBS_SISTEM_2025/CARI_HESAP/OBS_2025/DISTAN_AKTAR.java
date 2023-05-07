@@ -49,8 +49,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
-
+import javax.swing.text.Document;
 
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -81,6 +80,11 @@ import javax.swing.RowFilter;
 import javax.swing.JSeparator;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+import javax.swing.DefaultComboBoxModel;
 
 @SuppressWarnings({"serial" , "static-access","deprecation"})
 public class DISTAN_AKTAR extends JInternalFrame {
@@ -99,15 +103,16 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private static JLabel lblsatir ;
 	private static JLabel lblNewLabel  ;
 	private static JComboBox<String> comboBox  ;
-	
+	private JComboBox<String> comboBox_1 ;
+	private JComboBox<String> comboBox_2 ;
 	private JFileChooser chooser;
 	private static JTable table;
 	private static JTable table_1;
 	private JTextField textField;
 	private static boolean ilk = true;
 	public static JSplitPane splitPane ;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField txtBORCLU;
+	private JTextField txtALACAKLI;
 	/**
 	 * Launch the application.
 	 */
@@ -149,8 +154,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 55));
-		panel.setMaximumSize(new Dimension(0, 55));
+		panel.setMinimumSize(new Dimension(0, 75));
+		panel.setMaximumSize(new Dimension(0, 75));
 		panel.setLayout(null);
 		
 		JToolBar toolBar_1 = new JToolBar();
@@ -246,15 +251,91 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		lblunvan.setBounds(170, 35, 267, 14);
 		panel.add(lblunvan);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(603, 21, 100, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		comboBox_1 = new JComboBox<String>();
+		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"", "Filtre Yok", "Bos Olanlar", "Bos Olmayanlar"}));
+		comboBox_1.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				borcluARAMA();
+			}
+		});
+		comboBox_1.setEditable(true);
+		comboBox_1.setBounds(603, 45, 100, 22);
+		panel.add(comboBox_1);
+		///
+		JTextField editorComponent = (JTextField) comboBox_1.getEditor()
+	            .getEditorComponent();
+	      Document doc = editorComponent.getDocument();
+	      doc.addDocumentListener(new DocumentListener() {
+	         @Override
+	         public void removeUpdate(DocumentEvent e) {
+	        		borcluARAMA();
+	         }
+	         @Override
+	         public void insertUpdate(DocumentEvent e) {
+	        		borcluARAMA();
+	         }
+	         @Override
+	         public void changedUpdate(DocumentEvent e) {
+	        		borcluARAMA();
+	         }
+	      });
+		///
+
+		comboBox_2 = new JComboBox<String>();
+		comboBox_2.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				alacakliARAMA();
+			}
+		});
+		comboBox_2.setEditable(true);
+		comboBox_2.setBounds(942, 45, 100, 22);
+		panel.add(comboBox_2);
+		JTextField editorComponent1 = (JTextField) comboBox_2.getEditor()
+	            .getEditorComponent();
+	      Document doc1 = editorComponent1.getDocument();
+	      doc1.addDocumentListener(new DocumentListener() {
+	         @Override
+	         public void removeUpdate(DocumentEvent e) {
+	        	alacakliARAMA();
+	         }
+	         @Override
+	         public void insertUpdate(DocumentEvent e) {
+	        	 alacakliARAMA();
+	         }
+	         @Override
+	         public void changedUpdate(DocumentEvent e) {
+	        	 alacakliARAMA();
+	         }
+	      });
+
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(942, 21, 100, 20);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
+		txtBORCLU = new JTextField();
+		txtBORCLU.setBounds(603, 11, 96, 20);
+		panel.add(txtBORCLU);
+		txtBORCLU.setColumns(10);
+		
+		JButton btnNewButton_3 = new JButton(".....");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				borcluUYGULA();
+			}
+		});
+		btnNewButton_3.setBounds(709, 11, 49, 23);
+		panel.add(btnNewButton_3);
+		
+		txtALACAKLI = new JTextField();
+		txtALACAKLI.setBounds(942, 11, 96, 20);
+		panel.add(txtALACAKLI);
+		txtALACAKLI.setColumns(10);
+		
+		JButton btnNewButton_10 = new JButton(".....");
+		btnNewButton_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				alacakliUYGULA();
+			}
+		});
+		btnNewButton_10.setBounds(1048, 11, 49, 23);
+		panel.add(btnNewButton_10);
 		
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setDividerSize(1);
@@ -1154,6 +1235,79 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		{
 		JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
 		}
+	}
+	private void borcluARAMA()
+	{
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tblexcell.getModel())); 
+		RowFilter<TableModel, Object> rf = null;
+		if(comboBox_1.getSelectedItem().toString().equals("Bos Olanlar"))
+		{
+			rf = RowFilter.regexFilter("^\\s*$"  , 2);
+		}
+		else if(comboBox_1.getSelectedItem().toString().equals("Bos Olmayanlar"))
+		{
+			rf = RowFilter.regexFilter("(?!$|\\s+).*"  , 2);
+		}
+		else if(comboBox_1.getSelectedItem().toString().equals("Filtre Yok"))
+		{
+			tblexcell.setRowSorter(null);
+		}
+		else
+		{
+			rf = RowFilter.regexFilter("(?i)" + Pattern.quote(comboBox_1.getEditor().getItem().toString()) , 2);
+		}
+		sorter.setRowFilter(rf);
+		tblexcell.setRowSorter(sorter);
+	}
+	private void borcluUYGULA()
+	{
+		if ( tblexcell.getRowCount() > 0 )
+		{
+			int sat = 0 ;
+			for(int  r = 0 ; r <= tblexcell.getRowCount() - 1;r ++) 
+			{
+				sat = tblexcell.getRowSorter().convertRowIndexToModel(r);
+				tblexcell.getModel().setValueAt(txtBORCLU.getText(),sat, 2) ;
+			} 
+		}
+		tblexcell.setRowSorter(null);
+	}
+	private void alacakliARAMA()
+	{
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tblexcell.getModel())); 
+		RowFilter<TableModel, Object> rf = null;
+		if(comboBox_2.getSelectedItem().toString().equals("Bos Olanlar"))
+		{
+			rf = RowFilter.regexFilter("^\\s*$"  , 5);
+		}
+		else if(comboBox_2.getSelectedItem().toString().equals("Bos Olmayanlar"))
+		{
+			rf = RowFilter.regexFilter("(?!$|\\s+).*"  , 5);
+		}
+		else if(comboBox_2.getSelectedItem().toString().equals("Filtre Yok"))
+		{
+			tblexcell.setRowSorter(null);
+		}
+		else
+		{
+			rf = RowFilter.regexFilter("(?i)" + Pattern.quote(comboBox_2.getEditor().getItem().toString()) , 5);
+		}
+		sorter.setRowFilter(rf);
+		tblexcell.setRowSorter(sorter);
+
+	}
+	private void alacakliUYGULA()
+	{
+		if ( tblexcell.getRowCount() > 0 )
+		{
+			int sat = 0 ;
+			for(int  r = 0 ; r <= tblexcell.getRowCount() - 1;r ++) 
+			{
+				sat = tblexcell.getRowSorter().convertRowIndexToModel(r);
+				tblexcell.getModel().setValueAt(txtALACAKLI.getText(),sat, 5) ;
+			} 
+		}
+		tblexcell.setRowSorter(null);
 	}
 	public static void cari_kaydet()
 	{

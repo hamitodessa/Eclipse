@@ -3,7 +3,6 @@ package OBS_2025;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -75,11 +74,11 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 
+@SuppressWarnings({"serial","static-access"})
 public class ZAYI extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
-
 	private ArrayList<String> listSomeString = null ;
 	private ArrayList<String> listBarkod = null ;
 	private ArrayList<String> listdepo = null ;

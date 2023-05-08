@@ -43,6 +43,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import java.awt.Font;
 
+@SuppressWarnings({"serial","static-access","deprecation","unused"})
 public class IRSALIYE_ARA extends JDialog {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);

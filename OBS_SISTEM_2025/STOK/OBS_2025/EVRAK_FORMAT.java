@@ -8,7 +8,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
-import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
@@ -29,6 +28,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import java.awt.Font;
 import java.awt.Color;
 
+@SuppressWarnings({"serial","static-access"})
 public class EVRAK_FORMAT extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);

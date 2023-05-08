@@ -35,6 +35,7 @@ import net.proteanit.sql.DbUtils;
 import java.awt.Font;
 import java.sql.ResultSet;
 
+@SuppressWarnings({"serial","static-access","unused"})
 public class GIDECEGI_YER extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);

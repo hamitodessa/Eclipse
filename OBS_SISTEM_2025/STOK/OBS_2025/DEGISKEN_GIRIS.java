@@ -33,8 +33,6 @@ import net.proteanit.sql.DbUtils;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
-import java.awt.Cursor;
-
 import javax.swing.JComboBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -43,6 +41,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.SystemColor;
 
+@SuppressWarnings({"serial","static-access"})
 public class DEGISKEN_GIRIS extends JInternalFrame {
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();

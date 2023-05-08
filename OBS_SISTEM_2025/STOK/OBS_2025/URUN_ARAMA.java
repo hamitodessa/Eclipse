@@ -2,7 +2,6 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.ResultSet;
@@ -39,6 +38,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
+@SuppressWarnings({"serial","static-access"})
 public class URUN_ARAMA extends JDialog {
 	private JTable table;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();

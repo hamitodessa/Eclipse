@@ -83,6 +83,7 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 
+@SuppressWarnings({"serial","static-access","deprecation","unused"})
 public class IRSALIYE extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -133,6 +134,7 @@ public class IRSALIYE extends JInternalFrame {
 	private static JComboBox<String> cmbozkod ;
 	private static JComboBox<String> cmbcins;
 	private static  String tar = "" ;
+
 	private static  String fattar = "" ;
 	private static  String sevktar = "" ;
 	private static boolean yeni_fat = false;
@@ -155,6 +157,7 @@ public class IRSALIYE extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("removal")
 	public IRSALIYE() {
 		setTitle("IRSALIYE		- SATIS");
 		setResizable(true);
@@ -436,6 +439,7 @@ public class IRSALIYE extends JInternalFrame {
 			});
 		
 		txtadres.addMouseListener(new MouseAdapter() {
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
@@ -1296,7 +1300,8 @@ public class IRSALIYE extends JInternalFrame {
 					}
 		//***********
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
-       			{		@Override
+       			{	
+				@Override
 				public void tableChanged(TableModelEvent e) {
  	   				  TableModel model = (TableModel)e.getSource();
   			   			if (model.getRowCount() > 0) {
@@ -1679,6 +1684,7 @@ public class IRSALIYE extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz1", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
+
 	private static void sat_yaz_2(int i)
 	{
 		try {
@@ -1774,6 +1780,7 @@ public class IRSALIYE extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz2", JOptionPane.ERROR_MESSAGE);     
 		}
 	}
+
 	private static double sat_toplam(double tutar,double isk ,double kdv ,double tev )
 	{
 	       double double_0, double_1, double_2;

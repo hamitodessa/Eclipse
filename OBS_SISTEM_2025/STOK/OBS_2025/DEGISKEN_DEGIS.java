@@ -14,7 +14,6 @@ import OBS_C_2025.STOK_ACCESS;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
-import java.awt.Cursor;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -23,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
+@SuppressWarnings({"serial","static-access"})
 public class DEGISKEN_DEGIS extends JInternalFrame {
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();

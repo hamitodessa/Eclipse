@@ -51,6 +51,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import javax.swing.JFormattedTextField;
 
+@SuppressWarnings({"serial","static-access"})
 public class URUN_KART extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();

@@ -70,6 +70,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.EtchedBorder;
 import java.awt.SystemColor;
 
+@SuppressWarnings({"serial","static-access","unused"})
 public class STK_YIL_SONU extends JInternalFrame {
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -103,6 +104,7 @@ public class STK_YIL_SONU extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("removal")
 	public STK_YIL_SONU() {
 		setResizable(true);
 		setMaximizable(true);
@@ -411,7 +413,8 @@ public class STK_YIL_SONU extends JInternalFrame {
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 	//***********
 				table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
-		       			{		@Override
+		       			{
+						@Override
 						public void tableChanged(TableModelEvent e) 
 		       			{
 		 	   				  TableModel model = (TableModel)e.getSource();
@@ -688,6 +691,7 @@ public class STK_YIL_SONU extends JInternalFrame {
 	
 class MyItemListener implements ItemListener
 {
+	@SuppressWarnings("removal")
 	@Override
   public void itemStateChanged(ItemEvent e) {
     Object source = e.getSource();

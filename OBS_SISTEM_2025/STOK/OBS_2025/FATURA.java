@@ -1391,7 +1391,9 @@ public class FATURA extends JInternalFrame {
 			JButton button_1 = new JButton("");
 			button_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					son_fisoku();
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
 			});
 			button_1.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));

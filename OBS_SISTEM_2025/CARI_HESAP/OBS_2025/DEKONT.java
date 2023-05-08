@@ -63,7 +63,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 
-@SuppressWarnings({"serial","static-access" ,"deprecation"} )
+@SuppressWarnings({"serial","static-access" ,"deprecation","unused"} )
 public class DEKONT extends JInternalFrame {
 
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -153,7 +153,6 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		dtc.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {
@@ -460,7 +459,6 @@ public class DEKONT extends JInternalFrame {
 
 		btnbh = new JButton("");
 		btnbh.addActionListener(new ActionListener() {
-			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent e) {
 				if (cmbbhes.getItemAt(cmbbhes.getSelectedIndex()).toString() == "") return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -593,6 +591,7 @@ public class DEKONT extends JInternalFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
 				{
+					if (txtbtutar.isEnabled() == false) return;
 					try 
 					{
 						Double dbal = DecimalFormat.getNumberInstance().parse(txtatutar.getText()).doubleValue();
@@ -779,7 +778,6 @@ public class DEKONT extends JInternalFrame {
 
 		cmbbhes.setEnabled(false);
 		cmbbhes.addActionListener(new ActionListener() {
-			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				hpl = new String[3];
@@ -801,6 +799,7 @@ public class DEKONT extends JInternalFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
 					try {
+						if (cmbbhes.isEnabled() == false) return;
 						HESAP_PLN hsp ;
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 						hsp = new HESAP_PLN();
@@ -963,7 +962,6 @@ public class DEKONT extends JInternalFrame {
 
 		btnah = new JButton("");
 		btnah.addActionListener(new ActionListener() {
-			@SuppressWarnings({ "static-access", "unused" })
 			public void actionPerformed(ActionEvent e) {
 				if (cmbbhes.getItemAt(cmbahes.getSelectedIndex()).toString() == "") return;
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -1039,7 +1037,6 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		cmba.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			public void keyPressed(KeyEvent e) {
 				try {
 					if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
@@ -1094,6 +1091,7 @@ public class DEKONT extends JInternalFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
 				{
+					if (txtatutar.isEnabled() == false) return;
 					try {
 						Double dbborc = DecimalFormat.getNumberInstance().parse(txtbtutar.getText()).doubleValue();
 						Double kusur = Double.parseDouble(txtakur.getText());
@@ -1126,7 +1124,6 @@ public class DEKONT extends JInternalFrame {
 		txtatutar.setEnabled(false);
 		txtatutar.setText("0.00");
 		txtatutar.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {
@@ -1186,7 +1183,6 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		txtakur.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			public void keyPressed(KeyEvent e) {
 
 				try {
@@ -1274,7 +1270,6 @@ public class DEKONT extends JInternalFrame {
 		cmbahes = new JComboBox<String>();
 		cmbahes.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
 		cmbahes.addActionListener(new ActionListener() {
-			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				hpl = new String[3];
@@ -1291,11 +1286,11 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		cmbahes.getEditor().getEditorComponent().addMouseListener(new MouseAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
 					try {
+						if (cmbahes.isEnabled() == false) return;
 						HESAP_PLN hsp ;
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 						hsp = new HESAP_PLN();
@@ -1313,7 +1308,6 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		cmbahes.getEditor().getEditorComponent().addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {
@@ -1406,7 +1400,6 @@ public class DEKONT extends JInternalFrame {
 		txtkod.setDocument(new JTextFieldLimit(5));
 		JTextFieldRegularPopupMenu.addTo(txtkod);
 		txtkod.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				String[] parts;
@@ -1692,7 +1685,6 @@ public class DEKONT extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yeni Dekont", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	@SuppressWarnings("static-access")
 	private double kur_oku(String cins,String tur)
 	{
 		double kur =1 ;

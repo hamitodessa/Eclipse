@@ -49,8 +49,6 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import javax.swing.text.Document;
-
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -80,11 +78,8 @@ import javax.swing.RowFilter;
 import javax.swing.JSeparator;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
-import javax.swing.DefaultComboBoxModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings({"serial" , "static-access","deprecation"})
 public class DISTAN_AKTAR extends JInternalFrame {
@@ -93,18 +88,12 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 	private JTabbedPane tabbedPane ;
 	
-	private JTextField txtkod;
-	
 	private static JTable tblexcell;
-	
-	private JLabel lblunvan ;
 	private static JLabel lblborc ;
 	private static JLabel lblalacak ;
 	private static JLabel lblsatir ;
 	private static JLabel lblNewLabel  ;
 	private static JComboBox<String> comboBox  ;
-	private JComboBox<String> comboBox_1 ;
-	private JComboBox<String> comboBox_2 ;
 	private JFileChooser chooser;
 	private static JTable table;
 	private static JTable table_1;
@@ -112,7 +101,10 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private static boolean ilk = true;
 	public static JSplitPane splitPane ;
 	private JTextField txtBORCLU;
-	private JTextField txtALACAKLI;
+	private JTextField txtARAMA;
+	private JTextField txtALACAK;
+	private JLabel lblunvan_1 ;
+	private JLabel lblunvan_2 ;
 	/**
 	 * Launch the application.
 	 */
@@ -197,8 +189,11 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		btnNewButton_2.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/icons8-compose-16.png")));
 		toolBar_1.add(btnNewButton_2);
 		
-		txtkod = new JTextField();
-		txtkod.addMouseListener(new MouseAdapter() {
+		txtBORCLU = new JTextField();
+		txtBORCLU.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtBORCLU.setBounds(603, 18, 100, 20);
+		txtBORCLU.setColumns(12);
+		txtBORCLU.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if (e.getClickCount() == 2) 
@@ -207,9 +202,9 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					try {
 						hsp = new HESAP_PLN();
 						hsp.show(); 
-						txtkod.setText( OBS_SIS_2025_ANA_CLASS.hsp_hsp_kodu);
+						txtBORCLU.setText( OBS_SIS_2025_ANA_CLASS.hsp_hsp_kodu);
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-						lblunvan.setText(CARI_ISIM_OKU.isim(txtkod.getText())[0]);
+						lblunvan_1.setText(CARI_ISIM_OKU.isim(txtBORCLU.getText())[0]);
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
@@ -219,123 +214,137 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				}
 			}
 		});
-		txtkod .getDocument().addDocumentListener(new DocumentListener() {
+		txtBORCLU.getDocument().addDocumentListener(new DocumentListener() {
 		 public void changedUpdate(DocumentEvent e) {
 		  
 			    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-			    	lblunvan.setText(CARI_ISIM_OKU.isim(txtkod.getText())[0]);
+			    	lblunvan_1.setText(CARI_ISIM_OKU.isim(txtBORCLU.getText())[0]);
 					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				
 		  }
 		  public void removeUpdate(DocumentEvent e) {
 		    
 			    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-			    	lblunvan.setText(CARI_ISIM_OKU.isim(txtkod.getText())[0]);
+			    	lblunvan_1.setText(CARI_ISIM_OKU.isim(txtBORCLU.getText())[0]);
 					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				
 			  }
 		  public void insertUpdate(DocumentEvent e) {
 		    
 			    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-			    	lblunvan.setText(CARI_ISIM_OKU.isim(txtkod.getText())[0]);
+			    	lblunvan_1.setText(CARI_ISIM_OKU.isim(txtBORCLU.getText())[0]);
 					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				
 			  }
 			});
-		txtkod.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtkod.setBounds(170, 11, 132, 20);
-		panel.add(txtkod);
-		txtkod.setColumns(10);
-		
-		lblunvan = new JLabel("...");
-		lblunvan.setBounds(170, 35, 267, 14);
-		panel.add(lblunvan);
-		
-		comboBox_1 = new JComboBox<String>();
-		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"", "Filtre Yok", "Bos Olanlar", "Bos Olmayanlar"}));
-		comboBox_1.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				borcluARAMA();
-			}
-		});
-		comboBox_1.setEditable(true);
-		comboBox_1.setBounds(603, 45, 100, 22);
-		panel.add(comboBox_1);
-		///
-		JTextField editorComponent = (JTextField) comboBox_1.getEditor()
-	            .getEditorComponent();
-	      Document doc = editorComponent.getDocument();
-	      doc.addDocumentListener(new DocumentListener() {
-	         @Override
-	         public void removeUpdate(DocumentEvent e) {
-	        		borcluARAMA();
-	         }
-	         @Override
-	         public void insertUpdate(DocumentEvent e) {
-	        		borcluARAMA();
-	         }
-	         @Override
-	         public void changedUpdate(DocumentEvent e) {
-	        		borcluARAMA();
-	         }
-	      });
-		///
-
-		comboBox_2 = new JComboBox<String>();
-		comboBox_2.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				alacakliARAMA();
-			}
-		});
-		comboBox_2.setEditable(true);
-		comboBox_2.setBounds(942, 45, 100, 22);
-		panel.add(comboBox_2);
-		JTextField editorComponent1 = (JTextField) comboBox_2.getEditor()
-	            .getEditorComponent();
-	      Document doc1 = editorComponent1.getDocument();
-	      doc1.addDocumentListener(new DocumentListener() {
-	         @Override
-	         public void removeUpdate(DocumentEvent e) {
-	        	alacakliARAMA();
-	         }
-	         @Override
-	         public void insertUpdate(DocumentEvent e) {
-	        	 alacakliARAMA();
-	         }
-	         @Override
-	         public void changedUpdate(DocumentEvent e) {
-	        	 alacakliARAMA();
-	         }
-	      });
-
-		
-		txtBORCLU = new JTextField();
-		txtBORCLU.setBounds(603, 11, 96, 20);
 		panel.add(txtBORCLU);
-		txtBORCLU.setColumns(10);
 		
-		JButton btnNewButton_3 = new JButton(".....");
+		
+		JButton btnNewButton_3 = new JButton("");
+		btnNewButton_3.setToolTipText("Uygula");
+		btnNewButton_3.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/icons8-approved-16.png")));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				borcluUYGULA();
 			}
 		});
-		btnNewButton_3.setBounds(709, 11, 49, 23);
+		btnNewButton_3.setBounds(708, 17, 24, 24);
 		panel.add(btnNewButton_3);
 		
-		txtALACAKLI = new JTextField();
-		txtALACAKLI.setBounds(942, 11, 96, 20);
-		panel.add(txtALACAKLI);
-		txtALACAKLI.setColumns(10);
-		
-		JButton btnNewButton_10 = new JButton(".....");
-		btnNewButton_10.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				alacakliUYGULA();
+		txtARAMA = new JTextField();
+		txtARAMA.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtARAMA.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				aciklamaARAMA();
 			}
 		});
-		btnNewButton_10.setBounds(1048, 11, 49, 23);
-		panel.add(btnNewButton_10);
+		txtARAMA.getDocument().addDocumentListener(new DocumentListener() {
+			 public void changedUpdate(DocumentEvent e) {
+				    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+				    	aciklamaARAMA();
+						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+			  }
+			  public void removeUpdate(DocumentEvent e) {
+				    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+				    	aciklamaARAMA();
+						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+				  }
+			  public void insertUpdate(DocumentEvent e) {
+				    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+				    	aciklamaARAMA();
+						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+				  }
+				});
+
+		txtARAMA.setBounds(160, 46, 287, 20);
+		panel.add(txtARAMA);
+		txtARAMA.setColumns(10);
+		
+		JLabel lblNewLabel_4 = new JLabel("Arama");
+		lblNewLabel_4.setBounds(100, 49, 46, 14);
+		panel.add(lblNewLabel_4);
+		
+		txtALACAK = new JTextField();
+		txtALACAK.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtALACAK.setColumns(12);
+		txtALACAK.setBounds(945, 18, 100, 20);
+		txtALACAK.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if (e.getClickCount() == 2) 
+				{
+					HESAP_PLN hsp ;
+					try {
+						hsp = new HESAP_PLN();
+						hsp.show(); 
+						txtALACAK.setText( OBS_SIS_2025_ANA_CLASS.hsp_hsp_kodu);
+						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+						lblunvan_2.setText(CARI_ISIM_OKU.isim(txtALACAK.getText())[0]);
+						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+					} catch (ClassNotFoundException e1) {
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+		txtALACAK.getDocument().addDocumentListener(new DocumentListener() {
+		 public void changedUpdate(DocumentEvent e) {
+			    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+			    	lblunvan_2.setText(CARI_ISIM_OKU.isim(txtALACAK.getText())[0]);
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+		  }
+		  public void removeUpdate(DocumentEvent e) {
+			    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+			    	lblunvan_2.setText(CARI_ISIM_OKU.isim(txtALACAK.getText())[0]);
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+			  }
+		  public void insertUpdate(DocumentEvent e) {
+			    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+			    	lblunvan_2.setText(CARI_ISIM_OKU.isim(txtALACAK.getText())[0]);
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+			  }
+			});
+
+		panel.add(txtALACAK);
+		
+		lblunvan_1 = new JLabel("...");
+		lblunvan_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblunvan_1.setBounds(603, 49, 267, 14);
+		panel.add(lblunvan_1);
+		
+		lblunvan_2 = new JLabel("...");
+		lblunvan_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblunvan_2.setBounds(945, 49, 212, 14);
+		panel.add(lblunvan_2);
+		
+		JButton btnNewButton_3_1 = new JButton("");
+		btnNewButton_3_1.setToolTipText("Uygula");
+		btnNewButton_3_1.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/icons8-approved-16.png")));
+		btnNewButton_3_1.setBounds(1050, 17, 24, 24);
+		panel.add(btnNewButton_3_1);
 		
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setDividerSize(1);
@@ -1155,7 +1164,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					//sorter = new TableRowSorter<TableModel>(model);
 					RowFilter<TableModel, Object> rf = null;
 					rf = RowFilter.regexFilter("(?i)" + Pattern.quote(bir) , 1);
-					
 					sorter.setRowFilter(rf);
 					tblexcell.setRowSorter(sorter);
 					if ( tblexcell.getRowCount() > 0 )
@@ -1236,25 +1244,17 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
-	private void borcluARAMA()
+	private void aciklamaARAMA()
 	{
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tblexcell.getModel())); 
 		RowFilter<TableModel, Object> rf = null;
-		if(comboBox_1.getSelectedItem().toString().equals("Bos Olanlar"))
-		{
-			rf = RowFilter.regexFilter("^\\s*$"  , 2);
-		}
-		else if(comboBox_1.getSelectedItem().toString().equals("Bos Olmayanlar"))
-		{
-			rf = RowFilter.regexFilter("(?!$|\\s+).*"  , 2);
-		}
-		else if(comboBox_1.getSelectedItem().toString().equals("Filtre Yok"))
+		if(txtARAMA.getText().toString().equals(""))
 		{
 			tblexcell.setRowSorter(null);
 		}
 		else
 		{
-			rf = RowFilter.regexFilter("(?i)" + Pattern.quote(comboBox_1.getEditor().getItem().toString()) , 2);
+			rf = RowFilter.regexFilter("(?iu)" +txtARAMA.getText().toString() , 1);
 		}
 		sorter.setRowFilter(rf);
 		tblexcell.setRowSorter(sorter);
@@ -1268,43 +1268,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			{
 				sat = tblexcell.getRowSorter().convertRowIndexToModel(r);
 				tblexcell.getModel().setValueAt(txtBORCLU.getText(),sat, 2) ;
-			} 
-		}
-		tblexcell.setRowSorter(null);
-	}
-	private void alacakliARAMA()
-	{
-		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tblexcell.getModel())); 
-		RowFilter<TableModel, Object> rf = null;
-		if(comboBox_2.getSelectedItem().toString().equals("Bos Olanlar"))
-		{
-			rf = RowFilter.regexFilter("^\\s*$"  , 5);
-		}
-		else if(comboBox_2.getSelectedItem().toString().equals("Bos Olmayanlar"))
-		{
-			rf = RowFilter.regexFilter("(?!$|\\s+).*"  , 5);
-		}
-		else if(comboBox_2.getSelectedItem().toString().equals("Filtre Yok"))
-		{
-			tblexcell.setRowSorter(null);
-		}
-		else
-		{
-			rf = RowFilter.regexFilter("(?i)" + Pattern.quote(comboBox_2.getEditor().getItem().toString()) , 5);
-		}
-		sorter.setRowFilter(rf);
-		tblexcell.setRowSorter(sorter);
-
-	}
-	private void alacakliUYGULA()
-	{
-		if ( tblexcell.getRowCount() > 0 )
-		{
-			int sat = 0 ;
-			for(int  r = 0 ; r <= tblexcell.getRowCount() - 1;r ++) 
-			{
-				sat = tblexcell.getRowSorter().convertRowIndexToModel(r);
-				tblexcell.getModel().setValueAt(txtALACAKLI.getText(),sat, 5) ;
 			} 
 		}
 		tblexcell.setRowSorter(null);
@@ -1411,3 +1374,18 @@ public class DISTAN_AKTAR extends JInternalFrame {
 //     }
 
 //new Object[]{row.getCell(0).getDateCellValue()
+
+//if(comboBox_1.getSelectedItem().toString().equals("Bos Olanlar"))
+//{
+//	rf = RowFilter.regexFilter("^\\s*$"  , 2);
+//}
+//else if(comboBox_1.getSelectedItem().toString().equals("Bos Olmayanlar"))
+//{
+//	rf = RowFilter.regexFilter("(?!$|\\s+).*"  , 2);
+//}
+//else if(comboBox_1.getSelectedItem().toString().equals("Filtre Yok"))
+//{
+//	tblexcell.setRowSorter(null);
+//}
+
+

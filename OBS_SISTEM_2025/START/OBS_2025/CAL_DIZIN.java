@@ -172,7 +172,7 @@ public class CAL_DIZIN extends JFrame {
 	public CAL_DIZIN() {
 		setTitle("CALISMA DIZINI");
 		//setAlwaysOnTop(true);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(CAL_DIZIN.class.getResource("/ICONLAR/obs_p.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CAL_DIZIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {

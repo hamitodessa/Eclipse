@@ -209,7 +209,7 @@ public class OBS_MAIN extends JFrame {
 	public OBS_MAIN() {
 //2663 satir
 		setFont(new Font("Dialog", Font.BOLD, 12));
-		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_MAIN.class.getResource("/ICONLAR/obs_p.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_MAIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1374, 655);
 

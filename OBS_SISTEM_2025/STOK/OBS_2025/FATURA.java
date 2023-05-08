@@ -982,6 +982,7 @@ public class FATURA extends JInternalFrame {
 		splitPane_1.setLeftComponent(splitPane_2);
 
 		JToolBar toolBar_1 = new JToolBar();
+		toolBar_1.setFloatable(false);
 		toolBar_1.setMinimumSize(new Dimension(30, 0));
 		toolBar_1.setMaximumSize(new Dimension(30, 0));
 		toolBar_1.setOrientation(SwingConstants.VERTICAL);

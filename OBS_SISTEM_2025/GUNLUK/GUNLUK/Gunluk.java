@@ -14,6 +14,9 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDayChooser;
+import com.toedter.calendar.JMonthChooser;
+
 import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.MyTreeCellRenderer;
 import OBS_2025.OBS_MAIN;
@@ -226,7 +229,6 @@ public class Gunluk extends JInternalFrame {
 				}
 			}
 		});
-
 		panelToolbar.add(btnNewButton_1);
 
 		JButton btnNewButton_2 = new JButton("");
@@ -242,6 +244,33 @@ public class Gunluk extends JInternalFrame {
 		///
         
         calendar = new JCalendar(Locale.UK);
+        JDayChooser dayChooser = calendar.getDayChooser();
+        dayChooser.setAlwaysFireDayProperty(true); // here is the key
+        JMonthChooser monthChooser = calendar.getMonthChooser();
+        monthChooser.getComboBox().addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				if (ilk == true)
+				{
+					return;
+				}
+				try {
+					int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
+					if (activ_sayfa == 0)
+					{
+						basla();
+					}
+					else 
+					{
+						aylik_gorunum_doldur();
+					}
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
+				} catch (ClassNotFoundException | ParseException |SQLException e) {
+					e.printStackTrace();
+				} 
+			}
+		});
+       
 		calendar.setForeground(new Color(0, 128, 128));
 		calendar.getDayChooser().setDayBordersVisible(true);
 		calendar.getMonthChooser().getComboBox().setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -265,13 +294,9 @@ public class Gunluk extends JInternalFrame {
 						aylik_gorunum_doldur();
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
-				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
+				} catch (ClassNotFoundException | ParseException |SQLException e) {
 					e.printStackTrace();
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				} 
 			}
 		});
 		calendar.setTodayButtonText("Bugun");

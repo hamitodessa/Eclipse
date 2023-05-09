@@ -1394,7 +1394,9 @@ public class FATURA extends JInternalFrame {
 			button_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					//getContentPane().setCursor(oac.WAIT_CURSOR);
 					son_fisoku();
+					//getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
 			});
@@ -2813,9 +2815,9 @@ public class FATURA extends JInternalFrame {
 	{
 		try
 		{
-			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+			//setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			textField.setText( f_Access.son_no_al(cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G"));
-			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			//setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
 		{

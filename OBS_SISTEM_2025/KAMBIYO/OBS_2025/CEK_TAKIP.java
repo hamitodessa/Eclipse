@@ -33,6 +33,7 @@ import java.awt.Cursor;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
+@SuppressWarnings({"serial","static-access"})
 public class CEK_TAKIP extends JInternalFrame {
 	private static JTextField textField;
 	private static JLabel lblNewLabel_10 ;
@@ -58,6 +59,7 @@ public class CEK_TAKIP extends JInternalFrame {
 	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+
 	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
 
 	/**

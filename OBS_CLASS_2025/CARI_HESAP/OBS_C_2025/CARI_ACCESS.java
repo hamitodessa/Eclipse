@@ -74,10 +74,9 @@ public class CARI_ACCESS {
 		  	_Logger.Logla(mesaj,evrak, dBILGI);
 		}
 	}
-	public void cari_dekont_kaydet(String bhes,String tar,int evrak,String bcins,Double bkur,Double borc ,
-			String alhes,String acins,Double alkur,Double alacak,String izahat,String kod,String user, String mesaj,String evrakl, DIZIN_BILGILERI dBILGI) throws SQLException, ClassNotFoundException
+	public void cari_dekont_kaydet(dEKONT_BILGI dbILGI, String mesaj,String evrakl, DIZIN_BILGILERI dBILGI) throws SQLException, ClassNotFoundException
 	{
-		_ICari.cari_dekont_kaydet(bhes, tar, evrak, bcins, bkur, borc, alhes, acins, alkur, alacak, izahat, kod, user);
+		_ICari.cari_dekont_kaydet(dbILGI);
 		if (BAGLAN.cariDizin.lOG == true)
 		{
 		for ( ILOGGER  _Logger : _Logger )

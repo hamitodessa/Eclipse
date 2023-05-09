@@ -62,7 +62,9 @@ import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.dEKONT_BILGI;
 
+@SuppressWarnings({"serial","static-access"})
 public class CEK_CIKIS extends JInternalFrame {
 
 	public static JTable table;
@@ -103,6 +105,7 @@ public class CEK_CIKIS extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({"removal","deprecation"})
 	public CEK_CIKIS() {
 
 		setTitle("CEK CIKIS");
@@ -368,7 +371,7 @@ public class CEK_CIKIS extends JInternalFrame {
 				try
 				{
 					int int_1  = 0;
-					String str_2 ="";
+					//String str_2 ="";
 					String sts ="" ;
 					//**************** EVRAK NO OKU ************
 					getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -768,15 +771,21 @@ public class CEK_CIKIS extends JInternalFrame {
 						}
 
 						str_4 = textField.getText()+  "'Bordro ile " + model.getValueAt(i , 0).toString() + " Nolu " + vade + " Vadeli �ek" ;
-						c_Access.cari_dekont_kaydet(textField_1.getText(),
-								TARIH_CEVIR.tarih_geri(dateChooser),
-								eno,
-								"",1.00,
-								Double.parseDouble( model.getValueAt(i, 8).toString()),
-								alh,
-								"",1.00,
-								Double.parseDouble( model.getValueAt(i, 8).toString()),
-								str_4,"" , GLOBAL.KULL_ADI,
+						dEKONT_BILGI dBilgi = new dEKONT_BILGI();
+						dBilgi.setbHES(textField_1.getText());
+						dBilgi.settAR(TARIH_CEVIR.tarih_geri(dateChooser));
+						dBilgi.seteVRAK(eno);
+						dBilgi.setbCINS("");
+						dBilgi.setbKUR(1);
+						dBilgi.setbORC(Double.parseDouble( model.getValueAt(i, 8).toString()));
+						dBilgi.setaHES(alh);
+						dBilgi.setaCINS("");
+						dBilgi.setaKUR(1);
+						dBilgi.setaLACAK(Double.parseDouble( model.getValueAt(i, 8).toString()));
+						dBilgi.setiZAHAT(str_4);
+						dBilgi.setkOD("");
+						dBilgi.setuSER( GLOBAL.KULL_ADI);
+						c_Access.cari_dekont_kaydet(dBilgi,
 								"Cek Cikis   Alacakli Hes:" + alh + " Tut:" + Double.parseDouble( model.getValueAt(i, 8).toString())  ,
 								textField.getText() ,
 								BAGLAN_LOG.cariLogDizin);

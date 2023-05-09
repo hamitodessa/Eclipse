@@ -23,7 +23,7 @@ import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
-
+import OBS_C_2025.dEKONT_BILGI;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -1587,21 +1587,23 @@ public class DEKONT extends JInternalFrame {
 				mesaj = mesaj + " Msj:" + mesaj1.substring(0, 95  -(mesaj.length())) ;
 			}
 			c_Access.evrak_yoket(Integer.parseInt(txtevrak.getText()),txtevrak.getText() + " Dekont Silme",txtevrak.getText(), BAGLAN_LOG.cariLogDizin);
-			c_Access.cari_dekont_kaydet(cmbbhes.getSelectedItem().toString(),
-					str,
-					Integer.parseInt(txtevrak.getText()),
-					cmbb.getItemAt(cmbb.getSelectedIndex()).toString(),
-					Double.parseDouble(txtbkur.getText()),
-					DecimalFormat.getNumberInstance().parse(txtbtutar.getText()).doubleValue(),
-					cmbahes.getSelectedItem().toString(),
-					cmba.getItemAt(cmbb.getSelectedIndex()).toString(),
-					Double.parseDouble(txtakur.getText()),
-					DecimalFormat.getNumberInstance().parse(txtatutar.getText()).doubleValue(),
-					txtaciklama.getText(),txtkod.getText() , GLOBAL.KULL_ADI,
-					 mesaj ,
-					txtevrak.getText() ,
-					BAGLAN_LOG.cariLogDizin
-					);
+			
+			dEKONT_BILGI dBilgi = new dEKONT_BILGI();
+			dBilgi.setbHES(cmbbhes.getSelectedItem().toString());
+			dBilgi.settAR(str);
+			dBilgi.seteVRAK(Integer.parseInt(txtevrak.getText()));
+			dBilgi.setbCINS(cmbb.getItemAt(cmbb.getSelectedIndex()).toString());
+			dBilgi.setbKUR(Double.parseDouble(txtbkur.getText()));
+			dBilgi.setbORC(DecimalFormat.getNumberInstance().parse(txtbtutar.getText()).doubleValue());
+			dBilgi.setaHES(cmbahes.getSelectedItem().toString());
+			dBilgi.setaCINS(cmba.getItemAt(cmbb.getSelectedIndex()).toString());
+			dBilgi.setaKUR(Double.parseDouble(txtakur.getText()));
+			dBilgi.setaLACAK(DecimalFormat.getNumberInstance().parse(txtatutar.getText()).doubleValue());
+			dBilgi.setiZAHAT(txtaciklama.getText());
+			dBilgi.setkOD(txtkod.getText());
+			dBilgi.setuSER( GLOBAL.KULL_ADI);
+			
+			c_Access.cari_dekont_kaydet(dBilgi,	 mesaj ,txtevrak.getText() ,BAGLAN_LOG.cariLogDizin	);
 
 			sifirla();
 			txtevrak.setText("0");

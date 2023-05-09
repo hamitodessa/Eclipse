@@ -28,9 +28,11 @@ import net.proteanit.sql.DbUtils;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+@SuppressWarnings({"serial","static-access"})
 public class CEK_RAPOR extends JInternalFrame {
 	private static JTable table;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+
 	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
 	public static JScrollPane scrollPane ;
 	/**
@@ -68,6 +70,7 @@ public class CEK_RAPOR extends JInternalFrame {
 		};
 		table.setGridColor(oac.gridcolor);
 		table.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {

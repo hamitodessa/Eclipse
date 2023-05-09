@@ -31,8 +31,7 @@ public interface ICARI_HESAP {
 	public int cari_fisno_al() throws ClassNotFoundException, SQLException;
 	public void evrak_yoket(int num) throws ClassNotFoundException, SQLException;
 	public boolean cari_fino_bak(int fisno) throws ClassNotFoundException, SQLException;
-	public void cari_dekont_kaydet(String bhes,String tar,int evrak,String bcins,Double bkur,Double borc ,
-			String alhes,String acins,Double alkur,Double alacak,String izahat,String kod,String user) throws SQLException, ClassNotFoundException;
+	public void cari_dekont_kaydet(dEKONT_BILGI dBilgi) throws SQLException, ClassNotFoundException;
 	public ResultSet hsp_pln(String arama) throws ClassNotFoundException, SQLException;
 	public void hsp_sil(String hesap) throws ClassNotFoundException, SQLException;
 	public String kod_ismi(String kodu) throws ClassNotFoundException, SQLException;

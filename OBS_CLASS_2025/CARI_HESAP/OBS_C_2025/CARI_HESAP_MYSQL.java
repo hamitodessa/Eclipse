@@ -435,47 +435,46 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		}
 		return result;	
 	}
-	public void cari_dekont_kaydet(String bhes, String tar, int evrak, String bcins, Double bkur, Double borc,
-			String alhes, String acins, Double alkur, Double alacak, String izahat, String kod, String user)
+	public void cari_dekont_kaydet(dEKONT_BILGI dBilgi)
 					throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql  = "INSERT INTO SATIRLAR (HESAP,TARIH,H,EVRAK,CINS,KUR,BORC,ALACAK,KOD,USER) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
-		stmt.setString(1, bhes);
-		stmt.setString(2, tar);
+		stmt.setString(1, dBilgi.getbHES());
+		stmt.setString(2, dBilgi.gettAR());
 		stmt.setString(3, "B");
-		stmt.setInt(4, evrak);
-		stmt.setString(5, bcins);
-		stmt.setDouble(6, bkur);
-		stmt.setDouble(7, (double) Math.round(borc * 100) / 100);
+		stmt.setInt(4, dBilgi.geteVRAK());
+		stmt.setString(5, dBilgi.getbCINS());
+		stmt.setDouble(6, dBilgi.getbKUR());
+		stmt.setDouble(7, (double) Math.round(dBilgi.getbORC() * 100) / 100);
 		stmt.setDouble(8, 0);
-		stmt.setString(9, kod);
-		stmt.setString(10, user);
+		stmt.setString(9, dBilgi.getkOD());
+		stmt.setString(10, dBilgi.getuSER());
 		stmt.executeUpdate();
 		//**********************************
 		PreparedStatement stmt2 = null;
 		sql  = "INSERT INTO SATIRLAR (HESAP,TARIH,H,EVRAK,CINS,KUR,BORC,ALACAK,KOD,USER) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?)" ; 
 		stmt2 = con.prepareStatement(sql);
-		stmt2.setString(1, alhes);
-		stmt2.setString(2, tar);
+		stmt2.setString(1, dBilgi.getaHES());
+		stmt2.setString(2, dBilgi.gettAR());
 		stmt2.setString(3, "A");
-		stmt2.setInt(4, evrak);
-		stmt2.setString(5, acins);
-		stmt2.setDouble(6, alkur);
+		stmt2.setInt(4, dBilgi.geteVRAK());
+		stmt2.setString(5, dBilgi.getaCINS());
+		stmt2.setDouble(6, dBilgi.getaKUR());
 		stmt2.setDouble(7, 0);
-		stmt2.setDouble(8, (double) Math.round(alacak * 100) / 100);
-		stmt2.setString(9, kod);
-		stmt2.setString(10, user);
+		stmt2.setDouble(8, (double) Math.round(dBilgi.getaLACAK() * 100) / 100);
+		stmt2.setString(9, dBilgi.getkOD());
+		stmt2.setString(10, dBilgi.getuSER());
 		stmt2.executeUpdate();
 		//************** IZAHAT  *********
 		PreparedStatement stmt3 = null;
 		sql = "INSERT INTO IZAHAT (EVRAK,IZAHAT) VALUES ( ?,? )" ;
 		stmt3 = con.prepareStatement(sql);
-		stmt3.setInt(1, evrak);
-		stmt3.setString(2, izahat);
+		stmt3.setInt(1, dBilgi.geteVRAK());
+		stmt3.setString(2, dBilgi.getiZAHAT());
 		stmt3.executeUpdate();
 		stmt.close();
 		stmt2.close();

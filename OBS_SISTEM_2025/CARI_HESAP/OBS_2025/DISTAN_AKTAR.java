@@ -31,6 +31,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -72,6 +73,7 @@ import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.dEKONT_BILGI;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
@@ -1325,19 +1327,27 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			{
 				mesaj = mesaj + " Msj:" + strg.substring(0, 95  -(mesaj.length())) ;
 			}
-       	c_Access.cari_dekont_kaydet(model.getValueAt(i, 2).toString(), strDate, 
-            			 evr_no, "",
-            			 1.0, asdd, 
-            			 model.getValueAt(i, 5).toString(),"", 
-            			 1.0,asdd,
-            			 strg, "", GLOBAL.KULL_ADI,
-            			mesaj  , 		String.valueOf(evr_no) ,
-     	        		BAGLAN_LOG.cariLogDizin);
-             model.setValueAt(evr_no,i, 6);
-             evr_no += 1;
-             asdd = 0;
-             dds = 0;
-             dsa = 0;
+		
+		dEKONT_BILGI dBilgi = new dEKONT_BILGI();
+		dBilgi.setbHES(model.getValueAt(i, 2).toString());
+		dBilgi.settAR(strDate);
+		dBilgi.seteVRAK(evr_no);
+		dBilgi.setbCINS("");
+		dBilgi.setbKUR(1);
+		dBilgi.setbORC(asdd);
+		dBilgi.setaHES(model.getValueAt(i, 5).toString());
+		dBilgi.setaCINS("");
+		dBilgi.setaKUR(1);
+		dBilgi.setaLACAK(asdd);
+		dBilgi.setiZAHAT(strg);
+		dBilgi.setkOD("");
+		dBilgi.setuSER( GLOBAL.KULL_ADI);
+       	c_Access.cari_dekont_kaydet(dBilgi,	mesaj,String.valueOf(evr_no) ,	BAGLAN_LOG.cariLogDizin);
+        model.setValueAt(evr_no,i, 6);
+        evr_no += 1;
+        asdd = 0;
+        dds = 0;
+        dsa = 0;
          }
 		  GuiUtil.setWaitCursor(splitPane,false);
          Thread.currentThread().isInterrupted();

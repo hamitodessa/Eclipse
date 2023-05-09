@@ -36,6 +36,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TABLO_TEXTBOX;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.dEKONT_BILGI;
 
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
@@ -67,6 +68,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings({"serial","static-access"})
 public class CEK_GIRIS extends JInternalFrame {
 	private static JTable table;
 	public static JTextField textField;
@@ -106,6 +108,7 @@ public class CEK_GIRIS extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({"removal","deprecation"})
 	public CEK_GIRIS() {
 
 		setTitle("CEK GIRIS");
@@ -378,7 +381,7 @@ public class CEK_GIRIS extends JInternalFrame {
 				try
 				{
 					int int_1  = 0;
-					String str_2 ="";
+					//String str_2 ="";
 					String sts ="" ;
 					//**************** EVRAK NO OKU ************
 					getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -966,15 +969,21 @@ public class CEK_GIRIS extends JInternalFrame {
 							vade  = qwe;
 						}
 						str_4 = textField.getText()+  "'Bordro ile " + model.getValueAt(i , 0).toString() + " Nolu " + vade + " Vadeli Çek" ;
-						c_Access.cari_dekont_kaydet(bh,
-								TARIH_CEVIR.tarih_geri_saatli(dateChooser),
-								eno,
-								"",1.00,
-								Double.parseDouble( model.getValueAt(i, 8).toString()),
-								textField_1.getText(),
-								"",1.00,
-								Double.parseDouble( model.getValueAt(i, 8).toString()),
-								str_4,"" , GLOBAL.KULL_ADI ,
+						dEKONT_BILGI dBilgi = new dEKONT_BILGI();
+						dBilgi.setbHES(bh);
+						dBilgi.settAR(TARIH_CEVIR.tarih_geri(dateChooser));
+						dBilgi.seteVRAK(eno);
+						dBilgi.setbCINS("");
+						dBilgi.setbKUR(1);
+						dBilgi.setbORC(Double.parseDouble( model.getValueAt(i, 8).toString()));
+						dBilgi.setaHES(textField_1.getText());
+						dBilgi.setaCINS("");
+						dBilgi.setaKUR(1);
+						dBilgi.setaLACAK(Double.parseDouble( model.getValueAt(i, 8).toString()));
+						dBilgi.setiZAHAT(str_4);
+						dBilgi.setkOD("");
+						dBilgi.setuSER( GLOBAL.KULL_ADI);
+						c_Access.cari_dekont_kaydet(dBilgi ,
 								"Cek Giris   Borclu Hes:" + textField_1.getText() + " Tut:" + Double.parseDouble( model.getValueAt(i, 8).toString())  ,
 								textField.getText() ,
 								BAGLAN_LOG.cariLogDizin);

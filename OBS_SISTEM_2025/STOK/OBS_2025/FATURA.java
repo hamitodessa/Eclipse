@@ -38,6 +38,7 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TABLO_TEXTBOX;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.dEKONT_BILGI;
 
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -2713,15 +2714,21 @@ public class FATURA extends JInternalFrame {
 			if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 			{
 				str_4 = textField.getText() + "'Fatura ile " + FORMATLAMA.doub_0(sdf) + " " +  model.getValueAt(0 , 6).toString() + " Urun Satisi" ;
-				c_Access.cari_dekont_kaydet(bh,
-						TARIH_CEVIR.tarih_geri_saatli(dtc),
-						e_number,
-						"",1.00,
-						tutar,
-						alh,
-						"",1.00,
-						tutar,
-						str_4,"Satis" , GLOBAL.KULL_ADI,
+				dEKONT_BILGI dBilgi = new dEKONT_BILGI();
+				dBilgi.setbHES(bh);
+				dBilgi.settAR(TARIH_CEVIR.tarih_geri_saatli(dtc));
+				dBilgi.seteVRAK(e_number);
+				dBilgi.setbCINS("");
+				dBilgi.setbKUR(1);
+				dBilgi.setbORC(tutar);
+				dBilgi.setaHES(alh);
+				dBilgi.setaCINS("");
+				dBilgi.setaKUR(1);
+				dBilgi.setaLACAK(tutar);
+				dBilgi.setiZAHAT(str_4);
+				dBilgi.setkOD("Satış");
+				dBilgi.setuSER( GLOBAL.KULL_ADI);
+				c_Access.cari_dekont_kaydet(dBilgi,
 						"Alacakli Hes:" +alh + " Tut:" +tutar+
 						" Borclu Hes:"+ bh  + " Evrak No:" + textField.getText() ,
 						String.valueOf(e_number) ,
@@ -2730,16 +2737,21 @@ public class FATURA extends JInternalFrame {
 			else if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("ALIS") )
 			{
 				str_4 = textField.getText() + "'Fatura ile " + FORMATLAMA.doub_0(sdf) + " " +  model.getValueAt(0 , 6).toString() + " Urun Girisi" ;
-
-				c_Access.cari_dekont_kaydet(bh,
-						TARIH_CEVIR.tarih_geri_saatli(dtc),
-						e_number,
-						"",1.00,
-						tutar,
-						alh,
-						"",1.00,
-						tutar,
-						str_4,"Alis" , GLOBAL.KULL_ADI,
+				dEKONT_BILGI dBilgi = new dEKONT_BILGI();
+				dBilgi.setbHES(bh);
+				dBilgi.settAR(TARIH_CEVIR.tarih_geri_saatli(dtc));
+				dBilgi.seteVRAK(e_number);
+				dBilgi.setbCINS("");
+				dBilgi.setbKUR(1);
+				dBilgi.setbORC(tutar);
+				dBilgi.setaHES(alh);
+				dBilgi.setaCINS("");
+				dBilgi.setaKUR(1);
+				dBilgi.setaLACAK(tutar);
+				dBilgi.setiZAHAT(str_4);
+				dBilgi.setkOD("Alış");
+				dBilgi.setuSER( GLOBAL.KULL_ADI);
+				c_Access.cari_dekont_kaydet(dBilgi,
 						"Alacakli Hes:" +alh + " Tut:" +tutar+
 						" Borclu Hes:"+ bh   ,
 						textField.getText() ,

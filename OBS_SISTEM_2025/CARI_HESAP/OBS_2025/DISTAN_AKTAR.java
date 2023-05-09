@@ -31,7 +31,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -343,6 +342,11 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		panel.add(lblunvan_2);
 		
 		JButton btnNewButton_3_1 = new JButton("");
+		btnNewButton_3_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				alacakliUYGULA();
+			}
+		});
 		btnNewButton_3_1.setToolTipText("Uygula");
 		btnNewButton_3_1.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/icons8-approved-16.png")));
 		btnNewButton_3_1.setBounds(1050, 17, 24, 24);
@@ -1268,12 +1272,41 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			int sat = 0 ;
 			for(int  r = 0 ; r <= tblexcell.getRowCount() - 1;r ++) 
 			{
-				sat = tblexcell.getRowSorter().convertRowIndexToModel(r);
+				if (tblexcell.getRowSorter() !=  null)
+				{
+					sat = tblexcell.getRowSorter().convertRowIndexToModel(r);
+				}
+				else
+				{
+					sat = r ;
+				}
+				
 				tblexcell.getModel().setValueAt(txtBORCLU.getText(),sat, 2) ;
 			} 
 		}
-		tblexcell.setRowSorter(null);
+		txtARAMA.setText("");
 	}
+	private void alacakliUYGULA()
+	{
+		if ( tblexcell.getRowCount() > 0 )
+		{
+			int sat = 0 ;
+			for(int  r = 0 ; r <= tblexcell.getRowCount() - 1;r ++) 
+			{
+				if (tblexcell.getRowSorter() !=  null)
+				{
+					sat = tblexcell.getRowSorter().convertRowIndexToModel(r);
+				}
+				else
+				{
+					sat = r ;
+				}
+				tblexcell.getModel().setValueAt(txtALACAK.getText(),sat, 5) ;
+			} 
+		}
+		txtARAMA.setText("");
+	}
+
 	public static void cari_kaydet()
 	{
 		//

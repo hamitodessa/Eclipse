@@ -70,10 +70,9 @@ import java.awt.GridLayout;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial" , "static-access" })
 public class Gunluk extends JInternalFrame {
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	@SuppressWarnings({ "static-access" })
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	private JTable table;
 	private JTable table_1;
@@ -244,16 +243,14 @@ public class Gunluk extends JInternalFrame {
 		///
         
         calendar = new JCalendar(Locale.UK);
-        JDayChooser dayChooser = calendar.getDayChooser();
-        dayChooser.setAlwaysFireDayProperty(true); // here is the key
-        JMonthChooser monthChooser = calendar.getMonthChooser();
-        monthChooser.getComboBox().addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
-				if (ilk == true)
+        calendar.getMonthChooser().addPropertyChangeListener(new PropertyChangeListener() {
+        	public void propertyChange(PropertyChangeEvent evt) {
+        		if (ilk == true)
 				{
 					return;
 				}
 				try {
+					
 					int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
 					if (activ_sayfa == 0)
@@ -268,9 +265,10 @@ public class Gunluk extends JInternalFrame {
 				} catch (ClassNotFoundException | ParseException |SQLException e) {
 					e.printStackTrace();
 				} 
-			}
-		});
-       
+        	}
+        });
+        JDayChooser dayChooser = calendar.getDayChooser();
+        dayChooser.setAlwaysFireDayProperty(true); // here is the key
 		calendar.setForeground(new Color(0, 128, 128));
 		calendar.getDayChooser().setDayBordersVisible(true);
 		calendar.getMonthChooser().getComboBox().setFont(new Font("Tahoma", Font.BOLD, 11));

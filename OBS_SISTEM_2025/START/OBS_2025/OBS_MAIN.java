@@ -2806,7 +2806,7 @@ public class OBS_MAIN extends JFrame {
 		toolBar_1.add(lblNewLabel_24);
 
 		desktopPane = new JDesktopPane();
-		desktopPane.setBackground(new Color(39, 45, 61));
+		//desktopPane.setBackground(new Color(39, 45, 61));
 		DesktopScrollPane scrpane = new DesktopScrollPane(desktopPane );
 
 

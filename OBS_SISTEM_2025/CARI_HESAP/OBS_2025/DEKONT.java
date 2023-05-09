@@ -412,7 +412,7 @@ public class DEKONT extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_1_1.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/icons8-open-view-30.png")));
+		btnNewButton_1_1.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/icons8-open-view-24.png")));
 		btnNewButton_1_1.setBounds(381, 25, 55, 30);
 		panel.add(btnNewButton_1_1);
 

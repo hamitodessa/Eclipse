@@ -221,7 +221,7 @@ public class LOGIN extends JFrame {
 		lblicon.setBounds(29, 11, 137, 134);
 		panel.add(lblicon);
 		lblicon.setHorizontalAlignment(SwingConstants.CENTER);
-		lblicon.setIcon(new ImageIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/renksiz.png")).getImage().getScaledInstance(134, 137, Image.SCALE_DEFAULT)));
+		lblicon.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/icons8-application-96.png")));
 
 		JLabel lblNewLabel = new JLabel("Kullanici");
 		lblNewLabel.setForeground(new Color(0, 0, 128));

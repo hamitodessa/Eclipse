@@ -853,7 +853,6 @@ public class Gunluk extends JInternalFrame {
 			gOREV.add(yER);
 			iSIM.add(gOREV);
 			root.add(iSIM);
-			
 		}
 		model.reload(root);
 	}

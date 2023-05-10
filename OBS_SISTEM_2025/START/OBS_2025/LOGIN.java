@@ -263,6 +263,7 @@ public class LOGIN extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				if (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) ) return ;
 				System.exit(1);
 			}
 		});
@@ -274,6 +275,7 @@ public class LOGIN extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				if (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) ) return ;
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				CAL_DIZIN frame = new CAL_DIZIN();
 				frame.setVisible(true);
@@ -296,6 +298,7 @@ public class LOGIN extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				if (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) ) return ;
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				try 
 				{
@@ -335,6 +338,7 @@ public class LOGIN extends JFrame {
 		panel.add(btndevam);
 		btndevam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) ) return ;
 				Runnable runner = new Runnable()
 				{ public void run() {
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

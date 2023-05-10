@@ -270,7 +270,7 @@ public class GLOBAL {
 		sQLITEconn.close();
 
 		ILOGER_KAYIT  sQLOG= new SQLITE_LOG();
-		sQLOG.Logla("Dosya Olusturuldu" ,"", dBILGI);
+		sQLOG.Logla("Dosya Olusturuldu","", dBILGI);
 		sQLOG.Logla("Firma Adi:" + fadi,"", dBILGI);
 	}
 	private static void  set_ilk() 

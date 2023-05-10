@@ -7,7 +7,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -590,7 +589,7 @@ public class LOGIN extends JFrame {
 			else
 			{
 				BAGLAN.gunDizin.fIRMA_ADI = oac._IGunluk.gun_firma_adi() ;
-				qwe =BAGLAN.gunDizin.yER.equals("S") ? BAGLAN.gunDizin.sERVER : "Lokal" ;
+				qwe = BAGLAN.gunDizin.yER.equals("S") ? BAGLAN.gunDizin.sERVER : "Lokal" ;
 				OBS_MAIN.lblNewLabel_24.setText ( "Gunluk:" + BAGLAN.gunDizin.kOD + "/ " + BAGLAN.gunDizin.fIRMA_ADI + "/ " + qwe);
 				OBS_MAIN.tabbedPane.setEnabledAt(5, true);
 			}

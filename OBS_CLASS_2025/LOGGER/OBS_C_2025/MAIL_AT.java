@@ -17,7 +17,7 @@ public class MAIL_AT implements ILOGGER{
 
 	
 	@Override
-	public void Logla(String mesaj, String evrak, DIZIN_BILGILERI dBILGI)
+	public void Logla(String mesaj,String evrak, DIZIN_BILGILERI dBILGI)
 	{
 		if ( GLOBAL.Log_Mail.toString().equals("") ) return ;
 		try

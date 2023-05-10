@@ -16,7 +16,7 @@ public class DOSYA_MSSQL implements ILOGER_KAYIT{
 
 	Connection con = null;
 
-	public void Logla(String mesaj, String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
+	public void Logla(String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
 		String cumle = "jdbc:sqlserver://" + dBILGI.cONN_STR + ";";
 		con = DriverManager.getConnection(cumle,dBILGI.kULLANICI,dBILGI.sIFRESI);
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

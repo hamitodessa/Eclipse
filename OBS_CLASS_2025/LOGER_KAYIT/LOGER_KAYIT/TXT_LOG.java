@@ -18,11 +18,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.lOG_BILGI;
 
 public class TXT_LOG  implements ILOGER_KAYIT {
 
 	@Override
-	public void Logla(String mesaj, String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
+	public void Logla(String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
 		try
 		{
 			File file = new File(GLOBAL.LOG_SURUCU  + dBILGI.mODULADI  + ".txt");

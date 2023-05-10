@@ -52,7 +52,7 @@ public class MAIL_AT implements ILOGGER{
 				message.setRecipient(RecipientType.TO,  toAddress[i]);
 			}
 			messagePart = new MimeBodyPart();
-			messagePart.setText(mesaj,"UTF-8");
+			messagePart.setText(mesaj + "  EvrakNo:" + evrak,"UTF-8");
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messagePart);
 			message.setSubject("Loglama", "UTF-8");

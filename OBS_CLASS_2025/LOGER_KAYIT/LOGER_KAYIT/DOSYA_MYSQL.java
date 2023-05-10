@@ -10,7 +10,6 @@ import javax.swing.table.DefaultTableModel;
 
 import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
-import OBS_C_2025.lOG_BILGI;
 public class DOSYA_MYSQL implements ILOGER_KAYIT{
 	Connection con = null;
 	@Override

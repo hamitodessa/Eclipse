@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import javax.swing.table.DefaultTableModel;
 import OBS_C_2025.DIZIN_BILGILERI;
-import OBS_C_2025.lOG_BILGI;
 
 public interface ILOGER_KAYIT 
 {

@@ -91,7 +91,6 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		JMenuItem menuItem = new JMenuItem("Tek Gorev Sil..", new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-reduce-16.png")));
 		menuItem.setMnemonic(KeyEvent.VK_T);
 		menuItem.getAccessibleContext().setAccessibleDescription( "Tek Gorev Sil");
-
 		menuItem.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -146,7 +145,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			}
 		});
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		//table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSurrendersFocusOnKeystroke(true);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -178,7 +177,6 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		panel.setMaximumSize(new Dimension(0, 25));
 		panel.setLayout(null);
 		splitPane.setRightComponent(panel);
-
 		lblNewLabel = new JLabel("Kayit Sayisi :");
 		lblNewLabel.setBounds(10, 5, 150, 14);
 		panel.add(lblNewLabel);
@@ -243,7 +241,8 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			
 			tc = tcm.getColumn(8);
 			tc.setHeaderRenderer(new SOLA());
-
+			tc.setMinWidth(80);
+			
 			th.repaint();
 			table.removeColumn(table.getColumnModel().getColumn(0));
 			table.removeColumn(table.getColumnModel().getColumn(0));

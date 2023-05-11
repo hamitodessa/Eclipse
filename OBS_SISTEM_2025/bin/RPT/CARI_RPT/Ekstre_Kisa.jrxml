@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.3.final using JasperReports Library version 6.20.3-415f9428cffdb6805c6f85bbb29ebaf18813a2ab  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ekstre_Kisa" pageWidth="612" pageHeight="792" columnWidth="590" leftMargin="10" rightMargin="10" topMargin="12" bottomMargin="12" uuid="3eb8280c-4b57-4ef1-b327-bbbef56f2fe0">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="inch"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="inch"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="inch"/>
+	<parameter name="kOD" class="java.lang.String"/>
+	<parameter name="uNVAN" class="java.lang.String"/>
+	<parameter name="pERIYOT" class="java.lang.String"/>
+	<parameter name="tARIH" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="uNVAN" class="java.lang.String"/>
+	<field name="pERIYOT" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="232" y="8" width="94" height="18" uuid="01887375-c452-4051-ba51-6b25b40e07ea"/>
+				<textElement textAlignment="Center">
+					<font fontName="&#xD;&#xA;Verdana" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CARI EKSTRE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="4" y="26" width="199" height="14" uuid="c0d851e1-4548-4c4e-9be8-49800f54e696"/>
+				<textElement>
+					<font fontName="&#xD;&#xA;Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kOD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="46" width="322" height="14" uuid="a7f59084-ef9e-4989-962e-2aa82a274a6c"/>
+				<textElement>
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{uNVAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="46" width="153" height="14" uuid="233fc79f-cb6e-48aa-a65e-4e879d3b6720"/>
+				<textElement textAlignment="Right">
+					<font fontName="&#xD;&#xA;Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pERIYOT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="14" width="94" height="14" uuid="3d575806-9625-405e-bba7-4d9ceda45350"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tARIH}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="24" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="12" splitType="Stretch"/>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

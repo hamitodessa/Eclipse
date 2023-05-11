@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import com.crystaldecisions.ReportViewer.ReportViewerBean;
-import com.crystaldecisions.reports.reportdefinition.Section;
 import com.crystaldecisions.sdk.occa.report.application.OpenReportOptions;
 import com.crystaldecisions.sdk.occa.report.application.ReportClientDocument;
 import com.crystaldecisions.sdk.occa.report.application.ReportSectionPropertyEnum;

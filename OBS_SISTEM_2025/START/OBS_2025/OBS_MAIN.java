@@ -2406,7 +2406,10 @@ public class OBS_MAIN extends JFrame {
 						
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket2.jrxml");
 						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.jrxml"),StandardCopyOption.REPLACE_EXISTING);
-						form_ac("ETIKET PRINT","");
+						internalFrame = new PRINT_JASPER();
+						desktopPane.add(internalFrame);
+						internalFrame.setVisible(true);
+						PRINT_JASPER.hisset("etiket");
 					}
 					else if (sonuc == "STOK_RAPOR")
 					{
@@ -2890,7 +2893,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("ADRES GIRISI")) internalFrame  = new ADRES_GIRIS();
 			else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();
 			else if (pencere.equals("ETIKET")) internalFrame  = new ETIKET();
-			else if (pencere.equals("ETIKET PRINT")) internalFrame  = new ETIKET_PRINT();
+			//else if (pencere.equals("ETIKET PRINT")) internalFrame  = new ETIKET_PRINT();
 			else if (pencere.equals("ETIKET AYAR")) internalFrame  = new ETIKET_AYAR();
 			//GUNLUK
 			else if (pencere.equals("GUNLUK")) internalFrame  = new Gunluk();

@@ -3,6 +3,7 @@ package OBS_2025;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.EventQueue;
+import java.beans.PropertyVetoException;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -18,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.table.DefaultTableModel;
 
 import OBS_C_2025.ADRES_ACCESS;
@@ -53,7 +55,7 @@ public class PRINT_JASPER extends JInternalFrame {
 	private static JasperViewer jviewer ;
 	private static JasperPrint jp;
 
-	static JScrollPane scrollPane;
+	private static JScrollPane scrollPane;
 	/**
 	 * Launch the application.
 	 */
@@ -72,19 +74,21 @@ public class PRINT_JASPER extends JInternalFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws PropertyVetoException 
 	 */
-	public PRINT_JASPER() {
+	public PRINT_JASPER() throws PropertyVetoException {
+		
 		setResizable(true);
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("YAZDIRMA");
 		setBounds(100, 100, 800, 600);
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
-		scrollPane = new JScrollPane();
+		scrollPane =  new JScrollPane();
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
-		
+		setMaximum(true);
 	}
 	public static  void hisset(String nerden)
 	{
@@ -131,7 +135,7 @@ public class PRINT_JASPER extends JInternalFrame {
 			}
 
 			scrollPane.setViewportView(new JRViewer(jp));
-		
+			
 
 		} catch (Exception ex) 
 		{

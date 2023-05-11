@@ -45,6 +45,8 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
 import javax.swing.JScrollPane;
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings({"serial","unused","static-access"})
 public class PRINT_JASPER extends JInternalFrame {
@@ -54,7 +56,6 @@ public class PRINT_JASPER extends JInternalFrame {
 	static List<ETIKET_ISIM> etISIM = new ArrayList<ETIKET_ISIM>();
 	private static JasperViewer jviewer ;
 	private static JasperPrint jp;
-
 	private static JScrollPane scrollPane;
 	/**
 	 * Launch the application.
@@ -132,6 +133,20 @@ public class PRINT_JASPER extends JInternalFrame {
 				}
 				JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(etISIM);
 				jp = JasperFillManager.fillReport(jr,null, qazBe);
+			}
+			else if (nerden.equals("ekstre_kisa"))
+			{
+				File file = new File("C:\\OBS_SISTEM\\ETIKET.jrxml");
+				JasperDesign jasper = JRXmlLoader.load(file);
+				
+				JasperReport jr = JasperCompileManager.compileReport(jasper);
+				
+				Map<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("kOD", "120.01.0000");
+				JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(etISIM);
+				jp = JasperFillManager.fillReport(jr,parameters, qazBe);
+				
+			
 			}
 
 			scrollPane.setViewportView(new JRViewer(jp));

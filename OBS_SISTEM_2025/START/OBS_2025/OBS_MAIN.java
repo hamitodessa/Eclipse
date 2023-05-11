@@ -2404,8 +2404,11 @@ public class OBS_MAIN extends JFrame {
 						//internalFrame.setVisible(true);
 						//PRINT_YAPMA.hisset("etiket","");
 						
-						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket2.jrxml");
+						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/CARI_RPT/Etiket2.jrxml");
 						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.jrxml"),StandardCopyOption.REPLACE_EXISTING);
+						
+						//InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket2.jrxml");
+						//Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.jrxml"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_JASPER();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);

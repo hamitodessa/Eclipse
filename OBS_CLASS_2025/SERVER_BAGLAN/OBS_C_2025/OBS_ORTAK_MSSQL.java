@@ -15,15 +15,15 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null; 
-		if ( ! sbilgi.port.equals("") )
+		if ( ! sbilgi.getPort().equals("") )
 		{
-			sbilgi.port =  ":" + sbilgi.port ;
+			sbilgi.setPort(":" + sbilgi.getPort());
 		}
 		try
 		{
 			String cumle = "";
-			cumle = "jdbc:sqlserver://localhost" + sbilgi.port  +";instanceName=" + sbilgi.ins + ";";
-			conn = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
+			cumle = "jdbc:sqlserver://localhost" + sbilgi.getPort()  +";instanceName=" + sbilgi.getIns() + ";";
+			conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 			conn.close();
 			result = true;
 		} 
@@ -41,8 +41,8 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		try
 		{
 			String cumle = "";
-			cumle = "jdbc:sqlserver://" + sbilgi.server + ";instanceName=" + sbilgi.ins + ";";
-			conn = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
+			cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";";
+			conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 			conn.close();
 			result =  true;
 		} 
@@ -58,13 +58,13 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null;  
 		String cumle = "";
-		if ( ! sbilgi.port.toString().equals("") )
+		if ( ! sbilgi.getPort().toString().equals("") )
 		{
-			sbilgi.port =  ":" + sbilgi.port ;
+			sbilgi.setPort( ":" + sbilgi.getPort());
 		}
-		cumle ="jdbc:sqlserver://localhost" + sbilgi.port + ";instanceName=" + sbilgi.ins + ";";
-		conn = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
-		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM sys.databases where name = '" + sbilgi.db + "'");
+		cumle ="jdbc:sqlserver://localhost" + sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";";
+		conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM sys.databases where name = '" + sbilgi.getDb() + "'");
 		ResultSet rs = stmt.executeQuery();
 		if (!rs.isBeforeFirst() ) {  
 			result = false;
@@ -82,9 +82,9 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null;  
 		String cumle = "";
-		cumle =  "jdbc:sqlserver://" + sbilgi.server + ";instanceName=" + sbilgi.ins + ";";
-		conn = DriverManager.getConnection(cumle,sbilgi.kull,sbilgi.sifre);
-		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM sys.databases where name = '" + sbilgi.db + "'");
+		cumle =  "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";";
+		conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM sys.databases where name = '" + sbilgi.getDb() + "'");
 		ResultSet rs = stmt.executeQuery();
 		if (!rs.isBeforeFirst() ) {  
 			result = false;

@@ -1320,10 +1320,10 @@ public class CAL_DIZIN extends JFrame {
 		if (chckbxL.isSelected() )
 		{
 			Server_Bilgi sBilgi = new Server_Bilgi() ;
-			sBilgi.ins = comboBox.getSelectedItem().toString() ;
-			sBilgi.kull = txtkul.getText() ;
-			sBilgi.sifre =  oac.sDONDUR.sDONDUR(txtsifr);
-			sBilgi.port = txtIp.getText();
+			sBilgi.setIns(comboBox.getSelectedItem().toString()); 
+			sBilgi.setKull(txtkul.getText());  ;
+			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr)); ;
+			sBilgi.setPort(txtIp.getText()); ;
 			contentPane.setCursor(WAIT_CURSOR);
 			if ( s_CONN.Server_kontrol_L( sBilgi) == true  )
 			{
@@ -1341,10 +1341,10 @@ public class CAL_DIZIN extends JFrame {
 		{
 			contentPane.setCursor(WAIT_CURSOR);
 			Server_Bilgi sBilgi = new Server_Bilgi() ;
-			sBilgi.server =txtIp.getText();
-			sBilgi.ins = comboBox.getSelectedItem().toString() ;
-			sBilgi.kull = txtkul.getText() ;
-			sBilgi.sifre =  oac.sDONDUR.sDONDUR(txtsifr);
+			sBilgi.setServer(txtIp.getText());;
+			sBilgi.setIns(comboBox.getSelectedItem().toString() );;
+			sBilgi.setKull(txtkul.getText()); ;
+			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr));;
 
 
 			if (s_CONN.Server_kontrol_S(sBilgi ) == true)
@@ -1410,13 +1410,11 @@ public class CAL_DIZIN extends JFrame {
 	private void lokal_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
 	{
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
-		sBilgi.db = program ;
-		sBilgi.kull = txtkul.getText() ;
-		sBilgi.sifre =  oac.sDONDUR.sDONDUR(txtsifr);
-		sBilgi.ins = comboBox.getSelectedItem().toString() ;
-		sBilgi.port = txtIp.getText();
-
-		
+		sBilgi.setDb(program); ;
+		sBilgi.setKull(txtkul.getText()); ;
+		sBilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));;
+		sBilgi.setIns(comboBox.getSelectedItem().toString()); ;
+		sBilgi.setPort(txtIp.getText());;
 		if ( s_CONN.Dosya_kontrol_L(sBilgi) == true)
 		{
 			boolean izinli = true;
@@ -1488,15 +1486,12 @@ public class CAL_DIZIN extends JFrame {
 	private void server_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
 	{
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
-		sBilgi.server = txtIp.getText();
-		sBilgi.ins = comboBox.getSelectedItem().toString() ;
-		sBilgi.kull = txtkul.getText() ;
-		sBilgi.sifre =  oac.sDONDUR.sDONDUR(txtsifr);
-		sBilgi.db = program ;
-		sBilgi.port = txtIp.getText();
-
-		
-		
+		sBilgi.setServer(txtIp.getText());;
+		sBilgi.setIns(comboBox.getSelectedItem().toString()); ;
+		sBilgi.setKull(txtkul.getText()); ;
+		sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr));;
+		sBilgi.setDb( program); ;
+		sBilgi.setPort(txtIp.getText());;
 		if (	 s_CONN.Dosya_kontrol_S(sBilgi) ==true)
 		{
 			boolean izinli = true;
@@ -1817,23 +1812,23 @@ public class CAL_DIZIN extends JFrame {
 		bLog.cONNECT();
 
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.kod = txtKodu.getText();
-		sbilgi.fir_adi =strAdmin;
-		sbilgi.ins = comboBox.getSelectedItem().toString();
-		sbilgi.kull =txtkul.getText() ;
-		sbilgi.sifre =oac.sDONDUR.sDONDUR(txtsifr) ;
-		sbilgi.port = txtIp.getText() ;
+		sbilgi.setKod(txtKodu.getText());;
+		sbilgi.setFir_adi(strAdmin);;
+		sbilgi.setIns(comboBox.getSelectedItem().toString());;
+		sbilgi.setKull(txtkul.getText()); ;
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
+		sbilgi.setPort(txtIp.getText()); ;
 
 		if (chckbxD.isSelected())
 		{
-			sbilgi.dizin_yeri = "default";
-			sbilgi.dizin ="";
+			sbilgi.setDizin_yeri("default");;
+			sbilgi.setDizin("");;
 			g_Access.gUN_SIFIR_L(sbilgi ,"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
 		}
 		else
 		{
-			sbilgi.dizin_yeri = "";
-			sbilgi.dizin =txtdiz.getText();
+			sbilgi.setDizin_yeri("");;
+			sbilgi.setDizin(txtdiz.getText());;
 			g_Access.gUN_SIFIR_L(sbilgi,"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
 		}
 	}
@@ -1984,14 +1979,14 @@ public class CAL_DIZIN extends JFrame {
 		bLog.cONNECT();
 		
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.kod = txtKodu.getText();
-		sbilgi.fir_adi =strAdmin;
-		sbilgi.ins = comboBox.getSelectedItem().toString();
-		sbilgi.kull =txtkul.getText() ;
-		sbilgi.sifre =oac.sDONDUR.sDONDUR(txtsifr) ;
-		sbilgi.server = txtIp.getText() ;
-		sbilgi.dizin_yeri = "default";
-		sbilgi.dizin ="";
+		sbilgi.setKod(txtKodu.getText());;
+		sbilgi.setFir_adi(strAdmin);;
+		sbilgi.setIns(comboBox.getSelectedItem().toString());;
+		sbilgi.setKull(txtkul.getText()); ;
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
+		sbilgi.setServer(txtIp.getText()); ;
+		sbilgi.setDizin_yeri("default");;
+		sbilgi.setDizin("");;
 
 		if (chckbxD.isSelected())
 		{

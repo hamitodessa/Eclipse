@@ -726,12 +726,12 @@ public class LOGIN extends JFrame {
 			return;
 		}
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
-		sBilgi.ins = BAGLAN.cariDizin.iNSTANCE ;
-		sBilgi.kull = BAGLAN.cariDizin.kULLANICI ;
-		sBilgi.sifre = BAGLAN.cariDizin.sIFRESI;
-		sBilgi.port = BAGLAN.cariDizin.sERVER;
-		sBilgi.server = BAGLAN.cariDizin.sERVER;
-		sBilgi.db = "OK_Car" + BAGLAN.cariDizin.kOD;
+		sBilgi.setIns(BAGLAN.cariDizin.iNSTANCE); 
+		sBilgi.setKull(BAGLAN.cariDizin.kULLANICI) ;
+		sBilgi.setSifre(BAGLAN.cariDizin.sIFRESI);
+		sBilgi.setPort(BAGLAN.cariDizin.sERVER);
+		sBilgi.setServer( BAGLAN.cariDizin.sERVER);
+		sBilgi.setDb("OK_Car" + BAGLAN.cariDizin.kOD);
 		if (BAGLAN.cariDizin.yER.equals("L"))
 		{
 
@@ -772,12 +772,12 @@ public class LOGIN extends JFrame {
 			return;
 		}
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
-		sBilgi.ins = BAGLAN.kurDizin.iNSTANCE ;
-		sBilgi.kull = BAGLAN.kurDizin.kULLANICI ;
-		sBilgi.sifre = BAGLAN.kurDizin.sIFRESI;
-		sBilgi.port = BAGLAN.kurDizin.sERVER;
-		sBilgi.server = BAGLAN.kurDizin.sERVER;
-		sBilgi.db = "OK_Kur" + BAGLAN.kurDizin.kOD ;
+		sBilgi.setIns(BAGLAN.kurDizin.iNSTANCE) ;
+		sBilgi.setKull(BAGLAN.kurDizin.kULLANICI);
+		sBilgi.setSifre(BAGLAN.kurDizin.sIFRESI);
+		sBilgi.setPort(BAGLAN.kurDizin.sERVER);
+		sBilgi.setServer(BAGLAN.kurDizin.sERVER);
+		sBilgi.setDb("OK_Kur" + BAGLAN.kurDizin.kOD); 
 		if (BAGLAN.kurDizin.yER.equals("L"))
 		{
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
@@ -817,12 +817,12 @@ public class LOGIN extends JFrame {
 			return;
 		}
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
-		sBilgi.db = "OK_Sms" + BAGLAN.smsDizin.kOD ;
-		sBilgi.ins = BAGLAN.smsDizin.iNSTANCE ;
-		sBilgi.kull = BAGLAN.smsDizin.kULLANICI ;
-		sBilgi.sifre = BAGLAN.smsDizin.sIFRESI;
-		sBilgi.port = BAGLAN.smsDizin.sERVER.toString();
-		sBilgi.server = BAGLAN.smsDizin.sERVER;
+		sBilgi.setDb("OK_Sms" + BAGLAN.smsDizin.kOD); 
+		sBilgi.setIns(BAGLAN.smsDizin.iNSTANCE );
+		sBilgi.setKull(BAGLAN.smsDizin.kULLANICI);
+		sBilgi.setSifre(BAGLAN.smsDizin.sIFRESI);
+		sBilgi.setPort( BAGLAN.smsDizin.sERVER.toString());
+		sBilgi.setServer( BAGLAN.smsDizin.sERVER);
 		if (BAGLAN.smsDizin.yER.equals("L"))
 		{
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
@@ -862,12 +862,12 @@ public class LOGIN extends JFrame {
 			return;
 		}
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
-		sBilgi.db = "OK_Adr" + BAGLAN.adrDizin.kOD ;
-		sBilgi.ins = BAGLAN.adrDizin.iNSTANCE ;
-		sBilgi.kull = BAGLAN.adrDizin.kULLANICI ;
-		sBilgi.sifre = BAGLAN.adrDizin.sIFRESI;
-		sBilgi.port = BAGLAN.adrDizin.sERVER;
-		sBilgi.server = BAGLAN.adrDizin.sERVER;
+		sBilgi.setDb("OK_Adr" + BAGLAN.adrDizin.kOD);
+		sBilgi.setIns(BAGLAN.adrDizin.iNSTANCE );
+		sBilgi.setKull(BAGLAN.adrDizin.kULLANICI );
+		sBilgi.setSifre(BAGLAN.adrDizin.sIFRESI);
+		sBilgi.setPort( BAGLAN.adrDizin.sERVER);
+		sBilgi.setServer( BAGLAN.adrDizin.sERVER);
 		if (BAGLAN.adrDizin.yER.equals("L"))
 		{
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
@@ -907,12 +907,12 @@ public class LOGIN extends JFrame {
 			return;
 		}
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
-		sBilgi.ins = BAGLAN.fatDizin.iNSTANCE ;
-		sBilgi.kull = BAGLAN.fatDizin.kULLANICI ;
-		sBilgi.sifre = BAGLAN.fatDizin.sIFRESI;
-		sBilgi.port = BAGLAN.fatDizin.sERVER;
-		sBilgi.db = "OK_Fat" + BAGLAN.fatDizin.kOD ;				
-		sBilgi.server = BAGLAN.fatDizin.sERVER;
+		sBilgi.setIns(BAGLAN.fatDizin.iNSTANCE );
+		sBilgi.setKull(BAGLAN.fatDizin.kULLANICI );
+		sBilgi.setSifre(BAGLAN.fatDizin.sIFRESI);
+		sBilgi.setPort(BAGLAN.fatDizin.sERVER);
+		sBilgi.setDb("OK_Fat" + BAGLAN.fatDizin.kOD );				
+		sBilgi.setServer( BAGLAN.fatDizin.sERVER);
 		if (BAGLAN.fatDizin.yER.equals("L"))
 		{
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
@@ -952,12 +952,12 @@ public class LOGIN extends JFrame {
 			return;
 		}
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
-		sBilgi.ins = BAGLAN.kamDizin.iNSTANCE ;
-		sBilgi.kull = BAGLAN.kamDizin.kULLANICI ;
-		sBilgi.sifre = BAGLAN.kamDizin.sIFRESI;
-		sBilgi.port = BAGLAN.kamDizin.sERVER;
-		sBilgi.db = "OK_Kam" + BAGLAN.kamDizin.kOD ;				
-		sBilgi.server = BAGLAN.kamDizin.sERVER;
+		sBilgi.setIns(BAGLAN.kamDizin.iNSTANCE );
+		sBilgi.setKull(BAGLAN.kamDizin.kULLANICI );
+		sBilgi.setSifre( BAGLAN.kamDizin.sIFRESI);
+		sBilgi.setPort( BAGLAN.kamDizin.sERVER);
+		sBilgi.setDb("OK_Kam" + BAGLAN.kamDizin.kOD );				
+		sBilgi.setServer(BAGLAN.kamDizin.sERVER);
 		if (BAGLAN.kamDizin.yER.equals("L"))
 		{
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
@@ -997,13 +997,12 @@ public class LOGIN extends JFrame {
 			return;
 		}
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
-		sBilgi.ins = BAGLAN.gunDizin.iNSTANCE ;
-		sBilgi.kull = BAGLAN.gunDizin.kULLANICI ;
-		sBilgi.sifre = BAGLAN.gunDizin.sIFRESI;
-		sBilgi.port = BAGLAN.gunDizin.sERVER;
-		sBilgi.db = "OK_Gun" + BAGLAN.gunDizin.kOD ;				
-		sBilgi.server = BAGLAN.gunDizin.sERVER;
-
+		sBilgi.setIns( BAGLAN.gunDizin.iNSTANCE );
+		sBilgi.setKull( BAGLAN.gunDizin.kULLANICI );
+		sBilgi.setSifre( BAGLAN.gunDizin.sIFRESI);
+		sBilgi.setPort(BAGLAN.gunDizin.sERVER);
+		sBilgi.setDb( "OK_Gun" + BAGLAN.gunDizin.kOD);				
+		sBilgi.setServer( BAGLAN.gunDizin.sERVER);
 		if (BAGLAN.gunDizin.yER.equals("L"))
 		{
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   

@@ -15,10 +15,10 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = null;  
-		String url = "jdbc:mysql://localhost:" + sbilgi.port ; //pointing to no database.
+		String url = "jdbc:mysql://localhost:" + sbilgi.getPort() ; //pointing to no database.
 		try 
 		{
-			conn = DriverManager.getConnection(url, sbilgi.kull, sbilgi.sifre);
+			conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
 			result = true;
 		} catch (SQLException e)
 		{
@@ -32,10 +32,10 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = null;  
-		String url = "jdbc:mysql://" + sbilgi.server ; //pointing to no database.
+		String url = "jdbc:mysql://" + sbilgi.getServer() ; //pointing to no database.
 		try 
 		{
-			conn = DriverManager.getConnection(url, sbilgi.kull, sbilgi.sifre);
+			conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
 			result = true;
 		} catch (SQLException e)
 		{
@@ -50,16 +50,16 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		Connection conn = null;  
 		Statement stmt = null;
 		ResultSet resultset = null;
-		String url = "jdbc:mysql://localhost:" + sbilgi.port ; //pointing to no database.
+		String url = "jdbc:mysql://localhost:" + sbilgi.getPort() ; //pointing to no database.
 		try 
 		{
-			conn = DriverManager.getConnection(url, sbilgi.kull, sbilgi.sifre);
+			conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
 			stmt = conn.createStatement();
 			resultset = stmt.executeQuery("SHOW DATABASES;");
 			result =false;
 			while (resultset.next()) 
 			{
-				if(resultset.getString("Database").equals(sbilgi.db.toLowerCase()))
+				if(resultset.getString("Database").equals(sbilgi.getDb().toLowerCase()))
 				{
 					result = true;
 				}
@@ -76,16 +76,16 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		Connection conn = null;  
 		Statement stmt = null;
 		ResultSet resultset = null;
-		String url = "jdbc:mysql://" + sbilgi.server ; //pointing to no database.
+		String url = "jdbc:mysql://" + sbilgi.getServer() ; //pointing to no database.
 		try 
 		{
-			conn = DriverManager.getConnection(url, sbilgi.kull, sbilgi.sifre);
+			conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
 			stmt = conn.createStatement();
 			resultset = stmt.executeQuery("SHOW DATABASES;");
 			result =false;
 			while (resultset.next()) 
 			{
-				if(resultset.getString("Database").equals(sbilgi.db.toLowerCase()))
+				if(resultset.getString("Database").equals(sbilgi.getDb().toLowerCase()))
 				{
 					result = true;
 				}

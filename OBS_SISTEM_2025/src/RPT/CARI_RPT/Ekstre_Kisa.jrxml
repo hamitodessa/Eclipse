@@ -11,10 +11,13 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="inch"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="inch"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="inch"/>
+	<parameter name="kOD" class="java.lang.String"/>
+	<parameter name="uNVAN" class="java.lang.String"/>
+	<parameter name="pERIYOT" class="java.lang.String"/>
+	<parameter name="tARIH" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="kOD" class="java.lang.String"/>
 	<field name="uNVAN" class="java.lang.String"/>
 	<field name="pERIYOT" class="java.lang.String"/>
 	<background>
@@ -22,13 +25,6 @@
 	</background>
 	<title>
 		<band height="65" splitType="Stretch">
-			<textField pattern="dd.MM.yyyy">
-				<reportElement x="480" y="14" width="94" height="14" uuid="51969c44-7d04-4a1e-a14d-ff6a295662f5"/>
-				<textElement textAlignment="Right">
-					<font fontName="&#xD;&#xA;Verdana" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="232" y="8" width="94" height="18" uuid="01887375-c452-4051-ba51-6b25b40e07ea"/>
 				<textElement textAlignment="Center">
@@ -37,25 +33,32 @@
 				<text><![CDATA[CARI EKSTRE]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="4" y="26" width="199" height="14" uuid="e06de028-ea13-488b-bfa0-3721d12475f1"/>
+				<reportElement x="4" y="26" width="199" height="14" uuid="c0d851e1-4548-4c4e-9be8-49800f54e696"/>
 				<textElement>
 					<font fontName="&#xD;&#xA;Verdana" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{kOD}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{kOD}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="4" y="46" width="386" height="14" uuid="1ea9816d-c54e-4fc3-8ddb-d551ab37e603"/>
+				<reportElement x="4" y="46" width="322" height="14" uuid="a7f59084-ef9e-4989-962e-2aa82a274a6c"/>
 				<textElement>
-					<font isBold="true"/>
+					<font fontName="Verdana" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{uNVAN}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{uNVAN}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="422" y="46" width="153" height="14" uuid="1b85277a-5f61-44b8-a482-27a3d8fc54fa"/>
+				<reportElement x="422" y="46" width="153" height="14" uuid="233fc79f-cb6e-48aa-a65e-4e879d3b6720"/>
 				<textElement textAlignment="Right">
 					<font fontName="&#xD;&#xA;Verdana" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pERIYOT}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{pERIYOT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="14" width="94" height="14" uuid="3d575806-9625-405e-bba7-4d9ceda45350"/>
+				<textElement textAlignment="Right">
+					<font fontName="Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tARIH}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

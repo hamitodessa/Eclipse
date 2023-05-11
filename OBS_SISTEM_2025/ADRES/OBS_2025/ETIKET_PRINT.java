@@ -17,6 +17,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.JarFile;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.util.ByteArrayDataSource;
@@ -145,9 +147,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 			designSection.removeBand(bands[0]);
 			designSection.addBand(qweBand);
 			
-			
-			//qweBand =  (JRDesignBand) jasper.getTitle().clone();
-			//jasper.setTitle(qweBand);
+	          
 			
 			//System.out.println( jasper.getColumnWidth()+"=spacing=="+jasper.getColumnSpacing());
 			//System.out.println(jasper.getPageWidth() + "==" + jasper.getBottomMargin()+ "==" + jasper.getTopMargin());
@@ -166,6 +166,12 @@ public class ETIKET_PRINT extends JInternalFrame {
 			}
 			
 			JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(etISIM);
+			
+		
+			//Map<String, Object> parameters = new HashMap<String, Object>();
+			//parameters.put("kOD", "120.01.0000");
+			//jp = JasperFillManager.fillReport(jr,parameters, qazBe);
+			
 			jp = JasperFillManager.fillReport(jr,null, qazBe);
 		
 			//

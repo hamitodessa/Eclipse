@@ -168,6 +168,9 @@ public class ETIKET_PRINT extends JInternalFrame {
 			JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(etISIM);
 			
 		
+			//Map parameters = new HashMap();
+		    //parameters.put("ReportTitle", "List of Contacts");
+		    //parameters.put("Author", "Prepared By Manisha");
 			//Map<String, Object> parameters = new HashMap<String, Object>();
 			//parameters.put("kOD", "120.01.0000");
 			//jp = JasperFillManager.fillReport(jr,parameters, qazBe);

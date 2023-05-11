@@ -135,7 +135,6 @@ public class ETIKET_PRINT extends JInternalFrame {
 			//**************************SEMT************************************************
 			 
 			//**************************SEHIR***********************************************
-
 			
 			 
 			JRElement[] eleMENT = bands[0].getElements();
@@ -146,6 +145,9 @@ public class ETIKET_PRINT extends JInternalFrame {
 			designSection.removeBand(bands[0]);
 			designSection.addBand(qweBand);
 			
+			
+			//qweBand =  (JRDesignBand) jasper.getTitle().clone();
+			//jasper.setTitle(qweBand);
 			
 			//System.out.println( jasper.getColumnWidth()+"=spacing=="+jasper.getColumnSpacing());
 			//System.out.println(jasper.getPageWidth() + "==" + jasper.getBottomMargin()+ "==" + jasper.getTopMargin());

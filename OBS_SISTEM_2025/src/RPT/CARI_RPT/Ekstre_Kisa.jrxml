@@ -14,25 +14,49 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="kOD" class="java.lang.String"/>
+	<field name="uNVAN" class="java.lang.String"/>
+	<field name="pERIYOT" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="65" splitType="Stretch">
 			<textField pattern="dd.MM.yyyy">
-				<reportElement x="480" y="14" width="100" height="18" uuid="51969c44-7d04-4a1e-a14d-ff6a295662f5"/>
+				<reportElement x="480" y="14" width="94" height="14" uuid="51969c44-7d04-4a1e-a14d-ff6a295662f5"/>
 				<textElement textAlignment="Right">
-					<font isBold="true"/>
+					<font fontName="&#xD;&#xA;Verdana" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="232" y="8" width="94" height="22" uuid="01887375-c452-4051-ba51-6b25b40e07ea"/>
+				<reportElement x="232" y="8" width="94" height="18" uuid="01887375-c452-4051-ba51-6b25b40e07ea"/>
 				<textElement textAlignment="Center">
-					<font isBold="true"/>
+					<font fontName="&#xD;&#xA;Verdana" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CARI EKSTRE]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="4" y="26" width="199" height="14" uuid="e06de028-ea13-488b-bfa0-3721d12475f1"/>
+				<textElement>
+					<font fontName="&#xD;&#xA;Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kOD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="46" width="386" height="14" uuid="1ea9816d-c54e-4fc3-8ddb-d551ab37e603"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{uNVAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="46" width="153" height="14" uuid="1b85277a-5f61-44b8-a482-27a3d8fc54fa"/>
+				<textElement textAlignment="Right">
+					<font fontName="&#xD;&#xA;Verdana" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pERIYOT}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>

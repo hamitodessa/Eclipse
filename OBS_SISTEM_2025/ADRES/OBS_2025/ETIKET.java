@@ -453,16 +453,47 @@ public static JTabbedPane orTabbedPane;
 		@Override
 		public void itemStateChanged(ItemEvent e)
 		{
+			//
+			Runnable runner = new Runnable()
+		    { public void run() {
+		    //
+			try 
+			{
 			Object source = e.getSource();
 			if (source instanceof AbstractButton == false) return;
 			boolean checked = e.getStateChange() == ItemEvent.SELECTED;
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+			Progres_Bar_Temizle();  
+			OBS_MAIN.progressBar.setStringPainted(true);
+		     OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
 			for(int x = 0, y = table.getRowCount(); x < y; x++)
 			{
+				Progres_Bar(table.getRowCount()-1, x);
 				table.setValueAt(new Boolean(checked),x,0);
 			}
+			Progres_Bar_Temizle();
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			} catch (InterruptedException e1) 
+			{
+			e1.printStackTrace();
+			}
+		//// Progress Bar
+		    }
+	    };
+	    Thread t = new Thread(runner, "Code Executer");
+	    t.start();
+	    //
 		}
+		static void Progres_Bar(int max, int deger) throws InterruptedException
+	    {
+	 	    OBS_MAIN.progressBar.setValue(deger);
+	     }
+	    static void Progres_Bar_Temizle()
+	    {
+	    	OBS_MAIN.progressBar.setMaximum(0);
+	    	OBS_MAIN.progressBar.setValue(0);
+	    	OBS_MAIN.progressBar.setStringPainted(false);
+	    }
 	}
 	class CheckBoxHeader extends JCheckBox   implements TableCellRenderer, MouseListener 
 	{
@@ -486,9 +517,7 @@ public static JTabbedPane orTabbedPane;
 				}
 			}
 			setColumn(column);
-
 			setHorizontalAlignment(JLabel.CENTER);
-
 			setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 			//setSelected(true);
 			return rendererComponent;

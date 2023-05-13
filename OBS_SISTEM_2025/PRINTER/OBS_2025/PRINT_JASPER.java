@@ -145,7 +145,13 @@ public class PRINT_JASPER extends JInternalFrame {
 				JasperReport jr = JasperCompileManager.compileReport(jasper);
 				ekstre_kisa();
 				Map<String, Object> parameters = new HashMap<String, Object>();
-				parameters.put("kOD", "120.01.0000");
+				parameters.put("kOD", FILTRE.txtkodu.getText());
+				parameters.put("uNVAN",  FILTRE.lblNewLabel_1.getText().trim() + "   /  " + FILTRE.lblNewLabel_2.getText().trim());
+				parameters.put("pERIYOT","Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_1));
+				System.out.println("="+ EKSTRE.lblNewLabel_5_1.getText());
+				parameters.put("bORC", EKSTRE.lblNewLabel_5_1.getText());
+				parameters.put("aLACAK",EKSTRE.lblNewLabel_4_1.getText());
+				
 				JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(eDetay);
 				jp = JasperFillManager.fillReport(jr,parameters, qazBe);
 				

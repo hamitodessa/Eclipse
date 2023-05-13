@@ -15,6 +15,8 @@
 	<parameter name="uNVAN" class="java.lang.String"/>
 	<parameter name="pERIYOT" class="java.lang.String"/>
 	<parameter name="tARIH" class="java.lang.String"/>
+	<parameter name="bORC" class="java.lang.String"/>
+	<parameter name="aLACAK" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -64,12 +66,12 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{pERIYOT}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="480" y="14" width="94" height="14" uuid="3d575806-9625-405e-bba7-4d9ceda45350"/>
+			<textField pattern="dd.MM.yyyy">
+				<reportElement x="480" y="14" width="94" height="14" uuid="25ff32a8-4cd5-4632-b60b-7f44d0da0329"/>
 				<textElement textAlignment="Right">
-					<font fontName="Arial" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{tARIH}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -124,6 +126,9 @@
 				</textElement>
 				<text><![CDATA[+ / - BAKIYE]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="574" height="1" uuid="0697f70d-383e-4ffc-820d-a6229a2f07c3"/>
+			</line>
 		</band>
 	</pageHeader>
 	<detail>
@@ -149,14 +154,14 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{iZAHAT}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.###;(#,##0.###-)">
+			<textField pattern="#,##0.00#;-#,##0.00#">
 				<reportElement x="438" y="0" width="65" height="12" uuid="620e344f-cbe4-4fec-b073-60e58cf4ed41"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial Narrow" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{aLACAK}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.###;(#,##0.###-)">
+			<textField pattern="#,##0.00#;-#,##0.00#">
 				<reportElement x="370" y="0" width="64" height="12" uuid="29ba41dc-2085-4978-acd9-51b57a2acf32"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial Narrow" size="9"/>
@@ -170,34 +175,63 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{kOD}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.###;-#,##0.###">
+			<textField pattern="#,##0.00#;-#,##0.00#">
 				<reportElement x="510" y="0" width="65" height="12" uuid="2f5ceb92-b739-4491-b060-3ffe19370be5"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial Narrow" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{bAKIYE}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="12" width="574" height="1" uuid="ff428adc-bdfa-490a-88f7-11eee43aae72"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="30" splitType="Stretch"/>
+		<band height="41" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="55" splitType="Stretch">
-			<textField pattern="#,##0.###;-#,##0.###">
-				<reportElement x="342" y="0" width="92" height="13" uuid="1d44ad69-3bb4-425d-837c-10c3c00ba315"/>
+		<band height="39" splitType="Stretch">
+			<textField pattern="#,##0.0#;-#,##0.0#">
+				<reportElement x="342" y="17" width="92" height="13" uuid="1d44ad69-3bb4-425d-837c-10c3c00ba315"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
 				<textElement textAlignment="Right">
 					<font fontName="Arial Narrow"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{bORC_TOPLAM}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.###;-#,##0.###">
-				<reportElement x="442" y="0" width="61" height="13" uuid="6e796555-9295-4786-9293-6e742a40f347"/>
+			<textField pattern="#,##0.0#;-#,##0.0#">
+				<reportElement x="434" y="17" width="69" height="13" uuid="6e796555-9295-4786-9293-6e742a40f347"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
 				<textElement textAlignment="Right">
 					<font fontName="Arial Narrow"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{aLACAK_TOPLAM}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="342" y="3" width="92" height="13" uuid="fa5cab89-0daa-4151-9ef2-98557ff51270"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial Narrow"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bORC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="3" width="69" height="13" uuid="c16ae95c-42d0-4f02-8f6b-7794bcda1163"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial Narrow"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{aLACAK}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="574" height="3" uuid="ed734836-6364-489e-9447-8b0a8d04c7b0"/>
+			</line>
 		</band>
 	</summary>
 </jasperReport>

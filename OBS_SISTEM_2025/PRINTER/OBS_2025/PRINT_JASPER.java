@@ -24,6 +24,8 @@ import javax.swing.table.DefaultTableModel;
 
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.TARIH;
+import OBS_C_2025.TARIH_CEVIR;
 import net.sf.jasperreports.engine.JRBand;
 import net.sf.jasperreports.engine.JRElement;
 import net.sf.jasperreports.engine.JRException;
@@ -54,6 +56,7 @@ public class PRINT_JASPER extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	static List<ETIKET_ISIM> etISIM = new ArrayList<ETIKET_ISIM>();
+	static List<Ekstre_Detay> eDetay = new ArrayList<Ekstre_Detay>();
 	private static JasperViewer jviewer ;
 	private static JasperPrint jp;
 	private static JScrollPane scrollPane;
@@ -136,14 +139,14 @@ public class PRINT_JASPER extends JInternalFrame {
 			}
 			else if (nerden.equals("ekstre_kisa"))
 			{
-				File file = new File("C:\\OBS_SISTEM\\ETIKET.jrxml");
+				File file = new File("C:\\OBS_SISTEM\\Ekstre_Kisa.jrxml");
 				JasperDesign jasper = JRXmlLoader.load(file);
 				
 				JasperReport jr = JasperCompileManager.compileReport(jasper);
-				
+				ekstre_kisa();
 				Map<String, Object> parameters = new HashMap<String, Object>();
 				parameters.put("kOD", "120.01.0000");
-				JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(etISIM);
+				JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(eDetay);
 				jp = JasperFillManager.fillReport(jr,parameters, qazBe);
 				
 			
@@ -154,7 +157,30 @@ public class PRINT_JASPER extends JInternalFrame {
 
 		} catch (Exception ex) 
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yazdirma", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private static void ekstre_kisa()
+	{
+		try 
+		{
+			DefaultTableModel modell = (DefaultTableModel)EKSTRE.table.getModel();
+			for (int  i = 0; i <=  modell.getRowCount() - 1;i++)
+			{
+				Ekstre_Detay eDTY  = new Ekstre_Detay(TARIH_CEVIR.tarih_ters(modell.getValueAt(i, 0).toString()),
+						modell.getValueAt(i, 1).toString(),
+						modell.getValueAt(i, 2).toString(),
+						modell.getValueAt(i, 3).toString(),
+						 Double.parseDouble(modell.getValueAt(i, 5).toString()),
+						 Double.parseDouble(modell.getValueAt(i, 6).toString()),
+						 Double.parseDouble(modell.getValueAt(i, 7).toString()));
+			//	System.out.println(eDTY.getbAKIYE());
+				eDetay.add(eDTY);
+					
+				
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void satir_kontrol()

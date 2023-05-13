@@ -2264,7 +2264,7 @@ public class OBS_MAIN extends JFrame {
 						internalFrame.setVisible(true);
 						PRINT_YAPMA.hisset("hsppln","");
 					}
-					else if (sonuc == "EKSTRE")
+					else if (sonuc == "EKSTRE1")
 					{
 						if ( EKSTRE.table.getRowCount() == 0 ) 
 						{
@@ -2404,15 +2404,24 @@ public class OBS_MAIN extends JFrame {
 						//internalFrame.setVisible(true);
 						//PRINT_YAPMA.hisset("etiket","");
 						
-						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/CARI_RPT/Etiket2.jrxml");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.jrxml"),StandardCopyOption.REPLACE_EXISTING);
+						//InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/CARI_RPT/Ekstre_Kisa.jrxml");
+						//Files.copy(is, Paths.get("C:\\OBS_SISTEM\\Ekstre_Kisa.jrxml"),StandardCopyOption.REPLACE_EXISTING);
 						
-						//InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket2.jrxml");
-						//Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.jrxml"),StandardCopyOption.REPLACE_EXISTING);
+						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket2.jrxml");
+						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.jrxml"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_JASPER();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
 						PRINT_JASPER.hisset("etiket");
+					}
+					else if (sonuc == "EKSTRE")
+					{
+						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/CARI_RPT/Ekstre_Kisa.jrxml");
+						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\Ekstre_Kisa.jrxml"),StandardCopyOption.REPLACE_EXISTING);
+						internalFrame = new PRINT_JASPER();
+						desktopPane.add(internalFrame);
+						internalFrame.setVisible(true);
+						PRINT_JASPER.hisset("ekstre_kisa");
 					}
 					else if (sonuc == "STOK_RAPOR")
 					{

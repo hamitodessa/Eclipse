@@ -18,8 +18,19 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="uNVAN" class="java.lang.String"/>
-	<field name="pERIYOT" class="java.lang.String"/>
+	<field name="tARIH" class="java.lang.String"/>
+	<field name="eVRAK" class="java.lang.String"/>
+	<field name="iZAHAT" class="java.lang.String"/>
+	<field name="bAKIYE" class="java.lang.Double"/>
+	<field name="aLACAK" class="java.lang.Double"/>
+	<field name="bORC" class="java.lang.Double"/>
+	<field name="kOD" class="java.lang.String"/>
+	<variable name="bORC_TOPLAM" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{bORC}]]></variableExpression>
+	</variable>
+	<variable name="aLACAK_TOPLAM" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{aLACAK}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -28,50 +39,165 @@
 			<staticText>
 				<reportElement x="232" y="8" width="94" height="18" uuid="01887375-c452-4051-ba51-6b25b40e07ea"/>
 				<textElement textAlignment="Center">
-					<font fontName="&#xD;&#xA;Verdana" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CARI EKSTRE]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="4" y="26" width="199" height="14" uuid="c0d851e1-4548-4c4e-9be8-49800f54e696"/>
 				<textElement>
-					<font fontName="&#xD;&#xA;Verdana" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{kOD}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="4" y="46" width="322" height="14" uuid="a7f59084-ef9e-4989-962e-2aa82a274a6c"/>
 				<textElement>
-					<font fontName="Verdana" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{uNVAN}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="422" y="46" width="153" height="14" uuid="233fc79f-cb6e-48aa-a65e-4e879d3b6720"/>
 				<textElement textAlignment="Right">
-					<font fontName="&#xD;&#xA;Verdana" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{pERIYOT}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="480" y="14" width="94" height="14" uuid="3d575806-9625-405e-bba7-4d9ceda45350"/>
 				<textElement textAlignment="Right">
-					<font fontName="Verdana" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{tARIH}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="24" splitType="Stretch"/>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="7" width="38" height="12" uuid="5327c3a8-b2ff-4950-84bd-095cbcfe759c"/>
+				<textElement>
+					<font fontName="Arial Narrow" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TARIH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="42" y="7" width="29" height="12" uuid="d60e2e5a-e784-4e2b-8dff-dad505f12d36"/>
+				<textElement>
+					<font fontName="Arial Narrow" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EVR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="71" y="7" width="161" height="12" uuid="a81a6e24-edee-4b87-9be7-dece516c7b20"/>
+				<textElement>
+					<font fontName="Arial Narrow" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IZAHAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="331" y="7" width="29" height="12" uuid="1317d79a-22b0-4a2b-b2c0-e7dfb0a58267"/>
+				<textElement>
+					<font fontName="Arial Narrow" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KOD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="7" width="64" height="12" uuid="765c888f-3352-4b46-b915-2bda6424d23b"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial Narrow" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BORC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="438" y="7" width="64" height="12" uuid="51f6d23d-429e-4f78-b814-c69de8a64b81"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial Narrow" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ALACAK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="510" y="7" width="64" height="12" uuid="c84a6681-379e-4b0a-8c26-25486e3eb8c0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial Narrow" isBold="true"/>
+				</textElement>
+				<text><![CDATA[+ / - BAKIYE]]></text>
+			</staticText>
+		</band>
 	</pageHeader>
 	<detail>
-		<band height="12" splitType="Stretch"/>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="0" width="38" height="12" uuid="6e476637-fc25-424b-8d6a-a0adc9133481"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tARIH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="0" width="28" height="12" uuid="d9c49145-0747-43b3-861e-3bfdbfc07a92"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{eVRAK}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="71" y="0" width="260" height="12" uuid="7a48c8be-18c3-483c-812f-7450bb08f9cc"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{iZAHAT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###;(#,##0.###-)">
+				<reportElement x="438" y="0" width="65" height="12" uuid="620e344f-cbe4-4fec-b073-60e58cf4ed41"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial Narrow" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aLACAK}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###;(#,##0.###-)">
+				<reportElement x="370" y="0" width="64" height="12" uuid="29ba41dc-2085-4978-acd9-51b57a2acf32"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial Narrow" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bORC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="0" width="28" height="12" uuid="48f7dbee-9199-4c63-a43a-1a7458f56eab"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kOD}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###;-#,##0.###">
+				<reportElement x="510" y="0" width="65" height="12" uuid="2f5ceb92-b739-4491-b060-3ffe19370be5"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial Narrow" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bAKIYE}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<pageFooter>
 		<band height="30" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="55" splitType="Stretch">
+			<textField pattern="#,##0.###;-#,##0.###">
+				<reportElement x="342" y="0" width="92" height="13" uuid="1d44ad69-3bb4-425d-837c-10c3c00ba315"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial Narrow"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{bORC_TOPLAM}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###;-#,##0.###">
+				<reportElement x="442" y="0" width="61" height="13" uuid="6e796555-9295-4786-9293-6e742a40f347"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial Narrow"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{aLACAK_TOPLAM}]]></textFieldExpression>
+			</textField>
+		</band>
 	</summary>
 </jasperReport>

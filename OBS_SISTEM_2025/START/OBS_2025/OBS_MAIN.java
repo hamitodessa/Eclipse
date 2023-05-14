@@ -2412,16 +2412,29 @@ public class OBS_MAIN extends JFrame {
 						internalFrame = new PRINT_JASPER();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
-						PRINT_JASPER.hisset("etiket");
+						PRINT_JASPER.hisset("etiket","");
 					}
 					else if (sonuc == "EKSTRE")
 					{
-						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/CARI_RPT/Ekstre_Kisa.jrxml");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\Ekstre_Kisa.jrxml"),StandardCopyOption.REPLACE_EXISTING);
-						internalFrame = new PRINT_JASPER();
-						desktopPane.add(internalFrame);
-						internalFrame.setVisible(true);
-						PRINT_JASPER.hisset("ekstre_kisa");
+						if (! TARIH_CEVIR.tarih_geri(FILTRE.dateChooser).equals("1900.01.01"))
+						{
+							InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/CARI_RPT/Ekstre_Kisa.jrxml");
+							Files.copy(is, Paths.get("C:\\OBS_SISTEM\\Ekstre_Kisa.jrxml"),StandardCopyOption.REPLACE_EXISTING);
+							internalFrame = new PRINT_JASPER();
+							desktopPane.add(internalFrame);
+							internalFrame.setVisible(true);
+							PRINT_JASPER.hisset("ekstre_kisa","aratarih");
+						}
+						else
+						{
+							InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/CARI_RPT/Ekstre.jrxml");
+							Files.copy(is, Paths.get("C:\\OBS_SISTEM\\Ekstre.jrxml"),StandardCopyOption.REPLACE_EXISTING);
+							internalFrame = new PRINT_JASPER();
+							desktopPane.add(internalFrame);
+							internalFrame.setVisible(true);
+							PRINT_JASPER.hisset("ekstre","normal");
+						}
+						
 					}
 					else if (sonuc == "STOK_RAPOR")
 					{

@@ -23,12 +23,14 @@ import javax.swing.JScrollBar;
 import javax.swing.table.DefaultTableModel;
 
 import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.sf.jasperreports.engine.JRBand;
 import net.sf.jasperreports.engine.JRElement;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -55,6 +57,8 @@ public class PRINT_JASPER extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
+	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
+
 	static List<ETIKET_ISIM> etISIM = new ArrayList<ETIKET_ISIM>();
 	static List<Ekstre_Detay> eDetay = new ArrayList<Ekstre_Detay>();
 	private static JasperViewer jviewer ;
@@ -94,7 +98,7 @@ public class PRINT_JASPER extends JInternalFrame {
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		setMaximum(true);
 	}
-	public static  void hisset(String nerden)
+	public static  void hisset(String nerden,String nasil)
 	{
 		try 
 		{
@@ -137,25 +141,32 @@ public class PRINT_JASPER extends JInternalFrame {
 				JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(etISIM);
 				jp = JasperFillManager.fillReport(jr,null, qazBe);
 			}
+			else if (nerden.equals("ekstre"))
+			{
+				File file = new File("C:\\OBS_SISTEM\\Ekstre.jrxml");
+				JasperDesign jasper = JRXmlLoader.load(file);
+				JasperReport jr = JasperCompileManager.compileReport(jasper);
+				Map<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("kOD", FILTRE.txtkodu.getText());
+				parameters.put("uNVAN",  FILTRE.lblNewLabel_1.getText().trim() + "   /  " + FILTRE.lblNewLabel_2.getText().trim());
+				parameters.put("pERIYOT","Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_1));
+				ResultSet rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
+				jp = JasperFillManager.fillReport(jr,parameters,new JRResultSetDataSource(rs));
+			}
 			else if (nerden.equals("ekstre_kisa"))
 			{
 				File file = new File("C:\\OBS_SISTEM\\Ekstre_Kisa.jrxml");
 				JasperDesign jasper = JRXmlLoader.load(file);
-				
 				JasperReport jr = JasperCompileManager.compileReport(jasper);
 				ekstre_kisa();
 				Map<String, Object> parameters = new HashMap<String, Object>();
 				parameters.put("kOD", FILTRE.txtkodu.getText());
 				parameters.put("uNVAN",  FILTRE.lblNewLabel_1.getText().trim() + "   /  " + FILTRE.lblNewLabel_2.getText().trim());
 				parameters.put("pERIYOT","Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_1));
-				System.out.println("="+ EKSTRE.lblNewLabel_5_1.getText());
 				parameters.put("bORC", EKSTRE.lblNewLabel_5_1.getText());
 				parameters.put("aLACAK",EKSTRE.lblNewLabel_4_1.getText());
-				
 				JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(eDetay);
 				jp = JasperFillManager.fillReport(jr,parameters, qazBe);
-				
-			
 			}
 
 			scrollPane.setViewportView(new JRViewer(jp));
@@ -171,10 +182,21 @@ public class PRINT_JASPER extends JInternalFrame {
 		try 
 		{
 			DefaultTableModel modell = (DefaultTableModel)EKSTRE.table.getModel();
+			String tARIH,eVRAK;
 			for (int  i = 0; i <=  modell.getRowCount() - 1;i++)
 			{
-				Ekstre_Detay eDTY  = new Ekstre_Detay(TARIH_CEVIR.tarih_ters(modell.getValueAt(i, 0).toString()),
-						modell.getValueAt(i, 1).toString(),
+				if (i==0)
+				{
+					tARIH = "";
+					eVRAK="";
+				}
+				else 
+				{
+					tARIH = TARIH_CEVIR.tarih_ters(modell.getValueAt(i, 0).toString());
+					eVRAK = modell.getValueAt(i, 1).toString();
+				}
+				Ekstre_Detay eDTY  = new Ekstre_Detay(tARIH,
+						eVRAK,
 						modell.getValueAt(i, 2).toString(),
 						modell.getValueAt(i, 3).toString(),
 						 Double.parseDouble(modell.getValueAt(i, 5).toString()),

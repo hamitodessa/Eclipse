@@ -98,7 +98,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 		reportViewer.setHasRefreshButton(false);
 		getContentPane().add(reportViewer, BorderLayout.CENTER);
 	}
-	@SuppressWarnings("unused")
 	public static   void hisset (String nerden,String nasil) 
 	{
 		try 

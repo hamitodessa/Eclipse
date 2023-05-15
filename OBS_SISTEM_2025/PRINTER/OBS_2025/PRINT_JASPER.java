@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.nio.charset.StandardCharsets;
 import javax.mail.util.ByteArrayDataSource;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -40,12 +40,14 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JRDesignBand;
 import net.sf.jasperreports.engine.design.JRDesignSection;
 import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.engine.type.PrintOrderEnum;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
 import javax.swing.JScrollPane;
@@ -151,7 +153,9 @@ public class PRINT_JASPER extends JInternalFrame {
 				parameters.put("uNVAN",  FILTRE.lblNewLabel_1.getText().trim() + "   /  " + FILTRE.lblNewLabel_2.getText().trim());
 				parameters.put("pERIYOT","Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_1));
 				ResultSet rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
+				
 				jp = JasperFillManager.fillReport(jr,parameters,new JRResultSetDataSource(rs));
+				jp.setLocaleCode("UTF-8");
 			}
 			else if (nerden.equals("ekstre_kisa"))
 			{
@@ -287,6 +291,23 @@ public class PRINT_JASPER extends JInternalFrame {
 
 	public static ByteArrayDataSource export_to() throws IOException, JRException
 	{
+		///
+		//File outputFile = new File("rapor.xls");
+		//ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		//FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
+		//JRPdfExporter exporter = new JRPdfExporter();
+		//exporter.setExporterInput(new SimpleExporterInput(jp));
+		//exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(byteArrayOutputStream));
+		//exporter.setParameter(JRExporterParameter.CHARACTER_ENCODING, "UTF-8");
+
+		//exporter.exportReport();
+		//byteArrayOutputStream.writeTo(fileOutputStream);
+		//byteArrayOutputStream.close();
+		//ByteArrayInputStream inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
+		//ByteArrayDataSource ds = new ByteArrayDataSource(inputStream, "application/x-any");
+		//return ds;
+		///
+		jp.setLocaleCode("UTF-8");
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		JasperExportManager.exportReportToPdfStream(jp, baos);
 		ByteArrayDataSource ds =  new ByteArrayDataSource(baos.toByteArray(), "application/pdf");

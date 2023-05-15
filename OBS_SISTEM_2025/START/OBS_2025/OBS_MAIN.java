@@ -2412,6 +2412,7 @@ public class OBS_MAIN extends JFrame {
 						internalFrame = new PRINT_JASPER();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
+						oac.nerden = "etiket";
 						PRINT_JASPER.hisset("etiket","");
 					}
 					else if (sonuc == "EKSTRE")
@@ -2423,6 +2424,7 @@ public class OBS_MAIN extends JFrame {
 							internalFrame = new PRINT_JASPER();
 							desktopPane.add(internalFrame);
 							internalFrame.setVisible(true);
+							oac.nerden = "ekstre";
 							PRINT_JASPER.hisset("ekstre_kisa","aratarih");
 						}
 						else
@@ -2432,6 +2434,7 @@ public class OBS_MAIN extends JFrame {
 							internalFrame = new PRINT_JASPER();
 							desktopPane.add(internalFrame);
 							internalFrame.setVisible(true);
+							oac.nerden = "ekstre";
 							PRINT_JASPER.hisset("ekstre","normal");
 						}
 						

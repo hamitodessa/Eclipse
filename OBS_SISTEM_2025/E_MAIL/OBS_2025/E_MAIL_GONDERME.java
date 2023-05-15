@@ -73,7 +73,7 @@ import OBS_C_2025.ValidEmailAddress;
 
 import javax.swing.SwingConstants;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","static-access"})
 public class E_MAIL_GONDERME extends JInternalFrame {
 	private JTextField txtkonu;
 	private JTextField txtgonhesap;
@@ -84,6 +84,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	private JComboBox<String> cmbalici ;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private boolean etiketten = false;
+	private boolean ekstreden = false;
 	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 
@@ -239,7 +240,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					txtaciklama.requestFocus();
 					return ;
 				}
-				if ( OBS_MAIN.pencere_bak("RAPOR YAZDIRMA") == true  || etiketten ==true) 
+				if ( OBS_MAIN.pencere_bak("RAPOR YAZDIRMA") == true  || etiketten ==true || ekstreden == true) 
 				{
 					gonder();
 				}
@@ -432,6 +433,12 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				etiketten = true ;
 				lblNewLabel_2.setText("Etiket");
 			}
+			else if (ekstre_kontrol() )
+			{
+				comboBox.enable(true);
+				ekstreden = true ;
+				lblNewLabel_2.setText("Ekstre");
+			}
 			else 
 			{
 				comboBox.enable(false);
@@ -546,11 +553,11 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			{
 				if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("PDF") )
 				{
-					ds = ETIKET_PRINT.export_to();
+					ds = PRINT_JASPER.export_to();
 				}
 				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("EXCELL") )
 				{
-					ds = ETIKET_PRINT.export_xls();
+					ds = PRINT_JASPER.export_xls();
 					File outputFile = new File("etiket.xls");
 					boolean exists = outputFile.exists();
 					if (exists)
@@ -560,8 +567,36 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				}
 				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("WORD") )
 				{
-					ds = ETIKET_PRINT.export_docx();
+					ds = PRINT_JASPER.export_docx();
 					File outputFile = new File("etiket.doc");
+					boolean exists = outputFile.exists();
+					if (exists)
+					{    
+						 outputFile.delete();
+					}
+				}
+				
+			}
+			if (ekstreden)
+			{
+				if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("PDF") )
+				{
+					ds = PRINT_JASPER.export_to();
+				}
+				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("EXCELL") )
+				{
+					ds = PRINT_JASPER.export_xls();
+					File outputFile = new File("ekstre.xls");
+					boolean exists = outputFile.exists();
+					if (exists)
+					{    
+						 outputFile.delete();
+					}
+				}
+				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("WORD") )
+				{
+					ds = PRINT_JASPER.export_docx();
+					File outputFile = new File("ekstre.doc");
 					boolean exists = outputFile.exists();
 					if (exists)
 					{    
@@ -1012,7 +1047,16 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	private boolean  etiket_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;
-		if (OBS_MAIN.pencere_bak("ETIKET PRINT"))
+		if (oac.nerden.equals("etiket"))
+		{
+			result = true ;
+		}
+		return result;
+	}
+	private boolean  ekstre_kontrol() throws ReportSDKException
+	{
+		boolean result  = false;
+		if (oac.nerden.equals("ekstre"))
 		{
 			result = true ;
 		}

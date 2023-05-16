@@ -178,7 +178,7 @@ FROM SATIRLAR , IZAHAT]]>
 			<textField>
 				<reportElement x="71" y="0" width="260" height="12" uuid="7a48c8be-18c3-483c-812f-7450bb08f9cc"/>
 				<textElement>
-					<font fontName="Times New Roman" size="9"/>
+					<font fontName="NewFontFamily" size="9" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{IZAHAT}]]></textFieldExpression>
 			</textField>

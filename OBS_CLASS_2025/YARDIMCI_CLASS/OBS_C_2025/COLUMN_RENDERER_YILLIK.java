@@ -3,6 +3,7 @@ package OBS_C_2025;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -10,10 +11,10 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
 
 @SuppressWarnings("serial")
-public class COLUMN_RENDERER  extends DefaultTableCellRenderer 
+public class COLUMN_RENDERER_YILLIK  extends DefaultTableCellRenderer 
 {
 	Color backgroundColor, foregroundColor;
-	public COLUMN_RENDERER(Color backgroundColor, Color foregroundColor) 
+	public COLUMN_RENDERER_YILLIK(Color backgroundColor, Color foregroundColor) 
 	{
 		super();
 		this.backgroundColor = backgroundColor;
@@ -35,7 +36,7 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 			}
 			else if (column ==0)
 			{
-				setHorizontalAlignment( JLabel.CENTER );
+				setHorizontalAlignment( JLabel.LEFT);
 				cell.setBackground(backgroundColor);
 				cell.setForeground(foregroundColor); 
 			}

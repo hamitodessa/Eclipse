@@ -15,14 +15,13 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDayChooser;
-import com.toedter.calendar.JMonthChooser;
-
 import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.MyTreeCellRenderer;
 import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 
 import OBS_C_2025.COLUMN_RENDERER;
+import OBS_C_2025.COLUMN_RENDERER_YILLIK;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ROW_RENDERER;
@@ -84,6 +83,7 @@ public class Gunluk extends JInternalFrame {
 	private static JTree treeGovev ;
 	private JScrollPane scrolAylik;
 	private JTabbedPane tabloTabbedPane;
+	private JTable table_2;
 	/**
 	 * Launch the application.
 	 */
@@ -111,7 +111,7 @@ public class Gunluk extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0,0, 1250, 675);
+		setBounds(0,0, 1260, 675);
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(1);
 		//splitPane.setResizeWeight(0.0);
@@ -570,6 +570,140 @@ public class Gunluk extends JInternalFrame {
 		//****************************************Aylik***********************************
 		scrolAylik = new JScrollPane();
 		tabloTabbedPane.addTab("Aylik", null, scrolAylik, null);
+		
+		//****************************************YILLIK *********************************
+		JPanel panel_6 = new JPanel();
+		tabloTabbedPane.addTab("Yillik", null, panel_6, null);
+		panel_6.setLayout(new BorderLayout(0, 0));
+		
+		JSplitPane splitPane_4 = new JSplitPane();
+		splitPane_4.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane_4.setDividerSize(0);
+		panel_6.add(splitPane_4, BorderLayout.CENTER);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setMinimumSize(new Dimension(0, 30));
+		panel_7.setMaximumSize(new Dimension(0, 30));
+		panel_7.setLayout(new BorderLayout(0, 0));
+		splitPane_4.setLeftComponent(panel_7);
+		
+		table_2 = new JTable() {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		table_2.setModel(new DefaultTableModel(
+				new Object[][] 
+						{
+						
+							{"", "Ocak","Subat", "Mart", "Nisan", "Mayis", "Haziran", "Temmuz","Agustos","Eylul","Ekim","Kasim","Aralik"},
+						},
+						new String[] {
+								"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
+						}
+						));
+		JTableHeader th2 = table_2.getTableHeader();
+		TableColumnModel tcm2 = th2.getColumnModel();
+		TableColumn tc2;
+		
+		
+		for (int col = 0; col <= table_2.getColumnCount() -1; col++)
+		{
+			table_2.getColumnModel().getColumn(col).setMinWidth(60);
+			table_2.getColumnModel().getColumn(col).setMaxWidth(60);
+			tc2 = tcm2.getColumn(col);
+			tc2.setCellRenderer(new COLUMN_RENDERER_YILLIK (new Color(80, 92, 124),Color.WHITE));
+		}
+		table_2.setRowSelectionAllowed(false);
+		table_2.setRowHeight(0, 30);
+		table_2.setRowSelectionAllowed(false);
+		
+		
+		
+		panel_7.add(table_2, BorderLayout.CENTER);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		splitPane_4.setRightComponent(scrollPane_2); 
+		JTable table_3 = new JTable() {
+			public boolean isCellEditable(int row, int column) {     return false;          }
+
+		};
+		scrollPane_2.setViewportView(table_3);
+		table_3.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				if (table_3.getSelectedRow() < 0) return ;
+				if (table_3.getSelectedColumn() == 0) return ;
+				if (table_3.equals(e.getSource())) 
+				{
+					
+						table_3.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+						//detay_doldur(table_3.getSelectedRow(),table_3.getSelectedColumn());
+						table_3.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+					
+				}
+			}
+		});
+	
+		table_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		table_3.setRowSelectionAllowed(false);
+		table_3.setModel(new DefaultTableModel(	new Object[][] 
+				{
+					{"1", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"2", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"3", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"4", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"5", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"6", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"7", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"8", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"9", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"10", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"11", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"12", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"13", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"14", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"15", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"16", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"17", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"18", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"19", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"20", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"21", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"22", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"23", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"24", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"25", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"26", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"27", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"28", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"29", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"30", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"31", null, null, null, null, null, null, null, null, null, null, null, null},
+				},
+				new String[] {
+						"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
+				}
+				));
+		for (int col = 0; col <= table_3.getColumnCount() -1; col++)
+		{
+			table_3.getColumnModel().getColumn(col).setMaxWidth(60);
+			table_3.getColumnModel().getColumn(col).setMinWidth(60);
+		}
+		
+		for (int row = 0; row < table_3.getRowCount(); row++)
+		{
+			table_3.setRowHeight(row, 25);
+		}
+		JTableHeader th3 = table_3.getTableHeader();
+		TableColumnModel tcm3 = th3.getColumnModel();
+		TableColumn tc3;
+		tc3 = tcm3.getColumn(0);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(80, 92, 124),Color.WHITE));
+		table_3.setTableHeader(null);
 		//********************************************************************************
 		temizle();
 		calendar.setDate(new Date());

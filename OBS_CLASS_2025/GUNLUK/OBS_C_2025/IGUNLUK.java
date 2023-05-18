@@ -25,5 +25,6 @@ public interface IGUNLUK {
 	public ResultSet gorev_oku_aylik_grup(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException;
 	public ResultSet gorev_oku_sonraki(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException;
 	public void gun_firma_adi_kayit(String fadi) throws ClassNotFoundException, SQLException;
+	public ResultSet gorev_oku_yillik_pivot(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException;
 }
 

@@ -98,4 +98,8 @@ public class GUNLUK_ACCESS {
 		for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
+	public ResultSet gorev_oku_yillik_pivot(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
+	{
+		return _IGunluk.gorev_oku_yillik_pivot(gbilgi);
+	}
 }

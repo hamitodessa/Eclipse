@@ -414,6 +414,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 				" GROUP BY TARIH,ISIM,GOREV,YER,MESAJ  ORDER BY TARIH   ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
+		
 		return rss;	
 	}
 	@Override
@@ -437,5 +438,18 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		stmt.executeUpdate();
 		stmt.close();
 		
+	}
+	@Override
+	public ResultSet gorev_oku_yillik_pivot(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = "SELECT *  FROM  (SELECT  datepart(dd,GUNLUK.TARIH) as Gun , datepart(mm,GUNLUK.TARIH) as  Aylar ,GUNLUK.TARIH " +
+				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
+				" WHERE "+ gbilgi.isim +" TARIH BETWEEN   '" + gbilgi.tarih1 + "' AND '" + gbilgi.tarih2 + "' ) as s" +
+				" PIVOT  (  COUNT(TARIH)  FOR Aylar  IN ( [1] , [2] , [3] , [4] , [5] , [6] , [7] , [8] , [9] , [10] , [11] , [12] )     )  AS p " +
+				"ORDER BY Gun   ";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
 	}
 }

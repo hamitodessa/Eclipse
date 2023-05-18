@@ -26,7 +26,6 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ROW_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -69,7 +68,7 @@ import java.awt.GridLayout;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
-@SuppressWarnings({"serial" , "static-access" })
+@SuppressWarnings({"serial" , "static-access","deprecation" })
 public class Gunluk extends JInternalFrame {
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
@@ -84,6 +83,7 @@ public class Gunluk extends JInternalFrame {
 	private JScrollPane scrolAylik;
 	private JTabbedPane tabloTabbedPane;
 	private JTable table_2;
+	private JTable table_3;
 	/**
 	 * Launch the application.
 	 */
@@ -111,13 +111,14 @@ public class Gunluk extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0,0, 1260, 675);
+		setBounds(0,0, 1250, 675);
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(1);
 		//splitPane.setResizeWeight(0.0);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
-
+		
 		JPanel panel = new JPanel();
+		panel.setMinimumSize(new Dimension(250, 0));
 		try {
 			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("McWinLookAndFeel") ||  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("MintLookAndFeel"))
 			{
@@ -167,14 +168,35 @@ public class Gunluk extends JInternalFrame {
 				try 
 				{
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
-					ilk= true;
+					ilk = true;
 					temizle();
 					calendar.setDate(new Date());
-					isim_doldur();
-					basla();
+					
+					///
+					int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
+					
+					if (activ_sayfa == 0)
+					{
+						isim_doldur();
+						basla();
+					}
+					else if (activ_sayfa == 1)
+					{
+						isim_doldur();
+						aylik_gorunum_doldur();
+					}
+					else if (activ_sayfa == 2)
+					{
+						isim_doldur();
+					}
+					///
+					
 					ilk= false;
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 				} catch (ClassNotFoundException | SQLException e1) {
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -237,7 +259,17 @@ public class Gunluk extends JInternalFrame {
 		btnNewButton_2.setIcon(new ImageIcon(Gunluk.class.getResource("/ICONLAR/forwardson.png")));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sonraki_gorev_bul();
+				int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
+				
+				if (activ_sayfa == 0)
+				{
+					sonraki_gorev_bul();
+				}
+				else 
+				{
+					sonraki_gorev_bul();
+				}
+				
 			}
 		});
 		///
@@ -257,9 +289,13 @@ public class Gunluk extends JInternalFrame {
 					{
 						basla();
 					}
-					else 
+					else if (activ_sayfa == 1)
 					{
 						aylik_gorunum_doldur();
+					}
+					else 
+					{
+						yillik_gorunum_doldur();
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 				} catch (ClassNotFoundException | ParseException |SQLException e) {
@@ -267,7 +303,7 @@ public class Gunluk extends JInternalFrame {
 				} 
         	}
         });
-        JDayChooser dayChooser = calendar.getDayChooser();
+         JDayChooser dayChooser = calendar.getDayChooser();
         dayChooser.setAlwaysFireDayProperty(true); // here is the key
 		calendar.setForeground(new Color(0, 128, 128));
 		calendar.getDayChooser().setDayBordersVisible(true);
@@ -287,9 +323,13 @@ public class Gunluk extends JInternalFrame {
 					{
 						basla();
 					}
-					else 
+					else if (activ_sayfa == 1)
 					{
 						aylik_gorunum_doldur();
+					}
+					else 
+					{
+						yillik_gorunum_doldur();
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 				} catch (ClassNotFoundException | ParseException |SQLException e) {
@@ -356,9 +396,15 @@ public class Gunluk extends JInternalFrame {
 							{
 								basla();
 							}
-							else {
+							else if (activ_sayfa == 1)
+							{
 								tree_temizle();
 								aylik_gorunum_doldur();
+							}
+							else  
+							{
+								tree_temizle();
+								yillik_gorunum_doldur();
 							}
 						} catch (ClassNotFoundException | SQLException e1) 
 						{
@@ -625,7 +671,7 @@ public class Gunluk extends JInternalFrame {
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
 		splitPane_4.setRightComponent(scrollPane_2); 
-		JTable table_3 = new JTable() {
+		table_3 = new JTable() {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 
 		};
@@ -641,7 +687,12 @@ public class Gunluk extends JInternalFrame {
 				{
 					
 						table_3.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-						//detay_doldur(table_3.getSelectedRow(),table_3.getSelectedColumn());
+						try {
+							yillik_detay_doldur(table_3.getSelectedRow(),table_3.getSelectedColumn());
+						} catch (ClassNotFoundException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						table_3.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					
 				}
@@ -652,42 +703,44 @@ public class Gunluk extends JInternalFrame {
 		table_3.setRowSelectionAllowed(false);
 		table_3.setModel(new DefaultTableModel(	new Object[][] 
 				{
-					{"1", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"2", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"3", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"4", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"5", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"6", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"7", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"8", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"9", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"10", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"11", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"12", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"13", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"14", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"15", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"16", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"17", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"18", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"19", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"20", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"21", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"22", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"23", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"24", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"25", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"26", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"27", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"28", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"29", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"30", null, null, null, null, null, null, null, null, null, null, null, null},
-					{"31", null, null, null, null, null, null, null, null, null, null, null, null},
+					{"1", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"2",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"3",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"4", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"5",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"6",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"7",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"8",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"9", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"10", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"11",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"12",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"13", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"14",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"15",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"16",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"17",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"18", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"19", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"20",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"21",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"22",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"23", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"24",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"25", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"26",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"27", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"28",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"29",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"30",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"31",  "", "", "", "", "", "", "", "", "", "", "", ""},
 				},
 				new String[] {
 						"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
 				}
 				));
+		
+		
 		for (int col = 0; col <= table_3.getColumnCount() -1; col++)
 		{
 			table_3.getColumnModel().getColumn(col).setMaxWidth(60);
@@ -703,6 +756,33 @@ public class Gunluk extends JInternalFrame {
 		TableColumn tc3;
 		tc3 = tcm3.getColumn(0);
 		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(80, 92, 124),Color.WHITE));
+		
+		tc3 = tcm3.getColumn(1);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(255, 177, 190),new Color(204, 0, 29)));
+		tc3 = tcm3.getColumn(2);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(86, 177, 220),new Color(171, 216, 237)));
+		tc3 = tcm3.getColumn(3);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(107, 173, 132),new Color(173, 209, 204)));
+		tc3 = tcm3.getColumn(4);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209)));
+		tc3 = tcm3.getColumn(5);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(225, 207, 208),new Color(126, 78, 80)));
+		tc3 = tcm3.getColumn(6);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(198, 201, 234),new Color(55, 64, 149)));
+		tc3 = tcm3.getColumn(7);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104)));
+		tc3 = tcm3.getColumn(8);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(255, 177, 190),new Color(204, 0, 29)));
+		tc3 = tcm3.getColumn(9);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(86, 177, 220),new Color(171, 216, 237)));
+		tc3 = tcm3.getColumn(10);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(107, 173, 132),new Color(173, 209, 204)));
+		tc3 = tcm3.getColumn(11);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209)));
+		tc3 = tcm3.getColumn(12);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(225, 207, 208),new Color(126, 78, 80)));
+		//
+		
 		table_3.setTableHeader(null);
 		//********************************************************************************
 		temizle();
@@ -730,6 +810,12 @@ public class Gunluk extends JInternalFrame {
 				{
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					aylik_gorunum_doldur();
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
+				}
+				else if (activ_sayfa == 2)  //Yillik Gorunum
+				{
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					yillik_gorunum_doldur();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 				}
 				} catch (ClassNotFoundException | SQLException e1) {
@@ -862,7 +948,8 @@ public class Gunluk extends JInternalFrame {
 		temizle();
 		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
 		String formatted = format1.format(calendar.getDate());
-		try {
+		try 
+		{
 			Date qwe = new SimpleDateFormat("dd.MM.yyyy").parse(formatted);
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(qwe);
@@ -971,6 +1058,46 @@ public class Gunluk extends JInternalFrame {
 		gbilgi.saat1 = mdlGunluk.getValueAt(satir, 0).toString() ;
 
 		ResultSet rSet = g_Access.gorev_oku_tarih(gbilgi);
+		if (!rSet.isBeforeFirst() ) { 
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
+			return; // Kayit Yok
+		} 
+		while (rSet.next())
+		{
+			DefaultMutableTreeNode iSIM = new DefaultMutableTreeNode(rSet.getString("ISIM"));
+			DefaultMutableTreeNode gOREV = new DefaultMutableTreeNode(rSet.getString("GOREV"));
+			DefaultMutableTreeNode yER = new DefaultMutableTreeNode(rSet.getString("YER")); 
+			DefaultMutableTreeNode mESAJ = new DefaultMutableTreeNode(rSet.getString("MESAJ"));
+			yER.add(mESAJ);
+			gOREV.add(yER);
+			iSIM.add(gOREV);
+			root.add(iSIM);
+		}
+		model.reload(root);
+	}
+	private void yillik_detay_doldur(int satir , int sutun) throws ClassNotFoundException, SQLException
+	{
+		//DefaultTableModel mdlGunluk = (DefaultTableModel) table_3.getModel();
+		DefaultTreeModel model = (DefaultTreeModel)treeGovev.getModel();
+		DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
+		root.removeAllChildren(); //this removes all nodes
+		model.reload(); //this notifies the listeners and changes the GUI
+		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy");
+		Date qwe = calendar.getDate();
+		String formatted = format1.format(qwe);
+	
+		gbilgi.tarih1 = formatted + "." + sutun + "." + (satir + 1) ;
+		gbilgi.tarih2 = formatted + "." + sutun + "." + (satir + 1) ;
+		if (comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString().equals("Hepsi"))
+		{
+			gbilgi.isim = "" ;
+		}
+		else 
+		{
+			gbilgi.isim = " ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' AND " ;
+		}
+		ResultSet rSet = g_Access.gorev_oku_aylik_grup(gbilgi);
 		if (!rSet.isBeforeFirst() ) { 
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 			return; // Kayit Yok
@@ -1147,7 +1274,65 @@ public class Gunluk extends JInternalFrame {
 		}
 
 	}
-	@SuppressWarnings("deprecation")
+	private void yillik_gorunum_doldur() throws SQLException, ClassNotFoundException, ParseException
+	{
+		try 
+		{
+			ResultSet rSet = yillik_gorev_oku();
+			if (!rSet.isBeforeFirst() ) { 
+				for(int sat =0; sat <=30;sat++)
+				{
+					for(int i = 2; i<=13;i++)
+					{
+						table_3.getModel().setValueAt("",sat, i-1) ;	
+
+					}
+				}
+				tree_temizle();
+				return; 
+			} 
+			while(rSet.next())
+			{
+				for(int i = 2; i<=13;i++)
+				{
+					if(rSet.getInt(i)!= 0)
+					{
+						table_3.getModel().setValueAt(rSet.getInt(i),rSet.getInt(1)-1, i-1) ;	
+					}
+					else 
+					{
+						table_3.getModel().setValueAt("",rSet.getInt(1)-1, i-1) ;	
+					}
+				}
+			}
+		}
+		catch (Exception ex) 
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
+		}
+
+	}
+	private ResultSet yillik_gorev_oku() throws ClassNotFoundException, SQLException
+	{
+		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy");
+		Date qwe = calendar.getDate();
+		String formatted = format1.format(qwe);
+
+		gbilgi.tarih1 = formatted +".01.01" ;
+		gbilgi.tarih2 = formatted +".12.31" ;
+		if (comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString().equals("Hepsi"))
+		{
+			gbilgi.isim = "" ;
+		}
+		else 
+		{
+			gbilgi.isim = " ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' AND " ;
+		}
+
+		ResultSet rs =  g_Access. gorev_oku_yillik_pivot(gbilgi);
+		return rs;
+	}
 	private ResultSet aylik_gorev_oku() throws ClassNotFoundException, SQLException
 	{
 		Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
@@ -1261,5 +1446,11 @@ public class Gunluk extends JInternalFrame {
 		}
 	}
 }
+//	 ResultSetMetaData rsMetaData = rSet.getMetaData();
+//table_3.setModel(DbUtils.resultSetToTableModel(rSet));
+//	int count = rsMetaData.getColumnCount();
+//		for(int i = 1; i<=count; i++) {
+//	         System.out.println(rsMetaData.getColumnName(i));
+//	      }
 
 

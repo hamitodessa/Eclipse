@@ -41,9 +41,6 @@ import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.TARIH_CEVIR;
-import com.toedter.calendar.JMonthChooser;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 
 @SuppressWarnings({ "static-access","serial" })
 public class GOREV_GIRIS extends JInternalFrame {

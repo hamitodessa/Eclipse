@@ -74,6 +74,8 @@ public class Gunluk extends JInternalFrame {
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	private JTable table;
 	private JTable table_1;
+	private JTable table_2;
+	private JTable table_3;
 	static JCalendar calendar ;
 	boolean kontrol = false;
 	String trh1 = "" ;
@@ -82,8 +84,7 @@ public class Gunluk extends JInternalFrame {
 	private static JTree treeGovev ;
 	private JScrollPane scrolAylik;
 	private JTabbedPane tabloTabbedPane;
-	private JTable table_2;
-	private JTable table_3;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -114,7 +115,6 @@ public class Gunluk extends JInternalFrame {
 		setBounds(0,0, 1268, 675);
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(1);
-		//splitPane.setResizeWeight(0.0);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
@@ -354,7 +354,7 @@ public class Gunluk extends JInternalFrame {
 		splitPane_2.setResizeWeight(1.0);
 		splitPane.setRightComponent(splitPane_2);
 		
-//**********************************************************************************************		
+		//**********************************************************************************		
 		JPanel panel_2 = new JPanel();
 		try {
 			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("McWinLookAndFeel") ||  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("MintLookAndFeel"))
@@ -479,7 +479,7 @@ public class Gunluk extends JInternalFrame {
 		tabloTabbedPane = new JTabbedPane();
 		tabloTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel_3.add(tabloTabbedPane, BorderLayout.CENTER);
-//*************************************************Tablolarin Spliti
+//*************************************************Tablolarin Spliti ***************************************************
 		JSplitPane splitPane_3 = new JSplitPane();
 		tabloTabbedPane.addTab("Gunluk", null, splitPane_3, null);  // Gunluk tab paneli koy
 		splitPane_3.setDividerSize(0);
@@ -526,7 +526,6 @@ public class Gunluk extends JInternalFrame {
 		table_1.setTableHeader(null);
 		//*****************************************************************************************************************		
 		splitPane_3.setLeftComponent(table_1);
-		
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane_3.setRightComponent(scrollPane);
 		//*****************************************************************************************************************
@@ -660,16 +659,12 @@ public class Gunluk extends JInternalFrame {
 		table_2.setRowSelectionAllowed(false);
 		table_2.setRowHeight(0, 30);
 		table_2.setRowSelectionAllowed(false);
-		
-		
-		
 		panel_7.add(table_2, BorderLayout.CENTER);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
 		splitPane_4.setRightComponent(scrollPane_2); 
 		table_3 = new JTable() {
 			public boolean isCellEditable(int row, int column) {     return false;          }
-
 		};
 		scrollPane_2.setViewportView(table_3);
 		table_3.addMouseListener(new MouseAdapter() 
@@ -697,36 +692,36 @@ public class Gunluk extends JInternalFrame {
 		table_3.setModel(new DefaultTableModel(	new Object[][] 
 				{
 					{"1", "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"2",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"3",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"2", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"3", "", "", "", "", "", "", "", "", "", "", "", ""},
 					{"4", "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"5",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"6",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"7",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"8",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"5", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"6", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"7", "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"8", "", "", "", "", "", "", "", "", "", "", "", ""},
 					{"9", "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"10", "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"11",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"12",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"13", "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"14",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"15",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"16",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"17",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"18", "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"19", "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"20",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"21",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"22",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"23", "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"24",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"25", "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"26",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"27", "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"28",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"29",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"30",  "", "", "", "", "", "", "", "", "", "", "", ""},
-					{"31",  "", "", "", "", "", "", "", "", "", "", "", ""},
+					{"10","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"11","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"12","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"13","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"14","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"15","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"16","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"17","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"18","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"19","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"20","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"21","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"22","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"23","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"24","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"25","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"26","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"27","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"28","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"29","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"30","", "", "", "", "", "", "", "", "", "", "", ""},
+					{"31","", "", "", "", "", "", "", "", "", "", "", ""},
 				},
 				new String[] {
 						"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
@@ -747,7 +742,8 @@ public class Gunluk extends JInternalFrame {
 		TableColumn tc3;
 		tc3 = tcm3.getColumn(0);
 		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(80, 92, 124),Color.WHITE));
-		
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(225, 207, 208),new Color(126, 78, 80)));
+		//
 		tc3 = tcm3.getColumn(1);
 		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(255, 177, 190),new Color(204, 0, 29)));
 		tc3 = tcm3.getColumn(2);
@@ -771,9 +767,7 @@ public class Gunluk extends JInternalFrame {
 		tc3 = tcm3.getColumn(11);
 		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209)));
 		tc3 = tcm3.getColumn(12);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(225, 207, 208),new Color(126, 78, 80)));
-		//
-		
+
 		table_3.setTableHeader(null);
 		//********************************************************************************
 		temizle();

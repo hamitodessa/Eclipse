@@ -129,7 +129,6 @@ public class Gunluk extends JInternalFrame {
 				panel.setMinimumSize(new Dimension(250, 0));
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -196,7 +195,6 @@ public class Gunluk extends JInternalFrame {
 				} catch (ClassNotFoundException | SQLException e1) {
 					e1.printStackTrace();
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -254,7 +252,6 @@ public class Gunluk extends JInternalFrame {
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -356,7 +353,6 @@ public class Gunluk extends JInternalFrame {
 		splitPane_2.setDividerSize(0);
 		splitPane_2.setResizeWeight(1.0);
 		splitPane.setRightComponent(splitPane_2);
-
 		
 //**********************************************************************************************		
 		JPanel panel_2 = new JPanel();
@@ -370,7 +366,6 @@ public class Gunluk extends JInternalFrame {
 				panel_2.setMinimumSize(new Dimension(250, 0));
 			}
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	
@@ -417,10 +412,8 @@ public class Gunluk extends JInternalFrame {
 							}
 						} catch (ClassNotFoundException | SQLException e1) 
 						{
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -460,20 +453,14 @@ public class Gunluk extends JInternalFrame {
 							setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
 							treeOgren();
 							setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
-						} catch (ClassNotFoundException | SQLException  | PropertyVetoException e2) {
-							// TODO Auto-generated catch block
+						} catch (ClassNotFoundException | SQLException  | PropertyVetoException e2)
+						{
 						}
-						//  System.out.println(selRow  +"=double="+ selPath);
 					}
 				}
 			}
 		});
 		scrollPane_1.setViewportView(treeGovev);
-		treeGovev.setModel(new DefaultTreeModel(
-				new DefaultMutableTreeNode("Gorevler") {
-				}
-				));
-		
 		JPanel panel_5 = new JPanel();
 		splitPane_6.setRightComponent(panel_5);
 		panel_5.setLayout(new BorderLayout(0, 0));
@@ -694,16 +681,13 @@ public class Gunluk extends JInternalFrame {
 				if (table_3.getSelectedColumn() == 0) return ;
 				if (table_3.equals(e.getSource())) 
 				{
-					
 						table_3.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 						try {
 							yillik_detay_doldur(table_3.getSelectedRow(),table_3.getSelectedColumn());
 						} catch (ClassNotFoundException | SQLException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						table_3.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					
 				}
 			}
 		});
@@ -748,8 +732,6 @@ public class Gunluk extends JInternalFrame {
 						"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
 				}
 				));
-		
-		
 		for (int col = 0; col <= table_3.getColumnCount() -1; col++)
 		{
 			table_3.getColumnModel().getColumn(col).setMaxWidth(60);

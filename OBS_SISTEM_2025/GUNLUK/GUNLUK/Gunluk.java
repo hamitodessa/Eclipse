@@ -111,7 +111,7 @@ public class Gunluk extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0,0, 1250, 675);
+		setBounds(0,0, 1268, 675);
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(1);
 		//splitPane.setResizeWeight(0.0);
@@ -215,12 +215,17 @@ public class Gunluk extends JInternalFrame {
 					{
 						geri();
 					}
-					else
+					else if (activ_sayfa == 1)
 					{
 						ay_geri();
 					}
+					else if (activ_sayfa == 2)
+					{
+						yil_geri();
+					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
-				} catch (ClassNotFoundException | SQLException e1) {
+				} catch (Exception ex ) 
+				{
 				}
 			}
 		});
@@ -239,9 +244,13 @@ public class Gunluk extends JInternalFrame {
 					{
 						ileri();
 					}
-					else 
+					else if (activ_sayfa == 1)
 					{
 						ay_ileri();
+					}
+					else if (activ_sayfa == 2)
+					{
+						yil_ileri();
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 				} catch (ClassNotFoundException | SQLException e1) {
@@ -358,7 +367,7 @@ public class Gunluk extends JInternalFrame {
 			}
 			else
 			{
-				panel_2.setMinimumSize(new Dimension(200, 0));
+				panel_2.setMinimumSize(new Dimension(250, 0));
 			}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -943,7 +952,22 @@ public class Gunluk extends JInternalFrame {
 		} catch (ParseException e) {
 		}  
 	}
-	private void geri() throws ClassNotFoundException, SQLException 
+	private void yil_ileri() 
+	{
+		temizle();
+		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+		String formatted = format1.format(calendar.getDate());
+		try 
+		{
+			Date qwe = new SimpleDateFormat("dd.MM.yyyy").parse(formatted);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(qwe);
+			cal.add(Calendar.YEAR, 1); 
+			calendar.setDate(new Date(cal.getTimeInMillis()));
+		} catch (ParseException e) {
+		}  
+	}
+	private void geri() 
 	{
 		temizle();
 		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
@@ -960,7 +984,7 @@ public class Gunluk extends JInternalFrame {
 		{
 		}  
 	}
-	private void ay_geri() throws ClassNotFoundException, SQLException 
+	private void ay_geri() 
 	{
 		temizle();
 		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
@@ -970,6 +994,22 @@ public class Gunluk extends JInternalFrame {
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(qwe);
 			cal.add(Calendar.MONTH, -1); 
+			calendar.setDate(new Date(cal.getTimeInMillis()));
+		} 
+		catch (ParseException e) 
+		{
+		}  
+	}
+	private void yil_geri() 
+	{
+		temizle();
+		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+		String formatted = format1.format(calendar.getDate());
+		try {
+			Date qwe = new SimpleDateFormat("dd.MM.yyyy").parse(formatted);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(qwe);
+			cal.add(Calendar.YEAR, -1); 
 			calendar.setDate(new Date(cal.getTimeInMillis()));
 		} 
 		catch (ParseException e) 
@@ -1077,7 +1117,6 @@ public class Gunluk extends JInternalFrame {
 	}
 	private void yillik_detay_doldur(int satir , int sutun) throws ClassNotFoundException, SQLException
 	{
-		//DefaultTableModel mdlGunluk = (DefaultTableModel) table_3.getModel();
 		DefaultTreeModel model = (DefaultTreeModel)treeGovev.getModel();
 		DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
 		root.removeAllChildren(); //this removes all nodes
@@ -1229,7 +1268,6 @@ public class Gunluk extends JInternalFrame {
 			}
 			int gunSAYISI = cal. getActualMaximum(Calendar. DATE);
 			JPanel qweJPanel =  new Aylik_Gorunum(hangiGUN,gunSAYISI);
-			//JPanel qweJPanel =  new Aylik_Gorunum(7,30);
 			scrolAylik.setViewportView(qweJPanel);
 			ResultSet rSet = aylik_gorev_oku();
 			if (!rSet.isBeforeFirst() ) { 
@@ -1272,23 +1310,21 @@ public class Gunluk extends JInternalFrame {
 		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
 		}
-
 	}
 	private void yillik_gorunum_doldur() throws SQLException, ClassNotFoundException, ParseException
 	{
 		try 
 		{
+			for(int sat =0; sat <=30;sat++)
+			{
+				for(int i = 2; i<=13;i++)
+				{
+					table_3.getModel().setValueAt("",sat, i-1) ;	
+				}
+			}
+			tree_temizle();
 			ResultSet rSet = yillik_gorev_oku();
 			if (!rSet.isBeforeFirst() ) { 
-				for(int sat =0; sat <=30;sat++)
-				{
-					for(int i = 2; i<=13;i++)
-					{
-						table_3.getModel().setValueAt("",sat, i-1) ;	
-
-					}
-				}
-				tree_temizle();
 				return; 
 			} 
 			while(rSet.next())
@@ -1310,7 +1346,6 @@ public class Gunluk extends JInternalFrame {
 		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
 		}
-
 	}
 	private ResultSet yillik_gorev_oku() throws ClassNotFoundException, SQLException
 	{
@@ -1329,7 +1364,6 @@ public class Gunluk extends JInternalFrame {
 		{
 			gbilgi.isim = " ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' AND " ;
 		}
-
 		ResultSet rs =  g_Access. gorev_oku_yillik_pivot(gbilgi);
 		return rs;
 	}

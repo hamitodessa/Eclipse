@@ -437,7 +437,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 	@Override
 	public ResultSet gorev_oku_yillik_pivot(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {

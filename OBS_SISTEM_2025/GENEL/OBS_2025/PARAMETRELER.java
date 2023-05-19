@@ -36,6 +36,8 @@ import javax.swing.border.LineBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+
+@SuppressWarnings({"deprecation","static-access"})
 public class PARAMETRELER   extends JInternalFrame   {
 	
 	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
@@ -146,6 +148,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tabbedPane.addKeyListener(new KeyAdapter() {
+			
 			@Override
 			public void keyPressed(KeyEvent e) {
 				String[] parts;
@@ -184,7 +187,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		
 		textField_9 = new JTextField();
 		textField_9.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("deprecation")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				String[] parts;
@@ -345,7 +347,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		comboBox_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 	
-		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"TextureLookAndFeel", "SmartLookAndFeel","NoireLookAndFeel","AcrylLookAndFeel" ,
+		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"Klasik","TextureLookAndFeel", "SmartLookAndFeel","NoireLookAndFeel","AcrylLookAndFeel" ,
 				 "AeroLookAndFeel","AluminiumLookAndFeel","BernsteinLookAndFeel","FastLookAndFeel","GraphiteLookAndFeel","HiFiLookAndFeel",
 				"LunaLookAndFeel","McWinLookAndFeel","MintLookAndFeel"}));
 		comboBox_2.setBounds(151, 163, 199, 22);
@@ -466,6 +468,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		
 		textField = new JTextField();
 		textField.addKeyListener(new KeyAdapter() {
+	
 			@Override
 			public void keyPressed(KeyEvent e) {
 				String[] parts;
@@ -482,7 +485,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		                }
 					}
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 			}
@@ -856,7 +858,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		                }
 					}
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 			}
@@ -1040,7 +1041,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		                }
 					}
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 			}
@@ -1152,7 +1152,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		                }
 					}
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 			}
@@ -1194,7 +1193,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		                }
 					}
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 			}

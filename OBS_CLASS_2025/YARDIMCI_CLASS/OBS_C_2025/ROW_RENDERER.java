@@ -24,6 +24,8 @@ public class ROW_RENDERER extends DefaultTableCellRenderer {
 	      cell.setBackground(backgroundColor);
 	      cell.setForeground(foregroundColor);
 	      setHorizontalAlignment( JLabel.CENTER );
+	      Font fnt = new Font(table.getFont().getFontName(), 1 ,12);
+			cell.setFont(fnt);
 	      }
 	      else if (row ==0)
 	      {

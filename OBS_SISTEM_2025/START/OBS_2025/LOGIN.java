@@ -193,6 +193,10 @@ public class LOGIN extends JFrame {
 			{
 				UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
 			}
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Klasik"))
+			{
+				
+			}
 		} catch (ClassNotFoundException ex) {
 			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {

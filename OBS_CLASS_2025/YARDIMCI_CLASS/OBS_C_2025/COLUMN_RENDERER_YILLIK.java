@@ -29,9 +29,9 @@ public class COLUMN_RENDERER_YILLIK  extends DefaultTableCellRenderer
 			{
 				cell.setBackground(backgroundColor);
 				cell.setForeground(foregroundColor); 
-				Font fnt = new Font(table.getFont().getFontName(), 1 ,10);
+				Font fnt = new Font(table.getFont().getFontName(), 1 ,12);
 				cell.setFont(fnt);
-				Border border = BorderFactory.createMatteBorder(1, 0, 1, 0, new Color(0, 60, 102));
+				Border border = BorderFactory.createMatteBorder(1, 1, 1, 0, new Color(0, 60, 102));
 				setBorder(border);
 			}
 			else if (column ==0)

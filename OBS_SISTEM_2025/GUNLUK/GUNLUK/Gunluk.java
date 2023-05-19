@@ -74,7 +74,6 @@ public class Gunluk extends JInternalFrame {
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	private JTable table;
 	private JTable table_1;
-	private JTable table_2;
 	private JTable table_3;
 	static JCalendar calendar ;
 	boolean kontrol = false;
@@ -618,53 +617,9 @@ public class Gunluk extends JInternalFrame {
 		JPanel panel_6 = new JPanel();
 		tabloTabbedPane.addTab("Yillik", null, panel_6, null);
 		panel_6.setLayout(new BorderLayout(0, 0));
-		
-		JSplitPane splitPane_4 = new JSplitPane();
-		splitPane_4.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		splitPane_4.setDividerSize(0);
-		panel_6.add(splitPane_4, BorderLayout.CENTER);
-		
-		JPanel panel_7 = new JPanel();
-		panel_7.setMinimumSize(new Dimension(0, 30));
-		panel_7.setMaximumSize(new Dimension(0, 30));
-		panel_7.setLayout(new BorderLayout(0, 0));
-		splitPane_4.setLeftComponent(panel_7);
-		
-		table_2 = new JTable() {
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
-		table_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		table_2.setModel(new DefaultTableModel(
-				new Object[][] 
-						{
-						
-							{"", "Ocak","Subat", "Mart", "Nisan", "Mayis", "Haziran", "Temmuz","Agustos","Eylul","Ekim","Kasim","Aralik"},
-						},
-						new String[] {
-								"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
-						}
-						));
-		JTableHeader th2 = table_2.getTableHeader();
-		TableColumnModel tcm2 = th2.getColumnModel();
-		TableColumn tc2;
-		
-		
-		for (int col = 0; col <= table_2.getColumnCount() -1; col++)
-		{
-			table_2.getColumnModel().getColumn(col).setMinWidth(60);
-			table_2.getColumnModel().getColumn(col).setMaxWidth(60);
-			tc2 = tcm2.getColumn(col);
-			tc2.setCellRenderer(new COLUMN_RENDERER_YILLIK (new Color(80, 92, 124),Color.WHITE));
-		}
-		table_2.setRowSelectionAllowed(false);
-		table_2.setRowHeight(0, 30);
-		table_2.setRowSelectionAllowed(false);
-		panel_7.add(table_2, BorderLayout.CENTER);
-		
 		JScrollPane scrollPane_2 = new JScrollPane();
-		splitPane_4.setRightComponent(scrollPane_2); 
+		panel_6.add(scrollPane_2, BorderLayout.CENTER);
+
 		table_3 = new JTable() {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
@@ -693,6 +648,7 @@ public class Gunluk extends JInternalFrame {
 		table_3.setRowSelectionAllowed(false);
 		table_3.setModel(new DefaultTableModel(	new Object[][] 
 				{
+			
 					{"1", "", "", "", "", "", "", "", "", "", "", "", ""},
 					{"2", "", "", "", "", "", "", "", "", "", "", "", ""},
 					{"3", "", "", "", "", "", "", "", "", "", "", "", ""},
@@ -726,26 +682,27 @@ public class Gunluk extends JInternalFrame {
 					{"31","", "", "", "", "", "", "", "", "", "", "", ""},
 				},
 				new String[] {
-						"New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column", "New column"
+						"", "Ocak","Subat", "Mart", "Nisan", "Mayis", "Haziran", "Temmuz","Agustos","Eylul","Ekim","Kasim","Aralik"
 				}
 				));
-		for (int col = 0; col <= table_3.getColumnCount() -1; col++)
+		table_3.getColumnModel().getColumn(0).setMinWidth(40);
+		for (int col = 1; col <= table_3.getColumnCount() -1; col++)
 		{
-			table_3.getColumnModel().getColumn(col).setMaxWidth(60);
-			table_3.getColumnModel().getColumn(col).setMinWidth(60);
+			table_3.getColumnModel().getColumn(col).setHeaderRenderer(new COLUMN_RENDERER_YILLIK(new Color(80, 92, 124),Color.WHITE));	
 		}
-		
 		for (int row = 0; row < table_3.getRowCount(); row++)
 		{
 			table_3.setRowHeight(row, 25);
 		}
 		JTableHeader th3 = table_3.getTableHeader();
+		Dimension dd = th3.getPreferredSize();
+		dd.height = 30;
+		th3.setPreferredSize(dd); 
+		
 		TableColumnModel tcm3 = th3.getColumnModel();
 		TableColumn tc3;
 		tc3 = tcm3.getColumn(0);
 		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(80, 92, 124),Color.WHITE));
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(225, 207, 208),new Color(126, 78, 80)));
-		//
 		tc3 = tcm3.getColumn(1);
 		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(255, 177, 190),new Color(204, 0, 29)));
 		tc3 = tcm3.getColumn(2);
@@ -769,8 +726,10 @@ public class Gunluk extends JInternalFrame {
 		tc3 = tcm3.getColumn(11);
 		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209)));
 		tc3 = tcm3.getColumn(12);
-
-		table_3.setTableHeader(null);
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104)));
+		//table_3.setPreferredScrollableViewportSize(new Dimension(0, 10));
+		//table_3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+       
 		//********************************************************************************
 		temizle();
 		calendar.setDate(new Date());
@@ -1311,7 +1270,7 @@ public class Gunluk extends JInternalFrame {
 				{
 					if(rSet.getInt(i)!= 0)
 					{
-						table_3.getModel().setValueAt(rSet.getInt(i),rSet.getInt(1)-1, i-1) ;	
+						table_3.getModel().setValueAt("{"+rSet.getInt(i)+"}",rSet.getInt(1)-1, i-1) ;	
 					}
 					else 
 					{

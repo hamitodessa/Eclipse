@@ -38,6 +38,8 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 				setHorizontalAlignment( JLabel.CENTER );
 				cell.setBackground(backgroundColor);
 				cell.setForeground(foregroundColor); 
+				Font fnt = new Font(table.getFont().getFontName(), 1 ,12);
+				cell.setFont(fnt);
 			}
 		} 
 		else 

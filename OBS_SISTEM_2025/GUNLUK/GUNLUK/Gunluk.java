@@ -431,7 +431,9 @@ public class Gunluk extends JInternalFrame {
 		JScrollPane scrollPane_1 = new JScrollPane();
 		splitPane_6.setLeftComponent(scrollPane_1);
 
-		treeGovev = new JTree();
+		///
+		DefaultMutableTreeNode top = new DefaultMutableTreeNode("Gorevler......");
+		treeGovev = new JTree(top);
 		treeGovev.setFont(new Font("Tahoma", Font.BOLD, 11));
 		treeGovev.setCellRenderer(new MyTreeCellRenderer());
 		treeGovev.setToggleClickCount(0);
@@ -479,13 +481,13 @@ public class Gunluk extends JInternalFrame {
 		tabloTabbedPane = new JTabbedPane();
 		tabloTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel_3.add(tabloTabbedPane, BorderLayout.CENTER);
-//*************************************************Tablolarin Spliti ***************************************************
+		//*************************************************Tablolarin Spliti ***************************************************
 		JSplitPane splitPane_3 = new JSplitPane();
 		tabloTabbedPane.addTab("Gunluk", null, splitPane_3, null);  // Gunluk tab paneli koy
 		splitPane_3.setDividerSize(0);
 		splitPane_3.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		//panel_3.add(splitPane_3, BorderLayout.CENTER);
-///*********************************************************************************************************************		
+		//*********************************************************************************************************************		
 		table_1 = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 

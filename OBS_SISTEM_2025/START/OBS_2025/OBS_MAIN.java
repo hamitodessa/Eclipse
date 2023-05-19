@@ -73,12 +73,13 @@ import javax.swing.JSeparator;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 
+@SuppressWarnings({"serial","static-access"})
 public class OBS_MAIN extends JFrame {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	
 	//Cari
 	private JButton btnNewButton_5 ; //Hesap Plani
 	private JButton btnNewButton_4 ; // Dekont 
@@ -2238,6 +2239,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_23 = new JButton("");
 		btnNewButton_23.setToolTipText("Yazici");
 		btnNewButton_23.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				GuiUtil.setWaitCursor(toolBar,true);
 				GuiUtil.setWaitCursor(tabbedPane,true); 

@@ -33,6 +33,7 @@ public class COLUMN_RENDERER_YILLIK  extends DefaultTableCellRenderer
 				cell.setFont(fnt);
 				Border border = BorderFactory.createMatteBorder(1, 1, 1, 0, new Color(0, 60, 102));
 				setBorder(border);
+				
 			}
 			else if (column ==0)
 			{

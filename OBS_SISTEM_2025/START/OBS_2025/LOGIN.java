@@ -127,6 +127,7 @@ public class LOGIN extends JFrame {
 	}
 //setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 	public LOGIN() throws IOException {
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setResizable(false);
 		setTitle("OBS SISTEM GIRIS");
@@ -134,13 +135,17 @@ public class LOGIN extends JFrame {
 		setBounds(100, 100, 493, 229);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		
 		//************************************************************************
 		try {
+			
 			LOGIN.setDefaultLookAndFeelDecorated(true);
+
 			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("TextureLookAndFeel"))
 			{
 				UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
@@ -195,7 +200,7 @@ public class LOGIN extends JFrame {
 			}
 			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Klasik"))
 			{
-				
+				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 			}
 		} catch (ClassNotFoundException ex) {
 			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

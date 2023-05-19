@@ -32,6 +32,7 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 				cell.setFont(fnt);
 				Border border = BorderFactory.createMatteBorder(1, 0, 1, 0, new Color(0, 60, 102));
 				setBorder(border);
+				setToolTipText("Tiklama da Gorev Detaylari sag tarafta goruntuleme.......");
 			}
 			else if (column ==0)
 			{
@@ -40,6 +41,7 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 				cell.setForeground(foregroundColor); 
 				Font fnt = new Font(table.getFont().getFontName(), 1 ,12);
 				cell.setFont(fnt);
+				setToolTipText("");
 			}
 		} 
 		else 

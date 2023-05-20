@@ -27,6 +27,13 @@ import GUNLUK.Aylik_Gorunum;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
 import java.awt.event.ActionEvent;
 
 public class SMS_INET extends JInternalFrame {
@@ -75,7 +82,7 @@ public class SMS_INET extends JInternalFrame {
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				hisset();
+				 whatsapp();
 			}
 		});
 		btnNewButton.setBounds(10, 11, 89, 23);
@@ -135,5 +142,22 @@ public class SMS_INET extends JInternalFrame {
 			System.out.println("Code : " + response.getErr().getCode());
 		}
 					
+	}
+	void whatsapp()
+	{
+		 try {
+	           HttpRequest request = HttpRequest.newBuilder()
+	               .uri(new URI("https://graph.facebook.com/v13.0/103862449390022/messages"))
+	               .header("Authorization", "Bearer EAADskAAGm6UBAJpI22hgWpYshTN788jKSdBlFzkZBM1zAKjeygZA8ZAZA1yiphm3pNZAn1WukbTTtwH7OZCyeaZBo41o2JV1nJjWtZCJ7SYJsyylWFLkb2cvZBd9t1u4isrngW3ZBW9a76CZA1hiExL5jqIx5lSwOEHbznCy7WFvxdItWUyb2zZBPxTtFoPwDfZA5lvSnBdzKM5OmPQZDZD")
+	               .header("Content-Type", "application/json")
+	               .POST(HttpRequest.BodyPublishers.ofString("{ \"messaging_product\": \"whatsapp\", \"recipient_type\": \"individual\", \"to\": \"380674847245\", \"type\": \"template\", \"template\": { \"name\": \"hello_world\", \"language\": { \"code\": \"en_US\" } } }"))
+	               .build();
+	           HttpClient http = HttpClient.newHttpClient();
+	           HttpResponse<String> response = http.send(request,BodyHandlers.ofString());
+	           System.out.println(response.body());
+	          
+	       } catch (Exception e) {
+	          System.out.println(e.getMessage());
+	       }
 	}
 }

@@ -13,11 +13,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class COLUMN_RENDERER  extends DefaultTableCellRenderer 
 {
 	Color backgroundColor, foregroundColor;
-	public COLUMN_RENDERER(Color backgroundColor, Color foregroundColor) 
+	String nerden;
+	public COLUMN_RENDERER(Color backgroundColor, Color foregroundColor,String nerden) 
 	{
 		super();
 		this.backgroundColor = backgroundColor;
 		this.foregroundColor = foregroundColor;
+		this.nerden = nerden;
 	}
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,   boolean hasFocus, int row, int column) 
 	{
@@ -26,6 +28,14 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 		{
 			if (column !=0)
 			{
+				if(nerden.equals("yillik"))
+				{
+					setHorizontalAlignment( JLabel.CENTER);
+				}
+				else
+				{
+					setHorizontalAlignment( JLabel.LEFT);
+				}
 				cell.setBackground(backgroundColor);
 				cell.setForeground(foregroundColor); 
 				Font fnt = new Font(table.getFont().getFontName(), 1 ,10);
@@ -36,7 +46,7 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 			}
 			else if (column ==0)
 			{
-				setHorizontalAlignment( JLabel.CENTER );
+				setHorizontalAlignment( JLabel.CENTER);
 				cell.setBackground(backgroundColor);
 				cell.setForeground(foregroundColor); 
 				Font fnt = new Font(table.getFont().getFontName(), 1 ,12);

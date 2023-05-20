@@ -112,7 +112,6 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 				try {
 					grv_degis_sil();
 				} catch (ClassNotFoundException | PropertyVetoException | SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -120,11 +119,6 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		popup.add(menuItem);
 		///***********************************************************************************************************************
 		table = new JTable(){
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
 			@Override
 			public boolean isCellEditable(int row, int column) {  
 				return false;

@@ -169,10 +169,7 @@ public class Gunluk extends JInternalFrame {
 					ilk = true;
 					temizle();
 					calendar.setDate(new Date());
-					
-					///
 					int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
-					
 					if (activ_sayfa == 0)
 					{
 						isim_doldur();
@@ -186,14 +183,11 @@ public class Gunluk extends JInternalFrame {
 					else if (activ_sayfa == 2)
 					{
 						isim_doldur();
+						yillik_gorunum_doldur();
 					}
-					///
-					
 					ilk= false;
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
-				} catch (ClassNotFoundException | SQLException e1) {
-					e1.printStackTrace();
-				} catch (ParseException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -265,20 +259,12 @@ public class Gunluk extends JInternalFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
-				
 				if (activ_sayfa == 0)
 				{
 					sonraki_gorev_bul();
 				}
-				else 
-				{
-					sonraki_gorev_bul();
-				}
-				
 			}
 		});
-		///
-        
         calendar = new JCalendar(Locale.UK);
         calendar.getMonthChooser().addPropertyChangeListener(new PropertyChangeListener() {
         	public void propertyChange(PropertyChangeEvent evt) {
@@ -287,7 +273,6 @@ public class Gunluk extends JInternalFrame {
 					return;
 				}
 				try {
-					
 					int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
 					if (activ_sayfa == 0)
@@ -337,14 +322,13 @@ public class Gunluk extends JInternalFrame {
 						yillik_gorunum_doldur();
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
-				} catch (ClassNotFoundException | ParseException |SQLException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				} 
 			}
 		});
 		calendar.setTodayButtonText("Bugun");
 		calendar.setTodayButtonVisible(true);
-		//panel_1.add(calendar, BorderLayout.CENTER);
 		splitSolUst.setRightComponent(calendar);
 		//**********************************************************************************		
 		JSplitPane splitPane_2 = new JSplitPane();
@@ -367,9 +351,6 @@ public class Gunluk extends JInternalFrame {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-	
-		//panel_2.setMinimumSize(new Dimension(200, 0));
-		//panel_2.setMaximumSize(new Dimension(200, 0));
 		splitPane_2.setRightComponent(panel_2);
 		panel_2.setLayout(new BorderLayout(0, 0));
 
@@ -379,15 +360,14 @@ public class Gunluk extends JInternalFrame {
 		panel_2.add(splitPane_5, BorderLayout.CENTER);
 
 		comboIsim = new JComboBox<String>();
-		
 		comboIsim.setForeground(new Color(0, 0, 139));
 		comboIsim.setMinimumSize(new Dimension(0, 30));
 		comboIsim.setMaximumSize(new Dimension(0, 30));
 		splitPane_5.setLeftComponent(comboIsim);
 		comboIsim.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboIsim.addActionListener (new ActionListener () {
+		comboIsim.addActionListener (new ActionListener () 
+		{
 			public void actionPerformed(ActionEvent e) {
-
 				if (table.getRowCount() != 0)
 				{
 					if (ilk == false)
@@ -409,14 +389,10 @@ public class Gunluk extends JInternalFrame {
 								tree_temizle();
 								yillik_gorunum_doldur();
 							}
-						} catch (ClassNotFoundException | SQLException e1) 
-						{
-							e1.printStackTrace();
-						} catch (ParseException e1) {
+						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
 					}
-
 				}
 			}
 		});
@@ -431,7 +407,7 @@ public class Gunluk extends JInternalFrame {
 		splitPane_6.setLeftComponent(scrollPane_1);
 
 		///
-		DefaultMutableTreeNode top = new DefaultMutableTreeNode("Gorevler......");
+		DefaultMutableTreeNode top = new DefaultMutableTreeNode("Gorevler");
 		treeGovev = new JTree(top);
 		treeGovev.setFont(new Font("Tahoma", Font.BOLD, 11));
 		treeGovev.setCellRenderer(new MyTreeCellRenderer());
@@ -476,7 +452,7 @@ public class Gunluk extends JInternalFrame {
 		splitPane_2.setLeftComponent(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 
-//*************************************************TABLOLARIN TABBED PANE **********************************************
+		//*************************************************TABLOLARIN TABBED PANE **********************************************
 		tabloTabbedPane = new JTabbedPane();
 		tabloTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel_3.add(tabloTabbedPane, BorderLayout.CENTER);
@@ -592,27 +568,25 @@ public class Gunluk extends JInternalFrame {
 		TableColumnModel tcm = th.getColumnModel();
 		TableColumn tc;
 		tc = tcm.getColumn(0);
-		tc.setCellRenderer(new COLUMN_RENDERER(new Color(80, 92, 124),Color.WHITE));
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(80, 92, 124),Color.WHITE,"gunluk"));
 		tc = tcm.getColumn(1);
-		tc.setCellRenderer(new COLUMN_RENDERER(new Color(255, 177, 190),new Color(204, 0, 29)));
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(255, 177, 190),new Color(204, 0, 29),"gunluk"));
 		tc = tcm.getColumn(2);
-		tc.setCellRenderer(new COLUMN_RENDERER(new Color(86, 177, 220),new Color(171, 216, 237)));
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(86, 177, 220),new Color(171, 216, 237),"gunluk"));
 		tc = tcm.getColumn(3);
-		tc.setCellRenderer(new COLUMN_RENDERER(new Color(107, 173, 132),new Color(173, 209, 204)));
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(107, 173, 132),new Color(173, 209, 204),"gunluk"));
 		tc = tcm.getColumn(4);
-		tc.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209)));
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209),"gunluk"));
 		tc = tcm.getColumn(5);
-		tc.setCellRenderer(new COLUMN_RENDERER(new Color(225, 207, 208),new Color(126, 78, 80)));
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(225, 207, 208),new Color(126, 78, 80),"gunluk"));
 		tc = tcm.getColumn(6);
-		tc.setCellRenderer(new COLUMN_RENDERER(new Color(198, 201, 234),new Color(55, 64, 149)));
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(198, 201, 234),new Color(55, 64, 149),"gunluk"));
 		tc = tcm.getColumn(7);
-		tc.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104)));
-
+		tc.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104),"gunluk"));
 		table.setTableHeader(null);
 		//****************************************Aylik***********************************
 		scrolAylik = new JScrollPane();
 		tabloTabbedPane.addTab("Aylik", null, scrolAylik, null);
-		
 		//****************************************YILLIK *********************************
 		JPanel panel_6 = new JPanel();
 		tabloTabbedPane.addTab("Yillik", null, panel_6, null);
@@ -648,7 +622,6 @@ public class Gunluk extends JInternalFrame {
 		table_3.setRowSelectionAllowed(false);
 		table_3.setModel(new DefaultTableModel(	new Object[][] 
 				{
-			
 					{"1", "", "", "", "", "", "", "", "", "", "", "", ""},
 					{"2", "", "", "", "", "", "", "", "", "", "", "", ""},
 					{"3", "", "", "", "", "", "", "", "", "", "", "", ""},
@@ -702,41 +675,36 @@ public class Gunluk extends JInternalFrame {
 		TableColumnModel tcm3 = th3.getColumnModel();
 		TableColumn tc3;
 		tc3 = tcm3.getColumn(0);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(80, 92, 124),Color.WHITE));
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(80, 92, 124),Color.WHITE,"yillik"));
 		tc3 = tcm3.getColumn(1);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(255, 177, 190),new Color(204, 0, 29)));
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(255, 177, 190),new Color(204, 0, 29),"yillik"));
 		tc3 = tcm3.getColumn(2);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(86, 177, 220),new Color(171, 216, 237)));
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(86, 177, 220),new Color(171, 216, 237),"yillik"));
 		tc3 = tcm3.getColumn(3);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(107, 173, 132),new Color(173, 209, 204)));
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(107, 173, 132),new Color(173, 209, 204),"yillik"));
 		tc3 = tcm3.getColumn(4);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209)));
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209),"yillik"));
 		tc3 = tcm3.getColumn(5);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(225, 207, 208),new Color(126, 78, 80)));
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(225, 207, 208),new Color(126, 78, 80),"yillik"));
 		tc3 = tcm3.getColumn(6);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(198, 201, 234),new Color(55, 64, 149)));
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(198, 201, 234),new Color(55, 64, 149),"yillik"));
 		tc3 = tcm3.getColumn(7);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104)));
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104),"yillik"));
 		tc3 = tcm3.getColumn(8);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(255, 177, 190),new Color(204, 0, 29)));
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(255, 177, 190),new Color(204, 0, 29),"yillik"));
 		tc3 = tcm3.getColumn(9);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(86, 177, 220),new Color(171, 216, 237)));
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(86, 177, 220),new Color(171, 216, 237),"yillik"));
 		tc3 = tcm3.getColumn(10);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(107, 173, 132),new Color(173, 209, 204)));
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(107, 173, 132),new Color(173, 209, 204),"yillik"));
 		tc3 = tcm3.getColumn(11);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209)));
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209),"yillik"));
 		tc3 = tcm3.getColumn(12);
-		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104)));
-		//table_3.setPreferredScrollableViewportSize(new Dimension(0, 10));
-		//table_3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-       
+		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104),"yillik"));
 		//********************************************************************************
 		temizle();
 		calendar.setDate(new Date());
-		
 		JPanel panel_4 = new JPanel();
 		splitPane_1.setRightComponent(panel_4);
-		///
 		tabloTabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				int	activ_sayfa =tabloTabbedPane.getSelectedIndex();
@@ -776,7 +744,7 @@ public class Gunluk extends JInternalFrame {
 			isim_doldur();
 			basla();
 			ilk=false;
-		} catch (ClassNotFoundException | SQLException e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 	}
@@ -1104,7 +1072,6 @@ public class Gunluk extends JInternalFrame {
 			{
 				comboIsim.addItem(rs.getString("ISIM"));
 			}
-			//ilk= false;
 		}
 	}
 	private void treeOgren() throws ClassNotFoundException, SQLException, PropertyVetoException
@@ -1408,7 +1375,6 @@ public class Gunluk extends JInternalFrame {
 			cal = Calendar.getInstance();
 			cal.setTime(qwee);
 			calendar.setDate(new Date(cal.getTimeInMillis()));
-			///
 		} 
 		catch (Exception ex) 
 		{

@@ -113,7 +113,7 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 		hisset();
-		OBS_MAIN.btnNewButton_23.setEnabled(true);
+		OBS_MAIN.btnYazici.setEnabled(true);
 	}
 	private void hisset() 
 	{

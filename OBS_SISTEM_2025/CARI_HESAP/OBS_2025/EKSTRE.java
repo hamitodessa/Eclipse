@@ -256,7 +256,7 @@ public class EKSTRE extends JInternalFrame {
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
 						{
-							OBS_MAIN.btnNewButton_3.doClick();
+							OBS_MAIN.btnFiltre.doClick();
 						}
 					}
 				}

@@ -64,7 +64,7 @@ public class ADRESLER extends JInternalFrame {
 	public ADRESLER() {addInternalFrameListener(new InternalFrameAdapter() {
 		@Override
 		public void internalFrameClosed(InternalFrameEvent e) {
-			OBS_MAIN.btnNewButton_23.setEnabled(false);
+			OBS_MAIN.btnYazici.setEnabled(false);
 		}
 	});
 	setTitle("ADRES DETAY");

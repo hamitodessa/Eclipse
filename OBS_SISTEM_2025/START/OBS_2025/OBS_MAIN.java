@@ -163,6 +163,16 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_21;//Kayitli Gorevler
 	private JButton btnNewButton_38;//Firma Ismi
 	//
+	private JButton btnYenile ; // Yenile Tusu
+	private JButton btnExcell ; // Excell Aktarma
+	private JButton btnGrafik ; // Grafik
+	private JButton btnEmail ;  // E Mail
+	public static JButton btnKaydet ;
+	public static JButton btnFiltre ;
+	public static JButton btnYazici ;
+	
+	
+	//
 	public static JLabel lblNewLabel_1 ;
 	public static JLabel lblNewLabel_2 ;
 	public static JLabel lblNewLabel_3 ;
@@ -174,12 +184,12 @@ public class OBS_MAIN extends JFrame {
 	public static JToolBar toolBar ;
 	public static JToolBar toolBar_1;
 	public JToolBar toolBar_2 ;
-	public static JButton btnNewButton ;
-	public static JButton btnNewButton_24 ;
-	public static JButton btnNewButton_23 ;
+	
+	
+	
 	public static JDesktopPane desktopPane;
 	public static JProgressBar progressBar  ;
-	public static JButton btnNewButton_3 ;
+	
 	public static JSplitPane splitPane ;
 	public static JLabel lblNewLabel_9;
 	private Rectangle maxBounds;
@@ -1990,9 +2000,9 @@ public class OBS_MAIN extends JFrame {
 		toolBar.setFloatable(false);
 		splitPane.setRightComponent(toolBar);
 
-		btnNewButton = new JButton(""); // Kaydet //
-		btnNewButton.setToolTipText("Kayit");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnKaydet = new JButton(""); // Kaydet //
+		btnKaydet.setToolTipText("Kayit");
+		btnKaydet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GuiUtil.setWaitCursor(toolBar,true);
 				String sonuc = pencere_activmi();
@@ -2034,8 +2044,8 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 
-		btnNewButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/save.png")));
-		toolBar.add(btnNewButton);
+		btnKaydet.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/save.png")));
+		toolBar.add(btnKaydet);
 
 		JButton btnNewButton_2 = new JButton("");  // SIL
 		btnNewButton_2.setToolTipText("Sil");
@@ -2071,9 +2081,9 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_2.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/sil.png")));
 		toolBar.add(btnNewButton_2);
 
-		JButton btnNewButton_1 = new JButton("");   //*******************YENILE
-		btnNewButton_1.setToolTipText("Yenile");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnYenile = new JButton("");   //*******************YENILE**************************
+		btnYenile.setToolTipText("Yenile");
+		btnYenile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GuiUtil.setWaitCursor(toolBar,true);
 				String sonuc = pencere_activmi();
@@ -2081,15 +2091,17 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "STOK BOS KUR")	FAT_BOS_KUR.hisset();
 				else if (sonuc == "SQL SORGULAMA")	SQL_SORGULAMA.hisset();
 				else if (sonuc == "LOG RAPORLAMA")	LOGLAMA_RAPOR.hisset();
+				else if (sonuc == "EKSTRE")	EKSTRE.hisset();
+				else if (sonuc == "MIZAN")	MIZAN.hisset();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});
-		btnNewButton_1.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-repeat-16.png")));
-		toolBar.add(btnNewButton_1);
+		btnYenile.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-repeat-16.png")));
+		toolBar.add(btnYenile);
 
-		btnNewButton_3 = new JButton("");
-		btnNewButton_3.setToolTipText("Filtre");
-		btnNewButton_3.addActionListener(new ActionListener() {
+		btnFiltre = new JButton("");
+		btnFiltre.setToolTipText("Filtre");
+		btnFiltre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FILTRE ft = null;
 				GuiUtil.setWaitCursor(toolBar,true);
@@ -2232,13 +2244,13 @@ public class OBS_MAIN extends JFrame {
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});
-		btnNewButton_3.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-filter-16.png")));
-		toolBar.add(btnNewButton_3);
+		btnFiltre.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-filter-16.png")));
+		toolBar.add(btnFiltre);
 		JLabel lblNewLabel_4 = new JLabel("          ");
 		toolBar.add(lblNewLabel_4);
-		btnNewButton_23 = new JButton("");
-		btnNewButton_23.setToolTipText("Yazici");
-		btnNewButton_23.addActionListener(new ActionListener() {
+		btnYazici = new JButton("");
+		btnYazici.setToolTipText("Yazici");
+		btnYazici.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				GuiUtil.setWaitCursor(toolBar,true);
@@ -2483,22 +2495,22 @@ public class OBS_MAIN extends JFrame {
 				}
 			}
 		});
-		btnNewButton_23.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-send-to-printer-16.png")));
-		toolBar.add(btnNewButton_23);
+		btnYazici.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-send-to-printer-16.png")));
+		toolBar.add(btnYazici);
 
-		btnNewButton_24 = new JButton("");
-		btnNewButton_24.setToolTipText("Email");
-		btnNewButton_24.addActionListener(new ActionListener() {
+		btnEmail = new JButton("");
+		btnEmail.setToolTipText("Email");
+		btnEmail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("E MAIL GONDERME","");
 			}
 		});
-		btnNewButton_24.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/mail-16.png")));
-		toolBar.add(btnNewButton_24);
+		btnEmail.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/mail-16.png")));
+		toolBar.add(btnEmail);
 
-		JButton btnNewButton_25 = new JButton("");
-		btnNewButton_25.setToolTipText("Excell Aktarma");
-		btnNewButton_25.addActionListener(new ActionListener() {
+		btnExcell = new JButton("");
+		btnExcell.setToolTipText("Excell Aktarma");
+		btnExcell.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GuiUtil.setWaitCursor(toolBar,true);
 				String sonuc = pencere_activmi();
@@ -2537,12 +2549,12 @@ public class OBS_MAIN extends JFrame {
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});
-		btnNewButton_25.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/excel-icon_16.png")));
-		toolBar.add(btnNewButton_25);
+		btnExcell.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/excel-icon_16.png")));
+		toolBar.add(btnExcell);
 
-		JButton btnNewButton_26 = new JButton("");
-		btnNewButton_26.setToolTipText("Grafik");
-		btnNewButton_26.addActionListener(new ActionListener() {
+		btnGrafik = new JButton("");
+		btnGrafik.setToolTipText("Grafik");
+		btnGrafik.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					boolean varmi = pencere_bak("GRAFIK");
@@ -2592,8 +2604,8 @@ public class OBS_MAIN extends JFrame {
 				}
 			}
 		});
-		btnNewButton_26.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-edit-graph-report-16.png")));
-		toolBar.add(btnNewButton_26);
+		btnGrafik.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-edit-graph-report-16.png")));
+		toolBar.add(btnGrafik);
 
 		JLabel lblNewLabel_5 = new JLabel("          ");
 		toolBar.add(lblNewLabel_5);

@@ -150,7 +150,7 @@
 			<textField>
 				<reportElement x="71" y="0" width="260" height="12" uuid="7a48c8be-18c3-483c-812f-7450bb08f9cc"/>
 				<textElement>
-					<font fontName="Arial Narrow" size="9"/>
+					<font fontName="DejaVu Serif" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{iZAHAT}]]></textFieldExpression>
 			</textField>

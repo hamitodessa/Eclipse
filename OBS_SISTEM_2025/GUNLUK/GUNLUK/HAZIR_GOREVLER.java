@@ -28,7 +28,7 @@ import javax.swing.table.TableColumnModel;
 import OBS_2025.FILTRE;
 import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
-
+import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.GUNLUK_ACCESS;
@@ -290,7 +290,20 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 					JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 			if(g != 0 ) { return;	}
 
-			g_Access.gorev_tek_sil(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()));
+			String mesaj = "" ;
+			mesaj = "Isim="+ table.getModel().getValueAt(table.getSelectedRow(), 4).toString() + " Gorev="+ table.getModel().getValueAt(table.getSelectedRow(), 5).toString() + 
+			" Mesaj="  ;
+			if( mesaj.length() +  (table.getModel().getValueAt(table.getSelectedRow(), 7).toString() + " Silme ").length() <= 95)
+			{
+				mesaj = mesaj + " Msj:" + table.getModel().getValueAt(table.getSelectedRow(), 7).toString() + " Silme " ;
+			}
+			else
+			{
+				mesaj = mesaj + " Msj:" + table.getModel().getValueAt(table.getSelectedRow(), 7).toString().substring(0, 89  -(mesaj.length()) ) + "Silme" ;
+			}
+			g_Access.gorev_tek_sil(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()),
+					mesaj ,
+					"", BAGLAN_LOG.gunLogDizin );
 			hisset();
 		} 
 		catch (Exception ex) 

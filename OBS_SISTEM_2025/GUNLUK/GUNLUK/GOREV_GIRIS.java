@@ -391,6 +391,20 @@ public class GOREV_GIRIS extends JInternalFrame {
 			boolean isInteger = Pattern.matches("^\\d*$", txtDeger.getText());
 			if(! isInteger) return;
 		    	 
+			//
+			String mesaj = "" ;
+			mesaj = "Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + 
+			" Mesaj="  ;
+			if( mesaj.length() +  txtMesaj.getText().length() <= 95)
+			{
+				mesaj = mesaj + " Msj:" + txtMesaj.getText().toString() + " Silme " ;
+			}
+			else
+			{
+				mesaj = mesaj + " Msj:" + txtMesaj.getText().toString().substring(0, 89  -(mesaj.length()) ) + "Silme" ;
+			}
+
+			//
 			if (! txtGID.getText().toString().equals(""))
 			{
 				int g =  JOptionPane.showOptionDialog( null,  "Gorev Onceden Kayitli Guncellenecek  ..?", "Bilgi Guncelleme",   JOptionPane.YES_NO_OPTION,
@@ -399,7 +413,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 				{ 
 					return;	
 				}
-				g_Access.gorev_sil(Integer.parseInt(txtGID.getText()),"Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + " Mesaj="+ txtMesaj.getText() + " Silme "  ,txtGID.getText(), BAGLAN_LOG.gunLogDizin  );
+				g_Access.gorev_sil(Integer.parseInt(txtGID.getText()),mesaj  ,txtGID.getText(), BAGLAN_LOG.gunLogDizin  );
 			}
 			String str1 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBaslama) ;
 			String str2 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBitis) ;
@@ -416,7 +430,19 @@ public class GOREV_GIRIS extends JInternalFrame {
 			gbilgi.secenek = cmbSecenek.getSelectedItem().toString();
 			gbilgi.deger = Integer.parseInt(txtDeger.getText());
 			
-			g_Access.gorev_kayit(gbilgi,"Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + " Mesaj="+ txtMesaj.getText() + " Kayit "  ,"", BAGLAN_LOG.gunLogDizin );
+			mesaj = "" ;
+			mesaj = "Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + 
+			" Mesaj="  ;
+			if( mesaj.length() +  txtMesaj.getText().length() <= 95)
+			{
+				mesaj = mesaj + " Msj:" + txtMesaj.getText().toString()  ;
+			}
+			else
+			{
+				mesaj = mesaj + " Msj:" + txtMesaj.getText().toString().substring(0, 89  -(mesaj.length()) ) + " Kayit" ;
+			}
+			
+			g_Access.gorev_kayit(gbilgi,mesaj ,"", BAGLAN_LOG.gunLogDizin );
 			gbilgi.gid = g_Access.gid_ogren(gbilgi);
 			g_Access.gunluk_farkli_kayit(gbilgi);
 			sifirla();

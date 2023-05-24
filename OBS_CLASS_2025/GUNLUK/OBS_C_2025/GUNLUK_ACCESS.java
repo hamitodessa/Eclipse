@@ -76,9 +76,11 @@ public class GUNLUK_ACCESS {
 	{
 		return _IGunluk.hazir_gorevler(gbilgi);
 	}
-	public void gorev_tek_sil(int id) throws ClassNotFoundException, SQLException
+	public void gorev_tek_sil(int id, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IGunluk.gorev_tek_sil(id);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(mesaj,evrak, dBILGI);
 	}
 	public void gunluk_farkli_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException, ParseException
 	{

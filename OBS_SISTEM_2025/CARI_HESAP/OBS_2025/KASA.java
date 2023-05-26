@@ -18,6 +18,7 @@ import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.SAGA;
@@ -47,6 +48,7 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -112,8 +114,8 @@ public class KASA extends JInternalFrame {
 
 		JPanel leftPanel = new JPanel();
 		leftPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		leftPanel.setMinimumSize(new Dimension(0, 60));
-		leftPanel.setMaximumSize(new Dimension(0, 60));
+		leftPanel.setMinimumSize(new Dimension(0, 70));
+		leftPanel.setMaximumSize(new Dimension(0, 70));
 		JScrollPane centerPanel = new JScrollPane();
 		JPanel rightPanel = new JPanel();
 		rightPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -128,7 +130,34 @@ public class KASA extends JInternalFrame {
 		leftPanel.add(lblNewLabel);
 
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+					String[] parts;
+					String deger ;
+					deger = GLOBAL.setting_oku("CARI_HSPPLN_CAG").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							HESAP_PLN hsp ;
+							getContentPane().setCursor(oac.WAIT_CURSOR);
+							hsp = new HESAP_PLN();
+							hsp.show();
+							textField.setText(oac.hsp_hsp_kodu);
+							getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						}
+					}
+				}
+				catch (Exception ex)
+				{
 
+				}
+			}
+		});
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -204,7 +233,7 @@ public class KASA extends JInternalFrame {
 		leftPanel.add(lblNewLabel_1);
 
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(343, 11, 120, 30);
+		dateChooser.setBounds(320, 11, 150, 30);
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dateChooser.setDate(new Date());
@@ -288,7 +317,7 @@ public class KASA extends JInternalFrame {
 		});
 		btnNewButton_1_1.setToolTipText("Kayitli Son Dekont");
 		btnNewButton_1_1.setBounds(538, 11, 55, 30);
-		btnNewButton_1_1.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/icons8-open-view-30.png")));
+		btnNewButton_1_1.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/icons8-open-view-24.png")));
 		leftPanel.add(btnNewButton_1_1);
 
 		JButton btnNewButton_1 = new JButton(">>");

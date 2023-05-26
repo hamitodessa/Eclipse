@@ -260,7 +260,6 @@ public class DEKONT extends JInternalFrame {
 						dtc.setDate(new Date(cal.getTimeInMillis()));
 						textComponent1.setCaretPosition(currentCaretPosition);
 					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -336,7 +335,6 @@ public class DEKONT extends JInternalFrame {
 						}
 					}
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -566,7 +564,6 @@ public class DEKONT extends JInternalFrame {
 						}
 					}
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -656,7 +653,6 @@ public class DEKONT extends JInternalFrame {
 						}
 					}
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -719,7 +715,6 @@ public class DEKONT extends JInternalFrame {
 						}
 					}
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -874,7 +869,6 @@ public class DEKONT extends JInternalFrame {
 						}
 					}
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -945,7 +939,6 @@ public class DEKONT extends JInternalFrame {
 						}
 					}
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -1069,7 +1062,6 @@ public class DEKONT extends JInternalFrame {
 						}
 					}
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -1365,7 +1357,6 @@ public class DEKONT extends JInternalFrame {
 						}
 					}
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -1426,7 +1417,6 @@ public class DEKONT extends JInternalFrame {
 						}
 					}
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

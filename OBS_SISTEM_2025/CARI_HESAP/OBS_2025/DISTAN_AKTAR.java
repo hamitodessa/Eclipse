@@ -194,6 +194,35 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		txtBORCLU.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtBORCLU.setBounds(603, 18, 100, 20);
 		txtBORCLU.setColumns(12);
+		txtBORCLU.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+					String[] parts;
+					String deger ;
+					deger = GLOBAL.setting_oku("CARI_HSPPLN_CAG").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							HESAP_PLN hsp ;
+							getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+							hsp = new HESAP_PLN();
+							hsp.show();
+							txtBORCLU.setText(oac.hsp_hsp_kodu);
+							lblunvan_1.setText(CARI_ISIM_OKU.isim(txtBORCLU.getText())[0]);
+							getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+
+				}
+			}
+		});
 		txtBORCLU.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -328,7 +357,35 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 			  }
 			});
+		txtALACAK.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+					String[] parts;
+					String deger ;
+					deger = GLOBAL.setting_oku("CARI_HSPPLN_CAG").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							HESAP_PLN hsp ;
+							getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+							hsp = new HESAP_PLN();
+							hsp.show();
+							txtALACAK.setText(oac.hsp_hsp_kodu);
+							lblunvan_2.setText(CARI_ISIM_OKU.isim(txtALACAK.getText())[0]);
+							getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+						}
+					}
+				}
+				catch (Exception ex)
+				{
 
+				}
+			}
+		});
 		panel.add(txtALACAK);
 		
 		lblunvan_1 = new JLabel("...");

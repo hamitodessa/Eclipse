@@ -1400,6 +1400,7 @@ public class IMALAT extends JInternalFrame {
 	{
 		if (textField.getText().equals("") ) return ;
 		if (table.getRowCount()  == 0 ) return ;
+		if(dtc.getDate() == null) return;
 		long startTime = System.currentTimeMillis();
 		try
 		{

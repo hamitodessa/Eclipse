@@ -1394,6 +1394,7 @@ public class IRSALIYE extends JInternalFrame {
 	//******************************************************************************************************
 	public static void kaydet()
 	{
+		if(dtc.getDate() == null) return;
         if (textField.getText().equals("")) return ;
         DefaultTableModel mdl = (DefaultTableModel) table.getModel();
         if (mdl.getRowCount() == 0)  return;

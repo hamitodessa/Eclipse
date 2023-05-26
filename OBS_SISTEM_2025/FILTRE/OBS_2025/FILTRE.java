@@ -668,7 +668,6 @@ public class FILTRE extends JDialog {
 								hsp.show();
 								txtilk.setText( oac.hsp_hsp_kodu);
 							} catch (Exception ex) {
-								// TODO Auto-generated catch block
 							}
 
 						}
@@ -4337,11 +4336,35 @@ public class FILTRE extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
+				//**********************************************************************OK BUTTON **********************************
 				okButton = new JButton("Yenile");
 				okButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 				okButton.setIcon(new ImageIcon(FILTRE.class.getResource("/ICONLAR/icons8-repeat-16.png")));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						if(dateChooser.getDate() == null) return;
+						if(dateChooser_1.getDate() == null) return;
+						if(dateChooser_2.getDate() == null) return;
+						if(dateChooser_2_1.getDate() == null) return;
+						if(dateChooser_3.getDate() == null) return;
+						if(dateChooser_4.getDate() == null) return;
+						if(dateChooser_5.getDate() == null) return;
+						if(dateChooser_5_1.getDate() == null) return;
+						
+						if(dateChooser_6.getDate() == null) return; // Cek Rapor
+						if(dateChooser_6_1.getDate() == null) return;
+						if(dateChooser_7.getDate() == null) return;
+						if(dateChooser_8.getDate() == null) return;
+						if(dateChooser_9.getDate() == null) return;
+						if(dateChooser_10.getDate() == null) return;
+						if(dateChooser_6_2.getDate() == null) return;
+						if(dateChooser_6_2_1.getDate() == null) return;
+						
+						if(dateChooser_11.getDate() == null) return; // Kur Rapor
+						if(dateChooser_11_1.getDate() == null) return;
+						
+						
+						
 						int sayfa = tabbedPane.getSelectedIndex();
 						GuiUtil.setWaitCursor(getContentPane(),true);
 						if (sayfa == 0) 

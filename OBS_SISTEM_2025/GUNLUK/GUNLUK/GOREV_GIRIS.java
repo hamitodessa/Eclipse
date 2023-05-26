@@ -216,7 +216,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 						dtcBaslama.setDate(new Date(cal.getTimeInMillis()));
 						textComponent1.setCaretPosition(currentCaretPosition);
 					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -333,7 +332,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 						dtcBitis.setDate(new Date(cal.getTimeInMillis()));
 						textComponent1.setCaretPosition(currentCaretPosition);
 					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -388,6 +386,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 			if (txtIsim.getText().equals(""))return;
 			if (txtGorev.getText().equals(""))return;
 			if (txtDeger.getText().equals(""))return;
+			if(dtcBaslama.getDate() == null) return;
+			if(dtcBitis.getDate() == null) return;
 			boolean isInteger = Pattern.matches("^\\d*$", txtDeger.getText());
 			if(! isInteger) return;
 		    	 

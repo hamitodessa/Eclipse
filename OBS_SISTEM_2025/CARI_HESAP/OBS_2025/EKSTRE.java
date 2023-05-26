@@ -306,6 +306,7 @@ public class EKSTRE extends JInternalFrame {
 	}
 	public static void hisset() 
 	{
+		if (FILTRE.txtkodu == null  || FILTRE.txtkodu.getText().equals("")) return ;
 		long startTime = System.currentTimeMillis();
 		double_1 =0 ;
 		double_2 =0 ;

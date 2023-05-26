@@ -440,7 +440,6 @@ public class CEK_CIKIS extends JInternalFrame {
 						cal.add(Calendar.DAY_OF_MONTH, -1); 
 						dateChooser.setDate(new Date(cal.getTimeInMillis()));
 					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -455,7 +454,6 @@ public class CEK_CIKIS extends JInternalFrame {
 
 						dateChooser.setDate(new Date(cal.getTimeInMillis()));
 					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -586,7 +584,6 @@ public class CEK_CIKIS extends JInternalFrame {
 			}
 			textField.requestFocus();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		//***********
@@ -681,6 +678,7 @@ public class CEK_CIKIS extends JInternalFrame {
 	public static void kaydet() 
 	{
 		if (textField.getText().equals("")) return ;
+		if(dateChooser.getDate() == null) return;
 		long startTime = System.currentTimeMillis(); 
 		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 		if (mdll.getRowCount() == 0 ) return ;	

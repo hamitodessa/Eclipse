@@ -60,7 +60,6 @@ public class PRINT_JASPER extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
-
 	static List<ETIKET_ISIM> etISIM = new ArrayList<ETIKET_ISIM>();
 	static List<Ekstre_Detay> eDetay = new ArrayList<Ekstre_Detay>();
 	private static JasperViewer jviewer ;
@@ -141,6 +140,7 @@ public class PRINT_JASPER extends JInternalFrame {
 					satir_kontrol_tek();
 				}
 				JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(etISIM);
+				jp = new JasperPrint();
 				jp = JasperFillManager.fillReport(jr,null, qazBe);
 			}
 			else if (nerden.equals("ekstre"))
@@ -154,6 +154,7 @@ public class PRINT_JASPER extends JInternalFrame {
 				parameters.put("pERIYOT","Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_1));
 				ResultSet rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
 				
+				jp = new JasperPrint();
 				jp = JasperFillManager.fillReport(jr,parameters,new JRResultSetDataSource(rs));
 				jp.setLocaleCode("UTF-8");
 			}
@@ -170,12 +171,12 @@ public class PRINT_JASPER extends JInternalFrame {
 				parameters.put("bORC", EKSTRE.lblNewLabel_5_1.getText());
 				parameters.put("aLACAK",EKSTRE.lblNewLabel_4_1.getText());
 				JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(eDetay);
+				jp = new JasperPrint();
+				jp.setLocaleCode("UTF-8");
+				
 				jp = JasperFillManager.fillReport(jr,parameters, qazBe);
 			}
-
 			scrollPane.setViewportView(new JRViewer(jp));
-			
-
 		} catch (Exception ex) 
 		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yazdirma", JOptionPane.ERROR_MESSAGE);
@@ -309,6 +310,7 @@ public class PRINT_JASPER extends JInternalFrame {
 		///
 		jp.setLocaleCode("UTF-8");
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		
 		JasperExportManager.exportReportToPdfStream(jp, baos);
 		ByteArrayDataSource ds =  new ByteArrayDataSource(baos.toByteArray(), "application/pdf");
 		//JasperExportManager.exportReportToPdfFile(jp, "C:\\OBS_SISTEM\\invoice.pdf");

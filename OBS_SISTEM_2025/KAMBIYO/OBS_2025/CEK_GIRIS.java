@@ -68,7 +68,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-@SuppressWarnings({"serial","static-access"})
+@SuppressWarnings({"serial","static-access","removal","deprecation"})
 public class CEK_GIRIS extends JInternalFrame {
 	private static JTable table;
 	public static JTextField textField;
@@ -108,7 +108,6 @@ public class CEK_GIRIS extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({"removal","deprecation"})
 	public CEK_GIRIS() {
 
 		setTitle("CEK GIRIS");
@@ -625,6 +624,7 @@ public class CEK_GIRIS extends JInternalFrame {
 	public static void kaydet() 
 	{
 		if (textField.getText().equals("")) return ;
+		if(dateChooser.getDate() == null) return;
 		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 		if (mdll.getRowCount() == 0 ) return ;	
 		try {
@@ -1019,7 +1019,6 @@ public class CEK_GIRIS extends JInternalFrame {
 			{
 				rs.next();
 				String bno = rs.getString("Giris_Bordro").toString() ;
-
 				if (textField.getText().toString().equals(bno))
 				{
 					JOptionPane.showMessageDialog(null, "Bu Cek bu Bordroda Giris Yapilmis.."); 

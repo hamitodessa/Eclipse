@@ -722,6 +722,7 @@ public class ZAYI extends JInternalFrame {
 	public static void kaydet()
 	{
         if (textField.getText().equals("")) return ;
+        if(dtc.getDate() == null) return;
         DefaultTableModel mdl = (DefaultTableModel) table.getModel();
         if (mdl.getRowCount() == 0)  return;
        try

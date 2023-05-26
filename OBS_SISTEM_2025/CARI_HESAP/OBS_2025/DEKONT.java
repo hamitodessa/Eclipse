@@ -1541,6 +1541,7 @@ public class DEKONT extends JInternalFrame {
 		if (cmbahes.getSelectedItem().toString().equals("")  ) return ;
 		if (txtakur.getText().equals("")  ) return ;
 		if (txtaciklama.getText().equals("")  ) return ;
+		if(dtc.getDate() == null) return;
 		if (cmbbhes.getSelectedItem().toString().equals(cmbahes.getSelectedItem().toString())) {
 			JOptionPane.showMessageDialog(null, "Alacak ve Borclu Hesap Ayni....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 			return ;

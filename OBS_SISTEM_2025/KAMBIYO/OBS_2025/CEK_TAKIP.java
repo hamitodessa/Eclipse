@@ -362,7 +362,7 @@ public class CEK_TAKIP extends JInternalFrame {
 		try
 		{
 			String durum = "" ;
-
+			if(dateChooser_3.getDate() == null) return;
 			if (comboBox.getSelectedIndex() == 1)
 			{
 				durum= "1";

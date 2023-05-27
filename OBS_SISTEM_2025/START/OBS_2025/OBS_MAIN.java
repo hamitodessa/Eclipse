@@ -2092,7 +2092,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "SQL SORGULAMA")	SQL_SORGULAMA.hisset();
 				else if (sonuc == "LOG RAPORLAMA")	LOGLAMA_RAPOR.hisset();
 				else if (sonuc == "EKSTRE")	EKSTRE.hisset();
-				else if (sonuc == "MIZAN")	MIZAN.hisset();
+				else if (sonuc == "CARI MIZAN")	MIZAN.hisset();
 				else if (sonuc == "CARI OZEL MIZAN")	OZEL_MIZAN.hisset();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}

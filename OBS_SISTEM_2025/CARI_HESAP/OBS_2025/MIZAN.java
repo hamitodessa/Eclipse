@@ -247,7 +247,15 @@ public class MIZAN extends JInternalFrame {
 			lblborc.setText("0.00");
 			String o1 = "" ;
 			String o2 = "" ;
-			String hangi_tur = FILTRE.comboBox.getItemAt(FILTRE.comboBox.getSelectedIndex());
+			String hangi_tur = "" ;
+			if(FILTRE.comboBox != null)
+			{
+				hangi_tur = FILTRE.comboBox.getItemAt(FILTRE.comboBox.getSelectedIndex());
+			}
+			else {
+				return;
+			}
+			
 			if (hangi_tur.equals("Borclu Hesaplar") )
 			{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) < 0 " ; }
 			else if (hangi_tur.equals("Alacakli Hesaplar")) 

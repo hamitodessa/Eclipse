@@ -77,7 +77,7 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.JSplitPane;
 import javax.swing.JPanel;
 
-@SuppressWarnings({"serial" , "static-access" , "deprecation"})
+@SuppressWarnings({"serial" , "static-access" , "deprecation","resource", "unused"})
 public class OZEL_MIZAN extends JInternalFrame {
 	public static JTable table;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -108,7 +108,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("static-access")
 	public OZEL_MIZAN() 
 	{
 
@@ -145,7 +144,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 						c.setForeground(super.getForeground());
 					}
 				} catch (NumberFormatException | IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				if (col == 7)
@@ -203,7 +201,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 						try {
 							OBS_MAIN.pencere_aktiv_yap("EKSTRE");
 						} catch (PropertyVetoException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
@@ -433,7 +430,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	@SuppressWarnings("unused")
 	private static void ara_ayir() throws NumberFormatException, IOException
 	{
 		try
@@ -525,7 +521,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 			write() ;	
 		}
 	}
-	@SuppressWarnings({ "unused", "resource" })
 	public static void write()
 	{
 		try 
@@ -562,7 +557,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 			//
 			if  (uzanti.equals(".xls") )
 			{
-				@SuppressWarnings("resource")
 				HSSFWorkbook workbook = new HSSFWorkbook();
 				HSSFSheet sheet = workbook.createSheet("Ozel_Mizan");
 				HSSFFont headerFont = workbook.createFont();
@@ -852,7 +846,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
-	@SuppressWarnings({ "resource", "unused", "static-access" })
 	public static void mail_at() throws IOException
 	{
 		XSSFWorkbook workbook = new XSSFWorkbook();

@@ -155,12 +155,17 @@ public class FILTRE extends JDialog {
 	public static JDateChooser dateChooser_6_2_1 ;
 	public static JComboBox<String> cmbg ;
 	public static JComboBox<String> cmbc ;
-	//*** KUR RAPOR
+	//*** KUR 
 	public static JDateChooser dateChooser_11 ;
 	public static JDateChooser dateChooser_11_1 ;
 	public static  JTextField txtkc1;
 	public static  JTextField txtkc2;
-
+	//KUR RAPORLAMA
+	public static JDateChooser dateChooser_32;
+	public static JDateChooser dateChooser_32_1;
+	public static JComboBox<String> comboBox_72;
+	public static JComboBox<String> comboBox_73;
+	public static JComboBox<String> comboBox_74;
 	//*** FATURA
 	public static  JPanel panel_6;
 	public static  JTextField textField_6;
@@ -186,7 +191,6 @@ public class FILTRE extends JDialog {
 	public static  JTextField textField_13;
 	public static JDateChooser dateChooser_12 ;
 	public static JDateChooser dateChooser_13 ;
-
 	//*** IMALAT RAPORLAMA
 	public static JComboBox<String> comboBox_9 ;
 	public static JComboBox<String> comboBox_10 ;
@@ -355,12 +359,6 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_69;
 	public static JComboBox<String> comboBox_70;
 	public static JComboBox<String> comboBox_71;
-	//KUR RAPORLAMA
-	public static JDateChooser dateChooser_32;
-	public static JDateChooser dateChooser_32_1;
-	public static JComboBox<String> comboBox_72;
-	public static JComboBox<String> comboBox_73;
-	public static JComboBox<String> comboBox_74;
 	//GUNLUK
 	public static JComboBox<String> cmbGrv_Isim;
 	public static JDateChooser dateChooser_33;
@@ -4360,10 +4358,34 @@ public class FILTRE extends JDialog {
 						if(dateChooser_6_2.getDate() == null) return;
 						if(dateChooser_6_2_1.getDate() == null) return;
 						
-						if(dateChooser_11.getDate() == null) return; // Kur Rapor
+						if(dateChooser_11.getDate() == null) return; // Kur 
 						if(dateChooser_11_1.getDate() == null) return;
+						if(dateChooser_32.getDate() == null) return;
+						if(dateChooser_32_1.getDate() == null) return;
+
+						if(dateChooser_12.getDate() == null) return; // STOK
+						if(dateChooser_13.getDate() == null) return;
+						if(dateChooser_14.getDate() == null) return;
+						if(dateChooser_15.getDate() == null) return;
+						if(dateChooser_16.getDate() == null) return;
+						if(dateChooser_17.getDate() == null) return;
+						if(dateChooser_18.getDate() == null) return;
+						if(dateChooser_19.getDate() == null) return;
+						if(dateChooser_20.getDate() == null) return;
+						if(dateChooser_21.getDate() == null) return;
+						if(dateChooser_22.getDate() == null) return;
+						if(dateChooser_23.getDate() == null) return;
+						if(dateChooser_24.getDate() == null) return;
+						if(dateChooser_25.getDate() == null) return;
+						if(dateChooser_26.getDate() == null) return;
+						if(dateChooser_27.getDate() == null) return;
+						if(dateChooser_28.getDate() == null) return;
+						if(dateChooser_29.getDate() == null) return;
+						if(dateChooser_30.getDate() == null) return;
+						if(dateChooser_31.getDate() == null) return;
 						
-						
+						if(dateChooser_33.getDate() == null) return;//GUNLUK
+						if(dateChooser_34.getDate() == null) return;
 						
 						int sayfa = tabbedPane.getSelectedIndex();
 						GuiUtil.setWaitCursor(getContentPane(),true);

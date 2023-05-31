@@ -14,6 +14,13 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/RPT/CARI_RPT/PDF_FontSet.jar</name>
+			<type>1</type>
+			<location>C:/ELIF/2025/PDF_FontSet.jar</location>
+		</link>
+	</linkedResources>
 	<filteredResources>
 		<filter>
 			<id>1681225494869</id>

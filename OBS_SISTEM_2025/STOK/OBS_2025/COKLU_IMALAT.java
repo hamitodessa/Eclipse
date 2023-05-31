@@ -572,24 +572,27 @@ public class COKLU_IMALAT extends JInternalFrame {
 				Progres_Bar_Temizle();
 				OBS_MAIN.progressBar.setStringPainted(true);
 				OBS_MAIN.progressBar.setMaximum(urunsayi);
+				//
+				IMALAT iMALAT = new IMALAT();
+				//
 				int satir = 0;
 				for (int i =0;i<= table.getRowCount() -1;i++)
 				{
 					if (! mdl.getValueAt(i,1).toString().equals(""))
 					{
 						satir ++ ;
-						IMALAT.btnNewButton_1.doClick();     // Yeni Fisno Al
+						iMALAT.btnNewButton_1.doClick();     // Yeni Fisno Al
 						Progres_Bar(urunsayi, satir);
-						mdl.setValueAt(IMALAT.textField.getText(),i, 4)  ;
-						IMALAT.dtc.setDate(dtc.getDate()) ;   // Tarih Esitle
-						IMALAT.cmbdepo.setSelectedItem(cmbdepo.getSelectedItem().toString());
-						IMALAT.cmbanagrup.setSelectedItem(cmbanagrup.getSelectedItem());
-						IMALAT.cmbaltgrup.setSelectedItem(cmbaltgrup.getSelectedItem());
-						IMALAT.textArea.setText(textArea.getText());  // Aciklama
-						IMALAT.textField_1.setText(mdl.getValueAt(i,1).toString()); // Urun Kodu
-						IMALAT.txtmiktar.setText(mdl.getValueAt(i,3).toString()); // Miktar
-						IMALAT.btnNewButton.doClick();  // Cikan Hesaplat
-						IMALAT. kaydet();
+						mdl.setValueAt(iMALAT.textField.getText(),i, 4)  ;
+						iMALAT.dtc.setDate(dtc.getDate()) ;   // Tarih Esitle
+						iMALAT.cmbdepo.setSelectedItem(cmbdepo.getSelectedItem().toString());
+						iMALAT.cmbanagrup.setSelectedItem(cmbanagrup.getSelectedItem());
+						iMALAT.cmbaltgrup.setSelectedItem(cmbaltgrup.getSelectedItem());
+						iMALAT.textArea.setText(textArea.getText());  // Aciklama
+						iMALAT.textField_1.setText(mdl.getValueAt(i,1).toString()); // Urun Kodu
+						iMALAT.txtmiktar.setText(mdl.getValueAt(i,3).toString()); // Miktar
+						iMALAT.btnNewButton.doClick();  // Cikan Hesaplat
+						iMALAT. kaydet();
 
 
 					}

@@ -46,6 +46,7 @@ import javax.swing.table.TableColumnModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyVetoException;
 import java.beans.PropertyChangeEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -350,6 +351,39 @@ public class KASA extends JInternalFrame {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table_1.setGridColor(oac.gridcolor);
+		table_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					boolean varmi = OBS_MAIN.pencere_bak("DEKONT");
+					if (varmi  ) 
+					{
+						try {
+							OBS_MAIN.pencere_aktiv_yap("DEKONT");
+						} catch (PropertyVetoException e1) {
+							e1.printStackTrace();
+						}
+					}
+					else
+					{
+						JInternalFrame internalFrame;
+						internalFrame  = new DEKONT();
+						OBS_MAIN.desktopPane.add(internalFrame);
+						internalFrame.setVisible(true);
+					}
+					try 
+					{
+						DEKONT.txtevrak.setText(table_1.getValueAt(table_1.getSelectedRow(), 0).toString());
+						DEKONT.fiskont();
+					} 
+					catch (NumberFormatException e1) 
+					{
+						e1.printStackTrace();
+					}
+
+				}
+			}
+		});
 		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		centerPanel.setViewportView(table_1);
 		sp.setDividerSize(1);

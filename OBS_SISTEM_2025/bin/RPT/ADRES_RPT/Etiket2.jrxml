@@ -26,7 +26,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
-					<font isBold="true"/>
+					<font isBold="true" pdfEncoding="Cp1254"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{adi}]]></textFieldExpression>
 			</textField>
@@ -35,6 +35,9 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9383d56f-0cd1-4248-9e0a-f9c56bdbc253"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{adres1}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -44,7 +47,7 @@
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textElement>
-					<font isBold="true"/>
+					<font isBold="true" pdfEncoding="Cp1254"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{semt}]]></textFieldExpression>
 			</textField>
@@ -52,6 +55,9 @@
 				<reportElement key="Adres2" x="0" y="30" width="280" height="15" uuid="5013181b-1e86-45e8-aa1d-1e4f5ceeb7f5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{adres2}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -60,7 +66,7 @@
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textElement>
-					<font isBold="true"/>
+					<font isBold="true" pdfEncoding="Cp1254"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{sehir}]]></textFieldExpression>
 			</textField>
@@ -68,6 +74,9 @@
 				<reportElement x="0" y="45" width="280" height="15" uuid="89ace9ab-05c9-4729-a9fc-038ed2e6c9e1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{telefon}]]></textFieldExpression>
 			</textField>
 		</band>

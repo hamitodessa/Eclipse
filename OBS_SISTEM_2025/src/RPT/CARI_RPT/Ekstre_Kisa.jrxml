@@ -48,14 +48,14 @@
 			<textField>
 				<reportElement x="4" y="26" width="266" height="14" uuid="c0d851e1-4548-4c4e-9be8-49800f54e696"/>
 				<textElement>
-					<font fontName="PDF_FontSet" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{kOD}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="4" y="46" width="322" height="14" uuid="a7f59084-ef9e-4989-962e-2aa82a274a6c"/>
 				<textElement>
-					<font fontName="PDF_FontSet" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{uNVAN}]]></textFieldExpression>
 			</textField>
@@ -150,7 +150,7 @@
 			<textField>
 				<reportElement x="71" y="0" width="260" height="12" uuid="7a48c8be-18c3-483c-812f-7450bb08f9cc"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="PDF_FontSet" size="9"/>
+					<font fontName="Arial Narrow" size="9" pdfEncoding="Cp1251"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{iZAHAT}]]></textFieldExpression>
 			</textField>

@@ -73,6 +73,5 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/jasperreports-6.18.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/SparseBitSet-1.2.0.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jasperreports-fonts-6.20.5.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/2025/PDF_FontSet.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

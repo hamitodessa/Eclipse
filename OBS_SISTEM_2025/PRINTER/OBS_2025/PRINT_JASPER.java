@@ -174,7 +174,6 @@ public class PRINT_JASPER extends JInternalFrame {
 				JRBeanCollectionDataSource qazBe = new JRBeanCollectionDataSource(eDetay);
 				jp = new JasperPrint();
 				jp.setLocaleCode("UTF-8");
-				
 				jp = JasperFillManager.fillReport(jr,parameters, qazBe);
 			}
 			scrollPane.setViewportView(new JRViewer(jp));
@@ -330,6 +329,8 @@ public class PRINT_JASPER extends JInternalFrame {
 		byteArrayOutputStream.close();
 		ByteArrayInputStream inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
 		ByteArrayDataSource ds = new ByteArrayDataSource(inputStream, "application/x-any");
+		fileOutputStream.close();
+		outputFile.delete();
 		return ds;
 	}
 	public static ByteArrayDataSource export_docx() throws IOException, JRException
@@ -345,6 +346,8 @@ public class PRINT_JASPER extends JInternalFrame {
 		byteArrayOutputStream.close();
 		ByteArrayInputStream inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
 		ByteArrayDataSource ds = new ByteArrayDataSource(inputStream, "application/x-any");
+		fileOutputStream.close();
+		outputFile.delete();
 		return ds;
 	}
 }

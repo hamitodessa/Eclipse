@@ -490,7 +490,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 				ResultSet	rs = null;
 				rs = a_Access.adr_etiket("Adi");
 					//com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.field);
-				
 				com.crystaldecisions.sdk.occa.report.application.PrintOutputController printOutputController = clientDoc.getPrintOutputController();
 				 IPrintOptions printOptions = printOutputController.getPrintOptions();
 				 //System.out.println( printOptions.getPageMargins().getLeft() +"="+  printOptions.getPageMargins().getRight() + "=" +

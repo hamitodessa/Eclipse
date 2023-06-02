@@ -1,71 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.20.3.final using JasperReports Library version 6.20.3-415f9428cffdb6805c6f85bbb29ebaf18813a2ab  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Etiket" columnCount="2" printOrder="Horizontal" pageWidth="612" pageHeight="792" columnWidth="280" columnSpacing="10" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7dc58891-00f9-4a8b-9fee-e362721686a5">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Etiket" columnCount="2" printOrder="Horizontal" pageWidth="612" pageHeight="820" columnWidth="281" columnSpacing="10" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7dc58891-00f9-4a8b-9fee-e362721686a5">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Adres"/>
+	<property name="com.jaspersoft.studio.report.description" value=""/>
 	<style name="Style1"/>
 	<queryString language="SQL">
 		<![CDATA[Select * From Adres]]>
 	</queryString>
-	<field name="Adi" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="Adi"/>
-		<property name="com.jaspersoft.studio.field.label" value="Adi"/>
-	</field>
-	<field name="Adres_1" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="Adres_1"/>
-		<property name="com.jaspersoft.studio.field.label" value="Adres_1"/>
-	</field>
-	<field name="Adres_2" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="Adres_2"/>
-		<property name="com.jaspersoft.studio.field.label" value="Adres_2"/>
-	</field>
-	<field name="Semt" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="Semt"/>
-		<property name="com.jaspersoft.studio.field.label" value="Semt"/>
-	</field>
-	<field name="Sehir" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="Sehir"/>
-		<property name="com.jaspersoft.studio.field.label" value="Sehir"/>
-	</field>
+	<field name="adi" class="java.lang.String"/>
+	<field name="adres1" class="java.lang.String"/>
+	<field name="adres2" class="java.lang.String"/>
+	<field name="semt" class="java.lang.String"/>
+	<field name="sehir" class="java.lang.String"/>
+	<field name="telefon" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="70" splitType="Stretch">
+		<band height="80" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement key="Adi" style="Style1" x="0" y="0" width="100" height="15" uuid="e7b64311-71fc-40fc-a4f5-40726a66ab09">
+				<reportElement key="Adi" style="Style1" x="0" y="0" width="280" height="15" uuid="e7b64311-71fc-40fc-a4f5-40726a66ab09">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="deee698a-7a26-4ee0-a9b3-51b2f60eb1ef"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{Adi}]]></textFieldExpression>
+				<textElement>
+					<font isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adi}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement key="Adres1" x="0" y="15" width="100" height="15" uuid="ad19154c-62e8-4e98-9e6f-aee6a0049fe1">
+				<reportElement key="Adres1" x="0" y="15" width="280" height="15" uuid="ad19154c-62e8-4e98-9e6f-aee6a0049fe1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9383d56f-0cd1-4248-9e0a-f9c56bdbc253"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{Adres_1}]]></textFieldExpression>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adres1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement key="Semt" x="0" y="45" width="130" height="15" uuid="d1f66d00-f290-4dfc-8ce3-9cd51869c3c1">
+				<reportElement key="Semt" x="0" y="60" width="130" height="15" uuid="d1f66d00-f290-4dfc-8ce3-9cd51869c3c1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9f32866b-ed8d-490d-95ef-0cd6e03988b2"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{Semt}]]></textFieldExpression>
+				<textElement>
+					<font isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{semt}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement key="Adres2" x="0" y="30" width="100" height="15" uuid="5013181b-1e86-45e8-aa1d-1e4f5ceeb7f5">
+				<reportElement key="Adres2" x="0" y="30" width="280" height="15" uuid="5013181b-1e86-45e8-aa1d-1e4f5ceeb7f5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{Adres_2}]]></textFieldExpression>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adres2}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement key="Sehir" x="130" y="45" width="150" height="15" uuid="1e011308-71ad-49b6-8ef3-ba8c226faed5">
+				<reportElement key="Sehir" x="130" y="60" width="150" height="15" uuid="1e011308-71ad-49b6-8ef3-ba8c226faed5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sehir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="45" width="280" height="15" uuid="89ace9ab-05c9-4729-a9fc-038ed2e6c9e1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{Sehir}]]></textFieldExpression>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefon}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

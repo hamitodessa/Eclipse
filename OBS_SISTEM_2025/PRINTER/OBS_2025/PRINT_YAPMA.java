@@ -498,9 +498,10 @@ public class PRINT_YAPMA extends JInternalFrame {
 				 IPrintOptions newPrintOptions = (IPrintOptions) printOptions.clone(true);
 				 IPageMargins newMargins = newPrintOptions.getPageMargins();
 				
-				 newMargins.setLeft(100);
+				 newMargins.setLeft(300);
 				 newMargins.setRight(Integer.valueOf( GLOBAL.setting_oku("SAG_BOSLUK")));
-				 newMargins.setTop(Integer.valueOf( GLOBAL.setting_oku("UST_BOSLUK")));
+				 //newMargins.setTop(Integer.valueOf( GLOBAL.setting_oku("UST_BOSLUK")));
+				 newMargins.setTop(300);
 				 newMargins.setBottom(Integer.valueOf( GLOBAL.setting_oku("ALT_BOSLUK")));
 				 newPrintOptions.setPageMargins(newMargins);
 				 printOutputController.modifyPrintOptions(newPrintOptions);
@@ -513,32 +514,31 @@ public class PRINT_YAPMA extends JInternalFrame {
 				 //
 					
 					
-					
-				//ReportClientDocument clientDoc ;	
+			
 					
 				IArea detArea =clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2);
 			
 				IArea yenArea = (IArea) detArea.clone(true);
-				IDetailAreaFormat detAreaFormat = (IDetailAreaFormat) detArea.getFormat();
-				IDetailAreaFormat xswAreaFormat = (IDetailAreaFormat) detAreaFormat.clone(true);
+				IDetailAreaFormat xswAreaFormat = (IDetailAreaFormat) detArea.getFormat();
 				//xswAreaFormat.setDetailWidth((Integer.valueOf( GLOBAL.setting_oku("ETIKET_GEN"))));
 				//xswAreaFormat.setVerticalGap((Integer.valueOf( GLOBAL.setting_oku("ETIKET_ARA_BOSLUK"))));
-				xswAreaFormat.setDetailWidth(3000);
-				xswAreaFormat.setVerticalGap(50);
-				xswAreaFormat.setHorizontalGap(50);
+				xswAreaFormat.setDetailWidth(5000);
+				xswAreaFormat.setVerticalGap(400);
+				xswAreaFormat.setHorizontalGap(400);
+				
 				yenArea.setFormat(xswAreaFormat);
-				//clientDoc.getReportDefController().getReportDefinition().getDetailArea().setFormat(xswAreaFormat);
+				clientDoc.getReportDefController().getReportDefinition().getDetailArea().setFormat(xswAreaFormat);
 				
-				clientDoc.getReportDefController().getReportDefinition().getAreas().remove(2);
+				//clientDoc.getReportDefController().getReportDefinition().getAreas().remove(2);
 				
-				clientDoc.getReportDefController().getReportDefinition().getAreas().add(yenArea);
-				clientDoc.save();
+				//clientDoc.getReportDefController().getReportDefinition().getAreas().add(yenArea);
+				
 				
 				//*****************************************************************
-					//detailBolumString = clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).getName();
-					//areaqw =clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2);
-					//kokAreaFormat = (IDetailAreaFormat) areaqw.getFormat();
-					//System.out.println(detailBolumString + "===HorizontalGap===="+ kokAreaFormat.getHorizontalGap()+ "===VerticalGap==" + kokAreaFormat.getVerticalGap()+"  Detail Genislik ===="+ kokAreaFormat.getDetailWidth()  );
+					detailBolumString = clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2).getName();
+					areaqw =clientDoc.getReportDefController().getReportDefinition().getAreas().getArea(2);
+					kokAreaFormat = (IDetailAreaFormat) areaqw.getFormat();
+					System.out.println(detailBolumString + "===HorizontalGap===="+ kokAreaFormat.getHorizontalGap()+ "===VerticalGap==" + kokAreaFormat.getVerticalGap()+"  Detail Genislik ===="+ kokAreaFormat.getDetailWidth()  );
 				//******************************************************************
 				clientDoc.getDatabaseController().setDataSource(rs);
 

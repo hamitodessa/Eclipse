@@ -22,21 +22,17 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import OBS_C_2025.BACKUP_RESTORE;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
-import OBS_C_2025.GLOBAL;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.awt.event.ActionEvent;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","deprecation","static-access","unused"})
 public class MSSQL_TO_MYSQL extends JInternalFrame {
 	private JTextField textField;
 	private JTextField textField_1;
@@ -315,6 +311,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		
 		JButton btnNewButton_4 = new JButton("backup");
 		btnNewButton_4.addActionListener(new ActionListener() {
+		
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
 				BACKUP_RESTORE.BackupdbtoMYsql("ok_car019","hamit","197227oOk", "C:/Program Files/MySQL/MySQL Workbench 8.0");
@@ -326,6 +323,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		
 		JButton btnNewButton_5 = new JButton("New button");
 		btnNewButton_5.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				
 				Date qwe = new Date();
@@ -472,6 +470,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		}
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
+
 	void hsp_detay() throws ClassNotFoundException, SQLException
 	{
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

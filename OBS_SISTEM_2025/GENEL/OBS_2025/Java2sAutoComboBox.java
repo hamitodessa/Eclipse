@@ -9,6 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.plaf.basic.BasicComboBoxEditor;
 
+@SuppressWarnings({ "serial", "rawtypes","unchecked" })
 public class Java2sAutoComboBox extends JComboBox    {
 	
 	String nerden = "";
@@ -23,7 +24,6 @@ public class Java2sAutoComboBox extends JComboBox    {
 		    }
 		  }
 
-		  @SuppressWarnings("unchecked")
 		public Java2sAutoComboBox(List<String> list,String nerde) {
 		    isFired = false;
 		    nerden = nerde;
@@ -58,7 +58,8 @@ public class Java2sAutoComboBox extends JComboBox    {
 		  public List getDataList() {
 		    return autoTextFieldEditor.getAutoTextFieldEditor().getDataList();
 		  }
-		  public void setDataList(List list) {
+	
+		public void setDataList(List list) {
 		    autoTextFieldEditor.getAutoTextFieldEditor().setDataList(list);
 		    setModel(new DefaultComboBoxModel(list.toArray()));
 		  }

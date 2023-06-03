@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings("serial")
 public class ORTA extends JLabel implements TableCellRenderer {
 	  	  public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
 	  	      boolean hasFocus, int rowIndex, int vColIndex) {
@@ -18,14 +19,13 @@ public class ORTA extends JLabel implements TableCellRenderer {
 	  	    setToolTipText((String) value);
 	  	    setResizable(false);
 	  	    setHorizontalAlignment(JLabel.CENTER);
-	  	  setForeground(new Color(0, 0, 128));
+	  	    setForeground(new Color(0, 0, 128));
 	        setBorder(border);
 	        setFont(new Font(table.getFont().getFontName(), Font.BOLD, 12));
 	  	    return this;
 	  	  }
 
 		private void setResizable(boolean b) {
-			// TODO Auto-generated method stub
-			
+		
 		}
 }

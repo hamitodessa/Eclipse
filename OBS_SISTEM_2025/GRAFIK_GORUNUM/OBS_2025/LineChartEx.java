@@ -2,7 +2,6 @@ package OBS_2025;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -20,6 +19,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class LineChartEx extends JInternalFrame {
 	 public LineChartEx() {
 

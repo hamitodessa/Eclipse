@@ -4,10 +4,10 @@ import java.awt.Component;
 
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings("serial")
 public class CheckBoxRenderer extends JCheckBox implements TableCellRenderer {
 
     public CheckBoxRenderer() {

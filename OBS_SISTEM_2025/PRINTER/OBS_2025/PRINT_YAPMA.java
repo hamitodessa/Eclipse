@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -65,7 +66,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 	public static ReportClientDocument clientDoc ;
 	private static ResultSet rs ;
 	private static ArrayList<Degisken>  students = new ArrayList<Degisken>();
-
+	static List<Ekstre_Detay> eDetay = new ArrayList<Ekstre_Detay>();
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -2340,7 +2341,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Evrak Formatlama", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
-
 }
 
 //*****************

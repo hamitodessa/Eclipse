@@ -78,6 +78,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 	private static JCheckBox chckbxNewCheckBox_2_1_1_1;
 	private static JLabel lblNewLabel_3_8 ;
 	private static JLabel lblNewLabel_3_9 ;
+	private static JLabel lblNewLabel_3_9_1 ;
 	//**********FAT********************
 	private static JLabel lblNewLabel_3_10 ;
 	private static JLabel lblNewLabel_3_1_1 ;
@@ -704,6 +705,34 @@ public class PARAMETRELER   extends JInternalFrame   {
 		comboBox_2_1_1.setBounds(295, 221, 55, 22);
 		panel.add(comboBox_2_1_1);
 		
+		JLabel lblNewLabel_5_1_1 = new JLabel("Cari Gunluk");
+		lblNewLabel_5_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_5_1_1.setBounds(10, 325, 110, 14);
+		panel.add(lblNewLabel_5_1_1);
+		
+		lblNewLabel_3_9_1 = new JLabel("[Calibri,0,12]");
+		lblNewLabel_3_9_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_3_9_1.setBounds(150, 325, 253, 14);
+		panel.add(lblNewLabel_3_9_1);
+		
+		JButton btnNewButton_4_1 = new JButton(".....");
+		btnNewButton_4_1.setBounds(417, 321, 46, 23);
+		
+		btnNewButton_4_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String[] parts;
+				parts = lblNewLabel_3_9_1.getText() .substring(1, lblNewLabel_3_9_1.getText().length()-1).split(",");
+				bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+				fc.setFont(bigFont);
+				fc.showDialog(null,"");
+				lblNewLabel_3_9_1.setText("[" + fc.getFont().getName() + "," + fc.getFont().getStyle() + "," + fc.getFont().getSize()+ "]" );
+				bigFont = new Font(fc.getFont().getName(), fc.getFont().getStyle(), fc.getFont().getSize());
+				lblNewLabel_3_9_1.setFont(bigFont);
+
+			}
+		});
+		
+		panel.add(btnNewButton_4_1);
 		JScrollPane scrollPane_1 = new JScrollPane();
 		tabbedPane.addTab("Fatura", null, scrollPane_1, null);
 		
@@ -1488,6 +1517,12 @@ public class PARAMETRELER   extends JInternalFrame   {
 			parts = deger.split(",");
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			lblNewLabel_3_9.setFont(bigFont);
+		deger = oac.glb.setting_oku("CARI_GUNLUK").toString();
+			lblNewLabel_3_9_1.setText(deger);
+			deger = deger.substring(1, deger.length()-1);
+			parts = deger.split(",");
+			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			lblNewLabel_3_9_1.setFont(bigFont);
 			
 		deger = oac.glb.setting_oku("CARI_MIZ_GRUP").toString();
 		textField.setText(deger);
@@ -1717,6 +1752,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 		
 		oac.glb.setting_yaz("CARI_MIZAN", lblNewLabel_3_9.getText());
 		
+		oac.glb.setting_yaz("CARI_GUNLUK", lblNewLabel_3_9_1.getText());
+		
 		deger = textField.getText();
 		oac.glb.setting_yaz("CARI_MIZ_GRUP", deger);
 		//************************************************ STOK FAT*******************
@@ -1833,8 +1870,6 @@ public class PARAMETRELER   extends JInternalFrame   {
 		}
 		return convertedDate;
 	}
-	 
-	 
 }
 
 

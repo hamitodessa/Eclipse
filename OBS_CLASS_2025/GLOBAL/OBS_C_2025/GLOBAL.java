@@ -293,6 +293,7 @@ public class GLOBAL {
 			prop.setProperty("CARI_HSPPLN_CAG", ",, ");
 			prop.setProperty("CARI_KARTON", "[Calibri,0,12]");
 			prop.setProperty("CARI_MIZAN", "[Calibri,0,12]");
+			prop.setProperty("CARI_GUNLUK", "[Calibri,0,12]");
 			prop.setProperty("CARI_MIZ_GRUP", "3");
 			prop.setProperty("STK_FAT_ABILGI", "[Calibri,0,12]");
 			prop.setProperty("STK_FAT_BASLIK","[Calibri,0,12]");

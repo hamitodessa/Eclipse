@@ -17,10 +17,12 @@ import javax.swing.JSplitPane;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.COLUMN_ORTALA;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.ORTA;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
@@ -516,6 +518,8 @@ public class KASA extends JInternalFrame {
 
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				//tc.setHeaderRenderer(new ORTA());
+				//tc.setCellRenderer(new COLUMN_ORTALA());
 				tc.setMinWidth(60);
 
 				tc = tcm.getColumn(1);
@@ -547,6 +551,7 @@ public class KASA extends JInternalFrame {
 				th.repaint();
 				//table_1.setRowSelectionInterval(0, 0);
 				table_1.setRowHeight(20);
+				table_1.repaint();
 			}
 			//**********  Guncel Bakiye
 			guncel_bakiye();
@@ -562,6 +567,15 @@ public class KASA extends JInternalFrame {
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+			
+			String deger;
+			String[] parts;
+			Font bigFont;
+			deger = GLOBAL.setting_oku("CARI_GUNLUK").toString();
+			deger = deger.substring(1, deger.length()-1);
+			parts = deger.split(",");
+			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			table_1.setFont(bigFont);
 		}
 		catch (Exception ex)
 		{

@@ -120,7 +120,6 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 						try {
 							OBS_MAIN.pencere_aktiv_yap("DEKONT");
 						} catch (PropertyVetoException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}

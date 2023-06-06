@@ -197,40 +197,41 @@ public class FATURA_RAPOR extends JInternalFrame {
 	}
 	public static void yenile()
 	{
-		try {
-		String deger;
-		String[] parts;
-		Font bigFont;
+		try 
+		{
+			String deger;
+			String[] parts;
+			Font bigFont;
 			deger = OBS_C_2025.GLOBAL.setting_oku("STK_RAPORLAMA").toString();
 			deger = deger.substring(1, deger.length()-1);
 			parts = deger.split(",");
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table.setFont(bigFont);
 			table_1.setFont(bigFont);
-		if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura No"))
-		{
-		            filtrele();
+			if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura No"))
+			{
+				filtrele();
+			}
+			else if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura_No_Tarih"))    
+			{
+				filtre_fat_tarih();
+			}
+			else
+			{
+				filtre_cari_kod();
+			}
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
-		else if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura_No_Tarih"))    
-		{
-		         filtre_fat_tarih();
-		}
-		else
-		{
-	         filtre_cari_kod();
-		}
-	} catch (Exception ex) {
-		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.PLAIN_MESSAGE);
-	}
 	}
 	public static void filtrele()
 	{
 		long startTime = System.currentTimeMillis(); 
-		try {
+		try 
+		{
 			ResultSet	rs = null;
 			grup_cevir() ;
-			
-				rs = f_Access.fat_rapor(FILTRE.textField_6.getText(),FILTRE.txtZzzzzzzzzz.getText() ,
+			rs = f_Access.fat_rapor(FILTRE.textField_6.getText(),FILTRE.txtZzzzzzzzzz.getText() ,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_12),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_13),
 						FILTRE.textField_7.getText(),FILTRE.txtZzzzzzzzzzzz.getText() ,
 						FILTRE.textField_12.getText(),FILTRE.textField_13.getText() ,
@@ -239,8 +240,6 @@ public class FATURA_RAPOR extends JInternalFrame {
 						 FILTRE.textField_10.getText(),FILTRE.txtZzzzzzzzzz_1.getText() ,
 						 FILTRE.textField_8.getText(),FILTRE.txtZzzzzzzzzzzz_1.getText() ,
 						 FILTRE.textField_11.getText(),FILTRE.txtZzz.getText() );
-			
-			
 			GRID_TEMIZLE.grid_temizle(table);
 			GRID_TEMIZLE.grid_temizle(table_1);
 			if (!rs.isBeforeFirst() ) {  
@@ -250,9 +249,7 @@ public class FATURA_RAPOR extends JInternalFrame {
 			else
 			{
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			
 			JTableHeader th = table.getTableHeader();
-			
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
 				tc = tcm.getColumn(0);
@@ -585,7 +582,7 @@ public class FATURA_RAPOR extends JInternalFrame {
             String qw1, qw2, c_yer;
            if ( FILTRE.comboBox_8.getItemAt(FILTRE.comboBox_8.getSelectedIndex()).equals("Cari_Firma"))
            {
-                c_yer = "[OK_Car" + BAGLAN.adrDizin.kOD+ "]" ;
+                c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD+ "]" ;
                 qw1 = " ,(SELECT TOP 1  UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = FATURA.Cari_Firma  ) as Unvan " ;
                 qw2 =" Cari_Firma" ;
            }

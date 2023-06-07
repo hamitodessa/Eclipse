@@ -1869,13 +1869,6 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_84.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-post-30.png")));
 		toolBar_8.add(btnNewButton_84);
 		
-		JButton btnNewButton_35 = new JButton("New button");
-		btnNewButton_35.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("SMS INET","");
-			}
-		});
-		toolBar_8.add(btnNewButton_35);
 		//*********************************************************** GIDEN RAPOR *********************************************************************************
 
 		JToolBar toolBar_9 = new JToolBar();
@@ -2975,7 +2968,7 @@ public class OBS_MAIN extends JFrame {
 			//		 //SMS-MAIL
 			else if (pencere.equals("SMS")) internalFrame  = new SMS();
 			else if (pencere.equals("MAIL")) internalFrame  = new MAIL();
-			else if (pencere.equals("SMS INET")) internalFrame  = new SMS_INET();
+			//else if (pencere.equals("SMS INET")) internalFrame  = new SMS_INET();
 			//		 //GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();

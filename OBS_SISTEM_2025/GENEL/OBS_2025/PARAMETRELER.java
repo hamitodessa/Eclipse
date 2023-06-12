@@ -1735,7 +1735,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		oac.glb.setting_yaz("CARI_EKSTRE", lblNewLabel_3_4.getText());
 		
 		
-		oac.glb.setting_yaz("CARI_GUN_IS", lblNewLabel_3_5.getText());
+		oac.glb.setting_yaz("CARI_GUN_ISL", lblNewLabel_3_5.getText());
 		
 	
 		oac.glb.setting_yaz("CARI_HES_BAK", lblNewLabel_3_6.getText());

@@ -208,6 +208,7 @@ public class FATURA_RAPOR extends JInternalFrame {
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table.setFont(bigFont);
 			table_1.setFont(bigFont);
+			
 			if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura No"))
 			{
 				filtrele();

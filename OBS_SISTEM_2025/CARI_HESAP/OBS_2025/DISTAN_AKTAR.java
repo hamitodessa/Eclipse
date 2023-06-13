@@ -9,11 +9,13 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -194,6 +196,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		txtBORCLU.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtBORCLU.setBounds(603, 18, 100, 20);
 		txtBORCLU.setColumns(12);
+		InputMap txtkoduMap = txtBORCLU.getInputMap();
+		txtkoduMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
 		txtBORCLU.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -319,6 +323,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		txtALACAK.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtALACAK.setColumns(12);
 		txtALACAK.setBounds(945, 18, 100, 20);
+		InputMap txtkoduMap1 = txtALACAK.getInputMap();
+		txtkoduMap1.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
 		txtALACAK.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {

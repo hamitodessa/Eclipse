@@ -12,17 +12,15 @@ import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
+import javax.swing.KeyStroke;
 import javax.swing.JSplitPane;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.CARI_ACCESS;
-import OBS_C_2025.COLUMN_ORTALA;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
-import OBS_C_2025.ORTA;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
@@ -30,6 +28,7 @@ import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.sql.ResultSet;
@@ -133,6 +132,47 @@ public class KASA extends JInternalFrame {
 		leftPanel.add(lblNewLabel);
 
 		textField = new JTextField();
+		textField.setDocument(new JTextFieldLimit(12));
+		InputMap txtkoduMap = textField.getInputMap();
+		txtkoduMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
+		textField .getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				try {
+					getContentPane().setCursor(oac.WAIT_CURSOR);
+					isimoku_ekstre();
+					yenile() ;
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			public void removeUpdate(DocumentEvent e) {
+				try {
+					getContentPane().setCursor(oac.WAIT_CURSOR);
+					isimoku_ekstre();
+					yenile() ;
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			public void insertUpdate(DocumentEvent e) {
+				try {
+					getContentPane().setCursor(oac.WAIT_CURSOR);
+					isimoku_ekstre();
+					yenile() ;
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -183,51 +223,13 @@ public class KASA extends JInternalFrame {
 				}
 			}
 		});
-		textField.setDocument(new JTextFieldLimit(12));
-		textField .getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				try {
-					getContentPane().setCursor(oac.WAIT_CURSOR);
-					isimoku_ekstre();
-					yenile() ;
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			}
-			public void removeUpdate(DocumentEvent e) {
-				try {
-					getContentPane().setCursor(oac.WAIT_CURSOR);
-					isimoku_ekstre();
-					yenile() ;
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			}
-			public void insertUpdate(DocumentEvent e) {
-				try {
-					getContentPane().setCursor(oac.WAIT_CURSOR);
-					isimoku_ekstre();
-					yenile() ;
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
+	
+
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setBounds(87, 11, 125, 20);
 
 
 		leftPanel.add(textField);
-		textField.setColumns(10);
 
 		lblNewLabel_1 = new JLabel("...");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));

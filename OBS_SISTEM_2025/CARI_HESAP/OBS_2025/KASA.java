@@ -397,13 +397,13 @@ public class KASA extends JInternalFrame {
 		rightPanel.setLayout(null);
 
 		lblNewLabel_4 = new JLabel("0.00");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_4.setBounds(454, 11, 96, 14);
 		rightPanel.add(lblNewLabel_4);
 
 		lblNewLabel_5 = new JLabel("0.00");
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5.setBounds(351, 11, 100, 14);
 		rightPanel.add(lblNewLabel_5);
@@ -446,7 +446,7 @@ public class KASA extends JInternalFrame {
 		rightPanel.add(lblNewLabel_4_1_1);
 
 		lblNewLabel_4_1_2 = new JLabel("0.00");
-		lblNewLabel_4_1_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_4_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_4_1_2.setBounds(575, 11, 96, 14);
 		rightPanel.add(lblNewLabel_4_1_2);

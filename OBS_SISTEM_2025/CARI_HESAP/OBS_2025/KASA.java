@@ -399,56 +399,56 @@ public class KASA extends JInternalFrame {
 		lblNewLabel_4 = new JLabel("0.00");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4.setBounds(454, 11, 96, 14);
+		lblNewLabel_4.setBounds(503, 11, 96, 14);
 		rightPanel.add(lblNewLabel_4);
 
 		lblNewLabel_5 = new JLabel("0.00");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5.setBounds(351, 11, 100, 14);
+		lblNewLabel_5.setBounds(400, 11, 100, 14);
 		rightPanel.add(lblNewLabel_5);
 
 		lblNewLabel_4_1 = new JLabel("0.00");
 		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_4_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4_1.setBounds(454, 31, 96, 14);
+		lblNewLabel_4_1.setBounds(503, 31, 96, 14);
 		rightPanel.add(lblNewLabel_4_1);
 
 		lblNewLabel_4_2 = new JLabel("0.00");
 		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4_2.setBounds(454, 56, 96, 14);
+		lblNewLabel_4_2.setBounds(503, 56, 96, 14);
 		rightPanel.add(lblNewLabel_4_2);
 
 		lblNewLabel_5_1 = new JLabel("0.00");
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5_1.setBounds(351, 31, 100, 14);
+		lblNewLabel_5_1.setBounds(400, 31, 100, 14);
 		rightPanel.add(lblNewLabel_5_1);
 
 		lblNewLabel_5_2 = new JLabel("0.00");
 		lblNewLabel_5_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5_2.setBounds(351, 56, 100, 14);
+		lblNewLabel_5_2.setBounds(400, 56, 100, 14);
 		rightPanel.add(lblNewLabel_5_2);
 
 		lblNewLabel_5_2_1 = new JLabel("0.00");
 		lblNewLabel_5_2_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5_2_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_5_2_1.setBounds(560, 56, 111, 14);
+		lblNewLabel_5_2_1.setBounds(609, 56, 111, 14);
 		rightPanel.add(lblNewLabel_5_2_1);
 
 		lblNewLabel_4_1_1 = new JLabel("0.00");
 		lblNewLabel_4_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_4_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4_1_1.setBounds(575, 31, 96, 14);
+		lblNewLabel_4_1_1.setBounds(624, 31, 96, 14);
 		rightPanel.add(lblNewLabel_4_1_1);
 
 		lblNewLabel_4_1_2 = new JLabel("0.00");
 		lblNewLabel_4_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4_1_2.setBounds(575, 11, 96, 14);
+		lblNewLabel_4_1_2.setBounds(624, 11, 96, 14);
 		rightPanel.add(lblNewLabel_4_1_2);
 
 		JLabel lblNewLabel_2 = new JLabel("Kayit Sayisi :");
@@ -464,19 +464,19 @@ public class KASA extends JInternalFrame {
 		JLabel lblNewLabel_5_3 = new JLabel("Gunluk Toplam");
 		lblNewLabel_5_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_5_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5_3.setBounds(241, 11, 100, 14);
+		lblNewLabel_5_3.setBounds(290, 11, 100, 14);
 		rightPanel.add(lblNewLabel_5_3);
 
 		JLabel lblNewLabel_5_1_1 = new JLabel("Eski Donem");
 		lblNewLabel_5_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_5_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5_1_1.setBounds(241, 31, 100, 14);
+		lblNewLabel_5_1_1.setBounds(290, 31, 100, 14);
 		rightPanel.add(lblNewLabel_5_1_1);
 
 		JLabel lblNewLabel_5_2_2 = new JLabel("+ / - Bakiye");
 		lblNewLabel_5_2_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_5_2_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5_2_2.setBounds(241, 56, 100, 14);
+		lblNewLabel_5_2_2.setBounds(290, 56, 100, 14);
 		rightPanel.add(lblNewLabel_5_2_2);
 
 		sp2.setDividerSize(1);
@@ -522,15 +522,17 @@ public class KASA extends JInternalFrame {
 				tc.setHeaderRenderer(new SOLA());
 				//tc.setHeaderRenderer(new ORTA());
 				//tc.setCellRenderer(new COLUMN_ORTALA());
-				tc.setMinWidth(60);
+				tc.setMinWidth(50);
+				tc.setMaxWidth(50);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(350);
+				tc.setMinWidth(412);
 
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(50);
+				tc.setMaxWidth(50);
 
 				tc = tcm.getColumn(3);
 				tc.setHeaderRenderer(new SAGA());
@@ -545,6 +547,7 @@ public class KASA extends JInternalFrame {
 				tc = tcm.getColumn(5);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(50);
+				tc.setMaxWidth(50);
 
 				table_1.setRowHeight(21);
 				Dimension dd = th.getPreferredSize();

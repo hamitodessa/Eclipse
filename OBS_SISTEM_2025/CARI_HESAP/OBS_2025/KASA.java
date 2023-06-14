@@ -56,35 +56,35 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-@SuppressWarnings({"serial" , "static-access" , "deprecation"})
+@SuppressWarnings({ "serial", "static-access", "deprecation" })
 public class KASA extends JInternalFrame {
 
 	private JTable table_1;
 	private static JTextField textField;
-	private JLabel lblNewLabel_1 ;
-	private JLabel lblNewLabel_6 ;
-	private JDateChooser dateChooser ;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_6;
+	private JDateChooser dateChooser;
 	private static JLabel lblNewLabel_4;
 	private static JLabel lblNewLabel_5;
 	private static JLabel lblNewLabel_4_1;
 	private static JLabel lblNewLabel_5_1;
 	private static JLabel lblNewLabel_4_2;
 	private static JLabel lblNewLabel_5_2;
-	private static JLabel lblNewLabel_4_1_1 ;
-	private static JLabel lblNewLabel_4_1_2 ;
-	private static JLabel lblNewLabel_5_2_1  ;
+	private static JLabel lblNewLabel_4_1_1;
+	private static JLabel lblNewLabel_4_1_2;
+	private static JLabel lblNewLabel_5_2_1;
 
-	private static JLabel lblNewLabel_3 ;
+	private static JLabel lblNewLabel_3;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+	private static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar, oac._ICari_Loger);
 
-	double double_1 = 0 ;
-	double double_2 = 0 ;
-	double double_3 = 0 ;
-	double double_4 = 0 ;
-	String myDate ;
-	String myDate1 ;
-	ResultSet	rs = null;
+	double double_1 = 0;
+	double double_2 = 0;
+	double double_3 = 0;
+	double double_4 = 0;
+	String myDate;
+	String myDate1;
+	ResultSet rs = null;
 
 	/**
 	 * Launch the application.
@@ -134,13 +134,13 @@ public class KASA extends JInternalFrame {
 		textField = new JTextField();
 		textField.setDocument(new JTextFieldLimit(12));
 		InputMap txtkoduMap = textField.getInputMap();
-		txtkoduMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
-		textField .getDocument().addDocumentListener(new DocumentListener() {
+		txtkoduMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK), "foo");
+		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				try {
 					getContentPane().setCursor(oac.WAIT_CURSOR);
 					isimoku_ekstre();
-					yenile() ;
+					yenile();
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				} catch (ClassNotFoundException e1) {
 					e1.printStackTrace();
@@ -148,11 +148,12 @@ public class KASA extends JInternalFrame {
 					e1.printStackTrace();
 				}
 			}
+
 			public void removeUpdate(DocumentEvent e) {
 				try {
 					getContentPane().setCursor(oac.WAIT_CURSOR);
 					isimoku_ekstre();
-					yenile() ;
+					yenile();
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				} catch (ClassNotFoundException e1) {
 					e1.printStackTrace();
@@ -160,11 +161,12 @@ public class KASA extends JInternalFrame {
 					e1.printStackTrace();
 				}
 			}
+
 			public void insertUpdate(DocumentEvent e) {
 				try {
 					getContentPane().setCursor(oac.WAIT_CURSOR);
 					isimoku_ekstre();
-					yenile() ;
+					yenile();
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				} catch (ClassNotFoundException e1) {
 					e1.printStackTrace();
@@ -178,15 +180,14 @@ public class KASA extends JInternalFrame {
 			public void keyPressed(KeyEvent e) {
 				try {
 					String[] parts;
-					String deger ;
+					String deger;
 					deger = GLOBAL.setting_oku("CARI_HSPPLN_CAG").toString();
 					parts = deger.split(",");
-					if ( ! parts[2].equals(" ")) 
-					{
-						char c=parts[2].charAt(0);
-						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
-						{
-							HESAP_PLN hsp ;
+					if (!parts[2].equals(" ")) {
+						char c = parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers()
+								& (parts[0].equals("E") ? KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK)) != 0)) {
+							HESAP_PLN hsp;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
 							hsp = new HESAP_PLN();
 							hsp.show();
@@ -194,9 +195,7 @@ public class KASA extends JInternalFrame {
 							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
 					}
-				}
-				catch (Exception ex)
-				{
+				} catch (Exception ex) {
 
 				}
 			}
@@ -204,16 +203,15 @@ public class KASA extends JInternalFrame {
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
-					HESAP_PLN hsp ;
+				if (e.getClickCount() == 2) {
+					HESAP_PLN hsp;
 					try {
 						hsp = new HESAP_PLN();
 						hsp.show();
-						textField.setText( oac.hsp_hsp_kodu);
+						textField.setText(oac.hsp_hsp_kodu);
 						getContentPane().setCursor(oac.WAIT_CURSOR);
 						isimoku_ekstre();
-						yenile() ;
+						yenile();
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
@@ -223,11 +221,9 @@ public class KASA extends JInternalFrame {
 				}
 			}
 		});
-	
 
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setBounds(87, 11, 125, 20);
-
 
 		leftPanel.add(textField);
 
@@ -242,37 +238,36 @@ public class KASA extends JInternalFrame {
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dateChooser.setDate(new Date());
-		dateChooser.getDateEditor().addPropertyChangeListener(
-				new PropertyChangeListener() {
-					@Override
-					public void propertyChange(PropertyChangeEvent e) {
-						if ("date".equals(e.getPropertyName())) {
-							getContentPane().setCursor(oac.WAIT_CURSOR);
-							yenile();
-							getContentPane().setCursor(oac.DEFAULT_CURSOR);
-						}
-					}
-				});
+		dateChooser.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent e) {
+				if ("date".equals(e.getPropertyName())) {
+					getContentPane().setCursor(oac.WAIT_CURSOR);
+					yenile();
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				}
+			}
+		});
 		dateChooser.getComponent(1).addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 			}
+
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
 					try {
 						date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dateChooser));
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
-						cal.add(Calendar.DAY_OF_MONTH, -1); 
+						cal.add(Calendar.DAY_OF_MONTH, -1);
 						dateChooser.setDate(new Date(cal.getTimeInMillis()));
 					} catch (ParseException e1) {
 						e1.printStackTrace();
 					}
-				}
-				else if(e.getKeyCode()==KeyEvent.VK_UP) {
+				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
 					try {
@@ -287,6 +282,7 @@ public class KASA extends JInternalFrame {
 					}
 				}
 			}
+
 			@Override
 			public void keyReleased(KeyEvent e) {
 			}
@@ -302,7 +298,7 @@ public class KASA extends JInternalFrame {
 					date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dateChooser));
 					Calendar cal = Calendar.getInstance();
 					cal.setTime(date);
-					cal.add(Calendar.DAY_OF_MONTH, -1); 
+					cal.add(Calendar.DAY_OF_MONTH, -1);
 					dateChooser.setDate(new Date(cal.getTimeInMillis()));
 				} catch (ParseException e1) {
 					e1.printStackTrace();
@@ -351,8 +347,10 @@ public class KASA extends JInternalFrame {
 		lblNewLabel_6.setBounds(222, 15, 46, 14);
 		leftPanel.add(lblNewLabel_6);
 
-		table_1 = new JTable(){
-			public boolean isCellEditable(int row, int column) {     return false;          }
+		table_1 = new JTable() {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
 		};
 		table_1.setGridColor(oac.gridcolor);
 		table_1.addMouseListener(new MouseAdapter() {
@@ -360,35 +358,29 @@ public class KASA extends JInternalFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					boolean varmi = OBS_MAIN.pencere_bak("DEKONT");
-					if (varmi  ) 
-					{
+					if (varmi) {
 						try {
 							OBS_MAIN.pencere_aktiv_yap("DEKONT");
 						} catch (PropertyVetoException e1) {
 							e1.printStackTrace();
 						}
-					}
-					else
-					{
+					} else {
 						JInternalFrame internalFrame;
-						internalFrame  = new DEKONT();
+						internalFrame = new DEKONT();
 						OBS_MAIN.desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
 					}
-					try 
-					{
+					try {
 						DEKONT.txtevrak.setText(table_1.getValueAt(table_1.getSelectedRow(), 0).toString());
 						DEKONT.fiskont();
-					} 
-					catch (NumberFormatException e1) 
-					{
+					} catch (NumberFormatException e1) {
 						e1.printStackTrace();
 					}
 
 				}
 			}
 		});
-		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		centerPanel.setViewportView(table_1);
 		sp.setDividerSize(1);
 		sp.setResizeWeight(0.0);
@@ -483,34 +475,32 @@ public class KASA extends JInternalFrame {
 		sp2.setResizeWeight(1.0);
 		getContentPane().add(sp2, BorderLayout.CENTER);
 	}
+
 	public void isimoku_ekstre() throws ClassNotFoundException, SQLException {
-		ResultSet	rs = null;
+		ResultSet rs = null;
 		rs = c_Access.hesap_adi_oku(textField.getText());
-		if (!rs.isBeforeFirst() ) {  
+		if (!rs.isBeforeFirst()) {
 			lblNewLabel_1.setText("");
 			lblNewLabel_6.setText("");
 			return;
-		} 
+		}
 		rs.next();
 		lblNewLabel_1.setText(rs.getString("UNVAN"));
 		lblNewLabel_6.setText(rs.getString("HESAP_CINSI"));
 	}
-	private void yenile() 
-	{
+
+	private void yenile() {
 		hisset();
 	}
-	private void hisset() 
-	{
-		try
-		{
-			long startTime = System.currentTimeMillis(); 
+
+	private void hisset() {
+		try {
+			long startTime = System.currentTimeMillis();
 			rs = c_Access.kasa_kontrol(textField.getText(), TARIH_CEVIR.tarih_geri_kasa(dateChooser));
-			if (!rs.isBeforeFirst() ) {  
+			if (!rs.isBeforeFirst()) {
 				GRID_TEMIZLE.grid_temizle(table_1);
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + 0 + " saniye");
-			} 
-			else
-			{
+			} else {
 				GRID_TEMIZLE.grid_temizle(table_1);
 				table_1.setModel(DbUtils.resultSetToTableModel(rs));
 				JTableHeader th = table_1.getTableHeader();
@@ -520,8 +510,8 @@ public class KASA extends JInternalFrame {
 
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
-				//tc.setHeaderRenderer(new ORTA());
-				//tc.setCellRenderer(new COLUMN_ORTALA());
+				// tc.setHeaderRenderer(new ORTA());
+				// tc.setCellRenderer(new COLUMN_ORTALA());
 				tc.setMinWidth(50);
 				tc.setMaxWidth(50);
 
@@ -536,12 +526,12 @@ public class KASA extends JInternalFrame {
 
 				tc = tcm.getColumn(3);
 				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(2,false));
+				tc.setCellRenderer(new TABLO_RENDERER(2, false));
 				tc.setMinWidth(100);
 
 				tc = tcm.getColumn(4);
 				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(2,false));
+				tc.setCellRenderer(new TABLO_RENDERER(2, false));
 				tc.setMinWidth(100);
 
 				tc = tcm.getColumn(5);
@@ -552,79 +542,73 @@ public class KASA extends JInternalFrame {
 				table_1.setRowHeight(21);
 				Dimension dd = th.getPreferredSize();
 				dd.height = 30;
-				th.setPreferredSize(dd); 
+				th.setPreferredSize(dd);
 				th.repaint();
-				//table_1.setRowSelectionInterval(0, 0);
+				// table_1.setRowSelectionInterval(0, 0);
 				table_1.setRowHeight(20);
 				table_1.repaint();
 			}
-			//**********  Guncel Bakiye
+			// ********** Guncel Bakiye
 			guncel_bakiye();
-			//**********  ONCEKI  Bakiye
+			// ********** ONCEKI Bakiye
 			onceki_bakiye();
-			//****** TOPLAMLARI YAZ 
-			lblNewLabel_5_2.setText(FORMATLAMA.doub_2(double_1 + double_3)); 
-			lblNewLabel_4_2.setText(FORMATLAMA.doub_2(double_2 + double_4));  
-			lblNewLabel_5_2_1.setText(FORMATLAMA.doub_2((double_2 + double_4) - (double_1 + double_3)));  
+			// ****** TOPLAMLARI YAZ
+			lblNewLabel_5_2.setText(FORMATLAMA.doub_2(double_1 + double_3));
+			lblNewLabel_4_2.setText(FORMATLAMA.doub_2(double_2 + double_4));
+			lblNewLabel_5_2_1.setText(FORMATLAMA.doub_2((double_2 + double_4) - (double_1 + double_3)));
 			lblNewLabel_3.setText(FORMATLAMA.doub_0(table_1.getRowCount()));
-			//******
+			// ******
 			long endTime = System.currentTimeMillis();
-			long estimatedTime = endTime - startTime; 
-			double seconds = (double)estimatedTime/1000; 
-			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-			
+			long estimatedTime = endTime - startTime;
+			double seconds = (double) estimatedTime / 1000;
+			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) + " saniye");
+
 			String deger;
 			String[] parts;
 			Font bigFont;
 			deger = GLOBAL.setting_oku("CARI_GUNLUK").toString();
-			deger = deger.substring(1, deger.length()-1);
+			deger = deger.substring(1, deger.length() - 1);
 			parts = deger.split(",");
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table_1.setFont(bigFont);
-		}
-		catch (Exception ex)
-		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Gunluk Islem", JOptionPane.ERROR_MESSAGE);   
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage(), "Gunluk Islem", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	private void guncel_bakiye() throws SQLException, ClassNotFoundException
-	{
+
+	private void guncel_bakiye() throws SQLException, ClassNotFoundException {
 		myDate = TARIH_CEVIR.tarih_geri_SQL(dateChooser);
-		myDate1 = TARIH_CEVIR.tarih_geri_SQL(dateChooser); 
+		myDate1 = TARIH_CEVIR.tarih_geri_SQL(dateChooser);
 		rs = null;
 		rs = c_Access.kasa_mizan(textField.getText(), myDate, myDate1);
-		if (!rs.isBeforeFirst() ) {  
-			double_1= 0;
+		if (!rs.isBeforeFirst()) {
+			double_1 = 0;
 			double_2 = 0;
-		} 
-		else
-		{
+		} else {
 			rs.next();
-			double_1= rs.getDouble("islem");
+			double_1 = rs.getDouble("islem");
 			double_2 = rs.getDouble("islem2");
 		}
-		lblNewLabel_5.setText(FORMATLAMA.doub_2(double_1)); 
-		lblNewLabel_4.setText(FORMATLAMA.doub_2(double_2)); 
-		lblNewLabel_4_1_2.setText(FORMATLAMA.doub_2(double_2 - double_1)); 
+		lblNewLabel_5.setText(FORMATLAMA.doub_2(double_1));
+		lblNewLabel_4.setText(FORMATLAMA.doub_2(double_2));
+		lblNewLabel_4_1_2.setText(FORMATLAMA.doub_2(double_2 - double_1));
 	}
-	private void onceki_bakiye() throws ClassNotFoundException, SQLException
-	{
+
+	private void onceki_bakiye() throws ClassNotFoundException, SQLException {
 		myDate = TARIH_CEVIR.tarih_geri_SQL(dateChooser);
-		myDate1 = TARIH_CEVIR.chooser_string_eksi1(dateChooser)  ;
+		myDate1 = TARIH_CEVIR.chooser_string_eksi1(dateChooser);
 		rs = null;
 		rs = c_Access.kasa_mizan(textField.getText(), "1900.01.01", myDate1);
-		if (!rs.isBeforeFirst() ) {  
+		if (!rs.isBeforeFirst()) {
 			double_3 = 0;
-			double_4 =0;
-		} 
-		else
-		{
+			double_4 = 0;
+		} else {
 			rs.next();
 			double_3 = rs.getDouble("islem");
 			double_4 = rs.getDouble("islem2");
 		}
-		lblNewLabel_5_1.setText(FORMATLAMA.doub_2(double_3)); 
-		lblNewLabel_4_1.setText(FORMATLAMA.doub_2(double_4)); 
-		lblNewLabel_4_1_1.setText(FORMATLAMA.doub_2(double_4 - double_3)); 
+		lblNewLabel_5_1.setText(FORMATLAMA.doub_2(double_3));
+		lblNewLabel_4_1.setText(FORMATLAMA.doub_2(double_4));
+		lblNewLabel_4_1_1.setText(FORMATLAMA.doub_2(double_4 - double_3));
 	}
 }

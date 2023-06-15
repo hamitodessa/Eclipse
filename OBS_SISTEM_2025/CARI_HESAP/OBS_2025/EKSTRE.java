@@ -70,6 +70,7 @@ public class EKSTRE extends JInternalFrame {
 	private static JLabel lblNewLabel_5_2 ;
 	private static JLabel lblNewLabel_4_2 ;
 	private static JLabel lblNewLabel_5_2_1 ;
+	private static JLabel lblNewLabel_5_2_1_1;
 	static double double_1 = 0 ;
 	static double double_2 = 0 ;
 	static double double_3 = 0 ;
@@ -210,6 +211,13 @@ public class EKSTRE extends JInternalFrame {
 		lblNewLabel_5_2_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5_2_2.setBounds(588, 56, 100, 14);
 		panel.add(lblNewLabel_5_2_2);
+		
+		lblNewLabel_5_2_1_1 = new JLabel("0.00");
+		lblNewLabel_5_2_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_5_2_1_1.setForeground(new Color(0, 0, 128));
+		lblNewLabel_5_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_5_2_1_1.setBounds(971, 11, 131, 14);
+		panel.add(lblNewLabel_5_2_1_1);
 
 		JScrollPane scrollPane = new JScrollPane();
 		pane.setLeftComponent(scrollPane);
@@ -471,6 +479,7 @@ public class EKSTRE extends JInternalFrame {
 			double_2 = 0;
 			lblNewLabel_5.setText(FORMATLAMA.doub_2(double_1)); 
 			lblNewLabel_4.setText(FORMATLAMA.doub_2(double_2));  
+			lblNewLabel_5_2_1_1.setText(FORMATLAMA.doub_2(double_2 - double_1 ));  
 		} 
 		else
 		{
@@ -479,6 +488,7 @@ public class EKSTRE extends JInternalFrame {
 			double_2 = rs.getDouble("ISLEM2");
 			lblNewLabel_5.setText(FORMATLAMA.doub_2(double_1)); 
 			lblNewLabel_4.setText(FORMATLAMA.doub_2(double_2));  
+			lblNewLabel_5_2_1_1.setText(FORMATLAMA.doub_2(double_2 - double_1 ));  
 		}
 	}
 	public static void sqlite_yaz() 

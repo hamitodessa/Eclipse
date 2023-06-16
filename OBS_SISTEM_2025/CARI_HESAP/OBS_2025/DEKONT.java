@@ -122,7 +122,7 @@ public class DEKONT extends JInternalFrame {
 
 		setTitle("DEKONT");
 		setClosable(true);
-		setBounds(0, 0, 723, 465);
+		setBounds(0, 0, 723, 408);
 		getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
@@ -887,7 +887,7 @@ public class DEKONT extends JInternalFrame {
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 0, 128), new Color(160, 160, 160)), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12),null));
-		panel_3.setBounds(10, 275, 686, 95);
+		panel_3.setBounds(10, 275, 548, 95);
 		getContentPane().add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 
@@ -1375,7 +1375,7 @@ public class DEKONT extends JInternalFrame {
 
 		JPanel panel_3_1 = new JPanel();
 		panel_3_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 0, 128), new Color(160, 160, 160)), "Kod", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
-		panel_3_1.setBounds(10, 376, 577, 48);
+		panel_3_1.setBounds(568, 275, 128, 48);
 		getContentPane().add(panel_3_1);
 		panel_3_1.setLayout(new BorderLayout(0, 0));
 
@@ -1431,7 +1431,7 @@ public class DEKONT extends JInternalFrame {
 		lblNewLabel = new JLabel(".");
 		lblNewLabel.setForeground(Color.BLUE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel.setBounds(597, 405, 99, 14);
+		lblNewLabel.setBounds(568, 340, 128, 14);
 		getContentPane().add(lblNewLabel);
 
 		try {

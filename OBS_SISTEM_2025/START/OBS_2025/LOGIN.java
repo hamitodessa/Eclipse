@@ -84,7 +84,7 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
 import OBS_C_2025.Server_Bilgi;
-@SuppressWarnings("static-access")
+@SuppressWarnings({"static-access","unused"})
 public class LOGIN extends JFrame {
 	/**
 	 * 
@@ -1052,7 +1052,6 @@ public class LOGIN extends JFrame {
 		progressBar.setValue(0);
 		progressBar.setStringPainted(false);
 	}
-	@SuppressWarnings("unused")
 	private void versiyon_oku()
 	{
 		if (oac.glb.internet_kontrol() == false)

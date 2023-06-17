@@ -359,7 +359,7 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		txtevrak.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtevrak.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtevrak.setFont(new Font("Tahoma", Font.BOLD, 22));
 		txtevrak.setBounds(511, 25, 117, 30);
 		panel.add(txtevrak);
 		txtevrak.setColumns(10);
@@ -660,7 +660,7 @@ public class DEKONT extends JInternalFrame {
 		});
 		txtbtutar.setEnabled(false);
 		txtbtutar.setForeground(new Color(0, 0, 139));
-		txtbtutar.setFont(new Font("Tahoma", Font.BOLD, 16));
+		txtbtutar.setFont(new Font("Tahoma", Font.BOLD, 22));
 
 		txtbtutar.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtbtutar.setText("0.00");
@@ -670,7 +670,7 @@ public class DEKONT extends JInternalFrame {
 		df.setMinimumFractionDigits(2);
 		df.setMaximumFractionDigits(2);
 		txtbtutar.setFormatterFactory(f_dob);
-		txtbtutar.setBounds(518, 40, 158, 30);
+		txtbtutar.setBounds(486, 40, 190, 30);
 		panel_1.add(txtbtutar);
 
 		txtbkur = new JFormattedTextField();
@@ -1163,8 +1163,8 @@ public class DEKONT extends JInternalFrame {
 		txtatutar.setFormatterFactory(f_dobat);
 		txtatutar.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtatutar.setForeground(new Color(0, 0, 139));
-		txtatutar.setFont(new Font("Tahoma", Font.BOLD, 16));
-		txtatutar.setBounds(518, 40, 158, 30);
+		txtatutar.setFont(new Font("Tahoma", Font.BOLD, 22));
+		txtatutar.setBounds(486, 40, 190, 30);
 		panel_1_1.add(txtatutar);
 
 		txtakur = new JFormattedTextField();

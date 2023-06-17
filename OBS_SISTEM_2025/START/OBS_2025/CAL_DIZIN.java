@@ -667,7 +667,7 @@ public class CAL_DIZIN extends JFrame {
 		tblCari = new JTable() {
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {     return false;          }};
-			tblCari.addMouseListener(new MouseAdapter() {
+		tblCari.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					contentPane.setCursor(WAIT_CURSOR);
@@ -681,25 +681,25 @@ public class CAL_DIZIN extends JFrame {
 					contentPane.setCursor(DEFAULT_CURSOR);
 				}
 			});
-			tblCari.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			tblCari.setFont(new Font("Tahoma", Font.BOLD, 14));
-			tblCari.setRowHeight(22);
-			tblCari.setBounds(224, 188, 114, 173);
-			tablo_baslik(tblCari);
+		tblCari.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tblCari.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tblCari.setRowHeight(22);
+		tblCari.setBounds(224, 188, 114, 173);
+		tablo_baslik(tblCari);
 
-			scrollPane.setViewportView(tblCari);
+		scrollPane.setViewportView(tblCari);
 
-			JScrollPane scrollPane_1 = new JScrollPane();
-			tabbedPane.addTab("Fatura", null, scrollPane_1, null);
+		JScrollPane scrollPane_1 = new JScrollPane();
+		tabbedPane.addTab("Fatura", null, scrollPane_1, null);
 
-			tblFatura = new JTable(){
+		tblFatura = new JTable(){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {     return false;          }};
-			tblFatura.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					contentPane.setCursor(WAIT_CURSOR);
-					try {
+		tblFatura.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contentPane.setCursor(WAIT_CURSOR);
+				try {
 						kutu_temizle();
 						doldur_kutu(tblFatura,tblFatura.getSelectedRow());
 						contentPane.setCursor(DEFAULT_CURSOR);
@@ -709,289 +709,293 @@ public class CAL_DIZIN extends JFrame {
 					contentPane.setCursor(DEFAULT_CURSOR);
 				}
 			});
-			tblFatura.setRowHeight(22);
-			tblFatura.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			tblFatura.setFont(new Font("Tahoma", Font.BOLD, 14));
-			tablo_baslik(tblFatura);
-			scrollPane_1.setViewportView(tblFatura);
+		tblFatura.setRowHeight(22);
+		tblFatura.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tblFatura.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tablo_baslik(tblFatura);
+		scrollPane_1.setViewportView(tblFatura);
 
-			JScrollPane scrollPane_2 = new JScrollPane();
-			tabbedPane.addTab("Adres", null, scrollPane_2, null);
-			tblAdres = new JTable(){
+		JScrollPane scrollPane_2 = new JScrollPane();
+		
+		tabbedPane.addTab("Adres", null, scrollPane_2, null);
+		tblAdres = new JTable(){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {     return false;          }};
-			tblAdres.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						contentPane.setCursor(WAIT_CURSOR);
-						try {
-							kutu_temizle();
-							doldur_kutu(tblAdres,tblAdres.getSelectedRow());
-							contentPane.setCursor(DEFAULT_CURSOR);
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						} 
-						contentPane.setCursor(DEFAULT_CURSOR);
-					}
-				});
-			tblAdres.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			tblAdres.setFont(new Font("Tahoma", Font.BOLD, 14));
-			tblAdres.setRowHeight(22);
-			tablo_baslik(tblAdres);
-			scrollPane_2.setViewportView(tblAdres);
+		tblAdres.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contentPane.setCursor(WAIT_CURSOR);
+				try {
+					kutu_temizle();
+					doldur_kutu(tblAdres,tblAdres.getSelectedRow());
+					contentPane.setCursor(DEFAULT_CURSOR);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				} 
+				contentPane.setCursor(DEFAULT_CURSOR);
+			}
+		});
+		tblAdres.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tblAdres.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tblAdres.setRowHeight(22);
+		tablo_baslik(tblAdres);
+		scrollPane_2.setViewportView(tblAdres);
 
-			JScrollPane scrollPane_3 = new JScrollPane();
-			tabbedPane.addTab("Kur", null, scrollPane_3, null);
-			tblKur = new JTable(){
-				private static final long serialVersionUID = 1L;
-				public boolean isCellEditable(int row, int column) {     return false;          }};
-			tblKur.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						contentPane.setCursor(WAIT_CURSOR);
-						try {
-							kutu_temizle();
-							doldur_kutu(tblKur,tblKur.getSelectedRow());
-
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						} 
-						contentPane.setCursor(DEFAULT_CURSOR);
-					}
-				});
-			tblKur.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			tblKur.setFont(new Font("Tahoma", Font.BOLD, 14));
-			tblKur.setRowHeight(22);
-			tablo_baslik(tblKur);
-			scrollPane_3.setViewportView(tblKur);
-
-			JScrollPane scrollPane_4 = new JScrollPane();
-			tabbedPane.addTab("Kambiyo", null, scrollPane_4, null);
-
-			tblKambiyo = new JTable(){
+		JScrollPane scrollPane_3 = new JScrollPane();
+		tabbedPane.addTab("Kur", null, scrollPane_3, null);
+		tblKur = new JTable(){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {     return false;          }};
-			tblKambiyo.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							contentPane.setCursor(WAIT_CURSOR);
-							try {
-								kutu_temizle();
-								doldur_kutu(tblKambiyo,tblKambiyo.getSelectedRow());
-								contentPane.setCursor(DEFAULT_CURSOR);
-							} catch (Exception e1) {
-								e1.printStackTrace();
-							}
-							contentPane.setCursor(DEFAULT_CURSOR);
-						}
-			});
-			tblKambiyo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			tblKambiyo.setFont(new Font("Tahoma", Font.BOLD, 14));
-			tblKambiyo.setRowHeight(22);
-			tablo_baslik(tblKambiyo);
-			scrollPane_4.setViewportView(tblKambiyo);
+		tblKur.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contentPane.setCursor(WAIT_CURSOR);
+				try {
+					kutu_temizle();
+					doldur_kutu(tblKur,tblKur.getSelectedRow());
+					
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				} 
+				contentPane.setCursor(DEFAULT_CURSOR);
+			}
+		});
+		tblKur.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tblKur.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tblKur.setRowHeight(22);
+		tablo_baslik(tblKur);
+		scrollPane_3.setViewportView(tblKur);
 
-			JScrollPane scrollPane_5 = new JScrollPane();
-			tabbedPane.addTab("Sms", null, scrollPane_5, null);
+		JScrollPane scrollPane_4 = new JScrollPane();
+		tabbedPane.addTab("Kambiyo", null, scrollPane_4, null);
 
-			tblSms = new JTable(){
+		tblKambiyo = new JTable(){
+			private static final long serialVersionUID = 1L;
+			public boolean isCellEditable(int row, int column) {     return false;          }};
+		tblKambiyo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contentPane.setCursor(WAIT_CURSOR);
+				try 
+				{
+					kutu_temizle();
+					doldur_kutu(tblKambiyo,tblKambiyo.getSelectedRow());
+					contentPane.setCursor(DEFAULT_CURSOR);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				contentPane.setCursor(DEFAULT_CURSOR);
+			}
+		});
+		tblKambiyo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tblKambiyo.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tblKambiyo.setRowHeight(22);
+		tablo_baslik(tblKambiyo);
+		scrollPane_4.setViewportView(tblKambiyo);
+
+		JScrollPane scrollPane_5 = new JScrollPane();
+		tabbedPane.addTab("Sms", null, scrollPane_5, null);
+
+		tblSms = new JTable(){
 				private static final long serialVersionUID = 1L;
 				public boolean isCellEditable(int row, int column) {     return false;          }};
-				tblSms.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						contentPane.setCursor(WAIT_CURSOR);
-						try {
-							kutu_temizle();
-							doldur_kutu(tblSms,tblSms.getSelectedRow());
-							contentPane.setCursor(DEFAULT_CURSOR);
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						} 
-						contentPane.setCursor(DEFAULT_CURSOR);
-					}
-				});
-			tblSms.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			tblSms.setFont(new Font("Tahoma", Font.BOLD, 14));
-			tblSms.setRowHeight(22);
-			tablo_baslik(tblSms);
-			scrollPane_5.setViewportView(tblSms);
+		tblSms.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contentPane.setCursor(WAIT_CURSOR);
+				try {
+					kutu_temizle();
+					doldur_kutu(tblSms,tblSms.getSelectedRow());
+					contentPane.setCursor(DEFAULT_CURSOR);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				} 
+				contentPane.setCursor(DEFAULT_CURSOR);
+			}
+		});
+		tblSms.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tblSms.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tblSms.setRowHeight(22);
+		tablo_baslik(tblSms);
+		scrollPane_5.setViewportView(tblSms);
 
-			JScrollPane scrollPane_6 = new JScrollPane();
-			tabbedPane.addTab("Gunluk", null, scrollPane_6, null);
+		JScrollPane scrollPane_6 = new JScrollPane();
+		tabbedPane.addTab("Gunluk", null, scrollPane_6, null);
 
-			tblGunluk = new JTable(){
-					private static final long serialVersionUID = 1L;
-					public boolean isCellEditable(int row, int column) {     return false;          }};
-			tblGunluk.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							contentPane.setCursor(WAIT_CURSOR);
-							try {
-								kutu_temizle();
-								doldur_kutu(tblGunluk,tblGunluk.getSelectedRow());
-								contentPane.setCursor(DEFAULT_CURSOR);
-							} catch (Exception e1) {
-								e1.printStackTrace();
-							} 
-							contentPane.setCursor(DEFAULT_CURSOR);
-						}
-					});
-			tblGunluk.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			tblGunluk.setFont(new Font("Tahoma", Font.BOLD, 14));
-			tblGunluk.setRowHeight(22);
-			tablo_baslik(tblGunluk);
-			scrollPane_6.setViewportView(tblGunluk);
-			JScrollPane scrollPane_7 = new JScrollPane();
-			tabbedPane.addTab("Sifre", null, scrollPane_7, null);
-			JPanel panel_1 = new JPanel();
-			scrollPane_7.setViewportView(panel_1);
-			panel_1.setLayout(null);
+		tblGunluk = new JTable(){
+			private static final long serialVersionUID = 1L;
+			public boolean isCellEditable(int row, int column) {     return false;          }};
+		tblGunluk.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contentPane.setCursor(WAIT_CURSOR);
+				try {
+					kutu_temizle();
+					doldur_kutu(tblGunluk,tblGunluk.getSelectedRow());
+					contentPane.setCursor(DEFAULT_CURSOR);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				} 
+				contentPane.setCursor(DEFAULT_CURSOR);
+			}
+		});
+		tblGunluk.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tblGunluk.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tblGunluk.setRowHeight(22);
+		tablo_baslik(tblGunluk);
+		scrollPane_6.setViewportView(tblGunluk);
+		JScrollPane scrollPane_7 = new JScrollPane();
+		
+		tabbedPane.addTab("Sifre", null, scrollPane_7, null);
+		JPanel panel_1 = new JPanel();
+		scrollPane_7.setViewportView(panel_1);
+		panel_1.setLayout(null);
 
-			JLabel lblNewLabel = new JLabel("Sifreniz");
-			lblNewLabel.setBounds(102, 76, 84, 14);
-			panel_1.add(lblNewLabel);
+		JLabel lblNewLabel = new JLabel("Sifreniz");
+		lblNewLabel.setBounds(102, 76, 84, 14);
+		panel_1.add(lblNewLabel);
 
-			txtsif = new JPasswordField();
-			txtsif.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyPressed(KeyEvent e) {
-					if (e.getKeyCode() == KeyEvent.VK_ENTER)
-					{
-						contentPane.setCursor(WAIT_CURSOR);
-						boolean varmi;
-						try {
-							 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(oac.sDONDUR.sDONDUR(txtsif)) ;
-							varmi = oac.uSER_ISL.user_var(GLOBAL.KULL_ADI, Arrays.toString(qaz));
-							if (varmi == true)
-							{
-								lblysif.setVisible(true);
-								txtyenisif.setVisible(true);
-								contentPane.setCursor(DEFAULT_CURSOR);
-							}
-							else
-							{
-								JOptionPane.showMessageDialog(null, "Sifre Yanlis", "Sifre Degistirme", JOptionPane.PLAIN_MESSAGE);
-								lblysif.setVisible(false);
-								txtyenisif.setVisible(false);
-								contentPane.setCursor(DEFAULT_CURSOR);
-							}
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						} 
-					}
-				}
-			});
-			txtsif.setFont(new Font("Tahoma", Font.BOLD, 11));
-			txtsif.setBounds(196, 73, 147, 20);
-			panel_1.add(txtsif);
-			txtsif.setColumns(10);
-
-			txtyenisif = new JTextField();
-			txtyenisif.setFont(new Font("Tahoma", Font.BOLD, 11));
-			txtyenisif.setColumns(10);
-			txtyenisif.setBounds(196, 125, 147, 20);
-			txtyenisif.setVisible(false);
-			txtyenisif.setText("");
-			panel_1.add(txtyenisif);
-
-			lblysif = new JLabel("Yeni Sifreniz");
-			lblysif.setBounds(102, 128, 84, 14);
-			lblysif.setVisible(false);
-			panel_1.add(lblysif);
-
-			tabbedPane.setEnabledAt(7, true);
-
-			JScrollPane scrollPane_8 = new JScrollPane();
-			tabbedPane.addTab("Loglama", null, scrollPane_8, null);
-
-			JPanel panel_2 = new JPanel();
-			scrollPane_8.setViewportView(panel_2);
-			panel_2.setLayout(null);
-
-			JPanel panel_3 = new JPanel();
-			panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "E Mail Loglama", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 99, 177)));
-			panel_3.setBounds(10, 11, 545, 111);
-			panel_3.setLayout(null);
-			panel_2.add(panel_3);
-
-			lblNewLabel_2 = new JLabel("E Mail Adresi");
-			lblNewLabel_2.setBounds(10, 39, 78, 14);
-			panel_3.add(lblNewLabel_2);
-
-			txt_Lmaill = new JTextField();
-			txt_Lmaill.setBounds(98, 36, 307, 20);
-			panel_3.add(txt_Lmaill);
-			txt_Lmaill.setColumns(10);
-
-			cmb_maillist = new JComboBox<String>();
-			cmb_maillist.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if (cmb_maillist.getItemCount() != 0)
-					{
-						txt_Lmaill.setText(cmb_maillist.getItemAt(cmb_maillist.getSelectedIndex()));
-					}
-					else if (cmb_maillist.getItemCount() == 0) 
-					{
-						txt_Lmaill.setText(cmb_maillist.getItemAt(1));
-					}
-				}
-			});
-			cmb_maillist.addItemListener(new ItemListener() {
-				public void itemStateChanged(ItemEvent e) {
-					if (cmb_maillist.getItemCount() != 0)
-					{
-						txt_Lmaill.setText(cmb_maillist.getItemAt(cmb_maillist.getSelectedIndex()));
-					}
-					else if (cmb_maillist.getItemCount() == 0) 
-					{
-						txt_Lmaill.setText(cmb_maillist.getItemAt(1));
-					}
-				}
-			});
-			cmb_maillist.setBounds(98, 67, 307, 22);
-			panel_3.add(cmb_maillist);
-			
-			JButton btnNewButton_7 = new JButton("Mail Gonder");
-			btnNewButton_7.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if(txt_Lmaill.getText().equals("")) return ;
-					MAIL_AT mAT = new MAIL_AT();
+		txtsif = new JPasswordField();
+		txtsif.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER)
+				{
+					contentPane.setCursor(WAIT_CURSOR);
+					boolean varmi;
 					try {
-						contentPane.setCursor(WAIT_CURSOR);
-						oac.uSER_ISL.mail_bak();
-						GLOBAL.Log_Mail = txt_Lmaill.getText();
-						mAT.Logla("Deneme Maili","",BAGLAN_LOG.cariLogDizin);
-						contentPane.setCursor(DEFAULT_CURSOR);
-					} catch (Exception e1) {
-						contentPane.setCursor(DEFAULT_CURSOR);
-						JOptionPane.showMessageDialog(null,  e1.getMessage(), "OBS SISTEM", JOptionPane.WARNING_MESSAGE);
-					} 
+						byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(oac.sDONDUR.sDONDUR(txtsif)) ;
+						varmi = oac.uSER_ISL.user_var(GLOBAL.KULL_ADI, Arrays.toString(qaz));
+						if (varmi == true)
+						{
+							lblysif.setVisible(true);
+							txtyenisif.setVisible(true);
+							contentPane.setCursor(DEFAULT_CURSOR);
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "Sifre Yanlis", "Sifre Degistirme", JOptionPane.PLAIN_MESSAGE);
+							lblysif.setVisible(false);
+							txtyenisif.setVisible(false);
+							contentPane.setCursor(DEFAULT_CURSOR);
+						}
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						} 
+					}
+				}
+		});
+		txtsif.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtsif.setBounds(196, 73, 147, 20);
+		panel_1.add(txtsif);
+		txtsif.setColumns(10);
+
+		txtyenisif = new JTextField();
+		txtyenisif.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtyenisif.setColumns(10);
+		txtyenisif.setBounds(196, 125, 147, 20);
+		txtyenisif.setVisible(false);
+		txtyenisif.setText("");
+		panel_1.add(txtyenisif);
+
+		lblysif = new JLabel("Yeni Sifreniz");
+		lblysif.setBounds(102, 128, 84, 14);
+		lblysif.setVisible(false);
+		panel_1.add(lblysif);
+
+		tabbedPane.setEnabledAt(7, true);
+
+		JScrollPane scrollPane_8 = new JScrollPane();
+		tabbedPane.addTab("Loglama", null, scrollPane_8, null);
+
+		JPanel panel_2 = new JPanel();
+		scrollPane_8.setViewportView(panel_2);
+		panel_2.setLayout(null);
+
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "E Mail Loglama", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 99, 177)));
+		panel_3.setBounds(10, 11, 545, 111);
+		panel_3.setLayout(null);
+		panel_2.add(panel_3);
+
+		lblNewLabel_2 = new JLabel("E Mail Adresi");
+		lblNewLabel_2.setBounds(10, 39, 78, 14);
+		panel_3.add(lblNewLabel_2);
+
+		txt_Lmaill = new JTextField();
+		txt_Lmaill.setBounds(98, 36, 307, 20);
+		panel_3.add(txt_Lmaill);
+		txt_Lmaill.setColumns(10);
+
+		cmb_maillist = new JComboBox<String>();
+		cmb_maillist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (cmb_maillist.getItemCount() != 0)
+				{
+					txt_Lmaill.setText(cmb_maillist.getItemAt(cmb_maillist.getSelectedIndex()));
+				}
+				else if (cmb_maillist.getItemCount() == 0) 
+				{
+					txt_Lmaill.setText(cmb_maillist.getItemAt(1));
+				}
+				}
+		});
+		cmb_maillist.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (cmb_maillist.getItemCount() != 0)
+				{
+					txt_Lmaill.setText(cmb_maillist.getItemAt(cmb_maillist.getSelectedIndex()));
+				}
+				else if (cmb_maillist.getItemCount() == 0) 
+				{
+					txt_Lmaill.setText(cmb_maillist.getItemAt(1));
+				}
+				}
+		});
+		cmb_maillist.setBounds(98, 67, 307, 22);
+		panel_3.add(cmb_maillist);
+			
+		JButton btnNewButton_7 = new JButton("Mail Gonder");
+		btnNewButton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txt_Lmaill.getText().equals("")) return ;
+				MAIL_AT mAT = new MAIL_AT();
+				try 
+				{
+					contentPane.setCursor(WAIT_CURSOR);
+					oac.uSER_ISL.mail_bak();
+					GLOBAL.Log_Mail = txt_Lmaill.getText();
+					mAT.Logla("Deneme Maili","",BAGLAN_LOG.cariLogDizin);
+					contentPane.setCursor(DEFAULT_CURSOR);
+				} catch (Exception e1) {
+					contentPane.setCursor(DEFAULT_CURSOR);
+					JOptionPane.showMessageDialog(null,  e1.getMessage(), "OBS SISTEM", JOptionPane.WARNING_MESSAGE);
+				} 
 				}
 			});
-			btnNewButton_7.setBounds(415, 35, 120, 23);
-			panel_3.add(btnNewButton_7);
+		btnNewButton_7.setBounds(415, 35, 120, 23);
+		panel_3.add(btnNewButton_7);
 
-			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-			this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-			//**************
-			lblUser.setText(GLOBAL.KULL_ADI);
-			comboBox = new JComboBox<String>();
-			comboBox.setEditable(true);
-			comboBox.setBounds(102, 169, 157, 22);
-			panel.add(comboBox);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+		//**************
+		lblUser.setText(GLOBAL.KULL_ADI);
+		comboBox = new JComboBox<String>();
+		comboBox.setEditable(true);
+		comboBox.setBounds(102, 169, 157, 22);
+		panel.add(comboBox);
 
-			txtcdid = new JTextField();
-			txtcdid.setBounds(34, 99, 38, 20);
-			txtcdid.setVisible(false);
-			panel.add(txtcdid);
-			txtcdid.setColumns(10);
+		txtcdid = new JTextField();
+		txtcdid.setBounds(34, 99, 38, 20);
+		txtcdid.setVisible(false);
+		panel.add(txtcdid);
+		txtcdid.setColumns(10);
 
-			cmbhangisql = new JComboBox<String>();
-			cmbhangisql.setForeground(new Color(0, 0, 139));
-			cmbhangisql.setFont(new Font("Tahoma", Font.BOLD, 11));
-			cmbhangisql.addItemListener(new ItemListener() {
-				public void itemStateChanged(ItemEvent e) {
+		cmbhangisql = new JComboBox<String>();
+		cmbhangisql.setForeground(new Color(0, 0, 139));
+		cmbhangisql.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cmbhangisql.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
 					String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
 					if (hangi == "MS SQL")
 					{
@@ -1011,87 +1015,87 @@ public class CAL_DIZIN extends JFrame {
 					}
 				}
 			});
-			cmbhangisql.setModel(new DefaultComboBoxModel<String>(new String[] {"MS SQL", "MY SQL"}));
-			cmbhangisql.setBounds(102, 43, 157, 22);
-			panel.add(cmbhangisql);
+		cmbhangisql.setModel(new DefaultComboBoxModel<String>(new String[] {"MS SQL", "MY SQL"}));
+		cmbhangisql.setBounds(102, 43, 157, 22);
+		panel.add(cmbhangisql);
 
-			JLabel lblLoglama = new JLabel("Loglama");
-			lblLoglama.setBounds(24, 130, 68, 14);
-			panel.add(lblLoglama);
+		JLabel lblLoglama = new JLabel("Loglama");
+		lblLoglama.setBounds(24, 130, 68, 14);
+		panel.add(lblLoglama);
 
-			chckbxL_1 = new JCheckBox("");
-			chckbxL_1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+		chckbxL_1 = new JCheckBox("");
+		chckbxL_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
-				}
-			});
-			chckbxL_1.setBounds(102, 126, 25, 23);
-			panel.add(chckbxL_1);
+			}
+		});
+		chckbxL_1.setBounds(102, 126, 25, 23);
+		panel.add(chckbxL_1);
 
-			JLabel lblKayitserver = new JLabel("Serverler");
-			lblKayitserver.setBounds(24, 234, 78, 14);
-			panel.add(lblKayitserver);
+		JLabel lblKayitserver = new JLabel("Serverler");
+		lblKayitserver.setBounds(24, 234, 78, 14);
+		panel.add(lblKayitserver);
 
-			/////////////////////////////////////////////////LOGLAMA BUTTON /////////////////////
-			
-			menu = new JPopupMenu("");
-			menu.addSeparator();
-			cbVeritabani = new JCheckBoxMenuItem("Veritabani Kayit");
-			cbVeritabani.setForeground(new Color(0, 128, 128));
-			cbVeritabani.setUI(new StayOpenCheckBoxMenuItemUI());
-			cbVeritabani.addItemListener(new ItemListener() {
-				public void itemStateChanged(ItemEvent e) {
-					vt = (e.getStateChange() == 1 ? true:false);    	
-				}
-			});
-			cbVeritabani.setSelected(true);
-			menu.add(cbVeritabani);
+		/////////////////////////////////////////////////LOGLAMA BUTTON /////////////////////
 
-			cbDosya = new JCheckBoxMenuItem("Dosya");
-			cbDosya.setForeground(new Color(0, 128, 128));
-			cbDosya.setUI(new StayOpenCheckBoxMenuItemUI());
-			cbDosya.addItemListener(new ItemListener() {
-				public void itemStateChanged(ItemEvent e) {
-					ds = (e.getStateChange() == 1 ? true:false);    	
-				}
-			});
-			menu.add(cbDosya);
-			cbText = new JCheckBoxMenuItem("Text Dosya");
-			cbText.setForeground(new Color(0, 128, 128));
-			cbText.setUI(new StayOpenCheckBoxMenuItemUI());
-			cbText.addItemListener(new ItemListener() {
-				public void itemStateChanged(ItemEvent e) {
-					tx = (e.getStateChange() == 1 ? true:false);    	
-				}
-			});
-			menu.add(cbText);
+		menu = new JPopupMenu("");
+		menu.addSeparator();
+		cbVeritabani = new JCheckBoxMenuItem("Veritabani Kayit");
+		cbVeritabani.setForeground(new Color(0, 128, 128));
+		cbVeritabani.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbVeritabani.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				vt = (e.getStateChange() == 1 ? true:false);    	
+			}
+		});
+		cbVeritabani.setSelected(true);
+		menu.add(cbVeritabani);
 
-			cbMail = new JCheckBoxMenuItem("Email Atma");
-			cbMail.setForeground(new Color(0, 128, 128));
-			cbMail.setUI(new StayOpenCheckBoxMenuItemUI());
-			cbMail.addItemListener(new ItemListener() {
-				public void itemStateChanged(ItemEvent e) {
-					em = (e.getStateChange() == 1 ? true:false);    	
-				}
-			});
-			menu.add(cbMail);
-			JButton btnNewButton_6 = new JButton();
-			btnNewButton_6.setForeground(new Color(0, 0, 128));
-			
-			btnNewButton_6.setText("Loglama Secimi");
-			btnNewButton_6.setBounds(130, 125, 129, 23);
-			btnNewButton_6.setAction(new AbstractAction("Loglama Secimi") {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					menu.show(btnNewButton_6, 0, btnNewButton_6.getHeight());
-				}
-			});
-			panel.add(btnNewButton_6);
-			
-			separator = new JSeparator();
-			separator.setForeground(new Color(0, 191, 255));
-			separator.setBounds(24, 32, 260, 2);
-			panel.add(separator);
+		cbDosya = new JCheckBoxMenuItem("Dosya");
+		cbDosya.setForeground(new Color(0, 128, 128));
+		cbDosya.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbDosya.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				ds = (e.getStateChange() == 1 ? true:false);    	
+			}
+		});
+		menu.add(cbDosya);
+		cbText = new JCheckBoxMenuItem("Text Dosya");
+		cbText.setForeground(new Color(0, 128, 128));
+		cbText.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbText.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				tx = (e.getStateChange() == 1 ? true:false);    	
+			}
+		});
+		menu.add(cbText);
+
+		cbMail = new JCheckBoxMenuItem("Email Atma");
+		cbMail.setForeground(new Color(0, 128, 128));
+		cbMail.setUI(new StayOpenCheckBoxMenuItemUI());
+		cbMail.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				em = (e.getStateChange() == 1 ? true:false);    	
+			}
+		});
+		menu.add(cbMail);
+		JButton btnNewButton_6 = new JButton();
+		btnNewButton_6.setForeground(new Color(0, 0, 128));
+
+		btnNewButton_6.setText("Loglama Secimi");
+		btnNewButton_6.setBounds(130, 125, 129, 23);
+		btnNewButton_6.setAction(new AbstractAction("Loglama Secimi") {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				menu.show(btnNewButton_6, 0, btnNewButton_6.getHeight());
+			}
+		});
+		panel.add(btnNewButton_6);
+
+		separator = new JSeparator();
+		separator.setForeground(new Color(0, 191, 255));
+		separator.setBounds(24, 32, 260, 2);
+		panel.add(separator);
 	}
 	private   void grid_doldur() throws ClassNotFoundException, SQLException
 	{

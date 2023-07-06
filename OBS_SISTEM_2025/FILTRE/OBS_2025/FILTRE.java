@@ -239,7 +239,8 @@ public class FILTRE extends JDialog {
 	public static JDateChooser dateChooser_19 ;
 	public static JCheckBox checkBox ;
 	public static JCheckBox checkBox_1 ;
-
+	public static JTextField textField_80;
+	public static JTextField textField_81;
 	//** GRUP RAPOR
 	public static  JTextField textField_31;
 	public static  JTextField textField_32;
@@ -365,6 +366,7 @@ public class FILTRE extends JDialog {
 	public static JDateChooser dateChooser_34;
 	public static JComboBox<String> comboBox_75;
 	public static JComboBox<String> comboBox_76;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -396,7 +398,7 @@ public class FILTRE extends JDialog {
 			tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 //*****************************************************************************************************************
 // Goruntu icin asagidaki blogu kaldir 
-		    final boolean showTabsHeader = false;
+			final boolean showTabsHeader = false;
 		    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
 		    {
 		        @Override
@@ -2678,7 +2680,7 @@ public class FILTRE extends JDialog {
 
 			JLabel label_13 = new JLabel("Ana Grup");
 			label_13.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			label_13.setBounds(10, 96, 58, 14);
+			label_13.setBounds(10, 121, 58, 14);
 			panel_11.add(label_13);
 
 			comboBox_20 = new JComboBox<String>();
@@ -2689,19 +2691,19 @@ public class FILTRE extends JDialog {
 					alt_grup_doldur(comboBox_21,comboBox_20 .getItemAt(comboBox_20 .getSelectedIndex()));
 				}
 			});
-			comboBox_20.setBounds(79, 92, 174, 22);
+			comboBox_20.setBounds(79, 117, 150, 22);
 			panel_11.add(comboBox_20);
 
 			JLabel label_14 = new JLabel("Alt Grup");
 			label_14.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			label_14.setBounds(10, 125, 69, 14);
+			label_14.setBounds(248, 121, 69, 14);
 			panel_11.add(label_14);
 
 			comboBox_21 = new JComboBox<String>();
 			comboBox_21.setForeground(new Color(0, 0, 128));
 			comboBox_21.setFont(new Font("Tahoma", Font.BOLD, 12));
 			comboBox_21.setEnabled(false);
-			comboBox_21.setBounds(79, 121, 174, 22);
+			comboBox_21.setBounds(317, 117, 150, 22);
 			panel_11.add(comboBox_21);
 
 			JLabel label_15 = new JLabel("Depo");
@@ -2712,7 +2714,7 @@ public class FILTRE extends JDialog {
 			comboBox_22 = new JComboBox<String>();
 			comboBox_22.setForeground(new Color(0, 0, 128));
 			comboBox_22.setFont(new Font("Tahoma", Font.BOLD, 12));
-			comboBox_22.setBounds(79, 150, 174, 22);
+			comboBox_22.setBounds(79, 150, 150, 22);
 			panel_11.add(comboBox_22);
 
 			JLabel label_16 = new JLabel("Urun Ana Grup");
@@ -2765,6 +2767,24 @@ public class FILTRE extends JDialog {
 			comboBox_25.setModel(new DefaultComboBoxModel<String>(new String[] {"", "Giren", "Cikan"}));
 			comboBox_25.setBounds(571, 92, 149, 22);
 			panel_11.add(comboBox_25);
+			
+			JLabel label_11_1 = new JLabel("Hesap Kodu");
+			label_11_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			label_11_1.setBounds(10, 92, 69, 14);
+			panel_11.add(label_11_1);
+			
+			textField_80 = new JTextField(12);
+			textField_80.setFont(new Font("Tahoma", Font.BOLD, 11));
+			textField_80.setColumns(10);
+			textField_80.setBounds(79, 89, 125, 20);
+			panel_11.add(textField_80);
+			
+			textField_81 = new JTextField(12);
+			textField_81.setText("ZZZZZZZZZZZZ");
+			textField_81.setFont(new Font("Tahoma", Font.BOLD, 11));
+			textField_81.setColumns(10);
+			textField_81.setBounds(248, 89, 125, 20);
+			panel_11.add(textField_81);
 
 			JPanel panel_12 = new JPanel();
 			panel_12.setLayout(null);

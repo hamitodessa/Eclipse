@@ -610,9 +610,9 @@ public class STOK_ACCESS {
 		return _IStok.rec_detay_rapor(f1, f2);
 	}
 	public ResultSet stok_rapor(String t1 , String t2 , String t3 , String t4,String k1 ,String k2 , String f1 ,String f2,
-			String f3 ,String turu, String depohar ,String ure,String uanagrp,String ualtgrp) throws ClassNotFoundException, SQLException
+			String f3 ,String turu, String depohar ,String ure,String uanagrp,String ualtgrp,String h1,String h2) throws ClassNotFoundException, SQLException
 	{
-		return _IStok.stok_rapor(t1, t2, t3, t4, k1, k2, f1, f2, f3, turu, depohar, ure, uanagrp, ualtgrp);
+		return _IStok.stok_rapor(t1, t2, t3, t4, k1, k2, f1, f2, f3, turu, depohar, ure, uanagrp, ualtgrp,h1,h2);
 	}
 	public ResultSet envanter_rapor_ana_grup_alt_grup(String t1 , String t2 , String k1 ,String k2 , String f1 ,String f2,
 			String m1 ,String m2 ,String anagrup,String altgrup ,String depo, String depohar ,String ure,

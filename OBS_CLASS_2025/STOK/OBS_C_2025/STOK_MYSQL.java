@@ -1759,7 +1759,7 @@ public class STOK_MYSQL implements ISTOK {
 
 	}
 	public ResultSet stok_rapor(String t1 , String t2 , String t3 , String t4,String k1 ,String k2 , String f1 ,String f2,
-			String f3 ,String turu, String depohar ,String ure,String uanagrp,String ualtgrp) throws ClassNotFoundException, SQLException
+			String f3 ,String turu, String depohar ,String ure,String uanagrp,String ualtgrp,String h1,String h2) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
@@ -1773,9 +1773,10 @@ public class STOK_MYSQL implements ISTOK {
 			kjk1 =  " Evrak_Cins Like '%' ";
 		else
 			kjk1 = " Evrak_Cins <> 'URE' " ;
+		//" IF(STOK.Evrak_Cins= 'URE','',(SELECT  IFNULL(Cari_Firma,'') FROM FATURA  WHERE  Fatura.Fatura_No = " +
+		//"STOK.Evrak_No  and Gir_cik = stok.hareket LIMIT 1)) as Hesap_Kodu, " +
 		String sql =  " SELECT Urun_Kodu ,  Barkod , Adi,  Izahat,Evrak_No , " +
-				" IF(STOK.Evrak_Cins= 'URE','',(SELECT  IFNULL(Cari_Firma,'') FROM FATURA  WHERE  Fatura.Fatura_No = " +
-				"STOK.Evrak_No  and Gir_cik = stok.hareket LIMIT 1)) as Hesap_Kodu, " +
+				" IF(STOK.Evrak_Cins= 'URE','',Hesap_Kodu) as Hesap_Kodu, " +
 				" Evrak_Cins,DATE(Tarih) as Tarih ,Miktar ,  Birim , STOK.Fiat ,STOK.Doviz , " +
 				" SUM(Miktar) OVER(ORDER BY Tarih  ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Miktar_Bakiye , " +
 				" Tutar ," +
@@ -1793,6 +1794,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND STOK.Ana_Grup " + f1 +
 				" AND STOK.Alt_Grup " + f2 +
 				" AND STOK.Depo " + f3 +
+				" AND STOK.Hesap_Kodu  >= N'" + h1 + "' AND  STOK.Hesap_Kodu  <= N'" + h2 + "'" +
 				" AND " + kjk +
 				" AND " + kjk1 +
 				" AND STOK.Hareket Like '" + turu + "%' " +

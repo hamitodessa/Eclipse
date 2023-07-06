@@ -41,7 +41,7 @@ public interface ISTOK {
             , String ozkod ,double kur ,String cins,int  anagrp,int  altgrp ,String usr) throws ClassNotFoundException, SQLException;
 	public void dipnot_sil(String ino,String cins,String gircik) throws ClassNotFoundException, SQLException;
 	public void dipnot_yaz(String eno,String bir,String iki,String uc,String tip,String gircik,String usr) throws ClassNotFoundException, SQLException;
-	public void  fat_no_yaz(String irsno,String fatno) throws ClassNotFoundException, SQLException;
+	public void fat_no_yaz(String irsno,String fatno) throws ClassNotFoundException, SQLException;
 	public void aciklama_sil(String evrcins,String evrno,String cins) throws ClassNotFoundException, SQLException;
 	public void aciklama_yaz(String evrcins,int satir,String evrno,String aciklama,String gircik) throws ClassNotFoundException, SQLException;
 	public void stok_sil(String eno,String ecins,String cins) throws ClassNotFoundException, SQLException;
@@ -119,7 +119,7 @@ public interface ISTOK {
 			String m1 ,String m2 ,String anagrup,String altgrup ,String depo, String depohar ,String ure,
 			String uanagrp,String ualtgrp) throws ClassNotFoundException, SQLException;
 	public ResultSet stok_rapor(String t1 , String t2 , String t3 , String t4,String k1 ,String k2 , String f1 ,String f2,
-			String f3 ,String turu, String depohar ,String ure,String uanagrp,String ualtgrp) throws ClassNotFoundException, SQLException;
+			String f3 ,String turu, String depohar ,String ure,String uanagrp,String ualtgrp,String h1,String h2) throws ClassNotFoundException, SQLException;
 	public ResultSet baslik_bak(String baslik,String ordr,String jkj,String ch1,String k1,String k2,String f1,String f2,String t1,String t2) throws ClassNotFoundException, SQLException;
 	public ResultSet grp_urn_kodlu(String sstr_2,String sstr_4,String kur_dos,String jkj,String ch1,String qwq6,
 			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,

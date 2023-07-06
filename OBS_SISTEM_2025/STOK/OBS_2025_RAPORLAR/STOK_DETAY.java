@@ -160,7 +160,7 @@ public class STOK_DETAY extends JInternalFrame {
 				rs = f_Access.stok_rapor(FILTRE.textField_25.getText(),FILTRE.textField_30.getText() ,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_18),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_19),
 						FILTRE.textField_26.getText(),FILTRE.textField_29.getText() ,
-						 qwq1, qwq2, qwq3, kjk, qwq4, qwq5, qwq6, qwq7 );
+						 qwq1, qwq2, qwq3, kjk, qwq4, qwq5, qwq6, qwq7,FILTRE.textField_80.getText(),FILTRE.textField_81.getText() );
 			
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  

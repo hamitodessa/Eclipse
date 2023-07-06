@@ -134,14 +134,14 @@ public class IMALAT_RAPORLAMA extends JInternalFrame {
 		panel.setLayout(null);
 		
 		JLabel label = new JLabel("Kayit Sayisi :");
-		label.setBounds(10, 5, 71, 14);
+		label.setBounds(10, 5, 85, 14);
 		panel.add(label);
 		
 		lbladet = new JLabel("0");
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
 		lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbladet.setBounds(91, 5, 71, 14);
+		lbladet.setBounds(100, 5, 71, 14);
 		panel.add(lbladet);
 		
 		lblagirlik = new JLabel("0.000");

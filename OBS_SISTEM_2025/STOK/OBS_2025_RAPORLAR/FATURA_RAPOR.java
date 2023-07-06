@@ -188,11 +188,11 @@ public class FATURA_RAPOR extends JInternalFrame {
 		lblana.setHorizontalAlignment(SwingConstants.LEFT);
 		lblana.setForeground(new Color(0, 0, 128));
 		lblana.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblana.setBounds(110, 5, 40, 14);
+		lblana.setBounds(100, 5, 40, 14);
 		panel_1.add(lblana);
 		
 		JLabel lblFaturaSayisi = new JLabel("Fatura Sayisi :");
-		lblFaturaSayisi.setBounds(10, 5, 90, 14);
+		lblFaturaSayisi.setBounds(10, 5, 85, 14);
 		panel_1.add(lblFaturaSayisi);
 	}
 	public static void yenile()

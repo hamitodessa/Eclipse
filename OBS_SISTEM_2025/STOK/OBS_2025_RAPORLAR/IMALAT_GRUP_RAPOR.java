@@ -144,14 +144,14 @@ public class IMALAT_GRUP_RAPOR extends JInternalFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
-		lblNewLabel.setBounds(10, 7, 71, 14);
+		lblNewLabel.setBounds(10, 7, 85, 14);
 		panel.add(lblNewLabel);
 		
 		lbladet = new JLabel("0");
 		lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
-		lbladet.setBounds(91, 7, 71, 14);
+		lbladet.setBounds(100, 7, 71, 14);
 		panel.add(lbladet);
 
 	}

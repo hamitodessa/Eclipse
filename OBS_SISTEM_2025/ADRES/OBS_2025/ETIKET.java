@@ -206,7 +206,9 @@ public static JTabbedPane orTabbedPane;
 		panel.add(lblNewLabel);
 		
 		lbladet = new JLabel("0");
+		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setBounds(160, 2, 32, 14);
+		lbladet.setForeground(new Color(0, 0, 128));
 		panel.add(lbladet);
 		
 		JPanel panel_1 = new JPanel();

@@ -445,12 +445,14 @@ public class KASA extends JInternalFrame {
 
 		JLabel lblNewLabel_2 = new JLabel("Kayit Sayisi :");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_2.setBounds(10, 65, 80, 14);
+		lblNewLabel_2.setBounds(10, 65, 85, 14);
 		rightPanel.add(lblNewLabel_2);
 
 		lblNewLabel_3 = new JLabel("0");
-		lblNewLabel_3.setForeground(new Color(139, 0, 0));
-		lblNewLabel_3.setBounds(101, 65, 43, 14);
+		lblNewLabel_3.setForeground(new Color(0, 0, 128));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel_3.setBounds(100, 65, 43, 14);
 		rightPanel.add(lblNewLabel_3);
 
 		JLabel lblNewLabel_5_3 = new JLabel("Gunluk Toplam");

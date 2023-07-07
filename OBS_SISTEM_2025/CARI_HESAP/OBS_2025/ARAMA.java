@@ -159,14 +159,15 @@ public class ARAMA extends JInternalFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Kayit Sayisi :");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setBounds(10, 5, 89, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel.setBounds(10, 5, 85, 14);
 		panel.add(lblNewLabel);
 		
 		lblNewLabel_1 = new JLabel("0");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1.setBounds(111, 5, 58, 14);
+		lblNewLabel_1.setForeground(new Color(0, 0, 128));
+		lblNewLabel_1.setBounds(100, 5, 58, 14);
 		panel.add(lblNewLabel_1);
 
 	}

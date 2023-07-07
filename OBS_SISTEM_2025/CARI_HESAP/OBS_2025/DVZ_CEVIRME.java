@@ -282,14 +282,14 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		panel.add(lblboskur);
 		
 		JLabel lblKayitSayisi = new JLabel("Kayit Sayisi :");
-		lblKayitSayisi.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblKayitSayisi.setBounds(1022, 8, 79, 14);
+		lblKayitSayisi.setHorizontalAlignment(SwingConstants.LEFT);
+		lblKayitSayisi.setBounds(1022, 8, 85, 14);
 		panel.add(lblKayitSayisi);
 		
-		label_1 = new JLabel("...");
+		label_1 = new JLabel("0");
 		label_1.setForeground(new Color(0, 0, 128));
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_1.setBounds(1111, 8, 60, 14);
+		label_1.setBounds(1112, 8, 44, 14);
 		panel.add(label_1);
 		table.requestFocus();
 
@@ -323,7 +323,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 						return;
 					}
 					if (!rs.isBeforeFirst() ) {  
-						label_1.setText("...");
+						label_1.setText("0");
 						lblboskur.setText("...");
 					    return;
 					} 

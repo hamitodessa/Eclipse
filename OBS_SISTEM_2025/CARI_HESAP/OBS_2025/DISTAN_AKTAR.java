@@ -902,13 +902,13 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		
 		JLabel lblNewLabel_3 = new JLabel("Satir Sayisi:");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_3.setBounds(10, 11, 73, 14);
+		lblNewLabel_3.setBounds(10, 11, 85, 14);
 		panel_3.add(lblNewLabel_3);
 		
 		lblsatir = new JLabel("0");
-		lblsatir.setForeground(Color.BLUE);
+		lblsatir.setForeground(new Color(0, 0, 128));
 		lblsatir.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblsatir.setBounds(86, 11, 37, 14);
+		lblsatir.setBounds(100, 11, 56, 14);
 		panel_3.add(lblsatir);
 		GRID_TEMIZLE.grid_temizle(tblexcell);
 		

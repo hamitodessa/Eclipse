@@ -309,14 +309,14 @@ public class HESAP_BAK extends JInternalFrame {
 
 		JLabel lblNewLabel_2_1 = new JLabel("Kayit Sayisi :");
 		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_2_1.setBounds(480, 5, 77, 14);
+		lblNewLabel_2_1.setBounds(480, 5, 85, 14);
 		panel.add(lblNewLabel_2_1);
 
 		lblNewLabel_2_2 = new JLabel("0");
 		lblNewLabel_2_2.setForeground(new Color(0, 0, 128));
 		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_2_2.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_2_2.setBounds(555, 5, 77, 14);
+		lblNewLabel_2_2.setBounds(570, 5, 50, 14);
 		panel.add(lblNewLabel_2_2);
 
 

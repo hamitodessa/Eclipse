@@ -134,58 +134,59 @@ public class EKSTRE extends JInternalFrame {
 		lblNewLabel_1.setBounds(148, 11, 291, 14);
 		panel.add(lblNewLabel_1);
 
-		lblNewLabel_3 = new JLabel(".....");
+		lblNewLabel_3 = new JLabel("0");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_3.setForeground(new Color(0, 0, 128));
-		lblNewLabel_3.setBounds(10, 65, 187, 14);
+		lblNewLabel_3.setBounds(100, 65, 51, 14);
 		panel.add(lblNewLabel_3);
 
 		lblNewLabel_4 = new JLabel("0.00");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4.setForeground(new Color(0, 0, 128));
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4.setBounds(850, 11, 111, 14);
+		lblNewLabel_4.setBounds(850, 11, 130, 14);
 		panel.add(lblNewLabel_4);
 
 		lblNewLabel_5 = new JLabel("0.00");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5.setBounds(720, 11, 131, 14);
+		lblNewLabel_5.setBounds(720, 11, 130, 14);
 		panel.add(lblNewLabel_5);
 
 		lblNewLabel_4_1 = new JLabel("0.00");
 		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_4_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4_1.setBounds(850, 31, 111, 14);
+		lblNewLabel_4_1.setBounds(850, 31, 130, 14);
 		panel.add(lblNewLabel_4_1);
 
 		lblNewLabel_4_2 = new JLabel("0.00");
 		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4_2.setForeground(new Color(0, 0, 128));
 		lblNewLabel_4_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4_2.setBounds(850, 56, 111, 14);
+		lblNewLabel_4_2.setBounds(850, 56, 130, 14);
 		panel.add(lblNewLabel_4_2);
 
 		lblNewLabel_5_1 = new JLabel("0.00");
 		lblNewLabel_5_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5_1.setBounds(720, 31, 131, 14);
+		lblNewLabel_5_1.setBounds(720, 31, 130, 14);
 		panel.add(lblNewLabel_5_1);
 
 		lblNewLabel_5_2 = new JLabel("0.00");
 		lblNewLabel_5_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5_2.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5_2.setBounds(720, 56, 131, 14);
+		lblNewLabel_5_2.setBounds(720, 56, 130, 14);
 		panel.add(lblNewLabel_5_2);
 
 		lblNewLabel_5_2_1 = new JLabel("0.00");
 		lblNewLabel_5_2_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5_2_1.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel_5_2_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5_2_1.setBounds(970, 56, 131, 14);
+		lblNewLabel_5_2_1.setBounds(970, 56, 130, 14);
 		panel.add(lblNewLabel_5_2_1);
 
 		lblNewLabel_1_1 = new JLabel("...");
@@ -197,27 +198,32 @@ public class EKSTRE extends JInternalFrame {
 		JLabel lblNewLabel_5_3 = new JLabel("Eski Donem");
 		lblNewLabel_5_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_5_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5_3.setBounds(588, 11, 100, 14);
+		lblNewLabel_5_3.setBounds(588, 11, 122, 14);
 		panel.add(lblNewLabel_5_3);
 
 		JLabel lblNewLabel_5_1_1 = new JLabel("Yeni Donem");
 		lblNewLabel_5_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_5_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5_1_1.setBounds(588, 31, 100, 14);
+		lblNewLabel_5_1_1.setBounds(588, 31, 122, 14);
 		panel.add(lblNewLabel_5_1_1);
 
 		JLabel lblNewLabel_5_2_2 = new JLabel("Toplam");
 		lblNewLabel_5_2_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_5_2_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_5_2_2.setBounds(588, 56, 100, 14);
+		lblNewLabel_5_2_2.setBounds(588, 56, 122, 14);
 		panel.add(lblNewLabel_5_2_2);
 		
 		lblNewLabel_5_2_1_1 = new JLabel("0.00");
 		lblNewLabel_5_2_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5_2_1_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_5_2_1_1.setBounds(971, 11, 131, 14);
+		lblNewLabel_5_2_1_1.setBounds(971, 11, 130, 14);
 		panel.add(lblNewLabel_5_2_1_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Kayit Sayisi :");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_2.setBounds(10, 65, 85, 14);
+		panel.add(lblNewLabel_2);
 
 		JScrollPane scrollPane = new JScrollPane();
 		pane.setLeftComponent(scrollPane);
@@ -444,7 +450,7 @@ public class EKSTRE extends JInternalFrame {
 			lblNewLabel_5_2_1.setText(FORMATLAMA.doub_2((Math.round(top2 * 100.0) / 100.0)- (Math.round(top1 * 100.0) / 100.0)));
 
 			String satir ;
-			satir = String.format("Satir Sayisi : %,d %n" ,  table.getRowCount());
+			satir = String.format("%,d %n" ,  table.getRowCount());
 			lblNewLabel_3.setText(satir);  
 			int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
 			table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));

@@ -174,14 +174,14 @@ public class FATURA_RAPOR extends JInternalFrame {
 		panel_1.setLayout(null);
 		
 		JLabel label = new JLabel("Kayit Sayisi :");
-		label.setBounds(170, 5, 71, 14);
+		label.setBounds(170, 5, 85, 14);
 		panel_1.add(label);
 		
 		lbladet = new JLabel("0");
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
 		lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbladet.setBounds(250, 5, 47, 14);
+		lbladet.setBounds(260, 5, 47, 14);
 		panel_1.add(lbladet);
 		
 		lblana = new JLabel("0");

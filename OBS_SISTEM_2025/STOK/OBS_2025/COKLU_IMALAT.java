@@ -432,13 +432,13 @@ public class COKLU_IMALAT extends JInternalFrame {
 
 		JLabel label_2 = new JLabel("Satir Sayisi :");
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_2.setBounds(10, 3, 73, 14);
+		label_2.setBounds(10, 3, 85, 14);
 		panel_1.add(label_2);
 
 		label_3 = new JLabel("0");
-		label_3.setForeground(new Color(139, 0, 0));
+		label_3.setForeground(new Color(0, 0, 128));
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_3.setBounds(82, 3, 46, 14);
+		label_3.setBounds(100, 3, 46, 14);
 		panel_1.add(label_3);
 
 		for (int i = 0; i <= 15 ; i ++)

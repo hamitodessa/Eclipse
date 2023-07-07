@@ -769,13 +769,13 @@ public class FATURA extends JInternalFrame {
 		panel_71.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
-		lblNewLabel.setBounds(32, 3, 90, 14);
+		lblNewLabel.setBounds(32, 3, 85, 14);
 		panel_71.add(lblNewLabel);
 
 		lblNewLabel_13 = new JLabel("0");
-		lblNewLabel_13.setForeground(new Color(139, 0, 0));
+		lblNewLabel_13.setForeground(new Color(0, 0, 128));
 		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_13.setBounds(130, 3, 35, 14);
+		lblNewLabel_13.setBounds(122, 3, 40, 14);
 		panel_71.add(lblNewLabel_13);
 
 		label_8 = new JLabel("0.000");

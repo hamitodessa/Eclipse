@@ -3636,6 +3636,7 @@ public class STOK_MSSQL implements ISTOK {
 				" AND s.Evrak_Cins " + ure1 +
 				" Group by s.Urun_Kodu, Mal.Adi ,Mal.Birim " +
 				" ORDER by s.Urun_Kodu, Mal.Adi ,Mal.Birim ";
+		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

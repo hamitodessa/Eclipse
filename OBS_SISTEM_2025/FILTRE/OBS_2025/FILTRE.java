@@ -398,6 +398,7 @@ public class FILTRE extends JDialog {
 			tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 //*****************************************************************************************************************
 // Goruntu icin asagidaki blogu kaldir 
+			
 			final boolean showTabsHeader = false;
 		    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
 		    {
@@ -407,7 +408,6 @@ public class FILTRE extends JDialog {
 		            } else {return 0;}	        }
 		      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 		    });
-
 		    //
 		    //final boolean showTabsHeader = false;
 		    //tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
@@ -2578,6 +2578,19 @@ public class FILTRE extends JDialog {
 			panel_10.setLayout(null);
 
 			comboBox_19 = new JComboBox<String>();
+			comboBox_19.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				if(	comboBox_19.getItemAt(comboBox_19.getSelectedIndex()).toString().equals("Urun Kodu"))
+				{
+					chckbxNewCheckBox_2.setEnabled(true);
+				}
+				else
+				{
+					chckbxNewCheckBox_2.setEnabled(false);
+					chckbxNewCheckBox_2.setSelected(false);
+				}
+				}
+			});
 			comboBox_19.setForeground(new Color(0, 0, 128));
 			comboBox_19.setFont(new Font("Tahoma", Font.BOLD, 12));
 			comboBox_19.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu", "Ana_Grup_Alt_Grup"}));

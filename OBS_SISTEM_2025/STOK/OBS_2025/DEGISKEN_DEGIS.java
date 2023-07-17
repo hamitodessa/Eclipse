@@ -11,6 +11,7 @@ import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.lOG_BILGI;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -184,7 +185,11 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
     	    		yrs.next();
 	     	      	yaltgrp  = yrs.getInt("ALID_Y");
     	    	}
-    	    		f_Access.degisken_degistir(anagrp,altgrp,yanagrp,yaltgrp,"Eski Ana Grup:" + anagrp + " Eski Alt Grup:" + altgrp  + " Yeni Ana Grup:" + yanagrp + " Yeni Alt Grup:" + yaltgrp ,"",BAGLAN_LOG.fatLogDizin );
+     	      	lOG_BILGI lBILGI = new lOG_BILGI();
+    			lBILGI.setmESAJ("Eski Ana Grup:" + anagrp + " Eski Alt Grup:" + altgrp  + " Yeni Ana Grup:" + yanagrp + " Yeni Alt Grup:" + yaltgrp);
+    			lBILGI.seteVRAK("");
+    			
+    	    	f_Access.degisken_degistir(anagrp,altgrp,yanagrp,yaltgrp, lBILGI,BAGLAN_LOG.fatLogDizin );
   	//*************************
      	       GuiUtil.setWaitCursor(DEGISKEN_DEGIS.panel,false);
     	      	JOptionPane.showMessageDialog(null, "Degisim Tamamlandi.................",  "Degisken Yenileme", JOptionPane.PLAIN_MESSAGE);   

@@ -23,6 +23,7 @@ import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
+import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
 
 import java.awt.BorderLayout;
@@ -176,6 +177,10 @@ public class ARAMA extends JInternalFrame {
 		 
 	    try 
 	    {
+	    	lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ(FILTRE.textField.getText()+ " Aranan Kelime=" +  FILTRE.textField_1.getText());
+			lBILGI.seteVRAK("");
+			
 	    	long startTime = System.currentTimeMillis(); 
 	    	ResultSet	rs = null;
 	    	 if ( FILTRE.chcbaslayan.isSelected())
@@ -187,7 +192,7 @@ public class ARAMA extends JInternalFrame {
 						   FILTRE.textField_4.getText(),
 						   FILTRE.textField_5.getText() + "%",
 						   FILTRE.textField_79.getText() + "%"
-						   ,FILTRE.textField.getText()+ " Aranan Kelime=" +  FILTRE.textField_1.getText(),"", BAGLAN_LOG.cariLogDizin );
+						   ,lBILGI, BAGLAN_LOG.cariLogDizin );
  	            }
 	            else
 	            {
@@ -198,7 +203,7 @@ public class ARAMA extends JInternalFrame {
 							   FILTRE.textField_4.getText(),
 							   "%" + FILTRE.textField_5.getText() + "%",
 							   FILTRE.textField_79.getText() + "%"
-							   ,FILTRE.textField.getText()+ " Aranan Kelime=" +  FILTRE.textField_1.getText(),"", BAGLAN_LOG.cariLogDizin );
+							   ,lBILGI, BAGLAN_LOG.cariLogDizin );
 	            }
    			
    		

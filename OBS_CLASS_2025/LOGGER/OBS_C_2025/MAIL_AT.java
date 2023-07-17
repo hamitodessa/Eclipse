@@ -17,7 +17,7 @@ public class MAIL_AT implements ILOGGER{
 
 	
 	@Override
-	public void Logla(String mesaj,String evrak, DIZIN_BILGILERI dBILGI)
+	public void Logla(lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI)
 	{
 		if ( GLOBAL.Log_Mail.toString().equals("") ) return ;
 		try
@@ -52,7 +52,7 @@ public class MAIL_AT implements ILOGGER{
 				message.setRecipient(RecipientType.TO,  toAddress[i]);
 			}
 			messagePart = new MimeBodyPart();
-			messagePart.setText(mesaj + "  EvrakNo:" + evrak,"UTF-8");
+			messagePart.setText(lBILGI.getmESAJ()  + "  EvrakNo:" + lBILGI.geteVRAK(),"UTF-8");
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messagePart);
 			message.setSubject("Loglama", "UTF-8");

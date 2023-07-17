@@ -25,6 +25,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JScrollPane;
@@ -128,8 +129,10 @@ public class SQL_SORGULAMA extends JInternalFrame {
 				{
 					mesaj = mesaj +  mesaj1.substring(0, 93  -(mesaj.length())) ;
 				}
-
-				rs = c_Access.sql_sorgu(textArea.getText(),mesaj,"",BAGLAN_LOG.cariLogDizin);
+				lOG_BILGI lBILGI = new lOG_BILGI();
+				lBILGI.setmESAJ(mesaj);
+				lBILGI.seteVRAK("");
+				rs = c_Access.sql_sorgu(textArea.getText(),lBILGI,BAGLAN_LOG.cariLogDizin);
 
 				if (!rs.isBeforeFirst() ) {  
 					GRID_TEMIZLE.grid_temizle(table);
@@ -148,7 +151,10 @@ public class SQL_SORGULAMA extends JInternalFrame {
 				{
 					mesaj = mesaj +  mesaj1.substring(0, 93  -(mesaj.length())) ;
 				}
-			rs = f_Access.sql_sorgu(textArea.getText(),mesaj,"",BAGLAN_LOG.fatLogDizin);
+				lOG_BILGI lBILGI = new lOG_BILGI();
+				lBILGI.setmESAJ(mesaj);
+				lBILGI.seteVRAK("");
+			rs = f_Access.sql_sorgu(textArea.getText(),lBILGI,BAGLAN_LOG.fatLogDizin);
 
 				if (!rs.isBeforeFirst() ) {  
 					GRID_TEMIZLE.grid_temizle(table);

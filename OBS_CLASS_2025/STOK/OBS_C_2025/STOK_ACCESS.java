@@ -20,28 +20,34 @@ public class STOK_ACCESS {
 		_IStok.baglan();
 	}
 	public void fAT_SIFIR_L (String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
-			String sifre, String mesaj,String evrak, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException 
+			String sifre, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException 
 	{
 		_IStok.fAT_SIFIR_L( kod,dizin_yeri, dizin,  fir_adi, ins, kull, sifre,port);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
+		{
+			lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+			_Logger.Logla(lBILGI, dBILGI);
+		}
 	}
 	public void fAT_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.fAT_SIFIR_S(server, ins, kull, sifre, kod, fir_adi);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
+		{
+			lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+			_Logger.Logla(lBILGI, dBILGI);
+		}
 	}
-	public void stk_firma_adi_kayit(String fadi, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void stk_firma_adi_kayit(String fadi, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.stk_firma_adi_kayit(fadi);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 	}
 	public ResultSet envanter_rapor_u_kodu(String t1 , String t2 , String k1 ,String k2 , String f1 ,String f2,
 			String m1 ,String m2 ,String anagrup,String altgrup ,String depo, String depohar ,String ure,
@@ -84,27 +90,27 @@ public class STOK_ACCESS {
 		return _IStok.stk_kod_alt_grup_degisken_oku(sno);
 	}
 	public void degisken_degistir(int anagrp,int altgrp, int anaygrp,int altygrp
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.degisken_degistir(anagrp, altgrp, anaygrp, altygrp);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 	}
 	public  boolean alt_grup_kontrol(int anagrp,int altgrp) throws ClassNotFoundException, SQLException
 	{
 		return _IStok.alt_grup_kontrol(anagrp, altgrp);
 	}
-	public void urun_degisken_alt_grup_sil(int  ID , String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void urun_degisken_alt_grup_sil(int  ID , lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.urun_degisken_alt_grup_sil(ID);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 	}
-	public void urun_kod_degisken_sil(   String hangi_Y,String nerden  ,   int sira, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void urun_kod_degisken_sil(   String hangi_Y,String nerden  ,   int sira, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.urun_kod_degisken_sil(nerden, hangi_Y, sira);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 	}
 	public void urun_degisken_eski(String fieldd ,String degisken_adi ,String nerden ,String sno ,int ID ) throws ClassNotFoundException, SQLException 
 	{
@@ -170,67 +176,67 @@ public class STOK_ACCESS {
 	{
 		return _IStok.irsaliye_no_doldur(fno, hareket);
 	}
-	public ResultSet sql_sorgu(String sql , String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public ResultSet sql_sorgu(String sql , lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak,dBILGI);
+			_Logger.Logla(lBILGI,dBILGI);
 		return _IStok.sql_sorgu(sql);
 	}
-	public void fat_giris_sil(String fno,String cins , String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+	public void fat_giris_sil(String fno,String cins ,lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
 	{
 		_IStok.fat_giris_sil(fno, cins);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 	}
 	public void fat_kaydet(String fatno ,String kodu ,int depo ,double  fiat ,double tevkifat  
 			, double miktar ,String gircik ,double tutar,double iskonto ,double kdv  
 			, String tarih, String izah,String doviz,String  adrfirma ,String carfirma  
 			, String ozkod ,double kur ,String cins,int  anagrp,int  altgrp ,String usr
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.fat_kaydet(fatno, kodu, depo, fiat, tevkifat, miktar, gircik, tutar, iskonto, kdv, tarih, izah, doviz, adrfirma, carfirma, ozkod, kur, cins, anagrp, altgrp, usr);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 	}
-	public void stok_sil(String eno,String ecins,String cins, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void stok_sil(String eno,String ecins,String cins, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.stok_sil(eno, ecins, cins);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 	}
 	public void stk_kaydet(String evrno ,String evrcins , String tarih,int depo,String urnkodu,double miktar,double fiat ,double tutar
 			, double kdvlitut,String hareket ,String izah , int anagrp ,int altgrp ,double kur ,String b1,String doviz 
-			, String hspkodu ,String usr, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			, String hspkodu ,String usr, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.stk_kaydet(evrno, evrcins, tarih, depo, urnkodu, miktar, fiat, tutar, kdvlitut, hareket, izah, anagrp, altgrp, kur, b1, doviz, hspkodu, usr);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 	}
 	public void dipnot_yaz(String eno,String bir,String iki,String uc,String tip,String gircik,String usr,
-			 String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.dipnot_yaz(eno, bir, iki, uc, tip, gircik, usr);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 	}
 	public void dipnot_sil(String ino,String cins,String gircik,
-			 String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.dipnot_sil(ino, cins, gircik);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 	}
-	public void aciklama_sil(String evrcins,String evrno,String cins, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void aciklama_sil(String evrcins,String evrno,String cins, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.aciklama_sil(evrcins, evrno, cins);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 	}
-	public void aciklama_yaz(String evrcins,int satir,String evrno,String aciklama,String gircik ,String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+	public void aciklama_yaz(String evrcins,int satir,String evrno,String aciklama,String gircik ,lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
 	{
 		_IStok.aciklama_yaz(evrcins, satir, evrno, aciklama, gircik);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 	}
 	public void  fat_no_yaz(String irsno,String fatno) throws ClassNotFoundException, SQLException
 	{
@@ -264,17 +270,17 @@ public class STOK_ACCESS {
 	{
 		return _IStok.ggdy_oku();
 	}
-	public void gdy_sil(Integer gid ,String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void gdy_sil(Integer gid ,lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.gdy_sil(gid);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 		
-	}public void gdy_kayit(String isim ,String adres,String semt,String sehir,String usr ,String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	}public void gdy_kayit(String isim ,String adres,String semt,String sehir,String usr ,lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IStok.gdy_kayit(isim, adres, semt, sehir, usr);
 		for ( ILOGGER  _Logger : _Logger )
-			_Logger.Logla(mesaj,evrak, dBILGI);
+			_Logger.Logla(lBILGI, dBILGI);
 	}
 	public int uretim_fisno_al() throws ClassNotFoundException, SQLException
 	{

@@ -83,6 +83,7 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
+import OBS_C_2025.lOG_BILGI;
 
 @SuppressWarnings({"serial","static-access","deprecation","unused"})
 public class IRSALIYE extends JInternalFrame {
@@ -1796,18 +1797,25 @@ public class IRSALIYE extends JInternalFrame {
 	{
 		try {
 	          dipnot_sil();
+	          lOG_BILGI lBILGI = new lOG_BILGI();
+				
+				
 	          if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 		        {
-	        	  
+	        	 
+	        	  lBILGI.setmESAJ( "Irsaliye Dipnot Yaz C "  );
+					lBILGI.seteVRAK(textField.getText());
+					
 				f_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_8.getText(), "I", "C",GLOBAL.KULL_ADI,
-						 "Irsaliye Dipnot Yaz C "   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+						lBILGI  ,BAGLAN_LOG.fatLogDizin);
 		 			
 		        }
 	          else
 	          {
-	        	 
+	        	  lBILGI.setmESAJ( "Irsaliye Dipnot Yaz G " );
+					lBILGI.seteVRAK(textField.getText()); 
 	        		f_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_8.getText(), "I", "G",GLOBAL.KULL_ADI,
-	        				 "Irsaliye Dipnot Yaz G "   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+	        				lBILGI  ,BAGLAN_LOG.fatLogDizin);
 		 			
 	          }
 		}
@@ -1819,18 +1827,23 @@ public class IRSALIYE extends JInternalFrame {
 	private static void dipnot_sil()
 	{
 		try {
+			 lOG_BILGI lBILGI = new lOG_BILGI();
+			
 		 if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 	        {
 			 
+				lBILGI.setmESAJ("Irsaliye Dipnot Sil  C " );
+				lBILGI.seteVRAK(textField.getText());
 			f_Access.dipnot_sil(textField.getText(), "I", "C",
-					 "Irsaliye Dipnot Sil  C "   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+					lBILGI  ,BAGLAN_LOG.fatLogDizin);
 	 			
 	        }
 		 else
 		 {
-			 
+			 lBILGI.setmESAJ( "Irsaliye Dipnot Sil G " );
+				lBILGI.seteVRAK(textField.getText()); 
 			f_Access.dipnot_sil(textField.getText(), "I", "G",
-					 "Irsaliye Dipnot Sil G "   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+					lBILGI  ,BAGLAN_LOG.fatLogDizin);
 	 			
 		 }
 		}
@@ -1843,22 +1856,30 @@ public class IRSALIYE extends JInternalFrame {
 	{
 		try {
 	        acik_sil();
+	        lOG_BILGI lBILGI = new lOG_BILGI();
 	        if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 	        {
-	        	 
+	        	lBILGI.setmESAJ("Irsaliye Aciklama Yaz C : " + textField_9.getText()   );
+				lBILGI.seteVRAK(textField.getText()); 
+				
 	        		f_Access.aciklama_yaz("IRS", 1, textField.getText(),  textField_9.getText(), "C",
-	        				 "Irsaliye Aciklama Yaz C : " + textField_9.getText()   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+	        				lBILGI  ,BAGLAN_LOG.fatLogDizin);
+	        		
+	        		lBILGI.setmESAJ( "Irsaliye Aciklama Yaz C : " + textField_10.getText()   );
 	        		f_Access.aciklama_yaz("IRS", 2, textField.getText(), textField_10.getText(), "C",
-	        				 "Irsaliye Aciklama Yaz C : " + textField_10.getText()   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+	        				lBILGI  ,BAGLAN_LOG.fatLogDizin);
 		 			
 	        }
 	        else
 	        {
-	        	 
+	        	lBILGI.setmESAJ( "Irsaliye Aciklama Yaz G : " + textField_9.getText()    );
+				lBILGI.seteVRAK(textField.getText());  
 	        	f_Access.aciklama_yaz("IRS", 1, textField.getText(),  textField_9.getText(), "G",
-	        			 "Irsaliye Aciklama Yaz G : " + textField_9.getText()   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+	        			lBILGI  ,BAGLAN_LOG.fatLogDizin);
+	        	
+	        	lBILGI.setmESAJ( "Irsaliye Aciklama Yaz G : " + textField_10.getText()   );
 	        	f_Access.aciklama_yaz("IRS", 2, textField.getText(), textField_10.getText(), "G",
-	        			 "Irsaliye Aciklama Yaz G : " + textField_10.getText()   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+	        			lBILGI ,BAGLAN_LOG.fatLogDizin);
 		 			
 	        }
 		}
@@ -1870,18 +1891,23 @@ public class IRSALIYE extends JInternalFrame {
 	private static void acik_sil()
 	{
 		try {
+			 lOG_BILGI lBILGI = new lOG_BILGI();
 			 if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 		        {
 				 
+				 lBILGI.setmESAJ( "Irsaliye Aciklama Sil  C"     );
+					lBILGI.seteVRAK(textField.getText());  
+					
 				 f_Access.aciklama_sil("IRS", textField.getText(), "C",
-						 "Irsaliye Aciklama Sil  C"    , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+						lBILGI  ,BAGLAN_LOG.fatLogDizin);
 		 			
 		        }
 			 else
 			 {
-				 
+				 lBILGI.setmESAJ(	 "Irsaliye Aciklama Sil  G"   );
+					lBILGI.seteVRAK(textField.getText());  
 				 f_Access.aciklama_sil("IRS", textField.getText(), "G",
-						 "Irsaliye Aciklama Sil  G"    , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+						lBILGI  ,BAGLAN_LOG.fatLogDizin);
 		 			
 			 }
 			}
@@ -2448,7 +2474,7 @@ public class IRSALIYE extends JInternalFrame {
 					 JOptionPane.showMessageDialog(null, textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 					 return;
 				} 
-				
+				 lOG_BILGI lBILGI = new lOG_BILGI();
 				//*************************************
 		            double sdf =  DecimalFormat.getNumberInstance().parse(lblNewLabel_13.getText()).doubleValue()  ;
 		            String str_4  ="";
@@ -2475,11 +2501,13 @@ public class IRSALIYE extends JInternalFrame {
 						dBilgi.setiZAHAT(str_4);
 						dBilgi.setkOD("Satış");
 						dBilgi.setuSER( GLOBAL.KULL_ADI);
+						
+						lBILGI.setmESAJ("Alacakli Hes:" +alh + " Tut:" +tutar+
+	        	        		" Borclu Hes:"+ bh  );
+						lBILGI.seteVRAK(textField.getText());
+						
 	        	        	c_Access.cari_dekont_kaydet(dBilgi,
-	        	        		"Alacakli Hes:" +alh + " Tut:" +tutar+
-	        	        		" Borclu Hes:"+ bh   ,
-	        	        		textField.getText() ,
-	        	        		BAGLAN_LOG.cariLogDizin);
+	        	        		lBILGI ,	BAGLAN_LOG.cariLogDizin);
 	        	       
 		            		 }
 		                else if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("ALIS") )
@@ -2499,10 +2527,12 @@ public class IRSALIYE extends JInternalFrame {
 							dBilgi.setiZAHAT(str_4);
 							dBilgi.setkOD("Alış");
 							dBilgi.setuSER( GLOBAL.KULL_ADI); 	
+							lBILGI.setmESAJ("Alacakli Hes:" +alh + " Tut:" +tutar+
+		        	        		" Borclu Hes:"+ bh  );
+							lBILGI.seteVRAK(textField.getText());
+							
 		        	        c_Access.cari_dekont_kaydet(dBilgi,
-		        	        		"Alacakli Hes:" +alh + " Tut:" +tutar+
-		        	        		" Borclu Hes:"+ bh   ,
-		        	        		textField.getText() ,
+		        	        		lBILGI ,
 		        	        		BAGLAN_LOG.cariLogDizin);
 		        	        
 

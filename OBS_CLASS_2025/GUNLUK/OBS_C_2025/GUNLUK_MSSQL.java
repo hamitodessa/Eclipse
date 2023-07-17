@@ -61,8 +61,12 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
-		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
-		vTLOG.Logla("Firma Adi:" + sbilgi.getFir_adi() ,"", BAGLAN_LOG.gunLogDizin);
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.gunLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.gunLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+  ".DB") == false)
 		{
@@ -71,8 +75,10 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
-		tEXLOG.Logla("Firma Adi:" + sbilgi.getFir_adi() ,"", BAGLAN_LOG.gunLogDizin);
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.gunLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.gunLogDizin);
 		//
 		stmt.close();
 		con.close();
@@ -102,8 +108,12 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
-		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
-		vTLOG.Logla("Firma Adi:" + sbilgi.getFir_adi() ,"", BAGLAN_LOG.gunLogDizin);
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.gunLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.gunLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.gunLogDizin.mODUL)) == false)
 		{
@@ -112,8 +122,10 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.gunLogDizin);
-		tEXLOG.Logla("Firma Adi:" + sbilgi.getFir_adi() ,"", BAGLAN_LOG.gunLogDizin);
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.gunLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.gunLogDizin);
 		//
 		stmt.close();
 		con.close();

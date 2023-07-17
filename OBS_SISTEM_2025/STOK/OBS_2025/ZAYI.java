@@ -73,6 +73,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.lOG_BILGI;
 
 @SuppressWarnings({"serial","static-access"})
 public class ZAYI extends JInternalFrame {
@@ -825,8 +826,12 @@ public class ZAYI extends JInternalFrame {
 	private static void stok_isle() throws ClassNotFoundException, SQLException 
 	{
 		try {
-			
-			f_Access.stok_sil(textField.getText(), "ZAI", "C","Zayi Stok Silme", textField.getText(), BAGLAN_LOG.fatLogDizin);
+		
+			 lOG_BILGI lBILGI = new lOG_BILGI();
+				lBILGI.setmESAJ("Zayi Stok Silme" );
+				lBILGI.seteVRAK(textField.getText());
+				
+			f_Access.stok_sil(textField.getText(), "ZAI", "C",lBILGI, BAGLAN_LOG.fatLogDizin);
  			
 		 DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 	       for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
@@ -909,9 +914,13 @@ public class ZAYI extends JInternalFrame {
 	        double fiat =0 ;
 	         fiat = Double.parseDouble( mdl.getValueAt(sat,3).toString());
 	       
+	         lOG_BILGI lBILGI = new lOG_BILGI();
+				lBILGI.setmESAJ( "Zayiat Stok Kayit  Kod:" +  mdl.getValueAt(sat,1).toString()  + " Miktar:" + miktar + " Fiat:" + fiat );
+				lBILGI.seteVRAK(textField.getText());
+				
 	        f_Access.stk_kaydet(textField.getText(), "ZAI", tar, depo,  mdl.getValueAt(sat,1).toString(), miktar, fiat
                         ,KUSUR_YUVARLA. round(tutar,2),KUSUR_YUVARLA. round(tutar,2), "C", izah, anagrp, altgrp,0, "","","",GLOBAL.KULL_ADI,
-                   	 "Zayiat Stok Kayit  Kod:" +  mdl.getValueAt(sat,1).toString()  + " Miktar:" + miktar + " Fiat:" + fiat  ,textField.getText(),BAGLAN_LOG.fatLogDizin);
+                   	 lBILGI,BAGLAN_LOG.fatLogDizin);
  			
 		}
 		catch (Exception ex)
@@ -923,11 +932,16 @@ public class ZAYI extends JInternalFrame {
 	{
 		try {
 	        acik_sil();
-	        	
+	        lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ( "Recete Aciklama Yaz C :"  +textField_9.getText() );
+			lBILGI.seteVRAK(textField.getText());
+			
 	        		f_Access.aciklama_yaz("ZAI", 1, textField.getText(),  textField_9.getText(), "C",
-	        				 "Recete Aciklama Yaz C :"  +textField_9.getText()  , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+	        				lBILGI  ,BAGLAN_LOG.fatLogDizin);
+	        		
+	        		lBILGI.setmESAJ( "Recete Aciklama Yaz C :"  +textField_10.getText() );
 	        		f_Access.aciklama_yaz("ZAI", 2, textField.getText(), textField_10.getText(), "C",
-	        				 "Recete Aciklama Yaz C :"  +textField_10.getText()  , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+	        				lBILGI ,BAGLAN_LOG.fatLogDizin);
 		 		
 		}
 		catch (Exception ex)
@@ -939,8 +953,12 @@ public class ZAYI extends JInternalFrame {
 	{
 		try {
 			
+			 lOG_BILGI lBILGI = new lOG_BILGI();
+				lBILGI.setmESAJ(  "Recete Aciklama Sil C "  );
+				lBILGI.seteVRAK(textField.getText());
+				
 				f_Access.aciklama_sil("ZAI", textField.getText(), "C",
-						 "Recete Aciklama Sil C "   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+					lBILGI  ,BAGLAN_LOG.fatLogDizin);
  			
 			}
 			catch (Exception ex)
@@ -1235,8 +1253,11 @@ public class ZAYI extends JInternalFrame {
 	 	 if(g != 0 ) { return;	}
 	 	  long startTime = System.currentTimeMillis();
 	 	
-	 	
-	 		f_Access.stok_sil(textField.getText(), "ZAI", "C","Zayi Stok Silme", textField.getText(), BAGLAN_LOG.fatLogDizin);
+	 	 lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ("Zayi Stok Silme" );
+			lBILGI.seteVRAK(textField.getText());
+			
+	 		f_Access.stok_sil(textField.getText(), "ZAI", "C",lBILGI, BAGLAN_LOG.fatLogDizin);
 			
         acik_sil();
         long endTime = System.currentTimeMillis();

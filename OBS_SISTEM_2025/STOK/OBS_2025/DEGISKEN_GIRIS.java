@@ -29,6 +29,7 @@ import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.border.EtchedBorder;
@@ -299,6 +300,7 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 	public static  void sil()
 	{
 		try {
+			lOG_BILGI lBILGI = new lOG_BILGI();
         if (hangi.equals("altgrup"))
         {
         	
@@ -313,6 +315,9 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		 	 if(g != 0 ) { return;	}
 		 	 
         	///////////************Dosya Kontrol
+		 	
+			
+			
 		 	 int anaG = 0 , altG = 0 ;
 		 	 ResultSet rss = null;
 				rss = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
@@ -340,8 +345,11 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 				
      	  	
 		 	 //*********************
+			   lBILGI.setmESAJ("Alt Grup Silme:" + Integer.parseInt(textField_2.getText()));
+				lBILGI.seteVRAK("");
+				
   			   f_Access.urun_degisken_alt_grup_sil(Integer.parseInt(textField_2.getText()),
-  					 "Alt Grup Silme:" + Integer.parseInt(textField_2.getText()),"",BAGLAN_LOG.fatLogDizin);
+  					 lBILGI,BAGLAN_LOG.fatLogDizin);
         	  sifirla();
               textField.setText("");
               ana_grup_doldur();
@@ -358,8 +366,10 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		   			 	oac.options[1]); //default button
 		 	 if(g != 0 ) { return;	}
 		 	 
+		 	 lBILGI.setmESAJ(" Mensei Sil:" + Integer.parseInt(textField_2.getText()));
+				lBILGI.seteVRAK("");
  			  f_Access.urun_kod_degisken_sil( "MEID_Y", "MENSEI_DEGISKEN", Integer.parseInt(textField_2.getText()),
- 					 " Mensei Sil:" + Integer.parseInt(textField_2.getText()) ,"",BAGLAN_LOG.fatLogDizin);
+ 					  lBILGI,BAGLAN_LOG.fatLogDizin);
         	 sifirla();
              textField.setText("");
              yenile();
@@ -378,8 +388,11 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		   			 	oac.options[1]); //default button
 		 	 if(g != 0 ) { return;	}
 		 	 
+		 	lBILGI.setmESAJ( "Depo Sil:" + Integer.parseInt(textField_2.getText()) );
+			lBILGI.seteVRAK("");
+			
 			   f_Access.urun_kod_degisken_sil( "DPID_Y", "DEPO_DEGISKEN", Integer.parseInt(textField_2.getText()),
-					   "Depo Sil:" + Integer.parseInt(textField_2.getText()) ,"",BAGLAN_LOG.fatLogDizin);
+					  lBILGI,BAGLAN_LOG.fatLogDizin);
         	 sifirla();
              textField.setText("");
              yenile();
@@ -397,8 +410,12 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 			   			 	oac.options,  //button titles
 			   			 	oac.options[1]); //default button
 			 	 if(g != 0 ) { return;	}
+			 	 
+			 	lBILGI.setmESAJ("Ozel Kod1 :" + Integer.parseInt(textField_2.getText()) );
+				lBILGI.seteVRAK("");
+				
 				   f_Access.urun_kod_degisken_sil( "OZ1ID_Y", "OZ_KOD_1_DEGISKEN", Integer.parseInt(textField_2.getText()),
-						   "Ozel Kod1 :" + Integer.parseInt(textField_2.getText()) ,"",BAGLAN_LOG.fatLogDizin);
+						    lBILGI,BAGLAN_LOG.fatLogDizin);
 	        	 sifirla();
 	             textField.setText("");
 	             yenile();
@@ -416,8 +433,12 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 			   			 	oac.options,  //button titles
 			   			 	oac.options[1]); //default button
 			 	 if(g != 0 ) { return;	}
+			 	 
+			 	lBILGI.setmESAJ("Ozel Kod2 :" + Integer.parseInt(textField_2.getText()) );
+				lBILGI.seteVRAK("");
+				
 				  f_Access.urun_kod_degisken_sil( "OZ2ID_Y", "OZ_KOD_2_DEGISKEN", Integer.parseInt(textField_2.getText()),
-						  "Ozel Kod2 :" + Integer.parseInt(textField_2.getText()) ,"",BAGLAN_LOG.fatLogDizin);
+						  lBILGI,BAGLAN_LOG.fatLogDizin);
 	        	 sifirla();
 	             textField.setText("");
 	             yenile();
@@ -435,8 +456,12 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 			   			 	oac.options,  //button titles
 			   			 	oac.options[1]); //default button
 			 	 if(g != 0 ) { return;	}
+			 	 
+			 	lBILGI.setmESAJ("Ana Grup :" + Integer.parseInt(textField_2.getText()) );
+				lBILGI.seteVRAK("");
+				
 				 f_Access.urun_kod_degisken_sil( "AGID_Y", "ANA_GRUP_DEGISKEN", Integer.parseInt(textField_2.getText()),
-						 "Ana Grup :" + Integer.parseInt(textField_2.getText()) ,"",BAGLAN_LOG.fatLogDizin);
+						  lBILGI,BAGLAN_LOG.fatLogDizin);
 	        	 sifirla();
 	             textField.setText("");
 	             yenile();

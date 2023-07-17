@@ -11,7 +11,7 @@ public class DOSYA_YAZ implements ILOGGER{
 		this._ILoger_Kayit = _ILoger_Kayit;
 	}
 	@Override
-	public void Logla(String mesaj, String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
-		_ILoger_Kayit.Logla(mesaj,evrak ,dBILGI);
+	public void Logla(lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
+		_ILoger_Kayit.Logla(lBILGI ,dBILGI);
 	}
 }

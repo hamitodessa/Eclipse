@@ -10,10 +10,11 @@ import javax.swing.table.DefaultTableModel;
 
 import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.lOG_BILGI;
 public class DOSYA_MYSQL implements ILOGER_KAYIT{
 	Connection con = null;
 	@Override
-	public void Logla(String mesaj,String evrak, DIZIN_BILGILERI dBILGI)
+	public void Logla(lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI)
 			throws ClassNotFoundException, SQLException 
 	{
 		String cumle = "jdbc:mysql://" + dBILGI.cONN_STR ;
@@ -24,8 +25,8 @@ public class DOSYA_MYSQL implements ILOGER_KAYIT{
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
 		stmt.setTimestamp(1, new java.sql.Timestamp(new java.util.Date().getTime()));
-		stmt.setString(2,evrak);
-		stmt.setString(3, mesaj);
+		stmt.setString(2,lBILGI.geteVRAK());
+		stmt.setString(3,lBILGI.getmESAJ());
 		stmt.setString(4, GLOBAL.KULL_ADI);
 		stmt.executeUpdate();
 		stmt.close();

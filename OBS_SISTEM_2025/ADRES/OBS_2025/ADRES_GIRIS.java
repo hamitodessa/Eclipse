@@ -45,6 +45,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.lOG_BILGI;
 
 @SuppressWarnings({"serial","static-access","deprecation"})
 public class ADRES_GIRIS extends JInternalFrame {
@@ -811,8 +812,12 @@ public class ADRES_GIRIS extends JInternalFrame {
 				os.close();
 			}
 
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ("Hesap Kodu:" + txtkodu.getText() + " Hesap Silme");
+			lBILGI.seteVRAK("");
+			
 			a_Access.sil(txtkodu.getText(),txtunvan.getText(),
-					"Hesap Kodu:" + txtkodu.getText() + " Hesap Silme","", BAGLAN_LOG.adrLogDizin);
+					lBILGI, BAGLAN_LOG.adrLogDizin);
 
 			ADRESS_DEGISKENLER aDEG = new ADRESS_DEGISKENLER();
 			aDEG.kodu = txtkodu.getText();
@@ -842,8 +847,11 @@ public class ADRES_GIRIS extends JInternalFrame {
 			aDEG.web = txtweb.getText();
 			aDEG.usr = GLOBAL.KULL_ADI;
 			aDEG.resim = fis ;
-			a_Access.adres_kayit(aDEG,
-					"Hesap Kodu:" + txtkodu.getText() + " Hesap Unvan:" + txtunvan.getText(),"", BAGLAN_LOG.adrLogDizin);
+			
+			lBILGI.setmESAJ("Hesap Kodu:" + txtkodu.getText() + " Hesap Unvan:" + txtunvan.getText());
+			lBILGI.seteVRAK("");
+			
+			a_Access.adres_kayit(aDEG,	lBILGI, BAGLAN_LOG.adrLogDizin);
 
 			temizle();
 			hisset("M_Kodu", "");
@@ -869,8 +877,12 @@ public class ADRES_GIRIS extends JInternalFrame {
 		if(g != 0 ) { return;	}
 		try
 		{
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ("Hesap Kodu:" + txtkodu.getText() + " Hesap Silme");
+			lBILGI.seteVRAK("");
+			
 			a_Access.sil(txtkodu.getText(),txtunvan.getText(),
-					"Hesap Kodu:" + txtkodu.getText() + " Hesap Silme","", BAGLAN_LOG.adrLogDizin);
+					lBILGI, BAGLAN_LOG.adrLogDizin);
 			temizle();
 			hisset("M_Kodu", "");
 		}

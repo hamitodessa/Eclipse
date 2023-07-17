@@ -95,6 +95,7 @@ import OBS_C_2025.STOK_MYSQL;
 import OBS_C_2025.Server_Bilgi;
 import OBS_C_2025.StayOpenCheckBoxMenuItemUI;
 import OBS_C_2025.USER_ISLEMLERI;
+import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
@@ -965,7 +966,10 @@ public class CAL_DIZIN extends JFrame {
 					contentPane.setCursor(WAIT_CURSOR);
 					oac.uSER_ISL.mail_bak();
 					GLOBAL.Log_Mail = txt_Lmaill.getText();
-					mAT.Logla("Lo0glama Deneme Maili","",BAGLAN_LOG.cariLogDizin);
+					lOG_BILGI lBILGI = new lOG_BILGI();
+					lBILGI.setmESAJ("Lo0glama Deneme Maili");
+					lBILGI.seteVRAK("");
+					mAT.Logla(lBILGI,BAGLAN_LOG.cariLogDizin);
 					contentPane.setCursor(DEFAULT_CURSOR);
 				} catch (Exception e1) {
 					contentPane.setCursor(DEFAULT_CURSOR);
@@ -1651,13 +1655,16 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.cariDizin.iNSTANCE =comboBox.getSelectedItem().toString();
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		if (chckbxD.isSelected())
 		{
-			c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString() ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
+			c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString() ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.cariLogDizin,txtIp.getText());
 		}
 		else
 		{
-			c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin,txtIp.getText());
+			c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.cariLogDizin,txtIp.getText());
 		}
 	}
 	void stok_olustur() throws ClassNotFoundException, SQLException
@@ -1678,13 +1685,16 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.fatDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		if (chckbxD.isSelected())
 		{
-			s_Access.fAT_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.fatLogDizin,txtIp.getText());
+			s_Access.fAT_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.fatLogDizin,txtIp.getText());
 		}
 		else
 		{
-			s_Access.fAT_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.fatLogDizin,txtIp.getText());
+			s_Access.fAT_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.fatLogDizin,txtIp.getText());
 		}
 	}
 	void adr_olustur() throws ClassNotFoundException, SQLException
@@ -1705,14 +1715,16 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.adrDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
-
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		if (chckbxD.isSelected())
 		{
-			a_Access.aDR_SIF_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.adrLogDizin,txtIp.getText());
+			a_Access.aDR_SIF_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.adrLogDizin,txtIp.getText());
 		}
 		else
 		{
-			a_Access.aDR_SIF_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.adrLogDizin,txtIp.getText());
+			a_Access.aDR_SIF_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.adrLogDizin,txtIp.getText());
 		}
 	}
 	void kur_olustur() throws ClassNotFoundException, SQLException
@@ -1731,14 +1743,16 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.kurDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
-
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		if (chckbxD.isSelected())
 		{
-			k_Access.kUR_SIFIR_L(txtKodu.getText(), "default", "", comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.kurLogDizin,txtIp.getText());
+			k_Access.kUR_SIFIR_L(txtKodu.getText(), "default", "", comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.kurLogDizin,txtIp.getText());
 		}
 		else
 		{
-			k_Access.kUR_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.kurLogDizin,txtIp.getText());
+			k_Access.kUR_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.kurLogDizin,txtIp.getText());
 		}
 	}
 	void kam_olustur() throws ClassNotFoundException, SQLException
@@ -1759,14 +1773,16 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.kamDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
-
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		if (chckbxD.isSelected())
 		{
-			ka_Access.kAM_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.kamLogDizin,txtIp.getText());
+			ka_Access.kAM_SIFIR_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.kamLogDizin,txtIp.getText());
 		}  
 		else
 		{
-			ka_Access.kAM_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.kamLogDizin,txtIp.getText());
+			ka_Access.kAM_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.kamLogDizin,txtIp.getText());
 		}
 	}
 	void sms_olustur() throws ClassNotFoundException, SQLException
@@ -1785,14 +1801,16 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.smsDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
-
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		if (chckbxD.isSelected())
 		{
-			sms_Access.sMS_SIFIR_L(txtKodu.getText(), "default", "", comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.smsLogDizin,txtIp.getText());
+			sms_Access.sMS_SIFIR_L(txtKodu.getText(), "default", "", comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.smsLogDizin,txtIp.getText());
 		}
 		else
 		{
-			sms_Access.sMS_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),"Dosya Olusturuldu","",BAGLAN_LOG.smsLogDizin,txtIp.getText());
+			sms_Access.sMS_SIFIR_L(txtKodu.getText(), "", txtdiz.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.smsLogDizin,txtIp.getText());
 
 		}
 	}
@@ -1814,7 +1832,9 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.gunDizin.yER = "L";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
-
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		Server_Bilgi sbilgi = new Server_Bilgi();
 		sbilgi.setKod(txtKodu.getText());;
 		sbilgi.setFir_adi(strAdmin);;
@@ -1827,13 +1847,13 @@ public class CAL_DIZIN extends JFrame {
 		{
 			sbilgi.setDizin_yeri("default");;
 			sbilgi.setDizin("");;
-			g_Access.gUN_SIFIR_L(sbilgi ,"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
+			g_Access.gUN_SIFIR_L(sbilgi ,lBILGI,BAGLAN_LOG.gunLogDizin);
 		}
 		else
 		{
 			sbilgi.setDizin_yeri("");;
 			sbilgi.setDizin(txtdiz.getText());;
-			g_Access.gUN_SIFIR_L(sbilgi,"Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
+			g_Access.gUN_SIFIR_L(sbilgi,lBILGI,BAGLAN_LOG.gunLogDizin);
 		}
 	}
 	void cari_s_olustur() throws ClassNotFoundException, SQLException
@@ -1853,9 +1873,12 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.cariDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		if (chckbxD.isSelected())
 		{
-			c_Access.cARI_SIFIR_S(txtIp.getText(),comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.cariLogDizin);
+			c_Access.cARI_SIFIR_S(txtIp.getText(),comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,lBILGI,BAGLAN_LOG.cariLogDizin);
 		}
 	}
 	void stok_s_olustur() throws ClassNotFoundException, SQLException
@@ -1875,9 +1898,12 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.fatDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		if (chckbxD.isSelected())
 		{
-			s_Access.fAT_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.fatLogDizin);
+			s_Access.fAT_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,lBILGI,BAGLAN_LOG.fatLogDizin);
 		}
 	}
 	void adr_s_olustur() throws ClassNotFoundException, SQLException
@@ -1897,9 +1923,12 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.adrDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		if (chckbxD.isSelected())
 		{
-			a_Access.aDR_SIFIR_S( txtIp.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.adrLogDizin);
+			a_Access.aDR_SIFIR_S( txtIp.getText(), comboBox.getSelectedItem().toString(),txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,lBILGI,BAGLAN_LOG.adrLogDizin);
 		}
 	}
 	void kur_s_olustur() throws ClassNotFoundException, SQLException
@@ -1917,9 +1946,12 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.kurDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		if (chckbxD.isSelected())
 		{
-			k_Access.kUR_SIFIR_S( txtIp.getText(),  comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.kurLogDizin);
+			k_Access.kUR_SIFIR_S( txtIp.getText(),  comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),lBILGI,BAGLAN_LOG.kurLogDizin);
 		}
 	}
 	void kam_s_olustur() throws ClassNotFoundException, SQLException
@@ -1939,9 +1971,12 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.kamDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		if (chckbxD.isSelected())
 		{
-			ka_Access.kAM_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,"Dosya Olusturuldu","",BAGLAN_LOG.kamLogDizin);
+			ka_Access.kAM_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,lBILGI,BAGLAN_LOG.kamLogDizin);
 		}
 	}
 	void sms_s_olustur() throws ClassNotFoundException, SQLException
@@ -1959,9 +1994,12 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.smsDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		if (chckbxD.isSelected())
 		{
-			sms_Access.sMS_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),"Dosya Olusturuldu","",BAGLAN_LOG.smsLogDizin);
+			sms_Access.sMS_SIFIR_S(txtIp.getText(), comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),lBILGI,BAGLAN_LOG.smsLogDizin);
 		}
 	}
 	void gun_s_olustur() throws ClassNotFoundException, SQLException
@@ -1981,7 +2019,9 @@ public class CAL_DIZIN extends JFrame {
 		BAGLAN.gunDizin.yER = "S";
 		BAGLAN_LOG bLog = new BAGLAN_LOG();
 		bLog.cONNECT();
-		
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		Server_Bilgi sbilgi = new Server_Bilgi();
 		sbilgi.setKod(txtKodu.getText());;
 		sbilgi.setFir_adi(strAdmin);;
@@ -1994,7 +2034,7 @@ public class CAL_DIZIN extends JFrame {
 
 		if (chckbxD.isSelected())
 		{
-			g_Access.gUN_SIFIR_S(sbilgi, "Dosya Olusturuldu","",BAGLAN_LOG.gunLogDizin);
+			g_Access.gUN_SIFIR_S(sbilgi, lBILGI,BAGLAN_LOG.gunLogDizin);
 		}    
 	}
 	private  void dosya_olustur_S() throws IOException, ClassNotFoundException, SQLException

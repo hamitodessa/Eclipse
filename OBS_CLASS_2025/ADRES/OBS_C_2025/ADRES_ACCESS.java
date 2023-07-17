@@ -20,28 +20,34 @@ public class ADRES_ACCESS {
 	_IAdres.baglan();
 	}
 	public void aDR_SIF_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,String sifre
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException
+			, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException
 	{
 		_IAdres.aDR_SIF_L( kod,dizin_yeri,  dizin,  fir_adi,  ins,  kull, sifre, port);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
+		 {
+			 lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+			  	_Logger.Logla(lBILGI, dBILGI);
+		 }
 	}
 	public void aDR_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IAdres.aDR_SIFIR_S(server, ins, kull, sifre, kod, fir_adi);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
+		 {
+			 lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+			  	_Logger.Logla(lBILGI, dBILGI);
+		 }
 	}
-	public void adr_firma_adi_kayit(String fadi	, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+	public void adr_firma_adi_kayit(String fadi	, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
 	{
 		_IAdres.adr_firma_adi_kayit(fadi);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 	}
 	public String[] adres_oku (String kodu) throws ClassNotFoundException, SQLException 
 	{
@@ -55,18 +61,18 @@ public class ADRES_ACCESS {
 	{
 		return _IAdres.adres(sira, arama);
 	}
-	public void sil(String kod ,String adi, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void sil(String kod ,String adi, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IAdres.sil(kod, adi);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 	}
 	public void adres_kayit(ADRESS_DEGISKENLER aDEGIS
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException, IOException
+			, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException, IOException
 	{
 		_IAdres.adres_kayit(aDEGIS);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 	}
 	public ResultSet adr_hpl() throws ClassNotFoundException, SQLException
 	{

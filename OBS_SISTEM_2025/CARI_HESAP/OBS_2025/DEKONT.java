@@ -24,6 +24,7 @@ import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
+import OBS_C_2025.lOG_BILGI;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -1510,7 +1511,12 @@ public class DEKONT extends JInternalFrame {
 			int g =  JOptionPane.showOptionDialog( null,  "Islem Dosyadan Silinecek ..?", "Cari Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 			if(g != 0 ) { return;	}
-			c_Access.evrak_yoket(Integer.parseInt(txtevrak.getText()),txtevrak.getText() + " Dekont Silme",txtevrak.getText(), BAGLAN_LOG.cariLogDizin);
+			
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ(txtevrak.getText() + " Dekont Silme");
+			lBILGI.seteVRAK(txtevrak.getText());
+			
+			c_Access.evrak_yoket(Integer.parseInt(txtevrak.getText()),lBILGI, BAGLAN_LOG.cariLogDizin);
 			sifirla();
 			kutu_kapa();
 			txtevrak.setText("");
@@ -1577,7 +1583,12 @@ public class DEKONT extends JInternalFrame {
 			{
 				mesaj = mesaj + " Msj:" + mesaj1.substring(0, 95  -(mesaj.length())) ;
 			}
-			c_Access.evrak_yoket(Integer.parseInt(txtevrak.getText()),txtevrak.getText() + " Dekont Silme",txtevrak.getText(), BAGLAN_LOG.cariLogDizin);
+			
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ(txtevrak.getText() + " Dekont Silme");
+			lBILGI.seteVRAK(txtevrak.getText());
+			
+			c_Access.evrak_yoket(Integer.parseInt(txtevrak.getText()),lBILGI, BAGLAN_LOG.cariLogDizin);
 			
 			dEKONT_BILGI dBilgi = new dEKONT_BILGI();
 			dBilgi.setbHES(cmbbhes.getSelectedItem().toString());
@@ -1594,7 +1605,10 @@ public class DEKONT extends JInternalFrame {
 			dBilgi.setkOD(txtkod.getText());
 			dBilgi.setuSER( GLOBAL.KULL_ADI);
 			
-			c_Access.cari_dekont_kaydet(dBilgi,	 mesaj ,txtevrak.getText() ,BAGLAN_LOG.cariLogDizin	);
+			
+			lBILGI.setmESAJ(mesaj);
+			
+			c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,BAGLAN_LOG.cariLogDizin	);
 
 			sifirla();
 			txtevrak.setText("0");

@@ -75,6 +75,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
+import OBS_C_2025.lOG_BILGI;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
@@ -1438,7 +1439,11 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		dBilgi.setiZAHAT(strg);
 		dBilgi.setkOD("");
 		dBilgi.setuSER( GLOBAL.KULL_ADI);
-       	c_Access.cari_dekont_kaydet(dBilgi,	mesaj,String.valueOf(evr_no) ,	BAGLAN_LOG.cariLogDizin);
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ(mesaj);
+		lBILGI.seteVRAK(String.valueOf(evr_no));
+		
+       	c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,	BAGLAN_LOG.cariLogDizin);
         model.setValueAt(evr_no,i, 6);
         evr_no += 1;
         asdd = 0;

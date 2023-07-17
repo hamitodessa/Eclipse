@@ -18,18 +18,18 @@ public class SMS_ACCESS {
 	_ISms.baglan();
 	}
 	public void sMS_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins, String kull, String sifre
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException 
+			,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException 
 	{
 		_ISms.sMS_SIFIR_L(kod, dizin_yeri, dizin, ins, kull, sifre,port);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 	}
 	public void sMS_SIFIR_S(String server, String ins, String kull, String sifre, String kod
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_ISms.sMS_SIFIR_S(server, ins, kull, sifre, kod);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 		}
 	public boolean kod_ismi(String kodu) throws ClassNotFoundException, SQLException
 	{

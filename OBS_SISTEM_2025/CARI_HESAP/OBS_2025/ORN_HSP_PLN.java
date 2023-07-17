@@ -14,6 +14,7 @@ import javax.swing.border.TitledBorder;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.lOG_BILGI;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -130,8 +131,13 @@ public class ORN_HSP_PLN extends JInternalFrame {
 					Progres_Bar(358, i);
 					String l =  sc.nextLine();  
 					String[] token = l.split("\t");
+					
+					lOG_BILGI lBILGI = new lOG_BILGI();
+					lBILGI.setmESAJ( token[0] + " Nolu Hesap Kayit , Unvan:" + token[1]);
+					lBILGI.seteVRAK("");
+					
 					c_Access.hpln_kayit(token[0], token[1], token[2], token[3],GLOBAL.KULL_ADI
-							, token[0] + " Nolu Hesap Kayit , Unvan:" + token[1] , "",  BAGLAN_LOG.cariLogDizin);
+							,lBILGI,  BAGLAN_LOG.cariLogDizin);
 					c_Access.hpln_ilk_detay_kayit(token[0]);
 					i += 1 ;
 				}

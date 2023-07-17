@@ -48,7 +48,10 @@ public class KUR_MYSQL implements IKUR {
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
-		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kurLogDizin);
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.kurLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL" + ".DB") == false)
 		{
@@ -57,7 +60,7 @@ public class KUR_MYSQL implements IKUR {
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kurLogDizin);
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.kurLogDizin);
 		//
 		stmt.close();
 		con.close();
@@ -88,7 +91,10 @@ public class KUR_MYSQL implements IKUR {
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
-		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kurLogDizin);
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.kurLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.kurLogDizin.mODUL)) == false)
 		{
@@ -96,7 +102,7 @@ public class KUR_MYSQL implements IKUR {
 			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kurLogDizin);
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.kurLogDizin);
 		stmt.close();
 		con.close();
 	}

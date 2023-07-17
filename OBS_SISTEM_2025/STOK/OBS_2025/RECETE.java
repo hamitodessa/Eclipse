@@ -32,6 +32,7 @@ import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.lOG_BILGI;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -828,9 +829,12 @@ public class RECETE extends JInternalFrame {
 	{
 		try {
 		 aciklama_sil();
-		
+		 lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ( "Recete Aciklama Yaz  G :" +  textArea.getText() );
+			lBILGI.seteVRAK(textField.getText());
+			
 			f_Access.aciklama_yaz("REC", 1,textField.getText(), textArea.getText(), "G",
-					 "Recete Aciklama Yaz  G :" +  textArea.getText()   , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+					lBILGI  ,BAGLAN_LOG.fatLogDizin);
 		
 	}
 	   catch (Exception ex)
@@ -841,9 +845,11 @@ public class RECETE extends JInternalFrame {
 	private static void aciklama_sil()
 	{
 		try {
-		
+			 lOG_BILGI lBILGI = new lOG_BILGI();
+				lBILGI.setmESAJ( "Recete Aciklama Sil G"    );
+				lBILGI.seteVRAK(textField.getText());
 		f_Access.aciklama_sil("REC", textField.getText(), "G",
-				 "Recete Aciklama Sil G"    , textField.getText()  ,BAGLAN_LOG.fatLogDizin);
+				lBILGI  ,BAGLAN_LOG.fatLogDizin);
 		
 	}
 	   catch (Exception ex)

@@ -37,6 +37,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TABLO_TEXTBOX;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
+import OBS_C_2025.lOG_BILGI;
 
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
@@ -693,6 +694,11 @@ public class CEK_GIRIS extends JInternalFrame {
 			if( comboBox.getSelectedItem() != null ) {
 				cMB = comboBox.getSelectedItem().toString();
 			}
+			
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ(textField.getText() + " Nolu Giris Bordro  " + mdll.getValueAt(i,0).toString() + "Nolu Cek " + " Tutar:" + (double) mdll.getValueAt(i,8));
+			lBILGI.seteVRAK(textField.getText());
+			
 			ka_Access.cek_kayit(mdll.getValueAt(i,0).toString(), vade,
 					textField.getText(), textField_1.getText(),
 					gtt,    cMB,
@@ -700,8 +706,7 @@ public class CEK_GIRIS extends JInternalFrame {
 					, mdll.getValueAt(i,3).toString(), (double) mdll.getValueAt(i,8),
 					mdll.getValueAt(i,7).toString(),mdll.getValueAt(i,4).toString(), mdll.getValueAt(i,5).toString()
 					, mdll.getValueAt(i,6).toString(), drm, ttarr, GLOBAL.KULL_ADI,
-					textField.getText() + " Nolu Giris Bordro  " + mdll.getValueAt(i,0).toString() + "Nolu Cek " + " Tutar:" + (double) mdll.getValueAt(i,8)
-					,textField.getText() , BAGLAN_LOG.kamLogDizin);
+					lBILGI , BAGLAN_LOG.kamLogDizin);
 
 		}
 		catch (Exception ex)
@@ -983,10 +988,13 @@ public class CEK_GIRIS extends JInternalFrame {
 						dBilgi.setiZAHAT(str_4);
 						dBilgi.setkOD("");
 						dBilgi.setuSER( GLOBAL.KULL_ADI);
+						lOG_BILGI lBILGI = new lOG_BILGI();
+						lBILGI.setmESAJ("Cek Giris   Borclu Hes:" + textField_1.getText() + " Tut:" + Double.parseDouble( model.getValueAt(i, 8).toString()));
+						lBILGI.seteVRAK(textField.getText());
+					
+						
 						c_Access.cari_dekont_kaydet(dBilgi ,
-								"Cek Giris   Borclu Hes:" + textField_1.getText() + " Tut:" + Double.parseDouble( model.getValueAt(i, 8).toString())  ,
-								textField.getText() ,
-								BAGLAN_LOG.cariLogDizin);
+								lBILGI ,BAGLAN_LOG.cariLogDizin);
 					}
 				}
 				Thread.currentThread().isInterrupted();

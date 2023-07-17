@@ -63,6 +63,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
+import OBS_C_2025.lOG_BILGI;
 
 @SuppressWarnings({"serial","static-access"})
 public class CEK_CIKIS extends JInternalFrame {
@@ -783,10 +784,12 @@ public class CEK_CIKIS extends JInternalFrame {
 						dBilgi.setiZAHAT(str_4);
 						dBilgi.setkOD("");
 						dBilgi.setuSER( GLOBAL.KULL_ADI);
+						lOG_BILGI lBILGI = new lOG_BILGI();
+						lBILGI.setmESAJ("Cek Cikis   Alacakli Hes:" + alh + " Tut:" + Double.parseDouble( model.getValueAt(i, 8).toString()));
+						lBILGI.seteVRAK(textField.getText());
+						
 						c_Access.cari_dekont_kaydet(dBilgi,
-								"Cek Cikis   Alacakli Hes:" + alh + " Tut:" + Double.parseDouble( model.getValueAt(i, 8).toString())  ,
-								textField.getText() ,
-								BAGLAN_LOG.cariLogDizin);
+								lBILGI ,BAGLAN_LOG.cariLogDizin);
 					}
 				}
 				Thread.currentThread().isInterrupted();

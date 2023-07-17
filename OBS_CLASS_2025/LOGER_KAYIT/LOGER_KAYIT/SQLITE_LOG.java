@@ -13,11 +13,12 @@ import javax.swing.table.DefaultTableModel;
 
 import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.lOG_BILGI;
 
 public class SQLITE_LOG implements ILOGER_KAYIT{
 
 	@Override
-	public void Logla(String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
+	public void Logla(lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
@@ -27,8 +28,8 @@ public class SQLITE_LOG implements ILOGER_KAYIT{
 									"VALUES (?,?,?,?)";
 			stmt = sQLITEconn.prepareStatement(sql);
 			stmt.setDate(1,(java.sql.Date) new java.sql.Date(Calendar.getInstance().getTime().getTime()) );
-			stmt.setString(2,mesaj);
-			stmt.setString(3,evrak);
+			stmt.setString(2, lBILGI.getmESAJ());
+			stmt.setString(3,lBILGI.geteVRAK());
 			stmt.setString(4, GLOBAL.KULL_ADI);
 			stmt.executeUpdate();
 			stmt.close();

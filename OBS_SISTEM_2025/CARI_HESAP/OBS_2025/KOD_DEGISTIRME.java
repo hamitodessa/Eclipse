@@ -13,6 +13,7 @@ import javax.swing.event.DocumentListener;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.lOG_BILGI;
 
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -214,11 +215,13 @@ public class KOD_DEGISTIRME extends JInternalFrame {
     	        getContentPane().setCursor(oac.WAIT_CURSOR);
 	        try
 	        {
+	        	lOG_BILGI lBILGI = new lOG_BILGI();
+				lBILGI.setmESAJ("Kod Degistirme   Eski Kod:" + textField_2.getText()+
+		        		" Yeni Kod:"+textField_1.getText());
+				lBILGI.seteVRAK("");
+				
 	        	c_Access.cari_kod_degis_hesap(textField_2.getText(), textField_1.getText()
-	        			,"Kod Degistirme   Eski Kod:" + textField_2.getText()+
-		        		" Yeni Kod:"+textField_1.getText()  ,
-		        		"" ,
-		        		BAGLAN_LOG.cariLogDizin);
+	        			,lBILGI,		BAGLAN_LOG.cariLogDizin);
 	        	c_Access.cari_kod_degis_satirlar(textField_2.getText(), textField_1.getText());
 		            getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		            JOptionPane.showMessageDialog(null, "Islem Basari ile tamamlandi...." );

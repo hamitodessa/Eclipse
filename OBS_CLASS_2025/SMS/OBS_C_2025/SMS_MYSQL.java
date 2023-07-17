@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
@@ -48,7 +47,10 @@ public class SMS_MYSQL implements ISMS{
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
-		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.smsLogDizin);
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.smsLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL" + ".DB") == false)
 		{
@@ -57,7 +59,7 @@ public class SMS_MYSQL implements ISMS{
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.smsLogDizin);
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.smsLogDizin);
 		//
 		stmt.close();
 		con.close();
@@ -87,6 +89,12 @@ public class SMS_MYSQL implements ISMS{
 		cumle = "jdbc:mysql://" + server + "/" + VERITABANI + "_log" ;
 		con = DriverManager.getConnection(cumle,kull,sifre);
 		create_table_log();
+	//  VERITABANI DOSYASI ILK ACILIS
+		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.smsLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.smsLogDizin.mODUL) ) == false)
 		{
@@ -95,7 +103,7 @@ public class SMS_MYSQL implements ISMS{
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.smsLogDizin);
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.smsLogDizin);
 		//
 		stmt.close();
 		con.close();

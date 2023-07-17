@@ -36,6 +36,7 @@ import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -301,9 +302,13 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			{
 				mesaj = mesaj + " Msj:" + table.getModel().getValueAt(table.getSelectedRow(), 7).toString().substring(0, 89  -(mesaj.length()) ) + "Silme" ;
 			}
+			
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ(mesaj);
+			lBILGI.seteVRAK("");
+			
 			g_Access.gorev_tek_sil(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()),
-					mesaj ,
-					"", BAGLAN_LOG.gunLogDizin );
+					lBILGI, BAGLAN_LOG.gunLogDizin );
 			hisset();
 		} 
 		catch (Exception ex) 

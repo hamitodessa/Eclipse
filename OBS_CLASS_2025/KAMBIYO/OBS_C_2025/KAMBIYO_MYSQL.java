@@ -48,8 +48,12 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
-		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kamLogDizin);
-		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.kamLogDizin);
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.kamLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.kamLogDizin);
 
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL" + ".DB") == false)
@@ -59,8 +63,10 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kamLogDizin);
-		tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.kamLogDizin);
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.kamLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.kamLogDizin);
 		//
 		stmt.close();
 		con.close();
@@ -91,8 +97,12 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
-		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kamLogDizin);
-		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.kamLogDizin);
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.kamLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.kamLogDizin);
 
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol( GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.kamLogDizin.mODUL) ) == false)
@@ -102,8 +112,10 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.kamLogDizin);
-		tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.kamLogDizin);
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.kamLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.kamLogDizin);
 		//
 		stmt.close();
 		con.close();

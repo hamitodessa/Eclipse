@@ -81,8 +81,12 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 			ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
-			vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);
-			vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.cariLogDizin);
+			 lOG_BILGI lBILGI = new lOG_BILGI();
+			 lBILGI.setmESAJ("Dosya Olusturuldu");
+			 lBILGI.seteVRAK("");
+			vTLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
+			lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+			vTLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+  ".DB") == false)
 		{
@@ -91,8 +95,11 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);
-		tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.cariLogDizin);
+		 lBILGI.setmESAJ("Dosya Olusturuldu");
+		 lBILGI.seteVRAK("");
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
 		//
 		stmt.close();
 		con.close();
@@ -123,8 +130,12 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
-		vTLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);
-		vTLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.cariLogDizin);
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		 lBILGI.setmESAJ("Dosya Olusturuldu");
+		 lBILGI.seteVRAK("");
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
+		 lBILGI.setmESAJ("Firma Adi:" + fir_adi );
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.cariLogDizin.mODUL)) == false)
 		{
@@ -134,8 +145,11 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		tEXLOG.Logla("Dosya Olusturuldu" ,"", BAGLAN_LOG.cariLogDizin);
-		tEXLOG.Logla("Firma Adi:" + fir_adi ,"", BAGLAN_LOG.cariLogDizin);
+		 lBILGI.setmESAJ("Dosya Olusturuldu");
+		 lBILGI.seteVRAK("");
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
+		 lBILGI.setmESAJ("Firma Adi:" + fir_adi );
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
 		//
 		stmt.close();
 		con.close();

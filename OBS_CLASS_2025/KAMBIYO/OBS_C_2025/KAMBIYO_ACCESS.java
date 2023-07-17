@@ -19,22 +19,28 @@ public class KAMBIYO_ACCESS {
 	_IKambiyo.baglan();
 	}
 	public void kAM_SIFIR_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
-			String sifre, String mesaj,String evrak, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException
+			String sifre, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException
 	{
 		_IKambiyo.kAM_SIFIR_L(kod, dizin_yeri, dizin, fir_adi, ins, kull, sifre,port);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
+		 {
+			 lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+			  	_Logger.Logla(lBILGI, dBILGI);
+		 }
 	}
 	public void kAM_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IKambiyo.kAM_SIFIR_S(server, ins, kull, sifre, kod, fir_adi);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
+		 {
+			 lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+			  	_Logger.Logla(lBILGI, dBILGI);
+		 }
 		}
 	public ResultSet kam_bordno(String cins,String bno,String gircik) throws ClassNotFoundException, SQLException
 	{
@@ -82,11 +88,11 @@ public class KAMBIYO_ACCESS {
             , String ctar , String cbno ,String cmus ,String cozk ,String bank ,String sube 
             , double tut ,String cins ,String serno ,String ilkb ,String chesn 
             , String drm ,String ttarih ,String usr 
-            , String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+            , lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IKambiyo.cek_kayit(cno, vade, gbo, gmus, gtar, gozk, ctar, cbno, cmus, cozk, bank, sube, tut, cins, serno, ilkb, chesn, drm, ttarih, usr);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 	}
 	public ResultSet cek_rapor( String cekno1,  String cekno2 ,  String tar1 , String tar2 , String gbord1 , String gbord2 
             ,  String gtar1 ,  String gtar2 , String cbord1 , String cbord2 , String ctar1, String ctar2 
@@ -103,11 +109,11 @@ public class KAMBIYO_ACCESS {
 	{
 		return _IKambiyo.kam_firma_adi();
 	}
-	public void kam_firma_adi_kayit(String fadi , String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+	public void kam_firma_adi_kayit(String fadi , lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
 	{
 		 _IKambiyo.kam_firma_adi_kayit(fadi);
 		 
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 	}
 }

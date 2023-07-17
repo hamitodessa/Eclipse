@@ -30,6 +30,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
 
 import java.awt.Font;
@@ -273,9 +274,11 @@ public class GIDECEGI_YER extends JInternalFrame {
 		
 			try
 			{
-				
+				lOG_BILGI lBILGI = new lOG_BILGI();
+				lBILGI.setmESAJ("Gid Yer  Sil" );
+				lBILGI.seteVRAK(textField_5.getText());
 					f_Access.gdy_sil(Integer.parseInt(textField_5.getText()),
-							 "Gid Yer  Sil"    ,textField_5.getText() ,BAGLAN_LOG.fatLogDizin);
+							lBILGI ,BAGLAN_LOG.fatLogDizin);
 				
 				 temizle();
 				doldur();
@@ -291,17 +294,22 @@ public class GIDECEGI_YER extends JInternalFrame {
 		 if (textField_1.getText().equals("") && textField_2.getText().equals("")) return ;
 		try
 		{
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			
+			
 			if ( ! textField_5.getText().equals(""))
 			{
-				 
+				lBILGI.setmESAJ("Gid Yer  Sil" );
+				lBILGI.seteVRAK(textField_5.getText());
 					f_Access.gdy_sil(Integer.parseInt(textField_5.getText()),
-							 "Gid Yer  Sil"    ,textField_5.getText() ,BAGLAN_LOG.fatLogDizin);
+							lBILGI ,BAGLAN_LOG.fatLogDizin);
 					
 			}
 			
-			
+			lBILGI.setmESAJ( "Gid Yer  Kayit :"  + textField_1.getText());
+			lBILGI.seteVRAK("");
 			f_Access.gdy_kayit(textField_1.getText(),textField_2.getText(), textField_3.getText(), textField_4.getText(),GLOBAL.KULL_ADI,
-					 "Gid Yer  Kayit :"  + textField_1.getText()  ,"" ,BAGLAN_LOG.fatLogDizin);
+					lBILGI ,BAGLAN_LOG.fatLogDizin);
 			
 			temizle();
 			doldur();

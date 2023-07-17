@@ -62,6 +62,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.lOG_BILGI;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -512,32 +513,41 @@ public class YIL_SONU extends JInternalFrame {
 						bir = rs.getDouble("BORC");
 						iki = rs.getDouble("ALACAK");
 						uc = iki - bir ;
+						
+						lOG_BILGI lBILGI = new lOG_BILGI();
+						
+						
+						
 						if ( bir == iki)   // ' Bakiye Sifir  bir = iki
 						{
 							String str =TARIH_CEVIR.tarih_geri(dateChooser);
 							double sifir = 0 ;
+							lBILGI.setmESAJ("A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +sifir + " Msj:" +"Devir Islemi...");
+							lBILGI.seteVRAK(String.valueOf(enumara));
+							
 							c_Access.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str, 
 									enumara, "", 1.0, sifir,textField_1.getText(),"", 1.0,sifir,"Devir Islemi...", "D", GLOBAL.KULL_ADI,
-									"A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +sifir + " Msj:" +"Devir Islemi..." ,
-									String.valueOf(enumara) ,
-									BAGLAN_LOG.cariLogDizin);
+									lBILGI ,BAGLAN_LOG.cariLogDizin);
 						}
 						else if (uc < 0)  // 'Borclu hesaplar -0.001
 						{
 							String str =TARIH_CEVIR.tarih_geri(dateChooser);
+							lBILGI.setmESAJ("A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +uc + " Msj:" +"Devir Islemi...");
+							lBILGI.seteVRAK(String.valueOf(enumara));
 							c_Access.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str,enumara, "",
 									1.0, uc, textField_1.getText(),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI,
-									"A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +uc + " Msj:" +"Devir Islemi..." ,
-									String.valueOf(enumara) ,
-									BAGLAN_LOG.cariLogDizin);
+									lBILGI ,BAGLAN_LOG.cariLogDizin);
 						}
 						else if (uc > 0 )  //   'Alacakli hesaplar  0.001
 						{
 							String str =TARIH_CEVIR.tarih_geri(dateChooser);
+							lBILGI.setmESAJ("A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +uc + " Msj:" +"Devir Islemi...");
+							lBILGI.seteVRAK(String.valueOf(enumara));
+
+							
 							c_Access.yilsonu_cari_dekont_kaydet(textField_1.getText(), str, 
 									enumara, "",1.0, uc,rs.getString("HESAP"),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI,
-									"A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +uc + " Msj:" +"Devir Islemi..." ,
-									String.valueOf(enumara) ,
+									lBILGI,
 									BAGLAN_LOG.cariLogDizin);
 						}
 					}

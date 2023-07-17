@@ -20,33 +20,33 @@ public class GUNLUK_ACCESS {
 	_IGunluk.baglan();
 	}
 	public void gUN_SIFIR_L(Server_Bilgi sbilgi
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IGunluk.gUN_SIFIR_L(sbilgi);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 	}
-	public void gUN_SIFIR_S(Server_Bilgi sbilgi, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void gUN_SIFIR_S(Server_Bilgi sbilgi,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IGunluk.gUN_SIFIR_S(sbilgi);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 	}
 	public String gun_firma_adi() throws ClassNotFoundException, SQLException
 	{
 		return _IGunluk.gun_firma_adi();
 	}
-	public void gorev_kayit(Gunluk_Bilgi gbilgi, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void gorev_kayit(Gunluk_Bilgi gbilgi,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IGunluk.gorev_kayit(gbilgi);
 		for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		  	_Logger.Logla(lBILGI, dBILGI);
 	}
-		public void gorev_sil(int id, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+		public void gorev_sil(int id, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IGunluk.gorev_sil(id);
 		for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		  	_Logger.Logla(lBILGI, dBILGI);
 	}
 	public int gid_ogren(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
 	{
@@ -76,11 +76,11 @@ public class GUNLUK_ACCESS {
 	{
 		return _IGunluk.hazir_gorevler(gbilgi);
 	}
-	public void gorev_tek_sil(int id, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void gorev_tek_sil(int id,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IGunluk.gorev_tek_sil(id);
 		for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		  	_Logger.Logla(lBILGI, dBILGI);
 	}
 	public void gunluk_farkli_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException, ParseException
 	{
@@ -94,11 +94,11 @@ public class GUNLUK_ACCESS {
 	{
 		return _IGunluk.gorev_oku_sonraki(gbilgi);
 	}
-	public void gun_firma_adi_kayit(String fadi,String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void gun_firma_adi_kayit(String fadi, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IGunluk.gun_firma_adi_kayit(fadi);
 		for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		  	_Logger.Logla(lBILGI, dBILGI);
 	}
 	public ResultSet gorev_oku_yillik_pivot(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
 	{

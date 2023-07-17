@@ -32,6 +32,7 @@ import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
+import OBS_C_2025.lOG_BILGI;
 
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -720,9 +721,14 @@ public class H_PLANI extends JInternalFrame {
 				os.flush();
 				os.close();
 			}
-			c_Access.hsp_sil(txtkodu.getText(), txtkodu.getText() + " Nolu Hesap Silme , Unvan:" + txtunvan.getText() , "",  BAGLAN_LOG.cariLogDizin);
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ(txtkodu.getText() + " Nolu Hesap Silme , Unvan:" + txtunvan.getText());
+			lBILGI.seteVRAK("");
+			
+			c_Access.hsp_sil(txtkodu.getText(), lBILGI,  BAGLAN_LOG.cariLogDizin);
+			lBILGI.setmESAJ(txtkodu.getText() + " Nolu Hesap Kayit , Unvan:" + txtunvan.getText());
 			c_Access.hpln_kayit(txtkodu.getText(), txtunvan.getText(), txtkarton.getText(), txthcinsi.getText(),GLOBAL.KULL_ADI
-					, txtkodu.getText() + " Nolu Hesap Kayit , Unvan:" + txtunvan.getText() , "",  BAGLAN_LOG.cariLogDizin);
+					, lBILGI,  BAGLAN_LOG.cariLogDizin);
 			c_Access.hpln_detay_kayit(txtkodu.getText()
 					, txtyetkili.getText(), txtadres1.getText(), txtadres2.getText()
 					, txtsemt.getText(), txtsehir.getText(), txtvd.getText(), txtvn.getText()
@@ -751,7 +757,11 @@ public class H_PLANI extends JInternalFrame {
 		if(g != 0 ) { return;	}
 		try
 		{
-			c_Access.hsp_sil(txtkodu.getText(), txtkodu.getText() + " Nolu Hesap Silme , Unvan:" + txtunvan.getText() , "",  BAGLAN_LOG.cariLogDizin);
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ(txtkodu.getText() + " Nolu Hesap Silme , Unvan:" + txtunvan.getText());
+			lBILGI.seteVRAK("");
+			
+			c_Access.hsp_sil(txtkodu.getText(), lBILGI,  BAGLAN_LOG.cariLogDizin);
 			temizle();
 			hisset("");
 		}

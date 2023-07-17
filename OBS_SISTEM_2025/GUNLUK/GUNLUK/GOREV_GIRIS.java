@@ -41,6 +41,7 @@ import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.lOG_BILGI;
 
 @SuppressWarnings({ "static-access","serial" })
 public class GOREV_GIRIS extends JInternalFrame {
@@ -413,7 +414,12 @@ public class GOREV_GIRIS extends JInternalFrame {
 				{ 
 					return;	
 				}
-				g_Access.gorev_sil(Integer.parseInt(txtGID.getText()),mesaj  ,txtGID.getText(), BAGLAN_LOG.gunLogDizin  );
+				
+				lOG_BILGI lBILGI = new lOG_BILGI();
+				lBILGI.setmESAJ(mesaj);
+				lBILGI.seteVRAK(txtGID.getText());
+				
+				g_Access.gorev_sil(Integer.parseInt(txtGID.getText()),lBILGI, BAGLAN_LOG.gunLogDizin  );
 			}
 			String str1 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBaslama) ;
 			String str2 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBitis) ;
@@ -442,7 +448,11 @@ public class GOREV_GIRIS extends JInternalFrame {
 				mesaj = mesaj + " Msj:" + txtMesaj.getText().toString().substring(0, 89  -(mesaj.length()) ) + " Kayit" ;
 			}
 			
-			g_Access.gorev_kayit(gbilgi,mesaj ,"", BAGLAN_LOG.gunLogDizin );
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ(mesaj);
+			lBILGI.seteVRAK("");
+			
+			g_Access.gorev_kayit(gbilgi,lBILGI, BAGLAN_LOG.gunLogDizin );
 			gbilgi.gid = g_Access.gid_ogren(gbilgi);
 			g_Access.gunluk_farkli_kayit(gbilgi);
 			sifirla();
@@ -463,7 +473,12 @@ public class GOREV_GIRIS extends JInternalFrame {
 			int g =  JOptionPane.showOptionDialog( null,  "Islem Dosyadan Silinecek ..?", "Gunluk Dosyasindan Gorev Silme",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 			if(g != 0 ) { return;	}
-			g_Access.gorev_sil(Integer.parseInt(txtGID.getText())  ,"Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + " Mesaj="+ txtMesaj.getText() + " Silme "  ,txtGID.getText(), BAGLAN_LOG.gunLogDizin  );
+			
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ("Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + " Mesaj="+ txtMesaj.getText() + " Silme ");
+			lBILGI.seteVRAK(txtGID.getText());
+			
+			g_Access.gorev_sil(Integer.parseInt(txtGID.getText())  ,lBILGI, BAGLAN_LOG.gunLogDizin  );
 			sifirla();
 		}
 		catch (Exception ex)

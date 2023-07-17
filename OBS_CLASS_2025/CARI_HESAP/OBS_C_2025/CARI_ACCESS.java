@@ -31,23 +31,29 @@ public class CARI_ACCESS {
 		return  _ICari.cari_firma_adi();
 	}
 	public void cari_sifirdan_L (String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
-			String sifre , String mesaj,String evrak, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException 
+			String sifre , lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException 
 	{
 		 _ICari.cari_sifirdan_L( kod,dizin_yeri, dizin,  fir_adi, ins, kull, sifre,port);
 			 for ( ILOGGER  _Logger : _Logger )
-				 _Logger.Logla(mesaj,evrak, dBILGI);
+				 _Logger.Logla(lBILGI, dBILGI);
 			 
 			 for ( ILOGGER  _Logger : _Logger )
-				  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
+			 {
+				 lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+				  	_Logger.Logla(lBILGI, dBILGI);
+			 }
 	}
 	public void cARI_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		 _ICari.cARI_SIFIR_S(server,ins, kull, sifre, kod, fir_adi);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla(mesaj,evrak, dBILGI);
+			  	_Logger.Logla(lBILGI, dBILGI);
 		 for ( ILOGGER  _Logger : _Logger )
-			  	_Logger.Logla("Firma Adi:" + fir_adi,evrak, dBILGI);
+		 {
+			 lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+			  	_Logger.Logla(lBILGI, dBILGI);
+		 }
 	}
 	public ResultSet  cari_sonfisno( ) throws ClassNotFoundException, SQLException
 	{
@@ -65,22 +71,22 @@ public class CARI_ACCESS {
 	{
 		return _ICari.cari_fino_bak(fisno);
 	}
-	public void evrak_yoket(int num, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void evrak_yoket(int num, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_ICari.evrak_yoket(num);
 		if (BAGLAN.cariDizin.lOG == true)
 		{
 		for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		  	_Logger.Logla(lBILGI, dBILGI);
 		}
 	}
-	public void cari_dekont_kaydet(dEKONT_BILGI dbILGI, String mesaj,String evrakl, DIZIN_BILGILERI dBILGI) throws SQLException, ClassNotFoundException
+	public void cari_dekont_kaydet(dEKONT_BILGI dbILGI,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws SQLException, ClassNotFoundException
 	{
 		_ICari.cari_dekont_kaydet(dbILGI);
 		if (BAGLAN.cariDizin.lOG == true)
 		{
 		for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrakl, dBILGI);
+		  	_Logger.Logla(lBILGI, dBILGI);
 		}
 	}
 	public ResultSet fiskon(int evrakno) throws ClassNotFoundException, SQLException
@@ -152,17 +158,17 @@ public class CARI_ACCESS {
 	{
 		return _ICari.hsp_pln(arama);
 	}
-	public void hsp_sil(String hesap, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void hsp_sil(String hesap, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_ICari.hsp_sil(hesap);
 		for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		  	_Logger.Logla(lBILGI, dBILGI);
 	}
-	public void hpln_kayit(String kodu,String adi,String karton,String hcins,String usr, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void hpln_kayit(String kodu,String adi,String karton,String hcins,String usr,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_ICari.hpln_kayit(kodu, adi, karton, hcins, usr);
 		for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		  	_Logger.Logla(lBILGI, dBILGI);
 	}
 	public void hpln_detay_kayit(String kodu ,String yet ,String ad1 ,String ad2 ,String semt,String seh  , String vd , String vn 
 			, String t1 ,String t2 ,String t3 ,String fx ,String o1 ,String o2 ,String o3 , String web 
@@ -171,10 +177,10 @@ public class CARI_ACCESS {
 		_ICari.hpln_detay_kayit(kodu, yet, ad1, ad2, semt, seh, vd, vn, t1, t2, t3, fx, o1, o2, o3, web, mai, kim, acik, sms, resim);
 	}
 	public ResultSet ekstre_arama(String hes , String acik , String gun ,String ay,String yil ,String kod,String kullanici 
-			, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		  	_Logger.Logla(lBILGI, dBILGI);
 		return _ICari.ekstre_arama(hes, acik, gun, ay, yil, kod, kullanici);
 	}
 	public ResultSet eksik_kur_okuma(String hesap,String t1,String t2,String kur) throws ClassNotFoundException, SQLException
@@ -201,10 +207,10 @@ public class CARI_ACCESS {
 	{
 		return _ICari.kasa_kontrol(hesap, t1);
 	}
-	public void cari_kod_degis_hesap(String t1,String t2, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void cari_kod_degis_hesap(String t1,String t2,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		  	_Logger.Logla(lBILGI, dBILGI);
 		_ICari.cari_kod_degis_hesap(t1, t2);
 	}
 	public void cari_kod_degis_satirlar(String t1,String t2) throws ClassNotFoundException, SQLException
@@ -251,11 +257,11 @@ public class CARI_ACCESS {
 	}
 	public void yilsonu_cari_dekont_kaydet(String bhes,String tar,int evrak,String bcins,Double bkur,Double borc ,
 			String alhes,String acins,Double alkur,Double alacak,String izahat,String kod,String user
-			, String mesaj,String evrakk, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+			,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_ICari.yilsonu_cari_dekont_kaydet(bhes, tar, evrak, bcins, bkur, borc, alhes, acins, alkur, alacak, izahat, kod, user);
 		for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrakk, dBILGI);
+		  	_Logger.Logla(lBILGI, dBILGI);
 	}
 	public ResultSet ekstre_sqlite() throws ClassNotFoundException, SQLException
 	{
@@ -269,20 +275,20 @@ public class CARI_ACCESS {
 	{
 		return _ICari.evrak_ogren(text);
 	}
-	public ResultSet sql_sorgu(String sql, String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public ResultSet sql_sorgu(String sql,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		  	_Logger.Logla(lBILGI, dBILGI);
 		return _ICari.sql_sorgu(sql);
 	}
 	public String[] cari_adres_oku (String kodu) throws ClassNotFoundException, SQLException 
 	{
 		return _ICari.cari_adres_oku(kodu);
 	}
-		public void cari_firma_adi_kayit(String fadi,String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+		public void cari_firma_adi_kayit(String fadi, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_ICari.cari_firma_adi_kayit(fadi);
 		for ( ILOGGER  _Logger : _Logger )
-		  	_Logger.Logla(mesaj,evrak, dBILGI);
+		  	_Logger.Logla(lBILGI, dBILGI);
 	}
 }

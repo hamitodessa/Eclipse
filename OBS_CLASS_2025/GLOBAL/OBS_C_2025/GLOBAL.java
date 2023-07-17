@@ -23,6 +23,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.SQLITE_LOG;
+
+
 import OBS_2025.Tema_Cari;
 
 public class GLOBAL {
@@ -269,9 +271,14 @@ public class GLOBAL {
 		stmt.execute(sql);
 		sQLITEconn.close();
 
-		ILOGER_KAYIT  sQLOG= new SQLITE_LOG();
-		sQLOG.Logla("Dosya Olusturuldu","", dBILGI);
-		sQLOG.Logla("Firma Adi:" + fadi,"", dBILGI);
+		ILOGER_KAYIT  sQLOG = new SQLITE_LOG();
+		lOG_BILGI lbilgi = new lOG_BILGI();
+		lbilgi.setmESAJ("Dosya Olusturuldu");
+		lbilgi.seteVRAK("");
+		sQLOG.Logla(lbilgi, dBILGI);
+		lbilgi.setmESAJ("Firma Adi:" + fadi);
+		lbilgi.seteVRAK("");
+		sQLOG.Logla(lbilgi, dBILGI);
 	}
 	private static void  set_ilk() 
 	{

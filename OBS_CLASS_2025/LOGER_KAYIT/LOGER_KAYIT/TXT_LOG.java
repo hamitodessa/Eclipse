@@ -18,11 +18,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.lOG_BILGI;
 
 public class TXT_LOG  implements ILOGER_KAYIT {
 
 	@Override
-	public void Logla(String mesaj,String evrak, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
+	public void Logla(lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException {
 		try
 		{
 			File file = new File(GLOBAL.LOG_SURUCU  + dBILGI.mODULADI  + ".txt");
@@ -32,7 +33,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			Writer bWriter = new BufferedWriter(new OutputStreamWriter( new FileOutputStream(file, true), StandardCharsets.UTF_8));
 			SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss sss");
 			String formatli = formatter.format(new Date());
-			String msj=  formatli +"\t" + mesaj.replace("\t", "").toString().trim()  + "\t" + evrak +"\t"+ GLOBAL.KULL_ADI + "\r\n";
+			String msj=  formatli +"\t" + lBILGI.getmESAJ().replace("\t", "").toString().trim()  + "\t" + lBILGI.geteVRAK() +"\t"+ GLOBAL.KULL_ADI + "\r\n";
 			bWriter.write(msj);
 			bWriter.close();
 		}

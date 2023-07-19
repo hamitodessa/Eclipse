@@ -19,27 +19,25 @@ public class ADRES_ACCESS {
 	{
 	_IAdres.baglan();
 	}
-	public void aDR_SIF_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,String sifre
-			, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException
+	public void aDR_SIF_L(Server_Bilgi sbilgi, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
-		_IAdres.aDR_SIF_L( kod,dizin_yeri,  dizin,  fir_adi,  ins,  kull, sifre, port);
+		_IAdres.aDR_SIF_L(sbilgi);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(lBILGI, dBILGI);
 		 for ( ILOGGER  _Logger : _Logger )
 		 {
-			 lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+			 lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
 			  	_Logger.Logla(lBILGI, dBILGI);
 		 }
 	}
-	public void aDR_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
-			,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void aDR_SIFIR_S(Server_Bilgi sbilgi	,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
-		_IAdres.aDR_SIFIR_S(server, ins, kull, sifre, kod, fir_adi);
+		_IAdres.aDR_SIFIR_S(sbilgi);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(lBILGI, dBILGI);
 		 for ( ILOGGER  _Logger : _Logger )
 		 {
-			 lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+			 lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
 			  	_Logger.Logla(lBILGI, dBILGI);
 		 }
 	}

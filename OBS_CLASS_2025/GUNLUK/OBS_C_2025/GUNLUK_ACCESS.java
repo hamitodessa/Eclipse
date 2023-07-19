@@ -19,8 +19,7 @@ public class GUNLUK_ACCESS {
 	{
 	_IGunluk.baglan();
 	}
-	public void gUN_SIFIR_L(Server_Bilgi sbilgi
-			,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void gUN_SIFIR_L(Server_Bilgi sbilgi	,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
 		_IGunluk.gUN_SIFIR_L(sbilgi);
 		 for ( ILOGGER  _Logger : _Logger )

@@ -17,17 +17,17 @@ public class SMS_ACCESS {
 	{
 	_ISms.baglan();
 	}
-	public void sMS_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins, String kull, String sifre
-			,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException 
+	public void sMS_SIFIR_L(Server_Bilgi sbilgi
+			,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
 	{
-		_ISms.sMS_SIFIR_L(kod, dizin_yeri, dizin, ins, kull, sifre,port);
+		_ISms.sMS_SIFIR_L(sbilgi);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(lBILGI, dBILGI);
 	}
-	public void sMS_SIFIR_S(String server, String ins, String kull, String sifre, String kod
+	public void sMS_SIFIR_S(Server_Bilgi sbilgi
 			,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
-		_ISms.sMS_SIFIR_S(server, ins, kull, sifre, kod);
+		_ISms.sMS_SIFIR_S(sbilgi);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(lBILGI, dBILGI);
 		}

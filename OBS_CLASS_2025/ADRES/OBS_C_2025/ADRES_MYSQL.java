@@ -24,28 +24,27 @@ public class ADRES_MYSQL implements IADRES {
 		con = DriverManager.getConnection(cumle,BAGLAN.adrDizin.kULLANICI,BAGLAN.adrDizin.sIFRESI);
 	}
 	@Override
-	public void aDR_SIF_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
-			String sifre,String port) throws ClassNotFoundException, SQLException {
+	public void aDR_SIF_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = null;  
 		String cumle = "";
-		cumle = "jdbc:mysql://localhost:" + port ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
-		String VERITABANI = "ok_adr" + kod;
+		cumle = "jdbc:mysql://localhost:" + sbilgi.getPort() ;
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+		String VERITABANI = "ok_adr" + sbilgi.getKod();
 		stmt = null;
 		String sql =null;
 		sql = "CREATE DATABASE " + VERITABANI ;
 		stmt = con.createStatement();  
 		stmt.execute(sql);
 		cumle = "jdbc:mysql://localhost/" +VERITABANI ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
-		create_table(fir_adi);
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+		create_table(sbilgi.getFir_adi());
 		//
 		sql = "CREATE DATABASE " + VERITABANI + "_log" ;
 		stmt = con.createStatement();  
 		stmt.execute(sql);
 		cumle = "jdbc:mysql://localhost/" +VERITABANI + "_log" ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
@@ -53,20 +52,20 @@ public class ADRES_MYSQL implements IADRES {
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
 		vTLOG.Logla(lBILGI, BAGLAN_LOG.adrLogDizin);
-		lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
 		vTLOG.Logla(lBILGI, BAGLAN_LOG.adrLogDizin);
 
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL" + ".DB") == false)
 		{
 			String dsy =GLOBAL.LOG_SURUCU + VERITABANI + "_mYSQL"+ ".DB" ;
-			GLOBAL.create_table_log(dsy ,fir_adi,BAGLAN_LOG.adrLogDizin);
+			GLOBAL.create_table_log(dsy ,sbilgi.getFir_adi(),BAGLAN_LOG.adrLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		tEXLOG.Logla(lBILGI, BAGLAN_LOG.adrLogDizin);
-		lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
 		tEXLOG.Logla(lBILGI, BAGLAN_LOG.adrLogDizin);
 		//
 		stmt.close();
@@ -74,28 +73,28 @@ public class ADRES_MYSQL implements IADRES {
 	}
 
 	@Override
-	public void aDR_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi)
+	public void aDR_SIFIR_S(Server_Bilgi sbilgi)
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = null;  
-		String VERITABANI = "ok_adr" + kod;
+		String VERITABANI = "ok_adr" + sbilgi.getKod();
 		String cumle = "";
 		stmt = null;
 		String sql =null;
-		cumle = "jdbc:mysql://" + server ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:mysql://" + sbilgi.getServer() ;
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		sql = "CREATE DATABASE " + VERITABANI ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:mysql://" + server + "/" + VERITABANI ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
-		create_table(fir_adi);
+		cumle = "jdbc:mysql://" + sbilgi.getServer() + "/" + VERITABANI ;
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+		create_table(sbilgi.getFir_adi());
 		//
 		sql = "CREATE DATABASE " + VERITABANI + "_log" ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:mysql://" + server + "/" + VERITABANI + "_log" ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:mysql://" + sbilgi.getServer() + "/" + VERITABANI + "_log" ;
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
@@ -103,7 +102,7 @@ public class ADRES_MYSQL implements IADRES {
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
 		vTLOG.Logla(lBILGI, BAGLAN_LOG.adrLogDizin);
-		lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
 		vTLOG.Logla(lBILGI, BAGLAN_LOG.adrLogDizin);
 
 		//SQLITE LOG DOSYASI OLUSTUR
@@ -112,13 +111,13 @@ public class ADRES_MYSQL implements IADRES {
 			String dsy =  GLOBAL.LOG_SURUCU +GLOBAL.char_degis( BAGLAN_LOG.adrLogDizin.mODUL) ;
 			@SuppressWarnings("unused")
 			Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy  ) ;
-			GLOBAL.create_table_log(dsy ,fir_adi,BAGLAN_LOG.adrLogDizin);
+			GLOBAL.create_table_log(dsy ,sbilgi.getFir_adi(),BAGLAN_LOG.adrLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		 tEXLOG.Logla(lBILGI, BAGLAN_LOG.adrLogDizin);
-		 lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+		 lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
 		 tEXLOG.Logla(lBILGI, BAGLAN_LOG.adrLogDizin);
 		//
 

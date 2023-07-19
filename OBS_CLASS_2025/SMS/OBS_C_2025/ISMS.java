@@ -6,8 +6,8 @@ import java.sql.SQLException;
 public interface ISMS {
 
 	public void baglan() throws SQLException;
-	public void sMS_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins,String kull,String sifre,String port) throws ClassNotFoundException, SQLException;
-	public void sMS_SIFIR_S(String server,  String ins, String kull, String sifre, String kod) throws ClassNotFoundException, SQLException;
+	public void sMS_SIFIR_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException;
+	public void sMS_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException;
 	public void create_table() throws SQLException ;
 	public ResultSet mail_giris_bak() throws ClassNotFoundException, SQLException;
 	public boolean kod_ismi(String kodu) throws ClassNotFoundException, SQLException;

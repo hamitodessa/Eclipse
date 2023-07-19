@@ -17,17 +17,16 @@ public class KUR_ACCESS {
 	{
 	_IKur.baglan();
 	}
-	public void kUR_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins, String kull, String sifre
-			, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException
+	public void kUR_SIFIR_L(Server_Bilgi sbilgi	, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
-		_IKur.kUR_SIFIR_L(kod, dizin_yeri, dizin, ins, kull, sifre, port);
+		_IKur.kUR_SIFIR_L(sbilgi);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(lBILGI, dBILGI);
 		}
-	public void kUR_SIFIR_S(String server, String ins, String kull, String sifre, String kod
+	public void kUR_SIFIR_S(Server_Bilgi sbilgi
 			,lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
-		_IKur.kUR_SIFIR_S(server, ins, kull, sifre, kod);
+		_IKur.kUR_SIFIR_S(sbilgi);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(lBILGI, dBILGI);
 		}

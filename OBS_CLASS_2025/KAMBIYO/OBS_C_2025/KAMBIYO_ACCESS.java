@@ -18,27 +18,26 @@ public class KAMBIYO_ACCESS {
 	{
 	_IKambiyo.baglan();
 	}
-	public void kAM_SIFIR_L(String kod, String dizin_yeri, String dizin, String fir_adi, String ins, String kull,
-			String sifre, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI,String port) throws ClassNotFoundException, SQLException
+	public void kAM_SIFIR_L(Server_Bilgi sbilgi, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
-		_IKambiyo.kAM_SIFIR_L(kod, dizin_yeri, dizin, fir_adi, ins, kull, sifre,port);
+		_IKambiyo.kAM_SIFIR_L(sbilgi);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(lBILGI, dBILGI);
 		 for ( ILOGGER  _Logger : _Logger )
 		 {
-			 lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+			 lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
 			  	_Logger.Logla(lBILGI, dBILGI);
 		 }
 	}
-	public void kAM_SIFIR_S(String server, String ins, String kull, String sifre, String kod, String fir_adi
+	public void kAM_SIFIR_S(Server_Bilgi sbilgi
 			, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
-		_IKambiyo.kAM_SIFIR_S(server, ins, kull, sifre, kod, fir_adi);
+		_IKambiyo.kAM_SIFIR_S(sbilgi);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(lBILGI, dBILGI);
 		 for ( ILOGGER  _Logger : _Logger )
 		 {
-			 lBILGI.setmESAJ("Firma Adi:" + fir_adi);
+			 lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
 			  	_Logger.Logla(lBILGI, dBILGI);
 		 }
 		}

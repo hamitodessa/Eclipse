@@ -22,39 +22,39 @@ public class KUR_MSSQL implements IKUR{
 		con = DriverManager.getConnection(cumle,BAGLAN.kurDizin.kULLANICI,BAGLAN.kurDizin.sIFRESI);
 	}
 	@Override
-	public void kUR_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins, String kull, String sifre,String port) throws ClassNotFoundException, SQLException {
+	public void kUR_SIFIR_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
 		String cumle = "";
-		if ( ! port.toString().equals("") )
+		if ( ! sbilgi.getPort().toString().equals("") )
 		{
-			port =  ":" + port ;
+			sbilgi.setPort(  ":" + sbilgi.getPort() );
 		}
-		cumle = "jdbc:sqlserver://localhost"+ port + ";instanceName=" + ins + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
-		String VERITABANI = "OK_Kur" + kod;
+		cumle = "jdbc:sqlserver://localhost"+ sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+		String VERITABANI = "OK_Kur" + sbilgi.getKod();
 		stmt = null;
 		String sql =null;
-		if (dizin_yeri == "default")
+		if (sbilgi.getDizin_yeri() == "default")
 			sql = "CREATE DATABASE [" + VERITABANI + "]";
 		else
-			sql = "CREATE DATABASE [" + VERITABANI + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + ".mdf ' ) ";
+			sql = "CREATE DATABASE [" + VERITABANI + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "', FILENAME = N'" + sbilgi.getDizin() 	+ "\\" + VERITABANI + ".mdf ' ) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:sqlserver://localhost" + port + ";instanceName=" + ins + ";database=" + VERITABANI + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:sqlserver://localhost" + sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";database=" + VERITABANI + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table();
 		//
-		if (dizin_yeri == "default")
+		if (sbilgi.getDizin_yeri() == "default")
 			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
 		else
-			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG"+ "', FILENAME = N'" + dizin 	+ "\\" + VERITABANI + "_LOG" + ".mdf ' ) ";
-		cumle = "jdbc:sqlserver://localhost " + port + ";instanceName=" + ins + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
+			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG"+ "', FILENAME = N'" + sbilgi.getDizin() 	+ "\\" + VERITABANI + "_LOG" + ".mdf ' ) ";
+		cumle = "jdbc:sqlserver://localhost " + sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:sqlserver://localhost " + port + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:sqlserver://localhost " + sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";database=" + VERITABANI + "_LOG" + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
@@ -77,29 +77,29 @@ public class KUR_MSSQL implements IKUR{
 		con.close();
 	}
 	@Override
-	public void kUR_SIFIR_S(String server, String ins, String kull, String sifre, String kod) throws ClassNotFoundException, SQLException {
+	public void kUR_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		con = null;  
-		String VERITABANI = "OK_Kur" + kod;
+		String VERITABANI = "OK_Kur" + sbilgi.getKod();
 		String cumle = "";
 		stmt = null;
 		String sql =null;
-		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		sql = "CREATE DATABASE [" + VERITABANI + "]";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";database=" + VERITABANI + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table();
 		//
 		sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
-		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:sqlserver://" + server + ";instanceName=" + ins + ";database=" + VERITABANI + "_LOG" + ";";
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";database=" + VERITABANI + "_LOG" + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();

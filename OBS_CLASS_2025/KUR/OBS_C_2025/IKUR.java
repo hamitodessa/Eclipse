@@ -6,8 +6,8 @@ import java.sql.SQLException;
 public interface IKUR {
 	
 	public void baglan() throws SQLException, ClassNotFoundException;
-	public void kUR_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins,String kull,String sifre,String port) throws ClassNotFoundException, SQLException;
-	public void kUR_SIFIR_S(String server,  String ins, String kull, String sifre, String kod) throws ClassNotFoundException, SQLException;
+	public void kUR_SIFIR_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException;
+	public void kUR_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException;
 	public void create_table() throws SQLException;
 	public ResultSet  kur_liste(String tar) throws ClassNotFoundException, SQLException;
 	public ResultSet kur_oku (String tar , String kur) throws ClassNotFoundException, SQLException;

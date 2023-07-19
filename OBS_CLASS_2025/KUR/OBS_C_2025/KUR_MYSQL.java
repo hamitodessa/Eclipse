@@ -23,28 +23,28 @@ public class KUR_MYSQL implements IKUR {
 		con = DriverManager.getConnection(cumle,BAGLAN.kurDizin.kULLANICI,BAGLAN.kurDizin.sIFRESI);
 	}
 	@Override
-	public void kUR_SIFIR_L(String kod, String dizin_yeri, String dizin, String ins, String kull, String sifre,String port)
+	public void kUR_SIFIR_L(Server_Bilgi sbilgi)
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = null;  
 		String cumle = "";
-		cumle = "jdbc:mysql://localhost:" + port ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
-		String VERITABANI = "ok_kur" + kod;
+		cumle = "jdbc:mysql://localhost:" + sbilgi.getPort() ;
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+		String VERITABANI = "ok_kur" + sbilgi.getKod();
 		stmt = null;
 		String sql =null;
 		sql = "CREATE DATABASE " + VERITABANI ;
 		stmt = con.createStatement();  
 		stmt.execute(sql);
 		cumle = "jdbc:mysql://localhost/" +VERITABANI ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table();
 		//
 		sql = "CREATE DATABASE " + VERITABANI + "_log" ;
 		stmt = con.createStatement();  
 		stmt.execute(sql);
 		cumle = "jdbc:mysql://localhost/" +VERITABANI + "_log" ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();
@@ -66,28 +66,28 @@ public class KUR_MYSQL implements IKUR {
 		con.close();
 	}
 	@Override
-	public void kUR_SIFIR_S(String server, String ins, String kull, String sifre, String kod)
+	public void kUR_SIFIR_S(Server_Bilgi sbilgi)
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = null;  
-		String VERITABANI = "ok_kur" + kod;
+		String VERITABANI = "ok_kur" + sbilgi.getKod();
 		String cumle = "";
 		stmt = null;
 		String sql =null;
-		cumle = "jdbc:mysql://" + server ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:mysql://" + sbilgi.getServer() ;
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		sql = "CREATE DATABASE " + VERITABANI ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:mysql://" + server + "/" + VERITABANI ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:mysql://" + sbilgi.getServer() + "/" + VERITABANI ;
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table();
 		//
 		sql = "CREATE DATABASE " + VERITABANI + "_log" ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		cumle = "jdbc:mysql://" + server + "/" + VERITABANI + "_log" ;
-		con = DriverManager.getConnection(cumle,kull,sifre);
+		cumle = "jdbc:mysql://" + sbilgi.getServer() + "/" + VERITABANI + "_log" ;
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MYSQL();

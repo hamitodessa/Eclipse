@@ -1658,13 +1658,26 @@ public class CAL_DIZIN extends JFrame {
 		lOG_BILGI lBILGI = new lOG_BILGI();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
+		
+		Server_Bilgi sbilgi = new Server_Bilgi();
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setFir_adi(strAdmin);
+		sbilgi.setIns(comboBox.getSelectedItem().toString());
+		sbilgi.setKull(txtkul.getText());
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
+		sbilgi.setPort(txtIp.getText()); 
+		
 		if (chckbxD.isSelected())
 		{
-			c_Access.cari_sifirdan_L(txtKodu.getText(), "default", "", strAdmin, comboBox.getSelectedItem().toString() ,txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.cariLogDizin,txtIp.getText());
+			sbilgi.setDizin_yeri("default");
+			sbilgi.setDizin("");
+			c_Access.cari_sifirdan_L(sbilgi,lBILGI,BAGLAN_LOG.cariLogDizin);
 		}
 		else
 		{
-			c_Access.cari_sifirdan_L(txtKodu.getText(), "", txtdiz.getText(), strAdmin, comboBox.getSelectedItem().toString(),txtkul.getText(),oac.sDONDUR.sDONDUR(txtsifr),lBILGI,BAGLAN_LOG.cariLogDizin,txtIp.getText());
+			sbilgi.setDizin_yeri("");
+			sbilgi.setDizin(txtdiz.getText());
+			c_Access.cari_sifirdan_L(sbilgi,lBILGI,BAGLAN_LOG.cariLogDizin);
 		}
 	}
 	void stok_olustur() throws ClassNotFoundException, SQLException
@@ -1939,9 +1952,19 @@ public class CAL_DIZIN extends JFrame {
 		lOG_BILGI lBILGI = new lOG_BILGI();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
+		
+		Server_Bilgi sbilgi = new Server_Bilgi();
+		sbilgi.setKod(txtKodu.getText());;
+		sbilgi.setFir_adi(strAdmin);;
+		sbilgi.setIns(comboBox.getSelectedItem().toString());;
+		sbilgi.setKull(txtkul.getText()); ;
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
+		sbilgi.setServer(txtIp.getText()); ;
+		sbilgi.setDizin_yeri("default");;
+		sbilgi.setDizin("");;
 		if (chckbxD.isSelected())
 		{
-			c_Access.cARI_SIFIR_S(txtIp.getText(),comboBox.getSelectedItem().toString(), txtkul.getText(), oac.sDONDUR.sDONDUR(txtsifr), txtKodu.getText(),  strAdmin,lBILGI,BAGLAN_LOG.cariLogDizin);
+			c_Access.cARI_SIFIR_S(sbilgi,lBILGI,BAGLAN_LOG.cariLogDizin);
 		}
 	}
 	void stok_s_olustur() throws ClassNotFoundException, SQLException

@@ -31,6 +31,8 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
+import javax.swing.border.TitledBorder;
 
 @SuppressWarnings({"serial","deprecation","static-access","unused"})
 public class MSSQL_TO_MYSQL extends JInternalFrame {
@@ -43,7 +45,16 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 	boolean ds = false;
 	boolean tx = false;
 	boolean em = false;
-
+	private JTextField msUSER;
+	private JTextField msSifre;
+	private JTextField msServer;
+	private JTextField msInstance;
+	private JTextField msPort;
+	private JTextField myUser;
+	private JTextField mySifre;
+	private JTextField myServer;
+	private JCheckBox msLokal;
+	private JCheckBox myLokal ;
 	/**
 	 * Launch the application.
 	 */
@@ -65,7 +76,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 	 */
 	public MSSQL_TO_MYSQL() {
 		setClosable(true);
-		setBounds(100, 100, 671, 482);
+		setBounds(100, 100, 779, 529);
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -94,7 +105,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		textField_1.setBounds(313, 33, 96, 20);
 		panel.add(textField_1);
 
-		JButton btnNewButton_1 = new JButton("BAGLAN");
+		JButton btnNewButton_1 = new JButton("CARI BAGLAN");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -105,10 +116,10 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_1.setBounds(35, 79, 159, 23);
+		btnNewButton_1.setBounds(28, 253, 184, 23);
 		panel.add(btnNewButton_1);
 
-		JButton btnNewButton_1_1 = new JButton("BAGLAN");
+		JButton btnNewButton_1_1 = new JButton("KUR BAGLAN");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -119,11 +130,11 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_1_1.setBounds(229, 79, 123, 23);
+		btnNewButton_1_1.setBounds(222, 253, 143, 23);
 		panel.add(btnNewButton_1_1);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(28, 113, 182, 167);
+		panel_1.setBounds(28, 287, 182, 167);
 		panel_1.setLayout(null);
 		panel.add(panel_1);
 
@@ -149,7 +160,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
-		panel_1_1.setBounds(222, 113, 143, 167);
+		panel_1_1.setBounds(222, 287, 143, 167);
 		panel.add(panel_1_1);
 
 		JButton btnNewButton_2 = new JButton("Kur");
@@ -158,7 +169,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 
 		JPanel panel_1_1_1 = new JPanel();
 		panel_1_1_1.setLayout(null);
-		panel_1_1_1.setBounds(375, 113, 143, 199);
+		panel_1_1_1.setBounds(375, 289, 143, 199);
 		panel.add(panel_1_1_1);
 
 		JButton btnNewButton_2_1 = new JButton("Mal");
@@ -258,7 +269,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		btnNewButton_2_1_1_1_1_1_1_1.setBounds(10, 165, 123, 23);
 		panel_1_1_1.add(btnNewButton_2_1_1_1_1_1_1_1);
 
-		JButton btnNewButton_1_1_1 = new JButton("BAGLAN");
+		JButton btnNewButton_1_1_1 = new JButton("STOK BAGLAN");
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -269,7 +280,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_1_1_1.setBounds(382, 79, 123, 23);
+		btnNewButton_1_1_1.setBounds(375, 255, 143, 23);
 		panel.add(btnNewButton_1_1_1);
 		
 		JButton btnNewButton_3 = new JButton("sifre");
@@ -306,7 +317,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				/////
 			}
 		});
-		btnNewButton_3.setBounds(35, 340, 89, 23);
+		btnNewButton_3.setBounds(664, 397, 89, 23);
 		panel.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("backup");
@@ -318,7 +329,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
-		btnNewButton_4.setBounds(162, 340, 89, 23);
+		btnNewButton_4.setBounds(664, 431, 89, 23);
 		panel.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("New button");
@@ -331,8 +342,102 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				System.out.println(qwe.getHours() + ":" +qwe.getMinutes()+ ":" + qwe.getSeconds());
 			}
 		});
-		btnNewButton_5.setBounds(276, 340, 89, 23);
+		btnNewButton_5.setBounds(664, 465, 89, 23);
 		panel.add(btnNewButton_5);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		panel_2.setBorder(new TitledBorder(null, "My Sql Baglanti", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBounds(331, 64, 244, 178);
+		panel.add(panel_2);
+		
+		myLokal = new JCheckBox("Lokal");
+		myLokal.setBounds(10, 29, 97, 23);
+		panel_2.add(myLokal);
+		myLokal.setSelected(true);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("Kullanici");
+		lblNewLabel_2_1.setBounds(10, 61, 69, 14);
+		panel_2.add(lblNewLabel_2_1);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("Sifre");
+		lblNewLabel_3_1.setBounds(10, 92, 69, 14);
+		panel_2.add(lblNewLabel_3_1);
+		
+		JLabel lblNewLabel_4_1 = new JLabel("Server / Port");
+		lblNewLabel_4_1.setBounds(10, 119, 80, 14);
+		panel_2.add(lblNewLabel_4_1);
+		
+		myServer = new JTextField();
+		myServer.setBounds(100, 116, 125, 20);
+		panel_2.add(myServer);
+		myServer.setColumns(10);
+		
+		mySifre = new JTextField();
+		mySifre.setBounds(100, 89, 125, 20);
+		panel_2.add(mySifre);
+		mySifre.setColumns(10);
+		
+		myUser = new JTextField();
+		myUser.setBounds(100, 58, 125, 20);
+		panel_2.add(myUser);
+		myUser.setColumns(10);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setLayout(null);
+		panel_3.setBorder(new TitledBorder(null, "Ms Sql Baglanti", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBounds(28, 61, 249, 183);
+		panel.add(panel_3);
+		
+		msLokal = new JCheckBox("Lokal");
+		msLokal.setBounds(10, 15, 97, 23);
+		panel_3.add(msLokal);
+		msLokal.setSelected(true);
+		
+		JLabel lblNewLabel_2 = new JLabel("Kullanici");
+		lblNewLabel_2.setBounds(10, 53, 80, 14);
+		panel_3.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Sifre");
+		lblNewLabel_3.setBounds(10, 78, 80, 14);
+		panel_3.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Server");
+		lblNewLabel_4.setBounds(10, 105, 80, 14);
+		panel_3.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Instance");
+		lblNewLabel_5.setBounds(10, 130, 80, 14);
+		panel_3.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("Port");
+		lblNewLabel_6.setBounds(10, 155, 80, 14);
+		panel_3.add(lblNewLabel_6);
+		
+		msPort = new JTextField();
+		msPort.setBounds(100, 152, 125, 20);
+		panel_3.add(msPort);
+		msPort.setColumns(10);
+		
+		msInstance = new JTextField();
+		msInstance.setBounds(100, 126, 125, 20);
+		panel_3.add(msInstance);
+		msInstance.setColumns(10);
+		
+		msServer = new JTextField();
+		msServer.setBounds(100, 102, 125, 20);
+		panel_3.add(msServer);
+		msServer.setColumns(10);
+		
+		msSifre = new JTextField();
+		msSifre.setBounds(100, 75, 125, 20);
+		panel_3.add(msSifre);
+		msSifre.setColumns(10);
+		
+		msUSER = new JTextField();
+		msUSER.setBounds(100, 48, 125, 20);
+		panel_3.add(msUSER);
+		msUSER.setColumns(10);
 		
 			btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -418,8 +523,23 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		try
 		{
 			String cumle = "";
-			cumle = "jdbc:sqlserver://localhost;instanceName=SQLEXPRESS;database=OK_" + modul + textField.getText() ;
-			MS_conn = DriverManager.getConnection(cumle,"sa","197227oOk");
+			String serverString = "" ;
+			String port = "" ;
+			if (msLokal.isSelected())
+			{
+				if ( ! msPort.getText().toString().equals("") )
+				{
+					port =  ":" + msPort.getText() ;
+				}
+				serverString = "localhost" + port ;
+			}
+			else
+			{
+				serverString = msServer.getText()  ;	
+			}
+			cumle = "jdbc:sqlserver://" + serverString + ";instanceName=" + msInstance.getText() + ";database=OK_" + modul + textField.getText() ;
+			MS_conn = DriverManager.getConnection(cumle,msUSER.getText(),msSifre.getText()); //"sa","197227oOk"
+			JOptionPane.showMessageDialog(null,"Ms SQL Baglanti Saglandi", "MS SQL baglan", JOptionPane.INFORMATION_MESSAGE);
 		} 
 		catch (Exception e)
 		{  
@@ -429,12 +549,22 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 	void mysql_baglan(String modul) throws ClassNotFoundException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-
-		String url = "jdbc:mysql://localhost:3306/ok_" + modul + textField_1.getText()  ; //pointing to no database.
+		String serverString = "" ;
+		if (myLokal.isSelected())
+		{
+			
+			serverString = "localhost:" + myServer.getText() ;
+		}
+		else
+		{
+			serverString = msServer.getText()  ;	
+		}
+		
+		String url = "jdbc:mysql://"+ serverString +"/ok_" + modul + textField_1.getText()  ; //pointing to no database.
 		try 
 		{
-			MY_conn = DriverManager.getConnection(url, "root","197227oOk");
-
+			MY_conn = DriverManager.getConnection(url, myUser.getText(),mySifre.getText()); // "root","197227oOk"
+			JOptionPane.showMessageDialog(null,"My SQL Baglanti Saglandi", "MY SQL baglan", JOptionPane.INFORMATION_MESSAGE);
 		} catch (Exception e)
 		{
 			JOptionPane.showMessageDialog(null,e.getMessage(), "My SQL baglan", JOptionPane.ERROR_MESSAGE);

@@ -318,6 +318,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			}
 		});
 		btnNewButton_3.setBounds(664, 397, 89, 23);
+		btnNewButton_3.setVisible(false);
 		panel.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("backup");
@@ -330,20 +331,10 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			}
 		});
 		btnNewButton_4.setBounds(664, 431, 89, 23);
+		btnNewButton_4.setVisible(false);
 		panel.add(btnNewButton_4);
 		
-		JButton btnNewButton_5 = new JButton("New button");
-		btnNewButton_5.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				Date qwe = new Date();
-				
-				System.out.println(qwe.getHours() + ":" +qwe.getMinutes()+ ":" + qwe.getSeconds());
-			}
-		});
-		btnNewButton_5.setBounds(664, 465, 89, 23);
-		panel.add(btnNewButton_5);
+		
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
@@ -497,6 +488,17 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 	}
 	public void baglan() throws ClassNotFoundException
 	{
+		if (textField.getText().equals("")) return;
+		if (textField_1.getText().equals("")) return;
+		if (msUSER.getText().equals("")) return;
+		if (msSifre.getText().equals("")) return;
+		if (msInstance.getText().equals("")) return;
+		
+		if (myUser.getText().equals("")) return;
+		if (mySifre.getText().equals("")) return;
+		if (myServer.getText().equals("")) return;
+	
+		
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		mssql_baglan("Car");
 		mysql_baglan("Car");

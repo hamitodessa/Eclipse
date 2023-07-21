@@ -2,7 +2,6 @@ package OBS_C_2025;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,9 +14,11 @@ import java.util.zip.ZipOutputStream;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 
+
 public class BACKUP_RESTORE {
 
-	@SuppressWarnings("deprecation")
+	
+	
 	public static void BackupdbtoMYsql(String dbName ,String dbUser,String dbPass , String myDUMP) {
 
 		String savePath = "C:/OBS_SISTEM/" + dbName +".sql";

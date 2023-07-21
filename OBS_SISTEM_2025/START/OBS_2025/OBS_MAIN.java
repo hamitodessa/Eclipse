@@ -151,6 +151,7 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_85;//Gonderilmis Raporlar
 	private JButton btnNewButton_86;//Calisma Dizinleri
 	private JButton btnNewButton_86_1;//Log Raporlama
+	private JButton btnNewButton_86_1_1; // Veri Aktarimi
 	//KAMBIYO
 	private JButton btnNewButton_75;//Cek Giris
 	private JButton btnNewButton_76;//Cek Cikis
@@ -941,7 +942,15 @@ public class OBS_MAIN extends JFrame {
 				btnNewButton_86_1.doClick();
 			}
 		});
-		mnGenel.add(mntmLog);
+		
+		JMenuItem mntmVeri = new JMenuItem("Veri Aktarimi");
+		mntmVeri.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_86_1_1.doClick();
+			}
+		});
+		
+		mnGenel.add(mntmVeri);
 
 		JMenu mnAyarlar = new JMenu("Ayarlar");
 		mnAyarlar.addMouseMotionListener(new MouseMotionAdapter() {
@@ -1910,6 +1919,24 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_86_1.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-data-sheet-filled-30.png")));
 		toolBar_9.add(btnNewButton_86_1);
+		
+		btnNewButton_86_1_1 = new JButton("");
+		btnNewButton_86_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GuiUtil.setWaitCursor(toolBar,true);
+				JInternalFrame internalFrame;
+				internalFrame = new MSSQL_TO_MYSQL();
+				desktopPane.add(internalFrame);
+				internalFrame.setVisible(true);
+				GuiUtil.setWaitCursor(toolBar,false);
+			}
+		});
+		
+		JLabel lblNewLabel_39 = new JLabel("     ");
+		toolBar_9.add(lblNewLabel_39);
+		btnNewButton_86_1_1.setToolTipText("Veri Aktarma");
+		btnNewButton_86_1_1.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-data-transfer-30.png")));
+		toolBar_9.add(btnNewButton_86_1_1);
 		//************************************************************AYARLAR*********************************************************************************
 
 		JToolBar toolBar_10 = new JToolBar();
@@ -2682,32 +2709,7 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_30.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-calculator-16.png")));
 		toolBar.add(btnNewButton_30);
-
-		JButton btnaktarma = new JButton("...");
-		btnaktarma.setToolTipText("Aktarma");
-		btnaktarma.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					GuiUtil.setWaitCursor(toolBar,true);
-					//
-
-					JInternalFrame internalFrame;
-					internalFrame = new MSSQL_TO_MYSQL();
-					desktopPane.add(internalFrame);
-					internalFrame.setVisible(true);
-					GuiUtil.setWaitCursor(toolBar,false);
-
-					//
-					GuiUtil.setWaitCursor(toolBar,false);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		toolBar.add(btnaktarma);
-
-
-
+		
 		final Dimension size = label.getPreferredSize();
 
 		JLabel lblNewLabel_32 = new JLabel("     ");

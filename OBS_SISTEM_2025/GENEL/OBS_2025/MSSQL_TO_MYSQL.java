@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,12 +28,20 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.border.TitledBorder;
+
+
+
 
 @SuppressWarnings({"serial","deprecation","static-access","unused"})
 public class MSSQL_TO_MYSQL extends JInternalFrame {
@@ -429,6 +438,40 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		msUSER.setBounds(100, 48, 125, 20);
 		panel_3.add(msUSER);
 		msUSER.setColumns(10);
+		
+		JButton btnNewButton_5 = new JButton("Access");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				//InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/HSP_PLN.rpt");
+				//Files.copy(is, Paths.get("C:\\OBS_SISTEM\\HSP_PLN.rpt"),StandardCopyOption.REPLACE_EXISTING);
+				
+				
+				try {
+					Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				} catch (ClassNotFoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				Connection conn;
+				try {
+					
+					conn = DriverManager.getConnection(
+					        "jdbc:ucanaccess://C:/OBS_SISTEM/OBS_SISTEM_2025.MDB","","oOk271972");
+				Statement s = conn.createStatement();
+				ResultSet rs = s.executeQuery("SELECT * FROM [USER_DETAILS]");
+				while (rs.next()) {
+				    System.out.println(rs.getString(8));
+				}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_5.setBounds(619, 301, 89, 23);
+		panel.add(btnNewButton_5);
 		
 			btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

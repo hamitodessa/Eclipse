@@ -43,7 +43,7 @@ import javax.swing.border.TitledBorder;
 
 
 
-@SuppressWarnings({"serial","deprecation","static-access","unused"})
+@SuppressWarnings({"serial","static-access","unused"})
 public class MSSQL_TO_MYSQL extends JInternalFrame {
 	private JTextField textField;
 	private JTextField textField_1;

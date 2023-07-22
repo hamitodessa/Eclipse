@@ -460,9 +460,10 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 					conn = DriverManager.getConnection(
 					        "jdbc:ucanaccess://C:/OBS_SISTEM/OBS_SISTEM_2025.MDB","","oOk271972");
 				Statement s = conn.createStatement();
-				ResultSet rs = s.executeQuery("SELECT * FROM [USER_DETAILS]");
+				ResultSet rs = s.executeQuery("SELECT * FROM [USERS]");
+				  System.out.println("------------------------------------");
 				while (rs.next()) {
-				    System.out.println(rs.getString(8));
+				    System.out.println(rs.getString(1) + "-" + rs.getString(2));
 				}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

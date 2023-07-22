@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 
 import javax.swing.JInternalFrame;
@@ -39,6 +40,14 @@ import java.security.NoSuchAlgorithmException;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.border.TitledBorder;
+
+import com.healthmarketscience.jackcess.ColumnBuilder;
+import com.healthmarketscience.jackcess.CursorBuilder;
+import com.healthmarketscience.jackcess.DataType;
+import com.healthmarketscience.jackcess.Database;
+import com.healthmarketscience.jackcess.DatabaseBuilder;
+import com.healthmarketscience.jackcess.Table;
+import com.healthmarketscience.jackcess.TableBuilder;
 
 
 
@@ -473,6 +482,32 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		});
 		btnNewButton_5.setBounds(619, 301, 89, 23);
 		panel.add(btnNewButton_5);
+		
+		JButton btnNewButton_6 = new JButton("accdb");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				File file = new File("C:/OBS_SISTEM/test.accdb");
+				  try {
+					Database db = new DatabaseBuilder(file)
+					    .setFileFormat(Database.FileFormat.V2010)
+					    .create();
+					
+					Table table = new TableBuilder("Test")
+						    .addColumn(new ColumnBuilder("ID", DataType.LONG)
+						               .setAutoNumber(true))
+						    .addColumn(new ColumnBuilder("Name", DataType.TEXT))
+						    .addColumn(new ColumnBuilder("Salary", DataType.MONEY))
+						    .addColumn(new ColumnBuilder("StartDate", DataType.SHORT_DATE_TIME))
+						    .toTable(db);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_6.setBounds(600, 335, 89, 23);
+		panel.add(btnNewButton_6);
 		
 			btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

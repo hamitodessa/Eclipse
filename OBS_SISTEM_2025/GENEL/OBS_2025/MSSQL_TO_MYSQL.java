@@ -32,6 +32,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -48,6 +49,10 @@ import com.healthmarketscience.jackcess.Database;
 import com.healthmarketscience.jackcess.DatabaseBuilder;
 import com.healthmarketscience.jackcess.Table;
 import com.healthmarketscience.jackcess.TableBuilder;
+import com.healthmarketscience.jackcess.impl.CodecHandler;
+import com.healthmarketscience.jackcess.impl.CodecProvider;
+import com.healthmarketscience.jackcess.impl.DefaultCodecProvider;
+import com.healthmarketscience.jackcess.impl.PageChannel;
 
 
 
@@ -489,10 +494,11 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				
 				File file = new File("C:/OBS_SISTEM/test.accdb");
 				  try {
+					
 					Database db = new DatabaseBuilder(file)
 					    .setFileFormat(Database.FileFormat.V2010)
 					    .create();
-					
+					 
 					Table table = new TableBuilder("Test")
 						    .addColumn(new ColumnBuilder("ID", DataType.LONG)
 						               .setAutoNumber(true))
@@ -500,6 +506,13 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 						    .addColumn(new ColumnBuilder("Salary", DataType.MONEY))
 						    .addColumn(new ColumnBuilder("StartDate", DataType.SHORT_DATE_TIME))
 						    .toTable(db);
+					
+					db.close();
+					
+					  String password = "obs";  //(file, false, password);
+					 
+					  
+		            
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

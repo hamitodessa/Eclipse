@@ -78,5 +78,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/hsqldb-2.5.0.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/ucanaccess-5.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jackcess-3.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hamit/Downloads/jackcess-encrypt-4.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

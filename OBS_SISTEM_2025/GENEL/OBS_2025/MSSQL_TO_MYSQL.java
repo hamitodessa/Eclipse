@@ -33,6 +33,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -53,7 +54,7 @@ import com.healthmarketscience.jackcess.impl.CodecHandler;
 import com.healthmarketscience.jackcess.impl.CodecProvider;
 import com.healthmarketscience.jackcess.impl.DefaultCodecProvider;
 import com.healthmarketscience.jackcess.impl.PageChannel;
-
+import com.healthmarketscience.jackcess.crypt.CryptCodecProvider;
 
 
 
@@ -493,25 +494,29 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				File file = new File("C:/OBS_SISTEM/test.accdb");
-				  try {
-					
+				try {
+
+						
+					String password = "obs";
+					CryptCodecProvider codecProvider = new CryptCodecProvider(password);
+
 					Database db = new DatabaseBuilder(file)
-					    .setFileFormat(Database.FileFormat.V2010)
-					    .create();
-					 
+							//.setCodecProvider(codecProvider)
+							.setFileFormat(Database.FileFormat.V2010)
+							.create();
+
 					Table table = new TableBuilder("Test")
-						    .addColumn(new ColumnBuilder("ID", DataType.LONG)
-						               .setAutoNumber(true))
-						    .addColumn(new ColumnBuilder("Name", DataType.TEXT))
-						    .addColumn(new ColumnBuilder("Salary", DataType.MONEY))
-						    .addColumn(new ColumnBuilder("StartDate", DataType.SHORT_DATE_TIME))
-						    .toTable(db);
-					
+							.addColumn(new ColumnBuilder("ID", DataType.LONG)
+									.setAutoNumber(true))
+							.addColumn(new ColumnBuilder("Name", DataType.TEXT))
+							.addColumn(new ColumnBuilder("Salary", DataType.MONEY))
+							.addColumn(new ColumnBuilder("StartDate", DataType.SHORT_DATE_TIME))
+							.toTable(db);
+
 					db.close();
+
+									
 					
-					  String password = "obs";  //(file, false, password);
-					 
-					  
 		            
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -521,6 +526,39 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		});
 		btnNewButton_6.setBounds(600, 335, 89, 23);
 		panel.add(btnNewButton_6);
+		
+		JButton btnNewButton_7 = new JButton("oku");
+		btnNewButton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				  try {
+					Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	
+				  try {
+			
+					Connection conn;
+					
+						conn = DriverManager.getConnection(
+							        "jdbc:ucanaccess://C:/OBS_SISTEM/test.accdb");
+						Statement s = conn.createStatement();
+						ResultSet rs = s.executeQuery("SELECT * FROM test");
+						  System.out.println("------------------------------------");
+							while (rs.next()) {
+							    System.out.println(rs.getString(1) + "-" + rs.getString(2));
+							}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					
+			}
+		});
+		btnNewButton_7.setBounds(565, 369, 89, 23);
+		panel.add(btnNewButton_7);
 		
 			btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

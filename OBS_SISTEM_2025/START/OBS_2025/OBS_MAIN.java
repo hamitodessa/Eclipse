@@ -2566,6 +2566,10 @@ public class OBS_MAIN extends JFrame {
 				{
 					OZEL_MIZAN.excell_aktar() ;
 				}
+				else if (sonuc == "ORTALAMA SATIS")
+				{
+					ORTALAMA_FIAT.excell_aktar() ;
+				}
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});

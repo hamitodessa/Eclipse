@@ -63,6 +63,7 @@ import com.crystaldecisions.sdk.occa.report.lib.ReportSDKException;
 import OBS_2025_RAPORLAR.GRUP_RAPOR;
 import OBS_2025_RAPORLAR.IMALAT_GRUP_RAPOR;
 import OBS_2025_RAPORLAR.IMALAT_RAPORLAMA;
+import OBS_2025_RAPORLAR.ORTALAMA_FIAT;
 import OBS_2025_RAPORLAR.STOK_DETAY;
 import OBS_2025_RAPORLAR.STOK_RAPOR;
 import OBS_C_2025.FORMATLAMA;
@@ -268,6 +269,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				{
 					stk_rpr_gonder();
 				}
+				else if ( OBS_MAIN.pencere_bak("ORTALAMA SATIS") == true ) 
+				{
+					ort_satis();
+				}
 				else if ( OBS_MAIN.pencere_bak("CARI OZEL MIZAN") == true ) 
 				{
 					ozmiz_gonder();
@@ -421,6 +426,11 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			{
 				comboBox.enable(false);
 				lblNewLabel_2.setText("Stok Rapor");
+			}
+			else if (ort_fiyatlama() )
+			{
+				comboBox.enable(false);
+				lblNewLabel_2.setText("Ortalama Fiyat");
 			}
 			else if (ozmiz_kontrol() )
 			{
@@ -846,6 +856,18 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
+	private void ort_satis() 
+	{
+		try
+		{
+			ORTALAMA_FIAT.mail_at();
+			xl_gonder("Ortalama_Fiyat" );
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
 	private void ima_grup_gonder() 
 	{
 		try
@@ -882,7 +904,6 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
-	@SuppressWarnings("static-access")
 	private void xl_gonder(String dadi)
 	{
 		try
@@ -1030,6 +1051,16 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		boolean result  = false;
 
 		if (OBS_MAIN.pencere_bak("STOK_RAPOR"))
+		{
+			result = true ;
+		}
+		return result;
+	}
+	private boolean  ort_fiyatlama() throws ReportSDKException
+	{
+		boolean result  = false;
+
+		if (OBS_MAIN.pencere_bak("ORTALAMA SATIS"))
 		{
 			result = true ;
 		}

@@ -3,9 +3,12 @@ package OBS_2025;
 import java.awt.EventQueue;
 import java.sql.ResultSet;
 
+import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+
+import java.awt.AWTKeyStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,11 +32,14 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
+import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class GID_RAPOR extends JInternalFrame {
@@ -105,9 +111,23 @@ public class GID_RAPOR extends JInternalFrame {
 		textField.setColumns(10);
 
 		JScrollPane scrollPane = new JScrollPane();
+		
 		splitPane.setRightComponent(scrollPane);
 
-		table = new JTable();
+		table = new JTable() {
+			public boolean isCellEditable(int row, int column) {     return false;          }
+		};
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode() == 127)
+				{
+					if (table.getSelectedRow() < 0 ) return ;
+					sil();
+				}
+				
+			}
+		});
 		table.setGridColor(oac.gridcolor);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane.setViewportView(table);
@@ -203,11 +223,10 @@ public class GID_RAPOR extends JInternalFrame {
 		}
 	}
 	public static  void sil()
-	{
+	{			
 		int g =  JOptionPane.showOptionDialog( null,  "Secilen Rapor  Silinecek ..?"  ,
 				"Gonderilen Raporlardan Evrak Silme",   JOptionPane.YES_NO_OPTION,
-				JOptionPane.QUESTION_MESSAGE, 	null,     //no custom icon
-				oac.options,  //button titles
+				JOptionPane.QUESTION_MESSAGE, 	null,  oac.options,  //button titles
 				oac.options[1]); //default button
 		if(g != 0 ) { return;	}
 		if (table.getSelectedRow() < 0 ) return ;

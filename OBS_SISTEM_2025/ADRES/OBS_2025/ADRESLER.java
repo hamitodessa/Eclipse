@@ -19,8 +19,6 @@ import javax.swing.RowFilter;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.event.InternalFrameAdapter;
-import javax.swing.event.InternalFrameEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -61,12 +59,7 @@ public class ADRESLER extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ADRESLER() {addInternalFrameListener(new InternalFrameAdapter() {
-		@Override
-		public void internalFrameClosed(InternalFrameEvent e) {
-			OBS_MAIN.btnYazici.setEnabled(false);
-		}
-	});
+	public ADRESLER() { 
 	setTitle("ADRES DETAY");
 	setResizable(true);
 	setMaximizable(true);

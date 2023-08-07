@@ -367,6 +367,19 @@ public class USER_ISLEMLERI {
 		rss = stmt.executeQuery();
 		return rss;
 	}
+	public void ip_sil(String ipp) throws SQLException, ClassNotFoundException
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		PreparedStatement stmt = null;
+		con =  gLB.myConnection();
+		String sql = "DELETE FROM IP WHERE IP = ? ";
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1,ipp);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+	}
 	public void cd_sil(int cdid) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");

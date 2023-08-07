@@ -18,9 +18,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import javax.swing.JOptionPane;
-
 import org.jfree.data.category.DefaultCategoryDataset;
-
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.SQLITE_LOG;
 
@@ -29,19 +27,19 @@ import OBS_2025.Tema_Cari;
 
 public class GLOBAL {
 
-	static String OBS_DOSYA = "OBS_SISTEM_2025.DB";
-	public static String SQL_BACKUP = "SQL_BACKUP.DB";
-	public static String SURUCU = "C:\\OBS_SISTEM\\";
-	public static String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
-	static String DBYERI = "C:\\OBS_DATABASES\\";
+	static final String OBS_DOSYA = "OBS_SISTEM_2025.DB";
+	public static final String SQL_BACKUP = "SQL_BACKUP.DB";
+	public static final String SURUCU = "C:\\OBS_SISTEM\\";
+	public static final String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
+	static final String DBYERI = "C:\\OBS_DATABASES\\";
 	static Connection con ;
 	static Connection bACKUPCONN ;
 	static Connection bACKUPLOGCONN ;
 	static String ayarlar[][]; // = new String[5][5];
 	public static String KULL_ADI = "";
 	public static String Log_Mail ="";
-	public static  int filtre_sayfa ;
-	public static  String hangi_mizan = "" ;
+	public static int filtre_sayfa ;
+	public static String hangi_mizan = "" ;
 	public static String yazici[]; 
 	public static String nerden ="";
 	public static String g_baslik = "";

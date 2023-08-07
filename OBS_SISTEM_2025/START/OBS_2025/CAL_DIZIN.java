@@ -969,14 +969,18 @@ public class CAL_DIZIN extends JFrame {
 					lOG_BILGI lBILGI = new lOG_BILGI();
 					lBILGI.setmESAJ("Lo0glama Deneme Maili");
 					lBILGI.seteVRAK("");
+					//if ( activ_sayfa == 0)
+					//{
 					mAT.Logla(lBILGI,BAGLAN_LOG.cariLogDizin);
+					//}
 					contentPane.setCursor(DEFAULT_CURSOR);
+					JOptionPane.showMessageDialog(null,  "Mail Gonderildi........", "OBS SISTEM", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception e1) {
 					contentPane.setCursor(DEFAULT_CURSOR);
 					JOptionPane.showMessageDialog(null,  e1.getMessage(), "OBS SISTEM", JOptionPane.WARNING_MESSAGE);
 				} 
-				}
-			});
+			}
+		});
 		btnNewButton_7.setBounds(415, 35, 120, 23);
 		panel_3.add(btnNewButton_7);
 
@@ -998,27 +1002,28 @@ public class CAL_DIZIN extends JFrame {
 		cmbhangisql = new JComboBox<String>();
 		cmbhangisql.setForeground(new Color(0, 0, 139));
 		cmbhangisql.setFont(new Font("Tahoma", Font.BOLD, 11));
-		cmbhangisql.addItemListener(new ItemListener() {
+		cmbhangisql.addItemListener(new ItemListener() 
+		{
 			public void itemStateChanged(ItemEvent e) {
-					String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
-					if (hangi == "MS SQL")
-					{
-						comboBox.removeAllItems();
-						comboBox.addItem("");
-						comboBox.setEnabled(true);
-						chckbxD.setEnabled(true);
-						chckbxO.setEnabled(true);
-					}
-					else
-					{
-						comboBox.removeAllItems();
-						comboBox.addItem("");
-						comboBox.setEnabled(false);
-						chckbxD.setEnabled(false);
-						chckbxO.setEnabled(false);
-					}
+				String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
+				if (hangi == "MS SQL")
+				{
+					comboBox.removeAllItems();
+					comboBox.addItem("");
+					comboBox.setEnabled(true);
+					chckbxD.setEnabled(true);
+					chckbxO.setEnabled(true);
 				}
-			});
+				else
+				{
+					comboBox.removeAllItems();
+					comboBox.addItem("");
+					comboBox.setEnabled(false);
+					chckbxD.setEnabled(false);
+					chckbxO.setEnabled(false);
+				}
+			}
+		});
 		cmbhangisql.setModel(new DefaultComboBoxModel<String>(new String[] {"MS SQL", "MY SQL"}));
 		cmbhangisql.setBounds(102, 43, 157, 22);
 		panel.add(cmbhangisql);
@@ -1100,6 +1105,24 @@ public class CAL_DIZIN extends JFrame {
 		separator.setForeground(new Color(0, 191, 255));
 		separator.setBounds(24, 32, 260, 2);
 		panel.add(separator);
+		
+		JButton btnNewButton_2_1 = new JButton("");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				USER_ISLEMLERI usrIslemleri = new USER_ISLEMLERI();
+				try {
+					usrIslemleri.ip_sil(cmbip.getSelectedItem().toString());
+					ip_doldur();
+				} catch (ClassNotFoundException | SQLException e1) {
+					JOptionPane.showMessageDialog(null, "Silme Isleminde Hata Olustu........", "Ip Silme.....", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		btnNewButton_2_1.setToolTipText("Sil");
+		btnNewButton_2_1.setBounds(265, 230, 23, 23);
+		btnNewButton_2_1.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/sil.png")));
+		panel.add(btnNewButton_2_1);
 	}
 	private   void grid_doldur() throws ClassNotFoundException, SQLException
 	{
@@ -1182,8 +1205,7 @@ public class CAL_DIZIN extends JFrame {
 	}
 	public static void HeaderRenderer(JTable table) {
 		DefaultTableCellRenderer renderer;
-		renderer = (DefaultTableCellRenderer)
-				table.getTableHeader().getDefaultRenderer();
+		renderer = (DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer();
 		renderer.setHorizontalAlignment(JLabel.LEFT);
 	}
 	private static  void doldur_kutu( JTable grd,int satir) throws ClassNotFoundException, SQLException 
@@ -1353,8 +1375,6 @@ public class CAL_DIZIN extends JFrame {
 			sBilgi.setIns(comboBox.getSelectedItem().toString() );;
 			sBilgi.setKull(txtkul.getText()); ;
 			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr));;
-
-
 			if (s_CONN.Server_kontrol_S(sBilgi ) == true)
 			{
 				contentPane.setCursor(DEFAULT_CURSOR);
@@ -1666,7 +1686,6 @@ public class CAL_DIZIN extends JFrame {
 		sbilgi.setKull(txtkul.getText());
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
 		sbilgi.setPort(txtIp.getText()); 
-		
 		if (chckbxD.isSelected())
 		{
 			sbilgi.setDizin_yeri("default");
@@ -1709,7 +1728,6 @@ public class CAL_DIZIN extends JFrame {
 		sbilgi.setKull(txtkul.getText());
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr));
 		sbilgi.setPort(txtIp.getText()); 
-		
 		if (chckbxD.isSelected())
 		{
 			sbilgi.setDizin_yeri("default");
@@ -1752,7 +1770,6 @@ public class CAL_DIZIN extends JFrame {
 		sbilgi.setKull(txtkul.getText()); ;
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
 		sbilgi.setPort(txtIp.getText()); ;
-		
 		if (chckbxD.isSelected())
 		{
 			sbilgi.setDizin_yeri("default");
@@ -1792,7 +1809,6 @@ public class CAL_DIZIN extends JFrame {
 		sbilgi.setKull(txtkul.getText()); ;
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
 		sbilgi.setPort(txtIp.getText()); ;
-		
 		if (chckbxD.isSelected())
 		{
 			sbilgi.setDizin_yeri("default");
@@ -1835,7 +1851,6 @@ public class CAL_DIZIN extends JFrame {
 		sbilgi.setKull(txtkul.getText()); ;
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
 		sbilgi.setPort(txtIp.getText()); ;
-		
 		if (chckbxD.isSelected())
 		{
 			sbilgi.setDizin_yeri("default");
@@ -1875,7 +1890,6 @@ public class CAL_DIZIN extends JFrame {
 		sbilgi.setKull(txtkul.getText()); 
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); 
 		sbilgi.setPort(txtIp.getText()); 
-		
 		if (chckbxD.isSelected())
 		{
 			sbilgi.setDizin_yeri("default");
@@ -1918,7 +1932,6 @@ public class CAL_DIZIN extends JFrame {
 		sbilgi.setKull(txtkul.getText()); ;
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
 		sbilgi.setPort(txtIp.getText()); ;
-
 		if (chckbxD.isSelected())
 		{
 			sbilgi.setDizin_yeri("default");
@@ -1952,7 +1965,6 @@ public class CAL_DIZIN extends JFrame {
 		lOG_BILGI lBILGI = new lOG_BILGI();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
-		
 		Server_Bilgi sbilgi = new Server_Bilgi();
 		sbilgi.setKod(txtKodu.getText());;
 		sbilgi.setFir_adi(strAdmin);;
@@ -2089,7 +2101,6 @@ public class CAL_DIZIN extends JFrame {
 		lOG_BILGI lBILGI = new lOG_BILGI();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");
-		
 		Server_Bilgi sbilgi = new Server_Bilgi();
 		sbilgi.setKod(txtKodu.getText());;
 		sbilgi.setFir_adi(strAdmin);;
@@ -2131,7 +2142,6 @@ public class CAL_DIZIN extends JFrame {
 		sbilgi.setServer(txtIp.getText()); 
 		sbilgi.setDizin_yeri("default");
 		sbilgi.setDizin("");;
-		
 		if (chckbxD.isSelected())
 		{
 			sms_Access.sMS_SIFIR_S(sbilgi,lBILGI,BAGLAN_LOG.smsLogDizin);
@@ -2166,7 +2176,6 @@ public class CAL_DIZIN extends JFrame {
 		sbilgi.setServer(txtIp.getText()); ;
 		sbilgi.setDizin_yeri("default");;
 		sbilgi.setDizin("");;
-
 		if (chckbxD.isSelected())
 		{
 			g_Access.gUN_SIFIR_S(sbilgi, lBILGI,BAGLAN_LOG.gunLogDizin);

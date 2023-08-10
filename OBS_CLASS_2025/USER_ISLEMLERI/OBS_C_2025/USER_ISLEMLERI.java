@@ -7,17 +7,20 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Arrays;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.xml.crypto.Data;
 
 @SuppressWarnings("static-access")
 public class USER_ISLEMLERI {
 	static  Connection con ;
 
 	static boolean result = false;
+	private static  ResultSet	cloneRss = null;
 	private GLOBAL gLB = new GLOBAL();
 	String encodedString;
 	public  Boolean user_var(String usr,String pwd) throws ClassNotFoundException, SQLException {
@@ -69,12 +72,19 @@ public class USER_ISLEMLERI {
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
+		
 		PreparedStatement stmt = null;
 		con = gLB.myConnection();
 		String sql = "SELECT  * FROM USER_DETAILS WHERE USER_PROG_OBS <> 'Fihrist'  ORDER BY USER_NAME ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
+		//cloneRss = CLONE_RESULTSET.cloneResultSet(rss) ;
+		//con.close();
+		//if (!cloneRss.next() ) {
+		//    System.out.println("no data");
+		//}
+		//return cloneRss;
 	}
 	public ResultSet user_isim_doldur() throws ClassNotFoundException, SQLException
 	{

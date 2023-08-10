@@ -491,9 +491,12 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		GRID_TEMIZLE.grid_temizle(table_1);
 		ResultSet	rs = null;
 		rs =  oac.uSER_ISL.user_details_bak();
+		
 		if (!rs.isBeforeFirst() ) {  
 			return;
 		}
+		
+	
 		DefaultTableModel defaultModel =  (DefaultTableModel) table_1.getModel();
 		while(rs.next())
 		{

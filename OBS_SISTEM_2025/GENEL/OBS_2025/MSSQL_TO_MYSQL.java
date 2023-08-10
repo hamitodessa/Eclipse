@@ -8,6 +8,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
@@ -24,9 +25,12 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import OBS_C_2025.BACKUP_RESTORE;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
+import OBS_C_2025.CLONE_RESULTSET;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.sql.rowset.CachedRowSet;
+import javax.sql.rowset.RowSetProvider;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -556,6 +560,32 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		});
 		btnNewButton_7.setBounds(565, 369, 89, 23);
 		panel.add(btnNewButton_7);
+		
+		JButton btnNewButton_8 = new JButton("Clone");
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try  {
+					CLONE_RESULTSET clrsClone_RESULTSET = new CLONE_RESULTSET();
+					
+			            ResultSet clonedResultSet = clrsClone_RESULTSET.cloneResultSet( oac.uSER_ISL.user_details_bak());
+			           
+			           System.out.println(clrsClone_RESULTSET.cnames[1].toString()); 
+			            //oac.uSER_ISL.con.close();
+			            // Process the cloned result set
+			            while (clonedResultSet.next()) {
+			                String data = clonedResultSet.getString(1) + " - " +clonedResultSet.getString(2) + " - " + clonedResultSet.getString(3) + " - " +clonedResultSet.getString(4);
+			                System.out.println(data);
+			            }
+			        } catch (SQLException | ClassNotFoundException ex) {
+			            ex.printStackTrace();
+			        }
+			}
+		});
+		btnNewButton_8.setBounds(600, 225, 89, 23);
+		panel.add(btnNewButton_8);
+		
+		
 		
 			btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

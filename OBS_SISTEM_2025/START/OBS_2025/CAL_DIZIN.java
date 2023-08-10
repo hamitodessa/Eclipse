@@ -1120,7 +1120,7 @@ public class CAL_DIZIN extends JFrame {
 			}
 		});
 		btnNewButton_2_1.setToolTipText("Sil");
-		btnNewButton_2_1.setBounds(265, 230, 23, 23);
+		btnNewButton_2_1.setBounds(265, 230, 25, 23);
 		btnNewButton_2_1.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/sil.png")));
 		panel.add(btnNewButton_2_1);
 	}

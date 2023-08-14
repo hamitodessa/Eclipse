@@ -29,6 +29,7 @@ public class CLONE_RESULTSET {
 	public static String cnames[];
 	public static ResultSet cloneResultSet(ResultSet originalResultSet) throws SQLException {
 		List<String[]> dataRows = new ArrayList<>();
+		
 		String[] columnNames;
 		int columnCount = originalResultSet.getMetaData().getColumnCount();
 		columnNames = new String[columnCount+1];
@@ -48,12 +49,12 @@ public class CLONE_RESULTSET {
 	}
 	private static class ClonedResultSet implements ResultSet {
 		private List<String[]> dataRows;
-
+		
 		@SuppressWarnings("unused")
 		private String[] columnNames;
 		private int currentIndex = -1;
 
-		public ClonedResultSet(List<String[]> dataRows, String[] columnNames) {
+		private ClonedResultSet(List<String[]> dataRows, String[] columnNames) throws SQLException {
 			this.dataRows = dataRows;
 			this.columnNames = columnNames;
 		}
@@ -63,9 +64,6 @@ public class CLONE_RESULTSET {
 			currentIndex++;
 			return currentIndex < dataRows.size();
 		}
-
-
-
 		@Override
 		public <T> T unwrap(Class<T> iface) throws SQLException {
 			// TODO Auto-generated method stub
@@ -292,8 +290,9 @@ public class CLONE_RESULTSET {
 
 		@Override
 		public ResultSetMetaData getMetaData() throws SQLException {
+		
 			// TODO Auto-generated method stub
-			return null;
+			  return null;
 		}
 
 		@Override
@@ -1209,4 +1208,9 @@ public class CLONE_RESULTSET {
 
 		}
 	}
+
 }
+
+
+
+// Other methods of ResultSet that need to be implemented

@@ -83,6 +83,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	private JList<String> list ;
 	private JComboBox<String> comboBox ;
 	private JComboBox<String> cmbalici ;
+	private JLabel lblNewLabel_3 ;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private boolean etiketten = false;
 	private boolean ekstreden = false;
@@ -324,7 +325,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 						//   else{
 						//        JOptionPane.showMessageDialog(null, "Sorry...not a text file.");
 						//     }
-
+					
+						lblNewLabel_3.setText(Integer.toString(list.getModel().getSize()));
 					}
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dosya Ekleme", JOptionPane.ERROR_MESSAGE);
@@ -353,6 +355,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				}
 				else {
 				}
+				lblNewLabel_3.setText(Integer.toString(list.getModel().getSize()));
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon(E_MAIL_GONDERME.class.getResource("/ICONLAR/icons8-add-folder-16.png")));
@@ -365,6 +368,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (list.getModel().getSize() != 0 )
 					model.remove(list.getSelectedIndex());
+				lblNewLabel_3.setText(Integer.toString(list.getModel().getSize()));
 			}
 		});
 		btnNewButton_2.setIcon(new ImageIcon(E_MAIL_GONDERME.class.getResource("/ICONLAR/sil.png")));
@@ -391,8 +395,16 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		doldur_setting();
 		txtaciklama.setText("");
 		txtkonu.setText("");
+		lblNewLabel_3 = new JLabel("0");
+		lblNewLabel_3.setForeground(new Color(0, 0, 139));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_3.setBounds(551, 235, 21, 14);
+		panel.add(lblNewLabel_3);
 		try {
 			lblNewLabel_2.setText("");
+			
+			
 			if (rapor_kontrol() )
 			{
 				lblNewLabel_2.setText("1 Rapor Ekli");
@@ -572,7 +584,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					boolean exists = outputFile.exists();
 					if (exists)
 					{    
-						 outputFile.delete();
+						outputFile.delete();
 					}
 				}
 				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("WORD") )
@@ -582,10 +594,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					boolean exists = outputFile.exists();
 					if (exists)
 					{    
-						 outputFile.delete();
+						outputFile.delete();
 					}
 				}
-				
+
 			}
 			if (ekstreden)
 			{
@@ -600,7 +612,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					boolean exists = outputFile.exists();
 					if (exists)
 					{    
-						 outputFile.delete();
+						outputFile.delete();
 					}
 				}
 				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("WORD") )
@@ -610,36 +622,36 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					boolean exists = outputFile.exists();
 					if (exists)
 					{    
-						 outputFile.delete();
+						outputFile.delete();
 					}
 				}
-				
+
 			}
 			else
 			{
-			if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("PDF") )
-			{
-				byteArrayInputStream = (ByteArrayInputStream) PRINT_YAPMA.clientDoc
-						.getPrintOutputController().export(ReportExportFormat.PDF);
-			}
-			else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("EXCELL") )
-			{
-				byteArrayInputStream = (ByteArrayInputStream) PRINT_YAPMA.clientDoc
-						.getPrintOutputController().export(ReportExportFormat.MSExcel);
-			}
-			else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("WORD") )
-			{
-				byteArrayInputStream = (ByteArrayInputStream) PRINT_YAPMA.clientDoc
-						.getPrintOutputController().export(ReportExportFormat.MSWord);
-			}
-			byte byteArray[] = new byte[byteArrayInputStream.available()];
-			byteArrayOutputStream = new ByteArrayOutputStream(byteArrayInputStream.available());
-			int x = byteArrayInputStream.read(byteArray, 0, byteArrayInputStream.available());
-			byteArrayOutputStream.write(byteArray, 0, x);
-			byteArrayInputStream.close();
-			byteArrayOutputStream.close();
-			inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
-			ds = new ByteArrayDataSource(inputStream, "application/x-any");
+				if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("PDF") )
+				{
+					byteArrayInputStream = (ByteArrayInputStream) PRINT_YAPMA.clientDoc
+							.getPrintOutputController().export(ReportExportFormat.PDF);
+				}
+				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("EXCELL") )
+				{
+					byteArrayInputStream = (ByteArrayInputStream) PRINT_YAPMA.clientDoc
+							.getPrintOutputController().export(ReportExportFormat.MSExcel);
+				}
+				else if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("WORD") )
+				{
+					byteArrayInputStream = (ByteArrayInputStream) PRINT_YAPMA.clientDoc
+							.getPrintOutputController().export(ReportExportFormat.MSWord);
+				}
+				byte byteArray[] = new byte[byteArrayInputStream.available()];
+				byteArrayOutputStream = new ByteArrayOutputStream(byteArrayInputStream.available());
+				int x = byteArrayInputStream.read(byteArray, 0, byteArrayInputStream.available());
+				byteArrayOutputStream.write(byteArray, 0, x);
+				byteArrayInputStream.close();
+				byteArrayOutputStream.close();
+				inputStream = new ByteArrayInputStream(byteArrayOutputStream .toByteArray());
+				ds = new ByteArrayDataSource(inputStream, "application/x-any");
 			}
 			//*************************************************************************************************
 			String[] to = { cmbalici.getSelectedItem().toString()  };

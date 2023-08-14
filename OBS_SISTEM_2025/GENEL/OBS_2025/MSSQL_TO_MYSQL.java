@@ -577,6 +577,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			                String data = clonedResultSet.getString(1) + " - " +clonedResultSet.getString(2) + " - " + clonedResultSet.getString(3) + " - " +clonedResultSet.getString(4);
 			                System.out.println(data);
 			            }
+			        
 			        } catch (SQLException | ClassNotFoundException ex) {
 			            ex.printStackTrace();
 			        }

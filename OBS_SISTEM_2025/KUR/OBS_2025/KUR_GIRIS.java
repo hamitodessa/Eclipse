@@ -40,9 +40,14 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -154,7 +159,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 16));
 		dateChooser.setDate(new Date());
-		dateChooser.setBounds(190, 9, 150, 30);
+		dateChooser.setBounds(210, 9, 130, 30);
 		dateChooser.getDateEditor().addPropertyChangeListener(
 				new PropertyChangeListener() {
 					@Override
@@ -183,7 +188,7 @@ public class KUR_GIRIS extends JInternalFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setBounds(364, 11, 91, 23);
+		btnNewButton.setBounds(380, 11, 75, 23);
 		panel.add(btnNewButton);
 
 		JPanel panel_1 = new JPanel();
@@ -284,6 +289,50 @@ public class KUR_GIRIS extends JInternalFrame {
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 45, 445, 2);
 		panel.add(separator);
+		
+		JButton btnNewButton_1_2 = new JButton("");
+		btnNewButton_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
+				Date date;
+				try {
+					date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dateChooser));
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(date);
+					cal.add(Calendar.DAY_OF_MONTH, -1);
+					dateChooser.setDate(new Date(cal.getTimeInMillis()));
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_1_2.setToolTipText("Geri");
+		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnNewButton_1_2.setIcon(new ImageIcon(KUR_GIRIS.class.getResource("/ICONLAR/undo-20.png")));
+		btnNewButton_1_2.setBounds(177, 9, 30, 30);
+		panel.add(btnNewButton_1_2);
+		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
+				Date date;
+				try {
+					date = datefmt.parse(TARIH_CEVIR.tarih_dt_ddMMyyyy(dateChooser));
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(date);
+					cal.add(Calendar.DAY_OF_MONTH, 1); // Add 30 days
+					dateChooser.setDate(new Date(cal.getTimeInMillis()));
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_1.setToolTipText("Ileri");
+		btnNewButton_1.setIcon(new ImageIcon(KUR_GIRIS.class.getResource("/ICONLAR/redo-20.png")));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 10));
+		btnNewButton_1.setBounds(344, 9, 30, 30);
+		panel.add(btnNewButton_1);
 		kur_liste();
 		kur_oku();
 	}

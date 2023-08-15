@@ -437,6 +437,8 @@ public class LOGIN extends JFrame {
 			}
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
+		// String username = System.getProperty("user.name");
+		 //   System.out.println("username = " + username);
 	}
 	void cari_kont() throws ClassNotFoundException, SQLException
 	{

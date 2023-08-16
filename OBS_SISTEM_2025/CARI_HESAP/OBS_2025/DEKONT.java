@@ -13,6 +13,8 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 
+import com.businessobjects.visualization.dataexchange.consumer.DataHandler;
+import com.crystaldecisions.reports.queryengine.EnumValueToNameMaps;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.BAGLAN_LOG;
@@ -658,6 +660,23 @@ public class DEKONT extends JInternalFrame {
 				}
 
 			}
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char cc =  e.getKeyChar();
+				if ( Character.isDigit(cc)  ) 
+				{
+					txtbtutar.setEditable(true);
+				}
+				else {
+					if ( cc == '.' || cc == ','  ) {
+						txtbtutar.setEditable(true);
+					}
+					else {
+						txtbtutar.setEditable(false);
+					}
+				}
+			}
 		});
 		txtbtutar.setEnabled(false);
 		txtbtutar.setForeground(new Color(0, 0, 139));
@@ -719,6 +738,22 @@ public class DEKONT extends JInternalFrame {
 					e1.printStackTrace();
 				}
 
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char cc =  e.getKeyChar();
+				if ( Character.isDigit(cc)  ) 
+				{
+					txtbkur.setEditable(true);
+				}
+				else {
+					if ( cc == '.' || cc == ','  ) {
+						txtbkur.setEditable(true);
+					}
+					else {
+						txtbkur.setEditable(false);
+					}
+				}
 			}
 		});
 		txtbkur.setEnabled(false);
@@ -1154,6 +1189,22 @@ public class DEKONT extends JInternalFrame {
 				}
 
 			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char cc =  e.getKeyChar();
+				if ( Character.isDigit(cc)  ) 
+				{
+					txtatutar.setEditable(true);
+				}
+				else {
+					if ( cc == '.' || cc == ','  ) {
+						txtatutar.setEditable(true);
+					}
+					else {
+						txtatutar.setEditable(false);
+					}
+				}
+			}
 		});
 		DecimalFormat dfat = new DecimalFormat(); // And here..
 		NumberFormatter dnffat = new NumberFormatter(dfat);
@@ -1212,6 +1263,22 @@ public class DEKONT extends JInternalFrame {
 					e1.printStackTrace();
 				}
 
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char cc =  e.getKeyChar();
+				if ( Character.isDigit(cc)  ) 
+				{
+					txtakur.setEditable(true);
+				}
+				else {
+					if ( cc == '.' || cc == ','  ) {
+						txtakur.setEditable(true);
+					}
+					else {
+						txtakur.setEditable(false);
+					}
+				}
 			}
 		});
 		txtakur.setEnabled(false);

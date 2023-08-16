@@ -82,7 +82,7 @@ public class USER_EKLEME extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("static-access")
+	@SuppressWarnings({ "unchecked", "rawtypes" ,"static-access"})
 	public USER_EKLEME() {
 
 		setTitle("KULLANICI EKLEME");
@@ -102,7 +102,6 @@ public class USER_EKLEME extends JInternalFrame {
 		table_1 = new JTable(model){
 			private static final long serialVersionUID = 1L;
 
-			@SuppressWarnings({ "unchecked", "rawtypes" })
 			@Override
 			public Class getColumnClass(int column) {
 				switch (column) {
@@ -135,7 +134,6 @@ public class USER_EKLEME extends JInternalFrame {
 				} catch (ClassNotFoundException e1) {
 					e1.printStackTrace();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				getContentPane().setCursor(DEFAULT_CURSOR);
@@ -255,7 +253,7 @@ public class USER_EKLEME extends JInternalFrame {
 		chckbxs.setSelected(true);
 		chckbxs.setBounds(273, 36, 97, 23);
 		panel.add(chckbxs);
-		
+
 		passwordField = new JPasswordField();
 		passwordField.setBounds(105, 33, 113, 20);
 		panel.add(passwordField);
@@ -284,24 +282,8 @@ public class USER_EKLEME extends JInternalFrame {
 		{
 			boolean liz;
 			boolean siz;
-			//byte[] decodedBytes = Base64.getDecoder().decode(rs.getString(2));
-			
-			
-			String decodedString = rs.getString(2);
-			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
-			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) {
-			   bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
-			try {
-				decodedString = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
-			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
-					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			String uname = rs.getString(1);
-			String sif =decodedString ;
+			String sif = rs.getString(2) ; //decodedString ;
 			String sev = rs.getString(3);
 			String dbiz = rs.getString(4);
 			String mail = rs.getString(5);
@@ -332,7 +314,6 @@ public class USER_EKLEME extends JInternalFrame {
 		bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 		table_1.setFont(bigFont);
 	}
-	@SuppressWarnings("unused")
 	private static  void doldur_kutu( JTable grd,int satir) throws ClassNotFoundException, SQLException 
 	{
 		if (grd.getRowCount() == 0 ) {  
@@ -353,7 +334,19 @@ public class USER_EKLEME extends JInternalFrame {
 		}
 		else
 		{
-			passwordField.setText(grd.getModel().getValueAt(satir, 1).toString());
+			String decodedString = grd.getModel().getValueAt(satir, 1).toString();
+			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+			byte[] bytes = new byte[byteValues.length];
+			for (int i=0, len=bytes.length; i<len; i++) {
+				bytes[i] = Byte.parseByte(byteValues[i].trim());     
+			}
+			try {
+				decodedString = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
+			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+				e.printStackTrace();
+			}
+			passwordField.setText(decodedString);
 		}
 		if (grd.getModel().getValueAt(satir, 2) == null)
 		{

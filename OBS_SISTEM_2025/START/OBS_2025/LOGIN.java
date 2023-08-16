@@ -23,6 +23,8 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Properties;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -437,6 +439,10 @@ public class LOGIN extends JFrame {
 			}
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
+		// String username = System.getProperty("user.name");
+		 //   System.out.println("username = " + username);
+		 System.setProperty("password", "myPassword");
+		    System.out.println(System.getProperty("password"));
 	}
 	void cari_kont() throws ClassNotFoundException, SQLException
 	{

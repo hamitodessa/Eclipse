@@ -1166,7 +1166,7 @@ public class LOGIN extends JFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 			return;
 		}
 	}

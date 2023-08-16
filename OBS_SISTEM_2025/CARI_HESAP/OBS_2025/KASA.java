@@ -120,6 +120,7 @@ public class KASA extends JInternalFrame {
 		leftPanel.setMaximumSize(new Dimension(0, 70));
 		JScrollPane centerPanel = new JScrollPane();
 		JPanel rightPanel = new JPanel();
+		rightPanel.setForeground(new Color(0, 0, 139));
 		rightPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		rightPanel.setMinimumSize(new Dimension(0, 90));
 		rightPanel.setMaximumSize(new Dimension(0, 90));
@@ -389,12 +390,14 @@ public class KASA extends JInternalFrame {
 		rightPanel.setLayout(null);
 
 		lblNewLabel_4 = new JLabel("0.00");
+		lblNewLabel_4.setForeground(new Color(0, 0, 139));
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_4.setBounds(503, 11, 96, 14);
 		rightPanel.add(lblNewLabel_4);
 
 		lblNewLabel_5 = new JLabel("0.00");
+		lblNewLabel_5.setForeground(new Color(0, 0, 139));
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5.setBounds(400, 11, 100, 14);
@@ -407,6 +410,7 @@ public class KASA extends JInternalFrame {
 		rightPanel.add(lblNewLabel_4_1);
 
 		lblNewLabel_4_2 = new JLabel("0.00");
+		lblNewLabel_4_2.setForeground(new Color(0, 0, 128));
 		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_4_2.setBounds(503, 56, 96, 14);
@@ -419,6 +423,7 @@ public class KASA extends JInternalFrame {
 		rightPanel.add(lblNewLabel_5_1);
 
 		lblNewLabel_5_2 = new JLabel("0.00");
+		lblNewLabel_5_2.setForeground(new Color(0, 0, 128));
 		lblNewLabel_5_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5_2.setBounds(400, 56, 100, 14);
@@ -438,6 +443,7 @@ public class KASA extends JInternalFrame {
 		rightPanel.add(lblNewLabel_4_1_1);
 
 		lblNewLabel_4_1_2 = new JLabel("0.00");
+		lblNewLabel_4_1_2.setForeground(new Color(0, 0, 139));
 		lblNewLabel_4_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_4_1_2.setBounds(624, 11, 96, 14);

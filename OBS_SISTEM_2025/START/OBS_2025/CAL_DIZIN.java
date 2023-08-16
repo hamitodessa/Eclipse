@@ -378,6 +378,12 @@ public class CAL_DIZIN extends JFrame {
 						txtyenisif.setVisible(false);
 						lblysif.setVisible(false); 
 						txtsif.requestFocus();
+						
+						//
+						byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(txtyenisif.getText()) ;
+						String response = Arrays.toString(qaz);
+						GLOBAL.setting_yaz("SIFRE", response);
+						//
 
 					}
 					else if (activ_sayfa == 8)

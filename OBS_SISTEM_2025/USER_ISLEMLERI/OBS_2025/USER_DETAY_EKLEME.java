@@ -14,6 +14,8 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
@@ -727,6 +729,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 					txtip.getText(),comboBox_1.getItemAt(comboBox_1.getSelectedIndex()), txtdiz.getText(), 
 					txtyer.getText(), txtdcins.getText(), chckbxNewCheckBox.isSelected() ?   "E" : "",chckbxNewCheckBox_1.isSelected() ?   "E" : "",comboBox_2.getItemAt(comboBox_2.getSelectedIndex()).toString() ,lblcdid.getText()
 							, chckbxLog.isSelected() ?   1 : 0,loglama);
+			
 			grid_doldur();
 			kutu_temizle();
 			doldur();

@@ -84,6 +84,21 @@ public class BILGI_OKU {
 				}
 			}
 		}
+		else 
+		{
+			dIZIN.kOD = "";
+			dIZIN.sERVER =  "";
+			dIZIN.kULLANICI = "";	
+			dIZIN.sIFRESI = "" ;
+			dIZIN.yER ="" ;
+			dIZIN.iNSTANCE = "" ;
+			dIZIN.dIZIN_CINS = "" ;
+			dIZIN.dIZIN = "" ;
+			dIZIN.hAN_SQL = "" ;
+			dIZIN.lOGLAMA_YERI = "" ;
+			dIZIN.cONN_STR = "";
+			dIZIN.hAN_SQL = "" ;
+		}
 		con.close();
 	}
 }

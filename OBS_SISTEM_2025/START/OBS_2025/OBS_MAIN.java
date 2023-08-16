@@ -168,6 +168,7 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnExcell ; // Excell Aktarma
 	private JButton btnGrafik ; // Grafik
 	private JButton btnEmail ;  // E Mail
+	public static JButton button_1 ; // Login Formu
 	public static JButton btnKaydet ;
 	public static JButton btnFiltre ;
 	public static JButton btnYazici ;
@@ -2733,7 +2734,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_93.setToolTipText("Calisma Dizini");
 		toolBar.add(btnNewButton_93);
 
-		JButton button_1 = new JButton("");
+		button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GuiUtil.setWaitCursor(toolBar,true);

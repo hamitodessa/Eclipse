@@ -313,6 +313,8 @@ public class LOGIN extends JFrame {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				try 
 				{
+					
+					GLOBAL.KULL_ADI ="";
 					byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(oac.sDONDUR.sDONDUR(txtpwd)) ;
 					String response = Arrays.toString(qaz);
 					boolean varmi =	oac.uSER_ISL.user_var(txtUser.getText(),response);
@@ -328,7 +330,8 @@ public class LOGIN extends JFrame {
 							GLOBAL.setting_yaz("SIFRE", response);
 						}
 						else
-						{GLOBAL.setting_yaz("BENI_HATIRLA", "");	
+						{
+							GLOBAL.setting_yaz("BENI_HATIRLA", "");	
 						}
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					}
@@ -392,7 +395,7 @@ public class LOGIN extends JFrame {
 					catch (Exception ex)
 					{
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "OBS SISTEM1", JOptionPane.ERROR_MESSAGE);        
+						JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);        
 					}
 				}
 				};
@@ -443,6 +446,7 @@ public class LOGIN extends JFrame {
 		 //   System.out.println("username = " + username);
 		// System.setProperty("password", "myPassword");
 		//    System.out.println(System.getProperty("password"));
+
 	}
 	void cari_kont() throws ClassNotFoundException, SQLException
 	{

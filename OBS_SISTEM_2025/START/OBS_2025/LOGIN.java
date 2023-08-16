@@ -1104,12 +1104,18 @@ public class LOGIN extends JFrame {
 				return ;
 			}
 			ftp.enterLocalPassiveMode();
-			String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_SISTEM_2025/OBS_VERSION.txt";
+			//String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_SISTEM_2025/OBS_VERSION.txt";
+			String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
 			File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");
 			OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
 			boolean success = ftp.retrieveFile(remoteFile1, outputStream1);
 			outputStream1.close();
-			if (success == false ) return ;
+			if (success == false )
+				{
+				File f= new File("C:/OBS_SISTEM/OBS_VERSIONS.txt");           //file to be delete  
+				success = f.delete();  
+				return ;
+				}
 			//************************************
 			fileName = "" ;
 			fileName = "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt";
@@ -1134,7 +1140,6 @@ public class LOGIN extends JFrame {
 			bufferedReader.close();
 			if (eskiver.equals(yeniver))
 			{
-
 				File f= new File("C:/OBS_SISTEM/OBS_VERSIONS.txt");           //file to be delete  
 				success = f.delete();  
 			}
@@ -1142,18 +1147,21 @@ public class LOGIN extends JFrame {
 			{
 				File f= new File("C:/OBS_SISTEM/" + "OBS_VERSIONS.txt");           //file to be delete  
 				f.delete();  
-				String html = "<html><body width='%1s'><h1>OBS SISTEM</h1>"
-						+ "Yeni Versiyon Mevcut.......	 "
+				String html = "<html><body >"
+						+ "Yeni Versiyon Mevcut"
 						+ "<br><br> "
-						+ "Mevcut Version = " +eskiver + "      "
+						+ "Mevcut Version = " + eskiver + "      "
 						+ "<br><br> "
 						+ "Yeni Version = " + yeniver + "" ;
-				JOptionPane.showMessageDialog(null, String.format(html, "OBS SISTEM", JOptionPane.PLAIN_MESSAGE));
+				//JOptionPane.showMessageDialog(null, String.format(html, "OBS SISTEM", JOptionPane.PLAIN_MESSAGE));
+				JOptionPane.showMessageDialog(null, String.format(html), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 			}
+			
 		}
 		catch (Exception ex)
 		{
-			return ;
+			JOptionPane.showMessageDialog(null, ex.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
+			return;
 		}
 	}
 	private void cONN_AKTAR( String dIZIN )

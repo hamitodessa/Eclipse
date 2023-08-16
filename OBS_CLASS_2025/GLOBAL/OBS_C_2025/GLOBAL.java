@@ -158,7 +158,7 @@ public class GLOBAL {
 			if (exists)
 			{   
 				// "Dosya Mevcut"	//Propertis kontrol//
-				tmpDir = new File(SURUCU +  "/admin.properties");
+				tmpDir = new File(SURUCU +  "/" + System.getProperty("user.name") +".properties");
 				exists = tmpDir.exists();
 				if (exists)
 				{ 
@@ -188,7 +188,7 @@ public class GLOBAL {
 		try {
 			set_doldur();
 			boolean varmi = false;
-			output = new FileOutputStream( GLOBAL.SURUCU + "/admin.properties");
+			output = new FileOutputStream( GLOBAL.SURUCU + "/" + System.getProperty("user.name") + ".properties");
 			Properties prop = new Properties();
 			for (int i = 0; i < ayarlar.length   ; i++) 
 			{
@@ -212,7 +212,7 @@ public class GLOBAL {
 	public static void set_doldur() throws IOException {
 		InputStream input;
 		Properties prop = new Properties();
-		input = new FileInputStream( GLOBAL.SURUCU + "/admin.properties");
+		input = new FileInputStream( GLOBAL.SURUCU + "/" + System.getProperty("user.name") + ".properties");
 		prop.load(input);
 		final Set<String> keys =  prop.stringPropertyNames(); 
 		int kac_satir = 0;
@@ -232,7 +232,8 @@ public class GLOBAL {
 	{
 		File tmpDir = new File(SURUCU);
 		boolean exists = tmpDir.exists();
-		tmpDir = new File(SURUCU +  "/admin.properties");
+		//tmpDir = new File(SURUCU +  "/admin.properties"); //System.getProperty("user.name")
+		tmpDir = new File(SURUCU +  "/"+ System.getProperty("user.name")+".properties"); //
 		exists = tmpDir.exists();
 		if (exists)
 		{ 
@@ -244,7 +245,7 @@ public class GLOBAL {
 		}
 		String donen="";
 		FileInputStream iss;
-		iss =  new FileInputStream( GLOBAL.SURUCU + "/admin.properties");
+		iss =  new FileInputStream( GLOBAL.SURUCU + "/"+ System.getProperty("user.name")+".properties");
 		Properties adminProps = new Properties();
 		adminProps.load(iss);
 		donen = adminProps.getProperty(anahtar).toString();
@@ -282,7 +283,7 @@ public class GLOBAL {
 	{
 		OutputStream output;
 		try {
-			output = new FileOutputStream( GLOBAL.SURUCU + "/admin.properties");
+			output = new FileOutputStream( GLOBAL.SURUCU + "/" + System.getProperty("user.name") + ".properties");
 			Properties prop = new Properties();
 			prop.setProperty("BENI_HATIRLA", "");
 			prop.setProperty("ISIM", "");

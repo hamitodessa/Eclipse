@@ -441,8 +441,8 @@ public class LOGIN extends JFrame {
 		}
 		// String username = System.getProperty("user.name");
 		 //   System.out.println("username = " + username);
-		 System.setProperty("password", "myPassword");
-		    System.out.println(System.getProperty("password"));
+		// System.setProperty("password", "myPassword");
+		//    System.out.println(System.getProperty("password"));
 	}
 	void cari_kont() throws ClassNotFoundException, SQLException
 	{

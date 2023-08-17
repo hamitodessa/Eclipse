@@ -38,6 +38,8 @@ import OBS_C_2025.SOLA;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -126,21 +128,22 @@ public class USER_EKLEME extends JInternalFrame {
 
 		};
 		table_1.setGridColor(oac.gridcolor);
-		table_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
-				try {
-					kutu_temizle();
-					doldur_kutu(table_1,table_1.getSelectedRow());
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				getContentPane().setCursor(DEFAULT_CURSOR);
-			}
-		});
+		table_1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		    public void valueChanged(ListSelectionEvent lse) {
+			        if (!lse.getValueIsAdjusting()) {
+			        	getContentPane().setCursor(WAIT_CURSOR);
+						try {
+							kutu_temizle();
+							doldur_kutu(table_1,table_1.getSelectedRow());
+						} catch (ClassNotFoundException e1) {
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						getContentPane().setCursor(DEFAULT_CURSOR);
+			        }
+			    }
+			});
 		table_1.setSurrendersFocusOnKeystroke(true);
 		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

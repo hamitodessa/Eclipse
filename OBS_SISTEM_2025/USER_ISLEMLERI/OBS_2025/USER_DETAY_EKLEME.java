@@ -6,8 +6,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
@@ -33,6 +31,8 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.ImageIcon;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -72,13 +72,10 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 	private static JCheckBox chckbxNewCheckBox;
 	private static JCheckBox chckbxNewCheckBox_1;
 	private static JCheckBox chckbxLog ;
-
 	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static JComboBox<String> comboBox_2;
-	
 	static boolean vt = false;
 	static boolean ds = false;
 	static boolean tx = false;
@@ -337,49 +334,29 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		passwordField.setBounds(357, 33, 125, 20);
 		panel.add(passwordField);
 		
-		
 		String columnheaders[] = { "KODU", "KULLANICI", "SER.KULLANICI" ,"SIFRE","INSTANCE", "IP", "MODUL" ,
 				"DIZIN","YER","DIZIN CINS","IZINLI MI" ,"CALISAN MI","SQL CINSI" ,"LOGLAMA" ,"LOG_YERI" , "ID"};
 		DefaultTableModel model = new DefaultTableModel(null,columnheaders);
 		table_1 = new JTable(model){
-			private static final long serialVersionUID = 1L;
-			@SuppressWarnings({ "unchecked", "rawtypes" })
-			@Override
-			public Class getColumnClass(int column) {
-				return String.class;
-			}
 			public boolean isCellEditable(int row, int column) {     return false;          }
-
-			public void changeSelection(final int row, final int column, boolean toggle, boolean extend)
-			{
-				super.changeSelection(row, column, toggle, extend);
-				kutu_temizle();
-				try {
-					doldur_kutu(row);
-				} catch (ClassNotFoundException | SQLException e) {
-					e.printStackTrace();
-				}
-			}	
-
 		};
+		table_1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		    public void valueChanged(ListSelectionEvent lse) {
+			        if (!lse.getValueIsAdjusting()) {
+			        	getContentPane().setCursor(WAIT_CURSOR);
+						try {
+							kutu_temizle();
+							doldur_kutu(table_1.getSelectedRow());
+						} catch (ClassNotFoundException e1) {
+							e1.printStackTrace();
 
-		table_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
-				try {
-					kutu_temizle();
-					doldur_kutu(table_1.getSelectedRow());
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				getContentPane().setCursor(DEFAULT_CURSOR);
-			}
-
-		});
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+						getContentPane().setCursor(DEFAULT_CURSOR);
+			        }
+			    }
+			});
 
 		table_1.setGridColor(oac.gridcolor);
 		table_1.setSurrendersFocusOnKeystroke(true);
@@ -492,12 +469,9 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		GRID_TEMIZLE.grid_temizle(table_1);
 		ResultSet	rs = null;
 		rs =  oac.uSER_ISL.user_details_bak();
-		
 		if (!rs.isBeforeFirst() ) {  
 			return;
 		}
-		
-	
 		DefaultTableModel defaultModel =  (DefaultTableModel) table_1.getModel();
 		while(rs.next())
 		{
@@ -562,7 +536,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		{
 			//byte[] decodedBytes = Base64.getDecoder().decode(table_1.getModel().getValueAt(satir, 3).toString());
 			//String decodedString = new String(decodedBytes);
-			
 			String decodedString = table_1.getModel().getValueAt(satir, 3).toString();
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
@@ -669,7 +642,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		}
 		else
 		{
-			
 			String[] token =table_1.getModel().getValueAt(satir, 14).toString().split(",");
 			cbVeritabani.setSelected( (token[0].equals("true") ? true:false));	
 			cbDosya.setSelected( (token[1].equals("true") ? true:false));
@@ -680,7 +652,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		{
 			lblcdid.setText("");
 		}
-
 		else
 		{
 			lblcdid.setText(table_1.getModel().getValueAt(satir, 15).toString());

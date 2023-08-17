@@ -119,7 +119,7 @@ public class USER_KOPYALA extends JInternalFrame {
 			if (count  != 0) 
 			{
 				panel.setCursor(oac.DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null, "Bu Kullanici isminde Cari Hesap Bilgiler Mevcurt", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bu Kullanici isminde Cari Hesap Bilgiler Mevcut", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
 				return ;
 			}
 			panel.setCursor(oac.WAIT_CURSOR);

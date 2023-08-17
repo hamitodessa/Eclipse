@@ -86,6 +86,7 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
 import OBS_C_2025.Server_Bilgi;
+import OBS_C_2025.sayiyiYaziyaCevir;
 @SuppressWarnings({"static-access","unused"})
 public class LOGIN extends JDialog {
 	/**
@@ -354,45 +355,71 @@ public class LOGIN extends JDialog {
 					try
 					{
 						calisma_dizini_oku();
+						int say  = 8 ;
+						Login_Progres_Bar_Temizle();
+						progressBar.setMaximum(say);
+						progressBar.setStringPainted(true);
+						Lgn_Progres_Bar(say, 1);
 						lblModul.setText("Cari Baglanti");
 						CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 						c_Access.baglan();
+						Lgn_Progres_Bar(say, 2);
 						lblModul.setText("Kur Baglanti");
 						KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur, oac._IKur_Loger);
 						k_Access.baglan();
+						Lgn_Progres_Bar(say, 3);
 						lblModul.setText("Adres Baglanti");
 						ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres, oac._IAdres_Loger);
 						a_Access.baglan();
+						Lgn_Progres_Bar(say, 4);
 						lblModul.setText("Stok Baglanti");
 						STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
 						s_Access.baglan();
+						Lgn_Progres_Bar(say, 5);
 						lblModul.setText("Kambiyo Baglanti");
 						KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo, oac._IKambiyo_Loger);
 						ka_Access.baglan();
+						Lgn_Progres_Bar(say, 6);
 						lblModul.setText("Gunluk Baglanti");
 						GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk, oac._IGunluk_Loger);
 						g_Access.baglan();
+						Lgn_Progres_Bar(say, 7);
 						lblModul.setText("Sms Baglanti");
 						SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms, oac._ISms_Loger);
 						sms_Access.baglan();
+						Lgn_Progres_Bar(say, 8);
+
 						OBS_MAIN obmain = new OBS_MAIN();
+						
 						Login_Progres_Bar_Temizle();
+						progressBar.setMaximum(say);
+						progressBar.setStringPainted(true);
+						Lgn_Progres_Bar(say, 1);
 						lblModul.setText("Cari Bilgi Okuma");
 						cari_kont();
+						Lgn_Progres_Bar(say, 2);
 						lblModul.setText("Kur Bilgi Okuma");
 						kur_kont();
+						Lgn_Progres_Bar(say, 3);
 						lblModul.setText("Sms Bilgi Okuma");
 						sms_kont();
+						Lgn_Progres_Bar(say, 4);
 						lblModul.setText("Adres Bilgi Okuma");
 						adr_kont(); 
+						Lgn_Progres_Bar(say, 5);
 						lblModul.setText("Stok Bilgi Okuma");
 						fat_kont();
+						Lgn_Progres_Bar(say, 6);
 						lblModul.setText("Kambiyo Bilgi Okuma");
 						kam_kont();
+						Lgn_Progres_Bar(say, 7);
 						lblModul.setText("Gunluk Bilgi Okuma");
 						gun_kont();
+						Lgn_Progres_Bar(say, 8);
 						lblModul.setText("");
+						Login_Progres_Bar_Temizle();
 						Thread.currentThread().isInterrupted();
+						
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
 						obmain.setTitle("OBS SISTEM" + "               " + GLOBAL.KULL_ADI);
 						obmain.setVisible(true);

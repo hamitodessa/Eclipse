@@ -87,7 +87,7 @@ import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
 import OBS_C_2025.Server_Bilgi;
 @SuppressWarnings({"static-access","unused"})
-public class LOGIN extends JFrame {
+public class LOGIN extends JDialog {
 	/**
 	 * 
 	 */

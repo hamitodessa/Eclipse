@@ -34,6 +34,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -104,7 +105,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.JSeparator;
 
 @SuppressWarnings("static-access")
-public class CAL_DIZIN extends JFrame {
+public class CAL_DIZIN extends JDialog {
 
 
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -177,13 +178,7 @@ public class CAL_DIZIN extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				LOGIN frame;
-				try {
-					frame = new LOGIN();
-					frame.setVisible(true);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				cIKIS();
 			}
 			@Override
 			public void windowOpened(WindowEvent e) {
@@ -192,8 +187,6 @@ public class CAL_DIZIN extends JFrame {
 					activ_sayfa =0;
 					grid_doldur();
 					doldur_kutu(tblCari,0);
-					
-					
 					contentPane.setCursor(DEFAULT_CURSOR);
 				} catch (ClassNotFoundException | SQLException e1) {
 					contentPane.setCursor(DEFAULT_CURSOR);
@@ -427,16 +420,7 @@ public class CAL_DIZIN extends JFrame {
 		btnNewButton_5.setToolTipText("Kapat");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				//	LOGIN frame;
-				try {
-					LOGIN frame = new LOGIN();
-					frame.setVisible(true);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-
-			}
+				cIKIS();			}
 		});
 		btnNewButton_5.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/exit.png")));
 		toolBar.add(btnNewButton_5);
@@ -2504,6 +2488,16 @@ public class CAL_DIZIN extends JFrame {
 		{oac._IGunluk_Loger = ilogg;}
 		else if (mODUL.equals("Kambiyo"))
 		{oac._IKambiyo_Loger = ilogg;}
+	}
+	private void cIKIS()
+	{
+		try {
+			LOGIN frame = new LOGIN();
+			frame.setVisible(true);
+			dispose();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
 class ComboItem

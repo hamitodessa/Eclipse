@@ -18,10 +18,11 @@ public class LOG_MAIL_OKU {
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con = gLB.myConnection();
-		String sql = "SELECT DISTINCT E_MAIL FROM LOG_MAIL  WHERE USER_NAME = '" +gLB.KULL_ADI + "'  and   AKTIV = '1' ORDER BY E_MAIL";
+		String sql = "SELECT DISTINCT E_MAIL FROM LOG_MAIL  WHERE USER_NAME = '" + gLB.KULL_ADI + "'  and   AKTIV = '1' ORDER BY E_MAIL";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		if (!rss.isBeforeFirst() ) {  
+		if (!rss.isBeforeFirst() ) 
+		{  
 			gLB.Log_Mail ="";
 		} 
 		else

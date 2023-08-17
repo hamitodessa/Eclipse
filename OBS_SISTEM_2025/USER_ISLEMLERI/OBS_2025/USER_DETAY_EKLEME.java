@@ -14,8 +14,6 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
@@ -148,14 +146,14 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		comboBox = new JComboBox<String>();
 		comboBox.setForeground(new Color(0, 0, 128));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 14));
-		comboBox.setBounds(107, 7, 125, 22);
+		comboBox.setBounds(107, 8, 125, 22);
 		panel.add(comboBox);
 
 		comboBox_1 = new JComboBox<String>();
 		comboBox_1.setForeground(new Color(0, 0, 128));
 		comboBox_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo", "Adres", "Kur", "Sms", "Gunluk"}));
-		comboBox_1.setBounds(107, 32, 125, 22);
+		comboBox_1.setBounds(107, 33, 125, 22);
 		panel.add(comboBox_1);
 
 		txtkodu = new JTextField();
@@ -321,6 +319,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		});
 		menu.add(cbMail);
 		JButton btnNewButton_6 = new JButton();
+		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_6.setForeground(new Color(0, 128, 128));
 		btnNewButton_6.setText("Loglama Secimi");
 		btnNewButton_6.setBounds(800, 82, 130, 23);

@@ -98,6 +98,8 @@ public class BILGI_OKU {
 			dIZIN.lOGLAMA_YERI = "" ;
 			dIZIN.cONN_STR = "";
 			dIZIN.hAN_SQL = "" ;
+			dIZIN.cDID= 0; 
+			dIZIN.lOG = false;
 		}
 		con.close();
 	}

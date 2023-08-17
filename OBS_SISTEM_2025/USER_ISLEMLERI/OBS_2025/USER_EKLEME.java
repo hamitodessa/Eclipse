@@ -206,13 +206,13 @@ public class USER_EKLEME extends JInternalFrame {
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Sifre");
-		lblNewLabel_1.setBounds(21, 36, 62, 14);
+		lblNewLabel_1.setBounds(21, 39, 62, 14);
 		panel.add(lblNewLabel_1);
 
 		txtkull = new JTextField();
 		txtkull.setEnabled(false);
 		txtkull.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtkull.setBounds(105, 8, 113, 20);
+		txtkull.setBounds(105, 10, 113, 20);
 		panel.add(txtkull);
 		txtkull.setColumns(10);
 
@@ -226,7 +226,7 @@ public class USER_EKLEME extends JInternalFrame {
 
 		txtsev = new JTextField();
 		txtsev.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtsev.setBounds(500, 11, 41, 20);
+		txtsev.setBounds(500, 10, 41, 20);
 		panel.add(txtsev);
 		txtsev.setColumns(10);
 
@@ -257,7 +257,7 @@ public class USER_EKLEME extends JInternalFrame {
 		panel.add(chckbxs);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(105, 33, 113, 20);
+		passwordField.setBounds(105, 36, 113, 20);
 		panel.add(passwordField);
 
 		getContentPane().setCursor(WAIT_CURSOR);

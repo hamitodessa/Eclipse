@@ -142,12 +142,9 @@ public class LOGIN extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
 		//************************************************************************
 		try {
-			
 			LOGIN.setDefaultLookAndFeelDecorated(true);
-
 			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("TextureLookAndFeel"))
 			{
 				UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
@@ -213,7 +210,6 @@ public class LOGIN extends JFrame {
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
 			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
-
 		//************************************************************************
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
@@ -313,8 +309,6 @@ public class LOGIN extends JFrame {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				try 
 				{
-					
-					GLOBAL.KULL_ADI ="";
 					byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(oac.sDONDUR.sDONDUR(txtpwd)) ;
 					String response = Arrays.toString(qaz);
 					boolean varmi =	oac.uSER_ISL.user_var(txtUser.getText(),response);
@@ -382,13 +376,10 @@ public class LOGIN extends JFrame {
 						fat_kont();
 						kam_kont();
 						gun_kont();
-
 						Thread.currentThread().isInterrupted();
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
 						obmain.setTitle("OBS SISTEM" + "               " + GLOBAL.KULL_ADI);
 						obmain.setVisible(true);
-
-
 						dispose();
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					}
@@ -442,11 +433,6 @@ public class LOGIN extends JFrame {
 			}
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
-		// String username = System.getProperty("user.name");
-		 //   System.out.println("username = " + username);
-		// System.setProperty("password", "myPassword");
-		//    System.out.println(System.getProperty("password"));
-
 	}
 	void cari_kont() throws ClassNotFoundException, SQLException
 	{
@@ -753,7 +739,6 @@ public class LOGIN extends JFrame {
 		sBilgi.setDb("OK_Car" + BAGLAN.cariDizin.kOD);
 		if (BAGLAN.cariDizin.yER.equals("L"))
 		{
-
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
 				if (s_CONN.Dosya_kontrol_L( sBilgi) == false)
@@ -764,7 +749,8 @@ public class LOGIN extends JFrame {
 				{
 					lOGG_AKTAR("Cari Hesap",BAGLAN.cariDizin.hAN_SQL,BAGLAN.cariDizin.lOG,BAGLAN.cariDizin.lOGLAMA_YERI);
 					CAR_DOS_VAR = true;
-					OBS_SIS_2025_ANA_CLASS.CARI_CONN = true;}
+					OBS_SIS_2025_ANA_CLASS.CARI_CONN = true;
+				}
 			}
 			else
 				OBS_SIS_2025_ANA_CLASS.CARI_CONN = false;
@@ -1411,5 +1397,11 @@ public class LOGIN extends JFrame {
 		{oac._IKambiyo_Loger = ilogg;}
 	}
 }
+// String username = System.getProperty("user.name");
+// System.out.println("username = " + username);
+// System.setProperty("password", "myPassword");
+// System.out.println(System.getProperty("password"));
+
+
 
 

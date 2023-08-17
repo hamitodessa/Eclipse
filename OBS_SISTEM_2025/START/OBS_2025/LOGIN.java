@@ -106,6 +106,7 @@ public class LOGIN extends JDialog {
 	private static  JCheckBox chckbxhatirla;
 	private JButton btndevam;
 	private JButton btncdizin;
+	private JLabel lblModul ;
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	BAGLAN bAGLAN = new BAGLAN();
 	BAGLAN_LOG bAGLAN_LOG = new BAGLAN_LOG();
@@ -353,29 +354,44 @@ public class LOGIN extends JDialog {
 					try
 					{
 						calisma_dizini_oku();
+						lblModul.setText("Cari Baglanti");
 						CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 						c_Access.baglan();
+						lblModul.setText("Kur Baglanti");
 						KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur, oac._IKur_Loger);
 						k_Access.baglan();
+						lblModul.setText("Adres Baglanti");
 						ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres, oac._IAdres_Loger);
 						a_Access.baglan();
+						lblModul.setText("Stok Baglanti");
 						STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
 						s_Access.baglan();
+						lblModul.setText("Kambiyo Baglanti");
 						KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo, oac._IKambiyo_Loger);
 						ka_Access.baglan();
+						lblModul.setText("Gunluk Baglanti");
 						GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk, oac._IGunluk_Loger);
 						g_Access.baglan();
+						lblModul.setText("Sms Baglanti");
 						SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms, oac._ISms_Loger);
 						sms_Access.baglan();
 						OBS_MAIN obmain = new OBS_MAIN();
 						Login_Progres_Bar_Temizle();
+						lblModul.setText("Cari Bilgi Okuma");
 						cari_kont();
+						lblModul.setText("Kur Bilgi Okuma");
 						kur_kont();
+						lblModul.setText("Sms Bilgi Okuma");
 						sms_kont();
+						lblModul.setText("Adres Bilgi Okuma");
 						adr_kont(); 
+						lblModul.setText("Stok Bilgi Okuma");
 						fat_kont();
+						lblModul.setText("Kambiyo Bilgi Okuma");
 						kam_kont();
+						lblModul.setText("Gunluk Bilgi Okuma");
 						gun_kont();
+						lblModul.setText("");
 						Thread.currentThread().isInterrupted();
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
 						obmain.setTitle("OBS SISTEM" + "               " + GLOBAL.KULL_ADI);
@@ -397,6 +413,11 @@ public class LOGIN extends JDialog {
 		btndevam.setVisible(false);
 		btndevam.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/icons8-jog-forward-16.png")));
 		btndevam.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		
+		lblModul = new JLabel();
+		lblModul.setForeground(new Color(0, 139, 139));
+		lblModul.setBounds(1, 140, 189, 14);
+		panel.add(lblModul);
 
 		progressBar = new JProgressBar();
 		splitPane.setRightComponent(progressBar);
@@ -705,20 +726,28 @@ public class LOGIN extends JDialog {
 		progressBar.setStringPainted(true);
 
 		Lgn_Progres_Bar(say, 1);
+		lblModul.setText("Cari Hesap Calisma Dizini");
 		cari_calisma_dizini_oku();
 		Lgn_Progres_Bar(say, 2);
+		lblModul.setText("Kur Calisma Dizini");
 		kur_calisma_dizini_oku();
 		Lgn_Progres_Bar(say, 3);
+		lblModul.setText("Sms Calisma Dizini");
 		sms_calisma_dizini_oku();
 		Lgn_Progres_Bar(say, 4);
+		lblModul.setText("Adres Calisma Dizini");
 		adr_calisma_dizini_oku();
 		Lgn_Progres_Bar(say, 5);
+		lblModul.setText("Stok Calisma Dizini");
 		fat_calisma_dizini_oku();
 		Lgn_Progres_Bar(say, 6);
+		lblModul.setText("Kambiyo Calisma Dizini");
 		kam_calisma_dizini_oku();
 		Lgn_Progres_Bar(say, 7);
+		lblModul.setText("Gunluk Calisma Dizini");
 		gun_calisma_dizini_oku();
 		Lgn_Progres_Bar(say, 8);
+		lblModul.setText("");
 	}
 	void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{

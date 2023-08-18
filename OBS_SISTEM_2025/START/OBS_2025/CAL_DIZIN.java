@@ -564,6 +564,10 @@ public class CAL_DIZIN extends JDialog {
 					{
 						doldur_kutu(tblGunluk,0);	
 					}
+					else if (activ_sayfa == 7)
+					{
+						txtsif.requestFocus()	;
+					}
 					else if (activ_sayfa == 8)
 					{
 						mail_doldur();

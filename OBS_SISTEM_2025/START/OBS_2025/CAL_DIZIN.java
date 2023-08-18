@@ -123,6 +123,7 @@ public class CAL_DIZIN extends JDialog {
 	private static JComboBox<String> cmbip;
 	private static JComboBox<String> cmbhangisql;
 	private static JButton btndizsec;
+	private JButton btnNewButton_2_1_1 ;
 	private static JButton btnNewButton_1;
 	private static JCheckBox chckbxL ;
 	private static JCheckBox chckbxS ;
@@ -155,6 +156,7 @@ public class CAL_DIZIN extends JDialog {
 	static JCheckBoxMenuItem cbMail;
 	private JSeparator separator;
 	private JPopupMenu menu;
+	private JButton btnNewButton_2_2;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -349,72 +351,7 @@ public class CAL_DIZIN extends JDialog {
 		btnNewButton_3.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/yeni.png")));
 		toolBar.add(btnNewButton_3);
 
-		JButton btnNewButton_4 = new JButton("");
-		btnNewButton_4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				try
-				{
-					if (activ_sayfa == 7)
-					{
-
-						String oku = new String(txtyenisif.getText());
-						if (oku.equals(""))
-						{
-							txtsif.requestFocus();
-							return;
-						}
-						contentPane.setCursor(WAIT_CURSOR);
-						oac.uSER_ISL.sifre_degis(GLOBAL.KULL_ADI, txtyenisif.getText());
-						txtyenisif.setText("");
-						txtsif.setText("");
-						txtyenisif.setVisible(false);
-						lblysif.setVisible(false); 
-						txtsif.requestFocus();
-						
-						//
-						byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(txtyenisif.getText()) ;
-						String response = Arrays.toString(qaz);
-						GLOBAL.setting_yaz("SIFRE", response);
-						//
-
-					}
-					else if (activ_sayfa == 8)
-					{
-						String oku = txt_Lmaill.getText();
-						if (! oku.equals(""))
-						{
-							ResultSet	rs = null;
-							oac.uSER_ISL.log_mail_kont_kayit(GLOBAL.KULL_ADI , oku);
-							rs = oac.uSER_ISL.log_mail_oku(GLOBAL.KULL_ADI);
-							if (!rs.isBeforeFirst() ) {  
-								return;
-							} 
-							else
-							{
-								cmb_maillist.removeAllItems();
-								while (rs.next()) 
-								{
-									cmb_maillist.addItem(rs.getString("E_MAIL"));
-								}
-							}
-							txt_Lmaill.setText(oac.uSER_ISL.log_mail_aktiv_oku(GLOBAL.KULL_ADI));
-							///
-						}
-					}
-					contentPane.setCursor(DEFAULT_CURSOR);
-				}
-				catch (Exception ex)
-				{
-					contentPane.setCursor(DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Kaydet", JOptionPane.PLAIN_MESSAGE);
-					txtsif.requestFocus();		
-				}				}
-
-		});
-		btnNewButton_4.setToolTipText("Kaydet");
-		btnNewButton_4.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/save.png")));
-		toolBar.add(btnNewButton_4);
+		
 
 		JButton btnNewButton_5 = new JButton("");
 		btnNewButton_5.setToolTipText("Kapat");
@@ -598,6 +535,7 @@ public class CAL_DIZIN extends JDialog {
 					if (txtcdid== null) return;
 					contentPane.setCursor(WAIT_CURSOR);
 					grid_doldur();
+					sIFRE_KAPA();
 					if (activ_sayfa == 0)
 					{
 						doldur_kutu(tblCari,0);	
@@ -861,6 +799,7 @@ public class CAL_DIZIN extends JDialog {
 						{
 							lblysif.setVisible(true);
 							txtyenisif.setVisible(true);
+							btnNewButton_2_1_1.setVisible(true);
 							contentPane.setCursor(DEFAULT_CURSOR);
 						}
 						else
@@ -868,6 +807,7 @@ public class CAL_DIZIN extends JDialog {
 							JOptionPane.showMessageDialog(null, "Sifre Yanlis", "Sifre Degistirme", JOptionPane.PLAIN_MESSAGE);
 							lblysif.setVisible(false);
 							txtyenisif.setVisible(false);
+							btnNewButton_2_1_1.setVisible(false);
 							contentPane.setCursor(DEFAULT_CURSOR);
 						}
 						} catch (Exception e1) {
@@ -893,6 +833,48 @@ public class CAL_DIZIN extends JDialog {
 		lblysif.setBounds(102, 128, 84, 14);
 		lblysif.setVisible(false);
 		panel_1.add(lblysif);
+		
+		btnNewButton_2_1_1 = new JButton();
+		btnNewButton_2_1_1.setVisible(false);
+		btnNewButton_2_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					contentPane.setCursor(WAIT_CURSOR);
+					String oku = new String(txtyenisif.getText());
+					if (oku.equals(""))
+					{
+						txtsif.requestFocus();
+						contentPane.setCursor(DEFAULT_CURSOR);
+						return;
+					}
+					contentPane.setCursor(WAIT_CURSOR);
+
+					oac.uSER_ISL.sifre_degis(GLOBAL.KULL_ADI, txtyenisif.getText());
+
+					txtyenisif.setText("");
+					txtsif.setText("");
+					txtyenisif.setVisible(false);
+					lblysif.setVisible(false); 
+					txtsif.requestFocus();
+
+					//
+					byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(txtyenisif.getText()) ;
+					String response = Arrays.toString(qaz);
+					GLOBAL.setting_yaz("SIFRE", response);
+					contentPane.setCursor(DEFAULT_CURSOR);
+					//
+				} catch (Exception ex)
+				{
+					contentPane.setCursor(DEFAULT_CURSOR);
+					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Sifre Kaydet", JOptionPane.PLAIN_MESSAGE);
+					txtsif.requestFocus();		
+				}		
+			}
+		});
+		btnNewButton_2_1_1.setToolTipText("Kaydet");
+		btnNewButton_2_1_1.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/save.png")));
+		btnNewButton_2_1_1.setBounds(362, 124, 25, 23);
+		panel_1.add(btnNewButton_2_1_1);
 
 		tabbedPane.setEnabledAt(7, true);
 
@@ -973,6 +955,47 @@ public class CAL_DIZIN extends JDialog {
 		});
 		btnNewButton_7.setBounds(415, 35, 120, 23);
 		panel_3.add(btnNewButton_7);
+		
+		btnNewButton_2_2 = new JButton("");
+		btnNewButton_2_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try
+				{
+					contentPane.setCursor(WAIT_CURSOR);
+					String oku = txt_Lmaill.getText();
+					if (! oku.equals(""))
+					{
+						ResultSet	rs = null;
+						oac.uSER_ISL.log_mail_kont_kayit(GLOBAL.KULL_ADI , oku);
+						rs = oac.uSER_ISL.log_mail_oku(GLOBAL.KULL_ADI);
+						if (!rs.isBeforeFirst() ) {  
+							return;
+						} 
+						else
+						{
+							cmb_maillist.removeAllItems();
+							while (rs.next()) 
+							{
+								cmb_maillist.addItem(rs.getString("E_MAIL"));
+							}
+						}
+						txt_Lmaill.setText(oac.uSER_ISL.log_mail_aktiv_oku(GLOBAL.KULL_ADI));
+					}
+					contentPane.setCursor(DEFAULT_CURSOR);
+				}
+				catch (Exception ex)
+				{
+					contentPane.setCursor(DEFAULT_CURSOR);
+					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Kaydet", JOptionPane.PLAIN_MESSAGE);
+					txtsif.requestFocus();		
+				}				
+
+			}
+		});
+		btnNewButton_2_2.setToolTipText("Kaydet");
+		btnNewButton_2_2.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/save.png")));
+		btnNewButton_2_2.setBounds(415, 67, 25, 23);
+		panel_3.add(btnNewButton_2_2);
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -2499,27 +2522,12 @@ public class CAL_DIZIN extends JDialog {
 			e.printStackTrace();
 		}
 	}
-}
-class ComboItem
-{
-	private String key;
-	private String value;
-	public ComboItem(String key, String value)
+	private void sIFRE_KAPA()
 	{
-		this.key = key;
-		this.value = value;
-	}
-	@Override
-	public String toString()
-	{
-		return key;
-	}
-	public String getKey()
-	{
-		return key;
-	}
-	public String getValue()
-	{
-		return value;
+		lblysif.setVisible(false);
+		txtyenisif.setVisible(false);
+		txtyenisif.setText("");
+		txtsif.setText("");
+		btnNewButton_2_1_1.setVisible(false);
 	}
 }

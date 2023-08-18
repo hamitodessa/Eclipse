@@ -127,7 +127,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.add(comboBox);
 
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(260, 12, 115, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
+		dateChooser.setBounds(250, 12, 120, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
@@ -137,12 +137,12 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			}
 		});
 		dateChooser.setDateFormatString("dd.MM.yyyy");
-		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
+		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 12));
 		dateChooser.setDate(TARIH_CEVIR.tarih("01.01.1900"));
 		leftPanel.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(380, 12, 115, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
+		dateChooser_1.setBounds(380, 12, 120, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
@@ -152,7 +152,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			}
 		});
 		dateChooser_1.setDateFormatString("dd.MM.yyyy");
-		dateChooser_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		dateChooser_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		dateChooser_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		leftPanel.add(dateChooser_1);
 
@@ -184,7 +184,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		cmbLog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani", "Dosya", "Text Dosya"}));
 		cmbLog.setForeground(new Color(165, 42, 42));
 		cmbLog.setFont(new Font("Tahoma", Font.BOLD, 12));
-		cmbLog.setBounds(140, 11, 110, 22);
+		cmbLog.setBounds(140, 11, 100, 22);
 		leftPanel.add(cmbLog);
 		table = new JTable(){
 			/**

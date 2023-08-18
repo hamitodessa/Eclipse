@@ -143,7 +143,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR", "GBR", "CHF", "SEK", "NOK", "SAR", "RUB"}));
 		comboBox.setEditable(true);
-		comboBox.setBounds(75, 9, 93, 30);
+		comboBox.setBounds(75, 9, 67, 30);
 		panel.add(comboBox);
 
 		dateChooser = new JDateChooser();
@@ -159,7 +159,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 16));
 		dateChooser.setDate(new Date());
-		dateChooser.setBounds(210, 9, 130, 30);
+		dateChooser.setBounds(200, 9, 140, 30);
 		dateChooser.getDateEditor().addPropertyChangeListener(
 				new PropertyChangeListener() {
 					@Override
@@ -309,7 +309,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		btnNewButton_1_2.setToolTipText("Geri");
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnNewButton_1_2.setIcon(new ImageIcon(KUR_GIRIS.class.getResource("/ICONLAR/undo-20.png")));
-		btnNewButton_1_2.setBounds(177, 9, 30, 30);
+		btnNewButton_1_2.setBounds(167, 9, 30, 30);
 		panel.add(btnNewButton_1_2);
 		
 		JButton btnNewButton_1 = new JButton("");

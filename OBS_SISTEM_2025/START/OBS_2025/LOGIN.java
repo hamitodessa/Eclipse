@@ -245,7 +245,7 @@ public class LOGIN extends JDialog {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
 		txtUser = new JTextField();
-		txtUser.setBounds(310, 11, 147, 20);
+		txtUser.setBounds(310, 11, 109, 20);
 		txtUser.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtUser.setDocument(new JTextFieldLimit(10));
 		txtUser.setColumns(10);
@@ -254,7 +254,7 @@ public class LOGIN extends JDialog {
 		panel.add(txtUser);
 
 		txtpwd = new JPasswordField();
-		txtpwd.setBounds(310, 37, 147, 20);
+		txtpwd.setBounds(310, 37, 109, 20);
 		panel.add(txtpwd);
 		txtpwd.setFont(new Font("Tahoma", Font.BOLD, 12));
 		JTextFieldRegularPopupMenu.addTo(txtpwd);

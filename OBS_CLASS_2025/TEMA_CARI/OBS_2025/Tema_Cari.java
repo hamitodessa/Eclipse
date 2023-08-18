@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class Tema_Cari {
 
 	static Connection conn ;
-	static String TEMA_DOSYA = "OBS_TEMA.DB";
+	static String TEMA_DOSYA = System.getProperty("user.name") + "_OBS_TEMA.DB";
 	static String SURUCU = "C:\\OBS_SISTEM\\";
 
 	public static  Connection myTemaConnection() throws SQLException

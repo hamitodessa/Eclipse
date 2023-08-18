@@ -308,7 +308,7 @@ public class KASA extends JInternalFrame {
 		});
 		btnNewButton_1_2.setToolTipText("Geri");
 		btnNewButton_1_2.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnNewButton_1_2.setBounds(484, 11, 55, 30);
+		btnNewButton_1_2.setBounds(484, 11, 50, 30);
 		leftPanel.add(btnNewButton_1_2);
 
 		JButton btnNewButton_1_1 = new JButton("");
@@ -340,7 +340,7 @@ public class KASA extends JInternalFrame {
 		});
 		btnNewButton_1.setToolTipText("Ileri");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnNewButton_1.setBounds(592, 11, 55, 30);
+		btnNewButton_1.setBounds(597, 11, 50, 30);
 		leftPanel.add(btnNewButton_1);
 
 		lblNewLabel_6 = new JLabel("");

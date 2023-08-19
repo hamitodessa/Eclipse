@@ -34,7 +34,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -577,7 +576,7 @@ public class EKSTRE extends JInternalFrame {
 		sqll += "VALUES (?,?,?,?,?,?,?,?)";
 
 		PreparedStatement stmt = SQLitecon.prepareStatement(sqll);
-
+		stmt = SQLitecon.prepareStatement(sqll);
 		for (int i = 0; i < table.getRowCount()  ; i ++) 
 		{
 			Progres_Bar(table.getRowCount()-1, i);
@@ -595,7 +594,6 @@ public class EKSTRE extends JInternalFrame {
 				date = (Date) sdf.parse(str);
 				str =TARIH_CEVIR.milis_ddMMyyyy(date.getTime());
 			}
-			stmt = SQLitecon.prepareStatement(sqll);
 			stmt.setString(1, str);
 			stmt.setInt(2, Integer.parseInt(model.getValueAt(i , 1).toString()));
 			stmt.setString(3, model.getValueAt(i , 2).toString());
@@ -606,14 +604,12 @@ public class EKSTRE extends JInternalFrame {
 			double baki = Math.round(Double.parseDouble(model.getValueAt(i , 7).toString()) * 100.0) / 100.0;
 			stmt.setDouble(8, baki);
 			stmt.addBatch();
-			
-			//if ((i ) % 30 == 0) {
-			//	System.out.println("Batch=" +( (i ) % 30));
+			if ((i ) % 100 == 0) 
+			{
 				stmt.executeBatch();
-			
-			//}
+			}
 		}
-		//stmt.executeBatch(); // Execute the remaining batch
+		stmt.executeBatch(); // Execute the remaining batch
 		SQLitecon.commit(); // Commit the transaction
 
 		Progres_Bar_Temizle();

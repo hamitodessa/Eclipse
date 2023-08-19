@@ -25,7 +25,12 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import OBS_C_2025.BACKUP_RESTORE;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
+import OBS_C_2025.ManualResultSet;
 import OBS_C_2025.CLONE_RESULTSET;
+
+import OBS_C_2025.ManualResultSet;
+import OBS_C_2025.CustomResultSetMetaData;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -528,7 +533,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_6.setBounds(600, 335, 89, 23);
+		btnNewButton_6.setBounds(619, 335, 89, 23);
 		panel.add(btnNewButton_6);
 		
 		JButton btnNewButton_7 = new JButton("oku");
@@ -558,7 +563,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 					}
 			}
 		});
-		btnNewButton_7.setBounds(565, 369, 89, 23);
+		btnNewButton_7.setBounds(619, 363, 89, 23);
 		panel.add(btnNewButton_7);
 		
 		JButton btnNewButton_8 = new JButton("Clone");
@@ -567,17 +572,14 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				
 				try  {
 					CLONE_RESULTSET clrsClone_RESULTSET = new CLONE_RESULTSET();
-					
-			            ResultSet clonedResultSet = clrsClone_RESULTSET.cloneResultSet( oac.uSER_ISL.user_details_bak());
-			           
-			           System.out.println(clrsClone_RESULTSET.cnames[1].toString()); 
+		            ResultSet clonedResultSet = clrsClone_RESULTSET.cloneResultSet( oac.uSER_ISL.user_details_bak());
+		           System.out.println(clrsClone_RESULTSET.cnames[1].toString()); 
 			            //oac.uSER_ISL.con.close();
 			            // Process the cloned result set
-			            while (clonedResultSet.next()) {
-			                String data = clonedResultSet.getString(1) + " - " +clonedResultSet.getString(2) + " - " + clonedResultSet.getString(3) + " - " +clonedResultSet.getString(4);
-			                System.out.println(data);
+		            while (clonedResultSet.next()) {
+		                String data = clonedResultSet.getString(1) + " - " +clonedResultSet.getString(2) + " - " + clonedResultSet.getString(3) + " - " +clonedResultSet.getString(4);
+		                System.out.println(data);
 			            }
-			        
 			        } catch (SQLException | ClassNotFoundException ex) {
 			            ex.printStackTrace();
 			        }
@@ -585,6 +587,15 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		});
 		btnNewButton_8.setBounds(600, 225, 89, 23);
 		panel.add(btnNewButton_8);
+		
+		JButton btnNewButton_8_1 = new JButton("yeni Clone");
+		btnNewButton_8_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clone_yap();
+			}
+		});
+		btnNewButton_8_1.setBounds(600, 253, 89, 23);
+		panel.add(btnNewButton_8_1);
 		
 		
 		
@@ -1428,5 +1439,37 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		}
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
+	//*****************************************************************************************CLONE ****************
+	private void clone_yap()
+	{
+		 String[] columnNames = {"TARIH", "EVRAK", "IZAHAT","KOD","KUR","BORC","ALACAK","BAKIYE"};
+	        String[] columnTypes = {"VARCHAR","INTEGER" ,"VARCHAR", "VARCHAR","DOUBLE","DOUBLE","DOUBLE","DOUBLE"};
+
+	        ManualResultSet customResultSet;
+			try {
+				customResultSet = createCustomResultSet(columnNames, columnTypes);
+			
+	        
+	        // Add rows to the custom result set
+	        customResultSet.addRow("01.01.2023", 1,"DENEME","",0,0,0,0);
+
+	        // Iterate through the custom result set
+	        while (customResultSet.next()) {
+	            String tarih = (String) customResultSet.getObject(1);
+	            int evrak = (int) customResultSet.getObject(2);
+	            String izahat = (String) customResultSet.getObject(3);
+	           
+
+	            System.out.println("TARIH: " + tarih + ", Evrak: " + evrak + ", Izahat: " + izahat);
+	        }
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+	private static ManualResultSet createCustomResultSet(String[] columnNames, String[] columnTypes) throws SQLException {
+        ResultSetMetaData metaData = new CustomResultSetMetaData(columnNames, columnTypes);
+        return new ManualResultSet(metaData);
+    }
 }
 

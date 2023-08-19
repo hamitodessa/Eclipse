@@ -529,8 +529,13 @@ public class EKSTRE extends JInternalFrame {
 				}
 				//double baki = (double) Math.round(Double.parseDouble(model.getValueAt(i , 7).toString())) ;
 				double baki = Math.round(Double.parseDouble(model.getValueAt(i , 7).toString()) * 100.0) / 100.0;
-				c_Access.sqlite_yaz(str,Integer.parseInt(model.getValueAt(i , 1).toString()),model.getValueAt(i , 2).toString(),model.getValueAt(i , 3).toString()
-						, Double.parseDouble(model.getValueAt(i , 4).toString())  ,  Double.parseDouble(model.getValueAt(i , 5).toString()), Double.parseDouble(model.getValueAt(i , 6).toString()), baki );
+				c_Access.sqlite_yaz(str,Integer.parseInt(model.getValueAt(i , 1).toString())
+						, model.getValueAt(i , 2).toString()
+						, model.getValueAt(i , 3).toString()
+						, Double.parseDouble(model.getValueAt(i , 4).toString())  
+						, Double.parseDouble(model.getValueAt(i , 5).toString())
+						, Double.parseDouble(model.getValueAt(i , 6).toString())
+						, baki );
 
 			}
 			Progres_Bar_Temizle();

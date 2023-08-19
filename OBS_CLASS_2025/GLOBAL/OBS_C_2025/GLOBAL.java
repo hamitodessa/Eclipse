@@ -28,7 +28,6 @@ import OBS_2025.Tema_Cari;
 public class GLOBAL {
 
 	static final String OBS_DOSYA = System.getProperty("user.name") + "_OBS_SISTEM_2025.DB";
-	//public static final String SQL_BACKUP = "SQL_BACKUP.DB";
 	public static final String SURUCU = "C:\\OBS_SISTEM\\";
 	public static final String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
 	static final String DBYERI = "C:\\OBS_DATABASES\\";

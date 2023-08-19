@@ -33,9 +33,13 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
@@ -507,6 +511,7 @@ public class EKSTRE extends JInternalFrame {
 			SimpleDateFormat sdf;
 
 			c_Access.sqlite_sil();
+			long startTime = System.currentTimeMillis();
 			Progres_Bar_Temizle();  
 			OBS_MAIN.progressBar.setStringPainted(true);
 			OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
@@ -539,6 +544,83 @@ public class EKSTRE extends JInternalFrame {
 
 			}
 			Progres_Bar_Temizle();
+			long endTime = System.currentTimeMillis();
+			long estimatedTime = endTime - startTime; 
+			double seconds = (double)estimatedTime/1000; 
+			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ekstre sqllt", JOptionPane.ERROR_MESSAGE);   		
+		}
+	}
+	public static void sQLITE_YAZ_YENI() throws ClassNotFoundException, SQLException, InterruptedException, ParseException 
+	{
+		Class.forName("org.sqlite.JDBC");
+		try {
+		GLOBAL gLB = new GLOBAL();
+		Connection SQLitecon = null;
+		SQLitecon = gLB.myConnection();
+
+		DefaultTableModel model = (DefaultTableModel)table.getModel();
+		String str= "";
+		Date date = null;
+		SimpleDateFormat sdf;
+		c_Access.sqlite_sil();
+		Progres_Bar_Temizle();  
+		OBS_MAIN.progressBar.setStringPainted(true);
+		OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
+		long startTime = System.currentTimeMillis();
+
+		SQLitecon.setAutoCommit(false); // Enable manual transaction control
+		String sqll = "INSERT INTO EKSTRE (TARIH,EVRAK,IZAHAT,KOD,KUR,BORC,ALACAK,BAKIYE) ";
+		sqll += "VALUES (?,?,?,?,?,?,?,?)";
+
+		PreparedStatement stmt = SQLitecon.prepareStatement(sqll);
+
+		for (int i = 0; i < table.getRowCount()  ; i ++) 
+		{
+			Progres_Bar(table.getRowCount()-1, i);
+			if (i == 0)
+			{
+				DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
+				Date date1 = (Date)formatter.parse( model.getValueAt(i , 0).toString());
+				DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");  
+				str = dateFormat.format(date1);  
+			}
+			else
+			{
+				str =  model.getValueAt(i , 0).toString();
+				sdf = new SimpleDateFormat("yyyy-MM-dd");
+				date = (Date) sdf.parse(str);
+				str =TARIH_CEVIR.milis_ddMMyyyy(date.getTime());
+			}
+			stmt = SQLitecon.prepareStatement(sqll);
+			stmt.setString(1, str);
+			stmt.setInt(2, Integer.parseInt(model.getValueAt(i , 1).toString()));
+			stmt.setString(3, model.getValueAt(i , 2).toString());
+			stmt.setString(4, model.getValueAt(i , 3).toString());
+			stmt.setDouble(5, Double.parseDouble(model.getValueAt(i , 4).toString()));
+			stmt.setDouble(6, Double.parseDouble(model.getValueAt(i , 5).toString()));
+			stmt.setDouble(7, Double.parseDouble(model.getValueAt(i , 6).toString()));
+			double baki = Math.round(Double.parseDouble(model.getValueAt(i , 7).toString()) * 100.0) / 100.0;
+			stmt.setDouble(8, baki);
+			stmt.addBatch();
+			
+			//if ((i ) % 30 == 0) {
+			//	System.out.println("Batch=" +( (i ) % 30));
+				stmt.executeBatch();
+			
+			//}
+		}
+		//stmt.executeBatch(); // Execute the remaining batch
+		SQLitecon.commit(); // Commit the transaction
+
+		Progres_Bar_Temizle();
+		long endTime = System.currentTimeMillis();
+		long estimatedTime = endTime - startTime; 
+		double seconds = (double)estimatedTime/1000; 
+		OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 		}
 		catch (Exception ex)
 		{

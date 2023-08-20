@@ -106,8 +106,9 @@ public class GLOBAL {
 			pstmt.close();
 			conn.close();
 		}
-		catch (SQLException ex) {  
-			JOptionPane.showMessageDialog(null, ex);  
+		catch (SQLException ex) 
+		{  
+			JOptionPane.showMessageDialog(null, ex.getMessage());  
 		}  
 	}
 	private void tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {
@@ -123,61 +124,59 @@ public class GLOBAL {
 	}
 	public static void surucu_kontrol() 
 	{
-		{
-			File tmpDir = new File(SURUCU);
-			boolean exists = tmpDir.exists();
-			if (exists)
-			{    
-				tmpDir = new File(LOG_SURUCU);
-				exists = tmpDir.exists();
-				if (! exists)
-				{
-					tmpDir.mkdirs();
-					File logDir = new File(LOG_SURUCU);
-					logDir.mkdirs();
-				}
-			}
-			else
+		File tmpDir = new File(SURUCU);
+		boolean exists = tmpDir.exists();
+		if (exists)
+		{    
+			tmpDir = new File(LOG_SURUCU);
+			exists = tmpDir.exists();
+			if (! exists)
 			{
 				tmpDir.mkdirs();
 				File logDir = new File(LOG_SURUCU);
 				logDir.mkdirs();
 			}
-			tmpDir = new File(DBYERI);
+		}
+		else
+		{
+			tmpDir.mkdirs();
+			File logDir = new File(LOG_SURUCU);
+			logDir.mkdirs();
+		}
+		tmpDir = new File(DBYERI);
+		exists = tmpDir.exists();
+		if (exists)
+		{       
+		}
+		else
+		{
+			tmpDir.mkdirs();
+		}
+		tmpDir = new File(SURUCU + OBS_DOSYA);
+		exists = tmpDir.exists();
+		if (exists)
+		{   
+			// "Dosya Mevcut"	//Propertis kontrol//
+			tmpDir = new File(SURUCU +  "/" + System.getProperty("user.name") +".properties");
 			exists = tmpDir.exists();
 			if (exists)
-			{       
+			{ 
+				//Prop var
 			}
 			else
 			{
-				tmpDir.mkdirs();
+				set_ilk() ;//obs_set_olustur();
 			}
-			tmpDir = new File(SURUCU + OBS_DOSYA);
-			exists = tmpDir.exists();
-			if (exists)
-			{   
-				// "Dosya Mevcut"	//Propertis kontrol//
-				tmpDir = new File(SURUCU +  "/" + System.getProperty("user.name") +".properties");
-				exists = tmpDir.exists();
-				if (exists)
-				{ 
-					//Prop var
-				}
-				else
-				{
-					set_ilk() ;//obs_set_olustur();
-				}
-			}
-			else
-			{
-				try {
-					GLOBAL gLB = new GLOBAL();
-					gLB.obs_dosya_olustur();
-					Tema_Cari.dosya_yap();
-					set_ilk() ; //obs_set_olustur();
-				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "burdaa"+e.getMessage());
-				}
+		}
+		else
+		{
+			try {
+				GLOBAL gLB = new GLOBAL();
+				gLB.obs_dosya_olustur();
+				Tema_Cari.dosya_yap();
+				set_ilk() ; //obs_set_olustur();
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "burdaa"+e.getMessage());
 			}
 		}
 	}

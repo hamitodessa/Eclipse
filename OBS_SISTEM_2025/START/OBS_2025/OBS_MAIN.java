@@ -2322,7 +2322,6 @@ public class OBS_MAIN extends JFrame {
 									GuiUtil.setWaitCursor(toolBar,true);
 									GuiUtil.setWaitCursor(tabbedPane,true); 
 									GuiUtil.setWaitCursor(EKSTRE.pane,true);
-									//EKSTRE.sqlite_yaz();
 									EKSTRE.sQLITE_YAZ_YENI();
 									desktopPane.add(internalFrame);
 									internalFrame.setVisible(true);

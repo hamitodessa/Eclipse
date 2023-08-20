@@ -22,7 +22,6 @@ public interface ICARI_HESAP {
 	public ResultSet hp_pln () throws ClassNotFoundException, SQLException;
 	public ResultSet mizan (String kod,String ilktarih,String sontarih,String ilkhcins,String sonhcins,String ilkkar,String sonkar) throws ClassNotFoundException, SQLException;
 	public ResultSet kasa_mizan(String kod,String ilktarih,String sontarih) throws ClassNotFoundException, SQLException;
-	public void sqlite_yaz(String tar, int evr, String iza, String kodu,double kur, double borc, double alac ,double bak) throws ClassNotFoundException, SQLException;
 	public void sqlite_sil() throws ClassNotFoundException, SQLException;
 	public ResultSet ekstre_sqlite() throws ClassNotFoundException, SQLException;
 	public ResultSet mizan(String h1 , String h2,String t1,String t2,String c1,String c2,String k1, String k2, String o1 , String o2) throws ClassNotFoundException, SQLException;

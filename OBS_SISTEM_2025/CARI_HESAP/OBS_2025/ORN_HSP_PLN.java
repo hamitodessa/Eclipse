@@ -96,15 +96,13 @@ public class ORN_HSP_PLN extends JInternalFrame {
 		try
 		{
 			panel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
 			lblNewLabel.setText(Integer.toString(c_Access.hesap_plani_kayit_adedi()));
 			panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
 		}
 		catch (Exception ex)
 		{
 			panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ornek Hesap Plani", JOptionPane.ERROR_MESSAGE);   	
 		}
 	}
 	private void kaydet() 
@@ -114,6 +112,9 @@ public class ORN_HSP_PLN extends JInternalFrame {
 		public void run() {
 			try
 			{
+				if (! lblNewLabel.getText().equals("0")) {
+					JOptionPane.showMessageDialog(null, "Aktarilacak Dosya Bos Degil.......",  "Ornek Hesap Plani", JOptionPane.INFORMATION_MESSAGE);   
+				}
 				InputStream stream = PRINT_YAPMA.class.getClassLoader().getResourceAsStream("DOSYA/Hesap_Plani_Ornek.txt");
 				InputStreamReader streamReader = new InputStreamReader(stream,StandardCharsets.UTF_16);
 				BufferedReader bReader = new BufferedReader(streamReader);
@@ -131,11 +132,9 @@ public class ORN_HSP_PLN extends JInternalFrame {
 					Progres_Bar(358, i);
 					String l =  sc.nextLine();  
 					String[] token = l.split("\t");
-					
 					lOG_BILGI lBILGI = new lOG_BILGI();
 					lBILGI.setmESAJ( token[0] + " Nolu Hesap Kayit , Unvan:" + token[1]);
 					lBILGI.seteVRAK("");
-					
 					c_Access.hpln_kayit(token[0], token[1], token[2], token[3],GLOBAL.KULL_ADI
 							,lBILGI,  BAGLAN_LOG.cariLogDizin);
 					c_Access.hpln_ilk_detay_kayit(token[0]);
@@ -145,19 +144,16 @@ public class ORN_HSP_PLN extends JInternalFrame {
 				Thread.currentThread().isInterrupted();
 				Progres_Bar_Temizle();
 				panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
 				JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi ....Hesap Kodu Sayisi =" + i ); 
 				lblNewLabel.setText(Integer.toString(i));
-
 			}
 			catch (Exception ex)
 			{
 				panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				JOptionPane.showMessageDialog(null,  ex.getMessage()); 
+				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ornek Hesap Plani", JOptionPane.ERROR_MESSAGE);   	
 			}
 		}
 		};
-		//// Progress Bar
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
 	}
@@ -171,5 +167,4 @@ public class ORN_HSP_PLN extends JInternalFrame {
 		OBS_MAIN.progressBar.setValue(0);
 		OBS_MAIN.progressBar.setStringPainted(false);
 	}
-
 }

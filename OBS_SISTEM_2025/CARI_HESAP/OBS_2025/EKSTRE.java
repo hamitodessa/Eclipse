@@ -518,7 +518,7 @@ public class EKSTRE extends JInternalFrame {
 		OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
 		long startTime = System.currentTimeMillis();
 
-		SQLitecon.setAutoCommit(false); // Enable manual transaction control
+		SQLitecon.setAutoCommit(false);
 		String sqll = "INSERT INTO EKSTRE (TARIH,EVRAK,IZAHAT,KOD,KUR,BORC,ALACAK,BAKIYE) ";
 		sqll += "VALUES (?,?,?,?,?,?,?,?)";
 
@@ -551,13 +551,13 @@ public class EKSTRE extends JInternalFrame {
 			double baki = Math.round(Double.parseDouble(model.getValueAt(i , 7).toString()) * 100.0) / 100.0;
 			stmt.setDouble(8, baki);
 			stmt.addBatch();
-			if ((i ) % 100 == 0) 
+			if ((i ) % 150 == 0) 
 			{
 				stmt.executeBatch();
 			}
 		}
-		stmt.executeBatch(); // Execute the remaining batch
-		SQLitecon.commit(); // Commit the transaction
+		stmt.executeBatch();
+		SQLitecon.commit();
 
 		Progres_Bar_Temizle();
 		long endTime = System.currentTimeMillis();

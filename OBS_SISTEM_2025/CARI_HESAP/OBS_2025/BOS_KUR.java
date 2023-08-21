@@ -74,7 +74,7 @@ import javax.swing.ListSelectionModel;
 			if (!rs.isBeforeFirst() ) {  
 			    return;
 			} 
-				table.setModel(DbUtils.resultSetToTableModel(rs));
+			table.setModel(DbUtils.resultSetToTableModel(rs));
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;

@@ -6,10 +6,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 import javax.swing.DefaultCellEditor;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class TABLO_TEXTBOX  extends DefaultCellEditor {
 
    

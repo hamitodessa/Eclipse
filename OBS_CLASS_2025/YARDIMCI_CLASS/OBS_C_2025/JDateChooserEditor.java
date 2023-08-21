@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 import com.toedter.calendar.JDateChooser;
 
+@SuppressWarnings("serial")
 public class JDateChooserEditor extends DefaultCellEditor
 {
 	  public JDateChooserEditor(JCheckBox checkBox)

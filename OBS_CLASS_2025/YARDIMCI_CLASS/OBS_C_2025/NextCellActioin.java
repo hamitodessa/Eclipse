@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JTable;
 
+@SuppressWarnings("serial")
 public class NextCellActioin	extends AbstractAction {
         private JTable table;
          String nerden = "";

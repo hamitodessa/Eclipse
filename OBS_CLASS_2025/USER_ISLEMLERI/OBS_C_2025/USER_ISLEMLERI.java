@@ -7,15 +7,13 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Arrays;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import javax.xml.crypto.Data;
 
-@SuppressWarnings("static-access")
+@SuppressWarnings({"static-access","unused"})
 public class USER_ISLEMLERI {
 	static  Connection con ;
 

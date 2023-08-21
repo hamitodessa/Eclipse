@@ -7,7 +7,7 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","unused"})
 public class MyTreeCellRenderer extends DefaultTreeCellRenderer {
 
     @Override
@@ -16,7 +16,8 @@ public class MyTreeCellRenderer extends DefaultTreeCellRenderer {
         super.getTreeCellRendererComponent(tree, value, sel, exp, leaf, row, hasFocus);
 
         // Assuming you have a tree of Strings
-        String node = (String) ((DefaultMutableTreeNode) value).getUserObject();
+
+		String node = (String) ((DefaultMutableTreeNode) value).getUserObject();
 
         // If the node is a leaf and ends with "xxx"
         //if (leaf && node.endsWith("xxx")) {

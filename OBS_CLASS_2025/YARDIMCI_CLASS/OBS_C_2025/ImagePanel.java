@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class ImagePanel extends JPanel
 {
       private BufferedImage image;

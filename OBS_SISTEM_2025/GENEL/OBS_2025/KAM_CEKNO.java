@@ -14,6 +14,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import OBS_C_2025.JTextFieldLimit;
 
+@SuppressWarnings({"serial","unused"})
 public class KAM_CEKNO extends DefaultCellEditor {
 
 	private static final Border red = new LineBorder(Color.red);

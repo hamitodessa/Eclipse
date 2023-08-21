@@ -8,7 +8,6 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.HeadlessException;
 import java.awt.Insets;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -18,10 +17,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.font.TextAttribute;
 import java.io.Serializable;
-import java.util.Map;
-
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ActionMap;
@@ -107,7 +103,8 @@ public class Font_Sec extends JComponent {
         init(model.getSelectedFont());
         selectionModel.addChangeListener(labelUpdater);
     }
-    private void init(Font font) {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	private void init(Font font) {
         setLayout(new GridBagLayout());
         Insets ins = new Insets(2, 2, 2, 2);
         fontList = new JList(FONTS);

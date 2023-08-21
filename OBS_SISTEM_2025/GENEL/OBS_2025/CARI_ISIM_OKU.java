@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import OBS_C_2025.CARI_ACCESS;
 
+@SuppressWarnings("static-access")
 public class CARI_ISIM_OKU {
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);

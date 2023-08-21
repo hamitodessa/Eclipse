@@ -20,6 +20,7 @@ import OBS_C_2025.DIZIN_BILGILERI;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.lOG_BILGI;
 
+@SuppressWarnings("unused")
 public class TXT_LOG  implements ILOGER_KAYIT {
 
 	@Override
@@ -50,6 +51,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 	public DefaultTableModel log_txt_rapor(String t1, String t2, String aciklama, String evrak, String user,
 			DIZIN_BILGILERI dBILGI) {
 		DefaultTableModel model =new DefaultTableModel(new String[] {"TARIH", "MESAJ", "EVRAK", "USER_NAME"}, 0);
+		
 		String nerde = "" ;
 		try
 		{

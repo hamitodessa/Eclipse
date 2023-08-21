@@ -52,7 +52,6 @@ import javax.swing.table.TableColumnModel;
 import com.sms.api.Messenger;
 
 import OBS_C_2025.ADRES_ACCESS;
-import OBS_C_2025.App;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
@@ -62,7 +61,6 @@ import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.ORTA;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SOLA;
-import OBS_C_2025.TARIH_SAATLI;
 import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
@@ -1109,6 +1107,7 @@ public class SMS extends JInternalFrame {
 		OBS_MAIN.progressBar.setValue(0);
 		OBS_MAIN.progressBar.setStringPainted(false);
 	}
+	@SuppressWarnings("unused")
 	public void deneme()
 	{
 		Messenger messenger = new Messenger("hostAdress", "username", "password");

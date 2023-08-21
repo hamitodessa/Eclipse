@@ -8,6 +8,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings("serial")
 public class MultiLineCellRenderer extends JTextArea implements TableCellRenderer {
 
 	  public MultiLineCellRenderer() {

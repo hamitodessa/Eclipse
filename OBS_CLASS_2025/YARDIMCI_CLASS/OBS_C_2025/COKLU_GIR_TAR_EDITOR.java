@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,9 +15,10 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+@SuppressWarnings({"serial","unused"})
 public class COKLU_GIR_TAR_EDITOR extends DefaultCellEditor {
 
-    private static final Border red = new LineBorder(Color.red);
+	private static final Border red = new LineBorder(Color.red);
     private static final Border black = new LineBorder(Color.black);
     private JTextField textField;
    

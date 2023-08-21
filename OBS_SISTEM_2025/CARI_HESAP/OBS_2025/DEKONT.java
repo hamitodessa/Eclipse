@@ -664,12 +664,13 @@ public class DEKONT extends JInternalFrame {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char cc =  e.getKeyChar();
+				//System.out.println((int)e.getKeyChar());
 				if ( Character.isDigit(cc)  ) 
 				{
 					txtbtutar.setEditable(true);
 				}
 				else {
-					if ( cc == '.' || cc == ','  ) {
+					if ( cc == '.' || cc == ',' || (int)e.getKeyChar() ==8 || (int)e.getKeyChar() ==127   ) {
 						txtbtutar.setEditable(true);
 					}
 					else {
@@ -1197,7 +1198,7 @@ public class DEKONT extends JInternalFrame {
 					txtatutar.setEditable(true);
 				}
 				else {
-					if ( cc == '.' || cc == ','  ) {
+					if ( cc == '.' || cc == ',' || (int)e.getKeyChar() ==8 || (int)e.getKeyChar() ==127   ) {
 						txtatutar.setEditable(true);
 					}
 					else {

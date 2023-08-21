@@ -62,7 +62,6 @@ import OBS_C_2025.MAIL_SETTINGS;
 import OBS_C_2025.ORTA;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SOLA;
-import OBS_C_2025.TARIH_SAATLI;
 import OBS_C_2025.ValidEmailAddress;
 import net.proteanit.sql.DbUtils;
 

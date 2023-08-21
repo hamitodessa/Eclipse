@@ -8,6 +8,7 @@ import javax.swing.text.*;
 import java.text.*;
 import java.awt.event.*;
 
+@SuppressWarnings({"serial","unused"})
 public class DoubleEditor extends DefaultCellEditor
 {
     JFormattedTextField ftf;
@@ -95,7 +96,8 @@ public class DoubleEditor extends DefaultCellEditor
     }
 
     //Override to ensure that the value remains an Integer.
-    public Object getCellEditorValue()
+	
+	public Object getCellEditorValue()
     {
         JFormattedTextField ftf = (JFormattedTextField)getComponent();
         Object o = ftf.getValue();

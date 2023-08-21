@@ -2,7 +2,6 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
@@ -11,31 +10,21 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.border.LineBorder;
 
-import org.apache.commons.collections.functors.IfClosure;
-
 import com.sms.api.Messenger;
-import com.sms.api.model.RequestGetSmsReportDetailList;
 import com.sms.api.model.RequestGetSmsReportList;
-import com.sms.api.model.ResponseGetSenders;
-import com.sms.api.model.ResponseGetSmsReportDetailList;
 import com.sms.api.model.ResponseGetSmsReportList;
-import com.sms.api.model.Sender;
-import com.sms.api.model.SmsReportItem;
 import com.sms.api.model.SmsReportList;
-
-import GUNLUK.Aylik_Gorunum;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class SMS_INET extends JInternalFrame {
 
 	/**

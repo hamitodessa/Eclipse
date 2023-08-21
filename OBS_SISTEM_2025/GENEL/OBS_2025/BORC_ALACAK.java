@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+@SuppressWarnings({"serial","static-access"})
 public class BORC_ALACAK extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();

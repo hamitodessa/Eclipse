@@ -19,6 +19,7 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.table.TableCellEditor;
 
+@SuppressWarnings({"serial","static-access"})
 public class ComboBoxTableCellEditor extends AbstractCellEditor implements TableCellEditor {
 
 	private JComboBox<String> editor;

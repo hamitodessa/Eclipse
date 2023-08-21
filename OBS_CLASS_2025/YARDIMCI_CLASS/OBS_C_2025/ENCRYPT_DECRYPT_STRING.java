@@ -1,17 +1,14 @@
 package OBS_C_2025;
 
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.Base64;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -20,7 +17,6 @@ public class ENCRYPT_DECRYPT_STRING {
 	
 	static SecretKey myDesKey  ; //= new SecretKey("com.sun.crypto.provider.DESKey@180d9") ;
 	
-	@SuppressWarnings("unused")
 	public static void kEY () throws NoSuchAlgorithmException
 	{
 	//	KeyGenerator keygenerator = KeyGenerator.getInstance("DES");

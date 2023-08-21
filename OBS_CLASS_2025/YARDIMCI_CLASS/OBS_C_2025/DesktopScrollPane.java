@@ -16,6 +16,7 @@ import javax.swing.JViewport;
 import javax.swing.SwingUtilities;
 
 
+@SuppressWarnings("serial")
 public class DesktopScrollPane extends JScrollPane {
 	
 	 private JDesktopPane desktopPane;

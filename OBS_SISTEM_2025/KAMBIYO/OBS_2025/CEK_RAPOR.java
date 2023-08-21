@@ -1,16 +1,23 @@
 package OBS_2025;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.sql.ResultSet;
 
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -35,6 +42,7 @@ public class CEK_RAPOR extends JInternalFrame {
 
 	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
 	public static JScrollPane scrollPane ;
+	private static JLabel lbladet;
 	/**
 	 * Launch the application.
 	 */
@@ -62,8 +70,15 @@ public class CEK_RAPOR extends JInternalFrame {
 		setClosable(true);
 		setBounds(0, 0, 1000, 600);
 
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setResizeWeight(1.0);
+		splitPane.setDividerSize(0);
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		getContentPane().add(splitPane, BorderLayout.CENTER);
+		
+		
 		scrollPane = new JScrollPane();
-		getContentPane().add(scrollPane, BorderLayout.CENTER);
+		splitPane.setLeftComponent(scrollPane);
 
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
@@ -96,6 +111,24 @@ public class CEK_RAPOR extends JInternalFrame {
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 
 		scrollPane.setViewportView(table);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setMinimumSize(new Dimension(0, 25));
+		panel.setMaximumSize(new Dimension(0, 25));
+		splitPane.setRightComponent(panel);
+		panel.setLayout(null);
+		
+		JLabel label = new JLabel("Kayit Sayisi :");
+		label.setBounds(5, 5, 85, 14);
+		panel.add(label);
+		
+		lbladet = new JLabel("0");
+		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
+		lbladet.setForeground(new Color(0, 0, 128));
+		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lbladet.setBounds(100, 5, 47, 14);
+		panel.add(lbladet);
 
 	}
 	public static void hisset()
@@ -117,6 +150,7 @@ public class CEK_RAPOR extends JInternalFrame {
 					FILTRE.cmbg.getItemAt(FILTRE.cmbg.getSelectedIndex()).toString().equals("Bos") ? "" :FILTRE.cmbg.getItemAt(FILTRE.cmbg.getSelectedIndex()).toString() + "%",
 							FILTRE.cmbc.getItemAt(FILTRE.cmbc.getSelectedIndex()).toString().equals("Bos") ? "" :FILTRE.cmbc.getItemAt(FILTRE.cmbc.getSelectedIndex()).toString() + "%");
 			if (!rs.isBeforeFirst() ) {  
+				lbladet.setText(FORMATLAMA.doub_0(0));
 				return;
 			} 
 			GRID_TEMIZLE.grid_temizle(table);
@@ -221,6 +255,7 @@ public class CEK_RAPOR extends JInternalFrame {
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
+			lbladet.setText(FORMATLAMA.doub_0(table.getRowCount()));
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 		}
 		catch (Exception ex)

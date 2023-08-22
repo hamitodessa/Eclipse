@@ -2759,9 +2759,11 @@ public class OBS_MAIN extends JFrame {
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		toolBar.add(lblNewLabel_8);
 
-		lblNewLabel_9 = new JLabel("...");
-		lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_9.setForeground(new Color(128, 0, 0));
+		lblNewLabel_9 = new JLabel("");
+		lblNewLabel_9.setOpaque(true);
+		lblNewLabel_9.setBackground(Color.black);
+		lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_9.setForeground(new Color(255, 255, 0));
 		lblNewLabel_9 .setMinimumSize(size);
 		lblNewLabel_9 .setPreferredSize(new Dimension(250, 14));
 		toolBar.add(lblNewLabel_9);

@@ -1141,7 +1141,7 @@ public class CAL_DIZIN extends JDialog {
 		btnNewButton_2_1.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/sil.png")));
 		panel.add(btnNewButton_2_1);
 	}
-	private   void grid_doldur() throws ClassNotFoundException, SQLException
+	private void grid_doldur() throws ClassNotFoundException, SQLException
 	{
 		kutu_temizle();
 		if ( activ_sayfa == 0)
@@ -1180,7 +1180,7 @@ public class CAL_DIZIN extends JDialog {
 			grid_ortak_doldur(tblGunluk, "Gunluk");
 		}
 	}
-	private   void grid_ortak_doldur( JTable grd,String prg) throws ClassNotFoundException, SQLException 
+	private void grid_ortak_doldur( JTable grd,String prg) throws ClassNotFoundException, SQLException 
 	{
 		ResultSet	rs = null;
 		rs = oac.uSER_ISL.user_db_izinleri(GLOBAL.KULL_ADI, prg);

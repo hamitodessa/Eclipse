@@ -2758,6 +2758,19 @@ public class OBS_MAIN extends JFrame {
 		JLabel lblNewLabel_8 = new JLabel("          ");
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		toolBar.add(lblNewLabel_8);
+		
+		JButton btnNewButton = new JButton("Denemeler");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GuiUtil.setWaitCursor(toolBar,true);
+				JInternalFrame internalFrame;
+				internalFrame = new DENEMELER();
+				desktopPane.add(internalFrame);
+				internalFrame.setVisible(true);
+				GuiUtil.setWaitCursor(toolBar,false);
+			}
+		});
+		toolBar.add(btnNewButton);
 
 		lblNewLabel_9 = new JLabel("");
 		lblNewLabel_9.setOpaque(true);

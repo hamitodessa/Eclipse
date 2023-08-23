@@ -74,7 +74,8 @@ public class DENEMELER extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public DENEMELER() {
-		setBounds(100, 100, 643, 381);
+		setClosable(true);
+		setBounds(100, 100, 800, 600);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);

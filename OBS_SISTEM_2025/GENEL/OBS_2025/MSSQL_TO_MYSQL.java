@@ -317,57 +317,9 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		btnNewButton_1_1_1.setBounds(375, 255, 143, 23);
 		panel.add(btnNewButton_1_1_1);
 		
-		JButton btnNewButton_3 = new JButton("sifre");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String qwe;
-				 try {
-//[-128, 112, -83, -117, 30, 48, -23, -38, 87, 45, -91, 122, 47, -32, -1, 81]    197227oOk
-//[12, -101, 24, -121, -123, -79, -97, 31, -27, 81, -82, 32, 3, -67, -68, -100]    obs 
-//[-56, 120, -17, -74, -27, 90, 50, -61, -18, -100, -19, 81, -2, 106, -88, -120]  CRy7lGgj
-					 byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("CRy7lGgj") ;
-					String response = Arrays.toString(qaz);
-					System.out.println(response);
-					String[] byteValues = response.substring(1, response.length() - 1).split(",");
-					byte[] bytes = new byte[byteValues.length];
-					for (int i=0, len=bytes.length; i<len; i++) {
-					   bytes[i] = Byte.parseByte(byteValues[i].trim());     
-					}
-					qwe = 	 ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
-					System.out.println(qwe);
-
-					
-		      
-				} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
-						| IOException | IllegalBlockSizeException | BadPaddingException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			
-			
-				
-				
 		
-				/////
-			}
-		});
-		btnNewButton_3.setBounds(664, 397, 89, 23);
-		btnNewButton_3.setVisible(false);
-		panel.add(btnNewButton_3);
 		
-		JButton btnNewButton_4 = new JButton("backup");
-		btnNewButton_4.addActionListener(new ActionListener() {
-		
-			public void actionPerformed(ActionEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
-				BACKUP_RESTORE.BackupdbtoMYsql("ok_car019","hamit","197227oOk", "C:/Program Files/MySQL/MySQL Workbench 8.0");
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			}
-		});
-		btnNewButton_4.setBounds(664, 431, 89, 23);
-		btnNewButton_4.setVisible(false);
-		panel.add(btnNewButton_4);
-		
+	
 		
 		
 		JPanel panel_2 = new JPanel();
@@ -464,138 +416,9 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		panel_3.add(msUSER);
 		msUSER.setColumns(10);
 		
-		JButton btnNewButton_5 = new JButton("Access");
-		btnNewButton_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				//InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/HSP_PLN.rpt");
-				//Files.copy(is, Paths.get("C:\\OBS_SISTEM\\HSP_PLN.rpt"),StandardCopyOption.REPLACE_EXISTING);
-				
-				
-				try {
-					Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-				} catch (ClassNotFoundException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-				Connection conn;
-				try {
-					
-					conn = DriverManager.getConnection(
-					        "jdbc:ucanaccess://C:/OBS_SISTEM/OBS_SISTEM_2025.MDB","","oOk271972");
-				Statement s = conn.createStatement();
-				ResultSet rs = s.executeQuery("SELECT * FROM [USERS]");
-				  System.out.println("------------------------------------");
-				while (rs.next()) {
-				    System.out.println(rs.getString(1) + "-" + rs.getString(2));
-				}
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton_5.setBounds(619, 301, 89, 23);
-		panel.add(btnNewButton_5);
 		
-		JButton btnNewButton_6 = new JButton("accdb");
-		btnNewButton_6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				File file = new File("C:/OBS_SISTEM/test.accdb");
-				try {
-					String password = "obs";
-				
-
-					Database db = new DatabaseBuilder(file)
-							.setCodecProvider(new CryptCodecProvider(password))
-							.setFileFormat(Database.FileFormat.V2010)
-							.create();
-					
-				
-					
-					Table table = new TableBuilder("Test")
-							.addColumn(new ColumnBuilder("ID", DataType.LONG)
-									.setAutoNumber(true))
-							.addColumn(new ColumnBuilder("Name", DataType.TEXT))
-							.addColumn(new ColumnBuilder("Salary", DataType.MONEY))
-							.addColumn(new ColumnBuilder("StartDate", DataType.SHORT_DATE_TIME))
-							.toTable(db);
-
-					db.close();
-
-				
-					
-		            
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton_6.setBounds(619, 335, 89, 23);
-		panel.add(btnNewButton_6);
 		
-		JButton btnNewButton_7 = new JButton("oku");
-		btnNewButton_7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				  try {
-					Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}	
-				  try {
-			
-					Connection conn;
-					
-						conn = DriverManager.getConnection(
-							        "jdbc:ucanaccess://C:/OBS_SISTEM/test.accdb","","obs");
-						Statement s = conn.createStatement();
-						ResultSet rs = s.executeQuery("SELECT * FROM test");
-						  System.out.println("------------------------------------");
-							while (rs.next()) {
-							    System.out.println(rs.getString(1) + "-" + rs.getString(2));
-							}
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-			}
-		});
-		btnNewButton_7.setBounds(619, 363, 89, 23);
-		panel.add(btnNewButton_7);
 		
-		JButton btnNewButton_8 = new JButton("Clone");
-		btnNewButton_8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				try  {
-					CLONE_RESULTSET clrsClone_RESULTSET = new CLONE_RESULTSET();
-		            ResultSet clonedResultSet = clrsClone_RESULTSET.cloneResultSet( oac.uSER_ISL.user_details_bak());
-		           System.out.println(clrsClone_RESULTSET.cnames[1].toString()); 
-			            //oac.uSER_ISL.con.close();
-			            // Process the cloned result set
-		            while (clonedResultSet.next()) {
-		                String data = clonedResultSet.getString(1) + " - " +clonedResultSet.getString(2) + " - " + clonedResultSet.getString(3) + " - " +clonedResultSet.getString(4);
-		                System.out.println(data);
-			            }
-			        } catch (SQLException | ClassNotFoundException ex) {
-			            ex.printStackTrace();
-			        }
-			}
-		});
-		btnNewButton_8.setBounds(600, 225, 89, 23);
-		panel.add(btnNewButton_8);
-		
-		JButton btnNewButton_8_1 = new JButton("yeni Clone");
-		btnNewButton_8_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				clone_yap();
-			}
-		});
-		btnNewButton_8_1.setBounds(600, 253, 89, 23);
-		panel.add(btnNewButton_8_1);
 		
 		
 		
@@ -1440,36 +1263,6 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	//*****************************************************************************************CLONE ****************
-	private void clone_yap()
-	{
-		 String[] columnNames = {"TARIH", "EVRAK", "IZAHAT","KOD","KUR","BORC","ALACAK","BAKIYE"};
-	        String[] columnTypes = {"VARCHAR","INTEGER" ,"VARCHAR", "VARCHAR","DOUBLE","DOUBLE","DOUBLE","DOUBLE"};
-
-	        ManualResultSet customResultSet;
-			try {
-				customResultSet = createCustomResultSet(columnNames, columnTypes);
-			
-	        
-	        // Add rows to the custom result set
-	        customResultSet.addRow("01.01.2023", 1,"DENEME","",0,0,0,0);
-
-	        // Iterate through the custom result set
-	        while (customResultSet.next()) {
-	            String tarih = (String) customResultSet.getObject(1);
-	            int evrak = (int) customResultSet.getObject(2);
-	            String izahat = (String) customResultSet.getObject(3);
-	           
-
-	            System.out.println("TARIH: " + tarih + ", Evrak: " + evrak + ", Izahat: " + izahat);
-	        }
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	}
-	private static ManualResultSet createCustomResultSet(String[] columnNames, String[] columnTypes) throws SQLException {
-        ResultSetMetaData metaData = new CustomResultSetMetaData(columnNames, columnTypes);
-        return new ManualResultSet(metaData);
-    }
+	
 }
 

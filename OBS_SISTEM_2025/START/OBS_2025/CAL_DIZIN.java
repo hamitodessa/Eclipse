@@ -91,6 +91,9 @@ import OBS_C_2025.SMS_MSSQL;
 import OBS_C_2025.SMS_MYSQL;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.KERESTE_ACCESS;
+import OBS_C_2025.KERESTE_MSSQL;
+import OBS_C_2025.KERESTE_MYSQL;
 import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
 import OBS_C_2025.Server_Bilgi;
@@ -137,6 +140,7 @@ public class CAL_DIZIN extends JDialog {
 	private static JTable tblKambiyo;
 	private static JTable tblSms;
 	private static JTable tblGunluk;
+	private static JTable tblKereste;
 	private JPasswordField txtsif;
 	private static	JTextField txt_Lmaill ;
 	private static JComboBox<String>  cmb_maillist;
@@ -302,6 +306,8 @@ public class CAL_DIZIN extends JDialog {
 							doldur_kutu(tblSms, 0);
 						else if (activ_sayfa == 6)
 							doldur_kutu(tblGunluk, 0);
+						else if (activ_sayfa == 7)
+							doldur_kutu(tblKereste, 0);
 					} catch (Exception ex)
 					{
 					}
@@ -566,9 +572,13 @@ public class CAL_DIZIN extends JDialog {
 					}
 					else if (activ_sayfa == 7)
 					{
-						txtsif.requestFocus()	;
+						doldur_kutu(tblKereste,0);	
 					}
 					else if (activ_sayfa == 8)
+					{
+						txtsif.requestFocus()	;
+					}
+					else if (activ_sayfa == 9)
 					{
 						mail_doldur();
 					}
@@ -754,7 +764,6 @@ public class CAL_DIZIN extends JDialog {
 
 		JScrollPane scrollPane_6 = new JScrollPane();
 		tabbedPane.addTab("Gunluk", null, scrollPane_6, null);
-
 		tblGunluk = new JTable(){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {     return false;          }};
@@ -777,6 +786,33 @@ public class CAL_DIZIN extends JDialog {
 		tblGunluk.setRowHeight(22);
 		tablo_baslik(tblGunluk);
 		scrollPane_6.setViewportView(tblGunluk);
+		
+		//*****************************************************************
+		JScrollPane scrollPane_9 = new JScrollPane();
+		tabbedPane.addTab("Kereste", null, scrollPane_9, null);
+		tblKereste = new JTable(){
+			private static final long serialVersionUID = 1L;
+			public boolean isCellEditable(int row, int column) {     return false;          }};
+			tblKereste.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				contentPane.setCursor(WAIT_CURSOR);
+				try {
+					kutu_temizle();
+					doldur_kutu(tblKereste,tblKereste.getSelectedRow());
+					contentPane.setCursor(DEFAULT_CURSOR);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				} 
+				contentPane.setCursor(DEFAULT_CURSOR);
+			}
+		});
+			tblKereste.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			tblKereste.setFont(new Font("Tahoma", Font.BOLD, 14));
+			tblKereste.setRowHeight(22);
+		tablo_baslik(tblKereste);
+		scrollPane_9.setViewportView(tblKereste);
+		//******************************************************************
 		JScrollPane scrollPane_7 = new JScrollPane();
 		
 		tabbedPane.addTab("Sifre", null, scrollPane_7, null);
@@ -1179,12 +1215,18 @@ public class CAL_DIZIN extends JDialog {
 			GRID_TEMIZLE.grid_temizle(tblGunluk);
 			grid_ortak_doldur(tblGunluk, "Gunluk");
 		}
+		else if ( activ_sayfa == 7)
+		{
+			GRID_TEMIZLE.grid_temizle(tblKereste);
+			grid_ortak_doldur(tblKereste, "Kereste");
+		}
 	}
 	private void grid_ortak_doldur( JTable grd,String prg) throws ClassNotFoundException, SQLException 
 	{
 		ResultSet	rs = null;
 		rs = oac.uSER_ISL.user_db_izinleri(GLOBAL.KULL_ADI, prg);
 		if (!rs.isBeforeFirst() ) {  
+			
 			return;
 		} 
 		grd.setModel(DbUtils.resultSetToTableModel(rs));
@@ -1426,6 +1468,8 @@ public class CAL_DIZIN extends JDialog {
 			modul = "Sms";
 		else if (activ_sayfa == 6)
 			modul = "Gunluk";
+		else if (activ_sayfa == 7)
+			modul = "Kereste";
 
 		if (activ_sayfa == 0)
 			program = "OK_Car" + txtKodu.getText();
@@ -1441,6 +1485,8 @@ public class CAL_DIZIN extends JDialog {
 			program = "OK_Sms" + txtKodu.getText();
 		else if (activ_sayfa == 6)
 			program = "OK_Gun" + txtKodu.getText();
+		else if (activ_sayfa == 7)
+			program = "OK_Ker" + txtKodu.getText();
 		if (chckbxL.isSelected())
 		{
 			/////////////////////LOCAL DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -1495,6 +1541,8 @@ public class CAL_DIZIN extends JDialog {
 				doldur_kutu(tblSms, 0);
 			else if (activ_sayfa == 6)
 				doldur_kutu(tblGunluk, 0);
+			else if (activ_sayfa == 7)
+				doldur_kutu(tblKereste, 0);
 			contentPane.setCursor(DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null, "Veritabani Baglantisi gerceklestirildi", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
 			return;
@@ -1523,6 +1571,8 @@ public class CAL_DIZIN extends JDialog {
 				doldur_kutu(tblSms, 0);
 			else if (activ_sayfa == 6)
 				doldur_kutu(tblGunluk, 0);
+			else if (activ_sayfa == 7)
+				doldur_kutu(tblKereste, 0);
 			contentPane.setCursor(DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ...", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
 			return;
@@ -1571,6 +1621,8 @@ public class CAL_DIZIN extends JDialog {
 				doldur_kutu(tblSms, 0);
 			else if (activ_sayfa == 6)
 				doldur_kutu(tblGunluk, 0);
+			else if (activ_sayfa == 7)
+				doldur_kutu(tblKereste, 0);
 			contentPane.setCursor(DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null, "Veritabani Baglantisi gerceklestirildi", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
 			return;
@@ -1601,6 +1653,8 @@ public class CAL_DIZIN extends JDialog {
 					doldur_kutu(tblSms, 0);
 				else if (activ_sayfa == 6)
 					doldur_kutu(tblGunluk, 0);
+				else if (activ_sayfa == 7)
+					doldur_kutu(tblKereste, 0);
 				contentPane.setCursor(DEFAULT_CURSOR);
 				JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ...", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
 				return;
@@ -1631,6 +1685,10 @@ public class CAL_DIZIN extends JDialog {
 		else if (activ_sayfa == 6)
 		{
 			mdb_yaz_2("Gunluk");
+		}
+		else if (activ_sayfa == 7)
+		{
+			mdb_yaz_2("Kereste");
 		}
 		if(! txtIp.getText().equals(""))
 		{
@@ -1672,6 +1730,10 @@ public class CAL_DIZIN extends JDialog {
 		else if (activ_sayfa == 6)
 		{
 			gun_olustur();
+		}
+		else if (activ_sayfa == 7)
+		{
+			ker_olustur();
 		}
 	}
 	void car_olustur() throws ClassNotFoundException, SQLException
@@ -1962,6 +2024,48 @@ public class CAL_DIZIN extends JDialog {
 			g_Access.gUN_SIFIR_L(sbilgi,lBILGI,BAGLAN_LOG.gunLogDizin);
 		}
 	}
+	void ker_olustur() throws ClassNotFoundException, SQLException
+	{
+		String strAdmin = "";
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		contentPane.setCursor(WAIT_CURSOR);
+		cONN_AKTAR();
+		lOGG_AKTAR("Kereste");
+		mODUL_AKTAR("Kereste");
+		KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(oac._IKereste,oac._IKereste_Loger);
+		BAGLAN.kerDizin.kULLANICI = txtkul.getText();
+		BAGLAN.kerDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
+		BAGLAN.kerDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.kerDizin.sERVER = txtIp.getText();
+		BAGLAN.kerDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.kerDizin.kOD = txtKodu.getText();
+		BAGLAN.kerDizin.yER = "L";
+		BAGLAN_LOG bLog = new BAGLAN_LOG();
+		bLog.cONNECT();
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
+		Server_Bilgi sbilgi = new Server_Bilgi();
+		sbilgi.setKod(txtKodu.getText());;
+		sbilgi.setFir_adi(strAdmin);;
+		sbilgi.setIns(comboBox.getSelectedItem().toString());;
+		sbilgi.setKull(txtkul.getText()); ;
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
+		sbilgi.setPort(txtIp.getText()); ;
+		if (chckbxD.isSelected())
+		{
+			sbilgi.setDizin_yeri("default");
+			sbilgi.setDizin("");
+			ker_Access.kER_SIFIR_L(sbilgi ,lBILGI,BAGLAN_LOG.kerLogDizin);
+		
+		}
+		else
+		{
+			sbilgi.setDizin_yeri("");
+			sbilgi.setDizin(txtdiz.getText());
+			ker_Access.kER_SIFIR_L(sbilgi,lBILGI,BAGLAN_LOG.kerLogDizin);
+		}
+	}
 	void cari_s_olustur() throws ClassNotFoundException, SQLException
 	{
 		String strAdmin = "";
@@ -2198,6 +2302,40 @@ public class CAL_DIZIN extends JDialog {
 			g_Access.gUN_SIFIR_S(sbilgi, lBILGI,BAGLAN_LOG.gunLogDizin);
 		}    
 	}
+	void ker_s_olustur() throws ClassNotFoundException, SQLException
+	{
+		String strAdmin = "";
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		cONN_AKTAR();
+		lOGG_AKTAR("Kereste");
+		mODUL_AKTAR("Kereste");
+		KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(oac._IKereste,oac._IKereste_Loger);
+		BAGLAN.kerDizin.kULLANICI = txtkul.getText();
+		BAGLAN.kerDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtsifr) ;
+		BAGLAN.kerDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
+		BAGLAN.kerDizin.sERVER = txtIp.getText();
+		BAGLAN.kerDizin.iNSTANCE =comboBox.getSelectedItem().toString();
+		BAGLAN.kerDizin.kOD = txtKodu.getText();
+		BAGLAN.kerDizin.yER = "S";
+		BAGLAN_LOG bLog = new BAGLAN_LOG();
+		bLog.cONNECT();
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
+		Server_Bilgi sbilgi = new Server_Bilgi();
+		sbilgi.setKod(txtKodu.getText());;
+		sbilgi.setFir_adi(strAdmin);;
+		sbilgi.setIns(comboBox.getSelectedItem().toString());;
+		sbilgi.setKull(txtkul.getText()); ;
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtsifr)); ;
+		sbilgi.setServer(txtIp.getText()); ;
+		sbilgi.setDizin_yeri("default");;
+		sbilgi.setDizin("");;
+		if (chckbxD.isSelected())
+		{
+			ker_Access.kER_SIFIR_S(sbilgi, lBILGI,BAGLAN_LOG.kerLogDizin);
+		}    
+	}
 	private  void dosya_olustur_S() throws IOException, ClassNotFoundException, SQLException
 	{
 		if (activ_sayfa == 0)
@@ -2227,6 +2365,10 @@ public class CAL_DIZIN extends JDialog {
 		else if (activ_sayfa == 6)
 		{
 			gun_s_olustur();
+		}
+		else if (activ_sayfa == 7)
+		{
+			ker_s_olustur();
 		}
 	}
 	private void cONN_AKTAR()
@@ -2274,6 +2416,10 @@ public class CAL_DIZIN extends JDialog {
 			{
 				oac._ISms = new SMS_MSSQL();
 			}
+			else if (mODUL == "Kereste")
+			{
+				oac._IKereste = new KERESTE_MSSQL();
+			}
 		}
 		else if (hangi == "MY SQL")
 		{
@@ -2304,6 +2450,10 @@ public class CAL_DIZIN extends JDialog {
 			else if (mODUL == "Sms")
 			{
 				oac._ISms = new SMS_MYSQL();
+			}
+			else if (mODUL == "Kereste")
+			{
+				oac._IKereste = new KERESTE_MYSQL();
 			}
 		}
 	}
@@ -2515,6 +2665,8 @@ public class CAL_DIZIN extends JDialog {
 		{oac._IGunluk_Loger = ilogg;}
 		else if (mODUL.equals("Kambiyo"))
 		{oac._IKambiyo_Loger = ilogg;}
+		else if (mODUL.equals("Kereste"))
+		{oac._IKereste_Loger = ilogg;}
 	}
 	private void cIKIS()
 	{

@@ -11,6 +11,7 @@ import OBS_C_2025.ICARI_HESAP;
 import OBS_C_2025.IConnection;
 import OBS_C_2025.IGUNLUK;
 import OBS_C_2025.IKAMBIYO;
+import OBS_C_2025.IKERESTE;
 import OBS_C_2025.IKUR;
 import OBS_C_2025.ILOGGER;
 import OBS_C_2025.ISMS;
@@ -27,6 +28,7 @@ public class OBS_SIS_2025_ANA_CLASS
 	public static boolean FAT_CONN;
 	public static boolean KAM_CONN;
 	public static boolean GUN_CONN;
+	public static boolean KER_CONN;
 
 	public static ICARI_HESAP  _ICar ;
 	public static ISTOK _IStok;
@@ -35,6 +37,7 @@ public class OBS_SIS_2025_ANA_CLASS
 	public static IKAMBIYO _IKambiyo;
 	public static IGUNLUK _IGunluk;
 	public static ISMS _ISms;
+	public static IKERESTE _IKereste;
 	public static ILOGGER[] _ICari_Loger = {};//new DOSYA_YAZ(new DOSYA_MSSQL()), new MAIL_AT()
 	public static ILOGGER[] _IKur_Loger = {};
 	public static ILOGGER[] _IAdres_Loger = {};
@@ -42,6 +45,7 @@ public class OBS_SIS_2025_ANA_CLASS
 	public static ILOGGER[] _IKambiyo_Loger = {};
 	public static ILOGGER[] _ISms_Loger = {};
 	public static ILOGGER[] _IGunluk_Loger = {};
+	public static ILOGGER[] _IKereste_Loger = {};
 
 	public String[] options = {"Tamam......       		!	", "Vazgec......       		!	"}; 
 	public IConnection _IConn ;
@@ -52,6 +56,7 @@ public class OBS_SIS_2025_ANA_CLASS
 	public IConnection _IKambiyoCon ;
 	public IConnection _IGunlukCon ;
 	public IConnection _ISmsCon ;
+	public IConnection _IKeresteCon ;
 
 	public static  ByteArrayDataSource ds = null ;
 	public int txt_yukseklik =20;

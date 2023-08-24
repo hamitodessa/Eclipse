@@ -19,6 +19,8 @@ public class BAGLAN {
     public static DIZIN_BILGILERI kamDizin = new DIZIN_BILGILERI();  // Kambiyo
     public static Connection smsConn ;
     public static DIZIN_BILGILERI smsDizin = new DIZIN_BILGILERI();  // SMS
+    public static Connection kerConn ;
+    public static DIZIN_BILGILERI kerDizin = new DIZIN_BILGILERI();  // Kereste
     public static Connection fihAConn ;
     public static Connection fihConn ;
     public static DIZIN_BILGILERI fihDizin = new DIZIN_BILGILERI();  // Fihrist
@@ -35,6 +37,7 @@ public class BAGLAN {
     	b_OKU.bILGI_OKU(uSER, "Kambiyo",kamDizin,"OK_Kam");
     	b_OKU.bILGI_OKU(uSER, "Fihrist",fihDizin,"OK_Fih");
     	b_OKU.bILGI_OKU(uSER, "Sms",smsDizin,"OK_Sms");
+    	b_OKU.bILGI_OKU(uSER, "Kereste",kerDizin,"OK_Ker");
     }
    
 

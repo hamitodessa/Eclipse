@@ -102,5 +102,6 @@ public class BILGI_OKU {
 			dIZIN.lOG = false;
 		}
 		con.close();
+
 	}
 }

@@ -85,6 +85,9 @@ import OBS_C_2025.SMS_MYSQL;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
+import OBS_C_2025.KERESTE_ACCESS;
+import OBS_C_2025.KERESTE_MSSQL;
+import OBS_C_2025.KERESTE_MYSQL;
 import OBS_C_2025.Server_Bilgi;
 import OBS_C_2025.sayiyiYaziyaCevir;
 @SuppressWarnings({"static-access","unused"})
@@ -100,6 +103,7 @@ public class LOGIN extends JDialog {
 	boolean FAT_DOS_VAR;
 	boolean KAM_DOS_VAR;
 	boolean GUN_DOS_VAR;
+	boolean KER_DOS_VAR;
 	private JPanel contentPane;
 	private JTextField txtUser;
 	private JPasswordField txtpwd;
@@ -355,7 +359,7 @@ public class LOGIN extends JDialog {
 					try
 					{
 						calisma_dizini_oku();
-						int say  = 8 ;
+						int say  = 9 ;
 						Login_Progres_Bar_Temizle();
 						progressBar.setMaximum(say);
 						progressBar.setStringPainted(true);
@@ -388,6 +392,10 @@ public class LOGIN extends JDialog {
 						SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms, oac._ISms_Loger);
 						sms_Access.baglan();
 						Lgn_Progres_Bar(say, 8);
+						lblModul.setText("Kereste Baglanti");
+						KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(oac._IKereste, oac._IKereste_Loger);
+						ker_Access.baglan();
+						Lgn_Progres_Bar(say, 9);
 
 						OBS_MAIN obmain = new OBS_MAIN();
 						
@@ -416,6 +424,9 @@ public class LOGIN extends JDialog {
 						lblModul.setText("Gunluk Bilgi Okuma");
 						gun_kont();
 						Lgn_Progres_Bar(say, 8);
+						lblModul.setText("Kereste Bilgi Okuma");
+						ker_kont();
+						Lgn_Progres_Bar(say, 9);
 						lblModul.setText("");
 						Login_Progres_Bar_Temizle();
 						Thread.currentThread().isInterrupted();
@@ -657,9 +668,34 @@ public class LOGIN extends JDialog {
 			OBS_MAIN.tabbedPane.setEnabledAt(5, false);
 		}
 	}
+	void ker_kont() throws ClassNotFoundException, SQLException
+	{
+		String qwe = "" ;
+		if (OBS_SIS_2025_ANA_CLASS.KER_CONN == true)
+		{
+			if (KER_DOS_VAR == false)
+			{
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				JOptionPane.showMessageDialog(null, "Calisilan Kereste -" + BAGLAN.kerDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
+				OBS_MAIN.tabbedPane.setEnabledAt(7, false);
+			}
+			else
+			{
+				//BAGLAN.kerDizin.fIRMA_ADI = oac._IKereste.ker_firma_adi() ;
+				qwe = BAGLAN.kerDizin.yER.equals("S") ? BAGLAN.kerDizin.sERVER : "Lokal" ;
+				OBS_MAIN.lblNewLabel_24.setText ( "Kereste:" + BAGLAN.kerDizin.kOD + "/ " + BAGLAN.kerDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.tabbedPane.setEnabledAt(7, true);
+			}
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(null,  "Kereste Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
+			OBS_MAIN.tabbedPane.setEnabledAt(7, false);
+		}
+	}
 	void calisma_dizini_oku() throws ClassNotFoundException, SQLException, InterruptedException
 	{
-		int say = 8;
+		int say = 9;
 		bAGLAN.cONNECT(txtUser.getText());
 		bAGLAN_LOG.cONNECT();
 		// Cari
@@ -746,10 +782,23 @@ public class LOGIN extends JDialog {
 		{
 			oac._IGunluk = new GUNLUK_MYSQL();
 		}
+		//KERESTE
+		cONN_AKTAR( BAGLAN.kerDizin.hAN_SQL );
+		hangi_sql =  BAGLAN.kerDizin.hAN_SQL;
+		oac._IKeresteCon = oac._IConn ;
+		if (hangi_sql.equals("MS SQL"))
+		{
+			oac._IKereste = new KERESTE_MSSQL();
+		}
+		else
+		{
+			oac._IKereste = new KERESTE_MYSQL();
+		}
+		
 		lOG_AKTAR();
 		oac.uSER_ISL.mail_bak(); // MAIL AYARLARI OKUMA
 		LOG_MAIL_OKU.mail_oku(); // LOGLAMA MAILI OKUMA
-		progressBar.setMaximum(8);
+		progressBar.setMaximum(9);
 		progressBar.setStringPainted(true);
 
 		Lgn_Progres_Bar(say, 1);
@@ -774,6 +823,10 @@ public class LOGIN extends JDialog {
 		lblModul.setText("Gunluk Calisma Dizini");
 		gun_calisma_dizini_oku();
 		Lgn_Progres_Bar(say, 8);
+		lblModul.setText("Kereste Calisma Dizini");
+		ker_calisma_dizini_oku();
+		Lgn_Progres_Bar(say, 9);
+		
 		lblModul.setText("");
 	}
 	void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
@@ -1070,7 +1123,6 @@ public class LOGIN extends JDialog {
 			{
 				if (s_CONN.Dosya_kontrol_L(sBilgi) == false)
 				{
-					System.out.println("1006");
 					GUN_DOS_VAR = false;
 				}
 				else
@@ -1094,6 +1146,52 @@ public class LOGIN extends JDialog {
 		else
 			OBS_SIS_2025_ANA_CLASS.GUN_CONN = false;
 	}
+	void ker_calisma_dizini_oku() throws ClassNotFoundException, SQLException
+	{
+		CONNECT s_CONN = new CONNECT(oac._IKeresteCon);
+		if (BAGLAN.kerDizin.yER.equals(""))
+		{
+			OBS_SIS_2025_ANA_CLASS.KER_CONN = false;
+			KER_DOS_VAR = false;
+			return;
+		}
+		Server_Bilgi sBilgi = new Server_Bilgi() ;
+		sBilgi.setIns( BAGLAN.kerDizin.iNSTANCE );
+		sBilgi.setKull( BAGLAN.kerDizin.kULLANICI );
+		sBilgi.setSifre( BAGLAN.kerDizin.sIFRESI);
+		sBilgi.setPort(BAGLAN.kerDizin.sERVER);
+		sBilgi.setDb( "OK_Ker" + BAGLAN.kerDizin.kOD);				
+		sBilgi.setServer( BAGLAN.kerDizin.sERVER);
+		if (BAGLAN.kerDizin.yER.equals("L"))
+		{
+			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
+			{
+				if (s_CONN.Dosya_kontrol_L(sBilgi) == false)
+				{
+					KER_DOS_VAR = false;
+				}
+				else
+				{
+					lOGG_AKTAR("Kereste",BAGLAN.kerDizin.hAN_SQL,BAGLAN.kerDizin.lOG,BAGLAN.kerDizin.lOGLAMA_YERI);
+					KER_DOS_VAR = true;
+					OBS_SIS_2025_ANA_CLASS.KER_CONN = true;}
+			}
+			else
+				OBS_SIS_2025_ANA_CLASS.KER_CONN = false;
+		}
+		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
+		{
+			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
+				KER_DOS_VAR = false;
+			else
+				lOGG_AKTAR("Kereste",BAGLAN.kerDizin.hAN_SQL,BAGLAN.kerDizin.lOG,BAGLAN.kerDizin.lOGLAMA_YERI);
+			KER_DOS_VAR = true;
+			OBS_SIS_2025_ANA_CLASS.KER_CONN = true;
+		}
+		else
+			OBS_SIS_2025_ANA_CLASS.KER_CONN = false;
+	}
+
 	void Lgn_Progres_Bar(int max, int deger) throws InterruptedException
 	{
 		progressBar.setValue(deger);
@@ -1451,6 +1549,8 @@ public class LOGIN extends JDialog {
 		{oac._IGunluk_Loger = ilogg;}
 		else if (mODUL.equals("Kambiyo"))
 		{oac._IKambiyo_Loger = ilogg;}
+		else if (mODUL.equals("Kereste"))
+		{oac._IKereste_Loger = ilogg;}
 	}
 }
 // String username = System.getProperty("user.name");

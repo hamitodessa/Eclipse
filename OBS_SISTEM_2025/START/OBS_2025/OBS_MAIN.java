@@ -1878,7 +1878,14 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_84.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-post-30.png")));
 		toolBar_8.add(btnNewButton_84);
-		
+		//************************************************************KERESTE*********************************************************************************
+
+		JToolBar toolBar_Kereste = new JToolBar();
+		//toolBar_8.setBorder(new LineBorder(new Color(0, 191, 255)));
+		toolBar_Kereste.setFloatable(false);
+		tabbedPane.addTab("Kereste", null, toolBar_Kereste, null);
+
+	
 		//*********************************************************** GIDEN RAPOR *********************************************************************************
 
 		JToolBar toolBar_9 = new JToolBar();

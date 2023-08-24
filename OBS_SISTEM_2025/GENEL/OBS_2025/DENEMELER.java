@@ -40,6 +40,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -49,6 +50,14 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 @SuppressWarnings({"serial","static-access","unused"})
 public class DENEMELER extends JInternalFrame {
@@ -315,8 +324,49 @@ public class DENEMELER extends JInternalFrame {
 		btnNewButton_1.setBounds(503, 260, 89, 23);
 		panel.add(btnNewButton_1);
 		
+		JButton btnNewButton_2 = new JButton("GPT CHAT");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cHATGPT();
+			}
+		});
+		btnNewButton_2.setBounds(503, 294, 89, 23);
+		panel.add(btnNewButton_2);
+		
 		
 
+	}
+	private void cHATGPT()
+	{
+		try 
+		{
+        String apiKey = "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";
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        String apiUrl = "https://api.openai.com/v1/engines/davinci/completions";
+
+        HttpPost httpPost = new HttpPost(apiUrl);
+
+        httpPost.setHeader("Authorization", "Bearer " + apiKey);
+
+        String prompt = "Translate the following English text to French: 'Hello, how are you?'";
+        StringEntity entity = new StringEntity("{\"prompt\":\"" + prompt + "\"}");
+        httpPost.setEntity(entity);
+
+        HttpResponse response = httpClient.execute(httpPost);
+
+        HttpEntity responseEntity = response.getEntity();
+        String responseBody = EntityUtils.toString(responseEntity);
+
+        System.out.println("Generated Text: " + responseBody);
+
+        
+			httpClient.close();
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+   
+
+		
 	}
 	private void clone_yap()
 	{

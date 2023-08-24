@@ -438,16 +438,26 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		tblexcell = new JTable(model) ;
 		tblexcell.getTableHeader().setReorderingAllowed(false);
 		tblexcell.setGridColor(OBS_SIS_2025_ANA_CLASS.gridcolor);
-		tblexcell.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-		    public void valueChanged(ListSelectionEvent lse) {
-			        if (!lse.getValueIsAdjusting()) {
-			        	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-						doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 2).toString(),"B");
-						doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 5).toString(),"A");
-						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-			        }
-			    }
-			});
+		tblexcell.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+				doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 2).toString(),"B");
+				doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 5).toString(),"A");
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+			    	}
+			    });
+		tblexcell.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Down" || KeyEvent.getKeyText(e.getKeyCode()) == "Up") {
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+					doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 2).toString(),"B");
+					doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 5).toString(),"A");
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+				}
+			}
+		});
 		tblexcell.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		    model.addColumn("Tarih", new Date []{ new Date() });
 		    model.addColumn("Aciklama", new String []{"deneme"});
@@ -1229,15 +1239,14 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				Progres_Bar_Temizle();
 				OBS_MAIN.progressBar.setStringPainted(true);
 				OBS_MAIN.progressBar.setMaximum(table_1.getRowCount() - 1);
+				
 				for(int  t = 0 ; t <= table_1.getRowCount() - 1;t ++) 
 				{
 					Progres_Bar(table_1.getRowCount() - 1, t);
 					bir =  mdl.getValueAt(t , 0).toString() ;
-					TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tblexcell.getModel())); 
-					//sorter = new TableRowSorter<TableModel>(model);
-					RowFilter<TableModel, Object> rf = null;
-					rf = RowFilter.regexFilter("(?i)" + Pattern.quote(bir) , 1);
-					sorter.setRowFilter(rf);
+					TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tblexcell.getModel()));
+					sorter.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(bir) , 1));
+					Thread.sleep(7);
 					tblexcell.setRowSorter(sorter);
 					if ( tblexcell.getRowCount() > 0 )
 					{
@@ -1270,7 +1279,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 							}
 						}
 					}
-					Thread.sleep(1);
 					tblexcell.setRowSorter(null);
 				}
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);  

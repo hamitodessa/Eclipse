@@ -158,10 +158,10 @@ public class KER_GIRIS extends JInternalFrame {
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
-		tabbedPane_1.addTab("Fatura Bilgileri", null, panel_2, null);
+		tabbedPane_1.addTab("Urun Giris", null, panel_2, null);
 		panel_2.setLayout(null);
 
-		JLabel lblNewLabel_1 = new JLabel("Fatura No");
+		JLabel lblNewLabel_1 = new JLabel("Evrak No");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_1.setBounds(10, 11, 69, 14);
 		panel_2.add(lblNewLabel_1);
@@ -243,6 +243,21 @@ public class KER_GIRIS extends JInternalFrame {
 		textField.setBounds(89, 8, 110, 20);
 		panel_2.add(textField);
 		textField.setColumns(10);
+		
+		JButton button_1 = new JButton("");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				//getContentPane().setCursor(oac.WAIT_CURSOR);
+				//son_fisoku();
+				//getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		button_1.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));
+		button_1.setToolTipText("Son Fis");
+		button_1.setBounds(209, 7, 26, 23);
+		panel_2.add(button_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Cari Hesap");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -482,6 +497,17 @@ public class KER_GIRIS extends JInternalFrame {
 		});
 		cmbanagrup.setBounds(797, 7, 148, 22);
 		panel_2.add(cmbanagrup);
+		
+		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//ana_grup_doldur();
+			}
+		});
+		button.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
+		button.setToolTipText("Yenile");
+		button.setBounds(955, 7, 26, 23);
+		panel_2.add(button);
 
 		JLabel lblAltGrup = new JLabel("Alt Grup");
 		lblAltGrup.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -496,17 +522,17 @@ public class KER_GIRIS extends JInternalFrame {
 
 		JLabel lblNewLabel_9 = new JLabel("Doviz");
 		lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_9.setBounds(966, 10, 52, 14);
+		lblNewLabel_9.setBounds(995, 10, 46, 14);
 		panel_2.add(lblNewLabel_9);
 
 		JLabel lblNewLabel_10 = new JLabel("Kur");
 		lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_10.setBounds(966, 36, 46, 14);
+		lblNewLabel_10.setBounds(995, 36, 46, 14);
 		panel_2.add(lblNewLabel_10);
 
 		txtdoviz = new JTextField();
 		txtdoviz.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtdoviz.setBounds(1037, 8, 73, 20);
+		txtdoviz.setBounds(1050, 8, 73, 20);
 		panel_2.add(txtdoviz);
 		txtdoviz.setColumns(10);
 
@@ -514,7 +540,7 @@ public class KER_GIRIS extends JInternalFrame {
 		txtkur.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtkur.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtkur.setText("0.0000");
-		txtkur.setBounds(1037, 33, 73, 20);
+		txtkur.setBounds(1050, 33, 73, 20);
 		panel_2.add(txtkur);
 
 		
@@ -717,8 +743,8 @@ public class KER_GIRIS extends JInternalFrame {
 		
 		JPanel panel_3 = new JPanel();
 		splitPane_1.setRightComponent(panel_3);
-		panel_3.setMinimumSize(new Dimension(0, 120));
-		panel_3.setMaximumSize(new Dimension(0, 120));
+		panel_3.setMinimumSize(new Dimension(0, 140));
+		panel_3.setMaximumSize(new Dimension(0, 140));
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
 		JSplitPane splitPane_3 = new JSplitPane();

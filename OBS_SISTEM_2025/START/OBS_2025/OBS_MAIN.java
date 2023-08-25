@@ -163,6 +163,8 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_82;//Gorev Kayit
 	private JButton btnNewButton_21;//Kayitli Gorevler
 	private JButton btnNewButton_38;//Firma Ismi
+	//KERESTE
+	private JButton btnNewButton_1 ; //Ker Giris
 	//
 	private JButton btnYenile ; // Yenile Tusu
 	private JButton btnExcell ; // Excell Aktarma
@@ -910,12 +912,38 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnSms.add(mntmMail);
+		//************************************************************************************************
+		JMenu mnKereste = new JMenu("Kereste");
+		mnKereste.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				tabbedPane.setSelectedIndex(7);
+			}
+		});
+		mnKereste.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		menuBar.add(mnKereste);
+
+		JMenuItem mntmGiris = new JMenuItem("Giris");
+		mntmGiris.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//btnNewButton_83.doClick();
+			}
+		});
+		mnKereste.add(mntmGiris);
+
+		JMenuItem mntmCikis = new JMenuItem("Cikis");
+		mntmCikis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//btnNewButton_84.doClick();
+			}
+		});
+		mnKereste.add(mntmCikis);		
 //***************************************************GENEL *************************************************
 		JMenu mnGenel = new JMenu("Genel");
 		mnGenel.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				tabbedPane.setSelectedIndex(7);
+				tabbedPane.setSelectedIndex(8);
 			}
 		});
 		mnGenel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -957,7 +985,7 @@ public class OBS_MAIN extends JFrame {
 		mnAyarlar.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				tabbedPane.setSelectedIndex(8);
+				tabbedPane.setSelectedIndex(9);
 			}
 		});
 		mnAyarlar.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -1013,7 +1041,7 @@ public class OBS_MAIN extends JFrame {
 		mnHakkinda.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				tabbedPane.setSelectedIndex(9);
+				tabbedPane.setSelectedIndex(10);
 			}
 		});
 		mnHakkinda.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -1884,8 +1912,18 @@ public class OBS_MAIN extends JFrame {
 		//toolBar_8.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_Kereste.setFloatable(false);
 		tabbedPane.addTab("Kereste", null, toolBar_Kereste, null);
+		
+		btnNewButton_1 = new JButton("");
+		btnNewButton_1.setToolTipText("Giris");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("KERESTE GIRIS","");
+			}
+		});
+		btnNewButton_1.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-invoice-30.png")));
+		toolBar_Kereste.add(btnNewButton_1);
 
-	
+		
 		//*********************************************************** GIDEN RAPOR *********************************************************************************
 
 		JToolBar toolBar_9 = new JToolBar();
@@ -2994,11 +3032,13 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("CEK CIKIS")) internalFrame  = new CEK_CIKIS();
 			else if (pencere.equals("CEK RAPOR")) internalFrame  = new CEK_RAPOR();
 			else if (pencere.equals("CEK TAKIP")) internalFrame  = new CEK_TAKIP();
-			//		 //SMS-MAIL
+			//SMS-MAIL
 			else if (pencere.equals("SMS")) internalFrame  = new SMS();
 			else if (pencere.equals("MAIL")) internalFrame  = new MAIL();
 			//else if (pencere.equals("SMS INET")) internalFrame  = new SMS_INET();
-			//		 //GENEL
+			//KERESTE
+			else if (pencere.equals("KERESTE GIRIS")) internalFrame  = new KER_GIRIS();
+			//GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();
 			//AYARLAR

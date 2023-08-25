@@ -14,6 +14,7 @@ import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.KAMBIYO_ACCESS;
+import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.STOK_ACCESS;
@@ -32,6 +33,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	static SMS_ACCESS sms_Access = new SMS_ACCESS(oac._ISms , OBS_SIS_2025_ANA_CLASS._ISms_Loger);
 	static GUNLUK_ACCESS g_Access = new GUNLUK_ACCESS(oac._IGunluk , OBS_SIS_2025_ANA_CLASS._IGunluk_Loger);
+	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_4;
@@ -41,6 +43,9 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 	private JLabel lblNewLabel_1_3 = new JLabel(".....");
 	private JLabel lblNewLabel_1_4 = new JLabel(".....");
 	private JLabel lblNewLabel_1_5 = new JLabel(".....");
+	private JLabel lblNewLabel_1_6 = new JLabel(".....");
+	
+	
 	private JLabel label;
 	private JLabel label_1;
 	private JLabel label_2;
@@ -57,7 +62,10 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 	private JLabel label_13;
 	private JLabel label_14;
 	private JLabel label_55;
-
+	private JLabel label_12_1;
+	private JLabel label_13_1;
+	private JLabel label_14_1;
+	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -77,7 +85,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 		setTitle("CALISMA DIZINLERI");
 		setClosable(true);
-		setBounds(100, 100, 854, 361);
+		setBounds(100, 100, 854, 406);
 		getContentPane().setLayout(null);
 
 
@@ -272,6 +280,36 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_1_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_5.setBounds(730, 20, 50, 14);
 		panel_5.add(lblNewLabel_1_5);
+		
+		JPanel panel_5_1 = new JPanel();
+		panel_5_1.setLayout(null);
+		panel_5_1.setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(135, 206, 250)), "Kereste", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5_1.setBounds(25, 310, 791, 50);
+		getContentPane().add(panel_5_1);
+		
+		label_12_1 = new JLabel("");
+		label_12_1.setForeground(Color.BLUE);
+		label_12_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_12_1.setBounds(10, 20, 55, 14);
+		panel_5_1.add(label_12_1);
+		
+		label_13_1 = new JLabel("...");
+		label_13_1.setForeground(new Color(0, 128, 128));
+		label_13_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_13_1.setBounds(63, 20, 170, 14);
+		panel_5_1.add(label_13_1);
+		
+		label_14_1 = new JLabel((String) null);
+		label_14_1.setForeground(Color.RED);
+		label_14_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_14_1.setBounds(250, 20, 404, 14);
+		panel_5_1.add(label_14_1);
+		
+		lblNewLabel_1_6 = new JLabel("");
+		lblNewLabel_1_6.setForeground(new Color(0, 0, 205));
+		lblNewLabel_1_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1_6.setBounds(730, 20, 50, 14);
+		panel_5_1.add(lblNewLabel_1_6);
 
 		try {
 			yukle();
@@ -361,6 +399,17 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 			label_13.setText(BAGLAN.gunDizin.sERVER);	
 		}
 		label_14.setText(g_Access.gun_firma_adi() );
-
+		// Kereste
+		label_12_1.setText(BAGLAN.kerDizin.kOD);
+		lblNewLabel_1_6.setText(BAGLAN.kerDizin.hAN_SQL);
+		if (BAGLAN.kerDizin.yER.equals("L"))
+		{
+			label_13_1.setText(BAGLAN.kerDizin.yER);
+		}
+		else
+		{
+			label_13_1.setText(BAGLAN.kerDizin.sERVER);	
+		}
+		label_14_1.setText(ker_Access.ker_firma_adi() );
 	}
 }

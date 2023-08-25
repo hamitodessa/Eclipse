@@ -2,6 +2,8 @@ package OBS_C_2025;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -92,7 +94,283 @@ public class KERESTE_MSSQL implements IKERESTE {
 	
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
-		// TODO Auto-generated method stub
+		String sql = null;
+		sql = "CREATE TABLE [dbo].[DPN]( "
+				+ " [DID] [int] IDENTITY(1,1) NOT NULL,"
+				+ "  [Evrak_No] [nvarchar](10) NOT NULL,"
+				+ "  [Tip] [nvarchar](1) NULL,"
+				+ "  [Bir] [nvarchar](40) NULL,"
+				+ "  [Iki] [nvarchar](40) NULL,"
+				+ "  [Uc] [nvarchar](40) NULL,"
+				+ "  [Gir_Cik] [nvarchar](1) NULL,"
+				+ "  [USER] [nvarchar](15) NOT NULL,"
+				+ "  CONSTRAINT [PKeyDID] PRIMARY KEY CLUSTERED ("
+				+ "  [DID] ASC"
+				+ "  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS"
+				+ "  = ON) ON [PRIMARY]) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE NONCLUSTERED INDEX [IX_DPN] ON [dbo].[DPN]( "
+				+ "   [Evrak_No] ASC, "
+				+ "  [Gir_Cik] ASC "
+				+ "  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, "
+				+ "  ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[GDY]( "
+				+ "  [GID] [int] IDENTITY(1,1) NOT NULL, "
+				+ "  [Isim] [nvarchar](50) NULL, "
+				+ "  [Adres] [nvarchar](50) NULL, "
+				+ "  [Semt] [nvarchar](50) NULL, "
+				+ "  [Sehir] [nvarchar](50) NULL, "
+				+ "  [USER] [nvarchar](15) NOT NULL, "
+				+ "  CONSTRAINT [PKeyGID] PRIMARY KEY CLUSTERED ( "
+				+ "  [GID] ASC "
+				+ "  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS "
+				+ "  = ON) ON [PRIMARY]) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql= "CREATE TABLE [dbo].[KERESTE]( "
+				+ "[Evrak_No] [nvarchar](10) NOT NULL,"
+				+ " [Kodu] [nvarchar](16) NULL,"
+				+ " [Paket_No] [nvarchar] (10) NULL,"
+				+ " [Konsimento] [nvarchar](10) NULL,"
+				+ " [Miktar] [float] NULL,"
+				+ " [Tarih] [datetime] NULL,"
+				+ " [Kdv] [float] NULL,"
+				+ " [Doviz] [nvarchar](3) NULL,"
+				+ " [Fiat] [float] NULL,"
+				+ " [Tutar] [float] NULL,"
+				+ " [Kur] [float] NULL,"
+				+ " [Cari_Firma] [nvarchar](12) NULL,"
+				+ " [Adres_Firma] [nvarchar](12) NULL,"
+				+ " [Iskonto] [float] NULL,"
+				+ " [Tevkifat] [float] NULL,"
+				+ " [Ana_Grup] [int] NULL,"
+				+ " [Alt_Grup] [int] NULL,"
+				+ " [Depo] [int] NULL,"
+				+ " [Ozel_Kod] [nvarchar](10) NULL,"
+				+ " [Gir_Cik] [nvarchar](1) NULL,"
+				+ " [Izahat] [nvarchar](40) NULL,"
+				+ " [Cins] [nvarchar](1) NULL,"
+				+ " [USER] [nvarchar](15) NOT NULL,"
+				+ " INDEX IX_KERESTE NONCLUSTERED (Evrak_No,Kodu,Tarih,Paket_No,Konsimento,Cari_Firma,Gir_Cik)) ";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[OZEL]("
+				+ " [YONETICI] [nvarchar](25) NULL,"
+				+ " [YON_SIFRE] [nvarchar](15) NULL,"
+				+ " [FIRMA_ADI] [nvarchar](50) NULL,"
+				+ " [USER] [nvarchar](15) NOT NULL"
+				+ " ) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[MENSEI_DEGISKEN]("
+				+ " [MEID] [int] IDENTITY(1,1) NOT NULL,"
+				+ " [MEID_Y] [int]  NOT NULL,"   
+				+ " [MENSEI] [nvarchar](25) NOT NULL,"
+				+ " [USER] [nvarchar](15) NOT NULL,"
+				+ " CONSTRAINT [PKeyMEID] PRIMARY KEY CLUSTERED ("
+				+ " [MEID] ASC"
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS"
+				+ " = ON) ON [PRIMARY]) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[ANA_GRUP_DEGISKEN]("
+				+ " [AGID] [int] IDENTITY(1,1) NOT NULL,"
+				+ " [AGID_Y] [int] NOT NULL,"  
+				+ " [ANA_GRUP] [nvarchar](25) NOT NULL,"
+				+ " [USER] [nvarchar](15) NOT NULL,"
+				+ "  CONSTRAINT [PKeyAGID] PRIMARY KEY CLUSTERED ("
+				+ " [AGID] ASC"
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS"
+				+ " = ON) ON [PRIMARY]) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[ALT_GRUP_DEGISKEN]("
+				+ " [ALID] [int] IDENTITY(1,1) NOT NULL,"
+				+ " [ALID_Y] [int] NOT NULL,"  
+				+ " [ANA_GRUP] [int] NOT NULL,"
+				+ " [ALT_GRUP] [nvarchar](25) NOT NULL,"
+				+ " [USER] [nvarchar](15) NOT NULL,"
+				+ " CONSTRAINT [PKeyALID] PRIMARY KEY CLUSTERED ("
+				+ " [ALID] ASC"
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS"
+				+ " = ON) ON [PRIMARY]) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[ACIKLAMA]("
+				+ " [ACID] [int] IDENTITY(1,1) NOT NULL,"
+				+ " [EVRAK_CINS] [nvarchar](3) NULL,"
+				+ " [SATIR] [int] NULL,"
+				+ " [EVRAK_NO] [nvarchar](10) NULL,"
+				+ " [ACIKLAMA] [nvarchar](50) NULL,"
+				+ " [Gir_Cik] [nvarchar](1) NULL,"
+				+ " CONSTRAINT [PKeyACID] PRIMARY KEY CLUSTERED ("
+				+ " [ACID] ASC"
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS"
+				+ " = ON) ON [PRIMARY]) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE NONCLUSTERED INDEX [IX_ACIKLAMA] ON [dbo].[ACIKLAMA]( "
+				+ " [EVRAK_CINS] ASC,"
+				+ " [EVRAK_NO] ASC,"
+				+ " [Gir_Cik] ASC"
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, "
+				+ " ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[DEPO_DEGISKEN]("
+				+ " [DPID] [int] IDENTITY(1,1) NOT NULL,"
+				+ " [DPID_Y] [int]  NOT NULL,"   
+				+ " [DEPO] [nvarchar](25) NOT NULL,"
+				+ " [USER] [nvarchar](15) NOT NULL,"
+				+ " CONSTRAINT [PKeyDPID] PRIMARY KEY CLUSTERED ("
+				+ " [DPID] ASC"
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS"
+				+ "  = ON) ON [PRIMARY]) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[OZ_KOD_1_DEGISKEN]("
+				+ " [OZ1ID] [int] IDENTITY(1,1) NOT NULL,"
+				+ " [OZ1ID_Y] [int]  NOT NULL,"  
+				+ " [OZEL_KOD_1] [nvarchar](25) NOT NULL,"
+				+ " [USER] [nvarchar](15) NOT NULL,"
+				+ " CONSTRAINT [PKeyOZ1ID] PRIMARY KEY CLUSTERED ("
+				+ " [OZ1ID] ASC"
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS"
+				+ " = ON) ON [PRIMARY]) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[DEPOEVRAK]("
+				+ " [E_No] [int] NOT NULL"
+				+ " ) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[YETKILER]("
+				+ " [KULLANICI] [nvarchar](25) NULL,"
+				+ " [HESAP] [nvarchar](12) NULL,"
+				+ " [TAM_YETKI] [bit] NULL,"
+				+ " [GORUNTU] [bit] NULL,"
+				+ " [LEVEL] [int] NOT NULL,"
+				+ " [USER] [nvarchar](15) NOT NULL"
+				+ " ) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[IRS_EVRAK_FORMAT]("
+				+ " [SAT_SUT] [nchar](5) NULL,"
+				+ " [TARIH] [float] NULL,"
+				+ " [SEVK_TARIH] [float] NULL,"
+				+ " [FIRMA_KODU] [float] NULL,"
+				+ " [FIRMA_UNVANI] [float] NULL,"
+				+ " [VERGI_DAIRESI] [float] NULL,"
+				+ " [VERGI_NO] [float] NULL,"
+				+ " [GIDECEGI_YER] [float] NULL,"
+				+ " [NOT_1] [float] NULL,"
+				+ " [NOT_2] [float] NULL,"
+				+ " [NOT_3] [float] NULL,"
+				+ " [BASLIK_BOLUM] [float] NULL,"
+				+ " [BARKOD] [float] NULL,"
+				+ " [URUN_KODU] [float] NULL,"
+				+ " [URUN_ADI] [float] NULL,"
+				+ " [DEPO] [float] NULL,"
+				+ " [SIMGE] [float] NULL,"
+				+ " [BIRIM_FIAT] [float] NULL,"
+				+ " [ISKONTO] [float] NULL,"
+				+ " [MIKTAR] [float] NULL,"
+				+ " [K_D_V] [float] NULL,"
+				+ " [TUTAR] [float] NULL,"
+				+ " [TUTAR_TOPLAM] [float] NULL,"
+				+ " [ISKONTO_TOPLAMI] [float] NULL,"
+				+ " [BAKIYE] [float] NULL,"
+				+ " [K_D_V_TOPLAMI] [float] NULL,"
+				+ " [BELGE_TOPLAMI] [float] NULL,"
+				+ " [YAZI_ILE] [float] NULL,"
+				+ " [ALT_BOLUM] [float] NULL,"
+				+ " [N1] [float] NULL,"
+				+ " [N2] [float] NULL,"
+				+ " [N3] [float] NULL,"
+				+ " [N4] [float] NULL,"
+				+ " [N5] [float] NULL,"
+				+ " [N6] [float] NULL,"
+				+ " [N7] [float] NULL,"
+				+ " [N8] [float] NULL,"
+				+ " [N9] [float] NULL,"
+				+ " [N10] [float] NULL,"
+				+ " [USER] [nvarchar](15) NOT NULL"
+				+ " ) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "INSERT INTO  IRS_EVRAK_FORMAT(SAT_SUT ,TARIH,SEVK_TARIH,FIRMA_KODU,FIRMA_UNVANI,VERGI_DAIRESI ,VERGI_NO  ,GIDECEGI_YER,NOT_1 ,NOT_2 ,NOT_3,BASLIK_BOLUM,BARKOD,URUN_KODU ,URUN_ADI , DEPO,SIMGE ,BIRIM_FIAT ,ISKONTO ,MIKTAR,K_D_V ,TUTAR ,TUTAR_TOPLAM ,ISKONTO_TOPLAMI  ,BAKIYE ,K_D_V_TOPLAMI ,BELGE_TOPLAMI , YAZI_ILE,ALT_BOLUM, N1 ,N2 ,N3 ,N4 ,N5 ,N6 ,N7 ,N8 ,N9 ,N10,[USER] ) VALUES ('SATIR','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','Admin')";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "INSERT INTO  IRS_EVRAK_FORMAT(SAT_SUT ,TARIH,SEVK_TARIH,FIRMA_KODU,FIRMA_UNVANI,VERGI_DAIRESI ,VERGI_NO  ,GIDECEGI_YER,NOT_1 ,NOT_2 ,NOT_3,BASLIK_BOLUM,BARKOD,URUN_KODU ,URUN_ADI , DEPO,SIMGE ,BIRIM_FIAT ,ISKONTO ,MIKTAR,K_D_V ,TUTAR ,TUTAR_TOPLAM ,ISKONTO_TOPLAMI  ,BAKIYE ,K_D_V_TOPLAMI ,BELGE_TOPLAMI , YAZI_ILE,ALT_BOLUM, N1 ,N2 ,N3 ,N4 ,N5 ,N6 ,N7 ,N8 ,N9 ,N10,[USER] ) VALUES ('SUTUN','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','Admin')";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[FAT_EVRAK_FORMAT]( "
+				+ " [SAT_SUT] [nchar](5) NULL,"
+				+ " [TARIH] [float] NULL,"
+				+ " [FIRMA_KODU] [float] NULL,"
+				+ " [FIRMA_UNVANI] [float] NULL,"
+				+ " [VERGI_DAIRESI] [float] NULL,"
+				+ " [VERGI_NO] [float] NULL,"
+				+ " [GIDECEGI_YER] [float] NULL,"
+				+ " [NOT_1] [float] NULL,"
+				+ " [NOT_2] [float] NULL,"
+				+ " [NOT_3] [float] NULL,"
+				+ " [BASLIK_BOLUM] [float] NULL,"
+				+ " [BARKOD] [float] NULL,"
+				+ " [URUN_KODU] [float] NULL,"
+				+ " [URUN_ADI] [float] NULL,"
+				+ " [DEPO] [float] NULL,"
+				+ " [IZAHAT] [float] NULL,"
+				+ " [SIMGE] [float] NULL,"
+				+ " [BIRIM_FIAT] [float] NULL,"
+				+ " [ISKONTO] [float] NULL,"
+				+ " [MIKTAR] [float] NULL,"
+				+ " [K_D_V] [float] NULL,"
+				+ " [TUTAR] [float] NULL,"
+				+ " [TUTAR_TOPLAM] [float] NULL,"
+				+ " [ISKONTO_TOPLAMI] [float] NULL,"
+				+ " [BAKIYE] [float] NULL,"
+				+ " [K_D_V_TOPLAMI] [float] NULL,"
+				+ " [BELGE_TOPLAMI] [float] NULL,"
+				+ " [TEVKIFAT_ORANI] [float] NULL,"
+				+ " [AL_TAR_TEV_ED_KDV] [float] NULL,"
+				+ " [TEV_DAH_TOP_TUTAR] [float] NULL,"
+				+ " [BEYAN_ED_KDV] [float] NULL,"
+				+ " [TEV_HAR_TOP_TUT] [float] NULL,"
+				+ " [YAZI_ILE] [float] NULL,"
+				+ " [TEV_KASESI] [float] NULL,"
+				+ " [ALT_BOLUM] [float] NULL,"
+				+ " [N1] [float] NULL,"
+				+ " [N2] [float] NULL,"
+				+ " [N3] [float] NULL,"
+				+ " [N4] [float] NULL,"
+				+ " [N5] [float] NULL,"
+				+ " [N6] [float] NULL,"
+				+ " [N7] [float] NULL,"
+				+ " [N8] [float] NULL,"
+				+ " [N9] [float] NULL,"
+				+ " [N10] [float] NULL,"
+				+ " [USER] [nvarchar](15) NULL"
+				+ "  ) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "INSERT INTO  FAT_EVRAK_FORMAT(SAT_SUT,TARIH,FIRMA_KODU,FIRMA_UNVANI,VERGI_DAIRESI ,VERGI_NO ,GIDECEGI_YER ,NOT_1 ,NOT_2 ,NOT_3,BASLIK_BOLUM,BARKOD,URUN_KODU ,URUN_ADI , DEPO ,IZAHAT,SIMGE ,BIRIM_FIAT ,ISKONTO ,MIKTAR,K_D_V ,TUTAR ,TUTAR_TOPLAM ,ISKONTO_TOPLAMI  ,BAKIYE ,K_D_V_TOPLAMI ,BELGE_TOPLAMI , YAZI_ILE,TEVKIFAT_ORANI ,AL_TAR_TEV_ED_KDV ,TEV_DAH_TOP_TUTAR , BEYAN_Ed_KDV ,TEV_HAR_TOP_TUT,TEV_KASESI,ALT_BOLUM,N1 ,N2 ,N3 ,N4 ,N5 ,N6 ,N7 ,N8 ,N9 ,N10,[USER] ) VALUES " + " ('SATIR','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','Admin')";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "INSERT INTO  FAT_EVRAK_FORMAT(SAT_SUT,TARIH,FIRMA_KODU,FIRMA_UNVANI,VERGI_DAIRESI ,VERGI_NO ,GIDECEGI_YER ,NOT_1 ,NOT_2 ,NOT_3,BASLIK_BOLUM,BARKOD,URUN_KODU ,URUN_ADI , DEPO ,IZAHAT,SIMGE ,BIRIM_FIAT ,ISKONTO ,MIKTAR,K_D_V ,TUTAR ,TUTAR_TOPLAM ,ISKONTO_TOPLAMI  ,BAKIYE ,K_D_V_TOPLAMI ,BELGE_TOPLAMI , YAZI_ILE,TEVKIFAT_ORANI ,AL_TAR_TEV_ED_KDV ,TEV_DAH_TOP_TUTAR , BEYAN_Ed_KDV ,TEV_HAR_TOP_TUT,TEV_KASESI,ALT_BOLUM,N1 ,N2 ,N3 ,N4 ,N5 ,N6 ,N7 ,N8 ,N9 ,N10,[USER]) VALUES " + " ('SUTUN','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','Admin')";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		// ***************EVRAK NO YAZ ************
+		sql = "INSERT INTO  DEPOEVRAK(E_No) VALUES ('0')";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		// ***************OZEL NO YAZ *************************
+		sql = "INSERT INTO  OZEL(YONETICI,YON_SIFRE,FIRMA_ADI,[USER]) VALUES ('" + GLOBAL.KULL_ADI  + "','12345' , '" + fir_adi + "','Admin')";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		
 	}
 	
@@ -124,8 +402,26 @@ public class KERESTE_MSSQL implements IKERESTE {
 
 	@Override
 	public String ker_firma_adi() throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		con = null;
+		ResultSet	rss = null;
+		String cumle = "jdbc:sqlserver://" +  BAGLAN.kerDizin.cONN_STR + ";";
+		con = DriverManager.getConnection(cumle, BAGLAN.kerDizin.kULLANICI, BAGLAN.kerDizin.sIFRESI);
+		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
+		rss = stmt.executeQuery();
+		rss.next();
+		int count=0;
+		count = rss.getRow();
+		String result;
+		if (count  != 0) 
+		{
+			result = rss.getString("FIRMA_ADI");
+		}
+		else
+		{
+			result = "";
+		}
+		return result;	
 	}
 
 	

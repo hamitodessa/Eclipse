@@ -22,9 +22,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.ActionMap;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -38,6 +40,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -52,6 +55,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
+import javax.swing.text.MaskFormatter;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -64,10 +68,12 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
+import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.U_KODU_RENDERER;
 
 @SuppressWarnings("serial")
 public class KER_GIRIS extends JInternalFrame {
@@ -792,8 +798,8 @@ public class KER_GIRIS extends JInternalFrame {
 			@Override
 			public boolean isCellEditable(int row, int column) {  
 				switch (column) {
-				case 6:
-					return false;
+				//case 6:
+				//	return false;
 				default:
 					return true;
 				}
@@ -801,13 +807,23 @@ public class KER_GIRIS extends JInternalFrame {
 			public void changeSelection(final int row, final int column, boolean toggle, boolean extend)
 			{
 				super.changeSelection(row, column, toggle, extend);
-				if (column < 2)
+				if (column < 1)
 				{
-				//	table.editCellAt(row, column);
-				//	table.transferFocus();
+					//table.editCellAt(row, column);
+					//table.transferFocus();
 				}
 			}	
 		};
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == 10)
+				{
+					if (table.isEditing())
+						table.getCellEditor().stopCellEditing();
+				}
+			}
+		});
 		table.setGridColor(oac.gridcolor);
 		table.setCellSelectionEnabled(true);
 		model.addColumn("Barkod", new String []{""});
@@ -819,7 +835,6 @@ public class KER_GIRIS extends JInternalFrame {
 		model.addColumn("Depo", new String []{""});
 		model.addColumn("Fiat", new Double [] {( 0.00 )});
 		model.addColumn("Iskonto", new Double [] {( 0.00 )});
-		model.addColumn("Birim", new String []{"" });
 		model.addColumn("KDV",new Double [] {( 0.00 )});
 		model.addColumn("Tutar",new Double [] {( 0.00 )});
 		model.addColumn("Izahat", new String []{"" });
@@ -830,8 +845,41 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setMinWidth(100);
 		col.setHeaderRenderer(new SOLA());
 		
+		//******************************************************************KODU *********************************
+		JFormattedTextField ftext = new JFormattedTextField();
+		ftext.setFont(new Font(table.getFont().getFontName(),1 ,12));
+		ftext.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				//System.out.println(ftext.getText());
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			}
+			public void removeUpdate(DocumentEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				//System.out.println(ftext.getText());
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			}
+			public void insertUpdate(DocumentEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				
+				String[] token = ftext.getText().split("-");
+				System.out.println(table.getSelectedRow() + "==="+ token[0] + "=" +token[1]+ "=" + token[2] + "=" +token[3]);
+				
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			}
+		});
+		MaskFormatter mask;
+		try {
+		    mask = new MaskFormatter("##-###-####-####");
+		    mask.install(ftext);
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		}
+		
 		col = table.getColumnModel().getColumn(1);
-		col.setMinWidth(150);
+		col.setCellRenderer(new U_KODU_RENDERER());
+		col.setMinWidth(125);
+		col.setCellEditor(new DefaultCellEditor(ftext));
 		col.setHeaderRenderer(new SOLA());
 		
 		col = table.getColumnModel().getColumn(2);
@@ -870,9 +918,12 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
+		
 		col = table.getColumnModel().getColumn(9);
-		col.setMinWidth(50);
-		col.setHeaderRenderer(new SOLA());
+		col.setMinWidth(100);
+		col.setCellEditor( new DoubleEditor(2) );
+		col.setCellRenderer(new TABLO_RENDERER(2,false));
+		col.setHeaderRenderer(new SAGA());
 		
 		col = table.getColumnModel().getColumn(10);
 		col.setMinWidth(100);
@@ -881,15 +932,8 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setHeaderRenderer(new SAGA());
 		
 		col = table.getColumnModel().getColumn(11);
-		col.setMinWidth(100);
-		col.setCellEditor( new DoubleEditor(2) );
-		col.setCellRenderer(new TABLO_RENDERER(2,false));
-		col.setHeaderRenderer(new SAGA());
-		
-		col = table.getColumnModel().getColumn(12);
 		col.setMinWidth(200);
-		JTextField atf = new JTextField();
-		atf.setDocument(new JTextFieldLimit(40));
+		JTextField atf = new JTextField(40);
 		col.setCellEditor(new DefaultCellEditor(atf));
 		col.setHeaderRenderer(new SOLA());
 		
@@ -902,6 +946,14 @@ public class KER_GIRIS extends JInternalFrame {
 		table.setRowHeight(22);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		InputMap im = table.getInputMap(JTable.WHEN_FOCUSED);
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
+		ActionMap am = table.getActionMap();
+		am.put("Action.NextCell", new NextCellActioin(table,"fatura"));
+		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+		
 		scrollPane.setViewportView(table);
 
 		
@@ -927,12 +979,12 @@ public class KER_GIRIS extends JInternalFrame {
 		int satir = table.getSelectedRow();
 		if ( satir  < 0 ) 
 		{
-			mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,"",0.00,0.00,""});
+			mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,""});
 			satir = 0 ;
 		}
 		else
 		{
-			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","",0.00,0.00,"",0.00,0.00,""});
+			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,""});
 		}
 		table.isRowSelected(satir);
 		table.repaint();

@@ -97,13 +97,13 @@ public class KER_GIRIS extends JInternalFrame {
 	private static JComboBox<String> cmbfiat ;
 	private static JComboBox<String> cmbozkod ;
 	private static JDateChooser dtc ;
-	
 	private static JLabel label_8 ;
 	private static JLabel label_9 ;
 	private static JLabel lblNewLabel_3;
 	private static JLabel lblNewLabel_6 ;
-	private static JLabel lblNewLabel_13 ;
 	private static JLabel lblNewLabel_17;
+	private static JLabel lblNewLabel_13;
+	
 	
 	private static JTabbedPane tabbedPane ;
 	private static JTable table;
@@ -712,19 +712,24 @@ public class KER_GIRIS extends JInternalFrame {
 
 		splitPane.setRightComponent(splitPane_1);
 
+		
+		
+		
 		JPanel panel_3 = new JPanel();
 		splitPane_1.setRightComponent(panel_3);
 		panel_3.setMinimumSize(new Dimension(0, 120));
 		panel_3.setMaximumSize(new Dimension(0, 120));
-		panel_3.setLayout(null);
+		panel_3.setLayout(new BorderLayout(0, 0));
 		
-		//***
+		JSplitPane splitPane_3 = new JSplitPane();
+		splitPane_3.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		panel_3.add(splitPane_3);
+		
 		JPanel panel_71 = new JPanel();
 		panel_71.setBorder(new LineBorder(new Color(0, 191, 255)));
 		panel_71.setBounds(2, 1, 1158, 21);
 		panel_71.setMinimumSize(new Dimension(0, 25));
 		panel_71.setMaximumSize(new Dimension(0,25));
-		panel_3.add(panel_71);
 		panel_71.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
@@ -750,10 +755,11 @@ public class KER_GIRIS extends JInternalFrame {
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_9.setBounds(800, 3, 125, 14);
 		panel_71.add(label_9);
-
+		splitPane_3.setLeftComponent(panel_71);
+		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_2.setBounds(2, 22, 1158, 100);
-		panel_3.add(tabbedPane_2);
+		splitPane_3.setRightComponent(tabbedPane_2);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));

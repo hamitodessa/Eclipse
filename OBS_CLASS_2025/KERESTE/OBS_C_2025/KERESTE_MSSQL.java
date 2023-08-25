@@ -301,6 +301,16 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " ) ON [PRIMARY]";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[KOD_ACIKLAMA]("
+				+ " [KODID] [int] IDENTITY(1,1) NOT NULL,"
+				+ " [KOD] [nvarchar](2) NOT NULL,"
+				+ " [ACIKLAMA] [nvarchar](50)  NULL,"
+				+ " CONSTRAINT [PKeyKODID] PRIMARY KEY CLUSTERED ("
+				+ " [KODID] ASC"
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS"
+				+ " = ON) ON [PRIMARY]) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "INSERT INTO  IRS_EVRAK_FORMAT(SAT_SUT ,TARIH,SEVK_TARIH,FIRMA_KODU,FIRMA_UNVANI,VERGI_DAIRESI ,VERGI_NO  ,GIDECEGI_YER,NOT_1 ,NOT_2 ,NOT_3,BASLIK_BOLUM,BARKOD,URUN_KODU ,URUN_ADI , DEPO,SIMGE ,BIRIM_FIAT ,ISKONTO ,MIKTAR,K_D_V ,TUTAR ,TUTAR_TOPLAM ,ISKONTO_TOPLAMI  ,BAKIYE ,K_D_V_TOPLAMI ,BELGE_TOPLAMI , YAZI_ILE,ALT_BOLUM, N1 ,N2 ,N3 ,N4 ,N5 ,N6 ,N7 ,N8 ,N9 ,N10,[USER] ) VALUES ('SATIR','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','Admin')";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);

@@ -137,7 +137,7 @@ public class KER_GIRIS extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0, 0,1175,800);
+		setBounds(0, 0,1185,800);
 		
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -733,27 +733,27 @@ public class KER_GIRIS extends JInternalFrame {
 		panel_71.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
-		lblNewLabel.setBounds(32, 3, 85, 14);
+		lblNewLabel.setBounds(32, 5, 85, 14);
 		panel_71.add(lblNewLabel);
 
 		lblNewLabel_13 = new JLabel("0");
 		lblNewLabel_13.setForeground(new Color(0, 0, 128));
 		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_13.setBounds(122, 3, 40, 14);
+		lblNewLabel_13.setBounds(122, 5, 40, 14);
 		panel_71.add(lblNewLabel_13);
 
 		label_8 = new JLabel("0.000");
 		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8.setForeground(new Color(139, 0, 0));
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_8.setBounds(560, 3, 102, 14);
+		label_8.setBounds(375, 5, 102, 14);
 		panel_71.add(label_8);
 
 		label_9 = new JLabel("0.00");
 		label_9.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_9.setForeground(new Color(139, 0, 0));
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_9.setBounds(800, 3, 125, 14);
+		label_9.setBounds(850, 5, 125, 14);
 		panel_71.add(label_9);
 		splitPane_3.setLeftComponent(panel_71);
 		

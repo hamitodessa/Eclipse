@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,6 +37,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -752,10 +754,29 @@ public class KER_GIRIS extends JInternalFrame {
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
 		panel_1.setLayout(null);
 		
-		//**
+		//** Sol Toolbar *****************************************************************
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setDividerSize(0);
 		splitPane_1.setLeftComponent(splitPane_2);
+		
+		
+		JToolBar toolBar_1 = new JToolBar();
+		toolBar_1.setFloatable(false);
+		toolBar_1.setMinimumSize(new Dimension(30, 0));
+		toolBar_1.setMaximumSize(new Dimension(30, 0));
+		toolBar_1.setOrientation(SwingConstants.VERTICAL);
+		splitPane_2.setLeftComponent(toolBar_1);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (table.getSelectedRow() < 0 ) return ;
+				
+			}
+		});
+		btnNewButton.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));
+		toolBar_1.add(btnNewButton);
+
 		//////////////////////////////ARA BOLUM********************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setForeground(new Color(0, 0, 128));
@@ -814,8 +835,64 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setHeaderRenderer(new SOLA());
 		
 		col = table.getColumnModel().getColumn(2);
+		col.setMinWidth(75);
+		col.setHeaderRenderer(new SOLA());
+		
+		col = table.getColumnModel().getColumn(3);
+		col.setMinWidth(75);
+		col.setCellRenderer(new TABLO_RENDERER(0,false));
+		col.setCellEditor( new DoubleEditor(0) );
+		col.setHeaderRenderer(new SAGA());
+		
+		col = table.getColumnModel().getColumn(4);
+		col.setMinWidth(75);
+		col.setCellRenderer(new TABLO_RENDERER(3,true));
+		col.setCellEditor( new DoubleEditor(3) );
+		col.setHeaderRenderer(new SAGA());
+		
+		col = table.getColumnModel().getColumn(5);
+		col.setMinWidth(75);
+		col.setHeaderRenderer(new SOLA());
+		
+		col = table.getColumnModel().getColumn(6);
 		col.setMinWidth(100);
 		col.setHeaderRenderer(new SOLA());
+		
+		col = table.getColumnModel().getColumn(7);
+		col.setMinWidth(75);
+		col.setCellEditor( new DoubleEditor(2) );
+		col.setCellRenderer(new TABLO_RENDERER(2,false));
+		col.setHeaderRenderer(new SAGA());
+		
+		col = table.getColumnModel().getColumn(8);
+		col.setMinWidth(50);
+		col.setCellEditor( new DoubleEditor(2) );
+		col.setCellRenderer(new TABLO_RENDERER(2,false));
+		col.setHeaderRenderer(new SAGA());
+		
+		col = table.getColumnModel().getColumn(9);
+		col.setMinWidth(50);
+		col.setHeaderRenderer(new SOLA());
+		
+		col = table.getColumnModel().getColumn(10);
+		col.setMinWidth(100);
+		col.setCellEditor( new DoubleEditor(2) );
+		col.setCellRenderer(new TABLO_RENDERER(2,false));
+		col.setHeaderRenderer(new SAGA());
+		
+		col = table.getColumnModel().getColumn(11);
+		col.setMinWidth(100);
+		col.setCellEditor( new DoubleEditor(2) );
+		col.setCellRenderer(new TABLO_RENDERER(2,false));
+		col.setHeaderRenderer(new SAGA());
+		
+		col = table.getColumnModel().getColumn(12);
+		col.setMinWidth(200);
+		JTextField atf = new JTextField();
+		atf.setDocument(new JTextFieldLimit(40));
+		col.setCellEditor(new DefaultCellEditor(atf));
+		col.setHeaderRenderer(new SOLA());
+		
 		
 		JTableHeader th = table.getTableHeader();
 		Dimension dd = table.getPreferredSize();

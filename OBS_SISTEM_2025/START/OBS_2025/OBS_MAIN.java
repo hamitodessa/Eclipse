@@ -184,6 +184,8 @@ public class OBS_MAIN extends JFrame {
 	public static JLabel lblNewLabel_22 ;
 	public static JLabel lblNewLabel_23 ;
 	public static JLabel lblNewLabel_24 ;
+	public static JLabel lblNewLabel_31_2 ;
+	
 	public static JTabbedPane tabbedPane ;
 	public static JToolBar toolBar ;
 	public static JToolBar toolBar_1;
@@ -2909,6 +2911,15 @@ public class OBS_MAIN extends JFrame {
 		lblNewLabel_24.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_24.setForeground(new Color(255, 0, 255));
 		toolBar_1.add(lblNewLabel_24);
+		
+		JLabel lblNewLabel_31_1 = new JLabel("     ");
+		toolBar_1.add(lblNewLabel_31_1);
+		
+		lblNewLabel_31_2 = new JLabel(".....");
+		lblNewLabel_31_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_31_2.setForeground(new Color(30, 144, 255));
+		lblNewLabel_31_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		toolBar_1.add(lblNewLabel_31_2);
 
 		desktopPane = new JDesktopPane();
 		//desktopPane.setBackground(new Color(39, 45, 61));
@@ -2931,6 +2942,8 @@ public class OBS_MAIN extends JFrame {
 
 		
 		progressBar.setStringPainted(false);
+		
+		
 		try {
 			if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal"))
 			{

@@ -681,9 +681,9 @@ public class LOGIN extends JDialog {
 			}
 			else
 			{
-				//BAGLAN.kerDizin.fIRMA_ADI = oac._IKereste.ker_firma_adi() ;
+				BAGLAN.kerDizin.fIRMA_ADI = oac._IKereste.ker_firma_adi() ;
 				qwe = BAGLAN.kerDizin.yER.equals("S") ? BAGLAN.kerDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblNewLabel_24.setText ( "Kereste:" + BAGLAN.kerDizin.kOD + "/ " + BAGLAN.kerDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblNewLabel_31_2.setText ( "Kereste:" + BAGLAN.kerDizin.kOD + "/ " + BAGLAN.kerDizin.fIRMA_ADI + "/ " + qwe);
 				OBS_MAIN.tabbedPane.setEnabledAt(7, true);
 			}
 		}

@@ -147,8 +147,8 @@ public class KER_GIRIS extends JInternalFrame {
 
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 140));
-		panel.setMaximumSize(new Dimension(0, 140));
+		panel.setMinimumSize(new Dimension(0, 120));
+		panel.setMaximumSize(new Dimension(0, 120));
 		panel.setLayout(new BorderLayout(0, 0));
 
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
@@ -496,17 +496,17 @@ public class KER_GIRIS extends JInternalFrame {
 
 		JLabel lblNewLabel_9 = new JLabel("Doviz");
 		lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_9.setBounds(726, 67, 52, 14);
+		lblNewLabel_9.setBounds(966, 10, 52, 14);
 		panel_2.add(lblNewLabel_9);
 
 		JLabel lblNewLabel_10 = new JLabel("Kur");
 		lblNewLabel_10.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_10.setBounds(726, 88, 46, 14);
+		lblNewLabel_10.setBounds(966, 36, 46, 14);
 		panel_2.add(lblNewLabel_10);
 
 		txtdoviz = new JTextField();
 		txtdoviz.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtdoviz.setBounds(797, 60, 73, 20);
+		txtdoviz.setBounds(1037, 8, 73, 20);
 		panel_2.add(txtdoviz);
 		txtdoviz.setColumns(10);
 
@@ -514,7 +514,7 @@ public class KER_GIRIS extends JInternalFrame {
 		txtkur.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtkur.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtkur.setText("0.0000");
-		txtkur.setBounds(797, 83, 73, 20);
+		txtkur.setBounds(1037, 33, 73, 20);
 		panel_2.add(txtkur);
 
 		
@@ -884,22 +884,22 @@ public class KER_GIRIS extends JInternalFrame {
 		
 		col = table.getColumnModel().getColumn(1);
 		col.setCellRenderer(new U_KODU_RENDERER());
-		col.setMinWidth(125);
+		col.setMinWidth(120);
 		col.setCellEditor(new DefaultCellEditor(ftext));
 		col.setHeaderRenderer(new SOLA());
 		
 		col = table.getColumnModel().getColumn(2);
-		col.setMinWidth(75);
+		col.setMinWidth(65);
 		col.setHeaderRenderer(new SOLA());
 		
 		col = table.getColumnModel().getColumn(3);
-		col.setMinWidth(75);
+		col.setMinWidth(50);
 		col.setCellRenderer(new TABLO_RENDERER(0,false));
 		col.setCellEditor( new DoubleEditor(0) );
 		col.setHeaderRenderer(new SAGA());
 		
 		col = table.getColumnModel().getColumn(4);
-		col.setMinWidth(75);
+		col.setMinWidth(65);
 		col.setCellRenderer(new TABLO_RENDERER(3,true));
 		col.setCellEditor( new DoubleEditor(3) );
 		col.setHeaderRenderer(new SAGA());
@@ -926,7 +926,7 @@ public class KER_GIRIS extends JInternalFrame {
 		
 		
 		col = table.getColumnModel().getColumn(9);
-		col.setMinWidth(100);
+		col.setMinWidth(30);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
@@ -938,7 +938,7 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setHeaderRenderer(new SAGA());
 		
 		col = table.getColumnModel().getColumn(11);
-		col.setMinWidth(200);
+		col.setMinWidth(175);
 		JTextField atf = new JTextField(40);
 		col.setCellEditor(new DefaultCellEditor(atf));
 		col.setHeaderRenderer(new SOLA());

@@ -1,5 +1,6 @@
 package OBS_C_2025;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 @SuppressWarnings("static-access")
 public class KERESTE_ACCESS {
@@ -47,5 +48,15 @@ public class KERESTE_ACCESS {
 	public String ker_firma_adi() throws ClassNotFoundException, SQLException
 	{
 		return _IKereste.ker_firma_adi();
+	}
+	public ResultSet kod_pln () throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.kod_pln();
+	}
+	public void kod_kayit(String kodu,String aciklama, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.kod_kayit(kodu,  aciklama);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(lBILGI, dBILGI);
 	}
 }

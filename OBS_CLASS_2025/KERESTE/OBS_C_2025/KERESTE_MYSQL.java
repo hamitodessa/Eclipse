@@ -2,6 +2,7 @@ package OBS_C_2025;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -49,6 +50,18 @@ public class KERESTE_MYSQL implements IKERESTE {
 	public String ker_firma_adi() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ResultSet kod_pln() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void kod_kayit(String kodu, String aciklama) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

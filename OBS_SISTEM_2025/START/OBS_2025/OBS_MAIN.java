@@ -1932,7 +1932,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_3 = new JButton("");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				form_ac("ACIKLAMA GIRIS","KOD");
+				form_ac("KOD ACIKLAMA GIRIS","");
 			}
 		});
 		btnNewButton_3.setToolTipText("Kod Aciklama Giris");
@@ -3075,7 +3075,7 @@ public class OBS_MAIN extends JFrame {
 			//else if (pencere.equals("SMS INET")) internalFrame  = new SMS_INET();
 			//KERESTE
 			else if (pencere.equals("KERESTE GIRIS")) internalFrame  = new KER_GIRIS();
-			else if (pencere.equals("ACIKLAMA GIRIS")) internalFrame  = new ACIKLAMA(hangi);
+			else if (pencere.equals("KOD ACIKLAMA GIRIS")) internalFrame  = new KOD_ACIKLAMA();
 			//GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();

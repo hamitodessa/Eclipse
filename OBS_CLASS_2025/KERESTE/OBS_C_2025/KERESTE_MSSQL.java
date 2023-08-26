@@ -212,6 +212,23 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " = ON) ON [PRIMARY]) ON [PRIMARY]";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[KOD_ACIKLAMA]("
+				+ " [KOD] [nvarchar](2) NOT NULL,"
+				+ " [ACIKLAMA] [nvarchar](50) NULL,"
+				+ " CONSTRAINT [KOD] PRIMARY KEY CLUSTERED ("
+				+ " [KOD] ASC"
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS"
+				+ " = ON) ON [PRIMARY]) ON [PRIMARY]";
+		stmt = con.createStatement(); 
+		sql = "CREATE TABLE [dbo].[KONS_ACIKLAMA]("
+				+ " [KONS] [nvarchar](10) NOT NULL,"
+				+ " [ACIKLAMA] [nvarchar](50) NULL,"
+				+ " CONSTRAINT [KONS] PRIMARY KEY CLUSTERED ("
+				+ " [KONS] ASC"
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS"
+				+ " = ON) ON [PRIMARY]) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE NONCLUSTERED INDEX [IX_ACIKLAMA] ON [dbo].[ACIKLAMA]( "
 				+ " [EVRAK_CINS] ASC,"
 				+ " [EVRAK_NO] ASC,"

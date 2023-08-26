@@ -165,6 +165,7 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_38;//Firma Ismi
 	//KERESTE
 	private JButton btnNewButton_1 ; //Ker Giris
+	private JButton btnNewButton_3 ; //Kod Aciklama Giris
 	//
 	private JButton btnYenile ; // Yenile Tusu
 	private JButton btnExcell ; // Excell Aktarma
@@ -1454,7 +1455,8 @@ public class OBS_MAIN extends JFrame {
 				form_ac("RECETE","");
 			}
 		});
-
+		btnNewButton_44.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-prototype-30.png")));
+		toolBar_5.add(btnNewButton_44);
 		btnNewButton_20 = new JButton("");
 		btnNewButton_20.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1464,8 +1466,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_20.setToolTipText("Coklu Uretim");
 		btnNewButton_20.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/coklud-30.png")));
 		toolBar_5.add(btnNewButton_20);
-		btnNewButton_44.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-prototype-30.png")));
-		toolBar_5.add(btnNewButton_44);
+		
 
 		btnNewButton_45 = new JButton("");
 		btnNewButton_45.setToolTipText("Imalat Fisno Duzenleme");
@@ -1924,6 +1925,29 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_1.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-invoice-30.png")));
 		toolBar_Kereste.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_40 = new JLabel("          ");
+		toolBar_Kereste.add(lblNewLabel_40);
+		
+		btnNewButton_3 = new JButton("");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("ACIKLAMA GIRIS","KOD");
+			}
+		});
+		btnNewButton_3.setToolTipText("Kod Aciklama Giris");
+		btnNewButton_3.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-news-30.png")));
+		toolBar_Kereste.add(btnNewButton_3);
+		
+		JButton btnNewButton_23 = new JButton("");
+		btnNewButton_23.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("ACIKLAMA GIRIS","KONSIMENTO");
+			}
+		});
+		btnNewButton_23.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-prototype-30.png")));
+		btnNewButton_23.setToolTipText("Konsimento Aciklama Giris");
+		toolBar_Kereste.add(btnNewButton_23);
 
 		
 		//*********************************************************** GIDEN RAPOR *********************************************************************************
@@ -3051,6 +3075,7 @@ public class OBS_MAIN extends JFrame {
 			//else if (pencere.equals("SMS INET")) internalFrame  = new SMS_INET();
 			//KERESTE
 			else if (pencere.equals("KERESTE GIRIS")) internalFrame  = new KER_GIRIS();
+			else if (pencere.equals("ACIKLAMA GIRIS")) internalFrame  = new ACIKLAMA(hangi);
 			//GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();

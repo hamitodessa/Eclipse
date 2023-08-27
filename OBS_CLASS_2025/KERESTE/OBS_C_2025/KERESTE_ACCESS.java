@@ -81,4 +81,52 @@ public class KERESTE_ACCESS {
 		for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(lBILGI, dBILGI);
 	}
+	public String kod_adi(String kod) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.kod_adi(kod);
+	}
+	public ResultSet ker_kod_degisken_oku(String fieldd,String sno,String nerden) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.ker_kod_degisken_oku(fieldd, sno, nerden);
+	}
+	public ResultSet ker_kod_degisken_ara(String fieldd,String sno,String nerden,String arama) throws ClassNotFoundException, SQLException 
+	{
+		return _IKereste.ker_kod_degisken_ara(fieldd, sno, nerden, arama);
+	}
+	public ResultSet ker_kod_alt_grup_degisken_oku (int sno) throws ClassNotFoundException, SQLException 
+	{
+		return _IKereste.ker_kod_alt_grup_degisken_oku(sno);
+	}
+	public  boolean alt_grup_kontrol(int anagrp,int altgrp) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.alt_grup_kontrol(anagrp, altgrp);
+	}
+	public void ker_degisken_alt_grup_sil(int  ID , lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.ker_degisken_alt_grup_sil(ID);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
+	}
+	public void ker_kod_degisken_sil(   String hangi_Y,String nerden  ,   int sira, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.ker_kod_degisken_sil(nerden, hangi_Y, sira);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
+	}
+	public void ker_degisken_eski(String fieldd ,String degisken_adi ,String nerden ,String sno ,int ID ) throws ClassNotFoundException, SQLException 
+	{
+		_IKereste.ker_degisken_eski(fieldd, degisken_adi, nerden, sno, ID);
+	}
+	public void ker_degisken_kayit(String fieldd  ,String nerden,String degisken_adi,String sira) throws ClassNotFoundException, SQLException 
+	{
+		_IKereste.ker_degisken_kayit(fieldd, nerden, degisken_adi, sira);
+	}
+	public void  ker_degisken_alt_grup_kayit (String alt_grup , int ana_grup ) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.ker_degisken_alt_grup_kayit(alt_grup, ana_grup);
+	}
+	public void ker_degisken_alt_grup_eski(String alt_grup ,int ana_grup ,int  ID ) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.ker_degisken_alt_grup_eski(alt_grup, ana_grup, ID);
+	}
 }

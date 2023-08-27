@@ -161,7 +161,7 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		//bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 		//table.setFont(bigFont);
 		} catch (Exception ex) {
-			 JOptionPane.showMessageDialog(null, ex.getMessage()); 
+			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "KOD ACIKLAMA", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void kaydet() 

@@ -168,7 +168,7 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		//bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 		//table.setFont(bigFont);
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, ex.getMessage(), "KONSIMENTO", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(null, ex.getMessage(), "KONSIMENTO", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void kaydet() 

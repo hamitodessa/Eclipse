@@ -1948,6 +1948,40 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_23.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-prototype-30.png")));
 		btnNewButton_23.setToolTipText("Konsimento Aciklama Giris");
 		toolBar_Kereste.add(btnNewButton_23);
+		
+		JComboBox<String> comboDegisken_1 = new JComboBox<String>();
+		comboDegisken_1.setMaximumSize(new Dimension(200, 35));
+		comboDegisken_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		comboDegisken_1.addItemListener(new ItemListener() 
+		{
+			public void itemStateChanged(ItemEvent e) {
+				String hangi = (String) comboDegisken_1.getItemAt(comboDegisken_1.getSelectedIndex())  ;
+				if (hangi == "Ana Grup")
+				{
+					form_ac("KERESTE DEGISKENLER","anagrup");
+				}
+				else if (hangi == "Alt Grup")
+				{
+					form_ac("KERESTE DEGISKENLER","altgrup");
+				}
+				else if (hangi == "Mensei")
+				{
+					form_ac("KERESTE DEGISKENLER","mensei");
+				}
+				else if (hangi == "Depo")
+				{
+					form_ac("KERESTE DEGISKENLER","depo");
+				}
+				else if (hangi == "Ozel Kod 1")
+				{
+					form_ac("KERESTE DEGISKENLER","oz1");
+				}
+				
+			}
+		});
+		comboDegisken_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1"}));
+
+		toolBar_Kereste.add(comboDegisken_1);
 
 		
 		//*********************************************************** GIDEN RAPOR *********************************************************************************
@@ -3066,6 +3100,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("EVRAK FORMATLAMA")) internalFrame  = new EVRAK_FORMAT();
 			else if (pencere.equals( "DEGISKEN YENILEME")) internalFrame  = new DEGISKEN_DEGIS();
 			else if (pencere.equals( "STOK YIL SONU")) internalFrame  = new STK_YIL_SONU();
+			else if (pencere.equals("DEGISKENLER")) internalFrame  = new DEGISKEN_GIRIS(hangi);
 			//KAMBIYO
 			else if (pencere.equals("CEK GIRIS")) internalFrame  = new CEK_GIRIS();
 			else if (pencere.equals("CEK CIKIS")) internalFrame  = new CEK_CIKIS();
@@ -3079,6 +3114,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("KERESTE GIRIS")) internalFrame  = new KER_GIRIS();
 			else if (pencere.equals("KOD ACIKLAMA")) internalFrame  = new KOD_ACIKLAMA();
 			else if (pencere.equals("KONSIMENTO ACIKLAMA")) internalFrame  = new KONS_ACIKLAMA();
+			else if (pencere.equals("KERESTE DEGISKENLER")) internalFrame  = new KER_DEGISKEN_GIRIS(hangi);
 			//GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();
@@ -3091,7 +3127,7 @@ public class OBS_MAIN extends JFrame {
 			//
 			else if (pencere.equals("FIRMA ISMI DEGISTIRME")) internalFrame  = new FIRMA_ISMI_DEGIS();
 			else if (pencere.equals("E MAIL GONDERME")) internalFrame  = new E_MAIL_GONDERME();
-			else if (pencere.equals("DEGISKENLER")) internalFrame  = new DEGISKEN_GIRIS(hangi);
+			
 			else if (pencere.equals("SQL SORGULAMA")) internalFrame  = new SQL_SORGULAMA(hangi);
 			else if (pencere.equals("LOG RAPORLAMA")) internalFrame  = new LOGLAMA_RAPOR();
 			else if (pencere.equals("HAKKINDA")) internalFrame  = new HAKKINDA();

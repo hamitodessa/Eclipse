@@ -23,7 +23,7 @@ public interface ISTOK {
 	public void urun_degisken_eski(String fieldd ,String degisken_adi ,String nerden ,String sno ,int ID ) throws ClassNotFoundException, SQLException;
 	public void urun_degisken_alt_grup_eski(String alt_grup ,int ana_grup ,int  ID ) throws ClassNotFoundException, SQLException;
 	public void urun_degisken_kayit(String fieldd  ,String nerden,String degisken_adi,String sira) throws ClassNotFoundException, SQLException;
-	public void  urun_degisken_alt_grup_kayit (String alt_grup , int ana_grup ) throws ClassNotFoundException, SQLException;
+	public void urun_degisken_alt_grup_kayit (String alt_grup , int ana_grup ) throws ClassNotFoundException, SQLException;
 	public ResultSet stk_urun(String sira,String arama) throws ClassNotFoundException, SQLException;
 	public void stk_ur_sil(String kodu) throws ClassNotFoundException, SQLException;
 	public void stk_ur_kayit(String kodu ,String adi ,String birim ,double kusurat ,String sinif,

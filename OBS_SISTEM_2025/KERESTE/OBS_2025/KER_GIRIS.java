@@ -18,7 +18,6 @@ import java.beans.PropertyVetoException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -51,7 +50,6 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -65,7 +63,6 @@ import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.DoubleEditor;
 import OBS_C_2025.GLOBAL;
-import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.NextCellActioin;
@@ -75,7 +72,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.U_KODU_RENDERER;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","static-access"})
 public class KER_GIRIS extends JInternalFrame {
 	private static JSplitPane splitPane ;
 	private static JTextField textField;
@@ -103,6 +100,7 @@ public class KER_GIRIS extends JInternalFrame {
 	private static JLabel lblNewLabel_6 ;
 	private static JLabel lblNewLabel_17;
 	private static JLabel lblNewLabel_13;
+	private JLabel lblkodAciklama ;
 	
 	
 	private static JTabbedPane tabbedPane ;
@@ -792,6 +790,10 @@ public class KER_GIRIS extends JInternalFrame {
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
 		panel_1.setLayout(null);
 		
+		lblkodAciklama = new JLabel();
+		lblkodAciklama.setBounds(10, 55,50, 14);
+		panel_1.add(lblkodAciklama);
+		
 		//** Sol Toolbar *****************************************************************
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setDividerSize(0);
@@ -892,12 +894,21 @@ public class KER_GIRIS extends JInternalFrame {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void insertUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 				
 				String[] token = ftext.getText().split("-");
-				System.out.println(table.getSelectedRow() + "==="+ token[0] + "=" +token[1]+ "=" + token[2] + "=" +token[3]);
+				//System.out.println(table.getSelectedRow() + "==="+ token[0] + "=" +token[1]+ "=" + token[2] + "=" +token[3]);
 				
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+				try {
+					String aciklamaString = ker_Access.kod_adi(token[0]);
+					lblkodAciklama.setText(aciklamaString);
+					Dimension size = lblkodAciklama.getPreferredSize();
+					lblkodAciklama.setBounds(10, 55, size.width +10, 14);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null,  ex.getMessage(),  "KOD ACIKLAMA", JOptionPane.ERROR_MESSAGE); 
+				}
+				
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 			}
 		});
 		MaskFormatter mask;

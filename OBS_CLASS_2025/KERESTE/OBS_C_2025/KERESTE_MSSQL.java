@@ -504,5 +504,177 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.executeUpdate();
 	}
 
+	@Override
+	public String kod_adi(String kod) throws ClassNotFoundException, SQLException {
+		
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		PreparedStatement stmt = con.prepareStatement("SELECT ACIKLAMA FROM KOD_ACIKLAMA  WHERE KOD =N'" + kod+ "' ");
+		rss = stmt.executeQuery();
+		String result ;
+		if (!rss.isBeforeFirst() ) {  
+			result = "" ;
+		}
+		else
+		{
+			rss.next();
+			result = rss.getString("ACIKLAMA");
+		}
+		return result;	
+		
+	}
+
+	@Override
+	public ResultSet ker_kod_degisken_oku(String fieldd, String sno, String nerden)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql =  "SELECT " + sno + "  AS KOD , " + fieldd + " FROM " + nerden + "" +
+				" ORDER BY " + fieldd + "";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+
+	@Override
+	public ResultSet ker_kod_degisken_ara(String fieldd, String sno, String nerden, String arama)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql =   "SELECT  " + fieldd + " FROM " + nerden + " WHERE " + sno + " = N'" + arama + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+
+	@Override
+	public ResultSet ker_kod_alt_grup_degisken_oku(int sno) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql =   "SELECT ALID_Y , ALT_GRUP FROM ALT_GRUP_DEGISKEN   " +
+				" WHERE ANA_GRUP = N'" + sno + "' ORDER BY ALT_GRUP";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	 
+	}
+
+	@Override
+	public boolean alt_grup_kontrol(int anagrp, int altgrp) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
+		ResultSet	rs = null;
+		boolean result = true;
+		String sql  = "" ;
+		PreparedStatement stmt =null;
+		sql = "SELECT  *  FROM KERESTE   WHERE Ana_Grup = '" + anagrp + "'  AND  Alt_Grup = '" + altgrp + "' ";
+		stmt = con.prepareStatement(sql);
+		rs = stmt. executeQuery();
+		if (!rs.isBeforeFirst() )   result = false ;
+		return result;
+	}
+
+	@Override
+	public void ker_degisken_alt_grup_sil(int ID) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
+		String sql = "DELETE ALT_GRUP_DEGISKEN    WHERE ALID_Y = '" + ID + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
+	}
+
+	@Override
+	public void ker_kod_degisken_sil(String nerden, String hangi_Y, int sira)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
+		String sql = "DELETE " + nerden  + "    WHERE "+ hangi_Y +" = '" + sira + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
+	}
+
+	@Override
+	public void ker_degisken_eski(String fieldd, String degisken_adi, String nerden, String sno, int ID)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
+		String sql =  "UPDATE " + nerden + "  SET " + fieldd + "  = N'" + degisken_adi + "'  WHERE " + sno + "  = '" + ID + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
+	}
+
+	@Override
+	public void ker_degisken_kayit(String fieldd, String nerden, String degisken_adi, String sira)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		int maks = 0 ;
+		String sql =   "SELECT max(" +fieldd +")  as maks  FROM "+ nerden+ "" ; 
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		rss.next();
+		int count=0;
+		count = rss.getRow();
+		if (count  != 0)  
+		{
+			maks  = rss.getInt("maks");
+		}
+		else
+		{
+			maks  = 0 ;
+		}
+		sql  =  "INSERT INTO " + nerden + " (" + fieldd + "," + degisken_adi + ",[USER]) " +
+				" VALUES (?,?,?)" ;
+		stmt = null;
+		stmt = con.prepareStatement(sql);
+		stmt.setInt(1, maks + 1);
+		stmt.setString(2, sira);
+		stmt.setString(3, GLOBAL.KULL_ADI);
+		stmt.executeUpdate();
+		stmt.close();
+		
+	}
+
+	@Override
+	public void ker_degisken_alt_grup_kayit(String alt_grup, int ana_grup) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		int maks =0 ;
+		String sql =   "SELECT max(ALID_Y)  AS ALID_Y  FROM ALT_GRUP_DEGISKEN   " ;// +
+		//	" WHERE ALT_GRUP = N'" + alt_grup + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		rss.next();
+		int count=0;
+		count = rss.getRow();
+		if (count  != 0) 
+		{ 
+			maks  = rss.getInt("ALID_Y");
+		}
+		else
+		{
+			maks  = 0 ;
+		}
+		sql  = "INSERT INTO ALT_GRUP_DEGISKEN (ALID_Y,ALT_GRUP,ANA_GRUP,[USER]) " +
+				" VALUES (?,?,?,?)" ;
+		stmt = null;
+		stmt = con.prepareStatement(sql);
+		stmt.setInt(1,maks + 1);
+		stmt.setString(2, alt_grup);
+		stmt.setInt(3,ana_grup);
+		stmt.setString(4, GLOBAL.KULL_ADI);
+		stmt.executeUpdate();
+		stmt.close(); 
+		
+	}
+
+	@Override
+	public void ker_degisken_alt_grup_eski(String alt_grup, int ana_grup, int ID)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
+		String sql = "UPDATE ALT_GRUP_DEGISKEN  SET ALT_GRUP  = N'" + alt_grup + "' , ANA_GRUP  = N'" + ana_grup + "'  WHERE ALID_Y = '" + ID + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
+	}
+
 	
 }

@@ -438,26 +438,18 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		tblexcell = new JTable(model) ;
 		tblexcell.getTableHeader().setReorderingAllowed(false);
 		tblexcell.setGridColor(OBS_SIS_2025_ANA_CLASS.gridcolor);
-		tblexcell.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-				doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 2).toString(),"B");
-				doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 5).toString(),"A");
-				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-			    	}
-			    });
-		tblexcell.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (KeyEvent.getKeyText(e.getKeyCode()) == "Down" || KeyEvent.getKeyText(e.getKeyCode()) == "Up") {
-					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-					doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 2).toString(),"B");
-					doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 5).toString(),"A");
-					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-				}
-			}
-		});
+		tblexcell.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		    public void valueChanged(ListSelectionEvent lse) {
+			        if (!lse.getValueIsAdjusting()) {
+			        	if (table.getSelectedRow() == -1) return;
+			        	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+						doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 2).toString(),"B");
+						doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 5).toString(),"A");
+						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+			        }
+			    }
+			});
+
 		tblexcell.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		    model.addColumn("Tarih", new Date []{ new Date() });
 		    model.addColumn("Aciklama", new String []{"deneme"});

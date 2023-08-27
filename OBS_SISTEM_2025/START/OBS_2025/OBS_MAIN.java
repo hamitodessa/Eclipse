@@ -1932,7 +1932,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_3 = new JButton("");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				form_ac("KOD ACIKLAMA GIRIS","");
+				form_ac("KOD ACIKLAMA","");
 			}
 		});
 		btnNewButton_3.setToolTipText("Kod Aciklama Giris");
@@ -1942,7 +1942,7 @@ public class OBS_MAIN extends JFrame {
 		JButton btnNewButton_23 = new JButton("");
 		btnNewButton_23.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				form_ac("ACIKLAMA GIRIS","KONSIMENTO");
+				form_ac("KONSIMENTO ACIKLAMA","");
 			}
 		});
 		btnNewButton_23.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-prototype-30.png")));
@@ -2132,6 +2132,8 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "GRAFIK")	GRAFIK.kaydet();
 				else if (sonuc == "DEGISKEN YENILEME")	DEGISKEN_DEGIS.kaydet();
 				else if (sonuc == "GOREV GIRIS")	GOREV_GIRIS.kaydet();
+				else if (sonuc == "KOD ACIKLAMA") KOD_ACIKLAMA.kaydet();
+				else if (sonuc == "KONSIMENTO ACIKLAMA") KONS_ACIKLAMA.kaydet();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});
@@ -3075,7 +3077,8 @@ public class OBS_MAIN extends JFrame {
 			//else if (pencere.equals("SMS INET")) internalFrame  = new SMS_INET();
 			//KERESTE
 			else if (pencere.equals("KERESTE GIRIS")) internalFrame  = new KER_GIRIS();
-			else if (pencere.equals("KOD ACIKLAMA GIRIS")) internalFrame  = new KOD_ACIKLAMA();
+			else if (pencere.equals("KOD ACIKLAMA")) internalFrame  = new KOD_ACIKLAMA();
+			else if (pencere.equals("KONSIMENTO ACIKLAMA")) internalFrame  = new KONS_ACIKLAMA();
 			//GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();

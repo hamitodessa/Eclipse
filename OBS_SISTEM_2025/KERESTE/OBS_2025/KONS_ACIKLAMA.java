@@ -1,20 +1,25 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.sql.ResultSet;
-import javax.swing.JInternalFrame;
-import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.JTableHeader;
@@ -29,12 +34,13 @@ import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
 
 @SuppressWarnings({"serial","static-access"})
-public class KOD_ACIKLAMA extends JInternalFrame {
+public class KONS_ACIKLAMA extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(oac._IKereste , oac._IKereste_Loger);
 	private static JTable table;
 	private static JTextField textField;
 	private static JTextField textField_1;
+
 
 	/**
 	 * Launch the application.
@@ -43,7 +49,7 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					KOD_ACIKLAMA frame = new KOD_ACIKLAMA();
+					KONS_ACIKLAMA frame = new KONS_ACIKLAMA();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,9 +61,9 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public KOD_ACIKLAMA() {
+	public KONS_ACIKLAMA() {
 		setIconifiable(true);
-		setTitle("KOD ACIKLAMA");
+		setTitle("KONSIMENTO ACIKLAMA");
 		setResizable(true);
 		setClosable(true);
 		setBounds(0, 0,600,400);
@@ -72,24 +78,24 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		panel.setLayout(null);
 		splitPane.setLeftComponent(panel);
 		
-		JLabel lblNewLabel = new JLabel("Kod");
-		lblNewLabel.setBounds(10, 28, 46, 14);
+		JLabel lblNewLabel = new JLabel("Konsimento");
+		lblNewLabel.setBounds(10, 28, 78, 14);
 		panel.add(lblNewLabel);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
-		textField.setDocument(new JTextFieldLimit(2));
-		textField.setBounds(66, 25, 46, 20);
+		textField.setDocument(new JTextFieldLimit(10));
+		textField.setBounds(98, 25, 68, 20);
 		panel.add(textField);
 		
 		JLabel lblNewLabel_1 = new JLabel("Aciklama");
-		lblNewLabel_1.setBounds(134, 28, 63, 14);
+		lblNewLabel_1.setBounds(215, 28, 68, 14);
 		panel.add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_1.setDocument(new JTextFieldLimit(50));
-		textField_1.setBounds(188, 25, 303, 20);
+		textField_1.setBounds(293, 25, 287, 20);
 		panel.add(textField_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -99,6 +105,7 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table.setGridColor(oac.gridcolor);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setFont(new Font("Calibri", Font.PLAIN, 14));
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 		    public void valueChanged(ListSelectionEvent lse) {
@@ -119,7 +126,7 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 	{
 		try {
 		ResultSet	rs = null;
-		rs = ker_Access.kod_pln();
+		rs = ker_Access.kons_pln();
 		if (!rs.isBeforeFirst() ) {  
 		    return;
 		}
@@ -161,7 +168,7 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		//bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 		//table.setFont(bigFont);
 		} catch (Exception ex) {
-			 JOptionPane.showMessageDialog(null, ex.getMessage()); 
+			JOptionPane.showMessageDialog(null, ex.getMessage(), "KONSIMENTO", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	public static void kaydet() 
@@ -174,10 +181,10 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		 try {
 			lBILGI.setmESAJ(textField.getText() + " Silme");
 			lBILGI.seteVRAK("");
-			ker_Access.kod_sil(textField.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
+			ker_Access.kons_sil(textField.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
 			lBILGI.setmESAJ(textField.getText() + " Acik=" + textField_1.getText());
 			lBILGI.seteVRAK("");
-			ker_Access.kod_kayit(textField.getText(), textField_1.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
+			ker_Access.kons_kayit(textField.getText(), textField_1.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
 			temizle();
 			hisset();
 		} catch (Exception e) {

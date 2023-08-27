@@ -59,4 +59,26 @@ public class KERESTE_ACCESS {
 		for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(lBILGI, dBILGI);
 	}
+	public void kod_sil(String kod, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.kod_sil(kod);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(lBILGI, dBILGI);
+	}
+	public ResultSet kons_pln () throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.kons_pln();
+	}
+	public void kons_kayit(String kons,String aciklama, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.kons_kayit(kons,  aciklama);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(lBILGI, dBILGI);
+	}
+	public void kons_sil(String kons, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.kons_sil(kons);
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(lBILGI, dBILGI);
+	}
 }

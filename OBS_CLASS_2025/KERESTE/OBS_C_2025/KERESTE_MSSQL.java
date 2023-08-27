@@ -132,7 +132,8 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.executeUpdate(sql);
 		sql= "CREATE TABLE [dbo].[KERESTE]( "
 				+ "[Evrak_No] [nvarchar](10) NOT NULL,"
-				+ " [Kodu] [nvarchar](16) NULL,"
+				+ " [Barkod] [nvarchar](20) NULL,"
+				+ " [Kodu] [nvarchar](16) NOT NULL,"
 				+ " [Paket_No] [nvarchar] (10) NULL,"
 				+ " [Konsimento] [nvarchar](10) NULL,"
 				+ " [Miktar] [float] NULL,"
@@ -462,6 +463,45 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.executeUpdate();
 		stmt.close();
 		
+	}
+
+	@Override
+	public void kod_sil(String kod) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql = "DELETE FROM KOD_ACIKLAMA WHERE KOD =N'" + kod + "'" ;
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+	}
+
+	@Override
+	public ResultSet kons_pln() throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		PreparedStatement stmt = con.prepareStatement("SELECT * FROM KONS_ACIKLAMA   ORDER BY KONS ");
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+
+	@Override
+	public void kons_kayit(String kons, String aciklama) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql  = "INSERT INTO KONS_ACIKLAMA (KONS,ACIKLAMA) " +
+				" VALUES (?,?)" ;
+		PreparedStatement stmt = null;
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, kons);
+		stmt.setString(2, aciklama);
+		stmt.executeUpdate();
+		stmt.close();
+		
+	}
+
+	@Override
+	public void kons_sil(String kons) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql = "DELETE FROM KONS_ACIKLAMA WHERE KONS =N'" + kons + "'" ;
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
 	}
 
 	

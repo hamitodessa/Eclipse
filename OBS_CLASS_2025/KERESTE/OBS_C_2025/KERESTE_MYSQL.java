@@ -64,6 +64,30 @@ public class KERESTE_MYSQL implements IKERESTE {
 		
 	}
 
+	@Override
+	public void kod_sil(String kod) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ResultSet kons_pln() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void kons_kayit(String kons, String aciklama) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void kons_sil(String kons) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 }

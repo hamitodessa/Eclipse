@@ -130,6 +130,20 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ "  = ON) ON [PRIMARY]) ON [PRIMARY]";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+		sql = "CREATE TABLE [dbo].[NAKLIYECI]( "
+				+ " [UNV_KODU] [int] NOT NULL,"
+				+ " [UNVAN] [nvarchar](50) NOT NULL,"
+				+ " CONSTRAINT [UNV_KODU] PRIMARY KEY CLUSTERED ([UNV_KODU] ASC , [UNVAN] ASC)WITH (PAD_INDEX = OFF,"
+				+ " STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]"
+				+ ") ON [PRIMARY]";		
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE NONCLUSTERED INDEX [IX_NAKLIYECI] ON [dbo].[NAKLIYECI]( "
+				+ "   [UNVAN] ASC "
+				+ "  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, "
+				+ "  ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql= "CREATE TABLE [dbo].[KERESTE]( "
 				+ "[Evrak_No] [nvarchar](10) NOT NULL,"
 				+ " [Barkod] [nvarchar](20) NULL,"
@@ -154,6 +168,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " [Gir_Cik] [nvarchar](1) NULL,"
 				+ " [Izahat] [nvarchar](40) NULL,"
 				+ " [Cins] [nvarchar](1) NULL,"
+				+ " [Nakliyeci] [int] NULL,"
 				+ " [USER] [nvarchar](15) NOT NULL,"
 				+ " INDEX IX_KERESTE NONCLUSTERED (Evrak_No,Kodu,Tarih,Paket_No,Konsimento,Cari_Firma,Gir_Cik)) ";
 		stmt = con.createStatement();  

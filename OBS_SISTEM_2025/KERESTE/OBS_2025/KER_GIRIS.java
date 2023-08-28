@@ -986,6 +986,7 @@ public class KER_GIRIS extends JInternalFrame {
 		model.addColumn("Paket_No", new String []{""});
 		model.addColumn("Miktar", new Double [] {( 0.000 )});
 		model.addColumn("M3", new Double [] {( 0.000 )});
+		model.addColumn("Paket_M3", new Double [] {( 0.000 )});
 		model.addColumn("Kons.", new String []{""});
 		model.addColumn("Depo", new String []{""});
 		model.addColumn("Fiat", new Double [] {( 0.00 )});
@@ -1031,7 +1032,7 @@ public class KER_GIRIS extends JInternalFrame {
 						m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
 					}
 					model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
-					paketm3();
+					
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null,  ex.getMessage(),  "KOD ACIKLAMA", JOptionPane.ERROR_MESSAGE); 
 				}
@@ -1069,11 +1070,18 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setCellEditor( new DoubleEditor(3) );
 		col.setHeaderRenderer(new SAGA());
 		
+		
 		col = table.getColumnModel().getColumn(5);
+		col.setMinWidth(65);
+		col.setCellRenderer(new TABLO_RENDERER(3,true));
+		col.setCellEditor( new DoubleEditor(3) );
+		col.setHeaderRenderer(new SAGA());
+		
+		col = table.getColumnModel().getColumn(6);
 		col.setMinWidth(75);
 		col.setHeaderRenderer(new SOLA());
 		
-		col = table.getColumnModel().getColumn(6);
+		col = table.getColumnModel().getColumn(7);
 		listdepo = new ArrayList<String> () ;
 		depo_auto();
 		Java2sAutoComboBox combodp = new Java2sAutoComboBox( listdepo,"kereste");
@@ -1082,32 +1090,32 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setMinWidth(100);
 		col.setHeaderRenderer(new SOLA());
 		
-		col = table.getColumnModel().getColumn(7);
+		col = table.getColumnModel().getColumn(8);
 		col.setMinWidth(75);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(8);
+		col = table.getColumnModel().getColumn(9);
 		col.setMinWidth(50);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
 		
-		col = table.getColumnModel().getColumn(9);
+		col = table.getColumnModel().getColumn(10);
 		col.setMinWidth(30);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(10);
+		col = table.getColumnModel().getColumn(11);
 		col.setMinWidth(100);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(11);
+		col = table.getColumnModel().getColumn(12);
 		col.setMinWidth(175);
 		JTextField atf = new JTextField(40);
 		col.setCellEditor(new DefaultCellEditor(atf));
@@ -1159,7 +1167,11 @@ public class KER_GIRIS extends JInternalFrame {
 						int row;
 						row = table.getSelectedRow();     //e.getFirstRow();
 						int column = e.getColumn();
-					
+					//
+						if (column == 2)  //Paket
+						{
+							paketm3();
+						}
 						if (column == 3)  //MIKTAR
 						{
 							
@@ -1173,29 +1185,28 @@ public class KER_GIRIS extends JInternalFrame {
 							model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
 							
 							double fiat = 0 ;
-							fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
+							fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
 							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
-							model.setValueAt( fiat * m3,row, 10)  ;
+							model.setValueAt( fiat * m3,row, 11)  ;
+							paketm3();
 						}
 						if (column == 4)  //m3
 						{
 							double fiat ,m3 = 0 ;
-							fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
+							fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
 							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
-							model.setValueAt( fiat * m3,row, 10)  ;
+							model.setValueAt( fiat * m3,row, 11)  ;
 						}
-						if (column == 7)  //FIAT
+						if (column == 8)  //FIAT
 						{
 							double fiat ,m3 = 0 ;
-							fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
+							fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
 							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
-							model.setValueAt( fiat * m3,row, 10)  ;
+							model.setValueAt( fiat * m3,row, 11)  ;
 						}
 						
-						
-						
 					}
-					paketm3();
+				
 					toplam();
 				}
 				});
@@ -1207,12 +1218,12 @@ public class KER_GIRIS extends JInternalFrame {
 		int satir = table.getSelectedRow();
 		if ( satir  < 0 ) 
 		{
-			mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,""});
+			mdl.addRow(new Object[]{"","","",0.00,0.000,0.000,"","",0.00,0.00,0.00,0.00,""});
 			satir = 0 ;
 		}
 		else
 		{
-			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,""});
+			mdl.insertRow(satir, new Object[]{"","","",0.000,0.00,0.000,"","",0.00,0.00,0.00,0.00,""});
 		}
 		table.isRowSelected(satir);
 		table.repaint();
@@ -1366,9 +1377,9 @@ public class KER_GIRIS extends JInternalFrame {
 			int urunsayi = 0 ;
 			for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
 			{
-				double_5 += Double.parseDouble(model.getValueAt(i, 10).toString());
-				double_1 += (Double.parseDouble(model.getValueAt(i, 10).toString()) * (Double.parseDouble(model.getValueAt(i, 8).toString()))) / 100 ; 
-				double_2 += (( Double.parseDouble(model.getValueAt(i, 10).toString()) - ( Double.parseDouble(model.getValueAt(i, 10).toString()) *  Double.parseDouble(model.getValueAt(i, 8).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 9).toString())) / 100 ; // kdv
+				double_5 += Double.parseDouble(model.getValueAt(i, 11).toString());
+				double_1 += (Double.parseDouble(model.getValueAt(i, 11).toString()) * (Double.parseDouble(model.getValueAt(i, 9).toString()))) / 100 ; 
+				double_2 += (( Double.parseDouble(model.getValueAt(i, 11).toString()) - ( Double.parseDouble(model.getValueAt(i, 11).toString()) *  Double.parseDouble(model.getValueAt(i, 9).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 10).toString())) / 100 ; // kdv
 				double_3 +=  Double.parseDouble(model.getValueAt(i, 4).toString());
 				if (! model.getValueAt(i,1).toString().equals(""))
 				{
@@ -1425,34 +1436,51 @@ public class KER_GIRIS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	private void paketm3()
+	private static void paketm3()
 	{
-		int i = 0;
 		double m3 =0.00;
+		
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		for ( i = 1 ;i< model.getRowCount() -2;i++   ); 
+		for ( int i = 1 ;i <= model.getRowCount() -1 ;i++   ) 
 		{
-			String paketno = model.getValueAt(i, 2).toString();
-			double aram3 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
-				
-				
-				if (! paketno.equals(model.getValueAt(i-1, 2).toString()))
+			String paketno = model.getValueAt(i-1, 2).toString().trim();
+			double aram3 = Double.parseDouble(model.getValueAt(i-1, 4).toString()) ;
+			//if (i !=model.getRowCount()) {
+				if (! model.getValueAt(i, 2).toString().trim().equals(paketno.toString().trim()))
 				{
-					m3 = m3 + aram3 ;
-					model.setValueAt(  0,i-1, 4)  ;
-					model.setValueAt(  m3,i, 4)  ;
-					m3 = 0.00;
+					
+					if (i == model.getRowCount() -1) {
+						double sonm3 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
+						model.setValueAt(  sonm3,i, 5)  ;
+						
+					}
+					else {
+						m3 = m3 + aram3 ;
+						model.setValueAt(  m3,i-1, 5)  ;
+						
+						m3 = 0.00;
+					}
+					
+				}
+				else if ( model.getValueAt(i, 2).toString().trim().equals(paketno.toString().trim())) {
+					
+					//if (i == model.getRowCount() -1)
+					//{
+					//	model.setValueAt(m3 ,i, 5)  ;
+					//}
+					//else {
+						model.setValueAt(0,i-1, 5)  ;
+						m3 = m3 + aram3 ;
+					//}
+						
+					
+					
 				}
 				else {
-					
-					m3 = m3 + aram3 ;
+					System.out.println("i="+ 1);
 				}
 				
-			}
-			
-			
-			
-		
+			//}
+		}
 	}
-
 }

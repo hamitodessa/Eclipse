@@ -441,7 +441,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		tblexcell.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 		    public void valueChanged(ListSelectionEvent lse) {
 			        if (!lse.getValueIsAdjusting()) {
-			        	if (table.getSelectedRow() == -1) return;
+			        	if (tblexcell.getSelectedRow() == -1) return;
 			        	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 						doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 2).toString(),"B");
 						doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 5).toString(),"A");
@@ -1238,7 +1238,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					bir =  mdl.getValueAt(t , 0).toString() ;
 					TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tblexcell.getModel()));
 					sorter.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(bir) , 1));
-					Thread.sleep(7);
+					Thread.sleep(8);
 					tblexcell.setRowSorter(sorter);
 					if ( tblexcell.getRowCount() > 0 )
 					{

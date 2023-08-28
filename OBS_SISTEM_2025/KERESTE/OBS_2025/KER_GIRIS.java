@@ -17,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,9 +52,12 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
 import javax.swing.text.MaskFormatter;
 
 import org.apache.commons.lang.StringUtils;
@@ -63,6 +67,7 @@ import com.toedter.calendar.JDateChooser;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
@@ -92,7 +97,6 @@ public class KER_GIRIS extends JInternalFrame {
 	private static JComboBox<String> cmbcins;
 	private static JComboBox<String> cmbanagrup ;
 	private static JComboBox<String> cmbaltgrup ;
-	private static JComboBox<String> cmbfiat ;
 	private static JComboBox<String> cmbozkod ;
 	private static JComboBox<String> cmbnakliyeci ;
 	private static JDateChooser dtc ;
@@ -465,18 +469,6 @@ public class KER_GIRIS extends JInternalFrame {
 		cmbozkod.setBounds(560, 7, 156, 22);
 		panel_2.add(cmbozkod);
 
-		JLabel lblNewLabel_8 = new JLabel("Varsayilan");
-		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_8.setBounds(490, 36, 69, 14);
-		panel_2.add(lblNewLabel_8);
-
-		cmbfiat = new JComboBox<String>();
-		cmbfiat.setForeground(new Color(0, 0, 128));
-		cmbfiat.setFont(new Font("Dialog", Font.BOLD, 12));
-		cmbfiat.setModel(new DefaultComboBoxModel<String>(new String[] {"", "Fiat_1", "Fiat_2", "Fiat_3", "Son Alis/Satis Fiati"}));
-		cmbfiat.setBounds(560, 33, 156, 22);
-		panel_2.add(cmbfiat);
-
 		JLabel lblAnaGrup = new JLabel("Ana Grup");
 		lblAnaGrup.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblAnaGrup.setBounds(726, 10, 61, 14);
@@ -540,11 +532,11 @@ public class KER_GIRIS extends JInternalFrame {
 		
 		JLabel lblNewLabel_7_1 = new JLabel("Nakliyeci");
 		lblNewLabel_7_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_7_1.setBounds(897, 66, 61, 14);
+		lblNewLabel_7_1.setBounds(490, 37, 61, 14);
 		panel_2.add(lblNewLabel_7_1);
 		
 		cmbnakliyeci = new JComboBox<String>();
-		cmbnakliyeci.setBounds(967, 62, 156, 22);
+		cmbnakliyeci.setBounds(560, 33, 156, 22);
 		panel_2.add(cmbnakliyeci);
 
 		
@@ -900,16 +892,28 @@ public class KER_GIRIS extends JInternalFrame {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void insertUpdate(DocumentEvent e) {
-				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+				
 				
 				String[] token = ftext.getText().split("-");
 				//System.out.println(table.getSelectedRow() + "==="+ token[0] + "=" +token[1]+ "=" + token[2] + "=" +token[3]);
 				
 				try {
+					if (table.getSelectedRow() == -1 ) return ;
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 					String aciklamaString = ker_Access.kod_adi(token[0]);
 					lblkodAciklama.setText(aciklamaString);
 					Dimension size = lblkodAciklama.getPreferredSize();
 					lblkodAciklama.setBounds(10, 55, size.width +10, 14);
+					
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					double m3 = 0 ;
+					if ( token[1].isEmpty() || token[2].isEmpty() || token[3].isEmpty()) {
+						double miktar =  Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString());
+						m3 = ((Double.parseDouble(token[1]) * Double.parseDouble(token[2]) * Double.parseDouble(token[3] )) * miktar)/1000000000 ;
+					}
+					
+					model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
+					
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null,  ex.getMessage(),  "KOD ACIKLAMA", JOptionPane.ERROR_MESSAGE); 
 				}
@@ -1022,6 +1026,50 @@ public class KER_GIRIS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Giris", JOptionPane.ERROR_MESSAGE);   
 		}
 		//***********
+				table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
+				{		
+				@Override
+					public void tableChanged(TableModelEvent e) {
+					TableModel model = (TableModel)e.getSource();
+					if (model.getRowCount() > 0) 
+					{
+						int row;
+						row = table.getSelectedRow();     //e.getFirstRow();
+						int column = e.getColumn();
+					
+						if (column == 3)  //K
+						{
+							
+							Double m3 = 0.00 ;
+							if (! model.getValueAt(row, 1).toString().equals(""))
+							{
+							String[] token = model.getValueAt(row, 1).toString().split("-");
+							Double miktar =  Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString());
+							m3 = ((Double.parseDouble(token[1]) * Double.parseDouble(token[2] ) * Double.parseDouble(token[3] )) * miktar) /1000000000;
+							}
+							model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
+						}
+						
+						if (column == 7)  //FIAT
+						{
+							double fiat ,m3 = 0 ;
+							fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
+							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
+							model.setValueAt( fiat * m3,row, 9)  ;
+						}
+						if (column == 3)  //MIKTAR
+						{
+							double fiat ,m3 = 0 ;
+							fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
+							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
+							model.setValueAt( fiat * m3,row, 9)  ;
+						}
+						
+						
+					}
+					toplam();
+				}
+				});
 		
 	}
 	private static void satir_ilave()
@@ -1180,5 +1228,34 @@ public class KER_GIRIS extends JInternalFrame {
 		{
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Evrak Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
+	}
+	private static void toplam()
+	{
+		try {
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			double  double_0, double_1 = 0, double_2 = 0, double_3 = 0, double_4, double_5 = 0   ;
+			int urunsayi = 0 ;
+			for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
+			{
+				double_5 += Double.parseDouble(model.getValueAt(i, 9).toString());
+				double_1 += (Double.parseDouble(model.getValueAt(i, 9).toString()) * (Double.parseDouble(model.getValueAt(i, 8).toString()))) / 100 ; 
+				double_2 += (( Double.parseDouble(model.getValueAt(i, 9).toString()) - ( Double.parseDouble(model.getValueAt(i, 9).toString()) *  Double.parseDouble(model.getValueAt(i, 8).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 7).toString())) / 100 ; // kdv
+				double_3 +=  Double.parseDouble(model.getValueAt(i, 4).toString());
+				if (! model.getValueAt(i,1).toString().equals(""))
+				{
+					urunsayi += 1;
+				}
+			}
+			label_8.setText(FORMATLAMA.doub_3(double_3));
+			label_9.setText(FORMATLAMA.doub_2(double_5));
+			lblNewLabel_13.setText( FORMATLAMA.doub_0(urunsayi));
+			
+			
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
+		}
+
 	}
 }

@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -93,20 +94,30 @@ public class KER_GIRIS extends JInternalFrame {
 	private static JTextField textField_10;
 	
 	private static JFormattedTextField txtkur ;
-	
+	private static JFormattedTextField txttev ;
 	private static JComboBox<String> cmbcins;
 	private static JComboBox<String> cmbanagrup ;
 	private static JComboBox<String> cmbaltgrup ;
 	private static JComboBox<String> cmbozkod ;
 	private static JComboBox<String> cmbnakliyeci ;
 	private static JDateChooser dtc ;
+	private static JLabel label;
+	private static JLabel label_1 ;
+	private static JLabel label_2 ;
+	private static JLabel label_3 ;
+	private static JLabel label_6 ;
+	private static JLabel label_7 ;
 	private static JLabel label_8 ;
 	private static JLabel label_9 ;
+	private static JLabel lblNewLabel_20;
+	
+	
 	private static JLabel lblNewLabel_3;
 	private static JLabel lblNewLabel_6 ;
 	private static JLabel lblNewLabel_17;
 	private static JLabel lblNewLabel_13;
 	private JLabel lblkodAciklama ;
+	private ArrayList<String> listdepo = null ;
 	
 	
 	private static JTabbedPane tabbedPane ;
@@ -792,6 +803,117 @@ public class KER_GIRIS extends JInternalFrame {
 		lblkodAciklama.setBounds(10, 55,50, 14);
 		panel_1.add(lblkodAciklama);
 		
+		JLabel lblIskonto = new JLabel("Iskonto");
+		lblIskonto.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblIskonto.setBounds(247, 11, 62, 14);
+		panel_1.add(lblIskonto);
+		
+		label_6 = new JLabel("0.00");
+		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_6.setForeground(Color.BLUE);
+		label_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_6.setBounds(306, 11, 99, 14);
+		panel_1.add(label_6);
+		
+		JLabel lblKdv = new JLabel("K.D.V.");
+		lblKdv.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblKdv.setBounds(415, 11, 52, 14);
+		panel_1.add(lblKdv);
+		
+		label_3 = new JLabel("0.00");
+		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_3.setForeground(Color.BLUE);
+		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_3.setBounds(480, 11, 99, 14);
+		panel_1.add(label_3);
+		
+		JLabel lblBakiye = new JLabel("Bakiye");
+		lblBakiye.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblBakiye.setBounds(247, 39, 66, 14);
+		panel_1.add(lblBakiye);
+		
+		label_7 = new JLabel("0.00");
+		label_7.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_7.setForeground(Color.BLUE);
+		label_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_7.setBounds(306, 39, 99, 14);
+		panel_1.add(label_7);
+		
+		JLabel lblTevkifatOrani = new JLabel("Tevkifat Orani");
+		lblTevkifatOrani.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblTevkifatOrani.setBounds(415, 39, 82, 14);
+		panel_1.add(lblTevkifatOrani);
+		
+		txttev = new JFormattedTextField();
+		txttev.setText("0");
+		txttev.setHorizontalAlignment(SwingConstants.RIGHT);
+		txttev.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txttev.setBackground(Color.CYAN);
+		txttev.setBounds(518, 35, 62, 20);
+		txttev.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				if (txttev.getText().equals("")) return ;
+				toplam();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				if (txttev.getText().equals("")) return ;
+				toplam();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				if (txttev.getText().equals("")) return ;
+				toplam();
+			}
+		});
+		panel_1.add(txttev);
+		
+		JLabel lblTevedilenKdv = new JLabel("Tev.Edilen K.D.V.");
+		lblTevedilenKdv.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblTevedilenKdv.setBounds(595, 11, 109, 14);
+		panel_1.add(lblTevedilenKdv);
+		
+		JLabel lblTevdahtoptutar = new JLabel("Tev.Dah.Top.Tutar");
+		lblTevdahtoptutar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblTevdahtoptutar.setBounds(595, 39, 109, 14);
+		panel_1.add(lblTevdahtoptutar);
+		
+		label_2 = new JLabel("0.00");
+		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_2.setForeground(Color.BLUE);
+		label_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_2.setBounds(705, 39, 99, 14);
+		panel_1.add(label_2);
+		
+		label_1 = new JLabel("0.00");
+		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_1.setForeground(Color.BLUE);
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_1.setBounds(705, 11, 99, 14);
+		panel_1.add(label_1);
+		
+		JLabel lblNewLabel_21 = new JLabel("Beyan Edilen KDV");
+		lblNewLabel_21.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_21.setBounds(828, 11, 109, 14);
+		panel_1.add(lblNewLabel_21);
+		
+		lblNewLabel_20 = new JLabel("0.00");
+		lblNewLabel_20.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_20.setForeground(Color.BLUE);
+		lblNewLabel_20.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_20.setBounds(927, 11, 109, 14);
+		panel_1.add(lblNewLabel_20);
+		
+		JLabel lblNewLabel_22 = new JLabel("Tev.Har.Top.Tutar");
+		lblNewLabel_22.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_22.setBounds(828, 39, 109, 14);
+		panel_1.add(lblNewLabel_22);
+		
+		label = new JLabel("0.00");
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setForeground(new Color(0, 0, 128));
+		label.setFont(new Font("Tahoma", Font.BOLD, 12));
+		label.setBounds(927, 39, 109, 14);
+		panel_1.add(label);
+		
 		//** Sol Toolbar *****************************************************************
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setDividerSize(0);
@@ -892,11 +1014,7 @@ public class KER_GIRIS extends JInternalFrame {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void insertUpdate(DocumentEvent e) {
-				
-				
 				String[] token = ftext.getText().split("-");
-				//System.out.println(table.getSelectedRow() + "==="+ token[0] + "=" +token[1]+ "=" + token[2] + "=" +token[3]);
-				
 				try {
 					if (table.getSelectedRow() == -1 ) return ;
 					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
@@ -907,13 +1025,11 @@ public class KER_GIRIS extends JInternalFrame {
 					
 					DefaultTableModel model = (DefaultTableModel) table.getModel();
 					double m3 = 0 ;
-					if ( token[1].isEmpty() || token[2].isEmpty() || token[3].isEmpty()) {
-						double miktar =  Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString());
-						m3 = ((Double.parseDouble(token[1]) * Double.parseDouble(token[2]) * Double.parseDouble(token[3] )) * miktar)/1000000000 ;
+					double miktar =  Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString());
+					if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
+						m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
 					}
-					
 					model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
-					
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null,  ex.getMessage(),  "KOD ACIKLAMA", JOptionPane.ERROR_MESSAGE); 
 				}
@@ -956,6 +1072,11 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setHeaderRenderer(new SOLA());
 		
 		col = table.getColumnModel().getColumn(6);
+		listdepo = new ArrayList<String> () ;
+		depo_auto();
+		Java2sAutoComboBox combodp = new Java2sAutoComboBox( listdepo,"kereste");
+		combodp.setDataList(listdepo);
+		col.setCellEditor(new DefaultCellEditor(combodp));
 		col.setMinWidth(100);
 		col.setHeaderRenderer(new SOLA());
 		
@@ -1037,7 +1158,7 @@ public class KER_GIRIS extends JInternalFrame {
 						row = table.getSelectedRow();     //e.getFirstRow();
 						int column = e.getColumn();
 					
-						if (column == 3)  //K
+						if (column == 3)  //MIKTAR
 						{
 							
 							Double m3 = 0.00 ;
@@ -1048,22 +1169,26 @@ public class KER_GIRIS extends JInternalFrame {
 							m3 = ((Double.parseDouble(token[1]) * Double.parseDouble(token[2] ) * Double.parseDouble(token[3] )) * miktar) /1000000000;
 							}
 							model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
+							double fiat = 0 ;
+							fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
+							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
+							model.setValueAt( fiat * m3,row, 10)  ;
 						}
-						
+						if (column == 4)  //m3
+						{
+							double fiat ,m3 = 0 ;
+							fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
+							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
+							model.setValueAt( fiat * m3,row, 10)  ;
+						}
 						if (column == 7)  //FIAT
 						{
 							double fiat ,m3 = 0 ;
 							fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
 							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
-							model.setValueAt( fiat * m3,row, 9)  ;
+							model.setValueAt( fiat * m3,row, 10)  ;
 						}
-						if (column == 3)  //MIKTAR
-						{
-							double fiat ,m3 = 0 ;
-							fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
-							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
-							model.setValueAt( fiat * m3,row, 9)  ;
-						}
+						
 						
 						
 					}
@@ -1237,9 +1362,9 @@ public class KER_GIRIS extends JInternalFrame {
 			int urunsayi = 0 ;
 			for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
 			{
-				double_5 += Double.parseDouble(model.getValueAt(i, 9).toString());
-				double_1 += (Double.parseDouble(model.getValueAt(i, 9).toString()) * (Double.parseDouble(model.getValueAt(i, 8).toString()))) / 100 ; 
-				double_2 += (( Double.parseDouble(model.getValueAt(i, 9).toString()) - ( Double.parseDouble(model.getValueAt(i, 9).toString()) *  Double.parseDouble(model.getValueAt(i, 8).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 7).toString())) / 100 ; // kdv
+				double_5 += Double.parseDouble(model.getValueAt(i, 10).toString());
+				double_1 += (Double.parseDouble(model.getValueAt(i, 10).toString()) * (Double.parseDouble(model.getValueAt(i, 8).toString()))) / 100 ; 
+				double_2 += (( Double.parseDouble(model.getValueAt(i, 10).toString()) - ( Double.parseDouble(model.getValueAt(i, 10).toString()) *  Double.parseDouble(model.getValueAt(i, 8).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 9).toString())) / 100 ; // kdv
 				double_3 +=  Double.parseDouble(model.getValueAt(i, 4).toString());
 				if (! model.getValueAt(i,1).toString().equals(""))
 				{
@@ -1250,6 +1375,20 @@ public class KER_GIRIS extends JInternalFrame {
 			label_9.setText(FORMATLAMA.doub_2(double_5));
 			lblNewLabel_13.setText( FORMATLAMA.doub_0(urunsayi));
 			
+			label_6.setText(FORMATLAMA.doub_2(double_1));
+			double_0 =double_5 - double_1 ;
+			label_7.setText(FORMATLAMA.doub_2(double_0));
+			label_3.setText(FORMATLAMA.doub_2(double_2));
+			//**********Tevkif Islemi **********************************************************
+			double_4 =DecimalFormat.getNumberInstance().parse( txttev.getText()).doubleValue();
+			double_0 = (double_2 / 10) * double_4 ;
+			label_1.setText(FORMATLAMA.doub_2(double_0));
+			double_0 = (double_5 - double_1) + double_2;
+			label_2.setText(FORMATLAMA.doub_2(double_0));
+			double_0 = (double_2 - (double_2 / 10) * double_4);
+			lblNewLabel_20.setText(FORMATLAMA.doub_2(double_0));
+			double_0 = (double_5 - double_1) + (double_2 - (double_2 / 10) * double_4);
+			label.setText(FORMATLAMA.doub_2(double_0));
 			
 		}
 		catch (Exception ex)
@@ -1258,4 +1397,29 @@ public class KER_GIRIS extends JInternalFrame {
 		}
 
 	}
+	private  void depo_auto()
+	{
+		try {
+			ResultSet rs = null;
+
+			rs = ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
+
+			if (!rs.isBeforeFirst() ) {  
+				listdepo.add("");
+			}
+			else
+			{
+				listdepo.add("");
+				while (rs.next())
+				{
+					listdepo.add(rs.getString("DEPO"));
+				}
+			}
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
 }

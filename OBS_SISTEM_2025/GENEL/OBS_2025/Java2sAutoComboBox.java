@@ -73,6 +73,10 @@ public class Java2sAutoComboBox extends JComboBox    {
 		      {
 		      FATURA.bilgi_doldur(obj.toString());
 		      }
+		      else if (nerden.equals("kereste"))
+		      {
+		      
+		      }
 		      else if (nerden.equals("recete"))
 		      {
 		    	  RECETE.bilgi_doldur(obj.toString());

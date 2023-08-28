@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.swing.ActionMap;
 import javax.swing.DefaultCellEditor;
@@ -1030,6 +1031,7 @@ public class KER_GIRIS extends JInternalFrame {
 						m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
 					}
 					model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
+					paketm3();
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null,  ex.getMessage(),  "KOD ACIKLAMA", JOptionPane.ERROR_MESSAGE); 
 				}
@@ -1169,6 +1171,7 @@ public class KER_GIRIS extends JInternalFrame {
 							m3 = ((Double.parseDouble(token[1]) * Double.parseDouble(token[2] ) * Double.parseDouble(token[3] )) * miktar) /1000000000;
 							}
 							model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
+							
 							double fiat = 0 ;
 							fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
 							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
@@ -1192,6 +1195,7 @@ public class KER_GIRIS extends JInternalFrame {
 						
 						
 					}
+					paketm3();
 					toplam();
 				}
 				});
@@ -1420,6 +1424,35 @@ public class KER_GIRIS extends JInternalFrame {
 		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	private void paketm3()
+	{
+		int i = 0;
+		double m3 =0.00;
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		for ( i = 1 ;i< model.getRowCount() -2;i++   ); 
+		{
+			String paketno = model.getValueAt(i, 2).toString();
+			double aram3 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
+				
+				
+				if (! paketno.equals(model.getValueAt(i-1, 2).toString()))
+				{
+					m3 = m3 + aram3 ;
+					model.setValueAt(  0,i-1, 4)  ;
+					model.setValueAt(  m3,i, 4)  ;
+					m3 = 0.00;
+				}
+				else {
+					
+					m3 = m3 + aram3 ;
+				}
+				
+			}
+			
+			
+			
+		
 	}
 
 }

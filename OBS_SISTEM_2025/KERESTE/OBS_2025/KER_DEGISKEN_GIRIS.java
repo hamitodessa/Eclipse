@@ -215,11 +215,11 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 			panel.setMaximumSize(new Dimension(0, 135));
 			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ozel Kod 1", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		}
-		else if (nerden.equals("oz2"))
+		else if (nerden.equals("nak"))
 		{
 			panel.setMinimumSize(new Dimension(0,135));
 			panel.setMaximumSize(new Dimension(0, 135));
-			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ozel Kod 2", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
+			panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Nakliyeci", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		}
 		yenile();
 	}
@@ -247,7 +247,10 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 	        {
 		        	rs =	ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
 	        }
-	       
+	         else if (hangi.equals("nak"))
+		        {
+			        	rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
+		        }
 	        //***********TABLO DOLDUR
 	        if (!rs.isBeforeFirst() ) {  
 			} 
@@ -419,7 +422,30 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 	             textField.requestFocus();
 	        	 
 	        }
-		
+	
+		 else if (hangi.equals("nak"))
+	        {
+	        	int g =  JOptionPane.showOptionDialog( null,  "Nakliyeci  Degisken Silinecek ..?"   ,
+		        		"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
+			   			 	JOptionPane.QUESTION_MESSAGE,
+			   			 	null,     //no custom icon
+			   			 	oac.options,  //button titles
+			   			 	oac.options[1]); //default button
+			 	 if(g != 0 ) { return;	}
+			 	 
+			 	lBILGI.setmESAJ("Nakliyeci :" + Integer.parseInt(textField_2.getText()) );
+				lBILGI.seteVRAK("");
+				
+				   ker_Access.ker_kod_degisken_sil( "NAKID_Y", "NAKLIYECI", Integer.parseInt(textField_2.getText()),
+						    lBILGI,BAGLAN_LOG.kerLogDizin);
+	        	 sifirla();
+	             textField.setText("");
+	             yenile();
+	             grid_doldur();
+
+	             textField.requestFocus();
+	        	 
+	        }
 		 else if (hangi.equals("anagrup"))
 	        {
 	        	int g =  JOptionPane.showOptionDialog( null,  "Ana Grup  Degisken Silinecek ..?"   ,
@@ -600,7 +626,14 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 			        			   rs = ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
 							
 			        	   }
-			        	  
+			        	   else  if (hangi.equals("nak"))
+			        	   {
+			        		  
+			        		   ker_Access.ker_degisken_eski("UNVAN", textField_1.getText(), "NAKLIYECI"	, "NAKID_Y",  Integer.parseInt(textField_2.getText()));
+			        			   rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
+							
+			        	   }
+			        	 
 			           }
 			           else  // YENI KAYIT
 			           {
@@ -646,9 +679,15 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 			        			   rs = ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
 								
 			        	   }
-			        	   
+			        	   else  if (hangi.equals("nak"))
+			        	   {
+			        		   
+			        		   ker_Access.ker_degisken_kayit("NAKID_Y","NAKLIYECI"	, "UNVAN", textField_1.getText());
+			        			   rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
+								
+			        	   }
 			           }
-			       	
+			       
 			           sifirla();
 			           textField.setText("");
 			           grid_doldur();

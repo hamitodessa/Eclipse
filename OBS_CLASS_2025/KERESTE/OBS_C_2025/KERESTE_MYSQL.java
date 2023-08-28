@@ -160,6 +160,18 @@ public class KERESTE_MYSQL implements IKERESTE {
 		
 	}
 
+	@Override
+	public ResultSet ker_oz_kod(String cins) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String son_no_al(String cins) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

@@ -397,6 +397,7 @@ public class FATURA extends JInternalFrame {
 		panel_2.add(lblNewLabel_5);
 
 		txtadres = new JTextField();
+		txtadres.setDocument(new JTextFieldLimit(12));
 		txtadres.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				if (txtadres.getText().equals(""))
@@ -471,7 +472,7 @@ public class FATURA extends JInternalFrame {
 		txtadres.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtadres.setBounds(353, 33, 125, 20);
 		panel_2.add(txtadres);
-		txtadres.setColumns(10);
+		
 
 		lblNewLabel_6 = new JLabel(".....");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));

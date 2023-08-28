@@ -130,20 +130,18 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ "  = ON) ON [PRIMARY]) ON [PRIMARY]";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE [dbo].[NAKLIYECI]( "
-				+ " [UNV_KODU] [int] NOT NULL,"
+		sql = "CREATE TABLE [dbo].[NAKLIYECI]("
+				+ " [NAKID] [int] IDENTITY(1,1) NOT NULL,"
+				+ " [NAKID_Y] [int]  NOT NULL,"  
 				+ " [UNVAN] [nvarchar](50) NOT NULL,"
-				+ " CONSTRAINT [UNV_KODU] PRIMARY KEY CLUSTERED ([UNV_KODU] ASC , [UNVAN] ASC)WITH (PAD_INDEX = OFF,"
-				+ " STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]"
-				+ ") ON [PRIMARY]";		
+				+ " [USER] [nvarchar](15) NOT NULL,"
+				+ " CONSTRAINT [PKeyNAKID] PRIMARY KEY CLUSTERED ("
+				+ " [NAKID] ASC"
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS"
+				+ " = ON) ON [PRIMARY]) ON [PRIMARY]";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE NONCLUSTERED INDEX [IX_NAKLIYECI] ON [dbo].[NAKLIYECI]( "
-				+ "   [UNVAN] ASC "
-				+ "  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, "
-				+ "  ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
-		stmt = con.createStatement();  
-		stmt.executeUpdate(sql);
+		
 		sql= "CREATE TABLE [dbo].[KERESTE]( "
 				+ "[Evrak_No] [nvarchar](10) NOT NULL,"
 				+ " [Barkod] [nvarchar](20) NULL,"
@@ -691,5 +689,33 @@ public class KERESTE_MSSQL implements IKERESTE {
 		
 	}
 
-	
+	@Override
+	public ResultSet ker_oz_kod(String cins) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql =   "SELECT DISTINCT  Ozel_Kod  " + 
+				"  FROM KERESTE WHERE Gir_Cik = '" + cins+ "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+
+	@Override
+	public String son_no_al(String cins) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String result ;
+		String sql = "SELECT max(Evrak_No)  as NO FROM KERESTE WHERE Gir_Cik = '" + cins + "' ";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		if (!rss.isBeforeFirst() ) {  
+			result = ""  ;
+		}
+		else
+		{
+			rss.next();
+			result = rss.getString("NO");
+		}
+		return result ;	
+	}
 }

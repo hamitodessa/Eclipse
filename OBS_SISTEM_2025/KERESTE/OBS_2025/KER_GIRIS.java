@@ -15,6 +15,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -93,6 +94,7 @@ public class KER_GIRIS extends JInternalFrame {
 	private static JComboBox<String> cmbaltgrup ;
 	private static JComboBox<String> cmbfiat ;
 	private static JComboBox<String> cmbozkod ;
+	private static JComboBox<String> cmbnakliyeci ;
 	private static JDateChooser dtc ;
 	private static JLabel label_8 ;
 	private static JLabel label_9 ;
@@ -246,9 +248,9 @@ public class KER_GIRIS extends JInternalFrame {
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				//getContentPane().setCursor(oac.WAIT_CURSOR);
-				//son_fisoku();
-				//getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				
+				son_fisoku();
+				
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
@@ -373,6 +375,7 @@ public class KER_GIRIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_5);
 
 		txtadres = new JTextField();
+		txtadres.setDocument(new JTextFieldLimit(12));
 		txtadres.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				if (txtadres.getText().equals(""))
@@ -383,10 +386,8 @@ public class KER_GIRIS extends JInternalFrame {
 				String sonuc = "";
 				try 
 				{
-
 					sonuc = a_Access.kod_ismi(txtadres.getText());
 					lblNewLabel_6.setText(sonuc);
-
 				}
 				catch (Exception ex)
 				{	
@@ -404,7 +405,6 @@ public class KER_GIRIS extends JInternalFrame {
 				{
 					sonuc = a_Access.kod_ismi(txtadres.getText());
 					lblNewLabel_6.setText(sonuc);
-
 				}
 				catch (Exception ex)
 				{	
@@ -420,10 +420,8 @@ public class KER_GIRIS extends JInternalFrame {
 				String sonuc = "";
 				try 
 				{
-
 					sonuc = a_Access.kod_ismi(txtadres.getText());
 					lblNewLabel_6.setText(sonuc);
-
 				}
 				catch (Exception ex)
 				{	
@@ -431,7 +429,6 @@ public class KER_GIRIS extends JInternalFrame {
 				}
 			}
 		});
-
 		txtadres.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -490,7 +487,7 @@ public class KER_GIRIS extends JInternalFrame {
 		cmbanagrup.setFont(new Font("Dialog", Font.BOLD, 12));
 		cmbanagrup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//alt_grup_doldur();
+				alt_grup_doldur();
 			}
 		});
 		cmbanagrup.setBounds(797, 7, 148, 22);
@@ -499,7 +496,7 @@ public class KER_GIRIS extends JInternalFrame {
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ana_grup_doldur();
+				ana_grup_doldur();
 			}
 		});
 		button.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
@@ -540,6 +537,15 @@ public class KER_GIRIS extends JInternalFrame {
 		txtkur.setText("0.0000");
 		txtkur.setBounds(1050, 33, 73, 20);
 		panel_2.add(txtkur);
+		
+		JLabel lblNewLabel_7_1 = new JLabel("Nakliyeci");
+		lblNewLabel_7_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_7_1.setBounds(897, 66, 61, 14);
+		panel_2.add(lblNewLabel_7_1);
+		
+		cmbnakliyeci = new JComboBox<String>();
+		cmbnakliyeci.setBounds(967, 62, 156, 22);
+		panel_2.add(cmbnakliyeci);
 
 		
 		JPanel panel_4 = new JPanel();
@@ -999,7 +1005,9 @@ public class KER_GIRIS extends JInternalFrame {
 		
 		scrollPane.setViewportView(table);
 
-		
+		ana_grup_doldur();
+		ker_oz_kod();
+		ker_nakliyeci();
 		//***********
 		String deger;
 		Integer sat_sayi;
@@ -1031,5 +1039,146 @@ public class KER_GIRIS extends JInternalFrame {
 		}
 		table.isRowSelected(satir);
 		table.repaint();
+	}
+	private void ana_grup_doldur()
+	{
+		try {
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+			cmbanagrup .removeAllItems();
+			ResultSet rs=null;
+
+			rs = ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
+
+			if (!rs.isBeforeFirst() ) {  
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+				cmbaltgrup.setEnabled(false);
+				cmbanagrup .addItem("");
+				cmbanagrup.setSelectedItem("");
+				return;
+			} 
+			cmbanagrup .addItem("");
+			while (rs.next())
+			{
+				cmbanagrup .addItem(rs.getString("ANA_GRUP"));
+			}
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+		}
+		catch (Exception ex)
+		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+		}
+	}
+	private void alt_grup_doldur()
+	{
+		try {
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+			cmbaltgrup.removeAllItems();
+			cmbaltgrup .addItem("");
+			ResultSet rs=null;
+
+			rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
+			if (!rs.isBeforeFirst() ) {
+			}
+			else
+			{
+				rs.next();
+				int in1 = rs.getInt("AGID_Y");
+				rs =null;
+				rs = ker_Access.ker_kod_alt_grup_degisken_oku(in1);
+			}
+
+
+			if (!rs.isBeforeFirst() ) {  
+				cmbaltgrup.setSelectedItem("");
+				cmbaltgrup.setEnabled(false);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			} 
+			else
+			{
+				while (rs.next())
+				{
+					cmbaltgrup .addItem(rs.getString("ALT_GRUP"));
+				}
+				cmbaltgrup.setSelectedItem(0);
+				cmbaltgrup.setEnabled(true);
+			}
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+		}
+		catch (Exception ex)
+		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+		}
+	}
+	private void ker_oz_kod()
+	{
+		try {
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+			cmbozkod .removeAllItems();
+			ResultSet rs=null;
+
+			rs = ker_Access.ker_oz_kod( "G");
+
+			if (!rs.isBeforeFirst() ) {  
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+				cmbozkod .addItem("");
+				return;
+			} 
+			cmbozkod .addItem("");
+			while (rs.next())
+			{
+				cmbozkod .addItem(rs.getString("Ozel_Kod"));
+			}
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+		}
+		catch (Exception ex)
+		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ozel Kod", JOptionPane.ERROR_MESSAGE);   
+		}
+	}
+	private void ker_nakliyeci()
+	{
+		try {
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+			cmbnakliyeci .removeAllItems();
+			ResultSet rs=null;
+
+			rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
+
+			if (!rs.isBeforeFirst() ) {  
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+				cmbnakliyeci .setEnabled(false);
+				cmbnakliyeci  .addItem("");
+				cmbnakliyeci .setSelectedItem("");
+				return;
+			} 
+			cmbnakliyeci  .addItem("");
+			while (rs.next())
+			{
+				cmbanagrup .addItem(rs.getString("UNVAN"));
+			}
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+		}
+		catch (Exception ex)
+		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Nakliyeci", JOptionPane.ERROR_MESSAGE);   
+		}
+	}
+	private void son_fisoku()
+	{
+		try
+		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+			textField.setText( ker_Access.son_no_al("G"));
+			textField.requestFocus();
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Evrak Okuma", JOptionPane.ERROR_MESSAGE);   
+		}
 	}
 }

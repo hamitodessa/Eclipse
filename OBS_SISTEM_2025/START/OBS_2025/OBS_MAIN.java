@@ -1976,10 +1976,13 @@ public class OBS_MAIN extends JFrame {
 				{
 					form_ac("KERESTE DEGISKENLER","oz1");
 				}
-				
+				else if (hangi == "Nakliyeci")
+				{
+					form_ac("KERESTE DEGISKENLER","nak");
+				}
 			}
 		});
-		comboDegisken_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1"}));
+		comboDegisken_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Nakliyeci"}));
 
 		toolBar_Kereste.add(comboDegisken_1);
 
@@ -2168,6 +2171,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "GOREV GIRIS")	GOREV_GIRIS.kaydet();
 				else if (sonuc == "KOD ACIKLAMA") KOD_ACIKLAMA.kaydet();
 				else if (sonuc == "KONSIMENTO ACIKLAMA") KONS_ACIKLAMA.kaydet();
+				else if (sonuc == "KERESTE DEGISKENLER") KER_DEGISKEN_GIRIS.kayit();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});

@@ -944,6 +944,39 @@ public class KER_GIRIS extends JInternalFrame {
 		btnNewButton.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));
 		toolBar_1.add(btnNewButton);
 
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tabbedPane.getSelectedIndex() == 0)
+				{
+					satir_ilave();
+					paketm3();
+					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+					mdll.removeRow(mdll.getRowCount() -1);
+					
+				}
+				
+			}
+		});
+		btnNewButton_2.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/yeni.png")));
+		toolBar_1.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tabbedPane.getSelectedIndex() == 0)
+				{
+					if (table.getSelectedRow() < 0 ) return ;
+					satir_sil();
+					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,""});
+					paketm3();
+				}
+				
+			}
+		});
+		btnNewButton_3.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-reduce-16.png")));
+		toolBar_1.add(btnNewButton_3);
 		//////////////////////////////ARA BOLUM********************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setForeground(new Color(0, 0, 128));
@@ -1224,12 +1257,12 @@ public class KER_GIRIS extends JInternalFrame {
 		int satir = table.getSelectedRow();
 		if ( satir  < 0 ) 
 		{
-			mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,""});
+			          mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,""});
 			satir = 0 ;
 		}
 		else
 		{
-			mdl.insertRow(satir, new Object[]{"","","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,""});
+			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,""});
 		}
 		table.isRowSelected(satir);
 		table.repaint();
@@ -1450,49 +1483,64 @@ public class KER_GIRIS extends JInternalFrame {
 	}
 	private static void paketm3()
 	{
-		double m3 =0.00;
+		double m3 =0.00 ;
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		for ( int i = 1 ;i <= model.getRowCount() -1 ;i++   ) 
 		{
 			String paketno = model.getValueAt(i-1, 2).toString().trim();
 			double aram3 = Double.parseDouble(model.getValueAt(i-1, 4).toString()) ;
+
 			if (! model.getValueAt(i, 2).toString().trim().equals(paketno.toString().trim()))
 			{
 				if (i == model.getRowCount() -1) {
-					double sonm3 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
-					model.setValueAt( FORMATLAMA.doub_3(sonm3) ,i, 5)  ;
-					aram3 = sonm3;
-				}
-				else if (paketno.equals("")) {
-					double sonm3 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
-					model.setValueAt( FORMATLAMA.doub_3(sonm3),i, 5)  ;
-					aram3 = sonm3;
-					m3 =sonm3;
+					double aram33 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
+					model.setValueAt( FORMATLAMA.doub_3(m3+ aram3) ,i-1, 5)  ;
+					if (aram33==0) {
+						model.setValueAt( "" ,i, 5)  ;
+					}
+					else {
+						model.setValueAt( FORMATLAMA.doub_3(aram33) ,i, 5)  ;
+					}
 				}
 				else {
 					m3 = m3 + aram3 ;
-					model.setValueAt(FORMATLAMA.doub_3(m3),i-1, 5)  ;
+					if (m3==0) {
+						model.setValueAt("",i-1, 5)  ;
+					}
+					else {
+						model.setValueAt(FORMATLAMA.doub_3(m3),i-1, 5)  ;
+					}
 					m3 = 0.00;
 				}
 			}
 			else if ( model.getValueAt(i, 2).toString().trim().equals(paketno.toString().trim())) {
 				if (i == model.getRowCount() -1)
 				{
-					double sonm33 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
-					model.setValueAt("",i-1, 5)  ;
-					if (m3 + sonm33 == 0) {
+					double aram33 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
+					double aram1 = Double.parseDouble(model.getValueAt(i-1, 4).toString()) ;
+					if (m3+ aram33+ aram1 ==0) {
 						model.setValueAt("" ,i, 5)  ;
 					}
 					else {
-						model.setValueAt(FORMATLAMA.doub_3(m3 + sonm33) ,i, 5)  ;
+						model.setValueAt(FORMATLAMA.doub_3(m3+ aram33+ aram1) ,i, 5)  ;
 					}
+					model.setValueAt("",i-1, 5)  ;
 				}
-
-				else {
+				else 
+				{
 					model.setValueAt("",i-1, 5)  ;
 					m3 = m3 + aram3 ;
 				}
 			}
 		}
+	}
+	private static void satir_sil()
+	{
+		if (table.getSelectedRow() < 0 ) return ;
+		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+		mdll.removeRow(table.getSelectedRow());
+		table.repaint();
+		toplam();
+		
 	}
 }

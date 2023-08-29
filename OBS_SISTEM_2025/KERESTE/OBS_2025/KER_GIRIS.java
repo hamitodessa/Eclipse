@@ -1003,8 +1003,8 @@ public class KER_GIRIS extends JInternalFrame {
 				super.changeSelection(row, column, toggle, extend);
 				//if (column < 1)
 				//{
-					table.editCellAt(row, column);
-					table.transferFocus();
+				//	table.editCellAt(row, column);
+				//	table.transferFocus();
 				//}
 			}	
 		};
@@ -1400,7 +1400,7 @@ public class KER_GIRIS extends JInternalFrame {
 			cmbnakliyeci  .addItem("");
 			while (rs.next())
 			{
-				cmbanagrup .addItem(rs.getString("UNVAN"));
+				cmbnakliyeci .addItem(rs.getString("UNVAN"));
 			}
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
@@ -1657,7 +1657,7 @@ public class KER_GIRIS extends JInternalFrame {
 			nakl = 0 ;
 			if ( ! cmbnakliyeci.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
 
-				rs = ker_Access.ker_kod_degisken_ara("NAKID_Y", "UNVAN", "NAKLIYECI_DEGISKEN", cmbnakliyeci.getItemAt(cmbnakliyeci.getSelectedIndex()).toString());
+				rs = ker_Access.ker_kod_degisken_ara("NAKID_Y", "UNVAN", "NAKLIYECI", cmbnakliyeci.getItemAt(cmbnakliyeci.getSelectedIndex()).toString());
 
 				if (!rs.isBeforeFirst() ) {      		
 				}

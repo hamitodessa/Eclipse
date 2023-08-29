@@ -137,4 +137,17 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.son_no_al(cins);
 	}
+	public void ker_giris_sil(String eno,lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+	{
+		_IKereste.ker_giris_sil(eno);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
+	}
+	public void ker_kaydet(KER_BILGI kBILGI ,String usr
+			, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.ker_kaydet(kBILGI, usr);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
+	}
 }

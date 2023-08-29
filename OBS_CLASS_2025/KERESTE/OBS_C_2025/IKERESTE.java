@@ -33,4 +33,6 @@ public interface IKERESTE {
 	public void ker_degisken_alt_grup_eski(String alt_grup ,int ana_grup ,int  ID ) throws ClassNotFoundException, SQLException;
 	public ResultSet ker_oz_kod (String cins) throws ClassNotFoundException, SQLException;
 	public String son_no_al(String cins) throws ClassNotFoundException, SQLException;
+	public void ker_giris_sil(String eno) throws ClassNotFoundException, SQLException;
+	public void ker_kaydet(KER_BILGI kBILGI,String user) throws ClassNotFoundException, SQLException;
 }

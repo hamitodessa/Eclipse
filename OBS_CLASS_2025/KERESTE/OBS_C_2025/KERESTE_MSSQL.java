@@ -163,12 +163,27 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " [Alt_Grup] [int] NULL,"
 				+ " [Depo] [int] NULL,"
 				+ " [Ozel_Kod] [nvarchar](10) NULL,"
-				+ " [Cikis_Evrak] [nvarchar](10) NULL,"
 				+ " [Izahat] [nvarchar](40) NULL,"
-				+ " [Cins] [nvarchar](1) NULL,"
 				+ " [Nakliyeci] [int] NULL,"
 				+ " [USER] [nvarchar](15) NOT NULL,"
-				+ " [Gir_Cik] [nvarchar](1) NOT NULL,"
+				+ " [Cikis_Evrak] [nvarchar](10) NULL,"
+				+ " [CTarih] [datetime] NULL,"
+				+ " [CKdv] [float] NULL,"
+				+ " [CDoviz] [nvarchar](3) NULL,"
+				+ " [CFiat] [float] NULL,"
+				+ " [CTutar] [float] NULL,"
+				+ " [CKur] [float] NULL,"
+				+ " [CCari_Firma] [nvarchar](12) NULL,"
+				+ " [CAdres_Firma] [nvarchar](12) NULL,"
+				+ " [CIskonto] [float] NULL,"
+				+ " [CTevkifat] [float] NULL,"
+				+ " [CAna_Grup] [int] NULL,"
+				+ " [CAlt_Grup] [int] NULL,"
+				+ " [CDepo] [int] NULL,"
+				+ " [COzel_Kod] [nvarchar](10) NULL,"
+				+ " [CIzahat] [nvarchar](40) NULL,"
+				+ " [CNakliyeci] [int] NULL,"
+				+ " [CUSER] [nvarchar](15) NOT NULL,"
 				+ " INDEX IX_KERESTE NONCLUSTERED (Evrak_No,Kodu,Tarih,Paket_No,Konsimento,Cari_Firma,Cikis_Evrak)) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
@@ -694,8 +709,14 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public ResultSet ker_oz_kod(String cins) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		String sql =   "SELECT DISTINCT  Ozel_Kod  " + 
-				"  FROM KERESTE WHERE Gir_Cik = '" + cins+ "'";
+		String sql ;
+		if (cins.equals("G")) {
+			 sql =   "SELECT DISTINCT  Ozel_Kod  FROM KERESTE ";
+		}
+		else {
+			 sql =   "SELECT DISTINCT  COzel_Kod  FROM KERESTE";
+		}
+		
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -706,7 +727,14 @@ public class KERESTE_MSSQL implements IKERESTE {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String result ;
-		String sql = "SELECT max(Evrak_No)  as NO FROM KERESTE WHERE Gir_Cik = '" + cins + "' ";
+		String sql ;
+		if (cins.equals("G")) {
+			sql = "SELECT max(Evrak_No)  as NO FROM KERESTE";
+		}
+		else {
+			sql = "SELECT max(CEvrak_No)  as NO FROM KERESTE";
+		}
+		
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -718,5 +746,72 @@ public class KERESTE_MSSQL implements IKERESTE {
 			result = rss.getString("NO");
 		}
 		return result ;	
+	}
+
+	@Override
+	public void ker_giris_sil(String eno) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql =  " DELETE " +
+				" FROM KERESTE " +
+				" WHERE Evrak_No  ='" + eno + "'" ;
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+	}
+
+	@Override
+	public void ker_kaydet(KER_BILGI kBILGI, String user) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " +
+				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,[USER]) " +
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+		
+		///////////////////////
+		
+		+ " [Cikis_Evrak] [nvarchar](10) NULL,"
+		+ " [CTarih] [datetime] NULL,"
+		+ " [CKdv] [float] NULL,"
+		+ " [CDoviz] [nvarchar](3) NULL,"
+		+ " [CFiat] [float] NULL,"
+		+ " [CTutar] [float] NULL,"
+		+ " [CKur] [float] NULL,"
+		+ " [CCari_Firma] [nvarchar](12) NULL,"
+		+ " [CAdres_Firma] [nvarchar](12) NULL,"
+		+ " [CIskonto] [float] NULL,"
+		+ " [CTevkifat] [float] NULL,"
+		+ " [CAna_Grup] [int] NULL,"
+		+ " [CAlt_Grup] [int] NULL,"
+		+ " [CDepo] [int] NULL,"
+		+ " [COzel_Kod] [nvarchar](10) NULL,"
+		+ " [CIzahat] [nvarchar](40) NULL,"
+		+ " [CNakliyeci] [int] NULL,"
+		+ " [CUSER] [nvarchar](15) NOT NULL,"
+		
+		///////////////////
+		PreparedStatement stmt = null;
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1,fatno);
+		stmt.setString(2, kodu);
+		stmt.setInt(3,depo);
+		stmt.setDouble(4, fiat);
+		stmt.setDouble(5, tevkifat);
+		stmt.setDouble(6, miktar);
+		stmt.setString(7, gircik);
+		stmt.setDouble(8, tutar);
+		stmt.setDouble(9, iskonto);
+		stmt.setDouble(10, kdv);
+		stmt.setString(11, tarih);
+		stmt.setString(12, izah);
+		stmt.setString(13, doviz);
+		stmt.setString(14, adrfirma);
+		stmt.setString(15, carfirma);
+		stmt.setString(16, ozkod);
+		stmt.setDouble(17, kur);
+		stmt.setString(18, cins);
+		stmt.setInt(19,anagrp);
+		stmt.setInt(20,altgrp);
+		stmt.setString(21,usr);
+		stmt.executeUpdate();
+		stmt.close();
+		
 	}
 }

@@ -23,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
+
 import javax.swing.ActionMap;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
@@ -64,12 +66,14 @@ import org.apache.commons.lang.StringUtils;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.DoubleEditor;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
+import OBS_C_2025.KER_BILGI;
 import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SAGA_BOLD;
@@ -77,6 +81,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.U_KODU_RENDERER;
+import OBS_C_2025.lOG_BILGI;
 
 @SuppressWarnings({"serial","static-access"})
 public class KER_GIRIS extends JInternalFrame {
@@ -122,6 +127,8 @@ public class KER_GIRIS extends JInternalFrame {
 	
 	private static JTabbedPane tabbedPane ;
 	private static JTable table;
+	
+	private static  String tar = "" ;
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
@@ -970,7 +977,7 @@ public class KER_GIRIS extends JInternalFrame {
 					if (table.getSelectedRow() < 0 ) return ;
 					satir_sil();
 					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"",""});
+					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","","",""});
 					paketm3();
 				}
 				
@@ -1035,6 +1042,23 @@ public class KER_GIRIS extends JInternalFrame {
 		model.addColumn("Tutar",new Double [] {( 0.00 )});
 		model.addColumn("Izahat", new String []{"" });
 		model.addColumn("Cikis_Evrak", new String []{"" });
+		model.addColumn("CTarih", new String []{"" });
+		model.addColumn("CKdv", new Double [] {( 0.000 )});
+		model.addColumn("CDoviz", new String []{"" });
+		model.addColumn("CFiat", new Double [] {( 0.000 )});
+		model.addColumn("CTutar", new Double [] {( 0.000 )});
+		model.addColumn("CKur", new Double [] {( 0.000 )});
+		model.addColumn("CCari_Firma", new String []{"" });
+		model.addColumn("CAdres_Firma", new String []{"" });
+		model.addColumn("CIskonto", new Double [] {( 0.000 )});
+		model.addColumn("CTevkifat", new Double [] {( 0.000 )});
+		model.addColumn("CAna_Grup", new Integer []{( 0 )});
+		model.addColumn("CAlt_Grup", new Integer []{( 0 )});
+		model.addColumn("CDepo", new Integer []{( 0 )});
+		model.addColumn("COzel_Kod", new String []{"" });
+		model.addColumn("CIzahat", new String []{"" });
+		model.addColumn("CNakliyeci", new String []{"" });
+		model.addColumn("CUser", new String []{"" });
 		TableColumn col ;
 		
 		col = table.getColumnModel().getColumn(0);
@@ -1161,13 +1185,9 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setCellEditor(new DefaultCellEditor(atf));
 		col.setHeaderRenderer(new SOLA());
 		
-		col = table.getColumnModel().getColumn(13);
-		col.setMinWidth(100);
-		col.setHeaderRenderer(new SOLA());
-		
-		
-		table.removeColumn(table.getColumnModel().getColumn(13));
-		
+		for (int i =0 ; i <=17;i++) {
+			table.removeColumn(table.getColumnModel().getColumn(13));
+		}
 		JTableHeader th = table.getTableHeader();
 		Dimension dd = table.getPreferredSize();
 		dd.height = 30;
@@ -1261,12 +1281,12 @@ public class KER_GIRIS extends JInternalFrame {
 		int satir = table.getSelectedRow();
 		if ( satir  < 0 ) 
 		{
-			          mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"",""});
+			          mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","","",""});
 			satir = 0 ;
 		}
 		else
 		{
-			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"",""});
+			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","","",""});
 		}
 		table.isRowSelected(satir);
 		table.repaint();
@@ -1546,5 +1566,197 @@ public class KER_GIRIS extends JInternalFrame {
 		table.repaint();
 		toplam();
 		
+	}
+	public static void kaydet()
+	{
+		if (textField.getText().equals("")) return ;
+		if(dtc.getDate() == null) return;
+		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+		if (mdl.getRowCount() == 0)  return;
+
+		long startTime = System.currentTimeMillis(); 
+		tar = TARIH_CEVIR.tarih_geri_saatli(dtc) ;
+		GuiUtil.setWaitCursor(FATURA.splitPane,true);
+		satir_yaz_1();
+		//dipnot_yaz();
+		//acik_yaz();
+		//cikis_yaz();
+		//************************************
+		GuiUtil.setWaitCursor(FATURA.splitPane,false);
+		long endTime = System.currentTimeMillis();
+		long estimatedTime = endTime - startTime;
+		double seconds = (double)estimatedTime/1000; 
+		OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+	}
+	private static void satir_yaz_1 ()
+	{
+		try {
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			
+				lBILGI.setmESAJ(textField.getText() + " Nolu Giris Fatura Silindi");
+				lBILGI.seteVRAK(textField.getText());
+				ker_Access.ker_giris_sil(textField.getText() ,lBILGI,BAGLAN_LOG.kerLogDizin);
+			
+			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+			for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
+			{
+				//  Progres_Bar(RG1.Rows.Count - 1, i)
+				if (! mdl.getValueAt(i,1).toString().equals(""))
+				{
+					//sat_yaz_2(i);
+				}
+			}
+			// Progres_Bar_Temizle()
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz1", JOptionPane.ERROR_MESSAGE);             
+		}
+	}
+	private static void sat_yaz_2(int i)
+	{
+		try {
+			String  izahat ;
+			double  miktar, kur ;
+			int angrp, altgrp, depo, nakl;
+			depo = 0 ;
+			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+			ResultSet rs =null ;
+			if (mdl.getValueAt(i,7) == null)
+			{
+				depo = 0 ;
+			}
+			else
+			{
+				rs = ker_Access.ker_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN",  mdl.getValueAt(i,2).toString());
+				if (!rs.isBeforeFirst() ) {      		
+				}
+				else
+				{
+					rs.next();
+					depo = rs.getInt("DPID_Y");
+				}
+			}
+			
+			
+				miktar = Double.parseDouble( mdl.getValueAt(i,3).toString());
+				
+			
+			double tutar ;
+			tutar =Double.parseDouble(mdl.getValueAt(i,11).toString());
+			if ( mdl.getValueAt(i,12).toString().equals(""))
+			{
+				izahat = "" ;
+			}
+			else
+			{
+				izahat =  mdl.getValueAt(i,9) .toString();
+			}
+			kur = DecimalFormat.getNumberInstance().parse(txtkur.getText()).doubleValue();
+			angrp = 0 ;
+			if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
+
+				rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
+
+				if (!rs.isBeforeFirst() ) {      		
+				}
+				else
+				{
+					rs.next();
+					angrp  = rs.getInt("AGID_Y");
+				}
+			}
+			//*************nakliyeci
+			nakl = 0 ;
+			if ( ! cmbnakliyeci.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
+
+				rs = ker_Access.ker_kod_degisken_ara("NAKID_Y", "UNVAN", "NAKLIYECI_DEGISKEN", cmbnakliyeci.getItemAt(cmbnakliyeci.getSelectedIndex()).toString());
+
+				if (!rs.isBeforeFirst() ) {      		
+				}
+				else
+				{
+					rs.next();
+					nakl  = rs.getInt("NAKID_Y");
+				}
+			}
+			///
+			altgrp = 0;
+			if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") ) {
+
+				rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
+
+				if (!rs.isBeforeFirst() ) {      		
+				}
+				else
+				{
+					rs.next();
+					altgrp  = rs.getInt("ALID_Y");
+				}
+			}
+
+			double tevk = DecimalFormat.getNumberInstance().parse(txttev.getText()).doubleValue()  ;
+			double fiat =0 ;
+			fiat = Double.parseDouble( mdl.getValueAt(i,8).toString());
+			double isk = 0 ;
+			isk = Double.parseDouble( mdl.getValueAt(i,9).toString());
+			double kdv = 0 ; 
+			kdv =Double.parseDouble( mdl.getValueAt(i,10).toString());
+			
+
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ( " Fatura Kayit" +  mdl.getValueAt(i,1).toString() + " Mik=" + miktar + " Tut=" + tutar);
+			lBILGI.seteVRAK(textField.getText());
+			
+			
+			//
+			KER_BILGI ker_BILGI = new KER_BILGI();
+			
+			ker_BILGI.setEvrak_No(textField.getText());
+			ker_BILGI.setCari_Firma(txtcari.getText());
+			ker_BILGI.setAdres_Firma( txtadres.getText());
+			ker_BILGI.setTarih(tar);
+			ker_BILGI.setDepo(depo);
+			ker_BILGI.setAna_Grup(angrp);
+			ker_BILGI.setAlt_Grup(altgrp);
+			ker_BILGI.setNakliyeci(nakl);
+			ker_BILGI.setOzel_Kod(cmbozkod.getItemAt(cmbozkod.getSelectedIndex()).toString());
+			ker_BILGI.setBarkod( mdl.getValueAt(i,0).toString());
+			ker_BILGI.setKodu( mdl.getValueAt(i,1).toString());
+			ker_BILGI.setPaket_No( mdl.getValueAt(i,2).toString());
+			ker_BILGI.setMiktar(miktar);
+			ker_BILGI.setKonsimento( mdl.getValueAt(i,6).toString());
+			ker_BILGI.setFiat(fiat);
+			ker_BILGI.setIskonto(isk);
+			ker_BILGI.setKdv(kdv);
+			ker_BILGI.setTutar(tutar);
+			ker_BILGI.setIzahat(izahat);
+			ker_BILGI.setCikis_Evrak(  mdl.getValueAt(i,13).toString());
+			ker_BILGI.setCTarih( mdl.getValueAt(i,14).toString());
+			ker_BILGI.setCKdv(Double.parseDouble( mdl.getValueAt(i,14).toString()));
+			ker_BILGI.setCDoviz( mdl.getValueAt(i,15).toString());
+			ker_BILGI.setCFiat(Double.parseDouble( mdl.getValueAt(i,16).toString()));
+			ker_BILGI.setCTutar(Double.parseDouble( mdl.getValueAt(i,17).toString()));
+			ker_BILGI.setCKur(Double.parseDouble( mdl.getValueAt(i,18).toString()));
+			ker_BILGI.setCCari_Firma( mdl.getValueAt(i,19).toString());
+			ker_BILGI.setCAdres_Firma( mdl.getValueAt(i,20).toString());
+			ker_BILGI.setCIskonto(Double.parseDouble( mdl.getValueAt(i,21).toString()));
+			ker_BILGI.setCTevkifat(Double.parseDouble( mdl.getValueAt(i,22).toString()));
+			ker_BILGI.setCAna_Grup(Integer.parseInt(mdl.getValueAt(i,23).toString()));
+			ker_BILGI.setCAlt_Grup(Integer.parseInt(mdl.getValueAt(i,24).toString()));
+			ker_BILGI.setCDepo(Integer.parseInt(mdl.getValueAt(i,25).toString()));
+			ker_BILGI.setCOzel_Kod( mdl.getValueAt(i,26).toString());
+			ker_BILGI.setCIzahat( mdl.getValueAt(i,27).toString());
+			ker_BILGI.setCNakliyeci(Integer.parseInt(mdl.getValueAt(i,28).toString()));
+			ker_BILGI.setCUSER( mdl.getValueAt(i,29).toString());
+	
+			ker_Access.ker_kaydet(ker_BILGI, GLOBAL.KULL_ADI
+					,lBILGI,BAGLAN_LOG.fatLogDizin);
+
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz2", JOptionPane.ERROR_MESSAGE);     
+		}
 	}
 }

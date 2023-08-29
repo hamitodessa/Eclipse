@@ -6,25 +6,45 @@ public class KER_BILGI {
 	private String Kodu;
 	private String Paket_No ;
 	private String Konsimento;
-	private int Miktar ;
+	private double Miktar ;
 	private String Tarih;
-	private float Kdv ;
+	private double Kdv ;
 	private String Doviz ;
-	private float Fiat ;
-	private float Tutar ;
-	private float Kur ;
+	private double Fiat ;
+	private double Tutar ;
+	private double Kur ;
 	private String Cari_Firma ;
 	private String Adres_Firma ;
-	private float Iskonto ;
-	private float Tevkifat ;
+	private double Iskonto ;
+	private double Tevkifat ;
 	private int Ana_Grup ;
 	private int Alt_Grup ;
 	private int Depo ;
+	private int Nakliyeci ;
 	private String Ozel_Kod ;
-	private String Gir_Cik ;
 	private String Izahat ; 
 	private String Cins ;
 	private String USER ;
+	private String CEvrak_No;
+	private String CTarih;
+	private double CKdv ;
+	private String CDoviz ;
+	private double CFiat ;
+	private double CTutar ;
+	private double CKur ;
+	private String CCari_Firma ;
+	private String CAdres_Firma ;
+	private double CIskonto ;
+	private double CTevkifat ;
+	private int CAna_Grup ;
+	private int CAlt_Grup ;
+	private int CDepo ;
+	private int CNakliyeci ;
+	private String COzel_Kod ;
+	private String Cikis_Evrak ;
+	private String CIzahat ; 
+	private String CCins ;
+	private String CUSER ;
 	public String getEvrak_No() {
 		return Evrak_No;
 	}
@@ -55,10 +75,10 @@ public class KER_BILGI {
 	public void setKonsimento(String konsimento) {
 		Konsimento = konsimento;
 	}
-	public int getMiktar() {
+	public double getMiktar() {
 		return Miktar;
 	}
-	public void setMiktar(int miktar) {
+	public void setMiktar(double miktar) {
 		Miktar = miktar;
 	}
 	public String getTarih() {
@@ -67,10 +87,10 @@ public class KER_BILGI {
 	public void setTarih(String tarih) {
 		Tarih = tarih;
 	}
-	public float getKdv() {
+	public double getKdv() {
 		return Kdv;
 	}
-	public void setKdv(float kdv) {
+	public void setKdv(double kdv) {
 		Kdv = kdv;
 	}
 	public String getDoviz() {
@@ -79,22 +99,22 @@ public class KER_BILGI {
 	public void setDoviz(String doviz) {
 		Doviz = doviz;
 	}
-	public float getFiat() {
+	public double getFiat() {
 		return Fiat;
 	}
-	public void setFiat(float fiat) {
+	public void setFiat(double fiat) {
 		Fiat = fiat;
 	}
-	public float getTutar() {
+	public double getTutar() {
 		return Tutar;
 	}
-	public void setTutar(float tutar) {
+	public void setTutar(double tutar) {
 		Tutar = tutar;
 	}
-	public float getKur() {
+	public double getKur() {
 		return Kur;
 	}
-	public void setKur(float kur) {
+	public void setKur(double kur) {
 		Kur = kur;
 	}
 	public String getCari_Firma() {
@@ -109,16 +129,16 @@ public class KER_BILGI {
 	public void setAdres_Firma(String adres_Firma) {
 		Adres_Firma = adres_Firma;
 	}
-	public float getIskonto() {
+	public double getIskonto() {
 		return Iskonto;
 	}
-	public void setIskonto(float iskonto) {
+	public void setIskonto(double iskonto) {
 		Iskonto = iskonto;
 	}
-	public float getTevkifat() {
+	public double getTevkifat() {
 		return Tevkifat;
 	}
-	public void setTevkifat(float tevkifat) {
+	public void setTevkifat(double tevkifat) {
 		Tevkifat = tevkifat;
 	}
 	public int getAna_Grup() {
@@ -139,17 +159,17 @@ public class KER_BILGI {
 	public void setDepo(int depo) {
 		Depo = depo;
 	}
+	public int getNakliyeci() {
+		return Nakliyeci;
+	}
+	public void setNakliyeci(int nakliyeci) {
+		Nakliyeci = nakliyeci;
+	}
 	public String getOzel_Kod() {
 		return Ozel_Kod;
 	}
 	public void setOzel_Kod(String ozel_Kod) {
 		Ozel_Kod = ozel_Kod;
-	}
-	public String getGir_Cik() {
-		return Gir_Cik;
-	}
-	public void setGir_Cik(String gir_Cik) {
-		Gir_Cik = gir_Cik;
 	}
 	public String getIzahat() {
 		return Izahat;
@@ -168,6 +188,126 @@ public class KER_BILGI {
 	}
 	public void setUSER(String uSER) {
 		USER = uSER;
+	}
+	public String getCEvrak_No() {
+		return CEvrak_No;
+	}
+	public void setCEvrak_No(String cEvrak_No) {
+		CEvrak_No = cEvrak_No;
+	}
+	public String getCTarih() {
+		return CTarih;
+	}
+	public void setCTarih(String cTarih) {
+		CTarih = cTarih;
+	}
+	public double getCKdv() {
+		return CKdv;
+	}
+	public void setCKdv(double cKdv) {
+		CKdv = cKdv;
+	}
+	public String getCDoviz() {
+		return CDoviz;
+	}
+	public void setCDoviz(String cDoviz) {
+		CDoviz = cDoviz;
+	}
+	public double getCFiat() {
+		return CFiat;
+	}
+	public void setCFiat(double cFiat) {
+		CFiat = cFiat;
+	}
+	public double getCTutar() {
+		return CTutar;
+	}
+	public void setCTutar(double cTutar) {
+		CTutar = cTutar;
+	}
+	public double getCKur() {
+		return CKur;
+	}
+	public void setCKur(double cKur) {
+		CKur = cKur;
+	}
+	public String getCCari_Firma() {
+		return CCari_Firma;
+	}
+	public void setCCari_Firma(String cCari_Firma) {
+		CCari_Firma = cCari_Firma;
+	}
+	public String getCAdres_Firma() {
+		return CAdres_Firma;
+	}
+	public void setCAdres_Firma(String cAdres_Firma) {
+		CAdres_Firma = cAdres_Firma;
+	}
+	public double getCIskonto() {
+		return CIskonto;
+	}
+	public void setCIskonto(double cIskonto) {
+		CIskonto = cIskonto;
+	}
+	public double getCTevkifat() {
+		return CTevkifat;
+	}
+	public void setCTevkifat(double cTevkifat) {
+		CTevkifat = cTevkifat;
+	}
+	public int getCAna_Grup() {
+		return CAna_Grup;
+	}
+	public void setCAna_Grup(int cAna_Grup) {
+		CAna_Grup = cAna_Grup;
+	}
+	public int getCAlt_Grup() {
+		return CAlt_Grup;
+	}
+	public void setCAlt_Grup(int cAlt_Grup) {
+		CAlt_Grup = cAlt_Grup;
+	}
+	public int getCDepo() {
+		return CDepo;
+	}
+	public void setCDepo(int cDepo) {
+		CDepo = cDepo;
+	}
+	public int getCNakliyeci() {
+		return CNakliyeci;
+	}
+	public void setCNakliyeci(int cNakliyeci) {
+		CNakliyeci = cNakliyeci;
+	}
+	public String getCOzel_Kod() {
+		return COzel_Kod;
+	}
+	public void setCOzel_Kod(String cOzel_Kod) {
+		COzel_Kod = cOzel_Kod;
+	}
+	public String getCikis_Evrak() {
+		return Cikis_Evrak;
+	}
+	public void setCikis_Evrak(String cikis_Evrak) {
+		Cikis_Evrak = cikis_Evrak;
+	}
+	public String getCIzahat() {
+		return CIzahat;
+	}
+	public void setCIzahat(String cIzahat) {
+		CIzahat = cIzahat;
+	}
+	public String getCCins() {
+		return CCins;
+	}
+	public void setCCins(String cCins) {
+		CCins = cCins;
+	}
+	public String getCUSER() {
+		return CUSER;
+	}
+	public void setCUSER(String cUSER) {
+		CUSER = cUSER;
 	}
 	
 	

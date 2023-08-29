@@ -2172,6 +2172,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "KOD ACIKLAMA") KOD_ACIKLAMA.kaydet();
 				else if (sonuc == "KONSIMENTO ACIKLAMA") KONS_ACIKLAMA.kaydet();
 				else if (sonuc == "KERESTE DEGISKENLER") KER_DEGISKEN_GIRIS.kayit();
+				else if (sonuc == "KERESTE GIRIS") KER_GIRIS.kaydet();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});

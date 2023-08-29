@@ -994,6 +994,8 @@ public class KER_GIRIS extends JInternalFrame {
 				switch (column) {
 				case 5:
 					return false;
+				case 11:
+					return false;
 				default:
 					return true;
 				}
@@ -1214,13 +1216,6 @@ public class KER_GIRIS extends JInternalFrame {
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Giris", JOptionPane.ERROR_MESSAGE);   
 		}
-		//***********
-		
-	       
-	       
-
-		
-		
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
 				{		
 				@Override
@@ -1228,19 +1223,15 @@ public class KER_GIRIS extends JInternalFrame {
 					TableModel model = (TableModel)e.getSource();
 					if (model.getRowCount() > 0) 
 					{
-						//int row;
-						 int row = e.getFirstRow();
-					   
-						//row = table.getSelectedRow();     //e.getFirstRow();
+						int row;
+						row = table.getSelectedRow();     //e.getFirstRow();
 						int column = e.getColumn();
-					
 						if (column == 2)  //Paket
 						{
 							paketm3();
 						}
 						if (column == 3)  //MIKTAR
 						{
-							
 							Double m3 = 0.00 ;
 							if (! model.getValueAt(row, 1).toString().equals(""))
 							{
@@ -1249,7 +1240,6 @@ public class KER_GIRIS extends JInternalFrame {
 							m3 = ((Double.parseDouble(token[1]) * Double.parseDouble(token[2] ) * Double.parseDouble(token[3] )) * miktar) /1000000000;
 							}
 							model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
-							
 							double fiat = 0 ;
 							fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
 							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
@@ -1270,7 +1260,6 @@ public class KER_GIRIS extends JInternalFrame {
 							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
 							model.setValueAt( fiat * m3,row, 11)  ;
 						}
-						
 					}
 					toplam();
 				}
@@ -1762,16 +1751,11 @@ public class KER_GIRIS extends JInternalFrame {
 		try {
 			long startTime = System.currentTimeMillis();
 			ResultSet rss = null;
-
-
 			rss = ker_Access.ker_oku(textField.getText(), "G");
-
-
 			if (!rss.isBeforeFirst() ) {  
 				txtadres.setText("");
 				yeni_fat = true;
 				GRID_TEMIZLE.grid_temizle(table);
-
 				sifirla();
 			}
 			else
@@ -1780,14 +1764,10 @@ public class KER_GIRIS extends JInternalFrame {
 				yeni_fat = false;
 				txtadres.setText("");
 				GRID_TEMIZLE.grid_temizle(table);
-
 				sifirla();
-
 				//  '***********GRUP DOLDUR
 				ResultSet rsa=null;
-
 				rsa = ker_Access.ker_kod_degisken_ara("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN",String.valueOf(rss.getInt("Ana_Grup")));
-
 				if (!rsa.isBeforeFirst() ) {  
 					cmbaltgrup.setEnabled(false);
 					cmbanagrup.setSelectedItem("");
@@ -1800,9 +1780,7 @@ public class KER_GIRIS extends JInternalFrame {
 				}
 				//**Alt Grup
 				rsa = null;
-
 				rsa = ker_Access.ker_kod_degisken_ara("ALT_GRUP", "ALID_Y", "ALT_GRUP_DEGISKEN",String.valueOf(rss.getInt("Alt_Grup")));
-
 				if (!rsa.isBeforeFirst() ) {  
 					cmbaltgrup.setSelectedItem("");
 				} 
@@ -1813,9 +1791,7 @@ public class KER_GIRIS extends JInternalFrame {
 				}
 				//**nakliye
 				rsa = null;
-
 				rsa = ker_Access.ker_kod_degisken_ara("UNVAN", "NAKID_Y", "NAKLIYECI",String.valueOf(rss.getInt("Nakliyeci")));
-
 				if (!rsa.isBeforeFirst() ) {  
 					cmbnakliyeci.setSelectedItem("");
 				} 
@@ -1824,30 +1800,24 @@ public class KER_GIRIS extends JInternalFrame {
 					rsa.next();
 					cmbnakliyeci.setSelectedItem(rsa.getString("UNVAN"));
 				}			
-
 				rss.first();   
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 				int satir =0 ;
 				do
 				{
 					mdl.insertRow(satir,new Object[]{rss.getString("Barkod"),rss.getString("Kodu"),rss.getString("Paket_No"),
-					rss.getDouble("Miktar"),0,"" ,rss.getString("Konsimento"),rss.getString("Depo"),rss.getDouble("Fiat"),rss.getDouble("Iskonto"),
+					rss.getDouble("Miktar"), m3(rss.getString("Kodu"),rss.getDouble("Miktar")),"" ,rss.getString("Konsimento"),rss.getString("Depo"),rss.getDouble("Fiat"),rss.getDouble("Iskonto"),
 					rss.getDouble("Kdv"),rss.getDouble("Tutar"),rss.getString("Izahat"),rss.getString("Cikis_Evrak"),
 					rss.getString("CTarih"),rss.getDouble("CKdv"),rss.getString("CDoviz"),rss.getDouble("CFiat"),rss.getDouble("CTutar"),rss.getDouble("CKur"),
 					rss.getString("CCari_Firma"),rss.getString("CAdres_Firma"),rss.getDouble("CIskonto"),rss.getDouble("CTevkifat"),
 					rss.getInt("CAna_Grup"),rss.getInt("CAlt_Grup"),rss.getInt("CDepo"),rss.getString("COzel_Kod"),
 					rss.getString("CIzahat"),rss.getInt("CNakliyeci"),rss.getString("CUser")});
 
-						txttev.setText(FORMATLAMA.doub_0(rss.getDouble("Tevkifat")));
-					//////////////////////
+					txttev.setText(FORMATLAMA.doub_0(rss.getDouble("Tevkifat")));
 					satir +=1 ;
 					mdl.removeRow(mdl.getRowCount() -1);
 				}  while (rss.next()) ;
-
-				
-				toplam();
-				m3hesap();
-				//paketm3();
+				paketm3();
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 
@@ -1906,21 +1876,14 @@ public class KER_GIRIS extends JInternalFrame {
 		dtc.setDate(new Date());
 		
 	}
-	private void m3hesap()
+	private   double m3(String kod,double miktar)
 	{
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		String[] token = kod.toString().split("-");
+		double m3 = 0 ;
 		
-		for (int i = 0;i<= model.getRowCount()-1;i++)
-		{
-			
-			String[] token = model.getValueAt( i,1).toString().split("-");
-			double m3 = 0 ;
-			double miktar =  Double.parseDouble(model.getValueAt(i, 3).toString());
-			if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
-				m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
-			}
-			model.setValueAt(  m3,i, 4)  ;
+		if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
+			m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
 		}
-	
+		return m3 ;
 	}
 }

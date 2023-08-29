@@ -99,7 +99,7 @@ public class KER_GIRIS extends JInternalFrame {
 	
 	private static JFormattedTextField txtkur ;
 	private static JFormattedTextField txttev ;
-	private static JComboBox<String> cmbcins;
+	
 	private static JComboBox<String> cmbanagrup ;
 	private static JComboBox<String> cmbaltgrup ;
 	private static JComboBox<String> cmbozkod ;
@@ -198,18 +198,10 @@ public class KER_GIRIS extends JInternalFrame {
 					try {
 						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 						int sno = 0 ;
-						if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
-						{
-
-							//sno  = ker_Access.fatura_no_al("C") ;
-
-						}
-						else
-						{
-
+						
 							//sno  = f_Access.fatura_no_al("G") ;
 
-						}
+						
 
 						int kj = 0 ;
 						kj = 10 - Integer.toString(sno).length() ;
@@ -221,7 +213,7 @@ public class KER_GIRIS extends JInternalFrame {
 					catch (Exception ex)
 					{
 						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-						JOptionPane.showMessageDialog(null,  "Fatura Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
+						JOptionPane.showMessageDialog(null,  "Kereste Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
 			}
@@ -1009,11 +1001,11 @@ public class KER_GIRIS extends JInternalFrame {
 			public void changeSelection(final int row, final int column, boolean toggle, boolean extend)
 			{
 				super.changeSelection(row, column, toggle, extend);
-				if (column < 1)
-				{
-					//table.editCellAt(row, column);
-					//table.transferFocus();
-				}
+				//if (column < 1)
+				//{
+					table.editCellAt(row, column);
+					table.transferFocus();
+				//}
 			}	
 		};
 		table.addKeyListener(new KeyAdapter() {
@@ -1592,25 +1584,22 @@ public class KER_GIRIS extends JInternalFrame {
 	{
 		try {
 			lOG_BILGI lBILGI = new lOG_BILGI();
-			
-				lBILGI.setmESAJ(textField.getText() + " Nolu Giris Kereste Silindi");
-				lBILGI.seteVRAK(textField.getText());
-				ker_Access.ker_giris_sil(textField.getText() ,lBILGI,BAGLAN_LOG.kerLogDizin);
-			
+			lBILGI.setmESAJ(textField.getText() + " Nolu Giris Kereste Silindi");
+			lBILGI.seteVRAK(textField.getText());
+			ker_Access.ker_giris_sil(textField.getText() ,lBILGI,BAGLAN_LOG.kerLogDizin);
+
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
 			{
-				//  Progres_Bar(RG1.Rows.Count - 1, i)
 				if (! mdl.getValueAt(i,1).toString().equals(""))
 				{
 					sat_yaz_2(i);
 				}
 			}
-			// Progres_Bar_Temizle()
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz1", JOptionPane.ERROR_MESSAGE);             
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kerest6e Satyz1", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
 	private static void sat_yaz_2(int i)
@@ -1638,11 +1627,7 @@ public class KER_GIRIS extends JInternalFrame {
 					depo = rs.getInt("DPID_Y");
 				}
 			}
-			
-			
-				miktar = Double.parseDouble( mdl.getValueAt(i,3).toString());
-				
-			
+			miktar = Double.parseDouble( mdl.getValueAt(i,3).toString());
 			double tutar ;
 			tutar =Double.parseDouble(mdl.getValueAt(i,11).toString());
 			if ( mdl.getValueAt(i,12).toString().equals(""))
@@ -1653,8 +1638,6 @@ public class KER_GIRIS extends JInternalFrame {
 			{
 				izahat =  mdl.getValueAt(i,9) .toString();
 			}
-
-			
 			double kur =0.00 ;
 			kur = DecimalFormat.getNumberInstance().parse(txtkur.getText()).doubleValue();
 			angrp = 0 ;
@@ -1757,7 +1740,7 @@ public class KER_GIRIS extends JInternalFrame {
 			ker_BILGI.setCNakliyeci(Integer.parseInt(mdl.getValueAt(i,29).toString()));
 			ker_BILGI.setCUSER( mdl.getValueAt(i,30).toString());
 			ker_Access.ker_kaydet(ker_BILGI, GLOBAL.KULL_ADI
-					,lBILGI,BAGLAN_LOG.fatLogDizin);
+					,lBILGI,BAGLAN_LOG.kerLogDizin);
 
 		}
 		catch (Exception ex)

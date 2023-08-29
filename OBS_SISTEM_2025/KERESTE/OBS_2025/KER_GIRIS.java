@@ -83,7 +83,7 @@ import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.U_KODU_RENDERER;
 import OBS_C_2025.lOG_BILGI;
 
-@SuppressWarnings({"serial","static-access"})
+@SuppressWarnings({"serial","static-access","unused"})
 public class KER_GIRIS extends JInternalFrame {
 	private static JSplitPane splitPane ;
 	private static JTextField textField;
@@ -977,7 +977,7 @@ public class KER_GIRIS extends JInternalFrame {
 					if (table.getSelectedRow() < 0 ) return ;
 					satir_sil();
 					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","","",""});
+					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 					paketm3();
 				}
 				
@@ -1057,7 +1057,7 @@ public class KER_GIRIS extends JInternalFrame {
 		model.addColumn("CDepo", new Integer []{( 0 )});
 		model.addColumn("COzel_Kod", new String []{"" });
 		model.addColumn("CIzahat", new String []{"" });
-		model.addColumn("CNakliyeci", new String []{"" });
+		model.addColumn("CNakliyeci",new Integer []{( 0 )});
 		model.addColumn("CUser", new String []{"" });
 		TableColumn col ;
 		
@@ -1281,12 +1281,12 @@ public class KER_GIRIS extends JInternalFrame {
 		int satir = table.getSelectedRow();
 		if ( satir  < 0 ) 
 		{
-			          mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","","",""});
+			          mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 			satir = 0 ;
 		}
 		else
 		{
-			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","","",""});
+			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 		}
 		table.isRowSelected(satir);
 		table.repaint();
@@ -1576,13 +1576,13 @@ public class KER_GIRIS extends JInternalFrame {
 
 		long startTime = System.currentTimeMillis(); 
 		tar = TARIH_CEVIR.tarih_geri_saatli(dtc) ;
-		GuiUtil.setWaitCursor(FATURA.splitPane,true);
+		GuiUtil.setWaitCursor(KER_GIRIS.splitPane,true);
 		satir_yaz_1();
 		//dipnot_yaz();
 		//acik_yaz();
 		//cikis_yaz();
 		//************************************
-		GuiUtil.setWaitCursor(FATURA.splitPane,false);
+		GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
 		long endTime = System.currentTimeMillis();
 		long estimatedTime = endTime - startTime;
 		double seconds = (double)estimatedTime/1000; 
@@ -1593,7 +1593,7 @@ public class KER_GIRIS extends JInternalFrame {
 		try {
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			
-				lBILGI.setmESAJ(textField.getText() + " Nolu Giris Fatura Silindi");
+				lBILGI.setmESAJ(textField.getText() + " Nolu Giris Kereste Silindi");
 				lBILGI.seteVRAK(textField.getText());
 				ker_Access.ker_giris_sil(textField.getText() ,lBILGI,BAGLAN_LOG.kerLogDizin);
 			
@@ -1603,7 +1603,7 @@ public class KER_GIRIS extends JInternalFrame {
 				//  Progres_Bar(RG1.Rows.Count - 1, i)
 				if (! mdl.getValueAt(i,1).toString().equals(""))
 				{
-					//sat_yaz_2(i);
+					sat_yaz_2(i);
 				}
 			}
 			// Progres_Bar_Temizle()
@@ -1617,7 +1617,8 @@ public class KER_GIRIS extends JInternalFrame {
 	{
 		try {
 			String  izahat ;
-			double  miktar, kur ;
+			double  miktar=0;
+			
 			int angrp, altgrp, depo, nakl;
 			depo = 0 ;
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
@@ -1652,6 +1653,9 @@ public class KER_GIRIS extends JInternalFrame {
 			{
 				izahat =  mdl.getValueAt(i,9) .toString();
 			}
+
+			
+			double kur =0.00 ;
 			kur = DecimalFormat.getNumberInstance().parse(txtkur.getText()).doubleValue();
 			angrp = 0 ;
 			if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
@@ -1708,7 +1712,6 @@ public class KER_GIRIS extends JInternalFrame {
 			lBILGI.setmESAJ( " Fatura Kayit" +  mdl.getValueAt(i,1).toString() + " Mik=" + miktar + " Tut=" + tutar);
 			lBILGI.seteVRAK(textField.getText());
 			
-			
 			//
 			KER_BILGI ker_BILGI = new KER_BILGI();
 			
@@ -1720,6 +1723,7 @@ public class KER_GIRIS extends JInternalFrame {
 			ker_BILGI.setAna_Grup(angrp);
 			ker_BILGI.setAlt_Grup(altgrp);
 			ker_BILGI.setNakliyeci(nakl);
+			ker_BILGI.setDoviz( txtdoviz.getText());
 			ker_BILGI.setOzel_Kod(cmbozkod.getItemAt(cmbozkod.getSelectedIndex()).toString());
 			ker_BILGI.setBarkod( mdl.getValueAt(i,0).toString());
 			ker_BILGI.setKodu( mdl.getValueAt(i,1).toString());
@@ -1733,23 +1737,25 @@ public class KER_GIRIS extends JInternalFrame {
 			ker_BILGI.setIzahat(izahat);
 			ker_BILGI.setCikis_Evrak(  mdl.getValueAt(i,13).toString());
 			ker_BILGI.setCTarih( mdl.getValueAt(i,14).toString());
-			ker_BILGI.setCKdv(Double.parseDouble( mdl.getValueAt(i,14).toString()));
-			ker_BILGI.setCDoviz( mdl.getValueAt(i,15).toString());
-			ker_BILGI.setCFiat(Double.parseDouble( mdl.getValueAt(i,16).toString()));
-			ker_BILGI.setCTutar(Double.parseDouble( mdl.getValueAt(i,17).toString()));
-			ker_BILGI.setCKur(Double.parseDouble( mdl.getValueAt(i,18).toString()));
-			ker_BILGI.setCCari_Firma( mdl.getValueAt(i,19).toString());
-			ker_BILGI.setCAdres_Firma( mdl.getValueAt(i,20).toString());
-			ker_BILGI.setCIskonto(Double.parseDouble( mdl.getValueAt(i,21).toString()));
-			ker_BILGI.setCTevkifat(Double.parseDouble( mdl.getValueAt(i,22).toString()));
-			ker_BILGI.setCAna_Grup(Integer.parseInt(mdl.getValueAt(i,23).toString()));
-			ker_BILGI.setCAlt_Grup(Integer.parseInt(mdl.getValueAt(i,24).toString()));
-			ker_BILGI.setCDepo(Integer.parseInt(mdl.getValueAt(i,25).toString()));
-			ker_BILGI.setCOzel_Kod( mdl.getValueAt(i,26).toString());
-			ker_BILGI.setCIzahat( mdl.getValueAt(i,27).toString());
-			ker_BILGI.setCNakliyeci(Integer.parseInt(mdl.getValueAt(i,28).toString()));
-			ker_BILGI.setCUSER( mdl.getValueAt(i,29).toString());
+			ker_BILGI.setCKdv(Double.parseDouble( mdl.getValueAt(i,15).toString()));
+			ker_BILGI.setCDoviz( mdl.getValueAt(i,16).toString());
 	
+			ker_BILGI.setCFiat(Double.parseDouble( mdl.getValueAt(i,17).toString()));
+			ker_BILGI.setCTutar(Double.parseDouble( mdl.getValueAt(i,18).toString()));
+			ker_BILGI.setCKur(Double.parseDouble( mdl.getValueAt(i,19).toString()));
+			ker_BILGI.setCCari_Firma( mdl.getValueAt(i,20).toString());
+			ker_BILGI.setCAdres_Firma( mdl.getValueAt(i,21).toString());
+		
+			ker_BILGI.setCIskonto(Double.parseDouble( mdl.getValueAt(i,22).toString()));
+			ker_BILGI.setCTevkifat(Double.parseDouble( mdl.getValueAt(i,23).toString()));
+			ker_BILGI.setCAna_Grup(Integer.parseInt(mdl.getValueAt(i,24).toString()));
+			ker_BILGI.setCAlt_Grup(Integer.parseInt(mdl.getValueAt(i,25).toString()));
+			ker_BILGI.setCDepo(Integer.parseInt(mdl.getValueAt(i,26).toString()));
+			
+			ker_BILGI.setCOzel_Kod( mdl.getValueAt(i,27).toString());
+			ker_BILGI.setCIzahat( mdl.getValueAt(i,28).toString());
+			ker_BILGI.setCNakliyeci(Integer.parseInt(mdl.getValueAt(i,29).toString()));
+			ker_BILGI.setCUSER( mdl.getValueAt(i,30).toString());
 			ker_Access.ker_kaydet(ker_BILGI, GLOBAL.KULL_ADI
 					,lBILGI,BAGLAN_LOG.fatLogDizin);
 

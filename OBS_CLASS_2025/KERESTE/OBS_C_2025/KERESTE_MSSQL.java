@@ -183,7 +183,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " [COzel_Kod] [nvarchar](10) NULL,"
 				+ " [CIzahat] [nvarchar](40) NULL,"
 				+ " [CNakliyeci] [int] NULL,"
-				+ " [CUSER] [nvarchar](15) NOT NULL,"
+				+ " [CUSER] [nvarchar](15)  NULL,"
 				+ " INDEX IX_KERESTE NONCLUSTERED (Evrak_No,Kodu,Tarih,Paket_No,Konsimento,Cari_Firma,Cikis_Evrak)) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
@@ -761,55 +761,54 @@ public class KERESTE_MSSQL implements IKERESTE {
 	@Override
 	public void ker_kaydet(KER_BILGI kBILGI, String user) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " +
-				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,[USER]) " +
-				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
-		
-		///////////////////////
-		
-		+ " [Cikis_Evrak] [nvarchar](10) NULL,"
-		+ " [CTarih] [datetime] NULL,"
-		+ " [CKdv] [float] NULL,"
-		+ " [CDoviz] [nvarchar](3) NULL,"
-		+ " [CFiat] [float] NULL,"
-		+ " [CTutar] [float] NULL,"
-		+ " [CKur] [float] NULL,"
-		+ " [CCari_Firma] [nvarchar](12) NULL,"
-		+ " [CAdres_Firma] [nvarchar](12) NULL,"
-		+ " [CIskonto] [float] NULL,"
-		+ " [CTevkifat] [float] NULL,"
-		+ " [CAna_Grup] [int] NULL,"
-		+ " [CAlt_Grup] [int] NULL,"
-		+ " [CDepo] [int] NULL,"
-		+ " [COzel_Kod] [nvarchar](10) NULL,"
-		+ " [CIzahat] [nvarchar](40) NULL,"
-		+ " [CNakliyeci] [int] NULL,"
-		+ " [CUSER] [nvarchar](15) NOT NULL,"
-		
+		String sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " + //15
+				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,[USER],Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
+				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER) " + //9
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		///////////////////
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
-		stmt.setString(1,fatno);
-		stmt.setString(2, kodu);
-		stmt.setInt(3,depo);
-		stmt.setDouble(4, fiat);
-		stmt.setDouble(5, tevkifat);
-		stmt.setDouble(6, miktar);
-		stmt.setString(7, gircik);
-		stmt.setDouble(8, tutar);
-		stmt.setDouble(9, iskonto);
-		stmt.setDouble(10, kdv);
-		stmt.setString(11, tarih);
-		stmt.setString(12, izah);
-		stmt.setString(13, doviz);
-		stmt.setString(14, adrfirma);
-		stmt.setString(15, carfirma);
-		stmt.setString(16, ozkod);
-		stmt.setDouble(17, kur);
-		stmt.setString(18, cins);
-		stmt.setInt(19,anagrp);
-		stmt.setInt(20,altgrp);
-		stmt.setString(21,usr);
+		stmt.setString(1,kBILGI.getEvrak_No());
+		stmt.setString(2, kBILGI.getBarkod());
+		stmt.setString(3,kBILGI.getKodu());
+		stmt.setString(4,kBILGI.getPaket_No());
+		stmt.setString(5,kBILGI.getKonsimento());
+		stmt.setDouble(6, kBILGI.getMiktar());
+		stmt.setString(7,kBILGI.getTarih());
+		stmt.setDouble(8, kBILGI.getKdv());
+		stmt.setString(9,kBILGI.getDoviz());
+		stmt.setDouble(10, kBILGI.getFiat());
+		stmt.setDouble(11, kBILGI.getTutar());
+		stmt.setDouble(12, kBILGI.getKur());
+		stmt.setString(13,kBILGI.getCari_Firma());
+		stmt.setString(14,kBILGI.getAdres_Firma());
+		stmt.setDouble(15, kBILGI.getIskonto());
+		stmt.setDouble(16, kBILGI.getTevkifat());
+		stmt.setInt(17, kBILGI.getAna_Grup());
+		stmt.setInt(18, kBILGI.getAlt_Grup());
+		stmt.setInt(19, kBILGI.getDepo());
+		stmt.setString(20,kBILGI.getOzel_Kod());
+		stmt.setString(21,kBILGI.getIzahat());
+		stmt.setInt(22, kBILGI.getNakliyeci());
+		stmt.setString(23,  user);
+		stmt.setString(24,kBILGI.getCikis_Evrak());
+		stmt.setString(25,kBILGI.getCTarih());
+		stmt.setDouble(26, kBILGI.getCKdv());
+		stmt.setString(27,kBILGI.getCDoviz());
+		stmt.setDouble(28, kBILGI.getCFiat());
+		stmt.setDouble(29, kBILGI.getCTutar());
+		stmt.setDouble(30, kBILGI.getCKur());
+		stmt.setString(31,kBILGI.getCCari_Firma());
+		stmt.setString(32,kBILGI.getCAdres_Firma());
+		stmt.setDouble(33, kBILGI.getCIskonto());
+		stmt.setDouble(34, kBILGI.getCTevkifat());
+		stmt.setInt(35, kBILGI.getCAna_Grup());
+		stmt.setInt(36, kBILGI.getCAlt_Grup());
+		stmt.setInt(37, kBILGI.getCDepo());
+		stmt.setString(38,kBILGI.getCOzel_Kod());
+		stmt.setString(39,kBILGI.getCIzahat());
+		stmt.setInt(40, kBILGI.getCNakliyeci());
+		stmt.setString(41,  kBILGI.getCUSER());
 		stmt.executeUpdate();
 		stmt.close();
 		

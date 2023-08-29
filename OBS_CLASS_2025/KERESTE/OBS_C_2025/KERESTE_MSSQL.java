@@ -813,4 +813,22 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.close();
 		
 	}
+
+	@Override
+	public ResultSet ker_oku(String eno, String cins) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		//String sql =     "SELECT  * " +
+		//		" FROM KERESTE WITH (INDEX (IX_KERESTE)) " +
+		//		" WHERE Evrak_No  = N'" + eno + "'" ;
+		String sql = "SELECT   [Evrak_No] ,[Barkod] ,[Kodu],[Paket_No],[Konsimento] ,[Miktar],[Tarih],[Kdv] ,[Doviz] ,[Fiat]  ,[Tutar] ,[Kur]  ,[Cari_Firma],[Adres_Firma]  ,[Iskonto] ,[Tevkifat] "
+				+ "	,[Ana_Grup]  ,[Alt_Grup] ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) , '') AS Depo  ,[Ozel_Kod] ,[Izahat]  ,[Nakliyeci] ,[USER] "
+				+ "	,[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] ,[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat] "
+				+ "	,[CAna_Grup]    ,[CAlt_Grup]  ,[CDepo]  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER]" 
+				+ " FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
+				+ " WHERE Evrak_No  = N'" + eno + "'" ;
+		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		return rss;	
+	}
 }

@@ -35,4 +35,5 @@ public interface IKERESTE {
 	public String son_no_al(String cins) throws ClassNotFoundException, SQLException;
 	public void ker_giris_sil(String eno) throws ClassNotFoundException, SQLException;
 	public void ker_kaydet(KER_BILGI kBILGI,String user) throws ClassNotFoundException, SQLException;
+	public ResultSet ker_oku(String eno,String cins) throws ClassNotFoundException, SQLException;
 }

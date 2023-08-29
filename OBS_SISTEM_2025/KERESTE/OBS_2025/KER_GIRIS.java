@@ -549,6 +549,7 @@ public class KER_GIRIS extends JInternalFrame {
 		cmbnakliyeci = new JComboBox<String>();
 		cmbnakliyeci.setBounds(560, 33, 156, 22);
 		panel_2.add(cmbnakliyeci);
+		
 
 		
 		JPanel panel_4 = new JPanel();
@@ -969,7 +970,7 @@ public class KER_GIRIS extends JInternalFrame {
 					if (table.getSelectedRow() < 0 ) return ;
 					satir_sil();
 					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,""});
+					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"",""});
 					paketm3();
 				}
 				
@@ -1033,7 +1034,7 @@ public class KER_GIRIS extends JInternalFrame {
 		model.addColumn("KDV",new Double [] {( 0.00 )});
 		model.addColumn("Tutar",new Double [] {( 0.00 )});
 		model.addColumn("Izahat", new String []{"" });
-			
+		model.addColumn("Cikis_Evrak", new String []{"" });
 		TableColumn col ;
 		
 		col = table.getColumnModel().getColumn(0);
@@ -1160,6 +1161,12 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setCellEditor(new DefaultCellEditor(atf));
 		col.setHeaderRenderer(new SOLA());
 		
+		col = table.getColumnModel().getColumn(13);
+		col.setMinWidth(100);
+		col.setHeaderRenderer(new SOLA());
+		
+		
+		table.removeColumn(table.getColumnModel().getColumn(13));
 		
 		JTableHeader th = table.getTableHeader();
 		Dimension dd = table.getPreferredSize();
@@ -1243,13 +1250,10 @@ public class KER_GIRIS extends JInternalFrame {
 							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
 							model.setValueAt( fiat * m3,row, 11)  ;
 						}
-						
 					}
-				
 					toplam();
 				}
 				});
-		
 	}
 	private static void satir_ilave()
 	{
@@ -1257,12 +1261,12 @@ public class KER_GIRIS extends JInternalFrame {
 		int satir = table.getSelectedRow();
 		if ( satir  < 0 ) 
 		{
-			          mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,""});
+			          mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"",""});
 			satir = 0 ;
 		}
 		else
 		{
-			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,""});
+			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"",""});
 		}
 		table.isRowSelected(satir);
 		table.repaint();

@@ -342,6 +342,11 @@ public class GLOBAL {
 			prop.setProperty("ETIKET_GEN", "240");
 			prop.setProperty("ETIKET_ARA_BOSLUK", "0");
 			prop.setProperty("ETIKET_YAZIM", "Yatay");
+			prop.setProperty("KER_FIR_BILGI","Cari_Dosya");
+			prop.setProperty("KER_GIRIS","[Calibri,0,12]");
+			prop.setProperty("KER_FAT_SATIR", "25");
+			prop.setProperty("KER_STOK_KONTROL", "-1");
+			prop.setProperty("KER_RAPORLAMA","[Calibri,0,12]");
 			prop.store(output, "OBS AYARLAR");
 			output.close();
 		} catch (FileNotFoundException e2) {

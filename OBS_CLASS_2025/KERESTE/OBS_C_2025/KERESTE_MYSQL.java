@@ -190,6 +190,25 @@ public class KERESTE_MYSQL implements IKERESTE {
 		return null;
 	}
 
+	@Override
+	public void dipnot_sil(String ino, String cins, String gircik) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dipnot_yaz(String eno, String bir, String iki, String uc, String tip, String gircik, String usr)
+			throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ResultSet dipnot_oku(String ino, String cins, String gircik) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

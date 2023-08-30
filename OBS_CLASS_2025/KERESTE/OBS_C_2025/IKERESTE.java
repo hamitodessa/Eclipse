@@ -36,4 +36,7 @@ public interface IKERESTE {
 	public void ker_giris_sil(String eno) throws ClassNotFoundException, SQLException;
 	public void ker_kaydet(KER_BILGI kBILGI,String user) throws ClassNotFoundException, SQLException;
 	public ResultSet ker_oku(String eno,String cins) throws ClassNotFoundException, SQLException;
+	public void dipnot_sil(String ino,String cins,String gircik) throws ClassNotFoundException, SQLException;
+	public void dipnot_yaz(String eno,String bir,String iki,String uc,String tip,String gircik,String usr) throws ClassNotFoundException, SQLException;
+	public ResultSet dipnot_oku(String ino,String cins ,String gircik) throws ClassNotFoundException, SQLException;
 }

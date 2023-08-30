@@ -9,7 +9,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -18,13 +17,11 @@ import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
 
 import javax.swing.ActionMap;
 import javax.swing.DefaultCellEditor;
@@ -54,13 +51,9 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
-import javax.swing.text.MaskFormatter;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -75,19 +68,18 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
-import OBS_C_2025.KER_BILGI;
 import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SAGA_BOLD;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
-import OBS_C_2025.U_KODU_RENDERER;
 import OBS_C_2025.lOG_BILGI;
 
-@SuppressWarnings({"serial","static-access","unused"})
-public class KER_GIRIS extends JInternalFrame {
+public class KERESTE_CIKIS extends JInternalFrame {
 	private static JSplitPane splitPane ;
+	private static JTabbedPane tabbedPane ;
+
 	private static JTextField textField;
 	private static JTextField txtcari;
 	private static JTextField txtadres;
@@ -98,15 +90,16 @@ public class KER_GIRIS extends JInternalFrame {
 	private static JTextField textField_8;
 	private static JTextField textField_9;
 	private static JTextField textField_10;
-	
+
 	private static JFormattedTextField txtkur ;
 	private static JFormattedTextField txttev ;
-	
+
 	private static JComboBox<String> cmbanagrup ;
 	private static JComboBox<String> cmbaltgrup ;
 	private static JComboBox<String> cmbozkod ;
 	private static JComboBox<String> cmbnakliyeci ;
 	private static JDateChooser dtc ;
+
 	private static JLabel label;
 	private static JLabel label_1 ;
 	private static JLabel label_2 ;
@@ -117,8 +110,8 @@ public class KER_GIRIS extends JInternalFrame {
 	private static JLabel label_9 ;
 	private static JLabel lblNewLabel_20;
 	private static JLabel lblPaket ;
-	
-	
+
+
 	private static JLabel lblNewLabel_3;
 	private static JLabel lblNewLabel_6 ;
 	private static JLabel lblNewLabel_17;
@@ -127,12 +120,8 @@ public class KER_GIRIS extends JInternalFrame {
 	private ArrayList<String> listdepo = null ;
 	
 	
-	private static JTabbedPane tabbedPane ;
 	private static JTable table;
-	
-	private static  String tar = "" ;
 	private static boolean yeni_fat = false;
-	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
@@ -144,7 +133,7 @@ public class KER_GIRIS extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					KER_GIRIS frame = new KER_GIRIS();
+					KERESTE_CIKIS frame = new KERESTE_CIKIS();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -156,14 +145,14 @@ public class KER_GIRIS extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public KER_GIRIS() {
-		setTitle("KERESTE GIRIS");
+	public KERESTE_CIKIS() {
+		setTitle("KERESTE CIKIS");
 		setResizable(true);
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0,1185,800);
-		
+
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
@@ -201,8 +190,8 @@ public class KER_GIRIS extends JInternalFrame {
 					try {
 						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 						int sno = 0 ;
-						
-							//sno  = f_Access.fatura_no_al("G") ;
+
+						//sno  = f_Access.fatura_no_al("G") ;
 						int kj = 0 ;
 						kj = 10 - Integer.toString(sno).length() ;
 						String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
@@ -257,14 +246,14 @@ public class KER_GIRIS extends JInternalFrame {
 		textField.setBounds(89, 8, 110, 20);
 		panel_2.add(textField);
 		textField.setColumns(10);
-		
+
 		JButton button_1 = new JButton("");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				
+
 				son_fisoku();
-				
+
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
@@ -494,7 +483,7 @@ public class KER_GIRIS extends JInternalFrame {
 		});
 		cmbanagrup.setBounds(797, 7, 148, 22);
 		panel_2.add(cmbanagrup);
-		
+
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -539,18 +528,16 @@ public class KER_GIRIS extends JInternalFrame {
 		txtkur.setText("0.0000");
 		txtkur.setBounds(1050, 33, 73, 20);
 		panel_2.add(txtkur);
-		
+
 		JLabel lblNewLabel_7_1 = new JLabel("Nakliyeci");
 		lblNewLabel_7_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_7_1.setBounds(490, 37, 61, 14);
 		panel_2.add(lblNewLabel_7_1);
-		
+
 		cmbnakliyeci = new JComboBox<String>();
 		cmbnakliyeci.setBounds(560, 33, 156, 22);
 		panel_2.add(cmbnakliyeci);
-		
 
-		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane_1.addTab("Yazici Bilgileri", null, panel_4, null);
@@ -703,38 +690,6 @@ public class KER_GIRIS extends JInternalFrame {
 		});
 		btnNewButton_4.setBounds(169, 18, 25, 23);
 		panel_7.add(btnNewButton_4);
-
-		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(new Color(0, 191, 255)));
-		tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
-		panel_5.setLayout(null);
-
-		JLabel lblNewLabel_18 = new JLabel("1 -");
-		lblNewLabel_18.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_18.setBounds(10, 11, 34, 14);
-		panel_5.add(lblNewLabel_18);
-
-		JLabel lblNewLabel_19 = new JLabel("2 -");
-		lblNewLabel_19.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_19.setBounds(10, 38, 34, 14);
-		panel_5.add(lblNewLabel_19);
-
-		textField_9 = new JTextField();
-		textField_9.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_9.setBounds(54, 8, 447, 20);
-		textField_9.setDocument(new JTextFieldLimit(50));
-		panel_5.add(textField_9);
-		textField_9.setColumns(10);
-
-		textField_10 = new JTextField();
-		textField_10.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_10.setBounds(54, 33, 447, 20);
-		textField_10.setDocument(new JTextFieldLimit(50));
-		panel_5.add(textField_10);
-		textField_10.setColumns(10);
-		
-		
-
 		//****************ALT BOLUM*********************************************
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setDividerSize(0);
@@ -743,26 +698,28 @@ public class KER_GIRIS extends JInternalFrame {
 
 		splitPane.setRightComponent(splitPane_1);
 
-		
-		
-		
+
+
+
 		JPanel panel_3 = new JPanel();
 		splitPane_1.setRightComponent(panel_3);
 		panel_3.setMinimumSize(new Dimension(0, 140));
 		panel_3.setMaximumSize(new Dimension(0, 140));
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
+		
+
 		JSplitPane splitPane_3 = new JSplitPane();
 		splitPane_3.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		panel_3.add(splitPane_3);
-		
+
 		JPanel panel_71 = new JPanel();
 		panel_71.setBorder(new LineBorder(new Color(0, 191, 255)));
 		panel_71.setBounds(2, 1, 1158, 21);
 		panel_71.setMinimumSize(new Dimension(0, 25));
 		panel_71.setMaximumSize(new Dimension(0,25));
 		panel_71.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
 		lblNewLabel.setBounds(32, 5, 85, 14);
 		panel_71.add(lblNewLabel);
@@ -860,15 +817,15 @@ public class KER_GIRIS extends JInternalFrame {
 		txttev.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				if (txttev.getText().equals("")) return ;
-				toplam();
+				//toplam();
 			}
 			public void removeUpdate(DocumentEvent e) {
 				if (txttev.getText().equals("")) return ;
-				toplam();
+				//toplam();
 			}
 			public void insertUpdate(DocumentEvent e) {
 				if (txttev.getText().equals("")) return ;
-				toplam();
+				//toplam();
 			}
 		});
 		panel_1.add(txttev);
@@ -921,68 +878,38 @@ public class KER_GIRIS extends JInternalFrame {
 		label.setBounds(927, 39, 109, 14);
 		panel_1.add(label);
 		
+		splitPane_3.setLeftComponent(panel_71);
+
+
 		//** Sol Toolbar *****************************************************************
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setDividerSize(0);
 		splitPane_1.setLeftComponent(splitPane_2);
-		
-		
+
+
 		JToolBar toolBar_1 = new JToolBar();
 		toolBar_1.setFloatable(false);
 		toolBar_1.setMinimumSize(new Dimension(30, 0));
 		toolBar_1.setMaximumSize(new Dimension(30, 0));
 		toolBar_1.setOrientation(SwingConstants.VERTICAL);
 		splitPane_2.setLeftComponent(toolBar_1);
-		
+
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (table.getSelectedRow() < 0 ) return ;
-				
+
+
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));
 		toolBar_1.add(btnNewButton);
 
-		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (tabbedPane.getSelectedIndex() == 0)
-				{
-					satir_ilave();
-					paketm3();
-					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-					mdll.removeRow(mdll.getRowCount() -1);
-					
-				}
-				
-			}
-		});
-		btnNewButton_2.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/yeni.png")));
-		toolBar_1.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (tabbedPane.getSelectedIndex() == 0)
-				{
-					if (table.getSelectedRow() < 0 ) return ;
-					satir_sil();
-					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
-					paketm3();
-				}
-				
-			}
-		});
-		btnNewButton_3.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-reduce-16.png")));
-		toolBar_1.add(btnNewButton_3);
 		//////////////////////////////ARA BOLUM********************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_2.setRightComponent(tabbedPane);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 
 		tabbedPane.addTab("Kereste", null, scrollPane, null);
@@ -992,12 +919,11 @@ public class KER_GIRIS extends JInternalFrame {
 			@Override
 			public boolean isCellEditable(int row, int column) {  
 				switch (column) {
-				case 5:
-					return false;
-				case 11:
-					return false;
-				default:
+				case 0:
 					return true;
+				
+				default:
+					return false;
 				}
 			}
 			public void changeSelection(final int row, final int column, boolean toggle, boolean extend)
@@ -1010,36 +936,11 @@ public class KER_GIRIS extends JInternalFrame {
 				//}
 			}	
 		};
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				DefaultTableModel model = (DefaultTableModel) table.getModel();
-				try {
-					kod_ADI(  model.getValueAt(table.getSelectedRow(), 1).toString());
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		table.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == 10)
-				{
-					if (table.isEditing())
-						table.getCellEditor().stopCellEditing();
-				}
-			}
-		});
 		table.setGridColor(oac.gridcolor);
 		table.setCellSelectionEnabled(true);
-		model.addColumn("Barkod", new String []{""});
-		model.addColumn("Urun Kodu", new String []{""});
+		
 		model.addColumn("Paket_No", new String []{""});
+		model.addColumn("Urun Kodu", new String []{""});
 		model.addColumn("Miktar", new Double [] {( 0.000 )});
 		model.addColumn("M3", new Double [] {( 0.000 )});
 		model.addColumn("Paket_M3", new String []{""});
@@ -1050,151 +951,84 @@ public class KER_GIRIS extends JInternalFrame {
 		model.addColumn("KDV",new Double [] {( 0.00 )});
 		model.addColumn("Tutar",new Double [] {( 0.00 )});
 		model.addColumn("Izahat", new String []{"" });
-		model.addColumn("Cikis_Evrak", new String []{"" });
-		model.addColumn("CTarih", new String []{"" });
-		model.addColumn("CKdv", new Double [] {( 0.000 )});
-		model.addColumn("CDoviz", new String []{"" });
-		model.addColumn("CFiat", new Double [] {( 0.000 )});
-		model.addColumn("CTutar", new Double [] {( 0.000 )});
-		model.addColumn("CKur", new Double [] {( 0.000 )});
-		model.addColumn("CCari_Firma", new String []{"" });
-		model.addColumn("CAdres_Firma", new String []{"" });
-		model.addColumn("CIskonto", new Double [] {( 0.000 )});
-		model.addColumn("CTevkifat", new Double [] {( 0.000 )});
-		model.addColumn("CAna_Grup", new Integer []{( 0 )});
-		model.addColumn("CAlt_Grup", new Integer []{( 0 )});
-		model.addColumn("CDepo", new Integer []{( 0 )});
-		model.addColumn("COzel_Kod", new String []{"" });
-		model.addColumn("CIzahat", new String []{"" });
-		model.addColumn("CNakliyeci",new Integer []{( 0 )});
-		model.addColumn("CUser", new String []{"" });
+		
 		TableColumn col ;
+		
+		JTextField ftext = new JTextField();
+		textField.setDocument(new JTextFieldLimit(10));
+		ftext.setFont(new Font(table.getFont().getFontName(),1 ,12));
 		
 		col = table.getColumnModel().getColumn(0);
 		col.setMinWidth(100);
 		col.setHeaderRenderer(new SOLA());
-		
-		//******************************************************************KODU *********************************
-		JFormattedTextField ftext = new JFormattedTextField();
-		ftext.setFont(new Font(table.getFont().getFontName(),1 ,12));
-		ftext.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				//System.out.println(ftext.getText());
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			}
-			public void removeUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				//System.out.println(ftext.getText());
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			}
-			public void insertUpdate(DocumentEvent e) {
-				String[] token = ftext.getText().split("-");
-				try {
-					if (table.getSelectedRow() == -1 ) return ;
-					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-					
-					kod_ADI(ftext.getText());
-					DefaultTableModel model = (DefaultTableModel) table.getModel();
-					double m3 = 0 ;
-					double miktar =  Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString());
-					if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
-						m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
-					}
-					
-					model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
-					
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null,  ex.getMessage(),  "KOD ACIKLAMA", JOptionPane.ERROR_MESSAGE); 
-				}
-				
-				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-			}
-		});
-		MaskFormatter mask;
-		try {
-		    mask = new MaskFormatter("##-###-####-####");
-		    mask.install(ftext);
-		} catch (ParseException e) {
-		    e.printStackTrace();
-		}
+		col.setCellEditor(new DefaultCellEditor(ftext));
 		
 		col = table.getColumnModel().getColumn(1);
-		col.setCellRenderer(new U_KODU_RENDERER());
 		col.setMinWidth(120);
-		col.setCellEditor(new DefaultCellEditor(ftext));
 		col.setHeaderRenderer(new SOLA());
 		
 		col = table.getColumnModel().getColumn(2);
-		col.setMinWidth(65);
-		col.setHeaderRenderer(new SOLA());
-		
-		col = table.getColumnModel().getColumn(3);
 		col.setMinWidth(50);
 		col.setCellRenderer(new TABLO_RENDERER(0,false));
 		col.setCellEditor( new DoubleEditor(0) );
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(4);
+		col = table.getColumnModel().getColumn(3);
 		col.setMinWidth(65);
 		col.setCellRenderer(new TABLO_RENDERER(3,true));
 		col.setCellEditor( new DoubleEditor(3) );
 		col.setHeaderRenderer(new SAGA());
 		
 		
-		col = table.getColumnModel().getColumn(5);
+		col = table.getColumnModel().getColumn(4);
 		col.setMinWidth(65);
 		col.setCellRenderer(new SAGA_BOLD());
-		//col.setCellEditor( new DoubleEditor(3) );
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(6);
+		col = table.getColumnModel().getColumn(5);
 		col.setMinWidth(75);
 		col.setHeaderRenderer(new SOLA());
 		
-		col = table.getColumnModel().getColumn(7);
+		col = table.getColumnModel().getColumn(6);
 		listdepo = new ArrayList<String> () ;
-		depo_auto();
+		//depo_auto();
 		Java2sAutoComboBox combodp = new Java2sAutoComboBox( listdepo,"kereste");
 		combodp.setDataList(listdepo);
 		col.setCellEditor(new DefaultCellEditor(combodp));
 		col.setMinWidth(100);
 		col.setHeaderRenderer(new SOLA());
 		
-		col = table.getColumnModel().getColumn(8);
+		col = table.getColumnModel().getColumn(7);
 		col.setMinWidth(75);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(9);
+		col = table.getColumnModel().getColumn(8);
 		col.setMinWidth(50);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
 		
-		col = table.getColumnModel().getColumn(10);
+		col = table.getColumnModel().getColumn(9);
 		col.setMinWidth(30);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(11);
+		col = table.getColumnModel().getColumn(10);
 		col.setMinWidth(100);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,true));
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(12);
+		col = table.getColumnModel().getColumn(11);
 		col.setMinWidth(175);
 		JTextField atf = new JTextField(40);
 		col.setCellEditor(new DefaultCellEditor(atf));
 		col.setHeaderRenderer(new SOLA());
 		
-		for (int i =0 ; i <=17;i++) {
-			table.removeColumn(table.getColumnModel().getColumn(13));
-		}
 		JTableHeader th = table.getTableHeader();
 		Dimension dd = table.getPreferredSize();
 		dd.height = 30;
@@ -1212,89 +1046,15 @@ public class KER_GIRIS extends JInternalFrame {
 		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		
 		scrollPane.setViewportView(table);
-
+		
+		
+		
 		ana_grup_doldur();
 		ker_oz_kod();
 		ker_nakliyeci();
-		//***********
-		String deger;
-		Integer sat_sayi;
-		try {
-			deger = GLOBAL.setting_oku("KER_FAT_SATIR").toString();
-			sat_sayi =Integer.parseInt(deger);
-			for (int i = 0; i <= sat_sayi -1 ; i ++)
-			{
-				satir_ilave();
-			}
-		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Giris", JOptionPane.ERROR_MESSAGE);   
-		}
-		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
-				{		
-				@Override
-					public void tableChanged(TableModelEvent e) {
-					TableModel model = (TableModel)e.getSource();
-					if (model.getRowCount() > 0) 
-					{
-						int row;
-						row = table.getSelectedRow();     //e.getFirstRow();
-						int column = e.getColumn();
-						if (column == 2)  //Paket
-						{
-							paketm3();
-						}
-						if (column == 3)  //MIKTAR
-						{
-							Double m3 = 0.00 ;
-							if (! model.getValueAt(row, 1).toString().equals(""))
-							{
-							String[] token = model.getValueAt(row, 1).toString().split("-");
-							Double miktar =  Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString());
-							m3 = ((Double.parseDouble(token[1]) * Double.parseDouble(token[2] ) * Double.parseDouble(token[3] )) * miktar) /1000000000;
-							}
-							model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
-							double fiat = 0 ;
-							fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
-							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
-							model.setValueAt( fiat * m3,row, 11)  ;
-							paketm3();
-						}
-						if (column == 4)  //m3
-						{
-							double fiat ,m3 = 0 ;
-							fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
-							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
-							model.setValueAt( fiat * m3,row, 11)  ;
-						}
-						if (column == 8)  //FIAT
-						{
-							double fiat ,m3 = 0 ;
-							fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
-							m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
-							model.setValueAt( fiat * m3,row, 11)  ;
-						}
-						
-					}
-					toplam();
-				}
-				});
+
 	}
-	private static void satir_ilave()
-	{
-		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-		int satir = table.getSelectedRow();
-		if ( satir  < 0 ) 
-		{
-			mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
-			satir = 0 ;
-		}
-		else
-		{
-			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
-		}
-		table.isRowSelected(satir);
-		table.repaint();
-	}
+
 	private void ana_grup_doldur()
 	{
 		try {
@@ -1427,7 +1187,7 @@ public class KER_GIRIS extends JInternalFrame {
 		try
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-			textField.setText( ker_Access.son_no_al("G"));
+			textField.setText( ker_Access.son_no_al("C"));
 			textField.requestFocus();
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
@@ -1436,335 +1196,12 @@ public class KER_GIRIS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Evrak Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
-	private static void toplam()
-	{
-		try {
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			double  double_0, double_1 = 0, double_2 = 0, double_3 = 0, double_4, double_5=0,double_6 = 0   ;
-			int urunsayi = 0 ;
-			for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
-			{
-				double_5 += Double.parseDouble(model.getValueAt(i, 11).toString());
-				double_1 += (Double.parseDouble(model.getValueAt(i, 11).toString()) * (Double.parseDouble(model.getValueAt(i, 9).toString()))) / 100 ; 
-				double_2 += (( Double.parseDouble(model.getValueAt(i, 11).toString()) - ( Double.parseDouble(model.getValueAt(i, 11).toString()) *  Double.parseDouble(model.getValueAt(i, 9).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 10).toString())) / 100 ; // kdv
-				double_3 +=  Double.parseDouble(model.getValueAt(i, 4).toString());
-				if (! model.getValueAt(i, 5).toString().trim().isEmpty()) 
-				{
-					double_6 +=  Double.parseDouble(model.getValueAt(i, 5).toString().trim());
-				}
-				
-				if (! model.getValueAt(i,1).toString().equals(""))
-				{
-					urunsayi += 1;
-				}
-			}
-			label_8.setText(FORMATLAMA.doub_3(double_3));
-			lblPaket.setText(FORMATLAMA.doub_3(double_6));
-			label_9.setText(FORMATLAMA.doub_2(double_5));
-			lblNewLabel_13.setText( FORMATLAMA.doub_0(urunsayi));
-			
-			label_6.setText(FORMATLAMA.doub_2(double_1));
-			double_0 =double_5 - double_1 ;
-			label_7.setText(FORMATLAMA.doub_2(double_0));
-			label_3.setText(FORMATLAMA.doub_2(double_2));
-			//**********Tevkif Islemi **********************************************************
-			double_4 =DecimalFormat.getNumberInstance().parse( txttev.getText()).doubleValue();
-			double_0 = (double_2 / 10) * double_4 ;
-			label_1.setText(FORMATLAMA.doub_2(double_0));
-			double_0 = (double_5 - double_1) + double_2;
-			label_2.setText(FORMATLAMA.doub_2(double_0));
-			double_0 = (double_2 - (double_2 / 10) * double_4);
-			lblNewLabel_20.setText(FORMATLAMA.doub_2(double_0));
-			double_0 = (double_5 - double_1) + (double_2 - (double_2 / 10) * double_4);
-			label.setText(FORMATLAMA.doub_2(double_0));
-			
-		}
-		catch (Exception ex)
-		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
-		}
-
-	}
-	private  void depo_auto()
-	{
-		try {
-			ResultSet rs = null;
-
-			rs = ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-
-			if (!rs.isBeforeFirst() ) {  
-				listdepo.add("");
-			}
-			else
-			{
-				listdepo.add("");
-				while (rs.next())
-				{
-					listdepo.add(rs.getString("DEPO"));
-				}
-			}
-		}
-		catch (Exception ex)
-		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
-		}
-	}
-	private static void paketm3()
-	{
-		double m3 =0.000 ;
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		for ( int i = 1 ;i <= model.getRowCount() -1 ;i++   ) 
-		{
-			String paketno = model.getValueAt(i-1, 2).toString().trim();
-			double aram3 = Double.parseDouble(model.getValueAt(i-1, 4).toString()) ;
-			if (! model.getValueAt(i, 2).toString().trim().equals(paketno.toString().trim()))
-			{
-				if (i == model.getRowCount() -1) {
-					double aram33 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
-					model.setValueAt( m3+ aram3 ,i-1, 5)  ;
-					if (aram33==0) {
-						model.setValueAt( "" ,i, 5)  ;
-					}
-					else {
-						model.setValueAt( FORMATLAMA.doub_3(aram33) ,i, 5)  ;
-					}
-				}
-				else {
-					m3 = m3 + aram3 ;
-					if (m3==0) {
-						model.setValueAt("",i-1, 5)  ;
-					}
-					else {
-						model.setValueAt(FORMATLAMA.doub_3(m3),i-1, 5)  ;
-					}
-					m3 = 0.000;
-				}
-			}
-			else if ( model.getValueAt(i, 2).toString().trim().equals(paketno.toString().trim())) {
-				if (i == model.getRowCount() -1)
-				{
-					double aram33 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
-					double aram1 = Double.parseDouble(model.getValueAt(i-1, 4).toString()) ;
-					if (m3+ aram33+ aram1 ==0) {
-						model.setValueAt("" ,i, 5)  ;
-					}
-					else {
-						model.setValueAt(FORMATLAMA.doub_3(m3+ aram33+ aram1) ,i, 5)  ;
-					}
-					model.setValueAt("",i-1, 5)  ;
-				}
-				else 
-				{
-					model.setValueAt("",i-1, 5)  ;
-					m3 = m3 + aram3 ;
-				}
-			}
-		}
-	}
-	private static void satir_sil()
-	{
-		if (table.getSelectedRow() < 0 ) return ;
-		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-		mdll.removeRow(table.getSelectedRow());
-		table.repaint();
-		toplam();
-		
-	}
-	public static void kaydet()
-	{
-		if (textField.getText().equals("")) return ;
-		if(dtc.getDate() == null) return;
-		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-		if (mdl.getRowCount() == 0)  return;
-
-		long startTime = System.currentTimeMillis(); 
-		tar = TARIH_CEVIR.tarih_geri_saatli(dtc) ;
-		GuiUtil.setWaitCursor(KER_GIRIS.splitPane,true);
-		satir_yaz_1();
-		dipnot_yaz();
-		//acik_yaz();
-		//cikis_yaz();
-		//************************************
-		GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
-		long endTime = System.currentTimeMillis();
-		long estimatedTime = endTime - startTime;
-		double seconds = (double)estimatedTime/1000; 
-		OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-	}
-	private static void satir_yaz_1 ()
-	{
-		try {
-			lOG_BILGI lBILGI = new lOG_BILGI();
-			lBILGI.setmESAJ(textField.getText() + " Nolu Giris Kereste Silindi");
-			lBILGI.seteVRAK(textField.getText());
-			ker_Access.ker_giris_sil(textField.getText() ,lBILGI,BAGLAN_LOG.kerLogDizin);
-
-			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-			for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
-			{
-				if (! mdl.getValueAt(i,1).toString().equals(""))
-				{
-					sat_yaz_2(i);
-				}
-			}
-		}
-		catch (Exception ex)
-		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kerest6e Satyz1", JOptionPane.ERROR_MESSAGE);             
-		}
-	}
-	private static void sat_yaz_2(int i)
-	{
-		try {
-			String  izahat ;
-			double  miktar=0;
-			
-			int angrp, altgrp, depo, nakl;
-			depo = 0 ;
-			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-			ResultSet rs =null ;
-			if (mdl.getValueAt(i,7) == null)
-			{
-				depo = 0 ;
-			}
-			else
-			{
-				rs = ker_Access.ker_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN",  mdl.getValueAt(i,7).toString());
-				if (!rs.isBeforeFirst() ) {      		
-				}
-				else
-				{
-					rs.next();
-					depo = rs.getInt("DPID_Y");
-				}
-			}
-			miktar = Double.parseDouble( mdl.getValueAt(i,3).toString());
-			double tutar ;
-			tutar =Double.parseDouble(mdl.getValueAt(i,11).toString());
-			if ( mdl.getValueAt(i,12).toString().equals(""))
-			{
-				izahat = "" ;
-			}
-			else
-			{
-				izahat =  mdl.getValueAt(i,9) .toString();
-			}
-			double kur =0.00 ;
-			kur = DecimalFormat.getNumberInstance().parse(txtkur.getText()).doubleValue();
-			angrp = 0 ;
-			if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
-
-				rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-
-				if (!rs.isBeforeFirst() ) {      		
-				}
-				else
-				{
-					rs.next();
-					angrp  = rs.getInt("AGID_Y");
-				}
-			}
-			//*************nakliyeci
-			nakl = 0 ;
-			if ( ! cmbnakliyeci.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
-
-				rs = ker_Access.ker_kod_degisken_ara("NAKID_Y", "UNVAN", "NAKLIYECI", cmbnakliyeci.getItemAt(cmbnakliyeci.getSelectedIndex()).toString());
-
-				if (!rs.isBeforeFirst() ) {      		
-				}
-				else
-				{
-					rs.next();
-					nakl  = rs.getInt("NAKID_Y");
-				}
-			}
-			///
-			altgrp = 0;
-			if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") ) {
-
-				rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-
-				if (!rs.isBeforeFirst() ) {      		
-				}
-				else
-				{
-					rs.next();
-					altgrp  = rs.getInt("ALID_Y");
-				}
-			}
-
-			double tevk = DecimalFormat.getNumberInstance().parse(txttev.getText()).doubleValue()  ;
-			double fiat =0 ;
-			fiat = Double.parseDouble( mdl.getValueAt(i,8).toString());
-			double isk = 0 ;
-			isk = Double.parseDouble( mdl.getValueAt(i,9).toString());
-			double kdv = 0 ; 
-			kdv =Double.parseDouble( mdl.getValueAt(i,10).toString());
-			
-
-			lOG_BILGI lBILGI = new lOG_BILGI();
-			lBILGI.setmESAJ( " Fatura Kayit" +  mdl.getValueAt(i,1).toString() + " Mik=" + miktar + " Tut=" + tutar);
-			lBILGI.seteVRAK(textField.getText());
-			
-			//
-			KER_BILGI ker_BILGI = new KER_BILGI();
-			
-			ker_BILGI.setEvrak_No(textField.getText());
-			ker_BILGI.setCari_Firma(txtcari.getText());
-			ker_BILGI.setAdres_Firma( txtadres.getText());
-			ker_BILGI.setTarih(tar);
-			ker_BILGI.setDepo(depo);
-			ker_BILGI.setAna_Grup(angrp);
-			ker_BILGI.setAlt_Grup(altgrp);
-			ker_BILGI.setNakliyeci(nakl);
-			ker_BILGI.setDoviz( txtdoviz.getText());
-			ker_BILGI.setOzel_Kod(cmbozkod.getItemAt(cmbozkod.getSelectedIndex()).toString());
-			ker_BILGI.setBarkod( mdl.getValueAt(i,0).toString());
-			ker_BILGI.setKodu( mdl.getValueAt(i,1).toString());
-			ker_BILGI.setPaket_No( mdl.getValueAt(i,2).toString());
-			ker_BILGI.setMiktar(miktar);
-			ker_BILGI.setKonsimento( mdl.getValueAt(i,6).toString());
-			ker_BILGI.setFiat(fiat);
-			ker_BILGI.setIskonto(isk);
-			ker_BILGI.setKdv(kdv);
-			ker_BILGI.setTutar(tutar);
-			ker_BILGI.setIzahat(izahat);
-			ker_BILGI.setCikis_Evrak(  mdl.getValueAt(i,13).toString());
-			ker_BILGI.setCTarih( mdl.getValueAt(i,14).toString());
-			ker_BILGI.setCKdv(Double.parseDouble( mdl.getValueAt(i,15).toString()));
-			ker_BILGI.setCDoviz( mdl.getValueAt(i,16).toString());
-	
-			ker_BILGI.setCFiat(Double.parseDouble( mdl.getValueAt(i,17).toString()));
-			ker_BILGI.setCTutar(Double.parseDouble( mdl.getValueAt(i,18).toString()));
-			ker_BILGI.setCKur(Double.parseDouble( mdl.getValueAt(i,19).toString()));
-			ker_BILGI.setCCari_Firma( mdl.getValueAt(i,20).toString());
-			ker_BILGI.setCAdres_Firma( mdl.getValueAt(i,21).toString());
-		
-			ker_BILGI.setCIskonto(Double.parseDouble( mdl.getValueAt(i,22).toString()));
-			ker_BILGI.setCTevkifat(Double.parseDouble( mdl.getValueAt(i,23).toString()));
-			ker_BILGI.setCAna_Grup(Integer.parseInt(mdl.getValueAt(i,24).toString()));
-			ker_BILGI.setCAlt_Grup(Integer.parseInt(mdl.getValueAt(i,25).toString()));
-			ker_BILGI.setCDepo(Integer.parseInt(mdl.getValueAt(i,26).toString()));
-			
-			ker_BILGI.setCOzel_Kod( mdl.getValueAt(i,27).toString());
-			ker_BILGI.setCIzahat( mdl.getValueAt(i,28).toString());
-			ker_BILGI.setCNakliyeci(Integer.parseInt(mdl.getValueAt(i,29).toString()));
-			ker_BILGI.setCUSER( mdl.getValueAt(i,30).toString());
-			ker_Access.ker_kaydet(ker_BILGI, GLOBAL.KULL_ADI
-					,lBILGI,BAGLAN_LOG.kerLogDizin);
-
-		}
-		catch (Exception ex)
-		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz2", JOptionPane.ERROR_MESSAGE);     
-		}
-	}
 	private void fiskont()
 	{
 		try {
 			long startTime = System.currentTimeMillis();
 			ResultSet rss = null;
-			rss = ker_Access.ker_oku(textField.getText(), "G");
+			rss = ker_Access.ker_oku(textField.getText(), "C");
 			if (!rss.isBeforeFirst() ) {  
 				txtadres.setText("");
 				yeni_fat = true;
@@ -1831,7 +1268,7 @@ public class KER_GIRIS extends JInternalFrame {
 					mdl.removeRow(mdl.getRowCount() -1);
 				}  while (rss.next()) ;
 				
-				paketm3();
+				//paketm3();
 				dipnot_oku();
 			
 				kod_ADI( mdl.getValueAt(0,1).toString());
@@ -1851,28 +1288,72 @@ public class KER_GIRIS extends JInternalFrame {
 		}
 	}
 	private void kod_ADI(String toke) throws ClassNotFoundException, SQLException 
-	
+
 	{
 		String[] token = toke.toString().split("-");
 		String aciklamaString;
-		
-			
-				aciklamaString = ker_Access.kod_adi(token[0]);
-				lblkodAciklama.setText(aciklamaString);
-				Dimension size = lblkodAciklama.getPreferredSize();
-				lblkodAciklama.setBounds(10, 55, size.width +10, 14);
-		
+
+
+		aciklamaString = ker_Access.kod_adi(token[0]);
+		lblkodAciklama.setText(aciklamaString);
+		Dimension size = lblkodAciklama.getPreferredSize();
+		lblkodAciklama.setBounds(10, 55, size.width +10, 14);
+
 	}
+	private static void dipnot_sil()
+	{
+		try {
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ("Kereste Dip Not Sil "  );
+			lBILGI.seteVRAK(textField.getText());
+			ker_Access.dipnot_sil(textField.getText(), "K", "C",lBILGI,BAGLAN_LOG.kerLogDizin);
+		}
+		catch (Exception ex)
+		{
+
+		}
+	}
+	private void dipnot_oku()
+	{
+		try {
+			ResultSet rs =null ;
+			rs =    ker_Access.dipnot_oku(textField.getText(), "K", "C");
+			if (!rs.isBeforeFirst() ) {  
+			} 
+			else
+			{
+				rs.next();
+				textField_5.setText(rs.getString("Bir"));
+				textField_6.setText(rs.getString("Iki"));
+				textField_7.setText(rs.getString("Uc"));
+			}
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dipnot", JOptionPane.ERROR_MESSAGE);   
+		}
+	}
+	private   double m3(String kod,double miktar)
+	{
+		String[] token = kod.toString().split("-");
+		double m3 = 0 ;
+		
+		if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
+			m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
+		}
+		return m3 ;
+	}
+
 	private void sifirla()
 	{
 		String deger;
 		Integer sat_sayi;
 		try {
-			deger = GLOBAL.setting_oku("STK_FAT_SATIR").toString();
+			deger = GLOBAL.setting_oku("KER_FAT_SATIR").toString();
 			sat_sayi =Integer.parseInt(deger);
 			for (int i = 0; i <= sat_sayi; i ++)
 			{
-				satir_ilave();
+				//satir_ilave();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -1908,64 +1389,5 @@ public class KER_GIRIS extends JInternalFrame {
 		lblkodAciklama.setText("");
 		dtc.setDate(new Date());
 		
-	}
-	private static void dipnot_yaz()
-	{
-		try {
-			dipnot_sil();
-			lOG_BILGI lBILGI = new lOG_BILGI();
-			lBILGI.setmESAJ( "Kereste Dip Not Kayit :"+ textField_5.getText()  );
-			lBILGI.seteVRAK(textField.getText());
-			ker_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_7.getText(), "K", "G",GLOBAL.KULL_ADI,
-						lBILGI,BAGLAN_LOG.kerLogDizin);
-			
-		}
-		catch (Exception ex)
-		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Dipnot yaz", JOptionPane.ERROR_MESSAGE);   
-		}
-	}
-	private static void dipnot_sil()
-	{
-		try {
-			lOG_BILGI lBILGI = new lOG_BILGI();
-			lBILGI.setmESAJ("Kereste Dip Not Sil "  );
-			lBILGI.seteVRAK(textField.getText());
-			ker_Access.dipnot_sil(textField.getText(), "K", "G",lBILGI,BAGLAN_LOG.kerLogDizin);
-		}
-		catch (Exception ex)
-		{
-
-		}
-	}
-	private void dipnot_oku()
-	{
-		try {
-			ResultSet rs =null ;
-			rs =    ker_Access.dipnot_oku(textField.getText(), "K", "G");
-			if (!rs.isBeforeFirst() ) {  
-			} 
-			else
-			{
-				rs.next();
-				textField_5.setText(rs.getString("Bir"));
-				textField_6.setText(rs.getString("Iki"));
-				textField_7.setText(rs.getString("Uc"));
-			}
-		}
-		catch (Exception ex)
-		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dipnot", JOptionPane.ERROR_MESSAGE);   
-		}
-	}
-	private   double m3(String kod,double miktar)
-	{
-		String[] token = kod.toString().split("-");
-		double m3 = 0 ;
-		
-		if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
-			m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
-		}
-		return m3 ;
 	}
 }

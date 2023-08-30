@@ -154,4 +154,22 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.ker_oku(eno, cins);
 	}
+	public void dipnot_sil(String ino,String cins,String gircik,
+			lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.dipnot_sil(ino, cins, gircik);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
+	}
+	public void dipnot_yaz(String eno,String bir,String iki,String uc,String tip,String gircik,String usr,
+			lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.dipnot_yaz(eno, bir, iki, uc, tip, gircik, usr);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
+	}
+	public ResultSet dipnot_oku(String ino,String cins ,String gircik) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.dipnot_oku(ino, cins, gircik);
+	}
 }

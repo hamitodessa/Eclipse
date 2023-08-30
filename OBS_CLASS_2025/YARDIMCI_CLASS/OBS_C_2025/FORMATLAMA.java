@@ -13,6 +13,7 @@ public class FORMATLAMA {
 	}
 	public static String doub_3(double rakkam)
 	{
+
 		DecimalFormat decimalFormat = new DecimalFormat("###,###,##0.000");
 		String numberAsString = decimalFormat.format(rakkam);
 		return numberAsString; 

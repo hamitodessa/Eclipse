@@ -105,6 +105,12 @@ public class PARAMETRELER   extends JInternalFrame   {
 	private static JComboBox<String> comboBox_2_1_1_2_1 ;
 	private static JCheckBox chckbxNewCheckBox_2_2_1_2_1  ;
 	private static JCheckBox chckbxNewCheckBox_2_1_1_1_2_1 ;
+	//***********************KERESTE
+	private static JComboBox<String> comboBox_3 ;
+	private static JLabel lblNewLabel_3_2_1_1_3 ;
+	private static JCheckBox chckbxNewCheckBox_1_4 ;
+	private static JLabel lblNewLabel_3_10_1_1_1 ;
+	private static JTextField textField_10;
 	//***********************PROGRAM ***************
 	private static JCheckBox chckbxNewCheckBox_2_2_1_1 ;
 	private static JCheckBox chckbxNewCheckBox_2_1_1_1_1 ;
@@ -120,6 +126,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 	private static JComboBox<String> comboBox_2_1_1_2_3 ;
 	private static JComboBox<String> comboBox_2 ;
 	private static ColorChooserButton colorChooser ;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -1425,12 +1432,97 @@ public class PARAMETRELER   extends JInternalFrame   {
 		
 		JScrollPane scrollPane_4 = new JScrollPane();
 		
-		tabbedPane.addTab("Kur", null, scrollPane_4, null);
+		tabbedPane.addTab("Kereste", null, scrollPane_4, null);
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBorder(new LineBorder(new Color(0, 191, 255)));
 		scrollPane_4.setViewportView(panel_5);
 		panel_5.setLayout(null);
+		
+		JLabel lblNewLabel_4_1_1_2 = new JLabel("Kereste Firma Bilgi");
+		lblNewLabel_4_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_4_1_1_2.setBounds(10, 31, 126, 14);
+		panel_5.add(lblNewLabel_4_1_1_2);
+		
+		comboBox_3 = new JComboBox<String>();
+		comboBox_3.setForeground(new Color(25, 25, 112));
+		comboBox_3.setFont(new Font("Tahoma", Font.BOLD, 14));
+		comboBox_3.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari_Dosya", "Adres_Dosya"}));
+		comboBox_3.setBounds(150, 27, 139, 22);
+		panel_5.add(comboBox_3);
+		
+		JLabel lblNewLabel_4_1_2_5 = new JLabel("Kereste Giris");
+		lblNewLabel_4_1_2_5.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_4_1_2_5.setBounds(10, 60, 126, 14);
+		panel_5.add(lblNewLabel_4_1_2_5);
+		
+		lblNewLabel_3_2_1_1_3 = new JLabel("[Calibri,0,12]");
+		lblNewLabel_3_2_1_1_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_3_2_1_1_3.setBounds(150, 60, 253, 14);
+		panel_5.add(lblNewLabel_3_2_1_1_3);
+		
+		JLabel lblNewLabel_4_1_2_1_6 = new JLabel("Kereste Satir Sayi");
+		lblNewLabel_4_1_2_1_6.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_4_1_2_1_6.setBounds(10, 88, 126, 14);
+		panel_5.add(lblNewLabel_4_1_2_1_6);
+		
+		textField_10 = new JTextField();
+		textField_10.setText("15");
+		textField_10.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_10.setColumns(10);
+		textField_10.setBounds(150, 85, 40, 20);
+		panel_5.add(textField_10);
+		
+		JLabel lblNewLabel_4_1_2_2_4 = new JLabel("Kereste Stok Kontrol");
+		lblNewLabel_4_1_2_2_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_4_1_2_2_4.setBounds(10, 112, 126, 14);
+		panel_5.add(lblNewLabel_4_1_2_2_4);
+		
+		chckbxNewCheckBox_1_4 = new JCheckBox("");
+		chckbxNewCheckBox_1_4.setBounds(147, 106, 97, 23);
+		panel_5.add(chckbxNewCheckBox_1_4);
+		
+		JButton btnNewButton_2_1_1_3 = new JButton(".....");
+		btnNewButton_2_1_1_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String[] parts;
+				parts = lblNewLabel_3_2_1_1_3.getText() .substring(1, lblNewLabel_3_2_1_1_3.getText().length()-1).split(",");
+				bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+				fc.setFont(bigFont);
+				fc.showDialog(null,"Font Secimi");
+				lblNewLabel_3_2_1_1_3.setText("[" + fc.getFont().getName() + "," + fc.getFont().getStyle() + "," + fc.getFont().getSize()+ "]" );
+				bigFont = new Font(fc.getFont().getName(), fc.getFont().getStyle(), fc.getFont().getSize());
+				lblNewLabel_3_2_1_1_3.setFont(bigFont);
+			}
+		});
+		btnNewButton_2_1_1_3.setBounds(417, 56, 46, 23);
+		panel_5.add(btnNewButton_2_1_1_3);
+		
+		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("Raporlama Font");
+		lblNewLabel_1_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_1_1_1_1_1.setBounds(10, 153, 112, 14);
+		panel_5.add(lblNewLabel_1_1_1_1_1);
+		
+		lblNewLabel_3_10_1_1_1 = new JLabel("[Calibri,0,12]");
+		lblNewLabel_3_10_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_3_10_1_1_1.setBounds(150, 153, 253, 14);
+		panel_5.add(lblNewLabel_3_10_1_1_1);
+		
+		JButton btnNewButton_10_1_1_1 = new JButton(".....");
+		btnNewButton_10_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String[] parts;
+				parts = lblNewLabel_3_10_1_1_1.getText() .substring(1, lblNewLabel_3_10_1_1_1.getText().length()-1).split(",");
+				bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+				fc.setFont(bigFont);
+				fc.showDialog(null,"Font Secimi");
+				lblNewLabel_3_10_1_1_1.setText("[" + fc.getFont().getName() + "," + fc.getFont().getStyle() + "," + fc.getFont().getSize()+ "]" );
+				bigFont = new Font(fc.getFont().getName(), fc.getFont().getStyle(), fc.getFont().getSize());
+				lblNewLabel_3_10_1_1_1.setFont(bigFont);
+			}
+		});
+		btnNewButton_10_1_1_1.setBounds(417, 149, 46, 23);
+		panel_5.add(btnNewButton_10_1_1_1);
 			doldur();
 	
 		
@@ -1679,6 +1771,38 @@ public class PARAMETRELER   extends JInternalFrame   {
 			if (parts[0].equals("E")) {chckbxNewCheckBox_2_2_1_2_1.setSelected(true);} else {chckbxNewCheckBox_2_2_1_2_1.setSelected(false);}
 			if (parts[1].equals("E")) {chckbxNewCheckBox_2_1_1_1_2_1.setSelected(true);} else {chckbxNewCheckBox_2_1_1_1_2_1.setSelected(false);}
 			comboBox_2_1_1_2_1.setSelectedItem(parts[2]);
+		//****************************KERESTE
+			//prop.setProperty("KER_FIR_BILGI","Cari_Dosya");
+			//prop.setProperty("KER_GIRIS","[Calibri,0,12]");
+			//prop.setProperty("KER_FAT_SATIR", "25");
+			//prop.setProperty("KER_STOK_KONTROL", "-1");
+			//prop.setProperty("KER_RAPORLAMA","[Calibri,0,12]");
+		deger = oac.glb.setting_oku("KER_FIR_BILGI").toString();
+			comboBox_3.setSelectedItem(deger);
+		deger = oac.glb.setting_oku("KER_GIRIS").toString();
+			lblNewLabel_3_2_1_1_3.setText(deger);
+			deger = deger.substring(1, deger.length()-1);
+			parts = deger.split(",");
+			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			lblNewLabel_3_2_1_1_3.setFont(bigFont);
+		
+		deger = oac.glb.setting_oku("KER_FAT_SATIR").toString();
+			textField_10.setText(deger);
+		deger = oac.glb.setting_oku("KER_STOK_KONTROL").toString();
+		if (deger.equals("-1"))
+		{
+			chckbxNewCheckBox_1_4.setSelected(false);
+		}
+		else
+		{
+			chckbxNewCheckBox_1_4.setSelected(true);
+		}
+		deger = oac.glb.setting_oku("KER_RAPORLAMA").toString();
+		lblNewLabel_3_10_1_1_1.setText(deger);
+		deger = deger.substring(1, deger.length()-1);
+		parts = deger.split(",");
+		bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+		lblNewLabel_3_10_1_1_1.setFont(bigFont);
 		//*********************PROGRAM *************************************
 		deger = oac.glb.setting_oku("PRG_PARA").toString();
 		textField_9.setText(deger);
@@ -1825,7 +1949,15 @@ public class PARAMETRELER   extends JInternalFrame   {
 		
 		deger = (chckbxNewCheckBox_2_2_1_2_1.isSelected() ?  "E" : "" ) + "," + (chckbxNewCheckBox_2_1_1_1_2_1.isSelected() ?  "E" : "" ) + "," + (comboBox_2_1_1_2_1.getSelectedItem());
 		oac.glb.setting_yaz("KAM_SAT_YAP", deger);
+		//*************************KERESTE
 		
+		deger =  comboBox_3.getItemAt(comboBox_3.getSelectedIndex());
+		oac.glb.setting_yaz("KER_FAT_FIR_BILGI", deger);
+		oac.glb.setting_yaz("KER_FAT_GIRIS",lblNewLabel_3_2_1_1_3.getText());
+		deger = textField_10.getText();
+		oac.glb.setting_yaz("KER_FAT_SATIR", deger);
+		oac.glb.setting_yaz("KER_RAPORLAMA",lblNewLabel_3_10_1_1_1.getText());
+		oac.glb.setting_yaz("KER_STOK_KONTROL", chckbxNewCheckBox_1_4.isSelected() ?  "0" : "-1");
 		//****************PROGRAM ****************************
 		deger = textField_9.getText();
 		oac.glb.setting_yaz("PRG_PARA", deger);

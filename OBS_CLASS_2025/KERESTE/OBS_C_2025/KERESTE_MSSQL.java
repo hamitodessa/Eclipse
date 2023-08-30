@@ -732,7 +732,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 			sql = "SELECT max(Evrak_No)  as NO FROM KERESTE";
 		}
 		else {
-			sql = "SELECT max(CEvrak_No)  as NO FROM KERESTE";
+			sql = "SELECT max(Cikis_Evrak)  as NO FROM KERESTE";
 		}
 		
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -818,17 +818,73 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public ResultSet ker_oku(String eno, String cins) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		//String sql =     "SELECT  * " +
-		//		" FROM KERESTE WITH (INDEX (IX_KERESTE)) " +
-		//		" WHERE Evrak_No  = N'" + eno + "'" ;
-		String sql = "SELECT   [Evrak_No] ,[Barkod] ,[Kodu],[Paket_No],[Konsimento] ,[Miktar],[Tarih],[Kdv] ,[Doviz] ,[Fiat]  ,[Tutar] ,[Kur]  ,[Cari_Firma],[Adres_Firma]  ,[Iskonto] ,[Tevkifat] "
-				+ "	,[Ana_Grup]  ,[Alt_Grup] ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) , '') AS Depo  ,[Ozel_Kod] ,[Izahat]  ,[Nakliyeci] ,[USER] "
-				+ "	,[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] ,[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat] "
-				+ "	,[CAna_Grup]    ,[CAlt_Grup]  ,[CDepo]  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER]" 
-				+ " FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
-				+ " WHERE Evrak_No  = N'" + eno + "'" ;
+		String sql = "";
+		if (cins.equals("G")) {
+			 sql = "SELECT   [Evrak_No] ,[Barkod] ,[Kodu],[Paket_No],[Konsimento] ,[Miktar],[Tarih],[Kdv] ,[Doviz] ,[Fiat]  ,[Tutar] ,[Kur]  ,[Cari_Firma],[Adres_Firma]  ,[Iskonto] ,[Tevkifat] "
+					+ "	,[Ana_Grup]  ,[Alt_Grup] ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) , '') AS Depo  ,[Ozel_Kod] ,[Izahat]  ,[Nakliyeci] ,[USER] "
+					+ "	,[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] ,[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat] "
+					+ "	,[CAna_Grup]    ,[CAlt_Grup]  ,[CDepo]  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER]" 
+					+ " FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
+					+ " WHERE Evrak_No  = N'" + eno + "'" ;
+		}
+		else {
+			sql = "SELECT   [Evrak_No] ,[Barkod] ,[Kodu],[Paket_No],[Konsimento] ,[Miktar],[Tarih],[Kdv] ,[Doviz] ,[Fiat]  ,[Tutar] ,[Kur]  ,[Cari_Firma],[Adres_Firma]  ,[Iskonto] ,[Tevkifat] "
+					+ "	,[Ana_Grup]  ,[Alt_Grup] ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) , '') AS Depo  ,[Ozel_Kod] ,[Izahat]  ,[Nakliyeci] ,[USER] "
+					+ "	,[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] ,[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat] "
+					+ "	,[CAna_Grup]    ,[CAlt_Grup]  ,[CDepo]  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER]" 
+					+ " FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
+					+ " WHERE Cikis_Evrak  = N'" + eno + "'" ;
+		}
+		
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;	
+	}
+
+	@Override
+	public void dipnot_sil(String ino, String cins, String gircik) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql = " DELETE " +
+				" FROM DPN" +
+				" WHERE Evrak_NO = N'" + ino + "'" +
+				" AND Tip = N'" + cins + "'" +
+				" AND Gir_Cik = '" + gircik + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
+	}
+
+	@Override
+	public void dipnot_yaz(String eno, String bir, String iki, String uc, String tip, String gircik, String usr)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql  ="INSERT INTO DPN (Evrak_No,Tip,Bir,Iki,Uc,Gir_Cik,[USER]) " +
+				" VALUES (?,?,?,?,?,?,?)" ;
+		PreparedStatement stmt = null;
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, eno);
+		stmt.setString(2, tip);
+		stmt.setString(3, bir);
+		stmt.setString(4, iki);
+		stmt.setString(5, uc);
+		stmt.setString(6,gircik);
+		stmt.setString(7, usr);
+		stmt.executeUpdate();
+		stmt.close();
+		
+	}
+
+	@Override
+	public ResultSet dipnot_oku(String ino, String cins, String gircik) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql =  "SELECT * " +
+				" FROM DPN " +
+				" WHERE Evrak_NO = N'" + ino + "'" +
+				" AND DPN.Tip = N'" + cins + "'" +
+				" AND Gir_Cik = '" + gircik + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;
 	}
 }

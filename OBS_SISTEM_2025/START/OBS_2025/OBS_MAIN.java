@@ -165,6 +165,7 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_38;//Firma Ismi
 	//KERESTE
 	private JButton btnNewButton_1 ; //Ker Giris
+	private JButton btnNewButton_24 ; // Ker Cikis
 	private JButton btnNewButton_3 ; //Kod Aciklama Giris
 	//
 	private JButton btnYenile ; // Yenile Tusu
@@ -1926,6 +1927,18 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_1.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-invoice-30.png")));
 		toolBar_Kereste.add(btnNewButton_1);
 		
+		btnNewButton_24 = new JButton("");
+		btnNewButton_24.setToolTipText("Cikis");
+		btnNewButton_24.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("KERESTE CIKIS","");
+			}
+		});
+		btnNewButton_24.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-questionnaire-30.png")));
+		toolBar_5.add(btnNewButton_24);
+		
+		toolBar_Kereste.add(btnNewButton_24);
+		
 		JLabel lblNewLabel_40 = new JLabel("          ");
 		toolBar_Kereste.add(lblNewLabel_40);
 		
@@ -3117,6 +3130,7 @@ public class OBS_MAIN extends JFrame {
 			//else if (pencere.equals("SMS INET")) internalFrame  = new SMS_INET();
 			//KERESTE
 			else if (pencere.equals("KERESTE GIRIS")) internalFrame  = new KER_GIRIS();
+			else if (pencere.equals("KERESTE CIKIS")) internalFrame  = new KERESTE_CIKIS();
 			else if (pencere.equals("KOD ACIKLAMA")) internalFrame  = new KOD_ACIKLAMA();
 			else if (pencere.equals("KONSIMENTO ACIKLAMA")) internalFrame  = new KONS_ACIKLAMA();
 			else if (pencere.equals("KERESTE DEGISKENLER")) internalFrame  = new KER_DEGISKEN_GIRIS(hangi);

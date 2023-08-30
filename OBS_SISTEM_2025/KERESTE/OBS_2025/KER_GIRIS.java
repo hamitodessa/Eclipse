@@ -77,6 +77,7 @@ import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KER_BILGI;
 import OBS_C_2025.NextCellActioin;
+import OBS_C_2025.Next_Cell_Kereste;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SAGA_BOLD;
 import OBS_C_2025.SOLA;
@@ -1208,7 +1209,7 @@ public class KER_GIRIS extends JInternalFrame {
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
 		ActionMap am = table.getActionMap();
-		am.put("Action.NextCell", new NextCellActioin(table,"kereste"));
+		am.put("Action.NextCell", new Next_Cell_Kereste(table,"kereste_giris"));
 		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		
 		scrollPane.setViewportView(table);

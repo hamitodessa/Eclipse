@@ -70,6 +70,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.NextCellActioin;
+import OBS_C_2025.Next_Cell_Kereste;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SAGA_BOLD;
 import OBS_C_2025.SOLA;
@@ -956,7 +957,16 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				switch (column) {
 				case 0:
 					return true;
-				
+				case 7:
+					return true;
+				case 8:
+					return true;
+				case 9:
+					return true;
+				case 10:
+					return true;
+				case 12:
+					return true;
 				default:
 					return false;
 				}
@@ -1082,7 +1092,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
 		ActionMap am = table.getActionMap();
-		am.put("Action.NextCell", new NextCellActioin(table,"kereste"));
+		am.put("Action.NextCell", new  Next_Cell_Kereste(table,"kereste_cikis"));
 		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		
 		scrollPane.setViewportView(table);

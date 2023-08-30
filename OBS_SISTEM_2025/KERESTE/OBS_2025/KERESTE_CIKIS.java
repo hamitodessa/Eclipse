@@ -1034,7 +1034,24 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		TableColumn col ;
 		
 		JTextField ftext = new JTextField();
-		textField.setDocument(new JTextFieldLimit(10));
+		ftext.setDocument(new JTextFieldLimit(10));
+		ftext.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				pakkont(ftext.getText());
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			}
+			public void removeUpdate(DocumentEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				pakkont(ftext.getText());
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			}
+			public void insertUpdate(DocumentEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				pakkont(ftext.getText());
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			}
+		});
 		ftext.setFont(new Font(table.getFont().getFontName(),1 ,12));
 		
 		col = table.getColumnModel().getColumn(0);
@@ -1648,5 +1665,28 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		{
 
 		}
+	}
+	private void pakkont(String pakno)
+	{
+		
+	//	mdl.insertRow(satir,new Object[]{rss.getString("Paket_No"),rss.getString("Barkod"),rss.getString("Kodu"),
+	//			rss.getDouble("Miktar"), m3(rss.getString("Kodu"),rss.getDouble("Miktar")),"" ,rss.getString("Konsimento"),rss.getString("CDepo"),
+	//			rss.getDouble("CFiat"),rss.getDouble("CIskonto"),
+	//			rss.getDouble("CKdv"),rss.getDouble("CTutar"),rss.getString("CIzahat")});
+		
+			if (table.getSelectedRow() == -1 ) return ;
+			getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+			
+			ResultSet rSet = ker_Access.paket_oku(pakno);
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			double m3 = 0 ;
+			double miktar =  Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString());
+//			if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
+//				m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
+//			}
+			
+//			model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
+			
+		//	kod_ADI(ftext.getText());
 	}
 }

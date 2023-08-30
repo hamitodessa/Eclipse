@@ -29,28 +29,28 @@ public class Next_Cell_Kereste extends AbstractAction {
         	  if (col == 1 )
               {
            	      table.editCellAt(row == -1 ? 0:row, col);
-                     table.transferFocus();
+                  table.transferFocus();
               }
      	}
           else  if (nerden.equals("kereste_cikis"))
         	  
        	{
         	  if (col >= colCount) {
-              	
                   col = 0;
-              	
                   row++;
               }
         	  if (col == 0 )
               {
            	      table.editCellAt(row == -1 ? 0:row, col);
-                     table.transferFocus();
+                  table.transferFocus();
               }
+        	 
        	}
           if (row >= rowCount) 
           {
               row = 0;
           }
+          table.getCellEditor().stopCellEditing();
           table.getSelectionModel().setSelectionInterval(row, row);
           table.getColumnModel().getSelectionModel().setSelectionInterval(col, col);
 		

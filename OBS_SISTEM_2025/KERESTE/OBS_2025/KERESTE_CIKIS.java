@@ -52,9 +52,14 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -1167,7 +1172,54 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Cikis", JOptionPane.ERROR_MESSAGE);   
 		}
+		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
+		{		
+		@Override
+			public void tableChanged(TableModelEvent e) {
+			TableModel model = (TableModel)e.getSource();
+			if (model.getRowCount() > 0) 
+			{
+				int row;
+				row = table.getSelectedRow();     //e.getFirstRow();
+				int column = e.getColumn();
+				if (column == 4)  //m3
+				{
+					double fiat ,m3 = 0 ;
+					fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
+					m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
+					model.setValueAt( fiat * m3,row, 11)  ;
+				}
+				if (column == 8)  //FIAT
+				{
+					double fiat ,m3 = 0 ;
+					fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
+					m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
+					model.setValueAt( fiat * m3,row, 11)  ;
+				}
+				
+			}
+			toplam();
+		}
+		});
+		ListSelectionModel selectionModel = table.getSelectionModel();
 
+		selectionModel.addListSelectionListener(new ListSelectionListener() {
+		    public void valueChanged(ListSelectionEvent e) {
+		    
+		    	DefaultTableModel model = (DefaultTableModel) table.getModel();
+		    	try {
+					kod_ADI(model.getValueAt(table.getSelectedRow(), 2).toString());
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		    
+		    
+		    }
+		});
 	}
 
 	private void ana_grup_doldur()
@@ -1678,9 +1730,20 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			}
 			else {
 				rSet.first();  
+				//
+				if (! rSet.getString("Cikis_Evrak").toString().equals("")   && ! rSet.getString("Cikis_Evrak").toString().equals(rSet.getString(textField.getText())))
+{
+					JOptionPane.showMessageDialog(null, "Bu Paket daha Once " + rSet.getString("Evrak_No").toString() + " da Cikis Yapilmis"  ,  "Urun Cikis", JOptionPane.ERROR_MESSAGE);  
+				}
+				else {
+					
+				
+				//
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				int satir = table.getSelectedRow() ;
+				int ilks = satir;
 				do {
+					model.setValueAt( rSet.getString("Paket_No"),satir, 0)  ;
 					model.setValueAt( rSet.getString("Barkod"),satir, 1)  ;
 					model.setValueAt( rSet.getString("Kodu"),satir, 2)  ;
 					model.setValueAt( rSet.getDouble("Miktar"),satir, 3)  ;
@@ -1703,15 +1766,16 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				
 				
 				
-			      table.changeSelection(satir, 0, true, true);
-			    //  table.editCellAt(satir, 0);
-			}
+				paketm3();		
+				table.getCellEditor().stopCellEditing();
+				kod_ADI(model.getValueAt(ilks,2).toString());
+			    table.getSelectionModel().setSelectionInterval(ilks, ilks);
+	           table.getColumnModel().getSelectionModel().setSelectionInterval(8, 8);			     
+				}
+				}
+			toplam();
 			
 			
-			
-//			model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
-			
-		//	kod_ADI(ftext.getText());
 	}
 	catch (Exception ex)
 	{

@@ -694,7 +694,7 @@ public class KER_GIRIS extends JInternalFrame {
 				{
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 					JInternalFrame internalFrame;
-					GLOBAL.nerden = "fat" ;
+					GLOBAL.nerden = "ker" ;
 					internalFrame  = new GIDECEGI_YER();
 					OBS_MAIN.desktopPane.add(internalFrame);
 					internalFrame.setVisible(true);
@@ -1583,7 +1583,7 @@ public class KER_GIRIS extends JInternalFrame {
 		GuiUtil.setWaitCursor(KER_GIRIS.splitPane,true);
 		satir_yaz_1();
 		dipnot_yaz();
-		//acik_yaz();
+		acik_yaz();
 		//cikis_yaz();
 		//************************************
 		GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
@@ -1803,6 +1803,11 @@ public class KER_GIRIS extends JInternalFrame {
 					rsa.next();
 					cmbaltgrup.setSelectedItem(rsa.getString("ALT_GRUP"));
 				}
+				//***Aciklama
+				textField_9.setText(ker_Access.aciklama_oku("KER", 1, textField.getText(), "G"));
+				textField_10.setText(ker_Access.aciklama_oku("KER", 2, textField.getText(), "G"));
+
+							
 				//**nakliye
 				rsa = null;
 				rsa = ker_Access.ker_kod_degisken_ara("UNVAN", "NAKID_Y", "NAKLIYECI",String.valueOf(rss.getInt("Nakliyeci")));
@@ -1834,11 +1839,7 @@ public class KER_GIRIS extends JInternalFrame {
 				
 				paketm3();
 				dipnot_oku();
-			
 				kod_ADI( mdl.getValueAt(0,1).toString());
-				
-				
-				
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 
@@ -1968,5 +1969,42 @@ public class KER_GIRIS extends JInternalFrame {
 			m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
 		}
 		return m3 ;
+	}
+	private static void acik_yaz()
+	{
+		try {
+			acik_sil();
+			lOG_BILGI lBILGI = new lOG_BILGI();
+
+			lBILGI.setmESAJ("Kereste Aciklama Yaz  Giris :" + textField_9.getText()  );
+			lBILGI.seteVRAK(textField.getText());
+			ker_Access.aciklama_yaz("KER", 1, textField.getText(),  textField_9.getText(), "G",
+					lBILGI,BAGLAN_LOG.fatLogDizin);
+			lBILGI.setmESAJ( "Kereste Aciklama Yaz  Giris :" + textField_10.getText() );
+			ker_Access.aciklama_yaz("KER", 2, textField.getText(), textField_10.getText(), "G",
+					lBILGI,BAGLAN_LOG.fatLogDizin);
+
+
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Acikyz", JOptionPane.ERROR_MESSAGE);   
+		}
+	}
+	private static void acik_sil()
+	{
+		try {
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			
+				lBILGI.setmESAJ( "Kereste Aciklama Sil  Giris "  );
+				lBILGI.seteVRAK(textField.getText());
+				ker_Access.aciklama_sil("KER", textField.getText(), "G",
+						lBILGI,BAGLAN_LOG.fatLogDizin);
+			
+		}
+		catch (Exception ex)
+		{
+
+		}
 	}
 }

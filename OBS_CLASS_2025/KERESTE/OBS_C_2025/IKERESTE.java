@@ -39,4 +39,7 @@ public interface IKERESTE {
 	public void dipnot_sil(String ino,String cins,String gircik) throws ClassNotFoundException, SQLException;
 	public void dipnot_yaz(String eno,String bir,String iki,String uc,String tip,String gircik,String usr) throws ClassNotFoundException, SQLException;
 	public ResultSet dipnot_oku(String ino,String cins ,String gircik) throws ClassNotFoundException, SQLException;
+	public void aciklama_sil(String evrcins,String evrno,String cins) throws ClassNotFoundException, SQLException;
+	public void aciklama_yaz(String evrcins,int satir,String evrno,String aciklama,String gircik) throws ClassNotFoundException, SQLException;
+	public String aciklama_oku(String evrcins,int satir,String evrno,String gircik) throws ClassNotFoundException, SQLException;
 }

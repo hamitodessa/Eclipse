@@ -209,6 +209,26 @@ public class KERESTE_MYSQL implements IKERESTE {
 		return null;
 	}
 
+	@Override
+	public void aciklama_sil(String evrcins, String evrno, String cins) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void aciklama_yaz(String evrcins, int satir, String evrno, String aciklama, String gircik)
+			throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String aciklama_oku(String evrcins, int satir, String evrno, String gircik)
+			throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

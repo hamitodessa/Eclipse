@@ -887,4 +887,60 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;
 	}
+
+	@Override
+	public void aciklama_sil(String evrcins, String evrno, String cins) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql = " DELETE " +
+				" FROM ACIKLAMA " +
+				" WHERE EVRAK_CINS = N'" + evrcins + "'" +
+				" AND EVRAK_NO = N'" + evrno + "'" +
+				" AND Gir_Cik = N'" + cins + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
+	}
+
+	@Override
+	public void aciklama_yaz(String evrcins, int satir, String evrno, String aciklama, String gircik)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql  ="INSERT INTO ACIKLAMA (EVRAK_CINS,SATIR,EVRAK_NO,ACIKLAMA,Gir_Cik) " +
+				" VALUES (?,?,?,?,?)" ;
+		PreparedStatement stmt = null;
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, evrcins);
+		stmt.setInt(2, satir);
+		stmt.setString(3, evrno);
+		stmt.setString(4, aciklama);
+		stmt.setString(5, gircik);
+		stmt.executeUpdate();
+		stmt.close();
+		
+	}
+
+	@Override
+	public String aciklama_oku(String evrcins, int satir, String evrno, String gircik)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String result ;
+		String sql =     "SELECT * " +
+				" FROM ACIKLAMA " +
+				" WHERE EVRAK_NO = N'" + evrno + "'" +
+				" AND SATIR = '" + satir + "'" +
+				" AND EVRAK_CINS = '" + evrcins + "'" +
+				" AND Gir_Cik = '" + gircik + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		if (!rss.isBeforeFirst() ) {  
+			result = "" ;
+		}
+		else
+		{
+			rss.next();
+			result = rss.getString("ACIKLAMA");
+		}
+		return result;	
+	}
 }

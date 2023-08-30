@@ -172,4 +172,20 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.dipnot_oku(ino, cins, gircik);
 	}
+	public void aciklama_sil(String evrcins,String evrno,String cins, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.aciklama_sil(evrcins, evrno, cins);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
+	}
+	public void aciklama_yaz(String evrcins,int satir,String evrno,String aciklama,String gircik ,lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+	{
+		_IKereste.aciklama_yaz(evrcins, satir, evrno, aciklama, gircik);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
+	}
+	public String aciklama_oku(String evrcins,int satir,String evrno,String gircik) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.aciklama_oku(evrcins, satir, evrno, gircik);
+	}
 }

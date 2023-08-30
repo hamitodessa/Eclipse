@@ -17,6 +17,7 @@ import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -897,12 +898,46 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-
+				if (table.getSelectedRow() < 0 ) return ;
+				
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));
 		toolBar_1.add(btnNewButton);
+
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tabbedPane.getSelectedIndex() == 0)
+				{
+					satir_ilave();
+					paketm3();
+					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+					mdll.removeRow(mdll.getRowCount() -1);
+					
+				}
+				
+			}
+		});
+		btnNewButton_2.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/yeni.png")));
+		toolBar_1.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tabbedPane.getSelectedIndex() == 0)
+				{
+					if (table.getSelectedRow() < 0 ) return ;
+					satir_sil();
+					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,""});
+					paketm3();
+				}
+				
+			}
+		});
+		btnNewButton_3.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-reduce-16.png")));
+		toolBar_1.add(btnNewButton_3);
 
 		//////////////////////////////ARA BOLUM********************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -940,6 +975,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		table.setCellSelectionEnabled(true);
 		
 		model.addColumn("Paket_No", new String []{""});
+		model.addColumn("Barkod", new String []{""});
 		model.addColumn("Urun Kodu", new String []{""});
 		model.addColumn("Miktar", new Double [] {( 0.000 )});
 		model.addColumn("M3", new Double [] {( 0.000 )});
@@ -964,32 +1000,36 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		col.setCellEditor(new DefaultCellEditor(ftext));
 		
 		col = table.getColumnModel().getColumn(1);
-		col.setMinWidth(120);
+		col.setMinWidth(80);
 		col.setHeaderRenderer(new SOLA());
 		
 		col = table.getColumnModel().getColumn(2);
+		col.setMinWidth(120);
+		col.setHeaderRenderer(new SOLA());
+		
+		col = table.getColumnModel().getColumn(3);
 		col.setMinWidth(50);
 		col.setCellRenderer(new TABLO_RENDERER(0,false));
 		col.setCellEditor( new DoubleEditor(0) );
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(3);
+		col = table.getColumnModel().getColumn(4);
 		col.setMinWidth(65);
 		col.setCellRenderer(new TABLO_RENDERER(3,true));
 		col.setCellEditor( new DoubleEditor(3) );
 		col.setHeaderRenderer(new SAGA());
 		
 		
-		col = table.getColumnModel().getColumn(4);
+		col = table.getColumnModel().getColumn(5);
 		col.setMinWidth(65);
 		col.setCellRenderer(new SAGA_BOLD());
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(5);
+		col = table.getColumnModel().getColumn(6);
 		col.setMinWidth(75);
 		col.setHeaderRenderer(new SOLA());
 		
-		col = table.getColumnModel().getColumn(6);
+		col = table.getColumnModel().getColumn(7);
 		listdepo = new ArrayList<String> () ;
 		//depo_auto();
 		Java2sAutoComboBox combodp = new Java2sAutoComboBox( listdepo,"kereste");
@@ -998,32 +1038,32 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		col.setMinWidth(100);
 		col.setHeaderRenderer(new SOLA());
 		
-		col = table.getColumnModel().getColumn(7);
+		col = table.getColumnModel().getColumn(8);
 		col.setMinWidth(75);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(8);
+		col = table.getColumnModel().getColumn(9);
 		col.setMinWidth(50);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
 		
-		col = table.getColumnModel().getColumn(9);
+		col = table.getColumnModel().getColumn(10);
 		col.setMinWidth(30);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(10);
+		col = table.getColumnModel().getColumn(11);
 		col.setMinWidth(100);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,true));
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(11);
+		col = table.getColumnModel().getColumn(12);
 		col.setMinWidth(175);
 		JTextField atf = new JTextField(40);
 		col.setCellEditor(new DefaultCellEditor(atf));
@@ -1052,6 +1092,19 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		ana_grup_doldur();
 		ker_oz_kod();
 		ker_nakliyeci();
+		
+		String deger;
+		Integer sat_sayi;
+		try {
+			deger = GLOBAL.setting_oku("KER_FAT_SATIR").toString();
+			sat_sayi =Integer.parseInt(deger);
+			for (int i = 0; i <= sat_sayi -1 ; i ++)
+			{
+				satir_ilave();
+			}
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Cikis", JOptionPane.ERROR_MESSAGE);   
+		}
 
 	}
 
@@ -1389,5 +1442,133 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		lblkodAciklama.setText("");
 		dtc.setDate(new Date());
 		
+	}
+	private static void satir_ilave()
+	{
+		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+		int satir = table.getSelectedRow();
+		if ( satir  < 0 ) 
+		{
+			mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,""});
+			satir = 0 ;
+		}
+		else
+		{
+			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,""});
+		}
+		table.isRowSelected(satir);
+		table.repaint();
+	
+		
+	}
+	private static void satir_sil()
+	{
+		if (table.getSelectedRow() < 0 ) return ;
+		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+		mdll.removeRow(table.getSelectedRow());
+		table.repaint();
+		toplam();
+		
+	}
+	private static void toplam()
+	{
+		try {
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			double  double_0, double_1 = 0, double_2 = 0, double_3 = 0, double_4, double_5=0,double_6 = 0   ;
+			int urunsayi = 0 ;
+			for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
+			{
+				double_5 += Double.parseDouble(model.getValueAt(i, 11).toString());
+				double_1 += (Double.parseDouble(model.getValueAt(i, 11).toString()) * (Double.parseDouble(model.getValueAt(i, 9).toString()))) / 100 ; 
+				double_2 += (( Double.parseDouble(model.getValueAt(i, 11).toString()) - ( Double.parseDouble(model.getValueAt(i, 11).toString()) *  Double.parseDouble(model.getValueAt(i, 9).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 10).toString())) / 100 ; // kdv
+				double_3 +=  Double.parseDouble(model.getValueAt(i, 4).toString());
+				if (! model.getValueAt(i, 5).toString().trim().isEmpty()) 
+				{
+					double_6 +=  Double.parseDouble(model.getValueAt(i, 5).toString().trim());
+				}
+				
+				if (! model.getValueAt(i,1).toString().equals(""))
+				{
+					urunsayi += 1;
+				}
+			}
+			label_8.setText(FORMATLAMA.doub_3(double_3));
+			lblPaket.setText(FORMATLAMA.doub_3(double_6));
+			label_9.setText(FORMATLAMA.doub_2(double_5));
+			lblNewLabel_13.setText( FORMATLAMA.doub_0(urunsayi));
+			
+			label_6.setText(FORMATLAMA.doub_2(double_1));
+			double_0 =double_5 - double_1 ;
+			label_7.setText(FORMATLAMA.doub_2(double_0));
+			label_3.setText(FORMATLAMA.doub_2(double_2));
+			//**********Tevkif Islemi **********************************************************
+			double_4 =DecimalFormat.getNumberInstance().parse( txttev.getText()).doubleValue();
+			double_0 = (double_2 / 10) * double_4 ;
+			label_1.setText(FORMATLAMA.doub_2(double_0));
+			double_0 = (double_5 - double_1) + double_2;
+			label_2.setText(FORMATLAMA.doub_2(double_0));
+			double_0 = (double_2 - (double_2 / 10) * double_4);
+			lblNewLabel_20.setText(FORMATLAMA.doub_2(double_0));
+			double_0 = (double_5 - double_1) + (double_2 - (double_2 / 10) * double_4);
+			label.setText(FORMATLAMA.doub_2(double_0));
+			
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
+		}
+
+	}
+	private static void paketm3()
+	{
+		double m3 =0.000 ;
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		for ( int i = 1 ;i <= model.getRowCount() -1 ;i++   ) 
+		{
+			String paketno = model.getValueAt(i-1, 0).toString().trim();
+			double aram3 = Double.parseDouble(model.getValueAt(i-1, 4).toString()) ;
+			if (! model.getValueAt(i, 0).toString().trim().equals(paketno.toString().trim()))
+			{
+				if (i == model.getRowCount() -1) {
+					double aram33 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
+					model.setValueAt( m3+ aram3 ,i-1, 5)  ;
+					if (aram33==0) {
+						model.setValueAt( "" ,i, 5)  ;
+					}
+					else {
+						model.setValueAt( FORMATLAMA.doub_3(aram33) ,i, 5)  ;
+					}
+				}
+				else {
+					m3 = m3 + aram3 ;
+					if (m3==0) {
+						model.setValueAt("",i-1, 5)  ;
+					}
+					else {
+						model.setValueAt(FORMATLAMA.doub_3(m3),i-1, 5)  ;
+					}
+					m3 = 0.000;
+				}
+			}
+			else if ( model.getValueAt(i, 0).toString().trim().equals(paketno.toString().trim())) {
+				if (i == model.getRowCount() -1)
+				{
+					double aram33 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
+					double aram1 = Double.parseDouble(model.getValueAt(i-1, 4).toString()) ;
+					if (m3+ aram33+ aram1 ==0) {
+						model.setValueAt("" ,i, 5)  ;
+					}
+					else {
+						model.setValueAt(FORMATLAMA.doub_3(m3+ aram33+ aram1) ,i, 5)  ;
+					}
+					model.setValueAt("",i-1, 5)  ;
+				}
+				else 
+				{
+					model.setValueAt("",i-1, 5)  ;
+					m3 = m3 + aram3 ;
+				}
+			}
+		}
 	}
 }

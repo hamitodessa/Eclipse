@@ -1134,6 +1134,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		dd.height = 30;
 		th.setPreferredSize(dd); 
 		table.setRowSelectionInterval(0, 0);
+		table.setColumnSelectionAllowed(true);
+	    table.setRowSelectionAllowed(true);
 		table.setRowHeight(22);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -1647,7 +1649,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Acikyz", JOptionPane.ERROR_MESSAGE);   
+			 
 		}
 	}
 	private static void acik_sil()
@@ -1668,25 +1670,52 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	}
 	private void pakkont(String pakno)
 	{
-		
-	//	mdl.insertRow(satir,new Object[]{rss.getString("Paket_No"),rss.getString("Barkod"),rss.getString("Kodu"),
-	//			rss.getDouble("Miktar"), m3(rss.getString("Kodu"),rss.getDouble("Miktar")),"" ,rss.getString("Konsimento"),rss.getString("CDepo"),
-	//			rss.getDouble("CFiat"),rss.getDouble("CIskonto"),
-	//			rss.getDouble("CKdv"),rss.getDouble("CTutar"),rss.getString("CIzahat")});
-		
+		try {
 			if (table.getSelectedRow() == -1 ) return ;
-			getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 			
 			ResultSet rSet = ker_Access.paket_oku(pakno);
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			double m3 = 0 ;
-			double miktar =  Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString());
-//			if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
-//				m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
-//			}
+			if (!rSet.isBeforeFirst() ) {  
+			}
+			else {
+				rSet.first();  
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				int satir = table.getSelectedRow() ;
+				do {
+					model.setValueAt( rSet.getString("Barkod"),satir, 1)  ;
+					model.setValueAt( rSet.getString("Kodu"),satir, 2)  ;
+					model.setValueAt( rSet.getDouble("Miktar"),satir, 3)  ;
+					double m3 = 0 ;
+					double miktar =  rSet.getDouble("Miktar");
+					String[] token = rSet.getString("Kodu").toString().split("-");
+					if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
+						m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
+					}
+					model.setValueAt( m3,satir, 4)  ;
+					model.setValueAt( rSet.getString("Konsimento"),satir, 6)  ;
+					model.setValueAt( rSet.getString("CDepo"),satir, 7)  ;
+					model.setValueAt( rSet.getDouble("CFiat"),satir, 8)  ;
+					model.setValueAt( rSet.getDouble("CIskonto"),satir, 9)  ;
+					model.setValueAt( rSet.getDouble("CKdv"),satir,10)  ;
+					model.setValueAt( rSet.getDouble("CTutar"),satir,11)  ;
+					model.setValueAt( rSet.getString("CIzahat"),satir, 12)  ;
+					satir +=1 ;
+			    }  while (rSet.next()) ;
+				
+				
+				
+			      table.changeSelection(satir, 0, true, true);
+			    //  table.editCellAt(satir, 0);
+			}
+			
+			
 			
 //			model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
 			
 		//	kod_ADI(ftext.getText());
+	}
+	catch (Exception ex)
+	{
+		JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Acikyz", JOptionPane.ERROR_MESSAGE);  
+	}
 	}
 }

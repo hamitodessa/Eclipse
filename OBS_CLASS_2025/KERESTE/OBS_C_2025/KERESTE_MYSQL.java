@@ -229,6 +229,12 @@ public class KERESTE_MYSQL implements IKERESTE {
 		return null;
 	}
 
+	@Override
+	public ResultSet paket_oku(String pno) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

@@ -188,4 +188,8 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.aciklama_oku(evrcins, satir, evrno, gircik);
 	}
+	public ResultSet  paket_oku(String pakno) throws ClassNotFoundException, SQLException
+	{
+		return  _IKereste.paket_oku(pakno);
+	}
 }

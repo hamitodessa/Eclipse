@@ -2170,11 +2170,13 @@ public class KER_GIRIS extends JInternalFrame {
 			    	  sonpaketno =  arapaketno ;
 			    	  arasinif = Integer.toString((int) row.getCell(2).getNumericCellValue()) ;
 			    	  
-			    	  kalinlik =  String.valueOf( row.getCell(3).getNumericCellValue() * 10) ;
-			    	  kalinlik =  kalinlik.substring(0, 1) + kalinlik.substring(2, kalinlik.length())  ;
+			    	  kalinlik =  String.valueOf( row.getCell(3).getNumericCellValue() ) ;
+			    	  kalinlik =   kalinlik.substring(2, kalinlik.length())  ;
 			    	  kalinlik =  kalinlik + StringUtils.repeat("0", 3- kalinlik.length())  ;
 			    	  
 			    	  genislik =  String.valueOf( row.getCell(4).getNumericCellValue() ) ;
+			    	  int kjj = 4 - genislik.length() ;
+			    	  genislik = genislik +  StringUtils.repeat("0", kjj)  ;
 			    	  genislik =  "0" + genislik.substring(2, genislik.length()) +"0" ;
 			    	  
 			    	  boy =  Integer.toString((int) row.getCell(5).getNumericCellValue()) ;
@@ -2182,7 +2184,7 @@ public class KER_GIRIS extends JInternalFrame {
 			    	  boy = boy +  StringUtils.repeat("0", kj)  ;
 			    	  adet =  (int) row.getCell(6).getNumericCellValue() ;
 			    	  
-			    	
+			    	   System.out.println(satir +" = " + arapaketno+ "==" +  arasinif + "-" +kalinlik + "-" + boy + "-" + genislik);
 			      }
 			      else {
 			    	  sonpaketno =  arapaketno ;
@@ -2191,6 +2193,7 @@ public class KER_GIRIS extends JInternalFrame {
 			    	  songenislik = genislik ;
 			    	  sonboy = boy ;
 			    	  sonadet = adet ;
+			    	  System.out.println(satir +" = " + sonpaketno+ "==" +  sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik);
 				}
 		     if (sonsinif.equals("1")) 
 		     {
@@ -2207,7 +2210,7 @@ public class KER_GIRIS extends JInternalFrame {
 		     sonsinif = "13" ;
 				
 			}
-		     System.out.println(satir +" = " + sonpaketno+ "==" +  sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik);
+		//     System.out.println(satir +" = " + sonpaketno+ "==" +  sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik);
 		//		mdl.insertRow(satir, new Object[]{"",sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik,"",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 
 		// 	mdl.insertRow(satir,new Object[]{

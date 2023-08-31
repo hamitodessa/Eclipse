@@ -1016,7 +1016,7 @@ public class KER_GIRIS extends JInternalFrame {
 		btnNewButton_3_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					 tabbedPane.setSelectedIndex(0);
+					tabbedPane.setSelectedIndex(0);
 					dosya_oku();
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -2090,154 +2090,193 @@ public class KER_GIRIS extends JInternalFrame {
 	}
 	private void dosya_oku() throws IOException
 	{
-		try
-		{
-			GuiUtil.setWaitCursor(splitPane,true);
-		UIManager.put("FileChooser.cancelButtonText", "Vazgec");
-		chooser = new JFileChooser();
-		chooser.setCurrentDirectory(new java.io.File("."));
-	    chooser.setDialogTitle("Dosya Seciniz");
-	    chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-	    chooser.setAcceptAllFileFilterUsed(false);
-	    chooser.setApproveButtonText("Dosya Sec");
-	    chooser.setApproveButtonToolTipText("Dosya Sec");
-	    chooser.addChoosableFileFilter(new FileNameExtensionFilter("Excell Dosyalari", "xls", "xlsx"));
-	    chooser.setApproveButtonMnemonic('s');
-		GuiUtil.setWaitCursor(splitPane,false);
-	    Workbook workbook = null ;
-	    FileInputStream fis = null ;
-	    Sheet sheet = null;
-	    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
-	    	File excelFile = chooser.getSelectedFile();
-	    	String path = excelFile.getAbsolutePath();
-	    	  if(path.endsWith("xls"))
-	    	  {
-	    		  fis = new FileInputStream(excelFile); 
-	    		  workbook = new HSSFWorkbook(fis );
-	    		  HSSFFont wbFont ;
-	    		  wbFont=  (HSSFFont) workbook.createFont();
-	    		  wbFont.setCharSet(HSSFFont.ANSI_CHARSET); //Your Character encoding goes in the parameter
-	    		  sheet = (HSSFSheet) workbook.getSheetAt(0);
-	    	  }
-	    	  else if(path.endsWith("xlsx"))
-	    	  {
-	    		  fis = new FileInputStream(excelFile); 
-	    		  workbook = new XSSFWorkbook(fis);
-		    		  XSSFFont wbFont ;
-	    		  wbFont=  (XSSFFont) workbook.createFont();
-	    		  wbFont.setCharSet(XSSFFont.ANSI_CHARSET); //Your Character encoding goes in the parameter
-	    		  sheet = (XSSFSheet) workbook.getSheetAt(0);
-	    	  }
-		}
-	    else
-	    {
-	    	return ;
-	    }
-		GuiUtil.setWaitCursor(splitPane,true);
-		 Iterator<Row> rowIt = sheet.iterator();
-		 String paketno = "" ;
-		 String arapaketno = "" ;
-		 String sonpaketno = "" ;
-		
-		 String arasinif ="" ;
-		 
-		 String sonsinif ="" ;
-		 String kalinlik ="" ;
-		 String sonkalinlik ="" ;
-		 
-		 String genislik ="" ;
-		 String songenislik ="" ;
-		 
-		 String boy ="";
-		 String sonboy = "" ;
-		 
-		 int adet = 0 ;
-		 int sonadet = 0 ;
-		 String konsimento = "" ;
-		 GRID_TEMIZLE.grid_temizle(table);
-		 DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-			Row row = rowIt.next();
-			int satir = 0 ;
-		    while(rowIt.hasNext()) 
-		    {
-		    
-			
-		      if (  row.getCell(1) != null)
-		      {
-		    	  paketno =  row.getCell(1).getStringCellValue();
-			      if ( ! paketno.equals("")) {
-			    	  arapaketno = paketno.substring(1, paketno.length()) ;
-			    	  sonpaketno =  arapaketno ;
-			    	  arasinif = Integer.toString((int) row.getCell(2).getNumericCellValue()) ;
-			    	  
-			    	  kalinlik =  String.valueOf( row.getCell(3).getNumericCellValue() ) ;
-			    	  kalinlik =   kalinlik.substring(2, kalinlik.length())  ;
-			    	  kalinlik =  kalinlik + StringUtils.repeat("0", 3- kalinlik.length())  ;
-			    	  
-			    	  genislik =  String.valueOf( row.getCell(4).getNumericCellValue() ) ;
-			    	  int kjj = 4 - genislik.length() ;
-			    	  genislik = genislik +  StringUtils.repeat("0", kjj)  ;
-			    	  genislik =  "0" + genislik.substring(2, genislik.length()) +"0" ;
-			    	  
-			    	  boy =  Integer.toString((int) row.getCell(5).getNumericCellValue()) ;
-			    	  int kj = 4 - boy.length() ;
-			    	  boy = boy +  StringUtils.repeat("0", kj)  ;
-			    	  adet =  (int) row.getCell(6).getNumericCellValue() ;
-			    	  
-			    	   System.out.println(satir +" = " + arapaketno+ "==" +  arasinif + "-" +kalinlik + "-" + boy + "-" + genislik);
-			      }
-			      else {
-			    	  sonpaketno =  arapaketno ;
-			    	  sonsinif = arasinif ;
-			    	  sonkalinlik = kalinlik ;
-			    	  songenislik = genislik ;
-			    	  sonboy = boy ;
-			    	  sonadet = adet ;
-			    	  System.out.println(satir +" = " + sonpaketno+ "==" +  sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik);
+		Runnable runner = new Runnable()
+		{ public void run() {
+			try
+			{
+				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
+				chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new java.io.File("."));
+				chooser.setDialogTitle("Dosya Seciniz");
+				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				chooser.setAcceptAllFileFilterUsed(false);
+				chooser.setApproveButtonText("Dosya Sec");
+				chooser.setApproveButtonToolTipText("Dosya Sec");
+				chooser.addChoosableFileFilter(new FileNameExtensionFilter("Excell Dosyalari", "xls", "xlsx"));
+				chooser.setApproveButtonMnemonic('s');
+				
+				Workbook workbook = null ;
+				FileInputStream fis = null ;
+				Sheet sheet = null;
+				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+					File excelFile = chooser.getSelectedFile();
+					String path = excelFile.getAbsolutePath();
+					if(path.endsWith("xls"))
+					{
+						fis = new FileInputStream(excelFile); 
+						workbook = new HSSFWorkbook(fis );
+						HSSFFont wbFont ;
+						wbFont=  (HSSFFont) workbook.createFont();
+						wbFont.setCharSet(HSSFFont.ANSI_CHARSET); //Your Character encoding goes in the parameter
+						sheet = (HSSFSheet) workbook.getSheetAt(0);
+					}
+					else if(path.endsWith("xlsx"))
+					{
+						fis = new FileInputStream(excelFile); 
+						workbook = new XSSFWorkbook(fis);
+						XSSFFont wbFont ;
+						wbFont=  (XSSFFont) workbook.createFont();
+						wbFont.setCharSet(XSSFFont.ANSI_CHARSET); //Your Character encoding goes in the parameter
+						sheet = (XSSFSheet) workbook.getSheetAt(0);
+					}
 				}
-		     if (sonsinif.equals("1")) 
-		     {
-		     sonsinif = "11" ;
-				
-			}
-		     else if (sonsinif.equals("2")) 
-		     {
-		     sonsinif = "12" ;
-				
-			}
-		     else  if (sonsinif.equals("3")) 
-		     {
-		     sonsinif = "13" ;
-				
-			}
-		//     System.out.println(satir +" = " + sonpaketno+ "==" +  sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik);
-		//		mdl.insertRow(satir, new Object[]{"",sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik,"",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+				else
+				{
+					return ;
+				}
 
-		// 	mdl.insertRow(satir,new Object[]{
-		//			"",sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik ,
-		//			sonpaketno,sonadet, 
-		//			m3(sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik,sonadet),
-		//			"" ,	konsimento,	0, // depo
-		//			0,0,0,0,"Izahat","",
-		//			"1900-01-01 00:00:00.0", // ctar
-		//			0,"",0,	0,	0,	"",	"",	0,	0,	0,	0,	0,	"",	"",	"",	""});
-			}  
-		   
-		     satir += 1 ;
-		     if (satir ==150)  break;
-		     
-		     
-		     row = rowIt.next();
-		     // defaultModel.addRow(new Object[]{tar, izahat  ,"", borc ,alacak,"",""});
-		    }
-	    workbook.close();
-	    fis.close();
-	  GuiUtil.setWaitCursor(splitPane,false);
-	  
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+				GuiUtil.setWaitCursor(splitPane,true);
+				
+				
+				///
+				Iterator<Row> rowItt = sheet.iterator();
+				Row roww = rowItt.next();
+				int say = 0 ;
+				while(rowItt.hasNext()) 
+				{
+					if (  roww.getCell(1) != null)
+					{
+						say += 1;
+					}
+					roww = rowItt.next();
+				}
+				
+				///
+				Iterator<Row> rowIt = sheet.iterator();
+				String paketno = "" ;
+				String arapaketno = "" ;
+				String sonpaketno = "" ;
+
+				String arasinif ="" ;
+
+				String sonsinif ="" ;
+				String kalinlik ="" ;
+				String sonkalinlik ="" ;
+
+				String genislik ="" ;
+				String songenislik ="" ;
+
+				String boy ="";
+				String sonboy = "" ;
+
+				int adet = 0 ;
+				int sonadet = 0 ;
+				String konsimento = "5402" ;
+				GRID_TEMIZLE.grid_temizle(table);
+				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+				Row row = rowIt.next();
+				
+				int satir = 0 ;
+				 Progres_Bar_Temizle();
+				 OBS_MAIN.progressBar.setMaximum(say);
+				while(rowIt.hasNext()) 
+				{
+					if (  row.getCell(1) != null)
+					{
+						Progres_Bar(table.getRowCount() - 1, satir);
+						paketno =  row.getCell(1).getStringCellValue();
+						if ( ! paketno.equals("")) {
+							arapaketno = paketno.substring(1, paketno.length()) ;
+							sonpaketno =  arapaketno ;
+							arasinif = Integer.toString((int) row.getCell(2).getNumericCellValue()) ;
+
+							kalinlik =  String.valueOf( row.getCell(3).getNumericCellValue() ) ;
+							kalinlik =   kalinlik.substring(2, kalinlik.length())  ;
+							kalinlik =  kalinlik + StringUtils.repeat("0", 3- kalinlik.length())  ;
+
+							genislik =  String.valueOf( row.getCell(4).getNumericCellValue() ) ;
+							int kjj = 4 - genislik.length() ;
+							genislik = genislik +  StringUtils.repeat("0", kjj)  ;
+							genislik =  "0" + genislik.substring(2, genislik.length()) +"0" ;
+
+							boy =  Integer.toString((int) row.getCell(5).getNumericCellValue()) ;
+							int kj = 4 - boy.length() ;
+							boy = boy +  StringUtils.repeat("0", kj)  ;
+							adet =  (int) row.getCell(6).getNumericCellValue() ;
+
+							if ( arasinif.equals("1")) 
+							{  arasinif = "11" ;}
+							else if ( arasinif.equals("2")) 
+							{  arasinif = "12" ;}
+							else  if ( arasinif.equals("3")) 
+							{  arasinif = "13" ;}
+							String kODU= arasinif + "-" +kalinlik + "-" + boy + "-" + genislik ;
+							mdl.addRow(new Object[]{"",kODU,sonpaketno,adet,
+									m3(kODU,adet),"",konsimento,"Gebze",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+
+						}
+						else {
+							sonpaketno =  arapaketno ;
+							sonsinif = arasinif ;
+							sonkalinlik = kalinlik ;
+							songenislik = genislik ;
+							sonboy = boy ;
+							sonadet = adet ;
+
+							if ( arasinif.equals("1")) 
+							{  arasinif = "11" ;}
+							else if ( arasinif.equals("2")) 
+							{  arasinif = "12" ;}
+							else  if ( arasinif.equals("3")) 
+							{  arasinif = "13" ;}
+							String kODU= sonsinif + "-" + sonkalinlik + "-" + sonboy + "-" + songenislik ;
+							mdl.addRow(new Object[]{"",kODU,sonpaketno,sonadet,
+									m3(kODU,sonadet),"",konsimento,"Gebze",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+						}
+					}  
+					satir += 1 ;
+					//if (satir ==1000)  break;
+					row = rowIt.next();
+				}
+
+				workbook.close();
+				fis.close();
+
+				paketm3();
+				GuiUtil.setWaitCursor(splitPane,false);
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+				Progres_Bar_Temizle();
+				Thread.currentThread().isInterrupted();
+			}
+			catch (Exception ex)
+			{
+				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
+			}
 		}
-		catch (Exception ex)
-		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
-		}
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
 	}
+	static void Progres_Bar(int max, int deger) throws InterruptedException
+    {
+ 	    OBS_MAIN.progressBar.setValue(deger);
+    }
+    static void Progres_Bar_Temizle()
+    {
+    	OBS_MAIN.progressBar.setMaximum(0);
+    	OBS_MAIN.progressBar.setValue(0);
+    	OBS_MAIN.progressBar.setStringPainted(false);
+    }
 }
+//     System.out.println(satir +" = " + sonpaketno+ "==" +  sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik);
+//		mdl.insertRow(satir, new Object[]{"",sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik,"",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+
+// 	mdl.insertRow(satir,new Object[]{
+//			"",sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik ,
+//			sonpaketno,sonadet, 
+//			m3(sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik,sonadet),
+//			"" ,	konsimento,	0, // depo
+//			0,0,0,0,"Izahat","",
+//			"1900-01-01 00:00:00.0", // ctar
+//			0,"",0,	0,	0,	"",	"",	0,	0,	0,	0,	0,	"",	"",	"",	""});

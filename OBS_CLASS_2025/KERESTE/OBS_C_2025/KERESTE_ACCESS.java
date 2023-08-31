@@ -192,4 +192,16 @@ public class KERESTE_ACCESS {
 	{
 		return  _IKereste.paket_oku(pakno);
 	}
+	public void ker_cikis_sil(String eno,lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+	{
+		_IKereste.ker_cikis_sil(eno);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
+	}
+	public void ker_cikis_kaydet(KER_BILGI kBILGI,lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+	{
+		_IKereste.ker_cikis_kaydet( kBILGI);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
+	}
 }

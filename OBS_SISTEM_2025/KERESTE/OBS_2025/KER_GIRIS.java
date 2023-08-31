@@ -1611,7 +1611,7 @@ public class KER_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kerest6e Satyz1", JOptionPane.ERROR_MESSAGE);             
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Satyz1", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
 	private static void sat_yaz_2(int i)

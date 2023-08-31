@@ -1935,8 +1935,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		btnNewButton_24.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-questionnaire-30.png")));
-		toolBar_5.add(btnNewButton_24);
-		
+	
 		toolBar_Kereste.add(btnNewButton_24);
 		
 		JLabel lblNewLabel_40 = new JLabel("          ");
@@ -2186,6 +2185,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "KONSIMENTO ACIKLAMA") KONS_ACIKLAMA.kaydet();
 				else if (sonuc == "KERESTE DEGISKENLER") KER_DEGISKEN_GIRIS.kayit();
 				else if (sonuc == "KERESTE GIRIS") KER_GIRIS.kaydet();
+				else if (sonuc == "KERESTE CIKIS") KERESTE_CIKIS.kaydet();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});

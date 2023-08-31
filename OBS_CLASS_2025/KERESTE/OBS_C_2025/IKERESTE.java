@@ -45,4 +45,5 @@ public interface IKERESTE {
 	public ResultSet paket_oku(String pno) throws ClassNotFoundException, SQLException;
 	public void ker_cikis_sil(String eno) throws ClassNotFoundException, SQLException;
 	public void ker_cikis_kaydet(KER_BILGI kBILGI) throws ClassNotFoundException, SQLException;
+	public int evrak_no_al(String cins) throws ClassNotFoundException, SQLException;
 }

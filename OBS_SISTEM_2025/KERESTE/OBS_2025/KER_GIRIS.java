@@ -203,7 +203,7 @@ public class KER_GIRIS extends JInternalFrame {
 						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 						int sno = 0 ;
 						
-							//sno  = f_Access.fatura_no_al("G") ;
+						sno  = ker_Access.evrak_no_al("G") ;
 						int kj = 0 ;
 						kj = 10 - Integer.toString(sno).length() ;
 						String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);

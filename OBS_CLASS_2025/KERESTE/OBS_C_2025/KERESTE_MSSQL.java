@@ -986,4 +986,30 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
+
+	@Override
+	public int evrak_no_al(String cins) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		int E_NUMBER ;
+		String sql ="" ;
+		if (cins.equals("G")) {
+			sql = "SELECT max(Evrak_No + 1) AS NO  FROM KERESTE  ";
+		}
+		else {
+			sql = "SELECT max(Cikis_Evrak + 1) AS NO  FROM KERESTE  ";
+		}
+		
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		if (!rss.isBeforeFirst() ) {  
+			E_NUMBER = 0 ;
+		}
+		else
+		{
+			rss.next();
+			E_NUMBER = rss.getInt("NO");
+		}
+		return E_NUMBER;	
+	}
 }

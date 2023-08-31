@@ -248,6 +248,12 @@ public class KERESTE_MYSQL implements IKERESTE {
 		
 	}
 
+	@Override
+	public int evrak_no_al(String cins) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 
 }

@@ -204,4 +204,8 @@ public class KERESTE_ACCESS {
 		for ( ILOGGER  _Logger : _Logger )
 			_Logger.Logla(lBILGI, dBILGI);
 	}
+	public int evrak_no_al(String cins) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.evrak_no_al(cins);
+	}
 }

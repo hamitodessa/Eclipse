@@ -50,7 +50,10 @@ public class Next_Cell_Kereste extends AbstractAction {
           {
               row = 0;
           }
-          table.getCellEditor().stopCellEditing();
+          if (table.getCellEditor() != null) {
+        	  table.getCellEditor().stopCellEditing();
+          }
+          
           table.getSelectionModel().setSelectionInterval(row, row);
           table.getColumnModel().getSelectionModel().setSelectionInterval(col, col);
 		

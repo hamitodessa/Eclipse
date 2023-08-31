@@ -810,7 +810,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.setString(39,kBILGI.getCIzahat());
 		stmt.setInt(40, kBILGI.getCNakliyeci());
 		stmt.setString(41,  kBILGI.getCUSER());
-		stmt.setInt(41, kBILGI.getSatir());
+		stmt.setInt(42, kBILGI.getSatir());
 		stmt.executeUpdate();
 		stmt.close();
 		
@@ -825,7 +825,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 			 sql = "SELECT   [Evrak_No] ,[Barkod] ,[Kodu],[Paket_No],[Konsimento] ,[Miktar],[Tarih],[Kdv] ,[Doviz] ,[Fiat]  ,[Tutar] ,[Kur]  ,[Cari_Firma],[Adres_Firma]  ,[Iskonto] ,[Tevkifat] "
 					+ "	,[Ana_Grup]  ,[Alt_Grup] ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) , '') AS Depo  ,[Ozel_Kod] ,[Izahat]  ,[Nakliyeci] ,[USER] "
 					+ "	,[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] ,[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat] "
-					+ "	,[CAna_Grup]    ,[CAlt_Grup]  ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER]" 
+					+ "	,[CAna_Grup]    ,[CAlt_Grup]  ,CDepo  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER]" 
 					+ " FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
 					+ " WHERE Evrak_No  = N'" + eno + "'" ;
 		}

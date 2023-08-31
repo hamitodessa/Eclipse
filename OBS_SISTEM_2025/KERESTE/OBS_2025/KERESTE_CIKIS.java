@@ -1411,9 +1411,9 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			if (!rss.isBeforeFirst() ) {  
 				txtadres.setText("");
 				yeni_fat = true;
-			
-				sifirla();
 				GRID_TEMIZLE.grid_temizle(table);
+				sifirla();
+				
 			}
 			else
 			{
@@ -1424,6 +1424,12 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				txtadres.setText("");
 				GRID_TEMIZLE.grid_temizle(table);
 				sifirla();
+				dtc.setDate(rss.getDate("CTarih"));
+				txtadres.setText(rss.getString("CAdres_Firma"));
+				txtcari.setText(rss.getString("CCari_Firma"));
+				txtdoviz.setText(rss.getString("CDoviz"));
+				txtkur.setText(FORMATLAMA.doub_4(rss.getDouble("CKur")));
+				cmbozkod.setSelectedItem(rss.getString("COzel_Kod"));
 				//  '***********GRUP DOLDUR
 				ResultSet rsa=null;
 				rsa = ker_Access.ker_kod_degisken_ara("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN",String.valueOf(rss.getInt("CAna_Grup")));
@@ -1648,6 +1654,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			ker_BILGI.setCAlt_Grup(altgrp);
 			ker_BILGI.setCNakliyeci(nakl);
 			ker_BILGI.setCDoviz( txtdoviz.getText());
+			ker_BILGI.setCKur(kur);
 			ker_BILGI.setCOzel_Kod(cmbozkod.getItemAt(cmbozkod.getSelectedIndex()).toString());
 			ker_BILGI.setPaket_No( mdl.getValueAt(i,0).toString());
 			ker_BILGI.setKodu( mdl.getValueAt(i,2).toString());

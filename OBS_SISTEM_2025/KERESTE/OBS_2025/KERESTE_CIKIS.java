@@ -63,7 +63,6 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
-import org.apache.commons.collections.functors.IfClosure;
 import org.apache.commons.lang.StringUtils;
 
 import com.toedter.calendar.JDateChooser;
@@ -78,7 +77,6 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KER_BILGI;
-import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.Next_Cell_Kereste;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SAGA_BOLD;
@@ -88,7 +86,7 @@ import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.U_KODU_RENDERER;
 import OBS_C_2025.lOG_BILGI;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"static-access","unused", "serial"})
 public class KERESTE_CIKIS extends JInternalFrame {
 	private static JSplitPane splitPane ;
 	private static JTabbedPane tabbedPane ;
@@ -134,6 +132,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	
 	
 	private static JTable table;
+
+
 	private static boolean yeni_fat = false;
 	private static  String tar = "" ;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -159,6 +159,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public KERESTE_CIKIS() {
 		setTitle("KERESTE CIKIS");
 		setResizable(true);
@@ -1970,74 +1971,65 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	{
 		try {
 			if (table.getSelectedRow() == -1 ) return ;
-			
+
 			ResultSet rSet = ker_Access.paket_oku(pakno);
 			if (!rSet.isBeforeFirst() ) {  
 			}
-			else {
+			else 
+			{
 				rSet.first();  
-				//
-				
 				if (! rSet.getString("Cikis_Evrak").toString().equals("")   && ! rSet.getString("Cikis_Evrak").toString().equals(textField.getText()))
-{
+				{
 					JOptionPane.showMessageDialog(null, "Bu Paket daha Once " + rSet.getString("Cikis_Evrak").toString() + " da Cikis Yapilmis"  ,  "Urun Cikis", JOptionPane.ERROR_MESSAGE);  
 				}
-				else {
-				DefaultTableModel model = (DefaultTableModel) table.getModel();
-				int satir = table.getSelectedRow() ;
-				int ilks = satir;
-				do {
-					model.setValueAt( rSet.getString("Paket_No"),satir, 0)  ;
-					model.setValueAt( rSet.getString("Barkod"),satir, 1)  ;
-					model.setValueAt( rSet.getString("Kodu"),satir, 2)  ;
-					model.setValueAt( rSet.getDouble("Miktar"),satir, 3)  ;
-					double m3 = 0 ;
-					double miktar =  rSet.getDouble("Miktar");
-					String[] token = rSet.getString("Kodu").toString().split("-");
-					if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
-						m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
+				else 
+				{
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					int satir = table.getSelectedRow() ;
+					int ilks = satir;
+					do {
+						model.setValueAt( rSet.getString("Paket_No"),satir, 0)  ;
+						model.setValueAt( rSet.getString("Barkod"),satir, 1)  ;
+						model.setValueAt( rSet.getString("Kodu"),satir, 2)  ;
+						model.setValueAt( rSet.getDouble("Miktar"),satir, 3)  ;
+						double m3 = 0 ;
+						double miktar =  rSet.getDouble("Miktar");
+						String[] token = rSet.getString("Kodu").toString().split("-");
+						if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
+							m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
+						}
+						model.setValueAt( m3,satir, 4)  ;
+						model.setValueAt( rSet.getString("Konsimento"),satir, 6)  ;
+						model.setValueAt( rSet.getString("CDepo"),satir, 7)  ;
+						model.setValueAt( rSet.getDouble("CFiat"),satir, 8)  ;
+						model.setValueAt( rSet.getDouble("CIskonto"),satir, 9)  ;
+						model.setValueAt( rSet.getDouble("CKdv"),satir,10)  ;
+						model.setValueAt( rSet.getDouble("CTutar"),satir,11)  ;
+						model.setValueAt( rSet.getString("CIzahat"),satir, 12)  ;
+						model.setValueAt( rSet.getInt("Satir"),satir, 13)  ;
+						satir +=1 ;
+					}  while (rSet.next()) ;
+					paketm3();		
+					kod_ADI(model.getValueAt(ilks,2).toString());
+					if (table.getCellEditor() != null) {
+						table.getCellEditor().stopCellEditing();
 					}
-					model.setValueAt( m3,satir, 4)  ;
-					model.setValueAt( rSet.getString("Konsimento"),satir, 6)  ;
-					model.setValueAt( rSet.getString("CDepo"),satir, 7)  ;
-					model.setValueAt( rSet.getDouble("CFiat"),satir, 8)  ;
-					model.setValueAt( rSet.getDouble("CIskonto"),satir, 9)  ;
-					model.setValueAt( rSet.getDouble("CKdv"),satir,10)  ;
-					model.setValueAt( rSet.getDouble("CTutar"),satir,11)  ;
-					model.setValueAt( rSet.getString("CIzahat"),satir, 12)  ;
-					model.setValueAt( rSet.getInt("Satir"),satir, 13)  ;
-					satir +=1 ;
-			    }  while (rSet.next()) ;
-				
-				
-				
-				paketm3();		
-				
-				kod_ADI(model.getValueAt(ilks,2).toString());
-				if (table.getCellEditor() != null) {
-					table.getCellEditor().stopCellEditing();
+					table.getSelectionModel().setSelectionInterval(ilks, ilks);
+					table.getColumnModel().getSelectionModel().setSelectionInterval(8, 8);			     
 				}
-				
-			    table.getSelectionModel().setSelectionInterval(ilks, ilks);
-	            table.getColumnModel().getSelectionModel().setSelectionInterval(8, 8);			     
-				}
-				}
+			}
 			toplam();
-			
-			
-	}
-	catch (Exception ex)
-	{
-		JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Paket Kontrol", JOptionPane.ERROR_MESSAGE);  
-	}
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Paket Kontrol", JOptionPane.ERROR_MESSAGE);  
+		}
 	}
 	private  void depo_auto()
 	{
 		try {
 			ResultSet rs = null;
-
 			rs = ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				listdepo.add("");
 			}

@@ -222,17 +222,35 @@ public class KER_GIRIS extends JInternalFrame {
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				fiskont();
+				if (! textField.getText().toString().equals("")) {
+					fiskont();
+				}
+				else {
+					GRID_TEMIZLE.grid_temizle(table);
+					sifirla();
+				}
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void removeUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				fiskont();
+				if (! textField.getText().toString().equals("")) {
+					fiskont();
+				}
+				else {
+					GRID_TEMIZLE.grid_temizle(table);
+					sifirla();
+				}
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void insertUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				fiskont();
+				if (! textField.getText().toString().equals("")) {
+					fiskont();
+				}
+				else {
+					GRID_TEMIZLE.grid_temizle(table);
+					sifirla();
+				}
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 		});
@@ -1585,6 +1603,8 @@ public class KER_GIRIS extends JInternalFrame {
 		dipnot_yaz();
 		acik_yaz();
 		//cikis_yaz();
+		textField.setText("");
+		textField.requestFocus();
 		//************************************
 		GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
 		long endTime = System.currentTimeMillis();

@@ -45,6 +45,7 @@ public class KER_BILGI {
 	private String CIzahat ; 
 	private String CCins ;
 	private String CUSER ;
+	private int Satir ;
 	public String getEvrak_No() {
 		return Evrak_No;
 	}
@@ -309,7 +310,12 @@ public class KER_BILGI {
 	public void setCUSER(String cUSER) {
 		CUSER = cUSER;
 	}
-	
+	public int getSatir() {
+		return Satir;
+	}
+	public void setSatir(int satir) {
+		Satir = satir;
+	}
 	
 
 }

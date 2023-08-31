@@ -970,7 +970,7 @@ public class KER_GIRIS extends JInternalFrame {
 					if (table.getSelectedRow() < 0 ) return ;
 					satir_sil();
 					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,"","","",0,""});
 					paketm3();
 				}
 				
@@ -1286,12 +1286,12 @@ public class KER_GIRIS extends JInternalFrame {
 		int satir = table.getSelectedRow();
 		if ( satir  < 0 ) 
 		{
-			mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+			          mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,"","","",0,""});
 			satir = 0 ;
 		}
 		else
 		{
-			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,"","","",0,""});
 		}
 		table.isRowSelected(satir);
 		table.repaint();
@@ -1751,13 +1751,14 @@ public class KER_GIRIS extends JInternalFrame {
 			ker_BILGI.setCIzahat( mdl.getValueAt(i,28).toString());
 			ker_BILGI.setCNakliyeci(Integer.parseInt(mdl.getValueAt(i,29).toString()));
 			ker_BILGI.setCUSER( mdl.getValueAt(i,30).toString());
+			ker_BILGI.setSatir(i);
 			ker_Access.ker_kaydet(ker_BILGI, GLOBAL.KULL_ADI
 					,lBILGI,BAGLAN_LOG.kerLogDizin);
 
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz2", JOptionPane.ERROR_MESSAGE);     
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyaz 2", JOptionPane.ERROR_MESSAGE);     
 		}
 	}
 	private void fiskont()
@@ -1824,19 +1825,46 @@ public class KER_GIRIS extends JInternalFrame {
 				int satir =0 ;
 				do
 				{
-					mdl.insertRow(satir,new Object[]{rss.getString("Barkod"),rss.getString("Kodu"),rss.getString("Paket_No"),
-					rss.getDouble("Miktar"), m3(rss.getString("Kodu"),rss.getDouble("Miktar")),"" ,rss.getString("Konsimento"),rss.getString("Depo"),rss.getDouble("Fiat"),rss.getDouble("Iskonto"),
-					rss.getDouble("Kdv"),rss.getDouble("Tutar"),rss.getString("Izahat"),rss.getString("Cikis_Evrak"),
-					rss.getString("CTarih"),rss.getDouble("CKdv"),rss.getString("CDoviz"),rss.getDouble("CFiat"),rss.getDouble("CTutar"),rss.getDouble("CKur"),
-					rss.getString("CCari_Firma"),rss.getString("CAdres_Firma"),rss.getDouble("CIskonto"),rss.getDouble("CTevkifat"),
-					rss.getInt("CAna_Grup"),rss.getInt("CAlt_Grup"),rss.getInt("CDepo"),rss.getString("COzel_Kod"),
-					rss.getString("CIzahat"),rss.getInt("CNakliyeci"),rss.getString("CUser")});
+					//"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""
+					mdl.insertRow(satir,new Object[]{
+							rss.getString("Barkod"),
+							rss.getString("Kodu"),
+							rss.getString("Paket_No"),
+							rss.getDouble("Miktar"), 
+							m3(rss.getString("Kodu"),rss.getDouble("Miktar")),
+							"" ,
+							rss.getString("Konsimento"),
+							rss.getString("Depo"),
+							rss.getDouble("Fiat"),
+							rss.getDouble("Iskonto"),
+							rss.getDouble("Kdv"),
+							rss.getDouble("Tutar"),
+							rss.getString("Izahat"),
+							rss.getString("Cikis_Evrak"),
+							rss.getString("CTarih"),
+							rss.getDouble("CKdv"),
+							rss.getString("CDoviz"),
+							rss.getDouble("CFiat"),
+							rss.getDouble("CTutar"),
+							rss.getDouble("CKur"),
+					rss.getString("CCari_Firma"),
+					rss.getString("CAdres_Firma"),
+					rss.getDouble("CIskonto"),
+					rss.getDouble("CTevkifat"),
+					rss.getInt("CAna_Grup"),
+					rss.getInt("CAlt_Grup"),
+					rss.getString("CDepo"),
+					rss.getString("COzel_Kod"),
+					rss.getString("CIzahat"),
+					rss.getInt("CNakliyeci"),
+					rss.getString("CUser")});
 
 					txttev.setText(FORMATLAMA.doub_0(rss.getDouble("Tevkifat")));
 					satir +=1 ;
 					mdl.removeRow(mdl.getRowCount() -1);
 				}  while (rss.next()) ;
-				
+		
+
 				paketm3();
 				dipnot_oku();
 				kod_ADI( mdl.getValueAt(0,1).toString());
@@ -1848,7 +1876,7 @@ public class KER_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			GuiUtil.setWaitCursor(FATURA.splitPane,false);
+			GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
 		}
 	}

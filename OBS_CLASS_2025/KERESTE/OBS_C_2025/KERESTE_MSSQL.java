@@ -184,6 +184,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " [CIzahat] [nvarchar](40) NULL,"
 				+ " [CNakliyeci] [int] NULL,"
 				+ " [CUSER] [nvarchar](15)  NULL,"
+				+ " [Satir] [int] NOT NULL,"
 				+ " INDEX IX_KERESTE NONCLUSTERED (Evrak_No,Kodu,Tarih,Paket_No,Konsimento,Cari_Firma,Cikis_Evrak)) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
@@ -763,8 +764,8 @@ public class KERESTE_MSSQL implements IKERESTE {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " + //15
 				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,[USER],Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
-				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER) " + //9
-				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Satir) " + //9
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		///////////////////
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
@@ -809,6 +810,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.setString(39,kBILGI.getCIzahat());
 		stmt.setInt(40, kBILGI.getCNakliyeci());
 		stmt.setString(41,  kBILGI.getCUSER());
+		stmt.setInt(41, kBILGI.getSatir());
 		stmt.executeUpdate();
 		stmt.close();
 		
@@ -831,13 +833,12 @@ public class KERESTE_MSSQL implements IKERESTE {
 			sql = "SELECT   [Evrak_No] ,[Barkod] ,[Kodu],[Paket_No],[Konsimento] ,[Miktar],[Tarih],[Kdv] ,[Doviz] ,[Fiat]  ,[Tutar] ,[Kur]  ,[Cari_Firma],[Adres_Firma]  ,[Iskonto] ,[Tevkifat] "
 					+ "	,[Ana_Grup]  ,[Alt_Grup] ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) , '') AS Depo  ,[Ozel_Kod] ,[Izahat]  ,[Nakliyeci] ,[USER] "
 					+ "	,[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] ,[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat] "
-					+ "	,[CAna_Grup]    ,[CAlt_Grup]  ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER]" 
+					+ "	,[CAna_Grup]    ,[CAlt_Grup]  ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER],Satir" 
 					+ " FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
 					+ " WHERE Cikis_Evrak  = N'" + eno + "'" ;
 		}
 		
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		System.out.println(sql);
 		rss = stmt.executeQuery(sql);
 		return rss;	
 	}
@@ -951,11 +952,9 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String sql = "SELECT   [Evrak_No] ,[Barkod] ,[Kodu],[Paket_No],[Konsimento] ,[Miktar],[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] " 
 				+ ",[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat],[CAna_Grup]    ,[CAlt_Grup]  "
-				+ "	 ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER]" 
+				+ "	 ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER],Satir" 
 				+ " FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
 				+ " WHERE Paket_No = N'" + pno + "'" ;
-		
-				
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 
@@ -983,9 +982,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " CDepo="+ kBILGI.getCDepo() + ",COzel_Kod='"+ kBILGI.getCOzel_Kod() +"',CIzahat='"+ kBILGI.getCIzahat() +"',CNakliyeci="+ kBILGI.getCNakliyeci() + ", " 
 				+ " CUSER='"+ kBILGI.getCUSER() +"'"
 				+ " WHERE Paket_No  ='" + kBILGI.getPaket_No() + "'"
-				+ " AND Kodu = '"+ kBILGI.getKodu() + "'"
-				+ " AND Miktar = '"+ kBILGI.getMiktar() + "'"
-				+ " AND Konsimento = '"+ kBILGI.getKonsimento() + "'" ;
+				+ " AND Satir = '"+ kBILGI.getSatir() + "'" ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}

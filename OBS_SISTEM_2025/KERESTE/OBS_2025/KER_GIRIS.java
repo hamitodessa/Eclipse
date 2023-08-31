@@ -15,6 +15,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,6 +34,7 @@ import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -47,6 +50,7 @@ import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -56,6 +60,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -63,6 +68,15 @@ import javax.swing.table.TableModel;
 import javax.swing.text.MaskFormatter;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -133,6 +147,7 @@ public class KER_GIRIS extends JInternalFrame {
 	
 	private static  String tar = "" ;
 	private static boolean yeni_fat = false;
+	private JFileChooser chooser;
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
@@ -996,6 +1011,20 @@ public class KER_GIRIS extends JInternalFrame {
 		});
 		btnNewButton_3.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-reduce-16.png")));
 		toolBar_1.add(btnNewButton_3);
+		
+		JButton btnNewButton_3_1 = new JButton("");
+		btnNewButton_3_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					 tabbedPane.setSelectedIndex(0);
+					dosya_oku();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_3_1.setIcon(new ImageIcon(KER_GIRIS.class.getResource("/ICONLAR/excel-icon_16.png")));
+		toolBar_1.add(btnNewButton_3_1);
 		//////////////////////////////ARA BOLUM********************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setForeground(new Color(0, 0, 128));
@@ -1883,7 +1912,6 @@ public class KER_GIRIS extends JInternalFrame {
 					rss.getString("CIzahat"),
 					rss.getInt("CNakliyeci"),
 					rss.getString("CUser")});
-
 					txttev.setText(FORMATLAMA.doub_0(rss.getDouble("Tevkifat")));
 					satir +=1 ;
 					mdl.removeRow(mdl.getRowCount() -1);
@@ -2058,6 +2086,155 @@ public class KER_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 
+		}
+	}
+	private void dosya_oku() throws IOException
+	{
+		try
+		{
+			GuiUtil.setWaitCursor(splitPane,true);
+		UIManager.put("FileChooser.cancelButtonText", "Vazgec");
+		chooser = new JFileChooser();
+		chooser.setCurrentDirectory(new java.io.File("."));
+	    chooser.setDialogTitle("Dosya Seciniz");
+	    chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+	    chooser.setAcceptAllFileFilterUsed(false);
+	    chooser.setApproveButtonText("Dosya Sec");
+	    chooser.setApproveButtonToolTipText("Dosya Sec");
+	    chooser.addChoosableFileFilter(new FileNameExtensionFilter("Excell Dosyalari", "xls", "xlsx"));
+	    chooser.setApproveButtonMnemonic('s');
+		GuiUtil.setWaitCursor(splitPane,false);
+	    Workbook workbook = null ;
+	    FileInputStream fis = null ;
+	    Sheet sheet = null;
+	    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+	    	File excelFile = chooser.getSelectedFile();
+	    	String path = excelFile.getAbsolutePath();
+	    	  if(path.endsWith("xls"))
+	    	  {
+	    		  fis = new FileInputStream(excelFile); 
+	    		  workbook = new HSSFWorkbook(fis );
+	    		  HSSFFont wbFont ;
+	    		  wbFont=  (HSSFFont) workbook.createFont();
+	    		  wbFont.setCharSet(HSSFFont.ANSI_CHARSET); //Your Character encoding goes in the parameter
+	    		  sheet = (HSSFSheet) workbook.getSheetAt(0);
+	    	  }
+	    	  else if(path.endsWith("xlsx"))
+	    	  {
+	    		  fis = new FileInputStream(excelFile); 
+	    		  workbook = new XSSFWorkbook(fis);
+		    		  XSSFFont wbFont ;
+	    		  wbFont=  (XSSFFont) workbook.createFont();
+	    		  wbFont.setCharSet(XSSFFont.ANSI_CHARSET); //Your Character encoding goes in the parameter
+	    		  sheet = (XSSFSheet) workbook.getSheetAt(0);
+	    	  }
+		}
+	    else
+	    {
+	    	return ;
+	    }
+		GuiUtil.setWaitCursor(splitPane,true);
+		 Iterator<Row> rowIt = sheet.iterator();
+		 String paketno = "" ;
+		 String arapaketno = "" ;
+		 String sonpaketno = "" ;
+		
+		 String arasinif ="" ;
+		 
+		 String sonsinif ="" ;
+		 String kalinlik ="" ;
+		 String sonkalinlik ="" ;
+		 
+		 String genislik ="" ;
+		 String songenislik ="" ;
+		 
+		 String boy ="";
+		 String sonboy = "" ;
+		 
+		 int adet = 0 ;
+		 int sonadet = 0 ;
+		 String konsimento = "" ;
+		 GRID_TEMIZLE.grid_temizle(table);
+		 DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+			Row row = rowIt.next();
+			int satir = 0 ;
+		    while(rowIt.hasNext()) 
+		    {
+		    
+			
+		      if (  row.getCell(1) != null)
+		      {
+		    	  paketno =  row.getCell(1).getStringCellValue();
+			      if ( ! paketno.equals("")) {
+			    	  arapaketno = paketno.substring(1, paketno.length()) ;
+			    	  sonpaketno =  arapaketno ;
+			    	  arasinif = Integer.toString((int) row.getCell(2).getNumericCellValue()) ;
+			    	  
+			    	  kalinlik =  String.valueOf( row.getCell(3).getNumericCellValue() * 10) ;
+			    	  kalinlik =  kalinlik.substring(0, 1) + kalinlik.substring(2, kalinlik.length())  ;
+			    	  kalinlik =  kalinlik + StringUtils.repeat("0", 3- kalinlik.length())  ;
+			    	  
+			    	  genislik =  String.valueOf( row.getCell(4).getNumericCellValue() ) ;
+			    	  genislik =  "0" + genislik.substring(2, genislik.length()) +"0" ;
+			    	  
+			    	  boy =  Integer.toString((int) row.getCell(5).getNumericCellValue()) ;
+			    	  int kj = 4 - boy.length() ;
+			    	  boy = boy +  StringUtils.repeat("0", kj)  ;
+			    	  adet =  (int) row.getCell(6).getNumericCellValue() ;
+			    	  
+			    	
+			      }
+			      else {
+			    	  sonpaketno =  arapaketno ;
+			    	  sonsinif = arasinif ;
+			    	  sonkalinlik = kalinlik ;
+			    	  songenislik = genislik ;
+			    	  sonboy = boy ;
+			    	  sonadet = adet ;
+				}
+		     if (sonsinif.equals("1")) 
+		     {
+		     sonsinif = "11" ;
+				
+			}
+		     else if (sonsinif.equals("2")) 
+		     {
+		     sonsinif = "12" ;
+				
+			}
+		     else  if (sonsinif.equals("3")) 
+		     {
+		     sonsinif = "13" ;
+				
+			}
+		     System.out.println(satir +" = " + sonpaketno+ "==" +  sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik);
+		//		mdl.insertRow(satir, new Object[]{"",sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik,"",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+
+		// 	mdl.insertRow(satir,new Object[]{
+		//			"",sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik ,
+		//			sonpaketno,sonadet, 
+		//			m3(sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik,sonadet),
+		//			"" ,	konsimento,	0, // depo
+		//			0,0,0,0,"Izahat","",
+		//			"1900-01-01 00:00:00.0", // ctar
+		//			0,"",0,	0,	0,	"",	"",	0,	0,	0,	0,	0,	"",	"",	"",	""});
+			}  
+		   
+		     satir += 1 ;
+		     if (satir ==150)  break;
+		     
+		     
+		     row = rowIt.next();
+		     // defaultModel.addRow(new Object[]{tar, izahat  ,"", borc ,alacak,"",""});
+		    }
+	    workbook.close();
+	    fis.close();
+	  GuiUtil.setWaitCursor(splitPane,false);
+	  
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 }

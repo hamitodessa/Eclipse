@@ -85,6 +85,7 @@ import OBS_C_2025.SAGA_BOLD;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.U_KODU_RENDERER;
 import OBS_C_2025.lOG_BILGI;
 
 @SuppressWarnings("serial")
@@ -1065,6 +1066,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		
 		JTextField ftext = new JTextField();
 		ftext.setDocument(new JTextFieldLimit(10));
+		ftext.setFont(new Font("Tahoma", Font.BOLD, 11));
+		ftext.setForeground(new Color(25, 25, 112));
 		ftext.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
@@ -1094,6 +1097,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		col.setMinWidth(100);
 		col.setHeaderRenderer(new SOLA());
 		col.setCellEditor(new DefaultCellEditor(ftext));
+		col.setCellRenderer(new U_KODU_RENDERER());
 		
 		col = table.getColumnModel().getColumn(1);
 		col.setMinWidth(80);

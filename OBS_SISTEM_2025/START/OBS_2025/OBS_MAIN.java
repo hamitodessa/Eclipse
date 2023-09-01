@@ -12,6 +12,7 @@ import javax.swing.border.LineBorder;
 import GUNLUK.GOREV_GIRIS;
 import GUNLUK.Gunluk;
 import GUNLUK.HAZIR_GOREVLER;
+import KER_RAPOR.KER_GRUP_RAPOR;
 
 import javax.swing.JDesktopPane;
 import java.awt.Toolkit;
@@ -1947,6 +1948,20 @@ public class OBS_MAIN extends JFrame {
 				form_ac("KOD ACIKLAMA","");
 			}
 		});
+		
+		JButton btnNewButton_25 = new JButton("");
+		btnNewButton_25.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				form_ac("KERESTE GRUP RAPOR","");
+			}
+		});
+		btnNewButton_25.setToolTipText("Grup Raporlama");
+		btnNewButton_25.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-group-objects-30.png")));
+		toolBar_Kereste.add(btnNewButton_25);
+		
+		JLabel lblNewLabel_41 = new JLabel("          ");
+		toolBar_Kereste.add(lblNewLabel_41);
 		btnNewButton_3.setToolTipText("Kod Aciklama Giris");
 		btnNewButton_3.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-news-30.png")));
 		toolBar_Kereste.add(btnNewButton_3);
@@ -2384,6 +2399,12 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "HAZIR GOREVLER")
 				{
 					GLOBAL.filtre_sayfa = 20 ;
+					ft = new FILTRE();
+					ft.setVisible(true);
+				}
+				else if (sonuc == "KERESTE GRUP RAPOR")
+				{
+					GLOBAL.filtre_sayfa = 21 ;
 					ft = new FILTRE();
 					ft.setVisible(true);
 				}
@@ -3134,6 +3155,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("KOD ACIKLAMA")) internalFrame  = new KOD_ACIKLAMA();
 			else if (pencere.equals("KONSIMENTO ACIKLAMA")) internalFrame  = new KONS_ACIKLAMA();
 			else if (pencere.equals("KERESTE DEGISKENLER")) internalFrame  = new KER_DEGISKEN_GIRIS(hangi);
+			else if (pencere.equals("KERESTE GRUP RAPOR")) internalFrame  = new KER_GRUP_RAPOR();
 			//GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();

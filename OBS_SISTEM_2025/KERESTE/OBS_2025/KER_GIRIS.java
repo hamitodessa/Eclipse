@@ -130,6 +130,7 @@ public class KER_GIRIS extends JInternalFrame {
 	private static JLabel label_7 ;
 	private static JLabel label_8 ;
 	private static JLabel label_9 ;
+	private static JLabel label_8_1 ;
 	private static JLabel lblNewLabel_20;
 	private static JLabel lblPaket ;
 	
@@ -811,7 +812,7 @@ public class KER_GIRIS extends JInternalFrame {
 		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8.setForeground(new Color(139, 0, 0));
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_8.setBounds(375, 5, 102, 14);
+		label_8.setBounds(400, 5, 77, 14);
 		panel_71.add(label_8);
 
 		label_9 = new JLabel("0.00");
@@ -826,8 +827,15 @@ public class KER_GIRIS extends JInternalFrame {
 		lblPaket.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPaket.setForeground(new Color(139, 0, 0));
 		lblPaket.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPaket.setBounds(484, 5, 73, 14);
+		lblPaket.setBounds(484, 5, 66, 14);
 		panel_71.add(lblPaket);
+		
+		label_8_1 = new JLabel("0.000");
+		label_8_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_8_1.setForeground(new Color(139, 0, 0));
+		label_8_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_8_1.setBounds(315, 5, 85, 14);
+		panel_71.add(label_8_1);
 		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_2.setBounds(2, 22, 1158, 100);
@@ -1489,29 +1497,31 @@ public class KER_GIRIS extends JInternalFrame {
 	{
 		try {
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			double  double_0, double_1 = 0, double_2 = 0, double_3 = 0, double_4, double_5=0,double_6 = 0   ;
-			int urunsayi = 0 ;
+			double  double_0, double_1 = 0, double_2 = 0, double_3 = 0, double_4, double_5=0,double_6 = 0  ,adetToplam=0   ;
+			int urunsayi = 0 ,paketsayi = 0 ;
 			for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
 			{
 				double_5 += Double.parseDouble(model.getValueAt(i, 11).toString());
 				double_1 += (Double.parseDouble(model.getValueAt(i, 11).toString()) * (Double.parseDouble(model.getValueAt(i, 9).toString()))) / 100 ; 
 				double_2 += (( Double.parseDouble(model.getValueAt(i, 11).toString()) - ( Double.parseDouble(model.getValueAt(i, 11).toString()) *  Double.parseDouble(model.getValueAt(i, 9).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 10).toString())) / 100 ; // kdv
 				double_3 +=  Double.parseDouble(model.getValueAt(i, 4).toString());
+				adetToplam +=   Double.parseDouble(model.getValueAt(i, 3).toString());
 				if (! model.getValueAt(i, 5).toString().trim().isEmpty()) 
 				{
-					double_6 +=  Double.parseDouble(model.getValueAt(i, 5).toString().trim());
+					//double_6 +=  Double.parseDouble(model.getValueAt(i, 5).toString().trim());
+					paketsayi += 1 ;
 				}
-				
 				if (! model.getValueAt(i,1).toString().equals(""))
 				{
 					urunsayi += 1;
 				}
 			}
 			label_8.setText(FORMATLAMA.doub_3(double_3));
-			lblPaket.setText(FORMATLAMA.doub_3(double_6));
+			//lblPaket.setText(FORMATLAMA.doub_3(double_6));
+			lblPaket.setText(FORMATLAMA.doub_0(paketsayi));
 			label_9.setText(FORMATLAMA.doub_2(double_5));
 			lblNewLabel_13.setText( FORMATLAMA.doub_0(urunsayi));
-			
+			label_8_1.setText( FORMATLAMA.doub_0(adetToplam));
 			label_6.setText(FORMATLAMA.doub_2(double_1));
 			double_0 =double_5 - double_1 ;
 			label_7.setText(FORMATLAMA.doub_2(double_0));
@@ -2184,11 +2194,13 @@ public class KER_GIRIS extends JInternalFrame {
 				{
 					if (  row.getCell(1) != null)
 					{
-						Progres_Bar(table.getRowCount() - 1, satir);
+						Progres_Bar(say, satir);
 						paketno =  row.getCell(1).getStringCellValue();
 						if ( ! paketno.equals("")) {
 							arapaketno = paketno.substring(1, paketno.length()) ;
 							sonpaketno =  arapaketno ;
+							
+							
 							arasinif = Integer.toString((int) row.getCell(2).getNumericCellValue()) ;
 
 							kalinlik =  String.valueOf( row.getCell(3).getNumericCellValue() ) ;
@@ -2196,13 +2208,17 @@ public class KER_GIRIS extends JInternalFrame {
 							kalinlik =  kalinlik + StringUtils.repeat("0", 3- kalinlik.length())  ;
 
 							genislik =  String.valueOf( row.getCell(4).getNumericCellValue() ) ;
+						    
 							int kjj = 4 - genislik.length() ;
 							genislik = genislik +  StringUtils.repeat("0", kjj)  ;
 							genislik =  "0" + genislik.substring(2, genislik.length()) +"0" ;
-
-							boy =  Integer.toString((int) row.getCell(5).getNumericCellValue()) ;
+							songenislik = genislik ;
+							
+							boy =  FORMATLAMA.doub_0(row.getCell(5).getNumericCellValue()*10) ;
 							int kj = 4 - boy.length() ;
 							boy = boy +  StringUtils.repeat("0", kj)  ;
+							
+							
 							adet =  (int) row.getCell(6).getNumericCellValue() ;
 
 							if ( arasinif.equals("1")) 
@@ -2219,24 +2235,35 @@ public class KER_GIRIS extends JInternalFrame {
 						else {
 							sonpaketno =  arapaketno ;
 							sonsinif = arasinif ;
-							sonkalinlik = kalinlik ;
-							songenislik = genislik ;
-							sonboy = boy ;
-							sonadet = adet ;
+							
+							kalinlik =  String.valueOf( row.getCell(3).getNumericCellValue() ) ;
+							kalinlik =   kalinlik.substring(2, kalinlik.length())  ;
+							kalinlik =  kalinlik + StringUtils.repeat("0", 3- kalinlik.length())  ;
+							
+							boy =  FORMATLAMA.doub_0(row.getCell(5).getNumericCellValue()*10) ;
+							int kj = 4 - boy.length() ;
+							boy = boy +  StringUtils.repeat("0", kj)  ;
+							
+							adet =  (int) row.getCell(6).getNumericCellValue() ;
 
+							genislik =  String.valueOf( row.getCell(4).getNumericCellValue() ) ;
+							int kjj = 4 - genislik.length() ;
+							genislik = genislik +  StringUtils.repeat("0", kjj)  ;
+							genislik =  "0" + genislik.substring(2, genislik.length()) +"0" ;
+							
 							if ( arasinif.equals("1")) 
 							{  arasinif = "11" ;}
 							else if ( arasinif.equals("2")) 
 							{  arasinif = "12" ;}
 							else  if ( arasinif.equals("3")) 
 							{  arasinif = "13" ;}
-							String kODU= sonsinif + "-" + sonkalinlik + "-" + sonboy + "-" + songenislik ;
-							mdl.addRow(new Object[]{"",kODU,sonpaketno,sonadet,
-									m3(kODU,sonadet),"",konsimento,"Gebze",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+							String kODU= sonsinif + "-" + kalinlik + "-" + boy + "-" + genislik ;
+							mdl.addRow(new Object[]{"",kODU,sonpaketno,adet,
+									m3(kODU,adet),"",konsimento,"Gebze",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 						}
 					}  
 					satir += 1 ;
-					//if (satir ==1000)  break;
+					//if (satir ==507)  break;
 					row = rowIt.next();
 				}
 
@@ -2247,7 +2274,7 @@ public class KER_GIRIS extends JInternalFrame {
 				GuiUtil.setWaitCursor(splitPane,false);
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				Progres_Bar_Temizle();
-				Thread.currentThread().isInterrupted();
+				//Thread.currentThread().isInterrupted();
 			}
 			catch (Exception ex)
 			{

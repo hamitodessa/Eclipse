@@ -4506,7 +4506,7 @@ public class FILTRE extends JDialog {
 		comboBox_77 = new JComboBox<String>();
 		comboBox_77.setForeground(new Color(0, 0, 128));
 		comboBox_77.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_77.setModel(new DefaultComboBoxModel<String>(new String[] {"", "GIREN", "CIKAN"}));
+		comboBox_77.setModel(new DefaultComboBoxModel<String>(new String[] { "GIREN", "CIKAN","STOK"}));
 		comboBox_77.setBounds(594, 133, 110, 22);
 		panel_KERESTE.add(comboBox_77);
 		

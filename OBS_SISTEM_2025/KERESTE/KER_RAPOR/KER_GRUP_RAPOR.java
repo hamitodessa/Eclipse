@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.io.IOException;
 import java.sql.ResultSet;
 
 import javax.swing.JInternalFrame;
@@ -23,10 +24,12 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import OBS_2025.FILTRE;
+import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.SAGA;
@@ -131,6 +134,12 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					 	if (! sstr_1.equals(""))
 						urun_kodlu();
 					}
+				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif"))
+					{
+					 	baslik_bak();
+					 	if (! sstr_1.equals(""))
+						sinif_kodlu();
+					}
 				
 		 }
      catch (Exception ex)
@@ -145,13 +154,16 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 	     String  jkj  = "" ;
 	     if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
 	     {
-	    	 jkj = " Cikis_Evrak = '' " ;
+	    	 jkj = " Cikis_Evrak like '%' " ;
 	     }
-	     else {
+	     else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+	     {
 	    	 jkj = " Cikis_Evrak <> '' " ;
 		}
-	     
-	    
+	     else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("STOK"))
+	     {
+	    	 jkj = " Cikis_Evrak = '' " ;
+		}
 	    
 	     ResultSet rs= null ;
 	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Yil"))
@@ -169,8 +181,109 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 	    			
 
 	       		}
-	     
-	    
+	     }
+	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Ay"))
+	     {
+	    		if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+	       		{
+	    			rs = ker_Access.baslik_bak("DISTINCT datepart(mm,Tarih)", "order by datepart(mm,Tarih)",jkj,
+	    					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+	    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1));
+				
+	           sstr_2 = "datepart(mm,Tarih)" ;
+	       		}
+	    		else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+	       		{
+	    			
+
+	       		}
+	     }
+	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Gun"))
+	     {
+	    		if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+	       		{
+	    			rs = ker_Access.baslik_bak("DISTINCT datepart(dd,Tarih)", "order by datepart(dd,Tarih)",jkj,
+	    					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+	    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1));
+				
+	           sstr_2 = "datepart(dd,Tarih)" ;
+	       		}
+	    		else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+	       		{
+	    			
+
+	       		}
+	     }
+	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Kalinlik"))
+	     {
+	    		if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+	       		{
+	    			rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) ",jkj,
+	    					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+	    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1));
+				
+	           sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) " ;
+	       		}
+	    		else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+	       		{
+	    			
+
+	       		}
+	     }
+	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Boy"))
+	     {
+	    		if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+	       		{
+	    			rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4) ) ",jkj,
+	    					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+	    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1));
+				
+	           sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4) ) " ;
+	       		}
+	    		else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+	       		{
+	    			
+
+	       		}
+	     } 
+	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Genislik"))
+	     {
+	    		if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+	       		{
+	    			rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) ) ",jkj,
+	    					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+	    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1));
+				
+	           sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) ) " ;
+	       		}
+	    		else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+	       		{
+	    			
+
+	       		}
+	     }
+	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Sinif"))
+	     {
+	    		if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+	       		{
+	    			rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 1, 2) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 1, 2) ) ",jkj,
+	    					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+	    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1));
+				
+	           sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 1, 2) ) " ;
+	       		}
+	    		else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+	       		{
+	    			
+
+	       		}
+	     }
 	        sstr_1 = "";
 	        String text = "" ;
 	          while (rs.next())
@@ -179,7 +292,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 	        	 }
 	          sstr_1 =  text.equals("") ?   "":    text.substring(0, text.length() - 2);
 	          System.out.println( sstr_1);
-	     }
+	    
 	 }
      catch (Exception ex)
 		 {
@@ -197,8 +310,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				rs = ker_Access.grp_urn_kodlu(sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-						jkj1,
-						FILTRE.textField_31.getText(), FILTRE.textField_34.getText(),
+						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 						sstr_5, sstr_1);
 			
@@ -218,19 +330,12 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(90);
+				tc.setMinWidth(120);
 				
-				tc = tcm.getColumn(1);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(231);
-				tc.setMaxWidth(231);
 				
-				tc = tcm.getColumn(2);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(50);
 				
 				kusurr();
-				for (int i = 3;i<=table.getColumnCount() -2;i++)
+				for (int i = 1;i<=table.getColumnCount() -2;i++)
 				{
 					tc = tcm.getColumn(i);
 					tc.setHeaderRenderer(new SAGA());
@@ -249,10 +354,75 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				table.setRowSelectionInterval(0, 0);
 				table.setRowHeight(21);
 				//**
-				//topla(3);
+				topla(1);
 				//**
-				//alt_bolum();
-				//fontt();
+				alt_bolum();
+				fontt();
+			}
+		} 
+		catch (Exception ex) {
+		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Urun Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private static void sinif_kodlu() 
+	{
+		startTime = System.currentTimeMillis(); 
+		try {
+			ResultSet	rs = null;
+			deg_cevir();
+ 			grup_cevir() ;
+			
+				rs = ker_Access.grp_urn_kodlu(sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+						jkj,
+						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
+						sstr_5, sstr_1);
+			
+
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() ) {  
+			
+				lbladet.setText(FORMATLAMA.doub_0(0));
+			} 
+			else
+			{
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+				 mdll.addColumn("Toplam");
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(120);
+				
+				
+				
+				kusurr();
+				for (int i = 1;i<=table.getColumnCount() -2;i++)
+				{
+					tc = tcm.getColumn(i);
+					tc.setHeaderRenderer(new SAGA());
+					tc.setCellRenderer(new TABLO_RENDERER(kusur,false));
+					tc.setMinWidth(110);
+				}
+				tc = tcm.getColumn(table.getColumnCount() -1);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(kusur,true));
+				tc.setMinWidth(110);
+				
+				Dimension dd = th.getPreferredSize();
+			    dd.height = 30;
+			    th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
+				//**
+				topla(1);
+				//**
+				alt_bolum();
+				fontt();
 			}
 		} 
 		catch (Exception ex) {
@@ -354,9 +524,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 
 		if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Tutar"))
 		{
-
-			
-				sstr_4 = " Tutar";
+				sstr_4 = " ((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) * Fiat) as Tutar";
 			
 			sstr_5 = "Tutar";
 		}
@@ -367,9 +535,72 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		}
 		else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("m3"))
 		{
-			sstr_4 = " (Miktar * 10)  as m3";
-			sstr_5 = "Agirlik";
+			sstr_4 = " (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  as m3";
+			sstr_5 = "m3";
 		}
 		
+	}
+	private static void topla(int aa)
+	{
+		double top = 0;
+		 DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+		 for (int w = 0; w <= mdl.getRowCount()-1;w++)	
+		 {
+			 top=0 ;
+			 for (int a = aa;a<=table.getColumnCount() -2;a++)
+			 {
+				 if( mdl.getValueAt(w,a) != null)
+					{
+					top += Double.parseDouble( mdl.getValueAt(w,a).toString());
+					}
+			 }
+			 mdl.setValueAt(top,w, mdl.getColumnCount()-1) ;
+		 }
+		 //**************************************************************
+		 mdl.addRow(new Object[]{});
+		 top =0;
+		 for (int i = aa;i<=table.getColumnCount() -1;i++)
+			{
+			for (int q = 0 ;q <= mdl.getRowCount()-2;q++)	
+			{
+			if( mdl.getValueAt(q,i) != null)
+				{
+				top += Double.parseDouble( mdl.getValueAt(q,i).toString()); 
+
+				}
+			}
+			mdl.setValueAt(top,mdl.getRowCount()-1, i) ;
+		
+			top = 0 ;
+			}
+	}
+	private static void  alt_bolum()
+	{
+		 int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
+		lbladet.setText(FORMATLAMA.doub_0(lastRow));
+		table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
+		table.setRowSelectionInterval(lastRow, lastRow);
+		table.setSelectionBackground(Color.PINK);
+		table.setSelectionForeground(Color.BLUE);
+		long endTime = System.currentTimeMillis();
+		long estimatedTime = endTime - startTime;
+		double seconds = (double)estimatedTime/1000; 
+		OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+	}
+	private static void fontt()
+	{
+		String deger;
+		String[] parts;
+		Font bigFont;
+			try {
+				deger = GLOBAL.setting_oku("KER_RAPORLAMA").toString();
+				deger = deger.substring(1, deger.length()-1);
+				parts = deger.split(",");
+				bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+				table.setFont(bigFont);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 	}
 }

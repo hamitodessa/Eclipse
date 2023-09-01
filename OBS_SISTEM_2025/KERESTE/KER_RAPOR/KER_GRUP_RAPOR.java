@@ -259,4 +259,79 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Urun Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	private static void grup_cevir()
+	{
+		try {
+		ResultSet	rs = null;
+				//** Urun Ana grup
+				if ( FILTRE.comboBox_78.getItemAt(FILTRE.comboBox_78.getSelectedIndex()).equals(""))
+				{
+		            qwq6 = " Like  '%' " ;
+				}
+		        else if  ( FILTRE.comboBox_78.getItemAt(FILTRE.comboBox_78.getSelectedIndex()).equals("Bos Olanlar"))
+		        {
+		            qwq6 = " = '' " ;
+		        }
+		        else
+		        {
+		        	
+		    			rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_78.getItemAt(FILTRE.comboBox_78.getSelectedIndex()));
+		    			if (!rs.isBeforeFirst() ) {
+		    			}
+		    			else
+		    			{
+		    				rs.next();
+		    				qwq6 = "=" + Integer.toString( rs.getInt("AGID_Y"));
+		    			}
+		    		
+		        }
+				//** Urun Alt Grup
+				if ( FILTRE.comboBox_79.getItemAt(FILTRE.comboBox_79.getSelectedIndex()).equals(""))
+				{
+		            qwq7 = " Like  '%' " ;
+				}
+		        else if  ( FILTRE.comboBox_79.getItemAt(FILTRE.comboBox_79.getSelectedIndex()).equals("Bos Olanlar"))
+		        {
+		            qwq7 = " = '' " ;
+		        }		        else		      
+		        {
+		        	
+		    			rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_79.getItemAt(FILTRE.comboBox_79.getSelectedIndex()));
+		    			if (!rs.isBeforeFirst() ) {
+		    			}
+		    			else
+		    			{
+		    				rs.next();
+		    				qwq7 ="=" + Integer.toString( rs.getInt("ALID_Y"));
+		    			}
+		    		
+		        }
+				//** OZ1 OKU
+				if ( FILTRE.comboBox_80.getItemAt(FILTRE.comboBox_80.getSelectedIndex()).equals(""))
+				{
+		            qwq8 = " Like  '%' " ;
+				}
+		        else if  ( FILTRE.comboBox_80.getItemAt(FILTRE.comboBox_80.getSelectedIndex()).equals("Bos Olanlar"))
+		        {
+		            qwq8 = " = '' " ;
+		        }		        
+		        else
+		        {
+		        	
+		    			rs =ker_Access.ker_kod_degisken_ara("OZ1ID_Y", "OZEL_KOD_1", "OZ_KOD_1_DEGISKEN", FILTRE.comboBox_80.getItemAt(FILTRE.comboBox_80.getSelectedIndex()));
+		    			if (!rs.isBeforeFirst() ) {
+		    			}
+		    			else
+		    			{
+		    				rs.next();
+		    				qwq8 ="=" + Integer.toString( rs.getInt("OZ1ID_Y"));
+		    			}
+		    		
+		        }
+				
+		} 
+		catch (Exception ex) {
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
+		} 
+	}
 }

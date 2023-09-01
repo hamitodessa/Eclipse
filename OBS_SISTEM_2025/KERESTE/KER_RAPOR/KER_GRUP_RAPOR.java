@@ -53,7 +53,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 	static String sstr_5 = "" ;
 	private static  String  jkj  = "" ;
 	private static String jkj1 = "";
-	private static String ch1 ="";
+	//private static String ch1 ="";
 	private static String kur_dos = "";
 	private static 	long startTime;
 	private static int kusur = 0 ;
@@ -194,12 +194,12 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			deg_cevir();
  			grup_cevir() ;
 			
-				rs = f_Access.grp_urn_kodlu(sstr_2,sstr_4, kur_dos, jkj, ch1,  qwq6,  qwq7,  qwq8,
-						FILTRE.textField_35.getText(), FILTRE.textField_36.getText(),
-						FILTRE.textField_32.getText(),FILTRE.textField_33.getText(),
+				rs = ker_Access.grp_urn_kodlu(sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj1,
 						FILTRE.textField_31.getText(), FILTRE.textField_34.getText(),
-						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21),
+						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 						sstr_5, sstr_1);
 			
 
@@ -249,10 +249,10 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				table.setRowSelectionInterval(0, 0);
 				table.setRowHeight(21);
 				//**
-				topla(3);
+				//topla(3);
 				//**
-				alt_bolum();
-				fontt();
+				//alt_bolum();
+				//fontt();
 			}
 		} 
 		catch (Exception ex) {
@@ -333,5 +333,43 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		} 
+	}
+	private static void kusurr()
+	{
+		 if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Tutar"))
+		{
+			kusur = 2 ;
+		} 
+		if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Miktar"))
+		{
+			kusur = 0 ;
+		}
+		if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("m3"))
+		{
+			kusur = 3 ;
+		}
+	}
+	private static void deg_cevir()
+	{
+
+		if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Tutar"))
+		{
+
+			
+				sstr_4 = " Tutar";
+			
+			sstr_5 = "Tutar";
+		}
+		else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Miktar"))
+		{
+			sstr_4 = " Miktar";
+			sstr_5 = "Miktar";
+		}
+		else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("m3"))
+		{
+			sstr_4 = " (Miktar * 10)  as m3";
+			sstr_5 = "Agirlik";
+		}
+		
 	}
 }

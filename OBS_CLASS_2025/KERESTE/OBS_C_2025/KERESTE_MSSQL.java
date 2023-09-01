@@ -1030,4 +1030,34 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery(sql);
 		return rss;	
 	}
+
+	@Override
+	public ResultSet grp_urn_kodlu(String sstr_2, String sstr_4, String kur_dos, String qwq6,
+			String qwq7, String qwq8, String s1, String s2, String k1, String k2, String jkj1, String deg1, String deg2,
+			String t1, String t2, String sstr_5, String sstr_1) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql =   "SELECT * " +
+				" FROM  (SELECT Kodu ," + sstr_2 + " as  degisken , " + sstr_4 +
+				" FROM KERESTE " + kur_dos + 
+				" WHERE   Ana_Grup " + qwq6 +
+				" AND Alt_Grup " + qwq7 +
+				" AND Ozel_Kod_1 " + qwq8 +
+				" AND " + jkj1 + " )  between N'" + deg1 + "' and N'" + deg2 + "'" +
+				" AND  Tarih BETWEEN '" +t1 + "'" +
+				" AND  '" + t2 + " 23:59:59.998'" +
+				"  ) as s  " +
+				" PIVOT " +
+				" ( " +
+				" SUM(" + sstr_5 + ") " +
+				" FOR degisken " +
+				" IN ( " + sstr_1 + ") " +
+				"    ) " +
+				" AS p" +
+				" ORDER BY Kodu ";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		System.out.println(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
 }

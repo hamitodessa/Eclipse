@@ -212,4 +212,10 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.baslik_bak(baslik, ordr, jkj,  k1, k2, f1, f2, t1, t2);
 	}
+	public ResultSet grp_urn_kodlu(String sstr_2,String sstr_4,String kur_dos,String qwq6,
+			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj1,String deg1,String deg2,String t1,String t2,
+			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.grp_urn_kodlu(sstr_2, sstr_4, kur_dos,  qwq6, qwq7, qwq8, s1, s2, k1, k2, jkj1, deg1, deg2, t1, t2, sstr_5, sstr_1);
+	}
 }

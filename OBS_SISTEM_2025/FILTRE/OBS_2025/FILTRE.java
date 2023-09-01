@@ -423,6 +423,7 @@ public class FILTRE extends JDialog {
 		//*****************************************************************************************************************
 		// Goruntu icin asagidaki blogu kaldir 
 
+		
 		final boolean showTabsHeader = false;
 	    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
 	    {
@@ -432,7 +433,6 @@ public class FILTRE extends JDialog {
 	            } else {return 0;}	        }
 	      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 	    });
-		
 		    //
 		    //final boolean showTabsHeader = false;
 		    //tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
@@ -4457,7 +4457,7 @@ public class FILTRE extends JDialog {
 		comboBox_26_1 = new JComboBox<String>();
 		comboBox_26_1.setForeground(new Color(0, 0, 128));
 		comboBox_26_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_26_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Tutar", "Miktar"}));
+		comboBox_26_1.setModel(new DefaultComboBoxModel<String>(new String[] {"m3","Tutar", "Miktar"}));
 		comboBox_26_1.setBounds(90, 103, 149, 22);
 		panel_KERESTE.add(comboBox_26_1);
 		

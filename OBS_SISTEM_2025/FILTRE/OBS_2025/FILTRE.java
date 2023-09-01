@@ -43,6 +43,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
+import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
 
@@ -86,6 +87,7 @@ public class FILTRE extends JDialog {
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	private static STOK_ACCESS  f_Access = new STOK_ACCESS(oac._IStok , oac._IFatura_Loger);
+	private static KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(oac._IKereste , oac._IKereste_Loger);
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	public static JButton okButton ;
@@ -428,6 +430,7 @@ public class FILTRE extends JDialog {
 	            } else {return 0;}	        }
 	      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 	    });
+		
 		    //
 		    //final boolean showTabsHeader = false;
 		    //tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
@@ -4460,7 +4463,7 @@ public class FILTRE extends JDialog {
 		comboBox_27_1.setForeground(new Color(0, 0, 128));
 		comboBox_27_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu", "Urun Kodu-Yil", "Hesap Kodu", "Yil", "Hesap Kodu-Yil", "Yil_Ay", "Ana_Grup", "Ana_Grup_Yil"}));
-		comboBox_27_1.setSelectedIndex(1);
+		//comboBox_27_1.setSelectedIndex(1);
 		comboBox_27_1.setBounds(90, 129, 149, 22);
 		panel_KERESTE.add(comboBox_27_1);
 		
@@ -4468,7 +4471,7 @@ public class FILTRE extends JDialog {
 		comboBox_28_1.setForeground(new Color(0, 0, 128));
 		comboBox_28_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_28_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Yil", "Ay", "Gun", "Ana Grup", "Hesap Kodu"}));
-		comboBox_28_1.setSelectedIndex(1);
+		//comboBox_28_1.setSelectedIndex(1);
 		comboBox_28_1.setBounds(90, 158, 149, 22);
 		panel_KERESTE.add(comboBox_28_1);
 		
@@ -4514,6 +4517,11 @@ public class FILTRE extends JDialog {
 		comboBox_78.setForeground(new Color(0, 0, 128));
 		comboBox_78.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_78.setBounds(520, 11, 184, 22);
+		comboBox_78.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ker_alt_grup_doldur(comboBox_79,comboBox_78 .getItemAt(comboBox_78 .getSelectedIndex()));
+			}
+		});
 		panel_KERESTE.add(comboBox_78);
 		
 		comboBox_79 = new JComboBox<String>();
@@ -4529,17 +4537,17 @@ public class FILTRE extends JDialog {
 		comboBox_80.setBounds(520, 72, 184, 22);
 		panel_KERESTE.add(comboBox_80);
 		
-		label_66 = new JLabel("Urun Ana Grup");
+		label_66 = new JLabel("Ana Grup");
 		label_66.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		label_66.setBounds(401, 15, 104, 14);
 		panel_KERESTE.add(label_66);
 		
-		label_67 = new JLabel("Urun Alt Grup");
+		label_67 = new JLabel("Alt Grup");
 		label_67.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		label_67.setBounds(401, 43, 104, 14);
 		panel_KERESTE.add(label_67);
 		
-		lblUrunOzelKod_1 = new JLabel("Urun Ozel Kod 1");
+		lblUrunOzelKod_1 = new JLabel("Ozel Kod 1");
 		lblUrunOzelKod_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblUrunOzelKod_1.setBounds(401, 76, 113, 14);
 		panel_KERESTE.add(lblUrunOzelKod_1);
@@ -4889,10 +4897,8 @@ public class FILTRE extends JDialog {
 		}
 		else if (syfa == 21)
 		{
-		//	ana_grup_doldur(comboBox_55);
-		//	depo_doldur(comboBox_54);
-		//	mensei_doldur(comboBox_52);
-		//	oz1_doldur(comboBox_59);
+			ker_ana_grup_doldur(comboBox_78);
+			ker_oz1_doldur(comboBox_80);
 
 		}
 	}
@@ -4946,6 +4952,77 @@ public class FILTRE extends JDialog {
 				int in1 = rs.getInt("AGID_Y");
 				rs =null;
 				rs = f_Access.stk_kod_alt_grup_degisken_oku(in1);
+			}
+
+
+			if (!rs.isBeforeFirst() ) {  
+				box.setSelectedItem("");
+				box.setEnabled(false);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			} 
+			else
+			{
+				while (rs.next())
+				{
+					box .addItem(rs.getString("ALT_GRUP"));
+				}
+				box.setSelectedItem(0);
+				box.setEnabled(true);
+			}
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+		}
+		catch (Exception ex)
+		{
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+		}
+	}
+	private void ker_ana_grup_doldur(JComboBox<String> box)
+	{
+		try {
+			getContentPane().setCursor(oac.WAIT_CURSOR);
+			box .removeAllItems();
+			ResultSet rs=null;
+
+			rs = ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
+
+			if (!rs.isBeforeFirst() ) {  
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+
+				box .addItem("");
+				box.setSelectedItem("");
+				return;
+			} 
+			box .addItem("");
+			while (rs.next())
+			{
+				box .addItem(rs.getString("ANA_GRUP"));
+			}
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+		}
+		catch (Exception ex)
+		{
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+		}
+	}
+	private void ker_alt_grup_doldur(JComboBox<String> box,String altgrp)
+	{
+		try {
+			getContentPane().setCursor(oac.WAIT_CURSOR);
+			box.removeAllItems();
+			box .addItem("");
+			ResultSet rs=null;
+
+			rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",  altgrp);
+			if (!rs.isBeforeFirst() ) {
+			}
+			else
+			{
+				rs.next();
+				int in1 = rs.getInt("AGID_Y");
+				rs =null;
+				rs = ker_Access.ker_kod_alt_grup_degisken_oku(in1);
 			}
 
 
@@ -5063,6 +5140,36 @@ public class FILTRE extends JDialog {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod 2 Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
+	private void ker_oz1_doldur(JComboBox<String> box)
+	{
+		try {
+			getContentPane().setCursor(oac.WAIT_CURSOR);
+			box.removeAllItems();
+			ResultSet rs = null;
+
+			rs =ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
+
+			if (!rs.isBeforeFirst() ) {  
+				box.addItem("");
+				box.setSelectedItem("");
+			}
+			else
+			{
+				box.addItem("");
+				while (rs.next())
+				{
+					box.addItem(rs.getString("OZEL_KOD_1"));
+				}
+			}
+			box.setSelectedItem("");
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+		}
+		catch (Exception ex)
+		{
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod Doldur", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
 	private void gun_isim_doldur()
 	{
 		try {
@@ -5149,4 +5256,4 @@ public class FILTRE extends JDialog {
 		return sonuc;
 	}
 }
-
+//https://docs.oracle.com/javase%2F7%2Fdocs%2Fapi%2F%2F/javax/swing/text/MaskFormatter.html

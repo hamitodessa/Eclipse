@@ -26,6 +26,7 @@ import javax.swing.SwingUtilities;
 import com.toedter.calendar.JDateChooser;
 
 import GUNLUK.HAZIR_GOREVLER;
+import KER_RAPOR.KER_GRUP_RAPOR;
 import OBS_2025_RAPORLAR.ENVANTER;
 import OBS_2025_RAPORLAR.FATURA_RAPOR;
 import OBS_2025_RAPORLAR.GRUP_RAPOR;
@@ -370,8 +371,7 @@ public class FILTRE extends JDialog {
 	public static JDateChooser dateChooser_34;
 	public static JComboBox<String> comboBox_75;
 	public static JComboBox<String> comboBox_76;
-	private JTextField textField_82;
-	private JTextField textField_83;
+	
 	//KERESTE
 	public static JDateChooser dateChooser_20_1;
 	public static JDateChooser dateChooser_21_1;
@@ -379,11 +379,13 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_27_1 ;
 	public static JComboBox<String> comboBox_28_1 ;
 	public static JFormattedTextField formattedTextField;
-	public static JFormattedTextField frmtdtxtfldZzzzzzzzzzzzz;
+	public static JFormattedTextField formattedTextField_1;
 	public static JComboBox<String> comboBox_77;
-	private JComboBox<String> comboBox_78;
-	private JComboBox<String> comboBox_79;
-	private JComboBox<String> comboBox_80;
+	public static JComboBox<String> comboBox_78;
+	public static JComboBox<String> comboBox_79;
+	public static JComboBox<String> comboBox_80;
+	public static JTextField textField_82;
+	public static JTextField textField_83;
 	private JLabel label_66;
 	private JLabel label_67;
 	private JLabel lblUrunOzelKod_1;
@@ -4435,7 +4437,7 @@ public class FILTRE extends JDialog {
 		dateChooser_21_1 = new JDateChooser();
 		dateChooser_21_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_21_1.setDateFormatString("dd.MM.yyyy");
-		dateChooser_21_1.setDate(TARIH_CEVIR.tarih("31.12.2021"));
+		dateChooser_21_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		dateChooser_21_1.setBounds(248, 11, 125, 20);
 		panel_KERESTE.add(dateChooser_21_1);
 		
@@ -4488,18 +4490,18 @@ public class FILTRE extends JDialog {
 		formattedTextField.setText("00-000-0000-0000");
 		panel_KERESTE.add(formattedTextField);
 		
-		frmtdtxtfldZzzzzzzzzzzzz = new JFormattedTextField();
-		frmtdtxtfldZzzzzzzzzzzzz.setFont(new Font("Tahoma", Font.BOLD, 11));
-		frmtdtxtfldZzzzzzzzzzzzz.setBounds(248, 33, 125, 20);
+		formattedTextField_1 = new JFormattedTextField();
+		formattedTextField_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		formattedTextField_1.setBounds(248, 33, 125, 20);
 		MaskFormatter maskk;
 		try {
 		    maskk = new MaskFormatter("AA-###-####-####");
-		    maskk.install(frmtdtxtfldZzzzzzzzzzzzz);
+		    maskk.install(formattedTextField_1);
 		} catch (ParseException e) {
 		    e.printStackTrace();
 		}
-		frmtdtxtfldZzzzzzzzzzzzz.setText("ZZ-999-9999-9999");
-		panel_KERESTE.add(frmtdtxtfldZzzzzzzzzzzzz);
+		formattedTextField_1.setText("ZZ-999-9999-9999");
+		panel_KERESTE.add(formattedTextField_1);
 		
 		comboBox_77 = new JComboBox<String>();
 		comboBox_77.setForeground(new Color(0, 0, 128));
@@ -4756,6 +4758,12 @@ public class FILTRE extends JDialog {
 					GuiUtil.setWaitCursor(HAZIR_GOREVLER.scrollPane,true);
 					HAZIR_GOREVLER.hisset();   // KUR GRAFIK
 					GuiUtil.setWaitCursor(HAZIR_GOREVLER.scrollPane,false);
+				}
+				else if (sayfa == 21) 
+				{
+					GuiUtil.setWaitCursor(KER_GRUP_RAPOR.splitPane,true);
+					KER_GRUP_RAPOR.yenile();   // 
+					GuiUtil.setWaitCursor(KER_GRUP_RAPOR.splitPane,false);
 				}
 				GuiUtil.setWaitCursor(getContentPane(),false);
 				dispose();

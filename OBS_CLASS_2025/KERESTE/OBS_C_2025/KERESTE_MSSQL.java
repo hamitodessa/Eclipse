@@ -1012,4 +1012,22 @@ public class KERESTE_MSSQL implements IKERESTE {
 		}
 		return E_NUMBER;	
 	}
+
+	@Override
+	public ResultSet baslik_bak(String baslik, String ordr, String jkj, String k1, String k2, String f1,
+			String f2, String t1, String t2) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql =   "SELECT "+ baslik + "  FROM KERESTE " +
+				" WHERE   " + jkj +
+				" AND Kodu between N'" + k1 + "' and N'" + k2 + "'" +
+				" AND Cari_Firma between N'" + f1 + "' and N'" + f2 + "'" +
+				" AND Tarih BETWEEN '" + t1 + "'" +
+				" AND  '"  + t2 + " 23:59:59.998'" +
+				" " + ordr+ " ";
+		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		System.out.println(sql);
+		rss = stmt.executeQuery(sql);
+		return rss;	
+	}
 }

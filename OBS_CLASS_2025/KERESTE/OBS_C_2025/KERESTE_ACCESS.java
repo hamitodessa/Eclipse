@@ -208,4 +208,8 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.evrak_no_al(cins);
 	}
+	public ResultSet baslik_bak(String baslik,String ordr,String jkj,String k1,String k2,String f1,String f2,String t1,String t2) throws ClassNotFoundException, SQLException 
+	{
+		return _IKereste.baslik_bak(baslik, ordr, jkj,  k1, k2, f1, f2, t1, t2);
+	}
 }

@@ -254,6 +254,13 @@ public class KERESTE_MYSQL implements IKERESTE {
 		return 0;
 	}
 
+	@Override
+	public ResultSet baslik_bak(String baslik, String ordr, String jkj, String k1, String k2, String f1,
+			String f2, String t1, String t2) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

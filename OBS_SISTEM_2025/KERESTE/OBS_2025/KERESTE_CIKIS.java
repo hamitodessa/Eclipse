@@ -1036,11 +1036,11 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			public void changeSelection(final int row, final int column, boolean toggle, boolean extend)
 			{
 				super.changeSelection(row, column, toggle, extend);
-				//if (column < 1)
-				//{
-				//	table.editCellAt(row, column);
-				//	table.transferFocus();
-				//}
+				if (column < 1)
+				{
+					table.editCellAt(row, column);
+					table.transferFocus();
+				}
 			}	
 		};
 		table.setGridColor(oac.gridcolor);

@@ -1045,6 +1045,32 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			}	
 		};
 		
+		table.addKeyListener(new KeyAdapter() {         
+            public void keyPressed(KeyEvent e) {
+            	
+          
+                if(table.getSelectedColumn()==0)
+                {
+                try {
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+					pakkont(table.getValueAt(table.getSelectedRow(), 0).toString() );
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+				} catch (NumberFormatException e1) {
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					e1.printStackTrace();
+				}
+                }
+              //  char key = e.getKeyChar();
+              //  int selectedColumn = table.getSelectedColumn();
+
+                //Update info in table
+              //  for(int i = 0; i < model.getRowCount(); i++){
+              //      String value = (String)model.getValueAt(i, selectedColumn);
+              //      model.setValueAt(value + key, i, selectedColumn);
+              //  }
+            }
+       });
+		
 		table.setGridColor(oac.gridcolor);
 		table.setCellSelectionEnabled(true);
 		
@@ -1237,8 +1263,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		selectionModel.addListSelectionListener(new ListSelectionListener() {
 		    public void valueChanged(ListSelectionEvent e) {
-		    
-		    	
 		    	DefaultTableModel model = (DefaultTableModel) table.getModel();
 		    	if (model.getRowCount() > 0) 
 				{

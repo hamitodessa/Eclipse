@@ -1018,9 +1018,27 @@ public class KERESTE_MSSQL implements IKERESTE {
 			String f2, String t1, String t2,String dURUM) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		////
+		String[] token = k1.toString().split("-");
+		String ilks ,ilkk,ilkb,ilkg;
+		ilks = token[0];
+		ilkk = token[1];
+		ilkb = token[2];
+		ilkg = token[3];
+		token = k2.toString().split("-");
+		String sons,sonk,sonb,song;
+		sons = token[0];
+		sonk = token[1];
+		sonb = token[2];
+		song = token[3];
+		///
+
 		String sql =   "SELECT "+ baslik + "  FROM KERESTE " +
-				" WHERE   " + jkj +
-				" AND Kodu between N'" + k1 + "' and N'" + k2 + "'" +
+				" WHERE   " + jkj + " AND "+
+				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' and SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
+				" SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' and SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" +
+				" SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' and SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" +
+				" SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' and SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' " +
 				" AND " + dURUM + "Cari_Firma between N'" + f1 + "' and N'" + f2 + "'" +
 				" AND " + dURUM + "Tarih BETWEEN '" + t1 + "'" +
 				" AND  '"  + t2 + " 23:59:59.998'" +
@@ -1038,6 +1056,20 @@ public class KERESTE_MSSQL implements IKERESTE {
 			String t1, String t2, String sstr_5, String sstr_1,String orderBY,String dURUM) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		////
+				String[] token = k1.toString().split("-");
+				String ilks ,ilkk,ilkb,ilkg;
+				ilks = token[0];
+				ilkk = token[1];
+				ilkb = token[2];
+				ilkg = token[3];
+				token = k2.toString().split("-");
+				String sons,sonk,sonb,song;
+				sons = token[0];
+				sonk = token[1];
+				sonb = token[2];
+				song = token[3];
+				///
 		String sql =   "SELECT * " +
 				" FROM  (SELECT "+ gruplama + " ," + sstr_2 + " as  degisken , " + sstr_4 +
 				" FROM KERESTE " + kur_dos + 
@@ -1045,8 +1077,11 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" AND "+ dURUM + "Alt_Grup " + qwq7 +
 				" AND "+ dURUM + "Ozel_Kod " + qwq8 +
 				" AND " + jkj +
-				" Kodu  between N'" + s1 + "' and N'" + s2 + "'" +
-				" AND "+ dURUM + "Cari_Firma between N'" + k1 + "' and N'" + k2 + "'" +
+				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' and SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
+				" SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' and SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" +
+				" SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' and SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" +
+				" SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' and SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' " +
+				" AND "+ dURUM + "Cari_Firma between N'" + s1 + "' and N'" + s2 + "'" +
 				" AND  KERESTE."+ dURUM + "Tarih BETWEEN '" +t1 + "'" + " AND  '" + t2 + " 23:59:59.998'" +
 				"  ) as s  " +
 				" PIVOT " +

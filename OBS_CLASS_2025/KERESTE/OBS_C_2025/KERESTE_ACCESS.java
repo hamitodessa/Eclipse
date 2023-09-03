@@ -213,10 +213,10 @@ public class KERESTE_ACCESS {
 		return _IKereste.baslik_bak(baslik, ordr, jkj,  k1, k2, f1, f2, t1, t2,dURUM);
 	}
 	public ResultSet grp_rapor(String gruplama,String sstr_2,String sstr_4,String kur_dos,String qwq6,
-			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj,String t1,String t2,
+			String qwq7,String qwq8,String k1 ,String k2,String s1,String s2,String jkj,String t1,String t2,
 			String sstr_5,String sstr_1,String orderBY,String dURUM) throws ClassNotFoundException, SQLException
 	{
-		return _IKereste.grp_rapor( gruplama,sstr_2, sstr_4, kur_dos,  qwq6, qwq7, qwq8, s1, s2, k1, k2, jkj,  t1, t2, sstr_5, sstr_1,orderBY,dURUM);
+		return _IKereste.grp_rapor( gruplama,sstr_2, sstr_4, kur_dos,  qwq6, qwq7, qwq8, k1, k2, s1, s2, jkj,  t1, t2, sstr_5, sstr_1,orderBY,dURUM);
 	}
 	
 }

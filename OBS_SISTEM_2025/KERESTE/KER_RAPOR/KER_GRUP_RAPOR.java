@@ -208,7 +208,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				hANGI = "" ;
 				
 			}
-			ResultSet rs= null ;
+			ResultSet rs = null ;
 			if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Yil"))
 			{
 				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
@@ -219,7 +219,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
 					sstr_2 = " datepart(yyyy,KERESTE."+ hANGI +"Tarih)" ;
 				}
-				else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
 					rs = ker_Access.baslik_bak("DISTINCT YEAR(STOK."+ hANGI+"Tarih)","order by YEAR(STOK."+ hANGI+"Tarih)",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
@@ -240,7 +240,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 
 					sstr_2 = "datepart(mm,KERESTE."+ hANGI +"Tarih)" ;
 				}
-				else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
 					rs = ker_Access.baslik_bak(" DISTINCT MONTH(STOK."+ hANGI +"Tarih)", "order by MONTH(STOK."+ hANGI+"Tarih) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
@@ -262,12 +262,12 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 
 					sstr_2 = "datepart(dd,KERESTE."+ hANGI+"Tarih)" ;
 				}
-				else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
-				//	rs = ker_Access.baslik_bak(" DISTINCT DAY(STOK."+ hANGI+"Tarih)", "order by DAY(STOK."+ hANGI +"Tarih) ",jkj,
-				//			FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
-				//			FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-				//			TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+					rs = ker_Access.baslik_bak(" DISTINCT DAY(STOK."+ hANGI+"Tarih)", "order by DAY(STOK."+ hANGI +"Tarih) ",jkj,
+							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
 
 					sstr_2 = "DAY(KERESTE."+ hANGI+"Tarih)" ;
 

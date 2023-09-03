@@ -1067,23 +1067,20 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		ftext.setDocument(new JTextFieldLimit(10));
 		ftext.setFont(new Font("Tahoma", Font.BOLD, 11));
 		ftext.setForeground(new Color(25, 25, 112));
-		ftext.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				pakkont(ftext.getText());
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			}
-			public void removeUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				pakkont(ftext.getText());
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			}
-			public void insertUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				pakkont(ftext.getText());
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+		ftext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+					pakkont(ftext.getText());
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+				} catch (NumberFormatException e1) {
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
+					e1.printStackTrace();
+				}
 			}
 		});
+
+
 		ftext.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {

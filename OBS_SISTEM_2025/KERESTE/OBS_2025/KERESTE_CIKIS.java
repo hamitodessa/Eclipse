@@ -205,12 +205,10 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					try {
 						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 						int sno = 0 ;
-
 						sno  = ker_Access.evrak_no_al("C") ;
 						int kj = 0 ;
 						kj = 10 - Integer.toString(sno).length() ;
 						String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
-
 						textField.setText(str_.equals("0000000000") ? "0000000001":str_);
 						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 					}
@@ -1418,7 +1416,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				yeni_fat = true;
 				GRID_TEMIZLE.grid_temizle(table);
 				sifirla();
-				
 			}
 			else
 			{

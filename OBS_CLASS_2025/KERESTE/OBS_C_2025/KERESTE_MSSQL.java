@@ -1018,7 +1018,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 			String f2, String t1, String t2,String dURUM) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		////
 		String[] token = k1.toString().split("-");
 		String ilks ,ilkk,ilkb,ilkg;
 		ilks = token[0];
@@ -1031,10 +1030,8 @@ public class KERESTE_MSSQL implements IKERESTE {
 		sonk = token[1];
 		sonb = token[2];
 		song = token[3];
-		///
-
 		String sql =   "SELECT "+ baslik + "  FROM KERESTE " +
-				" WHERE   " + jkj + " AND "+
+				" WHERE   " + jkj +
 				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' and SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' and SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' and SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" +
@@ -1044,36 +1041,32 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" AND  '"  + t2 + " 23:59:59.998'" +
 				" " + ordr + " ";
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		System.out.println(sql);
 		rss = stmt.executeQuery(sql);
-		
 		return rss;	
 	}
 
 	@Override
 	public ResultSet grp_rapor(String gruplama,String sstr_2, String sstr_4, String kur_dos, String qwq6,
-			String qwq7, String qwq8, String s1, String s2, String k1, String k2, String jkj,
+			String qwq7, String qwq8, String k1, String k2, String s1, String s2, String jkj,
 			String t1, String t2, String sstr_5, String sstr_1,String orderBY,String dURUM) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		////
-				String[] token = k1.toString().split("-");
-				String ilks ,ilkk,ilkb,ilkg;
-				ilks = token[0];
-				ilkk = token[1];
-				ilkb = token[2];
-				ilkg = token[3];
-				token = k2.toString().split("-");
-				String sons,sonk,sonb,song;
-				sons = token[0];
-				sonk = token[1];
-				sonb = token[2];
-				song = token[3];
-				///
+		String[] token = k1.toString().split("-");
+		String ilks ,ilkk,ilkb,ilkg;
+		ilks = token[0];
+		ilkk = token[1];
+		ilkb = token[2];
+		ilkg = token[3];
+		token = k2.toString().split("-");
+		String sons,sonk,sonb,song;
+		sons = token[0];
+		sonk = token[1];
+		sonb = token[2];
+		song = token[3];
 		String sql =   "SELECT * " +
 				" FROM  (SELECT "+ gruplama + " ," + sstr_2 + " as  degisken , " + sstr_4 +
 				" FROM KERESTE " + kur_dos + 
-				" WHERE   "+ dURUM + "Ana_Grup " + qwq6 +
+				" WHERE   " + jkj + dURUM + "Ana_Grup " + qwq6 +
 				" AND "+ dURUM + "Alt_Grup " + qwq7 +
 				" AND "+ dURUM + "Ozel_Kod " + qwq8 +
 				" AND " + jkj +
@@ -1094,7 +1087,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" ORDER BY  " + orderBY ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		System.out.println(sql);
 		return rss;	
 	}
 

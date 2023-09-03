@@ -384,10 +384,11 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_78;
 	public static JComboBox<String> comboBox_79;
 	public static JComboBox<String> comboBox_80;
-	public static JTextField textField_82;
-	public static JTextField textField_83;
 	public static JComboBox<String> comboBox_77_1;
 	public static JComboBox<String> comboBox_77_2;
+	public static JTextField textField_82;
+	public static JTextField textField_83;
+	
 	public static JCheckBox chckbxDovizeCevirme_1 ;
 	private JLabel label_66;
 	private JLabel label_67;

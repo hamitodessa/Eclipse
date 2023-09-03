@@ -55,7 +55,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 	static String sstr_2 = "" ;
 	static String sstr_4 = "" ;
 	static String sstr_5 = "" ;
-	private static  String  jkj  = "" ;
+	private static String jkj  = "" ;
 	private static String kur_dos = "";
 	private static 	long startTime;
 	private static int kusur = 0 ;
@@ -125,87 +125,89 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 	}
 	public static void yenile ()
 	{
-		 try
-		 {
-		 		GRID_TEMIZLE.grid_temizle(table);
-				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Urun Kodu"))
-					{
-					 	baslik_bak();
-					 	if (! sstr_1.equals(""))
-						urun_kodlu();
-					}
-				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif"))
-					{
-					 	baslik_bak();
-					 	if (! sstr_1.equals(""))
-						sinif_kodlu();
-					}
-				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif-Kal"))
-					{
-					 	baslik_bak();
-					 	if (! sstr_1.equals(""))
-						sinif_kal_kodlu();
-					}
-				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif-Kal-Boy"))
-					{
-					 	baslik_bak();
-					 	if (! sstr_1.equals(""))
-						sinif_kal_boy_kodlu();
-					}
-				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif-Kal-Gen"))
-					{
-					 	baslik_bak();
-					 	if (! sstr_1.equals(""))
-						sinif_kal_gen_kodlu();
-					}
-				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Yil"))
-					{
-					 	baslik_bak();
-					 	if (! sstr_1.equals(""))
-						yil_kodlu();
-					}
-				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Yil-Ay"))
-					{
-					 	baslik_bak();
-					 	if (! sstr_1.equals(""))
-						yil_ay_kodlu();
-					}
-				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Urun Kodu-Yil"))
-					{
-					 	baslik_bak();
-					 	if (! sstr_1.equals(""))
-						kodu_yil_kodlu();
-					}
+		try
+		{
+			GRID_TEMIZLE.grid_temizle(table);
+			if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Urun Kodu"))
+			{
+				baslik_bak();
+				if (! sstr_1.equals(""))
+				{
+					urun_kodlu();
+				}
+			}
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif"))
+			{
+				baslik_bak();
+				if (! sstr_1.equals(""))
+					sinif_kodlu();
+			}
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif-Kal"))
+			{
+				baslik_bak();
+				if (! sstr_1.equals(""))
+					sinif_kal_kodlu();
+			}
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif-Kal-Boy"))
+			{
+				baslik_bak();
+				if (! sstr_1.equals(""))
+					sinif_kal_boy_kodlu();
+			}
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif-Kal-Gen"))
+			{
+				baslik_bak();
+				if (! sstr_1.equals(""))
+					sinif_kal_gen_kodlu();
+			}
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Yil"))
+			{
+				baslik_bak();
+				if (! sstr_1.equals(""))
+					yil_kodlu();
+			}
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Yil-Ay"))
+			{
+				baslik_bak();
+				if (! sstr_1.equals(""))
+					yil_ay_kodlu();
+			}
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Urun Kodu-Yil"))
+			{
+				baslik_bak();
+				if (! sstr_1.equals(""))
+					kodu_yil_kodlu();
+			}
 		
-		 }
-     catch (Exception ex)
-		 {
-    	 GRID_TEMIZLE.grid_temizle(table);
-    		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Raporlama", JOptionPane.ERROR_MESSAGE);
-    	}
+		}
+		catch (Exception ex)
+		{
+			GRID_TEMIZLE.grid_temizle(table);
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Raporlama", JOptionPane.ERROR_MESSAGE);
+		}
 	}
-	@SuppressWarnings("resource")
+
 	private static void baslik_bak()
 	{
 		try {
-			String  jkj  = "" ;
+			jkj  = "" ;
 			hANGI = "" ;
 			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
 			{
-				jkj = " Cikis_Evrak like '%' " ;
+				jkj = " Cikis_Evrak like '%' AND " ;
 				hANGI = "" ;
 			}
 			else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
 			{
-				jkj = " Cikis_Evrak <> '' " ;
+				jkj = " Cikis_Evrak <> '' AND  " ;
 				hANGI = "C" ;
 			}
 			else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("STOK"))
 			{
-				jkj = " Cikis_Evrak = '' " ;
+				jkj = " Cikis_Evrak = '' AND " ;
 				hANGI = "" ;
+				
 			}
-
 			ResultSet rs= null ;
 			if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Yil"))
 			{
@@ -262,10 +264,10 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				}
 				else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
-					rs = ker_Access.baslik_bak(" DISTINCT DAY(STOK."+ hANGI+"Tarih)", "order by DAY(STOK."+ hANGI+"Tarih) ",jkj,
-							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
-							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+				//	rs = ker_Access.baslik_bak(" DISTINCT DAY(STOK."+ hANGI+"Tarih)", "order by DAY(STOK."+ hANGI +"Tarih) ",jkj,
+				//			FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+				//			FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+				//			TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
 
 					sstr_2 = "DAY(KERESTE."+ hANGI+"Tarih)" ;
 
@@ -367,7 +369,11 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
  			 {
  				hANGI = "C" ;
  			}
-				rs = ker_Access.grp_rapor("Kodu",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+ 			else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("STOK"))
+			 {
+				hANGI = "" ;
+			}
+ 				rs = ker_Access.grp_rapor("Kodu",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
@@ -579,6 +585,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			 {
 				hANGI = "C" ;
 			}
+ 			
 				rs = ker_Access.grp_rapor(" SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal ,SUBSTRING(KERESTE.Kodu, 8, 4) as Boy ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
@@ -586,6 +593,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 						sstr_5, sstr_1, "Sinif , Kal,Boy",hANGI);
 			GRID_TEMIZLE.grid_temizle(table);
+			
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
 			} 
@@ -1031,9 +1039,13 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 	     {
 			 hangiFiatString = "Fiat " ;
 	     }
-		 else 
+		 else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
 		 {
 			 hangiFiatString = "CFiat " ;
+		}
+		 else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("STOK"))
+		 {
+			 hangiFiatString = "Fiat " ;
 		}
 		if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Tutar"))
 		{

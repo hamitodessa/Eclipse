@@ -38,6 +38,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
+@SuppressWarnings( {"static-access", "serial"})
 public class KER_GRUP_RAPOR extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -55,12 +56,10 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 	static String sstr_4 = "" ;
 	static String sstr_5 = "" ;
 	private static  String  jkj  = "" ;
-	private static String jkj1 = "";
-	//private static String ch1 ="";
 	private static String kur_dos = "";
 	private static 	long startTime;
 	private static int kusur = 0 ;
-
+    private static String hANGI ="";
 	/**
 	 * Launch the application.
 	 */
@@ -80,6 +79,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+
 	public KER_GRUP_RAPOR() {
 		setTitle("KERESTE GRUP RAPOR");
 		setResizable(true);
@@ -140,7 +140,43 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					 	if (! sstr_1.equals(""))
 						sinif_kodlu();
 					}
-				
+				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif-Kal"))
+					{
+					 	baslik_bak();
+					 	if (! sstr_1.equals(""))
+						sinif_kal_kodlu();
+					}
+				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif-Kal-Boy"))
+					{
+					 	baslik_bak();
+					 	if (! sstr_1.equals(""))
+						sinif_kal_boy_kodlu();
+					}
+				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif-Kal-Gen"))
+					{
+					 	baslik_bak();
+					 	if (! sstr_1.equals(""))
+						sinif_kal_gen_kodlu();
+					}
+				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Yil"))
+					{
+					 	baslik_bak();
+					 	if (! sstr_1.equals(""))
+						yil_kodlu();
+					}
+				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Yil-Ay"))
+					{
+					 	baslik_bak();
+					 	if (! sstr_1.equals(""))
+						yil_ay_kodlu();
+					}
+				 if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Urun Kodu-Yil"))
+					{
+					 	baslik_bak();
+					 	if (! sstr_1.equals(""))
+						kodu_yil_kodlu();
+					}
+		
 		 }
      catch (Exception ex)
 		 {
@@ -148,156 +184,173 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
     		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Raporlama", JOptionPane.ERROR_MESSAGE);
     	}
 	}
+	@SuppressWarnings("resource")
 	private static void baslik_bak()
 	{
-	 try {
-	     String  jkj  = "" ;
-	     if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
-	     {
-	    	 jkj = " Cikis_Evrak like '%' " ;
-	     }
-	     else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
-	     {
-	    	 jkj = " Cikis_Evrak <> '' " ;
+		try {
+			String  jkj  = "" ;
+			hANGI = "" ;
+			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+			{
+				jkj = " Cikis_Evrak like '%' " ;
+				hANGI = "" ;
+			}
+			else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+			{
+				jkj = " Cikis_Evrak <> '' " ;
+				hANGI = "C" ;
+			}
+			else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("STOK"))
+			{
+				jkj = " Cikis_Evrak = '' " ;
+				hANGI = "" ;
+			}
+
+			ResultSet rs= null ;
+			if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Yil"))
+			{
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+				{
+					rs = ker_Access.baslik_bak("DISTINCT datepart(yyyy,KERESTE."+ hANGI+"Tarih)","order by datepart(yyyy,KERESTE."+ hANGI+"Tarih)",jkj,
+							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+					sstr_2 = " datepart(yyyy,KERESTE."+ hANGI +"Tarih)" ;
+				}
+				else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				{
+					rs = ker_Access.baslik_bak("DISTINCT YEAR(STOK."+ hANGI+"Tarih)","order by YEAR(STOK."+ hANGI+"Tarih)",jkj,
+							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+					sstr_2 = " YEAR(KERESTE."+ hANGI+"Tarih)" ;
+
+				}
+			}
+			if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Ay"))
+			{
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+				{
+					rs = ker_Access.baslik_bak("DISTINCT datepart(mm,KERESTE."+ hANGI+"Tarih)", "order by datepart(mm,KERESTE."+ hANGI+"Tarih)",jkj,
+							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+
+					sstr_2 = "datepart(mm,KERESTE."+ hANGI +"Tarih)" ;
+				}
+				else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				{
+					rs = ker_Access.baslik_bak(" DISTINCT MONTH(STOK."+ hANGI +"Tarih)", "order by MONTH(STOK."+ hANGI+"Tarih) ",jkj,
+							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+
+					sstr_2 = "MONTH(KERESTE."+ hANGI+"Tarih)" ;
+
+				}
+			}
+			if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Gun"))
+			{
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+				{
+					rs = ker_Access.baslik_bak("DISTINCT datepart(dd,KERESTE."+ hANGI+"Tarih)", "order by datepart(dd,KERESTE."+ hANGI+"Tarih)",jkj,
+							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+
+					sstr_2 = "datepart(dd,KERESTE."+ hANGI+"Tarih)" ;
+				}
+				else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				{
+					rs = ker_Access.baslik_bak(" DISTINCT DAY(STOK."+ hANGI+"Tarih)", "order by DAY(STOK."+ hANGI+"Tarih) ",jkj,
+							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+
+					sstr_2 = "DAY(KERESTE."+ hANGI+"Tarih)" ;
+
+				}
+			}
+			if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Kalinlik"))
+			{
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+				{
+					rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) ",jkj,
+							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+
+					sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) " ;
+				}
+				else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				{
+
+
+				}
+			}
+			if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Boy"))
+			{
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+				{
+					rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4) ) ",jkj,
+							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+
+					sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4) ) " ;
+				}
+				else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				{
+
+
+				}
+			} 
+			if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Genislik"))
+			{
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+				{
+					rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) ) ",jkj,
+							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+
+					sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) ) " ;
+				}
+				else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				{
+
+
+				}
+			}
+			if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Sinif"))
+			{
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+				{
+					rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 1, 2) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 1, 2) ) ",jkj,
+							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+
+					sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 1, 2) ) " ;
+				}
+				else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				{
+
+
+				}
+			}
+			sstr_1 = "";
+			String text = "" ;
+			while (rs.next())
+			{
+				text = text +  "[" + rs.getString(1).toString() + "]" + " , " ;
+			}
+			sstr_1 =  text.equals("") ?   "":    text.substring(0, text.length() - 2);
 		}
-	     else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("STOK"))
-	     {
-	    	 jkj = " Cikis_Evrak = '' " ;
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
-	    
-	     ResultSet rs= null ;
-	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Yil"))
-	     {
-	    		if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
-	       		{
-	    			rs = ker_Access.baslik_bak("DISTINCT datepart(yyyy,Tarih)","order by datepart(yyyy,Tarih)",jkj,
-	    					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
-	    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1));
-		           sstr_2 = " datepart(yyyy,Tarih)" ;
-	       		}
-	    		else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
-	       		{
-	    			
-
-	       		}
-	     }
-	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Ay"))
-	     {
-	    		if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
-	       		{
-	    			rs = ker_Access.baslik_bak("DISTINCT datepart(mm,Tarih)", "order by datepart(mm,Tarih)",jkj,
-	    					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
-	    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1));
-				
-	           sstr_2 = "datepart(mm,Tarih)" ;
-	       		}
-	    		else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
-	       		{
-	    			
-
-	       		}
-	     }
-	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Gun"))
-	     {
-	    		if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
-	       		{
-	    			rs = ker_Access.baslik_bak("DISTINCT datepart(dd,Tarih)", "order by datepart(dd,Tarih)",jkj,
-	    					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
-	    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1));
-				
-	           sstr_2 = "datepart(dd,Tarih)" ;
-	       		}
-	    		else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
-	       		{
-	    			
-
-	       		}
-	     }
-	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Kalinlik"))
-	     {
-	    		if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
-	       		{
-	    			rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) ",jkj,
-	    					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
-	    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1));
-				
-	           sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) " ;
-	       		}
-	    		else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
-	       		{
-	    			
-
-	       		}
-	     }
-	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Boy"))
-	     {
-	    		if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
-	       		{
-	    			rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4) ) ",jkj,
-	    					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
-	    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1));
-				
-	           sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4) ) " ;
-	       		}
-	    		else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
-	       		{
-	    			
-
-	       		}
-	     } 
-	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Genislik"))
-	     {
-	    		if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
-	       		{
-	    			rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) ) ",jkj,
-	    					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
-	    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1));
-				
-	           sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) ) " ;
-	       		}
-	    		else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
-	       		{
-	    			
-
-	       		}
-	     }
-	     if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Sinif"))
-	     {
-	    		if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
-	       		{
-	    			rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 1, 2) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 1, 2) ) ",jkj,
-	    					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
-	    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-	    					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1));
-				
-	           sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 1, 2) ) " ;
-	       		}
-	    		else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
-	       		{
-	    			
-
-	       		}
-	     }
-	        sstr_1 = "";
-	        String text = "" ;
-	          while (rs.next())
-	        	{
-	                	 text = text +  "[" + rs.getString(1).toString() + "]" + " , " ;
-	        	 }
-	          sstr_1 =  text.equals("") ?   "":    text.substring(0, text.length() - 2);
-	          System.out.println( sstr_1);
-	    
-	 }
-     catch (Exception ex)
-		 {
-    		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Raporlama", JOptionPane.ERROR_MESSAGE);
-    	}
 	}
 	private static void urun_kodlu() 
 	{
@@ -306,13 +359,20 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			ResultSet	rs = null;
 			deg_cevir();
  			grup_cevir() ;
-			
-				rs = ker_Access.grp_urn_kodlu(sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+ 			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+ 		     {
+ 				hANGI = "" ;
+ 		     }
+ 			 else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+ 			 {
+ 				hANGI = "C" ;
+ 			}
+				rs = ker_Access.grp_rapor("Kodu",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1);
+						sstr_5, sstr_1," Kodu",hANGI);
 			
 
 			GRID_TEMIZLE.grid_temizle(table);
@@ -331,7 +391,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(120);
-				
+				tc.setMaxWidth(120);
 				
 				
 				kusurr();
@@ -371,13 +431,316 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			ResultSet	rs = null;
 			deg_cevir();
  			grup_cevir() ;
-			
-				rs = ker_Access.grp_urn_kodlu(sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+ 			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+		     {
+				hANGI = "" ;
+		     }
+			 else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+			 {
+				hANGI = "C" ;
+			}
+				rs = ker_Access.grp_rapor(" SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1);
+						sstr_5, sstr_1, "Sinif",hANGI);
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() ) {  
+				lbladet.setText(FORMATLAMA.doub_0(0));
+			} 
+			else
+			{
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+				 mdll.addColumn("Toplam");
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(30);
+				tc.setMaxWidth(30);
+				kusurr();
+				for (int i = 1;i<=table.getColumnCount() -2;i++)
+				{
+					tc = tcm.getColumn(i);
+					tc.setHeaderRenderer(new SAGA());
+					tc.setCellRenderer(new TABLO_RENDERER(kusur,false));
+					tc.setMinWidth(110);
+				}
+				tc = tcm.getColumn(table.getColumnCount() -1);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(kusur,true));
+				tc.setMinWidth(110);
+				
+				Dimension dd = th.getPreferredSize();
+			    dd.height = 30;
+			    th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
+				//**
+				topla(1);
+				//**
+				alt_bolum();
+				fontt();
+			}
+		} 
+		catch (Exception ex) {
+		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private static void sinif_kal_kodlu() 
+	{
+		startTime = System.currentTimeMillis(); 
+		try {
+			ResultSet	rs = null;
+			deg_cevir();
+ 			grup_cevir() ;
+ 			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+		     {
+				hANGI = "" ;
+		     }
+			 else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+			 {
+				hANGI = "C" ;
+			}
+				rs = ker_Access.grp_rapor(" SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+						jkj,
+						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
+						sstr_5, sstr_1, "Sinif , Kal" , hANGI);
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() ) {  
+				lbladet.setText(FORMATLAMA.doub_0(0));
+			} 
+			else
+			{
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+				 mdll.addColumn("Toplam");
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+				
+				tc = tcm.getColumn(1);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+				
+				kusurr();
+				for (int i = 2;i<=table.getColumnCount() -2;i++)
+				{
+					tc = tcm.getColumn(i);
+					tc.setHeaderRenderer(new SAGA());
+					tc.setCellRenderer(new TABLO_RENDERER(kusur,false));
+					tc.setMinWidth(110);
+				}
+				tc = tcm.getColumn(table.getColumnCount() -1);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(kusur,true));
+				tc.setMinWidth(110);
+				
+				Dimension dd = th.getPreferredSize();
+			    dd.height = 30;
+			    th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
+				//**
+				topla(2);
+				//**
+				alt_bolum();
+				fontt();
+			}
+		} 
+		catch (Exception ex) {
+		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kal Raporlama", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private static void sinif_kal_boy_kodlu() 
+	{
+		startTime = System.currentTimeMillis(); 
+		try {
+			ResultSet	rs = null;
+			deg_cevir();
+ 			grup_cevir() ;
+ 			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+		     {
+				hANGI = "" ;
+		     }
+			 else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+			 {
+				hANGI = "C" ;
+			}
+				rs = ker_Access.grp_rapor(" SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal ,SUBSTRING(KERESTE.Kodu, 8, 4) as Boy ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+						jkj,
+						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
+						sstr_5, sstr_1, "Sinif , Kal,Boy",hANGI);
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() ) {  
+				lbladet.setText(FORMATLAMA.doub_0(0));
+			} 
+			else
+			{
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+				 mdll.addColumn("Toplam");
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+				
+				tc = tcm.getColumn(1);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+				
+				tc = tcm.getColumn(2);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+				
+				kusurr();
+				for (int i = 3;i<=table.getColumnCount() -2;i++)
+				{
+					tc = tcm.getColumn(i);
+					tc.setHeaderRenderer(new SAGA());
+					tc.setCellRenderer(new TABLO_RENDERER(kusur,false));
+					tc.setMinWidth(110);
+				}
+				tc = tcm.getColumn(table.getColumnCount() -1);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(kusur,true));
+				tc.setMinWidth(110);
+				
+				Dimension dd = th.getPreferredSize();
+			    dd.height = 30;
+			    th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
+				//**
+				topla(3);
+				//**
+				alt_bolum();
+				fontt();
+			}
+		} 
+		catch (Exception ex) {
+		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kal Boy Raporlama", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private static void sinif_kal_gen_kodlu() 
+	{
+		startTime = System.currentTimeMillis(); 
+		try {
+			ResultSet	rs = null;
+			deg_cevir();
+ 			grup_cevir() ;
+ 			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+		     {
+				hANGI = "" ;
+		     }
+			 else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+			 {
+				hANGI = "C" ;
+			}
+				rs = ker_Access.grp_rapor(" SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal ,SUBSTRING(KERESTE.Kodu, 13, 4) as Gen ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+						jkj,
+						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
+						sstr_5, sstr_1, "Sinif , Kal,Gen",hANGI);
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() ) {  
+				lbladet.setText(FORMATLAMA.doub_0(0));
+			} 
+			else
+			{
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+				 mdll.addColumn("Toplam");
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+				
+				tc = tcm.getColumn(1);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+				
+				tc = tcm.getColumn(2);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+				
+				kusurr();
+				for (int i = 3;i<=table.getColumnCount() -2;i++)
+				{
+					tc = tcm.getColumn(i);
+					tc.setHeaderRenderer(new SAGA());
+					tc.setCellRenderer(new TABLO_RENDERER(kusur,false));
+					tc.setMinWidth(110);
+				}
+				tc = tcm.getColumn(table.getColumnCount() -1);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(kusur,true));
+				tc.setMinWidth(110);
+				
+				Dimension dd = th.getPreferredSize();
+			    dd.height = 30;
+			    th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
+				//**
+				topla(3);
+				//**
+				alt_bolum();
+				fontt();
+			}
+		} 
+		catch (Exception ex) {
+		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kal Gen Raporlama", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private static void yil_kodlu() 
+	{
+		startTime = System.currentTimeMillis(); 
+		try {
+			ResultSet	rs = null;
+			deg_cevir();
+ 			grup_cevir() ;
+ 			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+		     {
+				hANGI = "" ;
+		     }
+			 else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+			 {
+				hANGI = "C" ;
+			}
+				rs = ker_Access.grp_rapor(" datepart(yyyy,KERESTE.Tarih) AS Yil ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+						jkj,
+						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
+						sstr_5, sstr_1," Yil",hANGI);
 			
 
 			GRID_TEMIZLE.grid_temizle(table);
@@ -426,79 +789,221 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Urun Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Yil Raporlama", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private static void yil_ay_kodlu() 
+	{
+		startTime = System.currentTimeMillis(); 
+		try {
+			ResultSet	rs = null;
+			deg_cevir();
+ 			grup_cevir() ;
+ 			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+		     {
+				hANGI = "" ;
+		     }
+			 else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+			 {
+				hANGI = "C" ;
+			}
+				rs = ker_Access.grp_rapor(" datepart(yyyy,KERESTE.Tarih) AS Yil ,datepart(mm,KERESTE.Tarih) as Ay ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+						jkj,
+						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
+						sstr_5, sstr_1, "Yil , Ay",hANGI);
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() ) {  
+				lbladet.setText(FORMATLAMA.doub_0(0));
+			} 
+			else
+			{
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+				 mdll.addColumn("Toplam");
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+				
+				tc = tcm.getColumn(1);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+				
+				kusurr();
+				for (int i = 2;i<=table.getColumnCount() -2;i++)
+				{
+					tc = tcm.getColumn(i);
+					tc.setHeaderRenderer(new SAGA());
+					tc.setCellRenderer(new TABLO_RENDERER(kusur,false));
+					tc.setMinWidth(110);
+				}
+				tc = tcm.getColumn(table.getColumnCount() -1);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(kusur,true));
+				tc.setMinWidth(110);
+				
+				Dimension dd = th.getPreferredSize();
+			    dd.height = 30;
+			    th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
+				//**
+				topla(2);
+				//**
+				alt_bolum();
+				fontt();
+			}
+		} 
+		catch (Exception ex) {
+		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Yil Ay Raporlama", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private static void kodu_yil_kodlu() 
+	{
+		startTime = System.currentTimeMillis(); 
+		try {
+			ResultSet	rs = null;
+			deg_cevir();
+ 			grup_cevir() ;
+ 			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+		     {
+				hANGI = "" ;
+		     }
+			 else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+			 {
+				hANGI = "C" ;
+			}
+				rs = ker_Access.grp_rapor(" Kodu , datepart(yyyy,KERESTE.Tarih) AS Yil ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+						jkj,
+						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
+						sstr_5, sstr_1, " Kodu ,Yil ",hANGI);
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() ) {  
+				lbladet.setText(FORMATLAMA.doub_0(0));
+			} 
+			else
+			{
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+				 mdll.addColumn("Toplam");
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(110);
+				tc.setMaxWidth(110);
+				
+				tc = tcm.getColumn(1);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+				
+				kusurr();
+				for (int i = 2;i<=table.getColumnCount() -2;i++)
+				{
+					tc = tcm.getColumn(i);
+					tc.setHeaderRenderer(new SAGA());
+					tc.setCellRenderer(new TABLO_RENDERER(kusur,false));
+					tc.setMinWidth(110);
+				}
+				tc = tcm.getColumn(table.getColumnCount() -1);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(kusur,true));
+				tc.setMinWidth(110);
+				
+				Dimension dd = th.getPreferredSize();
+			    dd.height = 30;
+			    th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
+				//**
+				topla(2);
+				//**
+				alt_bolum();
+				fontt();
+			}
+		} 
+		catch (Exception ex) {
+		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Kodu Yil Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void grup_cevir()
 	{
 		try {
-		ResultSet	rs = null;
-				//** Urun Ana grup
-				if ( FILTRE.comboBox_78.getItemAt(FILTRE.comboBox_78.getSelectedIndex()).equals(""))
-				{
-		            qwq6 = " Like  '%' " ;
+			ResultSet	rs = null;
+			//** Urun Ana grup
+			if ( FILTRE.comboBox_78.getItemAt(FILTRE.comboBox_78.getSelectedIndex()).equals(""))
+			{
+				qwq6 = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_78.getItemAt(FILTRE.comboBox_78.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				qwq6 = " = '' " ;
+			}
+			else
+			{
+				rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_78.getItemAt(FILTRE.comboBox_78.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
 				}
-		        else if  ( FILTRE.comboBox_78.getItemAt(FILTRE.comboBox_78.getSelectedIndex()).equals("Bos Olanlar"))
-		        {
-		            qwq6 = " = '' " ;
-		        }
-		        else
-		        {
-		        	
-		    			rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_78.getItemAt(FILTRE.comboBox_78.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    				rs.next();
-		    				qwq6 = "=" + Integer.toString( rs.getInt("AGID_Y"));
-		    			}
-		    		
-		        }
-				//** Urun Alt Grup
-				if ( FILTRE.comboBox_79.getItemAt(FILTRE.comboBox_79.getSelectedIndex()).equals(""))
+				else
 				{
-		            qwq7 = " Like  '%' " ;
+					rs.next();
+					qwq6 = "=" + Integer.toString( rs.getInt("AGID_Y"));
 				}
-		        else if  ( FILTRE.comboBox_79.getItemAt(FILTRE.comboBox_79.getSelectedIndex()).equals("Bos Olanlar"))
-		        {
-		            qwq7 = " = '' " ;
-		        }		        else		      
-		        {
-		        	
-		    			rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_79.getItemAt(FILTRE.comboBox_79.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    				rs.next();
-		    				qwq7 ="=" + Integer.toString( rs.getInt("ALID_Y"));
-		    			}
-		    		
-		        }
-				//** OZ1 OKU
-				if ( FILTRE.comboBox_80.getItemAt(FILTRE.comboBox_80.getSelectedIndex()).equals(""))
+
+			}
+			//** Urun Alt Grup
+			if ( FILTRE.comboBox_79.getItemAt(FILTRE.comboBox_79.getSelectedIndex()).equals(""))
+			{
+				qwq7 = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_79.getItemAt(FILTRE.comboBox_79.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				qwq7 = " = '' " ;
+			}		        else		      
+			{
+
+				rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_79.getItemAt(FILTRE.comboBox_79.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
 				{
-		            qwq8 = " Like  '%' " ;
+					rs.next();
+					qwq7 ="=" + Integer.toString( rs.getInt("ALID_Y"));
 				}
-		        else if  ( FILTRE.comboBox_80.getItemAt(FILTRE.comboBox_80.getSelectedIndex()).equals("Bos Olanlar"))
-		        {
-		            qwq8 = " = '' " ;
-		        }		        
-		        else
-		        {
-		        	
-		    			rs =ker_Access.ker_kod_degisken_ara("OZ1ID_Y", "OZEL_KOD_1", "OZ_KOD_1_DEGISKEN", FILTRE.comboBox_80.getItemAt(FILTRE.comboBox_80.getSelectedIndex()));
-		    			if (!rs.isBeforeFirst() ) {
-		    			}
-		    			else
-		    			{
-		    				rs.next();
-		    				qwq8 ="=" + Integer.toString( rs.getInt("OZ1ID_Y"));
-		    			}
-		    		
-		        }
-				
+
+			}
+			//** OZ1 OKU
+			if ( FILTRE.comboBox_80.getItemAt(FILTRE.comboBox_80.getSelectedIndex()).equals(""))
+			{
+				qwq8 = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_80.getItemAt(FILTRE.comboBox_80.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				qwq8 = " = '' " ;
+			}		        
+			else
+			{
+				rs =ker_Access.ker_kod_degisken_ara("OZ1ID_Y", "OZEL_KOD_1", "OZ_KOD_1_DEGISKEN", FILTRE.comboBox_80.getItemAt(FILTRE.comboBox_80.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
+				{
+					rs.next();
+					qwq8 ="=" + Integer.toString( rs.getInt("OZ1ID_Y"));
+				}
+			}
 		} 
 		catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
@@ -521,11 +1026,32 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 	}
 	private static void deg_cevir()
 	{
-
+		String hangiFiatString = "" ;
+		 if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+	     {
+			 hangiFiatString = "Fiat " ;
+	     }
+		 else 
+		 {
+			 hangiFiatString = "CFiat " ;
+		}
 		if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Tutar"))
 		{
-				sstr_4 = " ((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) * Fiat) as Tutar";
-			
+			if (FILTRE.chckbxDovizeCevirme_1.isSelected())
+			{
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+				{
+					sstr_4 = " ((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) * " + hangiFiatString + ") / iif(k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex())+ " = 0 ,1, k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex()) + ") as Tutar ";
+				}
+				else if (BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				{
+					sstr_4 = " ((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) * " + hangiFiatString + ") / IF(k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex())+ " = 0 ,1, k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex()) + ") as Tutar ";
+				}
+			}
+			else
+			{
+				sstr_4 = " ((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) * " + hangiFiatString + ") as Tutar";
+			}
 			sstr_5 = "Tutar";
 		}
 		else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Miktar"))
@@ -538,7 +1064,28 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			sstr_4 = " (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  as m3";
 			sstr_5 = "m3";
 		}
-		
+		if (FILTRE.chckbxDovizeCevirme_1.isSelected())
+		{
+			if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Tutar"))
+			{
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+				{
+					kur_dos = "  left outer join OK_Kur" + BAGLAN .kurDizin.kOD + ".dbo.kurlar k on k.Tarih = convert(varchar(10), KERESTE.Tarih, 120) and (k.kur IS NULL OR k.KUR ='" + FILTRE.comboBox_77_1.getItemAt(FILTRE.comboBox_77_1.getSelectedIndex())+ "') ";
+				}
+				else if(BAGLAN.fatDizin.hAN_SQL.equals("MY SQL"))
+				{
+					kur_dos = "  left outer join ok_kur" + BAGLAN .kurDizin.kOD + ".kurlar k on k.Tarih = DATE( KERESTE.Tarih) and  k.kur ='" + FILTRE.comboBox_77_1.getItemAt(FILTRE.comboBox_77_1.getSelectedIndex())+ "' ";
+				}
+			}
+			else
+			{
+				kur_dos = "";
+			}
+		}
+		else
+		{
+			kur_dos = "" ;
+		}
 	}
 	private static void topla(int aa)
 	{

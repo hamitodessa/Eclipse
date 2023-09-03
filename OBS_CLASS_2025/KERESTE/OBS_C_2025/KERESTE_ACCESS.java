@@ -208,14 +208,15 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.evrak_no_al(cins);
 	}
-	public ResultSet baslik_bak(String baslik,String ordr,String jkj,String k1,String k2,String f1,String f2,String t1,String t2) throws ClassNotFoundException, SQLException 
+	public ResultSet baslik_bak(String baslik,String ordr,String jkj,String k1,String k2,String f1,String f2,String t1,String t2,String dURUM) throws ClassNotFoundException, SQLException 
 	{
-		return _IKereste.baslik_bak(baslik, ordr, jkj,  k1, k2, f1, f2, t1, t2);
+		return _IKereste.baslik_bak(baslik, ordr, jkj,  k1, k2, f1, f2, t1, t2,dURUM);
 	}
-	public ResultSet grp_urn_kodlu(String sstr_2,String sstr_4,String kur_dos,String qwq6,
+	public ResultSet grp_rapor(String gruplama,String sstr_2,String sstr_4,String kur_dos,String qwq6,
 			String qwq7,String qwq8,String s1 ,String s2,String k1,String k2,String jkj,String t1,String t2,
-			String sstr_5,String sstr_1) throws ClassNotFoundException, SQLException
+			String sstr_5,String sstr_1,String orderBY,String dURUM) throws ClassNotFoundException, SQLException
 	{
-		return _IKereste.grp_urn_kodlu(sstr_2, sstr_4, kur_dos,  qwq6, qwq7, qwq8, s1, s2, k1, k2, jkj,  t1, t2, sstr_5, sstr_1);
+		return _IKereste.grp_rapor( gruplama,sstr_2, sstr_4, kur_dos,  qwq6, qwq7, qwq8, s1, s2, k1, k2, jkj,  t1, t2, sstr_5, sstr_1,orderBY,dURUM);
 	}
+	
 }

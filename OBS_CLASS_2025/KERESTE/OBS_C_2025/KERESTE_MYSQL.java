@@ -256,19 +256,18 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public ResultSet baslik_bak(String baslik, String ordr, String jkj, String k1, String k2, String f1,
-			String f2, String t1, String t2) throws ClassNotFoundException, SQLException {
+			String f2, String t1, String t2,String dURUM) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultSet grp_urn_kodlu(String sstr_2, String sstr_4, String kur_dos, String qwq6,
+	public ResultSet grp_rapor(String gruplama,String sstr_2, String sstr_4, String kur_dos, String qwq6,
 			String qwq7, String qwq8, String s1, String s2, String k1, String k2, String jkj, 
-			String t1, String t2, String sstr_5, String sstr_1) throws ClassNotFoundException, SQLException {
+			String t1, String t2, String sstr_5, String sstr_1,String orderBY,String dURUM) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	
 
 }

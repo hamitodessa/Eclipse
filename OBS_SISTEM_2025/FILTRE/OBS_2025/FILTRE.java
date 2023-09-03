@@ -386,9 +386,13 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_80;
 	public static JTextField textField_82;
 	public static JTextField textField_83;
+	public static JComboBox<String> comboBox_77_1;
+	public static JComboBox<String> comboBox_77_2;
+	public static JCheckBox chckbxDovizeCevirme_1 ;
 	private JLabel label_66;
 	private JLabel label_67;
 	private JLabel lblUrunOzelKod_1;
+	
 	
 	
 	/**
@@ -423,8 +427,7 @@ public class FILTRE extends JDialog {
 		//*****************************************************************************************************************
 		// Goruntu icin asagidaki blogu kaldir 
 
-		
-		final boolean showTabsHeader = false;
+		 final boolean showTabsHeader = false;
 	    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
 	    {
 	        @Override
@@ -432,9 +435,10 @@ public class FILTRE extends JDialog {
 	            if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
 	            } else {return 0;}	        }
 	      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
-	    });
-		    //
-		    //final boolean showTabsHeader = false;
+	    }); 
+		  
+		
+		    // final boolean showTabsHeader = false;
 		    //tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
 		    //{
 		    //    @Override
@@ -442,7 +446,7 @@ public class FILTRE extends JDialog {
 		    //        if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
 		    //        } else {return 0;}	        }
 		    //  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
-		    //});
+		    //}); 
 
 //*****************************************************************************************************************		    
 		contentPanel.add(tabbedPane, BorderLayout.CENTER);
@@ -2996,6 +3000,7 @@ public class FILTRE extends JDialog {
 			}
 		});
 		chckbxDovizeCevirme.setBounds(398, 139, 116, 23);
+		chckbxDovizeCevirme.setVisible(false);
 		panel_12.add(chckbxDovizeCevirme);
 
 		JLabel lblSinif = new JLabel("Sinif");
@@ -4459,12 +4464,25 @@ public class FILTRE extends JDialog {
 		comboBox_26_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_26_1.setModel(new DefaultComboBoxModel<String>(new String[] {"m3","Tutar", "Miktar"}));
 		comboBox_26_1.setBounds(90, 103, 149, 22);
+		comboBox_26_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String hangi = comboBox_26_1.getItemAt(comboBox_26_1.getSelectedIndex())  ;
+				if (hangi == "Tutar")
+				{
+					chckbxDovizeCevirme_1.setVisible(true);
+				}
+				else
+				{
+					chckbxDovizeCevirme_1.setVisible(false);
+				}
+			}
+		});
 		panel_KERESTE.add(comboBox_26_1);
 		
 		comboBox_27_1 = new JComboBox<String>();
 		comboBox_27_1.setForeground(new Color(0, 0, 128));
 		comboBox_27_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil_Ay"}));
+		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil-Ay"}));
 		//comboBox_27_1.setSelectedIndex(1);
 		comboBox_27_1.setBounds(90, 129, 149, 22);
 		panel_KERESTE.add(comboBox_27_1);
@@ -4507,12 +4525,12 @@ public class FILTRE extends JDialog {
 		comboBox_77.setForeground(new Color(0, 0, 128));
 		comboBox_77.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_77.setModel(new DefaultComboBoxModel<String>(new String[] { "GIREN", "CIKAN","STOK"}));
-		comboBox_77.setBounds(594, 133, 110, 22);
+		comboBox_77.setBounds(594, 106, 110, 22);
 		panel_KERESTE.add(comboBox_77);
 		
 		JLabel lblNewLabel_41 = new JLabel("Turu");
 		lblNewLabel_41.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_41.setBounds(538, 137, 46, 14);
+		lblNewLabel_41.setBounds(520, 111, 46, 14);
 		panel_KERESTE.add(lblNewLabel_41);
 		
 		comboBox_78 = new JComboBox<String>();
@@ -4553,6 +4571,45 @@ public class FILTRE extends JDialog {
 		lblUrunOzelKod_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblUrunOzelKod_1.setBounds(401, 76, 113, 14);
 		panel_KERESTE.add(lblUrunOzelKod_1);
+		
+		chckbxDovizeCevirme_1 = new JCheckBox("Dovize Cevirme");
+		chckbxDovizeCevirme_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		chckbxDovizeCevirme_1.setBounds(520, 137, 110, 23);
+		chckbxDovizeCevirme_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (chckbxDovizeCevirme_1.isSelected())
+				{
+					comboBox_77_1.setVisible(true);
+					comboBox_77_2.setVisible(true);
+				}
+				else
+				{
+					comboBox_77_1.setVisible(false);
+					comboBox_77_2.setVisible(false);
+				}
+			}
+		});
+		chckbxDovizeCevirme_1.setVisible(false);
+		panel_KERESTE.add(chckbxDovizeCevirme_1);
+		///
+		
+		
+		///
+		comboBox_77_1 = new JComboBox<String>();
+		comboBox_77_1.setForeground(new Color(0, 0, 128));
+		comboBox_77_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		comboBox_77_1.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR"}));
+		comboBox_77_1.setBounds(646, 137, 58, 22);
+		comboBox_77_1.setVisible(false);
+		panel_KERESTE.add(comboBox_77_1);
+		
+		comboBox_77_2 = new JComboBox<String>();
+		comboBox_77_2.setForeground(new Color(0, 0, 128));
+		comboBox_77_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		comboBox_77_2.setModel(new DefaultComboBoxModel<String>(new String[] {"MA", "MS", "BA", "BS", "SA", "SS"}));
+		comboBox_77_2.setBounds(646, 162, 58, 22);
+		comboBox_77_2.setVisible(false);
+		panel_KERESTE.add(comboBox_77_2);
 		//**********************************************************************OK BUTTON **********************************
 		okButton = new JButton("Yenile");
 		okButton.setFont(new Font("Tahoma", Font.BOLD, 11));

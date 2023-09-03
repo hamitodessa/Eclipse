@@ -1094,10 +1094,10 @@ public class GRUP_RAPOR extends JInternalFrame {
 		           sstr_4 = " ABS(STOK.Tutar / IF(k." + FILTRE.comboBox_33.getItemAt(FILTRE.comboBox_33.getSelectedIndex())+ " = 0 ,1, k." + FILTRE.comboBox_33.getItemAt(FILTRE.comboBox_33.getSelectedIndex()) + ")) as Tutar ";
        		}
        	 }
-		       else
-		       {
+		 else
+			 {
 		           sstr_4 = " ABS(STOK.Tutar) as Tutar";
-		       }
+		     }
 		           sstr_5 = "Tutar";
        }
 		else  if (FILTRE.comboBox_26.getItemAt(FILTRE.comboBox_26.getSelectedIndex()).equals("Miktar"))

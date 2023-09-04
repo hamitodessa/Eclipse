@@ -125,7 +125,7 @@ public class KER_DETAY extends JInternalFrame {
 			ResultSet	rs = null;
 			grup_cevir() ;
 			KER_BILGI ker_BILGI = new KER_BILGI();
-			ker_BILGI.setEvrak_No(FILTRE.);
+			
 	//			rs = ker_Access.stok_rapor(FILTRE.textField_25.getText(),FILTRE.textField_30.getText() ,
 	//					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_18),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_19),
 	//					FILTRE.textField_26.getText(),FILTRE.textField_29.getText() ,

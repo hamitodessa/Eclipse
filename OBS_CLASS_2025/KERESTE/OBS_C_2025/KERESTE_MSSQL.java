@@ -1126,10 +1126,10 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ "      ,[Tevkifat] "
 				+ "      ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = Ana_Grup),'') Ana_Grup "
 				+ "      ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = Alt_Grup),'') AS Alt_Grup "
-				+ "      ,[Depo] "
+				+ "      ,(SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = Depo ) as Depo  " 
 				+ "      ,[Ozel_Kod] "
 				+ "      ,[Izahat] "
-				+ "      ,[Nakliyeci] "
+				+ "      ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = Nakliyeci ) as Nakliyeci  " 
 				+ "      ,[USER] "
 				+ "      ,[Cikis_Evrak] "
 				+ "      ,[CTarih] "
@@ -1147,7 +1147,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ "      ,ISNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = CDepo),'') AS C_Depo "
 				+ "      ,[COzel_Kod] "
 				+ "      ,[CIzahat] "
-				+ "      ,[CNakliyeci] "
+				+ "      ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = CNakliyeci ) as C_Nakliyeci  " 
 				+ "      ,[CUSER] " 
 				+ "      FROM KERESTE WITH (INDEX (IX_KERESTE))  " 
 				+ "      WHERE " 
@@ -1170,7 +1170,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " CAlt_Grup " + ker_rap_BILGI.getCAlt_Grup()  + " AND" 
 				+ " CDepo " + ker_rap_BILGI.getCDepo()  + " AND " 
 				+ " COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() ; 
-				
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

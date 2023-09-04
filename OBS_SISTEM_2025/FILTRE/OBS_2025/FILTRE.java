@@ -26,6 +26,7 @@ import javax.swing.SwingUtilities;
 import com.toedter.calendar.JDateChooser;
 
 import GUNLUK.HAZIR_GOREVLER;
+import KER_RAPOR.KER_DETAY;
 import KER_RAPOR.KER_GRUP_RAPOR;
 import OBS_2025_RAPORLAR.ENVANTER;
 import OBS_2025_RAPORLAR.FATURA_RAPOR;
@@ -4396,7 +4397,7 @@ public class FILTRE extends JDialog {
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
-		//******************************** KERESTE *************************************************************************
+		//******************************** KERESTE GRUP *************************************************************************
 
 		JPanel panel_KERESTE = new JPanel();
 		panel_KERESTE.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -4483,7 +4484,7 @@ public class FILTRE extends JDialog {
 		comboBox_27_1 = new JComboBox<String>();
 		comboBox_27_1.setForeground(new Color(0, 0, 128));
 		comboBox_27_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil-Ay"}));
+		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil-Ay","Paket-Sinif-Kal_Boy"}));
 		//comboBox_27_1.setSelectedIndex(1);
 		comboBox_27_1.setBounds(90, 129, 149, 22);
 		panel_KERESTE.add(comboBox_27_1);
@@ -4611,6 +4612,12 @@ public class FILTRE extends JDialog {
 		comboBox_77_2.setBounds(646, 162, 58, 22);
 		comboBox_77_2.setVisible(false);
 		panel_KERESTE.add(comboBox_77_2);
+		/// KERESTE DETAY ********************************
+
+		JPanel panel_KERESTE_DETAY = new JPanel();
+		panel_KERESTE_DETAY.setBorder(new LineBorder(new Color(0, 191, 255)));
+		tabbedPane.addTab("Kereste_Detay", null, panel_KERESTE_DETAY, null);
+		panel_KERESTE_DETAY.setLayout(null);
 		//**********************************************************************OK BUTTON **********************************
 		okButton = new JButton("Yenile");
 		okButton.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -4823,6 +4830,12 @@ public class FILTRE extends JDialog {
 					KER_GRUP_RAPOR.yenile();   // 
 					GuiUtil.setWaitCursor(KER_GRUP_RAPOR.splitPane,false);
 				}
+				else if (sayfa == 22) 
+				{
+					GuiUtil.setWaitCursor(KER_DETAY.splitPane,true);
+					KER_DETAY.hisset();   // 
+					GuiUtil.setWaitCursor(KER_DETAY.splitPane,false);
+				}
 				GuiUtil.setWaitCursor(getContentPane(),false);
 				dispose();
 			}
@@ -4965,6 +4978,12 @@ public class FILTRE extends JDialog {
 		{
 			ker_ana_grup_doldur(comboBox_78);
 			ker_oz1_doldur(comboBox_80);
+
+		}
+		else if (syfa == 22)
+		{
+		//	ker_ana_grup_doldur(comboBox_78);
+		//	ker_oz1_doldur(comboBox_80);
 
 		}
 	}

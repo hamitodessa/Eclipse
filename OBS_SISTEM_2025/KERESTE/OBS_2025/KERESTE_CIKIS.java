@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
@@ -1047,8 +1048,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		
 		table.addKeyListener(new KeyAdapter() {         
             public void keyPressed(KeyEvent e) {
-            	
-          
                 if(table.getSelectedColumn()==0)
                 {
                 try {
@@ -1060,20 +1059,11 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					e1.printStackTrace();
 				}
                 }
-              //  char key = e.getKeyChar();
-              //  int selectedColumn = table.getSelectedColumn();
-
-                //Update info in table
-              //  for(int i = 0; i < model.getRowCount(); i++){
-              //      String value = (String)model.getValueAt(i, selectedColumn);
-              //      model.setValueAt(value + key, i, selectedColumn);
-              //  }
             }
        });
 		
 		table.setGridColor(oac.gridcolor);
 		table.setCellSelectionEnabled(true);
-		
 		model.addColumn("Paket_No", new String []{""});
 		model.addColumn("Barkod", new String []{""});
 		model.addColumn("Urun Kodu", new String []{""});
@@ -1089,12 +1079,13 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		model.addColumn("Izahat", new String []{"" });
 		model.addColumn("Satir", new  Integer []{( 0 )});
 		
+
 		TableColumn col ;
 		
 		JTextField ftext = new JTextField();
 		ftext.setDocument(new JTextFieldLimit(10));
 		ftext.setFont(new Font("Tahoma", Font.BOLD, 11));
-		ftext.setForeground(new Color(25, 25, 112));
+		ftext.setForeground(new Color(0, 0, 128));
 		ftext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -1202,18 +1193,17 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		table.setRowHeight(22);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setSurrendersFocusOnKeystroke(true);
 		
-		InputMap im = table.getInputMap(JTable.WHEN_FOCUSED);
+		InputMap im = table.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
 		ActionMap am = table.getActionMap();
 		am.put("Action.NextCell", new  Next_Cell_Kereste(table,"kereste_cikis"));
+	
 		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		
 		scrollPane.setViewportView(table);
-		
-		
-		
 		ana_grup_doldur();
 		ker_oz_kod();
 		ker_nakliyeci();
@@ -1262,26 +1252,19 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		ListSelectionModel selectionModel = table.getSelectionModel();
 
 		selectionModel.addListSelectionListener(new ListSelectionListener() {
-		    public void valueChanged(ListSelectionEvent e) {
-		    	DefaultTableModel model = (DefaultTableModel) table.getModel();
-		    	if (model.getRowCount() > 0) 
+			public void valueChanged(ListSelectionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				if (model.getRowCount() > 0) 
 				{
-		    	try {
-		    		if ( table.getSelectedRow() != -1) {
-		    			kod_ADI(model.getValueAt(table.getSelectedRow(), 2).toString());
+					try {
+						if ( table.getSelectedRow() != -1) {
+							kod_ADI(model.getValueAt(table.getSelectedRow(), 2).toString());
+						}
+					} catch (Exception e1) {
+						e1.printStackTrace();
 					}
-		    	
-					
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				}
-				}
-		    
-		    }
+			}
 		});
 	}
 

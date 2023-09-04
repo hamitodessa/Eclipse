@@ -218,5 +218,8 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.grp_rapor( gruplama,sstr_2, sstr_4, kur_dos,  qwq6, qwq7, qwq8, k1, k2, s1, s2, jkj,  t1, t2, sstr_5, sstr_1,orderBY,dURUM);
 	}
-	
+	public ResultSet stok_rapor(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.stok_rapor(ker_rap_BILGI);
+	}
 }

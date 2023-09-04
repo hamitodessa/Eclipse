@@ -1090,4 +1090,90 @@ public class KERESTE_MSSQL implements IKERESTE {
 		return rss;	
 	}
 
+	@Override
+	public ResultSet stok_rapor(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		
+		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
+		String ilks ,ilkk,ilkb,ilkg;
+		ilks = token[0];
+		ilkk = token[1];
+		ilkb = token[2];
+		ilkg = token[3];
+		token = ker_rap_BILGI.getGKodu2().toString().split("-");
+		String sons,sonk,sonb,song;
+		sons = token[0];
+		sonk = token[1];
+		sonb = token[2];
+		song = token[3];
+		String sql =  " SELECT [Evrak_No] "
+				+ "      ,[Barkod] "
+				+ "      ,[Kodu] "
+				+ "      ,[Paket_No] "
+				+ "      ,[Konsimento] "
+				+ "      ,[Miktar] "
+				+ " , (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  as m3"
+				+ "      ,[Tarih] "
+				+ "      ,[Kdv] "
+				+ "      ,[Doviz] "
+				+ "      ,[Fiat] "
+				+ "      ,[Tutar] "
+				+ "      ,[Kur] "
+				+ "      ,[Cari_Firma] "
+				+ "      ,[Adres_Firma] "
+				+ "      ,[Iskonto] "
+				+ "      ,[Tevkifat] "
+				+ "      ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = Ana_Grup),'') Ana_Grup "
+				+ "      ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = Alt_Grup),'') AS Alt_Grup "
+				+ "      ,[Depo] "
+				+ "      ,[Ozel_Kod] "
+				+ "      ,[Izahat] "
+				+ "      ,[Nakliyeci] "
+				+ "      ,[USER] "
+				+ "      ,[Cikis_Evrak] "
+				+ "      ,[CTarih] "
+				+ "      ,[CKdv] "
+				+ "      ,[CDoviz] "
+				+ "      ,[CFiat] "
+				+ "      ,[CTutar] "
+				+ "      ,[CKur] "
+				+ "      ,[CCari_Firma] "
+				+ "      ,[CAdres_Firma] "
+				+ "      ,[CIskonto] "
+				+ "      ,[CTevkifat] "
+				+ "      ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = CAna_Grup),'') AS C_Ana_Grup "
+				+ "		 ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = CAlt_Grup),'') AS C_Alt_Grup "
+				+ "      ,ISNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = CDepo),'') AS C_Depo "
+				+ "      ,[COzel_Kod] "
+				+ "      ,[CIzahat] "
+				+ "      ,[CNakliyeci] "
+				+ "      ,[CUSER] " 
+				+ "      FROM KERESTE WITH (INDEX (IX_KERESTE))  " 
+				+ "      WHERE " 
+				+ "      Tarih BETWEEN '" + ker_rap_BILGI.getGTarih1() + "'" + " AND  '" + ker_rap_BILGI.getGTarih2() + " 23:59:59.998' AND" 
+				+ " SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' and SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" 
+				+ " SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' and SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" 
+				+ " SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' and SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" 
+				+ " SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' and SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' AND " 
+				+ " Paket_No between N'" + ker_rap_BILGI.getPaket_No1() + "' and N'" + ker_rap_BILGI.getPaket_No2() + "' AND " 
+				+ " Cari_Firma between N'" + ker_rap_BILGI.getGCari_Firma1() + "' and N'" + ker_rap_BILGI.getGCari_Firma2() + "' AND" 
+				+ " Evrak_No between N'" + ker_rap_BILGI.getEvrak_No1() + "' and N'" + ker_rap_BILGI.getEvrak_No2() + "' AND" 
+				+ " Ana_Grup " + ker_rap_BILGI.getGAna_Grup()  + " AND" 
+				+ " Alt_Grup " + ker_rap_BILGI.getGAlt_Grup()  + " AND" 
+				+ " Depo " + ker_rap_BILGI.getDepo()  + " AND" 
+				+ " Ozel_Kod " + ker_rap_BILGI.getOzel_Kod() + " AND" 
+				+ " CTarih BETWEEN '" + ker_rap_BILGI.getCTarih1() + "'" + " AND  '" + ker_rap_BILGI.getCTarih2() + " 23:59:59.998' AND" 
+				+ " CCari_Firma between N'" + ker_rap_BILGI.getCCari_Firma1() + "' and N'" + ker_rap_BILGI.getCCari_Firma2() + "' AND" 
+				+ " Cikis_Evrak between N'" + ker_rap_BILGI.getCEvrak_No1() + "' and N'" + ker_rap_BILGI.getCEvrak_No2() + "' AND" 
+				+ " CAna_Grup " + ker_rap_BILGI.getCAna_Grup()  + " AND" 
+				+ " CAlt_Grup " + ker_rap_BILGI.getCAlt_Grup()  + " AND" 
+				+ " CDepo " + ker_rap_BILGI.getCDepo()  + " AND " 
+				+ " COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() ; 
+				
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+
 }

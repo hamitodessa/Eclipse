@@ -411,7 +411,7 @@ public class FILTRE extends JDialog {
 	public static JTextField textField_86;
 	public static JTextField textField_87;
 	public static JTextField textField_88;
-	public static JTextField textField_89;
+	public static JTextField textField_88_1;
 	public static JTextField textField_90;
 	public static JTextField textField_91;
 	public static JTextField textField_92;
@@ -455,8 +455,7 @@ public class FILTRE extends JDialog {
 		//*****************************************************************************************************************
 		// Goruntu icin asagidaki blogu kaldir 
 	
-
-	     final boolean showTabsHeader = false;
+		final boolean showTabsHeader = false;
 	    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
 	    {
 	        @Override
@@ -465,6 +464,7 @@ public class FILTRE extends JDialog {
 	            } else {return 0;}	        }
 	      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 	    }); 
+
 		
 		    // final boolean showTabsHeader = false;
 		    //tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
@@ -4747,11 +4747,12 @@ public class FILTRE extends JDialog {
 		textField_88.setBounds(100, 55, 125, 20);
 		panel_KERESTE_DETAY.add(textField_88);
 		
-		textField_89 = new JTextField();
-		textField_89.setFont(new Font("Tahoma", Font.BOLD, 11));
-		textField_89.setColumns(10);
-		textField_89.setBounds(258, 55, 125, 20);
-		panel_KERESTE_DETAY.add(textField_89);
+		textField_88_1 = new JTextField();
+		textField_88_1.setText("ZZZZZZZZZZ");
+		textField_88_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_88_1.setColumns(10);
+		textField_88_1.setBounds(258, 55, 125, 20);
+		panel_KERESTE_DETAY.add(textField_88_1);
 		
 		comboBox_78_1 = new JComboBox<String>();
 		comboBox_78_1.setForeground(new Color(0, 0, 128));

@@ -31,15 +31,17 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.KERESTE_ACCESS;
-import OBS_C_2025.KER_BILGI;
+import OBS_C_2025.KER_RAPOR_BILGI;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
+@SuppressWarnings({ "serial", "static-access" })
 public class KER_DETAY extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	
 	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 
 	private static JTable table;
@@ -75,6 +77,7 @@ public class KER_DETAY extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
+
 	public KER_DETAY() {
 		setTitle("KERESTE DETAY RAPOR");
 		setResizable(true);
@@ -124,7 +127,34 @@ public class KER_DETAY extends JInternalFrame {
 		try {
 			ResultSet	rs = null;
 			grup_cevir() ;
-			KER_BILGI ker_BILGI = new KER_BILGI();
+			KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
+			ker_BILGI.setGTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1));
+			ker_BILGI.setGTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1));
+			ker_BILGI.setGKodu1(FILTRE.formattedTextField_2.getText());
+			ker_BILGI.setGKodu2(FILTRE.formattedTextField_1_1.getText());
+			ker_BILGI.setPaket_No1(FILTRE.textField_88.getText());
+			ker_BILGI.setPaket_No2(FILTRE.textField_88_1.getText());
+			ker_BILGI.setGCari_Firma1(FILTRE.textField_84.getText());
+			ker_BILGI.setGCari_Firma2(FILTRE.textField_85.getText());
+			ker_BILGI.setEvrak_No1(FILTRE.textField_90.getText());
+			ker_BILGI.setEvrak_No2(FILTRE.textField_91.getText());
+			ker_BILGI.setGAna_Grup(gana);
+			ker_BILGI.setGAlt_Grup(galt);
+			ker_BILGI.setDepo(gdpo);
+			ker_BILGI.setOzel_Kod(goz);
+			ker_BILGI.setCTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1_1));
+			ker_BILGI.setCTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1_1));
+			ker_BILGI.setCCari_Firma1(FILTRE.textField_86.getText());
+			ker_BILGI.setCCari_Firma2(FILTRE.textField_87.getText());
+			ker_BILGI.setCEvrak_No1(FILTRE.textField_92.getText());
+			ker_BILGI.setCEvrak_No2(FILTRE.textField_93.getText());
+			ker_BILGI.setCAna_Grup(cana);
+			ker_BILGI.setCAlt_Grup(calt);
+			ker_BILGI.setCDepo(cdpo);
+			ker_BILGI.setCOzel_Kod(coz);
+			//
+			
+			rs = ker_Access.stok_rapor(ker_BILGI);
 			
 	//			rs = ker_Access.stok_rapor(FILTRE.textField_25.getText(),FILTRE.textField_30.getText() ,
 	//					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_18),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_19),
@@ -147,84 +177,7 @@ public class KER_DETAY extends JInternalFrame {
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(90);
 				
-				tc = tcm.getColumn(1);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(90);
-				tc.setMaxWidth(90);
 				
-				tc = tcm.getColumn(2);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(170);
-				
-				tc = tcm.getColumn(3);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(200);
-				
-				tc = tcm.getColumn(4);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(90);
-				
-				tc = tcm.getColumn(5);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(100);
-				
-				tc = tcm.getColumn(6);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(60);
-				
-				tc = tcm.getColumn(7);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setCellRenderer(new TARIH());
-				tc.setMinWidth(80);
-				
-				tc = tcm.getColumn(8);
-				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(3,false));
-				tc.setMinWidth(100);
-				
-				tc = tcm.getColumn(9);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(60);
-				
-				tc = tcm.getColumn(10);
-				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(2,false));
-				tc.setMinWidth(100);
-				
-				tc = tcm.getColumn(11);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(60);
-				
-				tc = tcm.getColumn(12);
-				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(3,false));
-				tc.setMinWidth(100);
-				
-				tc = tcm.getColumn(13);
-				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(2,false));
-				tc.setMinWidth(100);
-				
-				tc = tcm.getColumn(14);
-				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(2,false));
-				tc.setMinWidth(100);
-				
-				tc = tcm.getColumn(15);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(150);
-				
-				tc = tcm.getColumn(16);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(150);
-				
-				tc = tcm.getColumn(17);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(100);
-				
-				tc = tcm.getColumn(18);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(50);
 		
 			lbladet.setText(FORMATLAMA.doub_0(mdl.getRowCount()));
 			//**
@@ -249,7 +202,7 @@ public class KER_DETAY extends JInternalFrame {
 				String deger;
 				String[] parts;
 				Font bigFont;
-					deger = GLOBAL.setting_oku("STK_RAPORLAMA").toString();
+					deger = GLOBAL.setting_oku("KER_RAPORLAMA").toString();
 					deger = deger.substring(1, deger.length()-1);
 					parts = deger.split(",");
 					bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
@@ -257,7 +210,7 @@ public class KER_DETAY extends JInternalFrame {
 				 
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Raporlama", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void grup_cevir()
@@ -369,11 +322,11 @@ public class KER_DETAY extends JInternalFrame {
 		//***********************CIKIS OZEL KOD
 		if ( FILTRE.comboBox_80_2.getItemAt(FILTRE.comboBox_80_2.getSelectedIndex()).equals(""))
 		{
-			goz = " Like  '%' " ;
+			coz = " Like  '%' " ;
 		}
 		else if  ( FILTRE.comboBox_80_2.getItemAt(FILTRE.comboBox_80_2.getSelectedIndex()).equals("Bos Olanlar"))
 		{
-			goz = " = '' " ;
+			coz = " = '' " ;
 		}		      
 		else		      
 		{
@@ -383,7 +336,7 @@ public class KER_DETAY extends JInternalFrame {
 			else
 			{
 				rs.next();
-				goz ="=" + Integer.toString( rs.getInt("OZ1ID_Y"));
+				coz ="=" + Integer.toString( rs.getInt("OZ1ID_Y"));
 			}
 		}
 		//***********************GIRIS DEPO

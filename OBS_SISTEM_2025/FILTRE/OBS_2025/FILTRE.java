@@ -394,6 +394,13 @@ public class FILTRE extends JDialog {
 	private JLabel label_66;
 	private JLabel label_67;
 	private JLabel lblUrunOzelKod_1;
+	private JTextField textField_84;
+	private JTextField textField_85;
+	private JTextField textField_86;
+	private JTextField textField_87;
+	private JLabel lblHesapKodu_2_2;
+	private JTextField textField_88;
+	private JTextField textField_89;
 	
 	
 	
@@ -429,16 +436,7 @@ public class FILTRE extends JDialog {
 		//*****************************************************************************************************************
 		// Goruntu icin asagidaki blogu kaldir 
 
-		 final boolean showTabsHeader = false;
-	    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
-	    {
-	        @Override
-	        protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
-	            if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
-	            } else {return 0;}	        }
-	      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
-	    }); 
-		  
+	
 		
 		    // final boolean showTabsHeader = false;
 		    //tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
@@ -4618,6 +4616,119 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_DETAY.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane.addTab("Kereste_Detay", null, panel_KERESTE_DETAY, null);
 		panel_KERESTE_DETAY.setLayout(null);
+		
+		JLabel label_18_1_1 = new JLabel("Tarih");
+		label_18_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		label_18_1_1.setBounds(10, 11, 58, 14);
+		panel_KERESTE_DETAY.add(label_18_1_1);
+		
+		JLabel label_19_1_1 = new JLabel("Urun Kodu");
+		label_19_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		label_19_1_1.setBounds(10, 36, 69, 14);
+		panel_KERESTE_DETAY.add(label_19_1_1);
+		
+		JLabel lblHesapKodu_2_1 = new JLabel("Hesap Kodu");
+		lblHesapKodu_2_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblHesapKodu_2_1.setBounds(10, 61, 82, 14);
+		panel_KERESTE_DETAY.add(lblHesapKodu_2_1);
+		
+		JDateChooser dateChooser_20_1_1 = new JDateChooser();
+		dateChooser_20_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		dateChooser_20_1_1.setDateFormatString("dd.MM.yyyy");
+		dateChooser_20_1_1.setDate(TARIH_CEVIR.tarih("01.01.1900"));
+		dateChooser_20_1_1.setBounds(100, 11, 125, 20);
+		panel_KERESTE_DETAY.add(dateChooser_20_1_1);
+		
+		JDateChooser dateChooser_21_1_1 = new JDateChooser();
+		dateChooser_21_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		dateChooser_21_1_1.setDateFormatString("dd.MM.yyyy");
+		dateChooser_21_1_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
+		dateChooser_21_1_1.setBounds(258, 11, 125, 20);
+		panel_KERESTE_DETAY.add(dateChooser_21_1_1);
+		
+		JFormattedTextField formattedTextField_2 = new JFormattedTextField();
+		formattedTextField_2.setText("00-000-0000-0000");
+		formattedTextField_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		formattedTextField_2.setBounds(99, 33, 125, 20);
+		panel_KERESTE_DETAY.add(formattedTextField_2);
+		
+		JFormattedTextField formattedTextField_1_1 = new JFormattedTextField();
+		formattedTextField_1_1.setText("ZZ-999-9999-9999");
+		formattedTextField_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		formattedTextField_1_1.setBounds(258, 33, 125, 20);
+		panel_KERESTE_DETAY.add(formattedTextField_1_1);
+		
+		textField_84 = new JTextField();
+		textField_84.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_84.setColumns(10);
+		textField_84.setBounds(100, 55, 125, 20);
+		panel_KERESTE_DETAY.add(textField_84);
+		
+		textField_85 = new JTextField();
+		textField_85.setText("ZZZZZZZZZZZZ");
+		textField_85.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_85.setColumns(10);
+		textField_85.setBounds(258, 55, 125, 20);
+		panel_KERESTE_DETAY.add(textField_85);
+		
+		JDateChooser dateChooser_20_1_1_1 = new JDateChooser();
+		dateChooser_20_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		dateChooser_20_1_1_1.setDateFormatString("dd.MM.yyyy");
+		dateChooser_20_1_1_1.setDate(TARIH_CEVIR.tarih("01.01.1900"));
+		dateChooser_20_1_1_1.setBounds(480, 11, 125, 20);
+		panel_KERESTE_DETAY.add(dateChooser_20_1_1_1);
+		
+		textField_86 = new JTextField();
+		textField_86.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_86.setColumns(10);
+		textField_86.setBounds(480, 55, 125, 20);
+		panel_KERESTE_DETAY.add(textField_86);
+		
+		textField_87 = new JTextField();
+		textField_87.setText("ZZZZZZZZZZZZ");
+		textField_87.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_87.setColumns(10);
+		textField_87.setBounds(638, 55, 125, 20);
+		panel_KERESTE_DETAY.add(textField_87);
+		
+		JDateChooser dateChooser_21_1_1_1 = new JDateChooser();
+		dateChooser_21_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		dateChooser_21_1_1_1.setDateFormatString("dd.MM.yyyy");
+		dateChooser_21_1_1_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
+		dateChooser_21_1_1_1.setBounds(638, 11, 125, 20);
+		panel_KERESTE_DETAY.add(dateChooser_21_1_1_1);
+		
+		JLabel label_18_1_1_1 = new JLabel("Tarih");
+		label_18_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		label_18_1_1_1.setBounds(390, 11, 58, 14);
+		panel_KERESTE_DETAY.add(label_18_1_1_1);
+		
+		JLabel label_19_1_1_1 = new JLabel("Urun Kodu");
+		label_19_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		label_19_1_1_1.setBounds(390, 36, 69, 14);
+		panel_KERESTE_DETAY.add(label_19_1_1_1);
+		
+		JLabel lblHesapKodu_2_1_1 = new JLabel("Hesap Kodu");
+		lblHesapKodu_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblHesapKodu_2_1_1.setBounds(390, 61, 82, 14);
+		panel_KERESTE_DETAY.add(lblHesapKodu_2_1_1);
+		
+		lblHesapKodu_2_2 = new JLabel("Paket No");
+		lblHesapKodu_2_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblHesapKodu_2_2.setBounds(10, 170, 82, 14);
+		panel_KERESTE_DETAY.add(lblHesapKodu_2_2);
+		
+		textField_88 = new JTextField();
+		textField_88.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_88.setColumns(10);
+		textField_88.setBounds(100, 164, 125, 20);
+		panel_KERESTE_DETAY.add(textField_88);
+		
+		textField_89 = new JTextField();
+		textField_89.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_89.setColumns(10);
+		textField_89.setBounds(258, 164, 125, 20);
+		panel_KERESTE_DETAY.add(textField_89);
 		//**********************************************************************OK BUTTON **********************************
 		okButton = new JButton("Yenile");
 		okButton.setFont(new Font("Tahoma", Font.BOLD, 11));

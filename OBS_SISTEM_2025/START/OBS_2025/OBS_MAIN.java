@@ -2032,10 +2032,7 @@ public class OBS_MAIN extends JFrame {
 		
 		toolBar_Kereste.add(btnNewButton_35);
 		comboDegisken_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Nakliyeci"}));
-
 		toolBar_Kereste.add(comboDegisken_1);
-
-		
 		//*********************************************************** GIDEN RAPOR *********************************************************************************
 
 		JToolBar toolBar_9 = new JToolBar();

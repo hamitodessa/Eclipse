@@ -2197,19 +2197,24 @@ public class KER_GIRIS extends JInternalFrame {
 				Row row = rowIt.next();
 				
 				int satir = 0 ;
-				 Progres_Bar_Temizle();
-				 OBS_MAIN.progressBar.setMaximum(say);
+				Progres_Bar_Temizle();
+				OBS_MAIN.progressBar.setMaximum(say);
 				while(rowIt.hasNext()) 
 				{
 					if (  row.getCell(1) != null)
 					{
 						Progres_Bar(say, satir);
 						paketno =  row.getCell(1).getStringCellValue();
+						//
+						//paketno = paketno.substring(1, paketno.length()) ;
+						//int kjp = 10 - paketno.length() ;
+						//paketno =  StringUtils.repeat("0", kjp) + paketno  ;
+						//arapaketno = paketno ;
+						//
+						
 						if ( ! paketno.equals("")) {
 							arapaketno = paketno.substring(1, paketno.length()) ;
 							sonpaketno =  arapaketno ;
-							
-							
 							arasinif = Integer.toString((int) row.getCell(2).getNumericCellValue()) ;
 
 							kalinlik =  String.valueOf( row.getCell(3).getNumericCellValue() ) ;

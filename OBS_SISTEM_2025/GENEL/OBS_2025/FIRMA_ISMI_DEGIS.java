@@ -17,6 +17,7 @@ import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.KAMBIYO_ACCESS;
+import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.lOG_BILGI;
 
@@ -24,23 +25,19 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.SystemColor;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","static-access"})
 public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 
 	private static String modul ;
 	private static JTextField textField;
 	private static JPanel panel_1;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS() ;
-	@SuppressWarnings("static-access")
 	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
-	@SuppressWarnings("static-access")
 	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
-	@SuppressWarnings("static-access")
 	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
-	@SuppressWarnings("static-access")
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
-	@SuppressWarnings("static-access")
 	static GUNLUK_ACCESS g_Access = new GUNLUK_ACCESS(oac._IGunluk , OBS_SIS_2025_ANA_CLASS._IGunluk_Loger);
+	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 	/**
 	 * Launch the application.
 	 */
@@ -112,32 +109,41 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 			panel_1.setBorder(new TitledBorder(null, "Gunluk", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		isim_oku(mod);
 		}
+		else if (modul.equals("kereste"))
+		{
+			panel_1.setBorder(new TitledBorder(null, "Kereste", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		isim_oku(mod);
+		}
 	}
-	@SuppressWarnings("static-access")
 	private static void  isim_oku(String modul)
 	{
 		try
+
 		{
-		if (modul.equals("cari"))
-		{
+			if (modul.equals("cari"))
+			{
 				textField.setText(oac._ICar.cari_firma_adi() );
-		}
-		else if (modul.equals("kambiyo"))
-		{
+			}
+			else if (modul.equals("kambiyo"))
+			{
 				textField.setText(oac._IKambiyo.kam_firma_adi());
-		}
-		else if (modul.equals("stok"))
-		{
-           		textField.setText(oac._IStok.fat_firma_adi());
-		}
-		else if (modul.equals("adres"))
-		{
-           		textField.setText(oac._IAdres.adr_firma_adi());
-		}
-		else if (modul.equals("gunluk"))
-		{
-           		textField.setText(oac._IGunluk.gun_firma_adi());
-		}
+			}
+			else if (modul.equals("stok"))
+			{
+				textField.setText(oac._IStok.fat_firma_adi());
+			}
+			else if (modul.equals("adres"))
+			{
+				textField.setText(oac._IAdres.adr_firma_adi());
+			}
+			else if (modul.equals("gunluk"))
+			{
+				textField.setText(oac._IGunluk.gun_firma_adi());
+			}
+			else if (modul.equals("kereste"))
+			{
+				textField.setText(oac._IKereste.ker_firma_adi());
+			}
 		}
 		catch (Exception ex)
 		{
@@ -185,6 +191,13 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 				g_Access.gun_firma_adi_kayit(textField.getText(),lBILGI, BAGLAN_LOG.gunLogDizin);
 				BAGLAN.gunDizin.fIRMA_ADI = textField.getText();
 				OBS_MAIN.lblNewLabel_24.setText ( "Gunluk:" + 	BAGLAN.gunDizin.kOD + "/ " + 	BAGLAN.gunDizin.fIRMA_ADI + "/ " + (	BAGLAN.gunDizin.yER.toString().equals("S") ?  	BAGLAN.gunDizin.sERVER : "Lokal"));
+			}
+			else if (modul.equals("kereste"))
+			{
+				// 	oac._IKereste.ker_firma_adi_kayit(textField.getText());
+				ker_Access.ker_firma_adi_kayit(textField.getText(),lBILGI, BAGLAN_LOG.kerLogDizin);
+				BAGLAN.kerDizin.fIRMA_ADI = textField.getText();
+				OBS_MAIN.lblNewLabel_31_2.setText ( "Kereste:" + 	BAGLAN.kerDizin.kOD + "/ " + 	BAGLAN.kerDizin.fIRMA_ADI + "/ " + (	BAGLAN.kerDizin.yER.toString().equals("S") ?  	BAGLAN.kerDizin.sERVER : "Lokal"));
 			}
 			kapat();
 		}

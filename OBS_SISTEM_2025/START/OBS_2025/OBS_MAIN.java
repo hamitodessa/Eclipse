@@ -2019,6 +2019,18 @@ public class OBS_MAIN extends JFrame {
 				}
 			}
 		});
+		
+		JButton btnNewButton_35 = new JButton("");
+		btnNewButton_35.setToolTipText("Firma Ismi DEgistirme");
+		btnNewButton_35.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("FIRMA ISMI DEGISTIRME","");
+				FIRMA_ISMI_DEGIS.modul("kereste");
+			}
+		});
+		btnNewButton_35.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
+		
+		toolBar_Kereste.add(btnNewButton_35);
 		comboDegisken_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Nakliyeci"}));
 
 		toolBar_Kereste.add(comboDegisken_1);

@@ -197,32 +197,29 @@ public class USER_ISLEMLERI {
 		String sql = "INSERT INTO USER_DETAILS (USER_PROG_KODU,USER_NAME,USER_SERVER,USER_PWD_SERVER,USER_INSTANCE_OBS,USER_IP_OBS," +
 				"USER_PROG_OBS,DIZIN,YER,DIZIN_CINS,IZINLI_MI,CALISAN_MI,HANGI_SQL,LOG,LOG_YERI) ";
 		sql += "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		{
-			stmt = con.prepareStatement(sql);
-			stmt.setString(1, upk);
-			stmt.setString(2, usn);
-			stmt.setString(3, usserver);
-			 byte[] qaz;
-			try {
-				qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
-				encodedString = Arrays.toString(qaz);
-			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
-					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-				e.printStackTrace();
-			}
-			stmt.setString(4, encodedString);
-			stmt.setString(5, instance);
-			stmt.setString(6, ip);
-			stmt.setString(7, prog);
-			stmt.setString(8, dizin);
-			stmt.setString(9, yer);
-			stmt.setString(10,dcins);
-			stmt.setString(11,izli);
-			stmt.setString(12, calmi);
-			stmt.setString(13, hsql);
-			stmt.setInt(14, log);
-			stmt.setString(15, logla);
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, upk);
+		stmt.setString(2, usn);
+		stmt.setString(3, usserver);
+		byte[] qaz;
+		try {
+			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
+			encodedString = Arrays.toString(qaz);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		stmt.setString(4, encodedString);
+		stmt.setString(5, instance);
+		stmt.setString(6, ip);
+		stmt.setString(7, prog);
+		stmt.setString(8, dizin);
+		stmt.setString(9, yer);
+		stmt.setString(10,dcins);
+		stmt.setString(11,izli);
+		stmt.setString(12, calmi);
+		stmt.setString(13, hsql);
+		stmt.setInt(14, log);
+		stmt.setString(15, logla);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -236,25 +233,22 @@ public class USER_ISLEMLERI {
 		con =  gLB.myConnection();
 		String sql = "INSERT INTO USERS (USER_NAME,USER_PWD,USER_LEVEL,USER_DB_IZIN,USER_MAIL,USER_YENI_DOSYA_ACMA,USER_YENI_DOSYA_ACMA_SERVER)" +
 				"VALUES (?,?,?,?,?,?,?)";
-		{
-			stmt = con.prepareStatement(sql);
-			stmt.setString(1, user);
-			//String encodedString = Base64.getEncoder().encodeToString(pwd.getBytes());
-			 byte[] qaz;
-				try {
-					qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(pwd);
-					encodedString = Arrays.toString(qaz);
-				} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
-						| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-					e.printStackTrace();
-				}
-			stmt.setString(2, encodedString);
-			stmt.setString(3, lvl);
-			stmt.setString(4, udbi);
-			stmt.setString(5, um);
-			stmt.setBoolean(6, uyda);
-			stmt.setBoolean(7, uydas);
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, user);
+		//String encodedString = Base64.getEncoder().encodeToString(pwd.getBytes());
+		byte[] qaz;
+		try {
+			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(pwd);
+			encodedString = Arrays.toString(qaz);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		stmt.setString(2, encodedString);
+		stmt.setString(3, lvl);
+		stmt.setString(4, udbi);
+		stmt.setString(5, um);
+		stmt.setBoolean(6, uyda);
+		stmt.setBoolean(7, uydas);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -484,14 +478,13 @@ public class USER_ISLEMLERI {
 		stmt.setString(2, hsp);
 		stmt.setString(3, host);
 		stmt.setString(4, port);
-		 byte[] qaz;
-			try {
-				qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
-				encodedString = Arrays.toString(qaz);
-			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
-					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-				e.printStackTrace();
-			}
+		byte[] qaz;
+		try {
+			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
+			encodedString = Arrays.toString(qaz);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		stmt.setString(5, encodedString);
 		stmt.setString(6, gmail);
 		stmt.setString(7, ghesap);
@@ -548,7 +541,6 @@ public class USER_ISLEMLERI {
 		stmt.close();
 		con.close();
 		con = null;
-		
 	}
 	public ResultSet giden_rapor(String usr) throws ClassNotFoundException, SQLException
 	{

@@ -437,15 +437,14 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		
 	}
-
-	
 
 	@Override
 	public void kER_firma_adi_kayit(String fadi) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
+		String sql = "UPDATE OZEL SET FIRMA_ADI = N'" + fadi + "'";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
 	}
 
 	@Override

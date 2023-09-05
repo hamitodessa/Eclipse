@@ -17,3 +17,4 @@ public class GRID_TEMIZLE {
 	    }
 	}
 }
+// for (int i = 0; i <= model.getRowCount()-1; ++i){

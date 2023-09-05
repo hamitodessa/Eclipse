@@ -86,6 +86,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.U_KODU_RENDERER;
+import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
 
 @SuppressWarnings({"static-access","unused", "serial"})
@@ -120,6 +121,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	private static JLabel label_6 ;
 	private static JLabel label_7 ;
 	private static JLabel label_8 ;
+	private static JLabel label_8_1 ;
 	private static JLabel label_9 ;
 	private static JLabel lblNewLabel_20;
 	private static JLabel lblPaket ;
@@ -796,11 +798,18 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		lblNewLabel_13.setBounds(122, 5, 40, 14);
 		panel_71.add(lblNewLabel_13);
 
+		label_8_1 = new JLabel("0");
+		label_8_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_8_1.setForeground(new Color(139, 0, 0));
+		label_8_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_8_1.setBounds(331, 5, 73, 14);
+		panel_71.add(label_8_1);
+		
 		label_8 = new JLabel("0.000");
 		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8.setForeground(new Color(139, 0, 0));
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_8.setBounds(375, 5, 102, 14);
+		label_8.setBounds(410, 5, 67, 14);
 		panel_71.add(label_8);
 
 		label_9 = new JLabel("0.00");
@@ -945,6 +954,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_1.add(label);
 		
 		splitPane_3.setLeftComponent(panel_71);
+		
+		
 
 
 		//** Sol Toolbar *****************************************************************
@@ -1834,14 +1845,15 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	{
 		try {
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			double  double_0, double_1 = 0, double_2 = 0, double_3 = 0, double_4, double_5=0,double_6 = 0   ;
-			int urunsayi = 0 ;
+			double  double_0, double_1 = 0, double_2 = 0, double_3 = 0, double_4, double_5=0,double_6 = 0 , urunmiktar = 0;
+			int urunsayi = 0  ;
 			for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
 			{
 				double_5 += Double.parseDouble(model.getValueAt(i, 11).toString());
 				double_1 += (Double.parseDouble(model.getValueAt(i, 11).toString()) * (Double.parseDouble(model.getValueAt(i, 9).toString()))) / 100 ; 
 				double_2 += (( Double.parseDouble(model.getValueAt(i, 11).toString()) - ( Double.parseDouble(model.getValueAt(i, 11).toString()) *  Double.parseDouble(model.getValueAt(i, 9).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 10).toString())) / 100 ; // kdv
 				double_3 +=  Double.parseDouble(model.getValueAt(i, 4).toString());
+				urunmiktar +=  Double.parseDouble(model.getValueAt(i, 3).toString());
 				if (! model.getValueAt(i, 5).toString().trim().isEmpty()) 
 				{
 					double_6 +=  Double.parseDouble(model.getValueAt(i, 5).toString().trim());
@@ -1853,6 +1865,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				}
 			}
 			label_8.setText(FORMATLAMA.doub_3(double_3));
+			label_8_1.setText(FORMATLAMA.doub_0(urunmiktar));
 			lblPaket.setText(FORMATLAMA.doub_3(double_6));
 			label_9.setText(FORMATLAMA.doub_2(double_5));
 			lblNewLabel_13.setText( FORMATLAMA.doub_0(urunsayi));
@@ -2046,6 +2059,64 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	public static void cari_kaydet()
+	{
+		try {
+			BORC_ALACAK hsp ;
+			hsp = new BORC_ALACAK();
+			hsp.setLocationRelativeTo(OBS_MAIN.desktopPane);
+			oac.hsp_hsp_kodu = "" ;
+			String bh = "",alh="";
+			hsp.lblNewLabel.setText("Alacakli Hesap");
+			hsp.setVisible(true);
+			alh = oac.hsp_hsp_kodu;
+			bh = txtcari.getText();
+			if (alh.equals("")) return ;
+
+			ResultSet rs ;
+			rs = c_Access.hesap_adi_oku(alh);
+			if (!rs.isBeforeFirst() ) {  
+				JOptionPane.showMessageDialog(null,  "Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
+				return ;
+			} 
+			rs= null;
+			rs = c_Access.hesap_adi_oku(txtcari.getText());
+			if (!rs.isBeforeFirst() ) {  
+				JOptionPane.showMessageDialog(null, textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!",  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
+				return;
+			} 
+			double sdf =  DecimalFormat.getNumberInstance().parse(label_8_1.getText()).intValue()  ;
+			String str_4  ="";
+			int e_number =0;
+			e_number = c_Access.cari_fisno_al();
+			DefaultTableModel model = (DefaultTableModel)table.getModel();
+			double tutar  = DecimalFormat.getNumberInstance().parse(label.getText()).doubleValue()  ;
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			str_4 = textField.getText() + "'Evrak ile " + FORMATLAMA.doub_0(sdf) + " Adet " + DecimalFormat.getNumberInstance().parse(label_8.getText()).doubleValue() + " m3 Urun Satisi" ;
+			dEKONT_BILGI dBilgi = new dEKONT_BILGI();
+			dBilgi.setbHES(bh);
+			dBilgi.settAR(TARIH_CEVIR.tarih_geri_saatli(dtc));
+			dBilgi.seteVRAK(e_number);
+			dBilgi.setbCINS("");
+			dBilgi.setbKUR(1);
+			dBilgi.setbORC(tutar);
+			dBilgi.setaHES(alh);
+			dBilgi.setaCINS("");
+			dBilgi.setaKUR(1);
+			dBilgi.setaLACAK(tutar);
+			dBilgi.setiZAHAT(str_4);
+			dBilgi.setkOD("Satış");
+			dBilgi.setuSER( GLOBAL.KULL_ADI);
+			lBILGI.setmESAJ("Alacakli Hes:" +alh + " Tut:" + tutar +	" Borclu Hes:"+ bh  + " Evrak No:" + textField.getText());
+			lBILGI.seteVRAK(String.valueOf(e_number));
+			c_Access.cari_dekont_kaydet(dBilgi,lBILGI,BAGLAN_LOG.cariLogDizin);
+			JOptionPane.showMessageDialog(null,  "Evrak  Cari Hesaba Basari ile Kaydedilmistir....",  "Kereste Cari Kaydetme", JOptionPane.INFORMATION_MESSAGE);
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

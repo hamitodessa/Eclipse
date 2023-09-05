@@ -100,6 +100,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.U_KODU_RENDERER;
+import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
 
 @SuppressWarnings({"serial","static-access","unused"})
@@ -832,7 +833,7 @@ public class KER_GIRIS extends JInternalFrame {
 		lblPaket.setBounds(484, 5, 66, 14);
 		panel_71.add(lblPaket);
 		
-		label_8_1 = new JLabel("0.000");
+		label_8_1 = new JLabel("0");
 		label_8_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8_1.setForeground(new Color(139, 0, 0));
 		label_8_1.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -2303,6 +2304,67 @@ public class KER_GIRIS extends JInternalFrame {
     	OBS_MAIN.progressBar.setValue(0);
     	OBS_MAIN.progressBar.setStringPainted(false);
     }
+    public static void cari_kaydet()
+    {
+    	try {
+    		BORC_ALACAK hsp ;
+    		hsp = new BORC_ALACAK();
+    		hsp.setLocationRelativeTo(OBS_MAIN.desktopPane);
+    		oac.hsp_hsp_kodu = "" ;
+    		String bh = "",alh="";
+    		// '***************** hsp cinsleri ogren***********************BORCLU HESAP
+    		hsp.lblNewLabel.setText("Borclu Hesap");
+    		hsp.setVisible(true);
+    		bh = oac.hsp_hsp_kodu;
+    		alh = txtcari.getText();
+    		if (bh.equals("")) return ;
+    		ResultSet rs ;
+    		//*******************************************************************************
+    		rs = c_Access.hesap_adi_oku(bh);
+    		if (!rs.isBeforeFirst() ) 
+    		{
+    			JOptionPane.showMessageDialog(null,  "Girilen Borclu Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
+    			return ;
+    		} 
+    		rs= null;
+    		rs = c_Access.hesap_adi_oku(txtcari.getText());
+    		if (!rs.isBeforeFirst() ) {  
+    			JOptionPane.showMessageDialog(null, textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!",  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
+    			return;
+    		} 
+    		double sdf =  DecimalFormat.getNumberInstance().parse(label_8_1.getText()).intValue()  ;
+    		String str_4  ="";
+    		int e_number =0;
+    		e_number = c_Access.cari_fisno_al();
+    		DefaultTableModel model = (DefaultTableModel)table.getModel();
+    		double tutar  = DecimalFormat.getNumberInstance().parse(label.getText()).doubleValue()  ;
+    		lOG_BILGI lBILGI = new lOG_BILGI();
+    		str_4 = textField.getText() + "'Evrak ile " + FORMATLAMA.doub_0(sdf) + " Adet " + DecimalFormat.getNumberInstance().parse(label_8.getText()).doubleValue() + " m3 Urun Girisi" ;
+    		dEKONT_BILGI dBilgi = new dEKONT_BILGI();
+    		dBilgi.setbHES(bh);
+    		dBilgi.settAR(TARIH_CEVIR.tarih_geri_saatli(dtc));
+    		dBilgi.seteVRAK(e_number);
+    		dBilgi.setbCINS("");
+    		dBilgi.setbKUR(1);
+    		dBilgi.setbORC(tutar);
+    		dBilgi.setaHES(alh);
+    		dBilgi.setaCINS("");
+    		dBilgi.setaKUR(1);
+    		dBilgi.setaLACAK(tutar);
+    		dBilgi.setiZAHAT(str_4);
+    		dBilgi.setkOD("Alış");
+    		dBilgi.setuSER( GLOBAL.KULL_ADI);
+    		lBILGI.setmESAJ("Alacakli Hes:" +alh + " Tut:" + tutar +	" Borclu Hes:"+ bh );
+    		lBILGI.seteVRAK(textField.getText());
+    		c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,	BAGLAN_LOG.cariLogDizin);
+    		JOptionPane.showMessageDialog(null,  "Evrak Cari Hesaba Basari ile Kaydedilmistir....",  "Kereste Cari Kaydetme", JOptionPane.INFORMATION_MESSAGE);
+    	}
+    	catch (Exception ex)
+    	{
+    		JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
+    	}
+    }
+
 }
 //     System.out.println(satir +" = " + sonpaketno+ "==" +  sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik);
 //		mdl.insertRow(satir, new Object[]{"",sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik,"",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});

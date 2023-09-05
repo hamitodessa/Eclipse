@@ -56,6 +56,8 @@ public class KER_DETAY extends JInternalFrame {
 	private static String kjk = "" ; 
 	
 	private static JLabel lbladet;
+	private static JLabel lblm3;
+	private static JLabel lblmiktar;
 	public static JSplitPane splitPane ;
 
 	/**
@@ -120,12 +122,28 @@ public class KER_DETAY extends JInternalFrame {
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
 		lbladet.setBounds(100, 5, 40, 14);
 		panel.add(lbladet);
+		
+		lblm3 = new JLabel("0.000");
+		lblm3.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblm3.setForeground(new Color(0, 0, 128));
+		lblm3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblm3.setBounds(557, 5, 74, 14);
+		panel.add(lblm3);
+		
+		lblmiktar = new JLabel("0");
+		lblmiktar.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblmiktar.setForeground(new Color(0, 0, 128));
+		lblmiktar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblmiktar.setBounds(505, 5, 49, 14);
+		panel.add(lblmiktar);
 	}
 	public static void hisset()
 	{
 		long startTime = System.currentTimeMillis(); 
 		try {
 			ResultSet	rs = null;
+			lblmiktar.setText(FORMATLAMA.doub_0( 0));
+			lblm3.setText(FORMATLAMA.doub_3( 0));
 			grup_cevir() ;
 			KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
 			ker_BILGI.setGTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1));
@@ -153,7 +171,7 @@ public class KER_DETAY extends JInternalFrame {
 			ker_BILGI.setCDepo(cdpo);
 			ker_BILGI.setCOzel_Kod(coz);
 			//
-			
+
 			rs = ker_Access.stok_rapor(ker_BILGI);
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -161,231 +179,244 @@ public class KER_DETAY extends JInternalFrame {
 			} 
 			else
 			{
-			table.setModel(DbUtils.resultSetToTableModel(rs));
-			JTableHeader th = table.getTableHeader();
-			TableColumnModel tcm = th.getColumnModel();
-			TableColumn tc;
-			
-			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-			tc = tcm.getColumn(0);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
 
-			tc = tcm.getColumn(1);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(2);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(120);
-			
-			tc = tcm.getColumn(3);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(4);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(5);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(0,true));
-			tc.setMinWidth(60);
-			
-			tc = tcm.getColumn(6);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(3,true));
-			tc.setMinWidth(70);
-			
-			tc = tcm.getColumn(7);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setCellRenderer(new TARIH());
-			tc.setMinWidth(80);
-			
-			tc = tcm.getColumn(8);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
-			
-			tc = tcm.getColumn(9);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(10);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
-			
-			tc = tcm.getColumn(11);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
-			
-			tc = tcm.getColumn(12);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
-			
-			tc = tcm.getColumn(13);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(14);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(15);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
-			
-			tc = tcm.getColumn(16);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
-			
-			tc = tcm.getColumn(17);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(18);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(19);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(20);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(21);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(22);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(23);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(24);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(25);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setCellRenderer(new TARIH());
-			tc.setMinWidth(80);
-			
-			tc = tcm.getColumn(26);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
-			
-			tc = tcm.getColumn(27);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(28);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
-			
-			tc = tcm.getColumn(29);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
-			
-			tc = tcm.getColumn(30);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
-			
-			tc = tcm.getColumn(31);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(32);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(33);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
-			
-			tc = tcm.getColumn(34);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
-			
-			tc = tcm.getColumn(35);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(36);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(37);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(38);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(39);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(40);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-			
-			tc = tcm.getColumn(41);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
-				
-				
-		
-			lbladet.setText(FORMATLAMA.doub_0(mdl.getRowCount()));
-			//**
+				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(1);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(2);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(120);
+
+				tc = tcm.getColumn(3);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(4);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(5);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(0,true));
+				tc.setMinWidth(60);
+
+				tc = tcm.getColumn(6);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(3,true));
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(7);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new TARIH());
+				tc.setMinWidth(80);
+
+				tc = tcm.getColumn(8);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(9);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(10);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(11);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(12);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(13);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(14);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(15);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(16);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(17);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(18);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(19);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(20);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(21);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(22);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(23);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(24);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(25);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new TARIH());
+				tc.setMinWidth(80);
+
+				tc = tcm.getColumn(26);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(27);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(28);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(29);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(30);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(31);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(32);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(33);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(34);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
+
+				tc = tcm.getColumn(35);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(36);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(37);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(38);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(39);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(40);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(41);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+
+
+				lbladet.setText(FORMATLAMA.doub_0(mdl.getRowCount()));
 				Dimension dd = th.getPreferredSize();
-			    dd.height = 30;
-			    th.setPreferredSize(dd); 
+				dd.height = 30;
+				th.setPreferredSize(dd); 
 				th.repaint();
 				table.setRowSelectionInterval(0, 0);
 				table.setRowHeight(21);
-				
+
 				int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
-				
+
 				table.setSelectionBackground(Color.PINK);
 				table.setSelectionForeground(Color.BLUE);
+				topla();
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-				
+
 				String deger;
 				String[] parts;
 				Font bigFont;
-					deger = GLOBAL.setting_oku("KER_RAPORLAMA").toString();
-					deger = deger.substring(1, deger.length()-1);
-					parts = deger.split(",");
-					bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-					table.setFont(bigFont);
-				 
+				deger = GLOBAL.setting_oku("KER_RAPORLAMA").toString();
+				deger = deger.substring(1, deger.length()-1);
+				parts = deger.split(",");
+				bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+				table.setFont(bigFont);
+
 			}
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	private static void topla()
+	{
+		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+		double  m3 = 0.00  ;
+		double urunmiktar = 0  ;
+		for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
+		{
+			urunmiktar += Double.parseDouble(mdl.getValueAt(i, 5).toString());
+			m3 += Double.parseDouble( mdl.getValueAt(i,6).toString());
+		}
+		lblmiktar.setText(FORMATLAMA.doub_0( urunmiktar));
+		lblm3.setText(FORMATLAMA.doub_3( m3));
 	}
 	private static void grup_cevir()
 	{

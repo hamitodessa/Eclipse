@@ -639,5 +639,11 @@ public class KERESTE_MYSQL implements IKERESTE {
 		return null;
 	}
 
+	@Override
+	public ResultSet ker_barkod_kod_oku(String sira) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

@@ -222,4 +222,8 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.stok_rapor(ker_rap_BILGI);
 	}
+	public ResultSet ker_barkod_kod_oku(String sira) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.ker_barkod_kod_oku(sira);
+	}
 }

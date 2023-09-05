@@ -2,6 +2,7 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -26,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
@@ -60,6 +62,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -136,10 +139,12 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	
 	
 	private static JTable table;
-
+	private ArrayList<String> listPaket = new ArrayList<String>();
+	private ArrayList<String> listBarkod =  new ArrayList<String>();
 
 	private static boolean yeni_fat = false;
 	private static  String tar = "" ;
+	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
@@ -802,14 +807,14 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		label_8_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8_1.setForeground(new Color(139, 0, 0));
 		label_8_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_8_1.setBounds(331, 5, 73, 14);
+		label_8_1.setBounds(353, 5, 73, 14);
 		panel_71.add(label_8_1);
 		
 		label_8 = new JLabel("0.000");
 		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8.setForeground(new Color(139, 0, 0));
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_8.setBounds(410, 5, 67, 14);
+		label_8.setBounds(433, 5, 67, 14);
 		panel_71.add(label_8);
 
 		label_9 = new JLabel("0.00");
@@ -824,7 +829,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		lblPaket.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPaket.setForeground(new Color(139, 0, 0));
 		lblPaket.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPaket.setBounds(484, 5, 73, 14);
+		lblPaket.setBounds(504, 5, 73, 14);
 		panel_71.add(lblPaket);
 		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
@@ -1049,7 +1054,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			public void changeSelection(final int row, final int column, boolean toggle, boolean extend)
 			{
 				super.changeSelection(row, column, toggle, extend);
-				if (column < 1)
+				if (column == 0)
 				{
 					table.editCellAt(row, column);
 					table.transferFocus();
@@ -1059,17 +1064,12 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		
 		table.addKeyListener(new KeyAdapter() {         
             public void keyPressed(KeyEvent e) {
-                if(table.getSelectedColumn()==0)
-                {
-                try {
-					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-					pakkont(table.getValueAt(table.getSelectedRow(), 0).toString() );
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-				} catch (NumberFormatException e1) {
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-					e1.printStackTrace();
+               
+                if (e.getKeyCode() == 10)
+				{
+					if (table.isEditing())
+						table.getCellEditor().stopCellEditing();
 				}
-                }
             }
        });
 		
@@ -1089,39 +1089,34 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		model.addColumn("Tutar",new Double [] {( 0.00 )});
 		model.addColumn("Izahat", new String []{"" });
 		model.addColumn("Satir", new  Integer []{( 0 )});
-		
-
 		TableColumn col ;
 		
-		JTextField ftext = new JTextField();
-		ftext.setDocument(new JTextFieldLimit(10));
-		ftext.setFont(new Font("Tahoma", Font.BOLD, 11));
-		ftext.setForeground(new Color(0, 0, 128));
-		ftext.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-					pakkont(ftext.getText());
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-				} catch (NumberFormatException e1) {
-					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-					e1.printStackTrace();
-				}
-			}
-		});
-		ftext.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				ftext.selectAll();
-			}
-		});
-		ftext.setFont(new Font(table.getFont().getFontName(),1 ,12));
-		
+		//
+		listPaket = new ArrayList<String> () ;
+		stk_kodu_auto("Paket_No");
+		ComboBoxTableCellEditor editor = new ComboBoxTableCellEditor( listPaket ,table,"ker_cikis");
+		//
 		col = table.getColumnModel().getColumn(0);
-		col.setMinWidth(100);
+		col.setMinWidth(120);
 		col.setHeaderRenderer(new SOLA());
-		col.setCellEditor(new DefaultCellEditor(ftext));
-		col.setCellRenderer(new U_KODU_RENDERER());
+		col.setCellEditor(editor);
+		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+		////
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
+			Font font = new Font("Arial", 1, 12);
+			@Override
+			public Component getTableCellRendererComponent(JTable table,
+					Object value, boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
+						row, column);
+				setFont(font);
+				setForeground(new Color(0, 0, 128));
+				return this;
+			}
+		};
+		col.setCellRenderer(r);
+		table.repaint();
 		
 		col = table.getColumnModel().getColumn(1);
 		col.setMinWidth(80);
@@ -1204,7 +1199,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		table.setRowHeight(22);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setSurrendersFocusOnKeystroke(true);
+		//table.setSurrendersFocusOnKeystroke(true);
 		
 		InputMap im = table.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
@@ -1434,9 +1429,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			}
 			else
 			{
-				
 				rss.next();
-				
 				yeni_fat = false;
 				txtadres.setText("");
 				GRID_TEMIZLE.grid_temizle(table);
@@ -1474,8 +1467,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				//***Aciklama
 				textField_9.setText(ker_Access.aciklama_oku("KER", 1, textField.getText(), "C"));
 				textField_10.setText(ker_Access.aciklama_oku("KER", 2, textField.getText(), "C"));
-
-							
 				//**nakliye
 				rsa = null;
 				rsa = ker_Access.ker_kod_degisken_ara("UNVAN", "NAKID_Y", "NAKLIYECI",String.valueOf(rss.getInt("CNakliyeci")));
@@ -1493,7 +1484,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				int satir =0 ;
 				do
 				{
-				
 					mdl.insertRow(satir,new Object[]{rss.getString("Paket_No"),rss.getString("Barkod"),rss.getString("Kodu"),
 					rss.getDouble("Miktar"), m3(rss.getString("Kodu"),rss.getDouble("Miktar")),"" ,rss.getString("Konsimento"),rss.getString("CDepo"),
 					rss.getDouble("CFiat"),rss.getDouble("CIskonto"),
@@ -1532,11 +1522,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		satir_yaz_1();
 		dipnot_yaz();
 		acik_yaz();
-		//cikis_yaz();
-		
 		textField.setText("");
 		textField.requestFocus();
-		
 		//************************************
 		GuiUtil.setWaitCursor(KERESTE_CIKIS.splitPane,false);
 		long endTime = System.currentTimeMillis();
@@ -1634,9 +1621,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			///
 			altgrp = 0;
 			if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") ) {
-
 				rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1645,7 +1630,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					altgrp  = rs.getInt("ALID_Y");
 				}
 			}
-
 			double tevk = DecimalFormat.getNumberInstance().parse(txttev.getText()).doubleValue()  ;
 			double fiat =0 ;
 			fiat = Double.parseDouble( mdl.getValueAt(i,8).toString());
@@ -1653,13 +1637,9 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			isk = Double.parseDouble( mdl.getValueAt(i,9).toString());
 			double kdv = 0 ; 
 			kdv =Double.parseDouble( mdl.getValueAt(i,10).toString());
-			
-
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ( " Fatura Kayit" +  mdl.getValueAt(i,1).toString() + " Mik=" + miktar + " Tut=" + tutar);
 			lBILGI.seteVRAK(textField.getText());
-			
-		
 			//
 			KER_BILGI ker_BILGI = new KER_BILGI();
 			ker_BILGI.setCikis_Evrak(textField.getText());
@@ -1693,13 +1673,11 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz2", JOptionPane.ERROR_MESSAGE);     
 		}
 	}
-	private void kod_ADI(String toke) throws ClassNotFoundException, SQLException 
+	private static void kod_ADI(String toke) throws ClassNotFoundException, SQLException 
 
 	{
 		String[] token = toke.toString().split("-");
 		String aciklamaString;
-
-
 		aciklamaString = ker_Access.kod_adi(token[0]);
 		lblkodAciklama.setText(aciklamaString);
 		Dimension size = lblkodAciklama.getPreferredSize();
@@ -1728,7 +1706,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			lBILGI.seteVRAK(textField.getText());
 			ker_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_7.getText(), "K", "C",GLOBAL.KULL_ADI,
 						lBILGI,BAGLAN_LOG.kerLogDizin);
-			
 		}
 		catch (Exception ex)
 		{
@@ -1773,10 +1750,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		try {
 			deger = GLOBAL.setting_oku("KER_FAT_SATIR").toString();
 			sat_sayi =Integer.parseInt(deger);
-			
 			for (int i = 0; i <= sat_sayi; i ++)
 			{
-			
 				satir_ilave();
 			}
 		} catch (IOException e) {
@@ -1820,7 +1795,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		int satir = table.getSelectedRow();
 		if ( satir  < 0 ) 
 		{
-			          mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"",0});
+			mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"",0});
 			satir = 0 ;
 		}
 		else
@@ -1829,8 +1804,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		table.isRowSelected(satir);
 		table.repaint();
-	
-		
 	}
 	private static void satir_sil()
 	{
@@ -1839,7 +1812,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		mdll.removeRow(table.getSelectedRow());
 		table.repaint();
 		toplam();
-		
 	}
 	private static void toplam()
 	{
@@ -1949,7 +1921,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		try {
 			acik_sil();
 			lOG_BILGI lBILGI = new lOG_BILGI();
-
 			lBILGI.setmESAJ("Kereste Aciklama Yaz  Cikis :" + textField_9.getText()  );
 			lBILGI.seteVRAK(textField.getText());
 			ker_Access.aciklama_yaz("KER", 1, textField.getText(),  textField_9.getText(), "C",
@@ -1957,8 +1928,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			lBILGI.setmESAJ( "Kereste Aciklama Yaz  Cikis :" + textField_10.getText() );
 			ker_Access.aciklama_yaz("KER", 2, textField.getText(), textField_10.getText(), "C",
 					lBILGI,BAGLAN_LOG.fatLogDizin);
-
-
 		}
 		catch (Exception ex)
 		{
@@ -1969,19 +1938,17 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	{
 		try {
 			lOG_BILGI lBILGI = new lOG_BILGI();
-			
-				lBILGI.setmESAJ( "Kereste Aciklama Sil  Giris "  );
-				lBILGI.seteVRAK(textField.getText());
-				ker_Access.aciklama_sil("KER", textField.getText(), "C",
+			lBILGI.setmESAJ( "Kereste Aciklama Sil  Giris "  );
+			lBILGI.seteVRAK(textField.getText());
+			ker_Access.aciklama_sil("KER", textField.getText(), "C",
 						lBILGI,BAGLAN_LOG.fatLogDizin);
-			
 		}
 		catch (Exception ex)
 		{
 
 		}
 	}
-	private void pakkont(String pakno)
+	public static void pakkont(String pakno)
 	{
 		try {
 			if (table.getSelectedRow() == -1 ) return ;
@@ -2025,9 +1992,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					}  while (rSet.next()) ;
 					paketm3();		
 					kod_ADI(model.getValueAt(ilks,2).toString());
-					if (table.getCellEditor() != null) {
-						table.getCellEditor().stopCellEditing();
-					}
 					table.getSelectionModel().setSelectionInterval(ilks, ilks);
 					table.getColumnModel().getSelectionModel().setSelectionInterval(8, 8);			     
 				}
@@ -2117,6 +2081,29 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private  void stk_kodu_auto(String field)
+	{
+		try {
+			ResultSet rs = null;
+			rs = ker_Access.ker_barkod_kod_oku(field);
+			if (!rs.isBeforeFirst() ) {  
+					listPaket.add("");
+			}
+			else
+			{
+					listPaket.clear();
+					//listPaket.add("");
+					while (rs.next())
+					{
+						listPaket.add(rs.getString("Paket_No").toString());
+					}
+			}
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Otomatik Doldurma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

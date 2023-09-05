@@ -3,6 +3,8 @@ package OBS_2025;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -87,6 +89,10 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 						{
 							RECETE.bilgi_doldur(editorComponent.getText().toString());
 						}
+						else if (nerden.equals("ker_cikis"))
+						{
+							KERESTE_CIKIS.pakkont(editorComponent.getText().toString());
+						}
 						return;
 					}
 				}
@@ -98,11 +104,18 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 				if (e.getClickCount() == 2) 
 				{
 					if (table.getSelectedRow() < 0 ) return ;
-					URUN_ARAMA arm ;
-					arm = new URUN_ARAMA();
-					arm.setVisible(true);
-					editor.setSelectedItem(oac.stk_kodu);
-					table.getCellEditor().stopCellEditing();
+					if (nerden.equals("ker_cikis"))
+					{
+					//	table.getCellEditor().stopCellEditing();
+					}
+					else {
+						URUN_ARAMA arm ;
+						arm = new URUN_ARAMA();
+						arm.setVisible(true);
+						editor.setSelectedItem(oac.stk_kodu);
+						table.getCellEditor().stopCellEditing();
+					}
+					
 				}
 			}});
 		editor.addPopupMenuListener(new PopupMenuListener() {
@@ -135,6 +148,10 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 				{
 					RECETE.bilgi_doldur(editorComponent.getText().toString());
 				}
+				else if (nerden.equals("ker_cikis"))
+				{
+					KERESTE_CIKIS.pakkont(editorComponent.getText().toString());
+				}
 				editor.setSelectedItem(editorComponent.getText());
 				table.getCellEditor().stopCellEditing();
 			}
@@ -153,8 +170,8 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 		for (int index = 0; index < table.getRowCount(); index++) {
 			if (index != row) {
 				String cellValue = (String) table.getValueAt(index, 0);
-				if (! cellValue.equals(""))
-					model.removeElement(cellValue);
+				//if (! cellValue.equals(""))
+					//model.removeElement(cellValue);
 			}
 		}
 		editor.setModel(model);

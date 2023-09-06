@@ -60,6 +60,8 @@ import javax.swing.border.TitledBorder;
 import com.crystaldecisions.sdk.occa.report.exportoptions.ReportExportFormat;
 import com.crystaldecisions.sdk.occa.report.lib.ReportSDKException;
 
+import KER_RAPOR.KER_DETAY;
+import KER_RAPOR.KER_GRUP_RAPOR;
 import OBS_2025_RAPORLAR.GRUP_RAPOR;
 import OBS_2025_RAPORLAR.IMALAT_GRUP_RAPOR;
 import OBS_2025_RAPORLAR.IMALAT_RAPORLAMA;
@@ -254,6 +256,14 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				{
 					grup_gonder();
 				}
+				else if ( OBS_MAIN.pencere_bak("KERESTE GRUP RAPOR") == true ) 
+				{
+					ker_grup_gonder();
+				}
+				else if ( OBS_MAIN.pencere_bak("KERESTE DETAY RAPOR") == true ) 
+				{
+					ker_detay_gonder();
+				}
 				else if ( OBS_MAIN.pencere_bak("IMALAT GRUP RAPOR") == true ) 
 				{
 					ima_grup_gonder();
@@ -418,6 +428,16 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			{
 				comboBox.enable(false);
 				lblNewLabel_2.setText("Grup Rapor");
+			}
+			else if (ker_grup_kontrol() )
+			{
+				comboBox.enable(false);
+				lblNewLabel_2.setText("Kereste Grup Rapor");
+			}
+			else if (ker_detay_kontrol() )
+			{
+				comboBox.enable(false);
+				lblNewLabel_2.setText("Kereste Detay Rapor");
 			}
 			else if (ima_grup_kontrol() )
 			{
@@ -844,6 +864,30 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
+	private void ker_grup_gonder() 
+	{
+		try
+		{
+			KER_GRUP_RAPOR. mail_at();
+			xl_gonder("Kereste_Grup_Rapor" );
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
+	private void ker_detay_gonder() 
+	{
+		try
+		{
+			KER_DETAY. mail_at();
+			xl_gonder("Kereste_Detay_Rapor" );
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
 	private void stk_gonder() 
 	{
 		try
@@ -1025,6 +1069,26 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		boolean result  = false;
 
 		if (OBS_MAIN.pencere_bak("GRUP RAPOR"))
+		{
+			result = true ;
+		}
+		return result;
+	}
+	private boolean  ker_grup_kontrol() throws ReportSDKException
+	{
+		boolean result  = false;
+
+		if (OBS_MAIN.pencere_bak("KERESTE GRUP RAPOR"))
+		{
+			result = true ;
+		}
+		return result;
+	}
+	private boolean  ker_detay_kontrol() throws ReportSDKException
+	{
+		boolean result  = false;
+
+		if (OBS_MAIN.pencere_bak("KERESTE DETAY RAPOR"))
 		{
 			result = true ;
 		}

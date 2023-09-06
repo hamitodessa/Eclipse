@@ -2741,7 +2741,15 @@ public class OBS_MAIN extends JFrame {
 				{
 					ORTALAMA_FIAT.excell_aktar() ;
 				}
-				GuiUtil.setWaitCursor(toolBar,false);
+				else if (sonuc == "KERESTE GRUP RAPOR")
+				{
+					KER_GRUP_RAPOR.excell_aktar() ;
+				}
+				else if (sonuc == "KERESTE DETAY RAPOR")
+				{
+					KER_DETAY.excell_aktar() ;
+				}
+				GuiUtil.setWaitCursor(toolBar,false);//
 			}
 		});
 		btnExcell.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/excel-icon_16.png")));
@@ -2772,6 +2780,10 @@ public class OBS_MAIN extends JFrame {
 						else if (sonuc == "KUR GRAFIK")
 						{
 							KUR_GRAFIK.grafik_kur();
+						}
+						else if (sonuc == "KERESTE GRUP RAPOR")
+						{
+							KER_GRUP_RAPOR.grafik();
 						}
 						else 
 						{

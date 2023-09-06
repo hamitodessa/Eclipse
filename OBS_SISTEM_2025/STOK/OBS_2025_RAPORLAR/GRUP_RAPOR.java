@@ -1511,7 +1511,6 @@ public class GRUP_RAPOR extends JInternalFrame {
 											 }
 										   hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 								
-								   hname.setCellStyle(satirStyle);
 									   }
 									   else
 									   {

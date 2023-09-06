@@ -455,6 +455,7 @@ public class FILTRE extends JDialog {
 		//*****************************************************************************************************************
 		// Goruntu icin asagidaki blogu kaldir 
 	
+
 		final boolean showTabsHeader = false;
 	    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
 	    {
@@ -464,7 +465,6 @@ public class FILTRE extends JDialog {
 	            } else {return 0;}	        }
 	      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 	    }); 
-
 		
 		    // final boolean showTabsHeader = false;
 		    //tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
@@ -3028,7 +3028,7 @@ public class FILTRE extends JDialog {
 			}
 		});
 		chckbxDovizeCevirme.setBounds(398, 139, 116, 23);
-		chckbxDovizeCevirme.setVisible(false);
+		//chckbxDovizeCevirme.setVisible(false);
 		panel_12.add(chckbxDovizeCevirme);
 
 		JLabel lblSinif = new JLabel("Sinif");
@@ -3110,7 +3110,7 @@ public class FILTRE extends JDialog {
 		comboBox_32.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_32.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR"}));
 		comboBox_32.setBounds(520, 139, 74, 22);
-		comboBox_32.setVisible(false);
+		//comboBox_32.setVisible(false);
 		panel_12.add(comboBox_32);
 
 		comboBox_33 = new JComboBox<String>();
@@ -3118,7 +3118,7 @@ public class FILTRE extends JDialog {
 		comboBox_33.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_33.setModel(new DefaultComboBoxModel<String>(new String[] {"MA", "MS", "BA", "BS", "SA", "SS"}));
 		comboBox_33.setBounds(520, 168, 74, 22);
-		comboBox_33.setVisible(false);
+		//comboBox_33.setVisible(false);
 		panel_12.add(comboBox_33);
 
 		JPanel panel_13 = new JPanel();

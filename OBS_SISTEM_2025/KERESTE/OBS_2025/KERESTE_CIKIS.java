@@ -1995,6 +1995,10 @@ public class KERESTE_CIKIS extends JInternalFrame {
 						model.setValueAt( rSet.getString("CIzahat"),satir, 12)  ;
 						model.setValueAt( rSet.getInt("Satir"),satir, 13)  ;
 						satir +=1 ;
+						if (satir +1 >= model.getRowCount())  
+						{
+							model.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+						}
 					}  while (rSet.next()) ;
 					paketm3();		
 					kod_ADI(model.getValueAt(ilks,2).toString());

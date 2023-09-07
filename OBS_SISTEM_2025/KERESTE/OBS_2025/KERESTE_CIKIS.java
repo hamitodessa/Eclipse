@@ -136,6 +136,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	private static JLabel lblNewLabel_17;
 	private static JLabel lblNewLabel_13;
 	private static JLabel lblkodAciklama ;
+	private static JLabel lblkONSIMENTO ;
 	private ArrayList<String> listdepo = null ;
 	
 	
@@ -960,6 +961,12 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		label.setBounds(927, 39, 109, 14);
 		panel_1.add(label);
 		
+		lblkONSIMENTO = new JLabel();
+		lblkONSIMENTO.setForeground(new Color(0, 0, 128));
+		lblkONSIMENTO.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblkONSIMENTO.setBounds(10, 35, 50, 14);
+		panel_1.add(lblkONSIMENTO);
+		
 		splitPane_3.setLeftComponent(panel_71);
 		
 		
@@ -1268,7 +1275,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				{
 					try {
 						if ( table.getSelectedRow() != -1) {
-							kod_ADI(model.getValueAt(table.getSelectedRow(), 2).toString());
+							kod_ADI(model.getValueAt(table.getSelectedRow(), 2).toString(),model.getValueAt(table.getSelectedRow(), 6).toString());
 						}
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -1505,7 +1512,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				paketm3();
 				toplam();
 				dipnot_oku();
-				kod_ADI( mdl.getValueAt(0,2).toString());
+				kod_ADI( mdl.getValueAt(0,2).toString(),mdl.getValueAt(0, 6).toString());
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 
@@ -1681,16 +1688,19 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz2", JOptionPane.ERROR_MESSAGE);     
 		}
 	}
-	private static void kod_ADI(String toke) throws ClassNotFoundException, SQLException 
+	private static void kod_ADI(String toke,String kons ) throws ClassNotFoundException, SQLException 
 
 	{
 		String[] token = toke.toString().split("-");
-		String aciklamaString;
+		String aciklamaString ;
 		aciklamaString = ker_Access.kod_adi(token[0]);
 		lblkodAciklama.setText(aciklamaString);
 		Dimension size = lblkodAciklama.getPreferredSize();
 		lblkodAciklama.setBounds(10, 55, size.width +10, 14);
-
+		
+		lblkONSIMENTO.setText(ker_Access.kons_adi(kons));
+		size = lblkONSIMENTO.getPreferredSize();
+		lblkONSIMENTO.setBounds(10, 35, size.width +10, 14);
 	}
 	private static void dipnot_sil()
 	{
@@ -2001,7 +2011,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 						}
 					}  while (rSet.next()) ;
 					paketm3();		
-					kod_ADI(model.getValueAt(ilks,2).toString());
+					kod_ADI(model.getValueAt(ilks,2).toString(),model.getValueAt(table.getSelectedRow(), 6).toString());
 					table.getSelectionModel().setSelectionInterval(ilks, ilks);
 					table.getColumnModel().getSelectionModel().setSelectionInterval(8, 8);			     
 				}

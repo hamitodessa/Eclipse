@@ -1185,4 +1185,22 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
+
+	@Override
+	public String kons_adi(String kons) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		PreparedStatement stmt = con.prepareStatement("SELECT ACIKLAMA FROM KONS_ACIKLAMA  WHERE KONS =N'" + kons+ "' ");
+		rss = stmt.executeQuery();
+		String result ;
+		if (!rss.isBeforeFirst() ) {  
+			result = "" ;
+		}
+		else
+		{
+			rss.next();
+			result = rss.getString("ACIKLAMA");
+		}
+		return result;	
+	}
 }

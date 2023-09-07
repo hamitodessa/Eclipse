@@ -145,6 +145,7 @@ public class KER_GIRIS extends JInternalFrame {
 	private static JLabel lblNewLabel_17;
 	private static JLabel lblNewLabel_13;
 	private JLabel lblkodAciklama ;
+	private JLabel lblkONSIMENTO ;
 	private ArrayList<String> listdepo = null ;
 	
 	
@@ -859,6 +860,12 @@ public class KER_GIRIS extends JInternalFrame {
 		lblkodAciklama.setBounds(10, 55,50, 14);
 		panel_1.add(lblkodAciklama);
 		
+		lblkONSIMENTO = new JLabel();
+		lblkONSIMENTO.setForeground(new Color(0, 0, 128));
+		lblkONSIMENTO.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblkONSIMENTO.setBounds(10, 35, 50, 14);
+		panel_1.add(lblkONSIMENTO);
+		
 		JLabel lblIskonto = new JLabel("Iskonto");
 		lblIskonto.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblIskonto.setBounds(247, 11, 62, 14);
@@ -1078,7 +1085,7 @@ public class KER_GIRIS extends JInternalFrame {
 			public void mouseClicked(MouseEvent e) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				try {
-					kod_ADI(  model.getValueAt(table.getSelectedRow(), 1).toString());
+					kod_ADI(  model.getValueAt(table.getSelectedRow(), 1).toString(), model.getValueAt(table.getSelectedRow(), 6).toString());
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -1170,7 +1177,7 @@ public class KER_GIRIS extends JInternalFrame {
 				try {
 					if (table.getSelectedRow() == -1 ) return ;
 					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-					kod_ADI(ftext.getText());
+					kod_ADI(ftext.getText(), model.getValueAt(table.getSelectedRow(), 6).toString());
 					DefaultTableModel model = (DefaultTableModel) table.getModel();
 					double m3 = 0 ;
 					double miktar =  Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString());
@@ -1967,7 +1974,7 @@ public class KER_GIRIS extends JInternalFrame {
 				toplam();
 				dOSYADAN = true;
 				dipnot_oku();
-				kod_ADI( mdl.getValueAt(0,1).toString());
+				kod_ADI( mdl.getValueAt(0,1).toString(), mdl.getValueAt(0,6).toString());
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 
@@ -1984,7 +1991,7 @@ public class KER_GIRIS extends JInternalFrame {
 Thread t = new Thread(runner, "Code Executer");
 t.start();
 	}
-	private void kod_ADI(String toke) throws ClassNotFoundException, SQLException 
+	private void kod_ADI(String toke,String kons) throws ClassNotFoundException, SQLException 
 
 	{
 		String[] token = toke.toString().split("-");
@@ -1993,6 +2000,10 @@ t.start();
 		lblkodAciklama.setText(aciklamaString);
 		Dimension size = lblkodAciklama.getPreferredSize();
 		lblkodAciklama.setBounds(10, 55, size.width +10, 14);
+		
+		lblkONSIMENTO.setText(ker_Access.kons_adi(kons));
+		size = lblkONSIMENTO.getPreferredSize();
+		lblkONSIMENTO.setBounds(10, 35, size.width +10, 14);
 	}
 	private void sifirla()
 	{

@@ -65,33 +65,34 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		setBounds(0, 0,600,400);
 		
 		JSplitPane splitPane = new JSplitPane();
+		splitPane.setDividerSize(0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(0, 75));
-		panel.setMaximumSize(new Dimension(0, 75));
+		panel.setMinimumSize(new Dimension(0, 50));
+		panel.setMaximumSize(new Dimension(0, 50));
 		panel.setLayout(null);
 		splitPane.setLeftComponent(panel);
 		
 		JLabel lblNewLabel = new JLabel("Konsimento");
-		lblNewLabel.setBounds(10, 28, 78, 14);
+		lblNewLabel.setBounds(10, 18, 78, 14);
 		panel.add(lblNewLabel);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setDocument(new JTextFieldLimit(10));
-		textField.setBounds(98, 25, 68, 20);
+		textField.setBounds(88, 15, 78, 20);
 		panel.add(textField);
 		
 		JLabel lblNewLabel_1 = new JLabel("Aciklama");
-		lblNewLabel_1.setBounds(215, 28, 68, 14);
+		lblNewLabel_1.setBounds(180, 18, 68, 14);
 		panel.add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_1.setDocument(new JTextFieldLimit(50));
-		textField_1.setBounds(293, 25, 287, 20);
+		textField_1.setBounds(260, 15, 320, 20);
 		panel.add(textField_1);
 		
 		JScrollPane scrollPane = new JScrollPane();

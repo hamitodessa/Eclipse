@@ -645,5 +645,11 @@ public class KERESTE_MYSQL implements IKERESTE {
 		return null;
 	}
 
+	@Override
+	public String kons_adi(String kons) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

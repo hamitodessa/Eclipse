@@ -226,4 +226,8 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.ker_barkod_kod_oku(sira);
 	}
+	public String kons_adi(String kons) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.kons_adi(kons);
+	}
 }

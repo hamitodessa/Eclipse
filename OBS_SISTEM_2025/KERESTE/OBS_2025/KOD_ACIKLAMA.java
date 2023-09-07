@@ -64,32 +64,34 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane.setDividerSize(0);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(0, 75));
-		panel.setMaximumSize(new Dimension(0, 75));
+		panel.setMinimumSize(new Dimension(0, 50));
+		panel.setMaximumSize(new Dimension(0, 50));
+		
 		panel.setLayout(null);
 		splitPane.setLeftComponent(panel);
 		
 		JLabel lblNewLabel = new JLabel("Kod");
-		lblNewLabel.setBounds(10, 28, 46, 14);
+		lblNewLabel.setBounds(10, 18, 46, 14);
 		panel.add(lblNewLabel);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setDocument(new JTextFieldLimit(2));
-		textField.setBounds(66, 25, 46, 20);
+		textField.setBounds(66, 15, 46, 20);
 		panel.add(textField);
 		
 		JLabel lblNewLabel_1 = new JLabel("Aciklama");
-		lblNewLabel_1.setBounds(134, 28, 63, 14);
+		lblNewLabel_1.setBounds(134, 18, 76, 14);
 		panel.add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_1.setDocument(new JTextFieldLimit(50));
-		textField_1.setBounds(188, 25, 303, 20);
+		textField_1.setBounds(220, 15, 350, 20);
 		panel.add(textField_1);
 		
 		JScrollPane scrollPane = new JScrollPane();

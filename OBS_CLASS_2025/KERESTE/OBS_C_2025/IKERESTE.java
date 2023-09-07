@@ -52,4 +52,5 @@ public interface IKERESTE {
 			String sstr_5,String sstr_1,String orderBY ,String dURUM) throws ClassNotFoundException, SQLException;
 	public ResultSet stok_rapor(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException;
 	public ResultSet ker_barkod_kod_oku(String sira) throws ClassNotFoundException, SQLException;
+	public String kons_adi(String kons) throws ClassNotFoundException, SQLException;
 }

@@ -159,6 +159,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		try
 		{
 			GRID_TEMIZLE.grid_temizle(table);
+			lbladet.setText(FORMATLAMA.doub_0(0));
 			if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Urun Kodu"))
 			{
 				baslik_bak();

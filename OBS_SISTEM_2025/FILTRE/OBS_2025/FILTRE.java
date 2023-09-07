@@ -27,6 +27,7 @@ import com.toedter.calendar.JDateChooser;
 
 import GUNLUK.HAZIR_GOREVLER;
 import KER_RAPOR.KER_DETAY;
+import KER_RAPOR.KER_FAT_RAPOR;
 import KER_RAPOR.KER_GRUP_RAPOR;
 import OBS_2025_RAPORLAR.ENVANTER;
 import OBS_2025_RAPORLAR.FATURA_RAPOR;
@@ -406,6 +407,8 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_78_2;
 	public static JComboBox<String> comboBox_80_3;
 	public static JComboBox<String> comboBox_80_4;
+	public static JComboBox<String> comboBox_7_1 ;
+	public static JComboBox<String> comboBox_8_1 ;
 	public static JTextField textField_84;
 	public static JTextField textField_85;
 	public static JTextField textField_86;
@@ -416,11 +419,6 @@ public class FILTRE extends JDialog {
 	public static JTextField textField_91;
 	public static JTextField textField_92;
 	public static JTextField textField_93;
-	
-	
-	
-	
-	
 	
 	
 	/**
@@ -456,15 +454,6 @@ public class FILTRE extends JDialog {
 		// Goruntu icin asagidaki blogu kaldir 
 	
 
-		final boolean showTabsHeader = false;
-	    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
-	    {
-	        @Override
-	        protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
-	            if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
-	            } else {return 0;}	        }
-	      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
-	    }); 
 		
 		    // final boolean showTabsHeader = false;
 		    //tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
@@ -4889,6 +4878,22 @@ public class FILTRE extends JDialog {
 		comboBox_80_4.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_80_4.setBounds(480, 159, 125, 22);
 		panel_KERESTE_DETAY.add(comboBox_80_4);
+		
+		comboBox_7_1 = new JComboBox<String>();
+		comboBox_7_1.setForeground(new Color(0, 0, 128));
+		comboBox_7_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		comboBox_7_1.setBounds(638, 153, 125, 22);
+		comboBox_7_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Fatura No", "Firma Kodu", "Fatura_No_Tarih"}));
+		comboBox_7_1.setVisible(false);
+		panel_KERESTE_DETAY.add(comboBox_7_1);
+		
+		comboBox_8_1 = new JComboBox<String>();
+		comboBox_8_1.setForeground(new Color(0, 0, 128));
+		comboBox_8_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		comboBox_8_1.setBounds(638, 179, 125, 22);
+		comboBox_8_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari_Firma", "Adres_Firma"}));
+		comboBox_8_1.setVisible(false);
+		panel_KERESTE_DETAY.add(comboBox_8_1);
 		//**********************************************************************OK BUTTON **********************************
 		okButton = new JButton("Yenile");
 		okButton.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -5103,9 +5108,19 @@ public class FILTRE extends JDialog {
 				}
 				else if (sayfa == 22) 
 				{
-					GuiUtil.setWaitCursor(KER_DETAY.splitPane,true);
-					KER_DETAY.hisset();   // 
-					GuiUtil.setWaitCursor(KER_DETAY.splitPane,false);
+					if (GLOBAL.hangi_fatura.equals("detay")) 
+					{
+						GuiUtil.setWaitCursor(KER_DETAY.splitPane,true);
+						KER_DETAY.hisset();   // 
+						GuiUtil.setWaitCursor(KER_DETAY.splitPane,false);
+					}
+					else if (GLOBAL.hangi_fatura.equals("fatura")) 
+					{
+						GuiUtil.setWaitCursor(KER_FAT_RAPOR.splitPane,true);
+						KER_FAT_RAPOR.yenile();   
+						GuiUtil.setWaitCursor(KER_FAT_RAPOR.splitPane,false);
+					}
+					
 				}
 				GuiUtil.setWaitCursor(getContentPane(),false);
 				dispose();

@@ -39,6 +39,7 @@ public class GLOBAL {
 	public static String Log_Mail ="";
 	public static int filtre_sayfa ;
 	public static String hangi_mizan = "" ;
+	public static String hangi_fatura = "" ;
 	public static String yazici[]; 
 	public static String nerden ="";
 	public static String g_baslik = "";

@@ -13,6 +13,7 @@ import GUNLUK.GOREV_GIRIS;
 import GUNLUK.Gunluk;
 import GUNLUK.HAZIR_GOREVLER;
 import KER_RAPOR.KER_DETAY;
+import KER_RAPOR.KER_FAT_RAPOR;
 import KER_RAPOR.KER_GRUP_RAPOR;
 
 import javax.swing.JDesktopPane;
@@ -170,6 +171,7 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_24 ; // Ker Cikis
 	private JButton btnNewButton_25 ; // Grup Raporlama
 	private JButton btnNewButton_26 ; // Kereste Detay
+	private JButton btnNewButton_63 ; // Fatura Rapor
 	private JButton btnNewButton_3 ; //Kod Aciklama Giris
 	private JButton btnNewButton_23 ; //Konsimento  Aciklama Giris
 	private JButton btnNewButton_35 ; //Firma Ismi
@@ -2014,6 +2016,17 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_26.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-module-30.png")));
 		toolBar_Kereste.add(btnNewButton_26);
 		
+		btnNewButton_63 = new JButton("");
+		btnNewButton_63.setToolTipText("Fatura Raporlama");
+		btnNewButton_63.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("KERESTE FATURA RAPORLAMA","");
+			}
+		});
+		btnNewButton_63.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-news-30.png")));
+		
+		toolBar_Kereste.add(btnNewButton_63);
+		
 		JLabel lblNewLabel_41 = new JLabel("          ");
 		toolBar_Kereste.add(lblNewLabel_41);
 		btnNewButton_3.setToolTipText("Kod Aciklama Giris");
@@ -2474,9 +2487,24 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "KERESTE DETAY RAPOR")
 				{
 					GLOBAL.filtre_sayfa = 22 ;
+					GLOBAL.hangi_fatura = "detay" ;
+					
 					ft = new FILTRE();
+					ft.comboBox_7_1.setVisible(false);
+					ft.comboBox_8_1.setVisible(false);
 					ft.setVisible(true);
 				}
+				else if (sonuc == "KERESTE FATURA RAPORLAMA")
+				{
+					GLOBAL.filtre_sayfa = 22 ;
+					GLOBAL.hangi_fatura = "fatura" ;
+					ft = new FILTRE();
+					ft.comboBox_7_1.setVisible(true);
+					ft.comboBox_8_1.setVisible(true);
+					ft.setVisible(true);
+				}
+				
+				//
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});
@@ -3239,6 +3267,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("KERESTE DEGISKENLER")) internalFrame  = new KER_DEGISKEN_GIRIS(hangi);
 			else if (pencere.equals("KERESTE GRUP RAPOR")) internalFrame  = new KER_GRUP_RAPOR();
 			else if (pencere.equals("KERESTE DETAY RAPOR")) internalFrame  = new KER_DETAY();
+			else if (pencere.equals("KERESTE FATURA RAPORLAMA")) internalFrame  = new KER_FAT_RAPOR();
 			//GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();

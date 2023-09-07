@@ -238,4 +238,12 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.fat_detay_rapor(fno, turu);
 	}
+	public ResultSet fat_rapor_fat_tar(KER_RAPOR_BILGI ker_rap_BILGI,String qw1,String qw2,String qw3) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.fat_rapor_fat_tar(ker_rap_BILGI, qw1, qw2, qw3);
+	}
+	public ResultSet fat_rapor_cari_kod(KER_RAPOR_BILGI ker_rap_BILGI,String qw1,String qw2,String qw3) throws ClassNotFoundException, SQLException 
+	{
+		return _IKereste.fat_rapor_cari_kod(ker_rap_BILGI, qw1, qw2, qw3);
+	}
 }

@@ -206,12 +206,11 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table.setFont(bigFont);
 			table_1.setFont(bigFont);
-			
-			if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura No"))
+			if ( FILTRE.comboBox_7_1.getItemAt(FILTRE.comboBox_7_1.getSelectedIndex()).equals("Fatura No"))
 			{
 				filtrele();
 			}
-			else if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura_No_Tarih"))    
+			else if ( FILTRE.comboBox_7_1.getItemAt(FILTRE.comboBox_7_1.getSelectedIndex()).equals("Fatura_No_Tarih"))    
 			{
 				filtre_fat_tarih();
 			}
@@ -256,6 +255,13 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			ker_BILGI.setCAlt_Grup(calt);
 			ker_BILGI.setCDepo(cdpo);
 			ker_BILGI.setCOzel_Kod(coz);
+			if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+       		{
+				ker_BILGI.setgIRcIK("G");
+       		}
+			else {
+				ker_BILGI.setgIRcIK("C");
+			}
 			
 			rs = ker_Access.fat_rapor(ker_BILGI);
 			GRID_TEMIZLE.grid_temizle(table);
@@ -549,31 +555,77 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			grup_cevir() ;
 			//************* hangi adres ****************
             String qw1, qw2, qw3,c_yer;
-           if ( FILTRE.comboBox_8.getItemAt(FILTRE.comboBox_8.getSelectedIndex()).equals("Cari_Firma"))
+            if ( FILTRE.comboBox_8_1.getItemAt(FILTRE.comboBox_8_1.getSelectedIndex()).equals("Cari_Firma"))
            {
                 c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD + "]" ;
-                qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.Cari_Firma  ) as Unvan " ;
-                qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".[dbo].[HESAP_DETAY] WHERE HESAP_DETAY.D_HESAP = KERESTE.Cari_Firma  ) as Vergi_No " ;
-                qw3 = "Fatura_No,Gir_Cik,Tarih, Cari_Firma" ;
+                if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+           		{
+          			qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.Cari_Firma  ) as Unvan " ;
+                    qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".[dbo].[HESAP_DETAY] WHERE HESAP_DETAY.D_HESAP = KERESTE.Cari_Firma  ) as Vergi_No " ;
+          			qw3 = "Evrak_No,Tarih, Cari_Firma" ;
+ 
+           		}
+           		else {
+                	qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.CCari_Firma  ) as Unvan " ;
+                    qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".[dbo].[HESAP_DETAY] WHERE HESAP_DETAY.D_HESAP = KERESTE.CCari_Firma  ) as Vergi_No " ;
+          			qw3 = "Cikis_Evrak,CTarih, CCari_Firma" ;
+
+           		}
            }
             else
             {
                 c_yer = "[OK_Adr" + BAGLAN.cariDizin.kOD + "]" ;
-                qw1 = " ,(SELECT   Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Unvan " ;
-                qw2 = " ,(SELECT   Vergi_No FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Vergi_No " ;
-                qw3 = "Fatura_No,Gir_Cik,Tarih, Adres_Firma" ;
+                if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+           		{
+                	  qw1 = " ,(SELECT   Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Unvan " ;
+                      qw2 = " ,(SELECT   Vergi_No FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Vergi_No " ;
+                      qw3 = "Evrak_No,Tarih, Adres_Firma" ; 
+           		}
+           		else {
+           		 qw1 = " ,(SELECT   Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.CAdres_Firma  ) as Unvan " ;
+                 qw2 = " ,(SELECT   Vergi_No FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.CAdres_Firma  ) as Vergi_No " ;
+                 qw3 = "Cikis_Evrak,CTarih, CAdres_Firma" ;
+                 
+           		
+           		
+           		}
             }
-			
-		//		rs = f_Access. fat_rapor_fat_tar(FILTRE.textField_6.getText(),FILTRE.txtZzzzzzzzzz.getText() ,
-		//				TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_12),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_13),
-		//				FILTRE.textField_7.getText(),FILTRE.txtZzzzzzzzzzzz.getText() ,
-		//				FILTRE.textField_12.getText(),FILTRE.textField_13.getText() ,
-		//				FILTRE.textField_9.getText(),FILTRE.textField_15.getText() ,
-	//					 qwq1, qwq2, qwq3, kjk,
-	//					 FILTRE.textField_10.getText(),FILTRE.txtZzzzzzzzzz_1.getText() ,
-	//					 FILTRE.textField_8.getText(),FILTRE.txtZzzzzzzzzzzz_1.getText() ,qw1,
-	//					 FILTRE.textField_11.getText(),FILTRE.txtZzz.getText(),qw2,qw3 );
-			
+          
+   		
+   		
+       	KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
+		ker_BILGI.setGTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1));
+		ker_BILGI.setGTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1));
+		ker_BILGI.setGKodu1(FILTRE.formattedTextField_2.getText());
+		ker_BILGI.setGKodu2(FILTRE.formattedTextField_1_1.getText());
+		ker_BILGI.setPaket_No1(FILTRE.textField_88.getText());
+		ker_BILGI.setPaket_No2(FILTRE.textField_88_1.getText());
+		ker_BILGI.setGCari_Firma1(FILTRE.textField_84.getText());
+		ker_BILGI.setGCari_Firma2(FILTRE.textField_85.getText());
+		ker_BILGI.setEvrak_No1(FILTRE.textField_90.getText());
+		ker_BILGI.setEvrak_No2(FILTRE.textField_91.getText());
+		ker_BILGI.setGAna_Grup(gana);
+		ker_BILGI.setGAlt_Grup(galt);
+		ker_BILGI.setDepo(gdpo);
+		ker_BILGI.setOzel_Kod(goz);
+		ker_BILGI.setCTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1_1));
+		ker_BILGI.setCTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1_1));
+		ker_BILGI.setCCari_Firma1(FILTRE.textField_86.getText());
+		ker_BILGI.setCCari_Firma2(FILTRE.textField_87.getText());
+		ker_BILGI.setCEvrak_No1(FILTRE.textField_92.getText());
+		ker_BILGI.setCEvrak_No2(FILTRE.textField_93.getText());
+		ker_BILGI.setCAna_Grup(cana);
+		ker_BILGI.setCAlt_Grup(calt);
+		ker_BILGI.setCDepo(cdpo);
+		ker_BILGI.setCOzel_Kod(coz);
+		if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+   		{
+			ker_BILGI.setgIRcIK("G");
+   		}
+		else {
+			ker_BILGI.setgIRcIK("C");
+		}
+		rs = ker_Access.fat_rapor_fat_tar(ker_BILGI,qw1,qw2,qw3);
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -688,28 +740,72 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			grup_cevir() ;
 			//************* hangi adres ****************
             String qw1, qw2, c_yer;
-           if ( FILTRE.comboBox_8.getItemAt(FILTRE.comboBox_8.getSelectedIndex()).equals("Cari_Firma"))
+            System.out.println(FILTRE.comboBox_8_1.getItemAt(FILTRE.comboBox_8_1.getSelectedIndex()));
+           if ( FILTRE.comboBox_8_1.getItemAt(FILTRE.comboBox_8_1.getSelectedIndex()).equals("Cari_Firma"))
            {
-                c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD+ "]" ;
-                qw1 = " ,(SELECT TOP 1  UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.Cari_Firma  ) as Unvan " ;
-                qw2 =" Cari_Firma" ;
+        	   System.out.println(FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()));
+        	   if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+          		{
+        		   c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD+ "]" ;
+                   qw1 = " ,(SELECT TOP 1  UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.Cari_Firma  ) as Unvan " ;
+                   qw2 =" Cari_Firma" ;
+          		}
+        	   else {
+        		   c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD+ "]" ;
+                   qw1 = " ,(SELECT TOP 1  UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.CCari_Firma  ) as Unvan " ;
+                   qw2 =" CCari_Firma" ;
+			}
+                
            }
             else
             {
-                c_yer = "[OK_Adr" + BAGLAN.adrDizin.kOD + "]" ;
-                qw1 = " ,(SELECT Top 1  Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Unvan " ;
-                qw2 = " Adres_Firma" ;
+            	if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+          		{
+            		 c_yer = "[OK_Adr" + BAGLAN.adrDizin.kOD + "]" ;
+                     qw1 = " ,(SELECT Top 1  Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Unvan " ;
+                     qw2 = " Adres_Firma" ;
+          		}
+            	else {
+            		 c_yer = "[OK_Adr" + BAGLAN.adrDizin.kOD + "]" ;
+                     qw1 = " ,(SELECT Top 1  Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.CAdres_Firma  ) as Unvan " ;
+                     qw2 = " CAdres_Firma" ;
+				}
+               
             }
-			
-	//			rs = f_Access. fat_rapor_cari_kod(FILTRE.textField_6.getText(),FILTRE.txtZzzzzzzzzz.getText() ,
-	///					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_12),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_13),
-	//					FILTRE.textField_7.getText(),FILTRE.txtZzzzzzzzzzzz.getText() ,
-	//					FILTRE.textField_12.getText(),FILTRE.textField_13.getText() ,
-	//					FILTRE.textField_9.getText(),FILTRE.textField_15.getText() ,
-	//					 qwq1, qwq2, qwq3, kjk,
-	//					 FILTRE.textField_10.getText(),FILTRE.txtZzzzzzzzzz_1.getText() ,
-	//					 FILTRE.textField_8.getText(),FILTRE.txtZzzzzzzzzzzz_1.getText() ,qw1,
-	//					 FILTRE.textField_11.getText(),FILTRE.txtZzz.getText(),qw2 );
+       	
+        KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
+   		ker_BILGI.setGTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1));
+   		ker_BILGI.setGTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1));
+   		ker_BILGI.setGKodu1(FILTRE.formattedTextField_2.getText());
+   		ker_BILGI.setGKodu2(FILTRE.formattedTextField_1_1.getText());
+   		ker_BILGI.setPaket_No1(FILTRE.textField_88.getText());
+   		ker_BILGI.setPaket_No2(FILTRE.textField_88_1.getText());
+   		ker_BILGI.setGCari_Firma1(FILTRE.textField_84.getText());
+   		ker_BILGI.setGCari_Firma2(FILTRE.textField_85.getText());
+   		ker_BILGI.setEvrak_No1(FILTRE.textField_90.getText());
+   		ker_BILGI.setEvrak_No2(FILTRE.textField_91.getText());
+   		ker_BILGI.setGAna_Grup(gana);
+   		ker_BILGI.setGAlt_Grup(galt);
+   		ker_BILGI.setDepo(gdpo);
+   		ker_BILGI.setOzel_Kod(goz);
+   		ker_BILGI.setCTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1_1));
+   		ker_BILGI.setCTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1_1));
+   		ker_BILGI.setCCari_Firma1(FILTRE.textField_86.getText());
+   		ker_BILGI.setCCari_Firma2(FILTRE.textField_87.getText());
+   		ker_BILGI.setCEvrak_No1(FILTRE.textField_92.getText());
+   		ker_BILGI.setCEvrak_No2(FILTRE.textField_93.getText());
+   		ker_BILGI.setCAna_Grup(cana);
+   		ker_BILGI.setCAlt_Grup(calt);
+   		ker_BILGI.setCDepo(cdpo);
+   		ker_BILGI.setCOzel_Kod(coz);
+   		if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+      		{
+   			ker_BILGI.setgIRcIK("G");
+      		}
+   		else {
+   			ker_BILGI.setgIRcIK("C");
+   		}
+   		rs = ker_Access. fat_rapor_cari_kod(ker_BILGI,qw1,qw2,c_yer);
 			
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  

@@ -33,6 +33,7 @@ public class KER_RAPOR_BILGI {
 	private String CDepo ;
 	private int CNakliyeci ;
 	private String COzel_Kod ;
+	private String gIRcIK ;
 	public String getEvrak_No1() {
 		return Evrak_No1;
 	}
@@ -212,6 +213,12 @@ public class KER_RAPOR_BILGI {
 	}
 	public void setCOzel_Kod(String cOzel_Kod) {
 		COzel_Kod = cOzel_Kod;
+	}
+	public String getgIRcIK() {
+		return gIRcIK;
+	}
+	public void setgIRcIK(String gIRcIK) {
+		this.gIRcIK = gIRcIK;
 	}
 
 

@@ -2492,6 +2492,7 @@ public class OBS_MAIN extends JFrame {
 					ft = new FILTRE();
 					ft.comboBox_7_1.setVisible(false);
 					ft.comboBox_8_1.setVisible(false);
+					ft.comboBox_81.setVisible(false);
 					ft.setVisible(true);
 				}
 				else if (sonuc == "KERESTE FATURA RAPORLAMA")
@@ -2501,6 +2502,7 @@ public class OBS_MAIN extends JFrame {
 					ft = new FILTRE();
 					ft.comboBox_7_1.setVisible(true);
 					ft.comboBox_8_1.setVisible(true);
+					ft.comboBox_81.setVisible(true);
 					ft.setVisible(true);
 				}
 				

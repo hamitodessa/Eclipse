@@ -1327,7 +1327,6 @@ public class KER_GIRIS extends JInternalFrame {
 				TableModel model = (TableModel)e.getSource();
 				if (model.getRowCount() > 0) 
 				{
-
 					int row;
 					row = table.getSelectedRow();     //e.getFirstRow();
 					int column = e.getColumn();
@@ -1380,7 +1379,6 @@ public class KER_GIRIS extends JInternalFrame {
 		
 		if ( satir  < 0 ) 
 		{
-			
 			mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 			satir = 0 ;
 		}
@@ -1397,9 +1395,7 @@ public class KER_GIRIS extends JInternalFrame {
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			cmbanagrup .removeAllItems();
 			ResultSet rs=null;
-
 			rs = ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				cmbaltgrup.setEnabled(false);
@@ -1438,8 +1434,6 @@ public class KER_GIRIS extends JInternalFrame {
 				rs =null;
 				rs = ker_Access.ker_kod_alt_grup_degisken_oku(in1);
 			}
-
-
 			if (!rs.isBeforeFirst() ) {  
 				cmbaltgrup.setSelectedItem("");
 				cmbaltgrup.setEnabled(false);
@@ -1468,9 +1462,7 @@ public class KER_GIRIS extends JInternalFrame {
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			cmbozkod .removeAllItems();
 			ResultSet rs=null;
-
 			rs = ker_Access.ker_oz_kod( "G");
-
 			if (!rs.isBeforeFirst() ) {  
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				cmbozkod .addItem("");
@@ -1495,14 +1487,12 @@ public class KER_GIRIS extends JInternalFrame {
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			cmbnakliyeci .removeAllItems();
 			ResultSet rs=null;
-
 			rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
-
 			if (!rs.isBeforeFirst() ) 
 			{  
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				cmbnakliyeci .setEnabled(false);
-				cmbnakliyeci  .addItem("");
+				cmbnakliyeci .addItem("");
 				cmbnakliyeci .setSelectedItem("");
 				return;
 			} 
@@ -1944,17 +1934,17 @@ public class KER_GIRIS extends JInternalFrame {
 							rss.getDouble("CFiat"),
 							rss.getDouble("CTutar"),
 							rss.getDouble("CKur"),
-					rss.getString("CCari_Firma"),
-					rss.getString("CAdres_Firma"),
-					rss.getDouble("CIskonto"),
-					rss.getDouble("CTevkifat"),
-					rss.getInt("CAna_Grup"),
-					rss.getInt("CAlt_Grup"),
-					rss.getString("CDepo"),
-					rss.getString("COzel_Kod"),
-					rss.getString("CIzahat"),
-					rss.getInt("CNakliyeci"),
-					rss.getString("CUser")});
+							rss.getString("CCari_Firma"),
+							rss.getString("CAdres_Firma"),
+							rss.getDouble("CIskonto"),
+							rss.getDouble("CTevkifat"),
+							rss.getInt("CAna_Grup"),
+							rss.getInt("CAlt_Grup"),
+							rss.getString("CDepo"),
+							rss.getString("COzel_Kod"),
+							rss.getString("CIzahat"),
+							rss.getInt("CNakliyeci"),
+							rss.getString("CUser")});
 					txttev.setText(FORMATLAMA.doub_0(rss.getDouble("Tevkifat")));
 					satir +=1 ;
 					
@@ -1967,8 +1957,6 @@ public class KER_GIRIS extends JInternalFrame {
 					}
 					
 				}  while (rss.next()) ;
-				//mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
-
 				paketm3();
 				dOSYADAN = false;
 				toplam();
@@ -2060,7 +2048,6 @@ t.start();
 		label_9.setText("0.00");
 		lblNewLabel_20.setText(FORMATLAMA.doub_2(0));
 		
-		
 	}
 	private static void dipnot_yaz()
 	{
@@ -2071,7 +2058,6 @@ t.start();
 			lBILGI.seteVRAK(textField.getText());
 			ker_Access.dipnot_yaz(textField.getText(), textField_5.getText(),textField_6.getText(),textField_7.getText(), "K", "G",GLOBAL.KULL_ADI,
 						lBILGI,BAGLAN_LOG.kerLogDizin);
-			
 		}
 		catch (Exception ex)
 		{

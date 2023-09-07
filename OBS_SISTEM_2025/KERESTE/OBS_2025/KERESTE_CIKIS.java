@@ -1574,7 +1574,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		try {
 			String  izahat ;
 			double  miktar=0;
-			
 			int angrp, altgrp, depo, nakl;
 			depo = 0 ;
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
@@ -1968,7 +1967,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	{
 		try {
 			if (table.getSelectedRow() == -1 ) return ;
-
 			ResultSet rSet = ker_Access.paket_oku(pakno);
 			if (!rSet.isBeforeFirst() ) {  
 			}
@@ -2033,7 +2031,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			}
 			else
 			{
-				listdepo.add("");
+				//listdepo.add("");
 				while (rs.next())
 				{
 					listdepo.add(rs.getString("DEPO"));
@@ -2109,16 +2107,15 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			ResultSet rs = null;
 			rs = ker_Access.ker_barkod_kod_oku(field);
 			if (!rs.isBeforeFirst() ) {  
-					listPaket.add("");
+				listPaket.add("");
 			}
 			else
 			{
-					listPaket.clear();
-					//listPaket.add("");
-					while (rs.next())
-					{
-						listPaket.add(rs.getString("Paket_No").toString());
-					}
+				listPaket.clear();
+				while (rs.next())
+				{
+					listPaket.add(rs.getString("Paket_No").toString());
+				}
 			}
 		}
 		catch (Exception ex)

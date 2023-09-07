@@ -168,7 +168,11 @@ public class OBS_MAIN extends JFrame {
 	//KERESTE
 	private JButton btnNewButton_1 ; //Ker Giris
 	private JButton btnNewButton_24 ; // Ker Cikis
+	private JButton btnNewButton_25 ; // Grup Raporlama
+	private JButton btnNewButton_26 ; // Kereste Detay
 	private JButton btnNewButton_3 ; //Kod Aciklama Giris
+	private JButton btnNewButton_23 ; //Konsimento  Aciklama Giris
+	private JButton btnNewButton_35 ; //Firma Ismi
 	//
 	private JButton btnYenile ; // Yenile Tusu
 	private JButton btnExcell ; // Excell Aktarma
@@ -932,7 +936,7 @@ public class OBS_MAIN extends JFrame {
 		JMenuItem mntmGiris = new JMenuItem("Giris");
 		mntmGiris.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//btnNewButton_83.doClick();
+				btnNewButton_1.doClick();
 			}
 		});
 		mnKereste.add(mntmGiris);
@@ -940,10 +944,50 @@ public class OBS_MAIN extends JFrame {
 		JMenuItem mntmCikis = new JMenuItem("Cikis");
 		mntmCikis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//btnNewButton_84.doClick();
+				btnNewButton_24.doClick();
 			}
 		});
-		mnKereste.add(mntmCikis);		
+		mnKereste.add(mntmCikis);	
+		
+		JMenuItem mntmGrup = new JMenuItem("Grup Raporlama");
+		mntmGrup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_25.doClick();
+			}
+		});
+		mnKereste.add(mntmGrup);	
+		
+		JMenuItem mntmDetay = new JMenuItem("Kereste Detay");
+		mntmDetay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_26.doClick();
+			}
+		});
+		mnKereste.add(mntmDetay);	
+		
+		JMenuItem mntmKodAdi = new JMenuItem("Kod Adi Aciklama");
+		mntmKodAdi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_3.doClick();
+			}
+		});
+		mnKereste.add(mntmKodAdi);	
+		
+		JMenuItem mntmKonsAdi = new JMenuItem("Konsimento Aciklama");
+		mntmKonsAdi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_23.doClick();
+			}
+		});
+		mnKereste.add(mntmKonsAdi);	
+		
+		JMenuItem mntmKFirma = new JMenuItem("Firma Ismi");
+		mntmKFirma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_35.doClick();
+			}
+		});
+		mnKereste.add(mntmKFirma);	
 //***************************************************GENEL *************************************************
 		JMenu mnGenel = new JMenu("Genel");
 		mnGenel.addMouseMotionListener(new MouseMotionAdapter() {
@@ -1950,7 +1994,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		
-		JButton btnNewButton_25 = new JButton("");
+		btnNewButton_25 = new JButton("");
 		btnNewButton_25.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -1961,7 +2005,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_25.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-group-objects-30.png")));
 		toolBar_Kereste.add(btnNewButton_25);
 		
-		JButton btnNewButton_26 = new JButton("");
+		btnNewButton_26 = new JButton("");
 		btnNewButton_26.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("KERESTE DETAY RAPOR","");
@@ -1976,7 +2020,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_3.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-news-30.png")));
 		toolBar_Kereste.add(btnNewButton_3);
 		
-		JButton btnNewButton_23 = new JButton("");
+		btnNewButton_23 = new JButton("");
 		btnNewButton_23.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("KONSIMENTO ACIKLAMA","");
@@ -2020,7 +2064,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		
-		JButton btnNewButton_35 = new JButton("");
+		btnNewButton_35 = new JButton("");
 		btnNewButton_35.setToolTipText("Firma Ismi DEgistirme");
 		btnNewButton_35.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

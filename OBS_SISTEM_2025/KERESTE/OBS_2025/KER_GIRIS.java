@@ -1804,7 +1804,7 @@ public class KER_GIRIS extends JInternalFrame {
 			ker_BILGI.setNakliyeci(nakl);
 			ker_BILGI.setDoviz( txtdoviz.getText());
 			ker_BILGI.setKur(kur);
-			ker_BILGI.setOzel_Kod(cmbozkod.getItemAt(cmbozkod.getSelectedIndex()).toString());
+			ker_BILGI.setOzel_Kod(cmbozkod.getSelectedItem().toString());
 			ker_BILGI.setBarkod( mdl.getValueAt(i,0).toString());
 			ker_BILGI.setKodu( mdl.getValueAt(i,1).toString());
 			ker_BILGI.setPaket_No( mdl.getValueAt(i,2).toString());
@@ -1957,6 +1957,7 @@ public class KER_GIRIS extends JInternalFrame {
 					}
 					
 				}  while (rss.next()) ;
+				mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 				paketm3();
 				dOSYADAN = false;
 				toplam();
@@ -2032,6 +2033,7 @@ t.start();
 		textField_10.setText("");
 		txtkur.setText("0.0000");
 		lblkodAciklama.setText("");
+		lblkONSIMENTO.setText("");
 		dtc.setDate(new Date());
 		lblPaket.setText(FORMATLAMA.doub_0(0));
 		label_9.setText(FORMATLAMA.doub_2(0));

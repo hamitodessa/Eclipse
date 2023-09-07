@@ -580,7 +580,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		cmbnakliyeci = new JComboBox<String>();
 		cmbnakliyeci.setBounds(560, 33, 156, 22);
 		panel_2.add(cmbnakliyeci);
-
+		
+		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane_1.addTab("Yazici Bilgileri", null, panel_4, null);
@@ -1622,9 +1623,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			//*************nakliyeci
 			nakl = 0 ;
 			if ( ! cmbnakliyeci.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
-
 				rs = ker_Access.ker_kod_degisken_ara("NAKID_Y", "UNVAN", "NAKLIYECI", cmbnakliyeci.getItemAt(cmbnakliyeci.getSelectedIndex()).toString());
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1667,7 +1666,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			ker_BILGI.setCNakliyeci(nakl);
 			ker_BILGI.setCDoviz( txtdoviz.getText());
 			ker_BILGI.setCKur(kur);
-			ker_BILGI.setCOzel_Kod(cmbozkod.getItemAt(cmbozkod.getSelectedIndex()).toString());
+			ker_BILGI.setCOzel_Kod(cmbozkod.getSelectedItem().toString());
 			ker_BILGI.setPaket_No( mdl.getValueAt(i,0).toString());
 			ker_BILGI.setKodu( mdl.getValueAt(i,2).toString());
 			ker_BILGI.setMiktar(Double.parseDouble( mdl.getValueAt(i,3).toString()));
@@ -1803,6 +1802,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		textField_10.setText("");
 		txtkur.setText("0.0000");
 		lblkodAciklama.setText("");
+		lblkONSIMENTO.setText("");
 		dtc.setDate(new Date());
 		
 	}

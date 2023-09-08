@@ -165,7 +165,7 @@ public class KER_DETAY extends JInternalFrame {
 		lblmiktar.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblmiktar.setForeground(new Color(0, 0, 128));
 		lblmiktar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblmiktar.setBounds(505, 5, 49, 14);
+		lblmiktar.setBounds(450, 5, 104, 14);
 		panel.add(lblmiktar);
 	}
 	public static void hisset()

@@ -158,6 +158,8 @@ public class KER_GIRIS extends JInternalFrame {
 	private JFileChooser chooser;
 	private static boolean dOSYADAN = false;
 	
+	private static long startTimeG ;
+	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
@@ -1677,58 +1679,59 @@ public class KER_GIRIS extends JInternalFrame {
 		if(dtc.getDate() == null) return;
 		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 		if (mdl.getRowCount() == 0)  return;
-		long startTime = System.currentTimeMillis(); 
+		startTimeG = System.currentTimeMillis(); 
 		tar = TARIH_CEVIR.tarih_geri_saatli(dtc) ;
 		GuiUtil.setWaitCursor(KER_GIRIS.splitPane,true);
+		
 		satir_yaz_1();
 		dipnot_yaz();
 		acik_yaz();
-		textField.setText("");
-		textField.requestFocus();
-		//************************************
-		GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
-		long endTime = System.currentTimeMillis();
-		long estimatedTime = endTime - startTime;
-		double seconds = (double)estimatedTime/1000; 
-		OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+		
 	}
 	private static void satir_yaz_1 ()
 	{
-		
-		//Runnable runner1 = new Runnable()
-		//{ public void run() {
+		Thread.currentThread().isInterrupted();
+		Runnable runner1 = new Runnable()
+		{ public void run() {
 			try {
-				
+				GuiUtil.setWaitCursor(KER_GIRIS.splitPane,true);
 				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ(textField.getText() + " Nolu Giris Kereste Silindi");
 				lBILGI.seteVRAK(textField.getText());
 				ker_Access.ker_giris_sil(textField.getText() ,lBILGI,BAGLAN_LOG.kerLogDizin);
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-				//Progres_Bar_Temizle();
-				//int mAX = mdl.getRowCount() ;
-				//OBS_MAIN.progressBar.setMaximum(mAX+2);
+				Progres_Bar_Temizle();
+				int mAX = mdl.getRowCount() ;
+				OBS_MAIN.progressBar.setMaximum(mAX+2);
 				for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
 				{
 					if (! mdl.getValueAt(i,1).toString().equals(""))
 					{
-						//System.out.println(mAX  +" = "+ i );
-						//Progres_Bar(mAX,i);
+						Progres_Bar(mAX,i);
 						sat_yaz_2(i);
 					}
 				}
-				//System.out.println("1720" );
-				//Thread.currentThread().isInterrupted();
-				
-				//Progres_Bar_Temizle();
+				GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
+				long endTime = System.currentTimeMillis();
+				long estimatedTime = endTime - startTimeG;
+				double seconds = (double)estimatedTime/1000; 
+				OBS_MAIN.lblNewLabel_9.setText("Kayit Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+
+				dOSYADAN= true;
+				textField.setText("");
+				dOSYADAN= false;
+				Thread.currentThread().isInterrupted();
+				textField.requestFocus();
+				Progres_Bar_Temizle();
 			}
 			catch (Exception ex)
 			{
-				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Satyz1", JOptionPane.ERROR_MESSAGE);             
+				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Satyaz 1", JOptionPane.ERROR_MESSAGE);             
 			}
-		//}
-		//};
-		//Thread q = new Thread(runner1, "Code Executer1");
-		//q.start();
+		}
+		};
+		Thread q = new Thread(runner1, "Code Executer1");
+		q.start();
 	}
 	private static void sat_yaz_2(int i)
 	{

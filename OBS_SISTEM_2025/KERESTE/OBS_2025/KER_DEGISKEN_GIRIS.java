@@ -581,121 +581,94 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 	}
 	public static void kayit()
 	{
-		
-		 if(textField_1.getText().toString().equals("")) return ;
-		   try 
-		   {
-			           if( ! textField_2.getText().toString().equals("")  )//  ' ESKI KAYIT
-			           { 
-			        	   if (hangi.equals("mensei"))
-			        	   {
-			        		  
-			        			   ker_Access.ker_degisken_eski("MENSEI", textField_1.getText(), "MENSEI_DEGISKEN", "MEID_Y",  Integer.parseInt(textField_2.getText()));
-			        			   rs =  ker_Access.ker_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-								
-			        	   }
-			        	   else  if (hangi.equals("anagrup"))
-			        	   {
-			        		   
-			        		   ker_Access.ker_degisken_eski("ANA_GRUP",textField_1.getText(), "ANA_GRUP_DEGISKEN", "AGID_Y", Integer.parseInt(textField_2.getText()));
-			        			   rs =  ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-							
-			        	   }
-			        	   else  if (hangi.equals("altgrup"))
-			        	   {
-			        		   
-			        			  int in1  = 0;
-			        	           ResultSet rss =  ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
-			        	           rss.next();
-			        	           in1 = rss.getInt("AGID_Y");
-			        	           ker_Access.ker_degisken_alt_grup_eski(textField_1.getText(), in1, Integer.parseInt(textField_2.getText()));
-			        			   rs =  ker_Access.ker_kod_alt_grup_degisken_oku(in1);
-								
-			        	   }
-			        	   else  if (hangi.equals("depo"))
-			        	   {
-			        		   
-			        		   ker_Access.ker_degisken_eski("DEPO", textField_1.getText(), "DEPO_DEGISKEN", "DPID_Y",  Integer.parseInt(textField_2.getText()));
-			        			   rs = ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-								
-			        	   }
-			        	   else  if (hangi.equals("oz1"))
-			        	   {
-			        		  
-			        		   ker_Access.ker_degisken_eski("OZEL_KOD_1", textField_1.getText(), "OZ_KOD_1_DEGISKEN", "OZ1ID_Y",  Integer.parseInt(textField_2.getText()));
-			        			   rs = ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-							
-			        	   }
-			        	   else  if (hangi.equals("nak"))
-			        	   {
-			        		  
-			        		   ker_Access.ker_degisken_eski("UNVAN", textField_1.getText(), "NAKLIYECI"	, "NAKID_Y",  Integer.parseInt(textField_2.getText()));
-			        			   rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
-							
-			        	   }
-			        	 
-			           }
-			           else  // YENI KAYIT
-			           {
-			        	  
-			        	   if (hangi.equals("mensei"))
-			        	   {
-			        		   
-			        		   ker_Access.ker_degisken_kayit("MEID_Y","MENSEI_DEGISKEN", "MENSEI", textField_1.getText());
-			        			   rs =   ker_Access.ker_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-								
-			        	   }
-			        	   else  if (hangi.equals("anagrup"))
-			        	   {
-			        		  
-			        		   ker_Access.ker_degisken_kayit("AGID_Y","ANA_GRUP_DEGISKEN", "ANA_GRUP", textField_1.getText());
-				        		  rs = ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-								
-			        	   }
-			        	   else  if (hangi.equals("altgrup"))
-			        	   {
-			        		  
-			        			  int in1  = 0;  
-			        	           ResultSet rss = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
-			        	           while (rss.next())
-			        	           		{
-			        	           in1 = rss.getInt("AGID_Y");
-			        	           ker_Access.ker_degisken_alt_grup_kayit(textField_1.getText(), in1);
-			        			   rs = ker_Access.ker_kod_alt_grup_degisken_oku(in1);
-			        	   	    			}
-								
-			        	   }
-			        	   else  if (hangi.equals("depo"))
-			        	   {
-			        		   
-			        		   ker_Access.ker_degisken_kayit("DPID_Y","DEPO_DEGISKEN", "DEPO", textField_1.getText());
-			        			   rs = ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-								
-			        	   }
-			        	   else  if (hangi.equals("oz1"))
-			        	   {
-			        		   
-			        		   ker_Access.ker_degisken_kayit("OZ1ID_Y","OZ_KOD_1_DEGISKEN", "OZEL_KOD_1", textField_1.getText());
-			        			   rs = ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-								
-			        	   }
-			        	   else  if (hangi.equals("nak"))
-			        	   {
-			        		   
-			        		   ker_Access.ker_degisken_kayit("NAKID_Y","NAKLIYECI"	, "UNVAN", textField_1.getText());
-			        			   rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
-								
-			        	   }
-			           }
-			       
-			           sifirla();
-			           textField.setText("");
-			           grid_doldur();
-			           textField.requestFocus();
-		   }
-			catch (Exception ex)
+		if(textField_1.getText().toString().equals("")) return ;
+		try 
+		{
+			if( ! textField_2.getText().toString().equals("")  )//  ' ESKI KAYIT
 			{
-				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
+				if (hangi.equals("mensei"))
+				{
+					ker_Access.ker_degisken_eski("MENSEI", textField_1.getText(), "MENSEI_DEGISKEN", "MEID_Y",  Integer.parseInt(textField_2.getText()));
+					rs =  ker_Access.ker_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
+				}
+				else  if (hangi.equals("anagrup"))
+				{
+					ker_Access.ker_degisken_eski("ANA_GRUP",textField_1.getText(), "ANA_GRUP_DEGISKEN", "AGID_Y", Integer.parseInt(textField_2.getText()));
+					rs =  ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
+				}
+				else  if (hangi.equals("altgrup"))
+				{
+					int in1  = 0;
+					ResultSet rss =  ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
+					rss.next();
+					in1 = rss.getInt("AGID_Y");
+					ker_Access.ker_degisken_alt_grup_eski(textField_1.getText(), in1, Integer.parseInt(textField_2.getText()));
+					rs =  ker_Access.ker_kod_alt_grup_degisken_oku(in1);
+				}
+				else  if (hangi.equals("depo"))
+				{
+					ker_Access.ker_degisken_eski("DEPO", textField_1.getText(), "DEPO_DEGISKEN", "DPID_Y",  Integer.parseInt(textField_2.getText()));
+					rs = ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
+				}
+				else  if (hangi.equals("oz1"))
+				{
+					ker_Access.ker_degisken_eski("OZEL_KOD_1", textField_1.getText(), "OZ_KOD_1_DEGISKEN", "OZ1ID_Y",  Integer.parseInt(textField_2.getText()));
+					rs = ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
+				}
+				else  if (hangi.equals("nak"))
+				{
+					ker_Access.ker_degisken_eski("UNVAN", textField_1.getText(), "NAKLIYECI"	, "NAKID_Y",  Integer.parseInt(textField_2.getText()));
+					rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
+				}
+
 			}
+			else  // YENI KAYIT
+			{
+				if (hangi.equals("mensei"))
+				{
+					ker_Access.ker_degisken_kayit("MEID_Y","MENSEI_DEGISKEN", "MENSEI", textField_1.getText());
+					rs =   ker_Access.ker_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
+				}
+				else  if (hangi.equals("anagrup"))
+				{
+					ker_Access.ker_degisken_kayit("AGID_Y","ANA_GRUP_DEGISKEN", "ANA_GRUP", textField_1.getText());
+					rs = ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
+				}
+				else  if (hangi.equals("altgrup"))
+				{
+					int in1  = 0;  
+					ResultSet rss = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN",cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
+					while (rss.next())
+					{
+						in1 = rss.getInt("AGID_Y");
+						ker_Access.ker_degisken_alt_grup_kayit(textField_1.getText(), in1);
+						rs = ker_Access.ker_kod_alt_grup_degisken_oku(in1);
+					}
+				}
+				else  if (hangi.equals("depo"))
+				{
+					ker_Access.ker_degisken_kayit("DPID_Y","DEPO_DEGISKEN", "DEPO", textField_1.getText());
+					rs = ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
+				}
+				else  if (hangi.equals("oz1"))
+				{
+					ker_Access.ker_degisken_kayit("OZ1ID_Y","OZ_KOD_1_DEGISKEN", "OZEL_KOD_1", textField_1.getText());
+					rs = ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
+				}
+				else  if (hangi.equals("nak"))
+				{
+					ker_Access.ker_degisken_kayit("NAKID_Y","NAKLIYECI"	, "UNVAN", textField_1.getText());
+					rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
+				}
+			}
+			sifirla();
+			textField.setText("");
+			grid_doldur();
+			textField.requestFocus();
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
+		}
 	}
 }

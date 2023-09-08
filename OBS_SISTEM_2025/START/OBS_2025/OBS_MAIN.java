@@ -2929,6 +2929,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "MAIL")	MAIL.yeni();
 				else if (sonuc == "SMS")	SMS.yeni();
 				else if (sonuc == "DEGISKENLER")	DEGISKEN_GIRIS.yeni();
+				else if (sonuc == "KERESTE DEGISKENLER")	KER_DEGISKEN_GIRIS.yeni();
 				else if (sonuc == "URUN KARTI")	URUN_KART.yeni();
 				else if (sonuc == "GIDECEGI YER")	GIDECEGI_YER.yeni();
 				else if (sonuc == "COKLU IMALAT")	COKLU_IMALAT.satir_ilave();

@@ -21,7 +21,7 @@ public class KER_BILGI {
 	private int Alt_Grup ;
 	private int Depo ;
 	private int Nakliyeci ;
-	private String Ozel_Kod ;
+	private int Ozel_Kod ;
 	private String Izahat ; 
 	private String Cins ;
 	private String USER ;
@@ -40,7 +40,7 @@ public class KER_BILGI {
 	private int CAlt_Grup ;
 	private int CDepo ;
 	private int CNakliyeci ;
-	private String COzel_Kod ;
+	private int COzel_Kod ;
 	private String Cikis_Evrak ;
 	private String CIzahat ; 
 	private String CCins ;
@@ -166,10 +166,10 @@ public class KER_BILGI {
 	public void setNakliyeci(int nakliyeci) {
 		Nakliyeci = nakliyeci;
 	}
-	public String getOzel_Kod() {
+	public int getOzel_Kod() {
 		return Ozel_Kod;
 	}
-	public void setOzel_Kod(String ozel_Kod) {
+	public void setOzel_Kod(int ozel_Kod) {
 		Ozel_Kod = ozel_Kod;
 	}
 	public String getIzahat() {
@@ -280,10 +280,10 @@ public class KER_BILGI {
 	public void setCNakliyeci(int cNakliyeci) {
 		CNakliyeci = cNakliyeci;
 	}
-	public String getCOzel_Kod() {
+	public int getCOzel_Kod() {
 		return COzel_Kod;
 	}
-	public void setCOzel_Kod(String cOzel_Kod) {
+	public void setCOzel_Kod(int cOzel_Kod) {
 		COzel_Kod = cOzel_Kod;
 	}
 	public String getCikis_Evrak() {
@@ -316,6 +316,6 @@ public class KER_BILGI {
 	public void setSatir(int satir) {
 		Satir = satir;
 	}
-	
+
 
 }

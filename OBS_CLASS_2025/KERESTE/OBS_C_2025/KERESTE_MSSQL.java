@@ -162,7 +162,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " [Ana_Grup] [int] NULL,"
 				+ " [Alt_Grup] [int] NULL,"
 				+ " [Depo] [int] NULL,"
-				+ " [Ozel_Kod] [nvarchar](15) NULL,"
+				+ " [Ozel_Kod] [int] NULL,"
 				+ " [Izahat] [nvarchar](40) NULL,"
 				+ " [Nakliyeci] [int] NULL,"
 				+ " [USER] [nvarchar](15) NOT NULL,"
@@ -180,7 +180,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " [CAna_Grup] [int] NULL,"
 				+ " [CAlt_Grup] [int] NULL,"
 				+ " [CDepo] [int] NULL,"
-				+ " [COzel_Kod] [nvarchar](15) NULL,"
+				+ " [COzel_Kod] [int] NULL,"
 				+ " [CIzahat] [nvarchar](40) NULL,"
 				+ " [CNakliyeci] [int] NULL,"
 				+ " [CUSER] [nvarchar](15)  NULL,"
@@ -705,23 +705,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		
 	}
 
-	@Override
-	public ResultSet ker_oz_kod(String cins) throws ClassNotFoundException, SQLException {
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		ResultSet	rss = null;
-		String sql ;
-		if (cins.equals("G")) {
-			 sql =   "SELECT DISTINCT  Ozel_Kod  FROM KERESTE ";
-		}
-		else {
-			 sql =   "SELECT DISTINCT  COzel_Kod  FROM KERESTE";
-		}
-		
-		PreparedStatement stmt = con.prepareStatement(sql);
-		rss = stmt.executeQuery();
-		return rss;	
-	}
-
+	
 	@Override
 	public String son_no_al(String cins) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -787,7 +771,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.setInt(17, kBILGI.getAna_Grup());
 		stmt.setInt(18, kBILGI.getAlt_Grup());
 		stmt.setInt(19, kBILGI.getDepo());
-		stmt.setString(20,kBILGI.getOzel_Kod());
+		stmt.setInt(20,kBILGI.getOzel_Kod());
 		stmt.setString(21,kBILGI.getIzahat());
 		stmt.setInt(22, kBILGI.getNakliyeci());
 		stmt.setString(23,  user);
@@ -805,7 +789,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.setInt(35, kBILGI.getCAna_Grup());
 		stmt.setInt(36, kBILGI.getCAlt_Grup());
 		stmt.setInt(37, kBILGI.getCDepo());
-		stmt.setString(38,kBILGI.getCOzel_Kod());
+		stmt.setInt(38,kBILGI.getCOzel_Kod());
 		stmt.setString(39,kBILGI.getCIzahat());
 		stmt.setInt(40, kBILGI.getCNakliyeci());
 		stmt.setString(41,  kBILGI.getCUSER());
@@ -1126,7 +1110,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ "      ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.Ana_Grup),'') Ana_Grup "
 				+ "      ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.Alt_Grup),'') AS Alt_Grup "
 				+ "      ,(SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) as Depo  " 
-				+ "      ,[Ozel_Kod] "
+				+ "      ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.Ozel_Kod),'') Ozel Kod "
 				+ "      ,[Izahat] "
 				+ "      ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.Nakliyeci ) as Nakliyeci  " 
 				+ "      ,[USER] "
@@ -1144,7 +1128,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ "      ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.CAna_Grup),'') AS C_Ana_Grup "
 				+ "		 ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.CAlt_Grup),'') AS C_Alt_Grup "
 				+ "      ,ISNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo),'') AS C_Depo "
-				+ "      ,[COzel_Kod] "
+				+ "       ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.COzel_Kod),'') COzel Kod "
 				+ "      ,[CIzahat] "
 				+ "      ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.CNakliyeci ) as C_Nakliyeci  " 
 				+ "      ,[CUSER] " 
@@ -1308,7 +1292,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ "      ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE." + hANGI + "Ana_Grup),'') AS " + hANGI + "_Ana_Grup "
 				+ "		 ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE." + hANGI + "Alt_Grup),'') AS " + hANGI + "_Alt_Grup "
 				+ "      ,ISNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE." + hANGI + "Depo),'') AS " + hANGI + "_Depo "
-				+ "      ,[" + hANGI + "Ozel_Kod] "
+				+ "      ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE."+ hANGI +"Ozel_Kod),'') Ozel Kod "
 				+ "      ,[" + hANGI + "Izahat] "
 				+ "      ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE." + hANGI + "Nakliyeci ) as " + hANGI + "_Nakliyeci  " 
 				+ "      ,[" + hANGI + "USER] " 

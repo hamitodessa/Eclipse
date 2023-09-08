@@ -129,10 +129,6 @@ public class KERESTE_ACCESS {
 	{
 		_IKereste.ker_degisken_alt_grup_eski(alt_grup, ana_grup, ID);
 	}
-	public ResultSet ker_oz_kod (String cins) throws ClassNotFoundException, SQLException
-	{
-		return _IKereste.ker_oz_kod(cins);
-	}
 	public String son_no_al(String cins) throws ClassNotFoundException, SQLException
 	{
 		return _IKereste.son_no_al(cins);

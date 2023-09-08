@@ -515,11 +515,9 @@ public class KER_GIRIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_7);
 
 		cmbozkod = new JComboBox<String>();
-		cmbozkod.setEditable(true);
 		cmbozkod.setBounds(560, 7, 156, 22);
-		ComboBoxEditor jeditor = cmbozkod.getEditor();
-		JTextField textField = (JTextField)jeditor.getEditorComponent();
-		textField.setDocument(new JTextFieldLimit(15));
+		cmbozkod.setForeground(new Color(0, 0, 128));
+		cmbozkod.setFont(new Font("Dialog", Font.BOLD, 12));
 		panel_2.add(cmbozkod);
 
 		JLabel lblAnaGrup = new JLabel("Ana Grup");
@@ -1026,7 +1024,7 @@ public class KER_GIRIS extends JInternalFrame {
 					if (table.getSelectedRow() < 0 ) return ;
 					satir_sil();
 					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 					paketm3();
 				}
 				
@@ -1149,7 +1147,7 @@ public class KER_GIRIS extends JInternalFrame {
 		model.addColumn("CAna_Grup", new Integer []{( 0 )});
 		model.addColumn("CAlt_Grup", new Integer []{( 0 )});
 		model.addColumn("CDepo", new Integer []{( 0 )});
-		model.addColumn("COzel_Kod", new String []{"" });
+		model.addColumn("COzel_Kod", new Integer []{( 0 )});
 		model.addColumn("CIzahat", new String []{"" });
 		model.addColumn("CNakliyeci",new Integer []{( 0 )});
 		model.addColumn("CUser", new String []{"" });
@@ -1188,7 +1186,7 @@ public class KER_GIRIS extends JInternalFrame {
 					model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
 					dOSYADAN = false ;
 					toplam();
-					dOSYADAN = true ;
+				//	dOSYADAN = true ;
 					
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null,  ex.getMessage(),  "KOD ACIKLAMA", JOptionPane.ERROR_MESSAGE); 
@@ -1350,9 +1348,7 @@ public class KER_GIRIS extends JInternalFrame {
 						m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
 						model.setValueAt( fiat * m3,row, 11)  ;
 						paketm3();
-						dOSYADAN = false ;
 						toplam();
-						dOSYADAN = true ;
 					}
 					if (column == 4)  //m3
 					{
@@ -1360,9 +1356,7 @@ public class KER_GIRIS extends JInternalFrame {
 						fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
 						m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
 						model.setValueAt( fiat * m3,row, 11)  ;
-						dOSYADAN = false ;
 						toplam();
-						dOSYADAN = true ;
 					}
 					if (column == 8)  //FIAT
 					{
@@ -1370,21 +1364,15 @@ public class KER_GIRIS extends JInternalFrame {
 						fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
 						m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
 						model.setValueAt( fiat * m3,row, 11)  ;
-						dOSYADAN = false ;
 						toplam();
-						dOSYADAN = true ;
 					}
 					if (column == 9)  //ISKONTO
 					{
-						dOSYADAN = false ;
-						toplam();
-						dOSYADAN = true ;
+							toplam();
 					}
-					if (column == 8)  //KDV
+					if (column == 10)  //KDV
 					{
-						dOSYADAN = false ;
-						toplam();
-						dOSYADAN = true ;
+							toplam();
 					}
 					toplam();
 				}
@@ -1398,12 +1386,12 @@ public class KER_GIRIS extends JInternalFrame {
 		
 		if ( satir  < 0 ) 
 		{
-			mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+			mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 			satir = 0 ;
 		}
 		else
 		{
-			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 		}
 		table.isRowSelected(satir);
 		table.repaint();
@@ -1481,16 +1469,19 @@ public class KER_GIRIS extends JInternalFrame {
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			cmbozkod .removeAllItems();
 			ResultSet rs=null;
-			rs = ker_Access.ker_oz_kod( "G");
+			rs = ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
 			if (!rs.isBeforeFirst() ) {  
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-				cmbozkod .addItem("");
+			
+				cmbozkod  .setEnabled(false);
+				cmbozkod  .addItem("");
+				cmbozkod  .setSelectedItem("");
 				return;
 			} 
 			cmbozkod .addItem("");
 			while (rs.next())
 			{
-				cmbozkod .addItem(rs.getString("Ozel_Kod"));
+				cmbozkod .addItem(rs.getString("OZEL_KOD_1"));
 			}
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
@@ -1676,9 +1667,9 @@ public class KER_GIRIS extends JInternalFrame {
 		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 		mdll.removeRow(table.getSelectedRow());
 		table.repaint();
-		dOSYADAN = false;
+		//dOSYADAN = false;
 		toplam();
-		dOSYADAN = true;
+		//dOSYADAN = true;
 	}
 	public static void kaydet()
 	{
@@ -1729,7 +1720,7 @@ public class KER_GIRIS extends JInternalFrame {
 		{
 			String  izahat ;
 			double  miktar=0;
-			int angrp, altgrp, depo, nakl;
+			int angrp, altgrp, depo, nakl,ozk;
 			depo = 0 ;
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			ResultSet rs =null ;
@@ -1788,6 +1779,19 @@ public class KER_GIRIS extends JInternalFrame {
 				}
 			}
 			///
+			//*************oz kod
+			ozk = 0 ;
+			if ( ! cmbozkod.getSelectedItem().toString().equals("") ) {
+				rs = ker_Access.ker_kod_degisken_ara("OZ1ID_Y", "OZEL_KOD_1", "OZ_KOD_1_DEGISKEN", cmbozkod.getSelectedItem().toString());
+				if (!rs.isBeforeFirst() ) {      
+				}
+				else
+				{
+					rs.next();
+					ozk  = rs.getInt("OZ1ID_Y");
+				}
+			}
+			///
 			altgrp = 0;
 			if ( ! cmbaltgrup.getSelectedItem().toString().equals("") ) {
 				rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getSelectedItem().toString());
@@ -1821,7 +1825,7 @@ public class KER_GIRIS extends JInternalFrame {
 			ker_BILGI.setNakliyeci(nakl);
 			ker_BILGI.setDoviz( txtdoviz.getText());
 			ker_BILGI.setKur(kur);
-			ker_BILGI.setOzel_Kod(cmbozkod.getSelectedItem().toString());
+			ker_BILGI.setOzel_Kod(ozk);
 			ker_BILGI.setBarkod( mdl.getValueAt(i,0).toString());
 			ker_BILGI.setKodu( mdl.getValueAt(i,1).toString());
 			ker_BILGI.setPaket_No( mdl.getValueAt(i,2).toString());
@@ -1846,11 +1850,13 @@ public class KER_GIRIS extends JInternalFrame {
 			ker_BILGI.setCAna_Grup(Integer.parseInt(mdl.getValueAt(i,24).toString()));
 			ker_BILGI.setCAlt_Grup(Integer.parseInt(mdl.getValueAt(i,25).toString()));
 			ker_BILGI.setCDepo(Integer.parseInt(mdl.getValueAt(i,26).toString()));
-			ker_BILGI.setCOzel_Kod( mdl.getValueAt(i,27).toString());
+			ker_BILGI.setCOzel_Kod( Integer.parseInt(mdl.getValueAt(i,27).toString()));
 			ker_BILGI.setCIzahat( mdl.getValueAt(i,28).toString());
 			ker_BILGI.setCNakliyeci(Integer.parseInt(mdl.getValueAt(i,29).toString()));
 			ker_BILGI.setCUSER( mdl.getValueAt(i,30).toString());
 			ker_BILGI.setSatir(i);
+			
+
 			ker_Access.ker_kaydet(ker_BILGI, GLOBAL.KULL_ADI	,lBILGI,BAGLAN_LOG.kerLogDizin);
 		}
 		catch (Exception ex)
@@ -1870,8 +1876,8 @@ public class KER_GIRIS extends JInternalFrame {
 				yeni_fat = true;
 				dOSYADAN = true;
 				GRID_TEMIZLE.grid_temizle(table);
-				sifirla();
 				dOSYADAN = false;
+				sifirla();
 			}
 			else
 			{
@@ -1885,7 +1891,7 @@ public class KER_GIRIS extends JInternalFrame {
 				txtcari.setText(rss.getString("Cari_Firma"));
 				txtdoviz.setText(rss.getString("Doviz"));
 				txtkur.setText(FORMATLAMA.doub_4(rss.getDouble("Kur")));
-				cmbozkod.setSelectedItem(rss.getString("Ozel_Kod"));
+				
 				//  '***********GRUP DOLDUR
 				ResultSet rsa=null;
 				rsa = ker_Access.ker_kod_degisken_ara("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN",String.valueOf(rss.getInt("Ana_Grup")));
@@ -1923,13 +1929,23 @@ public class KER_GIRIS extends JInternalFrame {
 				{
 					rsa.next();
 					cmbnakliyeci.setSelectedItem(rsa.getString("UNVAN"));
+				}		
+				//**ozkod
+				rsa = null;
+				rsa = ker_Access.ker_kod_degisken_ara("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN",String.valueOf(rss.getInt("Ozel_Kod")));
+				if (!rsa.isBeforeFirst() ) {  
+					cmbozkod.setSelectedItem("");
+				} 
+				else
+				{
+					rsa.next();
+					cmbozkod.setSelectedItem(rsa.getString("OZEL_KOD_1"));
 				}			
 				rss.first();   
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 				int satir =0 ;
 				do
 				{
-					//"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""
 					mdl.insertRow(satir,new Object[]{
 							rss.getString("Barkod"),
 							rss.getString("Kodu"),
@@ -1978,7 +1994,7 @@ public class KER_GIRIS extends JInternalFrame {
 				paketm3();
 				dOSYADAN = false;
 				toplam();
-				dOSYADAN = true;
+				//dOSYADAN = true;
 				dipnot_oku();
 				kod_ADI( mdl.getValueAt(0,1).toString(), mdl.getValueAt(0,6).toString());
 				long endTime = System.currentTimeMillis();
@@ -2006,7 +2022,6 @@ t.start();
 		lblkodAciklama.setText(aciklamaString);
 		Dimension size = lblkodAciklama.getPreferredSize();
 		lblkodAciklama.setBounds(10, 55, size.width +10, 14);
-		
 		lblkONSIMENTO.setText(ker_Access.kons_adi(kons));
 		size = lblkONSIMENTO.getPreferredSize();
 		lblkONSIMENTO.setBounds(10, 35, size.width +10, 14);
@@ -2290,7 +2305,7 @@ t.start();
 							String yeniPaket =  yeniSinif + StringUtils.repeat("0", kjp) + sonpaketno  ;
 							//
 							mdl.addRow(new Object[]{"",kODU,yeniPaket,adet,
-									m3(kODU,adet),"",konsimento,"Gebze",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+									m3(kODU,adet),"",konsimento,"Gebze",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 
 						}
 						else {
@@ -2318,7 +2333,7 @@ t.start();
 							String yeniPaket =  arasinif.substring(1, 2) + StringUtils.repeat("0", kjp) + sonpaketno  ;
 							//
 							mdl.addRow(new Object[]{"",kODU,yeniPaket,adet,
-									m3(kODU,adet),"",konsimento,"Gebze",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+									m3(kODU,adet),"",konsimento,"Gebze",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 						}
 					}  
 					satir += 1 ;
@@ -2331,7 +2346,7 @@ t.start();
 				paketm3();
 				dOSYADAN = false;
 				toplam();
-				dOSYADAN = true;
+				//dOSYADAN = true;
 				Thread.currentThread().isInterrupted();
 				GuiUtil.setWaitCursor(splitPane,false);
 				long endTime = System.currentTimeMillis();
@@ -2423,6 +2438,13 @@ t.start();
     }
 
 }
+
+//		ComboBoxEditor jeditor = cmbozkod.getEditor();
+//JTextField textField = (JTextField)jeditor.getEditorComponent();
+//textField.setDocument(new JTextFieldLimit(15));
+
+
+
 //     System.out.println(satir +" = " + sonpaketno+ "==" +  sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik);
 //		mdl.insertRow(satir, new Object[]{"",sonsinif + "-" +sonkalinlik + "-" + sonboy + "-" + songenislik,"",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 

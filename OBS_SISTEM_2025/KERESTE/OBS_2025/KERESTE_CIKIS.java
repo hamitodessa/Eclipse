@@ -505,11 +505,9 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_7);
 
 		cmbozkod = new JComboBox<String>();
-		cmbozkod.setEditable(true);
 		cmbozkod.setBounds(560, 7, 156, 22);
-		ComboBoxEditor jeditor = cmbozkod.getEditor();
-		JTextField textField = (JTextField)jeditor.getEditorComponent();
-		textField.setDocument(new JTextFieldLimit(15));
+		cmbozkod.setForeground(new Color(0, 0, 128));
+		cmbozkod.setFont(new Font("Dialog", Font.BOLD, 12));
 		panel_2.add(cmbozkod);
 
 		JLabel lblAnaGrup = new JLabel("Ana Grup");
@@ -1363,17 +1361,19 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			cmbozkod .removeAllItems();
 			ResultSet rs=null;
 
-			rs = ker_Access.ker_oz_kod( "G");
+			rs = ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
 
 			if (!rs.isBeforeFirst() ) {  
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-				cmbozkod .addItem("");
+				cmbozkod .setEnabled(false);
+				cmbozkod  .addItem("");
+				cmbozkod .setSelectedItem("");
 				return;
 			} 
-			cmbozkod .addItem("");
+			cmbozkod  .addItem("");
 			while (rs.next())
 			{
-				cmbozkod .addItem(rs.getString("Ozel_Kod"));
+				cmbozkod .addItem(rs.getString("OZEL_KOD_1"));
 			}
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
@@ -1450,7 +1450,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				txtcari.setText(rss.getString("CCari_Firma"));
 				txtdoviz.setText(rss.getString("CDoviz"));
 				txtkur.setText(FORMATLAMA.doub_4(rss.getDouble("CKur")));
-				cmbozkod.setSelectedItem(rss.getString("COzel_Kod"));
+				
 				//  '***********GRUP DOLDUR
 				ResultSet rsa=null;
 				rsa = ker_Access.ker_kod_degisken_ara("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN",String.valueOf(rss.getInt("CAna_Grup")));
@@ -1488,6 +1488,16 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				{
 					rsa.next();
 					cmbnakliyeci.setSelectedItem(rsa.getString("UNVAN"));
+				}	
+				rsa = null;
+				rsa = ker_Access.ker_kod_degisken_ara("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN",String.valueOf(rss.getInt("COzel_Kod")));
+				if (!rsa.isBeforeFirst() ) {  
+					cmbozkod.setSelectedItem("");
+				} 
+				else
+				{
+					rsa.next();
+					cmbozkod.setSelectedItem(rsa.getString("OZEL_KOD_1"));
 				}			
 				rss.first();   
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
@@ -1576,7 +1586,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		try {
 			String  izahat ;
 			double  miktar=0;
-			int angrp, altgrp, depo, nakl;
+			int angrp, altgrp, depo, nakl,ozk;
 			depo = 0 ;
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			ResultSet rs =null ;
@@ -1610,8 +1620,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			kur = DecimalFormat.getNumberInstance().parse(txtkur.getText()).doubleValue();
 			angrp = 0 ;
 			//*************ANA GRUP
-			if ( ! cmbanagrup.getSelectedItem().toString().toString().equals("") ) {
-				rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getSelectedItem().toString().toString().toString());
+			if ( ! cmbanagrup.getSelectedItem().toString().equals("") ) {
+				rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getSelectedItem().toString());
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1622,8 +1632,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			}
 			//*************nakliyeci
 			nakl = 0 ;
-			if ( ! cmbnakliyeci.getSelectedItem().toString().toString().equals("") ) {
-				rs = ker_Access.ker_kod_degisken_ara("NAKID_Y", "UNVAN", "NAKLIYECI", cmbnakliyeci.getSelectedItem().toString().toString());
+			if ( ! cmbnakliyeci.getSelectedItem().toString().equals("") ) {
+				rs = ker_Access.ker_kod_degisken_ara("NAKID_Y", "UNVAN", "NAKLIYECI", cmbnakliyeci.getSelectedItem().toString());
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1632,10 +1642,24 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					nakl  = rs.getInt("NAKID_Y");
 				}
 			}
+			//*************ozkod
+			ozk = 0 ;
+
+			if ( ! cmbozkod.getSelectedItem().toString().equals("") ) {
+				rs = ker_Access.ker_kod_degisken_ara("OZ1ID_Y","OZEL_KOD_1",  "OZ_KOD_1_DEGISKEN", cmbozkod.getSelectedItem().toString());
+				
+				if (!rs.isBeforeFirst() ) {      		
+				}
+				else
+				{
+					rs.next();
+					ozk  = rs.getInt("OZ1ID_Y");
+				}
+			}
 			///
 			altgrp = 0;
-			if ( ! cmbaltgrup.getSelectedItem().toString().toString().equals("") ) {
-				rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getSelectedItem().toString().toString());
+			if ( ! cmbaltgrup.getSelectedItem().toString().equals("") ) {
+				rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getSelectedItem().toString());
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1666,7 +1690,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			ker_BILGI.setCNakliyeci(nakl);
 			ker_BILGI.setCDoviz( txtdoviz.getText());
 			ker_BILGI.setCKur(kur);
-			ker_BILGI.setCOzel_Kod(cmbozkod.getSelectedItem().toString());
+			ker_BILGI.setCOzel_Kod(ozk);
 			ker_BILGI.setPaket_No( mdl.getValueAt(i,0).toString());
 			ker_BILGI.setKodu( mdl.getValueAt(i,2).toString());
 			ker_BILGI.setMiktar(Double.parseDouble( mdl.getValueAt(i,3).toString()));

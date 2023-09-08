@@ -919,7 +919,8 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			{
 				return;
 			}
-			rs =ker_Access.fat_detay_rapor(fatno,ask);
+			rs = ker_Access.fat_detay_rapor(fatno,ask);
+			
 			GRID_TEMIZLE.grid_temizle(table_1);
 			if (! rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));

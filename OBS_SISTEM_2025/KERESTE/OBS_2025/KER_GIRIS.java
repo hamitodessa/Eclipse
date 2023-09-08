@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 import javax.swing.ActionMap;
+import javax.swing.ComboBoxEditor;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
@@ -514,11 +515,11 @@ public class KER_GIRIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_7);
 
 		cmbozkod = new JComboBox<String>();
-
 		cmbozkod.setEditable(true);
-
-
 		cmbozkod.setBounds(560, 7, 156, 22);
+		ComboBoxEditor jeditor = cmbozkod.getEditor();
+		JTextField textField = (JTextField)jeditor.getEditorComponent();
+		textField.setDocument(new JTextFieldLimit(15));
 		panel_2.add(cmbozkod);
 
 		JLabel lblAnaGrup = new JLabel("Ana Grup");
@@ -1359,6 +1360,9 @@ public class KER_GIRIS extends JInternalFrame {
 						fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
 						m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
 						model.setValueAt( fiat * m3,row, 11)  ;
+						dOSYADAN = false ;
+						toplam();
+						dOSYADAN = true ;
 					}
 					if (column == 8)  //FIAT
 					{
@@ -1366,6 +1370,21 @@ public class KER_GIRIS extends JInternalFrame {
 						fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
 						m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
 						model.setValueAt( fiat * m3,row, 11)  ;
+						dOSYADAN = false ;
+						toplam();
+						dOSYADAN = true ;
+					}
+					if (column == 9)  //ISKONTO
+					{
+						dOSYADAN = false ;
+						toplam();
+						dOSYADAN = true ;
+					}
+					if (column == 8)  //KDV
+					{
+						dOSYADAN = false ;
+						toplam();
+						dOSYADAN = true ;
 					}
 					toplam();
 				}
@@ -1743,9 +1762,9 @@ public class KER_GIRIS extends JInternalFrame {
 			double kur =0.00 ;
 			kur = DecimalFormat.getNumberInstance().parse(txtkur.getText()).doubleValue();
 			angrp = 0 ;
-			if ( ! cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) 
+			if ( ! cmbanagrup.getSelectedItem().toString().equals("") ) 
 			{
-				rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
+				rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getSelectedItem().toString());
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1756,9 +1775,9 @@ public class KER_GIRIS extends JInternalFrame {
 			}
 			//*************nakliyeci
 			nakl = 0 ;
-			if ( ! cmbnakliyeci.getItemAt(cmbanagrup.getSelectedIndex()).toString().equals("") ) {
+			if ( ! cmbnakliyeci.getSelectedItem().toString().equals("") ) {
 
-				rs = ker_Access.ker_kod_degisken_ara("NAKID_Y", "UNVAN", "NAKLIYECI", cmbnakliyeci.getItemAt(cmbnakliyeci.getSelectedIndex()).toString());
+				rs = ker_Access.ker_kod_degisken_ara("NAKID_Y", "UNVAN", "NAKLIYECI", cmbnakliyeci.getSelectedItem().toString());
 
 				if (!rs.isBeforeFirst() ) {      		
 				}
@@ -1770,10 +1789,8 @@ public class KER_GIRIS extends JInternalFrame {
 			}
 			///
 			altgrp = 0;
-			if ( ! cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString().equals("") ) {
-
-				rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getItemAt(cmbaltgrup.getSelectedIndex()).toString());
-
+			if ( ! cmbaltgrup.getSelectedItem().toString().equals("") ) {
+				rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getSelectedItem().toString());
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else

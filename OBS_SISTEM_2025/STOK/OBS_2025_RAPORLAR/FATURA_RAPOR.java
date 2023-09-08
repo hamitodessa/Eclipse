@@ -146,8 +146,8 @@ public class FATURA_RAPOR extends JInternalFrame {
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(0, 200));
-		panel.setMaximumSize(new Dimension(0, 200));
+		panel.setMinimumSize(new Dimension(0, 350));
+		panel.setMaximumSize(new Dimension(0, 350));
 		splitPane.setRightComponent(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		

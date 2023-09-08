@@ -144,8 +144,8 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(0, 200));
-		panel.setMaximumSize(new Dimension(0, 200));
+		panel.setMinimumSize(new Dimension(0, 350));
+		panel.setMaximumSize(new Dimension(0, 350));
 		splitPane.setRightComponent(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
@@ -227,7 +227,6 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		long startTime = System.currentTimeMillis(); 
 		try 
 		{
-
 			ResultSet	rs = null;
 			grup_cevir() ;
 			KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
@@ -276,98 +275,96 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
-				tc = tcm.getColumn(0);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(100);
-				
-				tc = tcm.getColumn(1);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(70);
-				
-				tc = tcm.getColumn(2);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setCellRenderer(new TARIH());
-				tc.setMinWidth(80);
+			tc = tcm.getColumn(0);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(100);
 
-				tc = tcm.getColumn(3);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(100);
-				
-				tc = tcm.getColumn(4);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(100);
-				
-				tc = tcm.getColumn(5);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(50);
+			tc = tcm.getColumn(1);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(70);
 
-				tc = tcm.getColumn(6);
-				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(3,false));
-				tc.setMinWidth(100);
-				
-				tc = tcm.getColumn(7);
-				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(2,false));
-				tc.setMinWidth(130);
-				
-				tc = tcm.getColumn(8);
-				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(2,false));
-				tc.setMinWidth(150);
-				
-				tc = tcm.getColumn(9);
-				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(2,false));
-				tc.setMinWidth(130);
-				
-				tc = tcm.getColumn(10);
-				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(2,false));
-				tc.setMinWidth(150);
-				
-				
-				
-				Dimension dd = th.getPreferredSize();
-			    dd.height = 30;
-			    th.setPreferredSize(dd); 
-				th.repaint();
-				table.setRowSelectionInterval(0, 0);
-				table.setRowHeight(21);
-				
-				int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
-				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
-				table.setRowSelectionInterval(lastRow, lastRow);
-				
-				table.setSelectionBackground(Color.PINK);
-				table.setSelectionForeground(Color.BLUE);
-				lblana.setText(FORMATLAMA.doub_0(table.getRowCount()));
+			tc = tcm.getColumn(2);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new TARIH());
+			tc.setMinWidth(80);
+
+			tc = tcm.getColumn(3);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(200);
+
+			tc = tcm.getColumn(4);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(100);
+
+			tc = tcm.getColumn(5);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(50);
+
+			tc = tcm.getColumn(6);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(3,false));
+			tc.setMinWidth(100);
+
+			tc = tcm.getColumn(7);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(2,false));
+			tc.setMinWidth(130);
+
+			tc = tcm.getColumn(8);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(2,false));
+			tc.setMinWidth(150);
+
+			tc = tcm.getColumn(9);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(2,false));
+			tc.setMinWidth(130);
+
+			tc = tcm.getColumn(10);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(2,false));
+			tc.setMinWidth(150);
+
+			Dimension dd = th.getPreferredSize();
+			dd.height = 30;
+			th.setPreferredSize(dd); 
+			th.repaint();
+			table.setRowSelectionInterval(0, 0);
+			table.setRowHeight(21);
+
+			int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
+			table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
+			table.setRowSelectionInterval(lastRow, lastRow);
+
+			table.setSelectionBackground(Color.PINK);
+			table.setSelectionForeground(Color.BLUE);
+			lblana.setText(FORMATLAMA.doub_0(table.getRowCount()));
 				//***
-				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-				double miktar = 0,tutar = 0,isk_tutar=0 ;
-				for (int i = 0 ; i <= mdl.getRowCount()-1;i++)
-				{
-					 miktar  += (double) mdl.getValueAt(i , 6);
-					 tutar  += (double) mdl.getValueAt(i , 7);
-					 isk_tutar  += (double) mdl.getValueAt(i , 8);
-				}
-				Vector<Object> data = new Vector<Object>();
-				data.add("");
-				data.add("");
-				data.add(new Date());
-				data.add("");
-				data.add("");
-				data.add("");
-				data.add(miktar);
-				data.add(tutar);
-				data.add(isk_tutar);
-				mdl.addRow(data);
+			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+			double miktar = 0,tutar = 0,isk_tutar=0 ;
+			for (int i = 0 ; i <= mdl.getRowCount()-1;i++)
+			{
+				miktar  += (double) mdl.getValueAt(i , 6);
+				tutar  += (double) mdl.getValueAt(i , 7);
+				isk_tutar  += (double) mdl.getValueAt(i , 8);
+			}
+			Vector<Object> data = new Vector<Object>();
+			data.add("");
+			data.add("");
+			data.add(new Date());
+			data.add("");
+			data.add("");
+			data.add("");
+			data.add(miktar);
+			data.add(tutar);
+			data.add(isk_tutar);
+			mdl.addRow(data);
 
-				genislik(940);
-				long endTime = System.currentTimeMillis();
-				long estimatedTime = endTime - startTime;
-				double seconds = (double)estimatedTime/1000; 
-				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+			genislik(940);
+			long endTime = System.currentTimeMillis();
+			long estimatedTime = endTime - startTime;
+			double seconds = (double)estimatedTime/1000; 
+			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 			}
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
@@ -429,9 +426,7 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				rs.next();
 				galt ="=" + Integer.toString( rs.getInt("ALID_Y"));
 			}
-
 		}
-
 		//***********************CIKIS ANA GRUP
 		if ( FILTRE.comboBox_78_2.getItemAt(FILTRE.comboBox_78_2.getSelectedIndex()).equals(""))
 		{
@@ -471,7 +466,6 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				rs.next();
 				calt ="=" + Integer.toString( rs.getInt("ALID_Y"));
 			}
-
 		}
 		//***********************GIRIS OZEL KOD
 		if ( FILTRE.comboBox_80_1.getItemAt(FILTRE.comboBox_80_1.getSelectedIndex()).equals(""))
@@ -553,7 +547,8 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				cdpo ="=" + Integer.toString( rs.getInt("DPID_Y"));
 			}
 		}
-		} catch (Exception ex) {
+		} catch (Exception ex) 
+		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
@@ -564,78 +559,72 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			ResultSet	rs = null;
 			grup_cevir() ;
 			//************* hangi adres ****************
-            String qw1, qw2, qw3,c_yer;
-            if ( FILTRE.comboBox_8_1.getItemAt(FILTRE.comboBox_8_1.getSelectedIndex()).equals("Cari_Firma"))
-           {
-                c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD + "]" ;
-                if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
-           		{
-          			qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.Cari_Firma  ) as Unvan " ;
-                    qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".[dbo].[HESAP_DETAY] WHERE HESAP_DETAY.D_HESAP = KERESTE.Cari_Firma  ) as Vergi_No " ;
-          			qw3 = "Evrak_No,Tarih, Cari_Firma" ;
- 
-           		}
-           		else {
-                	qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.CCari_Firma  ) as Unvan " ;
-                    qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".[dbo].[HESAP_DETAY] WHERE HESAP_DETAY.D_HESAP = KERESTE.CCari_Firma  ) as Vergi_No " ;
-          			qw3 = "Cikis_Evrak,CTarih, CCari_Firma" ;
-
-           		}
-           }
-            else
-            {
-                c_yer = "[OK_Adr" + BAGLAN.cariDizin.kOD + "]" ;
-                if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
-           		{
-                	  qw1 = " ,(SELECT   Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Unvan " ;
-                      qw2 = " ,(SELECT   Vergi_No FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Vergi_No " ;
-                      qw3 = "Evrak_No,Tarih, Adres_Firma" ; 
-           		}
-           		else {
-           		 qw1 = " ,(SELECT   Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.CAdres_Firma  ) as Unvan " ;
-                 qw2 = " ,(SELECT   Vergi_No FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.CAdres_Firma  ) as Vergi_No " ;
-                 qw3 = "Cikis_Evrak,CTarih, CAdres_Firma" ;
-                 
-           		
-           		
-           		}
-            }
-          
-   		
-   		
-       	KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
-		ker_BILGI.setGTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1));
-		ker_BILGI.setGTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1));
-		ker_BILGI.setGKodu1(FILTRE.formattedTextField_2.getText());
-		ker_BILGI.setGKodu2(FILTRE.formattedTextField_1_1.getText());
-		ker_BILGI.setPaket_No1(FILTRE.textField_88.getText());
-		ker_BILGI.setPaket_No2(FILTRE.textField_88_1.getText());
-		ker_BILGI.setGCari_Firma1(FILTRE.textField_84.getText());
-		ker_BILGI.setGCari_Firma2(FILTRE.textField_85.getText());
-		ker_BILGI.setEvrak_No1(FILTRE.textField_90.getText());
-		ker_BILGI.setEvrak_No2(FILTRE.textField_91.getText());
-		ker_BILGI.setGAna_Grup(gana);
-		ker_BILGI.setGAlt_Grup(galt);
-		ker_BILGI.setDepo(gdpo);
-		ker_BILGI.setOzel_Kod(goz);
-		ker_BILGI.setCTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1_1));
-		ker_BILGI.setCTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1_1));
-		ker_BILGI.setCCari_Firma1(FILTRE.textField_86.getText());
-		ker_BILGI.setCCari_Firma2(FILTRE.textField_87.getText());
-		ker_BILGI.setCEvrak_No1(FILTRE.textField_92.getText());
-		ker_BILGI.setCEvrak_No2(FILTRE.textField_93.getText());
-		ker_BILGI.setCAna_Grup(cana);
-		ker_BILGI.setCAlt_Grup(calt);
-		ker_BILGI.setCDepo(cdpo);
-		ker_BILGI.setCOzel_Kod(coz);
-		if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
-   		{
-			ker_BILGI.setgIRcIK("G");
-   		}
-		else {
-			ker_BILGI.setgIRcIK("C");
-		}
-		rs = ker_Access.fat_rapor_fat_tar(ker_BILGI,qw1,qw2,qw3);
+			String qw1, qw2, qw3,c_yer;
+			if ( FILTRE.comboBox_8_1.getItemAt(FILTRE.comboBox_8_1.getSelectedIndex()).equals("Cari_Firma"))
+			{
+				c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD + "]" ;
+				if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+				{
+					qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.Cari_Firma  ) as Unvan " ;
+					qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".[dbo].[HESAP_DETAY] WHERE HESAP_DETAY.D_HESAP = KERESTE.Cari_Firma  ) as Vergi_No " ;
+					qw3 = "Evrak_No,Tarih, Cari_Firma" ;
+				}
+				else 
+				{
+					qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.CCari_Firma  ) as Unvan " ;
+					qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".[dbo].[HESAP_DETAY] WHERE HESAP_DETAY.D_HESAP = KERESTE.CCari_Firma  ) as Vergi_No " ;
+					qw3 = "Cikis_Evrak,CTarih, CCari_Firma" ;
+				}
+			}
+			else
+			{
+				c_yer = "[OK_Adr" + BAGLAN.cariDizin.kOD + "]" ;
+				if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+				{
+					qw1 = " ,(SELECT   Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Unvan " ;
+					qw2 = " ,(SELECT   Vergi_No FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Vergi_No " ;
+					qw3 = "Evrak_No,Tarih, Adres_Firma" ; 
+				}
+				else 
+				{
+					qw1 = " ,(SELECT   Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.CAdres_Firma  ) as Unvan " ;
+					qw2 = " ,(SELECT   Vergi_No FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.CAdres_Firma  ) as Vergi_No " ;
+					qw3 = "Cikis_Evrak,CTarih, CAdres_Firma" ;
+				}
+			}
+			KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
+			ker_BILGI.setGTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1));
+			ker_BILGI.setGTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1));
+			ker_BILGI.setGKodu1(FILTRE.formattedTextField_2.getText());
+			ker_BILGI.setGKodu2(FILTRE.formattedTextField_1_1.getText());
+			ker_BILGI.setPaket_No1(FILTRE.textField_88.getText());
+			ker_BILGI.setPaket_No2(FILTRE.textField_88_1.getText());
+			ker_BILGI.setGCari_Firma1(FILTRE.textField_84.getText());
+			ker_BILGI.setGCari_Firma2(FILTRE.textField_85.getText());
+			ker_BILGI.setEvrak_No1(FILTRE.textField_90.getText());
+			ker_BILGI.setEvrak_No2(FILTRE.textField_91.getText());
+			ker_BILGI.setGAna_Grup(gana);
+			ker_BILGI.setGAlt_Grup(galt);
+			ker_BILGI.setDepo(gdpo);
+			ker_BILGI.setOzel_Kod(goz);
+			ker_BILGI.setCTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1_1));
+			ker_BILGI.setCTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1_1));
+			ker_BILGI.setCCari_Firma1(FILTRE.textField_86.getText());
+			ker_BILGI.setCCari_Firma2(FILTRE.textField_87.getText());
+			ker_BILGI.setCEvrak_No1(FILTRE.textField_92.getText());
+			ker_BILGI.setCEvrak_No2(FILTRE.textField_93.getText());
+			ker_BILGI.setCAna_Grup(cana);
+			ker_BILGI.setCAlt_Grup(calt);
+			ker_BILGI.setCDepo(cdpo);
+			ker_BILGI.setCOzel_Kod(coz);
+			if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+			{
+				ker_BILGI.setgIRcIK("G");
+			}
+			else {
+				ker_BILGI.setgIRcIK("C");
+			}
+			rs = ker_Access.fat_rapor_fat_tar(ker_BILGI,qw1,qw2,qw3);
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -643,19 +632,19 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			} 
 			else
 			{
-			table.setModel(DbUtils.resultSetToTableModel(rs));
-			JTableHeader th = table.getTableHeader();
-			
-			TableColumnModel tcm = th.getColumnModel();
-			TableColumn tc;
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				JTableHeader th = table.getTableHeader();
+
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(100);
-				
+
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(60);
-				
+
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setCellRenderer(new TARIH());
@@ -664,11 +653,11 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				tc = tcm.getColumn(3);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(300);
-				
+
 				tc = tcm.getColumn(4);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(100);
-				
+
 				tc = tcm.getColumn(5);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(3,false));
@@ -678,33 +667,33 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,false));
 				tc.setMinWidth(120);
-				
+
 				tc = tcm.getColumn(7);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,false));
 				tc.setMinWidth(130);
-				
+
 				tc = tcm.getColumn(8);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,false));
 				tc.setMinWidth(130);
-				
+
 				tc = tcm.getColumn(9);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,false));
 				tc.setMinWidth(150);
-				
+
 				Dimension dd = th.getPreferredSize();
-			    dd.height = 30;
-			    th.setPreferredSize(dd); 
+				dd.height = 30;
+				th.setPreferredSize(dd); 
 				th.repaint();
 				table.setRowSelectionInterval(0, 0);
 				table.setRowHeight(21);
-				
+
 				int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
-				
+
 				table.setSelectionBackground(Color.PINK);
 				table.setSelectionForeground(Color.BLUE);
 				lblana.setText(FORMATLAMA.doub_0(table.getRowCount()));
@@ -713,11 +702,11 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				double miktar = 0,tutar = 0,isk_tutar=0 ,db1=0,db2=0;
 				for (int i = 0 ; i <= mdl.getRowCount()-1;i++)
 				{
-					 miktar  += (double) mdl.getValueAt(i , 5);
-					 tutar  += (double) mdl.getValueAt(i , 6);
-					 isk_tutar  += (double) mdl.getValueAt(i , 7);
-					 db1  += (double) mdl.getValueAt(i ,8);
-					 db2  += (double) mdl.getValueAt(i , 9);
+					miktar  += (double) mdl.getValueAt(i , 5);
+					tutar  += (double) mdl.getValueAt(i , 6);
+					isk_tutar  += (double) mdl.getValueAt(i , 7);
+					db1  += (double) mdl.getValueAt(i ,8);
+					db2  += (double) mdl.getValueAt(i , 9);
 				}
 				Vector<Object> data = new Vector<Object>();
 				data.add("");
@@ -750,7 +739,6 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			grup_cevir() ;
 			//************* hangi adres ****************
             String qw1, qw2, c_yer;
-            System.out.println(FILTRE.comboBox_8_1.getItemAt(FILTRE.comboBox_8_1.getSelectedIndex()));
            if ( FILTRE.comboBox_8_1.getItemAt(FILTRE.comboBox_8_1.getSelectedIndex()).equals("Cari_Firma"))
            {
         	   System.out.println(FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()));
@@ -760,29 +748,28 @@ public class KER_FAT_RAPOR extends JInternalFrame {
                    qw1 = " ,(SELECT TOP 1  UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.Cari_Firma  ) as Unvan " ;
                    qw2 =" Cari_Firma" ;
           		}
-        	   else {
+        	   else 
+        	   {
         		   c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD+ "]" ;
                    qw1 = " ,(SELECT TOP 1  UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.CCari_Firma  ) as Unvan " ;
                    qw2 =" CCari_Firma" ;
-			}
-                
+        	   }
            }
-            else
-            {
-            	if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+           else
+           {
+        	   if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
           		{
             		 c_yer = "[OK_Adr" + BAGLAN.adrDizin.kOD + "]" ;
                      qw1 = " ,(SELECT Top 1  Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Unvan " ;
                      qw2 = " Adres_Firma" ;
           		}
-            	else {
+            	else 
+            	{
             		 c_yer = "[OK_Adr" + BAGLAN.adrDizin.kOD + "]" ;
                      qw1 = " ,(SELECT Top 1  Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.CAdres_Firma  ) as Unvan " ;
                      qw2 = " CAdres_Firma" ;
 				}
-               
             }
-       	
         KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
    		ker_BILGI.setGTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1));
    		ker_BILGI.setGTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1));
@@ -816,13 +803,13 @@ public class KER_FAT_RAPOR extends JInternalFrame {
    			ker_BILGI.setgIRcIK("C");
    		}
    		rs = ker_Access. fat_rapor_cari_kod(ker_BILGI,qw1,qw2,c_yer);
-			
-			GRID_TEMIZLE.grid_temizle(table);
-			if (!rs.isBeforeFirst() ) {  
+   		GRID_TEMIZLE.grid_temizle(table);
+		if (!rs.isBeforeFirst() ) 
+			{  
 				lbladet.setText(FORMATLAMA.doub_0(0));
 				lblana.setText(FORMATLAMA.doub_0(0));
 			} 
-			else
+		else
 			{
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			JTableHeader th = table.getTableHeader();
@@ -918,7 +905,6 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 	public static void detay_doldur(String fatno,String har)
 	{
 		long startTime = System.currentTimeMillis(); 
-
 		try {
 			ResultSet	rs = null;
 			if (har.equals("Satis"))

@@ -3,8 +3,6 @@ package OBS_2025;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -169,7 +167,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(masterValues.toArray(new String[masterValues.size()]));
 		for (int index = 0; index < table.getRowCount(); index++) {
 			if (index != row) {
-				String cellValue = (String) table.getValueAt(index, 0);
+				//String cellValue = (String) table.getValueAt(index, 0);
 				//if (! cellValue.equals(""))
 					//model.removeElement(cellValue);
 			}

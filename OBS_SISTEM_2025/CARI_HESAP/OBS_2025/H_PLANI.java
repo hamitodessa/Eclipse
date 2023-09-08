@@ -32,6 +32,7 @@ import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
+import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.lOG_BILGI;
 
 import java.awt.event.ActionListener;
@@ -190,7 +191,6 @@ public class H_PLANI extends JInternalFrame {
 
 		txtkodu = new JTextField();
 		txtkodu.addKeyListener(new KeyAdapter() {
-
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String sonuc = "";
@@ -200,8 +200,6 @@ public class H_PLANI extends JInternalFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-
-
 				if ( ! sonuc.equals("") )
 				{
 					txtunvan.setText(sonuc);
@@ -217,8 +215,9 @@ public class H_PLANI extends JInternalFrame {
 		txtkodu.setEnabled(false);
 		txtkodu.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtkodu.setBounds(102, 110, 137, 20);
+		txtkodu.setDocument(new JTextFieldLimit(12));
 		panel.add(txtkodu);
-		txtkodu.setColumns(10);
+		
 
 		JLabel lblNewLabel_3 = new JLabel("Unvan");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -228,14 +227,15 @@ public class H_PLANI extends JInternalFrame {
 		txtunvan = new JTextField();
 		txtunvan.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtunvan.setBounds(354, 110, 301, 20);
+		txtunvan.setDocument(new JTextFieldLimit(50));
 		panel.add(txtunvan);
-		txtunvan.setColumns(10);
+		
 
 		txtkarton = new JTextField();
 		txtkarton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtkarton.setBounds(102, 141, 86, 20);
 		panel.add(txtkarton);
-		txtkarton.setColumns(10);
+		txtkarton.setDocument(new JTextFieldLimit(5));
 
 		JLabel lblNewLabel_4 = new JLabel("Hesap Cins");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -246,66 +246,72 @@ public class H_PLANI extends JInternalFrame {
 		txthcinsi.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txthcinsi.setBounds(354, 141, 68, 20);
 		panel.add(txthcinsi);
-		txthcinsi.setColumns(10);
+		txthcinsi.setDocument(new JTextFieldLimit(3));
 
 		txtyetkili = new JTextField();
 		txtyetkili.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtyetkili.setBounds(102, 182, 254, 20);
 		panel.add(txtyetkili);
-		txtyetkili.setColumns(10);
+		txtyetkili.setDocument(new JTextFieldLimit(30));
 
 		txtadres1 = new JTextField();
 		txtadres1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtadres1.setBounds(102, 209, 320, 20);
 		panel.add(txtadres1);
-		txtadres1.setColumns(10);
+		txtadres1.setDocument(new JTextFieldLimit(35));
 
 		txtadres2 = new JTextField();
 		txtadres2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtadres2.setBounds(102, 236, 320, 20);
 		panel.add(txtadres2);
-		txtadres2.setColumns(10);
+		txtadres2.setDocument(new JTextFieldLimit(35));
 
 		txtvd = new JTextField();
 		txtvd.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtvd.setBounds(102, 263, 196, 20);
 		panel.add(txtvd);
-		txtvd.setColumns(10);
+		txtvd.setDocument(new JTextFieldLimit(25));
 
 		txttel1 = new JTextField();
 		txttel1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel1.setColumns(10);
 		txttel1.setBounds(102, 290, 150, 20);
+		txttel1.setDocument(new JTextFieldLimit(25));
 		panel.add(txttel1);
 
 		txttel3 = new JTextField();
 		txttel3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel3.setColumns(10);
 		txttel3.setBounds(102, 317, 86, 20);
+		txttel3.setDocument(new JTextFieldLimit(25));
 		panel.add(txttel3);
 
 		txto1 = new JTextField();
 		txto1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txto1.setColumns(10);
 		txto1.setBounds(102, 344, 114, 20);
+		txto1.setDocument(new JTextFieldLimit(15));
 		panel.add(txto1);
 
 		txtweb = new JTextField();
 		txtweb.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtweb.setColumns(10);
 		txtweb.setBounds(102, 371, 320, 20);
+		txtweb.setDocument(new JTextFieldLimit(50));
 		panel.add(txtweb);
 
 		txtkimlik = new JTextField();
 		txtkimlik.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtkimlik.setColumns(10);
 		txtkimlik.setBounds(506, 371, 150, 20);
+		txtkimlik.setDocument(new JTextFieldLimit(15));
 		panel.add(txtkimlik);
 
 		txtaciklama = new JTextField();
 		txtaciklama.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtaciklama.setColumns(10);
 		txtaciklama.setBounds(102, 425, 553, 20);
+		txtaciklama.setDocument(new JTextFieldLimit(30));
 		panel.add(txtaciklama);
 
 		imagePanel = new ImagePanel();
@@ -407,49 +413,51 @@ public class H_PLANI extends JInternalFrame {
 		txtsemt = new JTextField();
 		txtsemt.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtsemt.setBounds(506, 209, 150, 20);
+		txtsemt.setDocument(new JTextFieldLimit(15));
 		panel.add(txtsemt);
-		txtsemt.setColumns(10);
+		
 
 		txtsehir = new JTextField();
 		txtsehir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtsehir.setBounds(506, 236, 150, 20);
 		panel.add(txtsehir);
-		txtsehir.setColumns(10);
+		txtsehir.setDocument(new JTextFieldLimit(15));
 
 		txtvn = new JTextField();
 		txtvn.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtvn.setBounds(506, 263, 150, 20);
 		panel.add(txtvn);
-		txtvn.setColumns(10);
+		txtvn.setDocument(new JTextFieldLimit(15));
 
 		txttel2 = new JTextField();
 		txttel2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel2.setBounds(506, 290, 150, 20);
 		panel.add(txttel2);
-		txttel2.setColumns(10);
+		txttel2.setDocument(new JTextFieldLimit(25));
 
 		txtfax = new JTextField();
 		txtfax.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtfax.setBounds(506, 317, 150, 20);
 		panel.add(txtfax);
-		txtfax.setColumns(10);
+		txtfax.setDocument(new JTextFieldLimit(25));
 
 		txto3 = new JTextField();
 		txto3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txto3.setBounds(506, 344, 114, 20);
 		panel.add(txto3);
-		txto3.setColumns(10);
+		txto3.setDocument(new JTextFieldLimit(15));
 
 		txtmail = new JTextField();
 		txtmail.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtmail.setBounds(102, 398, 320, 20);
 		panel.add(txtmail);
-		txtmail.setColumns(10);
+		txtmail.setDocument(new JTextFieldLimit(30));
 
 		txto2 = new JTextField();
 		txto2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txto2.setColumns(10);
 		txto2.setBounds(308, 344, 114, 20);
+		txto3.setDocument(new JTextFieldLimit(15));
 		panel.add(txto2);
 
 		JLabel lblNewLabel_8_1_2 = new JLabel("Oz Kod 2");

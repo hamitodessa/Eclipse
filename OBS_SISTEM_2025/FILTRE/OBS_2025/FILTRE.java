@@ -454,27 +454,29 @@ public class FILTRE extends JDialog {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		//*****************************************************************************************************************
 		// Goruntu icin asagidaki blogu kaldir 
-	
-	     final boolean showTabsHeader = false;
-	    tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
-	    {
-	        @Override
-	        protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
-	            if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
-	            } else {return 0;}	        }
-	      protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
-	    }); 
 
-		
-		    // final boolean showTabsHeader = false;
-		    //tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
-		    //{
-		    //    @Override
-		    //    protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
-		    //        if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
-		    //        } else {return 0;}	        }
-		    //  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
-		    //}); 
+		final boolean showTabsHeader = false;
+		tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
+		{
+		    @Override
+		    protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
+		        if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
+		        } else {return 0;}	        }
+		  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
+		}); 
+
+
+
+
+		//final boolean showTabsHeader = false;
+		//tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
+		//{
+		//    @Override
+		//    protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
+		//        if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
+		//        } else {return 0;}	        }
+		//  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
+		//}); 
 
 //*****************************************************************************************************************		    
 		contentPanel.add(tabbedPane, BorderLayout.CENTER);
@@ -4907,10 +4909,42 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_DETAY.add(comboBox_8_1);
 		
 		comboBox_81 = new JComboBox<String>();
+		comboBox_81.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String hangi = comboBox_81.getItemAt(comboBox_81.getSelectedIndex())  ;
+				if (hangi == "GIREN")
+				{
+					dateChooser_20_1_1_1.setEnabled(false);
+					dateChooser_21_1_1_1.setEnabled(false);
+					textField_86.setEnabled(false);
+					textField_87.setEnabled(false);
+					textField_92.setEnabled(false);
+					textField_93.setEnabled(false);
+					comboBox_78_2.setEnabled(false);
+					comboBox_79_2.setEnabled(false);
+					comboBox_80_2.setEnabled(false);
+					comboBox_80_4.setEnabled(false);
+				}
+				else
+				{
+					dateChooser_20_1_1_1.setEnabled(true);
+					dateChooser_21_1_1_1.setEnabled(true);
+					textField_86.setEnabled(true);
+					textField_87.setEnabled(true);
+					textField_92.setEnabled(true);
+					textField_93.setEnabled(true);
+					comboBox_78_2.setEnabled(true);
+					comboBox_79_2.setEnabled(true);
+					comboBox_80_2.setEnabled(true);
+					comboBox_80_4.setEnabled(true);
+				}
+				
+			}
+		});
 		comboBox_81.setModel(new DefaultComboBoxModel<String>(new String[] {"GIREN", "CIKAN"}));
 		comboBox_81.setForeground(new Color(0, 0, 128));
 		comboBox_81.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_81.setBounds(638, 124, 125, 22);
+		comboBox_81.setBounds(638, 100, 125, 22);
 		comboBox_81.setVisible(false);
 		panel_KERESTE_DETAY.add(comboBox_81);
 		//**********************************************************************OK BUTTON **********************************

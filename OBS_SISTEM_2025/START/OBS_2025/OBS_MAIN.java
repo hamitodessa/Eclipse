@@ -2023,7 +2023,7 @@ public class OBS_MAIN extends JFrame {
 				form_ac("KERESTE FATURA RAPORLAMA","");
 			}
 		});
-		btnNewButton_63.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-news-30.png")));
+		btnNewButton_63.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-check-30.png")));
 		
 		toolBar_Kereste.add(btnNewButton_63);
 		
@@ -2488,11 +2488,21 @@ public class OBS_MAIN extends JFrame {
 				{
 					GLOBAL.filtre_sayfa = 22 ;
 					GLOBAL.hangi_fatura = "detay" ;
-					
 					ft = new FILTRE();
 					ft.comboBox_7_1.setVisible(false);
 					ft.comboBox_8_1.setVisible(false);
 					ft.comboBox_81.setVisible(false);
+					
+					ft.dateChooser_20_1_1_1.setEnabled(true);
+					ft.dateChooser_21_1_1_1.setEnabled(true);
+					ft.textField_86.setEnabled(true);
+					ft.textField_87.setEnabled(true);
+					ft.textField_92.setEnabled(true);
+					ft.textField_93.setEnabled(true);
+					ft.comboBox_78_2.setEnabled(true);
+					ft.comboBox_79_2.setEnabled(true);
+					ft.comboBox_80_2.setEnabled(true);
+					ft.comboBox_80_4.setEnabled(true);
 					ft.setVisible(true);
 				}
 				else if (sonuc == "KERESTE FATURA RAPORLAMA")
@@ -2503,6 +2513,19 @@ public class OBS_MAIN extends JFrame {
 					ft.comboBox_7_1.setVisible(true);
 					ft.comboBox_8_1.setVisible(true);
 					ft.comboBox_81.setVisible(true);
+					
+					ft.dateChooser_20_1_1_1.setEnabled(false);
+					ft.dateChooser_21_1_1_1.setEnabled(false);
+					ft.textField_86.setEnabled(false);
+					ft.textField_87.setEnabled(false);
+					ft.textField_92.setEnabled(false);
+					ft.textField_93.setEnabled(false);
+					ft.comboBox_78_2.setEnabled(false);
+					ft.comboBox_79_2.setEnabled(false);
+					ft.comboBox_80_2.setEnabled(false);
+					ft.comboBox_80_4.setEnabled(false);
+
+					
 					ft.setVisible(true);
 				}
 				

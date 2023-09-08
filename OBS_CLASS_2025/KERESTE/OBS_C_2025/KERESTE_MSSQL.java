@@ -1229,20 +1229,21 @@ public class KERESTE_MSSQL implements IKERESTE {
 			hANGI = "" ;
 			eVRAKNO = "Evrak_No" ;
 			aLsAT = "Alis" ;
-		dURUM =   " Cikis_Evrak between N'" + ker_rap_BILGI.getCEvrak_No1() + "' and N'" + ker_rap_BILGI.getCEvrak_No2() + "' AND" ;
+			dURUM =   " Cikis_Evrak between N'" + ker_rap_BILGI.getCEvrak_No1() + "' and N'" + ker_rap_BILGI.getCEvrak_No2() + "' AND" ;
 		}
-		else {
+		else 
+		{
 			hANGI = "C" ;
 			eVRAKNO = "Cikis_Evrak" ;
 			aLsAT = "Satis";
 			dURUM =   " Cikis_Evrak <> '' AND" ;
-
 		}
-			
 		String sql =   " SELECT "+ eVRAKNO +"   ,'"+ aLsAT +"' as Hareket," + hANGI + "Tarih  as Tarih ," + hANGI + "Cari_Firma as Cari_Firma ," + hANGI + "Adres_Firma," + hANGI + "Doviz as Doviz, " 
 				+ " SUM( (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000))  as m3 ," 
 				+" sum(((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Fiat ) as Tutar, " 
 				+" SUM(((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Fiat  ) - sum(((((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Fiat  ) * " + hANGI + "Iskonto)/100) as Iskontolu_Tutar " 
+				+" ,sum((((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto)/100) * "+ hANGI+"Kdv)/100)  AS Kdv_Tutar " 
+				+" ,sum((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto)/100 +   ((("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto) / 100) * "+ hANGI+"Kdv ) / 100)    as Toplam_Tutar " 				
 				+" FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
 				+" WHERE " 
 				+" Tarih BETWEEN '" + ker_rap_BILGI.getGTarih1() + "'" + " AND  '" + ker_rap_BILGI.getGTarih2() + " 23:59:59.998' AND" 
@@ -1354,8 +1355,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 			dURUM =   " Cikis_Evrak <> '' AND" ;
 
 		}
-
-		
 		String sql =  " SELECT "+ eVRAKNO +",'"+ aLsAT +"' as Hareket," + hANGI + "Tarih " 
 				+" " + qw1 + "" 
 				+" " + qw2 + "" 
@@ -1411,25 +1410,21 @@ public class KERESTE_MSSQL implements IKERESTE {
 		sonb = token[2];
 		song = token[3];
 		String hANGI = "" ;
-		String eVRAKNO = "" ;
 		String aLsAT = "" ;
 		String dURUM = "" ;
 		if (ker_rap_BILGI.getgIRcIK().equals("G"))
 		{
 			hANGI = "" ;
-			eVRAKNO = "Evrak_No" ;
 			aLsAT = "Alis" ;
 		    dURUM =   " Cikis_Evrak between N'" + ker_rap_BILGI.getCEvrak_No1() + "' and N'" + ker_rap_BILGI.getCEvrak_No2() + "' AND" ;
 		}
 		else {
 			hANGI = "C" ;
-			eVRAKNO = "Cikis_Evrak" ;
 			aLsAT = "Satis";
 			dURUM =   " Cikis_Evrak <> '' AND" ;
-
 		}
 
-		
+		//(" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto)/100
 		String sql =  " SELECT  " + qw2 + " ,'"+ aLsAT +"' as Hareket " 
 				+"  " + qw1 + " " 
 				+" ,  SUM( (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000))  as m3 " 
@@ -1460,8 +1455,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+" COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() 
 				+" GROUP BY " + qw2  
 				+" ORDER BY  " + qw2 + "";
-		
-		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

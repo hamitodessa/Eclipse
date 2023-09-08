@@ -2031,7 +2031,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			}
 			else
 			{
-				//listdepo.add("");
+				listdepo.add("");
 				while (rs.next())
 				{
 					listdepo.add(rs.getString("DEPO"));

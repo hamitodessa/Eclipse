@@ -226,47 +226,45 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 	private static void yenile()
 	{
 		try {
-		
-	        if (hangi.equals("mensei"))
-	        {
-	        	rs =	ker_Access.ker_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-	        }
-	        else if (hangi.equals("anagrup"))
-	        {
-	        	rs =	ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-	        }
-	        else if (hangi.equals("altgrup"))
-	        {
-	          ana_grup_doldur();
-	        }
-	        else if (hangi.equals("depo"))
-	        {
-		        	rs =	ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
-	        }
-	         else if (hangi.equals("oz1"))
-	        {
-		        	rs =	ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-	        }
-	         else if (hangi.equals("nak"))
-		        {
-			        	rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
-		        }
-	        //***********TABLO DOLDUR
-	        if (!rs.isBeforeFirst() ) {  
+
+			if (hangi.equals("mensei"))
+			{
+				rs =	ker_Access.ker_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
+			}
+			else if (hangi.equals("anagrup"))
+			{
+				rs =	ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
+			}
+			else if (hangi.equals("altgrup"))
+			{
+				ana_grup_doldur();
+			}
+			else if (hangi.equals("depo"))
+			{
+				rs =	ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
+			}
+			else if (hangi.equals("oz1"))
+			{
+				rs =	ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
+			}
+			else if (hangi.equals("nak"))
+			{
+				rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
+			}
+			//***********TABLO DOLDUR
+			if (!rs.isBeforeFirst() ) {  
 			} 
-	        else
-	        {
-	       grid_doldur();
-	        }
-	     
-	        //*************************
+			else
+			{
+				grid_doldur();
+			}
+			//*************************
 		}
 		catch (Exception ex)
 		{
-		
 			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 		}
-		}
+	}
 	private static void grid_doldur()
 	{
 		try {

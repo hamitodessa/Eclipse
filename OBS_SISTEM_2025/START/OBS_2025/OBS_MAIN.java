@@ -169,6 +169,7 @@ public class OBS_MAIN extends JFrame {
 	//KERESTE
 	private JButton btnNewButton_1 ; //Ker Giris
 	private JButton btnNewButton_24 ; // Ker Cikis
+	private JButton btnNewButton_64 ; // Urun Kod Degistirme
 	private JButton btnNewButton_25 ; // Grup Raporlama
 	private JButton btnNewButton_26 ; // Kereste Detay
 	private JButton btnNewButton_63 ; // Fatura Rapor
@@ -1989,6 +1990,20 @@ public class OBS_MAIN extends JFrame {
 		JLabel lblNewLabel_40 = new JLabel("          ");
 		toolBar_Kereste.add(lblNewLabel_40);
 		
+		btnNewButton_64 = new JButton("");
+		btnNewButton_64.setToolTipText("Kod Degistirme");
+		btnNewButton_64.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-video-editing-30.png")));
+		btnNewButton_64.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("KERESTE KOD DEGISTIRME","");
+			}
+		});
+		toolBar_Kereste.add(btnNewButton_64);
+		
+		JLabel lblNewLabel_42 = new JLabel("          ");
+		toolBar_Kereste.add(lblNewLabel_42);
+
+		
 		btnNewButton_3 = new JButton("");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1998,14 +2013,17 @@ public class OBS_MAIN extends JFrame {
 		
 		btnNewButton_25 = new JButton("");
 		btnNewButton_25.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) {
 				form_ac("KERESTE GRUP RAPOR","");
 			}
 		});
 		btnNewButton_25.setToolTipText("Grup Raporlama");
 		btnNewButton_25.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-group-objects-30.png")));
 		toolBar_Kereste.add(btnNewButton_25);
+		
+		
+		
+			
 		
 		btnNewButton_26 = new JButton("");
 		btnNewButton_26.addActionListener(new ActionListener() {
@@ -3294,6 +3312,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("KERESTE GRUP RAPOR")) internalFrame  = new KER_GRUP_RAPOR();
 			else if (pencere.equals("KERESTE DETAY RAPOR")) internalFrame  = new KER_DETAY();
 			else if (pencere.equals("KERESTE FATURA RAPORLAMA")) internalFrame  = new KER_FAT_RAPOR();
+			else if (pencere.equals("KERESTE KOD DEGISTIRME")) internalFrame  = new KER_KOD_DEGISTIRME();
 			//GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();

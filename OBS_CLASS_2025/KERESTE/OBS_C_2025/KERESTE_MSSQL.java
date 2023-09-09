@@ -932,12 +932,13 @@ public class KERESTE_MSSQL implements IKERESTE {
 	@Override
 	public ResultSet paket_oku(String pno) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String[] token = pno.toString().split("-");
 		ResultSet	rss = null;
 		String sql = "SELECT   [Evrak_No] ,[Barkod] ,[Kodu],[Paket_No],[Konsimento] ,[Miktar],[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] " 
 				+ ",[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat],[CAna_Grup]    ,[CAlt_Grup]  "
 				+ "	 ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER],Satir" 
 				+ " FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
-				+ " WHERE Paket_No = N'" + pno + "'  ORDER BY Satir" ;
+				+ " WHERE Paket_No = N'" + token[0] + "' AND Konsimento = N'"+ token[1]  +"' ORDER BY Satir" ;
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 
@@ -957,6 +958,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	@Override
 	public void ker_cikis_kaydet(KER_BILGI kBILGI) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String[] token = kBILGI.getPaket_No().toString().split("-");
 		String sql = "UPDATE KERESTE SET " 
 				+ " Cikis_Evrak = '"+ kBILGI.getCikis_Evrak() +"', CTarih = '"+ kBILGI.getCTarih() + "', " 
 				+ " CKdv = '"+ kBILGI.getCKdv() + "',CDoviz ='"+ kBILGI.getCDoviz() + "', CFiat='"+ kBILGI.getCFiat() + "',Ctutar='"+ kBILGI.getCTutar() + "', " 
@@ -964,7 +966,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " CIskonto="+ kBILGI.getCIskonto() + ",CTevkifat="+ kBILGI.getCTevkifat() + ",CAna_Grup="+ kBILGI.getCAna_Grup() + ",CAlt_Grup="+ kBILGI.getCAlt_Grup() + ", " 
 				+ " CDepo="+ kBILGI.getCDepo() + ",COzel_Kod='"+ kBILGI.getCOzel_Kod() +"',CIzahat='"+ kBILGI.getCIzahat() +"',CNakliyeci="+ kBILGI.getCNakliyeci() + ", " 
 				+ " CUSER='"+ kBILGI.getCUSER() +"'"
-				+ " WHERE Paket_No  ='" + kBILGI.getPaket_No() + "'"
+				+ " WHERE Paket_No  ='" + token[0] + "'"
 				+ " AND Satir = '"+ kBILGI.getSatir() + "'" ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -1162,7 +1164,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public ResultSet ker_barkod_kod_oku(String sira) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		String sql =   "SELECT  DISTINCT Paket_No FROM KERESTE WITH (INDEX (IX_KERESTE)) " +
+		String sql =   "SELECT  DISTINCT Paket_No , Konsimento FROM KERESTE WITH (INDEX (IX_KERESTE)) " +
 				" WHERE Cikis_Evrak = '' " +
 				" ORDER by " + sira;
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -1174,7 +1176,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public String kons_adi(String kons) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		PreparedStatement stmt = con.prepareStatement("SELECT ACIKLAMA FROM KONS_ACIKLAMA  WHERE KONS =N'" + kons+ "' ");
+		PreparedStatement stmt = con.prepareStatement("SELECT ACIKLAMA FROM KONS_ACIKLAMA  WHERE KONS =N'" + kons + "' ");
 		rss = stmt.executeQuery();
 		String result ;
 		if (!rss.isBeforeFirst() ) {  
@@ -1436,6 +1438,62 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+" COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() 
 				+" GROUP BY " + qw2  
 				+" ORDER BY  " + qw2 + "";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+
+	@Override
+	public ResultSet urun_detay(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql =  " SELECT [Evrak_No] "
+				+ "      ,[Barkod] "
+				+ "      ,[Kodu] "
+				+ "      ,[Paket_No] "
+				+ "      ,[Konsimento] "
+				+ "      ,[Miktar] "
+				+ " , (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  as m3"
+				+ "      ,[Tarih] "
+				+ "      ,[Kdv] "
+				+ "      ,[Doviz] "
+				+ "      ,[Fiat] "
+				+ "      ,[Tutar] "
+				+ "      ,[Kur] "
+				+ "      ,[Cari_Firma] "
+				+ "      ,[Adres_Firma] "
+				+ "      ,[Iskonto] "
+				+ "      ,[Tevkifat] "
+				+ "      ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.Ana_Grup),'') Ana_Grup "
+				+ "      ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.Alt_Grup),'') AS Alt_Grup "
+				+ "      ,(SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) as Depo  " 
+				+ "      ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.Ozel_Kod),'') Ozel_Kod "
+				+ "      ,[Izahat] "
+				+ "      ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.Nakliyeci ) as Nakliyeci  " 
+				+ "      ,[USER] "
+				+ "      ,[Cikis_Evrak] "
+				+ "      ,[CTarih] "
+				+ "      ,[CKdv] "
+				+ "      ,[CDoviz] "
+				+ "      ,[CFiat] "
+				+ "      ,[CTutar] "
+				+ "      ,[CKur] "
+				+ "      ,[CCari_Firma] "
+				+ "      ,[CAdres_Firma] "
+				+ "      ,[CIskonto] "
+				+ "      ,[CTevkifat] "
+				+ "      ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.CAna_Grup),'') AS C_Ana_Grup "
+				+ "		 ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.CAlt_Grup),'') AS C_Alt_Grup "
+				+ "      ,ISNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo),'') AS C_Depo "
+				+ "       ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.COzel_Kod),'') COzel_Kod "
+				+ "      ,[CIzahat] "
+				+ "      ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.CNakliyeci ) as C_Nakliyeci  " 
+				+ "      ,[CUSER] " 
+				+ "      FROM KERESTE WITH (INDEX (IX_KERESTE))  " 
+				+ "      WHERE " 
+				+ " Paket_No = N'"+ ker_rap_BILGI.getPaket_No1().toString()+ "' AND " 
+				+ " Konsimento = N'"+ ker_rap_BILGI.getKonsimento1().toString() + "'"  ; 
+		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

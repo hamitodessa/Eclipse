@@ -1504,7 +1504,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				int satir =0 ;
 				do
 				{
-					mdl.insertRow(satir,new Object[]{rss.getString("Paket_No"),rss.getString("Barkod"),rss.getString("Kodu"),
+					mdl.insertRow(satir,new Object[]{rss.getString("Paket_No") + "-" + rss.getString("Konsimento"),rss.getString("Barkod"),rss.getString("Kodu"),
 					rss.getDouble("Miktar"), m3(rss.getString("Kodu"),rss.getDouble("Miktar")),"" ,rss.getString("Konsimento"),rss.getString("CDepo"),
 					rss.getDouble("CFiat"),rss.getDouble("CIskonto"),
 					rss.getDouble("CKdv"),rss.getDouble("CTutar"),rss.getString("CIzahat"),rss.getInt("Satir")});
@@ -1991,6 +1991,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	{
 		try {
 			if (table.getSelectedRow() == -1 ) return ;
+			if (pakno.equals("")) return ;
+			System.out.println("2007=" + pakno);
 			ResultSet rSet = ker_Access.paket_oku(pakno);
 			if (!rSet.isBeforeFirst() ) {  
 			}
@@ -2003,11 +2005,12 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				}
 				else 
 				{
+					
 					DefaultTableModel model = (DefaultTableModel) table.getModel();
 					int satir = table.getSelectedRow() ;
 					int ilks = satir;
 					do {
-						model.setValueAt( rSet.getString("Paket_No"),satir, 0)  ;
+						model.setValueAt( rSet.getString("Paket_No") + "-" + rSet.getString("Konsimento"),satir, 0)  ;
 						model.setValueAt( rSet.getString("Barkod"),satir, 1)  ;
 						model.setValueAt( rSet.getString("Kodu"),satir, 2)  ;
 						model.setValueAt( rSet.getDouble("Miktar"),satir, 3)  ;
@@ -2138,7 +2141,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				listPaket.clear();
 				while (rs.next())
 				{
-					listPaket.add(rs.getString("Paket_No").toString());
+					listPaket.add(rs.getString("Paket_No").toString() + "-" + rs.getString("Konsimento").toString());
 				}
 			}
 		}

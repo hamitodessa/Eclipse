@@ -56,4 +56,5 @@ public interface IKERESTE {
 	public ResultSet fat_detay_rapor(String fno , String turu) throws ClassNotFoundException, SQLException;
 	public ResultSet fat_rapor_fat_tar(KER_RAPOR_BILGI ker_rap_BILGI,String qw1,String qw2,String qw3) throws ClassNotFoundException, SQLException;
 	public ResultSet fat_rapor_cari_kod(KER_RAPOR_BILGI ker_rap_BILGI,String qw1,String qw2,String qw3) throws ClassNotFoundException, SQLException;
+	public ResultSet urun_detay(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException;
 }

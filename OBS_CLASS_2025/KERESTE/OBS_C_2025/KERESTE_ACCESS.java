@@ -242,4 +242,8 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.fat_rapor_cari_kod(ker_rap_BILGI, qw1, qw2, qw3);
 	}
+	public ResultSet urun_detay(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.urun_detay(ker_rap_BILGI);
+	}
 }

@@ -1682,18 +1682,17 @@ public class KER_GIRIS extends JInternalFrame {
 		startTimeG = System.currentTimeMillis(); 
 		tar = TARIH_CEVIR.tarih_geri_saatli(dtc) ;
 		GuiUtil.setWaitCursor(KER_GIRIS.splitPane,true);
-		
 		satir_yaz_1();
 		dipnot_yaz();
 		acik_yaz();
-		
 	}
 	private static void satir_yaz_1 ()
 	{
 		Thread.currentThread().isInterrupted();
 		Runnable runner1 = new Runnable()
 		{ public void run() {
-			try {
+			try 
+			{
 				GuiUtil.setWaitCursor(KER_GIRIS.splitPane,true);
 				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ(textField.getText() + " Nolu Giris Kereste Silindi");
@@ -1716,7 +1715,6 @@ public class KER_GIRIS extends JInternalFrame {
 				long estimatedTime = endTime - startTimeG;
 				double seconds = (double)estimatedTime/1000; 
 				OBS_MAIN.lblNewLabel_9.setText("Kayit Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-
 				dOSYADAN= true;
 				textField.setText("");
 				dOSYADAN= false;
@@ -1786,9 +1784,7 @@ public class KER_GIRIS extends JInternalFrame {
 			//*************nakliyeci
 			nakl = 0 ;
 			if ( ! cmbnakliyeci.getSelectedItem().toString().equals("") ) {
-
 				rs = ker_Access.ker_kod_degisken_ara("NAKID_Y", "UNVAN", "NAKLIYECI", cmbnakliyeci.getSelectedItem().toString());
-
 				if (!rs.isBeforeFirst() ) {      		
 				}
 				else
@@ -1797,7 +1793,6 @@ public class KER_GIRIS extends JInternalFrame {
 					nakl  = rs.getInt("NAKID_Y");
 				}
 			}
-			///
 			//*************oz kod
 			ozk = 0 ;
 			if ( ! cmbozkod.getSelectedItem().toString().equals("") ) {
@@ -1874,8 +1869,6 @@ public class KER_GIRIS extends JInternalFrame {
 			ker_BILGI.setCNakliyeci(Integer.parseInt(mdl.getValueAt(i,29).toString()));
 			ker_BILGI.setCUSER( mdl.getValueAt(i,30).toString());
 			ker_BILGI.setSatir(i);
-			
-
 			ker_Access.ker_kaydet(ker_BILGI, GLOBAL.KULL_ADI	,lBILGI,BAGLAN_LOG.kerLogDizin);
 		}
 		catch (Exception ex)
@@ -1910,7 +1903,6 @@ public class KER_GIRIS extends JInternalFrame {
 					txtcari.setText(rss.getString("Cari_Firma"));
 					txtdoviz.setText(rss.getString("Doviz"));
 					txtkur.setText(FORMATLAMA.doub_4(rss.getDouble("Kur")));
-
 					//  '***********GRUP DOLDUR
 					ResultSet rsa=null;
 					rsa = ker_Access.ker_kod_degisken_ara("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN",String.valueOf(rss.getInt("Ana_Grup")));
@@ -2013,7 +2005,6 @@ public class KER_GIRIS extends JInternalFrame {
 					paketm3();
 					dOSYADAN = false;
 					toplam();
-					//dOSYADAN = true;
 					dipnot_oku();
 					kod_ADI( mdl.getValueAt(0,1).toString(), mdl.getValueAt(0,6).toString());
 					long endTime = System.currentTimeMillis();
@@ -2090,7 +2081,6 @@ public class KER_GIRIS extends JInternalFrame {
 		lblPaket.setText(FORMATLAMA.doub_0(0));
 		label_9.setText(FORMATLAMA.doub_2(0));
 		lblNewLabel_13.setText( FORMATLAMA.doub_0(0));
-		
 		label.setText(FORMATLAMA.doub_2(0));
 		label_1.setText(FORMATLAMA.doub_2(0));
 		label_2.setText(FORMATLAMA.doub_2(0));
@@ -2101,7 +2091,6 @@ public class KER_GIRIS extends JInternalFrame {
 		label_8_1.setText( FORMATLAMA.doub_0(0));
 		label_9.setText("0.00");
 		lblNewLabel_20.setText(FORMATLAMA.doub_2(0));
-		
 	}
 	private static void dipnot_yaz()
 	{
@@ -2210,7 +2199,6 @@ public class KER_GIRIS extends JInternalFrame {
 				chooser.setApproveButtonToolTipText("Dosya Sec");
 				chooser.addChoosableFileFilter(new FileNameExtensionFilter("Excell Dosyalari", "xls", "xlsx"));
 				chooser.setApproveButtonMnemonic('s');
-				
 				Workbook workbook = null ;
 				FileInputStream fis = null ;
 				Sheet sheet = null;
@@ -2258,19 +2246,14 @@ public class KER_GIRIS extends JInternalFrame {
 				String paketno = "" ;
 				String arapaketno = "" ;
 				String sonpaketno = "" ;
-
 				String arasinif ="" ;
-
 				String sonsinif ="" ;
 				String kalinlik ="" ;
 				String sonkalinlik ="" ;
-
 				String genislik ="" ;
 				String songenislik ="" ;
-
 				String boy ="";
 				String sonboy = "" ;
-
 				int adet = 0 ;
 				int sonadet = 0 ;
 				String konsimento = "5402" ;
@@ -2278,11 +2261,9 @@ public class KER_GIRIS extends JInternalFrame {
 				GRID_TEMIZLE.grid_temizle(table);
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 				Row row = rowIt.next();
-				
 				int satir = 0 ;
 				Progres_Bar_Temizle();
 				OBS_MAIN.progressBar.setMaximum(say);
-				
 				while(rowIt.hasNext()) 
 				{
 					if (  row.getCell(1) != null)
@@ -2326,7 +2307,6 @@ public class KER_GIRIS extends JInternalFrame {
 							//
 							mdl.addRow(new Object[]{"",kODU,yeniPaket,adet,
 									m3(kODU,adet),"",konsimento,"Gebze",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
-
 						}
 						else {
 							sonpaketno =  arapaketno ;
@@ -2360,14 +2340,12 @@ public class KER_GIRIS extends JInternalFrame {
 					//if (satir ==2000)  break;
 					row = rowIt.next();
 				}
-
 				workbook.close();
 				fis.close();
 				paketm3();
 				dOSYADAN = false;
 				toplam();
-				//dOSYADAN = true;
-				
+				Thread.currentThread().isInterrupted();
 				GuiUtil.setWaitCursor(splitPane,false);
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;
@@ -2375,8 +2353,6 @@ public class KER_GIRIS extends JInternalFrame {
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				Progres_Bar_Temizle();
-				Thread.currentThread().isInterrupted();
-				//
 			}
 			catch (Exception ex)
 			{

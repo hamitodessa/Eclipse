@@ -1493,7 +1493,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ "      WHERE " 
 				+ " Paket_No = N'"+ ker_rap_BILGI.getPaket_No1().toString()+ "' AND " 
 				+ " Konsimento = N'"+ ker_rap_BILGI.getKonsimento1().toString() + "'"  ; 
-		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

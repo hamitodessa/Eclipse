@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.JTableHeader;
@@ -25,6 +26,7 @@ import javax.swing.table.TableColumnModel;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KER_RAPOR_BILGI;
 import OBS_C_2025.SAGA;
@@ -32,6 +34,9 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import net.proteanit.sql.DbUtils;
+import javax.swing.border.TitledBorder;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 @SuppressWarnings({"serial","static-access"})
 public class KER_KOD_DEGISTIRME extends JInternalFrame {
@@ -40,6 +45,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	private static JTable table;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -80,7 +86,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		splitPane.setLeftComponent(panel);
 		
 		JLabel lblNewLabel = new JLabel("Paket No");
-		lblNewLabel.setBounds(29, 39, 48, 14);
+		lblNewLabel.setBounds(29, 39, 70, 14);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Konsimento");
@@ -89,7 +95,9 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
+		textField.setDocument(new JTextFieldLimit(10));
 		textField.setBounds(117, 11, 96, 20);
+	
 		panel.add(textField);
 		
 		textField.getDocument().addDocumentListener(new DocumentListener() {
@@ -112,6 +120,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		textField_1.setDocument(new JTextFieldLimit(10));
 		textField_1.setBounds(117, 36, 130, 20);
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -132,20 +141,50 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		});
 		panel.add(textField_1);
 		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(null, "Yeni Kod", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(354, 11, 255, 50);
+		panel_1.setLayout(null);
+		panel.add(panel_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		textField_2.setBounds(59, 15, 44, 20);
+		textField_2.setDocument(new JTextFieldLimit(2));
+		panel_1.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/save.png")));
+		btnNewButton.setBounds(124, 14, 20, 23);
+		panel_1.add(btnNewButton);
+///		
+		JSplitPane splitPane1 = new JSplitPane();
+		splitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane1.setDividerSize(0);
+		splitPane1.setResizeWeight(1.0);
+		splitPane.setRightComponent(splitPane1);
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		splitPane.setRightComponent(scrollPane);
+		splitPane1.setLeftComponent(scrollPane);
 		
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table.setGridColor(oac.gridcolor);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-
 		table.setGridColor(oac.gridcolor);
-	
 		scrollPane.setViewportView(table);
+	
+////
+		JPanel panel1 = new JPanel();
+		panel1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel1.setMinimumSize(new Dimension(0, 25));
+		panel1.setMaximumSize(new Dimension(0, 25));
+		splitPane1.setRightComponent(panel1);
+		panel1.setLayout(null);
+
 
 	}
 	private void hisset()
@@ -153,8 +192,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		long startTime = System.currentTimeMillis(); 
 		try {
 			ResultSet	rs = null;
-			System.out.println(textField_1.getText() + "-" + textField.getText());
-			
 			KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
 			ker_BILGI.setPaket_No1(textField_1.getText());
 			ker_BILGI.setKonsimento1(textField.getText());

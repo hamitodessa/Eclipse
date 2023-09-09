@@ -401,7 +401,6 @@ public class KER_DETAY extends JInternalFrame {
 				tc.setMinWidth(90);
 
 
-
 				lbladet.setText(FORMATLAMA.doub_0(mdl.getRowCount()));
 				Dimension dd = th.getPreferredSize();
 				dd.height = 30;

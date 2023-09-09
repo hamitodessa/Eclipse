@@ -1447,6 +1447,25 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public ResultSet urun_detay(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
+		String ilks ,ilkk,ilkb,ilkg;
+		ilks = token[0];
+		if (ilks.equals("00")) {
+			ilks = "";
+		}
+		ilkk = token[1];
+		if (ilkk.equals("000")) {
+			ilkk = "";
+		}
+		ilkb = token[2];
+		if (ilkb.equals("0000")) {
+			ilkb = "";
+		}
+		ilkg = token[3];
+		if (ilkg.equals("0000")) {
+			ilkg = "";
+		}
+
 		String sql =  " SELECT [Evrak_No] "
 				+ "      ,[Barkod] "
 				+ "      ,[Kodu] "
@@ -1488,13 +1507,29 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ "       ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.COzel_Kod),'') COzel_Kod "
 				+ "      ,[CIzahat] "
 				+ "      ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.CNakliyeci ) as C_Nakliyeci  " 
-				+ "      ,[CUSER] " 
+				+ "      ,[CUSER] ,Satir" 
 				+ "      FROM KERESTE WITH (INDEX (IX_KERESTE))  " 
 				+ "      WHERE " 
-				+ " Paket_No = N'"+ ker_rap_BILGI.getPaket_No1().toString()+ "' AND " 
-				+ " Konsimento = N'"+ ker_rap_BILGI.getKonsimento1().toString() + "'"  ; 
+				+" SUBSTRING(KERESTE.Kodu, 1, 2) like '%"+ ilks +"%'  AND" //IIF(500<1000, 'YES', 'NO')
+				+" SUBSTRING(KERESTE.Kodu, 4, 3) like '%"+ilkk +"%' AND" 
+				+" SUBSTRING(KERESTE.Kodu, 8, 4) like '%"+ilkb +"%' AND" 
+				+" SUBSTRING(KERESTE.Kodu, 13, 4) like '%"+ilkg +"%'  AND" 
+				+ " Paket_No like N'%"+ ker_rap_BILGI.getPaket_No1().toString()+ "' AND " 
+				+ " Konsimento like N'%"+ ker_rap_BILGI.getKonsimento1().toString() + "%'"  ; 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
+	}
+
+	@Override
+	public void ker_kod_degis(String paket_No, String kon, String yenikod,int satir) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql = "UPDATE KERESTE  " 
+				+ " SET  Kodu = CONCAT(N'"+ yenikod + "' , SUBSTRING (Kodu, 3,14))" 
+				+ " WHERE  Paket_No = N'" + paket_No + "' AND Konsimento = N'" + kon + "' AND " 
+				+ " Satir =" + satir;
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
 	}
 }

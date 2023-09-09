@@ -246,4 +246,10 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.urun_detay(ker_rap_BILGI);
 	}
+	public void ker_kod_degis(String paket_No , String kon , String yenikod, int satir,lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+	{
+		_IKereste.ker_kod_degis(paket_No, kon, yenikod,satir);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
+	}
 }

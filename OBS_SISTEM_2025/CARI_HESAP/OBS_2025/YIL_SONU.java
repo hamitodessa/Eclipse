@@ -297,7 +297,6 @@ public class YIL_SONU extends JInternalFrame {
 		panel_1.add(lblNewLabel_1);
 
 		doldur();
-
 		//***********
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
 		{
@@ -308,11 +307,9 @@ public class YIL_SONU extends JInternalFrame {
 					int row;
 					row = table.getSelectedRow();     //e.getFirstRow();
 					int column = e.getColumn();
-					//      Object data = model.getValueAt(row, column);
 					secilen_satir();
 				}
 			}
-
 		});
 		//****
 	}
@@ -328,7 +325,6 @@ public class YIL_SONU extends JInternalFrame {
 				return;
 			}
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			model.addColumn("Sec",Boolean);
 			table.moveColumn(table.getColumnCount()-1, 0);
@@ -342,7 +338,7 @@ public class YIL_SONU extends JInternalFrame {
 			JCheckBox checkBox = new JCheckBox();
 			checkBox.setHorizontalAlignment(JCheckBox.CENTER);
 			DefaultCellEditor dce = new DefaultCellEditor( checkBox );
-			table.getColumnModel().getColumn(0).setCellEditor(dce);
+			tc.setCellEditor(dce);
 			tc.setCellRenderer(new CheckBoxRenderer());
 			tc.setMinWidth(50);
 

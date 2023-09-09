@@ -677,5 +677,11 @@ public class KERESTE_MYSQL implements IKERESTE {
 		return null;
 	}
 
+	@Override
+	public void ker_kod_degis(String paket_No, String kon, String yenikod,int satir) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

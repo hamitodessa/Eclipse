@@ -15,6 +15,7 @@ import GUNLUK.HAZIR_GOREVLER;
 import KER_RAPOR.KER_DETAY;
 import KER_RAPOR.KER_FAT_RAPOR;
 import KER_RAPOR.KER_GRUP_RAPOR;
+import KER_RAPOR.KER_ORT_SATIS;
 
 import javax.swing.JDesktopPane;
 import java.awt.Toolkit;
@@ -176,6 +177,7 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_3 ; //Kod Aciklama Giris
 	private JButton btnNewButton_23 ; //Konsimento  Aciklama Giris
 	private JButton btnNewButton_35 ; //Firma Ismi
+	private JButton btnNewButton_66 ; // Ortalama Satis
 	//
 	private JButton btnYenile ; // Yenile Tusu
 	private JButton btnExcell ; // Excell Aktarma
@@ -2045,6 +2047,18 @@ public class OBS_MAIN extends JFrame {
 		
 		toolBar_Kereste.add(btnNewButton_63);
 		
+		btnNewButton_66 = new JButton("");
+		btnNewButton_66.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("KERESTE ORTALAMA SATIS","");
+			}
+		});
+		btnNewButton_66.setToolTipText("Ortalama Satis Fiati");
+		btnNewButton_66.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-approximately-not-equal-30.png")));
+
+		
+		toolBar_Kereste.add(btnNewButton_66);
+		
 		JLabel lblNewLabel_41 = new JLabel("          ");
 		toolBar_Kereste.add(lblNewLabel_41);
 		btnNewButton_3.setToolTipText("Kod Aciklama Giris");
@@ -3329,6 +3343,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("KERESTE FATURA RAPORLAMA")) internalFrame  = new KER_FAT_RAPOR();
 			else if (pencere.equals("KERESTE KOD DEGISTIRME")) internalFrame  = new KER_KOD_DEGISTIRME();
 			else if (pencere.equals("KERESTE DEGISKEN YENILEME")) internalFrame  = new KER_DEGISKEN_DEGIS();
+			else if (pencere.equals("KERESTE ORTALAMA SATIS")) internalFrame  = new KER_ORT_SATIS();
 			//GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();

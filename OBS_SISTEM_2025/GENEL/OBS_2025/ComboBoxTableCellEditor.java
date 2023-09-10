@@ -7,6 +7,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.AbstractCellEditor;
 import javax.swing.DefaultComboBoxModel;
@@ -89,7 +90,11 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 						}
 						else if (nerden.equals("ker_cikis"))
 						{
-							KERESTE_CIKIS.pakkont(editorComponent.getText().toString());
+							try {
+								KERESTE_CIKIS.kod_aciklama_bul(editorComponent.getText().toString());
+							} catch (ClassNotFoundException | SQLException e1) {
+								e1.printStackTrace();
+							}
 						}
 						return;
 					}

@@ -23,6 +23,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.SOLA;
@@ -156,14 +157,14 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		table.setSelectionForeground(Color.BLUE);
 		
 		doldur(0);
-		//String deger;
-		//String[] parts;
-		//Font bigFont;
-		//deger = GLOBAL.setting_oku("CARI_HSPPLN").toString();
-		//deger = deger.substring(1, deger.length()-1);
-		//parts = deger.split(",");
-		//bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-		//table.setFont(bigFont);
+		String deger;
+		String[] parts;
+		Font bigFont;
+		deger = GLOBAL.setting_oku("KER_RAPORLAMA").toString();
+		deger = deger.substring(1, deger.length()-1);
+		parts = deger.split(",");
+		bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+		table.setFont(bigFont);
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, ex.getMessage(), "KONSIMENTO", JOptionPane.ERROR_MESSAGE);
 		}

@@ -491,7 +491,6 @@ public class KER_DETAY extends JInternalFrame {
 				rs.next();
 				galt ="=" + Integer.toString( rs.getInt("ALID_Y"));
 			}
-
 		}
 		//***********************CIKIS ANA GRUP
 		if ( FILTRE.comboBox_78_2.getItemAt(FILTRE.comboBox_78_2.getSelectedIndex()).equals(""))

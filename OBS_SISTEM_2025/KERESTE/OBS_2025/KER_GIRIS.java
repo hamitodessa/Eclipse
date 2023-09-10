@@ -833,7 +833,7 @@ public class KER_GIRIS extends JInternalFrame {
 		panel_71.add(label_9);
 		splitPane_3.setLeftComponent(panel_71);
 		
-		lblPaket = new JLabel("0.000");
+		lblPaket = new JLabel("0");
 		lblPaket.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPaket.setForeground(new Color(139, 0, 0));
 		lblPaket.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -846,6 +846,11 @@ public class KER_GIRIS extends JInternalFrame {
 		label_8_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_8_1.setBounds(315, 5, 85, 14);
 		panel_71.add(label_8_1);
+		
+		JLabel lblNewLabel_8 = new JLabel("Paket");
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_8.setBounds(560, 5, 48, 14);
+		panel_71.add(lblNewLabel_8);
 		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_2.setBounds(2, 22, 1158, 100);
@@ -877,7 +882,7 @@ public class KER_GIRIS extends JInternalFrame {
 		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_6.setForeground(Color.BLUE);
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_6.setBounds(306, 11, 99, 14);
+		label_6.setBounds(306, 11, 95, 14);
 		panel_1.add(label_6);
 		
 		JLabel lblKdv = new JLabel("K.D.V.");
@@ -901,7 +906,7 @@ public class KER_GIRIS extends JInternalFrame {
 		label_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_7.setForeground(Color.BLUE);
 		label_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_7.setBounds(306, 39, 99, 14);
+		label_7.setBounds(306, 39, 95, 14);
 		panel_1.add(label_7);
 		
 		JLabel lblTevkifatOrani = new JLabel("Tevkifat Orani");
@@ -1332,6 +1337,10 @@ public class KER_GIRIS extends JInternalFrame {
 					int row;
 					row = table.getSelectedRow();     //e.getFirstRow();
 					int column = e.getColumn();
+					if (column == 1)  //Paket
+					{
+						paketm3();
+					}
 					if (column == 2)  //Paket
 					{
 						paketm3();
@@ -1359,7 +1368,7 @@ public class KER_GIRIS extends JInternalFrame {
 						fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
 						m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
 						model.setValueAt( fiat * m3,row, 11)  ;
-						toplam();
+						//toplam();
 					}
 					if (column == 8)  //FIAT
 					{
@@ -1371,11 +1380,11 @@ public class KER_GIRIS extends JInternalFrame {
 					}
 					if (column == 9)  //ISKONTO
 					{
-							toplam();
+						toplam();
 					}
 					if (column == 10)  //KDV
 					{
-							toplam();
+						toplam();
 					}
 					toplam();
 				}
@@ -1764,7 +1773,7 @@ public class KER_GIRIS extends JInternalFrame {
 	{
 		try 
 		{
-			String  izahat ;
+			String  izahat ="";
 			double  miktar=0;
 			int angrp, altgrp, depo, nakl,ozk;
 			depo = 0 ;
@@ -1785,19 +1794,7 @@ public class KER_GIRIS extends JInternalFrame {
 					depo = rs.getInt("DPID_Y");
 				}
 			}
-			miktar = Double.parseDouble( mdl.getValueAt(i,3).toString());
-			double tutar ;
-			tutar =Double.parseDouble(mdl.getValueAt(i,11).toString());
-			if ( mdl.getValueAt(i,12).toString().equals(""))
-			{
-				izahat = "" ;
-			}
-			else
-			{
-				izahat =  mdl.getValueAt(i,12) .toString();
-			}
-			double kur =0.00 ;
-			kur = DecimalFormat.getNumberInstance().parse(txtkur.getText()).doubleValue();
+			
 			angrp = 0 ;
 			if ( ! cmbanagrup.getSelectedItem().toString().equals("") ) 
 			{
@@ -1846,6 +1843,12 @@ public class KER_GIRIS extends JInternalFrame {
 					altgrp  = rs.getInt("ALID_Y");
 				}
 			}
+			miktar = Double.parseDouble( mdl.getValueAt(i,3).toString());
+			double tutar ;
+			tutar =Double.parseDouble(mdl.getValueAt(i,11).toString());
+			izahat =  mdl.getValueAt(i,12) .toString();
+			double kur =0.00 ;
+			kur = DecimalFormat.getNumberInstance().parse(txtkur.getText()).doubleValue();
 			double tevk = DecimalFormat.getNumberInstance().parse(txttev.getText()).doubleValue()  ;
 			double fiat =0 ;
 			fiat = Double.parseDouble( mdl.getValueAt(i,8).toString());

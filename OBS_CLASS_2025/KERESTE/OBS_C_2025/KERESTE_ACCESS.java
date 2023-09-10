@@ -252,4 +252,15 @@ public class KERESTE_ACCESS {
 		for ( ILOGGER  _Logger : _Logger )
 			_Logger.Logla(lBILGI, dBILGI);
 	}
+	public void degisken_degistir(int anagrp,int altgrp, int anaygrp,int altygrp , String durum
+			, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.degisken_degistir(anagrp, altgrp, anaygrp, altygrp,durum);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
+	}
+	public String[] kod_aciklama_bul(String paket, String kons) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.kod_aciklama_bul(paket,kons);
+	}
 }

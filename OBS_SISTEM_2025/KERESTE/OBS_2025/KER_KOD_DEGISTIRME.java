@@ -14,8 +14,6 @@ import java.awt.event.MouseListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.Vector;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -74,7 +72,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	private JFormattedTextField formattedTextField ;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_4 ;
-	private static final Vector<?> Boolean = null;
 	
 	CheckBoxHeader asdBoxHeader = new CheckBoxHeader(new MyItemListener());
 
@@ -98,6 +95,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public KER_KOD_DEGISTIRME() {
+		setMaximizable(true);
 		setIconifiable(true);
 		setTitle("KERESTE KOD DEGISTIRME");
 		setResizable(true);
@@ -239,6 +237,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		panel_1.add(btnNewButton);
 		
 		lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4.setBounds(113, 19, 240, 14);
 		panel_1.add(lblNewLabel_4);
 		
@@ -333,9 +332,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			else
 			{
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			model.addColumn("Sec",Boolean);
-			table.moveColumn(table.getColumnCount()-1, 0);
 
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
@@ -593,14 +589,10 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 					ker_Access.ker_kod_degis(modell.getValueAt(i, 3).toString(),
 							modell.getValueAt(i, 4).toString(),
 							textField_2.getText(),
-							(int) modell.getValueAt(i, 42) ,
+							(int) modell.getValueAt(i, 0) ,
 							lBILGI,BAGLAN_LOG.kerLogDizin);
 				}
 			}
-			//for(int x = 0, y = table.getRowCount(); x < y; x++)
-			//{
-			//	table.setValueAt(new Boolean(false),x,0);
-			//}
 			GRID_TEMIZLE.grid_temizle(table);
 			
 			JTableHeader th = table.getTableHeader();
@@ -630,9 +622,9 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		DefaultTableModel modell = (DefaultTableModel)table.getModel();
 		for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
 		{
-			if ( modell.getValueAt(i,43) != null) 
+			if ( modell.getValueAt(i,0) != null) 
 			{
-				if (  (boolean) modell.getValueAt(i,43) )
+				if (  (boolean) modell.getValueAt(i,0) )
 				{
 					satir += 1 ;
 				}

@@ -1466,8 +1466,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		if (ilkg.equals("0000")) {
 			ilkg = "";
 		}
-
-		String sql =  " SELECT [Evrak_No] "
+		String sql =  " SELECT CAST(0 as bit) ,[Evrak_No] "
 				+ "      ,[Barkod] "
 				+ "      ,[Kodu] "
 				+ "      ,[Paket_No] "
@@ -1532,5 +1531,46 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		
+	}
+
+	@Override
+	public void degisken_degistir(int anagrp, int altgrp, int anaygrp, int altygrp,String durum)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
+		String sql = "" ;
+		if(durum.equals("G"))
+		{
+			sql = "UPDATE KERESTE  SET Ana_Grup = '" + anaygrp + "'  , Alt_Grup = '" + altygrp + "'  WHERE Ana_Grup = '" + anagrp + "'  AND  Alt_Grup = '" + altgrp + "' ";
+		}
+		else if(durum.equals("G"))
+		{
+			sql = "UPDATE KERESTE  SET CAna_Grup = '" + anaygrp + "'  , CAlt_Grup = '" + altygrp + "'  WHERE CAna_Grup = '" + anagrp + "'  AND  CAlt_Grup = '" + altgrp + "' ";
+		}
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
+	}
+
+	@Override
+	public String[] kod_aciklama_bul(String paket, String kons) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		PreparedStatement stmt = con.prepareStatement("SELECT DISTINCT (SELECT ACIKLAMA FROM KOD_ACIKLAMA WHERE Kod = SUBSTRING(KERESTE.Kodu,0,3)) as ACIKLAMA ,"
+					+ " (SELECT ACIKLAMA FROM KONS_ACIKLAMA WHERE KONS = '" + kons + "') as KONS_ACIKLAMA"
+					+ " FROM KERESTE " 
+								+ " WHERE Paket_No ='" + paket + "' and  Konsimento = '" + kons+"' ");
+		rss = stmt.executeQuery();
+		String result[] = {"",""} ;
+		if (!rss.isBeforeFirst() ) {  
+			result[0] = "" ;
+			result[1] = "" ;
+		}
+		else
+		{
+			rss.next();
+			result[0] = rss.getString("ACIKLAMA");
+			result[1] = rss.getString("KONS_ACIKLAMA");
+		}
+		return result;	
 	}
 }

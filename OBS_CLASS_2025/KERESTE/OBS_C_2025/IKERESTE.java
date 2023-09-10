@@ -58,4 +58,6 @@ public interface IKERESTE {
 	public ResultSet fat_rapor_cari_kod(KER_RAPOR_BILGI ker_rap_BILGI,String qw1,String qw2,String qw3) throws ClassNotFoundException, SQLException;
 	public ResultSet urun_detay(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException;
 	public void ker_kod_degis(String paket_No , String kon , String yenikod,int satir) throws ClassNotFoundException, SQLException;
+	public void degisken_degistir(int anagrp,int altgrp, int anaygrp,int altygrp,String durum) throws ClassNotFoundException, SQLException;
+	public String[] kod_aciklama_bul(String paket, String kons) throws ClassNotFoundException, SQLException;
 }

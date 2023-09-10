@@ -2117,6 +2117,9 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_65.setToolTipText("Degisken Yenileme");
 		
 		toolBar_Kereste.add(btnNewButton_65);
+		
+		JLabel lblNewLabel_43 = new JLabel("                    ");
+		toolBar_Kereste.add(lblNewLabel_43);
 		comboDegisken_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Nakliyeci"}));
 		toolBar_Kereste.add(comboDegisken_1);
 		//*********************************************************** GIDEN RAPOR *********************************************************************************
@@ -2306,6 +2309,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "KERESTE DEGISKENLER") KER_DEGISKEN_GIRIS.kayit();
 				else if (sonuc == "KERESTE GIRIS") KER_GIRIS.kaydet();
 				else if (sonuc == "KERESTE CIKIS") KERESTE_CIKIS.kaydet();
+				else if (sonuc == "KERESTE DEGISKEN YENILEME")	KER_DEGISKEN_DEGIS.kaydet();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});

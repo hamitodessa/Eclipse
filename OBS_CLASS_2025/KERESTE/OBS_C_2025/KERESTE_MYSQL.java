@@ -683,5 +683,18 @@ public class KERESTE_MYSQL implements IKERESTE {
 		
 	}
 
-	
+	@Override
+	public void degisken_degistir(int anagrp, int altgrp, int anaygrp, int altygrp, String durum)
+			throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String[] kod_aciklama_bul(String paket, String kons) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+		
 }

@@ -1033,7 +1033,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	@Override
 	public ResultSet grp_rapor(String gruplama,String sstr_2, String sstr_4, String kur_dos, String qwq6,
 			String qwq7, String qwq8, String k1, String k2, String s1, String s2, String jkj,
-			String t1, String t2, String sstr_5, String sstr_1,String orderBY,String dURUM) throws ClassNotFoundException, SQLException {
+			String t1, String t2, String sstr_5, String sstr_1,String orderBY,String dURUM,String ko1, String ko2) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String[] token = k1.toString().split("-");
@@ -1060,6 +1060,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' " +
 				" AND "+ dURUM + "Cari_Firma between N'" + s1 + "' AND N'" + s2 + "'" +
+				" AND Konsimento between N'" + ko1 + "' AND N'" + ko2 + "'" +
 				" AND  KERESTE."+ dURUM + "Tarih BETWEEN '" +t1 + "'" + " AND  '" + t2 + " 23:59:59.998'" +
 				"  ) as s  " +
 				" PIVOT " +

@@ -420,6 +420,9 @@ public class FILTRE extends JDialog {
 	public static JTextField textField_91;
 	public static JTextField textField_92;
 	public static JTextField textField_93;
+	public static JTextField textField_89;
+	public static JTextField textField_94;
+	
 	
 	
 	
@@ -464,8 +467,7 @@ public class FILTRE extends JDialog {
 		        } else {return 0;}	        }
 		  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 		}); 
-
-
+	
 
 
 		//final boolean showTabsHeader = false;
@@ -4444,7 +4446,7 @@ public class FILTRE extends JDialog {
 		
 		JLabel lblHesapKodu_2 = new JLabel("Hesap Kodu");
 		lblHesapKodu_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblHesapKodu_2.setBounds(10, 61, 82, 14);
+		lblHesapKodu_2.setBounds(10, 60, 82, 14);
 		panel_KERESTE.add(lblHesapKodu_2);
 		
 		JLabel lblBirim_2 = new JLabel("Birim");
@@ -4512,7 +4514,7 @@ public class FILTRE extends JDialog {
 		comboBox_27_1 = new JComboBox<String>();
 		comboBox_27_1.setForeground(new Color(0, 0, 128));
 		comboBox_27_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil-Ay","Paket-Sinif-Kal_Boy","Paket-Sinif-Kal_Gen","Hesap-Kodu","Hesap-Kodu-Yil"}));
+		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil-Ay","Paket-Sinif-Kal_Boy","Paket-Sinif-Kal_Gen","Hesap-Kodu","Hesap-Kodu-Yil","Konsimento"}));
 		//comboBox_27_1.setSelectedIndex(1);
 		comboBox_27_1.setBounds(90, 129, 149, 22);
 		panel_KERESTE.add(comboBox_27_1);
@@ -4640,6 +4642,23 @@ public class FILTRE extends JDialog {
 		comboBox_77_2.setBounds(646, 162, 58, 22);
 		comboBox_77_2.setVisible(false);
 		panel_KERESTE.add(comboBox_77_2);
+		
+		textField_89 = new JTextField();
+		textField_89.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_89.setColumns(10);
+		textField_89.setBounds(90, 77, 125, 20);
+		panel_KERESTE.add(textField_89);
+		
+		textField_94 = new JTextField();
+		textField_94.setText("ZZZZZZZZZZZZ");
+		textField_94.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_94.setColumns(10);
+		textField_94.setBounds(248, 77, 125, 20);
+		panel_KERESTE.add(textField_94);
+		
+		JLabel lblNewLabel_42 = new JLabel("Konsimento");
+		lblNewLabel_42.setBounds(10, 80, 82, 14);
+		panel_KERESTE.add(lblNewLabel_42);
 		/// KERESTE DETAY ********************************
 
 		JPanel panel_KERESTE_DETAY = new JPanel();

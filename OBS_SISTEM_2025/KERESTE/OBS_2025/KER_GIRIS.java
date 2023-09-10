@@ -94,6 +94,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
+import OBS_C_2025.KERESTE_KOD_KONTROL;
 import OBS_C_2025.KER_BILGI;
 import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.Next_Cell_Kereste;
@@ -1679,6 +1680,34 @@ public class KER_GIRIS extends JInternalFrame {
 		if(dtc.getDate() == null) return;
 		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 		if (mdl.getRowCount() == 0)  return;
+		//
+		int bSATIR = 0;
+		int dSATIR = 0;
+		for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
+		{
+			if ( mdl.getValueAt(i,1).toString().length() == 0)
+			{
+				bSATIR  +=1 ;
+			}
+			else {
+				dSATIR  +=1 ;
+			}
+		}
+		if(dSATIR ==0) 
+		{
+			JOptionPane.showMessageDialog(null,  "Bos Satirlar ...",  "Kereste Kayit", JOptionPane.ERROR_MESSAGE);   	
+			return;
+		}
+		for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
+		{
+			if (! mdl.getValueAt(i,1).toString().equals(""))
+			{
+				if (KERESTE_KOD_KONTROL.kontrol(mdl.getValueAt(i,1).toString()) == false) {
+					JOptionPane.showMessageDialog(null, i + 1 + " Nolu Satirda Urun Kodu Gecersiz...",  "Kereste Kayit", JOptionPane.ERROR_MESSAGE);   	
+					return;
+				}
+			}
+		}
 		startTimeG = System.currentTimeMillis(); 
 		tar = TARIH_CEVIR.tarih_geri_saatli(dtc) ;
 		GuiUtil.setWaitCursor(KER_GIRIS.splitPane,true);
@@ -1887,14 +1916,15 @@ public class KER_GIRIS extends JInternalFrame {
 				if (!rss.isBeforeFirst() ) {  
 					yeni_fat = true;
 					dOSYADAN = true;
+					//System.out.println("1902");
 					GRID_TEMIZLE.grid_temizle(table);
+					//System.out.println("1904");
 					dOSYADAN = false;
 					sifirla();
 				}
 				else
 				{
 					rss.next();
-					yeni_fat = false;
 					dOSYADAN = true;
 					GRID_TEMIZLE.grid_temizle(table);
 					sifirla();
@@ -1999,8 +2029,8 @@ public class KER_GIRIS extends JInternalFrame {
 						else  {
 							mdl.removeRow(mdl.getRowCount() -1);	
 						}
-
 					}  while (rss.next()) ;
+					Thread.currentThread().isInterrupted();
 					mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 					paketm3();
 					dOSYADAN = false;
@@ -2011,7 +2041,6 @@ public class KER_GIRIS extends JInternalFrame {
 					long estimatedTime = endTime - startTime;
 					double seconds = (double)estimatedTime/1000; 
 					OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-					Thread.currentThread().isInterrupted();
 				}
 			}
 			catch (Exception ex)

@@ -1,40 +1,36 @@
 package OBS_2025;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.BAGLAN_LOG;
-import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.lOG_BILGI;
 
-import javax.swing.border.EtchedBorder;
-import java.awt.Color;
-
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
-
 @SuppressWarnings({"serial","static-access"})
-public class DEGISKEN_DEGIS extends JInternalFrame {
-	
+public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 
 	private static JPanel panel;
 	private static JComboBox<String> cmbAna ;
 	private static JComboBox<String> cmbAlt ;
 	private static JComboBox<String> cmbyAna;
 	private static JComboBox<String> cmbyAlt;
-
 	/**
 	 * Launch the application.
 	 */
@@ -42,7 +38,7 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DEGISKEN_DEGIS frame = new DEGISKEN_DEGIS();
+					KER_DEGISKEN_DEGIS frame = new KER_DEGISKEN_DEGIS();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +50,7 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DEGISKEN_DEGIS() {
+	public KER_DEGISKEN_DEGIS() {
 		setTitle("DEGISKEN YENILEME");
 		setClosable(true);
 		setBounds(0,0, 430, 249);
@@ -146,13 +142,13 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, "Aranacak ve Yazilacak Degiskenler Ayni",  "Degisken Yenileme", JOptionPane.INFORMATION_MESSAGE);   
 			return;
 			}
-		GuiUtil.setWaitCursor(DEGISKEN_DEGIS.panel,true);
+		GuiUtil.setWaitCursor(KER_DEGISKEN_DEGIS.panel,true);
 		//*************************
         int anagrp =0,altgrp =0,yanagrp =0,yaltgrp = 0 ;
     	ResultSet rs =null ;
     	ResultSet yrs =null ;
-        			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbAna.getItemAt(cmbAna.getSelectedIndex()).toString());
-        			yrs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbyAna.getItemAt(cmbyAna.getSelectedIndex()).toString());
+        			rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbAna.getItemAt(cmbAna.getSelectedIndex()).toString());
+        			yrs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbyAna.getItemAt(cmbyAna.getSelectedIndex()).toString());
         		if (!rs.isBeforeFirst() ) {      		
     	    	}
     	    	else
@@ -167,8 +163,8 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
     	    		yrs.next();
 	        		yanagrp  = yrs.getInt("AGID_Y");
     	    	}
-     	    		rs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbAlt.getItemAt(cmbAlt.getSelectedIndex()).toString());
-     	    		yrs = f_Access.urun_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbyAlt.getItemAt(cmbyAlt.getSelectedIndex()).toString());
+     	    		rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbAlt.getItemAt(cmbAlt.getSelectedIndex()).toString());
+     	    		yrs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbyAlt.getItemAt(cmbyAlt.getSelectedIndex()).toString());
      	      	if (!rs.isBeforeFirst() ) {      		
     	    	}
     	    	else
@@ -187,13 +183,13 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
     			lBILGI.setmESAJ("Eski Ana Grup:" + anagrp + " Eski Alt Grup:" + altgrp  + " Yeni Ana Grup:" + yanagrp + " Yeni Alt Grup:" + yaltgrp);
     			lBILGI.seteVRAK("");
     			
-    	    	f_Access.degisken_degistir(anagrp,altgrp,yanagrp,yaltgrp, lBILGI,BAGLAN_LOG.fatLogDizin );
-      	       GuiUtil.setWaitCursor(DEGISKEN_DEGIS.panel,false);
+    	    	ker_Access.degisken_degistir(anagrp,altgrp,yanagrp,yaltgrp, lBILGI,BAGLAN_LOG.fatLogDizin );
+      	       GuiUtil.setWaitCursor(KER_DEGISKEN_DEGIS.panel,false);
     	      	JOptionPane.showMessageDialog(null, "Degisim Tamamlandi.................",  "Degisken Yenileme", JOptionPane.PLAIN_MESSAGE);   
 		}
 		catch (Exception ex)
 		{
-		    GuiUtil.setWaitCursor(DEGISKEN_DEGIS.panel,false);
+		    GuiUtil.setWaitCursor(KER_DEGISKEN_DEGIS.panel,false);
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degisken Yenileme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -204,7 +200,7 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 		cmbAna .removeAllItems();
 		cmbyAna .removeAllItems();
 		ResultSet rs=null;
-			rs = f_Access.stk_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
+			rs = ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
 		if (!rs.isBeforeFirst() ) {  
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			cmbAlt.setEnabled(false);
@@ -238,7 +234,7 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 
 		altbox .addItem("");
 		ResultSet rs=null;
-			rs = f_Access.urun_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", anabox.getItemAt(anabox.getSelectedIndex()).toString());
+			rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", anabox.getItemAt(anabox.getSelectedIndex()).toString());
 			if (!rs.isBeforeFirst() ) {
 			}
 			else
@@ -246,7 +242,7 @@ public class DEGISKEN_DEGIS extends JInternalFrame {
 				rs.next();
 				int in1 = rs.getInt("AGID_Y");
 				rs =null;
-				rs = f_Access.stk_kod_alt_grup_degisken_oku(in1);
+				rs = ker_Access.ker_kod_alt_grup_degisken_oku(in1);
 			}
 	
 		if (!rs.isBeforeFirst() ) {  

@@ -12,6 +12,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Vector;
 
@@ -72,6 +73,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	private JTextField textField_2;
 	private JFormattedTextField formattedTextField ;
 	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_4 ;
 	private static final Vector<?> Boolean = null;
 	
 	CheckBoxHeader asdBoxHeader = new CheckBoxHeader(new MyItemListener());
@@ -180,6 +182,36 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		textField_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_2.setBounds(59, 15, 44, 20);
 		textField_2.setDocument(new JTextFieldLimit(2));
+		textField_2.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				try {
+					kod_ADI( textField_2.getText());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			}
+			public void removeUpdate(DocumentEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				try {
+					kod_ADI( textField_2.getText());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			}
+			public void insertUpdate(DocumentEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				try {
+					kod_ADI( textField_2.getText());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			}
+		});
+
 		panel_1.add(textField_2);
 		
 		JButton btnNewButton = new JButton("");
@@ -192,10 +224,12 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				else if (satir_kontrol() == 0 ) {
 					JOptionPane.showMessageDialog(null, "Secili Satir Bulunmamaktadir...", "Kod Degistirmea", JOptionPane.INFORMATION_MESSAGE);
 				}
+				else if (lblNewLabel_4.getText().equals("") ) {
+					JOptionPane.showMessageDialog(null, "Kayitli Kod Bulunmamaktadir.....", "Kod Degistirmea", JOptionPane.INFORMATION_MESSAGE);
+				}
 				else {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 					kaydet();
-					
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				}
 			}
@@ -204,7 +238,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		btnNewButton.setBounds(363, 15, 20, 23);
 		panel_1.add(btnNewButton);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
+		lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setBounds(113, 19, 240, 14);
 		panel_1.add(lblNewLabel_4);
 		
@@ -605,6 +639,10 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			};
 		}
 		return satir ;
+	}
+	private void kod_ADI(String kod) throws ClassNotFoundException, SQLException 
+	{
+		lblNewLabel_4.setText(ker_Access.kod_adi(kod));
 	}
 	///********
 	class MyItemListener implements ItemListener

@@ -234,6 +234,12 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				if (! sstr_1.equals(""))
 					hesap_yil_kodlu();
 			}
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Konsimento"))
+			{
+				baslik_bak();
+				if (! sstr_1.equals(""))
+					konsimento_kodlu();
+			}
 		//
 		}
 		catch (Exception ex)
@@ -479,7 +485,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1," Kodu",hANGI);
+						sstr_5, sstr_1," Kodu",hANGI,
+						FILTRE.textField_89.getText(),FILTRE.textField_94.getText());
 			
 
 			GRID_TEMIZLE.grid_temizle(table);
@@ -531,6 +538,83 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Urun Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	private static void konsimento_kodlu() 
+	{
+		startTime = System.currentTimeMillis(); 
+		try {
+			ResultSet	rs = null;
+			deg_cevir();
+ 			grup_cevir() ;
+ 			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+ 		     {
+ 				hANGI = "" ;
+ 		     }
+ 			 else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+ 			 {
+ 				hANGI = "C" ;
+ 			}
+ 			else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("STOK"))
+			 {
+				hANGI = "" ;
+			}
+ 				rs = ker_Access.grp_rapor("Konsimento",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+						FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+    					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+						jkj,
+						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
+						sstr_5, sstr_1," Konsimento",hANGI,
+						FILTRE.textField_89.getText(),FILTRE.textField_94.getText());
+			
+
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() ) {  
+			
+				lbladet.setText(FORMATLAMA.doub_0(0));
+			} 
+			else
+			{
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+				 mdll.addColumn("Toplam");
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(120);
+				tc.setMaxWidth(120);
+				
+				
+				kusurr();
+				for (int i = 1;i<=table.getColumnCount() -2;i++)
+				{
+					tc = tcm.getColumn(i);
+					tc.setHeaderRenderer(new SAGA());
+					tc.setCellRenderer(new TABLO_RENDERER(kusur,false));
+					tc.setMinWidth(110);
+				}
+				tc = tcm.getColumn(table.getColumnCount() -1);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(kusur,true));
+				tc.setMinWidth(110);
+				
+				Dimension dd = th.getPreferredSize();
+			    dd.height = 30;
+			    th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
+				//**
+				topla(1);
+				//**
+				alt_bolum();
+				fontt();
+			}
+		} 
+		catch (Exception ex) {
+		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Konsimento Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
+		}
+	}
 	private static void sinif_kodlu() 
 	{
 		startTime = System.currentTimeMillis(); 
@@ -551,7 +635,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1, "Sinif",hANGI);
+						sstr_5, sstr_1, "Sinif",hANGI,
+						FILTRE.textField_89.getText(),FILTRE.textField_94.getText());
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -618,7 +703,9 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1, "Sinif , Kal" , hANGI);
+						sstr_5, sstr_1, "Sinif , Kal" , hANGI,
+						FILTRE.textField_89.getText(),FILTRE.textField_94.getText());
+				
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -692,7 +779,9 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1, "Sinif , Kal,Boy",hANGI);
+						sstr_5, sstr_1, "Sinif , Kal,Boy",hANGI,
+						FILTRE.textField_89.getText(),FILTRE.textField_94.getText());
+				
 			GRID_TEMIZLE.grid_temizle(table);
 			
 			if (!rs.isBeforeFirst() ) {  
@@ -772,7 +861,9 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1, "Paket_No,Sinif , Kal,Boy",hANGI);
+						sstr_5, sstr_1, "Paket_No,Sinif , Kal,Boy",hANGI,
+						FILTRE.textField_89.getText(),FILTRE.textField_94.getText());
+				
 			GRID_TEMIZLE.grid_temizle(table);
 			
 			if (!rs.isBeforeFirst() ) {  
@@ -857,7 +948,9 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1, "Paket_No,Sinif , Kal,Gen",hANGI);
+						sstr_5, sstr_1, "Paket_No,Sinif , Kal,Gen",hANGI,
+						FILTRE.textField_89.getText(),FILTRE.textField_94.getText());
+ 			
 			GRID_TEMIZLE.grid_temizle(table);
 			
 			if (!rs.isBeforeFirst() ) {  
@@ -942,7 +1035,9 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1, "Sinif , Kal,Gen",hANGI);
+						sstr_5, sstr_1, "Sinif , Kal,Gen",hANGI,
+						FILTRE.textField_89.getText(),FILTRE.textField_94.getText());
+				
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -1020,7 +1115,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1," Yil",hANGI);
+						sstr_5, sstr_1," Yil",hANGI,
+						FILTRE.textField_89.getText(),FILTRE.textField_94.getText());
 			
 
 			GRID_TEMIZLE.grid_temizle(table);
@@ -1096,7 +1192,9 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1, " Hesap , Unvan",hANGI);
+						sstr_5, sstr_1, " Hesap , Unvan",hANGI,
+						FILTRE.textField_89.getText(),FILTRE.textField_94.getText());
+				
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -1173,7 +1271,9 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1, " Hesap , Unvan, Yil ",hANGI);
+						sstr_5, sstr_1, " Hesap , Unvan, Yil ",hANGI,
+						FILTRE.textField_89.getText(),FILTRE.textField_94.getText());
+				
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -1251,7 +1351,9 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1, "Yil , Ay",hANGI);
+						sstr_5, sstr_1, "Yil , Ay",hANGI,
+						FILTRE.textField_89.getText(),FILTRE.textField_94.getText());
+				
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -1324,7 +1426,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
     					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 						jkj,
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-						sstr_5, sstr_1, " Kodu ,Yil ",hANGI);
+						sstr_5, sstr_1, " Kodu ,Yil ",hANGI,
+						FILTRE.textField_89.getText(),FILTRE.textField_94.getText());
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));

@@ -622,7 +622,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 	@Override
 	public ResultSet grp_rapor(String gruplama, String sstr_2, String sstr_4, String kur_dos, String qwq6, String qwq7,
 			String qwq8, String k1, String k2, String s1, String s2, String jkj, String t1, String t2, String sstr_5,
-			String sstr_1, String orderBY, String dURUM) throws ClassNotFoundException, SQLException {
+			String sstr_1, String orderBY, String dURUM,String ko1, String ko2) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

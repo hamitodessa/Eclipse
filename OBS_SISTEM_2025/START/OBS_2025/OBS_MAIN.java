@@ -2106,6 +2106,17 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_35.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
 		
 		toolBar_Kereste.add(btnNewButton_35);
+		
+		JButton btnNewButton_65 = new JButton("");
+		btnNewButton_65.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("KERESTE DEGISKEN YENILEME","");
+			}
+		});
+		btnNewButton_65.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-not-equal-30.png")));
+		btnNewButton_65.setToolTipText("Degisken Yenileme");
+		
+		toolBar_Kereste.add(btnNewButton_65);
 		comboDegisken_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Nakliyeci"}));
 		toolBar_Kereste.add(comboDegisken_1);
 		//*********************************************************** GIDEN RAPOR *********************************************************************************
@@ -3313,6 +3324,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("KERESTE DETAY RAPOR")) internalFrame  = new KER_DETAY();
 			else if (pencere.equals("KERESTE FATURA RAPORLAMA")) internalFrame  = new KER_FAT_RAPOR();
 			else if (pencere.equals("KERESTE KOD DEGISTIRME")) internalFrame  = new KER_KOD_DEGISTIRME();
+			else if (pencere.equals("KERESTE DEGISKEN YENILEME")) internalFrame  = new KER_DEGISKEN_DEGIS();
 			//GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();

@@ -677,6 +677,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				//**
 				alt_bolum();
 				fontt();
+				ara_toplam();
 			}
 		} 
 		catch (Exception ex) {
@@ -1479,6 +1480,30 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Kodu Yil Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	private static void ara_toplam()
+	{
+		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+		int satir = 1;
+		do
+		{
+			String ustsatString = mdll.getValueAt(satir, 0).toString();
+			if(mdll.getValueAt(satir+1, 0) == null)
+			{
+				mdll.insertRow(satir, new Object[]{});
+				table.repaint();
+				break;
+			}
+			String altsatString = mdll.getValueAt(satir+1, 0).toString();
+			if (! ustsatString.equals(altsatString))
+			{
+				mdll.insertRow(satir, new Object[]{});
+				table.repaint();
+				satir+=1;
+			}
+			satir+=1;
+		}
+		while (satir < table.getRowCount()-1);
 	}
 	private static void grup_cevir()
 	{

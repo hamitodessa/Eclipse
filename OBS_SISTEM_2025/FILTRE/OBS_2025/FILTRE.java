@@ -374,7 +374,7 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_75;
 	public static JComboBox<String> comboBox_76;
 	
-	//KERESTE
+	//KERESTE GRUP
 	public static JDateChooser dateChooser_20_1;
 	public static JDateChooser dateChooser_21_1;
 	public static JComboBox<String> comboBox_26_1 ;
@@ -391,6 +391,7 @@ public class FILTRE extends JDialog {
 	public static JTextField textField_82;
 	public static JTextField textField_83;
 	public static JCheckBox chckbxDovizeCevirme_1 ;
+	public static JCheckBox chckbxNewCheckBox_3 ;
 	//KERESTE DETY
 	public static JDateChooser dateChooser_20_1_1;
 	public static JDateChooser dateChooser_21_1_1;
@@ -458,15 +459,6 @@ public class FILTRE extends JDialog {
 		//*****************************************************************************************************************
 		// Goruntu icin asagidaki blogu kaldir 
 
-		final boolean showTabsHeader = false;
-		tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
-		{
-		    @Override
-		    protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
-		        if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
-		        } else {return 0;}	        }
-		  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
-		}); 
 	
 
 
@@ -4514,9 +4506,22 @@ public class FILTRE extends JDialog {
 		comboBox_27_1 = new JComboBox<String>();
 		comboBox_27_1.setForeground(new Color(0, 0, 128));
 		comboBox_27_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil-Ay","Paket-Sinif-Kal_Boy","Paket-Sinif-Kal_Gen","Hesap-Kodu","Hesap-Kodu-Yil","Konsimento"}));
-		//comboBox_27_1.setSelectedIndex(1);
+		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil-Ay","Paket-Sinif-Kal-Boy","Paket-Sinif-Kal-Gen","Hesap-Kodu","Hesap-Kodu-Yil","Konsimento"}));
+		//comboBox_27_1.setSelectedIndex(1);chckbxNewCheckBox_3
 		comboBox_27_1.setBounds(90, 129, 149, 22);
+		comboBox_27_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String hangi = comboBox_27_1.getItemAt(comboBox_27_1.getSelectedIndex())  ;
+				if (hangi == "Sinif-Kal" || hangi == "Sinif-Kal-Boy" || hangi == "Sinif-Kal-Gen" || hangi == "Paket-Sinif-Kal-Gen")
+				{
+					chckbxNewCheckBox_3.setVisible(true);
+				}
+				else
+				{
+					chckbxNewCheckBox_3.setVisible(false);
+				}
+			}
+		});
 		panel_KERESTE.add(comboBox_27_1);
 		
 		comboBox_28_1 = new JComboBox<String>();
@@ -4659,6 +4664,11 @@ public class FILTRE extends JDialog {
 		JLabel lblNewLabel_42 = new JLabel("Konsimento");
 		lblNewLabel_42.setBounds(10, 80, 82, 14);
 		panel_KERESTE.add(lblNewLabel_42);
+		
+		chckbxNewCheckBox_3 = new JCheckBox("Ara Bolum Ayirma");
+		chckbxNewCheckBox_3.setBounds(520, 182, 120, 23);
+		chckbxNewCheckBox_3.setVisible(false);
+		panel_KERESTE.add(chckbxNewCheckBox_3);
 		/// KERESTE DETAY ********************************
 
 		JPanel panel_KERESTE_DETAY = new JPanel();

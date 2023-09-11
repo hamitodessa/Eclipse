@@ -210,13 +210,13 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				if (! sstr_1.equals(""))
 					kodu_yil_kodlu();
 			}
-			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal_Boy"))
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal-Boy"))
 			{
 				baslik_bak();
 				if (! sstr_1.equals(""))
 					paket_sinif_kal_boy_kodlu();
 			}
-			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal_Gen"))
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal-Gen"))
 			{
 				baslik_bak();
 				if (! sstr_1.equals(""))
@@ -677,7 +677,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				//**
 				alt_bolum();
 				fontt();
-				ara_toplam();
+			
 			}
 		} 
 		catch (Exception ex) {
@@ -752,6 +752,11 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				topla(2);
 				//**
 				alt_bolum();
+			
+				if(FILTRE.chckbxNewCheckBox_3.isSelected())
+				{
+					ara_toplam(1,2);
+				}
 				fontt();
 			}
 		} 
@@ -834,6 +839,12 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				topla(3);
 				//**
 				alt_bolum();
+			
+				
+				if(FILTRE.chckbxNewCheckBox_3.isSelected())
+				{
+					ara_toplam(2,3);
+				}
 				fontt();
 			}
 		} 
@@ -919,7 +930,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				table.setRowSelectionInterval(0, 0);
 				table.setRowHeight(21);
 				//**
-				topla(4);
+				topla(3);
 				//**
 				alt_bolum();
 				fontt();
@@ -1006,9 +1017,14 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				table.setRowSelectionInterval(0, 0);
 				table.setRowHeight(21);
 				//**
-				topla(4);
+				topla(3);
 				//**
 				alt_bolum();
+				
+				if(FILTRE.chckbxNewCheckBox_3.isSelected())
+				{
+					ara_toplam(3,4);
+				}
 				fontt();
 			}
 		} 
@@ -1090,6 +1106,10 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				//**
 				alt_bolum();
 				fontt();
+				if(FILTRE.chckbxNewCheckBox_3.isSelected())
+				{
+					ara_toplam(2,3);
+				}
 			}
 		} 
 		catch (Exception ex) {
@@ -1481,29 +1501,72 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Kodu Yil Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	private static void ara_toplam()
+	private static void ara_toplam(int sutun , int topsutun)
 	{
 		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 		int satir = 1;
+		String ustsatString = "";
+		String altsatString ="" ;
 		do
 		{
-			String ustsatString = mdll.getValueAt(satir, 0).toString();
-			if(mdll.getValueAt(satir+1, 0) == null)
+			
+			if(mdll.getValueAt(satir + 1, 0) == null)
 			{
-				mdll.insertRow(satir, new Object[]{});
+				mdll.insertRow(satir+1, new Object[]{});
 				table.repaint();
 				break;
 			}
-			String altsatString = mdll.getValueAt(satir+1, 0).toString();
+			if(sutun == 1 )
+			{
+				ustsatString = mdll.getValueAt(satir, 0).toString() ;
+				altsatString = mdll.getValueAt(satir+1, 0).toString() ;
+			}
+			else if(sutun == 2 )
+			{
+				ustsatString = mdll.getValueAt(satir, 0).toString() + mdll.getValueAt(satir, 1).toString();
+				altsatString = mdll.getValueAt(satir+1, 0).toString() + mdll.getValueAt(satir+1, 1).toString();
+			}
+			else if(sutun == 3 )
+			{
+				ustsatString = mdll.getValueAt(satir, 0).toString() + mdll.getValueAt(satir, 1).toString() +  mdll.getValueAt(satir, 2).toString();
+				altsatString = mdll.getValueAt(satir+1, 0).toString() + mdll.getValueAt(satir +1, 1).toString() + mdll.getValueAt(satir +1, 2).toString();
+			}
+			else if(sutun == 4 )
+			{
+				ustsatString = mdll.getValueAt(satir, 0).toString() + mdll.getValueAt(satir, 1).toString() +  mdll.getValueAt(satir, 2).toString() +  mdll.getValueAt(satir, 3).toString();
+				altsatString = mdll.getValueAt(satir+1, 0).toString() + mdll.getValueAt(satir +1, 1).toString() + mdll.getValueAt(satir+1, 2).toString() +  mdll.getValueAt(satir +1, 3).toString();
+			}
 			if (! ustsatString.equals(altsatString))
 			{
-				mdll.insertRow(satir, new Object[]{});
+				mdll.insertRow(satir +1, new Object[]{});
 				table.repaint();
-				satir+=1;
+				satir += 1;
 			}
-			satir+=1;
+			satir += 1;
 		}
 		while (satir < table.getRowCount()-1);
+		table.repaint();
+		///TOPLAMA
+		double rakkam=0;
+		for(int k = topsutun; k <= table.getColumnCount()-1;k++)
+		{
+			for(int i=0; i <= table.getRowCount()-2;i++)
+			{
+				if( mdll.getValueAt(i, 0) == null)
+				{
+					mdll.setValueAt(rakkam,i,k) ;
+					rakkam = 0;
+				}
+				else 
+				{
+					if( mdll.getValueAt(i,k) != null)
+					{
+						rakkam = rakkam +  Double.parseDouble( mdll.getValueAt(i,k).toString());
+					}
+					
+				}
+			}
+		}
 	}
 	private static void grup_cevir()
 	{

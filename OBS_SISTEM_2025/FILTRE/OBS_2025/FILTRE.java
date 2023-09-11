@@ -389,6 +389,7 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_80;
 	public static JComboBox<String> comboBox_77_1;
 	public static JComboBox<String> comboBox_77_2;
+	public static JComboBox<String> comboBox_80_6 ;
 	public static JTextField textField_82;
 	public static JTextField textField_83;
 	public static JCheckBox chckbxDovizeCevirme_1 ;
@@ -4584,12 +4585,12 @@ public class FILTRE extends JDialog {
 		comboBox_77.setForeground(new Color(0, 0, 128));
 		comboBox_77.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_77.setModel(new DefaultComboBoxModel<String>(new String[] { "GIREN", "CIKAN","STOK"}));
-		comboBox_77.setBounds(594, 106, 110, 22);
+		comboBox_77.setBounds(594, 114, 110, 22);
 		panel_KERESTE.add(comboBox_77);
 		
 		JLabel lblNewLabel_41 = new JLabel("Turu");
 		lblNewLabel_41.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_41.setBounds(520, 111, 46, 14);
+		lblNewLabel_41.setBounds(520, 119, 46, 14);
 		panel_KERESTE.add(lblNewLabel_41);
 		
 		comboBox_78 = new JComboBox<String>();
@@ -4607,13 +4608,13 @@ public class FILTRE extends JDialog {
 		comboBox_79.setForeground(new Color(0, 0, 128));
 		comboBox_79.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_79.setEnabled(false);
-		comboBox_79.setBounds(520, 39, 184, 22);
+		comboBox_79.setBounds(520, 35, 184, 22);
 		panel_KERESTE.add(comboBox_79);
 		
 		comboBox_80 = new JComboBox<String>();
 		comboBox_80.setForeground(new Color(0, 0, 128));
 		comboBox_80.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_80.setBounds(520, 72, 184, 22);
+		comboBox_80.setBounds(520, 62, 184, 22);
 		panel_KERESTE.add(comboBox_80);
 		
 		JLabel label_66 = new JLabel("Ana Grup");
@@ -4623,17 +4624,17 @@ public class FILTRE extends JDialog {
 		
 		JLabel label_67 = new JLabel("Alt Grup");
 		label_67.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_67.setBounds(401, 43, 104, 14);
+		label_67.setBounds(401, 39, 104, 14);
 		panel_KERESTE.add(label_67);
 		
 		JLabel lblUrunOzelKod_1 = new JLabel("Ozel Kod");
 		lblUrunOzelKod_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblUrunOzelKod_1.setBounds(401, 76, 113, 14);
+		lblUrunOzelKod_1.setBounds(401, 66, 113, 14);
 		panel_KERESTE.add(lblUrunOzelKod_1);
 		
 		chckbxDovizeCevirme_1 = new JCheckBox("Dovize Cevirme");
 		chckbxDovizeCevirme_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		chckbxDovizeCevirme_1.setBounds(520, 137, 110, 23);
+		chckbxDovizeCevirme_1.setBounds(520, 145, 110, 23);
 		chckbxDovizeCevirme_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chckbxDovizeCevirme_1.isSelected())
@@ -4658,7 +4659,7 @@ public class FILTRE extends JDialog {
 		comboBox_77_1.setForeground(new Color(0, 0, 128));
 		comboBox_77_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_77_1.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR"}));
-		comboBox_77_1.setBounds(646, 137, 58, 22);
+		comboBox_77_1.setBounds(646, 145, 58, 22);
 		comboBox_77_1.setVisible(false);
 		panel_KERESTE.add(comboBox_77_1);
 		
@@ -4666,7 +4667,7 @@ public class FILTRE extends JDialog {
 		comboBox_77_2.setForeground(new Color(0, 0, 128));
 		comboBox_77_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_77_2.setModel(new DefaultComboBoxModel<String>(new String[] {"MA", "MS", "BA", "BS", "SA", "SS"}));
-		comboBox_77_2.setBounds(646, 162, 58, 22);
+		comboBox_77_2.setBounds(646, 170, 58, 22);
 		comboBox_77_2.setVisible(false);
 		panel_KERESTE.add(comboBox_77_2);
 		
@@ -4688,9 +4689,19 @@ public class FILTRE extends JDialog {
 		panel_KERESTE.add(lblNewLabel_42);
 		
 		chckbxNewCheckBox_3 = new JCheckBox("Ara Bolum Ayirma");
-		chckbxNewCheckBox_3.setBounds(520, 182, 170, 23);
+		chckbxNewCheckBox_3.setBounds(520, 190, 170, 23);
 		chckbxNewCheckBox_3.setVisible(false);
 		panel_KERESTE.add(chckbxNewCheckBox_3);
+		
+		comboBox_80_6 = new JComboBox<String>();
+		comboBox_80_6.setForeground(new Color(0, 0, 128));
+		comboBox_80_6.setFont(new Font("Tahoma", Font.BOLD, 12));
+		comboBox_80_6.setBounds(520, 88, 184, 22);
+		panel_KERESTE.add(comboBox_80_6);
+		
+		JLabel lblNewLabel_44 = new JLabel("Depo");
+		lblNewLabel_44.setBounds(401, 93, 48, 14);
+		panel_KERESTE.add(lblNewLabel_44);
 		/// KERESTE DETAY ********************************
 
 		JPanel panel_KERESTE_DETAY = new JPanel();
@@ -5526,6 +5537,7 @@ public class FILTRE extends JDialog {
 		{
 			ker_ana_grup_doldur(comboBox_78);
 			ker_oz1_doldur(comboBox_80);
+			ker_depo_doldur(comboBox_80_6);
 
 		}
 		else if (syfa == 22)

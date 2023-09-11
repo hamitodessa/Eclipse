@@ -48,7 +48,7 @@ public interface IKERESTE {
 	public ResultSet baslik_bak(String baslik,String ordr,String jkj,String k1,String k2,String f1,String f2,String t1,String t2,String dURUM) throws ClassNotFoundException, SQLException;
 	public ResultSet grp_rapor(String gruplama,String sstr_2,String sstr_4,String kur_dos,String qwq6,
 			String qwq7,String qwq8,String k1 ,String k2,String s1,String s2,String jkj,String t1,String t2,
-			String sstr_5,String sstr_1,String orderBY ,String dURUM,String ko1, String ko2) throws ClassNotFoundException, SQLException;
+			String sstr_5,String sstr_1,String orderBY ,String dURUM,String ko1, String ko2,String dpo) throws ClassNotFoundException, SQLException;
 	public ResultSet stok_rapor(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException;
 	public ResultSet ker_barkod_kod_oku(String sira) throws ClassNotFoundException, SQLException;
 	public String kons_adi(String kons) throws ClassNotFoundException, SQLException;

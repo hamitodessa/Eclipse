@@ -593,7 +593,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		boolean result = true;
 		String sql  = "" ;
 		PreparedStatement stmt =null;
-		sql = "SELECT  *  FROM KERESTE   WHERE Ana_Grup = '" + anagrp + "'  AND  Alt_Grup = '" + altgrp + "' ";
+		sql = "SELECT  *  FROM KERESTE WITH (INDEX (IX_KERESTE))   WHERE Ana_Grup = '" + anagrp + "'  AND  Alt_Grup = '" + altgrp + "' ";
 		stmt = con.prepareStatement(sql);
 		rs = stmt. executeQuery();
 		if (!rs.isBeforeFirst() )   result = false ;
@@ -712,10 +712,10 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String result ;
 		String sql ;
 		if (cins.equals("G")) {
-			sql = "SELECT max(Evrak_No)  as NO FROM KERESTE";
+			sql = "SELECT max(Evrak_No)  as NO FROM KERESTE WITH (INDEX (IX_KERESTE))";
 		}
 		else {
-			sql = "SELECT max(Cikis_Evrak)  as NO FROM KERESTE";
+			sql = "SELECT max(Cikis_Evrak)  as NO FROM KERESTE WITH (INDEX (IX_KERESTE))";
 		}
 		
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -863,7 +863,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql =  "SELECT * " +
-				" FROM DPN " +
+				" FROM DPN  WITH (INDEX (IX_DPN)) " +
 				" WHERE Evrak_NO = N'" + ino + "'" +
 				" AND DPN.Tip = N'" + cins + "'" +
 				" AND Gir_Cik = '" + gircik + "'";
@@ -910,7 +910,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String result ;
 		String sql =     "SELECT * " +
-				" FROM ACIKLAMA " +
+				" FROM ACIKLAMA  WITH (INDEX (IX_ACIKLAMA))" +
 				" WHERE EVRAK_NO = N'" + evrno + "'" +
 				" AND SATIR = '" + satir + "'" +
 				" AND EVRAK_CINS = '" + evrcins + "'" +
@@ -1014,7 +1014,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		sonk = token[1];
 		sonb = token[2];
 		song = token[3];
-		String sql =   "SELECT "+ baslik + "  FROM KERESTE " +
+		String sql =   "SELECT "+ baslik + "  FROM KERESTE WITH (INDEX (IX_KERESTE)) " +
 				" WHERE   " + jkj +
 				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" +
@@ -1032,7 +1032,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	@Override
 	public ResultSet grp_rapor(String gruplama,String sstr_2, String sstr_4, String kur_dos, String qwq6,
 			String qwq7, String qwq8, String k1, String k2, String s1, String s2, String jkj,
-			String t1, String t2, String sstr_5, String sstr_1,String orderBY,String dURUM,String ko1, String ko2) throws ClassNotFoundException, SQLException {
+			String t1, String t2, String sstr_5, String sstr_1,String orderBY,String dURUM,String ko1, String ko2,String dpo) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String[] token = k1.toString().split("-");
@@ -1049,10 +1049,11 @@ public class KERESTE_MSSQL implements IKERESTE {
 		song = token[3];
 		String sql =   "SELECT * " +
 				" FROM  (SELECT "+ gruplama + " ," + sstr_2 + " as  degisken , " + sstr_4 +
-				" FROM KERESTE " + kur_dos + 
+				" FROM KERESTE WITH (INDEX (IX_KERESTE)) " + kur_dos + 
 				" WHERE   " + jkj + dURUM + "Ana_Grup " + qwq6 +
 				" AND "+ dURUM + "Alt_Grup " + qwq7 +
 				" AND "+ dURUM + "Ozel_Kod " + qwq8 +
+				" AND "+ dURUM + "Depo " + dpo +
 				" AND " + jkj +
 				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" +
@@ -1556,7 +1557,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		PreparedStatement stmt = con.prepareStatement("SELECT DISTINCT (SELECT ACIKLAMA FROM KOD_ACIKLAMA WHERE Kod = SUBSTRING(KERESTE.Kodu,0,3)) as ACIKLAMA ,"
 					+ " (SELECT ACIKLAMA FROM KONS_ACIKLAMA WHERE KONS = '" + kons + "') as KONS_ACIKLAMA"
-					+ " FROM KERESTE " 
+					+ " FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
 								+ " WHERE Paket_No ='" + paket + "' and  Konsimento = '" + kons+"' ");
 		rss = stmt.executeQuery();
 		String result[] = {"",""} ;
@@ -1612,7 +1613,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" SUM(Kereste."+hANGI+"Tutar - (   (KERESTE."+hANGI+"Tutar * Kereste.Iskonto)/100)    ) /  iif(( sum(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  ) = 0,1, " +
 				" SUM(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) As m3_Ort_Fiat , " +
 				" (	 SUM((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) - (   (" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) * Kereste.Iskonto)/100)    )  / kurlar.MA) /      NULLIF(      SUM(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000),0))  As m3_Ort_Fiat_"+ kurc +" " +
-				" FROM KERESTE ,OK_Kur" + kurkod +".dbo.kurlar  " +
+				" FROM KERESTE WITH (INDEX (IX_KERESTE)) ,OK_Kur" + kurkod +".dbo.kurlar  " +
 				" WHERE    " +
 				" " + dURUM +
 				" KERESTE."+hANGI+"Tarih BETWEEN '" + t1 + "'" + " AND  '" + t2 + " 23:59:59.998' AND" +

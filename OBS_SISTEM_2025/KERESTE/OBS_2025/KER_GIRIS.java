@@ -2288,7 +2288,7 @@ public class KER_GIRIS extends JInternalFrame {
 				String sonboy = "" ;
 				int adet = 0 ;
 				int sonadet = 0 ;
-				String konsimento = "5402" ;
+				String konsimento = "5404" ;
 				dOSYADAN = true;
 				GRID_TEMIZLE.grid_temizle(table);
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
@@ -2338,7 +2338,7 @@ public class KER_GIRIS extends JInternalFrame {
 							String yeniPaket =  yeniSinif + StringUtils.repeat("0", kjp) + sonpaketno  ;
 							//
 							mdl.addRow(new Object[]{"",kODU,yeniPaket,adet,
-									m3(kODU,adet),"",konsimento,"Gebze",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+									m3(kODU,adet),"",konsimento,"Umraniye",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 						}
 						else {
 							sonpaketno =  arapaketno ;
@@ -2365,7 +2365,7 @@ public class KER_GIRIS extends JInternalFrame {
 							String yeniPaket =  arasinif.substring(1, 2) + StringUtils.repeat("0", kjp) + sonpaketno  ;
 							//
 							mdl.addRow(new Object[]{"",kODU,yeniPaket,adet,
-									m3(kODU,adet),"",konsimento,"Gebze",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+									m3(kODU,adet),"",konsimento,"Umraniye",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 						}
 					}  
 					satir += 1 ;

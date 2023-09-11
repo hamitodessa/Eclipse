@@ -29,6 +29,7 @@ import GUNLUK.HAZIR_GOREVLER;
 import KER_RAPOR.KER_DETAY;
 import KER_RAPOR.KER_FAT_RAPOR;
 import KER_RAPOR.KER_GRUP_RAPOR;
+import KER_RAPOR.KER_ORT_SATIS;
 import OBS_2025_RAPORLAR.ENVANTER;
 import OBS_2025_RAPORLAR.FATURA_RAPOR;
 import OBS_2025_RAPORLAR.GRUP_RAPOR;
@@ -423,7 +424,21 @@ public class FILTRE extends JDialog {
 	public static JTextField textField_93;
 	public static JTextField textField_89;
 	public static JTextField textField_94;
-	
+	//KERESTE ORT FIAT
+	public static JComboBox<String> comboBox_82;
+	public static JComboBox<String> comboBox_80_5;
+	public static JComboBox<String> comboBox_78_3;
+	public static JComboBox<String> comboBox_79_3;
+	public static JComboBox<String> comboBox_27_1_1;
+	public static JTextField textField_95;
+	public static JTextField textField_96;
+	public static JTextField textField_97;
+	public static JTextField textField_98;
+	public static JFormattedTextField formattedTextField_3 ;
+	public static JFormattedTextField formattedTextField_1_2;
+	public static JDateChooser dateChooser_20_1_2 ;
+	public static JDateChooser dateChooser_21_1_2 ;
+	public static JComboBox<String> comboBox_83;
 	
 	
 	
@@ -459,7 +474,15 @@ public class FILTRE extends JDialog {
 		//*****************************************************************************************************************
 		// Goruntu icin asagidaki blogu kaldir 
 
-	
+		final boolean showTabsHeader = false;
+		tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
+		{
+		    @Override
+		    protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
+		        if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
+		        } else {return 0;}	        }
+		  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
+		}); 
 
 
 		//final boolean showTabsHeader = false;
@@ -4507,7 +4530,6 @@ public class FILTRE extends JDialog {
 		comboBox_27_1.setForeground(new Color(0, 0, 128));
 		comboBox_27_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil-Ay","Paket-Sinif-Kal-Boy","Paket-Sinif-Kal-Gen","Hesap-Kodu","Hesap-Kodu-Yil","Konsimento"}));
-		//comboBox_27_1.setSelectedIndex(1);chckbxNewCheckBox_3
 		comboBox_27_1.setBounds(90, 129, 149, 22);
 		comboBox_27_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -4666,7 +4688,7 @@ public class FILTRE extends JDialog {
 		panel_KERESTE.add(lblNewLabel_42);
 		
 		chckbxNewCheckBox_3 = new JCheckBox("Ara Bolum Ayirma");
-		chckbxNewCheckBox_3.setBounds(520, 182, 120, 23);
+		chckbxNewCheckBox_3.setBounds(520, 182, 170, 23);
 		chckbxNewCheckBox_3.setVisible(false);
 		panel_KERESTE.add(chckbxNewCheckBox_3);
 		/// KERESTE DETAY ********************************
@@ -4976,6 +4998,156 @@ public class FILTRE extends JDialog {
 		comboBox_81.setBounds(638, 100, 125, 22);
 		comboBox_81.setVisible(false);
 		panel_KERESTE_DETAY.add(comboBox_81);
+		/// KERESTE ORTALAMA FIAT********************************
+
+		JPanel panel_KERESTE_ORTFIAT = new JPanel();
+		panel_KERESTE_ORTFIAT.setBorder(new LineBorder(new Color(0, 191, 255)));
+		tabbedPane.addTab("Kereste_Ort_Fiat", null, panel_KERESTE_ORTFIAT, null);
+		panel_KERESTE_ORTFIAT.setLayout(null);
+		
+		JLabel label_18_1_2 = new JLabel("Tarih");
+		label_18_1_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		label_18_1_2.setBounds(10, 21, 58, 14);
+		panel_KERESTE_ORTFIAT.add(label_18_1_2);
+		
+		
+		dateChooser_20_1_2 = new JDateChooser();
+		dateChooser_20_1_2.setDate(TARIH_CEVIR.tarih("01.01.1900"));
+		dateChooser_20_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		dateChooser_20_1_2.setDateFormatString("dd.MM.yyyy");
+		dateChooser_20_1_2.setBounds(90, 21, 125, 20);
+		panel_KERESTE_ORTFIAT.add(dateChooser_20_1_2);
+		
+		dateChooser_21_1_2 = new JDateChooser();
+		dateChooser_21_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		dateChooser_21_1_2.setDateFormatString("dd.MM.yyyy");
+		dateChooser_21_1_2.setDate(TARIH_CEVIR.tarih("31.12.2100"));
+		dateChooser_21_1_2.setBounds(248, 21, 125, 20);
+		panel_KERESTE_ORTFIAT.add(dateChooser_21_1_2);
+		
+		JLabel label_19_1_2 = new JLabel("Urun Kodu");
+		label_19_1_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		label_19_1_2.setBounds(10, 49, 69, 14);
+		panel_KERESTE_ORTFIAT.add(label_19_1_2);
+		
+		
+		formattedTextField_3 = new JFormattedTextField();
+		formattedTextField_3.setText("00-000-0000-0000");
+		formattedTextField_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		formattedTextField_3.setBounds(89, 46, 125, 20);
+		panel_KERESTE_ORTFIAT.add(formattedTextField_3);
+		
+		formattedTextField_1_2 = new JFormattedTextField();
+		formattedTextField_1_2.setText("ZZ-999-9999-9999");
+		formattedTextField_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		formattedTextField_1_2.setBounds(248, 46, 125, 20);
+		panel_KERESTE_ORTFIAT.add(formattedTextField_1_2);
+		
+		JLabel lblHesapKodu_2_4 = new JLabel("Hesap Kodu");
+		lblHesapKodu_2_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblHesapKodu_2_4.setBounds(10, 79, 82, 14);
+		panel_KERESTE_ORTFIAT.add(lblHesapKodu_2_4);
+		
+		JLabel lblNewLabel_42_1 = new JLabel("Konsimento");
+		lblNewLabel_42_1.setBounds(10, 99, 82, 14);
+		panel_KERESTE_ORTFIAT.add(lblNewLabel_42_1);
+		
+		textField_95 = new JTextField();
+		textField_95.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_95.setColumns(10);
+		textField_95.setBounds(90, 96, 125, 20);
+		panel_KERESTE_ORTFIAT.add(textField_95);
+		
+		textField_96 = new JTextField();
+		textField_96.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_96.setColumns(10);
+		textField_96.setBounds(90, 74, 125, 20);
+		panel_KERESTE_ORTFIAT.add(textField_96);
+		
+		textField_97 = new JTextField();
+		textField_97.setText("ZZZZZZZZZZZZ");
+		textField_97.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_97.setColumns(10);
+		textField_97.setBounds(248, 74, 125, 20);
+		panel_KERESTE_ORTFIAT.add(textField_97);
+		
+		textField_98 = new JTextField();
+		textField_98.setText("ZZZZZZZZZZZZ");
+		textField_98.setFont(new Font("Tahoma", Font.BOLD, 11));
+		textField_98.setColumns(10);
+		textField_98.setBounds(248, 96, 125, 20);
+		panel_KERESTE_ORTFIAT.add(textField_98);
+		
+		JLabel lblGruplama_2_1 = new JLabel("Gruplama");
+		lblGruplama_2_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblGruplama_2_1.setBounds(10, 145, 69, 14);
+		panel_KERESTE_ORTFIAT.add(lblGruplama_2_1);
+		
+		comboBox_27_1_1 = new JComboBox<String>();
+		comboBox_27_1_1.setForeground(new Color(0, 0, 128));
+		comboBox_27_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		comboBox_27_1_1.setBounds(90, 137, 149, 22);
+		comboBox_27_1_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Ana Grup", "Sinif","Yil","Yil-Ay"}));
+		panel_KERESTE_ORTFIAT.add(comboBox_27_1_1);
+		
+		JLabel label_66_3 = new JLabel("Ana Grup");
+		label_66_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		label_66_3.setBounds(415, 25, 104, 14);
+		panel_KERESTE_ORTFIAT.add(label_66_3);
+		
+		comboBox_78_3 = new JComboBox<String>();
+		comboBox_78_3.setForeground(new Color(0, 0, 128));
+		comboBox_78_3.setFont(new Font("Tahoma", Font.BOLD, 12));
+		comboBox_78_3.setBounds(534, 21, 184, 22);
+		comboBox_78_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ker_alt_grup_doldur(comboBox_79_3,comboBox_78_3 .getItemAt(comboBox_78_3 .getSelectedIndex()));
+			}
+		});
+		panel_KERESTE_ORTFIAT.add(comboBox_78_3);
+		
+		comboBox_79_3 = new JComboBox<String>();
+		comboBox_79_3.setForeground(new Color(0, 0, 128));
+		comboBox_79_3.setFont(new Font("Tahoma", Font.BOLD, 12));
+		comboBox_79_3.setEnabled(false);
+		comboBox_79_3.setBounds(534, 49, 184, 22);
+		panel_KERESTE_ORTFIAT.add(comboBox_79_3);
+		
+		JLabel label_67_1 = new JLabel("Alt Grup");
+		label_67_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		label_67_1.setBounds(415, 53, 104, 14);
+		panel_KERESTE_ORTFIAT.add(label_67_1);
+		
+		JLabel lblUrunOzelKod_1_5 = new JLabel("Ozel Kod");
+		lblUrunOzelKod_1_5.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblUrunOzelKod_1_5.setBounds(415, 86, 113, 14);
+		panel_KERESTE_ORTFIAT.add(lblUrunOzelKod_1_5);
+		
+		comboBox_80_5 = new JComboBox<String>();
+		comboBox_80_5.setForeground(new Color(0, 0, 128));
+		comboBox_80_5.setFont(new Font("Tahoma", Font.BOLD, 12));
+		comboBox_80_5.setBounds(534, 82, 184, 22);
+		panel_KERESTE_ORTFIAT.add(comboBox_80_5);
+		
+		comboBox_82 = new JComboBox<String>();
+		comboBox_82.setForeground(new Color(0, 0, 128));
+		comboBox_82.setFont(new Font("Tahoma", Font.BOLD, 12));
+		comboBox_82.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR"}));
+		comboBox_82.setBounds(534, 137, 69, 22);
+		panel_KERESTE_ORTFIAT.add(comboBox_82);
+		
+		JLabel lblNewLabel_43 = new JLabel("Turu");
+		lblNewLabel_43.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_43.setBounds(415, 116, 46, 14);
+		panel_KERESTE_ORTFIAT.add(lblNewLabel_43);
+		
+		comboBox_83 = new JComboBox<String>();
+		comboBox_83.setForeground(new Color(0, 0, 128));
+		comboBox_83.setFont(new Font("Tahoma", Font.BOLD, 12));
+		comboBox_83.setModel(new DefaultComboBoxModel<String>(new String[] { "GIREN", "CIKAN","STOK"}));
+		comboBox_83.setBounds(534, 111, 110, 22);
+		panel_KERESTE_ORTFIAT.add(comboBox_83);
+
 		//**********************************************************************OK BUTTON **********************************
 		okButton = new JButton("Yenile");
 		okButton.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -5029,6 +5201,8 @@ public class FILTRE extends JDialog {
 
 				if(dateChooser_33.getDate() == null) return;//GUNLUK
 				if(dateChooser_34.getDate() == null) return;
+				
+				// KERESTELERI KOY *************************************************************
 
 				int sayfa = tabbedPane.getSelectedIndex();
 				GuiUtil.setWaitCursor(getContentPane(),true);
@@ -5202,7 +5376,13 @@ public class FILTRE extends JDialog {
 						KER_FAT_RAPOR.yenile();   
 						GuiUtil.setWaitCursor(KER_FAT_RAPOR.splitPane,false);
 					}
-					
+				
+				}
+				else if (sayfa == 23) 
+				{
+					GuiUtil.setWaitCursor(KER_ORT_SATIS.splitPane,true);
+					KER_ORT_SATIS.yenile();   // 
+					GuiUtil.setWaitCursor(KER_ORT_SATIS.splitPane,false);
 				}
 				GuiUtil.setWaitCursor(getContentPane(),false);
 				dispose();
@@ -5356,6 +5536,12 @@ public class FILTRE extends JDialog {
 			ker_oz1_doldur(comboBox_80_2);
 			ker_depo_doldur(comboBox_80_3);
 			ker_depo_doldur(comboBox_80_4);
+
+		}
+		else if (syfa == 23)
+		{
+			ker_ana_grup_doldur(comboBox_78_3);
+			ker_oz1_doldur(comboBox_80_5);
 
 		}
 	}

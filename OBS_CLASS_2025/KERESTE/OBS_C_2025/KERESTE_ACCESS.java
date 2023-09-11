@@ -263,4 +263,9 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.kod_aciklama_bul(paket,kons);
 	}
+	public ResultSet ort_diger_kodu(String yu,String qwq6 , String qwq7, String m1 ,String m2,String s1,String s2,
+			String k1 ,String k2 ,String t1,String t2,String kurkod,String kurc,String iu,String hANGI) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.ort_diger_kodu(yu, qwq6, qwq7, m1, m2, s1, s2, k1, k2, t1, t2, kurkod, kurc, iu,hANGI);
+	}
 }

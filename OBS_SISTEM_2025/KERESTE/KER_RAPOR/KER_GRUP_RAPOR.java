@@ -2,6 +2,7 @@ package KER_RAPOR;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -34,6 +35,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
@@ -130,6 +132,21 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
+				Component c = super.prepareRenderer(renderer, row, col);
+				if (getValueAt(row,0) == null)
+				{
+					c.setBackground(Color.PINK);
+					c.setForeground(Color.BLUE);
+					Font fnt = new Font(table.getFont().getFontName(),1 ,12);
+					c.setFont(fnt);
+				} else 
+				{
+					c.setBackground(super.getBackground());
+					c.setForeground(super.getForeground());
+				}
+				return c;
+			}
 		};
 		table.setGridColor(oac.gridcolor);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
@@ -930,7 +947,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				table.setRowSelectionInterval(0, 0);
 				table.setRowHeight(21);
 				//**
-				topla(3);
+				topla(4);
 				//**
 				alt_bolum();
 				fontt();
@@ -1017,7 +1034,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				table.setRowSelectionInterval(0, 0);
 				table.setRowHeight(21);
 				//**
-				topla(3);
+				topla(4);
 				//**
 				alt_bolum();
 				

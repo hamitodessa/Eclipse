@@ -1573,4 +1573,62 @@ public class KERESTE_MSSQL implements IKERESTE {
 		}
 		return result;	
 	}
+
+	@Override
+	public ResultSet ort_diger_kodu(String yu, String qwq6, String qwq7, String m1, String m2, String s1, String s2,
+			String k1, String k2, String t1, String t2, String kurkod, String kurc, String iu,String hANGI)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String[] token = k1.toString().split("-");
+		String ilks ,ilkk,ilkb,ilkg;
+		ilks = token[0];
+		ilkk = token[1];
+		ilkb = token[2];
+		ilkg = token[3];
+		token = k2.toString().split("-");
+		String sons,sonk,sonb,song;
+		sons = token[0];
+		sonk = token[1];
+		sonb = token[2];
+		song = token[3];
+
+		String dURUM = "" ;
+		if (hANGI.equals("") )
+		{
+			hANGI = "" ;
+
+		    dURUM =    " " ;
+		}
+		else {
+			hANGI = "C" ;
+
+			dURUM =   " Cikis_Evrak <> '' AND" ;
+		}
+		String sql =  "SELECT  " + yu + "," +
+				" SUM((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) - (   (KERESTE."+hANGI+"Tutar * Kereste.Iskonto)/100)    ) ) As Tutar,  " +
+				" SUM((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) - (   (KERESTE."+hANGI+"Tutar * Kereste.Iskonto)/100)    )  / kurlar.MA) as "+ kurc +"_Tutar , " +
+				" SUM(KERESTE.Miktar)  As Miktar, " +
+				" SUM(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) As m3, " +
+				" SUM(Kereste."+hANGI+"Tutar - (   (KERESTE."+hANGI+"Tutar * Kereste.Iskonto)/100)    ) /  iif(( sum(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  ) = 0,1, " +
+				" SUM(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) As m3_Satis , " +
+				" (	 SUM((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) - (   (" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) * Kereste.Iskonto)/100)    )  / kurlar.MA) /      NULLIF(      SUM(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000),0))  As m3_"+ kurc +" " +
+				" FROM KERESTE ,OK_Kur" + kurkod +".dbo.kurlar  " +
+				" WHERE    " +
+				" " + dURUM +
+				" KERESTE."+hANGI+"Tarih BETWEEN '" + t1 + "'" + " AND  '" + t2 + " 23:59:59.998' AND" +
+				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
+				" SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" +
+				" SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" +
+				" SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' AND " + 
+				" "+ hANGI+"Cari_Firma between N'" + m1 + "' AND N'" + s2 + "' AND" +
+				" Konsimento between N'" + s1 + "' AND N'" + m2 + "'" +
+				"  AND kurlar.Tarih = convert(varchar(10), KERESTE."+ hANGI+"Tarih, 120) and kurlar.Kur = '" + kurc + "'  " +
+				"  GROUP BY  " + iu ;
+		System.out.println(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+
+		return rss;	
+	}
 }

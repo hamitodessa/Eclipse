@@ -2575,7 +2575,12 @@ public class OBS_MAIN extends JFrame {
 					
 					ft.setVisible(true);
 				}
-				
+				else if (sonuc == "KERESTE ORTALAMA SATIS")
+				{
+					GLOBAL.filtre_sayfa = 23 ;
+					ft = new FILTRE();
+					ft.setVisible(true);
+				}
 				//
 				GuiUtil.setWaitCursor(toolBar,false);
 			}

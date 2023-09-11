@@ -704,6 +704,5 @@ public class KERESTE_MYSQL implements IKERESTE {
 		return null;
 	}
 
-	
 		
 }

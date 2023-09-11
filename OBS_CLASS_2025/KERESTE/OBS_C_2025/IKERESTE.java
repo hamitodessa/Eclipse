@@ -62,4 +62,4 @@ public interface IKERESTE {
 	public String[] kod_aciklama_bul(String paket, String kons) throws ClassNotFoundException, SQLException;
 	public ResultSet ort_diger_kodu(String yu,String qwq6 , String qwq7, String m1 ,String m2,String s1,String s2,
 			String k1 ,String k2 ,String t1,String t2,String kurkod,String kurc,String iu,String hANGI) throws ClassNotFoundException, SQLException;
-}
+	}

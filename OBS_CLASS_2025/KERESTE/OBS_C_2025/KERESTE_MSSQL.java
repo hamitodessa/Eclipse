@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
@@ -1611,8 +1610,8 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" SUM(KERESTE.Miktar)  As Miktar, " +
 				" SUM(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) As m3, " +
 				" SUM(Kereste."+hANGI+"Tutar - (   (KERESTE."+hANGI+"Tutar * Kereste.Iskonto)/100)    ) /  iif(( sum(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  ) = 0,1, " +
-				" SUM(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) As m3_Satis , " +
-				" (	 SUM((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) - (   (" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) * Kereste.Iskonto)/100)    )  / kurlar.MA) /      NULLIF(      SUM(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000),0))  As m3_"+ kurc +" " +
+				" SUM(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) As m3_Ort_Fiat , " +
+				" (	 SUM((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) - (   (" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) * Kereste.Iskonto)/100)    )  / kurlar.MA) /      NULLIF(      SUM(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000),0))  As m3_Ort_Fiat_"+ kurc +" " +
 				" FROM KERESTE ,OK_Kur" + kurkod +".dbo.kurlar  " +
 				" WHERE    " +
 				" " + dURUM +
@@ -1625,10 +1624,10 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" Konsimento between N'" + s1 + "' AND N'" + m2 + "'" +
 				"  AND kurlar.Tarih = convert(varchar(10), KERESTE."+ hANGI+"Tarih, 120) and kurlar.Kur = '" + kurc + "'  " +
 				"  GROUP BY  " + iu ;
-		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-
 		return rss;	
 	}
+
+	
 }

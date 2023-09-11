@@ -2898,6 +2898,10 @@ public class OBS_MAIN extends JFrame {
 				{
 					KER_DETAY.excell_aktar() ;
 				}
+				else if (sonuc == "KERESTE ORTALAMA SATIS")
+				{
+					KER_ORT_SATIS.excell_aktar() ;
+				}
 				GuiUtil.setWaitCursor(toolBar,false);//
 			}
 		});

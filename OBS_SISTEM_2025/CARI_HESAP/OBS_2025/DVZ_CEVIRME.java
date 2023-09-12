@@ -337,7 +337,6 @@ public class DVZ_CEVIRME extends JInternalFrame {
 						lblboskur.setText("...");
 					    return;
 					} 
-				   
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					JTableHeader th = table.getTableHeader();
 					TableColumnModel tcm = th.getColumnModel();

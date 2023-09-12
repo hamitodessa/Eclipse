@@ -267,7 +267,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(DVZ_CEVIRME.class.getResource("/ICONLAR/icons8-view-16.png")));
-		btnNewButton.setBounds(957, 2, 30, 23);
+		btnNewButton.setBounds(970, 4, 30, 23);
 		panel.add(btnNewButton);
 		
 		JLabel lblBosKur = new JLabel("Bos Kur :");
@@ -278,7 +278,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		lblboskur = new JLabel("...");
 		lblboskur.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblboskur.setForeground(Color.RED);
-		lblboskur.setBounds(918, 8, 38, 14);
+		lblboskur.setBounds(918, 8, 53, 14);
 		panel.add(lblboskur);
 		
 		JLabel lblKayitSayisi = new JLabel("Kayit Sayisi :");
@@ -289,7 +289,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		label_1 = new JLabel("0");
 		label_1.setForeground(new Color(0, 0, 128));
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_1.setBounds(1112, 8, 44, 14);
+		label_1.setBounds(1112, 8, 60, 14);
 		panel.add(label_1);
 		table.requestFocus();
 

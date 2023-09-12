@@ -126,7 +126,7 @@ public class CAL_DIZIN extends JDialog {
 	private static JComboBox<String> cmbip;
 	private static JComboBox<String> cmbhangisql;
 	private static JButton btndizsec;
-	private JButton btnNewButton_2_1_1 ;
+	private static JButton btnNewButton_2_1_1 ;
 	private static JButton btnNewButton_1;
 	private static JCheckBox chckbxL ;
 	private static JCheckBox chckbxS ;

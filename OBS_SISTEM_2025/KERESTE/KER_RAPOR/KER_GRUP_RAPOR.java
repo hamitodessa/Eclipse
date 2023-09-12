@@ -957,6 +957,10 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				topla(4);
 				//**
 				alt_bolum();
+				if(FILTRE.chckbxNewCheckBox_3.isSelected())
+				{
+					ara_toplam(3,4);
+				}
 				fontt();
 			}
 		} 
@@ -2108,11 +2112,11 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				{
 					sutun = 1 ;
 				}
-				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal_Boy"))
+				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal-Boy"))
 				{
 					sutun = 3 ;
 				}
-				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal_Gen"))
+				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal-Gen"))
 				{
 					sutun = 3 ;
 				}
@@ -2286,11 +2290,11 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				{
 					sutun = 1 ;
 				}
-				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal_Boy"))
+				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal-Boy"))
 				{
 					sutun = 3 ;
 				}
-				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal_Gen"))
+				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal-Gen"))
 				{
 					sutun = 3 ;
 				}
@@ -2476,11 +2480,11 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				sutun = 1 ;
 			}
-			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal_Boy"))
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal-Boy"))
 			{
 				sutun = 3 ;
 			}
-			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal_Gen"))
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal-Gen"))
 			{
 				sutun = 3 ;
 			}

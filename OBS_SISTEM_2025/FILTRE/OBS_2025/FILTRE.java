@@ -4535,7 +4535,7 @@ public class FILTRE extends JDialog {
 		comboBox_27_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String hangi = comboBox_27_1.getItemAt(comboBox_27_1.getSelectedIndex())  ;
-				if (hangi == "Sinif-Kal" || hangi == "Sinif-Kal-Boy" || hangi == "Sinif-Kal-Gen" || hangi == "Paket-Sinif-Kal-Gen")
+				if (hangi == "Sinif-Kal" || hangi == "Sinif-Kal-Boy" || hangi == "Sinif-Kal-Gen" || hangi == "Paket-Sinif-Kal-Gen" || hangi == "Paket-Sinif-Kal-Boy")
 				{
 					chckbxNewCheckBox_3.setVisible(true);
 				}

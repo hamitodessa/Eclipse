@@ -142,7 +142,8 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.executeUpdate(sql);
 		
 		sql= "CREATE TABLE [dbo].[KERESTE]( "
-				+ "[Evrak_No] [nvarchar](10) NOT NULL,"
+				+ " [ID] [int] IDENTITY(1,1) NOT NULL,"
+				+ " [Evrak_No] [nvarchar](10) NOT NULL,"
 				+ " [Barkod] [nvarchar](20) NULL,"
 				+ " [Kodu] [nvarchar](16) NOT NULL,"
 				+ " [Paket_No] [nvarchar] (10) NULL,"
@@ -184,7 +185,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " [CNakliyeci] [int] NULL,"
 				+ " [CUSER] [nvarchar](15)  NULL,"
 				+ " [Satir] [int] NOT NULL,"
-				+ " INDEX IX_KERESTE NONCLUSTERED (Evrak_No,Kodu,Tarih,Paket_No,Konsimento,Cari_Firma,Cikis_Evrak)) ";
+				+ " INDEX IX_KERESTE NONCLUSTERED (Evrak_No,Kodu,Paket_No,Cari_Firma,Cikis_Evrak)) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE [dbo].[OZEL]("

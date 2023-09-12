@@ -2337,8 +2337,12 @@ public class KER_GIRIS extends JInternalFrame {
 							int kjp = 10 - (yeniSinif + sonpaketno).length() ;
 							String yeniPaket =  yeniSinif + StringUtils.repeat("0", kjp) + sonpaketno  ;
 							//
+						      int min = 300; // Minimum value of range
+						      int max = 600; // Maximum value of range
+						      double random_fiat = (double)Math.floor(Math.random() * (max - min + 1) + min);
+							///
 							mdl.addRow(new Object[]{"",kODU,yeniPaket,adet,
-									m3(kODU,adet),"",konsimento,"Umraniye",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+									m3(kODU,adet),"",konsimento,"Umraniye",random_fiat,0.00,0.00,m3(kODU, adet) * random_fiat,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 						}
 						else {
 							sonpaketno =  arapaketno ;
@@ -2364,8 +2368,14 @@ public class KER_GIRIS extends JInternalFrame {
 							int kjp = 10 - ( arasinif.substring(1, 2)   + sonpaketno).length() ;
 							String yeniPaket =  arasinif.substring(1, 2) + StringUtils.repeat("0", kjp) + sonpaketno  ;
 							//
+							//
+						      int min = 300; // Minimum value of range
+						      int max = 600; // Maximum value of range
+						      double random_fiat = (double)Math.floor(Math.random() * (max - min + 1) + min);
+							///
+
 							mdl.addRow(new Object[]{"",kODU,yeniPaket,adet,
-									m3(kODU,adet),"",konsimento,"Umraniye",0.00,0.00,0.00,0.00,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+									m3(kODU,adet),"",konsimento,"Umraniye",random_fiat,0.00,0.00,m3(kODU, adet) * random_fiat,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 						}
 					}  
 					satir += 1 ;

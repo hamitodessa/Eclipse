@@ -258,6 +258,12 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				if (! sstr_1.equals(""))
 					konsimento_kodlu();
 			}
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Konsimento"))
+			{
+				baslik_bak();
+				if (! sstr_1.equals(""))
+					paket_konsimento_kodlu();
+			}
 			//
 		}
 		catch (Exception ex)
@@ -958,6 +964,87 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kal Boy Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	private static void paket_konsimento_kodlu() 
+	{
+		startTime = System.currentTimeMillis(); 
+		try {
+			ResultSet	rs = null;
+			deg_cevir();
+			grup_cevir() ;
+			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+			{
+				hANGI = "" ;
+			}
+			else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+			{
+				hANGI = "C" ;
+			}
+			rs = ker_Access.grp_rapor(" Paket_No , Konsimento ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+					jkj,
+					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
+					sstr_5, sstr_1, "Paket_No , Konsimento" , hANGI,
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() ) {  
+				lbladet.setText(FORMATLAMA.doub_0(0));
+			} 
+			else
+			{
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+				mdll.addColumn("Toplam");
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(80);
+				tc.setMaxWidth(80);
+
+				tc = tcm.getColumn(1);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(80);
+				tc.setMaxWidth(80);
+
+				kusurr();
+				for (int i = 2;i<=table.getColumnCount() -2;i++)
+				{
+					tc = tcm.getColumn(i);
+					tc.setHeaderRenderer(new SAGA());
+					tc.setCellRenderer(new TABLO_RENDERER(kusur,false));
+					tc.setMinWidth(110);
+				}
+				tc = tcm.getColumn(table.getColumnCount() -1);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(kusur,true));
+				tc.setMinWidth(110);
+
+				Dimension dd = th.getPreferredSize();
+				dd.height = 30;
+				th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
+				//**
+				topla(2);
+				//**
+				alt_bolum();
+			
+				if(FILTRE.chckbxNewCheckBox_3.isSelected())
+				{
+					ara_toplam(1,2);
+				}
+				fontt();
+			}
+		} 
+		catch (Exception ex) {
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kal Raporlama", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
 	private static void paket_sinif_kal_gen_kodlu() 
 	{
 		startTime = System.currentTimeMillis(); 
@@ -2041,6 +2128,10 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				{
 					sutun = 0 ;
 				}
+				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket_No-Konsimento"))
+				{
+					sutun = 1 ;
+				}
 				Row headerRow = sheet.createRow(1);
 				for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
 				{
@@ -2215,7 +2306,10 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				{
 					sutun = 0 ;
 				}
-				
+				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket_No-Konsimento"))
+				{
+					sutun = 1 ;
+				}
 				Row headerRow = sheet.createRow(1);
 				for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
 				{
@@ -2402,7 +2496,10 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				sutun = 0 ;
 			}
-
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket_No-Konsimento"))
+			{
+				sutun = 1 ;
+			}
 			//
 			Row headerRow = sheet.createRow(1);
 			for (int q =0;q<= mdl.getColumnCount()-1 ;q++)

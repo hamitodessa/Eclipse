@@ -16,10 +16,8 @@ public class KERESTE_MSSQL implements IKERESTE {
 
 	@Override
 	public void baglan() throws SQLException, ClassNotFoundException {
-		
 		String cumle = "jdbc:sqlserver://" + BAGLAN.kerDizin.cONN_STR + ";";
 		con = DriverManager.getConnection(cumle,BAGLAN.kerDizin.kULLANICI,BAGLAN.kerDizin.sIFRESI);
-		
 	}
 
 	@Override
@@ -82,13 +80,57 @@ public class KERESTE_MSSQL implements IKERESTE {
 		//
 		stmt.close();
 		con.close();
-		
 	}
 
 	@Override
 	public void kER_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		con = null;  
+		String VERITABANI = "OK_Ker" +  sbilgi.getKod();
+		String cumle = "";
+		stmt = null;
+		String sql =null;
+		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+		sql = "CREATE DATABASE [" + VERITABANI + "]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";database=" + VERITABANI + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+		create_table(sbilgi.getFir_adi());
+		//
+		sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
+		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";database=" + VERITABANI + "_LOG" + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+		create_table_log();
+		//  VERITABANI DOSYASI ILK ACILIS
+		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.kerLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi() );
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.kerLogDizin);
+		//SQLITE LOG DOSYASI OLUSTUR
+		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.kerLogDizin.mODUL)) == false)
+		{
+			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kerLogDizin.mODUL) ;
+			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.kerLogDizin);
+		}
+		//  TEXT DOSYASI ILK ACILIS
+		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.kerLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi() );
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.kerLogDizin);
+		//
+		stmt.close();
+		con.close();
 	}
 	
 	@Override
@@ -185,7 +227,9 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " [CNakliyeci] [int] NULL,"
 				+ " [CUSER] [nvarchar](15)  NULL,"
 				+ " [Satir] [int] NOT NULL,"
-				+ " INDEX IX_KERESTE NONCLUSTERED (Evrak_No,Kodu,Paket_No,Cari_Firma,Cikis_Evrak)) ";
+				+ " CONSTRAINT [PKeyKID] PRIMARY KEY CLUSTERED ("
+				+ " [ID] ASC ) ,"
+				+ " INDEX IX_KERESTE NONCLUSTERED (Evrak_No,Kodu,Paket_No,Cari_Firma,Cikis_Evrak) ) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE [dbo].[OZEL]("
@@ -594,7 +638,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		boolean result = true;
 		String sql  = "" ;
 		PreparedStatement stmt =null;
-		sql = "SELECT  *  FROM KERESTE WITH (INDEX (IX_KERESTE))   WHERE Ana_Grup = '" + anagrp + "'  AND  Alt_Grup = '" + altgrp + "' ";
+		sql = "SELECT  *  FROM KERESTE     WHERE Ana_Grup = '" + anagrp + "'  AND  Alt_Grup = '" + altgrp + "' ";
 		stmt = con.prepareStatement(sql);
 		rs = stmt. executeQuery();
 		if (!rs.isBeforeFirst() )   result = false ;
@@ -713,10 +757,10 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String result ;
 		String sql ;
 		if (cins.equals("G")) {
-			sql = "SELECT max(Evrak_No)  as NO FROM KERESTE WITH (INDEX (IX_KERESTE))";
+			sql = "SELECT max(Evrak_No)  as NO FROM KERESTE  ";
 		}
 		else {
-			sql = "SELECT max(Cikis_Evrak)  as NO FROM KERESTE WITH (INDEX (IX_KERESTE))";
+			sql = "SELECT max(Cikis_Evrak)  as NO FROM KERESTE  ";
 		}
 		
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -809,7 +853,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 					+ "	,[Ana_Grup]  ,[Alt_Grup] ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) , '') AS Depo  ,[Ozel_Kod] ,[Izahat]  ,[Nakliyeci] ,[USER] "
 					+ "	,[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] ,[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat] "
 					+ "	,[CAna_Grup]    ,[CAlt_Grup]  ,CDepo  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER]" 
-					+ " FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
+					+ " FROM KERESTE   " 
 					+ " WHERE Evrak_No  = N'" + eno + "' ORDER BY Paket_No ,Kodu , Satir" ;
 		}
 		else {
@@ -817,7 +861,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 					+ "	,[Ana_Grup]  ,[Alt_Grup] ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) , '') AS Depo  ,[Ozel_Kod] ,[Izahat]  ,[Nakliyeci] ,[USER] "
 					+ "	,[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] ,[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat] "
 					+ "	,[CAna_Grup]    ,[CAlt_Grup]  ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER],Satir" 
-					+ " FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
+					+ " FROM KERESTE   " 
 					+ " WHERE Cikis_Evrak  = N'" + eno + "' ORDER BY Paket_No ,Satir" ;
 		}
 		
@@ -937,7 +981,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String sql = "SELECT   [Evrak_No] ,[Barkod] ,[Kodu],[Paket_No],[Konsimento] ,[Miktar],[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] " 
 				+ ",[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat],[CAna_Grup]    ,[CAlt_Grup]  "
 				+ "	 ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER],Satir" 
-				+ " FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
+				+ " FROM KERESTE   " 
 				+ " WHERE Paket_No = N'" + token[0] + "' AND Konsimento = N'"+ token[1]  +"' ORDER BY Satir" ;
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
@@ -1015,7 +1059,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		sonk = token[1];
 		sonb = token[2];
 		song = token[3];
-		String sql =   "SELECT "+ baslik + "  FROM KERESTE WITH (INDEX (IX_KERESTE)) " +
+		String sql =   "SELECT "+ baslik + "  FROM KERESTE   " +
 				" WHERE   " + jkj +
 				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" +
@@ -1050,7 +1094,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		song = token[3];
 		String sql =   "SELECT * " +
 				" FROM  (SELECT "+ gruplama + " ," + sstr_2 + " as  degisken , " + sstr_4 +
-				" FROM KERESTE WITH (INDEX (IX_KERESTE)) " + kur_dos + 
+				" FROM KERESTE   " + kur_dos + 
 				" WHERE   " + jkj + dURUM + "Ana_Grup " + qwq6 +
 				" AND "+ dURUM + "Alt_Grup " + qwq7 +
 				" AND "+ dURUM + "Ozel_Kod " + qwq8 +
@@ -1095,50 +1139,50 @@ public class KERESTE_MSSQL implements IKERESTE {
 		sonb = token[2];
 		song = token[3];
 		String sql =  " SELECT [Evrak_No] "
-				+ "      ,[Barkod] "
-				+ "      ,[Kodu] "
-				+ "      ,[Paket_No] "
-				+ "      ,[Konsimento] "
-				+ "      ,[Miktar] "
-				+ " , (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  as m3"
-				+ "      ,[Tarih] "
-				+ "      ,[Kdv] "
-				+ "      ,[Doviz] "
-				+ "      ,[Fiat] "
-				+ "      ,[Tutar] "
-				+ "      ,[Kur] "
-				+ "      ,[Cari_Firma] "
-				+ "      ,[Adres_Firma] "
-				+ "      ,[Iskonto] "
-				+ "      ,[Tevkifat] "
-				+ "      ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.Ana_Grup),'') Ana_Grup "
-				+ "      ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.Alt_Grup),'') AS Alt_Grup "
-				+ "      ,(SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) as Depo  " 
-				+ "      ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.Ozel_Kod),'') Ozel_Kod "
-				+ "      ,[Izahat] "
-				+ "      ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.Nakliyeci ) as Nakliyeci  " 
-				+ "      ,[USER] "
-				+ "      ,[Cikis_Evrak] "
-				+ "      ,[CTarih] "
-				+ "      ,[CKdv] "
-				+ "      ,[CDoviz] "
-				+ "      ,[CFiat] "
-				+ "      ,[CTutar] "
-				+ "      ,[CKur] "
-				+ "      ,[CCari_Firma] "
-				+ "      ,[CAdres_Firma] "
-				+ "      ,[CIskonto] "
-				+ "      ,[CTevkifat] "
-				+ "      ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.CAna_Grup),'') AS C_Ana_Grup "
-				+ "		 ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.CAlt_Grup),'') AS C_Alt_Grup "
-				+ "      ,ISNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo),'') AS C_Depo "
-				+ "       ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.COzel_Kod),'') COzel_Kod "
-				+ "      ,[CIzahat] "
-				+ "      ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.CNakliyeci ) as C_Nakliyeci  " 
-				+ "      ,[CUSER] " 
-				+ "      FROM KERESTE WITH (INDEX (IX_KERESTE))  " 
-				+ "      WHERE " 
-				+ "      Tarih BETWEEN '" + ker_rap_BILGI.getGTarih1() + "'" + " AND  '" + ker_rap_BILGI.getGTarih2() + " 23:59:59.998' AND" 
+				+ " ,[Barkod] "
+				+ " ,[Kodu] "
+				+ " ,[Paket_No] "
+				+ " ,[Konsimento] "
+				+ " ,[Miktar] "
+				+ " ,(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  as m3"
+				+ " ,[Tarih] "
+				+ " ,[Kdv] "
+				+ " ,[Doviz] "
+				+ " ,[Fiat] "
+				+ " ,[Tutar] "
+				+ " ,[Kur] "
+				+ " ,[Cari_Firma] "
+				+ " ,[Adres_Firma] "
+				+ " ,[Iskonto] "
+				+ " ,[Tevkifat] "
+				+ " ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.Ana_Grup),'') Ana_Grup "
+				+ " ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.Alt_Grup),'') AS Alt_Grup "
+				+ " ,(SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) as Depo  " 
+				+ " ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.Ozel_Kod),'') Ozel_Kod "
+				+ " ,[Izahat] "
+				+ " ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.Nakliyeci ) as Nakliyeci  " 
+				+ " ,[USER] "
+				+ " ,[Cikis_Evrak] "
+				+ " ,[CTarih] "
+				+ " ,[CKdv] "
+				+ " ,[CDoviz] "
+				+ " ,[CFiat] "
+				+ " ,[CTutar] "
+				+ " ,[CKur] "
+				+ " ,[CCari_Firma] "
+				+ " ,[CAdres_Firma] "
+				+ " ,[CIskonto] "
+				+ " ,[CTevkifat] "
+				+ " ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.CAna_Grup),'') AS C_Ana_Grup "
+				+ "	,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.CAlt_Grup),'') AS C_Alt_Grup "
+				+ " ,ISNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo),'') AS C_Depo "
+				+ " ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.COzel_Kod),'') COzel_Kod "
+				+ " ,[CIzahat] "
+				+ " ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.CNakliyeci ) as C_Nakliyeci  " 
+				+ " ,[CUSER] " 
+				+ " FROM KERESTE  " //WITH (INDEX (IX_KERESTE)) 
+				+ " WHERE " 
+				+ " Tarih BETWEEN '" + ker_rap_BILGI.getGTarih1() + "'" + " AND  '" + ker_rap_BILGI.getGTarih2() + " 23:59:59.998' AND" 
 				+ " SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" 
 				+ " SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" 
 				+ " SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" 
@@ -1166,7 +1210,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public ResultSet ker_barkod_kod_oku(String sira) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		String sql =   "SELECT  DISTINCT Paket_No , Konsimento FROM KERESTE WITH (INDEX (IX_KERESTE)) " +
+		String sql =   "SELECT  DISTINCT Paket_No , Konsimento FROM KERESTE   " +
 				" WHERE Cikis_Evrak = '' " +
 				" ORDER by " + sira;
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -1232,7 +1276,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+" SUM(((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Fiat  ) - SUM(((((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Fiat  ) * " + hANGI + "Iskonto)/100) as Iskontolu_Tutar ," 
 				+" SUM((((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto)/100) * "+ hANGI+"Kdv)/100)  AS Kdv_Tutar ," 
 				+" SUM((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto)/100 +   ((("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto) / 100) * "+ hANGI+"Kdv ) / 100)    as Toplam_Tutar " 				
-				+" FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
+				+" FROM KERESTE   " 
 				+" WHERE " 
 				+" Tarih BETWEEN '" + ker_rap_BILGI.getGTarih1() + "'" + " AND  '" + ker_rap_BILGI.getGTarih2() + " 23:59:59.998' AND" 
 				+" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" 
@@ -1279,29 +1323,29 @@ public class KERESTE_MSSQL implements IKERESTE {
 			eVRAKNO = "Cikis_Evrak" ;
 		}
 		String sql =  " SELECT [" + eVRAKNO + "] "
-				+ "      ,[Barkod] "
-				+ "      ,[Kodu] "
-				+ "      ,[Paket_No] "
-				+ "      ,[Miktar] "
-				+ " , (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  as m3"
-				+ "      ,[" + hANGI + "Kdv] "
-				+ "      ,[" + hANGI + "Doviz] "
-				+ "      ,[" + hANGI + "Fiat] "
-				+ "      ,[" + hANGI + "Tutar] "
-				+ "      ,[" + hANGI + "Kur] "
-				+ "      ,[" + hANGI + "Cari_Firma] "
-				+ "      ,[" + hANGI + "Adres_Firma] "
-				+ "      ,[" + hANGI + "Iskonto] "
-				+ "      ,[" + hANGI + "Tevkifat] "
-				+ "      ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE." + hANGI + "Ana_Grup),'') AS " + hANGI + "_Ana_Grup "
-				+ "		 ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE." + hANGI + "Alt_Grup),'') AS " + hANGI + "_Alt_Grup "
-				+ "      ,ISNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE." + hANGI + "Depo),'') AS " + hANGI + "_Depo "
-				+ "      ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE."+ hANGI +"Ozel_Kod),'') Ozel_Kod "
-				+ "      ,[" + hANGI + "Izahat] "
-				+ "      ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE." + hANGI + "Nakliyeci ) as " + hANGI + "_Nakliyeci  " 
-				+ "      ,[" + hANGI + "USER] " 
-				+ "      FROM KERESTE WITH (INDEX (IX_KERESTE))  " 
-				+ "      WHERE "  + fAT_TUR  ; 
+				+ " ,[Barkod] "
+				+ " ,[Kodu] "
+				+ " ,[Paket_No] "
+				+ " ,[Miktar] "
+				+ " ,(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  as m3"
+				+ " ,[" + hANGI + "Kdv] "
+				+ " ,[" + hANGI + "Doviz] "
+				+ " ,[" + hANGI + "Fiat] "
+				+ " ,[" + hANGI + "Tutar] "
+				+ " ,[" + hANGI + "Kur] "
+				+ " ,[" + hANGI + "Cari_Firma] "
+				+ " ,[" + hANGI + "Adres_Firma] "
+				+ " ,[" + hANGI + "Iskonto] "
+				+ " ,[" + hANGI + "Tevkifat] "
+				+ " ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE." + hANGI + "Ana_Grup),'') AS " + hANGI + "_Ana_Grup "
+				+ "	,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE." + hANGI + "Alt_Grup),'') AS " + hANGI + "_Alt_Grup "
+				+ " ,ISNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE." + hANGI + "Depo),'') AS " + hANGI + "_Depo "
+				+ " ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE."+ hANGI +"Ozel_Kod),'') Ozel_Kod "
+				+ " ,[" + hANGI + "Izahat] "
+				+ " ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE." + hANGI + "Nakliyeci ) as " + hANGI + "_Nakliyeci  " 
+				+ " ,[" + hANGI + "USER] " 
+				+ " FROM KERESTE    " 
+				+ " WHERE "  + fAT_TUR  ; 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1350,7 +1394,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+" ,SUM((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto)/100) as Iskontolu_Tutar  " 
 				+" ,SUM((((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto)/100) * "+ hANGI+"Kdv)/100)  AS Kdv_Tutar " 
 				+" ,SUM((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto)/100 +   ((("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto) / 100) * "+ hANGI+"Kdv ) / 100)    as Toplam_Tutar " 
-				+" FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
+				+" FROM KERESTE   " 
 				+" WHERE " 
 				+" Tarih BETWEEN '" + ker_rap_BILGI.getGTarih1() + "'" + " AND  '" + ker_rap_BILGI.getGTarih2() + " 23:59:59.998' AND" 
 				+" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" 
@@ -1417,7 +1461,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+" SUM((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto)/100) as Iskontolu_Tutar  ," 
 				+" SUM((((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto)/100) * "+ hANGI+"Kdv)/100)  AS Kdv_Tutar ," 
 				+" SUM((" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto)/100 +   ((("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hANGI+"Iskonto) / 100) * "+ hANGI+"Kdv ) / 100)    as Toplam_Tutar " 				
-				+" FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
+				+" FROM KERESTE   " 
 				+" WHERE " 
 				+" Tarih BETWEEN '" + ker_rap_BILGI.getGTarih1() + "'" + " AND  '" + ker_rap_BILGI.getGTarih2() + " 23:59:59.998' AND" 
 				+" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" 
@@ -1509,7 +1553,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " ,[CIzahat] "
 				+ " ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.CNakliyeci ) as C_Nakliyeci  " 
 				+ " ,[CUSER] ,Satir" 
-				+ " FROM KERESTE WITH (INDEX (IX_KERESTE))  " 
+				+ " FROM KERESTE    " 
 				+ " WHERE " 
 				+ " SUBSTRING(KERESTE.Kodu, 1, 2) like '%"+ ilks +"%'  AND" //IIF(500<1000, 'YES', 'NO')
 				+ " SUBSTRING(KERESTE.Kodu, 4, 3) like '%"+ilkk +"%' AND" 
@@ -1558,7 +1602,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		PreparedStatement stmt = con.prepareStatement("SELECT DISTINCT (SELECT ACIKLAMA FROM KOD_ACIKLAMA WHERE Kod = SUBSTRING(KERESTE.Kodu,0,3)) as ACIKLAMA ,"
 					+ " (SELECT ACIKLAMA FROM KONS_ACIKLAMA WHERE KONS = '" + kons + "') as KONS_ACIKLAMA"
-					+ " FROM KERESTE WITH (INDEX (IX_KERESTE)) " 
+					+ " FROM KERESTE   " 
 					+ " WHERE Paket_No ='" + paket + "' and  Konsimento = '" + kons+"' ");
 		rss = stmt.executeQuery();
 		String result[] = {"",""} ;
@@ -1611,7 +1655,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" SUM(Kereste." + hANGI + "Tutar - ((KERESTE." + hANGI + "Tutar * Kereste.Iskonto)/100)    ) /  iif(( sum(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  ) = 0,1, " +
 				" SUM(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) As m3_Ort_Fiat , " +
 				" (SUM((" + hANGI + "Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) - (   (" + hANGI+"Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) * Kereste.Iskonto)/100)    )  / kurlar.MA) /      NULLIF(      SUM(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000),0))  As m3_Ort_Fiat_"+ kurc +" " +
-				" FROM KERESTE WITH (INDEX (IX_KERESTE)) ,OK_Kur" + kurkod +".dbo.kurlar  " +
+				" FROM KERESTE ,OK_Kur" + kurkod +".dbo.kurlar  " +
 				" WHERE    " +
 				" " + dURUM +
 				" KERESTE." + hANGI + "Tarih BETWEEN '" + t1 + "'" + " AND  '" + t2 + " 23:59:59.998' AND" +
@@ -1627,6 +1671,4 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-
-	
 }

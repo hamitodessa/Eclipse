@@ -2128,7 +2128,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				{
 					sutun = 0 ;
 				}
-				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket_No-Konsimento"))
+				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Konsimento"))
 				{
 					sutun = 1 ;
 				}
@@ -2306,7 +2306,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				{
 					sutun = 0 ;
 				}
-				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket_No-Konsimento"))
+				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Konsimento"))
 				{
 					sutun = 1 ;
 				}
@@ -2496,7 +2496,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				sutun = 0 ;
 			}
-			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket_No-Konsimento"))
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Konsimento"))
 			{
 				sutun = 1 ;
 			}

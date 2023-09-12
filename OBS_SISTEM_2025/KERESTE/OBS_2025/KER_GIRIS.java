@@ -88,6 +88,7 @@ import com.toedter.calendar.JDateChooser;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.Degisken;
 import OBS_C_2025.DoubleEditor;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
@@ -1696,13 +1697,13 @@ public class KER_GIRIS extends JInternalFrame {
 		{
 			if ( mdl.getValueAt(i,1).toString().length() == 0)
 			{
-				bSATIR  +=1 ;
+				bSATIR  += 1 ;
 			}
 			else {
-				dSATIR  +=1 ;
+				dSATIR  += 1 ;
 			}
 		}
-		if(dSATIR ==0) 
+		if(dSATIR == 0) 
 		{
 			JOptionPane.showMessageDialog(null,  "Bos Satirlar ...",  "Kereste Kayit", JOptionPane.ERROR_MESSAGE);   	
 			return;
@@ -1738,14 +1739,16 @@ public class KER_GIRIS extends JInternalFrame {
 				ker_Access.ker_giris_sil(textField.getText() ,lBILGI,BAGLAN_LOG.kerLogDizin);
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 				Progres_Bar_Temizle();
+				OBS_MAIN.progressBar.setStringPainted(true);
 				int mAX = mdl.getRowCount() ;
 				OBS_MAIN.progressBar.setMaximum(mAX+2);
+				int degisken[] = degiskenler() ; 
 				for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
 				{
 					if (! mdl.getValueAt(i,1).toString().equals(""))
 					{
 						Progres_Bar(mAX,i);
-						sat_yaz_2(i);
+						sat_yaz_2(i,degisken);
 					}
 				}
 				GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
@@ -1769,15 +1772,12 @@ public class KER_GIRIS extends JInternalFrame {
 		Thread q = new Thread(runner1, "Code Executer1");
 		q.start();
 	}
-	private static void sat_yaz_2(int i)
+	private static void sat_yaz_2(int i,int degiske[])
 	{
 		try 
 		{
-			String  izahat ="";
-			double  miktar=0;
-			int angrp, altgrp, depo, nakl,ozk;
-			depo = 0 ;
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+			int depo = 0 ;
 			ResultSet rs =null ;
 			if (mdl.getValueAt(i,7) == null)
 			{
@@ -1794,55 +1794,8 @@ public class KER_GIRIS extends JInternalFrame {
 					depo = rs.getInt("DPID_Y");
 				}
 			}
-			
-			angrp = 0 ;
-			if ( ! cmbanagrup.getSelectedItem().toString().equals("") ) 
-			{
-				rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getSelectedItem().toString());
-				if (!rs.isBeforeFirst() ) {      		
-				}
-				else
-				{
-					rs.next();
-					angrp  = rs.getInt("AGID_Y");
-				}
-			}
-			//*************nakliyeci
-			nakl = 0 ;
-			if ( ! cmbnakliyeci.getSelectedItem().toString().equals("") ) {
-				rs = ker_Access.ker_kod_degisken_ara("NAKID_Y", "UNVAN", "NAKLIYECI", cmbnakliyeci.getSelectedItem().toString());
-				if (!rs.isBeforeFirst() ) {      		
-				}
-				else
-				{
-					rs.next();
-					nakl  = rs.getInt("NAKID_Y");
-				}
-			}
-			//*************oz kod
-			ozk = 0 ;
-			if ( ! cmbozkod.getSelectedItem().toString().equals("") ) {
-				rs = ker_Access.ker_kod_degisken_ara("OZ1ID_Y", "OZEL_KOD_1", "OZ_KOD_1_DEGISKEN", cmbozkod.getSelectedItem().toString());
-				if (!rs.isBeforeFirst() ) {      
-				}
-				else
-				{
-					rs.next();
-					ozk  = rs.getInt("OZ1ID_Y");
-				}
-			}
-			///
-			altgrp = 0;
-			if ( ! cmbaltgrup.getSelectedItem().toString().equals("") ) {
-				rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getSelectedItem().toString());
-				if (!rs.isBeforeFirst() ) {      		
-				}
-				else
-				{
-					rs.next();
-					altgrp  = rs.getInt("ALID_Y");
-				}
-			}
+			String  izahat ="";
+			double  miktar=0;
 			miktar = Double.parseDouble( mdl.getValueAt(i,3).toString());
 			double tutar ;
 			tutar =Double.parseDouble(mdl.getValueAt(i,11).toString());
@@ -1866,12 +1819,12 @@ public class KER_GIRIS extends JInternalFrame {
 			ker_BILGI.setAdres_Firma( txtadres.getText());
 			ker_BILGI.setTarih(tar);
 			ker_BILGI.setDepo(depo);
-			ker_BILGI.setAna_Grup(angrp);
-			ker_BILGI.setAlt_Grup(altgrp);
-			ker_BILGI.setNakliyeci(nakl);
+			ker_BILGI.setAna_Grup(degiske[0]);
+			ker_BILGI.setAlt_Grup(degiske[1]);
+			ker_BILGI.setNakliyeci(degiske[2]);
 			ker_BILGI.setDoviz( txtdoviz.getText());
 			ker_BILGI.setKur(kur);
-			ker_BILGI.setOzel_Kod(ozk);
+			ker_BILGI.setOzel_Kod(degiske[3]);
 			ker_BILGI.setBarkod( mdl.getValueAt(i,0).toString());
 			ker_BILGI.setKodu( mdl.getValueAt(i,1).toString());
 			ker_BILGI.setPaket_No( mdl.getValueAt(i,2).toString());
@@ -1908,6 +1861,57 @@ public class KER_GIRIS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyaz 2", JOptionPane.ERROR_MESSAGE);     
 		}
 	}
+	private static int[] degiskenler() throws ClassNotFoundException, SQLException
+	{
+		int degisken[] = {0,0,0,0} ;
+		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+		ResultSet rs =null ;
+		if ( ! cmbanagrup.getSelectedItem().toString().equals("") ) 
+		{
+			rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getSelectedItem().toString());
+			if (!rs.isBeforeFirst() ) {      		
+			}
+			else
+			{
+				rs.next();
+				degisken[0]  = rs.getInt("AGID_Y");
+			}
+		}
+		///
+		if ( ! cmbaltgrup.getSelectedItem().toString().equals("") ) {
+			rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  cmbaltgrup.getSelectedItem().toString());
+			if (!rs.isBeforeFirst() ) {      		
+			}
+			else
+			{
+				rs.next();
+				degisken[1]   = rs.getInt("ALID_Y");
+			}
+		}
+		//*************nakliyeci
+		if ( ! cmbnakliyeci.getSelectedItem().toString().equals("") ) {
+			rs = ker_Access.ker_kod_degisken_ara("NAKID_Y", "UNVAN", "NAKLIYECI", cmbnakliyeci.getSelectedItem().toString());
+			if (!rs.isBeforeFirst() ) {      		
+			}
+			else
+			{
+				rs.next();
+				degisken[2]   = rs.getInt("NAKID_Y");
+			}
+		}
+		//*************oz kod
+		if ( ! cmbozkod.getSelectedItem().toString().equals("") ) {
+			rs = ker_Access.ker_kod_degisken_ara("OZ1ID_Y", "OZEL_KOD_1", "OZ_KOD_1_DEGISKEN", cmbozkod.getSelectedItem().toString());
+			if (!rs.isBeforeFirst() ) {      
+			}
+			else
+			{
+				rs.next();
+				degisken[3]   = rs.getInt("OZ1ID_Y");
+			}
+		}
+		return degisken;
+	}
 	private void fiskont()
 	{
 		Runnable runner = new Runnable()
@@ -1919,9 +1923,7 @@ public class KER_GIRIS extends JInternalFrame {
 				if (!rss.isBeforeFirst() ) {  
 					yeni_fat = true;
 					dOSYADAN = true;
-					//System.out.println("1902");
 					GRID_TEMIZLE.grid_temizle(table);
-					//System.out.println("1904");
 					dOSYADAN = false;
 					sifirla();
 				}

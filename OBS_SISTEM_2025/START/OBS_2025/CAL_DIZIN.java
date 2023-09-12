@@ -141,7 +141,7 @@ public class CAL_DIZIN extends JDialog {
 	private static JTable tblSms;
 	private static JTable tblGunluk;
 	private static JTable tblKereste;
-	private JPasswordField txtsif;
+	private static JPasswordField txtsif;
 	private static	JTextField txt_Lmaill ;
 	private static JComboBox<String>  cmb_maillist;
 	private static JTabbedPane tabbedPane;

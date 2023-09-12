@@ -38,7 +38,7 @@ public interface ICARI_HESAP {
 	public void hpln_detay_kayit(String kodu ,String yet ,String ad1 ,String ad2 ,String semt,String seh  , String vd , String vn 
 			, String t1 ,String t2 ,String t3 ,String fx ,String o1 ,String o2 ,String o3 , String web 
 			,String mai ,String kim  ,String acik ,boolean sms , InputStream  resim ) throws ClassNotFoundException, SQLException, IOException;
-	public ResultSet dvz_cevirme(String kcins,String hesap,String t1,String t2,String kur,String islem) throws ClassNotFoundException, SQLException;
+	public ResultSet dvz_cevirme(String kcins,String hesap,String t1,String t2,String kur,String islem,String hKUR) throws ClassNotFoundException, SQLException;
 	public ResultSet karton_dold(String karton) throws ClassNotFoundException, SQLException;
 	public ResultSet ekstre_arama(String hes , String acik , String gun ,String ay,String yil ,String kod ,String kullanici) throws ClassNotFoundException, SQLException;
 	public ResultSet kasa_kontrol(String hesap,String t1) throws ClassNotFoundException, SQLException;

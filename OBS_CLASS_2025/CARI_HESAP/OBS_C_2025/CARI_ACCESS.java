@@ -162,9 +162,9 @@ public class CARI_ACCESS {
 	{
 		return _ICari.eksik_kur_okuma(hesap, t1, t2, kur);
 	}
-	public ResultSet dvz_cevirme(String kcins,String hesap,String t1,String t2,String kur,String islem) throws ClassNotFoundException, SQLException
+	public ResultSet dvz_cevirme(String kcins,String hesap,String t1,String t2,String kur,String islem,String hKUR) throws ClassNotFoundException, SQLException
 	{
-		return _ICari.dvz_cevirme(kcins, hesap, t1, t2, kur, islem);
+		return _ICari.dvz_cevirme(kcins, hesap, t1, t2, kur, islem,hKUR);
 	}
 	public int coklu_cari_fisno_al (int adet) throws ClassNotFoundException, SQLException
 	{

@@ -303,20 +303,30 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		       try
 		       {
 		            String islem  = "" ;
-		            if (  GLOBAL.setting_oku("PRG_PARA").toString().equals(FILTRE.lblNewLabel_2_1.getText()))
+		            ResultSet	rs = null;
+		            String hKURString = "";
+		            if (FILTRE.chckbxNewCheckBox_4.isSelected())
 		            {
+		            	hKURString = "Kayitli";
 		            	islem = "/" ;
 		            }
-		            else
+		            else 
 		            {
-		                islem = "*" ;
-		            }
-		            ResultSet	rs = null;
+		            	if (  GLOBAL.setting_oku("PRG_PARA").toString().equals(FILTRE.lblNewLabel_2_1.getText()))
+			            {
+			            	islem = "/" ;
+			            }
+			            else
+			            {
+			                islem = "*" ;
+			            }
+					}
+		       
 		            rs = c_Access.dvz_cevirme(FILTRE.comboBox_2.getItemAt(FILTRE.comboBox_2.getSelectedIndex()),
 								FILTRE.txtdvz.getText(),
 								TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_3),
 								TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_4),
-								FILTRE.comboBox_1.getItemAt(FILTRE.comboBox_1.getSelectedIndex()), islem);
+								FILTRE.comboBox_1.getItemAt(FILTRE.comboBox_1.getSelectedIndex()), islem,hKURString);
 					GRID_TEMIZLE.grid_temizle(table);
 					if (rs == null)
 					{
@@ -327,7 +337,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 						lblboskur.setText("...");
 					    return;
 					} 
-					
+				   
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					JTableHeader th = table.getTableHeader();
 					TableColumnModel tcm = th.getColumnModel();
@@ -403,16 +413,13 @@ public class DVZ_CEVIRME extends JInternalFrame {
 					DefaultTableModel model = (DefaultTableModel)table.getModel();
 					 for (int i = 0; i <= model.getRowCount() - 1 ; i ++)
 					{
-						 double kur = (double) model.getValueAt(i , 3);
+						double kur = (double) model.getValueAt(i , 3);
 						if ( kur == 1 )
 						{
 							boskur += 1 ;
 						}
 					}
-					 lblboskur.setText(FORMATLAMA.doub_0(boskur));
-					/*
-					 * 
-					 */
+					lblboskur.setText(FORMATLAMA.doub_0(boskur));
 					label_1.setText(FORMATLAMA.doub_0(model.getRowCount()));
 					table.setSelectionBackground(Color.PINK);
 					table.setSelectionForeground(Color.BLUE);

@@ -575,32 +575,48 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.executeUpdate();
 		stmt.close();
 	}
-	public ResultSet dvz_cevirme(String kcins,String hesap,String t1,String t2,String kur,String islem) throws ClassNotFoundException, SQLException
+	public ResultSet dvz_cevirme(String kcins,String hesap,String t1,String t2,String kur,String islem,String hKUR) throws ClassNotFoundException, SQLException
 	{
 		String str1 ="" ;
-		//String  str2 = "";
 		ResultSet	rss = null;
 		str1 = "" ;
-		//str2 = "" ;
-		if (BAGLAN.kurDizin.dIZIN_CINS.equals("L"))
+		if (! hKUR.equals("Kayitli"))
 		{
-			str1 = "ok_kur" + BAGLAN.kurDizin.kOD + ".dbo.kurlar  " ;
-		}
-		else
-		{
-			if ( BAGLAN.cariDizin.sERVER.equals(BAGLAN.kurDizin.sERVER))
+			if (BAGLAN.kurDizin.dIZIN_CINS.equals("L"))
 			{
-				str1 = "ok_kur" + BAGLAN.kurDizin.kOD + ".kurlar  " ;
-				//str2 = "";
+				str1 = "ok_kur" + BAGLAN.kurDizin.kOD + ".dbo.kurlar  " ;
 			}
 			else
 			{
-				return rss;
+				if ( BAGLAN.cariDizin.sERVER.equals(BAGLAN.kurDizin.sERVER))
+				{
+					str1 = "ok_kur" + BAGLAN.kurDizin.kOD + ".kurlar  " ;
+					//str2 = "";
+				}
+				else
+				{
+					return rss;
+				}
 			}
 		}
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		String sql = "SELECT DATE(s.TARIH) as TARIH, s.EVRAK ,I.IZAHAT , " +
-				" IFNULL(IF(k." + kcins + " = 0,1,k." + kcins + " ), 1) as CEV_KUR , " +
+		String sql = "" ;
+		if (hKUR.equals("Kayitli"))
+		{
+			sql = "SELECT DATE(SATIRLAR.TARIH) as TARIH, SATIRLAR.EVRAK ,I.IZAHAT , " +
+					" CONVERT(SATIRLAR.KUR,double)  as CEV_KUR , " +
+					" ((SATIRLAR.ALACAK - SATIRLAR.BORC ) " + islem + " SATIRLAR.KUR) as DOVIZ_TUTAR , " +
+					" SUM(((SATIRLAR.ALACAK - SATIRLAR.BORC ) * SATIRLAR.KUR) " + islem + " SATIRLAR.KUR) OVER(ORDER BY SATIRLAR.TARIH " + 
+					" ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as DOVIZ_BAKIYE , " +
+					" CAST(SUM(SATIRLAR.ALACAK-SATIRLAR.BORC) OVER(ORDER BY SATIRLAR.TARIH  ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS DECIMAL (30,2)) as BAKIYE ,  " +
+					" SATIRLAR.KUR, BORC, ALACAK ,SATIRLAR.USER " +
+					" FROM SATIRLAR  LEFT OUTER JOIN IZAHAT as I USE INDEX (IX_IZAHAT) on SATIRLAR.EVRAK = I.EVRAK" +
+					" WHERE HESAP  = N'" + hesap + "' AND SATIRLAR.TARIH  BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998'  " +
+					" ORDER BY SATIRLAR.TARIH ";
+		}
+		else {
+			sql = "SELECT DATE(s.TARIH) as TARIH, s.EVRAK ,I.IZAHAT , " +
+				" CONVERT(IFNULL(IF(k." + kcins + " = 0,1,k." + kcins + " ), 1),double) as CEV_KUR , " +
 				" ((s.ALACAK - s.BORC ) " + islem + " IFNULL(NULLIF(k." + kcins + ",0), 1)) as DOVIZ_TUTAR , " +
 				" SUM(((s.ALACAK - s.BORC ) * s.KUR) " + islem + " IFNULL(NULLIF(k." + kcins + ",0), 1)) OVER(ORDER BY s.TARIH " + 
 				" ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as DOVIZ_BAKIYE , " +
@@ -610,6 +626,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" LEFT OUTER JOIN " + str1 + " as k USE INDEX (IX_KUR) ON DATE(s.TARIH) = k.Tarih  " +
 				" WHERE HESAP  = N'" + hesap + "' AND s.TARIH  BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998' AND (k.kur IS NULL OR k.KUR ='" + kur + "') " +
 				" ORDER BY TARIH ";
+		}
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

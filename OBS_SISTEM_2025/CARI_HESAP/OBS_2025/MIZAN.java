@@ -267,6 +267,7 @@ public class MIZAN extends JInternalFrame {
 
 			o2 = " ORDER BY SATIRLAR.HESAP ASC " ;
 			//**************
+			
 			rs = c_Access.mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
 					FILTRE.txticins.getText(),FILTRE.txtscins.getText() ,
@@ -364,7 +365,6 @@ public class MIZAN extends JInternalFrame {
 			DefaultTableModel model = (DefaultTableModel)table.getModel();
 			Vector<Object> data = new Vector<Object>();
 			int satir = table.getRowCount()  ;
-
 			int deger = Integer.parseInt( GLOBAL.setting_oku("CARI_MIZ_GRUP").toString());
 			String onceki = "" ;
 			for (int i = 1; i <= satir  -1 ; i ++)
@@ -394,14 +394,27 @@ public class MIZAN extends JInternalFrame {
 				onceki = "";
 			}
 			data = new Vector<Object>();
-			data.add(model.getValueAt(0 , 0).toString().substring(0,deger));
-			data.add(isimoku(model.getValueAt(0 , 0).toString().substring(0,deger)));
-			data.add("---");
-			double doub = 0 ;
-			data.add(doub);
-			data.add(doub);
-			data.add(doub);
-			model.addRow(data);
+			if(model.getValueAt(0 , 0).toString().length() < deger)
+			{
+				//data.add(model.getValueAt(0 , 0).toString());
+				//data.add(isimoku(model.getValueAt(0 , 0).toString()));
+				//data.add("---");
+				//double doub = 0 ;
+				//data.add(doub);
+				//data.add(doub);
+				//data.add(doub);
+				//model.addRow(data);
+			}
+			else {
+				data.add(model.getValueAt(0 , 0).toString().substring(0,deger));
+				data.add(isimoku(model.getValueAt(0 , 0).toString().substring(0,deger)));
+				data.add("---");
+				double doub = 0 ;
+				data.add(doub);
+				data.add(doub);
+				data.add(doub);
+				model.addRow(data);
+			}
 			//*****
 			table.setAutoCreateRowSorter(true);
 			DefaultRowSorter<?, ?> sorter = ((DefaultRowSorter<?, ?>)table.getRowSorter()); 

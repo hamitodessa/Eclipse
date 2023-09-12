@@ -435,11 +435,16 @@ public class PRINT_YAPMA extends JInternalFrame {
 					islem = "*" ;
 				}
 				ResultSet	rs = null;
+				String hKURString = "";
+		        if (FILTRE.chckbxNewCheckBox_4.isSelected())
+		            {
+		            	hKURString = "Kayitli";
+		            }
 				rs = c_Access.dvz_cevirme(FILTRE.comboBox_2.getItemAt(FILTRE.comboBox_2.getSelectedIndex()),
 						FILTRE.txtdvz.getText(),
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_3),
 						TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_4),
-						FILTRE.comboBox_1.getItemAt(FILTRE.comboBox_1.getSelectedIndex()), islem);
+						FILTRE.comboBox_1.getItemAt(FILTRE.comboBox_1.getSelectedIndex()), islem,hKURString);
 				clientDoc.getDatabaseController().setDataSource(rs);
 				com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
 				for(int i=0; i< reportObjects.size();i++)

@@ -123,6 +123,7 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_2 ;
 	public static JDateChooser dateChooser_3 ;
 	public static JDateChooser dateChooser_4 ;
+	public static JCheckBox chckbxNewCheckBox_4 ;
 
 	//**** ARAMA
 	public static JTextField textField;
@@ -485,7 +486,7 @@ public class FILTRE extends JDialog {
 		  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
 		}); 
 
-
+		
 		//final boolean showTabsHeader = false;
 		//tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
 		//{
@@ -1310,6 +1311,30 @@ public class FILTRE extends JDialog {
 		lblTur.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblTur.setBounds(10, 181, 103, 14);
 		panel.add(lblTur);
+		
+		chckbxNewCheckBox_4 = new JCheckBox("Kayitli Kurdan Cevir");
+		chckbxNewCheckBox_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(chckbxNewCheckBox_4.isSelected())
+				{
+					lblCevrilecek.setVisible(false);
+					lblTur.setVisible(false);
+					comboBox_1.setVisible(false);
+					comboBox_2.setVisible(false);
+					DVZ_CEVIRME.lblcevrilen.setText("");
+				}
+				else 
+				{
+					lblCevrilecek.setVisible(true);
+					lblTur.setVisible(true);
+					comboBox_1.setVisible(true);
+					comboBox_2.setVisible(true);
+					DVZ_CEVIRME.lblcevrilen.setText(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()) + " / " + comboBox_2.getItemAt(comboBox_2.getSelectedIndex()));
+				}
+			}
+		});
+		chckbxNewCheckBox_4.setBounds(301, 140, 178, 23);
+		panel.add(chckbxNewCheckBox_4);
 		/// CARI ARAMA *
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -5451,7 +5476,15 @@ public class FILTRE extends JDialog {
 			DVZ_CEVIRME.lblkod.setText(txtdvz.getText());
 			DVZ_CEVIRME.lblunvan.setText(hpl[0].toString());
 			DVZ_CEVIRME.lblcins.setText(hpl[1].toString());
-			DVZ_CEVIRME.lblcevrilen.setText(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()) + " / " + comboBox_2.getItemAt(comboBox_2.getSelectedIndex()));
+			if (chckbxNewCheckBox_4.isSelected())
+			{
+				DVZ_CEVIRME.lblcevrilen.setText("");
+			}
+			else 
+			{
+				DVZ_CEVIRME.lblcevrilen.setText(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()) + " / " + comboBox_2.getItemAt(comboBox_2.getSelectedIndex()));
+
+			}
 		}
 		catch (Exception ex)
 		{

@@ -4,10 +4,13 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.text.ParseException;
 import java.util.Arrays;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.mail.util.ByteArrayDataSource;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
@@ -40,6 +43,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.security.InvalidKeyException;
@@ -333,6 +337,32 @@ public class DENEMELER extends JInternalFrame {
 		});
 		btnNewButton_2.setBounds(503, 294, 89, 23);
 		panel.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("zip");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					StringBuilder sb = new StringBuilder();
+					sb.append("Test String");
+					
+					File f = new File("c:\\OBS_SISTEM\\test.zip");
+					ZipOutputStream out = new ZipOutputStream(new FileOutputStream(f));
+					ZipEntry eo = new ZipEntry("mytext.txt");
+					out.putNextEntry(eo);
+					byte[] data = sb.toString().getBytes();
+					out.write(data, 0, data.length);
+					out.closeEntry();
+
+					out.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+		btnNewButton_3.setBounds(503, 346, 89, 23);
+		panel.add(btnNewButton_3);
 		
 		
 

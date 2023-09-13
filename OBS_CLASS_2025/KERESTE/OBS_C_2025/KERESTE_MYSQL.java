@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JTable;
+
 import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
@@ -708,6 +710,13 @@ public class KERESTE_MYSQL implements IKERESTE {
 	public boolean kons_kontrol(String kons) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void ker_toplu_kaydet(JTable table,int degisken[] ,KER_RAPOR_BILGI keBilgi, String user)
+			throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 		

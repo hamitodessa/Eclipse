@@ -34,6 +34,8 @@ public class KER_RAPOR_BILGI {
 	private int CNakliyeci ;
 	private String COzel_Kod ;
 	private String gIRcIK ;
+	private double dOUBLE1 ;
+	private double dOUBLE2 ;
 	public String getEvrak_No1() {
 		return Evrak_No1;
 	}
@@ -220,7 +222,18 @@ public class KER_RAPOR_BILGI {
 	public void setgIRcIK(String gIRcIK) {
 		this.gIRcIK = gIRcIK;
 	}
-
+	public double getdOUBLE1() {
+		return dOUBLE1;
+	}
+	public void setdOUBLE1(double dOUBLE1) {
+		this.dOUBLE1 = dOUBLE1;
+	}
+	public double getdOUBLE2() {
+		return dOUBLE2;
+	}
+	public void setdOUBLE2(double dOUBLE2) {
+		this.dOUBLE2 = dOUBLE2;
+	}
 
 
 }

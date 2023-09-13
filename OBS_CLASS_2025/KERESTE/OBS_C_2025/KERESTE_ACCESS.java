@@ -2,6 +2,8 @@ package OBS_C_2025;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.swing.JTable;
 @SuppressWarnings("static-access")
 public class KERESTE_ACCESS {
 	private static IKERESTE _IKereste;
@@ -271,5 +273,12 @@ public class KERESTE_ACCESS {
 	public boolean kons_kontrol(String kons) throws ClassNotFoundException, SQLException
 	{
 		return _IKereste.kons_kontrol(kons);
+	}
+	public void ker_toplu_kaydet(JTable table ,int degisken[], KER_RAPOR_BILGI keBilgi,String usr
+			, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		_IKereste.ker_toplu_kaydet(table,degisken, keBilgi, usr);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
 	}
 }

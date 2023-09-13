@@ -99,6 +99,7 @@ import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KERESTE_KOD_KONTROL;
 import OBS_C_2025.KER_BILGI;
+import OBS_C_2025.KER_RAPOR_BILGI;
 import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.Next_Cell_Kereste;
 import OBS_C_2025.SAGA;
@@ -933,11 +934,11 @@ public class KER_GIRIS extends JInternalFrame {
 		txttev.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				if (txttev.getText().equals("")) return ;
-				toplam();
+				//toplam();
 			}
 			public void removeUpdate(DocumentEvent e) {
 				if (txttev.getText().equals("")) return ;
-				toplam();
+				//toplam();
 			}
 			public void insertUpdate(DocumentEvent e) {
 				if (txttev.getText().equals("")) return ;
@@ -1062,6 +1063,7 @@ public class KER_GIRIS extends JInternalFrame {
 						JOptionPane.showMessageDialog(null,  "Konsimento Numarasi 10 Karakter ile sinirlidir...",  "Dosya Okuma", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
+					System.out.println(ker_Access.kons_kontrol(strKonsimento));
 					if(ker_Access.kons_kontrol(strKonsimento))
 					{
 						JOptionPane.showMessageDialog(null,  "Bu Numarada Konsimento Mevcut..",  "Dosya Okuma", JOptionPane.ERROR_MESSAGE);
@@ -1240,11 +1242,11 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setHeaderRenderer(new SOLA());
 		
 		col = table.getColumnModel().getColumn(2);
-		col.setMinWidth(65);
+		col.setMinWidth(75);
 		col.setHeaderRenderer(new SOLA());
 		
 		col = table.getColumnModel().getColumn(3);
-		col.setMinWidth(50);
+		col.setMinWidth(40);
 		col.setCellRenderer(new TABLO_RENDERER(0,false));
 		col.setCellEditor( new DoubleEditor(0) );
 		col.setHeaderRenderer(new SAGA());
@@ -1751,14 +1753,34 @@ public class KER_GIRIS extends JInternalFrame {
 				int mAX = mdl.getRowCount() ;
 				OBS_MAIN.progressBar.setMaximum(mAX+2);
 				int degisken[] = degiskenler() ; 
-				for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
+				//
+				if( mdl.getRowCount() >= 50)
 				{
-					if (! mdl.getValueAt(i,1).toString().equals(""))
+					Progres_Bar_Temizle();
+					KER_RAPOR_BILGI keBilgi = new KER_RAPOR_BILGI() ;
+					keBilgi.setEvrak_No1(textField.getText());
+					keBilgi.setGCari_Firma1(txtcari.getText());
+					keBilgi.setGCari_Firma2( txtadres.getText());
+					keBilgi.setGKodu1( txtdoviz.getText());
+					keBilgi.setCCari_Firma1(txtdoviz.getText());
+					keBilgi.setGTarih1(TARIH_CEVIR.tarih_geri_saatli(dtc) );
+					keBilgi.setdOUBLE1( DecimalFormat.getNumberInstance().parse(txtkur.getText()).doubleValue());
+					keBilgi.setdOUBLE2( DecimalFormat.getNumberInstance().parse(txttev.getText()).doubleValue() ) ;
+					ker_Access.ker_toplu_kaydet(table,degisken,keBilgi, GLOBAL.KULL_ADI	,lBILGI,BAGLAN_LOG.kerLogDizin);
+				}
+				else 
+				{
+					for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
 					{
-						Progres_Bar(mAX,i);
-						sat_yaz_2(i,degisken);
+						if (! mdl.getValueAt(i,1).toString().equals(""))
+						{
+							Progres_Bar(mAX,i);
+							sat_yaz_2(i,degisken);
+						}
 					}
 				}
+				//
+				
 				GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTimeG;
@@ -1826,6 +1848,7 @@ public class KER_GIRIS extends JInternalFrame {
 			ker_BILGI.setKdv(kdv);
 			ker_BILGI.setTutar(tutar);
 			ker_BILGI.setIzahat(izahat);
+			ker_BILGI.setTevkifat(tevk);
 			ker_BILGI.setCikis_Evrak(  mdl.getValueAt(i,12).toString());
 			ker_BILGI.setCTarih( mdl.getValueAt(i,13).toString());
 			ker_BILGI.setCKdv(Double.parseDouble( mdl.getValueAt(i,14).toString()));
@@ -1925,6 +1948,7 @@ public class KER_GIRIS extends JInternalFrame {
 			try {
 				long startTime = System.currentTimeMillis();
 				ResultSet rss = null;
+				GuiUtil.setWaitCursor(KER_GIRIS.splitPane,true);
 				rss = ker_Access.ker_oku(textField.getText(), "G");
 				if (!rss.isBeforeFirst() ) {  
 					yeni_fat = true;
@@ -1932,6 +1956,7 @@ public class KER_GIRIS extends JInternalFrame {
 					GRID_TEMIZLE.grid_temizle(table);
 					dOSYADAN = false;
 					sifirla();
+					GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
 				}
 				else
 				{
@@ -2062,6 +2087,7 @@ public class KER_GIRIS extends JInternalFrame {
 					long estimatedTime = endTime - startTime;
 					double seconds = (double)estimatedTime/1000; 
 					OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+					GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
 				}
 			}
 			catch (Exception ex)

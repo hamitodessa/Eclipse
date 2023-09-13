@@ -6,9 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
+
 
 public class KERESTE_MSSQL implements IKERESTE {
 	static Connection con = null;
@@ -1678,7 +1682,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		PreparedStatement stmt = con.prepareStatement("SELECT count(KONS) as KONS  FROM KONS_ACIKLAMA  WHERE KONS =N'" + kons + "' ");
 		rss = stmt.executeQuery();
-		boolean result ;
+		boolean result =false;
 		if (!rss.isBeforeFirst() ) {  
 			result = false ;
 		}
@@ -1690,10 +1694,93 @@ public class KERESTE_MSSQL implements IKERESTE {
 				result = false ;
 			}
 			else {
-				
-			}result = true;
-			
+				result = true;
+			}
 		}
 		return result;	
+	}
+
+	@Override
+	public void ker_toplu_kaydet(JTable table,int degisken[], KER_RAPOR_BILGI keBilgi, String user)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+		String sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " + //15
+				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,[USER],Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
+				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Satir) " + //9
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+		PreparedStatement stmt = null;
+		stmt = con.prepareStatement(sql);
+	
+		for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
+		{
+			if (! mdl.getValueAt(i,1).toString().equals(""))
+			{
+				String  izahat ="";
+				double  miktar=0;
+				miktar = Double.parseDouble( mdl.getValueAt(i,3).toString());
+				double tutar ;
+				tutar =Double.parseDouble(mdl.getValueAt(i,10).toString());
+				izahat =  mdl.getValueAt(i,11) .toString();
+			    double fiat =0 ;
+				fiat = Double.parseDouble( mdl.getValueAt(i,7).toString());
+				double isk = 0 ;
+				isk = Double.parseDouble( mdl.getValueAt(i,8).toString());
+				double kdv = 0 ; 
+				kdv =Double.parseDouble( mdl.getValueAt(i,9).toString());
+				lOG_BILGI lBILGI = new lOG_BILGI();
+				lBILGI.setmESAJ( " Fatura Kayit" +  mdl.getValueAt(i,1).toString() + " Mik=" + miktar + " Tut=" + tutar);
+				lBILGI.seteVRAK(keBilgi.getEvrak_No1());	
+				stmt.setString(1,keBilgi.getEvrak_No1());
+				stmt.setString(2, mdl.getValueAt(i,0).toString());
+				stmt.setString(3,mdl.getValueAt(i,1).toString());
+				stmt.setString(4, mdl.getValueAt(i,2).toString());
+				stmt.setString(5,mdl.getValueAt(i,6).toString());
+				stmt.setDouble(6, miktar);
+				stmt.setString(7,keBilgi.getGTarih1());
+				stmt.setDouble(8, kdv);
+				stmt.setString(9,keBilgi.getCCari_Firma1());
+				stmt.setDouble(10, fiat);
+				stmt.setDouble(11, tutar);
+				stmt.setDouble(12, keBilgi.getdOUBLE1());
+				stmt.setString(13,keBilgi.getGCari_Firma1());
+				stmt.setString(14,keBilgi.getGCari_Firma2());
+				stmt.setDouble(15, isk);
+				stmt.setDouble(16, keBilgi.getdOUBLE2());
+				stmt.setInt(17, degisken[0]);
+				stmt.setInt(18, degisken[1]);
+				stmt.setInt(19, degisken[4]);
+				stmt.setInt(20,degisken[3]);
+				stmt.setString(21,izahat);
+				stmt.setInt(22, degisken[2]);
+				stmt.setString(23,  user);
+				stmt.setString(24, mdl.getValueAt(i,12).toString());
+				stmt.setString(25, mdl.getValueAt(i,13).toString());
+				stmt.setDouble(26, Double.parseDouble( mdl.getValueAt(i,14).toString()));
+				stmt.setString(27, mdl.getValueAt(i,15).toString());
+				stmt.setDouble(28, Double.parseDouble( mdl.getValueAt(i,16).toString()));
+				stmt.setDouble(29, Double.parseDouble( mdl.getValueAt(i,17).toString()));
+				stmt.setDouble(30, Double.parseDouble( mdl.getValueAt(i,18).toString()));
+				stmt.setString(31,mdl.getValueAt(i,19).toString());
+				stmt.setString(32,mdl.getValueAt(i,20).toString());
+				stmt.setDouble(33, Double.parseDouble( mdl.getValueAt(i,21).toString()));
+				stmt.setDouble(34,Double.parseDouble( mdl.getValueAt(i,22).toString()));
+				stmt.setInt(35, Integer.parseInt(mdl.getValueAt(i,23).toString()));
+				stmt.setInt(36, Integer.parseInt(mdl.getValueAt(i,24).toString()));
+				stmt.setInt(37,Integer.parseInt(mdl.getValueAt(i,25).toString()));
+				stmt.setInt(38,Integer.parseInt(mdl.getValueAt(i,26).toString()));
+				stmt.setString(39, mdl.getValueAt(i,27).toString());
+				stmt.setInt(40, Integer.parseInt(mdl.getValueAt(i,28).toString()));
+				stmt.setString(41,  mdl.getValueAt(i,29).toString());
+				stmt.setInt(42, i);
+				stmt.addBatch();
+				if ((i ) % 500 == 0) 
+				{
+					stmt.executeBatch();
+				}
+			}
+		}
+		stmt.executeBatch();
+		stmt.close();
 	}
 }

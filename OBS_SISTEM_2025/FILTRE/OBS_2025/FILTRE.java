@@ -1313,6 +1313,7 @@ public class FILTRE extends JDialog {
 		panel.add(lblTur);
 		
 		chckbxNewCheckBox_4 = new JCheckBox("Kayitli Kurdan Cevir");
+		chckbxNewCheckBox_4.setVisible(false);
 		chckbxNewCheckBox_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxNewCheckBox_4.isSelected())

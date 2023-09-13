@@ -72,7 +72,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	private JFormattedTextField formattedTextField ;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_4 ;
-	
+	private JSplitPane splitPane ;
 	CheckBoxHeader asdBoxHeader = new CheckBoxHeader(new MyItemListener());
 
 	/**
@@ -102,7 +102,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		setClosable(true);
 		setBounds(0, 0,1000,400);
 		
-		JSplitPane splitPane = new JSplitPane();
+		splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setDividerSize(0);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
@@ -132,18 +132,14 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				hisset();
+				//hisset();
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void removeUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				hisset();
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void insertUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				hisset();
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 		});
 		
@@ -154,17 +150,21 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				hisset();
+				//hisset();
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void removeUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				GuiUtil.setWaitCursor(textField_1,true);
 				hisset();
+				GuiUtil.setWaitCursor(textField_1,false);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void insertUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				GuiUtil.setWaitCursor(textField_1,true);
 				hisset();
+				GuiUtil.setWaitCursor(textField_1,false);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 		});
@@ -183,11 +183,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		textField_2.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				try {
-					kod_ADI( textField_2.getText());
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void removeUpdate(DocumentEvent e) {
@@ -259,7 +254,9 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			}
 			public void insertUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				GuiUtil.setWaitCursor(formattedTextField,true);
 				hisset();
+				GuiUtil.setWaitCursor(formattedTextField,false);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 		});
@@ -316,9 +313,16 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	}
 	private void hisset()
 	{
+		Runnable runner1 = new Runnable()
+		{ public void run() {
+
 		long startTime = System.currentTimeMillis(); 
 		try {
 			ResultSet	rs = null;
+			GuiUtil.setWaitCursor(splitPane,true);
+			GuiUtil.setWaitCursor(textField,true);
+			GuiUtil.setWaitCursor(textField_1,true);
+			GuiUtil.setWaitCursor(formattedTextField,true);
 			KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
 			ker_BILGI.setPaket_No1(textField_1.getText());
 			ker_BILGI.setKonsimento1(textField.getText());
@@ -327,12 +331,22 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			rs = ker_Access.urun_detay(ker_BILGI );
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
+				Thread.currentThread().isInterrupted();
 				lblNewLabel_2.setText(FORMATLAMA.doub_0(0));
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+				th.repaint();
+				table.repaint();
+				GuiUtil.setWaitCursor(splitPane,false);
+				GuiUtil.setWaitCursor(textField,false);
+				GuiUtil.setWaitCursor(textField_1,false);
+				GuiUtil.setWaitCursor(formattedTextField,false);
 			} 
 			else
 			{
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
@@ -554,6 +568,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 					}
 				}
 			});
+			Thread.currentThread().isInterrupted();
 			table.setSelectionBackground(Color.PINK);
 			table.setSelectionForeground(Color.BLUE);
 			long endTime = System.currentTimeMillis();
@@ -569,11 +584,19 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			parts = deger.split(",");
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table.setFont(bigFont);
-
+			GuiUtil.setWaitCursor(splitPane,false);
+			GuiUtil.setWaitCursor(textField,false);
+			GuiUtil.setWaitCursor(textField_1,false);
+			GuiUtil.setWaitCursor(formattedTextField,false);
 			}
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
+		}
+		};
+		Thread q = new Thread(runner1, "Code Executer1");
+		q.start();
+
 	}
 	private void kaydet()
 	{

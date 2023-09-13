@@ -2117,6 +2117,9 @@ public class OBS_MAIN extends JFrame {
 				FIRMA_ISMI_DEGIS.modul("kereste");
 			}
 		});
+		
+		JLabel lblNewLabel_44 = new JLabel("          ");
+		toolBar_Kereste.add(lblNewLabel_44);
 		btnNewButton_35.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
 		
 		toolBar_Kereste.add(btnNewButton_35);

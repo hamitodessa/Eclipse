@@ -1559,12 +1559,12 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " ,[CUSER] ,Satir" 
 				+ " FROM KERESTE    " 
 				+ " WHERE " 
-				+ " SUBSTRING(KERESTE.Kodu, 1, 2) like '%"+ ilks +"%'  AND" //IIF(500<1000, 'YES', 'NO')
-				+ " SUBSTRING(KERESTE.Kodu, 4, 3) like '%"+ilkk +"%' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 8, 4) like '%"+ilkb +"%' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 13, 4) like '%"+ilkg +"%'  AND" 
-				+ " Paket_No like N'%"+ ker_rap_BILGI.getPaket_No1().toString()+ "' AND " 
-				+ " Konsimento like N'%"+ ker_rap_BILGI.getKonsimento1().toString() + "%'"  ; 
+				+ " SUBSTRING(KERESTE.Kodu, 1, 2) like '"+ ilks +"%'  AND" //IIF(500<1000, 'YES', 'NO')
+				+ " SUBSTRING(KERESTE.Kodu, 4, 3) like '"+ilkk +"%' AND" 
+				+ " SUBSTRING(KERESTE.Kodu, 8, 4) like '"+ilkb +"%' AND" 
+				+ " SUBSTRING(KERESTE.Kodu, 13, 4) like '"+ilkg +"%'  AND" 
+				+ " Paket_No like N'"+ ker_rap_BILGI.getPaket_No1().toString()+ "%' AND " 
+				+ " Konsimento like N'"+ ker_rap_BILGI.getKonsimento1().toString() + "%'"  ; 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1711,7 +1711,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
-	
 		for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
 		{
 			if (! mdl.getValueAt(i,1).toString().equals(""))

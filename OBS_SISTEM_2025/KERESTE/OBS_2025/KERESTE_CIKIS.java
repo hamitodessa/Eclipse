@@ -235,18 +235,14 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				if (! textField.getText().toString().equals("")) {
-					fiskont();
-				}
-				else {
-					GRID_TEMIZLE.grid_temizle(table);
-					sifirla();
-				}
-
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void removeUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				GuiUtil.setWaitCursor(splitPane,true);
+				GuiUtil.setWaitCursor(textField,true);
+				GuiUtil.setWaitCursor(txtcari,true);
+				GuiUtil.setWaitCursor(txtadres,true);
 				if (! textField.getText().toString().equals("")) {
 					fiskont();
 				}
@@ -254,10 +250,18 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					GRID_TEMIZLE.grid_temizle(table);
 					sifirla();
 				}
+				GuiUtil.setWaitCursor(splitPane,false);
+				GuiUtil.setWaitCursor(textField,false);
+				GuiUtil.setWaitCursor(txtcari,false);
+				GuiUtil.setWaitCursor(txtadres,false);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void insertUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				GuiUtil.setWaitCursor(splitPane,true);
+				GuiUtil.setWaitCursor(textField,true);
+				GuiUtil.setWaitCursor(txtcari,true);
+				GuiUtil.setWaitCursor(txtadres,true);
 				if (! textField.getText().toString().equals("")) {
 					fiskont();
 				}
@@ -265,7 +269,12 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					GRID_TEMIZLE.grid_temizle(table);
 					sifirla();
 				}
+				GuiUtil.setWaitCursor(splitPane,false);
+				GuiUtil.setWaitCursor(textField,false);
+				GuiUtil.setWaitCursor(txtcari,false);
+				GuiUtil.setWaitCursor(txtadres,false);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+
 			}
 		});
 		textField.addAncestorListener(new AncestorListener() {

@@ -252,17 +252,14 @@ public class KER_GIRIS extends JInternalFrame {
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				if (! textField.getText().toString().equals("")) {
-					fiskont();
-				}
-				else {
-					GRID_TEMIZLE.grid_temizle(table);
-					sifirla();
-				}
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void removeUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				GuiUtil.setWaitCursor(splitPane,true);
+				GuiUtil.setWaitCursor(textField,true);
+				GuiUtil.setWaitCursor(txtcari,true);
+				GuiUtil.setWaitCursor(txtadres,true);
 				if (! textField.getText().toString().equals("")) {
 					fiskont();
 				}
@@ -270,10 +267,18 @@ public class KER_GIRIS extends JInternalFrame {
 					GRID_TEMIZLE.grid_temizle(table);
 					sifirla();
 				}
+				GuiUtil.setWaitCursor(splitPane,false);
+				GuiUtil.setWaitCursor(textField,false);
+				GuiUtil.setWaitCursor(txtcari,false);
+				GuiUtil.setWaitCursor(txtadres,false);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void insertUpdate(DocumentEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				GuiUtil.setWaitCursor(splitPane,true);
+				GuiUtil.setWaitCursor(textField,true);
+				GuiUtil.setWaitCursor(txtcari,true);
+				GuiUtil.setWaitCursor(txtadres,true);
 				if (! textField.getText().toString().equals("")) {
 					fiskont();
 				}
@@ -281,6 +286,10 @@ public class KER_GIRIS extends JInternalFrame {
 					GRID_TEMIZLE.grid_temizle(table);
 					sifirla();
 				}
+				GuiUtil.setWaitCursor(splitPane,false);
+				GuiUtil.setWaitCursor(textField,false);
+				GuiUtil.setWaitCursor(txtcari,false);
+				GuiUtil.setWaitCursor(txtadres,false);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 		});
@@ -1742,7 +1751,10 @@ public class KER_GIRIS extends JInternalFrame {
 		{ public void run() {
 			try 
 			{
-				GuiUtil.setWaitCursor(KER_GIRIS.splitPane,true);
+				GuiUtil.setWaitCursor(splitPane,true);
+				GuiUtil.setWaitCursor(textField,true);
+				GuiUtil.setWaitCursor(txtcari,true);
+				GuiUtil.setWaitCursor(txtadres,true);
 				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ(textField.getText() + " Nolu Giris Kereste Silindi");
 				lBILGI.seteVRAK(textField.getText());
@@ -1779,9 +1791,10 @@ public class KER_GIRIS extends JInternalFrame {
 						}
 					}
 				}
-				//
-				
-				GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
+				GuiUtil.setWaitCursor(splitPane,false);
+				GuiUtil.setWaitCursor(textField,false);
+				GuiUtil.setWaitCursor(txtcari,false);
+				GuiUtil.setWaitCursor(txtadres,false);
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTimeG;
 				double seconds = (double)estimatedTime/1000; 

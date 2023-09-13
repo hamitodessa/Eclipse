@@ -149,23 +149,13 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		textField_1.setBounds(117, 36, 130, 20);
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				//hisset();
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void removeUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				GuiUtil.setWaitCursor(textField_1,true);
 				hisset();
-				GuiUtil.setWaitCursor(textField_1,false);
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void insertUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				GuiUtil.setWaitCursor(textField_1,true);
 				hisset();
-				GuiUtil.setWaitCursor(textField_1,false);
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 		});
 		panel.add(textField_1);
@@ -186,22 +176,18 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void removeUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				try {
 					kod_ADI( textField_2.getText());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void insertUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				try {
 					kod_ADI( textField_2.getText());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 		});
 
@@ -221,9 +207,9 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 					JOptionPane.showMessageDialog(null, "Kayitli Kod Bulunmamaktadir.....", "Kod Degistirmea", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else {
-					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+					mWAIT();	
 					kaydet();
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+					mDEFAULT();
 				}
 			}
 		});
@@ -253,11 +239,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			public void removeUpdate(DocumentEvent e) {
 			}
 			public void insertUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				GuiUtil.setWaitCursor(formattedTextField,true);
 				hisset();
-				GuiUtil.setWaitCursor(formattedTextField,false);
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 		});
 
@@ -319,10 +301,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		long startTime = System.currentTimeMillis(); 
 		try {
 			ResultSet	rs = null;
-			GuiUtil.setWaitCursor(splitPane,true);
-			GuiUtil.setWaitCursor(textField,true);
-			GuiUtil.setWaitCursor(textField_1,true);
-			GuiUtil.setWaitCursor(formattedTextField,true);
+			mWAIT();
 			KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
 			ker_BILGI.setPaket_No1(textField_1.getText());
 			ker_BILGI.setKonsimento1(textField.getText());
@@ -339,10 +318,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
 				th.repaint();
 				table.repaint();
-				GuiUtil.setWaitCursor(splitPane,false);
-				GuiUtil.setWaitCursor(textField,false);
-				GuiUtil.setWaitCursor(textField_1,false);
-				GuiUtil.setWaitCursor(formattedTextField,false);
+				mDEFAULT();
 			} 
 			else
 			{
@@ -584,10 +560,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			parts = deger.split(",");
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table.setFont(bigFont);
-			GuiUtil.setWaitCursor(splitPane,false);
-			GuiUtil.setWaitCursor(textField,false);
-			GuiUtil.setWaitCursor(textField_1,false);
-			GuiUtil.setWaitCursor(formattedTextField,false);
+			mDEFAULT();
 			}
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
@@ -630,6 +603,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			formattedTextField.setText("00-000-0000-0000");
 
 		} catch (Exception ex) {
+			mDEFAULT();
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Kod Degisimi", JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -658,6 +632,24 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	private void kod_ADI(String kod) throws ClassNotFoundException, SQLException 
 	{
 		lblNewLabel_4.setText(ker_Access.kod_adi(kod));
+	}
+	private void mWAIT()
+	{
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+		GuiUtil.setWaitCursor(splitPane,true);
+		GuiUtil.setWaitCursor(textField,true);
+		GuiUtil.setWaitCursor(textField_1,true);
+		GuiUtil.setWaitCursor(formattedTextField,true);
+
+	}
+	private void mDEFAULT()
+	{
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+		GuiUtil.setWaitCursor(splitPane,false);
+		GuiUtil.setWaitCursor(textField,false);
+		GuiUtil.setWaitCursor(textField_1,false);
+		GuiUtil.setWaitCursor(formattedTextField,false);
+
 	}
 	///********
 	class MyItemListener implements ItemListener

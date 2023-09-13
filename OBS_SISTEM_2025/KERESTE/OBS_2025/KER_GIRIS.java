@@ -255,42 +255,28 @@ public class KER_GIRIS extends JInternalFrame {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void removeUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				GuiUtil.setWaitCursor(splitPane,true);
-				GuiUtil.setWaitCursor(textField,true);
-				GuiUtil.setWaitCursor(txtcari,true);
-				GuiUtil.setWaitCursor(txtadres,true);
+				mWAIT();
 				if (! textField.getText().toString().equals("")) {
 					fiskont();
 				}
 				else {
+					mDEFAULT();
 					GRID_TEMIZLE.grid_temizle(table);
 					sifirla();
 				}
-				GuiUtil.setWaitCursor(splitPane,false);
-				GuiUtil.setWaitCursor(textField,false);
-				GuiUtil.setWaitCursor(txtcari,false);
-				GuiUtil.setWaitCursor(txtadres,false);
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+				mDEFAULT();
 			}
 			public void insertUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				GuiUtil.setWaitCursor(splitPane,true);
-				GuiUtil.setWaitCursor(textField,true);
-				GuiUtil.setWaitCursor(txtcari,true);
-				GuiUtil.setWaitCursor(txtadres,true);
+				mWAIT();
 				if (! textField.getText().toString().equals("")) {
 					fiskont();
 				}
 				else {
+					mDEFAULT();
 					GRID_TEMIZLE.grid_temizle(table);
 					sifirla();
 				}
-				GuiUtil.setWaitCursor(splitPane,false);
-				GuiUtil.setWaitCursor(textField,false);
-				GuiUtil.setWaitCursor(txtcari,false);
-				GuiUtil.setWaitCursor(txtadres,false);
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+				mDEFAULT();
 			}
 		});
 		textField.addAncestorListener(new AncestorListener() {
@@ -2532,6 +2518,25 @@ public class KER_GIRIS extends JInternalFrame {
     		JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
     	}
     }
+	private void mWAIT()
+	{
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+		GuiUtil.setWaitCursor(splitPane,true);
+		GuiUtil.setWaitCursor(textField,true);
+		GuiUtil.setWaitCursor(txtcari,true);
+		GuiUtil.setWaitCursor(txtadres,true);
+
+	}
+	private void mDEFAULT()
+	{
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+		GuiUtil.setWaitCursor(splitPane,false);
+		GuiUtil.setWaitCursor(textField,false);
+		GuiUtil.setWaitCursor(txtcari,false);
+		GuiUtil.setWaitCursor(txtadres,false);
+
+	}
+
 }
 
 //		ComboBoxEditor jeditor = cmbozkod.getEditor();

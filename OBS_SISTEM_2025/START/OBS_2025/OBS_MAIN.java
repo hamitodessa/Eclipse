@@ -2359,6 +2359,8 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "GIDEN RAPORLAR")	GID_RAPOR.sil();
 				else if (sonuc == "DEGISKENLER")	DEGISKEN_GIRIS.sil();
 				else if (sonuc == "GOREV GIRIS")	GOREV_GIRIS.sil();
+				else if (sonuc == "KONSIMENTO ACIKLAMA")	KONS_ACIKLAMA.sil();
+				else if (sonuc == "KOD ACIKLAMA")	KOD_ACIKLAMA.sil();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});

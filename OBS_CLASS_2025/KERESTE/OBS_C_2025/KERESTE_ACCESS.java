@@ -268,4 +268,8 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.ort_diger_kodu(yu, qwq6, qwq7, m1, m2, s1, s2, k1, k2, t1, t2, kurkod, kurc, iu,hANGI);
 	}
+	public boolean kons_kontrol(String kons) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.kons_kontrol(kons);
+	}
 }

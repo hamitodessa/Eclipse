@@ -6,6 +6,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,6 +31,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 
+import javax.management.loading.PrivateClassLoader;
 import javax.swing.ActionMap;
 import javax.swing.ComboBoxEditor;
 import javax.swing.DefaultCellEditor;
@@ -129,6 +131,7 @@ public class KER_GIRIS extends JInternalFrame {
 	private static JComboBox<String> cmbaltgrup ;
 	private static JComboBox<String> cmbozkod ;
 	private static JComboBox<String> cmbnakliyeci ;
+	private static JComboBox<String> cmbdepo ;
 	private static JDateChooser dtc ;
 	private static JLabel label;
 	private static JLabel label_1 ;
@@ -149,8 +152,6 @@ public class KER_GIRIS extends JInternalFrame {
 	private static JLabel lblNewLabel_13;
 	private JLabel lblkodAciklama ;
 	private JLabel lblkONSIMENTO ;
-	private ArrayList<String> listdepo = null ;
-	
 	
 	private static JTabbedPane tabbedPane ;
 	private static JTable table;
@@ -159,7 +160,7 @@ public class KER_GIRIS extends JInternalFrame {
 	private static boolean yeni_fat = false;
 	private JFileChooser chooser;
 	private static boolean dOSYADAN = false;
-	
+	private static String strKonsimento = "";
 	private static long startTimeG ;
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -191,7 +192,7 @@ public class KER_GIRIS extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0, 0,1185,800);
+		setBounds(0, 0,1165,800);
 		
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -594,6 +595,14 @@ public class KER_GIRIS extends JInternalFrame {
 		cmbnakliyeci.setBounds(560, 33, 156, 22);
 		panel_2.add(cmbnakliyeci);
 		
+		cmbdepo = new JComboBox<String>();
+		cmbdepo.setBounds(797, 59, 148, 22);
+		panel_2.add(cmbdepo);
+		
+		JLabel lblNewLabel_11 = new JLabel("Depo");
+		lblNewLabel_11.setBounds(726, 62, 48, 14);
+		panel_2.add(lblNewLabel_11);
+		
 
 		
 		JPanel panel_4 = new JPanel();
@@ -830,7 +839,7 @@ public class KER_GIRIS extends JInternalFrame {
 		label_9.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_9.setForeground(new Color(139, 0, 0));
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_9.setBounds(956, 5, 102, 14);
+		label_9.setBounds(805, 5, 146, 14);
 		panel_71.add(label_9);
 		splitPane_3.setLeftComponent(panel_71);
 		
@@ -1017,9 +1026,7 @@ public class KER_GIRIS extends JInternalFrame {
 					paketm3();
 					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 					mdll.removeRow(mdll.getRowCount() -1);
-					
 				}
-				
 			}
 		});
 		btnNewButton_2.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/yeni.png")));
@@ -1033,10 +1040,9 @@ public class KER_GIRIS extends JInternalFrame {
 					if (table.getSelectedRow() < 0 ) return ;
 					satir_sil();
 					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+					mdll.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 					paketm3();
 				}
-				
 			}
 		});
 		btnNewButton_3.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-reduce-16.png")));
@@ -1047,8 +1053,23 @@ public class KER_GIRIS extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					tabbedPane.setSelectedIndex(0);
+					
+					strKonsimento = JOptionPane.showInputDialog(null,"Konsimento No Giriniz....", "Dosya Okuma",JOptionPane.QUESTION_MESSAGE);
+					if(strKonsimento == null) return ;
+					if(strKonsimento.equals("")) return ;
+					if (strKonsimento.length() > 10)
+					{
+						JOptionPane.showMessageDialog(null,  "Konsimento Numarasi 10 Karakter ile sinirlidir...",  "Dosya Okuma", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+					if(ker_Access.kons_kontrol(strKonsimento))
+					{
+						JOptionPane.showMessageDialog(null,  "Bu Numarada Konsimento Mevcut..",  "Dosya Okuma", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+					
 					dosya_oku();
-				} catch (IOException e1) {
+				} catch (IOException | HeadlessException | ClassNotFoundException | SQLException e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -1062,7 +1083,6 @@ public class KER_GIRIS extends JInternalFrame {
 		splitPane_2.setRightComponent(tabbedPane);
 		
 		JScrollPane scrollPane = new JScrollPane();
-
 		tabbedPane.addTab("Kereste", null, scrollPane, null);
 
 		DefaultTableModel model = new DefaultTableModel() ; 
@@ -1072,7 +1092,7 @@ public class KER_GIRIS extends JInternalFrame {
 				switch (column) {
 				case 5:
 					return false;
-				case 11:
+				case 10:
 					return false;
 				default:
 					return true;
@@ -1094,11 +1114,7 @@ public class KER_GIRIS extends JInternalFrame {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
 				try {
 					kod_ADI(  model.getValueAt(table.getSelectedRow(), 1).toString(), model.getValueAt(table.getSelectedRow(), 6).toString());
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -1136,7 +1152,6 @@ public class KER_GIRIS extends JInternalFrame {
 		model.addColumn("M3", new Double [] {( 0.000 )});
 		model.addColumn("Paket_M3", new String []{""});
 		model.addColumn("Kons.", new String []{""});
-		model.addColumn("Depo", new String []{""});
 		model.addColumn("Fiat", new Double [] {( 0.00 )});
 		model.addColumn("Iskonto", new Double [] {( 0.00 )});
 		model.addColumn("KDV",new Double [] {( 0.00 )});
@@ -1161,7 +1176,7 @@ public class KER_GIRIS extends JInternalFrame {
 		model.addColumn("CNakliyeci",new Integer []{( 0 )});
 		model.addColumn("CUser", new String []{"" });
 		TableColumn col ;
-//{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""}		
+//{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""}		
 		col = table.getColumnModel().getColumn(0);
 		col.setMinWidth(100);
 		col.setHeaderRenderer(new SOLA());
@@ -1240,11 +1255,9 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setCellEditor( new DoubleEditor(3) );
 		col.setHeaderRenderer(new SAGA());
 		
-		
 		col = table.getColumnModel().getColumn(5);
 		col.setMinWidth(65);
 		col.setCellRenderer(new SAGA_BOLD());
-		//col.setCellEditor( new DoubleEditor(3) );
 		col.setHeaderRenderer(new SAGA());
 		
 		col = table.getColumnModel().getColumn(6);
@@ -1252,47 +1265,37 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setHeaderRenderer(new SOLA());
 		
 		col = table.getColumnModel().getColumn(7);
-		listdepo = new ArrayList<String> () ;
-		depo_auto();
-		Java2sAutoComboBox combodp = new Java2sAutoComboBox( listdepo,"kereste");
-		combodp.setDataList(listdepo);
-		col.setCellEditor(new DefaultCellEditor(combodp));
-		col.setMinWidth(100);
-		col.setHeaderRenderer(new SOLA());
-		
-		col = table.getColumnModel().getColumn(8);
 		col.setMinWidth(75);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(9);
+		col = table.getColumnModel().getColumn(8);
 		col.setMinWidth(50);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
-		
-		col = table.getColumnModel().getColumn(10);
+		col = table.getColumnModel().getColumn(9);
 		col.setMinWidth(30);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(11);
+		col = table.getColumnModel().getColumn(10);
 		col.setMinWidth(100);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,true));
 		col.setHeaderRenderer(new SAGA());
 		
-		col = table.getColumnModel().getColumn(12);
+		col = table.getColumnModel().getColumn(11);
 		col.setMinWidth(175);
 		JTextField atf = new JTextField(40);
 		col.setCellEditor(new DefaultCellEditor(atf));
 		col.setHeaderRenderer(new SOLA());
 		
 		for (int i =0 ; i <=17;i++) {
-			table.removeColumn(table.getColumnModel().getColumn(13));
+			table.removeColumn(table.getColumnModel().getColumn(12));
 		}
 		JTableHeader th = table.getTableHeader();
 		Dimension dd = table.getPreferredSize();
@@ -1315,6 +1318,7 @@ public class KER_GIRIS extends JInternalFrame {
 		ana_grup_doldur();
 		ker_oz_kod();
 		ker_nakliyeci();
+		depo_doldur();
 		//***********
 		String deger;
 		Integer sat_sayi;
@@ -1357,33 +1361,33 @@ public class KER_GIRIS extends JInternalFrame {
 						}
 						model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
 						double fiat = 0 ;
-						fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
+						fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
 						m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
-						model.setValueAt( fiat * m3,row, 11)  ;
+						model.setValueAt( fiat * m3,row, 10)  ;
 						paketm3();
 						toplam();
 					}
 					if (column == 4)  //m3
 					{
 						double fiat ,m3 = 0 ;
-						fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
+						fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
 						m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
-						model.setValueAt( fiat * m3,row, 11)  ;
+						model.setValueAt( fiat * m3,row, 10)  ;
 						//toplam();
 					}
 					if (column == 8)  //FIAT
 					{
 						double fiat ,m3 = 0 ;
-						fiat =  Double.parseDouble(model.getValueAt(row, 8).toString());
+						fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
 						m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
-						model.setValueAt( fiat * m3,row, 11)  ;
+						model.setValueAt( fiat * m3,row, 10)  ;
 						toplam();
 					}
-					if (column == 9)  //ISKONTO
+					if (column == 8)  //ISKONTO
 					{
 						toplam();
 					}
-					if (column == 10)  //KDV
+					if (column == 9)  //KDV
 					{
 						toplam();
 					}
@@ -1399,12 +1403,12 @@ public class KER_GIRIS extends JInternalFrame {
 		
 		if ( satir  < 0 ) 
 		{
-			mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+			mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 			satir = 0 ;
 		}
 		else
 		{
-			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 		}
 		table.isRowSelected(satir);
 		table.repaint();
@@ -1558,9 +1562,9 @@ public class KER_GIRIS extends JInternalFrame {
 			int urunsayi = 0 ,paketsayi = 0 ;
 			for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
 			{
-				double_5 += Double.parseDouble(model.getValueAt(i, 11).toString());
-				double_1 += (Double.parseDouble(model.getValueAt(i, 11).toString()) * (Double.parseDouble(model.getValueAt(i, 9).toString()))) / 100 ; 
-				double_2 += (( Double.parseDouble(model.getValueAt(i, 11).toString()) - ( Double.parseDouble(model.getValueAt(i, 11).toString()) *  Double.parseDouble(model.getValueAt(i, 9).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 10).toString())) / 100 ; // kdv
+				double_5 += Double.parseDouble(model.getValueAt(i, 10).toString());
+				double_1 += (Double.parseDouble(model.getValueAt(i, 10).toString()) * (Double.parseDouble(model.getValueAt(i, 8).toString()))) / 100 ; 
+				double_2 += (( Double.parseDouble(model.getValueAt(i, 10).toString()) - ( Double.parseDouble(model.getValueAt(i, 10).toString()) *  Double.parseDouble(model.getValueAt(i, 8).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 9).toString())) / 100 ; // kdv
 				double_3 +=  Double.parseDouble(model.getValueAt(i, 4).toString());
 				adetToplam +=   Double.parseDouble(model.getValueAt(i, 3).toString());
 				if (! model.getValueAt(i, 5).toString().trim().isEmpty()) 
@@ -1600,26 +1604,30 @@ public class KER_GIRIS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
-	private  void depo_auto()
+	private void depo_doldur()
 	{
 		try {
-			ResultSet rs = null;
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+			cmbdepo .removeAllItems();
+			ResultSet rs=null;
 			rs = ker_Access.ker_kod_degisken_oku("DEPO", "DPID_Y", "DEPO_DEGISKEN");
 			if (!rs.isBeforeFirst() ) {  
-				listdepo.add("");
-			}
-			else
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+				cmbdepo .addItem("");
+				cmbdepo.setSelectedItem("");
+				return;
+			} 
+			cmbdepo .addItem("");
+			while (rs.next())
 			{
-				listdepo.add("");
-				while (rs.next())
-				{
-					listdepo.add(rs.getString("DEPO"));
-				}
+				cmbdepo .addItem(rs.getString("DEPO"));
 			}
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void paketm3()
@@ -1777,38 +1785,21 @@ public class KER_GIRIS extends JInternalFrame {
 		try 
 		{
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-			int depo = 0 ;
-			ResultSet rs =null ;
-			if (mdl.getValueAt(i,7) == null)
-			{
-				depo = 0 ;
-			}
-			else
-			{
-				rs = ker_Access.ker_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN",  mdl.getValueAt(i,7).toString());
-				if (!rs.isBeforeFirst() ) {      		
-				}
-				else
-				{
-					rs.next();
-					depo = rs.getInt("DPID_Y");
-				}
-			}
 			String  izahat ="";
 			double  miktar=0;
 			miktar = Double.parseDouble( mdl.getValueAt(i,3).toString());
 			double tutar ;
-			tutar =Double.parseDouble(mdl.getValueAt(i,11).toString());
-			izahat =  mdl.getValueAt(i,12) .toString();
+			tutar =Double.parseDouble(mdl.getValueAt(i,10).toString());
+			izahat =  mdl.getValueAt(i,11) .toString();
 			double kur =0.00 ;
 			kur = DecimalFormat.getNumberInstance().parse(txtkur.getText()).doubleValue();
 			double tevk = DecimalFormat.getNumberInstance().parse(txttev.getText()).doubleValue()  ;
 			double fiat =0 ;
-			fiat = Double.parseDouble( mdl.getValueAt(i,8).toString());
+			fiat = Double.parseDouble( mdl.getValueAt(i,7).toString());
 			double isk = 0 ;
-			isk = Double.parseDouble( mdl.getValueAt(i,9).toString());
+			isk = Double.parseDouble( mdl.getValueAt(i,8).toString());
 			double kdv = 0 ; 
-			kdv =Double.parseDouble( mdl.getValueAt(i,10).toString());
+			kdv =Double.parseDouble( mdl.getValueAt(i,9).toString());
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ( " Fatura Kayit" +  mdl.getValueAt(i,1).toString() + " Mik=" + miktar + " Tut=" + tutar);
 			lBILGI.seteVRAK(textField.getText());
@@ -1818,10 +1809,10 @@ public class KER_GIRIS extends JInternalFrame {
 			ker_BILGI.setCari_Firma(txtcari.getText());
 			ker_BILGI.setAdres_Firma( txtadres.getText());
 			ker_BILGI.setTarih(tar);
-			ker_BILGI.setDepo(depo);
 			ker_BILGI.setAna_Grup(degiske[0]);
 			ker_BILGI.setAlt_Grup(degiske[1]);
 			ker_BILGI.setNakliyeci(degiske[2]);
+			ker_BILGI.setDepo(degiske[4]);
 			ker_BILGI.setDoviz( txtdoviz.getText());
 			ker_BILGI.setKur(kur);
 			ker_BILGI.setOzel_Kod(degiske[3]);
@@ -1835,24 +1826,24 @@ public class KER_GIRIS extends JInternalFrame {
 			ker_BILGI.setKdv(kdv);
 			ker_BILGI.setTutar(tutar);
 			ker_BILGI.setIzahat(izahat);
-			ker_BILGI.setCikis_Evrak(  mdl.getValueAt(i,13).toString());
-			ker_BILGI.setCTarih( mdl.getValueAt(i,14).toString());
-			ker_BILGI.setCKdv(Double.parseDouble( mdl.getValueAt(i,15).toString()));
-			ker_BILGI.setCDoviz( mdl.getValueAt(i,16).toString());
-			ker_BILGI.setCFiat(Double.parseDouble( mdl.getValueAt(i,17).toString()));
-			ker_BILGI.setCTutar(Double.parseDouble( mdl.getValueAt(i,18).toString()));
-			ker_BILGI.setCKur(Double.parseDouble( mdl.getValueAt(i,19).toString()));
-			ker_BILGI.setCCari_Firma( mdl.getValueAt(i,20).toString());
-			ker_BILGI.setCAdres_Firma( mdl.getValueAt(i,21).toString());
-			ker_BILGI.setCIskonto(Double.parseDouble( mdl.getValueAt(i,22).toString()));
-			ker_BILGI.setCTevkifat(Double.parseDouble( mdl.getValueAt(i,23).toString()));
-			ker_BILGI.setCAna_Grup(Integer.parseInt(mdl.getValueAt(i,24).toString()));
-			ker_BILGI.setCAlt_Grup(Integer.parseInt(mdl.getValueAt(i,25).toString()));
-			ker_BILGI.setCDepo(Integer.parseInt(mdl.getValueAt(i,26).toString()));
-			ker_BILGI.setCOzel_Kod( Integer.parseInt(mdl.getValueAt(i,27).toString()));
-			ker_BILGI.setCIzahat( mdl.getValueAt(i,28).toString());
-			ker_BILGI.setCNakliyeci(Integer.parseInt(mdl.getValueAt(i,29).toString()));
-			ker_BILGI.setCUSER( mdl.getValueAt(i,30).toString());
+			ker_BILGI.setCikis_Evrak(  mdl.getValueAt(i,12).toString());
+			ker_BILGI.setCTarih( mdl.getValueAt(i,13).toString());
+			ker_BILGI.setCKdv(Double.parseDouble( mdl.getValueAt(i,14).toString()));
+			ker_BILGI.setCDoviz( mdl.getValueAt(i,15).toString());
+			ker_BILGI.setCFiat(Double.parseDouble( mdl.getValueAt(i,16).toString()));
+			ker_BILGI.setCTutar(Double.parseDouble( mdl.getValueAt(i,17).toString()));
+			ker_BILGI.setCKur(Double.parseDouble( mdl.getValueAt(i,18).toString()));
+			ker_BILGI.setCCari_Firma( mdl.getValueAt(i,19).toString());
+			ker_BILGI.setCAdres_Firma( mdl.getValueAt(i,20).toString());
+			ker_BILGI.setCIskonto(Double.parseDouble( mdl.getValueAt(i,21).toString()));
+			ker_BILGI.setCTevkifat(Double.parseDouble( mdl.getValueAt(i,22).toString()));
+			ker_BILGI.setCAna_Grup(Integer.parseInt(mdl.getValueAt(i,23).toString()));
+			ker_BILGI.setCAlt_Grup(Integer.parseInt(mdl.getValueAt(i,24).toString()));
+			ker_BILGI.setCDepo(Integer.parseInt(mdl.getValueAt(i,25).toString()));
+			ker_BILGI.setCOzel_Kod( Integer.parseInt(mdl.getValueAt(i,26).toString()));
+			ker_BILGI.setCIzahat( mdl.getValueAt(i,27).toString());
+			ker_BILGI.setCNakliyeci(Integer.parseInt(mdl.getValueAt(i,28).toString()));
+			ker_BILGI.setCUSER( mdl.getValueAt(i,29).toString());
 			ker_BILGI.setSatir(i);
 			ker_Access.ker_kaydet(ker_BILGI, GLOBAL.KULL_ADI	,lBILGI,BAGLAN_LOG.kerLogDizin);
 		}
@@ -1863,8 +1854,7 @@ public class KER_GIRIS extends JInternalFrame {
 	}
 	private static int[] degiskenler() throws ClassNotFoundException, SQLException
 	{
-		int degisken[] = {0,0,0,0} ;
-		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+		int degisken[] = {0,0,0,0,0} ;
 		ResultSet rs =null ;
 		if ( ! cmbanagrup.getSelectedItem().toString().equals("") ) 
 		{
@@ -1910,12 +1900,28 @@ public class KER_GIRIS extends JInternalFrame {
 				degisken[3]   = rs.getInt("OZ1ID_Y");
 			}
 		}
+		//*****Depo
+		if (! cmbdepo.getSelectedItem().toString().equals(""))
+		{
+		}
+		else
+		{
+			rs = ker_Access.ker_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN",  cmbdepo.getSelectedItem().toString());
+			if (!rs.isBeforeFirst() ) {      		
+			}
+			else
+			{
+				rs.next();
+				degisken[4] = rs.getInt("DPID_Y");
+			}
+		}
+
 		return degisken;
 	}
 	private void fiskont()
 	{
-		Runnable runner = new Runnable()
-		{ public void run() {
+		//Runnable runner = new Runnable()
+		//{ public void run() {
 			try {
 				long startTime = System.currentTimeMillis();
 				ResultSet rss = null;
@@ -1986,7 +1992,18 @@ public class KER_GIRIS extends JInternalFrame {
 					{
 						rsa.next();
 						cmbozkod.setSelectedItem(rsa.getString("OZEL_KOD_1"));
-					}			
+					}		
+					//**dpo
+					rsa = null;
+					rsa = ker_Access.ker_kod_degisken_ara("DEPO", "DPID_Y", "DEPO_DEGISKEN",String.valueOf(rss.getInt("Depo")));
+					if (!rsa.isBeforeFirst() ) {  
+						cmbdepo.setSelectedItem("");
+					} 
+					else
+					{
+						rsa.next();
+						cmbdepo.setSelectedItem(rsa.getString("DEPO"));
+					}		
 					rss.first();   
 					DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 					int satir =0 ;
@@ -2000,7 +2017,6 @@ public class KER_GIRIS extends JInternalFrame {
 								m3(rss.getString("Kodu"),rss.getDouble("Miktar")),
 								"" ,
 								rss.getString("Konsimento"),
-								rss.getString("Depo"),
 								rss.getDouble("Fiat"),
 								rss.getDouble("Iskonto"),
 								rss.getDouble("Kdv"),
@@ -2029,14 +2045,14 @@ public class KER_GIRIS extends JInternalFrame {
 
 						if (satir == mdl.getRowCount())  
 						{
-							mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+							mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 						}
 						else  {
 							mdl.removeRow(mdl.getRowCount() -1);	
 						}
 					}  while (rss.next()) ;
-					Thread.currentThread().isInterrupted();
-					mdl.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+					//Thread.currentThread().isInterrupted();
+					mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 					paketm3();
 					dOSYADAN = false;
 					toplam();
@@ -2053,10 +2069,10 @@ public class KER_GIRIS extends JInternalFrame {
 				GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
 				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
 			}
-		}
-		};
-		Thread t = new Thread(runner, "Code Executer");
-		t.start();
+		//}
+		//};
+		//Thread t = new Thread(runner, "Code Executer");
+		//t.start();
 	}
 	private void kod_ADI(String toke,String kons) throws ClassNotFoundException, SQLException 
 
@@ -2106,6 +2122,7 @@ public class KER_GIRIS extends JInternalFrame {
 		cmbaltgrup.setSelectedItem("");
 		cmbozkod.setSelectedItem("");
 		cmbnakliyeci.setSelectedItem("");
+		cmbdepo.setSelectedItem("");
 		textField_9.setText("");
 		textField_10.setText("");
 		txtkur.setText("0.0000");
@@ -2290,7 +2307,6 @@ public class KER_GIRIS extends JInternalFrame {
 				String sonboy = "" ;
 				int adet = 0 ;
 				int sonadet = 0 ;
-				String konsimento = "5404" ;
 				dOSYADAN = true;
 				GRID_TEMIZLE.grid_temizle(table);
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
@@ -2339,12 +2355,12 @@ public class KER_GIRIS extends JInternalFrame {
 							int kjp = 10 - (yeniSinif + sonpaketno).length() ;
 							String yeniPaket =  yeniSinif + StringUtils.repeat("0", kjp) + sonpaketno  ;
 							//
-						      int min = 300; // Minimum value of range
-						      int max = 600; // Maximum value of range
+						      int min = 600; // Minimum value of range
+						      int max = 700; // Maximum value of range
 						      double random_fiat = (double)Math.floor(Math.random() * (max - min + 1) + min);
 							///
 							mdl.addRow(new Object[]{"",kODU,yeniPaket,adet,
-									m3(kODU,adet),"",konsimento,"Umraniye",random_fiat,0.00,0.00,m3(kODU, adet) * random_fiat,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+									m3(kODU,adet),"",strKonsimento,random_fiat,0.00,0.00,m3(kODU, adet) * random_fiat,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 						}
 						else {
 							sonpaketno =  arapaketno ;
@@ -2371,13 +2387,13 @@ public class KER_GIRIS extends JInternalFrame {
 							String yeniPaket =  arasinif.substring(1, 2) + StringUtils.repeat("0", kjp) + sonpaketno  ;
 							//
 							//
-						      int min = 300; // Minimum value of range
-						      int max = 600; // Maximum value of range
+						      int min = 600; // Minimum value of range
+						      int max = 700; // Maximum value of range
 						      double random_fiat = (double)Math.floor(Math.random() * (max - min + 1) + min);
 							///
 
 							mdl.addRow(new Object[]{"",kODU,yeniPaket,adet,
-									m3(kODU,adet),"",konsimento,"Umraniye",random_fiat,0.00,0.00,m3(kODU, adet) * random_fiat,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+									m3(kODU,adet),"",strKonsimento,random_fiat,0.00,0.00,m3(kODU, adet) * random_fiat,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 						}
 					}  
 					satir += 1 ;
@@ -2477,7 +2493,6 @@ public class KER_GIRIS extends JInternalFrame {
     		JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
     	}
     }
-
 }
 
 //		ComboBoxEditor jeditor = cmbozkod.getEditor();

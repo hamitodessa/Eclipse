@@ -172,8 +172,6 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		lOG_BILGI lBILGI = new lOG_BILGI();
 		lBILGI.setmESAJ(textField.getText() + " Acik=" + textField_1.getText());
 		lBILGI.seteVRAK("");
-		
-		
 		 try {
 			lBILGI.setmESAJ(textField.getText() + " Silme");
 			lBILGI.seteVRAK("");
@@ -184,7 +182,24 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 			temizle();
 			hisset();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void sil() 
+	{
+		int g =  JOptionPane.showOptionDialog( null,  textField_1.getText() + "     Kod Dosyadan Silinecek ..?", "Kereste Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
+		if(g != 0 ) { return;	}
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ(textField.getText() + " Acik=" + textField_1.getText());
+		lBILGI.seteVRAK("");
+		 try {
+			lBILGI.setmESAJ(textField.getText() + " Silme");
+			lBILGI.seteVRAK("");
+			ker_Access.kod_sil(textField.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
+			temizle();
+			hisset();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

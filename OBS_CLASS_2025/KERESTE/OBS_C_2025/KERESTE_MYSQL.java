@@ -704,5 +704,11 @@ public class KERESTE_MYSQL implements IKERESTE {
 		return null;
 	}
 
+	@Override
+	public boolean kons_kontrol(String kons) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 		
 }

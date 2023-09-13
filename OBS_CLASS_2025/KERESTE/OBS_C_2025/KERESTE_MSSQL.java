@@ -850,7 +850,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String sql = "";
 		if (cins.equals("G")) {
 			 sql = "SELECT   [Evrak_No] ,[Barkod] ,[Kodu],[Paket_No],[Konsimento] ,[Miktar],[Tarih],[Kdv] ,[Doviz] ,[Fiat]  ,[Tutar] ,[Kur]  ,[Cari_Firma],[Adres_Firma]  ,[Iskonto] ,[Tevkifat] "
-					+ "	,[Ana_Grup]  ,[Alt_Grup] ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) , '') AS Depo  ,[Ozel_Kod] ,[Izahat]  ,[Nakliyeci] ,[USER] "
+					+ "	,[Ana_Grup]  ,[Alt_Grup] ,[Depo]  ,[Ozel_Kod] ,[Izahat]  ,[Nakliyeci] ,[USER] "
 					+ "	,[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] ,[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat] "
 					+ "	,[CAna_Grup]    ,[CAlt_Grup]  ,CDepo  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER]" 
 					+ " FROM KERESTE   " 
@@ -1670,5 +1670,30 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
+	}
+
+	@Override
+	public boolean kons_kontrol(String kons) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		PreparedStatement stmt = con.prepareStatement("SELECT count(KONS) as KONS  FROM KONS_ACIKLAMA  WHERE KONS =N'" + kons + "' ");
+		rss = stmt.executeQuery();
+		boolean result ;
+		if (!rss.isBeforeFirst() ) {  
+			result = false ;
+		}
+		else
+		{
+			rss.next();
+			if( rss.getInt("KONS") ==0 )
+			{
+				result = false ;
+			}
+			else {
+				
+			}result = true;
+			
+		}
+		return result;	
 	}
 }

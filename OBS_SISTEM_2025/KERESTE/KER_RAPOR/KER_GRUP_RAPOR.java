@@ -279,7 +279,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			hANGI = "" ;
 			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
 			{
-				jkj = " Cikis_Evrak like '%' AND " ;
+				jkj =   "" ;//" Cikis_Evrak like '%' AND " ;
 				hANGI = "" ;
 			}
 			else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))

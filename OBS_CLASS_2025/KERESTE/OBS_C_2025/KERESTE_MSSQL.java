@@ -1097,14 +1097,40 @@ public class KERESTE_MSSQL implements IKERESTE {
 		sonk = token[1];
 		sonb = token[2];
 		song = token[3];
+		System.out.println(jkj);
+		if(qwq6.equals(" Like  '%' "))
+		{
+			qwq6 =  " " ;
+		}
+		else {
+			qwq6 = dURUM + "Ana_Grup " + qwq6 ;
+		}
+		if(qwq7.equals(" Like  '%' "))
+		{
+			qwq7 =  " " ;
+		}
+		else {
+			qwq7 = " AND "+ dURUM + "Alt_Grup " + qwq7 ;
+		}
+		if(qwq8.equals(" Like  '%' "))
+		{
+			qwq8 =  " " ;
+		}
+		else {
+			qwq8 = " AND "+ dURUM + "Ozel_Kod " + qwq8 ;
+		}
+		if(dpo.equals(" Like  '%' "))
+		{
+			dpo =  " " ;
+		}
+		else {
+			dpo = " AND "+ dURUM + "Depo " + dpo + " AND ";
+		}
 		String sql =   "SELECT * " +
 				" FROM  (SELECT "+ gruplama + " ," + sstr_2 + " as  degisken , " + sstr_4 +
 				" FROM KERESTE   " + kur_dos + 
-				" WHERE   " + jkj + dURUM + "Ana_Grup " + qwq6 +
-				" AND "+ dURUM + "Alt_Grup " + qwq7 +
-				" AND "+ dURUM + "Ozel_Kod " + qwq8 +
-				" AND "+ dURUM + "Depo " + dpo +
-				" AND " + jkj +
+				" WHERE   " + jkj + " " +
+				   qwq6 + " "+qwq7 + " " +qwq8 + " " + dpo +
 				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" +
@@ -1121,7 +1147,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 				"    ) " +
 				" AS p" +
 				" ORDER BY  " + orderBY ;
-		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1207,6 +1232,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " CAlt_Grup " + ker_rap_BILGI.getCAlt_Grup()  + " AND" 
 				+ " CDepo " + ker_rap_BILGI.getCDepo()  + " AND " 
 				+ " COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() ; 
+		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1561,12 +1587,13 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " ,[CUSER] ,Satir" 
 				+ " FROM KERESTE    " 
 				+ " WHERE " 
-				+ " SUBSTRING(KERESTE.Kodu, 1, 2) like '"+ ilks +"%'  AND" //IIF(500<1000, 'YES', 'NO')
+				+ " SUBSTRING(KERESTE.Kodu, 1, 2) like '"+ ilks +"%'  AND" 
 				+ " SUBSTRING(KERESTE.Kodu, 4, 3) like '"+ilkk +"%' AND" 
 				+ " SUBSTRING(KERESTE.Kodu, 8, 4) like '"+ilkb +"%' AND" 
 				+ " SUBSTRING(KERESTE.Kodu, 13, 4) like '"+ilkg +"%'  AND" 
 				+ " Paket_No like N'"+ ker_rap_BILGI.getPaket_No1().toString()+ "%' AND " 
 				+ " Konsimento like N'"+ ker_rap_BILGI.getKonsimento1().toString() + "%'"  ; 
+		
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

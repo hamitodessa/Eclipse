@@ -132,7 +132,7 @@ public class KUR_MSSQL implements IKUR{
 				+ " SS float," 
 				+ " BA float," 
 				+ " BS float," 
-				+ " INDEX IX_KUR NONCLUSTERED (Kur,Tarih))";
+				+ " INDEX IX_KUR NONCLUSTERED (Kur,Tarih ASC) INCLUDE([MA],[MS]) )";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 

@@ -1360,6 +1360,8 @@ public class KER_GIRIS extends JInternalFrame {
 			{
 				satir_ilave();
 			}
+			txtdoviz.setText(GLOBAL.setting_oku("PRG_PARA").toString());
+
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Giris", JOptionPane.ERROR_MESSAGE);   
 		}

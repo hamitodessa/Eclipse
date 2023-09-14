@@ -212,6 +212,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				+"	ON [dbo].[SATIRLAR] ([HESAP],[TARIH])"
 				+"	INCLUDE ([EVRAK],[KUR],[BORC],[ALACAK],[KOD],[USER])";
 		stmt = con.createStatement();  
+		
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE [dbo].[IZAHAT](	[EVRAK] [int] NOT NULL,	[IZAHAT] [nvarchar](100) NULL,"
 				+ " CONSTRAINT [IX_EVRAK] PRIMARY KEY CLUSTERED ([EVRAK] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF,"

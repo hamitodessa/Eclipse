@@ -514,14 +514,14 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_7);
 
 		cmbozkod = new JComboBox<String>();
-		cmbozkod.setBounds(560, 7, 156, 22);
+		cmbozkod.setBounds(555, 7, 156, 22);
 		cmbozkod.setForeground(new Color(0, 0, 128));
 		cmbozkod.setFont(new Font("Dialog", Font.BOLD, 12));
 		panel_2.add(cmbozkod);
 
 		JLabel lblAnaGrup = new JLabel("Ana Grup");
 		lblAnaGrup.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblAnaGrup.setBounds(726, 10, 61, 14);
+		lblAnaGrup.setBounds(745, 10, 61, 14);
 		panel_2.add(lblAnaGrup);
 
 		cmbanagrup = new JComboBox<String>();
@@ -532,7 +532,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				alt_grup_doldur();
 			}
 		});
-		cmbanagrup.setBounds(797, 7, 148, 22);
+		cmbanagrup.setBounds(809, 7, 148, 22);
 		panel_2.add(cmbanagrup);
 
 		JButton button = new JButton("");
@@ -543,18 +543,18 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		});
 		button.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
 		button.setToolTipText("Yenile");
-		button.setBounds(955, 7, 26, 23);
+		button.setBounds(960, 7, 26, 23);
 		panel_2.add(button);
 
 		JLabel lblAltGrup = new JLabel("Alt Grup");
 		lblAltGrup.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblAltGrup.setBounds(726, 35, 69, 14);
+		lblAltGrup.setBounds(745, 35, 69, 14);
 		panel_2.add(lblAltGrup);
 
 		cmbaltgrup = new JComboBox<String>();
 		cmbaltgrup.setForeground(new Color(0, 0, 128));
 		cmbaltgrup.setFont(new Font("Dialog", Font.BOLD, 12));
-		cmbaltgrup.setBounds(797, 33, 148, 22);
+		cmbaltgrup.setBounds(809, 33, 148, 22);
 		panel_2.add(cmbaltgrup);
 
 		JLabel lblNewLabel_9 = new JLabel("Doviz");
@@ -586,8 +586,30 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_7_1);
 
 		cmbnakliyeci = new JComboBox<String>();
-		cmbnakliyeci.setBounds(560, 33, 156, 22);
+		cmbnakliyeci.setBounds(555, 33, 156, 22);
 		panel_2.add(cmbnakliyeci);
+		
+		JButton button_2 = new JButton("");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ker_oz_kod();
+			}
+		});
+		button_2.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
+		button_2.setToolTipText("Yenile");
+		button_2.setBounds(715, 7, 26, 23);
+		panel_2.add(button_2);
+		
+		JButton button_3 = new JButton("");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ker_nakliyeci();
+			}
+		});
+		button_3.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
+		button_3.setToolTipText("Yenile");
+		button_3.setBounds(715, 32, 26, 23);
+		panel_2.add(button_3);
 
 
 		JPanel panel_4 = new JPanel();

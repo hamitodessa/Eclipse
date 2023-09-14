@@ -17,9 +17,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
-
 import javax.mail.util.ByteArrayDataSource;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
@@ -2062,8 +2059,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				satirStyle2.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
 				satirStylemik.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0"));
 				satirStyle3.setAlignment(HorizontalAlignment.RIGHT);
-				satirStyle2.setAlignment(HorizontalAlignment.RIGHT);
-				satirStylemik.setAlignment(HorizontalAlignment.RIGHT);
+				satirStyle2.setAlignment(HorizontalAlignment.RIGHT);				satirStylemik.setAlignment(HorizontalAlignment.RIGHT);
 
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 				HSSFCellStyle acikStyle = workbook.createCellStyle();

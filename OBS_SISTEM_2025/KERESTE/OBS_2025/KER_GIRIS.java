@@ -193,7 +193,7 @@ public class KER_GIRIS extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0, 0,1165,800);
+		setBounds(0, 0,1160,800);
 		
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -371,7 +371,7 @@ public class KER_GIRIS extends JInternalFrame {
 
 		JLabel lblNewLabel_4 = new JLabel("Tarih");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_4.setBounds(300, 11, 46, 14);
+		lblNewLabel_4.setBounds(290, 11, 46, 14);
 		panel_2.add(lblNewLabel_4);
 
 		dtc = new JDateChooser();
@@ -421,7 +421,7 @@ public class KER_GIRIS extends JInternalFrame {
 			public void keyReleased(KeyEvent e) {
 			}
 		});
-		dtc.setBounds(353, 8, 125, 20);
+		dtc.setBounds(340, 8, 125, 20);
 		dtc.setDateFormatString("dd.MM.yyyy");
 		dtc.setFont(new Font("Tahoma", Font.BOLD, 12));
 		dtc.setDate(new Date());
@@ -429,7 +429,7 @@ public class KER_GIRIS extends JInternalFrame {
 
 		JLabel lblNewLabel_5 = new JLabel("Adres");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_5.setBounds(300, 36, 46, 14);
+		lblNewLabel_5.setBounds(290, 36, 46, 14);
 		panel_2.add(lblNewLabel_5);
 
 		txtadres = new JTextField();
@@ -500,30 +500,30 @@ public class KER_GIRIS extends JInternalFrame {
 			}
 		});
 		txtadres.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtadres.setBounds(353, 33, 125, 20);
+		txtadres.setBounds(340, 33, 125, 20);
 		panel_2.add(txtadres);
 		txtadres.setColumns(10);
 
 		lblNewLabel_6 = new JLabel(".....");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_6.setForeground(new Color(139, 0, 0));
-		lblNewLabel_6.setBounds(353, 62, 237, 14);
+		lblNewLabel_6.setBounds(340, 62, 237, 14);
 		panel_2.add(lblNewLabel_6);
 
 		JLabel lblNewLabel_7 = new JLabel("Ozel Kod");
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_7.setBounds(490, 11, 61, 14);
+		lblNewLabel_7.setBounds(480, 11, 56, 14);
 		panel_2.add(lblNewLabel_7);
 
 		cmbozkod = new JComboBox<String>();
-		cmbozkod.setBounds(560, 7, 156, 22);
+		cmbozkod.setBounds(535, 7, 165, 22);
 		cmbozkod.setForeground(new Color(0, 0, 128));
 		cmbozkod.setFont(new Font("Dialog", Font.BOLD, 12));
 		panel_2.add(cmbozkod);
 
 		JLabel lblAnaGrup = new JLabel("Ana Grup");
 		lblAnaGrup.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblAnaGrup.setBounds(726, 10, 61, 14);
+		lblAnaGrup.setBounds(740, 10, 61, 14);
 		panel_2.add(lblAnaGrup);
 
 		cmbanagrup = new JComboBox<String>();
@@ -534,7 +534,7 @@ public class KER_GIRIS extends JInternalFrame {
 				alt_grup_doldur();
 			}
 		});
-		cmbanagrup.setBounds(797, 7, 148, 22);
+		cmbanagrup.setBounds(811, 7, 148, 22);
 		panel_2.add(cmbanagrup);
 		
 		JButton button = new JButton("");
@@ -545,18 +545,18 @@ public class KER_GIRIS extends JInternalFrame {
 		});
 		button.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
 		button.setToolTipText("Yenile");
-		button.setBounds(955, 7, 26, 23);
+		button.setBounds(965, 7, 26, 23);
 		panel_2.add(button);
 
 		JLabel lblAltGrup = new JLabel("Alt Grup");
 		lblAltGrup.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblAltGrup.setBounds(726, 35, 69, 14);
+		lblAltGrup.setBounds(740, 35, 69, 14);
 		panel_2.add(lblAltGrup);
 
 		cmbaltgrup = new JComboBox<String>();
 		cmbaltgrup.setForeground(new Color(0, 0, 128));
 		cmbaltgrup.setFont(new Font("Dialog", Font.BOLD, 12));
-		cmbaltgrup.setBounds(797, 33, 148, 22);
+		cmbaltgrup.setBounds(811, 33, 148, 22);
 		panel_2.add(cmbaltgrup);
 
 		JLabel lblNewLabel_9 = new JLabel("Doviz");
@@ -584,20 +584,54 @@ public class KER_GIRIS extends JInternalFrame {
 		
 		JLabel lblNewLabel_7_1 = new JLabel("Nakliyeci");
 		lblNewLabel_7_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_7_1.setBounds(490, 37, 61, 14);
+		lblNewLabel_7_1.setBounds(480, 37, 56, 14);
 		panel_2.add(lblNewLabel_7_1);
 		
 		cmbnakliyeci = new JComboBox<String>();
-		cmbnakliyeci.setBounds(560, 33, 156, 22);
+		cmbnakliyeci.setBounds(535, 33, 165, 22);
 		panel_2.add(cmbnakliyeci);
 		
 		cmbdepo = new JComboBox<String>();
-		cmbdepo.setBounds(797, 59, 148, 22);
+		cmbdepo.setBounds(811, 59, 148, 22);
 		panel_2.add(cmbdepo);
 		
 		JLabel lblNewLabel_11 = new JLabel("Depo");
-		lblNewLabel_11.setBounds(726, 62, 48, 14);
+		lblNewLabel_11.setBounds(740, 62, 61, 14);
 		panel_2.add(lblNewLabel_11);
+		
+		JButton button_2 = new JButton("");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				depo_doldur();
+			}
+		});
+		button_2.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
+		button_2.setToolTipText("Yenile");
+		button_2.setBounds(965, 58, 26, 23);
+		panel_2.add(button_2);
+		
+		JButton button_3 = new JButton("");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ker_oz_kod();
+			}
+		});
+		button_3.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
+		button_3.setToolTipText("Yenile");
+		button_3.setBounds(704, 7, 26, 23);
+		panel_2.add(button_3);
+		
+		JButton button_4 = new JButton("");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ker_nakliyeci();
+			}
+		});
+		button_4.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
+
+		button_4.setToolTipText("Yenile");
+		button_4.setBounds(704, 32, 26, 23);
+		panel_2.add(button_4);
 		
 
 		
@@ -1286,7 +1320,7 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setHeaderRenderer(new SAGA());
 		
 		col = table.getColumnModel().getColumn(11);
-		col.setMinWidth(175);
+		col.setMinWidth(178);
 		JTextField atf = new JTextField(40);
 		col.setCellEditor(new DefaultCellEditor(atf));
 		col.setHeaderRenderer(new SOLA());
@@ -2536,7 +2570,6 @@ public class KER_GIRIS extends JInternalFrame {
 		GuiUtil.setWaitCursor(txtadres,false);
 
 	}
-
 }
 
 //		ComboBoxEditor jeditor = cmbozkod.getEditor();

@@ -2605,7 +2605,8 @@ public class OBS_MAIN extends JFrame {
 				boolean varmi = pencere_bak("RAPOR YAZDIRMA");
 				if (varmi) 
 				{
-					try {
+					try 
+					{
 						pencere_aktiv_yap("RAPOR YAZDIRMA");
 					} catch (PropertyVetoException e1) {
 						e1.printStackTrace();
@@ -2662,7 +2663,6 @@ public class OBS_MAIN extends JFrame {
 							}
 							};
 							//// Progress Bar
-
 							Thread t = new Thread(runner, "Code Executer");
 							t.start();
 							//***
@@ -2671,7 +2671,6 @@ public class OBS_MAIN extends JFrame {
 						{
 							desktopPane.add(internalFrame);
 							internalFrame.setVisible(true);
-
 							PRINT_YAPMA.hisset("ekstre","normal");
 						}
 					}
@@ -2688,7 +2687,6 @@ public class OBS_MAIN extends JFrame {
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
-
 						PRINT_YAPMA.hisset("mizan","");
 					}
 					else if (sonuc == "CARI OZEL MIZAN")
@@ -2704,7 +2702,6 @@ public class OBS_MAIN extends JFrame {
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
-
 						PRINT_YAPMA.hisset("ozel_mizan","");
 					}
 					else if (sonuc == "DOVIZE CEVIRME")
@@ -2720,7 +2717,6 @@ public class OBS_MAIN extends JFrame {
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
-
 						PRINT_YAPMA.hisset("dvzcev","");
 					}
 					else if (sonuc == "CEK GIRIS")
@@ -2736,7 +2732,6 @@ public class OBS_MAIN extends JFrame {
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
-
 						PRINT_YAPMA.hisset("cekg",CEK_GIRIS.textField.getText());
 					}
 					else if (sonuc == "CEK CIKIS")
@@ -2752,7 +2747,6 @@ public class OBS_MAIN extends JFrame {
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
-
 						PRINT_YAPMA.hisset("cekc",CEK_CIKIS.textField.getText());
 					}
 					else if (sonuc == "ETIKET")
@@ -2763,9 +2757,7 @@ public class OBS_MAIN extends JFrame {
 						//desktopPane.add(internalFrame);
 						//internalFrame.setVisible(true);
 						//PRINT_YAPMA.hisset("etiket","");
-						
 						//**************************
-						
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket.jrxml");
 						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.jrxml"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_JASPER();
@@ -2811,7 +2803,6 @@ public class OBS_MAIN extends JFrame {
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
-
 						PRINT_YAPMA.hisset("stok","");
 					}
 					else if (sonuc == "FATURA		- SATIS" || sonuc == "FATURA		- ALIS")
@@ -2827,7 +2818,6 @@ public class OBS_MAIN extends JFrame {
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
-
 						PRINT_YAPMA.hisset("fatura","");
 					}
 					GuiUtil.setWaitCursor(toolBar,false);
@@ -2953,8 +2943,6 @@ public class OBS_MAIN extends JFrame {
 							GuiUtil.setWaitCursor(toolBar,false);
 							return ;
 						}
-
-
 						JInternalFrame internalFrame;
 						internalFrame = new GRAFIK();
 						desktopPane.add(internalFrame);

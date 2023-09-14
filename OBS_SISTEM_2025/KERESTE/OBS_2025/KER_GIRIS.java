@@ -888,8 +888,9 @@ public class KER_GIRIS extends JInternalFrame {
 		panel_71.add(label_8_1);
 		
 		JLabel lblNewLabel_8 = new JLabel("Paket");
+		lblNewLabel_8.setForeground(new Color(0, 0, 128));
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_8.setBounds(560, 5, 48, 14);
+		lblNewLabel_8.setBounds(560, 5, 60, 14);
 		panel_71.add(lblNewLabel_8);
 		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
@@ -1092,7 +1093,6 @@ public class KER_GIRIS extends JInternalFrame {
 						JOptionPane.showMessageDialog(null,  "Konsimento Numarasi 10 Karakter ile sinirlidir...",  "Dosya Okuma", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
-					System.out.println(ker_Access.kons_kontrol(strKonsimento));
 					if(ker_Access.kons_kontrol(strKonsimento))
 					{
 						JOptionPane.showMessageDialog(null,  "Bu Numarada Konsimento Mevcut..",  "Dosya Okuma", JOptionPane.ERROR_MESSAGE);

@@ -130,22 +130,21 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	private static JLabel label_9 ;
 	private static JLabel lblNewLabel_20;
 	private static JLabel lblPaket ;
-
-
 	private static JLabel lblNewLabel_3;
 	private static JLabel lblNewLabel_6 ;
 	private static JLabel lblNewLabel_17;
 	private static JLabel lblNewLabel_13;
 	private static JLabel lblkodAciklama ;
 	private static JLabel lblkONSIMENTO ;
-	private ArrayList<String> listdepo = null ;
+	private static JLabel lblkODU ;
+	
 
 
 	private static JTable table;
 	private ArrayList<String> listPaket = new ArrayList<String>();
 	private ArrayList<String> listBarkod =  new ArrayList<String>();
+	private ArrayList<String> listdepo = null ;
 
-	private static boolean yeni_fat = false;
 	private static  String tar = "" ;
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -859,7 +858,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_71.add(label_9);
 		splitPane_3.setLeftComponent(panel_71);
 
-		lblPaket = new JLabel("0.000");
+		lblPaket = new JLabel("0");
 		lblPaket.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPaket.setForeground(new Color(139, 0, 0));
 		lblPaket.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -997,8 +996,20 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		lblkONSIMENTO.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblkONSIMENTO.setBounds(10, 35, 50, 14);
 		panel_1.add(lblkONSIMENTO);
+		
+		lblkODU = new JLabel();
+		lblkODU.setForeground(new Color(0, 0, 128));
+		lblkODU.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblkODU.setBounds(10, 11, 170, 14);
+		panel_1.add(lblkODU);
 
 		splitPane_3.setLeftComponent(panel_71);
+		
+		JLabel lblNewLabel_8 = new JLabel("Paket");
+		lblNewLabel_8.setForeground(new Color(0, 0, 128));
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_8.setBounds(587, 5, 85, 14);
+		panel_71.add(lblNewLabel_8);
 
 
 
@@ -1125,7 +1136,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		model.addColumn("Miktar", new Double [] {( 0.000 )});
 		model.addColumn("M3", new Double [] {( 0.000 )});
 		model.addColumn("Paket_M3", new String []{""});
-		model.addColumn("Kons.", new String []{""});
+		model.addColumn("Konsimen.", new String []{""});
 		model.addColumn("Depo", new String []{""});
 		model.addColumn("Fiat", new Double [] {( 0.00 )});
 		model.addColumn("Iskonto", new Double [] {( 0.00 )});
@@ -1206,14 +1217,14 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		col.setHeaderRenderer(new SAGA());
 
 		col = table.getColumnModel().getColumn(9);
-		col.setMinWidth(50);
+		col.setMinWidth(60);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
 
 
 		col = table.getColumnModel().getColumn(10);
-		col.setMinWidth(30);
+		col.setMinWidth(40);
 		col.setCellEditor( new DoubleEditor(2) );
 		col.setCellRenderer(new TABLO_RENDERER(2,false));
 		col.setHeaderRenderer(new SAGA());
@@ -1466,23 +1477,20 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			rss = ker_Access.ker_oku(textField.getText(), "C");
 			if (!rss.isBeforeFirst() ) {  
 				txtadres.setText("");
-				yeni_fat = true;
 				GRID_TEMIZLE.grid_temizle(table);
 				sifirla();
 			}
 			else
 			{
 				rss.next();
-				yeni_fat = false;
-				txtadres.setText("");
 				GRID_TEMIZLE.grid_temizle(table);
 				sifirla();
+				txtadres.setText("");
 				dtc.setDate(rss.getDate("CTarih"));
 				txtadres.setText(rss.getString("CAdres_Firma"));
 				txtcari.setText(rss.getString("CCari_Firma"));
 				txtdoviz.setText(rss.getString("CDoviz"));
 				txtkur.setText(FORMATLAMA.doub_4(rss.getDouble("CKur")));
-
 				//  '***********GRUP DOLDUR
 				ResultSet rsa=null;
 				rsa = ker_Access.ker_kod_degisken_ara("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN",String.valueOf(rss.getInt("CAna_Grup")));
@@ -1773,9 +1781,13 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		lblkodAciklama.setText(aciklamaString[0]);
 		Dimension size = lblkodAciklama.getPreferredSize();
 		lblkodAciklama.setBounds(10, 55, size.width +10, 14);
+		
+		
 		lblkONSIMENTO.setText(aciklamaString[1]);
 		size = lblkONSIMENTO.getPreferredSize();
 		lblkONSIMENTO.setBounds(10, 35, size.width +10, 14);
+		
+		lblkODU.setText(aciklamaString[2]);
 	}
 	private static void dipnot_sil()
 	{
@@ -1880,6 +1892,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		txtkur.setText("0.0000");
 		lblkodAciklama.setText("");
 		lblkONSIMENTO.setText("");
+		lblkODU.setText("");
 		dtc.setDate(new Date());
 
 	}
@@ -1913,7 +1926,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		try {
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			double  double_0, double_1 = 0, double_2 = 0, double_3 = 0, double_4, double_5=0,double_6 = 0 , urunmiktar = 0;
-			int urunsayi = 0  ;
+			int urunsayi = 0 ,paketsayi = 0 ;
 			for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
 			{
 				double_5 += Double.parseDouble(model.getValueAt(i, 11).toString());
@@ -1921,19 +1934,29 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				double_2 += (( Double.parseDouble(model.getValueAt(i, 11).toString()) - ( Double.parseDouble(model.getValueAt(i, 11).toString()) *  Double.parseDouble(model.getValueAt(i, 9).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 10).toString())) / 100 ; // kdv
 				double_3 +=  Double.parseDouble(model.getValueAt(i, 4).toString());
 				urunmiktar +=  Double.parseDouble(model.getValueAt(i, 3).toString());
+				//if (! model.getValueAt(i, 5).toString().trim().isEmpty()) 
+				//{
+				//	double_6 +=  Double.parseDouble(model.getValueAt(i, 5).toString().trim());
+				//}
+
+				//if (! model.getValueAt(i,2).toString().equals(""))
+				//{
+				//	urunsayi += 1;
+				//}
 				if (! model.getValueAt(i, 5).toString().trim().isEmpty()) 
 				{
-					double_6 +=  Double.parseDouble(model.getValueAt(i, 5).toString().trim());
+					//double_6 +=  Double.parseDouble(model.getValueAt(i, 5).toString().trim());
+					paketsayi += 1 ;
 				}
-
-				if (! model.getValueAt(i,2).toString().equals(""))
+				if (! model.getValueAt(i,1).toString().equals(""))
 				{
 					urunsayi += 1;
 				}
 			}
 			label_8.setText(FORMATLAMA.doub_3(double_3));
 			label_8_1.setText(FORMATLAMA.doub_0(urunmiktar));
-			lblPaket.setText(FORMATLAMA.doub_3(double_6));
+			//lblPaket.setText(FORMATLAMA.doub_3(double_6));
+			lblPaket.setText(FORMATLAMA.doub_0(paketsayi));
 			label_9.setText(FORMATLAMA.doub_2(double_5));
 			lblNewLabel_13.setText( FORMATLAMA.doub_0(urunsayi));
 

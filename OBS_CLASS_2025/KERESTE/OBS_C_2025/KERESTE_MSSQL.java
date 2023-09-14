@@ -231,9 +231,10 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " [CNakliyeci] [int] NULL,"
 				+ " [CUSER] [nvarchar](15)  NULL,"
 				+ " [Satir] [int] NOT NULL,"
-				+ " CONSTRAINT [PKeyKID] PRIMARY KEY CLUSTERED ("
-				+ " [ID] ASC ) ,"
-				+ " INDEX IX_KERESTE NONCLUSTERED (Evrak_No,Kodu,Paket_No,Cari_Firma,Cikis_Evrak) ) ";
+				+ " CONSTRAINT [PID] PRIMARY KEY CLUSTERED ( [ID] ASC ) ,"
+				+ " INDEX IX_KERESTE NONCLUSTERED (Kodu,Paket_No) INCLUDE([Evrak_No],[Konsimento],[Cari_Firma],[Cikis_Evrak]) ,"
+				+ " INDEX IX_GRP_II NONCLUSTERED (Konsimento,Tarih,Cari_Firma) INCLUDE ([Kodu],[Paket_No],[Miktar],[Ana_Grup],[Alt_Grup],[Depo],[Ozel_Kod],[Cikis_Evrak]),"
+				+ " INDEX IX_GRP_I NONCLUSTERED  (Konsimento,Tarih,Cari_Firma) INCLUDE (Kodu,Miktar,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Cikis_Evrak) ) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE [dbo].[OZEL]("
@@ -1120,6 +1121,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				"    ) " +
 				" AS p" +
 				" ORDER BY  " + orderBY ;
+		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1605,20 +1607,22 @@ public class KERESTE_MSSQL implements IKERESTE {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		PreparedStatement stmt = con.prepareStatement("SELECT DISTINCT (SELECT ACIKLAMA FROM KOD_ACIKLAMA WHERE Kod = SUBSTRING(KERESTE.Kodu,0,3)) as ACIKLAMA ,"
-					+ " (SELECT ACIKLAMA FROM KONS_ACIKLAMA WHERE KONS = '" + kons + "') as KONS_ACIKLAMA"
+					+ " (SELECT ACIKLAMA FROM KONS_ACIKLAMA WHERE KONS = '" + kons + "') as KONS_ACIKLAMA, Kodu"
 					+ " FROM KERESTE   " 
 					+ " WHERE Paket_No ='" + paket + "' and  Konsimento = '" + kons+"' ");
 		rss = stmt.executeQuery();
-		String result[] = {"",""} ;
+		String result[] = {"","",""} ;
 		if (!rss.isBeforeFirst() ) {  
 			result[0] = "" ;
 			result[1] = "" ;
+			result[2] = "" ;
 		}
 		else
 		{
 			rss.next();
 			result[0] = rss.getString("ACIKLAMA");
 			result[1] = rss.getString("KONS_ACIKLAMA");
+			result[2] = rss.getString("Kodu");
 		}
 		return result;	
 	}

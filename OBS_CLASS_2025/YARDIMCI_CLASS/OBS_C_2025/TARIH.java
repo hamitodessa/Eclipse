@@ -9,29 +9,32 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 public class TARIH extends DefaultTableCellRenderer {
-	
+
 	private static final long serialVersionUID = 1L;
 	SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy");
 
-    public Component getTableCellRendererComponent(JTable table,
-            Object value, boolean isSelected, boolean hasFocus,
-            int row, int column) {
-        if( value instanceof Date) 
-       {
-         value = f.format(value);
-       }
-       else
-       {
-    	   try {
-  				Date date1 = new SimpleDateFormat("yyyy.MM.dd").parse(value.toString());
-			    SimpleDateFormat DateFor = new SimpleDateFormat("dd.MM.yyyy");
-		         value = DateFor.format(date1);
-    	   } catch (Exception e) {e.printStackTrace();			}  
-       }
+	public Component getTableCellRendererComponent(JTable table,
+			Object value, boolean isSelected, boolean hasFocus,
+			int row, int column) {
+		if( value instanceof Date) 
+		{
+			value = f.format(value);
+		}
+		else
+		{
+			try 
+			{
+				Date date1 = new SimpleDateFormat("yyyy.MM.dd").parse(value.toString());
+				SimpleDateFormat DateFor = new SimpleDateFormat("dd.MM.yyyy");
+				value = DateFor.format(date1);
+			} catch (Exception e) 
+			{
+				e.printStackTrace();			
+			}  
+		}
 		setHorizontalAlignment(JLabel.LEFT);
-        return super.getTableCellRendererComponent(table, value, isSelected,
-                hasFocus, row, column);
-    }
- }
+		return super.getTableCellRendererComponent(table, value, isSelected,hasFocus, row, column);
+	}
+}
 
 

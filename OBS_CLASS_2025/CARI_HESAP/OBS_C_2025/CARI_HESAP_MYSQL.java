@@ -263,9 +263,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public ResultSet ekstre(String hesap, String t1, String t2) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		PreparedStatement stmt = con.prepareStatement(" SELECT DATE_FORMAT(TARIH, '%Y.%m.%d')  AS TARIH,SATIRLAR.EVRAK ,IZAHAT,KOD,KUR,CONVERT(BORC,double) as BORC ,CONVERT(ALACAK,double) as ALACAK , "  + 
+		PreparedStatement stmt = con.prepareStatement(" SELECT DATE_FORMAT(TARIH, '%Y.%m.%d')  AS TARIH,SATIRLAR.EVRAK ,IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT,KOD,KUR,CONVERT(BORC,double) as BORC ,CONVERT(ALACAK,double) as ALACAK , "  + 
 				"  CONVERT(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW) ,double)  AS BAKIYE ,USER "  + 
-				"  FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  INNER JOIN IZAHAT  USE INDEX (IX_IZAHAT)  " + 
+				"  FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  LEFT JOIN IZAHAT  USE INDEX (IX_IZAHAT)  " + 
 				"  ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + hesap + "'" + 
 				"  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" + 
 				"  ORDER BY TARIH   ");
@@ -295,7 +295,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 
 		ResultSet	rss = null;
 		String sql = " SELECT SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI, SUM(SATIRLAR.BORC) AS ISLEM, SUM(SATIRLAR.ALACAK) AS ISLEM2, SUM(SATIRLAR.ALACAK - SATIRLAR.BORC) AS BAKIYE" +
-				" FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  INNER JOIN" +
+				" FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  LEFT JOIN" +
 				" HESAP  USE INDEX (IX_HESAP)  ON SATIRLAR.HESAP = HESAP.HESAP " +
 				" WHERE SATIRLAR.HESAP =N'" + kod + "'   AND SATIRLAR.TARIH >= '" + ilktarih + "' AND SATIRLAR.TARIH < '" + sontarih + "' AND HESAP.HESAP_CINSI  BETWEEN N'" + ilkhcins + "'  AND  " +
 				" N'" + sonhcins + "' AND HESAP.KARTON BETWEEN N'" + ilkkar + "' AND N'" + sonkar + "'" +
@@ -309,7 +309,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		PreparedStatement stmt = con.prepareStatement(" SELECT SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI, SUM(SATIRLAR.BORC) AS islem, SUM(SATIRLAR.ALACAK) AS islem2, SUM(SATIRLAR.ALACAK - SATIRLAR.BORC) AS bakiye" +
-				" FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  INNER JOIN" +
+				" FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  LEFT JOIN" +
 				" HESAP  USE INDEX (IX_HESAP)  ON SATIRLAR.HESAP = HESAP.HESAP " +
 				" WHERE SATIRLAR.HESAP =N'" + kod + "' AND SATIRLAR.TARIH >= '" + ilktarih + "' AND SATIRLAR.TARIH < '" + sontarih + " 23:59:59.998'" +
 				" GROUP BY SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " +
@@ -362,10 +362,10 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public ResultSet fiskon(int evrakno) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		PreparedStatement stmt = con.prepareStatement("SELECT HESAP,DATE(TARIH) AS TARIH ,H,SATIRLAR.EVRAK,CINS, KUR,BORC,ALACAK, IZAHAT ,KOD ,USER " +
+		PreparedStatement stmt = con.prepareStatement("SELECT HESAP,DATE(TARIH) AS TARIH ,H,SATIRLAR.EVRAK,CINS, KUR,BORC,ALACAK," +
+				" IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT ,KOD ,USER " +
 				" FROM SATIRLAR USE INDEX (IX_SATIRLAR) LEFT JOIN IZAHAT USE INDEX (IX_IZAHAT)  ON  SATIRLAR.EVRAK = IZAHAT.EVRAK  " +
 				" WHERE SATIRLAR.EVRAK = '" + evrakno + "'" +
-				" AND SATIRLAR.EVRAK = IZAHAT.EVRAK " +
 				" ORDER BY H DESC ");
 		rss = stmt.executeQuery();
 		return rss;	 
@@ -603,7 +603,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		String sql = "" ;
 		if (hKUR.equals("Kayitli"))
 		{
-			sql = "SELECT DATE(SATIRLAR.TARIH) as TARIH, SATIRLAR.EVRAK ,I.IZAHAT , " +
+			sql = "SELECT DATE(SATIRLAR.TARIH) as TARIH, SATIRLAR.EVRAK ,IFNULL( I.IZAHAT,'') AS IZAHAT , " +
 					" CONVERT(SATIRLAR.KUR,double)  as CEV_KUR , " +
 					" ((SATIRLAR.ALACAK - SATIRLAR.BORC ) " + islem + " SATIRLAR.KUR) as DOVIZ_TUTAR , " +
 					" SUM(((SATIRLAR.ALACAK - SATIRLAR.BORC ) * SATIRLAR.KUR) " + islem + " SATIRLAR.KUR) OVER(ORDER BY SATIRLAR.TARIH " + 
@@ -615,7 +615,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 					" ORDER BY SATIRLAR.TARIH ";
 		}
 		else {
-			sql = "SELECT DATE(s.TARIH) as TARIH, s.EVRAK ,I.IZAHAT , " +
+			sql = "SELECT DATE(s.TARIH) as TARIH, s.EVRAK ,IFNULL( I.IZAHAT,'') AS IZAHAT , " +
 				" CONVERT(IFNULL(IF(k." + kcins + " = 0,1,k." + kcins + " ), 1),double) as CEV_KUR , " +
 				" ((s.ALACAK - s.BORC ) " + islem + " IFNULL(NULLIF(k." + kcins + ",0), 1)) as DOVIZ_TUTAR , " +
 				" SUM(((s.ALACAK - s.BORC ) * s.KUR) " + islem + " IFNULL(NULLIF(k." + kcins + ",0), 1)) OVER(ORDER BY s.TARIH " + 
@@ -646,7 +646,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public ResultSet ekstre_arama(String hes , String acik , String gun ,String ay,String yil ,String kod,String kullanici ) throws ClassNotFoundException, SQLException
 	{
 		StringBuilder stb = new StringBuilder();
-		stb.append(" SELECT SATIRLAR.HESAP, HESAP.UNVAN, DATE(SATIRLAR.TARIH ) AS TARIH, SATIRLAR.EVRAK, IZAHAT, KOD, KUR, SATIRLAR.BORC, SATIRLAR.ALACAK ,SATIRLAR.USER " ); 
+		stb.append(" SELECT SATIRLAR.HESAP, HESAP.UNVAN, DATE(SATIRLAR.TARIH ) AS TARIH, SATIRLAR.EVRAK, IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT, KOD, KUR, SATIRLAR.BORC, SATIRLAR.ALACAK ,SATIRLAR.USER " ); 
 		stb.append(" FROM   SATIRLAR USE INDEX (IX_SATIRLAR) , HESAP USE INDEX (IX_HESAP) , IZAHAT USE INDEX (IX_IZAHAT)") ; 
 		stb.append(" WHERE SATIRLAR.HESAP = HESAP.HESAP AND SATIRLAR.EVRAK = IZAHAT.EVRAK ") ;
 		if ( ! hes.equals("%") && ! hes.equals("%&"))
@@ -686,7 +686,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String sql = " SELECT SATIRLAR.EVRAK ,IZAHAT,KOD,BORC,ALACAK ,USER " +
+		String sql = " SELECT SATIRLAR.EVRAK ,IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT,KOD,BORC,ALACAK ,USER " +
 				" FROM SATIRLAR USE INDEX (IX_SATIRLAR) ,IZAHAT USE INDEX (IX_IZAHAT) " +
 				" WHERE SATIRLAR.EVRAK = IZAHAT.EVRAK and  HESAP =N'" + hesap + "'" +
 				" AND DATE( TARIH) LIKE  '" + t1 + "%'" +
@@ -733,7 +733,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String sql = "SELECT SATIRLAR.HESAP,DATE(TARIH) AS TARIH, SATIRLAR.EVRAK ,IZAHAT,KOD,BORC,ALACAK ,SATIRLAR.USER " +
+		String sql = "SELECT SATIRLAR.HESAP,DATE(TARIH) AS TARIH, SATIRLAR.EVRAK ,IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT,KOD,BORC,ALACAK ,SATIRLAR.USER " +
 				" FROM SATIRLAR  USE INDEX (IX_SATIRLAR) ,IZAHAT  USE INDEX (IX_IZAHAT)  ,HESAP  USE INDEX (IX_HESAP) " +
 				" WHERE SATIRLAR.EVRAK = IZAHAT.EVRAK " +
 				" AND SATIRLAR.HESAP = HESAP.HESAP " +

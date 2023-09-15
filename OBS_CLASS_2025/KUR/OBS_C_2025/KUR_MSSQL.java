@@ -142,7 +142,7 @@ public class KUR_MSSQL implements IKUR{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = " SELECT Kur , MA , MS, SA, SS,BA, BS " +
-				" FROM KURLAR WITH (INDEX (IX_KUR)) " +
+				" FROM KURLAR  " +
 				" WHERE Tarih ='" + tar + "' ORDER BY  Kur ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -153,7 +153,7 @@ public class KUR_MSSQL implements IKUR{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = " SELECT Kur , MA , MS, SA, SS,BA, BS,  Tarih " +
-				" FROM kurlar WITH (INDEX (IX_KUR)) " +
+				" FROM kurlar  " +
 				" WHERE Tarih ='" + tar + "' AND Kur =N'" + kur + "'";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -191,7 +191,7 @@ public class KUR_MSSQL implements IKUR{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT Tarih,Kur, MA, MS, BA, BS, SA, SS " +
-				" FROM kurlar WITH (INDEX (IX_KUR)) " +
+				" FROM kurlar  " +
 				" WHERE Tarih BETWEEN '" + t1 + "' AND '" + t2 + "'" +
 				" AND Kur BETWEEN '" + c1 + "' AND '" + c2 + "' ORDER BY Tarih DESC, Kur ";
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -203,7 +203,7 @@ public class KUR_MSSQL implements IKUR{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT DISTINCT DATEPART(YEAR,Tarih) as TARIH "  + 
-				" FROM kurlar WITH (INDEX (IX_KUR)) " + 
+				" FROM kurlar  " + 
 				" WHERE Tarih >= '" + t1 + "' AND  Tarih <= '" + t2 + "'" + 
 				" AND Kur = '" + c1 +"'    ORDER BY Tarih  ";
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -215,7 +215,7 @@ public class KUR_MSSQL implements IKUR{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT DISTINCT DATEPART(MONTH,Tarih) as TARIH "  + 
-				" FROM kurlar WITH (INDEX (IX_KUR)) " + 
+				" FROM kurlar  " + 
 				" WHERE Tarih >= '" + t1 + "' AND  Tarih <= '" + t2 + "'" + 
 				" AND Kur = '" + c1 +"'    ORDER BY Tarih  ";
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -227,7 +227,7 @@ public class KUR_MSSQL implements IKUR{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT DATEPART(" + siralama + ",Tarih) as Tarih,Kur, " +  cins + " " + 
-				" FROM kurlar WITH (INDEX (IX_KUR)) "  + 
+				" FROM kurlar  "  + 
 				" WHERE Tarih >= '" + t1 +"' AND  Tarih <= '" + t2 + "'" + 
 				" AND Kur = '" + c1 + "'  ORDER BY Tarih  ";
 		PreparedStatement stmt = con.prepareStatement(sql);

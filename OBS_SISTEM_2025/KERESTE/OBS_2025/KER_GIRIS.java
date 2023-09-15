@@ -1121,6 +1121,8 @@ public class KER_GIRIS extends JInternalFrame {
 			@Override
 			public boolean isCellEditable(int row, int column) {  
 				switch (column) {
+				case 4:
+					return false;
 				case 5:
 					return false;
 				case 10:
@@ -1134,6 +1136,7 @@ public class KER_GIRIS extends JInternalFrame {
 				super.changeSelection(row, column, toggle, extend);
 				if (column == 1)
 				{
+					//System.out.println("1139");
 					//table.editCellAt(row, column);
 					//table.transferFocus();
 				}
@@ -1217,37 +1220,27 @@ public class KER_GIRIS extends JInternalFrame {
 		ftext.setFont(new Font(table.getFont().getFontName(),1 ,12));
 		ftext.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				//System.out.println(ftext.getText());
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void removeUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				//System.out.println(ftext.getText());
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void insertUpdate(DocumentEvent e) {
-				String[] token = ftext.getText().split("-");
 				try {
 					if (table.getSelectedRow() == -1 ) return ;
 					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-					kod_ADI(ftext.getText(), model.getValueAt(table.getSelectedRow(), 6).toString());
+					mWAIT();
 					DefaultTableModel model = (DefaultTableModel) table.getModel();
-					double m3 = 0 ;
-					double miktar =  Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString());
-					if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
-						m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
-					}
+					double m3 = m3(ftext.getText() ,Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString()));
 					model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
+					kod_ADI(ftext.getText(), model.getValueAt(table.getSelectedRow(), 6).toString());
 					dOSYADAN = false ;
 					toplam();
-				//	dOSYADAN = true ;
-					
+					mDEFAULT();
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				} catch (Exception ex) {
+					mDEFAULT();
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 					JOptionPane.showMessageDialog(null,  ex.getMessage(),  "KOD ACIKLAMA", JOptionPane.ERROR_MESSAGE); 
 				}
-				
-				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 			}
 		});
 		ftext.addFocusListener(new FocusAdapter() {
@@ -1375,24 +1368,26 @@ public class KER_GIRIS extends JInternalFrame {
 					int row;
 					row = table.getSelectedRow();     //e.getFirstRow();
 					int column = e.getColumn();
-					if (column == 1)  //Paket
+					if (column == 1)  //
 					{
 						paketm3();
 					}
-					if (column == 2)  //Paket
+					if (column == 2)  //
 					{
 						paketm3();
 					}
 					if (column == 3)  //MIKTAR
 					{
-						Double m3 = 0.00 ;
-						if (! model.getValueAt(row, 1).toString().equals(""))
-						{
-							String[] token = model.getValueAt(row, 1).toString().split("-");
-							Double miktar =  Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString());
-							m3 = ((Double.parseDouble(token[1]) * Double.parseDouble(token[2] ) * Double.parseDouble(token[3] )) * miktar) /1000000000;
-						}
-						model.setValueAt(  m3,table.getSelectedRow(), 4)  ;
+						//Double m3 = 0.00 ;
+						//if (! model.getValueAt(row, 1).toString().equals(""))
+						//{
+						//	String[] token = model.getValueAt(row, 1).toString().split("-");
+						//	Double miktar =  Double.parseDouble(model.getValueAt(table.getSelectedRow(), 3).toString());
+						//	m3 = ((Double.parseDouble(token[1]) * Double.parseDouble(token[2] ) * Double.parseDouble(token[3] )) * miktar) /1000000000;
+						//}
+						double m3 = m3(model.getValueAt(row, 1).toString() ,Double.parseDouble(model.getValueAt(row, 3).toString()));
+
+						model.setValueAt(  m3,row, 4)  ;
 						double fiat = 0 ;
 						fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
 						m3 = Double.parseDouble(model.getValueAt(row, 4).toString());

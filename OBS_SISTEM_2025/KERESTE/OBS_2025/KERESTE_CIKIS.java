@@ -70,6 +70,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
+import org.apache.commons.collections.functors.IfClosure;
 import org.apache.commons.lang.StringUtils;
 
 import com.toedter.calendar.JDateChooser;
@@ -841,21 +842,21 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		label_8_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8_1.setForeground(new Color(139, 0, 0));
 		label_8_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_8_1.setBounds(353, 5, 73, 14);
+		label_8_1.setBounds(373, 5, 73, 14);
 		panel_71.add(label_8_1);
 
 		label_8 = new JLabel("0.000");
 		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8.setForeground(new Color(139, 0, 0));
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_8.setBounds(433, 5, 67, 14);
+		label_8.setBounds(453, 5, 67, 14);
 		panel_71.add(label_8);
 
 		label_9 = new JLabel("0.00");
 		label_9.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_9.setForeground(new Color(139, 0, 0));
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_9.setBounds(801, 5, 201, 14);
+		label_9.setBounds(821, 5, 201, 14);
 		panel_71.add(label_9);
 		splitPane_3.setLeftComponent(panel_71);
 
@@ -863,7 +864,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		lblPaket.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPaket.setForeground(new Color(139, 0, 0));
 		lblPaket.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPaket.setBounds(504, 5, 73, 14);
+		lblPaket.setBounds(524, 5, 73, 14);
 		panel_71.add(lblPaket);
 
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
@@ -1009,7 +1010,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		JLabel lblNewLabel_8 = new JLabel("Paket");
 		lblNewLabel_8.setForeground(new Color(0, 0, 128));
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_8.setBounds(587, 5, 85, 14);
+		lblNewLabel_8.setBounds(607, 5, 85, 14);
 		panel_71.add(lblNewLabel_8);
 
 
@@ -1103,15 +1104,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					return false;
 				}
 			}
-			public void changeSelection(final int row, final int column, boolean toggle, boolean extend)
-			{
-				super.changeSelection(row, column, toggle, extend);
-				if (column == 0)
-				{
-					table.editCellAt(row, column);
-					table.transferFocus();
-				}
-			}	
 		};
 
 		table.addKeyListener(new KeyAdapter() {         
@@ -1134,25 +1126,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				if (e.getClickCount() == 2) {
 				
 				}
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) 
-			{
-				int r = table.rowAtPoint(e.getPoint());
-				if (r >= 0 && r < table.getRowCount()) {
-					table.setRowSelectionInterval(r, r);
-				} else {
-					table.clearSelection();
-				}
-				int rowindex = table.getSelectedRow();
-				if (rowindex < 0)
-					return;
-				
-			
-				//if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
-					//popup.show(e.getComponent(), e.getX(), e.getY());
-				//	System.out.println(table.getSelectedColumn());
-				//}
 			}
 		});
 		table.setGridColor(oac.gridcolor);
@@ -1177,7 +1150,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		stk_kodu_auto("Paket_No");
 		ComboBoxTableCellEditor editor = new ComboBoxTableCellEditor( listPaket ,table,"ker_cikis");
 		col = table.getColumnModel().getColumn(0);
-		col.setMinWidth(120);
+		col.setMinWidth(140);
 		col.setHeaderRenderer(new SOLA());
 		col.setCellEditor(editor);
 		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
@@ -1787,7 +1760,10 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		Dimension size = lblkodAciklama.getPreferredSize();
 		lblkodAciklama.setBounds(10, 55, size.width +10, 14);
 
-		if(kons.equals("")) return ;
+		if(kons.equals("")) {
+			lblkONSIMENTO.setText("");
+			return ;
+		}
 		token = kons.toString().split("-");
 		lblkONSIMENTO.setText(ker_Access.kons_adi(token[1]));
 		size = lblkONSIMENTO.getPreferredSize();
@@ -1803,6 +1779,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		lblkodAciklama.setText(aciklamaString[0]);
 		Dimension size = lblkodAciklama.getPreferredSize();
 		lblkodAciklama.setBounds(10, 55, size.width +10, 14);
+		
+		//if(token.length ==1) return;
 		
 		lblkONSIMENTO.setText(aciklamaString[1]);
 		size = lblkONSIMENTO.getPreferredSize();

@@ -230,7 +230,7 @@ public class PAKET_ARA extends JDialog {
 			rs = ker_Access.paket_ara(ker_BILGI );
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
-				Thread.currentThread().isInterrupted();
+				//Thread.currentThread().isInterrupted();
 				lblNewLabel_2.setText(FORMATLAMA.doub_0(0));
 				mDEFAULT();
 			} 
@@ -370,6 +370,7 @@ public class PAKET_ARA extends JDialog {
 			parts = deger.split(",");
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table.setFont(bigFont);
+			lblNewLabel_2.setText(FORMATLAMA.doub_0(table.getRowCount()));
 			mDEFAULT();
 			}
 		} catch (Exception ex) {

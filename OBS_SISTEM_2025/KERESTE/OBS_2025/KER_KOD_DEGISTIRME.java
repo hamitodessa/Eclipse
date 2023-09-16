@@ -308,7 +308,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			rs = ker_Access.urun_detay(ker_BILGI );
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
-				Thread.currentThread().isInterrupted();
 				lblNewLabel_2.setText(FORMATLAMA.doub_0(0));
 				JTableHeader th = table.getTableHeader();
 				TableColumnModel tcm = th.getColumnModel();

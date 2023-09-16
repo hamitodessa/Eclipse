@@ -1,7 +1,6 @@
 package OBS_C_2025;
 
 import java.awt.event.ActionEvent;
-
 import javax.swing.AbstractAction;
 import javax.swing.JTable;
 
@@ -37,10 +36,10 @@ public class Next_Cell_Kereste extends AbstractAction {
 			}
 			table.getSelectionModel().setSelectionInterval(row, row);
 			table.getColumnModel().getSelectionModel().setSelectionInterval(col, col);
-			if (col == 1 )
+			if (col == 3 )
 			{
-				table.editCellAt(row == -1 ? 0:row, col);
-				table.transferFocus();
+				//table.editCellAt(row == -1 ? 0:row, col);
+				//table.transferFocus();
 			}
 		}
 		else  if (nerden.equals("kereste_cikis"))

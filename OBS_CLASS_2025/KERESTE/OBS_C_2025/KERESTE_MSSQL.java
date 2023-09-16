@@ -798,7 +798,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " + //15
 				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,[USER],Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
 				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir) " + //9
-				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		///////////////////
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
@@ -1745,25 +1745,21 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
+		String  izahat ="";
+		double  miktar=0 , tutar =0,fiat =0, isk =0, kdv=0;
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.seteVRAK(keBilgi.getEvrak_No1());	
 		for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
 		{
 			if (! mdl.getValueAt(i,1).toString().equals(""))
 			{
-				String  izahat ="";
-				double  miktar=0;
 				miktar = Double.parseDouble( mdl.getValueAt(i,3).toString());
-				double tutar ;
 				tutar =Double.parseDouble(mdl.getValueAt(i,10).toString());
 				izahat =  mdl.getValueAt(i,11) .toString();
-			    double fiat =0 ;
 				fiat = Double.parseDouble( mdl.getValueAt(i,7).toString());
-				double isk = 0 ;
 				isk = Double.parseDouble( mdl.getValueAt(i,8).toString());
-				double kdv = 0 ; 
 				kdv =Double.parseDouble( mdl.getValueAt(i,9).toString());
-				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ( " Fatura Kayit" +  mdl.getValueAt(i,1).toString() + " Mik=" + miktar + " Tut=" + tutar);
-				lBILGI.seteVRAK(keBilgi.getEvrak_No1());	
 				stmt.setString(1,keBilgi.getEvrak_No1());
 				stmt.setString(2, mdl.getValueAt(i,0).toString());
 				stmt.setString(3,mdl.getValueAt(i,1).toString());
@@ -1808,7 +1804,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				stmt.setInt(42, degisken[5]);
 				stmt.setInt(43, i);
 				stmt.addBatch();
-				if ((i ) % 500 == 0) 
+				if ((i ) % 1000 == 0) 
 				{
 					stmt.executeBatch();
 				}
@@ -1816,5 +1812,66 @@ public class KERESTE_MSSQL implements IKERESTE {
 		}
 		stmt.executeBatch();
 		stmt.close();
+	}
+
+	@Override
+	public ResultSet paket_ara(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
+		String ilks ,ilkk,ilkb,ilkg;
+		ilks = token[0];
+		if (ilks.equals("00")) {
+			ilks = "";
+		}
+		ilkk = token[1];
+		if (ilkk.equals("000")) {
+			ilkk = "";
+		}
+		ilkb = token[2];
+		if (ilkb.equals("0000")) {
+			ilkb = "";
+		}
+		ilkg = token[3];
+		if (ilkg.equals("0000")) {
+			ilkg = "";
+		}
+		String sql =  " SELECT [Evrak_No] "
+				+ " ,[Barkod] "
+				+ " ,[Kodu] "
+				+ " ,[Paket_No] "
+				+ " ,[Konsimento] "
+				+ " ,[Miktar] "
+				+ " ,(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  as m3"
+				+ " ,[Tarih] "
+				+ " ,[Kdv] "
+				+ " ,[Doviz] "
+				+ " ,[Fiat] "
+				+ " ,[Tutar] "
+				+ " ,[Kur] "
+				+ " ,[Cari_Firma] "
+				+ " ,[Adres_Firma] "
+				+ " ,[Iskonto] "
+				+ " ,[Tevkifat] "
+				+ " ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.Ana_Grup),'') Ana_Grup "
+				+ " ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.Alt_Grup),'') AS Alt_Grup "
+				+ " ,ISNULL((SELECT MENSEI FROM MENSEI_DEGISKEN WHERE MENSEI_DEGISKEN.MEID_Y = KERESTE.Mensei),'') AS Mensei "
+				+ " ,(SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) as Depo  " 
+				+ " ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.Ozel_Kod),'') Ozel_Kod "
+				+ " ,[Izahat] "
+				+ " ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.Nakliyeci ) as Nakliyeci  " 
+				+ " ,[USER] "
+				+ " FROM KERESTE    " 
+				+ " WHERE " 
+				+ " SUBSTRING(KERESTE.Kodu, 1, 2) like '"+ ilks +"%'  AND" 
+				+ " SUBSTRING(KERESTE.Kodu, 4, 3) like '"+ilkk +"%' AND" 
+				+ " SUBSTRING(KERESTE.Kodu, 8, 4) like '"+ilkb +"%' AND" 
+				+ " SUBSTRING(KERESTE.Kodu, 13, 4) like '"+ilkg +"%'  AND" 
+				+ " Paket_No like N'"+ ker_rap_BILGI.getPaket_No1().toString()+ "%' AND " 
+				+ " Konsimento like N'"+ ker_rap_BILGI.getKonsimento1().toString() + "%' " 
+				+ " AND Cikis_Evrak = '' "; 
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
 	}
 }

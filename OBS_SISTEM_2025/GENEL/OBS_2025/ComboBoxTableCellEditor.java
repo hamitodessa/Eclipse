@@ -2,7 +2,9 @@ package OBS_2025;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -109,7 +111,17 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 					if (table.getSelectedRow() < 0 ) return ;
 					if (nerden.equals("ker_cikis"))
 					{
-					//	table.getCellEditor().stopCellEditing();
+						PAKET_ARA arm = new PAKET_ARA();
+						arm.setSize(1000, 400);
+						final Toolkit toolkit = Toolkit.getDefaultToolkit();
+						final Dimension screenSize = toolkit.getScreenSize();
+						final int x = (screenSize.width - arm.getWidth()) / 2;
+						final int y = (screenSize.height - arm.getHeight()) / 2;
+						arm.setLocation(x, y);
+						arm.setVisible(true);
+						editor.setSelectedItem(oac.stk_kodu);
+						table.getCellEditor().stopCellEditing();
+						KERESTE_CIKIS.pakkont(editorComponent.getText().toString());
 					}
 					else {
 						URUN_ARAMA arm ;

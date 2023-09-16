@@ -66,5 +66,5 @@ public interface IKERESTE {
 			String k1 ,String k2 ,String t1,String t2,String kurkod,String kurc,String iu,String hANGI) throws ClassNotFoundException, SQLException;
 	public boolean kons_kontrol(String kons)throws ClassNotFoundException, SQLException;
 	public void ker_toplu_kaydet(JTable table,int degisken[] , KER_RAPOR_BILGI keBilgi,String user) throws ClassNotFoundException, SQLException;
-	
+	public ResultSet paket_ara(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException;
 	}

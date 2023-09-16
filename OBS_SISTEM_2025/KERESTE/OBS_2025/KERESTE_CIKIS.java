@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -587,6 +588,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_7_1);
 
 		cmbnakliyeci = new JComboBox<String>();
+		cmbnakliyeci.setForeground(new Color(0, 0, 128));
+		cmbnakliyeci.setFont(new Font("Dialog", Font.BOLD, 12));
 		cmbnakliyeci.setBounds(555, 33, 156, 22);
 		panel_2.add(cmbnakliyeci);
 		
@@ -1033,7 +1036,22 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (table.getSelectedRow() < 0 ) return ;
-
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				PAKET_ARA arm = new PAKET_ARA();
+				arm.setSize(1000, 400);
+				final Toolkit toolkit = Toolkit.getDefaultToolkit();
+				final Dimension screenSize = toolkit.getScreenSize();
+				final int x = (screenSize.width - arm.getWidth()) / 2;
+				final int y = (screenSize.height - arm.getHeight()) / 2;
+				arm.setLocation(x, y);
+				
+				arm.setVisible(true);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+				if ( !  oac.stk_kodu.equals(""))
+				{
+					table.getModel().setValueAt( oac.stk_kodu,table.getSelectedRow() , 0) ;
+					pakkont(oac.stk_kodu);
+				}
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));
@@ -1287,7 +1305,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					int row;
 					row = table.getSelectedRow();     //e.getFirstRow();
 					int column = e.getColumn();
-					
 					if (column == 4)  //m3
 					{
 						double fiat ,m3 = 0 ;
@@ -1402,9 +1419,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			cmbozkod .removeAllItems();
 			ResultSet rs=null;
-
 			rs = ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				cmbozkod .setEnabled(false);
@@ -1431,9 +1446,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			cmbnakliyeci .removeAllItems();
 			ResultSet rs=null;
-
 			rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
-
 			if (!rs.isBeforeFirst() ) {  
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				cmbnakliyeci .setEnabled(false);
@@ -1780,7 +1793,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		lblkodAciklama.setBounds(10, 55, size.width +10, 14);
 		
 		//if(token.length ==1) return;
-		
 		lblkONSIMENTO.setText(aciklamaString[1]);
 		size = lblkONSIMENTO.getPreferredSize();
 		lblkONSIMENTO.setBounds(10, 35, size.width +10, 14);
@@ -1932,15 +1944,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				double_2 += (( Double.parseDouble(model.getValueAt(i, 10).toString()) - ( Double.parseDouble(model.getValueAt(i, 10).toString()) *  Double.parseDouble(model.getValueAt(i, 4).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 9).toString())) / 100 ; // kdv
 				double_3 +=  Double.parseDouble(model.getValueAt(i, 4).toString());
 				urunmiktar +=  Double.parseDouble(model.getValueAt(i, 3).toString());
-				//if (! model.getValueAt(i, 5).toString().trim().isEmpty()) 
-				//{
-				//	double_6 +=  Double.parseDouble(model.getValueAt(i, 5).toString().trim());
-				//}
-
-				//if (! model.getValueAt(i,2).toString().equals(""))
-				//{
-				//	urunsayi += 1;
-				//}
 				if (! model.getValueAt(i, 5).toString().trim().isEmpty()) 
 				{
 					//double_6 +=  Double.parseDouble(model.getValueAt(i, 5).toString().trim());

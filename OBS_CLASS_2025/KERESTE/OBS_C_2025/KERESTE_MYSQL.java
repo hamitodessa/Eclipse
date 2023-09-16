@@ -719,5 +719,11 @@ public class KERESTE_MYSQL implements IKERESTE {
 		
 	}
 
+	@Override
+	public ResultSet paket_ara(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 		
 }

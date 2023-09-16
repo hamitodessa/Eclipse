@@ -281,4 +281,8 @@ public class KERESTE_ACCESS {
 		for ( ILOGGER  _Logger : _Logger )
 			_Logger.Logla(lBILGI, dBILGI);
 	}
+	public ResultSet paket_ara(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.paket_ara(ker_rap_BILGI);
+	}
 }

@@ -21,12 +21,26 @@ public class Next_Cell_Kereste extends AbstractAction {
 		int colCount = table.getColumnCount();
 		int rowCount = table.getRowCount();
 		col++;
+		if (table.getCellEditor() != null) {
+			table.getCellEditor().stopCellEditing();
+		}
 		if (nerden.equals("kereste_giris"))
 		{
 			if (col >= colCount) 
 			{
 				col = 1;
 				row++;
+			}
+			if (row >= rowCount) 
+			{
+				row = 0;
+			}
+			table.getSelectionModel().setSelectionInterval(row, row);
+			table.getColumnModel().getSelectionModel().setSelectionInterval(col, col);
+			if (col == 1 )
+			{
+				table.editCellAt(row == -1 ? 0:row, col);
+				table.transferFocus();
 			}
 		}
 		else  if (nerden.equals("kereste_cikis"))
@@ -36,23 +50,17 @@ public class Next_Cell_Kereste extends AbstractAction {
 				col = 0;
 				row++;
 			}
+			if (row >= rowCount) 
+			{
+				row = 0;
+			}
+			table.getSelectionModel().setSelectionInterval(row, row);
+			table.getColumnModel().getSelectionModel().setSelectionInterval(col, col);
+			if (col == 0 )
+			{
+				table.editCellAt(row == -1 ? 0:row, col);
+				table.transferFocus();
+			}
 		}
-		if (row >= rowCount) 
-		{
-			row = 0;
-		}
-		if (table.getCellEditor() != null) {
-			table.getCellEditor().stopCellEditing();
-		}
-		 
-		table.getSelectionModel().setSelectionInterval(row, row);
-		table.getColumnModel().getSelectionModel().setSelectionInterval(col, col);
-		
-		if (col == 0 )
-		{
-			table.editCellAt(row == -1 ? 0:row, col);
-			table.transferFocus();
-		}
-
 	}
 }

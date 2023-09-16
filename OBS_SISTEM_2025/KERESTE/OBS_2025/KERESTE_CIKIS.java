@@ -179,7 +179,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0, 0,1185,800);
+		setBounds(0, 0,1215,800);
 
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -1614,7 +1614,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			lBILGI.setmESAJ(textField.getText() + " Nolu Cikis Kereste Silindi");
 			lBILGI.seteVRAK(textField.getText());
 			ker_Access.ker_cikis_sil(textField.getText() ,lBILGI,BAGLAN_LOG.kerLogDizin);
-
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
 			{
@@ -1930,7 +1929,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			{
 				double_5 += Double.parseDouble(model.getValueAt(i, 10).toString());
 				double_1 += (Double.parseDouble(model.getValueAt(i, 10).toString()) * (Double.parseDouble(model.getValueAt(i, 8).toString()))) / 100 ; 
-				double_2 += (( Double.parseDouble(model.getValueAt(i, 10).toString()) - ( Double.parseDouble(model.getValueAt(i, 10).toString()) *  Double.parseDouble(model.getValueAt(i, 8).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 10).toString())) / 100 ; // kdv
+				double_2 += (( Double.parseDouble(model.getValueAt(i, 10).toString()) - ( Double.parseDouble(model.getValueAt(i, 10).toString()) *  Double.parseDouble(model.getValueAt(i, 4).toString())) / 100) *  Double.parseDouble(model.getValueAt(i, 9).toString())) / 100 ; // kdv
 				double_3 +=  Double.parseDouble(model.getValueAt(i, 4).toString());
 				urunmiktar +=  Double.parseDouble(model.getValueAt(i, 3).toString());
 				//if (! model.getValueAt(i, 5).toString().trim().isEmpty()) 

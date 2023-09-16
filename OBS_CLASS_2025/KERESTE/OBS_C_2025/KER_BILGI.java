@@ -20,6 +20,7 @@ public class KER_BILGI {
 	private int Ana_Grup ;
 	private int Alt_Grup ;
 	private int Depo ;
+	private int Mensei ;
 	private int Nakliyeci ;
 	private int Ozel_Kod ;
 	private String Izahat ; 
@@ -159,6 +160,12 @@ public class KER_BILGI {
 	}
 	public void setDepo(int depo) {
 		Depo = depo;
+	}
+	public int getMensei() {
+		return Mensei;
+	}
+	public void setMensei(int mensei) {
+		Mensei = mensei;
 	}
 	public int getNakliyeci() {
 		return Nakliyeci;
@@ -316,6 +323,6 @@ public class KER_BILGI {
 	public void setSatir(int satir) {
 		Satir = satir;
 	}
-
+	
 
 }

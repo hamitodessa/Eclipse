@@ -295,9 +295,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	}
 	private void hisset()
 	{
-		Runnable runner1 = new Runnable()
-		{ public void run() {
-
+		//Runnable runner1 = new Runnable()
+		//{ public void run() {
 		long startTime = System.currentTimeMillis(); 
 		try {
 			ResultSet	rs = null;
@@ -306,7 +305,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			ker_BILGI.setPaket_No1(textField_1.getText());
 			ker_BILGI.setKonsimento1(textField.getText());
 			ker_BILGI.setGKodu1(formattedTextField.getText());
-			
 			rs = ker_Access.urun_detay(ker_BILGI );
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -420,7 +418,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			tc = tcm.getColumn(19);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(90);
-
+			
 			tc = tcm.getColumn(20);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(90);
@@ -447,22 +445,21 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 
 			tc = tcm.getColumn(26);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(90);
+
+			tc = tcm.getColumn(27);
+			tc.setHeaderRenderer(new SOLA());
 			tc.setCellRenderer(new TARIH());
 			tc.setMinWidth(80);
 
-			tc = tcm.getColumn(27);
+			tc = tcm.getColumn(28);
 			tc.setHeaderRenderer(new SAGA());
 			tc.setCellRenderer(new TABLO_RENDERER(2,true));
 			tc.setMinWidth(70);
-
-			tc = tcm.getColumn(28);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(29);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(30);
 			tc.setHeaderRenderer(new SAGA());
@@ -475,17 +472,17 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			tc.setMinWidth(70);
 
 			tc = tcm.getColumn(32);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(2,true));
+			tc.setMinWidth(70);
 
 			tc = tcm.getColumn(33);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(34);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,true));
-			tc.setMinWidth(70);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(35);
 			tc.setHeaderRenderer(new SAGA());
@@ -493,8 +490,9 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			tc.setMinWidth(70);
 
 			tc = tcm.getColumn(36);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(90);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(2,true));
+			tc.setMinWidth(70);
 
 			tc = tcm.getColumn(37);
 			tc.setHeaderRenderer(new SOLA());
@@ -520,7 +518,11 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(90);
 
-			table.removeColumn(table.getColumnModel().getColumn(43));
+			tc = tcm.getColumn(43);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(90);
+
+			table.removeColumn(table.getColumnModel().getColumn(44));
 			th.repaint();
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(22);
@@ -565,10 +567,10 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
-		}
-		};
-		Thread q = new Thread(runner1, "Code Executer1");
-		q.start();
+		//}
+		//};
+		//Thread q = new Thread(runner1, "Code Executer1");
+		//q.start();
 
 	}
 	private void kaydet()

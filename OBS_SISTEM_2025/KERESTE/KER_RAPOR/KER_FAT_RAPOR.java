@@ -993,12 +993,12 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				tc = tcm.getColumn(13);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,false));
-				tc.setMinWidth(130);
+				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(14);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,false));
-				tc.setMinWidth(130);
+				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(15);
 				tc.setHeaderRenderer(new SOLA());
@@ -1011,7 +1011,7 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				tc = tcm.getColumn(17);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(50);
-
+				
 				tc = tcm.getColumn(18);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(50);
@@ -1025,6 +1025,10 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(21);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(50);
+
+				tc = tcm.getColumn(22);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(50);
 

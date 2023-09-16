@@ -304,7 +304,8 @@ public class KER_DETAY extends JInternalFrame {
 				tc = tcm.getColumn(19);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(90);
-
+				
+				
 				tc = tcm.getColumn(20);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(90);
@@ -327,22 +328,21 @@ public class KER_DETAY extends JInternalFrame {
 
 				tc = tcm.getColumn(25);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(26);
+				tc.setHeaderRenderer(new SOLA());
 				tc.setCellRenderer(new TARIH());
 				tc.setMinWidth(80);
 
-				tc = tcm.getColumn(26);
+				tc = tcm.getColumn(27);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,true));
 				tc.setMinWidth(70);
-
-				tc = tcm.getColumn(27);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(90);
 
 				tc = tcm.getColumn(28);
-				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(2,true));
-				tc.setMinWidth(70);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
 
 				tc = tcm.getColumn(29);
 				tc.setHeaderRenderer(new SAGA());
@@ -355,17 +355,17 @@ public class KER_DETAY extends JInternalFrame {
 				tc.setMinWidth(70);
 
 				tc = tcm.getColumn(31);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(90);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
 
 				tc = tcm.getColumn(32);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(90);
 
 				tc = tcm.getColumn(33);
-				tc.setHeaderRenderer(new SAGA());
-				tc.setCellRenderer(new TABLO_RENDERER(2,true));
-				tc.setMinWidth(70);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
 
 				tc = tcm.getColumn(34);
 				tc.setHeaderRenderer(new SAGA());
@@ -373,8 +373,9 @@ public class KER_DETAY extends JInternalFrame {
 				tc.setMinWidth(70);
 
 				tc = tcm.getColumn(35);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(90);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,true));
+				tc.setMinWidth(70);
 
 				tc = tcm.getColumn(36);
 				tc.setHeaderRenderer(new SOLA());
@@ -397,6 +398,10 @@ public class KER_DETAY extends JInternalFrame {
 				tc.setMinWidth(90);
 
 				tc = tcm.getColumn(41);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(90);
+
+				tc = tcm.getColumn(42);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(90);
 
@@ -734,7 +739,7 @@ public class KER_DETAY extends JInternalFrame {
 					for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
 					{
 						Cell bname = headerRow.createCell(q);
-						if (q == 5 || q ==6 || q == 9 || q == 11|| q == 12 || q == 13 || q == 27|| q == 29|| q == 30|| q == 31)
+						if (q == 5 || q ==6 || q == 8 || q == 10  || q == 11 || q == 12 || q == 15|| q == 16 || q == 27  || q == 29 || q == 30|| q == 31 || q == 34|| q == 35)
 						{
 							bname.setCellValue(mdl.getColumnName(q));
 							bname.setCellStyle(headerStyle);
@@ -765,12 +770,12 @@ public class KER_DETAY extends JInternalFrame {
 									hname.setCellStyle(satirStyle3);
 									hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 								}
-								else  if ( s== 8 || s== 10 || s== 11 || s== 12 || s== 15 || s== 16  || s== 26 || s== 28|| s== 29|| s== 30 || s== 33|| s== 34) 
+								else  if (s == 5 || s ==6 || s == 8 || s == 10  || s == 11 || s == 12 || s == 15|| s == 16 || s == 27  || s == 29 || s == 30|| s == 31 || s == 34|| s == 35)
 								{
 									hname.setCellStyle(satirStyle2);
 									hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 								}
-								else  if (s== 7 ||s== 25) 
+								else  if (s== 7 ||s== 26) 
 								{
 									DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 									hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
@@ -862,7 +867,7 @@ public class KER_DETAY extends JInternalFrame {
 					for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
 					{
 						Cell bname = headerRow.createCell(q);
-						if (q == 5 || q ==6 || q == 9 || q == 11|| q == 12 || q == 13 || q == 27|| q == 29|| q == 30|| q == 31)
+						if (q == 5 || q ==6 || q == 8 || q == 10  || q == 11 || q == 12 || q == 15|| q == 16 || q == 27  || q == 29 || q == 30|| q == 31 || q == 34|| q == 35)
 						{
 							bname.setCellValue(mdl.getColumnName(q));
 							bname.setCellStyle(headerStyle);
@@ -894,12 +899,12 @@ public class KER_DETAY extends JInternalFrame {
 									hname.setCellStyle(satirStyle3);
 									hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 								}
-								else  if ( s== 8 || s== 10 || s== 11 || s== 12 || s== 15 || s== 16  || s== 26 || s== 28|| s== 29|| s== 30 || s== 33|| s== 34) 
+								else  if (s == 5 || s ==6 || s == 8 || s == 10  || s == 11 || s == 12 || s == 15|| s == 16 || s == 27  || s == 29 || s == 30|| s == 31 || s == 34|| s == 35)
 								{
 									hname.setCellStyle(satirStyle2);
 									hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 								}
-								else  if (s== 7 ||s== 25) 
+								else  if (s== 7 ||s== 26) 
 								{
 									DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 									hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
@@ -1005,7 +1010,7 @@ public class KER_DETAY extends JInternalFrame {
 		for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
 		{
 			Cell bname = headerRow.createCell(q);
-			if (q == 5 || q ==6 || q == 9 || q == 11|| q == 12 || q == 13 || q == 27|| q == 29|| q == 30|| q == 31)
+			if (q == 5 || q ==6 || q == 8 || q == 10  || q == 11 || q == 12 || q == 15|| q == 16 || q == 27  || q == 29 || q == 30|| q == 31 || q == 34|| q == 35)
 			{
 				bname.setCellValue(mdl.getColumnName(q));
 				bname.setCellStyle(headerStyle);
@@ -1037,12 +1042,12 @@ public class KER_DETAY extends JInternalFrame {
 						hname.setCellStyle(satirStyle3);
 						hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 					}
-					else  if ( s== 8 || s== 10 || s== 11 || s== 12 || s== 15 || s== 16  || s== 26 || s== 28|| s== 29|| s== 30 || s== 33|| s== 34) 
+					else  if (s == 5 || s ==6 || s == 8 || s == 10  || s == 11 || s == 12 || s == 15|| s == 16 || s == 27  || s == 29 || s == 30|| s == 31 || s == 34|| s == 35)
 					{
 						hname.setCellStyle(satirStyle2);
 						hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 					}
-					else  if (s== 7 ||s== 25) 
+					else  if (s== 7 ||s== 26) 
 					{
 						DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 						hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;

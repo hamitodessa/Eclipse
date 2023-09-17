@@ -602,18 +602,20 @@ public class DEKONT extends JInternalFrame {
 							if (kusur2 != 1 ) // ' capraz kur
 							{
 								double	db1 = (kusur2 * dbal) / kusur;
-								txtbtutar.setText(Double.toString(db1));
+								//txtbtutar.setText(Double.toString(db1));
+								txtbtutar.setText(FORMATLAMA.doub_2(db1));
 							}
 							else  //' carpraz kur degil 
 							{
 								double d1 =  dbal  / kusur ;
-								txtbtutar.setText(Double.toString(d1));
+								//txtbtutar.setText(Double.toString(d1));
+								txtbtutar.setText(FORMATLAMA.doub_2(d1));
 							}
 						}
 						else
 						{
 							double d2 = kusur2 * dbal;
-							txtbtutar.setText(Double.toString(d2));
+							txtbtutar.setText(FORMATLAMA.doub_2(d2));
 						}
 					} catch (ParseException e1) {
 						e1.printStackTrace();
@@ -658,7 +660,6 @@ public class DEKONT extends JInternalFrame {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-
 			}
 			
 			@Override
@@ -1130,18 +1131,21 @@ public class DEKONT extends JInternalFrame {
 							if (kusur2 != 1 ) // ' capraz kur
 							{
 								double	db1 = (kusur2 * dbborc) / kusur;
-								txtatutar.setText(Double.toString(db1));
+								//txtatutar.setText(Double.toString(db1));
+								txtatutar.setText(FORMATLAMA.doub_2(db1));
 							}
 							else  //' carpraz kur degil 
 							{
 								double d1 =  dbborc  / kusur ;
-								txtatutar.setText(Double.toString(d1));
+								//txtatutar.setText(Double.toString(d1));
+								txtatutar.setText(FORMATLAMA.doub_2(d1));
 							}
 						}
 						else
 						{
 							double d2 = kusur2 * dbborc;
-							txtatutar.setText(Double.toString(d2));
+							//txtatutar.setText(Double.toString(d2));
+							txtatutar.setText(FORMATLAMA.doub_2(d2));
 						}
 					} catch (ParseException e1) {
 						e1.printStackTrace();
@@ -1491,7 +1495,6 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		panel_3_1.add(txtkod, BorderLayout.CENTER);
-		txtkod.setColumns(10);
 
 		sifirla();
 		AUTO_HESAP_KODU.auto_doldur(cmbbhes);

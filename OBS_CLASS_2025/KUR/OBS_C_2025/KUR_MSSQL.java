@@ -66,7 +66,6 @@ public class KUR_MSSQL implements IKUR{
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL" + ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
-			//Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" +dsy  ) ;
 			GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS

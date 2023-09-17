@@ -429,6 +429,73 @@ public class LOGIN extends JDialog {
 						Lgn_Progres_Bar(say, 9);
 						lblModul.setText("");
 						Login_Progres_Bar_Temizle();
+						
+						//LOGLAMA DOSYALARI KONTROL*************************************************************************
+						//CARI LOG KONTROL
+						String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODUL) ;
+						File dOSYA = new File(dsy);
+						boolean exists = dOSYA.exists();
+						if (! exists)
+						{   
+							GLOBAL.create_table_log(dsy,oac._ICar.cari_firma_adi(),BAGLAN_LOG.cariLogDizin);
+						}
+						//KUR LOG KONTROL
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kurLogDizin.mODUL) ;
+						dOSYA = new File(dsy);
+						exists = dOSYA.exists();
+						if (! exists)
+						{   
+							GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
+						}
+						//SMS LOG KONTROL
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.smsLogDizin.mODUL) ;
+						dOSYA = new File(dsy);
+						exists = dOSYA.exists();
+						if (! exists)
+						{   
+							GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.smsLogDizin);
+						}
+						//ADRES LOG KONTROL
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.adrLogDizin.mODUL) ;
+						dOSYA = new File(dsy);
+						exists = dOSYA.exists();
+						if (! exists)
+						{   
+							GLOBAL.create_table_log(dsy,oac._IAdres.adr_firma_adi(),BAGLAN_LOG.adrLogDizin);
+						}
+						//STOK LOG KONTROL
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.fatLogDizin.mODUL) ;
+						dOSYA = new File(dsy);
+						exists = dOSYA.exists();
+						if (! exists)
+						{   
+							GLOBAL.create_table_log(dsy,oac._IStok.fat_firma_adi(),BAGLAN_LOG.fatLogDizin);
+						}
+						//KAMBIYO LOG KONTROL
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kamLogDizin.mODUL) ;
+						dOSYA = new File(dsy);
+						exists = dOSYA.exists();
+						if (! exists)
+						{   
+							GLOBAL.create_table_log(dsy,oac._IKambiyo.kam_firma_adi(),BAGLAN_LOG.kamLogDizin);
+						}
+						//GUNLUK LOG KONTROL
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.gunLogDizin.mODUL) ;
+						dOSYA = new File(dsy);
+						exists = dOSYA.exists();
+						if (! exists)
+						{   
+							GLOBAL.create_table_log(dsy,oac._IGunluk.gun_firma_adi(),BAGLAN_LOG.gunLogDizin);
+						}
+						//KERESTE LOG KONTROL
+						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kerLogDizin.mODUL) ;
+						dOSYA = new File(dsy);
+						exists = dOSYA.exists();
+						if (! exists)
+						{   
+							GLOBAL.create_table_log(dsy,oac._IKereste.ker_firma_adi(),BAGLAN_LOG.kerLogDizin);
+						}
+						//
 						Thread.currentThread().isInterrupted();
 						
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));

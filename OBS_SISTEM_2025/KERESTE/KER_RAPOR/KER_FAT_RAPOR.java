@@ -562,33 +562,33 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			String qw1, qw2, qw3,c_yer;
 			if ( FILTRE.comboBox_8_1.getItemAt(FILTRE.comboBox_8_1.getSelectedIndex()).equals("Cari_Firma"))
 			{
-				c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD + "]" ;
+				c_yer = "OK_Car" + BAGLAN.cariDizin.kOD + "" ;
 				if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
 				{
-					qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.Cari_Firma  ) as Unvan " ;
-					qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".[dbo].[HESAP_DETAY] WHERE HESAP_DETAY.D_HESAP = KERESTE.Cari_Firma  ) as Vergi_No " ;
+					qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE.Cari_Firma  ) as Unvan " ;
+					qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".HESAP_DETAY WHERE HESAP_DETAY.D_HESAP = KERESTE.Cari_Firma  ) as Vergi_No " ;
 					qw3 = "Evrak_No,Tarih, Cari_Firma" ;
 				}
 				else 
 				{
-					qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.CCari_Firma  ) as Unvan " ;
-					qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".[dbo].[HESAP_DETAY] WHERE HESAP_DETAY.D_HESAP = KERESTE.CCari_Firma  ) as Vergi_No " ;
+					qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE.CCari_Firma  ) as Unvan " ;
+					qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".HESAP_DETAY WHERE HESAP_DETAY.D_HESAP = KERESTE.CCari_Firma  ) as Vergi_No " ;
 					qw3 = "Cikis_Evrak,CTarih, CCari_Firma" ;
 				}
 			}
 			else
 			{
-				c_yer = "[OK_Adr" + BAGLAN.cariDizin.kOD + "]" ;
+				c_yer = "OK_Adr" + BAGLAN.cariDizin.kOD + "" ;
 				if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
 				{
-					qw1 = " ,(SELECT   Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Unvan " ;
-					qw2 = " ,(SELECT   Vergi_No FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Vergi_No " ;
+					qw1 = " ,(SELECT   Adi FROM " + c_yer + ".Adres WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Unvan " ;
+					qw2 = " ,(SELECT   Vergi_No FROM " + c_yer + ".Adres WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Vergi_No " ;
 					qw3 = "Evrak_No,Tarih, Adres_Firma" ; 
 				}
 				else 
 				{
-					qw1 = " ,(SELECT   Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.CAdres_Firma  ) as Unvan " ;
-					qw2 = " ,(SELECT   Vergi_No FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.CAdres_Firma  ) as Vergi_No " ;
+					qw1 = " ,(SELECT   Adi FROM " + c_yer + ".Adres WHERE Adres.M_Kodu = KERESTE.CAdres_Firma  ) as Unvan " ;
+					qw2 = " ,(SELECT   Vergi_No FROM " + c_yer + ".Adres WHERE Adres.M_Kodu = KERESTE.CAdres_Firma  ) as Vergi_No " ;
 					qw3 = "Cikis_Evrak,CTarih, CAdres_Firma" ;
 				}
 			}
@@ -741,32 +741,47 @@ public class KER_FAT_RAPOR extends JInternalFrame {
             String qw1, qw2, c_yer;
            if ( FILTRE.comboBox_8_1.getItemAt(FILTRE.comboBox_8_1.getSelectedIndex()).equals("Cari_Firma"))
            {
-        	   System.out.println(FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()));
+        	   String qweString = "" ;
+        	   if( BAGLAN.kerDizin.hAN_SQL.equals("MS SQL") )
+        	   {
+        		   qweString = "TOP 1" ;
+        	   }
+        	   else {
+        		   qweString = "LIMIT 1" ;
+        	   }
         	   if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
           		{
-        		   c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD+ "]" ;
-                   qw1 = " ,(SELECT TOP 1  UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.Cari_Firma  ) as Unvan " ;
+        		   c_yer = "OK_Car" + BAGLAN.cariDizin.kOD+ "" ;
+                   qw1 = " ,(SELECT  UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE.Cari_Firma " + qweString+ " ) as Unvan " ;
                    qw2 =" Cari_Firma" ;
           		}
         	   else 
         	   {
-        		   c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD+ "]" ;
-                   qw1 = " ,(SELECT TOP 1  UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE.CCari_Firma  ) as Unvan " ;
+        		   c_yer = "OK_Car" + BAGLAN.cariDizin.kOD+ "" ;
+                   qw1 = " ,(SELECT  UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE.CCari_Firma " + qweString+ " ) as Unvan " ;
                    qw2 =" CCari_Firma" ;
         	   }
            }
            else
            {
+        	   String qweString = "" ;
+        	   if( BAGLAN.kerDizin.hAN_SQL.equals("MS SQL") )
+        	   {
+        		   qweString = "TOP 1" ;
+        	   }
+        	   else {
+        		   qweString = "LIMIT 1" ;
+        	   }
         	   if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
           		{
-            		 c_yer = "[OK_Adr" + BAGLAN.adrDizin.kOD + "]" ;
-                     qw1 = " ,(SELECT Top 1  Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Unvan " ;
+            		 c_yer = "OK_Adr" + BAGLAN.adrDizin.kOD + "" ;
+                     qw1 = " ,(SELECT   Adi FROM " + c_yer + ".Adres WHERE Adres.M_Kodu = KERESTE.Adres_Firma  " + qweString+ ") as Unvan " ;
                      qw2 = " Adres_Firma" ;
           		}
             	else 
             	{
-            		 c_yer = "[OK_Adr" + BAGLAN.adrDizin.kOD + "]" ;
-                     qw1 = " ,(SELECT Top 1  Adi FROM " + c_yer + ".[dbo].[Adres] WHERE Adres.M_Kodu = KERESTE.CAdres_Firma  ) as Unvan " ;
+            		 c_yer = "OK_Adr" + BAGLAN.adrDizin.kOD + "" ;
+                     qw1 = " ,(SELECT   Adi FROM " + c_yer + ".Adres WHERE Adres.M_Kodu = KERESTE.CAdres_Firma " + qweString+ " ) as Unvan " ;
                      qw2 = " CAdres_Firma" ;
 				}
             }

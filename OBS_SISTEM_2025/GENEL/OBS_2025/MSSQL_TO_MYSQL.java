@@ -68,7 +68,7 @@ import com.healthmarketscience.jackcess.impl.PageChannel;
 
 
 
-@SuppressWarnings({"serial","static-access","unused"})
+@SuppressWarnings({"serial","unused"})
 public class MSSQL_TO_MYSQL extends JInternalFrame {
 	private JTextField textField;
 	private JTextField textField_1;
@@ -346,16 +346,19 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		panel_2.add(lblNewLabel_4_1);
 		
 		myServer = new JTextField();
+		myServer.setText("78.189.76.247:3306");
 		myServer.setBounds(100, 116, 125, 20);
 		panel_2.add(myServer);
 		myServer.setColumns(10);
 		
 		mySifre = new JTextField();
+		mySifre.setText("197227oOk");
 		mySifre.setBounds(100, 89, 125, 20);
 		panel_2.add(mySifre);
 		mySifre.setColumns(10);
 		
 		myUser = new JTextField();
+		myUser.setText("root");
 		myUser.setBounds(100, 58, 125, 20);
 		panel_2.add(myUser);
 		myUser.setColumns(10);
@@ -397,21 +400,25 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		msPort.setColumns(10);
 		
 		msInstance = new JTextField();
+		msInstance.setText("SQLEXPRESS");
 		msInstance.setBounds(100, 126, 125, 20);
 		panel_3.add(msInstance);
 		msInstance.setColumns(10);
 		
 		msServer = new JTextField();
+		msServer.setText("78.189.76.247:1433");
 		msServer.setBounds(100, 102, 125, 20);
 		panel_3.add(msServer);
 		msServer.setColumns(10);
 		
 		msSifre = new JTextField();
+		msSifre.setText("197227oOk");
 		msSifre.setBounds(100, 75, 125, 20);
 		panel_3.add(msSifre);
 		msSifre.setColumns(10);
 		
 		msUSER = new JTextField();
+		msUSER.setText("hamit");
 		msUSER.setBounds(100, 48, 125, 20);
 		panel_3.add(msUSER);
 		msUSER.setColumns(10);
@@ -551,7 +558,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		}
 		else
 		{
-			serverString = msServer.getText()  ;	
+			serverString = myServer.getText()  ;	
 		}
 		
 		String url = "jdbc:mysql://"+ serverString +"/ok_" + modul + textField_1.getText()  ; //pointing to no database.
@@ -577,21 +584,29 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		///
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rs = null;
-		PreparedStatement stmt2 = MS_conn.prepareStatement("SELECT * FROM HESAP WITH (INDEX (IX_HESAP))  ORDER BY HESAP ");
-		rs = stmt2.executeQuery();
-
-		while(rss.next()){
-			String sql1  = "INSERT INTO HESAP (HESAP,UNVAN,KARTON,HESAP_CINSI,USER) " +
-					" VALUES (?,?,?,?,?)" ;
-			stmt2 = null;
-			stmt2 = MY_conn.prepareStatement(sql1);
+		//PreparedStatement stmt2 = MS_conn.prepareStatement("SELECT * FROM HESAP WITH (INDEX (IX_HESAP))  ORDER BY HESAP ");
+		//rs = stmt2.executeQuery();
+		
+		String sql1  = "INSERT INTO HESAP (HESAP,UNVAN,KARTON,HESAP_CINSI,USER) " +
+				" VALUES (?,?,?,?,?)" ;
+		PreparedStatement stmt2 = MY_conn.prepareStatement(sql1);
+		int satir  = 0 ;
+		while(rss.next())
+		{
 			stmt2.setString(1, rss.getString("HESAP"));
 			stmt2.setString(2, rss.getString("UNVAN"));
 			stmt2.setString(3, rss.getString("KARTON"));
 			stmt2.setString(4,rss.getString("HESAP_CINSI"));
 			stmt2.setString(5, rss.getString(4));
-			stmt2.executeUpdate();
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 300 == 0) 
+			{
+				stmt2.executeBatch();
+			}
 		}
+		stmt2.executeBatch();
+		stmt2.close();
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 
@@ -607,14 +622,14 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		///
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rs = null;
-		PreparedStatement stmt2;
-
+		
+		sql  = "INSERT INTO HESAP_DETAY (D_HESAP,YETKILI,ADRES_1,ADRES_2,SEMT,SEHIR,VERGI_DAIRESI,VERGI_NO,TEL_1,TEL_2, " + 
+				" TEL_3,FAX,OZEL_KOD_1,OZEL_KOD_2,OZEL_KOD_3,WEB,E_MAIL,TC_KIMLIK,ACIKLAMA,SMS_GONDER,RESIM)" +
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
+		int satir = 0 ;
+		
 		while(rss.next()){
-			sql  = "INSERT INTO HESAP_DETAY (D_HESAP,YETKILI,ADRES_1,ADRES_2,SEMT,SEHIR,VERGI_DAIRESI,VERGI_NO,TEL_1,TEL_2, " + 
-					" TEL_3,FAX,OZEL_KOD_1,OZEL_KOD_2,OZEL_KOD_3,WEB,E_MAIL,TC_KIMLIK,ACIKLAMA,SMS_GONDER,RESIM)" +
-					" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
-			stmt2 = null;
-			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setString(1,rss.getString("D_HESAP"));
 			stmt2.setString(2,rss.getString("YETKILI"));
 			stmt2.setString(3, rss.getString("ADRES_1"));
@@ -644,8 +659,15 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			{
 				stmt2.setBytes(21,null);
 			}
-			stmt2.executeUpdate();
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 300 == 0) 
+			{
+				stmt2.executeBatch();
+			}
 		}
+		stmt2.executeBatch();
+		stmt2.close();
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void satirlar() throws ClassNotFoundException, SQLException
@@ -659,12 +681,15 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		String sql = "SELECT * FROM SATIRLAR    ORDER BY EVRAK ";
 		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
+		////
+		
+		int satir = 0 ;
+		sql  = "INSERT INTO SATIRLAR (HESAP,TARIH,H,EVRAK,CINS,KUR,BORC,ALACAK,KOD,USER) " +
+				" VALUES (?,?,?,?,?,?,?,?,?,?)" ;
+		stmt2 = null;
+		stmt2 = MY_conn.prepareStatement(sql);
 
 		while(rss.next()){
-			sql  = "INSERT INTO SATIRLAR (HESAP,TARIH,H,EVRAK,CINS,KUR,BORC,ALACAK,KOD,USER) " +
-					" VALUES (?,?,?,?,?,?,?,?,?,?)" ;
-			stmt2 = null;
-			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setString(1, rss.getString("HESAP"));
 			Timestamp timestamp =rss.getTimestamp("TARIH");
 			Date    date1 = null;
@@ -683,8 +708,16 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setDouble(8,  rss.getDouble("ALACAK"));
 			stmt2.setString(9, rss.getString("KOD"));
 			stmt2.setString(10, rss.getString("USER"));
-			stmt2.executeUpdate();
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
 		}
+		stmt2.executeBatch();
+		stmt2.close();
+
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void izahat () throws ClassNotFoundException, SQLException
@@ -698,15 +731,23 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		String sql = "SELECT * FROM IZAHAT    ORDER BY  EVRAK ";
 		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
+		sql  = "INSERT INTO IZAHAT (EVRAK,IZAHAT) " +
+				" VALUES (?,?)" ;
+		stmt2 = MY_conn.prepareStatement(sql);
+		int satir = 0 ;
 		while(rss.next()){
-			sql  = "INSERT INTO IZAHAT (EVRAK,IZAHAT) " +
-					" VALUES (?,?)" ;
-			stmt2 = null;
-			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setInt(1, rss.getInt("EVRAK"));
 			stmt2.setString(2,  rss.getString("IZAHAT"));
-			stmt2.executeUpdate();
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
 		}
+		stmt2.executeBatch();
+		stmt2.close();
+
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void ozel () throws ClassNotFoundException, SQLException
@@ -795,11 +836,12 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		String sql = "SELECT * FROM Kurlar    ORDER BY  Tarih ";
 		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
+		sql  ="INSERT INTO KURLAR (Tarih,Kur,MA,MS,SA,SS,BA,BS) " +
+				" VALUES (?,?,?,?,?,?,?,?)" ;
+		stmt2= null;
+		stmt2 = MY_conn.prepareStatement(sql);
+		int satir = 0 ;
 		while(rss.next()){
-			sql  ="INSERT INTO KURLAR (Tarih,Kur,MA,MS,SA,SS,BA,BS) " +
-					" VALUES (?,?,?,?,?,?,?,?)" ;
-			stmt2= null;
-			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setDate(1,  rss.getDate("Tarih"));
 			stmt2.setString(2,  rss.getString("Kur"));
 			stmt2.setDouble(3, rss.getDouble("MA"));
@@ -808,8 +850,16 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setDouble(6, rss.getDouble("SS"));
 			stmt2.setDouble(7,rss.getDouble("BA"));
 			stmt2.setDouble(8, rss.getDouble("BS"));
-			stmt2.executeUpdate();
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
 		}
+		stmt2.executeBatch();
+		stmt2.close();
+
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void mal () throws ClassNotFoundException, SQLException
@@ -818,16 +868,16 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 
 		ResultSet	rs = null;
 		ResultSet	rss = null;
-		PreparedStatement stmt2; 
 		String sql = "SELECT * FROM MAL Order by Kodu     ";
 		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
+		sql  = "INSERT INTO MAL (Kodu,Adi,Birim,Kusurat,Sinif,Ana_Grup,Alt_Grup,Aciklama_1,Aciklama_2,Ozel_Kod_1 " +
+				" ,Ozel_Kod_2,Barkod,Mensei,Agirlik,Fiat,Fiat_2,Fiat_3,Recete,Kdv,Resim,Depo , Ozel_Kod_3,USER) " +
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+		
+		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
+		int satir = 0 ;
 		while(rss.next()){
-			sql  = "INSERT INTO MAL (Kodu,Adi,Birim,Kusurat,Sinif,Ana_Grup,Alt_Grup,Aciklama_1,Aciklama_2,Ozel_Kod_1 " +
-					" ,Ozel_Kod_2,Barkod,Mensei,Agirlik,Fiat,Fiat_2,Fiat_3,Recete,Kdv,Resim,Depo , Ozel_Kod_3,USER) " +
-					" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
-			stmt2= null;
-			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setString(1, rss.getString("Kodu"));
 			stmt2.setString(2, rss.getString("Adi"));
 			stmt2.setString(3,  rss.getString("Birim"));
@@ -858,31 +908,46 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setInt(21, rss.getInt("Depo"));
 			stmt2.setInt(22, rss.getInt("Ozel_Kod_3"));
 			stmt2.setString(23, rss.getString("USER"));
-			stmt2.executeUpdate();
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
 		}
+		stmt2.executeBatch();
+		stmt2.close();
+
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void diger () throws ClassNotFoundException, SQLException
 	{
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		ResultSet	rss = null;
-		PreparedStatement stmt2; 
 		String sql = "SELECT * FROM ACIKLAMA   ORDER BY  EVRAK_NO ";
 		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
+		sql  ="INSERT INTO ACIKLAMA (EVRAK_CINS,SATIR,EVRAK_NO,ACIKLAMA,Gir_Cik) " +
+				" VALUES (?,?,?,?,?)" ;
+		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
+		int satir= 0 ;
 		while(rss.next())
 		{
-			sql  ="INSERT INTO ACIKLAMA (EVRAK_CINS,SATIR,EVRAK_NO,ACIKLAMA,Gir_Cik) " +
-					" VALUES (?,?,?,?,?)" ;
-			stmt2= null;
-			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setString(1,  rss.getString("EVRAK_CINS"));
 			stmt2.setInt(2, rss.getInt("SATIR"));
 			stmt2.setString(3, rss.getString("EVRAK_NO"));
 			stmt2.setString(4,  rss.getString("ACIKLAMA"));
 			stmt2.setString(5,  rss.getString("Gir_Cik"));
-			stmt2.executeUpdate();
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
 		}
+		stmt2.executeBatch();
+		stmt2.close();
+
 		//ALt GRUP
 		sql = "SELECT * FROM ALT_GRUP_DEGISKEN    ";
 		rss = null;
@@ -1087,16 +1152,15 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 
 		ResultSet	rs = null;
 		ResultSet	rss = null;
-		PreparedStatement stmt2; 
 		String sql = "SELECT * FROM BOZUK_MAL    Order by Evrak_No ";
 		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
+		sql  = "INSERT INTO MAL (Evrak_No,Kodu,Tarih,Miktar,Fiat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod " +
+				" ,Izahat,Cins,,USER) " +
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?)" ;
+		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
+		int satir = 0 ;
 		while(rss.next()){
-			sql  = "INSERT INTO MAL (Evrak_No,Kodu,Tarih,Miktar,Fiat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod " +
-					" ,Izahat,Cins,,USER) " +
-					" VALUES (?,?,?,?,?,?,?,?,?,?,?,?)" ;
-			stmt2= null;
-			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setString(1, rss.getString("Evrak_No"));
 			stmt2.setString(2, rss.getString("Kodu"));
 			stmt2.setDate(3,  rss.getDate("Tarih"));
@@ -1109,8 +1173,16 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setInt(10,  rss.getInt("Izahat"));
 			stmt2.setInt(11, rss.getInt("Cins"));
 			stmt2.setString(12, rss.getString("USER"));
-			stmt2.executeUpdate();
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
 		}
+		stmt2.executeBatch();
+		stmt2.close();
+
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void fatura () throws ClassNotFoundException, SQLException
@@ -1119,16 +1191,17 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 
 		ResultSet	rs = null;
 		ResultSet	rss = null;
-		PreparedStatement stmt2; 
+
 		String sql = "SELECT * FROM FATURA  Order by Fatura_No ";
 		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
+		sql  ="INSERT INTO FATURA (Fatura_No,Kodu,Depo,Fiat,Tevkifat,Miktar,Gir_Cik,Tutar,Iskonto,Kdv,Tarih,Izahat " +
+				" ,Doviz,Adres_Firma,Cari_Firma,Ozel_Kod,Kur,Cins,Ana_Grup,Alt_Grup, USER ) " +
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+
+		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
+		int satir = 0 ;
 		while(rss.next()){
-			sql  ="INSERT INTO FATURA (Fatura_No,Kodu,Depo,Fiat,Tevkifat,Miktar,Gir_Cik,Tutar,Iskonto,Kdv,Tarih,Izahat " +
-					" ,Doviz,Adres_Firma,Cari_Firma,Ozel_Kod,Kur,Cins,Ana_Grup,Alt_Grup, USER ) " +
-					" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
-			stmt2= null;
-			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setString(1, rss.getString("Fatura_No"));
 			stmt2.setString(2, rss.getString("Kodu"));
 			stmt2.setInt(3,rss.getInt("Depo"));
@@ -1150,8 +1223,15 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setInt(19,rss.getInt("Ana_Grup"));
 			stmt2.setInt(20,rss.getInt("Alt_Grup"));
 			stmt2.setString(21,rss.getString("USER"));
-			stmt2.executeUpdate();
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
 		}
+		stmt2.executeBatch();
+		stmt2.close();
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void irsaliye () throws ClassNotFoundException, SQLException
@@ -1160,16 +1240,17 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 
 		ResultSet	rs = null;
 		ResultSet	rss = null;
-		PreparedStatement stmt2; 
+	
 		String sql = "SELECT * FROM IRSALIYE  Order by Irsaliye_No  ";
 		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
+		sql  ="INSERT INTO IRSALIYE (Irsaliye_No,Kodu,Depo,Fiat,Iskonto,Miktar,Tutar,Kdv, Tarih,Doviz,Kur,Firma " +
+				",Cari_Hesap_Kodu,Sevk_Tarihi,Ozel_Kod,Ana_Grup,Alt_Grup,Fatura_No,Hareket,Cins, USER ,Izahat) " +
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+		
+		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
+		int satir = 0 ;
 		while(rss.next()){
-			sql  ="INSERT INTO IRSALIYE (Irsaliye_No,Kodu,Depo,Fiat,Iskonto,Miktar,Tutar,Kdv, Tarih,Doviz,Kur,Firma " +
-					",Cari_Hesap_Kodu,Sevk_Tarihi,Ozel_Kod,Ana_Grup,Alt_Grup,Fatura_No,Hareket,Cins, USER ,Izahat) " +
-					" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
-			stmt2= null;
-			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setString(1,rss.getString("Irsaliye_No"));
 			stmt2.setString(2, rss.getString("Kodu"));
 			stmt2.setInt(3,rss.getInt("Depo"));
@@ -1192,8 +1273,16 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setString(20,rss.getString("Cins"));
 			stmt2.setString(21,rss.getString("USER"));
 			stmt2.setString(22,rss.getString("Izahat"));
-			stmt2.executeUpdate();
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
 		}
+		stmt2.executeBatch();
+		stmt2.close();
+
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void recete () throws ClassNotFoundException, SQLException
@@ -1202,15 +1291,16 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 
 		ResultSet	rs = null;
 		ResultSet	rss = null;
-		PreparedStatement stmt2; 
+		
 		String sql = "SELECT * FROM RECETE  Order by Recete_No  ";
 		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
+		sql  ="INSERT INTO RECETE (Recete_No,Durum,Tur,Kodu,Miktar,Ana_Grup,Alt_Grup, USER ) " +
+				" VALUES (?,?,?,?,?,?,?,?)" ;
+		
+		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
+		int satir = 0 ;
 		while(rss.next()){
-			sql  ="INSERT INTO RECETE (Recete_No,Durum,Tur,Kodu,Miktar,Ana_Grup,Alt_Grup, USER ) " +
-					" VALUES (?,?,?,?,?,?,?,?)" ;
-			stmt2= null;
-			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setString(1,rss.getString("Recete_No"));
 			stmt2.setBoolean(2, rss.getBoolean("Durum"));
 			stmt2.setString(3, rss.getString("Tur"));
@@ -1219,8 +1309,16 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setInt(6, rss.getInt("Ana_Grup"));
 			stmt2.setInt(7, rss.getInt("Alt_Grup"));
 			stmt2.setString(8,rss.getString("USER"));
-			stmt2.executeUpdate();
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
 		}
+		stmt2.executeBatch();
+		stmt2.close();
+
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void  stok () throws ClassNotFoundException, SQLException
@@ -1229,16 +1327,17 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 
 		ResultSet	rs = null;
 		ResultSet	rss = null;
-		PreparedStatement stmt2; 
+		
 		String sql = "SELECT * FROM STOK  ORDER BY Tarih ";
 		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
+		sql  ="INSERT INTO STOK (Evrak_No,Evrak_Cins,Tarih,Depo,Urun_Kodu,Miktar,Fiat,Tutar,Kdvli_Tutar,Hareket,Izahat " +
+				" ,Ana_Grup,Alt_Grup,Kur,B1,Doviz,Hesap_Kodu, USER ) " +
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+		
+		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
+		int satir = 0 ;
 		while(rss.next()){
-			sql  ="INSERT INTO STOK (Evrak_No,Evrak_Cins,Tarih,Depo,Urun_Kodu,Miktar,Fiat,Tutar,Kdvli_Tutar,Hareket,Izahat " +
-					" ,Ana_Grup,Alt_Grup,Kur,B1,Doviz,Hesap_Kodu, USER ) " +
-					" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
-			stmt2= null;
-			stmt2 = MY_conn.prepareStatement(sql);
 			stmt2.setString(1, rss.getString("Evrak_No"));
 			stmt2.setString(2, rss.getString("Evrak_Cins"));
 			stmt2.setDate(3, rss.getDate("Tarih"));
@@ -1257,9 +1356,16 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setString(16, rss.getString("Doviz"));
 			stmt2.setString(17,  rss.getString("Hesap_Kodu"));
 			stmt2.setString(18,  rss.getString("USER"));
-			stmt2.executeUpdate();
-
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
 		}
+		stmt2.executeBatch();
+		stmt2.close();
+
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	//*****************************************************************************************CLONE ****************

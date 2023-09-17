@@ -915,7 +915,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql =  "SELECT * " +
-				" FROM DPN  WITH (INDEX (IX_DPN)) " +
+				" FROM DPN  " +
 				" WHERE Evrak_NO = N'" + ino + "'" +
 				" AND DPN.Tip = N'" + cins + "'" +
 				" AND Gir_Cik = '" + gircik + "'";

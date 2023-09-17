@@ -80,7 +80,7 @@ public class BILGI_OKU {
 				}
 				else  if (dIZIN.hAN_SQL.toString().equals("MY SQL") == true) 
 				{
-					dIZIN.cONN_STR = dIZIN.sERVER + " /" +  dOSYA_BASLANGIC +dIZIN.kOD ;
+					dIZIN.cONN_STR = dIZIN.sERVER + " /" +  dOSYA_BASLANGIC + dIZIN.kOD ;
 				}
 			}
 		}

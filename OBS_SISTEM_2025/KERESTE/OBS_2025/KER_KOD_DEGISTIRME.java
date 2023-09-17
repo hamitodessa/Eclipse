@@ -37,6 +37,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.text.MaskFormatter;
 
+import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
@@ -73,6 +74,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_4 ;
 	private JSplitPane splitPane ;
+	private boolean ilk = true ;
 	CheckBoxHeader asdBoxHeader = new CheckBoxHeader(new MyItemListener());
 
 	/**
@@ -292,6 +294,12 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		JLabel lblNewLabel_3 = new JLabel("Secilen Satir :");
 		lblNewLabel_3.setBounds(10, 5, 80, 14);
 		panel1.add(lblNewLabel_3);
+		
+		
+		KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
+		ker_BILGI.setPaket_No1(textField_1.getText());
+		ker_BILGI.setKonsimento1(textField.getText());
+		ker_BILGI.setGKodu1(formattedTextField.getText());
 	}
 	private void hisset()
 	{
@@ -309,16 +317,21 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lblNewLabel_2.setText(FORMATLAMA.doub_0(0));
-				JTableHeader th = table.getTableHeader();
-				TableColumnModel tcm = th.getColumnModel();
-				TableColumn tc = tcm.getColumn(0);
-				tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
-				th.repaint();
-				table.repaint();
+				if(! ilk)
+				{
+					JTableHeader th = table.getTableHeader();
+					TableColumnModel tcm = th.getColumnModel();
+					TableColumn tc = tcm.getColumn(0);
+					tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+					th.repaint();
+					table.repaint();
+				}
+				ilk= true ;
 				mDEFAULT();
 			} 
 			else
 			{
+			ilk = false ;
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
@@ -622,10 +635,20 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		{
 			if ( modell.getValueAt(i,0) != null) 
 			{
-				if (  (boolean) modell.getValueAt(i,0) )
+				if( BAGLAN.kerDizin.hAN_SQL.equals("MS SQL") )
 				{
-					satir += 1 ;
+					if (  (boolean) modell.getValueAt(i,0) )
+						{
+							satir += 1 ;
+						}
 				}
+				else {
+					if ( ! modell.getValueAt(i,0).toString().equals("0") )
+					{
+						satir += 1 ;
+					}
+				}
+			
 			};
 		}
 		return satir ;

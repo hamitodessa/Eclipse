@@ -130,24 +130,23 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		//  VERITABANI DOSYASI ILK ACILIS
 		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
 		lOG_BILGI lBILGI = new lOG_BILGI();
-		 lBILGI.setmESAJ("Dosya Olusturuldu");
-		 lBILGI.seteVRAK("");
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		vTLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
-		 lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi() );
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi() );
 		vTLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
 		//SQLITE LOG DOSYASI OLUSTUR
 		if (GLOBAL.dos_kontrol(  GLOBAL.LOG_SURUCU + GLOBAL.char_degis( BAGLAN_LOG.cariLogDizin.mODUL)) == false)
 		{
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODUL) ;
-			//Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dsy   ) ;
 			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.cariLogDizin);
 		}
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		 lBILGI.setmESAJ("Dosya Olusturuldu");
-		 lBILGI.seteVRAK("");
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
-		 lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi() );
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi() );
 		tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
 		//
 		stmt.close();
@@ -497,23 +496,20 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt.setDouble(8, 0);
 		stmt.setString(9, dBilgi.getkOD());
 		stmt.setString(10, dBilgi.getuSER());
-		stmt.executeUpdate();
+		stmt.addBatch();
 		//**********************************
-		PreparedStatement stmt2 = null;
-		sql  = "INSERT INTO SATIRLAR (HESAP,TARIH,H,EVRAK,CINS,KUR,BORC,ALACAK,KOD,[USER]) " +
-				" VALUES (?,?,?,?,?,?,?,?,?,?)" ; 
-		stmt2 = con.prepareStatement(sql);
-		stmt2.setString(1, dBilgi.getaHES());
-		stmt2.setString(2, dBilgi.gettAR());
-		stmt2.setString(3, "A");
-		stmt2.setInt(4, dBilgi.geteVRAK());
-		stmt2.setString(5, dBilgi.getaCINS());
-		stmt2.setDouble(6, dBilgi.getaKUR());
-		stmt2.setDouble(7, 0);
-		stmt2.setDouble(8, (double) Math.round(dBilgi.getaLACAK() * 100) / 100);
-		stmt2.setString(9, dBilgi.getkOD());
-		stmt2.setString(10, dBilgi.getuSER());
-		stmt2.executeUpdate();
+		stmt.setString(1, dBilgi.getaHES());
+		stmt.setString(2, dBilgi.gettAR());
+		stmt.setString(3, "A");
+		stmt.setInt(4, dBilgi.geteVRAK());
+		stmt.setString(5, dBilgi.getaCINS());
+		stmt.setDouble(6, dBilgi.getaKUR());
+		stmt.setDouble(7, 0);
+		stmt.setDouble(8, (double) Math.round(dBilgi.getaLACAK() * 100) / 100);
+		stmt.setString(9, dBilgi.getkOD());
+		stmt.setString(10, dBilgi.getuSER());
+		stmt.addBatch();
+		stmt.executeBatch();
 		//************** IZAHAT  *********
 		PreparedStatement stmt3 = null;
 		sql = "INSERT INTO IZAHAT (EVRAK,IZAHAT) VALUES ( ?,? )" ;
@@ -522,7 +518,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt3.setString(2, dBilgi.getiZAHAT());
 		stmt3.executeUpdate();
 		stmt.close();
-		stmt2.close();
 		stmt3.close();
 	}
 	public ResultSet hsp_pln(String arama) throws ClassNotFoundException, SQLException

@@ -306,7 +306,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				}
 				if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
-					rs = ker_Access.baslik_bak("DISTINCT YEAR(STOK."+ hANGI+"Tarih)","order by YEAR(STOK."+ hANGI+"Tarih)",jkj,
+					rs = ker_Access.baslik_bak("DISTINCT YEAR(KERESTE."+ hANGI+"Tarih)","order by YEAR(KERESTE."+ hANGI+"Tarih)",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
@@ -327,7 +327,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				}
 				if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
-					rs = ker_Access.baslik_bak(" DISTINCT MONTH(STOK."+ hANGI +"Tarih)", "order by MONTH(STOK."+ hANGI+"Tarih) ",jkj,
+					rs = ker_Access.baslik_bak(" DISTINCT MONTH(KERESTE."+ hANGI +"Tarih)", "order by MONTH(KERESTE."+ hANGI+"Tarih) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
@@ -349,7 +349,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				}
 				if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
-					rs = ker_Access.baslik_bak(" DISTINCT DAY(STOK."+ hANGI+"Tarih)", "order by DAY(STOK."+ hANGI +"Tarih) ",jkj,
+					rs = ker_Access.baslik_bak(" DISTINCT DAY(KERESTE."+ hANGI+"Tarih)", "order by DAY(KERESTE."+ hANGI +"Tarih) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
@@ -377,7 +377,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
 
-					sstr_2 = " CAST(SUBSTRING(KERESTE.Kodu, 4, 3) AS INTEGER) " ;
+					sstr_2 = " CAST(SUBSTRING(KERESTE.Kodu, 4, 3) ,DECIMAL) " ;
 				}
 			}
 			if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Boy"))
@@ -398,7 +398,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
 
-					sstr_2 = " CAST(SUBSTRING(KERESTE.Kodu, 8, 4) AS INTEGER) " ;
+					sstr_2 = " CAST(SUBSTRING(KERESTE.Kodu, 8, 4) ,DECIMAL) " ;
 
 				}
 			} 
@@ -420,7 +420,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
 
-					sstr_2 = " CAST(SUBSTRING(KERESTE.Kodu, 13, 4) AS INTEGER) " ;
+					sstr_2 = " CAST(SUBSTRING(KERESTE.Kodu, 13, 4) ,DECIMAL) " ;
 
 				}
 			}
@@ -437,7 +437,12 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				}
 				else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
+						rs = ker_Access.baslik_bak("DISTINCT  SUBSTRING(KERESTE.Kodu, 1, 2)  ", "order by SUBSTRING(KERESTE.Kodu, 1, 2)  ",jkj,
+							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
 
+					sstr_2 = "  SUBSTRING(KERESTE.Kodu, 1, 2)  " ;
 
 				}
 			}
@@ -467,7 +472,24 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				}
 				else 	if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
+					if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+					{
+						hKODU = "Cari_Firma " ;
+					}
+					else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+					{
+						hKODU = "CCari_Firma " ;
+					}
+					else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("STOK"))
+					{
+						hKODU = "Cari_Firma " ;
+					}
+					rs = ker_Access.baslik_bak("DISTINCT  " + hKODU, "order by  " + hKODU,jkj,
+							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
 
+					sstr_2 = hKODU ;
 
 				}
 			}
@@ -1815,19 +1837,25 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
 				{
-					//sstr_4 = " ((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) * " + hangiFiatString + ") / iif(k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex())+ " = 0 ,1, k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex()) + ") as Tutar ";
 					sstr_4 = " ((("+ hangiFiatString + " * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hangiFiatString + " * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hangiIskontoString + ")/100) / iif(k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex())+ " = 0 ,1, k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex()) + ")) as Tutar ";
 				}
 				else if (BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
-					//sstr_4 = " ((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) * " + hangiFiatString + ") / IF(k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex())+ " = 0 ,1, k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex()) + ") as Tutar ";
-					sstr_4 = " ((("+ hangiFiatString + " * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hangiFiatString + " * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hangiIskontoString + ")/100) / iif(k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex())+ " = 0 ,1, k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex()) + ")) as Tutar ";
+					sstr_4 = " ((("+ hangiFiatString + " * (((CONVERT( SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT( SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) - (("+ hangiFiatString + " * (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) * "+ hangiIskontoString + ")/100) / iif(k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex())+ " = 0 ,1, k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex()) + ")) as Tutar ";
 				}
 			}
 			else
 			{
-				sstr_4 = "(("+ hangiFiatString + " * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hangiFiatString + " * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hangiIskontoString + ")/100) as Tutar";
-				//sstr_4 = " ((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) * " + hangiFiatString + ") as Tutar";
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+				{
+					sstr_4 = "(("+ hangiFiatString + " * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hangiFiatString + " * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hangiIskontoString + ")/100) as Tutar";
+					
+				}
+				else if (BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				{
+					sstr_4 = "(("+ hangiFiatString + " * (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) - (("+ hangiFiatString + " * (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) * "+ hangiIskontoString + ")/100) as Tutar";
+					
+				}
 
 			}
 			sstr_5 = "Tutar";
@@ -1839,8 +1867,18 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		}
 		else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("m3"))
 		{
-			sstr_4 = " (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  as m3";
+			if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+			{
+				sstr_4 = " (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  as m3";
 			sstr_5 = "m3";
+				
+			}
+			else if (BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+			{
+			sstr_4 = " (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)  as m3";
+			sstr_5 = "m3";
+				
+			}
 		}
 		if (FILTRE.chckbxDovizeCevirme_1.isSelected())
 		{

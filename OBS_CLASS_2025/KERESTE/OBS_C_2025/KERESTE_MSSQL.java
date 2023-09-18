@@ -1084,7 +1084,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	@Override
 	public ResultSet grp_rapor(String gruplama,String sstr_2, String sstr_4, String kur_dos, String qwq6,
 			String qwq7, String qwq8, String k1, String k2, String s1, String s2, String jkj,
-			String t1, String t2, String sstr_5, String sstr_1,String orderBY,String dURUM,String ko1, String ko2,String dpo) throws ClassNotFoundException, SQLException {
+			String t1, String t2, String sstr_5, String sstr_1,String orderBY,String dURUM,String ko1, String ko2,String dpo,String grup) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String[] token = k1.toString().split("-");
@@ -1099,7 +1099,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		sonk = token[1];
 		sonb = token[2];
 		song = token[3];
-		System.out.println(jkj);
 		if(qwq6.equals(" Like  '%' "))
 		{
 			qwq6 =  " " ;

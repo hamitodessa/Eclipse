@@ -406,8 +406,6 @@ public class KER_ORT_SATIS extends JInternalFrame {
 					ozkod="=" + Integer.toString( rs.getInt("OZ1ID_Y"));
 				}
 			}
-
-			/////
 			//'**************************************************
 			if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Ana Grup"))
 			{ 
@@ -427,13 +425,29 @@ public class KER_ORT_SATIS extends JInternalFrame {
 			}
 			else  if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Yil"))
 			{
-				yu = " datepart(yyyy,KERESTE."+hANGI+"Tarih) as Yil ";
-				iu = "  datepart(yyyy,KERESTE."+hANGI+"Tarih) order by datepart(yyyy,KERESTE."+hANGI+"Tarih)  ";
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+				{
+					yu = " datepart(yyyy,KERESTE."+hANGI+"Tarih) as Yil ";
+					iu = "  datepart(yyyy,KERESTE."+hANGI+"Tarih) order by datepart(yyyy,KERESTE."+hANGI+"Tarih)  ";
+				}
+				else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				{
+					yu = " YEAR(KERESTE."+hANGI+"Tarih) as Yil "; 
+					iu = "  YEAR(KERESTE."+hANGI+"Tarih) order by YEAR(KERESTE."+hANGI+"Tarih)  ";
+				}
 			}
 			else  if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Yil_Ay"))
 			{
-				yu = " datepart(yyyy,KERESTE."+hANGI+"Tarih) as Yil, datepart(mm,KERESTE."+hANGI+"Tarih) as Ay ";
-				iu = "  datepart(yyyy,KERESTE."+hANGI+"Tarih) , datepart(mm,KERESTE."+hANGI+"Tarih) order by datepart(yyyy,KERESTE."+hANGI+"Tarih),datepart(mm,KERESTE."+hANGI+"Tarih)  ";
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+				{
+					yu = " datepart(yyyy,KERESTE."+hANGI+"Tarih) as Yil, datepart(mm,KERESTE."+hANGI+"Tarih) as Ay ";
+					iu = "  datepart(yyyy,KERESTE."+hANGI+"Tarih) , datepart(mm,KERESTE."+hANGI+"Tarih) order by datepart(yyyy,KERESTE."+hANGI+"Tarih),datepart(mm,KERESTE."+hANGI+"Tarih)  ";
+				}
+				else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				{
+					yu = " YEAR(KERESTE."+hANGI+"Tarih) as Yil, MONTH(KERESTE."+hANGI+"Tarih) as Ay ";
+					iu = "  YEAR(KERESTE."+hANGI+"Tarih) , MONTH(KERESTE."+hANGI+"Tarih) order by YEAR(KERESTE."+hANGI+"Tarih),MONTH(KERESTE."+hANGI+"Tarih) ";
+				}
 			}
 			else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Hesap Kodu-Ana_Alt_Grup"))
 			{ 
@@ -443,7 +457,7 @@ public class KER_ORT_SATIS extends JInternalFrame {
 			}
 			else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Hesap Kodu"))
 			{ 
-				yu = "   KERESTE."+ hANGI+"Cari_Firma,(SELECT DISTINCT  UNVAN FROM [OK_Car" + BAGLAN.cariDizin.kOD + "].[dbo].[HESAP] WHERE hesap.hesap = KERESTE."+hANGI+"Cari_Firma   ) as Cari_Adi  ";
+				yu = "   KERESTE."+ hANGI+"Cari_Firma,(SELECT DISTINCT  UNVAN FROM OK_Car" + BAGLAN.cariDizin.kOD + ".HESAP WHERE hesap.hesap = KERESTE."+hANGI+"Cari_Firma   ) as Cari_Adi  ";
 				iu = " KERESTE."+ hANGI+"Cari_Firma ORDER BY  KERESTE."+ hANGI+"Cari_Firma";
 			}
 			//'************************************

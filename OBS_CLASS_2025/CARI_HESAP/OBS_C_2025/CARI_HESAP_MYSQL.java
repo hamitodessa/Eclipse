@@ -623,6 +623,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				" WHERE HESAP  = N'" + hesap + "' AND s.TARIH  BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998' AND (k.kur IS NULL OR k.KUR ='" + kur + "') " +
 				" ORDER BY TARIH ";
 		}
+
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

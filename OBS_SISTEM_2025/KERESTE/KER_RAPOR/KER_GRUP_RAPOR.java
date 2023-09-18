@@ -372,12 +372,12 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
 
-					rs = ker_Access.baslik_bak("DISTINCT   CAST(SUBSTRING(KERESTE.Kodu, 4, 3) AS INTEGER)  ", "order by CAST(SUBSTRING(KERESTE.Kodu, 4, 3) AS INTEGER) ",jkj,
+					rs = ker_Access.baslik_bak("DISTINCT   CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3) , DECIMAL)  ", "order by CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3) , DECIMAL) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
 
-					sstr_2 = " CAST(SUBSTRING(KERESTE.Kodu, 4, 3) ,DECIMAL) " ;
+					sstr_2 = " CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3) ,DECIMAL) " ;
 				}
 			}
 			if (FILTRE.comboBox_28_1.getItemAt(FILTRE.comboBox_28_1.getSelectedIndex()).equals("Boy"))
@@ -393,12 +393,12 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				}
 				if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
-					rs = ker_Access.baslik_bak("DISTINCT   CAST(SUBSTRING(KERESTE.Kodu, 8, 4) AS INTEGER)  ", "order by CAST(SUBSTRING(KERESTE.Kodu, 8, 4) AS INTEGER) ",jkj,
+					rs = ker_Access.baslik_bak("DISTINCT   CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4) , DECIMAL)  ", "order by CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4) , DECIMAL) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
 
-					sstr_2 = " CAST(SUBSTRING(KERESTE.Kodu, 8, 4) ,DECIMAL) " ;
+					sstr_2 = " CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4) ,DECIMAL) " ;
 
 				}
 			} 
@@ -415,12 +415,12 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				}
 				if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
-					rs = ker_Access.baslik_bak("DISTINCT   CAST(SUBSTRING(KERESTE.Kodu, 13, 4) AS INTEGER)  ", "order by CAST(SUBSTRING(KERESTE.Kodu, 13, 4) AS INTEGER) ",jkj,
+					rs = ker_Access.baslik_bak("DISTINCT   CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4) , DECIMAL)  ", "order by CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4), DECIMAL) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
 
-					sstr_2 = " CAST(SUBSTRING(KERESTE.Kodu, 13, 4) ,DECIMAL) " ;
+					sstr_2 = " CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4) ,DECIMAL) " ;
 
 				}
 			}
@@ -525,13 +525,15 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				hANGI = "" ;
 			}
+			
+			
 			rs = ker_Access.grp_rapor("Kodu",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1," Kodu",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo," Kodu");
 
 
 			GRID_TEMIZLE.grid_temizle(table);
@@ -608,7 +610,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1," Konsimento",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo," Konsimento");
 
 
 			GRID_TEMIZLE.grid_temizle(table);
@@ -675,13 +677,24 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				hANGI = "C" ;
 			}
-			rs = ker_Access.grp_rapor(" SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+			String klmString = "" ,grpString="";
+			if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+			{
+				klmString = " SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+				grpString = " SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+			}
+			else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+			{
+				klmString = "  SUBSTRING(KERESTE.Kodu,1, 2) As Sinif ";
+				grpString = " SUBSTRING(KERESTE.Kodu,1, 2) ";
+			}
+			rs = ker_Access.grp_rapor( klmString,sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Sinif",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -744,13 +757,27 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				hANGI = "C" ;
 			}
-			rs = ker_Access.grp_rapor(" SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+			String klmString = "" , mlkString="" ,grpString="" ;
+			if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+			{
+				klmString = "  SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+				mlkString = "  SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal " ;
+				grpString = "  SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ,SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal ";
+				
+			}
+			else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+			{
+				klmString = "  SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+				mlkString = "  SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal  " ;
+				grpString = "  SUBSTRING(KERESTE.Kodu,1, 2) ,SUBSTRING(KERESTE.Kodu, 4, 3)  ";
+			}
+			rs = ker_Access.grp_rapor( klmString+" , " + mlkString,sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Sinif , Kal" , hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
 
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -824,14 +851,29 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				hANGI = "C" ;
 			}
+			String klmString = "" , mlkString="" , blkString="" , grpString= "";
+			if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+			{
+				klmString = " SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+				mlkString = " SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal " ;
+				blkString = " SUBSTRING(KERESTE.Kodu, 8, 4) As Boy " ;
+				grpString = " SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif , SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal ,SUBSTRING(KERESTE.Kodu, 8, 4) As Boy ";
+			}
+			else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+			{
+				klmString = " SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+				mlkString = " SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal " ;
+				blkString = " SUBSTRING(KERESTE.Kodu, 8, 4) As Boy " ;
+				grpString = " SUBSTRING(KERESTE.Kodu,1, 2)  , SUBSTRING(KERESTE.Kodu, 4, 3),SUBSTRING(KERESTE.Kodu, 8, 4)  ";
 
-			rs = ker_Access.grp_rapor(" SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal ,SUBSTRING(KERESTE.Kodu, 8, 4) as Boy ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+			}
+			rs = ker_Access.grp_rapor( klmString+" , "+mlkString+" , " + blkString,sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Sinif , Kal,Boy",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
 
 			GRID_TEMIZLE.grid_temizle(table);
 
@@ -912,14 +954,29 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				hANGI = "C" ;
 			}
-
-			rs = ker_Access.grp_rapor(" Paket_No,SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal ,SUBSTRING(KERESTE.Kodu, 8, 4) as Boy ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+			String klmString = "" , mlkString="" , blkString="", grpString="";
+			if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+			{
+				klmString = " Paket_No, SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+				mlkString = " SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal " ;
+				blkString = " SUBSTRING(KERESTE.Kodu, 8, 4) AS Boy" ;
+				grpString = " Paket_No ,SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif , SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal ,SUBSTRING(KERESTE.Kodu, 8, 4) AS Boy ";
+			}
+			else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+			{
+				klmString = " Paket_No,SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+				mlkString = " SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal " ;
+				blkString = " SUBSTRING(KERESTE.Kodu, 8, 4) AS Boy" ;
+				grpString = " Paket_No, SUBSTRING(KERESTE.Kodu,1, 2)  , SUBSTRING(KERESTE.Kodu, 4, 3) ,SUBSTRING(KERESTE.Kodu, 8, 4)  ";
+				
+			}
+			rs = ker_Access.grp_rapor(klmString+" ,"+mlkString+" ," + blkString,sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Paket_No,Sinif , Kal,Boy",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
 
 			GRID_TEMIZLE.grid_temizle(table);
 
@@ -1004,13 +1061,14 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				hANGI = "C" ;
 			}
+			
 			rs = ker_Access.grp_rapor(" Paket_No , Konsimento ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Paket_No , Konsimento" , hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo," Paket_No , Konsimento ");
 
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -1085,13 +1143,29 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				hANGI = "C" ;
 			}
-			rs = ker_Access.grp_rapor(" Paket_No,SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal ,SUBSTRING(KERESTE.Kodu, 13, 4) as Gen ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+			String klmString = "" , mlkString="" , blkString="",grpString="";
+			if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+			{
+				klmString = " SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+				mlkString = " SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal " ;
+				blkString = " SUBSTRING(KERESTE.Kodu, 13, 4) AS Gen " ;
+				grpString = " Paket_No,SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif , SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal ,SUBSTRING(KERESTE.Kodu, 13, 4) AS Gen" ;
+			}
+			else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+			{
+				klmString = " SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+				mlkString = " SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal " ;
+				blkString = " SUBSTRING(KERESTE.Kodu, 13, 4) AS Gen " ;
+				grpString = " Paket_No,SUBSTRING(KERESTE.Kodu,1, 2)  , SUBSTRING(KERESTE.Kodu, 4, 3) ,SUBSTRING(KERESTE.Kodu, 13, 4) " ;
+
+			}
+			rs = ker_Access.grp_rapor(" Paket_No," + klmString + " ," + mlkString+" ," + blkString,sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Paket_No,Sinif , Kal,Gen",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
 
 			GRID_TEMIZLE.grid_temizle(table);
 
@@ -1177,13 +1251,28 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				hANGI = "C" ;
 			}
-			rs = ker_Access.grp_rapor(" SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal ,SUBSTRING(KERESTE.Kodu, 13, 4) as Gen ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+			String klmString = "" , mlkString="" , blkString="",grpString="";
+			if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+			{
+				klmString = " SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+				mlkString = " SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal " ;
+				blkString = " SUBSTRING(KERESTE.Kodu, 13, 4)  AS Gen" ;
+				grpString = " SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ,SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal,SUBSTRING(KERESTE.Kodu, 13, 4)  AS Gen " ;
+			}
+			else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+			{
+				klmString = " SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+				mlkString = " SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal " ;
+				blkString = " SUBSTRING(KERESTE.Kodu, 13, 4)  AS Gen" ;
+				grpString = " SUBSTRING(KERESTE.Kodu,1, 2)  ,SUBSTRING(KERESTE.Kodu, 4, 3) ,SUBSTRING(KERESTE.Kodu, 13, 4)   " ;
+			}
+			rs = ker_Access.grp_rapor(klmString + " ," + mlkString + " ," + blkString,sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Sinif , Kal,Gen",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
 
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -1261,13 +1350,26 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				hANGI = "C" ;
 			}
-			rs = ker_Access.grp_rapor(" datepart(yyyy,KERESTE." + hANGI + "Tarih) AS Yil ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+			String klmString = "" ,grpString="";
+			if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+			{
+				klmString = " datepart(yyyy,KERESTE." + hANGI + "Tarih) AS Yil " ;
+				grpString = " datepart(yyyy,KERESTE." + hANGI + "Tarih) AS Yil " ;
+			}
+			else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+			{
+				klmString = " YEAR(KERESTE."+ hANGI+"Tarih)  as Yil"   ;
+				grpString = " YEAR(KERESTE."+ hANGI+"Tarih) "   ;
+			}
+
+			
+			rs = ker_Access.grp_rapor(klmString,sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1," Yil",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
 
 
 			GRID_TEMIZLE.grid_temizle(table);
@@ -1337,14 +1439,29 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				hANGI = "C" ;
 				hESAP = "CCari_Firma" ;
 			}
-			String c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD + "]" ;
-			rs = ker_Access.grp_rapor( hESAP +" AS Hesap, (SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE." + hESAP + "  ) as Unvan ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+			String c_yer = "OK_Car" + BAGLAN.cariDizin.kOD + "" ;
+			String klmString = "" , mlkString = "", grpString="";
+			if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+			{
+				klmString = hESAP + " AS Hesap " ;
+				mlkString = " (SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE." + hESAP + "  )  " + " AS Unvan " ;
+			    grpString = hESAP + " AS Hesap , (SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE." + hESAP + "  )  " + " AS Unvan " ;
+			}
+			else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+			{
+				klmString = hESAP + " AS Hesap " ;
+				mlkString = " (SELECT   UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE." + hESAP + "  )  " + " AS Unvan " ;
+			    grpString = hESAP + "  , (SELECT   UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE." + hESAP + "  )  " ;
+
+			}
+
+			rs = ker_Access.grp_rapor( klmString +" , " + mlkString,sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, " Hesap , Unvan",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
 
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -1416,14 +1533,30 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				hANGI = "C" ;
 				hESAP = "CCari_Firma" ;
 			}
-			String c_yer = "[OK_Car" + BAGLAN.cariDizin.kOD + "]" ;
-			rs = ker_Access.grp_rapor( hESAP +" AS Hesap, (SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE." + hESAP + "  ) as Unvan ,datepart(yyyy,KERESTE." + hANGI + "Tarih) AS Yil",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+			String c_yer = "OK_Car" + BAGLAN.cariDizin.kOD + "" ;
+			String klmString = "" , mlkString = "" , blkString = "",grpString="";
+			if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+			{
+				klmString = hESAP + " AS Hesap " ;
+				mlkString = " (SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE." + hESAP + "  ) AS Unvan " ;
+				blkString = " datepart(yyyy,KERESTE." + hANGI + "Tarih) AS Yil " ;
+				grpString = hESAP + " AS Hesap ,  (SELECT   UNVAN FROM " + c_yer + ".[dbo].[HESAP] WHERE HESAP.HESAP = KERESTE." + hESAP + "  ) AS Unvan ,datepart(yyyy,KERESTE." + hANGI + "Tarih) AS Yil  "  ;
+			}
+			else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+			{
+				klmString = hESAP + " AS Hesap " ;
+				mlkString = " (SELECT   UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE." + hESAP + "  ) AS Unvan " ;
+				blkString = " YEAR(KERESTE."+ hANGI+"Tarih) as Yil" ;
+				grpString = hESAP + " ,  (SELECT   UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE." + hESAP + "  )  ,YEAR(KERESTE."+ hANGI+"Tarih)  "  ;
+			}
+
+			rs = ker_Access.grp_rapor( klmString + ", " + mlkString + ","+ blkString,sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, " Hesap , Unvan, Yil ",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
 
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -1497,13 +1630,28 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				hANGI = "C" ;
 			}
-			rs = ker_Access.grp_rapor(" datepart(yyyy,KERESTE." + hANGI + "Tarih) AS Yil ,datepart(mm,KERESTE." + hANGI +"Tarih) as Ay ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+			String  mlkString = "" , blkString = "",grpString="";
+			if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+			{
+				
+				mlkString = " datepart(mm,KERESTE." + hANGI +"Tarih) as Ay " ;
+				blkString = " datepart(yyyy,KERESTE." + hANGI + "Tarih) AS Yil " ;
+				grpString = " datepart(yyyy,KERESTE." + hANGI + "Tarih) AS Yil , datepart(mm,KERESTE." + hANGI +"Tarih) as Ay " ;
+			}
+			else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+			{
+				
+				mlkString = " MONTH(KERESTE."+ hANGI+"Tarih) as Ay"  ;
+				blkString = " YEAR(KERESTE."+ hANGI+"Tarih) as Yil" ;
+				grpString = " YEAR(KERESTE."+ hANGI+"Tarih) , MONTH(KERESTE."+ hANGI+"Tarih) " ;
+			}
+			rs = ker_Access.grp_rapor(blkString +" , " + mlkString,sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Yil , Ay",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
 
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -1572,13 +1720,26 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				hANGI = "C" ;
 			}
-			rs = ker_Access.grp_rapor(" Kodu , datepart(yyyy,KERESTE." + hANGI + "Tarih) AS Yil ",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+			String  blkString = "", grpString="";
+			if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+			{
+				
+				blkString = " datepart(yyyy,KERESTE." + hANGI + "Tarih) AS Yil " ;
+				grpString = " Kodu , datepart(yyyy,KERESTE." + hANGI + "Tarih) AS Yil " ;
+			}
+			else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+			{
+				
+				blkString = " YEAR(KERESTE."+ hANGI+"Tarih) as Yil" ;
+				grpString= " Kodu ,YEAR(KERESTE." + hANGI + "Tarih) " ;
+			}
+			rs = ker_Access.grp_rapor(" Kodu ,  " + blkString,sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
 					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, " Kodu ,Yil ",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -1841,7 +2002,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				}
 				else if (BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
-					sstr_4 = " ((("+ hangiFiatString + " * (((CONVERT( SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT( SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) - (("+ hangiFiatString + " * (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) * "+ hangiIskontoString + ")/100) / iif(k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex())+ " = 0 ,1, k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex()) + ")) as Tutar ";
+					sstr_4 = " ((("+ hangiFiatString + " * (((CONVERT( SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT( SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) - (("+ hangiFiatString + " * (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) * "+ hangiIskontoString + ")/100) / IF(k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex())+ " = 0 ,1, k." + FILTRE.comboBox_77_2.getItemAt(FILTRE.comboBox_77_2.getSelectedIndex()) + "))  ";
 				}
 			}
 			else
@@ -1853,7 +2014,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				}
 				else if (BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
-					sstr_4 = "(("+ hangiFiatString + " * (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) - (("+ hangiFiatString + " * (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) * "+ hangiIskontoString + ")/100) as Tutar";
+					sstr_4 = "(("+ hangiFiatString + " * (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) - (("+ hangiFiatString + " * (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) * "+ hangiIskontoString + ")/100) ";
 					
 				}
 
@@ -1875,7 +2036,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 			else if (BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 			{
-			sstr_4 = " (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)  as m3";
+			sstr_4 = " (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)  ";
 			sstr_5 = "m3";
 				
 			}

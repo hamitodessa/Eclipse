@@ -757,6 +757,7 @@ public class KER_DETAY extends JInternalFrame {
 						Row satirRow = sheet.createRow(i+2);
 						for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
 						{
+							
 							Cell hname = satirRow.createCell(s);
 							if ( mdl.getValueAt(i, s) != null)
 							{
@@ -775,11 +776,38 @@ public class KER_DETAY extends JInternalFrame {
 									hname.setCellStyle(satirStyle2);
 									hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 								}
-								else  if (s== 7 ||s== 26) 
+								else  if (s== 7 ) 
 								{
-									DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-									hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
-									hname.setCellStyle(solaStyle);
+									if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+									{
+										DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+										hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
+										hname.setCellStyle(solaStyle);
+									}
+									else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+									{
+										hname.setCellValue(	TARIH_CEVIR.tarih_ters(mdl.getValueAt(i ,s).toString())) ;
+										hname.setCellStyle(solaStyle);
+									}
+								}
+								else  if (s== 26) 
+								{
+									if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+									{
+										if( ! mdl.getValueAt(i ,s).equals(""))
+										{
+											hname.setCellValue(	mdl.getValueAt(i ,s).toString()) ;
+											hname.setCellStyle(solaStyle);
+										}
+									}
+									else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+									{
+										if( ! mdl.getValueAt(i ,s).toString().equals(""))
+										{
+										hname.setCellValue(	TARIH_CEVIR.tarih_ters(mdl.getValueAt(i ,s).toString())) ;
+										hname.setCellStyle(solaStyle);
+										}
+									}
 								}
 								else
 								{
@@ -904,11 +932,38 @@ public class KER_DETAY extends JInternalFrame {
 									hname.setCellStyle(satirStyle2);
 									hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 								}
-								else  if (s== 7 ||s== 26) 
+								else  if (s== 7 ) 
 								{
-									DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-									hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
-									hname.setCellStyle(solaStyle);
+									if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+									{
+										DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+										hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
+										hname.setCellStyle(solaStyle);
+									}
+									else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+									{
+										hname.setCellValue(	TARIH_CEVIR.tarih_ters(mdl.getValueAt(i ,s).toString())) ;
+										hname.setCellStyle(solaStyle);
+									}
+								}
+								else  if (s== 26) 
+								{
+									if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+									{
+										if( ! mdl.getValueAt(i ,s).equals(""))
+										{
+											hname.setCellValue(	mdl.getValueAt(i ,s).toString()) ;
+											hname.setCellStyle(solaStyle);
+										}
+									}
+									else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+									{
+										if( ! mdl.getValueAt(i ,s).toString().equals(""))
+										{
+										hname.setCellValue(	TARIH_CEVIR.tarih_ters(mdl.getValueAt(i ,s).toString())) ;
+										hname.setCellStyle(solaStyle);
+										}
+									}
 								}
 								else
 								{
@@ -1047,12 +1102,39 @@ public class KER_DETAY extends JInternalFrame {
 						hname.setCellStyle(satirStyle2);
 						hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 					}
-					else  if (s== 7 ||s== 26) 
-					{
-						DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-						hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
-						hname.setCellStyle(solaStyle);
-					}
+								else  if (s== 7 ) 
+								{
+									if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+									{
+										DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+										hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
+										hname.setCellStyle(solaStyle);
+									}
+									else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+									{
+										hname.setCellValue(	TARIH_CEVIR.tarih_ters(mdl.getValueAt(i ,s).toString())) ;
+										hname.setCellStyle(solaStyle);
+									}
+								}
+								else  if (s== 26) 
+								{
+									if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+									{
+										if( ! mdl.getValueAt(i ,s).equals(""))
+										{
+											hname.setCellValue(	mdl.getValueAt(i ,s).toString()) ;
+											hname.setCellStyle(solaStyle);
+										}
+									}
+									else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+									{
+										if( ! mdl.getValueAt(i ,s).toString().equals(""))
+										{
+										hname.setCellValue(	TARIH_CEVIR.tarih_ters(mdl.getValueAt(i ,s).toString())) ;
+										hname.setCellStyle(solaStyle);
+										}
+									}
+								}
 					else
 					{
 						hname.setCellValue( mdl.getValueAt(i,s).toString());

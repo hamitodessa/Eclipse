@@ -178,6 +178,7 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_23 ; //Konsimento  Aciklama Giris
 	private JButton btnNewButton_35 ; //Firma Ismi
 	private JButton btnNewButton_66 ; // Ortalama Satis
+	private JButton btnNewButton_65 ; // Degisken Yenileme
 	//
 	private JButton btnYenile ; // Yenile Tusu
 	private JButton btnExcell ; // Excell Aktarma
@@ -954,6 +955,21 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnKereste.add(mntmCikis);	
 		
+		JSeparator separator_k1 = new JSeparator();
+		mnKereste.add(separator_k1);
+		
+		
+		JMenuItem mntmkDegis = new JMenuItem("Kod Degistirme");
+		mntmkDegis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_64.doClick();
+			}
+		});
+		mnKereste.add(mntmkDegis);	
+		
+		JSeparator separator_k2 = new JSeparator();
+		mnKereste.add(separator_k2);
+		
 		JMenuItem mntmGrup = new JMenuItem("Grup Raporlama");
 		mntmGrup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -969,6 +985,25 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnKereste.add(mntmDetay);	
+		
+		JMenuItem mntmfRapor = new JMenuItem("Fatura Raporlama");
+		mntmfRapor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_63.doClick();
+			}
+		});
+		mnKereste.add(mntmfRapor);	
+		
+		JMenuItem mntmoRtalama = new JMenuItem("Ortalama Satis ");
+		mntmoRtalama.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_66.doClick();
+			}
+		});
+		mnKereste.add(mntmoRtalama);	
+		
+		JSeparator separator_k3 = new JSeparator();
+		mnKereste.add(separator_k3);
 		
 		JMenuItem mntmKodAdi = new JMenuItem("Kod Adi Aciklama");
 		mntmKodAdi.addActionListener(new ActionListener() {
@@ -986,6 +1021,9 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnKereste.add(mntmKonsAdi);	
 		
+		JSeparator separator_k4 = new JSeparator();
+		mnKereste.add(separator_k4);
+		
 		JMenuItem mntmKFirma = new JMenuItem("Firma Ismi");
 		mntmKFirma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -993,6 +1031,15 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnKereste.add(mntmKFirma);	
+		
+		//
+		JMenuItem mntmdEgisken = new JMenuItem("Degisken Yenileme");
+		mntmdEgisken.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_65.doClick();
+			}
+		});
+		mnKereste.add(mntmdEgisken);	
 //***************************************************GENEL *************************************************
 		JMenu mnGenel = new JMenu("Genel");
 		mnGenel.addMouseMotionListener(new MouseMotionAdapter() {
@@ -2028,6 +2075,7 @@ public class OBS_MAIN extends JFrame {
 			
 		
 		btnNewButton_26 = new JButton("");
+		btnNewButton_26.setToolTipText("Urun Detay Raporlama");
 		btnNewButton_26.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("KERESTE DETAY RAPOR","");
@@ -2124,7 +2172,7 @@ public class OBS_MAIN extends JFrame {
 		
 		toolBar_Kereste.add(btnNewButton_35);
 		
-		JButton btnNewButton_65 = new JButton("");
+		btnNewButton_65 = new JButton("");
 		btnNewButton_65.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("KERESTE DEGISKEN YENILEME","");

@@ -1196,7 +1196,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.Nakliyeci ) as Nakliyeci  " 
 				+ " ,[USER] "
 				+ " ,[Cikis_Evrak] "
-				+ " ,[CTarih] "
+				+ " ,ISNULL(CASE WHEN CONVERT(DATE, CTarih) = '1900-01-01' THEN '' ELSE CONVERT(CHAR(10), CTarih, 104) END, '') AS CTarih "
 				+ " ,[CKdv] "
 				+ " ,[CDoviz] "
 				+ " ,[CFiat] "
@@ -1234,6 +1234,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " CAlt_Grup " + ker_rap_BILGI.getCAlt_Grup()  + " AND" 
 				+ " CDepo " + ker_rap_BILGI.getCDepo()  + " AND " 
 				+ " COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() ; 
+		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1571,7 +1572,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.Nakliyeci ) as Nakliyeci  " 
 				+ " ,[USER] "
 				+ " ,[Cikis_Evrak] "
-				+ " ,[CTarih] "
+				+ " ,ISNULL(CASE WHEN CONVERT(DATE, CTarih) = '1900-01-01' THEN '' ELSE CONVERT(CHAR(10), CTarih, 104) END, '') AS CTarih "
 				+ " ,[CKdv] "
 				+ " ,[CDoviz] "
 				+ " ,[CFiat] "

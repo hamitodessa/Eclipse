@@ -738,7 +738,13 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.setInt(22, kBILGI.getNakliyeci());
 		stmt.setString(23,  user);
 		stmt.setString(24,kBILGI.getCikis_Evrak());
-		stmt.setString(25,kBILGI.getCTarih());
+		if(!kBILGI.getCTarih().equals(""))
+		{
+			stmt.setString(25,kBILGI.getCTarih());
+		}
+		else {
+			stmt.setString(25,"1900.01.01");
+		}
 		stmt.setDouble(26, kBILGI.getCKdv());
 		stmt.setString(27,kBILGI.getCDoviz());
 		stmt.setDouble(28, kBILGI.getCFiat());
@@ -777,9 +783,9 @@ public class KERESTE_MYSQL implements IKERESTE {
 		}
 		else {
 			sql = "SELECT    Evrak_No  , Barkod  , Kodu , Paket_No , Konsimento  , Miktar , Tarih , Kdv  , Doviz  , Fiat   , Tutar  , Kur   , Cari_Firma , Adres_Firma   , Iskonto  , Tevkifat  "
-					+ "	, Ana_Grup   , Alt_Grup  , Mensei  ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) , '') AS Depo  , Ozel_Kod  , Izahat   , Nakliyeci  ,USER "
+					+ "	, Ana_Grup   , Alt_Grup  , Mensei  ,IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) , '') AS Depo  , Ozel_Kod  , Izahat   , Nakliyeci  ,USER "
 					+ "	, Cikis_Evrak   , CTarih    , CKdv  , CDoviz   , CFiat  , CTutar  , CKur  , CCari_Firma  , CAdres_Firma  , CIskonto   , CTevkifat  "
-					+ "	, CAna_Grup     , CAlt_Grup   ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER ,Satir" 
+					+ "	, CAna_Grup     , CAlt_Grup   ,IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER ,Satir" 
 					+ " FROM KERESTE   " 
 					+ " WHERE Cikis_Evrak  = N'" + eno + "' ORDER BY Paket_No ,Satir" ;
 		}
@@ -899,7 +905,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String sql = "SELECT    Evrak_No  , Barkod  , Kodu , Paket_No , Konsimento  , Miktar , Cikis_Evrak   , CTarih    , CKdv  , CDoviz   , CFiat  , CTutar  , CKur  " 
 				+ ", CCari_Firma  , CAdres_Firma  , CIskonto   , CTevkifat , CAna_Grup     , CAlt_Grup   "
-				+ "	 ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER ,Satir" 
+				+ "	 ,IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER ,Satir" 
 				+ " FROM KERESTE   " 
 				+ " WHERE Paket_No = N'" + token[0] + "' AND Konsimento = N'"+ token[1]  +"' ORDER BY Satir" ;
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -1112,7 +1118,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.Nakliyeci ) as Nakliyeci  " 
 				+ " ,USER "
 				+ " , Cikis_Evrak  "
-				+ " ,DATE_FORMAT(CTarih, '%Y.%m.%d')  AS TARIH "
+				+ " , IF(DATE_FORMAT(CTarih, '%Y.%m.%d')= '1900.01.01','',DATE_FORMAT(CTarih, '%Y.%m.%d'))  AS CTARIH "
 				+ " , CKdv  "
 				+ " , CDoviz  "
 				+ " , CFiat  "
@@ -1486,7 +1492,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.Nakliyeci ) as Nakliyeci  " 
 				+ " ,USER "
 				+ " ,Cikis_Evrak  "
-				+ " ,CTarih  "
+				+ " ,IF(DATE_FORMAT(CTarih, '%Y.%m.%d')= '1900.01.01','',DATE_FORMAT(CTarih, '%Y.%m.%d'))  AS CTARIH "
 				+ " ,CKdv  "
 				+ " ,CDoviz  "
 				+ " ,CFiat  "
@@ -1698,7 +1704,13 @@ public class KERESTE_MYSQL implements IKERESTE {
 				stmt.setInt(22, degisken[2]);
 				stmt.setString(23,  user);
 				stmt.setString(24, mdl.getValueAt(i,12).toString());
-				stmt.setString(25, mdl.getValueAt(i,13).toString());
+				if(!mdl.getValueAt(i,13).toString().equals(""))
+				{
+					stmt.setString(25,mdl.getValueAt(i,13).toString());
+				}
+				else {
+					stmt.setString(25,"1900.01.01");
+				}
 				stmt.setDouble(26, Double.parseDouble( mdl.getValueAt(i,14).toString()));
 				stmt.setString(27, mdl.getValueAt(i,15).toString());
 				stmt.setDouble(28, Double.parseDouble( mdl.getValueAt(i,16).toString()));
@@ -1756,7 +1768,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " , Paket_No  "
 				+ " , Konsimento  "
 				+ " , Miktar  "
-				+ " ,(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)  as m3"
+				+ " ,(((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL)) * Miktar)/1000000000)  as m3"
 				+ " , Tarih  "
 				+ " , Kdv  "
 				+ " , Doviz  "
@@ -1767,11 +1779,11 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " , Adres_Firma  "
 				+ " , Iskonto  "
 				+ " , Tevkifat  "
-				+ " ,ISNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.Ana_Grup),'') Ana_Grup "
-				+ " ,ISNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.Alt_Grup),'') AS Alt_Grup "
-				+ " ,ISNULL((SELECT MENSEI FROM MENSEI_DEGISKEN WHERE MENSEI_DEGISKEN.MEID_Y = KERESTE.Mensei),'') AS Mensei "
+				+ " ,IFNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.Ana_Grup),'') Ana_Grup "
+				+ " ,IFNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.Alt_Grup),'') AS Alt_Grup "
+				+ " ,IFNULL((SELECT MENSEI FROM MENSEI_DEGISKEN WHERE MENSEI_DEGISKEN.MEID_Y = KERESTE.Mensei),'') AS Mensei "
 				+ " ,(SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) as Depo  " 
-				+ " ,ISNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.Ozel_Kod),'') Ozel_Kod "
+				+ " ,IFNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.Ozel_Kod),'') Ozel_Kod "
 				+ " , Izahat  "
 				+ " ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.Nakliyeci ) as Nakliyeci  " 
 				+ " ,USER "

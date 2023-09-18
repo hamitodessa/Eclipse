@@ -24,11 +24,16 @@ public class TARIH extends DefaultTableCellRenderer {
 		{
 			try 
 			{
-				Date date1 = new SimpleDateFormat("yyyy.MM.dd").parse(value.toString());
-				SimpleDateFormat DateFor = new SimpleDateFormat("dd.MM.yyyy");
-				value = DateFor.format(date1);
+				if(! value.toString().equals(""))
+				{
+					Date date1 = new SimpleDateFormat("yyyy.MM.dd").parse(value.toString());
+					SimpleDateFormat DateFor = new SimpleDateFormat("dd.MM.yyyy");
+					value = DateFor.format(date1);
+				}
+				
 			} catch (Exception e) 
 			{
+			
 				e.printStackTrace();			
 			}  
 		}

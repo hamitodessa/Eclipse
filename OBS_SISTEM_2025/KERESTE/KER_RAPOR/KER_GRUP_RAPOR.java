@@ -302,7 +302,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak("DISTINCT datepart(yyyy,KERESTE."+ hANGI+"Tarih)","order by datepart(yyyy,KERESTE."+ hANGI+"Tarih)",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 					sstr_2 = " datepart(yyyy,KERESTE."+ hANGI +"Tarih)" ;
 				}
 				if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
@@ -310,7 +311,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak("DISTINCT YEAR(KERESTE."+ hANGI+"Tarih)","order by YEAR(KERESTE."+ hANGI+"Tarih)",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 					sstr_2 = " YEAR(KERESTE."+ hANGI+"Tarih)" ;
 
 				}
@@ -322,7 +324,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak("DISTINCT datepart(mm,KERESTE."+ hANGI+"Tarih)", "order by datepart(mm,KERESTE."+ hANGI+"Tarih)",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = "datepart(mm,KERESTE."+ hANGI +"Tarih)" ;
 				}
@@ -331,7 +334,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak(" DISTINCT MONTH(KERESTE."+ hANGI +"Tarih)", "order by MONTH(KERESTE."+ hANGI+"Tarih) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = "MONTH(KERESTE."+ hANGI+"Tarih)" ;
 
@@ -344,7 +348,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak("DISTINCT datepart(dd,KERESTE."+ hANGI+"Tarih)", "order by datepart(dd,KERESTE."+ hANGI+"Tarih)",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = "datepart(dd,KERESTE."+ hANGI+"Tarih)" ;
 				}
@@ -353,7 +358,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak(" DISTINCT DAY(KERESTE."+ hANGI+"Tarih)", "order by DAY(KERESTE."+ hANGI +"Tarih) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = "DAY(KERESTE."+ hANGI+"Tarih)" ;
 
@@ -366,7 +372,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) " ;
 				}
@@ -376,7 +383,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak("DISTINCT   CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3) , DECIMAL)  ", "order by CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3) , DECIMAL) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = " CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3) ,DECIMAL) " ;
 				}
@@ -388,7 +396,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4) ) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4) ) " ;
 				}
@@ -397,7 +406,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak("DISTINCT   CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4) , DECIMAL)  ", "order by CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4) , DECIMAL) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = " CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4) ,DECIMAL) " ;
 
@@ -410,7 +420,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak("DISTINCT CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) ) ", "order by CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) ) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = " CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) ) " ;
 				}
@@ -419,7 +430,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak("DISTINCT   CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4) , DECIMAL)  ", "order by CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4), DECIMAL) ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = " CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4) ,DECIMAL) " ;
 
@@ -432,7 +444,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak("DISTINCT  SUBSTRING(KERESTE.Kodu, 1, 2)  ", "order by SUBSTRING(KERESTE.Kodu, 1, 2)  ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = "  SUBSTRING(KERESTE.Kodu, 1, 2)  " ;
 				}
@@ -441,7 +454,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 						rs = ker_Access.baslik_bak("DISTINCT  SUBSTRING(KERESTE.Kodu, 1, 2)  ", "order by SUBSTRING(KERESTE.Kodu, 1, 2)  ",jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = "  SUBSTRING(KERESTE.Kodu, 1, 2)  " ;
 
@@ -467,7 +481,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak("DISTINCT  " + hKODU, "order by  " + hKODU,jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = hKODU ;
 				}
@@ -488,7 +503,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs = ker_Access.baslik_bak("DISTINCT  " + hKODU, "order by  " + hKODU,jkj,
 							FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
 							FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
-							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI);
+							TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),hANGI,
+							FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 					sstr_2 = hKODU ;
 
@@ -534,7 +550,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1," Kodu",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo," Kodu");
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo," Kodu" ,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 
 			GRID_TEMIZLE.grid_temizle(table);
@@ -611,7 +628,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1," Konsimento",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo," Konsimento");
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo," Konsimento",
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 
 			GRID_TEMIZLE.grid_temizle(table);
@@ -695,7 +713,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Sinif",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -778,7 +797,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Sinif , Kal" , hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -874,7 +894,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Sinif , Kal,Boy",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 			GRID_TEMIZLE.grid_temizle(table);
 
@@ -977,7 +998,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Paket_No,Sinif , Kal,Boy",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 			GRID_TEMIZLE.grid_temizle(table);
 
@@ -1069,7 +1091,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Paket_No , Konsimento" , hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo," Paket_No , Konsimento ");
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo," Paket_No , Konsimento ",
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -1166,7 +1189,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Paket_No,Sinif , Kal,Gen",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 			GRID_TEMIZLE.grid_temizle(table);
 
@@ -1273,7 +1297,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Sinif , Kal,Gen",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -1370,7 +1395,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1," Yil",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 
 			GRID_TEMIZLE.grid_temizle(table);
@@ -1462,7 +1488,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, " Hesap , Unvan",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -1557,7 +1584,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, " Hesap , Unvan, Yil ",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -1652,7 +1680,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, "Yil , Ay",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -1740,7 +1769,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
 					sstr_5, sstr_1, " Kodu ,Yil ",hANGI,
-					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString);
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));

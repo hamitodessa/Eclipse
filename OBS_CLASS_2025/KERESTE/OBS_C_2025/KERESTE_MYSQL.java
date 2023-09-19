@@ -1006,7 +1006,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public ResultSet baslik_bak(String baslik, String ordr, String jkj, String k1, String k2, String f1,
-			String f2, String t1, String t2,String dURUM) throws ClassNotFoundException, SQLException {
+			String f2, String t1, String t2,String dURUM,String e1,String e2) throws ClassNotFoundException, SQLException {
 		 
 		ResultSet	rss = null;
 		String[] token = k1.toString().split("-");
@@ -1021,6 +1021,14 @@ public class KERESTE_MYSQL implements IKERESTE {
 		sonk = token[1];
 		sonb = token[2];
 		song = token[3];
+		String qweString = "";
+		if(dURUM.equals("C"))
+		{
+			qweString = " Cikis_Evrak " ;
+		}
+		else {
+			qweString = " Evrak_No " ;
+		}
 		String sql =   "SELECT "+ baslik + "  FROM KERESTE   " +
 				" WHERE   " + jkj +
 				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
@@ -1028,6 +1036,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 				" SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' " +
 				" AND " + dURUM + "Cari_Firma between N'" + f1 + "' AND N'" + f2 + "'" +
+				" AND " + qweString  + " between N'" + e1 + "' AND N'" + e2 + "'" +
 				" AND " + dURUM + "Tarih BETWEEN '" + t1 + "'" +
 				" AND  '"  + t2 + " 23:59:59.998'" +
 				" " + ordr + " ";
@@ -1039,7 +1048,8 @@ public class KERESTE_MYSQL implements IKERESTE {
 	@Override
 	public ResultSet grp_rapor(String gruplama,String sstr_2, String sstr_4, String kur_dos, String qwq6,
 			String qwq7, String qwq8, String k1, String k2, String s1, String s2, String jkj,
-			String t1, String t2, String sstr_5, String sstr_1,String orderBY,String dURUM,String ko1, String ko2,String dpo,String grup) throws ClassNotFoundException, SQLException {
+			String t1, String t2, String sstr_5, String sstr_1,String orderBY,String dURUM,String ko1, String ko2,String dpo,String grup,
+			String e1 , String e2) throws ClassNotFoundException, SQLException {
 		 
 		ResultSet	rss = null;
 		String[] token = k1.toString().split("-");
@@ -1093,7 +1103,14 @@ public class KERESTE_MYSQL implements IKERESTE {
 			cASE  = cASE + "Sum(CASE WHEN " + sstr_2 + "  = '" + t.trim() + "'  THEN " + sstr_4 + " ELSE 0 END) AS '"+ t.trim() + "',";
 		}
 		cASE = cASE.substring(0, cASE.length() - 1);
-		
+		String qweString = "" ;
+		if(dURUM.equals("C"))
+		{
+			qweString = " Cikis_Evrak " ;
+		}
+		else {
+			qweString = " Evrak_No " ;
+		}
 		///
 		String sql =   "SELECT " + gruplama + " ," + cASE +
 				" FROM KERESTE   " + kur_dos + 
@@ -1104,6 +1121,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 				" SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' " +
 				" AND "+ dURUM + "Cari_Firma between N'" + s1 + "' AND N'" + s2 + "'" +
+				" AND " + qweString  + " between N'" + e1 + "' AND N'" + e2 + "'" +
 				" AND Konsimento between N'" + ko1 + "' AND N'" + ko2 + "'" +
 				" AND  KERESTE."+ dURUM + "Tarih BETWEEN '" +t1 + "'" + " AND  '" + t2 + " 23:59:59.998'" +
 				" GROUP BY " + grup ;

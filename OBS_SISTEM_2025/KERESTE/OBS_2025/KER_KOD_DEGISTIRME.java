@@ -68,7 +68,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	private static KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(oac._IKereste , oac._IKereste_Loger);
 	private static JTable table;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtPaketNo;
 	private JTextField textField_2;
 	private JFormattedTextField formattedTextField ;
 	private JLabel lblNewLabel_2;
@@ -145,11 +145,11 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			}
 		});
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_1.setDocument(new JTextFieldLimit(10));
-		textField_1.setBounds(117, 36, 130, 20);
-		textField_1.getDocument().addDocumentListener(new DocumentListener() {
+		txtPaketNo = new JTextField();
+		txtPaketNo.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtPaketNo.setDocument(new JTextFieldLimit(10));
+		txtPaketNo.setBounds(117, 36, 130, 20);
+		txtPaketNo.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				//hisset();
 			}
@@ -160,7 +160,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				hisset();
 			}
 		});
-		panel.add(textField_1);
+		panel.add(txtPaketNo);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Yeni Kod", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -297,7 +297,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		
 		KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
-		ker_BILGI.setPaket_No1(textField_1.getText());
+		ker_BILGI.setPaket_No1(txtPaketNo.getText());
 		ker_BILGI.setKonsimento1(textField.getText());
 		ker_BILGI.setGKodu1(formattedTextField.getText());
 	}
@@ -310,7 +310,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			ResultSet	rs = null;
 			mWAIT();
 			KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
-			ker_BILGI.setPaket_No1(textField_1.getText());
+			ker_BILGI.setPaket_No1(txtPaketNo.getText());
 			ker_BILGI.setKonsimento1(textField.getText());
 			ker_BILGI.setGKodu1(formattedTextField.getText());
 			rs = ker_Access.urun_detay(ker_BILGI );
@@ -612,7 +612,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			th.repaint();
 			table.repaint();
 			textField.setText("");
-			textField_1.setText("");
+			txtPaketNo.setText("");
 			textField_2.setText("");
 			formattedTextField.setText("00-000-0000-0000");
 
@@ -662,7 +662,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 		GuiUtil.setWaitCursor(splitPane,true);
 		GuiUtil.setWaitCursor(textField,true);
-		GuiUtil.setWaitCursor(textField_1,true);
+		GuiUtil.setWaitCursor(txtPaketNo,true);
 		GuiUtil.setWaitCursor(formattedTextField,true);
 
 	}
@@ -671,7 +671,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		GuiUtil.setWaitCursor(splitPane,false);
 		GuiUtil.setWaitCursor(textField,false);
-		GuiUtil.setWaitCursor(textField_1,false);
+		GuiUtil.setWaitCursor(txtPaketNo,false);
 		GuiUtil.setWaitCursor(formattedTextField,false);
 
 	}

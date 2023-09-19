@@ -152,7 +152,6 @@ public class KER_ORT_SATIS extends JInternalFrame {
 	{
 		try
 		{
-			//GRID_TEMIZLE.grid_temizle(table);
 			diger_kodlu();
 
 		}
@@ -199,6 +198,45 @@ public class KER_ORT_SATIS extends JInternalFrame {
 					tc.setHeaderRenderer(new SOLA());
 					tc.setMinWidth(250);
 					tc.setMaxWidth(250);
+					sut = 2 ;
+
+				}
+				if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Sinif-Kal"))
+				{
+					tc = tcm.getColumn(0);
+					tc.setHeaderRenderer(new SOLA());
+					tc.setMinWidth(90);
+
+					tc = tcm.getColumn(1);
+					tc.setHeaderRenderer(new SOLA());
+					tc.setMinWidth(50);
+					tc.setMaxWidth(50);
+					sut = 2 ;
+
+				}
+				if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Sinif-Boy"))
+				{
+					tc = tcm.getColumn(0);
+					tc.setHeaderRenderer(new SOLA());
+					tc.setMinWidth(90);
+
+					tc = tcm.getColumn(1);
+					tc.setHeaderRenderer(new SOLA());
+					tc.setMinWidth(50);
+					tc.setMaxWidth(50);
+					sut = 2 ;
+
+				}
+				if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Sinif-Gen"))
+				{
+					tc = tcm.getColumn(0);
+					tc.setHeaderRenderer(new SOLA());
+					tc.setMinWidth(90);
+
+					tc = tcm.getColumn(1);
+					tc.setHeaderRenderer(new SOLA());
+					tc.setMinWidth(50);
+					tc.setMaxWidth(50);
 					sut = 2 ;
 
 				}
@@ -418,6 +456,21 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				yu = " SUBSTRING(KERESTE.Kodu,1, 2) as Sinif, (SELECT ACIKLAMA FROM KOD_ACIKLAMA  WHERE KOD = SUBSTRING(KERESTE.Kodu,1, 2) ) as Adi ";
 				iu = " SUBSTRING(KERESTE.Kodu,1, 2)  order by SUBSTRING(KERESTE.Kodu,1, 2)  ";
 			}
+			else  if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Sinif-Kal"))
+			{
+				yu = " SUBSTRING(KERESTE.Kodu,1, 2) as Sinif, SUBSTRING(KERESTE.Kodu, 4, 3) as Kal ";
+				iu = " SUBSTRING(KERESTE.Kodu,1, 2) ,  SUBSTRING(KERESTE.Kodu, 4, 3)  order by SUBSTRING(KERESTE.Kodu,1, 2) , SUBSTRING(KERESTE.Kodu, 4, 3) ";
+			}
+			else  if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Sinif-Boy"))
+			{
+				yu = " SUBSTRING(KERESTE.Kodu,1, 2) as Sinif, SUBSTRING(KERESTE.Kodu, 8, 4) as Boy ";
+				iu = " SUBSTRING(KERESTE.Kodu,1, 2) ,  SUBSTRING(KERESTE.Kodu, 8, 4)  order by SUBSTRING(KERESTE.Kodu,1, 2) , SUBSTRING(KERESTE.Kodu, 8, 4) ";
+			}
+			else  if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Sinif-Gen"))
+			{
+				yu = " SUBSTRING(KERESTE.Kodu,1, 2) as Sinif, SUBSTRING(KERESTE.Kodu, 13, 4) as Gen ";
+				iu = " SUBSTRING(KERESTE.Kodu,1, 2) ,  SUBSTRING(KERESTE.Kodu, 13, 4)  order by SUBSTRING(KERESTE.Kodu,1, 2) , SUBSTRING(KERESTE.Kodu, 13, 4) ";
+			}
 			else  if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Kodu"))
 			{
 				yu = " KERESTE.Kodu, (SELECT ACIKLAMA FROM KOD_ACIKLAMA  WHERE KOD = SUBSTRING(KERESTE.Kodu,1, 2) ) as Adi ";
@@ -457,8 +510,18 @@ public class KER_ORT_SATIS extends JInternalFrame {
 			}
 			else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Hesap Kodu"))
 			{ 
-				yu = "   KERESTE."+ hANGI+"Cari_Firma,(SELECT DISTINCT  UNVAN FROM OK_Car" + BAGLAN.cariDizin.kOD + ".HESAP WHERE hesap.hesap = KERESTE."+hANGI+"Cari_Firma   ) as Cari_Adi  ";
-				iu = " KERESTE."+ hANGI+"Cari_Firma ORDER BY  KERESTE."+ hANGI+"Cari_Firma";
+				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+				{
+					yu = "   KERESTE."+ hANGI+"Cari_Firma,(SELECT DISTINCT  UNVAN FROM OK_Car" + BAGLAN.cariDizin.kOD + ".dbo.HESAP WHERE hesap.hesap = KERESTE."+hANGI+"Cari_Firma   ) as Cari_Adi  ";
+					iu = " KERESTE."+ hANGI+"Cari_Firma ORDER BY  KERESTE."+ hANGI+"Cari_Firma";
+					
+				}
+				else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+				{
+					yu = "   KERESTE."+ hANGI+"Cari_Firma,(SELECT DISTINCT  UNVAN FROM OK_Car" + BAGLAN.cariDizin.kOD + ".HESAP WHERE hesap.hesap = KERESTE."+hANGI+"Cari_Firma   ) as Cari_Adi  ";
+					iu = " KERESTE."+ hANGI+"Cari_Firma ORDER BY  KERESTE."+ hANGI+"Cari_Firma";
+					
+				}
 			}
 			//'************************************
 		} 
@@ -595,6 +658,18 @@ public class KER_ORT_SATIS extends JInternalFrame {
 					sutun = 1 ;
 				}
 				else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Sinif"))
+				{
+					sutun = 1 ;
+				}
+				else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Sinif-Kal"))
+				{
+					sutun = 1 ;
+				}
+				else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Sinif-Boy"))
+				{
+					sutun = 1 ;
+				}
+				else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Sinif-Gen"))
 				{
 					sutun = 1 ;
 				}
@@ -745,6 +820,18 @@ public class KER_ORT_SATIS extends JInternalFrame {
 					sutun = 1 ;
 				}
 				else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Sinif"))
+				{
+					sutun = 1 ;
+				}
+				else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Sinif-Kal"))
+				{
+					sutun = 1 ;
+				}
+				else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Sinif-Boy"))
+				{
+					sutun = 1 ;
+				}
+				else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Sinif-Gen"))
 				{
 					sutun = 1 ;
 				}
@@ -908,6 +995,18 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				sutun = 1 ;
 			}
 			else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Sinif"))
+			{
+				sutun = 1 ;
+			}
+			else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Sinif-Kal"))
+			{
+				sutun = 1 ;
+			}
+			else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Sinif-Boy"))
+			{
+				sutun = 1 ;
+			}
+			else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Sinif-Gen"))
 			{
 				sutun = 1 ;
 			}

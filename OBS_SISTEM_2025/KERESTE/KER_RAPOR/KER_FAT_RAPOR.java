@@ -72,7 +72,7 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 
 	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
-	
+
 	private static JTable table;
 	private static JTable table_1;
 	private static String gana ="" ;
@@ -113,82 +113,82 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(0, 0, 1000, 600);
-		
+
 		splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
 		splitPane.setDividerSize(0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setLeftComponent(scrollPane);
-		
+
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table.setGridColor(oac.gridcolor);
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-		    public void valueChanged(ListSelectionEvent lse) {
-			        if (!lse.getValueIsAdjusting()) {
-			        	 DefaultTableModel model = (DefaultTableModel)table.getModel();
-			        	 if (model.getRowCount() == 0) return ;
-			        	 if (table.getSelectedRow()  < 0) return;
-			        	 table.setCursor(oac.WAIT_CURSOR);
-			        	 detay_doldur(model.getValueAt(table.getSelectedRow() , 0).toString(),model.getValueAt(table.getSelectedRow() , 1).toString());
-			        	 table.setCursor(oac.DEFAULT_CURSOR);
-			        }
-			    }
-			});
+			public void valueChanged(ListSelectionEvent lse) {
+				if (!lse.getValueIsAdjusting()) {
+					DefaultTableModel model = (DefaultTableModel)table.getModel();
+					if (model.getRowCount() == 0) return ;
+					if (table.getSelectedRow()  < 0) return;
+					table.setCursor(oac.WAIT_CURSOR);
+					detay_doldur(model.getValueAt(table.getSelectedRow() , 0).toString(),model.getValueAt(table.getSelectedRow() , 1).toString());
+					table.setCursor(oac.DEFAULT_CURSOR);
+				}
+			}
+		});
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
-		
+
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 350));
 		panel.setMaximumSize(new Dimension(0, 350));
 		splitPane.setRightComponent(panel);
 		panel.setLayout(new BorderLayout(0, 0));
-		
+
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setResizeWeight(1.0);
 		splitPane_1.setDividerSize(0);
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		panel.add(splitPane_1);
-		
+
 		JScrollPane scrollPane_1 = new JScrollPane();
 		splitPane_1.setLeftComponent(scrollPane_1);
-		
+
 		table_1 = new JTable();
 		table_1.setGridColor(oac.gridcolor);
 		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_1.setViewportView(table_1);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
 		panel_1.setMinimumSize(new Dimension(0, 25));
 		panel_1.setMaximumSize(new Dimension(0, 25));
 		splitPane_1.setRightComponent(panel_1);
 		panel_1.setLayout(null);
-		
+
 		JLabel label = new JLabel("Kayit Sayisi :");
 		label.setBounds(170, 5, 85, 14);
 		panel_1.add(label);
-		
+
 		lbladet = new JLabel("0");
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
 		lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setBounds(260, 5, 47, 14);
 		panel_1.add(lbladet);
-		
+
 		lblana = new JLabel("0");
 		lblana.setHorizontalAlignment(SwingConstants.LEFT);
 		lblana.setForeground(new Color(0, 0, 128));
 		lblana.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblana.setBounds(100, 5, 40, 14);
 		panel_1.add(lblana);
-		
+
 		JLabel lblFaturaSayisi = new JLabel("Fatura Sayisi :");
 		lblFaturaSayisi.setBounds(10, 5, 85, 14);
 		panel_1.add(lblFaturaSayisi);
@@ -255,13 +255,13 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			ker_BILGI.setCDepo(cdpo);
 			ker_BILGI.setCOzel_Kod(coz);
 			if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
-       		{
+			{
 				ker_BILGI.setgIRcIK("G");
-       		}
+			}
 			else {
 				ker_BILGI.setgIRcIK("C");
 			}
-			
+
 			rs = ker_Access.fat_rapor(ker_BILGI);
 			GRID_TEMIZLE.grid_temizle(table);
 			GRID_TEMIZLE.grid_temizle(table_1);
@@ -271,100 +271,100 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			} 
 			else
 			{
-			table.setModel(DbUtils.resultSetToTableModel(rs));
-			JTableHeader th = table.getTableHeader();
-			TableColumnModel tcm = th.getColumnModel();
-			TableColumn tc;
-			tc = tcm.getColumn(0);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(100);
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(100);
 
-			tc = tcm.getColumn(1);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(70);
+				tc = tcm.getColumn(1);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(70);
 
-			tc = tcm.getColumn(2);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setCellRenderer(new TARIH());
-			tc.setMinWidth(80);
+				tc = tcm.getColumn(2);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new TARIH());
+				tc.setMinWidth(80);
 
-			tc = tcm.getColumn(3);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(200);
+				tc = tcm.getColumn(3);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(200);
 
-			tc = tcm.getColumn(4);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(100);
+				tc = tcm.getColumn(4);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(100);
 
-			tc = tcm.getColumn(5);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(50);
+				tc = tcm.getColumn(5);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(50);
 
-			tc = tcm.getColumn(6);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(3,false));
-			tc.setMinWidth(100);
+				tc = tcm.getColumn(6);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(3,false));
+				tc.setMinWidth(100);
 
-			tc = tcm.getColumn(7);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,false));
-			tc.setMinWidth(130);
+				tc = tcm.getColumn(7);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,false));
+				tc.setMinWidth(130);
 
-			tc = tcm.getColumn(8);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,false));
-			tc.setMinWidth(150);
+				tc = tcm.getColumn(8);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,false));
+				tc.setMinWidth(150);
 
-			tc = tcm.getColumn(9);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,false));
-			tc.setMinWidth(130);
+				tc = tcm.getColumn(9);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,false));
+				tc.setMinWidth(130);
 
-			tc = tcm.getColumn(10);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new TABLO_RENDERER(2,false));
-			tc.setMinWidth(150);
+				tc = tcm.getColumn(10);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,false));
+				tc.setMinWidth(150);
 
-			Dimension dd = th.getPreferredSize();
-			dd.height = 30;
-			th.setPreferredSize(dd); 
-			th.repaint();
-			table.setRowSelectionInterval(0, 0);
-			table.setRowHeight(21);
+				Dimension dd = th.getPreferredSize();
+				dd.height = 30;
+				th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
 
-			int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
-			table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
-			table.setRowSelectionInterval(lastRow, lastRow);
+				int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
+				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
+				table.setRowSelectionInterval(lastRow, lastRow);
 
-			table.setSelectionBackground(Color.PINK);
-			table.setSelectionForeground(Color.BLUE);
-			lblana.setText(FORMATLAMA.doub_0(table.getRowCount()));
+				table.setSelectionBackground(Color.PINK);
+				table.setSelectionForeground(Color.BLUE);
+				lblana.setText(FORMATLAMA.doub_0(table.getRowCount()));
 				//***
-			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-			double miktar = 0,tutar = 0,isk_tutar=0 ;
-			for (int i = 0 ; i <= mdl.getRowCount()-1;i++)
-			{
-				miktar  += (double) mdl.getValueAt(i , 6);
-				tutar  += (double) mdl.getValueAt(i , 7);
-				isk_tutar  += (double) mdl.getValueAt(i , 8);
-			}
-			Vector<Object> data = new Vector<Object>();
-			data.add("");
-			data.add("");
-			data.add(new Date());
-			data.add("");
-			data.add("");
-			data.add("");
-			data.add(miktar);
-			data.add(tutar);
-			data.add(isk_tutar);
-			mdl.addRow(data);
+				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+				double miktar = 0,tutar = 0,isk_tutar=0 ;
+				for (int i = 0 ; i <= mdl.getRowCount()-1;i++)
+				{
+					miktar  += (double) mdl.getValueAt(i , 6);
+					tutar  += (double) mdl.getValueAt(i , 7);
+					isk_tutar  += (double) mdl.getValueAt(i , 8);
+				}
+				Vector<Object> data = new Vector<Object>();
+				data.add("");
+				data.add("");
+				data.add(new Date());
+				data.add("");
+				data.add("");
+				data.add("");
+				data.add(miktar);
+				data.add(tutar);
+				data.add(isk_tutar);
+				mdl.addRow(data);
 
-			genislik(940);
-			long endTime = System.currentTimeMillis();
-			long estimatedTime = endTime - startTime;
-			double seconds = (double)estimatedTime/1000; 
-			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+				genislik(940);
+				long endTime = System.currentTimeMillis();
+				long estimatedTime = endTime - startTime;
+				double seconds = (double)estimatedTime/1000; 
+				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 			}
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
@@ -373,180 +373,180 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 	private static void genislik(int gen)
 	{
 		for(int i=0;i<OBS_MAIN.desktopPane.getAllFrames().length;i++)
-        {   
-        JInternalFrame frame=(JInternalFrame) OBS_MAIN.desktopPane.getComponent(i);
-        String tit = frame.getTitle();
-        if (tit.equals("KERESTE FATURA RAPORLAMA") )
-        	{
-        	frame.setSize(gen,600);
-        	frame.repaint();
-         	}
-        }
+		{   
+			JInternalFrame frame=(JInternalFrame) OBS_MAIN.desktopPane.getComponent(i);
+			String tit = frame.getTitle();
+			if (tit.equals("KERESTE FATURA RAPORLAMA") )
+			{
+				frame.setSize(gen,600);
+				frame.repaint();
+			}
+		}
 	}
 	private static void grup_cevir()
 	{
 		try {
-		ResultSet	rs = null;
-		//***********************ANA GRUP
-		if ( FILTRE.comboBox_78_1.getItemAt(FILTRE.comboBox_78_1.getSelectedIndex()).equals(""))
-		{
-			gana = " Like  '%' " ;
-		}
-		else if  ( FILTRE.comboBox_78_1.getItemAt(FILTRE.comboBox_78_1.getSelectedIndex()).equals("Bos Olanlar"))
-		{
-			gana = " = '' " ;
-		}
-		else
-		{
-			rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_78_1.getItemAt(FILTRE.comboBox_78_1.getSelectedIndex()));
-			if (!rs.isBeforeFirst() ) {
+			ResultSet	rs = null;
+			//***********************ANA GRUP
+			if ( FILTRE.comboBox_78_1.getItemAt(FILTRE.comboBox_78_1.getSelectedIndex()).equals(""))
+			{
+				gana = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_78_1.getItemAt(FILTRE.comboBox_78_1.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				gana = " = '' " ;
 			}
 			else
 			{
-				rs.next();
-				gana =  "= " + Integer.toString( rs.getInt("AGID_Y") );
+				rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_78_1.getItemAt(FILTRE.comboBox_78_1.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
+				{
+					rs.next();
+					gana =  "= " + Integer.toString( rs.getInt("AGID_Y") );
+				}
 			}
-		}
-		//***********************ALT GRUP
-		if ( FILTRE.comboBox_79_1.getItemAt(FILTRE.comboBox_79_1.getSelectedIndex()).equals(""))
-		{
-			galt = " Like  '%' " ;
-		}
-		else if  ( FILTRE.comboBox_79_1.getItemAt(FILTRE.comboBox_79_1.getSelectedIndex()).equals("Bos Olanlar"))
-		{
-			galt = " = '' " ;
-		}
-		else
-		{
-			rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_79_1.getItemAt(FILTRE.comboBox_79_1.getSelectedIndex()));
-			if (!rs.isBeforeFirst() ) {
+			//***********************ALT GRUP
+			if ( FILTRE.comboBox_79_1.getItemAt(FILTRE.comboBox_79_1.getSelectedIndex()).equals(""))
+			{
+				galt = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_79_1.getItemAt(FILTRE.comboBox_79_1.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				galt = " = '' " ;
 			}
 			else
 			{
-				rs.next();
-				galt ="=" + Integer.toString( rs.getInt("ALID_Y"));
+				rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_79_1.getItemAt(FILTRE.comboBox_79_1.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
+				{
+					rs.next();
+					galt ="=" + Integer.toString( rs.getInt("ALID_Y"));
+				}
 			}
-		}
-		//***********************CIKIS ANA GRUP
-		if ( FILTRE.comboBox_78_2.getItemAt(FILTRE.comboBox_78_2.getSelectedIndex()).equals(""))
-		{
-			cana = " Like  '%' " ;
-		}
-		else if  ( FILTRE.comboBox_78_2.getItemAt(FILTRE.comboBox_78_2.getSelectedIndex()).equals("Bos Olanlar"))
-		{
-			cana = " = '' " ;
-		}
-		else
-		{
-			rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_78_2.getItemAt(FILTRE.comboBox_78_2.getSelectedIndex()));
-			if (!rs.isBeforeFirst() ) {
+			//***********************CIKIS ANA GRUP
+			if ( FILTRE.comboBox_78_2.getItemAt(FILTRE.comboBox_78_2.getSelectedIndex()).equals(""))
+			{
+				cana = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_78_2.getItemAt(FILTRE.comboBox_78_2.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				cana = " = '' " ;
 			}
 			else
 			{
-				rs.next();
-				cana =  "= " + Integer.toString( rs.getInt("AGID_Y") );
+				rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", FILTRE.comboBox_78_2.getItemAt(FILTRE.comboBox_78_2.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
+				{
+					rs.next();
+					cana =  "= " + Integer.toString( rs.getInt("AGID_Y") );
+				}
 			}
-		}
-		//***********************CIKIS ALT GRUP
-		if ( FILTRE.comboBox_79_2.getItemAt(FILTRE.comboBox_79_2.getSelectedIndex()).equals(""))
-		{
-			calt = " Like  '%' " ;
-		}
-		else if  ( FILTRE.comboBox_79_2.getItemAt(FILTRE.comboBox_79_2.getSelectedIndex()).equals("Bos Olanlar"))
-		{
-			calt = " = '' " ;
-		}
-		else
-		{
-			rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_79_2.getItemAt(FILTRE.comboBox_79_2.getSelectedIndex()));
-			if (!rs.isBeforeFirst() ) {
+			//***********************CIKIS ALT GRUP
+			if ( FILTRE.comboBox_79_2.getItemAt(FILTRE.comboBox_79_2.getSelectedIndex()).equals(""))
+			{
+				calt = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_79_2.getItemAt(FILTRE.comboBox_79_2.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				calt = " = '' " ;
 			}
 			else
 			{
-				rs.next();
-				calt ="=" + Integer.toString( rs.getInt("ALID_Y"));
+				rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_79_2.getItemAt(FILTRE.comboBox_79_2.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
+				{
+					rs.next();
+					calt ="=" + Integer.toString( rs.getInt("ALID_Y"));
+				}
 			}
-		}
-		//***********************GIRIS OZEL KOD
-		if ( FILTRE.comboBox_80_1.getItemAt(FILTRE.comboBox_80_1.getSelectedIndex()).equals(""))
-		{
-			goz = " Like  '%' " ;
-		}
-		else if  ( FILTRE.comboBox_80_1.getItemAt(FILTRE.comboBox_80_1.getSelectedIndex()).equals("Bos Olanlar"))
-		{
-			goz = " = '' " ;
-		}		      
-		else		      
-		{
-			rs = ker_Access.ker_kod_degisken_ara("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN", FILTRE.comboBox_80_1.getItemAt(FILTRE.comboBox_80_1.getSelectedIndex()));
-			if (!rs.isBeforeFirst() ) {
-			}
-			else
+			//***********************GIRIS OZEL KOD
+			if ( FILTRE.comboBox_80_1.getItemAt(FILTRE.comboBox_80_1.getSelectedIndex()).equals(""))
 			{
-				rs.next();
-				goz ="=" + Integer.toString( rs.getInt("OZ1ID_Y"));
+				goz = " Like  '%' " ;
 			}
-		}
-		//***********************CIKIS OZEL KOD
-		if ( FILTRE.comboBox_80_2.getItemAt(FILTRE.comboBox_80_2.getSelectedIndex()).equals(""))
-		{
-			coz = " Like  '%' " ;
-		}
-		else if  ( FILTRE.comboBox_80_2.getItemAt(FILTRE.comboBox_80_2.getSelectedIndex()).equals("Bos Olanlar"))
-		{
-			coz = " = '' " ;
-		}		      
-		else		      
-		{
-			rs = ker_Access.ker_kod_degisken_ara("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN", FILTRE.comboBox_80_2.getItemAt(FILTRE.comboBox_80_2.getSelectedIndex()));
-			if (!rs.isBeforeFirst() ) {
-			}
-			else
+			else if  ( FILTRE.comboBox_80_1.getItemAt(FILTRE.comboBox_80_1.getSelectedIndex()).equals("Bos Olanlar"))
 			{
-				rs.next();
-				coz ="=" + Integer.toString( rs.getInt("OZ1ID_Y"));
-			}
-		}
-		//***********************GIRIS DEPO
-		if ( FILTRE.comboBox_80_3.getItemAt(FILTRE.comboBox_80_3.getSelectedIndex()).equals(""))
-		{
-			gdpo = " Like  '%' " ;
-		}
-		else if  ( FILTRE.comboBox_80_3.getItemAt(FILTRE.comboBox_80_3.getSelectedIndex()).equals("Bos Olanlar"))
-		{
-			gdpo = " = '' " ;
-		}		      
-		else		      
-		{
-			rs = ker_Access.ker_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_80_3.getItemAt(FILTRE.comboBox_80_3.getSelectedIndex()));
-			if (!rs.isBeforeFirst() ) {
-			}
-			else
+				goz = " = '' " ;
+			}		      
+			else		      
 			{
-				rs.next();
-				gdpo ="=" + Integer.toString( rs.getInt("DPID_Y"));
+				rs = ker_Access.ker_kod_degisken_ara("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN", FILTRE.comboBox_80_1.getItemAt(FILTRE.comboBox_80_1.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
+				{
+					rs.next();
+					goz ="=" + Integer.toString( rs.getInt("OZ1ID_Y"));
+				}
 			}
-		}
-		//***********************CIKIS DEPO
-		if ( FILTRE.comboBox_80_4.getItemAt(FILTRE.comboBox_80_4.getSelectedIndex()).equals(""))
-		{
-			cdpo = " Like  '%' " ;
-		}
-		else if  ( FILTRE.comboBox_80_4.getItemAt(FILTRE.comboBox_80_4.getSelectedIndex()).equals("Bos Olanlar"))
-		{
-			cdpo = " = '' " ;
-		}		      
-		else		      
-		{
-			rs = ker_Access.ker_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_80_4.getItemAt(FILTRE.comboBox_80_4.getSelectedIndex()));
-			if (!rs.isBeforeFirst() ) {
-			}
-			else
+			//***********************CIKIS OZEL KOD
+			if ( FILTRE.comboBox_80_2.getItemAt(FILTRE.comboBox_80_2.getSelectedIndex()).equals(""))
 			{
-				rs.next();
-				cdpo ="=" + Integer.toString( rs.getInt("DPID_Y"));
+				coz = " Like  '%' " ;
 			}
-		}
+			else if  ( FILTRE.comboBox_80_2.getItemAt(FILTRE.comboBox_80_2.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				coz = " = '' " ;
+			}		      
+			else		      
+			{
+				rs = ker_Access.ker_kod_degisken_ara("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN", FILTRE.comboBox_80_2.getItemAt(FILTRE.comboBox_80_2.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
+				{
+					rs.next();
+					coz ="=" + Integer.toString( rs.getInt("OZ1ID_Y"));
+				}
+			}
+			//***********************GIRIS DEPO
+			if ( FILTRE.comboBox_80_3.getItemAt(FILTRE.comboBox_80_3.getSelectedIndex()).equals(""))
+			{
+				gdpo = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_80_3.getItemAt(FILTRE.comboBox_80_3.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				gdpo = " = '' " ;
+			}		      
+			else		      
+			{
+				rs = ker_Access.ker_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_80_3.getItemAt(FILTRE.comboBox_80_3.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
+				{
+					rs.next();
+					gdpo ="=" + Integer.toString( rs.getInt("DPID_Y"));
+				}
+			}
+			//***********************CIKIS DEPO
+			if ( FILTRE.comboBox_80_4.getItemAt(FILTRE.comboBox_80_4.getSelectedIndex()).equals(""))
+			{
+				cdpo = " Like  '%' " ;
+			}
+			else if  ( FILTRE.comboBox_80_4.getItemAt(FILTRE.comboBox_80_4.getSelectedIndex()).equals("Bos Olanlar"))
+			{
+				cdpo = " = '' " ;
+			}		      
+			else		      
+			{
+				rs = ker_Access.ker_kod_degisken_ara("DPID_Y", "DEPO", "DEPO_DEGISKEN", FILTRE.comboBox_80_4.getItemAt(FILTRE.comboBox_80_4.getSelectedIndex()));
+				if (!rs.isBeforeFirst() ) {
+				}
+				else
+				{
+					rs.next();
+					cdpo ="=" + Integer.toString( rs.getInt("DPID_Y"));
+				}
+			}
 		} catch (Exception ex) 
 		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
@@ -562,23 +562,42 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			String qw1, qw2, qw3,c_yer;
 			if ( FILTRE.comboBox_8_1.getItemAt(FILTRE.comboBox_8_1.getSelectedIndex()).equals("Cari_Firma"))
 			{
-				c_yer = "OK_Car" + BAGLAN.cariDizin.kOD + "" ;
+
+				String qweString = "", ewqString = "" ;
+				if( BAGLAN.kerDizin.hAN_SQL.equals("MS SQL") )
+				{
+					qweString = "" ;
+					ewqString = " TOP 1 ";
+					c_yer = "OK_Car" + BAGLAN.cariDizin.kOD+ ".dbo" ;
+				}
+				else {
+					qweString = "LIMIT 1" ;
+					ewqString = "" ;
+					c_yer = "OK_Car" + BAGLAN.cariDizin.kOD + "" ;
+				}
+
 				if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
 				{
-					qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE.Cari_Firma  ) as Unvan " ;
+					qw1 = " ,(SELECT "+ewqString+"  UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE.Cari_Firma " +qweString +" ) as Unvan " ;
 					qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".HESAP_DETAY WHERE HESAP_DETAY.D_HESAP = KERESTE.Cari_Firma  ) as Vergi_No " ;
 					qw3 = "Evrak_No,Tarih, Cari_Firma" ;
 				}
 				else 
 				{
-					qw1 = " ,(SELECT   UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE.CCari_Firma  ) as Unvan " ;
+					qw1 = " ,(SELECT " + ewqString + "  UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE.CCari_Firma " +qweString +" ) as Unvan " ;
 					qw2 = " ,(SELECT   VERGI_NO FROM " + c_yer + ".HESAP_DETAY WHERE HESAP_DETAY.D_HESAP = KERESTE.CCari_Firma  ) as Vergi_No " ;
 					qw3 = "Cikis_Evrak,CTarih, CCari_Firma" ;
 				}
 			}
 			else
 			{
-				c_yer = "OK_Adr" + BAGLAN.cariDizin.kOD + "" ;
+				if( BAGLAN.kerDizin.hAN_SQL.equals("MS SQL") )
+				{
+					c_yer = "OK_Adr" + BAGLAN.adrDizin.kOD+ ".dbo" ;
+				}
+				else {
+					c_yer = "OK_Adr" + BAGLAN.adrDizin.kOD + "" ;
+				}
 				if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
 				{
 					qw1 = " ,(SELECT   Adi FROM " + c_yer + ".Adres WHERE Adres.M_Kodu = KERESTE.Adres_Firma  ) as Unvan " ;
@@ -738,107 +757,115 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			ResultSet	rs = null;
 			grup_cevir() ;
 			//************* hangi adres ****************
-            String qw1, qw2, c_yer;
-           if ( FILTRE.comboBox_8_1.getItemAt(FILTRE.comboBox_8_1.getSelectedIndex()).equals("Cari_Firma"))
-           {
-        	   String qweString = "" ;
-        	   if( BAGLAN.kerDizin.hAN_SQL.equals("MS SQL") )
-        	   {
-        		   qweString = "TOP 1" ;
-        	   }
-        	   else {
-        		   qweString = "LIMIT 1" ;
-        	   }
-        	   if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
-          		{
-        		   c_yer = "OK_Car" + BAGLAN.cariDizin.kOD+ "" ;
-                   qw1 = " ,(SELECT  UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE.Cari_Firma " + qweString+ " ) as Unvan " ;
-                   qw2 =" Cari_Firma" ;
-          		}
-        	   else 
-        	   {
-        		   c_yer = "OK_Car" + BAGLAN.cariDizin.kOD+ "" ;
-                   qw1 = " ,(SELECT  UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE.CCari_Firma " + qweString+ " ) as Unvan " ;
-                   qw2 =" CCari_Firma" ;
-        	   }
-           }
-           else
-           {
-        	   String qweString = "" ;
-        	   if( BAGLAN.kerDizin.hAN_SQL.equals("MS SQL") )
-        	   {
-        		   qweString = "TOP 1" ;
-        	   }
-        	   else {
-        		   qweString = "LIMIT 1" ;
-        	   }
-        	   if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
-          		{
-            		 c_yer = "OK_Adr" + BAGLAN.adrDizin.kOD + "" ;
-                     qw1 = " ,(SELECT   Adi FROM " + c_yer + ".Adres WHERE Adres.M_Kodu = KERESTE.Adres_Firma  " + qweString+ ") as Unvan " ;
-                     qw2 = " Adres_Firma" ;
-          		}
-            	else 
-            	{
-            		 c_yer = "OK_Adr" + BAGLAN.adrDizin.kOD + "" ;
-                     qw1 = " ,(SELECT   Adi FROM " + c_yer + ".Adres WHERE Adres.M_Kodu = KERESTE.CAdres_Firma " + qweString+ " ) as Unvan " ;
-                     qw2 = " CAdres_Firma" ;
+			String qw1, qw2, c_yer;
+			if ( FILTRE.comboBox_8_1.getItemAt(FILTRE.comboBox_8_1.getSelectedIndex()).equals("Cari_Firma"))
+			{
+				String qweString = "", ewqString = "" ;
+				if( BAGLAN.kerDizin.hAN_SQL.equals("MS SQL") )
+				{
+					qweString = "" ;
+					ewqString = " TOP 1 ";
+					c_yer = "OK_Car" + BAGLAN.cariDizin.kOD+ ".dbo" ;
 				}
-            }
-        KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
-   		ker_BILGI.setGTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1));
-   		ker_BILGI.setGTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1));
-   		ker_BILGI.setGKodu1(FILTRE.formattedTextField_2.getText());
-   		ker_BILGI.setGKodu2(FILTRE.formattedTextField_1_1.getText());
-   		ker_BILGI.setPaket_No1(FILTRE.textField_88.getText());
-   		ker_BILGI.setPaket_No2(FILTRE.textField_88_1.getText());
-   		ker_BILGI.setGCari_Firma1(FILTRE.textField_84.getText());
-   		ker_BILGI.setGCari_Firma2(FILTRE.textField_85.getText());
-   		ker_BILGI.setEvrak_No1(FILTRE.textField_90.getText());
-   		ker_BILGI.setEvrak_No2(FILTRE.textField_91.getText());
-   		ker_BILGI.setGAna_Grup(gana);
-   		ker_BILGI.setGAlt_Grup(galt);
-   		ker_BILGI.setDepo(gdpo);
-   		ker_BILGI.setOzel_Kod(goz);
-   		ker_BILGI.setCTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1_1));
-   		ker_BILGI.setCTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1_1));
-   		ker_BILGI.setCCari_Firma1(FILTRE.textField_86.getText());
-   		ker_BILGI.setCCari_Firma2(FILTRE.textField_87.getText());
-   		ker_BILGI.setCEvrak_No1(FILTRE.textField_92.getText());
-   		ker_BILGI.setCEvrak_No2(FILTRE.textField_93.getText());
-   		ker_BILGI.setCAna_Grup(cana);
-   		ker_BILGI.setCAlt_Grup(calt);
-   		ker_BILGI.setCDepo(cdpo);
-   		ker_BILGI.setCOzel_Kod(coz);
-   		if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
-      		{
-   			ker_BILGI.setgIRcIK("G");
-      		}
-   		else {
-   			ker_BILGI.setgIRcIK("C");
-   		}
-   		rs = ker_Access. fat_rapor_cari_kod(ker_BILGI,qw1,qw2,c_yer);
-   		GRID_TEMIZLE.grid_temizle(table);
-		if (!rs.isBeforeFirst() ) 
+				else {
+					qweString = "LIMIT 1" ;
+					ewqString = "" ;
+					c_yer = "OK_Car" + BAGLAN.cariDizin.kOD + "" ;
+				}
+				if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+				{
+
+					qw1 = " ,(SELECT "+ ewqString + " UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE.Cari_Firma " + qweString+ " ) as Unvan " ;
+					qw2 =" Cari_Firma" ;
+				}
+				else 
+				{
+
+					qw1 = " ,(SELECT "+ ewqString +" UNVAN FROM " + c_yer + ".HESAP WHERE HESAP.HESAP = KERESTE.CCari_Firma " + qweString+ " ) as Unvan " ;
+					qw2 =" CCari_Firma" ;
+				}
+			}
+			else
+			{
+				String qweString = "", ewqString = "" ;
+				if( BAGLAN.kerDizin.hAN_SQL.equals("MS SQL") )
+				{
+					qweString = "" ;
+					ewqString = " TOP 1 ";
+					c_yer = "OK_Adr" + BAGLAN.adrDizin.kOD + ".dbo" ;
+				}
+				else {
+					qweString = "LIMIT 1" ;
+					ewqString = "" ;
+					c_yer = "OK_Adr" + BAGLAN.adrDizin.kOD + "" ;
+				}
+				if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+				{
+
+					qw1 = " ,(SELECT  " + ewqString +" Adi FROM " + c_yer + ".Adres WHERE Adres.M_Kodu = KERESTE.Adres_Firma  " + qweString+ ") as Unvan " ;
+					qw2 = " Adres_Firma" ;
+				}
+				else 
+				{
+
+					qw1 = " ,(SELECT " + ewqString +"  Adi FROM " + c_yer + ".Adres WHERE Adres.M_Kodu = KERESTE.CAdres_Firma " + qweString+ " ) as Unvan " ;
+					qw2 = " CAdres_Firma" ;
+				}
+			}
+			KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
+			ker_BILGI.setGTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1));
+			ker_BILGI.setGTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1));
+			ker_BILGI.setGKodu1(FILTRE.formattedTextField_2.getText());
+			ker_BILGI.setGKodu2(FILTRE.formattedTextField_1_1.getText());
+			ker_BILGI.setPaket_No1(FILTRE.textField_88.getText());
+			ker_BILGI.setPaket_No2(FILTRE.textField_88_1.getText());
+			ker_BILGI.setGCari_Firma1(FILTRE.textField_84.getText());
+			ker_BILGI.setGCari_Firma2(FILTRE.textField_85.getText());
+			ker_BILGI.setEvrak_No1(FILTRE.textField_90.getText());
+			ker_BILGI.setEvrak_No2(FILTRE.textField_91.getText());
+			ker_BILGI.setGAna_Grup(gana);
+			ker_BILGI.setGAlt_Grup(galt);
+			ker_BILGI.setDepo(gdpo);
+			ker_BILGI.setOzel_Kod(goz);
+			ker_BILGI.setCTarih1(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_1_1));
+			ker_BILGI.setCTarih2(TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_1_1));
+			ker_BILGI.setCCari_Firma1(FILTRE.textField_86.getText());
+			ker_BILGI.setCCari_Firma2(FILTRE.textField_87.getText());
+			ker_BILGI.setCEvrak_No1(FILTRE.textField_92.getText());
+			ker_BILGI.setCEvrak_No2(FILTRE.textField_93.getText());
+			ker_BILGI.setCAna_Grup(cana);
+			ker_BILGI.setCAlt_Grup(calt);
+			ker_BILGI.setCDepo(cdpo);
+			ker_BILGI.setCOzel_Kod(coz);
+			if (FILTRE.comboBox_81.getItemAt(FILTRE.comboBox_81.getSelectedIndex()).equals("GIREN"))
+			{
+				ker_BILGI.setgIRcIK("G");
+			}
+			else {
+				ker_BILGI.setgIRcIK("C");
+			}
+			rs = ker_Access. fat_rapor_cari_kod(ker_BILGI,qw1,qw2,c_yer);
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() ) 
 			{  
 				lbladet.setText(FORMATLAMA.doub_0(0));
 				lblana.setText(FORMATLAMA.doub_0(0));
 			} 
-		else
+			else
 			{
-			table.setModel(DbUtils.resultSetToTableModel(rs));
-			JTableHeader th = table.getTableHeader();
-			
-			TableColumnModel tcm = th.getColumnModel();
-			TableColumn tc;
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				JTableHeader th = table.getTableHeader();
+
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(100);
-				
+
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(60);
-				
+
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(300);
@@ -847,12 +874,12 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(3,false));
 				tc.setMinWidth(100);
-				
+
 				tc = tcm.getColumn(4);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,false));
 				tc.setMinWidth(130);
-				
+
 				tc = tcm.getColumn(5);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,false));
@@ -862,24 +889,24 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,false));
 				tc.setMinWidth(130);
-				
+
 				tc = tcm.getColumn(7);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,false));
 				tc.setMinWidth(130);
-				
-				
+
+
 				Dimension dd = th.getPreferredSize();
-			    dd.height = 30;
-			    th.setPreferredSize(dd); 
+				dd.height = 30;
+				th.setPreferredSize(dd); 
 				th.repaint();
 				table.setRowSelectionInterval(0, 0);
 				table.setRowHeight(21);
-				
+
 				int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
-				
+
 				table.setSelectionBackground(Color.PINK);
 				table.setSelectionForeground(Color.BLUE);
 				lblana.setText(FORMATLAMA.doub_0(table.getRowCount()));
@@ -888,11 +915,11 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				double miktar = 0,tutar = 0,isk_tutar=0 ,db1=0,db2=0;
 				for (int i = 0 ; i <= mdl.getRowCount()-1;i++)
 				{
-					 miktar  += (double) mdl.getValueAt(i , 3);
-					 tutar  += (double) mdl.getValueAt(i , 4);
-					 isk_tutar  += (double) mdl.getValueAt(i , 5);
-					 db1  += (double) mdl.getValueAt(i ,6);
-					 db2  += (double) mdl.getValueAt(i , 7);
+					miktar  += (double) mdl.getValueAt(i , 3);
+					tutar  += (double) mdl.getValueAt(i , 4);
+					isk_tutar  += (double) mdl.getValueAt(i , 5);
+					db1  += (double) mdl.getValueAt(i ,6);
+					db2  += (double) mdl.getValueAt(i , 7);
 				}
 				Vector<Object> data = new Vector<Object>();
 				data.add("");
@@ -935,7 +962,7 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				return;
 			}
 			rs = ker_Access.fat_detay_rapor(fatno,ask);
-			
+
 			GRID_TEMIZLE.grid_temizle(table_1);
 			if (! rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
@@ -1026,7 +1053,7 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				tc = tcm.getColumn(17);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(50);
-				
+
 				tc = tcm.getColumn(18);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(50);
@@ -1073,10 +1100,10 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 	public static void excell_aktar()
 	{
 		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-		
+
 		if (mdl.getRowCount() == 0 )
 		{
-		JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Kereste Fatura Raporlama", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Kereste Fatura Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
@@ -1084,473 +1111,473 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		}
 	}
 	public static void write()
-	 {
-	///// Progres Bsr olayi
+	{
+		///// Progres Bsr olayi
 		Runnable runner = new Runnable()
-	    { @SuppressWarnings("resource")
+		{ @SuppressWarnings("resource")
 		public void run() {
-	        /////  
-	  try 
-	  {
-		  UIManager.put("FileChooser.cancelButtonText", "Vazgec");
-		  UIManager.put("FileChooser.saveButtonText", "Kaydet");
-		  JFileChooser fileChooser = new JFileChooser();
-		  fileChooser.resetChoosableFileFilters();
-		  fileChooser.setAcceptAllFileFilterUsed(false);
-		  FileFilter xls = new FileNameExtensionFilter("Microsoft Excel 97-2003 Worksheet (.xls)", "xls");
-		  FileFilter xlxs = new FileNameExtensionFilter("Microsoft Excel Worksheet (.xlsx) ", "xlsx");
-		  fileChooser.addChoosableFileFilter(xls);
-		  fileChooser.addChoosableFileFilter(xlxs);
-		  fileChooser.setCurrentDirectory(new java.io.File("C:\\OBS_SISTEM\\"));
-		  fileChooser.setApproveButtonText("Kaydet");
-		  fileChooser.setDialogTitle("Excell Kayit");   
-		  
-		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
-		  LocalDateTime now = LocalDateTime.now();  
-		  String zaman = dtf.format(now)  ;
-		   
-		  File outputfile = new File("Kereste_Fatura_Rapor");
-		  fileChooser.setSelectedFile(outputfile);
-		  int returnVal = fileChooser.showSaveDialog(null);
-		  if ( returnVal != JFileChooser.APPROVE_OPTION )
-		  {
-			  return;
-		  }
-		  Progres_Bar_Temizle();
-		  OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1);
-		  OBS_MAIN.progressBar.setStringPainted(true);
-		  GuiUtil.setWaitCursor(splitPane,true);
-		  String uzanti ="";
-		  File excelFile =  FILE_UZANTI. getSelectedFileWithExtension(fileChooser);
-		  uzanti  = excelFile.getName().substring(excelFile.getName().lastIndexOf("."));
-		  if  (uzanti.equals(".xls") )
-		  {
-			  HSSFWorkbook workbook = new HSSFWorkbook();
-			  HSSFSheet sheet = workbook.createSheet("Kereste_Fatura_Raporlama");
-			  HSSFFont headerFont = workbook.createFont();
-			  headerFont.setBold(true);
-			  headerFont.setColor(IndexedColors.BLUE.getIndex()); 
-			  HSSFCellStyle headerStyle = workbook.createCellStyle();
-			  HSSFCellStyle headerSolaStyle = workbook.createCellStyle();
-			  headerStyle.setFont(headerFont);
-			  headerStyle.setAlignment(HorizontalAlignment.RIGHT);
+			/////  
+			try 
+			{
+				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
+				UIManager.put("FileChooser.saveButtonText", "Kaydet");
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.resetChoosableFileFilters();
+				fileChooser.setAcceptAllFileFilterUsed(false);
+				FileFilter xls = new FileNameExtensionFilter("Microsoft Excel 97-2003 Worksheet (.xls)", "xls");
+				FileFilter xlxs = new FileNameExtensionFilter("Microsoft Excel Worksheet (.xlsx) ", "xlsx");
+				fileChooser.addChoosableFileFilter(xls);
+				fileChooser.addChoosableFileFilter(xlxs);
+				fileChooser.setCurrentDirectory(new java.io.File("C:\\OBS_SISTEM\\"));
+				fileChooser.setApproveButtonText("Kaydet");
+				fileChooser.setDialogTitle("Excell Kayit");   
 
-			  HSSFFont solaFont = workbook.createFont();
-			  solaFont.setFontName("Arial Narrow");
-			  solaFont. setFontHeight((short)(10*20));
-			  HSSFCellStyle solaStyle = workbook.createCellStyle();
-			  solaStyle.setFont(solaFont);
-			  solaStyle.setAlignment(HorizontalAlignment.LEFT);
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
+				LocalDateTime now = LocalDateTime.now();  
+				String zaman = dtf.format(now)  ;
 
-			  HSSFFont headerSolaFont = workbook.createFont();
-			  headerSolaFont.setBold(true);
-			  headerSolaFont.setColor(IndexedColors.BLUE.getIndex()); 
-			  headerSolaStyle.setFont(headerSolaFont);
-			  headerSolaStyle.setAlignment(HorizontalAlignment.LEFT);
+				File outputfile = new File("Kereste_Fatura_Rapor");
+				fileChooser.setSelectedFile(outputfile);
+				int returnVal = fileChooser.showSaveDialog(null);
+				if ( returnVal != JFileChooser.APPROVE_OPTION )
+				{
+					return;
+				}
+				Progres_Bar_Temizle();
+				OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1);
+				OBS_MAIN.progressBar.setStringPainted(true);
+				GuiUtil.setWaitCursor(splitPane,true);
+				String uzanti ="";
+				File excelFile =  FILE_UZANTI. getSelectedFileWithExtension(fileChooser);
+				uzanti  = excelFile.getName().substring(excelFile.getName().lastIndexOf("."));
+				if  (uzanti.equals(".xls") )
+				{
+					HSSFWorkbook workbook = new HSSFWorkbook();
+					HSSFSheet sheet = workbook.createSheet("Kereste_Fatura_Raporlama");
+					HSSFFont headerFont = workbook.createFont();
+					headerFont.setBold(true);
+					headerFont.setColor(IndexedColors.BLUE.getIndex()); 
+					HSSFCellStyle headerStyle = workbook.createCellStyle();
+					HSSFCellStyle headerSolaStyle = workbook.createCellStyle();
+					headerStyle.setFont(headerFont);
+					headerStyle.setAlignment(HorizontalAlignment.RIGHT);
 
-			  HSSFCellStyle satirStyle = workbook.createCellStyle();
-			  HSSFFont satirFont = workbook.createFont();
-			  satirFont.setFontName("Arial Narrow");
-			  satirFont. setFontHeight((short)(10*20));
-			  satirStyle.setFont(satirFont);
-			  satirStyle.setAlignment(HorizontalAlignment.RIGHT);
-			  DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-			  HSSFCellStyle acikStyle = workbook.createCellStyle();
-			  HSSFFont acikFont = workbook.createFont();
-			  acikFont.setColor(IndexedColors.RED.getIndex()); 
-			  acikFont.setBold(true);
-			  acikFont.setFontName("Arial");
-			  acikFont. setFontHeight((short)(22*20));
-			  acikStyle.setFont(acikFont);
-			  acikStyle.setAlignment(HorizontalAlignment.CENTER);
+					HSSFFont solaFont = workbook.createFont();
+					solaFont.setFontName("Arial Narrow");
+					solaFont. setFontHeight((short)(10*20));
+					HSSFCellStyle solaStyle = workbook.createCellStyle();
+					solaStyle.setFont(solaFont);
+					solaStyle.setAlignment(HorizontalAlignment.LEFT);
 
-			  Row baslikRow = sheet.createRow(0);
-			  sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -1));
-			  Cell baslikname = baslikRow.createCell(0);
+					HSSFFont headerSolaFont = workbook.createFont();
+					headerSolaFont.setBold(true);
+					headerSolaFont.setColor(IndexedColors.BLUE.getIndex()); 
+					headerSolaStyle.setFont(headerSolaFont);
+					headerSolaStyle.setAlignment(HorizontalAlignment.LEFT);
 
-			  baslikname.setCellValue( BAGLAN.fatDizin.fIRMA_ADI );
-			  baslikname.setCellStyle(acikStyle);
+					HSSFCellStyle satirStyle = workbook.createCellStyle();
+					HSSFFont satirFont = workbook.createFont();
+					satirFont.setFontName("Arial Narrow");
+					satirFont. setFontHeight((short)(10*20));
+					satirStyle.setFont(satirFont);
+					satirStyle.setAlignment(HorizontalAlignment.RIGHT);
+					DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+					HSSFCellStyle acikStyle = workbook.createCellStyle();
+					HSSFFont acikFont = workbook.createFont();
+					acikFont.setColor(IndexedColors.RED.getIndex()); 
+					acikFont.setBold(true);
+					acikFont.setFontName("Arial");
+					acikFont. setFontHeight((short)(22*20));
+					acikStyle.setFont(acikFont);
+					acikStyle.setAlignment(HorizontalAlignment.CENTER);
 
-			  Row headerRow = sheet.createRow(1);
+					Row baslikRow = sheet.createRow(0);
+					sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -1));
+					Cell baslikname = baslikRow.createCell(0);
 
-			  if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura No"))
-			  {
-				  for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
-				  {
-					  Cell bname = headerRow.createCell(q);
-					  if (q == 6 || q ==7 || q == 8 || q ==9 || q == 10)
-					  {
-						  bname.setCellValue(mdl.getColumnName(q));
-						  bname.setCellStyle(headerStyle);
-					  }
-					  else
-					  {
-						  bname.setCellValue(mdl.getColumnName(q));
-						  bname.setCellStyle(headerSolaStyle);
-					  }
-				  }
-				  for (int i =0;i <= mdl.getRowCount() -1 ;i++)
-				  {
-					  Progres_Bar(mdl.getRowCount() , i);
-					  Row satirRow = sheet.createRow(i+2);
-					  for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
-					  {
-						  Cell hname = satirRow.createCell(s);
-						  if ( mdl.getValueAt(i, s) != null)
-						  {
-							  if (s == 2  )
-							  {
-								  DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-								  hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
-								  hname.setCellStyle(solaStyle);
-							  }
-							  else if (s == 6  )
-							  {
-								  hname.setCellValue(  FORMATLAMA.doub_3(Double.parseDouble( mdl.getValueAt(i,s).toString())));
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else if (s == 7 || s == 8  )
-							  {
-								  hname.setCellValue(  FORMATLAMA.doub_2(Double.parseDouble( mdl.getValueAt(i,s).toString())));
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else
-							  {
-								  hname.setCellValue( mdl.getValueAt(i,s).toString());
-								  hname.setCellStyle(solaStyle);
-							  }
-						  }
-					  }
-				  }
-			  }
-			  else if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura_No_Tarih"))    
-			  {
-				  for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
-				  {
-					  Cell bname = headerRow.createCell(q);
-					  if (q == 0 || q ==1 || q == 2 || q ==3 || q == 4 )
-					  {
-						  bname.setCellValue(mdl.getColumnName(q));
-						  bname.setCellStyle(headerSolaStyle);
-					  }
-					  else
-					  {
-						  bname.setCellValue(mdl.getColumnName(q));
-						  bname.setCellStyle(headerStyle);
-					  }
-				  }
-				  for (int i =0;i <= mdl.getRowCount() -1 ;i++)
-				  {
-					  Progres_Bar(mdl.getRowCount() , i);
-					  Row satirRow = sheet.createRow(i+2);
-					  for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
-					  {
-						  Cell hname = satirRow.createCell(s);
-						  if ( mdl.getValueAt(i, s) != null)
-						  {
-							  if (s== 2) 
-							  {
-								  DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-								  hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else  if (s == 5  )
-							  {
-								  hname.setCellValue(  FORMATLAMA.doub_3(Double.parseDouble( mdl.getValueAt(i,s).toString())));
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else if (s == 6 || s == 7 || s == 8 ||  s == 9  )
-							  {
-								  hname.setCellValue(  FORMATLAMA.doub_2(Double.parseDouble( mdl.getValueAt(i,s).toString())));
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else
-							  {
-								  hname.setCellValue( mdl.getValueAt(i,s).toString());
-								  hname.setCellStyle(solaStyle);
-							  }
-						  }
-					  }
-				  }
-			  }
-			  else
-			  {
-				  for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
-				  {
-					  Cell bname = headerRow.createCell(q);
-					  if (q == 0 || q ==1 || q == 2 )
-					  {
-						  bname.setCellValue(mdl.getColumnName(q));
-						  bname.setCellStyle(headerSolaStyle);
-					  }
-					  else
-					  {
-						  bname.setCellValue(mdl.getColumnName(q));
-						  bname.setCellStyle(headerStyle);
-					  }
-				  }
-				  for (int i =0;i <= mdl.getRowCount() -1 ;i++)
-				  {
-					  Progres_Bar(mdl.getRowCount() , i);
-					  Row satirRow = sheet.createRow(i+2);
-					  for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
-					  {
-						  Cell hname = satirRow.createCell(s);
-						  if ( mdl.getValueAt(i, s) != null)
-						  {
-							  if (s == 3  )
-							  {
-								  hname.setCellValue(  FORMATLAMA.doub_3(Double.parseDouble( mdl.getValueAt(i,s).toString())));
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else if (s == 4 || s == 5 || s == 6 ||  s == 7 || s == 8  )
-							  {
-								  hname.setCellValue(  FORMATLAMA.doub_2(Double.parseDouble( mdl.getValueAt(i,s).toString())));
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else
-							  {
-								  hname.setCellValue( mdl.getValueAt(i,s).toString());
-								  hname.setCellStyle(solaStyle);
-							  }
-						  }
-					  }
-				  }
-			  }
-			  //**********
-			  for (int i=0; i<= mdl.getColumnCount()-1; i++)
-			  {
-				  sheet.autoSizeColumn(i);
-			  }
-			  FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile() + "_" + zaman + uzanti));
-			  workbook.write(out);
-			  out.close();
-		  }
-		  else
-		  {
-			  //************************************** XLXS *****************************************************
-			  XSSFWorkbook workbook = new XSSFWorkbook();
-			  XSSFSheet sheet = workbook.createSheet("Grup_Raporlama");
-			  XSSFFont headerFont = workbook.createFont();
-			  headerFont.setBold(true);
-			  headerFont.setColor(IndexedColors.BLUE.getIndex()); 
-			  XSSFCellStyle headerStyle = workbook.createCellStyle();
-			  XSSFCellStyle headerSolaStyle = workbook.createCellStyle();
-			  headerStyle.setFont(headerFont);
-			  headerStyle.setAlignment(HorizontalAlignment.RIGHT);
+					baslikname.setCellValue( BAGLAN.fatDizin.fIRMA_ADI );
+					baslikname.setCellStyle(acikStyle);
 
-			  XSSFFont solaFont = workbook.createFont();
-			  solaFont.setFontName("Arial Narrow");
-			  solaFont. setFontHeight((short)(10*20));
-			  XSSFCellStyle solaStyle = workbook.createCellStyle();
-			  solaStyle.setFont(solaFont);
-			  solaStyle.setAlignment(HorizontalAlignment.LEFT);
+					Row headerRow = sheet.createRow(1);
 
-			  XSSFFont headerSolaFont = workbook.createFont();
-			  headerSolaFont.setBold(true);
-			  headerSolaFont.setColor(IndexedColors.BLUE.getIndex()); 
-			  headerSolaStyle.setFont(headerSolaFont);
-			  headerSolaStyle.setAlignment(HorizontalAlignment.LEFT);
+					if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura No"))
+					{
+						for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
+						{
+							Cell bname = headerRow.createCell(q);
+							if (q == 6 || q ==7 || q == 8 || q ==9 || q == 10)
+							{
+								bname.setCellValue(mdl.getColumnName(q));
+								bname.setCellStyle(headerStyle);
+							}
+							else
+							{
+								bname.setCellValue(mdl.getColumnName(q));
+								bname.setCellStyle(headerSolaStyle);
+							}
+						}
+						for (int i =0;i <= mdl.getRowCount() -1 ;i++)
+						{
+							Progres_Bar(mdl.getRowCount() , i);
+							Row satirRow = sheet.createRow(i+2);
+							for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
+							{
+								Cell hname = satirRow.createCell(s);
+								if ( mdl.getValueAt(i, s) != null)
+								{
+									if (s == 2  )
+									{
+										DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+										hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
+										hname.setCellStyle(solaStyle);
+									}
+									else if (s == 6  )
+									{
+										hname.setCellValue(  FORMATLAMA.doub_3(Double.parseDouble( mdl.getValueAt(i,s).toString())));
+										hname.setCellStyle(satirStyle);
+									}
+									else if (s == 7 || s == 8  )
+									{
+										hname.setCellValue(  FORMATLAMA.doub_2(Double.parseDouble( mdl.getValueAt(i,s).toString())));
+										hname.setCellStyle(satirStyle);
+									}
+									else
+									{
+										hname.setCellValue( mdl.getValueAt(i,s).toString());
+										hname.setCellStyle(solaStyle);
+									}
+								}
+							}
+						}
+					}
+					else if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura_No_Tarih"))    
+					{
+						for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
+						{
+							Cell bname = headerRow.createCell(q);
+							if (q == 0 || q ==1 || q == 2 || q ==3 || q == 4 )
+							{
+								bname.setCellValue(mdl.getColumnName(q));
+								bname.setCellStyle(headerSolaStyle);
+							}
+							else
+							{
+								bname.setCellValue(mdl.getColumnName(q));
+								bname.setCellStyle(headerStyle);
+							}
+						}
+						for (int i =0;i <= mdl.getRowCount() -1 ;i++)
+						{
+							Progres_Bar(mdl.getRowCount() , i);
+							Row satirRow = sheet.createRow(i+2);
+							for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
+							{
+								Cell hname = satirRow.createCell(s);
+								if ( mdl.getValueAt(i, s) != null)
+								{
+									if (s== 2) 
+									{
+										DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+										hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
+										hname.setCellStyle(satirStyle);
+									}
+									else  if (s == 5  )
+									{
+										hname.setCellValue(  FORMATLAMA.doub_3(Double.parseDouble( mdl.getValueAt(i,s).toString())));
+										hname.setCellStyle(satirStyle);
+									}
+									else if (s == 6 || s == 7 || s == 8 ||  s == 9  )
+									{
+										hname.setCellValue(  FORMATLAMA.doub_2(Double.parseDouble( mdl.getValueAt(i,s).toString())));
+										hname.setCellStyle(satirStyle);
+									}
+									else
+									{
+										hname.setCellValue( mdl.getValueAt(i,s).toString());
+										hname.setCellStyle(solaStyle);
+									}
+								}
+							}
+						}
+					}
+					else
+					{
+						for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
+						{
+							Cell bname = headerRow.createCell(q);
+							if (q == 0 || q ==1 || q == 2 )
+							{
+								bname.setCellValue(mdl.getColumnName(q));
+								bname.setCellStyle(headerSolaStyle);
+							}
+							else
+							{
+								bname.setCellValue(mdl.getColumnName(q));
+								bname.setCellStyle(headerStyle);
+							}
+						}
+						for (int i =0;i <= mdl.getRowCount() -1 ;i++)
+						{
+							Progres_Bar(mdl.getRowCount() , i);
+							Row satirRow = sheet.createRow(i+2);
+							for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
+							{
+								Cell hname = satirRow.createCell(s);
+								if ( mdl.getValueAt(i, s) != null)
+								{
+									if (s == 3  )
+									{
+										hname.setCellValue(  FORMATLAMA.doub_3(Double.parseDouble( mdl.getValueAt(i,s).toString())));
+										hname.setCellStyle(satirStyle);
+									}
+									else if (s == 4 || s == 5 || s == 6 ||  s == 7 || s == 8  )
+									{
+										hname.setCellValue(  FORMATLAMA.doub_2(Double.parseDouble( mdl.getValueAt(i,s).toString())));
+										hname.setCellStyle(satirStyle);
+									}
+									else
+									{
+										hname.setCellValue( mdl.getValueAt(i,s).toString());
+										hname.setCellStyle(solaStyle);
+									}
+								}
+							}
+						}
+					}
+					//**********
+					for (int i=0; i<= mdl.getColumnCount()-1; i++)
+					{
+						sheet.autoSizeColumn(i);
+					}
+					FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile() + "_" + zaman + uzanti));
+					workbook.write(out);
+					out.close();
+				}
+				else
+				{
+					//************************************** XLXS *****************************************************
+					XSSFWorkbook workbook = new XSSFWorkbook();
+					XSSFSheet sheet = workbook.createSheet("Grup_Raporlama");
+					XSSFFont headerFont = workbook.createFont();
+					headerFont.setBold(true);
+					headerFont.setColor(IndexedColors.BLUE.getIndex()); 
+					XSSFCellStyle headerStyle = workbook.createCellStyle();
+					XSSFCellStyle headerSolaStyle = workbook.createCellStyle();
+					headerStyle.setFont(headerFont);
+					headerStyle.setAlignment(HorizontalAlignment.RIGHT);
 
-			  XSSFCellStyle satirStyle = workbook.createCellStyle();
-			  XSSFFont satirFont = workbook.createFont();
-			  satirFont.setFontName("Arial Narrow");
-			  satirFont. setFontHeight((short)(10*20));
-			  satirStyle.setFont(satirFont);
-			  satirStyle.setAlignment(HorizontalAlignment.RIGHT);
-			  DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-			  XSSFCellStyle acikStyle = workbook.createCellStyle();
-			  XSSFFont acikFont = workbook.createFont();
-			  acikFont.setColor(IndexedColors.RED.getIndex()); 
-			  acikFont.setBold(true);
-			  acikFont.setFontName("Arial");
-			  acikFont. setFontHeight((short)(22*20));
-			  acikStyle.setFont(acikFont);
-			  acikStyle.setAlignment(HorizontalAlignment.CENTER);
+					XSSFFont solaFont = workbook.createFont();
+					solaFont.setFontName("Arial Narrow");
+					solaFont. setFontHeight((short)(10*20));
+					XSSFCellStyle solaStyle = workbook.createCellStyle();
+					solaStyle.setFont(solaFont);
+					solaStyle.setAlignment(HorizontalAlignment.LEFT);
 
-			  Row baslikRow = sheet.createRow(0);
-			  sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -1));
-			  Cell baslikname = baslikRow.createCell(0);
+					XSSFFont headerSolaFont = workbook.createFont();
+					headerSolaFont.setBold(true);
+					headerSolaFont.setColor(IndexedColors.BLUE.getIndex()); 
+					headerSolaStyle.setFont(headerSolaFont);
+					headerSolaStyle.setAlignment(HorizontalAlignment.LEFT);
 
-			  baslikname.setCellValue( BAGLAN.fatDizin.fIRMA_ADI);
-			  baslikname.setCellStyle(acikStyle);
-			  Row headerRow = sheet.createRow(1);
+					XSSFCellStyle satirStyle = workbook.createCellStyle();
+					XSSFFont satirFont = workbook.createFont();
+					satirFont.setFontName("Arial Narrow");
+					satirFont. setFontHeight((short)(10*20));
+					satirStyle.setFont(satirFont);
+					satirStyle.setAlignment(HorizontalAlignment.RIGHT);
+					DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+					XSSFCellStyle acikStyle = workbook.createCellStyle();
+					XSSFFont acikFont = workbook.createFont();
+					acikFont.setColor(IndexedColors.RED.getIndex()); 
+					acikFont.setBold(true);
+					acikFont.setFontName("Arial");
+					acikFont. setFontHeight((short)(22*20));
+					acikStyle.setFont(acikFont);
+					acikStyle.setAlignment(HorizontalAlignment.CENTER);
 
-			  if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura No"))
-			  {
-				  for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
-				  {
-					  Cell bname = headerRow.createCell(q);
-					  if (q == 6 || q ==7 || q == 8 )
-					  {
-						  bname.setCellValue(mdl.getColumnName(q));
-						  bname.setCellStyle(headerStyle);
-					  }
-					  else
-					  {
-						  bname.setCellValue(mdl.getColumnName(q));
-						  bname.setCellStyle(headerSolaStyle);
-					  }
-				  }
-				  for (int i =0;i <= mdl.getRowCount() -1 ;i++)
-				  {
-					  Progres_Bar(mdl.getRowCount() , i);
-					  Row satirRow = sheet.createRow(i+2);
-					  for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
-					  {
-						  Cell hname = satirRow.createCell(s);
-						  if ( mdl.getValueAt(i, s) != null)
-						  {
-							  if (s == 2  )
-							  {
-								  DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-								  hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
-								  hname.setCellStyle(solaStyle);
-							  }
-							  else if (s == 6  )
-							  {
-								  hname.setCellValue(  FORMATLAMA.doub_3(Double.parseDouble( mdl.getValueAt(i,s).toString())));
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else if (s == 7 || s == 8  )
-							  {
-								  hname.setCellValue(  FORMATLAMA.doub_2(Double.parseDouble( mdl.getValueAt(i,s).toString())));
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else
-							  {
-								  hname.setCellValue( mdl.getValueAt(i,s).toString());
-								  hname.setCellStyle(solaStyle);
-							  }
-						  }
-					  }
-				  }
-			  }
-			  else if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura_No_Tarih"))    
-			  {
-				  for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
-				  {
-					  Cell bname = headerRow.createCell(q);
-					  if (q == 0 || q ==1 || q == 2 || q ==3 || q == 4 )
-					  {
-						  bname.setCellValue(mdl.getColumnName(q));
-						  bname.setCellStyle(headerSolaStyle);
-					  }
-					  else
-					  {
-						  bname.setCellValue(mdl.getColumnName(q));
-						  bname.setCellStyle(headerStyle);
-					  }
-				  }
-				  for (int i =0;i <= mdl.getRowCount() -1 ;i++)
-				  {
-					  Progres_Bar(mdl.getRowCount() , i);
-					  Row satirRow = sheet.createRow(i+2);
-					  for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
-					  {
-						  Cell hname = satirRow.createCell(s);
-						  if ( mdl.getValueAt(i, s) != null)
-						  {
-							  if (s== 2) 
-							  {
-								  DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-								  hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else  if (s == 5  )
-							  {
-								  hname.setCellValue(  FORMATLAMA.doub_3(Double.parseDouble( mdl.getValueAt(i,s).toString())));
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else if (s == 6 || s == 7 || s == 8 ||  s == 9  )
-							  {
-								  hname.setCellValue(  FORMATLAMA.doub_2(Double.parseDouble( mdl.getValueAt(i,s).toString())));
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else
-							  {
-								  hname.setCellValue( mdl.getValueAt(i,s).toString());
-								  hname.setCellStyle(solaStyle);
-							  }
-						  }
-					  }
-				  }
-			  }
-			  else
-			  {
-				  for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
-				  {
-					  Cell bname = headerRow.createCell(q);
-					  if (q == 0 || q ==1 || q == 2 )
-					  {
-						  bname.setCellValue(mdl.getColumnName(q));
-						  bname.setCellStyle(headerSolaStyle);
-					  }
-					  else
-					  {
-						  bname.setCellValue(mdl.getColumnName(q));
-						  bname.setCellStyle(headerStyle);
-					  }
-				  }
-				  for (int i =0;i <= mdl.getRowCount() -1 ;i++)
-				  {
-					  Progres_Bar(mdl.getRowCount() , i);
-					  Row satirRow = sheet.createRow(i+2);
-					  for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
-					  {
-						  Cell hname = satirRow.createCell(s);
-						  if ( mdl.getValueAt(i, s) != null)
-						  {
-							  if (s == 3  )
-							  {
-								  hname.setCellValue(  FORMATLAMA.doub_3(Double.parseDouble( mdl.getValueAt(i,s).toString())));
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else if (s == 4 || s == 5 || s == 6 ||  s == 7 || s == 8  )
-							  {
-								  hname.setCellValue(  FORMATLAMA.doub_2(Double.parseDouble( mdl.getValueAt(i,s).toString())));
-								  hname.setCellStyle(satirStyle);
-							  }
-							  else
-							  {
-								  hname.setCellValue( mdl.getValueAt(i,s).toString());
-								  hname.setCellStyle(solaStyle);
-							  }
-						  }
-					  }
-				  }
-			  }
-			  for (int i=0; i<= mdl.getColumnCount()-1; i++)
-			  {
-				  sheet.autoSizeColumn(i);
-			  }
-			  FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile()  + "_" + zaman + uzanti));
-			  workbook.write(out);
-			  out.close();
-		  }
-		  Progres_Bar_Temizle();
-		  GuiUtil.setWaitCursor(splitPane,false);
-		  JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Kereste Fatura", JOptionPane.PLAIN_MESSAGE);
-	  }
-	  catch (Exception ex)
-	  {
-		  JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
-	  }
-	    }
-	    };
-	    //// Progress Bar
-	    Thread t = new Thread(runner, "Code Executer");
-	    t.start();
-	    //
-	 }
+					Row baslikRow = sheet.createRow(0);
+					sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -1));
+					Cell baslikname = baslikRow.createCell(0);
+
+					baslikname.setCellValue( BAGLAN.fatDizin.fIRMA_ADI);
+					baslikname.setCellStyle(acikStyle);
+					Row headerRow = sheet.createRow(1);
+
+					if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura No"))
+					{
+						for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
+						{
+							Cell bname = headerRow.createCell(q);
+							if (q == 6 || q ==7 || q == 8 )
+							{
+								bname.setCellValue(mdl.getColumnName(q));
+								bname.setCellStyle(headerStyle);
+							}
+							else
+							{
+								bname.setCellValue(mdl.getColumnName(q));
+								bname.setCellStyle(headerSolaStyle);
+							}
+						}
+						for (int i =0;i <= mdl.getRowCount() -1 ;i++)
+						{
+							Progres_Bar(mdl.getRowCount() , i);
+							Row satirRow = sheet.createRow(i+2);
+							for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
+							{
+								Cell hname = satirRow.createCell(s);
+								if ( mdl.getValueAt(i, s) != null)
+								{
+									if (s == 2  )
+									{
+										DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+										hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
+										hname.setCellStyle(solaStyle);
+									}
+									else if (s == 6  )
+									{
+										hname.setCellValue(  FORMATLAMA.doub_3(Double.parseDouble( mdl.getValueAt(i,s).toString())));
+										hname.setCellStyle(satirStyle);
+									}
+									else if (s == 7 || s == 8  )
+									{
+										hname.setCellValue(  FORMATLAMA.doub_2(Double.parseDouble( mdl.getValueAt(i,s).toString())));
+										hname.setCellStyle(satirStyle);
+									}
+									else
+									{
+										hname.setCellValue( mdl.getValueAt(i,s).toString());
+										hname.setCellStyle(solaStyle);
+									}
+								}
+							}
+						}
+					}
+					else if ( FILTRE.comboBox_7.getItemAt(FILTRE.comboBox_7.getSelectedIndex()).equals("Fatura_No_Tarih"))    
+					{
+						for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
+						{
+							Cell bname = headerRow.createCell(q);
+							if (q == 0 || q ==1 || q == 2 || q ==3 || q == 4 )
+							{
+								bname.setCellValue(mdl.getColumnName(q));
+								bname.setCellStyle(headerSolaStyle);
+							}
+							else
+							{
+								bname.setCellValue(mdl.getColumnName(q));
+								bname.setCellStyle(headerStyle);
+							}
+						}
+						for (int i =0;i <= mdl.getRowCount() -1 ;i++)
+						{
+							Progres_Bar(mdl.getRowCount() , i);
+							Row satirRow = sheet.createRow(i+2);
+							for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
+							{
+								Cell hname = satirRow.createCell(s);
+								if ( mdl.getValueAt(i, s) != null)
+								{
+									if (s== 2) 
+									{
+										DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+										hname.setCellValue(	format.format(mdl.getValueAt(i ,s))) ;
+										hname.setCellStyle(satirStyle);
+									}
+									else  if (s == 5  )
+									{
+										hname.setCellValue(  FORMATLAMA.doub_3(Double.parseDouble( mdl.getValueAt(i,s).toString())));
+										hname.setCellStyle(satirStyle);
+									}
+									else if (s == 6 || s == 7 || s == 8 ||  s == 9  )
+									{
+										hname.setCellValue(  FORMATLAMA.doub_2(Double.parseDouble( mdl.getValueAt(i,s).toString())));
+										hname.setCellStyle(satirStyle);
+									}
+									else
+									{
+										hname.setCellValue( mdl.getValueAt(i,s).toString());
+										hname.setCellStyle(solaStyle);
+									}
+								}
+							}
+						}
+					}
+					else
+					{
+						for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
+						{
+							Cell bname = headerRow.createCell(q);
+							if (q == 0 || q ==1 || q == 2 )
+							{
+								bname.setCellValue(mdl.getColumnName(q));
+								bname.setCellStyle(headerSolaStyle);
+							}
+							else
+							{
+								bname.setCellValue(mdl.getColumnName(q));
+								bname.setCellStyle(headerStyle);
+							}
+						}
+						for (int i =0;i <= mdl.getRowCount() -1 ;i++)
+						{
+							Progres_Bar(mdl.getRowCount() , i);
+							Row satirRow = sheet.createRow(i+2);
+							for (int s =0;s<= mdl.getColumnCount()-1 ;s++)
+							{
+								Cell hname = satirRow.createCell(s);
+								if ( mdl.getValueAt(i, s) != null)
+								{
+									if (s == 3  )
+									{
+										hname.setCellValue(  FORMATLAMA.doub_3(Double.parseDouble( mdl.getValueAt(i,s).toString())));
+										hname.setCellStyle(satirStyle);
+									}
+									else if (s == 4 || s == 5 || s == 6 ||  s == 7 || s == 8  )
+									{
+										hname.setCellValue(  FORMATLAMA.doub_2(Double.parseDouble( mdl.getValueAt(i,s).toString())));
+										hname.setCellStyle(satirStyle);
+									}
+									else
+									{
+										hname.setCellValue( mdl.getValueAt(i,s).toString());
+										hname.setCellStyle(solaStyle);
+									}
+								}
+							}
+						}
+					}
+					for (int i=0; i<= mdl.getColumnCount()-1; i++)
+					{
+						sheet.autoSizeColumn(i);
+					}
+					FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile()  + "_" + zaman + uzanti));
+					workbook.write(out);
+					out.close();
+				}
+				Progres_Bar_Temizle();
+				GuiUtil.setWaitCursor(splitPane,false);
+				JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Kereste Fatura", JOptionPane.PLAIN_MESSAGE);
+			}
+			catch (Exception ex)
+			{
+				JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		};
+		//// Progress Bar
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
+		//
+	}
 	static void Progres_Bar(int max, int deger) throws InterruptedException
-    {
- 	    OBS_MAIN.progressBar.setValue(deger);
-    }
-    static void Progres_Bar_Temizle()
-    {
-    	OBS_MAIN.progressBar.setMaximum(0);
-    	OBS_MAIN.progressBar.setValue(0);
-    	OBS_MAIN.progressBar.setStringPainted(false);
-    }
+	{
+		OBS_MAIN.progressBar.setValue(deger);
+	}
+	static void Progres_Bar_Temizle()
+	{
+		OBS_MAIN.progressBar.setMaximum(0);
+		OBS_MAIN.progressBar.setValue(0);
+		OBS_MAIN.progressBar.setStringPainted(false);
+	}
 }

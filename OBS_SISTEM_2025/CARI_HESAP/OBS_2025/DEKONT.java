@@ -1509,7 +1509,6 @@ public class DEKONT extends JInternalFrame {
 		try {
 			String deger;
 			deger = oac.glb.setting_oku("CARI_DEKONT_BAKIYE_GOSTER").toString();
-			//		System.out.println(deger);
 			if (deger.equals("-1"))
 			{
 				bakiye_goster =false;
@@ -1675,8 +1674,6 @@ public class DEKONT extends JInternalFrame {
 			dBilgi.setiZAHAT(txtaciklama.getText());
 			dBilgi.setkOD(txtkod.getText());
 			dBilgi.setuSER( GLOBAL.KULL_ADI);
-			
-			
 			lBILGI.setmESAJ(mesaj);
 			
 			c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,BAGLAN_LOG.cariLogDizin	);

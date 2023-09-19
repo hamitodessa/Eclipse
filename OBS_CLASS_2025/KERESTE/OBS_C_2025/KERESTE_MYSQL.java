@@ -475,7 +475,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 	}
 
 	@Override
-	public void kons_kayit(String kons, String aciklama) throws ClassNotFoundException, SQLException {
+	public void kons_kayit(String kons, String aciklama,int paket_no) throws ClassNotFoundException, SQLException {
 		String sql  = "INSERT INTO KONS_ACIKLAMA (KONS,ACIKLAMA) " +
 				" VALUES (?,?)" ;
 		PreparedStatement stmt = null;
@@ -483,16 +483,47 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.setString(1, kons);
 		stmt.setString(2, aciklama);
 		stmt.executeUpdate();
+		
+		
+		sql  = "INSERT INTO PAKET_NO (Evrak_No,Konsimento) " +
+				" VALUES (?,?)" ;
+		stmt = null;
+		stmt = con.prepareStatement(sql);
+		stmt.setInt(1, paket_no);
+		stmt.setString(2, kons);
+		stmt.executeUpdate();
+		
+		
 		stmt.close();
 		
 	}
 
 	@Override
-	public void kons_sil(String kons) throws ClassNotFoundException, SQLException {
+	public int kons_sil(String kons) throws ClassNotFoundException, SQLException {
 		 
 		String sql = "DELETE FROM KONS_ACIKLAMA WHERE KONS =N'" + kons + "'" ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
+		///
+		ResultSet	rss = null;
+		stmt = con.prepareStatement("SELECT Evrak_No FROM PAKET_NO  WHERE Konsimento =N'" + kons + "' ");
+		rss = stmt.executeQuery();
+		int result ;
+		if (!rss.isBeforeFirst() ) {  
+			result = 0 ;
+		}
+		else
+		{
+			rss.next();
+			result = rss.getInt("Evrak_No");
+		}
+		///
+		sql = "DELETE FROM PAKET_NO WHERE Konsimento =N'" + kons + "'" ;
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
+		return  result  ;	
+
 	}
 
 	@Override
@@ -1799,5 +1830,25 @@ public class KERESTE_MYSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
+	}
+
+	@Override
+	public int paket_no_al(String kons) throws ClassNotFoundException, SQLException {
+		ResultSet	rss = null;
+		int E_NUMBER ;
+		String sql = "SELECT  Pak_No FROM PAKET_NO  ";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		rss.next();
+		E_NUMBER = rss.getInt("Pak_No");
+		E_NUMBER = E_NUMBER + 1 ;
+		//******** KAYIT
+		sql = "UPDATE PAKET_NO SET Pak_No =" + E_NUMBER + "  WHERE Konsimento = N'" + kons+ "'";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		//**************
+		return E_NUMBER;	
+
 	}
 }

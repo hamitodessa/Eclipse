@@ -20,8 +20,8 @@ public interface IKERESTE {
 	public void kod_kayit(String kodu,String aciklama) throws ClassNotFoundException, SQLException;
 	public void kod_sil(String kod) throws ClassNotFoundException, SQLException;
 	public ResultSet kons_pln () throws ClassNotFoundException, SQLException;
-	public void kons_kayit(String kons,String aciklama) throws ClassNotFoundException, SQLException;
-	public void kons_sil(String kons) throws ClassNotFoundException, SQLException;
+	public void kons_kayit(String kons,String aciklama,int paket_no) throws ClassNotFoundException, SQLException;
+	public int kons_sil(String kons) throws ClassNotFoundException, SQLException;
 	public String kod_adi(String kod) throws ClassNotFoundException, SQLException;
 	public ResultSet ker_kod_degisken_oku(String fieldd,String sno,String nerden) throws ClassNotFoundException, SQLException;
 	public ResultSet ker_kod_degisken_ara(String fieldd,String sno,String nerden,String arama) throws ClassNotFoundException, SQLException;
@@ -67,4 +67,5 @@ public interface IKERESTE {
 	public boolean kons_kontrol(String kons)throws ClassNotFoundException, SQLException;
 	public void ker_toplu_kaydet(JTable table,int degisken[] , KER_RAPOR_BILGI keBilgi,String user) throws ClassNotFoundException, SQLException;
 	public ResultSet paket_ara(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException;
+	public int paket_no_al(String kons) throws ClassNotFoundException, SQLException;
 	}

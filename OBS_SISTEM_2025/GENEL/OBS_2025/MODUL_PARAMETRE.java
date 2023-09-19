@@ -157,7 +157,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(135, 206, 250)), "Kambiyo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBounds(25, 110, 791, 50);
+		panel_2.setBounds(25, 210, 791, 50);
 		panel_2.setLayout(null);
 		getContentPane().add(panel_2);
 
@@ -222,7 +222,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(135, 206, 250)), "Kur", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_4.setBounds(25, 210, 791, 50);
+		panel_4.setBounds(25, 110, 791, 50);  //panel_2.setBounds(25, 110, 791, 50);setBounds(25, 210, 791, 50)
 
 		panel_4.setLayout(null);
 		getContentPane().add(panel_4);

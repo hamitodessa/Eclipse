@@ -29,6 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.EventObject;
 import java.util.Iterator;
 
 import javax.management.loading.PrivateClassLoader;
@@ -1149,25 +1150,25 @@ public class KER_GIRIS extends JInternalFrame {
 					return true;
 				}
 			}
-			public void changeSelection(final int row, final int column, boolean toggle, boolean extend)
-			{
-				super.changeSelection(row, column, toggle, extend);
-				 
-				
-				if(column==3)
-				{
-					
-				}
-			}	
 		};
+		table.addMouseListener(new MouseAdapter() {
+		    public void mousePressed(MouseEvent mouseEvent) {
+		        JTable table =(JTable) mouseEvent.getSource();
+		        if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
+		        	if(table.getSelectedColumn() != 2) return ;
+					if(model.getValueAt(table.getSelectedRow(), 6).toString().equals("")) return ;
+					paket_no_olustur();
+		        }
+		    }
+		});
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
-				try {
-					kod_ADI(  model.getValueAt(table.getSelectedRow(), 1).toString(), model.getValueAt(table.getSelectedRow(), 6).toString());
-				} catch (Exception e1) {
-					e1.printStackTrace();
+					try {
+						kod_ADI(  model.getValueAt(table.getSelectedRow(), 1).toString(), model.getValueAt(table.getSelectedRow(), 6).toString());
+					} catch (Exception e1) {
+						e1.printStackTrace();
 				}
 			}
 		});
@@ -1186,7 +1187,6 @@ public class KER_GIRIS extends JInternalFrame {
 								if ( model.getValueAt(table.getSelectedRow(),2).toString().equals(model.getValueAt(table.getSelectedRow()-1,2).toString())) {
 									model.setValueAt(model.getValueAt(table.getSelectedRow() -1, 6), table.getSelectedRow(), 6);
 								}
-								
 							}
 							else {
 								model.setValueAt("",table.getSelectedRow(),1);
@@ -1200,7 +1200,6 @@ public class KER_GIRIS extends JInternalFrame {
 				{
 					satir_sil();
 				}
-
 			}
 		});
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -1209,7 +1208,6 @@ public class KER_GIRIS extends JInternalFrame {
 					DefaultTableModel model = (DefaultTableModel)table.getModel();
 					if (model.getRowCount() == 0) return ;
 					if (table.getSelectedRow()  < 0) return;
-				
 				}
 			}
 		});
@@ -1401,8 +1399,6 @@ public class KER_GIRIS extends JInternalFrame {
 			});
 			button_4_1.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
 			panel_2.add(button_4_1);
-			
-			
 
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Giris", JOptionPane.ERROR_MESSAGE);   
@@ -2573,6 +2569,26 @@ public class KER_GIRIS extends JInternalFrame {
 		};
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
+	}
+	private void paket_no_olustur()
+	{
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		try {
+			int pak_no = ker_Access.paket_no_al(model.getValueAt(table.getSelectedRow(), 6).toString());
+			
+			String[] sinifString =  model.getValueAt(table.getSelectedRow(), 1).toString().split("-");
+			String sinString = sinifString[0].substring(1,2);
+			int kj = 0 ;
+			kj = 8 - Integer.toString(pak_no).length() ;
+			String str_ = sinString + "Z" +  StringUtils.repeat("0", kj)   + Integer.toString(pak_no);
+			//String str_ = ("0".repeat(kj)) + Integer.toString(sno);
+		    model.setValueAt(str_, table.getSelectedRow(), 2);
+			System.out.println(str_);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	static void Progres_Bar(int max, int deger) throws InterruptedException
     {

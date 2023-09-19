@@ -71,17 +71,18 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.kons_pln();
 	}
-	public void kons_kayit(String kons,String aciklama, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void kons_kayit(String kons,String aciklama, int paket_no,lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
-		_IKereste.kons_kayit(kons,  aciklama);
+		_IKereste.kons_kayit(kons,  aciklama,paket_no);
 		for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(lBILGI, dBILGI);
 	}
-	public void kons_sil(String kons, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public int kons_sil(String kons, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
-		_IKereste.kons_sil(kons);
+		
 		for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(lBILGI, dBILGI);
+		return _IKereste.kons_sil(kons);
 	}
 	public String kod_adi(String kod) throws ClassNotFoundException, SQLException
 	{
@@ -284,5 +285,9 @@ public class KERESTE_ACCESS {
 	public ResultSet paket_ara(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException
 	{
 		return _IKereste.paket_ara(ker_rap_BILGI);
+	}
+	public int paket_no_al(String kons) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.paket_no_al(kons);
 	}
 }

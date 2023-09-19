@@ -174,15 +174,13 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		lOG_BILGI lBILGI = new lOG_BILGI();
 		lBILGI.setmESAJ(textField.getText() + " Acik=" + textField_1.getText());
 		lBILGI.seteVRAK("");
-		
-		
 		 try {
 			lBILGI.setmESAJ(textField.getText() + " Silme");
 			lBILGI.seteVRAK("");
-			ker_Access.kons_sil(textField.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
+			int pak_noString = ker_Access.kons_sil(textField.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
 			lBILGI.setmESAJ(textField.getText() + " Acik=" + textField_1.getText());
 			lBILGI.seteVRAK("");
-			ker_Access.kons_kayit(textField.getText(), textField_1.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
+			ker_Access.kons_kayit(textField.getText(), textField_1.getText(),pak_noString ,lBILGI ,BAGLAN_LOG.kerLogDizin);
 			temizle();
 			hisset();
 		} catch (Exception e) {

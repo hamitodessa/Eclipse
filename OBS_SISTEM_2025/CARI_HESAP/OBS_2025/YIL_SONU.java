@@ -199,7 +199,7 @@ public class YIL_SONU extends JInternalFrame {
 		panel_1.setLayout(null);
 
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(10, 20, 114, 22);
+		dateChooser.setBounds(10, 20, 128, 22);
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dateChooser.setDate(new Date());

@@ -140,6 +140,15 @@ public class KERESTE_MSSQL implements IKERESTE {
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
+		sql = "CREATE TABLE [dbo].[PAKET_NO]( "
+				+ "  [Pak_No] [int] NOT NULL,"
+				+ "  [Konsimento] [nvarchar](15) NOT NULL,"
+				+ "  CONSTRAINT [KONSID] PRIMARY KEY CLUSTERED ("
+				+ "  [Konsimento] ASC"
+				+ "  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS"
+				+ "  = ON) ON [PRIMARY]) ON [PRIMARY]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE [dbo].[DPN]( "
 				+ " [DID] [int] IDENTITY(1,1) NOT NULL,"
 				+ "  [Evrak_No] [nvarchar](10) NOT NULL,"
@@ -193,7 +202,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " [Barkod] [nvarchar](20) NULL,"
 				+ " [Kodu] [nvarchar](16) NOT NULL,"
 				+ " [Paket_No] [nvarchar] (10) NULL,"
-				+ " [Konsimento] [nvarchar](10) NULL,"
+				+ " [Konsimento] [nvarchar](15) NULL,"
 				+ " [Miktar] [float] NULL,"
 				+ " [Tarih] [datetime] NULL,"
 				+ " [Kdv] [float] NULL,"
@@ -303,7 +312,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.executeUpdate(sql);
 		
 		sql = "CREATE TABLE [dbo].[KONS_ACIKLAMA]("
-				+ " [KONS] [nvarchar](10) NOT NULL,"
+				+ " [KONS] [nvarchar](15) NOT NULL,"
 				+ " [ACIKLAMA] [nvarchar](50) NULL,"
 				+ " CONSTRAINT [KONS] PRIMARY KEY CLUSTERED ([KONS] ASC)WITH (PAD_INDEX = OFF, "
 				+ " STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS= ON) ON [PRIMARY]" 
@@ -562,7 +571,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	}
 
 	@Override
-	public void kons_kayit(String kons, String aciklama) throws ClassNotFoundException, SQLException {
+	public void kons_kayit(String kons, String aciklama,int paket_no) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String sql  = "INSERT INTO KONS_ACIKLAMA (KONS,ACIKLAMA) " +
 				" VALUES (?,?)" ;
@@ -571,16 +580,41 @@ public class KERESTE_MSSQL implements IKERESTE {
 		stmt.setString(1, kons);
 		stmt.setString(2, aciklama);
 		stmt.executeUpdate();
-		stmt.close();
 		
+		sql  = "INSERT INTO PAKET_NO (Pak_No,Konsimento) " +
+				" VALUES (?,?)" ;
+		stmt = null;
+		stmt = con.prepareStatement(sql);
+		stmt.setInt(1, paket_no);
+		stmt.setString(2, kons);
+		stmt.executeUpdate();
+		stmt.close();
 	}
 
 	@Override
-	public void kons_sil(String kons) throws ClassNotFoundException, SQLException {
+	public int kons_sil(String kons) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String sql = "DELETE FROM KONS_ACIKLAMA WHERE KONS =N'" + kons + "'" ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
+		///
+		ResultSet	rss = null;
+		stmt = con.prepareStatement("SELECT Pak_No FROM PAKET_NO  WHERE Konsimento =N'" + kons + "' ");
+		rss = stmt.executeQuery();
+		int result ;
+		if (!rss.isBeforeFirst() ) {  
+			result = 0 ;
+		}
+		else
+		{
+			rss.next();
+			result = rss.getInt("Evrak_No");
+		}
+		sql = "DELETE FROM PAKET_NO WHERE Konsimento =N'" + kons + "'" ;
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		return  result  ;	
 	}
 
 	@Override
@@ -1234,7 +1268,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " CAlt_Grup " + ker_rap_BILGI.getCAlt_Grup()  + " AND" 
 				+ " CDepo " + ker_rap_BILGI.getCDepo()  + " AND " 
 				+ " COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() ; 
-		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1873,5 +1906,25 @@ public class KERESTE_MSSQL implements IKERESTE {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
+	}
+
+	@Override
+	public int paket_no_al(String kons) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		int E_NUMBER ;
+		String sql = "SELECT  Pak_No FROM PAKET_NO WITH (HOLDLOCK, ROWLOCK) ";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		rss.next();
+		E_NUMBER = rss.getInt("Pak_No");
+		E_NUMBER = E_NUMBER + 1 ;
+		//******** KAYIT
+		sql = "UPDATE PAKET_NO SET Pak_No =" + E_NUMBER + "  WHERE Konsimento = N'" + kons+ "'";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		//**************
+		return E_NUMBER;	
 	}
 }

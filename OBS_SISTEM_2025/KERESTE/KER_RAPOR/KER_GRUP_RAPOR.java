@@ -2370,7 +2370,20 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 								{
 									hname.setCellStyle(satirStyle3);
 								}
-								hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+								
+								if ( mdl.getValueAt(i, 0) != null)
+								{
+									if(Double.parseDouble( mdl.getValueAt(i,s).toString()) != 0)
+									{
+										hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+									}
+								}
+								else {
+									if(Double.parseDouble( mdl.getValueAt(i,s).toString()) != 0)
+									{
+										hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+									}
+								}
 							}
 							else
 							{
@@ -2549,7 +2562,19 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 								{
 									hname.setCellStyle(satirStyle3);
 								}
-								hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+								if ( mdl.getValueAt(i, 0) != null)
+								{
+									if(Double.parseDouble( mdl.getValueAt(i,s).toString()) != 0)
+									{
+										hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+									}
+								}
+								else {
+									if(Double.parseDouble( mdl.getValueAt(i,s).toString()) != 0)
+									{
+										hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+									}
+								}
 							}
 							else
 							{
@@ -2740,7 +2765,19 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 							{
 								hname.setCellStyle(satirStyle3);
 							}
-							hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+							if ( mdl.getValueAt(i, 0) != null)
+								{
+									if(Double.parseDouble( mdl.getValueAt(i,s).toString()) != 0)
+									{
+										hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+									}
+								}
+								else {
+									if(Double.parseDouble( mdl.getValueAt(i,s).toString()) != 0)
+									{
+										hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+									}
+								}
 						}
 						else
 						{

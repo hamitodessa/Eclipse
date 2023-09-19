@@ -210,6 +210,15 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel_1.add(formattedTextField);
 
 		formattedTextField_1 = new JFormattedTextField();
+		formattedTextField_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) 
+				{
+					formattedTextField_1.setText(formattedTextField.getText());		
+				}
+			}
+		});
 		formattedTextField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		formattedTextField_1.setText("0.0000");
 		DefaultFormatterFactory f_dob1 = new DefaultFormatterFactory(dnff); 
@@ -218,6 +227,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		formattedTextField_1.setFormatterFactory(f_dob1);
 		formattedTextField_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		formattedTextField_1.setBounds(26, 45, 75, 20);
+		
 		panel_1.add(formattedTextField_1);
 
 		JPanel panel_1_1 = new JPanel();
@@ -238,6 +248,15 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel_1_1.add(formattedTextField_2);
 
 		formattedTextField_1_1 = new JFormattedTextField();
+		formattedTextField_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) 
+				{
+					formattedTextField_1_1.setText(formattedTextField_2.getText());		
+				}
+			}
+		});
 		formattedTextField_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		formattedTextField_1_1.setText("0.0000");
 		DefaultFormatterFactory f_dob11 = new DefaultFormatterFactory(dnff); 
@@ -266,6 +285,15 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel_1_2.add(formattedTextField_3);
 
 		formattedTextField_1_2 = new JFormattedTextField();
+		formattedTextField_1_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) 
+				{
+					formattedTextField_1_2.setText(formattedTextField_3.getText());		
+				}
+			}
+		});
 		formattedTextField_1_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		formattedTextField_1_2.setText("0.0000");
 		DefaultFormatterFactory f_dob12 = new DefaultFormatterFactory(dnff); 

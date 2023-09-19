@@ -881,14 +881,14 @@ public class KER_GIRIS extends JInternalFrame {
 		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8.setForeground(new Color(139, 0, 0));
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_8.setBounds(400, 5, 77, 14);
+		label_8.setBounds(415, 5, 77, 14);
 		panel_71.add(label_8);
 
 		label_9 = new JLabel("0.00");
 		label_9.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_9.setForeground(new Color(139, 0, 0));
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_9.setBounds(805, 5, 146, 14);
+		label_9.setBounds(820, 5, 146, 14);
 		panel_71.add(label_9);
 		splitPane_3.setLeftComponent(panel_71);
 		
@@ -896,20 +896,20 @@ public class KER_GIRIS extends JInternalFrame {
 		lblPaket.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPaket.setForeground(new Color(139, 0, 0));
 		lblPaket.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPaket.setBounds(484, 5, 66, 14);
+		lblPaket.setBounds(499, 5, 66, 14);
 		panel_71.add(lblPaket);
 		
 		label_8_1 = new JLabel("0");
 		label_8_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8_1.setForeground(new Color(139, 0, 0));
 		label_8_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_8_1.setBounds(315, 5, 85, 14);
+		label_8_1.setBounds(330, 5, 85, 14);
 		panel_71.add(label_8_1);
 		
 		JLabel lblNewLabel_8 = new JLabel("Paket");
 		lblNewLabel_8.setForeground(new Color(0, 0, 128));
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_8.setBounds(560, 5, 60, 14);
+		lblNewLabel_8.setBounds(575, 5, 60, 14);
 		panel_71.add(lblNewLabel_8);
 		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
@@ -1151,16 +1151,7 @@ public class KER_GIRIS extends JInternalFrame {
 				}
 			}
 		};
-		table.addMouseListener(new MouseAdapter() {
-		    public void mousePressed(MouseEvent mouseEvent) {
-		        JTable table =(JTable) mouseEvent.getSource();
-		        if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
-		        	if(table.getSelectedColumn() != 2) return ;
-					if(model.getValueAt(table.getSelectedRow(), 6).toString().equals("")) return ;
-					paket_no_olustur();
-		        }
-		    }
-		});
+		
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1296,8 +1287,34 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setCellEditor(new DefaultCellEditor(ftext));
 		col.setHeaderRenderer(new SOLA());
 		
+		JTextField pak_noField = new JTextField();
+		pak_noField.setDocument(new JTextFieldLimit(10));
+		pak_noField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				if (e.getClickCount() == 2 && table.getSelectedRow() != -1) {
+					if(table.getSelectedColumn() != 2) return ;
+					if(model.getValueAt(table.getSelectedRow(), 6).toString().equals("")) return ;
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					int pak_no;
+					try {
+						pak_no = ker_Access.paket_no_al(model.getValueAt(table.getSelectedRow(), 6).toString());
+						String[] sinifString =  model.getValueAt(table.getSelectedRow(), 1).toString().split("-");
+						String sinString = sinifString[0].substring(1,2);
+						int kj = 0 ;
+						kj = 8 - Integer.toString(pak_no).length() ;
+						String str_ = sinString + "Z" +  StringUtils.repeat("0", kj)   + Integer.toString(pak_no);
+						pak_noField.setText(str_);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		col = table.getColumnModel().getColumn(2);
-		col.setMinWidth(75);
+		col.setMinWidth(90);
+		col.setCellEditor( new DefaultCellEditor(pak_noField) );
 		col.setHeaderRenderer(new SOLA());
 		
 		col = table.getColumnModel().getColumn(3);
@@ -1416,10 +1433,12 @@ public class KER_GIRIS extends JInternalFrame {
 					if (column == 1)  //
 					{
 						paketm3();
+						toplam();
 					}
 					if (column == 2)  //
 					{
 						paketm3();
+						toplam();
 					}
 					if (column == 3)  //MIKTAR
 					{
@@ -1430,7 +1449,7 @@ public class KER_GIRIS extends JInternalFrame {
 						m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
 						model.setValueAt( fiat * m3,row, 10)  ;
 						paketm3();
-						//toplam();
+						toplam();
 					}
 					if (column == 4)  //m3
 					{
@@ -1438,7 +1457,7 @@ public class KER_GIRIS extends JInternalFrame {
 						fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
 						m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
 						model.setValueAt( fiat * m3,row, 10)  ;
-						//toplam();
+						toplam();
 					}
 					if (column == 7)  //FIAT
 					{
@@ -1446,20 +1465,19 @@ public class KER_GIRIS extends JInternalFrame {
 						fiat =  Double.parseDouble(model.getValueAt(row, 7).toString());
 						m3 = Double.parseDouble(model.getValueAt(row, 4).toString());
 						model.setValueAt( fiat * m3,row, 10)  ;
-						//toplam();
+						toplam();
 					}
 					if (column == 8)  //ISKONTO
 					{
-						//toplam();
+						toplam();
 					}
 					if (column == 9)  //KDV
 					{
-						//toplam();
+						toplam();
 					}
-					//toplam();
 				}
 				//
-				toplam();
+				//toplam();
 			}
 		});
 	}
@@ -1625,6 +1643,7 @@ public class KER_GIRIS extends JInternalFrame {
 			{
 				return;
 			}
+			
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			double  double_0, double_1 = 0, double_2 = 0, double_3 = 0, double_4, double_5=0,double_6 = 0  ,adetToplam=0   ;
 			int urunsayi = 0 ,paketsayi = 0 ;
@@ -1732,6 +1751,7 @@ public class KER_GIRIS extends JInternalFrame {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		for ( int i = 1 ;i <= model.getRowCount() -1 ;i++   ) 
 		{
+			
 			String paketno = model.getValueAt(i-1, 2).toString().trim();
 			double aram3 = Double.parseDouble(model.getValueAt(i-1, 4).toString()) ;
 			if (! model.getValueAt(i, 2).toString().trim().equals(paketno.toString().trim()))
@@ -2569,26 +2589,6 @@ public class KER_GIRIS extends JInternalFrame {
 		};
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
-	}
-	private void paket_no_olustur()
-	{
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		try {
-			int pak_no = ker_Access.paket_no_al(model.getValueAt(table.getSelectedRow(), 6).toString());
-			
-			String[] sinifString =  model.getValueAt(table.getSelectedRow(), 1).toString().split("-");
-			String sinString = sinifString[0].substring(1,2);
-			int kj = 0 ;
-			kj = 8 - Integer.toString(pak_no).length() ;
-			String str_ = sinString + "Z" +  StringUtils.repeat("0", kj)   + Integer.toString(pak_no);
-			//String str_ = ("0".repeat(kj)) + Integer.toString(sno);
-		    model.setValueAt(str_, table.getSelectedRow(), 2);
-			System.out.println(str_);
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	static void Progres_Bar(int max, int deger) throws InterruptedException
     {

@@ -129,6 +129,12 @@ public class KERESTE_MYSQL implements IKERESTE {
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
+		sql = "CREATE TABLE `PAKET_NO`( "
+				+ "  `Pak_No` int NOT NULL,"
+				+ "  `Konsimento` nvarchar(15) PRIMARY KEY NOT NULL,"
+				+ "  INDEX `IX_PKN` (  `Konsimento` ASC) VISIBLE)";		
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `DPN`( "
 				+ " `DID`   INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ "  `Evrak_No`  nvarchar (10) NOT NULL,"
@@ -164,7 +170,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " `Barkod` nvarchar(20) NULL,"
 				+ " `Kodu` nvarchar(16) NOT NULL,"
 				+ " `Paket_No` nvarchar (10) NULL,"
-				+ " `Konsimento` nvarchar(10) NULL,"
+				+ " `Konsimento` nvarchar(15) NULL,"
 				+ " `Miktar` float NULL,"
 				+ " `Tarih` datetime NULL,"
 				+ " `Kdv` float NULL,"

@@ -170,7 +170,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		textField_2 = new JTextField();
 		textField_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_2.setBounds(59, 15, 44, 20);
+		textField_2.setBounds(59, 19, 30, 20);
 		textField_2.setDocument(new JTextFieldLimit(2));
 		textField_2.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -216,12 +216,12 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/save.png")));
-		btnNewButton.setBounds(363, 15, 20, 23);
+		btnNewButton.setBounds(363, 18, 23, 23);
 		panel_1.add(btnNewButton);
 		
 		lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4.setBounds(113, 19, 240, 14);
+		lblNewLabel_4.setBounds(99, 23, 254, 14);
 		panel_1.add(lblNewLabel_4);
 		
 		formattedTextField = new JFormattedTextField();

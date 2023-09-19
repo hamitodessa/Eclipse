@@ -2,6 +2,7 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -69,6 +70,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -1289,6 +1291,68 @@ public class KER_GIRIS extends JInternalFrame {
 		
 		JTextField pak_noField = new JTextField();
 		pak_noField.setDocument(new JTextFieldLimit(10));
+		pak_noField.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				//Paket no Kontrol yap onceden varmi 
+				ResultSet rSet;
+				try {
+					if(! model.getValueAt(table.getSelectedRow(), 6).toString().equals(""))
+					{
+						rSet = ker_Access.paket_oku(pak_noField.getText() + "-" + model.getValueAt(table.getSelectedRow(), 6).toString());
+					}
+					else {
+						return ;
+					}
+					if (!rSet.isBeforeFirst() ) {  
+						
+					}
+					else 
+					{
+						rSet.first();  
+						if (! rSet.getString("Evrak_No").toString().equals(textField.getText()))
+						{
+							JOptionPane.showMessageDialog(null, rSet.getString("Evrak_No") + " Nolu Evrakta Giris Yapilmis.." , "Paket No Kontrol...", JOptionPane.ERROR_MESSAGE);   
+						}
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				//Paket no Kontrol yap onceden varmi 
+				ResultSet rSet;
+				try {
+					if(! model.getValueAt(table.getSelectedRow(), 6).toString().equals(""))
+					{
+						rSet = ker_Access.paket_oku(pak_noField.getText() + "-" + model.getValueAt(table.getSelectedRow(), 6).toString());
+					}
+					else {
+						return ;
+					}
+					if (!rSet.isBeforeFirst() ) {  
+						
+					}
+					else 
+					{
+						rSet.first();  
+						if (! rSet.getString("Evrak_No").toString().equals(textField.getText()))
+						{
+							JOptionPane.showMessageDialog(null, rSet.getString("Evrak_No") + " Nolu Evrakta Giris Yapilmis.." , "Paket No Kontrol...", JOptionPane.ERROR_MESSAGE);   
+						}
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+			
+			}
+		});
 		pak_noField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1316,6 +1380,7 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setMinWidth(90);
 		col.setCellEditor( new DefaultCellEditor(pak_noField) );
 		col.setHeaderRenderer(new SOLA());
+		col.setCellRenderer(new PathCellRenderer());
 		
 		col = table.getColumnModel().getColumn(3);
 		col.setMinWidth(40);
@@ -2677,6 +2742,18 @@ public class KER_GIRIS extends JInternalFrame {
 		GuiUtil.setWaitCursor(txtcari,false);
 		GuiUtil.setWaitCursor(txtadres,false);
 
+	}
+	
+	class PathCellRenderer extends DefaultTableCellRenderer {
+	    public Component getTableCellRendererComponent(
+	                        JTable table, Object value,
+	                        boolean isSelected, boolean hasFocus,
+	                        int row, int column) {
+	        JLabel c = (JLabel)super.getTableCellRendererComponent( table, value, isSelected, hasFocus, row, column) ;
+	        String pathValue = "Cift Tiklamada otomatik Paket No verilir...Once Konsimento Degeri girilmelidir   "; 
+	        setToolTipText(pathValue);
+	        return c;
+	    }
 	}
 }
 

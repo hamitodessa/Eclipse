@@ -42,6 +42,7 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
@@ -2138,13 +2139,27 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			return;
 		}
 
-		if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Yil") || FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif")
+		if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Yil") 
+				|| FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Sinif")
 				|| FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Urun Kodu"))
 		{
 			GLOBAL.g_baslik = "KERESTE GRUP RAPORLAMA " + FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex());
 			DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 			GLOBAL.g_legends = "AYLAR";
-			GLOBAL.g_setNumbersAxisTitleText = "Tutar" ;
+			if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Tutar"))
+			{
+				GLOBAL.g_setNumbersAxisTitleText = "Tutar" ;
+			}
+			else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Miktar"))
+			{
+				GLOBAL.g_setNumbersAxisTitleText = "Miktar" ;
+			}
+			else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("m3"))
+			{
+				GLOBAL.g_setNumbersAxisTitleText = "m3" ;
+			}
+			
+			
 			ArrayList<Double> tutar = new ArrayList<Double>();
 			for (int i = 0;i<=mdll.getRowCount() - 2 ;i++)
 			{
@@ -2242,23 +2257,48 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				headerSolaStyle.setFont(headerSolaFont);
 				headerSolaStyle.setAlignment(HorizontalAlignment.LEFT);
 
-				HSSFCellStyle satirStyle = workbook.createCellStyle();
-				HSSFCellStyle satirStylemik = workbook.createCellStyle();
-				HSSFCellStyle satirStyle3 = workbook.createCellStyle();
-				HSSFCellStyle satirStyle2 = workbook.createCellStyle();
 				HSSFFont satirFont = workbook.createFont();
-				satirFont.setFontName("Arial Narrow");
-				satirFont. setFontHeight((short)(10*20));
+				HSSFCellStyle satirStyle = workbook.createCellStyle();
 				satirStyle.setFont(satirFont);
 				satirStyle.setAlignment(HorizontalAlignment.RIGHT);
-				satirStyle3.setFont(satirFont);
-				satirStyle2.setFont(satirFont);
+				HSSFCellStyle satirStylemik = workbook.createCellStyle();
 				satirStylemik.setFont(satirFont);
-				satirStyle3.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
-				satirStyle2.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
 				satirStylemik.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0"));
+				satirStylemik.setAlignment(HorizontalAlignment.RIGHT);
+		
+				
+				HSSFCellStyle satirStyle3 = workbook.createCellStyle();
+				satirStyle3.setFont(satirFont);
+				satirStyle3.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
 				satirStyle3.setAlignment(HorizontalAlignment.RIGHT);
-				satirStyle2.setAlignment(HorizontalAlignment.RIGHT);				satirStylemik.setAlignment(HorizontalAlignment.RIGHT);
+				
+				HSSFCellStyle satirStyle2 = workbook.createCellStyle();
+				satirStyle2.setFont(satirFont);
+				satirStyle2.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
+				satirStyle2.setAlignment(HorizontalAlignment.RIGHT);
+				HSSFCellStyle satirStyle2_ARA = workbook.createCellStyle();
+				satirStyle2_ARA.setFont(satirFont);
+				satirStyle2_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
+				satirStyle2_ARA.setAlignment(HorizontalAlignment.RIGHT);
+				satirStyle2_ARA.setBorderTop(BorderStyle.MEDIUM);
+				satirStyle2_ARA.setBorderBottom(BorderStyle.MEDIUM);
+				HSSFCellStyle satirStyle3_ARA = workbook.createCellStyle();
+				satirStyle3_ARA.setFont(satirFont);
+				satirStyle3_ARA.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
+				satirStyle3_ARA.setAlignment(HorizontalAlignment.RIGHT);
+				satirStyle3_ARA.setBorderTop(BorderStyle.MEDIUM);
+				satirStyle3_ARA.setBorderBottom(BorderStyle.MEDIUM);
+				HSSFCellStyle satirStylemik_ARA = workbook.createCellStyle();
+				satirStylemik_ARA.setFont(satirFont);
+				satirStylemik_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0"));
+				satirStylemik_ARA.setBorderTop(BorderStyle.MEDIUM);
+				satirStylemik_ARA.setBorderBottom(BorderStyle.MEDIUM);
+				satirStylemik_ARA.setAlignment(HorizontalAlignment.RIGHT);
+				
+				satirFont.setFontName("Arial Narrow");
+				satirFont. setFontHeight((short)(10*20));
+				
+				
 
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 				HSSFCellStyle acikStyle = workbook.createCellStyle();
@@ -2378,7 +2418,20 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 										hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
 									}
 								}
-								else {
+								else 
+								{
+									if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Tutar"))
+									{
+										hname.setCellStyle(satirStyle2_ARA);
+									}
+									else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Miktar"))
+									{
+										hname.setCellStyle(satirStylemik_ARA);
+									}
+									else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("m3"))
+									{
+										hname.setCellStyle(satirStyle3_ARA); // ARA BOLUM BORDER LI
+									}
 									if(Double.parseDouble( mdl.getValueAt(i,s).toString()) != 0)
 									{
 										hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
@@ -2449,6 +2502,28 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				satirStyle3.setAlignment(HorizontalAlignment.RIGHT);
 				satirStyle2.setAlignment(HorizontalAlignment.RIGHT);
 				satirStylemik.setAlignment(HorizontalAlignment.RIGHT);
+				
+				//
+				XSSFCellStyle satirStyle2_ARA = workbook.createCellStyle();
+				satirStyle2_ARA.setFont(satirFont);
+				satirStyle2_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
+				satirStyle2_ARA.setAlignment(HorizontalAlignment.RIGHT);
+				satirStyle2_ARA.setBorderTop(BorderStyle.MEDIUM);
+				satirStyle2_ARA.setBorderBottom(BorderStyle.MEDIUM);
+				XSSFCellStyle satirStyle3_ARA = workbook.createCellStyle();
+				satirStyle3_ARA.setFont(satirFont);
+				satirStyle3_ARA.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
+				satirStyle3_ARA.setAlignment(HorizontalAlignment.RIGHT);
+				satirStyle3_ARA.setBorderTop(BorderStyle.MEDIUM);
+				satirStyle3_ARA.setBorderBottom(BorderStyle.MEDIUM);
+				XSSFCellStyle satirStylemik_ARA = workbook.createCellStyle();
+				satirStylemik_ARA.setFont(satirFont);
+				satirStylemik_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0"));
+				satirStylemik_ARA.setBorderTop(BorderStyle.MEDIUM);
+				satirStylemik_ARA.setBorderBottom(BorderStyle.MEDIUM);
+				satirStylemik_ARA.setAlignment(HorizontalAlignment.RIGHT);
+
+				//
 
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 				XSSFCellStyle acikStyle = workbook.createCellStyle();
@@ -2570,6 +2645,18 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 									}
 								}
 								else {
+									if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Tutar"))
+									{
+										hname.setCellStyle(satirStyle2_ARA);
+									}
+									else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Miktar"))
+									{
+										hname.setCellStyle(satirStylemik_ARA);
+									}
+									else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("m3"))
+									{
+										hname.setCellStyle(satirStyle3_ARA); // ARA BOLUM BORDER LI
+									}
 									if(Double.parseDouble( mdl.getValueAt(i,s).toString()) != 0)
 									{
 										hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
@@ -2651,7 +2738,27 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			satirStyle3.setAlignment(HorizontalAlignment.RIGHT);
 			satirStyle2.setAlignment(HorizontalAlignment.RIGHT);
 			satirStylemik.setAlignment(HorizontalAlignment.RIGHT);
+	//
+			XSSFCellStyle satirStyle2_ARA = workbook.createCellStyle();
+			satirStyle2_ARA.setFont(satirFont);
+			satirStyle2_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
+			satirStyle2_ARA.setAlignment(HorizontalAlignment.RIGHT);
+			satirStyle2_ARA.setBorderTop(BorderStyle.MEDIUM);
+			satirStyle2_ARA.setBorderBottom(BorderStyle.MEDIUM);
+			XSSFCellStyle satirStyle3_ARA = workbook.createCellStyle();
+			satirStyle3_ARA.setFont(satirFont);
+			satirStyle3_ARA.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
+			satirStyle3_ARA.setAlignment(HorizontalAlignment.RIGHT);
+			satirStyle3_ARA.setBorderTop(BorderStyle.MEDIUM);
+			satirStyle3_ARA.setBorderBottom(BorderStyle.MEDIUM);
+			XSSFCellStyle satirStylemik_ARA = workbook.createCellStyle();
+			satirStylemik_ARA.setFont(satirFont);
+			satirStylemik_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0"));
+			satirStylemik_ARA.setBorderTop(BorderStyle.MEDIUM);
+			satirStylemik_ARA.setBorderBottom(BorderStyle.MEDIUM);
+			satirStylemik_ARA.setAlignment(HorizontalAlignment.RIGHT);
 
+			//
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			XSSFCellStyle acikStyle = workbook.createCellStyle();
 			XSSFFont acikFont = workbook.createFont();
@@ -2773,6 +2880,18 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 									}
 								}
 								else {
+									if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Tutar"))
+									{
+										hname.setCellStyle(satirStyle2_ARA);
+									}
+									else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Miktar"))
+									{
+										hname.setCellStyle(satirStylemik_ARA);
+									}
+									else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("m3"))
+									{
+										hname.setCellStyle(satirStyle3_ARA); // ARA BOLUM BORDER LI
+									}
 									if(Double.parseDouble( mdl.getValueAt(i,s).toString()) != 0)
 									{
 										hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));

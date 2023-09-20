@@ -62,7 +62,6 @@ public class DOSYA_MYSQL implements ILOGER_KAYIT{
 	@Override
 	public DefaultTableModel log_txt_rapor(String t1, String t2, String aciklama, String evrak, String user,
 			DIZIN_BILGILERI dBILGI) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

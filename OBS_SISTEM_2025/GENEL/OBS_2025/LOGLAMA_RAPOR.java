@@ -144,7 +144,8 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(400, 12, 120, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
+		dateChooser_1.setBounds(400, 12, 120, 20);
+		dateChooser_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 

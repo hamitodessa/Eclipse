@@ -97,7 +97,6 @@ public class KAMERA extends JInternalFrame
 				g.setColor(Color.WHITE);
 				g.dispose();
 				URUN_KART.imagePanel.setImage(bi);
-
 				webcam.close();
 				dispose();
 			}

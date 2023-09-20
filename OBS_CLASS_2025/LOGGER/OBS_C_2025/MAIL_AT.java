@@ -20,6 +20,8 @@ public class MAIL_AT implements ILOGGER{
 	public void Logla(lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI)
 	{
 		if ( GLOBAL.Log_Mail.toString().equals("") ) return ;
+		Runnable runner = new Runnable()
+		{ public void run() {
 		try
 		{
 			String[] to = { GLOBAL.Log_Mail };
@@ -60,10 +62,16 @@ public class MAIL_AT implements ILOGGER{
 			Transport.send(message);
 			message= null;
 			session = null;
+			Thread.currentThread().isInterrupted();
 		}
 		catch (Exception ex)
 		{
+			Thread.currentThread().isInterrupted();
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Loglama Mail Gonderme", JOptionPane.ERROR_MESSAGE);
 		}
+		////
+		}		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
 	}
 }

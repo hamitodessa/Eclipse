@@ -591,6 +591,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	}
 	private void gonder() 
 	{
+		Runnable runner = new Runnable()
+		{ public void run() {
 		try
 		{
 			long startTime = System.currentTimeMillis(); 
@@ -764,12 +766,18 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
+			Thread.currentThread().isInterrupted();
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 		}
 		catch (Exception ex)
 		{
+			Thread.currentThread().isInterrupted();
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
+		}
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
 	}
 	private void grf_gonder() 
 	{

@@ -71,10 +71,9 @@ public class PAKET_ARA extends JDialog {
 	public PAKET_ARA() {
 		setModal(true);
 		setTitle("KERESTE PAKET ARAMA");
-		//setResizable(true);
+		setResizable(true);
 		getContentPane().setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
-		//setBounds(100, 100,1000,400);
 		
 		splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);

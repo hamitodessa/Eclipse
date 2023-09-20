@@ -39,7 +39,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 			bWriter.close();
 		}
 		catch (Exception e){
-			JOptionPane.showMessageDialog(null, e.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Text Dosya Yazma...," +e.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	@Override

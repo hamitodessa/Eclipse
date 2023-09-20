@@ -1863,6 +1863,7 @@ public class KER_GIRIS extends JInternalFrame {
 			}
 			catch (Exception ex)
 			{
+				Thread.currentThread().isInterrupted();
 				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Satyaz 1", JOptionPane.ERROR_MESSAGE);             
 			}
 		}
@@ -2532,6 +2533,7 @@ public class KER_GIRIS extends JInternalFrame {
 			}
 			catch (Exception ex)
 			{
+				Thread.currentThread().isInterrupted();
 				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 			}
 		}

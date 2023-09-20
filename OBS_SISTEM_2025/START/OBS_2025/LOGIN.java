@@ -269,7 +269,7 @@ public class LOGIN extends JDialog {
 		panel.add(chckbxhatirla);
 
 		JButton btncikis = new JButton("Cikis");
-		btncikis.setBounds(190, 92, 110, 23);
+		btncikis.setBounds(190, 92, 110, 25);
 		panel.add(btncikis);
 		btncikis.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/exit.png")));
 		btncikis.addActionListener(new ActionListener() 
@@ -282,7 +282,7 @@ public class LOGIN extends JDialog {
 		});
 		btncikis.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btncdizin = new JButton("Calisma Dizini");
-		btncdizin.setBounds(190, 122, 110, 23);
+		btncdizin.setBounds(190, 122, 110, 25);
 		panel.add(btncdizin);
 		btncdizin.addActionListener(new ActionListener() 
 		{
@@ -304,7 +304,7 @@ public class LOGIN extends JDialog {
 		btncdizin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
 		JButton btngiris = new JButton("Giris");
-		btngiris.setBounds(310, 92, 110, 23);
+		btngiris.setBounds(310, 92, 110, 25);
 		panel.add(btngiris);
 		btngiris.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/add-user-16.png")));
 		btngiris.addActionListener(new ActionListener() 
@@ -348,7 +348,7 @@ public class LOGIN extends JDialog {
 		});
 		btngiris.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btndevam = new JButton("Devam");
-		btndevam.setBounds(310, 122, 110, 23);
+		btndevam.setBounds(310, 122, 110, 25);
 		panel.add(btndevam);
 		btndevam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -16,7 +16,6 @@ public class KERESTE_ACCESS {
 	}
 	public static void baglan() throws SQLException, ClassNotFoundException
 	{
-		
 		_IKereste.baglan();
 	}
 	public void kER_SIFIR_L (Server_Bilgi sbilgi, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 

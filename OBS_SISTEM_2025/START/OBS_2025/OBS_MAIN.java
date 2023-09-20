@@ -102,17 +102,20 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_18;//Kod Degisme
 	private JButton btnNewButton_19;//Yil Sonu
 	private JButton btnNewButton_22;//Firma Ismi
+	public static JLabel lblCariBilgi ;
 	//KUR
 	private JButton btnNewButton_32;//Kur Giris
 	private JButton btnNewButton_33;//Kur Rapor
 	private JButton btnNewButton_34 ;//Kur Grafik
 	private JButton btnNewButton_92 ;//Eksik Kur
+	public static JLabel lblKurBilgi ;
 	//ADRES
 	private JButton btnNewButton_36;//Adres Giris
 	private JButton btnNewButton_37;//Adres Detay
 	private JButton btnNewButton_39;//Adres Etiket
 	private JButton btnNewButton_40;//Adres Etiket Ayar
 	private JButton btnNewButton_41;//Adres Firma
+	public static JLabel lblAdresBilgi ;
 	//FATURA
 	private JButton btnNewButton_42;//Urun Karti
 	private JButton btnNewButton_43;//Imalat
@@ -142,9 +145,11 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_31 ;//Degisken Yenileme
 	private JButton btnNewButton_73 ;//Firma Ismi
 	private JButton btnNewButton_74 ;//Yil Sonu
+	public static JLabel lblStokBilgi ;
 	//SMS
 	private JButton btnNewButton_83 ;//SMS
 	private JButton btnNewButton_84 ;//MAIL
+	public static JLabel lblSmsBilgi ;
 	//AYARLA
 	private JButton btnNewButton_87;//Kullanici Ekleme
 	private JButton btnNewButton_88;//Kull Detay Ekleme
@@ -162,11 +167,13 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_77;//Raporlama
 	private JButton btnNewButton_78;//Cek Kontrol
 	private JButton btnNewButton_80;//Firma Ismi
+	public static JLabel lblKambiyoBilgi ;
 	//GUNLUK
 	private JButton btnNewButton_81;//Gunluk
 	private JButton btnNewButton_82;//Gorev Kayit
 	private JButton btnNewButton_21;//Kayitli Gorevler
 	private JButton btnNewButton_38;//Firma Ismi
+	public static JLabel lblGunlukBilgi ;
 	//KERESTE
 	private JButton btnNewButton_1 ; //Ker Giris
 	private JButton btnNewButton_24 ; // Ker Cikis
@@ -179,6 +186,7 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_35 ; //Firma Ismi
 	private JButton btnNewButton_66 ; // Ortalama Satis
 	private JButton btnNewButton_65 ; // Degisken Yenileme
+	public static JLabel lblKeresteBilgi ;
 	//
 	private JButton btnYenile ; // Yenile Tusu
 	private JButton btnExcell ; // Excell Aktarma
@@ -1396,6 +1404,12 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_22.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
 		toolBar_2.add(btnNewButton_22);
+		
+		JLabel lblNewLabel_45 = new JLabel("          ");
+		toolBar_2.add(lblNewLabel_45);
+		
+		lblCariBilgi = new JLabel("");
+		toolBar_2.add(lblCariBilgi);
 //**********************************************************************KUR ********************************************************************
 		JToolBar toolBar_3 = new JToolBar();
 		//toolBar_3.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -1443,6 +1457,12 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_92.setToolTipText("Eksik Kur");
 		btnNewButton_92.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-data-transfer-30.png")));
 		toolBar_3.add(btnNewButton_92);
+		
+		JLabel lblNewLabel_46 = new JLabel("          ");
+		toolBar_3.add(lblNewLabel_46);
+		
+		lblKurBilgi = new JLabel("");
+		toolBar_3.add(lblKurBilgi);
 //************************************************************ADRES *********************************************************************************
 		JToolBar toolBar_4 = new JToolBar();
 		toolBar_4.setFloatable(false);
@@ -1505,9 +1525,14 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		toolBar_4.add(btnNewButton_41);
+		
+		JLabel lblNewLabel_47 = new JLabel("          ");
+		toolBar_4.add(lblNewLabel_47);
+		
+		lblAdresBilgi = new JLabel("");
+		toolBar_4.add(lblAdresBilgi);
+		
 		JScrollPane stkscrol = new JScrollPane();
-		//stkscrol.setViewportBorder(UIManager.getBorder("ToolBar.border"));
-		//stkscrol.setBorder(new LineBorder(new Color(0, 191, 255)));
 		stkscrol.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		stkscrol.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
 		//***********************************************************************************************************************
@@ -1515,7 +1540,7 @@ public class OBS_MAIN extends JFrame {
 		qwer.setPreferredSize(new Dimension(0, 65));
 		qwer.setLayout(new BorderLayout(0, 0));
 		qwer.add(stkscrol);
-		//*************************************************************************************		
+		//******************************STOK ***********************************************************************************		
 		JToolBar toolBar_5 = new JToolBar();
 		toolBar_5.setMinimumSize(new Dimension(0, 55));
 		toolBar_5.setMaximumSize(new Dimension(0, 55));
@@ -1822,13 +1847,13 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_74.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-static-view-level2-30.png")));
 		toolBar_5.add(btnNewButton_74);
-		JLabel lblNewLabel_15 = new JLabel("      ");
+		JLabel lblNewLabel_15 = new JLabel("   ");
 		toolBar_5.add(lblNewLabel_15);
 		//****************************************************************************
 		JComboBox<String> comboDegisken = new JComboBox<String>();
 		comboDegisken.setBorder(new LineBorder(new Color(0, 191, 255)));
 		comboDegisken.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		comboDegisken.setMaximumSize(new Dimension(200, 35));
+		comboDegisken.setMaximumSize(new Dimension(210, 35));
 		comboDegisken.addItemListener(new ItemListener() 
 		{
 			public void itemStateChanged(ItemEvent e) {
@@ -1859,8 +1884,15 @@ public class OBS_MAIN extends JFrame {
 				}
 			}
 		});
-		comboDegisken.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Ozel Kod 2"}));
+		comboDegisken.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler    ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Ozel Kod 2"}));
 		toolBar_5.add(comboDegisken);
+		
+		JLabel lblNewLabel_48 = new JLabel("       ");
+		toolBar_5.add(lblNewLabel_48);
+		
+		lblStokBilgi = new JLabel("");
+		toolBar_5.add(lblStokBilgi);
+		
 		//************************************************************KAMBIYO *********************************************************************************
 		JToolBar toolBar_6 = new JToolBar();
 		//toolBar_6.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -1925,6 +1957,13 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_80.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
 		toolBar_6.add(btnNewButton_80);
+		
+		JLabel lblNewLabel_49 = new JLabel("          ");
+		toolBar_6.add(lblNewLabel_49);
+		
+		lblKambiyoBilgi = new JLabel("");
+		toolBar_6.add(lblKambiyoBilgi);
+		
 		//************************************************************GUNLUK *********************************************************************************
 
 		JToolBar toolBar_7 = new JToolBar();
@@ -1983,7 +2022,11 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_38.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
 		toolBar_7.add(btnNewButton_38);
 		
+		JLabel lblNewLabel_50 = new JLabel("          ");
+		toolBar_7.add(lblNewLabel_50);
 		
+		lblGunlukBilgi = new JLabel("");
+		toolBar_7.add(lblGunlukBilgi);
 		//************************************************************SMS*********************************************************************************
 
 		JToolBar toolBar_8 = new JToolBar();
@@ -2008,6 +2051,13 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_84.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-post-30.png")));
 		toolBar_8.add(btnNewButton_84);
+		
+		JLabel lblNewLabel_51 = new JLabel("          ");
+		toolBar_8.add(lblNewLabel_51);
+		
+		lblSmsBilgi = new JLabel("");
+		toolBar_8.add(lblSmsBilgi);
+		
 		//************************************************************KERESTE*********************************************************************************
 
 		JToolBar toolBar_Kereste = new JToolBar();
@@ -2187,6 +2237,12 @@ public class OBS_MAIN extends JFrame {
 		toolBar_Kereste.add(lblNewLabel_43);
 		comboDegisken_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Degiskenler             ","Ana Grup","Alt Grup","Mensei","Depo","Ozel Kod 1","Nakliyeci"}));
 		toolBar_Kereste.add(comboDegisken_1);
+		
+		JLabel lblNewLabel_52 = new JLabel("          ");
+		toolBar_Kereste.add(lblNewLabel_52);
+		
+		lblKeresteBilgi = new JLabel("");
+		toolBar_Kereste.add(lblKeresteBilgi);
 		//*********************************************************** GIDEN RAPOR *********************************************************************************
 
 		JToolBar toolBar_9 = new JToolBar();

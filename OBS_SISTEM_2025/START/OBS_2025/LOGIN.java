@@ -398,7 +398,6 @@ public class LOGIN extends JDialog {
 						Lgn_Progres_Bar(say, 9);
 
 						OBS_MAIN obmain = new OBS_MAIN();
-						
 						Login_Progres_Bar_Temizle();
 						progressBar.setMaximum(say);
 						progressBar.setStringPainted(true);
@@ -578,6 +577,11 @@ public class LOGIN extends JDialog {
 				BAGLAN.cariDizin.fIRMA_ADI =  oac._ICar.cari_firma_adi() ;
 				qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
 				OBS_MAIN.lblNewLabel_1.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "/ " + BAGLAN.cariDizin.fIRMA_ADI + "/ " + qwe );
+				OBS_MAIN.lblCariBilgi.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "  /  " + BAGLAN.cariDizin.fIRMA_ADI + "  /  " + qwe );
+				Dimension size = OBS_MAIN.lblCariBilgi.getPreferredSize();
+				OBS_MAIN.lblCariBilgi.setBounds(10, 55, size.width +10, 14);
+				OBS_MAIN.lblCariBilgi.setForeground(new Color(0, 0, 128));
+				OBS_MAIN.lblCariBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 				OBS_MAIN.tabbedPane.setEnabledAt(0, true);
 			}
 		}
@@ -602,6 +606,12 @@ public class LOGIN extends JDialog {
 			{
 				qwe =   BAGLAN.kurDizin.yER.equals("S") ?  BAGLAN.kurDizin.sERVER : "Lokal";
 				OBS_MAIN.lblNewLabel_3.setText ("Kur:" + BAGLAN.kurDizin.kOD + "/ "  + qwe );
+				OBS_MAIN.lblKurBilgi.setText ("Kur:" + BAGLAN.kurDizin.kOD + "/ "  + qwe );
+				Dimension size = OBS_MAIN.lblKurBilgi.getPreferredSize();
+				OBS_MAIN.lblKurBilgi.setBounds(10, 55, size.width +10, 14);
+				OBS_MAIN.lblKurBilgi.setForeground(new Color(0, 0, 128));
+				OBS_MAIN.lblKurBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
+				
 				OBS_MAIN.tabbedPane.setEnabledAt(1, true);
 			}
 		}
@@ -626,6 +636,11 @@ public class LOGIN extends JDialog {
 			{
 				qwe = BAGLAN.smsDizin.yER.equals("S") ? BAGLAN.smsDizin.sERVER : "Lokal" ;
 				OBS_MAIN.lblNewLabel_21.setText ("Sms:" + BAGLAN.smsDizin.kOD + "/ "  + qwe);
+				OBS_MAIN.lblSmsBilgi.setText ("Sms:" + BAGLAN.smsDizin.kOD + "/ "  + qwe);
+				Dimension size = OBS_MAIN.lblSmsBilgi.getPreferredSize();
+				OBS_MAIN.lblSmsBilgi.setBounds(10, 55, size.width +10, 14);
+				OBS_MAIN.lblSmsBilgi.setForeground(new Color(0, 0, 128));
+				OBS_MAIN.lblSmsBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 				OBS_MAIN.tabbedPane.setEnabledAt(6, true);
 			}
 		}
@@ -651,6 +666,11 @@ public class LOGIN extends JDialog {
 				BAGLAN.adrDizin.fIRMA_ADI =    oac._IAdres.adr_firma_adi() ;
 				qwe = BAGLAN.adrDizin.yER.equals("S") ? BAGLAN.adrDizin.sERVER : "Lokal" ;
 				OBS_MAIN.lblNewLabel_22.setText ("Adres:" + BAGLAN.adrDizin.kOD + "/ " + BAGLAN.adrDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblAdresBilgi.setText  ("Adres:" + BAGLAN.adrDizin.kOD + "/ " + BAGLAN.adrDizin.fIRMA_ADI + "/ " + qwe);
+				Dimension size = OBS_MAIN.lblAdresBilgi.getPreferredSize();
+				OBS_MAIN.lblAdresBilgi.setBounds(10, 55, size.width +10, 14);
+				OBS_MAIN.lblAdresBilgi.setForeground(new Color(0, 0, 128));
+				OBS_MAIN.lblAdresBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 				OBS_MAIN.tabbedPane.setEnabledAt(2, true);
 			}
 		}
@@ -676,6 +696,11 @@ public class LOGIN extends JDialog {
 				BAGLAN.fatDizin.fIRMA_ADI = oac._IStok.fat_firma_adi() ;
 				qwe = BAGLAN.fatDizin.yER.equals("S") ? BAGLAN.fatDizin.sERVER : "Lokal" ;
 				OBS_MAIN.lblNewLabel_2.setText ( "Stok:" + BAGLAN.fatDizin.kOD + "/ " + BAGLAN.fatDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblStokBilgi.setText  ( "Stok:" + BAGLAN.fatDizin.kOD + "/ " + BAGLAN.fatDizin.fIRMA_ADI + "/ " + qwe);
+				Dimension size = OBS_MAIN.lblStokBilgi.getPreferredSize();
+				OBS_MAIN.lblStokBilgi.setBounds(10, 55, size.width +10, 14);
+				OBS_MAIN.lblStokBilgi.setForeground(new Color(0, 0, 128));
+				OBS_MAIN.lblStokBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 				OBS_MAIN.tabbedPane.setEnabledAt(3, true);
 			}
 		}
@@ -701,6 +726,11 @@ public class LOGIN extends JDialog {
 				BAGLAN.kamDizin.fIRMA_ADI =  oac._IKambiyo.kam_firma_adi() ;
 				qwe =  BAGLAN.kamDizin.yER.equals("S") ? BAGLAN.kamDizin.sERVER : "Lokal" ;
 				OBS_MAIN.lblNewLabel_23.setText ("Kambiyo:" + BAGLAN.kamDizin.kOD + "/ " + BAGLAN.kamDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblKambiyoBilgi.setText   ("Kambiyo:" + BAGLAN.kamDizin.kOD + "/ " + BAGLAN.kamDizin.fIRMA_ADI + "/ " + qwe);
+				Dimension size = OBS_MAIN.lblKambiyoBilgi.getPreferredSize();
+				OBS_MAIN.lblKambiyoBilgi.setBounds(10, 55, size.width +10, 14);
+				OBS_MAIN.lblKambiyoBilgi.setForeground(new Color(0, 0, 128));
+				OBS_MAIN.lblKambiyoBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 				OBS_MAIN.tabbedPane.setEnabledAt(4, true);
 			}
 		}
@@ -726,6 +756,11 @@ public class LOGIN extends JDialog {
 				BAGLAN.gunDizin.fIRMA_ADI = oac._IGunluk.gun_firma_adi() ;
 				qwe = BAGLAN.gunDizin.yER.equals("S") ? BAGLAN.gunDizin.sERVER : "Lokal" ;
 				OBS_MAIN.lblNewLabel_24.setText ( "Gunluk:" + BAGLAN.gunDizin.kOD + "/ " + BAGLAN.gunDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblGunlukBilgi.setText   ( "Gunluk:" + BAGLAN.gunDizin.kOD + "/ " + BAGLAN.gunDizin.fIRMA_ADI + "/ " + qwe);
+				Dimension size = OBS_MAIN.lblGunlukBilgi.getPreferredSize();
+				OBS_MAIN.lblGunlukBilgi.setBounds(10, 55, size.width +10, 14);
+				OBS_MAIN.lblGunlukBilgi.setForeground(new Color(0, 0, 128));
+				OBS_MAIN.lblGunlukBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 				OBS_MAIN.tabbedPane.setEnabledAt(5, true);
 			}
 		}
@@ -751,6 +786,12 @@ public class LOGIN extends JDialog {
 				BAGLAN.kerDizin.fIRMA_ADI = oac._IKereste.ker_firma_adi() ;
 				qwe = BAGLAN.kerDizin.yER.equals("S") ? BAGLAN.kerDizin.sERVER : "Lokal" ;
 				OBS_MAIN.lblNewLabel_31_2.setText ( "Kereste:" + BAGLAN.kerDizin.kOD + "/ " + BAGLAN.kerDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblKeresteBilgi.setText   ( "Kereste:" + BAGLAN.kerDizin.kOD + "/ " + BAGLAN.kerDizin.fIRMA_ADI + "/ " + qwe);
+				Dimension size = OBS_MAIN.lblKeresteBilgi.getPreferredSize();
+				OBS_MAIN.lblKeresteBilgi.setBounds(10, 55, size.width +10, 14);
+				OBS_MAIN.lblKeresteBilgi.setForeground(new Color(0, 0, 128));
+				OBS_MAIN.lblKeresteBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
+				OBS_MAIN.tabbedPane.setEnabledAt(5, true);
 				OBS_MAIN.tabbedPane.setEnabledAt(7, true);
 			}
 		}
@@ -1241,7 +1282,8 @@ public class LOGIN extends JDialog {
 				{
 					lOGG_AKTAR("Kereste",BAGLAN.kerDizin.hAN_SQL,BAGLAN.kerDizin.lOG,BAGLAN.kerDizin.lOGLAMA_YERI);
 					KER_DOS_VAR = true;
-					OBS_SIS_2025_ANA_CLASS.KER_CONN = true;}
+					OBS_SIS_2025_ANA_CLASS.KER_CONN = true;
+				}
 			}
 			else
 				OBS_SIS_2025_ANA_CLASS.KER_CONN = false;
@@ -1370,14 +1412,11 @@ public class LOGIN extends JDialog {
 						+ "Mevcut Version = " + eskiver + "      "
 						+ "<br><br> "
 						+ "Yeni Version = " + yeniver + "" ;
-				//JOptionPane.showMessageDialog(null, String.format(html, "OBS SISTEM", JOptionPane.PLAIN_MESSAGE));
 				JOptionPane.showMessageDialog(null, String.format(html), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 			}
-			
 		}
 		catch (Exception ex)
 		{
-			//JOptionPane.showMessageDialog(null, ex.getMessage(), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 			return;
 		}
 	}

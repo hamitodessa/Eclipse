@@ -481,13 +481,10 @@ public class FILTRE extends JDialog {
 
 		final boolean showTabsHeader = false;
 		tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
-		{
-		    @Override
+		{ @Override
 		    protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
-		        if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
-		        } else {return 0;}	        }
-		  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
-		}); 
+		        if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);} else {return 0;} }
+		  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}}); 
 
 		
 		//final boolean showTabsHeader = false;
@@ -4481,32 +4478,32 @@ public class FILTRE extends JDialog {
 		
 		JLabel label_18_1 = new JLabel("Tarih");
 		label_18_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_18_1.setBounds(10, 11, 58, 14);
+		label_18_1.setBounds(10, 15, 60, 14);
 		panel_KERESTE.add(label_18_1);
 		
 		JLabel label_19_1 = new JLabel("Urun Kodu");
 		label_19_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_19_1.setBounds(10, 36, 69, 14);
+		label_19_1.setBounds(10, 37, 69, 14);
 		panel_KERESTE.add(label_19_1);
 		
 		JLabel lblHesapKodu_2 = new JLabel("Hesap Kodu");
 		lblHesapKodu_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblHesapKodu_2.setBounds(10, 60, 80, 14);
+		lblHesapKodu_2.setBounds(10, 59, 80, 14);
 		panel_KERESTE.add(lblHesapKodu_2);
 		
 		JLabel lblBirim_2 = new JLabel("Birim");
 		lblBirim_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblBirim_2.setBounds(10, 137, 69, 14);
+		lblBirim_2.setBounds(10, 135, 69, 14);
 		panel_KERESTE.add(lblBirim_2);
 		
 		JLabel lblGruplama_2 = new JLabel("Gruplama");
 		lblGruplama_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblGruplama_2.setBounds(10, 163, 69, 14);
+		lblGruplama_2.setBounds(10, 161, 69, 14);
 		panel_KERESTE.add(lblGruplama_2);
 		
 		JLabel lblStunlar_1 = new JLabel("Stunlar");
 		lblStunlar_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblStunlar_1.setBounds(10, 192, 69, 14);
+		lblStunlar_1.setBounds(10, 190, 69, 14);
 		panel_KERESTE.add(lblStunlar_1);
 		
 		dateChooser_20_1 = new JDateChooser();
@@ -4648,17 +4645,17 @@ public class FILTRE extends JDialog {
 		
 		JLabel label_66 = new JLabel("Ana Grup");
 		label_66.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_66.setBounds(401, 15, 104, 14);
+		label_66.setBounds(401, 17, 104, 14);
 		panel_KERESTE.add(label_66);
 		
 		JLabel label_67 = new JLabel("Alt Grup");
 		label_67.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_67.setBounds(401, 39, 104, 14);
+		label_67.setBounds(401, 41, 104, 14);
 		panel_KERESTE.add(label_67);
 		
 		JLabel lblUrunOzelKod_1 = new JLabel("Ozel Kod");
 		lblUrunOzelKod_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblUrunOzelKod_1.setBounds(401, 66, 113, 14);
+		lblUrunOzelKod_1.setBounds(401, 68, 113, 14);
 		panel_KERESTE.add(lblUrunOzelKod_1);
 		
 		chckbxDovizeCevirme_1 = new JCheckBox("Dovize Cevirme");
@@ -4715,7 +4712,7 @@ public class FILTRE extends JDialog {
 		
 		JLabel lblNewLabel_42 = new JLabel("Konsimento");
 		lblNewLabel_42.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_42.setBounds(10, 82, 80, 14);
+		lblNewLabel_42.setBounds(10, 82, 81, 14);
 		panel_KERESTE.add(lblNewLabel_42);
 		
 		chckbxNewCheckBox_3 = new JCheckBox("Ara Bolum Ayirma");
@@ -4730,20 +4727,20 @@ public class FILTRE extends JDialog {
 		panel_KERESTE.add(comboBox_80_6);
 		
 		JLabel lblNewLabel_44 = new JLabel("Depo");
-		lblNewLabel_44.setBounds(401, 93, 48, 14);
+		lblNewLabel_44.setBounds(401, 94, 48, 14);
 		panel_KERESTE.add(lblNewLabel_44);
 		
 		textField_99 = new JTextField();
 		textField_99.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_99.setColumns(10);
-		textField_99.setBounds(90, 100, 125, 20);
+		textField_99.setBounds(90, 100, 99, 20);
 		panel_KERESTE.add(textField_99);
 		
 		textField_100 = new JTextField();
 		textField_100.setText("ZZZZZZZZZZZZ");
 		textField_100.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_100.setColumns(10);
-		textField_100.setBounds(248, 100, 125, 20);
+		textField_100.setBounds(248, 99, 125, 20);
 		panel_KERESTE.add(textField_100);
 		
 		JLabel lblNewLabel_45 = new JLabel("Evrak");
@@ -4759,7 +4756,7 @@ public class FILTRE extends JDialog {
 		
 		JLabel label_18_1_1 = new JLabel("Tarih");
 		label_18_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_18_1_1.setBounds(10, 11, 58, 14);
+		label_18_1_1.setBounds(10, 17, 58, 14);
 		panel_KERESTE_DETAY.add(label_18_1_1);
 		
 		JLabel label_19_1_1 = new JLabel("Urun Kodu");
@@ -4787,12 +4784,24 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_DETAY.add(dateChooser_21_1_1);
 		
 		formattedTextField_2 = new JFormattedTextField();
+		try {
+		    mask = new MaskFormatter("AA-###-####-####");
+		    mask.install(formattedTextField_2);
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		}
 		formattedTextField_2.setText("00-000-0000-0000");
 		formattedTextField_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		formattedTextField_2.setBounds(100, 33, 125, 20);
 		panel_KERESTE_DETAY.add(formattedTextField_2);
 		
 		formattedTextField_1_1 = new JFormattedTextField();
+		try {
+		    mask = new MaskFormatter("AA-###-####-####");
+		    mask.install(formattedTextField_1_1);
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		}
 		formattedTextField_1_1.setText("ZZ-999-9999-9999");
 		formattedTextField_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		formattedTextField_1_1.setBounds(258, 33, 125, 20);
@@ -4840,7 +4849,7 @@ public class FILTRE extends JDialog {
 		
 		JLabel lblCtarih = new JLabel("C_Tarih");
 		lblCtarih.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblCtarih.setBounds(390, 11, 58, 14);
+		lblCtarih.setBounds(390, 17, 58, 14);
 		panel_KERESTE_DETAY.add(lblCtarih);
 		
 		JLabel lblHesapKodu_2_1_1 = new JLabel("C_Hesap Kodu");
@@ -4887,12 +4896,12 @@ public class FILTRE extends JDialog {
 		comboBox_80_1 = new JComboBox<String>();
 		comboBox_80_1.setForeground(new Color(0, 0, 128));
 		comboBox_80_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_80_1.setBounds(100, 179, 151, 22);
+		comboBox_80_1.setBounds(100, 173, 151, 22);
 		panel_KERESTE_DETAY.add(comboBox_80_1);
 		
 		JLabel label_66_1 = new JLabel("Ana Grup");
 		label_66_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_66_1.setBounds(10, 127, 89, 14);
+		label_66_1.setBounds(10, 129, 89, 14);
 		panel_KERESTE_DETAY.add(label_66_1);
 		
 		JLabel lblAgrup = new JLabel("A_G");
@@ -4902,7 +4911,7 @@ public class FILTRE extends JDialog {
 		
 		JLabel lblUrunOzelKod_1_1 = new JLabel("Ozel Kod");
 		lblUrunOzelKod_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblUrunOzelKod_1_1.setBounds(10, 183, 89, 14);
+		lblUrunOzelKod_1_1.setBounds(10, 177, 89, 14);
 		panel_KERESTE_DETAY.add(lblUrunOzelKod_1_1);
 		
 		JLabel lblHesapKodu_2_3 = new JLabel("Evrak No");
@@ -4943,17 +4952,17 @@ public class FILTRE extends JDialog {
 		
 		JLabel label_66_2 = new JLabel("C_Ana Grup");
 		label_66_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_66_2.setBounds(390, 84, 89, 14);
+		label_66_2.setBounds(390, 86, 89, 14);
 		panel_KERESTE_DETAY.add(label_66_2);
 		
 		JLabel label_67_2 = new JLabel("C_Alt Grup");
 		label_67_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_67_2.setBounds(390, 109, 89, 14);
+		label_67_2.setBounds(390, 111, 89, 14);
 		panel_KERESTE_DETAY.add(label_67_2);
 		
 		JLabel lblUrunOzelKod_1_2 = new JLabel("C_Ozel Kod");
 		lblUrunOzelKod_1_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblUrunOzelKod_1_2.setBounds(390, 134, 89, 14);
+		lblUrunOzelKod_1_2.setBounds(390, 136, 89, 14);
 		panel_KERESTE_DETAY.add(lblUrunOzelKod_1_2);
 		
 		comboBox_80_2 = new JComboBox<String>();
@@ -4982,24 +4991,24 @@ public class FILTRE extends JDialog {
 		
 		JLabel lblUrunOzelKod_1_3 = new JLabel("Depo");
 		lblUrunOzelKod_1_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblUrunOzelKod_1_3.setBounds(10, 150, 89, 14);
+		lblUrunOzelKod_1_3.setBounds(10, 154, 89, 14);
 		panel_KERESTE_DETAY.add(lblUrunOzelKod_1_3);
 		
 		comboBox_80_3 = new JComboBox<String>();
 		comboBox_80_3.setForeground(new Color(0, 0, 128));
 		comboBox_80_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_80_3.setBounds(100, 146, 125, 22);
+		comboBox_80_3.setBounds(100, 148, 125, 22);
 		panel_KERESTE_DETAY.add(comboBox_80_3);
 		
 		JLabel lblUrunOzelKod_1_4 = new JLabel("C_Depo");
 		lblUrunOzelKod_1_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblUrunOzelKod_1_4.setBounds(390, 163, 89, 14);
+		lblUrunOzelKod_1_4.setBounds(390, 161, 89, 14);
 		panel_KERESTE_DETAY.add(lblUrunOzelKod_1_4);
 		
 		comboBox_80_4 = new JComboBox<String>();
 		comboBox_80_4.setForeground(new Color(0, 0, 128));
 		comboBox_80_4.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_80_4.setBounds(480, 159, 125, 22);
+		comboBox_80_4.setBounds(480, 155, 125, 22);
 		panel_KERESTE_DETAY.add(comboBox_80_4);
 		
 		comboBox_7_1 = new JComboBox<String>();
@@ -5066,7 +5075,7 @@ public class FILTRE extends JDialog {
 		
 		JLabel label_18_1_2 = new JLabel("Tarih");
 		label_18_1_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_18_1_2.setBounds(10, 21, 58, 14);
+		label_18_1_2.setBounds(10, 26, 58, 14);
 		panel_KERESTE_ORTFIAT.add(label_18_1_2);
 		
 		
@@ -5074,79 +5083,91 @@ public class FILTRE extends JDialog {
 		dateChooser_20_1_2.setDate(TARIH_CEVIR.tarih("01.01.1900"));
 		dateChooser_20_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_20_1_2.setDateFormatString("dd.MM.yyyy");
-		dateChooser_20_1_2.setBounds(90, 21, 125, 20);
+		dateChooser_20_1_2.setBounds(90, 20, 125, 20);
 		panel_KERESTE_ORTFIAT.add(dateChooser_20_1_2);
 		
 		dateChooser_21_1_2 = new JDateChooser();
 		dateChooser_21_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dateChooser_21_1_2.setDateFormatString("dd.MM.yyyy");
 		dateChooser_21_1_2.setDate(TARIH_CEVIR.tarih("31.12.2100"));
-		dateChooser_21_1_2.setBounds(248, 21, 125, 20);
+		dateChooser_21_1_2.setBounds(248, 20, 125, 20);
 		panel_KERESTE_ORTFIAT.add(dateChooser_21_1_2);
 		
 		JLabel label_19_1_2 = new JLabel("Urun Kodu");
 		label_19_1_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_19_1_2.setBounds(10, 49, 69, 14);
+		label_19_1_2.setBounds(10, 48, 69, 14);
 		panel_KERESTE_ORTFIAT.add(label_19_1_2);
 		
 		
 		formattedTextField_3 = new JFormattedTextField();
+		try {
+		    mask = new MaskFormatter("AA-###-####-####");
+		    mask.install(formattedTextField_3);
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		}
 		formattedTextField_3.setText("00-000-0000-0000");
 		formattedTextField_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		formattedTextField_3.setBounds(89, 46, 125, 20);
+		formattedTextField_3.setBounds(89, 42, 125, 20);
 		panel_KERESTE_ORTFIAT.add(formattedTextField_3);
 		
 		formattedTextField_1_2 = new JFormattedTextField();
+		try {
+		    mask = new MaskFormatter("AA-###-####-####");
+		    mask.install(formattedTextField_1_2);
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		}
 		formattedTextField_1_2.setText("ZZ-999-9999-9999");
 		formattedTextField_1_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		formattedTextField_1_2.setBounds(248, 46, 125, 20);
+		formattedTextField_1_2.setBounds(248, 42, 125, 20);
 		panel_KERESTE_ORTFIAT.add(formattedTextField_1_2);
 		
 		JLabel lblHesapKodu_2_4 = new JLabel("Hesap Kodu");
 		lblHesapKodu_2_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblHesapKodu_2_4.setBounds(10, 79, 80, 14);
+		lblHesapKodu_2_4.setBounds(10, 70, 80, 14);
 		panel_KERESTE_ORTFIAT.add(lblHesapKodu_2_4);
 		
 		JLabel lblNewLabel_42_1 = new JLabel("Konsimento");
-		lblNewLabel_42_1.setBounds(10, 102, 80, 14);
+		lblNewLabel_42_1.setBounds(10, 92, 80, 14);
 		lblNewLabel_42_1.setFont(new Font("Tahoma",Font.PLAIN,11));
 		panel_KERESTE_ORTFIAT.add(lblNewLabel_42_1);
 		
 		textField_95 = new JTextField();
 		textField_95.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_95.setColumns(10);
-		textField_95.setBounds(90, 98, 125, 20);
+		textField_95.setBounds(90, 86, 125, 20);
 		panel_KERESTE_ORTFIAT.add(textField_95);
 		
 		textField_96 = new JTextField();
 		textField_96.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_96.setColumns(10);
-		textField_96.setBounds(90, 74, 125, 20);
+		textField_96.setBounds(90, 64, 125, 20);
 		panel_KERESTE_ORTFIAT.add(textField_96);
 		
 		textField_97 = new JTextField();
 		textField_97.setText("ZZZZZZZZZZZZ");
 		textField_97.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_97.setColumns(10);
-		textField_97.setBounds(248, 74, 125, 20);
+		textField_97.setBounds(248, 64, 125, 20);
 		panel_KERESTE_ORTFIAT.add(textField_97);
 		
 		textField_98 = new JTextField();
 		textField_98.setText("ZZZZZZZZZZZZ");
 		textField_98.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_98.setColumns(10);
-		textField_98.setBounds(248, 98, 125, 20);
+		textField_98.setBounds(248, 86, 125, 20);
 		panel_KERESTE_ORTFIAT.add(textField_98);
 		
 		JLabel lblGruplama_2_1 = new JLabel("Gruplama");
 		lblGruplama_2_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblGruplama_2_1.setBounds(10, 145, 69, 14);
+		lblGruplama_2_1.setBounds(10, 143, 69, 14);
 		panel_KERESTE_ORTFIAT.add(lblGruplama_2_1);
 		
 		comboBox_27_1_1 = new JComboBox<String>();
 		comboBox_27_1_1.setForeground(new Color(0, 0, 128));
 		comboBox_27_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_27_1_1.setBounds(90, 137, 283, 22);
+		comboBox_27_1_1.setBounds(90, 137, 201, 22);
 		comboBox_27_1_1.setModel(new DefaultComboBoxModel<String>(new String[] { "Sinif","Sinif-Kal" , "Sinif-Boy" ,"Sinif-Gen" ,"Kodu","Hesap Kodu", "Hesap Kodu-Ana_Alt_Grup", "Yil", "Yil_Ay", "Ana Grup"}));
 		panel_KERESTE_ORTFIAT.add(comboBox_27_1_1);
 		
@@ -5158,7 +5179,7 @@ public class FILTRE extends JDialog {
 		comboBox_78_3 = new JComboBox<String>();
 		comboBox_78_3.setForeground(new Color(0, 0, 128));
 		comboBox_78_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_78_3.setBounds(534, 21, 184, 22);
+		comboBox_78_3.setBounds(534, 20, 184, 22);
 		comboBox_78_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ker_alt_grup_doldur(comboBox_79_3,comboBox_78_3 .getItemAt(comboBox_78_3 .getSelectedIndex()));
@@ -5170,23 +5191,23 @@ public class FILTRE extends JDialog {
 		comboBox_79_3.setForeground(new Color(0, 0, 128));
 		comboBox_79_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_79_3.setEnabled(false);
-		comboBox_79_3.setBounds(534, 49, 184, 22);
+		comboBox_79_3.setBounds(534, 45, 184, 22);
 		panel_KERESTE_ORTFIAT.add(comboBox_79_3);
 		
 		JLabel label_67_1 = new JLabel("Alt Grup");
 		label_67_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_67_1.setBounds(415, 53, 104, 14);
+		label_67_1.setBounds(415, 51, 104, 14);
 		panel_KERESTE_ORTFIAT.add(label_67_1);
 		
 		JLabel lblUrunOzelKod_1_5 = new JLabel("Ozel Kod");
 		lblUrunOzelKod_1_5.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblUrunOzelKod_1_5.setBounds(415, 86, 113, 14);
+		lblUrunOzelKod_1_5.setBounds(415, 76, 113, 14);
 		panel_KERESTE_ORTFIAT.add(lblUrunOzelKod_1_5);
 		
 		comboBox_80_5 = new JComboBox<String>();
 		comboBox_80_5.setForeground(new Color(0, 0, 128));
 		comboBox_80_5.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_80_5.setBounds(534, 82, 184, 22);
+		comboBox_80_5.setBounds(534, 70, 184, 22);
 		panel_KERESTE_ORTFIAT.add(comboBox_80_5);
 		
 		comboBox_82 = new JComboBox<String>();

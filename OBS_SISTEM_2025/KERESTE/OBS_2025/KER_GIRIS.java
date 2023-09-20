@@ -124,7 +124,6 @@ public class KER_GIRIS extends JInternalFrame {
 	private static JTextField textField_5;
 	private static JTextField textField_6;
 	private static JTextField textField_7;
-	private static JTextField textField_8;
 	private static JTextField textField_9;
 	private static JTextField textField_10;
 	
@@ -153,7 +152,6 @@ public class KER_GIRIS extends JInternalFrame {
 	
 	private static JLabel lblNewLabel_3;
 	private static JLabel lblNewLabel_6 ;
-	private static JLabel lblNewLabel_17;
 	private static JLabel lblNewLabel_13;
 	private JLabel lblkodAciklama ;
 	private JLabel lblkONSIMENTO ;
@@ -695,119 +693,6 @@ public class KER_GIRIS extends JInternalFrame {
 		lblNewLabel_16.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_16.setBounds(10, 65, 46, 14);
 		panel_4.add(lblNewLabel_16);
-
-		
-
-		JPanel panel_7 = new JPanel();
-		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gidecegi Yer Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
-
-		panel_7.setBounds(710, 5, 257, 70);
-		panel_4.add(panel_7);
-		panel_7.setLayout(null);
-
-		textField_8 = new JTextField();
-		textField_8.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				String sonuc = "";
-
-				try {
-					sonuc =a_Access.kod_ismi(textField_8.getText());
-				} catch (Exception ex) {		}
-				if ( ! sonuc.equals("") )
-				{
-					lblNewLabel_17.setText(sonuc);
-				}
-				else
-				{
-					lblNewLabel_17.setText("");
-				}
-			}
-			public void removeUpdate(DocumentEvent e) {
-				String sonuc = "";
-
-				try {
-					sonuc = a_Access.kod_ismi(textField_8.getText());
-				} catch (Exception ex) {		}
-
-
-				if ( ! sonuc.equals("") )
-				{
-					lblNewLabel_17.setText(sonuc);
-				}
-				else
-				{
-					lblNewLabel_17.setText("");
-				}
-			}
-			public void insertUpdate(DocumentEvent e) {
-				String sonuc = "";
-
-				try {
-					sonuc = a_Access.kod_ismi(textField_8.getText());
-				} catch (Exception ex) {		}
-
-
-				if ( ! sonuc.equals("") )
-				{
-					lblNewLabel_17.setText(sonuc);
-				}
-				else
-				{
-					lblNewLabel_17.setText("");
-				}
-			}
-		});
-		textField_8.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) 
-				{
-					ADRES_LISTE asp ;
-					asp = new ADRES_LISTE();
-					asp.setVisible(true);
-					textField_8.setText( oac.hsp_hsp_kodu);
-				}
-			}
-		});
-		textField_8.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_8.setBounds(10, 20, 149, 20);
-		panel_7.add(textField_8);
-		textField_8.setColumns(10);
-
-		lblNewLabel_17 = new JLabel(".....");
-		lblNewLabel_17.setForeground(new Color(0, 0, 139));
-		lblNewLabel_17.setBounds(10, 45, 237, 14);
-		panel_7.add(lblNewLabel_17);
-
-		JButton btnNewButton_4 = new JButton("");
-		btnNewButton_4.setToolTipText("Gidecegi Yer Bilgileri");
-		btnNewButton_4.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-truck-16.png")));
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				boolean varmi = OBS_MAIN.pencere_bak("GIDECEGI YER");
-				if (varmi  ) 
-				{
-					try {
-						OBS_MAIN.pencere_aktiv_yap("GIDECEGI YER");
-					} catch (PropertyVetoException e1) {
-						e1.printStackTrace();
-					}
-					return;
-				}
-				else
-				{
-					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-					JInternalFrame internalFrame;
-					GLOBAL.nerden = "ker" ;
-					internalFrame  = new GIDECEGI_YER();
-					OBS_MAIN.desktopPane.add(internalFrame);
-					internalFrame.setVisible(true);
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-				}
-			}
-		});
-		btnNewButton_4.setBounds(169, 18, 25, 23);
-		panel_7.add(btnNewButton_4);
 
 		JPanel panel_5 = new JPanel();
 		panel_5.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -2335,7 +2220,6 @@ public class KER_GIRIS extends JInternalFrame {
 		textField_5.setText("");
 		textField_6.setText("");
 		textField_7.setText("");
-		textField_8.setText("");
 		label.setText("0.00");
 		lblNewLabel_20.setText("0.00");
 		label_2.setText("0.00");

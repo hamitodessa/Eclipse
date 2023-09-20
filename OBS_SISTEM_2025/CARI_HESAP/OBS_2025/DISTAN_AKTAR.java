@@ -1219,26 +1219,25 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private void hesap_uygula()
 	{
 		if ( tblexcell.getRowCount() == 0 ) return ;
-		Runnable runner = new Runnable()
-		{ public void run() {
+		//Runnable runner = new Runnable()
+		//{ public void run() {
 			//************
 			try {
 				String iki = "",bir,uc = "" ;
 				int sat = 0 ;
 				DefaultTableModel mdl = (DefaultTableModel) table_1.getModel();
-				//DefaultTableModel model = (DefaultTableModel) tblexcell.getModel();
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);  
-				Progres_Bar_Temizle();
-				OBS_MAIN.progressBar.setStringPainted(true);
-				OBS_MAIN.progressBar.setMaximum(table_1.getRowCount() - 1);
+				//Progres_Bar_Temizle();
+				//OBS_MAIN.progressBar.setStringPainted(true);
+				//OBS_MAIN.progressBar.setMaximum(table_1.getRowCount() - 1);
 				
 				for(int  t = 0 ; t <= table_1.getRowCount() - 1;t ++) 
 				{
-					Progres_Bar(table_1.getRowCount() - 1, t);
+					//Progres_Bar(table_1.getRowCount() - 1, t);
 					bir =  mdl.getValueAt(t , 0).toString() ;
 					TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tblexcell.getModel()));
 					sorter.setRowFilter(RowFilter.regexFilter("(?i)" + Pattern.quote(bir) , 1));
-					Thread.sleep(8);
+					//Thread.sleep(8);
 					tblexcell.setRowSorter(sorter);
 					if ( tblexcell.getRowCount() > 0 )
 					{
@@ -1274,19 +1273,20 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					tblexcell.setRowSorter(null);
 				}
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);  
-				Thread.currentThread().isInterrupted();
-				Progres_Bar_Temizle();
+				//Thread.currentThread().isInterrupted();
+				//Progres_Bar_Temizle();
 			} 
 			catch (Exception ex)
 			{
+				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR); 
 				JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Distan Aktarma", JOptionPane.ERROR_MESSAGE);
 			}
 //***********			
-		}
-		};
+		//}
+		//};
 		//// Progress Bar
-		Thread t = new Thread(runner, "Code Executer");
-		t.start();
+		//Thread t = new Thread(runner, "Code Executer");
+		//t.start();
 	}
 	public static void kaydet_carii()
 	{

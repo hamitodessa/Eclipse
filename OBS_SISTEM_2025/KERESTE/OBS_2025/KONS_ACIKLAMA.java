@@ -77,17 +77,17 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		splitPane.setLeftComponent(panel);
 		
 		JLabel lblNewLabel = new JLabel("Konsimento");
-		lblNewLabel.setBounds(10, 18, 78, 14);
+		lblNewLabel.setBounds(10, 18, 70, 14);
 		panel.add(lblNewLabel);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
-		textField.setDocument(new JTextFieldLimit(10));
-		textField.setBounds(88, 15, 78, 20);
+		textField.setDocument(new JTextFieldLimit(15));
+		textField.setBounds(88, 15, 102, 20);
 		panel.add(textField);
 		
 		JLabel lblNewLabel_1 = new JLabel("Aciklama");
-		lblNewLabel_1.setBounds(180, 18, 68, 14);
+		lblNewLabel_1.setBounds(200, 18, 60, 14);
 		panel.add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
@@ -134,11 +134,12 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		TableColumn tc;
 		tc = tcm.getColumn(0);
 		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(40);
+		tc.setMinWidth(100);
+		tc.setMaxWidth(100);
 		
 		tc = tcm.getColumn(1);
 		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(275);
+		//tc.setMinWidth(275);
 
 
 		th.repaint();

@@ -177,19 +177,19 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		panel_1.add(btnNewButton);
 
 		JButton btnHesapDetay = new JButton("Hesap Detay");
-		btnHesapDetay.setBounds(10, 41, 159, 23);
+		btnHesapDetay.setBounds(10, 40, 159, 23);
 		panel_1.add(btnHesapDetay);
 
 		JButton btnSatirlar = new JButton("Satirlar");
-		btnSatirlar.setBounds(10, 71, 159, 23);
+		btnSatirlar.setBounds(10, 70, 159, 23);
 		panel_1.add(btnSatirlar);
 
 		JButton btnIzahat = new JButton("Izahat");
-		btnIzahat.setBounds(10, 101, 159, 23);
+		btnIzahat.setBounds(10, 100, 159, 23);
 		panel_1.add(btnIzahat);
 
 		JButton btnOzel = new JButton("Ozel");
-		btnOzel.setBounds(10, 131, 159, 23);
+		btnOzel.setBounds(10, 130, 159, 23);
 		panel_1.add(btnOzel);
 
 		JPanel panel_1_1 = new JPanel();
@@ -231,7 +231,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_2_1_1.setBounds(10, 33, 123, 23);
+		btnNewButton_2_1_1.setBounds(10, 35, 123, 23);
 		panel_1_1_1.add(btnNewButton_2_1_1);
 
 		JButton btnNewButton_2_1_1_1 = new JButton("Bozuk Mal");
@@ -245,7 +245,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_2_1_1_1.setBounds(10, 59, 123, 23);
+		btnNewButton_2_1_1_1.setBounds(10, 60, 123, 23);
 		panel_1_1_1.add(btnNewButton_2_1_1_1);
 
 		JButton btnNewButton_2_1_1_1_1 = new JButton("Fatura");
@@ -259,7 +259,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_2_1_1_1_1.setBounds(10, 81, 123, 23);
+		btnNewButton_2_1_1_1_1.setBounds(10, 85, 123, 23);
 		panel_1_1_1.add(btnNewButton_2_1_1_1_1);
 
 		JButton btnNewButton_2_1_1_1_1_1 = new JButton("Irsaliye");
@@ -273,7 +273,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_2_1_1_1_1_1.setBounds(10, 106, 123, 23);
+		btnNewButton_2_1_1_1_1_1.setBounds(10, 110, 123, 23);
 		panel_1_1_1.add(btnNewButton_2_1_1_1_1_1);
 
 		JButton btnNewButton_2_1_1_1_1_1_1 = new JButton("Recete");
@@ -287,7 +287,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_2_1_1_1_1_1_1.setBounds(10, 133, 123, 23);
+		btnNewButton_2_1_1_1_1_1_1.setBounds(10, 135, 123, 23);
 		panel_1_1_1.add(btnNewButton_2_1_1_1_1_1_1);
 
 		JButton btnNewButton_2_1_1_1_1_1_1_1 = new JButton("Stok");
@@ -300,7 +300,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_2_1_1_1_1_1_1_1.setBounds(10, 165, 123, 23);
+		btnNewButton_2_1_1_1_1_1_1_1.setBounds(10, 160, 123, 23);
 		panel_1_1_1.add(btnNewButton_2_1_1_1_1_1_1_1);
 
 		JButton btnNewButton_1_1_1 = new JButton("STOK BAGLAN");
@@ -325,7 +325,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setBorder(new TitledBorder(null, "My Sql Baglanti", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBounds(331, 64, 244, 178);
+		panel_2.setBounds(400, 64, 244, 178);
 		panel.add(panel_2);
 		
 		myLokal = new JCheckBox("Lokal");
@@ -423,11 +423,51 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		panel_3.add(msUSER);
 		msUSER.setColumns(10);
 		
+		JButton btnNewButton_1_1_1_1 = new JButton("KERESTE BAGLAN");
+		btnNewButton_1_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					kereste_baglan();
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_1_1_1_1.setBounds(540, 255, 143, 23);
+		panel.add(btnNewButton_1_1_1_1);
 		
+		JPanel panel_1_1_1_1 = new JPanel();
+		panel_1_1_1_1.setLayout(null);
+		panel_1_1_1_1.setBounds(540, 289, 143, 199);
+		panel.add(panel_1_1_1_1);
 		
+		JButton btnNewButton_2_1_2 = new JButton("Mal");
+		btnNewButton_2_1_2.setBounds(10, 11, 123, 23);
+		panel_1_1_1_1.add(btnNewButton_2_1_2);
 		
+		JButton btnNewButton_2_1_1_2 = new JButton("Diger");
+		btnNewButton_2_1_1_2.setBounds(10, 35, 123, 23);
+		panel_1_1_1_1.add(btnNewButton_2_1_1_2);
 		
+		JButton btnNewButton_2_1_1_1_2 = new JButton("Bozuk Mal");
+		btnNewButton_2_1_1_1_2.setBounds(10, 60, 123, 23);
+		panel_1_1_1_1.add(btnNewButton_2_1_1_1_2);
 		
+		JButton btnNewButton_2_1_1_1_1_2 = new JButton("Fatura");
+		btnNewButton_2_1_1_1_1_2.setBounds(10, 85, 123, 23);
+		panel_1_1_1_1.add(btnNewButton_2_1_1_1_1_2);
+		
+		JButton btnNewButton_2_1_1_1_1_1_2 = new JButton("Irsaliye");
+		btnNewButton_2_1_1_1_1_1_2.setBounds(10, 110, 123, 23);
+		panel_1_1_1_1.add(btnNewButton_2_1_1_1_1_1_2);
+		
+		JButton btnNewButton_2_1_1_1_1_1_1_2 = new JButton("Recete");
+		btnNewButton_2_1_1_1_1_1_1_2.setBounds(10, 135, 123, 23);
+		panel_1_1_1_1.add(btnNewButton_2_1_1_1_1_1_1_2);
+		
+		JButton btnNewButton_2_1_1_1_1_1_1_1_1 = new JButton("Stok");
+		btnNewButton_2_1_1_1_1_1_1_1_1.setBounds(10, 160, 123, 23);
+		panel_1_1_1_1.add(btnNewButton_2_1_1_1_1_1_1_1_1);
 		
 			btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -515,6 +555,13 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		mssql_baglan("Fat");
 		mysql_baglan("Fat");
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	public void kereste_baglan() throws ClassNotFoundException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		mssql_baglan("Ker");
+		mysql_baglan("ker");
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void mssql_baglan(String modul) throws ClassNotFoundException
@@ -1368,7 +1415,5 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
-	//*****************************************************************************************CLONE ****************
-	
 }
 

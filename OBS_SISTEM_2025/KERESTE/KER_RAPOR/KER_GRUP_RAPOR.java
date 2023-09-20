@@ -2272,6 +2272,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				HSSFCellStyle headerStyle = workbook.createCellStyle();
 				HSSFCellStyle headerSolaStyle = workbook.createCellStyle();
 				headerStyle.setFont(headerFont);
+				headerStyle.setBorderBottom(BorderStyle.DOUBLE);
 				headerStyle.setAlignment(HorizontalAlignment.RIGHT);
 
 				HSSFFont solaFont = workbook.createFont();
@@ -2286,6 +2287,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				headerSolaFont.setColor(IndexedColors.BLUE.getIndex()); 
 				headerSolaStyle.setFont(headerSolaFont);
 				headerSolaStyle.setAlignment(HorizontalAlignment.LEFT);
+				headerSolaStyle.setBorderBottom(BorderStyle.DOUBLE);
 
 				HSSFFont satirFont = workbook.createFont();
 				HSSFCellStyle satirStyle = workbook.createCellStyle();
@@ -2500,7 +2502,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				XSSFCellStyle headerSolaStyle = workbook.createCellStyle();
 				headerStyle.setFont(headerFont);
 				headerStyle.setAlignment(HorizontalAlignment.RIGHT);
-
+				headerStyle.setBorderBottom(BorderStyle.DOUBLE);
 				XSSFFont solaFont = workbook.createFont();
 				solaFont.setFontName("Arial Narrow");
 				solaFont. setFontHeight((short)(10*20));
@@ -2513,7 +2515,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				headerSolaFont.setColor(IndexedColors.BLUE.getIndex()); 
 				headerSolaStyle.setFont(headerSolaFont);
 				headerSolaStyle.setAlignment(HorizontalAlignment.LEFT);
-
+				headerSolaStyle.setBorderBottom(BorderStyle.DOUBLE);
 				XSSFCellStyle satirStyle = workbook.createCellStyle();
 				XSSFCellStyle satirStylemik = workbook.createCellStyle();
 				XSSFCellStyle satirStyle3 = workbook.createCellStyle();
@@ -2736,7 +2738,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			XSSFCellStyle headerSolaStyle = workbook.createCellStyle();
 			headerStyle.setFont(headerFont);
 			headerStyle.setAlignment(HorizontalAlignment.RIGHT);
-
+			headerStyle.setBorderBottom(BorderStyle.DOUBLE);
+			
 			XSSFFont solaFont = workbook.createFont();
 			solaFont.setFontName("Arial Narrow");
 			solaFont. setFontHeight((short)(10*20));
@@ -2749,7 +2752,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			headerSolaFont.setColor(IndexedColors.BLUE.getIndex()); 
 			headerSolaStyle.setFont(headerSolaFont);
 			headerSolaStyle.setAlignment(HorizontalAlignment.LEFT);
-
+			headerSolaStyle.setBorderBottom(BorderStyle.DOUBLE);
+			
 			XSSFCellStyle satirStyle = workbook.createCellStyle();
 			XSSFCellStyle satirStylemik = workbook.createCellStyle();
 			XSSFCellStyle satirStyle3 = workbook.createCellStyle();

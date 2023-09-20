@@ -76,23 +76,23 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		splitPane.setLeftComponent(panel);
 		
 		JLabel lblNewLabel = new JLabel("Kod");
-		lblNewLabel.setBounds(10, 18, 46, 14);
+		lblNewLabel.setBounds(10, 18, 35, 14);
 		panel.add(lblNewLabel);
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setDocument(new JTextFieldLimit(2));
-		textField.setBounds(66, 15, 46, 20);
+		textField.setBounds(50, 15, 46, 20);
 		panel.add(textField);
 		
 		JLabel lblNewLabel_1 = new JLabel("Aciklama");
-		lblNewLabel_1.setBounds(134, 18, 76, 14);
+		lblNewLabel_1.setBounds(105, 18, 65, 14);
 		panel.add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_1.setDocument(new JTextFieldLimit(50));
-		textField_1.setBounds(220, 15, 350, 20);
+		textField_1.setBounds(168, 15, 402, 20);
 		panel.add(textField_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -132,11 +132,12 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		TableColumn tc;
 		tc = tcm.getColumn(0);
 		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(40);
+		tc.setMinWidth(60);
+		tc.setMaxWidth(60);
 		
 		tc = tcm.getColumn(1);
 		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(275);
+		//tc.setMinWidth(275);
 
 
 		th.repaint();

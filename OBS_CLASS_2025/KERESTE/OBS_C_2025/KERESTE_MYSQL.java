@@ -147,16 +147,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ "  INDEX `IX_DPN` (  `Evrak_No` ASC,  `Gir_Cik` ASC ) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE `GDY`( "
-				+ "  `GID`   INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
-				+ "  `Isim`  nvarchar (50) NULL, "
-				+ "  `Adres`  nvarchar (50) NULL, "
-				+ "  `Semt`  nvarchar (50) NULL, "
-				+ "  `Sehir`  nvarchar (50) NULL, "
-				+ "  `USER`  nvarchar (15) NOT NULL, "
-				+ "  INDEX `IX_GDY` (  `Isim` ASC,  `USER` ASC ) VISIBLE)";
-		stmt = con.createStatement();  
-		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `NAKLIYECI`("
 				+ " `NAKID`  INTEGER AUTO_INCREMENT PRIMARY KEY  NOT NULL,"
 				+ " `NAKID_Y` int  NOT NULL,"  
@@ -277,10 +267,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " `USER`  nvarchar (15) NOT NULL)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE `DEPOEVRAK`("
-				+ " `E_No`  int  PRIMARY KEY  NOT NULL)";
-		stmt = con.createStatement();  
-		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `YETKILER`("
 				+ " `KULLANICI`  nvarchar (25) NULL,"
 				+ " `HESAP`  nvarchar (12) NULL,"
@@ -337,7 +323,8 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "INSERT INTO  IRS_EVRAK_FORMAT(SAT_SUT ,TARIH,SEVK_TARIH,FIRMA_KODU,FIRMA_UNVANI,VERGI_DAIRESI ,VERGI_NO  ,GIDECEGI_YER,NOT_1 ,NOT_2 ,NOT_3,BASLIK_BOLUM,BARKOD,URUN_KODU ,URUN_ADI , DEPO,SIMGE ,BIRIM_FIAT ,ISKONTO ,MIKTAR,K_D_V ,TUTAR ,TUTAR_TOPLAM ,ISKONTO_TOPLAMI  ,BAKIYE ,K_D_V_TOPLAMI ,BELGE_TOPLAMI , YAZI_ILE,ALT_BOLUM, N1 ,N2 ,N3 ,N4 ,N5 ,N6 ,N7 ,N8 ,N9 ,N10,`USER` ) VALUES ('SUTUN','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','Admin')";
-
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `FAT_EVRAK_FORMAT`( "
 				+ " `SAT_SUT` nchar (5) NULL,"
 				+ " `TARIH`  float  NULL,"
@@ -391,10 +378,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "INSERT INTO  FAT_EVRAK_FORMAT(SAT_SUT,TARIH,FIRMA_KODU,FIRMA_UNVANI,VERGI_DAIRESI ,VERGI_NO ,GIDECEGI_YER ,NOT_1 ,NOT_2 ,NOT_3,BASLIK_BOLUM,BARKOD,URUN_KODU ,URUN_ADI , DEPO ,IZAHAT,SIMGE ,BIRIM_FIAT ,ISKONTO ,MIKTAR,K_D_V ,TUTAR ,TUTAR_TOPLAM ,ISKONTO_TOPLAMI  ,BAKIYE ,K_D_V_TOPLAMI ,BELGE_TOPLAMI , YAZI_ILE,TEVKIFAT_ORANI ,AL_TAR_TEV_ED_KDV ,TEV_DAH_TOP_TUTAR , BEYAN_Ed_KDV ,TEV_HAR_TOP_TUT,TEV_KASESI,ALT_BOLUM,N1 ,N2 ,N3 ,N4 ,N5 ,N6 ,N7 ,N8 ,N9 ,N10,USER) VALUES " + " ('SUTUN','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','Admin')";
-		stmt = con.createStatement();  
-		stmt.executeUpdate(sql);
-		// ***************EVRAK NO YAZ ************
-		sql = "INSERT INTO  DEPOEVRAK(E_No) VALUES ('0')";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		// ***************OZEL NO YAZ *************************

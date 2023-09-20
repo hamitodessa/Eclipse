@@ -204,13 +204,10 @@ public class PRINT_JASPER extends JInternalFrame {
 						eVRAK,
 						modell.getValueAt(i, 2).toString(),
 						modell.getValueAt(i, 3).toString(),
-						 Double.parseDouble(modell.getValueAt(i, 5).toString()),
-						 Double.parseDouble(modell.getValueAt(i, 6).toString()),
-						 Double.parseDouble(modell.getValueAt(i, 7).toString()));
-			//	System.out.println(eDTY.getbAKIYE());
+						Double.parseDouble(modell.getValueAt(i, 5).toString()),
+						Double.parseDouble(modell.getValueAt(i, 6).toString()),
+						Double.parseDouble(modell.getValueAt(i, 7).toString()));
 				eDetay.add(eDTY);
-					
-				
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);

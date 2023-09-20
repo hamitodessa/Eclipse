@@ -584,7 +584,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		else
 		{
 			rss.next();
-			result = rss.getInt("Evrak_No");
+			result = rss.getInt("Pak_No");
 		}
 		sql = "DELETE FROM PAKET_NO WHERE Konsimento =N'" + kons + "'" ;
 		stmt = con.prepareStatement(sql);

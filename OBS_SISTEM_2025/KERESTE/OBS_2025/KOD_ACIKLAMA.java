@@ -188,7 +188,7 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 	}
 	public static void sil() 
 	{
-		int g =  JOptionPane.showOptionDialog( null,  textField_1.getText() + "     Kod Dosyadan Silinecek ..?", "Kereste Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
+		int g =  JOptionPane.showOptionDialog( null,  textField_1.getText() + "     Kod Dosyadan Silinecek ..?", "Kereste Dosyasindan d Silme",   JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 		if(g != 0 ) { return;	}
 		lOG_BILGI lBILGI = new lOG_BILGI();

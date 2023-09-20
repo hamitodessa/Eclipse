@@ -190,7 +190,7 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 	}
 	public static void sil() 
 	{
-		int g =  JOptionPane.showOptionDialog( null,  textField_1.getText() + "     Konsimento Dosyadan Silinecek ..?", "Kereste Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
+		int g =  JOptionPane.showOptionDialog( null, textField_1.getText() + "   Nolu  Konsimento Dosyadan Silinecek ..?", "Kereste Dosyasindan Konsimento Silme",   JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 		if(g != 0 ) { return;	}
 

@@ -197,24 +197,13 @@ public class OBS_MAIN extends JFrame {
 	public static JButton btnFiltre ;
 	public static JButton btnYazici ;
 	
-	
-	//
-	public static JLabel lblNewLabel_1 ;
-	public static JLabel lblNewLabel_2 ;
-	public static JLabel lblNewLabel_3 ;
-	public static JLabel lblNewLabel_21 ;
-	public static JLabel lblNewLabel_22 ;
-	public static JLabel lblNewLabel_23 ;
-	public static JLabel lblNewLabel_24 ;
-	public static JLabel lblNewLabel_31_2 ;
-	
 	public static JTabbedPane tabbedPane ;
 	public static JToolBar toolBar ;
 	public static JToolBar toolBar_1;
 	public JToolBar toolBar_2 ;
 	
 	
-	
+	public static JLabel lblUser ;
 	public static JDesktopPane desktopPane;
 	public static JProgressBar progressBar  ;
 	
@@ -3237,77 +3226,10 @@ public class OBS_MAIN extends JFrame {
 
 		toolBar_1.add(progressBar);
 
-		JLabel lblNewLabel_25 = new JLabel("     ");
-		toolBar_1.add(lblNewLabel_25);
-
-		lblNewLabel_1 = new JLabel(".....");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_1.setForeground(new Color(32, 178, 170));
-		toolBar_1.add(lblNewLabel_1);
-
-		JLabel lblNewLabel_26 = new JLabel("     ");
-		toolBar_1.add(lblNewLabel_26);
-
-		lblNewLabel_2 = new JLabel(".....");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_2.setForeground(new Color(220, 20, 60));
-		toolBar_1.add(lblNewLabel_2);
-
-		JLabel lblNewLabel_27 = new JLabel("     ");
-		toolBar_1.add(lblNewLabel_27);
-
-		lblNewLabel_3 = new JLabel(".....");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_3.setForeground(new Color(0, 0, 255));
-		toolBar_1.add(lblNewLabel_3);
-
-		JLabel lblNewLabel_28 = new JLabel("     ");
-		toolBar_1.add(lblNewLabel_28);
-
-		lblNewLabel_21 = new JLabel(".....");
-		lblNewLabel_21.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_21.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_21.setForeground(new Color(60, 179, 113));
-		toolBar_1.add(lblNewLabel_21);
-
-		JLabel lblNewLabel_29 = new JLabel("     ");
-		toolBar_1.add(lblNewLabel_29);
-
-		lblNewLabel_22 = new JLabel(".....");
-		lblNewLabel_22.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_22.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_22.setForeground(new Color(199, 21, 133));
-		toolBar_1.add(lblNewLabel_22);
-
-		JLabel lblNewLabel_30 = new JLabel("     ");
-		toolBar_1.add(lblNewLabel_30);
-
-		lblNewLabel_23 = new JLabel(".....");
-		lblNewLabel_23.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_23.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_23.setForeground(new Color(0, 0, 205));
-		toolBar_1.add(lblNewLabel_23);
-
-		JLabel lblNewLabel_31 = new JLabel("     ");
-		toolBar_1.add(lblNewLabel_31);
-
-		lblNewLabel_24 = new JLabel(".....");
-		lblNewLabel_24.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_24.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_24.setForeground(new Color(255, 0, 255));
-		toolBar_1.add(lblNewLabel_24);
-		
-		JLabel lblNewLabel_31_1 = new JLabel("     ");
-		toolBar_1.add(lblNewLabel_31_1);
-		
-		lblNewLabel_31_2 = new JLabel(".....");
-		lblNewLabel_31_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_31_2.setForeground(new Color(30, 144, 255));
-		lblNewLabel_31_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		toolBar_1.add(lblNewLabel_31_2);
+		lblUser = new JLabel("     ");
+		lblUser.setForeground(new Color(0, 0, 128));
+		lblUser.setFont(new Font("Tahoma", Font.BOLD, 11));
+		toolBar_1.add(lblUser);
 
 		desktopPane = new JDesktopPane();
 		//desktopPane.setBackground(new Color(39, 45, 61));

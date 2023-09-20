@@ -160,56 +160,38 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 			if (modul.equals("cari"))
 			{
 				c_Access.cari_firma_adi_kayit(textField.getText(), lBILGI, BAGLAN_LOG.cariLogDizin);
-				//oac._ICar.cari_firma_adi_kayit(textField.getText());
 				BAGLAN.cariDizin.fIRMA_ADI = textField.getText();
-				OBS_MAIN.lblNewLabel_1.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "/ " + BAGLAN.cariDizin.fIRMA_ADI + "/ " + (BAGLAN.cariDizin.yER.toString().equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal"));
 				OBS_MAIN.lblCariBilgi.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "  /  " + BAGLAN.cariDizin.fIRMA_ADI + "  /  " + (BAGLAN.cariDizin.yER.toString().equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal"));
-
 			}
 			else if (modul.equals("kambiyo"))
 			{
-				//oac._IKambiyo.kam_firma_adi_kayit(textField.getText());
 				ka_Access.kam_firma_adi_kayit(textField.getText(),lBILGI, BAGLAN_LOG.kamLogDizin);
 				BAGLAN.kamDizin.fIRMA_ADI = textField.getText();
-				OBS_MAIN.lblNewLabel_23.setText ( "Kambiyo:" + BAGLAN.kamDizin.kOD + "/ " + BAGLAN.kamDizin.fIRMA_ADI + "/ " + (BAGLAN.kamDizin.yER.toString().equals("S") ?  BAGLAN.kamDizin.sERVER : "Lokal"));
 				OBS_MAIN.lblKambiyoBilgi.setText ( "Kambiyo:" + BAGLAN.kamDizin.kOD + "  /  " + BAGLAN.kamDizin.fIRMA_ADI + "  /  " + (BAGLAN.kamDizin.yER.toString().equals("S") ?  BAGLAN.kamDizin.sERVER : "Lokal"));
-
 			}
 			else if (modul.equals("stok"))
 			{
-				//	oac._IStok.stk_firma_adi_kayit(textField.getText());
 				f_Access.stk_firma_adi_kayit(textField.getText(), lBILGI, BAGLAN_LOG.fatLogDizin);
 				BAGLAN.fatDizin.fIRMA_ADI = textField.getText();
-				OBS_MAIN.lblNewLabel_23.setText ( "Stok:" + BAGLAN.fatDizin.kOD + "/ " + BAGLAN.fatDizin.fIRMA_ADI + "/ " + (BAGLAN.fatDizin.yER.toString().equals("S") ?  BAGLAN.fatDizin.sERVER : "Lokal"));
 				OBS_MAIN.lblStokBilgi.setText ( "Stok:" + BAGLAN.fatDizin.kOD + "  /  " + BAGLAN.fatDizin.fIRMA_ADI + "  /  " + (BAGLAN.fatDizin.yER.toString().equals("S") ?  BAGLAN.fatDizin.sERVER : "Lokal"));
-
 			}
 			else if (modul.equals("adres"))
 			{
-				// 	oac._IAdres.adr_firma_adi_kayit(textField.getText());
 				a_Access.adr_firma_adi_kayit(textField.getText(), lBILGI, BAGLAN_LOG.adrLogDizin);
 				BAGLAN.adrDizin.fIRMA_ADI = textField.getText();
-				OBS_MAIN.lblNewLabel_22.setText ( "Adres:" + 	BAGLAN.adrDizin.kOD + "/ " + 	BAGLAN.adrDizin.fIRMA_ADI + "/ " + (	BAGLAN.adrDizin.yER.toString().equals("S") ?  	BAGLAN.adrDizin.sERVER : "Lokal"));
 				OBS_MAIN.lblAdresBilgi.setText ( "Adres:" + 	BAGLAN.adrDizin.kOD + "  /  " + 	BAGLAN.adrDizin.fIRMA_ADI + "  /  " + (	BAGLAN.adrDizin.yER.toString().equals("S") ?  	BAGLAN.adrDizin.sERVER : "Lokal"));
-
 			}
 			else if (modul.equals("gunluk"))
 			{
-				// 	oac._IGunluk.adr_firma_adi_kayit(textField.getText());
 				g_Access.gun_firma_adi_kayit(textField.getText(),lBILGI, BAGLAN_LOG.gunLogDizin);
 				BAGLAN.gunDizin.fIRMA_ADI = textField.getText();
-				OBS_MAIN.lblNewLabel_24.setText ( "Gunluk:" + 	BAGLAN.gunDizin.kOD + "/ " + 	BAGLAN.gunDizin.fIRMA_ADI + "/ " + (	BAGLAN.gunDizin.yER.toString().equals("S") ?  	BAGLAN.gunDizin.sERVER : "Lokal"));
 				OBS_MAIN.lblGunlukBilgi.setText ( "Gunluk:" + 	BAGLAN.gunDizin.kOD + "  / " + 	BAGLAN.gunDizin.fIRMA_ADI + "  /  " + (	BAGLAN.gunDizin.yER.toString().equals("S") ?  	BAGLAN.gunDizin.sERVER : "Lokal"));
-
 			}
 			else if (modul.equals("kereste"))
 			{
-				// 	oac._IKereste.ker_firma_adi_kayit(textField.getText());
 				ker_Access.ker_firma_adi_kayit(textField.getText(),lBILGI, BAGLAN_LOG.kerLogDizin);
 				BAGLAN.kerDizin.fIRMA_ADI = textField.getText();
-				OBS_MAIN.lblNewLabel_31_2.setText ( "Kereste:" + 	BAGLAN.kerDizin.kOD + "/ " + 	BAGLAN.kerDizin.fIRMA_ADI + "/ " + (	BAGLAN.kerDizin.yER.toString().equals("S") ?  	BAGLAN.kerDizin.sERVER : "Lokal"));
 				OBS_MAIN.lblKeresteBilgi.setText ( "Kereste:" + 	BAGLAN.kerDizin.kOD + "  /  " + 	BAGLAN.kerDizin.fIRMA_ADI + "  /  " + (	BAGLAN.kerDizin.yER.toString().equals("S") ?  	BAGLAN.kerDizin.sERVER : "Lokal"));
-
 			}
 			kapat();
 		}

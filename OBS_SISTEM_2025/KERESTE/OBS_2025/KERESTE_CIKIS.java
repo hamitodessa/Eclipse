@@ -616,7 +616,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
-		tabbedPane_1.addTab("Yazici Bilgileri", null, panel_4, null);
+		tabbedPane_1.addTab("Notlar", null, panel_4, null);
 		panel_4.setLayout(null);
 
 		JLabel lblNewLabel_14 = new JLabel("Not 1");

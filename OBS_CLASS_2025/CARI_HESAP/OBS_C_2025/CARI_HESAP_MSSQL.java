@@ -154,8 +154,12 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	}
 	public void create_table(String fir_adi) throws SQLException {
 		String sql = null;
-		sql = "CREATE TABLE [dbo].[HESAP]([HESAP] [nvarchar](12) NOT NULL,[UNVAN] [nvarchar](50) NULL, "
-				+ " [KARTON] [nvarchar](5) NULL,[HESAP_CINSI] [nvarchar](3) NULL,[USER] [nvarchar](15) NULL,"
+		sql = "CREATE TABLE [dbo].[HESAP]("
+				+ " [HESAP] [nvarchar](12) NOT NULL,"
+				+ " [UNVAN] [nvarchar](50) NULL, "
+				+ " [KARTON] [nvarchar](5) NULL,"
+				+ " [HESAP_CINSI] [nvarchar](3) NULL,"
+				+ " [USER] [nvarchar](15) NULL,"
 				+ " CONSTRAINT [IX_HESAP] PRIMARY KEY CLUSTERED ([HESAP] ASC)WITH (PAD_INDEX = OFF,"
 				+ " STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]"
 				+ ") ON [PRIMARY]";
@@ -211,9 +215,10 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				+"	ON [dbo].[SATIRLAR] ([HESAP],[TARIH])"
 				+"	INCLUDE ([EVRAK],[KUR],[BORC],[ALACAK],[KOD],[USER])";
 		stmt = con.createStatement();  
-		
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE [dbo].[IZAHAT](	[EVRAK] [int] NOT NULL,	[IZAHAT] [nvarchar](100) NULL,"
+		sql = "CREATE TABLE [dbo].[IZAHAT](	"
+				+ " [EVRAK] [int] NOT NULL,	"
+				+ " [IZAHAT] [nvarchar](100) NULL,"
 				+ " CONSTRAINT [IX_EVRAK] PRIMARY KEY CLUSTERED ([EVRAK] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF,"
 				+ " IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]";
 		stmt = con.createStatement();  
@@ -221,7 +226,8 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		sql = "CREATE TABLE EVRAK_NO(EID int identity(1,1) CONSTRAINT PKeyEID PRIMARY KEY,EVRAK integer )";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE TABLE [dbo].[OZEL]([OZID] [int] IDENTITY(1,1) NOT NULL,"
+		sql = "CREATE TABLE [dbo].[OZEL]("
+				+ "[OZID] [int] IDENTITY(1,1) NOT NULL,"
 				+ "[YONETICI] [nvarchar](25) NULL,"
 				+ "[YON_SIFRE] [nvarchar](15) NULL,"
 				+ "[FIRMA_ADI] [nvarchar](50) NULL,"
@@ -241,8 +247,8 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql= "CREATE TABLE [dbo].[ANA_GRUP_DEGISKEN]( "
-				+ "[ANA_GRUP] [nvarchar](25) NOT NULL,"
-				+ "     [USER] [nvarchar](15) NOT NULL,"
+				+ "  [ANA_GRUP] [nvarchar](25) NOT NULL,"
+				+ "  [USER] [nvarchar](15) NOT NULL,"
 				+ "  CONSTRAINT [IX_ANA_GRUP] PRIMARY KEY CLUSTERED " 
 				+ "  ([ANA_GRUP] ASC) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, " 
 				+ "  ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]";

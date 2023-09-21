@@ -44,7 +44,7 @@ import OBS_C_2025.KERESTE_ACCESS;
 public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
+	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , oac._IKereste_Loger);
 
 	
 	private static JTable table;

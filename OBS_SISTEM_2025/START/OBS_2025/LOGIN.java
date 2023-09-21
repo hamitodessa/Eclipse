@@ -133,7 +133,6 @@ public class LOGIN extends JDialog {
 		}
 	});
 	}
-//setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 	public LOGIN() throws IOException {
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/icon-obs-32.png")));
@@ -554,8 +553,7 @@ public class LOGIN extends JDialog {
 			try 
 			{
 				txtpwd.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
-			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
-					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e1) {
+			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -577,7 +575,7 @@ public class LOGIN extends JDialog {
 			{ 
 				BAGLAN.cariDizin.fIRMA_ADI =  oac._ICar.cari_firma_adi() ;
 				qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblCariBilgi.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "  /  " + BAGLAN.cariDizin.fIRMA_ADI + "  /  " + qwe );
+				OBS_MAIN.lblCariBilgi.setText (BAGLAN.cariDizin.kOD + "  /  " + BAGLAN.cariDizin.fIRMA_ADI + "  /  " + qwe );
 				Dimension size = OBS_MAIN.lblCariBilgi.getPreferredSize();
 				OBS_MAIN.lblCariBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblCariBilgi.setForeground(new Color(0, 0, 128));
@@ -587,7 +585,7 @@ public class LOGIN extends JDialog {
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null,  "Cari Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
+			JOptionPane.showMessageDialog(null,  "Cari Baglanti kurulamadi.....",  "Server Baglanti", JOptionPane.ERROR_MESSAGE);        
 			OBS_MAIN.tabbedPane.setEnabledAt(0, false);
 		}
 	}
@@ -605,12 +603,11 @@ public class LOGIN extends JDialog {
 			else
 			{
 				qwe =   BAGLAN.kurDizin.yER.equals("S") ?  BAGLAN.kurDizin.sERVER : "Lokal";
-				OBS_MAIN.lblKurBilgi.setText ("Kur:" + BAGLAN.kurDizin.kOD + "/ "  + qwe );
+				OBS_MAIN.lblKurBilgi.setText (BAGLAN.kurDizin.kOD + "/ "  + qwe );
 				Dimension size = OBS_MAIN.lblKurBilgi.getPreferredSize();
 				OBS_MAIN.lblKurBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblKurBilgi.setForeground(new Color(0, 0, 128));
 				OBS_MAIN.lblKurBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
-				
 				OBS_MAIN.tabbedPane.setEnabledAt(1, true);
 			}
 		}
@@ -634,7 +631,7 @@ public class LOGIN extends JDialog {
 			else
 			{
 				qwe = BAGLAN.smsDizin.yER.equals("S") ? BAGLAN.smsDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblSmsBilgi.setText ("Sms:" + BAGLAN.smsDizin.kOD + "/ "  + qwe);
+				OBS_MAIN.lblSmsBilgi.setText (BAGLAN.smsDizin.kOD + "/ "  + qwe);
 				Dimension size = OBS_MAIN.lblSmsBilgi.getPreferredSize();
 				OBS_MAIN.lblSmsBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblSmsBilgi.setForeground(new Color(0, 0, 128));
@@ -663,7 +660,7 @@ public class LOGIN extends JDialog {
 			{
 				BAGLAN.adrDizin.fIRMA_ADI =    oac._IAdres.adr_firma_adi() ;
 				qwe = BAGLAN.adrDizin.yER.equals("S") ? BAGLAN.adrDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblAdresBilgi.setText  ("Adres:" + BAGLAN.adrDizin.kOD + "/ " + BAGLAN.adrDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblAdresBilgi.setText  (BAGLAN.adrDizin.kOD + "/ " + BAGLAN.adrDizin.fIRMA_ADI + "/ " + qwe);
 				Dimension size = OBS_MAIN.lblAdresBilgi.getPreferredSize();
 				OBS_MAIN.lblAdresBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblAdresBilgi.setForeground(new Color(0, 0, 128));
@@ -692,7 +689,7 @@ public class LOGIN extends JDialog {
 			{
 				BAGLAN.fatDizin.fIRMA_ADI = oac._IStok.fat_firma_adi() ;
 				qwe = BAGLAN.fatDizin.yER.equals("S") ? BAGLAN.fatDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblStokBilgi.setText  ( "Stok:" + BAGLAN.fatDizin.kOD + "/ " + BAGLAN.fatDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblStokBilgi.setText  ( BAGLAN.fatDizin.kOD + "/ " + BAGLAN.fatDizin.fIRMA_ADI + "/ " + qwe);
 				Dimension size = OBS_MAIN.lblStokBilgi.getPreferredSize();
 				OBS_MAIN.lblStokBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblStokBilgi.setForeground(new Color(0, 0, 128));
@@ -721,7 +718,7 @@ public class LOGIN extends JDialog {
 			{
 				BAGLAN.kamDizin.fIRMA_ADI =  oac._IKambiyo.kam_firma_adi() ;
 				qwe =  BAGLAN.kamDizin.yER.equals("S") ? BAGLAN.kamDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblKambiyoBilgi.setText   ("Kambiyo:" + BAGLAN.kamDizin.kOD + "/ " + BAGLAN.kamDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblKambiyoBilgi.setText(BAGLAN.kamDizin.kOD + "/ " + BAGLAN.kamDizin.fIRMA_ADI + "/ " + qwe);
 				Dimension size = OBS_MAIN.lblKambiyoBilgi.getPreferredSize();
 				OBS_MAIN.lblKambiyoBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblKambiyoBilgi.setForeground(new Color(0, 0, 128));
@@ -750,7 +747,7 @@ public class LOGIN extends JDialog {
 			{
 				BAGLAN.gunDizin.fIRMA_ADI = oac._IGunluk.gun_firma_adi() ;
 				qwe = BAGLAN.gunDizin.yER.equals("S") ? BAGLAN.gunDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblGunlukBilgi.setText   ( "Gunluk:" + BAGLAN.gunDizin.kOD + "/ " + BAGLAN.gunDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblGunlukBilgi.setText(BAGLAN.gunDizin.kOD + "/ " + BAGLAN.gunDizin.fIRMA_ADI + "/ " + qwe);
 				Dimension size = OBS_MAIN.lblGunlukBilgi.getPreferredSize();
 				OBS_MAIN.lblGunlukBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblGunlukBilgi.setForeground(new Color(0, 0, 128));
@@ -779,7 +776,7 @@ public class LOGIN extends JDialog {
 			{
 				BAGLAN.kerDizin.fIRMA_ADI = oac._IKereste.ker_firma_adi() ;
 				qwe = BAGLAN.kerDizin.yER.equals("S") ? BAGLAN.kerDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblKeresteBilgi.setText   ( "Kereste:" + BAGLAN.kerDizin.kOD + "/ " + BAGLAN.kerDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblKeresteBilgi.setText(BAGLAN.kerDizin.kOD + "/ " + BAGLAN.kerDizin.fIRMA_ADI + "/ " + qwe);
 				Dimension size = OBS_MAIN.lblKeresteBilgi.getPreferredSize();
 				OBS_MAIN.lblKeresteBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblKeresteBilgi.setForeground(new Color(0, 0, 128));
@@ -803,98 +800,42 @@ public class LOGIN extends JDialog {
 		cONN_AKTAR( BAGLAN.cariDizin.hAN_SQL );
 		String hangi_sql =  BAGLAN.cariDizin.hAN_SQL;
 		oac._ICariCon = oac._IConn ;
-		if (hangi_sql.equals("MS SQL"))
-		{
-			oac._ICar = new  CARI_HESAP_MSSQL();
-		}
-		else
-		{
-			oac._ICar = new  CARI_HESAP_MYSQL();
-		}
+		oac._ICar = hangi_sql.equals("MS SQL") ? new  CARI_HESAP_MSSQL() : new  CARI_HESAP_MYSQL();
 		//Kur
 		cONN_AKTAR( BAGLAN.kurDizin.hAN_SQL );
 		hangi_sql =  BAGLAN.kurDizin.hAN_SQL;
 		oac._IKurCon = oac._IConn ;
-		if (hangi_sql.equals("MS SQL"))
-		{
-			oac._IKur = new KUR_MSSQL();
-		}
-		else
-		{
-			oac._IKur = new KUR_MYSQL();
-		}
+		oac._IKur = hangi_sql.equals("MS SQL") ? new KUR_MSSQL() : new KUR_MYSQL();
 		//SMS
 		cONN_AKTAR(BAGLAN.smsDizin.hAN_SQL );
 		hangi_sql =  BAGLAN.smsDizin.hAN_SQL;
 		oac._ISmsCon = oac._IConn ;
-		if (hangi_sql.equals("MS SQL"))
-		{
-			oac._ISms = new SMS_MSSQL();
-		}
-		else
-		{
-			oac._ISms = new SMS_MYSQL();
-		}
+		oac._ISms = hangi_sql.equals("MS SQL") ? new SMS_MSSQL() : new SMS_MYSQL();
 		//ADRES
 		cONN_AKTAR( BAGLAN.adrDizin.hAN_SQL );
 		hangi_sql =  BAGLAN.adrDizin.hAN_SQL;
 		oac._IAdresCon = oac._IConn ;
-		if (hangi_sql.equals("MS SQL"))
-		{
-			oac._IAdres = new ADRES_MSSQL();
-		}
-		else
-		{
-			oac._IAdres = new ADRES_MYSQL();
-		}
+		oac._IAdres = hangi_sql.equals("MS SQL") ? new ADRES_MSSQL() : new ADRES_MYSQL();
 		//FAT
 		cONN_AKTAR(BAGLAN.fatDizin.hAN_SQL );
 		hangi_sql =  BAGLAN.fatDizin.hAN_SQL;
 		oac._IStokCon = oac._IConn ;
-		if (hangi_sql.equals("MS SQL"))
-		{
-			oac._IStok = new STOK_MSSQL();
-		}
-		else
-		{
-			oac._IStok = new STOK_MYSQL();
-		}
+		oac._IStok = hangi_sql.equals("MS SQL") ? new STOK_MSSQL() : new STOK_MYSQL();
 		//KAMB
 		cONN_AKTAR(BAGLAN.kamDizin.hAN_SQL );
 		hangi_sql =  BAGLAN.kamDizin.hAN_SQL;
 		oac._IKambiyoCon = oac._IConn ;
-		if (hangi_sql.equals("MS SQL"))
-		{
-			oac._IKambiyo = new KAMBIYO_MSSQL();
-		}
-		else
-		{
-			oac._IKambiyo = new KAMBIYO_MYSQL();
-		}
+		oac._IKambiyo = hangi_sql.equals("MS SQL") ? new KAMBIYO_MSSQL() : new KAMBIYO_MYSQL();
 		//GUN
 		cONN_AKTAR( BAGLAN.gunDizin.hAN_SQL );
 		hangi_sql =  BAGLAN.gunDizin.hAN_SQL;
 		oac._IGunlukCon = oac._IConn ;
-		if (hangi_sql.equals("MS SQL"))
-		{
-			oac._IGunluk = new GUNLUK_MSSQL();
-		}
-		else
-		{
-			oac._IGunluk = new GUNLUK_MYSQL();
-		}
+		oac._IGunluk = hangi_sql.equals("MS SQL") ? new GUNLUK_MSSQL() : new GUNLUK_MYSQL();
 		//KERESTE
 		cONN_AKTAR( BAGLAN.kerDizin.hAN_SQL );
 		hangi_sql =  BAGLAN.kerDizin.hAN_SQL;
 		oac._IKeresteCon = oac._IConn ;
-		if (hangi_sql.equals("MS SQL"))
-		{
-			oac._IKereste = new KERESTE_MSSQL();
-		}
-		else
-		{
-			oac._IKereste = new KERESTE_MYSQL();
-		}
+		oac._IKereste = hangi_sql.equals("MS SQL") ? new KERESTE_MSSQL() : new KERESTE_MYSQL();
 		
 		lOG_AKTAR();
 		oac.uSER_ISL.mail_bak(); // MAIL AYARLARI OKUMA
@@ -1415,15 +1356,7 @@ public class LOGIN extends JDialog {
 	}
 	private void cONN_AKTAR( String dIZIN )
 	{
-		String hangi = dIZIN  ;
-		if (hangi.equals("MS SQL"))
-		{
-			oac._IConn = new OBS_ORTAK_MSSQL();
-		}
-		else
-		{
-			oac._IConn = new OBS_ORTAK_MYSQL();
-		}
+		oac._IConn = dIZIN.equals("MS SQL") ? new OBS_ORTAK_MSSQL() : new OBS_ORTAK_MYSQL();
 	}
 	private void lOG_AKTAR() 
 	{

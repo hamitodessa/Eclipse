@@ -149,9 +149,9 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	private static  String tar = "" ;
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
-	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
-	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
+	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , oac._IKereste_Loger);
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , oac._IAdres_Loger);
+	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 	/**
 	 * Launch the application.
 	 */
@@ -2072,7 +2072,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			DefaultTableModel model = (DefaultTableModel)table.getModel();
 			double tutar  = DecimalFormat.getNumberInstance().parse(label.getText()).doubleValue()  ;
 			lOG_BILGI lBILGI = new lOG_BILGI();
-			str_4 = textField.getText() + "'Evrak ile " + FORMATLAMA.doub_0(sdf) + " Adet " + DecimalFormat.getNumberInstance().parse(label_8.getText()).doubleValue() + " m3 Urun Satisi" ;
+			str_4 = textField.getText() + "'Evrak ile " + FORMATLAMA.doub_0(DecimalFormat.getNumberInstance().parse(lblPaket.getText()).intValue()) + " Paket " + FORMATLAMA.doub_0(sdf) + " Adet " + FORMATLAMA.doub_3(DecimalFormat.getNumberInstance().parse(label_8.getText()).doubleValue())  + " m3 Urun Satisi" ;
+			System.out.println(str_4.length());
 			dEKONT_BILGI dBilgi = new dEKONT_BILGI();
 			dBilgi.setbHES(bh);
 			dBilgi.settAR(TARIH_CEVIR.tarih_geri_saatli(dtc));

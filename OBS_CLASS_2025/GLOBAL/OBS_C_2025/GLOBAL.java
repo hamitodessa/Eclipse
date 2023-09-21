@@ -32,8 +32,6 @@ public class GLOBAL {
 	public static final String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
 	static final String DBYERI = "C:\\OBS_DATABASES\\";
 	static Connection con ;
-	static Connection bACKUPCONN ;
-	static Connection bACKUPLOGCONN ;
 	static String ayarlar[][]; // = new String[5][5];
 	public static String KULL_ADI = "";
 	public static String Log_Mail ="";
@@ -231,7 +229,6 @@ public class GLOBAL {
 	{
 		File tmpDir = new File(SURUCU);
 		boolean exists = tmpDir.exists();
-		//tmpDir = new File(SURUCU +  "/admin.properties"); //System.getProperty("user.name")
 		tmpDir = new File(SURUCU +  "/"+ System.getProperty("user.name")+".properties"); //
 		exists = tmpDir.exists();
 		if (exists)

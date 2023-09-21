@@ -1176,6 +1176,24 @@ public class CAL_DIZIN extends JDialog {
 		btnNewButton_2_1.setBounds(265, 230, 25, 23);
 		btnNewButton_2_1.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/sil.png")));
 		panel.add(btnNewButton_2_1);
+		
+		JButton btnNewButton_2_1_2 = new JButton("");
+		btnNewButton_2_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if(txtKodu.getText().equals("")) return ;
+					if(txtkul.getText().equals("")) return ;
+					mdb_yaz();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_2_1_2.setToolTipText("Loglama Kaydet");
+		btnNewButton_2_1_2.setToolTipText("Kaydet");
+		btnNewButton_2_1_2.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/save.png")));
+		btnNewButton_2_1_2.setBounds(265, 125, 25, 23);
+		panel.add(btnNewButton_2_1_2);
 	}
 	private void grid_doldur() throws ClassNotFoundException, SQLException
 	{
@@ -1520,7 +1538,7 @@ public class CAL_DIZIN extends JDialog {
 			if (izinli == false)
 			{
 				contentPane.setCursor(DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null, "Bu Dosyayi Kullanmaya Izniniz Yok" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir...", "Dosya Olusturma", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bu Dosyayi Kullanmaya Izniniz Yok --- Admin den yetki almaniz lazim" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir...", "Dosya Olusturma", JOptionPane.ERROR_MESSAGE);
 				btnNewButton_1.setEnabled(false);
 				txtKodu.requestFocus();
 				return;
@@ -1600,7 +1618,7 @@ public class CAL_DIZIN extends JDialog {
 			if (izinli == false)
 			{
 				contentPane.setCursor(DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null, "Bu Dosyayi Kullanmaya Izniniz Yok" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir...", "Dosya Olusturma", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bu Dosyayi Kullanmaya Izniniz Yok --- Admin den yetki almaniz lazim" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir...", "Dosya Olusturma", JOptionPane.ERROR_MESSAGE);
 				btnNewButton_1.setEnabled(false);
 				txtKodu.requestFocus();
 				return;

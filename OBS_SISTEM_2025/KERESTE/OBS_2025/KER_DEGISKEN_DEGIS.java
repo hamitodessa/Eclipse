@@ -25,7 +25,7 @@ import javax.swing.DefaultComboBoxModel;
 @SuppressWarnings({"serial","static-access"})
 public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
+	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , oac._IKereste_Loger);
 
 	private static JPanel panel;
 	private static JComboBox<String> cmbAna ;

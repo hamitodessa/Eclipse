@@ -77,12 +77,6 @@ public class USER_ISLEMLERI {
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
-		//cloneRss = CLONE_RESULTSET.cloneResultSet(rss) ;
-		//con.close();
-		//if (!cloneRss.next() ) {
-		//    System.out.println("no data");
-		//}
-		//return cloneRss;
 	}
 	public ResultSet user_isim_doldur() throws ClassNotFoundException, SQLException
 	{
@@ -139,8 +133,7 @@ public class USER_ISLEMLERI {
 			try {
 				qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
 				encodedString = Arrays.toString(qaz);
-			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
-					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		stmt.setString(1, encodedString);
@@ -235,7 +228,6 @@ public class USER_ISLEMLERI {
 				"VALUES (?,?,?,?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, user);
-		//String encodedString = Base64.getEncoder().encodeToString(pwd.getBytes());
 		byte[] qaz;
 		try {
 			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(pwd);

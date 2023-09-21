@@ -99,7 +99,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 				try 
 				{
 					grv_tek_sil();
-				} catch (NumberFormatException | ClassNotFoundException | SQLException e1) 
+				} catch (Exception e1) 
 				{
 					e1.printStackTrace();
 				}
@@ -112,7 +112,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					grv_degis_sil();
-				} catch (ClassNotFoundException | PropertyVetoException | SQLException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -133,7 +133,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 				{
 					try {
 						grv_tek_sil();
-					} catch (NumberFormatException | ClassNotFoundException | SQLException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}

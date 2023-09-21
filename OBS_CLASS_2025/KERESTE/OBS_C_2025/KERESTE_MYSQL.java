@@ -1575,19 +1575,17 @@ public class KERESTE_MYSQL implements IKERESTE {
 	@Override
 	public void degisken_degistir(int anagrp, int altgrp, int anaygrp, int altygrp,String durum)
 			throws ClassNotFoundException, SQLException {
-		  
 		String sql = "" ;
 		if(durum.equals("G"))
 		{
 			sql = "UPDATE KERESTE  SET Ana_Grup = '" + anaygrp + "'  , Alt_Grup = '" + altygrp + "'  WHERE Ana_Grup = '" + anagrp + "'  AND  Alt_Grup = '" + altgrp + "' ";
 		}
-		else if(durum.equals("G"))
+		else if(durum.equals("C"))
 		{
 			sql = "UPDATE KERESTE  SET CAna_Grup = '" + anaygrp + "'  , CAlt_Grup = '" + altygrp + "'  WHERE CAna_Grup = '" + anagrp + "'  AND  CAlt_Grup = '" + altgrp + "' ";
 		}
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override

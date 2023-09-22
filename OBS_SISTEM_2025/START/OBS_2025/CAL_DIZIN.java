@@ -18,15 +18,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.swing.AbstractAction;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -179,7 +173,6 @@ public class CAL_DIZIN extends JDialog {
 	@SuppressWarnings("serial")
 	public CAL_DIZIN() {
 		setTitle("CALISMA DIZINI");
-		//setAlwaysOnTop(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CAL_DIZIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -275,16 +268,12 @@ public class CAL_DIZIN extends JDialog {
 		toolBar.add(btnNewButton_1);
 		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.addActionListener(new ActionListener() {
-			@SuppressWarnings("unlikely-arg-type")
 			public void actionPerformed(ActionEvent e) {
 				if (activ_sayfa != 8)
 				{
-					if (txtcdid.equals("")) return;
-					int g = JOptionPane.showOptionDialog(null, "Kayit Silinecek ?" ,
-							"Calisma Dizini ", JOptionPane.YES_NO_OPTION,
-							JOptionPane.QUESTION_MESSAGE, null, 
-							new String[] {"Yes", "No"}, "No");
-					// 1 = No   0 = Yes
+					if (txtcdid.toString().equals("")) return ;
+					int g = JOptionPane.showOptionDialog(null, "Kayit Silinecek..........?" ,
+							"Calisma Dizini ", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
 					if(g ==  1) {
 						return;
 					}
@@ -316,10 +305,7 @@ public class CAL_DIZIN extends JDialog {
 				{
 					try {
 						int g = JOptionPane.showOptionDialog(null, "E Mail  Silinecek ?" ,
-								"Calisma Dizini ", JOptionPane.YES_NO_OPTION,
-								JOptionPane.QUESTION_MESSAGE, null, 
-								new String[] {"Yes", "No"}, "No");
-						// 1 = No   0 = Yes
+								"Calisma Dizini ", JOptionPane.YES_NO_OPTION,	JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
 						if(g ==  1) {
 							return;
 						}
@@ -487,7 +473,6 @@ public class CAL_DIZIN extends JDialog {
 		btndizsec.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(WAIT_CURSOR);
-				//CAL_DIZIN cdz;
 				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
 				JFileChooser chooser = new JFileChooser();
 				chooser.setCurrentDirectory(new java.io.File("."));
@@ -584,7 +569,8 @@ public class CAL_DIZIN extends JDialog {
 					}
 					contentPane.setCursor(DEFAULT_CURSOR);
 
-				} catch (ClassNotFoundException | SQLException e1) {
+				} catch (Exception e1) 
+				{
 					contentPane.setCursor(DEFAULT_CURSOR);
 					e1.printStackTrace();
 				}
@@ -794,22 +780,22 @@ public class CAL_DIZIN extends JDialog {
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {     return false;          }};
 			tblKereste.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				contentPane.setCursor(WAIT_CURSOR);
-				try {
-					kutu_temizle();
-					doldur_kutu(tblKereste,tblKereste.getSelectedRow());
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					contentPane.setCursor(WAIT_CURSOR);
+					try {
+						kutu_temizle();
+						doldur_kutu(tblKereste,tblKereste.getSelectedRow());
+						contentPane.setCursor(DEFAULT_CURSOR);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					} 
 					contentPane.setCursor(DEFAULT_CURSOR);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				} 
-				contentPane.setCursor(DEFAULT_CURSOR);
-			}
-		});
-			tblKereste.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			tblKereste.setFont(new Font("Tahoma", Font.BOLD, 14));
-			tblKereste.setRowHeight(22);
+				}
+			});
+		tblKereste.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tblKereste.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tblKereste.setRowHeight(22);
 		tablo_baslik(tblKereste);
 		scrollPane_9.setViewportView(tblKereste);
 		//******************************************************************
@@ -963,7 +949,7 @@ public class CAL_DIZIN extends JDialog {
 				{
 					txt_Lmaill.setText(cmb_maillist.getItemAt(1));
 				}
-				}
+			}
 		});
 		cmb_maillist.setBounds(98, 67, 307, 22);
 		panel_3.add(cmb_maillist);
@@ -979,12 +965,9 @@ public class CAL_DIZIN extends JDialog {
 					oac.uSER_ISL.mail_bak();
 					GLOBAL.Log_Mail = txt_Lmaill.getText();
 					lOG_BILGI lBILGI = new lOG_BILGI();
-					lBILGI.setmESAJ("Lo0glama Deneme Maili");
+					lBILGI.setmESAJ("Loglama Deneme E Mail ");
 					lBILGI.seteVRAK("");
-					//if ( activ_sayfa == 0)
-					//{
 					mAT.Logla(lBILGI,BAGLAN_LOG.cariLogDizin);
-					//}
 					contentPane.setCursor(DEFAULT_CURSOR);
 					JOptionPane.showMessageDialog(null,  "Mail Gonderildi........", "OBS SISTEM", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception e1) {
@@ -1304,8 +1287,7 @@ public class CAL_DIZIN extends JDialog {
 		}
 		try {
 			txtsifr.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
-		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException
-				| IllegalBlockSizeException | BadPaddingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		txtcdid.setText(grd.getModel().getValueAt(satir, 0).toString());
@@ -1568,7 +1550,7 @@ public class CAL_DIZIN extends JDialog {
 		else
 		{
 			contentPane.setCursor(DEFAULT_CURSOR);
-			int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu.?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
+			int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu............?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,	 	null,    	oac.options,  	 	oac.options[1]); 
 			if(g != 0 ) { return;	}
 			Thread.yield();
@@ -1648,7 +1630,7 @@ public class CAL_DIZIN extends JDialog {
 		else
 		{
 			contentPane.setCursor(DEFAULT_CURSOR);
-			int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu.?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
+			int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu............?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,null, oac.options, 	oac.options[1]); 
 			if(g != 0 ) { return;	}
 			{
@@ -1674,7 +1656,7 @@ public class CAL_DIZIN extends JDialog {
 				else if (activ_sayfa == 7)
 					doldur_kutu(tblKereste, 0);
 				contentPane.setCursor(DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ...", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ..........", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
 				return;
 			}
 		}
@@ -1757,7 +1739,7 @@ public class CAL_DIZIN extends JDialog {
 	void car_olustur() throws ClassNotFoundException, SQLException
 	{
 		String strAdmin = "";
-		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz..........", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
 		contentPane.setCursor(WAIT_CURSOR);
 		cONN_AKTAR();
 		lOGG_AKTAR("Cari Hesap");
@@ -1799,7 +1781,7 @@ public class CAL_DIZIN extends JDialog {
 	void stok_olustur() throws ClassNotFoundException, SQLException
 	{
 		String strAdmin = "";
-		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz..........", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
 		contentPane.setCursor(WAIT_CURSOR);
 		cONN_AKTAR();
 		lOGG_AKTAR("Stok");
@@ -1841,7 +1823,7 @@ public class CAL_DIZIN extends JDialog {
 	void adr_olustur() throws ClassNotFoundException, SQLException
 	{
 		String strAdmin = "";
-		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz..........", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
 		contentPane.setCursor(WAIT_CURSOR);
 		cONN_AKTAR();
 		lOGG_AKTAR("Adres");
@@ -1922,7 +1904,7 @@ public class CAL_DIZIN extends JDialog {
 	void kam_olustur() throws ClassNotFoundException, SQLException
 	{
 		String strAdmin = "";
-		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz..........", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
 		contentPane.setCursor(WAIT_CURSOR);
 		cONN_AKTAR();
 		lOGG_AKTAR("Kambiyo");
@@ -2004,7 +1986,7 @@ public class CAL_DIZIN extends JDialog {
 	void gun_olustur() throws ClassNotFoundException, SQLException
 	{
 		String strAdmin = "";
-		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz..........", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
 		contentPane.setCursor(WAIT_CURSOR);
 		cONN_AKTAR();
 		lOGG_AKTAR("Gunluk");
@@ -2045,7 +2027,7 @@ public class CAL_DIZIN extends JDialog {
 	void ker_olustur() throws ClassNotFoundException, SQLException
 	{
 		String strAdmin = "";
-		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz..........", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
 		contentPane.setCursor(WAIT_CURSOR);
 		cONN_AKTAR();
 		lOGG_AKTAR("Kereste");
@@ -2087,7 +2069,7 @@ public class CAL_DIZIN extends JDialog {
 	void cari_s_olustur() throws ClassNotFoundException, SQLException
 	{
 		String strAdmin = "";
-		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz..........", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
 		cONN_AKTAR();
 		lOGG_AKTAR("Cari Hesap");
 		mODUL_AKTAR("Cari Hesap");
@@ -2121,7 +2103,7 @@ public class CAL_DIZIN extends JDialog {
 	void stok_s_olustur() throws ClassNotFoundException, SQLException
 	{
 		String strAdmin = "";
-		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz..........", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
 		cONN_AKTAR();
 		lOGG_AKTAR("Stok");
 		mODUL_AKTAR("Stok");
@@ -2156,7 +2138,7 @@ public class CAL_DIZIN extends JDialog {
 	void adr_s_olustur() throws ClassNotFoundException, SQLException
 	{
 		String strAdmin = "";
-		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz..........", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
 		cONN_AKTAR();
 		lOGG_AKTAR("Adres");
 		mODUL_AKTAR("Adres");
@@ -2223,7 +2205,7 @@ public class CAL_DIZIN extends JDialog {
 	void kam_s_olustur() throws ClassNotFoundException, SQLException
 	{
 		String strAdmin = "";
-		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz..........", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
 		cONN_AKTAR();
 		lOGG_AKTAR("Kambiyo");
 		mODUL_AKTAR("Kambiyo");
@@ -2289,7 +2271,7 @@ public class CAL_DIZIN extends JDialog {
 	void gun_s_olustur() throws ClassNotFoundException, SQLException
 	{
 		String strAdmin = "";
-		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz..........", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
 		cONN_AKTAR();
 		lOGG_AKTAR("Gunluk");
 		mODUL_AKTAR("Gunluk");
@@ -2323,7 +2305,7 @@ public class CAL_DIZIN extends JDialog {
 	void ker_s_olustur() throws ClassNotFoundException, SQLException
 	{
 		String strAdmin = "";
-		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz....", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
+		strAdmin = JOptionPane.showInputDialog(null,"Firma Ismini Giriniz..........", "Yeni Firma",JOptionPane.QUESTION_MESSAGE);
 		cONN_AKTAR();
 		lOGG_AKTAR("Kereste");
 		mODUL_AKTAR("Kereste");
@@ -2392,87 +2374,48 @@ public class CAL_DIZIN extends JDialog {
 	private void cONN_AKTAR()
 	{
 		String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
-		if (hangi == "MS SQL")
-		{
-			oac._IConn = new OBS_ORTAK_MSSQL();
-		}
-		else if (hangi == "MY SQL")
-		{
-			oac._IConn = new OBS_ORTAK_MYSQL();
-		}
+		oac._IConn = hangi.equals("MS SQL") ? new OBS_ORTAK_MSSQL() : new OBS_ORTAK_MYSQL() ;
 	}
 	private void mODUL_AKTAR(String mODUL)
 	{
 		String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
-		if (hangi == "MS SQL")
+		if (hangi.equals("MS SQL"))
 		{
 			if (mODUL == "Cari Hesap")
-			{
 				oac._ICar = new CARI_HESAP_MSSQL();
-			}
 			else if (mODUL == "Stok")
-			{
 				oac._IStok = new STOK_MSSQL();
-			}
 			else if (mODUL == "Adres")
-			{
 				oac._IAdres = new ADRES_MSSQL();
-			}
 			else if (mODUL == "Kur")
-			{
 				oac._IKur = new KUR_MSSQL();
-			}
 			else if (mODUL == "Kambiyo")
-			{
 				oac._IKambiyo = new KAMBIYO_MSSQL();
-			}
 			else if (mODUL == "Gunluk")
-			{
 				oac._IGunluk = new GUNLUK_MSSQL();
-			}
 			else if (mODUL == "Sms")
-			{
 				oac._ISms = new SMS_MSSQL();
-			}
 			else if (mODUL == "Kereste")
-			{
 				oac._IKereste = new KERESTE_MSSQL();
-			}
 		}
-		else if (hangi == "MY SQL")
+		else if (hangi.equals("MY SQL"))
 		{
 			if (mODUL == "Cari Hesap")
-			{
 				oac._ICar = new CARI_HESAP_MYSQL();
-			}
 			else if (mODUL == "Stok")
-			{
 				oac._IStok = new STOK_MYSQL();
-			}
 			else if (mODUL == "Adres")
-			{
 				oac._IAdres = new ADRES_MYSQL();
-			}
 			else if (mODUL == "Kur")
-			{
 				oac._IKur = new KUR_MYSQL();
-			}
 			else if (mODUL == "Kambiyo")
-			{
 				oac._IKambiyo = new KAMBIYO_MYSQL();
-			}
 			else if (mODUL == "Gunluk")
-			{
 				oac._IGunluk = new GUNLUK_MYSQL();
-			}
 			else if (mODUL == "Sms")
-			{
 				oac._ISms = new SMS_MYSQL();
-			}
 			else if (mODUL == "Kereste")
-			{
 				oac._IKereste = new KERESTE_MYSQL();
-			}
 		}
 	}
 	private void lOGG_AKTAR(String mODUL)

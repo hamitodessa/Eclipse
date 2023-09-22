@@ -26,7 +26,7 @@ public class SOLA extends JLabel implements TableCellRenderer {
 	  	  }
 
 		private void setResizable(boolean b) {
-			// TODO Auto-generated method stub
+			
 			
 		}
 	   

@@ -7,9 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JInternalFrame;
@@ -34,9 +31,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.ImageIcon;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.swing.AbstractAction;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -534,8 +528,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		}
 		else
 		{
-			//byte[] decodedBytes = Base64.getDecoder().decode(table_1.getModel().getValueAt(satir, 3).toString());
-			//String decodedString = new String(decodedBytes);
 			String decodedString = table_1.getModel().getValueAt(satir, 3).toString();
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
@@ -545,9 +537,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			
 			try {
 				decodedString = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
-			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
-					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-				// TODO Auto-generated catch block
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 				
@@ -624,9 +614,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		else
 		{
 			comboBox_2.setSelectedItem(table_1.getModel().getValueAt(satir, 12).toString());
-
 		}
-		//
 		if ( Integer.parseInt(  table_1.getModel().getValueAt(satir, 13).toString()) ==1)
 		{
 			chckbxLog.setSelected((boolean) true);
@@ -721,7 +709,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			return;
 		}
 		ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/sil.png")));
-		int g =  JOptionPane.showOptionDialog( null,  "Kayit Silinecek ?", "Kullanici Silme",   JOptionPane.YES_NO_OPTION,
+		int g =  JOptionPane.showOptionDialog( null,  "Kayit Silinecek          ?", "Kullanici Silme",   JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,icon, 	oac.options,  	oac.options[1]); //default button
 		if(g != 0 ) { return;	}
 		splitPane.setCursor(WAIT_CURSOR);

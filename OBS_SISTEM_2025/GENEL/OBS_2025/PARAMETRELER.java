@@ -1451,7 +1451,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		comboBox_3.setBounds(150, 27, 139, 22);
 		panel_5.add(comboBox_3);
 		
-		JLabel lblNewLabel_4_1_2_5 = new JLabel("Kereste Giris");
+		JLabel lblNewLabel_4_1_2_5 = new JLabel("Giris / Cikis");
 		lblNewLabel_4_1_2_5.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_4_1_2_5.setBounds(10, 60, 126, 14);
 		panel_5.add(lblNewLabel_4_1_2_5);
@@ -1523,7 +1523,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 		});
 		btnNewButton_10_1_1_1.setBounds(417, 149, 46, 23);
 		panel_5.add(btnNewButton_10_1_1_1);
-			doldur();
+		
+		doldur();
 	
 		
 	}
@@ -1781,6 +1782,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 			comboBox_3.setSelectedItem(deger);
 		deger = oac.glb.setting_oku("KER_GIRIS").toString();
 			lblNewLabel_3_2_1_1_3.setText(deger);
+			
 			deger = deger.substring(1, deger.length()-1);
 			parts = deger.split(",");
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
@@ -1953,7 +1955,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		
 		deger =  comboBox_3.getItemAt(comboBox_3.getSelectedIndex());
 		oac.glb.setting_yaz("KER_FAT_FIR_BILGI", deger);
-		oac.glb.setting_yaz("KER_FAT_GIRIS",lblNewLabel_3_2_1_1_3.getText());
+		oac.glb.setting_yaz("KER_GIRIS",lblNewLabel_3_2_1_1_3.getText());
 		deger = textField_10.getText();
 		oac.glb.setting_yaz("KER_FAT_SATIR", deger);
 		oac.glb.setting_yaz("KER_RAPORLAMA",lblNewLabel_3_10_1_1_1.getText());

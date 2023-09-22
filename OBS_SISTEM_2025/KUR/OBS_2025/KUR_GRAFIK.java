@@ -135,7 +135,6 @@ public class KUR_GRAFIK extends JInternalFrame {
 			if (!rs.isBeforeFirst() ) {  
 				return ;
 			} 
-			//  GRID_TEMIZLE.grid_temizle(table);
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			while (rs.next()) {
 

@@ -80,19 +80,17 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JFormattedTextField;
 
-@SuppressWarnings("static-access")
+@SuppressWarnings({ "static-access", "serial" })
 public class FILTRE extends JDialog {
 
 	/**
 	 * 
 	 */
-
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS() ;
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	private static STOK_ACCESS  f_Access = new STOK_ACCESS(oac._IStok , oac._IFatura_Loger);
 	private static KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(oac._IKereste , oac._IKereste_Loger);
-	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	public static JButton okButton ;
 	public static JTabbedPane tabbedPane ;
@@ -443,7 +441,7 @@ public class FILTRE extends JDialog {
 	public static JDateChooser dateChooser_20_1_2 ;
 	public static JDateChooser dateChooser_21_1_2 ;
 	public static JComboBox<String> comboBox_83;
-	
+	public static JCheckBox chckbxNewCheckBox_5 ;
 	
 	
 	
@@ -481,10 +479,13 @@ public class FILTRE extends JDialog {
 
 		final boolean showTabsHeader = false;
 		tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI()
-		{ @Override
+		{
+		    @Override
 		    protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) {
-		        if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);} else {return 0;} }
-		  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}}); 
+		        if (showTabsHeader) {return super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight);
+		        } else {return 0;}	        }
+		  protected void paintTabArea(Graphics g,int tabPlacement,int selectedIndex){}
+		}); 
 
 		
 		//final boolean showTabsHeader = false;
@@ -5214,7 +5215,8 @@ public class FILTRE extends JDialog {
 		comboBox_82.setForeground(new Color(0, 0, 128));
 		comboBox_82.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_82.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR"}));
-		comboBox_82.setBounds(534, 137, 69, 22);
+		comboBox_82.setBounds(535, 165, 69, 22);
+		comboBox_82.setVisible(false);
 		panel_KERESTE_ORTFIAT.add(comboBox_82);
 		
 		JLabel lblNewLabel_43 = new JLabel("Turu");
@@ -5228,6 +5230,22 @@ public class FILTRE extends JDialog {
 		comboBox_83.setModel(new DefaultComboBoxModel<String>(new String[] { "GIREN", "CIKAN","STOK"}));
 		comboBox_83.setBounds(534, 111, 110, 22);
 		panel_KERESTE_ORTFIAT.add(comboBox_83);
+		
+		chckbxNewCheckBox_5 = new JCheckBox("Doviz Kurlu");
+		chckbxNewCheckBox_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(chckbxNewCheckBox_5.isSelected())
+				{
+					comboBox_82.setVisible(true) ;
+				}
+				else
+				{
+					comboBox_82.setVisible(false) ;
+				}
+			}
+		});
+		chckbxNewCheckBox_5.setBounds(534, 139, 110, 23);
+		panel_KERESTE_ORTFIAT.add(chckbxNewCheckBox_5);
 
 		//**********************************************************************OK BUTTON **********************************
 		okButton = new JButton("Yenile");

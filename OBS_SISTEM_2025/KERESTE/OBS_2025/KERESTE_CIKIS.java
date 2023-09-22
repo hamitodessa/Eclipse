@@ -1176,20 +1176,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		ker_oz_kod();
 		ker_nakliyeci();
 
-		String deger;
-		Integer sat_sayi;
-		try {
-			deger = GLOBAL.setting_oku("KER_FAT_SATIR").toString();
-			sat_sayi =Integer.parseInt(deger);
-			for (int i = 0; i <= sat_sayi -1 ; i ++)
-			{
-				satir_ilave();
-			}
-			txtdoviz.setText(GLOBAL.setting_oku("PRG_PARA").toString());
-
-		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Cikis", JOptionPane.ERROR_MESSAGE);   
-		}
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
 		{		
 			@Override
@@ -1237,6 +1223,27 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				}
 			}
 		});
+		String deger;
+		Integer sat_sayi;
+		try {
+			deger = GLOBAL.setting_oku("KER_FAT_SATIR").toString();
+			sat_sayi =Integer.parseInt(deger);
+			for (int i = 0; i <= sat_sayi -1 ; i ++)
+			{
+				satir_ilave();
+			}
+			txtdoviz.setText(GLOBAL.setting_oku("PRG_PARA").toString());
+			String[] parts;
+			Font bigFont;
+			deger = GLOBAL.setting_oku("KER_GIRIS").toString();
+			deger = deger.substring(1, deger.length()-1);
+			parts = deger.split(",");
+			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			System.out.println(bigFont.getName().toString());
+			table.setFont(bigFont);
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Cikis", JOptionPane.ERROR_MESSAGE);   
+		}
 	}
 
 	private void ana_grup_doldur()

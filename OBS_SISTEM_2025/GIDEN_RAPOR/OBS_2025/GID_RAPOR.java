@@ -38,7 +38,7 @@ import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","static-access"})
 public class GID_RAPOR extends JInternalFrame {
 	private static JTable table;
 	public static JSplitPane splitPane ;
@@ -64,7 +64,6 @@ public class GID_RAPOR extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("static-access")
 	public GID_RAPOR() {
 		setTitle("GIDEN RAPORLAR");
 		setResizable(true);
@@ -122,16 +121,12 @@ public class GID_RAPOR extends JInternalFrame {
 					if (table.getSelectedRow() < 0 ) return ;
 					sil();
 				}
-				
 			}
 		});
 		table.setGridColor(oac.gridcolor);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane.setViewportView(table);
-
 		hisset ();
-
-
 	}
 	public static void hisset()
 	{
@@ -221,10 +216,8 @@ public class GID_RAPOR extends JInternalFrame {
 	}
 	public static  void sil()
 	{			
-		int g =  JOptionPane.showOptionDialog( null,  "Secilen Rapor  Silinecek ..?"  ,
-				"Gonderilen Raporlardan Evrak Silme",   JOptionPane.YES_NO_OPTION,
-				JOptionPane.QUESTION_MESSAGE, 	null,  oac.options,  //button titles
-				oac.options[1]); //default button
+		int g =  JOptionPane.showOptionDialog( null,  "Secilen Rapor  Silinecek ..?"  ,"Gonderilen Raporlardan Evrak Silme",   JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE, 	null,  oac.options, oac.options[1]); //default button
 		if(g != 0 ) { return;	}
 		if (table.getSelectedRow() < 0 ) return ;
 		try

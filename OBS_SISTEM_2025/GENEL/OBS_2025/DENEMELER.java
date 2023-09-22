@@ -230,11 +230,7 @@ public class DENEMELER extends JInternalFrame {
 							.setCodecProvider(new CryptCodecProvider(password))
 							.setFileFormat(Database.FileFormat.V2010)
 							.create();
-					
-				
-					
-				
-					Table table = new TableBuilder("Test")
+						Table table = new TableBuilder("Test")
 							.addColumn(new ColumnBuilder("ID", DataType.LONG)
 									.setAutoNumber(true))
 							.addColumn(new ColumnBuilder("Name", DataType.TEXT))
@@ -243,12 +239,8 @@ public class DENEMELER extends JInternalFrame {
 							.toTable(db);
 
 					db.close();
-
-				
-					
-		            
-				} catch (IOException e1) {
-					e1.printStackTrace();
+				} catch (Exception e1) {
+					System.out.println(e1);
 				}
 			}
 		});
@@ -258,26 +250,23 @@ public class DENEMELER extends JInternalFrame {
 		JButton btnNewButton_7 = new JButton("oku");
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				  try {
-						Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}	
+				  
+					
+					
 					  try {
-				
+							Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 						Connection conn;
 						
 							conn = DriverManager.getConnection(
-								        "jdbc:ucanaccess://C:/OBS_SISTEM/test.accdb","","obs");
+								        "jdbc:ucanaccess://C:/OBS_SISTEM/test.accdb","","pop");
 							Statement s = conn.createStatement();
 							ResultSet rs = s.executeQuery("SELECT * FROM test");
 							  System.out.println("------------------------------------");
 								while (rs.next()) {
 								    System.out.println(rs.getString(1) + "-" + rs.getString(2));
 								}
-						} catch (SQLException e1) {
-							e1.printStackTrace();
+						} catch (Exception e1) {
+							System.out.println(e1);
 						}
 			}
 		});

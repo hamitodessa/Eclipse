@@ -791,9 +791,11 @@ public class LOGIN extends JDialog {
 			OBS_MAIN.tabbedPane.setEnabledAt(7, false);
 		}
 	}
-	void calisma_dizini_oku() throws ClassNotFoundException, SQLException, InterruptedException
+	void calisma_dizini_oku() 
 	{
+		try {
 		int say = 9;
+		
 		bAGLAN.cONNECT(txtUser.getText());
 		bAGLAN_LOG.cONNECT();
 		// Cari
@@ -870,6 +872,10 @@ public class LOGIN extends JDialog {
 		Lgn_Progres_Bar(say, 9);
 		
 		lblModul.setText("");
+		
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(),  "Calisma Dizini", JOptionPane.ERROR_MESSAGE);    
+		}
 	}
 	void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{

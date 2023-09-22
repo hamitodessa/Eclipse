@@ -167,6 +167,7 @@ public class KER_ORT_SATIS extends JInternalFrame {
 		try {
 			ResultSet	rs = null;
 			grup_cevir() ;
+			boolean kurlu = FILTRE.chckbxNewCheckBox_5.isSelected() ? true : false ;
 			rs = ker_Access.ort_diger_kodu(yu,qwq6,qwq7,
 					FILTRE.textField_96.getText(),FILTRE.textField_97.getText() ,
 					FILTRE.textField_95.getText(),FILTRE.textField_98.getText() ,
@@ -174,7 +175,7 @@ public class KER_ORT_SATIS extends JInternalFrame {
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1_2), 
 					BAGLAN.kurDizin.kOD ,
 					FILTRE.comboBox_82.getItemAt(FILTRE.comboBox_82.getSelectedIndex()),
-					iu ,hANGI);
+					iu ,hANGI,kurlu);
 
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  

@@ -608,6 +608,17 @@ public class KER_GIRIS extends JInternalFrame {
 		lblNewLabel_12.setBounds(480, 62, 48, 14);
 		panel_2.add(lblNewLabel_12);
 		
+		JButton button_4_1 = new JButton("");
+		button_4_1.setToolTipText("Yenile");
+		button_4_1.setBounds(704, 58, 26, 23);
+		button_4_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mensei_doldur();
+			}
+		});
+		button_4_1.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
+		panel_2.add(button_4_1);
+		
 		cmbdepo = new JComboBox<String>();
 		cmbdepo.setBounds(811, 59, 148, 22);
 		cmbdepo.setFont(new Font("Dialog", Font.BOLD, 12));
@@ -1344,32 +1355,6 @@ public class KER_GIRIS extends JInternalFrame {
 		ker_nakliyeci();
 		depo_doldur();
 		mensei_doldur();
-		//***********
-		String deger;
-		Integer sat_sayi;
-		try {
-			deger = GLOBAL.setting_oku("KER_FAT_SATIR").toString();
-			sat_sayi =Integer.parseInt(deger);
-			for (int i = 0; i <= sat_sayi -1 ; i ++)
-			{
-				satir_ilave();
-			}
-			txtdoviz.setText(GLOBAL.setting_oku("PRG_PARA").toString());
-			
-			JButton button_4_1 = new JButton("");
-			button_4_1.setToolTipText("Yenile");
-			button_4_1.setBounds(704, 58, 26, 23);
-			button_4_1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					mensei_doldur();
-				}
-			});
-			button_4_1.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
-			panel_2.add(button_4_1);
-
-		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Giris", JOptionPane.ERROR_MESSAGE);   
-		}
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
 		{		
 			@Override
@@ -1430,6 +1415,31 @@ public class KER_GIRIS extends JInternalFrame {
 				//toplam();
 			}
 		});
+	
+		//***********
+		String deger;
+		Integer sat_sayi;
+		try {
+			deger = GLOBAL.setting_oku("KER_FAT_SATIR").toString();
+			sat_sayi =Integer.parseInt(deger);
+			for (int i = 0; i <= sat_sayi -1 ; i ++)
+			{
+				satir_ilave();
+			}
+			txtdoviz.setText(GLOBAL.setting_oku("PRG_PARA").toString());
+			String[] parts;
+			Font bigFont;
+			deger = GLOBAL.setting_oku("KER_GIRIS").toString();
+			deger = deger.substring(1, deger.length()-1);
+			parts = deger.split(",");
+			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			table.setFont(bigFont);
+
+		} catch (Exception ex) 
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Giris", JOptionPane.ERROR_MESSAGE);   
+		}
+
 	}
 	private static void satir_ilave() 
 	{

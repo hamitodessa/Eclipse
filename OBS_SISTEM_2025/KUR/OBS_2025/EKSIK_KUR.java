@@ -13,7 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -47,21 +46,18 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","static-access"})
 public class EKSIK_KUR extends JInternalFrame 
 {
 
 	private static JTable table;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	@SuppressWarnings("static-access")
-	static KUR_ACCESS k_Access = new KUR_ACCESS(oac._IKur , OBS_SIS_2025_ANA_CLASS._IKur_Loger);
+	static KUR_ACCESS k_Access = new KUR_ACCESS(oac._IKur ,oac._IKur_Loger);
 
 	static  JDateChooser dateChooser ;
 	private  JDateChooser dateChooser_1 ;
 	static JComboBox<String> cmbCins;
 	static JLabel lblkayit;
-	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
-	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 
 	/**
 	 * Launch the application.
@@ -84,7 +80,7 @@ public class EKSIK_KUR extends JInternalFrame
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ "static-access", "removal" })
+	@SuppressWarnings({ "removal" })
 	public EKSIK_KUR() 
 	{
 		setIconifiable(true);
@@ -137,10 +133,10 @@ public class EKSIK_KUR extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 				te_sifirla();
 				oku();
-				getContentPane().setCursor(DEFAULT_CURSOR);			
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);			
 			}
 		});
 		btnNewButton.setBounds(21, 75, 100, 23);
@@ -158,9 +154,9 @@ public class EKSIK_KUR extends JInternalFrame
 		btnMerkezOku.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnMerkezOku.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				getContentPane().setCursor(WAIT_CURSOR);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
 				merkez_oku();
-				getContentPane().setCursor(DEFAULT_CURSOR);			
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);			
 			}
 		});
 		btnMerkezOku.setBounds(140, 75, 100, 23);
@@ -228,7 +224,6 @@ public class EKSIK_KUR extends JInternalFrame
 		DefaultTableModel defaultModel = (DefaultTableModel) table.getModel();
 		defaultModel.addRow(new Object[]{tar, 0,0});
 		Date date = null;
-		//     System.out.println(tar + "--" +son_tar);
 		do
 		{
 			SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); 
@@ -241,7 +236,6 @@ public class EKSIK_KUR extends JInternalFrame
 			artan_tarih.setDate(new Date(cal.getTimeInMillis()));
 			tar = TARIH_CEVIR.tarih_dt_ddMMyyyy(artan_tarih);
 			defaultModel.addRow(new Object[]{tar, 0,0});  
-
 		}
 		while (! tar.equals( son_tar) );
 		kur_oku();
@@ -283,7 +277,7 @@ public class EKSIK_KUR extends JInternalFrame
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);			
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);			
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kur Okuma", JOptionPane.ERROR_MESSAGE);   		
 		}
 	}
@@ -348,7 +342,7 @@ public class EKSIK_KUR extends JInternalFrame
 		}
 		catch (Exception ex )
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);			
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);			
 		}
 	}
 	private double kur_oku(String tarih,String cins,String tur)

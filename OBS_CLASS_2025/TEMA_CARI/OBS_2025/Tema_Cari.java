@@ -19,9 +19,9 @@ public class Tema_Cari {
 		try {  
 			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + TEMA_DOSYA );  
 		} 
-		catch (SQLException e) 
+		catch (Exception e) 
 		{
-
+			JOptionPane.showMessageDialog(null, e.getMessage(),  "Tema", JOptionPane.ERROR_MESSAGE);   
 		}  
 		return conn;  
 	}  
@@ -43,8 +43,8 @@ public class Tema_Cari {
 					" HESAP_KODU CHAR(12) NULL) " ;
 			tablo_yap(sorgu);
 		}
-		catch (SQLException ex) {  
-			JOptionPane.showMessageDialog(null, ex);  
+		catch (Exception ex) {  
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Tema", JOptionPane.ERROR_MESSAGE);   
 		}  
 	}
 	private static void tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {

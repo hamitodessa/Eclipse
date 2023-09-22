@@ -133,9 +133,7 @@ public class USER_EKLEME extends JInternalFrame {
 						try {
 							kutu_temizle();
 							doldur_kutu(table_1,table_1.getSelectedRow());
-						} catch (ClassNotFoundException e1) {
-							e1.printStackTrace();
-						} catch (SQLException e1) {
+						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
 						getContentPane().setCursor(DEFAULT_CURSOR);

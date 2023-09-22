@@ -63,7 +63,7 @@ public interface IKERESTE {
 	public void degisken_degistir(int anagrp,int altgrp, int anaygrp,int altygrp,String durum) throws ClassNotFoundException, SQLException;
 	public String[] kod_aciklama_bul(String paket, String kons) throws ClassNotFoundException, SQLException;
 	public ResultSet ort_diger_kodu(String yu,String qwq6 , String qwq7, String m1 ,String m2,String s1,String s2,
-			String k1 ,String k2 ,String t1,String t2,String kurkod,String kurc,String iu,String hANGI) throws ClassNotFoundException, SQLException;
+			String k1 ,String k2 ,String t1,String t2,String kurkod,String kurc,String iu,String hANGI,boolean kurlu) throws ClassNotFoundException, SQLException;
 	public boolean kons_kontrol(String kons)throws ClassNotFoundException, SQLException;
 	public void ker_toplu_kaydet(JTable table,int degisken[] , KER_RAPOR_BILGI keBilgi,String user) throws ClassNotFoundException, SQLException;
 	public ResultSet paket_ara(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException;

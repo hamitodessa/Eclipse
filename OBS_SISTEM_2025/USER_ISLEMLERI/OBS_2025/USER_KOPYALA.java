@@ -7,18 +7,12 @@ import java.sql.SQLException;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.swing.JComboBox;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import java.awt.Font;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.awt.Color;
 
 public class USER_KOPYALA extends JInternalFrame {
@@ -230,8 +224,7 @@ public class USER_KOPYALA extends JInternalFrame {
 		}
 		try {
 			decodedString=  ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
-		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException
-				| IllegalBlockSizeException | BadPaddingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 			oac.uSER_ISL.details_yaz(rss.getString("USER_PROG_KODU").toString() 

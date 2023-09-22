@@ -9,14 +9,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 
-import GUNLUK.GOREV_GIRIS;
-import GUNLUK.Gunluk;
-import GUNLUK.HAZIR_GOREVLER;
-import KER_RAPOR.KER_DETAY;
-import KER_RAPOR.KER_FAT_RAPOR;
-import KER_RAPOR.KER_GRUP_RAPOR;
-import KER_RAPOR.KER_ORT_SATIS;
-
 import javax.swing.JDesktopPane;
 import java.awt.Toolkit;
 import javax.swing.JButton;
@@ -41,7 +33,6 @@ import java.awt.Frame;
 import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.Dimension;
-import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -68,12 +59,20 @@ import OBS_2025_RAPORLAR.STOK_DETAY;
 import OBS_2025_RAPORLAR.STOK_RAPOR;
 import OBS_2025_RAPORLAR.URUN_LISTE;
 import OBS_2025_RAPORLAR.ZAYI_RAPOR;
+import GUNLUK.GOREV_GIRIS;
+import GUNLUK.Gunluk;
+import GUNLUK.HAZIR_GOREVLER;
+import KER_RAPOR.KER_DETAY;
+import KER_RAPOR.KER_FAT_RAPOR;
+import KER_RAPOR.KER_GRUP_RAPOR;
+//import KER_RAPOR.KER_ORT_SATIS;
+import KER_RAPOR.KER_ORT_SATIS;
 import OBS_C_2025.DesktopScrollPane;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.TARIH_CEVIR;
 
 import javax.swing.JMenuBar;
-import javax.swing.JSeparator;
+
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 
@@ -456,8 +455,8 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnAdres.add(mntmAdetay);
 
-		JSeparator separator = new JSeparator();
-		mnAdres.add(separator);
+	
+		mnAdres.addSeparator();
 		
 		JMenuItem mntmEtiket = new JMenuItem("Etiket Yazdirma");
 		mntmEtiket.addActionListener(new ActionListener() {
@@ -475,8 +474,8 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnAdres.add(mntmEtiketAyar);
 		
-		JSeparator separator1 = new JSeparator();
-		mnAdres.add(separator1);
+
+		mnAdres.addSeparator();
 
 		JMenuItem mntmAfismi = new JMenuItem("Firma Ismi");
 		mntmAfismi.addActionListener(new ActionListener() {
@@ -504,9 +503,8 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnFatura.add(mntmUkart);
 
-		JSeparator separator_1 = new JSeparator();
-		mnFatura.add(separator_1);
-
+		
+		mnFatura.addSeparator();
 		JMenuItem mntmImalat = new JMenuItem("Imalat");
 		mntmImalat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -539,8 +537,7 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnFatura.add(mntmIfno);
 
-		JSeparator separator_2 = new JSeparator();
-		mnFatura.add(separator_2);
+		mnFatura.addSeparator();
 
 		JMenuItem mntmFatura = new JMenuItem("Fatura ");
 		mntmFatura.addActionListener(new ActionListener() {
@@ -574,8 +571,8 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnFatura.add(mntmZayi);
 
-		JSeparator separator_3 = new JSeparator();
-		mnFatura.add(separator_3);
+
+		mnFatura.addSeparator();
 
 		JMenuItem mntmFrapor = new JMenuItem("Fatura Raporlama");
 		mntmFrapor.addActionListener(new ActionListener() {
@@ -617,9 +614,7 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnFatura.add(mntmUdetayli);
 
-		JSeparator separator_4 = new JSeparator();
-		mnFatura.add(separator_4);
-
+		mnFatura.addSeparator();
 		JMenuItem mntmImrapor = new JMenuItem("Imalat Rapor");
 		mntmImrapor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -644,8 +639,7 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnFatura.add(mntmRrapor);
 
-		JSeparator separator_5 = new JSeparator();
-		mnFatura.add(separator_5);
+		mnFatura.addSeparator();
 
 		JMenuItem mntmGrapor = new JMenuItem("Grup Raporlama");
 		mntmGrapor.addActionListener(new ActionListener() {
@@ -679,8 +673,7 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnFatura.add(mntmZrapor);
 
-		JSeparator separator_6 = new JSeparator();
-		mnFatura.add(separator_6);
+		mnFatura.addSeparator();
 
 		JMenuItem mntmSqlf = new JMenuItem("SQL Sorgulama");
 		mntmSqlf.addActionListener(new ActionListener() {
@@ -706,8 +699,7 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnFatura.add(mntmBkur);
 
-		JSeparator separator_7 = new JSeparator();
-		mnFatura.add(separator_7);
+		mnFatura.addSeparator();
 
 		JMenuItem mntmEvf = new JMenuItem("Evrak Format");
 		mntmEvf.addActionListener(new ActionListener() {
@@ -741,8 +733,8 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnFatura.add(mntmDevir);
 
-		JSeparator separator_8 = new JSeparator();
-		mnFatura.add(separator_8);
+		mnFatura.addSeparator();
+		
 		JMenu mnDegiskenler = new JMenu("Degiskenler");
 		mnFatura .add(mnDegiskenler);
 		JMenuItem mntmAgrp = new JMenuItem("Ana Grup");
@@ -761,8 +753,8 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnDegiskenler .add(mntmAltgrp );
 
-		JSeparator separator_9 = new JSeparator();
-		mnDegiskenler.add(separator_9);
+
+		mnDegiskenler.addSeparator();
 
 		JMenuItem mntmDepo = new JMenuItem("Depo");
 		mntmDepo.addActionListener(new ActionListener() {
@@ -780,8 +772,7 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnDegiskenler .add(mntmMensei );
 
-		JSeparator separator_10 = new JSeparator();
-		mnDegiskenler.add(separator_10);
+		mnDegiskenler.addSeparator();
 
 		JMenuItem mntmO1 = new JMenuItem("Ozel Kod 1");
 		mntmO1.addActionListener(new ActionListener() {
@@ -825,8 +816,8 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnKambiyo.add(mntmCcikis);
 
-		JSeparator separator_16 = new JSeparator();
-		mnKambiyo.add(separator_16);
+
+		mnKambiyo.addSeparator();
 
 		JMenuItem mntmCraporlama = new JMenuItem("Raporlama");
 		mntmCraporlama.addActionListener(new ActionListener() {
@@ -836,8 +827,8 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnKambiyo.add(mntmCraporlama);
 
-		JSeparator separator_14 = new JSeparator();
-		mnKambiyo.add(separator_14);
+
+		mnKambiyo.addSeparator();
 
 		JMenuItem mntmCkontrol = new JMenuItem("Cek Kontrol");
 		mntmCkontrol.addActionListener(new ActionListener() {
@@ -847,8 +838,8 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnKambiyo.add(mntmCkontrol);
 
-		JSeparator separator_15 = new JSeparator();
-		mnKambiyo.add(separator_15);
+	
+		mnKambiyo.addSeparator();
 
 		JMenuItem mntmCfirma = new JMenuItem("Firma Ismi");
 		mntmCfirma.addActionListener(new ActionListener() {
@@ -889,8 +880,7 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnGunluk.add(mntmKayitli);
 		
-		JSeparator separator_13 = new JSeparator();
-		mnGunluk.add(separator_13);
+		mnGunluk.addSeparator();
 		
 		JMenuItem mntmFirma = new JMenuItem("Firma Ismi");
 		mntmFirma.addActionListener(new ActionListener() {
@@ -952,8 +942,7 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnKereste.add(mntmCikis);	
 		
-		JSeparator separator_k1 = new JSeparator();
-		mnKereste.add(separator_k1);
+		mnKereste.addSeparator();
 		
 		
 		JMenuItem mntmkDegis = new JMenuItem("Kod Degistirme");
@@ -964,8 +953,7 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnKereste.add(mntmkDegis);	
 		
-		JSeparator separator_k2 = new JSeparator();
-		mnKereste.add(separator_k2);
+		mnKereste.addSeparator();
 		
 		JMenuItem mntmGrup = new JMenuItem("Grup Raporlama");
 		mntmGrup.addActionListener(new ActionListener() {
@@ -999,8 +987,7 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnKereste.add(mntmoRtalama);	
 		
-		JSeparator separator_k3 = new JSeparator();
-		mnKereste.add(separator_k3);
+		mnKereste.addSeparator();
 		
 		JMenuItem mntmKodAdi = new JMenuItem("Kod Adi Aciklama");
 		mntmKodAdi.addActionListener(new ActionListener() {
@@ -1018,8 +1005,8 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnKereste.add(mntmKonsAdi);	
 		
-		JSeparator separator_k4 = new JSeparator();
-		mnKereste.add(separator_k4);
+	
+		mnKereste.addSeparator();
 		
 		JMenuItem mntmKFirma = new JMenuItem("Firma Ismi");
 		mntmKFirma.addActionListener(new ActionListener() {
@@ -1070,6 +1057,7 @@ public class OBS_MAIN extends JFrame {
 				btnNewButton_86_1.doClick();
 			}
 		});
+		mnGenel.add(mntmLog);
 		
 		JMenuItem mntmVeri = new JMenuItem("Veri Aktarimi");
 		mntmVeri.addActionListener(new ActionListener() {
@@ -1114,11 +1102,8 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnAyarlar.add(mntmKkopya);
 
-		JSeparator separator_12 = new JSeparator();
-		mnAyarlar.add(separator_12);
+		mnAyarlar.addSeparator();
 
-		JSeparator separator_11 = new JSeparator();
-		mnAyarlar.add(separator_11);
 
 		JMenuItem mntmAyar = new JMenuItem("Ayarlar");
 		mntmAyar.addActionListener(new ActionListener() {

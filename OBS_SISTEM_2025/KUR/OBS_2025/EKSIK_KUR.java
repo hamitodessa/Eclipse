@@ -46,7 +46,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-@SuppressWarnings({"serial","static-access"})
+@SuppressWarnings({"serial","static-access", "removal"})
 public class EKSIK_KUR extends JInternalFrame 
 {
 
@@ -80,7 +80,6 @@ public class EKSIK_KUR extends JInternalFrame
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ "removal" })
 	public EKSIK_KUR() 
 	{
 		setIconifiable(true);
@@ -106,7 +105,7 @@ public class EKSIK_KUR extends JInternalFrame
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-		dateChooser.setBounds(21, 11, 120, 20);
+		dateChooser.setBounds(21, 11, 130, 20);
 		panel.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
@@ -114,7 +113,7 @@ public class EKSIK_KUR extends JInternalFrame
 		dateChooser_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-		dateChooser_1.setBounds(180, 11, 120, 20);
+		dateChooser_1.setBounds(180, 11, 130, 20);
 		panel.add(dateChooser_1);
 
 		cmbCins = new JComboBox<String>();
@@ -139,12 +138,12 @@ public class EKSIK_KUR extends JInternalFrame
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);			
 			}
 		});
-		btnNewButton.setBounds(21, 75, 100, 23);
+		btnNewButton.setBounds(21, 75, 120, 23);
 		panel.add(btnNewButton);
 
 		lblkayit = new JLabel("0");
 		lblkayit.setForeground(new Color(0, 0, 205));
-		lblkayit.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblkayit.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblkayit.setBounds(300, 79, 40, 14);
 		panel.add(lblkayit);
@@ -159,7 +158,7 @@ public class EKSIK_KUR extends JInternalFrame
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);			
 			}
 		});
-		btnMerkezOku.setBounds(140, 75, 100, 23);
+		btnMerkezOku.setBounds(147, 75, 105, 23);
 		panel.add(btnMerkezOku);
 
 		JLabel lblNewLabel = new JLabel("Satir :");
@@ -294,30 +293,37 @@ public class EKSIK_KUR extends JInternalFrame
 		{
 			return;
 		}
-		String tar = "" ;
-		for (int i = 0; i < modell.getRowCount()  ; i ++)
-		{
-			tar =  (String) modell.getValueAt(i , 0);
-			merkez(tar,i);
+		Runnable runner = new Runnable()
+		{ public void run() {
+			String tar = "" ;
+			for (int i = 0; i < modell.getRowCount()  ; i ++)
+			{
+				tar =  (String) modell.getValueAt(i , 0);
+				merkez(tar,i);
+			}
+			double kur = 0 ;
+			int i = -1 ;
+			do {
+				i++;
+				if(i==modell.getRowCount())
+				{
+					break;
+				}
+				kur =  (double) modell.getValueAt(i , 1);
+				if (  kur ==0)
+				{
+					modell.removeRow(i);
+					i = i-1;
+				}
+			}
+			while (i < modell.getRowCount());
+			lblkayit.setText(String.valueOf(modell.getRowCount()));
+			Thread.currentThread().isInterrupted();
 		}
-		double kur = 0 ;
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
 
-		int i = -1 ;
-		do {
-			i++;
-			if(i==modell.getRowCount())
-			{
-				break;
-			}
-			kur =  (double) modell.getValueAt(i , 1);
-			if (  kur ==0)
-			{
-				modell.removeRow(i);
-				i = i-1;
-			}
-		}
-		while (i < modell.getRowCount());
-		lblkayit.setText(String.valueOf(modell.getRowCount()));
 	}
 	private void merkez (String tar,int satir)
 	{

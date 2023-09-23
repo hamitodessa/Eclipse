@@ -774,8 +774,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			Thread.currentThread().isInterrupted();
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
-		}
-		};
+		}};
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
 	}

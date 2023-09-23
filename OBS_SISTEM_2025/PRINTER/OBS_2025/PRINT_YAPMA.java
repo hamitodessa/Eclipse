@@ -56,11 +56,11 @@ public class PRINT_YAPMA extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	public static ReportViewerBean reportViewer ;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
-	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
-	static STOK_ACCESS fa_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
-	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
-	static GUNLUK_ACCESS g_Access = new GUNLUK_ACCESS(oac._IGunluk , OBS_SIS_2025_ANA_CLASS._IGunluk_Loger);
+	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo , oac._IKambiyo_Loger);
+	static STOK_ACCESS fa_Access = new STOK_ACCESS(oac._IStok , oac._IFatura_Loger);
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres ,oac._IAdres_Loger);
+	static GUNLUK_ACCESS g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	public static ReportClientDocument clientDoc ;
 	private static ResultSet rs ;
 	private static ArrayList<Degisken>  students = new ArrayList<Degisken>();

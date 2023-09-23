@@ -56,12 +56,10 @@ public class TABLO_RENDERER extends DefaultTableCellRenderer {
 	        if (bold)
 	    	  {
 	        	setFont (new Font(table.getFont().getFontName(),1 ,12));
-	    		//setFont(new Font("Tahoma", 1, 12));
 	    	  }
 	    	  else
 	    	  {
-	    			setFont (new Font(table.getFont().getFontName(),0 ,table.getFont().getSize()));
-	    		//setFont(new Font("Arial", 0, 12)); 
+    			setFont (new Font(table.getFont().getFontName(),0 ,table.getFont().getSize()));
 	    	  }
 	        setHorizontalAlignment(JLabel.RIGHT);
 	        return this;

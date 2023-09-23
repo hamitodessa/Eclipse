@@ -44,7 +44,14 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 	private JLabel lblNewLabel_1_4 = new JLabel(".....");
 	private JLabel lblNewLabel_1_5 = new JLabel(".....");
 	private JLabel lblNewLabel_1_6 = new JLabel(".....");
-	
+	private JLabel lblClog ;
+	private JLabel lblAdrlog ;
+	private JLabel lblStoklog ;
+	private JLabel lblGunlog ;
+	private JLabel lblSmslog ;
+	private JLabel lblKerlog ;
+	private JLabel lblKurlog ;
+	private JLabel lblKamlog ;
 	
 	private JLabel label;
 	private JLabel label_1;
@@ -65,6 +72,10 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 	private JLabel label_12_1;
 	private JLabel label_13_1;
 	private JLabel label_14_1;
+	private JLabel label_12_1_1 ;
+	private JLabel lblNewLabel_1_6_1; 
+	private JLabel label_14_1_1;
+	private JLabel label_13_1_1 ;
 	
 
 	public static void main(String[] args) {
@@ -85,7 +96,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 		setTitle("CALISMA DIZINLERI");
 		setClosable(true);
-		setBounds(100, 100, 854, 406);
+		setBounds(100, 100, 854, 456);
 		getContentPane().setLayout(null);
 
 
@@ -110,17 +121,25 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 		lblNewLabel_4 = new JLabel("...");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4.setBounds(250, 20, 404, 14);
+		lblNewLabel_4.setBounds(250, 20, 350, 14);
 		lblNewLabel_4.setForeground(Color.RED);
 		panel.add(lblNewLabel_4);
+		
+		lblClog = new JLabel("");
+		lblClog.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblClog.setForeground(new Color(128, 0, 0));
+		lblClog.setBounds(610, 20, 80, 14);
+		panel.add(lblClog);
 
 		lblNewLabel_1 = new JLabel(".....");
 		lblNewLabel_1.setForeground(new Color(0, 0, 205));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1.setBounds(730, 20, 50, 14);
 		panel.add(lblNewLabel_1);
+		
+		
 
-
+		
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(135, 206, 250)), "Stok", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -143,15 +162,25 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 		label_2 = new JLabel("...");
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_2.setBounds(250, 20, 404, 14);
+		label_2.setBounds(250, 20, 350, 14);
 		label_2.setForeground(Color.RED);
 		panel_1.add(label_2);
+
+		lblStoklog = new JLabel("");
+		lblStoklog.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblStoklog.setForeground(new Color(128, 0, 0));
+		lblStoklog .setBounds(610, 20, 80, 14);
+		panel_1.add(lblStoklog );
 
 		lblNewLabel_1_1 = new JLabel(".....");
 		lblNewLabel_1_1.setForeground(new Color(0, 0, 205));
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_1.setBounds(730, 20, 50, 14);
 		panel_1.add(lblNewLabel_1_1);
+		
+		lblStoklog = new JLabel("");
+		lblStoklog.setBounds(610, 20, 72, 14);
+		panel_1.add(lblStoklog);
 
 
 
@@ -176,8 +205,15 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label_55 = new JLabel("...");
 		label_55.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_55.setForeground(Color.RED);
-		label_55.setBounds(250, 20, 404, 14);
+		label_55.setBounds(250, 20, 350, 14);
 		panel_2.add(label_55);
+		
+		lblKamlog = new JLabel("");
+		lblKamlog.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblKamlog.setForeground(new Color(128, 0, 0));
+		lblKamlog .setBounds(610, 20, 80, 14);
+		panel_2.add(lblKamlog );
+
 
 		lblNewLabel_1_2 = new JLabel(".....");
 		lblNewLabel_1_2.setForeground(new Color(0, 0, 205));
@@ -208,9 +244,15 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 		label_8 = new JLabel("...");
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_8.setBounds(250, 20, 404, 14);
+		label_8.setBounds(250, 20, 350, 14);
 		label_8.setForeground(Color.RED);
 		panel_3.add(label_8);
+		
+		lblAdrlog = new JLabel("");
+		lblAdrlog.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblAdrlog.setForeground(new Color(128, 0, 0));
+		lblAdrlog .setBounds(610, 20, 80, 14);
+		panel_3.add(lblAdrlog );
 
 		lblNewLabel_1_3 = new JLabel(".....");
 		lblNewLabel_1_3.setForeground(new Color(0, 0, 205));
@@ -240,7 +282,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		panel_4.add(label_10);
 
 		label_11 = new JLabel("...");
-		label_11.setBounds(250, 11, 404, 14);
+		label_11.setBounds(250, 20, 350, 14);
 		label_11.setForeground(Color.RED);
 		panel_4.add(label_11);
 
@@ -249,6 +291,14 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_1_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_4.setBounds(730, 20, 50, 14);
 		panel_4.add(lblNewLabel_1_4);
+		
+
+		
+		lblKurlog = new JLabel("");
+		lblKurlog.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblKurlog.setForeground(new Color(128, 0, 0));
+		lblKurlog .setBounds(610, 20, 80, 14);
+		panel_4.add(lblKurlog );
 
 
 		JPanel panel_5 = new JPanel();
@@ -271,9 +321,15 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 		label_14 = new JLabel("...");
 		label_14.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_14.setBounds(250, 20, 404, 14);
+		label_14.setBounds(250, 20, 350, 14);
 		label_14.setForeground(Color.RED);
 		panel_5.add(label_14);
+		
+		lblGunlog = new JLabel("");
+		lblGunlog.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblGunlog.setForeground(new Color(128, 0, 0));
+		lblGunlog .setBounds(610, 20, 80, 14);
+		panel_5.add(lblGunlog );
 
 		lblNewLabel_1_5 = new JLabel(".....");
 		lblNewLabel_1_5.setForeground(new Color(0, 0, 205));
@@ -302,14 +358,56 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		label_14_1 = new JLabel((String) null);
 		label_14_1.setForeground(Color.RED);
 		label_14_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_14_1.setBounds(250, 20, 404, 14);
+		label_14_1.setBounds(250, 20, 350, 14);
 		panel_5_1.add(label_14_1);
+		
+		lblKerlog = new JLabel("");
+		lblKerlog.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblKerlog.setForeground(new Color(128, 0, 0));
+		lblKerlog .setBounds(610, 20, 80, 14);
+		panel_5_1.add(lblKerlog );
 		
 		lblNewLabel_1_6 = new JLabel("");
 		lblNewLabel_1_6.setForeground(new Color(0, 0, 205));
 		lblNewLabel_1_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_6.setBounds(730, 20, 50, 14);
 		panel_5_1.add(lblNewLabel_1_6);
+		
+		JPanel panel_5_1_1 = new JPanel();
+		panel_5_1_1.setLayout(null);
+		panel_5_1_1.setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(135, 206, 250)), "Sms", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5_1_1.setBounds(25, 366, 791, 50);
+		getContentPane().add(panel_5_1_1);
+		
+		label_12_1_1 = new JLabel("");
+		label_12_1_1.setForeground(Color.BLUE);
+		label_12_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_12_1_1.setBounds(10, 20, 55, 14);
+		panel_5_1_1.add(label_12_1_1);
+		
+		label_13_1_1 = new JLabel("...");
+		label_13_1_1.setForeground(new Color(0, 128, 128));
+		label_13_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_13_1_1.setBounds(63, 20, 170, 14);
+		panel_5_1_1.add(label_13_1_1);
+		
+		label_14_1_1 = new JLabel((String) null);
+		label_14_1_1.setForeground(Color.RED);
+		label_14_1_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_14_1_1.setBounds(250, 20, 350, 14);
+		panel_5_1_1.add(label_14_1_1);
+		
+		lblSmslog = new JLabel("");
+		lblSmslog.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblSmslog.setForeground(new Color(128, 0, 0));
+		lblSmslog.setBounds(610, 20, 80, 14);
+		panel_5_1_1.add(lblSmslog);
+		
+		lblNewLabel_1_6_1 = new JLabel("");
+		lblNewLabel_1_6_1.setForeground(new Color(0, 0, 205));
+		lblNewLabel_1_6_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1_6_1.setBounds(730, 20, 50, 14);
+		panel_5_1_1.add(lblNewLabel_1_6_1);
 
 		try {
 			yukle();
@@ -336,6 +434,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		{
 			lblNewLabel_2.setText(BAGLAN.cariDizin.sERVER);	
 		}
+		lblClog.setText(BAGLAN.cariDizin.lOG == true ? "Loglama" : "");
 		lblNewLabel_4.setText( c_Access.cari_firma_adi() );
 
 		// Stok
@@ -349,6 +448,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		{
 			label_1.setText(BAGLAN.fatDizin.sERVER);	
 		}
+		lblStoklog.setText(BAGLAN.fatDizin.lOG == true ? "Loglama" : "");
 		label_2.setText( f_Access.fat_firma_adi() );
 		// Kambiyo 
 		label_3.setText(BAGLAN.kamDizin.kOD);
@@ -361,6 +461,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		{
 			label_4.setText(BAGLAN.kamDizin.sERVER);	
 		}
+		lblKamlog.setText(BAGLAN.kamDizin.lOG == true ? "Loglama" : "");
 		label_55.setText( ka_Access.kam_firma_adi());
 
 		// Adres
@@ -374,6 +475,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		{
 			label_7.setText(BAGLAN.adrDizin.sERVER);	
 		}
+		lblAdrlog.setText(BAGLAN.adrDizin.lOG == true ? "Loglama" : "");
 		label_8.setText( a_Access.adr_firma_adi() );
 		// Kur
 		label_9.setText(BAGLAN.kurDizin.kOD);
@@ -386,6 +488,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		{
 			label_10.setText(BAGLAN.kurDizin.sERVER);	
 		}
+		lblKurlog.setText(BAGLAN.kurDizin.lOG == true ? "Loglama" : "");
 		label_11.setText("");
 		// Gunluk
 		label_12.setText(BAGLAN.gunDizin.kOD);
@@ -398,6 +501,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		{
 			label_13.setText(BAGLAN.gunDizin.sERVER);	
 		}
+		lblGunlog.setText(BAGLAN.gunDizin.lOG == true ? "Loglama" : "");
 		label_14.setText(g_Access.gun_firma_adi() );
 		// Kereste
 		label_12_1.setText(BAGLAN.kerDizin.kOD);
@@ -410,6 +514,19 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		{
 			label_13_1.setText(BAGLAN.kerDizin.sERVER);	
 		}
+		lblKerlog.setText(BAGLAN.kerDizin.lOG == true ? "Loglama" : "");
 		label_14_1.setText(ker_Access.ker_firma_adi() );
+		// Sms
+		label_12_1_1.setText(BAGLAN.smsDizin.kOD);
+		lblNewLabel_1_6_1.setText(BAGLAN.smsDizin.hAN_SQL);
+		if (BAGLAN.smsDizin.yER.equals("L"))
+		{
+			label_13_1_1.setText(BAGLAN.smsDizin.yER);
+		}
+		else
+		{
+			label_13_1_1.setText(BAGLAN.smsDizin.sERVER);	
+		}
+		lblSmslog.setText(BAGLAN.smsDizin.lOG == true ? "Loglama" : "");
 	}
 }

@@ -1068,14 +1068,14 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		col.setCellEditor(editor);
 		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
-			Font font = new Font("Arial", 1, 12);
+			//Font font = new Font("Arial", 1, 12);
 			@Override
 			public Component getTableCellRendererComponent(JTable table,
 					Object value, boolean isSelected, boolean hasFocus,
 					int row, int column) {
 				super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
 						row, column);
-				setFont(font);
+				setFont(new Font(table.getFont().getFontName(),1 ,12));
 				setForeground(new Color(0, 0, 128));
 				return this;
 			}
@@ -1239,7 +1239,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			deger = deger.substring(1, deger.length()-1);
 			parts = deger.split(",");
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-			System.out.println(bigFont.getName().toString());
 			table.setFont(bigFont);
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Cikis", JOptionPane.ERROR_MESSAGE);   

@@ -105,7 +105,7 @@ public class EKSIK_KUR extends JInternalFrame
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-		dateChooser.setBounds(21, 11, 130, 20);
+		dateChooser.setBounds(21, 11, 150, 20);
 		panel.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
@@ -113,7 +113,7 @@ public class EKSIK_KUR extends JInternalFrame
 		dateChooser_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-		dateChooser_1.setBounds(180, 11, 130, 20);
+		dateChooser_1.setBounds(180, 11, 150, 20);
 		panel.add(dateChooser_1);
 
 		cmbCins = new JComboBox<String>();
@@ -330,7 +330,7 @@ public class EKSIK_KUR extends JInternalFrame
 		try
 		{
 			String tarih = TARIH_CEVIR.tarih_sql(tar) ;
-
+			getContentPane().setCursor(oac.WAIT_CURSOR);
 			tarih  = tarih.substring(0,4) + tarih.substring(5,7) +  "/" + tarih.substring(8,10) + tarih.substring(5,7) + tarih.substring(0,4) + ".xml" ;
 			Document document = Jsoup.connect("https://www.tcmb.gov.tr/kurlar/" + tarih).get();
 			Elements elements = document.select("Currency");
@@ -345,6 +345,7 @@ public class EKSIK_KUR extends JInternalFrame
 					table.setValueAt( Double.parseDouble(ForexSelling), satir, 2);	
 				}
 			}
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex )
 		{
@@ -357,6 +358,7 @@ public class EKSIK_KUR extends JInternalFrame
 		try
 		{
 			ResultSet rs ;
+			getContentPane().setCursor(oac.WAIT_CURSOR);
 			rs = k_Access.kur_oku(tarih,cins);
 			if (!rs.isBeforeFirst() ) {  
 				kur =0.00 ;
@@ -366,9 +368,11 @@ public class EKSIK_KUR extends JInternalFrame
 				rs.next();
 				kur  = rs.getDouble(tur);
 			}
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
 		{
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kur Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 		return kur;

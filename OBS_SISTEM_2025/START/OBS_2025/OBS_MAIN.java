@@ -3466,8 +3466,8 @@ public class OBS_MAIN extends JFrame {
 			MESAJ_GOSTER frame = new MESAJ_GOSTER(rs);
 			desktopPane.add(frame);
 			frame.setVisible(true);
-			///
-			InputStream stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/whts.mp3");
+			///Whatsap
+			InputStream stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
 			Player player = new Player(stream);
 			player.play();
 			///

@@ -43,7 +43,7 @@ public class MESAJ_GOSTER extends JInternalFrame {
 	 */
 	public MESAJ_GOSTER(ResultSet rs) {
 		setTitle("ANLIK GOREVLER");
-		setBounds(100, 100, 600, 200);
+		setBounds(100, 100, 700, 200);
 		setResizable(true);
 		setClosable(true);
 		setIconifiable(true);
@@ -73,27 +73,29 @@ public class MESAJ_GOSTER extends JInternalFrame {
 		tc = tcm.getColumn(0);
 		tc.setHeaderRenderer(new SOLA());
 		tc.setCellRenderer(new TARIH());
-		tc.setMinWidth(80);
+		tc.setMinWidth(75);
+		tc.setMaxWidth(75);
 		
 		tc = tcm.getColumn(1);
 		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(40);
+		tc.setMinWidth(60);
+		tc.setMaxWidth(60);
 		
 		tc = tcm.getColumn(2);
 		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(80);
+		tc.setMinWidth(100);
 		
 		tc = tcm.getColumn(3);
 		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(80);
+		tc.setMinWidth(100);
 		
 		tc = tcm.getColumn(4);
 		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(80);
+		tc.setMinWidth(100);
 		
 		tc = tcm.getColumn(5);
 		tc.setHeaderRenderer(new SOLA());
-		tc.setMinWidth(200);
+		tc.setMinWidth(220);
 		
 		table.setSelectionBackground(Color.PINK);
 		table.setSelectionForeground(Color.BLUE);

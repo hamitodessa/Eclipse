@@ -3188,7 +3188,6 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		toolBar.add(btnNewButton);
-
 		lblNewLabel_9 = new JLabel("");
 		lblNewLabel_9.setOpaque(true);
 		lblNewLabel_9.setBackground(Color.black);
@@ -3209,10 +3208,8 @@ public class OBS_MAIN extends JFrame {
 
 		progressBar = new JProgressBar();
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		//progressBar.setBorder(new LineBorder(new Color(0, 191, 255)));
 		progressBar.setBorder(BorderFactory.createEmptyBorder(1, 0, 0, 1));   
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		//progressBar.setForeground(new Color(166, 55, 55));
 		progressBar.setMaximumSize(new Dimension(350, 30));
 		progressBar.setMinimumSize(new Dimension(350, 30));
 
@@ -3245,41 +3242,17 @@ public class OBS_MAIN extends JFrame {
 
 		
 		progressBar.setStringPainted(false);
-		
-		
-		try {
-			if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Metal"))
-			{
-				setExtendedStatee(JFrame.MAXIMIZED_BOTH);
-			}
-			else
-			{
-				setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
-			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
 		// GRID RENK
-		String deger;
 		try {
-			deger = GLOBAL.setting_oku("PRG_GRID_RENK").toString();
+			String 	deger = GLOBAL.setting_oku("PRG_GRID_RENK").toString();
 			String[] parts;
 			parts = deger.split(",");
 			OBS_SIS_2025_ANA_CLASS.gridcolor =  new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-		} catch (IOException e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		form_ac("CALISMA DIZINLERI","");
-		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		gorev_kontrol();
-
-		//
 	}
 	private void form_ac(String pencere,String hangi) 
 	{
@@ -3390,7 +3363,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("SQL SORGULAMA")) internalFrame  = new SQL_SORGULAMA(hangi);
 			else if (pencere.equals("LOG RAPORLAMA")) internalFrame  = new LOGLAMA_RAPOR();
 			else if (pencere.equals("HAKKINDA")) internalFrame  = new HAKKINDA();
-			//3536
+			//
 			desktopPane.add(internalFrame);
 			internalFrame.setVisible(true);
 			GuiUtil.setWaitCursor(tabbedPane,false);
@@ -3459,11 +3432,9 @@ public class OBS_MAIN extends JFrame {
 			timer.scheduleAtFixedRate(new TimerTask() {
 				@Override
 				public void run() {
-					System.out.println("3455");
 					gunluk_goster();
 				}
 			}, millisToNextHour(calendar),  kontolsuresi);
-			gunluk_goster();
 		} catch (Exception e) 
 		{
 			e.printStackTrace();
@@ -3472,8 +3443,8 @@ public class OBS_MAIN extends JFrame {
 	private static void gunluk_goster()
 	{
 		try {
+			GuiUtil.setWaitCursor(toolBar,true);
 			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
-
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy.MM.dd");  
 			LocalDateTime now = LocalDateTime.now();  
 			gbilgi.tarih1 = dtf.format(now) ;
@@ -3484,20 +3455,23 @@ public class OBS_MAIN extends JFrame {
 			//gbilgi.saat1 = "10:00" ;
 			//
 			ResultSet rs;
+			
 			rs = g_Access.gorev_oku_tarih(gbilgi);
 			if (!rs.isBeforeFirst() ) { 
-				
+				GuiUtil.setWaitCursor(toolBar,false);
 				return; // Kayit Yok
 			} 
-			
 			MESAJ_GOSTER frame = new MESAJ_GOSTER(rs);
 			desktopPane.add(frame);
 			frame.setVisible(true);
+			GuiUtil.setWaitCursor(toolBar,false);
 		} catch (Exception e) {
-			e.printStackTrace();
+			GuiUtil.setWaitCursor(toolBar,false);
+			JOptionPane.showMessageDialog(null,e.getMessage(), "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	private static long millisToNextHour(Calendar calendar) {
+	private static long millisToNextHour(Calendar calendar) 
+	{
 	    int minutes = calendar.get(Calendar.MINUTE);
 	    int seconds = calendar.get(Calendar.SECOND);
 	    int millis = calendar.get(Calendar.MILLISECOND);

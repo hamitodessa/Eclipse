@@ -421,6 +421,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 				
 				g_Access.gorev_sil(Integer.parseInt(txtGID.getText()),lBILGI, BAGLAN_LOG.gunLogDizin  );
 			}
+			
 			String str1 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBaslama) ;
 			String str2 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBitis) ;
 			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi() ;
@@ -451,7 +452,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ(mesaj);
 			lBILGI.seteVRAK("");
-			
 			g_Access.gorev_kayit(gbilgi,lBILGI, BAGLAN_LOG.gunLogDizin );
 			gbilgi.gid = g_Access.gid_ogren(gbilgi);
 			g_Access.gunluk_farkli_kayit(gbilgi);

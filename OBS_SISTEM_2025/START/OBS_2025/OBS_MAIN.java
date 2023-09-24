@@ -3240,7 +3240,8 @@ public class OBS_MAIN extends JFrame {
 		ortapane.setRightComponent(qaz);
 		contentPane.add( ortapane, BorderLayout.CENTER);
 
-		
+		setExtendedStatee(JFrame.MAXIMIZED_BOTH);
+			
 		progressBar.setStringPainted(false);
 		// GRID RENK
 		try {

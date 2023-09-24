@@ -1,22 +1,17 @@
 package OBS_C_2025;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
+@SuppressWarnings("static-access")
 public class BILGI_OKU {
 
 	static ResultSet rs = null;
 	static Connection con ;
 	private GLOBAL gLB = new GLOBAL();
-	@SuppressWarnings("static-access")
+	
 	public  void bILGI_OKU(String uSER,String pROG ,   DIZIN_BILGILERI dIZIN, String  dOSYA_BASLANGIC) throws SQLException, ClassNotFoundException
 	{
 		rs = null;
@@ -44,8 +39,7 @@ public class BILGI_OKU {
 			}
 			try {
 				dIZIN.sIFRESI =  ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
-			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
-					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			dIZIN.yER = rs.getString("YER").toString();
@@ -102,6 +96,5 @@ public class BILGI_OKU {
 			dIZIN.lOG = false;
 		}
 		con.close();
-
 	}
 }

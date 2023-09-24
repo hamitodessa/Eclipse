@@ -7,7 +7,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -71,13 +70,13 @@ import GUNLUK.MESAJ_GOSTER;
 import KER_RAPOR.KER_DETAY;
 import KER_RAPOR.KER_FAT_RAPOR;
 import KER_RAPOR.KER_GRUP_RAPOR;
-//import KER_RAPOR.KER_ORT_SATIS;
 import KER_RAPOR.KER_ORT_SATIS;
 import OBS_C_2025.DesktopScrollPane;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.TARIH_CEVIR;
+import javazoom.jl.player.Player;
 
 import javax.swing.JMenuBar;
 
@@ -1298,7 +1297,7 @@ public class OBS_MAIN extends JFrame {
 		toolBar_2.add(btnNewButton_11);
 
 		btnNewButton_12 = new JButton("");
-		btnNewButton_12.setToolTipText("Gunluk Dokum");
+		btnNewButton_12.setToolTipText("Gunluk Takip");
 		btnNewButton_12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("GUNLUK TAKIP","");
@@ -1322,7 +1321,7 @@ public class OBS_MAIN extends JFrame {
 		//toolBar_2.add(btnNewButton_14);
 
 		btnNewButton_15 = new JButton("");
-		btnNewButton_15.setToolTipText("Gunluk Takip");
+		btnNewButton_15.setToolTipText("Gunluk Islem");
 		btnNewButton_15.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("GUNLUK ISLEM","");
@@ -3253,6 +3252,8 @@ public class OBS_MAIN extends JFrame {
 			e1.printStackTrace();
 		}
 		form_ac("CALISMA DIZINLERI","");
+		
+		
 		gorev_kontrol();
 	}
 	private void form_ac(String pencere,String hangi) 
@@ -3465,6 +3466,12 @@ public class OBS_MAIN extends JFrame {
 			MESAJ_GOSTER frame = new MESAJ_GOSTER(rs);
 			desktopPane.add(frame);
 			frame.setVisible(true);
+			///
+			InputStream stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/whts.mp3");
+			Player player = new Player(stream);
+			player.play();
+			///
+
 			GuiUtil.setWaitCursor(toolBar,false);
 		} catch (Exception e) {
 			GuiUtil.setWaitCursor(toolBar,false);

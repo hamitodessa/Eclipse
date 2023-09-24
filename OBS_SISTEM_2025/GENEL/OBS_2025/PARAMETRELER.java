@@ -712,9 +712,9 @@ public class PARAMETRELER   extends JInternalFrame   {
 		comboBox_2_1_1.setBounds(295, 221, 55, 22);
 		panel.add(comboBox_2_1_1);
 		
-		JLabel lblNewLabel_5_1_1 = new JLabel("Cari Gunluk");
+		JLabel lblNewLabel_5_1_1 = new JLabel("Cari Gunluk Takip");
 		lblNewLabel_5_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_5_1_1.setBounds(10, 325, 110, 14);
+		lblNewLabel_5_1_1.setBounds(10, 325, 126, 14);
 		panel.add(lblNewLabel_5_1_1);
 		
 		lblNewLabel_3_9_1 = new JLabel("[Calibri,0,12]");

@@ -70,7 +70,6 @@ public class USER_ISLEMLERI {
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
 		ResultSet	rss = null;
-		
 		PreparedStatement stmt = null;
 		con = gLB.myConnection();
 		String sql = "SELECT  * FROM USER_DETAILS WHERE USER_PROG_OBS <> 'Fihrist'  ORDER BY USER_NAME ";
@@ -129,7 +128,7 @@ public class USER_ISLEMLERI {
 		con =  gLB.myConnection();
 		String sql ="UPDATE  USERS  SET USER_PWD=?  WHERE USER_NAME=?";
 		stmt = con.prepareStatement(sql);
-		 byte[] qaz;
+		byte[] qaz;
 			try {
 				qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
 				encodedString = Arrays.toString(qaz);
@@ -142,7 +141,6 @@ public class USER_ISLEMLERI {
 		stmt.close();
 		con.close();
 		con = null;
-		
 	}
 	public  ResultSet user_details_izinleri(String kull, String modul, String nerde) throws SQLException, ClassNotFoundException
 	{
@@ -439,8 +437,7 @@ public class USER_ISLEMLERI {
 			
 			try {
 				decodedString =  ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
-			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
-					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			MAIL_SETTINGS.PWD = decodedString  ;

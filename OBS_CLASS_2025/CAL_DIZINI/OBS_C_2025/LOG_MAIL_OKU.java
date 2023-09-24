@@ -5,12 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@SuppressWarnings("static-access")
+
 public class LOG_MAIL_OKU {
 	static  Connection con ;
-
 	private static GLOBAL gLB = new GLOBAL();
 
-	@SuppressWarnings("static-access")
 	public static  void mail_oku() throws SQLException, ClassNotFoundException
 
 	{
@@ -28,9 +28,7 @@ public class LOG_MAIL_OKU {
 		else
 		{
 			rss.next(); 
-			{
-				gLB.Log_Mail = rss.getString("E_MAIL");
-			}
+			gLB.Log_Mail = rss.getString("E_MAIL");
 		}
 		stmt.close();
 		con.close();

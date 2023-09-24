@@ -115,6 +115,7 @@ public class LOGIN extends JDialog {
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	BAGLAN bAGLAN = new BAGLAN();
 	BAGLAN_LOG bAGLAN_LOG = new BAGLAN_LOG();
+	GLOBAL glb = new GLOBAL();
 	boolean vt = false;
 	boolean ds = false;
 	boolean tx = false;
@@ -364,35 +365,35 @@ public class LOGIN extends JDialog {
 						progressBar.setStringPainted(true);
 						Lgn_Progres_Bar(say, 1);
 						lblModul.setText("Cari Baglanti");
-						CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+						CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 						c_Access.baglan();
 						Lgn_Progres_Bar(say, 2);
 						lblModul.setText("Kur Baglanti");
-						KUR_ACCESS  k_Access = new KUR_ACCESS(oac._IKur, oac._IKur_Loger);
+						KUR_ACCESS  k_Access = new KUR_ACCESS(OBS_SIS_2025_ANA_CLASS._IKur, OBS_SIS_2025_ANA_CLASS._IKur_Loger);
 						k_Access.baglan();
 						Lgn_Progres_Bar(say, 3);
 						lblModul.setText("Sms Baglanti");
-						SMS_ACCESS  sms_Access = new SMS_ACCESS(oac._ISms, oac._ISms_Loger);
+						SMS_ACCESS  sms_Access = new SMS_ACCESS(OBS_SIS_2025_ANA_CLASS._ISms, OBS_SIS_2025_ANA_CLASS._ISms_Loger);
 						sms_Access.baglan();
 						Lgn_Progres_Bar(say, 4);
 						lblModul.setText("Adres Baglanti");
-						ADRES_ACCESS  a_Access = new ADRES_ACCESS(oac._IAdres, oac._IAdres_Loger);
+						ADRES_ACCESS  a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres, OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 						a_Access.baglan();
 						Lgn_Progres_Bar(say, 5);
 						lblModul.setText("Stok Baglanti");
-						STOK_ACCESS  s_Access = new STOK_ACCESS(oac._IStok,oac._IFatura_Loger);
+						STOK_ACCESS  s_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok,OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 						s_Access.baglan();
 						Lgn_Progres_Bar(say, 6);
 						lblModul.setText("Kambiyo Baglanti");
-						KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo, oac._IKambiyo_Loger);
+						KAMBIYO_ACCESS  ka_Access = new KAMBIYO_ACCESS(OBS_SIS_2025_ANA_CLASS._IKambiyo, OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
 						ka_Access.baglan();
 						Lgn_Progres_Bar(say, 7);
 						lblModul.setText("Gunluk Baglanti");
-						GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk, oac._IGunluk_Loger);
+						GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(OBS_SIS_2025_ANA_CLASS._IGunluk, OBS_SIS_2025_ANA_CLASS._IGunluk_Loger);
 						g_Access.baglan();
 						Lgn_Progres_Bar(say, 8);
 						lblModul.setText("Kereste Baglanti");
-						KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(oac._IKereste, oac._IKereste_Loger);
+						KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(OBS_SIS_2025_ANA_CLASS._IKereste, OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 						ker_Access.baglan();
 						Lgn_Progres_Bar(say, 9);
 
@@ -431,65 +432,49 @@ public class LOGIN extends JDialog {
 						//LOGLAMA DOSYALARI KONTROL*************************************************************************
 						//CARI LOG KONTROL
 						String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODUL) ;
-						File dOSYA = new File(dsy);
-						boolean exists = dOSYA.exists();
-						if (! exists)
+						if (! glb.dos_kontrol(dsy))
 						{   
 							GLOBAL.create_table_log(dsy,oac._ICar.cari_firma_adi(),BAGLAN_LOG.cariLogDizin);
 						}
 						//KUR LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kurLogDizin.mODUL) ;
-						dOSYA = new File(dsy);
-						exists = dOSYA.exists();
-						if (! exists)
+						if (! glb.dos_kontrol(dsy))
 						{   
 							GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.kurLogDizin);
 						}
 						//SMS LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.smsLogDizin.mODUL) ;
-						dOSYA = new File(dsy);
-						exists = dOSYA.exists();
-						if (! exists)
+						if (! glb.dos_kontrol(dsy))
 						{   
 							GLOBAL.create_table_log(dsy,"",BAGLAN_LOG.smsLogDizin);
 						}
 						//ADRES LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.adrLogDizin.mODUL) ;
-						dOSYA = new File(dsy);
-						exists = dOSYA.exists();
-						if (! exists)
+						if (! glb.dos_kontrol(dsy))
 						{   
 							GLOBAL.create_table_log(dsy,oac._IAdres.adr_firma_adi(),BAGLAN_LOG.adrLogDizin);
 						}
 						//STOK LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.fatLogDizin.mODUL) ;
-						dOSYA = new File(dsy);
-						exists = dOSYA.exists();
-						if (! exists)
+						if (! glb.dos_kontrol(dsy))
 						{   
 							GLOBAL.create_table_log(dsy,oac._IStok.fat_firma_adi(),BAGLAN_LOG.fatLogDizin);
 						}
 						//KAMBIYO LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kamLogDizin.mODUL) ;
-						dOSYA = new File(dsy);
-						exists = dOSYA.exists();
-						if (! exists)
+						if (! glb.dos_kontrol(dsy))
 						{   
 							GLOBAL.create_table_log(dsy,oac._IKambiyo.kam_firma_adi(),BAGLAN_LOG.kamLogDizin);
 						}
 						//GUNLUK LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.gunLogDizin.mODUL) ;
-						dOSYA = new File(dsy);
-						exists = dOSYA.exists();
-						if (! exists)
+						if (! glb.dos_kontrol(dsy))
 						{   
 							GLOBAL.create_table_log(dsy,oac._IGunluk.gun_firma_adi(),BAGLAN_LOG.gunLogDizin);
 						}
 						//KERESTE LOG KONTROL
 						dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.kerLogDizin.mODUL) ;
-						dOSYA = new File(dsy);
-						exists = dOSYA.exists();
-						if (! exists)
+						if (! glb.dos_kontrol(dsy))
 						{   
 							GLOBAL.create_table_log(dsy,oac._IKereste.ker_firma_adi(),BAGLAN_LOG.kerLogDizin);
 						}

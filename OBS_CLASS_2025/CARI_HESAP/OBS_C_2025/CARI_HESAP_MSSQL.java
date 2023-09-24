@@ -78,24 +78,24 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		cumle = "jdbc:sqlserver://localhost" + sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";database=" + VERITABANI + "_LOG" + ";";  // DATABASE BAGLANDI
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table_log();
-		//  VERITABANI DOSYASI ILK ACILIS
-			ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
-			 lOG_BILGI lBILGI = new lOG_BILGI();
-			 lBILGI.setmESAJ("Dosya Olusturuldu");
-			 lBILGI.seteVRAK("");
-			vTLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
-			lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
-			vTLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
-		//SQLITE LOG DOSYASI OLUSTUR
+		//  VERITABANI DOSYASI ILK ACILIS*****************************************************
+		ILOGER_KAYIT  vTLOG =  new DOSYA_MSSQL();
+		lOG_BILGI lBILGI = new lOG_BILGI();
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
+		vTLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
+		//SQLITE LOG DOSYASI OLUSTUR*********************************************************
 		if (GLOBAL.dos_kontrol(GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+  ".DB") == false)
 		{
 			String dsy = GLOBAL.LOG_SURUCU + VERITABANI + "_mSSQL"+ ".DB" ;
 			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.cariLogDizin);
 		}
-		//  TEXT DOSYASI ILK ACILIS
+		//  TEXT DOSYASI ILK ACILIS**********************************************************
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
-		 lBILGI.setmESAJ("Dosya Olusturuldu");
-		 lBILGI.seteVRAK("");
+		lBILGI.setmESAJ("Dosya Olusturuldu");
+		lBILGI.seteVRAK("");
 		tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
 		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
 		tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
@@ -141,7 +141,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODUL) ;
 			GLOBAL.create_table_log(dsy,sbilgi.getFir_adi(),BAGLAN_LOG.cariLogDizin);
 		}
-		//  TEXT DOSYASI ILK ACILIS
+		//TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
 		lBILGI.seteVRAK("");

@@ -51,7 +51,6 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 	public DefaultTableModel log_txt_rapor(String t1, String t2, String aciklama, String evrak, String user,
 			DIZIN_BILGILERI dBILGI) {
 		DefaultTableModel model =new DefaultTableModel(new String[] {"TARIH", "MESAJ", "EVRAK", "USER_NAME"}, 0);
-		
 		String nerde = "" ;
 		try
 		{
@@ -71,76 +70,16 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 						{					}
 						else
 						{
-						String[] token = l.split("\t");
-						nerde =  token[0] ;
-						Vector<String> data = new Vector<String>();
-						Date aiLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t1);  
-						Date asLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t2);  
-						Date iLKT =  new SimpleDateFormat("yyyy.MM.dd").parse(token[0].substring(0,10));  
-						Date sLKT =  new SimpleDateFormat("yyyy.MM.dd").parse(token[0].substring(0,10));  
-						if (  iLKT.after(aiLKT) && sLKT.before(asLKT))  // TARIH
-						{
-							if(evrak.equals("%%"))  // EVRAK
+							String[] token = l.split("\t");
+							nerde =  token[0] ;
+							Vector<String> data = new Vector<String>();
+							Date aiLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t1);  
+							Date asLKT =  new SimpleDateFormat("dd.MM.yyyy").parse(t2);  
+							Date iLKT =  new SimpleDateFormat("yyyy.MM.dd").parse(token[0].substring(0,10));  
+							Date sLKT =  new SimpleDateFormat("yyyy.MM.dd").parse(token[0].substring(0,10));  
+							if (  iLKT.after(aiLKT) && sLKT.before(asLKT))  // TARIH
 							{
-								if(user.equals("%%"))  // USER
-								{
-									if(aciklama.equals("%%"))// MESAJ KONTROL 
-									{
-										data.add( token[0]);
-										data.add( token[1]);
-										data.add( token[2]);
-										data.add( token[3]);
-										model.addRow(data);
-									}
-									else 
-									{
-										String aranan =aciklama.substring(1, aciklama.length()) ;
-										aranan = aranan.substring(0,aranan.length() -1);
-										if ( token[1].toUpperCase().contains(aranan.toUpperCase() ) )
-										{
-											data.add( token[0]);
-											data.add( token[1]);
-											data.add( token[2]);
-											data.add( token[3]);
-											model.addRow(data);
-										}
-									} // MESAJ KONTROL
-								}
-								else // USER ARANAN VARSA
-								{
-									String aranan =user.substring(1, user.length()) ;
-									aranan = aranan.substring(0,aranan.length() -1);
-									if ( token[3].toUpperCase().contains(aranan.toUpperCase() ) )
-									{
-										if(aciklama.equals("%%"))// MESAJ KONTROL 
-										{
-											data.add( token[0]);
-											data.add( token[1]);
-											data.add( token[2]);
-											data.add( token[3]);
-											model.addRow(data);
-										}
-										else 
-										{
-											String arana =aciklama.substring(1, aciklama.length()) ;
-											arana = arana.substring(0,arana.length() -1);
-											if ( token[1].toUpperCase().contains(aranan.toUpperCase() ) )
-											{
-												data.add( token[0]);
-												data.add( token[1]);
-												data.add( token[2]);
-												data.add( token[3]);
-												model.addRow(data);
-											}
-										} // MESAJ KONTROL
-									}
-								} // USER
-							}
-							else  // EVRAK
-							{
-								String aran =evrak.substring(1, evrak.length()) ;
-								aran = aran.substring(0,aran.length() -1);
-								if ( token[2].toUpperCase().contains(aran.toUpperCase() ) )  // EVRAK VAR
+								if(evrak.equals("%%"))  // EVRAK
 								{
 									if(user.equals("%%"))  // USER
 									{
@@ -172,7 +111,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 										aranan = aranan.substring(0,aranan.length() -1);
 										if ( token[3].toUpperCase().contains(aranan.toUpperCase() ) )
 										{
-												if(aciklama.equals("%%"))// MESAJ KONTROL 
+											if(aciklama.equals("%%"))// MESAJ KONTROL 
 											{
 												data.add( token[0]);
 												data.add( token[1]);
@@ -196,12 +135,68 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 										}
 									} // USER
 								}
-								else // EVRAK yok
+								else  // EVRAK
 								{
-
+									String aran =evrak.substring(1, evrak.length()) ;
+									aran = aran.substring(0,aran.length() -1);
+									if ( token[2].toUpperCase().contains(aran.toUpperCase() ) )  // EVRAK VAR
+									{
+										if(user.equals("%%"))  // USER
+										{
+											if(aciklama.equals("%%"))// MESAJ KONTROL 
+											{
+												data.add( token[0]);
+												data.add( token[1]);
+												data.add( token[2]);
+												data.add( token[3]);
+												model.addRow(data);
+											}
+											else 
+											{
+												String aranan =aciklama.substring(1, aciklama.length()) ;
+												aranan = aranan.substring(0,aranan.length() -1);
+												if ( token[1].toUpperCase().contains(aranan.toUpperCase() ) )
+												{
+													data.add( token[0]);
+													data.add( token[1]);
+													data.add( token[2]);
+													data.add( token[3]);
+													model.addRow(data);
+												}
+											} // MESAJ KONTROL
+										}
+										else // USER ARANAN VARSA
+										{
+											String aranan =user.substring(1, user.length()) ;
+											aranan = aranan.substring(0,aranan.length() -1);
+											if ( token[3].toUpperCase().contains(aranan.toUpperCase() ) )
+											{
+												if(aciklama.equals("%%"))// MESAJ KONTROL 
+												{
+													data.add( token[0]);
+													data.add( token[1]);
+													data.add( token[2]);
+													data.add( token[3]);
+													model.addRow(data);
+												}
+												else 
+												{
+													String arana =aciklama.substring(1, aciklama.length()) ;
+													arana = arana.substring(0,arana.length() -1);
+													if ( token[1].toUpperCase().contains(aranan.toUpperCase() ) )
+													{
+														data.add( token[0]);
+														data.add( token[1]);
+														data.add( token[2]);
+														data.add( token[3]);
+														model.addRow(data);
+													}
+												} // MESAJ KONTROL
+											}
+										} // USER
+									}
 								}
-							}
-						} // TARIH
+							} // TARIH
 						} // SATIR BOSSA
 					}
 				} 

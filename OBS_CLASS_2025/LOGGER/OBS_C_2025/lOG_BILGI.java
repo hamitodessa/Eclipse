@@ -22,7 +22,4 @@ public class lOG_BILGI {
 	public void seteVRAK(String eVRAK) {
 		this.eVRAK = eVRAK;
 	}
-	
-	
-
 }

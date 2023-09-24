@@ -14,8 +14,6 @@ import javax.mail.internet.MimeMultipart;
 import javax.swing.JOptionPane;
 
 public class MAIL_AT implements ILOGGER{
-
-	
 	@Override
 	public void Logla(lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI)
 	{

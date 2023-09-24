@@ -50,17 +50,16 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.sayiyiYaziyaCevir;
 
-@SuppressWarnings("static-access")
 public class PRINT_YAPMA extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	public static ReportViewerBean reportViewer ;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
-	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(oac._IKambiyo , oac._IKambiyo_Loger);
-	static STOK_ACCESS fa_Access = new STOK_ACCESS(oac._IStok , oac._IFatura_Loger);
-	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres ,oac._IAdres_Loger);
-	static GUNLUK_ACCESS g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
+	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
+	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(OBS_SIS_2025_ANA_CLASS._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
+	static STOK_ACCESS fa_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres ,OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
+	static GUNLUK_ACCESS g_Access = new GUNLUK_ACCESS(OBS_SIS_2025_ANA_CLASS._IGunluk , OBS_SIS_2025_ANA_CLASS._IGunluk_Loger);
 	public static ReportClientDocument clientDoc ;
 	private static ResultSet rs ;
 	private static ArrayList<Degisken>  students = new ArrayList<Degisken>();

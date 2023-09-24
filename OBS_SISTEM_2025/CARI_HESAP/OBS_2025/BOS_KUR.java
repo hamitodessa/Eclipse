@@ -21,9 +21,9 @@ import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 import javax.swing.ListSelectionModel;
 
-@SuppressWarnings({"serial" , "static-access"})public class BOS_KUR extends JInternalFrame {
+@SuppressWarnings({"serial" })public class BOS_KUR extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 
 	private static JTable table;
 

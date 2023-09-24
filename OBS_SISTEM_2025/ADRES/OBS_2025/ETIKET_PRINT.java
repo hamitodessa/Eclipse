@@ -60,7 +60,7 @@ import javax.swing.table.DefaultTableModel;
 @SuppressWarnings({"serial","unused","static-access"})
 public class ETIKET_PRINT extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	List<ETIKET_ISIM> etISIM = new ArrayList<ETIKET_ISIM>();
 	private static JasperViewer jviewer ;
 	private static JasperPrint jp;

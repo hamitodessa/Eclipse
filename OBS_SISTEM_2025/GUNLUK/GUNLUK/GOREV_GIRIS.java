@@ -46,7 +46,7 @@ import OBS_C_2025.lOG_BILGI;
 @SuppressWarnings({ "static-access","serial" })
 public class GOREV_GIRIS extends JInternalFrame {
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
+	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(OBS_SIS_2025_ANA_CLASS._IGunluk , oac._IGunluk_Loger);
 	private static JTextField txtIsim;
 	private static JTextField txtGorev;
 	private static JTextArea txtMesaj;

@@ -58,7 +58,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 	public static JLabel lblcevrilen;
 	public static JSplitPane splitPane ;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	/**
 	 * Launch the application.
 	 */

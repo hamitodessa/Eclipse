@@ -48,8 +48,7 @@ import java.awt.event.KeyAdapter;
 public class HAZIR_GOREVLER extends JInternalFrame {
 	private static JTable table;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	@SuppressWarnings({ "static-access" })
-	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
+	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(OBS_SIS_2025_ANA_CLASS._IGunluk , OBS_SIS_2025_ANA_CLASS._IGunluk_Loger);
 	public static JScrollPane scrollPane;
 	private JPanel panel;
 	private static JLabel lblNewLabel;

@@ -74,7 +74,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class IMALAT_RAPORLAMA extends JInternalFrame {
 	private static JTable table;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static STOK_ACCESS f_Access = new STOK_ACCESS(oac._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	static STOK_ACCESS f_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 	private static String qwq1 ="" ;
 	private static String qwq2  = "";
 	private static String qwq3  = "";

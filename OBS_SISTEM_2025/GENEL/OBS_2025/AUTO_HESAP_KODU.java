@@ -9,10 +9,9 @@ import javax.swing.JOptionPane;
 import OBS_C_2025.CARI_ACCESS;
 
 
-@SuppressWarnings("static-access")
 public class AUTO_HESAP_KODU {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 
 	public static void auto_doldur(JComboBox<String> cmbox)
 	{

@@ -70,7 +70,7 @@ import java.awt.event.FocusEvent;
 public class DEKONT extends JInternalFrame {
 
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	public static JTextField txtevrak;
 	private static String [] hpl = {"","",""};
 	NumberFormat nf = NumberFormat.getIntegerInstance(); // Specify specific format here.
@@ -841,9 +841,7 @@ public class DEKONT extends JInternalFrame {
 						{
 							cmbbhes.setSelectedItem( oac.hsp_hsp_kodu);
 						}
-					} catch (ClassNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (SQLException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);

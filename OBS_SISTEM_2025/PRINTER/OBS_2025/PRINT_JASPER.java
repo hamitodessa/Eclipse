@@ -55,12 +55,12 @@ import javax.swing.JScrollPane;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings({"serial","unused","static-access"})
+@SuppressWarnings({"serial","unused"})
 public class PRINT_JASPER extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , oac._IAdres_Loger);
-	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
+	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	static List<ETIKET_ISIM> etISIM = new ArrayList<ETIKET_ISIM>();
 	static List<Ekstre_Detay> eDetay = new ArrayList<Ekstre_Detay>();
 	private static JasperViewer jviewer ;

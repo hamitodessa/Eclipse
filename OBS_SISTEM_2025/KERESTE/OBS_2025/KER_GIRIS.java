@@ -167,9 +167,9 @@ public class KER_GIRIS extends JInternalFrame {
 	private static long startTimeG ;
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(oac._IKereste , oac._IKereste_Loger);
-	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , oac._IAdres_Loger);
-	static CARI_ACCESS c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(OBS_SIS_2025_ANA_CLASS._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
+	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	/**
 	 * Launch the application.
 	 */

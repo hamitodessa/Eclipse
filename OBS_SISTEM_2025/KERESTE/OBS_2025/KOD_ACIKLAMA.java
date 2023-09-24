@@ -32,7 +32,7 @@ import net.proteanit.sql.DbUtils;
 @SuppressWarnings({"serial","static-access"})
 public class KOD_ACIKLAMA extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private static KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(oac._IKereste , oac._IKereste_Loger);
+	private static KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(OBS_SIS_2025_ANA_CLASS._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 	private static JTable table;
 	private static JTextField textField;
 	private static JTextField textField_1;

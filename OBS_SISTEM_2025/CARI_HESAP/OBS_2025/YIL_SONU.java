@@ -72,7 +72,7 @@ public class YIL_SONU extends JInternalFrame {
 	private static final Vector<?> Boolean = null;
 	private static JTable table;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
+	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	private static JTextField textField;
 	private static JTextField textField_1;
 	private JPanel panel_1 ;

@@ -74,7 +74,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 	private static JCheckBox chcsms ;
 	private static JCheckBox chcmail ;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static ADRES_ACCESS a_Access = new ADRES_ACCESS(oac._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
+	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	static ResultSet rs = null ;
 	private static int kayit_sayi = 0 ;
 	private static JTextField txtpkodu;

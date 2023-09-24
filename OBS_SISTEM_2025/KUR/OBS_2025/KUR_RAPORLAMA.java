@@ -32,7 +32,7 @@ import java.awt.event.KeyEvent;
 public class KUR_RAPORLAMA extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static KUR_ACCESS k_Access = new KUR_ACCESS(oac._IKur , oac._IKur_Loger);
+	static KUR_ACCESS k_Access = new KUR_ACCESS(OBS_SIS_2025_ANA_CLASS._IKur , OBS_SIS_2025_ANA_CLASS._IKur_Loger);
 
 	private static JTable table;
 	public static JScrollPane scrollPane ;

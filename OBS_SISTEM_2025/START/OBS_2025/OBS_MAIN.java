@@ -8,7 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-
+import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JDesktopPane;
 import java.awt.Toolkit;
 import javax.swing.JButton;
@@ -44,6 +46,9 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
 
@@ -62,6 +67,7 @@ import OBS_2025_RAPORLAR.ZAYI_RAPOR;
 import GUNLUK.GOREV_GIRIS;
 import GUNLUK.Gunluk;
 import GUNLUK.HAZIR_GOREVLER;
+import GUNLUK.MESAJ_GOSTER;
 import KER_RAPOR.KER_DETAY;
 import KER_RAPOR.KER_FAT_RAPOR;
 import KER_RAPOR.KER_GRUP_RAPOR;
@@ -69,6 +75,8 @@ import KER_RAPOR.KER_GRUP_RAPOR;
 import KER_RAPOR.KER_ORT_SATIS;
 import OBS_C_2025.DesktopScrollPane;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GUNLUK_ACCESS;
+import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.TARIH_CEVIR;
 
 import javax.swing.JMenuBar;
@@ -211,7 +219,7 @@ public class OBS_MAIN extends JFrame {
 	private Rectangle maxBounds;
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-
+	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	/**
 	 * Launch the application.
 	 */
@@ -3262,6 +3270,15 @@ public class OBS_MAIN extends JFrame {
 			e1.printStackTrace();
 		}
 		form_ac("CALISMA DIZINLERI","");
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		gorev_kontrol();
+
 		//
 	}
 	private void form_ac(String pencere,String hangi) 
@@ -3420,6 +3437,74 @@ public class OBS_MAIN extends JFrame {
 				break; 
 			}
 		}
+	}
+	private static void gorev_kontrol()
+	{
+		try 
+		{
+			String deger = GLOBAL.setting_oku("GUN_KON").toString();
+			if (deger.equals("-1"))
+			{
+				return ;
+			}
+			deger = GLOBAL.setting_oku("GUN_KON_ZAM").toString();
+			int kontolsuresi = (Integer. parseInt(deger) * 60 ) * 1000;
+			if (kontolsuresi == 0) 
+			{
+				JOptionPane.showMessageDialog(null,"Kontrol Suresi Girilmemis....", "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
+				return ;
+			}
+			Calendar calendar = Calendar.getInstance();
+			Timer timer = new Timer();
+			timer.scheduleAtFixedRate(new TimerTask() {
+				@Override
+				public void run() {
+					System.out.println("3455");
+					gunluk_goster();
+				}
+			}, millisToNextHour(calendar),  kontolsuresi);
+			gunluk_goster();
+		} catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	private static void gunluk_goster()
+	{
+		try {
+			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
+
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy.MM.dd");  
+			LocalDateTime now = LocalDateTime.now();  
+			gbilgi.tarih1 = dtf.format(now) ;
+			dtf = DateTimeFormatter.ofPattern("HH:00");  
+			gbilgi.saat1 = dtf.format(now) ;
+			//
+			//gbilgi.tarih1 = "2023.01.12" ;
+			//gbilgi.saat1 = "10:00" ;
+			//
+			ResultSet rs;
+			rs = g_Access.gorev_oku_tarih(gbilgi);
+			if (!rs.isBeforeFirst() ) { 
+				
+				return; // Kayit Yok
+			} 
+			
+			MESAJ_GOSTER frame = new MESAJ_GOSTER(rs);
+			desktopPane.add(frame);
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	private static long millisToNextHour(Calendar calendar) {
+	    int minutes = calendar.get(Calendar.MINUTE);
+	    int seconds = calendar.get(Calendar.SECOND);
+	    int millis = calendar.get(Calendar.MILLISECOND);
+	    int minutesToNextHour = 60 - minutes;
+	    int secondsToNextHour = 60 - seconds;
+	    int millisToNextHour = 1000 - millis;
+	    return minutesToNextHour*60*1000 + secondsToNextHour*1000 + millisToNextHour;
 	}
 	public synchronized  void setExtendedStatee(int state)
 	{       

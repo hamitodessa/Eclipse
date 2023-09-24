@@ -68,10 +68,9 @@ import java.awt.GridLayout;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
-@SuppressWarnings({"serial" , "static-access","deprecation" })
+@SuppressWarnings({"serial" ,"deprecation" })
 public class Gunluk extends JInternalFrame {
-	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
+	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(OBS_SIS_2025_ANA_CLASS._IGunluk , OBS_SIS_2025_ANA_CLASS._IGunluk_Loger);
 	private JTable table;
 	private JTable table_1;
 	private JTable table_3;

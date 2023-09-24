@@ -1165,7 +1165,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		
 		JLabel lblNewLabel_4_1_2_2_3_1 = new JLabel("Gunluk Kontrol Zamani");
 		lblNewLabel_4_1_2_2_3_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_4_1_2_2_3_1.setBounds(10, 38, 126, 14);
+		lblNewLabel_4_1_2_2_3_1.setBounds(10, 40, 126, 14);
 		panel_2.add(lblNewLabel_4_1_2_2_3_1);
 		
 		textField_3 = new JTextField();
@@ -1198,15 +1198,18 @@ public class PARAMETRELER   extends JInternalFrame   {
 		JLabel lblNewLabel_4_1_2_2_3_2 = new JLabel("Gunluk Server Kontrol");
 		lblNewLabel_4_1_2_2_3_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_4_1_2_2_3_2.setBounds(10, 69, 126, 14);
+		lblNewLabel_4_1_2_2_3_2.setVisible(false);
 		panel_2.add(lblNewLabel_4_1_2_2_3_2);
 		
 		chckbxNewCheckBox_1_3_1 = new JCheckBox("");
 		chckbxNewCheckBox_1_3_1.setBounds(189, 63, 97, 23);
+		chckbxNewCheckBox_1_3_1.setVisible(false);
 		panel_2.add(chckbxNewCheckBox_1_3_1);
 		
 		JLabel lblNewLabel_4_1_2_2_3_1_1 = new JLabel("Gunluk Server Kontrol Zamani");
 		lblNewLabel_4_1_2_2_3_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_4_1_2_2_3_1_1.setBounds(10, 94, 173, 14);
+		lblNewLabel_4_1_2_2_3_1_1.setVisible(false);
 		panel_2.add(lblNewLabel_4_1_2_2_3_1_1);
 		
 		textField_4 = new JTextField();
@@ -1234,7 +1237,12 @@ public class PARAMETRELER   extends JInternalFrame   {
 		textField_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_4.setColumns(10);
 		textField_4.setBounds(193, 93, 86, 20);
+		textField_4.setVisible(false);
 		panel_2.add(textField_4);
+		
+		JLabel lblNewLabel_7 = new JLabel("Dakika da bir");
+		lblNewLabel_7.setBounds(290, 40, 126, 14);
+		panel_2.add(lblNewLabel_7);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
 		tabbedPane.addTab("Kambiyo", null, scrollPane_3, null);

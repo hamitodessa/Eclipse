@@ -290,4 +290,11 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.paket_no_al(kons);
 	}
+	public ResultSet ortalama_genislik(String gruplama,String sstr_2,String sstr_4,String kur_dos,String qwq6,
+			String qwq7,String qwq8,String k1 ,String k2,String s1,String s2,String jkj,String t1,String t2,
+			String sstr_5,String sstr_1,String orderBY,String dURUM,String ko1, String ko2,String dpo,String grup,
+			String e1, String e2) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.ortalama_genislik( gruplama,sstr_2, sstr_4, kur_dos,  qwq6, qwq7, qwq8, k1, k2, s1, s2, jkj,  t1, t2, sstr_5, sstr_1,orderBY,dURUM,ko1,ko2,dpo,grup,e1,e2);
+	}
 }

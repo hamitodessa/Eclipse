@@ -1950,4 +1950,81 @@ public class KERESTE_MSSQL implements IKERESTE {
 		//**************
 		return E_NUMBER;	
 	}
+
+	@Override
+	public ResultSet ortalama_genislik(String gruplama, String sstr_2, String sstr_4, String kur_dos, String qwq6,
+			String qwq7, String qwq8, String k1, String k2, String s1, String s2, String jkj, String t1, String t2,
+			String sstr_5, String sstr_1, String orderBY, String dURUM, String ko1, String ko2, String dpo, String grup,
+			String e1, String e2) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String[] token = k1.toString().split("-");
+		String ilks ,ilkk,ilkb,ilkg;
+		ilks = token[0];
+		ilkk = token[1];
+		ilkb = token[2];
+		ilkg = token[3];
+		token = k2.toString().split("-");
+		String sons,sonk,sonb,song;
+		sons = token[0];
+		sonk = token[1];
+		sonb = token[2];
+		song = token[3];
+		if(qwq6.equals(" Like  '%' "))
+		{
+			qwq6 =  " " ;
+		}
+		else {
+			qwq6 = dURUM + "Ana_Grup " + qwq6 ;
+		}
+		if(qwq7.equals(" Like  '%' "))
+		{
+			qwq7 =  " " ;
+		}
+		else {
+			qwq7 = " AND "+ dURUM + "Alt_Grup " + qwq7 ;
+		}
+		if(qwq8.equals(" Like  '%' "))
+		{
+			qwq8 =  " " ;
+		}
+		else {
+			qwq8 = " AND "+ dURUM + "Ozel_Kod " + qwq8 ;
+		}
+		if(dpo.equals(" Like  '%' "))
+		{
+			dpo =  " " ;
+		}
+		else {
+			dpo = " AND "+ dURUM + "Depo " + dpo + " AND ";
+		}
+		String qweString = "" ;
+		if(dURUM.equals("C"))
+		{
+			qweString = " Cikis_Evrak " ;
+		}
+		else {
+			qweString = " Evrak_No " ;
+		}
+		String sql =   "SELECT [Paket_No] , Konsimento ,SUBSTRING(KERESTE.Kodu, 8, 4) as Boy ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal , " +
+						" Sum( ((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) as m3 , " +
+						" (((Sum(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/10)) / sum(miktar)) " +
+						" / CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4))) / CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) as Ort_Gen " + 
+						"  FROM KERESTE " +
+						" WHERE   " + jkj + " " +
+				   qwq6 + " "+qwq7 + " " +qwq8 + " " + dpo +
+				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
+				" SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" +
+				" SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" +
+				" SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' " +
+				" AND "+ dURUM + "Cari_Firma between N'" + s1 + "' AND N'" + s2 + "'" +
+				" AND " + qweString  + " between N'" + e1 + "' AND N'" + e2 + "'" +
+				" AND Konsimento between N'" + ko1 + "' AND N'" + ko2 + "'" +
+				" AND  KERESTE."+ dURUM + "Tarih BETWEEN '" +t1 + "'" + " AND  '" + t2 + " 23:59:59.998'" +
+				" GROUP by PAKET_NO , Konsimento ,SUBSTRING(KERESTE.Kodu, 8, 4),SUBSTRING(KERESTE.Kodu, 4, 3) " +
+				" order by PAKET_NO "	 ;
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
 }

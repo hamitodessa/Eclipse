@@ -264,6 +264,10 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				if (! sstr_1.equals(""))
 					paket_konsimento_kodlu();
 			}
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Ortalama-Genislik"))
+			{
+				ortalama_genislik();
+			}
 			//
 		}
 		catch (Exception ex)
@@ -1821,6 +1825,94 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Kodu Yil Raporlama", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private static void ortalama_genislik() 
+	{
+		startTime = System.currentTimeMillis(); 
+		try {
+			ResultSet	rs = null;
+			deg_cevir();
+			grup_cevir() ;
+			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+			{
+				hANGI = "" ;
+			}
+			else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+			{
+				hANGI = "C" ;
+			}
+			else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("STOK"))
+			{
+				hANGI = "" ;
+			}
+			
+			
+			rs = ker_Access.ortalama_genislik("Kodu",sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+					jkj,
+					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
+					sstr_5, sstr_1," Kodu",hANGI,
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo," Kodu" ,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
+
+
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() ) {  
+
+				lbladet.setText(FORMATLAMA.doub_0(0));
+			} 
+			else
+			{
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(100);
+				tc.setMaxWidth(100);
+				
+				tc = tcm.getColumn(1);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(100);
+				tc.setMaxWidth(100);
+				
+				tc = tcm.getColumn(2);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(75);
+				tc.setMaxWidth(75);
+				
+				tc = tcm.getColumn(3);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(75);
+				tc.setMaxWidth(75);
+
+				tc = tcm.getColumn(4);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(3,false));
+				tc.setMinWidth(80);
+				
+				tc = tcm.getColumn(5);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(2,false));
+				tc.setMinWidth(75);
+				tc.setMaxWidth(75);
+
+				Dimension dd = th.getPreferredSize();
+				dd.height = 30;
+				th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
+				lbladet.setText(FORMATLAMA.doub_0(table.getRowCount()));
+				fontt();
+			}
+		} 
+		catch (Exception ex) {
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ortalama Genislik Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void ara_toplam(int sutun , int topsutun)

@@ -71,6 +71,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JCheckBox;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
@@ -1337,7 +1339,7 @@ public class FILTRE extends JDialog {
 		});
 		chckbxNewCheckBox_4.setBounds(301, 140, 178, 23);
 		panel.add(chckbxNewCheckBox_4);
-		/// CARI ARAMA *
+		/// CARI ARAMA ****************************************************************************************************
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane.addTab("Arama", null, panel_1, null);
@@ -1382,17 +1384,23 @@ public class FILTRE extends JDialog {
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				contentPanel.setCursor(oac.WAIT_CURSOR);
+				mWAIT();
 				ARAMA.hisset();
+				mDEFAULT();
 				contentPanel.setCursor(oac.DEFAULT_CURSOR);
 			}
 			public void removeUpdate(DocumentEvent e) {
 				contentPanel.setCursor(oac.WAIT_CURSOR);
+				mWAIT();
 				ARAMA.hisset();
+				mDEFAULT();
 				contentPanel.setCursor(oac.DEFAULT_CURSOR);
 			}
 			public void insertUpdate(DocumentEvent e) {
 				contentPanel.setCursor(oac.WAIT_CURSOR);
+				mWAIT();
 				ARAMA.hisset();
+				mDEFAULT();
 				contentPanel.setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
@@ -1510,6 +1518,7 @@ public class FILTRE extends JDialog {
 		lblKullanici.setBounds(10, 196, 103, 14);
 		panel_1.add(lblKullanici);
 
+		//**************** GUNLUK ISLEM *************************************************************************
 		panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane.addTab("Gunluk_Islem", null, panel_3, null);
@@ -6037,6 +6046,32 @@ public class FILTRE extends JDialog {
 			JOptionPane.showMessageDialog(null, ex.getMessage() + " clss",  "Hesap Ismi Okuma", JOptionPane.ERROR_MESSAGE);     
 		}
 		return sonuc;
+	}
+	private void mWAIT()
+	{
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+		GuiUtil.setWaitCursor( tabbedPane,true);
+		GuiUtil.setWaitCursor( textField,true);
+		GuiUtil.setWaitCursor( textField_1,true);
+		GuiUtil.setWaitCursor( textField_2,true);
+		GuiUtil.setWaitCursor( textField_3,true);
+		GuiUtil.setWaitCursor( textField_4,true);
+		GuiUtil.setWaitCursor( textField_5,true);
+		GuiUtil.setWaitCursor( textField_79,true);
+
+	}
+	private void mDEFAULT()
+	{
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+		GuiUtil.setWaitCursor( tabbedPane,false);
+		GuiUtil.setWaitCursor( textField,false);
+		GuiUtil.setWaitCursor( textField_1,false);
+		GuiUtil.setWaitCursor( textField_2,false);
+		GuiUtil.setWaitCursor( textField_3,false);
+		GuiUtil.setWaitCursor( textField_4,false);
+		GuiUtil.setWaitCursor( textField_5,false);
+		GuiUtil.setWaitCursor( textField_79,false);
+
 	}
 }
 //https://docs.oracle.com/javase%2F7%2Fdocs%2Fapi%2F%2F/javax/swing/text/MaskFormatter.html

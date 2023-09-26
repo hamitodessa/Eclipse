@@ -43,6 +43,8 @@ import javax.swing.JPopupMenu;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import java.awt.event.KeyAdapter;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class HAZIR_GOREVLER extends JInternalFrame {
@@ -51,7 +53,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(OBS_SIS_2025_ANA_CLASS._IGunluk , OBS_SIS_2025_ANA_CLASS._IGunluk_Loger);
 	public static JScrollPane scrollPane;
 	private JPanel panel;
-	private static JLabel lblNewLabel;
+	private static JLabel lbladet ;
 	/**
 	 * Launch the application.
 	 */
@@ -171,9 +173,17 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		panel.setMaximumSize(new Dimension(0, 25));
 		panel.setLayout(null);
 		splitPane.setRightComponent(panel);
-		lblNewLabel = new JLabel("Kayit Sayisi :");
-		lblNewLabel.setBounds(10, 5, 150, 14);
+		
+		JLabel lblNewLabel = new JLabel("Kayit Sayisi :");
+		lblNewLabel.setBounds(10, 5, 85, 14);
 		panel.add(lblNewLabel);
+		
+		lbladet = new JLabel("0");
+		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
+		lbladet.setForeground(new Color(0, 0, 128));
+		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lbladet.setBounds(100, 5, 40, 14);
+		panel.add(lbladet);
 
 	}
 	public static void hisset()
@@ -199,7 +209,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			rs = g_Access.hazir_gorevler(gbilgi);
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
-				lblNewLabel.setText( String.format("Satir Sayisi : %,d %n" ,  0));
+				lbladet.setText("0");
 				return;
 			}
 
@@ -252,7 +262,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 
 			table.setSelectionBackground(Color.PINK);
 			table.setSelectionForeground(Color.BLUE);
-			lblNewLabel.setText( String.format("Satir Sayisi : %,d %n" ,  table.getRowCount()));
+			lbladet.setText( FORMATLAMA.doub_0(table.getRowCount()) );
 
 
 			long endTime = System.currentTimeMillis();

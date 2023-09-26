@@ -506,7 +506,7 @@ public class LOGIN extends JDialog {
 		
 		lblModul = new JLabel();
 		lblModul.setForeground(new Color(0, 139, 139));
-		lblModul.setBounds(1, 140, 189, 14);
+		lblModul.setBounds(1, 138, 189, 14);
 		panel.add(lblModul);
 
 		progressBar = new JProgressBar();

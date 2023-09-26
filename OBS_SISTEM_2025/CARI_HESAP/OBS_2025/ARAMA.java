@@ -28,6 +28,7 @@ import net.proteanit.sql.DbUtils;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -307,4 +308,5 @@ public class ARAMA extends JInternalFrame {
 	    	JOptionPane.showMessageDialog(null, ex.getMessage(),"Cari Arama", JOptionPane.ERROR_MESSAGE);
 	    	}
 		}
+
 }

@@ -288,11 +288,11 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		lblNewLabel_2 = new JLabel("0");
 		lblNewLabel_2.setForeground(new Color(0, 0, 139));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_2.setBounds(100, 5, 118, 14);
+		lblNewLabel_2.setBounds(155, 5, 63, 14);
 		panel1.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Secilen Satir :");
-		lblNewLabel_3.setBounds(10, 5, 80, 14);
+		lblNewLabel_3.setBounds(10, 5, 140, 14);
 		panel1.add(lblNewLabel_3);
 		
 		

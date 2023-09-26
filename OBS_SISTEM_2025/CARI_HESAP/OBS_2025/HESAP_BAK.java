@@ -307,7 +307,7 @@ public class HESAP_BAK extends JInternalFrame {
 		lblNewLabel_2.setBounds(797, 5, 91, 14);
 		panel.add(lblNewLabel_2);
 
-		JLabel lblNewLabel_2_1 = new JLabel("Kayit Sayisi :");
+		JLabel lblNewLabel_2_1 = new JLabel("Satir Sayisi :");
 		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_2_1.setBounds(480, 5, 85, 14);
 		panel.add(lblNewLabel_2_1);

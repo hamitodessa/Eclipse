@@ -171,9 +171,9 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		splitPane_1.setRightComponent(panel_1);
 		panel_1.setLayout(null);
 
-		JLabel label = new JLabel("Kayit Sayisi :");
-		label.setBounds(170, 5, 85, 14);
-		panel_1.add(label);
+		JLabel lblSatirSayisi = new JLabel("Satir Sayisi :");
+		lblSatirSayisi.setBounds(170, 5, 85, 14);
+		panel_1.add(lblSatirSayisi);
 
 		lbladet = new JLabel("0");
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);

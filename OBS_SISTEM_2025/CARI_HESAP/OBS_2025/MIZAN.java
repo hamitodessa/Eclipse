@@ -57,6 +57,7 @@ public class MIZAN extends JInternalFrame {
 	private static JLabel lblalacak ;
 	private static JLabel lblborc ;
 	public static JSplitPane splitPane;
+	private static JLabel lblNewLabel_3 ;
 
 	/**
 	 * Launch the application.
@@ -234,6 +235,17 @@ public class MIZAN extends JInternalFrame {
 		lblborc.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblborc.setBounds(524, 6, 117, 14);
 		panel.add(lblborc);
+		
+		JLabel lblNewLabel_2 = new JLabel("Satir Sayisi :");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_2.setBounds(10, 5, 85, 14);
+		panel.add(lblNewLabel_2);
+		
+		lblNewLabel_3 = new JLabel("0");
+		lblNewLabel_3.setForeground(new Color(0, 0, 128));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_3.setBounds(100, 5, 51, 14);
+		panel.add(lblNewLabel_3);
 
 	}
 	public static void hisset () 
@@ -245,6 +257,7 @@ public class MIZAN extends JInternalFrame {
 			lblbakiye.setText("0.00");
 			lblalacak.setText("0.00");
 			lblborc.setText("0.00");
+			lblNewLabel_3.setText("0");
 			String o1 = "" ;
 			String o2 = "" ;
 			String hangi_tur = "" ;
@@ -280,6 +293,9 @@ public class MIZAN extends JInternalFrame {
 				return;
 			} 
 			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			lblNewLabel_3.setText(FORMATLAMA.doub_0(table.getRowCount()));
+			
 			ara_ayir();
 
 			JTableHeader th = table.getTableHeader();
@@ -326,6 +342,7 @@ public class MIZAN extends JInternalFrame {
 			table.setSelectionBackground(Color.GREEN);
 			table.setSelectionForeground(Color.BLUE);
 
+			
 			//***
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			double borc = 0,alacak = 0 ;

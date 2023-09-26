@@ -160,7 +160,7 @@ public class ARAMA extends JInternalFrame {
 		splitPane.setRightComponent(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Kayit Sayisi :");
+		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(10, 5, 85, 14);
 		panel.add(lblNewLabel);

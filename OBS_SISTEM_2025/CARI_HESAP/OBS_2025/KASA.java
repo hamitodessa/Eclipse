@@ -449,7 +449,7 @@ public class KASA extends JInternalFrame {
 		lblNewLabel_4_1_2.setBounds(624, 11, 96, 14);
 		rightPanel.add(lblNewLabel_4_1_2);
 
-		JLabel lblNewLabel_2 = new JLabel("Kayit Sayisi :");
+		JLabel lblNewLabel_2 = new JLabel("Satir Sayisi :");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_2.setBounds(10, 65, 85, 14);
 		rightPanel.add(lblNewLabel_2);

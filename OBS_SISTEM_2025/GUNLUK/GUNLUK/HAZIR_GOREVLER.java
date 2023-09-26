@@ -182,7 +182,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
 		lbladet.setForeground(new Color(0, 0, 128));
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbladet.setBounds(100, 5, 40, 14);
+		lbladet.setBounds(100, 5, 66, 14);
 		panel.add(lbladet);
 
 	}

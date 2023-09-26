@@ -88,6 +88,8 @@ public class OZEL_MIZAN extends JInternalFrame {
 	private static JLabel lblbakkvartal ;
 	private static JLabel lblbakiye ;
 	public static JSplitPane splitPane;
+	private JLabel lblNewLabel;
+	private static JLabel lblNewLabel_1;
 
 	/**
 	 * Launch the application.
@@ -274,6 +276,17 @@ public class OZEL_MIZAN extends JInternalFrame {
 		lblonceki.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblonceki.setBounds(523, 6, 117, 14);
 		panel.add(lblonceki);
+		
+		lblNewLabel = new JLabel("Satir Sayisi :");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel.setBounds(10, 5, 85, 14);
+		panel.add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("0");
+		lblNewLabel_1.setForeground(new Color(0, 0, 128));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setBounds(100, 5, 51, 14);
+		panel.add(lblNewLabel_1);
 
 	}
 	public static void hisset ()  
@@ -284,6 +297,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 			//**************
 			String o1 = "" ;
 			String o2 = "" ;
+			lblNewLabel_1.setText("0");
 			String hangi_tur = FILTRE.comboBox.getItemAt(FILTRE.comboBox.getSelectedIndex());
 			if (BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
 			{
@@ -333,6 +347,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 			} 
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 
+			lblNewLabel_1.setText(FORMATLAMA.doub_0(table.getRowCount()));
 			ara_ayir();
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
@@ -396,6 +411,8 @@ public class OZEL_MIZAN extends JInternalFrame {
 			lblalacak.setText(FORMATLAMA.doub_2(alacak));
 			lblbakkvartal.setText(FORMATLAMA.doub_2(bakkvartal));
 			lblbakiye.setText(FORMATLAMA.doub_2(bakiye));
+			
+			
 			//***
 
 			table.setRowSelectionInterval(0, 0);

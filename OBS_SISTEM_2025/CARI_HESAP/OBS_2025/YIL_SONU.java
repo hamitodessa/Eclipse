@@ -130,12 +130,12 @@ public class YIL_SONU extends JInternalFrame {
 		splitPaneana.setRightComponent(panel_3);
 		panel_3.setLayout(null);
 
-		JLabel lblNewLabel_2 = new JLabel("Secilen Kayit Sayisi:");
-		lblNewLabel_2.setBounds(10, 5, 120, 14);
+		JLabel lblNewLabel_2 = new JLabel("Secilen Satir:");
+		lblNewLabel_2.setBounds(10, 5, 140, 14);
 		panel_3.add(lblNewLabel_2);
 
 		lblNewLabel_3 = new JLabel("0");
-		lblNewLabel_3.setBounds(135, 5, 56, 14);
+		lblNewLabel_3.setBounds(155, 5, 56, 14);
 		lblNewLabel_3.setForeground(new Color(0, 0, 128));
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		

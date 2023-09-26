@@ -57,7 +57,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-@SuppressWarnings({"serial","unused","static-access"})
+@SuppressWarnings({"serial","unused"})
 public class ETIKET_PRINT extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);

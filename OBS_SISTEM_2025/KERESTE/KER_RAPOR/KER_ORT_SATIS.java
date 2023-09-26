@@ -136,7 +136,7 @@ public class KER_ORT_SATIS extends JInternalFrame {
 		splitPane.setRightComponent(panel);
 		panel.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Kayit Sayisi :");
+		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
 		lblNewLabel.setBounds(10, 7, 85, 14);
 		panel.add(lblNewLabel);
 

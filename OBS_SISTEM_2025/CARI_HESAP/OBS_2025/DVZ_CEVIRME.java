@@ -281,7 +281,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		lblboskur.setBounds(918, 8, 53, 14);
 		panel.add(lblboskur);
 		
-		JLabel lblKayitSayisi = new JLabel("Kayit Sayisi :");
+		JLabel lblKayitSayisi = new JLabel("Satir Sayisi :");
 		lblKayitSayisi.setHorizontalAlignment(SwingConstants.LEFT);
 		lblKayitSayisi.setBounds(1022, 8, 85, 14);
 		panel.add(lblKayitSayisi);

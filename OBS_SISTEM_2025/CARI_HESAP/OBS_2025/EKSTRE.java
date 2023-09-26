@@ -223,7 +223,7 @@ public class EKSTRE extends JInternalFrame {
 		lblNewLabel_5_2_1_1.setBounds(971, 11, 130, 14);
 		panel.add(lblNewLabel_5_2_1_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Kayit Sayisi :");
+		JLabel lblNewLabel_2 = new JLabel("Satir Sayisi :");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_2.setBounds(10, 65, 85, 14);
 		panel.add(lblNewLabel_2);

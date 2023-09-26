@@ -2176,8 +2176,7 @@ public class KER_GIRIS extends JInternalFrame {
 							mdl.removeRow(mdl.getRowCount() -1);	
 						}
 					}  while (rss.next()) ;
-					//Thread.currentThread().isInterrupted();
-					mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+					//mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 					paketm3();
 					dOSYADAN = false;
 					toplam();

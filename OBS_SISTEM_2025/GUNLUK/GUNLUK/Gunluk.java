@@ -428,6 +428,7 @@ public class Gunluk extends JInternalFrame {
 						try {
 							setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
 							treeOgren();
+							btnNewButton_3.doClick();
 							setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 						} catch (ClassNotFoundException | SQLException  | PropertyVetoException e2)
 						{

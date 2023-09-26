@@ -2283,6 +2283,22 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_86_1_1.setToolTipText("Veri Aktarma");
 		btnNewButton_86_1_1.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-data-transfer-30.png")));
 		toolBar_9.add(btnNewButton_86_1_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("          ");
+		toolBar_9.add(lblNewLabel_2);
+		
+		JButton btnNewButton_67 = new JButton("Denemeler");
+		btnNewButton_67.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GuiUtil.setWaitCursor(toolBar,true);
+				JInternalFrame internalFrame;
+				internalFrame = new DENEMELER();
+				desktopPane.add(internalFrame);
+				internalFrame.setVisible(true);
+				GuiUtil.setWaitCursor(toolBar,false);
+			}
+		});
+		toolBar_9.add(btnNewButton_67);
 		//************************************************************AYARLAR*********************************************************************************
 
 		JToolBar toolBar_10 = new JToolBar();
@@ -3175,23 +3191,11 @@ public class OBS_MAIN extends JFrame {
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		toolBar.add(lblNewLabel_8);
 		
-		JButton btnNewButton = new JButton("Denemeler");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GuiUtil.setWaitCursor(toolBar,true);
-				JInternalFrame internalFrame;
-				internalFrame = new DENEMELER();
-				desktopPane.add(internalFrame);
-				internalFrame.setVisible(true);
-				GuiUtil.setWaitCursor(toolBar,false);
-			}
-		});
-		toolBar.add(btnNewButton);
 		lblNewLabel_9 = new JLabel("");
 		lblNewLabel_9.setOpaque(true);
-		lblNewLabel_9.setBackground(Color.black);
+		//lblNewLabel_9.setBackground(Color.black);
 		lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_9.setForeground(new Color(255, 255, 0));
+		//lblNewLabel_9.setForeground(new Color(255, 255, 0));
 		lblNewLabel_9 .setMinimumSize(size);
 		lblNewLabel_9 .setPreferredSize(new Dimension(250, 14));
 		toolBar.add(lblNewLabel_9);
@@ -3214,6 +3218,9 @@ public class OBS_MAIN extends JFrame {
 
 
 		toolBar_1.add(progressBar);
+		
+		JLabel lblNewLabel_1 = new JLabel("     ");
+		toolBar_1.add(lblNewLabel_1);
 
 		lblUser = new JLabel("     ");
 		lblUser.setForeground(new Color(0, 0, 128));

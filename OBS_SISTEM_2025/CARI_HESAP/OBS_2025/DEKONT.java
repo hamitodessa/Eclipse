@@ -1559,6 +1559,7 @@ public class DEKONT extends JInternalFrame {
 			txtatutar.setText(FORMATLAMA.doub_2(rs.getDouble("ALACAK")));
 			lblNewLabel.setText(rs.getString("USER"));
 			kutu_ac();
+
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime;
 			double seconds = (double)estimatedTime/1000; 

@@ -2008,7 +2008,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		}
 		String sql =   "SELECT [Paket_No] , Konsimento ,SUBSTRING(KERESTE.Kodu, 8, 4) as Boy ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal , " +
 						" Sum( ((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) as m3 , " +
-						" (((Sum(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/10)) / sum(miktar)) " +
+						" ((Sum(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)) / sum(miktar)) " +
 						" / CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4))) / CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) as Ort_Gen " + 
 						"  FROM KERESTE " +
 						" WHERE   " + jkj + " " +

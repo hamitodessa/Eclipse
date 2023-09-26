@@ -1954,7 +1954,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 		///
 		String sql =   " SELECT Paket_No , Konsimento ,SUBSTRING(KERESTE.Kodu, 8, 4) as Boy ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal , " +
 						" Sum( ((CONVERT( SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT( SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000) as m3 , " +
-						" (((Sum(((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/10)) / sum(miktar)) " +
+						" ((Sum(((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)) / sum(miktar)) " +
 						" / CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL)) / CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3) ,DECIMAL) as Ort_Gen " + 
 						"  FROM KERESTE " +
 				" WHERE   " + jkj + " " +

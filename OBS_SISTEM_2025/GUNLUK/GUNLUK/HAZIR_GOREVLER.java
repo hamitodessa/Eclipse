@@ -10,18 +10,23 @@ import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
@@ -29,6 +34,8 @@ import OBS_2025.FILTRE;
 import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.ButtonColumn;
+
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.GUNLUK_ACCESS;
@@ -54,6 +61,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 	public static JScrollPane scrollPane;
 	private JPanel panel;
 	private static JLabel lbladet ;
+	static JPopupMenu popup ;
 	/**
 	 * Launch the application.
 	 */
@@ -89,7 +97,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		scrollPane = new JScrollPane();
 		splitPane.setLeftComponent(scrollPane);
 		///***************************
-		JPopupMenu popup = new JPopupMenu();
+		popup = new JPopupMenu();
 		JMenuItem menuItem = new JMenuItem("Tek Gorev Sil..", new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-reduce-16.png")));
 		menuItem.setMnemonic(KeyEvent.VK_T);
 		menuItem.getAccessibleContext().setAccessibleDescription( "Tek Gorev Sil");
@@ -123,7 +131,13 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		table = new JTable(){
 			@Override
 			public boolean isCellEditable(int row, int column) {  
-				return false;
+				switch (column) {
+				case 0:
+					return true;
+				
+				default:
+					return false;
+				}
 			}
 		};
 		table.addKeyListener(new KeyAdapter() {
@@ -140,7 +154,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 				}
 			}
 		});
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		//table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSurrendersFocusOnKeystroke(true);
 		table.addMouseListener(new MouseAdapter() {
@@ -214,22 +228,43 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			}
 
 			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addColumn("Sec");
+			table.moveColumn(table.getColumnCount()-1, 0);
+
+			
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
 
-			tc = tcm.getColumn(2);
+			tc = tcm.getColumn(0);
+			Action delete = new AbstractAction()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JTable table = (JTable)e.getSource();
+					int modelRow = Integer.valueOf( e.getActionCommand() );
+					popup.show(table, modelRow, 0);
+				}
+			};   
+		
+			 //
+			ButtonColumn buttonColumn = new ButtonColumn(table, delete, 0 ,new ImageIcon(HAZIR_GOREVLER.class.getResource("/ICONLAR/sil.png")) );
+			buttonColumn.setMnemonic(KeyEvent.VK_D);
+			tc.setMinWidth(50);
+			tc.setMaxWidth(50);
+	        tc.setHeaderRenderer(new SOLA());
+			
+			
+			tc = tcm.getColumn(3);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setCellRenderer(new TARIH());
 			tc.setMinWidth(80);
 
-			tc = tcm.getColumn(3);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(80);
-
 			tc = tcm.getColumn(4);
 			tc.setHeaderRenderer(new SOLA());
-			tc.setMinWidth(150);
+			tc.setMinWidth(80);
 
 			tc = tcm.getColumn(5);
 			tc.setHeaderRenderer(new SOLA());
@@ -241,15 +276,19 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 
 			tc = tcm.getColumn(7);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(150);
+
+			tc = tcm.getColumn(8);
+			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(300);
 			
-			tc = tcm.getColumn(8);
+			tc = tcm.getColumn(9);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(80);
 			
 			th.repaint();
-			table.removeColumn(table.getColumnModel().getColumn(0));
-			table.removeColumn(table.getColumnModel().getColumn(0));
+			table.removeColumn(table.getColumnModel().getColumn(1));
+			table.removeColumn(table.getColumnModel().getColumn(1));
 
 			th.repaint();
 			table.setRowSelectionInterval(0, 0);
@@ -324,5 +363,13 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Gorev Silme", JOptionPane.ERROR_MESSAGE); 
 		}
+	}
+}
+class JTableButtonRenderer implements TableCellRenderer 
+{        
+	@Override public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, 
+			boolean hasFocus, int row, int column) {
+		JButton button = (JButton)value;
+		return button;  
 	}
 }

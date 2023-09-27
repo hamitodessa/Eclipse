@@ -13,20 +13,17 @@ import java.sql.SQLException;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
@@ -134,7 +131,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 				switch (column) {
 				case 0:
 					return true;
-				
+
 				default:
 					return false;
 				}
@@ -143,7 +140,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		table.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				
+
 				if( e.getKeyCode() ==127)
 				{
 					try {
@@ -187,11 +184,11 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		panel.setMaximumSize(new Dimension(0, 25));
 		panel.setLayout(null);
 		splitPane.setRightComponent(panel);
-		
+
 		JLabel lblNewLabel = new JLabel("Kayit Sayisi :");
 		lblNewLabel.setBounds(10, 5, 85, 14);
 		panel.add(lblNewLabel);
-		
+
 		lbladet = new JLabel("0");
 		lbladet.setHorizontalAlignment(SwingConstants.LEFT);
 		lbladet.setForeground(new Color(0, 0, 128));
@@ -228,12 +225,12 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			}
 
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			
+
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			model.addColumn("Sec");
+			model.addColumn("");
 			table.moveColumn(table.getColumnCount()-1, 0);
 
-			
+
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
@@ -248,15 +245,15 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 					popup.show(table, modelRow, 0);
 				}
 			};   
-		
-			 //
+
+			//
 			ButtonColumn buttonColumn = new ButtonColumn(table, delete, 0 ,new ImageIcon(HAZIR_GOREVLER.class.getResource("/ICONLAR/sil.png")) );
 			buttonColumn.setMnemonic(KeyEvent.VK_D);
 			tc.setMinWidth(50);
 			tc.setMaxWidth(50);
-	        tc.setHeaderRenderer(new SOLA());
-			
-			
+			tc.setHeaderRenderer(new SOLA());
+
+
 			tc = tcm.getColumn(3);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setCellRenderer(new TARIH());
@@ -281,11 +278,11 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			tc = tcm.getColumn(8);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(300);
-			
+
 			tc = tcm.getColumn(9);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(80);
-			
+
 			th.repaint();
 			table.removeColumn(table.getColumnModel().getColumn(1));
 			table.removeColumn(table.getColumnModel().getColumn(1));
@@ -341,7 +338,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 
 			String mesaj = "" ;
 			mesaj = "Isim="+ table.getModel().getValueAt(table.getSelectedRow(), 4).toString() + " Gorev="+ table.getModel().getValueAt(table.getSelectedRow(), 5).toString() + 
-			" Mesaj="  ;
+					" Mesaj="  ;
 			if( mesaj.length() +  (table.getModel().getValueAt(table.getSelectedRow(), 7).toString() + " Silme ").length() <= 95)
 			{
 				mesaj = mesaj + " Msj:" + table.getModel().getValueAt(table.getSelectedRow(), 7).toString() + " Silme " ;
@@ -350,11 +347,11 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			{
 				mesaj = mesaj + " Msj:" + table.getModel().getValueAt(table.getSelectedRow(), 7).toString().substring(0, 89  -(mesaj.length()) ) + "Silme" ;
 			}
-			
+
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ(mesaj);
 			lBILGI.seteVRAK("");
-			
+
 			g_Access.gorev_tek_sil(Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString()),
 					lBILGI, BAGLAN_LOG.gunLogDizin );
 			hisset();
@@ -365,11 +362,4 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		}
 	}
 }
-class JTableButtonRenderer implements TableCellRenderer 
-{        
-	@Override public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, 
-			boolean hasFocus, int row, int column) {
-		JButton button = (JButton)value;
-		return button;  
-	}
-}
+

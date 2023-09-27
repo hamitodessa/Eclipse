@@ -169,12 +169,14 @@ public void actionPerformed(ActionEvent e)
 	int row = table.convertRowIndexToModel( table.getEditingRow() );
 	fireEditingStopped();
 
+	//System.out.println(editButton.getX() + "=="+ editButton.getY());
 	//  Invoke the Action
 	ActionEvent event = new ActionEvent(
 		table,
 		ActionEvent.ACTION_PERFORMED,
 		"" + row);
 	action.actionPerformed(event);
+
 }
 
 //

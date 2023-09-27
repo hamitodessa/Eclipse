@@ -174,6 +174,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 				if (rowindex < 0)
 					return;
 				if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
+				
 					popup.show(e.getComponent(), e.getX(), e.getY());
 				}
 			}
@@ -240,14 +241,14 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					JTable table = (JTable)e.getSource();
-					int modelRow = Integer.valueOf( e.getActionCommand() );
-					popup.show(table, modelRow, 0);
+				
+					popup.show(table, 50, table.getSelectedRow() * 22 );
 				}
 			};   
 
 			//
 			ButtonColumn buttonColumn = new ButtonColumn(table, delete, 0 ,new ImageIcon(HAZIR_GOREVLER.class.getResource("/ICONLAR/sil.png")) );
+			
 			buttonColumn.setMnemonic(KeyEvent.VK_D);
 			tc.setMinWidth(50);
 			tc.setMaxWidth(50);

@@ -61,17 +61,17 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		setClosable(true);
 		setTitle("FIRMA ISMI DEGISTIRME");
 		setBounds(100, 100, 663, 118);
-		
+
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
+
 		panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Baslik", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
 		panel_1.setBounds(52, 11, 529, 64);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
-		
+
 		textField = new JTextField();
 		textField.setForeground(new Color(0, 0, 128));
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -82,37 +82,37 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 	}
 	public static void modul(String mod)
 	{
-		
+
 		modul = mod ;
 		if (modul.equals("cari"))
 		{
 			panel_1.setBorder(new TitledBorder(null, "Cari Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		isim_oku(mod);
+			isim_oku(mod);
 		}
 		else if (modul.equals("kambiyo"))
 		{
 			panel_1.setBorder(new TitledBorder(null, "Kambiyo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		isim_oku(mod);
+			isim_oku(mod);
 		}
 		else if (modul.equals("stok"))
 		{
 			panel_1.setBorder(new TitledBorder(null, "Stok", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		isim_oku(mod);
+			isim_oku(mod);
 		}
 		else if (modul.equals("adres"))
 		{
 			panel_1.setBorder(new TitledBorder(null, "Adres", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		isim_oku(mod);
+			isim_oku(mod);
 		}
 		else if (modul.equals("gunluk"))
 		{
 			panel_1.setBorder(new TitledBorder(null, "Gunluk", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		isim_oku(mod);
+			isim_oku(mod);
 		}
 		else if (modul.equals("kereste"))
 		{
 			panel_1.setBorder(new TitledBorder(null, "Kereste", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		isim_oku(mod);
+			isim_oku(mod);
 		}
 	}
 	private static void  isim_oku(String modul)
@@ -161,37 +161,37 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 			{
 				c_Access.cari_firma_adi_kayit(textField.getText(), lBILGI, BAGLAN_LOG.cariLogDizin);
 				BAGLAN.cariDizin.fIRMA_ADI = textField.getText();
-				OBS_MAIN.lblCariBilgi.setText ( "Cari:" + BAGLAN.cariDizin.kOD + "  /  " + BAGLAN.cariDizin.fIRMA_ADI + "  /  " + (BAGLAN.cariDizin.yER.toString().equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal"));
+				OBS_MAIN.lblCariBilgi.setText (BAGLAN.cariDizin.kOD + "  /  " + BAGLAN.cariDizin.fIRMA_ADI + "  /  " + (BAGLAN.cariDizin.yER.toString().equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal"));
 			}
 			else if (modul.equals("kambiyo"))
 			{
 				ka_Access.kam_firma_adi_kayit(textField.getText(),lBILGI, BAGLAN_LOG.kamLogDizin);
 				BAGLAN.kamDizin.fIRMA_ADI = textField.getText();
-				OBS_MAIN.lblKambiyoBilgi.setText ( "Kambiyo:" + BAGLAN.kamDizin.kOD + "  /  " + BAGLAN.kamDizin.fIRMA_ADI + "  /  " + (BAGLAN.kamDizin.yER.toString().equals("S") ?  BAGLAN.kamDizin.sERVER : "Lokal"));
+				OBS_MAIN.lblKambiyoBilgi.setText (BAGLAN.kamDizin.kOD + "  /  " + BAGLAN.kamDizin.fIRMA_ADI + "  /  " + (BAGLAN.kamDizin.yER.toString().equals("S") ?  BAGLAN.kamDizin.sERVER : "Lokal"));
 			}
 			else if (modul.equals("stok"))
 			{
 				f_Access.stk_firma_adi_kayit(textField.getText(), lBILGI, BAGLAN_LOG.fatLogDizin);
 				BAGLAN.fatDizin.fIRMA_ADI = textField.getText();
-				OBS_MAIN.lblStokBilgi.setText ( "Stok:" + BAGLAN.fatDizin.kOD + "  /  " + BAGLAN.fatDizin.fIRMA_ADI + "  /  " + (BAGLAN.fatDizin.yER.toString().equals("S") ?  BAGLAN.fatDizin.sERVER : "Lokal"));
+				OBS_MAIN.lblStokBilgi.setText (BAGLAN.fatDizin.kOD + "  /  " + BAGLAN.fatDizin.fIRMA_ADI + "  /  " + (BAGLAN.fatDizin.yER.toString().equals("S") ?  BAGLAN.fatDizin.sERVER : "Lokal"));
 			}
 			else if (modul.equals("adres"))
 			{
 				a_Access.adr_firma_adi_kayit(textField.getText(), lBILGI, BAGLAN_LOG.adrLogDizin);
 				BAGLAN.adrDizin.fIRMA_ADI = textField.getText();
-				OBS_MAIN.lblAdresBilgi.setText ( "Adres:" + 	BAGLAN.adrDizin.kOD + "  /  " + 	BAGLAN.adrDizin.fIRMA_ADI + "  /  " + (	BAGLAN.adrDizin.yER.toString().equals("S") ?  	BAGLAN.adrDizin.sERVER : "Lokal"));
+				OBS_MAIN.lblAdresBilgi.setText (BAGLAN.adrDizin.kOD + "  /  " + 	BAGLAN.adrDizin.fIRMA_ADI + "  /  " + (	BAGLAN.adrDizin.yER.toString().equals("S") ?  	BAGLAN.adrDizin.sERVER : "Lokal"));
 			}
 			else if (modul.equals("gunluk"))
 			{
 				g_Access.gun_firma_adi_kayit(textField.getText(),lBILGI, BAGLAN_LOG.gunLogDizin);
 				BAGLAN.gunDizin.fIRMA_ADI = textField.getText();
-				OBS_MAIN.lblGunlukBilgi.setText ( "Gunluk:" + 	BAGLAN.gunDizin.kOD + "  / " + 	BAGLAN.gunDizin.fIRMA_ADI + "  /  " + (	BAGLAN.gunDizin.yER.toString().equals("S") ?  	BAGLAN.gunDizin.sERVER : "Lokal"));
+				OBS_MAIN.lblGunlukBilgi.setText (BAGLAN.gunDizin.kOD + "  / " + 	BAGLAN.gunDizin.fIRMA_ADI + "  /  " + (	BAGLAN.gunDizin.yER.toString().equals("S") ?  	BAGLAN.gunDizin.sERVER : "Lokal"));
 			}
 			else if (modul.equals("kereste"))
 			{
 				ker_Access.ker_firma_adi_kayit(textField.getText(),lBILGI, BAGLAN_LOG.kerLogDizin);
 				BAGLAN.kerDizin.fIRMA_ADI = textField.getText();
-				OBS_MAIN.lblKeresteBilgi.setText ( "Kereste:" + 	BAGLAN.kerDizin.kOD + "  /  " + 	BAGLAN.kerDizin.fIRMA_ADI + "  /  " + (	BAGLAN.kerDizin.yER.toString().equals("S") ?  	BAGLAN.kerDizin.sERVER : "Lokal"));
+				OBS_MAIN.lblKeresteBilgi.setText (BAGLAN.kerDizin.kOD + "  /  " + 	BAGLAN.kerDizin.fIRMA_ADI + "  /  " + (	BAGLAN.kerDizin.yER.toString().equals("S") ?  	BAGLAN.kerDizin.sERVER : "Lokal"));
 			}
 			kapat();
 		}
@@ -203,14 +203,14 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 	private static void kapat()
 	{
 		for(int i=0;i<OBS_MAIN.desktopPane.getAllFrames().length;i++)
-        {   
-        JInternalFrame frame=(JInternalFrame) OBS_MAIN.desktopPane.getComponent(i);
-        String tit = frame.getTitle();
-        if (tit.equals("FIRMA ISMI DEGISTIRME") )
-        	{
-        	OBS_MAIN.desktopPane.remove(i);
-    		OBS_MAIN.desktopPane.repaint();
-        	}
-        }
+		{   
+			JInternalFrame frame=(JInternalFrame) OBS_MAIN.desktopPane.getComponent(i);
+			String tit = frame.getTitle();
+			if (tit.equals("FIRMA ISMI DEGISTIRME") )
+			{
+				OBS_MAIN.desktopPane.remove(i);
+				OBS_MAIN.desktopPane.repaint();
+			}
+		}
 	}
 }

@@ -1558,12 +1558,11 @@ public class DEKONT extends JInternalFrame {
 			txtakur.setText(FORMATLAMA.doub_4(rs.getDouble("KUR")));
 			txtatutar.setText(FORMATLAMA.doub_2(rs.getDouble("ALACAK")));
 			lblNewLabel.setText(rs.getString("USER"));
-			kutu_ac();
-
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime;
 			double seconds = (double)estimatedTime/1000; 
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+			kutu_ac();
 		}
 		catch (Exception ex)
 		{

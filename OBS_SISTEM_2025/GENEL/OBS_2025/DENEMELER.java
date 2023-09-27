@@ -12,6 +12,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.mail.util.ByteArrayDataSource;
 import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JTable;
@@ -30,11 +31,14 @@ import com.healthmarketscience.jackcess.Table;
 import com.healthmarketscience.jackcess.TableBuilder;
 import com.healthmarketscience.jackcess.crypt.CryptCodecProvider;
 
+import LOGER_KAYIT.TXT_LOG;
 import OBS_C_2025.BACKUP_RESTORE;
 import OBS_C_2025.CLONE_RESULTSET;
 import OBS_C_2025.CustomResultSetMetaData;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.ManualResultSet;
+import OBS_C_2025.SearchOption;
+import OBS_C_2025.TextFieldSearchOption;
 
 import java.awt.BorderLayout;
 import java.awt.Cursor;
@@ -63,6 +67,10 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+
+import OBS_C_2025.TextFieldSearchOption.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings({"serial","static-access","unused"})
 public class DENEMELER extends JInternalFrame {
@@ -353,6 +361,36 @@ public class DENEMELER extends JInternalFrame {
 		btnNewButton_3.setBounds(503, 346, 89, 23);
 		panel.add(btnNewButton_3);
 		
+		TextFieldSearchOption txt = new TextFieldSearchOption();
+		txt.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+				if (txt.isSelected()) {
+					int option = txt.getSelectedIndex();
+					if (option==0) {
+						System.out.println("0 =" + txt.getText().trim());
+					}
+					else if (option==1) {
+						System.out.println("1 =" + txt.getText().trim());
+					}
+				}
+			}
+		});
+		txt.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		txt.setBounds(77, 401, 204, 38);
+		txt.addOption(new SearchOption("Name",new ImageIcon(DENEMELER.class.getResource("/ICONLAR/exit.png"))));
+		txt.addOption(new SearchOption("Tel",new ImageIcon(DENEMELER.class.getResource("/ICONLAR/db.png"))));
+		txt.setSelectedIndex(0);
+		
+		txt.addEventOptionSelected(new SearchOptinEvent()
+				{
+			@Override
+			public void optionSelected(SearchOption option , int index) {
+				txt.setHint("Search by " + option.getName());
+			}
+				});
+		panel.add(txt);
 		
 
 	}

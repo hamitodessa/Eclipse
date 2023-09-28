@@ -94,13 +94,19 @@ public class GID_RAPOR extends JInternalFrame {
 		textField.setBounds(69, 5, 312, 20);
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
+				GuiUtil.setWaitCursor(textField,true);
 				arama();
+				GuiUtil.setWaitCursor(textField,false);
 			}
 			public void removeUpdate(DocumentEvent e) {
+				GuiUtil.setWaitCursor(textField,true);
 				arama();
+				GuiUtil.setWaitCursor(textField,false);
 			}
 			public void insertUpdate(DocumentEvent e) {
+				GuiUtil.setWaitCursor(textField,true);
 				arama();
+				GuiUtil.setWaitCursor(textField,false);
 			}
 		});
 		panel.add(textField);
@@ -127,6 +133,7 @@ public class GID_RAPOR extends JInternalFrame {
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane.setViewportView(table);
 		hisset ();
+		textField.requestFocus();
 	}
 	public static void hisset()
 	{
@@ -209,9 +216,11 @@ public class GID_RAPOR extends JInternalFrame {
 		}
 		else
 		{
+			GuiUtil.setWaitCursor(splitPane,true);
 			TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
 			sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText()));
 			table.setRowSorter(sorter);
+			GuiUtil.setWaitCursor(splitPane,false);
 		}
 	}
 	public static  void sil()

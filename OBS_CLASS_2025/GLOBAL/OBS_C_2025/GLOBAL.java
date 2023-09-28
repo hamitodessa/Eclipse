@@ -151,14 +151,9 @@ public class GLOBAL {
 		{
 			tmpDir.mkdirs();
 		}
-		tmpDir = new File(SURUCU + OBS_DOSYA);
-		exists = tmpDir.exists();
-		if (exists)
+		if (dos_kontrol(SURUCU + OBS_DOSYA))
 		{   
-			// "Dosya Mevcut"	//Propertis kontrol//
-			tmpDir = new File(SURUCU +  "/" + System.getProperty("user.name") +".properties");
-			exists = tmpDir.exists();
-			if (exists)
+			if (dos_kontrol(SURUCU +  "/" + System.getProperty("user.name") +".properties"))
 			{ 
 				//Prop var
 			}
@@ -175,7 +170,7 @@ public class GLOBAL {
 				Tema_Cari.dosya_yap();
 				set_ilk() ; //obs_set_olustur();
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "burdaa"+e.getMessage());
+				JOptionPane.showMessageDialog(null, "Surucu Kontrol    " + e.getMessage());
 			}
 		}
 	}
@@ -201,8 +196,7 @@ public class GLOBAL {
 			if (varmi == false) prop.setProperty(anahtar, deger);
 			prop.store(output, "OBS AYARLAR");
 			output.close();
-		} catch (FileNotFoundException e2) {
-		} catch (IOException e1) {
+		} catch (Exception e1) {
 		}
 	}
 	@SuppressWarnings("unused")
@@ -227,11 +221,7 @@ public class GLOBAL {
 	}
 	public static String setting_oku(String anahtar) throws IOException
 	{
-		File tmpDir = new File(SURUCU);
-		boolean exists = tmpDir.exists();
-		tmpDir = new File(SURUCU +  "/"+ System.getProperty("user.name")+".properties"); //
-		exists = tmpDir.exists();
-		if (exists)
+		if (dos_kontrol(SURUCU +  "/"+ System.getProperty("user.name")+".properties"))
 		{ 
 			//Prop var
 		}

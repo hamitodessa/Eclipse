@@ -165,10 +165,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				+ ") ON [PRIMARY]";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-		sql = "CREATE NONCLUSTERED INDEX [IDX_HESAP] ON [dbo].[HESAP](	[HESAP] ASC,	[UNVAN] ASC "
-				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
-		stmt = con.createStatement();  
-		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE [dbo].[HESAP_DETAY]( "
 				+ " [D_HESAP] [nvarchar](12) NOT NULL,"
 				+ " [YETKILI] [nvarchar](30) NULL,"
@@ -1041,23 +1037,23 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		ResultSet	rss = null;
 		String sql = "SELECT s.HESAP, (SELECT UNVAN FROM HESAP h WHERE s.HESAP    = h.HESAP "
 				+ "	AND h.HESAP_CINSI BETWEEN N'"+ c1 + "' AND '"+ c2 +"'           AND h.KARTON BETWEEN N'"+ k1 +"' AND N'" + k2 + "' ) as UNVAN ,"
-				+ "(SELECT HESAP_CINSI FROM HESAP h   WHERE s.HESAP    = h.HESAP "
+				+ " (SELECT HESAP_CINSI FROM HESAP h   WHERE s.HESAP    = h.HESAP "
 				+ "	AND h.HESAP_CINSI BETWEEN N'"+ c1 + "' AND '"+ c2 +"'   AND h.KARTON BETWEEN N'"+ k1 +"' AND N'" + k2 +"' ) as HESAP_CINSI ,"
-				+ "ISNULL(ROUND ((SELECT ROUND(SUM(SATIRLAR.ALACAK),2)  - ROUND(SUM(SATIRLAR.BORC),2)   FROM SATIRLAR   "
-				+ "  WHERE  SATIRLAR.HESAP = s.HESAP  and TARIH <  '"+ t1 +"'  ),2) ,0) as ONCEKI_BAKIYE  ,"
-				+ "ISNULL( (SELECT SUM(SATIRLAR.BORC)  FROM   SATIRLAR     WHERE   SATIRLAR.HESAP    = s.HESAP     "
+				+ " ISNULL(ROUND ((SELECT ROUND(SUM(SATIRLAR.ALACAK),2)  - ROUND(SUM(SATIRLAR.BORC),2)   FROM SATIRLAR   "
+				+ " WHERE  SATIRLAR.HESAP = s.HESAP  and TARIH <  '"+ t1 +"'  ),2) ,0) as ONCEKI_BAKIYE  ,"
+				+ " ISNULL( (SELECT SUM(SATIRLAR.BORC)  FROM   SATIRLAR     WHERE   SATIRLAR.HESAP    = s.HESAP     "
 				+ " AND TARIH BETWEEN  '"+ t1 +"' AND  '"+ t2 +" 23:59:59.998'  ) ,0)as BORC				 ,"
-				+ "  ISNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM SATIRLAR      WHERE  SATIRLAR.HESAP    = s.HESAP"
+				+ " ISNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM SATIRLAR      WHERE  SATIRLAR.HESAP    = s.HESAP"
 				+ " AND TARIH BETWEEN '"+ t1+ "' AND '"+ t2 +" 23:59:59.998'  ) ,0)as ALACAK			,"
 				+ " ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM SATIRLAR     	WHERE  SATIRLAR.HESAP    = s.HESAP     		 AND TARIH BETWEEN 				\r\n"
 				+ " '"+ t1 +"' AND  '"+ t2 +"'  ) ,0) -	"
 				+ " ISNULL( (SELECT SUM(SATIRLAR.BORC)  FROM SATIRLAR      				WHERE  SATIRLAR.HESAP    = s.HESAP  "
 				+ " AND TARIH BETWEEN 	  '"+ t1 +"' AND  '"+t2 + " 23:59:59.998'  ) ,0),2)  as BAK_KVARTAL				 ,"
 				+ " ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)   				FROM SATIRLAR      "
-				+ "WHERE    SATIRLAR.HESAP    = s.HESAP     and TARIH <  '"+ t2 + "  23:59:59.998' 	 ) ,0),2)   as BAKIYE"
+				+ " WHERE    SATIRLAR.HESAP    = s.HESAP     and TARIH <  '"+ t2 + "  23:59:59.998' 	 ) ,0),2)   as BAKIYE"
 				+ "	FROM SATIRLAR s      "  
-				+ "  WHERE s.HESAP > N'"+ h1 +"' AND  s.HESAP < N'"+ h2+"'  "
-				+ "  GROUP BY s.HESAP " + o1 + " " + o2 + "" ;
+				+ " WHERE s.HESAP > N'"+ h1 +"' AND  s.HESAP < N'"+ h2+"'  "
+				+ " GROUP BY s.HESAP " + o1 + " " + o2 + "" ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

@@ -148,7 +148,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				+ "  INDEX `IX_HESAP` (`HESAP` ASC) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-
 		sql = "CREATE TABLE `HESAP_DETAY` ( "
 				+ " `D_HESAP` NVARCHAR(12) NOT NULL,"
 				+ " `YETKILI` NVARCHAR(30) NULL,"
@@ -189,11 +188,10 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				+ "  `KOD` VARCHAR(5) NULL,"
 				+ "  `USER` VARCHAR(15) NULL,"
 				+ "  UNIQUE INDEX `SID_UNIQUE` (`SID` ASC) VISIBLE,"
-				+ "  INDEX `IX_SATIRLAR` (`TARIH` ASC, `EVRAK` ASC,  `HESAP` ASC) VISIBLE ,"
+				+ "  INDEX `IX_SATIRLAR` (`HESAP` ASC, `TARIH` ASC, `EVRAK` ASC) VISIBLE ,"
 				+ "  INDEX `IXS_HESAP` (`HESAP` ASC  ) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
-
 		sql = "CREATE TABLE `IZAHAT`(	`EVRAK` int NOT NULL,	`IZAHAT` nvarchar(100) NULL,"
 				+ "  PRIMARY KEY (`EVRAK`),"
 				+ "  UNIQUE INDEX `EVRAK_UNIQUE` (`EVRAK` ASC) VISIBLE,"

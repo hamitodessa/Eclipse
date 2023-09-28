@@ -23,6 +23,7 @@ public class SAGA extends JLabel implements TableCellRenderer {
 	  	    setToolTipText((String) value);
 	  	    setResizable(false);
 	  	    setHorizontalAlignment(JLabel.RIGHT);
+	  	  setVerticalAlignment(JLabel.BOTTOM);
 	  	    setForeground(new Color(0, 0, 128));
 	        setBorder(border);
 	        setFont(new Font(table.getFont().getFontName(), Font.BOLD, 12));

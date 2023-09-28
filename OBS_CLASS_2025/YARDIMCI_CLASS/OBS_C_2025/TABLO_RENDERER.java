@@ -62,6 +62,7 @@ public class TABLO_RENDERER extends DefaultTableCellRenderer {
     			setFont (new Font(table.getFont().getFontName(),0 ,table.getFont().getSize()));
 	    	  }
 	        setHorizontalAlignment(JLabel.RIGHT);
+	        setVerticalAlignment(JLabel.BOTTOM);
 	        return this;
 	    }
  }

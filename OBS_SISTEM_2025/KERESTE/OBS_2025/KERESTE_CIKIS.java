@@ -91,6 +91,7 @@ import OBS_C_2025.Next_Cell_Kereste;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SAGA_BOLD;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.U_KODU_RENDERER;
@@ -1077,18 +1078,22 @@ public class KERESTE_CIKIS extends JInternalFrame {
 						row, column);
 				setFont(new Font(table.getFont().getFontName(),1 ,12));
 				setForeground(new Color(0, 0, 128));
+				setVerticalAlignment(JLabel.BOTTOM);
 				return this;
 			}
 		};
 		col.setCellRenderer(r);
 
 
+		
 		col = table.getColumnModel().getColumn(1);
 		col.setMinWidth(80);
+		col.setCellRenderer(new SOLA_ORTA());
 		col.setHeaderRenderer(new SOLA());
 
 		col = table.getColumnModel().getColumn(2);
 		col.setMinWidth(120);
+		col.setCellRenderer(new SOLA_ORTA());
 		col.setHeaderRenderer(new SOLA());
 
 		col = table.getColumnModel().getColumn(3);
@@ -1147,6 +1152,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		col = table.getColumnModel().getColumn(11);
 		col.setMinWidth(175);
 		JTextField atf = new JTextField(40);
+		col.setCellRenderer(new SOLA_ORTA());
 		col.setCellEditor(new DefaultCellEditor(atf));
 		col.setHeaderRenderer(new SOLA());
 

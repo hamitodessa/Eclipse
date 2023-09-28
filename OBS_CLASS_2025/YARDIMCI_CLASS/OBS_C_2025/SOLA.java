@@ -19,6 +19,7 @@ public class SOLA extends JLabel implements TableCellRenderer {
 	  	    setToolTipText((String) value);
 	  	    setResizable(false);
 	  	    setHorizontalAlignment(JLabel.LEFT);
+	  	    setVerticalAlignment(JLabel.BOTTOM);
 	  	    setForeground(new Color(0, 0, 128));
 	        setBorder(border);
 	        setFont(new Font(table.getFont().getFontName(), Font.BOLD, 12));

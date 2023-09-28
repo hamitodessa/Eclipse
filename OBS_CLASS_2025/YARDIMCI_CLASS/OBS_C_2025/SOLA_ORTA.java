@@ -8,7 +8,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 @SuppressWarnings("serial")
-public class U_KODU_RENDERER extends DefaultTableCellRenderer 
+public class SOLA_ORTA extends DefaultTableCellRenderer 
 {
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,   boolean hasFocus, int row, int column) 
 	{
@@ -17,8 +17,7 @@ public class U_KODU_RENDERER extends DefaultTableCellRenderer
   	    setToolTipText((String) value);
   	    setHorizontalAlignment(JLabel.LEFT);
   	    setVerticalAlignment(JLabel.BOTTOM);
-        setFont(new Font(table.getFont().getFontName(), Font.BOLD, 12));
+        setFont(new Font(table.getFont().getFontName(), table.getFont().getStyle(), table.getFont().getSize()));
 		return cell;
 	}
 }
-

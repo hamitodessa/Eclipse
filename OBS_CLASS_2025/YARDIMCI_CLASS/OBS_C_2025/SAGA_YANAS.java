@@ -18,6 +18,7 @@ private static final long serialVersionUID = 1L;
 	      boolean hasFocus, int rowIndex, int vColIndex) {
 		setText(value.toString());
 	    setHorizontalAlignment(JLabel.RIGHT);
+	    setVerticalAlignment(JLabel.BOTTOM);
 	    setFont(new Font(table.getFont().getFontName(), table.getFont().getStyle(), table.getFont().getSize()));
 	    return this;
 	  }

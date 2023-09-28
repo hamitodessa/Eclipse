@@ -108,6 +108,7 @@ import OBS_C_2025.Next_Cell_Kereste;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SAGA_BOLD;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.U_KODU_RENDERER;
@@ -1297,6 +1298,7 @@ public class KER_GIRIS extends JInternalFrame {
 		
 		col = table.getColumnModel().getColumn(6);
 		col.setMinWidth(75);
+		col.setCellRenderer(new SOLA_ORTA());
 		col.setHeaderRenderer(new SOLA());
 		
 		col = table.getColumnModel().getColumn(7);
@@ -1326,6 +1328,7 @@ public class KER_GIRIS extends JInternalFrame {
 		col = table.getColumnModel().getColumn(11);
 		col.setMinWidth(178);
 		JTextField atf = new JTextField(40);
+		col.setCellRenderer(new SOLA_ORTA());
 		col.setCellEditor(new DefaultCellEditor(atf));
 		col.setHeaderRenderer(new SOLA());
 		
@@ -2647,6 +2650,7 @@ public class KER_GIRIS extends JInternalFrame {
 	        JLabel c = (JLabel)super.getTableCellRendererComponent( table, value, isSelected, hasFocus, row, column) ;
 	        String pathValue = "Cift Tiklamada otomatik Paket No verilir...Once Konsimento Degeri girilmelidir   "; 
 	        setToolTipText(pathValue);
+	        setVerticalAlignment(JLabel.BOTTOM);
 	        return c;
 	    }
 	}

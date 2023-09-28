@@ -252,14 +252,14 @@ public class ANA_MENU extends JDialog {
 					double toplam = 0 ;
 					FTPFile[] files = ftp.listFiles();
 					for (FTPFile file : files) {
-						if (file.getName().equals("OBS_SISTEM_2025.jar"))  
+						if (file.getName().equals("OBS_2025.exe"))  
 							toplam = file.getSize();
 						double topl =  toplam ;
 						lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
 					}
 					contentPane.setCursor(WAIT_CURSOR);
-					String remoteFile2 =  ftp.printWorkingDirectory() + "/OBS_SISTEM_2025.jar";
-					File downloadFile2 = new File(txtdiz.getText() + "/OBS_SISTEM_2025.jar");
+					String remoteFile2 =  ftp.printWorkingDirectory() + "/OBS_2025.exe";
+					File downloadFile2 = new File(txtdiz.getText() + "/OBS_2025.exe");
 					OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
 					InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
 					double inen= 0;
@@ -345,14 +345,14 @@ public class ANA_MENU extends JDialog {
 					ftp.enterLocalPassiveMode();
 					boolean success ;
 					double toplam = 0 ;
-					String filePath = "/OBS_SISTEM_2025/OBS_SISTEM_2025.jar";
+					String filePath = "/OBS_SISTEM_2025/OBS_2025.exe";
 					FTPFile file = ftp.mlistFile(filePath);
 					toplam = file.getSize();
 					ftp.setFileType(FTP.BINARY_FILE_TYPE);
 					lblboyut.setText(FORMATLAMA.doub_0(toplam /1024)+ " KBytes");
 
 					contentPane.setCursor(WAIT_CURSOR);
-					File downloadFile2 = new File(txtdiz.getText() + "/OBS_SISTEM_2025.jar");
+					File downloadFile2 = new File(txtdiz.getText() + "/OBS_2025.exe");
 					OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
 					InputStream inputStream = ftp.retrieveFileStream(filePath );
 					double inen= 0;

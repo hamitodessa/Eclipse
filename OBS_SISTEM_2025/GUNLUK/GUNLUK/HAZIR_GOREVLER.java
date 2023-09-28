@@ -22,6 +22,7 @@ import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -48,6 +49,8 @@ import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import java.awt.event.KeyAdapter;
 import java.awt.Font;
+import java.awt.Rectangle;
+
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
@@ -144,14 +147,15 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 				if( e.getKeyCode() ==127)
 				{
 					try {
-						grv_tek_sil();
+						Rectangle qaz =	table.getCellRect(table.getSelectedRow(), table.getSelectedColumn(),false) ;
+						popup.show(e.getComponent(), qaz.x, qaz.y);
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
 			}
 		});
-		//table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSurrendersFocusOnKeystroke(true);
 		table.addMouseListener(new MouseAdapter() {
@@ -173,8 +177,9 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 				int rowindex = table.getSelectedRow();
 				if (rowindex < 0)
 					return;
+				if (table.getSelectedColumn() < 1)
+					popup.show(e.getComponent(), 50, e.getY());
 				if (e.isPopupTrigger() && e.getComponent() instanceof JTable ) {
-				
 					popup.show(e.getComponent(), e.getX(), e.getY());
 				}
 			}
@@ -213,7 +218,6 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			{
 				gbilgi.isim = " ='" + FILTRE.cmbGrv_Isim.getSelectedItem().toString() + "'";
 			}
-
 			gbilgi.saat1 = FILTRE.comboBox_75.getSelectedItem().toString();
 			gbilgi.saat2 = FILTRE.comboBox_76.getSelectedItem().toString();
 			gbilgi.tarih1 = TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_33);
@@ -224,13 +228,10 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 				lbladet.setText("0");
 				return;
 			}
-
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			model.addColumn("");
 			table.moveColumn(table.getColumnCount()-1, 0);
-
 
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
@@ -241,19 +242,14 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-				
 					popup.show(table, 50, table.getSelectedRow() * 22 );
 				}
 			};   
-
-			//
 			ButtonColumn buttonColumn = new ButtonColumn(table, delete, 0 ,new ImageIcon(HAZIR_GOREVLER.class.getResource("/ICONLAR/sil.png")) );
-			
 			buttonColumn.setMnemonic(KeyEvent.VK_D);
 			tc.setMinWidth(50);
 			tc.setMaxWidth(50);
 			tc.setHeaderRenderer(new SOLA());
-
 
 			tc = tcm.getColumn(3);
 			tc.setHeaderRenderer(new SOLA());
@@ -328,6 +324,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		}
 		GOREV_GIRIS.txtGID.setText(String.valueOf(table.getModel().getValueAt(table.getSelectedRow(), 1).toString()));
 		GOREV_GIRIS.gOKU();
+		hisset();
 	}
 	private void grv_tek_sil() throws NumberFormatException, ClassNotFoundException, SQLException
 	{
@@ -348,7 +345,6 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			{
 				mesaj = mesaj + " Msj:" + table.getModel().getValueAt(table.getSelectedRow(), 7).toString().substring(0, 89  -(mesaj.length()) ) + "Silme" ;
 			}
-
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ(mesaj);
 			lBILGI.seteVRAK("");

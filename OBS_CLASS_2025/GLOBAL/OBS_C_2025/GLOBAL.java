@@ -316,9 +316,9 @@ public class GLOBAL {
 			prop.setProperty("STK_ENV_YAZ", "-1");
 			prop.setProperty("STK_IMA_BAS_TAR", "01.01.1900");
 			prop.setProperty("GUN_KON", "-1");
-			prop.setProperty("GUN_KON_ZAM", "1800000");
+			prop.setProperty("GUN_KON_ZAM", "60");
 			prop.setProperty("GUN_SER_KON", "-1");
-			prop.setProperty("GUN_SER_KON_ZAM", "1800000");
+			prop.setProperty("GUN_SER_KON_ZAM", "60");
 			prop.setProperty("KAM_CEK_GIR", "25");
 			prop.setProperty("KAM_CEK_CIK", "25");
 			prop.setProperty("KAM_SEN_GIR", "25");

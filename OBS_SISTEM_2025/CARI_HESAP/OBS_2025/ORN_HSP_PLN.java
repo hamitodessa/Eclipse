@@ -32,7 +32,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-@SuppressWarnings({"serial" , "static-access" })
+@SuppressWarnings({"serial"})
 public class ORN_HSP_PLN extends JInternalFrame {
 
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();

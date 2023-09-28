@@ -97,6 +97,7 @@ public class DoubleEditor extends DefaultCellEditor
 
     //Override to ensure that the value remains an Integer.
 	
+
 	public Object getCellEditorValue()
     {
         JFormattedTextField ftf = (JFormattedTextField)getComponent();
@@ -145,29 +146,27 @@ public class DoubleEditor extends DefaultCellEditor
     }
 
     protected boolean userSaysRevert() {
-         Toolkit.getDefaultToolkit().beep();
-         ftf.selectAll();
-         Object[] options = {"Duzelt",
-                                    "Geri Al"};
-        int answer = JOptionPane.showOptionDialog(
-              SwingUtilities.getWindowAncestor(ftf),
-              "Değer,bir rakkam olmalıdır "
-               + "Düzenlemeye devam edebilirsiniz "
-              + "veya son geçerli değere dön.",
-              "Geçersiz Metin Girildi",
-              JOptionPane.YES_NO_OPTION,
-              JOptionPane.ERROR_MESSAGE,
-              null,
-              options,
-              options[1]);
+    	Toolkit.getDefaultToolkit().beep();
+    	ftf.selectAll();
+    	Object[] options = {"Duzelt",
+    	"Geri Al"};
+    	int answer = JOptionPane.showOptionDialog(
+    			SwingUtilities.getWindowAncestor(ftf),
+    			"Değer,bir rakkam olmalıdır "
+    		  + "Düzenlemeye devam edebilirsiniz "
+    		  + "veya son geçerli değere dön.",
+    			"Geçersiz Metin Girildi",
+    			JOptionPane.YES_NO_OPTION,
+    			JOptionPane.ERROR_MESSAGE,
+    			null,
+    			options,
+    			options[1]);
 
-         if (answer == 1) { //Revert!
-              ftf.setValue(ftf.getValue());
-         return true;
-         }
-    return false;
+    	if (answer == 1) { //Revert!
+    		ftf.setValue(ftf.getValue());
+    		return true;
+    	}
+    	return false;
     }
-
-
 }
 

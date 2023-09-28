@@ -1480,7 +1480,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+" COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() 
 				+" GROUP BY " + qw3 + "" 
 				+" ORDER BY  " + qw3 + "";
-	System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

@@ -34,7 +34,6 @@ import OBS_C_2025.TARIH_CEVIR;
 public class KUR_GRAFIK extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	@SuppressWarnings("static-access")
 	static KUR_ACCESS k_Access = new KUR_ACCESS(OBS_SIS_2025_ANA_CLASS._IKur , OBS_SIS_2025_ANA_CLASS._IKur_Loger);
 
 	private static JTable table;

@@ -782,7 +782,7 @@ public class LOGIN extends JDialog {
 		int say = 9;
 		
 		bAGLAN.cONNECT(txtUser.getText());
-		bAGLAN_LOG.cONNECT();
+		//bAGLAN_LOG.cONNECT();
 		// Cari
 		cONN_AKTAR( BAGLAN.cariDizin.hAN_SQL );
 		String hangi_sql =  BAGLAN.cariDizin.hAN_SQL;
@@ -824,7 +824,7 @@ public class LOGIN extends JDialog {
 		oac._IKeresteCon = oac._IConn ;
 		oac._IKereste = hangi_sql.equals("MS SQL") ? new KERESTE_MSSQL() : new KERESTE_MYSQL();
 		
-		lOG_AKTAR();
+		bAGLAN_LOG.cONNECT(); // LOG Bilgileri AKTAR
 		oac.uSER_ISL.mail_bak(); // MAIL AYARLARI OKUMA
 		LOG_MAIL_OKU.mail_oku(); // LOGLAMA MAILI OKUMA
 		progressBar.setMaximum(9);
@@ -895,19 +895,27 @@ public class LOGIN extends JDialog {
 				}
 			}
 			else
+			{
 				OBS_SIS_2025_ANA_CLASS.CARI_CONN = false;
+			}
 		}
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
+			{
 				CAR_DOS_VAR = false;
+			}
 			else
-				lOGG_AKTAR("Cari Hesap",BAGLAN.cariDizin.hAN_SQL,BAGLAN.cariDizin.lOG,BAGLAN.cariDizin.lOGLAMA_YERI);
+			{
+			lOGG_AKTAR("Cari Hesap",BAGLAN.cariDizin.hAN_SQL,BAGLAN.cariDizin.lOG,BAGLAN.cariDizin.lOGLAMA_YERI);
 			CAR_DOS_VAR = true;
 			OBS_SIS_2025_ANA_CLASS.CARI_CONN = true;
+			}
 		}
 		else
+		{
 			OBS_SIS_2025_ANA_CLASS.CARI_CONN = false;
+		}
 	}
 	void kur_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
@@ -937,22 +945,31 @@ public class LOGIN extends JDialog {
 				{
 					lOGG_AKTAR("Kur",BAGLAN.kurDizin.hAN_SQL,BAGLAN.kurDizin.lOG,BAGLAN.kurDizin.lOGLAMA_YERI);
 					KUR_DOS_VAR = true;
-					OBS_SIS_2025_ANA_CLASS.KUR_CONN = true;}
+					OBS_SIS_2025_ANA_CLASS.KUR_CONN = true;
+				}
 			}
 			else
+			{
 				OBS_SIS_2025_ANA_CLASS.KUR_CONN = false;
+			}
 		}
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
+			{
 				KUR_DOS_VAR = false;
+			}
 			else
+			{
 				lOGG_AKTAR("Kur",BAGLAN.kurDizin.hAN_SQL,BAGLAN.kurDizin.lOG,BAGLAN.kurDizin.lOGLAMA_YERI);
-			KUR_DOS_VAR = true;
-			OBS_SIS_2025_ANA_CLASS.KUR_CONN = true;
+				KUR_DOS_VAR = true;
+				OBS_SIS_2025_ANA_CLASS.KUR_CONN = true;
+			}
 		}
 		else
+		{
 			OBS_SIS_2025_ANA_CLASS.KUR_CONN = false;
+		}
 	}
 	void sms_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
@@ -982,22 +999,31 @@ public class LOGIN extends JDialog {
 				{
 					lOGG_AKTAR("Sms",BAGLAN.smsDizin.hAN_SQL,BAGLAN.smsDizin.lOG,BAGLAN.smsDizin.lOGLAMA_YERI);
 					SMS_DOS_VAR = true;
-					OBS_SIS_2025_ANA_CLASS.SMS_CONN = true;}
+					OBS_SIS_2025_ANA_CLASS.SMS_CONN = true;
+				}
 			}
 			else
+			{
 				OBS_SIS_2025_ANA_CLASS.SMS_CONN = false;
+			}
 		}
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
+			{
 				SMS_DOS_VAR = false;
+			}
 			else
+			{
 				lOGG_AKTAR("Sms",BAGLAN.smsDizin.hAN_SQL,BAGLAN.smsDizin.lOG,BAGLAN.smsDizin.lOGLAMA_YERI);
-			SMS_DOS_VAR = true;
-			OBS_SIS_2025_ANA_CLASS.SMS_CONN = true;
+				SMS_DOS_VAR = true;
+				OBS_SIS_2025_ANA_CLASS.SMS_CONN = true;
+			}
 		}
 		else
+		{
 			OBS_SIS_2025_ANA_CLASS.SMS_CONN = false;
+		}
 	}
 	void adr_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
@@ -1027,7 +1053,8 @@ public class LOGIN extends JDialog {
 				{
 					lOGG_AKTAR("Adres",BAGLAN.adrDizin.hAN_SQL,BAGLAN.adrDizin.lOG,BAGLAN.adrDizin.lOGLAMA_YERI);
 					ADR_DOS_VAR = true;
-					OBS_SIS_2025_ANA_CLASS.ADR_CONN = true;}
+					OBS_SIS_2025_ANA_CLASS.ADR_CONN = true;
+				}
 			}
 			else
 				OBS_SIS_2025_ANA_CLASS.ADR_CONN = false;
@@ -1035,11 +1062,15 @@ public class LOGIN extends JDialog {
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
+			{
 				ADR_DOS_VAR = false;
+			}
 			else
-				lOGG_AKTAR("Adres",BAGLAN.adrDizin.hAN_SQL,BAGLAN.adrDizin.lOG,BAGLAN.adrDizin.lOGLAMA_YERI);
+			{
+			lOGG_AKTAR("Adres",BAGLAN.adrDizin.hAN_SQL,BAGLAN.adrDizin.lOG,BAGLAN.adrDizin.lOGLAMA_YERI);
 			ADR_DOS_VAR = true;
 			OBS_SIS_2025_ANA_CLASS.ADR_CONN = true;
+			}
 		}
 		else
 			OBS_SIS_2025_ANA_CLASS.ADR_CONN = false;
@@ -1072,7 +1103,8 @@ public class LOGIN extends JDialog {
 				{
 					lOGG_AKTAR("Fatura",BAGLAN.fatDizin.hAN_SQL,BAGLAN.fatDizin.lOG,BAGLAN.fatDizin.lOGLAMA_YERI);
 					FAT_DOS_VAR = true;
-					OBS_SIS_2025_ANA_CLASS.FAT_CONN = true;}
+					OBS_SIS_2025_ANA_CLASS.FAT_CONN = true;
+				}
 			}
 			else
 				OBS_SIS_2025_ANA_CLASS.FAT_CONN = false;
@@ -1080,14 +1112,20 @@ public class LOGIN extends JDialog {
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
+			{
 				FAT_DOS_VAR = false;
+			}
 			else
-				lOGG_AKTAR("Fatura",BAGLAN.fatDizin.hAN_SQL,BAGLAN.fatDizin.lOG,BAGLAN.fatDizin.lOGLAMA_YERI);
+			{
+			lOGG_AKTAR("Fatura",BAGLAN.fatDizin.hAN_SQL,BAGLAN.fatDizin.lOG,BAGLAN.fatDizin.lOGLAMA_YERI);
 			FAT_DOS_VAR = true;
 			OBS_SIS_2025_ANA_CLASS.FAT_CONN = true;
+			}
 		}
 		else
+		{
 			OBS_SIS_2025_ANA_CLASS.FAT_CONN = false;
+		}
 	}
 	void kam_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
@@ -1117,22 +1155,31 @@ public class LOGIN extends JDialog {
 				{
 					lOGG_AKTAR("Kambiyo",BAGLAN.kamDizin.hAN_SQL,BAGLAN.kamDizin.lOG,BAGLAN.kamDizin.lOGLAMA_YERI);
 					KAM_DOS_VAR = true;
-					OBS_SIS_2025_ANA_CLASS.KAM_CONN = true;}
+					OBS_SIS_2025_ANA_CLASS.KAM_CONN = true;
+				}
 			}
 			else
+			{
 				OBS_SIS_2025_ANA_CLASS.KAM_CONN = false;
+			}
 		}
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
+			{
 				KAM_DOS_VAR = false;
+			}
 			else
-				lOGG_AKTAR("Kambiyo",BAGLAN.kamDizin.hAN_SQL,BAGLAN.kamDizin.lOG,BAGLAN.kamDizin.lOGLAMA_YERI);
+			{
+			lOGG_AKTAR("Kambiyo",BAGLAN.kamDizin.hAN_SQL,BAGLAN.kamDizin.lOG,BAGLAN.kamDizin.lOGLAMA_YERI);
 			KAM_DOS_VAR = true;
 			OBS_SIS_2025_ANA_CLASS.KAM_CONN = true;
+			}
 		}
 		else
+		{
 			OBS_SIS_2025_ANA_CLASS.KAM_CONN = false;
+		}
 	}
 	void gun_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
@@ -1162,22 +1209,29 @@ public class LOGIN extends JDialog {
 				{
 					lOGG_AKTAR("Gunluk",BAGLAN.gunDizin.hAN_SQL,BAGLAN.gunDizin.lOG,BAGLAN.gunDizin.lOGLAMA_YERI);
 					GUN_DOS_VAR = true;
-					OBS_SIS_2025_ANA_CLASS.GUN_CONN = true;}
+					OBS_SIS_2025_ANA_CLASS.GUN_CONN = true;
+				}
 			}
 			else
+			{
 				OBS_SIS_2025_ANA_CLASS.GUN_CONN = false;
+			}
 		}
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
 				GUN_DOS_VAR = false;
 			else
-				lOGG_AKTAR("Gunluk",BAGLAN.gunDizin.hAN_SQL,BAGLAN.gunDizin.lOG,BAGLAN.gunDizin.lOGLAMA_YERI);
+			{
+			lOGG_AKTAR("Gunluk",BAGLAN.gunDizin.hAN_SQL,BAGLAN.gunDizin.lOG,BAGLAN.gunDizin.lOGLAMA_YERI);
 			GUN_DOS_VAR = true;
 			OBS_SIS_2025_ANA_CLASS.GUN_CONN = true;
+			}
 		}
 		else
+		{
 			OBS_SIS_2025_ANA_CLASS.GUN_CONN = false;
+		}
 	}
 	void ker_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
@@ -1211,19 +1265,27 @@ public class LOGIN extends JDialog {
 				}
 			}
 			else
+			{
 				OBS_SIS_2025_ANA_CLASS.KER_CONN = false;
+			}
 		}
 		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
 		{
 			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
+			{
 				KER_DOS_VAR = false;
+			}
 			else
-				lOGG_AKTAR("Kereste",BAGLAN.kerDizin.hAN_SQL,BAGLAN.kerDizin.lOG,BAGLAN.kerDizin.lOGLAMA_YERI);
+			{
+			lOGG_AKTAR("Kereste",BAGLAN.kerDizin.hAN_SQL,BAGLAN.kerDizin.lOG,BAGLAN.kerDizin.lOGLAMA_YERI);
 			KER_DOS_VAR = true;
 			OBS_SIS_2025_ANA_CLASS.KER_CONN = true;
+			}
 		}
 		else
+		{
 			OBS_SIS_2025_ANA_CLASS.KER_CONN = false;
+		}
 	}
 
 	void Lgn_Progres_Bar(int max, int deger) throws InterruptedException
@@ -1349,18 +1411,13 @@ public class LOGIN extends JDialog {
 	{
 		oac._IConn = dIZIN.equals("MS SQL") ? new OBS_ORTAK_MSSQL() : new OBS_ORTAK_MYSQL();
 	}
-	private void lOG_AKTAR() 
-	{
-		BAGLAN_LOG _blog = new BAGLAN_LOG();
-		_blog.cONNECT();
-	}
 	private void lOGG_AKTAR(String mODUL, String hangiSQL , Boolean log , String hANGI_LOG) throws ClassNotFoundException, SQLException
 	{
 		String[] token = hANGI_LOG.split(",");
-		vt =  (token[0].equals("true") ? true:false);
+		vt = (token[0].equals("true") ? true:false);
 		ds = (token[1].equals("true") ? true:false);
 		tx = (token[2].equals("true") ? true:false);
-		em =  (token[3].equals("true") ? true:false);
+		em = (token[3].equals("true") ? true:false);
 		if (log == false)
 		{
 			ILOGGER[] ilogg = {};

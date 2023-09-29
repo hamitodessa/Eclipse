@@ -24,8 +24,8 @@ public class BILGI_OKU_LOG {
 				dIZIN.kULLANICI = oDIZIN.kULLANICI;
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
 				dIZIN.cONN_STR =  "localhost/" + dOSYA_BASLANGIC  + oDIZIN.kOD + "_log";//VERITABANI
-				dIZIN.mODUL =    dOSYA_BASLANGIC  + oDIZIN.kOD + "_mYSQL" + ".DB" ;//SQLITE
-				dIZIN.mODULADI =  dOSYA_BASLANGIC  + oDIZIN.kOD + "_mYSQL"  ;//TEXT DOSYA
+				dIZIN.mODUL =     (dOSYA_BASLANGIC  + oDIZIN.kOD).toLowerCase() + "_mYSQL" + ".DB" ;//SQLITE
+				dIZIN.mODULADI =  (dOSYA_BASLANGIC  + oDIZIN.kOD).toLowerCase() + "_mYSQL"  ;//TEXT DOSYA
 			}
 		}
 		else
@@ -43,8 +43,8 @@ public class BILGI_OKU_LOG {
 				dIZIN.kULLANICI = oDIZIN.kULLANICI;
 				dIZIN.sIFRESI = oDIZIN.sIFRESI;
 				dIZIN.cONN_STR =  oDIZIN.sERVER + "/" +  dOSYA_BASLANGIC + oDIZIN.kOD + "_log";//VERITABANI
-				dIZIN.mODUL =   GLOBAL.char_degis( oDIZIN.sERVER) +  dOSYA_BASLANGIC  + oDIZIN.kOD + "_mYSQL" + ".DB" ;//SQLITE
-				dIZIN.mODULADI =   GLOBAL.char_degis( oDIZIN.sERVER) + dOSYA_BASLANGIC  + oDIZIN.kOD + "_mYSQL"  ;//TEXT DOSYA
+				dIZIN.mODUL =      GLOBAL.char_degis( oDIZIN.sERVER) + (dOSYA_BASLANGIC  + oDIZIN.kOD).toLowerCase() + "_mYSQL" + ".DB" ;//SQLITE
+				dIZIN.mODULADI =   GLOBAL.char_degis( oDIZIN.sERVER) + (dOSYA_BASLANGIC  + oDIZIN.kOD).toLowerCase() + "_mYSQL"  ;//TEXT DOSYA
 			}
 		}
 	}

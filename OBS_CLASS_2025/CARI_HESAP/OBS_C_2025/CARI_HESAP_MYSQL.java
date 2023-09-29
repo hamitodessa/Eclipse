@@ -60,7 +60,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		sql = "CREATE DATABASE " + VERITABANI + "_log" ;
 		stmt = con.createStatement();  
 		stmt.execute(sql);
-		cumle = "jdbc:mysql://localhost/" +VERITABANI + "_log" ;
+		cumle = "jdbc:mysql://localhost/" + VERITABANI + "_log" ;
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table_log();
 		//  VERITABANI DOSYASI ILK ACILIS
@@ -80,10 +80,9 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		//  TEXT DOSYASI ILK ACILIS
 		ILOGER_KAYIT  tEXLOG = new TXT_LOG();
 		lBILGI.setmESAJ("Dosya Olusturuldu");
-		
-		 tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
-		 lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
-		 tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
+		lBILGI.setmESAJ("Firma Adi:" + sbilgi.getFir_adi());
+		tEXLOG.Logla(lBILGI, BAGLAN_LOG.cariLogDizin);
 		//
 		stmt.close();
 		con.close();
@@ -195,6 +194,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		sql = "CREATE TABLE `IZAHAT`(	`EVRAK` int NOT NULL,	`IZAHAT` nvarchar(100) NULL,"
 				+ "  PRIMARY KEY (`EVRAK`),"
 				+ "  UNIQUE INDEX `EVRAK_UNIQUE` (`EVRAK` ASC) VISIBLE,"
+				+ "  FULLTEXT IZ_FULL (`IZAHAT`) ,"
 				+ "  INDEX `IX_IZAHAT` ( `EVRAK` ASC) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);

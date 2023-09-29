@@ -219,6 +219,9 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				+ " IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+		sql = "CREATE FULLTEXT CATALOG [IZAHAT] WITH ACCENT_SENSITIVITY = ON AS DEFAULT";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE EVRAK_NO(EID int identity(1,1) CONSTRAINT PKeyEID PRIMARY KEY,EVRAK integer )";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);

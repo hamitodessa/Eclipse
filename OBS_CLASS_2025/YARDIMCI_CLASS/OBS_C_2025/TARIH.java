@@ -30,14 +30,13 @@ public class TARIH extends DefaultTableCellRenderer {
 					SimpleDateFormat DateFor = new SimpleDateFormat("dd.MM.yyyy");
 					value = DateFor.format(date1);
 				}
-				
 			} catch (Exception e) 
 			{
-			
 				e.printStackTrace();			
 			}  
 		}
 		setHorizontalAlignment(JLabel.LEFT);
+		setVerticalAlignment(JLabel.BOTTOM);
 		return super.getTableCellRendererComponent(table, value, isSelected,hasFocus, row, column);
 	}
 }

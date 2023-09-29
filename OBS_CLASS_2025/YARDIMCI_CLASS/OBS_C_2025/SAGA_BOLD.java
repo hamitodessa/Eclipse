@@ -6,17 +6,17 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.TableCellRenderer;
+import javax.swing.table.DefaultTableCellRenderer;
 
-public class SAGA_BOLD extends JLabel implements TableCellRenderer {
+public class SAGA_BOLD extends DefaultTableCellRenderer {
 	  /**
 * 
 */
 private static final long serialVersionUID = 1L;
-
-
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
 	      boolean hasFocus, int rowIndex, int vColIndex) {
+		 super.getTableCellRendererComponent(table, value, isSelected, hasFocus, rowIndex, vColIndex);
+		 
 		setText(value.toString());
 	    setHorizontalAlignment(JLabel.RIGHT);
 	    setVerticalAlignment(JLabel.BOTTOM);

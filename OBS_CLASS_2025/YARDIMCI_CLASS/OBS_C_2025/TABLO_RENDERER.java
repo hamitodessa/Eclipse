@@ -51,8 +51,7 @@ public class TABLO_RENDERER extends DefaultTableCellRenderer {
 		 {
 	    	 value = formatter4.format((Number)value);
 	      }
-	        super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
-	                row, column);
+	        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 	        if (bold)
 	    	  {
 	        	setFont (new Font(table.getFont().getFontName(),1 ,12));

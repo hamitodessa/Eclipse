@@ -48,6 +48,7 @@ import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KER_RAPOR_BILGI;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.lOG_BILGI;
@@ -348,22 +349,27 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 
 			tc = tcm.getColumn(1);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(2);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(3);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(120);
 
 			tc = tcm.getColumn(4);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(5);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(6);
@@ -388,6 +394,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 
 			tc = tcm.getColumn(10);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(11);
@@ -407,10 +414,12 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 
 			tc = tcm.getColumn(14);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(15);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(16);
@@ -425,38 +434,47 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 
 			tc = tcm.getColumn(18);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(19);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 			
 			tc = tcm.getColumn(20);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(21);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(22);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(23);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(24);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(25);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(26);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(27);
@@ -471,6 +489,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 
 			tc = tcm.getColumn(29);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(30);
@@ -490,10 +509,12 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 
 			tc = tcm.getColumn(33);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(34);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(35);
@@ -508,30 +529,37 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 
 			tc = tcm.getColumn(37);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(38);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(39);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(40);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(41);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(42);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			tc = tcm.getColumn(43);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(90);
 
 			table.removeColumn(table.getColumnModel().getColumn(44));

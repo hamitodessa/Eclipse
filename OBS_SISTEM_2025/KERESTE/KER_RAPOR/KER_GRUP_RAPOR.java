@@ -67,6 +67,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
@@ -573,6 +574,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(120);
 				tc.setMaxWidth(120);
 
@@ -651,6 +653,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(120);
 				tc.setMaxWidth(120);
 
@@ -733,6 +736,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(30);
 				tc.setMaxWidth(30);
 				kusurr();
@@ -818,11 +822,13 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
@@ -916,16 +922,19 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
@@ -1021,21 +1030,25 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(75);
 				tc.setMaxWidth(75);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
 				tc = tcm.getColumn(3);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
@@ -1112,11 +1125,13 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(80);
 				tc.setMaxWidth(80);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(80);
 				tc.setMaxWidth(80);
 
@@ -1212,21 +1227,25 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(75);
 				tc.setMaxWidth(75);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
 				tc = tcm.getColumn(3);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
@@ -1318,16 +1337,19 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
@@ -1418,6 +1440,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(120);
 
 
@@ -1509,11 +1532,13 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(120);
 				tc.setMaxWidth(120);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(220);
 				tc.setMaxWidth(220);
 
@@ -1605,16 +1630,19 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(120);
 				tc.setMaxWidth(120);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(220);
 				tc.setMaxWidth(220);
 
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 				tc.setMaxWidth(50);
 
@@ -1701,11 +1729,13 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
@@ -1789,11 +1819,13 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(110);
 				tc.setMaxWidth(110);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(40);
 				tc.setMaxWidth(40);
 
@@ -1872,21 +1904,25 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(100);
 				tc.setMaxWidth(100);
 				
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(100);
 				tc.setMaxWidth(100);
 				
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(75);
 				tc.setMaxWidth(75);
 				
 				tc = tcm.getColumn(3);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(75);
 				tc.setMaxWidth(75);
 

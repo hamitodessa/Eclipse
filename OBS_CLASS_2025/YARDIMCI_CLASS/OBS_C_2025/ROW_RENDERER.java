@@ -24,6 +24,7 @@ public class ROW_RENDERER extends DefaultTableCellRenderer {
 	      cell.setBackground(backgroundColor);
 	      cell.setForeground(foregroundColor);
 	      setHorizontalAlignment( JLabel.CENTER );
+	      setVerticalAlignment(JLabel.BOTTOM);
 	      Font fnt = new Font(table.getFont().getFontName(), 1 ,12);
 			cell.setFont(fnt);
 	      }
@@ -32,6 +33,7 @@ public class ROW_RENDERER extends DefaultTableCellRenderer {
 	    	  cell.setBackground(new Color(188, 225, 244));
 	          cell.setForeground(new Color(29, 125, 175));
 	          setHorizontalAlignment( JLabel.CENTER );
+	          setVerticalAlignment(JLabel.BOTTOM);
 	          Font fnt = new Font(table.getFont().getFontName(), 1 ,12);
 				cell.setFont(fnt);
 	      }

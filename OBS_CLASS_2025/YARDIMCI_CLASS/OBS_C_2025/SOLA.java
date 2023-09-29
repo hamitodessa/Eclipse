@@ -13,11 +13,11 @@ import javax.swing.table.TableCellRenderer;
 @SuppressWarnings("serial")
 public class SOLA extends JLabel implements TableCellRenderer {
 	  	  public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-	  	      boolean hasFocus, int rowIndex, int vColIndex) {
+	  	      boolean hasFocus, int rowIndex, int vColIndex) 
+	  	  {
 	  		Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
 	  		setText(value.toString());
 	  	    setToolTipText((String) value);
-	  	    setResizable(false);
 	  	    setHorizontalAlignment(JLabel.LEFT);
 	  	    setVerticalAlignment(JLabel.BOTTOM);
 	  	    setForeground(new Color(0, 0, 128));
@@ -25,11 +25,4 @@ public class SOLA extends JLabel implements TableCellRenderer {
 	        setFont(new Font(table.getFont().getFontName(), Font.BOLD, 12));
 	  	    return this;
 	  	  }
-
-		private void setResizable(boolean b) {
-			
-			
-		}
-	   
-
 }

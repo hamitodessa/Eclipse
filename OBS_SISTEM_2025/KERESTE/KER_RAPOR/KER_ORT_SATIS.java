@@ -60,6 +60,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
@@ -193,10 +194,12 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				{
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(90);
 
 					tc = tcm.getColumn(1);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(250);
 					tc.setMaxWidth(250);
 					sut = 2 ;
@@ -206,10 +209,12 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				{
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(90);
 
 					tc = tcm.getColumn(1);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(50);
 					tc.setMaxWidth(50);
 					sut = 2 ;
@@ -219,10 +224,12 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				{
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(90);
 
 					tc = tcm.getColumn(1);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(50);
 					tc.setMaxWidth(50);
 					sut = 2 ;
@@ -232,10 +239,12 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				{
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(90);
 
 					tc = tcm.getColumn(1);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(50);
 					tc.setMaxWidth(50);
 					sut = 2 ;
@@ -245,10 +254,12 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				{
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(100);
 
 					tc = tcm.getColumn(1);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(250);
 					tc.setMaxWidth(250);
 					sut = 2 ;
@@ -258,6 +269,7 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				{
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(60);
 					sut = 1 ;
 				}
@@ -265,10 +277,12 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				{
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(60);
 
 					tc = tcm.getColumn(1);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(50);
 
 					sut = 2 ;
@@ -277,10 +291,12 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				{
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(175);
 
 					tc = tcm.getColumn(1);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(175);
 
 					sut = 2 ;
@@ -289,10 +305,12 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				{
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(100);
 
 					tc = tcm.getColumn(1);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(200);
 
 					sut = 2 ;
@@ -301,14 +319,17 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				{
 					tc = tcm.getColumn(0);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(100);
 
 					tc = tcm.getColumn(1);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(175);
 
 					tc = tcm.getColumn(2);
 					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(175);
 
 					sut = 3 ;

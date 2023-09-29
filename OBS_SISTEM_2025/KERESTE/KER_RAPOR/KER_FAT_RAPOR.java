@@ -62,6 +62,7 @@ import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KER_RAPOR_BILGI;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
@@ -277,10 +278,12 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(100);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(70);
 
 				tc = tcm.getColumn(2);
@@ -290,14 +293,17 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 
 				tc = tcm.getColumn(3);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(200);
 
 				tc = tcm.getColumn(4);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(100);
 
 				tc = tcm.getColumn(5);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(6);
@@ -658,10 +664,12 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(100);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(60);
 
 				tc = tcm.getColumn(2);
@@ -671,10 +679,12 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 
 				tc = tcm.getColumn(3);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(300);
 
 				tc = tcm.getColumn(4);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(100);
 
 				tc = tcm.getColumn(5);
@@ -976,18 +986,22 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(80);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(80);
 
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(120);
 
 				tc = tcm.getColumn(3);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(4);
@@ -1007,6 +1021,7 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 
 				tc = tcm.getColumn(7);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(8);
@@ -1026,10 +1041,12 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 
 				tc = tcm.getColumn(11);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(12);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(13);
@@ -1044,34 +1061,42 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 
 				tc = tcm.getColumn(15);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(16);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(17);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(18);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(19);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(20);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(21);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 
 				tc = tcm.getColumn(22);
 				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(50);
 
 				DefaultTableModel mdl = (DefaultTableModel) table_1.getModel();

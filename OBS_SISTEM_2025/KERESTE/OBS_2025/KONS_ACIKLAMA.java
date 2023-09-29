@@ -27,6 +27,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
 
@@ -134,12 +135,13 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		TableColumn tc;
 		tc = tcm.getColumn(0);
 		tc.setHeaderRenderer(new SOLA());
+		tc.setCellRenderer(new SOLA_ORTA());
 		tc.setMinWidth(100);
 		tc.setMaxWidth(100);
 		
 		tc = tcm.getColumn(1);
 		tc.setHeaderRenderer(new SOLA());
-		//tc.setMinWidth(275);
+		tc.setCellRenderer(new SOLA_ORTA());
 
 
 		th.repaint();

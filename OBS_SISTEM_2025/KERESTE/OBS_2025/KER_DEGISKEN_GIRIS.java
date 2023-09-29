@@ -36,6 +36,7 @@ import javax.swing.table.TableStringConverter;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
 import OBS_C_2025.KERESTE_ACCESS;
@@ -282,6 +283,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 			{
 			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
 			textField_1.setText(table.getModel().getValueAt(0, 1).toString());

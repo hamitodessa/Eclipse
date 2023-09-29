@@ -66,13 +66,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM sys.databases where name = '" + sbilgi.getDb() + "'");
 		ResultSet rs = stmt.executeQuery();
-		if (!rs.isBeforeFirst() ) {  
-			result = false;
-		}
-		else
-		{
-			result = true;
-		}
+		result = !rs.isBeforeFirst() ? false :true ;
 		stmt.close();
 		conn.close();
 		return result;
@@ -86,13 +80,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM sys.databases where name = '" + sbilgi.getDb() + "'");
 		ResultSet rs = stmt.executeQuery();
-		if (!rs.isBeforeFirst() ) {  
-			result = false;
-		}
-		else
-		{
-			result = true;
-		}
+		result = !rs.isBeforeFirst() ? false :true ;
 		stmt.close();
 		conn.close();
 		return result;

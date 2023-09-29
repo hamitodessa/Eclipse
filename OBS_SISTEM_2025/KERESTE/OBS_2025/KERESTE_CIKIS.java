@@ -1067,23 +1067,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		col.setMinWidth(140);
 		col.setHeaderRenderer(new SOLA());
 		col.setCellEditor(editor);
-		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
-		DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
-			//Font font = new Font("Arial", 1, 12);
-			@Override
-			public Component getTableCellRendererComponent(JTable table,
-					Object value, boolean isSelected, boolean hasFocus,
-					int row, int column) {
-				super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
-						row, column);
-				setFont(new Font(table.getFont().getFontName(),1 ,12));
-				setForeground(new Color(0, 0, 128));
-				setVerticalAlignment(JLabel.BOTTOM);
-				return this;
-			}
-		};
-		col.setCellRenderer(r);
-
+		
+		col.setCellRenderer(new U_KODU_RENDERER());
 
 		
 		col = table.getColumnModel().getColumn(1);

@@ -1140,7 +1140,7 @@ public class KER_GIRIS extends JInternalFrame {
 		
 		//******************************************************************KODU *********************************
 		JFormattedTextField ftext = new JFormattedTextField();
-		ftext.setFont(new Font(table.getFont().getFontName(),1 ,12));
+		ftext.setFont(new Font(table.getFont().getFontName(),1 ,table.getFont().getSize()));
 		ftext.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 			}
@@ -1184,6 +1184,7 @@ public class KER_GIRIS extends JInternalFrame {
 		col.setCellRenderer(new U_KODU_RENDERER());
 		col.setMinWidth(120);
 		col.setCellEditor(new DefaultCellEditor(ftext));
+		
 		col.setHeaderRenderer(new SOLA());
 		
 		JTextField pak_noField = new JTextField();

@@ -21,7 +21,7 @@ private static final long serialVersionUID = 1L;
 	    setHorizontalAlignment(JLabel.RIGHT);
 	    setVerticalAlignment(JLabel.BOTTOM);
 	    setForeground(new Color(139, 0, 0));
-	    setFont(new Font(table.getFont().getFontName(), Font.BOLD, 12));
+	    setFont(new Font(table.getFont().getFontName(), Font.BOLD, table.getFont().getSize()));
 	    return this;
 	  }
 

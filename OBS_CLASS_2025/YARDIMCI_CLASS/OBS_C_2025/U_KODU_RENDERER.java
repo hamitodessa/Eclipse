@@ -1,5 +1,6 @@
 package OBS_C_2025;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 
@@ -17,7 +18,8 @@ public class U_KODU_RENDERER extends DefaultTableCellRenderer
   	    setToolTipText((String) value);
   	    setHorizontalAlignment(JLabel.LEFT);
   	    setVerticalAlignment(JLabel.BOTTOM);
-        setFont(new Font(table.getFont().getFontName(), Font.BOLD, 12));
+  	    setForeground(new Color(0, 0, 128));
+        setFont(new Font(table.getFont().getFontName(), Font.BOLD, table.getFont().getSize()));
 		return cell;
 	}
 }

@@ -1380,7 +1380,18 @@ public class FATURA extends JInternalFrame {
 				satir_ilave();
 			}
 			txtdoviz.setText(GLOBAL.setting_oku("PRG_PARA").toString());
+			
+			String[] parts;
+			Font bigFont;
+			deger = GLOBAL.setting_oku("STK_FAT_GIRIS").toString();
+			deger = deger.substring(1, deger.length()-1);
+			parts = deger.split(",");
+			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			table.setFont(bigFont);
 
+		} catch (Exception ex) {
+
+		}
 			JButton button = new JButton("");
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -1407,9 +1418,7 @@ public class FATURA extends JInternalFrame {
 			button_1.setBounds(209, 7, 26, 23);
 			panel_2.add(button_1);
 
-		} catch (Exception ex) {
-
-		}
+		
 		//***********
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
 		{		@SuppressWarnings("unused")

@@ -1181,45 +1181,40 @@ public class CAL_DIZIN extends JDialog {
 	private void grid_doldur() throws ClassNotFoundException, SQLException
 	{
 		kutu_temizle();
-		if ( activ_sayfa == 0)
+		switch(activ_sayfa) 
 		{
+		case 0:
 			GRID_TEMIZLE.grid_temizle(tblCari);
 			grid_ortak_doldur(tblCari, "Cari Hesap");
-		}
-		else if ( activ_sayfa == 1)
-		{
+			break;
+		case 1:
 			GRID_TEMIZLE.grid_temizle(tblFatura);
 			grid_ortak_doldur(tblFatura, "Fatura");
-		}
-		else if ( activ_sayfa == 2)
-		{
+			break;
+		case 2:
 			GRID_TEMIZLE.grid_temizle(tblAdres);
 			grid_ortak_doldur(tblAdres, "Adres");
-		}
-		else if ( activ_sayfa == 3)
-		{
+			break;
+		case 3:
 			GRID_TEMIZLE.grid_temizle(tblKur);
 			grid_ortak_doldur(tblKur, "Kur");
-		}
-		else if ( activ_sayfa == 4)
-		{
+			break;
+		case 4:
 			GRID_TEMIZLE.grid_temizle(tblKambiyo);
 			grid_ortak_doldur(tblKambiyo, "Kambiyo");
-		}
-		else if ( activ_sayfa == 5)
-		{
+			break;
+		case 5:
 			GRID_TEMIZLE.grid_temizle(tblSms);
 			grid_ortak_doldur(tblSms, "Sms");
-		}
-		else if ( activ_sayfa == 6)
-		{
+			break;
+		case 6:
 			GRID_TEMIZLE.grid_temizle(tblGunluk);
 			grid_ortak_doldur(tblGunluk, "Gunluk");
-		}
-		else if ( activ_sayfa == 7)
-		{
+			break;
+		case 7:
 			GRID_TEMIZLE.grid_temizle(tblKereste);
 			grid_ortak_doldur(tblKereste, "Kereste");
+			break;
 		}
 	}
 	private void grid_ortak_doldur( JTable grd,String prg) throws ClassNotFoundException, SQLException 
@@ -1454,48 +1449,48 @@ public class CAL_DIZIN extends JDialog {
 		CONNECT s_CONN = new CONNECT(oac._IConn);
 		String program = "";
 		String modul = "";
-		if (activ_sayfa == 0)
+		switch(activ_sayfa) 
+		{
+		case 0:
 			modul = "Cari Hesap";
-		else if (activ_sayfa == 1)
-			modul = "Fatura";
-		else if (activ_sayfa == 2)
-			modul = "Adres";
-		else if (activ_sayfa == 3)
-			modul = "Kur";
-		else if (activ_sayfa == 4)
-			modul = "Kambiyo";
-		else if (activ_sayfa == 5)
-			modul = "Sms";
-		else if (activ_sayfa == 6)
-			modul = "Gunluk";
-		else if (activ_sayfa == 7)
-			modul = "Kereste";
-
-		if (activ_sayfa == 0)
 			program = "OK_Car" + txtKodu.getText();
-		else if (activ_sayfa == 1)
+			break;
+		case 1:
+			modul = "Fatura";
 			program = "OK_Fat" + txtKodu.getText();
-		else if (activ_sayfa == 2)
+			break;
+		case 2:
+			modul = "Adres";
 			program = "OK_Adr" + txtKodu.getText();
-		else if (activ_sayfa == 3)
+			break;
+		case 3:
+			modul = "Kur";
 			program = "OK_Kur" + txtKodu.getText();
-		else if (activ_sayfa == 4)
+			break;
+		case 4:
+			modul = "Kambiyo";
 			program = "OK_Kam" + txtKodu.getText();
-		else if (activ_sayfa == 5)
+			break;
+		case 5:
+			modul = "Sms";
 			program = "OK_Sms" + txtKodu.getText();
-		else if (activ_sayfa == 6)
+			break;
+		case 6:
+			modul = "Gunluk";
 			program = "OK_Gun" + txtKodu.getText();
-		else if (activ_sayfa == 7)
+			break;
+		case 7:
+			modul = "Kereste";
 			program = "OK_Ker" + txtKodu.getText();
+			break;
+		}
 		if (chckbxL.isSelected())
 		{
-			/////////////////////LOCAL DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-			lokal_dosya(s_CONN,program,modul);
+			lokal_dosya(s_CONN,program,modul);//LOCAL DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		}
 		else  // Server
 		{
-			////////////////////SERVER DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-			server_dosya(s_CONN,program,modul);
+			server_dosya(s_CONN,program,modul);//SERVER DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		}
 	}
 	private void lokal_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
@@ -1527,22 +1522,33 @@ public class CAL_DIZIN extends JDialog {
 			}
 			mdb_yaz();
 			grid_doldur();
-			if (activ_sayfa == 0)
+			switch(activ_sayfa) 
+			{
+			case 0:
 				doldur_kutu(tblCari, 0);
-			else if (activ_sayfa == 1)
+				break;
+			case 1:
 				doldur_kutu(tblFatura, 0);
-			else if (activ_sayfa == 2)
+				break;
+			case 2:
 				doldur_kutu(tblAdres, 0);
-			else if (activ_sayfa == 3)
+				break;
+			case 3:
 				doldur_kutu(tblKur, 0);
-			else if (activ_sayfa == 4)
+				break;
+			case 4:
 				doldur_kutu(tblKambiyo, 0);
-			else if (activ_sayfa == 5)
+				break;
+			case 5:
 				doldur_kutu(tblSms, 0);
-			else if (activ_sayfa == 6)
+				break;
+			case 6:
 				doldur_kutu(tblGunluk, 0);
-			else if (activ_sayfa == 7)
+				break;
+			case 7:
 				doldur_kutu(tblKereste, 0);
+				break;
+			}
 			contentPane.setCursor(DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null, "Veritabani Baglantisi gerceklestirildi", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
 			return;
@@ -1557,22 +1563,33 @@ public class CAL_DIZIN extends JDialog {
 			dosya_olustur_L();
 			mdb_yaz();
 			grid_doldur();
-			if (activ_sayfa == 0)
+			switch(activ_sayfa) 
+			{
+			case 0:
 				doldur_kutu(tblCari, 0);
-			else if (activ_sayfa == 1)
+				break;
+			case 1:
 				doldur_kutu(tblFatura, 0);
-			else if (activ_sayfa == 2)
+				break;
+			case 2:
 				doldur_kutu(tblAdres, 0);
-			else if (activ_sayfa == 3)
+				break;
+			case 3:
 				doldur_kutu(tblKur, 0);
-			else if (activ_sayfa == 4)
+				break;
+			case 4:
 				doldur_kutu(tblKambiyo, 0);
-			else if (activ_sayfa == 5)
+				break;
+			case 5:
 				doldur_kutu(tblSms, 0);
-			else if (activ_sayfa == 6)
+				break;
+			case 6:
 				doldur_kutu(tblGunluk, 0);
-			else if (activ_sayfa == 7)
+				break;
+			case 7:
 				doldur_kutu(tblKereste, 0);
+				break;
+			}
 			contentPane.setCursor(DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ...", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
 			return;
@@ -1607,22 +1624,33 @@ public class CAL_DIZIN extends JDialog {
 			}
 			mdb_yaz();
 			grid_doldur();
-			if (activ_sayfa == 0)
+			switch(activ_sayfa) 
+			{
+			case 0:
 				doldur_kutu(tblCari, 0);
-			else if (activ_sayfa == 1)
+				break;
+			case 1:
 				doldur_kutu(tblFatura, 0);
-			else if (activ_sayfa == 2)
+				break;
+			case 2:
 				doldur_kutu(tblAdres, 0);
-			else if (activ_sayfa == 3)
+				break;
+			case 3:
 				doldur_kutu(tblKur, 0);
-			else if (activ_sayfa == 4)
+				break;
+			case 4:
 				doldur_kutu(tblKambiyo, 0);
-			else if (activ_sayfa == 5)
+				break;
+			case 5:
 				doldur_kutu(tblSms, 0);
-			else if (activ_sayfa == 6)
+				break;
+			case 6:
 				doldur_kutu(tblGunluk, 0);
-			else if (activ_sayfa == 7)
+				break;
+			case 7:
 				doldur_kutu(tblKereste, 0);
+				break;
+			}
 			contentPane.setCursor(DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null, "Veritabani Baglantisi gerceklestirildi", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
 			return;
@@ -1639,22 +1667,33 @@ public class CAL_DIZIN extends JDialog {
 				dosya_olustur_S();
 				mdb_yaz();
 				grid_doldur();
-				if (activ_sayfa == 0)
+				switch(activ_sayfa) 
+				{
+				case 0:
 					doldur_kutu(tblCari, 0);
-				else if (activ_sayfa == 1)
+					break;
+				case 1:
 					doldur_kutu(tblFatura, 0);
-				else if (activ_sayfa == 2)
+					break;
+				case 2:
 					doldur_kutu(tblAdres, 0);
-				else if (activ_sayfa == 3)
+					break;
+				case 3:
 					doldur_kutu(tblKur, 0);
-				else if (activ_sayfa == 4)
+					break;
+				case 4:
 					doldur_kutu(tblKambiyo, 0);
-				else if (activ_sayfa == 5)
+					break;
+				case 5:
 					doldur_kutu(tblSms, 0);
-				else if (activ_sayfa == 6)
+					break;
+				case 6:
 					doldur_kutu(tblGunluk, 0);
-				else if (activ_sayfa == 7)
+					break;
+				case 7:
 					doldur_kutu(tblKereste, 0);
+					break;
+				}
 				contentPane.setCursor(DEFAULT_CURSOR);
 				JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ..........", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
 				return;
@@ -1663,32 +1702,31 @@ public class CAL_DIZIN extends JDialog {
 	}
 	private  void mdb_yaz() throws ClassNotFoundException, SQLException
 	{
-		if (activ_sayfa == 0)
-		{
-			mdb_yaz_2("Cari Hesap");    }
-		else if (activ_sayfa == 1)
-		{
-			mdb_yaz_2("Fatura");    }
-		else if (activ_sayfa == 2)
-		{
-			mdb_yaz_2("Adres");    }
-		else if (activ_sayfa == 3)
-		{
-			mdb_yaz_2("Kur");
-		}
-		else if (activ_sayfa == 4)
-		{
-			mdb_yaz_2("Kambiyo");    }
-		else if (activ_sayfa == 5)
-		{
-			mdb_yaz_2("Sms");    }
-		else if (activ_sayfa == 6)
-		{
-			mdb_yaz_2("Gunluk");
-		}
-		else if (activ_sayfa == 7)
-		{
-			mdb_yaz_2("Kereste");
+		switch(activ_sayfa) {
+		  case 0:
+			  mdb_yaz_2("Cari Hesap");
+			  break;
+		  case 1:
+			  mdb_yaz_2("Fatura");
+			  break;
+		  case 2:
+			  mdb_yaz_2("Adres");
+			  break;
+		  case 3:
+			  mdb_yaz_2("Kur");
+			  break;
+		  case 4:
+			  mdb_yaz_2("Kambiyo");
+			  break;
+		  case 5:
+			  mdb_yaz_2("Sms");
+			  break;
+		  case 6:
+			  mdb_yaz_2("Gunluk");
+			  break;
+		  case 7:
+			  mdb_yaz_2("Kereste");
+			  break;
 		}
 		if(! txtIp.getText().equals(""))
 		{
@@ -1703,37 +1741,31 @@ public class CAL_DIZIN extends JDialog {
 	}
 	private  void dosya_olustur_L() throws IOException, ClassNotFoundException, SQLException
 	{
-		if (activ_sayfa == 0)
-		{
+		switch(activ_sayfa) {
+		case 0:
 			car_olustur();
-		}
-		else if (activ_sayfa == 1)
-		{
+			break;
+		case 1:
 			stok_olustur();
-		}
-		else if (activ_sayfa == 2)
-		{
+			break;
+		case 2:
 			adr_olustur();
-		}
-		else if (activ_sayfa == 3)
-		{
+			break;
+		case 3:
 			kur_olustur();
-		}
-		else if (activ_sayfa == 4)
-		{
+			break;
+		case 4:
 			kam_olustur();
-		}
-		else if (activ_sayfa == 5)
-		{
+			break;
+		case 5:
 			sms_olustur();
-		}
-		else if (activ_sayfa == 6)
-		{
+			break;
+		case 6:
 			gun_olustur();
-		}
-		else if (activ_sayfa == 7)
-		{
+			break;
+		case 7:
 			ker_olustur();
+			break;
 		}
 	}
 	void car_olustur() throws ClassNotFoundException, SQLException
@@ -2338,37 +2370,31 @@ public class CAL_DIZIN extends JDialog {
 	}
 	private  void dosya_olustur_S() throws IOException, ClassNotFoundException, SQLException
 	{
-		if (activ_sayfa == 0)
-		{
+		switch(activ_sayfa) {
+		case 0:
 			cari_s_olustur();
-		}
-		else if (activ_sayfa == 1)
-		{
+			break;
+		case 1:
 			stok_s_olustur();
-		}
-		else if (activ_sayfa == 2)
-		{
+			break;
+		case 2:
 			adr_s_olustur();
-		}
-		else if (activ_sayfa == 3)
-		{
+			break;
+		case 3:
 			kur_s_olustur();
-		}
-		else if (activ_sayfa == 4)
-		{
+			break;
+		case 4:
 			kam_s_olustur();
-		}
-		else if (activ_sayfa == 5)
-		{
+			break;
+		case 5:
 			sms_s_olustur();
-		}
-		else if (activ_sayfa == 6)
-		{
+			break;
+		case 6:
 			gun_s_olustur();
-		}
-		else if (activ_sayfa == 7)
-		{
+			break;
+		case 7:
 			ker_s_olustur();
+			break;
 		}
 	}
 	private void cONN_AKTAR()
@@ -2381,41 +2407,61 @@ public class CAL_DIZIN extends JDialog {
 		String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
 		if (hangi.equals("MS SQL"))
 		{
-			if (mODUL == "Cari Hesap")
+			switch(mODUL) {
+			case "Cari Hesap":
 				oac._ICar = new CARI_HESAP_MSSQL();
-			else if (mODUL == "Stok")
+				break;
+			case "Stok":
 				oac._IStok = new STOK_MSSQL();
-			else if (mODUL == "Adres")
+				break;
+			case "Adres":
 				oac._IAdres = new ADRES_MSSQL();
-			else if (mODUL == "Kur")
+				break;
+			case "Kur":
 				oac._IKur = new KUR_MSSQL();
-			else if (mODUL == "Kambiyo")
+				break;
+			case "Kambiyo":
 				oac._IKambiyo = new KAMBIYO_MSSQL();
-			else if (mODUL == "Gunluk")
+				break;
+			case "Gunluk":
 				oac._IGunluk = new GUNLUK_MSSQL();
-			else if (mODUL == "Sms")
+				break;
+			case "Sms":
 				oac._ISms = new SMS_MSSQL();
-			else if (mODUL == "Kereste")
+				break;
+			case "Kereste":
 				oac._IKereste = new KERESTE_MSSQL();
+				break;
+			}
 		}
 		else if (hangi.equals("MY SQL"))
 		{
-			if (mODUL == "Cari Hesap")
+			switch(mODUL) {
+			case "Cari Hesap":
 				oac._ICar = new CARI_HESAP_MYSQL();
-			else if (mODUL == "Stok")
+				break;
+			case "Stok":
 				oac._IStok = new STOK_MYSQL();
-			else if (mODUL == "Adres")
+				break;
+			case "Adres":
 				oac._IAdres = new ADRES_MYSQL();
-			else if (mODUL == "Kur")
+				break;
+			case "Kur":
 				oac._IKur = new KUR_MYSQL();
-			else if (mODUL == "Kambiyo")
+				break;
+			case "Kambiyo":
 				oac._IKambiyo = new KAMBIYO_MYSQL();
-			else if (mODUL == "Gunluk")
+				break;
+			case "Gunluk":
 				oac._IGunluk = new GUNLUK_MYSQL();
-			else if (mODUL == "Sms")
+				break;
+			case "Sms":
 				oac._ISms = new SMS_MYSQL();
-			else if (mODUL == "Kereste")
+				break;
+			case "Kereste":
 				oac._IKereste = new KERESTE_MYSQL();
+				break;
+			}
 		}
 	}
 	private void lOGG_AKTAR(String mODUL)
@@ -2612,22 +2658,32 @@ public class CAL_DIZIN extends JDialog {
 	}
 	private void lAktar(String mODUL , ILOGGER[] ilogg)
 	{
-		if (mODUL.equals("Cari Hesap"))
-		{oac._ICari_Loger = ilogg;}
-		else if (mODUL.equals("Kur"))
-		{oac._IKur_Loger = ilogg;}
-		else if (mODUL.equals("Adres"))
-		{oac._IAdres_Loger = ilogg;}
-		else if (mODUL.equals("Fatura"))
-		{oac._IFatura_Loger = ilogg;}
-		else if (mODUL.equals("Sms"))
-		{oac._ISms_Loger = ilogg;}
-		else if (mODUL.equals("Gunluk"))
-		{oac._IGunluk_Loger = ilogg;}
-		else if (mODUL.equals("Kambiyo"))
-		{oac._IKambiyo_Loger = ilogg;}
-		else if (mODUL.equals("Kereste"))
-		{oac._IKereste_Loger = ilogg;}
+		switch(mODUL) {
+		case "Cari Hesap":
+			oac._ICari_Loger = ilogg;
+			break;
+		case "Kur":
+			oac._IKur_Loger = ilogg;
+			break;
+		case "Adres":
+			oac._IAdres_Loger = ilogg;
+			break;
+		case "Fatura":
+			oac._IFatura_Loger = ilogg;
+			break;
+		case "Sms":
+			oac._ISms_Loger = ilogg;
+			break;
+		case "Gunluk":
+			oac._IGunluk_Loger = ilogg;
+			break;
+		case "Kambiyo":
+			oac._IKambiyo_Loger = ilogg;
+			break;
+		case "Kereste":
+			oac._IKereste_Loger = ilogg;
+			break;
+		}
 	}
 	private void cIKIS()
 	{

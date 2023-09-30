@@ -778,86 +778,85 @@ public class LOGIN extends JDialog {
 	}
 	void calisma_dizini_oku() 
 	{
-		try {
-		int say = 9;
-		
-		bAGLAN.cONNECT(txtUser.getText());
-		//bAGLAN_LOG.cONNECT();
-		// Cari
-		cONN_AKTAR( BAGLAN.cariDizin.hAN_SQL );
-		String hangi_sql =  BAGLAN.cariDizin.hAN_SQL;
-		oac._ICariCon = oac._IConn ;
-		oac._ICar = hangi_sql.equals("MS SQL") ? new  CARI_HESAP_MSSQL() : new  CARI_HESAP_MYSQL();
-		//Kur
-		cONN_AKTAR( BAGLAN.kurDizin.hAN_SQL );
-		hangi_sql =  BAGLAN.kurDizin.hAN_SQL;
-		oac._IKurCon = oac._IConn ;
-		oac._IKur = hangi_sql.equals("MS SQL") ? new KUR_MSSQL() : new KUR_MYSQL();
-		//SMS
-		cONN_AKTAR(BAGLAN.smsDizin.hAN_SQL );
-		hangi_sql =  BAGLAN.smsDizin.hAN_SQL;
-		oac._ISmsCon = oac._IConn ;
-		oac._ISms = hangi_sql.equals("MS SQL") ? new SMS_MSSQL() : new SMS_MYSQL();
-		//ADRES
-		cONN_AKTAR( BAGLAN.adrDizin.hAN_SQL );
-		hangi_sql =  BAGLAN.adrDizin.hAN_SQL;
-		oac._IAdresCon = oac._IConn ;
-		oac._IAdres = hangi_sql.equals("MS SQL") ? new ADRES_MSSQL() : new ADRES_MYSQL();
-		//FAT
-		cONN_AKTAR(BAGLAN.fatDizin.hAN_SQL );
-		hangi_sql =  BAGLAN.fatDizin.hAN_SQL;
-		oac._IStokCon = oac._IConn ;
-		oac._IStok = hangi_sql.equals("MS SQL") ? new STOK_MSSQL() : new STOK_MYSQL();
-		//KAMB
-		cONN_AKTAR(BAGLAN.kamDizin.hAN_SQL );
-		hangi_sql =  BAGLAN.kamDizin.hAN_SQL;
-		oac._IKambiyoCon = oac._IConn ;
-		oac._IKambiyo = hangi_sql.equals("MS SQL") ? new KAMBIYO_MSSQL() : new KAMBIYO_MYSQL();
-		//GUN
-		cONN_AKTAR( BAGLAN.gunDizin.hAN_SQL );
-		hangi_sql =  BAGLAN.gunDizin.hAN_SQL;
-		oac._IGunlukCon = oac._IConn ;
-		oac._IGunluk = hangi_sql.equals("MS SQL") ? new GUNLUK_MSSQL() : new GUNLUK_MYSQL();
-		//KERESTE
-		cONN_AKTAR( BAGLAN.kerDizin.hAN_SQL );
-		hangi_sql =  BAGLAN.kerDizin.hAN_SQL;
-		oac._IKeresteCon = oac._IConn ;
-		oac._IKereste = hangi_sql.equals("MS SQL") ? new KERESTE_MSSQL() : new KERESTE_MYSQL();
-		
-		bAGLAN_LOG.cONNECT(); // LOG Bilgileri AKTAR
-		oac.uSER_ISL.mail_bak(); // MAIL AYARLARI OKUMA
-		LOG_MAIL_OKU.mail_oku(); // LOGLAMA MAILI OKUMA
-		progressBar.setMaximum(9);
-		progressBar.setStringPainted(true);
+		try 
+		{
+			int say = 9;
+			bAGLAN.cONNECT(txtUser.getText());
+			// Cari
+			cONN_AKTAR( BAGLAN.cariDizin.hAN_SQL );
+			String hangi_sql =  BAGLAN.cariDizin.hAN_SQL;
+			oac._ICariCon = oac._IConn ;
+			oac._ICar = hangi_sql.equals("MS SQL") ? new  CARI_HESAP_MSSQL() : new  CARI_HESAP_MYSQL();
+			//Kur
+			cONN_AKTAR( BAGLAN.kurDizin.hAN_SQL );
+			hangi_sql =  BAGLAN.kurDizin.hAN_SQL;
+			oac._IKurCon = oac._IConn ;
+			oac._IKur = hangi_sql.equals("MS SQL") ? new KUR_MSSQL() : new KUR_MYSQL();
+			//SMS
+			cONN_AKTAR(BAGLAN.smsDizin.hAN_SQL );
+			hangi_sql =  BAGLAN.smsDizin.hAN_SQL;
+			oac._ISmsCon = oac._IConn ;
+			oac._ISms = hangi_sql.equals("MS SQL") ? new SMS_MSSQL() : new SMS_MYSQL();
+			//ADRES
+			cONN_AKTAR( BAGLAN.adrDizin.hAN_SQL );
+			hangi_sql =  BAGLAN.adrDizin.hAN_SQL;
+			oac._IAdresCon = oac._IConn ;
+			oac._IAdres = hangi_sql.equals("MS SQL") ? new ADRES_MSSQL() : new ADRES_MYSQL();
+			//FAT
+			cONN_AKTAR(BAGLAN.fatDizin.hAN_SQL );
+			hangi_sql =  BAGLAN.fatDizin.hAN_SQL;
+			oac._IStokCon = oac._IConn ;
+			oac._IStok = hangi_sql.equals("MS SQL") ? new STOK_MSSQL() : new STOK_MYSQL();
+			//KAMB
+			cONN_AKTAR(BAGLAN.kamDizin.hAN_SQL );
+			hangi_sql =  BAGLAN.kamDizin.hAN_SQL;
+			oac._IKambiyoCon = oac._IConn ;
+			oac._IKambiyo = hangi_sql.equals("MS SQL") ? new KAMBIYO_MSSQL() : new KAMBIYO_MYSQL();
+			//GUN
+			cONN_AKTAR( BAGLAN.gunDizin.hAN_SQL );
+			hangi_sql =  BAGLAN.gunDizin.hAN_SQL;
+			oac._IGunlukCon = oac._IConn ;
+			oac._IGunluk = hangi_sql.equals("MS SQL") ? new GUNLUK_MSSQL() : new GUNLUK_MYSQL();
+			//KERESTE
+			cONN_AKTAR( BAGLAN.kerDizin.hAN_SQL );
+			hangi_sql =  BAGLAN.kerDizin.hAN_SQL;
+			oac._IKeresteCon = oac._IConn ;
+			oac._IKereste = hangi_sql.equals("MS SQL") ? new KERESTE_MSSQL() : new KERESTE_MYSQL();
 
-		Lgn_Progres_Bar(say, 1);
-		lblModul.setText("Cari Hesap Calisma Dizini");
-		cari_calisma_dizini_oku();
-		Lgn_Progres_Bar(say, 2);
-		lblModul.setText("Kur Calisma Dizini");
-		kur_calisma_dizini_oku();
-		Lgn_Progres_Bar(say, 3);
-		lblModul.setText("Sms Calisma Dizini");
-		sms_calisma_dizini_oku();
-		Lgn_Progres_Bar(say, 4);
-		lblModul.setText("Adres Calisma Dizini");
-		adr_calisma_dizini_oku();
-		Lgn_Progres_Bar(say, 5);
-		lblModul.setText("Stok Calisma Dizini");
-		fat_calisma_dizini_oku();
-		Lgn_Progres_Bar(say, 6);
-		lblModul.setText("Kambiyo Calisma Dizini");
-		kam_calisma_dizini_oku();
-		Lgn_Progres_Bar(say, 7);
-		lblModul.setText("Gunluk Calisma Dizini");
-		gun_calisma_dizini_oku();
-		Lgn_Progres_Bar(say, 8);
-		lblModul.setText("Kereste Calisma Dizini");
-		ker_calisma_dizini_oku();
-		Lgn_Progres_Bar(say, 9);
-		
-		lblModul.setText("");
-		
+			bAGLAN_LOG.cONNECT(); // LOG Bilgileri AKTAR
+			oac.uSER_ISL.mail_bak(); // MAIL AYARLARI OKUMA
+			LOG_MAIL_OKU.mail_oku(); // LOGLAMA MAILI OKUMA
+			progressBar.setMaximum(9);
+			progressBar.setStringPainted(true);
+
+			Lgn_Progres_Bar(say, 1);
+			lblModul.setText("Cari Hesap Calisma Dizini");
+			cari_calisma_dizini_oku();
+			Lgn_Progres_Bar(say, 2);
+			lblModul.setText("Kur Calisma Dizini");
+			kur_calisma_dizini_oku();
+			Lgn_Progres_Bar(say, 3);
+			lblModul.setText("Sms Calisma Dizini");
+			sms_calisma_dizini_oku();
+			Lgn_Progres_Bar(say, 4);
+			lblModul.setText("Adres Calisma Dizini");
+			adr_calisma_dizini_oku();
+			Lgn_Progres_Bar(say, 5);
+			lblModul.setText("Stok Calisma Dizini");
+			fat_calisma_dizini_oku();
+			Lgn_Progres_Bar(say, 6);
+			lblModul.setText("Kambiyo Calisma Dizini");
+			kam_calisma_dizini_oku();
+			Lgn_Progres_Bar(say, 7);
+			lblModul.setText("Gunluk Calisma Dizini");
+			gun_calisma_dizini_oku();
+			Lgn_Progres_Bar(say, 8);
+			lblModul.setText("Kereste Calisma Dizini");
+			ker_calisma_dizini_oku();
+			Lgn_Progres_Bar(say, 9);
+
+			lblModul.setText("");
+
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(),  "Calisma Dizini", JOptionPane.ERROR_MESSAGE);    
 		}

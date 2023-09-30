@@ -480,7 +480,6 @@ public class LOGIN extends JDialog {
 						}
 						//
 						Thread.currentThread().isInterrupted();
-						
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
 						obmain.setTitle("OBS SISTEM" + "               " + GLOBAL.KULL_ADI);
 						obmain.lblUser.setText(GLOBAL.KULL_ADI);
@@ -1614,22 +1613,32 @@ public class LOGIN extends JDialog {
 	}
 	private void lAktar(String mODUL , ILOGGER[] ilogg)
 	{
-		if (mODUL.equals("Cari Hesap"))
-		{oac._ICari_Loger = ilogg;}
-		else if (mODUL.equals("Kur"))
-		{oac._IKur_Loger = ilogg;}
-		else if (mODUL.equals("Adres"))
-		{oac._IAdres_Loger = ilogg;}
-		else if (mODUL.equals("Fatura"))
-		{oac._IFatura_Loger = ilogg;}
-		else if (mODUL.equals("Sms"))
-		{oac._ISms_Loger = ilogg;}
-		else if (mODUL.equals("Gunluk"))
-		{oac._IGunluk_Loger = ilogg;}
-		else if (mODUL.equals("Kambiyo"))
-		{oac._IKambiyo_Loger = ilogg;}
-		else if (mODUL.equals("Kereste"))
-		{oac._IKereste_Loger = ilogg;}
+		switch(mODUL) {
+		case "Cari Hesap":
+			oac._ICari_Loger = ilogg;
+			break;
+		case "Kur":
+			oac._IKur_Loger = ilogg;
+			break;
+		case "Adres":
+			oac._IAdres_Loger = ilogg;
+			break;
+		case "Fatura":
+			oac._IFatura_Loger = ilogg;
+			break;
+		case "Sms":
+			oac._ISms_Loger = ilogg;
+			break;
+		case "Gunluk":
+			oac._IGunluk_Loger = ilogg;
+			break;
+		case "Kambiyo":
+			oac._IKambiyo_Loger = ilogg;
+			break;
+		case "Kereste":
+			oac._IKereste_Loger = ilogg;
+			break;
+		}
 	}
 }
 // String username = System.getProperty("user.name");

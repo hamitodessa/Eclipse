@@ -70,7 +70,7 @@ public class BILGI_OKU {
 			{ 
 				if (dIZIN.hAN_SQL.toString().equals("MS SQL") == true) 
 				{
-					dIZIN.cONN_STR = dIZIN.sERVER + ";instanceName=" +dIZIN.iNSTANCE + " ; database=" +  dOSYA_BASLANGIC +dIZIN.kOD ;
+					dIZIN.cONN_STR = dIZIN.sERVER + ";instanceName=" + dIZIN.iNSTANCE + " ; database=" +  dOSYA_BASLANGIC + dIZIN.kOD ;
 				}
 				else  if (dIZIN.hAN_SQL.toString().equals("MY SQL") == true) 
 				{

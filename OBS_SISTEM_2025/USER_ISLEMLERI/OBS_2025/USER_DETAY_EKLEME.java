@@ -666,11 +666,16 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		txtyer.setText("");
 		txtdcins.setText("");
 		lblcdid.setText("");
+		passwordField.setText("");
 		chckbxNewCheckBox.setSelected(false);
 		chckbxNewCheckBox_1.setSelected(false);
 		comboBox.setSelectedItem("Admin");
 		comboBox_1.setSelectedItem("Cari Hesap");
 		comboBox_2.setSelectedItem("MS SQL");
+		cbVeritabani.setSelected(false);	
+		cbDosya.setSelected(false);
+		cbText.setSelected(false);
+		cbMail.setSelected(false);
 	}
 	public static void kayit() 
 	{

@@ -343,8 +343,7 @@ public class USER_EKLEME extends JInternalFrame {
 			}
 			try {
 				decodedString = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
-			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
-					| UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			passwordField.setText(decodedString);

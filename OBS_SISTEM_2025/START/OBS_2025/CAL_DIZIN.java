@@ -98,6 +98,8 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.JSeparator;
 
@@ -537,45 +539,38 @@ public class CAL_DIZIN extends JDialog {
 					contentPane.setCursor(WAIT_CURSOR);
 					grid_doldur();
 					sIFRE_KAPA();
-					if (activ_sayfa == 0)
+					switch(activ_sayfa) 
 					{
-						doldur_kutu(tblCari,0);	
-					}
-					else if (activ_sayfa == 1)
-					{
-						doldur_kutu(tblFatura,0);	
-					}
-					else if (activ_sayfa == 2)
-					{
-						doldur_kutu(tblAdres,0);	
-					}
-					else if (activ_sayfa == 3)
-					{
-						doldur_kutu(tblKur,0);	
-					}
-					else if (activ_sayfa == 4)
-					{
-						doldur_kutu(tblKambiyo,0);	
-					}
-					else if (activ_sayfa == 5)
-					{
-						doldur_kutu(tblSms,0);	
-					}
-					else if (activ_sayfa == 6)
-					{
-						doldur_kutu(tblGunluk,0);	
-					}
-					else if (activ_sayfa == 7)
-					{
-						doldur_kutu(tblKereste,0);	
-					}
-					else if (activ_sayfa == 8)
-					{
+					case 0:
+						doldur_kutu(tblCari, 0);
+						break;
+					case 1:
+						doldur_kutu(tblFatura, 0);
+						break;
+					case 2:
+						doldur_kutu(tblAdres, 0);
+						break;
+					case 3:
+						doldur_kutu(tblKur, 0);
+						break;
+					case 4:
+						doldur_kutu(tblKambiyo, 0);
+						break;
+					case 5:
+						doldur_kutu(tblSms, 0);
+						break;
+					case 6:
+						doldur_kutu(tblGunluk, 0);
+						break;
+					case 7:
+						doldur_kutu(tblKereste, 0);
+						break;
+					case  8:
 						txtsif.requestFocus()	;
-					}
-					else if (activ_sayfa == 9)
-					{
+						break;
+					case 9:
 						mail_doldur();
+						break;
 					}
 					contentPane.setCursor(DEFAULT_CURSOR);
 
@@ -606,20 +601,25 @@ public class CAL_DIZIN extends JDialog {
 		tblCari = new JTable() {
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {     return false;          }};
-		tblCari.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
+		tblCari.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent lse) {
+				if (!lse.getValueIsAdjusting()) {
+					if (tblCari.getRowCount() == 0) return ;
+					if (tblCari.getSelectedRow()  < 0) return;
 					contentPane.setCursor(WAIT_CURSOR);
 					try {
 						kutu_temizle();
 						doldur_kutu(tblCari,tblCari.getSelectedRow());
 						contentPane.setCursor(DEFAULT_CURSOR);
 					} catch (Exception e1) {
+						contentPane.setCursor(DEFAULT_CURSOR);
 						e1.printStackTrace();
 					}
 					contentPane.setCursor(DEFAULT_CURSOR);
 				}
-			});
+			}
+		});
+		
 		tblCari.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tblCari.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblCari.setRowHeight(22);
@@ -634,18 +634,22 @@ public class CAL_DIZIN extends JDialog {
 		tblFatura = new JTable(){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {     return false;          }};
-		tblFatura.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		tblFatura.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent lse) {
+				if (!lse.getValueIsAdjusting()) {
+				if (tblFatura.getRowCount() == 0) return ;
+				if (tblFatura.getSelectedRow()  < 0) return;
 				contentPane.setCursor(WAIT_CURSOR);
 				try {
 						kutu_temizle();
 						doldur_kutu(tblFatura,tblFatura.getSelectedRow());
 						contentPane.setCursor(DEFAULT_CURSOR);
 					} catch (Exception e1) {
+						contentPane.setCursor(DEFAULT_CURSOR);
 						e1.printStackTrace();
 					} 
 					contentPane.setCursor(DEFAULT_CURSOR);
+				}
 				}
 			});
 		tblFatura.setRowHeight(22);
@@ -660,18 +664,22 @@ public class CAL_DIZIN extends JDialog {
 		tblAdres = new JTable(){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {     return false;          }};
-		tblAdres.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		tblAdres.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent lse) {
+				if (!lse.getValueIsAdjusting()) {
+				if (tblAdres.getRowCount() == 0) return ;
+				if (tblAdres.getSelectedRow()  < 0) return;
 				contentPane.setCursor(WAIT_CURSOR);
 				try {
 					kutu_temizle();
 					doldur_kutu(tblAdres,tblAdres.getSelectedRow());
 					contentPane.setCursor(DEFAULT_CURSOR);
 				} catch (Exception e1) {
+					contentPane.setCursor(DEFAULT_CURSOR);
 					e1.printStackTrace();
 				} 
 				contentPane.setCursor(DEFAULT_CURSOR);
+				}
 			}
 		});
 		tblAdres.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -685,18 +693,22 @@ public class CAL_DIZIN extends JDialog {
 		tblKur = new JTable(){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {     return false;          }};
-		tblKur.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		tblKur.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent lse) {
+				if (!lse.getValueIsAdjusting()) {
+				if (tblKur.getRowCount() == 0) return ;
+				if (tblKur.getSelectedRow()  < 0) return;
 				contentPane.setCursor(WAIT_CURSOR);
 				try {
 					kutu_temizle();
 					doldur_kutu(tblKur,tblKur.getSelectedRow());
 					
 				} catch (Exception e1) {
+					contentPane.setCursor(DEFAULT_CURSOR);
 					e1.printStackTrace();
 				} 
 				contentPane.setCursor(DEFAULT_CURSOR);
+				}
 			}
 		});
 		tblKur.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -711,9 +723,11 @@ public class CAL_DIZIN extends JDialog {
 		tblKambiyo = new JTable(){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {     return false;          }};
-		tblKambiyo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		tblKambiyo.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent lse) {
+				if (!lse.getValueIsAdjusting()) {
+				if (tblKambiyo.getRowCount() == 0) return ;
+				if (tblKambiyo.getSelectedRow()  < 0) return;
 				contentPane.setCursor(WAIT_CURSOR);
 				try 
 				{
@@ -721,9 +735,11 @@ public class CAL_DIZIN extends JDialog {
 					doldur_kutu(tblKambiyo,tblKambiyo.getSelectedRow());
 					contentPane.setCursor(DEFAULT_CURSOR);
 				} catch (Exception e1) {
+					contentPane.setCursor(DEFAULT_CURSOR);
 					e1.printStackTrace();
 				}
 				contentPane.setCursor(DEFAULT_CURSOR);
+				}
 			}
 		});
 		tblKambiyo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -738,18 +754,22 @@ public class CAL_DIZIN extends JDialog {
 		tblSms = new JTable(){
 				private static final long serialVersionUID = 1L;
 				public boolean isCellEditable(int row, int column) {     return false;          }};
-		tblSms.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		tblSms.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent lse) {
+				if (!lse.getValueIsAdjusting()) {
+				if (tblSms.getRowCount() == 0) return ;
+				if (tblSms.getSelectedRow()  < 0) return;
 				contentPane.setCursor(WAIT_CURSOR);
 				try {
 					kutu_temizle();
 					doldur_kutu(tblSms,tblSms.getSelectedRow());
 					contentPane.setCursor(DEFAULT_CURSOR);
 				} catch (Exception e1) {
+					contentPane.setCursor(DEFAULT_CURSOR);
 					e1.printStackTrace();
 				} 
 				contentPane.setCursor(DEFAULT_CURSOR);
+				}
 			}
 		});
 		tblSms.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -763,18 +783,22 @@ public class CAL_DIZIN extends JDialog {
 		tblGunluk = new JTable(){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {     return false;          }};
-		tblGunluk.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		tblGunluk.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent lse) {
+				if (!lse.getValueIsAdjusting()) {
+				if (tblGunluk.getRowCount() == 0) return ;
+				if (tblGunluk.getSelectedRow()  < 0) return;
 				contentPane.setCursor(WAIT_CURSOR);
 				try {
 					kutu_temizle();
 					doldur_kutu(tblGunluk,tblGunluk.getSelectedRow());
 					contentPane.setCursor(DEFAULT_CURSOR);
 				} catch (Exception e1) {
+					contentPane.setCursor(DEFAULT_CURSOR);
 					e1.printStackTrace();
 				} 
 				contentPane.setCursor(DEFAULT_CURSOR);
+				}
 			}
 		});
 		tblGunluk.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -789,9 +813,11 @@ public class CAL_DIZIN extends JDialog {
 		tblKereste = new JTable(){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {     return false;          }};
-			tblKereste.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
+			tblKereste.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent lse) {
+					if (!lse.getValueIsAdjusting()) {
+					if (tblKereste.getRowCount() == 0) return ;
+					if (tblKereste.getSelectedRow()  < 0) return;
 					contentPane.setCursor(WAIT_CURSOR);
 					try {
 						kutu_temizle();
@@ -799,8 +825,10 @@ public class CAL_DIZIN extends JDialog {
 						contentPane.setCursor(DEFAULT_CURSOR);
 					} catch (Exception e1) {
 						e1.printStackTrace();
+						contentPane.setCursor(DEFAULT_CURSOR);
 					} 
 					contentPane.setCursor(DEFAULT_CURSOR);
+					}
 				}
 			});
 		tblKereste.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

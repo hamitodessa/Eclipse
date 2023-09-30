@@ -21,9 +21,6 @@ import javax.swing.JTable;
 import javax.swing.JSplitPane;
 import java.awt.Dimension;
 import javax.swing.JTextField;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.table.DefaultTableModel;
@@ -42,9 +39,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")

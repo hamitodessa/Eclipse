@@ -544,4 +544,19 @@ public class USER_ISLEMLERI {
 		rss = stmt.executeQuery();
 		return rss;
 	}
+	public void loglama_kayit(String cdid,int log,String logla) throws ClassNotFoundException, SQLException
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		ResultSet	rss = null;
+		PreparedStatement stmt = null;
+		con =  gLB.myConnection();  //
+		String sql ="UPDATE USER_DETAILS  SET  LOG = "+ log + "  , LOG_YERI = '"+ logla+"'  WHERE CDID = " + cdid + " ";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+		con = null;
+	}
+
 }

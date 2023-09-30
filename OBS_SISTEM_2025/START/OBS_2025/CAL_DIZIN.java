@@ -1176,7 +1176,9 @@ public class CAL_DIZIN extends JDialog {
 				try {
 					if(txtKodu.getText().equals("")) return ;
 					if(txtkul.getText().equals("")) return ;
-					mdb_yaz();
+					if(txtcdid.getText().equals("")) return ;
+					String loglama = (vt == true ? "true," : "false,") + (ds == true ? "true," : "false,") + (tx ==true ? "true," : "false,") + (em == true ? "true":"false");
+					oac.uSER_ISL.loglama_kayit(txtcdid.getText(),chckbxL_1.isSelected() ? 1 : 0, loglama);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

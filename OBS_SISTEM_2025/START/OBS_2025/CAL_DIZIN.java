@@ -187,7 +187,7 @@ public class CAL_DIZIN extends JDialog {
 					grid_doldur();
 					doldur_kutu(tblCari,0);
 					contentPane.setCursor(DEFAULT_CURSOR);
-				} catch (ClassNotFoundException | SQLException e1) {
+				} catch (Exception e1) {
 					contentPane.setCursor(DEFAULT_CURSOR);
 					e1.printStackTrace();
 				}
@@ -281,24 +281,36 @@ public class CAL_DIZIN extends JDialog {
 					try {
 						oac.uSER_ISL.cd_sil(Integer.parseInt(txtcdid.getText()) );
 						grid_doldur();
-						if (activ_sayfa == 0)						        {
-							doldur_kutu(tblCari, 0);}
-						else if (activ_sayfa == 1)
+						switch(activ_sayfa) 
+						{
+						case 0:
+							doldur_kutu(tblCari, 0);
+							break;
+						case 1:
 							doldur_kutu(tblFatura, 0);
-						else if (activ_sayfa == 2)
-							doldur_kutu(tblAdres, 0) ;  
-						else if (activ_sayfa == 3)
+							break;
+						case 2:
+							doldur_kutu(tblAdres, 0) ;
+							break;
+						case 3:
 							doldur_kutu(tblKur, 0);
-						else if (activ_sayfa == 4)
+							break;
+						case 4:
 							doldur_kutu(tblKambiyo, 0);
-						else if (activ_sayfa == 5)
+							break;
+						case 5:
 							doldur_kutu(tblSms, 0);
-						else if (activ_sayfa == 6)
+							break;
+						case 6:
 							doldur_kutu(tblGunluk, 0);
-						else if (activ_sayfa == 7)
+							break;
+						case 7:
 							doldur_kutu(tblKereste, 0);
+							break;
+						}
 					} catch (Exception ex)
 					{
+						JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "Calisma Dizini Dosya Silme ", JOptionPane.ERROR_MESSAGE);   
 					}
 				}
 				if (activ_sayfa == 8)
@@ -332,9 +344,7 @@ public class CAL_DIZIN extends JDialog {
 				try {
 					kutu_temizle();
 					ip_doldur();
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (SQLException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}

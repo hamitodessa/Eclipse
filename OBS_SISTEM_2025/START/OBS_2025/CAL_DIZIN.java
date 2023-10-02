@@ -197,7 +197,7 @@ public class CAL_DIZIN extends JDialog {
 		});
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 981, 470);
+		setBounds(100, 100, 981, 419);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -206,7 +206,7 @@ public class CAL_DIZIN extends JDialog {
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		panel.setBounds(639, 11, 316, 409);
+		panel.setBounds(639, 11, 316, 370);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -406,7 +406,7 @@ public class CAL_DIZIN extends JDialog {
 
 		txtIp = new JTextField();
 		txtIp.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtIp.setBounds(102, 199, 157, 20);
+		txtIp.setBounds(102, 180, 157, 20);
 		panel.add(txtIp);
 		txtIp.setColumns(10);
 
@@ -419,18 +419,18 @@ public class CAL_DIZIN extends JDialog {
 		});
 		cmbip.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbip.setEditable(true);
-		cmbip.setBounds(102, 230, 157, 22);
+		cmbip.setBounds(102, 205, 157, 22);
 		panel.add(cmbip);
 
 		txtkul = new JTextField();
 		txtkul.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtkul.setBounds(102, 263, 157, 20);
+		txtkul.setBounds(102, 229, 157, 20);
 		panel.add(txtkul);
 		txtkul.setColumns(10);
 
 		txtsifr = new JPasswordField();
 		txtsifr.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtsifr.setBounds(102, 294, 157, 20);
+		txtsifr.setBounds(102, 252, 157, 20);
 
 		panel.add(txtsifr);
 
@@ -455,7 +455,7 @@ public class CAL_DIZIN extends JDialog {
 			}
 		});
 		chckbxD.setSelected(true);
-		chckbxD.setBounds(51, 318, 97, 23);
+		chckbxD.setBounds(51, 283, 97, 23);
 		panel.add(chckbxD);
 
 		chckbxO = new JCheckBox("Ozel");
@@ -476,12 +476,12 @@ public class CAL_DIZIN extends JDialog {
 				}
 			}
 		});
-		chckbxO.setBounds(162, 318, 97, 23);
+		chckbxO.setBounds(162, 283, 97, 23);
 		panel.add(chckbxO);
 		txtdiz = new JTextField();
 		txtdiz.setEnabled(false);
 		txtdiz.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtdiz.setBounds(51, 348,255,20);
+		txtdiz.setBounds(51, 313,255,20);
 		panel.add(txtdiz);
 		btndizsec = new JButton("Surucu Sec");
 		btndizsec.addActionListener(new ActionListener() {
@@ -507,23 +507,23 @@ public class CAL_DIZIN extends JDialog {
 		});
 		btndizsec.setEnabled(false);
 
-		btndizsec.setBounds(51, 375, 107, 23);
+		btndizsec.setBounds(51, 340, 107, 23);
 		panel.add(btndizsec);
 
 		JLabel lblInstance = new JLabel("Instance");
-		lblInstance.setBounds(24, 170, 68, 14);
+		lblInstance.setBounds(24, 159, 68, 14);
 		panel.add(lblInstance);
 
 		JLabel lblServer = new JLabel("Server / Port");
-		lblServer.setBounds(24, 202, 78, 14);
+		lblServer.setBounds(24, 183, 78, 14);
 		panel.add(lblServer);
 
 		JLabel lblKullanici = new JLabel("Kullanici");
-		lblKullanici.setBounds(24, 266, 68, 14);
+		lblKullanici.setBounds(24, 257, 68, 14);
 		panel.add(lblKullanici);
 
 		JLabel lblSifre = new JLabel("Sifre");
-		lblSifre.setBounds(24, 297, 68, 14);
+		lblSifre.setBounds(24, 232, 68, 14);
 		panel.add(lblSifre);
 
 		JLabel lblUser = new JLabel("....");
@@ -591,7 +591,7 @@ public class CAL_DIZIN extends JDialog {
 			}
 		});
 		tabbedPane.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		tabbedPane.setBounds(0, 0, 629, 420);
+		tabbedPane.setBounds(0, 0, 629, 381);
 		tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -1064,7 +1064,7 @@ public class CAL_DIZIN extends JDialog {
 		lblUser.setText(GLOBAL.KULL_ADI);
 		comboBox = new JComboBox<String>();
 		comboBox.setEditable(true);
-		comboBox.setBounds(102, 169, 157, 22);
+		comboBox.setBounds(102, 155, 157, 22);
 		panel.add(comboBox);
 
 		txtcdid = new JTextField();
@@ -1116,7 +1116,7 @@ public class CAL_DIZIN extends JDialog {
 		panel.add(chckbxL_1);
 
 		JLabel lblKayitserver = new JLabel("Serverler");
-		lblKayitserver.setBounds(24, 234, 78, 14);
+		lblKayitserver.setBounds(24, 209, 78, 14);
 		panel.add(lblKayitserver);
 
 		/////////////////////////////////////////////////LOGLAMA BUTTON /////////////////////
@@ -1194,7 +1194,7 @@ public class CAL_DIZIN extends JDialog {
 			}
 		});
 		btnNewButton_2_1.setToolTipText("Sil");
-		btnNewButton_2_1.setBounds(265, 230, 25, 23);
+		btnNewButton_2_1.setBounds(265, 205, 25, 23);
 		btnNewButton_2_1.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/sil.png")));
 		panel.add(btnNewButton_2_1);
 		
@@ -1275,24 +1275,40 @@ public class CAL_DIZIN extends JDialog {
 		grd.removeColumn(grd.getColumnModel().getColumn(4));
 		grd.removeColumn(grd.getColumnModel().getColumn(4));
 		grd.removeColumn(grd.getColumnModel().getColumn(4));
-		grd.removeColumn(grd.getColumnModel().getColumn(4));
-		grd.removeColumn(grd.getColumnModel().getColumn(4));
-		grd.removeColumn(grd.getColumnModel().getColumn(4));
+		grd.removeColumn(grd.getColumnModel().getColumn(5));
+		grd.removeColumn(grd.getColumnModel().getColumn(5));
+		//grd.removeColumn(grd.getColumnModel().getColumn(5));
 		JTableHeader th = grd.getTableHeader();
 		TableColumnModel tcm = th.getColumnModel();
 		TableColumn tc = tcm.getColumn(0);
 		tc.setHeaderValue( "Kodu" );
 		tc.setHeaderRenderer(new SOLA());
+		tc.setMinWidth(70);
+		tc.setMaxWidth(70);
+		
 		tc = tcm.getColumn(1);
 		tc.setHeaderRenderer(new SOLA());
 		tc.setHeaderValue( "Ip" );
 		tc.setMinWidth(200);
+		//tc.setMaxWidth(200);
+		
 		tc = tcm.getColumn(2);
 		tc.setHeaderRenderer(new SOLA());
 		tc.setHeaderValue( "Modul" );
+		
 		tc = tcm.getColumn(3);
 		tc.setHeaderRenderer(new SOLA());
 		tc.setHeaderValue( "Yer" );
+		tc.setMinWidth(50);
+		tc.setMaxWidth(50);
+		
+		
+		tc = tcm.getColumn(4);
+		tc.setHeaderRenderer(new SOLA());
+		tc.setHeaderValue( "SQL" );
+		tc.setMinWidth(80);
+		tc.setMaxWidth(80);
+		
 		th.repaint();
 		grd.setRowSelectionInterval(0, 0);
 		grd.setSelectionBackground(Color.PINK);

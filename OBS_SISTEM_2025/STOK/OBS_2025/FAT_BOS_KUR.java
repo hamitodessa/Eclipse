@@ -112,7 +112,7 @@ public class FAT_BOS_KUR extends JInternalFrame {
 			TableColumn tc;
 			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(new SOLA());
-				tc.setCellRenderer(new TARIH ());
+			tc.setCellRenderer(new TARIH ());
 			Dimension dd = th.getPreferredSize();
 		    dd.height = 30;
 		    th.setPreferredSize(dd); 

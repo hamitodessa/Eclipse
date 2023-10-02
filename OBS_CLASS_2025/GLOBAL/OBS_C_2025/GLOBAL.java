@@ -337,6 +337,15 @@ public class GLOBAL {
 			prop.setProperty("KER_RAPORLAMA","[Calibri,0,12]");
 			prop.store(output, "OBS AYARLAR");
 			output.close();
+			byte[] qaz;
+			try {
+				qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("obs");
+				String encodedString = Arrays.toString(qaz);
+				System.setProperty("obs_password", encodedString);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} catch (FileNotFoundException e2) {
 			JOptionPane.showMessageDialog(null, e2.toString()  );
 		} catch (IOException e1) {

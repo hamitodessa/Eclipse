@@ -212,7 +212,8 @@ public class CAL_DIZIN extends JDialog {
 
 		txtKodu = new JTextField();
 		txtKodu.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtKodu.setBounds(102, 71, 157, 20);
+		txtKodu.setBounds(102, 71, 78, 20);
+		txtKodu.setEnabled(false);
 		panel.add(txtKodu);
 		txtKodu.setColumns(10);
 
@@ -346,6 +347,7 @@ public class CAL_DIZIN extends JDialog {
 				try {
 					kutu_temizle();
 					ip_doldur();
+					txtKodu.setEnabled(true);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -539,6 +541,7 @@ public class CAL_DIZIN extends JDialog {
 					contentPane.setCursor(WAIT_CURSOR);
 					grid_doldur();
 					sIFRE_KAPA();
+					txtKodu.setEnabled(false);
 					switch(activ_sayfa) 
 					{
 					case 0:
@@ -912,15 +915,12 @@ public class CAL_DIZIN extends JDialog {
 						return;
 					}
 					contentPane.setCursor(WAIT_CURSOR);
-
 					oac.uSER_ISL.sifre_degis(GLOBAL.KULL_ADI, txtyenisif.getText());
-
 					txtyenisif.setText("");
 					txtsif.setText("");
 					txtyenisif.setVisible(false);
 					lblysif.setVisible(false); 
 					txtsif.requestFocus();
-
 					//
 					byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(txtyenisif.getText()) ;
 					String response = Arrays.toString(qaz);

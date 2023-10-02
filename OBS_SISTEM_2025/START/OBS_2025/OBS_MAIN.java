@@ -1766,7 +1766,9 @@ public class OBS_MAIN extends JFrame {
 				form_ac("STOK BOS KUR","");
 			}
 		});
-
+		btnNewButton_61.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-currency-exchange-30.png")));
+		toolBar_5.add(btnNewButton_61);
+		
 		btnNewButton_62 = new JButton("");
 		btnNewButton_62.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1776,8 +1778,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_62.setToolTipText("E Fatura Arama");
 		btnNewButton_62.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-check-book-30.png")));
 		toolBar_5.add(btnNewButton_62);
-		btnNewButton_61.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-currency-exchange-30.png")));
-		toolBar_5.add(btnNewButton_61);
+		
 
 		btnNewButton_70 = new JButton("");
 		btnNewButton_70.setToolTipText("Evrak Formatlama");
@@ -2188,20 +2189,8 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		
-		btnNewButton_35 = new JButton("");
-		btnNewButton_35.setToolTipText("Firma Ismi DEgistirme");
-		btnNewButton_35.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				form_ac("FIRMA ISMI DEGISTIRME","");
-				FIRMA_ISMI_DEGIS.modul("kereste");
-			}
-		});
-		
 		JLabel lblNewLabel_44 = new JLabel("          ");
 		toolBar_Kereste.add(lblNewLabel_44);
-		btnNewButton_35.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
-		
-		toolBar_Kereste.add(btnNewButton_35);
 		
 		btnNewButton_65 = new JButton("");
 		btnNewButton_65.addActionListener(new ActionListener() {
@@ -2213,6 +2202,31 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_65.setToolTipText("Degisken Yenileme");
 		
 		toolBar_Kereste.add(btnNewButton_65);
+		
+		btnNewButton_35 = new JButton("");
+		btnNewButton_35.setToolTipText("Firma Ismi DEgistirme");
+		btnNewButton_35.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("FIRMA ISMI DEGISTIRME","");
+				FIRMA_ISMI_DEGIS.modul("kereste");
+			}
+		});
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("KERESTE BOS KUR","");
+			}
+		});
+		btnNewButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-currency-exchange-30.png")));
+		
+		toolBar_Kereste.add(btnNewButton);
+		
+		JLabel lblNewLabel_3 = new JLabel("          ");
+		toolBar_Kereste.add(lblNewLabel_3);
+		btnNewButton_35.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-organization-30.png")));
+		
+		toolBar_Kereste.add(btnNewButton_35);
 		
 		JLabel lblNewLabel_43 = new JLabel("                    ");
 		toolBar_Kereste.add(lblNewLabel_43);
@@ -2479,6 +2493,7 @@ public class OBS_MAIN extends JFrame {
 				String sonuc = pencere_activmi();
 				if (sonuc == "BOS KUR")	BOS_KUR.hisset();
 				else if (sonuc == "STOK BOS KUR")	FAT_BOS_KUR.hisset();
+				else if (sonuc == "KERESTE BOS KUR")	KER_BOS_KUR.hisset();
 				else if (sonuc == "SQL SORGULAMA")	SQL_SORGULAMA.hisset();
 				else if (sonuc == "LOG RAPORLAMA")	LOGLAMA_RAPOR.hisset();
 				else if (sonuc == "EKSTRE")	EKSTRE.hisset();
@@ -3332,8 +3347,8 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("E FATURA ARAMA")) internalFrame  = new E_FATURA();
 			else if (pencere.equals("ZAYI RAPORLAMA")) internalFrame  = new ZAYI_RAPOR();
 			else if (pencere.equals("EVRAK FORMATLAMA")) internalFrame  = new EVRAK_FORMAT();
-			else if (pencere.equals( "DEGISKEN YENILEME")) internalFrame  = new DEGISKEN_DEGIS();
-			else if (pencere.equals( "STOK YIL SONU")) internalFrame  = new STK_YIL_SONU();
+			else if (pencere.equals("DEGISKEN YENILEME")) internalFrame  = new DEGISKEN_DEGIS();
+			else if (pencere.equals("STOK YIL SONU")) internalFrame  = new STK_YIL_SONU();
 			else if (pencere.equals("DEGISKENLER")) internalFrame  = new DEGISKEN_GIRIS(hangi);
 			//KAMBIYO
 			else if (pencere.equals("CEK GIRIS")) internalFrame  = new CEK_GIRIS();
@@ -3356,6 +3371,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("KERESTE KOD DEGISTIRME")) internalFrame  = new KER_KOD_DEGISTIRME();
 			else if (pencere.equals("KERESTE DEGISKEN YENILEME")) internalFrame  = new KER_DEGISKEN_DEGIS();
 			else if (pencere.equals("KERESTE ORTALAMA SATIS")) internalFrame  = new KER_ORT_SATIS();
+			else if (pencere.equals("KERESTE BOS KUR")) internalFrame  = new KER_BOS_KUR();
 			//GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();

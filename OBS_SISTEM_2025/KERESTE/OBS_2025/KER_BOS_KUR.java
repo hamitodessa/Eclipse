@@ -1,19 +1,18 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
-import java.sql.ResultSet;
-
-import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.sql.ResultSet;
 
-import javax.swing.JPanel;
-import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
@@ -22,16 +21,16 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.SOLA;
-import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TARIH;
 import net.proteanit.sql.DbUtils;
 
 @SuppressWarnings({"serial","static-access"})
-public class FAT_BOS_KUR extends JInternalFrame {
-	
+public class KER_BOS_KUR extends JInternalFrame {
+
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	static STOK_ACCESS f_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(OBS_SIS_2025_ANA_CLASS._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 
 	private static JTable table;
 	private static JComboBox<String> comboBox ;
@@ -44,7 +43,7 @@ public class FAT_BOS_KUR extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FAT_BOS_KUR frame = new FAT_BOS_KUR();
+					KER_BOS_KUR frame = new KER_BOS_KUR();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,11 +55,11 @@ public class FAT_BOS_KUR extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FAT_BOS_KUR() {
-		setTitle("STOK BOS KUR");
+	public KER_BOS_KUR() {
+		setTitle("KERESTE BOS KUR");
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0, 0, 178, 600);
+		setBounds(0, 0, 191, 600);
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -90,7 +89,6 @@ public class FAT_BOS_KUR extends JInternalFrame {
 		comboBox_2.setBounds(10, 38, 73, 22);
 		panel.add(comboBox_2);
 		
-		
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
 		
@@ -107,8 +105,15 @@ public class FAT_BOS_KUR extends JInternalFrame {
         try 
         {
         	 ResultSet	rs = null;
-    			rs = f_Access.bos_kur(comboBox.getItemAt(comboBox.getSelectedIndex()).toString(),
-						comboBox_1.getItemAt(comboBox_1.getSelectedIndex()).toString());
+        	 String dURUMString = "" ;
+        	 //comboBox_2
+        	 if(comboBox_2.getItemAt(comboBox_2.getSelectedIndex()).toString().equals("GIRIS"))
+        		 dURUMString = "" ;
+        	 else {
+				dURUMString = "C" ;
+			}
+    			rs = ker_Access.bos_kur(comboBox.getItemAt(comboBox.getSelectedIndex()).toString(),
+						comboBox_1.getItemAt(comboBox_1.getSelectedIndex()).toString(),dURUMString);
 	    	GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 			    return;
@@ -131,5 +136,4 @@ public class FAT_BOS_KUR extends JInternalFrame {
            JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Eksik Kur Okuma", JOptionPane.ERROR_MESSAGE);
           }
 	}
-	
 }

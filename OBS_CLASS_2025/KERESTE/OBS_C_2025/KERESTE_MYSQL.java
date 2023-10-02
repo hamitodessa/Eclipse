@@ -1973,4 +1973,17 @@ public class KERESTE_MYSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
+
+	@Override
+	public ResultSet bos_kur(String kur, String cins,String dURUM) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		String sql =  "SELECT DISTINCT DATE( s."+ dURUM + "Tarih) as Tarih  " +
+				" FROM KERESTE s left outer join ok_kur" +  BAGLAN.kurDizin.kOD + ".kurlar k on DATE( k.Tarih) = DATE( s."+ dURUM + "Tarih) and k.Kur = '" + kur + "'" +
+				" WHERE k." + cins + " IS NULL OR k." + cins + " =0 " +
+				" ORDER BY DATE(s."+ dURUM + "Tarih)  " ;
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
 }

@@ -297,4 +297,8 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.ortalama_genislik( gruplama,sstr_2, sstr_4, kur_dos,  qwq6, qwq7, qwq8, k1, k2, s1, s2, jkj,  t1, t2, sstr_5, sstr_1,orderBY,dURUM,ko1,ko2,dpo,grup,e1,e2);
 	}
+	public ResultSet bos_kur(String kur , String cins,String dURUM) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.bos_kur(kur, cins,dURUM);
+	}
 }

@@ -2035,7 +2035,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" FROM KERESTE s left outer join OK_Kur" +  BAGLAN.kurDizin.kOD + ".dbo.kurlar k on convert(varchar(10), k.Tarih, 102) = convert(varchar(10), s."+ dURUM + "Tarih, 102) and k.Kur = '" + kur + "'" +
 				" WHERE k." + cins + " IS NULL OR k." + cins + " =0 " +
 				" ORDER BY  convert(varchar(10), s."+ dURUM + "Tarih, 102)  " ;
-
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

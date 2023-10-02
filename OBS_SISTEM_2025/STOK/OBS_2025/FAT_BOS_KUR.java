@@ -36,7 +36,6 @@ public class FAT_BOS_KUR extends JInternalFrame {
 	private static JTable table;
 	private static JComboBox<String> comboBox ;
 	private static JComboBox<String> comboBox_1; 
-	private static JComboBox<String> comboBox_2 ;
 	/**
 	 * Launch the application.
 	 */
@@ -69,8 +68,8 @@ public class FAT_BOS_KUR extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(0, 65));
-		panel.setMaximumSize(new Dimension(0, 65));
+		panel.setMinimumSize(new Dimension(0, 40));
+		panel.setMaximumSize(new Dimension(0, 40));
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
@@ -84,12 +83,6 @@ public class FAT_BOS_KUR extends JInternalFrame {
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"MA", "MS", "BA", "BS", "SA", "SS"}));
 		comboBox_1.setBounds(78, 10, 58, 22);
 		panel.add(comboBox_1);
-		
-		comboBox_2 = new JComboBox<String>();
-		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"GIRIS", "CIKIS"}));
-		comboBox_2.setBounds(10, 38, 73, 22);
-		panel.add(comboBox_2);
-		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);

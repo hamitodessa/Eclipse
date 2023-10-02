@@ -179,24 +179,27 @@ public class CAL_DIZIN extends JDialog {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				cIKIS();
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 			@Override
 			public void windowOpened(WindowEvent e) {
 				try {
-					contentPane.setCursor(WAIT_CURSOR);
+					
+					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					activ_sayfa =0;
 					grid_doldur();
 					doldur_kutu(tblCari,0);
-					contentPane.setCursor(DEFAULT_CURSOR);
+					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
-					contentPane.setCursor(DEFAULT_CURSOR);
+					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					e1.printStackTrace();
 				}
 			}
 		});
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 981, 419);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -2744,9 +2747,11 @@ public class CAL_DIZIN extends JDialog {
 	private void cIKIS()
 	{
 		try {
+			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			LOGIN frame = new LOGIN();
 			frame.setVisible(true);
 			dispose();
+			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

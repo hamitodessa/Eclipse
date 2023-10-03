@@ -383,4 +383,16 @@ public class GLOBAL {
 	{
 		return degisken.replace(":","_");
 	}
+	public static boolean validCheck(String value)
+	{
+		boolean result ;
+        if(value.trim().length() == 0) {
+          result = false;
+        }
+        else {
+        	 result = true;
+		}
+	
+		return result ;
+	}
 }

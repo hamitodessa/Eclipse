@@ -20,12 +20,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyVetoException;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,6 +44,7 @@ import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -54,6 +60,7 @@ import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -65,6 +72,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -73,14 +82,31 @@ import javax.swing.table.TableModel;
 
 import org.apache.commons.collections.functors.IfClosure;
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.jsoup.select.Evaluator.IsEmpty;
 
+import com.crystaldecisions.reports.exporters.format.page.pdf.fontembedding.opentype.tables.GlyphDataTableBuilder;
 import com.toedter.calendar.JDateChooser;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
 import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.FILE_UZANTI;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -2121,5 +2147,294 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	{
 		String[] token = pakkons.toString().split("-");
 		return (token.length ==1) ? true:false;
+	}
+	public static void yazdir()
+	{
+		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+		
+		if (mdl.getRowCount() == 0 )
+		{
+		JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Evrak Yazdirma", JOptionPane.PLAIN_MESSAGE);
+		}
+		else
+		{
+			write() ;	
+		}
+	}
+	public static void write()
+	{
+		///// Progres Bsr olayi
+		Runnable runner = new Runnable()
+		{ 
+		public void run() {
+			/////  
+			try 
+			{
+				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
+				UIManager.put("FileChooser.saveButtonText", "Kaydet");
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.resetChoosableFileFilters();
+				fileChooser.setAcceptAllFileFilterUsed(false);
+				FileFilter xls = new FileNameExtensionFilter("Microsoft Excel 97-2003 Worksheet (.xls)", "xls");
+				FileFilter xlxs = new FileNameExtensionFilter("Microsoft Excel Worksheet (.xlsx) ", "xlsx");
+				fileChooser.addChoosableFileFilter(xls);
+				fileChooser.addChoosableFileFilter(xlxs);
+				fileChooser.setCurrentDirectory(new java.io.File("."));
+				fileChooser.setApproveButtonText("Kaydet");
+				fileChooser.setDialogTitle("Excell Kayit");   
+
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
+				LocalDateTime now = LocalDateTime.now();  
+				String zaman = dtf.format(now)  ;
+
+				File outputfile = new File("Evrak_" + textField.getText());
+				fileChooser.setSelectedFile(outputfile);
+				int returnVal = fileChooser.showSaveDialog(null);
+				if ( returnVal != JFileChooser.APPROVE_OPTION )
+				{
+					return;
+				}
+				Progres_Bar_Temizle();
+				OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1);
+				OBS_MAIN.progressBar.setStringPainted(true);
+				GuiUtil.setWaitCursor(splitPane,true);
+				String uzanti ="";
+				File excelFile =  FILE_UZANTI. getSelectedFileWithExtension(fileChooser);
+				uzanti  = excelFile.getName().substring(excelFile.getName().lastIndexOf("."));
+				if  (uzanti.equals(".xls") )
+				{
+					@SuppressWarnings("resource")
+					HSSFWorkbook workbook = new HSSFWorkbook();
+					HSSFSheet sheet = workbook.createSheet("Evrak_" + textField.getText());
+					HSSFFont headerFont = workbook.createFont();
+					headerFont.setBold(true);
+					headerFont.setColor(IndexedColors.BLUE.getIndex()); 
+					HSSFCellStyle headerStyle = workbook.createCellStyle();
+					HSSFCellStyle headerSolaStyle = workbook.createCellStyle();
+					headerStyle.setFont(headerFont);
+					headerStyle.setAlignment(HorizontalAlignment.RIGHT);
+
+					HSSFFont solaFont = workbook.createFont();
+					solaFont.setFontName("Arial Narrow");
+					solaFont. setFontHeight((short)(10*20));
+					HSSFCellStyle solaStyle = workbook.createCellStyle();
+					solaStyle.setFont(solaFont);
+					solaStyle.setAlignment(HorizontalAlignment.LEFT);
+
+					HSSFFont headerSolaFont = workbook.createFont();
+					headerSolaFont.setBold(true);
+					headerSolaFont.setColor(IndexedColors.BLUE.getIndex()); 
+					headerSolaStyle.setFont(headerSolaFont);
+					headerSolaStyle.setAlignment(HorizontalAlignment.LEFT);
+
+					HSSFCellStyle satirStyle = workbook.createCellStyle();
+					HSSFCellStyle satirStylemik = workbook.createCellStyle();
+					HSSFCellStyle satirStyle3 = workbook.createCellStyle();
+					HSSFCellStyle satirStyle2 = workbook.createCellStyle();
+					HSSFFont satirFont = workbook.createFont();
+					satirFont.setFontName("Arial Narrow");
+					satirFont. setFontHeight((short)(10*20));
+					satirStyle.setFont(satirFont);
+					satirStyle.setAlignment(HorizontalAlignment.RIGHT);
+					satirStyle3.setFont(satirFont);
+					satirStyle2.setFont(satirFont);
+					satirStylemik.setFont(satirFont);
+					satirStyle3.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
+					satirStyle2.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
+					satirStylemik.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0"));
+					satirStyle3.setAlignment(HorizontalAlignment.RIGHT);
+					satirStyle2.setAlignment(HorizontalAlignment.RIGHT);
+					satirStylemik.setAlignment(HorizontalAlignment.RIGHT);
+					DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+					HSSFCellStyle acikStyle = workbook.createCellStyle();
+					HSSFFont acikFont = workbook.createFont();
+					acikFont.setColor(IndexedColors.RED.getIndex()); 
+					acikFont.setBold(true);
+					acikFont.setFontName("Arial");
+					acikFont. setFontHeight((short)(22*20));
+					acikStyle.setFont(acikFont);
+					acikStyle.setAlignment(HorizontalAlignment.CENTER);
+
+					//Row baslikRow = sheet.createRow(0);
+					//sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -1));
+					//Cell baslikname = baslikRow.createCell(0);
+
+					//baslikname.setCellValue( BAGLAN.kerDizin.fIRMA_ADI );
+					//baslikname.setCellStyle(acikStyle);
+
+					Row bosRow = sheet.createRow(1);
+
+					//Cell tarih = baslikRow.createCell(7);
+					Row satir1 = sheet.createRow(2);
+					Cell evrak = satir1.createCell(0);
+					evrak.setCellValue("Evrak No :");
+					
+					Cell evrakNo = satir1.createCell(1);
+					evrakNo.setCellValue(textField.getText());
+					
+					Cell tarih = satir1.createCell(9);
+					tarih.setCellValue(TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc));
+				
+					
+					Row satir2 = sheet.createRow(3);
+					Cell kODU = satir2.createCell(0);
+					kODU.setCellValue("Musteri Kodu:");
+					
+					Cell kODUU = satir2.createCell(1);
+					kODUU.setCellValue(txtcari.getText());
+
+					Row satir3 = sheet.createRow(4);
+					Cell uNVAN = satir3.createCell(1);
+					uNVAN.setCellValue(lblNewLabel_3.getText());
+					
+					
+					Row bosRow4 = sheet.createRow(4);
+					Row bosRow5 = sheet.createRow(5);
+					
+					Row aCIKLAMA = sheet.createRow(6);
+					
+					Cell baslikPaket = aCIKLAMA.createCell(0);
+					baslikPaket.setCellValue("Paket No");
+					
+					Cell baslikBarkod = aCIKLAMA.createCell(1);
+					baslikBarkod.setCellValue("Barkod");
+					
+					Cell baslikUKodu = aCIKLAMA.createCell(2);
+					baslikUKodu.setCellValue("Urun Kodu");
+					
+					Cell baslikMiktar = aCIKLAMA.createCell(3);
+					baslikMiktar.setCellValue("Miktar");
+					baslikMiktar.setCellStyle(satirStyle);
+					
+					Cell baslikM3 = aCIKLAMA.createCell(4);
+					baslikM3.setCellValue("m3");
+					baslikM3.setCellStyle(satirStyle);
+					
+					Cell baslikPM3 = aCIKLAMA.createCell(5);
+					baslikPM3.setCellValue("Paket m3");
+					baslikPM3.setCellStyle(satirStyle);
+					
+					Cell baslikFiat = aCIKLAMA.createCell(6);
+					baslikFiat.setCellValue("Fiat");
+					baslikFiat.setCellStyle(satirStyle);
+					
+					Cell baslikIsk = aCIKLAMA.createCell(7);
+					baslikIsk.setCellValue("Iskonto");
+					baslikIsk.setCellStyle(satirStyle);
+					
+					Cell baslikKdv = aCIKLAMA.createCell(8);
+					baslikKdv.setCellValue("KDV");
+					baslikKdv.setCellStyle(satirStyle);
+					
+					Cell baslikTut = aCIKLAMA.createCell(9);
+					baslikTut.setCellValue("Tutar");
+					baslikTut.setCellStyle(satirStyle);
+					
+				//******************SATIRLAR ***********************************************	
+					int satir = 0 ;
+					for (int i =0;i< mdl.getRowCount() ;i++)
+					{
+						if (! mdl.getValueAt(i, 0).equals("") )
+						{
+							Row satirRow = sheet.createRow(i+7);
+							for (int s =0;s<= 10 ;s++)
+							{
+								
+								if (s == 0 || s == 1 || s == 2)
+								{
+									Cell hname = satirRow.createCell(s);
+									hname.setCellValue( mdl.getValueAt(i,s).toString());
+									hname.setCellStyle(solaStyle); 
+								}
+								else if (s == 3)
+								{
+									if (  GLOBAL.validCheck(mdl.getValueAt(i,s).toString()) == true )
+									{
+										Cell hname = satirRow.createCell(s);
+										hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+										hname.setCellStyle(satirStylemik); 
+									}
+								}
+								else if (s == 4 || s == 5)
+								{
+									if (  GLOBAL.validCheck(mdl.getValueAt(i,s).toString()) == true )
+									{
+										Cell hname = satirRow.createCell(s);
+										hname.setCellValue( Double.parseDouble( mdl.getValueAt(i,s).toString()));
+										hname.setCellStyle(satirStyle3); 
+									}
+								}
+								else if (s == 7 || s == 8 || s == 9 ||  s == 10 )
+								{
+								
+									if (  GLOBAL.validCheck(mdl.getValueAt(i,s).toString()) == true )
+									{
+										Cell hname = satirRow.createCell(s-1);
+										hname.setCellStyle(satirStyle2);
+										hname.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+									}
+								}
+								
+							}
+							satir += 1 ;
+						}
+					}
+					
+					Row toplam1  = sheet.createRow(satir + 7);
+					Cell miktar = toplam1.createCell(3);
+					miktar.setCellValue(Double.parseDouble( label_8_1.getText()));
+					miktar.setCellStyle(satirStylemik); 
+					
+					Cell m3 = toplam1.createCell(4);
+					m3.setCellValue(Double.parseDouble( label_8.getText()));
+					m3.setCellStyle(satirStyle3); 
+					
+					Cell tut = toplam1.createCell(9);
+					tut.setCellValue( label_9.getText());
+					tut.setCellStyle(satirStyle2); 
+					
+					
+					
+					//Row acikRow = sheet.createRow(1);
+					//sheet.addMergedRegion(new CellRangeAddress(1,1,6,mdl.getColumnCount() -1));
+					//String yazi = "Periyot :" ;
+					//Cell acik  = acikRow.createCell(6);
+					//acik.setCellStyle(satirStyle);
+					//acik.setCellValue(yazi );
+					
+					//**********
+					for (int i=0; i<= mdl.getColumnCount()-1; i++)
+					{
+						sheet.autoSizeColumn(i);
+					}
+					FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile() + "_" + zaman + uzanti));
+					workbook.write(out);
+					out.close();
+				}
+
+				Progres_Bar_Temizle();
+				GuiUtil.setWaitCursor(splitPane,false);
+				JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Cikis Evrak Yazdirma", JOptionPane.PLAIN_MESSAGE);
+			}
+			catch (Exception ex)
+			{
+				JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		};
+		//// Progress Bar
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
+		//
+	}
+	static void Progres_Bar(int max, int deger) throws InterruptedException
+	{
+		OBS_MAIN.progressBar.setValue(deger);
+	}
+	static void Progres_Bar_Temizle()
+	{
+		OBS_MAIN.progressBar.setMaximum(0);
+		OBS_MAIN.progressBar.setValue(0);
+		OBS_MAIN.progressBar.setStringPainted(false);
 	}
 }

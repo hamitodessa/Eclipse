@@ -3013,6 +3013,10 @@ public class OBS_MAIN extends JFrame {
 				{
 					KER_ORT_SATIS.excell_aktar() ;
 				}
+				else if (sonuc == "KERESTE CIKIS")
+				{
+					KERESTE_CIKIS.yazdir() ;
+				}
 				GuiUtil.setWaitCursor(toolBar,false);//
 			}
 		});

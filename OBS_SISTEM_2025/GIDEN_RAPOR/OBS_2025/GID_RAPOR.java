@@ -25,6 +25,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.TARIH_SAATLI;
 import net.proteanit.sql.DbUtils;
 import javax.swing.JLabel;
@@ -160,26 +161,32 @@ public class GID_RAPOR extends JInternalFrame {
 
 			tc = tcm.getColumn(1);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(200);
 
 			tc = tcm.getColumn(2);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(200);
 
 			tc = tcm.getColumn(3);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(200);
 
 			tc = tcm.getColumn(4);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(200);
 
 			tc = tcm.getColumn(5);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(400);
 
 			tc = tcm.getColumn(6);
 			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new SOLA_ORTA());
 			tc.setMinWidth(50);
 
 			Dimension dd = th.getPreferredSize();

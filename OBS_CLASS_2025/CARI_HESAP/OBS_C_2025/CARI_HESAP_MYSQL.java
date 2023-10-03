@@ -979,19 +979,19 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				+ "	AND h.HESAP_CINSI BETWEEN N'"+ c1 + "' AND '"+ c2 +"'    AND h.KARTON BETWEEN N'"+ k1 + "' AND N'" + k2 + "'   ) as HESAP_CINSI ,"
 				+ " IFNULL( ROUND((SELECT SUM(SATIRLAR.ALACAK)  - SUM(SATIRLAR.BORC)   FROM SATIRLAR  USE INDEX (IXS_HESAP) "
 				+ " WHERE  SATIRLAR.HESAP = s.HESAP  and TARIH <  '"+ t1+"'  ) ,2),0) as ONCEKI_BAKIYE  ,"
-				+ " IFNULL(ROUND( (SELECT SUM(SATIRLAR.BORC)  FROM   SATIRLAR  USE INDEX (IXS_HESAP)         		 WHERE   SATIRLAR.HESAP    = s.HESAP     "
-				+ " AND TARIH BETWEEN  '"+ t1 +"' AND  '"+ t2+"'  ),2) ,0)as BORC				 ,	"
-				+ "  IFNULL( ROUND((SELECT SUM(SATIRLAR.ALACAK)  FROM SATIRLAR  USE INDEX (IXS_HESAP)            		 WHERE  SATIRLAR.HESAP    = s.HESAP"
-				+ " AND TARIH BETWEEN '"+ t1 +"' AND '"+ t2+"'  ),2) ,0)as ALACAK				 ,"
-				+ " ROUND(IFNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM SATIRLAR  USE INDEX (IXS_HESAP)     				WHERE  SATIRLAR.HESAP    = s.HESAP     		 AND TARIH BETWEEN 				"
-				+ " '"+t1+"' AND  '"+t2 +"'  ) ,0) -					"
-				+ " IFNULL( (SELECT SUM(SATIRLAR.BORC)  FROM SATIRLAR  USE INDEX (IXS_HESAP)     				WHERE  SATIRLAR.HESAP    = s.HESAP    	"
-				+ "   ) ,0),2)  as BAK_KVARTAL				 ,"
-				+ " ROUND( IFNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)   				FROM SATIRLAR  USE INDEX (IXS_HESAP)     		"
-				+ " WHERE   SATIRLAR.HESAP    = s.HESAP    and TARIH <  '"+ t2 + "  23:59:59.998'    ) ,0)  ,2)  as BAKIYE"
-				+ "  FROM SATIRLAR s USE INDEX(IXS_HESAP)"
-				+ "   WHERE  s.HESAP > N'"+ h1 +"' AND  s.HESAP < N'"+ h2+ "'" + 
-				"              GROUP BY s.HESAP " + o1 + " " + o2 + "" ;
+				+ " IFNULL(ROUND( (SELECT SUM(SATIRLAR.BORC)  FROM   SATIRLAR  USE INDEX (IXS_HESAP) WHERE SATIRLAR.HESAP = s.HESAP "
+				+ " AND TARIH BETWEEN  '"+ t1 +"' AND  '"+ t2+"'  ),2) ,0)as BORC ,	"
+				+ " IFNULL( ROUND((SELECT SUM(SATIRLAR.ALACAK)  FROM SATIRLAR  USE INDEX (IXS_HESAP) WHERE  SATIRLAR.HESAP = s.HESAP"
+				+ " AND TARIH BETWEEN '"+ t1 +"' AND '" + t2+ "'  ),2) ,0)as ALACAK ,"
+				+ " ROUND(IFNULL( (SELECT SUM(SATIRLAR.ALACAK)  FROM SATIRLAR  USE INDEX (IXS_HESAP) WHERE  SATIRLAR.HESAP = s.HESAP AND TARIH BETWEEN "
+				+ " '" + t1 + "' AND  '" + t2 + "'  ) ,0) -					"
+				+ " IFNULL( (SELECT SUM(SATIRLAR.BORC)  FROM SATIRLAR  USE INDEX (IXS_HESAP) WHERE  SATIRLAR.HESAP  = s.HESAP "
+				+ " ) ,0),2)  as BAK_KVARTAL				 ,"
+				+ " ROUND( IFNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC) FROM SATIRLAR  USE INDEX (IXS_HESAP) "
+				+ " WHERE   SATIRLAR.HESAP  = s.HESAP and TARIH <  '"+ t2 + "  23:59:59.998' ) ,0)  ,2)  as BAKIYE"
+				+ " FROM SATIRLAR s USE INDEX(IXS_HESAP)"
+				+ " WHERE  s.HESAP > N'"+ h1 +"' AND  s.HESAP < N'"+ h2+ "'"  
+				+ " GROUP BY s.HESAP " + o1 + " " + o2 + "" ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

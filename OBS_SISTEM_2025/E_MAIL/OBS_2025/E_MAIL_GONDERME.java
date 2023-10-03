@@ -509,7 +509,6 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			txtgonisim.setText(MAIL_SETTINGS.GADI);
 			cmbalici.removeAllItems();
 			cmbalici.addItem("");
-			//
 			ResultSet rss = oac.uSER_ISL.alici_oku(GLOBAL.KULL_ADI);
 			if (!rss.isBeforeFirst() ) {  
 				return;
@@ -995,9 +994,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		{
 			long startTime = System.currentTimeMillis(); 
 			String rapor_dos_adi = GLOBAL.g_baslik ;
-			//****************************************RAPOR AKTARMA********************************************
 			MimeBodyPart messagePart = null ;
-			//*************************************************************************************************
 			String[] to = { cmbalici.getSelectedItem().toString()  };
 			Properties props = System.getProperties();
 			props.put("mail.smtp.starttls.enable", MAIL_SETTINGS.TSL);

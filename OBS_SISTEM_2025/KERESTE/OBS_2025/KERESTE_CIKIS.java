@@ -86,6 +86,7 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
@@ -2254,13 +2255,36 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					acikFont. setFontHeight((short)(22*20));
 					acikStyle.setFont(acikFont);
 					acikStyle.setAlignment(HorizontalAlignment.CENTER);
+					
+					HSSFCellStyle satirStyle2_ARA = workbook.createCellStyle();
+					satirStyle2_ARA.setFont(satirFont);
+					satirStyle2_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
+					satirStyle2_ARA.setAlignment(HorizontalAlignment.RIGHT);
+					satirStyle2_ARA.setBorderTop(BorderStyle.MEDIUM);
+					satirStyle2_ARA.setBorderBottom(BorderStyle.MEDIUM);
+					HSSFCellStyle satirStyle3_ARA = workbook.createCellStyle();
+					satirStyle3_ARA.setFont(satirFont);
+					satirStyle3_ARA.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
+					satirStyle3_ARA.setAlignment(HorizontalAlignment.RIGHT);
+					satirStyle3_ARA.setBorderTop(BorderStyle.MEDIUM);
+					satirStyle3_ARA.setBorderBottom(BorderStyle.MEDIUM);
+					HSSFCellStyle satirStylemik_ARA = workbook.createCellStyle();
+					satirStylemik_ARA.setFont(satirFont);
+					satirStylemik_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0"));
+					satirStylemik_ARA.setBorderTop(BorderStyle.MEDIUM);
+					satirStylemik_ARA.setBorderBottom(BorderStyle.MEDIUM);
+					satirStylemik_ARA.setAlignment(HorizontalAlignment.RIGHT);
+					HSSFCellStyle satirStyleBASLIK = workbook.createCellStyle();
+					satirStyleBASLIK.setFont(satirFont);
+					satirStyleBASLIK.setBorderTop(BorderStyle.MEDIUM);
+					satirStyleBASLIK.setBorderBottom(BorderStyle.MEDIUM);
+					satirStyleBASLIK.setAlignment(HorizontalAlignment.LEFT);
+					HSSFCellStyle satirStyleBASLIK2 = workbook.createCellStyle();
+					satirStyleBASLIK2.setFont(satirFont);
+					satirStyleBASLIK2.setBorderTop(BorderStyle.MEDIUM);
+					satirStyleBASLIK2.setBorderBottom(BorderStyle.MEDIUM);
+					satirStyleBASLIK2.setAlignment(HorizontalAlignment.RIGHT);
 
-					//Row baslikRow = sheet.createRow(0);
-					//sheet.addMergedRegion(new CellRangeAddress(0,0,0,mdl.getColumnCount() -1));
-					//Cell baslikname = baslikRow.createCell(0);
-
-					//baslikname.setCellValue( BAGLAN.kerDizin.fIRMA_ADI );
-					//baslikname.setCellStyle(acikStyle);
 
 					Row bosRow = sheet.createRow(1);
 
@@ -2284,51 +2308,56 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					kODUU.setCellValue(txtcari.getText());
 
 					Row satir3 = sheet.createRow(4);
+					sheet.addMergedRegion(new CellRangeAddress(4,4,1,2));
+
+					
 					Cell uNVAN = satir3.createCell(1);
 					uNVAN.setCellValue(lblNewLabel_3.getText());
 					
 					
-					Row bosRow4 = sheet.createRow(4);
 					Row bosRow5 = sheet.createRow(5);
 					
 					Row aCIKLAMA = sheet.createRow(6);
 					
 					Cell baslikPaket = aCIKLAMA.createCell(0);
+					baslikPaket.setCellStyle(satirStyleBASLIK);
 					baslikPaket.setCellValue("Paket No");
 					
 					Cell baslikBarkod = aCIKLAMA.createCell(1);
+					baslikBarkod.setCellStyle(satirStyleBASLIK);
 					baslikBarkod.setCellValue("Barkod");
 					
 					Cell baslikUKodu = aCIKLAMA.createCell(2);
+					baslikUKodu.setCellStyle(satirStyleBASLIK);
 					baslikUKodu.setCellValue("Urun Kodu");
 					
 					Cell baslikMiktar = aCIKLAMA.createCell(3);
 					baslikMiktar.setCellValue("Miktar");
-					baslikMiktar.setCellStyle(satirStyle);
+					baslikMiktar.setCellStyle(satirStyleBASLIK2);
 					
 					Cell baslikM3 = aCIKLAMA.createCell(4);
 					baslikM3.setCellValue("m3");
-					baslikM3.setCellStyle(satirStyle);
+					baslikM3.setCellStyle(satirStyleBASLIK2);
 					
 					Cell baslikPM3 = aCIKLAMA.createCell(5);
 					baslikPM3.setCellValue("Paket m3");
-					baslikPM3.setCellStyle(satirStyle);
+					baslikPM3.setCellStyle(satirStyleBASLIK2);
 					
 					Cell baslikFiat = aCIKLAMA.createCell(6);
 					baslikFiat.setCellValue("Fiat");
-					baslikFiat.setCellStyle(satirStyle);
+					baslikFiat.setCellStyle(satirStyleBASLIK2);
 					
 					Cell baslikIsk = aCIKLAMA.createCell(7);
 					baslikIsk.setCellValue("Iskonto");
-					baslikIsk.setCellStyle(satirStyle);
+					baslikIsk.setCellStyle(satirStyleBASLIK2);
 					
 					Cell baslikKdv = aCIKLAMA.createCell(8);
 					baslikKdv.setCellValue("KDV");
-					baslikKdv.setCellStyle(satirStyle);
+					baslikKdv.setCellStyle(satirStyleBASLIK2);
 					
 					Cell baslikTut = aCIKLAMA.createCell(9);
 					baslikTut.setCellValue("Tutar");
-					baslikTut.setCellStyle(satirStyle);
+					baslikTut.setCellStyle(satirStyleBASLIK2);
 					
 				//******************SATIRLAR ***********************************************	
 					int satir = 0 ;
@@ -2383,25 +2412,16 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					Row toplam1  = sheet.createRow(satir + 7);
 					Cell miktar = toplam1.createCell(3);
 					miktar.setCellValue(Double.parseDouble( label_8_1.getText()));
-					miktar.setCellStyle(satirStylemik); 
+					miktar.setCellStyle(satirStylemik_ARA); 
 					
 					Cell m3 = toplam1.createCell(4);
 					m3.setCellValue(Double.parseDouble( label_8.getText()));
-					m3.setCellStyle(satirStyle3); 
+					m3.setCellStyle(satirStyle3_ARA); 
 					
 					Cell tut = toplam1.createCell(9);
 					tut.setCellValue( label_9.getText());
-					tut.setCellStyle(satirStyle2); 
-					
-					
-					
-					//Row acikRow = sheet.createRow(1);
-					//sheet.addMergedRegion(new CellRangeAddress(1,1,6,mdl.getColumnCount() -1));
-					//String yazi = "Periyot :" ;
-					//Cell acik  = acikRow.createCell(6);
-					//acik.setCellStyle(satirStyle);
-					//acik.setCellValue(yazi );
-					
+					tut.setCellStyle(satirStyle2_ARA); 
+				
 					//**********
 					for (int i=0; i<= mdl.getColumnCount()-1; i++)
 					{

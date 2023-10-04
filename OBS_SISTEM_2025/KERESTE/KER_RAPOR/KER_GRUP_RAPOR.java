@@ -3081,36 +3081,6 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			byte[] byteArray= bos.toByteArray();
 			InputStream in = new ByteArrayInputStream(byteArray);
 			oac.ds = new ByteArrayDataSource(in, "application/x-any");
-			
-			///
-			//File f = new File("c:\\OBS_SISTEM\\test.zip");
-			//ZipOutputStream out = new ZipOutputStream(new FileOutputStream(f));
-			//ZipEntry eo = new ZipEntry("mytext.xlsx");
-			//out.putNextEntry(eo);
-			//byte[] data = byteArray;
-			//out.write(data, 0, data.length);
-			//out.closeEntry();
-
-			//out.close();
-			
-			/////
-			//  ByteArrayOutputStream bos = new ByteArrayOutputStream();
-   		   // ZipOutputStream zos = new ZipOutputStream(bos);
-			 //   zos.putNextEntry(new ZipEntry(""));
-
-			 ///   int count;
-			 //   byte data[] = new byte[2048];
-			 //   BufferedInputStream entryStream = new BufferedInputStream(is, 2048);
-			//    while ((count = entryStream.read(data, 0, 2048)) != -1) {
-			//        zos.write( data, 0, count );
-			//    }
-			//    entryStream.close();
-
-			//    zos.closeEntry();
-			//    zos.close();
-
-			   // return new ByteArrayInputStream(bos.toByteArray());
-			///
 			bos.close();
 		}
 		catch (Exception ex)

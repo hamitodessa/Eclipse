@@ -293,6 +293,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				{
 					ozmiz_gonder();
 				}
+				else if ( OBS_MAIN.pencere_bak("KERESTE CIKIS") == true ) 
+				{
+					ker_cikis();
+				}
 				else
 				{
 					duz_gonder();
@@ -478,6 +482,11 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			{
 				comboBox.enable(false);
 				lblNewLabel_2.setText("Ozel Mizan");
+			}
+			else if (ker_cikis_kontrol() )
+			{
+				comboBox.enable(false);
+				lblNewLabel_2.setText("KeresteCikis");
 			}
 			else if (etiket_kontrol() )
 			{
@@ -988,6 +997,18 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
+	private void ker_cikis() 
+	{
+		try
+		{
+			KERESTE_CIKIS. mail_at();
+			xl_gonder("Kereste_Cikis" );
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
 	private void xl_gonder(String dadi)
 	{
 		try
@@ -1125,6 +1146,16 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		boolean result  = false;
 
 		if (OBS_MAIN.pencere_bak("KERESTE ORTALAMA SATIS"))
+		{
+			result = true ;
+		}
+		return result;
+	}
+	private boolean  ker_cikis_kontrol() throws ReportSDKException
+	{
+		boolean result  = false;
+
+		if (OBS_MAIN.pencere_bak("KERESTE CIKIS"))
 		{
 			result = true ;
 		}

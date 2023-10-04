@@ -2158,7 +2158,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		String[] token = pakkons.toString().split("-");
 		return (token.length ==1) ? true:false;
 	}
-	public static void yazdir()
+	public static void excell_aktar()
 	{
 		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 
@@ -3265,7 +3265,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			cell.setCellValue(label.getText());
 			cell.setCellStyle(satirStyle2_ARA); 
 
-			//
 			List<String> uniqueDataList = u_kod_ogren() ;
 			int ssatir = satir + 8 ;
 			for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) {
@@ -3278,12 +3277,10 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				cell.setCellStyle(solaStyle);
 				ssatir +=1 ;
 			}
-			//**********
 			for (int i=0; i<= mdl.getColumnCount()-1; i++)
 			{
 				sheet.autoSizeColumn(i);
 			}
-			
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			workbook.write(bos);
 			byte[] byteArray= bos.toByteArray();
@@ -3293,12 +3290,11 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Grup Raporlama", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Kereste Cikis", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static List<String> u_kod_ogren()
 	{
-		// Creating a list of integers
 		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 		List<String> list = new ArrayList<String>();  
 		for (int i =0;i< mdl.getRowCount() ;i++)
@@ -3309,7 +3305,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			}
 		}
 		List<String> uniqueDataList = list.stream().distinct().collect(Collectors.toList());
-
 		return uniqueDataList ;
 	}
 	static void Progres_Bar(int max, int deger) throws InterruptedException

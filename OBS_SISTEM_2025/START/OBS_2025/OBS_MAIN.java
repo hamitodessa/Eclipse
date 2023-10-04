@@ -2324,7 +2324,10 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_87.setToolTipText("Kullanici Ekleme");
 		btnNewButton_87.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(GLOBAL.KULL_ADI.equals("Admin") || GLOBAL.KULL_ADI.equals("hamit"))
+				{
 				form_ac("KULLANICI EKLEME","");
+				}
 			}
 		});
 		btnNewButton_87.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/hsp-30.png")));
@@ -2334,7 +2337,10 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_88.setToolTipText("Kullanici Detay Ekleme");
 		btnNewButton_88.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(GLOBAL.KULL_ADI.equals("Admin") || GLOBAL.KULL_ADI.equals("hamit"))
+				{
 				form_ac("KULLANICI DETAY EKLEME","");
+				}
 			}
 		});
 
@@ -2345,7 +2351,10 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_89.setToolTipText("Kullanici Kopyala");
 		btnNewButton_89.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(GLOBAL.KULL_ADI.equals("Admin") || GLOBAL.KULL_ADI.equals("hamit"))
+				{
 				form_ac("KULLANICI KOPYALA","");
+				}
 			}
 		});
 		btnNewButton_89.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-identification-documents-30.png")));
@@ -3015,7 +3024,7 @@ public class OBS_MAIN extends JFrame {
 				}
 				else if (sonuc == "KERESTE CIKIS")
 				{
-					KERESTE_CIKIS.yazdir() ;
+					KERESTE_CIKIS.excell_aktar();
 				}
 				GuiUtil.setWaitCursor(toolBar,false);//
 			}

@@ -82,9 +82,7 @@ public class USER_KOPYALA extends JInternalFrame {
 			doldur();
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -188,6 +186,18 @@ public class USER_KOPYALA extends JInternalFrame {
 				JOptionPane.showMessageDialog(null, "Bu Kullanici isminde Kambiyo Bilgiler Mevcurt", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
 				return ;
 			}
+			panel.setCursor(oac.WAIT_CURSOR);
+			rss =   oac.uSER_ISL.user_db_izinleri(comboBox_1.getItemAt(comboBox_1.getSelectedIndex()).toString(), "Kereste");
+			panel.setCursor(oac.WAIT_CURSOR);
+			count=0;
+			rss.next();
+			count = rss.getRow();
+			if (count  != 0) 
+			{
+				panel.setCursor(oac.DEFAULT_CURSOR);
+				JOptionPane.showMessageDialog(null, "Bu Kullanici isminde Kereste Bilgiler Mevcurt", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);
+				return ;
+			}
 			//*********CARI KOPYALA
 			bILGILER("Cari Hesap");
 			//*********Adres KOPYALA
@@ -202,6 +212,8 @@ public class USER_KOPYALA extends JInternalFrame {
 			bILGILER("Gunluk");
 			//*********KAMBIYO KOPYALA
 			bILGILER("Kambiyo");
+			//*********KERESTE KOPYALA
+			bILGILER("Kereste");
 			//		            
 			panel.setCursor(oac.DEFAULT_CURSOR);   
 			JOptionPane.showMessageDialog(null, "Kullanici Kopyalandi", "Kullanici Kopyalama", JOptionPane.WARNING_MESSAGE);

@@ -18,8 +18,7 @@ import javax.swing.event.DocumentListener;
 public class COKLU_GIRIS_HSP extends DefaultCellEditor {
 
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	//	private static CARI_ACCESS  c_Access = new CARI_ACCESS(oac._ICar , oac._ICari_Loger);
-	
+
 	private static final Border red = new LineBorder(Color.red);
 	private static final Border black = new LineBorder(Color.black);
 	private JTextField textField;

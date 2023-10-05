@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class CARI_ACCESS {
 	private static ICARI_HESAP _ICari;
 	private static ILOGGER[] _Logger;
-	static Connection SQLitecon = null;
+	
 	private GLOBAL gLB = new GLOBAL();
 	
 	public CARI_ACCESS(ICARI_HESAP _ICari, ILOGGER[] _Logger)
@@ -113,11 +113,11 @@ public class CARI_ACCESS {
 	}
 	public void sqlite_sil() throws ClassNotFoundException, SQLException
 	{
-		if (SQLitecon != null && SQLitecon.isClosed() == false) SQLitecon.close();
+		Connection SQLitecon = null;
 		Class.forName("org.sqlite.JDBC");
 		SQLitecon = null;
 		PreparedStatement stmt = null;
-		SQLitecon = gLB.myConnection();
+		SQLitecon = gLB.myEkstreConnection();
 		String sql = "DELETE FROM EKSTRE ";
 		stmt = SQLitecon.prepareStatement(sql);
 		stmt.executeUpdate();

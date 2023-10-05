@@ -17,9 +17,7 @@ public class AUTO_HESAP_KODU {
 	{
 		try {
 			ResultSet rs = null;
-
 			rs = c_Access.hp_pln();
-
 			cmbox .removeAllItems();
 			cmbox.addItem("");
 			if (!rs.isBeforeFirst() ) {  

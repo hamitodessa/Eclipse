@@ -13,7 +13,6 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -85,9 +84,7 @@ public class BORC_ALACAK extends JDialog {
 						hsp.setVisible(true);
 						txtcari.setText( oac.hsp_hsp_kodu);
 						lblNewLabel_1.setText(CARI_ISIM_OKU.isim(txtcari.getText())[0]);
-					} catch (ClassNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (SQLException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}

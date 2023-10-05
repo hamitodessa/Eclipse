@@ -2039,4 +2039,13 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
+
+	@Override
+	public ResultSet sql_sorgu(String sql) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
 }

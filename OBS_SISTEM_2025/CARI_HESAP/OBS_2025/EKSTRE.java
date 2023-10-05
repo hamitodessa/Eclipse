@@ -506,8 +506,7 @@ public class EKSTRE extends JInternalFrame {
 		try {
 		GLOBAL gLB = new GLOBAL();
 		Connection SQLitecon = null;
-		SQLitecon = gLB.myConnection();
-
+		SQLitecon = gLB.myEkstreConnection();
 		DefaultTableModel model = (DefaultTableModel)table.getModel();
 		String str= "";
 		Date date = null;
@@ -517,11 +516,9 @@ public class EKSTRE extends JInternalFrame {
 		OBS_MAIN.progressBar.setStringPainted(true);
 		OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
 		long startTime = System.currentTimeMillis();
-
 		SQLitecon.setAutoCommit(false);
 		String sqll = "INSERT INTO EKSTRE (TARIH,EVRAK,IZAHAT,KOD,KUR,BORC,ALACAK,BAKIYE) ";
 		sqll += "VALUES (?,?,?,?,?,?,?,?)";
-
 		PreparedStatement stmt = SQLitecon.prepareStatement(sqll);
 		stmt = SQLitecon.prepareStatement(sqll);
 		for (int i = 0; i < table.getRowCount()  ; i ++) 

@@ -1986,4 +1986,13 @@ public class KERESTE_MYSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
+
+	@Override
+	public ResultSet sql_sorgu(String sql) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
 }

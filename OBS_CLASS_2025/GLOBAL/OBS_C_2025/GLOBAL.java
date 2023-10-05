@@ -24,14 +24,16 @@ import LOGER_KAYIT.SQLITE_LOG;
 
 
 import OBS_2025.Tema_Cari;
-
+@SuppressWarnings("unused")
 public class GLOBAL {
 
 	static final String OBS_DOSYA = System.getProperty("user.name") + "_OBS_SISTEM_2025.DB";
+	static final String EKSTRE_DOSYA = System.getProperty("user.name") + "_EKSTRE.DB";
 	public static final String SURUCU = "C:\\OBS_SISTEM\\";
 	public static final String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
 	static final String DBYERI = "C:\\OBS_DATABASES\\";
 	static Connection con ;
+	static Connection Ekstrecon ;
 	static String ayarlar[][]; // = new String[5][5];
 	public static String KULL_ADI = "";
 	public static String Log_Mail ="";
@@ -59,7 +61,20 @@ public class GLOBAL {
 		{	}  
 		return conn;  
 	}  
-	public  void obs_dosya_olustur() throws Exception 
+	public static Connection   myEkstreConnection ()
+	{
+			Connection conn = null;  
+			try 
+			{  
+				conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + EKSTRE_DOSYA );  
+			} 
+			catch (SQLException e) 
+			{	
+			}  
+			return conn;  
+
+	}
+	public static  void obs_dosya_olustur() throws Exception 
 	{
 		try 
 		{  
@@ -77,8 +92,6 @@ public class GLOBAL {
 			sorgu = "CREATE TABLE USER_DETAILS (CDID INTEGER PRIMARY KEY AUTOINCREMENT ,USER_PROG_KODU	CHAR(10) NOT NULL,USER_NAME	CHAR(20),USER_SERVER CHAR(50)," 
 					+ " USER_PWD_SERVER BLOB,USER_INSTANCE_OBS CHAR(50),USER_IP_OBS CHAR(50),USER_PROG_OBS CHAR(20),DIZIN CHAR(200),YER CHAR(1)," 
 					+ " DIZIN_CINS CHAR(1),IZINLI_MI CHAR(1),CALISAN_MI CHAR(1),HANGI_SQL CHAR(10),LOG INTEGER , LOG_YERI CHAR(75)); " ;
-			tablo_yap(sorgu);
-			sorgu = "CREATE TABLE EKSTRE (TARIH CHAR(10) ,EVRAK INTEGER,IZAHAT CHAR(100),KOD CHAR(10),KUR DOUBLE, BORC DOUBLE,ALACAK DOUBLE ,BAKIYE DOUBLE) ;"  ;
 			tablo_yap(sorgu);
 			sorgu = "CREATE TABLE USERS (USER_NAME	CHAR(20),USER_PWD BLOB,USER_LEVEL CHAR(2),USER_DB_IZIN CHAR(255),USER_MAIL CHAR(50),USER_YENI_DOSYA_ACMA INTEGER,USER_YENI_DOSYA_ACMA_SERVER INTEGER," 
 					+ "	PRIMARY KEY(\"USER_NAME\")); " ;
@@ -110,7 +123,19 @@ public class GLOBAL {
 			JOptionPane.showMessageDialog(null, ex.getMessage());  
 		}  
 	}
-	private void tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {
+	public static  void ekstre_dosya_olustur() throws Exception 
+	{
+			Class.forName("org.sqlite.JDBC");
+			Ekstrecon = myEkstreConnection();
+			String sorgu= null;
+			sorgu = "CREATE TABLE EKSTRE (TARIH CHAR(10) ,EVRAK INTEGER,IZAHAT CHAR(100),KOD CHAR(10),KUR DOUBLE, BORC DOUBLE,ALACAK DOUBLE ,BAKIYE DOUBLE) ;"  ;
+			java.sql.Statement stmt = null;
+			stmt = Ekstrecon.createStatement();  
+			stmt.execute(sorgu);  
+			stmt.close();
+			Ekstrecon.close();
+	}
+	private static void tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
 		con.close();
 		con = null;
@@ -153,6 +178,14 @@ public class GLOBAL {
 		}
 		if (dos_kontrol(SURUCU + OBS_DOSYA))
 		{   
+			if (! dos_kontrol(SURUCU + EKSTRE_DOSYA))
+			{ 
+				try {
+					ekstre_dosya_olustur();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 			if (dos_kontrol(SURUCU +  "/" + System.getProperty("user.name") +".properties"))
 			{ 
 				//Prop var
@@ -165,8 +198,8 @@ public class GLOBAL {
 		else
 		{
 			try {
-				GLOBAL gLB = new GLOBAL();
-				gLB.obs_dosya_olustur();
+				obs_dosya_olustur();
+				ekstre_dosya_olustur();
 				Tema_Cari.dosya_yap();
 				set_ilk() ; //obs_set_olustur();
 			} catch (Exception e) {
@@ -199,7 +232,7 @@ public class GLOBAL {
 		} catch (Exception e1) {
 		}
 	}
-	@SuppressWarnings("unused")
+	
 	public static void set_doldur() throws IOException {
 		InputStream input;
 		Properties prop = new Properties();
@@ -378,6 +411,11 @@ public class GLOBAL {
 		{
 			return false;
 		}
+	}
+	public void dos_sil(String dosya)
+	{
+		 File myObj = new File(dosya); 
+		 myObj.delete() ; 
 	}
 	public static String char_degis (String degisken)
 	{

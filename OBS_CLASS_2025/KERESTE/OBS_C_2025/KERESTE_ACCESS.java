@@ -301,4 +301,10 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.bos_kur(kur, cins,dURUM);
 	}
+	public ResultSet sql_sorgu(String sql,  lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	{
+		for ( ILOGGER  _Logger : _Logger )
+		  	_Logger.Logla(lBILGI, dBILGI);
+		return _IKereste.sql_sorgu(sql);
+	}
 }

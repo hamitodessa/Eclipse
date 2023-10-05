@@ -99,6 +99,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 	{
 		try 
 		{
+			GuiUtil.setWaitCursor(reportViewer,true);
 			clientDoc = new ReportClientDocument();
 			if (nerden.equals("hsppln"))
 			{
@@ -2292,6 +2293,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			reportViewer.setReportSource(clientDoc.getReportSource());
 			reportViewer.init();
 			reportViewer.start();
+			GuiUtil.setWaitCursor(reportViewer,false);
 		}
 		catch (Exception ex)
 		{

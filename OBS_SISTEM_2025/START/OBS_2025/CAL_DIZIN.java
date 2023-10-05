@@ -101,6 +101,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.JSeparator;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 @SuppressWarnings("static-access")
 public class CAL_DIZIN extends JDialog {
@@ -372,7 +374,7 @@ public class CAL_DIZIN extends JDialog {
 		toolBar.add(btnNewButton_5);
 
 		JLabel lblNewLabel_1 = new JLabel("Kodu");
-		lblNewLabel_1.setBounds(24, 74, 68, 14);
+		lblNewLabel_1.setBounds(24, 76, 68, 14);
 
 		panel.add(lblNewLabel_1);
 		chckbxL = new JCheckBox("Lokal");
@@ -381,10 +383,12 @@ public class CAL_DIZIN extends JDialog {
 				if (chckbxL.isSelected())
 				{
 					chckbxS.setSelected(false);
+					chckbxD.setEnabled(true);
 				}
 				else
 				{
 					chckbxS.setSelected(true);
+					chckbxD.setEnabled(false);
 				}
 			}
 		});
@@ -397,10 +401,12 @@ public class CAL_DIZIN extends JDialog {
 				if (chckbxS.isSelected())
 				{
 					chckbxL.setSelected(false);
+					chckbxD.setEnabled(false);
 				}
 				else
 				{
 					chckbxL.setSelected(true);
+					chckbxD.setEnabled(true);
 				}
 			}
 		});
@@ -514,19 +520,19 @@ public class CAL_DIZIN extends JDialog {
 		panel.add(btndizsec);
 
 		JLabel lblInstance = new JLabel("Instance");
-		lblInstance.setBounds(24, 159, 68, 14);
+		lblInstance.setBounds(24, 160, 68, 14);
 		panel.add(lblInstance);
 
 		JLabel lblServer = new JLabel("Server / Port");
-		lblServer.setBounds(24, 183, 78, 14);
+		lblServer.setBounds(24, 185, 78, 14);
 		panel.add(lblServer);
 
-		JLabel lblKullanici = new JLabel("Kullanici");
+		JLabel lblKullanici = new JLabel("Sifre");
 		lblKullanici.setBounds(24, 257, 68, 14);
 		panel.add(lblKullanici);
 
-		JLabel lblSifre = new JLabel("Sifre");
-		lblSifre.setBounds(24, 232, 68, 14);
+		JLabel lblSifre = new JLabel("Kullanici");
+		lblSifre.setBounds(24, 234, 68, 14);
 		panel.add(lblSifre);
 
 		JLabel lblUser = new JLabel("....");
@@ -1119,7 +1125,7 @@ public class CAL_DIZIN extends JDialog {
 		panel.add(chckbxL_1);
 
 		JLabel lblKayitserver = new JLabel("Serverler");
-		lblKayitserver.setBounds(24, 209, 78, 14);
+		lblKayitserver.setBounds(24, 210, 78, 14);
 		panel.add(lblKayitserver);
 
 		/////////////////////////////////////////////////LOGLAMA BUTTON /////////////////////
@@ -1316,6 +1322,15 @@ public class CAL_DIZIN extends JDialog {
 		grd.setRowSelectionInterval(0, 0);
 		grd.setSelectionBackground(Color.PINK);
 		grd.setSelectionForeground(Color.BLUE);
+		
+		if (chckbxS.isSelected())
+		{
+			chckbxD.setEnabled(false);
+		}
+		else
+		{
+			chckbxD.setEnabled(true);
+		}
 	}
 	public static void HeaderRenderer(JTable table) {
 		DefaultTableCellRenderer renderer;

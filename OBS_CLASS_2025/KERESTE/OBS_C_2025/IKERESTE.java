@@ -72,4 +72,5 @@ public interface IKERESTE {
 			String qwq7,String qwq8,String k1 ,String k2,String s1,String s2,String jkj,String t1,String t2,
 			String sstr_5,String sstr_1,String orderBY ,String dURUM,String ko1, String ko2,String dpo, String grup,String e1,String e2) throws ClassNotFoundException, SQLException;
 	public ResultSet bos_kur(String kur , String cins,String dURUM) throws ClassNotFoundException, SQLException;
+	public ResultSet sql_sorgu(String sql)  throws ClassNotFoundException, SQLException;
 	}

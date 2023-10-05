@@ -408,6 +408,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 					txtmi = true ;
 				}
 			}
+			/////////////GUNLUK///////////////////////////////////////////////
 			else if (  comboBox.getSelectedItem().toString().equals("Gunluk"))
 			{
 				if(cmbLog.getSelectedItem().toString().equals("Veritabani"))
@@ -440,6 +441,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 					txtmi = true ;
 				}
 			}
+			/////////////KERESTE///////////////////////////////////////////////
 			else if (  comboBox.getSelectedItem().toString().equals("Kereste"))
 			{
 				if(cmbLog.getSelectedItem().toString().equals("Veritabani"))
@@ -500,7 +502,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			TableColumn tc;
 			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(new SOLA());
-			//tc.setCellRenderer(new TARIH_SAATLI());
 			tc.setMinWidth(140);
 			tc.setMaxWidth(140);
 
@@ -532,13 +533,10 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			}
 			table.setSelectionBackground(Color.PINK);
 			table.setSelectionForeground(Color.BLUE);
-			//			lblNewLabel_1.setText(FORMATLAMA.doub_0(table.getRowCount()));
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-
-
 			String deger;
 			String[] parts;
 			Font bigFont;
@@ -555,7 +553,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),"Cari Arama", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, ex.getMessage(),"Loglama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

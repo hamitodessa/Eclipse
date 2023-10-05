@@ -1331,6 +1331,7 @@ public class OBS_MAIN extends JFrame {
 		toolBar_2.add(btnNewButton_15);
 
 		btnNewButton_16 = new JButton("");
+		btnNewButton_16.setToolTipText("Sql Sorgulama");
 		btnNewButton_16.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("SQL SORGULAMA","cari");
@@ -2221,6 +2222,16 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-currency-exchange-30.png")));
 		
 		toolBar_Kereste.add(btnNewButton);
+		
+		JButton btnNewButton_68 = new JButton("");
+		btnNewButton_68.setToolTipText("Sql Sorgulama");
+		btnNewButton_68.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("SQL SORGULAMA","kereste");
+			}
+		});
+		btnNewButton_68.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-sql-30.png")));
+		toolBar_Kereste.add(btnNewButton_68);
 		
 		JLabel lblNewLabel_3 = new JLabel("          ");
 		toolBar_Kereste.add(lblNewLabel_3);

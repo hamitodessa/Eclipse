@@ -2,6 +2,8 @@ package OBS_2025;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 
 import javax.swing.BorderFactory;
@@ -15,6 +17,8 @@ import java.awt.Dimension;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -23,6 +27,7 @@ import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.lOG_BILGI;
@@ -37,6 +42,7 @@ public class SQL_SORGULAMA extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	static STOK_ACCESS f_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
+	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(OBS_SIS_2025_ANA_CLASS._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 	private static JTable table;
 	private static String modul = "" ;
 	private static JTextArea textArea ;
@@ -85,7 +91,6 @@ public class SQL_SORGULAMA extends JInternalFrame {
 
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		//table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setGridColor(oac.gridcolor);
 		scrollPane.setViewportView(table);
@@ -97,10 +102,18 @@ public class SQL_SORGULAMA extends JInternalFrame {
 		textArea.setMaximumSize(new Dimension(0, 100));
 		textArea.setLineWrap(true);
 		textArea.setDocument(new JTextFieldLimit(100));
+		textArea.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					hisset ();
+				}
+			}
+		});
 		Border borderr = BorderFactory.createLineBorder(Color.GRAY);
 
-		textArea.setBorder(BorderFactory.createCompoundBorder(borderr,
-				BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+		textArea.setBorder(BorderFactory.createCompoundBorder(borderr,BorderFactory.createEmptyBorder(2, 2, 2, 2)));
 		splitPane.setLeftComponent(textArea);
 		modul = nerden ;
 	}
@@ -153,7 +166,30 @@ public class SQL_SORGULAMA extends JInternalFrame {
 				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ(mesaj);
 				lBILGI.seteVRAK("");
-			rs = f_Access.sql_sorgu(textArea.getText(),lBILGI,BAGLAN_LOG.fatLogDizin);
+				rs = f_Access.sql_sorgu(textArea.getText(),lBILGI,BAGLAN_LOG.fatLogDizin);
+
+				if (!rs.isBeforeFirst() ) {  
+					GRID_TEMIZLE.grid_temizle(table);
+					return;
+				} 
+
+			}
+			else if (modul.equals("kereste"))
+			{
+				String mesaj = "Aranan:" ;
+				String mesaj1 = textArea.getText();
+				if( mesaj1.length() <= 93)
+				{
+					mesaj = mesaj +  mesaj1 ;
+				}
+				else
+				{
+					mesaj = mesaj +  mesaj1.substring(0, 93  -(mesaj.length())) ;
+				}
+				lOG_BILGI lBILGI = new lOG_BILGI();
+				lBILGI.setmESAJ(mesaj);
+				lBILGI.seteVRAK("");
+				rs = ker_Access.sql_sorgu(textArea.getText(),lBILGI,BAGLAN_LOG.kerLogDizin);
 
 				if (!rs.isBeforeFirst() ) {  
 					GRID_TEMIZLE.grid_temizle(table);

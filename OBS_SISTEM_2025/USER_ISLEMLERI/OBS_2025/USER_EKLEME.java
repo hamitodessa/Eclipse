@@ -311,7 +311,7 @@ public class USER_EKLEME extends JInternalFrame {
 	}
 	private static  void doldur_kutu( JTable grd,int satir) throws ClassNotFoundException, SQLException 
 	{
-		if (grd.getRowCount() == 0 ) {  
+		if (grd.getRowCount() == 0 || satir == -1) {  
 			kutu_temizle();
 			return;
 		} 

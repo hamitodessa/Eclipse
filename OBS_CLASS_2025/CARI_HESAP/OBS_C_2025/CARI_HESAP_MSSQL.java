@@ -14,6 +14,8 @@ import java.sql.Statement;
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.TXT_LOG;
+
+@SuppressWarnings("static-access")
 public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 
 	public static Connection con = null;
@@ -368,27 +370,17 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-	@SuppressWarnings("static-access")
 	public void sqlite_sil() throws ClassNotFoundException, SQLException
 	{
-		Class.forName("org.sqlite.JDBC");
-		SQLitecon = null;
-		PreparedStatement stmt = null;
-		SQLitecon = gLB.myConnection();
-		String sql = "DELETE FROM EKSTRE ";
-		stmt = SQLitecon.prepareStatement(sql);
-		stmt.executeUpdate();
-		stmt.close();
-		SQLitecon.close();
 	}
-	@SuppressWarnings("static-access")
+	
 	public ResultSet ekstre_sqlite() throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		SQLitecon = null;
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
-		SQLitecon = gLB.myConnection();
+		SQLitecon = gLB.myEkstreConnection();
 		String sql = "SELECT TARIH,EVRAK ,IZAHAT,KOD,KUR,BORC,ALACAK,BAKIYE FROM EKSTRE";
 		stmt = SQLitecon.prepareStatement(sql);
 		rss = stmt.executeQuery();

@@ -16,7 +16,7 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","static-access"})
 public class E_MAIL_BILGILERI extends JInternalFrame {
 	private static JTextField txtmail;
 	private static JTextField txthost;
@@ -48,94 +48,85 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("static-access")
 	public E_MAIL_BILGILERI() {
 		setTitle("E MAIL BILGILERI");
 		setClosable(true);
-		setBounds(100, 100, 492, 289);
+		setBounds(100, 100, 492, 239);
 
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Mail");
-		lblNewLabel.setBounds(45, 31, 46, 14);
+		lblNewLabel.setBounds(39, 14, 46, 14);
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Host");
-		lblNewLabel_1.setBounds(45, 56, 46, 14);
+		lblNewLabel_1.setBounds(39, 39, 46, 14);
 		panel.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Port");
-		lblNewLabel_2.setBounds(45, 81, 46, 14);
+		lblNewLabel_2.setBounds(39, 64, 46, 14);
 		panel.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("Sifre");
-		lblNewLabel_3.setBounds(45, 106, 46, 14);
+		lblNewLabel_3.setBounds(39, 89, 46, 14);
 		panel.add(lblNewLabel_3);
 
-		JLabel lblNewLabel_4 = new JLabel("SSL");
-		lblNewLabel_4.setBounds(45, 131, 46, 14);
-		panel.add(lblNewLabel_4);
-
-		JLabel lblNewLabel_5 = new JLabel("TSL");
-		lblNewLabel_5.setBounds(45, 156, 46, 14);
-		panel.add(lblNewLabel_5);
-
-		chckbxNewCheckBox = new JCheckBox("");
-		chckbxNewCheckBox.setBounds(133, 127, 97, 23);
+		chckbxNewCheckBox = new JCheckBox("SSL");
+		chckbxNewCheckBox.setBounds(127, 110, 97, 23);
 		panel.add(chckbxNewCheckBox);
 
-		chckbxNewCheckBox_1 = new JCheckBox("");
-		chckbxNewCheckBox_1.setBounds(133, 152, 97, 23);
+		chckbxNewCheckBox_1 = new JCheckBox("TSL");
+		chckbxNewCheckBox_1.setBounds(309, 110, 97, 23);
 		panel.add(chckbxNewCheckBox_1);
 
 		txtmail = new JTextField();
 		txtmail.setForeground(new Color(0, 0, 128));
 		txtmail.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtmail.setBounds(133, 28, 315, 20);
+		txtmail.setBounds(127, 11, 315, 20);
 		panel.add(txtmail);
 		txtmail.setColumns(10);
 
 		txthost = new JTextField();
 		txthost.setForeground(new Color(0, 0, 128));
 		txthost.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txthost.setBounds(133, 53, 315, 20);
+		txthost.setBounds(127, 36, 315, 20);
 		panel.add(txthost);
 		txthost.setColumns(10);
 
 		txtport = new JTextField();
 		txtport.setForeground(new Color(0, 0, 128));
 		txtport.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtport.setBounds(133, 78, 61, 20);
+		txtport.setBounds(127, 61, 61, 20);
 		panel.add(txtport);
 		txtport.setColumns(10);
 
 		JLabel lblNewLabel_6 = new JLabel("Hesap");
-		lblNewLabel_6.setBounds(45, 197, 46, 14);
+		lblNewLabel_6.setBounds(39, 156, 46, 14);
 		panel.add(lblNewLabel_6);
 
 		JLabel lblNewLabel_7 = new JLabel("Isim");
-		lblNewLabel_7.setBounds(45, 224, 46, 14);
+		lblNewLabel_7.setBounds(39, 183, 46, 14);
 		panel.add(lblNewLabel_7);
 
 		txtgonhesap = new JTextField();
 		txtgonhesap.setForeground(new Color(0, 0, 128));
 		txtgonhesap.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtgonhesap.setBounds(133, 194, 315, 20);
+		txtgonhesap.setBounds(127, 153, 315, 20);
 		panel.add(txtgonhesap);
 		txtgonhesap.setColumns(10);
 
 		txtgonisim = new JTextField();
 		txtgonisim.setForeground(new Color(0, 0, 128));
 		txtgonisim.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtgonisim.setBounds(133, 221, 315, 20);
+		txtgonisim.setBounds(127, 180, 315, 20);
 		panel.add(txtgonisim);
 		txtgonisim.setColumns(10);
 
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(135, 206, 235));
-		separator.setBounds(45, 181, 403, 2);
+		separator.setBounds(39, 140, 403, 2);
 		panel.add(separator);
 
 		JSeparator separator_2 = new JSeparator();
@@ -143,7 +134,7 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 		panel.add(separator_2);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(133, 103, 279, 20);
+		passwordField.setBounds(127, 86, 279, 20);
 		panel.add(passwordField);
 
 
@@ -169,7 +160,6 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(), "Mail Bilgi Kayit", JOptionPane.WARNING_MESSAGE);
 		}
 	}
-	@SuppressWarnings("static-access")
 	public static void kayit () 
 	{
 		try

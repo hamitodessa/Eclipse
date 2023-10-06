@@ -1507,7 +1507,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 						mdl.removeRow(mdl.getRowCount() -1);	
 					}
 				}  while (rss.next()) ;
-				mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+				//mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 
 				table.repaint();
 				paketm3();

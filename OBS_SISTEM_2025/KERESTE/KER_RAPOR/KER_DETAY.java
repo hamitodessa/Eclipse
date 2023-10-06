@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -70,7 +72,7 @@ import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
-@SuppressWarnings({ "serial", "static-access" ,"resource"})
+@SuppressWarnings({ "serial", "static-access" ,"resource","deprecation"})
 public class KER_DETAY extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -135,6 +137,30 @@ public class KER_DETAY extends JInternalFrame {
 		table.setGridColor(oac.gridcolor);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+
+					String[] parts;
+					String deger ;
+					deger = GLOBAL.setting_oku("PRG_FILTRE").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							OBS_MAIN.btnFiltre.doClick();
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+
+				}
+			}
+		});
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();

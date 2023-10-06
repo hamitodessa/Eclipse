@@ -113,8 +113,6 @@ public class EKSTRE extends JInternalFrame {
 		pane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		pane.setDividerSize(0);
 		pane.setResizeWeight(1.0);
-
-
 		getContentPane().add(pane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
@@ -239,7 +237,6 @@ public class EKSTRE extends JInternalFrame {
 				{
 					if (getValueAt(row,7) != null)
 					{
-
 						double tut = Double.parseDouble(getValueAt(row,7).toString()) ;
 
 						if (tut < 0)

@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
@@ -57,6 +59,7 @@ import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.FILE_UZANTI;
 import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KER_RAPOR_BILGI;
@@ -68,7 +71,7 @@ import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
-@SuppressWarnings({"serial","static-access"})
+@SuppressWarnings({"serial","static-access","deprecation"})
 public class KER_FAT_RAPOR extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 
@@ -140,6 +143,30 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				}
 			}
 		});
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+
+					String[] parts;
+					String deger ;
+					deger = GLOBAL.setting_oku("PRG_FILTRE").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							OBS_MAIN.btnFiltre.doClick();
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+
+				}
+			}
+		});
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
@@ -163,6 +190,30 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		table_1.setGridColor(oac.gridcolor);
 		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				try {
+
+					String[] parts;
+					String deger ;
+					deger = GLOBAL.setting_oku("PRG_FILTRE").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							OBS_MAIN.btnFiltre.doClick();
+						}
+					}
+				}
+				catch (Exception ex)
+				{
+
+				}
+			}
+		});
 		scrollPane_1.setViewportView(table_1);
 
 		JPanel panel_1 = new JPanel();

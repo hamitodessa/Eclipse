@@ -22,15 +22,18 @@ import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
 import javax.imageio.ImageIO;
+import javax.mail.Folder;
 import javax.mail.Message.RecipientType;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Store;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
@@ -552,6 +555,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
 			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+			props.put("mail.store.protocol", "imaps");
 			Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication(MAIL_SETTINGS.HESAP,MAIL_SETTINGS.PWD);
@@ -584,7 +588,17 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			multipart.addBodyPart(messagePart);
 			message.setSubject(txtkonu.getText().toString(), "UTF-8");
 			message.setContent(multipart);
+			message.setSentDate(new Date());
 			Transport.send(message);
+			///
+			//Store store = session.getStore("imap");
+			//store.connect();
+			//Folder sentFolder = store.getFolder("Sent");
+			//sentFolder.open(Folder.READ_WRITE);
+			//MimeMessage[] messages = {message}; // The sent message
+			//sentFolder.appendMessages(messages);
+			//sentFolder.close(true);
+			//store.close();
 			message= null;
 			session = null;
 			//**********************Raporlama Dosyasina Yaz ***************************
@@ -708,6 +722,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
 			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+			props.put("mail.store.protocol", "imaps");
 			Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication(MAIL_SETTINGS.HESAP, MAIL_SETTINGS.PWD);
@@ -764,9 +779,13 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			multipart.addBodyPart(messagePart);
 			message.setSubject(txtkonu.getText(), "UTF-8");
 			message.setContent(multipart);
+			message.setSentDate(new Date());
 			Transport.send(message);
 			message= null;
 			session = null;
+			
+			////
+			
 			//**********************Raporlama Dosyasina Yaz ***************************
 			oac.uSER_ISL.giden_rapor_yaz(new java.sql.Date(Calendar.getInstance().getTime().getTime())  ,txtkonu.getText(), rapor_dos_adi, cmbalici.getSelectedItem().toString() ,
 					MAIL_SETTINGS.HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;
@@ -806,6 +825,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
 			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+			props.put("mail.store.protocol", "imaps");
 			Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication(MAIL_SETTINGS.HESAP, MAIL_SETTINGS.PWD);
@@ -860,6 +880,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			multipart.addBodyPart(messagePart);
 			message.setSubject(txtkonu.getText(), "UTF-8");
 			message.setContent(multipart);
+			message.setSentDate(new Date());
 			Transport.send(message);
 			message= null;
 			session = null;
@@ -1029,7 +1050,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
 			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.ssl.protocols", "TLSv1.2");
-
+			props.put("mail.store.protocol", "imaps");
 			Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication(MAIL_SETTINGS.HESAP, MAIL_SETTINGS.PWD);
@@ -1075,6 +1096,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			multipart.addBodyPart(messagePart);
 			message.setSubject(txtkonu.getText(), "UTF-8");
 			message.setContent(multipart);
+			message.setSentDate(new Date());
 			Transport.send(message);
 			message= null;
 			session = null;

@@ -1,5 +1,6 @@
 package OBS_C_2025;
 
+import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Multipart;
@@ -36,6 +37,7 @@ public class MAIL_AT implements ILOGGER{
 			props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
 			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+			props.put("mail.store.protocol", "imaps");
 			
 			Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
@@ -57,6 +59,8 @@ public class MAIL_AT implements ILOGGER{
 			multipart.addBodyPart(messagePart);
 			message.setSubject("Loglama", "UTF-8");
 			message.setContent(multipart);
+			message.setSentDate(new Date());
+			
 			Transport.send(message);
 			message= null;
 			session = null;

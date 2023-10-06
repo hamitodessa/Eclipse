@@ -42,7 +42,7 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/logging.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/sap.com~tc~sec~csi.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/activation.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/2025/mail.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/javax.mail.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jsoup-1.15.3.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/RXTXcomm.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/bridj-0.6.2.jar"/>

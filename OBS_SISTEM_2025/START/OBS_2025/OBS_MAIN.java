@@ -1841,6 +1841,11 @@ public class OBS_MAIN extends JFrame {
 		{
 			public void itemStateChanged(ItemEvent e) {
 				String hangi = (String) comboDegisken.getItemAt(comboDegisken.getSelectedIndex())  ;
+				boolean varmi = pencere_bak("DEGISKENLER");
+				if (varmi) 
+				{
+					pencere_kapat("DEGISKENLER");
+				}
 				if (hangi == "Ana Grup")
 				{
 					form_ac("DEGISKENLER","anagrup");
@@ -2163,6 +2168,11 @@ public class OBS_MAIN extends JFrame {
 		{
 			public void itemStateChanged(ItemEvent e) {
 				String hangi = (String) comboDegisken_1.getItemAt(comboDegisken_1.getSelectedIndex())  ;
+				boolean varmi = pencere_bak("KERESTE DEGISKENLER");
+				if (varmi) 
+				{
+					pencere_kapat("KERESTE DEGISKENLER");
+				}
 				if (hangi == "Ana Grup")
 				{
 					form_ac("KERESTE DEGISKENLER","anagrup");
@@ -2499,6 +2509,8 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "GOREV GIRIS")	GOREV_GIRIS.sil();
 				else if (sonuc == "KONSIMENTO ACIKLAMA")	KONS_ACIKLAMA.sil();
 				else if (sonuc == "KOD ACIKLAMA")	KOD_ACIKLAMA.sil();
+				else if (sonuc == "KERESTE DEGISKENLER")	KER_DEGISKEN_GIRIS.sil();
+				//
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});
@@ -3457,6 +3469,18 @@ public class OBS_MAIN extends JFrame {
 			{
 				frame.setSelected(true);
 				break; 
+			}
+		}
+	}
+	private void pencere_kapat(String formADI)
+	{
+		for(int i=0;i<desktopPane.getAllFrames().length;i++)
+		{   
+			JInternalFrame frame=(JInternalFrame) desktopPane.getComponent(i);
+			String tit=frame.getTitle();
+			if (tit.equals(formADI) )
+			{
+				desktopPane.remove(i);
 			}
 		}
 	}

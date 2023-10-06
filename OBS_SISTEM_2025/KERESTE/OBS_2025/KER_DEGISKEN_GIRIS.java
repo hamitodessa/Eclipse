@@ -8,8 +8,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 
 import javax.swing.JComboBox;
@@ -25,6 +23,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -169,19 +169,22 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table.setGridColor(oac.gridcolor);
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int row = table.getSelectedRow();
-				if (table.getRowSorter()!=null) {
-				    row = table.getRowSorter().convertRowIndexToModel(row);
-				    textField_1.setText(table.getModel().getValueAt(row, 1).toString());
-					textField_2.setText(table.getModel().getValueAt(row, 0).toString());
-				}
-				else
-				{
-					textField_1.setText(table.getModel().getValueAt(table.getSelectedRow(), 1).toString());
-					textField_2.setText(table.getModel().getValueAt(table.getSelectedRow(), 0).toString());
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent lse) {
+				if (!lse.getValueIsAdjusting()) {
+					if (table.getRowCount() == 0) return ;
+					if (table.getSelectedRow()  < 0) return;
+					int row = table.getSelectedRow();
+					if (table.getRowSorter()!=null) {
+					    row = table.getRowSorter().convertRowIndexToModel(row);
+					    textField_1.setText(table.getModel().getValueAt(row, 1).toString());
+						textField_2.setText(table.getModel().getValueAt(row, 0).toString());
+					}
+					else
+					{
+						textField_1.setText(table.getModel().getValueAt(table.getSelectedRow(), 1).toString());
+						textField_2.setText(table.getModel().getValueAt(table.getSelectedRow(), 0).toString());
+					}
 				}
 			}
 		});
@@ -253,7 +256,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 				rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
 			}
 			//***********TABLO DOLDUR
-			if (!rs.isBeforeFirst() ) {  
+			if (!rs.isBeforeFirst() ) { 
 			} 
 			else
 			{
@@ -269,7 +272,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 	private static void grid_doldur()
 	{
 		try {
-		GRID_TEMIZLE.grid_temizle(table);
+			GRID_TEMIZLE.grid_temizle(table);
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
@@ -281,13 +284,13 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 			th.repaint();
 			if (table.getRowCount() > 0)
 			{
-			tc = tcm.getColumn(0);
-			tc.setHeaderRenderer(new SOLA());
-			tc.setCellRenderer(new SOLA_ORTA());
-			table.setRowSelectionInterval(0, 0);
-			table.setRowHeight(21);
-			textField_1.setText(table.getModel().getValueAt(0, 1).toString());
-			textField_2.setText(table.getModel().getValueAt(0, 0).toString());
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
+				textField_1.setText(table.getModel().getValueAt(0, 1).toString());
+				textField_2.setText(table.getModel().getValueAt(0, 0).toString());
 			}
 		}
 		catch (Exception ex)
@@ -297,185 +300,153 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 	}
 	public static  void sil()
 	{
-		try {
+		try 
+		{
 			lOG_BILGI lBILGI = new lOG_BILGI();
-        if (hangi.equals("altgrup"))
-        {
-        	
-        	int g =  JOptionPane.showOptionDialog( null,  "Alt Grup Degisken Silinecek ..?" + System.lineSeparator() +
-        			"Silme operasyonu butun dosyayi etkileyecek..." + System.lineSeparator() + 
-        			"Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz...."  ,
-	        		"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
-		   			 	JOptionPane.QUESTION_MESSAGE,
-		   			 	null,     //no custom icon
-		   			 	oac.options,  //button titles
-		   			 	oac.options[1]); //default button
-		 	 if(g != 0 ) { return;	}
-		 	 
-        	///////////************Dosya Kontrol
-		 	
-			
-			
-		 	 int anaG = 0 , altG = 0 ;
-		 	 ResultSet rss = null;
+			if (hangi.equals("altgrup"))
+			{
+				int g =  JOptionPane.showOptionDialog( null,  "Alt Grup Degisken Silinecek ..?" + System.lineSeparator() +
+						"Silme operasyonu butun dosyayi etkileyecek..." + System.lineSeparator() + 
+						"Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz...."  ,
+						"Degisken  Silme",   JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,	null,  	oac.options, 	oac.options[1]); //default button
+				if(g != 0 ) { return;	}
+				int anaG = 0 , altG = 0 ;
+				ResultSet rss = null;
 				rss = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()).toString());
-    		if (!rss.isBeforeFirst() ) {      		
-	    	}
-	    	else
-	    	{
-	    		rss.next();
-        		anaG  = rss.getInt("AGID_Y");
-	    	}
- 	    		rss = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  textField_1.getText());
- 	      	if (!rss.isBeforeFirst() ) {      		
-	    	}
-	    	else
-	    	{
-	    		rss.next();
-     	      	altG  = rss.getInt("ALID_Y");
-	    	}
- 		 	
-			   if (ker_Access.alt_grup_kontrol(anaG,altG) )
-				   {
+				if (!rss.isBeforeFirst() ) {      		
+				}
+				else
+				{
+					rss.next();
+					anaG  = rss.getInt("AGID_Y");
+				}
+				rss = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN",  textField_1.getText());
+				if (!rss.isBeforeFirst() ) {      		
+				}
+				else
+				{
+					rss.next();
+					altG  = rss.getInt("ALID_Y");
+				}
+
+				if (ker_Access.alt_grup_kontrol(anaG,altG) )
+				{
 					JOptionPane.showMessageDialog(null, "Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz....",  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
-				   return;
-				   }
-				
-     	  	
-		 	 //*********************
-			   lBILGI.setmESAJ("Alt Grup Silme:" + Integer.parseInt(textField_2.getText()));
+					return;
+				}
+				//*********************
+				lBILGI.setmESAJ("Alt Grup Silme:" + Integer.parseInt(textField_2.getText()));
 				lBILGI.seteVRAK("");
-				
-  			   ker_Access.ker_degisken_alt_grup_sil(Integer.parseInt(textField_2.getText()),
-  					 lBILGI,BAGLAN_LOG.kerLogDizin);
-        	  sifirla();
-              textField.setText("");
-              ana_grup_doldur();
-              grid_doldur();
 
-              textField.requestFocus();
-        } else if (hangi.equals("mensei"))
-        {
-        	int g =  JOptionPane.showOptionDialog( null,  "Mensei  Degisken Silinecek ..?"   ,
-	        		"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
-		   			 	JOptionPane.QUESTION_MESSAGE,
-		   			 	null,     //no custom icon
-		   			 	oac.options,  //button titles
-		   			 	oac.options[1]); //default button
-		 	 if(g != 0 ) { return;	}
-		 	 
-		 	 lBILGI.setmESAJ(" Mensei Sil:" + Integer.parseInt(textField_2.getText()));
+				ker_Access.ker_degisken_alt_grup_sil(Integer.parseInt(textField_2.getText()),
+						lBILGI,BAGLAN_LOG.kerLogDizin);
+				sifirla();
+				textField.setText("");
+				ana_grup_doldur();
+				grid_doldur();
+				textField.requestFocus();
+			} else if (hangi.equals("mensei"))
+			{
+				int g =  JOptionPane.showOptionDialog( null,  "Mensei  Degisken Silinecek ..?"   ,
+						"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null,     //no custom icon
+						oac.options,  //button titles
+						oac.options[1]); //default button
+				if(g != 0 ) { return;	}
+
+				lBILGI.setmESAJ(" Mensei Sil:" + Integer.parseInt(textField_2.getText()));
 				lBILGI.seteVRAK("");
- 			  ker_Access.ker_kod_degisken_sil( "MEID_Y", "MENSEI_DEGISKEN", Integer.parseInt(textField_2.getText()),
- 					  lBILGI,BAGLAN_LOG.kerLogDizin);
-        	 sifirla();
-             textField.setText("");
-             yenile();
-             grid_doldur();
+				ker_Access.ker_kod_degisken_sil( "MEID_Y", "MENSEI_DEGISKEN", Integer.parseInt(textField_2.getText()),
+						lBILGI,BAGLAN_LOG.kerLogDizin);
+				sifirla();
+				textField.setText("");
+				yenile();
+				textField.requestFocus();
+			} else if (hangi.equals("depo"))
+			{
+				int g =  JOptionPane.showOptionDialog( null,  "Depo  Degisken Silinecek ..?"   ,
+						"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null,     //no custom icon
+						oac.options,  //button titles
+						oac.options[1]); //default button
+				if(g != 0 ) { return;	}
 
-             textField.requestFocus();
-        	 
-       
-		} else if (hangi.equals("depo"))
-        {
-        	int g =  JOptionPane.showOptionDialog( null,  "Depo  Degisken Silinecek ..?"   ,
-	        		"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
-		   			 	JOptionPane.QUESTION_MESSAGE,
-		   			 	null,     //no custom icon
-		   			 	oac.options,  //button titles
-		   			 	oac.options[1]); //default button
-		 	 if(g != 0 ) { return;	}
-		 	 
-		 	lBILGI.setmESAJ( "Depo Sil:" + Integer.parseInt(textField_2.getText()) );
-			lBILGI.seteVRAK("");
-			
-			   ker_Access.ker_kod_degisken_sil( "DPID_Y", "DEPO_DEGISKEN", Integer.parseInt(textField_2.getText()),
-					  lBILGI,BAGLAN_LOG.kerLogDizin);
-        	 sifirla();
-             textField.setText("");
-             yenile();
-             grid_doldur();
-
-             textField.requestFocus();
-        	 
-        }
-		 else if (hangi.equals("oz1"))
-	        {
-	        	int g =  JOptionPane.showOptionDialog( null,  "Ozel Kod 1  Degisken Silinecek ..?"   ,
-		        		"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
-			   			 	JOptionPane.QUESTION_MESSAGE,
-			   			 	null,     //no custom icon
-			   			 	oac.options,  //button titles
-			   			 	oac.options[1]); //default button
-			 	 if(g != 0 ) { return;	}
-			 	 
-			 	lBILGI.setmESAJ("Ozel Kod1 :" + Integer.parseInt(textField_2.getText()) );
+				lBILGI.setmESAJ( "Depo Sil:" + Integer.parseInt(textField_2.getText()) );
 				lBILGI.seteVRAK("");
-				
-				   ker_Access.ker_kod_degisken_sil( "OZ1ID_Y", "OZ_KOD_1_DEGISKEN", Integer.parseInt(textField_2.getText()),
-						    lBILGI,BAGLAN_LOG.kerLogDizin);
-	        	 sifirla();
-	             textField.setText("");
-	             yenile();
-	             grid_doldur();
 
-	             textField.requestFocus();
-	        	 
-	        }
-	
-		 else if (hangi.equals("nak"))
-	        {
-	        	int g =  JOptionPane.showOptionDialog( null,  "Nakliyeci  Degisken Silinecek ..?"   ,
-		        		"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
-			   			 	JOptionPane.QUESTION_MESSAGE,
-			   			 	null,     //no custom icon
-			   			 	oac.options,  //button titles
-			   			 	oac.options[1]); //default button
-			 	 if(g != 0 ) { return;	}
-			 	 
-			 	lBILGI.setmESAJ("Nakliyeci :" + Integer.parseInt(textField_2.getText()) );
+				ker_Access.ker_kod_degisken_sil( "DPID_Y", "DEPO_DEGISKEN", Integer.parseInt(textField_2.getText()),
+						lBILGI,BAGLAN_LOG.kerLogDizin);
+				sifirla();
+				textField.setText("");
+				yenile();
+				textField.requestFocus();
+			}
+			else if (hangi.equals("oz1"))
+			{
+				int g =  JOptionPane.showOptionDialog( null,  "Ozel Kod 1  Degisken Silinecek ..?"   ,
+						"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null,     //no custom icon
+						oac.options,  //button titles
+						oac.options[1]); //default button
+				if(g != 0 ) { return;	}
+
+				lBILGI.setmESAJ("Ozel Kod1 :" + Integer.parseInt(textField_2.getText()) );
 				lBILGI.seteVRAK("");
-				
-				   ker_Access.ker_kod_degisken_sil( "NAKID_Y", "NAKLIYECI", Integer.parseInt(textField_2.getText()),
-						    lBILGI,BAGLAN_LOG.kerLogDizin);
-	        	 sifirla();
-	             textField.setText("");
-	             yenile();
-	             grid_doldur();
 
-	             textField.requestFocus();
-	        	 
-	        }
-		 else if (hangi.equals("anagrup"))
-	        {
-	        	int g =  JOptionPane.showOptionDialog( null,  "Ana Grup  Degisken Silinecek ..?"   ,
-		        		"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
-			   			 	JOptionPane.QUESTION_MESSAGE,
-			   			 	null,     //no custom icon
-			   			 	oac.options,  //button titles
-			   			 	oac.options[1]); //default button
-			 	 if(g != 0 ) { return;	}
-			 	 
-			 	lBILGI.setmESAJ("Ana Grup :" + Integer.parseInt(textField_2.getText()) );
+				ker_Access.ker_kod_degisken_sil( "OZ1ID_Y", "OZ_KOD_1_DEGISKEN", Integer.parseInt(textField_2.getText()),
+						lBILGI,BAGLAN_LOG.kerLogDizin);
+				sifirla();
+				textField.setText("");
+				yenile();
+				textField.requestFocus();
+			}
+			else if (hangi.equals("nak"))
+			{
+				int g =  JOptionPane.showOptionDialog( null,  "Nakliyeci  Degisken Silinecek ..?"   ,
+						"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null,     //no custom icon
+						oac.options,  //button titles
+						oac.options[1]); //default button
+				if(g != 0 ) { return;	}
+
+				lBILGI.setmESAJ("Nakliyeci :" + Integer.parseInt(textField_2.getText()) );
 				lBILGI.seteVRAK("");
-				
-				 ker_Access.ker_kod_degisken_sil( "AGID_Y", "ANA_GRUP_DEGISKEN", Integer.parseInt(textField_2.getText()),
-						  lBILGI,BAGLAN_LOG.kerLogDizin);
-	        	 sifirla();
-	             textField.setText("");
-	             yenile();
-	             grid_doldur();
 
-	             textField.requestFocus();
-	        	 
-	        }
-       
-        
-		  }
-        catch (Exception ex)
-        {
-    		JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
-        }
+				ker_Access.ker_kod_degisken_sil( "NAKID_Y", "NAKLIYECI", Integer.parseInt(textField_2.getText()),
+						lBILGI,BAGLAN_LOG.kerLogDizin);
+				sifirla();
+				textField.setText("");
+				yenile();
+				textField.requestFocus();
+			}
+			else if (hangi.equals("anagrup"))
+			{
+				int g =  JOptionPane.showOptionDialog( null,  "Ana Grup  Degisken Silinecek ..?"   ,
+						"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null,     //no custom icon
+						oac.options,  //button titles
+						oac.options[1]); //default button
+				if(g != 0 ) { return;	}
+				lBILGI.setmESAJ("Ana Grup :" + Integer.parseInt(textField_2.getText()) );
+				lBILGI.seteVRAK("");
+
+				ker_Access.ker_kod_degisken_sil( "AGID_Y", "ANA_GRUP_DEGISKEN", Integer.parseInt(textField_2.getText()),
+						lBILGI,BAGLAN_LOG.kerLogDizin);
+				sifirla();
+				textField.setText("");
+				yenile();
+				textField.requestFocus();
+			}
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
+		}
 	}
 	private static void ana_grup_doldur()
 	{
@@ -524,24 +495,24 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 	{
 		try {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
-		int in1= 0 ;
+			int in1= 0 ;
 			rs = null ;
 			rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
 			rs.next();
 			in1 = rs.getInt("AGID_Y");
 			rs = null ;
-			 rs  = ker_Access.ker_kod_alt_grup_degisken_oku(in1);
-			 ilkmi= false ;
+			rs  = ker_Access.ker_kod_alt_grup_degisken_oku(in1);
+			ilkmi= false ;
 			if (!rs.isBeforeFirst() ) {  
 				textField_1.setText("");
 				textField_2.setText("");
 				GRID_TEMIZLE.grid_temizle(table);
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			 }
+			}
 			else
 			{
-			 grid_doldur(); 
-			 getContentPane().setCursor(oac.DEFAULT_CURSOR);
+				grid_doldur(); 
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		}
 		catch (Exception ex)

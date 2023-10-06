@@ -591,6 +591,11 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			message.setSentDate(new Date());
 			Transport.send(message);
 			///
+			//properties.put("mail.imap.host", host);
+			//properties.put("mail.imap.port", "993");
+			//Session emailSession = Session.getDefaultInstance(properties);
+			//Store store = emailSession.getStore("imaps");
+			//store.connect(host, username, password);
 			//Store store = session.getStore("imap");
 			//store.connect();
 			//Folder sentFolder = store.getFolder("Sent");

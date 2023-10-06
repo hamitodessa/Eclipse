@@ -799,7 +799,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 					+ "	, Cikis_Evrak   , CTarih    , CKdv  , CDoviz   , CFiat  , CTutar  , CKur  , CCari_Firma  , CAdres_Firma  , CIskonto   , CTevkifat  "
 					+ "	, CAna_Grup     , CAlt_Grup   ,CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER " 
 					+ " FROM KERESTE   " 
-					+ " WHERE Evrak_No  = N'" + eno + "' ORDER BY Paket_No ,Kodu , Satir" ;
+					+ " WHERE Evrak_No  = N'" + eno + "'" ; // ORDER BY Paket_No ,Kodu , Satir
 		}
 		else {
 			sql = "SELECT    Evrak_No  , Barkod  , Kodu , Paket_No , Konsimento  , Miktar , Tarih , Kdv  , Doviz  , Fiat   , Tutar  , Kur   , Cari_Firma , Adres_Firma   , Iskonto  , Tevkifat  "
@@ -807,7 +807,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 					+ "	, Cikis_Evrak   , CTarih    , CKdv  , CDoviz   , CFiat  , CTutar  , CKur  , CCari_Firma  , CAdres_Firma  , CIskonto   , CTevkifat  "
 					+ "	, CAna_Grup     , CAlt_Grup   ,IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER ,Satir" 
 					+ " FROM KERESTE   " 
-					+ " WHERE Cikis_Evrak  = N'" + eno + "' ORDER BY Paket_No ,Satir" ;
+					+ " WHERE Cikis_Evrak  = N'" + eno + "' " ; //ORDER BY Paket_No ,Satir
 		}
 		
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -1980,8 +1980,8 @@ public class KERESTE_MYSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String sql =  "SELECT DISTINCT DATE( s."+ dURUM + "Tarih) as Tarih  " +
 				" FROM KERESTE s left outer join ok_kur" +  BAGLAN.kurDizin.kOD + ".kurlar k on DATE( k.Tarih) = DATE( s."+ dURUM + "Tarih) and k.Kur = '" + kur + "'" +
-				" WHERE k." + cins + " IS NULL OR k." + cins + " =0 " +
-				" ORDER BY DATE(s."+ dURUM + "Tarih)  " ;
+				" WHERE YEAR(KERESTE." + dURUM + "Tarih) <> '1900' AND  k." + cins + " IS NULL OR k." + cins + " =0 " +
+				" ORDER BY DATE(s." + dURUM + "Tarih)  " ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

@@ -2031,9 +2031,12 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public ResultSet bos_kur(String kur, String cins,String dURUM) throws ClassNotFoundException, SQLException {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		String sql =  "SELECT DISTINCT convert(varchar(10), s."+ dURUM + "Tarih, 102) as Tarih     " +
-				" FROM KERESTE s left outer join OK_Kur" +  BAGLAN.kurDizin.kOD + ".dbo.kurlar k on convert(varchar(10), k.Tarih, 102) = convert(varchar(10), s."+ dURUM + "Tarih, 102) and k.Kur = '" + kur + "'" +
-				" WHERE k." + cins + " IS NULL OR k." + cins + " =0 " +
+		String sql =  "SELECT DISTINCT convert(varchar(10), s." + dURUM + "Tarih, 102) as Tarih     " +
+				" FROM KERESTE s left outer join OK_Kur" +  BAGLAN.kurDizin.kOD + ".dbo.kurlar k on " + 
+				" convert(varchar(10), k.Tarih, 102) = convert(varchar(10), s."+ dURUM + "Tarih, 102) and " + 
+				" k.Kur = '" + kur + "'" +
+				" WHERE  YEAR(s."+ dURUM + "Tarih) <> '1900' AND k." + cins + " IS NULL OR k." + cins + " =0 " +
+				" AND s."+ dURUM + "Tarih <> '1900.01.01' " +
 				" ORDER BY  convert(varchar(10), s."+ dURUM + "Tarih, 102)  " ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

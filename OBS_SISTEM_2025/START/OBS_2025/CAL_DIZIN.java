@@ -13,8 +13,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -191,6 +189,8 @@ public class CAL_DIZIN extends JDialog {
 					activ_sayfa =0;
 					grid_doldur();
 					doldur_kutu(tblCari,0);
+					tblCari.requestFocus();
+					tblCari.setRowSelectionInterval(0, 0);
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -591,22 +591,13 @@ public class CAL_DIZIN extends JDialog {
 				}
 			}
 		});
-		tabbedPane.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-			}
-		});
 		tabbedPane.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		tabbedPane.setBounds(0, 0, 629, 381);
 		tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
-
 		contentPane.add(tabbedPane);
-
 		JScrollPane scrollPane = new JScrollPane();
-
 		tabbedPane.addTab("Cari Hesap", null, scrollPane, null);
 		tblCari = new JTable() {
 			private static final long serialVersionUID = 1L;
@@ -1224,6 +1215,7 @@ public class CAL_DIZIN extends JDialog {
 		btnNewButton_2_1_2.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/save.png")));
 		btnNewButton_2_1_2.setBounds(265, 125, 25, 23);
 		panel.add(btnNewButton_2_1_2);
+	
 	}
 	private void grid_doldur() throws ClassNotFoundException, SQLException
 	{
@@ -1399,6 +1391,7 @@ public class CAL_DIZIN extends JDialog {
 			btndizsec.setEnabled(true);
 			txtdiz.setText(grd.getModel().getValueAt(satir, 8).toString());
 		}
+
 		contentPane.setCursor(DEFAULT_CURSOR);
 	}
 	private void  tablo_baslik(JTable table)

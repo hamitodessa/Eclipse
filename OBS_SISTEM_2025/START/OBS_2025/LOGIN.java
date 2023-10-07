@@ -7,12 +7,14 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -30,6 +32,7 @@ import java.util.Properties;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -48,6 +51,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
+import org.apache.poi.sl.usermodel.Background;
+
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.SQLITE_LOG;
@@ -92,6 +97,7 @@ import OBS_C_2025.KERESTE_MSSQL;
 import OBS_C_2025.KERESTE_MYSQL;
 import OBS_C_2025.Server_Bilgi;
 import OBS_C_2025.sayiyiYaziyaCevir;
+import javax.swing.JSeparator;
 @SuppressWarnings({"static-access","unused"})
 public class LOGIN extends JDialog {
 	/**
@@ -209,15 +215,11 @@ public class LOGIN extends JDialog {
 			{
 				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+		} catch (Exception ex) {
 			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
+
+		 
 		//************************************************************************
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
@@ -237,30 +239,40 @@ public class LOGIN extends JDialog {
 		lblicon.setHorizontalAlignment(SwingConstants.CENTER);
 		lblicon.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/icons8-application-96.png")));
 
-		JLabel lblNewLabel = new JLabel("Kullanici");
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/userb-16.png")));
 		lblNewLabel.setForeground(new Color(0, 0, 128));
-		lblNewLabel.setBounds(229, 15, 46, 14);
+		lblNewLabel.setBounds(284, 15, 16, 16);
 		panel.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
-		JLabel lblNewLabel_1 = new JLabel("Sifre");
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/password-16.png")));
 
 		lblNewLabel_1.setForeground(new Color(0, 0, 128));
-		lblNewLabel_1.setBounds(229, 41, 46, 14);
+		lblNewLabel_1.setBounds(284, 41, 16, 16);
 		panel.add(lblNewLabel_1);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
 		txtUser = new JTextField();
-		txtUser.setBounds(310, 11, 109, 20);
+		txtUser.setBounds(310, 11, 110, 20);
 		txtUser.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtUser.setDocument(new JTextFieldLimit(10));
 		txtUser.setColumns(10);
 		JTextFieldRegularPopupMenu.addTo(txtUser);
 		txtUser.setColumns(10);
+		//txtUser.setOpaque(false);
+		//txtUser.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel.add(txtUser);
 
+		//JSeparator separator = new JSeparator();
+		//separator.setBounds(309, 32, 110, 5);
+		//panel.add(separator);
+		
 		txtpwd = new JPasswordField();
-		txtpwd.setBounds(310, 37, 109, 20);
+		txtpwd.setBounds(310, 37, 110, 20);
+		//txtpwd.setOpaque(false);
+		//txtpwd.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel.add(txtpwd);
 		txtpwd.setFont(new Font("Tahoma", Font.BOLD, 12));
 		JTextFieldRegularPopupMenu.addTo(txtpwd);
@@ -509,7 +521,9 @@ public class LOGIN extends JDialog {
 		lblModul.setForeground(new Color(0, 139, 139));
 		lblModul.setBounds(1, 138, 189, 14);
 		panel.add(lblModul);
-
+		
+		
+		
 		progressBar = new JProgressBar();
 		splitPane.setRightComponent(progressBar);
 		//progressBar.setForeground(new Color(166, 55, 55));
@@ -544,6 +558,7 @@ public class LOGIN extends JDialog {
 			}
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
+		
 	}
 	void cari_kont() throws ClassNotFoundException, SQLException
 	{

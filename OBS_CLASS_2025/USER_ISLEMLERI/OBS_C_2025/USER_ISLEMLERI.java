@@ -315,7 +315,7 @@ public class USER_ISLEMLERI {
 		rss = stmt.executeQuery();
 		return rss;
 	}
-	public void    log_mail_sil (String kull , String mail ) throws SQLException, ClassNotFoundException 
+	public void  log_mail_sil (String kull , String mail ) throws SQLException, ClassNotFoundException 
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();

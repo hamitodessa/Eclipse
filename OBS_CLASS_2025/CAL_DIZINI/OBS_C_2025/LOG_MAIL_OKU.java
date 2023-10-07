@@ -10,7 +10,6 @@ import java.sql.SQLException;
 public class LOG_MAIL_OKU {
 	static  Connection con ;
 	private static GLOBAL gLB = new GLOBAL();
-
 	public static  void mail_oku() throws SQLException, ClassNotFoundException
 
 	{

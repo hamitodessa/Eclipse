@@ -72,7 +72,6 @@ public class GLOBAL {
 			{	
 			}  
 			return conn;  
-
 	}
 	public static  void obs_dosya_olustur() throws Exception 
 	{
@@ -125,15 +124,15 @@ public class GLOBAL {
 	}
 	public static  void ekstre_dosya_olustur() throws Exception 
 	{
-			Class.forName("org.sqlite.JDBC");
-			Ekstrecon = myEkstreConnection();
-			String sorgu= null;
-			sorgu = "CREATE TABLE EKSTRE (TARIH CHAR(10) ,EVRAK INTEGER,IZAHAT CHAR(100),KOD CHAR(10),KUR DOUBLE, BORC DOUBLE,ALACAK DOUBLE ,BAKIYE DOUBLE) ;"  ;
-			java.sql.Statement stmt = null;
-			stmt = Ekstrecon.createStatement();  
-			stmt.execute(sorgu);  
-			stmt.close();
-			Ekstrecon.close();
+		Class.forName("org.sqlite.JDBC");
+		Ekstrecon = myEkstreConnection();
+		String sorgu= null;
+		sorgu = "CREATE TABLE EKSTRE (TARIH CHAR(10) ,EVRAK INTEGER,IZAHAT CHAR(100),KOD CHAR(10),KUR DOUBLE, BORC DOUBLE,ALACAK DOUBLE ,BAKIYE DOUBLE) ;"  ;
+		java.sql.Statement stmt = null;
+		stmt = Ekstrecon.createStatement();  
+		stmt.execute(sorgu);  
+		stmt.close();
+		Ekstrecon.close();
 	}
 	private static void tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");

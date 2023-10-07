@@ -814,7 +814,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		label_6 = new JLabel("0.00");
 		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_6.setForeground(Color.BLUE);
-		label_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_6.setFont(new Font("Dialog", Font.PLAIN, 13));
 		label_6.setBounds(306, 11, 99, 14);
 		panel_1.add(label_6);
 
@@ -826,7 +826,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		label_3 = new JLabel("0.00");
 		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_3.setForeground(Color.BLUE);
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_3.setFont(new Font("Dialog", Font.PLAIN, 13));
 		label_3.setBounds(480, 11, 99, 14);
 		panel_1.add(label_3);
 
@@ -838,7 +838,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		label_7 = new JLabel("0.00");
 		label_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_7.setForeground(Color.BLUE);
-		label_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_7.setFont(new Font("Dialog", Font.PLAIN, 13));
 		label_7.setBounds(306, 39, 99, 14);
 		panel_1.add(label_7);
 
@@ -850,7 +850,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		txttev = new JFormattedTextField();
 		txttev.setText("0");
 		txttev.setHorizontalAlignment(SwingConstants.RIGHT);
-		txttev.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txttev.setFont(new Font("Dialog", Font.BOLD, 13));
 		txttev.setBackground(Color.CYAN);
 		txttev.setBounds(518, 35, 62, 20);
 		txttev.getDocument().addDocumentListener(new DocumentListener() {
@@ -882,14 +882,14 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		label_2 = new JLabel("0.00");
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_2.setForeground(Color.BLUE);
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_2.setFont(new Font("Dialog", Font.PLAIN, 13));
 		label_2.setBounds(705, 39, 99, 14);
 		panel_1.add(label_2);
 
 		label_1 = new JLabel("0.00");
 		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_1.setForeground(Color.BLUE);
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_1.setFont(new Font("Dialog", Font.PLAIN, 13));
 		label_1.setBounds(705, 11, 99, 14);
 		panel_1.add(label_1);
 
@@ -901,7 +901,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		lblNewLabel_20 = new JLabel("0.00");
 		lblNewLabel_20.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_20.setForeground(Color.BLUE);
-		lblNewLabel_20.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_20.setFont(new Font("Dialog", Font.PLAIN, 13));
 		lblNewLabel_20.setBounds(927, 11, 109, 14);
 		panel_1.add(lblNewLabel_20);
 
@@ -913,7 +913,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		label = new JLabel("0.00");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setForeground(new Color(0, 0, 128));
-		label.setFont(new Font("Tahoma", Font.BOLD, 12));
+		label.setFont(new Font("Dialog", Font.BOLD, 13));
 		label.setBounds(927, 39, 109, 14);
 		panel_1.add(label);
 
@@ -1232,7 +1232,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			}
 		});
 		ListSelectionModel selectionModel = table.getSelectionModel();
-
 		selectionModel.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -1240,8 +1239,9 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				{
 					try {
 						if ( table.getSelectedRow() != -1) {
-
+							GuiUtil.setWaitCursor(table,true);
 							kod_ADI(model.getValueAt(table.getSelectedRow(), 2).toString(),model.getValueAt(table.getSelectedRow(), 0).toString());
+							GuiUtil.setWaitCursor(table,false);
 						}
 					} catch (Exception e1) {
 						e1.printStackTrace();

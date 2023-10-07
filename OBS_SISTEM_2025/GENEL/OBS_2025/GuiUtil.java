@@ -31,7 +31,7 @@ public class GuiUtil {
 	  {
 	    Object obj = c;
 	    while (!(obj instanceof Frame))
-	      obj = ((Component)obj).getParent();
+	    		obj = ((Component)obj).getParent();
 	    return (Frame)obj;
 	  }
 	  public static Color cloneColor(Color c)

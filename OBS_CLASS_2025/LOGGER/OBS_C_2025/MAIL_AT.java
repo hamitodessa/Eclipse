@@ -37,8 +37,7 @@ public class MAIL_AT implements ILOGGER{
 			props.put("mail.smtp.port", MAIL_SETTINGS.PORT);
 			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.ssl.protocols", "TLSv1.2");
-			props.put("mail.store.protocol", "imaps");
-			
+		
 			Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication(MAIL_SETTINGS.HESAP, MAIL_SETTINGS.PWD);

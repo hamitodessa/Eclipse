@@ -29,6 +29,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SAGA;
+import OBS_C_2025.SAGA_YANAS;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
@@ -300,145 +301,146 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		if ( FILTRE.txtdvz.getText().equals("")) return ;
 		if ( FILTRE.lblNewLabel_2_1.getText().equals("...")) return ;
 		long startTime = System.currentTimeMillis(); 
-		       try
-		       {
-		            String islem  = "" ;
-		            ResultSet	rs = null;
-		            String hKURString = "";
-		            if (FILTRE.chckbxNewCheckBox_4.isSelected())
-		            {
-		            	hKURString = "Kayitli";
-		            	islem = "/" ;
-		            }
-		            else 
-		            {
-		            	if (  GLOBAL.setting_oku("PRG_PARA").toString().equals(FILTRE.lblNewLabel_2_1.getText()))
-			            {
-			            	islem = "/" ;
-			            }
-			            else
-			            {
-			                islem = "*" ;
-			            }
-					}
-		       
-		            rs = c_Access.dvz_cevirme(FILTRE.comboBox_2.getItemAt(FILTRE.comboBox_2.getSelectedIndex()),
-								FILTRE.txtdvz.getText(),
-								TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_3),
-								TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_4),
-								FILTRE.comboBox_1.getItemAt(FILTRE.comboBox_1.getSelectedIndex()), islem,hKURString);
-					GRID_TEMIZLE.grid_temizle(table);
-					if (rs == null)
-					{
-						return;
-					}
-					if (!rs.isBeforeFirst() ) {  
-						label_1.setText("0");
-						lblboskur.setText("...");
-					    return;
-					} 
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-					JTableHeader th = table.getTableHeader();
-					TableColumnModel tcm = th.getColumnModel();
-					TableColumn tc;
-					
-					tc = tcm.getColumn(0);
-					tc.setHeaderRenderer(new SOLA());
-					tc.setCellRenderer(new TARIH());
-					tc.setMinWidth(70);
-					
-					tc = tcm.getColumn(1);
-					tc.setHeaderRenderer(new SOLA());
-					tc.setMinWidth(60);
-					
-					tc = tcm.getColumn(2);
-					tc.setHeaderRenderer(new SOLA());
-					tc.setMinWidth(430);
-					
-					tc = tcm.getColumn(3);
-					tc.setHeaderRenderer(new SAGA());
-					tc.setCellRenderer(new TABLO_RENDERER(4,false));
-					tc.setMinWidth(60);
+		try
+		{
+			String islem  = "" ;
+			ResultSet	rs = null;
+			String hKURString = "";
+			if (FILTRE.chckbxNewCheckBox_4.isSelected())
+			{
+				hKURString = "Kayitli";
+				islem = "/" ;
+			}
+			else 
+			{
+				if (  GLOBAL.setting_oku("PRG_PARA").toString().equals(FILTRE.lblNewLabel_2_1.getText()))
+				{
+					islem = "/" ;
+				}
+				else
+				{
+					islem = "*" ;
+				}
+			}
 
-					tc = tcm.getColumn(4);
-					tc.setHeaderRenderer(new SAGA());
-					tc.setCellRenderer(new TABLO_RENDERER(2,false));
-					tc.setMinWidth(100);
-					
-					tc = tcm.getColumn(5);
-					tc.setHeaderRenderer(new SAGA());
-					tc.setCellRenderer(new TABLO_RENDERER(2,false));
-					tc.setMinWidth(100);
-					
-					tc = tcm.getColumn(6);
-					tc.setHeaderRenderer(new SAGA());
-					tc.setCellRenderer(new TABLO_RENDERER(2,false));
-					tc.setMinWidth(120);
-					
-					tc = tcm.getColumn(7);
-					tc.setHeaderRenderer(new SAGA());
-					tc.setCellRenderer(new TABLO_RENDERER(4,false));
-					tc.setMinWidth(60);
-					
-					tc = tcm.getColumn(8);
-					tc.setHeaderRenderer(new SAGA());
-					tc.setCellRenderer(new TABLO_RENDERER(2,false));
-					tc.setMinWidth(100);
-					
-					tc = tcm.getColumn(9);
-					tc.setHeaderRenderer(new SAGA());
-					tc.setCellRenderer(new TABLO_RENDERER(2,false));
-					tc.setMinWidth(120);
-					
-					tc = tcm.getColumn(10);
-					tc.setHeaderRenderer(new SAGA());
-					tc.setMinWidth(50);
-					
-					Dimension dd = th.getPreferredSize();
-				    dd.height = 30;
-				    th.setPreferredSize(dd); 
-					th.repaint();
-					table.setRowSelectionInterval(0, 0);
-					table.setRowHeight(21);
-					
-					int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
-					table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
-					table.setRowSelectionInterval(lastRow, lastRow);
-					
-					/*
-					 * BOS Kur
-					 */
-					int boskur = 0 ;
-					DefaultTableModel model = (DefaultTableModel)table.getModel();
-					 for (int i = 0; i <= model.getRowCount() - 1 ; i ++)
-					{
-						double kur = (double) model.getValueAt(i , 3);
-						if ( kur == 1 )
-						{
-							boskur += 1 ;
-						}
-					}
-					lblboskur.setText(FORMATLAMA.doub_0(boskur));
-					label_1.setText(FORMATLAMA.doub_0(model.getRowCount()));
-					table.setSelectionBackground(Color.PINK);
-					table.setSelectionForeground(Color.BLUE);
-					long endTime = System.currentTimeMillis();
-					long estimatedTime = endTime - startTime; 
-					double seconds = (double)estimatedTime/1000; 
-					OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+			rs = c_Access.dvz_cevirme(FILTRE.comboBox_2.getItemAt(FILTRE.comboBox_2.getSelectedIndex()),
+					FILTRE.txtdvz.getText(),
+					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_3),
+					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_4),
+					FILTRE.comboBox_1.getItemAt(FILTRE.comboBox_1.getSelectedIndex()), islem,hKURString);
+			GRID_TEMIZLE.grid_temizle(table);
+			if (rs == null)
+			{
+				return;
+			}
+			if (!rs.isBeforeFirst() ) {  
+				label_1.setText("0");
+				lblboskur.setText("...");
+				return;
+			} 
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+			JTableHeader th = table.getTableHeader();
+			TableColumnModel tcm = th.getColumnModel();
+			TableColumn tc;
 
-					String deger;
-					String[] parts;
-					Font bigFont;
-					deger = GLOBAL.setting_oku("CARI_MIZAN").toString();
-					deger = deger.substring(1, deger.length()-1);
-					parts = deger.split(",");
-					bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-					table.setFont(bigFont);
-		       }
-		        catch (Exception ex )
-		       {
-		        	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dovize Cevirme", JOptionPane.ERROR_MESSAGE);   
-		       }
+			tc = tcm.getColumn(0);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new TARIH());
+			tc.setMinWidth(70);
+
+			tc = tcm.getColumn(1);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(60);
+
+			tc = tcm.getColumn(2);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(430);
+
+			tc = tcm.getColumn(3);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(4,false));
+			tc.setMinWidth(60);
+
+			tc = tcm.getColumn(4);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(2,false));
+			tc.setMinWidth(100);
+
+			tc = tcm.getColumn(5);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(2,false));
+			tc.setMinWidth(100);
+
+			tc = tcm.getColumn(6);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(2,false));
+			tc.setMinWidth(120);
+
+			tc = tcm.getColumn(7);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(4,false));
+			tc.setMinWidth(60);
+
+			tc = tcm.getColumn(8);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(2,false));
+			tc.setMinWidth(100);
+
+			tc = tcm.getColumn(9);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new TABLO_RENDERER(2,false));
+			tc.setMinWidth(120);
+
+			tc = tcm.getColumn(10);
+			tc.setHeaderRenderer(new SAGA());
+			tc.setCellRenderer(new SAGA_YANAS());
+			tc.setMinWidth(50);
+
+			Dimension dd = th.getPreferredSize();
+			dd.height = 30;
+			th.setPreferredSize(dd); 
+			th.repaint();
+			table.setRowSelectionInterval(0, 0);
+			table.setRowHeight(21);
+
+			int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
+			table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
+			table.setRowSelectionInterval(lastRow, lastRow);
+
+			/*
+			 * BOS Kur
+			 */
+			int boskur = 0 ;
+			DefaultTableModel model = (DefaultTableModel)table.getModel();
+			for (int i = 0; i <= model.getRowCount() - 1 ; i ++)
+			{
+				double kur = (double) model.getValueAt(i , 3);
+				if ( kur == 1 )
+				{
+					boskur += 1 ;
+				}
+			}
+			lblboskur.setText(FORMATLAMA.doub_0(boskur));
+			label_1.setText(FORMATLAMA.doub_0(model.getRowCount()));
+			table.setSelectionBackground(Color.PINK);
+			table.setSelectionForeground(Color.BLUE);
+			long endTime = System.currentTimeMillis();
+			long estimatedTime = endTime - startTime; 
+			double seconds = (double)estimatedTime/1000; 
+			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+
+			String deger;
+			String[] parts;
+			Font bigFont;
+			deger = GLOBAL.setting_oku("CARI_MIZAN").toString();
+			deger = deger.substring(1, deger.length()-1);
+			parts = deger.split(",");
+			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			table.setFont(bigFont);
+		}
+		catch (Exception ex )
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dovize Cevirme", JOptionPane.ERROR_MESSAGE);   
+		}
 	}
 }

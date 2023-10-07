@@ -22,6 +22,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SAGA;
+import OBS_C_2025.SAGA_YANAS;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
@@ -238,7 +239,6 @@ public class EKSTRE extends JInternalFrame {
 					if (getValueAt(row,7) != null)
 					{
 						double tut = Double.parseDouble(getValueAt(row,7).toString()) ;
-
 						if (tut < 0)
 						{
 							c.setForeground(new Color(128,0,0));
@@ -309,7 +309,6 @@ public class EKSTRE extends JInternalFrame {
 					{
 						e1.printStackTrace();
 					}
-
 				}
 			}
 		});
@@ -377,7 +376,8 @@ public class EKSTRE extends JInternalFrame {
 				tc.setMinWidth(120);
 
 				tc = tcm.getColumn(8);
-				tc.setHeaderRenderer(new SOLA());
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new SAGA_YANAS());
 				tc.setMinWidth(30);
 
 				Dimension dd = th.getPreferredSize();
@@ -545,7 +545,7 @@ public class EKSTRE extends JInternalFrame {
 			double baki = Math.round(Double.parseDouble(model.getValueAt(i , 7).toString()) * 100.0) / 100.0;
 			stmt.setDouble(8, baki);
 			stmt.addBatch();
-			if ((i ) % 150 == 0) 
+			if ((i ) % 300 == 0) 
 			{
 				stmt.executeBatch();
 			}

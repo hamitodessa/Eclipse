@@ -1806,10 +1806,7 @@ public class DEKONT extends JInternalFrame {
 			{
 				kod = cmbahes.getSelectedItem() == null ? "":cmbahes.getSelectedItem().toString();
 			}
-
-
 			rs =  c_Access.dek_mizan(kod );
-
 			if (!rs.isBeforeFirst() ) {  
 				if (cins.equals("B"))
 				{

@@ -1411,7 +1411,7 @@ public class LOGIN extends JDialog {
 		}
 		catch (Exception ex)
 		{
-			return;
+			
 		}
 	}
 	private void cONN_AKTAR( String dIZIN )

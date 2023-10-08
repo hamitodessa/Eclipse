@@ -72,6 +72,8 @@ import OBS_C_2025.TextFieldSearchOption.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+
+
 @SuppressWarnings({"serial","static-access","unused"})
 public class DENEMELER extends JInternalFrame {
 	private JTable table;
@@ -391,6 +393,8 @@ public class DENEMELER extends JInternalFrame {
 			}
 				});
 		panel.add(txt);
+		
+
 		
 
 	}

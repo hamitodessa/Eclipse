@@ -106,7 +106,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jsoup.select.Evaluator.IsEmpty;
 
-import com.crystaldecisions.reports.exporters.format.page.pdf.fontembedding.opentype.tables.GlyphDataTableBuilder;
 import com.toedter.calendar.JDateChooser;
 
 import LOGER_KAYIT.DOSYA_MSSQL;

@@ -116,7 +116,7 @@ import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
 
 @SuppressWarnings({"serial","static-access","unused"})
-public class KER_GIRIS extends JInternalFrame {
+public class KERESTE_GIRIS extends JInternalFrame {
 	private static JSplitPane splitPane ;
 	private static JTextField textField;
 	private static JTextField txtcari;
@@ -178,7 +178,7 @@ public class KER_GIRIS extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					KER_GIRIS frame = new KER_GIRIS();
+					KERESTE_GIRIS frame = new KERESTE_GIRIS();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -190,7 +190,7 @@ public class KER_GIRIS extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public KER_GIRIS() {
+	public KERESTE_GIRIS() {
 		setTitle("KERESTE GIRIS");
 		setResizable(true);
 		setMaximizable(true);
@@ -1019,7 +1019,7 @@ public class KER_GIRIS extends JInternalFrame {
 				}
 			}
 		});
-		btnNewButton_3_1.setIcon(new ImageIcon(KER_GIRIS.class.getResource("/ICONLAR/excel-icon_16.png")));
+		btnNewButton_3_1.setIcon(new ImageIcon(KERESTE_GIRIS.class.getResource("/ICONLAR/excel-icon_16.png")));
 		toolBar_1.add(btnNewButton_3_1);
 		//////////////////////////////ARA BOLUM********************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -1803,7 +1803,7 @@ public class KER_GIRIS extends JInternalFrame {
 		}
 		startTimeG = System.currentTimeMillis(); 
 		tar = TARIH_CEVIR.tarih_geri_saatli(dtc) ;
-		GuiUtil.setWaitCursor(KER_GIRIS.splitPane,true);
+		GuiUtil.setWaitCursor(KERESTE_GIRIS.splitPane,true);
 		satir_yaz_1();
 		dipnot_yaz();
 		acik_yaz();
@@ -2036,7 +2036,7 @@ public class KER_GIRIS extends JInternalFrame {
 			try {
 				long startTime = System.currentTimeMillis();
 				ResultSet rss = null;
-				GuiUtil.setWaitCursor(KER_GIRIS.splitPane,true);
+				GuiUtil.setWaitCursor(KERESTE_GIRIS.splitPane,true);
 				rss = ker_Access.ker_oku(textField.getText(), "G");
 				if (!rss.isBeforeFirst() ) {  
 					yeni_fat = true;
@@ -2044,7 +2044,7 @@ public class KER_GIRIS extends JInternalFrame {
 					GRID_TEMIZLE.grid_temizle(table);
 					dOSYADAN = false;
 					sifirla();
-					GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
+					GuiUtil.setWaitCursor(KERESTE_GIRIS.splitPane,false);
 				}
 				else
 				{
@@ -2185,12 +2185,12 @@ public class KER_GIRIS extends JInternalFrame {
 					long estimatedTime = endTime - startTime;
 					double seconds = (double)estimatedTime/1000; 
 					OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-					GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
+					GuiUtil.setWaitCursor(KERESTE_GIRIS.splitPane,false);
 				}
 			}
 			catch (Exception ex)
 			{
-				GuiUtil.setWaitCursor(KER_GIRIS.splitPane,false);
+				GuiUtil.setWaitCursor(KERESTE_GIRIS.splitPane,false);
 				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
 			}
 		//}

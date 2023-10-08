@@ -2469,7 +2469,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "KOD ACIKLAMA") KOD_ACIKLAMA.kaydet();
 				else if (sonuc == "KONSIMENTO ACIKLAMA") KONS_ACIKLAMA.kaydet();
 				else if (sonuc == "KERESTE DEGISKENLER") KER_DEGISKEN_GIRIS.kayit();
-				else if (sonuc == "KERESTE GIRIS") KER_GIRIS.kaydet();
+				else if (sonuc == "KERESTE GIRIS") KERESTE_GIRIS.kaydet();
 				else if (sonuc == "KERESTE CIKIS") KERESTE_CIKIS.kaydet();
 				else if (sonuc == "KERESTE DEGISKEN YENILEME")	KER_DEGISKEN_DEGIS.kaydet();
 				GuiUtil.setWaitCursor(toolBar,false);
@@ -3170,7 +3170,7 @@ public class OBS_MAIN extends JFrame {
 				if (sonuc == "CEK GIRIS")	CEK_GIRIS.cari_kaydet();
 				else if (sonuc == "CEK CIKIS")	CEK_CIKIS.cari_kaydet();
 				else if (sonuc =="FATURA		- SATIS" || sonuc =="FATURA		- ALIS" )	FATURA.cari_kaydet();
-				else if (sonuc == "KERESTE GIRIS")	KER_GIRIS.cari_kaydet();
+				else if (sonuc == "KERESTE GIRIS")	KERESTE_GIRIS.cari_kaydet();
 				else if (sonuc == "KERESTE CIKIS")	KERESTE_CIKIS.cari_kaydet();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
@@ -3396,7 +3396,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("MAIL")) internalFrame  = new MAIL();
 			//else if (pencere.equals("SMS INET")) internalFrame  = new SMS_INET();
 			//KERESTE
-			else if (pencere.equals("KERESTE GIRIS")) internalFrame  = new KER_GIRIS();
+			else if (pencere.equals("KERESTE GIRIS")) internalFrame  = new KERESTE_GIRIS();
 			else if (pencere.equals("KERESTE CIKIS")) internalFrame  = new KERESTE_CIKIS();
 			else if (pencere.equals("KOD ACIKLAMA")) internalFrame  = new KOD_ACIKLAMA();
 			else if (pencere.equals("KONSIMENTO ACIKLAMA")) internalFrame  = new KONS_ACIKLAMA();

@@ -400,30 +400,15 @@ public class USER_EKLEME extends JInternalFrame {
 			oac.uSER_ISL.user_ekle_degis(txtkull.getText(),oac.sDONDUR.sDONDUR(passwordField), txtsev.getText(), txtdb.getText(), txtmail.getText(),  chckbxl.isSelected()  ? true : false,  chckbxs.isSelected()  ? true :false);
 			//
 			if (txtkull.getText().equals(GLOBAL.KULL_ADI)) {
-				
-				//String decodedString = GLOBAL.setting_oku("SIFRE").toString();
-				//String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
-				//byte[] bytes = new byte[byteValues.length];
-				//for (int i=0, len=bytes.length; i<len; i++) {
-				//	bytes[i] = Byte.parseByte(byteValues[i].trim());     
-				//}
-				//String kSIFREString =  ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
-				//System.out.println("Global kull="+ GLOBAL.KULL_ADI + "  Kayitli Sifresi =" + kSIFREString);
-				
 				byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(oac.sDONDUR.sDONDUR(passwordField)) ;
 				String response = Arrays.toString(qaz);
-				
-				//System.out.println(oac.sDONDUR.sDONDUR(passwordField) + "   " + response);
 				GLOBAL.setting_yaz("SIFRE", response);
 			}
-			
-			//
 			grid_doldur();
 			kutu_temizle();
 			doldur_kutu(table_1,0);
 			txtkull.setEnabled(false);
 			splitPane.setCursor(DEFAULT_CURSOR);
-			
 		}
 		catch (Exception ex )
 		{
@@ -450,7 +435,6 @@ public class USER_EKLEME extends JInternalFrame {
 				splitPane.setCursor(WAIT_CURSOR);
 				oac.uSER_ISL.user_sil(txtkull.getText());
 				oac.uSER_ISL.user_details_sil(txtkull.getText());
-				//
 				if (txtkull.getText().equals(GLOBAL.KULL_ADI)) 
 				{
 					GLOBAL.setting_yaz("SIFRE", "");
@@ -468,7 +452,6 @@ public class USER_EKLEME extends JInternalFrame {
 					txtkull.setEnabled(false);
 					splitPane.setCursor(DEFAULT_CURSOR);
 				}
-				
 			}
 		}
 		catch (Exception ex)

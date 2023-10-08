@@ -14,7 +14,7 @@ public class GuiUtil {
 	 private static Cursor waitCursor = Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	 public static void setWaitCursor(Component c, boolean yesno)
 	  {
-		 Cursor.getPredefinedCursor(yesno ? Cursor.WAIT_CURSOR :Cursor.DEFAULT_CURSOR);
+		Cursor.getPredefinedCursor(yesno ? Cursor.WAIT_CURSOR :Cursor.DEFAULT_CURSOR);
 		OBS_MAIN.splitPane.setCursor(yesno ? waitCursor : defCursor);
 		OBS_MAIN.desktopPane.setCursor(yesno ? waitCursor : defCursor);
 		OBS_MAIN.toolBar.setCursor(yesno ? waitCursor : defCursor);

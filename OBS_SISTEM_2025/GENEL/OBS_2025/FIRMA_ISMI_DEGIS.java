@@ -82,7 +82,6 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 	}
 	public static void modul(String mod)
 	{
-
 		modul = mod ;
 		if (modul.equals("cari"))
 		{
@@ -118,7 +117,6 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 	private static void  isim_oku(String modul)
 	{
 		try
-
 		{
 			if (modul.equals("cari"))
 			{

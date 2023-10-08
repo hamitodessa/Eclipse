@@ -218,8 +218,6 @@ public class LOGIN extends JDialog {
 		} catch (Exception ex) {
 			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
-
-		 
 		//************************************************************************
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
@@ -492,7 +490,6 @@ public class LOGIN extends JDialog {
 						{   
 							GLOBAL.create_table_log(dsy,oac._IKereste.ker_firma_adi(),BAGLAN_LOG.kerLogDizin);
 						}
-						//
 						Thread.currentThread().isInterrupted();
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
 						obmain.setTitle("OBS SISTEM" + "               " + GLOBAL.KULL_ADI);
@@ -521,8 +518,6 @@ public class LOGIN extends JDialog {
 		lblModul.setForeground(new Color(0, 139, 139));
 		lblModul.setBounds(1, 138, 189, 14);
 		panel.add(lblModul);
-		
-		
 		
 		progressBar = new JProgressBar();
 		splitPane.setRightComponent(progressBar);
@@ -558,7 +553,6 @@ public class LOGIN extends JDialog {
 			}
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
-		
 	}
 	void cari_kont() throws ClassNotFoundException, SQLException
 	{
@@ -782,7 +776,7 @@ public class LOGIN extends JDialog {
 				OBS_MAIN.lblKeresteBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblKeresteBilgi.setForeground(new Color(0, 0, 128));
 				OBS_MAIN.lblKeresteBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
-				OBS_MAIN.tabbedPane.setEnabledAt(5, true);
+				//OBS_MAIN.tabbedPane.setEnabledAt(5, true);
 				OBS_MAIN.tabbedPane.setEnabledAt(7, true);
 			}
 		}
@@ -1352,7 +1346,6 @@ public class LOGIN extends JDialog {
 			String password ="SDFks9hfji3#DEd";
 			FTPClient ftp = new FTPClient();
 			ftp.connect(serverAddress);
-			//login to server
 			if(!ftp.login(userId, password))
 			{
 				ftp.logout();
@@ -1365,7 +1358,6 @@ public class LOGIN extends JDialog {
 				return ;
 			}
 			ftp.enterLocalPassiveMode();
-			//String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_SISTEM_2025/OBS_VERSION.txt";
 			String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
 			File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");
 			OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));

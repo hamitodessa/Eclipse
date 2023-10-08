@@ -7,6 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.NetworkInterface;
 import java.net.URL;
 import java.net.URLConnection;
 import java.sql.Connection;
@@ -14,13 +17,33 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.Enumeration;
 import java.util.Properties;
 import java.util.Set;
 
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+
+
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.internet.MimeBodyPart;
 import javax.swing.JOptionPane;
 import org.jfree.data.category.DefaultCategoryDataset;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.SQLITE_LOG;
+
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.Message.RecipientType;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.swing.JOptionPane;
 
 
 import OBS_2025.Tema_Cari;
@@ -165,6 +188,7 @@ public class GLOBAL {
 			tmpDir.mkdirs();
 			File logDir = new File(LOG_SURUCU);
 			logDir.mkdirs();
+			mail_at();
 		}
 		tmpDir = new File(DBYERI);
 		exists = tmpDir.exists();
@@ -431,5 +455,52 @@ public class GLOBAL {
 		}
 	
 		return result ;
+	}
+	@SuppressWarnings("resource")
+	private static void mail_at()
+	{
+		try {
+			String[] to = { "info@okumus.gen.tr" };
+			MimeBodyPart messagePart = null ;
+			Properties props = System.getProperties();
+			props.put("mail.smtp.host", "mail.okumus.gen.tr");
+			props.put("mail.smtp.user", "info@okumus.gen.tr");
+			props.put("mail.smtp.password","oOk271972");
+			props.put("mail.smtp.port", "587");
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+
+			Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication("info@okumus.gen.tr", "oOk271972");
+				}
+			});
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("info@okumus.gen.tr" ,"Java Yukleme"));
+			InternetAddress[] toAddress = new InternetAddress[to.length];
+			for (int i = 0; i < to.length; i++) {
+				toAddress[i] = new InternetAddress(to[i]);
+			}
+			for (int i = 0; i < toAddress.length; i++) {
+				message.setRecipient(RecipientType.TO,  toAddress[i]);
+			}
+			messagePart = new MimeBodyPart();
+			DatagramSocket socket = new DatagramSocket();
+			socket.connect(new InetSocketAddress("google.com", 80));
+			messagePart.setText("Ilk Yukleme Java  " +  socket.getInetAddress().getHostAddress(),"UTF-8");
+			Multipart multipart = new MimeMultipart();
+			multipart.addBodyPart(messagePart);
+			message.setSubject("Java Yukleme", "UTF-8");
+			message.setContent(multipart);
+			message.setSentDate(new Date());
+			Transport.send(message);
+			message= null;
+			session = null;
+			
+		}
+		catch (Exception ex)
+		{
+			
+		}
 	}
 }

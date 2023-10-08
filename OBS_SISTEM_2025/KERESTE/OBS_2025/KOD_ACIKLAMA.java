@@ -141,10 +141,6 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		tc.setHeaderRenderer(new SOLA());
 		tc.setCellRenderer(new SOLA_ORTA());
 
-
-		th.repaint();
-		
-		
 		th.repaint();
 		table.setRowSelectionInterval(0, 0);
 		table.setRowHeight(22);

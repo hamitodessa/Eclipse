@@ -148,14 +148,12 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 		try {
 			if (cmbAna.getSelectedItem().toString().equals("")) return;
 			if (cmbAlt.getSelectedItem().toString().equals("")) return;
-
 			if (cmbAna.getSelectedItem().toString().equals(cmbyAna.getSelectedItem().toString()) &&  cmbAlt.getSelectedItem().toString().equals(cmbyAlt.getSelectedItem().toString()))
 			{
 				JOptionPane.showMessageDialog(null, "Aranacak ve Yazilacak Degiskenler Ayni",  "Degisken Yenileme", JOptionPane.INFORMATION_MESSAGE);   
 				return;
 			}
 			GuiUtil.setWaitCursor(KER_DEGISKEN_DEGIS.panel,true);
-			//*************************
 			int anagrp =0,altgrp =0,yanagrp =0,yaltgrp = 0 ;
 			ResultSet rs =null ;
 			ResultSet yrs =null ;

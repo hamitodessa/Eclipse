@@ -423,8 +423,6 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		panel.add(lblNewLabel_3);
 		try {
 			lblNewLabel_2.setText("");
-			
-			
 			if (rapor_kontrol() )
 			{
 				lblNewLabel_2.setText("1 Rapor Ekli");
@@ -639,7 +637,6 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 						outputFile.delete();
 					}
 				}
-
 			}
 			if (ekstreden)
 			{
@@ -667,7 +664,6 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 						outputFile.delete();
 					}
 				}
-
 			}
 			else
 			{
@@ -770,9 +766,6 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			Transport.send(message);
 			message= null;
 			session = null;
-			
-			////
-			
 			//**********************Raporlama Dosyasina Yaz ***************************
 			oac.uSER_ISL.giden_rapor_yaz(new java.sql.Date(Calendar.getInstance().getTime().getTime())  ,txtkonu.getText(), rapor_dos_adi, cmbalici.getSelectedItem().toString() ,
 					MAIL_SETTINGS.HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;

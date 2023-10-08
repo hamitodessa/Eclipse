@@ -142,11 +142,6 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		tc = tcm.getColumn(1);
 		tc.setHeaderRenderer(new SOLA());
 		tc.setCellRenderer(new SOLA_ORTA());
-
-
-		th.repaint();
-		
-		
 		th.repaint();
 		table.setRowSelectionInterval(0, 0);
 		table.setRowHeight(22);
@@ -195,7 +190,6 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		int g =  JOptionPane.showOptionDialog( null, textField_1.getText() + "   Nolu  Konsimento Dosyadan Silinecek ..?", "Kereste Dosyasindan Konsimento Silme",   JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 		if(g != 0 ) { return;	}
-
 		
 		lOG_BILGI lBILGI = new lOG_BILGI();
 		lBILGI.setmESAJ(textField.getText() + " Acik=" + textField_1.getText());

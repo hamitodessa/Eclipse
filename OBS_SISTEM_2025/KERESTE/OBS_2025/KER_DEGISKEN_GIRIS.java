@@ -366,11 +366,8 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 			} else if (hangi.equals("depo"))
 			{
 				int g =  JOptionPane.showOptionDialog( null,  "Depo  Degisken Silinecek ..?"   ,
-						"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE,
-						null,     //no custom icon
-						oac.options,  //button titles
-						oac.options[1]); //default button
+						"Degisken  Silme",   JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,
+						null,  oac.options, 	oac.options[1]);
 				if(g != 0 ) { return;	}
 
 				lBILGI.setmESAJ( "Depo Sil:" + Integer.parseInt(textField_2.getText()) );
@@ -387,10 +384,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 			{
 				int g =  JOptionPane.showOptionDialog( null,  "Ozel Kod 1  Degisken Silinecek ..?"   ,
 						"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE,
-						null,     //no custom icon
-						oac.options,  //button titles
-						oac.options[1]); //default button
+						JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); //default button
 				if(g != 0 ) { return;	}
 
 				lBILGI.setmESAJ("Ozel Kod1 :" + Integer.parseInt(textField_2.getText()) );
@@ -407,10 +401,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 			{
 				int g =  JOptionPane.showOptionDialog( null,  "Nakliyeci  Degisken Silinecek ..?"   ,
 						"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE,
-						null,     //no custom icon
-						oac.options,  //button titles
-						oac.options[1]); //default button
+						JOptionPane.QUESTION_MESSAGE,	null,  oac.options, 	oac.options[1]); //default button
 				if(g != 0 ) { return;	}
 
 				lBILGI.setmESAJ("Nakliyeci :" + Integer.parseInt(textField_2.getText()) );
@@ -427,10 +418,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 			{
 				int g =  JOptionPane.showOptionDialog( null,  "Ana Grup  Degisken Silinecek ..?"   ,
 						"Degisken  Silme",   JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE,
-						null,     //no custom icon
-						oac.options,  //button titles
-						oac.options[1]); //default button
+						JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]);
 				if(g != 0 ) { return;	}
 				lBILGI.setmESAJ("Ana Grup :" + Integer.parseInt(textField_2.getText()) );
 				lBILGI.seteVRAK("");
@@ -450,12 +438,11 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 	}
 	private static void ana_grup_doldur()
 	{
-		try {
-
+		try 
+		{
 		cmbanagrup .removeAllItems();
 			rs=null;
 			rs = ker_Access.ker_kod_degisken_oku("ANA_GRUP", "AGID_Y", "ANA_GRUP_DEGISKEN");
-			//
 			if (!rs.isBeforeFirst() ) {      		
 	    	}
 	    	else
@@ -465,13 +452,10 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 			    	cmbanagrup .addItem(rs.getString("ANA_GRUP"));
 			    }
 	    	}
-		    
 		int in1= 0 ;
-			rs = null ;
-			rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
-			
-			//
-			if (!rs.isBeforeFirst() ) 
+		rs = null ;
+		rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
+		if (!rs.isBeforeFirst() ) 
 			{      		
 	    	}
 	    	else
@@ -481,13 +465,10 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 				rs = null ;
 				rs  = ker_Access.ker_kod_alt_grup_degisken_oku(in1);
 	    	}
-			//
 		ilkmi=false;
-
 		}
 		catch (Exception ex)
 		{
-	
 			JOptionPane.showMessageDialog(null, "DDDDDD" + ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);    
 		}
 	}
@@ -591,7 +572,6 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 					ker_Access.ker_degisken_eski("UNVAN", textField_1.getText(), "NAKLIYECI"	, "NAKID_Y",  Integer.parseInt(textField_2.getText()));
 					rs = ker_Access.ker_kod_degisken_oku("UNVAN", "NAKID_Y", "NAKLIYECI");
 				}
-
 			}
 			else  // YENI KAYIT
 			{

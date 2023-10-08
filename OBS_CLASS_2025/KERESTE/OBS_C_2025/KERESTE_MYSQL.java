@@ -793,19 +793,20 @@ public class KERESTE_MYSQL implements IKERESTE {
 		 
 		ResultSet	rss = null;
 		String sql = "";
-		if (cins.equals("G")) {
+		if (cins.equals("G")) 
+		{
 			 sql = "SELECT    Evrak_No  , Barkod  , Kodu , Paket_No , Konsimento  , Miktar , Tarih , Kdv  , Doviz  , Fiat   , Tutar  , Kur   , Cari_Firma , Adres_Firma   , Iskonto  , Tevkifat  "
-					+ "	, Ana_Grup   , Alt_Grup  ,  Mensei , Depo   , Ozel_Kod  , Izahat   , Nakliyeci  ,USER "
-					+ "	, Cikis_Evrak   , CTarih    , CKdv  , CDoviz   , CFiat  , CTutar  , CKur  , CCari_Firma  , CAdres_Firma  , CIskonto   , CTevkifat  "
-					+ "	, CAna_Grup     , CAlt_Grup   ,CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER " 
+					+ "	,Ana_Grup   , Alt_Grup  ,  Mensei , Depo   , Ozel_Kod  , Izahat   , Nakliyeci  ,USER "
+					+ "	,Cikis_Evrak   , CTarih    , CKdv  , CDoviz   , CFiat  , CTutar  , CKur  , CCari_Firma  , CAdres_Firma  , CIskonto   , CTevkifat  "
+					+ "	,CAna_Grup     , CAlt_Grup   ,CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER " 
 					+ " FROM KERESTE   " 
 					+ " WHERE Evrak_No  = N'" + eno + "'" ; // ORDER BY Paket_No ,Kodu , Satir
 		}
 		else {
 			sql = "SELECT    Evrak_No  , Barkod  , Kodu , Paket_No , Konsimento  , Miktar , Tarih , Kdv  , Doviz  , Fiat   , Tutar  , Kur   , Cari_Firma , Adres_Firma   , Iskonto  , Tevkifat  "
-					+ "	, Ana_Grup   , Alt_Grup  , Mensei  ,IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) , '') AS Depo  , Ozel_Kod  , Izahat   , Nakliyeci  ,USER "
-					+ "	, Cikis_Evrak   , CTarih    , CKdv  , CDoviz   , CFiat  , CTutar  , CKur  , CCari_Firma  , CAdres_Firma  , CIskonto   , CTevkifat  "
-					+ "	, CAna_Grup     , CAlt_Grup   ,IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER ,Satir" 
+					+ "	,Ana_Grup   , Alt_Grup  , Mensei  ,IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) , '') AS Depo  , Ozel_Kod  , Izahat   , Nakliyeci  ,USER "
+					+ "	,Cikis_Evrak   , CTarih    , CKdv  , CDoviz   , CFiat  , CTutar  , CKur  , CCari_Firma  , CAdres_Firma  , CIskonto   , CTevkifat  "
+					+ "	,CAna_Grup     , CAlt_Grup   ,IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER ,Satir" 
 					+ " FROM KERESTE   " 
 					+ " WHERE Cikis_Evrak  = N'" + eno + "' " ; //ORDER BY Paket_No ,Satir
 		}
@@ -817,7 +818,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 
 	@Override
 	public void dipnot_sil(String ino, String cins, String gircik) throws ClassNotFoundException, SQLException {
-		 
 		String sql = " DELETE " +
 				" FROM DPN" +
 				" WHERE Evrak_NO = N'" + ino + "'" +
@@ -825,7 +825,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 				" AND Gir_Cik = '" + gircik + "'";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
@@ -845,7 +844,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.setString(7, usr);
 		stmt.executeUpdate();
 		stmt.close();
-		
 	}
 
 	@Override
@@ -1953,12 +1951,12 @@ public class KERESTE_MYSQL implements IKERESTE {
 		}
 		///
 		String sql =   " SELECT Paket_No , Konsimento ,SUBSTRING(KERESTE.Kodu, 8, 4) as Boy ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal , " +
-						" Sum( ((CONVERT( SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT( SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000) as m3 , " +
-						" ((Sum(((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)) / sum(miktar)) " +
-						" / CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL)) / CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3) ,DECIMAL) as Ort_Gen " + 
-						"  FROM KERESTE " +
+				" Sum( ((CONVERT( SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT( SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000) as m3 , " +
+				" ((Sum(((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)) / sum(miktar)) " +
+				" / CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL)) / CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3) ,DECIMAL) as Ort_Gen " + 
+				"  FROM KERESTE " +
 				" WHERE   " + jkj + " " +
-				   qwq6 + " "+qwq7 + " " +qwq8 + " " + dpo +
+				qwq6 + " "+qwq7 + " " +qwq8 + " " + dpo +
 				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" +

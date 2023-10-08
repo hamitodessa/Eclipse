@@ -1737,7 +1737,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 		}
 		else 
 		{
-			
 		kurc="" ;
 		 sql =  "SELECT  " + yu + "," +
 				" SUM((" + hANGI + "Fiat * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) - (   (KERESTE."+hANGI+"Tutar * Kereste."+hANGI+"Iskonto)/100)    ) ) As Tutar,  " +
@@ -2006,22 +2005,22 @@ public class KERESTE_MSSQL implements IKERESTE {
 			qweString = " Evrak_No " ;
 		}
 		String sql =   "SELECT [Paket_No] , Konsimento ,SUBSTRING(KERESTE.Kodu, 8, 4) as Boy ,SUBSTRING(KERESTE.Kodu, 4, 3) as Kal , " +
-						" Sum( ((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) as m3 , " +
-						" ((Sum(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)) / sum(miktar)) " +
-						" / CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4))) / CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) as Ort_Gen " + 
-						"  FROM KERESTE " +
-						" WHERE   " + jkj + " " +
-				   qwq6 + " "+qwq7 + " " +qwq8 + " " + dpo +
+				" Sum( ((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) as m3 , " +
+				" ((Sum(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)) / sum(miktar)) " +
+				" / CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4))) / CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) ) as Ort_Gen " + 
+				"  FROM KERESTE " +
+				" WHERE   " + jkj + " " +
+				qwq6 + " " + qwq7 + " " + qwq8 + " " + dpo +
 				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" +
 				" SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' " +
-				" AND "+ dURUM + "Cari_Firma between N'" + s1 + "' AND N'" + s2 + "'" +
+				" AND " + dURUM + "Cari_Firma between N'" + s1 + "' AND N'" + s2 + "'" +
 				" AND " + qweString  + " between N'" + e1 + "' AND N'" + e2 + "'" +
 				" AND Konsimento between N'" + ko1 + "' AND N'" + ko2 + "'" +
 				" AND  KERESTE."+ dURUM + "Tarih BETWEEN '" +t1 + "'" + " AND  '" + t2 + " 23:59:59.998'" +
-				" GROUP by PAKET_NO , Konsimento ,SUBSTRING(KERESTE.Kodu, 8, 4),SUBSTRING(KERESTE.Kodu, 4, 3) " +
-				" order by PAKET_NO "	 ;
+				" GROUP BY PAKET_NO , Konsimento ,SUBSTRING(KERESTE.Kodu, 8, 4),SUBSTRING(KERESTE.Kodu, 4, 3) " +
+				" ORDER BY PAKET_NO "	 ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

@@ -152,7 +152,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		txtPaketNo.setBounds(117, 36, 130, 20);
 		txtPaketNo.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				//hisset();
 			}
 			public void removeUpdate(DocumentEvent e) {
 				hisset();
@@ -258,7 +257,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		splitPane1.setResizeWeight(1.0);
 		splitPane.setRightComponent(splitPane1);
 		
-		
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane1.setLeftComponent(scrollPane);
 		
@@ -295,7 +293,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		JLabel lblNewLabel_3 = new JLabel("Secilen Satir :");
 		lblNewLabel_3.setBounds(10, 5, 140, 14);
 		panel1.add(lblNewLabel_3);
-		
 		
 		KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
 		ker_BILGI.setPaket_No1(txtPaketNo.getText());
@@ -345,7 +342,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			tc.setCellEditor(dce);
 			tc.setCellRenderer(new CheckBoxRenderer());
 			tc.setMinWidth(50);
-
 
 			tc = tcm.getColumn(1);
 			tc.setHeaderRenderer(new SOLA());
@@ -574,7 +570,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(asdBoxHeader);
 			
-			//
 			th.repaint();
 			table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
 			{
@@ -741,11 +736,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				}
 			}
 			setColumn(column);
-
 			setHorizontalAlignment(JLabel.CENTER);
-
 			setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-			//setSelected(true);
 			return rendererComponent;
 		}
 		protected void setColumn(int column) {

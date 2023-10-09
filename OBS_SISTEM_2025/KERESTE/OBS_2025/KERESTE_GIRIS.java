@@ -817,14 +817,14 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		panel_1.setLayout(null);
 		
 		lblkodAciklama = new JLabel();
-		lblkodAciklama.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblkodAciklama.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblkodAciklama.setForeground(new Color(0, 0, 128));
 		lblkodAciklama.setBounds(10, 55,50, 14);
 		panel_1.add(lblkodAciklama);
 		
 		lblkONSIMENTO = new JLabel();
 		lblkONSIMENTO.setForeground(new Color(0, 0, 128));
-		lblkONSIMENTO.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblkONSIMENTO.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblkONSIMENTO.setBounds(10, 35, 50, 14);
 		panel_1.add(lblkONSIMENTO);
 		

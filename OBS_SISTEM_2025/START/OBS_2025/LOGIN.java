@@ -259,18 +259,19 @@ public class LOGIN extends JDialog {
 		txtUser.setColumns(10);
 		JTextFieldRegularPopupMenu.addTo(txtUser);
 		txtUser.setColumns(10);
-		//txtUser.setOpaque(false);
-		//txtUser.setBorder(new EmptyBorder(0, 0, 0, 0));
+		txtUser.setOpaque(false);
+		txtUser.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel.add(txtUser);
 
-		//JSeparator separator = new JSeparator();
-		//separator.setBounds(309, 32, 110, 5);
-		//panel.add(separator);
+		JSeparator separator = new JSeparator();
+		separator.setForeground(Color.WHITE);
+		separator.setBounds(309, 31, 110, 7);
+		panel.add(separator);
 		
 		txtpwd = new JPasswordField();
 		txtpwd.setBounds(310, 37, 110, 20);
-		//txtpwd.setOpaque(false);
-		//txtpwd.setBorder(new EmptyBorder(0, 0, 0, 0));
+		txtpwd.setOpaque(false);
+		txtpwd.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel.add(txtpwd);
 		txtpwd.setFont(new Font("Tahoma", Font.BOLD, 12));
 		JTextFieldRegularPopupMenu.addTo(txtpwd);
@@ -518,6 +519,11 @@ public class LOGIN extends JDialog {
 		lblModul.setForeground(new Color(0, 139, 139));
 		lblModul.setBounds(1, 138, 189, 14);
 		panel.add(lblModul);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setForeground(Color.WHITE);
+		separator_1.setBounds(310, 57, 110, 7);
+		panel.add(separator_1);
 		
 		progressBar = new JProgressBar();
 		splitPane.setRightComponent(progressBar);

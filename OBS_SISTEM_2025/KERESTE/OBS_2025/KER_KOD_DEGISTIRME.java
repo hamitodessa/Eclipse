@@ -475,7 +475,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 
 			tc = tcm.getColumn(27);
 			tc.setHeaderRenderer(new SOLA());
-			tc.setCellRenderer(new TARIH());
 			tc.setMinWidth(80);
 
 			tc = tcm.getColumn(28);

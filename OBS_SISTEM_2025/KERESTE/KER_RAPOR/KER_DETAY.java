@@ -376,7 +376,6 @@ public class KER_DETAY extends JInternalFrame {
 
 				tc = tcm.getColumn(26);
 				tc.setHeaderRenderer(new SOLA());
-				tc.setCellRenderer(new TARIH());
 				tc.setMinWidth(80);
 
 				tc = tcm.getColumn(27);

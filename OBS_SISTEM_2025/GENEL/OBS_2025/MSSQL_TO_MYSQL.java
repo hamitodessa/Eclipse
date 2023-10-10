@@ -1701,8 +1701,8 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		rss = stmt.executeQuery(sql);
 		sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " + //15
 				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,USER,Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
-				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir) " + //9
-				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir,CSatir) " + //9
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 
 		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
 		int satir= 0 ;
@@ -1775,6 +1775,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			stmt2.setString(41,  rss.getString("CUSER"));
 			stmt2.setInt(42,  rss.getInt("Mensei"));
 			stmt2.setInt(43,  rss.getInt("Satir"));
+			stmt2.setInt(44,  rss.getInt("CSatir"));
 			stmt2.addBatch();
 			satir +=1 ;
 			if ((satir ) % 200 == 0) 

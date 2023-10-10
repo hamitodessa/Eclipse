@@ -800,7 +800,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 			 sql = "SELECT    Evrak_No  , Barkod  , Kodu , Paket_No , Konsimento  , Miktar , Tarih , Kdv  , Doviz  , Fiat   , Tutar  , Kur   , Cari_Firma , Adres_Firma   , Iskonto  , Tevkifat  "
 					+ "	,Ana_Grup   , Alt_Grup  ,  Mensei , Depo   , Ozel_Kod  , Izahat   , Nakliyeci  ,USER "
 					+ "	,Cikis_Evrak   , CTarih    , CKdv  , CDoviz   , CFiat  , CTutar  , CKur  , CCari_Firma  , CAdres_Firma  , CIskonto   , CTevkifat  "
-					+ "	,CAna_Grup     , CAlt_Grup   ,CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER " 
+					+ "	,CAna_Grup     , CAlt_Grup   ,CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER ,CSatir" 
 					+ " FROM KERESTE   " 
 					+ " WHERE Evrak_No  = N'" + eno + "'  ORDER BY  Satir"  ; // ORDER BY Paket_No ,Kodu , Satir
 		}
@@ -1797,7 +1797,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 				stmt.setInt(43, i);
 				stmt.setInt(44, Integer.parseInt(mdl.getValueAt(i,30).toString()));
 				stmt.addBatch();
-				if ((i ) % 1000 == 0) 
+				if ((i ) % 500 == 0) 
 				{
 					stmt.executeBatch();
 				}

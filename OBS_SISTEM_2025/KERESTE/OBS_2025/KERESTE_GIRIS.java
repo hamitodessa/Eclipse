@@ -2020,8 +2020,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 	}
 	private void fiskont()
 	{
-		Runnable runner = new Runnable()
-		{ public void run() {
+		//Runnable runner = new Runnable()
+		//{ public void run() {
 			try {
 				long startTime = System.currentTimeMillis();
 				ResultSet rss = null;
@@ -2183,10 +2183,10 @@ public class KERESTE_GIRIS extends JInternalFrame {
 				GuiUtil.setWaitCursor(KERESTE_GIRIS.splitPane,false);
 				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
 			}
-		}
-		};
-		Thread t = new Thread(runner, "Code Executer");
-		t.start();
+		//}
+		//};
+		//Thread t = new Thread(runner, "Code Executer");
+		//t.start();
 	}
 	private void kod_ADI(String toke,String kons) throws ClassNotFoundException, SQLException 
 

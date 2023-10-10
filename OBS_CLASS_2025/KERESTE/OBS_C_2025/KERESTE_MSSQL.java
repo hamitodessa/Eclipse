@@ -883,7 +883,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 					+ " FROM KERESTE   " 
 					+ " WHERE Cikis_Evrak  = N'" + eno + "' ORDER BY CSatir " ;//ORDER BY Paket_No ,Satir
 		}
-		
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;	
@@ -1864,7 +1863,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				
 				stmt.setInt(44, Integer.parseInt(mdl.getValueAt(i,30).toString()));
 				stmt.addBatch();
-				if ((i ) % 1000 == 0) 
+				if ((i ) % 500 == 0) 
 				{
 					stmt.executeBatch();
 				}

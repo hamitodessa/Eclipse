@@ -871,7 +871,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 					+ "	,[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] ,[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat] "
 					+ "	,[CAna_Grup]    ,[CAlt_Grup]  ,CDepo  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER]" 
 					+ " FROM KERESTE   " 
-					+ " WHERE Evrak_No  = N'" + eno + "' " ; //ORDER BY Paket_No ,Kodu , Satir
+					+ " WHERE Evrak_No  = N'" + eno + "' ORDER BY  Satir " ; //ORDER BY Paket_No ,Kodu , Satir
 		}
 		else {
 			sql = "SELECT   [Evrak_No] ,[Barkod] ,[Kodu],[Paket_No],[Konsimento] ,[Miktar],[Tarih],[Kdv] ,[Doviz] ,[Fiat]  ,[Tutar] ,[Kur]  ,[Cari_Firma],[Adres_Firma]  ,[Iskonto] ,[Tevkifat] "
@@ -879,7 +879,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 					+ "	,[Cikis_Evrak]  ,[CTarih]   ,[CKdv] ,[CDoviz]  ,[CFiat] ,[CTutar] ,[CKur] ,[CCari_Firma] ,[CAdres_Firma] ,[CIskonto]  ,[CTevkifat] "
 					+ "	,[CAna_Grup]    ,[CAlt_Grup]  ,ISNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  ,[COzel_Kod]   ,[CIzahat]  ,[CNakliyeci]  ,[CUSER],Satir" 
 					+ " FROM KERESTE   " 
-					+ " WHERE Cikis_Evrak  = N'" + eno + "' " ;//ORDER BY Paket_No ,Satir
+					+ " WHERE Cikis_Evrak  = N'" + eno + "' ORDER BY  Satir " ;//ORDER BY Paket_No ,Satir
 		}
 		
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);

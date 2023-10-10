@@ -109,6 +109,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public MSSQL_TO_MYSQL() {
+		setTitle("MS SQL TO MY SQL");
 		setClosable(true);
 		setBounds(100, 100, 779, 529);
 		JPanel panel = new JPanel();
@@ -116,27 +117,27 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		panel.setLayout(null);
 
 		textField = new JTextField();
-		textField.setBounds(207, 33, 96, 20);
+		textField.setBounds(274, 33, 96, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Dosya");
-		lblNewLabel.setBounds(142, 36, 48, 14);
+		lblNewLabel.setBounds(209, 36, 48, 14);
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("MSSQL");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(207, 11, 96, 14);
+		lblNewLabel_1.setBounds(274, 11, 96, 14);
 		panel.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_1_1 = new JLabel("MYSQL");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setBounds(313, 11, 96, 14);
+		lblNewLabel_1_1.setBounds(380, 11, 96, 14);
 		panel.add(lblNewLabel_1_1);
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(313, 33, 96, 20);
+		textField_1.setBounds(380, 33, 96, 20);
 		panel.add(textField_1);
 
 		JButton btnNewButton_1 = new JButton("CARI BAGLAN");
@@ -325,7 +326,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setBorder(new TitledBorder(null, "My Sql Baglanti", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBounds(400, 64, 244, 178);
+		panel_2.setBounds(459, 66, 244, 178);
 		panel.add(panel_2);
 		
 		myLokal = new JCheckBox("Lokal");
@@ -496,14 +497,6 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		});
 		btnNewButton_2_1_1_1_1_2.setBounds(10, 85, 123, 23);
 		panel_1_1_1_1.add(btnNewButton_2_1_1_1_1_2);
-		
-		JButton btnNewButton_2_1_1_1_1_1_2 = new JButton("Diger");
-		btnNewButton_2_1_1_1_1_1_2.setBounds(10, 110, 123, 23);
-		panel_1_1_1_1.add(btnNewButton_2_1_1_1_1_1_2);
-		
-		JButton btnNewButton_2_1_1_1_1_1_1_1_1 = new JButton("Stok");
-		btnNewButton_2_1_1_1_1_1_1_1_1.setBounds(10, 160, 123, 23);
-		panel_1_1_1_1.add(btnNewButton_2_1_1_1_1_1_1_1_1);
 		
 			btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1698,13 +1691,16 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 	}
 	private void kereste() throws SQLException
 	{
+		Runnable runner = new Runnable()
+		{ public void run() {
+			try {
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		ResultSet	rss = null;
-		String sql = "SELECT * FROM KERESTE   "; // ORDER BY  EVRAK_NO
+		String sql = "SELECT * FROM KERESTE  ORDER BY  Evrak_No , Satir "; // 
 		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
-		 sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " + //15
-				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,[USER],Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
+		sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " + //15
+				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,USER,Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
 				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir) " + //9
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 
@@ -1713,70 +1709,75 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		stmt2 = MY_conn.prepareStatement(sql);
 		while(rss.next())
 		{
-			
-		stmt2.setString(1,rss.getString("Evrak_No"));
-		stmt2.setString(2, rss.getString("Barkod"));
-		stmt2.setString(3,rss.getString("Kodu"));
-		stmt2.setString(4,rss.getString("Paket_No"));
-		stmt2.setString(5,rss.getString("Konsimento"));
-		stmt2.setDouble(6, rss.getDouble("Miktar"));
-		Timestamp timestamp =rss.getTimestamp("Tarih");
-		Date    date1 = null;
-		String formatli = "";
-		if (timestamp != null)
-		{date1 = new java.util.Date(timestamp.getTime());
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss.ss");
-		formatli = formatter.format(date1);
-		}
-		
-		stmt2.setString(7,formatli);
-		stmt2.setDouble(8, rss.getDouble("Kdv"));
-		stmt2.setString(9,rss.getString("Doviz"));
-		stmt2.setDouble(10,rss.getDouble("Fiat"));
-		stmt2.setDouble(11,rss.getDouble("Tutar"));
-		stmt2.setDouble(12, rss.getDouble("Kur"));
-		stmt2.setString(13,rss.getString("Cari_Firma"));
-		stmt2.setString(14,rss.getString("Adres_Firma"));
-		stmt2.setDouble(15, rss.getDouble("Iskonto"));
-		stmt2.setDouble(16, rss.getDouble("Tevkifat"));
-		stmt2.setInt(17, rss.getInt("Ana_Grup"));
-		stmt2.setInt(18,  rss.getInt("Alt_Grup"));
-		stmt2.setInt(19,  rss.getInt("Depo"));
-		stmt2.setInt(20, rss.getInt("Ozel_Kod"));
-		stmt2.setString(21,rss.getString("Izahat"));
-		stmt2.setInt(22,  rss.getInt("Nakliyeci"));
-		stmt2.setString(23,  rss.getString("USER"));
-		stmt2.setString(24,rss.getString("Cikis_Evrak"));
-		timestamp =rss.getTimestamp("CTarih");
-		date1 = null;
-		formatli = "";
-		if (timestamp != null)
-		{date1 = new java.util.Date(timestamp.getTime());
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss.ss");
-		formatli = formatter.format(date1);
-		}
-		stmt2.setString(25,formatli);
-		stmt2.setDouble(26,rss.getDouble("CKdv"));
-		stmt2.setString(27,rss.getString("CDoviz"));
-		stmt2.setDouble(28, rss.getDouble("CFiat"));
-		stmt2.setDouble(29, rss.getDouble("CTutar"));
-		stmt2.setDouble(30, rss.getDouble("CKur"));
-		stmt2.setString(31,rss.getString("CCari_Firma"));
-		stmt2.setString(32,rss.getString("CAdres_Firma"));
-		stmt2.setDouble(33, rss.getDouble("CIskonto"));
-		stmt2.setDouble(34,  rss.getInt("CTevkifat"));
-		stmt2.setInt(35, rss.getInt("CAna_Grup"));
-		stmt2.setInt(36, rss.getInt("CAlt_Grup"));
-		stmt2.setInt(37,  rss.getInt("CDepo"));
-		stmt2.setInt(38,rss.getInt("COzel_Kod"));
-		stmt2.setString(39,rss.getString("CIzahat"));
-		stmt2.setInt(40, rss.getInt("CNakliyeci"));
-		stmt2.setString(41,  rss.getString("CUSER"));
-		stmt2.setInt(42,  rss.getInt("Mensei"));
-		stmt2.setInt(43,  rss.getInt("Satir"));
+			stmt2.setString(1,rss.getString("Evrak_No"));
+			stmt2.setString(2, rss.getString("Barkod"));
+			stmt2.setString(3,rss.getString("Kodu"));
+			stmt2.setString(4,rss.getString("Paket_No"));
+			stmt2.setString(5,rss.getString("Konsimento"));
+			stmt2.setDouble(6, rss.getDouble("Miktar"));
+			Timestamp timestamp =rss.getTimestamp("Tarih");
+			Date    date1 = null;
+			String formatli = "";
+			if (timestamp != null)
+			{date1 = new java.util.Date(timestamp.getTime());
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss.ss");
+			formatli = formatter.format(date1);
+			}
+
+			stmt2.setString(7,formatli);
+			stmt2.setDouble(8, rss.getDouble("Kdv"));
+			stmt2.setString(9,rss.getString("Doviz"));
+			stmt2.setDouble(10,rss.getDouble("Fiat"));
+			stmt2.setDouble(11,rss.getDouble("Tutar"));
+			stmt2.setDouble(12, rss.getDouble("Kur"));
+			stmt2.setString(13,rss.getString("Cari_Firma"));
+			stmt2.setString(14,rss.getString("Adres_Firma"));
+			stmt2.setDouble(15, rss.getDouble("Iskonto"));
+			stmt2.setDouble(16, rss.getDouble("Tevkifat"));
+			stmt2.setInt(17, rss.getInt("Ana_Grup"));
+			stmt2.setInt(18,  rss.getInt("Alt_Grup"));
+			stmt2.setInt(19,  rss.getInt("Depo"));
+			stmt2.setInt(20, rss.getInt("Ozel_Kod"));
+			stmt2.setString(21,rss.getString("Izahat"));
+			stmt2.setInt(22,  rss.getInt("Nakliyeci"));
+			stmt2.setString(23,  rss.getString("USER"));
+			stmt2.setString(24,rss.getString("Cikis_Evrak"));
+			if(! rss.getTimestamp("CTarih").toString().equals("1900-01-01 00:00:00.0"))
+			{
+			timestamp =rss.getTimestamp("CTarih");
+			date1 = null;
+			formatli = "";
+			if (timestamp != null)
+			{date1 = new java.util.Date(timestamp.getTime());
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss.ss");
+			formatli = formatter.format(date1);
+			}
+			stmt2.setString(25,formatli);
+			}
+			else {
+				stmt2.setString(25,"1900-01-01");
+			}
+			stmt2.setDouble(26,rss.getDouble("CKdv"));
+			stmt2.setString(27,rss.getString("CDoviz"));
+			stmt2.setDouble(28, rss.getDouble("CFiat"));
+			stmt2.setDouble(29, rss.getDouble("CTutar"));
+			stmt2.setDouble(30, rss.getDouble("CKur"));
+			stmt2.setString(31,rss.getString("CCari_Firma"));
+			stmt2.setString(32,rss.getString("CAdres_Firma"));
+			stmt2.setDouble(33, rss.getDouble("CIskonto"));
+			stmt2.setDouble(34,  rss.getInt("CTevkifat"));
+			stmt2.setInt(35, rss.getInt("CAna_Grup"));
+			stmt2.setInt(36, rss.getInt("CAlt_Grup"));
+			stmt2.setInt(37,  rss.getInt("CDepo"));
+			stmt2.setInt(38,rss.getInt("COzel_Kod"));
+			stmt2.setString(39,rss.getString("CIzahat"));
+			stmt2.setInt(40, rss.getInt("CNakliyeci"));
+			stmt2.setString(41,  rss.getString("CUSER"));
+			stmt2.setInt(42,  rss.getInt("Mensei"));
+			stmt2.setInt(43,  rss.getInt("Satir"));
 			stmt2.addBatch();
 			satir +=1 ;
-			if ((satir ) % 1000 == 0) 
+			if ((satir ) % 200 == 0) 
 			{
 				stmt2.executeBatch();
 			}
@@ -1784,6 +1785,16 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		stmt2.executeBatch();
 		stmt2.close();
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		}
+		catch (Exception ex)
+		{
+			getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Aktar", JOptionPane.ERROR_MESSAGE);   
+		}
+		}
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
 	}
 }
 

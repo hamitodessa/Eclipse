@@ -17,9 +17,10 @@ public class DOSYA_MYSQL implements ILOGER_KAYIT{
 	public void Logla(lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI)
 			throws ClassNotFoundException, SQLException 
 	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		String cumle = "jdbc:mysql://" + dBILGI.cONN_STR ;
 		con = DriverManager.getConnection(cumle,dBILGI.kULLANICI,dBILGI.sIFRESI);
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		
 		String sql  = "INSERT `LOGLAMA` (`TARIH`,`EVRAK`,`MESAJ`,`USER_NAME`) " +
 				" VALUES (?,?,?,?)" ;
 		PreparedStatement stmt = null;

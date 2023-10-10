@@ -2330,10 +2330,10 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			lBILGI.setmESAJ("Kereste Aciklama Yaz  Giris :" + textField_9.getText()  );
 			lBILGI.seteVRAK(textField.getText());
 			ker_Access.aciklama_yaz("KER", 1, textField.getText(),  textField_9.getText(), "G",
-					lBILGI,BAGLAN_LOG.fatLogDizin);
+					lBILGI,BAGLAN_LOG.kerLogDizin);
 			lBILGI.setmESAJ( "Kereste Aciklama Yaz  Giris :" + textField_10.getText() );
 			ker_Access.aciklama_yaz("KER", 2, textField.getText(), textField_10.getText(), "G",
-					lBILGI,BAGLAN_LOG.fatLogDizin);
+					lBILGI,BAGLAN_LOG.kerLogDizin);
 		}
 		catch (Exception ex)
 		{
@@ -2347,7 +2347,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			lBILGI.setmESAJ( "Kereste Aciklama Sil  Giris "  );
 			lBILGI.seteVRAK(textField.getText());
 			ker_Access.aciklama_sil("KER", textField.getText(), "G",
-					lBILGI,BAGLAN_LOG.fatLogDizin);
+					lBILGI,BAGLAN_LOG.kerLogDizin);
 
 		}
 		catch (Exception ex)

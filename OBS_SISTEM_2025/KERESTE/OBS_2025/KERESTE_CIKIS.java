@@ -1682,6 +1682,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			ker_BILGI.setCTevkifat(tevk);
 			ker_BILGI.setCUSER(GLOBAL.KULL_ADI);
 			ker_BILGI.setSatir(Integer.parseInt(mdl.getValueAt(i,12).toString()));
+			ker_BILGI.setCSatir(i);
 			ker_Access.ker_cikis_kaydet(ker_BILGI,lBILGI,BAGLAN_LOG.kerLogDizin);
 		}
 		catch (Exception ex)

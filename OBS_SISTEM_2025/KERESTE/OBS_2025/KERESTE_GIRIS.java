@@ -1107,6 +1107,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		model.addColumn("CIzahat", new String []{"" });
 		model.addColumn("CNakliyeci",new Integer []{( 0 )});
 		model.addColumn("CUser", new String []{"" });
+		model.addColumn("CSatir",new Integer []{( 0 )});
 		TableColumn col ;
 		col = table.getColumnModel().getColumn(0);
 		col.setMinWidth(100);
@@ -1307,7 +1308,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		col.setCellEditor(new DefaultCellEditor(atf));
 		col.setHeaderRenderer(new SOLA());
 		
-		for (int i =0 ; i <=17;i++) {
+		for (int i =0 ; i <=18;i++) {
 			table.removeColumn(table.getColumnModel().getColumn(12));
 		}
 		JTableHeader th = table.getTableHeader();
@@ -1442,12 +1443,12 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		
 		if ( satir  < 0 ) 
 		{
-			mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+			mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,"",0});
 			satir = 0 ;
 		}
 		else
 		{
-			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+			mdl.insertRow(satir, new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,"",0});
 		}
 		table.isRowSelected(satir);
 		table.repaint();
@@ -1933,6 +1934,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			ker_BILGI.setCIzahat( mdl.getValueAt(i,27).toString());
 			ker_BILGI.setCNakliyeci(Integer.parseInt(mdl.getValueAt(i,28).toString()));
 			ker_BILGI.setCUSER( mdl.getValueAt(i,29).toString());
+			ker_BILGI.setCSatir(Integer.parseInt(mdl.getValueAt(i,30).toString()));
 			ker_BILGI.setSatir(i);
 			ker_Access.ker_kaydet(ker_BILGI, GLOBAL.KULL_ADI	,lBILGI,BAGLAN_LOG.kerLogDizin);
 		}
@@ -2150,13 +2152,14 @@ public class KERESTE_GIRIS extends JInternalFrame {
 								rss.getString("COzel_Kod"),
 								rss.getString("CIzahat"),
 								rss.getInt("CNakliyeci"),
-								rss.getString("CUser")});
+								rss.getString("CUser"),
+								rss.getInt("CSatir")});
 						txttev.setText(FORMATLAMA.doub_0(rss.getDouble("Tevkifat")));
 						satir +=1 ;
 
 						if (satir == mdl.getRowCount())  
 						{
-							mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+							mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,"",0});
 						}
 						else  {
 							mdl.removeRow(mdl.getRowCount() -1);	
@@ -2471,7 +2474,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 						      double random_fiat = (double)Math.floor(Math.random() * (max - min + 1) + min);
 							///
 							mdl.addRow(new Object[]{"",kODU,yeniPaket,adet,
-									m3(kODU,adet),"",strKonsimento,random_fiat,0.00,0.00,m3(kODU, adet) * random_fiat,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+									m3(kODU,adet),"",strKonsimento,random_fiat,0.00,0.00,m3(kODU, adet) * random_fiat,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,"",0});
 						}
 						else {
 							sonpaketno =  arapaketno ;
@@ -2504,7 +2507,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 							///
 
 							mdl.addRow(new Object[]{"",kODU,yeniPaket,adet,
-									m3(kODU,adet),"",strKonsimento,random_fiat,0.00,0.00,m3(kODU, adet) * random_fiat,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+									m3(kODU,adet),"",strKonsimento,random_fiat,0.00,0.00,m3(kODU, adet) * random_fiat,"Izahat","","1900-01-01 00:00:00.0",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,"",0});
 						}
 					}  
 					satir += 1 ;

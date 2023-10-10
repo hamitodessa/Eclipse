@@ -199,6 +199,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " `CNakliyeci` int NULL,"
 				+ " `CUSER` nvarchar(15)  NULL,"
 				+ " `Satir` int NOT NULL,"
+				+ " `CSatir` int NOT NULL,"
 				+ " INDEX `IX_KERESTE` (  `Evrak_No`,`Kodu`,`Tarih`,`Paket_No`,`Konsimento`,`Cari_Firma`,`Cikis_Evrak` ) VISIBLE)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
@@ -729,8 +730,8 @@ public class KERESTE_MYSQL implements IKERESTE {
 		 
 		String sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " + //15
 				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,USER,Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
-				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir) " + //9
-				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir,CSatir) " + //9
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		///////////////////
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
@@ -783,6 +784,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.setString(41,  kBILGI.getCUSER());
 		stmt.setInt(42, kBILGI.getMensei());
 		stmt.setInt(43, kBILGI.getSatir());
+		stmt.setInt(44, kBILGI.getCSatir());
 		stmt.executeUpdate();
 		stmt.close();
 		
@@ -808,7 +810,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 					+ "	,Cikis_Evrak   , CTarih    , CKdv  , CDoviz   , CFiat  , CTutar  , CKur  , CCari_Firma  , CAdres_Firma  , CIskonto   , CTevkifat  "
 					+ "	,CAna_Grup     , CAlt_Grup   ,IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER ,Satir" 
 					+ " FROM KERESTE   " 
-					+ " WHERE Cikis_Evrak  = N'" + eno + "' ORDER BY  Satir " ; //ORDER BY Paket_No ,Satir
+					+ " WHERE Cikis_Evrak  = N'" + eno + "' Order By CSatir " ; //ORDER BY Paket_No ,Satir
 		}
 		
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -952,7 +954,8 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " CKur='"+ kBILGI.getCKur() + "',CCari_Firma = '"+ kBILGI.getCCari_Firma() +"',CAdres_Firma='"+ kBILGI.getCAdres_Firma() +"' ," 
 				+ " CIskonto="+ kBILGI.getCIskonto() + ",CTevkifat="+ kBILGI.getCTevkifat() + ",CAna_Grup="+ kBILGI.getCAna_Grup() + ",CAlt_Grup="+ kBILGI.getCAlt_Grup() + ", " 
 				+ " CDepo="+ kBILGI.getCDepo() + ",COzel_Kod='"+ kBILGI.getCOzel_Kod() +"',CIzahat='"+ kBILGI.getCIzahat() +"',CNakliyeci="+ kBILGI.getCNakliyeci() + ", " 
-				+ " CUSER='"+ kBILGI.getCUSER() +"'"
+				+ " CUSER='"+ kBILGI.getCUSER() +"' ,"
+				+ " CSatir='"+ kBILGI.getCSatir() +"'"
 				+ " WHERE Paket_No  ='" + token[0] + "'"
 				+ " AND Satir = '"+ kBILGI.getSatir() + "'" ;
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -1724,8 +1727,8 @@ public class KERESTE_MYSQL implements IKERESTE {
 		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 		String sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " + //15
 				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,USER,Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
-				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir) " + //9
-				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir,CSatir) " + //9
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
 		String  izahat ="";
@@ -1792,6 +1795,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 				stmt.setString(41,  mdl.getValueAt(i,29).toString());
 				stmt.setInt(42, degisken[5]);
 				stmt.setInt(43, i);
+				stmt.setInt(44, Integer.parseInt(mdl.getValueAt(i,30).toString()));
 				stmt.addBatch();
 				if ((i ) % 1000 == 0) 
 				{

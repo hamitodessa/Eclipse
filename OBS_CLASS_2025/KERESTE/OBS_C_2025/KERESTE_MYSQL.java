@@ -919,15 +919,21 @@ public class KERESTE_MYSQL implements IKERESTE {
 	}
 
 	@Override
-	public ResultSet paket_oku(String pno) throws ClassNotFoundException, SQLException {
+	public ResultSet paket_oku(String pno,String nerden) throws ClassNotFoundException, SQLException {
 		 
 		String[] token = pno.toString().split("-");
 		ResultSet	rss = null;
-		String sql = "SELECT    Evrak_No  , Barkod  , Kodu , Paket_No , Konsimento  , Miktar , Cikis_Evrak   , CTarih    , CKdv  , CDoviz   , CFiat  , CTutar  , CKur  " 
-				+ ", CCari_Firma  , CAdres_Firma  , CIskonto   , CTevkifat , CAna_Grup     , CAlt_Grup   "
-				+ "	 ,IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER ,Satir" 
+		String dURUMString= "";
+		if(nerden.equals("C"))
+		{
+			dURUMString= " AND Cikis_Evrak = ''";
+		}
+		String sql = "SELECT Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,CKur , " 
+				+ " CCari_Firma,CAdres_Firma,CIskonto,CTevkifat , CAna_Grup,CAlt_Grup  , "
+				+ "	IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER ,Satir" 
 				+ " FROM KERESTE   " 
-				+ " WHERE Paket_No = N'" + token[0] + "' AND Konsimento = N'"+ token[1]  +"' ORDER BY Satir" ;
+				+ " WHERE Paket_No = N'" + token[0] + "' AND Konsimento = N'"+ token[1]  +"' " 
+				+ " " + dURUMString + " ORDER BY Satir" ;
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 
@@ -938,7 +944,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 	public void ker_cikis_sil(String eno) throws ClassNotFoundException, SQLException {
 		 
 		String sql = "UPDATE KERESTE SET Cikis_Evrak = '', CTarih = '1900.01.01',CKdv = 0,CDoviz ='',CFiat=0,Ctutar=0,CKur=0,CCari_Firma='',CAdres_Firma='' ," 
-				+ " CIskonto=0,CTevkifat=0,CAna_Grup=0,CAlt_Grup=0,CDepo=0,COzel_Kod='',CIzahat='',CNakliyeci=0,CUSER=''"
+				+ " CIskonto=0,CTevkifat=0,CAna_Grup=0,CAlt_Grup=0,CDepo=0,COzel_Kod='',CIzahat='',CNakliyeci=0,CUSER='',CSatir=0"
 				+ " WHERE Cikis_Evrak  ='" + eno + "'" ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -949,15 +955,20 @@ public class KERESTE_MYSQL implements IKERESTE {
 		 
 		String[] token = kBILGI.getPaket_No().toString().split("-");
 		String sql = "UPDATE KERESTE SET " 
-				+ " Cikis_Evrak = '"+ kBILGI.getCikis_Evrak() +"', CTarih = '"+ kBILGI.getCTarih() + "', " 
-				+ " CKdv = '"+ kBILGI.getCKdv() + "',CDoviz ='"+ kBILGI.getCDoviz() + "', CFiat='"+ kBILGI.getCFiat() + "',Ctutar='"+ kBILGI.getCTutar() + "', " 
-				+ " CKur='"+ kBILGI.getCKur() + "',CCari_Firma = '"+ kBILGI.getCCari_Firma() +"',CAdres_Firma='"+ kBILGI.getCAdres_Firma() +"' ," 
-				+ " CIskonto="+ kBILGI.getCIskonto() + ",CTevkifat="+ kBILGI.getCTevkifat() + ",CAna_Grup="+ kBILGI.getCAna_Grup() + ",CAlt_Grup="+ kBILGI.getCAlt_Grup() + ", " 
-				+ " CDepo="+ kBILGI.getCDepo() + ",COzel_Kod='"+ kBILGI.getCOzel_Kod() +"',CIzahat='"+ kBILGI.getCIzahat() +"',CNakliyeci="+ kBILGI.getCNakliyeci() + ", " 
+				+ " Cikis_Evrak = '"+ kBILGI.getCikis_Evrak() +"', CTarih = '" 
+				+ kBILGI.getCTarih() + "', " 
+				+ " CKdv = "+ kBILGI.getCKdv() + ",CDoviz ='" + kBILGI.getCDoviz() + "', CFiat=" 
+				+ kBILGI.getCFiat() + ",Ctutar="+ kBILGI.getCTutar() + ", " 
+				+ " CKur="+ kBILGI.getCKur() + ",CCari_Firma = '" 
+				+ kBILGI.getCCari_Firma() +"',CAdres_Firma='"+ kBILGI.getCAdres_Firma() +"' ," 
+				+ " CIskonto="+ kBILGI.getCIskonto() + ",CTevkifat="+ kBILGI.getCTevkifat() + ", " 
+				+ " CAna_Grup="+ kBILGI.getCAna_Grup() + ",CAlt_Grup="+ kBILGI.getCAlt_Grup() + ", " 
+				+ " CDepo="+ kBILGI.getCDepo() + ",COzel_Kod="+ kBILGI.getCOzel_Kod() + ", " 
+				+ " CIzahat='"+ kBILGI.getCIzahat() +"',CNakliyeci="+ kBILGI.getCNakliyeci() + ", " 
 				+ " CUSER='"+ kBILGI.getCUSER() +"' ,"
-				+ " CSatir='"+ kBILGI.getCSatir() +"'"
+				+ " CSatir="+ kBILGI.getCSatir() +""
 				+ " WHERE Paket_No  ='" + token[0] + "'"
-				+ " AND Satir = '"+ kBILGI.getSatir() + "'" ;
+				+ " AND Satir = "+ kBILGI.getSatir() + "" ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}

@@ -1039,6 +1039,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 					return false;
 				case 10:
 					return false;
+				case 11:
+					return false;
 				default:
 					return true;
 				}
@@ -1173,7 +1175,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 				try {
 					if(! model.getValueAt(table.getSelectedRow(), 6).toString().equals(""))
 					{
-						rSet = ker_Access.paket_oku(pak_noField.getText() + "-" + model.getValueAt(table.getSelectedRow(), 6).toString());
+						rSet = ker_Access.paket_oku(pak_noField.getText() + "-" + model.getValueAt(table.getSelectedRow(), 6).toString(),"G");
 					}
 					else {
 						return ;
@@ -1201,7 +1203,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 				try {
 					if(! model.getValueAt(table.getSelectedRow(), 6).toString().equals(""))
 					{
-						rSet = ker_Access.paket_oku(pak_noField.getText() + "-" + model.getValueAt(table.getSelectedRow(), 6).toString());
+						rSet = ker_Access.paket_oku(pak_noField.getText() + "-" + model.getValueAt(table.getSelectedRow(), 6).toString(),"G");
 					}
 					else {
 						return ;
@@ -1308,8 +1310,12 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		col.setCellEditor(new DefaultCellEditor(atf));
 		col.setHeaderRenderer(new SOLA());
 		
-		for (int i =0 ; i <=18;i++) {
-			table.removeColumn(table.getColumnModel().getColumn(12));
+		col = table.getColumnModel().getColumn(12);
+		col.setCellRenderer(new SOLA_ORTA());
+		col.setHeaderRenderer(new SOLA());
+		
+		for (int i =0 ; i <=17;i++) {
+			table.removeColumn(table.getColumnModel().getColumn(13));
 		}
 		JTableHeader th = table.getTableHeader();
 		Dimension dd = table.getPreferredSize();

@@ -964,7 +964,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				final int x = (screenSize.width - arm.getWidth()) / 2;
 				final int y = (screenSize.height - arm.getHeight()) / 2;
 				arm.setLocation(x, y);
-
 				arm.setVisible(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				if ( !  oac.stk_kodu.equals(""))
@@ -1995,7 +1994,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			if (table.getSelectedRow() == -1 ) return ;
 			if (pakno.equals("")) return ;
 			if( pak_kons_check(pakno)) return;
-			ResultSet rSet = ker_Access.paket_oku(pakno);
+			ResultSet rSet = ker_Access.paket_oku(pakno,"C");
 			if (!rSet.isBeforeFirst() ) {  
 			}
 			else 

@@ -172,8 +172,6 @@ public class PAKET_ARA extends JDialog {
 			@Override
 			public boolean isCellEditable(int row, int column) {  
 				switch (column) {
-				case 0:
-					return true;
 				default:
 					return false;
 				}

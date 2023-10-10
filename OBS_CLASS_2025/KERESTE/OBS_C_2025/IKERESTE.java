@@ -43,7 +43,7 @@ public interface IKERESTE {
 	public void aciklama_sil(String evrcins,String evrno,String cins) throws ClassNotFoundException, SQLException;
 	public void aciklama_yaz(String evrcins,int satir,String evrno,String aciklama,String gircik) throws ClassNotFoundException, SQLException;
 	public String aciklama_oku(String evrcins,int satir,String evrno,String gircik) throws ClassNotFoundException, SQLException;
-	public ResultSet paket_oku(String pno) throws ClassNotFoundException, SQLException;
+	public ResultSet paket_oku(String pno,String nerden) throws ClassNotFoundException, SQLException;
 	public void ker_cikis_sil(String eno) throws ClassNotFoundException, SQLException;
 	public void ker_cikis_kaydet(KER_BILGI kBILGI) throws ClassNotFoundException, SQLException;
 	public int evrak_no_al(String cins) throws ClassNotFoundException, SQLException;

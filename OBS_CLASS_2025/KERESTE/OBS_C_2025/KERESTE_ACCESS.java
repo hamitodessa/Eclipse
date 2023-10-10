@@ -186,9 +186,9 @@ public class KERESTE_ACCESS {
 	{
 		return _IKereste.aciklama_oku(evrcins, satir, evrno, gircik);
 	}
-	public ResultSet  paket_oku(String pakno) throws ClassNotFoundException, SQLException
+	public ResultSet  paket_oku(String pakno,String nerden) throws ClassNotFoundException, SQLException
 	{
-		return  _IKereste.paket_oku(pakno);
+		return  _IKereste.paket_oku(pakno,nerden);
 	}
 	public void ker_cikis_sil(String eno,lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
 	{

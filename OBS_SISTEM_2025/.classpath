@@ -36,7 +36,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/CrystalReportsRuntime.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/cvom.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/DatabaseConnectors.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/2025/icu4j.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/JDBInterface.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jrcerom.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/logging.jar"/>

@@ -441,29 +441,65 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		panel_1_1_1_1.setBounds(540, 289, 143, 199);
 		panel.add(panel_1_1_1_1);
 		
-		JButton btnNewButton_2_1_2 = new JButton("Mal");
+		JButton btnNewButton_2_1_2 = new JButton("Aciklama");
+		btnNewButton_2_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ker_aciklama() ;
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton_2_1_2.setBounds(10, 11, 123, 23);
 		panel_1_1_1_1.add(btnNewButton_2_1_2);
 		
-		JButton btnNewButton_2_1_1_2 = new JButton("Diger");
+		JButton btnNewButton_2_1_1_2 = new JButton("Kod - Kons");
+		btnNewButton_2_1_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					kod_kons() ;
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton_2_1_1_2.setBounds(10, 35, 123, 23);
 		panel_1_1_1_1.add(btnNewButton_2_1_1_2);
 		
-		JButton btnNewButton_2_1_1_1_2 = new JButton("Bozuk Mal");
+		JButton btnNewButton_2_1_1_1_2 = new JButton("Degiskenler");
+		btnNewButton_2_1_1_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ker_degisken() ;
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton_2_1_1_1_2.setBounds(10, 60, 123, 23);
 		panel_1_1_1_1.add(btnNewButton_2_1_1_1_2);
 		
-		JButton btnNewButton_2_1_1_1_1_2 = new JButton("Fatura");
+		JButton btnNewButton_2_1_1_1_1_2 = new JButton("Kereste");
+		btnNewButton_2_1_1_1_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					kereste() ;
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton_2_1_1_1_1_2.setBounds(10, 85, 123, 23);
 		panel_1_1_1_1.add(btnNewButton_2_1_1_1_1_2);
 		
-		JButton btnNewButton_2_1_1_1_1_1_2 = new JButton("Irsaliye");
+		JButton btnNewButton_2_1_1_1_1_1_2 = new JButton("Diger");
 		btnNewButton_2_1_1_1_1_1_2.setBounds(10, 110, 123, 23);
 		panel_1_1_1_1.add(btnNewButton_2_1_1_1_1_1_2);
-		
-		JButton btnNewButton_2_1_1_1_1_1_1_2 = new JButton("Recete");
-		btnNewButton_2_1_1_1_1_1_1_2.setBounds(10, 135, 123, 23);
-		panel_1_1_1_1.add(btnNewButton_2_1_1_1_1_1_1_2);
 		
 		JButton btnNewButton_2_1_1_1_1_1_1_1_1 = new JButton("Stok");
 		btnNewButton_2_1_1_1_1_1_1_1_1.setBounds(10, 160, 123, 23);
@@ -1413,6 +1449,340 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		stmt2.executeBatch();
 		stmt2.close();
 
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	private void ker_aciklama() throws SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		ResultSet	rss = null;
+		String sql = "SELECT * FROM ACIKLAMA   ORDER BY  EVRAK_NO ";
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		sql  ="INSERT INTO ACIKLAMA (EVRAK_CINS,SATIR,EVRAK_NO,ACIKLAMA,Gir_Cik) " +
+				" VALUES (?,?,?,?,?)" ;
+		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
+		int satir= 0 ;
+		while(rss.next())
+		{
+			stmt2.setString(1,  rss.getString("EVRAK_CINS"));
+			stmt2.setInt(2, rss.getInt("SATIR"));
+			stmt2.setString(3, rss.getString("EVRAK_NO"));
+			stmt2.setString(4,  rss.getString("ACIKLAMA"));
+			stmt2.setString(5,  rss.getString("Gir_Cik"));
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
+		}
+		stmt2.executeBatch();
+		stmt2.close();
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	private void kod_kons() throws SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		ResultSet	rss = null;
+		String sql = "SELECT * FROM KOD_ACIKLAMA   ORDER BY  KOD ";
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		sql  ="INSERT INTO KOD_ACIKLAMA (KOD,ACIKLAMA) " +
+				" VALUES (?,?)" ;
+		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
+		int satir= 0 ;
+		while(rss.next())
+		{
+			stmt2.setString(1,  rss.getString("KOD"));
+			stmt2.setString(2,  rss.getString("ACIKLAMA"));
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
+		}
+		stmt2.executeBatch();
+		stmt2.close();
+		// KONS
+		rss = null;
+		sql = "SELECT * FROM KONS_ACIKLAMA   ORDER BY  KONS ";
+		stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		sql  ="INSERT INTO KONS_ACIKLAMA (KONS,ACIKLAMA) " +
+				" VALUES (?,?)" ;
+		stmt2 = MY_conn.prepareStatement(sql);
+		satir= 0 ;
+		while(rss.next())
+		{
+			stmt2.setString(1,  rss.getString("KONS"));
+			stmt2.setString(2,  rss.getString("ACIKLAMA"));
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
+		}
+		stmt2.executeBatch();
+		stmt2.close();
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	private void ker_degisken() throws SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		ResultSet	rss = null;
+		//ALt GRUP
+		String sql = "SELECT * FROM ALT_GRUP_DEGISKEN    ";
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = null;
+		rss = stmt.executeQuery(sql);
+		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
+		while(rss.next())
+		{
+			sql  ="INSERT INTO ALT_GRUP_DEGISKEN (ALID_Y,ANA_GRUP,ALT_GRUP,USER) " +
+					" VALUES (?,?,?,?)" ;
+			stmt2= null;
+			stmt2 = MY_conn.prepareStatement(sql);
+			stmt2.setInt(1,  rss.getInt("ALID_Y"));
+			stmt2.setInt(2, rss.getInt("ANA_GRUP"));
+			stmt2.setString(3, rss.getString("ALT_GRUP"));
+			stmt2.setString(4,  rss.getString("USER"));
+			stmt2.executeUpdate();
+		}
+		//ANA GRUP
+		sql = "SELECT * FROM ANA_GRUP_DEGISKEN    ";
+		rss = null;
+		rss = stmt.executeQuery(sql);
+		while(rss.next())
+		{
+			sql  ="INSERT INTO ANA_GRUP_DEGISKEN (AGID_Y,ANA_GRUP,USER) " +
+					" VALUES (?,?,?)" ;
+			stmt2= null;
+			stmt2 = MY_conn.prepareStatement(sql);
+			stmt2.setInt(1,  rss.getInt("AGID_Y"));
+			stmt2.setString(2,  rss.getString("ANA_GRUP"));
+			stmt2.setString(3,  rss.getString("USER"));
+			stmt2.executeUpdate();
+		}
+		//DEPO
+		sql = "SELECT * FROM DEPO_DEGISKEN    ";
+		rss = null;
+		rss = stmt.executeQuery(sql);
+		while(rss.next())
+		{
+			sql  ="INSERT INTO DEPO_DEGISKEN  (DPID_Y,DEPO,USER) " +
+					" VALUES (?,?,?)" ;
+			stmt2= null;
+			stmt2 = MY_conn.prepareStatement(sql);
+			stmt2.setInt(1,  rss.getInt("DPID_Y"));
+			stmt2.setString(2,  rss.getString("DEPO"));
+			stmt2.setString(3,  rss.getString("USER"));
+			stmt2.executeUpdate();
+		}
+		//DPN
+		sql = "SELECT * FROM DPN  ORDER BY Evrak_No ";
+		rss = null;
+		rss = stmt.executeQuery(sql);
+		while(rss.next())
+		{
+			sql  ="INSERT INTO DPN  (Evrak_No,Tip,Bir,Iki,Uc,Gir_Cik,USER) " +
+					" VALUES (?,?,?,?,?,?,?)" ;
+			stmt2= null;
+			stmt2 = MY_conn.prepareStatement(sql);
+			stmt2.setString(1,  rss.getString("Evrak_No"));
+			stmt2.setString(2, rss.getString("Tip"));
+			stmt2.setString(3,  rss.getString("Bir"));
+			stmt2.setString(4,  rss.getString("Iki"));
+			stmt2.setString(5,  rss.getString("Uc"));
+			stmt2.setString(6,  rss.getString("Gir_Cik"));
+			stmt2.setString(7,  rss.getString("USER"));
+			stmt2.executeUpdate();
+
+
+		}
+		//MENSEI
+		sql = "SELECT * FROM MENSEI_DEGISKEN    ";
+		rss = null;
+		rss = stmt.executeQuery(sql);
+		while(rss.next())
+		{
+			sql  ="INSERT INTO MENSEI_DEGISKEN  (MENSEI,USER,MEID_Y) " +
+					" VALUES (?,?,?)" ;
+			stmt2= null;
+			stmt2 = MY_conn.prepareStatement(sql);
+
+			stmt2.setString(1,  rss.getString("MENSEI"));
+			stmt2.setString(2,  rss.getString("USER"));
+			stmt2.setInt(3,  rss.getInt("MEID_Y"));
+			stmt2.executeUpdate();
+		}					 
+		//OZ KOD !
+		sql = "SELECT * FROM OZ_KOD_1_DEGISKEN    ";
+		rss = null;
+		rss = stmt.executeQuery(sql);
+		while(rss.next())
+		{
+			sql  ="INSERT INTO OZ_KOD_1_DEGISKEN  (OZ1ID_Y,OZEL_KOD_1,USER) " +
+					" VALUES (?,?,?)" ;
+			stmt2= null;
+			stmt2 = MY_conn.prepareStatement(sql);
+			stmt2.setInt(1,  rss.getInt("OZ1ID_Y"));
+			stmt2.setString(2,  rss.getString("OZEL_KOD_1"));
+			stmt2.setString(3,  rss.getString("USER"));
+			stmt2.executeUpdate();
+		}	
+		//NAKLIYECI
+		sql = "SELECT * FROM NAKLIYECI    ";
+		rss = null;
+		rss = stmt.executeQuery(sql);
+		while(rss.next())
+		{
+			sql  ="INSERT INTO NAKLIYECI  (NAKID_Y,UNVAN,USER) " +
+					" VALUES (?,?,?)" ;
+			stmt2= null;
+			stmt2 = MY_conn.prepareStatement(sql);
+			stmt2.setInt(1,  rss.getInt("NAKID_Y"));
+			stmt2.setString(2,  rss.getString("UNVAN"));
+			stmt2.setString(3,  rss.getString("USER"));
+			stmt2.executeUpdate();
+		}			
+		//OZEL
+		sql = "SELECT * FROM OZEL    ";
+		rss = stmt.executeQuery(sql);
+		while(rss.next()){
+			sql  = "INSERT INTO OZEL (YONETICI,YON_SIFRE,FIRMA_ADI,USER) " +
+					" VALUES (?,?,?,?)" ;
+
+			stmt2 = null;
+			stmt2 = MY_conn.prepareStatement(sql);
+			stmt2.setString(1, rss.getString("YONETICI"));
+			stmt2.setString(2,  rss.getString("YON_SIFRE"));
+			stmt2.setString(3,  rss.getString("FIRMA_ADI"));
+			stmt2.setString(4,  rss.getString("USER"));
+			stmt2.executeUpdate();
+		}
+		//PAKET NO
+		sql = "SELECT * FROM PAKET_NO   ";
+		rss = null;
+		rss = stmt.executeQuery(sql);
+		while(rss.next())
+		{
+			sql  = "INSERT INTO PAKET_NO (Pak_No , Konsimento) " +
+					" VALUES (?,?)" ;
+
+			stmt2 = null;
+			stmt2 = MY_conn.prepareStatement(sql);
+			stmt2.setInt(1, rss.getInt("Pak_No"));
+			stmt2.setString(2,  rss.getString("Konsimento"));
+			stmt2.executeUpdate();
+		}						 
+		// YETKILER
+		sql = "SELECT * FROM YETKILER    ";
+		stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		while(rss.next()){
+			sql  = "INSERT INTO YETKILER (KULLANICI,HESAP,TAM_YETKI,GORUNTU,LEVEL,USER) " +
+					" VALUES (?,?,?,?,?,?)" ;
+			stmt2 = null;
+			stmt2 = MY_conn.prepareStatement(sql);
+			stmt2.setString(1, rss.getString("KULLANICI"));
+			stmt2.setString(2,  rss.getString("HESAP"));
+			stmt2.setBoolean(3,  rss.getBoolean("TAM_YETKI"));
+			stmt2.setBoolean(4,  rss.getBoolean("GORUNTU"));
+			stmt2.setInt(5,  rss.getInt("LEVEL"));
+			stmt2.setString(6, rss.getString("USER"));
+			stmt2.executeUpdate();
+		}				
+	getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+	private void kereste() throws SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		ResultSet	rss = null;
+		String sql = "SELECT * FROM KERESTE   "; // ORDER BY  EVRAK_NO
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+		 sql  ="INSERT INTO KERESTE (Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Tarih,Kdv,Doviz,Fiat,Tutar,Kur,Cari_Firma,Adres_Firma,Iskonto " + //15
+				" ,Tevkifat,Ana_Grup,Alt_Grup,Depo,Ozel_Kod,Izahat,Nakliyeci,[USER],Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,Ckur,CCari_Firma,CAdres_Firma " + //17
+				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir) " + //9
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+
+		PreparedStatement stmt2 = MY_conn.prepareStatement(sql);
+		int satir= 0 ;
+		stmt2 = MY_conn.prepareStatement(sql);
+		while(rss.next())
+		{
+			
+		stmt2.setString(1,rss.getString("Evrak_No"));
+		stmt2.setString(2, rss.getString("Barkod"));
+		stmt2.setString(3,rss.getString("Kodu"));
+		stmt2.setString(4,rss.getString("Paket_No"));
+		stmt2.setString(5,rss.getString("Konsimento"));
+		stmt2.setDouble(6, rss.getDouble("Miktar"));
+		Timestamp timestamp =rss.getTimestamp("Tarih");
+		Date    date1 = null;
+		String formatli = "";
+		if (timestamp != null)
+		{date1 = new java.util.Date(timestamp.getTime());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss.ss");
+		formatli = formatter.format(date1);
+		}
+		
+		stmt2.setString(7,formatli);
+		stmt2.setDouble(8, rss.getDouble("Kdv"));
+		stmt2.setString(9,rss.getString("Doviz"));
+		stmt2.setDouble(10,rss.getDouble("Fiat"));
+		stmt2.setDouble(11,rss.getDouble("Tutar"));
+		stmt2.setDouble(12, rss.getDouble("Kur"));
+		stmt2.setString(13,rss.getString("Cari_Firma"));
+		stmt2.setString(14,rss.getString("Adres_Firma"));
+		stmt2.setDouble(15, rss.getDouble("Iskonto"));
+		stmt2.setDouble(16, rss.getDouble("Tevkifat"));
+		stmt2.setInt(17, rss.getInt("Ana_Grup"));
+		stmt2.setInt(18,  rss.getInt("Alt_Grup"));
+		stmt2.setInt(19,  rss.getInt("Depo"));
+		stmt2.setInt(20, rss.getInt("Ozel_Kod"));
+		stmt2.setString(21,rss.getString("Izahat"));
+		stmt2.setInt(22,  rss.getInt("Nakliyeci"));
+		stmt2.setString(23,  rss.getString("USER"));
+		stmt2.setString(24,rss.getString("Cikis_Evrak"));
+		timestamp =rss.getTimestamp("CTarih");
+		date1 = null;
+		formatli = "";
+		if (timestamp != null)
+		{date1 = new java.util.Date(timestamp.getTime());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss.ss");
+		formatli = formatter.format(date1);
+		}
+		stmt2.setString(25,formatli);
+		stmt2.setDouble(26,rss.getDouble("CKdv"));
+		stmt2.setString(27,rss.getString("CDoviz"));
+		stmt2.setDouble(28, rss.getDouble("CFiat"));
+		stmt2.setDouble(29, rss.getDouble("CTutar"));
+		stmt2.setDouble(30, rss.getDouble("CKur"));
+		stmt2.setString(31,rss.getString("CCari_Firma"));
+		stmt2.setString(32,rss.getString("CAdres_Firma"));
+		stmt2.setDouble(33, rss.getDouble("CIskonto"));
+		stmt2.setDouble(34,  rss.getInt("CTevkifat"));
+		stmt2.setInt(35, rss.getInt("CAna_Grup"));
+		stmt2.setInt(36, rss.getInt("CAlt_Grup"));
+		stmt2.setInt(37,  rss.getInt("CDepo"));
+		stmt2.setInt(38,rss.getInt("COzel_Kod"));
+		stmt2.setString(39,rss.getString("CIzahat"));
+		stmt2.setInt(40, rss.getInt("CNakliyeci"));
+		stmt2.setString(41,  rss.getString("CUSER"));
+		stmt2.setInt(42,  rss.getInt("Mensei"));
+		stmt2.setInt(43,  rss.getInt("Satir"));
+			stmt2.addBatch();
+			satir +=1 ;
+			if ((satir ) % 1000 == 0) 
+			{
+				stmt2.executeBatch();
+			}
+		}
+		stmt2.executeBatch();
+		stmt2.close();
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 }

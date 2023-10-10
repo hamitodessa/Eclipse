@@ -2043,7 +2043,6 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					{
 						rakkam = rakkam +  Double.parseDouble( mdll.getValueAt(i,k).toString());
 					}
-					
 				}
 			}
 		}
@@ -2071,7 +2070,6 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs.next();
 					qwq6 = "=" + Integer.toString( rs.getInt("AGID_Y"));
 				}
-
 			}
 			//** Urun Alt Grup
 			if ( FILTRE.comboBox_79.getItemAt(FILTRE.comboBox_79.getSelectedIndex()).equals(""))
@@ -2081,9 +2079,9 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			else if  ( FILTRE.comboBox_79.getItemAt(FILTRE.comboBox_79.getSelectedIndex()).equals("Bos Olanlar"))
 			{
 				qwq7 = " = '' " ;
-			}		        else		      
+			}		        
+			else		      
 			{
-
 				rs = ker_Access.ker_kod_degisken_ara("ALID_Y", "ALT_GRUP", "ALT_GRUP_DEGISKEN", FILTRE.comboBox_79.getItemAt(FILTRE.comboBox_79.getSelectedIndex()));
 				if (!rs.isBeforeFirst() ) {
 				}
@@ -2092,7 +2090,6 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					rs.next();
 					qwq7 ="=" + Integer.toString( rs.getInt("ALID_Y"));
 				}
-
 			}
 			//** OZ1 OKU
 			if ( FILTRE.comboBox_80.getItemAt(FILTRE.comboBox_80.getSelectedIndex()).equals(""))
@@ -2195,14 +2192,11 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
 				{
 					sstr_4 = "(("+ hangiFiatString + " * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) - (("+ hangiFiatString + " * (((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * "+ hangiIskontoString + ")/100) as Tutar";
-					
 				}
 				else if (BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
 				{
 					sstr_4 = "(("+ hangiFiatString + " * (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) - (("+ hangiFiatString + " * (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) * "+ hangiIskontoString + ")/100) ";
-					
 				}
-
 			}
 			sstr_5 = "Tutar";
 		}
@@ -2275,11 +2269,9 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				if( mdl.getValueAt(q,i) != null)
 				{
 					top += Double.parseDouble( mdl.getValueAt(q,i).toString()); 
-
 				}
 			}
 			mdl.setValueAt(top,mdl.getRowCount()-1, i) ;
-
 			top = 0 ;
 		}
 	}
@@ -2342,8 +2334,6 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			{
 				GLOBAL.g_setNumbersAxisTitleText = "m3" ;
 			}
-			
-			
 			ArrayList<Double> tutar = new ArrayList<Double>();
 			for (int i = 0;i<=mdll.getRowCount() - 2 ;i++)
 			{

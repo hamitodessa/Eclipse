@@ -998,7 +998,6 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					tabbedPane.setSelectedIndex(0);
-					
 					strKonsimento = JOptionPane.showInputDialog(null,"Konsimento No Giriniz....", "Dosya Okuma",JOptionPane.QUESTION_MESSAGE);
 					if(strKonsimento == null) return ;
 					if(strKonsimento.equals("")) return ;
@@ -1012,7 +1011,6 @@ public class KERESTE_GIRIS extends JInternalFrame {
 						JOptionPane.showMessageDialog(null,  "Bu Numarada Konsimento Mevcut..",  "Dosya Okuma", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
-					
 					dosya_oku();
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -1410,11 +1408,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 						toplam();
 					}
 				}
-				//
-				//toplam();
 			}
 		});
-	
 		//***********
 		String deger;
 		Integer sat_sayi;
@@ -1491,7 +1486,6 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			cmbaltgrup.removeAllItems();
 			cmbaltgrup .addItem("");
 			ResultSet rs=null;
-
 			rs = ker_Access.ker_kod_degisken_ara("AGID_Y", "ANA_GRUP", "ANA_GRUP_DEGISKEN", cmbanagrup.getItemAt(cmbanagrup.getSelectedIndex()));
 			if (!rs.isBeforeFirst() ) {
 			}
@@ -1533,7 +1527,6 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			rs = ker_Access.ker_kod_degisken_oku("OZEL_KOD_1", "OZ1ID_Y", "OZ_KOD_1_DEGISKEN");
 			if (!rs.isBeforeFirst() ) {  
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			
 				cmbozkod  .setEnabled(false);
 				cmbozkod  .addItem("");
 				cmbozkod  .setSelectedItem("");
@@ -1580,7 +1573,6 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Nakliyeci", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
-
 	private void son_fisoku()
 	{
 		try
@@ -1602,7 +1594,6 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			{
 				return;
 			}
-			
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			double  double_0, double_1 = 0, double_2 = 0, double_3 = 0, double_4, double_5=0,double_6 = 0  ,adetToplam=0   ;
 			int urunsayi = 0 ,paketsayi = 0 ;
@@ -1652,7 +1643,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 	}
 	private void depo_doldur()
 	{
-		try {
+		try 
+		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 			cmbdepo .removeAllItems();
 			ResultSet rs=null;
@@ -1682,9 +1674,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			cmbmensei.removeAllItems();
 			ResultSet rs=null;
-
 			rs = ker_Access.ker_kod_degisken_oku("MENSEI", "MEID_Y", "MENSEI_DEGISKEN");
-
 			if (!rs.isBeforeFirst() ) {  
 				cmbmensei.addItem("");
 				cmbmensei.setSelectedItem("");
@@ -1710,7 +1700,6 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		for ( int i = 1 ;i <= model.getRowCount() -1 ;i++   ) 
 		{
-			
 			String paketno = model.getValueAt(i-1, 2).toString().trim();
 			double aram3 = Double.parseDouble(model.getValueAt(i-1, 4).toString()) ;
 			if (! model.getValueAt(i, 2).toString().trim().equals(paketno.toString().trim()))
@@ -1763,9 +1752,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 		mdll.removeRow(table.getSelectedRow());
 		table.repaint();
-		//dOSYADAN = false;
 		toplam();
-		//dOSYADAN = true;
 	}
 	public static void kaydet()
 	{
@@ -2031,8 +2018,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 	}
 	private void fiskont()
 	{
-		//Runnable runner = new Runnable()
-		//{ public void run() {
+		Runnable runner = new Runnable()
+		{ public void run() {
 			try {
 				long startTime = System.currentTimeMillis();
 				ResultSet rss = null;
@@ -2193,10 +2180,10 @@ public class KERESTE_GIRIS extends JInternalFrame {
 				GuiUtil.setWaitCursor(KERESTE_GIRIS.splitPane,false);
 				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
 			}
-		//}
-		//};
-		//Thread t = new Thread(runner, "Code Executer");
-		//t.start();
+		}
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
 	}
 	private void kod_ADI(String toke,String kons) throws ClassNotFoundException, SQLException 
 
@@ -2320,7 +2307,6 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		String[] token = kod.toString().split("-");
 		if(token.length == 1) return 0;
 		double m3 = 0 ;
-		
 		if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
 			m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
 		}

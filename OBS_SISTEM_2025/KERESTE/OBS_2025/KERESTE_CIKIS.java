@@ -1774,7 +1774,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dipnot", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
-	private   double m3(String kod,double miktar)
+	private static   double m3(String kod,double miktar)
 	{
 		String[] token = kod.toString().split("-");
 		double m3 = 0 ;
@@ -1966,11 +1966,9 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ("Kereste Aciklama Yaz  Cikis :" + textField_9.getText()  );
 			lBILGI.seteVRAK(textField.getText());
-			ker_Access.aciklama_yaz("KER", 1, textField.getText(),  textField_9.getText(), "C",
-					lBILGI,BAGLAN_LOG.fatLogDizin);
+			ker_Access.aciklama_yaz("KER", 1, textField.getText(),  textField_9.getText(), "C",lBILGI,BAGLAN_LOG.fatLogDizin);
 			lBILGI.setmESAJ( "Kereste Aciklama Yaz  Cikis :" + textField_10.getText() );
-			ker_Access.aciklama_yaz("KER", 2, textField.getText(), textField_10.getText(), "C",
-					lBILGI,BAGLAN_LOG.fatLogDizin);
+			ker_Access.aciklama_yaz("KER", 2, textField.getText(), textField_10.getText(), "C",lBILGI,BAGLAN_LOG.fatLogDizin);
 		}
 		catch (Exception ex)
 		{
@@ -2016,13 +2014,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 						model.setValueAt( rSet.getString("Barkod"),satir, 1)  ;
 						model.setValueAt( rSet.getString("Kodu"),satir, 2)  ;
 						model.setValueAt( rSet.getDouble("Miktar"),satir, 3)  ;
-						double m3 = 0 ;
 						double miktar =  rSet.getDouble("Miktar");
-						String[] token = rSet.getString("Kodu").toString().split("-");
-						if (! token[1].toString().trim().isEmpty() && ! token[2].toString().trim().isEmpty() && ! token[3].toString().trim().isEmpty()) {
-							m3 = ((Double.parseDouble(token[1].toString().trim()) * Double.parseDouble(token[2].toString().trim()) * Double.parseDouble(token[3].toString().trim() )) * miktar)/1000000000 ;
-						}
-						model.setValueAt( m3,satir, 4)  ;
+						model.setValueAt( m3(rSet.getString("Kodu").toString(),miktar),satir, 4)  ;
 						model.setValueAt( rSet.getString("CDepo"),satir, 6)  ;
 						model.setValueAt( rSet.getDouble("CFiat"),satir, 7)  ;
 						model.setValueAt( rSet.getDouble("CIskonto"),satir, 8)  ;

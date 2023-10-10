@@ -982,11 +982,11 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (tabbedPane.getSelectedIndex() == 0)
 				{
-					if (table.getSelectedRow() < 0 ) return ;
+					//if (table.getSelectedRow() < 0 ) return ;
 					satir_sil();
-					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-					mdll.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
-					paketm3();
+					//DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+					//mdll.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
+					//paketm3();
 				}
 			}
 		});
@@ -1758,6 +1758,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		if (table.getSelectedRow() < 0 ) return ;
 		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 		mdll.removeRow(table.getSelectedRow());
+		mdll.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,0,"",0,""});
 		table.repaint();
 		toplam();
 	}

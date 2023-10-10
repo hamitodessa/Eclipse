@@ -998,13 +998,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (tabbedPane.getSelectedIndex() == 0)
 				{
-					if (table.getSelectedRow() < 0 ) return ;
 					satir_sil();
-					DefaultTableModel mdll = (DefaultTableModel) table.getModel();
-					mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"",0});
-					paketm3();
 				}
-
 			}
 		});
 		btnNewButton_3.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-reduce-16.png")));
@@ -1852,7 +1847,11 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	{
 		if (table.getSelectedRow() < 0 ) return ;
 		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+		if (table.getCellEditor() != null) {
+			table.getCellEditor().stopCellEditing();
+		}
 		mdll.removeRow(table.getSelectedRow());
+		mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"",0});
 		table.repaint();
 		paketm3();
 		toplam();

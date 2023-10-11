@@ -82,6 +82,7 @@ import javax.swing.JMenuBar;
 
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
 
 @SuppressWarnings({"serial","static-access"})
 public class OBS_MAIN extends JFrame {
@@ -192,6 +193,8 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_35 ; //Firma Ismi
 	private JButton btnNewButton_66 ; // Ortalama Satis
 	private JButton btnNewButton_65 ; // Degisken Yenileme
+	private JButton btnNewButton ; // Bos kur
+	private JButton btnNewButton_68 ; // SQL Sorgulama
 	public static JLabel lblKeresteBilgi ;
 	//
 	private JButton btnYenile ; // Yenile Tusu
@@ -1015,6 +1018,34 @@ public class OBS_MAIN extends JFrame {
 	
 		mnKereste.addSeparator();
 		
+		JMenuItem mntmDegisken = new JMenuItem("Degisken Yenileme");
+		mntmDegisken.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_65.doClick();
+			}
+		});
+		mnKereste.add(mntmDegisken);	
+		
+		JMenuItem mntmBoskur = new JMenuItem("Bos Kur");
+		mntmBoskur.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton.doClick();
+			}
+		});
+		mnKereste.add(mntmBoskur);	
+		
+		
+		JMenuItem mntmKSql = new JMenuItem("SQL Sorgulama");
+		mntmKSql.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_68.doClick();
+			}
+		});
+		mnKereste.add(mntmKSql);	
+		
+		mnKereste.addSeparator();
+		
+		
 		JMenuItem mntmKFirma = new JMenuItem("Firma Ismi");
 		mntmKFirma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1023,14 +1054,7 @@ public class OBS_MAIN extends JFrame {
 		});
 		mnKereste.add(mntmKFirma);	
 		
-		//
-		JMenuItem mntmdEgisken = new JMenuItem("Degisken Yenileme");
-		mntmdEgisken.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnNewButton_65.doClick();
-			}
-		});
-		mnKereste.add(mntmdEgisken);	
+
 //***************************************************GENEL *************************************************
 		JMenu mnGenel = new JMenu("Genel");
 		mnGenel.addMouseMotionListener(new MouseMotionAdapter() {
@@ -2223,7 +2247,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		
-		JButton btnNewButton = new JButton("");
+		btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				form_ac("KERESTE BOS KUR","");
@@ -2233,7 +2257,7 @@ public class OBS_MAIN extends JFrame {
 		
 		toolBar_Kereste.add(btnNewButton);
 		
-		JButton btnNewButton_68 = new JButton("");
+		btnNewButton_68 = new JButton("");
 		btnNewButton_68.setToolTipText("Sql Sorgulama");
 		btnNewButton_68.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -3246,7 +3270,7 @@ public class OBS_MAIN extends JFrame {
 		lblNewLabel_9.setOpaque(true);
 		//lblNewLabel_9.setBackground(Color.black);
 		lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD, 11));
-		//lblNewLabel_9.setForeground(new Color(255, 255, 0));
+		lblNewLabel_9.setForeground(SystemColor.desktop);
 		lblNewLabel_9 .setMinimumSize(size);
 		lblNewLabel_9 .setPreferredSize(new Dimension(250, 14));
 		toolBar.add(lblNewLabel_9);

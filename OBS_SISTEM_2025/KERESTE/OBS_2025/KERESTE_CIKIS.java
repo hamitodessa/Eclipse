@@ -1851,7 +1851,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			table.getCellEditor().stopCellEditing();
 		}
 		mdll.removeRow(table.getSelectedRow());
-		mdll.addRow(new Object[]{"","","",0.00,0.000,"","","",0.00,0.00,0.00,0.00,"",0});
+		mdll.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"",0});
 		table.repaint();
 		paketm3();
 		toplam();

@@ -930,7 +930,8 @@ public class KERESTE_MYSQL implements IKERESTE {
 		}
 		String sql = "SELECT Evrak_No,Barkod,Kodu,Paket_No,Konsimento,Miktar,Cikis_Evrak,CTarih,CKdv,CDoviz,CFiat,CTutar,CKur , " 
 				+ " CCari_Firma,CAdres_Firma,CIskonto,CTevkifat , CAna_Grup,CAlt_Grup  , "
-				+ "	IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  , COzel_Kod    , CIzahat   , CNakliyeci   , CUSER ,Satir" 
+				+ "	IFNULL((Select DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo ) , '') AS CDepo  , "
+				+ " COzel_Kod    , CIzahat   , CNakliyeci   , CUSER ,Satir " 
 				+ " FROM KERESTE   " 
 				+ " WHERE Paket_No = N'" + token[0] + "' AND Konsimento = N'"+ token[1]  +"' " 
 				+ " " + dURUMString + " ORDER BY Satir" ;

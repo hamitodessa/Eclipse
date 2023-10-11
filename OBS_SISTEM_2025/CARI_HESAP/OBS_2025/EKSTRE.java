@@ -341,11 +341,12 @@ public class EKSTRE extends JInternalFrame {
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setCellRenderer(new TARIH());
-				tc.setMinWidth(80);
+				tc.setMinWidth(70);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(60);
+				tc.setMinWidth(50);
+				tc.setMaxWidth(50);
 
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA());

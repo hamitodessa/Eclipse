@@ -76,6 +76,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.USER_ISLEMLERI;
 import javazoom.jl.player.Player;
 
 import javax.swing.JMenuBar;
@@ -203,6 +204,7 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnEmail ;  // E Mail
 	public static JButton button_1 ; // Login Formu
 	public static JButton btnKaydet ;
+	private JButton btnSil ;
 	public static JButton btnFiltre ;
 	public static JButton btnYazici ;
 	
@@ -2503,9 +2505,9 @@ public class OBS_MAIN extends JFrame {
 		btnKaydet.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/save.png")));
 		toolBar.add(btnKaydet);
 
-		JButton btnNewButton_2 = new JButton("");  // SIL
-		btnNewButton_2.setToolTipText("Sil");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		btnSil = new JButton("");  // SIL
+		btnSil.setToolTipText("Sil");
+		btnSil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GuiUtil.setWaitCursor(toolBar,true);
 				String sonuc = pencere_activmi();
@@ -2538,8 +2540,8 @@ public class OBS_MAIN extends JFrame {
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});
-		btnNewButton_2.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/sil.png")));
-		toolBar.add(btnNewButton_2);
+		btnSil.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/sil.png")));
+		toolBar.add(btnSil);
 
 		btnYenile = new JButton("");   //*******************YENILE**************************
 		btnYenile.setToolTipText("Yenile");
@@ -3334,12 +3336,21 @@ public class OBS_MAIN extends JFrame {
 			String[] parts;
 			parts = deger.split(",");
 			OBS_SIS_2025_ANA_CLASS.gridcolor =  new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			if(USER_ISLEMLERI.User_Level_Giris_Bak(GLOBAL.KULL_ADI).toString().equals("1"))
+			{
+				//Kisitlama YOk
+			}
+			else if(USER_ISLEMLERI.User_Level_Giris_Bak(GLOBAL.KULL_ADI).toString().equals("2"))
+			{
+				//Kayit silme Izni Yok
+				btnKaydet.setEnabled(false);
+				btnSil.setEnabled(false);
+			}
+			
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		form_ac("CALISMA DIZINLERI","");
-		
-		
 		gorev_kontrol();
 	}
 	private void form_ac(String pencere,String hangi) 

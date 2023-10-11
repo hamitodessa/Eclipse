@@ -384,9 +384,9 @@ public class USER_EKLEME extends JInternalFrame {
 	{
 		if (txtkull.getText().equals("") ) 
 		{	return ;		}
-		if (txtkull.getText().equals("Admin")  &&  ! GLOBAL.KULL_ADI.equals("Admin") ) 
+		if ( ! GLOBAL.KULL_ADI.equals("Admin") ) //txtkull.getText().equals("Admin")  &&  ! GLOBAL.KULL_ADI.equals("Admin")
 		{
-			JOptionPane.showMessageDialog(null, "Admin - Harici 'Admin' Bilgisini degisemez... ", "Kullanici", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Admin - Harici Degisiklik Yapamaz... ", "Kullanici", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 		try

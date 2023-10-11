@@ -558,5 +558,24 @@ public class USER_ISLEMLERI {
 		con.close();
 		con = null;
 	}
-
+	public static    String User_Level_Giris_Bak  (String kull ) throws ClassNotFoundException, SQLException 
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		ResultSet	rss = null;
+		PreparedStatement stmt = null;
+		GLOBAL glb = new GLOBAL();
+		con =  glb.myConnection();
+		String sql = "SELECT USER_LEVEL FROM USERS WHERE USER_NAME  ='" + kull + "'";
+		stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		String level = "" ;
+		while (rss.next()) 
+		{
+			level = rss.getString("USER_LEVEL");
+		}
+		con.close();
+		con = null;
+		return level;
+	}
 }

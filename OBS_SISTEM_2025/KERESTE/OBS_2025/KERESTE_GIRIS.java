@@ -19,20 +19,29 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.EventObject;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import javax.mail.util.ByteArrayDataSource;
 import javax.management.loading.PrivateClassLoader;
 import javax.swing.ActionMap;
 import javax.swing.ComboBoxEditor;
@@ -69,6 +78,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -78,12 +88,19 @@ import javax.swing.table.TableModel;
 import javax.swing.text.MaskFormatter;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -95,6 +112,7 @@ import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.Degisken;
 import OBS_C_2025.DoubleEditor;
+import OBS_C_2025.FILE_UZANTI;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -2615,6 +2633,1137 @@ public class KERESTE_GIRIS extends JInternalFrame {
     		JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
     	}
     }
+    	public static void excell_aktar()
+	{
+		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+
+		if (mdl.getRowCount() == 0 )
+		{
+			JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Evrak Yazdirma", JOptionPane.PLAIN_MESSAGE);
+		}
+		else
+		{
+			write() ;	
+		}
+	}
+	public static void write()
+	{
+		try
+		{
+			UIManager.put("FileChooser.cancelButtonText", "Vazgec");
+			UIManager.put("FileChooser.saveButtonText", "Kaydet");
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.resetChoosableFileFilters();
+			fileChooser.setAcceptAllFileFilterUsed(false);
+			FileFilter xls = new FileNameExtensionFilter("Microsoft Excel 97-2003 Worksheet (.xls)", "xls");
+			FileFilter xlxs = new FileNameExtensionFilter("Microsoft Excel Worksheet (.xlsx) ", "xlsx");
+			fileChooser.addChoosableFileFilter(xls);
+			fileChooser.addChoosableFileFilter(xlxs);
+			fileChooser.setCurrentDirectory(new java.io.File("."));
+			fileChooser.setApproveButtonText("Kaydet");
+			fileChooser.setDialogTitle("Excell Kayit");   
+
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
+			LocalDateTime now = LocalDateTime.now();  
+			String zaman = dtf.format(now)  ;
+
+			File outputfile = new File("Evrak_" + textField.getText());
+			fileChooser.setSelectedFile(outputfile);
+			int returnVal = fileChooser.showSaveDialog(null);
+			if ( returnVal != JFileChooser.APPROVE_OPTION )
+			{
+				return;
+			}
+			GuiUtil.setWaitCursor(splitPane,true);
+			String uzanti ="";
+			File excelFile =  FILE_UZANTI. getSelectedFileWithExtension(fileChooser);
+			uzanti  = excelFile.getName().substring(excelFile.getName().lastIndexOf("."));
+			if  (uzanti.equals(".xls") )
+			{
+				@SuppressWarnings("resource")
+				HSSFWorkbook workbook = new HSSFWorkbook();
+				HSSFSheet sheet = workbook.createSheet("Evrak_" + textField.getText());
+				HSSFFont headerFont = workbook.createFont();
+				headerFont.setBold(true);
+				headerFont.setColor(IndexedColors.BLUE.getIndex()); 
+				HSSFCellStyle headerStyle = workbook.createCellStyle();
+				HSSFCellStyle headerSolaStyle = workbook.createCellStyle();
+				headerStyle.setFont(headerFont);
+				headerStyle.setAlignment(HorizontalAlignment.RIGHT);
+
+				HSSFFont solaFont = workbook.createFont();
+				solaFont.setFontName("Arial Narrow");
+				solaFont. setFontHeight((short)(10*20));
+				HSSFCellStyle solaStyle = workbook.createCellStyle();
+				solaStyle.setFont(solaFont);
+				solaStyle.setAlignment(HorizontalAlignment.LEFT);
+
+				HSSFFont headerSolaFont = workbook.createFont();
+				headerSolaFont.setBold(true);
+				headerSolaFont.setColor(IndexedColors.BLUE.getIndex()); 
+				headerSolaStyle.setFont(headerSolaFont);
+				headerSolaStyle.setAlignment(HorizontalAlignment.LEFT);
+
+				HSSFCellStyle satirStyle = workbook.createCellStyle();
+				HSSFCellStyle satirStylemik = workbook.createCellStyle();
+				HSSFCellStyle satirStyle3 = workbook.createCellStyle();
+				HSSFCellStyle satirStyle2 = workbook.createCellStyle();
+				HSSFFont satirFont = workbook.createFont();
+				satirFont.setFontName("Arial Narrow");
+				satirFont. setFontHeight((short)(10*20));
+				satirStyle.setFont(satirFont);
+				satirStyle.setAlignment(HorizontalAlignment.RIGHT);
+				satirStyle3.setFont(satirFont);
+				satirStyle2.setFont(satirFont);
+				satirStylemik.setFont(satirFont);
+				satirStyle3.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
+				satirStyle2.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
+				satirStylemik.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0"));
+				satirStyle3.setAlignment(HorizontalAlignment.RIGHT);
+				satirStyle2.setAlignment(HorizontalAlignment.RIGHT);
+				satirStylemik.setAlignment(HorizontalAlignment.RIGHT);
+				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+				HSSFCellStyle acikStyle = workbook.createCellStyle();
+				HSSFFont acikFont = workbook.createFont();
+				acikFont.setColor(IndexedColors.RED.getIndex()); 
+				acikFont.setBold(true);
+				acikFont.setFontName("Arial");
+				acikFont. setFontHeight((short)(22*20));
+				acikStyle.setFont(acikFont);
+				acikStyle.setAlignment(HorizontalAlignment.CENTER);
+
+				HSSFCellStyle satirStyle2_ARA = workbook.createCellStyle();
+				satirStyle2_ARA.setFont(satirFont);
+				satirStyle2_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
+				satirStyle2_ARA.setAlignment(HorizontalAlignment.RIGHT);
+				satirStyle2_ARA.setBorderTop(BorderStyle.MEDIUM);
+				satirStyle2_ARA.setBorderBottom(BorderStyle.MEDIUM);
+				HSSFCellStyle satirStyle3_ARA = workbook.createCellStyle();
+				satirStyle3_ARA.setFont(satirFont);
+				satirStyle3_ARA.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
+				satirStyle3_ARA.setAlignment(HorizontalAlignment.RIGHT);
+				satirStyle3_ARA.setBorderTop(BorderStyle.MEDIUM);
+				satirStyle3_ARA.setBorderBottom(BorderStyle.MEDIUM);
+				HSSFCellStyle satirStylemik_ARA = workbook.createCellStyle();
+				satirStylemik_ARA.setFont(satirFont);
+				satirStylemik_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0"));
+				satirStylemik_ARA.setBorderTop(BorderStyle.MEDIUM);
+				satirStylemik_ARA.setBorderBottom(BorderStyle.MEDIUM);
+				satirStylemik_ARA.setAlignment(HorizontalAlignment.RIGHT);
+				HSSFCellStyle satirStyleBASLIK = workbook.createCellStyle();
+				satirStyleBASLIK.setFont(satirFont);
+				satirStyleBASLIK.setBorderTop(BorderStyle.MEDIUM);
+				satirStyleBASLIK.setBorderBottom(BorderStyle.MEDIUM);
+				satirStyleBASLIK.setAlignment(HorizontalAlignment.LEFT);
+				HSSFCellStyle satirStyleBASLIK2 = workbook.createCellStyle();
+				satirStyleBASLIK2.setFont(satirFont);
+				satirStyleBASLIK2.setBorderTop(BorderStyle.MEDIUM);
+				satirStyleBASLIK2.setBorderBottom(BorderStyle.MEDIUM);
+				satirStyleBASLIK2.setAlignment(HorizontalAlignment.RIGHT);
+				HSSFCellStyle satirStyleTOPTUT = workbook.createCellStyle();
+				satirStyleTOPTUT.setFont(satirFont);
+				satirStyleTOPTUT.setBorderTop(BorderStyle.MEDIUM);
+				satirStyleTOPTUT.setAlignment(HorizontalAlignment.RIGHT);
+
+				Cell cell ;
+				Row bosRow = sheet.createRow(1);
+
+				Row satir1 = sheet.createRow(2);
+				cell = satir1.createCell(0);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue("Evrak No :");
+
+				cell = satir1.createCell(1);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue(textField.getText());
+
+				cell = satir1.createCell(9);
+				cell.setCellValue(TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc));
+				cell.setCellStyle(satirStyle);
+
+
+				Row satir2 = sheet.createRow(3);
+				cell = satir2.createCell(0);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue("Musteri Kodu:");
+
+				cell = satir2.createCell(1);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue(txtcari.getText());
+
+				Row satir3 = sheet.createRow(4);
+				sheet.addMergedRegion(new CellRangeAddress(4,4,1,2));
+
+
+				cell = satir3.createCell(1);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue(lblNewLabel_3.getText());
+
+
+				Row bosRow5 = sheet.createRow(5);
+
+				Row aCIKLAMA = sheet.createRow(6);
+
+				cell = aCIKLAMA.createCell(0);
+				cell.setCellStyle(satirStyleBASLIK);
+				cell.setCellValue("Barkod");
+
+				cell = aCIKLAMA.createCell(1);
+				cell.setCellStyle(satirStyleBASLIK);
+				cell.setCellValue("Urun Kodu");
+
+				cell = aCIKLAMA.createCell(2);
+				cell.setCellStyle(satirStyleBASLIK);
+				cell.setCellValue("Paket_No");
+
+				cell = aCIKLAMA.createCell(3);
+				cell.setCellValue("Miktar");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				cell = aCIKLAMA.createCell(4);
+				cell.setCellValue("m3");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				cell = aCIKLAMA.createCell(5);
+				cell.setCellValue("Paket m3");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				cell = aCIKLAMA.createCell(6);
+				cell.setCellValue("Fiat");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				cell = aCIKLAMA.createCell(7);
+				cell.setCellValue("Iskonto");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				cell = aCIKLAMA.createCell(8);
+				cell.setCellValue("KDV");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				cell = aCIKLAMA.createCell(9);
+				cell.setCellValue("Tutar");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				//******************SATIRLAR ***********************************************	
+				int satir = 0 ;
+				for (int i =0;i< mdl.getRowCount() ;i++)
+				{
+					if (! mdl.getValueAt(i, 1).equals("") )
+					{
+						Row satirRow = sheet.createRow(i+7);
+						for (int s =0;s<= 10 ;s++)
+						{
+
+							if (s == 0 || s == 1 || s == 2)
+							{
+								cell = satirRow.createCell(s);
+								cell.setCellValue( mdl.getValueAt(i,s).toString());
+								cell.setCellStyle(solaStyle); 
+							}
+							else if (s == 3)
+							{
+								if (  GLOBAL.validCheck(mdl.getValueAt(i,s).toString()) == true )
+								{
+									cell = satirRow.createCell(s);
+									cell.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+									cell.setCellStyle(satirStylemik); 
+								}
+							}
+							else if (s == 4 || s == 5)
+							{
+								if (  GLOBAL.validCheck(mdl.getValueAt(i,s).toString()) == true )
+								{
+									cell = satirRow.createCell(s);
+									cell.setCellValue( Double.parseDouble( mdl.getValueAt(i,s).toString()));
+									cell.setCellStyle(satirStyle3); 
+								}
+							}
+							else if (s == 7 || s == 8 || s == 9 ||  s == 10 )
+							{
+
+								if (  GLOBAL.validCheck(mdl.getValueAt(i,s).toString()) == true )
+								{
+									cell = satirRow.createCell(s-1);
+									cell.setCellStyle(satirStyle2);
+									cell.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+								}
+							}
+
+						}
+						satir += 1 ;
+					}
+				}
+
+				Row toplam1  = sheet.createRow(satir + 7);
+				cell = toplam1.createCell(3);
+				cell.setCellValue(Double.parseDouble( label_8_1.getText()));
+				cell.setCellStyle(satirStylemik_ARA); 
+
+				cell = toplam1.createCell(4);
+				cell.setCellValue(Double.parseDouble( label_8.getText()));
+				cell.setCellStyle(satirStyle3_ARA); 
+
+				cell = toplam1.createCell(9);
+				cell.setCellValue( label_9.getText());
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(8);
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(7);
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(6);
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(5);
+				cell.setCellValue(Double.parseDouble( lblPaket.getText()));
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(2);
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(1);
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(0);
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				//***********************************************************
+				Row toplam2  = sheet.createRow(satir + 8);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 8,satir + 8,6,8));
+				cell = toplam2.createCell(6);
+				cell.setCellValue( "Iskonto");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam2.createCell(9);
+				cell.setCellValue( label_6.getText());
+				cell.setCellStyle(satirStyle2);
+
+				Row toplam3  = sheet.createRow(satir + 9);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 9,satir + 9,6,8));
+				cell = toplam3.createCell(6);
+				cell.setCellValue( "Iskonto Tutar");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam3.createCell(9);
+				cell.setCellValue( label_7.getText());
+				cell.setCellStyle(satirStyle2);
+
+				Row toplam4  = sheet.createRow(satir + 10);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 10,satir + 10,6,8));
+				cell = toplam4.createCell(6);
+				cell.setCellValue( "Kdv");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam4.createCell(9);
+				cell.setCellValue( label_3.getText());
+				cell.setCellStyle(satirStyle2);
+
+				Row toplam5  = sheet.createRow(satir + 11);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 11,satir + 11,6,8));
+				cell = toplam5.createCell(4);
+				cell.setCellValue( "Tevkifat");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam5.createCell(5);
+				cell.setCellValue( txttev.getText());
+				cell.setCellStyle(satirStyle2);
+
+				cell = toplam5.createCell(6);
+				cell.setCellValue( "Tev.Edilen KDV");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam5.createCell(9);
+				cell.setCellValue( label_1.getText());
+				cell.setCellStyle(satirStyle2);
+
+				Row toplam6  = sheet.createRow(satir + 12);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 12,satir + 12,6,8));
+				cell = toplam6.createCell(6);
+				cell.setCellValue( "Tev.Dah.Top.Tut");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam6.createCell(9);
+				cell.setCellValue( label_2.getText());
+				cell.setCellStyle(satirStyle2);
+
+				Row toplam7  = sheet.createRow(satir + 13);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 13,satir + 13,6,8));
+				cell = toplam7.createCell(6);
+				cell.setCellValue( "Beyan Edilen KDV");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam7.createCell(9);
+				cell.setCellValue( lblNewLabel_20.getText());
+				cell.setCellStyle(satirStyle2);
+
+				Row toplam8  = sheet.createRow(satir + 14);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 14,satir + 14,6,8));
+				cell = toplam8.createCell(6);
+				cell.setCellValue( "Tev.Har.Top.Tut");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam8.createCell(9);
+				cell.setCellValue(label.getText());
+				cell.setCellStyle(satirStyle2_ARA); 
+
+				//
+				List<String> uniqueDataList = u_kod_ogren() ;
+				int ssatir = satir + 8 ;
+				for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) {
+					Row row = sheet.getRow(ssatir);
+					if (row == null)
+						row = sheet.createRow(ssatir);
+					cell = row.createCell(0);
+					sheet.addMergedRegion(new CellRangeAddress(ssatir,ssatir,0,1));
+					cell.setCellValue(uniqueDataList.get(iterator) + " -" + ker_Access.kod_adi(uniqueDataList.get(iterator)));
+					cell.setCellStyle(solaStyle);
+					ssatir +=1 ;
+				}
+				//**********
+				for (int i=0; i<= mdl.getColumnCount()-1; i++)
+				{
+					sheet.autoSizeColumn(i);
+				}
+				FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile() + "_" + zaman + uzanti));
+				workbook.write(out);
+				out.close();
+			}
+			else {
+				@SuppressWarnings("resource")
+				XSSFWorkbook workbook = new XSSFWorkbook();
+				XSSFSheet sheet = workbook.createSheet("Evrak_" + textField.getText());
+				XSSFFont headerFont = workbook.createFont();
+				headerFont.setBold(true);
+				headerFont.setColor(IndexedColors.BLUE.getIndex()); 
+				XSSFCellStyle headerStyle = workbook.createCellStyle();
+				XSSFCellStyle headerSolaStyle = workbook.createCellStyle();
+				headerStyle.setFont(headerFont);
+				headerStyle.setAlignment(HorizontalAlignment.RIGHT);
+
+				XSSFFont solaFont = workbook.createFont();
+				solaFont.setFontName("Arial Narrow");
+				solaFont. setFontHeight((short)(10*20));
+				XSSFCellStyle solaStyle = workbook.createCellStyle();
+				solaStyle.setFont(solaFont);
+				solaStyle.setAlignment(HorizontalAlignment.LEFT);
+
+				XSSFFont headerSolaFont = workbook.createFont();
+				headerSolaFont.setBold(true);
+				headerSolaFont.setColor(IndexedColors.BLUE.getIndex()); 
+				headerSolaStyle.setFont(headerSolaFont);
+				headerSolaStyle.setAlignment(HorizontalAlignment.LEFT);
+
+				XSSFCellStyle satirStyle = workbook.createCellStyle();
+				XSSFCellStyle satirStylemik = workbook.createCellStyle();
+				XSSFCellStyle satirStyle3 = workbook.createCellStyle();
+				XSSFCellStyle satirStyle2 = workbook.createCellStyle();
+				XSSFFont satirFont = workbook.createFont();
+				satirFont.setFontName("Arial Narrow");
+				satirFont. setFontHeight((short)(10*20));
+				satirStyle.setFont(satirFont);
+				satirStyle.setAlignment(HorizontalAlignment.RIGHT);
+				satirStyle3.setFont(satirFont);
+				satirStyle2.setFont(satirFont);
+				satirStylemik.setFont(satirFont);
+				satirStyle3.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
+				satirStyle2.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
+				satirStylemik.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0"));
+				satirStyle3.setAlignment(HorizontalAlignment.RIGHT);
+				satirStyle2.setAlignment(HorizontalAlignment.RIGHT);
+				satirStylemik.setAlignment(HorizontalAlignment.RIGHT);
+				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+				XSSFCellStyle acikStyle = workbook.createCellStyle();
+				XSSFFont acikFont = workbook.createFont();
+				acikFont.setColor(IndexedColors.RED.getIndex()); 
+				acikFont.setBold(true);
+				acikFont.setFontName("Arial");
+				acikFont. setFontHeight((short)(22*20));
+				acikStyle.setFont(acikFont);
+				acikStyle.setAlignment(HorizontalAlignment.CENTER);
+
+				XSSFCellStyle satirStyle2_ARA = workbook.createCellStyle();
+				satirStyle2_ARA.setFont(satirFont);
+				satirStyle2_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
+				satirStyle2_ARA.setAlignment(HorizontalAlignment.RIGHT);
+				satirStyle2_ARA.setBorderTop(BorderStyle.MEDIUM);
+				satirStyle2_ARA.setBorderBottom(BorderStyle.MEDIUM);
+				XSSFCellStyle satirStyle3_ARA = workbook.createCellStyle();
+				satirStyle3_ARA.setFont(satirFont);
+				satirStyle3_ARA.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
+				satirStyle3_ARA.setAlignment(HorizontalAlignment.RIGHT);
+				satirStyle3_ARA.setBorderTop(BorderStyle.MEDIUM);
+				satirStyle3_ARA.setBorderBottom(BorderStyle.MEDIUM);
+				XSSFCellStyle satirStylemik_ARA = workbook.createCellStyle();
+				satirStylemik_ARA.setFont(satirFont);
+				satirStylemik_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0"));
+				satirStylemik_ARA.setBorderTop(BorderStyle.MEDIUM);
+				satirStylemik_ARA.setBorderBottom(BorderStyle.MEDIUM);
+				satirStylemik_ARA.setAlignment(HorizontalAlignment.RIGHT);
+				XSSFCellStyle satirStyleBASLIK = workbook.createCellStyle();
+				satirStyleBASLIK.setFont(satirFont);
+				satirStyleBASLIK.setBorderTop(BorderStyle.MEDIUM);
+				satirStyleBASLIK.setBorderBottom(BorderStyle.MEDIUM);
+				satirStyleBASLIK.setAlignment(HorizontalAlignment.LEFT);
+				XSSFCellStyle satirStyleBASLIK2 = workbook.createCellStyle();
+				satirStyleBASLIK2.setFont(satirFont);
+				satirStyleBASLIK2.setBorderTop(BorderStyle.MEDIUM);
+				satirStyleBASLIK2.setBorderBottom(BorderStyle.MEDIUM);
+				satirStyleBASLIK2.setAlignment(HorizontalAlignment.RIGHT);
+				XSSFCellStyle satirStyleTOPTUT = workbook.createCellStyle();
+				satirStyleTOPTUT.setFont(satirFont);
+				satirStyleTOPTUT.setBorderTop(BorderStyle.MEDIUM);
+				satirStyleTOPTUT.setAlignment(HorizontalAlignment.RIGHT);
+
+				Cell cell ;
+				Row bosRow = sheet.createRow(1);
+
+				Row satir1 = sheet.createRow(2);
+				cell = satir1.createCell(0);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue("Evrak No :");
+
+				cell = satir1.createCell(1);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue(textField.getText());
+
+				cell = satir1.createCell(9);
+				cell.setCellValue(TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc));
+				cell.setCellStyle(satirStyle);
+
+
+				Row satir2 = sheet.createRow(3);
+				cell = satir2.createCell(0);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue("Musteri Kodu:");
+
+				cell = satir2.createCell(1);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue(txtcari.getText());
+
+				Row satir3 = sheet.createRow(4);
+				sheet.addMergedRegion(new CellRangeAddress(4,4,1,2));
+
+
+				cell = satir3.createCell(1);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue(lblNewLabel_3.getText());
+
+
+				Row bosRow5 = sheet.createRow(5);
+
+				Row aCIKLAMA = sheet.createRow(6);
+
+				cell = aCIKLAMA.createCell(0);
+				cell.setCellStyle(satirStyleBASLIK);
+				cell.setCellValue("Barkod");
+
+				cell = aCIKLAMA.createCell(1);
+				cell.setCellStyle(satirStyleBASLIK);
+				cell.setCellValue("Urun Kodu");
+
+				cell = aCIKLAMA.createCell(2);
+				cell.setCellStyle(satirStyleBASLIK);
+				cell.setCellValue("Paket_No");
+
+				cell = aCIKLAMA.createCell(3);
+				cell.setCellValue("Miktar");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				cell = aCIKLAMA.createCell(4);
+				cell.setCellValue("m3");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				cell = aCIKLAMA.createCell(5);
+				cell.setCellValue("Paket m3");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				cell = aCIKLAMA.createCell(6);
+				cell.setCellValue("Fiat");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				cell = aCIKLAMA.createCell(7);
+				cell.setCellValue("Iskonto");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				cell = aCIKLAMA.createCell(8);
+				cell.setCellValue("KDV");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				cell = aCIKLAMA.createCell(9);
+				cell.setCellValue("Tutar");
+				cell.setCellStyle(satirStyleBASLIK2);
+
+				//******************SATIRLAR ***********************************************	
+				int satir = 0 ;
+				for (int i =0;i< mdl.getRowCount() ;i++)
+				{
+					if (! mdl.getValueAt(i, 1).equals("") )
+					{
+						Row satirRow = sheet.createRow(i+7);
+						for (int s =0;s<= 10 ;s++)
+						{
+
+							if (s == 0 || s == 1 || s == 2)
+							{
+								cell = satirRow.createCell(s);
+								cell.setCellValue( mdl.getValueAt(i,s).toString());
+								cell.setCellStyle(solaStyle); 
+							}
+							else if (s == 3)
+							{
+								if (  GLOBAL.validCheck(mdl.getValueAt(i,s).toString()) == true )
+								{
+									cell = satirRow.createCell(s);
+									cell.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+									cell.setCellStyle(satirStylemik); 
+								}
+							}
+							else if (s == 4 || s == 5)
+							{
+								if (  GLOBAL.validCheck(mdl.getValueAt(i,s).toString()) == true )
+								{
+									cell = satirRow.createCell(s);
+									cell.setCellValue( Double.parseDouble( mdl.getValueAt(i,s).toString()));
+									cell.setCellStyle(satirStyle3); 
+								}
+							}
+							else if (s == 7 || s == 8 || s == 9 ||  s == 10 )
+							{
+
+								if (  GLOBAL.validCheck(mdl.getValueAt(i,s).toString()) == true )
+								{
+									cell = satirRow.createCell(s-1);
+									cell.setCellStyle(satirStyle2);
+									cell.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+								}
+							}
+
+						}
+						satir += 1 ;
+					}
+				}
+
+				Row toplam1  = sheet.createRow(satir + 7);
+				cell = toplam1.createCell(3);
+				cell.setCellValue(Double.parseDouble( label_8_1.getText()));
+				cell.setCellStyle(satirStylemik_ARA); 
+
+				cell = toplam1.createCell(4);
+				cell.setCellValue(Double.parseDouble( label_8.getText()));
+				cell.setCellStyle(satirStyle3_ARA); 
+
+				cell = toplam1.createCell(9);
+				cell.setCellValue( label_9.getText());
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(8);
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(7);
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(6);
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(5);
+				cell.setCellValue(Double.parseDouble( lblPaket.getText()));
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(2);
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(1);
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				cell = toplam1.createCell(0);
+				cell.setCellStyle(satirStyleTOPTUT); 
+
+				//***********************************************************
+				Row toplam2  = sheet.createRow(satir + 8);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 8,satir + 8,6,8));
+				cell = toplam2.createCell(6);
+				cell.setCellValue( "Iskonto");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam2.createCell(9);
+				cell.setCellValue( label_6.getText());
+				cell.setCellStyle(satirStyle2);
+
+				Row toplam3  = sheet.createRow(satir + 9);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 9,satir + 9,6,8));
+				cell = toplam3.createCell(6);
+				cell.setCellValue( "Iskonto Tutar");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam3.createCell(9);
+				cell.setCellValue( label_7.getText());
+				cell.setCellStyle(satirStyle2);
+
+				Row toplam4  = sheet.createRow(satir + 10);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 10,satir + 10,6,8));
+				cell = toplam4.createCell(6);
+				cell.setCellValue( "Kdv");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam4.createCell(9);
+				cell.setCellValue( label_3.getText());
+				cell.setCellStyle(satirStyle2);
+
+				Row toplam5  = sheet.createRow(satir + 11);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 11,satir + 11,6,8));
+				cell = toplam5.createCell(4);
+				cell.setCellValue( "Tevkifat");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam5.createCell(5);
+				cell.setCellValue( txttev.getText());
+				cell.setCellStyle(satirStyle2);
+
+				cell = toplam5.createCell(6);
+				cell.setCellValue( "Tev.Edilen KDV");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam5.createCell(9);
+				cell.setCellValue( label_1.getText());
+				cell.setCellStyle(satirStyle2);
+
+				Row toplam6  = sheet.createRow(satir + 12);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 12,satir + 12,6,8));
+				cell = toplam6.createCell(6);
+				cell.setCellValue( "Tev.Dah.Top.Tut");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam6.createCell(9);
+				cell.setCellValue( label_2.getText());
+				cell.setCellStyle(satirStyle2);
+
+				Row toplam7  = sheet.createRow(satir + 13);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 13,satir + 13,6,8));
+				cell = toplam7.createCell(6);
+				cell.setCellValue( "Beyan Edilen KDV");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam7.createCell(9);
+				cell.setCellValue( lblNewLabel_20.getText());
+				cell.setCellStyle(satirStyle2);
+
+				Row toplam8  = sheet.createRow(satir + 14);
+				sheet.addMergedRegion(new CellRangeAddress(satir + 14,satir + 14,6,8));
+				cell = toplam8.createCell(6);
+				cell.setCellValue( "Tev.Har.Top.Tut");
+				cell.setCellStyle(satirStyle);
+
+				cell = toplam8.createCell(9);
+				cell.setCellValue(label.getText());
+				cell.setCellStyle(satirStyle2_ARA); 
+
+				//
+				List<String> uniqueDataList = u_kod_ogren() ;
+				int ssatir = satir + 8 ;
+				for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) {
+					Row row = sheet.getRow(ssatir);
+					if (row == null)
+						row = sheet.createRow(ssatir);
+					cell = row.createCell(0);
+					sheet.addMergedRegion(new CellRangeAddress(ssatir,ssatir,0,1));
+					cell.setCellValue(uniqueDataList.get(iterator) + " -" + ker_Access.kod_adi(uniqueDataList.get(iterator)));
+					cell.setCellStyle(solaStyle);
+					ssatir +=1 ;
+				}
+				//**********
+				for (int i=0; i<= mdl.getColumnCount()-1; i++)
+				{
+					sheet.autoSizeColumn(i);
+				}
+				FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile() + "_" + zaman + uzanti));
+				workbook.write(out);
+				out.close();
+
+			}
+			GuiUtil.setWaitCursor(splitPane,false);
+			JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Cikis Evrak Yazdirma", JOptionPane.PLAIN_MESSAGE);
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	@SuppressWarnings("resource")
+	public static void  mail_at()
+	{
+		try 
+		{
+			XSSFWorkbook workbook = new XSSFWorkbook();
+			XSSFSheet sheet = workbook.createSheet("Evrak_" + textField.getText());
+			XSSFFont headerFont = workbook.createFont();
+			headerFont.setBold(true);
+			headerFont.setColor(IndexedColors.BLUE.getIndex()); 
+			XSSFCellStyle headerStyle = workbook.createCellStyle();
+			XSSFCellStyle headerSolaStyle = workbook.createCellStyle();
+			headerStyle.setFont(headerFont);
+			headerStyle.setAlignment(HorizontalAlignment.RIGHT);
+
+			XSSFFont solaFont = workbook.createFont();
+			solaFont.setFontName("Arial Narrow");
+			solaFont. setFontHeight((short)(10*20));
+			XSSFCellStyle solaStyle = workbook.createCellStyle();
+			solaStyle.setFont(solaFont);
+			solaStyle.setAlignment(HorizontalAlignment.LEFT);
+
+			XSSFFont headerSolaFont = workbook.createFont();
+			headerSolaFont.setBold(true);
+			headerSolaFont.setColor(IndexedColors.BLUE.getIndex()); 
+			headerSolaStyle.setFont(headerSolaFont);
+			headerSolaStyle.setAlignment(HorizontalAlignment.LEFT);
+
+			XSSFCellStyle satirStyle = workbook.createCellStyle();
+			XSSFCellStyle satirStylemik = workbook.createCellStyle();
+			XSSFCellStyle satirStyle3 = workbook.createCellStyle();
+			XSSFCellStyle satirStyle2 = workbook.createCellStyle();
+			XSSFFont satirFont = workbook.createFont();
+			satirFont.setFontName("Arial Narrow");
+			satirFont. setFontHeight((short)(10*20));
+			satirStyle.setFont(satirFont);
+			satirStyle.setAlignment(HorizontalAlignment.RIGHT);
+			satirStyle3.setFont(satirFont);
+			satirStyle2.setFont(satirFont);
+			satirStylemik.setFont(satirFont);
+			satirStyle3.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
+			satirStyle2.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
+			satirStylemik.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0"));
+			satirStyle3.setAlignment(HorizontalAlignment.RIGHT);
+			satirStyle2.setAlignment(HorizontalAlignment.RIGHT);
+			satirStylemik.setAlignment(HorizontalAlignment.RIGHT);
+			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+			XSSFCellStyle acikStyle = workbook.createCellStyle();
+			XSSFFont acikFont = workbook.createFont();
+			acikFont.setColor(IndexedColors.RED.getIndex()); 
+			acikFont.setBold(true);
+			acikFont.setFontName("Arial");
+			acikFont. setFontHeight((short)(22*20));
+			acikStyle.setFont(acikFont);
+			acikStyle.setAlignment(HorizontalAlignment.CENTER);
+
+			XSSFCellStyle satirStyle2_ARA = workbook.createCellStyle();
+			satirStyle2_ARA.setFont(satirFont);
+			satirStyle2_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0.00"));
+			satirStyle2_ARA.setAlignment(HorizontalAlignment.RIGHT);
+			satirStyle2_ARA.setBorderTop(BorderStyle.MEDIUM);
+			satirStyle2_ARA.setBorderBottom(BorderStyle.MEDIUM);
+			XSSFCellStyle satirStyle3_ARA = workbook.createCellStyle();
+			satirStyle3_ARA.setFont(satirFont);
+			satirStyle3_ARA.setDataFormat( workbook.createDataFormat().getFormat("###,##0.000"));
+			satirStyle3_ARA.setAlignment(HorizontalAlignment.RIGHT);
+			satirStyle3_ARA.setBorderTop(BorderStyle.MEDIUM);
+			satirStyle3_ARA.setBorderBottom(BorderStyle.MEDIUM);
+			XSSFCellStyle satirStylemik_ARA = workbook.createCellStyle();
+			satirStylemik_ARA.setFont(satirFont);
+			satirStylemik_ARA.setDataFormat( workbook.createDataFormat().getFormat("##,###,##0"));
+			satirStylemik_ARA.setBorderTop(BorderStyle.MEDIUM);
+			satirStylemik_ARA.setBorderBottom(BorderStyle.MEDIUM);
+			satirStylemik_ARA.setAlignment(HorizontalAlignment.RIGHT);
+			XSSFCellStyle satirStyleBASLIK = workbook.createCellStyle();
+			satirStyleBASLIK.setFont(satirFont);
+			satirStyleBASLIK.setBorderTop(BorderStyle.MEDIUM);
+			satirStyleBASLIK.setBorderBottom(BorderStyle.MEDIUM);
+			satirStyleBASLIK.setAlignment(HorizontalAlignment.LEFT);
+			XSSFCellStyle satirStyleBASLIK2 = workbook.createCellStyle();
+			satirStyleBASLIK2.setFont(satirFont);
+			satirStyleBASLIK2.setBorderTop(BorderStyle.MEDIUM);
+			satirStyleBASLIK2.setBorderBottom(BorderStyle.MEDIUM);
+			satirStyleBASLIK2.setAlignment(HorizontalAlignment.RIGHT);
+			XSSFCellStyle satirStyleTOPTUT = workbook.createCellStyle();
+			satirStyleTOPTUT.setFont(satirFont);
+			satirStyleTOPTUT.setBorderTop(BorderStyle.MEDIUM);
+			satirStyleTOPTUT.setAlignment(HorizontalAlignment.RIGHT);
+
+			Cell cell ;
+			Row bosRow = sheet.createRow(1);
+
+			Row satir1 = sheet.createRow(2);
+			cell = satir1.createCell(0);
+			cell.setCellStyle(solaStyle);
+			cell.setCellValue("Evrak No :");
+
+			cell = satir1.createCell(1);
+			cell.setCellStyle(solaStyle);
+			cell.setCellValue(textField.getText());
+
+			cell = satir1.createCell(9);
+			cell.setCellValue(TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc));
+			cell.setCellStyle(satirStyle);
+
+
+			Row satir2 = sheet.createRow(3);
+			cell = satir2.createCell(0);
+			cell.setCellStyle(solaStyle);
+			cell.setCellValue("Musteri Kodu:");
+
+			cell = satir2.createCell(1);
+			cell.setCellStyle(solaStyle);
+			cell.setCellValue(txtcari.getText());
+
+			Row satir3 = sheet.createRow(4);
+			sheet.addMergedRegion(new CellRangeAddress(4,4,1,2));
+
+
+			cell = satir3.createCell(1);
+			cell.setCellStyle(solaStyle);
+			cell.setCellValue(lblNewLabel_3.getText());
+
+
+			Row bosRow5 = sheet.createRow(5);
+
+			Row aCIKLAMA = sheet.createRow(6);
+
+			cell = aCIKLAMA.createCell(0);
+			cell.setCellStyle(satirStyleBASLIK);
+			cell.setCellValue("Barkod");
+
+			cell = aCIKLAMA.createCell(1);
+			cell.setCellStyle(satirStyleBASLIK);
+			cell.setCellValue("Urun Kodu");
+
+			cell = aCIKLAMA.createCell(2);
+			cell.setCellStyle(satirStyleBASLIK);
+			cell.setCellValue("Paket_No");
+
+			cell = aCIKLAMA.createCell(3);
+			cell.setCellValue("Miktar");
+			cell.setCellStyle(satirStyleBASLIK2);
+
+			cell = aCIKLAMA.createCell(4);
+			cell.setCellValue("m3");
+			cell.setCellStyle(satirStyleBASLIK2);
+
+			cell = aCIKLAMA.createCell(5);
+			cell.setCellValue("Paket m3");
+			cell.setCellStyle(satirStyleBASLIK2);
+
+			cell = aCIKLAMA.createCell(6);
+			cell.setCellValue("Fiat");
+			cell.setCellStyle(satirStyleBASLIK2);
+
+			cell = aCIKLAMA.createCell(7);
+			cell.setCellValue("Iskonto");
+			cell.setCellStyle(satirStyleBASLIK2);
+
+			cell = aCIKLAMA.createCell(8);
+			cell.setCellValue("KDV");
+			cell.setCellStyle(satirStyleBASLIK2);
+
+			cell = aCIKLAMA.createCell(9);
+			cell.setCellValue("Tutar");
+			cell.setCellStyle(satirStyleBASLIK2);
+
+			//******************SATIRLAR ***********************************************	
+			int satir = 0 ;
+			for (int i =0;i< mdl.getRowCount() ;i++)
+			{
+				if (! mdl.getValueAt(i, 1).equals("") )
+				{
+					Row satirRow = sheet.createRow(i+7);
+					for (int s =0;s<= 10 ;s++)
+					{
+
+						if (s == 0 || s == 1 || s == 2)
+						{
+							cell = satirRow.createCell(s);
+							cell.setCellValue( mdl.getValueAt(i,s).toString());
+							cell.setCellStyle(solaStyle); 
+						}
+						else if (s == 3)
+						{
+							if (  GLOBAL.validCheck(mdl.getValueAt(i,s).toString()) == true )
+							{
+								cell = satirRow.createCell(s);
+								cell.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+								cell.setCellStyle(satirStylemik); 
+							}
+						}
+						else if (s == 4 || s == 5)
+						{
+							if (  GLOBAL.validCheck(mdl.getValueAt(i,s).toString()) == true )
+							{
+								cell = satirRow.createCell(s);
+								cell.setCellValue( Double.parseDouble( mdl.getValueAt(i,s).toString()));
+								cell.setCellStyle(satirStyle3); 
+							}
+						}
+						else if (s == 7 || s == 8 || s == 9 ||  s == 10 )
+						{
+
+							if (  GLOBAL.validCheck(mdl.getValueAt(i,s).toString()) == true )
+							{
+								cell = satirRow.createCell(s-1);
+								cell.setCellStyle(satirStyle2);
+								cell.setCellValue(Double.parseDouble( mdl.getValueAt(i,s).toString()));
+							}
+						}
+
+					}
+					satir += 1 ;
+				}
+			}
+
+			Row toplam1  = sheet.createRow(satir + 7);
+			cell = toplam1.createCell(3);
+			cell.setCellValue(Double.parseDouble( label_8_1.getText()));
+			cell.setCellStyle(satirStylemik_ARA); 
+
+			cell = toplam1.createCell(4);
+			cell.setCellValue(Double.parseDouble( label_8.getText()));
+			cell.setCellStyle(satirStyle3_ARA); 
+
+			cell = toplam1.createCell(9);
+			cell.setCellValue( label_9.getText());
+			cell.setCellStyle(satirStyleTOPTUT); 
+
+			cell = toplam1.createCell(8);
+			cell.setCellStyle(satirStyleTOPTUT); 
+
+			cell = toplam1.createCell(7);
+			cell.setCellStyle(satirStyleTOPTUT); 
+
+			cell = toplam1.createCell(6);
+			cell.setCellStyle(satirStyleTOPTUT); 
+
+			cell = toplam1.createCell(5);
+			cell.setCellValue(Double.parseDouble( lblPaket.getText()));
+			cell.setCellStyle(satirStyleTOPTUT); 
+
+			cell = toplam1.createCell(2);
+			cell.setCellStyle(satirStyleTOPTUT); 
+
+			cell = toplam1.createCell(1);
+			cell.setCellStyle(satirStyleTOPTUT); 
+
+			cell = toplam1.createCell(0);
+			cell.setCellStyle(satirStyleTOPTUT); 
+
+			//***********************************************************
+			Row toplam2  = sheet.createRow(satir + 8);
+			sheet.addMergedRegion(new CellRangeAddress(satir + 8,satir + 8,6,8));
+			cell = toplam2.createCell(6);
+			cell.setCellValue( "Iskonto");
+			cell.setCellStyle(satirStyle);
+
+			cell = toplam2.createCell(9);
+			cell.setCellValue( label_6.getText());
+			cell.setCellStyle(satirStyle2);
+
+			Row toplam3  = sheet.createRow(satir + 9);
+			sheet.addMergedRegion(new CellRangeAddress(satir + 9,satir + 9,6,8));
+			cell = toplam3.createCell(6);
+			cell.setCellValue( "Iskonto Tutar");
+			cell.setCellStyle(satirStyle);
+
+			cell = toplam3.createCell(9);
+			cell.setCellValue( label_7.getText());
+			cell.setCellStyle(satirStyle2);
+
+			Row toplam4  = sheet.createRow(satir + 10);
+			sheet.addMergedRegion(new CellRangeAddress(satir + 10,satir + 10,6,8));
+			cell = toplam4.createCell(6);
+			cell.setCellValue( "Kdv");
+			cell.setCellStyle(satirStyle);
+
+			cell = toplam4.createCell(9);
+			cell.setCellValue( label_3.getText());
+			cell.setCellStyle(satirStyle2);
+
+			Row toplam5  = sheet.createRow(satir + 11);
+			sheet.addMergedRegion(new CellRangeAddress(satir + 11,satir + 11,6,8));
+			cell = toplam5.createCell(4);
+			cell.setCellValue( "Tevkifat");
+			cell.setCellStyle(satirStyle);
+
+			cell = toplam5.createCell(5);
+			cell.setCellValue( txttev.getText());
+			cell.setCellStyle(satirStyle2);
+
+			cell = toplam5.createCell(6);
+			cell.setCellValue( "Tev.Edilen KDV");
+			cell.setCellStyle(satirStyle);
+
+			cell = toplam5.createCell(9);
+			cell.setCellValue( label_1.getText());
+			cell.setCellStyle(satirStyle2);
+
+			Row toplam6  = sheet.createRow(satir + 12);
+			sheet.addMergedRegion(new CellRangeAddress(satir + 12,satir + 12,6,8));
+			cell = toplam6.createCell(6);
+			cell.setCellValue( "Tev.Dah.Top.Tut");
+			cell.setCellStyle(satirStyle);
+
+			cell = toplam6.createCell(9);
+			cell.setCellValue( label_2.getText());
+			cell.setCellStyle(satirStyle2);
+
+			Row toplam7  = sheet.createRow(satir + 13);
+			sheet.addMergedRegion(new CellRangeAddress(satir + 13,satir + 13,6,8));
+			cell = toplam7.createCell(6);
+			cell.setCellValue( "Beyan Edilen KDV");
+			cell.setCellStyle(satirStyle);
+
+			cell = toplam7.createCell(9);
+			cell.setCellValue( lblNewLabel_20.getText());
+			cell.setCellStyle(satirStyle2);
+
+			Row toplam8  = sheet.createRow(satir + 14);
+			sheet.addMergedRegion(new CellRangeAddress(satir + 14,satir + 14,6,8));
+			cell = toplam8.createCell(6);
+			cell.setCellValue( "Tev.Har.Top.Tut");
+			cell.setCellStyle(satirStyle);
+
+			cell = toplam8.createCell(9);
+			cell.setCellValue(label.getText());
+			cell.setCellStyle(satirStyle2_ARA); 
+
+			List<String> uniqueDataList = u_kod_ogren() ;
+			int ssatir = satir + 8 ;
+			for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) {
+				Row row = sheet.getRow(ssatir);
+				if (row == null)
+					row = sheet.createRow(ssatir);
+				cell = row.createCell(0);
+				sheet.addMergedRegion(new CellRangeAddress(ssatir,ssatir,0,1));
+				cell.setCellValue(uniqueDataList.get(iterator) + " -" + ker_Access.kod_adi(uniqueDataList.get(iterator)));
+				cell.setCellStyle(solaStyle);
+				ssatir +=1 ;
+			}
+			for (int i=0; i<= mdl.getColumnCount()-1; i++)
+			{
+				sheet.autoSizeColumn(i);
+			}
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			workbook.write(bos);
+			byte[] byteArray= bos.toByteArray();
+			InputStream in = new ByteArrayInputStream(byteArray);
+			oac.ds = new ByteArrayDataSource(in, "application/x-any");
+			bos.close();
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Kereste Cikis", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private static List<String> u_kod_ogren()
+	{
+		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+		List<String> list = new ArrayList<String>();  
+		for (int i =0;i< mdl.getRowCount() ;i++)
+		{
+			if (! mdl.getValueAt(i, 1).equals("") )
+			{
+				list.add( mdl.getValueAt(i,1).toString().substring(0, 2));	//;
+			}
+		}
+		List<String> uniqueDataList = list.stream().distinct().collect(Collectors.toList());
+		return uniqueDataList ;
+	}
 	private void mWAIT()
 	{
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	

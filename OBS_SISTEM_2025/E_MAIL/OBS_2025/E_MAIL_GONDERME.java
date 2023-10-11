@@ -298,6 +298,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				{
 					ker_cikis();
 				}
+				else if ( OBS_MAIN.pencere_bak("KERESTE GIRIS") == true ) 
+				{
+					ker_giris();
+				}
 				else
 				{
 					duz_gonder();
@@ -485,7 +489,12 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			else if (ker_cikis_kontrol() )
 			{
 				comboBox.enable(false);
-				lblNewLabel_2.setText("KeresteCikis");
+				lblNewLabel_2.setText("Kereste Cikis");
+			}
+			else if (ker_giris_kontrol() )
+			{
+				comboBox.enable(false);
+				lblNewLabel_2.setText("Kereste Giris");
 			}
 			else if (etiket_kontrol() )
 			{
@@ -1009,6 +1018,18 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
+	private void ker_giris() 
+	{
+		try
+		{
+			KERESTE_GIRIS. mail_at();
+			xl_gonder("Kereste_Giris" );
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
 	private void xl_gonder(String dadi)
 	{
 		try
@@ -1156,6 +1177,16 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		boolean result  = false;
 
 		if (OBS_MAIN.pencere_bak("KERESTE CIKIS"))
+		{
+			result = true ;
+		}
+		return result;
+	}
+	private boolean  ker_giris_kontrol() throws ReportSDKException
+	{
+		boolean result  = false;
+
+		if (OBS_MAIN.pencere_bak("KERESTE GIRIS"))
 		{
 			result = true ;
 		}

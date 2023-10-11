@@ -267,6 +267,13 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				if (! sstr_1.equals(""))
 					paket_sinif_kal_gen_kodlu();
 			}
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Kons-Paket-Sinif-Kal-Gen"))
+			{
+				baslik_bak();
+				if (! sstr_1.equals(""))
+					kons_paket_sinif_kal_gen_kodlu();
+			}
+			//
 			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Hesap-Kodu"))
 			{
 				baslik_bak();
@@ -1308,6 +1315,125 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kal Gen Raporlama", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private static void kons_paket_sinif_kal_gen_kodlu() 
+	{
+		startTime = System.currentTimeMillis(); 
+		try {
+			ResultSet	rs = null;
+			deg_cevir();
+			grup_cevir() ;
+			if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("GIREN"))
+			{
+				hANGI = "" ;
+			}
+			else if (FILTRE.comboBox_77.getItemAt(FILTRE.comboBox_77.getSelectedIndex()).equals("CIKAN"))
+			{
+				hANGI = "C" ;
+			}
+			String klmString = "" , mlkString="" , blkString="",grpString="";
+			if(BAGLAN.kerDizin.hAN_SQL.equals("MS SQL"))
+			{
+				klmString = " SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+				mlkString = " SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal " ;
+				blkString = " SUBSTRING(KERESTE.Kodu, 13, 4) AS Gen " ;
+				grpString = " Konsimento,Paket_No,SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif , SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal ,SUBSTRING(KERESTE.Kodu, 13, 4) AS Gen" ;
+			}
+			else if(BAGLAN.kerDizin.hAN_SQL.equals("MY SQL"))
+			{
+				klmString = " SUBSTRING(KERESTE.Kodu,1, 2) AS Sinif ";
+				mlkString = " SUBSTRING(KERESTE.Kodu, 4, 3) AS Kal " ;
+				blkString = " SUBSTRING(KERESTE.Kodu, 13, 4) AS Gen " ;
+				grpString = " Konsimento,Paket_No,SUBSTRING(KERESTE.Kodu,1, 2)  , SUBSTRING(KERESTE.Kodu, 4, 3) ,SUBSTRING(KERESTE.Kodu, 13, 4) " ;
+
+			}
+			rs = ker_Access.grp_rapor(" Konsimento, Paket_No," + klmString + " ," + mlkString+" ," + blkString,sstr_2,sstr_4, kur_dos,   qwq6,  qwq7,  qwq8,
+					FILTRE.formattedTextField.getText(),FILTRE.formattedTextField_1.getText() ,
+					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
+					jkj,
+					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
+					sstr_5, sstr_1, " Konsimento,Paket_No,Sinif , Kal,Gen",hANGI,
+					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString,
+					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
+
+			GRID_TEMIZLE.grid_temizle(table);
+
+			if (!rs.isBeforeFirst() ) {  
+				lbladet.setText(FORMATLAMA.doub_0(0));
+			} 
+			else
+			{
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+				mdll.addColumn("Toplam");
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
+
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
+				tc.setMinWidth(75);
+				tc.setMaxWidth(75);
+				
+				tc = tcm.getColumn(1);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
+				tc.setMinWidth(75);
+				tc.setMaxWidth(75);
+
+				tc = tcm.getColumn(2);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+
+				tc = tcm.getColumn(3);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+
+				tc = tcm.getColumn(4);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setCellRenderer(new SOLA_ORTA());
+				tc.setMinWidth(40);
+				tc.setMaxWidth(40);
+
+				kusurr();
+				for (int i = 5;i<=table.getColumnCount() -2;i++)
+				{
+					tc = tcm.getColumn(i);
+					tc.setHeaderRenderer(new SAGA());
+					tc.setCellRenderer(new TABLO_RENDERER(kusur,false));
+					tc.setMinWidth(110);
+				}
+				tc = tcm.getColumn(table.getColumnCount() -1);
+				tc.setHeaderRenderer(new SAGA());
+				tc.setCellRenderer(new TABLO_RENDERER(kusur,true));
+				tc.setMinWidth(110);
+
+				Dimension dd = th.getPreferredSize();
+				dd.height = 30;
+				th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowSelectionInterval(0, 0);
+				table.setRowHeight(21);
+				//**
+				topla(5);
+				//**
+				alt_bolum();
+				
+				if(FILTRE.chckbxNewCheckBox_3.isSelected())
+				{
+					ara_toplam(4,5); 
+				}
+				fontt();
+			}
+		} 
+		catch (Exception ex) {
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Kons Sinif Kal Gen Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void sinif_kal_gen_kodlu() 
@@ -2533,6 +2659,10 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				{
 					sutun = 3 ;
 				}
+				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Kons-Paket-Sinif-Kal-Gen"))
+				{
+					sutun = 4 ;
+				}
 				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Hesap-Kodu"))
 				{
 					sutun = 1 ;
@@ -2758,6 +2888,10 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal-Gen"))
 				{
 					sutun = 3 ;
+				}
+				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Kons-Paket-Sinif-Kal-Gen"))
+				{
+					sutun = 4 ;
 				}
 				else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Hesap-Kodu"))
 				{
@@ -2994,6 +3128,10 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Paket-Sinif-Kal-Gen"))
 			{
 				sutun = 3 ;
+			}
+			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Kons-Paket-Sinif-Kal-Gen"))
+			{
+				sutun = 4 ;
 			}
 			else if (FILTRE.comboBox_27_1.getItemAt(FILTRE.comboBox_27_1.getSelectedIndex()).equals("Hesap-Kodu"))
 			{

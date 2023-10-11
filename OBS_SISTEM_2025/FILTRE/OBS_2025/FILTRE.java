@@ -4566,12 +4566,12 @@ public class FILTRE extends JDialog {
 		comboBox_27_1 = new JComboBox<String>();
 		comboBox_27_1.setForeground(new Color(0, 0, 128));
 		comboBox_27_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil-Ay","Paket-Sinif-Kal-Boy","Paket-Sinif-Kal-Gen","Paket-Konsimento","Hesap-Kodu","Hesap-Kodu-Yil","Konsimento","Ortalama-Genislik"}));
-		comboBox_27_1.setBounds(90, 155, 149, 22);
+		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil-Ay","Paket-Sinif-Kal-Boy","Paket-Sinif-Kal-Gen","Kons-Paket-Sinif-Kal-Gen" ,"Paket-Konsimento","Hesap-Kodu","Hesap-Kodu-Yil","Konsimento","Ortalama-Genislik"}));
+		comboBox_27_1.setBounds(90, 155, 175, 22);
 		comboBox_27_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String hangi = comboBox_27_1.getItemAt(comboBox_27_1.getSelectedIndex())  ;
-				if (hangi == "Sinif-Kal" || hangi == "Sinif-Kal-Boy" || hangi == "Sinif-Kal-Gen" || hangi == "Paket-Sinif-Kal-Gen" || hangi == "Paket-Sinif-Kal-Boy")
+				if (hangi == "Sinif-Kal" || hangi == "Sinif-Kal-Boy" || hangi == "Sinif-Kal-Gen" || hangi == "Paket-Sinif-Kal-Gen" || hangi == "Paket-Sinif-Kal-Boy" || hangi == "Kons-Paket-Sinif-Kal-Gen")
 				{
 					chckbxNewCheckBox_3.setVisible(true);
 				}
@@ -4588,7 +4588,7 @@ public class FILTRE extends JDialog {
 		comboBox_28_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_28_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Yil", "Ay", "Gun", "Kalinlik", "Boy","Genislik","Sinif","Hesap-Kodu"}));
 		//comboBox_28_1.setSelectedIndex(1);
-		comboBox_28_1.setBounds(90, 184, 149, 22);
+		comboBox_28_1.setBounds(90, 184, 175, 22);
 		panel_KERESTE.add(comboBox_28_1);
 		
 		formattedTextField = new JFormattedTextField();

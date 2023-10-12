@@ -307,4 +307,10 @@ public class KERESTE_ACCESS {
 		  	_Logger.Logla(lBILGI, dBILGI);
 		return _IKereste.sql_sorgu(sql);
 	}
+	public void ker_kons_degis(String kons , String yenikons,lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException 
+	{
+		_IKereste.ker_kons_degis(kons, yenikons);
+		for ( ILOGGER  _Logger : _Logger )
+			_Logger.Logla(lBILGI, dBILGI);
+	}
 }

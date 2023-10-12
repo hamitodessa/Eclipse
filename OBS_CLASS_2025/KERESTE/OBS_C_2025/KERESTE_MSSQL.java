@@ -2066,4 +2066,15 @@ public class KERESTE_MSSQL implements IKERESTE {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
+
+	@Override
+	public void ker_kons_degis(String kons, String yenikons) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String sql = "UPDATE KERESTE  " 
+				+ " SET  Konsimento = '"+ yenikons + "'" 
+				+ " WHERE  Konsimento = N'" + kons + "' AND " ;
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
+	}
 }

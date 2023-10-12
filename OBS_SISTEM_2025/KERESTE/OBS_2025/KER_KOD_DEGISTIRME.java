@@ -64,6 +64,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.border.EtchedBorder;
 
 @SuppressWarnings({"serial","static-access"})
 public class KER_KOD_DEGISTIRME extends JInternalFrame {
@@ -76,9 +77,11 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	private JFormattedTextField formattedTextField ;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_4 ;
+	private JLabel lblNewLabel_4_1 ;
 	private JSplitPane splitPane ;
 	private boolean ilk = true ;
 	CheckBoxHeader asdBoxHeader = new CheckBoxHeader(new MyItemListener());
+	private JTextField txtYKons;
 
 	/**
 	 * Launch the application.
@@ -113,8 +116,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(0, 75));
-		panel.setMaximumSize(new Dimension(0, 75));
+		panel.setMinimumSize(new Dimension(0, 95));
+		panel.setMaximumSize(new Dimension(0, 95));
 		
 		panel.setLayout(null);
 		splitPane.setLeftComponent(panel);
@@ -160,13 +163,13 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Yeni Kod", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(550, 11, 393, 53);
+		panel_1.setBounds(444, 14, 224, 75);
 		panel_1.setLayout(null);
 		panel.add(panel_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_2.setBounds(59, 19, 30, 20);
+		textField_2.setBounds(10, 18, 30, 20);
 		textField_2.setDocument(new JTextFieldLimit(2));
 		textField_2.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -214,12 +217,12 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/save.png")));
-		btnNewButton.setBounds(363, 18, 23, 23);
+		btnNewButton.setBounds(193, 18, 23, 23);
 		panel_1.add(btnNewButton);
 		
 		lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_4.setBounds(99, 23, 254, 14);
+		lblNewLabel_4.setBounds(10, 45, 203, 14);
 		panel_1.add(lblNewLabel_4);
 		
 		formattedTextField = new JFormattedTextField();
@@ -247,6 +250,70 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		JLabel lblKodu = new JLabel("Kodu");
 		lblKodu.setBounds(285, 14, 70, 14);
 		panel.add(lblKodu);
+		
+		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setLayout(null);
+		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Yeni Konsimento", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_1_1.setBounds(678, 14, 224, 75);
+		panel.add(panel_1_1);
+		
+		txtYKons = new JTextField();
+		txtYKons.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtYKons.setBounds(10, 18, 53, 20);
+		txtYKons.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+			}
+			public void removeUpdate(DocumentEvent e) {
+				try {
+					mWAIT();
+					kons_ADI(txtYKons.getText());
+					mDEFAULT();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+			public void insertUpdate(DocumentEvent e) {
+				try {
+					mWAIT();
+					kons_ADI(txtYKons.getText());
+					mDEFAULT();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		panel_1_1.add(txtYKons);
+		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) {
+				if (txtYKons.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Konsimento Bos ...", "Konsimento Degistirme", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else if (satir_kontrol() == 0 ) {
+					JOptionPane.showMessageDialog(null, "Secili Satir Bulunmamaktadir...", "Konsimento Degistirmea", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else if (lblNewLabel_4_1.getText().equals("") ) {
+					JOptionPane.showMessageDialog(null, "Kayitli Konsimento Bulunmamaktadir.....", "Konsimento Degistirmea", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else 
+				{
+					mWAIT();	
+					konskaydet();
+					mDEFAULT();
+				}
+			}
+		});
+		btnNewButton_1.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/save.png")));
+		btnNewButton_1.setBounds(193, 18, 23, 23);
+		panel_1_1.add(btnNewButton_1);
+		
+		lblNewLabel_4_1 = new JLabel("");
+		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_4_1.setBounds(10, 45, 203, 14);
+		panel_1_1.add(lblNewLabel_4_1);
 		
 		JSplitPane splitPane1 = new JSplitPane();
 		splitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -641,6 +708,40 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		}
 
 	}
+	private void konskaydet()
+	{
+		try {
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ("Konsimento Degisim ,  Konsimento_No :"  );
+			lBILGI.seteVRAK("");
+			DefaultTableModel modell = (DefaultTableModel)table.getModel();
+			for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
+			{
+				if (  (boolean) modell.getValueAt(i,43) )
+				{
+					ker_Access.ker_kons_degis(modell.getValueAt(i, 5).toString(),txtYKons.getText() ,lBILGI,BAGLAN_LOG.kerLogDizin);
+				}
+			}
+			GRID_TEMIZLE.grid_temizle(table);
+			
+			JTableHeader th = table.getTableHeader();
+			TableColumnModel tcm = th.getColumnModel();
+			TableColumn tc = tcm.getColumn(0);
+			tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+			th.repaint();
+			table.repaint();
+			textField.setText("");
+			txtPaketNo.setText("");
+			textField_2.setText("");
+			txtYKons.setText("");
+			formattedTextField.setText("00-000-0000-0000");
+
+		} catch (Exception ex) {
+			mDEFAULT();
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Kod Degisimi", JOptionPane.ERROR_MESSAGE);
+		}
+
+	}
 	private void secilen_satir()
 	{
 		lblNewLabel_2.setText(FORMATLAMA.doub_0(satir_kontrol()));
@@ -675,6 +776,10 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	private void kod_ADI(String kod) throws ClassNotFoundException, SQLException 
 	{
 		lblNewLabel_4.setText(ker_Access.kod_adi(kod));
+	}
+	private void kons_ADI(String kons) throws ClassNotFoundException, SQLException 
+	{
+		lblNewLabel_4_1.setText(ker_Access.kons_adi(kons));
 	}
 	private void mWAIT()
 	{

@@ -62,6 +62,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings({"serial","static-access"})
 public class KER_KOD_DEGISTIRME extends JInternalFrame {
@@ -126,40 +128,34 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		panel.add(lblNewLabel_1);
 		
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					hisset();
+				}
+			}
+		});
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField.setDocument(new JTextFieldLimit(10));
 		textField.setBounds(117, 11, 96, 20);
 	
 		panel.add(textField);
 		
-		textField.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				//hisset();
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			}
-			public void removeUpdate(DocumentEvent e) {
-				hisset();
-			}
-			public void insertUpdate(DocumentEvent e) {
-				hisset();
+		txtPaketNo = new JTextField();
+		txtPaketNo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					hisset();
+				}
 			}
 		});
-		
-		txtPaketNo = new JTextField();
 		txtPaketNo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtPaketNo.setDocument(new JTextFieldLimit(10));
 		txtPaketNo.setBounds(117, 36, 130, 20);
-		txtPaketNo.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-			}
-			public void removeUpdate(DocumentEvent e) {
-				hisset();
-			}
-			public void insertUpdate(DocumentEvent e) {
-				hisset();
-			}
-		});
 		panel.add(txtPaketNo);
 		
 		JPanel panel_1 = new JPanel();
@@ -174,19 +170,21 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		textField_2.setDocument(new JTextFieldLimit(2));
 		textField_2.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 			public void removeUpdate(DocumentEvent e) {
 				try {
+					mWAIT();
 					kod_ADI( textField_2.getText());
+					mDEFAULT();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
 			public void insertUpdate(DocumentEvent e) {
 				try {
+					mWAIT();
 					kod_ADI( textField_2.getText());
+					mDEFAULT();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -225,6 +223,15 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		panel_1.add(lblNewLabel_4);
 		
 		formattedTextField = new JFormattedTextField();
+		formattedTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					hisset();
+				}
+			}
+		});
 		formattedTextField.setBounds(287, 36, 135, 20);
 		MaskFormatter mask;
 		try {
@@ -235,16 +242,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		}
 		formattedTextField.setText("00-000-0000-0000");
 		formattedTextField.setFont(new Font("Tahoma", Font.BOLD, 12));
-		formattedTextField.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-			}
-			public void removeUpdate(DocumentEvent e) {
-			}
-			public void insertUpdate(DocumentEvent e) {
-				hisset();
-			}
-		});
-
 		panel.add(formattedTextField);
 		
 		JLabel lblKodu = new JLabel("Kodu");

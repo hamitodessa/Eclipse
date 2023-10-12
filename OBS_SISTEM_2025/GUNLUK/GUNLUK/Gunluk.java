@@ -442,9 +442,6 @@ public class Gunluk extends JInternalFrame {
 		splitPane_6.setRightComponent(panel_5);
 		panel_5.setLayout(new BorderLayout(0, 0));
 		
-		JCalendar sagCalendar = new JCalendar();
-		sagCalendar.setDate(new Date());
-		panel_5.add(sagCalendar);
 		
 		treeGovev.getAutoscrolls();
 		treeGovev.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);

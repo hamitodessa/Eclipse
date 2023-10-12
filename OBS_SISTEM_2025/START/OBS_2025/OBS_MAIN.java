@@ -1861,7 +1861,7 @@ public class OBS_MAIN extends JFrame {
 		//****************************************************************************
 		JComboBox<String> comboDegisken = new JComboBox<String>();
 		comboDegisken.setBorder(new LineBorder(new Color(0, 191, 255)));
-		comboDegisken.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		comboDegisken.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboDegisken.setMaximumSize(new Dimension(210, 35));
 		comboDegisken.addItemListener(new ItemListener() 
 		{
@@ -2189,7 +2189,7 @@ public class OBS_MAIN extends JFrame {
 		
 		JComboBox<String> comboDegisken_1 = new JComboBox<String>();
 		comboDegisken_1.setMaximumSize(new Dimension(200, 35));
-		comboDegisken_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		comboDegisken_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboDegisken_1.addItemListener(new ItemListener() 
 		{
 			public void itemStateChanged(ItemEvent e) {

@@ -385,7 +385,7 @@ public class EKSTRE extends JInternalFrame {
 				dd.height = 30;
 				th.setPreferredSize(dd); 
 				th.repaint();
-				table.setRowSelectionInterval(0, 0);
+				//table.setRowSelectionInterval(0, 0);
 				table.setRowHeight(21);
 
 			}
@@ -453,12 +453,15 @@ public class EKSTRE extends JInternalFrame {
 			String satir ;
 			satir = String.format("%,d %n" ,  table.getRowCount());
 			lblNewLabel_3.setText(satir);  
+			
+			
 			int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
 			table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 			table.setRowSelectionInterval(lastRow, lastRow);
-
 			table.setSelectionBackground(Color.PINK);
 			table.setSelectionForeground(Color.BLUE);
+			
+			
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 

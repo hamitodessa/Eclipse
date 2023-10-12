@@ -110,8 +110,7 @@ public class MIZAN extends JInternalFrame {
 				{
 					c.setBackground(Color.PINK);
 					c.setForeground(Color.BLUE);
-					Font fnt = new Font(table.getFont().getFontName(),1 ,12);
-					c.setFont(fnt);
+					c.setFont(new Font(table.getFont().getFontName(),1 ,12));
 				} else 
 				{
 					c.setBackground(super.getBackground());
@@ -121,17 +120,10 @@ public class MIZAN extends JInternalFrame {
 				{
 					if (getValueAt(row,5) != null)
 					{
-						double tut = (double)getValueAt(row,5);
-						if (tut < 0)
+						c.setFont(new Font(table.getFont().getFontName(),1 ,table.getFont().getSize()));
+						if ((double)getValueAt(row,5) < 0)
 						{
 							c.setForeground(new Color(128,0,0));
-							Font fnt = new Font(table.getFont().getFontName(),1 ,table.getFont().getSize());
-							c.setFont(fnt);
-						}
-						else if (tut >0)
-						{
-							Font fnt = new Font(table.getFont().getFontName(),1 ,table.getFont().getSize());
-							c.setFont(fnt);
 						}
 					}
 				}
@@ -139,6 +131,10 @@ public class MIZAN extends JInternalFrame {
 				{
 					c.setForeground(super.getForeground());
 				}
+				if (isRowSelected(row)) {
+					c.setBackground(new Color(203, 254, 255));
+					//c.setForeground(Color.BLUE);
+                } 
 				return c;
 			}
 		};
@@ -203,9 +199,8 @@ public class MIZAN extends JInternalFrame {
 		});
 
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setRowSelectionAllowed(true);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		table.setBorder(null);
+		//table.setBorder(null);
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
@@ -334,14 +329,11 @@ public class MIZAN extends JInternalFrame {
 			th.setPreferredSize(dd); 
 			th.repaint();
 
-			table.setRowSelectionInterval(0, 0);
+			
 			table.setRowHeight(21);
 			int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
 			table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 			table.setRowSelectionInterval(lastRow, lastRow);
-			table.setSelectionBackground(Color.GREEN);
-			table.setSelectionForeground(Color.BLUE);
-
 			
 			//***
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();

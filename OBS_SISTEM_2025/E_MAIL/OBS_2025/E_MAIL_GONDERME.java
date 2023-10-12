@@ -78,7 +78,7 @@ import OBS_C_2025.ValidEmailAddress;
 
 import javax.swing.SwingConstants;
 
-@SuppressWarnings({"serial","static-access"})
+@SuppressWarnings({"serial","static-access","deprecation"})
 public class E_MAIL_GONDERME extends JInternalFrame {
 	private JTextField txtkonu;
 	private JTextField txtgonhesap;
@@ -113,8 +113,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("deprecation")
 	public E_MAIL_GONDERME() {
+
 		setTitle("E MAIL GONDERME");
 		setClosable(true);
 		setBounds(100, 100, 598, 446);

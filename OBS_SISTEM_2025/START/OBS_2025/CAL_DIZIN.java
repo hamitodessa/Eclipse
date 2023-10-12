@@ -1,5 +1,6 @@
 package OBS_2025;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -100,7 +101,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.JSeparator;
 
-@SuppressWarnings("static-access")
+@SuppressWarnings({"static-access","serial"})
 public class CAL_DIZIN extends JDialog {
 
 
@@ -158,9 +159,6 @@ public class CAL_DIZIN extends JDialog {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LOGIN lgn = new LOGIN();
-					lgn.setVisible(false);
-					lgn.dispose();
 					CAL_DIZIN frame = new CAL_DIZIN();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -169,10 +167,9 @@ public class CAL_DIZIN extends JDialog {
 			}
 		});
 	}
-	@SuppressWarnings("serial")
+
 	public CAL_DIZIN() {
 		setTitle("CALISMA DIZINI");
-	 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CAL_DIZIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -181,29 +178,17 @@ public class CAL_DIZIN extends JDialog {
 				cIKIS();
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
-			@Override
-			public void windowOpened(WindowEvent e) {
-				try {
-					
-					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					activ_sayfa =0;
-					grid_doldur();
-					doldur_kutu(tblCari,0);
-					tblCari.requestFocus();
-					tblCari.setRowSelectionInterval(0, 0);
-					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				} catch (Exception e1) {
-					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					e1.printStackTrace();
-				}
-			}
 		});
 		setResizable(false);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 981, 419);
+		//setUndecorated(true);
+		
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -1215,7 +1200,21 @@ public class CAL_DIZIN extends JDialog {
 		btnNewButton_2_1_2.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/save.png")));
 		btnNewButton_2_1_2.setBounds(265, 125, 25, 23);
 		panel.add(btnNewButton_2_1_2);
+		
+		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		activ_sayfa =0;
+		try {
+			grid_doldur();
+			doldur_kutu(tblCari,0);
+			tblCari.requestFocus();
+			tblCari.setRowSelectionInterval(0, 0);
+			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		} catch (Exception e1) {
 	
+			e1.printStackTrace();
+		}
+		
+
 	}
 	private void grid_doldur() throws ClassNotFoundException, SQLException
 	{

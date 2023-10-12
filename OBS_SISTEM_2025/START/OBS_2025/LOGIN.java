@@ -147,6 +147,7 @@ public class LOGIN extends JDialog {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setResizable(false);
 		setTitle("OBS SISTEM GIRIS");
+		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 493, 229);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();

@@ -1665,6 +1665,34 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satir yaz 2", JOptionPane.ERROR_MESSAGE);     
 		}
 	}
+	public static void evrak_sil()
+	{
+		try {
+			if (textField.getText().equals("")) return ;
+			if (table.getRowCount() == 0) return;
+			int g =  JOptionPane.showOptionDialog( null, textField.getText() + " Nolu Evrak Dosyadan Silinecek ..?"  ,
+					"Kereste Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,
+					null,     //no custom icon
+					oac.options,  //button titles
+					oac.options[1]); //default button
+			if(g != 0 ) { return;	}
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ(textField.getText() + " Nolu Cikis Kereste Silindi");
+			lBILGI.seteVRAK(textField.getText());
+			ker_Access.ker_cikis_sil(textField.getText() ,lBILGI,BAGLAN_LOG.kerLogDizin);
+			dipnot_sil();
+			acik_sil();
+
+			//  '************************************
+			textField.setText("");
+			textField.requestFocus();
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Silme", JOptionPane.ERROR_MESSAGE);   
+		}
+	}
 	private static void kod_ADI(String toke,String kons ) throws ClassNotFoundException, SQLException 
 
 	{

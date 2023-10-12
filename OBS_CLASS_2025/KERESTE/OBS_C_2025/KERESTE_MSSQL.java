@@ -1040,7 +1040,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " CIzahat='"+ kBILGI.getCIzahat() +"',CNakliyeci="+ kBILGI.getCNakliyeci() + ", " 
 				+ " CUSER='"+ kBILGI.getCUSER() +"',"
 				+ " CSatir="+ kBILGI.getCSatir() +""
-				+ " WHERE Paket_No  ='" + token[0] + "'"
+				+ " WHERE Paket_No  ='" + token[0] + "' AND Konsimento = '"+ token[1] +"' "
 				+ " AND Satir = "+ kBILGI.getSatir() + "" ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();

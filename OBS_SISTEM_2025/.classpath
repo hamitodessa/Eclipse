@@ -82,5 +82,7 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/httpclient-4.5.13.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/httpcore-4.4.13.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jl-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/flatlaf-3.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/flatlaf-intellij-themes-3.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

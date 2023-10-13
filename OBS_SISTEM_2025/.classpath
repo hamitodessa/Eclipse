@@ -50,7 +50,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/keycodeDecoder.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jSerialComm-2.6.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/QueryBuilder.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/2025/jfreechart.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-net-3.7.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/pfjgraphics.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jcommon-1.0.8.jar"/>
@@ -84,5 +83,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/jl-1.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/flatlaf-3.2.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/flatlaf-intellij-themes-3.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/jfreechart.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

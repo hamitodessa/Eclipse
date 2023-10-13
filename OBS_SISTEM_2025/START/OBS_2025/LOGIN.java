@@ -57,17 +57,21 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatArcIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatCobalt2IJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatGrayIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatGruvboxDarkHardIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatVuesionIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatXcodeDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatDraculaIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMonokaiProIJTheme;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
@@ -233,8 +237,8 @@ public class LOGIN extends JDialog {
 			{
 				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 			}
-			//UIManager.setLookAndFeel(new FlatGruvboxDarkHardIJTheme());
-			//FlatLightFlatIJTheme.setup();
+			//UIManager.setLookAndFeel(new FlatSolarizedLightIJTheme());
+			//FlatMaterialLighterIJTheme.setup();
 		} catch (Exception ex) {
 			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}

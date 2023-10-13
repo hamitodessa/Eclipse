@@ -15,7 +15,7 @@ public class sayiyiYaziyaCevir {
 	// ayrıca istediğiniz yabancı dile entegre edebilirsiniz.)
 	// Örnek kullanım şekli : sayiyiYaziyaCevir cevir = new sayiyiYaziyaCevir();
 	// String yaziyla= cevir.sayiyiYaziyaCevir(125478.254, 2, "TL", "Kuruş", "#", null, null, null);
-	public  String sayiyiYaziyaCevir(String sayi, int kurusbasamak,	String parabirimi, String parakurus, String diyez, String[] bb1, String[] bb2, String[] bb3) 
+	public   String sayiyiYaziyaCevirr(String sayi, int kurusbasamak,	String parabirimi, String parakurus, String diyez, String[] bb1, String[] bb2, String[] bb3) 
 	{
 		//public String sayiyiYaziyaCevir(String sayi, int kurusbasamak,	String parabirimi, String parakurus, String diyez, String[] bb1, String[] bb2, String[] bb3) {
 

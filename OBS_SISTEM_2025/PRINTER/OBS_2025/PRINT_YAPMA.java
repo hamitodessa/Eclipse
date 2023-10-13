@@ -672,7 +672,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						{
 							cnt = "Cent" ;
 						}
-						String yaziyla= cevir.sayiyiYaziyaCevir(qwe, 2, CEK_GIRIS.textField_4.getText(), cnt , "#", null, null, null);
+						String yaziyla= cevir.sayiyiYaziyaCevirr(qwe, 2, CEK_GIRIS.textField_4.getText(), cnt , "#", null, null, null);
 						oParagraphTextElement.setText(yaziyla );
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						oParagraphs.add(oParagraph);
@@ -808,7 +808,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						{
 							cnt = "Cent" ;
 						}
-						String yaziyla= cevir.sayiyiYaziyaCevir(qwe, 2, CEK_CIKIS.textField_4.getText() , cnt , "#", null, null, null);
+						String yaziyla= cevir.sayiyiYaziyaCevirr(qwe, 2, CEK_CIKIS.textField_4.getText() , cnt , "#", null, null, null);
 						oParagraphTextElement.setText(yaziyla );
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						oParagraphs.add(oParagraph);
@@ -2199,7 +2199,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 								{
 									cnt = "CENT" ;
 								}
-								String yaziyla= cevir.sayiyiYaziyaCevir(qwe, 2,FATURA.txtdoviz.getText() , cnt , "#", null, null, null);
+								String yaziyla= cevir.sayiyiYaziyaCevirr(qwe, 2,FATURA.txtdoviz.getText() , cnt , "#", null, null, null);
 								oParagraphTextElement.setText(yaziyla);
 								oParagraphTextElement.setKind(ParagraphElementKind.text);
 								oParagraphs.add(oParagraph);

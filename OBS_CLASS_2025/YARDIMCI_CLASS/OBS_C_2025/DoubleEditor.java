@@ -98,6 +98,8 @@ public class DoubleEditor extends DefaultCellEditor
     //Override to ensure that the value remains an Integer.
 	
 
+	
+
 	public Object getCellEditorValue()
     {
         JFormattedTextField ftf = (JFormattedTextField)getComponent();
@@ -108,7 +110,8 @@ public class DoubleEditor extends DefaultCellEditor
         }
         else if (o instanceof Number)
         {
-            return new Double(((Number)o).doubleValue());
+            return ((Number)o).doubleValue();
+            // return new Double(((Number)o).doubleValue());
         }
         else
         {

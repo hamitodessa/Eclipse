@@ -36,8 +36,8 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(OBS_SIS_2025_ANA_CLASS._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 	private static JTable table;
-	private static JTextField textField;
-	private static JTextField textField_1;
+	private static JTextField txtKons;
+	private static JTextField txtAciklama;
 
 
 	/**
@@ -81,21 +81,22 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		lblNewLabel.setBounds(10, 18, 70, 14);
 		panel.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
-		textField.setDocument(new JTextFieldLimit(15));
-		textField.setBounds(88, 15, 102, 20);
-		panel.add(textField);
+		txtKons = new JTextField();
+		
+		txtKons.setDocument(new JTextFieldLimit(15));
+		txtKons.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtKons.setBounds(88, 15, 102, 20);
+		panel.add(txtKons);
 		
 		JLabel lblNewLabel_1 = new JLabel("Aciklama");
 		lblNewLabel_1.setBounds(200, 18, 60, 14);
 		panel.add(lblNewLabel_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		textField_1.setDocument(new JTextFieldLimit(50));
-		textField_1.setBounds(260, 15, 320, 20);
-		panel.add(textField_1);
+		txtAciklama = new JTextField();
+		txtAciklama.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtAciklama.setDocument(new JTextFieldLimit(50));
+		txtAciklama.setBounds(260, 15, 320, 20);
+		panel.add(txtAciklama);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
@@ -170,15 +171,15 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 	public static void kaydet() 
 	{
 		lOG_BILGI lBILGI = new lOG_BILGI();
-		lBILGI.setmESAJ(textField.getText() + " Acik=" + textField_1.getText());
+		lBILGI.setmESAJ(txtKons.getText() + " Acik=" + txtAciklama.getText());
 		lBILGI.seteVRAK("");
 		 try {
-			lBILGI.setmESAJ(textField.getText() + " Silme");
+			lBILGI.setmESAJ(txtKons.getText() + " Silme");
 			lBILGI.seteVRAK("");
-			int pak_noString = ker_Access.kons_sil(textField.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
-			lBILGI.setmESAJ(textField.getText() + " Acik=" + textField_1.getText());
+			int pak_noString = ker_Access.kons_sil(txtKons.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
+			lBILGI.setmESAJ(txtKons.getText() + " Acik=" + txtAciklama.getText());
 			lBILGI.seteVRAK("");
-			ker_Access.kons_kayit(textField.getText(), textField_1.getText(),pak_noString ,lBILGI ,BAGLAN_LOG.kerLogDizin);
+			ker_Access.kons_kayit(txtKons.getText(), txtAciklama.getText(),pak_noString ,lBILGI ,BAGLAN_LOG.kerLogDizin);
 			temizle();
 			hisset();
 		} catch (Exception e) {
@@ -187,17 +188,17 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 	}
 	public static void sil() 
 	{
-		int g =  JOptionPane.showOptionDialog( null, textField_1.getText() + "   Nolu  Konsimento Dosyadan Silinecek ..?", "Kereste Dosyasindan Konsimento Silme",   JOptionPane.YES_NO_OPTION,
+		int g =  JOptionPane.showOptionDialog( null, txtAciklama.getText() + "   Nolu  Konsimento Dosyadan Silinecek ..?", "Kereste Dosyasindan Konsimento Silme",   JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 		if(g != 0 ) { return;	}
 		
 		lOG_BILGI lBILGI = new lOG_BILGI();
-		lBILGI.setmESAJ(textField.getText() + " Acik=" + textField_1.getText());
+		lBILGI.setmESAJ(txtKons.getText() + " Acik=" + txtAciklama.getText());
 		lBILGI.seteVRAK("");
 		 try {
-			lBILGI.setmESAJ(textField.getText() + " Silme");
+			lBILGI.setmESAJ(txtKons.getText() + " Silme");
 			lBILGI.seteVRAK("");
-			ker_Access.kons_sil(textField.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
+			ker_Access.kons_sil(txtKons.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
 			temizle();
 			hisset();
 		} catch (Exception e) {
@@ -209,13 +210,13 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		if (table.getRowCount() == 0 ) {  
 			temizle();
 			return;
-		} 
-		textField.setText(table.getModel().getValueAt(satir, 0).toString());
-		textField_1.setText(table.getModel().getValueAt(satir, 1).toString());
+		}
+		txtKons.setText(table.getModel().getValueAt(satir, 0).toString());
+		txtAciklama.setText(table.getModel().getValueAt(satir, 1).toString());
 	}
 	private static void temizle()
 	{
-		textField.setText("");
-		textField_1.setText("");
+		txtKons.setText("");
+		txtAciklama.setText("");
 	}
 }

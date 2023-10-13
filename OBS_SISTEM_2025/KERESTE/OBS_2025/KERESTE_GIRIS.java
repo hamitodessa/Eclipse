@@ -786,21 +786,21 @@ public class KERESTE_GIRIS extends JInternalFrame {
 
 		lblNewLabel_13 = new JLabel("0");
 		lblNewLabel_13.setForeground(new Color(0, 0, 128));
-		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_13.setBounds(122, 5, 40, 14);
 		panel_71.add(lblNewLabel_13);
 
 		label_8 = new JLabel("0.000");
 		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8.setForeground(new Color(139, 0, 0));
-		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_8.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_8.setBounds(415, 5, 77, 14);
 		panel_71.add(label_8);
 
 		label_9 = new JLabel("0.00");
 		label_9.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_9.setForeground(new Color(139, 0, 0));
-		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_9.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_9.setBounds(820, 5, 146, 14);
 		panel_71.add(label_9);
 		splitPane_3.setLeftComponent(panel_71);
@@ -808,14 +808,14 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		lblPaket = new JLabel("0");
 		lblPaket.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPaket.setForeground(new Color(139, 0, 0));
-		lblPaket.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPaket.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblPaket.setBounds(499, 5, 66, 14);
 		panel_71.add(lblPaket);
 		
 		label_8_1 = new JLabel("0");
 		label_8_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8_1.setForeground(new Color(139, 0, 0));
-		label_8_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_8_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_8_1.setBounds(330, 5, 85, 14);
 		panel_71.add(label_8_1);
 		
@@ -1975,10 +1975,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			if (table.getRowCount() == 0) return;
 			int g =  JOptionPane.showOptionDialog( null, textField.getText() + " Nolu Evrak Dosyadan Silinecek ..?"  ,
 					"Kereste Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE,
-					null,     //no custom icon
-					oac.options,  //button titles
-					oac.options[1]); //default button
+					JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
 			if(g != 0 ) { return;	}
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ(textField.getText() + " Nolu Giris Kereste Silindi");
@@ -1986,8 +1983,6 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			ker_Access.ker_giris_sil(textField.getText() ,lBILGI,BAGLAN_LOG.kerLogDizin);
 			dipnot_sil();
 			acik_sil();
-
-			//  '************************************
 			textField.setText("");
 			textField.requestFocus();
 		}

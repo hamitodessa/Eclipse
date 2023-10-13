@@ -749,28 +749,28 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		lblNewLabel_13 = new JLabel("0");
 		lblNewLabel_13.setForeground(new Color(0, 0, 128));
-		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_13.setBounds(122, 5, 40, 14);
 		panel_71.add(lblNewLabel_13);
 
 		label_8_1 = new JLabel("0");
 		label_8_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8_1.setForeground(new Color(139, 0, 0));
-		label_8_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_8_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_8_1.setBounds(373, 5, 73, 14);
 		panel_71.add(label_8_1);
 
 		label_8 = new JLabel("0.000");
 		label_8.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_8.setForeground(new Color(139, 0, 0));
-		label_8.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_8.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_8.setBounds(453, 5, 67, 14);
 		panel_71.add(label_8);
 
 		label_9 = new JLabel("0.00");
 		label_9.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_9.setForeground(new Color(139, 0, 0));
-		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_9.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_9.setBounds(821, 5, 201, 14);
 		panel_71.add(label_9);
 		splitPane_3.setLeftComponent(panel_71);
@@ -778,7 +778,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		lblPaket = new JLabel("0");
 		lblPaket.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPaket.setForeground(new Color(139, 0, 0));
-		lblPaket.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPaket.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblPaket.setBounds(524, 5, 73, 14);
 		panel_71.add(lblPaket);
 
@@ -1631,7 +1631,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			kdv =Double.parseDouble( mdl.getValueAt(i,9).toString());
 			izahat = mdl.getValueAt(i,11).toString();
 			lOG_BILGI lBILGI = new lOG_BILGI();
-			lBILGI.setmESAJ( " Fatura Kayit" +  mdl.getValueAt(i,1).toString() + " Mik=" + miktar + " Tut=" + tutar);
+			lBILGI.setmESAJ( " Fatura C Kayit" +  mdl.getValueAt(i,1).toString() + " Pak:" +  mdl.getValueAt(i,0).toString()+ " Mik=" + miktar + " Tut=" + tutar);
 			lBILGI.seteVRAK(textField.getText());
 			//
 			KER_BILGI ker_BILGI = new KER_BILGI();

@@ -2108,7 +2108,7 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_64.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-video-editing-30.png")));
 		btnNewButton_64.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				form_ac("KERESTE KOD DEGISTIRME","");
+				form_ac("KERESTE KOD-KONSIMENTO DEGISTIRME","");
 			}
 		});
 		toolBar_Kereste.add(btnNewButton_64);
@@ -3445,7 +3445,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("KERESTE GRUP RAPOR")) internalFrame  = new KER_GRUP_RAPOR();
 			else if (pencere.equals("KERESTE DETAY RAPOR")) internalFrame  = new KER_DETAY();
 			else if (pencere.equals("KERESTE FATURA RAPORLAMA")) internalFrame  = new KER_FAT_RAPOR();
-			else if (pencere.equals("KERESTE KOD DEGISTIRME")) internalFrame  = new KER_KOD_DEGISTIRME();
+			else if (pencere.equals("KERESTE KOD-KONSIMENTO DEGISTIRME")) internalFrame  = new KER_KOD_DEGISTIRME();
 			else if (pencere.equals("KERESTE DEGISKEN YENILEME")) internalFrame  = new KER_DEGISKEN_DEGIS();
 			else if (pencere.equals("KERESTE ORTALAMA SATIS")) internalFrame  = new KER_ORT_SATIS();
 			else if (pencere.equals("KERESTE BOS KUR")) internalFrame  = new KER_BOS_KUR();

@@ -1121,17 +1121,38 @@ public class KERESTE_MSSQL implements IKERESTE {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String[] token = k1.toString().split("-");
-		String ilks ,ilkk,ilkb,ilkg;
-		ilks = token[0];
-		ilkk = token[1];
-		ilkb = token[2];
-		ilkg = token[3];
+		StringBuilder kODU = new StringBuilder();
+		if (! token[0].equals("00")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) >= '" + token[0] + "'  AND" );
+		}
+		if (! token[1].equals("000"))
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) >= '" + token[1] + "' AND"  ) ;
+		}
+		if (! token[2].equals("0000")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) >= '" + token[2] + "' AND" );
+		}
+		if (! token[3].equals("0000"))  {
+			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) >= '" + token[3] + "'  AND"  );
+		}
 		token = k2.toString().split("-");
-		String sons,sonk,sonb,song;
-		sons = token[0];
-		sonk = token[1];
-		sonb = token[2];
-		song = token[3];
+		if (! token[0].equals("ZZ")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) <= '" + token[0] + "'  AND" );
+		}
+		if (! token[1].equals("999"))
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) <= '" + token[1] + "' AND"  ) ;
+		}
+		if (! token[2].equals("9999")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) <= '" + token[2] + "' AND" );
+		}
+		if (! token[3].equals("9999"))  {
+			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) <= '" + token[3] + "'  AND"  );
+		}
 		if(qwq6.equals(" Like  '%' "))
 		{
 			qwq6 =  " " ;
@@ -1173,11 +1194,8 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" FROM KERESTE   " + kur_dos + 
 				" WHERE   " + jkj + " " +
 				   qwq6 + " "+qwq7 + " " +qwq8 + " " + dpo +
-				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
-				" SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" +
-				" SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" +
-				" SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' " +
-				" AND "+ dURUM + "Cari_Firma between N'" + s1 + "' AND N'" + s2 + "'" +
+				   kODU + " " +
+				"  "+ dURUM + "Cari_Firma between N'" + s1 + "' AND N'" + s2 + "'" +
 				" AND " + qweString  + " between N'" + e1 + "' AND N'" + e2 + "'" +
 				" AND Konsimento between N'" + ko1 + "' AND N'" + ko2 + "'" +
 				" AND  KERESTE."+ dURUM + "Tarih BETWEEN '" +t1 + "'" + " AND  '" + t2 + " 23:59:59.998'" +
@@ -1201,17 +1219,38 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
-		String ilks ,ilkk,ilkb,ilkg;
-		ilks = token[0];
-		ilkk = token[1];
-		ilkb = token[2];
-		ilkg = token[3];
+		StringBuilder kODU = new StringBuilder();
+		if (! token[0].equals("00")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) >= '" + token[0] + "'  AND" );
+		}
+		if (! token[1].equals("000"))
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) >= '" + token[1] + "' AND"  ) ;
+		}
+		if (! token[2].equals("0000")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) >= '" + token[2] + "' AND" );
+		}
+		if (! token[3].equals("0000"))  {
+			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) >= '" + token[3] + "'  AND"  );
+		}
 		token = ker_rap_BILGI.getGKodu2().toString().split("-");
-		String sons,sonk,sonb,song;
-		sons = token[0];
-		sonk = token[1];
-		sonb = token[2];
-		song = token[3];
+		if (! token[0].equals("ZZ")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) <= '" + token[0] + "'  AND" );
+		}
+		if (! token[1].equals("999"))
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) <= '" + token[1] + "' AND"  ) ;
+		}
+		if (! token[2].equals("9999")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) <= '" + token[2] + "' AND" );
+		}
+		if (! token[3].equals("9999"))  {
+			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) <= '" + token[3] + "'  AND"  );
+		}
 		String sql =  " SELECT [Evrak_No] "
 				+ " ,[Barkod] "
 				+ " ,[Kodu] "
@@ -1258,10 +1297,11 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " FROM KERESTE  " //WITH (INDEX (IX_KERESTE)) 
 				+ " WHERE " 
 				+ " Tarih BETWEEN '" + ker_rap_BILGI.getGTarih1() + "'" + " AND  '" + ker_rap_BILGI.getGTarih2() + " 23:59:59.998' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' AND " 
+				//+ " SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" 
+				//+ " SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" 
+				//+ " SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" 
+				//+ " SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' AND " 
+				+ kODU
 				+ " Paket_No between N'" + ker_rap_BILGI.getPaket_No1() + "' AND N'" + ker_rap_BILGI.getPaket_No2() + "' AND " 
 				+ " Cari_Firma between N'" + ker_rap_BILGI.getGCari_Firma1() + "' AND N'" + ker_rap_BILGI.getGCari_Firma2() + "' AND" 
 				+ " Evrak_No between N'" + ker_rap_BILGI.getEvrak_No1() + "' AND N'" + ker_rap_BILGI.getEvrak_No2() + "' AND" 
@@ -1569,22 +1609,26 @@ public class KERESTE_MSSQL implements IKERESTE {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
-		String ilks ,ilkk,ilkb,ilkg;
-		ilks = token[0];
-		if (ilks.equals("00")) {
-			ilks = "";
+		StringBuilder kODU = new StringBuilder();
+		if (! token[0].equals("00")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) = '" + token[0] + "'  AND" );
 		}
-		ilkk = token[1];
-		if (ilkk.equals("000")) {
-			ilkk = "";
+		if (! token[1].equals("000"))
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) = '" + token[1] + "' AND"  ) ;
 		}
-		ilkb = token[2];
-		if (ilkb.equals("0000")) {
-			ilkb = "";
+		if (! token[2].equals("0000")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) = '" + token[2] + "' AND" );
 		}
-		ilkg = token[3];
-		if (ilkg.equals("0000")) {
-			ilkg = "";
+		if (! token[3].equals("0000"))  {
+			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) = '" + token[3] + "'  AND"  );
+		}
+		String evrakString = "" ;
+		if (ker_rap_BILGI.getEvrak_No1().toString().equals(""))
+		{
+			evrakString = " AND Evrak_No like '" + ker_rap_BILGI.getEvrak_No1() + "%'" ;
 		}
 		String sql =  " SELECT CAST(0 as bit) ,[Evrak_No] "
 				+ " ,[Barkod] "
@@ -1631,12 +1675,14 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " ,[CUSER] ,Satir" 
 				+ " FROM KERESTE    " 
 				+ " WHERE " 
-				+ " SUBSTRING(KERESTE.Kodu, 1, 2) like '"+ ilks +"%'  AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 4, 3) like '"+ilkk +"%' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 8, 4) like '"+ilkb +"%' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 13, 4) like '"+ilkg +"%'  AND" 
+				+ kODU 
+				//+ " SUBSTRING(KERESTE.Kodu, 1, 2) like '" + ilks + "%'  AND" 
+				//+ " SUBSTRING(KERESTE.Kodu, 4, 3) like '" + ilkk + "%' AND" 
+				//+ " SUBSTRING(KERESTE.Kodu, 8, 4) like '" + ilkb + "%' AND" 
+				//+ " SUBSTRING(KERESTE.Kodu, 13, 4) like '" + ilkg + "%'  AND" 
 				+ " Paket_No like N'"+ ker_rap_BILGI.getPaket_No1().toString()+ "%' AND " 
-				+ " Konsimento like N'"+ ker_rap_BILGI.getKonsimento1().toString() + "%'"  ; 
+				+ " Konsimento like N'"+ ker_rap_BILGI.getKonsimento1().toString() + "%'" 
+				+ " " + evrakString + " "; 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

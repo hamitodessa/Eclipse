@@ -71,10 +71,10 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(OBS_SIS_2025_ANA_CLASS._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 	private static JTable table;
-	private JTextField textField;
+	private JTextField txtKons;
 	private JTextField txtPaketNo;
-	private JTextField textField_2;
-	private JFormattedTextField formattedTextField ;
+	private JTextField txtYKod;
+	private JFormattedTextField txtKodu ;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_4 ;
 	private JLabel lblNewLabel_4_1 ;
@@ -82,6 +82,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	private boolean ilk = true ;
 	CheckBoxHeader asdBoxHeader = new CheckBoxHeader(new MyItemListener());
 	private JTextField txtYKons;
+	private JTextField txtEvrak;
 
 	/**
 	 * Launch the application.
@@ -105,7 +106,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	public KER_KOD_DEGISTIRME() {
 		setMaximizable(true);
 		setIconifiable(true);
-		setTitle("KERESTE KOD DEGISTIRME");
+		setTitle("KERESTE KOD-KONSIMENTO DEGISTIRME");
 		setResizable(true);
 		setClosable(true);
 		setBounds(0, 0,1000,400);
@@ -116,8 +117,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(0, 95));
-		panel.setMaximumSize(new Dimension(0, 95));
+		panel.setMinimumSize(new Dimension(0, 83));
+		panel.setMaximumSize(new Dimension(0, 83));
 		
 		panel.setLayout(null);
 		splitPane.setLeftComponent(panel);
@@ -130,8 +131,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		lblNewLabel_1.setBounds(29, 14, 70, 14);
 		panel.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
+		txtKons = new JTextField();
+		txtKons.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
@@ -140,11 +141,11 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				}
 			}
 		});
-		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField.setDocument(new JTextFieldLimit(10));
-		textField.setBounds(117, 11, 96, 20);
+		txtKons.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtKons.setDocument(new JTextFieldLimit(15));
+		txtKons.setBounds(117, 11, 96, 20);
 	
-		panel.add(textField);
+		panel.add(txtKons);
 		
 		txtPaketNo = new JTextField();
 		txtPaketNo.addKeyListener(new KeyAdapter() {
@@ -158,26 +159,26 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		});
 		txtPaketNo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtPaketNo.setDocument(new JTextFieldLimit(10));
-		txtPaketNo.setBounds(117, 36, 130, 20);
+		txtPaketNo.setBounds(117, 36, 96, 20);
 		panel.add(txtPaketNo);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Yeni Kod", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(444, 14, 224, 75);
+		panel_1.setBounds(444, 14, 224, 65);
 		panel_1.setLayout(null);
 		panel.add(panel_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_2.setBounds(10, 18, 30, 20);
-		textField_2.setDocument(new JTextFieldLimit(2));
-		textField_2.getDocument().addDocumentListener(new DocumentListener() {
+		txtYKod = new JTextField();
+		txtYKod.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtYKod.setBounds(10, 18, 30, 20);
+		txtYKod.setDocument(new JTextFieldLimit(2));
+		txtYKod.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 			}
 			public void removeUpdate(DocumentEvent e) {
 				try {
 					mWAIT();
-					kod_ADI( textField_2.getText());
+					kod_ADI( txtYKod.getText());
 					mDEFAULT();
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -186,7 +187,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			public void insertUpdate(DocumentEvent e) {
 				try {
 					mWAIT();
-					kod_ADI( textField_2.getText());
+					kod_ADI( txtYKod.getText());
 					mDEFAULT();
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -194,13 +195,14 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			}
 		});
 
-		panel_1.add(textField_2);
+		panel_1.add(txtYKod);
 		
 		JButton btnNewButton = new JButton("");
+		btnNewButton.setToolTipText("Kod Degistirme");
 		btnNewButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) {
-				if (textField_2.getText().equals("")) {
+				if (txtYKod.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Kod Bos ...", "Kod Degistirmea", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else if (satir_kontrol() == 0 ) {
@@ -225,8 +227,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		lblNewLabel_4.setBounds(10, 45, 203, 14);
 		panel_1.add(lblNewLabel_4);
 		
-		formattedTextField = new JFormattedTextField();
-		formattedTextField.addKeyListener(new KeyAdapter() {
+		txtKodu = new JFormattedTextField();
+		txtKodu.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
@@ -235,17 +237,17 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				}
 			}
 		});
-		formattedTextField.setBounds(287, 36, 135, 20);
+		txtKodu.setBounds(287, 36, 135, 20);
 		MaskFormatter mask;
 		try {
 		    mask = new MaskFormatter("AA-###-####-####");
-		    mask.install(formattedTextField);
+		    mask.install(txtKodu);
 		} catch (ParseException e) {
 		    e.printStackTrace();
 		}
-		formattedTextField.setText("00-000-0000-0000");
-		formattedTextField.setFont(new Font("Tahoma", Font.BOLD, 12));
-		panel.add(formattedTextField);
+		txtKodu.setText("00-000-0000-0000");
+		txtKodu.setFont(new Font("Tahoma", Font.BOLD, 12));
+		panel.add(txtKodu);
 		
 		JLabel lblKodu = new JLabel("Kodu");
 		lblKodu.setBounds(285, 14, 70, 14);
@@ -254,12 +256,13 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
 		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Yeni Konsimento", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1_1.setBounds(678, 14, 224, 75);
+		panel_1_1.setBounds(678, 14, 224, 65);
 		panel.add(panel_1_1);
 		
 		txtYKons = new JTextField();
 		txtYKons.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtYKons.setBounds(10, 18, 53, 20);
+		txtYKons.setBounds(10, 18, 88, 20);
+		txtYKons.setDocument(new JTextFieldLimit(15));
 		txtYKons.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 			}
@@ -286,6 +289,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		panel_1_1.add(txtYKons);
 		
 		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setToolTipText("Konsimento Degistirme");
 		btnNewButton_1.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) {
@@ -314,6 +318,25 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_4_1.setBounds(10, 45, 203, 14);
 		panel_1_1.add(lblNewLabel_4_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Giris Evrak");
+		lblNewLabel_1_1.setBounds(29, 62, 78, 14);
+		panel.add(lblNewLabel_1_1);
+		
+		txtEvrak = new JTextField();
+		txtEvrak.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtEvrak.setBounds(117, 59, 96, 20);
+		txtEvrak.setDocument(new JTextFieldLimit(10));
+		txtEvrak.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					hisset();
+				}
+			}
+		});
+		panel.add(txtEvrak);
 		
 		JSplitPane splitPane1 = new JSplitPane();
 		splitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -360,8 +383,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
 		ker_BILGI.setPaket_No1(txtPaketNo.getText());
-		ker_BILGI.setKonsimento1(textField.getText());
-		ker_BILGI.setGKodu1(formattedTextField.getText());
+		ker_BILGI.setKonsimento1(txtKons.getText());
+		ker_BILGI.setGKodu1(txtKodu.getText());
 	}
 	private void hisset()
 	{
@@ -373,8 +396,9 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			mWAIT();
 			KER_RAPOR_BILGI ker_BILGI = new KER_RAPOR_BILGI();
 			ker_BILGI.setPaket_No1(txtPaketNo.getText());
-			ker_BILGI.setKonsimento1(textField.getText());
-			ker_BILGI.setGKodu1(formattedTextField.getText());
+			ker_BILGI.setKonsimento1(txtKons.getText());
+			ker_BILGI.setGKodu1(txtKodu.getText());
+			ker_BILGI.setEvrak_No1(txtEvrak.getText());
 			rs = ker_Access.urun_detay(ker_BILGI );
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -684,7 +708,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				{
 					ker_Access.ker_kod_degis(modell.getValueAt(i, 3).toString(),
 							modell.getValueAt(i, 4).toString(),
-							textField_2.getText(),
+							txtYKod.getText(),
 							(int) modell.getValueAt(i, 0) ,
 							lBILGI,BAGLAN_LOG.kerLogDizin);
 				}
@@ -697,10 +721,10 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
 			th.repaint();
 			table.repaint();
-			textField.setText("");
+			txtKons.setText("");
 			txtPaketNo.setText("");
-			textField_2.setText("");
-			formattedTextField.setText("00-000-0000-0000");
+			txtYKod.setText("");
+			txtKodu.setText("00-000-0000-0000");
 
 		} catch (Exception ex) {
 			mDEFAULT();
@@ -730,11 +754,11 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
 			th.repaint();
 			table.repaint();
-			textField.setText("");
+			txtKons.setText("");
 			txtPaketNo.setText("");
-			textField_2.setText("");
+			txtYKod.setText("");
 			txtYKons.setText("");
-			formattedTextField.setText("00-000-0000-0000");
+			txtKodu.setText("00-000-0000-0000");
 
 		} catch (Exception ex) {
 			mDEFAULT();
@@ -785,18 +809,20 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	{
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 		GuiUtil.setWaitCursor(splitPane,true);
-		GuiUtil.setWaitCursor(textField,true);
+		GuiUtil.setWaitCursor(txtKons,true);
 		GuiUtil.setWaitCursor(txtPaketNo,true);
-		GuiUtil.setWaitCursor(formattedTextField,true);
+		GuiUtil.setWaitCursor(txtEvrak,true);
+		GuiUtil.setWaitCursor(txtKodu,true);
 
 	}
 	private void mDEFAULT()
 	{
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		GuiUtil.setWaitCursor(splitPane,false);
-		GuiUtil.setWaitCursor(textField,false);
+		GuiUtil.setWaitCursor(txtKons,false);
 		GuiUtil.setWaitCursor(txtPaketNo,false);
-		GuiUtil.setWaitCursor(formattedTextField,false);
+		GuiUtil.setWaitCursor(txtEvrak,false);
+		GuiUtil.setWaitCursor(txtKodu,false);
 
 	}
 	///********

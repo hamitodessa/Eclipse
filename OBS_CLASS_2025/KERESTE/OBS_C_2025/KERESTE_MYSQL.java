@@ -475,7 +475,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.executeUpdate();
 		
 		
-		sql  = "INSERT INTO PAKET_NO (Evrak_No,Konsimento) " +
+		sql  = "INSERT INTO PAKET_NO (Pak_No,Konsimento) " +
 				" VALUES (?,?)" ;
 		stmt = null;
 		stmt = con.prepareStatement(sql);
@@ -496,7 +496,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 		stmt.executeUpdate();
 		///
 		ResultSet	rss = null;
-		stmt = con.prepareStatement("SELECT Evrak_No FROM PAKET_NO  WHERE Konsimento =N'" + kons + "' ");
+		stmt = con.prepareStatement("SELECT Pak_No FROM PAKET_NO  WHERE Konsimento =N'" + kons + "' ");
 		rss = stmt.executeQuery();
 		int result ;
 		if (!rss.isBeforeFirst() ) {  
@@ -1049,17 +1049,38 @@ public class KERESTE_MYSQL implements IKERESTE {
 		 
 		ResultSet	rss = null;
 		String[] token = k1.toString().split("-");
-		String ilks ,ilkk,ilkb,ilkg;
-		ilks = token[0];
-		ilkk = token[1];
-		ilkb = token[2];
-		ilkg = token[3];
+		StringBuilder kODU = new StringBuilder();
+		if (! token[0].equals("00")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) >= '" + token[0] + "'  AND" );
+		}
+		if (! token[1].equals("000"))
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) >= '" + token[1] + "' AND"  ) ;
+		}
+		if (! token[2].equals("0000")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) >= '" + token[2] + "' AND" );
+		}
+		if (! token[3].equals("0000"))  {
+			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) >= '" + token[3] + "'  AND"  );
+		}
 		token = k2.toString().split("-");
-		String sons,sonk,sonb,song;
-		sons = token[0];
-		sonk = token[1];
-		sonb = token[2];
-		song = token[3];
+		if (! token[0].equals("ZZ")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) <= '" + token[0] + "'  AND" );
+		}
+		if (! token[1].equals("999"))
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) <= '" + token[1] + "' AND"  ) ;
+		}
+		if (! token[2].equals("9999")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) <= '" + token[2] + "' AND" );
+		}
+		if (! token[3].equals("9999"))  {
+			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) <= '" + token[3] + "'  AND"  );
+		}
 		if(qwq6.equals(" Like  '%' "))
 		{
 			qwq6 =  " " ;
@@ -1112,11 +1133,8 @@ public class KERESTE_MYSQL implements IKERESTE {
 				" FROM KERESTE   " + kur_dos + 
 				" WHERE   " + jkj + " " +
 				   qwq6 + " "+qwq7 + " " +qwq8 + " " + dpo +
-				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
-				" SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" +
-				" SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" +
-				" SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' " +
-				" AND "+ dURUM + "Cari_Firma between N'" + s1 + "' AND N'" + s2 + "'" +
+				   kODU +
+				"  "+ dURUM + "Cari_Firma between N'" + s1 + "' AND N'" + s2 + "'" +
 				" AND " + qweString  + " between N'" + e1 + "' AND N'" + e2 + "'" +
 				" AND Konsimento between N'" + ko1 + "' AND N'" + ko2 + "'" +
 				" AND  KERESTE."+ dURUM + "Tarih BETWEEN '" +t1 + "'" + " AND  '" + t2 + " 23:59:59.998'" +
@@ -1130,27 +1148,47 @@ public class KERESTE_MYSQL implements IKERESTE {
 	public ResultSet stok_rapor(KER_RAPOR_BILGI ker_rap_BILGI) throws ClassNotFoundException, SQLException {
 		 
 		ResultSet	rss = null;
-		
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
-		String ilks ,ilkk,ilkb,ilkg;
-		ilks = token[0];
-		ilkk = token[1];
-		ilkb = token[2];
-		ilkg = token[3];
+		StringBuilder kODU = new StringBuilder();
+		if (! token[0].equals("00")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) >= '" + token[0] + "'  AND" );
+		}
+		if (! token[1].equals("000"))
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) >= '" + token[1] + "' AND"  ) ;
+		}
+		if (! token[2].equals("0000")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) >= '" + token[2] + "' AND" );
+		}
+		if (! token[3].equals("0000"))  {
+			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) >= '" + token[3] + "'  AND"  );
+		}
 		token = ker_rap_BILGI.getGKodu2().toString().split("-");
-		String sons,sonk,sonb,song;
-		sons = token[0];
-		sonk = token[1];
-		sonb = token[2];
-		song = token[3];
+		if (! token[0].equals("ZZ")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) <= '" + token[0] + "'  AND" );
+		}
+		if (! token[1].equals("999"))
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) <= '" + token[1] + "' AND"  ) ;
+		}
+		if (! token[2].equals("9999")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) <= '" + token[2] + "' AND" );
+		}
+		if (! token[3].equals("9999"))  {
+			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) <= '" + token[3] + "'  AND"  );
+		}
 		String sql =  " SELECT  Evrak_No  "
 				+ " , Barkod  "
 				+ " , Kodu  "
 				+ " , Paket_No  "
 				+ " , Konsimento  "
 				+ " , Miktar  "
-				+ " ,(((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)  as m3"
-				+ " ,DATE_FORMAT(Tarih, '%Y.%m.%d')  AS TARIH "
+				+ " , (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)  as m3"
+				+ " , DATE_FORMAT(Tarih, '%Y.%m.%d')  AS TARIH "
 				+ " , Kdv  "
 				+ " , Doviz  "
 				+ " , Fiat  "
@@ -1160,14 +1198,14 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " , Adres_Firma  "
 				+ " , Iskonto  "
 				+ " , Tevkifat  "
-				+ " ,IFNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.Ana_Grup),'') Ana_Grup "
-				+ " ,IFNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.Alt_Grup),'') AS Alt_Grup "
-				+ " ,(SELECT MENSEI FROM MENSEI_DEGISKEN WHERE MENSEI_DEGISKEN.MEID_Y = KERESTE.Mensei ) as Mensei  " 
-				+ " ,(SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) as Depo  " 
-				+ " ,IFNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.Ozel_Kod),'') Ozel_Kod "
+				+ " , IFNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.Ana_Grup),'') Ana_Grup "
+				+ " , IFNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.Alt_Grup),'') AS Alt_Grup "
+				+ " , (SELECT MENSEI FROM MENSEI_DEGISKEN WHERE MENSEI_DEGISKEN.MEID_Y = KERESTE.Mensei ) as Mensei  " 
+				+ " , (SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.Depo ) as Depo  " 
+				+ " , IFNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.Ozel_Kod),'') Ozel_Kod "
 				+ " , Izahat  "
-				+ " ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.Nakliyeci ) as Nakliyeci  " 
-				+ " ,USER "
+				+ " , (SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.Nakliyeci ) as Nakliyeci  " 
+				+ " , USER "
 				+ " , Cikis_Evrak  "
 				+ " , IF(DATE_FORMAT(CTarih, '%Y.%m.%d')= '1900.01.01','',DATE_FORMAT(CTarih, '%d.%m.%Y'))  AS CTARIH "
 				+ " , CKdv  "
@@ -1179,20 +1217,21 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " , CAdres_Firma  "
 				+ " , CIskonto  "
 				+ " , CTevkifat  "
-				+ " ,IFNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.CAna_Grup),'') AS C_Ana_Grup "
-				+ "	,IFNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.CAlt_Grup),'') AS C_Alt_Grup "
-				+ " ,IFNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo),'') AS C_Depo "
-				+ " ,IFNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.COzel_Kod),'') COzel_Kod "
+				+ " , IFNULL((SELECT ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.CAna_Grup),'') AS C_Ana_Grup "
+				+ "	, IFNULL((SELECT ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.CAlt_Grup),'') AS C_Alt_Grup "
+				+ " , IFNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = KERESTE.CDepo),'') AS C_Depo "
+				+ " , IFNULL((SELECT OZEL_KOD_1 FROM OZ_KOD_1_DEGISKEN WHERE OZ_KOD_1_DEGISKEN.OZ1ID_Y = KERESTE.COzel_Kod),'') COzel_Kod "
 				+ " , CIzahat  "
-				+ " ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.CNakliyeci ) as C_Nakliyeci  " 
+				+ " , (SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE.CNakliyeci ) as C_Nakliyeci  " 
 				+ " , CUSER  " 
 				+ " FROM KERESTE  " //WITH (INDEX (IX_KERESTE)) 
 				+ " WHERE " 
 				+ " Tarih BETWEEN '" + ker_rap_BILGI.getGTarih1() + "'" + " AND  '" + ker_rap_BILGI.getGTarih2() + " 23:59:59.998' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' AND " 
+				//+ " SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" 
+				//+ " SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" 
+				//+ " SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" 
+				//+ " SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' AND " 
+				+ kODU
 				+ " Paket_No between N'" + ker_rap_BILGI.getPaket_No1() + "' AND N'" + ker_rap_BILGI.getPaket_No2() + "' AND " 
 				+ " Cari_Firma between N'" + ker_rap_BILGI.getGCari_Firma1() + "' AND N'" + ker_rap_BILGI.getGCari_Firma2() + "' AND" 
 				+ " Evrak_No between N'" + ker_rap_BILGI.getEvrak_No1() + "' AND N'" + ker_rap_BILGI.getEvrak_No2() + "' AND" 
@@ -1500,22 +1539,26 @@ public class KERESTE_MYSQL implements IKERESTE {
 		 
 		ResultSet	rss = null;
 		String[] token = ker_rap_BILGI.getGKodu1().toString().split("-");
-		String ilks ,ilkk,ilkb,ilkg;
-		ilks = token[0];
-		if (ilks.equals("00")) {
-			ilks = "";
+		StringBuilder kODU = new StringBuilder();
+		if (! token[0].equals("00")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 1, 2) = '" + token[0] + "'  AND" );
 		}
-		ilkk = token[1];
-		if (ilkk.equals("000")) {
-			ilkk = "";
+		if (! token[1].equals("000"))
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 4, 3) = '" + token[1] + "' AND"  ) ;
 		}
-		ilkb = token[2];
-		if (ilkb.equals("0000")) {
-			ilkb = "";
+		if (! token[2].equals("0000")) 
+		{
+			kODU.append(" SUBSTRING(KERESTE.Kodu, 8, 4) = '" + token[2] + "' AND" );
 		}
-		ilkg = token[3];
-		if (ilkg.equals("0000")) {
-			ilkg = "";
+		if (! token[3].equals("0000"))  {
+			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) = '" + token[3] + "'  AND"  );
+		}
+		String evrakString = "" ;
+		if (ker_rap_BILGI.getEvrak_No1().toString().equals(""))
+		{
+			evrakString = " AND Evrak_No like '" + ker_rap_BILGI.getEvrak_No1() + "%'" ;
 		}
 		String sql =  " SELECT CAST(0 AS UNSIGNED),Evrak_No  "
 				+ " ,Barkod  "
@@ -1562,12 +1605,14 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " ,CUSER ,Satir" 
 				+ " FROM KERESTE    " 
 				+ " WHERE " 
-				+ " SUBSTRING(KERESTE.Kodu, 1, 2) like '"+ ilks +"%'  AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 4, 3) like '"+ilkk +"%' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 8, 4) like '"+ilkb +"%' AND" 
-				+ " SUBSTRING(KERESTE.Kodu, 13, 4) like '"+ilkg +"%'  AND" 
+				+ kODU 
+				//+ " SUBSTRING(KERESTE.Kodu, 1, 2) like '" + ilks + "%'  AND" 
+				//+ " SUBSTRING(KERESTE.Kodu, 4, 3) like '" + ilkk + "%' AND" 
+				//+ " SUBSTRING(KERESTE.Kodu, 8, 4) like '" + ilkb + "%' AND" 
+				//+ " SUBSTRING(KERESTE.Kodu, 13, 4) like '" + ilkg + "%'  AND" 				
 				+ " Paket_No like N'"+ ker_rap_BILGI.getPaket_No1().toString()+ "%' AND " 
-				+ " Konsimento like N'"+ ker_rap_BILGI.getKonsimento1().toString() + "%'"  ; 
+				+ " Konsimento like N'"+ ker_rap_BILGI.getKonsimento1().toString() + "%'"  
+				+ " " + evrakString + " "; 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

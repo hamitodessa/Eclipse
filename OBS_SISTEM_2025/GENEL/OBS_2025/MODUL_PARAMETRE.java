@@ -178,9 +178,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_1_1.setBounds(730, 20, 50, 14);
 		panel_1.add(lblNewLabel_1_1);
 		
-		lblStoklog = new JLabel("");
-		lblStoklog.setBounds(610, 20, 72, 14);
-		panel_1.add(lblStoklog);
+		
 
 
 
@@ -435,7 +433,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 			lblNewLabel_2.setText(BAGLAN.cariDizin.sERVER);	
 		}
 		lblClog.setText(BAGLAN.cariDizin.lOG == true ? "Loglama" : "");
-		lblNewLabel_4.setText( c_Access.cari_firma_adi() );
+		lblNewLabel_4.setText( "" );
 
 		// Stok
 		label.setText(BAGLAN.fatDizin.kOD);

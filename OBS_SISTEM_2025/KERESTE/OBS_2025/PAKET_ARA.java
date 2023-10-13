@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
@@ -21,8 +23,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -100,33 +100,29 @@ public class PAKET_ARA extends JDialog {
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField.setDocument(new JTextFieldLimit(10));
 		textField.setBounds(117, 11, 96, 20);
-	
-		panel.add(textField);
-		
-		textField.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-			}
-			public void removeUpdate(DocumentEvent e) {
-				hisset();
-			}
-			public void insertUpdate(DocumentEvent e) {
-				hisset();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					hisset();
+				}
 			}
 		});
+		
+		panel.add(textField);
 		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_1.setDocument(new JTextFieldLimit(10));
 		textField_1.setBounds(117, 36, 130, 20);
-		textField_1.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				//hisset();
-			}
-			public void removeUpdate(DocumentEvent e) {
-				hisset();
-			}
-			public void insertUpdate(DocumentEvent e) {
-				hisset();
+		textField_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					hisset();
+				}
 			}
 		});
 		panel.add(textField_1);
@@ -142,13 +138,13 @@ public class PAKET_ARA extends JDialog {
 		}
 		formattedTextField.setText("00-000-0000-0000");
 		formattedTextField.setFont(new Font("Tahoma", Font.BOLD, 12));
-		formattedTextField.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-			}
-			public void removeUpdate(DocumentEvent e) {
-			}
-			public void insertUpdate(DocumentEvent e) {
-				hisset();
+		formattedTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					hisset();
+				}
 			}
 		});
 

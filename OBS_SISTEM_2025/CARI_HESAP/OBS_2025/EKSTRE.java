@@ -377,7 +377,7 @@ public class EKSTRE extends JInternalFrame {
 				tc.setMinWidth(120);
 
 				tc = tcm.getColumn(8);
-				tc.setHeaderRenderer(new SAGA());
+				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(30);
 
 				Dimension dd = th.getPreferredSize();

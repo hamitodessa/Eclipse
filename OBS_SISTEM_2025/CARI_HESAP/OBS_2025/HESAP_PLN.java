@@ -156,7 +156,11 @@ public class HESAP_PLN extends JDialog {
 		table = new JTable() {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+
 		table.setFont(new Font("Calibri", Font.PLAIN, 14));
 		table.addKeyListener(new KeyAdapter() {
 			@Override

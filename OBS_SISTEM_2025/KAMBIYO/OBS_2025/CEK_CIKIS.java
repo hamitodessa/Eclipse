@@ -145,7 +145,11 @@ public class CEK_CIKIS extends JInternalFrame {
 		}};
 
 
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+
 		model.addColumn("Cek No", new String []{""});
 		model.addColumn("Vade", new Date []{ new Date() });
 		model.addColumn("Banka", new String []{""});

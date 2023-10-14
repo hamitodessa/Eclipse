@@ -353,7 +353,11 @@ public class KASA extends JInternalFrame {
 				return false;
 			}
 		};
-		table_1.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table_1.setGridColor(oac.gridcolor);
+		}
+
 		table_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

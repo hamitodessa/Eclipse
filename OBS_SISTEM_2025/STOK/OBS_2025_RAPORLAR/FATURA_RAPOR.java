@@ -128,7 +128,12 @@ public class FATURA_RAPOR extends JInternalFrame {
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 		    public void valueChanged(ListSelectionEvent lse) {
 			        if (!lse.getValueIsAdjusting()) {
@@ -161,7 +166,12 @@ public class FATURA_RAPOR extends JInternalFrame {
 		splitPane_1.setLeftComponent(scrollPane_1);
 		
 		table_1 = new JTable();
-		table_1.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table_1.setGridColor(oac.gridcolor);
+		}
+		table_1.setShowHorizontalLines(true);
+		table_1.setShowVerticalLines(true);
 		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_1.setViewportView(table_1);

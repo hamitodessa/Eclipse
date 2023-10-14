@@ -1095,7 +1095,11 @@ public class KERESTE_GIRIS extends JInternalFrame {
 				}
 			}
 		});
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+
 		table.setCellSelectionEnabled(true);
 		model.addColumn("Barkod", new String []{""});
 		model.addColumn("Urun Kodu", new String []{""});

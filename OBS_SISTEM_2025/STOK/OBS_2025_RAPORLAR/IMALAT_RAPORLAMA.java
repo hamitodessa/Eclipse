@@ -122,7 +122,12 @@ public class IMALAT_RAPORLAMA extends JInternalFrame {
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane.setViewportView(table);
 		

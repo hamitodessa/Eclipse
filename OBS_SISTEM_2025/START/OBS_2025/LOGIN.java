@@ -237,7 +237,8 @@ public class LOGIN extends JDialog {
 			
 		
 			//UIManager.setLookAndFeel(new FlatSolarizedLightIJTheme());
-			FlatSolarizedLightIJTheme.setup();
+			//FlatSolarizedLightIJTheme.setup();
+			FlatVuesionIJTheme.setup();
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

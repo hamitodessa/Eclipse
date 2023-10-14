@@ -108,7 +108,11 @@ public class HESAP_BAK extends JInternalFrame {
 		tblhesap = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		tblhesap.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			tblhesap.setGridColor(oac.gridcolor);
+		}
+
 		//tblhesap.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		tblhesap.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent lse) {
@@ -194,7 +198,11 @@ public class HESAP_BAK extends JInternalFrame {
 				}
 			}
 		});
-		tblkarton.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			tblkarton.setGridColor(oac.gridcolor);
+		}
+
 		tblkarton.setShowHorizontalLines(true);
 		tblkarton.setShowVerticalLines(true);
 		//tblkarton.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
@@ -233,7 +241,11 @@ public class HESAP_BAK extends JInternalFrame {
 				return c;
 			}
 		};
-		tbldetay.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			tbldetay.setGridColor(oac.gridcolor);
+		}
+
 		tbldetay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

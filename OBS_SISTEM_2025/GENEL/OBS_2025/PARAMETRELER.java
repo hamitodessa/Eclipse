@@ -1991,7 +1991,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		deger = Integer.toString(colorChooser.getSelectedColor().getRed() ) + "," + Integer.toString(colorChooser.getSelectedColor().getGreen()) + "," + Integer.toString(colorChooser.getSelectedColor().getBlue());
 		oac.glb.setting_yaz("PRG_GRID_RENK", deger);
 		
-				OBS_SIS_2025_ANA_CLASS. gridcolor =  colorChooser.getSelectedColor();
+		OBS_SIS_2025_ANA_CLASS. gridcolor =  colorChooser.getSelectedColor();
 		
 		} 
 		catch (Exception ex) 

@@ -141,10 +141,13 @@ public class CEK_GIRIS extends JInternalFrame {
 
 		DefaultTableModel model = new DefaultTableModel() ; 
 		table = new JTable(model);
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+
 		//table.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
 		//  .put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "selectNextColumnCell");
-		// table.setGridColor(Color.blue);
 
 
 		model.addColumn("Cek No", new String []{"0"});

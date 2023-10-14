@@ -171,7 +171,11 @@ public class EKSIK_KUR extends JInternalFrame
 
 		DefaultTableModel model = new DefaultTableModel() ;
 		table = new JTable(model) ;
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+
 		table.getTableHeader().setReorderingAllowed(false);
 
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

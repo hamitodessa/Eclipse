@@ -1118,7 +1118,11 @@ public class FATURA extends JInternalFrame {
 				}
 			}	
 		};
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1306,7 +1310,11 @@ public class FATURA extends JInternalFrame {
 
 		DefaultTableModel model1 = new DefaultTableModel() ; 
 		table_1 = new JTable(model1);
-		table_1.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table_1.setGridColor(oac.gridcolor);
+		}
+
 		model1.addColumn("Irsaliye", new String []{""});
 		model1.addColumn("Hesap Kodu", new String []{""});
 		model1.addColumn("Unvan", new String []{""});

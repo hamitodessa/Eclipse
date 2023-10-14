@@ -83,7 +83,11 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		      }
 				}
 		};
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"Tarih", 0, 0},
@@ -207,7 +211,11 @@ public class EVRAK_FORMAT extends JInternalFrame {
 				}
 			));
 				   
-		table_1.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table_1.setGridColor(oac.gridcolor);
+		}
+
 	    col = table_1.getColumnModel().getColumn(0);
 		col.setMinWidth(160);
 		col.setMaxWidth(160);
@@ -250,7 +258,11 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		      }
 				}
 		};
-		table_2.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table_2.setGridColor(oac.gridcolor);
+		}
+
 		table_2.setModel(new DefaultTableModel(
 				new Object[][] {
 					{"Tutar Toplami", 0, 0},

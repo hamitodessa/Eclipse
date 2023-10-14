@@ -373,7 +373,11 @@ public class MAIL extends JInternalFrame {
 		splitPane_1.setRightComponent(scrollPane);
 
 		table = new JTable();
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
@@ -395,7 +399,11 @@ public class MAIL extends JInternalFrame {
 		splitPane_2.setRightComponent(scrollPane_1);
 
 		table_1 = new JTable();
-		table_1.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table_1.setGridColor(oac.gridcolor);
+		}
+
 		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table_1.setShowHorizontalLines(true);
 		table_1.setShowVerticalLines(true);
@@ -496,7 +504,11 @@ public class MAIL extends JInternalFrame {
 		table_2 = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		table_2.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table_2.setGridColor(oac.gridcolor);
+		}
+
 		table_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

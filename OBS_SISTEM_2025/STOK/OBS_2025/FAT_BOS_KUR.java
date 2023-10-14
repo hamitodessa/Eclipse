@@ -91,7 +91,11 @@ public class FAT_BOS_KUR extends JInternalFrame {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);

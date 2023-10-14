@@ -159,10 +159,16 @@ public class ENVANTER extends JInternalFrame {
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setRowSelectionAllowed(false);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 
 		splitPane_1 = new JSplitPane();
@@ -224,7 +230,12 @@ public class ENVANTER extends JInternalFrame {
 		table_2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_2.setRowSelectionAllowed(false);
 		table_2.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		table_2.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table_2.setGridColor(oac.gridcolor);
+		}
+		table_2.setShowHorizontalLines(true);
+		table_2.setShowVerticalLines(true);
 		scrollPane_3.setViewportView(table_2);
 
 		scrollPane_4 = new JScrollPane();
@@ -248,8 +259,14 @@ public class ENVANTER extends JInternalFrame {
 		};
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_1.setRowSelectionAllowed(false);
-		table_1.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table_1.setGridColor(oac.gridcolor);
+		}
+
 		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table_1.setShowHorizontalLines(true);
+		table_1.setShowVerticalLines(true);
 		scrollPane_4.setViewportView(table_1);
 
 		splitPane_2 = new JSplitPane();
@@ -279,7 +296,12 @@ public class ENVANTER extends JInternalFrame {
 		};
 		table_3.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_3.setRowSelectionAllowed(false);
-		table_3.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table_3.setGridColor(oac.gridcolor);
+		}
+		table_3.setShowHorizontalLines(true);
+		table_3.setShowVerticalLines(true);
 		table_3.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane_2.setViewportView(table_3);
 
@@ -335,7 +357,11 @@ public class ENVANTER extends JInternalFrame {
 		table_4.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_4.setRowSelectionAllowed(false);
 		table_4.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		table_4.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table_4.setGridColor(oac.gridcolor);
+		}
+
 		scrollPane_5.setViewportView(table_4);
 
 		JPanel panel = new JPanel();

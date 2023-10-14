@@ -359,7 +359,11 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			}
 		};
 		table.getTableHeader().setReorderingAllowed(false);
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setShowHorizontalLines(true);

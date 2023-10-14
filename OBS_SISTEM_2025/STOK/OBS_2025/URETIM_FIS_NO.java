@@ -251,7 +251,11 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		splitPane_1.setLeftComponent(scrollPane);
 
 		table = new JTable();
-		table.setGridColor(oac.gridcolor);
+		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);

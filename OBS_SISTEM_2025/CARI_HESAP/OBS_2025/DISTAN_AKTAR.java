@@ -437,7 +437,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		DefaultTableModel model = new DefaultTableModel() ;
 		tblexcell = new JTable(model) ;
 		tblexcell.getTableHeader().setReorderingAllowed(false);
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			tblexcell.setGridColor(oac.gridcolor);
 		}
@@ -769,7 +769,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		
 		DefaultTableModel mdl = new DefaultTableModel() ;
 		table_1 = new JTable(mdl);
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table_1.setGridColor(oac.gridcolor);
 		}
@@ -845,7 +845,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		
 		DefaultTableModel mdlt = new DefaultTableModel() ;
 		table = new JTable(mdlt);
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
 		}

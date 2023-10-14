@@ -349,11 +349,12 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			    }
 			});
 
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table_1.setGridColor(oac.gridcolor);
 		}
-
+		table_1.setShowHorizontalLines(true);
+		table_1.setShowVerticalLines(true);
 		table_1.setSurrendersFocusOnKeystroke(true);
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		int vColIndex = 0;

@@ -377,7 +377,7 @@ public class GLOBAL {
 			prop.setProperty("PRG_KAYDET",  ",, ");
 			prop.setProperty("PRG_SIL",  ",, ");
 			prop.setProperty("PRG_GORUNUM",  "McWinLookAndFeel");
-			prop.setProperty("PRG_GRID_RENK",  "0, 191, 255");
+			prop.setProperty("PRG_GRID_RENK",  "255, 255, 255");
 			prop.setProperty("SOL_BOSLUK", "60");
 			prop.setProperty("SAG_BOSLUK", "0");
 			prop.setProperty("UST_BOSLUK", "40");

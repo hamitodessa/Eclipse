@@ -159,7 +159,7 @@ public class ENVANTER extends JInternalFrame {
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
 		}
@@ -230,7 +230,7 @@ public class ENVANTER extends JInternalFrame {
 		table_2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_2.setRowSelectionAllowed(false);
 		table_2.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table_2.setGridColor(oac.gridcolor);
 		}
@@ -259,7 +259,7 @@ public class ENVANTER extends JInternalFrame {
 		};
 		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_1.setRowSelectionAllowed(false);
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table_1.setGridColor(oac.gridcolor);
 		}
@@ -296,7 +296,7 @@ public class ENVANTER extends JInternalFrame {
 		};
 		table_3.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_3.setRowSelectionAllowed(false);
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table_3.setGridColor(oac.gridcolor);
 		}
@@ -357,7 +357,7 @@ public class ENVANTER extends JInternalFrame {
 		table_4.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_4.setRowSelectionAllowed(false);
 		table_4.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table_4.setGridColor(oac.gridcolor);
 		}

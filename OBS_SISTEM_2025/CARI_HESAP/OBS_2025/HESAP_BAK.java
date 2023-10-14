@@ -108,7 +108,7 @@ public class HESAP_BAK extends JInternalFrame {
 		tblhesap = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			tblhesap.setGridColor(oac.gridcolor);
 		}
@@ -198,7 +198,7 @@ public class HESAP_BAK extends JInternalFrame {
 				}
 			}
 		});
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			tblkarton.setGridColor(oac.gridcolor);
 		}
@@ -241,7 +241,7 @@ public class HESAP_BAK extends JInternalFrame {
 				return c;
 			}
 		};
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			tbldetay.setGridColor(oac.gridcolor);
 		}

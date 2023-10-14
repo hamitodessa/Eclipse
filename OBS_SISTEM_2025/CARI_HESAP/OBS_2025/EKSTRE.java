@@ -254,7 +254,7 @@ public class EKSTRE extends JInternalFrame {
 				return c;
 			}
 		};
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
 		}

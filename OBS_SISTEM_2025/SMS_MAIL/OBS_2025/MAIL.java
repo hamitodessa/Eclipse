@@ -373,7 +373,7 @@ public class MAIL extends JInternalFrame {
 		splitPane_1.setRightComponent(scrollPane);
 
 		table = new JTable();
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
 		}
@@ -399,7 +399,7 @@ public class MAIL extends JInternalFrame {
 		splitPane_2.setRightComponent(scrollPane_1);
 
 		table_1 = new JTable();
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table_1.setGridColor(oac.gridcolor);
 		}
@@ -504,7 +504,7 @@ public class MAIL extends JInternalFrame {
 		table_2 = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table_2.setGridColor(oac.gridcolor);
 		}

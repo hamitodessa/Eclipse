@@ -58,8 +58,10 @@ import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatArcIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatCobalt2IJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatDarkPurpleIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatGrayIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatGruvboxDarkHardIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
@@ -242,7 +244,7 @@ public class LOGIN extends JDialog {
 		
 			//UIManager.setLookAndFeel(new FlatSolarizedLightIJTheme());
 			//FlatSolarizedLightIJTheme.setup();
-			FlatVuesionIJTheme.setup();
+			FlatArcOrangeIJTheme.setup();
 
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());

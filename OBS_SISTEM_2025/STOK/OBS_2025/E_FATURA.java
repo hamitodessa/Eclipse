@@ -173,7 +173,7 @@ public class E_FATURA extends JInternalFrame {
 		table = new JTable(model) {
 				public boolean isCellEditable(int row, int column) {     return false;          };
 		};
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
 		}
@@ -292,7 +292,7 @@ public class E_FATURA extends JInternalFrame {
 			splitPane_1.setRightComponent(scrollPane2);
 			
 			table1 = new JTable() ;
-			if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+			if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 			{
 				table1.setGridColor(oac.gridcolor);
 			}

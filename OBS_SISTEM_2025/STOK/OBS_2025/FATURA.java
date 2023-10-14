@@ -1118,7 +1118,7 @@ public class FATURA extends JInternalFrame {
 				}
 			}	
 		};
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
 		}
@@ -1310,7 +1310,7 @@ public class FATURA extends JInternalFrame {
 
 		DefaultTableModel model1 = new DefaultTableModel() ; 
 		table_1 = new JTable(model1);
-		if(oac.gridcolor.toString() != "java.awt.Color[r=255,g=255,b=255]") 
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table_1.setGridColor(oac.gridcolor);
 		}

@@ -57,6 +57,7 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatArcIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatCobalt2IJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatGrayIJTheme;
@@ -69,6 +70,8 @@ import com.formdev.flatlaf.intellijthemes.FlatXcodeDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatDraculaIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMonokaiProIJTheme;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
@@ -178,6 +181,7 @@ public class LOGIN extends JDialog {
 		//************************************************************************
 		try {
 			LOGIN.setDefaultLookAndFeelDecorated(true);
+
 //			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("TextureLookAndFeel"))
 //			{
 //				UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
@@ -239,6 +243,7 @@ public class LOGIN extends JDialog {
 			//UIManager.setLookAndFeel(new FlatSolarizedLightIJTheme());
 			//FlatSolarizedLightIJTheme.setup();
 			FlatVuesionIJTheme.setup();
+
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

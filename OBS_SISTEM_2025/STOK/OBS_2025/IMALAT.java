@@ -847,7 +847,8 @@ public class IMALAT extends JInternalFrame {
 		table.setRowHeight(22);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		InputMap im = table.getInputMap(JTable.WHEN_FOCUSED);
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");

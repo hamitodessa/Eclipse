@@ -556,7 +556,8 @@ public class RECETE extends JInternalFrame {
 	        ActionMap am = table.getActionMap();
 	        am.put("Action.NextCell", new NextCellActioin(table,"recete"));
 	        table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
-	    
+	        table.setShowHorizontalLines(true);
+			table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 
 		 ana_grup_doldur();

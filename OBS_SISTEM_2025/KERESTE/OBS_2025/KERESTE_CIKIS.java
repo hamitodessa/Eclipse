@@ -1165,6 +1165,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		table.setRowHeight(22);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		table.repaint();
 		//table.setSurrendersFocusOnKeystroke(true);
 

@@ -188,6 +188,8 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 				}
 			}
 		});
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		if (nerden.equals("altgrup"))
 		{

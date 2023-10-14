@@ -610,6 +610,8 @@ public class CAL_DIZIN extends JDialog {
 		tblCari.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblCari.setRowHeight(22);
 		tblCari.setBounds(224, 188, 114, 173);
+		tblCari.setShowHorizontalLines(true);
+		tblCari.setShowVerticalLines(true);
 		tablo_baslik(tblCari);
 
 		scrollPane.setViewportView(tblCari);
@@ -641,6 +643,8 @@ public class CAL_DIZIN extends JDialog {
 		tblFatura.setRowHeight(22);
 		tblFatura.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tblFatura.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tblFatura.setShowHorizontalLines(true);
+		tblFatura.setShowVerticalLines(true);
 		tablo_baslik(tblFatura);
 		scrollPane_1.setViewportView(tblFatura);
 
@@ -671,6 +675,8 @@ public class CAL_DIZIN extends JDialog {
 		tblAdres.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tblAdres.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblAdres.setRowHeight(22);
+		tblAdres.setShowHorizontalLines(true);
+		tblAdres.setShowVerticalLines(true);
 		tablo_baslik(tblAdres);
 		scrollPane_2.setViewportView(tblAdres);
 
@@ -700,6 +706,8 @@ public class CAL_DIZIN extends JDialog {
 		tblKur.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tblKur.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblKur.setRowHeight(22);
+		tblKur.setShowHorizontalLines(true);
+		tblKur.setShowVerticalLines(true);
 		tablo_baslik(tblKur);
 		scrollPane_3.setViewportView(tblKur);
 
@@ -731,6 +739,8 @@ public class CAL_DIZIN extends JDialog {
 		tblKambiyo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tblKambiyo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblKambiyo.setRowHeight(22);
+		tblKambiyo.setShowHorizontalLines(true);
+		tblKambiyo.setShowVerticalLines(true);
 		tablo_baslik(tblKambiyo);
 		scrollPane_4.setViewportView(tblKambiyo);
 
@@ -761,6 +771,8 @@ public class CAL_DIZIN extends JDialog {
 		tblSms.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tblSms.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblSms.setRowHeight(22);
+		tblSms.setShowHorizontalLines(true);
+		tblSms.setShowVerticalLines(true);
 		tablo_baslik(tblSms);
 		scrollPane_5.setViewportView(tblSms);
 
@@ -790,6 +802,8 @@ public class CAL_DIZIN extends JDialog {
 		tblGunluk.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tblGunluk.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblGunluk.setRowHeight(22);
+		tblGunluk.setShowHorizontalLines(true);
+		tblGunluk.setShowVerticalLines(true);
 		tablo_baslik(tblGunluk);
 		scrollPane_6.setViewportView(tblGunluk);
 		
@@ -820,6 +834,8 @@ public class CAL_DIZIN extends JDialog {
 		tblKereste.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tblKereste.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblKereste.setRowHeight(22);
+		tblKereste.setShowHorizontalLines(true);
+		tblKereste.setShowVerticalLines(true);
 		tablo_baslik(tblKereste);
 		scrollPane_9.setViewportView(tblKereste);
 		//******************************************************************

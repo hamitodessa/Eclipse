@@ -115,6 +115,8 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 			        }
 			    }
 			});
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		hisset();
 

@@ -172,6 +172,8 @@ public class HESAP_BAK extends JInternalFrame {
 				return this;
 			}   
 		});
+		tblhesap.setShowHorizontalLines(true);
+		tblhesap.setShowVerticalLines(true);
 		scrollPane.setViewportView(tblhesap);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -193,6 +195,8 @@ public class HESAP_BAK extends JInternalFrame {
 			}
 		});
 		tblkarton.setGridColor(oac.gridcolor);
+		tblkarton.setShowHorizontalLines(true);
+		tblkarton.setShowVerticalLines(true);
 		//tblkarton.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane_1.setViewportView(tblkarton);
 
@@ -264,6 +268,8 @@ public class HESAP_BAK extends JInternalFrame {
 			}
 		});
 		tbldetay.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		tbldetay.setShowHorizontalLines(true);
+		tbldetay.setShowVerticalLines(true);
 		scrollPane_2.setViewportView(tbldetay);
 
 		JPanel panel = new JPanel();

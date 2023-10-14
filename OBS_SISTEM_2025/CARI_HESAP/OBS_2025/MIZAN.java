@@ -200,6 +200,8 @@ public class MIZAN extends JInternalFrame {
 
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		//table.setBorder(null);
 		scrollPane.setViewportView(table);
 

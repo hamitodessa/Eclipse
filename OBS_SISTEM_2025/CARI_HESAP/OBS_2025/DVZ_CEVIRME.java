@@ -197,6 +197,8 @@ public class DVZ_CEVIRME extends JInternalFrame {
 				}
 			}
 		});
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane.setViewportView(table);
 		

@@ -373,7 +373,8 @@ public class STK_YIL_SONU extends JInternalFrame {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setRowSelectionAllowed(false);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		 Dimension dd = table.getPreferredSize();
 		 dd.height = 30;
 		 th.setPreferredSize(dd); 

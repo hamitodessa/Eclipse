@@ -189,7 +189,8 @@ public class PAKET_ARA extends JDialog {
 		table.setGridColor(oac.gridcolor);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		JPanel panel1 = new JPanel();
 		panel1.setBorder(new LineBorder(new Color(0, 191, 255)));

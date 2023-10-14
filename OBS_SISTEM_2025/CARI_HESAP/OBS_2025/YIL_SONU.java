@@ -156,6 +156,8 @@ public class YIL_SONU extends JInternalFrame {
 		};
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setGridColor(oac.gridcolor);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 
 		panel = new JPanel();

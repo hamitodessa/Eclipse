@@ -92,6 +92,8 @@ public class FAT_BOS_KUR extends JInternalFrame {
 		};
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setGridColor(oac.gridcolor);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 
 	}

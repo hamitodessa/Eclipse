@@ -300,6 +300,8 @@ public class SMS extends JInternalFrame {
 		table = new JTable();
 		table.setGridColor(oac.gridcolor);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 
 		JSplitPane splitPane_2 = new JSplitPane();
@@ -320,6 +322,8 @@ public class SMS extends JInternalFrame {
 		table_1 = new JTable();
 		table_1.setGridColor(oac.gridcolor);
 		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table_1.setShowHorizontalLines(true);
+		table_1.setShowVerticalLines(true);
 		scrollPane_1.setViewportView(table_1);
 
 		JPanel panel_4 = new JPanel();
@@ -579,6 +583,8 @@ public class SMS extends JInternalFrame {
 		});
 		table_2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_2.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table_2.setShowHorizontalLines(true);
+		table_2.setShowVerticalLines(true);
 		scrollPane_2.setViewportView(table_2);
 
 

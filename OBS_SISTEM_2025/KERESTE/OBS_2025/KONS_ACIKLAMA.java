@@ -118,6 +118,8 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 			        }
 			    }
 			});
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		hisset();
 

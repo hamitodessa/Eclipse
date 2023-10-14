@@ -146,6 +146,8 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		table.setSurrendersFocusOnKeystroke(true);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();

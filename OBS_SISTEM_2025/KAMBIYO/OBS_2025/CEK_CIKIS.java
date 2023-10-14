@@ -225,6 +225,8 @@ public class CEK_CIKIS extends JInternalFrame {
 		});
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		th.repaint();
 		scrollPane.setViewportView(table);
 

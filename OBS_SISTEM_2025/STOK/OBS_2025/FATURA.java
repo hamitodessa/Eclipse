@@ -1264,7 +1264,8 @@ public class FATURA extends JInternalFrame {
 		table.setRowHeight(22);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		InputMap im = table.getInputMap(JTable.WHEN_FOCUSED);
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
@@ -1338,6 +1339,8 @@ public class FATURA extends JInternalFrame {
 		th.setPreferredSize(dd); 
 		table_1.setRowSelectionInterval(0, 0);
 		table_1.setRowHeight(22);
+		table_1.setShowHorizontalLines(true);
+		table_1.setShowVerticalLines(true);
 		scrollPane_1.setViewportView(table_1);
 
 		cmbcins = new JComboBox<String>();

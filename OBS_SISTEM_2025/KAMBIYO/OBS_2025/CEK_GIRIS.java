@@ -233,6 +233,8 @@ public class CEK_GIRIS extends JInternalFrame {
 		});
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		th.repaint();
 		scrollPane.setViewportView(table);
 

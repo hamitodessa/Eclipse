@@ -135,6 +135,8 @@ public class URUN_ARAMA extends JDialog {
 				}
 			});
 			table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+			table.setShowHorizontalLines(true);
+			table.setShowVerticalLines(true);
 			scrollPane.setViewportView(table);
 		    oac.stk_kodu = "";
 			hisset();

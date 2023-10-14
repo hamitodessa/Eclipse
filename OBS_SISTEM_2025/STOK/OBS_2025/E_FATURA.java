@@ -201,6 +201,8 @@ public class E_FATURA extends JInternalFrame {
 		Dimension dd = th.getPreferredSize();
 	    dd.height = 30;
 	    th.setPreferredSize(dd); 
+	    table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		th.repaint();
 		
 		table.setRowSelectionInterval(0, 0);

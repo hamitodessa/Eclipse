@@ -186,7 +186,8 @@ public class ADRES_LISTE extends JDialog {
 			}
 		}
 	});
-
+	table.setShowHorizontalLines(true);
+	table.setShowVerticalLines(true);
 	scrollPane.setViewportView(table);
 	oac.hsp_hsp_kodu = "" ;
 	hisset("");

@@ -498,6 +498,8 @@ public class Gunluk extends JInternalFrame {
 		tc1 = tcc.getColumn(7);
 		tc1.setCellRenderer(new ROW_RENDERER(new Color(131, 143, 175),Color.WHITE));
 		table_1.setTableHeader(null);
+		table_1.setShowHorizontalLines(true);
+		table_1.setShowVerticalLines(true);
 		//*****************************************************************************************************************		
 		splitPane_3.setLeftComponent(table_1);
 		JScrollPane scrollPane = new JScrollPane();
@@ -581,6 +583,8 @@ public class Gunluk extends JInternalFrame {
 		tc = tcm.getColumn(7);
 		tc.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104),"gunluk"));
 		table.setTableHeader(null);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		//****************************************Aylik***********************************
 		scrolAylik = new JScrollPane();
 		tabloTabbedPane.addTab("Aylik", null, scrolAylik, null);
@@ -697,6 +701,8 @@ public class Gunluk extends JInternalFrame {
 		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(226, 121, 28),new Color(249, 228, 209),"yillik"));
 		tc3 = tcm3.getColumn(12);
 		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104),"yillik"));
+		table_3.setShowHorizontalLines(true);
+		table_3.setShowVerticalLines(true);
 		//********************************************************************************
 		temizle();
 		calendar.setDate(new Date());

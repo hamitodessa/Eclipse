@@ -281,6 +281,8 @@ public static JTabbedPane orTabbedPane;
 			}
 		});
 		table.getTableHeader().setReorderingAllowed(false);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 	}
 	public void hisset()

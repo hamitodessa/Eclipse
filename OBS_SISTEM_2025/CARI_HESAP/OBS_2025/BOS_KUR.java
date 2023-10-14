@@ -58,6 +58,8 @@ import javax.swing.ListSelectionModel;
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 	}
 	public static void hisset() 

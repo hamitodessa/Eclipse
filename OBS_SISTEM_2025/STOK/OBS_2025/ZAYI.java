@@ -661,6 +661,8 @@ public class ZAYI extends JInternalFrame {
         	    }
         	};
        	table.getColumnModel().getColumn(1).setCellRenderer(r);
+       	table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		table.repaint();
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 		    public void valueChanged(ListSelectionEvent lse) {

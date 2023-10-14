@@ -162,24 +162,25 @@ public class GIDECEGI_YER extends JInternalFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setLeftComponent(scrollPane);
-		
+
 		table = new JTable(){
 			@Override
 			public boolean isCellEditable(int row, int column) {  
-		             return false;	}	};
-		  table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            	    public void valueChanged(ListSelectionEvent lse) {
-            	        if (!lse.getValueIsAdjusting()) {
-            	        	kutu_doldur();
-	            	        }
-            	    }
-		 });
-		  table.setGridColor(oac.gridcolor);
+				return false;	}	};
+				table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+					public void valueChanged(ListSelectionEvent lse) {
+						if (!lse.getValueIsAdjusting()) {
+							kutu_doldur();
+						}
+					}
+				});
+		table.setGridColor(oac.gridcolor);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
-		
 		doldur();
-		 //**
-		 adres_bak();
+		//**
+		adres_bak();
 		 //**
 	}
 	private static void doldur()

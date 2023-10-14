@@ -232,6 +232,8 @@ public class HESAP_PLN extends JDialog {
 		        return this;
 		    }   
 		});
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		oac.hsp_hsp_kodu = "" ;
 		hisset("");

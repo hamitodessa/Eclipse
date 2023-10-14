@@ -147,7 +147,8 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		table.setRowSelectionInterval(0, 0);
 		table.setRowHeight(22);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();

@@ -122,6 +122,8 @@ public class KUR_GIRIS extends JInternalFrame {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table.setGridColor(oac.gridcolor);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();

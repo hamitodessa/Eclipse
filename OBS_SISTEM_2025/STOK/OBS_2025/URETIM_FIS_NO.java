@@ -252,6 +252,8 @@ public class URETIM_FIS_NO extends JInternalFrame {
 
 		table = new JTable();
 		table.setGridColor(oac.gridcolor);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		getContentPane().setCursor(oac.WAIT_CURSOR);
 		hisset("1900.01.01", "2100.12.31");

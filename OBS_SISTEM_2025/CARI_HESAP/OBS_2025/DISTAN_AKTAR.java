@@ -553,6 +553,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			col.setCellRenderer(r6);
 			 //***
 		    tblexcell.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		    tblexcell.setShowHorizontalLines(true);
+			tblexcell.setShowVerticalLines(true);
 		    tblexcell.setRowHeight(22);
 		    //**
 		    
@@ -787,6 +789,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		    dd = table_1.getPreferredSize();
 		    dd.height = 30;
 		    th.setPreferredSize(dd); 
+		    table_1.setShowHorizontalLines(true);
+			table_1.setShowVerticalLines(true);
 		    th.repaint();		
 		scrollPane_2.setViewportView(table_1);
 		
@@ -836,25 +840,26 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		table.setGridColor(OBS_SIS_2025_ANA_CLASS.gridcolor);
 		table.setCellSelectionEnabled(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			 mdlt.addColumn("Aranacak", new String []{null});
-			 mdlt.addColumn("Yazilacak", new String []{null});
-			 
-			    sutun= 0;
-			    colon = table.getColumnModel().getColumn(sutun);
-				colon.setHeaderRenderer(new SOLA());
-				colon.setMinWidth(170);
-				sutun= 1;
-			    colon = table.getColumnModel().getColumn(sutun);
-				colon.setHeaderRenderer(new SOLA());
-				colon.setMinWidth(150);
-				table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-				table.setRowHeight(22);
-			    th = table.getTableHeader();
-			    dd = table.getPreferredSize();
-			    dd.height = 30;
-			    th.setPreferredSize(dd); 
-			    th.repaint();		
-				
+		mdlt.addColumn("Aranacak", new String []{null});
+		mdlt.addColumn("Yazilacak", new String []{null});
+
+		sutun= 0;
+		colon = table.getColumnModel().getColumn(sutun);
+		colon.setHeaderRenderer(new SOLA());
+		colon.setMinWidth(170);
+		sutun= 1;
+		colon = table.getColumnModel().getColumn(sutun);
+		colon.setHeaderRenderer(new SOLA());
+		colon.setMinWidth(150);
+		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table.setRowHeight(22);
+		th = table.getTableHeader();
+		dd = table.getPreferredSize();
+		dd.height = 30;
+		th.setPreferredSize(dd); 
+		th.repaint();		
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);	
 		scrollPane_1.setViewportView(table);
 		
 		JPanel panel_4 = new JPanel();

@@ -83,6 +83,8 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		};
 		table.setGridColor(oac.gridcolor);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();

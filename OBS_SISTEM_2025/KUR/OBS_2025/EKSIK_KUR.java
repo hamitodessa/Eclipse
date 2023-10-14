@@ -207,7 +207,8 @@ public class EKSIK_KUR extends JInternalFrame
 		th.setPreferredSize(dd); 
 		th.repaint();
 		table.setRowHeight(21);
-
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		te_sifirla();
 	}

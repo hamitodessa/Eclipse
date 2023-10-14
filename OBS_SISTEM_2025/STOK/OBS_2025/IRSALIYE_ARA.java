@@ -122,6 +122,8 @@ public class IRSALIYE_ARA extends JDialog {
 			}
 		});
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();

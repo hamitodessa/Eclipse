@@ -184,6 +184,8 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 				}
 			}
 		});
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 25));

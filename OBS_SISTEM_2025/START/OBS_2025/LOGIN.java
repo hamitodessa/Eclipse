@@ -63,6 +63,7 @@ import com.formdev.flatlaf.intellijthemes.FlatGrayIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatGruvboxDarkHardIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatVuesionIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatXcodeDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneLightIJTheme;
@@ -177,65 +178,68 @@ public class LOGIN extends JDialog {
 		//************************************************************************
 		try {
 			LOGIN.setDefaultLookAndFeelDecorated(true);
-			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("TextureLookAndFeel"))
-			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("SmartLookAndFeel"))
-			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("NoireLookAndFeel"))
-			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AcrylLookAndFeel"))
-			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AeroLookAndFeel"))
-			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AluminiumLookAndFeel"))
-			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("BernsteinLookAndFeel"))
-			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FastLookAndFeel"))
-			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("GraphiteLookAndFeel"))
-			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("HiFiLookAndFeel"))
-			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("LunaLookAndFeel"))
-			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("McWinLookAndFeel"))
-			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("MintLookAndFeel"))
-			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
-			}
-			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Klasik"))
-			{
-				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-			}
-			//UIManager.setLookAndFeel(new FlatGruvboxDarkHardIJTheme());
-			//FlatLightFlatIJTheme.setup();
+//			if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("TextureLookAndFeel"))
+//			{
+//				UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
+//			}
+//			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("SmartLookAndFeel"))
+//			{
+//				UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+//			}
+//			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("NoireLookAndFeel"))
+//			{
+//				UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+//			}
+//			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AcrylLookAndFeel"))
+//			{
+//				UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+//			}
+//			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AeroLookAndFeel"))
+//			{
+//				UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+//			}
+//			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AluminiumLookAndFeel"))
+//			{
+//				UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+//			}
+//			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("BernsteinLookAndFeel"))
+//			{
+//				UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
+//			}
+//			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FastLookAndFeel"))
+//			{
+//				UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
+//			}
+//			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("GraphiteLookAndFeel"))
+//			{
+//				UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+//			}
+//			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("HiFiLookAndFeel"))
+//			{
+//				UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+//			}
+//			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("LunaLookAndFeel"))
+//			{
+//				UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+//			}
+//			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("McWinLookAndFeel"))
+//			{
+//				UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+//			}
+//			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("MintLookAndFeel"))
+//			{
+//				UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
+//			}
+//			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Klasik"))
+//			{
+//				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+//			}
+			
+		
+			//UIManager.setLookAndFeel(new FlatSolarizedLightIJTheme());
+			FlatSolarizedLightIJTheme.setup();
 		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
 			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		//************************************************************************

@@ -381,6 +381,8 @@ public class KASA extends JInternalFrame {
 				}
 			}
 		});
+		table_1.setShowHorizontalLines(true);
+		table_1.setShowVerticalLines(true);
 		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		centerPanel.setViewportView(table_1);
 		sp.setDividerSize(1);

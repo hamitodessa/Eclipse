@@ -74,6 +74,8 @@ public class KUR_GRAFIK extends JInternalFrame {
 		model.addColumn("Tarih", new String []{""});
 		model.addColumn("Cins", new String []{""});
 		model.addColumn("Kur",new Double [] {new Double( 0.0000 )});
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		duzenle();
 		GRID_TEMIZLE.grid_temizle(table);
 		scrollPane.setViewportView(table);

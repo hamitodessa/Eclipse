@@ -136,6 +136,8 @@ public class RECETE_BUL extends JDialog {
 			}
 		});
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 	
 		hisset();

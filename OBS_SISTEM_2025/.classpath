@@ -84,5 +84,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/flatlaf-3.2.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/flatlaf-intellij-themes-3.2.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jfreechart.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/icu4j.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

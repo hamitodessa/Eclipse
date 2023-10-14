@@ -66,7 +66,9 @@ import com.formdev.flatlaf.intellijthemes.FlatGrayIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatGruvboxDarkHardIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatNordIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatSpacegrayIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatVuesionIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatXcodeDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneLightIJTheme;
@@ -242,10 +244,11 @@ public class LOGIN extends JDialog {
 //			}
 			
 		
-			//UIManager.setLookAndFeel(new FlatSolarizedLightIJTheme());
-			//FlatSolarizedLightIJTheme.setup();
-			FlatArcOrangeIJTheme.setup();
-
+			//UIManager.setLookAndFeel(new FlatSpacegrayIJTheme());
+			FlatSolarizedLightIJTheme.setup();
+			//FlatArcOrangeIJTheme.setup();
+			//FlatSpacegrayIJTheme.setup();
+			
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

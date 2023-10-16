@@ -6,11 +6,13 @@ import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
@@ -80,6 +82,30 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
+				Component c = super.prepareRenderer(renderer, row, col);
+				String status = (String)table.getModel().getValueAt(row,0);
+				if (col == 0)
+				{
+					if (status.length() == 3)
+					{
+						c.setBackground(Color.PINK);
+						c.setForeground(Color.BLUE);
+						Font fnt = new Font(table.getFont().getFontName(),1 ,12);
+						c.setFont(fnt);
+					} else 
+					{
+						c.setBackground(super.getBackground());
+						c.setForeground(super.getForeground());
+					}   
+					if (isRowSelected(row)) {
+						c.setBackground(table.getSelectionBackground());
+						c.setForeground(table.getSelectionForeground());
+	                } 
+				}
+				return c;
+				
+			}
 		};
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{

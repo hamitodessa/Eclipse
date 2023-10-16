@@ -134,38 +134,40 @@ public class OZEL_MIZAN extends JInternalFrame {
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component c = super.prepareRenderer(renderer, row, col);
 				String status = (String)getValueAt(row,0);
+				int deger = 0 ;
 				try {
-					if (status.length() ==  Integer.parseInt( GLOBAL.setting_oku("CARI_MIZ_GRUP").toString())) {
-						c.setBackground(Color.PINK);
-						c.setForeground(Color.BLUE);
-						Font fnt = new Font(table.getFont().getFontName(),1 ,12);
-						c.setFont(fnt);
-					} else 
-					{
-						c.setBackground(super.getBackground());
-						c.setForeground(super.getForeground());
-					}
-				} catch (NumberFormatException | IOException e) {
-					e.printStackTrace();
+					deger = Integer.parseInt( GLOBAL.setting_oku("CARI_MIZ_GRUP").toString());
+				} catch (Exception e) {
+					e.printStackTrace();}
+				if (status.length() == deger) 
+				{
+					c.setBackground(Color.PINK);
+					c.setForeground(Color.BLUE);
+					c.setFont(new Font(table.getFont().getFontName(),1 ,12));
+				} else 
+				{
+					c.setBackground(super.getBackground());
+					c.setForeground(super.getForeground());
 				}
 				if (col == 7)
 				{
 					if (getValueAt(row,7) != null)
 					{
-						double tut = (double)getValueAt(row,7);
-						if (tut < 0)
+						c.setFont(new Font(table.getFont().getFontName(),1 ,table.getFont().getSize()));
+						if ((double)getValueAt(row,7) < 0)
 						{
 							c.setForeground(new Color(128,0,0));
-							Font fnt = new Font(table.getFont().getFontName(),1 ,table.getFont().getSize());
-							c.setFont(fnt);
-						}
-						else if (tut >0)
-						{
-							Font fnt = new Font(table.getFont().getFontName(),1 ,table.getFont().getSize());
-							c.setFont(fnt);
 						}
 					}
 				}
+				else 
+				{
+					c.setForeground(super.getForeground());
+				}
+				if (isRowSelected(row)) {
+					c.setBackground(table.getSelectionBackground());
+					c.setForeground(table.getSelectionForeground());
+                } 
 				return c;
 			}
 		};
@@ -427,8 +429,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 			table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 			table.setRowSelectionInterval(lastRow, lastRow);
 
-			table.setSelectionBackground(Color.GREEN);
-			//table.setSelectionForeground(Color.BLUE);
 			table.repaint();
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 

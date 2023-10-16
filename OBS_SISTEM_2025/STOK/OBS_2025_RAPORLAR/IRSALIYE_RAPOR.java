@@ -418,8 +418,6 @@ public class IRSALIYE_RAPOR extends JInternalFrame {
 				table_1.setRowHeight(21);
 				table_1.setRowSelectionInterval(0,0);
 				
-				table_1.setSelectionBackground(Color.PINK);
-				table_1.setSelectionForeground(Color.BLUE);
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 

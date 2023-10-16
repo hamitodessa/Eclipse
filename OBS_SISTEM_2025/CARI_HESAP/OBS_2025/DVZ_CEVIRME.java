@@ -29,7 +29,6 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SAGA;
-import OBS_C_2025.SAGA_YANAS;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
@@ -398,8 +397,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 			tc.setMinWidth(120);
 
 			tc = tcm.getColumn(10);
-			tc.setHeaderRenderer(new SAGA());
-			tc.setCellRenderer(new SAGA_YANAS());
+			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(50);
 
 			Dimension dd = th.getPreferredSize();

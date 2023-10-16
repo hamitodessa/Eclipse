@@ -106,7 +106,32 @@ public class HESAP_BAK extends JInternalFrame {
 		splitPane_1.setLeftComponent(scrollPane);
 
 		tblhesap = new JTable(){
-			public boolean isCellEditable(int row, int column) {     return false;          }
+			public boolean isCellEditable(int row, int column) {     return false; } 
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
+				Component c = super.prepareRenderer(renderer, row, col);
+				String status = (String)tblhesap.getModel().getValueAt(row,0);
+				if (col == 0)
+				{
+					if (status.length() == 3)
+					{
+						c.setBackground(Color.PINK);
+						c.setForeground(Color.BLUE);
+						Font fnt = new Font(tblhesap.getFont().getFontName(),1 ,12);
+						c.setFont(fnt);
+					} else 
+					{
+						c.setBackground(super.getBackground());
+						c.setForeground(super.getForeground());
+					}   
+					if (isRowSelected(row)) {
+						c.setBackground(tblhesap.getSelectionBackground());
+						c.setForeground(tblhesap.getSelectionForeground());
+	                } 
+				}
+				return c;
+				
+			
+			}
 		};
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
@@ -137,46 +162,7 @@ public class HESAP_BAK extends JInternalFrame {
 				}
 			}
 		});
-		tblhesap.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-			@Override
-			public Component getTableCellRendererComponent(JTable table,
-					Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-				super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-
-				if (tblhesap.getRowSorter() ==null) 
-				{
-					String status = (String)table.getModel().getValueAt(row,0);
-					if (status.length() == 3)
-					{
-						setBackground(Color.PINK);
-						setForeground(Color.BLUE);
-						Font fnt = new Font(tblhesap.getFont().getFontName(),1 ,12);
-						setFont(fnt);
-					} else 
-					{
-						setBackground(table.getBackground());
-						setForeground(table.getForeground());
-					}       
-				}
-				else
-				{
-					String status = (String)table.getModel().getValueAt( tblhesap.getRowSorter().convertRowIndexToModel(row),0);
-					if (status.length() == 3)
-					{
-						setBackground(Color.PINK);
-						setForeground(Color.BLUE);
-						Font fnt = new Font(tblhesap.getFont().getFontName(),1 ,12);
-						setFont(fnt);
-					} else 
-					{
-						setBackground(table.getBackground());
-						setForeground(table.getForeground());
-					}       
-				}
-				return this;
-			}   
-		});
-		tblhesap.setShowHorizontalLines(true);
+	tblhesap.setShowHorizontalLines(true);
 		tblhesap.setShowVerticalLines(true);
 		scrollPane.setViewportView(tblhesap);
 
@@ -555,8 +541,6 @@ public class HESAP_BAK extends JInternalFrame {
 				int lastRow = tbldetay.convertRowIndexToView(tbldetay.getRowCount() - 1);
 				tbldetay.scrollRectToVisible(tbldetay.getCellRect(tbldetay.getRowCount()-1, 0, true));
 				tbldetay.setRowSelectionInterval(lastRow, lastRow);
-				tbldetay.setSelectionBackground(Color.PINK);
-				tbldetay.setSelectionForeground(Color.BLUE);
 
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime; 

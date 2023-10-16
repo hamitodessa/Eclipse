@@ -863,8 +863,6 @@ public class FATURA_RAPOR extends JInternalFrame {
 				table_1.setRowHeight(21);
 				table_1.setRowSelectionInterval(0,0);
 				
-				table_1.setSelectionBackground(Color.PINK);
-				table_1.setSelectionForeground(Color.BLUE);
 				lbladet.setText(FORMATLAMA.doub_0(mdl.getRowCount()));
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;

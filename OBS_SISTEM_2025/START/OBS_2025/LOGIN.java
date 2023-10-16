@@ -540,7 +540,6 @@ public class LOGIN extends JDialog {
 						}
 						Thread.currentThread().isInterrupted();
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
-						obmain.setTitle("OBS SISTEM" + "               " + GLOBAL.KULL_ADI);
 						obmain.lblUser.setText(GLOBAL.KULL_ADI);
 						
 						obmain.setVisible(true);

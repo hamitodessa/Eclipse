@@ -234,7 +234,6 @@ public class OBS_MAIN extends JFrame {
 					OBS_MAIN frame = new OBS_MAIN();
 					frame.setVisible(true);
 					frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-					frame.setTitle("OBS SISTEM" + "               " + GLOBAL.KULL_ADI );
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -251,7 +250,7 @@ public class OBS_MAIN extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_MAIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1374, 655);
-
+		setTitle("OBS SISTEM");
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Segoe UI", Font.PLAIN, 12));

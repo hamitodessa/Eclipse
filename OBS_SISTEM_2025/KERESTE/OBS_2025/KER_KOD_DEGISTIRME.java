@@ -237,7 +237,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				}
 			}
 		});
-		txtKodu.setBounds(287, 36, 135, 20);
+		txtKodu.setBounds(287, 36, 147, 20);
 		MaskFormatter mask;
 		try {
 		    mask = new MaskFormatter("AA-###-####-####");

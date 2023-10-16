@@ -1324,6 +1324,22 @@ public class DISTAN_AKTAR extends JInternalFrame {
             JOptionPane.showMessageDialog(null, "Bos Hesap Kodlari mevcut .... Satir Sayisi:" + kon); 
             return;
         }
+        ///HESAP KODLARI KONTROL
+        for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
+        {
+        if(	CARI_ISIM_OKU.isim(model.getValueAt(i, 2).toString()).toString().equals("") )
+        	{
+        	JOptionPane.showMessageDialog(null, i + " Nolu Satirdaki Borclu_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
+        	}
+        }
+        for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
+        {
+        if(	CARI_ISIM_OKU.isim(model.getValueAt(i, 5).toString()).toString().equals("") )
+        	{
+        	JOptionPane.showMessageDialog(null, i + " Nolu Satirdaki Alacakli_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
+        	}
+        }
+        ///
         int g = JOptionPane.showOptionDialog( null,  "Kayit Baslamasi...Kayit Sayisi:" + model.getRowCount(), "Cari Coklu Kayit",   JOptionPane.YES_NO_OPTION,
     	   		JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
     	        if(g != 0 ) { return;	}	

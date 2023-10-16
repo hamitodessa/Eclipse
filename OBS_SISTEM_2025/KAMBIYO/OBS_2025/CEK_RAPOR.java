@@ -255,8 +255,8 @@ public class CEK_RAPOR extends JInternalFrame {
 					table.setValueAt("",i , 13);
 				}
 			}
-			table.setSelectionBackground(Color.PINK);
-			table.setSelectionForeground(Color.BLUE);
+			//table.setSelectionBackground(Color.PINK);
+			//table.setSelectionForeground(Color.BLUE);
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 

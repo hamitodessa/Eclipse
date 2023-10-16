@@ -232,8 +232,8 @@ public class GIDECEGI_YER extends JInternalFrame {
 					table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 					table.setRowSelectionInterval(0,0);
 					table.changeSelection(0,0,false,false);
-					table.setSelectionBackground(Color.PINK);
-					table.setSelectionForeground(Color.BLUE);
+					//table.setSelectionBackground(Color.PINK);
+					//table.setSelectionForeground(Color.BLUE);
 		 }
 		
 		}

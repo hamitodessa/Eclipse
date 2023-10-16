@@ -246,8 +246,8 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 				
-				table.setSelectionBackground(Color.PINK);
-				table.setSelectionForeground(Color.BLUE);
+				//table.setSelectionBackground(Color.PINK);
+				//table.setSelectionForeground(Color.BLUE);
 				lbladet.setText(FORMATLAMA.doub_0(table.getRowCount()));
 				fontt();
 			}
@@ -334,8 +334,8 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 				lbladet.setText(FORMATLAMA.doub_0(table.getRowCount()));
-				table.setSelectionBackground(Color.PINK);
-				table.setSelectionForeground(Color.BLUE);
+				//table.setSelectionBackground(Color.PINK);
+				//table.setSelectionForeground(Color.BLUE);
 				fontt();
 			}
 		} 
@@ -453,8 +453,8 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 				lbladet.setText(FORMATLAMA.doub_0(table.getRowCount()));
-				table.setSelectionBackground(Color.PINK);
-				table.setSelectionForeground(Color.BLUE);
+				//table.setSelectionBackground(Color.PINK);
+				//table.setSelectionForeground(Color.BLUE);
 				fontt();
 			}
 		} 

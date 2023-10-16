@@ -381,8 +381,8 @@ public class YIL_SONU extends JInternalFrame {
 			//
 			th.repaint();
 
-			table.setSelectionBackground(Color.PINK);
-			table.setSelectionForeground(Color.BLUE);
+			//table.setSelectionBackground(Color.PINK);
+			//table.setSelectionForeground(Color.BLUE);
 
 			String deger;
 			String[] parts;

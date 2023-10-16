@@ -167,8 +167,8 @@ public class KUR_RAPORLAMA extends JInternalFrame {
 			th.repaint();
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
-			table.setSelectionBackground(Color.PINK);
-			table.setSelectionForeground(Color.BLUE);
+			//table.setSelectionBackground(Color.PINK);
+			//table.setSelectionForeground(Color.BLUE);
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 

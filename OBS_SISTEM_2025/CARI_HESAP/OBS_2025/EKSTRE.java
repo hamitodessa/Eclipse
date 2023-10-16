@@ -22,7 +22,6 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SAGA;
-import OBS_C_2025.SAGA_YANAS;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
@@ -463,8 +462,8 @@ public class EKSTRE extends JInternalFrame {
 			int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
 			table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 			table.setRowSelectionInterval(lastRow, lastRow);
-			table.setSelectionBackground(Color.PINK);
-			table.setSelectionForeground(Color.BLUE);
+			//table.setSelectionBackground(Color.PINK);
+			//table.setSelectionForeground(Color.BLUE);
 			
 			
 			long endTime = System.currentTimeMillis();

@@ -240,8 +240,8 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 			table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 			table.setRowSelectionInterval(lastRow, lastRow);
 
-			table.setSelectionBackground(Color.PINK);
-			table.setSelectionForeground(Color.BLUE);
+			//table.setSelectionBackground(Color.PINK);
+			//table.setSelectionForeground(Color.BLUE);
 			lblNewLabel_1.setText(FORMATLAMA.doub_0(table.getRowCount()));
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 

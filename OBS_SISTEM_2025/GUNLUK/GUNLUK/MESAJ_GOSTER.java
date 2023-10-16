@@ -1,7 +1,6 @@
 package GUNLUK;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.ResultSet;
 
@@ -97,8 +96,8 @@ public class MESAJ_GOSTER extends JInternalFrame {
 		tc.setHeaderRenderer(new SOLA());
 		tc.setMinWidth(220);
 		
-		table.setSelectionBackground(Color.PINK);
-		table.setSelectionForeground(Color.BLUE);
+		//table.setSelectionBackground(Color.PINK);
+		//table.setSelectionForeground(Color.BLUE);
 		
 		Dimension dd = th.getPreferredSize();
 		dd.height = 30;

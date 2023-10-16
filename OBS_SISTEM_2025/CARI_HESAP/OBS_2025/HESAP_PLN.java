@@ -11,9 +11,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
@@ -27,6 +27,7 @@ import net.proteanit.sql.DbUtils;
 
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -154,7 +155,32 @@ public class HESAP_PLN extends JDialog {
 		splitPane.setRightComponent(scrollPane);
 		
 		table = new JTable() {
-			public boolean isCellEditable(int row, int column) {     return false;          }
+			public boolean isCellEditable(int row, int column) {     return false;  	}
+			
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
+				Component c = super.prepareRenderer(renderer, row, col);
+				String status = (String)table.getModel().getValueAt(row,0);
+				if (col == 0)
+				{
+					if (status.length() == 3)
+					{
+						c.setBackground(Color.PINK);
+						c.setForeground(Color.BLUE);
+						Font fnt = new Font(table.getFont().getFontName(),1 ,12);
+						c.setFont(fnt);
+					} else 
+					{
+						c.setBackground(super.getBackground());
+						c.setForeground(super.getForeground());
+					}   
+					if (isRowSelected(row)) {
+						c.setBackground(table.getSelectionBackground());
+						c.setForeground(table.getSelectionForeground());
+	                } 
+				}
+				return c;
+				
+			}
 		};
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
@@ -200,42 +226,8 @@ public class HESAP_PLN extends JDialog {
 				}
 			}
 		});
-		table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-		    @Override
-		    public Component getTableCellRendererComponent(JTable table,Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-		        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-				if (table.getRowSorter()!=null) {
-				    row = table.getRowSorter().convertRowIndexToModel(row);
-		        String status = (String)table.getModel().getValueAt(row,0);
-		        if (status.length() == 3)
-		        {
-		            setBackground(Color.PINK);
-		            setForeground(Color.BLUE);
-		            Font fnt = new Font(table.getFont().getFontName(),1 ,12);
-		            setFont(fnt);
-		        } else {
-		            setBackground(table.getBackground());
-		            setForeground(table.getForeground());
-		        }   
-				}
-				else
-				{
-					String status = (String)table.getModel().getValueAt(row,0);
-			        if (status.length() == 3)
-			        {
-			            setBackground(Color.PINK);
-			            setForeground(Color.BLUE);
-			            Font fnt = new Font(table.getFont().getFontName(),1 ,12);
-			            setFont(fnt);
-			        } else {
-			            setBackground(table.getBackground());
-			            setForeground(table.getForeground());
-			        }   
-					
-				}
-		        return this;
-		    }   
-		});
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setSurrendersFocusOnKeystroke(true);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
@@ -283,18 +275,18 @@ public class HESAP_PLN extends JDialog {
 	    th.setPreferredSize(dd); 
 	    th.repaint();
 	    
-		table.setSelectionBackground(Color.PINK);
-		table.setSelectionForeground(Color.BLUE);
-		
-		
-			 String deger;
-			 String[] parts;
-			Font bigFont;
-			deger = GLOBAL.setting_oku("CARI_HSPPLN").toString();
-			deger = deger.substring(1, deger.length()-1);
-			parts = deger.split(",");
-			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-			table.setFont(bigFont);
+	    //table.setSelectionBackground(Color.PINK);
+	    //table.setSelectionForeground(Color.BLUE);
+	    table.repaint();
+
+	    String deger;
+	    String[] parts;
+	    Font bigFont;
+	    deger = GLOBAL.setting_oku("CARI_HSPPLN").toString();
+	    deger = deger.substring(1, deger.length()-1);
+	    parts = deger.split(",");
+	    bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+	    table.setFont(bigFont);
 		} catch (Exception ex) {
 			 JOptionPane.showMessageDialog(null, ex.getMessage()); 
 		}

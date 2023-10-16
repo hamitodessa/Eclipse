@@ -428,7 +428,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 			table.setRowSelectionInterval(lastRow, lastRow);
 
 			table.setSelectionBackground(Color.GREEN);
-			table.setSelectionForeground(Color.BLUE);
+			//table.setSelectionForeground(Color.BLUE);
 			table.repaint();
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 

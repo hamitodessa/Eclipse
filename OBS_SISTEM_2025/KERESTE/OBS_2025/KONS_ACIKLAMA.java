@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -158,8 +157,8 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 	    th.setPreferredSize(dd); 
 	    th.repaint();
 	    
-		table.setSelectionBackground(Color.PINK);
-		table.setSelectionForeground(Color.BLUE);
+		//table.setSelectionBackground(Color.PINK);
+		//table.setSelectionForeground(Color.BLUE);
 		
 		doldur(0);
 		String deger;

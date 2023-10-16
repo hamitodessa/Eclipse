@@ -229,8 +229,8 @@ public class IRSALIYE_RAPOR extends JInternalFrame {
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 				
-				table.setSelectionBackground(Color.PINK);
-				table.setSelectionForeground(Color.BLUE);
+				//table.setSelectionBackground(Color.PINK);
+				//table.setSelectionForeground(Color.BLUE);
 				lbladet.setText(FORMATLAMA.doub_0(table.getRowCount() ));
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;

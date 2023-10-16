@@ -1061,8 +1061,8 @@ public class GRUP_RAPOR extends JInternalFrame {
 		lbladet.setText(FORMATLAMA.doub_0(lastRow));
 		table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 		table.setRowSelectionInterval(lastRow, lastRow);
-		table.setSelectionBackground(Color.PINK);
-		table.setSelectionForeground(Color.BLUE);
+		//table.setSelectionBackground(Color.PINK);
+		//table.setSelectionForeground(Color.BLUE);
 		long endTime = System.currentTimeMillis();
 		long estimatedTime = endTime - startTime;
 		double seconds = (double)estimatedTime/1000; 

@@ -295,8 +295,8 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			th.setPreferredSize(dd); 
 			th.repaint();
 
-			table.setSelectionBackground(Color.PINK);
-			table.setSelectionForeground(Color.BLUE);
+			//table.setSelectionBackground(Color.PINK);
+			//table.setSelectionForeground(Color.BLUE);
 			lbladet.setText( FORMATLAMA.doub_0(table.getRowCount()) );
 
 

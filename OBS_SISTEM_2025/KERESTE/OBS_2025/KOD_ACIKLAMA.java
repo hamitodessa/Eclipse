@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
@@ -156,8 +155,8 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 	    th.setPreferredSize(dd); 
 	    th.repaint();
 	    
-		table.setSelectionBackground(Color.PINK);
-		table.setSelectionForeground(Color.BLUE);
+		//table.setSelectionBackground(Color.PINK);
+		//table.setSelectionForeground(Color.BLUE);
 		
 		doldur(0);
 		String deger;

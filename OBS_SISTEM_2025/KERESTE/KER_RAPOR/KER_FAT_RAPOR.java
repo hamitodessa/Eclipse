@@ -405,8 +405,8 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 
-				table.setSelectionBackground(Color.PINK);
-				table.setSelectionForeground(Color.BLUE);
+				//table.setSelectionBackground(Color.PINK);
+				//table.setSelectionForeground(Color.BLUE);
 				lblana.setText(FORMATLAMA.doub_0(table.getRowCount()));
 				//***
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
@@ -786,8 +786,8 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 
-				table.setSelectionBackground(Color.PINK);
-				table.setSelectionForeground(Color.BLUE);
+				//table.setSelectionBackground(Color.PINK);
+				//table.setSelectionForeground(Color.BLUE);
 				lblana.setText(FORMATLAMA.doub_0(table.getRowCount()));
 				//***
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
@@ -980,8 +980,8 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 
-				table.setSelectionBackground(Color.PINK);
-				table.setSelectionForeground(Color.BLUE);
+				//table.setSelectionBackground(Color.PINK);
+				//table.setSelectionForeground(Color.BLUE);
 				lblana.setText(FORMATLAMA.doub_0(table.getRowCount()));
 				//***
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();

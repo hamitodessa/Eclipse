@@ -407,8 +407,8 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 				lbladet.setText(FORMATLAMA.doub_0(table.getRowCount()));
-				table.setSelectionBackground(Color.PINK);
-				table.setSelectionForeground(Color.BLUE);
+				//table.setSelectionBackground(Color.PINK);
+				//table.setSelectionForeground(Color.BLUE);
 				fontt();
 			}
 		} 

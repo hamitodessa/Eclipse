@@ -391,8 +391,8 @@ public class STK_YIL_SONU extends JInternalFrame {
 			tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
 		    th.repaint();
 		    
-			table.setSelectionBackground(Color.PINK);
-			table.setSelectionForeground(Color.BLUE);
+			//table.setSelectionBackground(Color.PINK);
+			//table.setSelectionForeground(Color.BLUE);
 		    scrollPane.setViewportView(table);
 		
 		GRID_TEMIZLE.grid_temizle(table);

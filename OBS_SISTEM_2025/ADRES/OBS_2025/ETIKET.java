@@ -358,8 +358,8 @@ public static JTabbedPane orTabbedPane;
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 
-				table.setSelectionBackground(Color.PINK);
-				table.setSelectionForeground(Color.BLUE);
+				//table.setSelectionBackground(Color.PINK);
+				//table.setSelectionForeground(Color.BLUE);
 
 				//***
 				long endTime = System.currentTimeMillis();

@@ -132,8 +132,8 @@ public class MIZAN extends JInternalFrame {
 					c.setForeground(super.getForeground());
 				}
 				if (isRowSelected(row)) {
-					c.setBackground(new Color(203, 254, 255));
-					//c.setForeground(Color.BLUE);
+					c.setBackground(table.getSelectionBackground());
+					c.setForeground(table.getSelectionForeground());
                 } 
 				return c;
 			}

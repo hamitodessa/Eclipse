@@ -211,8 +211,8 @@ public class E_FATURA extends JInternalFrame {
 		
 		table.setRowSelectionInterval(0, 0);
 		table.setRowHeight(21);
-		table.setSelectionBackground(Color.PINK);
-		table.setSelectionForeground(Color.BLUE);
+		//table.setSelectionBackground(Color.PINK);
+		//table.setSelectionForeground(Color.BLUE);
 		
 		scrollPane.setViewportView(table);
 	     GRID_TEMIZLE.grid_temizle(table);

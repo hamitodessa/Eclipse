@@ -238,8 +238,8 @@ public class RECETE_RAPOR extends JInternalFrame {
 				table.setRowSelectionInterval(lastRow, lastRow);
 	
 				
-				table.setSelectionBackground(Color.PINK);
-				table.setSelectionForeground(Color.BLUE);
+				//table.setSelectionBackground(Color.PINK);
+				//table.setSelectionForeground(Color.BLUE);
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 

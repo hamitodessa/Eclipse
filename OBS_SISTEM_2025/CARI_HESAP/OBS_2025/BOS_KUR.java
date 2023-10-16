@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 import java.sql.ResultSet;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -16,6 +15,7 @@ import javax.swing.table.TableColumnModel;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
@@ -51,7 +51,7 @@ import javax.swing.ListSelectionModel;
 		setTitle("BOS KUR");
 		setBounds(100, 100, 145, 551);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
 		table = new JTable(){

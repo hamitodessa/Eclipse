@@ -23,6 +23,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
@@ -43,7 +44,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
-import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
@@ -226,9 +226,8 @@ public class EKSTRE extends JInternalFrame {
 		lblNewLabel_2.setBounds(10, 65, 85, 14);
 		panel.add(lblNewLabel_2);
 
-		JScrollPane scrollPane = new JScrollPane();
-		pane.setLeftComponent(scrollPane);
-
+		ScrollPaneWin11 jScrollPane1 = new ScrollPaneWin11();
+		pane.setLeftComponent(jScrollPane1);
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
@@ -320,7 +319,7 @@ public class EKSTRE extends JInternalFrame {
 		table.setSurrendersFocusOnKeystroke(true);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
-		scrollPane.setViewportView(table);
+		jScrollPane1.setViewportView(table);
 	}
 	public static void hisset() 
 	{

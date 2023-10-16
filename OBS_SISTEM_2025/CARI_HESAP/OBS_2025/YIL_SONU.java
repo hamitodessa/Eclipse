@@ -24,7 +24,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -61,6 +60,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.lOG_BILGI;
 
@@ -82,7 +82,6 @@ public class YIL_SONU extends JInternalFrame {
 	private  JLabel lblNewLabel_3 ;
 	private static JSplitPane splitPaneana ;
 	private static JPanel panel ;
-	private JScrollPane scrollPane ;
 
 	/**
 	 * Launch the application.
@@ -140,7 +139,7 @@ public class YIL_SONU extends JInternalFrame {
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		panel_3.add(lblNewLabel_3);
-		scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane1.setRightComponent(scrollPane);
 
 		table = new JTable(){

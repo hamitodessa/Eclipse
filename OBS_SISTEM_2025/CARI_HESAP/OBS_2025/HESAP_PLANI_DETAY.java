@@ -3,7 +3,6 @@ package OBS_2025;
 import java.awt.EventQueue;
 import java.sql.ResultSet;
 import javax.swing.JInternalFrame;
-import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -22,6 +21,7 @@ import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
 import javax.swing.JSplitPane;
 import javax.swing.JPanel;
@@ -77,7 +77,7 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setRightComponent(scrollPane);
 		
 		table = new JTable(){

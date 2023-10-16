@@ -165,7 +165,7 @@ public class ENVANTER extends JInternalFrame {
 		}
 
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setRowSelectionAllowed(false);
+		//table.setRowSelectionAllowed(false);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);

@@ -56,7 +56,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -127,6 +127,7 @@ import OBS_C_2025.SAGA;
 import OBS_C_2025.SAGA_BOLD;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.SOLA_ORTA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.U_KODU_RENDERER;
@@ -1043,7 +1044,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_2.setRightComponent(tabbedPane);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		tabbedPane.addTab("Kereste", null, scrollPane, null);
 
 		DefaultTableModel model = new DefaultTableModel() ; 

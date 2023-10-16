@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +22,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
@@ -118,7 +118,7 @@ public class KASA extends JInternalFrame {
 		leftPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		leftPanel.setMinimumSize(new Dimension(0, 70));
 		leftPanel.setMaximumSize(new Dimension(0, 70));
-		JScrollPane centerPanel = new JScrollPane();
+		ScrollPaneWin11 centerPanel = new ScrollPaneWin11();
 		JPanel rightPanel = new JPanel();
 		rightPanel.setForeground(new Color(0, 0, 139));
 		rightPanel.setBorder(new LineBorder(new Color(0, 191, 255)));

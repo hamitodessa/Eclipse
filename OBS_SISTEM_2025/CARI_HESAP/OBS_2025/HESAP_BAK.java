@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -40,6 +39,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import net.proteanit.sql.DbUtils;
@@ -100,7 +100,7 @@ public class HESAP_BAK extends JInternalFrame {
 		splitPane_1.setMinimumSize(new Dimension(0, 200));
 		splitPane_1.setMaximumSize(new Dimension(0, 200));
 
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 
 		splitPane_1.setLeftComponent(scrollPane);
 
@@ -165,7 +165,7 @@ public class HESAP_BAK extends JInternalFrame {
 		tblhesap.setShowVerticalLines(true);
 		scrollPane.setViewportView(tblhesap);
 
-		JScrollPane scrollPane_1 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
 		splitPane_1.setRightComponent(scrollPane_1);
 		scrollPane_1.setMinimumSize(new Dimension(0, 410));
 		scrollPane_1.setMaximumSize(new Dimension(0, 410));
@@ -199,7 +199,7 @@ public class HESAP_BAK extends JInternalFrame {
 		splitPane_2.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setRightComponent(splitPane_2);
 
-		JScrollPane scrollPane_2 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
 		splitPane_2.setRightComponent(scrollPane_2);
 
 		tbldetay = new JTable(){

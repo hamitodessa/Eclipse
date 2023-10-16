@@ -21,6 +21,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.lOG_BILGI;
@@ -29,7 +30,6 @@ import net.proteanit.sql.DbUtils;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
 import java.awt.event.MouseAdapter;
@@ -47,7 +47,6 @@ public class ARAMA extends JInternalFrame {
 	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	
 	private static JTable table;
-	public static JScrollPane scrollPane;
 	public static JSplitPane splitPane;
 	private static JLabel lblNewLabel_1;
 	/**
@@ -83,7 +82,7 @@ public class ARAMA extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setLeftComponent(scrollPane);
 		
 		table = new JTable(){

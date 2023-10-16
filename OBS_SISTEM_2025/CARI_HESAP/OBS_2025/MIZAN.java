@@ -10,7 +10,6 @@ import javax.swing.DefaultRowSorter;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -33,6 +32,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
@@ -93,8 +93,8 @@ public class MIZAN extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
-		JScrollPane scrollPane = new JScrollPane();
-		splitPane.setLeftComponent(scrollPane);
+		ScrollPaneWin11 jScrollPane1 = new ScrollPaneWin11();
+		splitPane.setLeftComponent(jScrollPane1);
 
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
@@ -207,7 +207,7 @@ public class MIZAN extends JInternalFrame {
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		//table.setBorder(null);
-		scrollPane.setViewportView(table);
+		jScrollPane1.setViewportView(table);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));

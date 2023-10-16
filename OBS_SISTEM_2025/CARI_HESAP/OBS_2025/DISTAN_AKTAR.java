@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -36,9 +35,12 @@ import java.awt.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -74,6 +76,7 @@ import OBS_C_2025.JDateChooserEditor;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
@@ -430,7 +433,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_1.setLeftComponent(tabbedPane);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		tabbedPane.addTab("Excell", null, scrollPane, null);
 		
 		
@@ -763,7 +766,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		splitPane_5.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane_3.setRightComponent(splitPane_5);
 		
-		JScrollPane scrollPane_2 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
 		scrollPane_2.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Karsi Hesap Kodlari", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		splitPane_5.setRightComponent(scrollPane_2);
 		
@@ -839,7 +842,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		splitPane_4.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane_2.setLeftComponent(splitPane_4);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
 		scrollPane_1.setViewportBorder(new TitledBorder(null, "Izahat Kismi Degisim Parametreleri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		splitPane_4.setRightComponent(scrollPane_1);
 		
@@ -1326,20 +1329,21 @@ public class DISTAN_AKTAR extends JInternalFrame {
             return;
         }
         ///HESAP KODLARI KONTROL
-        for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
-        {
-        if(	CARI_ISIM_OKU.isim(model.getValueAt(i, 2).toString())[2].toString().equals("F") )
+        List<String> uniqueDataList = u_kod_ogren(2) ;
+        for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) {
+        	if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
         	{
-        	JOptionPane.showMessageDialog(null, i + " Nolu Satirdaki " + model.getValueAt(i, 2).toString() + " Borclu_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
-        	return;
+        		JOptionPane.showMessageDialog(null, uniqueDataList.get(iterator) + " --Borclu_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
+        		return;
         	}
         }
-        for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
-        {
-        if(	CARI_ISIM_OKU.isim(model.getValueAt(i, 5).toString())[2].toString().equals("F") )
+        uniqueDataList.clear();
+        uniqueDataList = u_kod_ogren(5) ;
+        for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) {
+        	if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
         	{
-        	JOptionPane.showMessageDialog(null, i + " Nolu Satirdaki " + model.getValueAt(i, 5).toString() + "Alacakli_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
-        	return;
+        		JOptionPane.showMessageDialog(null, uniqueDataList.get(iterator) + " --Alacakli_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
+        		return;
         	}
         }
         ///
@@ -1504,6 +1508,20 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	    Thread t = new Thread(runner, "Code Executer");
 	    t.start();
 	    //
+	}
+	private static List<String> u_kod_ogren(int cOLUMN)
+	{
+		DefaultTableModel mdl = (DefaultTableModel) tblexcell.getModel();
+		List<String> list = new ArrayList<String>();  
+		for (int i =0;i<= mdl.getRowCount() -1 ;i++)
+		{
+			if (! mdl.getValueAt(i, cOLUMN).equals("") )
+			{
+				list.add( mdl.getValueAt(i,cOLUMN).toString().trim());	//;
+			}
+		}
+		List<String> uniqueDataList = list.stream().distinct().collect(Collectors.toList());
+		return uniqueDataList ;
 	}
 	static void Progres_Bar(int max, int deger) throws InterruptedException
     {

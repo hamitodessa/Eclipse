@@ -23,13 +23,13 @@ import javax.swing.table.TableStringConverter;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -151,7 +151,7 @@ public class HESAP_PLN extends JDialog {
 		lblNewLabel.setBounds(10, 14, 63, 14);
 		panel.add(lblNewLabel);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setRightComponent(scrollPane);
 		
 		table = new JTable() {

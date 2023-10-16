@@ -1081,6 +1081,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	public static void satir_sil()
 	{
 		DefaultTableModel model = (DefaultTableModel) tblexcell.getModel();
+		if (table.getSelectedRow() < 0 ) return ;
 		model.removeRow(tblexcell.getSelectedRow());
 		tblexcell.repaint();
 		lblsatir.setText(Integer.toString(tblexcell.getRowCount()));

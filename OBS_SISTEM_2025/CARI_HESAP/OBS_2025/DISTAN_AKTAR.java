@@ -1327,16 +1327,18 @@ public class DISTAN_AKTAR extends JInternalFrame {
         ///HESAP KODLARI KONTROL
         for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
         {
-        if(	CARI_ISIM_OKU.isim(model.getValueAt(i, 2).toString()).toString().equals("") )
+        if(	CARI_ISIM_OKU.isim(model.getValueAt(i, 2).toString())[2].toString().equals("F") )
         	{
-        	JOptionPane.showMessageDialog(null, i + " Nolu Satirdaki Borclu_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
+        	JOptionPane.showMessageDialog(null, i + " Nolu Satirdaki " + model.getValueAt(i, 2).toString() + " Borclu_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
+        	return;
         	}
         }
         for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
         {
-        if(	CARI_ISIM_OKU.isim(model.getValueAt(i, 5).toString()).toString().equals("") )
+        if(	CARI_ISIM_OKU.isim(model.getValueAt(i, 5).toString())[2].toString().equals("F") )
         	{
-        	JOptionPane.showMessageDialog(null, i + " Nolu Satirdaki Alacakli_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
+        	JOptionPane.showMessageDialog(null, i + " Nolu Satirdaki " + model.getValueAt(i, 5).toString() + "Alacakli_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
+        	return;
         	}
         }
         ///

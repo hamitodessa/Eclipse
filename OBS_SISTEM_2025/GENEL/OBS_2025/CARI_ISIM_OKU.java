@@ -23,7 +23,7 @@ public class CARI_ISIM_OKU {
 			{
 				rs.next();
 				sonuc [0] = rs.getString("UNVAN");
-				sonuc [1]=rs.getString("HESAP_CINSI");
+				sonuc [1]= rs.getString("HESAP_CINSI");
 				sonuc [2]= "T" ;
 			}
 

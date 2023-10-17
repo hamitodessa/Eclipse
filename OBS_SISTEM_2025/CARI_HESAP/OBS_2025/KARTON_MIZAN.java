@@ -50,9 +50,6 @@ public class KARTON_MIZAN extends JInternalFrame {
 	public static JSplitPane splitPane;
 	private static JLabel lblNewLabel_3 ;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -65,10 +62,6 @@ public class KARTON_MIZAN extends JInternalFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
 	
 	public KARTON_MIZAN() {
 		setResizable(true);
@@ -174,8 +167,7 @@ public class KARTON_MIZAN extends JInternalFrame {
 					}
 					try 
 					{
-						//FILTRE intFrame = new FILTRE();
-						FILTRE.txtkodu.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+						FILTRE.txtkodu.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
 						EKSTRE.hisset();
 					} 
 					catch (NumberFormatException e1) 
@@ -239,7 +231,6 @@ public class KARTON_MIZAN extends JInternalFrame {
 		long startTime = System.currentTimeMillis(); 
 		try {
 			ResultSet	rs = null;
-			//**************
 			lblbakiye.setText("0.00");
 			lblalacak.setText("0.00");
 			lblborc.setText("0.00");
@@ -254,7 +245,6 @@ public class KARTON_MIZAN extends JInternalFrame {
 			else {
 				return;
 			}
-			
 			if (hangi_tur.equals("Borclu Hesaplar") )
 			{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) < 0 " ; }
 			else if (hangi_tur.equals("Alacakli Hesaplar")) 
@@ -263,27 +253,20 @@ public class KARTON_MIZAN extends JInternalFrame {
 			{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) = 0" ;}
 			else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
 			{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) <> 0" ;}
-
-			o2 = " ORDER BY SATIRLAR.HESAP ASC " ;
-			//**************
-			
+			o2 = " ORDER BY HESAP.KARTON,SATIRLAR.HESAP ASC " ;
 			rs = c_Access.karton_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
 					FILTRE.txticins.getText(),FILTRE.txtscins.getText() ,
 					FILTRE.txtikarton.getText(),FILTRE.txtskarton.getText() ,
 					o1 , o2);
-
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() )
 			{  
 				return;
 			} 
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			
 			lblNewLabel_3.setText(FORMATLAMA.doub_0(table.getRowCount()));
-			
 			ara_ayir();
-
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
@@ -359,7 +342,7 @@ public class KARTON_MIZAN extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),"Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, ex.getMessage(),"Karton Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -379,12 +362,12 @@ public class KARTON_MIZAN extends JInternalFrame {
 			{
 				if(mdll.getValueAt(satir + 1, 0) == null)
 				{
-						mdll.insertRow(satir + 1, new Object[]{});
-						table.repaint();
-						break;
+					mdll.insertRow(satir + 1, new Object[]{});
+					table.repaint();
+					break;
 				}
-					ustsatString = mdll.getValueAt(satir, 0).toString() ;
-					altsatString = mdll.getValueAt(satir + 1, 0).toString() ;
+				ustsatString = mdll.getValueAt(satir, 0).toString() ;
+				altsatString = mdll.getValueAt(satir + 1, 0).toString() ;
 				if (! ustsatString.equals(altsatString))
 				{
 					mdll.insertRow(satir +1, new Object[]{});
@@ -398,7 +381,7 @@ public class KARTON_MIZAN extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),"Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, ex.getMessage(),"Karton Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

@@ -5329,13 +5329,18 @@ public class FILTRE extends JDialog {
 						OZEL_MIZAN.hisset();
 						GuiUtil.setWaitCursor(OZEL_MIZAN.splitPane,false);
 					}
-					else
+					else if (GLOBAL.hangi_mizan.equals("normal")) 
 					{
 						GuiUtil.setWaitCursor(MIZAN.splitPane,true);
 						MIZAN.hisset();
 						GuiUtil.setWaitCursor(MIZAN.splitPane,false);
 					}
-
+					else if (GLOBAL.hangi_mizan.equals("karton")) 
+					{
+						GuiUtil.setWaitCursor(KARTON_MIZAN.splitPane,true);
+						KARTON_MIZAN.hisset();
+						GuiUtil.setWaitCursor(KARTON_MIZAN.splitPane,false);
+					}
 				}
 				else if (sayfa == 2) 
 				{

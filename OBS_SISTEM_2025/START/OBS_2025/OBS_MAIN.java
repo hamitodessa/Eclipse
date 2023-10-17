@@ -98,6 +98,7 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_6 ;// Coklu Giris
 	public static JButton btnNewButton_7  ; // Ekstre
 	private JButton btnNewButton_8 ; //Mizan
+	private JButton btnNewButton_2 ; // Karton Mizan
 	private JButton btnNewButton_9 ;// Dovize Cevirme
 	private JButton button ; // Ozel Mizan
 	private JButton btnNewButton_10; //Hesap Bak
@@ -1298,6 +1299,20 @@ public class OBS_MAIN extends JFrame {
 		button.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-open-view-30.png")));
 		button.setToolTipText("Ozel Mizan");
 		toolBar_2.add(button);
+		
+		btnNewButton_2 = new JButton("");
+		btnNewButton_2.setToolTipText("Karton Mizan");
+		btnNewButton_2.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-hashtag-activity-feed-30.png")));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("CARI KARTON MIZAN","");
+			}
+		});
+		
+		toolBar_2.add(btnNewButton_2);
+		
+		JLabel lblNewLabel_21 = new JLabel("     ");
+		toolBar_2.add(lblNewLabel_21);
 		btnNewButton_9.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-data-transfer-30.png")));
 		toolBar_2.add(btnNewButton_9);
 
@@ -2557,6 +2572,7 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "LOG RAPORLAMA")	LOGLAMA_RAPOR.hisset();
 				else if (sonuc == "EKSTRE")	EKSTRE.hisset();
 				else if (sonuc == "CARI MIZAN")	MIZAN.hisset();
+				else if (sonuc == "CARI KARTON MIZAN")	KARTON_MIZAN.hisset();
 				else if (sonuc == "CARI OZEL MIZAN")	OZEL_MIZAN.hisset();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
@@ -2581,6 +2597,13 @@ public class OBS_MAIN extends JFrame {
 				{
 					GLOBAL.filtre_sayfa = 1 ;
 					GLOBAL.hangi_mizan = "normal" ;
+					ft = new FILTRE();
+					ft.setVisible(true);
+				}
+				else if (sonuc == "CARI KARTON MIZAN")
+				{
+					GLOBAL.filtre_sayfa = 1 ;
+					GLOBAL.hangi_mizan = "karton" ;
 					ft = new FILTRE();
 					ft.setVisible(true);
 				}
@@ -3384,6 +3407,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("ORNEK HESAP PLANI")) internalFrame  = new ORN_HSP_PLN();
 			else if (pencere.equals("KOD DEGISTIRME")) internalFrame  = new KOD_DEGISTIRME();
 			else if (pencere.equals("YIL SONU AKTARMA")) internalFrame  = new YIL_SONU();
+			else if (pencere.equals("CARI KARTON MIZAN")) internalFrame  = new KARTON_MIZAN();
 			//KUR
 			else if (pencere.equals("KUR GIRIS")) internalFrame  = new KUR_GIRIS();
 			else if (pencere.equals("KUR RAPORLAMA")) internalFrame  = new KUR_RAPORLAMA();

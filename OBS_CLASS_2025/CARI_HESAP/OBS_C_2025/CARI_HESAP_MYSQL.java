@@ -1121,4 +1121,23 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 	}
+	@Override
+	public ResultSet karton_mizan(String h1, String h2, String t1, String t2, String c1, String c2, String k1,
+			String k2, String o1, String o2) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		String sql = "SELECT SATIRLAR.HESAP,HESAP.UNVAN,HESAP.HESAP_CINSI AS H_CINSI," + 
+				" ROUND(SUM(SATIRLAR.BORC),2) AS BORC, ROUND(SUM(SATIRLAR.ALACAK),2) AS ALACAK, " + 
+				" ROUND(SUM(SATIRLAR.ALACAK),2) - ROUND(SUM(SATIRLAR.BORC),2) AS BAKIYE" +
+				" FROM SATIRLAR USE INDEX (IX_SATIRLAR) ,HESAP USE INDEX (IX_HESAP)" +
+				" WHERE SATIRLAR.HESAP = HESAP.HESAP " +
+				" AND SATIRLAR.HESAP BETWEEN N'" + h1 + "' AND N'" + h2 + "'" +
+				" AND TARIH BETWEEN '" + t1 + "' AND '"  + t2  + " 23:59:59.998'" + 
+				" AND HESAP.HESAP_CINSI BETWEEN N'" + c1 + "' AND '" + c2 + "'" +
+				" AND HESAP.KARTON BETWEEN N'" + k1 + "' AND N'" + k2 + "' " +
+				" GROUP BY SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " + o1 + " " + o2 + "";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	 
+	}
 }

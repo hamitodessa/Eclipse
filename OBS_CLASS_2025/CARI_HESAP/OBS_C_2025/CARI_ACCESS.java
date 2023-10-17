@@ -266,4 +266,9 @@ public class CARI_ACCESS {
 		for ( ILOGGER  _Logger : _Logger )
 		  	_Logger.Logla(lBILGI, dBILGI);
 	}
+	public ResultSet karton_mizan(String h1 , String h2,String t1,String t2,String c1,String c2,String k1, String k2, String o1 , String o2) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.karton_mizan(h1, h2, t1, t2, c1, c2, k1, k2, o1, o2);
+	}
+
 }

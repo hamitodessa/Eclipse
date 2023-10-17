@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -20,6 +19,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
@@ -32,9 +32,8 @@ public class KUR_RAPORLAMA extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static KUR_ACCESS k_Access = new KUR_ACCESS(OBS_SIS_2025_ANA_CLASS._IKur , OBS_SIS_2025_ANA_CLASS._IKur_Loger);
-
+	public static ScrollPaneWin11 scrollPane ;
 	private static JTable table;
-	public static JScrollPane scrollPane ;
 	/**
 	 * Launch the application.
 	 */
@@ -62,7 +61,7 @@ public class KUR_RAPORLAMA extends JInternalFrame {
 		setClosable(true);
 		setBounds(0, 0, 700, 600);
 
-		scrollPane = new JScrollPane();
+		scrollPane = new ScrollPaneWin11();
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 
 		table = new JTable();

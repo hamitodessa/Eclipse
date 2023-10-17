@@ -22,7 +22,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -66,6 +65,7 @@ import OBS_C_2025.KER_RAPOR_BILGI;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.SOLA_ORTA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
@@ -124,7 +124,7 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setLeftComponent(scrollPane);
 
 		table = new JTable(){
@@ -189,7 +189,7 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		panel.add(splitPane_1);
 
-		JScrollPane scrollPane_1 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
 		splitPane_1.setLeftComponent(scrollPane_1);
 
 		table_1 = new JTable();

@@ -21,7 +21,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -45,6 +44,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -112,7 +112,7 @@ public static JTabbedPane orTabbedPane;
 		splitPane.setRightComponent(splitPane_1);
 		
 		//
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		orTabbedPane = new JTabbedPane();
 		orTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		orTabbedPane.addTab("Genel", null,scrollPane , null);  //

@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -32,6 +31,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.ORTA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
@@ -51,7 +51,6 @@ public class USER_EKLEME extends JInternalFrame {
 	private static JTextField txtdb;
 	private static JCheckBox chckbxl;
 	private static JCheckBox chckbxs;
-	private static JScrollPane pane;
 	private static JSplitPane splitPane ;
 	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
@@ -91,6 +90,8 @@ public class USER_EKLEME extends JInternalFrame {
 
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
+		
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		Object[][] tabledata = {
 				{ "", ""  , "" ,"" ,"",false,false},    };
 		String columnheaders[] = { "KULLANICI", "SIFRE", "SEVIYE" ,"DB IZIN","MAIL", "LOKAL IZIN", "SERVER IZIN"};
@@ -188,9 +189,8 @@ public class USER_EKLEME extends JInternalFrame {
 		table_1.setSelectionForeground(Color.BLUE);
 		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		// 
-		pane = new JScrollPane(table_1);
-		pane.setViewportView(table_1);
-		splitPane.setRightComponent(pane);
+		scrollPane.setViewportView(table_1);
+		splitPane.setRightComponent(scrollPane);
 
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 100));

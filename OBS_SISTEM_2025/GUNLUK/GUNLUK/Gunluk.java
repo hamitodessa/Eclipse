@@ -25,8 +25,8 @@ import OBS_C_2025.COLUMN_RENDERER_YILLIK;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ROW_RENDERER;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_CEVIR;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -80,7 +80,7 @@ public class Gunluk extends JInternalFrame {
 	boolean ilk = true;
 	private static JComboBox<String> comboIsim;
 	private static JTree treeGovev ;
-	private JScrollPane scrolAylik;
+	private ScrollPaneWin11 scrolAylik;
 	private JTabbedPane tabloTabbedPane;
 	
 	/**
@@ -402,7 +402,7 @@ public class Gunluk extends JInternalFrame {
 		splitPane_6.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane_5.setRightComponent(splitPane_6);
 
-		JScrollPane scrollPane_1 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
 		splitPane_6.setLeftComponent(scrollPane_1);
 
 		///
@@ -502,7 +502,7 @@ public class Gunluk extends JInternalFrame {
 		table_1.setShowVerticalLines(true);
 		//*****************************************************************************************************************		
 		splitPane_3.setLeftComponent(table_1);
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane_3.setRightComponent(scrollPane);
 		//*****************************************************************************************************************
 		table = new JTable() {
@@ -586,13 +586,13 @@ public class Gunluk extends JInternalFrame {
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		//****************************************Aylik***********************************
-		scrolAylik = new JScrollPane();
+		scrolAylik =  new ScrollPaneWin11();
 		tabloTabbedPane.addTab("Aylik", null, scrolAylik, null);
 		//****************************************YILLIK *********************************
 		JPanel panel_6 = new JPanel();
 		tabloTabbedPane.addTab("Yillik", null, panel_6, null);
 		panel_6.setLayout(new BorderLayout(0, 0));
-		JScrollPane scrollPane_2 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
 		panel_6.add(scrollPane_2, BorderLayout.CENTER);
 
 		table_3 = new JTable() {

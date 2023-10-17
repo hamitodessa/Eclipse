@@ -12,7 +12,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -26,6 +25,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.SOLA_ORTA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_SAATLI;
 import net.proteanit.sql.DbUtils;
 import javax.swing.JLabel;
@@ -113,7 +113,7 @@ public class GID_RAPOR extends JInternalFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		
 		splitPane.setRightComponent(scrollPane);
 

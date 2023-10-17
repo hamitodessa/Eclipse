@@ -30,7 +30,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -61,6 +60,7 @@ import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.ORTA;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
@@ -293,8 +293,7 @@ public class SMS extends JInternalFrame {
 		panel_1.add(comboBox_1);
 
 
-
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane_1.setRightComponent(scrollPane);
 
 		table = new JTable();
@@ -320,7 +319,7 @@ public class SMS extends JInternalFrame {
 		panel_2.setMaximumSize(new Dimension(0, 30));
 		splitPane_2.setLeftComponent(panel_2);
 
-		JScrollPane scrollPane_1 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
 		splitPane_2.setRightComponent(scrollPane_1);
 
 		table_1 = new JTable();
@@ -573,7 +572,7 @@ public class SMS extends JInternalFrame {
 
 		panel_3.add(comboBox_2);
 
-		JScrollPane scrollPane_2 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
 		splitPane_3.setRightComponent(scrollPane_2);
 
 		table_2 = new JTable(){

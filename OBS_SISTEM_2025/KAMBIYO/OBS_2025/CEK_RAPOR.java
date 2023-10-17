@@ -8,7 +8,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
 import java.awt.BorderLayout;
@@ -28,6 +27,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
@@ -41,7 +41,7 @@ public class CEK_RAPOR extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 
 	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(OBS_SIS_2025_ANA_CLASS._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
-	public static JScrollPane scrollPane ;
+	public static ScrollPaneWin11 scrollPane;
 	private static JLabel lbladet;
 	/**
 	 * Launch the application.
@@ -77,7 +77,7 @@ public class CEK_RAPOR extends JInternalFrame {
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		
-		scrollPane = new JScrollPane();
+		scrollPane = new ScrollPaneWin11();
 		splitPane.setLeftComponent(scrollPane);
 
 		table = new JTable(){

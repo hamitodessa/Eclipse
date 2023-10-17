@@ -18,7 +18,6 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -41,6 +40,7 @@ import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.StayOpenCheckBoxMenuItemUI;
 
 import javax.swing.JButton;
@@ -51,7 +51,6 @@ import javax.swing.JPasswordField;
 public class USER_DETAY_EKLEME extends JInternalFrame {
 
 	private static JSplitPane splitPane;
-	private static JScrollPane scrollPane ;
 	private static JComboBox<String> comboBox_1;
 	private static JComboBox<String> comboBox;
 	private static JTextField txtkodu;
@@ -328,6 +327,9 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		passwordField.setBounds(357, 33, 125, 20);
 		panel.add(passwordField);
 		
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		
+		
 		String columnheaders[] = { "KODU", "KULLANICI", "SER.KULLANICI" ,"SIFRE","INSTANCE", "IP", "MODUL" ,
 				"DIZIN","YER","DIZIN CINS","IZINLI MI" ,"CALISAN MI","SQL CINSI" ,"LOGLAMA" ,"LOG_YERI" , "ID"};
 		DefaultTableModel model = new DefaultTableModel(null,columnheaders);
@@ -439,8 +441,8 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		table_1.setRowHeight(22);
 		table_1.setSelectionBackground(Color.PINK);
 		table_1.setSelectionForeground(Color.BLUE);
-
-		scrollPane = new JScrollPane(table_1);
+		scrollPane.setViewportView(table_1);
+		
 		splitPane.setRightComponent(scrollPane);
 		getContentPane().setCursor(WAIT_CURSOR);
 		try {

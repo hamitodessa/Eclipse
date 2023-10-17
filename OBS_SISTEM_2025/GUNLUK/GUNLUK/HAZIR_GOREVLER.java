@@ -20,7 +20,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -39,6 +38,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.lOG_BILGI;
@@ -58,10 +58,10 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 	private static JTable table;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(OBS_SIS_2025_ANA_CLASS._IGunluk , OBS_SIS_2025_ANA_CLASS._IGunluk_Loger);
-	public static JScrollPane scrollPane;
 	private JPanel panel;
 	private static JLabel lbladet ;
 	static JPopupMenu popup ;
+	public static ScrollPaneWin11 scrollPane ;
 	/**
 	 * Launch the application.
 	 */
@@ -94,7 +94,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 		splitPane.setResizeWeight(1.0);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
-		scrollPane = new JScrollPane();
+		scrollPane = new ScrollPaneWin11();
 		splitPane.setLeftComponent(scrollPane);
 		///***************************
 		popup = new JPopupMenu();

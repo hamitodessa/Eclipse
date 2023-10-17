@@ -10,7 +10,6 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -62,6 +61,7 @@ import OBS_C_2025.MAIL_SETTINGS;
 import OBS_C_2025.ORTA;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.ValidEmailAddress;
 import net.proteanit.sql.DbUtils;
 
@@ -369,7 +369,7 @@ public class MAIL extends JInternalFrame {
 		btnNewButton_2.setBounds(761, 126, 112, 23);
 		panel_1.add(btnNewButton_2);
 
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane_1.setRightComponent(scrollPane);
 
 		table = new JTable();
@@ -395,7 +395,7 @@ public class MAIL extends JInternalFrame {
 		panel_2.setMaximumSize(new Dimension(0, 30));
 		splitPane_2.setLeftComponent(panel_2);
 
-		JScrollPane scrollPane_1 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
 		splitPane_2.setRightComponent(scrollPane_1);
 
 		table_1 = new JTable();
@@ -498,7 +498,7 @@ public class MAIL extends JInternalFrame {
 
 		panel_3.add(comboBox_2);
 
-		JScrollPane scrollPane_2 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
 		splitPane_3.setRightComponent(scrollPane_2);
 
 		table_2 = new JTable(){

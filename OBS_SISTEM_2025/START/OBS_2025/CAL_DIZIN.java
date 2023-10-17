@@ -34,7 +34,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -88,6 +87,7 @@ import OBS_C_2025.KERESTE_MSSQL;
 import OBS_C_2025.KERESTE_MYSQL;
 import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.Server_Bilgi;
 import OBS_C_2025.StayOpenCheckBoxMenuItemUI;
 import OBS_C_2025.USER_ISLEMLERI;
@@ -582,7 +582,7 @@ public class CAL_DIZIN extends JDialog {
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
 		contentPane.add(tabbedPane);
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		tabbedPane.addTab("Cari Hesap", null, scrollPane, null);
 		tblCari = new JTable() {
 			private static final long serialVersionUID = 1L;
@@ -616,7 +616,7 @@ public class CAL_DIZIN extends JDialog {
 
 		scrollPane.setViewportView(tblCari);
 
-		JScrollPane scrollPane_1 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
 		tabbedPane.addTab("Fatura", null, scrollPane_1, null);
 
 		tblFatura = new JTable(){
@@ -648,7 +648,7 @@ public class CAL_DIZIN extends JDialog {
 		tablo_baslik(tblFatura);
 		scrollPane_1.setViewportView(tblFatura);
 
-		JScrollPane scrollPane_2 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
 		
 		tabbedPane.addTab("Adres", null, scrollPane_2, null);
 		tblAdres = new JTable(){
@@ -680,7 +680,7 @@ public class CAL_DIZIN extends JDialog {
 		tablo_baslik(tblAdres);
 		scrollPane_2.setViewportView(tblAdres);
 
-		JScrollPane scrollPane_3 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_3 = new ScrollPaneWin11();
 		tabbedPane.addTab("Kur", null, scrollPane_3, null);
 		tblKur = new JTable(){
 			private static final long serialVersionUID = 1L;
@@ -711,7 +711,7 @@ public class CAL_DIZIN extends JDialog {
 		tablo_baslik(tblKur);
 		scrollPane_3.setViewportView(tblKur);
 
-		JScrollPane scrollPane_4 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_4 = new ScrollPaneWin11();
 		tabbedPane.addTab("Kambiyo", null, scrollPane_4, null);
 
 		tblKambiyo = new JTable(){
@@ -744,7 +744,7 @@ public class CAL_DIZIN extends JDialog {
 		tablo_baslik(tblKambiyo);
 		scrollPane_4.setViewportView(tblKambiyo);
 
-		JScrollPane scrollPane_5 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_5 = new ScrollPaneWin11();
 		tabbedPane.addTab("Sms", null, scrollPane_5, null);
 
 		tblSms = new JTable(){
@@ -776,7 +776,7 @@ public class CAL_DIZIN extends JDialog {
 		tablo_baslik(tblSms);
 		scrollPane_5.setViewportView(tblSms);
 
-		JScrollPane scrollPane_6 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_6 = new ScrollPaneWin11();
 		tabbedPane.addTab("Gunluk", null, scrollPane_6, null);
 		tblGunluk = new JTable(){
 			private static final long serialVersionUID = 1L;
@@ -808,7 +808,7 @@ public class CAL_DIZIN extends JDialog {
 		scrollPane_6.setViewportView(tblGunluk);
 		
 		//*****************************************************************
-		JScrollPane scrollPane_9 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_9 = new ScrollPaneWin11();
 		tabbedPane.addTab("Kereste", null, scrollPane_9, null);
 		tblKereste = new JTable(){
 			private static final long serialVersionUID = 1L;
@@ -839,7 +839,7 @@ public class CAL_DIZIN extends JDialog {
 		tablo_baslik(tblKereste);
 		scrollPane_9.setViewportView(tblKereste);
 		//******************************************************************
-		JScrollPane scrollPane_7 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_7 = new ScrollPaneWin11();
 		
 		tabbedPane.addTab("Sifre", null, scrollPane_7, null);
 		JPanel panel_1 = new JPanel();
@@ -941,7 +941,7 @@ public class CAL_DIZIN extends JDialog {
 
 		tabbedPane.setEnabledAt(7, true);
 
-		JScrollPane scrollPane_8 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_8 = new ScrollPaneWin11();
 		tabbedPane.addTab("Loglama", null, scrollPane_8, null);
 
 		JPanel panel_2 = new JPanel();

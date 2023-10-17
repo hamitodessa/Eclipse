@@ -11,7 +11,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -31,6 +30,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
 
 @SuppressWarnings({"serial","static-access"})
@@ -73,7 +73,7 @@ public class ADRESLER extends JInternalFrame {
 	splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 	getContentPane().add(splitPane, BorderLayout.CENTER);
 
-	JScrollPane scrollPane = new JScrollPane();
+	ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 	splitPane.setRightComponent(scrollPane);
 
 	table = new JTable(){

@@ -14,7 +14,6 @@ import java.util.Date;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
@@ -29,6 +28,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
@@ -96,7 +96,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		leftPanel.setMinimumSize(new Dimension(0, 50));
 		leftPanel.setMaximumSize(new Dimension(0, 50));
-		JScrollPane centerPanel = new JScrollPane();
+		ScrollPaneWin11 centerPanel = new ScrollPaneWin11();
 		JPanel rightPanel = new JPanel();
 		rightPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		rightPanel.setMinimumSize(new Dimension(0, 20));

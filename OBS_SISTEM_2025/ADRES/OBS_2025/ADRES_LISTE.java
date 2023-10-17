@@ -17,7 +17,6 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -38,6 +37,7 @@ import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
 import javax.swing.ListSelectionModel;
 
@@ -139,7 +139,7 @@ public class ADRES_LISTE extends JDialog {
 	lblNewLabel.setBounds(10, 14, 63, 14);
 	panel.add(lblNewLabel);
 
-	JScrollPane scrollPane = new JScrollPane();
+	ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 	splitPane.setRightComponent(scrollPane);
 
 	table = new JTable() {

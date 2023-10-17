@@ -9,7 +9,6 @@ import java.util.Date;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -32,6 +31,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 
@@ -166,7 +166,7 @@ public class EKSIK_KUR extends JInternalFrame
 		lblNewLabel.setBounds(250, 79, 42, 14);
 		panel.add(lblNewLabel);
 
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setRightComponent(scrollPane);
 
 		DefaultTableModel model = new DefaultTableModel() ;

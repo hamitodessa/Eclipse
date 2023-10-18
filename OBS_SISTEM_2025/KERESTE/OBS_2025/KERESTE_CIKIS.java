@@ -2428,11 +2428,12 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 				Row toplam1  = sheet.createRow(satir + 7);
 				cell = toplam1.createCell(3);
-				cell.setCellValue(Double.parseDouble( label_8_1.getText()));
+				//cell.setCellValue(Double.parseDouble( label_8_1.getText()));
+				cell.setCellValue(label_8_1.getText());
 				cell.setCellStyle(satirStylemik_ARA); 
 
 				cell = toplam1.createCell(4);
-				cell.setCellValue(Double.parseDouble( label_8.getText()));
+				cell.setCellValue(label_8.getText());
 				cell.setCellStyle(satirStyle3_ARA); 
 
 				cell = toplam1.createCell(9);
@@ -2449,7 +2450,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				cell.setCellStyle(satirStyleTOPTUT); 
 
 				cell = toplam1.createCell(5);
-				cell.setCellValue(Double.parseDouble( lblPaket.getText()));
+				cell.setCellValue(lblPaket.getText());
 				cell.setCellStyle(satirStyleTOPTUT); 
 
 				cell = toplam1.createCell(2);
@@ -2779,11 +2780,11 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 				Row toplam1  = sheet.createRow(satir + 7);
 				cell = toplam1.createCell(3);
-				cell.setCellValue(Double.parseDouble( label_8_1.getText()));
+				cell.setCellValue(label_8_1.getText());
 				cell.setCellStyle(satirStylemik_ARA); 
 
 				cell = toplam1.createCell(4);
-				cell.setCellValue(Double.parseDouble( label_8.getText()));
+				cell.setCellValue(label_8.getText());
 				cell.setCellStyle(satirStyle3_ARA); 
 
 				cell = toplam1.createCell(9);
@@ -2800,7 +2801,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				cell.setCellStyle(satirStyleTOPTUT); 
 
 				cell = toplam1.createCell(5);
-				cell.setCellValue(Double.parseDouble( lblPaket.getText()));
+				cell.setCellValue(lblPaket.getText());
 				cell.setCellStyle(satirStyleTOPTUT); 
 
 				cell = toplam1.createCell(2);
@@ -3142,11 +3143,11 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 			Row toplam1  = sheet.createRow(satir + 7);
 			cell = toplam1.createCell(3);
-			cell.setCellValue(Double.parseDouble( label_8_1.getText()));
+			cell.setCellValue(label_8_1.getText());
 			cell.setCellStyle(satirStylemik_ARA); 
 
 			cell = toplam1.createCell(4);
-			cell.setCellValue(Double.parseDouble( label_8.getText()));
+			cell.setCellValue(label_8.getText());
 			cell.setCellStyle(satirStyle3_ARA); 
 
 			cell = toplam1.createCell(9);
@@ -3163,7 +3164,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			cell.setCellStyle(satirStyleTOPTUT); 
 
 			cell = toplam1.createCell(5);
-			cell.setCellValue(Double.parseDouble( lblPaket.getText()));
+			cell.setCellValue(lblPaket.getText());
 			cell.setCellStyle(satirStyleTOPTUT); 
 
 			cell = toplam1.createCell(2);

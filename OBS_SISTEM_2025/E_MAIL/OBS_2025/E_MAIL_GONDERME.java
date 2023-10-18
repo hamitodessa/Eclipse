@@ -620,7 +620,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			ByteArrayDataSource ds = null ;
 			MimeBodyPart messagePart = null ;
 			InputStream inputStream = null ;
-			if (etiketten )
+			if (etiketten)
 			{
 				if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("PDF") )
 				{
@@ -647,7 +647,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					}
 				}
 			}
-			if (ekstreden)
+			else if (ekstreden)
 			{
 				if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("PDF") )
 				{

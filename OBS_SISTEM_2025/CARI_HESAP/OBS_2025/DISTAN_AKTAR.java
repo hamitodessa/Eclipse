@@ -18,7 +18,6 @@ import javax.swing.InputMap;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
@@ -85,7 +84,6 @@ import OBS_C_2025.lOG_BILGI;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.JSeparator;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -147,7 +145,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		
 				
 		splitPane = new JSplitPane();
-		splitPane.setDividerSize(1);
+		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
@@ -422,7 +420,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		panel.add(btnNewButton_3_1);
 		
 		JSplitPane splitPane_1 = new JSplitPane();
-		splitPane_1.setDividerSize(1);
+		splitPane_1.setDividerSize(0);
 		splitPane_1.setResizeWeight(1.0);
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		
@@ -438,7 +436,19 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		
 		
 		DefaultTableModel model = new DefaultTableModel() ;
-		tblexcell = new JTable(model) ;
+		tblexcell = new JTable(model)  {
+			@Override
+			public boolean isCellEditable(int row, int column) {  
+				switch (column) {
+				case 6:
+					return false;
+				default:
+					return true;
+				}
+			}
+		};
+
+		
 		tblexcell.getTableHeader().setReorderingAllowed(false);
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
@@ -575,14 +585,15 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		JSplitPane splitPane_2 = new JSplitPane();
 		tabbedPane.addTab("Temalar", null, splitPane_2, null);
 		
-		splitPane_2.setDividerSize(1);
+		splitPane_2.setDividerSize(0);
 		splitPane_2.setResizeWeight(0);
 		splitPane_2.setDividerLocation(350);
 		
 		JSplitPane splitPane_3 = new JSplitPane();
+		splitPane_3.setDividerSize(0);
 		splitPane_2.setRightComponent(splitPane_3);
 		
-		splitPane_3.setDividerSize(1);
+		splitPane_3.setDividerSize(0);
 		splitPane_3.setResizeWeight(1.0);
 		splitPane_3.setDividerLocation(450);
 		
@@ -767,7 +778,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		splitPane_3.setRightComponent(splitPane_5);
 		
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
-		scrollPane_2.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Karsi Hesap Kodlari", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		//scrollPane_2.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Karsi Hesap Kodlari", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		splitPane_5.setRightComponent(scrollPane_2);
 		
 		DefaultTableModel mdl = new DefaultTableModel() ;
@@ -787,7 +798,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		    sutun= 0;
 		    colon = table_1.getColumnModel().getColumn(sutun);
 			colon.setHeaderRenderer(new SOLA());
-			colon.setMinWidth(240);
+			colon.setMinWidth(260);
 			sutun= 1;
 		    colon = table_1.getColumnModel().getColumn(sutun);
 			colon.setHeaderRenderer(new SOLA());
@@ -836,14 +847,14 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		toolBar_3.add(btnNewButton_9);
 		
 		JSplitPane splitPane_4 = new JSplitPane();
-		splitPane_4.setDividerSize(1);
+		splitPane_4.setDividerSize(0);
 		splitPane_4.setResizeWeight(0);
 		splitPane_4.setDividerLocation(30);
 		splitPane_4.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane_2.setLeftComponent(splitPane_4);
 		
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
-		scrollPane_1.setViewportBorder(new TitledBorder(null, "Izahat Kismi Degisim Parametreleri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		//scrollPane_1.setViewportBorder(new TitledBorder(null, "Izahat Kismi Degisim Parametreleri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		splitPane_4.setRightComponent(scrollPane_1);
 		
 		DefaultTableModel mdlt = new DefaultTableModel() ;
@@ -861,11 +872,11 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		sutun= 0;
 		colon = table.getColumnModel().getColumn(sutun);
 		colon.setHeaderRenderer(new SOLA());
-		colon.setMinWidth(170);
+		colon.setMinWidth(190);
 		sutun= 1;
 		colon = table.getColumnModel().getColumn(sutun);
 		colon.setHeaderRenderer(new SOLA());
-		colon.setMinWidth(150);
+		colon.setMinWidth(140);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setRowHeight(22);
 		th = table.getTableHeader();
@@ -1084,7 +1095,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	public static void satir_sil()
 	{
 		DefaultTableModel model = (DefaultTableModel) tblexcell.getModel();
-		if (table.getSelectedRow() < 0 ) return ;
+		if (tblexcell.getSelectedRow() < 0 ) return ;
 		model.removeRow(tblexcell.getSelectedRow());
 		tblexcell.repaint();
 		lblsatir.setText(Integer.toString(tblexcell.getRowCount()));
@@ -1093,27 +1104,25 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	{
 		try {
 			te_sifirla();
-		ResultSet rs = null ;
-	
-		rs = oac.tCR.tema_oku();
-		
-		if (!rs.isBeforeFirst() ) { 
+			ResultSet rs = null ;
+			rs = oac.tCR.tema_oku();
+			if (!rs.isBeforeFirst() ) { 
+				comboBox.addItem("");
+				textField.setText("");
+				return ;
+			} 
+			while(rs.next())
+			{
+				comboBox.addItem(rs.getString("TEMA").toString());
+			}
+			oac.tCR.conn.close();
 			comboBox.addItem("");
-			textField.setText("");
-			return ;
-		} 
-		while(rs.next())
-		{
-			comboBox.addItem(rs.getString("TEMA").toString());
+			textField.setText(Tema_Cari.tema_anahesap(comboBox.getSelectedItem().toString()));
+			table.enable(true);
+			table_1.enable(true);
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);   
 		}
-		oac.tCR.conn.close();
-		comboBox.addItem("");
-		textField.setText(Tema_Cari.tema_anahesap(comboBox.getSelectedItem().toString()));
-		table.enable(true);
-		table_1.enable(true);
-	} catch (Exception ex) {
-		JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);   
-	}
 	}
 	private void sol_tablo_ilave(JTable tbl)
 	{
@@ -1131,23 +1140,23 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	{
 		try
 		{
-		if (comboBox.getItemCount() == 0) return ;
-		ResultSet rs = null ;
-		GRID_TEMIZLE.grid_temizle(table_1);
-		rs =  oac.tCR.ttema_oku(comboBox.getSelectedItem().toString());
-		if (!rs.isBeforeFirst() ) {  
-			return;
-		} 
-		DefaultTableModel mdl = (DefaultTableModel) table_1.getModel();
-		 while(rs.next()) 
-		 {
-			 mdl.addRow(new Object[]{rs.getString("ARANACAK"),rs.getString("HESAP_KODU")}); 
-		 }
-		 oac.tCR.conn.close();
+			if (comboBox.getItemCount() == 0) return ;
+			ResultSet rs = null ;
+			GRID_TEMIZLE.grid_temizle(table_1);
+			rs =  oac.tCR.ttema_oku(comboBox.getSelectedItem().toString());
+			if (!rs.isBeforeFirst() ) {  
+				return;
+			} 
+			DefaultTableModel mdl = (DefaultTableModel) table_1.getModel();
+			while(rs.next()) 
+			{
+				mdl.addRow(new Object[]{rs.getString("ARANACAK"),rs.getString("HESAP_KODU")}); 
+			}
+			oac.tCR.conn.close();
 		}
 		catch (Exception ex)
 		{
-		 getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+			getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -1155,36 +1164,34 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	{
 		try
 		{
-		if (comboBox.getItemCount() == 0) return ;
-		ResultSet rs = null ;
-		GRID_TEMIZLE.grid_temizle(table);
-		rs =  oac.tCR.temalar_oku(comboBox.getSelectedItem().toString());
-		if (!rs.isBeforeFirst() ) {  
-			return;
-		} 
-		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-		 while(rs.next()) 
-		 {
-			 mdl.addRow(new Object[]{rs.getString("ARANACAK"),rs.getString("YAZILACAK")}); 
-		 }
-		 oac.tCR.conn.close();
+			if (comboBox.getItemCount() == 0) return ;
+			ResultSet rs = null ;
+			GRID_TEMIZLE.grid_temizle(table);
+			rs =  oac.tCR.temalar_oku(comboBox.getSelectedItem().toString());
+			if (!rs.isBeforeFirst() ) {  
+				return;
+			} 
+			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+			while(rs.next()) 
+			{
+				mdl.addRow(new Object[]{rs.getString("ARANACAK"),rs.getString("YAZILACAK")}); 
+			}
+			oac.tCR.conn.close();
 		}
 		catch (Exception ex)
 		{
-			 getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktarma", JOptionPane.ERROR_MESSAGE);   
+			getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktarma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void te_sifirla()
-		{
+	{
 		comboBox.removeAllItems();
 		GRID_TEMIZLE.grid_temizle(table);
 		GRID_TEMIZLE.grid_temizle(table_1);
 		table.enable(false);
 		table_1.enable(false);
-		}
-
-	
+	}
 	private void aciklama_duzelt()
 	{
 		if ( tblexcell.getRowCount() == 0 ) return ;
@@ -1251,7 +1258,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				//Progres_Bar_Temizle();
 				//OBS_MAIN.progressBar.setStringPainted(true);
 				//OBS_MAIN.progressBar.setMaximum(table_1.getRowCount() - 1);
-				
 				for(int  t = 0 ; t <= table_1.getRowCount() - 1;t ++) 
 				{
 					//Progres_Bar(table_1.getRowCount() - 1, t);
@@ -1329,7 +1335,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
             return;
         }
         ///HESAP KODLARI KONTROL
-        List<String> uniqueDataList = u_kod_ogren(2) ;
+        List<String> uniqueDataList = kod_sirala(2) ;
         for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) {
         	if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
         	{
@@ -1338,7 +1344,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
         	}
         }
         uniqueDataList.clear();
-        uniqueDataList = u_kod_ogren(5) ;
+        uniqueDataList = kod_sirala(5) ;
         for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) {
         	if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
         	{
@@ -1509,7 +1515,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	    t.start();
 	    //
 	}
-	private static List<String> u_kod_ogren(int cOLUMN)
+	private static List<String> kod_sirala(int cOLUMN)
 	{
 		DefaultTableModel mdl = (DefaultTableModel) tblexcell.getModel();
 		List<String> list = new ArrayList<String>();  

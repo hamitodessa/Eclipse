@@ -1391,7 +1391,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 				if (model.getRowCount() > 0) 
 				{
 					int row;
-					row = table.getSelectedRow();     //e.getFirstRow();
+					row = table.getSelectedRow();   
 					int column = e.getColumn();
 					if (column == 1)  //
 					{
@@ -1735,22 +1735,27 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			double aram3 = Double.parseDouble(model.getValueAt(i-1, 4).toString()) ;
 			if (! model.getValueAt(i, 2).toString().trim().equals(paketno.toString().trim()))
 			{
-				if (i == model.getRowCount() -1) {
+				if (i == model.getRowCount() -1) 
+				{
 					double aram33 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
 					model.setValueAt( m3 + aram3 ,i-1, 5)  ;
-					if (aram33==0) {
+					if (aram33==0) 
+					{
 						model.setValueAt( "" ,i, 5)  ;
 					}
-					else {
+					else 
+					{
 						model.setValueAt( FORMATLAMA.doub_3(aram33) ,i, 5)  ;
 					}
 				}
-				else {
+				else 
+				{
 					m3 = m3 + aram3 ;
 					if (m3==0) {
 						model.setValueAt("",i-1, 5)  ;
 					}
-					else {
+					else 
+					{
 						model.setValueAt(FORMATLAMA.doub_3(m3),i-1, 5)  ;
 					}
 					m3 = 0.000;
@@ -1761,11 +1766,13 @@ public class KERESTE_GIRIS extends JInternalFrame {
 				{
 					double aram33 = Double.parseDouble(model.getValueAt(i, 4).toString()) ;
 					double aram1 = Double.parseDouble(model.getValueAt(i-1, 4).toString()) ;
-					if (m3+ aram33+ aram1 == 0) {
+					if (m3+ aram33+ aram1 == 0) 
+					{
 						model.setValueAt("" ,i, 5)  ;
 					}
-					else {
-						model.setValueAt(FORMATLAMA.doub_3(m3+ aram33+ aram1) ,i, 5)  ;
+					else 
+					{
+						model.setValueAt(FORMATLAMA.doub_3(m3 + aram33 + aram1) ,i, 5)  ;
 					}
 					model.setValueAt("",i-1, 5)  ;
 				}
@@ -2219,7 +2226,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 							mdl.removeRow(mdl.getRowCount() -1);	
 						}
 					}  while (rss.next()) ;
-					//mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
+					mdl.addRow(new Object[]{"","","",0.00,0.000,"","",0.00,0.00,0.00,0.00,"","","",0.00,"",0.00,0.00,0.00,"","",0.00,0.00,0,0,0,"","",0,""});
 					paketm3();
 					dOSYADAN = false;
 					toplam();

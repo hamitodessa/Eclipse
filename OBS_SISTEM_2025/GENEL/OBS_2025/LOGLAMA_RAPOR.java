@@ -84,7 +84,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("static-access")
+	@SuppressWarnings({ "static-access", "serial" })
 	public LOGLAMA_RAPOR() {
 		setTitle("LOG RAPORLAMA");
 		setClosable(true);
@@ -125,11 +125,11 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		comboBox.setForeground(new Color(0, 0, 139));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 14));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Cari Hesap", "Fatura", "Kambiyo", "Adres", "Kur", "Sms-Mail", "Gunluk","Kereste"}));
-		comboBox.setBounds(10, 11, 120, 22);
+		comboBox.setBounds(10, 11, 120, 27);
 		leftPanel.add(comboBox);
 
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(270, 12, 130, 20);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
+		dateChooser.setBounds(270, 11, 130, 27);dateChooser.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
@@ -144,7 +144,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
-		dateChooser_1.setBounds(405, 12, 130, 20);
+		dateChooser_1.setBounds(405, 11, 130, 27);
 		dateChooser_1.getComponent(1).addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -185,16 +185,10 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		
 		cmbLog = new JComboBox<String>();
 		cmbLog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani", "Dosya", "Text Dosya"}));
-		cmbLog.setForeground(new Color(165, 42, 42));
 		cmbLog.setFont(new Font("Tahoma", Font.BOLD, 14));
-		cmbLog.setBounds(140, 11, 120, 22);
+		cmbLog.setBounds(140, 11, 120, 27);
 		leftPanel.add(cmbLog);
 		table = new JTable(){
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
 		table.getTableHeader().setReorderingAllowed(false);
@@ -204,7 +198,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		}
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
-		//	table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		centerPanel.setViewportView(table);
 	}
 	public static void hisset()
@@ -479,7 +472,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 					txtmi = true ;
 				}
 			}
-			
 			if(txtmi == false )
 			{
 				if (!rs.isBeforeFirst() ) 
@@ -491,11 +483,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 					return;
 				}
 			} 
-			if(txtmi == true)
-			{
-
-			}
-			else
+			if(txtmi == false)
 			{
 				GRID_TEMIZLE.grid_temizle(table);
 				table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -536,8 +524,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 			}
-			//table.setSelectionBackground(Color.PINK);
-			//table.setSelectionForeground(Color.BLUE);
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 

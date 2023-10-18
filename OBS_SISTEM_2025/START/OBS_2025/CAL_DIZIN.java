@@ -1325,8 +1325,6 @@ public class CAL_DIZIN extends JDialog {
 		
 		th.repaint();
 		grd.setRowSelectionInterval(0, 0);
-		grd.setSelectionBackground(Color.PINK);
-		grd.setSelectionForeground(Color.BLUE);
 		
 		if (chckbxS.isSelected())
 		{

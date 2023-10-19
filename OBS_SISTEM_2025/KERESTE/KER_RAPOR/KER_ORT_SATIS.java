@@ -298,6 +298,21 @@ public class KER_ORT_SATIS extends JInternalFrame {
 					sut = 2 ;
 
 				}
+				else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Konsimento"))
+				{
+					tc = tcm.getColumn(0);
+					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
+					tc.setMinWidth(60);
+
+					tc = tcm.getColumn(1);
+					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
+					tc.setMinWidth(250);
+					tc.setMaxWidth(250);
+					sut = 2 ;
+
+				}
 				else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Yil"))
 				{
 					tc = tcm.getColumn(0);
@@ -530,6 +545,11 @@ public class KER_ORT_SATIS extends JInternalFrame {
 			{
 				yu = " KERESTE.Kodu, (SELECT ACIKLAMA FROM KOD_ACIKLAMA  WHERE KOD = SUBSTRING(KERESTE.Kodu,1, 2) ) as Adi ";
 				iu = " KERESTE.Kodu  order by KERESTE.Kodu  ";
+			}
+			else  if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Konsimento"))
+			{
+				yu = " KERESTE.Konsimento, (SELECT ACIKLAMA FROM KONS_ACIKLAMA  WHERE KONS = KERESTE.Konsimento ) as Aciklama ";
+				iu = " KERESTE.Konsimento  order by KERESTE.Konsimento  ";
 			}
 			else  if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).toString().equals("Yil"))
 			{

@@ -5178,7 +5178,7 @@ public class FILTRE extends JDialog {
 		comboBox_27_1_1.setForeground(new Color(0, 0, 128));
 		comboBox_27_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		comboBox_27_1_1.setBounds(90, 137, 201, 22);
-		comboBox_27_1_1.setModel(new DefaultComboBoxModel<String>(new String[] { "Sinif","Sinif-Kal" , "Sinif-Boy" ,"Sinif-Gen" ,"Kodu","Hesap Kodu", "Hesap Kodu-Ana_Alt_Grup", "Yil", "Yil_Ay", "Ana Grup"}));
+		comboBox_27_1_1.setModel(new DefaultComboBoxModel<String>(new String[] { "Sinif","Sinif-Kal" , "Sinif-Boy" ,"Sinif-Gen" ,"Kodu", "Konsimento", "Hesap Kodu", "Hesap Kodu-Ana_Alt_Grup", "Yil", "Yil_Ay", "Ana Grup"}));
 		panel_KERESTE_ORTFIAT.add(comboBox_27_1_1);
 		
 		JLabel label_66_3 = new JLabel("Ana Grup");

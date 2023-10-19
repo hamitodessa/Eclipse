@@ -1,5 +1,6 @@
 package com.raven.chart;
 
+@SuppressWarnings("serial")
 public class LegendItem extends javax.swing.JPanel {
 
     public LegendItem(ModelLegend data) {
@@ -10,7 +11,6 @@ public class LegendItem extends javax.swing.JPanel {
         lbName.setText(data.getName());
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

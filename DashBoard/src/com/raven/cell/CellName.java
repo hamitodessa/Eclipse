@@ -6,6 +6,7 @@ import com.raven.table.TableCustom;
 import com.raven.table.cell.TableCustomCell;
 import com.raven.table.model.TableRowData;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -48,6 +49,7 @@ public class CellName extends TableCustomCell {
         cmdSave.setText("Save");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,6 +92,8 @@ public class CellName extends TableCustomCell {
                 .addComponent(cmdSave)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+       
+  
     }// </editor-fold>//GEN-END:initComponents
 
     private void addEventSave(TableCustom table) {
@@ -133,6 +137,7 @@ public class CellName extends TableCustomCell {
         CellName cell = new CellName();
         cell.setData(o);
         cell.addEventSave(tc);
+        
         return cell;
     }
 

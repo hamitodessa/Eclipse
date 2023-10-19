@@ -6,6 +6,7 @@ import com.raven.form.FormHome;
 import java.awt.Color;
 import java.awt.Component;
 
+@SuppressWarnings("serial")
 public class Main extends javax.swing.JFrame {
 
     public Main() {
@@ -32,7 +33,6 @@ public class Main extends javax.swing.JFrame {
         body.repaint();
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

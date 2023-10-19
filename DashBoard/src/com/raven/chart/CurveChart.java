@@ -18,6 +18,7 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 
+@SuppressWarnings("serial")
 public class CurveChart extends javax.swing.JPanel {
 
     DecimalFormat df = new DecimalFormat("#,##0.##");
@@ -137,8 +138,7 @@ public class CurveChart extends javax.swing.JPanel {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         blankPlotChart = new com.raven.chart.blankchart.BlankPlotChart();

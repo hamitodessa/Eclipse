@@ -12,6 +12,7 @@ import com.raven.model.ModelStaff;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
+@SuppressWarnings("serial")
 public class FormHome extends javax.swing.JPanel {
 
     public FormHome() {
@@ -38,17 +39,17 @@ public class FormHome extends javax.swing.JPanel {
 
     private void initDataTable() {
         table1.addTableCell(new CellName(), 0);
-        table1.addTableCell(new CellGender(), 1);
-        table1.addTableCell(new CellAge(), 2);
-        table1.addTableCell(new CellAddress(), 3);
-        table1.addTableCell(new CellTel(), 4);
+        
+      //  table1.addTableCell(new CellGender(), 1);
+      //  table1.addTableCell(new CellAge(), 2);
+      //  table1.addTableCell(new CellAddress(), 3);
+      //  table1.addTableCell(new CellTel(), 4);
         table1.addTableCell(new CellAction(), 5);
         table1.addRow(new ModelStaff(new ModelName("Ra", "Ven", new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), ""), "Male", 18, "Raven123@gmail.com", "010 000 000"), false);  //  ture is animate row
         table1.addRow(new ModelStaff(new ModelName("Jon", "Cina", new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), ""), "Female", 30, "Raven123@gmail.com", "100 123 123"), false);  //  ture is animate row
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         roundPanel1 = new com.raven.swing.RoundPanel();

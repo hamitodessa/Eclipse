@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 public class LabelColor extends JLabel {
     
     @Override

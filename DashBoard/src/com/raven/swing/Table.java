@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings("serial")
 public class Table extends TableCustom {
 
     public Table() {

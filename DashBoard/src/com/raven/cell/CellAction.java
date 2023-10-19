@@ -22,7 +22,7 @@ public class CellAction extends TableCustomCell {
                     table.cancelEditRowAt(row);
                     cmdEdit.setIcon(new ImageIcon(getClass().getResource("/com/raven/icon/edit.png")));
                 } else {
-                    table.editRowAt(row);
+                   table.editRowAt(row);
                     cmdEdit.setIcon(new ImageIcon(getClass().getResource("/com/raven/icon/cancel.png")));
                 }
             }

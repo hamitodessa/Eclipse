@@ -69,14 +69,14 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import OBS_C_2025.TextFieldSearchOption.*;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 
-
 @SuppressWarnings({"serial","static-access","unused"})
 public class DENEMELER extends JInternalFrame {
-	private JTable table;
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	/**
 	 * Launch the application.
@@ -105,62 +105,6 @@ public class DENEMELER extends JInternalFrame {
 		panel.setLayout(null);
 		getContentPane().add(panel, BorderLayout.CENTER);
 		
-		DefaultTableModel model = new DefaultTableModel() ; 
-		table = new JTable(model) {
-			@Override
-			public boolean isCellEditable(int row, int column) {  
-				
-					return true;
-				
-			}
-			
-		};
-		table.setSize(400, 300);
-		model.addColumn("Barkod", new String []{""});
-		model.addColumn("Urun Kodu", new String []{""});
-		
-	
-		JFormattedTextField ftext = new JFormattedTextField();
-		
-		ftext.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				//System.out.println(ftext.getText());
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			}
-			public void removeUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				//System.out.println(ftext.getText());
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			}
-			public void insertUpdate(DocumentEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				
-				String[] token = ftext.getText().split("-");
-				System.out.println(token[0] + "=" +token[1]+ "=" + token[2] + "=" +token[3]);
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			}
-		});
-		
-		MaskFormatter mask;
-		try {
-		    mask = new MaskFormatter("##-###-####-####");
-		    mask.install(ftext);
-		} catch (ParseException e) {
-		    e.printStackTrace();
-		}
-		table.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(ftext));
-		
-		JTableHeader th = table.getTableHeader();
-		Dimension dd = table.getPreferredSize();
-		dd.height = 30;
-		th.setPreferredSize(dd); 
-		table.setRowSelectionInterval(0, 0);
-		table.setRowHeight(22);
-		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
-		panel.add(table);
 		
 		JButton btnNewButton_8 = new JButton("Clone");
 		btnNewButton_8.addActionListener(new ActionListener() {
@@ -380,7 +324,7 @@ public class DENEMELER extends JInternalFrame {
 			}
 		});
 		txt.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		txt.setBounds(77, 401, 204, 38);
+		txt.setBounds(503, 409, 204, 38);
 		txt.addOption(new SearchOption("Name",new ImageIcon(DENEMELER.class.getResource("/ICONLAR/exit.png"))));
 		txt.addOption(new SearchOption("Tel",new ImageIcon(DENEMELER.class.getResource("/ICONLAR/db.png"))));
 		txt.setSelectedIndex(0);

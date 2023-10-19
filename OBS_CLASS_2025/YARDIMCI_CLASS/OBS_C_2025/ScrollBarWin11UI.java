@@ -254,7 +254,8 @@ public class ScrollBarWin11UI extends BasicScrollBarUI {
             GeneralPath p = new GeneralPath();
             Point2D startPoint = calculatePoint(l.get(l.size() - 1), l.get(l.size() - 2), arcSize);
             p.moveTo(startPoint.getX(), startPoint.getY());
-            for (int pointIndex = 1; pointIndex < l.size() - 1; pointIndex++) {
+            for (int pointIndex = 1; pointIndex < l.size() - 1; pointIndex++) 
+            {
                 Point2D p1 = l.get(pointIndex - 1);
                 Point2D p2 = l.get(pointIndex);
                 Point2D p3 = l.get(pointIndex + 1);

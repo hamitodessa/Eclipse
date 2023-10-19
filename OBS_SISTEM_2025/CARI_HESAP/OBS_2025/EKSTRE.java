@@ -8,7 +8,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +30,7 @@ import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -227,6 +227,11 @@ public class EKSTRE extends JInternalFrame {
 		panel.add(lblNewLabel_2);
 
 		ScrollPaneWin11 jScrollPane1 = new ScrollPaneWin11();
+	    JPanel p = new JPanel();
+	    p.setOpaque(false);
+	    jScrollPane1.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+	    
+		
 		pane.setLeftComponent(jScrollPane1);
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }

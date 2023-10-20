@@ -342,7 +342,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-	public ResultSet mizan (String kod,String ilktarih,String sontarih,String ilkhcins,String sonhcins,String ilkkar,String sonkar) throws ClassNotFoundException, SQLException 
+	public ResultSet ekstre_mizan (String kod,String ilktarih,String sontarih,String ilkhcins,String sonhcins,String ilkkar,String sonkar) throws ClassNotFoundException, SQLException 
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;

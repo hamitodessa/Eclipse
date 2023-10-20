@@ -216,7 +216,7 @@ public class SQL_SORGULAMA extends JInternalFrame {
 				tc = tcm.getColumn(i);
 				tc.setHeaderRenderer(new SOLA());
 			 }
-				table.setAutoResizeMode( JTable.AUTO_RESIZE_ALL_COLUMNS );
+			table.setAutoResizeMode( JTable.AUTO_RESIZE_ALL_COLUMNS );
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
 

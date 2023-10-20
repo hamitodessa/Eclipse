@@ -103,9 +103,9 @@ public class CARI_ACCESS {
 	{
 		return _ICari.kasa_mizan(kod, ilktarih, sontarih);
 	}
-	public ResultSet mizan (String kod,String ilktarih,String sontarih,String ilkhcins,String sonhcins,String ilkkar,String sonkar) throws ClassNotFoundException, SQLException
+	public ResultSet ekstre_mizan (String kod,String ilktarih,String sontarih,String ilkhcins,String sonhcins,String ilkkar,String sonkar) throws ClassNotFoundException, SQLException
 	{
-		return _ICari.mizan(kod, ilktarih, sontarih, ilkhcins, sonhcins, ilkkar, sonkar);
+		return _ICari.ekstre_mizan(kod, ilktarih, sontarih, ilkhcins, sonhcins, ilkkar, sonkar);
 	}
 	public ResultSet ekstre(String hesap , String t1 ,String t2) throws ClassNotFoundException, SQLException
 	{

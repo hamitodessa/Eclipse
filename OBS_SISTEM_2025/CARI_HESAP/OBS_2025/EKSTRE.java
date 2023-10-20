@@ -491,7 +491,7 @@ public class EKSTRE extends JInternalFrame {
 	private static void onceki_bakiye () throws ClassNotFoundException, SQLException
 	{
 		ResultSet	rs = null;
-		rs = c_Access.mizan(FILTRE.txtkodu.getText(), "1900/01/01", TARIH_CEVIR.chooser_string_eksi1(FILTRE.dateChooser)  + " 23:59:59.000", "   ", "ZZZ", "     ", "ZZZZZ");
+		rs = c_Access.ekstre_mizan(FILTRE.txtkodu.getText(), "1900/01/01", TARIH_CEVIR.chooser_string_eksi1(FILTRE.dateChooser)  + " 23:59:59.000", "   ", "ZZZ", "     ", "ZZZZZ");
 		if (!rs.isBeforeFirst() ) {  
 			double_1 = 0;
 			double_2 = 0;

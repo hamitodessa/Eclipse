@@ -832,7 +832,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			messagePart.setText(txtaciklama.getText(), "UTF-8");
 
 			ByteArrayDataSource ds = null ;
-			BufferedImage objBufferedImage= GRAFIK.chart.createBufferedImage(800,600);
+			BufferedImage objBufferedImage= GRAFIK.chart.createBufferedImage(1000,500);
 			ByteArrayOutputStream bas = new ByteArrayOutputStream();
 			ImageIO.write(objBufferedImage, "png", bas);
 			byte[] byteArray= bas.toByteArray();

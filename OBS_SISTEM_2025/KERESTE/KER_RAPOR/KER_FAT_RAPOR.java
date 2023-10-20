@@ -14,7 +14,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Vector;
 
 import javax.swing.JFileChooser;
@@ -178,7 +177,7 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		scrollPane.setViewportView(table);
 
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(0, 100));
+		panel.setMinimumSize(new Dimension(0, 150));
 		//panel.setMaximumSize(new Dimension(0, 350));
 		splitPane.setRightComponent(panel);
 		panel.setLayout(new BorderLayout(0, 0));
@@ -420,7 +419,7 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				Vector<Object> data = new Vector<Object>();
 				data.add("");
 				data.add("");
-				data.add(new Date());
+				data.add(null);
 				data.add("");
 				data.add("");
 				data.add("");
@@ -803,7 +802,7 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				Vector<Object> data = new Vector<Object>();
 				data.add("");
 				data.add("");
-				data.add(new Date());
+				data.add(null);
 				data.add("");
 				data.add("");
 				data.add(miktar);

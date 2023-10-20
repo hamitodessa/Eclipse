@@ -732,6 +732,10 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				{
 					sutun = 1 ;
 				}
+				else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Konsimento"))
+				{
+					sutun = 1 ;
+				}
 				else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Sinif"))
 				{
 					sutun = 1 ;
@@ -891,6 +895,10 @@ public class KER_ORT_SATIS extends JInternalFrame {
 				//
 				int sutun = 0 ;
 				if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Kodu"))
+				{
+					sutun = 1 ;
+				}
+				else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Konsimento"))
 				{
 					sutun = 1 ;
 				}
@@ -1066,6 +1074,10 @@ public class KER_ORT_SATIS extends JInternalFrame {
 			//
 			int sutun = 0 ;
 			if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Kodu"))
+			{
+				sutun = 1 ;
+			}
+			else if (FILTRE.comboBox_27_1_1.getItemAt(FILTRE.comboBox_27_1_1.getSelectedIndex()).equals("Konsimento"))
 			{
 				sutun = 1 ;
 			}

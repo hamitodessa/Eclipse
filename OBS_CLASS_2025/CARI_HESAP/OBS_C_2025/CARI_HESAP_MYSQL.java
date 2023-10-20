@@ -262,12 +262,13 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public ResultSet ekstre(String hesap, String t1, String t2) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		PreparedStatement stmt = con.prepareStatement(" SELECT DATE_FORMAT(TARIH, '%Y.%m.%d')  AS TARIH,SATIRLAR.EVRAK ,IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT,KOD,KUR,CONVERT(BORC,double) as BORC ,CONVERT(ALACAK,double) as ALACAK , "  + 
-				"  CONVERT(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW) ,double)  AS BAKIYE ,USER "  + 
-				"  FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  LEFT JOIN IZAHAT  USE INDEX (IX_IZAHAT)  " + 
-				"  ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + hesap + "'" + 
-				"  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" + 
-				"  ORDER BY TARIH   ");
+		PreparedStatement stmt = con.prepareStatement(" SELECT DATE_FORMAT(TARIH, '%Y.%m.%d')  AS TARIH,SATIRLAR.EVRAK ," + 
+				" IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT,KOD,KUR,CONVERT(BORC,double) as BORC ,CONVERT(ALACAK,double) as ALACAK , "  + 
+				" CONVERT(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW) ,double)  AS BAKIYE ,USER "  + 
+				" FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  LEFT JOIN IZAHAT  USE INDEX (IX_IZAHAT)  " + 
+				" ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + hesap + "'" + 
+				" AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" + 
+				" ORDER BY TARIH   ");
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
@@ -288,7 +289,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	 
 	}
-	public ResultSet mizan(String kod, String ilktarih, String sontarih, String ilkhcins, String sonhcins,
+	public ResultSet ekstre_mizan(String kod, String ilktarih, String sontarih, String ilkhcins, String sonhcins,
 			String ilkkar, String sonkar) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 

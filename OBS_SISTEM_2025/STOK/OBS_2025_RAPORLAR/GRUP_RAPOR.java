@@ -1156,19 +1156,33 @@ public class GRUP_RAPOR extends JInternalFrame {
 		GLOBAL.g_baslik = "GRUP RAPORLAMA YIL";
 		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
 		GLOBAL.g_legends = "AYLAR";
-		GLOBAL.g_setNumbersAxisTitleText = "Tutar" ;
+		if (FILTRE.comboBox_26.getItemAt(FILTRE.comboBox_26.getSelectedIndex()).equals("Tutar"))
+		{
+			GLOBAL.g_setNumbersAxisTitleText = "Tutar" ;
+			GLOBAL.gkusurat = 2;
+		}
+		else if (FILTRE.comboBox_26.getItemAt(FILTRE.comboBox_26.getSelectedIndex()).equals("Miktar"))
+		{
+			GLOBAL.g_setNumbersAxisTitleText = "Miktar" ;
+			GLOBAL.gkusurat = 0;
+		}
+		else if (FILTRE.comboBox_26.getItemAt(FILTRE.comboBox_26.getSelectedIndex()).equals("Agirlik"))
+		{
+			GLOBAL.g_setNumbersAxisTitleText = "Agirlik" ;
+			GLOBAL.gkusurat = 3;
+		}
 		ArrayList<Double> tutar = new ArrayList<Double>();
 		 for (int i = 0;i<=mdll.getRowCount() - 2 ;i++)
 		 {
 			 for(int y = 1;y<=mdll.getColumnCount() -2 ;y++)
 			 {
-			tutar.add(  mdll.getValueAt(i,y) == null ? 0: Double.parseDouble( mdll.getValueAt(i,y).toString()));
+			tutar.add(mdll.getValueAt(i,y) == null ? 0: Double.parseDouble( mdll.getValueAt(i,y).toString()));
 			 }
 		 }
-		GLOBAL.max_value =  Collections.max(tutar) + (Collections.max(tutar) * .05) ;
+		GLOBAL.max_value = Collections.max(tutar) + (Collections.max(tutar) * .05) ;
 		GLOBAL.min_value = Collections.min(tutar) - (Collections.min(tutar) * .05) ;
 		Double asd = 0.00 ;
-		GLOBAL.gkusurat = 0;
+		
 		GLOBAL.dataset = new DefaultCategoryDataset();  
 		String series1 = "";  
 		 for (int i= 0 ;i<=mdll.getRowCount() -2 ;i++)

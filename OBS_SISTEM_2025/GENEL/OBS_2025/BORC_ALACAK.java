@@ -56,6 +56,7 @@ public class BORC_ALACAK extends JDialog {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == 10)
 				{
+					if(CARI_ISIM_OKU.isim(txtcari.getText())[2].toString().equals("F")) return ;
 					oac.hsp_hsp_kodu = txtcari.getText();
 					dispose();
 				}

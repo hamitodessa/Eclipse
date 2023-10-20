@@ -1461,7 +1461,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " ,(SELECT UNVAN FROM NAKLIYECI WHERE NAKLIYECI.NAKID_Y = KERESTE." + hANGI + "Nakliyeci ) as " + hANGI + "_Nakliyeci  " 
 				+ " ,[" + hANGI + "USER] " 
 				+ " FROM KERESTE    " 
-				+ " WHERE "  + fAT_TUR  ; 
+				+ " WHERE "  + fAT_TUR  + " ORDER BY " + hANGI + "Satir" ; 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

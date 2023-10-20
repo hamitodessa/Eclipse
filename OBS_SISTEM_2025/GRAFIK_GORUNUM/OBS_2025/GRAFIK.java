@@ -19,10 +19,12 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.labels.StandardCategoryLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import OBS_C_2025.GLOBAL;
 
 
@@ -71,14 +73,12 @@ public class GRAFIK extends JInternalFrame {
 				GLOBAL.g_legends , // X-Axis Label  
 				GLOBAL.g_setNumbersAxisTitleText, // Y-Axis Label  
 				dataset ,PlotOrientation.VERTICAL,
-				true,
-				true,
-				false 
-				);  
+				true,	true,	false 	);  
 		CategoryPlot plot = (CategoryPlot) chart.getPlot();
 		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
 		rangeAxis.setRange(GLOBAL.min_value, GLOBAL.max_value);
 		rangeAxis.setUpperMargin(0.50);
+		rangeAxis.setLabelFont(new Font("Dialog", Font.BOLD, 13));
 		//
 		//
 		NumberFormat formatter = DecimalFormat.getInstance();
@@ -86,14 +86,26 @@ public class GRAFIK extends JInternalFrame {
 		rangeAxis.setNumberFormatOverride(formatter);
 		//
 		//
-		Font font3 = new Font("Arial", Font.BOLD, 25); 
+		Font font3 = new Font("Dialog", Font.BOLD, 25); 
 		plot.getDomainAxis().setLabelFont(font3);
 		plot.getRangeAxis().setLabelFont(font3);
 		//
 		TextTitle t2 = new TextTitle(  GLOBAL.g_baslik); // BASLIK
-		t2.setFont(new Font("Serif", Font.BOLD, 9));
+		t2.setFont(new Font("Dialog", Font.BOLD, 13));
 		chart.setTitle(t2);
-		chart.getTitle().setPaint(Color.BLUE);
+		chart.getTitle().setPaint(new Color(0, 0, 128));
+		
+		//
+		 LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
+	     renderer.setShapesVisible(true);
+	     formatter.setMinimumFractionDigits(GLOBAL.gkusurat);
+	     formatter.setMaximumFractionDigits(GLOBAL.gkusurat);
+	     renderer.setLabelGenerator(new StandardCategoryLabelGenerator("{2}", formatter));
+	     renderer.setItemLabelFont(new Font("Arial Narrow", Font.PLAIN, 8));
+	     renderer.setItemLabelsVisible(true);
+	     renderer.setItemLabelPaint(new Color(0, 0, 128));
+	     renderer.setSeriesVisible(true);
+		//
 		ChartPanel panel = new ChartPanel(chart);  
 		setContentPane(panel);  
 	}
@@ -111,7 +123,7 @@ public class GRAFIK extends JInternalFrame {
 			fileChooser.setDialogTitle("Grafik Kayit");   
 			File outputfile = new File(GLOBAL.g_baslik);
 			fileChooser.setSelectedFile(outputfile);
-			BufferedImage lbImage = chart.createBufferedImage( 600, 400, null); 
+			BufferedImage lbImage = chart.createBufferedImage( 1000, 500, null); 
 			int returnVal = fileChooser.showSaveDialog(null);
 			if ( returnVal == JFileChooser.APPROVE_OPTION )
 			{

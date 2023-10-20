@@ -20,7 +20,7 @@ public interface ICARI_HESAP {
 	public ResultSet ekstre(String hesap , String t1 ,String t2) throws ClassNotFoundException, SQLException;
 	public ResultSet hesap_adi_oku(String hesap) throws ClassNotFoundException, SQLException;
 	public ResultSet hp_pln () throws ClassNotFoundException, SQLException;
-	public ResultSet mizan (String kod,String ilktarih,String sontarih,String ilkhcins,String sonhcins,String ilkkar,String sonkar) throws ClassNotFoundException, SQLException;
+	public ResultSet ekstre_mizan (String kod,String ilktarih,String sontarih,String ilkhcins,String sonhcins,String ilkkar,String sonkar) throws ClassNotFoundException, SQLException;
 	public ResultSet kasa_mizan(String kod,String ilktarih,String sontarih) throws ClassNotFoundException, SQLException;
 	public void sqlite_sil() throws ClassNotFoundException, SQLException;
 	public ResultSet ekstre_sqlite() throws ClassNotFoundException, SQLException;

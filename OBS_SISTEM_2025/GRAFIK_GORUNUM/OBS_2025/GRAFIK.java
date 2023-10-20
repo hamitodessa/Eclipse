@@ -78,7 +78,12 @@ public class GRAFIK extends JInternalFrame {
 		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
 		rangeAxis.setRange(GLOBAL.min_value, GLOBAL.max_value);
 		rangeAxis.setUpperMargin(0.50);
-		rangeAxis.setLabelFont(new Font("Dialog", Font.BOLD, 13));
+		rangeAxis.setLabelPaint(new Color(0, 0, 128));  // Sol Dikine Metin
+		rangeAxis.setLabelFont(new Font("Arial Narrow", Font.BOLD, 25));
+		rangeAxis.setTickLabelFont(new Font("Arial Narrow", Font.PLAIN, 10)); //Soldaki Dikine DEgerler
+	    rangeAxis.setTickLabelPaint(new Color(72, 112, 132));  //Soldaki Dikine DEgerler  
+		plot.setBackgroundPaint(new Color(192, 225, 240));//Grafik Alani
+		
 		//
 		//
 		NumberFormat formatter = DecimalFormat.getInstance();
@@ -86,12 +91,17 @@ public class GRAFIK extends JInternalFrame {
 		rangeAxis.setNumberFormatOverride(formatter);
 		//
 		//
-		Font font3 = new Font("Dialog", Font.BOLD, 25); 
+		Font font3 = new Font("Arial Narrow", Font.BOLD, 25); 
 		plot.getDomainAxis().setLabelFont(font3);
-		plot.getRangeAxis().setLabelFont(font3);
+		plot.getDomainAxis().setLabelPaint(new Color(0, 0, 128)); // Alt Bolum AYLAR
+		plot.getDomainAxis().setTickLabelFont(new Font("Arial Narrow", Font.PLAIN, 10));// ALT Bolum Degerler
+		plot.getDomainAxis().setTickLabelPaint(new Color(72, 112, 132));// ALT Bolum Degerler
+		
+		//plot.getRangeAxis().setLabelFont(font3);
+		
 		//
 		TextTitle t2 = new TextTitle(  GLOBAL.g_baslik); // BASLIK
-		t2.setFont(new Font("Dialog", Font.BOLD, 13));
+		t2.setFont(new Font("Arial Narrow", Font.BOLD, 15));
 		chart.setTitle(t2);
 		chart.getTitle().setPaint(new Color(0, 0, 128));
 		
@@ -105,7 +115,10 @@ public class GRAFIK extends JInternalFrame {
 	     renderer.setItemLabelsVisible(true);
 	     renderer.setItemLabelPaint(new Color(0, 0, 128));
 	     renderer.setSeriesVisible(true);
+	    
 		//
+	     chart.setBackgroundPaint(new Color(189, 209, 219));//
+	     
 		ChartPanel panel = new ChartPanel(chart);  
 		setContentPane(panel);  
 	}

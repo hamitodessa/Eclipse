@@ -85,6 +85,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import org.apache.commons.collections.functors.IfClosure;
@@ -958,6 +959,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				if ( !  oac.stk_kodu.equals(""))
 				{
 					table.getModel().setValueAt( oac.stk_kodu,table.getSelectedRow() , 0) ;
+					table.getCellEditor().stopCellEditing();
 					pakkont(oac.stk_kodu);
 				}
 			}

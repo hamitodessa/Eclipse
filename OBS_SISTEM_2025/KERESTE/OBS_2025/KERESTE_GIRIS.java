@@ -971,15 +971,6 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		toolBar_1.setOrientation(SwingConstants.VERTICAL);
 		splitPane_2.setLeftComponent(toolBar_1);
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (table.getSelectedRow() < 0 ) return ;
-				
-			}
-		});
-		btnNewButton.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));
-		toolBar_1.add(btnNewButton);
 
 		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.addActionListener(new ActionListener() {

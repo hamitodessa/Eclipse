@@ -152,7 +152,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		setIconifiable(true);
 		setTitle("PARAMETRELER");
 		setClosable(true);
-		setBounds(0, 0, 515, 574);
+		setBounds(0, 0, 540, 574);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setForeground(new Color(25, 25, 112));
@@ -380,6 +380,22 @@ public class PARAMETRELER   extends JInternalFrame   {
 		lblNewLabel_6.setBounds(10, 243, 101, 14);
 		panel_4.add(lblNewLabel_6);
 		
+		
+		JLabel lblNewLabel_4_1_1_3 = new JLabel("Grafik Deger Gosterme");
+		lblNewLabel_4_1_1_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_4_1_1_3.setBounds(10, 319, 126, 14);
+		panel_4.add(lblNewLabel_4_1_1_3);
+		
+		chckbxNewCheckBox_2 = new JCheckBox("");
+		chckbxNewCheckBox_2.setBounds(156, 316, 99, 23);
+		panel_4.add(chckbxNewCheckBox_2);
+		
+		JSeparator separator_2_1 = new JSeparator();
+		separator_2_1.setForeground(new Color(0, 191, 255));
+		separator_2_1.setBounds(10, 306, 340, 2);
+		panel_4.add(separator_2_1);
+		
+		///**************************************************CARI HESAP *****************************
 		JScrollPane scrollPane = new JScrollPane();
 		
 		tabbedPane.addTab("Cari Hesap", null, scrollPane, null);
@@ -1536,23 +1552,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		btnNewButton_10_1_1_1.setBounds(417, 149, 46, 23);
 		panel_5.add(btnNewButton_10_1_1_1);
 		
-		//////////////////////////////////////////////// KERESTE /////////////////////////////////////////////////////////
-		JScrollPane scrollPane_6 = new JScrollPane();
-		tabbedPane.addTab("Grafik", null, scrollPane_6, null);
-		
-		JPanel panel_6 = new JPanel();
-		panel_6.setBorder(new LineBorder(new Color(0, 191, 255)));
-		scrollPane_6.setViewportView(panel_6);
-		panel_6.setLayout(null);
-		
-		JLabel lblNewLabel_4_1_1_3 = new JLabel("Grafik Deger Gosterme");
-		lblNewLabel_4_1_1_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_4_1_1_3.setBounds(10, 31, 126, 14);
-		panel_6.add(lblNewLabel_4_1_1_3);
-		
-		chckbxNewCheckBox_2 = new JCheckBox("");
-		chckbxNewCheckBox_2.setBounds(156, 27, 99, 23);
-		panel_6.add(chckbxNewCheckBox_2);
+
 
 		
 		//************************************************************************************

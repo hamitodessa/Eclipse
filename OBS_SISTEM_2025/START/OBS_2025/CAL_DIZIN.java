@@ -585,7 +585,7 @@ public class CAL_DIZIN extends JFrame {
 		});
 		
 		tblCari.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tblCari.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tblCari.setFont(new Font("Dialog", Font.PLAIN, 12));
 		tblCari.setRowHeight(22);
 		tblCari.setBounds(224, 188, 114, 173);
 		tblCari.setShowHorizontalLines(true);
@@ -623,6 +623,7 @@ public class CAL_DIZIN extends JFrame {
 		tblFatura.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblFatura.setShowHorizontalLines(true);
 		tblFatura.setShowVerticalLines(true);
+		tblFatura.setFont(new Font("Dialog", Font.PLAIN, 12));
 		tablo_baslik(tblFatura);
 		scrollPane_1.setViewportView(tblFatura);
 
@@ -655,6 +656,7 @@ public class CAL_DIZIN extends JFrame {
 		tblAdres.setRowHeight(22);
 		tblAdres.setShowHorizontalLines(true);
 		tblAdres.setShowVerticalLines(true);
+		tblAdres.setFont(new Font("Dialog", Font.PLAIN, 12));
 		tablo_baslik(tblAdres);
 		scrollPane_2.setViewportView(tblAdres);
 
@@ -686,6 +688,7 @@ public class CAL_DIZIN extends JFrame {
 		tblKur.setRowHeight(22);
 		tblKur.setShowHorizontalLines(true);
 		tblKur.setShowVerticalLines(true);
+		tblKur.setFont(new Font("Dialog", Font.PLAIN, 12));
 		tablo_baslik(tblKur);
 		scrollPane_3.setViewportView(tblKur);
 
@@ -719,6 +722,7 @@ public class CAL_DIZIN extends JFrame {
 		tblKambiyo.setRowHeight(22);
 		tblKambiyo.setShowHorizontalLines(true);
 		tblKambiyo.setShowVerticalLines(true);
+		tblKambiyo.setFont(new Font("Dialog", Font.PLAIN, 12));
 		tablo_baslik(tblKambiyo);
 		scrollPane_4.setViewportView(tblKambiyo);
 
@@ -751,6 +755,7 @@ public class CAL_DIZIN extends JFrame {
 		tblSms.setRowHeight(22);
 		tblSms.setShowHorizontalLines(true);
 		tblSms.setShowVerticalLines(true);
+		tblSms.setFont(new Font("Dialog", Font.PLAIN, 12));
 		tablo_baslik(tblSms);
 		scrollPane_5.setViewportView(tblSms);
 
@@ -782,6 +787,7 @@ public class CAL_DIZIN extends JFrame {
 		tblGunluk.setRowHeight(22);
 		tblGunluk.setShowHorizontalLines(true);
 		tblGunluk.setShowVerticalLines(true);
+		tblGunluk.setFont(new Font("Dialog", Font.PLAIN, 12));
 		tablo_baslik(tblGunluk);
 		scrollPane_6.setViewportView(tblGunluk);
 		
@@ -814,6 +820,7 @@ public class CAL_DIZIN extends JFrame {
 		tblKereste.setRowHeight(22);
 		tblKereste.setShowHorizontalLines(true);
 		tblKereste.setShowVerticalLines(true);
+		tblKereste.setFont(new Font("Dialog", Font.PLAIN, 12));
 		tablo_baslik(tblKereste);
 		scrollPane_9.setViewportView(tblKereste);
 		//******************************************************************

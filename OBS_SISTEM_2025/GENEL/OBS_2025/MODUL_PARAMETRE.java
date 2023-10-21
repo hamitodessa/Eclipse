@@ -83,6 +83,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		//bUi.setNorthPane(null);
 		//************************************************************************
 		setTitle("CALISMA DIZINLERI");
+
 		setClosable(true);
 		setBounds(100, 100, 854, 456);
 		getContentPane().setLayout(null);

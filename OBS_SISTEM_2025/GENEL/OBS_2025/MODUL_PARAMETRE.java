@@ -1,14 +1,12 @@
 package OBS_2025;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.sql.SQLException;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
@@ -21,6 +19,7 @@ import OBS_C_2025.STOK_ACCESS;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Font;
+
 
 @SuppressWarnings({"serial"})
 public class MODUL_PARAMETRE extends JInternalFrame {
@@ -78,29 +77,16 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 	private JLabel label_13_1_1 ;
 	
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MODUL_PARAMETRE frame = new MODUL_PARAMETRE();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-
+	
 	public MODUL_PARAMETRE() {
-
+		//BasicInternalFrameUI bUi = (BasicInternalFrameUI) this.getUI();
+		//bUi.setNorthPane(null);
+		//************************************************************************
 		setTitle("CALISMA DIZINLERI");
 		setClosable(true);
 		setBounds(100, 100, 854, 456);
 		getContentPane().setLayout(null);
-
-
-
+		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(135, 206, 250)), "Cari Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(25, 10, 791, 50);
@@ -406,14 +392,11 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_1_6_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_6_1.setBounds(730, 20, 50, 14);
 		panel_5_1_1.add(lblNewLabel_1_6_1);
+		
 
 		try {
 			yukle();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 

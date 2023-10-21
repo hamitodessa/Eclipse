@@ -50,7 +50,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
-
 import OBS_2025_RAPORLAR.ENVANTER;
 import OBS_2025_RAPORLAR.FATURA_RAPOR;
 import OBS_2025_RAPORLAR.GRUP_RAPOR;
@@ -83,7 +82,6 @@ import javax.swing.JMenuBar;
 
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.SystemColor;
 
 @SuppressWarnings({"serial","static-access"})
 public class OBS_MAIN extends JFrame {

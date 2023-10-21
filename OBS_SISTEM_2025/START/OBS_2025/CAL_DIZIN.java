@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
@@ -14,8 +13,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,8 +25,8 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -102,7 +100,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.JSeparator;
 
 @SuppressWarnings({"static-access","serial"})
-public class CAL_DIZIN extends JDialog {
+public class CAL_DIZIN extends JFrame {
 
 
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -155,46 +153,26 @@ public class CAL_DIZIN extends JDialog {
 	private JSeparator separator;
 	private JPopupMenu menu;
 	private JButton btnNewButton_2_2;
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CAL_DIZIN frame = new CAL_DIZIN();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
+	
 	public CAL_DIZIN() {
+		setUndecorated(true);
+		
 		setTitle("CALISMA DIZINI");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(CAL_DIZIN.class.getResource("/ICONLAR/icon-obs-32.png")));
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				cIKIS();
-				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			}
-		});
 		setResizable(false);
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 981, 419);
-		//setUndecorated(true);
-		
-		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 1050, 400);
+		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 15, 15));
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(null);
 		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		panel.setBounds(639, 11, 316, 370);
+		panel.setBounds(725, 10, 316, 381);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -577,11 +555,11 @@ public class CAL_DIZIN extends JDialog {
 			}
 		});
 		tabbedPane.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		tabbedPane.setBounds(0, 0, 629, 381);
+		tabbedPane.setBounds(10, 10, 705, 381);
 		tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
-		contentPane.add(tabbedPane);
+		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		tabbedPane.addTab("Cari Hesap", null, scrollPane, null);
 		tblCari = new JTable() {
@@ -2783,4 +2761,5 @@ public class CAL_DIZIN extends JDialog {
 		txtsif.setText("");
 		btnNewButton_2_1_1.setVisible(false);
 	}
+	
 }

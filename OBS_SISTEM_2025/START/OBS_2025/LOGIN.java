@@ -8,7 +8,9 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Insets;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,6 +48,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -170,14 +173,15 @@ public class LOGIN extends JDialog {
 				e.printStackTrace();
 			}
 		}
-	});
-	}
-	public LOGIN() throws IOException {
 		
+	});
+	
+	}
+	
+	public LOGIN() throws IOException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setResizable(false);
 		setTitle("OBS SISTEM GIRIS");
-		
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 493, 229);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -259,8 +263,8 @@ public class LOGIN extends JDialog {
 			  {
 				  FlatNordIJTheme.setup();
 			  }
-			
-			//UIManager.setLookAndFeel(new FlatIntelliJLaf());
+			SwingUtilities.updateComponentTreeUI(this);
+			//UIManager.setLookAndFeel(new FlatSolarizedLightIJTheme());
 			
 		} catch (Exception ex) {
 			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -622,7 +626,7 @@ public class LOGIN extends JDialog {
 			{ 
 				BAGLAN.cariDizin.fIRMA_ADI =  oac._ICar.cari_firma_adi() ;
 				qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblCariBilgi.setText (BAGLAN.cariDizin.kOD + "  /  " + BAGLAN.cariDizin.fIRMA_ADI + "  /  " + qwe );
+				OBS_MAIN.lblCariBilgi.setText (BAGLAN.cariDizin.kOD + "  /  " + BAGLAN.cariDizin.fIRMA_ADI + "  /  " + qwe  + " / "+ BAGLAN.cariDizin.hAN_SQL );
 				Dimension size = OBS_MAIN.lblCariBilgi.getPreferredSize();
 				OBS_MAIN.lblCariBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblCariBilgi.setForeground(new Color(0, 0, 128));
@@ -650,7 +654,7 @@ public class LOGIN extends JDialog {
 			else
 			{
 				qwe =   BAGLAN.kurDizin.yER.equals("S") ?  BAGLAN.kurDizin.sERVER : "Lokal";
-				OBS_MAIN.lblKurBilgi.setText (BAGLAN.kurDizin.kOD + "/ "  + qwe );
+				OBS_MAIN.lblKurBilgi.setText (BAGLAN.kurDizin.kOD + "/ "  + qwe + " / "+ BAGLAN.kurDizin.hAN_SQL );
 				Dimension size = OBS_MAIN.lblKurBilgi.getPreferredSize();
 				OBS_MAIN.lblKurBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblKurBilgi.setForeground(new Color(0, 0, 128));
@@ -678,7 +682,7 @@ public class LOGIN extends JDialog {
 			else
 			{
 				qwe = BAGLAN.smsDizin.yER.equals("S") ? BAGLAN.smsDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblSmsBilgi.setText (BAGLAN.smsDizin.kOD + "/ "  + qwe);
+				OBS_MAIN.lblSmsBilgi.setText (BAGLAN.smsDizin.kOD + "/ "  + qwe + " / "+ BAGLAN.smsDizin.hAN_SQL );
 				Dimension size = OBS_MAIN.lblSmsBilgi.getPreferredSize();
 				OBS_MAIN.lblSmsBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblSmsBilgi.setForeground(new Color(0, 0, 128));
@@ -707,7 +711,7 @@ public class LOGIN extends JDialog {
 			{
 				BAGLAN.adrDizin.fIRMA_ADI =    oac._IAdres.adr_firma_adi() ;
 				qwe = BAGLAN.adrDizin.yER.equals("S") ? BAGLAN.adrDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblAdresBilgi.setText  (BAGLAN.adrDizin.kOD + "/ " + BAGLAN.adrDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblAdresBilgi.setText  (BAGLAN.adrDizin.kOD + "/ " + BAGLAN.adrDizin.fIRMA_ADI + "/ " + qwe + " / "+ BAGLAN.adrDizin.hAN_SQL );
 				Dimension size = OBS_MAIN.lblAdresBilgi.getPreferredSize();
 				OBS_MAIN.lblAdresBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblAdresBilgi.setForeground(new Color(0, 0, 128));
@@ -736,7 +740,7 @@ public class LOGIN extends JDialog {
 			{
 				BAGLAN.fatDizin.fIRMA_ADI = oac._IStok.fat_firma_adi() ;
 				qwe = BAGLAN.fatDizin.yER.equals("S") ? BAGLAN.fatDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblStokBilgi.setText  ( BAGLAN.fatDizin.kOD + "/ " + BAGLAN.fatDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblStokBilgi.setText  ( BAGLAN.fatDizin.kOD + "/ " + BAGLAN.fatDizin.fIRMA_ADI + "/ " + qwe + " / "+ BAGLAN.fatDizin.hAN_SQL );
 				Dimension size = OBS_MAIN.lblStokBilgi.getPreferredSize();
 				OBS_MAIN.lblStokBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblStokBilgi.setForeground(new Color(0, 0, 128));
@@ -765,7 +769,7 @@ public class LOGIN extends JDialog {
 			{
 				BAGLAN.kamDizin.fIRMA_ADI =  oac._IKambiyo.kam_firma_adi() ;
 				qwe =  BAGLAN.kamDizin.yER.equals("S") ? BAGLAN.kamDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblKambiyoBilgi.setText(BAGLAN.kamDizin.kOD + "/ " + BAGLAN.kamDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblKambiyoBilgi.setText(BAGLAN.kamDizin.kOD + "/ " + BAGLAN.kamDizin.fIRMA_ADI + "/ " + qwe + " / "+ BAGLAN.kamDizin.hAN_SQL );
 				Dimension size = OBS_MAIN.lblKambiyoBilgi.getPreferredSize();
 				OBS_MAIN.lblKambiyoBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblKambiyoBilgi.setForeground(new Color(0, 0, 128));
@@ -794,7 +798,7 @@ public class LOGIN extends JDialog {
 			{
 				BAGLAN.gunDizin.fIRMA_ADI = oac._IGunluk.gun_firma_adi() ;
 				qwe = BAGLAN.gunDizin.yER.equals("S") ? BAGLAN.gunDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblGunlukBilgi.setText(BAGLAN.gunDizin.kOD + "/ " + BAGLAN.gunDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblGunlukBilgi.setText(BAGLAN.gunDizin.kOD + "/ " + BAGLAN.gunDizin.fIRMA_ADI + "/ " + qwe + " / "+ BAGLAN.gunDizin.hAN_SQL );
 				Dimension size = OBS_MAIN.lblGunlukBilgi.getPreferredSize();
 				OBS_MAIN.lblGunlukBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblGunlukBilgi.setForeground(new Color(0, 0, 128));
@@ -823,7 +827,7 @@ public class LOGIN extends JDialog {
 			{
 				BAGLAN.kerDizin.fIRMA_ADI = oac._IKereste.ker_firma_adi() ;
 				qwe = BAGLAN.kerDizin.yER.equals("S") ? BAGLAN.kerDizin.sERVER : "Lokal" ;
-				OBS_MAIN.lblKeresteBilgi.setText(BAGLAN.kerDizin.kOD + "/ " + BAGLAN.kerDizin.fIRMA_ADI + "/ " + qwe);
+				OBS_MAIN.lblKeresteBilgi.setText(BAGLAN.kerDizin.kOD + "/ " + BAGLAN.kerDizin.fIRMA_ADI + "/ " + qwe + " / "+ BAGLAN.kerDizin.hAN_SQL );
 				Dimension size = OBS_MAIN.lblKeresteBilgi.getPreferredSize();
 				OBS_MAIN.lblKeresteBilgi.setBounds(10, 55, size.width +10, 14);
 				OBS_MAIN.lblKeresteBilgi.setForeground(new Color(0, 0, 128));

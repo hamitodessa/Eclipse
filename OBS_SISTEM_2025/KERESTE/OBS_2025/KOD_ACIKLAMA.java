@@ -173,6 +173,9 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 	}
 	public static void kaydet() 
 	{
+		if ( txtKod.getText().toString().equals("") ) {  
+			return;
+		}
 		lOG_BILGI lBILGI = new lOG_BILGI();
 		lBILGI.setmESAJ(txtKod.getText() + " Acik=" + txtAciklama.getText());
 		lBILGI.seteVRAK("");
@@ -191,6 +194,10 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 	}
 	public static void sil() 
 	{
+		if (table.getRowCount() == 0 || txtKod.getText().toString().equals("") ) {  
+			return;
+		}
+		
 		int g =  JOptionPane.showOptionDialog( null,  txtAciklama.getText() + "     Kod Dosyadan Silinecek ..?", "Kereste Dosyasindan d Silme",   JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 		if(g != 0 ) { return;	}

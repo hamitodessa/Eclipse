@@ -391,6 +391,7 @@ public class GLOBAL {
 			prop.setProperty("KER_FAT_SATIR", "25");
 			prop.setProperty("KER_STOK_KONTROL", "-1");
 			prop.setProperty("KER_RAPORLAMA","[Calibri,0,12]");
+			prop.setProperty("GRAFIK_DEGER_GOSTER", "-1");
 			prop.store(output, "OBS AYARLAR");
 			output.close();
 			byte[] qaz;

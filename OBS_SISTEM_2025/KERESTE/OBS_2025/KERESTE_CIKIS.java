@@ -1274,6 +1274,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			{
 				cmbanagrup .addItem(rs.getString("ANA_GRUP"));
 			}
+			cmbanagrup.setEnabled(true);
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
@@ -1340,6 +1341,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			{
 				cmbozkod .addItem(rs.getString("OZEL_KOD_1"));
 			}
+			cmbozkod.setEnabled(true);
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
@@ -1367,6 +1369,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			{
 				cmbnakliyeci .addItem(rs.getString("UNVAN"));
 			}
+			cmbnakliyeci.setEnabled(true);
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)

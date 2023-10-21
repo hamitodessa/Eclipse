@@ -175,6 +175,9 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 	}
 	public static void kaydet() 
 	{
+		if (txtKons.getText().toString().equals("") ) {  
+			return;
+		}
 		lOG_BILGI lBILGI = new lOG_BILGI();
 		lBILGI.setmESAJ(txtKons.getText() + " Acik=" + txtAciklama.getText());
 		lBILGI.seteVRAK("");
@@ -193,6 +196,9 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 	}
 	public static void sil() 
 	{
+		if (table.getRowCount() == 0 || txtKons.getText().toString().equals("") ) {  
+			return;
+		}
 		int g =  JOptionPane.showOptionDialog( null, txtAciklama.getText() + "   Nolu  Konsimento Dosyadan Silinecek ..?", "Kereste Dosyasindan Konsimento Silme",   JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 		if(g != 0 ) { return;	}

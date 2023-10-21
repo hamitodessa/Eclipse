@@ -70,7 +70,7 @@ import GUNLUK.MESAJ_GOSTER;
 import KER_RAPOR.KER_DETAY;
 import KER_RAPOR.KER_FAT_RAPOR;
 import KER_RAPOR.KER_GRUP_RAPOR;
-import KER_RAPOR.KER_ORT_SATIS;
+import KER_RAPOR.KER_ORT_FIAT;
 import OBS_C_2025.DesktopScrollPane;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
@@ -2176,10 +2176,10 @@ public class OBS_MAIN extends JFrame {
 		btnNewButton_66 = new JButton("");
 		btnNewButton_66.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				form_ac("KERESTE ORTALAMA SATIS","");
+				form_ac("KERESTE ORTALAMA FIAT","");
 			}
 		});
-		btnNewButton_66.setToolTipText("Ortalama Satis Fiati");
+		btnNewButton_66.setToolTipText("Ortalama Fiati");
 		btnNewButton_66.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-approximately-not-equal-30.png")));
 
 		
@@ -2778,7 +2778,7 @@ public class OBS_MAIN extends JFrame {
 					
 					ft.setVisible(true);
 				}
-				else if (sonuc == "KERESTE ORTALAMA SATIS")
+				else if (sonuc == "KERESTE ORTALAMA FIAT")
 				{
 					GLOBAL.filtre_sayfa = 23 ;
 					ft = new FILTRE();
@@ -3091,9 +3091,9 @@ public class OBS_MAIN extends JFrame {
 				{
 					KER_DETAY.excell_aktar() ;
 				}
-				else if (sonuc == "KERESTE ORTALAMA SATIS")
+				else if (sonuc == "KERESTE ORTALAMA FIAT")
 				{
-					KER_ORT_SATIS.excell_aktar() ;
+					KER_ORT_FIAT.excell_aktar() ;
 				}
 				else if (sonuc == "KERESTE CIKIS")
 				{
@@ -3470,7 +3470,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("KERESTE FATURA RAPORLAMA")) internalFrame  = new KER_FAT_RAPOR();
 			else if (pencere.equals("KERESTE KOD-KONSIMENTO DEGISTIRME")) internalFrame  = new KER_KOD_DEGISTIRME();
 			else if (pencere.equals("KERESTE DEGISKEN YENILEME")) internalFrame  = new KER_DEGISKEN_DEGIS();
-			else if (pencere.equals("KERESTE ORTALAMA SATIS")) internalFrame  = new KER_ORT_SATIS();
+			else if (pencere.equals("KERESTE ORTALAMA FIAT")) internalFrame  = new KER_ORT_FIAT();
 			else if (pencere.equals("KERESTE BOS KUR")) internalFrame  = new KER_BOS_KUR();
 			//GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();

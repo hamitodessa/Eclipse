@@ -1364,7 +1364,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					FILTRE.textField_82.getText(),FILTRE.textField_83.getText() ,
 					jkj,
 					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_20_1),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_21_1),
-					sstr_5, sstr_1, " Konsimento,Paket_No,Sinif , Kal,Gen",hANGI,
+					sstr_5, sstr_1, " Konsimento,Paket_No,Sinif , Kal,Gen ",hANGI,
 					FILTRE.textField_89.getText(),FILTRE.textField_94.getText(),dpo,grpString,
 					FILTRE.textField_99.getText(),FILTRE.textField_100.getText());
 
@@ -2462,14 +2462,17 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Tutar"))
 			{
 				GLOBAL.g_setNumbersAxisTitleText = "Tutar" ;
+				GLOBAL.gkusurat = 2;
 			}
 			else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("Miktar"))
 			{
 				GLOBAL.g_setNumbersAxisTitleText = "Miktar" ;
+				GLOBAL.gkusurat = 0;
 			}
 			else  if (FILTRE.comboBox_26_1.getItemAt(FILTRE.comboBox_26_1.getSelectedIndex()).equals("m3"))
 			{
 				GLOBAL.g_setNumbersAxisTitleText = "m3" ;
+				GLOBAL.gkusurat = 3;
 			}
 			ArrayList<Double> tutar = new ArrayList<Double>();
 			for (int i = 0;i<=mdll.getRowCount() - 2 ;i++)
@@ -3253,4 +3256,5 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Grup Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
 }

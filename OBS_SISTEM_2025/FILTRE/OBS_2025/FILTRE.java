@@ -29,7 +29,7 @@ import GUNLUK.HAZIR_GOREVLER;
 import KER_RAPOR.KER_DETAY;
 import KER_RAPOR.KER_FAT_RAPOR;
 import KER_RAPOR.KER_GRUP_RAPOR;
-import KER_RAPOR.KER_ORT_SATIS;
+import KER_RAPOR.KER_ORT_FIAT;
 import OBS_2025_RAPORLAR.ENVANTER;
 import OBS_2025_RAPORLAR.FATURA_RAPOR;
 import OBS_2025_RAPORLAR.GRUP_RAPOR;
@@ -5493,9 +5493,9 @@ public class FILTRE extends JDialog {
 				}
 				else if (sayfa == 23) 
 				{
-					GuiUtil.setWaitCursor(KER_ORT_SATIS.splitPane,true);
-					KER_ORT_SATIS.yenile();   // 
-					GuiUtil.setWaitCursor(KER_ORT_SATIS.splitPane,false);
+					GuiUtil.setWaitCursor(KER_ORT_FIAT.splitPane,true);
+					KER_ORT_FIAT.yenile();   // 
+					GuiUtil.setWaitCursor(KER_ORT_FIAT.splitPane,false);
 				}
 				GuiUtil.setWaitCursor(getContentPane(),false);
 				dispose();

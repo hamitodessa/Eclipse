@@ -69,7 +69,7 @@ import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
 @SuppressWarnings({"serial","static-access","unused","deprecation"})
-public class KER_ORT_SATIS extends JInternalFrame {
+public class KER_ORT_FIAT extends JInternalFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(OBS_SIS_2025_ANA_CLASS._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
@@ -95,7 +95,7 @@ public class KER_ORT_SATIS extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					KER_ORT_SATIS frame = new KER_ORT_SATIS();
+					KER_ORT_FIAT frame = new KER_ORT_FIAT();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -108,8 +108,8 @@ public class KER_ORT_SATIS extends JInternalFrame {
 	 * Create the frame.
 	 */
 
-	public KER_ORT_SATIS() {
-		setTitle("KERESTE ORTALAMA SATIS");
+	public KER_ORT_FIAT() {
+		setTitle("KERESTE ORTALAMA FIAT");
 		setResizable(true);
 		setMaximizable(true);
 		setIconifiable(true);

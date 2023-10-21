@@ -63,7 +63,7 @@ import com.crystaldecisions.sdk.occa.report.lib.ReportSDKException;
 
 import KER_RAPOR.KER_DETAY;
 import KER_RAPOR.KER_GRUP_RAPOR;
-import KER_RAPOR.KER_ORT_SATIS;
+import KER_RAPOR.KER_ORT_FIAT;
 import OBS_2025_RAPORLAR.GRUP_RAPOR;
 import OBS_2025_RAPORLAR.IMALAT_GRUP_RAPOR;
 import OBS_2025_RAPORLAR.IMALAT_RAPORLAMA;
@@ -266,7 +266,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				{
 					ker_detay_gonder();
 				}
-				else if ( OBS_MAIN.pencere_bak("KERESTE ORTALAMA SATIS") == true ) 
+				else if ( OBS_MAIN.pencere_bak("KERESTE ORTALAMA FIAT") == true ) 
 				{
 					ker_ortfiat_gonder();
 				}
@@ -926,7 +926,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	{
 		try
 		{
-			KER_ORT_SATIS. mail_at();
+			KER_ORT_FIAT. mail_at();
 			xl_gonder("Kereste_Ortalama_Fiat" );
 		}
 		catch (Exception ex)
@@ -1166,7 +1166,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	{
 		boolean result  = false;
 
-		if (OBS_MAIN.pencere_bak("KERESTE ORTALAMA SATIS"))
+		if (OBS_MAIN.pencere_bak("KERESTE ORTALAMA FIAT"))
 		{
 			result = true ;
 		}

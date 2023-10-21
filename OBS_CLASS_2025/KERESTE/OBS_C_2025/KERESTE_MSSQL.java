@@ -1676,10 +1676,6 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " FROM KERESTE    " 
 				+ " WHERE " 
 				+ kODU 
-				//+ " SUBSTRING(KERESTE.Kodu, 1, 2) like '" + ilks + "%'  AND" 
-				//+ " SUBSTRING(KERESTE.Kodu, 4, 3) like '" + ilkk + "%' AND" 
-				//+ " SUBSTRING(KERESTE.Kodu, 8, 4) like '" + ilkb + "%' AND" 
-				//+ " SUBSTRING(KERESTE.Kodu, 13, 4) like '" + ilkg + "%'  AND" 
 				+ " Paket_No like N'"+ ker_rap_BILGI.getPaket_No1().toString()+ "%' AND " 
 				+ " Konsimento like N'"+ ker_rap_BILGI.getKonsimento1().toString() + "%'" 
 				+ " " + evrakString + " "; 

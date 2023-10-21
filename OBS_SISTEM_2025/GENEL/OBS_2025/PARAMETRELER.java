@@ -111,6 +111,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 	private static JCheckBox chckbxNewCheckBox_1_4 ;
 	private static JLabel lblNewLabel_3_10_1_1_1 ;
 	private static JTextField textField_10;
+	//***********************GRAFIK
+	private static JCheckBox chckbxNewCheckBox_2;
 	//***********************PROGRAM ***************
 	private static JCheckBox chckbxNewCheckBox_2_2_1_1 ;
 	private static JCheckBox chckbxNewCheckBox_2_1_1_1_1 ;
@@ -1147,7 +1149,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		lblImalatOrtfiatBaslangic.setBounds(10, 483, 139, 14);
 		panel_1.add(lblImalatOrtfiatBaslangic);
 		
-							
+		/////////////////////////////GUNLUK ***************************************************************							
 		JScrollPane scrollPane_2 = new JScrollPane();
 		tabbedPane.addTab("Gunluk", null, scrollPane_2, null);
 		
@@ -1440,8 +1442,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 		comboBox_2_1_1_2_1.setBounds(295, 152, 55, 22);
 		panel_3.add(comboBox_2_1_1_2_1);
 		
+		//////////////////////////////////////////////// KERESTE /////////////////////////////////////////////////////////
 		JScrollPane scrollPane_4 = new JScrollPane();
-		
 		tabbedPane.addTab("Kereste", null, scrollPane_4, null);
 		
 		JPanel panel_5 = new JPanel();
@@ -1534,6 +1536,26 @@ public class PARAMETRELER   extends JInternalFrame   {
 		btnNewButton_10_1_1_1.setBounds(417, 149, 46, 23);
 		panel_5.add(btnNewButton_10_1_1_1);
 		
+		//////////////////////////////////////////////// KERESTE /////////////////////////////////////////////////////////
+		JScrollPane scrollPane_6 = new JScrollPane();
+		tabbedPane.addTab("Grafik", null, scrollPane_6, null);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBorder(new LineBorder(new Color(0, 191, 255)));
+		scrollPane_6.setViewportView(panel_6);
+		panel_6.setLayout(null);
+		
+		JLabel lblNewLabel_4_1_1_3 = new JLabel("Grafik Deger Gosterme");
+		lblNewLabel_4_1_1_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_4_1_1_3.setBounds(10, 31, 126, 14);
+		panel_6.add(lblNewLabel_4_1_1_3);
+		
+		chckbxNewCheckBox_2 = new JCheckBox("");
+		chckbxNewCheckBox_2.setBounds(156, 27, 99, 23);
+		panel_6.add(chckbxNewCheckBox_2);
+
+		
+		//************************************************************************************
 		doldur();
 	
 		
@@ -1841,11 +1863,21 @@ public class PARAMETRELER   extends JInternalFrame   {
 			comboBox_2_1_1_2_3.setSelectedItem(parts[2]);
 		deger = oac.glb.setting_oku("PRG_GORUNUM").toString();
 		comboBox_2.setSelectedItem(deger);
-			
 			deger = oac.glb.setting_oku("PRG_GRID_RENK").toString();
 			parts = deger.split(",");
 			colorChooser.setSelectedColor( new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim())));
 
+		// grafik
+		deger = oac.glb.setting_oku("GRAFIK_DEGER_GOSTER").toString();
+			if (deger.equals("-1"))
+			{
+				chckbxNewCheckBox_2.setSelected(false);
+			}
+			else
+			{
+				chckbxNewCheckBox_2.setSelected(true);
+			}
+			
 			getContentPane().setCursor(DEFAULT_CURSOR);
 		} catch (Exception ex) 
 		{
@@ -1992,6 +2024,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 		
 		deger = Integer.toString(colorChooser.getSelectedColor().getRed() ) + "," + Integer.toString(colorChooser.getSelectedColor().getGreen()) + "," + Integer.toString(colorChooser.getSelectedColor().getBlue());
 		oac.glb.setting_yaz("PRG_GRID_RENK", deger);
+		
+		oac.glb.setting_yaz("GRAFIK_DEGER_GOSTER", chckbxNewCheckBox_2.isSelected() ?  "0" : "-1");
 		
 		OBS_SIS_2025_ANA_CLASS. gridcolor =  colorChooser.getSelectedColor();
 		

@@ -1138,7 +1138,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 				" AND " + qweString  + " between N'" + e1 + "' AND N'" + e2 + "'" +
 				" AND Konsimento between N'" + ko1 + "' AND N'" + ko2 + "'" +
 				" AND  KERESTE."+ dURUM + "Tarih BETWEEN '" +t1 + "'" + " AND  '" + t2 + " 23:59:59.998'" +
-				" GROUP BY " + grup ;
+				" GROUP BY " + grup + " ORDER BY  " + orderBY;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1227,10 +1227,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " FROM KERESTE  " //WITH (INDEX (IX_KERESTE)) 
 				+ " WHERE " 
 				+ " Tarih BETWEEN '" + ker_rap_BILGI.getGTarih1() + "'" + " AND  '" + ker_rap_BILGI.getGTarih2() + " 23:59:59.998' AND" 
-				//+ " SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" 
-				//+ " SUBSTRING(KERESTE.Kodu, 4, 3) >= '"+ilkk +"' AND SUBSTRING(KERESTE.Kodu, 4, 3) <= '"+ sonk +"' AND" 
-				//+ " SUBSTRING(KERESTE.Kodu, 8, 4) >= '"+ilkb +"' AND SUBSTRING(KERESTE.Kodu, 8, 4) <= '"+ sonb +"' AND" 
-				//+ " SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' AND " 
 				+ kODU
 				+ " Paket_No between N'" + ker_rap_BILGI.getPaket_No1() + "' AND N'" + ker_rap_BILGI.getPaket_No2() + "' AND " 
 				+ " Cari_Firma between N'" + ker_rap_BILGI.getGCari_Firma1() + "' AND N'" + ker_rap_BILGI.getGCari_Firma2() + "' AND" 
@@ -1606,10 +1602,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " FROM KERESTE    " 
 				+ " WHERE " 
 				+ kODU 
-				//+ " SUBSTRING(KERESTE.Kodu, 1, 2) like '" + ilks + "%'  AND" 
-				//+ " SUBSTRING(KERESTE.Kodu, 4, 3) like '" + ilkk + "%' AND" 
-				//+ " SUBSTRING(KERESTE.Kodu, 8, 4) like '" + ilkb + "%' AND" 
-				//+ " SUBSTRING(KERESTE.Kodu, 13, 4) like '" + ilkg + "%'  AND" 				
 				+ " Paket_No like N'"+ ker_rap_BILGI.getPaket_No1().toString()+ "%' AND " 
 				+ " Konsimento like N'"+ ker_rap_BILGI.getKonsimento1().toString() + "%'"  
 				+ " " + evrakString + " "; 
@@ -1893,7 +1885,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 				+ " , Konsimento  "
 				+ " , Miktar  "
 				+ " ,(((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL)) * Miktar)/1000000000)  as m3"
-				+ " , Tarih  "
+				+ " , DATE_FORMAT(Tarih, '%Y.%m.%d')  AS TARIH "
 				+ " , Kdv  "
 				+ " , Doviz  "
 				+ " , Fiat  "
@@ -2038,8 +2030,9 @@ public class KERESTE_MYSQL implements IKERESTE {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql =  "SELECT DISTINCT DATE( s."+ dURUM + "Tarih) as Tarih  " +
-				" FROM KERESTE s left outer join ok_kur" +  BAGLAN.kurDizin.kOD + ".kurlar k on DATE( k.Tarih) = DATE( s."+ dURUM + "Tarih) and k.Kur = '" + kur + "'" +
-				" WHERE YEAR(KERESTE." + dURUM + "Tarih) <> '1900' AND  k." + cins + " IS NULL OR k." + cins + " =0 " +
+				" FROM KERESTE s left outer join ok_kur" +  BAGLAN.kurDizin.kOD + ".kurlar k on " + 
+				" DATE( k.Tarih) = DATE( s."+ dURUM + "Tarih) and k.Kur = '" + kur + "'" +
+				" WHERE YEAR(s." + dURUM + "Tarih) <> '1900' AND  k." + cins + " IS NULL OR k." + cins + " =0 " +
 				" ORDER BY DATE(s." + dURUM + "Tarih)  " ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

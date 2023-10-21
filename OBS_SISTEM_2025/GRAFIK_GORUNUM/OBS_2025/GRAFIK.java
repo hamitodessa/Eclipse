@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
 import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import javax.imageio.ImageIO;
@@ -31,7 +32,7 @@ import OBS_C_2025.GLOBAL;
 @SuppressWarnings("serial")
 public class GRAFIK extends JInternalFrame {
 	public static  JFreeChart chart;
-
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	/**
 	 * Launch the application.
 	 */
@@ -65,6 +66,7 @@ public class GRAFIK extends JInternalFrame {
 		ex.setVisible(true);
 		initUI();
 	}
+	@SuppressWarnings("static-access")
 	private void initUI() 
 	{
 		DefaultCategoryDataset dataset = GLOBAL.dataset;  
@@ -105,20 +107,25 @@ public class GRAFIK extends JInternalFrame {
 		chart.setTitle(t2);
 		chart.getTitle().setPaint(new Color(0, 0, 128));
 		
-		//
-		 LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
-	     renderer.setShapesVisible(true);
-	     formatter.setMinimumFractionDigits(GLOBAL.gkusurat);
-	     formatter.setMaximumFractionDigits(GLOBAL.gkusurat);
-	     renderer.setLabelGenerator(new StandardCategoryLabelGenerator("{2}", formatter));
-	     renderer.setItemLabelFont(new Font("Arial Narrow", Font.PLAIN, 8));
-	     renderer.setItemLabelsVisible(true);
-	     renderer.setItemLabelPaint(new Color(0, 0, 128));
-	     renderer.setSeriesVisible(true);
-	    
-		//
-	     chart.setBackgroundPaint(new Color(189, 209, 219));//
-	     
+		LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
+	    renderer.setShapesVisible(true);
+	    formatter.setMinimumFractionDigits(GLOBAL.gkusurat);
+	    formatter.setMaximumFractionDigits(GLOBAL.gkusurat);
+	    renderer.setLabelGenerator(new StandardCategoryLabelGenerator("{2}", formatter));
+	    renderer.setItemLabelFont(new Font("Arial Narrow", Font.PLAIN, 8));
+	    String deger = "";
+	    try {
+			deger = oac.glb.setting_oku("GRAFIK_DEGER_GOSTER").toString();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if (! deger.equals("-1"))
+		{
+			 renderer.setItemLabelsVisible(true);
+		}
+	    renderer.setItemLabelPaint(new Color(0, 0, 128));
+	    renderer.setSeriesVisible(true);
+	    chart.setBackgroundPaint(new Color(189, 209, 219));//
 		ChartPanel panel = new ChartPanel(chart);  
 		setContentPane(panel);  
 	}

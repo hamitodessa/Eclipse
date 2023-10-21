@@ -128,7 +128,7 @@ public class PAKET_ARA extends JDialog {
 		panel.add(textField_1);
 		
 		formattedTextField = new JFormattedTextField();
-		formattedTextField.setBounds(287, 36, 135, 20);
+		formattedTextField.setBounds(287, 36, 150, 20);
 		MaskFormatter mask;
 		try {
 		    mask = new MaskFormatter("AA-###-####-####");

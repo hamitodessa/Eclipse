@@ -1174,7 +1174,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		});
 		MaskFormatter mask;
 		try {
-		    mask = new MaskFormatter("##-###-####-####");
+		    mask = new MaskFormatter("AA-###-####-####");
 		    mask.install(ftext);
 		} catch (ParseException e) {
 		    e.printStackTrace();
@@ -1502,6 +1502,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			{
 				cmbanagrup .addItem(rs.getString("ANA_GRUP"));
 			}
+			cmbanagrup.setEnabled(true);
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
@@ -1568,6 +1569,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			{
 				cmbozkod .addItem(rs.getString("OZEL_KOD_1"));
 			}
+			cmbozkod.setEnabled(true);
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
@@ -1596,6 +1598,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			{
 				cmbnakliyeci .addItem(rs.getString("UNVAN"));
 			}
+			cmbnakliyeci.setEnabled(true);
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)
@@ -1691,6 +1694,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			{
 				cmbdepo .addItem(rs.getString("DEPO"));
 			}
+			cmbdepo.setEnabled(true);
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 		}
 		catch (Exception ex)

@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyVetoException;
@@ -33,26 +32,6 @@ import OBS_C_2025.GLOBAL;
 public class GRAFIK extends JInternalFrame {
 	public static  JFreeChart chart;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GRAFIK frame = new GRAFIK();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * @throws PropertyVetoException 
-	 */
 	public GRAFIK() throws PropertyVetoException {
 
 		setTitle("GRAFIK");
@@ -126,6 +105,8 @@ public class GRAFIK extends JInternalFrame {
 	    renderer.setItemLabelPaint(new Color(0, 0, 128));
 	    renderer.setSeriesVisible(true);
 	    chart.setBackgroundPaint(new Color(189, 209, 219));//
+	    
+        
 		ChartPanel panel = new ChartPanel(chart);  
 		setContentPane(panel);  
 	}

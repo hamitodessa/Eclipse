@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.sql.ResultSet;
 
 import javax.swing.JInternalFrame;
@@ -34,25 +33,7 @@ public class KUR_RAPORLAMA extends JInternalFrame {
 	static KUR_ACCESS k_Access = new KUR_ACCESS(OBS_SIS_2025_ANA_CLASS._IKur , OBS_SIS_2025_ANA_CLASS._IKur_Loger);
 	public static ScrollPaneWin11 scrollPane ;
 	private static JTable table;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KUR_RAPORLAMA frame = new KUR_RAPORLAMA();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public KUR_RAPORLAMA() {
 		setTitle("KUR RAPORLAMA");
 		setResizable(true);

@@ -1,7 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
@@ -80,25 +78,6 @@ public class EKSTRE extends JInternalFrame {
 	static double double_4 = 0 ;
 
 	public static JSplitPane pane;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					EKSTRE frame = new EKSTRE();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	@SuppressWarnings("serial")
 	public EKSTRE() {
 		setTitle("EKSTRE");

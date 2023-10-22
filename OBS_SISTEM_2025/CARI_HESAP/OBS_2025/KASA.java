@@ -1,7 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -86,25 +84,6 @@ public class KASA extends JInternalFrame {
 	String myDate1;
 	ResultSet rs = null;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KASA frame = new KASA();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public KASA() {
 		setTitle("GUNLUK TAKIP");
 		setResizable(true);

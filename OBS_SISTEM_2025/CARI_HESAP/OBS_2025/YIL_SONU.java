@@ -83,25 +83,7 @@ public class YIL_SONU extends JInternalFrame {
 	private static JSplitPane splitPaneana ;
 	private static JPanel panel ;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					YIL_SONU frame = new YIL_SONU();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public YIL_SONU() {
 		setClosable(true);
 		setResizable(true);

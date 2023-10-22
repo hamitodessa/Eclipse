@@ -2,7 +2,6 @@ package GUNLUK;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -58,25 +57,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 	private JLabel lblBitis;
 	private static JTextField txtYer;
 	private static JTextField txtDeger;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GOREV_GIRIS frame = new GOREV_GIRIS();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public GOREV_GIRIS() {
 		setIconifiable(true);
 		setClosable(true);

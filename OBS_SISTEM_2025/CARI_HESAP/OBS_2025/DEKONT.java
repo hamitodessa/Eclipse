@@ -12,7 +12,7 @@ import javax.swing.text.NumberFormatter;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
-
+import OBS_C_2025.ScrollBarWin11UI;
 import com.businessobjects.visualization.dataexchange.consumer.DataHandler;
 import com.crystaldecisions.reports.queryengine.EnumValueToNameMaps;
 import com.toedter.calendar.JDateChooser;
@@ -107,19 +107,6 @@ public class DEKONT extends JInternalFrame {
 	private static JLabel lblNewLabel ;
 
 
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DEKONT frame = new DEKONT();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public DEKONT() {
 

@@ -2,7 +2,6 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.sql.ResultSet;
 
@@ -38,26 +37,6 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 	private static JTextField txtKons;
 	private static JTextField txtAciklama;
 
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KONS_ACIKLAMA frame = new KONS_ACIKLAMA();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public KONS_ACIKLAMA() {
 		setIconifiable(true);
 		setTitle("KONSIMENTO ACIKLAMA");

@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.beans.PropertyVetoException;
 import java.io.File;
@@ -63,18 +62,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 	public static ReportClientDocument clientDoc ;
 	private static ResultSet rs ;
 	private static ArrayList<Degisken>  students = new ArrayList<Degisken>();
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PRINT_YAPMA frame = new PRINT_YAPMA();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 	public PRINT_YAPMA() throws PropertyVetoException {
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override

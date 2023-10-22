@@ -2,7 +2,6 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -84,27 +83,6 @@ public class H_PLANI extends JInternalFrame {
 	static ResultSet rs = null ;
 	private static int kayit_sayi = 0 ;
 	private JTextField txtarama;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					H_PLANI frame = new H_PLANI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
 	public H_PLANI()  {
 		setTitle("HESAP GIRISI");
 		setIconifiable(true);

@@ -78,25 +78,6 @@ import java.awt.event.KeyEvent;
 @SuppressWarnings({"serial","static-access","unused"})
 public class DENEMELER extends JInternalFrame {
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DENEMELER frame = new DENEMELER();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public DENEMELER() {
 		setClosable(true);
 		setBounds(100, 100, 800, 600);

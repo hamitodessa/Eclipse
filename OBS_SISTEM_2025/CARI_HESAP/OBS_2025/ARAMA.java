@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -49,25 +48,6 @@ public class ARAMA extends JInternalFrame {
 	private static JTable table;
 	public static JSplitPane splitPane;
 	private static JLabel lblNewLabel_1;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ARAMA frame = new ARAMA();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public ARAMA() {
 		setTitle("CARI ARAMA");
 		setResizable(true);

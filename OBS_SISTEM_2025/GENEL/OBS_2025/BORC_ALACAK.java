@@ -26,21 +26,22 @@ public class BORC_ALACAK extends JDialog {
 	public JLabel lblNewLabel;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 
-	public static void main(String[] args) {
-		try {
-			BORC_ALACAK dialog = new BORC_ALACAK();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		try {
+//			BORC_ALACAK dialog = new BORC_ALACAK();
+//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//			dialog.setVisible(true);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	public BORC_ALACAK() {
 		setModal(true);
 		setResizable(false);
 		setTitle("HESAP");
 		setBounds(100, 100, 406, 118);
 		getContentPane().setLayout(new BorderLayout());
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);

@@ -189,25 +189,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	static KERESTE_ACCESS ker_Access = new KERESTE_ACCESS(OBS_SIS_2025_ANA_CLASS._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KERESTE_CIKIS frame = new KERESTE_CIKIS();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 
 	public KERESTE_CIKIS() {
 		setTitle("KERESTE CIKIS");
@@ -2220,6 +2201,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				@SuppressWarnings("resource")
 				HSSFWorkbook workbook = new HSSFWorkbook();
 				HSSFSheet sheet = workbook.createSheet("Evrak_" + textField.getText());
+				HSSFSheet tOPLU = workbook.createSheet("Toplu_" + textField.getText());
 				HSSFFont headerFont = workbook.createFont();
 				headerFont.setBold(true);
 				headerFont.setColor(IndexedColors.BLUE.getIndex()); 
@@ -2304,7 +2286,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 				Cell cell ;
 				Row bosRow = sheet.createRow(1);
-
 				Row satir1 = sheet.createRow(2);
 				cell = satir1.createCell(0);
 				cell.setCellStyle(solaStyle);
@@ -2564,6 +2545,43 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				{
 					sheet.autoSizeColumn(i);
 				}
+				//////////////////////TOPLU ****************************************************************
+				bosRow = tOPLU.createRow(1);
+				satir1 = tOPLU.createRow(2);
+				cell = satir1.createCell(0);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue("Evrak No :");
+
+				cell = satir1.createCell(1);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue(textField.getText());
+
+				cell = satir1.createCell(9);
+				cell.setCellValue(TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc));
+				cell.setCellStyle(satirStyle);
+
+				satir2 = tOPLU.createRow(3);
+				cell = satir2.createCell(0);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue("Musteri Kodu:");
+
+				cell = satir2.createCell(1);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue(txtcari.getText());
+
+				satir3 = tOPLU.createRow(4);
+				tOPLU.addMergedRegion(new CellRangeAddress(4,4,1,2));
+
+
+				cell = satir3.createCell(1);
+				cell.setCellStyle(solaStyle);
+				cell.setCellValue(lblNewLabel_3.getText());
+
+
+				bosRow5 = tOPLU.createRow(5);
+
+				
+				///////////////////////////////////////////////////////////////////////////////////////////
 				FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile() + "_" + zaman + uzanti));
 				workbook.write(out);
 				out.close();

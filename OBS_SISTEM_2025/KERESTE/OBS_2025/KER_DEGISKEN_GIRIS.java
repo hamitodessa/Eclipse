@@ -3,7 +3,6 @@ package OBS_2025;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -60,25 +59,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 	
 	private static JPanel panel ;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KER_DEGISKEN_GIRIS frame = new KER_DEGISKEN_GIRIS("");
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace(); 
-				}
-			}
-		});
-	} 
 
-	/**
-	 * Create the frame.
-	 */
 	public KER_DEGISKEN_GIRIS(String nerden) {
 		hangi = nerden ;
 		setTitle("KERESTE DEGISKENLER");

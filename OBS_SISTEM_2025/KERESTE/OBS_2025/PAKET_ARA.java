@@ -52,23 +52,7 @@ public class PAKET_ARA extends JDialog {
 	private JFormattedTextField formattedTextField ;
 	private JLabel lblNewLabel_2;
 	private JSplitPane splitPane ;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			PAKET_ARA dialog = new PAKET_ARA();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
-	/**
-	 * Create the frame.
-	 */
-	
 	public PAKET_ARA() {
 		setModal(true);
 		setTitle("KERESTE PAKET ARAMA");

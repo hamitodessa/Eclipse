@@ -49,6 +49,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -125,6 +126,7 @@ import OBS_C_2025.SMS_MYSQL;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.STOK_MSSQL;
 import OBS_C_2025.STOK_MYSQL;
+import OBS_C_2025.ScrollBarWin11UI;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KERESTE_MSSQL;
 import OBS_C_2025.KERESTE_MYSQL;
@@ -167,8 +169,8 @@ public class LOGIN extends JDialog {
 	public static void main(String[] args) {	EventQueue.invokeLater(new Runnable() {
 		public void run() {
 			try {
-				LOGIN frame = new LOGIN();
-				frame.setVisible(true);
+				//LOGIN frame = new LOGIN();
+				new LOGIN().setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -179,6 +181,10 @@ public class LOGIN extends JDialog {
 	}
 	
 	public LOGIN() throws IOException {
+		//UIDefaults ui = UIManager.getDefaults();
+		//ui.put("ScrollBarUI", ScrollBarWin11UI.class.getCanonicalName());
+
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setResizable(false);
 		setTitle("OBS SISTEM GIRIS");
@@ -224,9 +230,10 @@ public class LOGIN extends JDialog {
 			  UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel"); } else
 			  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("MintLookAndFeel"))
 			  { UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel"); } else
-			  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Klasik")) {
-			  UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"
-			  ); }
+			  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows")) {
+			 
+				  UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
+				  }
 			  else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSolarizedLightIJTheme")) 
 			  {
 				 FlatSolarizedLightIJTheme.setup();
@@ -263,6 +270,9 @@ public class LOGIN extends JDialog {
 			  {
 				  FlatNordIJTheme.setup();
 			  }
+			  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Klasik")) 
+			  {
+					  }
 			SwingUtilities.updateComponentTreeUI(this);
 			//UIManager.setLookAndFeel(new FlatSolarizedLightIJTheme());
 			
@@ -545,7 +555,7 @@ public class LOGIN extends JDialog {
 						Thread.currentThread().isInterrupted();
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
 						obmain.lblUser.setText(GLOBAL.KULL_ADI);
-						
+						obmain.setExtendedState(obmain.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 						obmain.setVisible(true);
 						dispose();
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

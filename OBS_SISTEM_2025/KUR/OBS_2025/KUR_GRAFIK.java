@@ -2,8 +2,6 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,26 +35,7 @@ public class KUR_GRAFIK extends JInternalFrame {
 	static KUR_ACCESS k_Access = new KUR_ACCESS(OBS_SIS_2025_ANA_CLASS._IKur , OBS_SIS_2025_ANA_CLASS._IKur_Loger);
 	public static ScrollPaneWin11 scrollPane;
 	private static JTable table;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KUR_GRAFIK frame = new KUR_GRAFIK();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 * @throws PropertyVetoException 
-	 */
 	@SuppressWarnings({ "removal", "static-access" })
 	public KUR_GRAFIK()   {
 		setTitle("KUR GRAFIK");

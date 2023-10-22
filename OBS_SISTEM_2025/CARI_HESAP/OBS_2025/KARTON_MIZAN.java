@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -50,19 +49,6 @@ public class KARTON_MIZAN extends JInternalFrame {
 	public static JSplitPane splitPane;
 	private static JLabel lblNewLabel_3 ;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KARTON_MIZAN frame = new KARTON_MIZAN();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
 	public KARTON_MIZAN() {
 		setResizable(true);
 		setTitle("CARI KARTON MIZAN");

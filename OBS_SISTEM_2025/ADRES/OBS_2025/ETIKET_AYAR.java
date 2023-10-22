@@ -1,7 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
-
 import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -38,25 +36,7 @@ public class ETIKET_AYAR extends JInternalFrame {
 	private static JSpinner spnEtBOSLUK;
 	private static JComboBox<String> eTIKETYAZIMBox ;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ETIKET_AYAR frame = new ETIKET_AYAR();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public ETIKET_AYAR() {
 
 		setClosable(true);

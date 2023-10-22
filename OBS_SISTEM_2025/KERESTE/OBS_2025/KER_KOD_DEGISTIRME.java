@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -84,25 +83,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	private JTextField txtYKons;
 	private JTextField txtEvrak;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KER_KOD_DEGISTIRME frame = new KER_KOD_DEGISTIRME();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public KER_KOD_DEGISTIRME() {
 		setMaximizable(true);
 		setIconifiable(true);

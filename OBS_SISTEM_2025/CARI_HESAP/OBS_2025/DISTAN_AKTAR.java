@@ -1,7 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
@@ -112,26 +110,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private JTextField txtALACAK;
 	private JLabel lblunvan_1 ;
 	private JLabel lblunvan_2 ;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DISTAN_AKTAR frame = new DISTAN_AKTAR();
-					
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	@SuppressWarnings("removal")
 	public DISTAN_AKTAR() {
 		

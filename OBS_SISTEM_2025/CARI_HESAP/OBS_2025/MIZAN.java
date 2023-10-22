@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -59,25 +58,7 @@ public class MIZAN extends JInternalFrame {
 	public static JSplitPane splitPane;
 	private static JLabel lblNewLabel_3 ;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MIZAN frame = new MIZAN();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public MIZAN() {
 
 		setResizable(true);

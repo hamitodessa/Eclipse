@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Insets;
 import java.util.Calendar;
@@ -59,27 +58,7 @@ public class EKSIK_KUR extends JInternalFrame
 	static JComboBox<String> cmbCins;
 	static JLabel lblkayit;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) 
-	{
-		EventQueue.invokeLater(new Runnable() 
-		{
-			public void run() {
-				try {
-					EKSIK_KUR frame = new EKSIK_KUR();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public EKSIK_KUR() 
 	{
 		setIconifiable(true);

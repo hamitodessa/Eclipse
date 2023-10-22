@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.sql.ResultSet;
 
-import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -24,22 +23,6 @@ import javax.swing.ListSelectionModel;
 public class MESAJ_GOSTER extends JInternalFrame {
 	private JTable table;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			MESAJ_GOSTER dialog = new MESAJ_GOSTER(null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public MESAJ_GOSTER(ResultSet rs) {
 		setTitle("ANLIK GOREVLER");
 		setBounds(100, 100, 700, 200);

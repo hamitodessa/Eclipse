@@ -66,26 +66,7 @@ public class PRINT_JASPER extends JInternalFrame {
 	private static JasperViewer jviewer ;
 	private static JasperPrint jp;
 	private static JScrollPane scrollPane;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PRINT_JASPER frame = new PRINT_JASPER();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 * @throws PropertyVetoException 
-	 */
 	public PRINT_JASPER() throws PropertyVetoException {
 		
 		setResizable(true);

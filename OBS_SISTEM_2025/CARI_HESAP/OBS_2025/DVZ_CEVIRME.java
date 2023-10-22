@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
@@ -59,25 +58,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 	public static JSplitPane splitPane ;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DVZ_CEVIRME frame = new DVZ_CEVIRME();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public DVZ_CEVIRME() {
 		
 		setTitle("DOVIZE CEVIRME");

@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.sql.ResultSet;
 
@@ -49,25 +48,6 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 	public static JScrollPane scrollPane;
 	public static JSplitPane splitPane;
 	private static JLabel lblNewLabel_1;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUNLUK_ISLEM frame = new GUNLUK_ISLEM();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public GUNLUK_ISLEM() {
 		setTitle("GUNLUK ISLEM");
 		setResizable(true);

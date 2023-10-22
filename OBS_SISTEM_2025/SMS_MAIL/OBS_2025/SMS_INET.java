@@ -3,8 +3,6 @@ package OBS_2025;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -27,25 +25,6 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class SMS_INET extends JInternalFrame {
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SMS_INET frame = new SMS_INET();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public SMS_INET() {
 		setTitle("SMS INET");
 		setBounds(0, 0,900, 600);

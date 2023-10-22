@@ -1,7 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -41,25 +39,6 @@ public class ORN_HSP_PLN extends JInternalFrame {
 
 	private static JLabel lblNewLabel ;
 	JPanel panel;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ORN_HSP_PLN frame = new ORN_HSP_PLN();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public ORN_HSP_PLN() {
 		setTitle("ORNEK HESAP PLANI");
 		setClosable(true);

@@ -3,7 +3,6 @@ package OBS_2025;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -65,25 +64,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	private static JDateChooser dateChooser_1 ;
 	private static JLabel lblSatir = new JLabel("0");
 	static JComboBox<String> cmbLog = new JComboBox<String>();
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LOGLAMA_RAPOR frame = new LOGLAMA_RAPOR();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	@SuppressWarnings({ "static-access", "serial" })
 	public LOGLAMA_RAPOR() {
 		setTitle("LOG RAPORLAMA");

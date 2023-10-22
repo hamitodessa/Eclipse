@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.sql.ResultSet;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -27,25 +26,6 @@ import javax.swing.ListSelectionModel;
 
 	private static JTable table;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BOS_KUR frame = new BOS_KUR();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public BOS_KUR() {
 		setClosable(true);
 		setTitle("BOS KUR");

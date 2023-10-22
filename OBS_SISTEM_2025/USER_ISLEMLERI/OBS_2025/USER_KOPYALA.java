@@ -1,7 +1,6 @@
 package OBS_2025;
 
 
-import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JInternalFrame;
@@ -27,25 +26,6 @@ public class USER_KOPYALA extends JInternalFrame {
 	private static JPanel panel ;
 	private static ResultSet rss ;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					USER_KOPYALA frame = new USER_KOPYALA();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	@SuppressWarnings("static-access")
 	public USER_KOPYALA() {
 		setTitle("KULLANICI KOPYALA");

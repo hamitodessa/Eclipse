@@ -58,26 +58,8 @@ public class HESAP_PLN extends JDialog {
 	private JTable table;
 	private JTextField textField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			HESAP_PLN dialog = new HESAP_PLN();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
 	public HESAP_PLN() throws ClassNotFoundException, SQLException {
-		//setAlwaysOnTop(true);
+		//setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setTitle("HESAP PLANI");
 		setModal(true);

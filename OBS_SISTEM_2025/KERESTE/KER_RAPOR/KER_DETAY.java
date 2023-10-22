@@ -3,7 +3,6 @@ package KER_RAPOR;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -94,25 +93,7 @@ public class KER_DETAY extends JInternalFrame {
 	private static JLabel lblmiktar;
 	public static JSplitPane splitPane ;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KER_DETAY frame = new KER_DETAY();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 
 	public KER_DETAY() {
 		setTitle("KERESTE DETAY RAPOR");

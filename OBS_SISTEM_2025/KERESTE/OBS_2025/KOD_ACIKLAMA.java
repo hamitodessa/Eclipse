@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.sql.ResultSet;
 import javax.swing.JInternalFrame;
@@ -37,25 +36,6 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 	private static JTextField txtKod;
 	private static JTextField txtAciklama;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KOD_ACIKLAMA frame = new KOD_ACIKLAMA();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public KOD_ACIKLAMA() {
 		setIconifiable(true);
 		setTitle("KOD ACIKLAMA");

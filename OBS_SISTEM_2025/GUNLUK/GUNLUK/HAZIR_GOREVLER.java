@@ -1,6 +1,5 @@
 package GUNLUK;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -62,25 +61,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 	private static JLabel lbladet ;
 	static JPopupMenu popup ;
 	public static ScrollPaneWin11 scrollPane ;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HAZIR_GOREVLER frame = new HAZIR_GOREVLER();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public HAZIR_GOREVLER() {
 		setMaximizable(true);
 		setResizable(true);

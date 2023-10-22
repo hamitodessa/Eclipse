@@ -3,7 +3,6 @@ package OBS_2025;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.sql.ResultSet;
 
 import javax.swing.DefaultComboBoxModel;
@@ -36,25 +35,7 @@ public class KER_BOS_KUR extends JInternalFrame {
 	private static JComboBox<String> comboBox ;
 	private static JComboBox<String> comboBox_1; 
 	private static JComboBox<String> comboBox_2 ;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KER_BOS_KUR frame = new KER_BOS_KUR();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public KER_BOS_KUR() {
 		setTitle("KERESTE BOS KUR");
 		setIconifiable(true);

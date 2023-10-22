@@ -51,22 +51,6 @@ public class ADRES_LISTE extends JDialog {
 	private JTable table;
 	private JTextField textField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			ADRES_LISTE dialog = new ADRES_LISTE();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public ADRES_LISTE() {setResizable(false);
 	setTitle("ADRES  DOKUMU");
 	setModal(true);

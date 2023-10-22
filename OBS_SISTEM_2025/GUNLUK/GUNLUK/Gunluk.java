@@ -1,6 +1,5 @@
 package GUNLUK;
 
-import java.awt.EventQueue;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -83,26 +82,7 @@ public class Gunluk extends JInternalFrame {
 	private ScrollPaneWin11 scrolAylik;
 	private JTabbedPane tabloTabbedPane;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Gunluk frame = new Gunluk();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 * @throws IOException 
-	 */
 	
 	public Gunluk() {
 		setTitle("GUNLUK");

@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.sql.ResultSet;
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
@@ -42,25 +41,6 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 
 	private JTable table;
 	private JTextField textField;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HESAP_PLANI_DETAY frame = new HESAP_PLANI_DETAY();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public HESAP_PLANI_DETAY()
 	{
 		

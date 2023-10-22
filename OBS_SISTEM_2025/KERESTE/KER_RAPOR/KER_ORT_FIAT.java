@@ -88,25 +88,7 @@ public class KER_ORT_FIAT extends JInternalFrame {
 	static String yu = "" ;
 	static String iu = "" ;
 	private static 	long startTime ;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KER_ORT_FIAT frame = new KER_ORT_FIAT();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 
 	public KER_ORT_FIAT() {
 		setTitle("KERESTE ORTALAMA FIAT");

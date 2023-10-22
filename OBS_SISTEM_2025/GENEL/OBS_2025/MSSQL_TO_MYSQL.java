@@ -89,25 +89,6 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 	private JTextField myServer;
 	private JCheckBox msLokal;
 	private JCheckBox myLokal ;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MSSQL_TO_MYSQL frame = new MSSQL_TO_MYSQL();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public MSSQL_TO_MYSQL() {
 		setTitle("MS SQL TO MY SQL");
 		setClosable(true);

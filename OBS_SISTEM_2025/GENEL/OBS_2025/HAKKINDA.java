@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -32,26 +31,6 @@ public class HAKKINDA extends JInternalFrame {
 	private JLabel lbltar ;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HAKKINDA frame = new HAKKINDA();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * @throws IOException 
-	 */
 	public HAKKINDA()  {
 		setTitle("HAKKINDA");
 		setClosable(true);

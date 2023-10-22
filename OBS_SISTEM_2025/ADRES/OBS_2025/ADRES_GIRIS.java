@@ -2,7 +2,6 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -85,25 +84,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 	private static JCheckBox chcbas ;
 	private static JCheckBox chcici ;
 	private static 	 ImagePanel imagePanel ;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ADRES_GIRIS frame = new ADRES_GIRIS();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public ADRES_GIRIS() {
 		setTitle("ADRES GIRISI");
 		setIconifiable(true);

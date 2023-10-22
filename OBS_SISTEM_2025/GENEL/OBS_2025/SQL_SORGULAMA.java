@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -44,25 +43,6 @@ public class SQL_SORGULAMA extends JInternalFrame {
 	private static JTable table;
 	private static String modul = "" ;
 	private static JTextArea textArea ;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SQL_SORGULAMA frame = new SQL_SORGULAMA(modul);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 
 	public SQL_SORGULAMA(String nerden) {
 		setTitle("SQL SORGULAMA");

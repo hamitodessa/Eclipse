@@ -66,27 +66,6 @@ public class ETIKET_PRINT extends JInternalFrame {
 	private static JasperPrint jp;
 	JPanel panel;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ETIKET_PRINT frame = new ETIKET_PRINT();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * @throws JRException 
-	 * @throws SQLException 
-	 */
 	public ETIKET_PRINT()  {
 		setResizable(true);
 		setMaximizable(true);

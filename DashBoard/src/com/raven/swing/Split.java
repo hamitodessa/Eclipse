@@ -1,5 +1,6 @@
 package com.raven.swing;
 
+@SuppressWarnings("serial")
 public class Split extends javax.swing.JPanel {
 
     public Split(String name) {
@@ -8,8 +9,7 @@ public class Split extends javax.swing.JPanel {
         setOpaque(false);
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         labelSplite1 = new com.raven.swing.LabelSplit();

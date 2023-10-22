@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class RoundPanel extends JPanel {
 
     public RoundPanel() {

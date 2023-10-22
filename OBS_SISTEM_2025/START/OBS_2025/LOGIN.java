@@ -53,6 +53,8 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.apache.poi.sl.usermodel.Background;
@@ -169,7 +171,6 @@ public class LOGIN extends JDialog {
 	public static void main(String[] args) {	EventQueue.invokeLater(new Runnable() {
 		public void run() {
 			try {
-				//LOGIN frame = new LOGIN();
 				new LOGIN().setVisible(true);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -184,19 +185,6 @@ public class LOGIN extends JDialog {
 		//UIDefaults ui = UIManager.getDefaults();
 		//ui.put("ScrollBarUI", ScrollBarWin11UI.class.getCanonicalName());
 
-		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/icon-obs-32.png")));
-		setResizable(false);
-		setTitle("OBS SISTEM GIRIS");
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 493, 229);
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-		
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
 		//************************************************************************
 		try {
 			LOGIN.setDefaultLookAndFeelDecorated(true);
@@ -270,15 +258,26 @@ public class LOGIN extends JDialog {
 			  {
 				  FlatNordIJTheme.setup();
 			  }
-			  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Klasik")) 
-			  {
-					  }
 			SwingUtilities.updateComponentTreeUI(this);
 			//UIManager.setLookAndFeel(new FlatSolarizedLightIJTheme());
 			
 		} catch (Exception ex) {
 			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
+		//************************************************************************
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/icon-obs-32.png")));
+		setResizable(false);
+		setTitle("OBS SISTEM GIRIS");
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 493, 229);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+		
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
+
 		//************************************************************************
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);

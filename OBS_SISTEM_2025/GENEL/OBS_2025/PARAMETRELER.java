@@ -355,7 +355,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		comboBox_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 	
-		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"Klasik","Windows" ,"TextureLookAndFeel","FlatSolarizedLightIJTheme" ,"FlatArcOrangeIJTheme" ,
+		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"Windows" ,"TextureLookAndFeel","FlatSolarizedLightIJTheme" ,"FlatArcOrangeIJTheme" ,
 				"FlatSpacegrayIJTheme","FlatArcIJTheme","FlatCyanLightIJTheme","FlatHighContrastIJTheme","FlatGrayIJTheme","FlatNordIJTheme",
 				"FlatGradiantoNatureGreenIJTheme", "SmartLookAndFeel","NoireLookAndFeel","AcrylLookAndFeel" ,
 				 "AeroLookAndFeel","AluminiumLookAndFeel","BernsteinLookAndFeel","FastLookAndFeel","GraphiteLookAndFeel","HiFiLookAndFeel",

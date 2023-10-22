@@ -64,6 +64,8 @@ import com.healthmarketscience.jackcess.impl.CodecHandler;
 import com.healthmarketscience.jackcess.impl.CodecProvider;
 import com.healthmarketscience.jackcess.impl.DefaultCodecProvider;
 import com.healthmarketscience.jackcess.impl.PageChannel;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 
 
@@ -174,7 +176,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		btnOzel.setBounds(10, 130, 159, 23);
 		panel_1.add(btnOzel);
 
-		JPanel panel_1_1 = new JPanel();
+		RoundPanel panel_1_1 = new RoundPanel(new Color(0, 128, 128),15);
 		panel_1_1.setLayout(null);
 		panel_1_1.setBounds(222, 287, 143, 167);
 		panel.add(panel_1_1);
@@ -194,7 +196,6 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				try {
 					mal();
 				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

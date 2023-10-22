@@ -2410,7 +2410,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 
-		btnNewButton_90.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-settings-40.png")));
+		btnNewButton_90.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-settings-30.png")));
 		toolBar_10.add(btnNewButton_90);
 
 		btnNewButton_91 = new JButton("");

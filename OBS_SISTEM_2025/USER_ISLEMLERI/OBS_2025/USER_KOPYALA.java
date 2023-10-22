@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import java.awt.Font;
 import java.awt.Color;
-
+@SuppressWarnings("static-access")
 public class USER_KOPYALA extends JInternalFrame {
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class USER_KOPYALA extends JInternalFrame {
 	private static JPanel panel ;
 	private static ResultSet rss ;
 
-	@SuppressWarnings("static-access")
+
 	public USER_KOPYALA() {
 		setTitle("KULLANICI KOPYALA");
 		setClosable(true);
@@ -77,7 +77,6 @@ public class USER_KOPYALA extends JInternalFrame {
 			comboBox_1.addItem(rs.getString("USER_NAME"));
 		}  
 	}
-	@SuppressWarnings("static-access")
 	public static void kaydet() 
 	{
 		try 

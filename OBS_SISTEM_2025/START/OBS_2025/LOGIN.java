@@ -612,6 +612,11 @@ public class LOGIN extends JDialog {
 			txtUser.setText(GLOBAL.setting_oku("ISIM").toString());
 			try 
 			{
+				deger = GLOBAL.setting_oku("PRG_GRID_RENK").toString();
+				String[] parts;
+				parts = deger.split(",");
+				OBS_SIS_2025_ANA_CLASS.gridcolor =  new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+
 				txtpwd.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
 			} catch (Exception e1) {
 				e1.printStackTrace();

@@ -590,6 +590,11 @@ public class CAL_DIZIN extends JFrame {
 		tblCari.setBounds(224, 188, 114, 173);
 		tblCari.setShowHorizontalLines(true);
 		tblCari.setShowVerticalLines(true);
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
+		{
+			tblCari.setGridColor(oac.gridcolor);
+		}
+
 		tablo_baslik(tblCari);
 
 		scrollPane.setViewportView(tblCari);
@@ -620,10 +625,13 @@ public class CAL_DIZIN extends JFrame {
 			});
 		tblFatura.setRowHeight(22);
 		tblFatura.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tblFatura.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblFatura.setShowHorizontalLines(true);
 		tblFatura.setShowVerticalLines(true);
 		tblFatura.setFont(new Font("Dialog", Font.PLAIN, 12));
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
+		{
+			tblFatura.setGridColor(oac.gridcolor);
+		}
 		tablo_baslik(tblFatura);
 		scrollPane_1.setViewportView(tblFatura);
 
@@ -652,11 +660,14 @@ public class CAL_DIZIN extends JFrame {
 			}
 		});
 		tblAdres.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tblAdres.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblAdres.setRowHeight(22);
 		tblAdres.setShowHorizontalLines(true);
 		tblAdres.setShowVerticalLines(true);
 		tblAdres.setFont(new Font("Dialog", Font.PLAIN, 12));
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
+		{
+			tblAdres.setGridColor(oac.gridcolor);
+		}
 		tablo_baslik(tblAdres);
 		scrollPane_2.setViewportView(tblAdres);
 
@@ -684,11 +695,14 @@ public class CAL_DIZIN extends JFrame {
 			}
 		});
 		tblKur.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tblKur.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblKur.setRowHeight(22);
 		tblKur.setShowHorizontalLines(true);
 		tblKur.setShowVerticalLines(true);
 		tblKur.setFont(new Font("Dialog", Font.PLAIN, 12));
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
+		{
+			tblKur.setGridColor(oac.gridcolor);
+		}
 		tablo_baslik(tblKur);
 		scrollPane_3.setViewportView(tblKur);
 
@@ -718,11 +732,14 @@ public class CAL_DIZIN extends JFrame {
 			}
 		});
 		tblKambiyo.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tblKambiyo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblKambiyo.setRowHeight(22);
 		tblKambiyo.setShowHorizontalLines(true);
 		tblKambiyo.setShowVerticalLines(true);
 		tblKambiyo.setFont(new Font("Dialog", Font.PLAIN, 12));
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
+		{
+			tblKambiyo.setGridColor(oac.gridcolor);
+		}
 		tablo_baslik(tblKambiyo);
 		scrollPane_4.setViewportView(tblKambiyo);
 
@@ -751,11 +768,14 @@ public class CAL_DIZIN extends JFrame {
 			}
 		});
 		tblSms.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tblSms.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblSms.setRowHeight(22);
 		tblSms.setShowHorizontalLines(true);
 		tblSms.setShowVerticalLines(true);
 		tblSms.setFont(new Font("Dialog", Font.PLAIN, 12));
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
+		{
+			tblSms.setGridColor(oac.gridcolor);
+		}
 		tablo_baslik(tblSms);
 		scrollPane_5.setViewportView(tblSms);
 
@@ -783,11 +803,14 @@ public class CAL_DIZIN extends JFrame {
 			}
 		});
 		tblGunluk.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tblGunluk.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblGunluk.setRowHeight(22);
 		tblGunluk.setShowHorizontalLines(true);
 		tblGunluk.setShowVerticalLines(true);
 		tblGunluk.setFont(new Font("Dialog", Font.PLAIN, 12));
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
+		{
+			tblGunluk.setGridColor(oac.gridcolor);
+		}
 		tablo_baslik(tblGunluk);
 		scrollPane_6.setViewportView(tblGunluk);
 		
@@ -816,11 +839,14 @@ public class CAL_DIZIN extends JFrame {
 				}
 			});
 		tblKereste.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tblKereste.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tblKereste.setRowHeight(22);
 		tblKereste.setShowHorizontalLines(true);
 		tblKereste.setShowVerticalLines(true);
 		tblKereste.setFont(new Font("Dialog", Font.PLAIN, 12));
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
+		{
+			tblKereste.setGridColor(oac.gridcolor);
+		}
 		tablo_baslik(tblKereste);
 		scrollPane_9.setViewportView(tblKereste);
 		//******************************************************************
@@ -1203,8 +1229,10 @@ public class CAL_DIZIN extends JFrame {
 		panel.add(btnNewButton_2_1_2);
 		
 		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		activ_sayfa =0;
 		try {
+
+		activ_sayfa =0;
+		
 			grid_doldur();
 			doldur_kutu(tblCari,0);
 			tblCari.requestFocus();

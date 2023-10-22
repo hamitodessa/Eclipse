@@ -28,7 +28,6 @@ import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -206,9 +205,6 @@ public class EKSTRE extends JInternalFrame {
 		panel.add(lblNewLabel_2);
 
 		ScrollPaneWin11 jScrollPane1 = new ScrollPaneWin11();
-	    JPanel p = new JPanel();
-	    p.setOpaque(false);
-	    jScrollPane1.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
 	    //jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
 		
 		pane.setLeftComponent(jScrollPane1);

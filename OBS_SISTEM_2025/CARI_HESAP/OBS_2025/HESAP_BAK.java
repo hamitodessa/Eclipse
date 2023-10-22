@@ -78,7 +78,6 @@ public class HESAP_BAK extends JInternalFrame {
 		splitPane_1.setMaximumSize(new Dimension(0, 200));
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
-
 		splitPane_1.setLeftComponent(scrollPane);
 
 		tblhesap = new JTable(){
@@ -138,7 +137,7 @@ public class HESAP_BAK extends JInternalFrame {
 				}
 			}
 		});
-	tblhesap.setShowHorizontalLines(true);
+		tblhesap.setShowHorizontalLines(true);
 		tblhesap.setShowVerticalLines(true);
 		scrollPane.setViewportView(tblhesap);
 

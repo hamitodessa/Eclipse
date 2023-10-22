@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.Insets;
 import java.awt.Rectangle;
 import java.util.Objects;
+
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 @SuppressWarnings("serial")
@@ -15,6 +17,9 @@ public class ScrollPaneWin11 extends JScrollPane {
         //getVerticalScrollBar().setUI(new ModernScrollBarUI());
         //getHorizontalScrollBar().setUI(new ModernScrollBarUI());
         setLayout(new ScrollLayout());
+        JPanel p = new JPanel();
+	    p.setOpaque(false);
+	    setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
     }
 
     @Override

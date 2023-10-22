@@ -163,8 +163,6 @@ public class USER_EKLEME extends JInternalFrame {
 		header.setPreferredSize(d); //addColumn case test
 		table_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		table_1.setRowHeight(22);
-		table_1.setSelectionBackground(Color.PINK);
-		table_1.setSelectionForeground(Color.BLUE);
 		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		// 
 		scrollPane.setViewportView(table_1);

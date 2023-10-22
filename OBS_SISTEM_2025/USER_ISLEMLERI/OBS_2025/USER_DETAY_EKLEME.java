@@ -126,7 +126,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		panel.add(comboBox_1);
 
 		txtkodu = new JTextField();
-		txtkodu.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtkodu.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtkodu.setBounds(107, 58, 74, 20);
 		panel.add(txtkodu);
 		txtkodu.setColumns(10);
@@ -144,14 +144,14 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		panel.add(lblNewLabel_5);
 
 		txtskull = new JTextField();
-		txtskull.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtskull.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtskull.setBounds(357, 8, 125, 20);
 		panel.add(txtskull);
 		txtskull.setColumns(10);
 
 		txtins = new JTextField();
-		txtins.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtins.setBounds(581, 8, 125, 20);
+		txtins.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtins.setBounds(568, 8, 138, 20);
 		panel.add(txtins);
 		txtins.setColumns(10);
 
@@ -168,8 +168,8 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		panel.add(lblNewLabel_7);
 
 		txtip = new JTextField();
-		txtip.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtip.setBounds(581, 33, 125, 20);
+		txtip.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtip.setBounds(568, 33, 138, 20);
 		panel.add(txtip);
 		txtip.setColumns(10);
 
@@ -178,7 +178,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		panel.add(lblNewLabel_8);
 
 		chckbxNewCheckBox_1 = new JCheckBox("");
-		chckbxNewCheckBox_1.setBounds(581, 57, 58, 23);
+		chckbxNewCheckBox_1.setBounds(568, 57, 58, 23);
 		panel.add(chckbxNewCheckBox_1);
 
 		JLabel lblNewLabel_9 = new JLabel("Dizin");
@@ -194,19 +194,19 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		panel.add(lblNewLabel_11);
 
 		txtdiz = new JTextField();
-		txtdiz.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtdiz.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtdiz.setBounds(800, 8, 314, 20);
 		panel.add(txtdiz);
 		txtdiz.setColumns(10);
 
 		txtyer = new JTextField();
-		txtyer.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtyer.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtyer.setBounds(800, 33, 46, 20);
 		panel.add(txtyer);
 		txtyer.setColumns(10);
 
 		txtdcins = new JTextField();
-		txtdcins.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtdcins.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtdcins.setBounds(800, 58, 46, 20);
 		panel.add(txtdcins);
 		txtdcins.setColumns(10);
@@ -236,7 +236,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 
 		chckbxLog = new JCheckBox("");
 		chckbxLog.setSelected(false);
-		chckbxLog.setBounds(581, 83, 58, 23);
+		chckbxLog.setBounds(568, 83, 58, 23);
 		panel.add(chckbxLog);
 
 		JLabel lblNewLabel_8_1_1 = new JLabel("Loglama Yeri");
@@ -418,8 +418,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		header.setPreferredSize(d);
 
 		table_1.setRowHeight(22);
-		table_1.setSelectionBackground(Color.PINK);
-		table_1.setSelectionForeground(Color.BLUE);
 		scrollPane.setViewportView(table_1);
 		
 		splitPane.setRightComponent(scrollPane);

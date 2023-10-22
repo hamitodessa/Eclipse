@@ -209,7 +209,7 @@ public class EKSTRE extends JInternalFrame {
 	    JPanel p = new JPanel();
 	    p.setOpaque(false);
 	    jScrollPane1.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
-	    
+	    //jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
 		
 		pane.setLeftComponent(jScrollPane1);
 		table = new JTable(){

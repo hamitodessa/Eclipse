@@ -14,35 +14,43 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 {
 	Color backgroundColor, foregroundColor;
 	String nerden;
-	public COLUMN_RENDERER(Color backgroundColor, Color foregroundColor,String nerden) 
+	public COLUMN_RENDERER(Color backgroundColorr, Color foregroundColorr,String nerdenn) 
 	{
 		super();
-		this.backgroundColor = backgroundColor;
-		this.foregroundColor = foregroundColor;
-		this.nerden = nerden;
+		backgroundColor = backgroundColorr;
+		foregroundColor = foregroundColorr;
+		nerden = nerdenn;
 	}
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,   boolean hasFocus, int row, int column) 
 	{
 		Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-		if( value.toString() != ""  )
-		{
+		
 			if (column !=0)
 			{
-				if(nerden.equals("yillik"))
+				if( value.toString().length() != 0  )
 				{
-					setHorizontalAlignment( JLabel.CENTER);
+					if(nerden.equals("yillik"))
+						{
+						setHorizontalAlignment( JLabel.CENTER);
+						}
+					else
+						{
+						setHorizontalAlignment( JLabel.LEFT);
+						System.out.println(row + "="+ column + "==" + value.toString().length());
+						}
+					cell.setBackground(backgroundColor);
+					cell.setForeground(foregroundColor); 
+					Font fnt = new Font(table.getFont().getFontName(), 1 ,10);
+					cell.setFont(fnt);
+					Border border = BorderFactory.createMatteBorder(1, 0, 1, 0, new Color(0, 60, 102));
+					setBorder(border);
+					setToolTipText("Tiklama da Gorev Detaylari sag tarafta goruntuleme.......");
 				}
-				else
+				else 
 				{
-					setHorizontalAlignment( JLabel.LEFT);
+					cell.setBackground(table.getBackground());
+					cell.setForeground(table.getForeground());
 				}
-				cell.setBackground(backgroundColor);
-				cell.setForeground(foregroundColor); 
-				Font fnt = new Font(table.getFont().getFontName(), 1 ,10);
-				cell.setFont(fnt);
-				Border border = BorderFactory.createMatteBorder(1, 0, 1, 0, new Color(0, 60, 102));
-				setBorder(border);
-				setToolTipText("Tiklama da Gorev Detaylari sag tarafta goruntuleme.......");
 			}
 			else if (column ==0)
 			{
@@ -53,12 +61,8 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 				cell.setFont(fnt);
 				setToolTipText("");
 			}
-		} 
-		else 
-		{
-			cell.setBackground(Color.WHITE);
-			cell.setForeground(Color.WHITE);
-		}
+	
+		
 		
 		return cell;
 	}

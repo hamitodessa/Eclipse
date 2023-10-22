@@ -33,9 +33,8 @@ public class COLUMN_RENDERER_YILLIK  extends DefaultTableCellRenderer
 				cell.setFont(fnt);
 				Border border = BorderFactory.createMatteBorder(1, 1, 1, 0, new Color(0, 60, 102));
 				setBorder(border);
-				
 			}
-			else if (column ==0)
+			else if (column == 0)
 			{
 				setHorizontalAlignment( JLabel.LEFT);
 				cell.setBackground(backgroundColor);
@@ -44,8 +43,8 @@ public class COLUMN_RENDERER_YILLIK  extends DefaultTableCellRenderer
 		} 
 		else 
 		{
-			cell.setBackground(Color.WHITE);
-			cell.setForeground(Color.WHITE);
+			cell.setBackground(table.getBackground());
+			cell.setForeground(table.getForeground());
 		}
 		
 		return cell;

@@ -12,6 +12,8 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDayChooser;
 import OBS_C_2025.Gunluk_Bilgi;
@@ -70,6 +72,8 @@ import javax.swing.event.ChangeEvent;
 @SuppressWarnings({"serial" ,"deprecation" })
 public class Gunluk extends JInternalFrame {
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(OBS_SIS_2025_ANA_CLASS._IGunluk , OBS_SIS_2025_ANA_CLASS._IGunluk_Loger);
+	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+
 	private JTable table;
 	private JTable table_1;
 	private JTable table_3;
@@ -84,6 +88,7 @@ public class Gunluk extends JInternalFrame {
 	
 
 	
+	@SuppressWarnings("static-access")
 	public Gunluk() {
 		setTitle("GUNLUK");
 		setResizable(true);
@@ -483,13 +488,18 @@ public class Gunluk extends JInternalFrame {
 		//*****************************************************************************************************************		
 		splitPane_3.setLeftComponent(table_1);
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		JPanel p = new JPanel();
+		p.setOpaque(false);
+		scrollPane.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+		
 		splitPane_3.setRightComponent(scrollPane);
 		//*****************************************************************************************************************
 		table = new JTable() {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 
 		};
-		scrollPane.setViewportView(table);
+		table.setSurrendersFocusOnKeystroke(true);
+		
 		table.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -511,7 +521,6 @@ public class Gunluk extends JInternalFrame {
 			}
 		});
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		table.setRowSelectionAllowed(false);
 		table.setModel(new DefaultTableModel(	new Object[][] 
 				{
 					{"06:00", null, null, null, null, null, null, null},
@@ -565,6 +574,11 @@ public class Gunluk extends JInternalFrame {
 		table.setTableHeader(null);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+		scrollPane.setViewportView(table);
 		//****************************************Aylik***********************************
 		scrolAylik =  new ScrollPaneWin11();
 		tabloTabbedPane.addTab("Aylik", null, scrolAylik, null);
@@ -573,12 +587,16 @@ public class Gunluk extends JInternalFrame {
 		tabloTabbedPane.addTab("Yillik", null, panel_6, null);
 		panel_6.setLayout(new BorderLayout(0, 0));
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
+		p = new JPanel();
+		    p.setOpaque(false);
+		    scrollPane_2.setCorner(JScrollPane.UPPER_RIGHT_CORNER, p);
+		
 		panel_6.add(scrollPane_2, BorderLayout.CENTER);
 
 		table_3 = new JTable() {
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		scrollPane_2.setViewportView(table_3);
+		
 		table_3.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -683,6 +701,7 @@ public class Gunluk extends JInternalFrame {
 		tc3.setCellRenderer(new COLUMN_RENDERER(new Color(197, 235, 217),new Color(52, 152, 104),"yillik"));
 		table_3.setShowHorizontalLines(true);
 		table_3.setShowVerticalLines(true);
+		scrollPane_2.setViewportView(table_3);
 		//********************************************************************************
 		temizle();
 		calendar.setDate(new Date());

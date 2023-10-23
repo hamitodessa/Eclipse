@@ -85,6 +85,8 @@ public class DEKONT extends JInternalFrame {
 	private static JComboBox<String> cmbb ;
 	private static JButton btnbh ;
 	private static JButton btnah ;
+	private static JButton btnHYenileB;
+	private static JButton btnHYenileA;
 	private static JComboBox<String> cmba ;
 	private static JLabel lbla  ;
 	private JLabel lblNewLabel_2_1  ;
@@ -113,11 +115,11 @@ public class DEKONT extends JInternalFrame {
 
 		setTitle("DEKONT");
 		setClosable(true);
-		setBounds(0, 0, 723, 408);
+		setBounds(0, 0, 740, 415);
 		getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 686, 77);
+		panel.setBounds(10, 11, 710, 77);
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 0, 128), new Color(160, 160, 160)), "Evrak No", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), new Color(0, 0, 139)));
 		getContentPane().add(panel);
 		panel.setLayout(null);
@@ -440,7 +442,7 @@ public class DEKONT extends JInternalFrame {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(128, 0, 0), new Color(160, 160, 160)), "Borclu Hesap", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), Color.red));
-		panel_1.setBounds(10, 99, 686, 87);
+		panel_1.setBounds(10, 99, 710, 87);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 
@@ -500,13 +502,13 @@ public class DEKONT extends JInternalFrame {
 		});
 		btnbh.setEnabled(false);
 		btnbh.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/eks16.png")));
-		btnbh.setBounds(164, 45, 30, 25);
+		btnbh.setBounds(190, 45, 30, 25);
 		panel_1.add(btnbh);
 
 		lblb = new JLabel("...");
 		lblb.setForeground(new Color(128, 0, 0));
 		lblb.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblb.setBounds(204, 53, 46, 20);
+		lblb.setBounds(230, 50, 46, 20);
 		panel_1.add(lblb);
 
 		cmbb = new JComboBox<String>();
@@ -563,7 +565,7 @@ public class DEKONT extends JInternalFrame {
 		cmbb.setEnabled(false);
 		cmbb.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmbb.setModel(new DefaultComboBoxModel<String>(new String[] {"", "MA", "MS", "SA", "SS", "BA", "BS"}));
-		cmbb.setBounds(260, 45, 70, 25);
+		cmbb.setBounds(290, 45, 70, 25);
 		panel_1.add(cmbb);
 
 		txtbtutar = new JFormattedTextField();
@@ -680,7 +682,7 @@ public class DEKONT extends JInternalFrame {
 		df.setMinimumFractionDigits(2);
 		df.setMaximumFractionDigits(2);
 		txtbtutar.setFormatterFactory(f_dob);
-		txtbtutar.setBounds(486, 40, 190, 30);
+		txtbtutar.setBounds(512, 40, 190, 30);
 		panel_1.add(txtbtutar);
 
 		txtbkur = new JFormattedTextField();
@@ -757,20 +759,20 @@ public class DEKONT extends JInternalFrame {
 		txtbkur.setFormatterFactory(f_dob1);
 		txtbkur.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtbkur.setFont(new Font("Tahoma", Font.BOLD, 14));
-		txtbkur.setBounds(364, 45, 96, 25);
+		txtbkur.setBounds(390, 45, 96, 25);
 		panel_1.add(txtbkur);
 
 		lblNewLabel_2 = new JLabel("...");
 
 		lblNewLabel_2.setForeground(new Color(128, 0, 0));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel_2.setBounds(10, 21, 320, 16);
+		lblNewLabel_2.setBounds(10, 21, 370, 16);
 		panel_1.add(lblNewLabel_2);
 
 
 		pnlb = new JPanel();
 		pnlb.setBorder(UIManager.getBorder("ToolTip.border"));
-		pnlb.setBounds(364, 15, 312, 20);
+		pnlb.setBounds(390, 15, 312, 20);
 		pnlb.setVisible(false);
 		panel_1.add(pnlb);
 		pnlb.setLayout(null);
@@ -919,7 +921,7 @@ public class DEKONT extends JInternalFrame {
 				txtaciklama.selectAll();
 			}
 		});
-		txtaciklama.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtaciklama.setFont(new Font("Dialog", Font.BOLD, 14));
 		txtaciklama.setEnabled(false);
 		txtaciklama.setLineWrap(true);
 		txtaciklama.setDocument(new JTextFieldLimit(100));
@@ -970,7 +972,7 @@ public class DEKONT extends JInternalFrame {
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
 		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 139, 139), new Color(160, 160, 160)), "Alacakli Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
-		panel_1_1.setBounds(10, 187, 686, 87);
+		panel_1_1.setBounds(10, 187, 710, 87);
 		getContentPane().add(panel_1_1);
 
 
@@ -1030,13 +1032,13 @@ public class DEKONT extends JInternalFrame {
 		});
 		btnah.setEnabled(false);
 		btnah.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/eks16.png")));
-		btnah.setBounds(164, 45, 30, 25);
+		btnah.setBounds(190, 45, 30, 25);
 		panel_1_1.add(btnah);
 
 		lbla = new JLabel("...");
 		lbla.setForeground(new Color(0, 128, 128));
 		lbla.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lbla.setBounds(204, 53, 46, 20);
+		lbla.setBounds(230, 50, 46, 20);
 		panel_1_1.add(lbla);
 
 		cmba = new JComboBox<String>();
@@ -1090,7 +1092,7 @@ public class DEKONT extends JInternalFrame {
 		cmba.setEnabled(false);
 		cmba.setModel(new DefaultComboBoxModel<String>(new String[] {"", "MA", "MS", "SA", "SS", "BA", "BS"}));
 		cmba.setFont(new Font("Tahoma", Font.BOLD, 12));
-		cmba.setBounds(260, 45, 70, 25);
+		cmba.setBounds(290, 45, 70, 25);
 		panel_1_1.add(cmba);
 
 		txtatutar = new JFormattedTextField();
@@ -1204,7 +1206,7 @@ public class DEKONT extends JInternalFrame {
 		txtatutar.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtatutar.setForeground(new Color(0, 0, 139));
 		txtatutar.setFont(new Font("Tahoma", Font.BOLD, 22));
-		txtatutar.setBounds(486, 40, 190, 30);
+		txtatutar.setBounds(512, 40, 190, 30);
 		panel_1_1.add(txtatutar);
 
 		txtakur = new JFormattedTextField();
@@ -1279,18 +1281,18 @@ public class DEKONT extends JInternalFrame {
 		txtakur.setFormatterFactory(f_doba);
 		txtakur.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtakur.setFont(new Font("Tahoma", Font.BOLD, 14));
-		txtakur.setBounds(364, 45, 96, 25);
+		txtakur.setBounds(390, 45, 96, 25);
 		panel_1_1.add(txtakur);
 
 		lblNewLabel_2_1 = new JLabel("...");
 		lblNewLabel_2_1.setForeground(new Color(0, 128, 128));
 		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel_2_1.setBounds(10, 21, 320, 14);
+		lblNewLabel_2_1.setBounds(10, 21, 370, 16);
 		panel_1_1.add(lblNewLabel_2_1);
 
 		pnla = new JPanel();
 		pnla.setBorder(UIManager.getBorder("ToolTip.border"));
-		pnla.setBounds(364, 15, 312, 20);
+		pnla.setBounds(390, 15, 312, 20);
 		pnla.setVisible(false);
 		panel_1_1.add(pnla);
 		pnla.setLayout(null);
@@ -1431,7 +1433,7 @@ public class DEKONT extends JInternalFrame {
 
 		JPanel panel_3_1 = new JPanel();
 		panel_3_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 0, 128), new Color(160, 160, 160)), "Kod", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
-		panel_3_1.setBounds(568, 275, 128, 48);
+		panel_3_1.setBounds(585, 275, 135, 48);
 		getContentPane().add(panel_3_1);
 		panel_3_1.setLayout(new BorderLayout(0, 0));
 
@@ -1481,12 +1483,44 @@ public class DEKONT extends JInternalFrame {
 
 		sifirla();
 		AUTO_HESAP_KODU.auto_doldur(cmbbhes);
+		
+		btnHYenileB = new JButton("");
+		btnHYenileB.setEnabled(false);
+		btnHYenileB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getContentPane().setCursor(oac.WAIT_CURSOR);
+				String kODString = cmbbhes.getSelectedItem().toString();
+				AUTO_HESAP_KODU.auto_doldur(cmbbhes);
+				cmbbhes.setSelectedItem(kODString);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			}
+		});
+		btnHYenileB.setToolTipText("Hesap Plani Yenile");
+		btnHYenileB.setBounds(160, 45, 30, 25);
+		btnHYenileB.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
+		panel_1.add(btnHYenileB);
 		AUTO_HESAP_KODU.auto_doldur(cmbahes);
+		
+		btnHYenileA = new JButton("");
+		btnHYenileA.setEnabled(false);
+		btnHYenileA.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getContentPane().setCursor(oac.WAIT_CURSOR);
+				String kODString = cmbahes.getSelectedItem().toString();
+				AUTO_HESAP_KODU.auto_doldur(cmbahes);
+				cmbahes.setSelectedItem(kODString);
+				getContentPane().setCursor(oac.WAIT_CURSOR);
+			}
+		});
+		btnHYenileA.setToolTipText("Hesap Plani Yenile");
+		btnHYenileA.setBounds(160, 45, 30, 25);
+		btnHYenileA.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-repeat-16.png")));
+		panel_1_1.add(btnHYenileA);
 
 		lblNewLabel = new JLabel(".");
 		lblNewLabel.setForeground(Color.BLUE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel.setBounds(568, 340, 128, 14);
+		lblNewLabel.setBounds(568, 340, 152, 14);
 		getContentPane().add(lblNewLabel);
 
 		try {
@@ -1689,6 +1723,8 @@ public class DEKONT extends JInternalFrame {
 		btnah.setEnabled(true);
 		txtaciklama.setEnabled(true);
 		txtkod.setEnabled(true);
+		btnHYenileB.setEnabled(true);
+		btnHYenileA.setEnabled(true);
 	}
 	private static void kutu_kapa()
 	{
@@ -1704,6 +1740,8 @@ public class DEKONT extends JInternalFrame {
 		btnah.setEnabled(false);
 		txtaciklama.setEnabled(false);
 		txtkod.setEnabled(false);
+		btnHYenileB.setEnabled(false);
+		btnHYenileA.setEnabled(false);
 	}
 	private static void sifirla()
 	{

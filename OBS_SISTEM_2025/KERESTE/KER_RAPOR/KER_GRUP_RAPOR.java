@@ -120,8 +120,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				Component c = super.prepareRenderer(renderer, row, col);
 				if (getValueAt(row,0) == null)
 				{
-					c.setBackground(Color.PINK);
-					c.setForeground(Color.BLUE);
+					c.setBackground(oac.satBackColor);
+					c.setForeground(oac.satForeColor);
 					Font fnt = new Font(table.getFont().getFontName(),1 ,12);
 					c.setFont(fnt);
 				} else 

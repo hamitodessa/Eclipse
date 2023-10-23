@@ -89,8 +89,8 @@ public class HESAP_BAK extends JInternalFrame {
 				{
 					if (status.length() == 3)
 					{
-						c.setBackground(Color.PINK);
-						c.setForeground(Color.BLUE);
+						c.setBackground(oac.satBackColor);
+						c.setForeground(oac.satForeColor);
 						Font fnt = new Font(tblhesap.getFont().getFontName(),1 ,12);
 						c.setFont(fnt);
 					} else 

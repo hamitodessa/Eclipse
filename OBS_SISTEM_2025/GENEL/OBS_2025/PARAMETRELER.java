@@ -128,6 +128,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 	private static JComboBox<String> comboBox_2_1_1_2_3 ;
 	private static JComboBox<String> comboBox_2 ;
 	private static ColorChooserButton colorChooser ;
+	private static ColorChooserButton clrBack;
+	private static ColorChooserButton clrFore;
 	
 	/**
 	 * Launch the application.
@@ -383,17 +385,37 @@ public class PARAMETRELER   extends JInternalFrame   {
 		
 		JLabel lblNewLabel_4_1_1_3 = new JLabel("Grafik Deger Gosterme");
 		lblNewLabel_4_1_1_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_4_1_1_3.setBounds(10, 319, 126, 14);
+		lblNewLabel_4_1_1_3.setBounds(10, 341, 126, 14);
 		panel_4.add(lblNewLabel_4_1_1_3);
 		
 		chckbxNewCheckBox_2 = new JCheckBox("");
-		chckbxNewCheckBox_2.setBounds(156, 316, 99, 23);
+		chckbxNewCheckBox_2.setBounds(156, 338, 99, 23);
 		panel_4.add(chckbxNewCheckBox_2);
 		
 		JSeparator separator_2_1 = new JSeparator();
 		separator_2_1.setForeground(new Color(0, 191, 255));
-		separator_2_1.setBounds(10, 306, 340, 2);
+		separator_2_1.setBounds(10, 328, 340, 2);
 		panel_4.add(separator_2_1);
+		
+		JLabel lblNewLabel_6_1 = new JLabel("Satir Arka Renk");
+		lblNewLabel_6_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_6_1.setBounds(10, 274, 101, 14);
+		panel_4.add(lblNewLabel_6_1);
+		
+		JLabel lblNewLabel_6_2 = new JLabel("Satir On Renk");
+		lblNewLabel_6_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_6_2.setBounds(10, 299, 101, 14);
+		panel_4.add(lblNewLabel_6_2);
+		
+		clrBack = new ColorChooserButton(new Color(0, 191, 255));
+		clrBack.setSelectedColor(Color.WHITE);
+		clrBack.setBounds(151, 268, 25, 25);
+		panel_4.add(clrBack);
+		
+		clrFore = new ColorChooserButton(new Color(0, 191, 255));
+		clrFore.setSelectedColor(Color.WHITE);
+		clrFore.setBounds(151, 292, 25, 25);
+		panel_4.add(clrFore);
 		
 		///**************************************************CARI HESAP *****************************
 		JScrollPane scrollPane = new JScrollPane();
@@ -1863,9 +1885,17 @@ public class PARAMETRELER   extends JInternalFrame   {
 			comboBox_2_1_1_2_3.setSelectedItem(parts[2]);
 		deger = oac.glb.setting_oku("PRG_GORUNUM").toString();
 		comboBox_2.setSelectedItem(deger);
-			deger = oac.glb.setting_oku("PRG_GRID_RENK").toString();
-			parts = deger.split(",");
-			colorChooser.setSelectedColor( new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim())));
+		deger = oac.glb.setting_oku("PRG_GRID_RENK").toString();
+		parts = deger.split(",");
+		colorChooser.setSelectedColor( new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim())));
+
+		deger = oac.glb.setting_oku("PRG_GRID_BACK_RENK").toString();
+		parts = deger.split(",");
+		clrBack.setSelectedColor( new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim())));
+
+		deger = oac.glb.setting_oku("PRG_GRID_FORE_RENK").toString();
+		parts = deger.split(",");
+		clrFore.setSelectedColor( new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim())));
 
 		// grafik
 		deger = oac.glb.setting_oku("GRAFIK_DEGER_GOSTER").toString();
@@ -2027,8 +2057,16 @@ public class PARAMETRELER   extends JInternalFrame   {
 		
 		oac.glb.setting_yaz("GRAFIK_DEGER_GOSTER", chckbxNewCheckBox_2.isSelected() ?  "0" : "-1");
 		
-		OBS_SIS_2025_ANA_CLASS. gridcolor =  colorChooser.getSelectedColor();
+		deger = Integer.toString(clrBack.getSelectedColor().getRed() ) + "," + Integer.toString(clrBack.getSelectedColor().getGreen()) + "," + Integer.toString(clrBack.getSelectedColor().getBlue());
+		oac.glb.setting_yaz("PRG_GRID_BACK_RENK", deger);
 		
+		deger = Integer.toString(clrFore.getSelectedColor().getRed() ) + "," + Integer.toString(clrFore.getSelectedColor().getGreen()) + "," + Integer.toString(clrFore.getSelectedColor().getBlue());
+		oac.glb.setting_yaz("PRG_GRID_FORE_RENK", deger);
+		
+		OBS_SIS_2025_ANA_CLASS. gridcolor =  colorChooser.getSelectedColor();
+		OBS_SIS_2025_ANA_CLASS.satBackColor =  clrBack.getSelectedColor();
+		OBS_SIS_2025_ANA_CLASS.satForeColor =  clrFore.getSelectedColor();
+	
 		} 
 		catch (Exception ex) 
 		{

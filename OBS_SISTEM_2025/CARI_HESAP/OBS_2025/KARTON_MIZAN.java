@@ -73,19 +73,22 @@ public class KARTON_MIZAN extends JInternalFrame {
 				String status = (String)getValueAt(row,0);
 				if (status == null) 
 				{
-					c.setBackground(Color.PINK);
-					c.setForeground(Color.BLUE);
+					c.setBackground(oac.satBackColor);
 				} else 
 				{
 					c.setBackground(super.getBackground());
 					c.setForeground(super.getForeground());
 				}
-				if (col == 5)
+				if (col == 6)
 				{
-					if (getValueAt(row,5) != null)
+					if (status == null) 
+					{
+						c.setForeground(oac.satForeColor);
+					}
+					else 
 					{
 						c.setFont(new Font(table.getFont().getFontName(),1 ,table.getFont().getSize()));
-						if ((double)getValueAt(row,5) < 0)
+						if ((double)getValueAt(row,6) < 0)
 						{
 							c.setForeground(new Color(128,0,0));
 						}
@@ -93,12 +96,19 @@ public class KARTON_MIZAN extends JInternalFrame {
 				}
 				else 
 				{
-					c.setForeground(super.getForeground());
+					if (status == null) 
+					{
+						c.setForeground(oac.satForeColor);
+					}
+					else 
+					{
+						c.setForeground(super.getForeground());
+					}
 				}
 				if (isRowSelected(row)) {
 					c.setBackground(table.getSelectionBackground());
 					c.setForeground(table.getSelectionForeground());
-                } 
+				} 
 				return c;
 			}
 		};

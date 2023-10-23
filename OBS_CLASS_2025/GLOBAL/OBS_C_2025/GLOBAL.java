@@ -378,6 +378,8 @@ public class GLOBAL {
 			prop.setProperty("PRG_SIL",  ",, ");
 			prop.setProperty("PRG_GORUNUM",  "McWinLookAndFeel");
 			prop.setProperty("PRG_GRID_RENK",  "255, 255, 255");
+			prop.setProperty("PRG_GRID_FORE_RENK", "255,255,255");
+			prop.setProperty("PRG_GRID_BACK_RENK", "73, 113, 131");
 			prop.setProperty("SOL_BOSLUK", "60");
 			prop.setProperty("SAG_BOSLUK", "0");
 			prop.setProperty("UST_BOSLUK", "40");

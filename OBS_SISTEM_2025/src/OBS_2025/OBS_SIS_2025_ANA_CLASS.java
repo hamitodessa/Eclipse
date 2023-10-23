@@ -62,6 +62,10 @@ public class OBS_SIS_2025_ANA_CLASS
 	public int txt_yukseklik =20;
 	//public static Color gridcolor ; //=  new Color(0, 191, 255);      //   0,153,204   java.awt.Color[r=204,g=0,b=102]
 	public static Color gridcolor =  new Color(0, 191, 255);      //   0,153,204   java.awt.Color[r=204,g=0,b=102]
+	
+	public static Color satBackColor ;
+	public static Color satForeColor ;
+	
 	public static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	public static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	public GLOBAL glb  = new GLOBAL();

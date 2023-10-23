@@ -89,8 +89,7 @@ public class MIZAN extends JInternalFrame {
 					e.printStackTrace();}
 				if (status.length() == deger) 
 				{
-					c.setBackground(Color.PINK);
-					c.setForeground(Color.BLUE);
+					c.setBackground(oac.satBackColor);
 					c.setFont(new Font(table.getFont().getFontName(),1 ,12));
 				} else 
 				{
@@ -102,15 +101,28 @@ public class MIZAN extends JInternalFrame {
 					if (getValueAt(row,5) != null)
 					{
 						c.setFont(new Font(table.getFont().getFontName(),1 ,table.getFont().getSize()));
-						if ((double)getValueAt(row,5) < 0)
+						if (status.length() == deger) 
 						{
-							c.setForeground(new Color(128,0,0));
+							c.setForeground(oac.satForeColor);
+						}
+						else {
+							if ((double)getValueAt(row,5) < 0)
+							{
+								c.setForeground(new Color(128,0,0));
+							}
 						}
 					}
 				}
 				else 
 				{
-					c.setForeground(super.getForeground());
+					if (status.length() == deger) 
+					{
+						c.setForeground(oac.satForeColor);
+					}
+					else {
+						c.setForeground(super.getForeground());
+					}
+					
 				}
 				if (isRowSelected(row)) {
 					c.setBackground(table.getSelectionBackground());

@@ -105,6 +105,7 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.jsoup.select.Evaluator.IsEmpty;
 
 import com.toedter.calendar.JDateChooser;
@@ -1007,7 +1008,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				}
 			}
 		};
-
 		table.addKeyListener(new KeyAdapter() {         
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == 10)
@@ -1026,17 +1026,17 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					if (table.isEditing())
 						table.getCellEditor().stopCellEditing();
 				}
-				if (e.getKeyCode() == 127)
+				else if (e.getKeyCode() == 127)
 				{
 					satir_sil();
 				}
-			}
-		});
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) {
+				else {
+					if (table.getSelectedColumn() ==0)
+					{
+						table.editCellAt(table.getSelectedRow(), 0);
+						table.transferFocus();
 
+					}
 				}
 			}
 		});
@@ -1044,7 +1044,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		{
 			table.setGridColor(oac.gridcolor);
 		}
-		table.setCellSelectionEnabled(true);
+		//table.setCellSelectionEnabled(true);
 		model.addColumn("Paket_No", new String []{""});
 		model.addColumn("Barkod", new String []{""});
 		model.addColumn("Urun Kodu", new String []{""});
@@ -1064,6 +1064,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		listPaket = new ArrayList<String> () ;
 		stk_kodu_auto("Paket_No");
 		ComboBoxTableCellEditor editor = new ComboBoxTableCellEditor( listPaket ,table,"ker_cikis");
+		
 		col = table.getColumnModel().getColumn(0);
 		col.setMinWidth(140);
 		col.setHeaderRenderer(new SOLA());
@@ -1162,8 +1163,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
 		ActionMap am = table.getActionMap();
 		am.put("Action.NextCell", new  Next_Cell_Kereste(table,"kereste_cikis"));
-		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
-
+		//table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		scrollPane.setViewportView(table);
 		ana_grup_doldur();
 		ker_oz_kod();
@@ -2135,6 +2135,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			else
 			{
 				listPaket.clear();
+				listPaket.add("");
 				while (rs.next())
 				{
 					listPaket.add(rs.getString("Paket_No").toString() + "-" + rs.getString("Konsimento").toString());

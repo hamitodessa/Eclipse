@@ -21,6 +21,8 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.table.TableCellEditor;
 
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+
 @SuppressWarnings({"serial","static-access"})
 public class ComboBoxTableCellEditor extends AbstractCellEditor implements TableCellEditor {
 
@@ -30,6 +32,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 	public ComboBoxTableCellEditor(ArrayList<String> masterValues1,JTable table,String nerden) 
 	{
 		editor = new JComboBox<String>();
+		AutoCompleteDecorator.decorate(editor);
 		masterValues = new ArrayList<String> () ;
 		masterValues = masterValues1;
 		editor.setEditable(true);
@@ -41,11 +44,13 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 		editorComponent.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				if(editor.getEditor().getItem() == null) return;
 				editor.showPopup();
 				Object child =  editor.getAccessibleContext().getAccessibleChild(0);
 				BasicComboPopup popup = (BasicComboPopup)child;
 				JList<Object> list = popup.getList();
 				boolean result = false;
+				
 				for (int i = 0; i < list.getModel().getSize(); i++)
 				{
 					String value =  list.getModel().getElementAt(i).toString();
@@ -100,6 +105,12 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 						}
 						return;
 					}
+				}
+			}
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == 27)
+				{
+					editor.getEditor().setItem("");
 				}
 			}
 		});
@@ -188,6 +199,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 				//String cellValue = (String) table.getValueAt(index, 0);
 				//if (! cellValue.equals(""))
 					//model.removeElement(cellValue);
+				
 			}
 		}
 		editor.setModel(model);

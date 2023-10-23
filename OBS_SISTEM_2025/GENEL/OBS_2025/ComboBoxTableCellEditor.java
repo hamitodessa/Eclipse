@@ -9,7 +9,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.AbstractCellEditor;
 import javax.swing.DefaultComboBoxModel;
@@ -36,6 +35,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 		editor.setEditable(true);
 		editor.setFont(new Font("Tahoma", Font.BOLD, 12));
 		editor.setForeground(Color.BLUE);
+		
 		/////////////////
 		JTextField editorComponent = (JTextField)  editor.getEditor().getEditorComponent();
 		editorComponent.addKeyListener(new KeyAdapter() {
@@ -94,7 +94,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 						{
 							try {
 								KERESTE_CIKIS.kod_aciklama_bul(editorComponent.getText().toString());
-							} catch (ClassNotFoundException | SQLException e1) {
+							} catch (Exception e1) {
 								e1.printStackTrace();
 							}
 						}
@@ -103,6 +103,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 				}
 			}
 		});
+		
 		editorComponent.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

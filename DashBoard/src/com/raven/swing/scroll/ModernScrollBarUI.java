@@ -67,7 +67,8 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
         g2.fillRoundRect(x, y, width, height, 1, 1);
     }
 
-    private class ScrollBarButton extends JButton {
+    @SuppressWarnings("serial")
+	private class ScrollBarButton extends JButton {
 
         public ScrollBarButton() {
             setBorder(BorderFactory.createEmptyBorder());

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 
+@SuppressWarnings("serial")
 public class CellAction extends TableCustomCell {
 
     public CellAction() {
@@ -43,9 +44,7 @@ public class CellAction extends TableCustomCell {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+     private void initComponents() {
 
         cmdEdit = new com.raven.swing.Button();
         cmdDelete = new com.raven.swing.Button();

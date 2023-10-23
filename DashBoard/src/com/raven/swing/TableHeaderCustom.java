@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.table.DefaultTableCellRenderer;
 
+@SuppressWarnings("serial")
 public class TableHeaderCustom extends DefaultTableCellRenderer {
 
     public TableHeaderCustom() {

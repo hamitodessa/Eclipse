@@ -54,6 +54,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.plaf.synth.SynthLookAndFeel;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
@@ -258,6 +259,7 @@ public class LOGIN extends JDialog {
 			  {
 				  FlatNordIJTheme.setup();
 			  }
+			  
 			SwingUtilities.updateComponentTreeUI(this);
 			//UIManager.setLookAndFeel(new FlatSolarizedLightIJTheme());
 			

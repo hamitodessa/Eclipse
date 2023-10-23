@@ -16,6 +16,7 @@ import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.border.EmptyBorder;
 
+@SuppressWarnings("serial")
 public class BlankPlotChart extends JComponent {
 
     public BlankPlotChatRender getBlankPlotChatRender() {
@@ -163,7 +164,8 @@ public class BlankPlotChart extends JComponent {
         }
     }
 
-    private void renderSeries(Graphics2D g2) {
+    @SuppressWarnings("unchecked")
+	private void renderSeries(Graphics2D g2) {
         if (blankPlotChatRender != null) {
             Insets insets = getInsets();
             double textWidth = getMaxValuesTextWidth(g2);
@@ -176,7 +178,7 @@ public class BlankPlotChart extends JComponent {
             for (int i = 0; i < labelCount; i++) {
                 blankPlotChatRender.renderSeries(this, g2, getRectangle(i, height, space, locationX, insets.top), i);
             }
-            List<Path2D.Double> gra = initGra(blankPlotChatRender.getMaxLegend());
+			List<Path2D.Double> gra = initGra(blankPlotChatRender.getMaxLegend());
             for (int i = 0; i < labelCount; i++) {
                 blankPlotChatRender.renderSeries(this, g2, getRectangle(i, height, space, locationX, insets.top), i, gra);
             }
@@ -184,7 +186,8 @@ public class BlankPlotChart extends JComponent {
         }
     }
 
-    private List initGra(int size) {
+    @SuppressWarnings("rawtypes")
+	private List initGra(int size) {
         List<Path2D.Double> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             list.add(new Path2D.Double());

@@ -10,6 +10,7 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.NumberFormatter;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import OBS_C_2025.ScrollBarWin11UI;
@@ -793,9 +794,9 @@ public class DEKONT extends JInternalFrame {
 		pnlb.add(lblbb);
 		lblbb.setHorizontalAlignment(SwingConstants.RIGHT);
 
-		cmbbhes = new JComboBox<String>();
+		
+		cmbbhes = new JComboBox<String>();  //******************************BORCLU HESAP **********************
 		cmbbhes.setFont(new Font("Tahoma", Font.BOLD, 15));
-
 		cmbbhes.setEnabled(false);
 		cmbbhes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -813,7 +814,6 @@ public class DEKONT extends JInternalFrame {
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
-
 		cmbbhes.getEditor().getEditorComponent().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -880,12 +880,10 @@ public class DEKONT extends JInternalFrame {
 									hsp.show();
 									if (! oac.hsp_hsp_kodu.equals(""))
 									{
-										cmbbhes.setSelectedItem( oac.hsp_hsp_kodu);
+										cmbbhes.setSelectedItem(oac.hsp_hsp_kodu);
 									}
 									getContentPane().setCursor(oac.DEFAULT_CURSOR);
-								} catch (ClassNotFoundException e1) {
-									e1.printStackTrace();
-								} catch (SQLException e1) {
+								} catch (Exception e1) {
 									e1.printStackTrace();
 								}
 							}
@@ -896,7 +894,7 @@ public class DEKONT extends JInternalFrame {
 				}
 			}
 		});
-		InputMap txtbhesMap =cmbbhes.getInputMap();
+		InputMap txtbhesMap = cmbbhes.getInputMap();
 		txtbhesMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
 		cmbbhes.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
 		cmbbhes.setBounds(10, 45, 147, 25);

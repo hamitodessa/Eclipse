@@ -3,6 +3,7 @@ package com.raven.cell;
 import com.raven.model.ModelName;
 import com.raven.table.cell.Cell;
 
+@SuppressWarnings("serial")
 public class CellNameRender extends Cell {
 
     public CellNameRender(ModelName data) {
@@ -11,8 +12,6 @@ public class CellNameRender extends Cell {
         image.setImage(data.getProfile());
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         image = new com.raven.swing.ImageAvatar();

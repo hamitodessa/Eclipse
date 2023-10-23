@@ -24,46 +24,41 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,   boolean hasFocus, int row, int column) 
 	{
 		Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-		
-			if (column !=0)
+		if (column !=0)
+		{
+			if( value.toString().length() != 0  )
 			{
-				if( value.toString().length() != 0  )
+				if(nerden.equals("yillik"))
 				{
-					if(nerden.equals("yillik"))
-						{
-						setHorizontalAlignment( JLabel.CENTER);
-						}
-					else
-						{
-						setHorizontalAlignment( JLabel.LEFT);
-						System.out.println(row + "="+ column + "==" + value.toString().length());
-						}
-					cell.setBackground(backgroundColor);
-					cell.setForeground(foregroundColor); 
-					Font fnt = new Font(table.getFont().getFontName(), 1 ,10);
-					cell.setFont(fnt);
-					Border border = BorderFactory.createMatteBorder(1, 0, 1, 0, new Color(0, 60, 102));
-					setBorder(border);
-					setToolTipText("Tiklama da Gorev Detaylari sag tarafta goruntuleme.......");
+					setHorizontalAlignment( JLabel.CENTER);
 				}
-				else 
+				else
 				{
-					cell.setBackground(table.getBackground());
-					cell.setForeground(table.getForeground());
+					setHorizontalAlignment( JLabel.LEFT);
 				}
-			}
-			else if (column ==0)
-			{
-				setHorizontalAlignment( JLabel.CENTER);
 				cell.setBackground(backgroundColor);
 				cell.setForeground(foregroundColor); 
-				Font fnt = new Font(table.getFont().getFontName(), 1 ,12);
+				Font fnt = new Font(table.getFont().getFontName(), 1 ,10);
 				cell.setFont(fnt);
-				setToolTipText("");
+				Border border = BorderFactory.createMatteBorder(1, 0, 1, 0, new Color(0, 60, 102));
+				setBorder(border);
+				setToolTipText("Tiklama da Gorev Detaylari sag tarafta goruntuleme.......");
 			}
-	
-		
-		
+			else 
+			{
+				cell.setBackground(table.getBackground());
+				cell.setForeground(table.getForeground());
+			}
+		}
+		else if (column ==0)
+		{
+			setHorizontalAlignment( JLabel.CENTER);
+			cell.setBackground(backgroundColor);
+			cell.setForeground(foregroundColor); 
+			Font fnt = new Font(table.getFont().getFontName(), 1 ,12);
+			cell.setFont(fnt);
+			setToolTipText("");
+		}
 		return cell;
 	}
 }

@@ -46,7 +46,6 @@ public class COLUMN_RENDERER_YILLIK  extends DefaultTableCellRenderer
 			cell.setBackground(table.getBackground());
 			cell.setForeground(table.getForeground());
 		}
-		
 		return cell;
 	}
 }

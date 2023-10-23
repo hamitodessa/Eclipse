@@ -18,6 +18,7 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 
+@SuppressWarnings("serial")
 public class Button extends JButton {
 
     public boolean isBorderPaint() {

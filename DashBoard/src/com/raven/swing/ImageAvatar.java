@@ -19,6 +19,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
+@SuppressWarnings("serial")
 public class ImageAvatar extends JComponent {
 
     public Icon getImage() {

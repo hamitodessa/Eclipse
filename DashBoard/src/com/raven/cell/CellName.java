@@ -6,11 +6,11 @@ import com.raven.table.TableCustom;
 import com.raven.table.cell.TableCustomCell;
 import com.raven.table.model.TableRowData;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
+@SuppressWarnings("serial")
 public class CellName extends TableCustomCell {
 
     private String pathImage;
@@ -19,9 +19,7 @@ public class CellName extends TableCustomCell {
         initComponents();
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
         txtFirstName = new javax.swing.JTextField();

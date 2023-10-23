@@ -1,5 +1,6 @@
 package com.raven.form;
 
+@SuppressWarnings("serial")
 public class Form extends javax.swing.JPanel {
 
     public Form(String name) {
@@ -8,8 +9,7 @@ public class Form extends javax.swing.JPanel {
         setOpaque(false);
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();

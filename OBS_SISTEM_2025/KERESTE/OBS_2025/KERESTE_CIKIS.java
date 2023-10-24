@@ -1155,15 +1155,15 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
-		table.repaint();
-		//table.setSurrendersFocusOnKeystroke(true);
+		table.setSurrendersFocusOnKeystroke(true);
 
 		InputMap im = table.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
 		ActionMap am = table.getActionMap();
 		am.put("Action.NextCell", new  Next_Cell_Kereste(table,"kereste_cikis"));
-		//table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+		table.repaint();
 		scrollPane.setViewportView(table);
 		ana_grup_doldur();
 		ker_oz_kod();

@@ -1025,16 +1025,26 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			@Override
 			public boolean isCellEditable(int row, int column) {  
 				switch (column) {
-				case 4:
-					return false;
-				case 5:
-					return false;
-				case 10:
-					return false;
-				case 11:
-					return false;
-				default:
+				case 0:
 					return true;
+				case 1:
+					return true;
+				case 2:
+					return true;
+				case 3:
+					return true;
+				case 6:
+					return true;
+				case 7:
+					return true;
+				case 8:
+					return true;
+				case 9:
+					return true;
+				case 11:
+					return true;
+				default:
+					return false;
 				}
 			}
 		};
@@ -1309,6 +1319,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		col = table.getColumnModel().getColumn(12);
 		col.setCellRenderer(new SOLA_ORTA());
 		col.setHeaderRenderer(new SOLA());
+		col.setMinWidth(90);
 		
 		for (int i =0 ; i <=17;i++) {
 			table.removeColumn(table.getColumnModel().getColumn(13));

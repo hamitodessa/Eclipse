@@ -53,6 +53,7 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.synth.SynthLookAndFeel;
 
@@ -169,23 +170,24 @@ public class LOGIN extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {	EventQueue.invokeLater(new Runnable() {
-		public void run() {
-			try {
-				new LOGIN().setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
+	public static void main(String[] args) 
+	{	
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try {
+					new LOGIN().setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-		}
-		
-	});
-	
+		});
 	}
 	
 	public LOGIN() throws IOException {
 		//UIDefaults ui = UIManager.getDefaults();
 		//ui.put("ScrollBarUI", ScrollBarWin11UI.class.getCanonicalName());
-
 		//************************************************************************
 		try {
 			LOGIN.setDefaultLookAndFeelDecorated(true);

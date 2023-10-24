@@ -217,6 +217,13 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
 		JPanel panel_2 = new JPanel();
+		panel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (table.isEditing())
+				     table.getCellEditor().stopCellEditing();
+			}
+		});
 		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane_1.addTab("Urun Cikis", null, panel_2, null);
 		panel_2.setLayout(null);

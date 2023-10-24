@@ -7,6 +7,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+//import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
@@ -79,8 +81,10 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 	
 	public MODUL_PARAMETRE() {
-		//BasicInternalFrameUI bUi = (BasicInternalFrameUI) this.getUI();
+		//setBorder(null);
+		//BasicInternalFrameUI bUi =(BasicInternalFrameUI) this.getUI();
 		//bUi.setNorthPane(null);
+
 		//************************************************************************
 		setTitle("CALISMA DIZINLERI");
 

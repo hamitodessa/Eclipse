@@ -16,8 +16,8 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.table.TableCellEditor;
 
-import org.apache.commons.math3.exception.NumberIsTooSmallException;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+
 import javax.swing.*;
 @SuppressWarnings({"serial","static-access"})
 public class ComboBoxTableCellEditor extends AbstractCellEditor implements TableCellEditor {
@@ -35,43 +35,47 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 		editor.setFont(new Font("Tahoma", Font.BOLD, 12));
 		editor.setForeground(new Color(0, 0, 128));
 		
-		
-		editor.setRenderer(new ListCellRenderer<String>() {
-	        @Override
-	        public Component getListCellRendererComponent(JList<? extends String> list, String value, int index,
-	                boolean isSelected, boolean cellHasFocus) {
-	        	
-	            JLabel result = new JLabel(value);
-	            result.setOpaque(true);
-	            result.setForeground(new Color(0, 0, 128));
-	            result.setBackground(editor.getBackground());
-	            result.setFont(new Font("Tahoma", Font.BOLD, 12));
-	            //result.setBackground(isSelected ? Color.cyan : Color.blue); //---item background color
-	            if (isSelected) {
-	            	result.setBackground(Color.BLUE);
-	            	result.setForeground(Color.WHITE);
-	              System.out.println(value);
-	              }
-	              else {
-	            	
-	              }
-	            return result;
-	        }
-	    });
-	
+
+//		editor.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				System.out.println(editor.getItemAt(editor.getSelectedIndex()));
+//			}
+//		});
+//		
+//		editor.setRenderer(new ListCellRenderer<String>() {
+//			@Override
+//			public Component getListCellRendererComponent(JList<? extends String> list, String value, int index,
+//					boolean isSelected, boolean cellHasFocus) {
+//				JLabel result = new JLabel(value);
+//				result.setOpaque(true);
+//				result.setForeground(new Color(0, 0, 128));
+//				result.setBackground(editor.getBackground());
+//				result.setFont(new Font("Tahoma", Font.BOLD, 12));
+//				if (isSelected) {
+//					//list.setSelectedIndex(index);
+//					editor.setSelectedIndex(index);
+//					//list.scrollRectToVisible(list.getCellBounds(index, index+3));
+//					result.setBackground(new Color(0, 0, 128));
+//					result.setForeground(Color.WHITE);
+//				
+//				}
+//				else {
+//
+//				}
+//				return result;
+//			}
+//		});
 		/////////////////
 		JTextField editorComponent = (JTextField)  editor.getEditor().getEditorComponent();
 		editorComponent.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if(editor.getEditor().getItem() == null) return;
+				if(editor.getEditor().getItem() == null ) return;
 				editor.showPopup();
 				Object child =  editor.getAccessibleContext().getAccessibleChild(0);
 				BasicComboPopup popup = (BasicComboPopup)child;
-				
 				JList<Object> list = popup.getList();
 				boolean result = false;
-
 				for (int i = 0; i < list.getModel().getSize(); i++)
 				{
 					String value =  list.getModel().getElementAt(i).toString();
@@ -132,6 +136,14 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 				if(e.getKeyCode() == 27)
 				{
 					editor.getEditor().setItem("");
+					if (nerden.equals("ker_cikis"))
+					{
+						try {
+							KERESTE_CIKIS.kod_aciklama_bul(editorComponent.getText().toString());
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+					}
 				}
 			}
 		});
@@ -171,6 +183,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 			}
 			@Override
 			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+				
 				if (nerden.equals("fatura"))
 				{
 					FATURA.bilgi_doldur( editorComponent.getText().toString());
@@ -197,6 +210,11 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 				}
 				else if (nerden.equals("ker_cikis"))
 				{
+					try {
+						KERESTE_CIKIS.kod_aciklama_bul(editorComponent.getText().toString());
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 					KERESTE_CIKIS.pakkont(editorComponent.getText().toString());
 				}
 				editor.setSelectedItem(editorComponent.getText());
@@ -207,7 +225,6 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 			}
 		});
 	}
-	//
 	public Object getCellEditorValue() {
 		return editor.getSelectedItem();
 	}

@@ -1688,6 +1688,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 	private static void kod_ADI(String toke,String kons ) throws ClassNotFoundException, SQLException 
 
 	{
+		altsolsifir();
 		String[] token = toke.toString().split("-");
 		String aciklamaString ;
 		aciklamaString = ker_Access.kod_adi(token[0]);
@@ -1697,7 +1698,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		if(kons.equals("")) 
 		{
-			lblkONSIMENTO.setText("");
 			return ;
 		}
 		token = kons.toString().split("-");
@@ -1705,9 +1705,17 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		size = lblkONSIMENTO.getPreferredSize();
 		lblkONSIMENTO.setBounds(10, 35, size.width +10, 14);
 	}
+	private static void altsolsifir()
+	{
+		lblkodAciklama.setText("");
+		lblkONSIMENTO.setText("");
+		lblkODU.setText("");
+
+	}
 	public static  void kod_aciklama_bul(String pak_kons ) throws ClassNotFoundException, SQLException 
 
 	{
+		altsolsifir();
 		if( pak_kons_check(pak_kons)) return;
 		String[] token = pak_kons.toString().split("-");
 		String aciklamaString[] ;

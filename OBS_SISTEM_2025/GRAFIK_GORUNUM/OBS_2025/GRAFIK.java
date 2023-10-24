@@ -106,7 +106,7 @@ public class GRAFIK extends JInternalFrame {
 	    renderer.setSeriesVisible(true);
 	    chart.setBackgroundPaint(new Color(189, 209, 219));//
 	    
-        
+       
 		ChartPanel panel = new ChartPanel(chart);  
 		setContentPane(panel);  
 	}

@@ -65,6 +65,10 @@ import java.awt.event.KeyListener;
 import javax.swing.UIManager;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.JList;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseMotionAdapter;
 
 
 @SuppressWarnings({"serial","static-access" ,"deprecation","unused"} )
@@ -72,30 +76,35 @@ public class DEKONT extends JInternalFrame {
 
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
-	public static JTextField txtevrak;
+	
 	private static String [] hpl = {"","",""};
-	NumberFormat nf = NumberFormat.getIntegerInstance(); // Specify specific format here.
+	NumberFormat nf = NumberFormat.getIntegerInstance();
 	NumberFormatter nff = new NumberFormatter(nf);
 	DefaultFormatterFactory f_int = new DefaultFormatterFactory(nff);
+	public static  JTextField txtevrak;
 	private static JTextArea txtaciklama ;
 	private static JTextField txtkod;
 	private static JDateChooser dtc ;
 	private static JFormattedTextField txtbkur ;
 	private static JFormattedTextField txtbtutar  ;
-	private static JComboBox<String> cmbb ;
-	private static JButton btnbh ;
-	private static JButton btnah ;
-	private static JButton btnHYenileB;
-	private static JButton btnHYenileA;
-	private static JComboBox<String> cmba ;
-	private static JLabel lbla  ;
-	private JLabel lblNewLabel_2_1  ;
-	private static JLabel lblb  ;
-	private JLabel lblNewLabel_2 ;
 	private static JFormattedTextField txtakur ;
 	private static JFormattedTextField txtatutar ;
 	private static boolean borc_kutu = false ;
 	private static boolean alacak_kutu = false ;
+	private static boolean bakiye_goster = false ;
+	private static JComboBox<String> cmbb ;
+	private static JComboBox<String> cmba ;
+	private static JComboBox<String> cmbbhes;
+	private static JComboBox<String> cmbahes;
+	private static JButton btnbh ;
+	private static JButton btnah ;
+	private static JButton btnHYenileB;
+	private static JButton btnHYenileA;
+	private JLabel lblNewLabel_2_1  ;
+	private JLabel lblNewLabel_2 ;
+	private static JLabel lblNewLabel ;
+	private static JLabel lblb  ;
+	private static JLabel lbla  ;
 	private static JLabel lblbb ;
 	private static JLabel lblba ;
 	private static JLabel lblbba ;
@@ -104,12 +113,6 @@ public class DEKONT extends JInternalFrame {
 	private static JLabel lblaba ;
 	private JPanel pnlb ;
 	private JPanel pnla;
-	private static boolean bakiye_goster = false ;
-	private static JComboBox<String> cmbbhes;
-	private static JComboBox<String> cmbahes;
-	private static JLabel lblNewLabel ;
-
-
 
 	public DEKONT() {
 
@@ -1509,7 +1512,7 @@ public class DEKONT extends JInternalFrame {
 				String kODString = cmbahes.getSelectedItem().toString();
 				AUTO_HESAP_KODU.auto_doldur(cmbahes);
 				cmbahes.setSelectedItem(kODString);
-				getContentPane().setCursor(oac.WAIT_CURSOR);
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
 		btnHYenileA.setToolTipText("Hesap Plani Yenile");
@@ -1522,6 +1525,9 @@ public class DEKONT extends JInternalFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(568, 340, 152, 14);
 		getContentPane().add(lblNewLabel);
+		
+		
+		
 
 		try {
 			String deger;

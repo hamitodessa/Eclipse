@@ -10,19 +10,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import javax.swing.AbstractCellEditor;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.JList;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.table.TableCellEditor;
 
+import org.apache.commons.math3.exception.NumberIsTooSmallException;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-
+import javax.swing.*;
 @SuppressWarnings({"serial","static-access"})
 public class ComboBoxTableCellEditor extends AbstractCellEditor implements TableCellEditor {
 
@@ -37,8 +33,32 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 		masterValues = masterValues1;
 		editor.setEditable(true);
 		editor.setFont(new Font("Tahoma", Font.BOLD, 12));
-		editor.setForeground(Color.BLUE);
+		editor.setForeground(new Color(0, 0, 128));
 		
+		
+		editor.setRenderer(new ListCellRenderer<String>() {
+	        @Override
+	        public Component getListCellRendererComponent(JList<? extends String> list, String value, int index,
+	                boolean isSelected, boolean cellHasFocus) {
+	        	
+	            JLabel result = new JLabel(value);
+	            result.setOpaque(true);
+	            result.setForeground(new Color(0, 0, 128));
+	            result.setBackground(editor.getBackground());
+	            result.setFont(new Font("Tahoma", Font.BOLD, 12));
+	            //result.setBackground(isSelected ? Color.cyan : Color.blue); //---item background color
+	            if (isSelected) {
+	            	result.setBackground(Color.BLUE);
+	            	result.setForeground(Color.WHITE);
+	              System.out.println(value);
+	              }
+	              else {
+	            	
+	              }
+	            return result;
+	        }
+	    });
+	
 		/////////////////
 		JTextField editorComponent = (JTextField)  editor.getEditor().getEditorComponent();
 		editorComponent.addKeyListener(new KeyAdapter() {
@@ -48,9 +68,10 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 				editor.showPopup();
 				Object child =  editor.getAccessibleContext().getAccessibleChild(0);
 				BasicComboPopup popup = (BasicComboPopup)child;
+				
 				JList<Object> list = popup.getList();
 				boolean result = false;
-				
+
 				for (int i = 0; i < list.getModel().getSize(); i++)
 				{
 					String value =  list.getModel().getElementAt(i).toString();
@@ -114,7 +135,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 				}
 			}
 		});
-		
+
 		editorComponent.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -142,7 +163,6 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 						editor.setSelectedItem(oac.stk_kodu);
 						table.getCellEditor().stopCellEditing();
 					}
-					
 				}
 			}});
 		editor.addPopupMenuListener(new PopupMenuListener() {
@@ -198,8 +218,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 			if (index != row) {
 				//String cellValue = (String) table.getValueAt(index, 0);
 				//if (! cellValue.equals(""))
-					//model.removeElement(cellValue);
-				
+				//model.removeElement(cellValue);
 			}
 		}
 		editor.setModel(model);

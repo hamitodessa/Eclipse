@@ -425,6 +425,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		try {
 			grid_doldur();
 			table_1.removeColumn(table_1.getColumnModel().getColumn(15));
+			table_1.removeColumn(table_1.getColumnModel().getColumn(3)); // Sifre Kolonu
 			table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 			kutu_temizle();
 			doldur();
@@ -436,8 +437,6 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			e.printStackTrace();
 		}
 		getContentPane().setCursor(DEFAULT_CURSOR);
-
-
 	}
 	private static void grid_doldur() throws ClassNotFoundException, SQLException
 	{
@@ -516,13 +515,11 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 			for (int i=0, len=bytes.length; i<len; i++) {
 			   bytes[i] = Byte.parseByte(byteValues[i].trim());     
 			}
-			
 			try {
 				decodedString = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-				
 			passwordField.setText(decodedString);
 		}
 		if (table_1.getModel().getValueAt(satir, 4) == null)

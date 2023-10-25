@@ -584,8 +584,6 @@ public class LOGIN extends JDialog {
 		
 		progressBar = new JProgressBar();
 		splitPane.setRightComponent(progressBar);
-		//progressBar.setForeground(new Color(166, 55, 55));
-		progressBar.setBorder(new LineBorder(new Color(0, 191, 255)));
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		progressBar.setMinimumSize(new Dimension(0, 25));

@@ -511,6 +511,7 @@ public class CAL_DIZIN extends JFrame {
 					grid_doldur();
 					sIFRE_KAPA();
 					txtKodu.setEnabled(false);
+					panel.setVisible(true);
 					switch(activ_sayfa) 
 					{
 					case 0:
@@ -538,9 +539,11 @@ public class CAL_DIZIN extends JFrame {
 						doldur_kutu(tblKereste, 0);
 						break;
 					case  8:
+						panel.setVisible(false);
 						txtsif.requestFocus()	;
 						break;
 					case 9:
+						panel.setVisible(false);
 						mail_doldur();
 						break;
 					}

@@ -12,7 +12,6 @@ import java.util.TimerTask;
 import javax.swing.JDesktopPane;
 import java.awt.Toolkit;
 import javax.swing.JButton;
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JToolBar;
@@ -3284,20 +3283,19 @@ public class OBS_MAIN extends JFrame {
 		toolBar.add(lblNewLabel_9);
 
 		toolBar_1 = new JToolBar();
-		toolBar_1.setBorder(new LineBorder(new Color(0, 191, 255)));
+		toolBar_1.setRollover(true);
 		toolBar_1.setFloatable(false);
 		toolBar_1.setMinimumSize(new Dimension(0, 30));
 		toolBar_1.setMaximumSize(new Dimension(0, 30));
 
-		JLabel lblNewLabel_33 = new JLabel("  ");
-		toolBar_1.add(lblNewLabel_33);
+		//JLabel lblNewLabel_33 = new JLabel("  ");
+		//toolBar_1.add(lblNewLabel_33);
 
 		progressBar = new JProgressBar();
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		progressBar.setBorder(BorderFactory.createEmptyBorder(1, 0, 0, 1));   
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		progressBar.setMaximumSize(new Dimension(350, 30));
-		progressBar.setMinimumSize(new Dimension(350, 30));
+		progressBar.setMaximumSize(new Dimension(350, 28));
+		progressBar.setMinimumSize(new Dimension(350, 28));
 
 
 		toolBar_1.add(progressBar);

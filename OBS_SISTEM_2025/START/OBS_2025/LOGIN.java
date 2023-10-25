@@ -230,11 +230,23 @@ public class LOGIN extends JDialog {
 		  { UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel"); } else
 		  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows")) {
 		  
-		  UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"
-		  ); } else if 
+		  UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
+		  
+		
+		//  for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+			//  System.out.println(	  info.getName().toString());
+		//	  if ("Metal".equals(info.getName())) {
+       //           javax.swing.UIManager.setLookAndFeel(info.getClassName());
+       //           break;
+       //       }
+		//  }
+		  
+		  
+		  } else if 
 		  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSolarizedLightIJTheme")) 
 		  {
 			  FlatSolarizedLightIJTheme.setup();
+			 
 		  } 
 		  else if
 		  (

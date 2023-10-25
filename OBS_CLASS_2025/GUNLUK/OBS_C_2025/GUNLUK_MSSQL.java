@@ -20,11 +20,14 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	static Connection con = null;
 	static Statement stmt = null;
 
+	
+	
+	
 	@Override
 	public void baglan() throws SQLException {
 		String cumle = "jdbc:sqlserver://" + BAGLAN.gunDizin.cONN_STR + ";";
+		//DriverManager.setLoginTimeout(50);
 		con = DriverManager.getConnection(cumle,BAGLAN.gunDizin.kULLANICI,BAGLAN.gunDizin.sIFRESI);
-
 	}
 	@Override
 	public void gUN_SIFIR_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
@@ -260,9 +263,10 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
 				" ORDER BY TARIH  ";
+		
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-			return rss;	
+		return rss;	
 	}
 	@Override
 	public ResultSet isim_oku() throws ClassNotFoundException, SQLException {
@@ -438,6 +442,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
 				" ORDER BY TARIH  ";
+		if(con.isClosed())  baglan();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

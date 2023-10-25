@@ -3351,7 +3351,11 @@ public class OBS_MAIN extends JFrame {
 			e1.printStackTrace();
 		}
 		form_ac("CALISMA DIZINLERI","");
-		gorev_kontrol();
+		try {
+			gorev_kontrol();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 	private void form_ac(String pencere,String hangi) 
 	{
@@ -3524,7 +3528,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		}
 	}
-	private static void gorev_kontrol()
+	private static void gorev_kontrol() 
 	{
 		try 
 		{
@@ -3582,7 +3586,7 @@ public class OBS_MAIN extends JFrame {
 			Player player = new Player(stream);
 			player.play();
 			///
-
+			stream.close();
 			GuiUtil.setWaitCursor(toolBar,false);
 		} catch (Exception e) {
 			GuiUtil.setWaitCursor(toolBar,false);

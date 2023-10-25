@@ -157,7 +157,6 @@ public class CAL_DIZIN extends JFrame {
 	
 	public CAL_DIZIN() {
 		setUndecorated(true);
-		
 		setTitle("CALISMA DIZINI");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

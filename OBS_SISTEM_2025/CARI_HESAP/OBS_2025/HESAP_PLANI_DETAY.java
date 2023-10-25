@@ -52,7 +52,7 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		setBounds(0, 0, 600, 463);
 		
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setDividerSize(1);
+		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);

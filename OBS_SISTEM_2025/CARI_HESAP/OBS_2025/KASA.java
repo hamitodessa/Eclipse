@@ -368,7 +368,7 @@ public class KASA extends JInternalFrame {
 		table_1.setShowVerticalLines(true);
 		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		centerPanel.setViewportView(table_1);
-		sp.setDividerSize(1);
+		sp.setDividerSize(0);
 		sp.setResizeWeight(0.0);
 
 		JSplitPane sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, rightPanel);
@@ -464,7 +464,7 @@ public class KASA extends JInternalFrame {
 		lblNewLabel_5_2_2.setBounds(290, 56, 100, 14);
 		rightPanel.add(lblNewLabel_5_2_2);
 
-		sp2.setDividerSize(1);
+		sp2.setDividerSize(0);
 		sp2.setResizeWeight(1.0);
 		getContentPane().add(sp2, BorderLayout.CENTER);
 	}

@@ -414,18 +414,18 @@ public class USER_ISLEMLERI {
 		if (count  == 0)
 		{
 			MAIL_SETTINGS.HESAP= "";
-			MAIL_SETTINGS. HOST ="";
+			MAIL_SETTINGS.HOST ="";
 			MAIL_SETTINGS.PORT ="";
 			MAIL_SETTINGS.PWD = "";
 			MAIL_SETTINGS.SSL = false;
-			MAIL_SETTINGS. TSL = false;
+			MAIL_SETTINGS.TSL = false;
 			MAIL_SETTINGS.GHESAP ="";
-			MAIL_SETTINGS. GADI = "";
+			MAIL_SETTINGS.GADI = "";
 		}
 		else
 		{
 			MAIL_SETTINGS.HESAP= rss.getString("HESAP").toString();
-			MAIL_SETTINGS. HOST =rss.getString("HOST").toString() ;
+			MAIL_SETTINGS.HOST =rss.getString("HOST").toString() ;
 			MAIL_SETTINGS.PORT =rss.getString("PORT").toString() ;
 			
 			String decodedString = rss.getString("SIFR").toString();
@@ -551,7 +551,7 @@ public class USER_ISLEMLERI {
 		ResultSet	rss = null;
 		PreparedStatement stmt = null;
 		con =  gLB.myConnection();  //
-		String sql ="UPDATE USER_DETAILS  SET  LOG = "+ log + "  , LOG_YERI = '"+ logla+"'  WHERE CDID = " + cdid + " ";
+		String sql ="UPDATE USER_DETAILS  SET  LOG = " + log + "  , LOG_YERI = '" + logla + "'  WHERE CDID = " + cdid + " ";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();

@@ -186,89 +186,83 @@ public class LOGIN extends JDialog {
 	}
 	
 	public LOGIN() throws IOException {
-		//UIDefaults ui = UIManager.getDefaults();
-		//ui.put("ScrollBarUI", ScrollBarWin11UI.class.getCanonicalName());
-		//************************************************************************
-		try {
-			LOGIN.setDefaultLookAndFeelDecorated(true);
-			
-			  if (
-			  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("TextureLookAndFeel")) 
-			  {
-			  UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel"); }
-			  else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("SmartLookAndFeel")) 
-			  {
-			  UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel"); } else
-			  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("NoireLookAndFeel"))
-			  { UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel"); } else
-			  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AcrylLookAndFeel"))
-			  { UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel"); } else
-			  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AeroLookAndFeel"))
-			  { UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel"); } else
-			  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AluminiumLookAndFeel")) {
-			  UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel"); } else 
-			  if (  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("BernsteinLookAndFeel"))  {
-			  UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");  } else 
-			  if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FastLookAndFeel")) {
-			  UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel"); } else 
-			  if( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("GraphiteLookAndFeel"))
-			  { UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel"); } else 
-			  if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("HiFiLookAndFeel")) {
-			  UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel"); } else if
-			  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("LunaLookAndFeel")) {
-			  UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel"); } else if
-			  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("McWinLookAndFeel")) {
-			  UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel"); } else
-			  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("MintLookAndFeel"))
-			  { UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel"); } else
-			  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows")) {
-			 
-				  UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
-				  }
-			  else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSolarizedLightIJTheme")) 
-			  {
-				 FlatSolarizedLightIJTheme.setup();
-			  }
-			  else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatArcOrangeIJTheme")) 
-			  {
-				 FlatArcOrangeIJTheme.setup();
-			  }
-			  else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSpacegrayIJTheme")) 
-			  {
-				 FlatSpacegrayIJTheme.setup();
-			  }
-			  else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatArcIJTheme")) 
-			  {
-				 FlatArcIJTheme.setup();
-			  }
-			  else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatCyanLightIJTheme")) 
-			  {
-				 FlatCyanLightIJTheme.setup();
-			  }
-			  else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatGradiantoNatureGreenIJTheme")) 
-			  {
-				  FlatGradiantoNatureGreenIJTheme.setup();
-			  }
-			  else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatHighContrastIJTheme")) 
-			  {
-				  FlatHighContrastIJTheme.setup();
-			  }
-			  else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatGrayIJTheme")) 
-			  {
-				  FlatGrayIJTheme.setup();
-			  }
-			  else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatNordIJTheme")) 
-			  {
-				  FlatNordIJTheme.setup();
-			  }
-			  
-			SwingUtilities.updateComponentTreeUI(this);
-			//UIManager.setLookAndFeel(new FlatSolarizedLightIJTheme());
-			
-		} catch (Exception ex) {
-			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-		//************************************************************************
+		
+		/*
+		 * UIDefaults ui = UIManager.getDefaults(); ui.put("ScrollBarUI",
+		 * ScrollBarWin11UI.class.getCanonicalName());
+		 */		//************************************************************************
+		
+		  try { LOGIN.setDefaultLookAndFeelDecorated(true);
+		  
+		  if (
+		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("TextureLookAndFeel")) {
+		  UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel"); }
+		  else if
+		  (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("SmartLookAndFeel")) {
+		  UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel"); } else
+		  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("NoireLookAndFeel"))
+		  { UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel"); } else
+		  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AcrylLookAndFeel"))
+		  { UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel"); } else
+		  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AeroLookAndFeel"))
+		  { UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel"); } else
+		  if (
+		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AluminiumLookAndFeel"))
+		  {
+		  UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+		  } else if (
+		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("BernsteinLookAndFeel"))
+		  {
+		  UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
+		  } else if
+		  (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FastLookAndFeel")) {
+		  UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel"); } else if(
+		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("GraphiteLookAndFeel")) {
+		  UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel"); }
+		  else if
+		  (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("HiFiLookAndFeel")) {
+		  UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel"); } else if
+		  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("LunaLookAndFeel")) {
+		  UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel"); } else if
+		  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("McWinLookAndFeel")) {
+		  UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel"); } else
+		  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("MintLookAndFeel"))
+		  { UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel"); } else
+		  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows")) {
+		  
+		  UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"
+		  ); } else if 
+		  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSolarizedLightIJTheme")) 
+		  {
+			  FlatSolarizedLightIJTheme.setup();
+		  } 
+		  else if
+		  (
+		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatArcOrangeIJTheme"))
+		  { FlatArcOrangeIJTheme.setup(); } else if (
+		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSpacegrayIJTheme"))
+		  { FlatSpacegrayIJTheme.setup(); } else if (
+		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatArcIJTheme")) {
+		  FlatArcIJTheme.setup(); } else if (
+		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatCyanLightIJTheme"))
+		  { FlatCyanLightIJTheme.setup(); } else if (
+		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals(
+		  "FlatGradiantoNatureGreenIJTheme")) {
+		  FlatGradiantoNatureGreenIJTheme.setup(); } else if (
+		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatHighContrastIJTheme"
+		  )) { FlatHighContrastIJTheme.setup(); } else if (
+		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatGrayIJTheme")) {
+		  FlatGrayIJTheme.setup(); } else if (
+		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatNordIJTheme")) {
+		  FlatNordIJTheme.setup(); }
+		  
+		  SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
+		  //FlatSolarizedLightIJTheme());
+		  
+		  } catch (Exception ex) {
+		  java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util. logging.Level.SEVERE, null, ex); 
+		  }
+ 		//************************************************************************
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setResizable(false);
 		setTitle("OBS SISTEM GIRIS");

@@ -74,6 +74,101 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
+		
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		splitPane.setLeftComponent(panel);
+		panel.setMinimumSize(new Dimension(0, 30));
+		panel.setMaximumSize(new Dimension(0, 30));
+		panel.setLayout(null);
+		
+		lblkod = new JLabel("...");
+		lblkod.setForeground(new Color(139, 0, 0));
+		lblkod.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblkod.setBounds(10, 8, 116, 14);
+		panel.add(lblkod);
+		
+		lblunvan = new JLabel("...");
+		lblunvan.setForeground(new Color(139, 0, 0));
+		lblunvan.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblunvan.setBounds(149, 8, 312, 14);
+		panel.add(lblunvan);
+		
+		lblcins = new JLabel("...");
+		lblcins.setForeground(new Color(139, 0, 0));
+		lblcins.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblcins.setBounds(491, 8, 60, 14);
+		panel.add(lblcins);
+		
+		lblNewLabel = new JLabel("Cevrilen:");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setBounds(666, 8, 60, 14);
+		panel.add(lblNewLabel);
+		
+		lblcevrilen = new JLabel("...");
+		lblcevrilen.setForeground(new Color(0, 0, 128));
+		lblcevrilen.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblcevrilen.setBounds(736, 8, 66, 14);
+		panel.add(lblcevrilen);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if (lblkod.getText().equals("...")) return ;
+					if (DecimalFormat.getNumberInstance().parse(lblboskur.getText()).doubleValue() == 0) return ;
+				} catch (Exception ex) {
+				
+				}
+				boolean varmi = OBS_MAIN.pencere_bak("BOS KUR");
+                if (varmi  ) 
+                	{
+                	try {
+                		OBS_MAIN.pencere_aktiv_yap("BOS KUR");
+					} catch (PropertyVetoException e1) {
+						e1.printStackTrace();
+					}
+                	return;
+                 	}
+                else
+                {
+                getContentPane().setCursor(oac.WAIT_CURSOR);
+				 JInternalFrame internalFrame;
+				 internalFrame = new BOS_KUR();
+				 OBS_MAIN.desktopPane.add(internalFrame);
+				 internalFrame.setVisible(true);
+				 BOS_KUR.hisset();
+				 getContentPane().setCursor(oac.DEFAULT_CURSOR);
+                }
+			}
+		});
+		btnNewButton.setIcon(new ImageIcon(DVZ_CEVIRME.class.getResource("/ICONLAR/icons8-view-16.png")));
+		btnNewButton.setBounds(970, 4, 30, 23);
+		panel.add(btnNewButton);
+		
+		JLabel lblBosKur = new JLabel("Bos Kur :");
+		lblBosKur.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblBosKur.setBounds(848, 8, 60, 14);
+		panel.add(lblBosKur);
+		
+		lblboskur = new JLabel("...");
+		lblboskur.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblboskur.setForeground(Color.RED);
+		lblboskur.setBounds(918, 8, 53, 14);
+		panel.add(lblboskur);
+		
+		JLabel lblKayitSayisi = new JLabel("Satir Sayisi :");
+		lblKayitSayisi.setHorizontalAlignment(SwingConstants.LEFT);
+		lblKayitSayisi.setBounds(1022, 8, 85, 14);
+		panel.add(lblKayitSayisi);
+		
+		label_1 = new JLabel("0");
+		label_1.setForeground(new Color(0, 0, 128));
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_1.setBounds(1112, 8, 60, 14);
+		panel.add(label_1);
+		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setRightComponent(scrollPane);
 		
@@ -185,100 +280,9 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		table.setShowVerticalLines(true);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane.setViewportView(table);
-		
-		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 30));
-		panel.setMaximumSize(new Dimension(0, 30));
-		panel.setLayout(null);
-		
-		lblkod = new JLabel("...");
-		lblkod.setForeground(new Color(139, 0, 0));
-		lblkod.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblkod.setBounds(10, 8, 116, 14);
-		panel.add(lblkod);
-		
-		lblunvan = new JLabel("...");
-		lblunvan.setForeground(new Color(139, 0, 0));
-		lblunvan.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblunvan.setBounds(149, 8, 312, 14);
-		panel.add(lblunvan);
-		
-		lblcins = new JLabel("...");
-		lblcins.setForeground(new Color(139, 0, 0));
-		lblcins.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblcins.setBounds(491, 8, 60, 14);
-		panel.add(lblcins);
-		
-		lblNewLabel = new JLabel("Cevrilen:");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(666, 8, 60, 14);
-		panel.add(lblNewLabel);
-		
-		lblcevrilen = new JLabel("...");
-		lblcevrilen.setForeground(new Color(0, 0, 128));
-		lblcevrilen.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblcevrilen.setBounds(736, 8, 66, 14);
-		panel.add(lblcevrilen);
-		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					if (lblkod.getText().equals("...")) return ;
-					if (DecimalFormat.getNumberInstance().parse(lblboskur.getText()).doubleValue() == 0) return ;
-				} catch (Exception ex) {
-				
-				}
-				boolean varmi = OBS_MAIN.pencere_bak("BOS KUR");
-                if (varmi  ) 
-                	{
-                	try {
-                		OBS_MAIN.pencere_aktiv_yap("BOS KUR");
-					} catch (PropertyVetoException e1) {
-						e1.printStackTrace();
-					}
-                	return;
-                 	}
-                else
-                {
-                getContentPane().setCursor(oac.WAIT_CURSOR);
-				 JInternalFrame internalFrame;
-				 internalFrame = new BOS_KUR();
-				 OBS_MAIN.desktopPane.add(internalFrame);
-				 internalFrame.setVisible(true);
-				 BOS_KUR.hisset();
-				 getContentPane().setCursor(oac.DEFAULT_CURSOR);
-                }
-			}
-		});
-		btnNewButton.setIcon(new ImageIcon(DVZ_CEVIRME.class.getResource("/ICONLAR/icons8-view-16.png")));
-		btnNewButton.setBounds(970, 4, 30, 23);
-		panel.add(btnNewButton);
-		
-		JLabel lblBosKur = new JLabel("Bos Kur :");
-		lblBosKur.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblBosKur.setBounds(848, 8, 60, 14);
-		panel.add(lblBosKur);
-		
-		lblboskur = new JLabel("...");
-		lblboskur.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblboskur.setForeground(Color.RED);
-		lblboskur.setBounds(918, 8, 53, 14);
-		panel.add(lblboskur);
-		
-		JLabel lblKayitSayisi = new JLabel("Satir Sayisi :");
-		lblKayitSayisi.setHorizontalAlignment(SwingConstants.LEFT);
-		lblKayitSayisi.setBounds(1022, 8, 85, 14);
-		panel.add(lblKayitSayisi);
-		
-		label_1 = new JLabel("0");
-		label_1.setForeground(new Color(0, 0, 128));
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_1.setBounds(1112, 8, 60, 14);
-		panel.add(label_1);
+
 		table.requestFocus();
+
 
 	}
 	public static void hisset ()

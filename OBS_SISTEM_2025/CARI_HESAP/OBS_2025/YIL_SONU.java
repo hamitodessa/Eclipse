@@ -98,7 +98,7 @@ public class YIL_SONU extends JInternalFrame {
 		getContentPane().add(splitPaneana, BorderLayout.CENTER);
 
 		JSplitPane splitPane1 = new JSplitPane();
-		splitPane1.setDividerSize(1);
+		splitPane1.setDividerSize(0);
 		splitPane1.setResizeWeight(0.0);
 		splitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPaneana.setLeftComponent(splitPane1);

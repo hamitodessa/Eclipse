@@ -65,13 +65,13 @@ public class HESAP_BAK extends JInternalFrame {
 		setBounds(0, 0, 1091, 600);
 
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setDividerSize(1);
+		splitPane.setDividerSize(10);
 		splitPane.setResizeWeight(0.0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JSplitPane splitPane_1 = new JSplitPane();
-		splitPane_1.setDividerSize(1);
+		splitPane_1.setDividerSize(5);
 		splitPane_1.setResizeWeight(1.0);
 		splitPane.setLeftComponent(splitPane_1);
 		splitPane_1.setMinimumSize(new Dimension(0, 200));
@@ -170,7 +170,7 @@ public class HESAP_BAK extends JInternalFrame {
 		scrollPane_1.setViewportView(tblkarton);
 
 		JSplitPane splitPane_2 = new JSplitPane();
-		splitPane_2.setDividerSize(1);
+		splitPane_2.setDividerSize(0);
 		splitPane_2.setResizeWeight(0.0);
 		splitPane_2.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setRightComponent(splitPane_2);
@@ -254,7 +254,7 @@ public class HESAP_BAK extends JInternalFrame {
 
 		JLabel lblNewLabel = new JLabel("Arama");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel.setBounds(10, 5, 61, 14);
+		lblNewLabel.setBounds(10, 7, 61, 14);
 		panel.add(lblNewLabel);
 
 		textField = new JTextField();
@@ -270,7 +270,7 @@ public class HESAP_BAK extends JInternalFrame {
 			}
 		});
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
-		textField.setBounds(81, 3, 364, 20);
+		textField.setBounds(81, 5, 364, 20);
 		panel.add(textField);
 		textField.setColumns(10);
 
@@ -278,24 +278,24 @@ public class HESAP_BAK extends JInternalFrame {
 		lblNewLabel_1.setForeground(new Color(0, 0, 128));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1.setBounds(914, 5, 134, 14);
+		lblNewLabel_1.setBounds(914, 7, 134, 14);
 		panel.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("+ / - Bakiye");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_2.setBounds(797, 5, 91, 14);
+		lblNewLabel_2.setBounds(797, 7, 91, 14);
 		panel.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_2_1 = new JLabel("Satir Sayisi :");
 		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_2_1.setBounds(480, 5, 85, 14);
+		lblNewLabel_2_1.setBounds(480, 7, 85, 14);
 		panel.add(lblNewLabel_2_1);
 
 		lblNewLabel_2_2 = new JLabel("0");
 		lblNewLabel_2_2.setForeground(new Color(0, 0, 128));
 		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_2_2.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_2_2.setBounds(570, 5, 50, 14);
+		lblNewLabel_2_2.setBounds(570, 7, 50, 14);
 		panel.add(lblNewLabel_2_2);
 
 

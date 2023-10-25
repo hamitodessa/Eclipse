@@ -78,20 +78,28 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 	private JLabel label_14_1_1;
 	private JLabel label_13_1_1 ;
 	
-
+	int x ,y ;
 	
 	public MODUL_PARAMETRE() {
-		//setBorder(null);
+		/*
+		 * addMouseMotionListener(new MouseMotionAdapter() {
+		 * 
+		 * @Override public void mouseDragged(MouseEvent e) { int xx = e.getXOnScreen();
+		 * int yy = e.getYOnScreen(); setLocation(xx-x,yy-y);
+		 * 
+		 * } }); addMouseListener(new MouseAdapter() {
+		 * 
+		 * @Override public void mousePressed(MouseEvent e) { x = e.getX(); y = e.getY()
+		 * ; } });
+		 */		//setBorder(null);
 		//BasicInternalFrameUI bUi =(BasicInternalFrameUI) this.getUI();
 		//bUi.setNorthPane(null);
-
+		//getRootPane().setWindowDecorationStyle(5);
 		//************************************************************************
 		setTitle("CALISMA DIZINLERI");
-
 		setClosable(true);
 		setBounds(100, 100, 854, 456);
 		getContentPane().setLayout(null);
-		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(135, 206, 250)), "Cari Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(25, 10, 791, 50);

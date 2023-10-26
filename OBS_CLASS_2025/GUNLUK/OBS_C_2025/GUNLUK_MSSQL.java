@@ -21,7 +21,8 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	static Statement stmt = null;
 
 	
-	
+	//		if(con.isClosed())  baglan();
+
 	
 	@Override
 	public void baglan() throws SQLException {
@@ -263,7 +264,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
 				" ORDER BY TARIH  ";
-		
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -442,7 +442,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
 				" ORDER BY TARIH  ";
-		if(con.isClosed())  baglan();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

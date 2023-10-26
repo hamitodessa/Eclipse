@@ -72,6 +72,7 @@ import OBS_C_2025.DesktopScrollPane;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.Gunluk_Bilgi;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.USER_ISLEMLERI;
 import javazoom.jl.player.Player;
@@ -930,9 +931,7 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnKereste.add(mntmCikis);	
-		
 		mnKereste.addSeparator();
-		
 		
 		JMenuItem mntmkDegis = new JMenuItem("Kod Degistirme");
 		mntmkDegis.addActionListener(new ActionListener() {
@@ -975,7 +974,6 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnKereste.add(mntmoRtalama);	
-		
 		mnKereste.addSeparator();
 		
 		JMenuItem mntmKodAdi = new JMenuItem("Kod Adi Aciklama");
@@ -993,8 +991,6 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnKereste.add(mntmKonsAdi);	
-		
-	
 		mnKereste.addSeparator();
 		
 		JMenuItem mntmDegisken = new JMenuItem("Degisken Yenileme");
@@ -1154,6 +1150,7 @@ public class OBS_MAIN extends JFrame {
 		setContentPane(contentPane);
 		
 		splitPane = new JSplitPane();
+		splitPane.setDividerSize(0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		
         
@@ -1196,14 +1193,22 @@ public class OBS_MAIN extends JFrame {
 		
 		splitPane.setLeftComponent(tabbedPane);
 //******************************************************* CARI HESAP *******************************************************
+		ScrollPaneWin11 cscrol = new ScrollPaneWin11();
+		cscrol.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		cscrol.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
+		JPanel qwerc = new JPanel();
+		qwerc.setPreferredSize(new Dimension(0, 65));
+		qwerc.setLayout(new BorderLayout(0, 0));
+		qwerc.add(cscrol);
+
+		
 		toolBar_2 = new JToolBar();
 		toolBar_2.setFloatable(false);
-		//toolBar_2.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		toolBar_2.setName("");
 		toolBar_2.setToolTipText("");
-
-		tabbedPane.addTab("Cari Hesap", null, toolBar_2, null);
+		cscrol.setViewportView(toolBar_2);
+		tabbedPane.addTab("Cari Hesap", null, qwerc, null);
 
 		btnNewButton_5 = new JButton("");
 		btnNewButton_5.setToolTipText("Hesap Plani Giris");
@@ -1530,11 +1535,10 @@ public class OBS_MAIN extends JFrame {
 		
 		lblAdresBilgi = new JLabel("");
 		toolBar_4.add(lblAdresBilgi);
-		
-		JScrollPane stkscrol = new JScrollPane();
+		//***********************************************************************************************************************
+		ScrollPaneWin11 stkscrol = new ScrollPaneWin11();
 		stkscrol.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		stkscrol.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
-		//***********************************************************************************************************************
 		JPanel qwer = new JPanel();
 		qwer.setPreferredSize(new Dimension(0, 65));
 		qwer.setLayout(new BorderLayout(0, 0));

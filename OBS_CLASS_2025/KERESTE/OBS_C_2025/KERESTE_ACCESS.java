@@ -313,4 +313,9 @@ public class KERESTE_ACCESS {
 		for ( ILOGGER  _Logger : _Logger )
 			_Logger.Logla(lBILGI, dBILGI);
 	}
+	public ResultSet envanter(KER_RAPOR_BILGI ker_rap_BILGI,String gruplama) throws ClassNotFoundException, SQLException
+	{
+		return _IKereste.envanter(ker_rap_BILGI,gruplama);
+	}
+
 }

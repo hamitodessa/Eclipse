@@ -68,6 +68,7 @@ import KER_RAPOR.KER_DETAY;
 import KER_RAPOR.KER_FAT_RAPOR;
 import KER_RAPOR.KER_GRUP_RAPOR;
 import KER_RAPOR.KER_ORT_FIAT;
+import KER_RAPOR.KER_ENVANTER;
 import OBS_C_2025.DesktopScrollPane;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
@@ -1659,6 +1660,9 @@ public class OBS_MAIN extends JFrame {
 				form_ac("ENVANTER DOKUM","");
 			}
 		});
+		btnNewButton_50.setToolTipText("Envanter");
+		btnNewButton_50.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-hashtag-activity-feed-30.png")));
+		toolBar_5.add(btnNewButton_50);
 
 		btnNewButton_53 = new JButton("");
 		btnNewButton_53.setToolTipText("Irsaliye Rapor");
@@ -1669,9 +1673,6 @@ public class OBS_MAIN extends JFrame {
 		});
 		btnNewButton_53.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-invoice-30.png")));
 		toolBar_5.add(btnNewButton_53);
-		btnNewButton_50.setToolTipText("Envanter");
-		btnNewButton_50.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-hashtag-activity-feed-30.png")));
-		toolBar_5.add(btnNewButton_50);
 
 		btnNewButton_51 = new JButton("");
 		btnNewButton_51.addActionListener(new ActionListener() {
@@ -2162,6 +2163,16 @@ public class OBS_MAIN extends JFrame {
 
 		
 		toolBar_Kereste.add(btnNewButton_66);
+		
+		JButton btnNewButton_69 = new JButton("");
+		btnNewButton_69.setToolTipText("Envanter Rapor");
+		btnNewButton_69.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-hashtag-activity-feed-30.png")));
+		btnNewButton_69.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("KERESTE ENVANTER","");
+			}
+		});
+		toolBar_Kereste.add(btnNewButton_69);
 		
 		JLabel lblNewLabel_41 = new JLabel("          ");
 		toolBar_Kereste.add(lblNewLabel_41);
@@ -2709,18 +2720,18 @@ public class OBS_MAIN extends JFrame {
 				else if (sonuc == "KERESTE GRUP RAPOR")
 				{
 					GLOBAL.filtre_sayfa = 21 ;
+					GLOBAL.hangi_fatura = "grup" ;
 					ft = new FILTRE();
 					ft.setVisible(true);
 				}
-				else if (sonuc == "KERESTE DETAY RAPOR")
+				else if (sonuc == "KERESTE ENVANTER")
 				{
 					GLOBAL.filtre_sayfa = 22 ;
-					GLOBAL.hangi_fatura = "detay" ;
+					GLOBAL.hangi_fatura = "envanter" ;
 					ft = new FILTRE();
 					ft.comboBox_7_1.setVisible(false);
 					ft.comboBox_8_1.setVisible(false);
 					ft.comboBox_81.setVisible(false);
-					
 					ft.dateChooser_20_1_1_1.setEnabled(true);
 					ft.dateChooser_21_1_1_1.setEnabled(true);
 					ft.textField_86.setEnabled(true);
@@ -2731,6 +2742,32 @@ public class OBS_MAIN extends JFrame {
 					ft.comboBox_79_2.setEnabled(true);
 					ft.comboBox_80_2.setEnabled(true);
 					ft.comboBox_80_4.setEnabled(true);
+					ft.comboBox_80_4.setVisible(true);
+					ft.lblGrup.setVisible(true);
+					
+					ft.setVisible(true);
+				}
+				else if (sonuc == "KERESTE DETAY RAPOR")
+				{
+					GLOBAL.filtre_sayfa = 22 ;
+					GLOBAL.hangi_fatura = "detay" ;
+					ft = new FILTRE();
+					ft.comboBox_7_1.setVisible(false);
+					ft.comboBox_8_1.setVisible(false);
+					ft.comboBox_81.setVisible(false);
+					ft.comboBox_80_4.setVisible(false);
+					ft.lblGrup.setVisible(false);
+					ft.dateChooser_20_1_1_1.setEnabled(true);
+					ft.dateChooser_21_1_1_1.setEnabled(true);
+					ft.textField_86.setEnabled(true);
+					ft.textField_87.setEnabled(true);
+					ft.textField_92.setEnabled(true);
+					ft.textField_93.setEnabled(true);
+					ft.comboBox_78_2.setEnabled(true);
+					ft.comboBox_79_2.setEnabled(true);
+					ft.comboBox_80_2.setEnabled(true);
+					ft.comboBox_80_4.setEnabled(true);
+					
 					ft.setVisible(true);
 				}
 				else if (sonuc == "KERESTE FATURA RAPORLAMA")
@@ -2741,7 +2778,6 @@ public class OBS_MAIN extends JFrame {
 					ft.comboBox_7_1.setVisible(true);
 					ft.comboBox_8_1.setVisible(true);
 					ft.comboBox_81.setVisible(true);
-					
 					ft.dateChooser_20_1_1_1.setEnabled(false);
 					ft.dateChooser_21_1_1_1.setEnabled(false);
 					ft.textField_86.setEnabled(false);
@@ -2752,7 +2788,8 @@ public class OBS_MAIN extends JFrame {
 					ft.comboBox_79_2.setEnabled(false);
 					ft.comboBox_80_2.setEnabled(false);
 					ft.comboBox_80_4.setEnabled(false);
-
+					ft.comboBox_80_4.setVisible(false);
+					ft.lblGrup.setVisible(false);
 					
 					ft.setVisible(true);
 				}
@@ -3453,6 +3490,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("KERESTE DEGISKEN YENILEME")) internalFrame  = new KER_DEGISKEN_DEGIS();
 			else if (pencere.equals("KERESTE ORTALAMA FIAT")) internalFrame  = new KER_ORT_FIAT();
 			else if (pencere.equals("KERESTE BOS KUR")) internalFrame  = new KER_BOS_KUR();
+			else if (pencere.equals("KERESTE ENVANTER")) internalFrame  = new KER_ENVANTER();
 			//GENEL
 			else if (pencere.equals("GIDEN RAPORLAR")) internalFrame  = new GID_RAPOR();
 			else if (pencere.equals("CALISMA DIZINLERI")) internalFrame  = new MODUL_PARAMETRE();

@@ -1141,9 +1141,6 @@ public class OBS_MAIN extends JFrame {
 		mnHakkinda.add(mntmHakkinda);
 
 		//**********************************************************************************************************************************************
-		//**********************************************************************************************************************************************
-
-		
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

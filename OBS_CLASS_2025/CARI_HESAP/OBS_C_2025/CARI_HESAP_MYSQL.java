@@ -27,7 +27,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String cumle = "jdbc:mysql://" + BAGLAN.cariDizin.cONN_STR ;
-		DriverManager.setLoginTimeout(1800);
+		//DriverManager.setLoginTimeout(1800);
 		con = DriverManager.getConnection(cumle,BAGLAN.cariDizin.kULLANICI,BAGLAN.cariDizin.sIFRESI);
 	}
 	public void akt_baglan(String kod, String port) throws SQLException

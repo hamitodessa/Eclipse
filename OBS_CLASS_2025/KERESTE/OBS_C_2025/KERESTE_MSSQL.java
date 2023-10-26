@@ -21,7 +21,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	@Override
 	public void baglan() throws SQLException, ClassNotFoundException {
 		String cumle = "jdbc:sqlserver://" + BAGLAN.kerDizin.cONN_STR + ";";
-		DriverManager.setLoginTimeout(1800);
+		//DriverManager.setLoginTimeout(1800);
 		con = DriverManager.getConnection(cumle,BAGLAN.kerDizin.kULLANICI,BAGLAN.kerDizin.sIFRESI);
 	}
 

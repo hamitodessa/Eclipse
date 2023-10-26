@@ -2742,7 +2742,7 @@ public class OBS_MAIN extends JFrame {
 					ft.comboBox_79_2.setEnabled(true);
 					ft.comboBox_80_2.setEnabled(true);
 					ft.comboBox_80_4.setEnabled(true);
-					ft.comboBox_80_4.setVisible(true);
+					ft.comboBox_84.setVisible(true);
 					ft.lblGrup.setVisible(true);
 					
 					ft.setVisible(true);
@@ -2756,6 +2756,7 @@ public class OBS_MAIN extends JFrame {
 					ft.comboBox_8_1.setVisible(false);
 					ft.comboBox_81.setVisible(false);
 					ft.comboBox_80_4.setVisible(false);
+					ft.comboBox_84.setVisible(false);
 					ft.lblGrup.setVisible(false);
 					ft.dateChooser_20_1_1_1.setEnabled(true);
 					ft.dateChooser_21_1_1_1.setEnabled(true);
@@ -2766,7 +2767,6 @@ public class OBS_MAIN extends JFrame {
 					ft.comboBox_78_2.setEnabled(true);
 					ft.comboBox_79_2.setEnabled(true);
 					ft.comboBox_80_2.setEnabled(true);
-					ft.comboBox_80_4.setEnabled(true);
 					
 					ft.setVisible(true);
 				}
@@ -2788,7 +2788,7 @@ public class OBS_MAIN extends JFrame {
 					ft.comboBox_79_2.setEnabled(false);
 					ft.comboBox_80_2.setEnabled(false);
 					ft.comboBox_80_4.setEnabled(false);
-					ft.comboBox_80_4.setVisible(false);
+					ft.comboBox_84.setVisible(false);
 					ft.lblGrup.setVisible(false);
 					
 					ft.setVisible(true);

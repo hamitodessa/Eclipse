@@ -22,6 +22,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 	public void baglan() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String cumle = "jdbc:mysql://" +  BAGLAN.kerDizin.cONN_STR ;
+		DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle, BAGLAN.kerDizin.kULLANICI, BAGLAN.kerDizin.sIFRESI);
 		
 	}

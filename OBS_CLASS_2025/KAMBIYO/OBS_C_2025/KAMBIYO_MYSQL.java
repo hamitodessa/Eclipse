@@ -20,6 +20,7 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 	public void baglan() throws SQLException
 	{
 		String cumle = "jdbc:mysql://" + BAGLAN.kamDizin.cONN_STR ;
+		DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.kamDizin.kULLANICI,BAGLAN.kamDizin.sIFRESI);
 	}
 	@Override

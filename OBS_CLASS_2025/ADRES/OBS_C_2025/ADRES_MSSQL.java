@@ -21,6 +21,7 @@ public class ADRES_MSSQL implements IADRES {
 	public void baglan() throws SQLException
 	{
 		String cumle = "jdbc:sqlserver://" + BAGLAN.adrDizin.cONN_STR + ";";
+		DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.adrDizin.kULLANICI,BAGLAN.adrDizin.sIFRESI);
 	}
 	@Override

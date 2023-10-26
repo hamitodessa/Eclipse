@@ -27,7 +27,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void baglan() throws SQLException {
 		String cumle = "jdbc:sqlserver://" + BAGLAN.gunDizin.cONN_STR + ";";
-		DriverManager.setLoginTimeout(0);
+		DriverManager.setLoginTimeout(1800);
 		con = DriverManager.getConnection(cumle,BAGLAN.gunDizin.kULLANICI,BAGLAN.gunDizin.sIFRESI);
 	}
 	@Override

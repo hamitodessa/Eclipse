@@ -26,7 +26,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String cumle = "jdbc:mysql://" +  BAGLAN.fatDizin.cONN_STR ;
-		DriverManager.setLoginTimeout(0);
+		DriverManager.setLoginTimeout(1800);
 		con = DriverManager.getConnection(cumle, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI);
 	}
 	@Override

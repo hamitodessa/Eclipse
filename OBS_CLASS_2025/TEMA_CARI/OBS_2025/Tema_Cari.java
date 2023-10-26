@@ -17,6 +17,7 @@ public class Tema_Cari {
 	{  
 		Connection conn = null;  
 		try {  
+			DriverManager.setLoginTimeout(1800);
 			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + TEMA_DOSYA );  
 		} 
 		catch (Exception e) 

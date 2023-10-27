@@ -77,6 +77,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.USER_ISLEMLERI;
 import javazoom.jl.player.Player;
+import raven.toast.Notifications;
 
 import javax.swing.JMenuBar;
 
@@ -3315,6 +3316,14 @@ public class OBS_MAIN extends JFrame {
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		toolBar.add(lblNewLabel_8);
 		
+		JButton btnNewButton_71 = new JButton("New button");
+		btnNewButton_71.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Notifications.getInstance().show(Notifications.Type.SUCCESS,Notifications.Location.BOTTOM_RIGHT ,"Deneme");
+			}
+		});
+		toolBar.add(btnNewButton_71);
+		
 		lblNewLabel_9 = new JLabel("");
 		lblNewLabel_9.setOpaque(true);
 		
@@ -3352,6 +3361,8 @@ public class OBS_MAIN extends JFrame {
 
 		desktopPane = new JDesktopPane();
 		//desktopPane.setBackground(new Color(39, 45, 61));
+		
+		Notifications.getInstance().setJFrame(this);
 		DesktopScrollPane scrpane = new DesktopScrollPane(desktopPane );
 
 

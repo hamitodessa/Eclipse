@@ -13,6 +13,7 @@ import raven.application.Application;
  *
  * @author Raven
  */
+@SuppressWarnings("serial")
 public class LoginForm extends javax.swing.JPanel {
 
     public LoginForm() {
@@ -40,9 +41,7 @@ public class LoginForm extends javax.swing.JPanel {
         txtPass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Password");
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+     private void initComponents() {
 
         login = new javax.swing.JPanel();
         cmdLogin = new javax.swing.JButton();

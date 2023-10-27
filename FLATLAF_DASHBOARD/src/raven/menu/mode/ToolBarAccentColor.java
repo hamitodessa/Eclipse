@@ -3,7 +3,6 @@ package raven.menu.mode;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.icons.FlatAbstractIcon;
-import com.formdev.flatlaf.ui.FlatUIUtils;
 import com.formdev.flatlaf.util.ColorFunctions;
 import com.formdev.flatlaf.util.LoggingFacade;
 import com.formdev.flatlaf.util.UIScale;
@@ -27,6 +26,7 @@ import raven.menu.Menu;
  *
  * @author Raven
  */
+@SuppressWarnings("serial")
 public class ToolBarAccentColor extends JPanel {
 
     private final Menu menu;
@@ -101,7 +101,8 @@ public class ToolBarAccentColor extends JPanel {
         }
     }
 
-    private void colorAccentChanged(String colorKey) {
+    @SuppressWarnings("deprecation")
+	private void colorAccentChanged(String colorKey) {
         if (popup.isVisible()) {
             popup.setVisible(false);
         }

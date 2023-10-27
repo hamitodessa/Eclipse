@@ -195,11 +195,8 @@ public class LOGIN extends JDialog {
 	}
 	
 	public LOGIN() throws IOException {
-		
-		/*
-		 * UIDefaults ui = UIManager.getDefaults(); ui.put("ScrollBarUI",
-		 * ScrollBarWin11UI.class.getCanonicalName());
-		 */		//************************************************************************
+		//************************************************************************
+		 FlatLaf.registerCustomDefaultsSource("OBS_2025");
 		  try { LOGIN.setDefaultLookAndFeelDecorated(true);
 		  
 		  if (
@@ -253,7 +250,7 @@ public class LOGIN extends JDialog {
 		  } else if 
 		  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSolarizedLightIJTheme")) 
 		  {
-			 FlatLaf.registerCustomDefaultsSource("OBS_2025");
+		
 			 FlatSolarizedLightIJTheme.setup();
 			  ////UIManager.put( "Toast.duration", 10000 );
 		  } 

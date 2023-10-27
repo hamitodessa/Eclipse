@@ -22,6 +22,7 @@ import raven.menu.mode.ToolBarAccentColor;
  *
  * @author Raven
  */
+@SuppressWarnings("serial")
 public class Menu extends JPanel {
 
     private final String menuItems[][] = {

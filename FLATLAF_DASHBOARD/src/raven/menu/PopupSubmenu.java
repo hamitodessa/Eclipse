@@ -24,6 +24,7 @@ import javax.swing.SwingUtilities;
  *
  * @author Raven
  */
+@SuppressWarnings("serial")
 public class PopupSubmenu extends JPanel {
 
     private final Menu menu;

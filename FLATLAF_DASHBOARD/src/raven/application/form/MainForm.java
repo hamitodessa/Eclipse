@@ -26,6 +26,7 @@ import raven.menu.MenuAction;
  *
  * @author Raven
  */
+@SuppressWarnings("serial")
 public class MainForm extends JLayeredPane {
 
     public MainForm() {

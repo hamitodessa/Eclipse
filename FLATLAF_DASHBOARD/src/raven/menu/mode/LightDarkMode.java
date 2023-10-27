@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
  *
  * @author Raven
  */
+@SuppressWarnings("serial")
 public class LightDarkMode extends JPanel {
 
     public void setMenuFull(boolean menuFull) {

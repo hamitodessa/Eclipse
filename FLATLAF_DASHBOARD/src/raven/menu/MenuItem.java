@@ -26,6 +26,7 @@ import javax.swing.JPanel;
  *
  * @author Raven
  */
+@SuppressWarnings("serial")
 public class MenuItem extends JPanel {
 
     public boolean isMenuShow() {
@@ -52,7 +53,8 @@ public class MenuItem extends JPanel {
         return menuIndex;
     }
 
-    private final List<MenuEvent> events;
+    @SuppressWarnings("unused")
+	private final List<MenuEvent> events;
     private final Menu menu;
     private final String menus[];
     private final int menuIndex;

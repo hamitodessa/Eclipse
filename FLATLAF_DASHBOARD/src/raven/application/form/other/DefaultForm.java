@@ -6,6 +6,7 @@ import com.formdev.flatlaf.FlatClientProperties;
  *
  * @author Raven
  */
+@SuppressWarnings({"serial"})
 public class DefaultForm extends javax.swing.JPanel {
 
     public DefaultForm(String text) {
@@ -15,9 +16,7 @@ public class DefaultForm extends javax.swing.JPanel {
         lb.setText(text);
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+     private void initComponents() {
 
         lb = new javax.swing.JLabel();
 

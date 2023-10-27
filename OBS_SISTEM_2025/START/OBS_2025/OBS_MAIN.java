@@ -49,6 +49,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
+
 import OBS_2025_RAPORLAR.ENVANTER;
 import OBS_2025_RAPORLAR.FATURA_RAPOR;
 import OBS_2025_RAPORLAR.GRUP_RAPOR;
@@ -229,7 +231,7 @@ public class OBS_MAIN extends JFrame {
 	public OBS_MAIN() {
 //2663 satir
 		
-  
+		  SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
 		setFont(new Font("Dialog", Font.BOLD, 12));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_MAIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

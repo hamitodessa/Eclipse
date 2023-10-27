@@ -6,6 +6,7 @@ import com.formdev.flatlaf.FlatClientProperties;
  *
  * @author Raven
  */
+@SuppressWarnings("serial")
 public class FormInbox extends javax.swing.JPanel {
 
     public FormInbox() {
@@ -14,8 +15,6 @@ public class FormInbox extends javax.swing.JPanel {
                 + "font:$h1.font");
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lb = new javax.swing.JLabel();

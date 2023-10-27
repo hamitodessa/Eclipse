@@ -20,7 +20,7 @@ public class KUR_MYSQL implements IKUR {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String cumle = "jdbc:mysql://" + BAGLAN.kurDizin.cONN_STR ;
-		//DriverManager.setLoginTimeout(1800);
+		DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.kurDizin.kULLANICI,BAGLAN.kurDizin.sIFRESI);
 	}
 	@Override

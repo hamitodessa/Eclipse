@@ -27,7 +27,7 @@ public class STOK_MSSQL implements ISTOK {
 	public void baglan() throws SQLException {
 
 		String cumle = "jdbc:sqlserver://" + BAGLAN.fatDizin.cONN_STR + ";";
-		//DriverManager.setLoginTimeout(1800);
+		DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.fatDizin.kULLANICI,BAGLAN.fatDizin.sIFRESI);
 	}
 	@Override

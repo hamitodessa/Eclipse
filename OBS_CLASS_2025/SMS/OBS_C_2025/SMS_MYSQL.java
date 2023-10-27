@@ -19,7 +19,7 @@ public class SMS_MYSQL implements ISMS{
 	public void baglan() throws SQLException
 	{
 		String cumle = "jdbc:mysql://" + BAGLAN.smsDizin.cONN_STR;
-		//DriverManager.setLoginTimeout(1800);
+		DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.smsDizin.kULLANICI,BAGLAN.smsDizin.sIFRESI);
 	}
 	@Override

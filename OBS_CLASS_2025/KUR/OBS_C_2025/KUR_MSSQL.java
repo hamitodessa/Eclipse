@@ -19,7 +19,7 @@ public class KUR_MSSQL implements IKUR{
 	public void baglan() throws SQLException
 	{
 		String cumle = "jdbc:sqlserver://" + BAGLAN.kurDizin.cONN_STR + ";";
-		//DriverManager.setLoginTimeout(1800);
+		DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.kurDizin.kULLANICI,BAGLAN.kurDizin.sIFRESI);
 	}
 	@Override

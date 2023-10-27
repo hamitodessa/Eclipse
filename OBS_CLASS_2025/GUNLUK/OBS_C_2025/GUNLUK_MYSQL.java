@@ -24,7 +24,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String cumle = "jdbc:mysql://" + BAGLAN.gunDizin.cONN_STR ;
-		//DriverManager.setLoginTimeout(1800);
+		DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.gunDizin.kULLANICI,BAGLAN.gunDizin.sIFRESI);
 	}
 	@Override

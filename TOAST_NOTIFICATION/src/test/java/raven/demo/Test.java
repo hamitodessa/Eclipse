@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
+@SuppressWarnings("serial")
 public class Test extends JFrame {
     public Test() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,7 +61,8 @@ public class Test extends JFrame {
     }
 
 
-    private Notifications.Location getRandomLocation() {
+    @SuppressWarnings("unused")
+	private Notifications.Location getRandomLocation() {
         Random ran = new Random();
         int a = ran.nextInt(6);
         if (a == 0) {

@@ -70,6 +70,7 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.IntelliJTheme;
+import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.icons.FlatClearIcon;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
@@ -250,8 +251,10 @@ public class LOGIN extends JDialog {
 		  } else if 
 		  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSolarizedLightIJTheme")) 
 		  {
-		
+			 FlatAnimatedLafChange.showSnapshot();
 			 FlatSolarizedLightIJTheme.setup();
+			 FlatLaf.updateUI();
+			 FlatAnimatedLafChange.hideSnapshotWithAnimation();
 			  ////UIManager.put( "Toast.duration", 10000 );
 		  } 
 		  else if

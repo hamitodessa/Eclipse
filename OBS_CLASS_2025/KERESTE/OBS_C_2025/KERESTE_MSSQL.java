@@ -2122,7 +2122,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	}
 
 	@Override
-	public ResultSet envanter(KER_RAPOR_BILGI ker_rap_BILGI,String gruplama) throws ClassNotFoundException, SQLException {
+	public ResultSet envanter(KER_RAPOR_BILGI ker_rap_BILGI,String gruplama[]) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		
@@ -2159,7 +2159,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		if (! token[3].equals("9999"))  {
 			kODU.append( " SUBSTRING(KERESTE.Kodu, 13, 4) <= '" + token[3] + "'  AND"  );
 		}
-		String sql =  " SELECT  " + gruplama
+		String sql =  " SELECT  " + gruplama[0]
 				+ ",SUM( Miktar )   as Giris_Miktar "
 				+ ",sum(((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000) as Giris_m3 "
 				+ ",SUM(((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * Fiat  ) - SUM(((((((CONVERT(INT, SUBSTRING(KERESTE.Kodu, 4, 3) )  *  CONVERT(INT, SUBSTRING(KERESTE.Kodu, 8, 4)) * CONVERT(INT, SUBSTRING(KERESTE.Kodu, 13, 4) )  ) * Miktar)/1000000000)) * Fiat  ) * Iskonto)/100)  as Giris_Tutar "
@@ -2191,7 +2191,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " CAlt_Grup " + ker_rap_BILGI.getCAlt_Grup()  + " AND" 
 				+ " CDepo " + ker_rap_BILGI.getCDepo()  + " AND " 
 				+ " COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() 
-				+ " GROUP BY "+ gruplama +"  ORDER BY " + gruplama  ;
+				+ " GROUP BY "+ gruplama[1] +"  ORDER BY " + gruplama[1]  ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

@@ -208,14 +208,18 @@ public class KER_ENVANTER extends JInternalFrame {
 			ker_BILGI.setCAlt_Grup(calt);
 			ker_BILGI.setCDepo(cdpo);
 			ker_BILGI.setCOzel_Kod(coz);
-			String grupString = "" ;
+			String grupString[] = {"",""} ;
+			int sutun = 0 ;
 			if ( FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Urun Kodu"))
 			{
-				grupString = " Kodu " ;
+				grupString[0] = " Kodu " ;
+				grupString[1] = " Kodu " ;
 			}
 			else if ( FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Konsimento"))
 			{
-				grupString = " Konsimento " ;
+				grupString[0] = " Konsimento , (SELECT ACIKLAMA FROM KONS_ACIKLAMA  WHERE KONS = KERESTE.Konsimento ) as Aciklama " ;
+				grupString[1] = " Konsimento " ;
+				sutun =1 ;
 			}
 
 			rs = ker_Access.envanter(ker_BILGI,grupString);
@@ -236,56 +240,65 @@ public class KER_ENVANTER extends JInternalFrame {
 				tc.setCellRenderer(new SOLA_ORTA());
 				tc.setMinWidth(120);
 
-				tc = tcm.getColumn(1);
+				if(sutun ==1)
+				{
+					tc = tcm.getColumn( 1 );
+					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
+					tc.setMinWidth(100);
+					tc.setMaxWidth(100);
+				}
+				
+				tc = tcm.getColumn(sutun + 1 );
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(0,false));
 				tc.setMinWidth(100);
 				tc.setMaxWidth(100);
 				
-				tc = tcm.getColumn(2);
+				tc = tcm.getColumn(sutun +2);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(3,false));
 				tc.setMinWidth(100);
 				tc.setMaxWidth(100);
 				
-				tc = tcm.getColumn(3);
+				tc = tcm.getColumn(sutun +3);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,false));
 				tc.setMinWidth(100);
 				tc.setMaxWidth(100);
 				
-				tc = tcm.getColumn(4);
+				tc = tcm.getColumn(sutun +4);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(0,false));
 				tc.setMinWidth(100);
 				tc.setMaxWidth(100);
 				
-				tc = tcm.getColumn(5);
+				tc = tcm.getColumn(sutun +5);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(3,false));
 				tc.setMinWidth(100);
 				tc.setMaxWidth(100);
 				
-				tc = tcm.getColumn(6);
+				tc = tcm.getColumn(sutun +6);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,false));
 				tc.setMinWidth(100);
 				tc.setMaxWidth(100);
 				
-				tc = tcm.getColumn(7);
+				tc = tcm.getColumn(sutun +7);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(3,true));
 				tc.setMinWidth(100);
 				tc.setMaxWidth(100);
 				
-				tc = tcm.getColumn(8);
+				tc = tcm.getColumn(sutun +8);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,false));
 				tc.setMinWidth(100);
 				tc.setMaxWidth(100);
 				
 				
-				tc = tcm.getColumn(9);
+				tc = tcm.getColumn(sutun +9);
 				tc.setHeaderRenderer(new SAGA());
 				tc.setCellRenderer(new TABLO_RENDERER(2,true));
 				tc.setMinWidth(100);
@@ -305,7 +318,7 @@ public class KER_ENVANTER extends JInternalFrame {
 
 				//table.setSelectionBackground(Color.PINK);
 				//table.setSelectionForeground(Color.BLUE);
-				topla();
+				topla(sutun);
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 
@@ -325,18 +338,24 @@ public class KER_ENVANTER extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	private static void topla()
+	private static void topla(int sutun )
 	{
 		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 		double  m3 = 0.00  ;
 		double urunmiktar = 0  ;
 		for (int  i = 0 ; i <= table.getRowCount() -1 ; i ++)
 		{
-			urunmiktar += Double.parseDouble(mdl.getValueAt(i, 9).toString());
-			m3 += Double.parseDouble( mdl.getValueAt(i,7).toString());
+			urunmiktar += Double.parseDouble(mdl.getValueAt(i,sutun + 9).toString());
+			m3 += Double.parseDouble( mdl.getValueAt(i,sutun + 7).toString());
 		}
 		lblmiktar.setText(FORMATLAMA.doub_2( urunmiktar));
+		
 		lblm3.setText(FORMATLAMA.doub_3( m3));
+		if (sutun ==1)
+		{
+			lblmiktar.setLocation(830, 5);
+			lblmiktar.setLocation(1040, 5);
+		}
 	}
 	private static void grup_cevir()
 	{
@@ -636,7 +655,7 @@ public class KER_ENVANTER extends JInternalFrame {
 				}
 				else if (FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Konsimento"))
 				{
-					sutun = 0 ;
+					sutun = 1 ;
 				}
 				Row headerRow = sheet.createRow(1);
 				for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
@@ -693,11 +712,11 @@ public class KER_ENVANTER extends JInternalFrame {
 					satir += 1 ;
 				}
 				Row toplam1  = sheet.createRow(satir + 2);
-				Cell cell = toplam1.createCell(7);
+				Cell cell = toplam1.createCell(sutun + 7);
 				cell.setCellValue(lblm3.getText());
 				cell.setCellStyle(satirStyle3_ARA); 
 				
-				cell = toplam1.createCell(9);
+				cell = toplam1.createCell(sutun + 9);
 				cell.setCellValue(lblmiktar.getText());
 				cell.setCellStyle(satirStyle2_ARA); 
 				
@@ -791,7 +810,7 @@ public class KER_ENVANTER extends JInternalFrame {
 				}
 				else if (FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Konsimento"))
 				{
-					sutun = 0 ;
+					sutun = 1 ;
 				}
 				Row headerRow = sheet.createRow(1);
 				for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
@@ -848,11 +867,11 @@ public class KER_ENVANTER extends JInternalFrame {
 					satir += 1 ;
 				}
 				Row toplam1  = sheet.createRow(satir + 2);
-				Cell cell = toplam1.createCell(7);
+				Cell cell = toplam1.createCell(sutun + 7);
 				cell.setCellValue(lblm3.getText());
 				cell.setCellStyle(satirStyle3_ARA); 
 				
-				cell = toplam1.createCell(9);
+				cell = toplam1.createCell(sutun + 9);
 				cell.setCellValue(lblmiktar.getText());
 				cell.setCellStyle(satirStyle2_ARA); 
 				for (int i=0; i<= mdl.getColumnCount()-1; i++){
@@ -956,7 +975,7 @@ public class KER_ENVANTER extends JInternalFrame {
 				}
 				else if (FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Konsimento"))
 				{
-					sutun = 0 ;
+					sutun = 1 ;
 				}
 				Row headerRow = sheet.createRow(1);
 				for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
@@ -1013,11 +1032,11 @@ public class KER_ENVANTER extends JInternalFrame {
 					satir += 1 ;
 				}
 				Row toplam1  = sheet.createRow(satir + 2);
-				Cell cell = toplam1.createCell(7);
+				Cell cell = toplam1.createCell(sutun + 7);
 				cell.setCellValue(lblm3.getText());
 				cell.setCellStyle(satirStyle3_ARA); 
 				
-				cell = toplam1.createCell(9);
+				cell = toplam1.createCell(sutun + 9);
 				cell.setCellValue(lblmiktar.getText());
 				cell.setCellStyle(satirStyle2_ARA); 
 			for (int i=0; i<= mdl.getColumnCount()-1; i++){

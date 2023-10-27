@@ -61,6 +61,7 @@ import com.crystaldecisions.sdk.occa.report.exportoptions.ReportExportFormat;
 import com.crystaldecisions.sdk.occa.report.lib.ReportSDKException;
 
 import KER_RAPOR.KER_DETAY;
+import KER_RAPOR.KER_ENVANTER;
 import KER_RAPOR.KER_GRUP_RAPOR;
 import KER_RAPOR.KER_ORT_FIAT;
 import OBS_2025_RAPORLAR.GRUP_RAPOR;
@@ -251,6 +252,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				{
 					ker_ortfiat_gonder();
 				}
+				else if ( OBS_MAIN.pencere_bak("KERESTE ENVANTER") == true ) 
+				{
+					ker_envanter_gonder();
+				}
 				else if ( OBS_MAIN.pencere_bak("IMALAT GRUP RAPOR") == true ) 
 				{
 					ima_grup_gonder();
@@ -436,6 +441,11 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			{
 				comboBox.enable(false);
 				lblNewLabel_2.setText("Kereste Ortalama Fiat");
+			}
+			else if (ker_envanter_kontrol() )
+			{
+				comboBox.enable(false);
+				lblNewLabel_2.setText("Envanter Rapor");
 			}
 			else if (ima_grup_kontrol() )
 			{
@@ -915,6 +925,18 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
+	private void ker_envanter_gonder() 
+	{
+		try
+		{
+			KER_ENVANTER. mail_at();
+			xl_gonder("Kereste_Envanter" );
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
 	private void stk_gonder() 
 	{
 		try
@@ -1148,6 +1170,16 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		boolean result  = false;
 
 		if (OBS_MAIN.pencere_bak("KERESTE ORTALAMA FIAT"))
+		{
+			result = true ;
+		}
+		return result;
+	}
+	private boolean  ker_envanter_kontrol() throws ReportSDKException
+	{
+		boolean result  = false;
+
+		if (OBS_MAIN.pencere_bak("KERESTE ENVANTER"))
 		{
 			result = true ;
 		}

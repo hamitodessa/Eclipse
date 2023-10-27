@@ -3110,6 +3110,10 @@ public class OBS_MAIN extends JFrame {
 				{
 					KER_ORT_FIAT.excell_aktar() ;
 				}
+				else if (sonuc == "KERESTE ENVANTER")
+				{
+					KER_ENVANTER.excell_aktar() ;
+				}
 				else if (sonuc == "KERESTE CIKIS")
 				{
 					KERESTE_CIKIS.excell_aktar();

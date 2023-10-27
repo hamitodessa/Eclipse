@@ -118,7 +118,7 @@ public class FATURA_RAPOR extends JInternalFrame {
 		
 		splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
-		splitPane.setDividerSize(0);
+		splitPane.setDividerSize(10);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
@@ -151,8 +151,8 @@ public class FATURA_RAPOR extends JInternalFrame {
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(0, 350));
-		panel.setMaximumSize(new Dimension(0, 350));
+		panel.setMinimumSize(new Dimension(0, 250));
+		panel.setMaximumSize(new Dimension(0, 250));
 		splitPane.setRightComponent(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		

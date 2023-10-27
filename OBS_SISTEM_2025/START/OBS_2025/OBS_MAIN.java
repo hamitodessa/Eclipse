@@ -3182,7 +3182,7 @@ public class OBS_MAIN extends JFrame {
 				}
 			}
 		});
-		btnGrafik.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-edit-graph-report-16.png")));
+		btnGrafik.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-chart-16.png")));
 		toolBar.add(btnGrafik);
 
 		JLabel lblNewLabel_5 = new JLabel("          ");

@@ -28,6 +28,7 @@ import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -394,6 +395,7 @@ public class DEKONT extends JInternalFrame {
 					if ( rs.getInt("MAX_NO") == 0 ) { 
 						kutu_kapa();
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.BOTTOM_RIGHT ,"Dosyada Hic Kayit Yok");
 						JOptionPane.showMessageDialog(null, "Dosyada Hic Kayit Yok",  "Cari Hesap", JOptionPane.ERROR_MESSAGE);  
 						return; // Kayit Yok
 					} 
@@ -1565,7 +1567,8 @@ public class DEKONT extends JInternalFrame {
 			if (!rs.isBeforeFirst() ) { 
 				sifirla();
 				kutu_kapa();
-				JOptionPane.showMessageDialog(null, "Bu Numarada Kayitli Fis Yok......", "Dekont Kontrol", JOptionPane.ERROR_MESSAGE);
+				Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.BOTTOM_RIGHT , "Bu Numarada Kayitli Fis Yok......");
+				//JOptionPane.showMessageDialog(null, "Bu Numarada Kayitli Fis Yok......", "Dekont Kontrol", JOptionPane.ERROR_MESSAGE);
 				return; // Kayit Yok
 			} 
 			sifirla();

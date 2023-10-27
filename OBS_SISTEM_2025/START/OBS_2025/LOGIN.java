@@ -23,13 +23,18 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Properties;
+import java.util.Scanner;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -138,6 +143,8 @@ import OBS_C_2025.KERESTE_MSSQL;
 import OBS_C_2025.KERESTE_MYSQL;
 import OBS_C_2025.Server_Bilgi;
 import OBS_C_2025.sayiyiYaziyaCevir;
+import raven.toast.Notifications;
+
 import javax.swing.JSeparator;
 @SuppressWarnings({"static-access","unused"})
 public class LOGIN extends JDialog {
@@ -193,7 +200,6 @@ public class LOGIN extends JDialog {
 		 * UIDefaults ui = UIManager.getDefaults(); ui.put("ScrollBarUI",
 		 * ScrollBarWin11UI.class.getCanonicalName());
 		 */		//************************************************************************
-		
 		  try { LOGIN.setDefaultLookAndFeelDecorated(true);
 		  
 		  if (
@@ -236,18 +242,19 @@ public class LOGIN extends JDialog {
 		  
 		
 		//  for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-			//  System.out.println(	  info.getName().toString());
+		//  System.out.println(	  info.getName().toString());
 		//	  if ("Metal".equals(info.getName())) {
-       //           javax.swing.UIManager.setLookAndFeel(info.getClassName());
-       //           break;
-       //       }
+        //           javax.swing.UIManager.setLookAndFeel(info.getClassName());
+        //           break;
+        //       }
 		//  }
 		  
 		  
 		  } else if 
 		  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSolarizedLightIJTheme")) 
 		  {
-			  FlatSolarizedLightIJTheme.setup();
+			 FlatLaf.registerCustomDefaultsSource("OBS_2025");
+			 FlatSolarizedLightIJTheme.setup();
 			  ////UIManager.put( "Toast.duration", 10000 );
 		  } 
 		  else if

@@ -6,6 +6,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -228,7 +229,7 @@ public class OBS_MAIN extends JFrame {
 	public OBS_MAIN() {
 //2663 satir
 		
-		
+  
 		setFont(new Font("Dialog", Font.BOLD, 12));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_MAIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -3318,14 +3319,7 @@ public class OBS_MAIN extends JFrame {
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		toolBar.add(lblNewLabel_8);
 		
-		JButton btnNewButton_71 = new JButton("New button");
-		btnNewButton_71.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Notifications.getInstance().show(Notifications.Type.SUCCESS,Notifications.Location.BOTTOM_RIGHT ,"Deneme");
-			}
-		});
-		toolBar.add(btnNewButton_71);
-		
+	
 		lblNewLabel_9 = new JLabel("");
 		lblNewLabel_9.setOpaque(true);
 		

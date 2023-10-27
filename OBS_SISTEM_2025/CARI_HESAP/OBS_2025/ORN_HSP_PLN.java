@@ -94,7 +94,7 @@ public class ORN_HSP_PLN extends JInternalFrame {
 				if (! lblNewLabel.getText().equals("0")) {
 					JOptionPane.showMessageDialog(null, "Aktarilacak Dosya Bos Degil.......",  "Ornek Hesap Plani", JOptionPane.INFORMATION_MESSAGE);   
 				}
-				InputStream stream = PRINT_YAPMA.class.getClassLoader().getResourceAsStream("DOSYA/Hesap_Plani_Ornek.txt");
+				InputStream stream = ORN_HSP_PLN.class.getClassLoader().getResourceAsStream("DOSYA/Hesap_Plani_Ornek.txt");
 				InputStreamReader streamReader = new InputStreamReader(stream,StandardCharsets.UTF_16);
 				BufferedReader bReader = new BufferedReader(streamReader);
 

@@ -63,6 +63,7 @@ import org.apache.poi.sl.usermodel.Background;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.IntelliJTheme;
 import com.formdev.flatlaf.icons.FlatClearIcon;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
@@ -89,6 +90,7 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatDraculaIJTheme
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMonokaiProIJTheme;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 import LOGER_KAYIT.DOSYA_MSSQL;
@@ -246,7 +248,7 @@ public class LOGIN extends JDialog {
 		  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSolarizedLightIJTheme")) 
 		  {
 			  FlatSolarizedLightIJTheme.setup();
-			 
+			  ////UIManager.put( "Toast.duration", 10000 );
 		  } 
 		  else if
 		  (

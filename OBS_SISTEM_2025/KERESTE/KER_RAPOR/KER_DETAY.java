@@ -458,8 +458,6 @@ public class KER_DETAY extends JInternalFrame {
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 
-				//table.setSelectionBackground(Color.PINK);
-				//table.setSelectionForeground(Color.BLUE);
 				topla();
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;

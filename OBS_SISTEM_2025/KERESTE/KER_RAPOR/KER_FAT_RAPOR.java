@@ -385,8 +385,6 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 
-				//table.setSelectionBackground(Color.PINK);
-				//table.setSelectionForeground(Color.BLUE);
 				lblana.setText(FORMATLAMA.doub_0(table.getRowCount()));
 				//***
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
@@ -414,6 +412,16 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+				
+				String deger;
+				String[] parts;
+				Font bigFont;
+				deger = GLOBAL.setting_oku("KER_RAPORLAMA").toString();
+				deger = deger.substring(1, deger.length()-1);
+				parts = deger.split(",");
+				bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+				table.setFont(bigFont);
+				
 			}
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
@@ -798,6 +806,15 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+				
+				String deger;
+				String[] parts;
+				Font bigFont;
+				deger = GLOBAL.setting_oku("KER_RAPORLAMA").toString();
+				deger = deger.substring(1, deger.length()-1);
+				parts = deger.split(",");
+				bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+				table.setFont(bigFont);
 			}
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
@@ -960,8 +977,6 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 
-				//table.setSelectionBackground(Color.PINK);
-				//table.setSelectionForeground(Color.BLUE);
 				lblana.setText(FORMATLAMA.doub_0(table.getRowCount()));
 				//***
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
@@ -990,6 +1005,15 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+				
+				String deger;
+				String[] parts;
+				Font bigFont;
+				deger = GLOBAL.setting_oku("KER_RAPORLAMA").toString();
+				deger = deger.substring(1, deger.length()-1);
+				parts = deger.split(",");
+				bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+				table.setFont(bigFont);
 			}
 		} 
 		catch (Exception ex) 
@@ -1160,6 +1184,15 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+				
+				String deger;
+				String[] parts;
+				Font bigFont;
+				deger = GLOBAL.setting_oku("KER_RAPORLAMA").toString();
+				deger = deger.substring(1, deger.length()-1);
+				parts = deger.split(",");
+				bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+				table.setFont(bigFont);
 			}
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Fatura ", JOptionPane.ERROR_MESSAGE);

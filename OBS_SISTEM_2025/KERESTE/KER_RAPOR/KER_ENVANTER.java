@@ -221,7 +221,30 @@ public class KER_ENVANTER extends JInternalFrame {
 				grupString[1] = " Konsimento " ;
 				sutun =1 ;
 			}
-
+			else if ( FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Hesap-Kodu"))
+			{
+				if( BAGLAN.kerDizin.hAN_SQL.equals("MS SQL") )
+				{
+				grupString[0] = " Cari_Firma , (SELECT TOP 1  UNVAN FROM OK_Car" + BAGLAN.cariDizin.kOD+ ".dbo.HESAP WHERE HESAP.HESAP = KERESTE.Cari_Firma  ) as Unvan  " ;
+				grupString[1] = " Cari_Firma " ;
+				sutun =1 ;
+				}
+				else {
+				grupString[0] = " Cari_Firma , (SELECT  UNVAN FROM OK_Car" + BAGLAN.cariDizin.kOD+ ".dbo.HESAP WHERE HESAP.HESAP = KERESTE.Cari_Firma Limit 1 ) as Unvan  " ;
+				grupString[1] = " Cari_Firma " ;
+				sutun =1 ;
+					
+				}
+			}
+			else if ( FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Ana_Grup-Alt_Grup"))
+			{
+				grupString[0] = "  (SELECT DISTINCT  ANA_GRUP FROM ANA_GRUP_DEGISKEN WHERE ANA_GRUP_DEGISKEN.AGID_Y = KERESTE.Ana_Grup ) as Ana_Grup , "
+								+ " (SELECT DISTINCT  ALT_GRUP FROM ALT_GRUP_DEGISKEN WHERE ALT_GRUP_DEGISKEN.ALID_Y = KERESTE.Alt_Grup ) as Alt_Grup " ;
+				grupString[1] = " Ana_Grup ,Alt_Grup  " ;
+				sutun =1 ;
+				
+			}
+			//
 			rs = ker_Access.envanter(ker_BILGI,grupString);
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -235,18 +258,48 @@ public class KER_ENVANTER extends JInternalFrame {
 				TableColumn tc;
 
 				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-				tc = tcm.getColumn(0);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setCellRenderer(new SOLA_ORTA());
-				tc.setMinWidth(120);
+				
+				if ( FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Ana_Grup-Alt_Grup"))
+				{
+					tc = tcm.getColumn(0);
+					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
+					tc.setMinWidth(200);
+				}
+				else {
+					tc = tcm.getColumn(0);
+					tc.setHeaderRenderer(new SOLA());
+					tc.setCellRenderer(new SOLA_ORTA());
+					tc.setMinWidth(120);
+				}
 
 				if(sutun ==1)
 				{
+					if ( FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Hesap-Kodu"))
+					{
+						tc = tcm.getColumn( 1 );
+						tc.setHeaderRenderer(new SOLA());
+						tc.setCellRenderer(new SOLA_ORTA());
+						tc.setMinWidth(200);
+						tc.setMaxWidth(200);	
+					}
+					else if ( FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Ana_Grup-Alt_Grup"))
+					{
+						tc = tcm.getColumn( 1 );
+						tc.setHeaderRenderer(new SOLA());
+						tc.setCellRenderer(new SOLA_ORTA());
+						tc.setMinWidth(200);
+						tc.setMaxWidth(200);	
+					}//
+					else if ( FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Konsimento"))
+					{
 					tc = tcm.getColumn( 1 );
 					tc.setHeaderRenderer(new SOLA());
 					tc.setCellRenderer(new SOLA_ORTA());
 					tc.setMinWidth(100);
-					tc.setMaxWidth(100);
+					tc.setMaxWidth(100);	
+					}
+					
 				}
 				
 				tc = tcm.getColumn(sutun + 1 );
@@ -347,13 +400,27 @@ public class KER_ENVANTER extends JInternalFrame {
 			m3 += Double.parseDouble( mdl.getValueAt(i,sutun + 7).toString());
 		}
 		lblmiktar.setText(FORMATLAMA.doub_2( urunmiktar));
-		
 		lblm3.setText(FORMATLAMA.doub_3( m3));
-		if (sutun ==1)
-		{
-			lblmiktar.setLocation(830, 5);
-			lblmiktar.setLocation(1040, 5);
-		}
+			if ( FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Hesap-Kodu"))
+			{
+				lblm3.setLocation(930, 5);
+				lblmiktar.setLocation(1140, 5);
+			}
+			else if ( FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Ana_Grup-Alt_Grup"))
+			{
+				lblm3.setLocation(1010, 5);
+				lblmiktar.setLocation(1220, 5);
+			}
+			else if ( FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Konsimento"))
+			{
+				lblm3.setLocation(830, 5);
+				lblmiktar.setLocation(1040, 5);
+			}
+			else if ( FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Urun Kodu"))
+			{
+				lblm3.setLocation(730, 5);
+				lblmiktar.setLocation(940, 5);
+			}
 	}
 	private static void grup_cevir()
 	{
@@ -655,6 +722,14 @@ public class KER_ENVANTER extends JInternalFrame {
 				{
 					sutun = 1 ;
 				}
+				else if (FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Hesap-Kodu"))
+				{
+					sutun = 1 ;
+				}
+				else if (FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Ana_Grup-Alt_Grup"))
+				{
+					sutun = 1 ;
+				}//
 				Row headerRow = sheet.createRow(1);
 				for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
 				{
@@ -807,6 +882,14 @@ public class KER_ENVANTER extends JInternalFrame {
 					sutun = 0 ;
 				}
 				else if (FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Konsimento"))
+				{
+					sutun = 1 ;
+				}
+				else if (FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Hesap-Kodu"))
+				{
+					sutun = 1 ;
+				}
+				else if (FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Ana_Grup-Alt_Grup"))
 				{
 					sutun = 1 ;
 				}
@@ -972,6 +1055,14 @@ public class KER_ENVANTER extends JInternalFrame {
 					sutun = 0 ;
 				}
 				else if (FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Konsimento"))
+				{
+					sutun = 1 ;
+				}
+				else if (FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Hesap-Kodu"))
+				{
+					sutun = 1 ;
+				}
+				else if (FILTRE.comboBox_84.getItemAt(FILTRE.comboBox_84.getSelectedIndex()).equals("Ana_Grup-Alt_Grup"))
 				{
 					sutun = 1 ;
 				}

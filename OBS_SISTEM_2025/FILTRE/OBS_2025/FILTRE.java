@@ -4908,10 +4908,10 @@ public class FILTRE extends JDialog {
 		panel_KERESTE_DETAY.add(lblGrup);
 		
 		comboBox_84 = new JComboBox<String>();
-		comboBox_84.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Konsimento"}));
+		comboBox_84.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Konsimento","Hesap-Kodu","Ana_Grup-Alt_Grup"}));
 		comboBox_84.setForeground(new Color(0, 0, 128));
 		comboBox_84.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_84.setBounds(100, 200, 120, 22);
+		comboBox_84.setBounds(100, 200, 200, 22);
 		panel_KERESTE_DETAY.add(comboBox_84);
 		
 		JLabel label_66_1 = new JLabel("Ana Grup");

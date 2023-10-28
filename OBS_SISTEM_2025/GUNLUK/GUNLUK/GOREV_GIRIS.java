@@ -369,12 +369,11 @@ public class GOREV_GIRIS extends JInternalFrame {
 			if (txtIsim.getText().equals(""))return;
 			if (txtGorev.getText().equals(""))return;
 			if (txtDeger.getText().equals(""))return;
-			if(dtcBaslama.getDate() == null) return;
-			if(dtcBitis.getDate() == null) return;
+			if (dtcBaslama.getDate() == null) return;
+			if (dtcBitis.getDate() == null) return;
 			boolean isInteger = Pattern.matches("^\\d*$", txtDeger.getText());
 			if(! isInteger) return;
 		    	 
-			//
 			String mesaj = "" ;
 			mesaj = "Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + 
 			" Mesaj="  ;
@@ -386,8 +385,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 			{
 				mesaj = mesaj + " Msj:" + txtMesaj.getText().toString().substring(0, 89  -(mesaj.length()) ) + "Silme" ;
 			}
-
-			//
 			if (! txtGID.getText().toString().equals(""))
 			{
 				int g =  JOptionPane.showOptionDialog( null,  "Gorev Onceden Kayitli Guncellenecek  ..?", "Bilgi Guncelleme",   JOptionPane.YES_NO_OPTION,

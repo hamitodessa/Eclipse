@@ -1567,10 +1567,7 @@ public class DEKONT extends JInternalFrame {
 			if (!rs.isBeforeFirst() ) { 
 				sifirla();
 				kutu_kapa();
-				Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.BOTTOM_RIGHT ,5000 , "Bu Numarada Kayitli Fis Yok......");
-				Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,10000 , "Bu Numarada Kayitli Fis Yok......");
-
-				//JOptionPane.showMessageDialog(null, "Bu Numarada Kayitli Fis Yok......", "Dekont Kontrol", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bu Numarada Kayitli Fis Yok......", "Dekont Kontrol", JOptionPane.ERROR_MESSAGE);
 				return; // Kayit Yok
 			} 
 			sifirla();

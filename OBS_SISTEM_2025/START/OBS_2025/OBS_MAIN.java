@@ -66,7 +66,6 @@ import OBS_2025_RAPORLAR.ZAYI_RAPOR;
 import GUNLUK.GOREV_GIRIS;
 import GUNLUK.Gunluk;
 import GUNLUK.HAZIR_GOREVLER;
-import GUNLUK.MESAJ_GOSTER;
 import KER_RAPOR.KER_DETAY;
 import KER_RAPOR.KER_FAT_RAPOR;
 import KER_RAPOR.KER_GRUP_RAPOR;
@@ -227,6 +226,10 @@ public class OBS_MAIN extends JFrame {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
+	
+	static InputStream stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
+	static Player player ;
+
 
 	public OBS_MAIN() {
 //2663 satir
@@ -3398,11 +3401,9 @@ public class OBS_MAIN extends JFrame {
 				btnSil.setEnabled(false);
 			}
 			
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-		form_ac("CALISMA DIZINLERI","");
-		try {
+
+			player = new Player(stream);
+			form_ac("CALISMA DIZINLERI","");
 			gorev_kontrol();
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -3604,6 +3605,7 @@ public class OBS_MAIN extends JFrame {
 					gunluk_goster();
 				}
 			}, millisToNextHour(calendar),  kontolsuresi);
+			gunluk_goster();
 		} catch (Exception e) 
 		{
 			e.printStackTrace();
@@ -3630,14 +3632,17 @@ public class OBS_MAIN extends JFrame {
 				GuiUtil.setWaitCursor(toolBar,false);
 				return; // Kayit Yok
 			} 
-			MESAJ_GOSTER frame = new MESAJ_GOSTER(rs);
-			desktopPane.add(frame);
-			frame.setVisible(true);
-			///Whatsap
-			InputStream stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
-			Player player = new Player(stream);
-			player.play();
-			///
+			//MESAJ_GOSTER frame = new MESAJ_GOSTER(rs);
+			//desktopPane.add(frame);
+			//frame.setVisible(true);
+			while (rs.next()) 
+			{
+				String html =  rs.getString("TARIH") + "  "
+						+ rs.getString("ISIM")  + "  "
+						+ rs.getString("MESAJ");
+				Notifications.getInstance().show(Notifications.Type.INFO,Notifications.Location.BOTTOM_RIGHT ,10000 ,String.format(html));
+				player.play();
+			}
 			stream.close();
 			GuiUtil.setWaitCursor(toolBar,false);
 		} catch (Exception e) {

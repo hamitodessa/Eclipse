@@ -79,8 +79,6 @@ public class MESAJ_GOSTER extends JInternalFrame {
 		tc.setHeaderRenderer(new SOLA());
 		tc.setMinWidth(220);
 		
-		//table.setSelectionBackground(Color.PINK);
-		//table.setSelectionForeground(Color.BLUE);
 		
 		Dimension dd = th.getPreferredSize();
 		dd.height = 30;

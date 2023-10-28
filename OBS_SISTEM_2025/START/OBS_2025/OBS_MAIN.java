@@ -263,8 +263,8 @@ public class OBS_MAIN extends JFrame {
 		setFont(new Font("Dialog", Font.BOLD, 12));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_MAIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		//setBounds(100, 100, 1374, 655);
+		//setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setBounds(0, 0, 1600, 1000);
 		setTitle("OBS SISTEM");
 
 		JMenuBar menuBar = new JMenuBar();

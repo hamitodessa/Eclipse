@@ -1703,7 +1703,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 				" SUM(Kereste." + hANGI + "Tutar - ((KERESTE." + hANGI + "Tutar * Kereste." + hANGI + "Iskonto)/100)    ) /  IF(( sum(((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)  ) = 0,1, " +
 				" SUM(((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000)) As m3_Ort_Fiat , " +
 				" (SUM((" + hANGI + "Fiat * (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000) - (   (" + hANGI+"Fiat * (((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000) * Kereste.Iskonto)/100)    )  / kurlar.MA) /      NULLIF(      SUM(((CONVERT(SUBSTRING(KERESTE.Kodu, 4, 3),DECIMAL )  *  CONVERT(SUBSTRING(KERESTE.Kodu, 8, 4),DECIMAL) * CONVERT(SUBSTRING(KERESTE.Kodu, 13, 4),DECIMAL )  ) * Miktar)/1000000000),0))  As m3_Ort_Fiat_"+ kurc +" " +
-				" FROM KERESTE ,OK_Kur" + kurkod +".kurlar  " +
+				" FROM KERESTE left join OK_Kur" + kurkod +".kurlar  on kurlar.Tarih = DATE( KERESTE."+ hANGI +"Tarih) and kurlar.Kur = '" + kurc + "'  " +
 				" WHERE    " +
 				" " + dURUM +
 				" KERESTE." + hANGI + "Tarih BETWEEN '" + t1 + "'" + " AND  '" + t2 + " 23:59:59.998' AND" +
@@ -1713,7 +1713,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 				" SUBSTRING(KERESTE.Kodu, 13, 4) >= '" + ilkg + "' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' AND " + 
 				" " + hANGI + "Cari_Firma between N'" + m1 + "' AND N'" + s2 + "' AND" +
 				" Konsimento between N'" + s1 + "' AND N'" + m2 + "'" +
-				" AND kurlar.Tarih = DATE( KERESTE."+ hANGI +"Tarih) and kurlar.Kur = '" + kurc + "'  " +
 				" GROUP BY  " + iu ;
 		}
 		else 
@@ -1741,6 +1740,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 					" GROUP BY  " + iu ;
 
 		}
+		System.out.println(sql);
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

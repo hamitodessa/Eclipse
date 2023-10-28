@@ -571,9 +571,9 @@ public class LOGIN extends JDialog {
 							GLOBAL.create_table_log(dsy,oac._IKereste.ker_firma_adi(),BAGLAN_LOG.kerLogDizin);
 						}
 						Thread.currentThread().isInterrupted();
+						obmain.setExtendedState(JFrame.MAXIMIZED_BOTH);
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
 						obmain.lblUser.setText(GLOBAL.KULL_ADI);
-						obmain.setExtendedState(obmain.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 						obmain.setVisible(true);
 						dispose();
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

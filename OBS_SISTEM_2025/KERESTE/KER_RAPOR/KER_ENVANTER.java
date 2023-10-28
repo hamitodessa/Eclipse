@@ -229,8 +229,9 @@ public class KER_ENVANTER extends JInternalFrame {
 				grupString[1] = " Cari_Firma " ;
 				sutun =1 ;
 				}
-				else {
-				grupString[0] = " Cari_Firma , (SELECT  UNVAN FROM OK_Car" + BAGLAN.cariDizin.kOD+ ".dbo.HESAP WHERE HESAP.HESAP = KERESTE.Cari_Firma Limit 1 ) as Unvan  " ;
+				else if( BAGLAN.kerDizin.hAN_SQL.equals("MY SQL") )
+				{
+				grupString[0] = " Cari_Firma , (SELECT  UNVAN FROM OK_Car" + BAGLAN.cariDizin.kOD + ".HESAP WHERE HESAP.HESAP = KERESTE.Cari_Firma Limit 1 ) as Unvan  " ;
 				grupString[1] = " Cari_Firma " ;
 				sutun =1 ;
 					

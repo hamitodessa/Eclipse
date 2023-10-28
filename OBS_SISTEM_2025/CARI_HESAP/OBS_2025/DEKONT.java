@@ -6,6 +6,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.NumberFormatter;
@@ -358,6 +360,24 @@ public class DEKONT extends JInternalFrame {
 		txtevrak.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtevrak.setFont(new Font("Tahoma", Font.BOLD, 22));
 		txtevrak.setBounds(511, 25, 117, 30);
+		txtevrak.addAncestorListener(new AncestorListener() {
+			@Override
+			public void ancestorRemoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorMoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorAdded(AncestorEvent pEvent) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						txtevrak.requestFocusInWindow();
+					}
+				});
+			}
+		});
+
 		panel.add(txtevrak);
 		txtevrak.setColumns(10);
 

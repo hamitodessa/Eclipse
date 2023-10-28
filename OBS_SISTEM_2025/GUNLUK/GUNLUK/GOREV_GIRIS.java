@@ -28,6 +28,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.text.JTextComponent;
 
 import com.toedter.calendar.JDateChooser;
@@ -62,7 +64,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 	public GOREV_GIRIS() {
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(100, 100, 514, 279);
+		setBounds(100, 100, 483, 264);
 		setTitle("GOREV GIRIS");
 		
 		JPanel panel = new JPanel();
@@ -70,29 +72,47 @@ public class GOREV_GIRIS extends JInternalFrame {
 		getContentPane().add(panel, BorderLayout.CENTER);
 
 		JLabel lblNewLabel = new JLabel("Isim");
-		lblNewLabel.setBounds(10, 29, 46, 14);
+		lblNewLabel.setBounds(10, 14, 46, 14);
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Gorev");
-		lblNewLabel_1.setBounds(10, 58, 46, 14);
+		lblNewLabel_1.setBounds(10, 64, 46, 14);
 		panel.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Mesaj");
-		lblNewLabel_2.setBounds(10, 95, 46, 14);
+		lblNewLabel_2.setBounds(10, 85, 46, 14);
 		panel.add(lblNewLabel_2);
 
 		txtIsim = new JTextField(30);
-		txtIsim.setBounds(100, 26, 134, 20);
+		txtIsim.setBounds(100, 10, 354, 20);
 		panel.add(txtIsim);
 		txtIsim.setColumns(10);
+		txtIsim.addAncestorListener(new AncestorListener() {
+			@Override
+			public void ancestorRemoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorMoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorAdded(AncestorEvent pEvent) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						txtIsim.requestFocusInWindow();
+					}
+				});
+			}
+		});
+
 
 		txtGorev = new JTextField(30);
-		txtGorev.setBounds(100, 55, 201, 20);
+		txtGorev.setBounds(100, 60, 354, 20);
 		panel.add(txtGorev);
 		txtGorev.setColumns(10);
 
 		txtMesaj = new JTextArea();
-		txtMesaj.setBounds(100, 95, 361, 75);
+		txtMesaj.setBounds(100, 85, 354, 75);
 		txtMesaj.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -109,7 +129,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(txtMesaj);
 
 		dtcBaslama = new JDateChooser();
-		dtcBaslama.setBounds(100, 180, 115, 20);
+		dtcBaslama.setBounds(100, 173, 115, 20);
 		dtcBaslama.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
 			public void focusGained(FocusEvent evt) {
@@ -216,7 +236,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		cmbBaslamaSaat = new JComboBox<String>();
 		cmbBaslamaSaat.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbBaslamaSaat.setModel(new DefaultComboBoxModel<String>(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
-		cmbBaslamaSaat.setBounds(225, 181, 63, 22);
+		cmbBaslamaSaat.setBounds(225, 171, 76, 22);
 		panel.add(cmbBaslamaSaat);
 
 		txtGID = new JTextField();
@@ -229,7 +249,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		dtcBitis.setFont(new Font("Tahoma", Font.BOLD, 11));
 		dtcBitis.setDateFormatString("dd.MM.yyyy");
 		dtcBitis.setDate(new Date());
-		dtcBitis.setBounds(100, 210, 115, 20);
+		dtcBitis.setBounds(100, 200, 115, 20);
 		dtcBitis.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
 			public void focusGained(FocusEvent evt) {
@@ -326,35 +346,35 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(dtcBitis);
 		
 		JLabel lblNewLabel_3 = new JLabel("Yer");
-		lblNewLabel_3.setBounds(251, 29, 39, 14);
+		lblNewLabel_3.setBounds(10, 39, 80, 14);
 		panel.add(lblNewLabel_3);
 		
 		txtYer = new JTextField(30);
-		txtYer.setBounds(300, 26, 161, 20);
+		txtYer.setBounds(100, 35, 354, 20);
 		panel.add(txtYer);
 		txtYer.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Baslama");
-		lblNewLabel_4.setBounds(10, 187, 69, 14);
+		lblNewLabel_4.setBounds(10, 177, 69, 14);
 		panel.add(lblNewLabel_4);
 		
 		lblBitis = new JLabel("Bitis");
-		lblBitis.setBounds(10, 215, 48, 14);
+		lblBitis.setBounds(10, 205, 48, 14);
 		panel.add(lblBitis);
 		
 		cmbSecenek = new JComboBox<String>();
 		cmbSecenek.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] {"Ayda", "Haftada", "Gunde", "Saatte"}));
-		cmbSecenek.setBounds(355, 181, 106, 22);
+		cmbSecenek.setBounds(355, 171, 100, 22);
 		panel.add(cmbSecenek);
 		
 		txtDeger = new JTextField();
-		txtDeger.setBounds(415, 210, 46, 20);
+		txtDeger.setBounds(415, 200, 39, 20);
 		panel.add(txtDeger);
 		txtDeger.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Deger");
-		lblNewLabel_5.setBounds(355, 213, 50, 14);
+		lblNewLabel_5.setBounds(355, 203, 50, 14);
 		panel.add(lblNewLabel_5);
 		
 		

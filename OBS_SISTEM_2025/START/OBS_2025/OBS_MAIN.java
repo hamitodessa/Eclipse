@@ -3656,11 +3656,11 @@ public class OBS_MAIN extends JFrame {
 			Player player = new Player(stream);
 			while (rs.next()) 
 			{
-				String html = TARIH_CEVIR.tarih_ters(rs.getString("TARIH")) + "  "
-						+ rs.getString("ISIM")  + "  "
+				String html = TARIH_CEVIR.tarih_ters(rs.getString("TARIH")) + "  " + rs.getString("SAAT")  + "  "
+						+ rs.getString("ISIM")  + "  " + rs.getString("GOREV")  + "  "
 						+ rs.getString("MESAJ");
 				player.play();
-				Notifications.getInstance().show(Notifications.Type.INFO,Notifications.Location.BOTTOM_RIGHT ,10000 ,String.format(html));
+				Notifications.getInstance().show(Notifications.Type.INFO,Notifications.Location.BOTTOM_RIGHT ,20000 ,String.format(html));
 			}
 			stream.close();
 			GuiUtil.setWaitCursor(toolBar,false);

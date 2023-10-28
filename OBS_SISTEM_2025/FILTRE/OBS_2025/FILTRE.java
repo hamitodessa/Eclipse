@@ -4557,7 +4557,7 @@ public class FILTRE extends JDialog {
 		comboBox_27_1 = new JComboBox<String>();
 		comboBox_27_1.setForeground(new Color(0, 0, 128));
 		comboBox_27_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil-Ay","Paket-Sinif-Kal-Boy","Paket-Sinif-Kal-Gen","Kons-Paket-Sinif-Kal-Gen" ,"Paket-Konsimento","Hesap-Kodu","Hesap-Kodu-Yil","Konsimento","Ortalama-Genislik"}));
+		comboBox_27_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Urun Kodu","Sinif" , "Sinif-Kal" ,"Sinif-Kal-Boy","Sinif-Kal-Gen", "Urun Kodu-Yil", "Yil",  "Yil-Ay","Paket-Sinif-Kal-Boy","Paket-Sinif-Kal-Gen","Kons-Paket-Sinif-Kal-Gen" ,"Kons-Paket-Sinif-Kal-Boy","Paket-Konsimento","Hesap-Kodu","Hesap-Kodu-Yil","Konsimento","Ortalama-Genislik"}));
 		comboBox_27_1.setBounds(90, 155, 200, 22);
 		comboBox_27_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

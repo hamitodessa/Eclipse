@@ -3653,8 +3653,6 @@ public class OBS_MAIN extends JFrame {
 				GuiUtil.setWaitCursor(toolBar,false);
 				return; // Kayit Yok
 			} 
-			stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
-			Player player = new Player(stream);
 			while (rs.next()) 
 			{
 				String html = TARIH_CEVIR.tarih_ters(rs.getString("TARIH")) + "  " + rs.getString("SAAT")  + "  "
@@ -3662,6 +3660,8 @@ public class OBS_MAIN extends JFrame {
 						+ rs.getString("MESAJ");
 				Notifications.getInstance().show(Notifications.Type.INFO,Notifications.Location.BOTTOM_RIGHT ,20000 ,String.format(html));
 			}
+			stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
+			Player player = new Player(stream);
 			player.play();
 			stream.close();
 			GuiUtil.setWaitCursor(toolBar,false);

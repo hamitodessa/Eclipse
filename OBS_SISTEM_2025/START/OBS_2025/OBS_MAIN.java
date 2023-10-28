@@ -3672,7 +3672,7 @@ public class OBS_MAIN extends JFrame {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			Notifications.getInstance().show(Notifications.Type.INFO,Notifications.Location.BOTTOM_RIGHT ,10000 ,e.getMessage());
+			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,10000 ,e.getMessage());
 
 			//JOptionPane.showMessageDialog(null,e.getMessage(), "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
 		}

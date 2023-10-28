@@ -84,6 +84,8 @@ import raven.toast.Notifications;
 import javax.swing.JMenuBar;
 
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.event.MouseEvent;
 
 @SuppressWarnings({"serial","static-access"})
@@ -227,18 +229,42 @@ public class OBS_MAIN extends JFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	
-	static InputStream stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
-	static Player player ;
 
 
 	public OBS_MAIN() {
 //2663 satir
 		
-		  SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
+		this.addWindowListener(new WindowListener() {
+	        @Override
+	        public void windowOpened(WindowEvent e) {
+				form_ac("CALISMA DIZINLERI","");
+				gorev_kontrol();
+	        }
+	        @Override
+	        public void windowClosing(WindowEvent e) {
+	        }
+	        @Override
+	        public void windowClosed(WindowEvent e) {
+	        }
+	        @Override
+	        public void windowIconified(WindowEvent e) {
+	        }
+	        @Override
+	        public void windowDeiconified(WindowEvent e) {
+	        }
+	        @Override
+	        public void windowActivated(WindowEvent e) {
+	        }
+	        @Override
+	        public void windowDeactivated(WindowEvent e) {
+	        }
+	    });
+		SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
 		setFont(new Font("Dialog", Font.BOLD, 12));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_MAIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1374, 655);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//setBounds(100, 100, 1374, 655);
 		setTitle("OBS SISTEM");
 
 		JMenuBar menuBar = new JMenuBar();
@@ -3384,7 +3410,6 @@ public class OBS_MAIN extends JFrame {
 		setExtendedStatee(JFrame.MAXIMIZED_BOTH);
 			
 		progressBar.setStringPainted(false);
-		// GRID RENK
 		try {
 			String 	deger = GLOBAL.setting_oku("PRG_GRID_RENK").toString();
 			String[] parts;
@@ -3400,11 +3425,6 @@ public class OBS_MAIN extends JFrame {
 				btnKaydet.setEnabled(false);
 				btnSil.setEnabled(false);
 			}
-			
-
-			player = new Player(stream);
-			form_ac("CALISMA DIZINLERI","");
-			gorev_kontrol();
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -3632,16 +3652,15 @@ public class OBS_MAIN extends JFrame {
 				GuiUtil.setWaitCursor(toolBar,false);
 				return; // Kayit Yok
 			} 
-			//MESAJ_GOSTER frame = new MESAJ_GOSTER(rs);
-			//desktopPane.add(frame);
-			//frame.setVisible(true);
+			InputStream stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
+			Player player = new Player(stream);
 			while (rs.next()) 
 			{
-				String html =  rs.getString("TARIH") + "  "
+				String html = TARIH_CEVIR.tarih_ters(rs.getString("TARIH")) + "  "
 						+ rs.getString("ISIM")  + "  "
 						+ rs.getString("MESAJ");
-				Notifications.getInstance().show(Notifications.Type.INFO,Notifications.Location.BOTTOM_RIGHT ,10000 ,String.format(html));
 				player.play();
+				Notifications.getInstance().show(Notifications.Type.INFO,Notifications.Location.BOTTOM_RIGHT ,10000 ,String.format(html));
 			}
 			stream.close();
 			GuiUtil.setWaitCursor(toolBar,false);

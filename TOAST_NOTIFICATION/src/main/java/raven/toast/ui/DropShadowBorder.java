@@ -14,6 +14,7 @@ import java.awt.image.BufferedImage;
 /**
  * @author Raven
  */
+@SuppressWarnings("serial")
 public class DropShadowBorder extends EmptyBorder {
 
     @Styleable

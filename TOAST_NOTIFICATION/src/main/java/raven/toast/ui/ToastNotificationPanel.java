@@ -2,8 +2,9 @@ package main.java.raven.toast.ui;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-import raven.toast.Notifications;
-import raven.toast.ToastClientProperties;
+//import raven.toast.ToastClientProperties;
+
+import main.java.raven.toast.ToastClientProperties;
 
 import javax.swing.*;
 import java.awt.*;

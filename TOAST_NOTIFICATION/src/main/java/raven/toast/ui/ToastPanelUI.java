@@ -224,7 +224,8 @@ public class ToastPanelUI extends BasicPanelUI implements StyleableUI, PropertyC
         return button;
     }
 
-    protected void closeButtonClicked(JComponent c) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	protected void closeButtonClicked(JComponent c) {
         Object callback = c.getClientProperty(TOAST_CLOSE_CALLBACK);
         if (callback instanceof Runnable) {
             ((Runnable) callback).run();

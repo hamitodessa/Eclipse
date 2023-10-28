@@ -13,6 +13,11 @@ import java.util.TimerTask;
 import javax.swing.JDesktopPane;
 import java.awt.Toolkit;
 import javax.swing.JButton;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.TargetDataLine;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JToolBar;
@@ -229,7 +234,15 @@ public class OBS_MAIN extends JFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	
-
+	 static AudioFormat getAudioFormat() {
+	        float sampleRate = 16000;
+	        int sampleSizeInBits = 8;
+	        int channels = 2;
+	        boolean signed = true;
+	        boolean bigEndian = true;
+	        return new AudioFormat(sampleRate, sampleSizeInBits, channels, signed,
+	                bigEndian);
+	    }
 
 	public OBS_MAIN() {
 //2663 satir
@@ -3659,8 +3672,20 @@ public class OBS_MAIN extends JFrame {
 				String html = TARIH_CEVIR.tarih_ters(rs.getString("TARIH")) + "  " + rs.getString("SAAT")  + "  "
 						+ rs.getString("ISIM")  + "  " + rs.getString("GOREV")  + "  "
 						+ rs.getString("MESAJ");
-				player.play();
-				Notifications.getInstance().show(Notifications.Type.INFO,Notifications.Location.BOTTOM_RIGHT ,20000 ,String.format(html));
+				///
+				 TargetDataLine audioLine;
+			     AudioFormat format;
+				format = getAudioFormat();
+		        DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
+		 
+		        // checks if system supports the data line
+		        if (AudioSystem.isLineSupported(info)) {
+					player.play();
+					Notifications.getInstance().show(Notifications.Type.INFO,Notifications.Location.BOTTOM_RIGHT ,20000 ,String.format(html));
+
+		        }
+				
+				///
 			}
 			stream.close();
 			GuiUtil.setWaitCursor(toolBar,false);

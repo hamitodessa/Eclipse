@@ -1567,7 +1567,8 @@ public class DEKONT extends JInternalFrame {
 			if (!rs.isBeforeFirst() ) { 
 				sifirla();
 				kutu_kapa();
-				JOptionPane.showMessageDialog(null, "Bu Numarada Kayitli Fis Yok......", "Dekont Kontrol", JOptionPane.ERROR_MESSAGE);
+				Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.BOTTOM_RIGHT ,3000 ,"Bu Numarada Kayitli Fis Yok......");
+				//JOptionPane.showMessageDialog(null, "Bu Numarada Kayitli Fis Yok......", "Dekont Kontrol", JOptionPane.ERROR_MESSAGE);
 				return; // Kayit Yok
 			} 
 			sifirla();
@@ -1634,19 +1635,22 @@ public class DEKONT extends JInternalFrame {
 		if (txtaciklama.getText().equals("")  ) return ;
 		if(dtc.getDate() == null) return;
 		if (cmbbhes.getSelectedItem().toString().equals(cmbahes.getSelectedItem().toString())) {
-			JOptionPane.showMessageDialog(null, "Alacak ve Borclu Hesap Ayni....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
+			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,3000 , "Alacak ve Borclu Hesap Ayni....");
+			//JOptionPane.showMessageDialog(null, "Alacak ve Borclu Hesap Ayni....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 			return ;
 		}
 		try 
 		{
 			if ( borc_kutu == false )
 			{
-				JOptionPane.showMessageDialog(null,  "Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
+				Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,3000 ,  "Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir....");
+				//JOptionPane.showMessageDialog(null,  "Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
 			if ( alacak_kutu == false )
 			{
-				JOptionPane.showMessageDialog(null,  "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
+				Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,3000 ,   "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir....");
+				//JOptionPane.showMessageDialog(null,  "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
 
@@ -1654,13 +1658,13 @@ public class DEKONT extends JInternalFrame {
 			{
 				if ( ! txtbtutar.getText().equals(txtatutar.getText()))
 				{
-					JOptionPane.showMessageDialog(null,"Alacakli ve Borclu Tutar Esit Degil....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
+					Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,3000 , "Alacakli ve Borclu Tutar Esit Degil....");
+					//JOptionPane.showMessageDialog(null,"Alacakli ve Borclu Tutar Esit Degil....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 					return ;
 				}
 			}
 			if (c_Access.cari_fino_bak(Integer.parseInt(txtevrak.getText()))) 
 			{
-
 				int g =  JOptionPane.showOptionDialog( null, "Islem Dosyada mevcut Fis eskisi ile degisecek ..", "Cari Fis Kayit",   JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]);
 				if(g != 0 ) { return;	}
@@ -1714,7 +1718,8 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Kaydetme", JOptionPane.ERROR_MESSAGE);
+			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,3000 ,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void kutu_ac()

@@ -78,7 +78,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 	private JLabel label_14_1_1;
 	private JLabel label_13_1_1 ;
 	
-	int x ,y ;
+	//int x ,y ;
 	
 	public MODUL_PARAMETRE() {
 		/*

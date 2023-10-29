@@ -13,6 +13,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -153,9 +156,21 @@ public class CAL_DIZIN extends JFrame {
 	private JSeparator separator;
 	private JPopupMenu menu;
 	private JButton btnNewButton_2_2;
-	
+	int x ,y ;
 	
 	public CAL_DIZIN() {
+		
+		  addMouseMotionListener(new MouseMotionAdapter() {
+		  
+		  @Override public void mouseDragged(MouseEvent e) { int xx = e.getXOnScreen();
+		  int yy = e.getYOnScreen(); setLocation(xx-x,yy-y);
+		  
+		  } }); addMouseListener(new MouseAdapter() {
+		  
+		  @Override public void mousePressed(MouseEvent e) { x = e.getX(); y = e.getY()
+		  ; } });
+		 		//setBorder(null);
+
 		setUndecorated(true);
 		setTitle("CALISMA DIZINI");
 		setResizable(false);
@@ -184,7 +199,7 @@ public class CAL_DIZIN extends JFrame {
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
-		toolBar.setBounds(100, 5, 179, 27);
+		toolBar.setBounds(100, 5, 138, 27);
 		panel.add(toolBar);
 
 		JButton btnNewButton = new JButton("");

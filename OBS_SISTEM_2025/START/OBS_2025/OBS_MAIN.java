@@ -3614,7 +3614,8 @@ public class OBS_MAIN extends JFrame {
 			int kontolsuresi = (Integer. parseInt(deger) * 60 ) * 1000;
 			if (kontolsuresi == 0) 
 			{
-				JOptionPane.showMessageDialog(null,"Kontrol Suresi Girilmemis....", "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
+				Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,10000 ,"Gunluk Kontrol Suresi Girilmemis....");
+				//JOptionPane.showMessageDialog(null,"Kontrol Suresi Girilmemis....", "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
 			Calendar calendar = Calendar.getInstance();
@@ -3668,7 +3669,8 @@ public class OBS_MAIN extends JFrame {
 		} catch (Exception e) {
 			GuiUtil.setWaitCursor(toolBar,false);
 			try {
-				stream.close();
+				if(stream != null)
+					stream.close();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}

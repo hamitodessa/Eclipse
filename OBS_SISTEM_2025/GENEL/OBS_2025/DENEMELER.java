@@ -3,7 +3,9 @@ package OBS_2025;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -73,11 +75,13 @@ import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JComboBox;
 
 
-@SuppressWarnings({"serial","static-access","unused"})
+@SuppressWarnings({"serial","static-access","unused","unchecked"})
 public class DENEMELER extends JInternalFrame {
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	@SuppressWarnings("rawtypes")
 	public DENEMELER() {
 		setClosable(true);
 		setBounds(100, 100, 800, 600);
@@ -318,6 +322,30 @@ public class DENEMELER extends JInternalFrame {
 			}
 				});
 		panel.add(txt);
+		
+		ComboBoxMultiSelection comboBox = new ComboBoxMultiSelection();
+		comboBox.setBounds(54, 47, 211, 35);
+		comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{
+				"Veritabani Kayit",
+				"Dosya",
+				"Text Dosya",
+				"Email Atma"
+		        }));
+		panel.add(comboBox);
+		
+		JButton btnNewButton_4 = new JButton("New button");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+
+		        List<Object> list = new ArrayList<>();
+		        list.add("Dosya");
+		        list.add("Email Atma");
+		        comboBox.setSelectedItems(list);
+			}
+		});
+		btnNewButton_4.setBounds(281, 46, 89, 23);
+		panel.add(btnNewButton_4);
 		
 
 		

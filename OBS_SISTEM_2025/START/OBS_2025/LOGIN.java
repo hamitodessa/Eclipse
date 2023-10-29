@@ -1432,14 +1432,31 @@ public class LOGIN extends JDialog {
 				}
 			}   
 			bufferedReader.close();
-			//******************************************************************
-			// DOSYA INDIR
-			//String serverAddress = "ftp.okumus.gen.tr";
-			//String userId ="u5789784";
-			//String password ="4wX.5Wx53-Y..nlG";
-			String serverAddress = "78.189.76.247";
-			String userId ="hamitadmin";
-			String password ="SDFks9hfji3#DEd";
+			//
+			String serverAddress = "";
+			String userId ="";
+			String password ="";
+			File fILEFTP = new File( GLOBAL.SURUCU + "/OBS_SISTEM_FTP.txt");
+			fileReader =  new FileReader(fILEFTP);
+			bufferedReader =    new BufferedReader(fileReader);
+			counter = 0;
+			while((line = bufferedReader.readLine()) != null) {
+				counter++;
+				if(counter == 1)
+				{
+					serverAddress = line.toString();
+				}
+				else  if(counter == 2)
+				{
+					userId = line.toString();
+				}
+				else  if(counter == 3)
+				{
+					password = line.toString();
+				}
+			}   
+			bufferedReader.close();
+			//
 			FTPClient ftp = new FTPClient();
 			ftp.connect(serverAddress);
 			if(!ftp.login(userId, password))
@@ -1455,19 +1472,19 @@ public class LOGIN extends JDialog {
 			}
 			ftp.enterLocalPassiveMode();
 			String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
-			File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt");
+			File downloadFile1 = new File( GLOBAL.SURUCU + "/OBS_VERSIONS.txt");
 			OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
 			boolean success = ftp.retrieveFile(remoteFile1, outputStream1);
 			outputStream1.close();
 			if (success == false )
 				{
-				File f= new File("C:/OBS_SISTEM/OBS_VERSIONS.txt");           //file to be delete  
+				File f= new File(GLOBAL.SURUCU + "/OBS_VERSIONS.txt");           //file to be delete  
 				success = f.delete();  
 				return ;
 				}
 			//************************************
 			fileName = "" ;
-			fileName = "C:/OBS_SISTEM" + "/OBS_VERSIONS.txt";
+			fileName = GLOBAL.SURUCU + "/OBS_VERSIONS.txt";
 			fileReader = null;
 			fileReader =  new FileReader(fileName);
 			// Always wrap FileReader in BufferedReader.
@@ -1489,12 +1506,12 @@ public class LOGIN extends JDialog {
 			bufferedReader.close();
 			if (eskiver.equals(yeniver))
 			{
-				File f= new File("C:/OBS_SISTEM/OBS_VERSIONS.txt");           //file to be delete  
+				File f= new File(GLOBAL.SURUCU +"/OBS_VERSIONS.txt");           //file to be delete  
 				success = f.delete();  
 			}
 			else
 			{
-				File f= new File("C:/OBS_SISTEM/" + "OBS_VERSIONS.txt");           //file to be delete  
+				File f= new File(GLOBAL.SURUCU + "OBS_VERSIONS.txt");           //file to be delete  
 				f.delete();  
 				String html = "<html><body >"
 						+ "Yeni Versiyon Mevcut"

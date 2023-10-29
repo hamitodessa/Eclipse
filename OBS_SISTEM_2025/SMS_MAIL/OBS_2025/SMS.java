@@ -301,12 +301,13 @@ public class SMS extends JInternalFrame {
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
 		splitPane_2.setRightComponent(scrollPane_1);
 
-		table_1 = new JTable();
+		table_1 = new JTable(){
+			public boolean isCellEditable(int row, int column) {     return false;          }};
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table_1.setGridColor(oac.gridcolor);
 		}
-
+		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table_1.setShowHorizontalLines(true);
 		table_1.setShowVerticalLines(true);

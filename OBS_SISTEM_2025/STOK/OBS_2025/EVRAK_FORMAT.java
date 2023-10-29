@@ -6,7 +6,7 @@ import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
+ 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -64,7 +64,7 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		setClosable(true);
 		setBounds(0, 0,356, 600);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane = new MaterialTabbed();
 		tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);

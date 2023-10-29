@@ -9,7 +9,6 @@ import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
@@ -147,7 +146,7 @@ public class FATURA extends JInternalFrame {
 	private JPanel panel_8 ;
 	private static  String tar = "" ;
 	private static boolean yeni_fat = false;
-	private static JTabbedPane tabbedPane ;
+	private static MaterialTabbed tabbedPane ;
 	private static ImagePanel imagePanel ;
 	/**
 	 * Launch the application.
@@ -188,7 +187,7 @@ public class FATURA extends JInternalFrame {
 		panel.setMaximumSize(new Dimension(0, 140));
 		panel.setLayout(new BorderLayout(0, 0));
 
-		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.setForeground(new Color(0, 0, 128));
 		tabbedPane_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
@@ -794,7 +793,7 @@ public class FATURA extends JInternalFrame {
 		label_9.setBounds(800, 3, 125, 14);
 		panel_71.add(label_9);
 
-		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
 		tabbedPane_2.setBounds(2, 22, 1158, 100);
 		panel_3.add(tabbedPane_2);
 
@@ -1088,7 +1087,7 @@ public class FATURA extends JInternalFrame {
 		btnNewButton_5.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-compose-16.png")));
 		toolBar_1.add(btnNewButton_5);
 
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new MaterialTabbed();
 		tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_2.setRightComponent(tabbedPane);

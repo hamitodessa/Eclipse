@@ -7,7 +7,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
+
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -106,7 +106,7 @@ public class MAIL extends JInternalFrame {
 	private JTextArea txtaciklama  ;
 
 
-	private static JTabbedPane tabbedPane ;
+	private static MaterialTabbed tabbedPane ;
 	private static JCheckBox chckbxNewCheckBox ;
 
 	@SuppressWarnings("static-access")
@@ -142,7 +142,7 @@ public class MAIL extends JInternalFrame {
 		lblNewLabel_12.setBounds(85, 8, 46, 14);
 		panel.add(lblNewLabel_12);
 
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new MaterialTabbed();
 		tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tabbedPane.addChangeListener(new ChangeListener() {

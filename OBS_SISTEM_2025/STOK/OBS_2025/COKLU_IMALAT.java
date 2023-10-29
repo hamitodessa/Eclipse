@@ -45,7 +45,7 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 
-import javax.swing.JTabbedPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -124,7 +124,7 @@ public class COKLU_IMALAT extends JInternalFrame {
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 
-		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.setForeground(new Color(0, 0, 128));
 		tabbedPane_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel.add(tabbedPane_1, BorderLayout.CENTER);

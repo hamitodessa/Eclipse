@@ -40,7 +40,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
+ 
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
@@ -181,7 +181,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel.setMaximumSize(new Dimension(0, 120));
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.setForeground(new Color(0, 0, 128));
 		tabbedPane_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
@@ -794,7 +794,7 @@ public class IRSALIYE extends JInternalFrame {
 		lbltutar.setBounds(809, 3, 125, 14);
 		panel_71.add(lbltutar);
 		
-		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
 		tabbedPane_2.setBounds(2, 22, 1158, 100);
 		panel_3.add(tabbedPane_2);
 		
@@ -996,7 +996,7 @@ public class IRSALIYE extends JInternalFrame {
 		btnNewButton_3.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-reduce-16.png")));
 		toolBar_1.add(btnNewButton_3);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane = new MaterialTabbed();
 		tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_2.setRightComponent(tabbedPane);

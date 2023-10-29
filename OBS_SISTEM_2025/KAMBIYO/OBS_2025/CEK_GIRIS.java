@@ -8,7 +8,6 @@ import java.awt.Dimension;
 
 import javax.swing.JTable;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -244,7 +243,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		label.setBounds(1073, 11, 136, 14);
 		panel.add(label);
 
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane = new MaterialTabbed();
 		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		tabbedPane.setMinimumSize(new Dimension(0, 112));
 		tabbedPane.setMaximumSize(new Dimension(0, 112));

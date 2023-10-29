@@ -58,7 +58,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
@@ -176,7 +175,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 	private JLabel lblkodAciklama ;
 	private JLabel lblkONSIMENTO ;
 	
-	private static JTabbedPane tabbedPane ;
+	private static MaterialTabbed tabbedPane ;
 	private static JTable table;
 	
 	private static  String tar = "" ;
@@ -211,7 +210,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		panel.setMaximumSize(new Dimension(0, 120));
 		panel.setLayout(new BorderLayout(0, 0));
 
-		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.setForeground(new Color(0, 0, 128));
 		tabbedPane_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
@@ -808,7 +807,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		lblNewLabel_8.setBounds(575, 5, 60, 14);
 		panel_71.add(lblNewLabel_8);
 		
-		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
 		tabbedPane_2.setBounds(2, 22, 1158, 100);
 		splitPane_3.setRightComponent(tabbedPane_2);
 
@@ -1012,7 +1011,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		btnNewButton_3_1.setIcon(new ImageIcon(KERESTE_GIRIS.class.getResource("/ICONLAR/excel-icon_16.png")));
 		toolBar_1.add(btnNewButton_3_1);
 		//////////////////////////////ARA BOLUM********************************
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new MaterialTabbed();
 		tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_2.setRightComponent(tabbedPane);

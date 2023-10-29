@@ -59,7 +59,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
@@ -138,7 +137,7 @@ import OBS_C_2025.lOG_BILGI;
 @SuppressWarnings({"static-access","unused", "serial"})
 public class KERESTE_CIKIS extends JInternalFrame {
 	private static JSplitPane splitPane ;
-	private static JTabbedPane tabbedPane ;
+	private static MaterialTabbed tabbedPane ;
 
 	private static JTextField textField;
 	private static JTextField txtcari;
@@ -211,7 +210,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel.setMaximumSize(new Dimension(0, 120));
 		panel.setLayout(new BorderLayout(0, 0));
 
-		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.setForeground(new Color(0, 0, 128));
 		tabbedPane_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
@@ -773,7 +772,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		lblPaket.setBounds(524, 5, 73, 14);
 		panel_71.add(lblPaket);
 
-		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
 		tabbedPane_2.setBounds(2, 22, 1158, 100);
 		splitPane_3.setRightComponent(tabbedPane_2);
 
@@ -984,7 +983,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		toolBar_1.add(btnNewButton_3);
 
 		//////////////////////////////ARA BOLUM********************************
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new MaterialTabbed();
 		tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_2.setRightComponent(tabbedPane);

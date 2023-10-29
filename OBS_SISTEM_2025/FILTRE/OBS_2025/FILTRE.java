@@ -9,6 +9,7 @@ import java.awt.SystemColor;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.AncestorEvent;
@@ -16,7 +17,7 @@ import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.MaskFormatter;
-import javax.swing.JTabbedPane;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -457,10 +458,11 @@ public class FILTRE extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane();
 		//*****************************************************************************************************************
 		// Goruntu icin asagidaki blogu kaldir 
 
+		
 		
 		
 		  final boolean showTabsHeader = false; tabbedPane.setUI(new
@@ -471,7 +473,7 @@ public class FILTRE extends JDialog {
 		  super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight); }
 		  else {return 0;} } protected void paintTabArea(Graphics g,int
 		  tabPlacement,int selectedIndex){} });
-		 		 
+		 		 		 
 
 		
 		//final boolean showTabsHeader = false;

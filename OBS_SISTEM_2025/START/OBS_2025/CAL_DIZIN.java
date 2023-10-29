@@ -35,7 +35,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JPopupMenu;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
@@ -139,7 +138,7 @@ public class CAL_DIZIN extends JFrame {
 	private static JPasswordField txtsif;
 	private static	JTextField txt_Lmaill ;
 	private static JComboBox<String>  cmb_maillist;
-	private static JTabbedPane tabbedPane;
+	private static MaterialTabbed tabbedPane;
 	private static int activ_sayfa =0;
 	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
@@ -516,7 +515,7 @@ public class CAL_DIZIN extends JFrame {
 		lblUser.setBounds(10, 384, 46, 14);
 		panel.add(lblUser);
 
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new MaterialTabbed();
 		tabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				activ_sayfa =tabbedPane.getSelectedIndex();
@@ -574,7 +573,7 @@ public class CAL_DIZIN extends JFrame {
 		tabbedPane.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		tabbedPane.setBounds(10, 10, 705, 381);
 		tabbedPane.setForeground(new Color(25, 25, 112));
-		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		tabbedPane.setTabLayoutPolicy(MaterialTabbed.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();

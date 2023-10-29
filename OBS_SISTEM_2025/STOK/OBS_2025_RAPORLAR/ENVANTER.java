@@ -61,6 +61,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_2025.GuiUtil;
+import OBS_2025.MaterialTabbed;
 import OBS_2025.OBS_MAIN;
 
 import OBS_C_2025.SAGA;
@@ -70,7 +71,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
-import javax.swing.JTabbedPane;
+ 
 @SuppressWarnings({ "static-access", "serial" })
 public class ENVANTER extends JInternalFrame {
 
@@ -105,7 +106,7 @@ public class ENVANTER extends JInternalFrame {
 	private static JLabel lbladet;
 	public static JSplitPane splitPane ;
 	public static JSplitPane splitPane_1 ;
-	private static JTabbedPane tabbedPane;
+	private static MaterialTabbed tabbedPane;
 	private JScrollPane scrollPane_3;
 	private JScrollPane scrollPane_4;
 	private static JTable table_1;
@@ -149,7 +150,7 @@ public class ENVANTER extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new MaterialTabbed();
 		splitPane.setLeftComponent(tabbedPane);
 
 		JScrollPane scrollPane = new JScrollPane();

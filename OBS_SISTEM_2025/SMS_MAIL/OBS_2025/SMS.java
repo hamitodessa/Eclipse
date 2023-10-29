@@ -30,7 +30,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -87,7 +86,7 @@ public class SMS extends JInternalFrame {
 	private JTextArea txtaciklama  ;
 	private JComboBox<String> comboBox_1 ;
 	private JComboBox<String> comboBox_3 ;
-	private static JTabbedPane tabbedPane ;
+	private static MaterialTabbed tabbedPane ;
 	private static JCheckBox chckbxNewCheckBox ;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -134,7 +133,7 @@ public class SMS extends JInternalFrame {
 		lblNewLabel_12.setBounds(85, 8, 46, 14);
 		panel.add(lblNewLabel_12);
 
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new MaterialTabbed();
 		tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tabbedPane.addChangeListener(new ChangeListener() {

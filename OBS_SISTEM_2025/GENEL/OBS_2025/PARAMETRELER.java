@@ -3,7 +3,7 @@ package OBS_2025;
 import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JInternalFrame;
-import javax.swing.JTabbedPane;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -155,7 +155,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		setClosable(true);
 		setBounds(0, 0, 540, 574);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane = new MaterialTabbed();
 		tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tabbedPane.addKeyListener(new KeyAdapter() {

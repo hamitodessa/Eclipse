@@ -56,7 +56,7 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
-import javax.swing.JTabbedPane;
+ 
 
 @SuppressWarnings({"serial","static-access","unused"})
 public class E_FATURA extends JInternalFrame {
@@ -92,7 +92,7 @@ public class E_FATURA extends JInternalFrame {
 		setClosable(true);
 		setBounds(0, 0, 1000, 600);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane = new MaterialTabbed();
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panel_1 = new JPanel();

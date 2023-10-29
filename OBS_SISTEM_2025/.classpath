@@ -90,5 +90,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/jsvg-1.2.0.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/miglayout-swing.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/miglayout-core.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/TimingFramework-0.55.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

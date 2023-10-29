@@ -21,7 +21,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
+
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
@@ -68,7 +68,7 @@ public static JTextField textField_4;
 public static JTextField textField_5;
 public static JTextField textField_6;
 public static JSpinner spinner;
-public static JTabbedPane orTabbedPane;
+public static MaterialTabbed orTabbedPane;
 
 
 	public ETIKET() {
@@ -95,7 +95,7 @@ public static JTabbedPane orTabbedPane;
 		
 		//
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
-		orTabbedPane = new JTabbedPane();
+		orTabbedPane = new MaterialTabbed();
 		orTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		orTabbedPane.addTab("Genel", null,scrollPane , null);  //
 		JPanel tekPanel = new JPanel();

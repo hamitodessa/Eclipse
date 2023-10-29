@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
+ 
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
@@ -170,7 +170,7 @@ public class IMALAT extends JInternalFrame {
 		panel.setMaximumSize(new Dimension(0, 180));
 		panel.setLayout(new BorderLayout(0, 0));
 
-		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 

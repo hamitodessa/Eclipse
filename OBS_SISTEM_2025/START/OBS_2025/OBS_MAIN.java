@@ -16,7 +16,6 @@ import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JToolBar;
-import javax.swing.JTabbedPane;
 import javax.swing.JSplitPane;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -212,7 +211,7 @@ public class OBS_MAIN extends JFrame {
 	public static JButton btnFiltre ;
 	public static JButton btnYazici ;
 	
-	public static JTabbedPane tabbedPane ;
+	public static MaterialTabbed tabbedPane ;
 	public static JToolBar toolBar ;
 	public static JToolBar toolBar_1;
 	public JToolBar toolBar_2 ;
@@ -1189,12 +1188,13 @@ public class OBS_MAIN extends JFrame {
         
 		contentPane.add(splitPane, BorderLayout.NORTH);
 //***************************************GORUNTU ICIN ASAGIDAKI BLOGU KALDIR********************************
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		// new tabbed.MaterialTabbed();
+		tabbedPane = new  MaterialTabbed();
 		tabbedPane.addComponentListener(new ComponentAdapter() 
 		{
 		    @Override
 		    public void componentResized(ComponentEvent e) {
-		        JTabbedPane tabbedPane = (JTabbedPane) e.getComponent();
+		    	MaterialTabbed tabbedPane = (MaterialTabbed) e.getComponent();
 		        int tabCount = tabbedPane.getTabCount();
 		        for (int i = 0; i < tabCount; i++) {
 		            Component c = tabbedPane.getComponentAt(i);
@@ -1208,7 +1208,7 @@ public class OBS_MAIN extends JFrame {
 		//{
 		//    @Override
 		//    public void componentResized(ComponentEvent e) {
-		//        JTabbedPane tabbedPane = (JTabbedPane) e.getComponent();
+		//        MaterialTabbed tabbedPane = (MaterialTabbed) e.getComponent();
 		//        int tabCount = tabbedPane.getTabCount();
 		//        for (int i = 0; i < tabCount; i++) {
 		//            Component c = tabbedPane.getComponentAt(i);
@@ -1218,7 +1218,7 @@ public class OBS_MAIN extends JFrame {
 		//});
 
 		///*******
-		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		tabbedPane.setTabLayoutPolicy(MaterialTabbed.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setFont(new Font("Calibri", Font.BOLD, 20));

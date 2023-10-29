@@ -34,7 +34,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
+ 
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
@@ -99,7 +99,7 @@ public class ZAYI extends JInternalFrame {
 	private static JComboBox<String> cmbdepo;
 	public static JSplitPane splitPane ;
 	private static  String tar = "" ;
-	private static JTabbedPane tabbedPane ;
+	private static MaterialTabbed tabbedPane ;
 	/**
 	 * Launch the application.
 	 */
@@ -139,7 +139,7 @@ public class ZAYI extends JInternalFrame {
 		panel.setMaximumSize(new Dimension(0, 100));
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 		
@@ -427,7 +427,7 @@ public class ZAYI extends JInternalFrame {
 		label_9.setBounds(659, 3, 109, 14);
 		panel_71.add(label_9);
 		
-		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
+		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
 		tabbedPane_2.setBounds(2, 22, 990, 68);
 		panel_3.add(tabbedPane_2);
 		
@@ -504,7 +504,7 @@ public class ZAYI extends JInternalFrame {
 		btnNewButton_3.setIcon(new ImageIcon(ZAYI.class.getResource("/ICONLAR/icons8-reduce-16.png")));
 		toolBar_1.add(btnNewButton_3);
 		
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new MaterialTabbed();
 		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		splitPane_2.setRightComponent(tabbedPane);
 		

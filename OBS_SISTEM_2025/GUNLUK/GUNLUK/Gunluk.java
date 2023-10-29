@@ -4,7 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
+
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,6 +18,7 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDayChooser;
 import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.MyTreeCellRenderer;
+import OBS_2025.MaterialTabbed;
 import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 
@@ -84,7 +85,7 @@ public class Gunluk extends JInternalFrame {
 	private static JComboBox<String> comboIsim;
 	private static JTree treeGovev ;
 	private ScrollPaneWin11 scrolAylik;
-	private JTabbedPane tabloTabbedPane;
+	private MaterialTabbed tabloTabbedPane;
 	
 
 	
@@ -435,7 +436,7 @@ public class Gunluk extends JInternalFrame {
 		panel_3.setLayout(new BorderLayout(0, 0));
 
 		//*************************************************TABLOLARIN TABBED PANE **********************************************
-		tabloTabbedPane = new JTabbedPane();
+		tabloTabbedPane = new MaterialTabbed();
 		tabloTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel_3.add(tabloTabbedPane, BorderLayout.CENTER);
 		//*************************************************Tablolarin Spliti ***************************************************

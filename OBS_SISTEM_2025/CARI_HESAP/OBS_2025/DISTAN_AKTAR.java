@@ -22,7 +22,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JCheckBox;
-import javax.swing.JTabbedPane;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -91,7 +91,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
-	private JTabbedPane tabbedPane ;
+	private MaterialTabbed tabbedPane ;
 	
 	private static JTable tblexcell;
 	private static JLabel lblborc ;
@@ -404,7 +404,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		
 		splitPane.setRightComponent(splitPane_1);
 		
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new MaterialTabbed();
 		tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_1.setLeftComponent(tabbedPane);

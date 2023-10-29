@@ -196,6 +196,7 @@ public class OBS_MAIN extends JFrame {
 	private JButton btnNewButton_23 ; //Konsimento  Aciklama Giris
 	private JButton btnNewButton_35 ; //Firma Ismi
 	private JButton btnNewButton_66 ; // Ortalama Satis
+	private JButton btnNewButton_69 ; // Envanter Rapor
 	private JButton btnNewButton_65 ; // Degisken Yenileme
 	private JButton btnNewButton ; // Bos kur
 	private JButton btnNewButton_68 ; // SQL Sorgulama
@@ -1009,6 +1010,16 @@ public class OBS_MAIN extends JFrame {
 			}
 		});
 		mnKereste.add(mntmoRtalama);	
+		
+		JMenuItem mntmoEnv = new JMenuItem("Envanter Rapor ");
+		mntmoEnv.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_69.doClick();
+			}
+		});
+		mnKereste.add(mntmoEnv);
+		
+		
 		mnKereste.addSeparator();
 		
 		JMenuItem mntmKodAdi = new JMenuItem("Kod Adi Aciklama");
@@ -2199,7 +2210,7 @@ public class OBS_MAIN extends JFrame {
 		
 		toolBar_Kereste.add(btnNewButton_66);
 		
-		JButton btnNewButton_69 = new JButton("");
+		btnNewButton_69 = new JButton("");
 		btnNewButton_69.setToolTipText("Envanter Rapor");
 		btnNewButton_69.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-hashtag-activity-feed-30.png")));
 		btnNewButton_69.addActionListener(new ActionListener() {

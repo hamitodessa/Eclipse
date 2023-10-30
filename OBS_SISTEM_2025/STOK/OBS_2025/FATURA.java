@@ -183,8 +183,8 @@ public class FATURA extends JInternalFrame {
 
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 140));
-		panel.setMaximumSize(new Dimension(0, 140));
+		panel.setMinimumSize(new Dimension(0, 160));
+		panel.setMaximumSize(new Dimension(0, 160));
 		panel.setLayout(new BorderLayout(0, 0));
 
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
@@ -756,8 +756,8 @@ public class FATURA extends JInternalFrame {
 
 		JPanel panel_3 = new JPanel();
 		splitPane_1.setRightComponent(panel_3);
-		panel_3.setMinimumSize(new Dimension(0, 120));
-		panel_3.setMaximumSize(new Dimension(0, 120));
+		panel_3.setMinimumSize(new Dimension(0, 140));
+		panel_3.setMaximumSize(new Dimension(0, 140));
 		panel_3.setLayout(null);
 
 		//***
@@ -794,7 +794,7 @@ public class FATURA extends JInternalFrame {
 		panel_71.add(label_9);
 
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
-		tabbedPane_2.setBounds(2, 22, 1158, 100);
+		tabbedPane_2.setBounds(2, 22, 1158, 120);
 		panel_3.add(tabbedPane_2);
 
 		JPanel panel_1 = new JPanel();

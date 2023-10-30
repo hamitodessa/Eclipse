@@ -206,8 +206,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 120));
-		panel.setMaximumSize(new Dimension(0, 120));
+		panel.setMinimumSize(new Dimension(0, 140));
+		panel.setMaximumSize(new Dimension(0, 140));
 		panel.setLayout(new BorderLayout(0, 0));
 
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();

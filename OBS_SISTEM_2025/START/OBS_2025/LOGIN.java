@@ -1433,30 +1433,20 @@ public class LOGIN extends JDialog {
 			}   
 			bufferedReader.close();
 			//
-			String serverAddress = "";
-			String userId ="";
-			String password ="";
-			File fILEFTP = new File( GLOBAL.SURUCU + "/OBS_SISTEM_FTP.txt");
-			fileReader =  new FileReader(fILEFTP);
-			bufferedReader =    new BufferedReader(fileReader);
-			counter = 0;
-			while((line = bufferedReader.readLine()) != null) {
-				counter++;
-				if(counter == 1)
-				{
-					serverAddress = line.toString();
-				}
-				else  if(counter == 2)
-				{
-					userId = line.toString();
-				}
-				else  if(counter == 3)
-				{
-					password = line.toString();
-				}
-			}   
-			bufferedReader.close();
-			//
+			String serverAddress = "78.189.76.247";
+			String userId ="hamitadmin";
+			String password ="SDFks9hfji3#DEd";
+			
+			
+			
+			/*
+			 * File fILEFTP = new File( GLOBAL.SURUCU + "/OBS_SISTEM_FTP.txt"); fileReader =
+			 * new FileReader(fILEFTP); bufferedReader = new BufferedReader(fileReader);
+			 * counter = 0; while((line = bufferedReader.readLine()) != null) { counter++;
+			 * if(counter == 1) { serverAddress = line.toString(); } else if(counter == 2) {
+			 * userId = line.toString(); } else if(counter == 3) { password =
+			 * line.toString(); } } bufferedReader.close();
+			 */			//
 			FTPClient ftp = new FTPClient();
 			ftp.connect(serverAddress);
 			if(!ftp.login(userId, password))

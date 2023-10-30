@@ -206,8 +206,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 120));
-		panel.setMaximumSize(new Dimension(0, 120));
+		panel.setMinimumSize(new Dimension(0, 135));
+		panel.setMaximumSize(new Dimension(0, 135));
 		panel.setLayout(new BorderLayout(0, 0));
 
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
@@ -706,7 +706,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_5.add(textField_10);
 		textField_10.setColumns(10);
 
-
+	
 		//****************ALT BOLUM*********************************************
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setDividerSize(0);

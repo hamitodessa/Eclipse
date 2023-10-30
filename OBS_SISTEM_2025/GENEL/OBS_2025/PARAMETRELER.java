@@ -153,7 +153,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 		setIconifiable(true);
 		setTitle("PARAMETRELER");
 		setClosable(true);
-		setBounds(0, 0, 540, 574);
+		setBounds(0, 0, 540, 594);
 		
 		MaterialTabbed tabbedPane = new MaterialTabbed();
 		tabbedPane.setForeground(new Color(25, 25, 112));

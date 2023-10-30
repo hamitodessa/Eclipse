@@ -166,8 +166,8 @@ public class IMALAT extends JInternalFrame {
 
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 180));
-		panel.setMaximumSize(new Dimension(0, 180));
+		panel.setMinimumSize(new Dimension(0, 200));
+		panel.setMaximumSize(new Dimension(0, 200));
 		panel.setLayout(new BorderLayout(0, 0));
 
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();

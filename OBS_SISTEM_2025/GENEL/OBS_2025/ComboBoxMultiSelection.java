@@ -49,8 +49,9 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
     }
 
     public void clearSelectedItems() {
+       
         selectedItems.clear();
-    }
+     }
 
     private final List<Object> selectedItems = new ArrayList<>();
     private final ComboBoxMultiCellEditor comboBoxMultiCellEditor;

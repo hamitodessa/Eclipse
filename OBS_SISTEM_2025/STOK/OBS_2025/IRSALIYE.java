@@ -141,6 +141,7 @@ public class IRSALIYE extends JInternalFrame {
 	private static  String sevktar = "" ;
 	private static boolean yeni_fat = false;
 	private static JTextField textField_1;
+	private JSplitPane splitPane;
 	/**
 	 * Launch the application.
 	 */
@@ -169,27 +170,29 @@ public class IRSALIYE extends JInternalFrame {
 
 		setBounds(0, 0,1175,800);
 
-		JSplitPane splitPane = new JSplitPane();
+		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
-		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 120));
-		panel.setMaximumSize(new Dimension(0, 120));
+		panel.setMinimumSize(new Dimension(0, 135));
+		panel.setMaximumSize(new Dimension(0, 135));
 		panel.setLayout(new BorderLayout(0, 0));
+		splitPane.setLeftComponent(panel);
 		
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.setForeground(new Color(0, 0, 128));
 		tabbedPane_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 		
+		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane_1.addTab("Irsaliye Bilgileri", null, panel_2, null);
 		panel_2.setLayout(null);
+
 		
 		JLabel lblNewLabel_1 = new JLabel("Irsaliye No");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -543,6 +546,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_9.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane_1.addTab("Fatura Bilgileri", null, panel_9, null);
 		panel_9.setLayout(null);
+
 		
 		JPanel panel_6 = new JPanel();
 		panel_6.setBorder(new TitledBorder(null, "Kesilmis Fatura Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -568,7 +572,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_6.add(textField_1);
 		textField_1.setColumns(10);
 		
-		
+	
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -614,12 +618,14 @@ public class IRSALIYE extends JInternalFrame {
 		chckbxNewCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		chckbxNewCheckBox.setBounds(425, 7, 263, 23);
 		panel_4.add(chckbxNewCheckBox);
-		
+
+
 		JPanel panel_7 = new JPanel();
 		panel_7.setBorder(new TitledBorder(null, "Gidecegi Yer Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_7.setBounds(710, 5, 257, 70);
 		panel_4.add(panel_7);
 		panel_7.setLayout(null);
+
 		
 		textField_8 = new JTextField();
 		textField_8.getDocument().addDocumentListener(new DocumentListener() {
@@ -683,6 +689,7 @@ public class IRSALIYE extends JInternalFrame {
 		textField_8.setBounds(10, 20, 149, 20);
 		panel_7.add(textField_8);
 		textField_8.setColumns(10);
+
 		
 		lblNewLabel_17 = new JLabel(".....");
 		lblNewLabel_17.setForeground(new Color(0, 0, 139));
@@ -719,36 +726,32 @@ public class IRSALIYE extends JInternalFrame {
 		});
 		btnNewButton_4.setBounds(169, 18, 25, 23);
 		panel_7.add(btnNewButton_4);
+
+		//*********************************************************NORMAL *****************************************************
+		  JPanel panel_5 = new JPanel(); panel_5.setBorder(new LineBorder(new Color(0,
+		  191, 255))); tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
+		  panel_5.setLayout(null);
+		  
+		  JLabel lblNewLabel_18 = new JLabel("1 -"); lblNewLabel_18.setFont(new
+		  Font("Tahoma", Font.PLAIN, 11)); lblNewLabel_18.setBounds(10, 11, 34, 14);
+		  panel_5.add(lblNewLabel_18);
+		  
+		  JLabel lblNewLabel_19 = new JLabel("2 -"); lblNewLabel_19.setFont(new
+		  Font("Tahoma", Font.PLAIN, 11)); lblNewLabel_19.setBounds(10, 38, 34, 14);
+		  panel_5.add(lblNewLabel_19);
+		  
+		  textField_9 = new JTextField(); textField_9.setFont(new Font("Tahoma",
+		  Font.BOLD, 12)); textField_9.setBounds(54, 8, 447, 20);
+		  textField_9.setDocument(new JTextFieldLimit(50)); panel_5.add(textField_9);
+		  textField_9.setColumns(10);
+		  
+		  textField_10 = new JTextField(); textField_10.setFont(new Font("Tahoma",
+		  Font.BOLD, 12)); textField_10.setBounds(54, 33, 447, 20);
+		  textField_10.setDocument(new JTextFieldLimit(50)); panel_5.add(textField_10);
+		  textField_10.setColumns(10);
+		 		
 		
-		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(new Color(0, 191, 255)));
-		tabbedPane_1.addTab("Ek Bilgi", null, panel_5, null);
-		panel_5.setLayout(null);
-		
-		JLabel lblNewLabel_18 = new JLabel("1 -");
-		lblNewLabel_18.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_18.setBounds(10, 11, 34, 14);
-		panel_5.add(lblNewLabel_18);
-		
-		JLabel lblNewLabel_19 = new JLabel("2 -");
-		lblNewLabel_19.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_19.setBounds(10, 38, 34, 14);
-		panel_5.add(lblNewLabel_19);
-		
-		textField_9 = new JTextField();
-		textField_9.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_9.setBounds(54, 8, 447, 20);
-		textField_9.setDocument(new JTextFieldLimit(50));
-		panel_5.add(textField_9);
-		textField_9.setColumns(10);
-		
-		textField_10 = new JTextField();
-		textField_10.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_10.setBounds(54, 33, 447, 20);
-		textField_10.setDocument(new JTextFieldLimit(50));
-		panel_5.add(textField_10);
-		textField_10.setColumns(10);
-		
+		//*******************************************************************************
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setDividerSize(0);
 		splitPane_1.setResizeWeight(1.0);
@@ -758,8 +761,8 @@ public class IRSALIYE extends JInternalFrame {
 		
 		JPanel panel_3 = new JPanel();
 		splitPane_1.setRightComponent(panel_3);
-		panel_3.setMinimumSize(new Dimension(0, 120));
-		panel_3.setMaximumSize(new Dimension(0, 120));
+		panel_3.setMinimumSize(new Dimension(0, 135));
+		panel_3.setMaximumSize(new Dimension(0, 135));
 		panel_3.setLayout(null);
 		
 		JPanel panel_71 = new JPanel();
@@ -795,7 +798,7 @@ public class IRSALIYE extends JInternalFrame {
 		panel_71.add(lbltutar);
 		
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
-		tabbedPane_2.setBounds(2, 22, 1158, 100);
+		tabbedPane_2.setBounds(2, 22, 1158, 110);
 		panel_3.add(tabbedPane_2);
 		
 		JPanel panel_1 = new JPanel();
@@ -918,6 +921,7 @@ public class IRSALIYE extends JInternalFrame {
 		
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setDividerSize(0);
+		splitPane_2.setResizeWeight(0.0);
 		splitPane_1.setLeftComponent(splitPane_2);
 		
 		JToolBar toolBar_1 = new JToolBar();
@@ -1539,19 +1543,14 @@ public class IRSALIYE extends JInternalFrame {
 				//  '************ACIKLAMA OKU ***********************************************************
 				if (cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") )
 				{
-					
 						textField_9.setText( f_Access.aciklama_oku("IRS", 1, textField.getText(), "C"));
 						textField_10.setText(f_Access.aciklama_oku("IRS", 2, textField.getText(), "C"));
-					
 				}
 				else
 				{
-					
 						textField_9.setText(f_Access.aciklama_oku("IRS", 1, textField.getText(), "G"));
 						textField_10.setText(f_Access.aciklama_oku("IRS", 2, textField.getText(), "G"));
-					
 				}
-               
 			        rss.first();   
 			    	DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			    	int satir =0 ;

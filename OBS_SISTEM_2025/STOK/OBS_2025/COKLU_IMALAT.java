@@ -119,8 +119,8 @@ public class COKLU_IMALAT extends JInternalFrame {
 
 
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(0, 100));
-		panel.setMaximumSize(new Dimension(0, 100));
+		panel.setMinimumSize(new Dimension(0, 120));
+		panel.setMaximumSize(new Dimension(0, 120));
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 

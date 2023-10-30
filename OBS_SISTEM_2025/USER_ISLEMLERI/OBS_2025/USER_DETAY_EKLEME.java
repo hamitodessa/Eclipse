@@ -46,7 +46,7 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "static-access" })
 public class USER_DETAY_EKLEME extends JInternalFrame {
 
 	private static JSplitPane splitPane;
@@ -79,7 +79,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 	private static JPasswordField passwordField;
 
 
-	@SuppressWarnings("static-access")
+
 	public USER_DETAY_EKLEME() {
 
 		setResizable(true);
@@ -305,6 +305,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		passwordField.setEchoChar('*');
 		passwordField.setBounds(357, 33, 125, 20);
 		panel.add(passwordField);
+		
 		
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		
@@ -655,6 +656,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		cbDosya.setSelected(false);
 		cbText.setSelected(false);
 		cbMail.setSelected(false);
+		
 	}
 	public static void kayit() 
 	{

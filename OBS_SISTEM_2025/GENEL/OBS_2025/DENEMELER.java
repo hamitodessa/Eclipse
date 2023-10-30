@@ -35,6 +35,7 @@ import com.healthmarketscience.jackcess.crypt.CryptCodecProvider;
 
 import LOGER_KAYIT.TXT_LOG;
 import OBS_C_2025.BACKUP_RESTORE;
+import OBS_C_2025.BadgeButton;
 import OBS_C_2025.CLONE_RESULTSET;
 import OBS_C_2025.CustomResultSetMetaData;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
@@ -43,6 +44,8 @@ import OBS_C_2025.SearchOption;
 import OBS_C_2025.TextFieldSearchOption;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.JPanel;
@@ -81,6 +84,7 @@ import javax.swing.JComboBox;
 @SuppressWarnings({"serial","static-access","unused","unchecked"})
 public class DENEMELER extends JInternalFrame {
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	BadgeButton badgeButton1 ;
 	@SuppressWarnings("rawtypes")
 	public DENEMELER() {
 		setClosable(true);
@@ -334,10 +338,11 @@ public class DENEMELER extends JInternalFrame {
 		panel.add(comboBox);
 		
 		JButton btnNewButton_4 = new JButton("New button");
+		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-
+				 comboBox.clearSelectedItems();
 		        List<Object> list = new ArrayList<>();
 		        list.add("Dosya");
 		        list.add("Email Atma");
@@ -347,10 +352,38 @@ public class DENEMELER extends JInternalFrame {
 		btnNewButton_4.setBounds(281, 46, 89, 23);
 		panel.add(btnNewButton_4);
 		
-
+		badgeButton1 = new BadgeButton();
+		badgeButton1.setBounds(50, 304, 89, 50);
+		badgeButton1.setIcon(new ImageIcon(DENEMELER.class.getResource("/ICONLAR/icon.png"))); // NOI18N
+        badgeButton1.setText("80");
+        badgeButton1.setBadgeColor(new java.awt.Color(131, 46, 203));
+        badgeButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                badgeButton1ActionPerformed(evt);
+            }
+        });
+        
+		panel.add(badgeButton1);
+		
+		JButton btnNewButton_9 = new JButton("New button");
+		btnNewButton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 comboBox.removeAll();
+				 comboBox.clearSelectedItems();
+		
+				
+				}
+		});
+		btnNewButton_9.setBounds(275, 71, 89, 23);
+		panel.add(btnNewButton_9);
+		
 		
 
 	}
+	 private void badgeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_badgeButton1ActionPerformed
+	        badgeButton1.setText(Integer.parseInt(badgeButton1.getText()) + 1 + "");
+	    }//GEN-LAST:event_badgeButton1ActionPerformed
+
 	private void cHATGPT()
 	{
 		try 

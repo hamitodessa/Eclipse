@@ -142,8 +142,9 @@ public class HESAP_PLN extends JDialog {
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component c = super.prepareRenderer(renderer, row, col);
 				String status = (String)table.getModel().getValueAt(row,0);
-				if (col == 0)
-				{
+				
+				 if(table.convertRowIndexToView(0) == 0)
+				 {
 					if (status.length() == 3)
 					{
 						c.setBackground(oac.satBackColor);
@@ -152,18 +153,42 @@ public class HESAP_PLN extends JDialog {
 						c.setFont(fnt);
 					} else 
 					{
-						c.setBackground(super.getBackground());
-						c.setForeground(super.getForeground());
+						c.setBackground(table.getBackground());
+						c.setForeground(table.getForeground());
 					}   
 					if (isRowSelected(row)) {
 						c.setBackground(table.getSelectionBackground());
 						c.setForeground(table.getSelectionForeground());
 	                } 
 				}
+				 else 
+				 {
+					 int satt = table.getRowSorter().convertRowIndexToModel(row);
+					 String statuss = (String)table.getModel().getValueAt(satt,0);
+					 if (statuss.length() == 3)
+						{
+							c.setBackground(oac.satBackColor);
+							c.setForeground(oac.satForeColor);
+							Font fnt = new Font(table.getFont().getFontName(),1 ,12);
+							c.setFont(fnt);
+						} 
+					 else 
+					 {
+						 c.setBackground(table.getBackground());
+						 c.setForeground(table.getForeground());
+					}
+					 if (isRowSelected(row)) 
+					 {
+						 c.setBackground(table.getSelectionBackground());
+						 c.setForeground(table.getSelectionForeground());
+					 } 
+				}
 				return c;
 				
 			}
 		};
+		//
+
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
@@ -208,6 +233,7 @@ public class HESAP_PLN extends JDialog {
 				}
 			}
 		});
+		table.setAutoCreateRowSorter(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setSurrendersFocusOnKeystroke(true);
 		table.setShowHorizontalLines(true);
@@ -257,8 +283,6 @@ public class HESAP_PLN extends JDialog {
 	    th.setPreferredSize(dd); 
 	    th.repaint();
 	    
-	    //table.setSelectionBackground(Color.PINK);
-	    //table.setSelectionForeground(Color.BLUE);
 	    table.repaint();
 
 	    String deger;
@@ -282,6 +306,7 @@ public class HESAP_PLN extends JDialog {
 		else
 		{
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
+		sorter.setSortsOnUpdates(true);
 		sorter.setStringConverter(new TableStringConverter() {
 	        @Override
 	        public String toString(TableModel model, int row, int column) {
@@ -290,6 +315,8 @@ public class HESAP_PLN extends JDialog {
 	    });
 	    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText().toLowerCase()));
 	    table.setRowSorter(sorter);
+	    table.revalidate();
+	    table.repaint();
 		}
 	}
 }

@@ -753,23 +753,24 @@ public class FATURA extends JInternalFrame {
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 
 		splitPane.setRightComponent(splitPane_1);
-
-		JPanel panel_3 = new JPanel();
+		////
+		JSplitPane splitPane_11 = new JSplitPane();
+		splitPane_11.setDividerSize(0);
+		splitPane_11.setResizeWeight(1.0);
+		splitPane_11.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		
 		
-		splitPane_1.setRightComponent(panel_3);
-		panel_3.setMinimumSize(new Dimension(0, 150));
-		panel_3.setMaximumSize(new Dimension(0, 150));
-		panel_3.setLayout(null);
-
+		splitPane_1.setRightComponent(splitPane_11);
+		
+	
 		//***
 		JPanel panel_71 = new JPanel();
 		panel_71.setBorder(new LineBorder(new Color(0, 191, 255)));
-		panel_71.setBounds(2, 1, 1155, 21);
 		panel_71.setMinimumSize(new Dimension(0, 25));
 		panel_71.setMaximumSize(new Dimension(0,25));
-		panel_3.add(panel_71);
+
 		panel_71.setLayout(null);
+		splitPane_11.setLeftComponent( panel_71);
 
 		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
 		lblNewLabel.setBounds(32, 3, 85, 14);
@@ -795,10 +796,19 @@ public class FATURA extends JInternalFrame {
 		label_9.setBounds(800, 3, 125, 14);
 		panel_71.add(label_9);
 
+		
+		JPanel panell = new JPanel();
+	
+		panell.setMinimumSize(new Dimension(0, 120));
+		panell.setMaximumSize(new Dimension(0, 120));
+		panell.setLayout(new BorderLayout(0, 0));
+		
+		
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
-		tabbedPane_2.setBounds(2, 22, 1155, 120);
-		panel_3.add(tabbedPane_2);
-
+		tabbedPane_2.setForeground(new Color(0, 0, 128));
+		tabbedPane_2.setFont(new Font("Tahoma", Font.BOLD, 10));
+		splitPane_11.setRightComponent(panell);
+		panell.add(tabbedPane_2, BorderLayout.CENTER);
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);

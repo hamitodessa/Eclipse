@@ -715,22 +715,18 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		splitPane.setRightComponent(splitPane_1);
 
-		JPanel panel_3 = new JPanel();
-		splitPane_1.setRightComponent(panel_3);
-		panel_3.setMinimumSize(new Dimension(0, 140));
-		panel_3.setMaximumSize(new Dimension(0, 140));
-		panel_3.setLayout(new BorderLayout(0, 0));
 
 		JSplitPane splitPane_3 = new JSplitPane();
 		splitPane_3.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane_3.setDividerSize(0);
-		panel_3.add(splitPane_3);
+		splitPane_3.setResizeWeight(0.0);
+		splitPane_1.setRightComponent(splitPane_3);
 
 		JPanel panel_71 = new JPanel();
 		panel_71.setBorder(new LineBorder(new Color(0, 191, 255)));
-		panel_71.setBounds(2, 1, 1158, 21);
-		panel_71.setMinimumSize(new Dimension(0, 25));
-		panel_71.setMaximumSize(new Dimension(0,25));
+		//panel_71.setBounds(2, 1, 1158, 21);
+		panel_71.setMinimumSize(new Dimension(0, 30));
+		panel_71.setMaximumSize(new Dimension(0,30));
 		panel_71.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
@@ -763,161 +759,154 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_9.setBounds(821, 5, 201, 14);
 		panel_71.add(label_9);
-		splitPane_3.setLeftComponent(panel_71);
-
+	
 		lblPaket = new JLabel("0");
 		lblPaket.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPaket.setForeground(new Color(139, 0, 0));
 		lblPaket.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblPaket.setBounds(524, 5, 73, 14);
 		panel_71.add(lblPaket);
-
-		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
-		tabbedPane_2.setBounds(2, 22, 1158, 100);
-		splitPane_3.setRightComponent(tabbedPane_2);
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
-		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
-		panel_1.setLayout(null);
-
-		lblkodAciklama = new JLabel();
-		lblkodAciklama.setFont(new Font("Dialog", Font.BOLD, 12));
-		lblkodAciklama.setForeground(new Color(0, 0, 128));
-		lblkodAciklama.setBounds(10, 55,50, 14);
-		panel_1.add(lblkodAciklama);
-
-		JLabel lblIskonto = new JLabel("Iskonto");
-		lblIskonto.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblIskonto.setBounds(247, 11, 62, 14);
-		panel_1.add(lblIskonto);
-
-		label_6 = new JLabel("0.00");
-		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_6.setForeground(Color.BLUE);
-		label_6.setFont(new Font("Dialog", Font.PLAIN, 13));
-		label_6.setBounds(306, 11, 99, 14);
-		panel_1.add(label_6);
-
-		JLabel lblKdv = new JLabel("K.D.V.");
-		lblKdv.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblKdv.setBounds(415, 11, 52, 14);
-		panel_1.add(lblKdv);
-
-		label_3 = new JLabel("0.00");
-		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_3.setForeground(Color.BLUE);
-		label_3.setFont(new Font("Dialog", Font.PLAIN, 13));
-		label_3.setBounds(480, 11, 99, 14);
-		panel_1.add(label_3);
-
-		JLabel lblBakiye = new JLabel("Bakiye");
-		lblBakiye.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblBakiye.setBounds(247, 39, 66, 14);
-		panel_1.add(lblBakiye);
-
-		label_7 = new JLabel("0.00");
-		label_7.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_7.setForeground(Color.BLUE);
-		label_7.setFont(new Font("Dialog", Font.PLAIN, 13));
-		label_7.setBounds(306, 39, 99, 14);
-		panel_1.add(label_7);
-
-		JLabel lblTevkifatOrani = new JLabel("Tevkifat Orani");
-		lblTevkifatOrani.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblTevkifatOrani.setBounds(415, 39, 82, 14);
-		panel_1.add(lblTevkifatOrani);
-
-		txttev = new JFormattedTextField();
-		txttev.setText("0");
-		txttev.setHorizontalAlignment(SwingConstants.RIGHT);
-		txttev.setFont(new Font("Dialog", Font.BOLD, 13));
-		txttev.setBackground(Color.CYAN);
-		txttev.setBounds(518, 35, 62, 20);
-		txttev.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-				if (txttev.getText().equals("")) return ;
-				toplam();
-			}
-			public void removeUpdate(DocumentEvent e) {
-				if (txttev.getText().equals("")) return ;
-				toplam();
-			}
-			public void insertUpdate(DocumentEvent e) {
-				if (txttev.getText().equals("")) return ;
-				toplam();
-			}
-		});
-		panel_1.add(txttev);
-
-		JLabel lblTevedilenKdv = new JLabel("Tev.Edilen K.D.V.");
-		lblTevedilenKdv.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblTevedilenKdv.setBounds(595, 11, 109, 14);
-		panel_1.add(lblTevedilenKdv);
-
-		JLabel lblTevdahtoptutar = new JLabel("Tev.Dah.Top.Tutar");
-		lblTevdahtoptutar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblTevdahtoptutar.setBounds(595, 39, 109, 14);
-		panel_1.add(lblTevdahtoptutar);
-
-		label_2 = new JLabel("0.00");
-		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_2.setForeground(Color.BLUE);
-		label_2.setFont(new Font("Dialog", Font.PLAIN, 13));
-		label_2.setBounds(705, 39, 99, 14);
-		panel_1.add(label_2);
-
-		label_1 = new JLabel("0.00");
-		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_1.setForeground(Color.BLUE);
-		label_1.setFont(new Font("Dialog", Font.PLAIN, 13));
-		label_1.setBounds(705, 11, 99, 14);
-		panel_1.add(label_1);
-
-		JLabel lblNewLabel_21 = new JLabel("Beyan Edilen KDV");
-		lblNewLabel_21.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_21.setBounds(828, 11, 109, 14);
-		panel_1.add(lblNewLabel_21);
-
-		lblNewLabel_20 = new JLabel("0.00");
-		lblNewLabel_20.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_20.setForeground(Color.BLUE);
-		lblNewLabel_20.setFont(new Font("Dialog", Font.PLAIN, 13));
-		lblNewLabel_20.setBounds(927, 11, 109, 14);
-		panel_1.add(lblNewLabel_20);
-
-		JLabel lblNewLabel_22 = new JLabel("Tev.Har.Top.Tutar");
-		lblNewLabel_22.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_22.setBounds(828, 39, 109, 14);
-		panel_1.add(lblNewLabel_22);
-
-		label = new JLabel("0.00");
-		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setForeground(new Color(0, 0, 128));
-		label.setFont(new Font("Dialog", Font.BOLD, 13));
-		label.setBounds(927, 39, 109, 14);
-		panel_1.add(label);
-
-		lblkONSIMENTO = new JLabel();
-		lblkONSIMENTO.setForeground(new Color(0, 0, 128));
-		lblkONSIMENTO.setFont(new Font("Dialog", Font.BOLD, 12));
-		lblkONSIMENTO.setBounds(10, 35, 50, 14);
-		panel_1.add(lblkONSIMENTO);
-
-		lblkODU = new JLabel();
-		lblkODU.setForeground(new Color(0, 0, 128));
-		lblkODU.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblkODU.setBounds(10, 11, 170, 14);
-		panel_1.add(lblkODU);
-
 		splitPane_3.setLeftComponent(panel_71);
+		  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		JPanel panel_21 = new JPanel();
+		splitPane_3.setRightComponent(panel_21);
+		  panel_21.setMinimumSize(new Dimension(0, 125)); 
+		  panel_21.setMaximumSize(new  Dimension(0, 125)); 
+		  panel_21.setLayout(new BorderLayout(0, 0)); 
+		  MaterialTabbed tabbedPane_2 = new MaterialTabbed(); 
+		  tabbedPane_2.setForeground(new Color(0, 0, 128));
+		  tabbedPane_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		  panel_21.add(tabbedPane_2, BorderLayout.CENTER); 
 
-		JLabel lblNewLabel_8 = new JLabel("Paket");
+		  
+			
+		  JPanel panel_1 = new JPanel(); 
+		  panel_1.setBorder(new LineBorder(new Color(0, 191, 255))); 
+		 
+		  panel_1.setLayout(null);
+		  tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
+
+			
+		  lblkodAciklama = new JLabel(); 
+		  lblkodAciklama.setFont(new Font("Dialog", Font.BOLD, 12)); 
+		  lblkodAciklama.setForeground(new Color(0, 0, 128));
+		  lblkodAciklama.setBounds(10, 55,50, 14); 
+		  panel_1.add(lblkodAciklama);
+		  
+		  JLabel lblIskonto = new JLabel("Iskonto"); 
+		  lblIskonto.setFont(new Font("Tahoma", Font.PLAIN, 11)); 
+		  lblIskonto.setBounds(247, 11, 62, 14);
+		  panel_1.add(lblIskonto);
+		  
+		  label_6 = new JLabel("0.00");
+		  label_6.setHorizontalAlignment(SwingConstants.RIGHT);
+		  label_6.setForeground(Color.BLUE); 
+		  label_6.setFont(new Font("Dialog", Font.PLAIN, 13)); 
+		  label_6.setBounds(306, 11, 99, 14); 
+		  panel_1.add(label_6);
+		  
+		  JLabel lblKdv = new JLabel("K.D.V."); 
+		  lblKdv.setFont(new Font("Tahoma", Font.PLAIN, 11)); 
+		  lblKdv.setBounds(415, 11, 52, 14); 
+		  panel_1.add(lblKdv);
+		  
+		  label_3 = new JLabel("0.00");
+		  label_3.setHorizontalAlignment(SwingConstants.RIGHT);
+		  label_3.setForeground(Color.BLUE); 
+		  label_3.setFont(new Font("Dialog", Font.PLAIN, 13)); 
+		  label_3.setBounds(480, 11, 99, 14);
+		  panel_1.add(label_3);
+		  
+		  JLabel lblBakiye = new JLabel("Bakiye"); 
+		  lblBakiye.setFont(new Font("Tahoma",  Font.PLAIN, 11));
+		  lblBakiye.setBounds(247, 39, 66, 14);
+		  panel_1.add(lblBakiye);
+		  
+		  label_7 = new JLabel("0.00");
+		  label_7.setHorizontalAlignment(SwingConstants.RIGHT);
+		  label_7.setForeground(Color.BLUE); 
+		  label_7.setFont(new Font("Dialog",  Font.PLAIN, 13));
+		  label_7.setBounds(306, 39, 99, 14); 
+		  panel_1.add(label_7);
+		  
+		  JLabel lblTevkifatOrani = new JLabel("Tevkifat Orani");
+		  lblTevkifatOrani.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		  lblTevkifatOrani.setBounds(415, 39, 82, 14); 
+		  panel_1.add(lblTevkifatOrani);
+		  
+		  txttev = new JFormattedTextField(); txttev.setText("0");
+		  txttev.setHorizontalAlignment(SwingConstants.RIGHT);
+		  txttev.setFont(new  Font("Dialog", Font.BOLD, 13)); 
+		  txttev.setBackground(Color.CYAN);
+		  txttev.setBounds(518, 35, 62, 20);
+		  txttev.getDocument().addDocumentListener(new DocumentListener() { public void
+		  changedUpdate(DocumentEvent e) { 
+			  if (txttev.getText().equals("")) return ;
+		  toplam(); 
+		  } 
+		  public void removeUpdate(DocumentEvent e) { if
+		  (txttev.getText().equals("")) return ; toplam(); }
+		  public void  insertUpdate(DocumentEvent e) { 
+			  if (txttev.getText().equals("")) return ;
+		  toplam(); 
+		  } }); 
+		  panel_1.add(txttev);
+		  
+		  JLabel lblTevedilenKdv = new JLabel("Tev.Edilen K.D.V.");
+		  lblTevedilenKdv.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		  lblTevedilenKdv.setBounds(595, 11, 109, 14); panel_1.add(lblTevedilenKdv);
+		  
+		  JLabel lblTevdahtoptutar = new JLabel("Tev.Dah.Top.Tutar");
+		  lblTevdahtoptutar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		  lblTevdahtoptutar.setBounds(595, 39, 109, 14);
+		  panel_1.add(lblTevdahtoptutar);
+		  
+		  label_2 = new JLabel("0.00");
+		  label_2.setHorizontalAlignment(SwingConstants.RIGHT);
+		  label_2.setForeground(Color.BLUE); label_2.setFont(new Font("Dialog",
+		  Font.PLAIN, 13)); label_2.setBounds(705, 39, 99, 14); panel_1.add(label_2);
+		  
+		  label_1 = new JLabel("0.00");
+		  label_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		  label_1.setForeground(Color.BLUE); label_1.setFont(new Font("Dialog",
+		  Font.PLAIN, 13)); label_1.setBounds(705, 11, 99, 14); panel_1.add(label_1);
+		  
+		  JLabel lblNewLabel_21 = new JLabel("Beyan Edilen KDV");
+		  lblNewLabel_21.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		  lblNewLabel_21.setBounds(828, 11, 109, 14); panel_1.add(lblNewLabel_21);
+		  
+		  lblNewLabel_20 = new JLabel("0.00");
+		  lblNewLabel_20.setHorizontalAlignment(SwingConstants.RIGHT);
+		  lblNewLabel_20.setForeground(Color.BLUE); lblNewLabel_20.setFont(new
+		  Font("Dialog", Font.PLAIN, 13)); lblNewLabel_20.setBounds(927, 11, 109, 14);
+		  panel_1.add(lblNewLabel_20);
+		  
+		  JLabel lblNewLabel_22 = new JLabel("Tev.Har.Top.Tutar");
+		  lblNewLabel_22.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		  lblNewLabel_22.setBounds(828, 39, 109, 14); panel_1.add(lblNewLabel_22);
+		  
+		  label = new JLabel("0.00");
+		  label.setHorizontalAlignment(SwingConstants.RIGHT); label.setForeground(new
+		  Color(0, 0, 128)); label.setFont(new Font("Dialog", Font.BOLD, 13));
+		  label.setBounds(927, 39, 109, 14); panel_1.add(label);
+		  
+		  lblkONSIMENTO = new JLabel(); lblkONSIMENTO.setForeground(new Color(0, 0,
+		  128)); lblkONSIMENTO.setFont(new Font("Dialog", Font.BOLD, 12));
+		  lblkONSIMENTO.setBounds(10, 35, 50, 14); panel_1.add(lblkONSIMENTO);
+		  
+		  lblkODU = new JLabel(); lblkODU.setForeground(new Color(0, 0, 128));
+		  lblkODU.setFont(new Font("Tahoma", Font.BOLD, 11)); lblkODU.setBounds(10, 11,
+		  170, 14); panel_1.add(lblkODU);
+
+		  JLabel lblNewLabel_8 = new JLabel("Paket");
 		lblNewLabel_8.setForeground(new Color(0, 0, 128));
 		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_8.setBounds(607, 5, 85, 14);
 		panel_71.add(lblNewLabel_8);
 
+		
+	
 		//** Sol Toolbar *****************************************************************
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setDividerSize(0);

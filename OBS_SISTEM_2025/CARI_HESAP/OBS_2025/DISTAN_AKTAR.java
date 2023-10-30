@@ -396,23 +396,23 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		btnNewButton_3_1.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/icons8-approved-16.png")));
 		btnNewButton_3_1.setBounds(1050, 17, 24, 24);
 		panel.add(btnNewButton_3_1);
-		
+
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setDividerSize(0);
 		splitPane_1.setResizeWeight(1.0);
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		
+
 		splitPane.setRightComponent(splitPane_1);
-		
+
 		tabbedPane = new MaterialTabbed();
 		tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_1.setLeftComponent(tabbedPane);
-		
+
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		tabbedPane.addTab("Excell", null, scrollPane, null);
-		
-		
+
+
 		DefaultTableModel model = new DefaultTableModel() ;
 		tblexcell = new JTable(model)  {
 			@Override
@@ -425,139 +425,138 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				}
 			}
 		};
-
-		
 		tblexcell.getTableHeader().setReorderingAllowed(false);
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			tblexcell.setGridColor(oac.gridcolor);
 		}
-
 		tblexcell.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-		    public void valueChanged(ListSelectionEvent lse) {
-			        if (!lse.getValueIsAdjusting()) {
-			        	if (tblexcell.getSelectedRow() == -1) return;
-			        	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-						doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 2).toString(),"B");
-						doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 5).toString(),"A");
-						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-			        }
-			    }
-			});
+			public void valueChanged(ListSelectionEvent lse) {
+				if (!lse.getValueIsAdjusting()) {
+					if (tblexcell.getSelectedRow() == -1) return;
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
+					doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 2).toString(),"B");
+					doldur(tblexcell.getModel().getValueAt(tblexcell.getSelectedRow(), 5).toString(),"A");
+					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
+				}
+			}
+		});
 
+
+		model.addColumn("Tarih", new Date []{ new Date() });
+		model.addColumn("Aciklama", new String []{"deneme"});
+		model.addColumn("Borclu_Hesap", new String []{""});
+		model.addColumn("Borc",new Double [] {new Double( 0 )});
+		model.addColumn("Alacak",new Double [] {new Double( 0 )});
+		model.addColumn("Alacakli_Hesap", new String []{"" });
+		model.addColumn("Evrak_No", new String []{"" });
+
+		TableColumn col ;
+		int sut ;
+		sut= 0;
+
+		col = tblexcell.getColumnModel().getColumn(sut);
+		//col.setCellEditor(new COKLU_GIR_TAR_EDITOR(new JTextField()));
+		col.setCellEditor(new JDateChooserEditor(new JCheckBox()));
+		col.setHeaderRenderer(new SOLA());
+		col.setCellRenderer(new COKLU_GIRIS_TARIH());
+		col.setMinWidth(100);
+
+		sut= 1;
+		col = tblexcell.getColumnModel().getColumn(sut);
+		col.setHeaderRenderer(new SOLA());
+		col.setMinWidth(500);
+
+		sut= 2;
+		col = tblexcell.getColumnModel().getColumn(sut);
+		col.setHeaderRenderer(new SOLA());
+		col.setCellEditor(new COKLU_GIRIS_HSP(new JTextField(),"B"));
+		col.setMinWidth(100);
+		//***************
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
+			Font font =new Font("Tahoma", Font.BOLD, 11);
+			@Override
+			public Component getTableCellRendererComponent(JTable table,
+					Object value, boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
+						row, column);
+				setFont(font);
+				setForeground(new Color(178, 34, 34));
+				return this;
+			}
+		};
+		col.setCellRenderer(r);
+		//***
+		sut= 3;
+		col = tblexcell.getColumnModel().getColumn(sut);
+		col.setMinWidth(120);
+		col.setHeaderRenderer(new SAGA());
+		col.setCellEditor( new DoubleEditor(2) );
+		col.setCellRenderer(new TABLO_RENDERER(2,false));
+
+		sut= 4;
+		col = tblexcell.getColumnModel().getColumn(sut);
+		col.setMinWidth(120);
+		col.setHeaderRenderer(new SAGA());
+		col.setCellEditor( new DoubleEditor(2) );
+		col.setCellRenderer(new TABLO_RENDERER(2,false));
+
+		sut= 5;
+		col = tblexcell.getColumnModel().getColumn(sut);
+		col.setHeaderRenderer(new SOLA());
+		col.setCellEditor(new COKLU_GIRIS_HSP(new JTextField(),"A"));
+		//***************
+		DefaultTableCellRenderer rr = new DefaultTableCellRenderer() {
+			Font font =new Font("Tahoma", Font.BOLD, 11);
+			@Override
+			public Component getTableCellRendererComponent(JTable table,
+					Object value, boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
+						row, column);
+				setFont(font);
+				setForeground(new Color(0, 128, 128));
+				return this;
+			}
+
+		};
+		col.setCellRenderer(rr);
+		col.setMinWidth(100);
+
+		sut= 6;
+		col = tblexcell.getColumnModel().getColumn(sut);
+		col.setHeaderRenderer(new SOLA());
+		col.setMinWidth(100);
+		//***************
+		DefaultTableCellRenderer r6 = new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(JTable table,
+					Object value, boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
+						row, column);
+				Font font =new Font(table.getFont().getFontName(),Font.BOLD ,table.getFont().getSize());
+				setForeground(new Color(0, 0, 139));
+				setFont(font);
+				return this;
+			}
+		};
+		col.setCellRenderer(r6);
+		//***
+		tblexcell.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		tblexcell.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		    model.addColumn("Tarih", new Date []{ new Date() });
-		    model.addColumn("Aciklama", new String []{"deneme"});
-		    model.addColumn("Borclu_Hesap", new String []{""});
-		    model.addColumn("Borc",new Double [] {new Double( 0 )});
-		    model.addColumn("Alacak",new Double [] {new Double( 0 )});
-		    model.addColumn("Alacakli_Hesap", new String []{"" });
-		    model.addColumn("Evrak_No", new String []{"" });
-		   
-		    TableColumn col ;
-		    int sut ;
-		    sut= 0;
-		   
-		    col = tblexcell.getColumnModel().getColumn(sut);
-		    //col.setCellEditor(new COKLU_GIR_TAR_EDITOR(new JTextField()));
-		    col.setCellEditor(new JDateChooserEditor(new JCheckBox()));
-			col.setHeaderRenderer(new SOLA());
-			col.setCellRenderer(new COKLU_GIRIS_TARIH());
-			col.setMinWidth(100);
-		    
-		    sut= 1;
-		    col = tblexcell.getColumnModel().getColumn(sut);
-			col.setHeaderRenderer(new SOLA());
-			col.setMinWidth(500);
+		tblexcell.setRowSelectionAllowed(false);
+		tblexcell.setShowHorizontalLines(true);
+		tblexcell.setShowVerticalLines(true);
+		tblexcell.setRowHeight(22);
+		//**
 
-			sut= 2;
-		    col = tblexcell.getColumnModel().getColumn(sut);
-			col.setHeaderRenderer(new SOLA());
-			col.setCellEditor(new COKLU_GIRIS_HSP(new JTextField(),"B"));
-			col.setMinWidth(100);
-			//***************
-			DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
-		    Font font =new Font("Tahoma", Font.BOLD, 11);
-		    @Override
-		    public Component getTableCellRendererComponent(JTable table,
-		            Object value, boolean isSelected, boolean hasFocus,
-		            int row, int column) {
-		        super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
-	                row, column);
-			        setFont(font);
-			        setForeground(new Color(178, 34, 34));
-			        return this;
-			    }
-			};
-			col.setCellRenderer(r);
-			 //***
-		    sut= 3;
-		    col = tblexcell.getColumnModel().getColumn(sut);
-		    col.setMinWidth(120);
-		    col.setHeaderRenderer(new SAGA());
-		    col.setCellEditor( new DoubleEditor(2) );
-		    col.setCellRenderer(new TABLO_RENDERER(2,false));
-		      
-		    sut= 4;
-			col = tblexcell.getColumnModel().getColumn(sut);
-			col.setMinWidth(120);
-			col.setHeaderRenderer(new SAGA());
-			col.setCellEditor( new DoubleEditor(2) );
-			col.setCellRenderer(new TABLO_RENDERER(2,false));
-			
-			sut= 5;
-		    col = tblexcell.getColumnModel().getColumn(sut);
-			col.setHeaderRenderer(new SOLA());
-			col.setCellEditor(new COKLU_GIRIS_HSP(new JTextField(),"A"));
-			//***************
-			DefaultTableCellRenderer rr = new DefaultTableCellRenderer() {
-		    Font font =new Font("Tahoma", Font.BOLD, 11);
-			    @Override
-			    public Component getTableCellRendererComponent(JTable table,
-			            Object value, boolean isSelected, boolean hasFocus,
-			            int row, int column) {
-			        super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
-			                row, column);
-			        setFont(font);
-			        setForeground(new Color(0, 128, 128));
-			        return this;
-			    }
-
-			};
-			col.setCellRenderer(rr);
-			col.setMinWidth(100);
-			
-			sut= 6;
-		    col = tblexcell.getColumnModel().getColumn(sut);
-			col.setHeaderRenderer(new SOLA());
-			col.setMinWidth(100);
-			//***************
-			DefaultTableCellRenderer r6 = new DefaultTableCellRenderer() {
-		    @Override
-		    public Component getTableCellRendererComponent(JTable table,
-		            Object value, boolean isSelected, boolean hasFocus,
-		            int row, int column) {
-		        super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
-	                row, column);
-		        Font font =new Font(table.getFont().getFontName(),Font.BOLD ,table.getFont().getSize());
-			        setForeground(new Color(0, 0, 139));
-			        setFont(font);
-			        return this;
-			    }
-			};
-			col.setCellRenderer(r6);
-			 //***
-		    tblexcell.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		    tblexcell.setShowHorizontalLines(true);
-			tblexcell.setShowVerticalLines(true);
-		    tblexcell.setRowHeight(22);
-		    //**
-		    
-		    JTableHeader th = tblexcell.getTableHeader();
-		    Dimension dd = tblexcell.getPreferredSize();
-		    dd.height = 30;
-		    th.setPreferredSize(dd); 
-		    th.repaint();
+		JTableHeader th = tblexcell.getTableHeader();
+		Dimension dd = tblexcell.getPreferredSize();
+		dd.height = 30;
+		th.setPreferredSize(dd); 
+		th.repaint();
 		scrollPane.setViewportView(tblexcell);
 		//**********
 		JSplitPane splitPane_2 = new JSplitPane();
@@ -1062,7 +1061,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		    }
 	    workbook.close();
 	    fis.close();
-	  GuiUtil.setWaitCursor(splitPane,false);
+	    GuiUtil.setWaitCursor(splitPane,false);
 	    lblsatir.setText(Integer.toString(tblexcell.getRowCount()));
 		}
 		catch (Exception ex)

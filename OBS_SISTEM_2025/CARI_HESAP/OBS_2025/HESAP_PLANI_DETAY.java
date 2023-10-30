@@ -65,26 +65,47 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component c = super.prepareRenderer(renderer, row, col);
 				String status = (String)table.getModel().getValueAt(row,0);
-				if (col == 0)
-				{
+				 if( table.getRowSorter() == null)
+				 {
 					if (status.length() == 3)
 					{
-						c.setBackground(Color.PINK);
-						c.setForeground(Color.BLUE);
+						c.setBackground(oac.satBackColor);
+						c.setForeground(oac.satForeColor);
 						Font fnt = new Font(table.getFont().getFontName(),1 ,12);
 						c.setFont(fnt);
 					} else 
 					{
-						c.setBackground(super.getBackground());
-						c.setForeground(super.getForeground());
+						c.setBackground(table.getBackground());
+						c.setForeground(table.getForeground());
 					}   
 					if (isRowSelected(row)) {
 						c.setBackground(table.getSelectionBackground());
 						c.setForeground(table.getSelectionForeground());
 	                } 
 				}
+				 else 
+				 {
+					 int satt = table.getRowSorter().convertRowIndexToModel(row);
+					 String statuss = (String)table.getModel().getValueAt(satt,0);
+					 if (statuss.length() == 3)
+						{
+							c.setBackground(oac.satBackColor);
+							c.setForeground(oac.satForeColor);
+							Font fnt = new Font(table.getFont().getFontName(),1 ,12);
+							c.setFont(fnt);
+						} 
+					 else
+						 {
+						 	c.setBackground(table.getBackground());
+						 	c.setForeground(table.getForeground());
+						 }
+					 if (isRowSelected(row)) 
+					 {
+						 c.setBackground(table.getSelectionBackground());
+						 c.setForeground(table.getSelectionForeground());
+					 } 
+				}
 				return c;
-				
 			}
 		};
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
@@ -193,8 +214,12 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		else
 		{
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
-	    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText()));
+		RowFilter<TableModel, Object> rf = null;
+		rf = RowFilter.regexFilter("(?iu)" +  textField.getText().toLowerCase() , 1);
+		sorter.setRowFilter(rf);
 	    table.setRowSorter(sorter);
+	    table.revalidate();
+	    table.repaint();
 		}
 	}
 }

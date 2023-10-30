@@ -1351,7 +1351,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		}
 		else
 		{
-			rf = RowFilter.regexFilter("(?iu)" +txtARAMA.getText().toString() , 1);
+			rf = RowFilter.regexFilter("(?iu)" + txtARAMA.getText().toString() , 1);
 		}
 		sorter.setRowFilter(rf);
 		tblexcell.setRowSorter(sorter);

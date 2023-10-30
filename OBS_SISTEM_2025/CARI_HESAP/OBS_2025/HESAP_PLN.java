@@ -138,12 +138,10 @@ public class HESAP_PLN extends JDialog {
 		
 		table = new JTable() {
 			public boolean isCellEditable(int row, int column) {     return false;  	}
-			
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component c = super.prepareRenderer(renderer, row, col);
 				String status = (String)table.getModel().getValueAt(row,0);
-				
-				 if(table.convertRowIndexToView(0) == 0)
+				 if( table.getRowSorter() == null)
 				 {
 					if (status.length() == 3)
 					{
@@ -172,11 +170,11 @@ public class HESAP_PLN extends JDialog {
 							Font fnt = new Font(table.getFont().getFontName(),1 ,12);
 							c.setFont(fnt);
 						} 
-					 else 
-					 {
-						 c.setBackground(table.getBackground());
-						 c.setForeground(table.getForeground());
-					}
+					 else
+						 {
+						 	c.setBackground(table.getBackground());
+						 	c.setForeground(table.getForeground());
+						 }
 					 if (isRowSelected(row)) 
 					 {
 						 c.setBackground(table.getSelectionBackground());
@@ -184,16 +182,12 @@ public class HESAP_PLN extends JDialog {
 					 } 
 				}
 				return c;
-				
 			}
 		};
-		//
-
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
 		}
-
 		table.setFont(new Font("Calibri", Font.PLAIN, 14));
 		table.addKeyListener(new KeyAdapter() {
 			@Override
@@ -306,14 +300,9 @@ public class HESAP_PLN extends JDialog {
 		else
 		{
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
-		sorter.setSortsOnUpdates(true);
-		sorter.setStringConverter(new TableStringConverter() {
-	        @Override
-	        public String toString(TableModel model, int row, int column) {
-	            return model.getValueAt(row, column).toString().toLowerCase();
-	        }
-	    });
-	    sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText().toLowerCase()));
+		RowFilter<TableModel, Object> rf = null;
+		rf = RowFilter.regexFilter("(?iu)" +  textField.getText().toLowerCase() , 1);
+		sorter.setRowFilter(rf);
 	    table.setRowSorter(sorter);
 	    table.revalidate();
 	    table.repaint();

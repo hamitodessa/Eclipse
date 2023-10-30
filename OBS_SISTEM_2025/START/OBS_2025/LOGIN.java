@@ -309,7 +309,6 @@ public class LOGIN extends JDialog {
 		panel.setBorder(null);
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
-
 		JLabel lblicon = new JLabel("");
 		lblicon.setBounds(29, 11, 137, 134);
 		panel.add(lblicon);
@@ -335,6 +334,7 @@ public class LOGIN extends JDialog {
 		txtUser.setBounds(310, 11, 110, 20);
 		txtUser.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtUser.setDocument(new JTextFieldLimit(10));
+		
 		txtUser.setColumns(10);
 		JTextFieldRegularPopupMenu.addTo(txtUser);
 		txtUser.setColumns(10);

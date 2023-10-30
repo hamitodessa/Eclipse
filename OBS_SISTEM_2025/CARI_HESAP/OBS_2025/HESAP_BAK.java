@@ -85,8 +85,8 @@ public class HESAP_BAK extends JInternalFrame {
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component c = super.prepareRenderer(renderer, row, col);
 				String status = (String)tblhesap.getModel().getValueAt(row,0);
-				if (col == 0)
-				{
+				 if( tblhesap.getRowSorter() == null)
+				 {
 					if (status.length() == 3)
 					{
 						c.setBackground(oac.satBackColor);
@@ -95,17 +95,37 @@ public class HESAP_BAK extends JInternalFrame {
 						c.setFont(fnt);
 					} else 
 					{
-						c.setBackground(super.getBackground());
-						c.setForeground(super.getForeground());
+						c.setBackground(tblhesap.getBackground());
+						c.setForeground(tblhesap.getForeground());
 					}   
 					if (isRowSelected(row)) {
 						c.setBackground(tblhesap.getSelectionBackground());
 						c.setForeground(tblhesap.getSelectionForeground());
 	                } 
 				}
+				 else 
+				 {
+					 int satt = tblhesap.getRowSorter().convertRowIndexToModel(row);
+					 String statuss = (String)tblhesap.getModel().getValueAt(satt,0);
+					 if (statuss.length() == 3)
+						{
+							c.setBackground(oac.satBackColor);
+							c.setForeground(oac.satForeColor);
+							Font fnt = new Font(tblhesap.getFont().getFontName(),1 ,12);
+							c.setFont(fnt);
+						} 
+					 else
+						 {
+						 	c.setBackground(tblhesap.getBackground());
+						 	c.setForeground(tblhesap.getForeground());
+						 }
+					 if (isRowSelected(row)) 
+					 {
+						 c.setBackground(tblhesap.getSelectionBackground());
+						 c.setForeground(tblhesap.getSelectionForeground());
+					 } 
+				}
 				return c;
-				
-			
 			}
 		};
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 

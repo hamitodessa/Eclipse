@@ -18,8 +18,6 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import javax.swing.table.TableStringConverter;
-
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.SOLA;

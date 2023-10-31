@@ -79,12 +79,14 @@ import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 
 @SuppressWarnings({"serial","static-access","unused","unchecked"})
 public class DENEMELER extends JInternalFrame {
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	BadgeButton badgeButton1 ;
+	private JTextField textField;
 	@SuppressWarnings("rawtypes")
 	public DENEMELER() {
 		setClosable(true);
@@ -376,6 +378,7 @@ public class DENEMELER extends JInternalFrame {
 		});
 		btnNewButton_9.setBounds(275, 71, 89, 23);
 		panel.add(btnNewButton_9);
+		
 		
 		
 

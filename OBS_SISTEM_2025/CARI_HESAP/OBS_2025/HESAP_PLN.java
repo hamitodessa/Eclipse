@@ -18,6 +18,8 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.table.TableStringConverter;
+
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.SOLA;
@@ -298,9 +300,13 @@ public class HESAP_PLN extends JDialog {
 		else
 		{
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
-		RowFilter<TableModel, Object> rf = null;
-		rf = RowFilter.regexFilter("(?iu)" +  textField.getText().toLowerCase() , 1);
-		sorter.setRowFilter(rf);
+		sorter.setStringConverter(new TableStringConverter() {
+	        @Override
+	        public String toString(TableModel model, int row, int column) {
+	            return model.getValueAt(row, column).toString().toLowerCase();
+	        }
+	    });
+	    sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + textField.getText().toLowerCase()));
 	    table.setRowSorter(sorter);
 	    table.revalidate();
 	    table.repaint();

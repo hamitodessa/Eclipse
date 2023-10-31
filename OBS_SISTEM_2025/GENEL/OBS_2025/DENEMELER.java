@@ -342,7 +342,7 @@ public class DENEMELER extends JInternalFrame {
 		btnNewButton_4.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				 comboBox.clearSelectedItems();
+				comboBox.clearSelectedItems();
 		        List<Object> list = new ArrayList<>();
 		        list.add("Dosya");
 		        list.add("Email Atma");

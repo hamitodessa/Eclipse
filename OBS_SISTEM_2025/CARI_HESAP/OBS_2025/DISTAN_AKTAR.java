@@ -85,6 +85,8 @@ import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 @SuppressWarnings({"serial" , "static-access","deprecation"})
 public class DISTAN_AKTAR extends JInternalFrame {
@@ -405,6 +407,15 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		splitPane.setRightComponent(splitPane_1);
 
 		tabbedPane = new MaterialTabbed();
+		tabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if(tabbedPane.getSelectedIndex() ==1)
+				{
+					lblborc.setText("");
+					lblalacak.setText("");
+				}
+			}
+		});
 		tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_1.setLeftComponent(tabbedPane);

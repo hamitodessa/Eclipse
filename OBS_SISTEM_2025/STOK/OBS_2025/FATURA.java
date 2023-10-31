@@ -173,7 +173,7 @@ public class FATURA extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0, 0,1175,800);
+		setBounds(0, 0,1175,780);
 
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);

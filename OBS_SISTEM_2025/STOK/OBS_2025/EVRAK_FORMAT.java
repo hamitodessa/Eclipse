@@ -62,7 +62,7 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		setTitle("EVRAK FORMATLAMA");
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0, 0,356, 600);
+		setBounds(0, 0,396, 600);
 		
 		MaterialTabbed tabbedPane = new MaterialTabbed();
 		tabbedPane.setForeground(new Color(0, 0, 128));

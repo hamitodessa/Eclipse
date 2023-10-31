@@ -135,12 +135,13 @@ public class ZAYI extends JInternalFrame {
 		
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 100));
-		panel.setMaximumSize(new Dimension(0, 100));
+		panel.setMinimumSize(new Dimension(0, 120));
+		panel.setMaximumSize(new Dimension(0, 120));
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tabbedPane_1.setForeground(new Color(0, 0, 128));
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 		
 		JPanel panel_2 = new JPanel();
@@ -388,19 +389,22 @@ public class ZAYI extends JInternalFrame {
 		
 		splitPane.setRightComponent(splitPane_1);
 		
-		JPanel panel_3 = new JPanel();
-		splitPane_1.setRightComponent(panel_3);
-		panel_3.setMinimumSize(new Dimension(0,90));
-		panel_3.setMaximumSize(new Dimension(0, 90));
-		panel_3.setLayout(null);
+		
+		JSplitPane splitPane_11 = new JSplitPane();
+		splitPane_11.setDividerSize(0);
+		splitPane_11.setResizeWeight(0.0);
+		splitPane_11.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane_1.setRightComponent(splitPane_11);
+		
+		
 		
 		//***
 		JPanel panel_71 = new JPanel();
+		splitPane_11.setLeftComponent(panel_71);
 		panel_71.setBorder(new LineBorder(new Color(0, 191, 255)));
-		panel_71.setBounds(2, 1, 990, 21);
 		panel_71.setMinimumSize(new Dimension(0, 25));
 		panel_71.setMaximumSize(new Dimension(0,25));
-		panel_3.add(panel_71);
+		
 		panel_71.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
@@ -426,11 +430,21 @@ public class ZAYI extends JInternalFrame {
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_9.setBounds(659, 3, 109, 14);
 		panel_71.add(label_9);
+		/////////////////////////////////////////////////////////////////
+		JPanel panel_711 = new JPanel();
+		
+		panel_711.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel_711.setMinimumSize(new Dimension(0, 95));
+		panel_711.setMaximumSize(new Dimension(0,95));
+		panel_711.setLayout(new BorderLayout(0, 0));
+		
+		splitPane_11.setRightComponent(panel_711);
 		
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
-		tabbedPane_2.setBounds(2, 22, 990, 68);
-		panel_3.add(tabbedPane_2);
-		
+		tabbedPane_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tabbedPane_2.setForeground(new Color(0, 0, 128));
+		panel_711.add(tabbedPane_2,BorderLayout.CENTER);
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));
 		tabbedPane_2.addTab("Toplamlar", null, panel_1, null);
@@ -455,11 +469,13 @@ public class ZAYI extends JInternalFrame {
 		label_5.setBounds(557, 11, 270, 14);
 		panel_1.add(label_5);
 		
+		//////////////////////////////////////////////////////////////////
 		JSplitPane splitPane_2 = new JSplitPane();
 		splitPane_2.setDividerSize(0);
 		splitPane_1.setLeftComponent(splitPane_2);
 		
 		JToolBar toolBar_1 = new JToolBar();
+		toolBar_1.setFloatable(false);
 		toolBar_1.setMinimumSize(new Dimension(30, 0));
 		toolBar_1.setMaximumSize(new Dimension(30, 0));
 		toolBar_1.setOrientation(SwingConstants.VERTICAL);
@@ -506,6 +522,8 @@ public class ZAYI extends JInternalFrame {
 		
 		tabbedPane = new MaterialTabbed();
 		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	
+		tabbedPane.setForeground(new Color(0, 0, 128));
 		splitPane_2.setRightComponent(tabbedPane);
 		
 		JScrollPane scrollPane = new JScrollPane();

@@ -386,7 +386,7 @@ public class RECETE extends JInternalFrame {
 		
 		lblNewLabel_5 = new JLabel("...");
 		lblNewLabel_5.setForeground(Color.BLUE);
-		lblNewLabel_5.setBounds(66, 78, 155, 14);
+		lblNewLabel_5.setBounds(66, 78, 311, 14);
 		panel_2.add(lblNewLabel_5);
 		
 		lblNewLabel_6 = new JLabel("...");

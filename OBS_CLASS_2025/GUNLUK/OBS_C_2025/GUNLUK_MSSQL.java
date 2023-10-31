@@ -332,7 +332,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "' AND TARIH <= '" + gbilgi.tarih2 +"' AND SAAT >= '" + gbilgi.saat1 + "' AND SAAT <= '" + gbilgi.saat2 + "'" +
 				" AND ISIM " + gbilgi.isim + " " +
-				" ORDER BY TARIH  ";
+				" ORDER BY TARIH , SAAT ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

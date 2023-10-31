@@ -264,7 +264,7 @@ public class OBS_MAIN extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_MAIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setBounds(0, 0, 1600, 1000);
+		setBounds(0, 0, 1200, 800);
 		setTitle("OBS SISTEM");
 
 		JMenuBar menuBar = new JMenuBar();

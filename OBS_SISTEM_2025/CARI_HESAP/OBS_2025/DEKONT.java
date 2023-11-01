@@ -277,6 +277,24 @@ public class DEKONT extends JInternalFrame {
 		});
 		btnNewButton.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/yeni.png")));
 		btnNewButton.setBounds(638, 25, 38, 30);
+		btnNewButton.addAncestorListener(new AncestorListener() {
+			@Override
+			public void ancestorRemoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorMoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorAdded(AncestorEvent pEvent) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						btnNewButton.requestFocusInWindow();
+					}
+				});
+			}
+		});
+
 		panel.add(btnNewButton);
 
 		txtevrak = new JTextField();
@@ -358,23 +376,6 @@ public class DEKONT extends JInternalFrame {
 		txtevrak.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtevrak.setFont(new Font("Tahoma", Font.BOLD, 22));
 		txtevrak.setBounds(511, 25, 117, 30);
-		txtevrak.addAncestorListener(new AncestorListener() {
-			@Override
-			public void ancestorRemoved(AncestorEvent pEvent) {
-			}
-			@Override
-			public void ancestorMoved(AncestorEvent pEvent) {
-			}
-			@Override
-			public void ancestorAdded(AncestorEvent pEvent) {
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						txtevrak.requestFocusInWindow();
-					}
-				});
-			}
-		});
 
 		panel.add(txtevrak);
 		txtevrak.setColumns(10);
@@ -399,6 +400,7 @@ public class DEKONT extends JInternalFrame {
 		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnNewButton_1.setBounds(435, 25, 55, 30);
+
 		panel.add(btnNewButton_1);
 
 		JButton btnNewButton_1_1 = new JButton("");

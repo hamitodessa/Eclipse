@@ -14,6 +14,8 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -50,6 +52,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
+import javax.swing.JRootPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -58,6 +61,8 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.synth.SynthLookAndFeel;
@@ -173,6 +178,7 @@ public class LOGIN extends JDialog {
 	BAGLAN bAGLAN = new BAGLAN();
 	BAGLAN_LOG bAGLAN_LOG = new BAGLAN_LOG();
 	GLOBAL glb = new GLOBAL();
+	JButton btngiris ;
 	boolean vt = false;
 	boolean ds = false;
 	boolean tx = false;
@@ -331,6 +337,15 @@ public class LOGIN extends JDialog {
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
 		txtUser = new JTextField();
+		txtUser.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					btngiris.doClick();
+				}
+			}
+		});
 		txtUser.setBounds(310, 11, 110, 20);
 		txtUser.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtUser.setDocument(new JTextFieldLimit(10));
@@ -340,6 +355,7 @@ public class LOGIN extends JDialog {
 		txtUser.setColumns(10);
 		txtUser.setOpaque(false);
 		txtUser.setBorder(new EmptyBorder(0, 0, 0, 0));
+
 		panel.add(txtUser);
 
 		JSeparator separator = new JSeparator();
@@ -351,6 +367,16 @@ public class LOGIN extends JDialog {
 		txtpwd.setBounds(310, 37, 110, 20);
 		txtpwd.setOpaque(false);
 		txtpwd.setBorder(new EmptyBorder(0, 0, 0, 0));
+		txtpwd.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					btngiris.doClick();
+				}
+			}
+		});
+
 		panel.add(txtpwd);
 		txtpwd.setFont(new Font("Tahoma", Font.BOLD, 12));
 		JTextFieldRegularPopupMenu.addTo(txtpwd);
@@ -395,7 +421,9 @@ public class LOGIN extends JDialog {
 		btncdizin.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/db.png")));
 		btncdizin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
-		JButton btngiris = new JButton("Giris");
+		btngiris = new JButton("Giris");
+		//JRootPane rootPane = SwingUtilities.getRootPane(contentPane); 
+		//rootPane.setDefaultButton(btngiris);
 		btngiris.setBounds(310, 92, 110, 25);
 		panel.add(btngiris);
 		btngiris.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/add-user-16.png")));
@@ -425,6 +453,7 @@ public class LOGIN extends JDialog {
 						{
 							GLOBAL.setting_yaz("BENI_HATIRLA", "");	
 						}
+						btndevam.requestFocusInWindow();
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					}
 					else
@@ -439,6 +468,25 @@ public class LOGIN extends JDialog {
 			}
 		});
 		btngiris.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btngiris.addAncestorListener(new AncestorListener() {
+			@Override
+			public void ancestorRemoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorMoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorAdded(AncestorEvent pEvent) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						btngiris.requestFocusInWindow();
+					}
+				});
+			}
+		});
+
+		
 		btndevam = new JButton("Devam");
 		btndevam.setBounds(310, 122, 110, 25);
 		panel.add(btndevam);

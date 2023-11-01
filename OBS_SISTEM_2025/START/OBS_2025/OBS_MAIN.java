@@ -2424,6 +2424,9 @@ public class OBS_MAIN extends JFrame {
 				{
 				form_ac("KULLANICI EKLEME","");
 				}
+				else {
+					Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,"Sadece Admin Islem Yapabilir......");
+				}
 			}
 		});
 		btnNewButton_87.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/hsp-30.png")));
@@ -2436,6 +2439,9 @@ public class OBS_MAIN extends JFrame {
 				if(GLOBAL.KULL_ADI.equals("Admin") || GLOBAL.KULL_ADI.equals("hamit"))
 				{
 				form_ac("KULLANICI DETAY EKLEME","");
+				}
+				else {
+					Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,"Sadece Admin Islem Yapabilir......");
 				}
 			}
 		});
@@ -2450,6 +2456,9 @@ public class OBS_MAIN extends JFrame {
 				if(GLOBAL.KULL_ADI.equals("Admin") || GLOBAL.KULL_ADI.equals("hamit"))
 				{
 				form_ac("KULLANICI KOPYALA","");
+				}
+				else {
+					Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,"Sadece Admin Islem Yapabilir......");
 				}
 			}
 		});

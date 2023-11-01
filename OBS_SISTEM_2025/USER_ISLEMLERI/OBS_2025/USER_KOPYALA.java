@@ -3,6 +3,9 @@ package OBS_2025;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -11,6 +14,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
+import OBS_C_2025.DIZIN_DETAY;
 import java.awt.Font;
 import java.awt.Color;
 @SuppressWarnings("static-access")
@@ -205,20 +209,25 @@ public class USER_KOPYALA extends JInternalFrame {
 	}
 	private static void bILGILER (String mODUL) throws ClassNotFoundException, SQLException
 	{
-		rss =  oac.uSER_ISL.user_db_izinleri(comboBox.getItemAt(comboBox.getSelectedIndex()).toString(), mODUL);
-		rss.next();
-		String decodedString = rss.getString("USER_PWD_SERVER").toString ();
-		String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
-		byte[] bytes = new byte[byteValues.length];
-		for (int i=0, len=bytes.length; i<len; i++) {
-		   bytes[i] = Byte.parseByte(byteValues[i].trim());     
-		}
-		try {
-			decodedString=  ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-			oac.uSER_ISL.details_yaz(rss.getString("USER_PROG_KODU").toString() 
+		rss =  oac.uSER_ISL.user_aktarma_oku(comboBox.getItemAt(comboBox.getSelectedIndex()).toString(), mODUL);
+		if (!rss.isBeforeFirst() )  return;
+		List<DIZIN_DETAY> cDIZIN = new ArrayList<DIZIN_DETAY>();
+
+		while (rss.next())
+		{
+			String decodedString = rss.getString("USER_PWD_SERVER").toString ();
+			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+			byte[] bytes = new byte[byteValues.length];
+			for (int i=0, len=bytes.length; i<len; i++) {
+				bytes[i] = Byte.parseByte(byteValues[i].trim());     
+			}
+			try {
+				decodedString=  ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			DIZIN_DETAY ets1  = new DIZIN_DETAY(rss.getString("USER_PROG_KODU").toString() 
 					, comboBox_1.getItemAt(comboBox_1.getSelectedIndex()).toString()
 					, rss.getString("USER_SERVER").toString ()
 					, decodedString
@@ -234,5 +243,25 @@ public class USER_KOPYALA extends JInternalFrame {
 					, ""
 					, rss.getInt("LOG") 
 					, rss.getString("LOG_YERI").toString());
+			cDIZIN.add(ets1);
+		}
+		for (int i = 0; i < cDIZIN.size(); i++) {
+			oac.uSER_ISL.details_aktarma_yaz(cDIZIN.get(i).getUSER_PROG_KODU()
+					, cDIZIN.get(i).getUSERSA()
+					, cDIZIN.get(i).getUSER_SERVER ()
+					, cDIZIN.get(i).getSIFRE()
+					, cDIZIN.get(i).getUSER_INSTANCE_OBS ()
+					, cDIZIN.get(i).getUSER_IP_OBS ()
+					, cDIZIN.get(i).getUSER_PROG_OBS ()
+					, cDIZIN.get(i).getDIZIN ()
+					, cDIZIN.get(i).getYER ()
+					, cDIZIN.get(i).getDIZIN_CINS ()
+					, cDIZIN.get(i).getIZINLI_MI ()
+					, cDIZIN.get(i).getCALISAN_MI ()
+					, cDIZIN.get(i).getHANGI_SQL ()
+					, cDIZIN.get(i).getCDID()
+					, cDIZIN.get(i).getLOG()
+					, cDIZIN.get(i).getLOG_YERI());
+		}
 	}
 }

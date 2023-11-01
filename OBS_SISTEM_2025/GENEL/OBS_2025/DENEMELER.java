@@ -381,6 +381,7 @@ public class DENEMELER extends JInternalFrame {
 		
 		
 		
+		
 
 	}
 	 private void badgeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_badgeButton1ActionPerformed

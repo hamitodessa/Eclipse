@@ -578,4 +578,57 @@ public class USER_ISLEMLERI {
 		con = null;
 		return level;
 	}
+	public void details_aktarma_yaz(String upk, String usn, String usserver, String sifre, String instance, String ip, String prog
+			,String dizin, String yer, String dcins, String izli, String calmi, String hsql,String cdid,int log,String logla) throws ClassNotFoundException, SQLException
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		PreparedStatement stmt = null;
+		con = gLB. myConnection();
+		String sql = "INSERT INTO USER_DETAILS (USER_PROG_KODU,USER_NAME,USER_SERVER,USER_PWD_SERVER,USER_INSTANCE_OBS,USER_IP_OBS," +
+				"USER_PROG_OBS,DIZIN,YER,DIZIN_CINS,IZINLI_MI,CALISAN_MI,HANGI_SQL,LOG,LOG_YERI) ";
+		sql += "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, upk);
+		stmt.setString(2, usn);
+		stmt.setString(3, usserver);
+		byte[] qaz;
+		try {
+			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
+			encodedString = Arrays.toString(qaz);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		stmt.setString(4, encodedString);
+		stmt.setString(5, instance);
+		stmt.setString(6, ip);
+		stmt.setString(7, prog);
+		stmt.setString(8, dizin);
+		stmt.setString(9, yer);
+		stmt.setString(10,dcins);
+		stmt.setString(11,izli);
+		stmt.setString(12, calmi);
+		stmt.setString(13, hsql);
+		stmt.setInt(14, log);
+		stmt.setString(15, logla);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+		con = null;
+	}
+	public ResultSet user_aktarma_oku(String username,String prg) throws SQLException, ClassNotFoundException
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		ResultSet	rss = null;
+		PreparedStatement stmt = null;
+		con =  gLB.myConnection();
+		String sql = "SELECT * FROM USER_DETAILS WHERE USER_NAME=? AND USER_PROG_OBS=?  ORDER BY CALISAN_MI DESC , USER_PROG_KODU";
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, username.toString());
+		stmt.setString(2, prg.toString());
+		rss = stmt.executeQuery();
+		return rss;
+	}
+
 }

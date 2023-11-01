@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.ListSelectionModel;
 import javax.swing.JSplitPane;
 import com.toedter.calendar.JDateChooser;
 
@@ -367,6 +368,7 @@ public class KASA extends JInternalFrame {
 		table_1.setShowHorizontalLines(true);
 		table_1.setShowVerticalLines(true);
 		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		centerPanel.setViewportView(table_1);
 		sp.setDividerSize(0);
 		sp.setResizeWeight(0.0);

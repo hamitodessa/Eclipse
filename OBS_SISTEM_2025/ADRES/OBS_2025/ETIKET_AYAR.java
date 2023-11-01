@@ -109,7 +109,7 @@ public class ETIKET_AYAR extends JInternalFrame {
 
 		eTIKETYAZIMBox = new JComboBox<String>();
 		eTIKETYAZIMBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Yatay", "Dikey"}));
-		eTIKETYAZIMBox.setBounds(403, 121, 60, 22);
+		eTIKETYAZIMBox.setBounds(403, 121, 88, 22);
 		panel.add(eTIKETYAZIMBox);
 
 		doldur();

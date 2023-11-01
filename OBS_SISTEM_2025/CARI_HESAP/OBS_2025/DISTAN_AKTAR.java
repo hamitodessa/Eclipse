@@ -557,6 +557,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		//***
 		tblexcell.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		tblexcell.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tblexcell.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		tblexcell.setRowSelectionAllowed(false);
 		tblexcell.setShowHorizontalLines(true);
 		tblexcell.setShowVerticalLines(true);
@@ -782,27 +783,28 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		 mdl.addColumn("Aranacak", new String []{null});
 		 mdl.addColumn("Hesap Kodu", new String []{null});
 		 TableColumn colon ;
-		    int sutun =0;
-		    sutun= 0;
-		    colon = table_1.getColumnModel().getColumn(sutun);
-			colon.setHeaderRenderer(new SOLA());
-			colon.setMinWidth(260);
-			sutun= 1;
-		    colon = table_1.getColumnModel().getColumn(sutun);
-			colon.setHeaderRenderer(new SOLA());
-			colon.setCellEditor(new COKLU_GIRIS_HSP(new JTextField(),"C"));
-			colon.setMinWidth(95);
-			table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-			table_1.setRowHeight(22);
-		    //**
-		    th = table_1.getTableHeader();
-		    dd = table_1.getPreferredSize();
-		    dd.height = 30;
-		    th.setPreferredSize(dd); 
-		    table_1.setShowHorizontalLines(true);
-			table_1.setShowVerticalLines(true);
-		    th.repaint();		
-		scrollPane_2.setViewportView(table_1);
+		 int sutun =0;
+		 sutun= 0;
+		 colon = table_1.getColumnModel().getColumn(sutun);
+		 colon.setHeaderRenderer(new SOLA());
+		 colon.setMinWidth(260);
+		 sutun= 1;
+		 colon = table_1.getColumnModel().getColumn(sutun);
+		 colon.setHeaderRenderer(new SOLA());
+		 colon.setCellEditor(new COKLU_GIRIS_HSP(new JTextField(),"C"));
+		 colon.setMinWidth(95);
+		 table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		 table_1.setRowHeight(22);
+		 //**
+		 th = table_1.getTableHeader();
+		 dd = table_1.getPreferredSize();
+		 dd.height = 30;
+		 th.setPreferredSize(dd); 
+		 table_1.setShowHorizontalLines(true);
+		 table_1.setShowVerticalLines(true);
+		 table_1.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+		 th.repaint();		
+		 scrollPane_2.setViewportView(table_1);
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -854,6 +856,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 
 		table.setCellSelectionEnabled(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		mdlt.addColumn("Aranacak", new String []{null});
 		mdlt.addColumn("Yazilacak", new String []{null});
 

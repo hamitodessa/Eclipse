@@ -237,7 +237,6 @@ public class DEKONT extends JInternalFrame {
 					}
 					final JTextComponent textComponent1=((JTextComponent)e.getSource());
 					int currentCaretPosition = textComponent1.getCaretPosition();
-
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
 					Date date;
 					try {
@@ -336,7 +335,6 @@ public class DEKONT extends JInternalFrame {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-
 			}
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -389,7 +387,7 @@ public class DEKONT extends JInternalFrame {
 				try {
 					getContentPane().setCursor(oac.WAIT_CURSOR);
 					int evr = Integer.parseInt(txtevrak.getText());
-					evr +=1 ;
+					evr += 1 ;
 					txtevrak.setText(Integer.toString(evr));
 					fiskont();
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -415,8 +413,8 @@ public class DEKONT extends JInternalFrame {
 					if ( rs.getInt("MAX_NO") == 0 ) { 
 						kutu_kapa();
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
-						Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.BOTTOM_RIGHT ,"Dosyada Hic Kayit Yok");
-						JOptionPane.showMessageDialog(null, "Dosyada Hic Kayit Yok",  "Cari Hesap", JOptionPane.ERROR_MESSAGE);  
+						Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.BOTTOM_RIGHT ,5000,"Dosyada Hic Kayit Yok");
+						//JOptionPane.showMessageDialog(null, "Dosyada Hic Kayit Yok",  "Cari Hesap", JOptionPane.ERROR_MESSAGE);  
 						return; // Kayit Yok
 					} 
 					int evr = rs.getInt("MAX_NO");
@@ -440,7 +438,7 @@ public class DEKONT extends JInternalFrame {
 				try {
 
 					int evr = Integer.parseInt(txtevrak.getText());
-					evr -=1 ;
+					evr -= 1 ;
 					if (evr < 1)
 					{
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -470,8 +468,6 @@ public class DEKONT extends JInternalFrame {
 		panel_1.setBounds(10, 99, 710, 87);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
-
-
 
 		btnbh = new JButton("");
 		btnbh.addActionListener(new ActionListener() {
@@ -550,7 +546,6 @@ public class DEKONT extends JInternalFrame {
 		cmbb.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-
 				try {
 					if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
 					{	
@@ -584,7 +579,6 @@ public class DEKONT extends JInternalFrame {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-
 			}
 		});
 		cmbb.setEnabled(false);
@@ -676,7 +670,6 @@ public class DEKONT extends JInternalFrame {
 					e1.printStackTrace();
 				}
 			}
-			
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char cc =  e.getKeyChar();
@@ -754,7 +747,6 @@ public class DEKONT extends JInternalFrame {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-
 			}
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -946,7 +938,7 @@ public class DEKONT extends JInternalFrame {
 				txtaciklama.selectAll();
 			}
 		});
-		txtaciklama.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtaciklama.setFont(new Font("Monospaced", Font.BOLD, 14));
 		txtaciklama.setEnabled(false);
 		txtaciklama.setLineWrap(true);
 		txtaciklama.setDocument(new JTextFieldLimit(100));
@@ -990,7 +982,6 @@ public class DEKONT extends JInternalFrame {
 					e1.printStackTrace();
 				}
 			}
-
 		});
 		panel_3.add(txtaciklama, BorderLayout.CENTER);
 
@@ -1020,7 +1011,6 @@ public class DEKONT extends JInternalFrame {
 				{
 					JInternalFrame internalFrame;
 					internalFrame  = new EKSTRE();
-					// yer bul
 					int xx= 0 ;
 					int yy = 0;
 					for(int i=0;i<OBS_MAIN.desktopPane.getAllFrames().length;i++)
@@ -1034,7 +1024,6 @@ public class DEKONT extends JInternalFrame {
 							break; 
 						}
 					}
-					//yerbul
 					internalFrame.setLocation(xx ,yy);
 					OBS_MAIN.desktopPane.add(internalFrame);
 					internalFrame.setVisible(true);
@@ -1050,9 +1039,7 @@ public class DEKONT extends JInternalFrame {
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					e1.printStackTrace();
 				}
-
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
-
 			}
 		});
 		btnah.setEnabled(false);
@@ -1547,9 +1534,6 @@ public class DEKONT extends JInternalFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(568, 340, 152, 14);
 		getContentPane().add(lblNewLabel);
-		
-		
-		
 
 		try {
 			String deger;
@@ -1587,7 +1571,7 @@ public class DEKONT extends JInternalFrame {
 			if (!rs.isBeforeFirst() ) { 
 				sifirla();
 				kutu_kapa();
-				Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.BOTTOM_RIGHT ,3000 ,"Bu Numarada Kayitli Fis Yok......");
+				Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.BOTTOM_RIGHT ,5000 ,"Bu Numarada Kayitli Fis Yok......");
 				//JOptionPane.showMessageDialog(null, "Bu Numarada Kayitli Fis Yok......", "Dekont Kontrol", JOptionPane.ERROR_MESSAGE);
 				return; // Kayit Yok
 			} 
@@ -1614,7 +1598,8 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Kontrol", JOptionPane.ERROR_MESSAGE);	
+			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Kontrol", JOptionPane.ERROR_MESSAGE);	
 		}
 	}
 	public static  void yoket() 
@@ -1627,11 +1612,9 @@ public class DEKONT extends JInternalFrame {
 			int g =  JOptionPane.showOptionDialog( null,  "Islem Dosyadan Silinecek ..?", "Cari Dosyasindan Evrak Silme",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 			if(g != 0 ) { return;	}
-			
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ(txtevrak.getText() + " Dekont Silme");
 			lBILGI.seteVRAK(txtevrak.getText());
-			
 			c_Access.evrak_yoket(Integer.parseInt(txtevrak.getText()),lBILGI, BAGLAN_LOG.cariLogDizin);
 			sifirla();
 			kutu_kapa();
@@ -1640,7 +1623,8 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Silme", JOptionPane.ERROR_MESSAGE);
+			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Silme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void kaydet () 
@@ -1655,7 +1639,7 @@ public class DEKONT extends JInternalFrame {
 		if (txtaciklama.getText().equals("")  ) return ;
 		if(dtc.getDate() == null) return;
 		if (cmbbhes.getSelectedItem().toString().equals(cmbahes.getSelectedItem().toString())) {
-			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,3000 , "Alacak ve Borclu Hesap Ayni....");
+			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000 , "Alacak ve Borclu Hesap Ayni....");
 			//JOptionPane.showMessageDialog(null, "Alacak ve Borclu Hesap Ayni....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 			return ;
 		}
@@ -1663,13 +1647,13 @@ public class DEKONT extends JInternalFrame {
 		{
 			if ( borc_kutu == false )
 			{
-				Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,3000 ,  "Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir....");
+				Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000 ,  "Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir....");
 				//JOptionPane.showMessageDialog(null,  "Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
 			if ( alacak_kutu == false )
 			{
-				Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,3000 ,   "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir....");
+				Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000 ,   "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir....");
 				//JOptionPane.showMessageDialog(null,  "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
@@ -1678,7 +1662,7 @@ public class DEKONT extends JInternalFrame {
 			{
 				if ( ! txtbtutar.getText().equals(txtatutar.getText()))
 				{
-					Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,3000 , "Alacakli ve Borclu Tutar Esit Degil....");
+					Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000 , "Alacakli ve Borclu Tutar Esit Degil....");
 					//JOptionPane.showMessageDialog(null,"Alacakli ve Borclu Tutar Esit Degil....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 					return ;
 				}
@@ -1738,7 +1722,7 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,3000 ,  ex.getMessage());
+			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000 ,  ex.getMessage());
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1811,7 +1795,8 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yeni Dekont", JOptionPane.ERROR_MESSAGE);
+			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000 ,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yeni Dekont", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private double kur_oku(String cins,String tur)
@@ -1833,7 +1818,8 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kur Okuma", JOptionPane.ERROR_MESSAGE);
+			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kur Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 		return kur;
 	}
@@ -1896,7 +1882,8 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Bakiye Doldur", JOptionPane.ERROR_MESSAGE);   
+			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Bakiye Doldur", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static String[] isim(String kod)  {
@@ -1920,7 +1907,8 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage() + " clss",  "Hesap Ismi Okuma", JOptionPane.ERROR_MESSAGE);     
+			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage() + " clss",  "Hesap Ismi Okuma", JOptionPane.ERROR_MESSAGE);     
 		}
 		return sonuc;
 	}

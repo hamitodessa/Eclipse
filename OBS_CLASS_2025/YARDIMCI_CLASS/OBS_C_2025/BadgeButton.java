@@ -77,7 +77,7 @@ public class BadgeButton extends JButton {
                 Graphics2D g2 = (Graphics2D) grphcs.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                double size = Math.max(iconRect.getWidth(), iconRect.getHeight()) * 0.8f;
+                double size = Math.max(iconRect.getWidth(), iconRect.getHeight()) * 0.8f;//0.8
                 double x = Math.min(iconRect.getX() + iconRect.getWidth() / 2, jc.getWidth() - size);
                 double y = Math.max(iconRect.getY() - size / 2, 0);
                 Area area = new Area(iconRect);

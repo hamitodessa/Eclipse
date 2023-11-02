@@ -79,13 +79,13 @@ import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.USER_ISLEMLERI;
 import javazoom.jl.player.Player;
 import raven.toast.Notifications;
-
 import javax.swing.JMenuBar;
 
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.event.MouseEvent;
+import javax.swing.Box;
 
 @SuppressWarnings({"serial","static-access"})
 public class OBS_MAIN extends JFrame {
@@ -229,7 +229,6 @@ public class OBS_MAIN extends JFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	
-
 
 	public OBS_MAIN() {
 //2663 satir
@@ -3380,24 +3379,20 @@ public class OBS_MAIN extends JFrame {
 		lblNewLabel_9 .setPreferredSize(new Dimension(250, 14));
 		toolBar.add(lblNewLabel_9);
 
+		//******************************************************** TOOLBAR !*******************************************
+
 		toolBar_1 = new JToolBar();
-		toolBar_1.setRollover(true);
+		toolBar_1.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_1.setFloatable(false);
-		toolBar_1.setMinimumSize(new Dimension(0, 30));
-		toolBar_1.setMaximumSize(new Dimension(0, 30));
-
-		//JLabel lblNewLabel_33 = new JLabel("  ");
-		//toolBar_1.add(lblNewLabel_33);
-
+		
 		progressBar = new JProgressBar();
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		progressBar.setMaximumSize(new Dimension(350, 28));
-		progressBar.setMinimumSize(new Dimension(350, 28));
-
+		progressBar.setMaximumSize(new Dimension(400, 20));
+		progressBar.setMinimumSize(new Dimension(400, 20));
+		progressBar.setPreferredSize(new Dimension(400,20));
 
 		toolBar_1.add(progressBar);
-		
 		JLabel lblNewLabel_1 = new JLabel("     ");
 		toolBar_1.add(lblNewLabel_1);
 
@@ -3405,6 +3400,34 @@ public class OBS_MAIN extends JFrame {
 		lblUser.setForeground(new Color(0, 0, 128));
 		lblUser.setFont(new Font("Tahoma", Font.BOLD, 11));
 		toolBar_1.add(lblUser);
+		
+		progressBar.setStringPainted(false);
+		
+		JButton btnNewButton_72 = new JButton();
+		JButton btnNewButton_71 = new JButton();
+		btnNewButton_71.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_71.setVisible(false);
+				btnNewButton_72.setVisible(true);
+			}
+		});
+		btnNewButton_71.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/bellD-16.png")));
+		
+		Component horizontalGlue = Box.createHorizontalGlue();
+		horizontalGlue.setEnabled(false);
+		toolBar_1.add(horizontalGlue);
+		toolBar_1.add(btnNewButton_71);
+		
+		btnNewButton_72.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnNewButton_72.setVisible(false);
+				btnNewButton_71.setVisible(true);
+			}
+		});
+		btnNewButton_72.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/bellR-16.png")));
+		toolBar_1.add(btnNewButton_72);
+		
+       //***************************************************************************************************
 
 		desktopPane = new JDesktopPane();
 		//desktopPane.setBackground(new Color(39, 45, 61));
@@ -3429,7 +3452,8 @@ public class OBS_MAIN extends JFrame {
 
 		setExtendedStatee(JFrame.MAXIMIZED_BOTH);
 			
-		progressBar.setStringPainted(false);
+		
+		
 		try {
 			String 	deger = GLOBAL.setting_oku("PRG_GRID_RENK").toString();
 			String[] parts;
@@ -3634,7 +3658,7 @@ public class OBS_MAIN extends JFrame {
 			int kontolsuresi = (Integer. parseInt(deger) * 60 ) * 1000;
 			if (kontolsuresi == 0) 
 			{
-				Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,10000 ,"Gunluk Kontrol Suresi Girilmemis....");
+				mesaj_goster(10000,Notifications.Type.ERROR,"Gunluk Kontrol Suresi Girilmemis....");
 				//JOptionPane.showMessageDialog(null,"Kontrol Suresi Girilmemis....", "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
@@ -3679,7 +3703,7 @@ public class OBS_MAIN extends JFrame {
 				String html = TARIH_CEVIR.tarih_ters(rs.getString("TARIH")) + "  " + rs.getString("SAAT")  + "  "
 						+ rs.getString("ISIM")  + "  " + rs.getString("GOREV")  + "  "
 						+ rs.getString("MESAJ");
-				Notifications.getInstance().show(Notifications.Type.INFO,Notifications.Location.BOTTOM_RIGHT ,20000 ,String.format(html));
+				mesaj_goster(20000,Notifications.Type.INFO,String.format(html));
 			}
 			stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
 			Player player = new Player(stream);
@@ -3694,9 +3718,14 @@ public class OBS_MAIN extends JFrame {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,10000 ,e.getMessage());
+			mesaj_goster(10000,Notifications.Type.ERROR,e.getMessage());
 			//JOptionPane.showMessageDialog(null,e.getMessage(), "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
+	{
+		Notifications.getInstance().show(tipType,Notifications.Location.BOTTOM_RIGHT ,zaman ,mesaj);
+
 	}
 	private static long millisToNextHour(Calendar calendar) 
 	{

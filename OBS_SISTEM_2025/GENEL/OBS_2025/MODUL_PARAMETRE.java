@@ -18,6 +18,7 @@ import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.STOK_ACCESS;
+import raven.toast.Notifications;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Font;
@@ -417,6 +418,9 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 
 	private void yukle() throws ClassNotFoundException, SQLException
 	{
+		try {
+			
+		
 		// Cari
 		lblNewLabel.setText(BAGLAN.cariDizin.kOD);
 		lblNewLabel_1.setText(BAGLAN.cariDizin.hAN_SQL);
@@ -522,5 +526,11 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 			label_13_1_1.setText(BAGLAN.smsDizin.sERVER);	
 		}
 		lblSmslog.setText(BAGLAN.smsDizin.lOG == true ? "Loglama" : "");
+		
+		
+		} catch (Exception e) 
+		{
+		OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,e.getMessage());
+		}
 	}
 }

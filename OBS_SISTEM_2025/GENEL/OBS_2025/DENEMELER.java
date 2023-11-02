@@ -2,6 +2,7 @@ package OBS_2025;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Insets;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +45,7 @@ import OBS_C_2025.SearchOption;
 import OBS_C_2025.TextFieldSearchOption;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Cursor;
@@ -80,6 +82,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 
 @SuppressWarnings({"serial","static-access","unused","unchecked"})
@@ -355,10 +358,12 @@ public class DENEMELER extends JInternalFrame {
 		panel.add(btnNewButton_4);
 		
 		badgeButton1 = new BadgeButton();
-		badgeButton1.setBounds(50, 304, 89, 50);
-		badgeButton1.setIcon(new ImageIcon(DENEMELER.class.getResource("/ICONLAR/icon.png"))); // NOI18N
+		badgeButton1.setHorizontalAlignment(SwingConstants.LEFT);
+		badgeButton1.setBounds(68, 304, 60, 55);
+		badgeButton1.setIcon(new ImageIcon(DENEMELER.class.getResource("/ICONLAR/bellD-16.png"))); //icon
         badgeButton1.setText("80");
-        badgeButton1.setBadgeColor(new java.awt.Color(131, 46, 203));
+        badgeButton1.setBadgeColor(Color.RED);
+        badgeButton1.setMargin(new Insets(0, 0, 2, 14));
         badgeButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 badgeButton1ActionPerformed(evt);
@@ -384,7 +389,7 @@ public class DENEMELER extends JInternalFrame {
 		
 
 	}
-	 private void badgeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_badgeButton1ActionPerformed
+    private void badgeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_badgeButton1ActionPerformed
 	        badgeButton1.setText(Integer.parseInt(badgeButton1.getText()) + 1 + "");
 	    }//GEN-LAST:event_badgeButton1ActionPerformed
 

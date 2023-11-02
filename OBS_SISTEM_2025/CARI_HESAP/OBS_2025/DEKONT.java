@@ -13,6 +13,7 @@ import javax.swing.text.JTextComponent;
 import javax.swing.text.NumberFormatter;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
+import raven.toast.Notifications;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import OBS_C_2025.ScrollBarWin11UI;
@@ -30,7 +31,7 @@ import OBS_C_2025.KUR_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
-import raven.toast.Notifications;
+
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -1573,7 +1574,7 @@ public class DEKONT extends JInternalFrame {
 			if (!rs.isBeforeFirst() ) { 
 				sifirla();
 				kutu_kapa();
-				Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.BOTTOM_RIGHT ,5000 ,"Bu Numarada Kayitli Fis Yok......");
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Numarada Kayitli Fis Yok......");
 				//JOptionPane.showMessageDialog(null, "Bu Numarada Kayitli Fis Yok......", "Dekont Kontrol", JOptionPane.ERROR_MESSAGE);
 				return; // Kayit Yok
 			} 
@@ -1600,7 +1601,7 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,ex.getMessage());
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Kontrol", JOptionPane.ERROR_MESSAGE);	
 		}
 	}
@@ -1625,7 +1626,7 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,ex.getMessage());
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Silme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1641,7 +1642,7 @@ public class DEKONT extends JInternalFrame {
 		if (txtaciklama.getText().equals("")  ) return ;
 		if(dtc.getDate() == null) return;
 		if (cmbbhes.getSelectedItem().toString().equals(cmbahes.getSelectedItem().toString())) {
-			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000 , "Alacak ve Borclu Hesap Ayni....");
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Alacak ve Borclu Hesap Ayni....");
 			//JOptionPane.showMessageDialog(null, "Alacak ve Borclu Hesap Ayni....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 			return ;
 		}
@@ -1649,13 +1650,13 @@ public class DEKONT extends JInternalFrame {
 		{
 			if ( borc_kutu == false )
 			{
-				Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000 ,  "Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir....");
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir....");
 				//JOptionPane.showMessageDialog(null,  "Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
 			if ( alacak_kutu == false )
 			{
-				Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000 ,   "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir....");
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir....");
 				//JOptionPane.showMessageDialog(null,  "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
@@ -1664,7 +1665,7 @@ public class DEKONT extends JInternalFrame {
 			{
 				if ( ! txtbtutar.getText().equals(txtatutar.getText()))
 				{
-					Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000 , "Alacakli ve Borclu Tutar Esit Degil....");
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  "Alacakli ve Borclu Tutar Esit Degil....");
 					//JOptionPane.showMessageDialog(null,"Alacakli ve Borclu Tutar Esit Degil....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 					return ;
 				}
@@ -1724,7 +1725,7 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000 ,  ex.getMessage());
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1797,7 +1798,7 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000 ,ex.getMessage());
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yeni Dekont", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1820,7 +1821,7 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,ex.getMessage());
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kur Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 		return kur;
@@ -1884,7 +1885,7 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,ex.getMessage());
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Bakiye Doldur", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -1909,7 +1910,7 @@ public class DEKONT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			Notifications.getInstance().show(Notifications.Type.ERROR,Notifications.Location.BOTTOM_RIGHT ,5000,ex.getMessage());
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 			//JOptionPane.showMessageDialog(null, ex.getMessage() + " clss",  "Hesap Ismi Okuma", JOptionPane.ERROR_MESSAGE);     
 		}
 		return sonuc;

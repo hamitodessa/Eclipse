@@ -7,7 +7,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+//import raven.glasspanepopup.GlassPanePopup;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JDesktopPane;
@@ -62,7 +66,9 @@ import OBS_2025_RAPORLAR.STOK_DETAY;
 import OBS_2025_RAPORLAR.STOK_RAPOR;
 import OBS_2025_RAPORLAR.URUN_LISTE;
 import OBS_2025_RAPORLAR.ZAYI_RAPOR;
+import GUNLUK.GOREV_BILGI;
 import GUNLUK.GOREV_GIRIS;
+import GUNLUK.GOREV_MESAJ;
 import GUNLUK.Gunluk;
 import GUNLUK.HAZIR_GOREVLER;
 import KER_RAPOR.KER_DETAY;
@@ -225,11 +231,14 @@ public class OBS_MAIN extends JFrame {
 	public static JSplitPane splitPane ;
 	public static JLabel lblNewLabel_9;
 	private Rectangle maxBounds;
+	private static JButton btnNewButton_72 ;
+	private static int mESAJ_SAYI = 0 ;
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
-	
 
+	static List<GOREV_BILGI> gBILGI = new ArrayList<GOREV_BILGI>();
+	
 	public OBS_MAIN() {
 //2663 satir
 		
@@ -237,6 +246,7 @@ public class OBS_MAIN extends JFrame {
 	        @Override
 	        public void windowOpened(WindowEvent e) {
 				form_ac("CALISMA DIZINLERI","");
+				btnNewButton_72.setVisible(false);
 				gorev_kontrol();
 	        }
 	        @Override
@@ -3385,13 +3395,15 @@ public class OBS_MAIN extends JFrame {
 		toolBar_1.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_1.setFloatable(false);
 		
+		btnNewButton_72 = new JButton();
+		
 		progressBar = new JProgressBar();
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		progressBar.setMaximumSize(new Dimension(400, 20));
-		progressBar.setMinimumSize(new Dimension(400, 20));
-		progressBar.setPreferredSize(new Dimension(400,20));
-
+		progressBar.setMaximumSize(new Dimension((int) (this.getWidth() *.20), 20));
+		progressBar.setMinimumSize(new Dimension((int) (this.getWidth() *.20), 20));
+		progressBar.setPreferredSize(new Dimension((int) (this.getWidth() *.20),20));
+		
 		toolBar_1.add(progressBar);
 		JLabel lblNewLabel_1 = new JLabel("     ");
 		toolBar_1.add(lblNewLabel_1);
@@ -3403,30 +3415,59 @@ public class OBS_MAIN extends JFrame {
 		
 		progressBar.setStringPainted(false);
 		
-		JButton btnNewButton_72 = new JButton();
-		JButton btnNewButton_71 = new JButton();
-		btnNewButton_71.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnNewButton_71.setVisible(false);
-				btnNewButton_72.setVisible(true);
-			}
-		});
-		btnNewButton_71.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/bellD-16.png")));
-		
 		Component horizontalGlue = Box.createHorizontalGlue();
 		horizontalGlue.setEnabled(false);
 		toolBar_1.add(horizontalGlue);
-		toolBar_1.add(btnNewButton_71);
 		
+		
+		//Gunluk_Mesaj obj = new Gunluk_Mesaj();
+		//obj.eventOK(new ActionListener() {
+		//	@Override
+		//	public void actionPerformed(ActionEvent ae) {
+		//		System.out.println("Click OK==");
+		//		GlassPanePopup.closePopupLast();
+
+		//	}
+		//});
+	  
+	        
 		btnNewButton_72.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(java.awt.event. ActionEvent e) {
+				btnNewButton_72.setToolTipText("");
 				btnNewButton_72.setVisible(false);
-				btnNewButton_71.setVisible(true);
+				/*
+				 * GlassPanePopup.showPopup( obj , new DefaultOption() {
+				 * 
+				 * @Override public float opacity() { return 0 ; }
+				 * 
+				 * @Override public LayoutCallback getLayoutCallback(Component parent) { return
+				 * new DefaultLayoutCallBack(parent) {
+				 * 
+				 * @Override public void correctBounds(ComponentWrapper cw) {
+				 * 
+				 * if(parent.isVisible()) {
+				 * 
+				 * Point p1= parent.getLocationOnScreen(); Point b1 =
+				 * btnNewButton_72.getLocationOnScreen(); System.out.println(b1.x +"=="+ b1.y);
+				 * int x=b1.x-p1.x; int y= b1.y -p1.y; cw.setBounds(x-cw.getWidth() +
+				 * btnNewButton_72.getWidth(), y + btnNewButton_72.getHeight(),cw.getWidth(),
+				 * cw.getHeight()); } else { System.out.println("================");
+				 * super.correctBounds(cw); }
+				 * 
+				 * } }; }
+				 * 
+				 * 
+				 * 
+				 * });
+				 */	    
+				form_ac("ANLIK MESAJLAR", "");
+				gBILGI.clear();
+				mESAJ_SAYI = 0 ;
 			}
 		});
 		btnNewButton_72.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/bellR-16.png")));
 		toolBar_1.add(btnNewButton_72);
-		
+	
        //***************************************************************************************************
 
 		desktopPane = new JDesktopPane();
@@ -3472,6 +3513,7 @@ public class OBS_MAIN extends JFrame {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+		 //GlassPanePopup.install(this);
 	}
 	private void form_ac(String pencere,String hangi) 
 	{
@@ -3519,6 +3561,7 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("GUNLUK")) internalFrame  = new Gunluk();
 			else if (pencere.equals("GOREV GIRIS")) internalFrame  = new GOREV_GIRIS();
 			else if (pencere.equals("HAZIR GOREVLER")) internalFrame  = new HAZIR_GOREVLER();
+			else if (pencere.equals("ANLIK MESAJLAR")) internalFrame  = new GOREV_MESAJ(gBILGI);
 			//STOK
 			else if (pencere.equals("URUN KARTI")) internalFrame  = new URUN_KART();
 			else if (pencere.equals("IMALAT")) internalFrame  = new IMALAT();
@@ -3585,6 +3628,10 @@ public class OBS_MAIN extends JFrame {
 			else if (pencere.equals("SQL SORGULAMA")) internalFrame  = new SQL_SORGULAMA(hangi);
 			else if (pencere.equals("LOG RAPORLAMA")) internalFrame  = new LOGLAMA_RAPOR();
 			else if (pencere.equals("HAKKINDA")) internalFrame  = new HAKKINDA();
+			else {
+				GuiUtil.setWaitCursor(tabbedPane,false);
+				return;
+			}
 			//
 			desktopPane.add(internalFrame);
 			internalFrame.setVisible(true);
@@ -3658,7 +3705,7 @@ public class OBS_MAIN extends JFrame {
 			int kontolsuresi = (Integer. parseInt(deger) * 60 ) * 1000;
 			if (kontolsuresi == 0) 
 			{
-				mesaj_goster(10000,Notifications.Type.ERROR,"Gunluk Kontrol Suresi Girilmemis....");
+				mesaj_goster(10000,Notifications.Type.ERROR,"Gunluk Kontrol Suresi Girilmemis....", false);
 				//JOptionPane.showMessageDialog(null,"Kontrol Suresi Girilmemis....", "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
@@ -3700,11 +3747,17 @@ public class OBS_MAIN extends JFrame {
 			} 
 			while (rs.next()) 
 			{
-				String html = TARIH_CEVIR.tarih_ters(rs.getString("TARIH")) + "  " + rs.getString("SAAT")  + "  "
+				String mESAJ = TARIH_CEVIR.tarih_ters(rs.getString("TARIH")) + "  " + rs.getString("SAAT")  + "  "
 						+ rs.getString("ISIM")  + "  " + rs.getString("GOREV")  + "  "
 						+ rs.getString("MESAJ");
-				mesaj_goster(20000,Notifications.Type.INFO,String.format(html));
+				mesaj_goster(20000,Notifications.Type.INFO,mESAJ, true);
+				GOREV_BILGI aNLIKBilgi = new GOREV_BILGI(TARIH_CEVIR.tarih_ters(rs.getString("TARIH")), rs.getString("SAAT") , 
+						rs.getString("ISIM")  , rs.getString("GOREV"), rs.getString("MESAJ"));
+				gBILGI.add(aNLIKBilgi);
 			}
+			//
+			
+			//
 			stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
 			Player player = new Player(stream);
 			player.play();
@@ -3718,13 +3771,19 @@ public class OBS_MAIN extends JFrame {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			mesaj_goster(10000,Notifications.Type.ERROR,e.getMessage());
-			//JOptionPane.showMessageDialog(null,e.getMessage(), "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
+			mesaj_goster(10000,Notifications.Type.ERROR,e.getMessage() , false);
+			JOptionPane.showMessageDialog(null,e.getMessage(), "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
+	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj,boolean goster)
 	{
 		Notifications.getInstance().show(tipType,Notifications.Location.BOTTOM_RIGHT ,zaman ,mesaj);
+		if(goster)
+		{
+			btnNewButton_72.setVisible(true);
+			mESAJ_SAYI += 1 ;
+			btnNewButton_72.setToolTipText(String.valueOf(mESAJ_SAYI) + " Adet Mesaj Bulunmaktadir....");
+		}
 
 	}
 	private static long millisToNextHour(Calendar calendar) 

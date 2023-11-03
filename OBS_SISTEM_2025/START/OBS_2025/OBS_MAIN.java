@@ -3772,7 +3772,7 @@ public class OBS_MAIN extends JFrame {
 				e1.printStackTrace();
 			}
 			mesaj_goster(10000,Notifications.Type.ERROR,e.getMessage() , false);
-			JOptionPane.showMessageDialog(null,e.getMessage(), "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
+			//JOptionPane.showMessageDialog(null,e.getMessage(), "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj,boolean goster)

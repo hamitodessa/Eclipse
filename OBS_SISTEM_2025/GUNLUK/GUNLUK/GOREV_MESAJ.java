@@ -33,6 +33,7 @@ public class GOREV_MESAJ extends JInternalFrame {
 	 */
 
 	public GOREV_MESAJ(java.util.List<GOREV_BILGI> gBILGI) {
+		setResizable(true);
 		setClosable(true);
 		setTitle("ANLIK MESAJLAR");
 		setBounds(100, 100, 689, 305);

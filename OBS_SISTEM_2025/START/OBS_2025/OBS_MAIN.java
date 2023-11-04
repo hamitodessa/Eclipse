@@ -83,7 +83,10 @@ import OBS_C_2025.Gunluk_Bilgi;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.USER_ISLEMLERI;
+import Pop_Up.Notificate_Mesaj;
 import javazoom.jl.player.Player;
+import raven.glasspanepopup.DefaultOption;
+import raven.glasspanepopup.GlassPanePopup;
 import raven.toast.Notifications;
 import javax.swing.JMenuBar;
 
@@ -3420,47 +3423,27 @@ public class OBS_MAIN extends JFrame {
 		toolBar_1.add(horizontalGlue);
 		
 		
-		//Gunluk_Mesaj obj = new Gunluk_Mesaj();
-		//obj.eventOK(new ActionListener() {
-		//	@Override
-		//	public void actionPerformed(ActionEvent ae) {
-		//		System.out.println("Click OK==");
-		//		GlassPanePopup.closePopupLast();
-
-		//	}
-		//});
+		
 	  
 	        
 		btnNewButton_72.addActionListener(new ActionListener() {
 			public void actionPerformed(java.awt.event. ActionEvent e) {
 				btnNewButton_72.setToolTipText("");
-				btnNewButton_72.setVisible(false);
-				/*
-				 * GlassPanePopup.showPopup( obj , new DefaultOption() {
-				 * 
-				 * @Override public float opacity() { return 0 ; }
-				 * 
-				 * @Override public LayoutCallback getLayoutCallback(Component parent) { return
-				 * new DefaultLayoutCallBack(parent) {
-				 * 
-				 * @Override public void correctBounds(ComponentWrapper cw) {
-				 * 
-				 * if(parent.isVisible()) {
-				 * 
-				 * Point p1= parent.getLocationOnScreen(); Point b1 =
-				 * btnNewButton_72.getLocationOnScreen(); System.out.println(b1.x +"=="+ b1.y);
-				 * int x=b1.x-p1.x; int y= b1.y -p1.y; cw.setBounds(x-cw.getWidth() +
-				 * btnNewButton_72.getWidth(), y + btnNewButton_72.getHeight(),cw.getWidth(),
-				 * cw.getHeight()); } else { System.out.println("================");
-				 * super.correctBounds(cw); }
-				 * 
-				 * } }; }
-				 * 
-				 * 
-				 * 
-				 * });
-				 */	    
-				form_ac("ANLIK MESAJLAR", "");
+				//btnNewButton_72.setVisible(false);
+				Notificate_Mesaj obj = new Notificate_Mesaj(gBILGI);
+				obj.eventOK(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent ae) {
+						System.out.println("Click OK");
+						GlassPanePopup.closePopupLast();
+					}
+				});
+				GlassPanePopup.showPopup( obj , new DefaultOption() {
+
+					@Override public float opacity() { return 0 ; }
+				});
+				// GlassPanePopup.showPopup(obj);
+				//form_ac("ANLIK MESAJLAR", "");
 				gBILGI.clear();
 				mESAJ_SAYI = 0 ;
 			}
@@ -3513,7 +3496,7 @@ public class OBS_MAIN extends JFrame {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		 //GlassPanePopup.install(this);
+		 GlassPanePopup.install(this);
 	}
 	private void form_ac(String pencere,String hangi) 
 	{

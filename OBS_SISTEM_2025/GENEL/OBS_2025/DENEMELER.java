@@ -384,6 +384,11 @@ public class DENEMELER extends JInternalFrame {
 		btnNewButton_9.setBounds(275, 71, 89, 23);
 		panel.add(btnNewButton_9);
 		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(63, 423, 179, 63);
+		panel.add(panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
 		
 		
 		

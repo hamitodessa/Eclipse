@@ -27,6 +27,7 @@ import raven.glasspanepopup.GlassPanePopup;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
@@ -48,10 +49,11 @@ public class Notificate_Mesaj extends JPanel {
 	public Notificate_Mesaj(java.util.List<GOREV_BILGI> gBILGI) {
 	
 		setOpaque(false);
-		setMinimumSize(new Dimension(600, 300));
-		setMaximumSize(new Dimension(600, 300));
+		setMinimumSize(new Dimension(700, 300));
+		setMaximumSize(new Dimension(700, 300));
 		setLayout(new MigLayout("inset 0,fillx,wrap","[fill]"));
-		setBorder(null);
+		 setBorder(javax.swing.BorderFactory.createEmptyBorder(25, 25, 25, 25));
+		setBackground(new Color(235,235,235));
 		JSplitPane pane= new JSplitPane() ;
 		
 		pane.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -149,6 +151,7 @@ public class Notificate_Mesaj extends JPanel {
 		
 		cmdOK = new JButton();
 	    cmdOK.setPreferredSize(new Dimension(100, 24));
+	    cmdOK.setFont(new Font("Tahoma", Font.BOLD, 11));
 	    cmdOK.setText("OK");
 	    panela.add(cmdOK,BorderLayout.EAST);
 		doldur( gBILGI);
@@ -165,7 +168,6 @@ public class Notificate_Mesaj extends JPanel {
 	private void doldur(java.util.List<GOREV_BILGI> gBILGI)
 	{
 		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-		System.out.println("="+gBILGI.size());
 		for (int i = 0; i < gBILGI.size(); i++) {
 
 			mdl.addRow(new Object[]{

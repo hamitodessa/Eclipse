@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -74,6 +76,19 @@ public class Aylik_Gorunum extends JPanel{
 							}
                          }
                      });
+                     button.addMouseListener(new MouseAdapter() {
+             			@Override
+             			public void mouseClicked(MouseEvent e) {
+             				if (e.getClickCount() == 2) {
+             					try {
+ 									Gunluk.ay_gorev_ac();
+								} catch (Exception e1) {
+								
+									e1.printStackTrace();
+								}
+             				  }
+             			}
+             		});
                      gunler +=1 ;
             		}
 				}

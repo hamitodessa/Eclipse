@@ -3443,7 +3443,6 @@ public class OBS_MAIN extends JFrame  {
 				obj.eventOK(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent ae) {
-						System.out.println("Click OK");
 						GlassPanePopup.closePopupLast();
 					}
 				});

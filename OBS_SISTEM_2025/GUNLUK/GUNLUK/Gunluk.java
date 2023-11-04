@@ -45,7 +45,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-//import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -535,7 +534,6 @@ public class Gunluk extends JInternalFrame {
 						DefaultTableModel mdlGunluk = (DefaultTableModel) table.getModel();
 						gbilgi.tarih1 = TARIH_CEVIR.tarih_sql(mdlBaslik.getValueAt(0, table.getSelectedColumn()).toString());
 						gbilgi.saat1 = mdlGunluk.getValueAt(table.getSelectedRow(), 0).toString() ;
-						System.out.println(gbilgi.tarih1 + "=="+ gbilgi.saat1);
 						
 						GOREV_GIRIS.cmbBaslamaSaat.setSelectedItem(gbilgi.saat1);
 						GOREV_GIRIS.dtcBaslama.setDate(TARIH_CEVIR.tarih_ekstre(gbilgi.tarih1));
@@ -644,6 +642,50 @@ public class Gunluk extends JInternalFrame {
 				if (table_3.getSelectedColumn() == 0) return ;
 				if (table_3.equals(e.getSource())) 
 				{
+					if (e.getClickCount() == 2)
+					{
+						boolean varmi = OBS_MAIN.pencere_bak("GOREV GIRIS");
+						if (varmi  ) 
+						{
+							try {
+								OBS_MAIN.pencere_aktiv_yap("GOREV GIRIS");
+							} catch (PropertyVetoException e1) {
+								e1.printStackTrace();
+							}
+						}
+						else
+						{
+							JInternalFrame internalFrame;
+							internalFrame  = new GOREV_GIRIS();
+							OBS_MAIN.desktopPane.add(internalFrame);
+							internalFrame.setVisible(true);
+						}
+						DefaultTableModel mdlYillik = (DefaultTableModel) table_3.getModel();
+						int ay = table_3.getSelectedColumn();
+						String gun  = mdlYillik.getValueAt(table_3.getSelectedRow(), 0).toString() ;
+						String ayyString ;
+						if(String.valueOf(ay).toString().length() == 1)
+						{
+							ayyString = "0" + String.valueOf(ay).toString() ;
+						}
+						else {
+							ayyString = String.valueOf(ay).toString() ;
+						}
+						String gunnString ;
+						if(String.valueOf(gun).toString().length() == 1)
+						{
+							gunnString = "0" + String.valueOf(gun).toString() ;
+						}
+						else {
+							gunnString = String.valueOf(gun).toString() ;
+						}
+						SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+						String formatted = format1.format(calendar.getDate());
+						String yilString = formatted.substring(6);
+						GOREV_GIRIS.dtcBaslama.setDate(TARIH_CEVIR.tarih(gunnString + "." + ayyString + "." + yilString));
+						GOREV_GIRIS.dtcBitis.setDate(TARIH_CEVIR.tarih(gunnString + "." + ayyString + "." + yilString));
+					}
+					else {
 						table_3.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 						try {
 							yillik_detay_doldur(table_3.getSelectedRow(),table_3.getSelectedColumn());
@@ -651,6 +693,8 @@ public class Gunluk extends JInternalFrame {
 							e1.printStackTrace();
 						}
 						table_3.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+					}
+						
 				}
 			}
 		});
@@ -1338,6 +1382,20 @@ public class Gunluk extends JInternalFrame {
 	}
 	public static void aYLIK(String tarih) throws ClassNotFoundException, SQLException
 	{
+		SimpleDateFormat formatt1 = new SimpleDateFormat("dd.MM.yyyy");
+		String formattedd = formatt1.format(calendar.getDate());
+			String yilString = formattedd.substring(6);
+			String ayyString = formattedd.substring(3,5);
+			String gunString ;
+			if(String.valueOf(tarih).toString().length() == 1)
+			{
+				gunString = "0" + String.valueOf(tarih).toString() ;
+			}
+			else {
+				gunString = String.valueOf(tarih).toString() ;
+			}
+				calendar.setDate(TARIH_CEVIR.tarih(gunString + "." + ayyString + "." + yilString));
+		///
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
 		String formatted = format1.format(calendar.getDate());
 		if (tarih.length() == 1)
@@ -1381,6 +1439,27 @@ public class Gunluk extends JInternalFrame {
 			root.add(iSIM);
 		}
 		model.reload(root);
+	}
+	public static void ay_gorev_ac()
+	{
+		boolean varmi = OBS_MAIN.pencere_bak("GOREV GIRIS");
+		if (varmi  ) 
+		{
+			try {
+				OBS_MAIN.pencere_aktiv_yap("GOREV GIRIS");
+			} catch (PropertyVetoException e1) {
+				e1.printStackTrace();
+			}
+		}
+		else
+		{
+			JInternalFrame internalFrame;
+			internalFrame  = new GOREV_GIRIS();
+			OBS_MAIN.desktopPane.add(internalFrame);
+			internalFrame.setVisible(true);
+		}
+		GOREV_GIRIS.dtcBaslama.setDate(calendar.getDate());
+		GOREV_GIRIS.dtcBitis.setDate(calendar.getDate());
 	}
 	private void sonraki_gorev_bul()
 	{

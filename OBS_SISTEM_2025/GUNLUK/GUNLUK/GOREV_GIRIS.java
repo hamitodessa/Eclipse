@@ -43,6 +43,7 @@ import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.lOG_BILGI;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings({ "static-access","serial" })
 public class GOREV_GIRIS extends JInternalFrame {
@@ -129,7 +130,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(txtMesaj);
 
 		dtcBaslama = new JDateChooser();
-		dtcBaslama.setBounds(100, 173, 115, 20);
+		dtcBaslama.setBounds(100, 173, 135, 25);
 		dtcBaslama.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
 			public void focusGained(FocusEvent evt) {
@@ -228,15 +229,15 @@ public class GOREV_GIRIS extends JInternalFrame {
 			}
 		});
 		dtcBaslama.setDateFormatString("dd.MM.yyyy");
-		dtcBaslama.setFont(new Font("Tahoma", Font.BOLD, 11));
+		dtcBaslama.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dtcBaslama.setDate(new Date());
 
 		panel.add(dtcBaslama);
 
 		cmbBaslamaSaat = new JComboBox<String>();
-		cmbBaslamaSaat.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cmbBaslamaSaat.setFont(new Font("Tahoma", Font.BOLD, 14));
 		cmbBaslamaSaat.setModel(new DefaultComboBoxModel<String>(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
-		cmbBaslamaSaat.setBounds(225, 171, 76, 22);
+		cmbBaslamaSaat.setBounds(245, 173, 80, 25);
 		panel.add(cmbBaslamaSaat);
 
 		txtGID = new JTextField();
@@ -246,10 +247,10 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(txtGID);
 		
 		dtcBitis = new JDateChooser();
-		dtcBitis.setFont(new Font("Tahoma", Font.BOLD, 11));
+		dtcBitis.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dtcBitis.setDateFormatString("dd.MM.yyyy");
 		dtcBitis.setDate(new Date());
-		dtcBitis.setBounds(100, 200, 115, 20);
+		dtcBitis.setBounds(100, 200, 135, 25);
 		dtcBitis.getDateEditor().getUiComponent().addFocusListener(new FocusAdapter()    {
 			@Override
 			public void focusGained(FocusEvent evt) {
@@ -363,18 +364,20 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(lblBitis);
 		
 		cmbSecenek = new JComboBox<String>();
-		cmbSecenek.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cmbSecenek.setFont(new Font("Tahoma", Font.BOLD, 14));
 		cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] {"Ayda", "Haftada", "Gunde", "Saatte"}));
-		cmbSecenek.setBounds(355, 171, 100, 22);
+		cmbSecenek.setBounds(355, 173, 100, 25);
 		panel.add(cmbSecenek);
 		
 		txtDeger = new JTextField();
-		txtDeger.setBounds(415, 200, 39, 20);
+		txtDeger.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtDeger.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtDeger.setBounds(415, 202, 39, 20);
 		panel.add(txtDeger);
 		txtDeger.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Deger");
-		lblNewLabel_5.setBounds(355, 203, 50, 14);
+		lblNewLabel_5.setBounds(355, 205, 50, 14);
 		panel.add(lblNewLabel_5);
 		
 		

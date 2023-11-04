@@ -52,9 +52,9 @@ public class GOREV_GIRIS extends JInternalFrame {
 	private static JTextField txtGorev;
 	private static JTextArea txtMesaj;
 	public static JTextField txtGID;
-	private static JDateChooser dtcBaslama ;
-	private static JDateChooser dtcBitis;
-	private static JComboBox<String> cmbBaslamaSaat ;
+	public static JDateChooser dtcBaslama ;
+	public static JDateChooser dtcBitis;
+	public static JComboBox<String> cmbBaslamaSaat ;
 	private static JComboBox<String> cmbSecenek;
 	private JLabel lblBitis;
 	private static JTextField txtYer;

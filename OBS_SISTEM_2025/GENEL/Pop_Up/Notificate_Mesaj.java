@@ -1,5 +1,6 @@
 package Pop_Up;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -28,6 +29,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.Panel;
 import java.awt.RenderingHints;
 import java.awt.event.ActionListener;
@@ -51,6 +53,7 @@ public class Notificate_Mesaj extends JPanel {
 		setLayout(new MigLayout("inset 0,fillx,wrap","[fill]"));
 		setBorder(null);
 		JSplitPane pane= new JSplitPane() ;
+		
 		pane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		pane.setDividerSize(0);
 		pane.setResizeWeight(1.0);
@@ -58,6 +61,7 @@ public class Notificate_Mesaj extends JPanel {
 
 		
 		JPanel panelu = new JPanel();
+	
 		panelu.setLayout(new BorderLayout());
 		pane.setLeftComponent(panelu);
 		

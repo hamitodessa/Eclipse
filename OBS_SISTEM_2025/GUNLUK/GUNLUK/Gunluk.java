@@ -1,5 +1,5 @@
 package GUNLUK;
-
+//The type java.text.Format cannot be resolved. It is indirectly referenced from required type java.text.DateFormat
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -40,11 +40,12 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import java.text.DateFormat;
+//import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+//import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -66,6 +67,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTree;
+import javax.swing.ListSelectionModel;
+
 import java.awt.GridLayout;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
@@ -116,7 +119,6 @@ public class Gunluk extends JInternalFrame {
 			e.printStackTrace();
 		}
 		
-		//panel.setMaximumSize(new Dimension(250, 0));
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 
@@ -510,14 +512,47 @@ public class Gunluk extends JInternalFrame {
 				if (table.getSelectedColumn() == 0) return ;
 				if (table.equals(e.getSource())) 
 				{
-					try 
+					if (e.getClickCount() == 2)
 					{
-						table.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-						detay_doldur(table.getSelectedRow(),table.getSelectedColumn());
-						table.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					} catch (ClassNotFoundException | SQLException e1) {
-						e1.printStackTrace();
+						boolean varmi = OBS_MAIN.pencere_bak("GOREV GIRIS");
+						if (varmi  ) 
+						{
+							try {
+								OBS_MAIN.pencere_aktiv_yap("GOREV GIRIS");
+							} catch (PropertyVetoException e1) {
+								e1.printStackTrace();
+							}
+						}
+						else
+						{
+							JInternalFrame internalFrame;
+							internalFrame  = new GOREV_GIRIS();
+							OBS_MAIN.desktopPane.add(internalFrame);
+							internalFrame.setVisible(true);
+						}
+						Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
+						DefaultTableModel mdlBaslik = (DefaultTableModel) table_1.getModel();
+						DefaultTableModel mdlGunluk = (DefaultTableModel) table.getModel();
+						gbilgi.tarih1 = TARIH_CEVIR.tarih_sql(mdlBaslik.getValueAt(0, table.getSelectedColumn()).toString());
+						gbilgi.saat1 = mdlGunluk.getValueAt(table.getSelectedRow(), 0).toString() ;
+						System.out.println(gbilgi.tarih1 + "=="+ gbilgi.saat1);
+						
+						GOREV_GIRIS.cmbBaslamaSaat.setSelectedItem(gbilgi.saat1);
+						GOREV_GIRIS.dtcBaslama.setDate(TARIH_CEVIR.tarih_ekstre(gbilgi.tarih1));
+						GOREV_GIRIS.dtcBitis.setDate(TARIH_CEVIR.tarih_ekstre(gbilgi.tarih1));
+						
 					}
+					else {
+						try 
+						{
+							table.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+							detay_doldur(table.getSelectedRow(),table.getSelectedColumn());
+							table.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+						} catch (ClassNotFoundException | SQLException e1) {
+							e1.printStackTrace();
+						}
+					}
+					
 				}
 			}
 		});
@@ -575,6 +610,8 @@ public class Gunluk extends JInternalFrame {
 		table.setTableHeader(null);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
+		table.setRowSelectionAllowed(false);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
@@ -1184,7 +1221,7 @@ public class Gunluk extends JInternalFrame {
 			{
 				String tarString= rSet.getString("TARIH").toString();
 				Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(tarString);  
-				DateFormat formatter = new SimpleDateFormat ("d");
+				SimpleDateFormat formatter = new SimpleDateFormat ("d");
 				String ewqString = formatter.format(date1);
 				Component[] comp = qweJPanel.getComponents();
 				for (int i = 0;i<comp.length;i++) {
@@ -1291,9 +1328,8 @@ public class Gunluk extends JInternalFrame {
 		{
 			gbilgi.isim = " ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' AND " ;
 		}
-        LocalDate givenDate = LocalDate.parse(formatted, DateTimeFormatter.ofPattern("yyyy.MM.dd"));
-        LocalDate lastDayOfMonthDateGivenDate  = givenDate.withDayOfMonth(
-                                                 givenDate.getMonth().length(givenDate.isLeapYear()));
+        LocalDate givenDate = LocalDate.parse(formatted,   DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+        LocalDate lastDayOfMonthDateGivenDate  = givenDate.withDayOfMonth( givenDate.getMonth().length(givenDate.isLeapYear()));
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         String formattedDate = lastDayOfMonthDateGivenDate.format(dateTimeFormatter);  //17-02-2022
         gbilgi.tarih2 =  formattedDate;

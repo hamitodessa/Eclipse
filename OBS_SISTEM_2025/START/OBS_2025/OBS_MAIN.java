@@ -93,11 +93,12 @@ import javax.swing.JMenuBar;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.event.WindowStateListener;
 import java.awt.event.MouseEvent;
 import javax.swing.Box;
 
 @SuppressWarnings({"serial","static-access"})
-public class OBS_MAIN extends JFrame {
+public class OBS_MAIN extends JFrame  {
 
 	/**
 	 * 
@@ -244,6 +245,17 @@ public class OBS_MAIN extends JFrame {
 	
 	public OBS_MAIN() {
 //2663 satir
+		this.addWindowStateListener(new WindowStateListener()
+		{
+		  @Override
+		  public void windowStateChanged(WindowEvent ex)
+		  {
+			  if(ex.getNewState() == 0)
+			  {
+				  setBounds(0, 0, 1000, 800);
+			  }
+		  }
+		});
 		
 		this.addWindowListener(new WindowListener() {
 	        @Override
@@ -270,13 +282,13 @@ public class OBS_MAIN extends JFrame {
 	        @Override
 	        public void windowDeactivated(WindowEvent e) {
 	        }
-	    });
+	    });		    
 		SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
 		setFont(new Font("Dialog", Font.BOLD, 12));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_MAIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setBounds(0, 0, 1200, 800);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//setBounds(0, 0, 1200, 800);
 		setTitle("OBS SISTEM");
 
 		JMenuBar menuBar = new JMenuBar();
@@ -3403,9 +3415,10 @@ public class OBS_MAIN extends JFrame {
 		progressBar = new JProgressBar();
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		progressBar.setMaximumSize(new Dimension((int) (this.getWidth() *.20), 20));
-		progressBar.setMinimumSize(new Dimension((int) (this.getWidth() *.20), 20));
-		progressBar.setPreferredSize(new Dimension((int) (this.getWidth() *.20),20));
+		
+		progressBar.setMaximumSize(new Dimension(350, 20));
+		progressBar.setMinimumSize(new Dimension(350, 20));
+		progressBar.setPreferredSize(new Dimension(350, 20));
 		
 		toolBar_1.add(progressBar);
 		JLabel lblNewLabel_1 = new JLabel("     ");
@@ -3421,15 +3434,11 @@ public class OBS_MAIN extends JFrame {
 		Component horizontalGlue = Box.createHorizontalGlue();
 		horizontalGlue.setEnabled(false);
 		toolBar_1.add(horizontalGlue);
-		
-		
-		
-	  
 	        
 		btnNewButton_72.addActionListener(new ActionListener() {
 			public void actionPerformed(java.awt.event. ActionEvent e) {
 				btnNewButton_72.setToolTipText("");
-				//btnNewButton_72.setVisible(false);
+				btnNewButton_72.setVisible(false);
 				Notificate_Mesaj obj = new Notificate_Mesaj(gBILGI);
 				obj.eventOK(new ActionListener() {
 					@Override

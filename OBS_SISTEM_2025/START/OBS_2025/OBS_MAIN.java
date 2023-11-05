@@ -100,10 +100,6 @@ import javax.swing.Box;
 @SuppressWarnings({"serial","static-access"})
 public class OBS_MAIN extends JFrame  {
 
-	/**
-	 * 
-	 */
-	
 	//Cari
 	private JButton btnNewButton_5 ; //Hesap Plani
 	private JButton btnNewButton_4 ; // Dekont 
@@ -240,7 +236,6 @@ public class OBS_MAIN extends JFrame  {
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
-
 	static List<GOREV_BILGI> gBILGI = new ArrayList<GOREV_BILGI>();
 	
 	public OBS_MAIN() {
@@ -261,7 +256,6 @@ public class OBS_MAIN extends JFrame  {
 	        @Override
 	        public void windowOpened(WindowEvent e) {
 				form_ac("CALISMA DIZINLERI","");
-				btnNewButton_72.setVisible(false);
 				gorev_kontrol();
 	        }
 	        @Override
@@ -3410,7 +3404,7 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_1.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_1.setFloatable(false);
 		
-		btnNewButton_72 = new JButton();
+		
 		
 		progressBar = new JProgressBar();
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -3419,8 +3413,8 @@ public class OBS_MAIN extends JFrame  {
 		progressBar.setMaximumSize(new Dimension(350, 20));
 		progressBar.setMinimumSize(new Dimension(350, 20));
 		progressBar.setPreferredSize(new Dimension(350, 20));
-		
 		toolBar_1.add(progressBar);
+
 		JLabel lblNewLabel_1 = new JLabel("     ");
 		toolBar_1.add(lblNewLabel_1);
 
@@ -3434,7 +3428,7 @@ public class OBS_MAIN extends JFrame  {
 		Component horizontalGlue = Box.createHorizontalGlue();
 		horizontalGlue.setEnabled(false);
 		toolBar_1.add(horizontalGlue);
-	        
+		btnNewButton_72 = new JButton();
 		btnNewButton_72.addActionListener(new ActionListener() {
 			public void actionPerformed(java.awt.event. ActionEvent e) {
 				btnNewButton_72.setToolTipText("");
@@ -3450,7 +3444,6 @@ public class OBS_MAIN extends JFrame  {
 
 					@Override public float opacity() { return 0 ; }
 				});
-				// GlassPanePopup.showPopup(obj);
 				//form_ac("ANLIK MESAJLAR", "");
 				gBILGI.clear();
 				mESAJ_SAYI = 0 ;
@@ -3458,15 +3451,11 @@ public class OBS_MAIN extends JFrame  {
 		});
 		btnNewButton_72.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/bellR-16.png")));
 		toolBar_1.add(btnNewButton_72);
-	
        //***************************************************************************************************
-
 		desktopPane = new JDesktopPane();
 		//desktopPane.setBackground(new Color(39, 45, 61));
-		
 		Notifications.getInstance().setJFrame(this);
 		DesktopScrollPane scrpane = new DesktopScrollPane(desktopPane );
-
 
 		JSplitPane ortapane = new  JSplitPane();
 		ortapane.setDividerSize(0);

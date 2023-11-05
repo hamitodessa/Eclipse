@@ -153,8 +153,27 @@ public class Notificate_Mesaj extends JPanel {
 	    cmdOK.setPreferredSize(new Dimension(100, 24));
 	    cmdOK.setFont(new Font("Tahoma", Font.BOLD, 11));
 	    cmdOK.setText("OK");
+	    
+
 	    panela.add(cmdOK,BorderLayout.EAST);
 		doldur( gBILGI);
+		cmdOK.addAncestorListener(new AncestorListener() {
+			@Override
+			public void ancestorRemoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorMoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorAdded(AncestorEvent pEvent) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						cmdOK.requestFocusInWindow();
+					}
+				});
+			}
+		});
 	}
 	 @Override
 	    protected void paintComponent(Graphics grphcs) {

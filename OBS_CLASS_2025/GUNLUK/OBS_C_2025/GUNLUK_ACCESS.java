@@ -103,4 +103,8 @@ public class GUNLUK_ACCESS {
 	{
 		return _IGunluk.gorev_oku_yillik_pivot(gbilgi);
 	}
+	public ResultSet gorev_oku_sonraki_yil(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException
+	{
+		return _IGunluk.gorev_oku_sonraki_yil(gbilgi);
+	}
 }

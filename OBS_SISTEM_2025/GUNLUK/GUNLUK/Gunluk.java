@@ -245,9 +245,13 @@ public class Gunluk extends JInternalFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int	activ_sayfa = tabloTabbedPane.getSelectedIndex();
-				if (activ_sayfa == 0)
+				if (activ_sayfa == 0 || activ_sayfa == 1)
 				{
 					sonraki_gorev_bul();
+				}
+				else if (activ_sayfa == 2)
+				{
+					sonraki_gorev_bul_yil();
 				}
 			}
 		});
@@ -1484,6 +1488,48 @@ public class Gunluk extends JInternalFrame {
 			}
 			gbilgi.tarih1 = trh1 ;
 			ResultSet rs = g_Access.gorev_oku_sonraki(gbilgi);
+			if (!rs.isBeforeFirst() ) { 
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
+				return; // Kayit Yok
+			} 
+			rs.next();
+			Date qwee = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("TARIH"));
+			cal = Calendar.getInstance();
+			cal.setTime(qwee);
+			calendar.setDate(new Date(cal.getTimeInMillis()));
+		} 
+		catch (Exception ex) 
+		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	private void sonraki_gorev_bul_yil()
+	{
+		try 
+		{
+			SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+			trh1 = format1.format(calendar.getDate());
+			Date qwe = new SimpleDateFormat("dd.MM.yyyy").parse(trh1);	
+			
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(qwe);
+			cal.add(Calendar.YEAR, 1); 
+			SimpleDateFormat format2 = new SimpleDateFormat("yyyy.MM.dd");
+			trh1 =  format2.format(cal.getTime());
+			
+			trh1 = trh1.substring(0,4) + ".01.01" ;
+			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
+			if (comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString().equals("Hepsi"))
+			{
+				gbilgi.isim = "" ;
+			}
+			else 
+			{
+				gbilgi.isim = " AND ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' " ;
+			}
+			gbilgi.tarih1 = trh1 ;
+			ResultSet rs = g_Access.gorev_oku_sonraki_yil(gbilgi);
 			if (!rs.isBeforeFirst() ) { 
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 				return; // Kayit Yok

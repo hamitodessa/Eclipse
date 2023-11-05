@@ -457,4 +457,16 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		rss = stmt.executeQuery();
 		return rss;	
 	}
+	@Override
+	public ResultSet gorev_oku_sonraki_yil(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		String sql = "SELECT  TARIH, SAAT,ISIM,GOREV,MESAJ  " +
+				" FROM GUNLUK  " +
+				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
+				" ORDER BY TARIH  ";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
 }

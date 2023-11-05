@@ -468,4 +468,16 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
+	@Override
+	public ResultSet gorev_oku_sonraki_yil(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = "SELECT  TARIH, SAAT,ISIM,GOREV,MESAJ  " +
+				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
+				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
+				" ORDER BY TARIH  ";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
 }

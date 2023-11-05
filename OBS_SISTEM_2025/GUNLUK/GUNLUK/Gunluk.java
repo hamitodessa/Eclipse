@@ -466,7 +466,6 @@ public class Gunluk extends JInternalFrame {
 				}
 				));
 		table_1.setRowSelectionAllowed(false);
-		
 		table_1.setRowHeight(0, 30);
 		table_1.setRowHeight(1, 30);
 		table_1.getColumnModel().getColumn(0).setMaxWidth(100);

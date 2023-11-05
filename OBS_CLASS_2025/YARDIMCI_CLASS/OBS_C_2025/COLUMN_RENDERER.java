@@ -42,7 +42,20 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 				cell.setFont(fnt);
 				Border border = BorderFactory.createMatteBorder(1, 0, 1, 0, new Color(0, 60, 102));
 				setBorder(border);
-				setToolTipText("Tiklama da Gorev Detaylari sag tarafta goruntuleme.......");
+				
+				
+				String[] token = value.toString().split(",");
+				String ewqString = "";
+				for(int i=0;i<=token.length-1;i++)
+				{
+					String qazString = token[i].substring(1);
+					qazString = qazString.substring(0,qazString.length()-1);
+					ewqString += "<br>" + qazString;
+				}
+				String html = "<html><body ><strong>"
+						+ "Tiklama da Gorev Detaylari sag tarafta goruntuleme......." + "</strong>"
+						+ ewqString.toString() ;
+				setToolTipText(String.format(html));
 			}
 			else 
 			{

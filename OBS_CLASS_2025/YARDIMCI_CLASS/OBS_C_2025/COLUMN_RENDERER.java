@@ -3,6 +3,8 @@ package OBS_C_2025;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.util.Random;
+
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -46,14 +48,27 @@ public class COLUMN_RENDERER  extends DefaultTableCellRenderer
 				
 				String[] token = value.toString().split(",");
 				String ewqString = "";
+				Random rand = new Random();
 				for(int i=0;i<=token.length-1;i++)
 				{
 					String qazString = token[i].substring(1);
 					qazString = qazString.substring(0,qazString.length()-1);
-					ewqString += "<br>" + qazString;
+					float r = rand.nextFloat();
+					float g = rand.nextFloat();
+					float b = rand.nextFloat();
+					Color randomColor = new Color(r, g, b);
+					String red = Integer.toHexString(randomColor.getRed());
+				    String green = Integer.toHexString(randomColor.getGreen());
+				    String blue = Integer.toHexString(randomColor.getBlue());
+				    String rENKString = "#" + 
+				            (red.length() == 1? "0" + red : red) +
+				            (green.length() == 1? "0" + green : green) +
+				            (blue.length() == 1? "0" + blue : blue);      
+				  
+					ewqString += "<br><font color="+rENKString+">" + qazString +"</font>";
 				}
 				String html = "<html><body ><strong>"
-						+ "Tiklama da Gorev Detaylari sag tarafta goruntuleme......." + "</strong>"
+						+ "Tiklama da Gorev Detaylari sag tarafta goruntuleme......." + "</strong><br>"
 						+ ewqString.toString() ;
 				setToolTipText(String.format(html));
 			}

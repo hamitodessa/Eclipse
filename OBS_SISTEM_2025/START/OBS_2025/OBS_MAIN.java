@@ -1248,11 +1248,9 @@ public class OBS_MAIN extends JFrame  {
 
 		///*******
 		tabbedPane.setTabLayoutPolicy(MaterialTabbed.SCROLL_TAB_LAYOUT);
-		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
+		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255), 0, true));
 		tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setFont(new Font("Calibri", Font.BOLD, 20));
-		
-		
 		splitPane.setLeftComponent(tabbedPane);
 //******************************************************* CARI HESAP *******************************************************
 		ScrollPaneWin11 cscrol = new ScrollPaneWin11();
@@ -1279,7 +1277,6 @@ public class OBS_MAIN extends JFrame  {
 				form_ac("HESAP GIRISI","");
 			}
 		});
-
 		btnNewButton_5.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/hsp-30.png")));
 		toolBar_2.add(btnNewButton_5);
 
@@ -2038,7 +2035,7 @@ public class OBS_MAIN extends JFrame  {
 		//************************************************************GUNLUK *********************************************************************************
 
 		JToolBar toolBar_7 = new JToolBar();
-		toolBar_7.setBorder(new LineBorder(new Color(0, 191, 255)));
+		//toolBar_7.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_7.setFloatable(false);
 		tabbedPane.addTab("Gunluk", null, toolBar_7, null);
 
@@ -2510,7 +2507,7 @@ public class OBS_MAIN extends JFrame  {
 		//************************************************************HAKKINDA *********************************************************************************
 
 		JToolBar toolBar_11 = new JToolBar();
-		toolBar_11.setBorder(new LineBorder(new Color(0, 191, 255)));
+		//toolBar_11.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_11.setFloatable(false);
 		tabbedPane.addTab("Hakkinda", null, toolBar_11, null);
 
@@ -3723,6 +3720,7 @@ public class OBS_MAIN extends JFrame  {
 			rs = g_Access.gorev_oku_tarih(gbilgi);
 			if (!rs.isBeforeFirst() ) { 
 				GuiUtil.setWaitCursor(toolBar,false);
+				btnNewButton_72.setVisible(false);
 				return; // Kayit Yok
 			} 
 			while (rs.next()) 

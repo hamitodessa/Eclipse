@@ -34,6 +34,8 @@ import javax.swing.text.JTextComponent;
 
 import com.toedter.calendar.JDateChooser;
 
+import OBS_2025.GuiUtil;
+import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.GLOBAL;
@@ -60,7 +62,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 	private JLabel lblBitis;
 	private static JTextField txtYer;
 	private static JTextField txtDeger;
-
+	static JPanel panel;
 	
 	public GOREV_GIRIS() {
 		setIconifiable(true);
@@ -68,7 +70,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		setBounds(100, 100, 483, 264);
 		setTitle("GOREV GIRIS");
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setLayout(null);
 		getContentPane().add(panel, BorderLayout.CENTER);
 
@@ -396,7 +398,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 			if (dtcBitis.getDate() == null) return;
 			boolean isInteger = Pattern.matches("^\\d*$", txtDeger.getText());
 			if(! isInteger) return;
-		    	 
+		    GuiUtil.setWaitCursor(GOREV_GIRIS.panel,true);	
+		    GuiUtil.setWaitCursor(OBS_MAIN.desktopPane,true);	
 			String mesaj = "" ;
 			mesaj = "Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + 
 			" Mesaj="  ;
@@ -414,6 +417,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 						JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 				if(g != 0 )
 				{ 
+					GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
+				    GuiUtil.setWaitCursor(OBS_MAIN.desktopPane,false);
 					return;	
 				}
 				
@@ -458,6 +463,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 			gbilgi.gid = g_Access.gid_ogren(gbilgi);
 			g_Access.gunluk_farkli_kayit(gbilgi);
 			sifirla();
+			GuiUtil.setWaitCursor(GOREV_GIRIS.panel,true);	
+		    GuiUtil.setWaitCursor(OBS_MAIN.desktopPane,true);
 		}
 		catch (Exception ex)
 		{

@@ -1415,13 +1415,13 @@ public class IMALAT extends JInternalFrame {
 			tar = TARIH_CEVIR.tarih_geri_saatli(dtc) ;
 			stok_isle();
 			acik_yaz();
-			textField.setText("");
 			textField_1.setText("");
-			sifirla();
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime;
 			double seconds = (double)estimatedTime/1000; 
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
+			sifirla();
+			textField.setText("");
 			textField.requestFocus();
 		}
 		catch (Exception ex)
@@ -1637,6 +1637,7 @@ public class IMALAT extends JInternalFrame {
 	private static void sifirla()
 	{
 		GRID_TEMIZLE.grid_temizle(table);
+		table.isRowSelected(0);
 		for (int i = 0; i <= 12; i ++)
 		{
 			satir_ilave();

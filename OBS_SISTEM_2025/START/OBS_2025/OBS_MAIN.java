@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-//import raven.glasspanepopup.GlassPanePopup;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,7 +23,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
@@ -1919,7 +1917,8 @@ public class OBS_MAIN extends JFrame  {
 				boolean varmi = OBS_MAIN.pencere_bak("ENVANTER DOKUM");
 				if (! varmi  ) 
 				{
-					JOptionPane.showMessageDialog(null, "Oncelikli Olarak Envanter Dokumu Aliniz......", "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
+					mesaj_goster(7500,Notifications.Type.WARNING,"Oncelikli Olarak Envanter Dokumu Aliniz......", false);
+					//JOptionPane.showMessageDialog(null, "Oncelikli Olarak Envanter Dokumu Aliniz......", "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				form_ac("STOK YIL SONU","");
@@ -2431,7 +2430,8 @@ public class OBS_MAIN extends JFrame  {
 			public void actionPerformed(ActionEvent e) {
 				if(! GLOBAL.KULL_ADI.equals("Admin") && ! GLOBAL.KULL_ADI.equals("hamit"))
 				{
-					JOptionPane.showMessageDialog(null, "Sadece Admin Gorebilir","Log Sorgulama", JOptionPane.INFORMATION_MESSAGE);
+					//JOptionPane.showMessageDialog(null, "Sadece Admin Gorebilir","Log Sorgulama", JOptionPane.INFORMATION_MESSAGE);
+					mesaj_goster(5000,Notifications.Type.WARNING,"Sadece Admin Gorebilir", false);
 					return;
 				}
 				form_ac("LOG RAPORLAMA","");
@@ -3158,7 +3158,8 @@ public class OBS_MAIN extends JFrame  {
 				catch (Exception ex) 
 				{
 					GuiUtil.setWaitCursor(toolBar,false);
-					JOptionPane.showMessageDialog(null, ex.getMessage(),  "Yazici", JOptionPane.ERROR_MESSAGE);   
+					mesaj_goster(7500,Notifications.Type.ERROR,ex.getMessage(), false);
+					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Yazici", JOptionPane.ERROR_MESSAGE);   
 				}
 			}
 		});
@@ -3296,8 +3297,9 @@ public class OBS_MAIN extends JFrame  {
 				}
 				catch (Exception ex) 
 				{
-					GuiUtil.setWaitCursor(toolBar,false);		
-					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grafik", JOptionPane.ERROR_MESSAGE);
+					GuiUtil.setWaitCursor(toolBar,false);	
+					mesaj_goster(7500,Notifications.Type.ERROR,ex.getMessage(), false);
+					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grafik", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

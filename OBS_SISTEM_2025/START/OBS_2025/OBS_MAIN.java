@@ -46,8 +46,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.ResultSet;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
@@ -3745,6 +3747,16 @@ public class OBS_MAIN extends JFrame  {
 					gunluk_goster();
 				}
 			}, millisToNextHour(calendar),  kontolsuresi);
+			////
+			//Timer t = new Timer();  
+			//TimerTask tt = new TimerTask() {  
+			//    @Override  
+			//    public void run() {  
+			//    	gunluk_goster();
+			//    };  
+			//};  
+			//t.schedule(tt,millisToNextHour(calendar),  kontolsuresi); ;  
+
 			gunluk_goster();
 		} catch (Exception e) 
 		{
@@ -3810,13 +3822,21 @@ public class OBS_MAIN extends JFrame  {
 	}
 	private static long millisToNextHour(Calendar calendar) 
 	{
-	    int minutes = calendar.get(Calendar.MINUTE);
-	    int seconds = calendar.get(Calendar.SECOND);
-	    int millis = calendar.get(Calendar.MILLISECOND);
-	    int minutesToNextHour = 60 - minutes;
-	    int secondsToNextHour = 60 - seconds;
-	    int millisToNextHour = 1000 - millis;
-	    return minutesToNextHour*60*1000 + secondsToNextHour*1000 + millisToNextHour;
+		
+		///
+		LocalDateTime start = LocalDateTime.now();
+	    LocalDateTime end = start.plusHours(1).truncatedTo(ChronoUnit.HOURS);
+	    Duration duration = Duration.between(start, end);
+	    long millis = duration.toMillis();
+	    return millis ;
+		///
+	    //int minutes = calendar.get(Calendar.MINUTE);
+	    //int seconds = calendar.get(Calendar.SECOND);
+	   //int millis = calendar.get(Calendar.MILLISECOND);
+	    //int minutesToNextHour = 60 - minutes;
+	    //int secondsToNextHour = 60 - seconds;
+	    //int millisToNextHour = 1000 - millis;
+	    //return minutesToNextHour*60*1000 + secondsToNextHour*1000 + millisToNextHour;
 	}
 	public synchronized  void setExtendedStatee(int state)
 	{       

@@ -49,8 +49,8 @@ public class Notificate_Mesaj extends JPanel {
 	public Notificate_Mesaj(java.util.List<GOREV_BILGI> gBILGI) {
 	
 		setOpaque(false);
-		setMinimumSize(new Dimension(700, 300));
-		setMaximumSize(new Dimension(700, 300));
+		setMinimumSize(new Dimension(750, 300));
+		setMaximumSize(new Dimension(750, 300));
 		setLayout(new MigLayout("inset 0,fillx,wrap","[fill]"));
 		 setBorder(javax.swing.BorderFactory.createEmptyBorder(25, 25, 25, 25));
 		setBackground(new Color(235,235,235));
@@ -109,7 +109,7 @@ public class Notificate_Mesaj extends JPanel {
 
 		col = tcm.getColumn(4);
 		col.setHeaderRenderer(new SOLA());
-		col.setMinWidth(300);
+		col.setMinWidth(330);
 
 		table.setRowHeight(20);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );

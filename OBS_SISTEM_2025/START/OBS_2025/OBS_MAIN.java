@@ -1474,11 +1474,21 @@ public class OBS_MAIN extends JFrame  {
 		lblCariBilgi = new JLabel("");
 		toolBar_2.add(lblCariBilgi);
 //**********************************************************************KUR ********************************************************************
+		
+		ScrollPaneWin11 cscrolk = new ScrollPaneWin11();
+		cscrolk.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		cscrolk.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
+		JPanel qwerck = new JPanel();
+		qwerck.setPreferredSize(new Dimension(0, 65));
+		qwerck.setLayout(new BorderLayout(0, 0));
+		qwerck.add(cscrolk);
+		
+		
 		JToolBar toolBar_3 = new JToolBar();
-		//toolBar_3.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_3.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		toolBar_3.setFloatable(false);
-		tabbedPane.addTab("Kur", null, toolBar_3, null);
+		cscrolk.setViewportView(toolBar_3);
+		tabbedPane.addTab("Kur", null, qwerck, null);
 
 		btnNewButton_32 = new JButton("");
 		btnNewButton_32.setToolTipText("Kur Giris");
@@ -1527,11 +1537,18 @@ public class OBS_MAIN extends JFrame  {
 		lblKurBilgi = new JLabel("");
 		toolBar_3.add(lblKurBilgi);
 //************************************************************ADRES *********************************************************************************
+		ScrollPaneWin11 cscrola = new ScrollPaneWin11();
+		cscrola.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		cscrola.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
+		JPanel qwerca = new JPanel();
+		qwerca.setPreferredSize(new Dimension(0, 65));
+		qwerca.setLayout(new BorderLayout(0, 0));
+		qwerca.add(cscrola);
+		
 		JToolBar toolBar_4 = new JToolBar();
 		toolBar_4.setFloatable(false);
-		//toolBar_4.setBorder(new LineBorder(new Color(0, 191, 255)));
-		tabbedPane.addTab("Adres", null, toolBar_4, null);
-
+		tabbedPane.addTab("Adres", null,qwerca, null);
+		cscrola.setViewportView(toolBar_4);
 		btnNewButton_36 = new JButton("");
 		btnNewButton_36.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1962,11 +1979,19 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_5.add(lblStokBilgi);
 		
 		//************************************************************KAMBIYO *********************************************************************************
+		ScrollPaneWin11 cscrolka = new ScrollPaneWin11();
+		cscrolka.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		cscrolka.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
+		JPanel qwercka = new JPanel();
+		qwercka.setPreferredSize(new Dimension(0, 65));
+		qwercka.setLayout(new BorderLayout(0, 0));
+		qwercka.add(cscrolka);
+		
 		JToolBar toolBar_6 = new JToolBar();
-		//toolBar_6.setBorder(new LineBorder(new Color(0, 191, 255)));
+		
 		toolBar_6.setFloatable(false);
-		tabbedPane.addTab("Kambiyo", null, toolBar_6, null);
-
+		tabbedPane.addTab("Kambiyo", null, qwercka, null);
+		cscrolka.setViewportView(toolBar_6);
 		btnNewButton_75 = new JButton("");
 		btnNewButton_75.setToolTipText("Cek Giris");
 		btnNewButton_75.addActionListener(new ActionListener() {
@@ -2034,11 +2059,19 @@ public class OBS_MAIN extends JFrame  {
 		
 		//************************************************************GUNLUK *********************************************************************************
 
+		ScrollPaneWin11 cscrolg = new ScrollPaneWin11();
+		cscrolg.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		cscrolg.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
+		JPanel qwercg = new JPanel();
+		qwercg.setPreferredSize(new Dimension(0, 65));
+		qwercg.setLayout(new BorderLayout(0, 0));
+		qwercg.add(cscrolg);
+		
 		JToolBar toolBar_7 = new JToolBar();
-		//toolBar_7.setBorder(new LineBorder(new Color(0, 191, 255)));
+		
 		toolBar_7.setFloatable(false);
-		tabbedPane.addTab("Gunluk", null, toolBar_7, null);
-
+		tabbedPane.addTab("Gunluk", null, qwercg, null);
+		cscrolg.setViewportView(toolBar_7);
 		btnNewButton_81 = new JButton("");
 		btnNewButton_81.setToolTipText("Gunluk");
 		btnNewButton_81.addActionListener(new ActionListener() {
@@ -2096,12 +2129,19 @@ public class OBS_MAIN extends JFrame  {
 		lblGunlukBilgi = new JLabel("");
 		toolBar_7.add(lblGunlukBilgi);
 		//************************************************************SMS*********************************************************************************
-
+		ScrollPaneWin11 cscrols = new ScrollPaneWin11();
+		cscrols.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		cscrols.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
+		JPanel qwercs = new JPanel();
+		qwercs.setPreferredSize(new Dimension(0, 65));
+		qwercs.setLayout(new BorderLayout(0, 0));
+		qwercs.add(cscrols);
+		
 		JToolBar toolBar_8 = new JToolBar();
-		//toolBar_8.setBorder(new LineBorder(new Color(0, 191, 255)));
+		
 		toolBar_8.setFloatable(false);
-		tabbedPane.addTab("Sms/Mail", null, toolBar_8, null);
-
+		tabbedPane.addTab("Sms/Mail", null, qwercs, null);
+		cscrols.setViewportView(toolBar_8);
 		btnNewButton_83 = new JButton("");
 		btnNewButton_83.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2127,12 +2167,21 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_8.add(lblSmsBilgi);
 		
 		//************************************************************KERESTE*********************************************************************************
-
-		JToolBar toolBar_Kereste = new JToolBar();
-		//toolBar_8.setBorder(new LineBorder(new Color(0, 191, 255)));
-		toolBar_Kereste.setFloatable(false);
-		tabbedPane.addTab("Kereste", null, toolBar_Kereste, null);
+		ScrollPaneWin11 cscrolke = new ScrollPaneWin11();
+		cscrolke.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		cscrolke.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 10));
+		JPanel qwercke = new JPanel();
+		qwercke.setPreferredSize(new Dimension(0, 65));
+		qwercke.setLayout(new BorderLayout(0, 0));
+		qwercke.add(cscrolke);
 		
+
+		
+		JToolBar toolBar_Kereste = new JToolBar();
+		
+		toolBar_Kereste.setFloatable(false);
+		tabbedPane.addTab("Kereste", null, qwercke, null);
+		cscrolke.setViewportView(toolBar_Kereste);
 		btnNewButton_1 = new JButton("");
 		btnNewButton_1.setToolTipText("Giris");
 		btnNewButton_1.addActionListener(new ActionListener() {

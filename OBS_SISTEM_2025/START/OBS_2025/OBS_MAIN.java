@@ -3746,7 +3746,7 @@ public class OBS_MAIN extends JFrame  {
 			gunluk_goster();
 		} catch (Exception e) 
 		{
-			e.printStackTrace();
+			mesaj_goster(5000,Notifications.Type.ERROR,e.getMessage(), false);
 		}
 	}
 	private static void gunluk_goster()
@@ -3760,10 +3760,6 @@ public class OBS_MAIN extends JFrame  {
 			gbilgi.tarih1 = dtf.format(now) ;
 			dtf = DateTimeFormatter.ofPattern("HH:00");  
 			gbilgi.saat1 = dtf.format(now) ;
-			//
-			//gbilgi.tarih1 = "2023.01.12" ;
-			//gbilgi.saat1 = "10:00" ;
-			//
 			ResultSet rs;
 			
 			rs = g_Access.gorev_oku_tarih(gbilgi);
@@ -3782,9 +3778,6 @@ public class OBS_MAIN extends JFrame  {
 						rs.getString("ISIM")  , rs.getString("GOREV"), rs.getString("MESAJ"));
 				gBILGI.add(aNLIKBilgi);
 			}
-			//
-			
-			//
 			stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
 			Player player = new Player(stream);
 			player.play();

@@ -253,7 +253,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		String sql = "SELECT DATE_FORMAT(TARIH, '%d.%m.%Y') as TARIH, SAAT,ISIM,GOREV,MESAJ  " +
 				" FROM GUNLUK  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
-				" ORDER BY TARIH  ";
+				" ORDER BY TARIH ,ISIM ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

@@ -263,7 +263,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		String sql = "SELECT FORMAT (TARIH, 'dd.MM.yyyy') as TARIH, SAAT,ISIM,GOREV,MESAJ  " +
 				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
-				" ORDER BY TARIH  ";
+				" ORDER BY TARIH ,ISIM ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	

@@ -56,6 +56,7 @@ public class Aylik_Gorunum extends JPanel{
 					String twoLines =  "<html><p style=text-align:center;> <font color = #303A68 > <b> " + qweString + " </b> <br> </p></html>";
 					
             		 button = new JButton( twoLines );
+            		 button.setToolTipText(twoLines);
             		 button.setName(Integer.toString(gunler));
             		 button.setActionCommand("" + Integer.toString(gunler) + "");
                      button.addActionListener(new ActionListener()

@@ -1279,19 +1279,22 @@ public class Gunluk extends JInternalFrame {
 						{
 							if ( ((JButton)comp[i]).getName().equals(ewqString))
 							{
-								if(((JButton)comp[i]).getText().equals("<html><p style=text-align:center;> <font color = #303A68 > <b> " + ewqString + "</b> <br> </p></html>"))
+								if(((JButton)comp[i]).getToolTipText().equals("<html><p style=text-align:center;> <font color = #303A68 > <b> " + ewqString + "</b> <br> </p></html>"))
 								{
 									String qweString = "<html><p style=text-align:center;> <font color = #303A68 > <b> " + ewqString + " </b> <br> </p>" ;
 									qweString = qweString + "<p style=text-align:left;> <font color = #9C487F > " + rSet.getString("ISIM") +" / " +  rSet.getString("GOREV")  
 									+  "</p></html>";
-									((JButton)comp[i]).setText(qweString );
+									((JButton)comp[i]).setToolTipText(qweString);
+									((JButton)comp[i]).setText("<html><p style=text-align:center;> <font color = #02BF5F > <b> " + qweString + " </b> <br> </p></html>");
+
 								}
 								else
 								{
-									String dEVAM = ((JButton)comp[i]).getText().substring(0, ((JButton)comp[i]).getText().length() - 7);
+									String dEVAM = ((JButton)comp[i]).getToolTipText().substring(0, ((JButton)comp[i]).getToolTipText().length() - 7);
 									dEVAM = dEVAM + "<p style=text-align:left;> <font color = #9C487F > "  + rSet.getString("ISIM") + " -  <font color = #81B1A1 >" +  rSet.getString("GOREV")  
 									+ "</p></br></html>";
-									((JButton)comp[i]).setText(dEVAM );
+									((JButton)comp[i]).setToolTipText(dEVAM);
+									((JButton)comp[i]).setText("<html><p style=text-align:center;> <font color = #02BF5F > <b> " + ((JButton)comp[i]).getName() + " </b> <br> </p></html>");
 								}
 							}
 						}

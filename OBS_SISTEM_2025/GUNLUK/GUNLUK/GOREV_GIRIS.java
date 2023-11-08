@@ -422,11 +422,9 @@ public class GOREV_GIRIS extends JInternalFrame {
 				if(g != 0 )
 				{ 
 					GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
-				    GuiUtil.setWaitCursor(OBS_MAIN.desktopPane,false);
 					return;	
 				}
 				GuiUtil.setWaitCursor(GOREV_GIRIS.panel,true);	
-				GuiUtil.setWaitCursor(OBS_MAIN.desktopPane,true);	
 				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ(mesaj);
 				lBILGI.seteVRAK(txtGID.getText());
@@ -468,7 +466,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 			sifirla();
 			Thread.currentThread().isInterrupted();
 			GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
-		    GuiUtil.setWaitCursor(OBS_MAIN.desktopPane,false);
 		}
 		catch (Exception ex)
 		{

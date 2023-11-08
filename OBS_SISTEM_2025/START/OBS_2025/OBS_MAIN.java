@@ -236,6 +236,7 @@ public class OBS_MAIN extends JFrame  {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	static List<GOREV_BILGI> gBILGI = new ArrayList<GOREV_BILGI>();
+	static Timer timer ;
 	
 	public OBS_MAIN() {
 //2663 satir
@@ -259,10 +260,11 @@ public class OBS_MAIN extends JFrame  {
 	        }
 	        @Override
 	        public void windowClosing(WindowEvent e) {
+	        	timer.cancel();	
 	        }
 	        @Override
 	        public void windowClosed(WindowEvent e) {
-	        }
+	        	        }
 	        @Override
 	        public void windowIconified(WindowEvent e) {
 	        }
@@ -3736,7 +3738,7 @@ public class OBS_MAIN extends JFrame  {
 				return ;
 			}
 			Calendar calendar = Calendar.getInstance();
-			Timer timer = new Timer();
+			timer = new Timer();
 			timer.scheduleAtFixedRate(new TimerTask() {
 				@Override
 				public void run() {

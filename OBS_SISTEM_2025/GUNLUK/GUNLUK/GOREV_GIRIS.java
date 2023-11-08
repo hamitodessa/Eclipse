@@ -35,7 +35,6 @@ import javax.swing.text.JTextComponent;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_2025.GuiUtil;
-import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.GLOBAL;

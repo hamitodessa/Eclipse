@@ -174,7 +174,7 @@ public class CAL_DIZIN extends JFrame {
 		setTitle("CALISMA DIZINI");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 1050, 400);
+		setBounds(100, 100, 1050, 425);
 		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 15, 15));
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

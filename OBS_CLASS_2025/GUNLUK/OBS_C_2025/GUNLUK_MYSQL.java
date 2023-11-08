@@ -367,6 +367,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,USER) " +
 					" VALUES (?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt =con.prepareStatement(sql);
+		stmt = con.prepareStatement(sql);
 		while (anl_t <= son_t)  
 		{
 			stmt.setInt(1, gbilgi.gid);
@@ -377,7 +378,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 			stmt.setString(6, gbilgi.yer);
 			stmt.setString(7, gbilgi.mesaj);
 			stmt.setString(8, gbilgi.user);
-			stmt.executeUpdate();
+			stmt.addBatch();
 
 			Calendar c = Calendar.getInstance(); 
 			c.setTime(anl_tarih); 
@@ -408,7 +409,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 			anl_tS =  format1.format(anl_tarih);
 			anl_t = anl_tarih.getTime() ;
 		}
-	
+		stmt.executeBatch();
 		stmt.close();
 	}
 	@Override

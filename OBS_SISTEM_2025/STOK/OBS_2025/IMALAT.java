@@ -1436,9 +1436,7 @@ public class IMALAT extends JInternalFrame {
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ("Imalat Stok Silme");
 			lBILGI.seteVRAK(textField.getText());
-			
 			f_Access.stok_sil(textField.getText(), "URE", "C",lBILGI, BAGLAN_LOG.fatLogDizin);
-
 			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
 			for (int  i = 0 ; i <=  mdl.getRowCount() - 1 ; i++)
 			{

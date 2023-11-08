@@ -389,6 +389,10 @@ public class GOREV_GIRIS extends JInternalFrame {
 	}
 	public static  void kaydet()
 	{
+		//
+		Runnable runner = new Runnable()
+		{ public void run() {
+		//
 		try
 		{
 			if (txtIsim.getText().equals(""))return;
@@ -398,8 +402,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 			if (dtcBitis.getDate() == null) return;
 			boolean isInteger = Pattern.matches("^\\d*$", txtDeger.getText());
 			if(! isInteger) return;
-		    GuiUtil.setWaitCursor(GOREV_GIRIS.panel,true);	
-		    GuiUtil.setWaitCursor(OBS_MAIN.desktopPane,true);	
+			
+		   
 			String mesaj = "" ;
 			mesaj = "Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + 
 			" Mesaj="  ;
@@ -421,11 +425,11 @@ public class GOREV_GIRIS extends JInternalFrame {
 				    GuiUtil.setWaitCursor(OBS_MAIN.desktopPane,false);
 					return;	
 				}
-				
+				GuiUtil.setWaitCursor(GOREV_GIRIS.panel,true);	
+				GuiUtil.setWaitCursor(OBS_MAIN.desktopPane,true);	
 				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ(mesaj);
 				lBILGI.seteVRAK(txtGID.getText());
-				
 				g_Access.gorev_sil(Integer.parseInt(txtGID.getText()),lBILGI, BAGLAN_LOG.gunLogDizin  );
 			}
 			
@@ -443,7 +447,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 			gbilgi.user =  GLOBAL.KULL_ADI ;
 			gbilgi.secenek = cmbSecenek.getSelectedItem().toString();
 			gbilgi.deger = Integer.parseInt(txtDeger.getText());
-			
 			mesaj = "" ;
 			mesaj = "Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + 
 			" Mesaj="  ;
@@ -463,13 +466,21 @@ public class GOREV_GIRIS extends JInternalFrame {
 			gbilgi.gid = g_Access.gid_ogren(gbilgi);
 			g_Access.gunluk_farkli_kayit(gbilgi);
 			sifirla();
-			GuiUtil.setWaitCursor(GOREV_GIRIS.panel,true);	
-		    GuiUtil.setWaitCursor(OBS_MAIN.desktopPane,true);
+			Thread.currentThread().isInterrupted();
+			GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
+		    GuiUtil.setWaitCursor(OBS_MAIN.desktopPane,false);
 		}
 		catch (Exception ex)
 		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gorev  Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
+	    //
+		}
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
+	    //
+
 	}
 	public static void sil() 
 	{

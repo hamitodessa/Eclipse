@@ -255,6 +255,7 @@ public class Gunluk extends JInternalFrame {
 				}
 			}
 		});
+		
         calendar = new JCalendar(Locale.UK);
         calendar.getMonthChooser().addPropertyChangeListener(new PropertyChangeListener() {
         	public void propertyChange(PropertyChangeEvent evt) {
@@ -443,6 +444,7 @@ public class Gunluk extends JInternalFrame {
 		//*************************************************TABLOLARIN TABBED PANE **********************************************
 		tabloTabbedPane = new MaterialTabbed();
 		tabloTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
+		tabloTabbedPane.setForeground(new Color(0, 0, 128));
 		panel_3.add(tabloTabbedPane, BorderLayout.CENTER);
 		//*************************************************Tablolarin Spliti ***************************************************
 		JSplitPane splitPane_3 = new JSplitPane();

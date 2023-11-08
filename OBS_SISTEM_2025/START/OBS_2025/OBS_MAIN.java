@@ -24,7 +24,6 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import java.awt.Color;
 import java.awt.Component;
@@ -3513,7 +3512,7 @@ public class OBS_MAIN extends JFrame  {
 		ortapane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		ortapane.setLeftComponent(scrpane );
 
-		JScrollPane qaz = new JScrollPane();
+		ScrollPaneWin11 qaz = new ScrollPaneWin11();
 		qaz.setMinimumSize(new Dimension(0, 30));
 		qaz.setMaximumSize(new Dimension(0, 30));
 		qaz.setViewportView (toolBar_1);
@@ -3522,8 +3521,6 @@ public class OBS_MAIN extends JFrame  {
 		contentPane.add( ortapane, BorderLayout.CENTER);
 
 		setExtendedStatee(JFrame.MAXIMIZED_BOTH);
-			
-		
 		
 		try {
 			String 	deger = GLOBAL.setting_oku("PRG_GRID_RENK").toString();
@@ -3662,7 +3659,6 @@ public class OBS_MAIN extends JFrame  {
 				GuiUtil.setWaitCursor(tabbedPane,false);
 				return;
 			}
-			//
 			desktopPane.add(internalFrame);
 			internalFrame.setVisible(true);
 			GuiUtil.setWaitCursor(tabbedPane,false);
@@ -3779,7 +3775,13 @@ public class OBS_MAIN extends JFrame  {
 			rs = g_Access.gorev_oku_tarih(gbilgi);
 			if (!rs.isBeforeFirst() ) { 
 				GuiUtil.setWaitCursor(toolBar,false);
-				btnNewButton_72.setVisible(false);
+				if(mESAJ_SAYI ==0)
+				{
+					btnNewButton_72.setVisible(false);
+				}
+				else {
+					btnNewButton_72.setVisible(true);
+				}
 				return; // Kayit Yok
 			} 
 			while (rs.next()) 
@@ -3818,11 +3820,9 @@ public class OBS_MAIN extends JFrame  {
 			mESAJ_SAYI += 1 ;
 			btnNewButton_72.setToolTipText(String.valueOf(mESAJ_SAYI) + " Adet Mesaj Bulunmaktadir....");
 		}
-
 	}
 	private static long millisToNextHour(Calendar calendar) 
 	{
-		
 		///
 		LocalDateTime start = LocalDateTime.now();
 	    LocalDateTime end = start.plusHours(1).truncatedTo(ChronoUnit.HOURS);
@@ -3832,7 +3832,7 @@ public class OBS_MAIN extends JFrame  {
 		///
 	    //int minutes = calendar.get(Calendar.MINUTE);
 	    //int seconds = calendar.get(Calendar.SECOND);
-	   //int millis = calendar.get(Calendar.MILLISECOND);
+	    //int millis = calendar.get(Calendar.MILLISECOND);
 	    //int minutesToNextHour = 60 - minutes;
 	    //int secondsToNextHour = 60 - seconds;
 	    //int millisToNextHour = 1000 - millis;

@@ -2927,8 +2927,8 @@ public class STOK_MYSQL implements ISTOK {
 				" AND d.Evrak_Cins " + ure1 +
 				" ),0),'N3') " +
 				" End As Cikis_Miktari , " +
-				" IFNULL((Select sum(IF(d.Doviz = '" + calisanpara + "',abs(Tutar),abs(Tutar)* d.Kur))  " + //' sum(abs(Tutar))
-				" FROM STOK d " +  // " IFNULL((Select IIF(d.Doviz = 'TL',sum(abs(Tutar)),sum(abs(Tutar) * d.Kur))  " + ' sum(abs(Tutar))
+				" IFNULL((Select sum(IF(d.Doviz = '" + calisanpara + "',abs(Tutar),abs(Tutar)* d.Kur))  " +
+				" FROM STOK d " +  
 				" WHERE  d.Urun_Kodu=mal.kodu And  d.Hareket='C' " +
 				" AND d.Tarih >= '" + t1 + "' AND  d.Tarih <= '" + t2 + " 23:59:59.998'" +
 				" AND d.Urun_Kodu >= N'" + k1 + "' AND d.Urun_Kodu <= N'" + k2 + "' " +

@@ -39,6 +39,8 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
+
 import javax.swing.JSplitPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -378,7 +380,8 @@ public class YIL_SONU extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 		}
 	}
 	private int satir_kontrol()
@@ -462,7 +465,8 @@ public class YIL_SONU extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
 	private static void mizan_aktar()
@@ -542,11 +546,13 @@ public class YIL_SONU extends JInternalFrame {
 				}
 
 			}  // ilk For INT
-			JOptionPane.showMessageDialog(null,  "Mizan Aktarma Islemi Basari ile Tamamlandi...."  + System.lineSeparator() + System.lineSeparator() + "Aktarilan Hesap Sayisi...: " + say); 
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Mizan Aktarma Islemi Basari ile Tamamlandi....", false);
+			//JOptionPane.showMessageDialog(null,  "Mizan Aktarma Islemi Basari ile Tamamlandi...."  + System.lineSeparator() + System.lineSeparator() + "Aktarilan Hesap Sayisi...: " + say); 
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
 	///********

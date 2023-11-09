@@ -7,7 +7,6 @@ import java.awt.Dimension;
 
 import javax.swing.JTable;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
@@ -25,6 +24,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
@@ -567,7 +567,8 @@ public class KASA extends JInternalFrame {
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table_1.setFont(bigFont);
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, ex.getMessage(), "Gunluk Islem", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(), "Gunluk Islem", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

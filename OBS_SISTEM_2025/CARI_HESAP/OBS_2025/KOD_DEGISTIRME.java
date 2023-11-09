@@ -12,6 +12,7 @@ import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -184,33 +185,34 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 	}
 	private void hisset()
 	{
-		 if (textField_2.getText().equals("") || textField_1.getText().equals("") )
-		 {
-			 textField_2.requestFocus();
-		     return;
-		 }
-		 int g = JOptionPane.showOptionDialog( null,  "Hesap Kodlari Degisecek...?", "Cari Dosyasindan Kod Degisme ",   JOptionPane.YES_NO_OPTION,
-	    	   		JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
-   	        if(g != 0 ) { return;	}	
-    	        getContentPane().setCursor(oac.WAIT_CURSOR);
-	        try
-	        {
-	        	lOG_BILGI lBILGI = new lOG_BILGI();
-				lBILGI.setmESAJ("Kod Degistirme   Eski Kod:" + textField_2.getText()+
-		        		" Yeni Kod:"+textField_1.getText());
-				lBILGI.seteVRAK("");
-				
-	        	c_Access.cari_kod_degis_hesap(textField_2.getText(), textField_1.getText()
-	        			,lBILGI,		BAGLAN_LOG.cariLogDizin);
-	        	c_Access.cari_kod_degis_satirlar(textField_2.getText(), textField_1.getText());
-		            getContentPane().setCursor(oac.DEFAULT_CURSOR);
-		            JOptionPane.showMessageDialog(null, "Islem Basari ile tamamlandi...." );
-		        }
-		        catch ( Exception ex)
-		        {
-		        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
-		            JOptionPane.showMessageDialog(null, ex.getMessage() ); 
-		        }
+		if (textField_2.getText().equals("") || textField_1.getText().equals("") )
+		{
+			textField_2.requestFocus();
+			return;
+		}
+		int g = JOptionPane.showOptionDialog( null,  "Hesap Kodlari Degisecek...?", "Cari Dosyasindan Kod Degisme ",   JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]); 
+		if(g != 0 ) { return;	}	
+		getContentPane().setCursor(oac.WAIT_CURSOR);
+		try
+		{
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ("Kod Degistirme   Eski Kod:" + textField_2.getText()+
+					" Yeni Kod:"+textField_1.getText());
+			lBILGI.seteVRAK("");
+
+			c_Access.cari_kod_degis_hesap(textField_2.getText(), textField_1.getText()
+					,lBILGI,		BAGLAN_LOG.cariLogDizin);
+			c_Access.cari_kod_degis_satirlar(textField_2.getText(), textField_1.getText());
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			JOptionPane.showMessageDialog(null, "Islem Basari ile tamamlandi...." );
+		}
+		catch ( Exception ex)
+		{
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage() ); 
+		}
 	}
 	
 }

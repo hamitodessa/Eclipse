@@ -13,7 +13,6 @@ import java.awt.Dimension;
 import javax.swing.JTable;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
@@ -33,6 +32,8 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
@@ -429,7 +430,8 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		}
 		catch (Exception ex )
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dovize Cevirme", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dovize Cevirme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 }

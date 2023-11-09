@@ -78,6 +78,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
@@ -224,9 +225,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 						lblunvan_1.setText(CARI_ISIM_OKU.isim(txtBORCLU.getText())[0]);
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-					} catch (ClassNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (SQLException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -322,9 +321,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 						lblunvan_2.setText(CARI_ISIM_OKU.isim(txtALACAK.getText())[0]);
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-					} catch (ClassNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (SQLException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -673,8 +670,9 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		    }
 			catch (Exception ex)
 			{
-				 GuiUtil.setWaitCursor(splitPane,false);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
+			 GuiUtil.setWaitCursor(splitPane,false);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			 //JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 			}
 		}
 		});
@@ -699,7 +697,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	    catch (Exception ex)
 	    {
 	    	 getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-	 		JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
+	    	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+	 		//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 	    }
 			}
 		});
@@ -720,9 +719,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 					//lblNewLabel.setText(isimoku(textField.getText()));
 					getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (SQLException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -947,9 +944,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				tema_doldur();
 				hesap_doldur();
 				temadoldur();
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
-			} catch (SQLException e1) {
+			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 			 getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
@@ -969,7 +964,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	
@@ -1080,7 +1076,9 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
+			GuiUtil.setWaitCursor(splitPane,false);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void satir_sil()
@@ -1112,7 +1110,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			table.enable(true);
 			table_1.enable(true);
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void sol_tablo_ilave(JTable tbl)
@@ -1148,7 +1147,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void temadoldur() 
@@ -1172,7 +1172,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktarma", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktarma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void te_sifirla()
@@ -1224,9 +1225,11 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	           }
 	      }
 	     Thread.currentThread().isInterrupted();
-	     getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);   
-	    	 }  catch (Exception ex) {
-		    		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Distan Aktarma", JOptionPane.ERROR_MESSAGE);
+	     getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);  
+	     }
+	    	 catch (Exception ex) {
+	    		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+		    		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Distan Aktarma", JOptionPane.ERROR_MESSAGE);
 				}
 	    	  Progres_Bar_Temizle();
 	    }
@@ -1297,7 +1300,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			catch (Exception ex)
 			{
 				getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR); 
-				JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Distan Aktarma", JOptionPane.ERROR_MESSAGE);
+				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+				//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Distan Aktarma", JOptionPane.ERROR_MESSAGE);
 			}
 //***********			
 		//}
@@ -1322,7 +1326,9 @@ public class DISTAN_AKTAR extends JInternalFrame {
         }
         if ( kon > 0 )
         {
-            JOptionPane.showMessageDialog(null, "Bos Hesap Kodlari mevcut .... Satir Sayisi:" + kon); 
+            //JOptionPane.showMessageDialog(null, "Bos Hesap Kodlari mevcut .... Satir Sayisi:" + kon); 
+        	
+            OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Bos Hesap Kodlari mevcut .... Satir Sayisi:" + kon, false);
             return;
         }
         ///HESAP KODLARI KONTROL
@@ -1330,7 +1336,9 @@ public class DISTAN_AKTAR extends JInternalFrame {
         for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) {
         	if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
         	{
-        		JOptionPane.showMessageDialog(null, uniqueDataList.get(iterator) + " --Borclu_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
+        		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, uniqueDataList.get(iterator) + " --Borclu_Hesap Kodu Dosyada Bulunamadi.....", false);
+        		
+        		//JOptionPane.showMessageDialog(null, uniqueDataList.get(iterator) + " --Borclu_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
         		return;
         	}
         }
@@ -1339,7 +1347,9 @@ public class DISTAN_AKTAR extends JInternalFrame {
         for (int iterator = 0;iterator <= uniqueDataList.size()-1;iterator ++) {
         	if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
         	{
-        		JOptionPane.showMessageDialog(null, uniqueDataList.get(iterator) + " --Alacakli_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
+        		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, uniqueDataList.get(iterator) + " --Alacakli_Hesap Kodu Dosyada Bulunamadi.....", false);
+        		
+        		//JOptionPane.showMessageDialog(null, uniqueDataList.get(iterator) + " --Alacakli_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
         		return;
         	}
         }
@@ -1351,7 +1361,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		}
     catch (Exception ex)
 		{
-		JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
+    	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+		//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void aciklamaARAMA()

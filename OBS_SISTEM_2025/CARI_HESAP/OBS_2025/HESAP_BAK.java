@@ -10,7 +10,6 @@ import java.awt.Dimension;
 
 import javax.swing.JTable;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
 
@@ -41,6 +40,8 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
@@ -397,7 +398,8 @@ public class HESAP_BAK extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Hesap", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Hesap", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
@@ -448,7 +450,8 @@ public class HESAP_BAK extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Hesap", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Hesap", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
@@ -555,7 +558,8 @@ public class HESAP_BAK extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Hesap", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Hesap", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public void arama()  

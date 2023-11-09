@@ -26,11 +26,10 @@ import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -456,7 +455,8 @@ public class EKSTRE extends JInternalFrame {
 			table.setFont(bigFont);
 
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Cari Ekstre", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Cari Ekstre", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void onceki_bakiye () throws ClassNotFoundException, SQLException
@@ -544,7 +544,8 @@ public class EKSTRE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ekstre sqllt", JOptionPane.ERROR_MESSAGE);   		
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ekstre sqllt", JOptionPane.ERROR_MESSAGE);   		
 		}
 	}
 	static void Progres_Bar(int max, int deger) throws InterruptedException

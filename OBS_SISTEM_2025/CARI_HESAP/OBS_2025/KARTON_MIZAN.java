@@ -13,7 +13,6 @@ import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
@@ -36,6 +35,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"serial","static-access","deprecation"})
 public class KARTON_MIZAN extends JInternalFrame {
@@ -338,7 +338,8 @@ public class KARTON_MIZAN extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),"Karton Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Karton Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -377,7 +378,8 @@ public class KARTON_MIZAN extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),"Karton Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Karton Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

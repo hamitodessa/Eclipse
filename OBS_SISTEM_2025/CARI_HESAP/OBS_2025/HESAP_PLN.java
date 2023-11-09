@@ -25,6 +25,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
@@ -34,8 +35,6 @@ import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -288,8 +287,10 @@ public class HESAP_PLN extends JDialog {
 	    parts = deger.split(",");
 	    bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 	    table.setFont(bigFont);
-		} catch (Exception ex) {
-			 JOptionPane.showMessageDialog(null, ex.getMessage()); 
+		} catch (Exception ex) 
+		{
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			// JOptionPane.showMessageDialog(null, ex.getMessage()); 
 		}
 	}
 	public void arama()  

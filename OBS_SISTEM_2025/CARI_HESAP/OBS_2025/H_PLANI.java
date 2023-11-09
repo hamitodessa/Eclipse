@@ -45,6 +45,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"serial" , "static-access" , "deprecation"})
 public class H_PLANI extends JInternalFrame {
@@ -601,7 +602,8 @@ public class H_PLANI extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void doldur(String nereye) 
@@ -678,7 +680,8 @@ public class H_PLANI extends JInternalFrame {
 		}
 		catch(Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void yeni()
@@ -728,7 +731,8 @@ public class H_PLANI extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void sil()
@@ -753,7 +757,8 @@ public class H_PLANI extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Silme", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Silme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void temizle()

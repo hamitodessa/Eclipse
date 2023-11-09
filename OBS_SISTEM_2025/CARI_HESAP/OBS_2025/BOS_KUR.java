@@ -2,7 +2,6 @@ package OBS_2025;
 
 import java.sql.ResultSet;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -18,6 +17,8 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
+
 import javax.swing.ListSelectionModel;
 
 @SuppressWarnings({"serial" })public class BOS_KUR extends JInternalFrame {
@@ -71,7 +72,8 @@ import javax.swing.ListSelectionModel;
        }
        catch (Exception ex)
         {
-           JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Eksik Kur Okuma", JOptionPane.ERROR_MESSAGE);
+    	   OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+           //JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Eksik Kur Okuma", JOptionPane.ERROR_MESSAGE);
           }
 	}
 }

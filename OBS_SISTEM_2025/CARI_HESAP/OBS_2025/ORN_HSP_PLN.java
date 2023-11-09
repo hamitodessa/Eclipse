@@ -13,6 +13,7 @@ import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -81,7 +82,8 @@ public class ORN_HSP_PLN extends JInternalFrame {
 		catch (Exception ex)
 		{
 			panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ornek Hesap Plani", JOptionPane.ERROR_MESSAGE);   	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ornek Hesap Plani", JOptionPane.ERROR_MESSAGE);   	
 		}
 	}
 	private void kaydet() 
@@ -129,7 +131,8 @@ public class ORN_HSP_PLN extends JInternalFrame {
 			catch (Exception ex)
 			{
 				panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ornek Hesap Plani", JOptionPane.ERROR_MESSAGE);   	
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+				//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ornek Hesap Plani", JOptionPane.ERROR_MESSAGE);   	
 			}
 		}
 		};

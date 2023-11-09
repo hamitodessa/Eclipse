@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.sql.ResultSet;
 
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
@@ -25,6 +24,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -289,7 +289,8 @@ public class ARAMA extends JInternalFrame {
 	    }
 	    catch (Exception ex)
 	    {
-	    	JOptionPane.showMessageDialog(null, ex.getMessage(),"Cari Arama", JOptionPane.ERROR_MESSAGE);
+	    	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+	    	//JOptionPane.showMessageDialog(null, ex.getMessage(),"Cari Arama", JOptionPane.ERROR_MESSAGE);
 	    	}
 		}
 

@@ -27,6 +27,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"serial","static-access"})
 public class KOD_ACIKLAMA extends JInternalFrame {
@@ -148,7 +149,8 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 		table.setFont(bigFont);
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "KOD ACIKLAMA", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "KOD ACIKLAMA", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void kaydet() 
@@ -168,8 +170,8 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 			ker_Access.kod_kayit(txtKod.getText(), txtAciklama.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
 			temizle();
 			hisset();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
 		}
 	}
 	public static void sil() 
@@ -190,8 +192,8 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 			ker_Access.kod_sil(txtKod.getText(), lBILGI ,BAGLAN_LOG.kerLogDizin);
 			temizle();
 			hisset();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
 		}
 	}
 	private static void doldur(int satir)

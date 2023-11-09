@@ -15,7 +15,6 @@ import java.text.ParseException;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -40,6 +39,7 @@ import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 @SuppressWarnings({ "static-access", "serial" })
 public class PAKET_ARA extends JDialog {
@@ -372,7 +372,8 @@ public class PAKET_ARA extends JDialog {
 			mDEFAULT();
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 		//}
 		//};

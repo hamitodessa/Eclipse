@@ -132,6 +132,7 @@ import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.U_KODU_RENDERER;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"serial","static-access","unused"})
 public class KERESTE_GIRIS extends JInternalFrame {
@@ -1491,7 +1492,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur()
@@ -1530,7 +1532,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private void ker_oz_kod()
@@ -1558,7 +1561,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ozel Kod", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ozel Kod", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void ker_nakliyeci()
@@ -1587,7 +1591,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Nakliyeci", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Nakliyeci", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void son_fisoku()
@@ -1601,7 +1606,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Evrak Okuma", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Evrak Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void toplam()
@@ -1655,7 +1661,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void depo_doldur()
@@ -1683,7 +1690,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private  void mensei_doldur()
@@ -1709,7 +1717,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Mensei ", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Mensei ", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void paketm3()
@@ -1886,7 +1895,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			catch (Exception ex)
 			{
 				Thread.currentThread().isInterrupted();
-				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Satyaz 1", JOptionPane.ERROR_MESSAGE);             
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+				//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Satyaz 1", JOptionPane.ERROR_MESSAGE);             
 			}
 		}
 		};
@@ -1965,7 +1975,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyaz 2", JOptionPane.ERROR_MESSAGE);     
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyaz 2", JOptionPane.ERROR_MESSAGE);     
 		}
 	}
 	public static void evrak_sil()
@@ -1988,7 +1999,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Silme", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Silme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static int[] degiskenler() throws ClassNotFoundException, SQLException
@@ -2229,7 +2241,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			catch (Exception ex)
 			{
 				GuiUtil.setWaitCursor(KERESTE_GIRIS.splitPane,false);
-				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+				//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
 			}
 		//}
 		//};
@@ -2317,7 +2330,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Dipnot yaz", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Dipnot yaz", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void dipnot_sil()
@@ -2330,7 +2344,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
 		}
 	}
 	private void dipnot_oku()
@@ -2350,7 +2364,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dipnot", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dipnot", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private   double m3(String kod,double miktar)
@@ -2378,7 +2393,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Acikyz", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Acikyz", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void acik_sil()
@@ -2393,7 +2409,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Aciklama Silme", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Aciklama Silme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void dosya_oku() throws IOException
@@ -2579,7 +2596,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			catch (Exception ex)
 			{
 				Thread.currentThread().isInterrupted();
-				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+				//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan Aktar", JOptionPane.ERROR_MESSAGE);   
 			}
 		}
 		};
@@ -2649,11 +2667,14 @@ public class KERESTE_GIRIS extends JInternalFrame {
     		lBILGI.setmESAJ("Alacakli Hes:" +alh + " Tut:" + tutar +	" Borclu Hes:"+ bh );
     		lBILGI.seteVRAK(textField.getText());
     		c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,	BAGLAN_LOG.cariLogDizin);
-    		JOptionPane.showMessageDialog(null,  "Evrak Cari Hesaba Basari ile Kaydedilmistir....",  "Kereste Cari Kaydetme", JOptionPane.INFORMATION_MESSAGE);
+    		
+    		OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Evrak Cari Hesaba Basari ile Kaydedilmistir....", false);
+    		//JOptionPane.showMessageDialog(null,  "Evrak Cari Hesaba Basari ile Kaydedilmistir....",  "Kereste Cari Kaydetme", JOptionPane.INFORMATION_MESSAGE);
     	}
     	catch (Exception ex)
     	{
-    		JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
+    		OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+    		//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
     	}
     }
     	public static void excell_aktar()
@@ -3407,11 +3428,13 @@ public class KERESTE_GIRIS extends JInternalFrame {
 
 			}
 			GuiUtil.setWaitCursor(splitPane,false);
-			JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Cikis Evrak Yazdirma", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi.....", false);
+			//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Cikis Evrak Yazdirma", JOptionPane.PLAIN_MESSAGE);
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	@SuppressWarnings("resource")
@@ -3771,7 +3794,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Kereste Cikis", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Kereste Cikis", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static List<String> u_kod_ogren()

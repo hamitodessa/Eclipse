@@ -52,6 +52,8 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.AbstractButton;
 import javax.swing.DefaultCellEditor;
@@ -673,7 +675,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			mDEFAULT();
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 		//}
 		//};
@@ -714,7 +717,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 
 		} catch (Exception ex) {
 			mDEFAULT();
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Kod Degisimi", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Kod Degisimi", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
@@ -748,7 +752,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 
 		} catch (Exception ex) {
 			mDEFAULT();
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Kod Degisimi", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Kod Degisimi", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}

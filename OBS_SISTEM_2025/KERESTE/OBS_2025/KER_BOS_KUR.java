@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -24,6 +23,7 @@ import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.TARIH;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"serial","static-access"})
 public class KER_BOS_KUR extends JInternalFrame {
@@ -120,7 +120,8 @@ public class KER_BOS_KUR extends JInternalFrame {
        }
        catch (Exception ex)
         {
-           JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Eksik Kur Okuma", JOptionPane.ERROR_MESSAGE);
+    	   OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+           //JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Eksik Kur Okuma", JOptionPane.ERROR_MESSAGE);
           }
 	}
 }

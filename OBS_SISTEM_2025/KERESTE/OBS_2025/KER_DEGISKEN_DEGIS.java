@@ -19,6 +19,8 @@ import javax.swing.border.TitledBorder;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
+
 import javax.swing.DefaultComboBoxModel;
 
 @SuppressWarnings({"serial","static-access"})
@@ -131,7 +133,8 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 			if (cmbAlt.getSelectedItem().toString().equals("")) return;
 			if (cmbAna.getSelectedItem().toString().equals(cmbyAna.getSelectedItem().toString()) &&  cmbAlt.getSelectedItem().toString().equals(cmbyAlt.getSelectedItem().toString()))
 			{
-				JOptionPane.showMessageDialog(null, "Aranacak ve Yazilacak Degiskenler Ayni",  "Degisken Yenileme", JOptionPane.INFORMATION_MESSAGE);   
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Aranacak ve Yazilacak Degiskenler Ayni", false);
+				//JOptionPane.showMessageDialog(null, "Aranacak ve Yazilacak Degiskenler Ayni",  "Degisken Yenileme", JOptionPane.INFORMATION_MESSAGE);   
 				return;
 			}
 			GuiUtil.setWaitCursor(KER_DEGISKEN_DEGIS.panel,true);
@@ -176,12 +179,14 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 
 			ker_Access.degisken_degistir(anagrp,altgrp,yanagrp,yaltgrp,(comboBox.getSelectedItem().toString().equals("GIRIS")) ? "G" :"C" , lBILGI,BAGLAN_LOG.fatLogDizin );
 			GuiUtil.setWaitCursor(KER_DEGISKEN_DEGIS.panel,false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Degisim Tamamlandi.................", false);
 			JOptionPane.showMessageDialog(null, "Degisim Tamamlandi.................",  "Degisken Yenileme", JOptionPane.PLAIN_MESSAGE);   
 		}
 		catch (Exception ex)
 		{
 			GuiUtil.setWaitCursor(KER_DEGISKEN_DEGIS.panel,false);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degisken Yenileme", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degisken Yenileme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void ana_grup_doldur()
@@ -214,7 +219,8 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur(JComboBox<String> anabox,JComboBox<String> altbox)
@@ -255,7 +261,8 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 }

@@ -1285,7 +1285,7 @@ public class Gunluk extends JInternalFrame {
 									qweString = qweString + "<p style=text-align:left;> <font color = #9C487F > " + rSet.getString("ISIM") +" / " +  rSet.getString("GOREV")  
 									+  "</p></html>";
 									((JButton)comp[i]).setToolTipText(qweString);
-									((JButton)comp[i]).setText("<html><p style=text-align:center;> <font color = #02BF5F > <b> " + qweString + " </b> <br> </p></html>");
+									((JButton)comp[i]).setText("<html><p style=text-align:center;> <font color = #02BF5F size=12> <b><u> " + qweString + "</u> </b> <br> </p></html>");
 
 								}
 								else
@@ -1294,7 +1294,7 @@ public class Gunluk extends JInternalFrame {
 									dEVAM = dEVAM + "<p style=text-align:left;> <font color = #9C487F > "  + rSet.getString("ISIM") + " -  <font color = #81B1A1 >" +  rSet.getString("GOREV")  
 									+ "</p></br></html>";
 									((JButton)comp[i]).setToolTipText(dEVAM);
-									((JButton)comp[i]).setText("<html><p style=text-align:center;> <font color = #02BF5F > <b> " + ((JButton)comp[i]).getName() + " </b> <br> </p></html>");
+									((JButton)comp[i]).setText("<html><p style=text-align:center;> <font color = #02BF5F size=12> <b><u> " + ((JButton)comp[i]).getName() + "</u>  </b> <br> </p></html>");
 								}
 							}
 						}
@@ -1390,6 +1390,9 @@ public class Gunluk extends JInternalFrame {
 	}
 	public static void aYLIK(String tarih) throws ClassNotFoundException, SQLException
 	{
+		try {
+			
+		
 		SimpleDateFormat formatt1 = new SimpleDateFormat("dd.MM.yyyy");
 		String formattedd = formatt1.format(calendar.getDate());
 			String yilString = formattedd.substring(6);
@@ -1447,6 +1450,9 @@ public class Gunluk extends JInternalFrame {
 			root.add(iSIM);
 		}
 		model.reload(root);
+		} catch (Exception e) {
+			
+		}
 	}
 	public static void ay_gorev_ac()
 	{

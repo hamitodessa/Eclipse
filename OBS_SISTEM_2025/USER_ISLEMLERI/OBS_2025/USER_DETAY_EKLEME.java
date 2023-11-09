@@ -457,8 +457,8 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 					rs.getString(14),rs.getInt(15),rs.getString(16),rs.getInt(1)});
 		}
 
-		table_1.requestFocus();
-		table_1.changeSelection(0,0,false,false); 
+		//table_1.requestFocus();
+		//table_1.changeSelection(0,0,false,false); 
 		String deger;
 		String[] parts;
 		Font bigFont;

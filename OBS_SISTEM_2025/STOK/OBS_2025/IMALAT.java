@@ -196,9 +196,7 @@ public class IMALAT extends JInternalFrame {
 					try {
 						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 						int sno = 0 ;
-
 						sno  = f_Access.uretim_fisno_al() ;
-
 						int kj = 0 ;
 						kj = 10 - Integer.toString(sno).length() ;
 						String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
@@ -264,11 +262,7 @@ public class IMALAT extends JInternalFrame {
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					textField.setText("");
-					//sifirla();
-
 					textField.setText( f_Access.uret_son_bordro_no_al());
-
-
 					if ( textField.getText().equals("0") )
 					{
 						textField.setText("");
@@ -1730,9 +1724,7 @@ public class IMALAT extends JInternalFrame {
 						txtdoviz.setText(rss.getString("Doviz"));
 						textArea.setText(rss.getString("Izahat"));
 						// '************ACIKLAMA OKU ***********************************************************
-
 						textArea.setText(f_Access.aciklama_oku("URE", 1, textField.getText(), "G"));
-
 						// '*********************GRUP DOLDUR ****************************************************
 						cmbanagrup.setSelectedItem(rss.getString("Ana_Grup") == null ? "" :rss.getString("Ana_Grup"));
 						cmbaltgrup.setSelectedItem(rss.getString("Alt_Grup") == null ? "" :rss.getString("Alt_Grup"));

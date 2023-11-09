@@ -3573,74 +3573,55 @@ public class STOK_MSSQL implements ISTOK {
 		String sql =   " SELECT s.Urun_Kodu as Kodu  , mal.Adi ,Mal.Birim as Simge, " + 
 				" ISNULL(((SELECT SUM(iif( Hareket = 'G' , miktar , 0 ) * mal.Agirlik )   FROM [STOK] WITH (INDEX (IX_STOK)) ,[MAL] WITH (INDEX (IX_MAL)) " +
 				" where stok.Urun_Kodu = s.Urun_Kodu and  mal.Kodu = stok.Urun_Kodu " +
-				" And   Kodu >= N'" + k1 + "' AND  Kodu <= N'" + k2 + "' " +
-				" AND Mal.Ana_Grup " + uanagrp +
-				" AND Mal.Alt_Grup " + ualtgrp +
 				" AND Stok.Tarih < '" + t1 + "' " +
-				" AND Stok.Urun_Kodu >= N'" + k1 + "' AND Stok.Urun_Kodu <= N'" + k2 + "' " +
-				" AND Stok.Evrak_No >= '" + f1 + "' AND Stok.Evrak_No <= '" + f2 + "' " +
-				" AND Stok.Ana_Grup " + anagrup +
-				" AND Stok.Alt_Grup " + altgrup +
-				" AND Stok.Depo " + depo +
-				" AND Stok.Evrak_Cins " + wee +
-				" AND Stok.Evrak_Cins " + ure1 +
 				" Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim " +
 				" ) - " +
 				" (SELECT SUM(iif( Hareket = 'C' , abs(miktar) , 0 ) * mal.Agirlik )   FROM [STOK] WITH (INDEX (IX_STOK)) ,[MAL] WITH (INDEX (IX_MAL))  " +
 				" where stok.Urun_Kodu = s.Urun_Kodu and  mal.Kodu = stok.Urun_Kodu " +
-				" And   Kodu >= N'" + k1 + "' AND  Kodu <= N'" + k2 + "' " +
-				" AND Mal.Ana_Grup " + uanagrp +
-				" AND Mal.Alt_Grup " + ualtgrp +
 				" AND Stok.Tarih < '" + t1 + "' " +
-				" AND Stok.Urun_Kodu >= N'" + k1 + "' AND Stok.Urun_Kodu <= N'" + k2 + "' " +
-				" AND Stok.Evrak_No >= '" + f1 + "' AND Stok.Evrak_No <= '" + f2 + "' " +
-				" AND Stok.Ana_Grup " + anagrup +
-				" AND Stok.Alt_Grup " + altgrup +
-				" AND Stok.Depo " + depo +
-				" AND Stok.Evrak_Cins " + wee +
-				" AND Stok.Evrak_Cins " + ure1 +
 				" Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim " +
-				" )),0) as Onceki_Bakiye ," +
-				" SUM(iif( Hareket = 'G' , miktar , 0 ) * mal.Agirlik )  as Periyot_Giris_Agirlik," +
-				" SUM(iif(Hareket = 'C', abs(miktar), 0 ) * MAL.Agirlik)  as Periyot_Cikis_Agirlik, " +
-				" SUM(iif( Hareket = 'G' ,miktar, 0 )* mal.Agirlik) -  SUM(iif(Hareket = 'C',abs( miktar), 0 )* mal.Agirlik)     as Periyot_Stok_Agirlik , " +
-				" ISNULL((((SELECT SUM(iif( Hareket = 'G' , miktar , 0 ) * mal.Agirlik )   FROM [STOK] WITH (INDEX (IX_STOK)) ,[MAL] WITH (INDEX (IX_MAL)) " +
+				" )),0) as Onceki_Bakiye ," +  // Onceki_Bakiye
+				" ISNULL((SELECT SUM(iif( Hareket = 'G' , miktar , 0 ) * mal.Agirlik )   FROM [STOK] WITH (INDEX (IX_STOK)) ,[MAL] WITH (INDEX (IX_MAL)) " +
+				" where stok.Urun_Kodu = s.Urun_Kodu and  mal.Kodu = stok.Urun_Kodu " +
+				" AND Stok.Tarih >= '" + t1 + "' AND  Stok.Tarih <= '" + t2 + " 23:59:59.998'" +
+				" Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim ),0) as Periyot_Giris_Agirlik," + // Periyot_Giris_Agirlik
+				" ISNULL((SELECT SUM(iif( Hareket = 'C' ,abs( miktar) , 0 ) * mal.Agirlik )   FROM [STOK] WITH (INDEX (IX_STOK)) ,[MAL] WITH (INDEX (IX_MAL)) " +
+				" where stok.Urun_Kodu = s.Urun_Kodu and  mal.Kodu = stok.Urun_Kodu " +
+				" AND Stok.Tarih >= '" + t1 + "' AND  Stok.Tarih <= '" + t2 + " 23:59:59.998'" +
+				" Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim ),0) as Periyot_Cikis_Agirlik, " + // Periyot_Cikis_Agirlik
+				//
+				" ISNULL((SELECT SUM(iif( Hareket = 'G' , miktar , 0 ) * mal.Agirlik )   FROM [STOK] WITH (INDEX (IX_STOK)) ,[MAL] WITH (INDEX (IX_MAL)) " +
 				" where stok.Urun_Kodu = s.Urun_Kodu and  mal.Kodu = stok.Urun_Kodu " +
 				" And   Kodu >= N'" + k1 + "' AND  Kodu <= N'" + k2 + "' " +
-				" AND Mal.Ana_Grup " + uanagrp +
-				" AND Mal.Alt_Grup " + ualtgrp +
-				" AND Stok.Tarih < '" + t1 + "' " +
-				" AND Stok.Urun_Kodu >= N'" + k1 + "' AND Stok.Urun_Kodu <= N'" + k2 + "' " +
-				" AND Stok.Evrak_No >= '" + f1 + "' AND Stok.Evrak_No <= '" + f2 + "' " +
-				" AND Stok.Ana_Grup " + anagrup +
-				" AND Stok.Alt_Grup " + altgrup +
-				" AND Stok.Depo " + depo +
-				" AND Stok.Evrak_Cins " + wee +
-				" AND Stok.Evrak_Cins " + ure1 +
-				" Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim " +
-				" ) - " +
-				" (SELECT SUM(iif( Hareket = 'C' , abs(miktar) , 0 ) * mal.Agirlik )   FROM [STOK] WITH (INDEX (IX_STOK)) ,[MAL] WITH (INDEX (IX_MAL))  " +
+				" AND Stok.Tarih >= '" + t1 + "' AND  Stok.Tarih <= '" + t2 + " 23:59:59.998'" +
+				" Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim ) - " +
+				" (SELECT SUM(iif( Hareket = 'C' ,abs( miktar) , 0 ) * mal.Agirlik )   FROM [STOK] WITH (INDEX (IX_STOK)) ,[MAL] WITH (INDEX (IX_MAL)) " +
 				" where stok.Urun_Kodu = s.Urun_Kodu and  mal.Kodu = stok.Urun_Kodu " +
-				" And   Kodu >= N'" + k1 + "' AND  Kodu <= N'" + k2 + "' " +
-				" AND Mal.Ana_Grup " + uanagrp +
-				" AND Mal.Alt_Grup " + ualtgrp +
-				" AND Stok.Tarih < '" + t1 + "' " +
-				" AND Stok.Urun_Kodu >= N'" + k1 + "' AND Stok.Urun_Kodu <= N'" + k2 + "' " +
-				" AND Stok.Evrak_No >= '" + f1 + "' AND Stok.Evrak_No <= '" + f2 + "' " +
-				" AND Stok.Ana_Grup " + anagrup +
-				" AND Stok.Alt_Grup " + altgrup +
-				" AND Stok.Depo " + depo +
-				" AND Stok.Evrak_Cins " + wee +
-				" AND Stok.Evrak_Cins " + ure1 +
-				" Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim " +
-				" )) + " + 
-				" SUM(iif( Hareket = 'G' ,miktar, 0 )* mal.Agirlik) -  SUM(iif(Hareket = 'C',abs( miktar), 0 )* mal.Agirlik)),0) as BAKIYE " +
+				" AND Stok.Tarih >= '" + t1 + "' AND  Stok.Tarih <= '" + t2 + " 23:59:59.998'" +
+				" Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim ),0)  as Periyot_Stok_Agirlik , " +
+				//
+				//" SUM(iif( Hareket = 'G' ,miktar, 0 )* mal.Agirlik) -  SUM(iif(Hareket = 'C',abs( miktar), 0 )* mal.Agirlik)     as Periyot_Stok_Agirlik , " + //Periyot_Stok_Agirlik
+				" ISNULL(((SELECT SUM(iif( Hareket = 'G' , miktar , 0 ) * mal.Agirlik )   " +
+				" FROM [STOK] WITH (INDEX (IX_STOK)) ,[MAL] WITH (INDEX (IX_MAL)) "+ 
+				" where stok.Urun_Kodu = s.Urun_Kodu and  mal.Kodu = stok.Urun_Kodu  " +
+				" AND Stok.Tarih < '" + t1 + "'   Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim  ) -  (SELECT SUM(iif( Hareket = 'C' , abs(miktar) , 0 ) * mal.Agirlik )   "+
+				" FROM [STOK] WITH (INDEX (IX_STOK)) ,[MAL] WITH (INDEX (IX_MAL))   where stok.Urun_Kodu = s.Urun_Kodu and  mal.Kodu = stok.Urun_Kodu "+
+				" AND Stok.Tarih < '" + t1 + "'   Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim  ) +  " +
+				" (SELECT SUM(iif( Hareket = 'G' , miktar , 0 ) * mal.Agirlik )   FROM [STOK] WITH (INDEX (IX_STOK)) ,[MAL] WITH (INDEX (IX_MAL)) " + 
+				" where stok.Urun_Kodu = s.Urun_Kodu and  mal.Kodu = stok.Urun_Kodu  AND " + 
+				" Stok.Tarih >= '" + t1 + "' AND  Stok.Tarih <= '" + t2 + " 23:59:59.998'  " +
+				" Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim ) -  " +
+				" (SELECT SUM(iif( Hareket = 'C' ,abs( miktar) , 0 ) * mal.Agirlik )   FROM [STOK] WITH (INDEX (IX_STOK)) ,[MAL] WITH (INDEX (IX_MAL)) " + 
+				" where stok.Urun_Kodu = s.Urun_Kodu and  mal.Kodu = stok.Urun_Kodu  AND " + 
+				" Stok.Tarih >= '" + t1 + "' AND  Stok.Tarih <= '" + t2 + " 23:59:59.998' "+ 
+				" Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim ) " +
+				" ),0) as BAKIYE " +  
+				//" SUM(iif( Hareket = 'G' ,miktar, 0 )* mal.Agirlik) -  SUM(iif(Hareket = 'C',abs( miktar), 0 )* mal.Agirlik)),0) as BAKIYE " +
 				" From [STOK] s WITH (INDEX (IX_STOK)) ,[MAL] WITH (INDEX (IX_MAL)) " +
 				" where mal.Kodu = s.Urun_Kodu " +
 				" And   Kodu >= N'" + k1 + "' AND  Kodu <= N'" + k2 + "' " +
 				" AND Mal.Ana_Grup " + uanagrp +
 				" AND Mal.Alt_Grup " + ualtgrp +
-				" AND s.Tarih >= '" + t1 + "' AND  s.Tarih <= '" + t2 + " 23:59:59.998'" +
 				" AND s.Urun_Kodu >= N'" + k1 + "' AND s.Urun_Kodu <= N'" + k2 + "' " +
 				" AND s.Evrak_No >= '" + f1 + "' AND s.Evrak_No <= '" + f2 + "' " +
 				" AND s.Ana_Grup " + anagrup +

@@ -22,7 +22,6 @@ import javax.mail.util.ByteArrayDataSource;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
@@ -70,6 +69,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 @SuppressWarnings({ "serial", "static-access" ,"resource","deprecation"})
 public class KER_DETAY extends JInternalFrame {
@@ -475,7 +475,8 @@ public class KER_DETAY extends JInternalFrame {
 
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void topla()
@@ -657,7 +658,8 @@ public class KER_DETAY extends JInternalFrame {
 			}
 		}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Detay", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Detay", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 	public static void excell_aktar()
@@ -666,7 +668,8 @@ public class KER_DETAY extends JInternalFrame {
 		
 		if (mdl.getRowCount() == 0 )
 		{
-		JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Kereste Detay", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok.....", false);
+			//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Kereste Detay", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
@@ -1026,11 +1029,14 @@ public class KER_DETAY extends JInternalFrame {
 				}
 				Progres_Bar_Temizle();
 				GuiUtil.setWaitCursor(splitPane,false);
-				JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Stok Detay", JOptionPane.PLAIN_MESSAGE);
+				
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi.....", false);
+				//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Stok Detay", JOptionPane.PLAIN_MESSAGE);
 			}
 			catch (Exception ex)
 			{
-				JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+				//JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		};

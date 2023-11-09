@@ -19,7 +19,6 @@ import javax.mail.util.ByteArrayDataSource;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
@@ -66,6 +65,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 import OBS_C_2025.KER_RAPOR_BILGI;
 @SuppressWarnings({"serial","deprecation","static-access"})  
 public class KER_ENVANTER extends JInternalFrame {
@@ -387,7 +387,8 @@ public class KER_ENVANTER extends JInternalFrame {
 
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void topla(int sutun )
@@ -589,7 +590,8 @@ public class KER_ENVANTER extends JInternalFrame {
 			}
 		}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Detay", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Detay", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 	public static void excell_aktar()
@@ -598,7 +600,8 @@ public class KER_ENVANTER extends JInternalFrame {
 
 		if (mdl.getRowCount() == 0 )
 		{
-			JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok.....", false);
+			//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
@@ -965,11 +968,14 @@ public class KER_ENVANTER extends JInternalFrame {
 				//**************************************
 			}
 			GuiUtil.setWaitCursor(splitPane,false);
-			JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Ortalama Fiat Raporlama", JOptionPane.PLAIN_MESSAGE);
+			
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi.....", false);
+			//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Ortalama Fiat Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Ortalama Fiat Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Ortalama Fiat Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -1141,7 +1147,8 @@ public class KER_ENVANTER extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Ortalama Fiat Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Ortalama Fiat Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

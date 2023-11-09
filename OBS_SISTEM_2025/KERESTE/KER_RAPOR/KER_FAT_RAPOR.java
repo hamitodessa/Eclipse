@@ -68,6 +68,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"serial","static-access","deprecation"})
 public class KER_FAT_RAPOR extends JInternalFrame {
@@ -263,7 +264,8 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				filtre_cari_kod();
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	public static void filtrele()
@@ -424,7 +426,8 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void genislik(int gen)
@@ -606,7 +609,8 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 			}
 		} catch (Exception ex) 
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 	public static void filtre_fat_tarih()
@@ -817,7 +821,8 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				table.setFont(bigFont);
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void filtre_cari_kod()
@@ -1018,7 +1023,8 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) 
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama",  JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama",  JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void detay_doldur(String fatno,String har)
@@ -1195,7 +1201,8 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				table.setFont(bigFont);
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Fatura ", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Fatura ", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void excell_aktar()
@@ -1658,11 +1665,14 @@ public class KER_FAT_RAPOR extends JInternalFrame {
 				}
 				Progres_Bar_Temizle();
 				GuiUtil.setWaitCursor(splitPane,false);
-				JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Kereste Fatura", JOptionPane.PLAIN_MESSAGE);
+				
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi.....", false);
+				//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Kereste Fatura", JOptionPane.PLAIN_MESSAGE);
 			}
 			catch (Exception ex)
 			{
-				JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+				//JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		};

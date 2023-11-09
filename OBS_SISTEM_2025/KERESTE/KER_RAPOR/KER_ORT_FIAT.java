@@ -67,6 +67,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"serial","static-access","unused","deprecation"})
 public class KER_ORT_FIAT extends JInternalFrame {
@@ -174,7 +175,8 @@ public class KER_ORT_FIAT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			GRID_TEMIZLE.grid_temizle(table);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ortalama Fiat", JOptionPane.ERROR_MESSAGE);	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ortalama Fiat", JOptionPane.ERROR_MESSAGE);	
 		}
 	}
 	private static void diger_kodlu() 
@@ -408,7 +410,8 @@ public class KER_ORT_FIAT extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ortalama Fiat Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ortalama Fiat Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -581,7 +584,8 @@ public class KER_ORT_FIAT extends JInternalFrame {
 			//'************************************
 		} 
 		catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ort Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ort Raporlama", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 	private static void fontt()
@@ -980,11 +984,14 @@ public class KER_ORT_FIAT extends JInternalFrame {
 				//**************************************
 			}
 			GuiUtil.setWaitCursor(splitPane,false);
-			JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Ortalama Fiat Raporlama", JOptionPane.PLAIN_MESSAGE);
+			
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi.....", false);
+			//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Ortalama Fiat Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Ortalama Fiat Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Ortalama Fiat Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -1163,7 +1170,8 @@ public class KER_ORT_FIAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Ortalama Fiat Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Ortalama Fiat Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

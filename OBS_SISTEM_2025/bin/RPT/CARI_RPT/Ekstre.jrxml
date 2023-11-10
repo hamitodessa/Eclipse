@@ -83,7 +83,7 @@ FROM SATIRLAR , IZAHAT]]>
 			<textField>
 				<reportElement x="4" y="46" width="322" height="14" uuid="a7f59084-ef9e-4989-962e-2aa82a274a6c"/>
 				<textElement>
-					<font fontName="Arial" isBold="true"/>
+					<font fontName="DejaVu Sans" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{uNVAN}]]></textFieldExpression>
 			</textField>
@@ -129,7 +129,7 @@ FROM SATIRLAR , IZAHAT]]>
 			<staticText>
 				<reportElement x="342" y="7" width="28" height="12" uuid="1317d79a-22b0-4a2b-b2c0-e7dfb0a58267"/>
 				<textElement>
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial Narrow" size="10" isBold="true" pdfEncoding="Cp1251"/>
 				</textElement>
 				<text><![CDATA[KOD]]></text>
 			</staticText>
@@ -178,14 +178,14 @@ FROM SATIRLAR , IZAHAT]]>
 			<textField>
 				<reportElement x="71" y="0" width="260" height="12" uuid="7a48c8be-18c3-483c-812f-7450bb08f9cc"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Narrow" size="9"/>
+					<font fontName="DejaVu Sans" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{IZAHAT}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00#;-#,##0.00#">
 				<reportElement x="438" y="0" width="65" height="12" uuid="620e344f-cbe4-4fec-b073-60e58cf4ed41"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" size="9"/>
+					<font fontName="DejaVu Sans" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ALACAK}]]></textFieldExpression>
 			</textField>

@@ -317,11 +317,14 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		String tARIH = "" ;
+		if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
+			tARIH = "  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" ;
 		String sql = " SELECT TARIH,SATIRLAR.EVRAK ,IZAHAT,KOD,KUR,BORC,ALACAK, "  + 
 				"  CAST(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS DECIMAL(30,2))  AS BAKIYE ,[USER] "  + 
 				"  FROM SATIRLAR  LEFT JOIN IZAHAT   " + 
 				"  ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + hesap + "'" + 
-				"  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" + 
+					tARIH + 
 				"  ORDER BY TARIH   ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -350,7 +353,9 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		String sql = " SELECT SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI, SUM(SATIRLAR.BORC) AS ISLEM, SUM(SATIRLAR.ALACAK) AS ISLEM2, SUM(SATIRLAR.ALACAK - SATIRLAR.BORC) AS BAKIYE" +
 				" FROM SATIRLAR  LEFT JOIN" +
 				" HESAP ON SATIRLAR.HESAP = HESAP.HESAP " +
-				" WHERE SATIRLAR.HESAP =N'" + kod + "'   AND SATIRLAR.TARIH >= '" + ilktarih + "' AND SATIRLAR.TARIH < '" + sontarih + "' AND HESAP.HESAP_CINSI  BETWEEN N'" + ilkhcins + "'  AND  " +
+				" WHERE SATIRLAR.HESAP =N'" + kod + "'   " + 
+				" AND SATIRLAR.TARIH >= '" + ilktarih + "' AND SATIRLAR.TARIH < '" + sontarih + "' " + 
+				" AND HESAP.HESAP_CINSI  BETWEEN N'" + ilkhcins + "'  AND  " +
 				" N'" + sonhcins + "' AND HESAP.KARTON BETWEEN N'" + ilkkar + "' AND N'" + sonkar + "'" +
 				" GROUP BY SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " +
 				" ORDER BY SATIRLAR.HESAP " ;
@@ -365,7 +370,8 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(" SELECT SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI, SUM(SATIRLAR.BORC) AS islem, SUM(SATIRLAR.ALACAK) AS islem2, SUM(SATIRLAR.ALACAK - SATIRLAR.BORC) AS bakiye" +
 				" FROM SATIRLAR  LEFT JOIN" +
 				" HESAP  ON SATIRLAR.HESAP = HESAP.HESAP " +
-				" WHERE SATIRLAR.HESAP =N'" + kod + "' AND SATIRLAR.TARIH >= '" + ilktarih + "' AND SATIRLAR.TARIH < '" + sontarih + " 23:59:59.998'" +
+				" WHERE SATIRLAR.HESAP =N'" + kod + "' " + 
+				" AND SATIRLAR.TARIH >= '" + ilktarih + "' AND SATIRLAR.TARIH < '" + sontarih + " 23:59:59.998'" +
 				" GROUP BY SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " +
 				" ORDER BY SATIRLAR.HESAP ");
 		rss = stmt.executeQuery();
@@ -391,13 +397,16 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		String tARIH = "" ;
+		if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
+			tARIH = " AND TARIH BETWEEN '" + t1 + "' AND '"  + t2  + " 23:59:59.998'" ;
 		String sql = "SELECT SATIRLAR.HESAP,HESAP.UNVAN,HESAP.HESAP_CINSI AS H_CINSI," + 
 				" ROUND(SUM(SATIRLAR.BORC),2) AS BORC, ROUND(SUM(SATIRLAR.ALACAK),2) AS ALACAK, " + 
 				" ROUND(SUM(SATIRLAR.ALACAK),2) - ROUND(SUM(SATIRLAR.BORC),2) AS BAKIYE" +
 				" FROM SATIRLAR  ,HESAP " +
 				" WHERE SATIRLAR.HESAP = HESAP.HESAP " +
 				" AND SATIRLAR.HESAP BETWEEN N'" + h1 + "' AND N'" + h2 + "'" +
-				" AND TARIH BETWEEN '" + t1 + "' AND '"  + t2  + " 23:59:59.998'" + 
+					tARIH + 
 				" AND HESAP.HESAP_CINSI BETWEEN N'" + c1 + "' AND '" + c2 + "'" +
 				" AND HESAP.KARTON BETWEEN N'" + k1 + "' AND N'" + k2 + "' " +
 				" GROUP BY SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " + o1 + " " + o2 + "" ;
@@ -654,6 +663,9 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "" ;
+		String tARIH = "" ;
+		if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
+			tARIH = " AND SATIRLAR.TARIH  BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998'  " ;
 		if (hKUR.equals("Kayitli"))
 		{
 			sql = "SELECT SATIRLAR.TARIH, SATIRLAR.EVRAK ,I.IZAHAT , " +
@@ -664,11 +676,14 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 					" CAST(SUM(SATIRLAR.ALACAK-SATIRLAR.BORC) OVER(ORDER BY SATIRLAR.TARIH  ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS DECIMAL (30,2)) as BAKIYE ,  " +
 					" SATIRLAR.KUR, BORC, ALACAK ,SATIRLAR.[USER] " +
 					" FROM SATIRLAR  LEFT OUTER JOIN IZAHAT as I   on SATIRLAR.EVRAK = I.EVRAK " +
-					" WHERE HESAP  = N'" + hesap + "' AND SATIRLAR.TARIH  BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998'  " +
+					" WHERE HESAP  = N'" + hesap + "' " + 
+						tARIH +
 					" ORDER BY SATIRLAR.TARIH ";
 		}
 		else 
 		{
+			if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
+				tARIH = " AND s.TARIH  BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998' " ;
 			sql = str2 + "SELECT s.TARIH, s.EVRAK ,I.IZAHAT , " +
 					" ISNULL(IIF(k." + kcins + " = 0,1,k." + kcins + " ), 1) as CEV_KUR , " +
 					" ((s.ALACAK - s.BORC ) " + islem + " ISNULL(NULLIF(k." + kcins + ",0), 1)) as DOVIZ_TUTAR , " +
@@ -678,7 +693,9 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 					" s.KUR, BORC, ALACAK ,s.[USER] " +
 					" FROM (SATIRLAR as s    LEFT OUTER JOIN IZAHAT as I   on s.EVRAK = I.EVRAK) " +
 					" LEFT OUTER JOIN " + str1 + " as k ON Convert(VARCHAR(25), s.TARIH, 121) = k.Tarih  " +
-					" WHERE HESAP  = N'" + hesap + "' AND s.TARIH  BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998' AND (k.kur IS NULL OR k.KUR ='" + kur + "') " +
+					" WHERE HESAP  = N'" + hesap + "' " + 
+						tARIH + 
+					" AND (k.kur IS NULL OR k.KUR ='" + kur + "') " +
 					" ORDER BY TARIH ";
 		}
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -1195,13 +1212,16 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		{
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			ResultSet	rss = null;
+			String tARIH = "" ;
+			if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
+				tARIH = " AND TARIH BETWEEN '" + t1 + "' AND '"  + t2  + " 23:59:59.998'" ;
 			String sql = "SELECT HESAP.KARTON,SATIRLAR.HESAP,HESAP.UNVAN,HESAP.HESAP_CINSI AS H_CINSI," + 
 					" ROUND(SUM(SATIRLAR.BORC),2) AS BORC, ROUND(SUM(SATIRLAR.ALACAK),2) AS ALACAK, " + 
 					" ROUND(SUM(SATIRLAR.ALACAK),2) - ROUND(SUM(SATIRLAR.BORC),2) AS BAKIYE" +
 					" FROM SATIRLAR  ,HESAP " +
 					" WHERE SATIRLAR.HESAP = HESAP.HESAP " +
 					" AND SATIRLAR.HESAP BETWEEN N'" + h1 + "' AND N'" + h2 + "'" +
-					" AND TARIH BETWEEN '" + t1 + "' AND '"  + t2  + " 23:59:59.998'" + 
+						tARIH + 
 					" AND HESAP.HESAP_CINSI BETWEEN N'" + c1 + "' AND '" + c2 + "'" +
 					" AND HESAP.KARTON BETWEEN N'" + k1 + "' AND N'" + k2 + "' " +
 					" GROUP BY HESAP.KARTON,SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " + o1 + " " + o2 + " " ;

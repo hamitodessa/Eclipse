@@ -75,6 +75,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.MAIL_SETTINGS;
 import OBS_C_2025.ValidEmailAddress;
+import raven.toast.Notifications;
 
 import javax.swing.SwingConstants;
 
@@ -774,12 +775,14 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
 			Thread.currentThread().isInterrupted();
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Mail Basarili bi sekilde Gonderildi....", false);
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 		}
 		catch (Exception ex)
 		{
 			Thread.currentThread().isInterrupted();
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 		}};
 		Thread t = new Thread(runner, "Code Executer");
@@ -1113,6 +1116,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
+			
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}

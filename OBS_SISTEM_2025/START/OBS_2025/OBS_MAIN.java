@@ -2961,7 +2961,7 @@ public class OBS_MAIN extends JFrame  {
 						internalFrame.setVisible(true);
 						PRINT_YAPMA.hisset("hsppln","");
 					}
-					else if (sonuc == "EKSTRE")
+					else if (sonuc == "EKSTRE1")
 					{
 						if ( EKSTRE.table.getRowCount() == 0 ) 
 						{
@@ -3102,7 +3102,7 @@ public class OBS_MAIN extends JFrame  {
 						oac.nerden = "etiket";
 						PRINT_JASPER.hisset("etiket","");
 					}
-					else if (sonuc == "EKSTRE1")
+					else if (sonuc == "EKSTRE")
 					{
 						if (! TARIH_CEVIR.tarih_geri(FILTRE.dateChooser).equals("1900.01.01"))
 						{

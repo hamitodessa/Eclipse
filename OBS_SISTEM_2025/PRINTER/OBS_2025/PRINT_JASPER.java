@@ -127,6 +127,7 @@ public class PRINT_JASPER extends JInternalFrame {
 			}
 			else if (nerden.equals("ekstre"))
 			{
+				
 				File file = new File("C:\\OBS_SISTEM\\Ekstre.jrxml");
 				JasperDesign jasper = JRXmlLoader.load(file);
 				JasperReport jr = JasperCompileManager.compileReport(jasper);
@@ -138,6 +139,7 @@ public class PRINT_JASPER extends JInternalFrame {
 				
 				jp = new JasperPrint();
 				jp = JasperFillManager.fillReport(jr,parameters,new JRResultSetDataSource(rs));
+			
 				jp.setLocaleCode("UTF-8");
 			}
 			else if (nerden.equals("ekstre_kisa"))

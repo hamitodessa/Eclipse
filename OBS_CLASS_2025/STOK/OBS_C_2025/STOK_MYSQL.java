@@ -730,7 +730,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String sql =    "SELECT TOP 1  Fiat " +
+		String sql =    "SELECT  Fiat " +
 				" FROM FATURA USE INDEX (IX_FATURA) " +
 				" WHERE  Cari_Firma = N'" + muskodu + "'" +
 				" AND  Kodu = N'" + kodu + "'" +
@@ -1216,7 +1216,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		double fiat=0 ;
-		String sql =  "SELECT TOP 1 Fiat " +
+		String sql =  "SELECT  Fiat " +
 				" FROM STOK USE INDEX (IX_STOK) " +
 				" WHERE Evrak_Cins = 'URE' and Hareket ='C'  " +
 				" AND Urun_Kodu = N'" + kodu + "' " +
@@ -1365,7 +1365,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String sql =    "SELECT TOP 1  Fiat " +
+		String sql =    "SELECT   Fiat " +
 				" FROM IRSALIYE USE INDEX (IX_IRSALIYE) " +
 				" WHERE  Cari_Hesap_Kodu = N'" + muskodu + "'" +
 				" AND  Kodu = N'" + kodu + "'" +
@@ -3288,8 +3288,8 @@ public class STOK_MYSQL implements ISTOK {
 			ure1 = " <> 'URE' " ;
 		}
 		String sql = " SELECT Urun_Kodu ,Evrak_No , " +
-				" IF(STOK.Evrak_Cins= 'URE','',(SELECT TOP 1 IFNULL(Cari_Firma,'') FROM FATURA  WHERE  Fatura.Fatura_No = " +
-				"STOK.Evrak_No  and Gir_cik = stok.hareket )) as Hesap_Kodu, " +
+				" IF(STOK.Evrak_Cins= 'URE','',(SELECT  IFNULL(Cari_Firma,'') FROM FATURA  WHERE  Fatura.Fatura_No = " +
+				"STOK.Evrak_No  and Gir_cik = stok.hareket LIMIT 1 )) as Hesap_Kodu, " +
 				" Evrak_Cins,Tarih ,Miktar ,  Birim , STOK.Fiat , " +
 				" SUM(Miktar) OVER(ORDER BY Tarih  ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Miktar_Bakiye , " +
 				" Tutar ,Doviz," +

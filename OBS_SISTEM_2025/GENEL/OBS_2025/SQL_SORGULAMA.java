@@ -116,6 +116,7 @@ public class SQL_SORGULAMA extends JInternalFrame {
 			{
 				String mesaj = "Aranan:" ;
 				String mesaj1 = textArea.getText();
+				mesaj1 = mesaj1.replace("\n"," ");
 				if( mesaj1.length() <= 93)
 				{
 					mesaj = mesaj +  mesaj1 ;

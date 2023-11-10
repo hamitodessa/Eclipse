@@ -264,8 +264,8 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		PreparedStatement stmt = con.prepareStatement(" SELECT DATE_FORMAT(TARIH, '%Y.%m.%d')  AS TARIH,SATIRLAR.EVRAK ," + 
-				" IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT,KOD,KUR,CONVERT(BORC,double) as BORC ,CONVERT(ALACAK,double) as ALACAK , "  + 
-				" CONVERT(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW) ,double)  AS BAKIYE ,USER "  + 
+				" IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT,KOD,KUR, BORC , ALACAK , "  + 
+				" SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS BAKIYE ,USER "  + 
 				" FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  LEFT JOIN IZAHAT  USE INDEX (IX_IZAHAT)  " + 
 				" ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + hesap + "'" + 
 				" AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" + 
@@ -592,7 +592,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		if (hKUR.equals("Kayitli"))
 		{
 			sql = "SELECT DATE(SATIRLAR.TARIH) as TARIH, SATIRLAR.EVRAK ,IFNULL( I.IZAHAT,'') AS IZAHAT , " +
-					" CONVERT(SATIRLAR.KUR,double)  as CEV_KUR , " +
+					" SATIRLAR.KUR  as CEV_KUR , " +
 					" ((SATIRLAR.ALACAK - SATIRLAR.BORC ) " + islem + " SATIRLAR.KUR) as DOVIZ_TUTAR , " +
 					" SUM(((SATIRLAR.ALACAK - SATIRLAR.BORC ) * SATIRLAR.KUR) " + islem + " SATIRLAR.KUR) OVER(ORDER BY SATIRLAR.TARIH " + 
 					" ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as DOVIZ_BAKIYE , " +
@@ -604,7 +604,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		}
 		else {
 			sql = "SELECT DATE(s.TARIH) as TARIH, s.EVRAK ,IFNULL( I.IZAHAT,'') AS IZAHAT , " +
-				" CONVERT(IFNULL(IF(k." + kcins + " = 0,1,k." + kcins + " ), 1),double) as CEV_KUR , " +
+				" IFNULL(IF(k." + kcins + " = 0,1,k." + kcins + " ), 1) as CEV_KUR , " +
 				" ((s.ALACAK - s.BORC ) " + islem + " IFNULL(NULLIF(k." + kcins + ",0), 1)) as DOVIZ_TUTAR , " +
 				" SUM(((s.ALACAK - s.BORC ) * s.KUR) " + islem + " IFNULL(NULLIF(k." + kcins + ",0), 1)) OVER(ORDER BY s.TARIH " + 
 				" ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as DOVIZ_BAKIYE , " +

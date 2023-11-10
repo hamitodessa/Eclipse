@@ -205,7 +205,8 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 					,lBILGI,		BAGLAN_LOG.cariLogDizin);
 			c_Access.cari_kod_degis_satirlar(textField_2.getText(), textField_1.getText());
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, "Islem Basari ile tamamlandi...." );
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Islem Basari ile tamamlandi...." , false);
+			//JOptionPane.showMessageDialog(null, "Islem Basari ile tamamlandi...." );
 		}
 		catch ( Exception ex)
 		{

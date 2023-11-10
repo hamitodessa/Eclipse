@@ -49,7 +49,7 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-@SuppressWarnings("static-access")
+@SuppressWarnings({"static-access","serial"})
 public class EKSTRE extends JInternalFrame {
 	/**
 	 * 
@@ -76,7 +76,8 @@ public class EKSTRE extends JInternalFrame {
 	static double double_4 = 0 ;
 
 	public static JSplitPane pane;
-	@SuppressWarnings("serial")
+
+
 	public EKSTRE() {
 		setTitle("EKSTRE");
 		setResizable(true);

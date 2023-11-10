@@ -374,9 +374,6 @@ public class HESAP_BAK extends JInternalFrame {
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(66);
 
-			//tc = tcm.getColumn(4);
-			//tc.setHeaderRenderer(new SOLA());
-			//tc.setMinWidth(40);
 			tblhesap.removeColumn(tcm.getColumn(4));
 
 			Dimension dd = th.getPreferredSize();

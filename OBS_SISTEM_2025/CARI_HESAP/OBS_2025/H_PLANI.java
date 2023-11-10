@@ -18,8 +18,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -175,8 +173,7 @@ public class H_PLANI extends JInternalFrame {
 				String sonuc = "";
 				try {
 					sonuc = c_Access.kod_ismi(txtkodu.getText());
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 				if ( ! sonuc.equals("") )
@@ -505,7 +502,8 @@ public class H_PLANI extends JInternalFrame {
 				}
 				catch (Exception ex)
 				{
-					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
+					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 

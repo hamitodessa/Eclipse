@@ -1327,7 +1327,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
         if ( kon > 0 )
         {
             //JOptionPane.showMessageDialog(null, "Bos Hesap Kodlari mevcut .... Satir Sayisi:" + kon); 
-        	
             OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Bos Hesap Kodlari mevcut .... Satir Sayisi:" + kon, false);
             return;
         }
@@ -1337,7 +1336,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
         	if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
         	{
         		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, uniqueDataList.get(iterator) + " --Borclu_Hesap Kodu Dosyada Bulunamadi.....", false);
-        		
         		//JOptionPane.showMessageDialog(null, uniqueDataList.get(iterator) + " --Borclu_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
         		return;
         	}
@@ -1348,7 +1346,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
         	if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
         	{
         		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, uniqueDataList.get(iterator) + " --Alacakli_Hesap Kodu Dosyada Bulunamadi.....", false);
-        		
         		//JOptionPane.showMessageDialog(null, uniqueDataList.get(iterator) + " --Alacakli_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
         		return;
         	}
@@ -1504,11 +1501,13 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		  GuiUtil.setWaitCursor(splitPane,false);
          Thread.currentThread().isInterrupted();
          Progres_Bar_Temizle();
-         JOptionPane.showMessageDialog(null, "Disardan Aktarma Cari Hesaba Basari ile Kaydedilmistir...." + System.lineSeparator()  +  System.lineSeparator() +  "Evrak No:" +  model.getValueAt(0, 6 ).toString() + " / " + model.getValueAt(model.getRowCount() -1, 6 ).toString() ); 
+         OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Disardan Aktarma Cari Hesaba Basari ile Kaydedilmistir...." + System.lineSeparator()  +  System.lineSeparator() +  "Evrak No:" +  model.getValueAt(0, 6 ).toString() + " / " + model.getValueAt(model.getRowCount() -1, 6 ).toString(), false);
+         //JOptionPane.showMessageDialog(null, "Disardan Aktarma Cari Hesaba Basari ile Kaydedilmistir...." + System.lineSeparator()  +  System.lineSeparator() +  "Evrak No:" +  model.getValueAt(0, 6 ).toString() + " / " + model.getValueAt(model.getRowCount() -1, 6 ).toString() ); 
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Coklu Giris", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Coklu Giris", JOptionPane.ERROR_MESSAGE);
 		}
 		//// Progress Bar
 		    }

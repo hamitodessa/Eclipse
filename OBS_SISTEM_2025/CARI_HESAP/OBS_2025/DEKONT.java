@@ -1642,7 +1642,7 @@ public class DEKONT extends JInternalFrame {
 		if (txtaciklama.getText().equals("")  ) return ;
 		if(dtc.getDate() == null) return;
 		if (cmbbhes.getSelectedItem().toString().equals(cmbahes.getSelectedItem().toString())) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Alacak ve Borclu Hesap Ayni....", false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Alacak ve Borclu Hesap Ayni....", false);
 			//JOptionPane.showMessageDialog(null, "Alacak ve Borclu Hesap Ayni....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 			return ;
 		}
@@ -1650,13 +1650,13 @@ public class DEKONT extends JInternalFrame {
 		{
 			if ( borc_kutu == false )
 			{
-				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir....", false);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir....", false);
 				//JOptionPane.showMessageDialog(null,  "Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
 			if ( alacak_kutu == false )
 			{
-				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir....", false);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir....", false);
 				//JOptionPane.showMessageDialog(null,  "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
@@ -1665,7 +1665,7 @@ public class DEKONT extends JInternalFrame {
 			{
 				if ( ! txtbtutar.getText().equals(txtatutar.getText()))
 				{
-					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  "Alacakli ve Borclu Tutar Esit Degil....", false);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Alacakli ve Borclu Tutar Esit Degil....", false);
 					//JOptionPane.showMessageDialog(null,"Alacakli ve Borclu Tutar Esit Degil....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 					return ;
 				}

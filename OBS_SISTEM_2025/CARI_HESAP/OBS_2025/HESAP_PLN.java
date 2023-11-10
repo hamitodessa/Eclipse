@@ -58,7 +58,6 @@ public class HESAP_PLN extends JDialog {
 	private JTextField textField;
 
 	public HESAP_PLN() throws ClassNotFoundException, SQLException {
-		//setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setTitle("HESAP PLANI");
 		setModal(true);
@@ -194,17 +193,17 @@ public class HESAP_PLN extends JDialog {
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
 				{
-				int row = table.getSelectedRow();
-				if (table.getRowSorter()!=null) {
-				    row = table.getRowSorter().convertRowIndexToModel(row);
-				    oac.hsp_hsp_kodu = 	table.getModel().getValueAt(row, 0).toString() ;
-					dispose();
-				}
-				else
-				{
-					oac.hsp_hsp_kodu = 	table.getModel().getValueAt(table.getSelectedRow(), 0).toString() ;
-					dispose();
-				}
+					int row = table.getSelectedRow();
+					if (table.getRowSorter()!=null) {
+						row = table.getRowSorter().convertRowIndexToModel(row);
+						oac.hsp_hsp_kodu = 	table.getModel().getValueAt(row, 0).toString() ;
+						dispose();
+					}
+					else
+					{
+						oac.hsp_hsp_kodu = 	table.getModel().getValueAt(table.getSelectedRow(), 0).toString() ;
+						dispose();
+					}
 				}
 			}
 		});
@@ -287,7 +286,8 @@ public class HESAP_PLN extends JDialog {
 	    parts = deger.split(",");
 	    bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 	    table.setFont(bigFont);
-		} catch (Exception ex) 
+		} 
+		catch (Exception ex) 
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
 			// JOptionPane.showMessageDialog(null, ex.getMessage()); 

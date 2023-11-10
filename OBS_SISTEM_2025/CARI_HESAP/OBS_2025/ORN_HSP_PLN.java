@@ -93,8 +93,10 @@ public class ORN_HSP_PLN extends JInternalFrame {
 		public void run() {
 			try
 			{
-				if (! lblNewLabel.getText().equals("0")) {
-					JOptionPane.showMessageDialog(null, "Aktarilacak Dosya Bos Degil.......",  "Ornek Hesap Plani", JOptionPane.INFORMATION_MESSAGE);   
+				if (! lblNewLabel.getText().equals("0")) 
+				{
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Dosya Bos Degil.......", false);
+					//JOptionPane.showMessageDialog(null, "Aktarilacak Dosya Bos Degil.......",  "Ornek Hesap Plani", JOptionPane.INFORMATION_MESSAGE);   
 				}
 				InputStream stream = ORN_HSP_PLN.class.getClassLoader().getResourceAsStream("DOSYA/Hesap_Plani_Ornek.txt");
 				InputStreamReader streamReader = new InputStreamReader(stream,StandardCharsets.UTF_16);
@@ -125,7 +127,8 @@ public class ORN_HSP_PLN extends JInternalFrame {
 				Thread.currentThread().isInterrupted();
 				Progres_Bar_Temizle();
 				panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi ....Hesap Kodu Sayisi =" + i ); 
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Aktarma Islemi Tamamlandi ....Hesap Kodu Sayisi =" + i, false);
+				//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi ....Hesap Kodu Sayisi =" + i ); 
 				lblNewLabel.setText(Integer.toString(i));
 			}
 			catch (Exception ex)

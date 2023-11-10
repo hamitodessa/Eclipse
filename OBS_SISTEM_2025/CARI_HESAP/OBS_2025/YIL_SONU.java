@@ -209,7 +209,6 @@ public class YIL_SONU extends JInternalFrame {
 						cal.add(Calendar.DAY_OF_MONTH, -1); 
 						dateChooser.setDate(new Date(cal.getTimeInMillis()));
 					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -221,10 +220,8 @@ public class YIL_SONU extends JInternalFrame {
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(date);
 						cal.add(Calendar.DAY_OF_MONTH, 1); // Add 30 days
-
 						dateChooser.setDate(new Date(cal.getTimeInMillis()));
 					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -246,9 +243,7 @@ public class YIL_SONU extends JInternalFrame {
 						hsp = new HESAP_PLN();
 						hsp.show();
 						textField_1.setText( oac.hsp_hsp_kodu);
-					} catch (ClassNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (SQLException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -275,7 +270,6 @@ public class YIL_SONU extends JInternalFrame {
 			}
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 			}
 
 		});
@@ -286,7 +280,6 @@ public class YIL_SONU extends JInternalFrame {
 		panel_1.add(lblNewLabel_1);
 
 		doldur();
-		//***********
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
 		{
 			public void tableChanged(TableModelEvent e) 
@@ -300,7 +293,6 @@ public class YIL_SONU extends JInternalFrame {
 				}
 			}
 		});
-		//****
 	}
 	private void doldur()
 	{
@@ -358,14 +350,9 @@ public class YIL_SONU extends JInternalFrame {
 			Dimension dd = table.getPreferredSize();
 			dd.height = 30;
 			th.setPreferredSize(dd); 
-			//
 			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
-			//
 			th.repaint();
-
-			//table.setSelectionBackground(Color.PINK);
-			//table.setSelectionForeground(Color.BLUE);
 
 			String deger;
 			String[] parts;
@@ -412,14 +399,17 @@ public class YIL_SONU extends JInternalFrame {
 		{
 			if (textField.getText().equals(""))
 			{
-				JOptionPane.showMessageDialog(null,  "Aktarma Yapilacak Veritabani Kodu Bos..."); 	
+				
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarma Yapilacak Veritabani Kodu Bos...", false);
+				//JOptionPane.showMessageDialog(null,  "Aktarma Yapilacak Veritabani Kodu Bos..."); 	
 				return ;
 			}     
 			if (chckbxNewCheckBox.isSelected() )
 			{
 				if (textField_1.getText().equals(""))
 				{
-					JOptionPane.showMessageDialog(null, "Devir Karsi Hesap Kodu Bos..."); 	
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Devir Karsi Hesap Kodu Bos...", false);
+					//JOptionPane.showMessageDialog(null, "Devir Karsi Hesap Kodu Bos..."); 	
 					return ;
 				}
 			}
@@ -502,9 +492,6 @@ public class YIL_SONU extends JInternalFrame {
 						uc = iki - bir ;
 						
 						lOG_BILGI lBILGI = new lOG_BILGI();
-						
-						
-						
 						if ( bir == iki)   // ' Bakiye Sifir  bir = iki
 						{
 							String str =TARIH_CEVIR.tarih_geri(dateChooser);
@@ -530,8 +517,6 @@ public class YIL_SONU extends JInternalFrame {
 							String str =TARIH_CEVIR.tarih_geri(dateChooser);
 							lBILGI.setmESAJ("A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +uc + " Msj:" +"Devir Islemi...");
 							lBILGI.seteVRAK(String.valueOf(enumara));
-
-							
 							c_Access.yilsonu_cari_dekont_kaydet(textField_1.getText(), str, 
 									enumara, "",1.0, uc,rs.getString("HESAP"),"",1.0,uc,	"Devir Islemi...", "D", GLOBAL.KULL_ADI,
 									lBILGI,

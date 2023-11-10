@@ -1197,12 +1197,13 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		int E_NUMBER ;
-		String sql =  "SELECT  E_No FROM URET_EVRAK ) ";
+		String sql =  "SELECT  E_No FROM URET_EVRAK  ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
 		E_NUMBER = rss.getInt("E_No");
 		E_NUMBER = E_NUMBER + 1 ;
+		
 		//******** KAYIT
 		sql = "UPDATE URET_EVRAK SET E_No =" + E_NUMBER + " ";
 		stmt = con.prepareStatement(sql);

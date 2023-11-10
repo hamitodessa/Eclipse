@@ -3792,7 +3792,7 @@ public class OBS_MAIN extends JFrame  {
 				String mESAJ = TARIH_CEVIR.tarih_ters(rs.getString("TARIH")) + "  " + rs.getString("SAAT")  + "  "
 						+ rs.getString("ISIM")  + "  " + rs.getString("GOREV")  + "  "
 						+ rs.getString("MESAJ");
-				mesaj_goster(20000,Notifications.Type.INFO,mESAJ, true);
+				mesaj_goster(15000,Notifications.Type.INFO,mESAJ, true);
 				GOREV_BILGI aNLIKBilgi = new GOREV_BILGI(TARIH_CEVIR.tarih_ters(rs.getString("TARIH")), rs.getString("SAAT") , 
 						rs.getString("ISIM")  , rs.getString("GOREV"), rs.getString("MESAJ"));
 				gBILGI.add(aNLIKBilgi);

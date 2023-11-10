@@ -113,12 +113,12 @@ public class KUR_MYSQL implements IKUR {
 		sql = "CREATE TABLE `KURLAR`( id int AUTO_INCREMENT PRIMARY KEY ," 
 				+ " `Kur` nvarchar(3),"
 				+ " `Tarih` date ,"
-				+ " `MA` float," 
-				+ " `MS` float," 
-				+ " `SA` float," 
-				+ " `SS` float," 
-				+ " `BA` float," 
-				+ " `BS` float," 
+				+ " `MA` DOUBLE," 
+				+ " `MS` DOUBLE," 
+				+ " `SA` DOUBLE," 
+				+ " `SS` DOUBLE," 
+				+ " `BA` DOUBLE," 
+				+ " `BS` DOUBLE," 
 				+ "  INDEX `IX_KUR` ( `Kur` ASC , Tarih ASC) VISIBLE);" ;
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);

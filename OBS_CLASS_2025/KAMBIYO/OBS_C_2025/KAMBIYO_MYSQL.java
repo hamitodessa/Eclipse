@@ -126,12 +126,12 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		String sql =null;
 		sql = "CREATE TABLE `CEK`(`Cek_No`  nvarchar(10)  PRIMARY KEY  ,`Vade` DATE ,`Giris_Bordro`  nvarchar(10),`Cikis_Bordro`  nvarchar(10) ," 
 				+	" `Giris_Tarihi` DATE , `Cikis_Tarihi` DATE , `Giris_Musteri` nvarchar(12),`Cikis_Musteri` nvarchar(12),`Banka` nvarchar(25),`Sube` nvarchar(25), " 
-				+ " `Tutar` float ,`Cins` nvarchar(3), `Durum` nvarchar(1),`T_Tarih` DATE , `Seri_No` nvarchar(15),`Ilk_Borclu` nvarchar(30),`Cek_Hesap_No` nvarchar(15), "
+				+ " `Tutar` DOUBLE ,`Cins` nvarchar(3), `Durum` nvarchar(1),`T_Tarih` DATE , `Seri_No` nvarchar(15),`Ilk_Borclu` nvarchar(30),`Cek_Hesap_No` nvarchar(15), "
 				+ " `Giris_Ozel_Kod` nvarchar(15) ,`Cikis_Ozel_Kod` nvarchar(15),`USER` nvarchar(15))";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE `SENET`(`Senet_No`  nvarchar(10)  PRIMARY KEY,`Vade` DATE,`Giris_Bordro`  nvarchar(10),`Cikis_Bordro`  nvarchar(10) ," 
-				+ " `Giris_Tarihi` DATE , `Cikis_Tarihi` DATE , `Giris_Musteri` nvarchar(12),`Cikis_Musteri` nvarchar(12),`Tutar` float ,`Cins` nvarchar(3), `Durum` nvarchar(1), "
+				+ " `Giris_Tarihi` DATE , `Cikis_Tarihi` DATE , `Giris_Musteri` nvarchar(12),`Cikis_Musteri` nvarchar(12),`Tutar` DOUBLE ,`Cins` nvarchar(3), `Durum` nvarchar(1), "
 				+ " `T_Tarih` DATE , `Ilk_Borclu` nvarchar(30),`Sehir` nvarchar(15),`Giris_Ozel_Kod` nvarchar(15) ,`Cikis_Ozel_Kod` nvarchar(15),`USER` nvarchar(15))";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);

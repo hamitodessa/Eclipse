@@ -288,9 +288,7 @@ public class MIZAN extends JInternalFrame {
 				return;
 			} 
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			
 			lblNewLabel_3.setText(FORMATLAMA.doub_0(table.getRowCount()));
-			
 			ara_ayir();
 
 			JTableHeader th = table.getTableHeader();
@@ -347,7 +345,7 @@ public class MIZAN extends JInternalFrame {
 			lblborc.setText(FORMATLAMA.doub_2(borc));
 			lblbakiye.setText(FORMATLAMA.doub_2(alacak - borc));
 			//***
-			table.repaint();
+			
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
@@ -360,6 +358,7 @@ public class MIZAN extends JInternalFrame {
 			parts = deger.split(",");
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table.setFont(bigFont);
+			table.repaint();
 		}
 		catch (Exception ex)
 		{

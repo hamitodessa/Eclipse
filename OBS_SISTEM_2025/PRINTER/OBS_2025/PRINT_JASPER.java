@@ -50,7 +50,7 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
-
+import net.sf.jasperreports.engine.fonts.*;
 import javax.swing.JScrollPane;
 import java.util.HashMap;
 import java.util.Map;

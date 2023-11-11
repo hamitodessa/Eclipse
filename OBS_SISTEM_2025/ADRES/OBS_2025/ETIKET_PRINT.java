@@ -135,12 +135,16 @@ public class ETIKET_PRINT extends JInternalFrame {
 			JasperReport jr = JasperCompileManager.compileReport(jasper);
 			ResultSet rSet = a_Access.adr_etiket("Adi");
 			//
+			System.out.println("=="+etISIM.size());
+
 			if(ETIKET.orTabbedPane.getSelectedIndex() == 0)
 			{
+				etISIM.clear();
 				satir_kontrol();	
 			}
 			else
 			{
+				etISIM.clear();
 				satir_kontrol_tek();
 			}
 			
@@ -160,7 +164,7 @@ public class ETIKET_PRINT extends JInternalFrame {
 			//JasperPrint jp = JasperFillManager.fillReport(jr,null, new JRResultSetDataSource(rSet));
 			getContentPane().add(new JRViewer(jp), BorderLayout.CENTER);
 			
-		} catch (SQLException | JRException  | NumberFormatException | ClassNotFoundException | IOException ex) 
+		} catch (Exception ex) 
 		{
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}

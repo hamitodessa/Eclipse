@@ -113,6 +113,7 @@ public class PRINT_JASPER extends JInternalFrame {
 				JasperReport jr = JasperCompileManager.compileReport(jasper);
 				ResultSet rSet = a_Access.adr_etiket("Adi");
 				//
+				etISIM.clear();
 				if(ETIKET.orTabbedPane.getSelectedIndex() == 0)
 				{
 					satir_kontrol();	

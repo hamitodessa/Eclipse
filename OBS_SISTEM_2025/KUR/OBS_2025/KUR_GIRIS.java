@@ -174,7 +174,7 @@ public class KUR_GIRIS extends JInternalFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setBounds(380, 11, 75, 23);
+		btnNewButton.setBounds(380, 9, 92, 30);
 		panel.add(btnNewButton);
 
 		JPanel panel_1 = new JPanel();

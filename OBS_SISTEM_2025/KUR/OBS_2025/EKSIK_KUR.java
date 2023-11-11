@@ -68,15 +68,15 @@ public class EKSIK_KUR extends JInternalFrame
 		setBounds(0, 0, 379, 538);
 
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setDividerSize(1);
+		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 120));
-		panel.setMaximumSize(new Dimension(0, 120));
+		panel.setMinimumSize(new Dimension(0, 110));
+		panel.setMaximumSize(new Dimension(0, 110));
 		panel.setLayout(null);
 
 		dateChooser = new JDateChooser();
@@ -84,7 +84,7 @@ public class EKSIK_KUR extends JInternalFrame
 		dateChooser.setDateFormatString("dd.MM.yyyy");
 		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-		dateChooser.setBounds(21, 11, 150, 20);
+		dateChooser.setBounds(21, 11, 150, 25);
 		panel.add(dateChooser);
 
 		dateChooser_1 = new JDateChooser();
@@ -92,14 +92,14 @@ public class EKSIK_KUR extends JInternalFrame
 		dateChooser_1.setDateFormatString("dd.MM.yyyy");
 		dateChooser_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 
-		dateChooser_1.setBounds(180, 11, 150, 20);
+		dateChooser_1.setBounds(180, 11, 150, 25);
 		panel.add(dateChooser_1);
 
 		cmbCins = new JComboBox<String>();
 		cmbCins.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbCins.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR", "GBR", "CHF", "SEK", "NOK", "SAR", "RUB"}));
 		cmbCins.setEditable(true);
-		cmbCins.setBounds(21, 42, 60, 22);
+		cmbCins.setBounds(21, 42, 60, 25);
 		panel.add(cmbCins);
 
 		JButton btnNewButton = new JButton("Bos Tarihleri Bul");
@@ -117,7 +117,7 @@ public class EKSIK_KUR extends JInternalFrame
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);			
 			}
 		});
-		btnNewButton.setBounds(21, 75, 120, 23);
+		btnNewButton.setBounds(21, 75, 120, 25);
 		panel.add(btnNewButton);
 
 		lblkayit = new JLabel("0");
@@ -137,7 +137,7 @@ public class EKSIK_KUR extends JInternalFrame
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);			
 			}
 		});
-		btnMerkezOku.setBounds(147, 75, 105, 23);
+		btnMerkezOku.setBounds(147, 75, 105, 25);
 		panel.add(btnMerkezOku);
 
 		JLabel lblNewLabel = new JLabel("Satir :");

@@ -5583,7 +5583,7 @@ public class FILTRE extends JDialog {
 		});
 
 		buttonPane.add(okButton);
-		getRootPane().setDefaultButton(okButton);
+		//getRootPane().setDefaultButton(okButton);
 
 
 		JButton cancelButton = new JButton("Vazgec");

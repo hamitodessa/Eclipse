@@ -1026,6 +1026,9 @@ public class KERESTE_MYSQL implements IKERESTE {
 		else {
 			qweString = " Evrak_No " ;
 		}
+		String tARIH = "" ;
+		if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
+			tARIH =" AND " + dURUM + "Tarih BETWEEN '" + t1 + "'  AND  '"  + t2 + " 23:59:59.998'"  ;
 		String sql =   "SELECT "+ baslik + "  FROM KERESTE   " +
 				" WHERE   " + jkj +
 				" SUBSTRING(KERESTE.Kodu, 1, 2) >= '"+ilks +"' AND SUBSTRING(KERESTE.Kodu, 1, 2) <= '"+ sons +"' AND" +
@@ -1034,8 +1037,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 				" SUBSTRING(KERESTE.Kodu, 13, 4) >= '"+ilkg +"' AND SUBSTRING(KERESTE.Kodu, 13, 4) <= '"+ song +"' " +
 				" AND " + dURUM + "Cari_Firma between N'" + f1 + "' AND N'" + f2 + "'" +
 				" AND " + qweString  + " between N'" + e1 + "' AND N'" + e2 + "'" +
-				" AND " + dURUM + "Tarih BETWEEN '" + t1 + "'" +
-				" AND  '"  + t2 + " 23:59:59.998'" +
+				tARIH +
 				" " + ordr + " ";
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);

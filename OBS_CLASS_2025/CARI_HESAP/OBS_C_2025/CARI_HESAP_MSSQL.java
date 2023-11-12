@@ -810,14 +810,11 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		String tARIH = "" ;
-		if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
-			tARIH = " AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" ;
 		String sql = "SELECT SATIRLAR.HESAP,TARIH, SATIRLAR.EVRAK ,IZAHAT,KOD,BORC,ALACAK ,SATIRLAR.[USER] " +
 				" FROM SATIRLAR  ,IZAHAT   ,HESAP  " +
 				" WHERE SATIRLAR.EVRAK = IZAHAT.EVRAK " +
 				" AND SATIRLAR.HESAP = HESAP.HESAP " +
-				tARIH +
+				" AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" +
 				" ORDER BY TARIH ,SATIRLAR.EVRAK ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

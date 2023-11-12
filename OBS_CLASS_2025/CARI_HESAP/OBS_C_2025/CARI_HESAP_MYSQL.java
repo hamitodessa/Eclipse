@@ -746,14 +746,11 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String tARIH = "" ;
-		if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
-			tARIH =" AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'";
 		String sql = "SELECT SATIRLAR.HESAP,DATE(TARIH) AS TARIH, SATIRLAR.EVRAK ,IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT,KOD,BORC,ALACAK ,SATIRLAR.USER " +
 				" FROM SATIRLAR  USE INDEX (IX_SATIRLAR) ,IZAHAT  USE INDEX (IX_IZAHAT)  ,HESAP  USE INDEX (IX_HESAP) " +
 				" WHERE SATIRLAR.EVRAK = IZAHAT.EVRAK " +
 				" AND SATIRLAR.HESAP = HESAP.HESAP " +
-				tARIH +
+				" AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" +
 				" ORDER BY TARIH ,SATIRLAR.EVRAK ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

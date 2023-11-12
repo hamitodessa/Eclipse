@@ -423,13 +423,13 @@ public class GOREV_GIRIS extends JInternalFrame {
 					GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
 					return;	
 				}
-				GuiUtil.setWaitCursor(GOREV_GIRIS.panel,true);	
+				
 				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ(mesaj);
 				lBILGI.seteVRAK(txtGID.getText());
 				g_Access.gorev_sil(Integer.parseInt(txtGID.getText()),lBILGI, BAGLAN_LOG.gunLogDizin  );
 			}
-			
+			GuiUtil.setWaitCursor(GOREV_GIRIS.panel,true);	
 			String str1 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBaslama) ;
 			String str2 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBitis) ;
 			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi() ;
@@ -465,9 +465,11 @@ public class GOREV_GIRIS extends JInternalFrame {
 			sifirla();
 			Thread.currentThread().isInterrupted();
 			GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
+			
 		}
 		catch (Exception ex)
 		{
+			GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gorev  Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 	    //

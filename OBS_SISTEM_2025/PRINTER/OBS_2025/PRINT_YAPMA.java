@@ -374,9 +374,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
-						oParagraph.setAlignment(Alignment.right)  ;   
 						oTextObject.setParagraphs(oParagraphs);
-						
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
 				}
@@ -394,16 +392,16 @@ public class PRINT_YAPMA extends JInternalFrame {
 				if (BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
 				{
 					if (hangi_tur.equals("Borclu Hesaplar") )
-					{ o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR  WITH (INDEX(IX_SATIRLAR))   "
+					{ o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR     "
 							+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  < 0 " ; }
 					else if (hangi_tur.equals("Alacakli Hesaplar")) 
-					{o1 =  "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR  WITH (INDEX(IX_SATIRLAR))   "
+					{o1 =  "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR    "
 							+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  > 0 " ;}
 					else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" )) 
-					{ o1 =  "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR  WITH (INDEX(IX_SATIRLAR))   "
+					{ o1 =  "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR     "
 							+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  = 0" ;}
 					else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
-					{ o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR  WITH (INDEX(IX_SATIRLAR))   "
+					{ o1 = "HAVING  (ROUND(ISNULL( (SELECT SUM(SATIRLAR.ALACAK) - SUM(SATIRLAR.BORC)  FROM SATIRLAR    "
 							+ "WHERE   SATIRLAR.HESAP    = s.HESAP     			 ) ,0),2)  )  <> 0" ;}
 					o2 = " ORDER BY s.HESAP ASC " ;
 				}
@@ -447,7 +445,6 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(BAGLAN.cariDizin.fIRMA_ADI);
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
-						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);

@@ -366,12 +366,15 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						String yazi = "Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2_1);
-						oParagraphTextElement.setText("        " + yazi );
+						oParagraphTextElement.setText(yazi );
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
+						oParagraph.setAlignment(Alignment.right)  ;   
 						oTextObject.setParagraphs(oParagraphs);
+						
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
 				}

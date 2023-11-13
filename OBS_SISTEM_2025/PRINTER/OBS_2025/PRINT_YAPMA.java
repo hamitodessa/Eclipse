@@ -303,9 +303,11 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						String yazi = "Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2_1);
-						oParagraphTextElement.setText("        " + yazi );
+						oParagraphTextElement.setText( yazi );
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraph.setAlignment(Alignment.right);
 						oParagraphs.add(oParagraph);
+						
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
 						oTextObject.setParagraphs(oParagraphs);
@@ -368,7 +370,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						String yazi = "Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2_1);
 						oParagraphTextElement.setText(yazi );
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
-						
+						oParagraph.setAlignment(Alignment.right);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -445,6 +447,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(BAGLAN.cariDizin.fIRMA_ADI);
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -460,8 +463,9 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						String yazi = "Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2_1);
-						oParagraphTextElement.setText("          " + yazi );
+						oParagraphTextElement.setText( yazi );
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraph.setAlignment(Alignment.right);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);

@@ -313,6 +313,69 @@ public class PRINT_YAPMA extends JInternalFrame {
 					}
 				}
 			}
+			else if (nerden.equals("karton_mizan"))
+			{
+				//**************************************************************************
+				File file = new File("C:\\OBS_SISTEM\\KARTON_MIZAN.rpt");
+				clientDoc.open(file.getPath(), 0);
+				//**************************************************************************
+				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
+				String hangi_tur = FILTRE.comboBox.getItemAt(FILTRE.comboBox.getSelectedIndex());
+				String o1 = "" ;
+				String o2 = "" ;
+				if (hangi_tur.equals("Borclu Hesaplar") )
+				{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) < 0 " ; }
+				else if (hangi_tur.equals("Alacakli Hesaplar")) 
+				{o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) > 0 " ;}
+				else if (hangi_tur.equals( "Bakiyesi 0 Olanlar" )) 
+				{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) = 0" ;}
+				else if (hangi_tur.equals( "Bakiyesi 0 Olmayanlar" ))
+				{ o1 = " HAVING ROUND(SUM(SATIRLAR.ALACAK - SATIRLAR.BORC),2) <> 0" ;}
+				o2 = " ORDER BY HESAP.KARTON,SATIRLAR.HESAP ASC " ;
+				//**************
+				rs = c_Access.karton_mizan(FILTRE.txtilk.getText(),FILTRE.txtson.getText() ,
+					TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_2_1) ,
+					FILTRE.txticins.getText(),FILTRE.txtscins.getText() ,
+					FILTRE.txtikarton.getText(),FILTRE.txtskarton.getText() ,
+					o1 , o2);
+				clientDoc.getDatabaseController().setDataSource(rs);
+				com.crystaldecisions.sdk.occa.report.definition.ReportObjects reportObjects = clientDoc.getReportDefController().getReportObjectController().getReportObjectsByKind(ReportObjectKind.text);
+				for(int i=0; i< reportObjects.size();i++)
+				{
+					ITextObject textObject = (ITextObject)reportObjects.get(i);
+					if (textObject.getText().equals("FIRMA"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						oParagraphTextElement.setText(BAGLAN.cariDizin.fIRMA_ADI);
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+					else if (textObject.getText().equals("PERIYOT"))
+					{
+						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
+						Paragraphs oParagraphs = new Paragraphs();
+						Paragraph oParagraph = new Paragraph();
+						ParagraphElements oParagraphElements = new ParagraphElements();
+						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
+						String yazi = "Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_2_1);
+						oParagraphTextElement.setText("        " + yazi );
+						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						oParagraphs.add(oParagraph);
+						oParagraph.setParagraphElements(oParagraphElements);
+						oParagraphElements.add(oParagraphTextElement);
+						oTextObject.setParagraphs(oParagraphs);
+						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
+					}
+				}
+			}
 			else if (nerden.equals("ozel_mizan"))
 			{
 				//**************************************************************************

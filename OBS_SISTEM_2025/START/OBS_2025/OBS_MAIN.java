@@ -3025,6 +3025,21 @@ public class OBS_MAIN extends JFrame  {
 						internalFrame.setVisible(true);
 						PRINT_YAPMA.hisset("mizan","");
 					}
+					else if (sonuc == "CARI KARTON MIZAN")
+					{
+						if ( KARTON_MIZAN.table.getRowCount() == 0 ) 
+						{
+							GuiUtil.setWaitCursor(toolBar,false);
+							GuiUtil.setWaitCursor(tabbedPane,false); 
+							return ;
+						}
+						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/KARTON_MIZANN.rpt");
+						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\KARTON_MIZAN.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						internalFrame = new PRINT_YAPMA();
+						desktopPane.add(internalFrame);
+						internalFrame.setVisible(true);
+						PRINT_YAPMA.hisset("karton_mizan","");
+					}
 					else if (sonuc == "CARI OZEL MIZAN")
 					{
 						if ( OZEL_MIZAN.table.getRowCount() == 0 ) 

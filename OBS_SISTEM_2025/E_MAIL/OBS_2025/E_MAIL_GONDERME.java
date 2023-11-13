@@ -277,10 +277,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				{
 					ort_satis();
 				}
-				//else if ( OBS_MAIN.pencere_bak("CARI OZEL MIZAN") == true ) 
-				//{
-				//	ozmiz_gonder();
-				//}
+				else if ( OBS_MAIN.pencere_bak("CARI OZEL MIZAN") == true ) 
+				{
+					ozmiz_gonder();
+				}
 				else if ( OBS_MAIN.pencere_bak("KERESTE CIKIS") == true ) 
 				{
 					ker_cikis();
@@ -1000,18 +1000,18 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
-	//private void ozmiz_gonder() 
-	//{
-	//	try
-	//	{
-	//		OZEL_MIZAN. mail_at();
-	//		xl_gonder("Ozel_Mizan" );
-	//	}
-	//	catch (Exception ex)
-	//	{
-	//		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
-	//	}
-	//}
+	private void ozmiz_gonder() 
+	{
+		try
+		{
+			OZEL_MIZAN. mail_at();
+			xl_gonder("Ozel_Mizan" );
+		}
+		catch (Exception ex)
+		{
+			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
 	private void ker_cikis() 
 	{
 		try
@@ -1257,15 +1257,15 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		return result;
 	}
-	//private boolean  ozmiz_kontrol() throws ReportSDKException
-	//{
-	//	boolean result  = false;
-	//	if (OBS_MAIN.pencere_bak("CARI OZEL MIZAN"))
-	//	{
-	//		result = true ;
-	//	}
-	//	return result;
-	//}
+	private boolean  ozmiz_kontrol() throws ReportSDKException
+	{
+		boolean result  = false;
+		if (OBS_MAIN.pencere_bak("CARI OZEL MIZAN"))
+		{
+			result = true ;
+		}
+		return result;
+	}
 	private boolean  etiket_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;

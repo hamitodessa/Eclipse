@@ -775,7 +775,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
 			Thread.currentThread().isInterrupted();
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Mail Basarili bi sekilde Gonderildi....", false);
+			OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO,"Mail Basarili bi sekilde Gonderildi....", false);
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 		}
 		catch (Exception ex)

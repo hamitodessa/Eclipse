@@ -1501,7 +1501,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		  GuiUtil.setWaitCursor(splitPane,false);
          Thread.currentThread().isInterrupted();
          Progres_Bar_Temizle();
-         OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Disardan Aktarma Cari Hesaba Basari ile Kaydedilmistir...." + System.lineSeparator()  +  System.lineSeparator() +  "Evrak No:" +  model.getValueAt(0, 6 ).toString() + " / " + model.getValueAt(model.getRowCount() -1, 6 ).toString(), false);
+         OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO, "Disardan Aktarma Cari Hesaba Basari ile Kaydedilmistir...." + System.lineSeparator()  +  System.lineSeparator() +  "Evrak No:" +  model.getValueAt(0, 6 ).toString() + " / " + model.getValueAt(model.getRowCount() -1, 6 ).toString(), false);
          //JOptionPane.showMessageDialog(null, "Disardan Aktarma Cari Hesaba Basari ile Kaydedilmistir...." + System.lineSeparator()  +  System.lineSeparator() +  "Evrak No:" +  model.getValueAt(0, 6 ).toString() + " / " + model.getValueAt(model.getRowCount() -1, 6 ).toString() ); 
 		}
 		catch (Exception ex)

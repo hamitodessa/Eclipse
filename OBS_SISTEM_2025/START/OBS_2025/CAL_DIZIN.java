@@ -366,6 +366,18 @@ public class CAL_DIZIN extends JFrame {
 					chckbxD.setEnabled(false);
 					chckbxO.setEnabled(false);
 				}
+				String hangi = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex())  ;
+				if (hangi == "MS SQL")
+				{
+					chckbxD.setEnabled(true);
+					chckbxO.setEnabled(true);
+				}
+				else
+				{
+					chckbxD.setEnabled(false);
+					chckbxO.setEnabled(false);
+				}
+				
 			}
 		});
 		chckbxL.setSelected(true);

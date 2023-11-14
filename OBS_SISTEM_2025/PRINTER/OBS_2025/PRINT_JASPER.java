@@ -23,6 +23,7 @@ import javax.swing.JScrollBar;
 import javax.swing.table.DefaultTableModel;
 
 import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.TARIH;
@@ -136,8 +137,15 @@ public class PRINT_JASPER extends JInternalFrame {
 				parameters.put("kOD", FILTRE.txtkodu.getText());
 				parameters.put("uNVAN",  FILTRE.lblNewLabel_1.getText().trim() + "   /  " + FILTRE.lblNewLabel_2.getText().trim());
 				parameters.put("pERIYOT","Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_1));
-				ResultSet rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
-				
+				ResultSet rs ;
+				if(BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
+				{
+					rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1),false);
+				}
+				else {
+					rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1),true);
+
+				}
 				jp = new JasperPrint();
 				jp = JasperFillManager.fillReport(jr,parameters,new JRResultSetDataSource(rs));
 			

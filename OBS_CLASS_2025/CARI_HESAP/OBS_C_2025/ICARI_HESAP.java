@@ -17,7 +17,7 @@ public interface ICARI_HESAP {
 	public void create_table(String fir_adi) throws SQLException;
 	public void create_table_log() throws SQLException;
 	public String cari_firma_adi() throws ClassNotFoundException, SQLException;
-	public ResultSet ekstre(String hesap , String t1 ,String t2) throws ClassNotFoundException, SQLException;
+	public ResultSet ekstre(String hesap , String t1 ,String t2,boolean sql) throws ClassNotFoundException, SQLException;
 	public ResultSet hesap_adi_oku(String hesap) throws ClassNotFoundException, SQLException;
 	public ResultSet hp_pln () throws ClassNotFoundException, SQLException;
 	public ResultSet ekstre_mizan (String kod,String ilktarih,String sontarih,String ilkhcins,String sonhcins,String ilkkar,String sonkar) throws ClassNotFoundException, SQLException;

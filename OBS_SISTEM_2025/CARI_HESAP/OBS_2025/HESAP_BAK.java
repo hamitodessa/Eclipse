@@ -459,7 +459,7 @@ public class HESAP_BAK extends JInternalFrame {
 			long startTime = System.currentTimeMillis(); 
 			ResultSet	rs = null;
 			getContentPane().setCursor(oac.WAIT_CURSOR);
-			rs = c_Access.ekstre(hesap,"1900.01.01", "2100.12.31");
+			rs = c_Access.ekstre(hesap,"1900.01.01", "2100.12.31",false);
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			GRID_TEMIZLE.grid_temizle(tbldetay);
 			if (!rs.isBeforeFirst() ) {  

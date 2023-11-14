@@ -144,7 +144,14 @@ public class PRINT_YAPMA extends JInternalFrame {
 				//**************************************************************************
 				if (nasil.equals("normal"))
 				{
-					rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
+					if(BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
+					{
+						rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1),false);
+					}
+					else {
+						rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1),true);
+					}
+					
 				}
 				else if (nasil.equals("aratarih"))
 				{

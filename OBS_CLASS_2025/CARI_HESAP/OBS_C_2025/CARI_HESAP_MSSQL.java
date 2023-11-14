@@ -313,12 +313,12 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		}
 		return result;	
 	}
-	public ResultSet ekstre(String hesap , String t1 ,String t2) throws ClassNotFoundException, SQLException
+	public ResultSet ekstre(String hesap , String t1 ,String t2,boolean sqll) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String tARIH = "" ;
-		if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
+		if(! t1.equals("1900.01.01") || ! t2.equals("2100.12.31"))
 			tARIH = "  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" ;
 		String sql = " SELECT TARIH,SATIRLAR.EVRAK ,IZAHAT,KOD,KUR,BORC,ALACAK, "  + 
 				"  CAST(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS DECIMAL(30,2))  AS BAKIYE ,[USER] "  + 
@@ -398,7 +398,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String tARIH = "" ;
-		if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
+		if(! t1.equals("1900.01.01") || ! t2.equals("2100.12.31"))
 			tARIH = " AND TARIH BETWEEN '" + t1 + "' AND '"  + t2  + " 23:59:59.998'" ;
 		String sql = "SELECT SATIRLAR.HESAP,HESAP.UNVAN,HESAP.HESAP_CINSI AS H_CINSI," + 
 				" ROUND(SUM(SATIRLAR.BORC),2) AS BORC, ROUND(SUM(SATIRLAR.ALACAK),2) AS ALACAK, " + 
@@ -664,7 +664,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		ResultSet	rss = null;
 		String sql = "" ;
 		String tARIH = "" ;
-		if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
+		if(! t1.equals("1900.01.01") || ! t2.equals("2100.12.31"))
 			tARIH = " AND SATIRLAR.TARIH  BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998'  " ;
 		if (hKUR.equals("Kayitli"))
 		{
@@ -682,7 +682,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		}
 		else 
 		{
-			if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
+			if(! t1.equals("1900.01.01") || ! t2.equals("2100.12.31"))
 				tARIH = " AND s.TARIH  BETWEEN  '" + t1 + "'  AND '" + t2 + " 23:59:59.998' " ;
 			sql = str2 + "SELECT s.TARIH, s.EVRAK ,I.IZAHAT , " +
 					" ISNULL(IIF(k." + kcins + " = 0,1,k." + kcins + " ), 1) as CEV_KUR , " +
@@ -1213,7 +1213,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			ResultSet	rss = null;
 			String tARIH = "" ;
-			if(! t1.equals("1900.01.01") && ! t2.equals("2100.12.31"))
+			if(! t1.equals("1900.01.01") || ! t2.equals("2100.12.31"))
 				tARIH = " AND TARIH BETWEEN '" + t1 + "' AND '"  + t2  + " 23:59:59.998'" ;
 			String sql = "SELECT HESAP.KARTON,SATIRLAR.HESAP,HESAP.UNVAN,HESAP.HESAP_CINSI AS H_CINSI," + 
 					" ROUND(SUM(SATIRLAR.BORC),2) AS BORC, ROUND(SUM(SATIRLAR.ALACAK),2) AS ALACAK, " + 

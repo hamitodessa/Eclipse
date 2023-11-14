@@ -14,6 +14,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
@@ -311,7 +312,7 @@ public class EKSTRE extends JInternalFrame {
 		double_4 =0 ;
 		try {
 			ResultSet	rs = null;
-			rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
+			rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1),false);
 			//rs = OBS_SIS_2025_ANA_CLASS._ICar. ekstre_proc(FILTRE.txtkodu.getText(),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
@@ -491,7 +492,7 @@ public class EKSTRE extends JInternalFrame {
 		DefaultTableModel model = (DefaultTableModel)table.getModel();
 		String str= "";
 		Date date = null;
-		SimpleDateFormat sdf;
+		SimpleDateFormat sdf = null;
 		c_Access.sqlite_sil();
 		Progres_Bar_Temizle();  
 		OBS_MAIN.progressBar.setStringPainted(true);
@@ -504,6 +505,7 @@ public class EKSTRE extends JInternalFrame {
 		stmt = SQLitecon.prepareStatement(sqll);
 		for (int i = 0; i < table.getRowCount()  ; i ++) 
 		{
+			
 			Progres_Bar(table.getRowCount()-1, i);
 			if (i == 0)
 			{
@@ -515,9 +517,16 @@ public class EKSTRE extends JInternalFrame {
 			else
 			{
 				str =  model.getValueAt(i , 0).toString();
-				sdf = new SimpleDateFormat("yyyy-MM-dd");
+				if(BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
+				{
+					sdf = new SimpleDateFormat("yyyy-MM-dd");
+				}
+				else if(BAGLAN.cariDizin.hAN_SQL.equals("MY SQL")) {
+					sdf = new SimpleDateFormat("yyyy.MM.dd");
+				}
+				
 				date = (Date) sdf.parse(str);
-				str =TARIH_CEVIR.milis_ddMMyyyy(date.getTime());
+				str = TARIH_CEVIR.milis_ddMMyyyy(date.getTime());
 			}
 			stmt.setString(1, str);
 			stmt.setInt(2, Integer.parseInt(model.getValueAt(i , 1).toString()));

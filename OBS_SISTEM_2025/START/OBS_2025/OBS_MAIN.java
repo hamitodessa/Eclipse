@@ -262,6 +262,7 @@ public class OBS_MAIN extends JFrame  {
 	        public void windowClosing(WindowEvent e) {
 	        	timer.cancel();
 	            timer.purge();
+	            timer = null;
 	        }
 	        @Override
 	        public void windowClosed(WindowEvent e) {

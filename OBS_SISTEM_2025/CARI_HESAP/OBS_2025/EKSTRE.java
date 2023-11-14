@@ -14,7 +14,6 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
-import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
@@ -517,14 +516,8 @@ public class EKSTRE extends JInternalFrame {
 			else
 			{
 				str =  model.getValueAt(i , 0).toString();
-				if(BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
-				{
-					sdf = new SimpleDateFormat("yyyy-MM-dd");
-				}
-				else if(BAGLAN.cariDizin.hAN_SQL.equals("MY SQL")) {
-					sdf = new SimpleDateFormat("yyyy.MM.dd");
-				}
-				
+				str = str.replace(".","-");
+				sdf = new SimpleDateFormat("yyyy-MM-dd");
 				date = (Date) sdf.parse(str);
 				str = TARIH_CEVIR.milis_ddMMyyyy(date.getTime());
 			}

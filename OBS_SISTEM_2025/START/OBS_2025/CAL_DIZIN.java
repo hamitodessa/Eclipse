@@ -170,6 +170,13 @@ public class CAL_DIZIN extends JFrame {
 		  ; } });
 		 		//setBorder(null);
 
+		  addWindowListener(new java.awt.event.WindowAdapter() {
+			    @Override
+			    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+			    	cIKIS();	
+			    }
+			});
+		  
 		setUndecorated(true);
 		setTitle("CALISMA DIZINI");
 		setResizable(false);

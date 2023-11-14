@@ -358,11 +358,13 @@ public class CAL_DIZIN extends JFrame {
 				{
 					chckbxS.setSelected(false);
 					chckbxD.setEnabled(true);
+					chckbxO.setEnabled(true);
 				}
 				else
 				{
 					chckbxS.setSelected(true);
 					chckbxD.setEnabled(false);
+					chckbxO.setEnabled(false);
 				}
 			}
 		});
@@ -372,15 +374,18 @@ public class CAL_DIZIN extends JFrame {
 		chckbxS = new JCheckBox("Server");
 		chckbxS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				if (chckbxS.isSelected())
 				{
 					chckbxL.setSelected(false);
 					chckbxD.setEnabled(false);
+					chckbxO.setEnabled(false);
 				}
 				else
 				{
 					chckbxL.setSelected(true);
 					chckbxD.setEnabled(true);
+					chckbxO.setEnabled(true);
 				}
 			}
 		});
@@ -1358,10 +1363,12 @@ public class CAL_DIZIN extends JFrame {
 		if (chckbxS.isSelected())
 		{
 			chckbxD.setEnabled(false);
+			chckbxO.setEnabled(false);
 		}
 		else
 		{
 			chckbxD.setEnabled(true);
+			chckbxO.setEnabled(true);
 		}
 	}
 	public static void HeaderRenderer(JTable table) {

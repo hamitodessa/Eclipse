@@ -299,14 +299,11 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
 		ResultSet	rss = null;
-		String tARIH = "" ;
-		if(! ilktarih.equals("1900.01.01") && ! sontarih.equals("2100.12.31"))
-			tARIH = " AND SATIRLAR.TARIH >= '" + ilktarih + "' AND SATIRLAR.TARIH < '" + sontarih + "' "  ;
 		String sql = " SELECT SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI, SUM(SATIRLAR.BORC) AS ISLEM, SUM(SATIRLAR.ALACAK) AS ISLEM2, SUM(SATIRLAR.ALACAK - SATIRLAR.BORC) AS BAKIYE" +
 				" FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  LEFT JOIN" +
 				" HESAP  USE INDEX (IX_HESAP)  ON SATIRLAR.HESAP = HESAP.HESAP " +
 				" WHERE SATIRLAR.HESAP =N'" + kod + "'  " + 
-				tARIH + 
+				" AND SATIRLAR.TARIH >= '" + ilktarih + "' AND SATIRLAR.TARIH < '" + sontarih + "' " + 
 				" AND HESAP.HESAP_CINSI  BETWEEN N'" + ilkhcins + "'  AND  " +
 				" N'" + sonhcins + "' AND HESAP.KARTON BETWEEN N'" + ilkkar + "' AND N'" + sonkar + "'" +
 				" GROUP BY SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " +
@@ -318,14 +315,11 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 	public ResultSet kasa_mizan(String kod, String ilktarih, String sontarih) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String tARIH = "" ;
-		if(! ilktarih.equals("1900.01.01") && ! sontarih.equals("2100.12.31"))
-			tARIH = " AND SATIRLAR.TARIH >= '" + ilktarih + "' AND SATIRLAR.TARIH < '" + sontarih + " 23:59:59.998'" ;
 		PreparedStatement stmt = con.prepareStatement(" SELECT SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI, SUM(SATIRLAR.BORC) AS islem, SUM(SATIRLAR.ALACAK) AS islem2, SUM(SATIRLAR.ALACAK - SATIRLAR.BORC) AS bakiye" +
 				" FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  LEFT JOIN" +
 				" HESAP  USE INDEX (IX_HESAP)  ON SATIRLAR.HESAP = HESAP.HESAP " +
 				" WHERE SATIRLAR.HESAP =N'" + kod + "' " + 
-				tARIH +
+				" AND SATIRLAR.TARIH >= '" + ilktarih + "' AND SATIRLAR.TARIH < '" + sontarih + " 23:59:59.998'" +
 				" GROUP BY SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " +
 				" ORDER BY SATIRLAR.HESAP ");
 		rss = stmt.executeQuery();

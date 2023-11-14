@@ -473,11 +473,11 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				comboBox.enable(false);
 				lblNewLabel_2.setText("Ortalama Fiyat");
 			}
-			//else if (ozmiz_kontrol() )
-			//{
-			//	comboBox.enable(false);
-			//	lblNewLabel_2.setText("Ozel Mizan");
-			//}
+			else if (ozmiz_kontrol() )
+			{
+				comboBox.enable(false);
+				lblNewLabel_2.setText("Ozel Mizan");
+			}
 			else if (ker_cikis_kontrol() )
 			{
 				comboBox.enable(false);

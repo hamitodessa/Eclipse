@@ -56,6 +56,8 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import com.crystaldecisions.sdk.occa.report.exportoptions.ReportExportFormat;
 import com.crystaldecisions.sdk.occa.report.lib.ReportSDKException;
 
@@ -360,6 +362,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				chooser.setAcceptAllFileFilterUsed(false);
 				chooser.setApproveButtonText("Dosya Sec");
 				chooser.setApproveButtonToolTipText("Dosya Sec");
+				chooser.addChoosableFileFilter(new FileNameExtensionFilter("Dosyalar", "jpg", "png", "gif", "bmp","pdf","txt","xls","xlsx","doc","docx"));
 				chooser.setApproveButtonMnemonic('s');
 				getContentPane().setCursor(DEFAULT_CURSOR);
 				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 

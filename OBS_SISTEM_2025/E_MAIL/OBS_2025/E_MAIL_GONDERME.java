@@ -56,7 +56,6 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-
 import com.crystaldecisions.sdk.occa.report.exportoptions.ReportExportFormat;
 import com.crystaldecisions.sdk.occa.report.lib.ReportSDKException;
 
@@ -94,7 +93,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	private boolean ekstreden = false;
 	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-
+	static JPanel panel ;
 
 	public E_MAIL_GONDERME() {
 
@@ -102,7 +101,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		setClosable(true);
 		setBounds(100, 100, 598, 446);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
@@ -229,6 +228,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					txtaciklama.requestFocus();
 					return ;
 				}
+				//GuiUtil.setWaitCursor(E_MAIL_GONDERME.panel,true);	
 				if ( OBS_MAIN.pencere_bak("RAPOR YAZDIRMA") == true  || etiketten ==true || ekstreden == true ) 
 				{
 					gonder();
@@ -295,6 +295,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				}
 				dispose();
 				getContentPane().setCursor(DEFAULT_CURSOR);
+				//GuiUtil.setWaitCursor(E_MAIL_GONDERME.panel,false);	
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(E_MAIL_GONDERME.class.getResource("/ICONLAR/mail-16.png")));

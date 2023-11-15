@@ -568,7 +568,7 @@ public class LOGIN extends JDialog {
 						Lgn_Progres_Bar(say, 9);
 						lblModul.setText("");
 						Login_Progres_Bar_Temizle();
-						
+
 						//LOGLAMA DOSYALARI KONTROL*************************************************************************
 						//CARI LOG KONTROL
 						String dsy =  GLOBAL.LOG_SURUCU + GLOBAL.char_degis(BAGLAN_LOG.cariLogDizin.mODUL) ;
@@ -618,13 +618,13 @@ public class LOGIN extends JDialog {
 						{   
 							GLOBAL.create_table_log(dsy,oac._IKereste.ker_firma_adi(),BAGLAN_LOG.kerLogDizin);
 						}
-						Thread.currentThread().isInterrupted();
+						//Thread.currentThread().isInterrupted();
+						dispose();
 						obmain.setExtendedState(JFrame.MAXIMIZED_BOTH);
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
 						obmain.lblUser.setText(GLOBAL.KULL_ADI);
 						obmain.setVisible(true);
-						dispose();
-						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+						
 					}
 					catch (Exception ex)
 					{

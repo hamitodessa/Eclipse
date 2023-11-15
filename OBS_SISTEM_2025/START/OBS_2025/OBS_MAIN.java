@@ -236,7 +236,7 @@ public class OBS_MAIN extends JFrame  {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static GUNLUK_ACCESS  g_Access = new GUNLUK_ACCESS(oac._IGunluk , oac._IGunluk_Loger);
 	static List<GOREV_BILGI> gBILGI = new ArrayList<GOREV_BILGI>();
-	static Timer timer ;
+	static Timer timerr ;
 	
 	public OBS_MAIN() {
 //2663 satir
@@ -260,9 +260,9 @@ public class OBS_MAIN extends JFrame  {
 	        }
 	        @Override
 	        public void windowClosing(WindowEvent e) {
-	        	timer.cancel();
-	            timer.purge();
-	            timer = null;
+	        	timerr.cancel();
+	            timerr.purge();
+	            timerr = null;
 	        }
 	        @Override
 	        public void windowClosed(WindowEvent e) {
@@ -279,7 +279,7 @@ public class OBS_MAIN extends JFrame  {
 	        @Override
 	        public void windowDeactivated(WindowEvent e) {
 	        }
-	    });		    
+	    });		
 		SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
 		setFont(new Font("Dialog", Font.BOLD, 12));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_MAIN.class.getResource("/ICONLAR/icon-obs-32.png")));
@@ -3755,22 +3755,22 @@ public class OBS_MAIN extends JFrame  {
 				return ;
 			}
 			Calendar calendar = Calendar.getInstance();
-			timer = new Timer();
-			timer.scheduleAtFixedRate(new TimerTask() {
-				@Override
-				public void run() {
-					gunluk_goster();
-				}
-			}, millisToNextHour(calendar),  kontolsuresi);
+			//timer = new Timer();
+			//timer.scheduleAtFixedRate(new TimerTask() {
+			//	@Override
+			//	public void run() {
+			//		gunluk_goster();
+			//	}
+			//}, millisToNextHour(calendar),  kontolsuresi);
 			////
-			//Timer t = new Timer();  
-			//TimerTask tt = new TimerTask() {  
-			//    @Override  
-			//    public void run() {  
-			//    	gunluk_goster();
-			//    };  
-			//};  
-			//t.schedule(tt,millisToNextHour(calendar),  kontolsuresi); ;  
+			timerr = new Timer();  
+			TimerTask tt = new TimerTask() {  
+			    @Override  
+			    public void run() {  
+			    	gunluk_goster();
+			    };  
+			};  
+			timerr.schedule(tt,millisToNextHour(calendar),  kontolsuresi); ;  
 
 			gunluk_goster();
 		} catch (Exception e) 
@@ -3842,20 +3842,11 @@ public class OBS_MAIN extends JFrame  {
 	}
 	private static long millisToNextHour(Calendar calendar) 
 	{
-		///
 		LocalDateTime start = LocalDateTime.now();
 	    LocalDateTime end = start.plusHours(1).truncatedTo(ChronoUnit.HOURS);
 	    Duration duration = Duration.between(start, end);
 	    long millis = duration.toMillis();
 	    return millis ;
-		///
-	    //int minutes = calendar.get(Calendar.MINUTE);
-	    //int seconds = calendar.get(Calendar.SECOND);
-	    //int millis = calendar.get(Calendar.MILLISECOND);
-	    //int minutesToNextHour = 60 - minutes;
-	    //int secondsToNextHour = 60 - seconds;
-	    //int millisToNextHour = 1000 - millis;
-	    //return minutesToNextHour*60*1000 + secondsToNextHour*1000 + millisToNextHour;
 	}
 	public synchronized  void setExtendedStatee(int state)
 	{       

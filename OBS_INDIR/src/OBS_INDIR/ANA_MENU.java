@@ -18,8 +18,6 @@ import org.apache.commons.net.ftp.FTPReply;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.plaf.metal.DefaultMetalTheme;
-import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -83,9 +81,9 @@ public class ANA_MENU extends JDialog {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
-		MetalLookAndFeel.setCurrentTheme(new  DefaultMetalTheme());
-		UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-
+		//MetalLookAndFeel.setCurrentTheme(new  DefaultMetalTheme());
+		//UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+		UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

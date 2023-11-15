@@ -3812,7 +3812,17 @@ public class OBS_MAIN extends JFrame  {
 						rs.getString("ISIM")  , rs.getString("GOREV"), rs.getString("MESAJ"));
 				gBILGI.add(aNLIKBilgi);
 			}
-			
+			InputStream stream = null ;
+			stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
+			Player player = new Player(stream);
+			player.play();
+			stream.close();
+			try {
+				if(stream != null)
+					stream.close();
+			} catch (IOException ex) {
+				mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			}
 			GuiUtil.setWaitCursor(toolBar,false);
 		} catch (Exception e) {
 			GuiUtil.setWaitCursor(toolBar,false);
@@ -3822,13 +3832,17 @@ public class OBS_MAIN extends JFrame  {
 	}
 	public static void gun_mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
 	{
+		Notifications.getInstance().show(tipType,Notifications.Location.BOTTOM_RIGHT ,zaman ,mesaj);
+		btnNewButton_72.setVisible(true);
+		mESAJ_SAYI += 1 ;
+		btnNewButton_72.setToolTipText(String.valueOf(mESAJ_SAYI) + " Adet Mesaj Bulunmaktadir....");
+	}
+	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
+	{
 		InputStream stream = null ;
 		try {
 			Notifications.getInstance().show(tipType,Notifications.Location.BOTTOM_RIGHT ,zaman ,mesaj);
-			btnNewButton_72.setVisible(true);
-			mESAJ_SAYI += 1 ;
-			btnNewButton_72.setToolTipText(String.valueOf(mESAJ_SAYI) + " Adet Mesaj Bulunmaktadir....");
-			stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
+			stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/hata.mp3"); //whts
 			Player player = new Player(stream);
 			player.play();
 			stream.close();
@@ -3836,25 +3850,7 @@ public class OBS_MAIN extends JFrame  {
 			try {
 				if(stream != null)
 					stream.close();
-			} catch (IOException e1) {
-				mesaj_goster(10000,Notifications.Type.ERROR,e.getMessage() );
-			}
-		}
-	}
-	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
-	{
-		InputStream stream = null ;
-		try {
-			Notifications.getInstance().show(tipType,Notifications.Location.BOTTOM_RIGHT ,zaman ,mesaj);
-				stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/hata.mp3"); //whts
-				Player player = new Player(stream);
-				player.play();
-				stream.close();
-		} catch (Exception e) {
-			try {
-				if(stream != null)
-					stream.close();
-			} catch (IOException e1) {
+			} catch (Exception e1) {
 				mesaj_goster(10000,Notifications.Type.ERROR,e.getMessage() );
 			}
 		}

@@ -149,7 +149,7 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 		bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 		table.setFont(bigFont);
 		} catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "KOD ACIKLAMA", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -171,7 +171,7 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 			temizle();
 			hisset();
 		} catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
 	}
 	public static void sil() 
@@ -193,7 +193,7 @@ public class KOD_ACIKLAMA extends JInternalFrame {
 			temizle();
 			hisset();
 		} catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
 	}
 	private static void doldur(int satir)

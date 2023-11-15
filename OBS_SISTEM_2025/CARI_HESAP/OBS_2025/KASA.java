@@ -567,7 +567,7 @@ public class KASA extends JInternalFrame {
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table_1.setFont(bigFont);
 		} catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(), "Gunluk Islem", JOptionPane.ERROR_MESSAGE);
 		}
 	}

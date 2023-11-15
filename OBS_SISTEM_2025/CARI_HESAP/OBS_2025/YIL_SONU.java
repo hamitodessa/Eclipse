@@ -367,7 +367,7 @@ public class YIL_SONU extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 		}
 	}
@@ -400,7 +400,7 @@ public class YIL_SONU extends JInternalFrame {
 			if (textField.getText().equals(""))
 			{
 				
-				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarma Yapilacak Veritabani Kodu Bos...", false);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarma Yapilacak Veritabani Kodu Bos..." );
 				//JOptionPane.showMessageDialog(null,  "Aktarma Yapilacak Veritabani Kodu Bos..."); 	
 				return ;
 			}     
@@ -408,7 +408,7 @@ public class YIL_SONU extends JInternalFrame {
 			{
 				if (textField_1.getText().equals(""))
 				{
-					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Devir Karsi Hesap Kodu Bos...", false);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Devir Karsi Hesap Kodu Bos..." );
 					//JOptionPane.showMessageDialog(null, "Devir Karsi Hesap Kodu Bos..."); 	
 					return ;
 				}
@@ -455,7 +455,7 @@ public class YIL_SONU extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
@@ -531,12 +531,12 @@ public class YIL_SONU extends JInternalFrame {
 				}
 
 			}  // ilk For INT
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Mizan Aktarma Islemi Basari ile Tamamlandi....", false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Mizan Aktarma Islemi Basari ile Tamamlandi...." );
 			//JOptionPane.showMessageDialog(null,  "Mizan Aktarma Islemi Basari ile Tamamlandi...."  + System.lineSeparator() + System.lineSeparator() + "Aktarilan Hesap Sayisi...: " + say); 
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}

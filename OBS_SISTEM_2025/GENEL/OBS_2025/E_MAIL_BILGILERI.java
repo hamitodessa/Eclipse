@@ -31,7 +31,7 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 	public E_MAIL_BILGILERI() {
 		setTitle("E MAIL BILGILERI");
 		setClosable(true);
-		setBounds(100, 100, 492, 239);
+		setBounds(100, 100, 492, 249);
 
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);

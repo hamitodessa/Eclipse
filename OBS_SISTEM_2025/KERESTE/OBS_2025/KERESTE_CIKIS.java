@@ -1269,7 +1269,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -1309,7 +1309,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
@@ -1338,7 +1338,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ozel Kod", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -1367,7 +1367,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Nakliyeci", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -1382,7 +1382,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Evrak Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -1500,7 +1500,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			GuiUtil.setWaitCursor(KERESTE_CIKIS.splitPane,false);
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -1544,7 +1544,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Satyaz 1", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
@@ -1667,7 +1667,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satir yaz 2", JOptionPane.ERROR_MESSAGE);     
 		}
 	}
@@ -1696,7 +1696,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Silme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -1754,7 +1754,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dipnot Silme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -1771,7 +1771,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Dipnot yaz", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -1792,7 +1792,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dipnot", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -1931,7 +1931,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -2000,7 +2000,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Aciklama Kaydet", JOptionPane.ERROR_MESSAGE);   			 
 		}
 	}
@@ -2014,7 +2014,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Aciklama Silme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -2069,7 +2069,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Paket Kontrol", JOptionPane.ERROR_MESSAGE);  
 		}
 	}
@@ -2092,7 +2092,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -2152,7 +2152,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -2176,7 +2176,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Otomatik Doldurma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -2973,12 +2973,12 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 			}
 			GuiUtil.setWaitCursor(splitPane,false);
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi.....", false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi....." );
 			//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Cikis Evrak Yazdirma", JOptionPane.PLAIN_MESSAGE);
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -3339,7 +3339,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Kereste Cikis", JOptionPane.ERROR_MESSAGE);
 		}
 	}

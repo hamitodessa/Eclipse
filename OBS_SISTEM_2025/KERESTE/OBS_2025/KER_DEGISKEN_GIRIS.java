@@ -254,7 +254,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 		}
 	}
@@ -284,7 +284,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Tablo Doldur", JOptionPane.ERROR_MESSAGE);    
 		}
 	}
@@ -423,7 +423,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			//OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			//OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 		}
 	}
@@ -460,7 +460,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, "DDDDDD" + ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);    
 		}
 	}
@@ -491,7 +491,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);    
 		}		
 	}
@@ -612,7 +612,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 		}
 	}

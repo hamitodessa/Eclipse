@@ -444,7 +444,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -523,7 +523,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -533,7 +533,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 
 		if (mdl.getRowCount() == 0 )
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Aktarilacak Bilgi Yok.....", false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Aktarilacak Bilgi Yok....." );
 			
 			//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Ozel Mizan", JOptionPane.PLAIN_MESSAGE);
 		}
@@ -864,7 +864,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -1027,7 +1027,7 @@ public class OZEL_MIZAN extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 		return sonuc ;

@@ -72,7 +72,7 @@ import javax.swing.ListSelectionModel;
        }
        catch (Exception ex)
         {
-    	   OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+    	   OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
            //JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Eksik Kur Okuma", JOptionPane.ERROR_MESSAGE);
           }
 	}

@@ -343,7 +343,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 						lblNewLabel_3.setText(Integer.toString(list.getModel().getSize()));
 					}
 				} catch (Exception ex) {
-					OBS_MAIN.mesaj_goster(15000,Notifications.Type.ERROR, ex.getMessage(), false);
+					OBS_MAIN.mesaj_goster(15000,Notifications.Type.ERROR, ex.getMessage() );
 					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dosya Ekleme", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -535,7 +535,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(15000,Notifications.Type.ERROR, ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(15000,Notifications.Type.ERROR, ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Bilgi Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -598,11 +598,11 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			oac.uSER_ISL.giden_rapor_yaz(new java.sql.Date(Calendar.getInstance().getTime().getTime())  ,txtkonu.getText(), rapor_dos_adi,  cmbalici.getSelectedItem().toString()  ,
 					MAIL_SETTINGS.HESAP,txtaciklama.getText(), GLOBAL.KULL_ADI) ;
 			//*************************************************************************
-			OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO,"Mail Basarili bi sekilde Gonderildi....", false);
+			OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO,"Mail Basarili bi sekilde Gonderildi...." );
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(15000,Notifications.Type.ERROR, ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(15000,Notifications.Type.ERROR, ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -783,13 +783,13 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
 			Thread.currentThread().isInterrupted();
-			OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO,"Mail Basarili bi sekilde Gonderildi....", false);
+			OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO,"Mail Basarili bi sekilde Gonderildi...." );
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 		}
 		catch (Exception ex)
 		{
 			Thread.currentThread().isInterrupted();
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 		}};
@@ -881,12 +881,12 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
-			OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO,"Mail Basarili bi sekilde Gonderildi....", false);
+			OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO,"Mail Basarili bi sekilde Gonderildi...." );
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -899,7 +899,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -912,7 +912,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -925,7 +925,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -938,7 +938,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -951,7 +951,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -964,7 +964,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -977,7 +977,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -990,7 +990,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -1003,7 +1003,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -1016,7 +1016,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -1029,7 +1029,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -1042,7 +1042,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -1055,7 +1055,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
@@ -1135,12 +1135,12 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
-			OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO,"Mail Basarili bi sekilde Gonderildi....", false);
+			OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO,"Mail Basarili bi sekilde Gonderildi...." );
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}

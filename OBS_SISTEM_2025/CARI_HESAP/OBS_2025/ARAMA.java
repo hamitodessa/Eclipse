@@ -289,7 +289,7 @@ public class ARAMA extends JInternalFrame {
 	    }
 	    catch (Exception ex)
 	    {
-	    	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+	    	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
 	    	//JOptionPane.showMessageDialog(null, ex.getMessage(),"Cari Arama", JOptionPane.ERROR_MESSAGE);
 	    	}
 		}

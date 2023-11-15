@@ -19,7 +19,6 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.MaskFormatter;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
@@ -52,6 +51,7 @@ import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
+import raven.toast.Notifications;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -5630,7 +5630,8 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Isim Okuma", JOptionPane.ERROR_MESSAGE);    	
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Isim Okuma", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	public void isimoku_dvz()  {
@@ -5655,7 +5656,8 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Isim Okuma", JOptionPane.ERROR_MESSAGE);    	
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Isim Okuma", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	public void sayfa_ac (int syfa)
@@ -5785,7 +5787,8 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur(JComboBox<String> box,String altgrp)
@@ -5824,7 +5827,8 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private void ker_ana_grup_doldur(JComboBox<String> box)
@@ -5854,7 +5858,8 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void ker_alt_grup_doldur(JComboBox<String> box,String altgrp)
@@ -5894,7 +5899,8 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private void depo_doldur(JComboBox<String> box)
@@ -5926,7 +5932,8 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void ker_depo_doldur(JComboBox<String> box)
@@ -5958,7 +5965,8 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void oz1_doldur(JComboBox<String> box)
@@ -5989,7 +5997,8 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod Doldur", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void oz2_doldur(JComboBox<String> box)
@@ -6020,7 +6029,8 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod 2 Doldur", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod 2 Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void ker_oz1_doldur(JComboBox<String> box)
@@ -6051,7 +6061,8 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod Doldur", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void gun_isim_doldur()
@@ -6081,7 +6092,8 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod 2 Doldur", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod 2 Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void mensei_doldur(JComboBox<String> box)
@@ -6112,7 +6124,8 @@ public class FILTRE extends JDialog {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod Doldur", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ozel Kod Doldur", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private static String[] isim(String kod)  {
@@ -6136,7 +6149,8 @@ public class FILTRE extends JDialog {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage() + " clss",  "Hesap Ismi Okuma", JOptionPane.ERROR_MESSAGE);     
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage() + " clss",  "Hesap Ismi Okuma", JOptionPane.ERROR_MESSAGE);     
 		}
 		return sonuc;
 	}

@@ -387,7 +387,7 @@ public class KER_ENVANTER extends JInternalFrame {
 
 			}
 		} catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -590,7 +590,7 @@ public class KER_ENVANTER extends JInternalFrame {
 			}
 		}
 		} catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Detay", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
@@ -600,7 +600,7 @@ public class KER_ENVANTER extends JInternalFrame {
 
 		if (mdl.getRowCount() == 0 )
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok.....", false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok....." );
 			//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
@@ -969,12 +969,12 @@ public class KER_ENVANTER extends JInternalFrame {
 			}
 			GuiUtil.setWaitCursor(splitPane,false);
 			
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi.....", false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi....." );
 			//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Ortalama Fiat Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Ortalama Fiat Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1147,7 +1147,7 @@ public class KER_ENVANTER extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Ortalama Fiat Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}

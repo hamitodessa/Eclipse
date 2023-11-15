@@ -456,7 +456,7 @@ public class EKSTRE extends JInternalFrame {
 			table.setFont(bigFont);
 
 		} catch (Exception ex) {
-			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Cari Ekstre", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
@@ -547,7 +547,7 @@ public class EKSTRE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ekstre sqllt", JOptionPane.ERROR_MESSAGE);   		
 		}
 	}

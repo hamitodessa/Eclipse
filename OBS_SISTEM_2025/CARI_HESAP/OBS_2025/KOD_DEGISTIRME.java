@@ -205,13 +205,13 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 					,lBILGI,		BAGLAN_LOG.cariLogDizin);
 			c_Access.cari_kod_degis_satirlar(textField_2.getText(), textField_1.getText());
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Islem Basari ile tamamlandi...." , false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Islem Basari ile tamamlandi...."  );
 			//JOptionPane.showMessageDialog(null, "Islem Basari ile tamamlandi...." );
 		}
 		catch ( Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, ex.getMessage() ); 
 		}
 	}

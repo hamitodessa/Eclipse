@@ -305,7 +305,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		catch (Exception ex)
 		{
 			GRID_TEMIZLE.grid_temizle(table);
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -557,7 +557,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -639,7 +639,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Urun Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -719,7 +719,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Konsimento Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -802,7 +802,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -900,7 +900,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kal Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1008,7 +1008,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kal Boy Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1121,7 +1121,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kal Boy Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1206,7 +1206,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kal Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1321,7 +1321,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kal Gen Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1441,7 +1441,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Kons Sinif Kal Gen Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1561,7 +1561,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Kons Sinif Kal Boy Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1665,7 +1665,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Sinif Kal Gen Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1754,7 +1754,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Yil Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1852,7 +1852,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -1957,7 +1957,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -2051,7 +2051,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Yil Ay Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -2142,7 +2142,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Kodu Yil Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -2235,7 +2235,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ortalama Genislik Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -2395,7 +2395,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
@@ -2631,7 +2631,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 
 		if (mdl.getRowCount() == 0 )
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok.....", false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok....." );
 			//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
@@ -3144,12 +3144,12 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				//**************************************
 			}
 			GuiUtil.setWaitCursor(splitPane,false);
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi.....", false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi....." );
 			//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Grup Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -3394,7 +3394,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage(), false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 			//JOptionPane.showMessageDialog(null, "Excell Aktarma.....","Grup Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}

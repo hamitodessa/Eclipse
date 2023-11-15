@@ -530,7 +530,7 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		
 		} catch (Exception e) 
 		{
-		OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,e.getMessage(), false);
+		OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,e.getMessage());
 		}
 	}
 }

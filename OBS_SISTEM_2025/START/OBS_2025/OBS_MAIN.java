@@ -1922,7 +1922,7 @@ public class OBS_MAIN extends JFrame  {
 				boolean varmi = OBS_MAIN.pencere_bak("ENVANTER DOKUM");
 				if (! varmi  ) 
 				{
-					mesaj_goster(7500,Notifications.Type.WARNING,"Oncelikli Olarak Envanter Dokumu Aliniz......", false);
+					mesaj_goster(7500,Notifications.Type.WARNING,"Oncelikli Olarak Envanter Dokumu Aliniz......");
 					//JOptionPane.showMessageDialog(null, "Oncelikli Olarak Envanter Dokumu Aliniz......", "Yil Sonu Aktarma",JOptionPane.ERROR_MESSAGE);
 					return;
 				}
@@ -2436,7 +2436,7 @@ public class OBS_MAIN extends JFrame  {
 				if(! GLOBAL.KULL_ADI.equals("Admin") && ! GLOBAL.KULL_ADI.equals("hamit"))
 				{
 					//JOptionPane.showMessageDialog(null, "Sadece Admin Gorebilir","Log Sorgulama", JOptionPane.INFORMATION_MESSAGE);
-					mesaj_goster(5000,Notifications.Type.WARNING,"Sadece Admin Gorebilir", false);
+					mesaj_goster(5000,Notifications.Type.WARNING,"Sadece Admin Gorebilir");
 					return;
 				}
 				form_ac("LOG RAPORLAMA","");
@@ -3178,7 +3178,7 @@ public class OBS_MAIN extends JFrame  {
 				catch (Exception ex) 
 				{
 					GuiUtil.setWaitCursor(toolBar,false);
-					mesaj_goster(7500,Notifications.Type.ERROR,ex.getMessage(), false);
+					mesaj_goster(7500,Notifications.Type.ERROR,ex.getMessage());
 					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Yazici", JOptionPane.ERROR_MESSAGE);   
 				}
 			}
@@ -3318,7 +3318,7 @@ public class OBS_MAIN extends JFrame  {
 				catch (Exception ex) 
 				{
 					GuiUtil.setWaitCursor(toolBar,false);	
-					mesaj_goster(7500,Notifications.Type.ERROR,ex.getMessage(), false);
+					mesaj_goster(7500,Notifications.Type.ERROR,ex.getMessage());
 					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grafik", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -3750,7 +3750,7 @@ public class OBS_MAIN extends JFrame  {
 			int kontolsuresi = (Integer. parseInt(deger) * 60 ) * 1000;
 			if (kontolsuresi == 0) 
 			{
-				mesaj_goster(10000,Notifications.Type.ERROR,"Gunluk Kontrol Suresi Girilmemis....", false);
+				mesaj_goster(10000,Notifications.Type.ERROR,"Gunluk Kontrol Suresi Girilmemis....");
 				//JOptionPane.showMessageDialog(null,"Kontrol Suresi Girilmemis....", "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
@@ -3775,12 +3775,11 @@ public class OBS_MAIN extends JFrame  {
 			gunluk_goster();
 		} catch (Exception e) 
 		{
-			mesaj_goster(5000,Notifications.Type.ERROR,e.getMessage(), false);
+			mesaj_goster(5000,Notifications.Type.ERROR,e.getMessage());
 		}
 	}
 	private static void gunluk_goster()
 	{
-		InputStream stream = null ;
 		try {
 			GuiUtil.setWaitCursor(toolBar,true);
 			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
@@ -3808,36 +3807,56 @@ public class OBS_MAIN extends JFrame  {
 				String mESAJ = TARIH_CEVIR.tarih_ters(rs.getString("TARIH")) + "  " + rs.getString("SAAT")  + "  "
 						+ rs.getString("ISIM")  + "  " + rs.getString("GOREV")  + "  "
 						+ rs.getString("MESAJ");
-				mesaj_goster(15000,Notifications.Type.INFO,mESAJ, true);
+				gun_mesaj_goster(15000,Notifications.Type.INFO,mESAJ);
 				GOREV_BILGI aNLIKBilgi = new GOREV_BILGI(TARIH_CEVIR.tarih_ters(rs.getString("TARIH")), rs.getString("SAAT") , 
 						rs.getString("ISIM")  , rs.getString("GOREV"), rs.getString("MESAJ"));
 				gBILGI.add(aNLIKBilgi);
 			}
+			
+			GuiUtil.setWaitCursor(toolBar,false);
+		} catch (Exception e) {
+			GuiUtil.setWaitCursor(toolBar,false);
+			mesaj_goster(10000,Notifications.Type.ERROR,e.getMessage() );
+			//JOptionPane.showMessageDialog(null,e.getMessage(), "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	public static void gun_mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
+	{
+		InputStream stream = null ;
+		try {
+			Notifications.getInstance().show(tipType,Notifications.Location.BOTTOM_RIGHT ,zaman ,mesaj);
+			btnNewButton_72.setVisible(true);
+			mESAJ_SAYI += 1 ;
+			btnNewButton_72.setToolTipText(String.valueOf(mESAJ_SAYI) + " Adet Mesaj Bulunmaktadir....");
 			stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
 			Player player = new Player(stream);
 			player.play();
 			stream.close();
-			GuiUtil.setWaitCursor(toolBar,false);
 		} catch (Exception e) {
-			GuiUtil.setWaitCursor(toolBar,false);
 			try {
 				if(stream != null)
 					stream.close();
 			} catch (IOException e1) {
-				e1.printStackTrace();
+				mesaj_goster(10000,Notifications.Type.ERROR,e.getMessage() );
 			}
-			mesaj_goster(10000,Notifications.Type.ERROR,e.getMessage() , false);
-			//JOptionPane.showMessageDialog(null,e.getMessage(), "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj,boolean goster)
+	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
 	{
-		Notifications.getInstance().show(tipType,Notifications.Location.BOTTOM_RIGHT ,zaman ,mesaj);
-		if(goster)
-		{
-			btnNewButton_72.setVisible(true);
-			mESAJ_SAYI += 1 ;
-			btnNewButton_72.setToolTipText(String.valueOf(mESAJ_SAYI) + " Adet Mesaj Bulunmaktadir....");
+		InputStream stream = null ;
+		try {
+			Notifications.getInstance().show(tipType,Notifications.Location.BOTTOM_RIGHT ,zaman ,mesaj);
+				stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/hata.mp3"); //whts
+				Player player = new Player(stream);
+				player.play();
+				stream.close();
+		} catch (Exception e) {
+			try {
+				if(stream != null)
+					stream.close();
+			} catch (IOException e1) {
+				mesaj_goster(10000,Notifications.Type.ERROR,e.getMessage() );
+			}
 		}
 	}
 	private static long millisToNextHour(Calendar calendar) 

@@ -90,7 +90,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		setBounds(0, 0, 500, 438);
 
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setDividerSize(1);
+		splitPane.setDividerSize(0);
 		splitPane.setResizeWeight(0.0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);

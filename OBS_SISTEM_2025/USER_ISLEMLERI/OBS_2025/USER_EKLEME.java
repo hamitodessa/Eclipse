@@ -64,7 +64,7 @@ public class USER_EKLEME extends JInternalFrame {
 		setBounds(0, 0, 921, 450);
 
 		splitPane = new JSplitPane();
-		splitPane.setDividerSize(1);
+		splitPane.setDividerSize(0);
 
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);

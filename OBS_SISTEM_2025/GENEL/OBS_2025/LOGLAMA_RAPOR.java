@@ -82,6 +82,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		rightPanel.setMinimumSize(new Dimension(0, 20));
 		rightPanel.setMaximumSize(new Dimension(0, 20));
 		JSplitPane sp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, leftPanel, centerPanel);
+		sp.setDividerSize(0);
 		leftPanel.setLayout(null);
 		JSplitPane sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, rightPanel);
 		rightPanel.setLayout(null);
@@ -97,7 +98,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		JLabel lblNewLabel_1 = new JLabel("Satir Sayisi :");
 		lblNewLabel_1.setBounds(10, 3, 76, 14);
 		rightPanel.add(lblNewLabel_1);
-		sp2.setDividerSize(1);
+		sp2.setDividerSize(0);
 		sp2.setResizeWeight(1.0);
 		getContentPane().add(sp2, BorderLayout.CENTER);
 

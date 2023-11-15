@@ -362,7 +362,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				chooser.setAcceptAllFileFilterUsed(false);
 				chooser.setApproveButtonText("Dosya Sec");
 				chooser.setApproveButtonToolTipText("Dosya Sec");
-				chooser.addChoosableFileFilter(new FileNameExtensionFilter("Dosyalar", "jpg", "png", "gif", "bmp","pdf","txt","xls","xlsx","doc","docx"));
+				chooser.addChoosableFileFilter(new FileNameExtensionFilter("Dosyalar", "jpg", "png", "gif", "bmp","pdf","txt","xls","xlsx","doc","docx","db","xml","mdb","accdb"));
 				chooser.setApproveButtonMnemonic('s');
 				getContentPane().setCursor(DEFAULT_CURSOR);
 				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 

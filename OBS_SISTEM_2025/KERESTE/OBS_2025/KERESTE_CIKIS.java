@@ -2344,7 +2344,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				cell.setCellValue(txtcari.getText());
 
 				Row satir3 = sheet.createRow(4);
-				sheet.addMergedRegion(new CellRangeAddress(4,4,1,2));
+				sheet.addMergedRegion(new CellRangeAddress(4,4,1,3));
 
 
 				cell = satir3.createCell(1);
@@ -2733,7 +2733,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				cell.setCellValue(txtcari.getText());
 
 				Row satir3 = sheet.createRow(4);
-				sheet.addMergedRegion(new CellRangeAddress(4,4,1,2));
+				sheet.addMergedRegion(new CellRangeAddress(4,4,1,3));
 
 
 				cell = satir3.createCell(1);
@@ -3098,7 +3098,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			cell.setCellValue(txtcari.getText());
 
 			Row satir3 = sheet.createRow(4);
-			sheet.addMergedRegion(new CellRangeAddress(4,4,1,2));
+			sheet.addMergedRegion(new CellRangeAddress(4,4,1,3));
 
 
 			cell = satir3.createCell(1);

@@ -3805,8 +3805,7 @@ public class OBS_MAIN extends JFrame  {
 			while (rs.next()) 
 			{
 				String mESAJ = TARIH_CEVIR.tarih_ters(rs.getString("TARIH")) + "  " + rs.getString("SAAT")  + "  "
-						+ rs.getString("ISIM")  + "  " + rs.getString("GOREV")  + "  "
-						+ rs.getString("MESAJ");
+						+ rs.getString("ISIM")  + "  " + rs.getString("GOREV")  + "  " + rs.getString("MESAJ");
 				gun_mesaj_goster(15000,Notifications.Type.INFO,mESAJ);
 				GOREV_BILGI aNLIKBilgi = new GOREV_BILGI(TARIH_CEVIR.tarih_ters(rs.getString("TARIH")), rs.getString("SAAT") , 
 						rs.getString("ISIM")  , rs.getString("GOREV"), rs.getString("MESAJ"));

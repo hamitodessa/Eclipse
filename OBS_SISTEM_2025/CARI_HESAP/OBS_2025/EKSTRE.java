@@ -93,11 +93,15 @@ public class EKSTRE extends JInternalFrame {
 		pane.setResizeWeight(1.0);
 		getContentPane().add(pane, BorderLayout.CENTER);
 
+		
+		ScrollPaneWin11 jScrollPane1alt = new ScrollPaneWin11();
+		pane.setRightComponent(jScrollPane1alt);
+		
+		
 		JPanel panel = new JPanel();
-		pane.setRightComponent(panel);
+		jScrollPane1alt.setViewportView(panel);
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		panel.setMinimumSize(new Dimension(0, 85));
-		panel.setMaximumSize(new Dimension(0, 85));
+		panel.setPreferredSize(new Dimension(1120,90));
 
 		panel.setLayout(null);
 

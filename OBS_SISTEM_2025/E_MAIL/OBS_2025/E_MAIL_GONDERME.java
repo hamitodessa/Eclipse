@@ -47,7 +47,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -196,7 +195,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 
 				if (oac.glb.internet_kontrol() == false)
 				{
-					JOptionPane.showMessageDialog(null,  "Internet Baglantisi Yok ",  "Mail Gonderme", JOptionPane.ERROR_MESSAGE);	
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Internet Baglantisi Yok ");
+					//JOptionPane.showMessageDialog(null,  "Internet Baglantisi Yok ",  "Mail Gonderme", JOptionPane.ERROR_MESSAGE);	
 					return ;
 				}
 				if (txtgonhesap.getText().equals("") || cmbalici.getSelectedItem().toString() .equals("")) return ;
@@ -204,14 +204,16 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 
 				if (ValidEmailAddress.isValid( txtgonhesap.getText()  ) == false )
 				{
-					JOptionPane.showMessageDialog(null,  "Gonderen Hesap , Mail formatina uymamaktadir", "Mail Gonderme", JOptionPane.ERROR_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Gonderen Hesap , Mail formatina uymamaktadir");
+					//JOptionPane.showMessageDialog(null,  "Gonderen Hesap , Mail formatina uymamaktadir", "Mail Gonderme", JOptionPane.ERROR_MESSAGE);
 					getContentPane().setCursor(DEFAULT_CURSOR);
 					txtgonhesap.requestFocus();
 					return;
 				}
 				if (ValidEmailAddress.isValid(cmbalici.getSelectedItem().toString()) == false)
 				{
-					JOptionPane.showMessageDialog(null,  "Alici Hesap , Mail formatina uymamaktadir", "Mail Gonderme", JOptionPane.ERROR_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Alici Hesap , Mail formatina uymamaktadir");
+					//JOptionPane.showMessageDialog(null,  "Alici Hesap , Mail formatina uymamaktadir", "Mail Gonderme", JOptionPane.ERROR_MESSAGE);
 					getContentPane().setCursor(DEFAULT_CURSOR);
 					cmbalici.requestFocus();
 					return;
@@ -219,14 +221,16 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				if (txtkonu.getText().equals(""))
 				{	
 					getContentPane().setCursor(DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null,  "Konu Bos...",  "Mail Gonderme", JOptionPane.ERROR_MESSAGE);	
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Konu Bos ...");
+					//JOptionPane.showMessageDialog(null,  "Konu Bos...",  "Mail Gonderme", JOptionPane.ERROR_MESSAGE);	
 					txtkonu.requestFocus();
 					return ;
 				}
 				if (txtaciklama.getText().equals(""))
 				{
 					getContentPane().setCursor(DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null,  "Aciklama Bos...",  "Mail Gonderme", JOptionPane.ERROR_MESSAGE);	
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Aciklama Bos ...");
+					//JOptionPane.showMessageDialog(null,  "Aciklama Bos...",  "Mail Gonderme", JOptionPane.ERROR_MESSAGE);	
 					txtaciklama.requestFocus();
 					return ;
 				}
@@ -318,7 +322,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 					evt.acceptDrop(DnDConstants.ACTION_COPY);
 					List<File> droppedFiles = (List<File>) evt .getTransferable().getTransferData(  DataFlavor.javaFileListFlavor);
 					if(droppedFiles.size() > 1){
-						JOptionPane.showMessageDialog(null,  "Tek Seferde 1 Dosya Ekleyebilirsiniz.....!!", "Dosya Ekleme", JOptionPane.PLAIN_MESSAGE);
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Tek Seferde 1 Dosya Ekleyebilirsiniz.....!!");
+						//JOptionPane.showMessageDialog(null,  "Tek Seferde 1 Dosya Ekleyebilirsiniz.....!!", "Dosya Ekleme", JOptionPane.PLAIN_MESSAGE);
 					}
 					else{
 						File droppedFile = (File) droppedFiles.get(0);

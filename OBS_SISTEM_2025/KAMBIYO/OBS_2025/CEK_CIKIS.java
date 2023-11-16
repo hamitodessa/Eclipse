@@ -63,6 +63,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"serial","static-access"})
 public class CEK_CIKIS extends JInternalFrame {
@@ -275,7 +276,8 @@ public class CEK_CIKIS extends JInternalFrame {
 					}
 					catch (Exception ex)
 					{
-						JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+						//JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 					}
 				}
 			}
@@ -366,7 +368,8 @@ public class CEK_CIKIS extends JInternalFrame {
 					if ( sts.equals(""))
 					{
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
-						JOptionPane.showMessageDialog(null,   "Dosyada Hic Kayit Yok....."); 	
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  "Dosyada Hic Kayit Yok.....");
+						//JOptionPane.showMessageDialog(null,   "Dosyada Hic Kayit Yok....."); 	
 						return ;
 					}
 					//**********SIFIRLAR*************************
@@ -383,7 +386,8 @@ public class CEK_CIKIS extends JInternalFrame {
 				catch (Exception ex)
 				{
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+					//JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 				}
 			}
 

@@ -41,6 +41,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.StayOpenCheckBoxMenuItemUI;
+import raven.toast.Notifications;
 
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
@@ -662,7 +663,8 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 	{
 		if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Admin")  &&  ! GLOBAL.KULL_ADI.equals("Admin") ) 
 		{
-			JOptionPane.showMessageDialog(null, "Admin - Harici 'Admin' Bilgisini degisemez... ", "Kullanici", JOptionPane.WARNING_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Admin - Harici 'Admin' Bilgisini degisemez... ");
+			//JOptionPane.showMessageDialog(null, "Admin - Harici 'Admin' Bilgisini degisemez... ", "Kullanici", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 		try
@@ -683,7 +685,8 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		catch (Exception ex )
 		{
 			splitPane.setCursor(DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(), "Kullanici Ekleme", JOptionPane.WARNING_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(), "Kullanici Ekleme", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	public static void sil() 
@@ -691,7 +694,8 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		if (lblcdid.getText().toString().equals("")) return ;
 		if (comboBox.getItemAt(comboBox.getSelectedIndex()).equals("Admin"))
 		{   
-			JOptionPane.showMessageDialog(null, "Admin - Kullanici Silinemez... ", "Kullanici Silme", JOptionPane.WARNING_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Admin - Kullanici Silinemez... ");
+			//JOptionPane.showMessageDialog(null, "Admin - Kullanici Silinemez... ", "Kullanici Silme", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 		ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/sil.png")));

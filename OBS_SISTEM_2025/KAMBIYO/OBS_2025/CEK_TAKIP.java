@@ -15,14 +15,13 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
+import raven.toast.Notifications;
 
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
@@ -333,7 +332,8 @@ public class CEK_TAKIP extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,ex.getMessage(), "Cek Takip", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null,ex.getMessage(), "Cek Takip", JOptionPane.PLAIN_MESSAGE);
 		}
 
 	}
@@ -366,7 +366,8 @@ public class CEK_TAKIP extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,ex.getMessage(), "Cek Takip", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null,ex.getMessage(), "Cek Takip", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void temizle()

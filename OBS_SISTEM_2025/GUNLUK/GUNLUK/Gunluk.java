@@ -2,7 +2,6 @@ package GUNLUK;
 //The type java.text.Format cannot be resolved. It is indirectly referenced from required type java.text.DateFormat
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 
 
@@ -29,6 +28,8 @@ import OBS_C_2025.GUNLUK_ACCESS;
 import OBS_C_2025.ROW_RENDERER;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_CEVIR;
+import raven.toast.Notifications;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -858,8 +859,9 @@ public class Gunluk extends JInternalFrame {
 		} 
 		catch (Exception ex) 
 		{
-			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private String getDayNumber(String tar) 
@@ -1306,7 +1308,8 @@ public class Gunluk extends JInternalFrame {
 		}
 		catch (Exception ex) 
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void yillik_gorunum_doldur() throws SQLException, ClassNotFoundException, ParseException
@@ -1342,7 +1345,8 @@ public class Gunluk extends JInternalFrame {
 		}
 		catch (Exception ex) 
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private ResultSet yillik_gorev_oku() throws ClassNotFoundException, SQLException
@@ -1513,7 +1517,8 @@ public class Gunluk extends JInternalFrame {
 		catch (Exception ex) 
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void sonraki_gorev_bul_yil()
@@ -1554,8 +1559,9 @@ public class Gunluk extends JInternalFrame {
 		} 
 		catch (Exception ex) 
 		{
-			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gunluk Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

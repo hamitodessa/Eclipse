@@ -8,7 +8,6 @@ import java.sql.ResultSetMetaData;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import com.crystaldecisions.ReportViewer.ReportViewerBean;
 import com.crystaldecisions.sdk.occa.report.application.OpenReportOptions;
 import com.crystaldecisions.sdk.occa.report.application.ReportClientDocument;
@@ -48,6 +47,7 @@ import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.sayiyiYaziyaCevir;
+import raven.toast.Notifications;
 
 public class PRINT_YAPMA extends JInternalFrame {
 
@@ -2361,7 +2361,8 @@ public class PRINT_YAPMA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getCause() + "==" + ex,  "Yazici Islem", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getCause() + "==" + ex,  "Yazici Islem", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void doldur()
@@ -2405,7 +2406,8 @@ public class PRINT_YAPMA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Evrak Formatlama", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Evrak Formatlama", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 }

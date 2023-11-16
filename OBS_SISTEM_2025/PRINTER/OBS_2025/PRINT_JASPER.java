@@ -51,6 +51,7 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
+import raven.toast.Notifications;
 import net.sf.jasperreports.engine.fonts.*;
 import javax.swing.JScrollPane;
 import java.util.HashMap;
@@ -171,7 +172,8 @@ public class PRINT_JASPER extends JInternalFrame {
 			scrollPane.setViewportView(new JRViewer(jp));
 		} catch (Exception ex) 
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yazdirma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void ekstre_kisa()
@@ -201,8 +203,9 @@ public class PRINT_JASPER extends JInternalFrame {
 						Double.parseDouble(modell.getValueAt(i, 7).toString()));
 				eDetay.add(eDTY);
 			}
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception ex) {
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null, e.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void satir_kontrol()
@@ -256,7 +259,8 @@ public class PRINT_JASPER extends JInternalFrame {
 				}
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, i + " Nolu Satir da Kodu =" + kodString + " Problemli Veri", "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,i + " Nolu Satir da Kodu =" + kodString + " Problemli Veri");
+			//JOptionPane.showMessageDialog(null, i + " Nolu Satir da Kodu =" + kodString + " Problemli Veri", "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void satir_kontrol_tek()
@@ -275,7 +279,8 @@ public class PRINT_JASPER extends JInternalFrame {
 				etISIM.add(ets1);
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,e.getMessage());
+			//JOptionPane.showMessageDialog(null, e.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

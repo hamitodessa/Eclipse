@@ -19,7 +19,6 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 
 import javax.swing.JTable;
@@ -45,6 +44,8 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -361,7 +362,8 @@ public static MaterialTabbed orTabbedPane;
 			}
 		} 
 		catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Raporlama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private int satir_kontrol()

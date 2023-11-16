@@ -35,6 +35,7 @@ import OBS_C_2025.TABLO_TEXTBOX;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
@@ -282,7 +283,8 @@ public class CEK_GIRIS extends JInternalFrame {
 					}
 					catch (Exception ex)
 					{
-						JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+						//JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 					}
 				}
 			}
@@ -373,7 +375,8 @@ public class CEK_GIRIS extends JInternalFrame {
 					if ( sts.equals(""))
 					{
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
-						JOptionPane.showMessageDialog(null,   "Dosyada Hic Kayit Yok....."); 	
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Dosyada Hic Kayit Yok.....");
+						//JOptionPane.showMessageDialog(null,   "Dosyada Hic Kayit Yok....."); 	
 						return ;
 					}
 					//**********SIFIRLAR*************************
@@ -390,7 +393,8 @@ public class CEK_GIRIS extends JInternalFrame {
 				catch (Exception ex)
 				{
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+					//JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 				}
 			}
 
@@ -577,7 +581,8 @@ public class CEK_GIRIS extends JInternalFrame {
 			textField_4.setText(GLOBAL.setting_oku("PRG_PARA").toString());
 			textField.requestFocus();
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.PLAIN_MESSAGE);
+			//OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.PLAIN_MESSAGE);
 		}
 		//***********
 	}
@@ -619,7 +624,8 @@ public class CEK_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private static void satir_yaz_1() throws ClassNotFoundException, SQLException
@@ -695,7 +701,8 @@ public class CEK_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Kayit", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Kayit", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private static void acik_yaz()
@@ -707,7 +714,8 @@ public class CEK_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Kayit", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Kayit", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	public static void sil()
@@ -724,7 +732,8 @@ public class CEK_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Kayit", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Kayit", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void kontrol()
@@ -751,7 +760,8 @@ public class CEK_GIRIS extends JInternalFrame {
 				}
 				textField.requestFocus();
 			} catch (Exception ex) {
-				JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.PLAIN_MESSAGE);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+				//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.PLAIN_MESSAGE);
 			}
 			return;
 		}
@@ -809,7 +819,8 @@ public class CEK_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void satir_tamamla(int satir)
@@ -896,7 +907,8 @@ public class CEK_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void cari_kaydet()
@@ -919,7 +931,8 @@ public class CEK_GIRIS extends JInternalFrame {
 				//*******************************************************************************
 				rs = c_Access.hesap_adi_oku(bh);
 				if (!rs.isBeforeFirst() ) {  
-					JOptionPane.showMessageDialog(null,  "Bu numarada hesaba rastlanmadi!!!!"); 
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu numarada hesaba rastlanmadi!!!!");
+					//JOptionPane.showMessageDialog(null,  "Bu numarada hesaba rastlanmadi!!!!"); 
 					return ;
 				} 
 				//********************************************************************************
@@ -927,13 +940,15 @@ public class CEK_GIRIS extends JInternalFrame {
 				rs = c_Access.hesap_adi_oku(textField_1.getText());
 
 				if (!rs.isBeforeFirst() ) {  
-					JOptionPane.showMessageDialog(null,  "Bu numarada hesaba rastlanmadi!!!!"); 
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Bu numarada hesaba rastlanmadi!!!!");
+					//JOptionPane.showMessageDialog(null,  "Bu numarada hesaba rastlanmadi!!!!"); 
 					return;
 				} 
 
 				if (bh.equals(textField_1.getText().toString()))
 				{
-					JOptionPane.showMessageDialog(null,  "Borclu ve Alacakli Hesap Ayni..."); 
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Borclu ve Alacakli Hesap Ayni...");
+					//JOptionPane.showMessageDialog(null,  "Borclu ve Alacakli Hesap Ayni..."); 
 					return;
 				}
 				//********************************************************************************
@@ -983,11 +998,13 @@ public class CEK_GIRIS extends JInternalFrame {
 				}
 				Thread.currentThread().isInterrupted();
 				Progres_Bar_Temizle();
-				JOptionPane.showMessageDialog(null, "Girisler Cari Hesaba Basari ile Kaydedilmistir....");   
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,  "Girisler Cari Hesaba Basari ile Kaydedilmistir....");
+				//JOptionPane.showMessageDialog(null, "Girisler Cari Hesaba Basari ile Kaydedilmistir....");   
 			}
 			catch (Exception ex)
 			{
-				JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.ERROR_MESSAGE);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+				//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		};
@@ -1013,19 +1030,22 @@ public class CEK_GIRIS extends JInternalFrame {
 				String bno = rs.getString("Giris_Bordro").toString() ;
 				if (textField.getText().toString().equals(bno))
 				{
-					JOptionPane.showMessageDialog(null, "Bu Cek bu Bordroda Giris Yapilmis.."); 
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Bu Cek bu Bordroda Giris Yapilmis..");
+					//JOptionPane.showMessageDialog(null, "Bu Cek bu Bordroda Giris Yapilmis.."); 
 					result = true;
 				}
 				else if (! textField.getText().toString().equals(bno))
 				{
-					JOptionPane.showMessageDialog(null, "Bu Cek " + bno + " 'nolu Bordroda Giris Yapilmis.."); 
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,   "Bu Cek " + bno + " 'nolu Bordroda Giris Yapilmis..");
+					//JOptionPane.showMessageDialog(null, "Bu Cek " + bno + " 'nolu Bordroda Giris Yapilmis.."); 
 					result = true ;
 				}
 			}
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.ERROR_MESSAGE);
 		}
 		return result ;
 	}

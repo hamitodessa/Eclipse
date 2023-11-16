@@ -6,9 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
-
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -140,7 +139,8 @@ public class KUR_GRAFIK extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kur Grafik", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kur Grafik", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void grafik_kur()
@@ -259,7 +259,8 @@ public class KUR_GRAFIK extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kur Grafik", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kur Grafik", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void gun_goster()
@@ -284,7 +285,8 @@ public class KUR_GRAFIK extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kur Grafik", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kur Grafik", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

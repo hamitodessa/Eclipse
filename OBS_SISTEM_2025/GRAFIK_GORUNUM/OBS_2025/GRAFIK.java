@@ -11,7 +11,6 @@ import java.text.NumberFormat;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -26,6 +25,7 @@ import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import OBS_C_2025.GLOBAL;
+import raven.toast.Notifications;
 
 
 @SuppressWarnings("serial")
@@ -143,7 +143,8 @@ public class GRAFIK extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(), "Grafik", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(), "Grafik", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 }

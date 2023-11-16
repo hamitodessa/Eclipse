@@ -63,6 +63,7 @@ import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 
 @SuppressWarnings({ "static-access", "serial" })
@@ -239,7 +240,8 @@ public class SMS extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (! bagli)
 				{
-					JOptionPane.showMessageDialog(null, "Modem Bagli Degil......   ",  "Sms Gonderme", JOptionPane.PLAIN_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Modem Bagli Degil......   ");
+					//JOptionPane.showMessageDialog(null, "Modem Bagli Degil......   ",  "Sms Gonderme", JOptionPane.PLAIN_MESSAGE);
 					return;
 				}
 				if ( chckbxNewCheckBox.isSelected()) //' Coklu gonderim
@@ -456,7 +458,8 @@ public class SMS extends JInternalFrame {
 					lblNewLabel_3.setForeground(Color.RED);
 					bagli = false;
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Sms Gonderme", JOptionPane.PLAIN_MESSAGE);	
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+					//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Sms Gonderme", JOptionPane.PLAIN_MESSAGE);	
 				}
 
 			}
@@ -663,7 +666,8 @@ public class SMS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage());   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage());   
 		}
 	}
 	private static void kutu_temizle() 
@@ -716,7 +720,8 @@ public class SMS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Giris", JOptionPane.PLAIN_MESSAGE);		
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Giris", JOptionPane.PLAIN_MESSAGE);		
 		}
 	}
 	public static void sil()
@@ -737,7 +742,8 @@ public class SMS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Silme", JOptionPane.PLAIN_MESSAGE);		        
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Silme", JOptionPane.PLAIN_MESSAGE);		        
 		}
 	}
 	private void isim_doldur() 
@@ -808,14 +814,16 @@ public class SMS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Alici Doldurma", JOptionPane.PLAIN_MESSAGE);	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Alici Doldurma", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
 	private void coklu_gonder()
 	{
 		if (txtaciklama.getText().equals(""))
 		{
-			JOptionPane.showMessageDialog(null,  "Aciklama Bos...",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aciklama Bos .....");
+			//JOptionPane.showMessageDialog(null,  "Aciklama Bos...",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
 			txtaciklama.requestFocus();
 			return ;
 		}
@@ -823,7 +831,8 @@ public class SMS extends JInternalFrame {
 		for (int i = 0 ; i <= model.getRowCount()  - 1 ; i ++) {
 			if (model.getValueAt(i, 0).toString().equals( "") )
 			{
-				JOptionPane.showMessageDialog(null,  i + 1 + " Nolu Satirda Telefon Numarasi Bos ...",   "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, i + 1 + " Nolu Satirda Telefon Numarasi Bos ...");
+				//JOptionPane.showMessageDialog(null,  i + 1 + " Nolu Satirda Telefon Numarasi Bos ...",   "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
 				return;
 			}
 		}
@@ -849,7 +858,8 @@ public class SMS extends JInternalFrame {
 			Thread.currentThread().isInterrupted();
 			Progres_Bar_Temizle();
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  say + " Adet SMS Gonderildi   ",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, say + " Adet SMS Gonderildi   ");
+			//JOptionPane.showMessageDialog(null,  say + " Adet SMS Gonderildi   ",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
 
 		}
 		};
@@ -862,14 +872,16 @@ public class SMS extends JInternalFrame {
 		if (txtgonderen.getText().equals(""))
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  "Alici Numara Bos...",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Alici Numara Bos .....");
+			//JOptionPane.showMessageDialog(null,  "Alici Numara Bos...",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
 			txtgonderen.requestFocus();
 			return ;
 		}
 		if (txtaciklama.getText().equals(""))
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  "Aciklama Bos...",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aciklama Bos .....");
+			//JOptionPane.showMessageDialog(null,  "Aciklama Bos...",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
 			txtaciklama.requestFocus();
 			return ;
 		}
@@ -877,12 +889,14 @@ public class SMS extends JInternalFrame {
 		{
 			send_sms(txtgonderen.getText(),"","") ;
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,   "SMS 'iniz Gonderildi   ",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "SMS 'iniz Gonderildi   ");
+			//JOptionPane.showMessageDialog(null,   "SMS 'iniz Gonderildi   ",  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
 		}
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
 	private void send_sms(String numara,String dort,String bir)
@@ -911,7 +925,8 @@ public class SMS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
 	public static void satir_sil()
@@ -999,7 +1014,8 @@ public class SMS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "SMS Gonderme", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
 	@SuppressWarnings("rawtypes")
@@ -1024,7 +1040,8 @@ public class SMS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Com  Port Baglanti Okuma", JOptionPane.PLAIN_MESSAGE);	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Com  Port Baglanti Okuma", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
 	public void setDatabits(int databits) throws IllegalArgumentException 

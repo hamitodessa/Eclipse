@@ -45,6 +45,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"serial","static-access","deprecation"})
 public class ADRES_GIRIS extends JInternalFrame {
@@ -630,7 +631,8 @@ public class ADRES_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private static void doldur(String nereye)
@@ -715,7 +717,8 @@ public class ADRES_GIRIS extends JInternalFrame {
 		}
 		catch(Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	public static void yeni()
@@ -843,7 +846,8 @@ public class ADRES_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Adres Kayit", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Adres Kayit", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void sil()
@@ -869,7 +873,8 @@ public class ADRES_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Silme", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Silme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 }

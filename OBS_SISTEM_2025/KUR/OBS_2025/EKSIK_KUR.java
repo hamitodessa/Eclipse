@@ -33,6 +33,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
+import raven.toast.Notifications;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -260,8 +261,9 @@ public class EKSIK_KUR extends JInternalFrame
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(oac.DEFAULT_CURSOR);			
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kur Okuma", JOptionPane.ERROR_MESSAGE);   		
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);		
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kur Okuma", JOptionPane.ERROR_MESSAGE);   		
 		}
 	}
 	@SuppressWarnings("deprecation")
@@ -357,7 +359,8 @@ public class EKSIK_KUR extends JInternalFrame
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kur Okuma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kur Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 		return kur;
 	}
@@ -389,7 +392,8 @@ public class EKSIK_KUR extends JInternalFrame
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kur Kayit", JOptionPane.ERROR_MESSAGE);   		
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kur Kayit", JOptionPane.ERROR_MESSAGE);   		
 		}
 	}
 	static void kayit(String tarih,String cins,double ma,double ms)
@@ -401,7 +405,8 @@ public class EKSIK_KUR extends JInternalFrame
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kur Kayit", JOptionPane.ERROR_MESSAGE);  
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kur Kayit", JOptionPane.ERROR_MESSAGE);  
 		}
 	}
 }

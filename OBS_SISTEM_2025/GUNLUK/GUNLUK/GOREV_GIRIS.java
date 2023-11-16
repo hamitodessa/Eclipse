@@ -35,6 +35,7 @@ import javax.swing.text.JTextComponent;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_2025.GuiUtil;
+import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.GLOBAL;
@@ -44,6 +45,8 @@ import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
+
 import javax.swing.SwingConstants;
 
 @SuppressWarnings({ "static-access","serial" })
@@ -470,7 +473,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gorev  Kaydetme", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gorev  Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 	    //
 		}
@@ -501,7 +505,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gorev  Silme", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gorev  Silme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void gOKU() throws ClassNotFoundException, SQLException

@@ -19,6 +19,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
@@ -30,7 +31,6 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -165,7 +165,8 @@ public class KUR_GIRIS extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (oac.glb.internet_kontrol() == false)
 				{
-					JOptionPane.showMessageDialog(null,  "Internet Baglantisi Yok ",  "Merkez Bankasi Kur Okuma", JOptionPane.ERROR_MESSAGE);	
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Internet Baglantisi Yok ");
+					//JOptionPane.showMessageDialog(null,  "Internet Baglantisi Yok ",  "Merkez Bankasi Kur Okuma", JOptionPane.ERROR_MESSAGE);	
 					return ;
 				}
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -411,7 +412,8 @@ public class KUR_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
 	private void kur_oku()
@@ -451,7 +453,8 @@ public class KUR_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
 	private static void sifirla()
@@ -482,7 +485,8 @@ public class KUR_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage());  
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage());  
 		}
 	}
 	public static void sil()
@@ -495,7 +499,8 @@ public class KUR_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex )
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage());  
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage());  
 		}
 	}
 	private void merkez ()

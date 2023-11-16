@@ -3,7 +3,6 @@ package OBS_2025;
 import java.sql.ResultSet;
 
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -23,6 +22,8 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -71,7 +72,8 @@ public class KUR_RAPORLAMA extends JInternalFrame {
 				}
 				catch (Exception ex)
 				{
-					JOptionPane.showMessageDialog(null, ex.getMessage());   
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+					//JOptionPane.showMessageDialog(null, ex.getMessage());   
 				}
 			}
 		});
@@ -146,18 +148,15 @@ public class KUR_RAPORLAMA extends JInternalFrame {
 			th.repaint();
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
-			//table.setSelectionBackground(Color.PINK);
-			//table.setSelectionForeground(Color.BLUE);
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,ex.getMessage(), "Kur Raporlama", JOptionPane.PLAIN_MESSAGE);
-
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null,ex.getMessage(), "Kur Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 }

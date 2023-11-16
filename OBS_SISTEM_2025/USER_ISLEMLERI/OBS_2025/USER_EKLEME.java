@@ -30,6 +30,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.ORTA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
+import raven.toast.Notifications;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
@@ -367,7 +368,8 @@ public class USER_EKLEME extends JInternalFrame {
 		{	return ;		}
 		if ( ! GLOBAL.KULL_ADI.equals("Admin") ) //txtkull.getText().equals("Admin")  &&  ! GLOBAL.KULL_ADI.equals("Admin")
 		{
-			JOptionPane.showMessageDialog(null, "Admin - Harici Degisiklik Yapamaz... ", "Kullanici", JOptionPane.WARNING_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Admin - Harici Degisiklik Yapamaz... ");
+			//JOptionPane.showMessageDialog(null, "Admin - Harici Degisiklik Yapamaz... ", "Kullanici", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 		try
@@ -394,7 +396,8 @@ public class USER_EKLEME extends JInternalFrame {
 		catch (Exception ex )
 		{
 			splitPane.setCursor(DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(), "Kullanici Ekleme", JOptionPane.WARNING_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(), "Kullanici Ekleme", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	public static void sil()
@@ -402,7 +405,8 @@ public class USER_EKLEME extends JInternalFrame {
 		if ( txtkull.getText().equals("")) return;
 		if ( txtkull.getText().equals("Admin") )
 		{
-			JOptionPane.showMessageDialog(null, "Admin - Kullanici Silinemez... ", "Kullanici Silme", JOptionPane.WARNING_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Admin - Kullanici Silinemez... ");
+			//JOptionPane.showMessageDialog(null, "Admin - Kullanici Silinemez... ", "Kullanici Silme", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 		ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/sil.png")));
@@ -438,7 +442,8 @@ public class USER_EKLEME extends JInternalFrame {
 		catch (Exception ex)
 		{
 			splitPane.setCursor(DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(), "Kullanici Silme", JOptionPane.WARNING_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(), "Kullanici Silme", JOptionPane.WARNING_MESSAGE);
 		}  
 	}
 	public static void yeni() 

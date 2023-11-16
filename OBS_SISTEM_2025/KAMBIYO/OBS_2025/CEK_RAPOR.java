@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
@@ -31,6 +30,8 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -89,7 +90,8 @@ public class CEK_RAPOR extends JInternalFrame {
 				}
 				catch (Exception ex)
 				{
-					JOptionPane.showMessageDialog(null, ex.getMessage());   
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+					//JOptionPane.showMessageDialog(null, ex.getMessage());   
 				}
 			}
 		});
@@ -246,7 +248,8 @@ public class CEK_RAPOR extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage());   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage());   
 		}
 	}
 }

@@ -27,6 +27,8 @@ import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_SAATLI;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -197,7 +199,8 @@ public class GID_RAPOR extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),"Rapor Doldurma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Rapor Doldurma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public void arama()  
@@ -231,7 +234,8 @@ public class GID_RAPOR extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),"Rapor Silme", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Rapor Silme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

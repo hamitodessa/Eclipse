@@ -7,8 +7,6 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.ArrayList;
@@ -21,6 +19,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.text.JTextComponent;
 
 import OBS_C_2025.GLOBAL;
+import raven.toast.Notifications;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
@@ -127,7 +127,8 @@ public class ETIKET_AYAR extends JInternalFrame {
 			GLOBAL.setting_yaz("ETIKET_ARA_BOSLUK",  String.valueOf( spnEtBOSLUK.getValue()));
 			GLOBAL.setting_yaz("ETIKET_YAZIM", eTIKETYAZIMBox.getSelectedItem().toString());
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Etiket Ayar Kayit", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Etiket Ayar Kayit", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void doldur()
@@ -145,7 +146,8 @@ public class ETIKET_AYAR extends JInternalFrame {
 		} 
 		catch (Exception ex) 
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Etiket Ayar Okuma", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Etiket Ayar Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public void installFocusListener(JSpinner spinner) {

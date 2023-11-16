@@ -54,6 +54,8 @@ import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.engine.type.PrintOrderEnum;
 import net.sf.jasperreports.view.JasperViewer;
+import raven.toast.Notifications;
+
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -166,7 +168,8 @@ public class ETIKET_PRINT extends JInternalFrame {
 			
 		} catch (Exception ex) 
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void satir_kontrol()
@@ -220,7 +223,8 @@ public class ETIKET_PRINT extends JInternalFrame {
 			}
 		}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, i + " Nolu Satir da Kodu =" + kodString + " Problemli Veri", "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,i + " Nolu Satir da Kodu =" + kodString + " Problemli Veri");
+			//JOptionPane.showMessageDialog(null, i + " Nolu Satir da Kodu =" + kodString + " Problemli Veri", "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void satir_kontrol_tek()
@@ -239,7 +243,8 @@ public class ETIKET_PRINT extends JInternalFrame {
 				etISIM.add(ets1);
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
+			//JOptionPane.showMessageDialog(null, e.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

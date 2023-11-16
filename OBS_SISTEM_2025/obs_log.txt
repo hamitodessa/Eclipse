@@ -11236,3 +11236,60 @@ Caused by: java.lang.IllegalAccessException: class net.sf.jasperreports.engine.u
 15.11.2023 19:52:11 - 1 running delayed actions on {type: REPORT, group: null, band: 0}
 15.11.2023 19:52:11 - 1 running delayed actions on {type: MASTER, group: null, band: 0}
 15.11.2023 19:52:11 - Fill 1: ended
+16.11.2023 23:36:24 - Finished reading system catalog.  Tables: [] (Db=test.accdb)
+16.11.2023 23:47:04 - Finished reading system catalog.  Tables: [] (Db=test.accdb)
+16.11.2023 23:47:04 - Finished reading system catalog.  Tables: [Test] (Db=test.accdb)
+16.11.2023 23:49:32 - Finished reading system catalog.  Tables: [] (Db=test.accdb)
+16.11.2023 23:49:32 - Finished reading system catalog.  Tables: [Test] (Db=test.accdb)
+16.11.2023 23:57:29 - Finished reading system catalog.  Tables: [] (Db=test.accdb)
+16.11.2023 23:57:29 - Finished reading system catalog.  Tables: [Test] (Db=test.accdb)
+16.11.2023 23:57:32 - Finished reading system catalog.  Tables: [Test] (Db=test.accdb)
+16.11.2023 23:57:32 - Checkpoint start
+16.11.2023 23:57:32 - checkpointClose start
+16.11.2023 23:57:32 - checkpointClose synched
+16.11.2023 23:57:32 - checkpointClose script done
+16.11.2023 23:57:32 - log close size: 0
+16.11.2023 23:57:32 - checkpointClose end
+16.11.2023 23:57:32 - Checkpoint end - txts: 1
+16.11.2023 23:57:40 - log close size: 0
+16.11.2023 23:57:40 - dataFileCache open start
+16.11.2023 23:57:40 - dataFileCache open end
+16.11.2023 23:57:40 - dataFileCache commit start
+16.11.2023 23:57:40 - file sync end
+16.11.2023 23:57:40 - dataFileCache commit end
+16.11.2023 23:57:40 - dataFileCache file close end
+16.11.2023 23:57:40 - Database closed
+16.11.2023 23:58:56 - Finished reading system catalog.  Tables: [ExampleTable, Test] (Db=test.accdb)
+16.11.2023 23:58:56 - Checkpoint start
+16.11.2023 23:58:56 - checkpointClose start
+16.11.2023 23:58:56 - checkpointClose synched
+16.11.2023 23:58:56 - checkpointClose script done
+16.11.2023 23:58:56 - log close size: 0
+16.11.2023 23:58:56 - checkpointClose end
+16.11.2023 23:58:56 - Checkpoint end - txts: 1
+16.11.2023 23:59:01 - log close size: 0
+16.11.2023 23:59:01 - dataFileCache open start
+16.11.2023 23:59:01 - dataFileCache open end
+16.11.2023 23:59:01 - dataFileCache commit start
+16.11.2023 23:59:01 - file sync end
+16.11.2023 23:59:01 - dataFileCache commit end
+16.11.2023 23:59:01 - dataFileCache file close end
+16.11.2023 23:59:01 - Database closed
+17.11.2023 00:00:05 - Finished reading system catalog.  Tables: [ExampleTable, Test] (Db=test.accdb)
+17.11.2023 00:00:05 - Checkpoint start
+17.11.2023 00:00:05 - checkpointClose start
+17.11.2023 00:00:05 - checkpointClose synched
+17.11.2023 00:00:05 - checkpointClose script done
+17.11.2023 00:00:05 - log close size: 0
+17.11.2023 00:00:05 - checkpointClose end
+17.11.2023 00:00:05 - Checkpoint end - txts: 1
+17.11.2023 00:00:07 - log close size: 0
+17.11.2023 00:00:07 - dataFileCache open start
+17.11.2023 00:00:07 - dataFileCache open end
+17.11.2023 00:00:07 - dataFileCache commit start
+17.11.2023 00:00:07 - file sync end
+17.11.2023 00:00:07 - dataFileCache commit end
+17.11.2023 00:00:07 - dataFileCache file close end
+17.11.2023 00:00:07 - Database closed
+17.11.2023 00:03:59 - Finished reading system catalog.  Tables: [] (Db=test.accdb)
+17.11.2023 00:03:59 - Finished reading system catalog.  Tables: [Test] (Db=test.accdb)

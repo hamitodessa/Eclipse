@@ -189,6 +189,22 @@ public class DENEMELER extends JInternalFrame {
 							.toTable(db);
 
 					db.close();
+					
+					////
+					Connection conn = null;
+			        Statement stmt = null;
+					   // JDBC URL for UCanAccess with user and password
+		            String url = "jdbc:ucanaccess://C:/OBS_SISTEM/test.accdb;singleConnection=true;user=admin;password=obs";
+
+		            // Establish connection
+		            conn = DriverManager.getConnection(url);
+
+		            // Create a Statement
+		            stmt = conn.createStatement();
+
+		            // Set a password for the database
+		            stmt.execute("ALTER DATABASE PASSWORD 'obs'");
+					///
 				} catch (Exception e1) {
 					System.out.println(e1);
 				}
@@ -390,9 +406,6 @@ public class DENEMELER extends JInternalFrame {
 		panel_1.setBounds(63, 423, 179, 63);
 		panel.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
-		
-		
-		
 		
 
 	}

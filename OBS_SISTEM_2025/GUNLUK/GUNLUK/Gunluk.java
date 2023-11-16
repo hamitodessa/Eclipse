@@ -284,7 +284,7 @@ public class Gunluk extends JInternalFrame {
 				} 
         	}
         });
-         JDayChooser dayChooser = calendar.getDayChooser();
+        JDayChooser dayChooser = calendar.getDayChooser();
         dayChooser.setAlwaysFireDayProperty(true); // here is the key
 		calendar.setForeground(new Color(0, 128, 128));
 		calendar.getDayChooser().setDayBordersVisible(true);
@@ -395,6 +395,8 @@ public class Gunluk extends JInternalFrame {
 		splitPane_5.setRightComponent(splitPane_6);
 
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		 scrollPane_1.setMinimumSize(new Dimension(0, 525));
+		 scrollPane_1.setMaximumSize(new Dimension(0, 525));
 		splitPane_6.setLeftComponent(scrollPane_1);
 
 		///
@@ -420,7 +422,7 @@ public class Gunluk extends JInternalFrame {
 						try {
 							setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	 
 							treeOgren();
-							btnNewButton_3.doClick();
+							//btnNewButton_3.doClick();
 							setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
 						} catch (ClassNotFoundException | SQLException  | PropertyVetoException e2)
 						{

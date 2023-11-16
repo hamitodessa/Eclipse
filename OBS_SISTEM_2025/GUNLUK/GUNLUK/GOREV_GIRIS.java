@@ -66,7 +66,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 	public GOREV_GIRIS() {
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(100, 100, 483, 264);
+		setBounds(100, 100, 483, 271);
 		setTitle("GOREV GIRIS");
 		
 		panel = new JPanel();

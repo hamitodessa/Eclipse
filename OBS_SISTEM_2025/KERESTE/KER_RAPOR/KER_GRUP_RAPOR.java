@@ -22,7 +22,6 @@ import javax.mail.util.ByteArrayDataSource;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
@@ -2573,7 +2572,8 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 
 		if (mdl.getRowCount() == 0 )
 		{
-			JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Aktarilacak Bilgi Yok....." );
+			//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 			GLOBAL.g_baslik = "";
 			return;
 		}

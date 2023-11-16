@@ -534,7 +534,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 		if (mdl.getRowCount() == 0 )
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Aktarilacak Bilgi Yok....." );
-			
 			//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Ozel Mizan", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
@@ -860,7 +859,9 @@ public class OZEL_MIZAN extends JInternalFrame {
 				//**************************************
 			}
 			GuiUtil.setWaitCursor(splitPane,false);
-			JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Ozel Mizan", JOptionPane.PLAIN_MESSAGE);
+			
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Aktarma Islemi Tamamlandi....." );
+			//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Ozel Mizan", JOptionPane.PLAIN_MESSAGE);
 		}
 		catch (Exception ex)
 		{

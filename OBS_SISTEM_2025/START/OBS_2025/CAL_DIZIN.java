@@ -93,6 +93,8 @@ import OBS_C_2025.StayOpenCheckBoxMenuItemUI;
 import OBS_C_2025.USER_ISLEMLERI;
 import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeListener;
@@ -224,7 +226,8 @@ public class CAL_DIZIN extends JFrame {
 					} catch  (Exception ex)
 					{
 						contentPane.setCursor(DEFAULT_CURSOR);
-						JOptionPane.showMessageDialog(null, ex.getMessage().toString(),  "Server Kontrol", JOptionPane.ERROR_MESSAGE);
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
+						//JOptionPane.showMessageDialog(null, ex.getMessage().toString(),  "Server Kontrol", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
@@ -246,7 +249,8 @@ public class CAL_DIZIN extends JFrame {
 				catch  (Exception ex)
 				{
 					contentPane.setCursor(DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null, ex.getMessage().toString(),  "Veritabani Kontrol", JOptionPane.ERROR_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
+					//JOptionPane.showMessageDialog(null, ex.getMessage().toString(),  "Veritabani Kontrol", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 
@@ -317,7 +321,8 @@ public class CAL_DIZIN extends JFrame {
 					}
 					catch (Exception ex)
 					{
-						JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "E_Mail Silme", JOptionPane.ERROR_MESSAGE);   
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
+						//JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "E_Mail Silme", JOptionPane.ERROR_MESSAGE);   
 					}
 				}
 				contentPane.setCursor(DEFAULT_CURSOR);
@@ -921,7 +926,8 @@ public class CAL_DIZIN extends JFrame {
 						}
 						else
 						{
-							JOptionPane.showMessageDialog(null, "Sifre Yanlis", "Sifre Degistirme", JOptionPane.PLAIN_MESSAGE);
+							OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Sifre Yanlis" );
+							//JOptionPane.showMessageDialog(null, "Sifre Yanlis", "Sifre Degistirme", JOptionPane.PLAIN_MESSAGE);
 							lblysif.setVisible(false);
 							txtyenisif.setVisible(false);
 							btnNewButton_2_1_1.setVisible(false);
@@ -980,7 +986,8 @@ public class CAL_DIZIN extends JFrame {
 				} catch (Exception ex)
 				{
 					contentPane.setCursor(DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Sifre Kaydet", JOptionPane.PLAIN_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
+					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Sifre Kaydet", JOptionPane.PLAIN_MESSAGE);
 					txtsif.requestFocus();		
 				}		
 			}
@@ -1057,10 +1064,12 @@ public class CAL_DIZIN extends JFrame {
 					lBILGI.seteVRAK("");
 					mAT.Logla(lBILGI,BAGLAN_LOG.cariLogDizin);
 					contentPane.setCursor(DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null,  "Mail Gonderildi........", "OBS SISTEM", JOptionPane.INFORMATION_MESSAGE);
-				} catch (Exception e1) {
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,  "Mail Gonderildi........" );
+					//JOptionPane.showMessageDialog(null,  "Mail Gonderildi........", "OBS SISTEM", JOptionPane.INFORMATION_MESSAGE);
+				} catch (Exception ex) {
 					contentPane.setCursor(DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null,  e1.getMessage(), "OBS SISTEM", JOptionPane.WARNING_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
+					//JOptionPane.showMessageDialog(null,  e1.getMessage(), "OBS SISTEM", JOptionPane.WARNING_MESSAGE);
 				} 
 			}
 		});
@@ -1097,7 +1106,8 @@ public class CAL_DIZIN extends JFrame {
 				catch (Exception ex)
 				{
 					contentPane.setCursor(DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Kaydet", JOptionPane.PLAIN_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
+					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Kaydet", JOptionPane.PLAIN_MESSAGE);
 					txtsif.requestFocus();		
 				}				
 
@@ -1238,8 +1248,9 @@ public class CAL_DIZIN extends JFrame {
 				try {
 					usrIslemleri.ip_sil(cmbip.getSelectedItem().toString());
 					ip_doldur();
-				} catch (ClassNotFoundException | SQLException e1) {
-					JOptionPane.showMessageDialog(null, "Silme Isleminde Hata Olustu........", "Ip Silme.....", JOptionPane.ERROR_MESSAGE);
+				} catch (Exception ex) {
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
+					//JOptionPane.showMessageDialog(null, "Silme Isleminde Hata Olustu........", "Ip Silme.....", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -1550,7 +1561,8 @@ public class CAL_DIZIN extends JFrame {
 			else
 			{
 				contentPane.setCursor(DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null, "Baglanti Saglanamadi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Baglanti Saglanamadi........" );
+				//JOptionPane.showMessageDialog(null, "Baglanti Saglanamadi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
 				btnNewButton_1.setEnabled(false);
 			}
 		}
@@ -1570,7 +1582,8 @@ public class CAL_DIZIN extends JFrame {
 			else
 			{
 				contentPane.setCursor(DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null, "Baglanti Saglanamadi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Baglanti Saglanamadi........" );
+				//JOptionPane.showMessageDialog(null, "Baglanti Saglanamadi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
 				btnNewButton_1.setEnabled(false);
 			}
 		}
@@ -1648,7 +1661,8 @@ public class CAL_DIZIN extends JFrame {
 			if (izinli == false)
 			{
 				contentPane.setCursor(DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null, "Bu Dosyayi Kullanmaya Izniniz Yok --- Admin den yetki almaniz lazim" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir...", "Dosya Olusturma", JOptionPane.ERROR_MESSAGE);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Bu Dosyayi Kullanmaya Izniniz Yok --- Admin den yetki almaniz lazim" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir..." );
+				//JOptionPane.showMessageDialog(null, "Bu Dosyayi Kullanmaya Izniniz Yok --- Admin den yetki almaniz lazim" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir...", "Dosya Olusturma", JOptionPane.ERROR_MESSAGE);
 				btnNewButton_1.setEnabled(false);
 				txtKodu.requestFocus();
 				return;
@@ -1683,7 +1697,8 @@ public class CAL_DIZIN extends JFrame {
 				break;
 			}
 			contentPane.setCursor(DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, "Veritabani Baglantisi gerceklestirildi", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,   "Veritabani Baglantisi gerceklestirildi" );
+			//JOptionPane.showMessageDialog(null, "Veritabani Baglantisi gerceklestirildi", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
 			return;
 		}
 		else
@@ -1724,7 +1739,8 @@ public class CAL_DIZIN extends JFrame {
 				break;
 			}
 			contentPane.setCursor(DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ...", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
+			//JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ...", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
 			return;
 		}
 	}
@@ -1750,7 +1766,8 @@ public class CAL_DIZIN extends JFrame {
 			if (izinli == false)
 			{
 				contentPane.setCursor(DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null, "Bu Dosyayi Kullanmaya Izniniz Yok --- Admin den yetki almaniz lazim" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir...", "Dosya Olusturma", JOptionPane.ERROR_MESSAGE);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,    "Bu Dosyayi Kullanmaya Izniniz Yok --- Admin den yetki almaniz lazim" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir..." );
+				//JOptionPane.showMessageDialog(null, "Bu Dosyayi Kullanmaya Izniniz Yok --- Admin den yetki almaniz lazim" + System.lineSeparator()  + System.lineSeparator()+"'Admin' den izin verilmesi gereklidir...", "Dosya Olusturma", JOptionPane.ERROR_MESSAGE);
 				btnNewButton_1.setEnabled(false);
 				txtKodu.requestFocus();
 				return;
@@ -1785,7 +1802,8 @@ public class CAL_DIZIN extends JFrame {
 				break;
 			}
 			contentPane.setCursor(DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, "Veritabani Baglantisi gerceklestirildi", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,    "Veritabani Baglantisi gerceklestirildi" );
+			//JOptionPane.showMessageDialog(null, "Veritabani Baglantisi gerceklestirildi", "Dosya Baglanti", JOptionPane.PLAIN_MESSAGE);
 			return;
 		}
 		else
@@ -1828,7 +1846,8 @@ public class CAL_DIZIN extends JFrame {
 					break;
 				}
 				contentPane.setCursor(DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ..........", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,  "Dosya Olusturuldu .........." );
+				//JOptionPane.showMessageDialog(null,  "Dosya Olusturuldu ..........", "Dosya Olusturma", JOptionPane.PLAIN_MESSAGE);
 				return;
 			}
 		}

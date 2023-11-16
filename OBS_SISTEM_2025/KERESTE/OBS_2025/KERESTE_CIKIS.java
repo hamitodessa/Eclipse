@@ -253,7 +253,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 					catch (Exception ex)
 					{
 						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-						JOptionPane.showMessageDialog(null,  "Kereste Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,    "Kereste Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...." );
+						//JOptionPane.showMessageDialog(null,  "Kereste Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
 			}
@@ -470,7 +471,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				}
 				catch (Exception ex)
 				{	
-					JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,   ex.getMessage() );
+					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
 				}
 			}
 			public void removeUpdate(DocumentEvent e) {
@@ -487,7 +489,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				}
 				catch (Exception ex)
 				{	
-					JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage()   );
+					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
 				}
 			}
 			public void insertUpdate(DocumentEvent e) {
@@ -504,7 +507,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				}
 				catch (Exception ex)
 				{	
-					JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage()   );
+					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
 				}
 			}
 		});
@@ -934,7 +938,11 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (table.getSelectedRow() < 0 ) return ;
+				if (table.getSelectedRow() < 0 ) 
+					{
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Ilk olarak Satir Seciniz........" );
+					return ;
+					}
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				PAKET_ARA arm = new PAKET_ARA();
 				arm.setSize(1000, 400);
@@ -976,7 +984,13 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (tabbedPane.getSelectedIndex() == 0)
 				{
-					satir_sil();
+					if (table.getSelectedRow() != -1) {
+						satir_sil();
+					}
+					else {
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Ilk olarak Satir Seciniz........" );
+						return ;
+					}
 				}
 			}
 		});
@@ -1240,7 +1254,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 			table.setFont(bigFont);
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Cikis", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Cikis", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 
@@ -2032,7 +2047,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				rSet.first();  
 				if (! rSet.getString("Cikis_Evrak").toString().equals("")   && ! rSet.getString("Cikis_Evrak").toString().equals(textField.getText()))
 				{
-					JOptionPane.showMessageDialog(null, "Bu Paket daha Once " + rSet.getString("Cikis_Evrak").toString() + " da Cikis Yapilmis"  ,  "Urun Cikis", JOptionPane.ERROR_MESSAGE);  
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu Paket daha Once " + rSet.getString("Cikis_Evrak").toString() + " da Cikis Yapilmis" );
+					//JOptionPane.showMessageDialog(null, "Bu Paket daha Once " + rSet.getString("Cikis_Evrak").toString() + " da Cikis Yapilmis"  ,  "Urun Cikis", JOptionPane.ERROR_MESSAGE);  
 				}
 				else 
 				{
@@ -2113,13 +2129,15 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			ResultSet rs ;
 			rs = c_Access.hesap_adi_oku(alh);
 			if (!rs.isBeforeFirst() ) {  
-				JOptionPane.showMessageDialog(null,  "Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!" );
+				//JOptionPane.showMessageDialog(null,  "Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 				return ;
 			} 
 			rs= null;
 			rs = c_Access.hesap_adi_oku(txtcari.getText());
 			if (!rs.isBeforeFirst() ) {  
-				JOptionPane.showMessageDialog(null, textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!",  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!" );
+				//JOptionPane.showMessageDialog(null, textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!",  "Kereste Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 				return;
 			} 
 			double sdf =  DecimalFormat.getNumberInstance().parse(label_8_1.getText()).intValue()  ;
@@ -2148,7 +2166,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			lBILGI.setmESAJ("Alacakli Hes:" +alh + " Tut:" + tutar +	" Borclu Hes:"+ bh  + " Evrak No:" + textField.getText());
 			lBILGI.seteVRAK(String.valueOf(e_number));
 			c_Access.cari_dekont_kaydet(dBilgi,lBILGI,BAGLAN_LOG.cariLogDizin);
-			JOptionPane.showMessageDialog(null,  "Evrak  Cari Hesaba Basari ile Kaydedilmistir....",  "Kereste Cari Kaydetme", JOptionPane.INFORMATION_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,  "Evrak  Cari Hesaba Basari ile Kaydedilmistir...." );
+			//JOptionPane.showMessageDialog(null,  "Evrak  Cari Hesaba Basari ile Kaydedilmistir....",  "Kereste Cari Kaydetme", JOptionPane.INFORMATION_MESSAGE);
 		}
 		catch (Exception ex)
 		{
@@ -2191,7 +2210,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		if (mdl.getRowCount() == 0 )
 		{
-			JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Evrak Yazdirma", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Aktarilacak Bilgi Yok....." );
+			//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Evrak Yazdirma", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{

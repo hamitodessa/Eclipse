@@ -1,7 +1,6 @@
 package OBS_2025;
 
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,6 +17,7 @@ import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -131,7 +131,8 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
+			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
 	public static void kaydet()
@@ -181,7 +182,8 @@ public class FIRMA_ISMI_DEGIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage()); 
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
+			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
 	private static void kapat()

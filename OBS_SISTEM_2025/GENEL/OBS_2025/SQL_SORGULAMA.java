@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 
 import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -30,6 +29,7 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -204,7 +204,8 @@ public class SQL_SORGULAMA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),"Sql Sorgulama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Sql Sorgulama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

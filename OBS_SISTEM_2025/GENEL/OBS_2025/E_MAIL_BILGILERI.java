@@ -9,6 +9,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 
 import OBS_C_2025.MAIL_SETTINGS;
+import raven.toast.Notifications;
 
 import javax.swing.JSeparator;
 import java.awt.Font;
@@ -137,7 +138,8 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(), "Mail Bilgi Kayit", JOptionPane.WARNING_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage(), "Mail Bilgi Kayit", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	public static void kayit () 
@@ -152,7 +154,8 @@ public class E_MAIL_BILGILERI extends JInternalFrame {
 		catch (Exception ex)
 		{
 			panel.setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(), "Mail Bilgi Kayit", JOptionPane.WARNING_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage(), "Mail Bilgi Kayit", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

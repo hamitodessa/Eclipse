@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -180,7 +179,7 @@ public class KER_DEGISKEN_DEGIS extends JInternalFrame {
 			ker_Access.degisken_degistir(anagrp,altgrp,yanagrp,yaltgrp,(comboBox.getSelectedItem().toString().equals("GIRIS")) ? "G" :"C" , lBILGI,BAGLAN_LOG.fatLogDizin );
 			GuiUtil.setWaitCursor(KER_DEGISKEN_DEGIS.panel,false);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Degisim Tamamlandi................." );
-			JOptionPane.showMessageDialog(null, "Degisim Tamamlandi.................",  "Degisken Yenileme", JOptionPane.PLAIN_MESSAGE);   
+			//JOptionPane.showMessageDialog(null, "Degisim Tamamlandi.................",  "Degisken Yenileme", JOptionPane.PLAIN_MESSAGE);   
 		}
 		catch (Exception ex)
 		{

@@ -609,7 +609,8 @@ public class KER_ORT_FIAT extends JInternalFrame {
 
 		if (mdl.getRowCount() == 0 )
 		{
-			JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Aktarilacak Bilgi Yok....." );
+			//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{

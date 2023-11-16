@@ -15,7 +15,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -186,13 +185,16 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		{
 			public void actionPerformed(ActionEvent e) {
 				if (txtYKod.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Kod Bos ...", "Kod Degistirmea", JOptionPane.INFORMATION_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Kod Bos ..."  );
+					//JOptionPane.showMessageDialog(null, "Kod Bos ...", "Kod Degistirmea", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else if (satir_kontrol() == 0 ) {
-					JOptionPane.showMessageDialog(null, "Secili Satir Bulunmamaktadir...", "Kod Degistirmea", JOptionPane.INFORMATION_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Secili Satir Bulunmamaktadir..." );
+					//JOptionPane.showMessageDialog(null, "Secili Satir Bulunmamaktadir...", "Kod Degistirmea", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else if (lblNewLabel_4.getText().equals("") ) {
-					JOptionPane.showMessageDialog(null, "Kayitli Kod Bulunmamaktadir.....", "Kod Degistirmea", JOptionPane.INFORMATION_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Kayitli Kod Bulunmamaktadir....." );
+					//JOptionPane.showMessageDialog(null, "Kayitli Kod Bulunmamaktadir.....", "Kod Degistirmea", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else {
 					mWAIT();	
@@ -277,13 +279,16 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		{
 			public void actionPerformed(ActionEvent e) {
 				if (txtYKons.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Konsimento Bos ...", "Konsimento Degistirme", JOptionPane.INFORMATION_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Konsimento Bos ..." );
+					//JOptionPane.showMessageDialog(null, "Konsimento Bos ...", "Konsimento Degistirme", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else if (satir_kontrol() == 0 ) {
-					JOptionPane.showMessageDialog(null, "Secili Satir Bulunmamaktadir...", "Konsimento Degistirmea", JOptionPane.INFORMATION_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Secili Satir Bulunmamaktadir..." );
+					//JOptionPane.showMessageDialog(null, "Secili Satir Bulunmamaktadir...", "Konsimento Degistirmea", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else if (lblNewLabel_4_1.getText().equals("") ) {
-					JOptionPane.showMessageDialog(null, "Kayitli Konsimento Bulunmamaktadir.....", "Konsimento Degistirmea", JOptionPane.INFORMATION_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Kayitli Konsimento Bulunmamaktadir....." );
+					//JOptionPane.showMessageDialog(null, "Kayitli Konsimento Bulunmamaktadir.....", "Konsimento Degistirmea", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else 
 				{

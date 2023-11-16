@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JCheckBox;
@@ -29,6 +28,7 @@ import java.awt.event.KeyEvent;
 
 import OBS_C_2025.ColorChooserButton;
 import OBS_C_2025.ColorChooserButton.ColorChangedListener;
+import raven.toast.Notifications;
 import OBS_C_2025.Font_Sec;
 import OBS_C_2025.TARIH_CEVIR;
 
@@ -1911,7 +1911,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 		} catch (Exception ex) 
 		{
 			getContentPane().setCursor(DEFAULT_CURSOR);
-          	 JOptionPane.showMessageDialog(null, ex.getMessage(), "Parametre Okuma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
+          	// JOptionPane.showMessageDialog(null, ex.getMessage(), "Parametre Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -2069,7 +2070,8 @@ public class PARAMETRELER   extends JInternalFrame   {
 		} 
 		catch (Exception ex) 
 		{
-          	 JOptionPane.showMessageDialog(null, ex.getMessage(), "Parametre Kayit", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
+          	 //JOptionPane.showMessageDialog(null, ex.getMessage(), "Parametre Kayit", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static String dateFormater(String dateFromJSON, String expectedFormat, String oldFormat) {

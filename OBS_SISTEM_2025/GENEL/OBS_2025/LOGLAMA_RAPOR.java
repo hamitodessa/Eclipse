@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.util.Date;
 
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
@@ -30,6 +29,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -525,7 +525,8 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),"Loglama", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Loglama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

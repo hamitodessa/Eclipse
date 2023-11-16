@@ -321,7 +321,8 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 
 				if (ker_Access.alt_grup_kontrol(anaG,altG) )
 				{
-					JOptionPane.showMessageDialog(null, "Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz....",  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz...."   );
+					//JOptionPane.showMessageDialog(null, "Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz....",  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 					return;
 				}
 				//*********************
@@ -423,8 +424,8 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			//OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 		}
 	}
 	private static void ana_grup_doldur()

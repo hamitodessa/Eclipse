@@ -1100,27 +1100,6 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-	public ResultSet ekstre_proc(String hesap , String t1 ,String t2) throws ClassNotFoundException, SQLException
-	{
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		ResultSet	rss = null;
-		CallableStatement cstmt = con.prepareCall("{call EKSTRE(?,?,?)}");
-		cstmt.setString(1,t1); 
-		cstmt.setString(2, t2); 
-		cstmt.setString(3, hesap);
-		cstmt.execute();
-		rss = cstmt.getResultSet();
-		return rss ; 
-		//String SPsql = "EXEC EKSTRE ?,?,?";   // for stored proc taking 2 parameters
-		//PreparedStatement ps = con.prepareStatement(SPsql);
-		//ps.setEscapeProcessing(true);
-		//ps.setQueryTimeout(<timeout value>);
-		//ps.setString(1,t1);
-		//ps.setString(2, t2);
-		//ps.setString(3, hesap);
-		//rss= ps.executeQuery();
-
-	}
 	public ResultSet gunisl_proc(String t1 ,String t2) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -1165,5 +1144,25 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	 
+	}
+	@Override
+	public ResultSet ekstre_proc(String hesap, String t1, String t2) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		CallableStatement cstmt = con.prepareCall("{call EKSTRE(?,?,?)}");
+		cstmt.setString(1,t1); 
+		cstmt.setString(2, t2); 
+		cstmt.setString(3, hesap);
+		cstmt.execute();
+		rss = cstmt.getResultSet();
+		return rss ; 
+		//String SPsql = "EXEC EKSTRE ?,?,?";   // for stored proc taking 2 parameters
+		//PreparedStatement ps = con.prepareStatement(SPsql);
+		//ps.setEscapeProcessing(true);
+		//ps.setQueryTimeout(<timeout value>);
+		//ps.setString(1,t1);
+		//ps.setString(2, t2);
+		//ps.setString(3, hesap);
+		//rss= ps.executeQuery();
 	}
 }

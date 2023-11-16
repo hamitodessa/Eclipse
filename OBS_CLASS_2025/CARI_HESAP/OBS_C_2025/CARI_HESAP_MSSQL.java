@@ -324,7 +324,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				"  CAST(SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS DECIMAL(30,2))  AS BAKIYE ,[USER] "  + 
 				"  FROM SATIRLAR  LEFT JOIN IZAHAT   " + 
 				"  ON SATIRLAR.EVRAK = IZAHAT.EVRAK WHERE  HESAP =N'" + hesap + "'" + 
-					tARIH + 
+				tARIH + 
 				"  ORDER BY TARIH   ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -380,7 +380,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	public void sqlite_sil() throws ClassNotFoundException, SQLException
 	{
 	}
-	
+
 	public ResultSet ekstre_sqlite() throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
@@ -406,7 +406,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 				" FROM SATIRLAR  ,HESAP " +
 				" WHERE SATIRLAR.HESAP = HESAP.HESAP " +
 				" AND SATIRLAR.HESAP BETWEEN N'" + h1 + "' AND N'" + h2 + "'" +
-					tARIH + 
+				tARIH + 
 				" AND HESAP.HESAP_CINSI BETWEEN N'" + c1 + "' AND '" + c2 + "'" +
 				" AND HESAP.KARTON BETWEEN N'" + k1 + "' AND N'" + k2 + "' " +
 				" GROUP BY SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " + o1 + " " + o2 + "" ;
@@ -677,7 +677,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 					" SATIRLAR.KUR, BORC, ALACAK ,SATIRLAR.[USER] " +
 					" FROM SATIRLAR  LEFT OUTER JOIN IZAHAT as I   on SATIRLAR.EVRAK = I.EVRAK " +
 					" WHERE HESAP  = N'" + hesap + "' " + 
-						tARIH +
+					tARIH +
 					" ORDER BY SATIRLAR.TARIH ";
 		}
 		else 
@@ -694,7 +694,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 					" FROM (SATIRLAR as s    LEFT OUTER JOIN IZAHAT as I   on s.EVRAK = I.EVRAK) " +
 					" LEFT OUTER JOIN " + str1 + " as k ON Convert(VARCHAR(25), s.TARIH, 121) = k.Tarih  " +
 					" WHERE HESAP  = N'" + hesap + "' " + 
-						tARIH + 
+					tARIH + 
 					" AND (k.kur IS NULL OR k.KUR ='" + kur + "') " +
 					" ORDER BY TARIH ";
 		}
@@ -1159,27 +1159,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		rss = stmt.executeQuery();
 		return rss;	
 	}
-	public ResultSet ekstre_proc(String hesap , String t1 ,String t2) throws ClassNotFoundException, SQLException
-	{
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		ResultSet	rss = null;
-		CallableStatement cstmt = con.prepareCall("{call EKSTRE(?,?,?)}");
-		cstmt.setString(1,t1); 
-		cstmt.setString(2, t2); 
-		cstmt.setString(3, hesap);
-		cstmt.execute();
-		rss = cstmt.getResultSet();
-		return rss ; 
-		//String SPsql = "EXEC EKSTRE ?,?,?";   // for stored proc taking 2 parameters
-		//PreparedStatement ps = con.prepareStatement(SPsql);
-		//ps.setEscapeProcessing(true);
-		//ps.setQueryTimeout(<timeout value>);
-		//ps.setString(1,t1);
-		//ps.setString(2, t2);
-		//ps.setString(3, hesap);
-		//rss= ps.executeQuery();
-
-	}
 	public ResultSet gunisl_proc(String t1 ,String t2) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1206,29 +1185,48 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 	}
-	@Override
 	public ResultSet karton_mizan(String h1, String h2, String t1, String t2, String c1, String c2, String k1,
-				String k2, String o1, String o2) throws ClassNotFoundException, SQLException 
-		{
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			ResultSet	rss = null;
-			String tARIH = "" ;
-			if(! t1.equals("1900.01.01") || ! t2.equals("2100.12.31"))
-				tARIH = " AND TARIH BETWEEN '" + t1 + "' AND '"  + t2  + " 23:59:59.998'" ;
-			String sql = "SELECT HESAP.KARTON,SATIRLAR.HESAP,HESAP.UNVAN,HESAP.HESAP_CINSI AS H_CINSI," + 
-					" ROUND(SUM(SATIRLAR.BORC),2) AS BORC, ROUND(SUM(SATIRLAR.ALACAK),2) AS ALACAK, " + 
-					" ROUND(SUM(SATIRLAR.ALACAK),2) - ROUND(SUM(SATIRLAR.BORC),2) AS BAKIYE" +
-					" FROM SATIRLAR  ,HESAP " +
-					" WHERE SATIRLAR.HESAP = HESAP.HESAP " +
-					" AND SATIRLAR.HESAP BETWEEN N'" + h1 + "' AND N'" + h2 + "'" +
-						tARIH + 
-					" AND HESAP.HESAP_CINSI BETWEEN N'" + c1 + "' AND '" + c2 + "'" +
-					" AND HESAP.KARTON BETWEEN N'" + k1 + "' AND N'" + k2 + "' " +
-					" GROUP BY HESAP.KARTON,SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " + o1 + " " + o2 + " " ;
-			PreparedStatement stmt = con.prepareStatement(sql);
-			rss = stmt.executeQuery();
-			return rss;	
-		}
+			String k2, String o1, String o2) throws ClassNotFoundException, SQLException 
+	{
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String tARIH = "" ;
+		if(! t1.equals("1900.01.01") || ! t2.equals("2100.12.31"))
+			tARIH = " AND TARIH BETWEEN '" + t1 + "' AND '"  + t2  + " 23:59:59.998'" ;
+		String sql = "SELECT HESAP.KARTON,SATIRLAR.HESAP,HESAP.UNVAN,HESAP.HESAP_CINSI AS H_CINSI," + 
+				" ROUND(SUM(SATIRLAR.BORC),2) AS BORC, ROUND(SUM(SATIRLAR.ALACAK),2) AS ALACAK, " + 
+				" ROUND(SUM(SATIRLAR.ALACAK),2) - ROUND(SUM(SATIRLAR.BORC),2) AS BAKIYE" +
+				" FROM SATIRLAR  ,HESAP " +
+				" WHERE SATIRLAR.HESAP = HESAP.HESAP " +
+				" AND SATIRLAR.HESAP BETWEEN N'" + h1 + "' AND N'" + h2 + "'" +
+				tARIH + 
+				" AND HESAP.HESAP_CINSI BETWEEN N'" + c1 + "' AND '" + c2 + "'" +
+				" AND HESAP.KARTON BETWEEN N'" + k1 + "' AND N'" + k2 + "' " +
+				" GROUP BY HESAP.KARTON,SATIRLAR.HESAP, HESAP.UNVAN, HESAP.HESAP_CINSI " + o1 + " " + o2 + " " ;
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	
+	}
+	@Override
+	public ResultSet ekstre_proc(String hesap, String t1, String t2) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		CallableStatement cstmt = con.prepareCall("{call EKSTRE(?,?,?)}");
+		cstmt.setString(1,t1); 
+		cstmt.setString(2, t2); 
+		cstmt.setString(3, hesap);
+		cstmt.execute();
+		rss = cstmt.getResultSet();
+		return rss ; 
+		//String SPsql = "EXEC EKSTRE ?,?,?";   // for stored proc taking 2 parameters
+		//PreparedStatement ps = con.prepareStatement(SPsql);
+		//ps.setEscapeProcessing(true);
+		//ps.setQueryTimeout(<timeout value>);
+		//ps.setString(1,t1);
+		//ps.setString(2, t2);
+		//ps.setString(3, hesap);
+		//rss= ps.executeQuery();
+	}
 }
 
 

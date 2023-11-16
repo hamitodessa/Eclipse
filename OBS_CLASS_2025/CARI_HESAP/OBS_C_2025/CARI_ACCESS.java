@@ -270,5 +270,8 @@ public class CARI_ACCESS {
 	{
 		return _ICari.karton_mizan(h1, h2, t1, t2, c1, c2, k1, k2, o1, o2);
 	}
-
+	public ResultSet ekstre_proc(String hesap , String t1 ,String t2) throws ClassNotFoundException, SQLException
+	{
+		return _ICari.ekstre_proc(hesap, t1, t2);
+	}
 }

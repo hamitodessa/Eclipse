@@ -521,6 +521,25 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		panel.add(txtEvrak);
 		txtEvrak.setColumns(10);
 		
+		JButton btnNewButton_5 = new JButton("hsppln");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					hsp_pln_yukleme();
+					hsp_detay_yukleme();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnNewButton_5.setBounds(715, 354, 89, 23);
+		panel.add(btnNewButton_5);
+		
 			btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -1896,13 +1915,14 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				" VALUES (?,?,?,?,?,?,?,?,?,?)" ;
 		stmt2 = null;
 		stmt2 = Yukleme_MS_conn.prepareStatement(sql);
+		
 		String sklizahat  = "INSERT INTO IZAHAT (EVRAK,IZAHAT) " +
 				" VALUES (?,?)" ;
 		stmtizahat = null;
 		stmtizahat = Yukleme_MS_conn_Izahat.prepareStatement(sklizahat);
 		
 		int eVRAKK = Integer.parseInt(txtEvrak.getText());
-	int  kont = 0;
+	    int  kont = 0;
 		while(rss.next()){
 			stmt2.setString(1, rss.getString("HESAP"));
 			
@@ -1953,6 +1973,106 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
-	
+	void hsp_pln_yukleme() throws ClassNotFoundException, SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = "SELECT * FROM HESAP WITH (INDEX (IX_HESAP))  ORDER BY HESAP ";
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+
+		///
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rs = null;
+		
+		
+		String sklizahat  =  "INSERT INTO HESAP (HESAP,UNVAN,KARTON,HESAP_CINSI,[USER]) " +
+				" VALUES (?,?,?,?,?)" ;
+		PreparedStatement stmtizahat = Yukleme_MS_conn.prepareStatement(sql);
+		stmtizahat = Yukleme_MS_conn_Izahat.prepareStatement(sklizahat);
+		
+		int satir  = 0 ;
+		while(rss.next())
+		{
+			stmtizahat.setString(1, rss.getString("HESAP"));
+			stmtizahat.setString(2, rss.getString("UNVAN"));
+			stmtizahat.setString(3, rss.getString("KARTON"));
+			stmtizahat.setString(4,rss.getString("HESAP_CINSI"));
+			stmtizahat.setString(5, rss.getString(4));
+			stmtizahat.addBatch();
+			satir +=1 ;
+			if ((satir ) % 300 == 0) 
+			{
+				stmtizahat.executeBatch();
+			}
+		}
+		stmtizahat.executeBatch();
+		stmtizahat.close();
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+
+	void hsp_detay_yukleme() throws ClassNotFoundException, SQLException
+	{
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = "SELECT * FROM HESAP_DETAY  ORDER BY D_HESAP ";
+		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+		rss = stmt.executeQuery(sql);
+
+		///
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rs = null;
+		
+		sql  = "INSERT INTO HESAP_DETAY (D_HESAP,YETKILI,ADRES_1,ADRES_2,SEMT,SEHIR,VERGI_DAIRESI,VERGI_NO,TEL_1,TEL_2, " + 
+				" TEL_3,FAX,OZEL_KOD_1,OZEL_KOD_2,OZEL_KOD_3,WEB,E_MAIL,TC_KIMLIK,ACIKLAMA,SMS_GONDER,RESIM)" +
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+		PreparedStatement stmtizahat = Yukleme_MS_conn.prepareStatement(sql);
+		stmtizahat = Yukleme_MS_conn_Izahat.prepareStatement(sql);
+		
+		int satir = 0 ;
+		
+		while(rss.next()){
+			stmtizahat.setString(1,rss.getString("D_HESAP"));
+			stmtizahat.setString(2,rss.getString("YETKILI"));
+			stmtizahat.setString(3, rss.getString("ADRES_1"));
+			stmtizahat.setString(4, rss.getString("ADRES_2"));
+			stmtizahat.setString(5, rss.getString("SEMT"));
+			stmtizahat.setString(6, rss.getString("SEHIR"));
+			stmtizahat.setString(7, rss.getString("VERGI_DAIRESI"));
+			stmtizahat.setString(8, rss.getString("VERGI_NO"));
+			stmtizahat.setString(9, rss.getString("TEL_1"));
+			stmtizahat.setString(10, rss.getString("TEL_2"));
+			stmtizahat.setString(11, rss.getString("TEL_3"));
+			stmtizahat.setString(12, rss.getString("FAX"));
+			stmtizahat.setString(13, rss.getString("OZEL_KOD_1"));
+			stmtizahat.setString(14, rss.getString("OZEL_KOD_2"));
+			stmtizahat.setString(15, rss.getString("OZEL_KOD_3"));
+			stmtizahat.setString(16, rss.getString("WEB"));
+			stmtizahat.setString(17, rss.getString("E_MAIL"));
+			stmtizahat.setString(18, rss.getString("TC_KIMLIK"));
+			stmtizahat.setString(19, rss.getString("ACIKLAMA"));
+			stmtizahat.setBoolean(20, rss.getBoolean("SMS_GONDER"));
+			if (  rss.getBytes("RESIM") != null)
+			{
+
+				stmtizahat.setBytes(21,rss.getBytes("RESIM"));
+			}
+			else
+			{
+				stmtizahat.setBytes(21,null);
+			}
+			stmtizahat.addBatch();
+			satir +=1 ;
+			if ((satir ) % 300 == 0) 
+			{
+				stmtizahat.executeBatch();
+			}
+		}
+		stmtizahat.executeBatch();
+		stmtizahat.close();
+		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
 }
 

@@ -302,7 +302,7 @@ public class KASA extends JInternalFrame {
 				dateChooser.setDate(new Date());
 			}
 		});
-		btnNewButton_1_1.setToolTipText("Kayitli Son Dekont");
+		btnNewButton_1_1.setToolTipText("Bugun");
 		btnNewButton_1_1.setBounds(538, 11, 55, 30);
 		btnNewButton_1_1.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/icons8-open-view-24.png")));
 		leftPanel.add(btnNewButton_1_1);

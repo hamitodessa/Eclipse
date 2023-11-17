@@ -266,11 +266,15 @@ public class HESAP_BAK extends JInternalFrame {
 		tbldetay.setShowVerticalLines(true);
 		scrollPane_2.setViewportView(tbldetay);
 
+		ScrollPaneWin11 jScrollPane1alt = new ScrollPaneWin11(); //1091-30
+		jScrollPane1alt.setMinimumSize(new Dimension(0,40));
+		splitPane_2.setLeftComponent(jScrollPane1alt);
+		
 		JPanel panel = new JPanel();
+		jScrollPane1alt.setViewportView(panel);
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		splitPane_2.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 30));
-		panel.setMaximumSize(new Dimension(0, 30));
+		//panel.setMinimumSize(new Dimension(0,35));
+		panel.setPreferredSize(new Dimension(1060,35));
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Arama");

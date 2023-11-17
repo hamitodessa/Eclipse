@@ -1,16 +1,43 @@
 package OBS_2025;
 
-import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyVetoException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-import javax.swing.JTable;
+import javax.swing.ImageIcon;
+import javax.swing.InputMap;
+import javax.swing.JButton;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
-import javax.swing.JSplitPane;
+import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.CARI_ACCESS;
@@ -24,36 +51,9 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
-import raven.toast.Notifications;
 
-import javax.swing.ImageIcon;
-import javax.swing.InputMap;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyVetoException;
-import java.beans.PropertyChangeEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import javax.swing.JPanel;
+import raven.toast.Notifications;
 
 @SuppressWarnings({ "serial", "static-access", "deprecation" })
 public class KASA extends JInternalFrame {
@@ -93,20 +93,25 @@ public class KASA extends JInternalFrame {
 		setBounds(0, 0, 748, 600);
 
 		getContentPane().setLayout(new BorderLayout());
-
+		
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setDividerSize(0);
+		splitPane.setResizeWeight(0.0);
+		
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		getContentPane().add(splitPane, BorderLayout.CENTER);
+		
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		scrollPane.setMinimumSize(new Dimension(0, 75));
+		scrollPane.setMaximumSize(new Dimension(0, 75));
+		splitPane.setLeftComponent(scrollPane);
+		
 		JPanel leftPanel = new JPanel();
-		leftPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		leftPanel.setMinimumSize(new Dimension(0, 70));
-		leftPanel.setMaximumSize(new Dimension(0, 70));
-		ScrollPaneWin11 centerPanel = new ScrollPaneWin11();
-		JPanel rightPanel = new JPanel();
-		rightPanel.setForeground(new Color(0, 0, 139));
-		rightPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		rightPanel.setMinimumSize(new Dimension(0, 90));
-		rightPanel.setMaximumSize(new Dimension(0, 90));
-		JSplitPane sp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, leftPanel, centerPanel);
+		
+		leftPanel.setPreferredSize(new Dimension(718,65));
 		leftPanel.setLayout(null);
-
+		scrollPane.setViewportView(leftPanel);
+		
 		JLabel lblNewLabel = new JLabel("Hesap");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(10, 14, 46, 14);
@@ -327,55 +332,24 @@ public class KASA extends JInternalFrame {
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_6.setBounds(222, 15, 46, 14);
 		leftPanel.add(lblNewLabel_6);
-
-		table_1 = new JTable() {
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
-		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-		{
-			table_1.setGridColor(oac.gridcolor);
-		}
-
-		table_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) {
-					boolean varmi = OBS_MAIN.pencere_bak("DEKONT");
-					if (varmi) {
-						try {
-							OBS_MAIN.pencere_aktiv_yap("DEKONT");
-						} catch (PropertyVetoException e1) {
-							e1.printStackTrace();
-						}
-					} else {
-						JInternalFrame internalFrame;
-						internalFrame = new DEKONT();
-						OBS_MAIN.desktopPane.add(internalFrame);
-						internalFrame.setVisible(true);
-					}
-					try {
-						DEKONT.txtevrak.setText(table_1.getValueAt(table_1.getSelectedRow(), 0).toString());
-						DEKONT.fiskont();
-					} catch (NumberFormatException e1) {
-						e1.printStackTrace();
-					}
-
-				}
-			}
-		});
-		table_1.setShowHorizontalLines(true);
-		table_1.setShowVerticalLines(true);
-		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		centerPanel.setViewportView(table_1);
-		sp.setDividerSize(0);
-		sp.setResizeWeight(0.0);
-
-		JSplitPane sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, rightPanel);
+		
+		JSplitPane splitPane_1 = new JSplitPane();
+		splitPane_1.setResizeWeight(1.0);
+		splitPane_1.setDividerSize(0);
+		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane.setRightComponent(splitPane_1);
+		
+		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
+		 scrollPane_1.setMinimumSize(new Dimension(0, 100));
+		 scrollPane_1.setMaximumSize(new Dimension(0, 100));
+		splitPane_1.setRightComponent(scrollPane_1);
+		
+		JPanel rightPanel = new JPanel();
+		
+		rightPanel.setPreferredSize(new Dimension(718,90));
 		rightPanel.setLayout(null);
-
+		scrollPane_1.setViewportView(rightPanel);
+		
 		lblNewLabel_4 = new JLabel("0.00");
 		lblNewLabel_4.setForeground(new Color(0, 0, 139));
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -465,12 +439,54 @@ public class KASA extends JInternalFrame {
 		lblNewLabel_5_2_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_5_2_2.setBounds(290, 56, 100, 14);
 		rightPanel.add(lblNewLabel_5_2_2);
+		
+		//*********************************************ORTA************************************************
+		table_1 = new JTable() {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
+		{
+			table_1.setGridColor(oac.gridcolor);
+		}
 
-		sp2.setDividerSize(0);
-		sp2.setResizeWeight(1.0);
-		getContentPane().add(sp2, BorderLayout.CENTER);
+		table_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					boolean varmi = OBS_MAIN.pencere_bak("DEKONT");
+					if (varmi) {
+						try {
+							OBS_MAIN.pencere_aktiv_yap("DEKONT");
+						} catch (PropertyVetoException e1) {
+							e1.printStackTrace();
+						}
+					} else {
+						JInternalFrame internalFrame;
+						internalFrame = new DEKONT();
+						OBS_MAIN.desktopPane.add(internalFrame);
+						internalFrame.setVisible(true);
+					}
+					try {
+						DEKONT.txtevrak.setText(table_1.getValueAt(table_1.getSelectedRow(), 0).toString());
+						DEKONT.fiskont();
+					} catch (NumberFormatException e1) {
+						e1.printStackTrace();
+					}
+
+				}
+			}
+		});
+		table_1.setShowHorizontalLines(true);
+		table_1.setShowVerticalLines(true);
+		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
+		splitPane_1.setLeftComponent(scrollPane_2);
+		scrollPane_2.setViewportView(table_1);
 	}
-
 	public void isimoku_ekstre() throws ClassNotFoundException, SQLException {
 		ResultSet rs = null;
 		rs = c_Access.hesap_adi_oku(textField.getText());

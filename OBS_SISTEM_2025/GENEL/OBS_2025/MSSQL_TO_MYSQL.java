@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -486,42 +487,39 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		btnNewButton_2_1_1_1_1_2.setBounds(10, 85, 123, 23);
 		panel_1_1_1_1.add(btnNewButton_2_1_1_1_1_2);
 		
-		JButton btnNewButton_3 = new JButton("Cari Yuklme");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					cari_yukleme();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton_3.setBounds(715, 287, 117, 23);
-		panel.add(btnNewButton_3);
-		
 		JButton btnNewButton_4 = new JButton("Baglan");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				baglan_yukleme();
 			}
 		});
-		btnNewButton_4.setBounds(712, 255, 120, 23);
+		btnNewButton_4.setBounds(706, 255, 149, 23);
 		panel.add(btnNewButton_4);
 		
-		txtYukleme = new JTextField();
-		txtYukleme.setText("555");
-		txtYukleme.setBounds(713, 224, 86, 20);
-		panel.add(txtYukleme);
-		txtYukleme.setColumns(10);
+		RoundPanel panel_4 = new RoundPanel(new Color(0, 128, 128),15);
+		panel_4.setBounds(706, 287, 149, 201);
+		panel.add(panel_4);
+		panel_4.setLayout(null);
 		
-		txtEvrak = new JTextField();
-		txtEvrak.setText("70000");
-		txtEvrak.setBounds(715, 321, 86, 20);
-		panel.add(txtEvrak);
-		txtEvrak.setColumns(10);
+		JButton btnNewButton_3 = new JButton("Cari Yuklme");
+		btnNewButton_3.setBounds(10, 11, 117, 23);
+		panel_4.add(btnNewButton_3);
 		
 		JButton btnNewButton_5 = new JButton("hsppln");
+		btnNewButton_5.setBounds(10, 38, 117, 23);
+		panel_4.add(btnNewButton_5);
+		
+		txtEvrak = new JTextField();
+		txtEvrak.setBounds(10, 102, 86, 20);
+		panel_4.add(txtEvrak);
+		txtEvrak.setText("0");
+		txtEvrak.setColumns(10);
+		
+		txtYukleme = new JTextField();
+		txtYukleme.setBounds(10, 71, 86, 20);
+		panel_4.add(txtYukleme);
+		txtYukleme.setText("555");
+		txtYukleme.setColumns(10);
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -537,8 +535,16 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 				
 			}
 		});
-		btnNewButton_5.setBounds(715, 354, 89, 23);
-		panel.add(btnNewButton_5);
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					cari_yukleme();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		
 			btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1900,77 +1906,69 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 		ResultSet	rs = null;
 		ResultSet	rss = null;
 		PreparedStatement stmt2;
-		
 		PreparedStatement stmtizahat;
-
 		String sql = "SELECT [HESAP] ,[TARIH] ,[H] ,SATIRLAR.[EVRAK],[CINS] ,[KUR] ,[BORC],[ALACAK]  ,[KOD],[USER] ,IZAHAT "
 					+ " FROM [OK_Car019].[dbo].[SATIRLAR] left join [OK_Car019].[dbo].[IZAHAT] on SATIRLAR.EVRAK = IZAHAT.EVRAK "
 					+ " ORDER BY  SATIRLAR.TARIH ,SATIRLAR.EVRAK , H DESC ";
 		Statement stmt = MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
-		////
-		
 		int satir = 0 ;
 		sql  = "INSERT INTO SATIRLAR (HESAP,TARIH,H,EVRAK,CINS,KUR,BORC,ALACAK,KOD,[USER]) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?)" ;
 		stmt2 = null;
 		stmt2 = Yukleme_MS_conn.prepareStatement(sql);
-		
 		String sklizahat  = "INSERT INTO IZAHAT (EVRAK,IZAHAT) " +
 				" VALUES (?,?)" ;
 		stmtizahat = null;
 		stmtizahat = Yukleme_MS_conn_Izahat.prepareStatement(sklizahat);
-		
 		int eVRAKK = Integer.parseInt(txtEvrak.getText());
 	    int  kont = 0;
-		while(rss.next()){
-			stmt2.setString(1, rss.getString("HESAP"));
-			
-			if (kont != rss.getInt("EVRAK"))
-			{
-				eVRAKK +=1 ;
-				///
-				stmtizahat.setInt(1, eVRAKK);
-				stmtizahat.setString(2,  rss.getString("IZAHAT"));
-				stmtizahat.addBatch();
-				if ((satir ) % 3000 == 0) 
-				{
-					stmtizahat.executeBatch();
-				}
-				///
-				
-			}
-			kont = rss.getInt("EVRAK") ;
-			//System.out.println(eVRAKK);
-			Timestamp timestamp =rss.getTimestamp("TARIH");
-			Date date1 = new java.util.Date(timestamp.getTime());
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(date1);
-			cal.add(Calendar.YEAR, 2); 
-			java.sql.Timestamp timestamp1 = new java.sql.Timestamp(cal.getTimeInMillis());
-			stmt2.setTimestamp(2, timestamp1);
-			stmt2.setString(3,  rss.getString("H"));
-			
-			stmt2.setInt(4, eVRAKK);
-			stmt2.setString(5,  rss.getString("CINS"));
-			stmt2.setDouble(6,  rss.getDouble("KUR"));
-			stmt2.setDouble(7,  rss.getDouble("BORC"));
-			stmt2.setDouble(8,  rss.getDouble("ALACAK"));
-			stmt2.setString(9, rss.getString("KOD"));
-			stmt2.setString(10, rss.getString("USER"));
-			stmt2.addBatch();
-			
-			satir +=1 ;
-			if ((satir ) % 3000 == 0) 
-			{
-				stmt2.executeBatch();
-			}
-			
-		}
+	    Timestamp timestamp ;
+	    Date date1 ;
+	    Calendar cal ;
+	    for (int kackere = 1;kackere <= 11; kackere++) {
+	    	while(rss.next()){
+	    		stmt2.setString(1, rss.getString("HESAP"));
+	    		if (kont != rss.getInt("EVRAK"))
+	    		{
+	    			eVRAKK +=1 ;
+	    			stmtizahat.setInt(1, eVRAKK);
+	    			stmtizahat.setString(2,  rss.getString("IZAHAT"));
+	    			stmtizahat.addBatch();
+	    			if ((satir ) % 3000 == 0) 
+	    			{
+	    				stmtizahat.executeBatch();
+	    			}
+	    		}
+	    		kont = rss.getInt("EVRAK") ;
+	    		timestamp =rss.getTimestamp("TARIH");
+	    		date1 = new java.util.Date(timestamp.getTime());
+	    		cal = Calendar.getInstance();
+	    		cal.setTime(date1);
+	    		cal.add(Calendar.MONTH,kackere +6);
+	    		java.sql.Timestamp timestamp1 = new java.sql.Timestamp(cal.getTimeInMillis());
+	    		stmt2.setTimestamp(2, timestamp1);
+	    		stmt2.setString(3,  rss.getString("H"));
+	    		stmt2.setInt(4, eVRAKK);
+	    		stmt2.setString(5,rss.getString("CINS"));
+	    		stmt2.setDouble(6,rss.getDouble("KUR"));
+	    		stmt2.setDouble(7,rss.getDouble("BORC"));
+	    		stmt2.setDouble(8,rss.getDouble("ALACAK"));
+	    		stmt2.setString(9,rss.getString("KOD"));
+	    		stmt2.setString(10,rss.getString("USER"));
+	    		stmt2.addBatch();
+	    		satir +=1 ;
+	    		if ((satir ) % 3000 == 0) 
+	    		{
+	    			stmt2.executeBatch();
+	    		}
+	    	}
+	    	rss.first();
+	    }
+	    
 		stmt2.executeBatch();
 		stmtizahat.executeBatch();
 		stmt2.close();
-
 		getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	void hsp_pln_yukleme() throws ClassNotFoundException, SQLException

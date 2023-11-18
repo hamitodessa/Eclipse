@@ -47,6 +47,7 @@ import OBS_C_2025.KER_RAPOR_BILGI;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.SOLA_ORTA;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.lOG_BILGI;
@@ -98,12 +99,18 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		splitPane.setDividerSize(0);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
+		
+		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setMinimumSize(new Dimension(0, 100)); 
+		scrollPaneust.setMaximumSize(new  Dimension(0, 100)); 
+		splitPane.setLeftComponent(scrollPaneust);
+		
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(0, 83));
-		panel.setMaximumSize(new Dimension(0, 83));
+		panel.setPreferredSize(new Dimension(970,80));
+		scrollPaneust.setViewportView(panel);
 		
 		panel.setLayout(null);
-		splitPane.setLeftComponent(panel);
+		
 		
 		JLabel lblNewLabel = new JLabel("Paket No");
 		lblNewLabel.setBounds(29, 39, 70, 14);
@@ -141,7 +148,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		});
 		txtPaketNo.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtPaketNo.setDocument(new JTextFieldLimit(10));
-		txtPaketNo.setBounds(117, 36, 96, 20);
+		txtPaketNo.setBounds(117, 36, 118, 20);
 		panel.add(txtPaketNo);
 		
 		JPanel panel_1 = new JPanel();
@@ -222,7 +229,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				}
 			}
 		});
-		txtKodu.setBounds(287, 36, 147, 20);
+		txtKodu.setBounds(276, 36, 158, 20);
 		MaskFormatter mask;
 		try {
 		    mask = new MaskFormatter("AA-###-####-####");
@@ -235,7 +242,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		panel.add(txtKodu);
 		
 		JLabel lblKodu = new JLabel("Kodu");
-		lblKodu.setBounds(285, 14, 70, 14);
+		lblKodu.setBounds(276, 14, 158, 14);
 		panel.add(lblKodu);
 		
 		JPanel panel_1_1 = new JPanel();
@@ -246,7 +253,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		txtYKons = new JTextField();
 		txtYKons.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtYKons.setBounds(10, 18, 88, 20);
+		txtYKons.setBounds(10, 18, 96, 20);
 		txtYKons.setDocument(new JTextFieldLimit(15));
 		txtYKons.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -313,7 +320,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		txtEvrak = new JTextField();
 		txtEvrak.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtEvrak.setBounds(117, 59, 96, 20);
+		txtEvrak.setBounds(117, 59, 118, 20);
 		txtEvrak.setDocument(new JTextFieldLimit(10));
 		txtEvrak.addKeyListener(new KeyAdapter() {
 			@Override

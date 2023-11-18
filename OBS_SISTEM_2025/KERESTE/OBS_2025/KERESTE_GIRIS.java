@@ -205,11 +205,16 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
+		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setMinimumSize(new Dimension(0, 135));
+		scrollPaneust.setMaximumSize(new Dimension(0, 135));
+		splitPane.setLeftComponent(scrollPaneust);
+		
+		
 		JPanel panel = new JPanel();
-		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 140));
-		panel.setMaximumSize(new Dimension(0, 140));
+		panel.setPreferredSize(new Dimension(1130,130));
 		panel.setLayout(new BorderLayout(0, 0));
+		scrollPaneust.setViewportView( panel);
 
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.setForeground(new Color(0, 0, 128));
@@ -744,14 +749,11 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 
 		splitPane.setRightComponent(splitPane_1);
-
-		
-		
 		
 		JPanel panel_3 = new JPanel();
 		splitPane_1.setRightComponent(panel_3);
-		panel_3.setMinimumSize(new Dimension(0, 140));
-		panel_3.setMaximumSize(new Dimension(0, 140));
+		panel_3.setMinimumSize(new Dimension(0, 160));
+		panel_3.setMaximumSize(new Dimension(0, 160));
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
 		JSplitPane splitPane_3 = new JSplitPane();
@@ -759,12 +761,18 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		splitPane_3.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		panel_3.add(splitPane_3);
 		
+		ScrollPaneWin11 scrollPanetoplam = new ScrollPaneWin11();
+		splitPane_3.setRightComponent(scrollPanetoplam);
+		
 		JPanel panel_71 = new JPanel();
 		panel_71.setBorder(new LineBorder(new Color(0, 191, 255)));
-		panel_71.setBounds(2, 1, 1158, 21);
-		panel_71.setMinimumSize(new Dimension(0, 25));
-		panel_71.setMaximumSize(new Dimension(0,25));
+		//panel_71.setBounds(2, 1, 1158, 21);
+		panel_71.setPreferredSize(new Dimension(1128,30));
+		scrollPanetoplam.setViewportView(panel_71);
+		
 		panel_71.setLayout(null);
+		splitPane_3.setLeftComponent(scrollPanetoplam);
+		
 		
 		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
 		lblNewLabel.setBounds(32, 5, 85, 14);
@@ -789,7 +797,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_9.setBounds(820, 5, 146, 14);
 		panel_71.add(label_9);
-		splitPane_3.setLeftComponent(panel_71);
+		
 		
 		lblPaket = new JLabel("0");
 		lblPaket.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -811,9 +819,13 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		lblNewLabel_8.setBounds(575, 5, 60, 14);
 		panel_71.add(lblNewLabel_8);
 		
+		ScrollPaneWin11 scrollPanealt = new ScrollPaneWin11();
+		splitPane_3.setRightComponent(scrollPanealt);
+		
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
-		tabbedPane_2.setBounds(2, 22, 1158, 100);
-		splitPane_3.setRightComponent(tabbedPane_2);
+		tabbedPane_2.setPreferredSize(new Dimension(1128,105));
+		scrollPanealt.setViewportView(tabbedPane_2);
+		
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 191, 255)));

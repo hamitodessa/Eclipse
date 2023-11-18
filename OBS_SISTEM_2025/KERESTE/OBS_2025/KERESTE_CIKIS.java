@@ -204,12 +204,16 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		splitPane.setResizeWeight(0.0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
+		
+		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setMinimumSize(new Dimension(0, 140));
+		scrollPaneust.setMaximumSize(new Dimension(0, 140));
+		splitPane.setLeftComponent(scrollPaneust);
 
 		JPanel panel = new JPanel();
-		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 135));
-		panel.setMaximumSize(new Dimension(0, 135));
+		panel.setPreferredSize(new Dimension(1185,135));
 		panel.setLayout(new BorderLayout(0, 0));
+		scrollPaneust.setViewportView( panel);
 
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.setForeground(new Color(0, 0, 128));
@@ -727,11 +731,17 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		splitPane_3.setResizeWeight(0.0);
 		splitPane_1.setRightComponent(splitPane_3);
 
+		
+		ScrollPaneWin11 scrollPanetoplam = new ScrollPaneWin11();
+		scrollPanetoplam.setMinimumSize(new Dimension(1128, 35));
+		scrollPanetoplam.setMaximumSize(new Dimension(1128,35));
+		splitPane_3.setLeftComponent(scrollPanetoplam);
+		
 		JPanel panel_71 = new JPanel();
 		panel_71.setBorder(new LineBorder(new Color(0, 191, 255)));
-		//panel_71.setBounds(2, 1, 1158, 21);
-		panel_71.setMinimumSize(new Dimension(0, 30));
-		panel_71.setMaximumSize(new Dimension(0,30));
+		panel_71.setPreferredSize(new Dimension(1128,30));
+		scrollPanetoplam.setViewportView(panel_71);
+		
 		panel_71.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Satir Sayisi :");
@@ -771,14 +781,21 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		lblPaket.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblPaket.setBounds(524, 5, 73, 14);
 		panel_71.add(lblPaket);
-		splitPane_3.setLeftComponent(panel_71);
+		
 		  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
+		ScrollPaneWin11 scrollPanealt = new ScrollPaneWin11();
+		scrollPanealt.setMinimumSize(new Dimension(0, 125)); 
+		scrollPanealt.setMaximumSize(new  Dimension(0, 125)); 
+		splitPane_3.setRightComponent(scrollPanealt);
+		
 		JPanel panel_21 = new JPanel();
-		splitPane_3.setRightComponent(panel_21);
-		panel_21.setMinimumSize(new Dimension(0, 125)); 
-		panel_21.setMaximumSize(new  Dimension(0, 125)); 
+		
+		
 		panel_21.setLayout(new BorderLayout(0, 0)); 
+		panel_21.setPreferredSize(new Dimension(1128,120));
+		scrollPanealt.setViewportView(panel_21);
+		
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed(); 
 		tabbedPane_2.setForeground(new Color(0, 0, 128));
 		tabbedPane_2.setFont(new Font("Tahoma", Font.BOLD, 12));

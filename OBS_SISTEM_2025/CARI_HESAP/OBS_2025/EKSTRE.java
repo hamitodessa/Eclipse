@@ -47,6 +47,8 @@ import javax.swing.border.LineBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 @SuppressWarnings({"static-access","serial"})
@@ -76,7 +78,8 @@ public class EKSTRE extends JInternalFrame {
 	static double double_4 = 0 ;
 
 	public static JSplitPane pane;
-
+	private ScrollPaneWin11 jScrollPane1alt ;
+	private ScrollPaneWin11 jScrollPane1 ;
 
 	public EKSTRE() {
 		setTitle("EKSTRE");
@@ -94,7 +97,14 @@ public class EKSTRE extends JInternalFrame {
 		getContentPane().add(pane, BorderLayout.CENTER);
 
 		
-		ScrollPaneWin11 jScrollPane1alt = new ScrollPaneWin11();
+		jScrollPane1alt = new ScrollPaneWin11();
+		jScrollPane1alt.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+			@Override
+			public void adjustmentValueChanged(AdjustmentEvent e) {
+				jScrollPane1.getHorizontalScrollBar().setValue(jScrollPane1alt.getHorizontalScrollBar().getValue());			
+			}
+		});
+
 		pane.setRightComponent(jScrollPane1alt);
 		
 		
@@ -208,8 +218,14 @@ public class EKSTRE extends JInternalFrame {
 		lblNewLabel_2.setBounds(10, 65, 85, 14);
 		panel.add(lblNewLabel_2);
 
-		ScrollPaneWin11 jScrollPane1 = new ScrollPaneWin11();
-	    //jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
+		jScrollPane1 = new ScrollPaneWin11();
+		jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+			@Override
+			public void adjustmentValueChanged(AdjustmentEvent e) {
+				jScrollPane1alt.getHorizontalScrollBar().setValue(jScrollPane1.getHorizontalScrollBar().getValue());			
+			}
+		});
+
 		
 		pane.setLeftComponent(jScrollPane1);
 		table = new JTable(){

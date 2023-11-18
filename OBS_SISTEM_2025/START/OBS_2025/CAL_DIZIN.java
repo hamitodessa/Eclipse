@@ -1122,6 +1122,7 @@ public class CAL_DIZIN extends JFrame {
 		panel_2.add(btnNewButton_5_2);
 		
 		ScrollPaneWin11 scrollPane_10 = new ScrollPaneWin11();
+	
 		scrollPane_10.setBounds(10, 96, 617, 218);
 		panel_2.add(scrollPane_10);
 		

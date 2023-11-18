@@ -27,8 +27,11 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -137,6 +140,21 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				return c;
 			}
 		};
+		table.addAncestorListener(new AncestorListener() {
+			public void ancestorAdded(AncestorEvent event) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						table.requestFocusInWindow();
+					}
+				});
+			}
+			public void ancestorMoved(AncestorEvent event) {
+			}
+			public void ancestorRemoved(AncestorEvent event) {
+			}
+		});
+
 		table.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -151,7 +169,10 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
 						{
+							getContentPane().setCursor(oac.WAIT_CURSOR);
 							OBS_MAIN.btnFiltre.doClick();
+							getContentPane().setCursor(oac.DEFAULT_CURSOR);
+
 						}
 					}
 				}

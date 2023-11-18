@@ -36,9 +36,12 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.RowSorter.SortKey;
 import javax.swing.border.LineBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -166,6 +169,21 @@ public class OZEL_MIZAN extends JInternalFrame {
 				return c;
 			}
 		};
+		table.addAncestorListener(new AncestorListener() {
+			public void ancestorAdded(AncestorEvent event) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						table.requestFocusInWindow();
+					}
+				});
+			}
+			public void ancestorMoved(AncestorEvent event) {
+			}
+			public void ancestorRemoved(AncestorEvent event) {
+			}
+		});
+
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
@@ -184,7 +202,9 @@ public class OZEL_MIZAN extends JInternalFrame {
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
 						{
+							getContentPane().setCursor(oac.WAIT_CURSOR);
 							OBS_MAIN.btnFiltre.doClick();
+							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
 					}
 				}

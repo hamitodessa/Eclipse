@@ -1550,6 +1550,7 @@ public class CAL_DIZIN extends JFrame {
 		rs = usr.log_mail_oku(GLOBAL.KULL_ADI );
 		if (!rs.isBeforeFirst() ) {  
 			GRID_TEMIZLE.grid_temizle(table_1);
+			txt_Lmaill.setText("");
 			return;
 		} 
 		GRID_TEMIZLE.grid_temizle(table_1);

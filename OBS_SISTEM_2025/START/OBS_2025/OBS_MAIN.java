@@ -3262,6 +3262,10 @@ public class OBS_MAIN extends JFrame  {
 				{
 					KERESTE_GIRIS.excell_aktar();
 				}
+				else if (sonuc == "KERESTE FATURA RAPORLAMA")
+				{
+					KER_FAT_RAPOR.excell_aktar();
+				}
 				GuiUtil.setWaitCursor(toolBar,false);//
 			}
 		});

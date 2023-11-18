@@ -62,6 +62,7 @@ import com.crystaldecisions.sdk.occa.report.lib.ReportSDKException;
 
 import KER_RAPOR.KER_DETAY;
 import KER_RAPOR.KER_ENVANTER;
+import KER_RAPOR.KER_FAT_RAPOR;
 import KER_RAPOR.KER_GRUP_RAPOR;
 import KER_RAPOR.KER_ORT_FIAT;
 import OBS_2025_RAPORLAR.GRUP_RAPOR;
@@ -263,6 +264,10 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 				{
 					ker_envanter_gonder();
 				}
+				else if ( OBS_MAIN.pencere_bak("KERESTE FATURA RAPORLAMA") == true ) 
+				{
+					ker_fatura_gonder();
+				}
 				else if ( OBS_MAIN.pencere_bak("IMALAT GRUP RAPOR") == true ) 
 				{
 					ima_grup_gonder();
@@ -452,6 +457,11 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			{
 				comboBox.enable(false);
 				lblNewLabel_2.setText("Kereste Ortalama Fiat");
+			}
+			else if (ker_fatura_kontrol() )
+			{
+				comboBox.enable(false);
+				lblNewLabel_2.setText("Kereste Fatura Rapor");
 			}
 			else if (ker_envanter_kontrol() )
 			{
@@ -960,6 +970,20 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
+	private void ker_fatura_gonder() 
+	{
+		try
+		{
+			KER_FAT_RAPOR. mail_at();
+			xl_gonder("Kereste_Fatura" );
+		}
+		catch (Exception ex)
+		{
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);
+		}
+	}
+
 	private void stk_gonder() 
 	{
 		try
@@ -1198,6 +1222,17 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		}
 		return result;
 	}
+	private boolean  ker_fatura_kontrol() throws ReportSDKException
+	{
+		boolean result  = false;
+
+		if (OBS_MAIN.pencere_bak("KERESTE FATURA RAPORLAMA"))
+		{
+			result = true ;
+		}
+		return result;
+	}
+
 	private boolean  ker_ortfiat_kontrol() throws ReportSDKException
 	{
 		boolean result  = false;

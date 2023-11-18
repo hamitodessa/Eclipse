@@ -383,6 +383,36 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				}
 			}
 		});
+		txtcari.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("deprecation")
+			@Override
+			public void keyPressed(KeyEvent e) {
+				String[] parts;
+				String deger ;
+				try {
+					deger = oac.glb.setting_oku("CARI_HSPPLN_CAG").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							HESAP_PLN hsp ;
+							getContentPane().setCursor(oac.WAIT_CURSOR);
+							hsp = new HESAP_PLN();
+							hsp.show();
+							if (! oac.hsp_hsp_kodu.equals(""))
+							{
+								txtcari.setText(oac.hsp_hsp_kodu);
+							}
+							getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						}
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 
 		txtcari.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtcari.setBounds(89, 33, 110, 20);

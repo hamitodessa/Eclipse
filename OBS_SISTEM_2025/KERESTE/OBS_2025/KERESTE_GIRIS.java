@@ -87,6 +87,7 @@ import javax.swing.table.TableModel;
 import javax.swing.text.MaskFormatter;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.math3.ode.events.EventHandler;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -330,6 +331,37 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_2);
 
 		txtcari = new JTextField();
+		txtcari.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("deprecation")
+			@Override
+			public void keyPressed(KeyEvent e) {
+				String[] parts;
+				String deger ;
+				try {
+					deger = oac.glb.setting_oku("CARI_HSPPLN_CAG").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+						HESAP_PLN hsp ;
+						mWAIT();
+						hsp = new HESAP_PLN();
+						hsp.setVisible(true);
+						mDEFAULT();
+						if (! oac.hsp_hsp_kodu.equals(""))
+						{
+							txtcari.setText( "");
+							txtcari.setText( oac.hsp_hsp_kodu.trim());
+						}
+						}
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 
 		txtcari.setDocument(new JTextFieldLimit(12));
 		txtcari.getDocument().addDocumentListener(new DocumentListener() {

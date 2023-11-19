@@ -349,6 +349,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_2);
 
 		txtcari = new JTextField();
+		InputMap inputMap = txtcari.getInputMap(txtcari.WHEN_FOCUSED);
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
 
 		txtcari.setDocument(new JTextFieldLimit(12));
 		txtcari.getDocument().addDocumentListener(new DocumentListener() {

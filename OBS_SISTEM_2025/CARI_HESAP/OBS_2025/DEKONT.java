@@ -820,6 +820,7 @@ public class DEKONT extends JInternalFrame {
 		cmbbhes = new JComboBox<String>();  //******************************BORCLU HESAP **********************
 		cmbbhes.setFont(new Font("Tahoma", Font.BOLD, 15));
 		cmbbhes.setEnabled(false);
+       
 		cmbbhes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -836,6 +837,8 @@ public class DEKONT extends JInternalFrame {
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
+		
+        
 		cmbbhes.getEditor().getEditorComponent().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -849,6 +852,7 @@ public class DEKONT extends JInternalFrame {
 						if (! oac.hsp_hsp_kodu.equals(""))
 						{
 							cmbbhes.setSelectedItem( oac.hsp_hsp_kodu);
+							//cmbbhes.getEditor().setItem(oac.hsp_hsp_kodu);
 						}
 					} catch (Exception e1) {
 						e1.printStackTrace();
@@ -902,7 +906,10 @@ public class DEKONT extends JInternalFrame {
 									hsp.show();
 									if (! oac.hsp_hsp_kodu.equals(""))
 									{
-										cmbbhes.setSelectedItem(oac.hsp_hsp_kodu);
+										//cmbbhes.getEditor().setItem(oac.hsp_hsp_kodu);
+										cmbbhes.setSelectedItem( oac.hsp_hsp_kodu);
+										cmbb.requestFocus();
+										
 									}
 									getContentPane().setCursor(oac.DEFAULT_CURSOR);
 								} catch (Exception e1) {
@@ -916,8 +923,11 @@ public class DEKONT extends JInternalFrame {
 				}
 			}
 		});
-		InputMap txtbhesMap = cmbbhes.getInputMap();
-		txtbhesMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
+		
+		JTextField editorComponent = (JTextField)  cmbbhes.getEditor().getEditorComponent();
+		InputMap txtbhesMap = editorComponent.getInputMap(editorComponent.WHEN_FOCUSED);
+		txtbhesMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK), "none");
+		
 		cmbbhes.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
 		cmbbhes.setBounds(10, 45, 147, 25);
 		AutoCompleteDecorator.decorate(cmbbhes);
@@ -1419,6 +1429,7 @@ public class DEKONT extends JInternalFrame {
 									if (! oac.hsp_hsp_kodu.equals(""))
 									{
 										cmbahes.setSelectedItem( oac.hsp_hsp_kodu);
+										cmba.requestFocus();
 									}
 									getContentPane().setCursor(oac.DEFAULT_CURSOR);
 								} catch (ClassNotFoundException e1) {
@@ -1434,8 +1445,9 @@ public class DEKONT extends JInternalFrame {
 				}
 			}
 		});
-		InputMap txtahesMap =cmbahes.getInputMap();
-		txtahesMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
+		JTextField editorComponenta = (JTextField)  cmbahes.getEditor().getEditorComponent();
+		InputMap txtbhesMapa = editorComponenta.getInputMap(editorComponenta.WHEN_FOCUSED);
+		txtbhesMapa.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK), "none");
 		cmbahes.setFont(new Font("Tahoma", Font.BOLD, 15));
 		cmbahes.setEnabled(false);
 		cmbahes.setBounds(10, 45, 147, 25);

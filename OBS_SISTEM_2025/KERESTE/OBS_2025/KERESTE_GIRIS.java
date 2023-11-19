@@ -43,6 +43,7 @@ import java.util.stream.Collectors;
 
 import javax.mail.util.ByteArrayDataSource;
 import javax.management.loading.PrivateClassLoader;
+import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.ComboBoxEditor;
 import javax.swing.DefaultCellEditor;
@@ -331,6 +332,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_2);
 
 		txtcari = new JTextField();
+		InputMap inputMap = txtcari.getInputMap(txtcari.WHEN_FOCUSED);
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
 		txtcari.addKeyListener(new KeyAdapter() {
 			@SuppressWarnings("deprecation")
 			@Override
@@ -345,16 +348,15 @@ public class KERESTE_GIRIS extends JInternalFrame {
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
 						{
-						HESAP_PLN hsp ;
-						mWAIT();
-						hsp = new HESAP_PLN();
-						hsp.setVisible(true);
-						mDEFAULT();
-						if (! oac.hsp_hsp_kodu.equals(""))
-						{
-							txtcari.setText( "");
-							txtcari.setText( oac.hsp_hsp_kodu.trim());
-						}
+							HESAP_PLN hsp ;
+							getContentPane().setCursor(oac.WAIT_CURSOR);
+							hsp = new HESAP_PLN();
+							hsp.show();
+							if (! oac.hsp_hsp_kodu.equals(""))
+							{
+								txtcari.setText(oac.hsp_hsp_kodu);
+							}
+							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
 					}
 				} catch (Exception e1) {

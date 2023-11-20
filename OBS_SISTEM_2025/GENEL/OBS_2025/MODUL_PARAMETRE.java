@@ -1,13 +1,10 @@
 package OBS_2025;
 
 import java.awt.Color;
-import java.sql.SQLException;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-//import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN;
@@ -406,21 +403,13 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		lblNewLabel_1_6_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1_6_1.setBounds(730, 20, 50, 14);
 		panel_5_1_1.add(lblNewLabel_1_6_1);
-		
 
-		try {
-			yukle();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		yukle();
 	}
 
-	private void yukle() throws ClassNotFoundException, SQLException
+	private void yukle() 
 	{
 		try {
-			
-		
 		// Cari
 		lblNewLabel.setText(BAGLAN.cariDizin.kOD);
 		lblNewLabel_1.setText(BAGLAN.cariDizin.hAN_SQL);
@@ -526,7 +515,6 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 			label_13_1_1.setText(BAGLAN.smsDizin.sERVER);	
 		}
 		lblSmslog.setText(BAGLAN.smsDizin.lOG == true ? "Loglama" : "");
-		
 		
 		} catch (Exception e) 
 		{

@@ -182,6 +182,7 @@ public class LOGIN extends JDialog {
 	boolean ds = false;
 	boolean tx = false;
 	boolean em = false;
+	public Thread t = null ;
 	/**
 	 * Launch the application.
 	 */
@@ -494,6 +495,7 @@ public class LOGIN extends JDialog {
 		btndevam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) ) return ;
+				
 				Runnable runner = new Runnable()
 				{ public void run() {
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -619,13 +621,11 @@ public class LOGIN extends JDialog {
 						{   
 							GLOBAL.create_table_log(dsy,oac._IKereste.ker_firma_adi(),BAGLAN_LOG.kerLogDizin);
 						}
-						//Thread.currentThread().isInterrupted();
 						dispose();
 						obmain.setExtendedState(JFrame.MAXIMIZED_BOTH);
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));
 						obmain.lblUser.setText(GLOBAL.KULL_ADI);
 						obmain.setVisible(true);
-						
 					}
 					catch (Exception ex)
 					{
@@ -635,7 +635,7 @@ public class LOGIN extends JDialog {
 					}
 				}
 				};
-				Thread t = new Thread(runner, "Code Executer");
+				t = new Thread(runner, "OBS Login");
 				t.start();
 			}
 		});

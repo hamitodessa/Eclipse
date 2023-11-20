@@ -135,7 +135,7 @@ import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
-@SuppressWarnings({"static-access","unused", "serial"})
+@SuppressWarnings({"static-access","unused", "serial","deprecation"})
 public class KERESTE_CIKIS extends JInternalFrame {
 	private static JSplitPane splitPane ;
 	private static MaterialTabbed tabbedPane ;
@@ -369,24 +369,21 @@ public class KERESTE_CIKIS extends JInternalFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 
 				{
-					HESAP_PLN hsp ;
 					try {
+						HESAP_PLN hsp ;
 						hsp = new HESAP_PLN();
 						hsp.setVisible(true);
 						if (! oac.hsp_hsp_kodu.equals(""))
 						{
 							txtcari.setText( oac.hsp_hsp_kodu);
 						}
-					} catch (ClassNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (SQLException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
 			}
 		});
 		txtcari.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("deprecation")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				String[] parts;
@@ -399,8 +396,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 						char c=parts[2].charAt(0);
 						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
 						{
-							HESAP_PLN hsp ;
 							getContentPane().setCursor(oac.WAIT_CURSOR);
+							HESAP_PLN hsp ;
 							hsp = new HESAP_PLN();
 							hsp.show();
 							if (! oac.hsp_hsp_kodu.equals(""))
@@ -491,6 +488,8 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_5);
 
 		txtadres = new JTextField();
+		InputMap inputMapa = txtadres.getInputMap(txtadres.WHEN_FOCUSED);
+        inputMapa.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
 		txtadres.setDocument(new JTextFieldLimit(12));
 		txtadres.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -562,6 +561,36 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		});
 		txtadres.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtadres.setBounds(353, 33, 125, 20);
+		txtadres.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				String[] parts;
+				String deger ;
+				try {
+					deger = oac.glb.setting_oku("CARI_HSPPLN_CAG").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							getContentPane().setCursor(oac.WAIT_CURSOR);
+							ADRES_LISTE asp ;
+							asp = new ADRES_LISTE();
+							asp.setVisible(true);
+							if (! oac.hsp_hsp_kodu.equals(""))
+							{
+								txtcari.setText(oac.hsp_hsp_kodu);
+							}
+							getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						}
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+
 		panel_2.add(txtadres);
 		txtadres.setColumns(10);
 

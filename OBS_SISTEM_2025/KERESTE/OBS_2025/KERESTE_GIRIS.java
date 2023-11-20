@@ -136,7 +136,7 @@ import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
-@SuppressWarnings({"serial","static-access","unused"})
+@SuppressWarnings({"serial","static-access","unused","deprecation"})
 public class KERESTE_GIRIS extends JInternalFrame {
 	private static JSplitPane splitPane ;
 	private static JTextField textField;
@@ -335,7 +335,6 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		InputMap inputMap = txtcari.getInputMap(txtcari.WHEN_FOCUSED);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
 		txtcari.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("deprecation")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				String[] parts;
@@ -474,6 +473,8 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		panel_2.add(lblNewLabel_5);
 
 		txtadres = new JTextField();
+		InputMap inputMapa = txtadres.getInputMap(txtadres.WHEN_FOCUSED);
+        inputMapa.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
 		txtadres.setDocument(new JTextFieldLimit(12));
 		txtadres.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -543,6 +544,36 @@ public class KERESTE_GIRIS extends JInternalFrame {
 				}
 			}
 		});
+		txtadres.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				String[] parts;
+				String deger ;
+				try {
+					deger = oac.glb.setting_oku("CARI_HSPPLN_CAG").toString();
+					parts = deger.split(",");
+					if ( ! parts[2].equals(" ")) 
+					{
+						char c=parts[2].charAt(0);
+						if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+						{
+							getContentPane().setCursor(oac.WAIT_CURSOR);
+							ADRES_LISTE asp ;
+							asp = new ADRES_LISTE();
+							asp.setVisible(true);
+							if (! oac.hsp_hsp_kodu.equals(""))
+							{
+								txtcari.setText(oac.hsp_hsp_kodu);
+							}
+							getContentPane().setCursor(oac.DEFAULT_CURSOR);
+						}
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+
 		txtadres.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtadres.setBounds(340, 33, 125, 20);
 		panel_2.add(txtadres);

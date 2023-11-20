@@ -3827,13 +3827,13 @@ public class OBS_MAIN extends JFrame  {
 			stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/Whatsap.mp3"); //whts
 			Player player = new Player(stream);
 			player.play();
-			stream.close();
-			try {
-				if(stream != null)
-					stream.close();
-			} catch (IOException ex) {
-				mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
-			}
+			//stream.close();
+			//try {
+			if(stream != null)
+				stream.close();
+			//} catch (IOException ex) {
+			//	mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//}
 			GuiUtil.setWaitCursor(toolBar,false);
 		} catch (Exception e) {
 			GuiUtil.setWaitCursor(toolBar,false);
@@ -3856,14 +3856,10 @@ public class OBS_MAIN extends JFrame  {
 			stream = OBS_MAIN.class.getClassLoader().getResourceAsStream("DOSYA/hata.mp3"); //whts
 			Player player = new Player(stream);
 			player.play();
-			stream.close();
-		} catch (Exception e) {
-			try {
-				if(stream != null)
-					stream.close();
-			} catch (Exception e1) {
-				mesaj_goster(10000,Notifications.Type.ERROR,e.getMessage() );
-			}
+			if(stream != null)
+				stream.close();
+		} catch (Exception ex) {
+			mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 		}
 	}
 	private static long millisToNextHour(Calendar calendar) 

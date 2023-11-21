@@ -2,7 +2,7 @@ package fih;
 
 import java.sql.SQLException;
 
-public class FIHRIST_MYSQL implements I_Fihrist{
+public class FIHRIST_SQLITE implements I_Fihrist{
 
 	@Override
 	public void baglan() throws SQLException, ClassNotFoundException {

@@ -5,34 +5,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import OBS_C_2025.ADRES_MSSQL;
-import OBS_C_2025.ADRES_MYSQL;
 import OBS_C_2025.BAGLAN;
-import OBS_C_2025.CARI_ACCESS;
-import OBS_C_2025.CARI_HESAP_MSSQL;
-import OBS_C_2025.CARI_HESAP_MYSQL;
 import OBS_C_2025.CONNECT;
 import OBS_C_2025.GLOBAL;
-import OBS_C_2025.GUNLUK_MSSQL;
-import OBS_C_2025.GUNLUK_MYSQL;
-import OBS_C_2025.KAMBIYO_MSSQL;
-import OBS_C_2025.KAMBIYO_MYSQL;
-import OBS_C_2025.KERESTE_MSSQL;
-import OBS_C_2025.KERESTE_MYSQL;
-import OBS_C_2025.KUR_MSSQL;
-import OBS_C_2025.KUR_MYSQL;
-import OBS_C_2025.LOG_MAIL_OKU;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
-import OBS_C_2025.SMS_MSSQL;
-import OBS_C_2025.SMS_MYSQL;
-import OBS_C_2025.STOK_MSSQL;
-import OBS_C_2025.STOK_MYSQL;
 import OBS_C_2025.Server_Bilgi;
 import fih.FIHRIST_MSSQL;
 import fih.FIHRIST_MYSQL;
+import fih.FIHRIST_SQLITE;
 import obs.ayarlar.aNA_Class;
-
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -47,8 +29,11 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+
 
 import fih.FIHRIST_ACCESS;
 
@@ -80,6 +65,7 @@ public class rEHBER extends JFrame {
 	
 	BAGLAN bAGLAN = new BAGLAN();
 	aNA_Class oac = new aNA_Class();
+	JTabbedPane tabbedPane;
 	/**
 	 * Launch the application.
 	 */
@@ -113,7 +99,7 @@ public class rEHBER extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		scrollPane.setViewportView(tabbedPane);
 		
 		JPanel panel = new JPanel();
@@ -346,7 +332,16 @@ public class rEHBER extends JFrame {
 		GLOBAL.surucu_kontrol();
 		calisma_dizini_oku() ;
 		FIHRIST_ACCESS  fih_Access = new FIHRIST_ACCESS(aNA_Class._IFihrist );
-		fih_Access.baglan();
+		try {
+			fih_Access.baglan();
+			fihrist_kont();
+			
+			System.out.println(FIH_DOS_VAR);
+		} catch (Exception e) {
+			
+			//System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	void calisma_dizini_oku() 
 	{
@@ -358,9 +353,18 @@ public class rEHBER extends JFrame {
 			cONN_AKTAR( BAGLAN.fihDizin.hAN_SQL );
 			String hangi_sql =  BAGLAN.cariDizin.hAN_SQL;
 			oac._IFihristCon = oac._IConn ;
-			oac._IFihrist = hangi_sql.equals("MS SQL") ? new  FIHRIST_MSSQL() : new  FIHRIST_MYSQL();
-		
-
+			if(hangi_sql.equals("MS SQL") )
+			{
+				oac._IFihrist = new  FIHRIST_MSSQL() ;
+			}
+			else if(hangi_sql.equals("MY SQL") )
+			{
+				oac._IFihrist = new  FIHRIST_MYSQL() ;
+			}
+			else if(hangi_sql.equals("SQ LITE") )
+			{
+				oac._IFihrist = new  FIHRIST_SQLITE();
+			}
 
 			fihrist_calisma_dizini_oku();
 		
@@ -423,6 +427,37 @@ public class rEHBER extends JFrame {
 		else
 		{
 			aNA_Class.FIHRIST_CONN = false;
+		}
+	}
+	void fihrist_kont() throws ClassNotFoundException, SQLException
+	{
+		String qwe = "" ;
+		if (aNA_Class.FIHRIST_CONN == true)
+		{
+			if (FIH_DOS_VAR == false)
+			{
+				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				//OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Cari -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....");
+				qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
+				
+			}
+			else 
+			{ 
+//				BAGLAN.cariDizin.fIRMA_ADI =  oac._ICar.cari_firma_adi() ;
+//				qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
+//				OBS_MAIN.lblCariBilgi.setText (BAGLAN.cariDizin.kOD + "  /  " + BAGLAN.cariDizin.fIRMA_ADI + "  /  " + qwe  + " / "+ BAGLAN.cariDizin.hAN_SQL );
+//				Dimension size = OBS_MAIN.lblCariBilgi.getPreferredSize();
+//				OBS_MAIN.lblCariBilgi.setBounds(10, 55, size.width +10, 14);
+//				OBS_MAIN.lblCariBilgi.setForeground(new Color(0, 0, 128));
+//				OBS_MAIN.lblCariBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
+//				OBS_MAIN.tabbedPane.setEnabledAt(0, true);
+			}
+		}
+		else
+		{
+			//OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Cari Baglanti kurulamadi.....");
+			//JOptionPane.showMessageDialog(null,  "Cari Baglanti kurulamadi.....",  "Server Baglanti", JOptionPane.ERROR_MESSAGE);        
+			
 		}
 	}
 }

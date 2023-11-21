@@ -80,6 +80,8 @@ import javax.swing.border.LineBorder;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 @SuppressWarnings("serial")
 public class MAIL extends JInternalFrame {
@@ -195,6 +197,17 @@ public class MAIL extends JInternalFrame {
 		panel_1.add(lblNewLabel_4);
 
 		txtgonderen = new JTextField();
+		txtgonderen.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtgonderen.getText().equals("") ) return;
+				if (ValidEmailAddress.isValid(txtgonderen.getText()  ) == false )
+				{
+					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Gecersiz Email Adres Formati" );
+					 txtgonderen.requestFocus();
+				}
+			}
+		});
 		txtgonderen.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtgonderen.setDocument(new JTextFieldLimit(50));
 		txtgonderen.setBounds(120, 8, 258, 20);
@@ -209,6 +222,18 @@ public class MAIL extends JInternalFrame {
 		txtgonadi.setColumns(10);
 
 		txtalici = new JTextField();
+		txtalici.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtalici.getText().equals("") ) return;
+				if (ValidEmailAddress.isValid(txtalici.getText()  ) == false )
+				{
+					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Gecersiz Email Adres Formati" );
+					 txtalici.requestFocus();
+				}
+			}
+		});
+
 		txtalici.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtgonderen.setDocument(new JTextFieldLimit(50));
 		txtalici.setBounds(120, 58, 258, 20);
@@ -420,6 +445,17 @@ public class MAIL extends JInternalFrame {
 		panel_3.add(lblNewLabel_8);
 
 		txtmail = new JTextField();
+		txtmail.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtmail.getText().equals("") ) return;
+				if (ValidEmailAddress.isValid(txtmail.getText()  ) == false )
+				{
+					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Gecersiz Email Adres Formati" );
+					 txtmail.requestFocus();
+				}
+			}
+		});
 		txtmail.setBounds(81, 8, 283, 20);
 		txtmail.addKeyListener(new KeyAdapter() {
 
@@ -429,7 +465,6 @@ public class MAIL extends JInternalFrame {
 				try {
 					sonuc = sms_Access.kod_ismi(txtmail.getText());
 				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 

@@ -42,8 +42,11 @@ import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.ValidEmailAddress;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 @SuppressWarnings({"serial" , "static-access" , "deprecation"})
 public class H_PLANI extends JInternalFrame {
@@ -424,6 +427,17 @@ public class H_PLANI extends JInternalFrame {
 		txto3.setDocument(new JTextFieldLimit(15));
 
 		txtmail = new JTextField();
+		txtmail.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtmail.getText().equals("") ) return;
+				if (ValidEmailAddress.isValid(txtmail.getText()  ) == false )
+				{
+					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Gecersiz Email Adres Formati" );
+					 txtmail.requestFocus();
+				}
+			}
+		});
 		txtmail.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtmail.setBounds(102, 398, 320, 20);
 		panel.add(txtmail);

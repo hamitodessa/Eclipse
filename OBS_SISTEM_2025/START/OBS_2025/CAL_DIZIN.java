@@ -92,6 +92,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.Server_Bilgi;
 import OBS_C_2025.StayOpenCheckBoxMenuItemUI;
 import OBS_C_2025.USER_ISLEMLERI;
+import OBS_C_2025.ValidEmailAddress;
 import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
@@ -103,6 +104,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.JSeparator;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 @SuppressWarnings({"static-access","serial"})
 public class CAL_DIZIN extends JFrame {
@@ -1013,6 +1016,16 @@ public class CAL_DIZIN extends JFrame {
 		panel_3.add(lblNewLabel_2);
 
 		txt_Lmaill = new JTextField();
+		txt_Lmaill.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (ValidEmailAddress.isValid(txt_Lmaill.getText()  ) == false )
+				{
+					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Gecersiz Email Adres Formati" );
+					 txt_Lmaill.requestFocus();
+				}
+			}
+		});
 		txt_Lmaill.setBounds(98, 36, 336, 20);
 		panel_3.add(txt_Lmaill);
 		txt_Lmaill.setColumns(10);

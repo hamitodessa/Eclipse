@@ -2,6 +2,7 @@ package fih;
 
 import java.sql.SQLException;
 
+@SuppressWarnings("static-access")
 public class FIHRIST_ACCESS {
 	private static I_Fihrist _IFihrist;
 	

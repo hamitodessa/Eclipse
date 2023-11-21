@@ -35,9 +35,9 @@ public class BAGLAN {
     	b_OKU.bILGI_OKU(uSER, "Adres",adrDizin,"OK_Adr");
     	b_OKU.bILGI_OKU(uSER, "Gunluk",gunDizin,"OK_Gun");
     	b_OKU.bILGI_OKU(uSER, "Kambiyo",kamDizin,"OK_Kam");
-    	b_OKU.bILGI_OKU(uSER, "Fihrist",fihDizin,"OK_Fih");
     	b_OKU.bILGI_OKU(uSER, "Sms",smsDizin,"OK_Sms");
     	b_OKU.bILGI_OKU(uSER, "Kereste",kerDizin,"OK_Ker");
+    	b_OKU.bILGI_OKU(uSER, "Fihrist",fihDizin,"OK_Fih");
     }
    
 

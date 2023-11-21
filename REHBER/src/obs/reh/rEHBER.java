@@ -24,6 +24,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -66,6 +67,8 @@ public class rEHBER extends JFrame {
 	BAGLAN bAGLAN = new BAGLAN();
 	aNA_Class oac = new aNA_Class();
 	JTabbedPane tabbedPane;
+	boolean surucubilgi = false;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -331,17 +334,28 @@ public class rEHBER extends JFrame {
 		//************SURUCU KONTROL**************************
 		GLOBAL.surucu_kontrol();
 		calisma_dizini_oku() ;
-		FIHRIST_ACCESS  fih_Access = new FIHRIST_ACCESS(aNA_Class._IFihrist );
-		try {
-			fih_Access.baglan();
-			fihrist_kont();
-			
-			System.out.println(FIH_DOS_VAR);
-		} catch (Exception e) {
-			
-			//System.out.println(e.getMessage());
-			e.printStackTrace();
+		if(! surucubilgi) // Bilgi Yok
+		{
+			System.out.println(aNA_Class.FIHRIST_CONN );
+			JOptionPane.showMessageDialog(null,  "Surucu bilgi bos....",  "Server Baglanti", JOptionPane.ERROR_MESSAGE); 
 		}
+		else {
+			
+			try {
+				FIHRIST_ACCESS  fih_Access = new FIHRIST_ACCESS(aNA_Class._IFihrist );
+				fih_Access.baglan();
+				fihrist_kont();
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			
+		}
+		
+	
+			
+		
+		
 	}
 	void calisma_dizini_oku() 
 	{
@@ -351,7 +365,7 @@ public class rEHBER extends JFrame {
 			bAGLAN.cONNECT("Admin");
 			// Cari
 			cONN_AKTAR( BAGLAN.fihDizin.hAN_SQL );
-			String hangi_sql =  BAGLAN.cariDizin.hAN_SQL;
+			String hangi_sql =  BAGLAN.fihDizin.hAN_SQL;
 			oac._IFihristCon = oac._IConn ;
 			if(hangi_sql.equals("MS SQL") )
 			{
@@ -365,7 +379,13 @@ public class rEHBER extends JFrame {
 			{
 				oac._IFihrist = new  FIHRIST_SQLITE();
 			}
-
+			else {
+				surucubilgi = false ;
+				System.out.println("384");
+				return ;
+			}
+			System.out.println("387");
+			surucubilgi = true ;
 			fihrist_calisma_dizini_oku();
 		
 
@@ -412,18 +432,7 @@ public class rEHBER extends JFrame {
 				aNA_Class.FIHRIST_CONN = false;
 			}
 		}
-		else if (s_CONN.Server_kontrol_S(sBilgi) == true )
-		{
-			if (s_CONN.Dosya_kontrol_S(sBilgi) == false)
-			{
-				FIH_DOS_VAR = false;
-			}
-			else
-			{
-			FIH_DOS_VAR = true;
-			aNA_Class.FIHRIST_CONN = true;
-			}
-		}
+		
 		else
 		{
 			aNA_Class.FIHRIST_CONN = false;
@@ -456,7 +465,7 @@ public class rEHBER extends JFrame {
 		else
 		{
 			//OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Cari Baglanti kurulamadi.....");
-			//JOptionPane.showMessageDialog(null,  "Cari Baglanti kurulamadi.....",  "Server Baglanti", JOptionPane.ERROR_MESSAGE);        
+			JOptionPane.showMessageDialog(null,  "Fihtist Baglanti kurulamadi.....",  "Server Baglanti", JOptionPane.ERROR_MESSAGE);        
 			
 		}
 	}

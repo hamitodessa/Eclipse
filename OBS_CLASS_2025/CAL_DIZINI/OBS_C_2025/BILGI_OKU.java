@@ -65,6 +65,10 @@ public class BILGI_OKU {
 				{
 					dIZIN.cONN_STR =  "localhost:" + dIZIN.sERVER + "/" + dOSYA_BASLANGIC  + dIZIN.kOD ;
 				}
+				else   if (dIZIN.hAN_SQL.toString().equals("SQ LITE") == true) 
+				{
+					dIZIN.cONN_STR =  dOSYA_BASLANGIC  + dIZIN.kOD + ".DB" ;   //SQLITE
+				}
 			}
 			else
 			{ 

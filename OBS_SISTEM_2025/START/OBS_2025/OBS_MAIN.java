@@ -3859,7 +3859,7 @@ public class OBS_MAIN extends JFrame  {
 			if(stream != null)
 				stream.close();
 		} catch (Exception ex) {
-			mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
+			//mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 		}
 	}
 	private static long millisToNextHour(Calendar calendar) 

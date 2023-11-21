@@ -1978,6 +1978,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 	    			stmt2.executeBatch();
 	    		}
 	    	}
+	    	satir = 0;
 	    	rss.beforeFirst();
 	    }
 	    
@@ -2148,22 +2149,24 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			Timestamp timestamp ;
 			Date date1 ;
 			Calendar cal ;
-			for (int kackere = 1;kackere <= 11; kackere++) {
+			int kackere ;
+			for (kackere = 1;kackere <= 2; kackere++) {
+				System.err.println(kackere);
 				while(rss.next())
 				{
-					timestamp =rss.getTimestamp("TARIH");
+					timestamp = rss.getTimestamp("TARIH");
 					date1 = new java.util.Date(timestamp.getTime());
 					cal = Calendar.getInstance();
 					cal.setTime(date1);
 					cal.add(Calendar.YEAR,kackere + 7);
 					java.sql.Timestamp timestamp1 = new java.sql.Timestamp(cal.getTimeInMillis());
 					stmt2.setTimestamp(1, timestamp1);
-					stmt2.setString(2,  rss.getString("Kur"));
+					stmt2.setString(2, rss.getString("Kur"));
 					stmt2.setDouble(3, rss.getDouble("MA"));
 					stmt2.setDouble(4, rss.getDouble("MS"));
 					stmt2.setDouble(5, rss.getDouble("SA"));
 					stmt2.setDouble(6, rss.getDouble("SS"));
-					stmt2.setDouble(7,rss.getDouble("BA"));
+					stmt2.setDouble(7, rss.getDouble("BA"));
 					stmt2.setDouble(8, rss.getDouble("BS"));
 					stmt2.addBatch();
 					satir +=1 ;
@@ -2173,6 +2176,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 					}
 
 				}
+				satir = 0 ;
 				rss.beforeFirst();
 			}
 			stmt2.executeBatch();

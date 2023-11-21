@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.Date;
 
@@ -72,14 +71,12 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setBounds(0, 0, 1063, 600);
-		
+
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
 		JPanel leftPanel = new JPanel();
 		leftPanel.setPreferredSize(new Dimension(1033,50));
 		scrollPaneust.setViewportView(leftPanel);
-		
-		
-		
+
 		leftPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		leftPanel.setMinimumSize(new Dimension(0, 50));
 		leftPanel.setMaximumSize(new Dimension(0, 50));
@@ -93,15 +90,15 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		leftPanel.setLayout(null);
 		JSplitPane sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, rightPanel);
 		rightPanel.setLayout(null);
-		
+
 		lblSatir = new JLabel("0");
 		lblSatir.setBounds(97, 3, 47, 14);
 		lblSatir.setForeground(new Color(0, 0, 128));
 		lblSatir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblSatir.setHorizontalAlignment(SwingConstants.RIGHT);
 		rightPanel.add(lblSatir);
-		
-		
+
+
 		JLabel lblNewLabel_1 = new JLabel("Satir Sayisi :");
 		lblNewLabel_1.setBounds(10, 3, 76, 14);
 		rightPanel.add(lblNewLabel_1);
@@ -170,7 +167,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		JLabel lblKullanici = new JLabel("Kullanici");
 		lblKullanici.setBounds(885, 15, 52, 14);
 		leftPanel.add(lblKullanici);
-		
+
 		cmbLog = new JComboBox<String>();
 		cmbLog.setModel(new DefaultComboBoxModel<String>(new String[] {"Veritabani", "Dosya", "Text Dosya"}));
 		cmbLog.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -519,16 +516,11 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			String deger;
 			String[] parts;
 			Font bigFont;
-			try {
-				deger = GLOBAL.setting_oku("CARI_ARAMA").toString();
-				deger = deger.substring(1, deger.length()-1);
-				parts = deger.split(",");
-				bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-				table.setFont(bigFont);
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			} 
+			deger = GLOBAL.setting_oku("CARI_ARAMA").toString();
+			deger = deger.substring(1, deger.length()-1);
+			parts = deger.split(",");
+			bigFont = new Font(parts[0], Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			table.setFont(bigFont);
 		}
 		catch (Exception ex)
 		{

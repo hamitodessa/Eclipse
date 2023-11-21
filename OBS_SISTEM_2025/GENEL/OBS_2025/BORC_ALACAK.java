@@ -8,6 +8,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import OBS_C_2025.JTextFieldLimit;
+import raven.toast.Notifications;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -26,15 +28,6 @@ public class BORC_ALACAK extends JDialog {
 	public JLabel lblNewLabel;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 
-//	public static void main(String[] args) {
-//		try {
-//			BORC_ALACAK dialog = new BORC_ALACAK();
-//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//			dialog.setVisible(true);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
 	public BORC_ALACAK() {
 		setModal(true);
 		setResizable(false);
@@ -57,7 +50,11 @@ public class BORC_ALACAK extends JDialog {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == 10)
 				{
-					if(CARI_ISIM_OKU.isim(txtcari.getText())[2].toString().equals("F")) return ;
+					if(CARI_ISIM_OKU.isim(txtcari.getText())[2].toString().equals("F"))
+					{
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Bu Numarada Hesap Bulunamadi....." );
+						return ;
+					}
 					oac.hsp_hsp_kodu = txtcari.getText();
 					dispose();
 				}

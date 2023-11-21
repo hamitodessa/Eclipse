@@ -62,9 +62,6 @@ public class SQL_SORGULAMA extends JInternalFrame {
 		splitPane.setRightComponent(scrollPane);
 
 		table = new JTable(){
-			/**
-			 * 
-			 */
 			private static final long serialVersionUID = 1L;
 
 			public boolean isCellEditable(int row, int column) {     return false;          }

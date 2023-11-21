@@ -2,9 +2,8 @@ package OBS_2025;
 
 import java.sql.ResultSet;
 
-import javax.swing.JOptionPane;
-
 import OBS_C_2025.CARI_ACCESS;
+import raven.toast.Notifications;
 
 public class CARI_ISIM_OKU {
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
@@ -26,11 +25,11 @@ public class CARI_ISIM_OKU {
 				sonuc [1]= rs.getString("HESAP_CINSI");
 				sonuc [2]= "T" ;
 			}
-
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage() + " clss",  "Hesap Ismi Okuma", JOptionPane.ERROR_MESSAGE);     
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage() + " clss",  "Hesap Ismi Okuma", JOptionPane.ERROR_MESSAGE);     
 		}
 		return sonuc;
 	}

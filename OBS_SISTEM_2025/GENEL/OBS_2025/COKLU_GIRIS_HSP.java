@@ -30,8 +30,6 @@ public class COKLU_GIRIS_HSP extends DefaultCellEditor {
 		this.textField = textField;
 		this.textField.setHorizontalAlignment(JTextField.LEFT);
 		this.textField.addMouseListener(new MouseAdapter() {
-		
-	
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) 

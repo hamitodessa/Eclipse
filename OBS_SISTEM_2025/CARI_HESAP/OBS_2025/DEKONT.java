@@ -16,7 +16,11 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import raven.toast.Notifications;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import OBS_C_2025.ScrollBarWin11UI;
+import OBS_C_2025.ScrollPaneWin11;
+
 import com.businessobjects.visualization.dataexchange.consumer.DataHandler;
 import com.crystaldecisions.reports.queryengine.EnumValueToNameMaps;
 import com.toedter.calendar.JDateChooser;
@@ -119,16 +123,24 @@ public class DEKONT extends JInternalFrame {
 	private JPanel pnla;
 
 	public DEKONT() {
+		setResizable(true);
 
 		setTitle("DEKONT");
 		setClosable(true);
 		setBounds(0, 0, 740, 415);
-		getContentPane().setLayout(null);
-
+		
+		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		getContentPane().add(scrollPaneust, BorderLayout.CENTER);
+		JPanel panelANA = new JPanel();
+		panelANA.setPreferredSize(new Dimension(720,370));
+		panelANA.setLayout(null);
+		scrollPaneust.setViewportView(panelANA);
+		
 		JPanel panel = new JPanel();
+		panelANA.add(panel);
 		panel.setBounds(10, 11, 710, 77);
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 0, 128), new Color(160, 160, 160)), "Evrak No", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), new Color(0, 0, 139)));
-		getContentPane().add(panel);
+		
 		panel.setLayout(null);
 
 		dtc = new JDateChooser();
@@ -467,9 +479,10 @@ public class DEKONT extends JInternalFrame {
 		panel.add(lblNewLabel_1);
 
 		JPanel panel_1 = new JPanel();
+		panelANA.add(panel_1);
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(128, 0, 0), new Color(160, 160, 160)), "Borclu Hesap", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), Color.red));
 		panel_1.setBounds(10, 99, 710, 87);
-		getContentPane().add(panel_1);
+		//getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 
 		btnbh = new JButton("");
@@ -939,9 +952,10 @@ public class DEKONT extends JInternalFrame {
 		lblba.setVisible(false);
 
 		JPanel panel_3 = new JPanel();
+		panelANA.add(panel_3);
 		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 0, 128), new Color(160, 160, 160)), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12),null));
 		panel_3.setBounds(10, 275, 548, 95);
-		getContentPane().add(panel_3);
+		//getContentPane().add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 
 		txtaciklama =   new JTextArea();
@@ -1002,8 +1016,8 @@ public class DEKONT extends JInternalFrame {
 		panel_1_1.setLayout(null);
 		panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 139, 139), new Color(160, 160, 160)), "Alacakli Hesap", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
 		panel_1_1.setBounds(10, 187, 710, 87);
-		getContentPane().add(panel_1_1);
-
+		//getContentPane().add(panel_1_1);
+		panelANA.add(panel_1_1);
 
 		btnah = new JButton("");
 		btnah.addActionListener(new ActionListener() {
@@ -1459,9 +1473,10 @@ public class DEKONT extends JInternalFrame {
 		lblab.setVisible(false);
 
 		JPanel panel_3_1 = new JPanel();
+		panelANA.add(panel_3_1);
 		panel_3_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 0, 128), new Color(160, 160, 160)), "Kod", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma", Font.PLAIN, 12), null));
 		panel_3_1.setBounds(585, 275, 135, 48);
-		getContentPane().add(panel_3_1);
+		//getContentPane().add(panel_3_1);
 		panel_3_1.setLayout(new BorderLayout(0, 0));
 
 		txtkod = new JTextField();
@@ -1548,8 +1563,8 @@ public class DEKONT extends JInternalFrame {
 		lblNewLabel.setForeground(Color.BLUE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(568, 340, 152, 14);
-		getContentPane().add(lblNewLabel);
-
+		//getContentPane().add(lblNewLabel);
+		panelANA.add(lblNewLabel);
 		try {
 			String deger;
 			deger = oac.glb.setting_oku("CARI_DEKONT_BAKIYE_GOSTER").toString();

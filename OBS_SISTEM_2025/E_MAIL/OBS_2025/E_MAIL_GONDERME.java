@@ -101,7 +101,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 
 		setTitle("E MAIL GONDERME");
 		setClosable(true);
-		setBounds(100, 100, 598, 446);
+		setBounds(100, 100, 598, 455);
 
 		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
@@ -176,7 +176,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 
 		JPanel panel_1_3_1 = new JPanel();
 		panel_1_3_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Aciklama", TitledBorder.LEADING, TitledBorder.TOP, null, SystemColor.textHighlight));
-		panel_1_3_1.setBounds(10, 293, 562, 87);
+		panel_1_3_1.setBounds(10, 293, 567, 87);
 		panel.add(panel_1_3_1);
 		panel_1_3_1.setLayout(new BorderLayout(0, 0));
 
@@ -398,7 +398,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 			}
 		});
 		btnNewButton_2.setIcon(new ImageIcon(E_MAIL_GONDERME.class.getResource("/ICONLAR/sil.png")));
-		btnNewButton_2.setBounds(484, 259, 84, 23);
+		btnNewButton_2.setBounds(488, 259, 84, 23);
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton("Vazgec");

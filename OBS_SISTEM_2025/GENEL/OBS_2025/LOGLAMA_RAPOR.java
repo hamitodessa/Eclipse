@@ -72,7 +72,14 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setBounds(0, 0, 1063, 600);
+		
+		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
 		JPanel leftPanel = new JPanel();
+		leftPanel.setPreferredSize(new Dimension(1033,50));
+		scrollPaneust.setViewportView(leftPanel);
+		
+		
+		
 		leftPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		leftPanel.setMinimumSize(new Dimension(0, 50));
 		leftPanel.setMaximumSize(new Dimension(0, 50));
@@ -81,7 +88,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		rightPanel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		rightPanel.setMinimumSize(new Dimension(0, 20));
 		rightPanel.setMaximumSize(new Dimension(0, 20));
-		JSplitPane sp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, leftPanel, centerPanel);
+		JSplitPane sp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scrollPaneust, centerPanel);
 		sp.setDividerSize(0);
 		leftPanel.setLayout(null);
 		JSplitPane sp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, rightPanel);

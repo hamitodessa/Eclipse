@@ -86,7 +86,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		setResizable(true);
 		setTitle("KULLANICI DETAY EKLEME");
 		setClosable(true);
-		setBounds(0, 0, 1217, 600);
+		setBounds(0, 0, 1170, 600);
 
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -94,11 +94,16 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
+		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setMinimumSize(new Dimension(0, 130));
+		scrollPaneust.setMaximumSize(new Dimension(0, 130));
+		
+		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		panel.setMinimumSize(new Dimension(0, 120));
-		panel.setMaximumSize(new Dimension(0, 120));
-		splitPane.setLeftComponent(panel);
+		panel.setPreferredSize(new Dimension(1130,120));
+		scrollPaneust.setViewportView(panel);
+		splitPane.setLeftComponent(scrollPaneust);
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Kullanici");

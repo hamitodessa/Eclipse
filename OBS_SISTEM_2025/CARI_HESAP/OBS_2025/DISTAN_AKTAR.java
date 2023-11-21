@@ -131,11 +131,18 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
+		
+		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setMinimumSize(new Dimension(1160, 80));
+		scrollPaneust.setMaximumSize(new Dimension(1160, 80));
+		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		splitPane.setLeftComponent(panel);
-		panel.setMinimumSize(new Dimension(0, 75));
-		panel.setMaximumSize(new Dimension(0, 75));
+		
+		panel.setPreferredSize(new Dimension(1160,75));
+		scrollPaneust.setViewportView(panel);
+		splitPane.setLeftComponent(scrollPaneust);
+		
 		panel.setLayout(null);
 		
 		JToolBar toolBar_1 = new JToolBar();

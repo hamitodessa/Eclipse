@@ -169,11 +169,16 @@ public class USER_EKLEME extends JInternalFrame {
 		scrollPane.setViewportView(table_1);
 		splitPane.setRightComponent(scrollPane);
 
+		
+		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
+		scrollPaneust.setMinimumSize(new Dimension(0, 110));
+		scrollPaneust.setMaximumSize(new Dimension(0, 110));
+		
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(0, 100));
-		panel.setMaximumSize(new Dimension(0, 100));
+		panel.setPreferredSize(new Dimension(890,100));
+		scrollPaneust.setViewportView(panel);
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		splitPane.setLeftComponent(panel);
+		splitPane.setLeftComponent(scrollPaneust);
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Kullanici");

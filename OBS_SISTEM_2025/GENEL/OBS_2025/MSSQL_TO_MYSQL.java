@@ -2138,7 +2138,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			ResultSet	rs = null;
 			ResultSet	rss = null;
 			PreparedStatement stmt2; 
-			String sql = "SELECT * FROM Kurlar   WHERE Kur = 'USD' ORDER BY  Tarih ";
+			String sql = "SELECT * FROM Kurlar   WHERE Kur = 'USD' and month(tarih) = '01' ORDER BY  Tarih ";
 			Statement stmt = Yukleme_MS_conn.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			rss = stmt.executeQuery(sql);
 			sql  ="INSERT INTO KURLAR (Tarih,Kur,MA,MS,SA,SS,BA,BS) " +
@@ -2150,7 +2150,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 			Date date1 ;
 			Calendar cal ;
 			int kackere ;
-			for (kackere = 1;kackere <= 2; kackere++) {
+			for (kackere = 1;kackere <= 3; kackere++) {
 				System.err.println(kackere);
 				while(rss.next())
 				{
@@ -2160,6 +2160,7 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 					cal.setTime(date1);
 					cal.add(Calendar.YEAR,kackere + 7);
 					java.sql.Timestamp timestamp1 = new java.sql.Timestamp(cal.getTimeInMillis());
+					System.out.println(timestamp1);
 					stmt2.setTimestamp(1, timestamp1);
 					stmt2.setString(2, rss.getString("Kur"));
 					stmt2.setDouble(3, rss.getDouble("MA"));
@@ -2177,9 +2178,10 @@ public class MSSQL_TO_MYSQL extends JInternalFrame {
 
 				}
 				satir = 0 ;
+				stmt2.executeBatch();
 				rss.beforeFirst();
 			}
-			stmt2.executeBatch();
+			//stmt2.executeBatch();
 			stmt2.close();
 
 			getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

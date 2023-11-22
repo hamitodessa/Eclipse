@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.Server_Bilgi;
@@ -20,9 +22,11 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 	@Override
 	public void baglan() throws SQLException, ClassNotFoundException {
 		String cumle = "jdbc:sqlserver://" + BAGLAN.fihDizin.cONN_STR + ";";
+		JOptionPane.showMessageDialog(null,BAGLAN.fihDizin.cONN_STR +"====" + BAGLAN.fihDizin.kULLANICI + BAGLAN.fihDizin.sIFRESI,  "fghfhgfhgfhfg", JOptionPane.ERROR_MESSAGE);   
 		DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.fihDizin.kULLANICI,BAGLAN.fihDizin.sIFRESI);
 		
+
 	}
 	@Override
 	public void reh_sifirdan_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {

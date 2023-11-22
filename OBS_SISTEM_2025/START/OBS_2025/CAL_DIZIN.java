@@ -1806,7 +1806,7 @@ public class CAL_DIZIN extends JFrame {
 		sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr));;
 		sBilgi.setDb( program); ;
 		sBilgi.setPort(txtIp.getText());;
-		if (	 s_CONN.Dosya_kontrol_S(sBilgi) ==true)
+		if ( s_CONN.Dosya_kontrol_S(sBilgi) ==true)
 		{
 			boolean izinli = true;
 			if ( !GLOBAL.KULL_ADI.equals("Admin") )

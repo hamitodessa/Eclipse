@@ -138,12 +138,12 @@ public class rEHBER extends JFrame {
 	@SuppressWarnings("serial")
 	public rEHBER() {
 		
-		 try {
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
-		} catch (Exception e) {
-		
-			e.printStackTrace();
-		}
+//		 try {
+//			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
+//		} catch (Exception e) {
+//		
+//			e.printStackTrace();
+//		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
 		
@@ -466,7 +466,6 @@ public class rEHBER extends JFrame {
 						return;
 					if (cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).toString().equals("MS SQL"))
 					{
-						
 						if (cmbInstance.getSelectedItem().toString() == null)
 							return;
 					}
@@ -574,6 +573,7 @@ public class rEHBER extends JFrame {
 			try {
 				//cONN_AKTAR(BAGLAN.fihDizin.hAN_SQL);
 				//mODUL_AKTAR( BAGLAN.fihDizin.hAN_SQL);
+				//JOptionPane.showMessageDialog(null,  "Fihtist Baglanti kurulamadi.....",  "Server Baglanti", JOptionPane.ERROR_MESSAGE);   
 				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 				fih_Access.baglan();
 				fihrist_kont();
@@ -591,7 +591,6 @@ public class rEHBER extends JFrame {
 		{
 			bAGLAN.cONNECT("Admin");
 			// Fihrist
-		
 			cONN_AKTAR(BAGLAN.fihDizin.hAN_SQL);
 			mODUL_AKTAR( BAGLAN.fihDizin.hAN_SQL);
 			String hangi_sql =  BAGLAN.fihDizin.hAN_SQL;
@@ -602,8 +601,9 @@ public class rEHBER extends JFrame {
 				return ;
 			}
 			surucubilgi = true ;
-			fihrist_calisma_dizini_oku();
 		
+			fihrist_calisma_dizini_oku();
+
 
 		} catch (Exception e) {
 			mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
@@ -618,6 +618,7 @@ public class rEHBER extends JFrame {
 			FIH_DOS_VAR = false;
 			return;
 		}
+		
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
 		sBilgi.setIns(BAGLAN.fihDizin.iNSTANCE); 
 		sBilgi.setKull(BAGLAN.fihDizin.kULLANICI) ;
@@ -625,12 +626,11 @@ public class rEHBER extends JFrame {
 		sBilgi.setPort(BAGLAN.fihDizin.sERVER);
 		sBilgi.setServer( BAGLAN.fihDizin.sERVER);
 		sBilgi.setDb("OK_Fih" + BAGLAN.fihDizin.kOD);
-		
+	
 		if (BAGLAN.fihDizin.yER.equals("L"))
 		{
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
-				
 				if (s_CONN.Dosya_kontrol_L( sBilgi) == false)
 				{
 					FIH_DOS_VAR = false;
@@ -649,18 +649,35 @@ public class rEHBER extends JFrame {
 		
 		else
 		{
-			oac.FIHRIST_CONN = false;
+			 
+			if (s_CONN.Server_kontrol_S(sBilgi) == true)   
+			{
+				if (s_CONN.Dosya_kontrol_S( sBilgi) == false)
+				{
+					FIH_DOS_VAR = false;
+				}
+				else
+				{
+					FIH_DOS_VAR = true;
+					oac.FIHRIST_CONN = true ;
+				}
+			}
+			else
+			{
+				oac.FIHRIST_CONN = false;
+			}
 		}
 	}
 	void fihrist_kont() throws ClassNotFoundException, SQLException
 	{
+
 		String qwe = "" ;
 		if (oac.FIHRIST_CONN == true)
 		{
 			if (FIH_DOS_VAR == false)
 			{
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Cari -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....");
+				mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Fihrist -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....");
 				qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
 				
 			}
@@ -752,7 +769,6 @@ public class rEHBER extends JFrame {
 	{
 		
 		tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		
 		cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
 		CONNECT s_CONN = new CONNECT(oac._IFihristCon);
 		if (chckbxL.isSelected() )
@@ -783,7 +799,9 @@ public class rEHBER extends JFrame {
 			sBilgi.setServer(txtIp.getText());;
 			sBilgi.setIns(cmbInstance.getSelectedItem().toString() );;
 			sBilgi.setKull(txtUser.getText()); ;
-			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtPwd));;
+			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtPwd));
+		
+
 			if (s_CONN.Server_kontrol_S(sBilgi ) == true)
 			{
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -891,7 +909,6 @@ public class rEHBER extends JFrame {
 			fih_Access.baglan();
 			doldur();
 			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			
 			mesaj_goster(5000,Notifications.Type.INFO,   "Veritabani Baglantisi gerceklestirildi" );
 		}
 		else
@@ -909,10 +926,8 @@ public class rEHBER extends JFrame {
 			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 			fih_Access.baglan();
 			doldur();
-			
 			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
-		
 		}
 	}
 	
@@ -920,7 +935,6 @@ public class rEHBER extends JFrame {
 	{
 		tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
-		
 		mODUL_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
 		fih_Access = new FIHRIST_ACCESS(oac._IFihrist);
 		BAGLAN.fihDizin.kULLANICI = txtUser.getText();
@@ -951,14 +965,13 @@ public class rEHBER extends JFrame {
 		sBilgi.setKull(txtUser.getText()); ;
 		sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtPwd));;
 		sBilgi.setDb( program); ;
-		sBilgi.setPort(txtIp.getText());;
-		if (	 s_CONN.Dosya_kontrol_S(sBilgi) ==true)
+		sBilgi.setPort(txtIp.getText());
+		if ( s_CONN.Dosya_kontrol_S(sBilgi) ==true)
 		{
-			
 			mdb_yaz();
 			ayar_doldur();
 			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
+			mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Baglanti Kuruldu ..." );
 		}
 		else
 		{
@@ -968,11 +981,9 @@ public class rEHBER extends JFrame {
 			if(g != 0 ) { return;	}
 			{
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			
 				dosya_olustur_S();
 				mdb_yaz();
 				ayar_doldur();
-				
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
 			}
@@ -995,9 +1006,8 @@ public class rEHBER extends JFrame {
 	{
 		tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
-
 		mODUL_AKTAR( cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
-		FIHRIST_ACCESS  f_Access = new FIHRIST_ACCESS(oac._IFihrist);
+		fih_Access = new FIHRIST_ACCESS(oac._IFihrist);
 		BAGLAN.fihDizin.kULLANICI = txtUser.getText();
 		BAGLAN.fihDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtPwd) ;
 		BAGLAN.fihDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
@@ -1014,7 +1024,7 @@ public class rEHBER extends JFrame {
 		sbilgi.setPort(txtIp.getText()); 
 		sbilgi.setDizin_yeri("default");
 		sbilgi.setDizin("");
-		f_Access.fihrist_SIFIR_S(sbilgi);
+		fih_Access.fihrist_SIFIR_S(sbilgi);
 	}
 	private static  void doldur_kutu( JTable grd,int satir) throws ClassNotFoundException, SQLException 
 	{

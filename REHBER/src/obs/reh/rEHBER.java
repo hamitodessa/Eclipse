@@ -837,13 +837,13 @@ public class rEHBER extends JFrame {
 		InputStream stream = null ;
 		try {
 			Notifications.getInstance().show(tipType,Notifications.Location.BOTTOM_RIGHT ,zaman ,mesaj);
-			stream = rEHBER.class.getClassLoader().getResourceAsStream("/obs/ayarlar/iconlar/hata.mp3"); //whts
+			
+			stream = rEHBER.class.getClassLoader().getResourceAsStream("DOSYA/hata.mp3"); //whts
 			Player player = new Player(stream);
 			player.play();
 			if(stream != null)
 				stream.close();
 		} catch (Exception ex) {
-			//mesaj_goster(10000,Notifications.Type.ERROR,ex.getMessage() );
 		}
 	}
 	private  void database_kontrol() throws ClassNotFoundException, HeadlessException, SQLException, IOException
@@ -851,12 +851,18 @@ public class rEHBER extends JFrame {
 		tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 	
 		cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));	 
+		mODUL_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
+	
 		CONNECT s_CONN = new CONNECT(oac._IFihristCon);
 		String program = "";
 		String modul = "";
 		modul = "Fihrist";
 		program = "OK_Fih" + txtKodu.getText();
-
+		if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("SQ LITE"))
+		{
+			BAGLAN.fihDizin.cONN_STR = GLOBAL.DBYERI +program  + ".DB" ;   //SQLITE
+		}
+	
 		if (chckbxL.isSelected())
 		{
 			lokal_dosya(s_CONN,program,modul);//LOCAL DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -873,13 +879,19 @@ public class rEHBER extends JFrame {
 		sBilgi.setKull(txtUser.getText());
 		sBilgi.setSifre(oac.sDONDUR.sDONDUR(txtPwd));
 		sBilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() ); 
-		sBilgi.setPort(txtIp.getText());;
-		System.out.println( s_CONN.Dosya_kontrol_L(sBilgi));
+		sBilgi.setPort(txtIp.getText());
+		
 		if ( s_CONN.Dosya_kontrol_L(sBilgi) == true)
 		{
 			mdb_yaz();
 			ayar_doldur();
+			BAGLAN bAGLAN = new BAGLAN();
+			bAGLAN.cONNECT("Admin");
+			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
+			fih_Access.baglan();
+			doldur();
 			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			
 			mesaj_goster(5000,Notifications.Type.INFO,   "Veritabani Baglantisi gerceklestirildi" );
 		}
 		else
@@ -892,6 +904,11 @@ public class rEHBER extends JFrame {
 			dosya_olustur_L();
 			mdb_yaz();
 			ayar_doldur();
+			BAGLAN bAGLAN = new BAGLAN();
+			bAGLAN.cONNECT("Admin");
+			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
+			fih_Access.baglan();
+			doldur();
 			
 			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
@@ -905,7 +922,7 @@ public class rEHBER extends JFrame {
 		cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
 		
 		mODUL_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
-		FIHRIST_ACCESS  f_Access = new FIHRIST_ACCESS(oac._IFihrist);
+		fih_Access = new FIHRIST_ACCESS(oac._IFihrist);
 		BAGLAN.fihDizin.kULLANICI = txtUser.getText();
 		BAGLAN.fihDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtPwd) ;
 		BAGLAN.fihDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
@@ -923,7 +940,7 @@ public class rEHBER extends JFrame {
 		sbilgi.setDizin_yeri("default");
 		sbilgi.setDizin("");
 		
-		f_Access.fihrist_sifirdan_L(sbilgi);
+		fih_Access.fihrist_sifirdan_L(sbilgi);
 
 	}
 	private void server_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
@@ -954,7 +971,6 @@ public class rEHBER extends JFrame {
 			
 				dosya_olustur_S();
 				mdb_yaz();
-			
 				ayar_doldur();
 				
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

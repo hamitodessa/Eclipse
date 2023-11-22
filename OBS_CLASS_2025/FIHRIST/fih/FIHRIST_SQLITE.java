@@ -28,7 +28,6 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 	public void reh_sifirdan_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		con = DriverManager.getConnection("jdbc:sqlite:" + GLOBAL.DBYERI + "OK_Fih" + sbilgi.getKod() + ".DB"  ) ;
 		con.close();
-		
 		String sql = "CREATE TABLE [FIHRIST]("
 				+ " ID int identity(1,1) CONSTRAINT PKeyid PRIMARY KEY,"
 				+ " Adi nvarchar(50) NOT NULL, "

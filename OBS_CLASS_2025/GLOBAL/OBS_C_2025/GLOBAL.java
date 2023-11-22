@@ -54,7 +54,7 @@ public class GLOBAL {
 	static final String EKSTRE_DOSYA = System.getProperty("user.name") + "_EKSTRE.DB";
 	public static final String SURUCU = "C:\\OBS_SISTEM\\";
 	public static final String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
-	static final String DBYERI = "C:\\OBS_DATABASES\\";
+	public static final String DBYERI = "C:\\OBS_DATABASES\\";
 	static Connection con ;
 	static Connection Ekstrecon ;
 	static String ayarlar[][]; // = new String[5][5];

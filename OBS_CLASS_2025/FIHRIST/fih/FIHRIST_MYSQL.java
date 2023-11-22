@@ -2,6 +2,7 @@ package fih;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import OBS_C_2025.BAGLAN;
@@ -35,6 +36,12 @@ public class FIHRIST_MYSQL implements I_Fihrist{
 	public void create_table(String fir_adi) throws SQLException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public ResultSet reh_doldur() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

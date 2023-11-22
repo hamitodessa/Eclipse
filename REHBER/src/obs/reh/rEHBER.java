@@ -8,14 +8,19 @@ import javax.swing.JPanel;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CONNECT;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
+import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.OBS_ORTAK_SQLITE;
+import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.Server_Bilgi;
+import OBS_C_2025.TABLO_RENDERER;
+import OBS_C_2025.TARIH;
+import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.USER_ISLEMLERI;
 import fih.FIHRIST_MSSQL;
 import fih.FIHRIST_MYSQL;
@@ -39,11 +44,13 @@ import java.awt.Font;
 import java.awt.HeadlessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -89,6 +96,7 @@ public class rEHBER extends JFrame {
 	
 	BAGLAN bAGLAN = new BAGLAN();
 	aNA_Class oac = new aNA_Class();
+	FIHRIST_ACCESS  fih_Access ;
 	obs.ayarlar.MaterialTabbed tabbedPane;
 	boolean surucubilgi = false;
 	private JTable table_1;
@@ -127,6 +135,7 @@ public class rEHBER extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("serial")
 	public rEHBER() {
 		
 		 try {
@@ -292,7 +301,13 @@ public class rEHBER extends JFrame {
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
 		splitPane.setRightComponent(scrollPane_2);
 		
-		table = new JTable();
+		table = new JTable(){
+			public boolean isCellEditable(int row, int column) {     return false;          }
+		};
+		table.getTableHeader().setReorderingAllowed(false);
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
+		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane_2.setViewportView(table);
 		
 		JPanel panel_1 = new JPanel();
@@ -552,17 +567,14 @@ public class rEHBER extends JFrame {
 		calisma_dizini_oku() ;
 		if(! surucubilgi) // Bilgi Yok
 		{
-			System.out.println(aNA_Class.FIHRIST_CONN );
-			
-			//JOptionPane.showMessageDialog(null,  "Surucu bilgi bos....",  "Server Baglanti", JOptionPane.ERROR_MESSAGE); 
 			tabbedPane.setSelectedIndex(1);
 			ayar_doldur();
-		
 		}
 		else {
-			
 			try {
-				FIHRIST_ACCESS  fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
+				//cONN_AKTAR(BAGLAN.fihDizin.hAN_SQL);
+				//mODUL_AKTAR( BAGLAN.fihDizin.hAN_SQL);
+				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 				fih_Access.baglan();
 				fihrist_kont();
 			} catch (Exception e) {
@@ -579,8 +591,7 @@ public class rEHBER extends JFrame {
 		{
 			bAGLAN.cONNECT("Admin");
 			// Fihrist
-			System.out.println(BAGLAN.fihDizin.hAN_SQL);
-			
+		
 			cONN_AKTAR(BAGLAN.fihDizin.hAN_SQL);
 			mODUL_AKTAR( BAGLAN.fihDizin.hAN_SQL);
 			String hangi_sql =  BAGLAN.fihDizin.hAN_SQL;
@@ -588,7 +599,6 @@ public class rEHBER extends JFrame {
 			if(hangi_sql.equals("") )
 			 {
 				surucubilgi = false ;
-				System.out.println("384");
 				return ;
 			}
 			surucubilgi = true ;
@@ -601,11 +611,10 @@ public class rEHBER extends JFrame {
 	}
 	void fihrist_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
-		System.out.println(oac._IFihristCon );
 		CONNECT s_CONN = new CONNECT( oac._IFihristCon);
 		if (BAGLAN.fihDizin.yER.equals(""))
 		{
-			aNA_Class.FIHRIST_CONN  = false;
+			oac.FIHRIST_CONN  = false;
 			FIH_DOS_VAR = false;
 			return;
 		}
@@ -619,7 +628,6 @@ public class rEHBER extends JFrame {
 		
 		if (BAGLAN.fihDizin.yER.equals("L"))
 		{
-			System.out.println("631");
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
 				
@@ -630,29 +638,29 @@ public class rEHBER extends JFrame {
 				else
 				{
 					FIH_DOS_VAR = true;
-					aNA_Class.FIHRIST_CONN = true ;
+					oac.FIHRIST_CONN = true ;
 				}
 			}
 			else
 			{
-				aNA_Class.FIHRIST_CONN = false;
+				oac.FIHRIST_CONN = false;
 			}
 		}
 		
 		else
 		{
-			aNA_Class.FIHRIST_CONN = false;
+			oac.FIHRIST_CONN = false;
 		}
 	}
 	void fihrist_kont() throws ClassNotFoundException, SQLException
 	{
 		String qwe = "" ;
-		if (aNA_Class.FIHRIST_CONN == true)
+		if (oac.FIHRIST_CONN == true)
 		{
 			if (FIH_DOS_VAR == false)
 			{
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				//OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Cari -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....");
+				mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Cari -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....");
 				qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
 				
 			}
@@ -666,20 +674,21 @@ public class rEHBER extends JFrame {
 //				OBS_MAIN.lblCariBilgi.setForeground(new Color(0, 0, 128));
 //				OBS_MAIN.lblCariBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 //				OBS_MAIN.tabbedPane.setEnabledAt(0, true);
+				doldur();
 			}
 		}
 		else
 		{
-			mesaj_goster(5000,Notifications.Type.WARNING, "Cari Baglanti kurulamadi.....");
+			mesaj_goster(5000,Notifications.Type.WARNING, "Dosya Baglanti Kurulamadi.....");
 			//JOptionPane.showMessageDialog(null,  "Fihtist Baglanti kurulamadi.....",  "Server Baglanti", JOptionPane.ERROR_MESSAGE);        
 			
 		}
 	}
 	void ayar_doldur() {
 		try {
+			
 		GRID_TEMIZLE.grid_temizle(table_1);
 		ResultSet	rs = null;
-		
 		rs = oac.uSER_ISL.user_db_izinleri("Admin", "Fihrist");
 		
 		if (!rs.isBeforeFirst() ) {  
@@ -865,6 +874,7 @@ public class rEHBER extends JFrame {
 		sBilgi.setSifre(oac.sDONDUR.sDONDUR(txtPwd));
 		sBilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() ); 
 		sBilgi.setPort(txtIp.getText());;
+		System.out.println( s_CONN.Dosya_kontrol_L(sBilgi));
 		if ( s_CONN.Dosya_kontrol_L(sBilgi) == true)
 		{
 			mdb_yaz();
@@ -1060,6 +1070,77 @@ public class rEHBER extends JFrame {
 			{
 				cmbip.addItem(rs.getString("IP"));
 			}
+		}
+	}
+	private void doldur()
+	{
+		try {
+			ResultSet	rs = null;
+			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
+			rs = fih_Access.reh_doldur();
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() ) {  
+			} 
+			else
+			{
+				table.setModel(DbUtils.resultSetToTableModel(rs));
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc;
+				tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new SOLA());
+				
+				tc.setMinWidth(200);
+
+				tc = tcm.getColumn(1);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(100);
+				tc.setMaxWidth(100);
+
+				tc = tcm.getColumn(2);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(100);
+				tc.setMaxWidth(100);
+
+				tc = tcm.getColumn(3);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(100);
+				tc.setMaxWidth(100);
+
+				tc = tcm.getColumn(4);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(100);
+				tc.setMaxWidth(100);
+
+				tc = tcm.getColumn(5);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(150);
+				tc.setMaxWidth(150);
+
+				tc = tcm.getColumn(6);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(200);
+				tc.setMaxWidth(200);
+				
+				tc = tcm.getColumn(7);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(200);
+				tc.setMaxWidth(200);
+
+			
+
+				Dimension dd = th.getPreferredSize();
+				dd.height = 30;
+				th.setPreferredSize(dd); 
+				th.repaint();
+				table.setRowHeight(21);
+
+			}
+
+
+		} catch (Exception ex) {
+			mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Cari Ekstre", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 }

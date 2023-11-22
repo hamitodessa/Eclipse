@@ -2,6 +2,8 @@ package fih;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -71,6 +73,17 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 				+ " Mail nvarchar(25) NULL) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+	}
+	@Override
+	public ResultSet reh_doldur() throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = " SELECT Adi ,Tel_1,Tel_2,Tel_3,Tel_4,Fax ,Ozel,Mail   "  + 
+				"  FROM FIHRIST   " + 
+				"  ORDER BY Adi   ";
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;	 
 	}
 
 }

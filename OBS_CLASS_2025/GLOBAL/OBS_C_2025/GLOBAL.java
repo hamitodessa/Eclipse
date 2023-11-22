@@ -305,6 +305,7 @@ public class GLOBAL {
 				+ ") ";
 		Connection sQLITEconn = DriverManager.getConnection("jdbc:sqlite:" + dosya  ) ;
 		Statement stmt =sQLITEconn.createStatement();  
+		
 		stmt.execute(sql);
 		stmt.close();
 		sql = "CREATE INDEX IX_LOGLAMA  ON LOGLAMA  (TARIH,EVRAK) ; " ;

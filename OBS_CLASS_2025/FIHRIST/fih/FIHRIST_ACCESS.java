@@ -1,5 +1,6 @@
 package fih;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import OBS_C_2025.Server_Bilgi;
@@ -24,5 +25,9 @@ public class FIHRIST_ACCESS {
 	public void fihrist_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException
 	{
 		 _IFihrist.reh_SIFIR_S(sbilgi);
+	}
+	public ResultSet reh_doldur() throws ClassNotFoundException, SQLException
+	{
+		return _IFihrist.reh_doldur();
 	}
 }

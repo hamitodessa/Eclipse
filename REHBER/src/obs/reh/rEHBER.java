@@ -631,10 +631,12 @@ public class rEHBER extends JFrame {
 							return;
 					}
 					try {
+						tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 						server_control();
+						tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch  (Exception ex)
 					{
-						//contentPane.setCursor(DEFAULT_CURSOR);
+						tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 						mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
 						//JOptionPane.showMessageDialog(null, ex.getMessage().toString(),  "Server Kontrol", JOptionPane.ERROR_MESSAGE);
 					}
@@ -652,9 +654,11 @@ public class rEHBER extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try
 				{
+					if(txtKodu.toString().equals(""))
+						return;
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					database_kontrol();
-					btnVtKontrol.setEnabled(false);
+					//btnVtKontrol.setEnabled(false);
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					String	qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
 					lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe  + " / "+ BAGLAN.fihDizin.hAN_SQL );

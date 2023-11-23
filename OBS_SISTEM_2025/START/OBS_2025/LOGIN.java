@@ -203,92 +203,107 @@ public class LOGIN extends JDialog {
 	
 	public LOGIN() throws IOException {
 		//************************************************************************
-		 FlatLaf.registerCustomDefaultsSource("OBS_2025");
-		  try { LOGIN.setDefaultLookAndFeelDecorated(true);
-		  
-		  if (
-		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("TextureLookAndFeel")) {
-		  UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel"); }
-		  else if
-		  (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("SmartLookAndFeel")) {
-		  UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel"); } else
-		  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("NoireLookAndFeel"))
-		  { UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel"); } else
-		  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AcrylLookAndFeel"))
-		  { UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel"); } else
-		  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AeroLookAndFeel"))
-		  { UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel"); } else
-		  if (
-		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AluminiumLookAndFeel"))
-		  {
-		  UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
-		  } else if (
-		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("BernsteinLookAndFeel"))
-		  {
-		  UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
-		  } else if
-		  (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FastLookAndFeel")) {
-		  UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel"); } else if(
-		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("GraphiteLookAndFeel")) {
-		  UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel"); }
-		  else if
-		  (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("HiFiLookAndFeel")) {
-		  UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel"); } else if
-		  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("LunaLookAndFeel")) {
-		  UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel"); } else if
-		  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("McWinLookAndFeel")) {
-		  UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel"); } else
-		  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("MintLookAndFeel"))
-		  { UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel"); } else
-		  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows")) {
-		  
-		  UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
-		  
-		
-		//  for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-		//  System.out.println(	  info.getName().toString());
-		//	  if ("Metal".equals(info.getName())) {
-        //           javax.swing.UIManager.setLookAndFeel(info.getClassName());
-        //           break;
-        //       }
-		//  }
-		  
-		  
-		  } else if 
-		  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSolarizedLightIJTheme")) 
-		  {
-			 FlatAnimatedLafChange.showSnapshot();
-			 FlatSolarizedLightIJTheme.setup();
-			 FlatLaf.updateUI();
-			 FlatAnimatedLafChange.hideSnapshotWithAnimation();
-			  ////UIManager.put( "Toast.duration", 10000 );
-		  } 
-		  else if
-		  (
-		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatArcOrangeIJTheme"))
-		  { FlatArcOrangeIJTheme.setup(); } else if (
-		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSpacegrayIJTheme"))
-		  { FlatSpacegrayIJTheme.setup(); } else if (
-		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatArcIJTheme")) {
-		  FlatArcIJTheme.setup(); } else if (
-		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatCyanLightIJTheme"))
-		  { FlatCyanLightIJTheme.setup(); } else if (
-		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals(
-		  "FlatGradiantoNatureGreenIJTheme")) {
-		  FlatGradiantoNatureGreenIJTheme.setup(); } else if (
-		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatHighContrastIJTheme"
-		  )) { FlatHighContrastIJTheme.setup(); } else if (
-		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatGrayIJTheme")) {
-		  FlatGrayIJTheme.setup(); } else if (
-		  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatNordIJTheme")) {
-		  FlatNordIJTheme.setup(); }
-		  
-		  SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
-		  //FlatSolarizedLightIJTheme());
-		  
-		  } catch (Exception ex) {
-		  java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util. logging.Level.SEVERE, null, ex); 
-		  }
+		FlatLaf.registerCustomDefaultsSource("OBS_2025");
+		try { LOGIN.setDefaultLookAndFeelDecorated(true);
+
+		if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("TextureLookAndFeel")) 
+		{
+			UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel"); 
+		}
+		else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("SmartLookAndFeel")) 
+		{
+			UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel"); 
+		} 
+		else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("NoireLookAndFeel"))
+		{ 
+			UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+		} 
+		else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AcrylLookAndFeel"))
+		{ 
+			UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+		} else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AeroLookAndFeel"))
+		{ 
+			UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel"); 
+		} else  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AluminiumLookAndFeel"))
+		{
+			UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+		} 
+		else if (  GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("BernsteinLookAndFeel"))
+		{
+			UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
+		} 
+		else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FastLookAndFeel")) 
+		{
+			UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel"); 
+		} 
+		else if( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("GraphiteLookAndFeel")) 
+		{
+			UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel"); }
+		else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("HiFiLookAndFeel")) 
+		{
+			UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel"); 
+		} 
+		else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("LunaLookAndFeel"))
+		{
+			UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel"); 
+		} 
+		else if  ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("McWinLookAndFeel"))
+		{
+			UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel"); 
+		} 
+		else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("MintLookAndFeel"))
+		{ 
+			UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel"); 
+		} 
+		else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("Windows")) 
+		{
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
+		} 
+		else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSolarizedLightIJTheme")) 
+		{
+			//FlatAnimatedLafChange.showSnapshot();
+			FlatSolarizedLightIJTheme.setup();
+			// FlatLaf.updateUI();
+			// FlatAnimatedLafChange.hideSnapshotWithAnimation();
+
+		} 
+		else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatArcOrangeIJTheme"))
+		{ 
+			FlatArcOrangeIJTheme.setup(); 
+		} 
+		else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSpacegrayIJTheme"))
+		{ 
+			FlatSpacegrayIJTheme.setup(); 
+		} 
+		else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatArcIJTheme")) 
+		{
+			FlatArcIJTheme.setup(); 
+		} else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatCyanLightIJTheme"))
+		{ 
+			FlatCyanLightIJTheme.setup(); 
+		} 
+		else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatGradiantoNatureGreenIJTheme")) 
+		{
+			FlatGradiantoNatureGreenIJTheme.setup(); 
+		}
+		else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatHighContrastIJTheme" )) 
+		{ 
+			FlatHighContrastIJTheme.setup(); 
+		} 
+		else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatGrayIJTheme"))
+		{
+			FlatGrayIJTheme.setup(); 
+		} 
+		else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatNordIJTheme")) 
+		{
+			FlatNordIJTheme.setup();
+		}
+		SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
+		//FlatSolarizedLightIJTheme());
+
+		} catch (Exception ex) {
+			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util. logging.Level.SEVERE, null, ex); 
+		}
  		//************************************************************************
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setResizable(false);
@@ -683,16 +698,12 @@ public class LOGIN extends JDialog {
 				String[] parts;
 				parts = deger.split(",");
 				OBS_SIS_2025_ANA_CLASS.gridcolor =  new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-
 				deger = GLOBAL.setting_oku("PRG_GRID_BACK_RENK").toString();
 				parts = deger.split(",");
 				OBS_SIS_2025_ANA_CLASS.satBackColor =  new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-
 				deger = GLOBAL.setting_oku("PRG_GRID_FORE_RENK").toString();
 				parts = deger.split(",");
 				OBS_SIS_2025_ANA_CLASS.satForeColor =  new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-
-				
 				txtpwd.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
 			} catch (Exception e1) {
 				e1.printStackTrace();
@@ -1504,16 +1515,29 @@ public class LOGIN extends JDialog {
 			String userId ="hamitadmin";
 			String password ="SDFks9hfji3#DEd";
 			
-			
-			
-			/*
-			 * File fILEFTP = new File( GLOBAL.SURUCU + "/OBS_SISTEM_FTP.txt"); fileReader =
-			 * new FileReader(fILEFTP); bufferedReader = new BufferedReader(fileReader);
-			 * counter = 0; while((line = bufferedReader.readLine()) != null) { counter++;
-			 * if(counter == 1) { serverAddress = line.toString(); } else if(counter == 2) {
-			 * userId = line.toString(); } else if(counter == 3) { password =
-			 * line.toString(); } } bufferedReader.close();
-			 */			//
+			//***********************************************************************************
+//			File fILEFTP = new File( GLOBAL.SURUCU + "/OBS_SISTEM_FTP.txt"); 
+//			fileReader =  new FileReader(fILEFTP); 
+//			bufferedReader = new BufferedReader(fileReader);
+//			counter = 0; 
+//			while((line = bufferedReader.readLine()) != null) 
+//			{ 
+//				counter++;
+//				if(counter == 1) 
+//				{ 
+//					serverAddress = line.toString(); 
+//				} 
+//				else if(counter == 2) 
+//				{
+//					userId = line.toString(); 
+//				} 
+//				else if(counter == 3) 
+//				{ 
+//					password =  line.toString(); 
+//				}
+//			}
+//			bufferedReader.close();
+			//*************************************************************************************
 			FTPClient ftp = new FTPClient();
 			ftp.connect(serverAddress);
 			if(!ftp.login(userId, password))
@@ -1577,12 +1601,11 @@ public class LOGIN extends JDialog {
 						+ "<br><br> "
 						+ "Yeni Version = " + yeniver + "" ;
 				OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO,  String.format(html));
-				//JOptionPane.showMessageDialog(null, String.format(html), "OBS SISTEM", JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 		catch (Exception ex)
 		{
-			
+			OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO,  ex.getMessage());
 		}
 	}
 	private void cONN_AKTAR( String dIZIN )

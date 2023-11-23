@@ -47,7 +47,7 @@ import javax.swing.JOptionPane;
 
 
 import OBS_2025.Tema_Cari;
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused","resource"})
 public class GLOBAL {
 
 	static final String OBS_DOSYA = System.getProperty("user.name") + "_OBS_SISTEM_2025.DB";
@@ -460,7 +460,6 @@ public class GLOBAL {
 	
 		return result ;
 	}
-	@SuppressWarnings("resource")
 	private static void mail_at()
 	{
 		try {
@@ -500,7 +499,6 @@ public class GLOBAL {
 			Transport.send(message);
 			message= null;
 			session = null;
-			
 		}
 		catch (Exception ex)
 		{

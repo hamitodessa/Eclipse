@@ -61,7 +61,7 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-
+import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
 
 import fih.FIHRIST_ACCESS;
 
@@ -160,6 +160,7 @@ public class rEHBER extends JFrame {
 		//			e.printStackTrace();
 		//		}
 		FlatArcOrangeIJTheme.setup();
+		//FlatLightFlatIJTheme.setup();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
 		setTitle("FIHRIST");
@@ -184,6 +185,7 @@ public class rEHBER extends JFrame {
 		panel.setLayout(new BorderLayout(0, 0));
 
 		JSplitPane splitPane = new JSplitPane();
+		splitPane.setDividerSize(0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		panel.add(splitPane, BorderLayout.CENTER);
 

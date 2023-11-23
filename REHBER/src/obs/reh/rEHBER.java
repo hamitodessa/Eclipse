@@ -339,7 +339,7 @@ public class rEHBER extends JFrame {
 				}
 			}
 		});
-		btnKayitf.setToolTipText("Yeni");
+		btnKayitf.setToolTipText("Kaydet");
 		btnKayitf.setIcon(new ImageIcon(rEHBER.class.getResource("/obs/ayarlar/iconlar/save.png")));
 		toolBar_1.add(btnKayitf);
 		

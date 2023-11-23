@@ -29,7 +29,7 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 		con = DriverManager.getConnection("jdbc:sqlite:" + GLOBAL.DBYERI + "OK_Fih" + sbilgi.getKod() + ".DB"  ) ;
 		con.close();
 		String sql = "CREATE TABLE [FIHRIST]("
-				+ " ID int identity(1,1) CONSTRAINT PKeyid PRIMARY KEY,"
+				+ " ID INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ " Adi nvarchar(50) NOT NULL, "
 				+ " Tel_1 nvarchar(25) NULL,"
 				+ " Tel_2 nvarchar(25) NULL,"
@@ -62,12 +62,42 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 	public ResultSet reh_doldur() throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
 		ResultSet	rss = null;
-		String sql = " SELECT Adi ,Tel_1,Tel_2,Tel_3,Tel_4,Fax ,Ozel,Mail   "  + 
+		String sql = " SELECT Adi ,Tel_1,Tel_2,Tel_3,Tel_4,Fax ,Ozel,Mail ,ID  "  + 
 				"  FROM FIHRIST   " + 
 				"  ORDER BY Adi   ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	 
+	}
+
+	@Override
+	public void reh_kayit(String adi, String t1, String t2, String t3, String t4, String fax, String mail, String note)
+			throws ClassNotFoundException, SQLException {
+		Class.forName("org.sqlite.JDBC");
+		String sql  = "INSERT INTO FIHRIST (Adi,Tel_1,Tel_2,Tel_3,Tel_4,Fax,Ozel,Mail) " +
+				" VALUES (?,?,?,?,?,?,?,?)" ;
+		PreparedStatement stmt = null;
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, adi);
+		stmt.setString(2, t1);
+		stmt.setString(3, t2);
+		stmt.setString(4, t3);
+		stmt.setString(5, t4);
+		stmt.setString(6, fax);
+		stmt.setString(7, mail);
+		stmt.setString(8, note);
+		stmt.executeUpdate();
+		stmt.close();
+		
+	}
+
+	@Override
+	public void reh_sil(int cdi) throws SQLException, ClassNotFoundException {
+		Class.forName("org.sqlite.JDBC");
+		String sql = "DELETE FROM FIHRIST WHERE ID ='" + cdi + "'" ;
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
 	}
 
 }

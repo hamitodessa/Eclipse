@@ -307,8 +307,10 @@ public class CAL_DIZIN extends JFrame {
 							doldur_kutu(tblKereste, 0);
 							break;
 						}
+						contentPane.setCursor(DEFAULT_CURSOR);
 					} catch (Exception ex)
 					{
+						contentPane.setCursor(DEFAULT_CURSOR);
 						OBS_MAIN.mesaj_goster(1000,Notifications.Type.ERROR,  ex.getMessage().toString() );
 						//JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "Calisma Dizini Dosya Silme ", JOptionPane.ERROR_MESSAGE);   
 					}

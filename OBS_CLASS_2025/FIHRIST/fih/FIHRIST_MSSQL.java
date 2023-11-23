@@ -101,7 +101,7 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 		return rss;	 
 	}
 	@Override
-	public void reh_kayit(String adi, String t1, String t2, String t3, String t4, String fax, String mail, String note)
+	public void reh_kayit(String adi, String t1, String t2, String t3, String t4, String fax,  String note,String mail)
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String sql  = "INSERT INTO FIHRIST (Adi,Tel_1,Tel_2,Tel_3,Tel_4,Fax,Ozel,Mail) " +
@@ -114,8 +114,8 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 		stmt.setString(4, t3);
 		stmt.setString(5, t4);
 		stmt.setString(6, fax);
-		stmt.setString(7, mail);
-		stmt.setString(8, note);
+		stmt.setString(7, note);
+		stmt.setString(8, mail);
 		stmt.executeUpdate();
 		stmt.close();
 	}

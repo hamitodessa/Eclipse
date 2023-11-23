@@ -1340,7 +1340,7 @@ public class rEHBER extends JFrame {
 	{
 		if(! txtcd.getText().equals(""))
 			fih_Access.reh_sil(Integer.parseInt(txtcd.getText()));
-		fih_Access.reh_kayit(txtAdi.getText(), txtT1.getText(), txtT2.getText(),txtT3.getText(),txtT4.getText(), txtFax.getText(), txtMail.getText(), txtNot.getText());
+		fih_Access.reh_kayit(txtAdi.getText(), txtT1.getText(), txtT2.getText(),txtT3.getText(),txtT4.getText(), txtFax.getText(),  txtNot.getText(),txtMail.getText());
 	}
 	private static void fih_kutu_temizle() 
 	{

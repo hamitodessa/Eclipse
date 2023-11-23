@@ -62,6 +62,7 @@ import javax.swing.table.TableStringConverter;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 
+
 import fih.FIHRIST_ACCESS;
 
 import javax.swing.JComboBox;
@@ -126,7 +127,7 @@ public class rEHBER extends JFrame {
 	private static JComboBox<String> cmbhangisql ;
 
 	private JLabel lblSatir ;
-
+	private JLabel lblbilgi;
 	private JButton btnServer ;
 	private JButton btnVtKontrol ;
 	
@@ -437,6 +438,12 @@ public class rEHBER extends JFrame {
 		lblSatir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblSatir.setBounds(100, 7, 51, 14);
 		panel_4.add(lblSatir);
+		
+		lblbilgi = new JLabel("...");
+		lblbilgi.setBounds(174, 7, 200, 14);
+		lblbilgi.setForeground(new Color(0, 0, 128));
+		lblbilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
+		panel_4.add(lblbilgi);
 
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Ayarlar", null, panel_1, null);
@@ -645,6 +652,8 @@ public class rEHBER extends JFrame {
 					database_kontrol();
 					btnVtKontrol.setEnabled(false);
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+					String	qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
+					lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe  + " / "+ BAGLAN.fihDizin.hAN_SQL );
 				}
 				catch  (Exception ex)
 				{
@@ -670,6 +679,7 @@ public class rEHBER extends JFrame {
 				try {
 					oac.uSER_ISL.cd_sil(Integer.parseInt(txtcdid.getText()) );
 					ayar_doldur();
+					lblbilgi.setText ("");
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception ex)
 				{
@@ -745,6 +755,8 @@ public class rEHBER extends JFrame {
 				//JOptionPane.showMessageDialog(null,  "Fihtist Baglanti kurulamadi.....",  "Server Baglanti", JOptionPane.ERROR_MESSAGE);   
 				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 				fih_Access.baglan();
+				
+
 				fihrist_kont();
 			} catch (Exception e) {
 				mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());
@@ -834,7 +846,7 @@ public class rEHBER extends JFrame {
 			{
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Fihrist -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....");
-				qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
+				lblbilgi.setText ("" );
 			}
 			else 
 			{ 
@@ -846,6 +858,8 @@ public class rEHBER extends JFrame {
 				//				OBS_MAIN.lblCariBilgi.setForeground(new Color(0, 0, 128));
 				//				OBS_MAIN.lblCariBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 				//				OBS_MAIN.tabbedPane.setEnabledAt(0, true);
+				qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
+				lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe  + " / "+ BAGLAN.fihDizin.hAN_SQL );
 				doldur();
 			}
 		}
@@ -910,6 +924,8 @@ public class rEHBER extends JFrame {
 			table_1.setRowHeight(22);
 			table_1.setRowSelectionInterval(0, 0);
 			doldur_kutu(table_1,0);
+			
+
 		} catch (Exception e) {
 			mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());
 		}

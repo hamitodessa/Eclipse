@@ -257,14 +257,6 @@ public class OBS_MAIN extends JFrame  {
 	        public void windowOpened(WindowEvent e) {
 				form_ac("CALISMA DIZINLERI","");
 				gorev_kontrol();
-//				ThreadGroup threadGroup    = Thread.currentThread().getThreadGroup();
-//		        int threadCount = threadGroup.activeCount();
-//		        Thread threadList[] = new Thread[threadCount];
-//		        threadGroup.enumerate(threadList);
-//		        System.out.println("Active threads are:");
-//		        for (int i = 0; i < threadCount; i++)
-//		            System.out.println(threadList[i].getName());
-
 	        }
 	        @Override
 	        public void windowClosing(WindowEvent e) {
@@ -1228,7 +1220,6 @@ public class OBS_MAIN extends JFrame  {
         
 		contentPane.add(splitPane, BorderLayout.NORTH);
 //***************************************GORUNTU ICIN ASAGIDAKI BLOGU KALDIR********************************
-		// new tabbed.MaterialTabbed();
 		tabbedPane = new  MaterialTabbed();
 		tabbedPane.addComponentListener(new ComponentAdapter() 
 		{
@@ -1243,19 +1234,19 @@ public class OBS_MAIN extends JFrame  {
 		    }
 		});
 
-		///*******
-		//tabbedPane.addComponentListener(new ComponentAdapter() 
-		//{
-		//    @Override
-		//    public void componentResized(ComponentEvent e) {
-		//        MaterialTabbed tabbedPane = (MaterialTabbed) e.getComponent();
-		//        int tabCount = tabbedPane.getTabCount();
-		//        for (int i = 0; i < tabCount; i++) {
-		//            Component c = tabbedPane.getComponentAt(i);
-		//            c.setPreferredSize(new Dimension(c.getSize().width, c.getPreferredSize().height));
-		//        }
-		//    }
-		//});
+//		///*******
+//		tabbedPane.addComponentListener(new ComponentAdapter() 
+//		{
+//		    @Override
+//		    public void componentResized(ComponentEvent e) {
+//		        MaterialTabbed tabbedPane = (MaterialTabbed) e.getComponent();
+//		        int tabCount = tabbedPane.getTabCount();
+//		        for (int i = 0; i < tabCount; i++) {
+//		            Component c = tabbedPane.getComponentAt(i);
+//		            c.setPreferredSize(new Dimension(c.getSize().width, c.getPreferredSize().height));
+//		        }
+//		    }
+//		});
 
 		///*******
 		tabbedPane.setTabLayoutPolicy(MaterialTabbed.SCROLL_TAB_LAYOUT);

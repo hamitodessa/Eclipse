@@ -49,7 +49,7 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 
 	@Override
 	public void reh_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

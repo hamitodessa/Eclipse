@@ -326,12 +326,14 @@ public class rEHBER extends JFrame {
 		btnKayitf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(txtAdi.getText().toString().equals(""))
+						return;
+					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					fih_kaydet();
 					doldur();
-					
-				} catch (Exception e1) {
-
-					e1.printStackTrace();
+					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				} catch (Exception ex) {
+					mesaj_goster(1000,Notifications.Type.ERROR,  ex.getMessage().toString() );
 				}
 			}
 		});

@@ -623,7 +623,7 @@ public class rEHBER extends JFrame {
 		btnServer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				{
-					if (txtKodu.getText().equals(""))
+					if(txtKodu.getText().toString().equals(""))
 						return;
 					if (cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).toString().equals("MS SQL"))
 					{
@@ -654,7 +654,7 @@ public class rEHBER extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try
 				{
-					if(txtKodu.toString().equals(""))
+					if(txtKodu.getText().toString().equals(""))
 						return;
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					database_kontrol();

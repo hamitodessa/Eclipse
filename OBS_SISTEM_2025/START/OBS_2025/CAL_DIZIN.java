@@ -1762,7 +1762,7 @@ public class CAL_DIZIN extends JFrame {
 			int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu............?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,	 	null,    	oac.options,  	 	oac.options[1]); 
 			if(g != 0 ) { return;	}
-			Thread.yield();
+			//Thread.yield();
 			dosya_olustur_L();
 			mdb_yaz();
 			grid_doldur();
@@ -1869,7 +1869,7 @@ public class CAL_DIZIN extends JFrame {
 			if(g != 0 ) { return;	}
 			{
 				contentPane.setCursor(WAIT_CURSOR);
-				Thread.yield();
+				//Thread.yield();
 				dosya_olustur_S();
 				mdb_yaz();
 				grid_doldur();

@@ -649,7 +649,6 @@ public class rEHBER extends JFrame {
 					{
 						tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 						mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
-						//JOptionPane.showMessageDialog(null, ex.getMessage().toString(),  "Server Kontrol", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
@@ -680,7 +679,6 @@ public class rEHBER extends JFrame {
 					//JOptionPane.showMessageDialog(null, ex.getMessage().toString(),  "Veritabani Kontrol", JOptionPane.ERROR_MESSAGE);
 				}
 			}
-
 		});
 
 		toolBar.add(btnVtKontrol);
@@ -767,7 +765,8 @@ public class rEHBER extends JFrame {
 			tabbedPane.setSelectedIndex(1);
 			ayar_doldur();
 		}
-		else {
+		else 
+		{
 			try {
 				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 				fih_Access.baglan();
@@ -871,7 +870,8 @@ public class rEHBER extends JFrame {
 		}
 		else
 		{
-			mesaj_goster(5000,Notifications.Type.WARNING, "Dosya Baglanti Kurulamadi.....");
+			lblbilgi.setText ("" );
+			mesaj_goster(7500,Notifications.Type.WARNING, "Dosya Baglanti Kurulamadi.....");
 		}
 	}
 	void ayar_doldur() {
@@ -982,7 +982,6 @@ public class rEHBER extends JFrame {
 			}
 		}
 	}
-
 	private void cONN_AKTAR(String hangi)
 	{
 		if(hangi.equals("MS SQL"))
@@ -1087,7 +1086,6 @@ public class rEHBER extends JFrame {
 			mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
 		}
 	}
-
 	private  void dosya_olustur_L() throws IOException, ClassNotFoundException, SQLException
 	{
 		tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

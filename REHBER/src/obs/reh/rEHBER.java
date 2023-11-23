@@ -104,7 +104,6 @@ public class rEHBER extends JFrame {
 	private static JTextField txtIp;
 	private static JTextField txtUser;
 	private static JTextField txtcdid;
-	
 	private static JPasswordField txtPwd;
 	
 	private static JCheckBox chckbxS ;
@@ -937,13 +936,6 @@ public class rEHBER extends JFrame {
 		cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
 		mODUL_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
 		fih_Access = new FIHRIST_ACCESS(oac._IFihrist);
-		BAGLAN.fihDizin.kULLANICI = txtUser.getText();
-		BAGLAN.fihDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtPwd) ;
-		BAGLAN.fihDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
-		BAGLAN.fihDizin.sERVER = txtIp.getText();
-		BAGLAN.fihDizin.kOD = txtKodu.getText();
-		BAGLAN.fihDizin.yER = "L";
-		BAGLAN.fihDizin.iNSTANCE = cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() ; 
 
 		Server_Bilgi sbilgi = new Server_Bilgi();
 		sbilgi.setKod(txtKodu.getText());
@@ -970,6 +962,11 @@ public class rEHBER extends JFrame {
 		{
 			mdb_yaz();
 			ayar_doldur();
+			BAGLAN bAGLAN = new BAGLAN();
+			bAGLAN.cONNECT("Admin");
+			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
+			fih_Access.baglan();
+			doldur();
 			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Baglanti Kuruldu ..." );
 		}
@@ -984,6 +981,11 @@ public class rEHBER extends JFrame {
 				dosya_olustur_S();
 				mdb_yaz();
 				ayar_doldur();
+				BAGLAN bAGLAN = new BAGLAN();
+				bAGLAN.cONNECT("Admin");
+				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
+				fih_Access.baglan();
+				doldur();
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
 			}
@@ -1008,22 +1010,15 @@ public class rEHBER extends JFrame {
 		cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
 		mODUL_AKTAR( cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
 		fih_Access = new FIHRIST_ACCESS(oac._IFihrist);
-		BAGLAN.fihDizin.kULLANICI = txtUser.getText();
-		BAGLAN.fihDizin.sIFRESI = oac.sDONDUR.sDONDUR(txtPwd) ;
-		BAGLAN.fihDizin.hAN_SQL = cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()) ;
-		BAGLAN.fihDizin.sERVER = txtIp.getText();
-		BAGLAN.fihDizin.kOD = txtKodu.getText();
-		BAGLAN.fihDizin.yER = "S";
-		BAGLAN.fihDizin.iNSTANCE = cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString();
 
 		Server_Bilgi sbilgi = new Server_Bilgi();
-		sbilgi.setKod(txtKodu.getText());
-		sbilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString());
-		sbilgi.setKull(txtUser.getText());
-		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtPwd));
-		sbilgi.setPort(txtIp.getText()); 
-		sbilgi.setDizin_yeri("default");
-		sbilgi.setDizin("");
+		sbilgi.setKod(txtKodu.getText());;
+		sbilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString());;
+		sbilgi.setKull(txtUser.getText()); ;
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtPwd)); ;
+		sbilgi.setServer(txtIp.getText()); ;
+		sbilgi.setDizin_yeri("default");;
+		sbilgi.setDizin("");;
 		fih_Access.fihrist_SIFIR_S(sbilgi);
 	}
 	private static  void doldur_kutu( JTable grd,int satir) throws ClassNotFoundException, SQLException 

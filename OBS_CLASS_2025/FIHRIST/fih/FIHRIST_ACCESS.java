@@ -11,7 +11,6 @@ public class FIHRIST_ACCESS {
 	
 	public FIHRIST_ACCESS(I_Fihrist _IFihrist)
 	{
-		//this._IFihrist = _IFihrist;
 		this._IFihrist = _IFihrist ;
 	}
 	public static void baglan() throws SQLException, ClassNotFoundException

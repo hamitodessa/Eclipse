@@ -25,8 +25,6 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 		JOptionPane.showMessageDialog(null,BAGLAN.fihDizin.cONN_STR +"====" + BAGLAN.fihDizin.kULLANICI + BAGLAN.fihDizin.sIFRESI,  "fghfhgfhgfhfg", JOptionPane.ERROR_MESSAGE);   
 		DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.fihDizin.kULLANICI,BAGLAN.fihDizin.sIFRESI);
-		
-
 	}
 	@Override
 	public void reh_sifirdan_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
@@ -59,8 +57,22 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 	}
 	@Override
 	public void reh_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		con = null;  
+		String VERITABANI = "OK_Fih" +  sbilgi.getKod();
+		String cumle = "";
+		stmt = null;
+		String sql =null;
+		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+		sql = "CREATE DATABASE [" + VERITABANI + "]";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";database=" + VERITABANI + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
+		create_table(sbilgi.getFir_adi());
+		stmt.close();
+		con.close();
 	}
 	@Override
 	public void create_table(String fir_adi) throws SQLException {

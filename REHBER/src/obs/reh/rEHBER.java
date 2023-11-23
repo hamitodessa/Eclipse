@@ -922,10 +922,10 @@ public class rEHBER extends JFrame {
 		if (chckbxL.isSelected() )
 		{
 			Server_Bilgi sBilgi = new Server_Bilgi() ;
-			sBilgi.setIns(cmbInstance.getSelectedItem().toString()); 
-			sBilgi.setKull(txtUser.getText());  ;
-			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtPwd)); ;
-			sBilgi.setPort(txtIp.getText()); ;
+			sBilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString());
+			sBilgi.setKull(txtUser.getText()); 
+			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtPwd)); 
+			sBilgi.setPort(txtIp.getText()); 
 			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			if ( s_CONN.Server_kontrol_L( sBilgi) == true  )
 			{
@@ -943,9 +943,9 @@ public class rEHBER extends JFrame {
 		{
 			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			Server_Bilgi sBilgi = new Server_Bilgi() ;
-			sBilgi.setServer(txtIp.getText());;
-			sBilgi.setIns(cmbInstance.getSelectedItem().toString() );;
-			sBilgi.setKull(txtUser.getText()); ;
+			sBilgi.setServer(txtIp.getText());
+			sBilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() );
+			sBilgi.setKull(txtUser.getText()); 
 			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtPwd));
 			if (s_CONN.Server_kontrol_S(sBilgi ) == true)
 			{

@@ -70,7 +70,8 @@ public class FIHRIST_MYSQL implements I_Fihrist{
 				+ " `Tel_3` nvarchar(25) NULL,"
 				+ " `Tel_4` nvarchar(25) NULL,"
 				+ " `Fax` nvarchar(25) NULL,"
-				+ " `Ozel` nvarchar(50) NULL,"
+				+ " `Note` nvarchar(50) NULL,"
+				+ " `Note2` nvarchar(50) NULL,"
 				+ " `Mail` nvarchar(50) NULL);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
@@ -81,7 +82,7 @@ public class FIHRIST_MYSQL implements I_Fihrist{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
 		ResultSet	rss = null;
-		String sql = " SELECT Adi ,Tel_1,Tel_2,Tel_3,Tel_4,Fax ,Ozel,Mail ,ID  "  + 
+		String sql = " SELECT Adi ,Tel_1,Tel_2,Tel_3,Tel_4,Fax ,Note,Note2,Mail ,ID  "  + 
 				"  FROM FIHRIST   " + 
 				"  ORDER BY Adi   ";
 		PreparedStatement stmt = con.prepareStatement(sql);
@@ -90,11 +91,11 @@ public class FIHRIST_MYSQL implements I_Fihrist{
 	}
 
 	@Override
-	public void reh_kayit(String adi, String t1, String t2, String t3, String t4, String fax, String note, String mail)
+	public void reh_kayit(String adi, String t1, String t2, String t3, String t4, String fax, String note,String note2 ,String mail)
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		String sql  = "INSERT INTO FIHRIST (Adi,Tel_1,Tel_2,Tel_3,Tel_4,Fax,Ozel,Mail) " +
-				" VALUES (?,?,?,?,?,?,?,?)" ;
+		String sql  = "INSERT INTO FIHRIST (Adi,Tel_1,Tel_2,Tel_3,Tel_4,Fax,Note,Note2,Mail) " +
+				" VALUES (?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, adi);
@@ -104,7 +105,8 @@ public class FIHRIST_MYSQL implements I_Fihrist{
 		stmt.setString(5, t4);
 		stmt.setString(6, fax);
 		stmt.setString(7, note);
-		stmt.setString(8, mail);
+		stmt.setString(8, note2);
+		stmt.setString(9, mail);
 		stmt.executeUpdate();
 		stmt.close();
 	}

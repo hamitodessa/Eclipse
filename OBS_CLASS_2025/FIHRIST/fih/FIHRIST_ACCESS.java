@@ -29,9 +29,9 @@ public class FIHRIST_ACCESS {
 	{
 		return _IFihrist.reh_doldur();
 	}
-	public void reh_kayit(String adi,String t1,String t2,String t3,String t4 , String fax, String note,String mail) throws ClassNotFoundException, SQLException
+	public void reh_kayit(String adi,String t1,String t2,String t3,String t4 , String fax, String note,String note2 ,String mail) throws ClassNotFoundException, SQLException
 	{
-		 _IFihrist.reh_kayit(adi, t1, t2, t3, t4, fax,  note,mail);
+		 _IFihrist.reh_kayit(adi, t1, t2, t3, t4, fax,  note, note2,mail);
 		
 	}
 	public void reh_sil(int cdi) throws ClassNotFoundException, SQLException

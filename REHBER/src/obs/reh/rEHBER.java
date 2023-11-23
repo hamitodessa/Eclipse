@@ -114,6 +114,7 @@ public class rEHBER extends JFrame {
 	private static JTextField txtFax;
 	private static JTextField txtMail;
 	private static JTextField txtNot;
+	private static JTextField txtNot2;
 	private static JTextField txtKodu;
 	private static JTextField txtIp;
 	private static JTextField txtUser;
@@ -130,6 +131,7 @@ public class rEHBER extends JFrame {
 	private JLabel lblbilgi;
 	private JButton btnServer ;
 	private JButton btnVtKontrol ;
+	
 	
 	/**
 	 * Launch the application.
@@ -199,7 +201,7 @@ public class rEHBER extends JFrame {
 		panel_2.setLayout(null);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 33, 900, 5);
+		separator.setBounds(10, 33, 855, 5);
 		panel_2.add(separator);
 
 		JLabel lblNewLabel = new JLabel("Adi");
@@ -384,6 +386,15 @@ public class rEHBER extends JFrame {
 		btnYenif.setToolTipText("Yeni");
 		btnYenif.setIcon(new ImageIcon(rEHBER.class.getResource("/obs/ayarlar/iconlar/yeni.png")));
 		toolBar_1.add(btnYenif);
+		
+		JLabel lblNewLabel_2_6_1 = new JLabel("Not_2");
+		lblNewLabel_2_6_1.setBounds(450, 129, 48, 14);
+		panel_2.add(lblNewLabel_2_6_1);
+		
+		txtNot2 = new JTextField();
+		txtNot2.setColumns(10);
+		txtNot2.setBounds(508, 126, 360, 20);
+		panel_2.add(txtNot2);
 
 		///
 		JSplitPane splitPanealt = new JSplitPane();
@@ -658,7 +669,6 @@ public class rEHBER extends JFrame {
 						return;
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					database_kontrol();
-					//btnVtKontrol.setEnabled(false);
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					String	qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
 					lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe  + " / "+ BAGLAN.fihDizin.hAN_SQL );
@@ -759,13 +769,8 @@ public class rEHBER extends JFrame {
 		}
 		else {
 			try {
-				//cONN_AKTAR(BAGLAN.fihDizin.hAN_SQL);
-				//mODUL_AKTAR( BAGLAN.fihDizin.hAN_SQL);
-				//JOptionPane.showMessageDialog(null,  "Fihtist Baglanti kurulamadi.....",  "Server Baglanti", JOptionPane.ERROR_MESSAGE);   
 				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 				fih_Access.baglan();
-				
-
 				fihrist_kont();
 			} catch (Exception e) {
 				mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());
@@ -859,14 +864,6 @@ public class rEHBER extends JFrame {
 			}
 			else 
 			{ 
-				//				BAGLAN.cariDizin.fIRMA_ADI =  oac._ICar.cari_firma_adi() ;
-				//				qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
-				//				OBS_MAIN.lblCariBilgi.setText (BAGLAN.cariDizin.kOD + "  /  " + BAGLAN.cariDizin.fIRMA_ADI + "  /  " + qwe  + " / "+ BAGLAN.cariDizin.hAN_SQL );
-				//				Dimension size = OBS_MAIN.lblCariBilgi.getPreferredSize();
-				//				OBS_MAIN.lblCariBilgi.setBounds(10, 55, size.width +10, 14);
-				//				OBS_MAIN.lblCariBilgi.setForeground(new Color(0, 0, 128));
-				//				OBS_MAIN.lblCariBilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
-				//				OBS_MAIN.tabbedPane.setEnabledAt(0, true);
 				qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
 				lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe  + " / "+ BAGLAN.fihDizin.hAN_SQL );
 				doldur();
@@ -897,7 +894,6 @@ public class rEHBER extends JFrame {
 			table_1.removeColumn(table_1.getColumnModel().getColumn(4));
 			table_1.removeColumn(table_1.getColumnModel().getColumn(5));
 			table_1.removeColumn(table_1.getColumnModel().getColumn(5));
-			//table_1.removeColumn(table_1.getColumnModel().getColumn(5));
 			JTableHeader th = table_1.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc = tcm.getColumn(0);
@@ -989,7 +985,6 @@ public class rEHBER extends JFrame {
 
 	private void cONN_AKTAR(String hangi)
 	{
-
 		if(hangi.equals("MS SQL"))
 		{
 			oac._IFihristCon = new OBS_ORTAK_MSSQL() ;
@@ -1005,7 +1000,6 @@ public class rEHBER extends JFrame {
 	}
 	private void mODUL_AKTAR(String hangi)
 	{
-
 		if(hangi.equals("MS SQL"))
 		{
 			oac._IFihrist =  new FIHRIST_MSSQL();
@@ -1016,7 +1010,6 @@ public class rEHBER extends JFrame {
 		}
 		else if(hangi.equals("SQ LITE"))
 		{
-
 			oac._IFihrist =  new FIHRIST_SQLITE();
 		}
 	}
@@ -1025,7 +1018,6 @@ public class rEHBER extends JFrame {
 		InputStream stream = null ;
 		try {
 			Notifications.getInstance().show(tipType,Notifications.Location.BOTTOM_RIGHT ,zaman ,mesaj);
-
 			stream = rEHBER.class.getClassLoader().getResourceAsStream("DOSYA/hata.mp3"); //whts
 			Player player = new Player(stream);
 			player.play();
@@ -1083,7 +1075,6 @@ public class rEHBER extends JFrame {
 			int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu............?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,	 	null,    	oac.options,  	 	oac.options[1]); 
 			if(g != 0 ) { return;	}
-
 			dosya_olustur_L();
 			mdb_yaz();
 			ayar_doldur();
@@ -1164,9 +1155,9 @@ public class rEHBER extends JFrame {
 		oac.uSER_ISL.calisanmi_degis("Admin","Fihrist",chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
 		oac.uSER_ISL.details_yaz(txtKodu.getText(),"Admin",txtUser.getText(), oac.sDONDUR.sDONDUR(txtPwd),
 				cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() , 
-						txtIp.getText(), "Fihrist","", chckbxL.isSelected() ? "L" : "S",  "D" , "E", "E",
-								cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()), 
-								txtcdid.getText(), 0, "false,false,false,false");
+				txtIp.getText(), "Fihrist","", chckbxL.isSelected() ? "L" : "S",  "D" , "E", "E",
+				cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()), 
+				txtcdid.getText(), 0, "false,false,false,false");
 	}
 	private void dosya_olustur_S()throws ClassNotFoundException, SQLException
 	{
@@ -1174,7 +1165,6 @@ public class rEHBER extends JFrame {
 		cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
 		mODUL_AKTAR( cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
 		fih_Access = new FIHRIST_ACCESS(oac._IFihrist);
-
 		Server_Bilgi sbilgi = new Server_Bilgi();
 		sbilgi.setKod(txtKodu.getText());;
 		sbilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString());;
@@ -1195,7 +1185,6 @@ public class rEHBER extends JFrame {
 		txtKodu.setText(grd.getModel().getValueAt(satir, 1).toString());
 		txtIp.setText(grd.getModel().getValueAt(satir, 6).toString());
 		txtUser.setText(grd.getModel().getValueAt(satir, 3).toString());
-
 		String decodedString = grd.getModel().getValueAt(satir, 4).toString();
 		String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 		byte[] bytes = new byte[byteValues.length];
@@ -1267,7 +1256,7 @@ public class rEHBER extends JFrame {
 			else
 			{
 				table.setModel(DbUtils.resultSetToTableModel(rs));
-				table.removeColumn(table.getColumnModel().getColumn(8));
+				table.removeColumn(table.getColumnModel().getColumn(9));
 				JTableHeader th = table.getTableHeader();
 				TableColumnModel tcm = th.getColumnModel();
 				TableColumn tc;
@@ -1311,6 +1300,11 @@ public class rEHBER extends JFrame {
 				tc.setMinWidth(200);
 				tc.setMaxWidth(200);
 				
+				tc = tcm.getColumn(8);
+				tc.setHeaderRenderer(new SOLA());
+				tc.setMinWidth(200);
+				tc.setMaxWidth(200);
+				
 				Dimension dd = th.getPreferredSize();
 				dd.height = 30;
 				th.setPreferredSize(dd); 
@@ -1349,7 +1343,7 @@ public class rEHBER extends JFrame {
 	{
 		if(! txtcd.getText().equals(""))
 			fih_Access.reh_sil(Integer.parseInt(txtcd.getText()));
-		fih_Access.reh_kayit(txtAdi.getText(), txtT1.getText(), txtT2.getText(),txtT3.getText(),txtT4.getText(), txtFax.getText(),  txtNot.getText(),txtMail.getText());
+		fih_Access.reh_kayit(txtAdi.getText(), txtT1.getText(), txtT2.getText(),txtT3.getText(),txtT4.getText(), txtFax.getText(),  txtNot.getText(),  txtNot2.getText(),txtMail.getText());
 	}
 	private static void fih_kutu_temizle() 
 	{
@@ -1361,6 +1355,7 @@ public class rEHBER extends JFrame {
 		txtFax.setText("");
 		txtMail.setText("");
 		txtNot.setText("");
+		txtNot2.setText("");
 		txtcd.setText("");
 	}
 	private static  void fih_doldur_kutu( JTable grd,int satir) throws ClassNotFoundException, SQLException 
@@ -1369,7 +1364,6 @@ public class rEHBER extends JFrame {
 			fih_kutu_temizle();
 			return;
 		} 
-
 		txtAdi.setText(grd.getModel().getValueAt(satir, 0).toString());
 		txtT1.setText(grd.getModel().getValueAt(satir, 1).toString());
 		txtT2.setText(grd.getModel().getValueAt(satir, 2).toString());
@@ -1377,8 +1371,8 @@ public class rEHBER extends JFrame {
 		txtT4.setText(grd.getModel().getValueAt(satir, 4).toString());
 		txtFax.setText(grd.getModel().getValueAt(satir, 5).toString());
 		txtNot.setText(grd.getModel().getValueAt(satir, 6).toString());
-		txtMail.setText(grd.getModel().getValueAt(satir, 7).toString());
-		txtcd.setText(grd.getModel().getValueAt(satir, 8).toString());
-
+		txtNot2.setText(grd.getModel().getValueAt(satir, 7).toString());
+		txtMail.setText(grd.getModel().getValueAt(satir, 8).toString());
+		txtcd.setText(grd.getModel().getValueAt(satir, 9).toString());
 	}
 }

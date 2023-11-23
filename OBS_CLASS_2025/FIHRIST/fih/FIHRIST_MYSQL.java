@@ -70,8 +70,8 @@ public class FIHRIST_MYSQL implements I_Fihrist{
 				+ " `Tel_3` nvarchar(25) NULL,"
 				+ " `Tel_4` nvarchar(25) NULL,"
 				+ " `Fax` nvarchar(25) NULL,"
-				+ " `Ozel` nvarchar(25) NULL,"
-				+ " `Mail` nvarchar(25) NULL);";
+				+ " `Ozel` nvarchar(50) NULL,"
+				+ " `Mail` nvarchar(50) NULL);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 	}

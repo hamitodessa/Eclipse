@@ -346,7 +346,7 @@ public class rEHBER extends JFrame {
 		JButton btnSilf = new JButton("");
 		btnSilf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (txtcdid.toString().equals("")) return ;
+				if (txtcd.getText().toString().equals("")) return ;
 				int g = JOptionPane.showOptionDialog(null, "Kayit Silinecek..........?" ,
 						"Fihrist ", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
 				if(g ==  1) {
@@ -354,8 +354,8 @@ public class rEHBER extends JFrame {
 				}
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				try {
-					if(! txtcd.getText().equals(""))
-						fih_Access.reh_sil(Integer.parseInt(txtcd.getText()));
+					if(! txtcd.getText().toString().equals(""))
+						fih_Access.reh_sil(Integer.parseInt(txtcd.getText().toString()));
 					doldur();
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception ex)
@@ -609,8 +609,8 @@ public class rEHBER extends JFrame {
 
 		txtcdid = new JTextField();
 		txtcdid.setBounds(10, 108, 32, 20);
+		txtcdid.setText("");
 		panel_3.add(txtcdid);
-		txtcdid.setColumns(10);
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
@@ -677,7 +677,8 @@ public class rEHBER extends JFrame {
 		JButton btnSil = new JButton("");
 		btnSil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (txtcdid.toString().equals("")) return ;
+				if (txtcdid.getText().toString().equals(""))
+					return ;
 				int g = JOptionPane.showOptionDialog(null, "Kayit Silinecek..........?" ,
 						"Calisma Dizini ", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
 				if(g ==  1) {

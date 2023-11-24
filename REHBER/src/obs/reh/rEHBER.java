@@ -44,6 +44,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -63,6 +64,7 @@ import javax.swing.table.TableStringConverter;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
+
 
 import fih.FIHRIST_ACCESS;
 
@@ -166,6 +168,7 @@ public class rEHBER extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
 		setTitle("FIHRIST");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(rEHBER.class.getResource("/obs/ayarlar/iconlar/fihrist.png")));
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 

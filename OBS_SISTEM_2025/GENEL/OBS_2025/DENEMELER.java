@@ -85,6 +85,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTextPane;
 
 
 @SuppressWarnings({"serial","static-access","unused","unchecked"})
@@ -377,7 +378,7 @@ public class DENEMELER extends JInternalFrame {
 		
 		badgeButton1 = new BadgeButton();
 		badgeButton1.setHorizontalAlignment(SwingConstants.LEFT);
-		badgeButton1.setBounds(68, 304, 60, 55);
+		badgeButton1.setBounds(678, 25, 60, 55);
 		badgeButton1.setIcon(new ImageIcon(DENEMELER.class.getResource("/ICONLAR/bellD-16.png"))); //icon
         badgeButton1.setText("80");
         badgeButton1.setBadgeColor(Color.RED);
@@ -403,7 +404,7 @@ public class DENEMELER extends JInternalFrame {
 		panel.add(btnNewButton_9);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(63, 423, 179, 63);
+		panel_1.setBounds(620, 91, 115, 169);
 		panel.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		

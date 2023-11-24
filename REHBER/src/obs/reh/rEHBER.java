@@ -12,6 +12,7 @@ import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.OBS_ORTAK_SQLITE;
@@ -92,7 +93,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
-@SuppressWarnings({"static-access","unused"})
+@SuppressWarnings({"static-access","unused","serial"})
 public class rEHBER extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -152,7 +153,6 @@ public class rEHBER extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("serial")
 	public rEHBER() {
 
 		//		 try {
@@ -247,6 +247,7 @@ public class rEHBER extends JFrame {
 		panel_2.add(lblNewLabel_1);
 
 		txtAdi = new JTextField();
+		txtAdi.setDocument(new JTextFieldLimit(50));
 		txtAdi.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtAdi.setBounds(68, 43, 372, 20);
 		panel_2.add(txtAdi);
@@ -257,6 +258,7 @@ public class rEHBER extends JFrame {
 		panel_2.add(lblNewLabel_2);
 
 		txtT1 = new JTextField();
+		txtT1.setDocument(new JTextFieldLimit(25));
 		txtT1.setBounds(68, 72, 148, 20);
 		panel_2.add(txtT1);
 		txtT1.setColumns(10);
@@ -266,6 +268,7 @@ public class rEHBER extends JFrame {
 		panel_2.add(lblNewLabel_2_1);
 
 		txtT2 = new JTextField();
+		txtT2.setDocument(new JTextFieldLimit(25));
 		txtT2.setColumns(10);
 		txtT2.setBounds(292, 69, 148, 20);
 		panel_2.add(txtT2);
@@ -275,6 +278,7 @@ public class rEHBER extends JFrame {
 		panel_2.add(lblNewLabel_2_2);
 
 		txtT3 = new JTextField();
+		txtT3.setDocument(new JTextFieldLimit(25));
 		txtT3.setColumns(10);
 		txtT3.setBounds(502, 69, 148, 20);
 		panel_2.add(txtT3);
@@ -284,6 +288,7 @@ public class rEHBER extends JFrame {
 		panel_2.add(lblNewLabel_2_3);
 
 		txtT4 = new JTextField();
+		txtT4.setDocument(new JTextFieldLimit(25));
 		txtT4.setColumns(10);
 		txtT4.setBounds(718, 69, 148, 20);
 		panel_2.add(txtT4);
@@ -293,6 +298,7 @@ public class rEHBER extends JFrame {
 		panel_2.add(lblNewLabel_2_4);
 
 		txtFax = new JTextField();
+		txtFax.setDocument(new JTextFieldLimit(25));
 		txtFax.setColumns(10);
 		txtFax.setBounds(68, 98, 148, 20);
 		panel_2.add(txtFax);
@@ -302,6 +308,7 @@ public class rEHBER extends JFrame {
 		panel_2.add(lblNewLabel_2_5);
 
 		txtMail = new JTextField();
+		txtMail.setDocument(new JTextFieldLimit(50));
 		txtMail.setColumns(10);
 		txtMail.setBounds(292, 97, 360, 20);
 		panel_2.add(txtMail);
@@ -311,9 +318,20 @@ public class rEHBER extends JFrame {
 		panel_2.add(lblNewLabel_2_6);
 
 		txtNot = new JTextField();
+		txtNot.setDocument(new JTextFieldLimit(50));
 		txtNot.setColumns(10);
 		txtNot.setBounds(68, 126, 360, 20);
 		panel_2.add(txtNot);
+		
+		JLabel lblNewLabel_2_6_1 = new JLabel("Not_2");
+		lblNewLabel_2_6_1.setBounds(450, 129, 48, 14);
+		panel_2.add(lblNewLabel_2_6_1);
+		
+		txtNot2 = new JTextField();
+		txtNot2.setDocument(new JTextFieldLimit(50));
+		txtNot2.setColumns(10);
+		txtNot2.setBounds(508, 126, 360, 20);
+		panel_2.add(txtNot2);
 		
 		txtcd = new JTextField();
 		txtcd.setVisible(false);
@@ -387,14 +405,9 @@ public class rEHBER extends JFrame {
 		btnYenif.setIcon(new ImageIcon(rEHBER.class.getResource("/obs/ayarlar/iconlar/yeni.png")));
 		toolBar_1.add(btnYenif);
 		
-		JLabel lblNewLabel_2_6_1 = new JLabel("Not_2");
-		lblNewLabel_2_6_1.setBounds(450, 129, 48, 14);
-		panel_2.add(lblNewLabel_2_6_1);
 		
-		txtNot2 = new JTextField();
-		txtNot2.setColumns(10);
-		txtNot2.setBounds(508, 126, 360, 20);
-		panel_2.add(txtNot2);
+		
+		
 
 		///
 		JSplitPane splitPanealt = new JSplitPane();
@@ -871,6 +884,8 @@ public class rEHBER extends JFrame {
 		else
 		{
 			lblbilgi.setText ("" );
+			tabbedPane.setSelectedIndex(1);
+			ayar_doldur();
 			mesaj_goster(7500,Notifications.Type.WARNING, "Dosya Baglanti Kurulamadi.....");
 		}
 	}

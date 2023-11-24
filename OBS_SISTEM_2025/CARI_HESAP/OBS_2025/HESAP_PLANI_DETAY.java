@@ -1,6 +1,7 @@
 package OBS_2025;
 
 import java.sql.ResultSet;
+
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,6 +20,7 @@ import javax.swing.table.TableRowSorter;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.IMAGE_RENDERER;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
@@ -28,6 +30,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 
 import java.awt.Font;
@@ -62,9 +65,23 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		splitPane.setRightComponent(scrollPane);
 		
 		table = new JTable(){
-			public boolean isCellEditable(int row, int column) {     return false;          }
+			public boolean isCellEditable(int row, int column) {     return false;    
+			}
+			
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component c = super.prepareRenderer(renderer, row, col);
+				if(col ==23)
+				{
+					if(table.getModel().getValueAt(row,23)== null)
+					{
+						 table.setRowHeight(row, 21);
+					}
+					else {
+						
+						 table.setRowHeight(row, 100);
+					}
+				}
+				
 				String status = (String)table.getModel().getValueAt(row,0);
 				 if( table.getRowSorter() == null)
 				 {
@@ -117,6 +134,7 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();
@@ -181,12 +199,16 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(70);
 			
+			
+			
+		
+			
 			Dimension dd = th.getPreferredSize();
 		    dd.height = 30;
 		    th.setPreferredSize(dd); 
 			th.repaint();
 			table.setRowSelectionInterval(0, 0);
-			table.setRowHeight(21);
+			
 			
 			for (int i = 4; i<= 24; i++)
 			{
@@ -194,6 +216,25 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(100);
 			}
+			tc = tcm.getColumn(23);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new IMAGE_RENDERER(100,100));
+			///
+			
+			
+			///
+//			for (int row = 0; row < table.getRowCount(); row++)
+//		    {
+//		        int rowHeight = table.getRowHeight();
+//		        for (int column = 0; column < table.getColumnCount(); column++)
+//		        {
+//		            Component comp = table.prepareRenderer(table.getCellRenderer(row, column), row, column);
+//		            rowHeight = Math.max(rowHeight, comp.getPreferredSize().height);
+//		        }
+//		        table.setRowHeight(row, rowHeight);
+//		    }
+			//
+			
 			 long endTime = System.currentTimeMillis();
 			 long estimatedTime = endTime - startTime;
 			 double seconds = (double)estimatedTime/1000; 

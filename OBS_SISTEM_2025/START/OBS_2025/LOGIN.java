@@ -437,8 +437,6 @@ public class LOGIN extends JDialog {
 		btncdizin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
 		btngiris = new JButton("Giris");
-		//JRootPane rootPane = SwingUtilities.getRootPane(contentPane); 
-		//rootPane.setDefaultButton(btngiris);
 		btngiris.setBounds(310, 92, 110, 25);
 		panel.add(btngiris);
 		btngiris.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/add-user-16.png")));
@@ -474,13 +472,11 @@ public class LOGIN extends JDialog {
 					else
 					{
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,   "Kullanici veya Sifresi Yanlis......!");
-						//JOptionPane.showMessageDialog(null, "Kullanici veya Sifresi Yanlis......!",  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);   
+						OBS_MAIN.mesaj_goster(7000,Notifications.Type.ERROR,   "Kullanici veya Sifresi Yanlis......!");
 						txtUser.requestFocus();
 					}
 				} catch (Exception ex) {
-					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);   
+					OBS_MAIN.mesaj_goster(7000,Notifications.Type.ERROR,  ex.getMessage());
 				}
 			}
 		});
@@ -503,7 +499,6 @@ public class LOGIN extends JDialog {
 			}
 		});
 
-		
 		btndevam = new JButton("Devam");
 		btndevam.setBounds(310, 122, 110, 25);
 		panel.add(btndevam);
@@ -646,7 +641,6 @@ public class LOGIN extends JDialog {
 					{
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-						//JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "OBS SISTEM", JOptionPane.ERROR_MESSAGE);        
 					}
 				}
 				};
@@ -705,8 +699,9 @@ public class LOGIN extends JDialog {
 				parts = deger.split(",");
 				OBS_SIS_2025_ANA_CLASS.satForeColor =  new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
 				txtpwd.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			} catch (Exception e1) 
+			{
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, e1.getMessage());
 			}
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
@@ -720,7 +715,6 @@ public class LOGIN extends JDialog {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Cari -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....");
-				//JOptionPane.showMessageDialog(null, "Calisilan Cari -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
 				qwe = BAGLAN.cariDizin.yER.equals("S") ?  BAGLAN.cariDizin.sERVER : "Lokal" ;
 				OBS_MAIN.tabbedPane.setEnabledAt(0,false);
 			}
@@ -739,7 +733,6 @@ public class LOGIN extends JDialog {
 		else
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Cari Baglanti kurulamadi.....");
-			//JOptionPane.showMessageDialog(null,  "Cari Baglanti kurulamadi.....",  "Server Baglanti", JOptionPane.ERROR_MESSAGE);        
 			OBS_MAIN.tabbedPane.setEnabledAt(0, false);
 		}
 	}
@@ -752,7 +745,6 @@ public class LOGIN extends JDialog {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Calisilan Kur -" + BAGLAN.kurDizin.kOD + "- Nolu Dosya Bulunamadi.....");
-				//JOptionPane.showMessageDialog(null, "Calisilan Kur -" + BAGLAN.kurDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
 				OBS_MAIN.tabbedPane.setEnabledAt(1, false);
 			}
 			else
@@ -769,7 +761,6 @@ public class LOGIN extends JDialog {
 		else
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Kur Baglanti kurulamadi.....");
-			//JOptionPane.showMessageDialog(null,  "Kur Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
 			OBS_MAIN.tabbedPane.setEnabledAt(1, false);
 		}
 	}
@@ -782,7 +773,6 @@ public class LOGIN extends JDialog {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Calisilan Sms -" + BAGLAN.smsDizin.kOD + "- Nolu Dosya Bulunamadi.....");
-				//JOptionPane.showMessageDialog(null, "Calisilan Sms -" + BAGLAN.smsDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
 				OBS_MAIN.tabbedPane.setEnabledAt(6, false);
 			}
 			else
@@ -799,7 +789,6 @@ public class LOGIN extends JDialog {
 		else
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Sms Baglanti kurulamadi.....");
-			//JOptionPane.showMessageDialog(null,  "Sms Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
 			OBS_MAIN.tabbedPane.setEnabledAt(6, false);
 		}
 	}
@@ -812,7 +801,6 @@ public class LOGIN extends JDialog {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Calisilan Adres -" + BAGLAN.adrDizin.kOD + "- Nolu Dosya Bulunamadi.....");
-				//JOptionPane.showMessageDialog(null, "Calisilan Adres -" + BAGLAN.adrDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
 				OBS_MAIN.tabbedPane.setEnabledAt(2, false);
 			}
 			else
@@ -830,7 +818,6 @@ public class LOGIN extends JDialog {
 		else
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Adres Baglanti kurulamadi.....");
-			//JOptionPane.showMessageDialog(null,  "Adres Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
 			OBS_MAIN.tabbedPane.setEnabledAt(2, false);
 		}
 	}
@@ -843,7 +830,6 @@ public class LOGIN extends JDialog {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Calisilan Stok -" + BAGLAN.fatDizin.kOD + "- Nolu Dosya Bulunamadi.....");
-				//JOptionPane.showMessageDialog(null, "Calisilan Stok -" + BAGLAN.fatDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
 				OBS_MAIN.tabbedPane.setEnabledAt(3, false);
 			}
 			else
@@ -861,7 +847,6 @@ public class LOGIN extends JDialog {
 		else
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Stok Baglanti kurulamadi.....");
-			//JOptionPane.showMessageDialog(null,  "Stok Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
 			OBS_MAIN.tabbedPane.setEnabledAt(3, false);
 		}
 	}
@@ -874,7 +859,6 @@ public class LOGIN extends JDialog {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Kambiyo -" +BAGLAN.kamDizin.kOD + "- Nolu Dosya Bulunamadi.....");
-				//JOptionPane.showMessageDialog(null, "Calisilan Kambiyo -" +BAGLAN.kamDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
 				OBS_MAIN.tabbedPane.setEnabledAt(4, false);
 			}
 			else
@@ -892,7 +876,6 @@ public class LOGIN extends JDialog {
 		else
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,   "Kambiyo Baglanti kurulamadi.....");
-			//JOptionPane.showMessageDialog(null,  "Kambiyo Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
 			OBS_MAIN.tabbedPane.setEnabledAt(4, false);
 		}
 	}
@@ -905,7 +888,6 @@ public class LOGIN extends JDialog {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,   "Calisilan Gunluk -" + BAGLAN.gunDizin.kOD + "- Nolu Dosya Bulunamadi.....");
-				//JOptionPane.showMessageDialog(null, "Calisilan Gunluk -" + BAGLAN.gunDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
 				OBS_MAIN.tabbedPane.setEnabledAt(5, false);
 			}
 			else
@@ -923,7 +905,6 @@ public class LOGIN extends JDialog {
 		else
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,    "Gunluk Baglanti kurulamadi.....");
-			//JOptionPane.showMessageDialog(null,  "Gunluk Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
 			OBS_MAIN.tabbedPane.setEnabledAt(5, false);
 		}
 	}
@@ -936,7 +917,6 @@ public class LOGIN extends JDialog {
 			{
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,   "Calisilan Kereste -" + BAGLAN.kerDizin.kOD + "- Nolu Dosya Bulunamadi.....");
-				//JOptionPane.showMessageDialog(null, "Calisilan Kereste -" + BAGLAN.kerDizin.kOD + "- Nolu Dosya Bulunamadi.....",  "Dosya Baglanti", JOptionPane.ERROR_MESSAGE);        
 				OBS_MAIN.tabbedPane.setEnabledAt(7, false);
 			}
 			else
@@ -955,7 +935,6 @@ public class LOGIN extends JDialog {
 		else
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Kereste Baglanti kurulamadi.....");
-			//JOptionPane.showMessageDialog(null,  "Kereste Baglanti kurulamadi.....",  "ServerBaglanti", JOptionPane.ERROR_MESSAGE);        
 			OBS_MAIN.tabbedPane.setEnabledAt(7, false);
 		}
 	}
@@ -966,7 +945,7 @@ public class LOGIN extends JDialog {
 			int say = 9;
 			bAGLAN.cONNECT(txtUser.getText());
 			// Cari
-			cONN_AKTAR( BAGLAN.cariDizin.hAN_SQL );
+			cONN_AKTAR(BAGLAN.cariDizin.hAN_SQL);
 			String hangi_sql =  BAGLAN.cariDizin.hAN_SQL;
 			oac._ICariCon = oac._IConn ;
 			oac._ICar = hangi_sql.equals("MS SQL") ? new  CARI_HESAP_MSSQL() : new  CARI_HESAP_MYSQL();
@@ -1037,12 +1016,9 @@ public class LOGIN extends JDialog {
 			lblModul.setText("Kereste Calisma Dizini");
 			ker_calisma_dizini_oku();
 			Lgn_Progres_Bar(say, 9);
-
 			lblModul.setText("");
-
 		} catch (Exception e) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
-			//JOptionPane.showMessageDialog(null, e.getMessage(),  "Calisma Dizini", JOptionPane.ERROR_MESSAGE);    
+			OBS_MAIN.mesaj_goster(7000,Notifications.Type.ERROR, e.getMessage());
 		}
 	}
 	void cari_calisma_dizini_oku() throws ClassNotFoundException, SQLException
@@ -1470,7 +1446,6 @@ public class LOGIN extends JDialog {
 			OBS_SIS_2025_ANA_CLASS.KER_CONN = false;
 		}
 	}
-
 	void Lgn_Progres_Bar(int max, int deger) throws InterruptedException
 	{
 		progressBar.setValue(deger);

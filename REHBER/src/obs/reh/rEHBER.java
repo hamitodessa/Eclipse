@@ -355,7 +355,7 @@ public class rEHBER extends JFrame {
 					doldur();
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception ex) {
-					mesaj_goster(1000,Notifications.Type.ERROR,  ex.getMessage().toString() );
+					mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
 				}
 			}
 		});
@@ -381,7 +381,7 @@ public class rEHBER extends JFrame {
 				} catch (Exception ex)
 				{
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					mesaj_goster(1000,Notifications.Type.ERROR,  ex.getMessage().toString() );
+					mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
 				}
 			}
 		});
@@ -396,7 +396,6 @@ public class rEHBER extends JFrame {
 					fih_kutu_temizle();
 					txtAdi.requestFocus();
 				} catch (Exception e1) {
-
 					e1.printStackTrace();
 				}
 			}
@@ -404,19 +403,12 @@ public class rEHBER extends JFrame {
 		btnYenif.setToolTipText("Yeni");
 		btnYenif.setIcon(new ImageIcon(rEHBER.class.getResource("/obs/ayarlar/iconlar/yeni.png")));
 		toolBar_1.add(btnYenif);
-		
-		
-		
-		
-
 		///
 		JSplitPane splitPanealt = new JSplitPane();
 		splitPanealt.setDividerSize(0);
 		splitPanealt.setResizeWeight(1.0);
 		splitPanealt.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setRightComponent(splitPanealt);
-
-
 		////
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
 		splitPanealt.setLeftComponent(scrollPane_2);
@@ -689,7 +681,6 @@ public class rEHBER extends JFrame {
 				{
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
-					//JOptionPane.showMessageDialog(null, ex.getMessage().toString(),  "Veritabani Kontrol", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -728,7 +719,6 @@ public class rEHBER extends JFrame {
 				try {
 					kutu_temizle();
 				} catch (Exception e1) {
-
 					e1.printStackTrace();
 				}
 			}
@@ -933,7 +923,6 @@ public class rEHBER extends JFrame {
 			tc.setMinWidth(50);
 			tc.setMaxWidth(50);
 
-
 			tc = tcm.getColumn(4);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setHeaderValue( "SQL" );
@@ -944,8 +933,6 @@ public class rEHBER extends JFrame {
 			table_1.setRowHeight(22);
 			table_1.setRowSelectionInterval(0, 0);
 			doldur_kutu(table_1,0);
-			
-
 		} catch (Exception e) {
 			mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());
 		}
@@ -992,7 +979,6 @@ public class rEHBER extends JFrame {
 			{
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				mesaj_goster(5000,Notifications.Type.WARNING,  "Baglanti Saglanamadi........" );
-				//JOptionPane.showMessageDialog(null, "Baglanti Saglanamadi........", "Server Baglanti", JOptionPane.ERROR_MESSAGE);
 				btnVtKontrol.setEnabled(false);
 			}
 		}
@@ -1161,7 +1147,7 @@ public class rEHBER extends JFrame {
 	}
 	private void mdb_yaz() throws ClassNotFoundException, SQLException
 	{
-		if(! txtIp.getText().equals(""))
+		if(! txtIp.getText().toString().equals(""))
 		{
 			oac.uSER_ISL.ip_dos_kont(txtIp.getText());
 		}
@@ -1242,7 +1228,7 @@ public class rEHBER extends JFrame {
 		cmbip.removeAllItems();
 		ResultSet	rs = null;
 		USER_ISLEMLERI usr = new USER_ISLEMLERI();
-		rs = usr.ipp(GLOBAL.KULL_ADI);
+		rs = usr.ipp("Admin");
 		if (!rs.isBeforeFirst() ) {  
 			return;
 		} 
@@ -1275,7 +1261,6 @@ public class rEHBER extends JFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
-
 				tc.setMinWidth(200);
 
 				tc = tcm.getColumn(1);
@@ -1326,9 +1311,9 @@ public class rEHBER extends JFrame {
 				lblSatir.setText( String.format("%,d %n" ,  table.getRowCount()));
 				fih_doldur_kutu(table,0);
 			}
-		} catch (Exception ex) {
-			mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Cari Ekstre", JOptionPane.ERROR_MESSAGE);   
+		} catch (Exception ex) 
+		{
+			mesaj_goster(7000,Notifications.Type.ERROR,ex.getMessage() );
 		}
 	}
 	public void arama()  
@@ -1354,8 +1339,8 @@ public class rEHBER extends JFrame {
 	}
 	private void fih_kaydet() throws NumberFormatException, ClassNotFoundException, SQLException
 	{
-		if(! txtcd.getText().equals(""))
-			fih_Access.reh_sil(Integer.parseInt(txtcd.getText()));
+		if(! txtcd.getText().toString().equals(""))
+			fih_Access.reh_sil(Integer.parseInt(txtcd.getText().toString()));
 		fih_Access.reh_kayit(txtAdi.getText(), txtT1.getText(), txtT2.getText(),txtT3.getText(),txtT4.getText(), txtFax.getText(),  txtNot.getText(),  txtNot2.getText(),txtMail.getText());
 	}
 	private static void fih_kutu_temizle() 

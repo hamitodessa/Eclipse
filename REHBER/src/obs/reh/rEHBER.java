@@ -460,7 +460,7 @@ public class rEHBER extends JFrame {
 		panel_4.add(lblSatir);
 		
 		lblbilgi = new JLabel("...");
-		lblbilgi.setBounds(174, 7, 200, 14);
+		lblbilgi.setBounds(174, 7, 300, 14);
 		lblbilgi.setForeground(new Color(0, 0, 128));
 		lblbilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel_4.add(lblbilgi);
@@ -867,7 +867,7 @@ public class rEHBER extends JFrame {
 			else 
 			{ 
 				qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
-				lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe  + " / "+ BAGLAN.fihDizin.hAN_SQL );
+				lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe.toString().trim()  + " / "+ BAGLAN.fihDizin.hAN_SQL );
 				doldur();
 			}
 		}

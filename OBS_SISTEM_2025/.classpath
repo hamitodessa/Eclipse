@@ -43,7 +43,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/activation.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/mail.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jsoup-1.15.3.jar"/>
-	<classpathentry kind="lib" path="C:/ELIF/2025/RXTXcomm.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/bridj-0.6.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/slf4j-api-1.7.2.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/webcam-capture-0.3.10.jar"/>
@@ -92,5 +91,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/glasspane-popup-2.0.0.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jasperreports-6.18.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jasperreports-fonts-6.20.5.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/RXTXcomm.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

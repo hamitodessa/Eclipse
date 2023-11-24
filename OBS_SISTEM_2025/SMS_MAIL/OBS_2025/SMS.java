@@ -46,7 +46,6 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
-import com.sms.api.Messenger;
 
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.CARI_ACCESS;
@@ -1121,10 +1120,5 @@ public class SMS extends JInternalFrame {
 		OBS_MAIN.progressBar.setValue(0);
 		OBS_MAIN.progressBar.setStringPainted(false);
 	}
-	@SuppressWarnings("unused")
-	public void deneme()
-	{
-		Messenger messenger = new Messenger("hostAdress", "username", "password");
-	
-	}
+
 }

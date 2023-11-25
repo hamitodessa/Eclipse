@@ -240,8 +240,8 @@ public class CEK_CIKIS extends JInternalFrame {
 
 		MaterialTabbed tabbedPane = new MaterialTabbed();
 		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		tabbedPane.setMinimumSize(new Dimension(0, 112));
-		tabbedPane.setMaximumSize(new Dimension(0, 112));
+		tabbedPane.setMinimumSize(new Dimension(0, 135));
+		tabbedPane.setMaximumSize(new Dimension(0, 135));
 		splitPane.setLeftComponent(tabbedPane);
 
 		JPanel panel_2 = new JPanel();

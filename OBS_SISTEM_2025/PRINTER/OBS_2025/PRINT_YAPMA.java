@@ -678,7 +678,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						Paragraph oParagraph = new Paragraph();
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
-						oParagraphTextElement.setText(nasil.equals("cekg") ? "GIRIS" : "CIKIS" );
+						oParagraphTextElement.setText("GIRIS");
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
@@ -814,7 +814,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						Paragraph oParagraph = new Paragraph();
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
-						oParagraphTextElement.setText(nasil.equals("cekg") ? "GIRIS" : "CIKIŞ" );
+						oParagraphTextElement.setText( "CIKIŞ" );
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);

@@ -230,7 +230,7 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 					popup.show(table, 50, table.getSelectedRow() * 22 );
 				}
 			};   
-			ButtonColumn buttonColumn = new ButtonColumn(table, delete, 0 ,new ImageIcon(HAZIR_GOREVLER.class.getResource("/ICONLAR/sil.png")) );
+			ButtonColumn buttonColumn = new ButtonColumn(table, delete, 0 ,new ImageIcon(HAZIR_GOREVLER.class.getResource("/ICONLAR/gunluk_sil.png")) );
 			buttonColumn.setMnemonic(KeyEvent.VK_D);
 			tc.setMinWidth(50);
 			tc.setMaxWidth(50);

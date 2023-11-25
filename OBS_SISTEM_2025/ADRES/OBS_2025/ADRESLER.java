@@ -2,6 +2,7 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
@@ -27,6 +29,7 @@ import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.IMAGE_RENDERER;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
@@ -57,7 +60,21 @@ public class ADRESLER extends JInternalFrame {
 	splitPane.setRightComponent(scrollPane);
 
 	table = new JTable(){
-		public boolean isCellEditable(int row, int column) {     return false;          }
+		public boolean isCellEditable(int row, int column) {     return false;
+		
+		}
+		public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
+			Component c = super.prepareRenderer(renderer, row, col);
+				if(table.getModel().getValueAt(row,25)== null)
+				{
+					 table.setRowHeight(row, 21);
+				}
+				else {
+					
+					 table.setRowHeight(row, 100);
+				}
+				return c;
+		}
 	};
 	if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 	{
@@ -137,10 +154,12 @@ public class ADRESLER extends JInternalFrame {
 			th.repaint();
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
-			//table.setSelectionBackground(Color.PINK);
-			//table.setSelectionForeground(Color.BLUE);
+			
+			tc = tcm.getColumn(25);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new IMAGE_RENDERER(100,100));
 
-			for (int i = 4; i<= 24; i++)
+			for (int i = 4; i<= 25; i++)
 			{
 				tc = tcm.getColumn(i);
 				tc.setHeaderRenderer(new SOLA());

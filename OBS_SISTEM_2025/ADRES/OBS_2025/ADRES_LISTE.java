@@ -214,7 +214,7 @@ public class ADRES_LISTE extends JDialog {
 
 			//table.setSelectionBackground(Color.PINK);
 			//table.setSelectionForeground(Color.BLUE);
-
+			
 
 			String deger;
 			String[] parts;

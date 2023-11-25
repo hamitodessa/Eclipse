@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.sql.ResultSet;
 
 import javax.swing.JInternalFrame;
@@ -13,7 +12,6 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
@@ -24,6 +22,7 @@ import javax.swing.table.TableColumnModel;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH;
 import net.proteanit.sql.DbUtils;
 
@@ -36,22 +35,6 @@ public class FAT_BOS_KUR extends JInternalFrame {
 	private static JTable table;
 	private static JComboBox<String> comboBox ;
 	private static JComboBox<String> comboBox_1; 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FAT_BOS_KUR frame = new FAT_BOS_KUR();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -84,7 +67,7 @@ public class FAT_BOS_KUR extends JInternalFrame {
 		comboBox_1.setBounds(78, 10, 58, 22);
 		panel.add(comboBox_1);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setRightComponent(scrollPane);
 		
 		table = new JTable(){

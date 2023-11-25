@@ -38,7 +38,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import javax.swing.JSplitPane;
  
 import javax.swing.JTable;
@@ -80,6 +80,7 @@ import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
@@ -142,21 +143,6 @@ public class IRSALIYE extends JInternalFrame {
 	private static boolean yeni_fat = false;
 	private static JTextField textField_1;
 	private JSplitPane splitPane;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IRSALIYE frame = new IRSALIYE();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	/**
 	 * Create the frame.
 	 */
@@ -1005,7 +991,7 @@ public class IRSALIYE extends JInternalFrame {
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_2.setRightComponent(tabbedPane);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		tabbedPane.addTab("Irsaliye", null, scrollPane, null);
 		
 		DefaultTableModel model = new DefaultTableModel() ; 

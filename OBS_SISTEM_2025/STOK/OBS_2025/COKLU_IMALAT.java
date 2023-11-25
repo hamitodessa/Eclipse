@@ -1,7 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
-
 import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -79,19 +77,6 @@ public class COKLU_IMALAT extends JInternalFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					COKLU_IMALAT frame = new COKLU_IMALAT();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */

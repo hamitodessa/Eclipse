@@ -136,7 +136,6 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 					c.setBackground(table.getSelectionBackground());
 					c.setForeground(table.getSelectionForeground());
                 } 
-
 				return c;
 			}
 		};
@@ -2163,7 +2162,6 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Kodu Yil Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void ortalama_genislik() 
@@ -2256,7 +2254,6 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ortalama Genislik Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void ara_toplam(int sutun , int topsutun)
@@ -2301,13 +2298,12 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 			if (! ustsatString.equals(altsatString))
 			{
 				mdll.insertRow(satir +1, new Object[]{});
-				table.repaint();
+				table.setRowHeight(satir +1, 30);
 				satir += 1;
 			}
 			satir += 1;
 		}
 		while (satir <= table.getRowCount()-1);
-		table.repaint();
 		///TOPLAMA
 		double rakkam=0;
 		for(int k = topsutun; k <= table.getColumnCount()-1;k++)
@@ -2328,6 +2324,7 @@ public class KER_GRUP_RAPOR extends JInternalFrame {
 				}
 			}
 		}
+		table.repaint();
 	}
 	private static void grup_cevir()
 	{

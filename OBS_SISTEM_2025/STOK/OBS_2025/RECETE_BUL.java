@@ -13,7 +13,6 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -34,6 +33,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import net.proteanit.sql.DbUtils;
 
@@ -45,20 +45,6 @@ public class RECETE_BUL extends JDialog {
 	static STOK_ACCESS f_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 	private JTextField textField;
 
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			RECETE_BUL dialog = new RECETE_BUL();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.
@@ -109,7 +95,7 @@ public class RECETE_BUL extends JDialog {
 		panel.add(textField);
 		textField.setColumns(10);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setRightComponent(scrollPane);
 		
 		table = new JTable(){

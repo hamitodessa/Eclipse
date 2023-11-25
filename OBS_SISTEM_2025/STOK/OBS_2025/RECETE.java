@@ -1,7 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,6 +29,7 @@ import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.lOG_BILGI;
 
@@ -45,7 +44,6 @@ import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
@@ -86,22 +84,6 @@ public class RECETE extends JInternalFrame {
 	private JLabel lblNewLabel_6 ;
 	private JLabel lblNewLabel_7 ;
 	private static JTextArea textArea ;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RECETE frame = new RECETE();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -459,7 +441,7 @@ public class RECETE extends JInternalFrame {
 		button_4.setIcon(new ImageIcon(RECETE.class.getResource("/ICONLAR/icons8-reduce-16.png")));
 		toolBar.add(button_4);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		scrollPane.setBounds(35, 128, 574, 272);
 		panel.add(scrollPane);
 		

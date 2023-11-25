@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -23,6 +21,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 
 import java.awt.Font;
@@ -39,22 +38,6 @@ public class EVRAK_FORMAT extends JInternalFrame {
 	private static JTable table_2;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					EVRAK_FORMAT frame = new EVRAK_FORMAT();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public EVRAK_FORMAT() {
@@ -69,7 +52,7 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		tabbedPane.addTab("Irsaliye Bilgileri", null, scrollPane, null);
 		
 		table = new JTable(){
@@ -155,7 +138,7 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
 		tabbedPane.addTab("Fatura Bilgileri", null, scrollPane_1, null);
 		
 		table_1 = new JTable(){
@@ -244,7 +227,7 @@ public class EVRAK_FORMAT extends JInternalFrame {
 	    table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane_1.setViewportView(table_1);
 		
-		JScrollPane scrollPane_2 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
 		tabbedPane.addTab("Fatura Dovizli", null, scrollPane_2, null);
 		
 		table_2 = new JTable(){

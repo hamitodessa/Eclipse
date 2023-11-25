@@ -2,8 +2,6 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-
 import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
@@ -22,7 +20,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -39,6 +36,7 @@ import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TABLO_TEXTBOX;
 import OBS_C_2025.TARIH_CEVIR;
@@ -132,22 +130,6 @@ public class IMALAT extends JInternalFrame {
 	public static JButton btnNewButton_1 ;
 	public static JButton btnNewButton;
 	private static 	 ImagePanel imagePanel ;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IMALAT frame = new IMALAT();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -704,7 +686,7 @@ public class IMALAT extends JInternalFrame {
 		button_5.setIcon(new ImageIcon(IMALAT.class.getResource("/ICONLAR/icons8-reduce-16.png")));
 		toolBar_1.add(button_5);
 
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane_2.setRightComponent(scrollPane);
 
 		DefaultTableModel model = new DefaultTableModel() ; 

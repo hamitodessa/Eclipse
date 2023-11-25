@@ -25,11 +25,11 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JSplitPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -45,20 +45,6 @@ public class URUN_ARAMA extends JDialog {
 	static STOK_ACCESS f_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 	
 	private JTextField textField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			URUN_ARAMA dialog = new URUN_ARAMA();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	/**
 	 * Create the dialog.
 	 */
@@ -68,100 +54,100 @@ public class URUN_ARAMA extends JDialog {
 		setBounds(100, 100, 880, 394);
 		getContentPane().setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
-	
-			JSplitPane splitPane = new JSplitPane();
-			splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-			splitPane.setDividerSize(0);
-			splitPane.setResizeWeight(0.0);
-			getContentPane().add(splitPane, BorderLayout.CENTER);
-			
-			JPanel panel = new JPanel();
-			panel.setBorder(new LineBorder(new Color(0, 191, 255)));
-			panel.setMinimumSize(new Dimension(0, 40));
-			panel.setMaximumSize(new Dimension(0, 40));
-			splitPane.setLeftComponent(panel);
-			panel.setLayout(null);
-			
-			JLabel lblNewLabel = new JLabel("Arama");
-			lblNewLabel.setBounds(10, 11, 38, 14);
-			panel.add(lblNewLabel);
-			
-			textField = new JTextField();
-			textField.getDocument().addDocumentListener(new DocumentListener() {
-				  public void changedUpdate(DocumentEvent e) {
-					  getContentPane().setCursor(oac.WAIT_CURSOR);
-				    arama();
-				    getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				  }
-				  public void removeUpdate(DocumentEvent e) {
-					  getContentPane().setCursor(oac.WAIT_CURSOR);
-				    arama();
-				    getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				  }
-				  public void insertUpdate(DocumentEvent e) {
-					  getContentPane().setCursor(oac.WAIT_CURSOR);
-				    arama();
-				    getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				  }
-				});
-			textField.setBounds(58, 8, 292, 20);
-			panel.add(textField);
-			textField.setColumns(10);
-			
-			JScrollPane scrollPane = new JScrollPane();
-			splitPane.setRightComponent(scrollPane);
-			
-			table = new JTable(){
-				public boolean isCellEditable(int row, int column) {     return false;          }
-			};
-			if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
-			{
-				table.setGridColor(oac.gridcolor);
-			}
 
-			table.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					if (e.getClickCount() == 2) 
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane.setDividerSize(0);
+		splitPane.setResizeWeight(0.0);
+		getContentPane().add(splitPane, BorderLayout.CENTER);
+
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
+		panel.setMinimumSize(new Dimension(0, 40));
+		panel.setMaximumSize(new Dimension(0, 40));
+		splitPane.setLeftComponent(panel);
+		panel.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("Arama");
+		lblNewLabel.setBounds(10, 11, 38, 14);
+		panel.add(lblNewLabel);
+
+		textField = new JTextField();
+		textField.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+				getContentPane().setCursor(oac.WAIT_CURSOR);
+				arama();
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			}
+			public void removeUpdate(DocumentEvent e) {
+				getContentPane().setCursor(oac.WAIT_CURSOR);
+				arama();
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			}
+			public void insertUpdate(DocumentEvent e) {
+				getContentPane().setCursor(oac.WAIT_CURSOR);
+				arama();
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			}
+		});
+		textField.setBounds(58, 8, 292, 20);
+		panel.add(textField);
+		textField.setColumns(10);
+
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+		splitPane.setRightComponent(scrollPane);
+
+		table = new JTable(){
+			public boolean isCellEditable(int row, int column) {     return false;          }
+		};
+		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
+		{
+			table.setGridColor(oac.gridcolor);
+		}
+
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) 
+				{
+					int row = table.getSelectedRow();
+					if (table.getRowSorter()!=null) {
+						row = table.getRowSorter().convertRowIndexToModel(row);
+						oac.stk_kodu = 	table.getModel().getValueAt(row, 1).toString() ;
+						dispose();
+					}
+					else
 					{
-						int row = table.getSelectedRow();
-						if (table.getRowSorter()!=null) {
-						    row = table.getRowSorter().convertRowIndexToModel(row);
-						   oac.stk_kodu = 	table.getModel().getValueAt(row, 1).toString() ;
-							dispose();
-						}
-						else
-						{
-							oac.stk_kodu = 	table.getModel().getValueAt(table.getSelectedRow(), 1).toString() ;
-							dispose();
-						}
+						oac.stk_kodu = 	table.getModel().getValueAt(table.getSelectedRow(), 1).toString() ;
+						dispose();
 					}
 				}
-			});
-			table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-			table.setShowHorizontalLines(true);
-			table.setShowVerticalLines(true);
-			scrollPane.setViewportView(table);
-		    oac.stk_kodu = "";
-			hisset();
+			}
+		});
+		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table.setShowHorizontalLines(true);
+		table.setShowVerticalLines(true);
+		scrollPane.setViewportView(table);
+		oac.stk_kodu = "";
+		hisset();
 	}
 
 	public void hisset()
 	{
 		try {
-		ResultSet rs = null ;
-		
+			ResultSet rs = null ;
+
 			rs =f_Access.urun_arama();
-		
-		GRID_TEMIZLE.grid_temizle(table);
-		if (!rs.isBeforeFirst() ) {  
-			
-		    return;
-		} 
-		else
-		{
-			
-			table.setModel(DbUtils.resultSetToTableModel(rs));
+
+			GRID_TEMIZLE.grid_temizle(table);
+			if (!rs.isBeforeFirst() ) {  
+
+				return;
+			} 
+			else
+			{
+
+				table.setModel(DbUtils.resultSetToTableModel(rs));
 				JTableHeader th = table.getTableHeader();
 				
 				TableColumnModel tcm = th.getColumnModel();

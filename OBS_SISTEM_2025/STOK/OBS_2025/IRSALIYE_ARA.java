@@ -15,7 +15,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 
-import javax.swing.JScrollPane;
+
 import javax.swing.JTable;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -35,6 +35,7 @@ import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import net.proteanit.sql.DbUtils;
@@ -55,23 +56,6 @@ public class IRSALIYE_ARA extends JDialog {
 	private static JLabel lblNewLabel_1;
 	private static JComboBox<String> cmbanagrup ;
 	private static JComboBox<String> cmbaltgrup ;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IRSALIYE_ARA dialog = new IRSALIYE_ARA();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -95,7 +79,7 @@ public class IRSALIYE_ARA extends JDialog {
 	
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setRightComponent(scrollPane);
 		
 		table = new JTable(){

@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.io.File;
@@ -22,7 +21,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -53,6 +51,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.BAGLAN;
 //import OBS_PACKAGE.CONNECTION;
 import OBS_C_2025.FILE_UZANTI;
@@ -107,32 +106,19 @@ public class ENVANTER extends JInternalFrame {
 	public static JSplitPane splitPane ;
 	public static JSplitPane splitPane_1 ;
 	private static MaterialTabbed tabbedPane;
-	private JScrollPane scrollPane_3;
-	private JScrollPane scrollPane_4;
+	//private JScrollPane scrollPane_3;
+	//private JScrollPane scrollPane_4;
 	private static JTable table_1;
 	private static JTable table_2;
 	private JSplitPane splitPane_2;
-	private JScrollPane scrollPane_2;
+	//private JScrollPane scrollPane_2;
 	private static JTable table_3;
-	private JScrollPane scrollPane_5;
+	//private JScrollPane scrollPane_5;
 	private static JTable table_4;
 	private static int sat_sayi = 0;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ENVANTER frame = new ENVANTER();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -153,7 +139,7 @@ public class ENVANTER extends JInternalFrame {
 		tabbedPane = new MaterialTabbed();
 		splitPane.setLeftComponent(tabbedPane);
 
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		tabbedPane.add(scrollPane);
 		tabbedPane.setTitleAt(0, "Agir");
 
@@ -178,7 +164,7 @@ public class ENVANTER extends JInternalFrame {
 
 		tabbedPane.addTab("FIFO", null, 	splitPane_1, null);
 
-		scrollPane_3 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_3 = new ScrollPaneWin11();
 
 		splitPane_1.setRightComponent(scrollPane_3);
 
@@ -239,7 +225,7 @@ public class ENVANTER extends JInternalFrame {
 		table_2.setShowVerticalLines(true);
 		scrollPane_3.setViewportView(table_2);
 
-		scrollPane_4 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_4 = new ScrollPaneWin11();
 		scrollPane_4.setMinimumSize(new Dimension(0, 70));
 		scrollPane_4.setMaximumSize(new Dimension(0, 70));
 		splitPane_1.setLeftComponent(scrollPane_4);
@@ -274,7 +260,7 @@ public class ENVANTER extends JInternalFrame {
 		splitPane_2.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		tabbedPane.addTab("LIFO", null, splitPane_2, null);
 
-		scrollPane_2 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
 		scrollPane_2.setMinimumSize(new Dimension(0, 70));
 		scrollPane_2.setMaximumSize(new Dimension(0, 70));
 		splitPane_2.setLeftComponent(scrollPane_2);
@@ -306,7 +292,7 @@ public class ENVANTER extends JInternalFrame {
 		table_3.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane_2.setViewportView(table_3);
 
-		scrollPane_5 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_5 = new ScrollPaneWin11();
 		splitPane_2.setRightComponent(scrollPane_5);
 
 		table_4 = new JTable(){

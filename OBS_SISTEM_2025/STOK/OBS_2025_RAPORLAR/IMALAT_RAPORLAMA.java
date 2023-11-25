@@ -1,6 +1,5 @@
 package OBS_2025_RAPORLAR;
 
-import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -11,7 +10,6 @@ import javax.mail.util.ByteArrayDataSource;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -40,6 +38,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_2025.FILTRE;
 import OBS_2025.GuiUtil;
 import OBS_C_2025.BAGLAN;
@@ -87,18 +86,6 @@ public class IMALAT_RAPORLAMA extends JInternalFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IMALAT_RAPORLAMA frame = new IMALAT_RAPORLAMA();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	/**
 	 * Create the frame.
 	 */
@@ -116,7 +103,7 @@ public class IMALAT_RAPORLAMA extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setLeftComponent(scrollPane);
 		
 		table = new JTable(){

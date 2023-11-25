@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -34,6 +33,7 @@ import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TABLO_TEXTBOX;
 import OBS_C_2025.TARIH_CEVIR;
@@ -74,7 +74,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import org.apache.commons.lang.StringUtils;
-import javax.swing.JScrollPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
@@ -148,21 +148,6 @@ public class FATURA extends JInternalFrame {
 	private static boolean yeni_fat = false;
 	private static MaterialTabbed tabbedPane ;
 	private static ImagePanel imagePanel ;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FATURA frame = new FATURA();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	/**
 	 * Create the frame.
 	 */
@@ -1104,7 +1089,7 @@ public class FATURA extends JInternalFrame {
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_2.setRightComponent(tabbedPane);
 
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 
 		tabbedPane.addTab("Fatura", null, scrollPane, null);
 
@@ -1316,7 +1301,7 @@ public class FATURA extends JInternalFrame {
 		});
 		scrollPane.setViewportView(table);
 
-		JScrollPane scrollPane_1 = new JScrollPane();
+		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
 		tabbedPane.addTab("Ilgili Irsaliye Bilgileri", null, scrollPane_1, null);
 
 		DefaultTableModel model1 = new DefaultTableModel() ; 

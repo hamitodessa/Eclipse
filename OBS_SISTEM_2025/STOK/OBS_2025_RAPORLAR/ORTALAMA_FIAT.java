@@ -21,7 +21,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -51,6 +50,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.FILE_UZANTI;
 import OBS_2025.FILTRE;
@@ -65,7 +65,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
 
-@SuppressWarnings({"serial" , "static-access"})
+@SuppressWarnings({"serial" , "static-access","unused"})
 public class ORTALAMA_FIAT extends JInternalFrame {
 	
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -83,25 +83,11 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 	static String yu = "" ;
 	static String iu = "" ;
 	private static  String  fdf  = "" ;
-	@SuppressWarnings("unused")
 	private static 	long startTime ;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ORTALAMA_FIAT frame = new ORTALAMA_FIAT();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -119,7 +105,7 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setLeftComponent(scrollPane);
 		
 		table = new JTable(){

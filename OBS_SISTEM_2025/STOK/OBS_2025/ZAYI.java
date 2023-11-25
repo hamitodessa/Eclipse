@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +31,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
  
 import javax.swing.JTable;
@@ -71,6 +69,7 @@ import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.lOG_BILGI;
@@ -100,22 +99,6 @@ public class ZAYI extends JInternalFrame {
 	public static JSplitPane splitPane ;
 	private static  String tar = "" ;
 	private static MaterialTabbed tabbedPane ;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ZAYI frame = new ZAYI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -526,7 +509,7 @@ public class ZAYI extends JInternalFrame {
 		tabbedPane.setForeground(new Color(0, 0, 128));
 		splitPane_2.setRightComponent(tabbedPane);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		tabbedPane.addTab("Zayi", null, scrollPane, null);
 		
 		DefaultTableModel model = new DefaultTableModel() ; 

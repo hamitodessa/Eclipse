@@ -3,7 +3,6 @@ package OBS_2025_RAPORLAR;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,7 +20,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -51,6 +49,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_2025.FILTRE;
 import OBS_2025.GuiUtil;
 import OBS_C_2025.BAGLAN;
@@ -89,22 +88,6 @@ public class STOK_RAPOR extends JInternalFrame {
 	private static JLabel lbladet;
 	public static JSplitPane splitPane ;
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					STOK_RAPOR frame = new STOK_RAPOR();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public STOK_RAPOR() {
@@ -121,7 +104,7 @@ public class STOK_RAPOR extends JInternalFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setLeftComponent(scrollPane);
 		
 		table = new JTable(){

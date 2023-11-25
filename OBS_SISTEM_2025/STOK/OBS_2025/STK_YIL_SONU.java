@@ -26,7 +26,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
@@ -47,6 +47,7 @@ import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_2025_RAPORLAR.ENVANTER;
@@ -84,23 +85,6 @@ public class STK_YIL_SONU extends JInternalFrame {
 	private static JTextField textField_1;
 	private static JLabel lblNewLabel_1 ;
 	private JLabel lblNewLabel_3 ;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					STK_YIL_SONU frame = new STK_YIL_SONU();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -294,7 +278,7 @@ public class STK_YIL_SONU extends JInternalFrame {
 		lblNewLabel_1.setBounds(130, 23, 276, 14);
 		panel_2.add(lblNewLabel_1);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setRightComponent(scrollPane);
 		
 		DefaultTableModel mode = new DefaultTableModel() ;

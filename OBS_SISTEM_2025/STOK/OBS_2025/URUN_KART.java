@@ -1,7 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -88,22 +86,6 @@ public class URUN_KART extends JInternalFrame {
 	private static JFormattedTextField txtfiat1;
 	private static JFormattedTextField txtfiat2;
 	private static JFormattedTextField txtfiat3;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					URUN_KART frame = new URUN_KART();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

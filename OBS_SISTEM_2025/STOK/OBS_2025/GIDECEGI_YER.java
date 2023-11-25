@@ -10,7 +10,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,6 +30,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
 
@@ -51,21 +52,6 @@ public class GIDECEGI_YER extends JInternalFrame {
 	public static JTextField textField_4;
 	private static JTextField textField_5;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GIDECEGI_YER frame = new GIDECEGI_YER();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -160,7 +146,7 @@ public class GIDECEGI_YER extends JInternalFrame {
 		lblNewLabel_4.setBounds(10, 100, 46, 14);
 		panel_2.add(lblNewLabel_4);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane.setLeftComponent(scrollPane);
 
 		table = new JTable(){

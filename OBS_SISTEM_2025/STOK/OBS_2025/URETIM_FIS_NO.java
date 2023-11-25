@@ -2,7 +2,6 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JInternalFrame;
@@ -30,6 +29,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.TARIH_SAATLI;
@@ -43,7 +43,6 @@ import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -62,22 +61,6 @@ public class URETIM_FIS_NO extends JInternalFrame {
 	private JDateChooser dateChooser ;
 	private JDateChooser dateChooser_1;
 	private JFormattedTextField formattedTextField;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					URETIM_FIS_NO frame = new URETIM_FIS_NO();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -247,7 +230,7 @@ public class URETIM_FIS_NO extends JInternalFrame {
 		lbladet.setBounds(98, 5, 46, 14);
 		panel_3.add(lbladet);
 
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		splitPane_1.setLeftComponent(scrollPane);
 
 		table = new JTable();

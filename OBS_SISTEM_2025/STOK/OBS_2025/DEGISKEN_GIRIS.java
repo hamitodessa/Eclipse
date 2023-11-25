@@ -1,6 +1,5 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
 import java.sql.ResultSet;
 
 import javax.swing.JInternalFrame;
@@ -60,22 +59,6 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 	private static boolean ilkmi = true;
 	
 	private static JPanel panel ;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DEGISKEN_GIRIS frame = new DEGISKEN_GIRIS("");
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace(); 
-				}
-			}
-		});
-	} 
 
 	/**
 	 * Create the frame.

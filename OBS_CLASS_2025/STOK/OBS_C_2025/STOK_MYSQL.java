@@ -2615,7 +2615,8 @@ public class STOK_MYSQL implements ISTOK {
 				" IFNULL((SELECT DEPO FROM DEPO_DEGISKEN WHERE DEPO_DEGISKEN.DPID_Y = MAL.Depo ),'') AS Depo , " +
 				" Fiat , " +
 				" Fiat_2 , " +
-				" Recete " +
+				" Recete , " +
+				" Resim " +
 				" FROM MAL USE INDEX (IX_MAL)  " +
 				" WHERE Kodu >= N'" + k1 + "' AND  Kodu <= N'" + k2 + "'" +
 				" AND  Barkod >= N'" + b1 + "' AND  Barkod <= N'" + b2 + "'" +

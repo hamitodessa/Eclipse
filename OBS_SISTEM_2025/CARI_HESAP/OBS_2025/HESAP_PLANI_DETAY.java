@@ -18,6 +18,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import OBS_C_2025.CARI_ACCESS;
+import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.IMAGE_RENDERER;
@@ -70,8 +71,8 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 			
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component c = super.prepareRenderer(renderer, row, col);
-				if(col ==23)
-				{
+				//if(col ==23)
+				//{
 					if(table.getModel().getValueAt(row,23)== null)
 					{
 						 table.setRowHeight(row, 21);
@@ -80,7 +81,7 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 						
 						 table.setRowHeight(row, 100);
 					}
-				}
+				//}
 				
 				String status = (String)table.getModel().getValueAt(row,0);
 				 if( table.getRowSorter() == null)
@@ -199,10 +200,6 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 			tc.setHeaderRenderer(new SOLA());
 			tc.setMinWidth(70);
 			
-			
-			
-		
-			
 			Dimension dd = th.getPreferredSize();
 		    dd.height = 30;
 		    th.setPreferredSize(dd); 
@@ -216,6 +213,12 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(100);
 			}
+			tc = tcm.getColumn(22);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(40);
+			tc.setCellRenderer(new CheckBoxRenderer());
+			
+			
 			tc = tcm.getColumn(23);
 			tc.setHeaderRenderer(new SOLA());
 			tc.setCellRenderer(new IMAGE_RENDERER(100,100));

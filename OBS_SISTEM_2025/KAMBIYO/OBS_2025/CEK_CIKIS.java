@@ -95,7 +95,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0, 0, 1250, 780);
+		setBounds(0, 0, 1250, 600);
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -108,7 +108,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		splitPane_1.setOneTouchExpandable(true);
 		splitPane_1.setResizeWeight(1.0);
 
-		splitPane_1.setDividerSize(1);
+		splitPane_1.setDividerSize(0);
 		//splitPane_1.setDividerLocation(30);
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setRightComponent(splitPane_1);

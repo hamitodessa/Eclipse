@@ -516,9 +516,10 @@ public class MODUL_PARAMETRE extends JInternalFrame {
 		}
 		lblSmslog.setText(BAGLAN.smsDizin.lOG == true ? "Loglama" : "");
 		
-		} catch (Exception e) 
+		} 
+		catch (Exception e) 
 		{
-		OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,e.getMessage());
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage() );
 		}
 	}
 }

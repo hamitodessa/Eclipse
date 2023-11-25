@@ -52,7 +52,7 @@ public class Notificate_Mesaj extends JPanel {
 		setMinimumSize(new Dimension(750, 300));
 		setMaximumSize(new Dimension(750, 300));
 		setLayout(new MigLayout("inset 0,fillx,wrap","[fill]"));
-		 setBorder(javax.swing.BorderFactory.createEmptyBorder(25, 25, 25, 25));
+		setBorder(javax.swing.BorderFactory.createEmptyBorder(25, 25, 25, 25));
 		setBackground(new Color(235,235,235));
 		JSplitPane pane= new JSplitPane() ;
 		

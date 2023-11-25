@@ -29,7 +29,6 @@ public class CARI_ISIM_OKU {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage() + " clss",  "Hesap Ismi Okuma", JOptionPane.ERROR_MESSAGE);     
 		}
 		return sonuc;
 	}

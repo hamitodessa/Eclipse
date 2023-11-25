@@ -4,9 +4,8 @@ import java.sql.ResultSet;
 
 
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
-
 import OBS_C_2025.CARI_ACCESS;
+import raven.toast.Notifications;
 
 
 public class AUTO_HESAP_KODU {
@@ -32,7 +31,7 @@ public class AUTO_HESAP_KODU {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Kodu", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
 		}
 	}
 }

@@ -71,8 +71,6 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 			
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component c = super.prepareRenderer(renderer, row, col);
-				//if(col ==23)
-				//{
 					if(table.getModel().getValueAt(row,23)== null)
 					{
 						 table.setRowHeight(row, 21);
@@ -81,8 +79,6 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 						
 						 table.setRowHeight(row, 100);
 					}
-				//}
-				
 				String status = (String)table.getModel().getValueAt(row,0);
 				 if( table.getRowSorter() == null)
 				 {

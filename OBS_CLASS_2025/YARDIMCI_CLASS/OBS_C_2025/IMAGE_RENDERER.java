@@ -26,13 +26,13 @@ public class IMAGE_RENDERER extends DefaultTableCellRenderer {
 			setBackground(getBackground());
 			return this;
 		}
-		else {
+		else 
+		{
 			JLabel lbLabel = new JLabel();
 			byte[] bytes = (byte[]) value;
 			ImageIcon imageIcon = new ImageIcon(new ImageIcon(bytes).getImage().getScaledInstance(geni, yuki, Image.SCALE_DEFAULT));
 			lbLabel.setIcon(imageIcon);
 			return lbLabel;
 		}
-
 	}
 }

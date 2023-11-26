@@ -20,11 +20,20 @@ public class IMAGE_RENDERER extends DefaultTableCellRenderer {
 	}
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,   boolean hasFocus, int row, int column) 
 	{
+		Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
 		if(value == null) 
 		{
 			setIcon(null);
 			setBackground(getBackground());
-			return this;
+			if (isSelected) {
+				cell.setBackground(table.getSelectionBackground());
+				cell.setForeground(table.getSelectionForeground());
+			} 
+			else {
+				cell.setBackground(table.getBackground());
+			}
+			return cell;
 		}
 		else 
 		{
@@ -32,6 +41,7 @@ public class IMAGE_RENDERER extends DefaultTableCellRenderer {
 			byte[] bytes = (byte[]) value;
 			ImageIcon imageIcon = new ImageIcon(new ImageIcon(bytes).getImage().getScaledInstance(geni, yuki, Image.SCALE_DEFAULT));
 			lbLabel.setIcon(imageIcon);
+			add(lbLabel);
 			return lbLabel;
 		}
 	}

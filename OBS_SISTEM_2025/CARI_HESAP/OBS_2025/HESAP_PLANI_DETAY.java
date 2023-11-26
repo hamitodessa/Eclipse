@@ -68,20 +68,21 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;    
 			}
-			
+
 			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 				Component c = super.prepareRenderer(renderer, row, col);
+
+				String status = (String)table.getModel().getValueAt(row,0);
+				if( table.getRowSorter() == null)
+				{
 					if(table.getModel().getValueAt(row,23)== null)
 					{
-						 table.setRowHeight(row, 21);
+						table.setRowHeight(row, 21);
 					}
 					else {
-						
-						 table.setRowHeight(row, 100);
+
+						table.setRowHeight(row, 100);
 					}
-				String status = (String)table.getModel().getValueAt(row,0);
-				 if( table.getRowSorter() == null)
-				 {
 					if (status.length() == 3)
 					{
 						c.setBackground(oac.satBackColor);
@@ -96,29 +97,37 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 					if (isRowSelected(row)) {
 						c.setBackground(table.getSelectionBackground());
 						c.setForeground(table.getSelectionForeground());
-	                } 
+					} 
 				}
-				 else 
-				 {
-					 int satt = table.getRowSorter().convertRowIndexToModel(row);
-					 String statuss = (String)table.getModel().getValueAt(satt,0);
-					 if (statuss.length() == 3)
-						{
-							c.setBackground(oac.satBackColor);
-							c.setForeground(oac.satForeColor);
-							Font fnt = new Font(table.getFont().getFontName(),1 ,12);
-							c.setFont(fnt);
-						} 
-					 else
-						 {
-						 	c.setBackground(table.getBackground());
-						 	c.setForeground(table.getForeground());
-						 }
-					 if (isRowSelected(row)) 
-					 {
-						 c.setBackground(table.getSelectionBackground());
-						 c.setForeground(table.getSelectionForeground());
-					 } 
+				else 
+				{
+					if(table.getModel().getValueAt(table.getRowSorter().convertRowIndexToModel(row),23)== null)
+					{
+						table.setRowHeight(row, 21);
+					}
+					else {
+						table.setRowHeight(row, 100);
+					}
+
+					int satt = table.getRowSorter().convertRowIndexToModel(row);
+					String statuss = (String)table.getModel().getValueAt(satt,0);
+					if (statuss.length() == 3)
+					{
+						c.setBackground(oac.satBackColor);
+						c.setForeground(oac.satForeColor);
+						Font fnt = new Font(table.getFont().getFontName(),1 ,12);
+						c.setFont(fnt);
+					} 
+					else
+					{
+						c.setBackground(table.getBackground());
+						c.setForeground(table.getForeground());
+					}
+					if (isRowSelected(row)) 
+					{
+						c.setBackground(table.getSelectionBackground());
+						c.setForeground(table.getSelectionForeground());
+					} 
 				}
 				return c;
 			}

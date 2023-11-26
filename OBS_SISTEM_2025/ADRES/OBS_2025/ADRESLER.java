@@ -74,13 +74,27 @@ public class ADRESLER extends JInternalFrame {
 		}
 		public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
 			Component c = super.prepareRenderer(renderer, row, col);
-				if(table.getModel().getValueAt(row,25)== null)
+				
+				if( table.getRowSorter() != null)
+				 {
+					if(table.getModel().getValueAt(table.getRowSorter().convertRowIndexToModel(row),25)== null)
+					{
+						 table.setRowHeight(row, 21);
+					}
+					else {
+						 table.setRowHeight(row, 100);
+					}
+				 }
+				else 
 				{
-					 table.setRowHeight(row, 21);
-				}
-				else {
-					
-					 table.setRowHeight(row, 100);
+					if(table.getModel().getValueAt(row,25)== null)
+					{
+						 table.setRowHeight(row, 21);
+					}
+					else {
+						
+						 table.setRowHeight(row, 100);
+					}
 				}
 				return c;
 		}
@@ -215,6 +229,9 @@ public class ADRESLER extends JInternalFrame {
 	}
 	public void arama()  
 	{
+		try {
+			
+		
 		if (textField.getText().equals(""))
 		{
 			table.setRowSorter(null);
@@ -222,8 +239,15 @@ public class ADRESLER extends JInternalFrame {
 		else
 		{
 			TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
-			sorter.setRowFilter(RowFilter.regexFilter("(?i)" + textField.getText()));
-			table.setRowSorter(sorter);
+			RowFilter<TableModel, Object> rf = null;
+			rf = RowFilter.regexFilter("(?iu)" +  textField.getText().toLowerCase() , 1);
+			sorter.setRowFilter(rf);
+		    table.setRowSorter(sorter);
+		    table.revalidate();
+		    table.repaint();		
+		 }
+		} catch (Exception e) {
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
 		}
 	}
 }

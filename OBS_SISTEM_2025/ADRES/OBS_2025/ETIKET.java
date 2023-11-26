@@ -179,18 +179,18 @@ public static MaterialTabbed orTabbedPane;
 		
 		//splitPane_1.setLeftComponent(scrollPane);
 		JPanel panel = new JPanel();
-		panel.setMinimumSize(new Dimension(0, 20));
-		panel.setMaximumSize(new Dimension(0, 20));
+		panel.setMinimumSize(new Dimension(0, 25));
+		panel.setMaximumSize(new Dimension(0, 25));
 		splitPane_1.setRightComponent(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Secilen Satir :");
-		lblNewLabel.setBounds(10, 2, 140, 14);
+		lblNewLabel.setBounds(10, 5, 85, 14);
 		panel.add(lblNewLabel);
 		
 		lbladet = new JLabel("0");
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbladet.setBounds(155, 2, 32, 14);
+		lbladet.setBounds(100, 5, 57, 14);
 		lbladet.setForeground(new Color(0, 0, 128));
 		panel.add(lbladet);
 		

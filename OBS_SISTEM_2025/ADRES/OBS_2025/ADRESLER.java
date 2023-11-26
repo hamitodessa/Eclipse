@@ -42,6 +42,8 @@ public class ADRESLER extends JInternalFrame {
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	private JTable table;
 	private JTextField textField;
+	private JLabel lbladet ;
+	
 	public ADRESLER() { 
 	setTitle("ADRES DETAY");
 	setResizable(true);
@@ -55,9 +57,16 @@ public class ADRESLER extends JInternalFrame {
 	splitPane.setResizeWeight(0.0);
 	splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 	getContentPane().add(splitPane, BorderLayout.CENTER);
+	
+	JSplitPane splitPane_1 = new JSplitPane();
+	splitPane_1.setDividerSize(0);
+	splitPane_1.setResizeWeight(1.0);
+	splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+	splitPane.setRightComponent(splitPane_1);
+	
 
 	ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
-	splitPane.setRightComponent(scrollPane);
+	splitPane_1.setLeftComponent(scrollPane);
 
 	table = new JTable(){
 		public boolean isCellEditable(int row, int column) {     return false;
@@ -113,6 +122,23 @@ public class ADRESLER extends JInternalFrame {
 	textField.setBounds(83, 4, 321, 20);
 	panel.add(textField);
 	textField.setColumns(10);
+	
+	JPanel panelalt = new JPanel();
+	panelalt.setMinimumSize(new Dimension(0, 25));
+	panelalt.setMaximumSize(new Dimension(0, 25));
+	splitPane_1.setRightComponent(panelalt);
+	panelalt.setLayout(null);
+	
+	JLabel lblNewLabel_1 = new JLabel("Satir Sayisi:");
+	lblNewLabel_1.setBounds(10, 5, 85, 14);
+	panelalt.add(lblNewLabel_1);
+	
+	lbladet = new JLabel("0");
+	lbladet.setForeground(new Color(0, 0, 128));
+	lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
+	lbladet.setBounds(100, 5, 75, 14);
+	panelalt.add(lbladet);
+	
 	hisset();
 
 	}
@@ -124,6 +150,7 @@ public class ADRESLER extends JInternalFrame {
 		{
 			rs = a_Access.adres("M_Kodu","") ;
 			if (!rs.isBeforeFirst() ) {  
+				lbladet.setText(FORMATLAMA.doub_0(0));
 				return;
 			}
 			GRID_TEMIZLE.grid_temizle(table);
@@ -165,6 +192,7 @@ public class ADRESLER extends JInternalFrame {
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(100);
 			}
+			lbladet.setText( String.format("%,d %n" ,  table.getRowCount()));
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime;
 			double seconds = (double)estimatedTime/1000; 

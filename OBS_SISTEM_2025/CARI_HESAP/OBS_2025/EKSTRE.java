@@ -133,7 +133,7 @@ public class EKSTRE extends JInternalFrame {
 		lblNewLabel_3 = new JLabel("0");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_3.setForeground(new Color(0, 0, 128));
-		lblNewLabel_3.setBounds(100, 65, 51, 14);
+		lblNewLabel_3.setBounds(100, 65, 75, 14);
 		panel.add(lblNewLabel_3);
 
 		lblNewLabel_4 = new JLabel("0.00");

@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
@@ -73,7 +72,6 @@ public class CEK_GIRIS extends JInternalFrame {
 	public static JTextField textField;
 	public static JTextField textField_1;
 	private static JTextField textField_2;
-	private static JTextField textField_3;
 	public static JTextField textField_4;
 	private static JTextField textField_5;
 	private static JTextField textField_6;
@@ -83,6 +81,7 @@ public class CEK_GIRIS extends JInternalFrame {
 	public static JLabel label;
 	public static JLabel lblNewLabel_12;
 	private JLabel lblNewLabel_7;
+	private JLabel lblOrtgun ;
 
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(OBS_SIS_2025_ANA_CLASS._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
@@ -215,7 +214,7 @@ public class CEK_GIRIS extends JInternalFrame {
 			}
 		});
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setRowSelectionAllowed(false);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		th.repaint();
@@ -245,7 +244,8 @@ public class CEK_GIRIS extends JInternalFrame {
 		panel.add(label);
 
 		MaterialTabbed tabbedPane = new MaterialTabbed();
-		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tabbedPane.setForeground(new Color(0, 0, 128));
+		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tabbedPane.setMinimumSize(new Dimension(0, 135));
 		tabbedPane.setMaximumSize(new Dimension(0, 135));
 		splitPane.setLeftComponent(tabbedPane);
@@ -272,19 +272,15 @@ public class CEK_GIRIS extends JInternalFrame {
 				{
 					try {
 						int sno = 0 ;
-
 						sno  = ka_Access.kam_bordro_no_al("CEK_G") ;
-
 						int kj = 0 ;
 						kj = 10 - Integer.toString(sno).length() ;
 						String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
-						//String str_ = ("0".repeat(kj)) + Integer.toString(sno);
 						textField.setText(str_);
 					}
 					catch (Exception ex)
 					{
 						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-						//JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 					}
 				}
 			}
@@ -324,9 +320,7 @@ public class CEK_GIRIS extends JInternalFrame {
 						hsp = new HESAP_PLN();
 						hsp.show();
 						textField_1.setText( oac.hsp_hsp_kodu);
-					} catch (ClassNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (SQLException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -367,7 +361,6 @@ public class CEK_GIRIS extends JInternalFrame {
 				try
 				{
 					int int_1  = 0;
-					//String str_2 ="";
 					String sts ="" ;
 					//**************** EVRAK NO OKU ************
 					getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -376,25 +369,21 @@ public class CEK_GIRIS extends JInternalFrame {
 					{
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Dosyada Hic Kayit Yok.....");
-						//JOptionPane.showMessageDialog(null,   "Dosyada Hic Kayit Yok....."); 	
 						return ;
 					}
 					//**********SIFIRLAR*************************
 					int_1 = 10 - sts.toString().length() ;
 					String str_ = StringUtils.repeat("0", int_1)   + sts.toString();
-					// str_2= ("0".repeat(int_1)) + sts.toString() ;
 					textField .setText(str_) ;
 					textField .requestFocus();
 					int_1 = 0;
 					//********************************************
-
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 				catch (Exception ex)
 				{
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-					//JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 				}
 			}
 
@@ -476,9 +465,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		textField_2.setBounds(39, 24, 44, 20);
 		textField_2.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				getContentPane().setCursor(oac.WAIT_CURSOR);
-				ort();
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 			public void removeUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -499,19 +485,19 @@ public class CEK_GIRIS extends JInternalFrame {
 		lblNewLabel_5.setBounds(91, 27, 54, 14);
 		panel_3.add(lblNewLabel_5);
 
-		textField_3 = new JTextField();
-		textField_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_3.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_3.setBounds(141, 24, 66, 20);
-		panel_3.add(textField_3);
-		textField_3.setColumns(10);
-
 		lblNewLabel_7 = new JLabel("0.00");
 		lblNewLabel_7.setForeground(Color.RED);
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_7.setBounds(228, 26, 101, 14);
 		panel_3.add(lblNewLabel_7);
+		
+		lblOrtgun = new JLabel("0");
+		lblOrtgun.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblOrtgun.setForeground(new Color(0, 0, 205));
+		lblOrtgun.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblOrtgun.setBounds(148, 27, 48, 14);
+		panel_3.add(lblOrtgun);
 
 		JLabel lblNewLabel_8 = new JLabel("Ozel Kod");
 		lblNewLabel_8.setBounds(826, 12, 67, 14);
@@ -581,7 +567,7 @@ public class CEK_GIRIS extends JInternalFrame {
 			textField_4.setText(GLOBAL.setting_oku("PRG_PARA").toString());
 			textField.requestFocus();
 		} catch (Exception ex) {
-			//OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.PLAIN_MESSAGE);
 		}
 		//***********
@@ -625,7 +611,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private static void satir_yaz_1() throws ClassNotFoundException, SQLException
@@ -702,7 +687,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Kayit", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private static void acik_yaz()
@@ -715,7 +699,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Kayit", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	public static void sil()
@@ -733,7 +716,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Kayit", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void kontrol()
@@ -744,8 +726,7 @@ public class CEK_GIRIS extends JInternalFrame {
 			textField_1.setText("");
 			dateChooser.setDate(new Date());
 			textField_2.setText("");
-			textField_3.setText("");
-
+			lblOrtgun.setText("");
 			comboBox.removeAllItems();
 			topla();
 			String deger;
@@ -761,7 +742,6 @@ public class CEK_GIRIS extends JInternalFrame {
 				textField.requestFocus();
 			} catch (Exception ex) {
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-				//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.PLAIN_MESSAGE);
 			}
 			return;
 		}
@@ -775,7 +755,7 @@ public class CEK_GIRIS extends JInternalFrame {
 				textField_1.setText("");
 				dateChooser.setDate(new Date());
 				textField_2.setText("");
-				textField_3.setText("");
+				lblOrtgun.setText("");
 				comboBox.removeAllItems();
 				topla();
 			} 
@@ -790,14 +770,15 @@ public class CEK_GIRIS extends JInternalFrame {
 					dateChooser.setDate(rs.getDate("Giris_Tarihi"));
 					if (ozk == 0) comboBox.addItem(rs.getString("Giris_Ozel_Kod"));
 					ozk=1 ;
-					String sDate1= rs.getDate("Vade").toString(); 
-					Date vade= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);  
+					SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+					String vade1 =  format1.format(rs.getDate("Vade"));
+					String sDate1= "" ;
 					sDate1= rs.getDate("Cikis_Tarihi").toString(); 
 					Date ct= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1); 
 					sDate1= rs.getDate("T_Tarih").toString(); 
 					Date tt= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1); 
-
-					mdll.addRow(new Object[]{rs.getString("Cek_No"), vade,
+					
+					mdll.addRow(new Object[]{rs.getString("Cek_No"), vade1,
 							rs.getString("Banka"),rs.getString("Sube"),rs.getString("Seri_No"),
 							rs.getString("Ilk_Borclu"),rs.getString("Cek_Hesap_No"),rs.getString("Cins"),
 							rs.getDouble("Tutar"),
@@ -807,8 +788,6 @@ public class CEK_GIRIS extends JInternalFrame {
 							tt,rs.getString("Cikis_Ozel_Kod")});
 					kayit_sayi += 1 ;
 				}
-
-				// RG1.CurrentRow = RG1.Rows(ELIF.KA_DTS.Tables(0).Rows.Count)
 				//'************ACIKLAMA OKU ***********************************************************
 				textField_5.setText(ka_Access.kam_aciklama_oku("CEK","1",textField.getText(),"G"));
 				textField_6.setText(ka_Access.kam_aciklama_oku("CEK","2",textField.getText(),"G"));
@@ -820,7 +799,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private void satir_tamamla(int satir)
@@ -829,7 +807,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		for (int i = 0; i <= satir; i ++)
 		{
 			mdll.addRow(new Object[]{"", new Date(),"","","","","","",0.00,"",TARIH_CEVIR.tarih("01.01.1900"),"","",TARIH_CEVIR.tarih("01.01.1900"),""});
-
 		}
 	}
 	private static void topla()
@@ -854,11 +831,14 @@ public class CEK_GIRIS extends JInternalFrame {
 		{
 			DefaultTableModel model = (DefaultTableModel)table.getModel();
 			if (model.getRowCount()  == 0 ) return ;
-			if (textField_2.getText().equals("")) {
+			if (textField_2.getText().equals("")) 
+			{
 				lblNewLabel_7.setText(FORMATLAMA.doub_2(0.00));
-				textField_3.setText("");
+				lblOrtgun.setText("");
 
-				return;}
+				return;
+				}
+
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			double tfaiz ,gun,faiz,orgun,toppara,double_0 ;
 			tfaiz = 0;
@@ -895,12 +875,10 @@ public class CEK_GIRIS extends JInternalFrame {
 					toppara = toppara + (double) model.getValueAt(i , 8);
 					tfaiz = tfaiz + faiz ;
 					orgun = ((toppara * double_0) / 365) / 100 ;
-					textField_3.setText(FORMATLAMA.doub_2(tfaiz / orgun));
+					lblOrtgun.setText(FORMATLAMA.doub_2(tfaiz / orgun));
 					lblNewLabel_7.setText(FORMATLAMA.doub_2(tfaiz));
 				}
 			}
-
-
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 
@@ -908,7 +886,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void cari_kaydet()
@@ -948,7 +925,6 @@ public class CEK_GIRIS extends JInternalFrame {
 				if (bh.equals(textField_1.getText().toString()))
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Borclu ve Alacakli Hesap Ayni...");
-					//JOptionPane.showMessageDialog(null,  "Borclu ve Alacakli Hesap Ayni..."); 
 					return;
 				}
 				//********************************************************************************
@@ -990,8 +966,6 @@ public class CEK_GIRIS extends JInternalFrame {
 						lOG_BILGI lBILGI = new lOG_BILGI();
 						lBILGI.setmESAJ("Cek Giris   Borclu Hes:" + textField_1.getText() + " Tut:" + Double.parseDouble( model.getValueAt(i, 8).toString()));
 						lBILGI.seteVRAK(textField.getText());
-					
-						
 						c_Access.cari_dekont_kaydet(dBilgi ,
 								lBILGI ,BAGLAN_LOG.cariLogDizin);
 					}
@@ -999,12 +973,10 @@ public class CEK_GIRIS extends JInternalFrame {
 				Thread.currentThread().isInterrupted();
 				Progres_Bar_Temizle();
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,  "Girisler Cari Hesaba Basari ile Kaydedilmistir....");
-				//JOptionPane.showMessageDialog(null, "Girisler Cari Hesaba Basari ile Kaydedilmistir....");   
 			}
 			catch (Exception ex)
 			{
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-				//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		};
@@ -1031,13 +1003,11 @@ public class CEK_GIRIS extends JInternalFrame {
 				if (textField.getText().toString().equals(bno))
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Bu Cek bu Bordroda Giris Yapilmis..");
-					//JOptionPane.showMessageDialog(null, "Bu Cek bu Bordroda Giris Yapilmis.."); 
 					result = true;
 				}
 				else if (! textField.getText().toString().equals(bno))
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,   "Bu Cek " + bno + " 'nolu Bordroda Giris Yapilmis..");
-					//JOptionPane.showMessageDialog(null, "Bu Cek " + bno + " 'nolu Bordroda Giris Yapilmis.."); 
 					result = true ;
 				}
 			}
@@ -1045,7 +1015,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.ERROR_MESSAGE);
 		}
 		return result ;
 	}

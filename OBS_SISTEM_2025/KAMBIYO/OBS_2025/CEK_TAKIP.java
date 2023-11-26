@@ -63,7 +63,7 @@ public class CEK_TAKIP extends JInternalFrame {
 	public CEK_TAKIP() {
 		setTitle("CEK TAKIP");
 		setClosable(true);
-		setBounds(100, 100, 614, 395);
+		setBounds(100, 100, 614, 410);
 
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
@@ -158,14 +158,14 @@ public class CEK_TAKIP extends JInternalFrame {
 				}
 			}
 		});
-		dateChooser_3.setBounds(88, 20, 127, 20);
+		dateChooser_3.setBounds(88, 20, 127, 25);
 		dateChooser_3.setDateFormatString("dd.MM.yyyy");
 		dateChooser_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel_1_1.add(dateChooser_3);
 
 		comboBox = new JComboBox<String>();
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"", "1-Iade", "2-Protesto", "3-Tahsil"}));
-		comboBox.setBounds(320, 18, 106, 22);
+		comboBox.setBounds(320, 20, 106, 25);
 		panel_1_1.add(comboBox);
 
 		JLabel lblNewLabel_5 = new JLabel("Banka");

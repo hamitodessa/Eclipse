@@ -13,7 +13,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,7 +29,6 @@ import javax.swing.JSplitPane;
 
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
@@ -200,16 +198,14 @@ public class CEK_CIKIS extends JInternalFrame {
 		Dimension dd = table.getPreferredSize();
 		dd.height = 30;
 		th.setPreferredSize(dd); 
-		table.setRowSelectionInterval(0, 0);
 		table.setRowHeight(21);
 		table.getModel().addTableModelListener(new TableModelListener() {
 			public void tableChanged(TableModelEvent e) {
-				// System.out.println("Column: " + e.getColumn() + " Row: " + e.getFirstRow());
 				topla();
 			}
 		});
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setRowSelectionAllowed(false);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		th.repaint();
@@ -239,7 +235,8 @@ public class CEK_CIKIS extends JInternalFrame {
 		panel.add(label);
 
 		MaterialTabbed tabbedPane = new MaterialTabbed();
-		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tabbedPane.setForeground(new Color(0, 0, 128));
+		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tabbedPane.setMinimumSize(new Dimension(0, 135));
 		tabbedPane.setMaximumSize(new Dimension(0, 135));
 		splitPane.setLeftComponent(tabbedPane);
@@ -265,19 +262,15 @@ public class CEK_CIKIS extends JInternalFrame {
 				{
 					try {
 						int sno = 0 ;
-
 						sno  = ka_Access.kam_bordro_no_al("CEK_C") ;
-
 						int kj = 0 ;
 						kj = 10 - Integer.toString(sno).length() ;
 						String str_ = StringUtils.repeat("0", kj)   + Integer.toString(sno);
-						//String str_ = ("0".repeat(kj)) + Integer.toString(sno);
 						textField.setText(str_);
 					}
 					catch (Exception ex)
 					{
 						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-						//JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 					}
 				}
 			}
@@ -317,9 +310,7 @@ public class CEK_CIKIS extends JInternalFrame {
 						hsp = new HESAP_PLN();
 						hsp.show();
 						textField_1.setText( oac.hsp_hsp_kodu);
-					} catch (ClassNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (SQLException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -360,7 +351,6 @@ public class CEK_CIKIS extends JInternalFrame {
 				try
 				{
 					int int_1  = 0;
-					//String str_2 ="";
 					String sts ="" ;
 					//**************** EVRAK NO OKU ************
 					getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -369,25 +359,21 @@ public class CEK_CIKIS extends JInternalFrame {
 					{
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  "Dosyada Hic Kayit Yok.....");
-						//JOptionPane.showMessageDialog(null,   "Dosyada Hic Kayit Yok....."); 	
 						return ;
 					}
 					//**********SIFIRLAR*************************
 					int_1 = 10 - sts.toString().length() ;
 					String str_ = StringUtils.repeat("0", int_1)   + sts.toString();
-					//str_2= ("0".repeat(int_1)) + sts.toString() ;
 					textField .setText(str_) ;
 					textField .requestFocus();
 					int_1 = 0;
 					//********************************************
-
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				}
 				catch (Exception ex)
 				{
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-					//JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 				}
 			}
 
@@ -623,6 +609,7 @@ public class CEK_CIKIS extends JInternalFrame {
 				comboBox.removeAllItems();
 				comboBox.addItem("");
 				topla();
+				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			} 
 			else
 			{
@@ -651,19 +638,18 @@ public class CEK_CIKIS extends JInternalFrame {
 							tt,rs.getString("Cikis_Ozel_Kod")});
 					kayit_sayi += 1 ;
 				}
-
-				// RG1.CurrentRow = RG1.Rows(ELIF.KA_DTS.Tables(0).Rows.Count)
 				//'************ACIKLAMA OKU ***********************************************************
 				textField_5.setText(ka_Access.kam_aciklama_oku("CEK","1",textField.getText(),"C"));
 				textField_6.setText(ka_Access.kam_aciklama_oku("CEK","2",textField.getText(),"C"));
 			}
 			topla();
-			getContentPane().setCursor(oac.WAIT_CURSOR);
 			satir_tamamla(Integer.parseInt(GLOBAL.setting_oku("KAM_CEK_CIK").toString()) - kayit_sayi );
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,ex.getMessage(), "Cek Cikis", JOptionPane.PLAIN_MESSAGE);
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
 		}
 	}
 	public static void kaydet() 
@@ -696,7 +682,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,ex.getMessage(), "Cek Cikis", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
 		}
 	}
 	public static void cari_kaydet()
@@ -721,20 +707,20 @@ public class CEK_CIKIS extends JInternalFrame {
 				//*******************************************************************************
 				rs = c_Access.hesap_adi_oku(alh);
 				if (!rs.isBeforeFirst() ) {  
-					JOptionPane.showMessageDialog(null,  "Bu numarada hesaba rastlanmadi!!!!"); 
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,   "Bu numarada hesaba rastlanmadi!!!!");
 					return ;
 				} 
 				//********************************************************************************
 				rs= null;
 				rs = c_Access.hesap_adi_oku(textField_1.getText());
 				if (!rs.isBeforeFirst() ) {  
-					JOptionPane.showMessageDialog(null,  "Bu numarada hesaba rastlanmadi!!!!"); 
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,   "Bu numarada hesaba rastlanmadi!!!!");
 					return;
 				} 
 
 				if (alh.equals(textField_1.getText().toString()))
 				{
-					JOptionPane.showMessageDialog(null,  "Borclu ve Alacakli Hesap Ayni..."); 
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Borclu ve Alacakli Hesap Ayni...");
 					return;
 				}
 				//********************************************************************************
@@ -788,11 +774,12 @@ public class CEK_CIKIS extends JInternalFrame {
 				long estimatedTime = endTime - startTime; 
 				double seconds = (double)estimatedTime/1000; 
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-				JOptionPane.showMessageDialog(null, "Cikislar Cari Hesaba Basari ile Kaydedilmistir....");   
+				
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Cikislar Cari Hesaba Basari ile Kaydedilmistir....");
 			}
 			catch (Exception ex)
 			{
-				JOptionPane.showMessageDialog(null,ex.getMessage(), "Cek Cikis", JOptionPane.PLAIN_MESSAGE);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, ex.getMessage());
 			}
 		}
 		};
@@ -821,7 +808,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,ex.getMessage(), "Cek Cikis", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
 	}
 	public static boolean cek_kontrol (String cekno,String tur, int satir)
@@ -840,12 +827,12 @@ public class CEK_CIKIS extends JInternalFrame {
 				String bno = rs.getString("Cikis_Bordro").toString() ;
 				if ( ! bno.equals("")   && textField.getText().toString().equals(bno))
 				{
-					JOptionPane.showMessageDialog(null, "Bu Cek bu Bordroda Cikis Yapilmis.."); 
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu Cek bu Bordroda Cikis Yapilmis..");
 					result = true;
 				}
 				else if ( ! bno.equals("")   &&  ! textField.getText().toString().equals(bno))
 				{
-					JOptionPane.showMessageDialog(null, "Bu Cek " + bno + " 'nolu Bordroda Cikis Yapilmis.."); 
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu Cek " + bno + " 'nolu Bordroda Cikis Yapilmis..");
 					result = true ;
 				}
 				else
@@ -878,7 +865,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,ex.getMessage(), "Cek Cikis", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
 		return result ;
 	}
@@ -983,7 +970,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null,ex.getMessage(), "Cek Cikis", JOptionPane.PLAIN_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
 	}
 	static void Progres_Bar(int max, int deger) throws InterruptedException

@@ -237,7 +237,6 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		stmt.close();
 		//**************
 		return E_NUMBER;	
-
 	}
 	public void bordro_sil(String cins ,String bno,String tur) throws ClassNotFoundException, SQLException
 	{

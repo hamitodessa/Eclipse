@@ -255,7 +255,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 					catch (Exception ex)
 					{
 						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-						JOptionPane.showMessageDialog(null,  "Kereste Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Kereste Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...." );
 					}
 				}
 			}
@@ -1427,7 +1427,6 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		ActionMap am = table.getActionMap();
 		am.put("Action.NextCell", new Next_Cell_Kereste(table,"kereste_giris"));
 		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
-		
 		scrollPane.setViewportView(table);
 
 		ana_grup_doldur();

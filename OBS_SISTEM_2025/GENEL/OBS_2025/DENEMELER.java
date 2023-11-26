@@ -408,6 +408,7 @@ public class DENEMELER extends JInternalFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
+		
 
 	}
     private void badgeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_badgeButton1ActionPerformed

@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/flatlaf-fonts-roboto-2.137.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jsvg-1.2.0.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/swing-toast-notifications-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/swing-glasspane-popup-1.2.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

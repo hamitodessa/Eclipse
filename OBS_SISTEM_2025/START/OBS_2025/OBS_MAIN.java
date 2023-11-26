@@ -3563,6 +3563,7 @@ public class OBS_MAIN extends JFrame  {
 			e1.printStackTrace();
 		}
 		 GlassPanePopup.install(this);
+		 
 	}
 	private void form_ac(String pencere,String hangi) 
 	{

@@ -662,6 +662,8 @@ public class LOGIN extends JDialog {
 		separator_1.setBounds(310, 57, 110, 7);
 		panel.add(separator_1);
 		
+		
+	
 		progressBar = new JProgressBar();
 		splitPane.setRightComponent(progressBar);
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);

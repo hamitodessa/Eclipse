@@ -32,7 +32,10 @@ import raven.toast.Notifications;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -92,6 +95,24 @@ public class GID_RAPOR extends JInternalFrame {
 				GuiUtil.setWaitCursor(textField,false);
 			}
 		});
+		textField.addAncestorListener(new AncestorListener() {
+			@Override
+			public void ancestorRemoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorMoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorAdded(AncestorEvent pEvent) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						textField.requestFocusInWindow();
+					}
+				});
+			}
+		});
+
 		panel.add(textField);
 		textField.setColumns(10);
 

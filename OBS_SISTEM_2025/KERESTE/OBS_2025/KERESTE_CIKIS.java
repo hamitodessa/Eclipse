@@ -197,7 +197,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		setMaximizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setBounds(0, 0,1215,800);
+		setBounds(0, 0,1220,800);
 
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -211,7 +211,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		splitPane.setLeftComponent(scrollPaneust);
 
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(1185,135));
+		panel.setPreferredSize(new Dimension(1185,125));
 		panel.setLayout(new BorderLayout(0, 0));
 		scrollPaneust.setViewportView( panel);
 
@@ -854,7 +854,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		
 		
 		panel_21.setLayout(new BorderLayout(0, 0)); 
-		panel_21.setPreferredSize(new Dimension(1128,120));
+		panel_21.setPreferredSize(new Dimension(1128,115));
 		scrollPanealt.setViewportView(panel_21);
 		
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed(); 

@@ -117,7 +117,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				doldur("ILK");
 			}
 		});
-		btnNewButton.setBounds(102, 69, 64, 25);
+		btnNewButton.setBounds(102, 65, 64, 30);
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("<<");
@@ -127,7 +127,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				doldur("G");
 			}
 		});
-		btnNewButton_1.setBounds(162, 69, 54, 25);
+		btnNewButton_1.setBounds(165, 65, 54, 30);
 		panel.add(btnNewButton_1);
 
 		txtkayit = new JTextField();
@@ -135,7 +135,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtkayit.setEditable(false);
 		txtkayit.setHorizontalAlignment(SwingConstants.CENTER);
 		txtkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtkayit.setBounds(222, 70, 74, 25);
+		txtkayit.setBounds(222, 65, 74, 30);
 		panel.add(txtkayit);
 		txtkayit.setColumns(10);
 
@@ -146,7 +146,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				doldur("I");
 			}
 		});
-		btnNewButton_2.setBounds(301, 69, 54, 25);
+		btnNewButton_2.setBounds(301, 65, 54, 30);
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton(">>|");
@@ -156,7 +156,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				doldur("SON");
 			}
 		});
-		btnNewButton_3.setBounds(351, 69, 64, 25);
+		btnNewButton_3.setBounds(355, 65, 64, 30);
 		panel.add(btnNewButton_3);
 
 		JSeparator separator_2 = new JSeparator();
@@ -544,7 +544,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 		txtarama = new JTextField();
 		txtarama.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtarama.setBounds(102, 27, 288, 20);
+		txtarama.setBounds(102, 27, 288, 23);
 		txtarama.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				if (txtarama.getText().equals(""))   { hisset("M_Kodu", ""); return ;};

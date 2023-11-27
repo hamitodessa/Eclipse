@@ -214,7 +214,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		
 		
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(1130,130));
+		panel.setPreferredSize(new Dimension(1130,125));
 		panel.setLayout(new BorderLayout(0, 0));
 		scrollPaneust.setViewportView( panel);
 

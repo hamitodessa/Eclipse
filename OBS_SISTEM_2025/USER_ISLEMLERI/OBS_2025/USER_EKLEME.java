@@ -62,7 +62,7 @@ public class USER_EKLEME extends JInternalFrame {
 		setTitle("KULLANICI EKLEME");
 		setResizable(true);
 		setClosable(true);
-		setBounds(0, 0, 921, 450);
+		setBounds(0, 0, 750, 450);
 
 		splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -129,8 +129,8 @@ public class USER_EKLEME extends JInternalFrame {
 		col.setMinWidth(130);
 		vColIndex = 1;
 		col = table_1.getColumnModel().getColumn(vColIndex);
-		col.setMaxWidth(130);
-		col.setMinWidth(130);
+		col.setMaxWidth(0);
+		col.setMinWidth(0);
 		col.setHeaderRenderer(new SOLA());
 		vColIndex = 2;
 		col = table_1.getColumnModel().getColumn(vColIndex);
@@ -175,7 +175,7 @@ public class USER_EKLEME extends JInternalFrame {
 		scrollPaneust.setMaximumSize(new Dimension(0, 110));
 		
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(890,100));
+		panel.setPreferredSize(new Dimension(730,100));
 		scrollPaneust.setViewportView(panel);
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		splitPane.setLeftComponent(scrollPaneust);
@@ -197,32 +197,32 @@ public class USER_EKLEME extends JInternalFrame {
 		txtkull.setColumns(10);
 
 		JLabel lblNewLabel_2 = new JLabel("Seviye");
-		lblNewLabel_2.setBounds(432, 14, 58, 14);
+		lblNewLabel_2.setBounds(370, 14, 58, 14);
 		panel.add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("Mail");
-		lblNewLabel_3.setBounds(432, 39, 58, 14);
+		lblNewLabel_3.setBounds(370, 39, 58, 14);
 		panel.add(lblNewLabel_3);
 
 		txtsev = new JTextField();
 		txtsev.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtsev.setBounds(500, 10, 41, 20);
+		txtsev.setBounds(440, 10, 41, 20);
 		panel.add(txtsev);
 		txtsev.setColumns(10);
 
 		txtmail = new JTextField();
 		txtmail.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtmail.setBounds(500, 36, 284, 20);
+		txtmail.setBounds(440, 36, 284, 20);
 		panel.add(txtmail);
 		txtmail.setColumns(10);
 
 		JLabel lblNewLabel_4 = new JLabel("DB Izni");
-		lblNewLabel_4.setBounds(432, 64, 58, 14);
+		lblNewLabel_4.setBounds(370, 64, 58, 14);
 		panel.add(lblNewLabel_4);
 
 		txtdb = new JTextField();
 		txtdb.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtdb.setBounds(500, 61, 284, 20);
+		txtdb.setBounds(440, 61, 284, 20);
 		panel.add(txtdb);
 		txtdb.setColumns(10);
 
@@ -286,7 +286,7 @@ public class USER_EKLEME extends JInternalFrame {
 		table_1.setModel(defaultModel); 
 		table_1.requestFocus();
 		table_1.changeSelection(0,0,false,false); 
-
+		table_1.removeColumn(table_1.getColumnModel().getColumn(1));
 		String deger;
 		String[] parts;
 		Font bigFont;
@@ -374,7 +374,6 @@ public class USER_EKLEME extends JInternalFrame {
 		if ( ! GLOBAL.KULL_ADI.equals("Admin") ) //txtkull.getText().equals("Admin")  &&  ! GLOBAL.KULL_ADI.equals("Admin")
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Admin - Harici Degisiklik Yapamaz... ");
-			//JOptionPane.showMessageDialog(null, "Admin - Harici Degisiklik Yapamaz... ", "Kullanici", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 		try
@@ -402,7 +401,6 @@ public class USER_EKLEME extends JInternalFrame {
 		{
 			splitPane.setCursor(DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(), "Kullanici Ekleme", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	public static void sil()
@@ -411,7 +409,6 @@ public class USER_EKLEME extends JInternalFrame {
 		if ( txtkull.getText().equals("Admin") )
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Admin - Kullanici Silinemez... ");
-			//JOptionPane.showMessageDialog(null, "Admin - Kullanici Silinemez... ", "Kullanici Silme", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 		ImageIcon icon = new ImageIcon(Toolkit.getDefaultToolkit().getImage(LOGIN.class.getResource("/ICONLAR/sil.png")));
@@ -448,7 +445,6 @@ public class USER_EKLEME extends JInternalFrame {
 		{
 			splitPane.setCursor(DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage(), "Kullanici Silme", JOptionPane.WARNING_MESSAGE);
 		}  
 	}
 	public static void yeni() 

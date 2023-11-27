@@ -236,7 +236,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 					}
 					try 
 					{
-						//FILTRE intFrame = new FILTRE();
 						FILTRE.txtkodu.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
 						EKSTRE.hisset();
 					} 
@@ -244,7 +243,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 					{
 						e1.printStackTrace();
 					}
-
 				}
 			}
 		});
@@ -465,7 +463,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void ara_ayir() throws NumberFormatException, IOException
@@ -544,7 +541,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Ozel Mizan Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void excell_aktar()
@@ -554,7 +550,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 		if (mdl.getRowCount() == 0 )
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Aktarilacak Bilgi Yok....." );
-			//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Ozel Mizan", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{

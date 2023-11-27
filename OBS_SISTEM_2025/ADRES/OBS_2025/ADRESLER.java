@@ -14,7 +14,10 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -132,6 +135,24 @@ public class ADRESLER extends JInternalFrame {
 			arama();
 		}
 	});
+	textField.addAncestorListener(new AncestorListener() {
+		@Override
+		public void ancestorRemoved(AncestorEvent pEvent) {
+		}
+		@Override
+		public void ancestorMoved(AncestorEvent pEvent) {
+		}
+		@Override
+		public void ancestorAdded(AncestorEvent pEvent) {
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					textField.requestFocusInWindow();
+				}
+			});
+		}
+	});
+
 	textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 	textField.setBounds(83, 4, 321, 20);
 	panel.add(textField);

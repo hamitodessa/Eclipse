@@ -30,8 +30,11 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -114,7 +117,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				doldur("ILK");
 			}
 		});
-		btnNewButton.setBounds(102, 69, 64, 23);
+		btnNewButton.setBounds(102, 69, 64, 25);
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("<<");
@@ -124,7 +127,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				doldur("G");
 			}
 		});
-		btnNewButton_1.setBounds(162, 69, 54, 23);
+		btnNewButton_1.setBounds(162, 69, 54, 25);
 		panel.add(btnNewButton_1);
 
 		txtkayit = new JTextField();
@@ -132,7 +135,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtkayit.setEditable(false);
 		txtkayit.setHorizontalAlignment(SwingConstants.CENTER);
 		txtkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtkayit.setBounds(222, 70, 74, 20);
+		txtkayit.setBounds(222, 70, 74, 25);
 		panel.add(txtkayit);
 		txtkayit.setColumns(10);
 
@@ -143,7 +146,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				doldur("I");
 			}
 		});
-		btnNewButton_2.setBounds(301, 69, 54, 23);
+		btnNewButton_2.setBounds(301, 69, 54, 25);
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton(">>|");
@@ -153,7 +156,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				doldur("SON");
 			}
 		});
-		btnNewButton_3.setBounds(351, 69, 64, 23);
+		btnNewButton_3.setBounds(351, 69, 64, 25);
 		panel.add(btnNewButton_3);
 
 		JSeparator separator_2 = new JSeparator();
@@ -556,6 +559,24 @@ public class ADRES_GIRIS extends JInternalFrame {
 				arama();
 			}
 		});
+		txtarama.addAncestorListener(new AncestorListener() {
+			@Override
+			public void ancestorRemoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorMoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorAdded(AncestorEvent pEvent) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						txtarama.requestFocusInWindow();
+					}
+				});
+			}
+		});
+
 		panel.add(txtarama);
 		txtarama.setColumns(10);
 
@@ -632,7 +653,6 @@ public class ADRES_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	private static void doldur(String nereye)
@@ -718,7 +738,6 @@ public class ADRES_GIRIS extends JInternalFrame {
 		catch(Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	public static void yeni()
@@ -756,6 +775,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		chcmail.setSelected(true);
 		// lblNewLabel_5.setIcon(null);
 		imagePanel.setImage(null);
+		txtarama.setText("");
 		kayit_sayi =0 ;
 	}
 	private void arama()
@@ -836,7 +856,6 @@ public class ADRES_GIRIS extends JInternalFrame {
 			lBILGI.seteVRAK("");
 			
 			a_Access.adres_kayit(aDEG,	lBILGI, BAGLAN_LOG.adrLogDizin);
-
 			temizle();
 			hisset("M_Kodu", "");
 			long endTime = System.currentTimeMillis();
@@ -847,7 +866,6 @@ public class ADRES_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Adres Kayit", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void sil()
@@ -855,10 +873,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		if ( txtkodu.getText().equals("") &&  txtunvan.getText().equals("")) return ;
 		int g =  JOptionPane.showOptionDialog( null,  "Kayit Dosyadan Silinecek ..?"  ,
 				"Adres Silme",   JOptionPane.YES_NO_OPTION,
-				JOptionPane.QUESTION_MESSAGE,
-				null,     //no custom icon
-				oac.options,  //button titles
-				oac.options[1]); //default button
+				JOptionPane.QUESTION_MESSAGE,null, oac.options,oac.options[1]); //default button
 		if(g != 0 ) { return;	}
 		try
 		{
@@ -874,7 +889,6 @@ public class ADRES_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Silme", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 }

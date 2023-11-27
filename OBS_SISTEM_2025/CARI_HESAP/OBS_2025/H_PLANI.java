@@ -744,13 +744,11 @@ public class H_PLANI extends JInternalFrame {
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void sil()
 	{
 		if ( txtkodu.getText().equals("")) return ;
-
 		int g =  JOptionPane.showOptionDialog( null,  "Kayit Dosyadan Silinecek ..?" + System.lineSeparator() + System.lineSeparator()  + 
 				"Oncelikle Bu Hesaba Ait Fisleri Silmeniz" + System.lineSeparator() + System.lineSeparator() +"Tavsiye Olunur ...." ,
 				"Cari Hesap Plani Silme",   JOptionPane.YES_NO_OPTION,	JOptionPane.QUESTION_MESSAGE,
@@ -770,7 +768,6 @@ public class H_PLANI extends JInternalFrame {
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kayit Silme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void temizle()

@@ -368,7 +368,6 @@ public class YIL_SONU extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 	
 		}
 	}
 	private int satir_kontrol()
@@ -390,7 +389,6 @@ public class YIL_SONU extends JInternalFrame {
 	}
 	private void secilen_satir()
 	{
-
 		lblNewLabel_3.setText(FORMATLAMA.doub_0(satir_kontrol()));
 	}
 	public static  void kaydet()
@@ -399,9 +397,7 @@ public class YIL_SONU extends JInternalFrame {
 		{
 			if (textField.getText().equals(""))
 			{
-				
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarma Yapilacak Veritabani Kodu Bos..." );
-				//JOptionPane.showMessageDialog(null,  "Aktarma Yapilacak Veritabani Kodu Bos..."); 	
 				return ;
 			}     
 			if (chckbxNewCheckBox.isSelected() )
@@ -409,7 +405,6 @@ public class YIL_SONU extends JInternalFrame {
 				if (textField_1.getText().equals(""))
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Devir Karsi Hesap Kodu Bos..." );
-					//JOptionPane.showMessageDialog(null, "Devir Karsi Hesap Kodu Bos..."); 	
 					return ;
 				}
 			}
@@ -445,8 +440,8 @@ public class YIL_SONU extends JInternalFrame {
 					say += 1;
 				}
 			}
-			JOptionPane.showMessageDialog(null,  "Hesap Plani Aktarma Islemi Basari ile gerceklestirildi...." 
-					+ System.lineSeparator() + System.lineSeparator()  + "Aktarilan Hesap Sayisi...: " + say); 
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR, "Hesap Plani Aktarma Islemi Basari ile gerceklestirildi...." 
+					+ System.lineSeparator() + System.lineSeparator()  + "Aktarilan Hesap Sayisi...: " + say );
 			//'*****MIZAN AKTARMA YAP '******
 			if (chckbxNewCheckBox.isSelected() )
 			{
@@ -456,7 +451,6 @@ public class YIL_SONU extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
 	private static void mizan_aktar()
@@ -532,15 +526,12 @@ public class YIL_SONU extends JInternalFrame {
 
 			}  // ilk For INT
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Mizan Aktarma Islemi Basari ile Tamamlandi...." );
-			//JOptionPane.showMessageDialog(null,  "Mizan Aktarma Islemi Basari ile Tamamlandi...."  + System.lineSeparator() + System.lineSeparator() + "Aktarilan Hesap Sayisi...: " + say); 
 		}
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
-	///********
 	class MyItemListener implements ItemListener
 	{
 		@SuppressWarnings("removal")

@@ -164,6 +164,7 @@ public class CAL_DIZIN extends JFrame {
 	private JButton btnNewButton_5_2;
 	private static JTable table_1;
 	private JButton btnNewButton_4;
+	private JPanel panel_5;
 	
 	public CAL_DIZIN() {
 		
@@ -195,7 +196,7 @@ public class CAL_DIZIN extends JFrame {
 		setTitle("CALISMA DIZINI");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 1050, 425);
+		setBounds(100, 100, 1120, 425);
 		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 15, 15));
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -206,7 +207,7 @@ public class CAL_DIZIN extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
-		panel.setBounds(725, 10, 316, 381);
+		panel.setBounds(775, 10, 316, 381);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -595,8 +596,8 @@ public class CAL_DIZIN extends JFrame {
 				}
 			}
 		});
-		tabbedPane.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		tabbedPane.setBounds(10, 10, 705, 381);
+		tabbedPane.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		tabbedPane.setBounds(10, 10, 755, 381);
 		tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setTabLayoutPolicy(MaterialTabbed.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
@@ -1176,9 +1177,104 @@ public class CAL_DIZIN extends JFrame {
 		});
 
 		//table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		
 		scrollPane_10.setViewportView(table_1);
 
+		//====================SQL baglanti 
+		
+		
+		ScrollPaneWin11 scrollPane_11 = new ScrollPaneWin11();
+		tabbedPane.addTab("SQL Baglanti", null,scrollPane_11, null);
+
+		JPanel panel_4 = new JPanel();
+		
+		scrollPane_11.setViewportView(panel_4);
+		panel_4.setLayout(null);
+		
+		panel_5 = new JPanel();
+		panel_5.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "MS SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5.setBounds(33, 30, 320, 259);
+		panel_4.add(panel_5);
+		panel_5.setLayout(null);
+		
+		JLabel lblNewLabel_3 = new JLabel("SQLEXPRESS        (Degisken Olabilir)");
+		lblNewLabel_3.setBounds(98, 37, 190, 14);
+		panel_5.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Instance");
+		lblNewLabel_4.setBounds(10, 37, 48, 14);
+		panel_5.add(lblNewLabel_4);
+		
+		JLabel lblServer_1 = new JLabel("Server / Port");
+		lblServer_1.setBounds(10, 100, 78, 14);
+		panel_5.add(lblServer_1);
+		
+		JLabel lblBos = new JLabel("BOS");
+		lblBos.setBounds(98, 100, 78, 14);
+		panel_5.add(lblBos);
+		
+		JLabel lblXxxxxxxxx = new JLabel("XX.XX.XXX.XX:1433");
+		lblXxxxxxxxx.setBounds(186, 100, 125, 14);
+		panel_5.add(lblXxxxxxxxx);
+		
+		JLabel lblLokal = new JLabel("Lokal");
+		lblLokal.setBounds(98, 65, 78, 14);
+		panel_5.add(lblLokal);
+		
+		JLabel lblServer_2 = new JLabel("Server");
+		lblServer_2.setBounds(186, 65, 78, 14);
+		panel_5.add(lblServer_2);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(87, 83, 201, 5);
+		panel_5.add(separator_1);
+		
+		JLabel lblPortNumaralariDegisken = new JLabel("Port Numaralari degisken olabilir");
+		lblPortNumaralariDegisken.setBounds(10, 158, 278, 14);
+		panel_5.add(lblPortNumaralariDegisken);
+		
+		JPanel panel_5_1 = new JPanel();
+		panel_5_1.setLayout(null);
+		panel_5_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "MY SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5_1.setBounds(371, 30, 320, 259);
+		panel_4.add(panel_5_1);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("BOS");
+		lblNewLabel_3_1.setBounds(98, 37, 105, 14);
+		panel_5_1.add(lblNewLabel_3_1);
+		
+		JLabel lblNewLabel_4_1 = new JLabel("Instance");
+		lblNewLabel_4_1.setBounds(10, 37, 48, 14);
+		panel_5_1.add(lblNewLabel_4_1);
+		
+		JLabel lblServer_1_1 = new JLabel("Server / Port");
+		lblServer_1_1.setBounds(10, 100, 78, 14);
+		panel_5_1.add(lblServer_1_1);
+		
+		JLabel lblBos_1 = new JLabel("3306");
+		lblBos_1.setBounds(98, 100, 78, 14);
+		panel_5_1.add(lblBos_1);
+		
+		JLabel lblXxxxxxxxx_2 = new JLabel("XX.XX.XXX.XX:3306");
+		lblXxxxxxxxx_2.setBounds(186, 100, 125, 14);
+		panel_5_1.add(lblXxxxxxxxx_2);
+		
+		JLabel lblLokal_1 = new JLabel("Lokal");
+		lblLokal_1.setBounds(98, 65, 78, 14);
+		panel_5_1.add(lblLokal_1);
+		
+		JLabel lblServer_2_1 = new JLabel("Server");
+		lblServer_2_1.setBounds(186, 65, 78, 14);
+		panel_5_1.add(lblServer_2_1);
+		
+		JSeparator separator_1_1 = new JSeparator();
+		separator_1_1.setBounds(87, 83, 201, 5);
+		panel_5_1.add(separator_1_1);
+		
+		JLabel lblPortNumaralariDegisken_1 = new JLabel("Port Numaralari degisken olabilir");
+		lblPortNumaralariDegisken_1.setBounds(10, 158, 278, 14);
+		panel_5_1.add(lblPortNumaralariDegisken_1);
+		
+		///
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 		//**************
@@ -1311,7 +1407,6 @@ public class CAL_DIZIN extends JFrame {
 					ip_doldur();
 				} catch (Exception ex) {
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
-					//JOptionPane.showMessageDialog(null, "Silme Isleminde Hata Olustu........", "Ip Silme.....", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

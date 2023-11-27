@@ -24,7 +24,6 @@ public class USER_ISLEMLERI {
 	public  Boolean user_var(String usr,String pwd) throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && con.isClosed() == false) con.close();
-		result = false;
 		con = gLB.myConnection();
 		java.sql.PreparedStatement stmt = con.prepareStatement("SELECT * FROM USERS WHERE USER_NAME=? AND USER_PWD=?");
 		stmt.setString(1, usr.toString());
@@ -33,10 +32,9 @@ public class USER_ISLEMLERI {
 		rs.next();
 		int count=0;
 		count = rs.getRow();
-		if (count  != 0) result =true;
 		stmt.close();
 		con.close();
-		return result;
+		return count  != 0;
 	}
 	
 	public void user_sil(String usr) throws SQLException, ClassNotFoundException
@@ -93,7 +91,7 @@ public class USER_ISLEMLERI {
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
-		result = false;
+		//result = false;
 		con = gLB.myConnection();
 		PreparedStatement stmt = con.prepareStatement("SELECT * FROM USERS WHERE USER_NAME=?");
 		stmt.setString(1, usr.toString());
@@ -101,10 +99,10 @@ public class USER_ISLEMLERI {
 		rs.next();
 		int count=0;
 		count = rs.getRow();
-		if (count  != 0) result =true;
+		//if (count  != 0) result =true;
 		stmt.close();
 		con.close();
-		return result;
+		return count  != 0;
 	}
 	public ResultSet user_db_izinleri(String username,String prg) throws SQLException, ClassNotFoundException
 	{

@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 
 import java.awt.Font;
@@ -160,6 +161,7 @@ public class HESAP_BAK extends JInternalFrame {
 		});
 		tblhesap.setShowHorizontalLines(true);
 		tblhesap.setShowVerticalLines(true);
+		tblhesap.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(tblhesap);
 
 		ScrollPaneWin11 scrollPane_1 = new ScrollPaneWin11();
@@ -187,6 +189,7 @@ public class HESAP_BAK extends JInternalFrame {
 
 		tblkarton.setShowHorizontalLines(true);
 		tblkarton.setShowVerticalLines(true);
+		tblkarton.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		//tblkarton.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane_1.setViewportView(tblkarton);
 
@@ -264,6 +267,7 @@ public class HESAP_BAK extends JInternalFrame {
 		tbldetay.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		tbldetay.setShowHorizontalLines(true);
 		tbldetay.setShowVerticalLines(true);
+		tbldetay.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_2.setViewportView(tbldetay);
 
 		ScrollPaneWin11 jScrollPane1alt = new ScrollPaneWin11(); //1091-30

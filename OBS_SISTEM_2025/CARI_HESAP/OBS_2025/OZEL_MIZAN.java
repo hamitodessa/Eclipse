@@ -250,7 +250,6 @@ public class OZEL_MIZAN extends JInternalFrame {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setRowSelectionAllowed(true);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		table.setBorder(null);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);

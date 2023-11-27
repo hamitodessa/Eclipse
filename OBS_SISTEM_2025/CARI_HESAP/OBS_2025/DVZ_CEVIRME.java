@@ -11,6 +11,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -300,6 +301,7 @@ public class DVZ_CEVIRME extends JInternalFrame {
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
 
 		table.requestFocus();

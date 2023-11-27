@@ -44,6 +44,7 @@ import raven.toast.Notifications;
 import javax.swing.JSplitPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -142,7 +143,7 @@ public class YIL_SONU extends JInternalFrame {
 		{
 			table.setGridColor(oac.gridcolor);
 		}
-
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);

@@ -81,6 +81,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JToolBar;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
@@ -370,7 +371,7 @@ public class rEHBER extends JFrame {
 		btnSilf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txtcd.getText().toString().equals("")) return ;
-				int g = JOptionPane.showOptionDialog(null, "Kayit Silinecek..........?" ,
+				int g = JOptionPane.showOptionDialog(null,txtAdi.getText() + System.lineSeparator()  + System.lineSeparator() + "Kayit Silinecek..........?" ,
 						"Fihrist ", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
 				if(g ==  1) {
 					return;
@@ -378,7 +379,7 @@ public class rEHBER extends JFrame {
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				try {
 					if(! txtcd.getText().toString().equals(""))
-						fih_Access.reh_sil(Integer.parseInt(txtcd.getText().toString()));
+					fih_Access.reh_sil(Integer.parseInt(txtcd.getText().toString()));
 					doldur();
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception ex)
@@ -442,6 +443,7 @@ public class rEHBER extends JFrame {
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_2.setViewportView(table);
 
 		JPanel panel_4 = new JPanel();
@@ -1264,27 +1266,28 @@ public class rEHBER extends JFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(200);
+				tc.setMinWidth(250);
+				tc.setMaxWidth(250);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(100);
-				tc.setMaxWidth(100);
+				tc.setMinWidth(125);
+				tc.setMaxWidth(125);
 
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(100);
-				tc.setMaxWidth(100);
+				tc.setMinWidth(125);
+				tc.setMaxWidth(125);
 
 				tc = tcm.getColumn(3);
 				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(100);
-				tc.setMaxWidth(100);
+				tc.setMinWidth(125);
+				tc.setMaxWidth(125);
 
 				tc = tcm.getColumn(4);
 				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(100);
-				tc.setMaxWidth(100);
+				tc.setMinWidth(125);
+				tc.setMaxWidth(125);
 
 				tc = tcm.getColumn(5);
 				tc.setHeaderRenderer(new SOLA());

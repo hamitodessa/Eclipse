@@ -33,6 +33,7 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import java.awt.Font;
 import java.sql.ResultSet;
@@ -225,7 +226,8 @@ public class GIDECEGI_YER extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gidecegi Yer Okuma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gidecegi Yer Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void kutu_doldur()
@@ -277,7 +279,8 @@ public class GIDECEGI_YER extends JInternalFrame {
 			}
 			  catch (Exception ex)
 			{
-					JOptionPane.showMessageDialog(null,  ex.getMessage(),"Gidecegi Yer Silme", JOptionPane.ERROR_MESSAGE);
+				  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+				//	JOptionPane.showMessageDialog(null,  ex.getMessage(),"Gidecegi Yer Silme", JOptionPane.ERROR_MESSAGE);
 			}
 	}
 	public static void kaydet()
@@ -308,59 +311,59 @@ public class GIDECEGI_YER extends JInternalFrame {
 		}
 		  catch (Exception ex)
 		{
-				JOptionPane.showMessageDialog(null,  ex.getMessage(),"Gidecegi Yer Kaydetme", JOptionPane.ERROR_MESSAGE);
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//		JOptionPane.showMessageDialog(null,  ex.getMessage(),"Gidecegi Yer Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void adres_bak()
 	{
-		 ResultSet rs =null;
-		 try
-		 {
-		if (oac.nerden.equals("irs"))
-				{
-			 if (!  IRSALIYE.textField_8.getText().equals(""))
-			 {
-				
-				 
-						rs =  a_Access.gdy_oku(IRSALIYE.textField_8.getText());
-				
-				 if (!rs.isBeforeFirst() ) {  
-						JOptionPane.showMessageDialog(null,  "Adres Dosyasinda Bu Kodda Kayitli Bilgi Yok....","Irsaliye Yazdirma", JOptionPane.PLAIN_MESSAGE);   
-					}
-				 else
-				 {
-                  rs.next();
-                  textField_1.setText(rs.getString("Adi"));
-                  textField_2.setText(rs.getString("Adres_1"));
-                  textField_3.setText(rs.getString("Adres_2"));
-                  textField_4.setText(rs.getString("Semt") + "/" +rs.getString("Sehir") );
- 				 }
-				}
-				}
-            else if  (oac.nerden.equals("fat"))
-            		{
-                if (!  FATURA.textField_8.getText().equals(""))
-                {
-                	
- 						rs = a_Access.gdy_oku(FATURA.textField_8.getText());
- 					
- 				 if (!rs.isBeforeFirst() ) {  
- 						JOptionPane.showMessageDialog(null,  "Adres Dosyasinda Bu Kodda Kayitli Bilgi Yok....","Fatura Yazdirma", JOptionPane.PLAIN_MESSAGE);   
- 					}
- 				 else
- 				 {
-                   rs.next();
-                   textField_1.setText(rs.getString("Adi"));
-                   textField_2.setText(rs.getString("Adres_1"));
-                   textField_3.setText(rs.getString("Adres_2"));
-                   textField_4.setText(rs.getString("Semt") + "/" +rs.getString("Sehir") );
-  				 }
-                }
-            		}
-		 }
-		  catch (Exception ex)
+		ResultSet rs =null;
+		try
 		{
-				JOptionPane.showMessageDialog(null,  ex.getMessage(),"Gidecegi Adres Okuma", JOptionPane.ERROR_MESSAGE);
+			if (oac.nerden.equals("irs"))
+			{
+				if (!  IRSALIYE.textField_8.getText().equals(""))
+				{
+					rs =  a_Access.gdy_oku(IRSALIYE.textField_8.getText());
+					if (!rs.isBeforeFirst() ) {  
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Adres Dosyasinda Bu Kodda Kayitli Bilgi Yok....");
+						//		JOptionPane.showMessageDialog(null,  "Adres Dosyasinda Bu Kodda Kayitli Bilgi Yok....","Irsaliye Yazdirma", JOptionPane.PLAIN_MESSAGE);   
+					}
+					else
+					{
+						rs.next();
+						textField_1.setText(rs.getString("Adi"));
+						textField_2.setText(rs.getString("Adres_1"));
+						textField_3.setText(rs.getString("Adres_2"));
+						textField_4.setText(rs.getString("Semt") + "/" +rs.getString("Sehir") );
+					}
+				}
+			}
+			else if  (oac.nerden.equals("fat"))
+			{
+				if (!  FATURA.textField_8.getText().equals(""))
+				{
+					rs = a_Access.gdy_oku(FATURA.textField_8.getText());
+
+					if (!rs.isBeforeFirst() ) {  
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Adres Dosyasinda Bu Kodda Kayitli Bilgi Yok....");
+					//	JOptionPane.showMessageDialog(null,  "Adres Dosyasinda Bu Kodda Kayitli Bilgi Yok....","Fatura Yazdirma", JOptionPane.PLAIN_MESSAGE);   
+					}
+					else
+					{
+						rs.next();
+						textField_1.setText(rs.getString("Adi"));
+						textField_2.setText(rs.getString("Adres_1"));
+						textField_3.setText(rs.getString("Adres_2"));
+						textField_4.setText(rs.getString("Semt") + "/" +rs.getString("Sehir") );
+					}
+				}
+			}
+		}
+		catch (Exception ex)
+		{
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(),"Gidecegi Adres Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

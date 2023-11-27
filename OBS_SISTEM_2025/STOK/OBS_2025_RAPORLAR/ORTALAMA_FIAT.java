@@ -19,7 +19,7 @@ import javax.mail.util.ByteArrayDataSource;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
@@ -64,6 +64,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"serial" , "static-access","unused"})
 public class ORTALAMA_FIAT extends JInternalFrame {
@@ -160,7 +161,8 @@ public class ORTALAMA_FIAT extends JInternalFrame {
      catch (Exception ex)
 		 {
     	 GRID_TEMIZLE.grid_temizle(table);
-    		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ortalama Fiat", JOptionPane.ERROR_MESSAGE);	
+    	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+    		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ortalama Fiat", JOptionPane.ERROR_MESSAGE);	
     	}
 	}
 	private static void mus_kodlu() 
@@ -239,7 +241,8 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Hesap Kodu Raporlama",JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Hesap Kodu Raporlama",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void mus_ana_kodlu() 
@@ -326,7 +329,8 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Hesap Kodu Raporlama", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Grup Hesap Kodu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void diger_kodlu() 
@@ -445,7 +449,8 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Diger Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Diger Kodlu Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void grup_cevir()
@@ -522,7 +527,8 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 	            //'************************************
 		} 
 		catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ort Raporlama", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Ort Raporlama", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 	private static void fontt()
@@ -546,7 +552,9 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 		
 		if (mdl.getRowCount() == 0 )
 		{
-		JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
+			
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok.....");
+		//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
@@ -1153,11 +1161,13 @@ public class ORTALAMA_FIAT extends JInternalFrame {
 				}
 				Progres_Bar_Temizle();
 				GuiUtil.setWaitCursor(splitPane,false);
-				JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Stok Detay", JOptionPane.PLAIN_MESSAGE);
+				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi.....");
+				//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Stok Detay", JOptionPane.PLAIN_MESSAGE);
 			}
 			catch (Exception ex)
 			{
-				JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
+				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+				//JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		};

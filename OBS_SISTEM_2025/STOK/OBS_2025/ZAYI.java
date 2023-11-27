@@ -73,6 +73,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"serial","static-access"})
 public class ZAYI extends JInternalFrame {
@@ -157,7 +158,9 @@ public class ZAYI extends JInternalFrame {
 					catch (Exception ex)
 					{
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
-						 JOptionPane.showMessageDialog(null,  "Zayii Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
+						
+						 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Zayii Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez....");
+						// JOptionPane.showMessageDialog(null,  "Zayii Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
 			}
@@ -297,7 +300,8 @@ public class ZAYI extends JInternalFrame {
 			            if ( textField.getText().equals("0") )
 			            		{
 			            	 textField.setText("");
-			            	JOptionPane.showMessageDialog(null,  "Hic Kayit Yok...", "Zayi Fisi Okuma", JOptionPane.ERROR_MESSAGE);
+			            	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Hic Kayit Yok...");
+			            //	JOptionPane.showMessageDialog(null,  "Hic Kayit Yok...", "Zayi Fisi Okuma", JOptionPane.ERROR_MESSAGE);
 			            	textField.requestFocus();
 			            		}
 			        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
@@ -305,7 +309,8 @@ public class ZAYI extends JInternalFrame {
 			        catch (Exception ex)
 					 {
 			        	getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			        	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Zayi Fisi Okuma", JOptionPane.ERROR_MESSAGE);
+			        	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			        	//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Zayi Fisi Okuma", JOptionPane.ERROR_MESSAGE);
 					 }
 			}
 		});
@@ -695,7 +700,8 @@ public class ZAYI extends JInternalFrame {
 					satir_ilave();
 				}
 			} catch (Exception ex) {
-				JOptionPane.showMessageDialog(null,  ex.getMessage(), "Zayi Fis", JOptionPane.ERROR_MESSAGE);					
+				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Zayi Fis", JOptionPane.ERROR_MESSAGE);					
 			}
 		//***********
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
@@ -751,7 +757,8 @@ public class ZAYI extends JInternalFrame {
        }
         catch (Exception ex)
         {
-        	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayi Kayit", JOptionPane.ERROR_MESSAGE);             
+        	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+        	//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayi Kayit", JOptionPane.ERROR_MESSAGE);             
          }
 	}
 	private void fiskont()
@@ -802,7 +809,8 @@ public class ZAYI extends JInternalFrame {
 		catch (Exception ex)
 		{
 			// GuiUtil.setWaitCursor(ZAYI.splitPane,false);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayii Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayii Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void sifirla()
@@ -849,7 +857,8 @@ public class ZAYI extends JInternalFrame {
 	}
 	catch (Exception ex)
 	{
-		JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayi  Stokisl", JOptionPane.ERROR_MESSAGE);   
+		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayi  Stokisl", JOptionPane.ERROR_MESSAGE);   
 	}
 	}
 	private static void stk_yaz_2(int sat) throws ClassNotFoundException, SQLException
@@ -932,7 +941,8 @@ public class ZAYI extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayiat Stkyz2", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayiat Stkyz2", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void acik_yaz()
@@ -953,7 +963,8 @@ public class ZAYI extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayiat  Acikyz", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayiat  Acikyz", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void acik_sil()
@@ -970,7 +981,8 @@ public class ZAYI extends JInternalFrame {
 			}
 			catch (Exception ex)
 			{
-				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayiat  Aciksil", JOptionPane.ERROR_MESSAGE);   
+				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayiat  Aciksil", JOptionPane.ERROR_MESSAGE);   
 			}
 	}
 	public static void satir_ilave()
@@ -1087,7 +1099,8 @@ public class ZAYI extends JInternalFrame {
 	}
 	catch (Exception ex)
 	{
-		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur...", JOptionPane.ERROR_MESSAGE);
+		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+	//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur...", JOptionPane.ERROR_MESSAGE);
 	}
 	}
 	private  void stk_kodu_auto(String field)
@@ -1131,7 +1144,8 @@ public class ZAYI extends JInternalFrame {
 			}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Stok Kodu", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Stok Kodu", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private  void depo_auto()
@@ -1155,7 +1169,8 @@ public class ZAYI extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void ana_grup_doldur()
@@ -1184,7 +1199,8 @@ public class ZAYI extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur()
@@ -1225,7 +1241,8 @@ public class ZAYI extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private static void toplam()
@@ -1244,7 +1261,8 @@ public class ZAYI extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void zai_sil()
@@ -1277,7 +1295,8 @@ public class ZAYI extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayi Silme", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Zayi Silme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void urun_bilgi_doldur(String cins) 
@@ -1300,7 +1319,8 @@ public class ZAYI extends JInternalFrame {
 	}
 	catch (Exception ex)
 	{
-		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur.", JOptionPane.ERROR_MESSAGE);
+		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur.", JOptionPane.ERROR_MESSAGE);
 	}
 	}
 	 private void depo_doldur()
@@ -1332,7 +1352,8 @@ public class ZAYI extends JInternalFrame {
 				catch (Exception ex)
 				{
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
+					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 }

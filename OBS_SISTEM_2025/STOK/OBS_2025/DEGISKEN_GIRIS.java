@@ -32,6 +32,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -257,8 +258,8 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-		
-			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 		}
 		}
 	private static void grid_doldur()
@@ -286,7 +287,8 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Tablo Doldur", JOptionPane.ERROR_MESSAGE);    
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Tablo Doldur", JOptionPane.ERROR_MESSAGE);    
 		}
 	}
 	public static  void sil()
@@ -326,7 +328,9 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 
 				if (f_Access.alt_grup_kontrol(anaG,altG) )
 				{
-					JOptionPane.showMessageDialog(null, "Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz....",  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
+					
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz....");
+					//JOptionPane.showMessageDialog(null, "Ilk once Degisken Yenileme Bolumunden degistirip sonra siliniz....",  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 					return;
 				}
 
@@ -444,7 +448,8 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 		}
 	}
 	private static void ana_grup_doldur()
@@ -486,8 +491,8 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-	
-			JOptionPane.showMessageDialog(null, "DDDDDD" + ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);    
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, "DDDDDD" + ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);    
 		}
 	}
 	private void alt_grup_degis()
@@ -517,7 +522,8 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);    
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);    
 		}		
 	}
 	public static void yeni ()
@@ -664,7 +670,8 @@ public class DEGISKEN_GIRIS extends JInternalFrame {
 		   }
 			catch (Exception ex)
 			{
-				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+				//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Degiskenler", JOptionPane.ERROR_MESSAGE);        
 			}
 	}
 }

@@ -85,6 +85,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"serial","static-access","deprecation","unused"})
 public class IRSALIYE extends JInternalFrame {
@@ -218,7 +219,9 @@ public class IRSALIYE extends JInternalFrame {
 					catch (Exception ex)
 					{
 						getContentPane().setCursor(oac.DEFAULT_CURSOR);
-						 JOptionPane.showMessageDialog(null,  "Irsaliye Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Irsaliye Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez....");
+						// JOptionPane.showMessageDialog(null,  "Irsaliye Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
 			}
@@ -396,7 +399,8 @@ public class IRSALIYE extends JInternalFrame {
 				  }
 					catch (Exception ex) 
 				{		
-						JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap Okuma", JOptionPane.ERROR_MESSAGE);   
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+						//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap Okuma", JOptionPane.ERROR_MESSAGE);   
 					}
 			  }
 			  public void removeUpdate(DocumentEvent e) {
@@ -410,7 +414,8 @@ public class IRSALIYE extends JInternalFrame {
 				  }
 					catch (Exception ex) 
 				{		
-						JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap Okuma", JOptionPane.ERROR_MESSAGE);   
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap Okuma", JOptionPane.ERROR_MESSAGE);   
 					}
 			  }
 			  public void insertUpdate(DocumentEvent e) {
@@ -424,7 +429,8 @@ public class IRSALIYE extends JInternalFrame {
 				  }
 					catch (Exception ex) 
 				{		
-						JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap Okuma", JOptionPane.ERROR_MESSAGE);   
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap Okuma", JOptionPane.ERROR_MESSAGE);   
 					}
 			  }
 			});
@@ -625,7 +631,8 @@ public class IRSALIYE extends JInternalFrame {
 					}
 					catch (Exception ex)
 					{	
-						JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap Okuma", JOptionPane.ERROR_MESSAGE);   
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap Okuma", JOptionPane.ERROR_MESSAGE);   
 					}
 			  }
 			  public void removeUpdate(DocumentEvent e) {
@@ -638,7 +645,8 @@ public class IRSALIYE extends JInternalFrame {
 					}
 					catch (Exception ex)
 					{	
-						JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap Okuma", JOptionPane.ERROR_MESSAGE);   
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap Okuma", JOptionPane.ERROR_MESSAGE);   
 					}
 			  }
 			  public void insertUpdate(DocumentEvent e) {
@@ -651,7 +659,8 @@ public class IRSALIYE extends JInternalFrame {
 					}
 					catch (Exception ex)
 					{	
-						JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap Okuma", JOptionPane.ERROR_MESSAGE);   
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap Okuma", JOptionPane.ERROR_MESSAGE);   
 					}
 			  }
 			});
@@ -956,7 +965,8 @@ public class IRSALIYE extends JInternalFrame {
           		}
 				catch (Exception ex) 
 				{
-					JOptionPane.showMessageDialog(null, ex.getMessage(),  "Urun Karti", JOptionPane.ERROR_MESSAGE);   
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Urun Karti", JOptionPane.ERROR_MESSAGE);   
 				}
 			}
 		});
@@ -1341,7 +1351,9 @@ public class IRSALIYE extends JInternalFrame {
 						
 		                  if (durum)
 		                  {
-		                		JOptionPane.showMessageDialog(null, "Bu Urun Bakiyesi Eksi Konumdadir....",   "Stok Bakiye Kontrol", JOptionPane.ERROR_MESSAGE);              
+		                	
+		                	  OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Urun Bakiyesi Eksi Konumdadir....");
+		                	//	JOptionPane.showMessageDialog(null, "Bu Urun Bakiyesi Eksi Konumdadir....",   "Stok Bakiye Kontrol", JOptionPane.ERROR_MESSAGE);              
 		                  }
 		                    else
 	                    {
@@ -1371,7 +1383,9 @@ public class IRSALIYE extends JInternalFrame {
 								
 			                  if (durum)
 			                  {
-			                		JOptionPane.showMessageDialog(null, "Bu Urun Bakiyesi Eksi Konumdadir....",   "Stok Bakiye Kontrol", JOptionPane.ERROR_MESSAGE);              
+			                	
+			                	  OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu Urun Bakiyesi Eksi Konumdadir....");
+			                //		JOptionPane.showMessageDialog(null, "Bu Urun Bakiyesi Eksi Konumdadir....",   "Stok Bakiye Kontrol", JOptionPane.ERROR_MESSAGE);              
 			                  }
 			                    else
 			                    {
@@ -1453,7 +1467,8 @@ public class IRSALIYE extends JInternalFrame {
        }
         catch (Exception ex)
         {
-        	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Kayit", JOptionPane.ERROR_MESSAGE);             
+        	  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+        //	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Kayit", JOptionPane.ERROR_MESSAGE);             
          }
 	}
 	private void fiskont()
@@ -1559,7 +1574,8 @@ public class IRSALIYE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void sifirla()
@@ -1644,7 +1660,8 @@ public class IRSALIYE extends JInternalFrame {
 		} 
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Cari Kontrol", JOptionPane.ERROR_MESSAGE);             
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Cari Kontrol", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
 	private static void satir_yaz_1 ()
@@ -1674,7 +1691,8 @@ public class IRSALIYE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz1", JOptionPane.ERROR_MESSAGE);             
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz1", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
 
@@ -1770,7 +1788,8 @@ public class IRSALIYE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz2", JOptionPane.ERROR_MESSAGE);     
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz2", JOptionPane.ERROR_MESSAGE);     
 		}
 	}
 
@@ -1811,7 +1830,8 @@ public class IRSALIYE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Dipnotyz", JOptionPane.ERROR_MESSAGE);   
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Dipnotyz", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void dipnot_sil()
@@ -1875,7 +1895,8 @@ public class IRSALIYE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Acikyz", JOptionPane.ERROR_MESSAGE);   
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Acikyz", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void acik_sil()
@@ -2082,7 +2103,8 @@ public class IRSALIYE extends JInternalFrame {
 	}
 	catch (Exception ex)
 	{
-		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
+		  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+	//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
 	}
 	}
 	private  void stk_kodu_auto(String field)
@@ -2126,7 +2148,8 @@ public class IRSALIYE extends JInternalFrame {
 			}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Stok Kodu", JOptionPane.ERROR_MESSAGE);
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Stok Kodu", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private  void depo_auto()
@@ -2150,7 +2173,8 @@ public class IRSALIYE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -2180,7 +2204,8 @@ public class IRSALIYE extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur()
@@ -2221,7 +2246,8 @@ public class IRSALIYE extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private void irs_oz_kod()
@@ -2248,7 +2274,8 @@ public class IRSALIYE extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ozel Kod", JOptionPane.ERROR_MESSAGE);   
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ozel Kod", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void toplam()
@@ -2288,7 +2315,8 @@ public class IRSALIYE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
 		}
 	
 	}
@@ -2320,7 +2348,8 @@ public class IRSALIYE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dipnot", JOptionPane.ERROR_MESSAGE);   
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dipnot", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void irs_sil()
@@ -2400,7 +2429,8 @@ public class IRSALIYE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Irsaliye Silme", JOptionPane.ERROR_MESSAGE);   
+			  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Irsaliye Silme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void cari_kaydet()
@@ -2437,7 +2467,9 @@ public class IRSALIYE extends JInternalFrame {
 				    	rs = c_Access.hesap_adi_oku(alh);
 				  
 					if (!rs.isBeforeFirst() ) {  
-						 JOptionPane.showMessageDialog(null,  "Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
+						 
+						  OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!");
+					//	 JOptionPane.showMessageDialog(null,  "Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 						 return ;
 					} 
 			       //********************************************************************************
@@ -2449,7 +2481,8 @@ public class IRSALIYE extends JInternalFrame {
 				    	rs = c_Access.hesap_adi_oku(bh);
 				   
 					if (!rs.isBeforeFirst() ) {  
-						 JOptionPane.showMessageDialog(null,  "Girilen Borclu Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
+						  OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Girilen Borclu Hesap Kodunda  bir  hesaba rastlanmadi!!!!");
+						// JOptionPane.showMessageDialog(null,  "Girilen Borclu Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 						 return ;
 					} 
 			       //********************************************************************************
@@ -2460,8 +2493,10 @@ public class IRSALIYE extends JInternalFrame {
 			    	rs = c_Access.hesap_adi_oku(txtcari.getText());
 			    
 				
-				if (!rs.isBeforeFirst() ) {  
-					 JOptionPane.showMessageDialog(null, textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
+				if (!rs.isBeforeFirst() ) { 
+					
+					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!");
+					 //JOptionPane.showMessageDialog(null, textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 					 return;
 				} 
 				 lOG_BILGI lBILGI = new lOG_BILGI();
@@ -2527,11 +2562,13 @@ public class IRSALIYE extends JInternalFrame {
 		        	        
 
 		                }
-		            JOptionPane.showMessageDialog(null,  "Irsaliye Cari Hesaba Basari ile Kaydedilmistir....",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
+		            		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Irsaliye Cari Hesaba Basari ile Kaydedilmistir....");
+		      //      JOptionPane.showMessageDialog(null,  "Irsaliye Cari Hesaba Basari ile Kaydedilmistir....",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 		catch (Exception ex)
 		{
-		    JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		 //   JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void urun_bilgi_doldur(String cins) 
@@ -2554,7 +2591,8 @@ public class IRSALIYE extends JInternalFrame {
 	}
 	catch (Exception ex)
 	{
-		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
+		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
 	}
 	}
 	private void son_fisoku()
@@ -2567,7 +2605,8 @@ public class IRSALIYE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Irsaliye Okuma", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Irsaliye Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 }

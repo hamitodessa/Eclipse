@@ -27,6 +27,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
 import OBS_C_2025.STOK_ACCESS;
+import raven.toast.Notifications;
 
 import javax.swing.border.EtchedBorder;
 import javax.swing.JCheckBox;
@@ -332,7 +333,8 @@ public class URUN_KART extends JInternalFrame {
 						g.dispose();
 						imagePanel.setImage(bi);
 					} catch (Exception ex) {
-						JOptionPane.showMessageDialog(null, ex.getMessage());
+						 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					//	JOptionPane.showMessageDialog(null, ex.getMessage());
 					}
 				}
 				else {
@@ -712,7 +714,8 @@ public class URUN_KART extends JInternalFrame {
 				catch (Exception ex)
 				{
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-					JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kamera", JOptionPane.ERROR_MESSAGE);        
+					 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kamera", JOptionPane.ERROR_MESSAGE);        
 				}
 			}
 		});
@@ -779,7 +782,8 @@ public class URUN_KART extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static  void doldur(String nereye)
@@ -946,7 +950,8 @@ public class URUN_KART extends JInternalFrame {
 		}
 		catch(Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void yeni()
@@ -1003,7 +1008,8 @@ public class URUN_KART extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void ana_grup_doldur()
@@ -1032,7 +1038,8 @@ public class URUN_KART extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void oz1_doldur()
@@ -1060,7 +1067,8 @@ public class URUN_KART extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private void oz2_doldur()
@@ -1088,7 +1096,8 @@ public class URUN_KART extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ozel Kod", JOptionPane.ERROR_MESSAGE);    	
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ozel Kod", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private void alt_grup_doldur()
@@ -1130,7 +1139,8 @@ public class URUN_KART extends JInternalFrame {
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 
 	}
@@ -1179,8 +1189,8 @@ public class URUN_KART extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Urun Silme", JOptionPane.ERROR_MESSAGE);    	
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Urun Silme", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	public static void kayit()
@@ -1301,7 +1311,8 @@ public class URUN_KART extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Urun Kayit", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Urun Kayit", JOptionPane.ERROR_MESSAGE);   
 		}
 
 	}

@@ -32,6 +32,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.*;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA;
+import raven.toast.Notifications;
+
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -264,7 +266,8 @@ public class E_FATURA extends JInternalFrame {
 				    			File file = chooser.getSelectedFile();
 				    			doldur3(file);
 							} catch (Exception ex) {
-								JOptionPane.showMessageDialog(null, ex.getMessage());
+								OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+								//JOptionPane.showMessageDialog(null, ex.getMessage());
 							}
 	  			       }
 				      else {
@@ -329,7 +332,8 @@ public class E_FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			 JOptionPane.showMessageDialog(null, ex.getMessage()); 
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	 JOptionPane.showMessageDialog(null, ex.getMessage()); 
 		}
 	}
 	private void doldur2(File dosya) 

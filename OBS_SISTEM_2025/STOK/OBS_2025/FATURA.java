@@ -39,6 +39,7 @@ import OBS_C_2025.TABLO_TEXTBOX;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -219,8 +220,10 @@ public class FATURA extends JInternalFrame {
 					}
 					catch (Exception ex)
 					{
-						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-						JOptionPane.showMessageDialog(null,  "Fatura Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
+						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+						
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Fatura Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez....");
+						//JOptionPane.showMessageDialog(null,  "Fatura Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
 			}
@@ -399,7 +402,8 @@ public class FATURA extends JInternalFrame {
 				}
 				catch (Exception ex)
 				{	
-					JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
 				}
 			}
 			public void removeUpdate(DocumentEvent e) {
@@ -417,7 +421,8 @@ public class FATURA extends JInternalFrame {
 				}
 				catch (Exception ex)
 				{	
-					JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
 				}
 			}
 			public void insertUpdate(DocumentEvent e) {
@@ -436,7 +441,8 @@ public class FATURA extends JInternalFrame {
 				}
 				catch (Exception ex)
 				{	
-					JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+				//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
 				}
 			}
 		});
@@ -1026,7 +1032,8 @@ public class FATURA extends JInternalFrame {
 				}
 				catch (Exception ex) 
 				{
-					JOptionPane.showMessageDialog(null, ex.getMessage(),  "Urun Karti", JOptionPane.ERROR_MESSAGE);   
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Urun Karti", JOptionPane.ERROR_MESSAGE);   
 				}
 			}
 		});
@@ -1472,7 +1479,9 @@ public class FATURA extends JInternalFrame {
 
 						if (durum)
 						{
-							JOptionPane.showMessageDialog(null, "Bu Urun Bakiyesi Eksi Konumdadir....",   "Stok Bakiye Kontrol", JOptionPane.ERROR_MESSAGE);              
+						
+							OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu Urun Bakiyesi Eksi Konumdadir....");
+							//JOptionPane.showMessageDialog(null, "Bu Urun Bakiyesi Eksi Konumdadir....",   "Stok Bakiye Kontrol", JOptionPane.ERROR_MESSAGE);              
 						}
 						else
 						{
@@ -1503,7 +1512,9 @@ public class FATURA extends JInternalFrame {
 
 						if (durum)
 						{
-							JOptionPane.showMessageDialog(null, "Bu Urun Bakiyesi Eksi Konumdadir....",   "Stok Bakiye Kontrol", JOptionPane.ERROR_MESSAGE);              
+						
+							OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Urun Bakiyesi Eksi Konumdadir....");
+							//JOptionPane.showMessageDialog(null, "Bu Urun Bakiyesi Eksi Konumdadir....",   "Stok Bakiye Kontrol", JOptionPane.ERROR_MESSAGE);              
 						}
 						else
 						{
@@ -1588,7 +1599,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Kayit", JOptionPane.ERROR_MESSAGE);             
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Kayit", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
 	private void fiskont()
@@ -1729,7 +1741,8 @@ public class FATURA extends JInternalFrame {
 		catch (Exception ex)
 		{
 			GuiUtil.setWaitCursor(FATURA.splitPane,false);
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Fis Kontrol", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void sifirla()
@@ -1808,7 +1821,8 @@ public class FATURA extends JInternalFrame {
 		} 
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Cari Kontrol", JOptionPane.ERROR_MESSAGE);            
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Cari Kontrol", JOptionPane.ERROR_MESSAGE);            
 		}
 	}
 	private static void satir_yaz_1 ()
@@ -1843,7 +1857,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz1", JOptionPane.ERROR_MESSAGE);             
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz1", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
 	private static void sat_yaz_2(int i)
@@ -1941,7 +1956,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz2", JOptionPane.ERROR_MESSAGE);     
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz2", JOptionPane.ERROR_MESSAGE);     
 		}
 	}
 	private static void stok_isle() 
@@ -1971,7 +1987,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Stokisl", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Stokisl", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void stk_yaz_2(int sat)
@@ -2068,7 +2085,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Stkyz2", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Stkyz2", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static double sat_toplam(double tutar,double isk ,double kdv ,double tev )
@@ -2106,7 +2124,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Dipnotyz", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Dipnotyz", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void dipnot_sil()
@@ -2167,7 +2186,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Acikyz", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Acikyz", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void acik_sil()
@@ -2211,7 +2231,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Irsyaz", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Irsyaz", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void satir_ilave()
@@ -2392,7 +2413,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private  void stk_kodu_auto(String field)
@@ -2436,7 +2458,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Otomatik Doldurma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Otomatik Doldurma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -2461,7 +2484,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -2491,7 +2515,8 @@ public class FATURA extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur()
@@ -2533,7 +2558,8 @@ public class FATURA extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private void fat_oz_kod()
@@ -2560,7 +2586,8 @@ public class FATURA extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ozel Kod", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ozel Kod", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void toplam()
@@ -2600,7 +2627,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
 		}
 
 	}
@@ -2632,7 +2660,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dipnot", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Dipnot", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void fatura_sil()
@@ -2719,7 +2748,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Silme", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Silme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void cari_kaydet()
@@ -2755,7 +2785,8 @@ public class FATURA extends JInternalFrame {
 				rs = c_Access.hesap_adi_oku(alh);
 
 				if (!rs.isBeforeFirst() ) {  
-					JOptionPane.showMessageDialog(null,  "Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!");
+					//JOptionPane.showMessageDialog(null,  "Girilen Alacakli Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 					return ;
 				} 
 				//********************************************************************************
@@ -2767,7 +2798,9 @@ public class FATURA extends JInternalFrame {
 				rs = c_Access.hesap_adi_oku(bh);
 
 				if (!rs.isBeforeFirst() ) {  
-					JOptionPane.showMessageDialog(null,  "Girilen Borclu Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
+				
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Girilen Borclu Hesap Kodunda  bir  hesaba rastlanmadi!!!!");
+					//JOptionPane.showMessageDialog(null,  "Girilen Borclu Hesap Kodunda  bir  hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 					return ;
 				} 
 				//********************************************************************************
@@ -2778,7 +2811,9 @@ public class FATURA extends JInternalFrame {
 			rs = c_Access.hesap_adi_oku(txtcari.getText());
 
 			if (!rs.isBeforeFirst() ) {  
-				JOptionPane.showMessageDialog(null, textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
+			
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!");
+				//JOptionPane.showMessageDialog(null, textField.getText() +  " Bu numarada hesaba rastlanmadi!!!!",  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE); 
 				return;
 			} 
 			//*************************************
@@ -2842,11 +2877,13 @@ public class FATURA extends JInternalFrame {
 						BAGLAN_LOG.cariLogDizin);
 
 			}
-			JOptionPane.showMessageDialog(null,  "Fatura Cari Hesaba Basari ile Kaydedilmistir....",  "Fatura Cari Kaydetme", JOptionPane.INFORMATION_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Fatura Cari Hesaba Basari ile Kaydedilmistir....");
+			//JOptionPane.showMessageDialog(null,  "Fatura Cari Hesaba Basari ile Kaydedilmistir....",  "Fatura Cari Kaydetme", JOptionPane.INFORMATION_MESSAGE);
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Fatura Cari Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void urun_bilgi_doldur(String cins) 
@@ -2870,7 +2907,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void resim_doldur( byte[] img)
@@ -2903,7 +2941,8 @@ public class FATURA extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Okuma", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void irs_aktar()
@@ -2923,7 +2962,9 @@ public class FATURA extends JInternalFrame {
 			rs = f_Access.irsaliye_oku(oac.irs_no,cmbcins.getItemAt(cmbcins.getSelectedIndex()).toString().equals("SATIS") ? "C":"G");
 
 			if (!rs.isBeforeFirst() ) {  
-				JOptionPane.showMessageDialog(null,"Bu Numarada Irsaliye Bulunamadi ",  "Irsaliye Okuma", JOptionPane.ERROR_MESSAGE);   
+				
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Numarada Irsaliye Bulunamadi ");
+				//JOptionPane.showMessageDialog(null,"Bu Numarada Irsaliye Bulunamadi ",  "Irsaliye Okuma", JOptionPane.ERROR_MESSAGE);   
 				return ;
 			} 
 			else
@@ -2933,7 +2974,9 @@ public class FATURA extends JInternalFrame {
 				{
 					if ( rs.getString("Fatura_No").toString() !=  textField.getText())
 					{
-						JOptionPane.showMessageDialog(null,"Bu Irsaliye Daha Onceden "  + rs.getString("Fatura_No").toString() + " Faturda Islem Gormus...!",  "Irsaliye Okuma", JOptionPane.ERROR_MESSAGE);   		
+						
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Irsaliye Daha Onceden "  + rs.getString("Fatura_No").toString() + " Faturda Islem Gormus...!");
+						//JOptionPane.showMessageDialog(null,"Bu Irsaliye Daha Onceden "  + rs.getString("Fatura_No").toString() + " Faturda Islem Gormus...!",  "Irsaliye Okuma", JOptionPane.ERROR_MESSAGE);   		
 						return ;
 					}
 				}
@@ -2980,7 +3023,8 @@ public class FATURA extends JInternalFrame {
 
 		} catch (Exception ex) 
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Irsaliye  Okuma", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Irsaliye  Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 	}

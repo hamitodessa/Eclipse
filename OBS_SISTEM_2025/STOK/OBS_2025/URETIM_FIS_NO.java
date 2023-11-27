@@ -34,6 +34,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.TARIH_SAATLI;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
@@ -338,7 +339,8 @@ public class URETIM_FIS_NO extends JInternalFrame {
 			}
 		} 
 		catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Raporlama", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void kaydet() 
@@ -500,12 +502,14 @@ public class URETIM_FIS_NO extends JInternalFrame {
 					hisset("1900.01.01", "2100.12.31");
 				}
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null,  "Yeniden Numaralandirma Islemi Basari ile Bitirilmistir",  "Imalat Yeniden Numaralama", JOptionPane.PLAIN_MESSAGE);
+				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Yeniden Numaralandirma Islemi Basari ile Bitirilmistir");
+			//	JOptionPane.showMessageDialog(null,  "Yeniden Numaralandirma Islemi Basari ile Bitirilmistir",  "Imalat Yeniden Numaralama", JOptionPane.PLAIN_MESSAGE);
 			}
 			catch (Exception ex)
 			{
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Fis No Degisme", JOptionPane.ERROR_MESSAGE);
+				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Fis No Degisme", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		};

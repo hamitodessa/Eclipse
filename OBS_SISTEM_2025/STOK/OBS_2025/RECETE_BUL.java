@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
@@ -36,6 +35,7 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 
 @SuppressWarnings({"serial","static-access"})
@@ -212,7 +212,8 @@ public void hisset()
 				
 	}
 	} catch (Exception ex) {
-		JOptionPane.showMessageDialog(null, ex.getMessage());
+		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+	//	JOptionPane.showMessageDialog(null, ex.getMessage());
 	}
 }
 public void arama()  

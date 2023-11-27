@@ -32,6 +32,7 @@ import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -134,7 +135,9 @@ public class RECETE extends JInternalFrame {
 					catch (Exception ex)
 					{
 						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						 JOptionPane.showMessageDialog(null,  "Recete Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
+						
+						 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Recete Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez....");
+						// JOptionPane.showMessageDialog(null,  "Recete Numaralarinda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
 			}
@@ -195,7 +198,8 @@ public class RECETE extends JInternalFrame {
 		            if ( textField.getText().equals("0") )
 		            		{
 		            	 textField.setText("");
-		            	JOptionPane.showMessageDialog(null,  "Hic Kayit Yok...", "Recete Okuma", JOptionPane.PLAIN_MESSAGE);
+		            	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Hic Kayit Yok...");
+		            	//JOptionPane.showMessageDialog(null,  "Hic Kayit Yok...", "Recete Okuma", JOptionPane.PLAIN_MESSAGE);
 		            	textField.requestFocus();
 		            		}
 		        	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -203,7 +207,8 @@ public class RECETE extends JInternalFrame {
 		        catch (Exception ex)
 				 {
 		        	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		        	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Okuma", JOptionPane.ERROR_MESSAGE);
+		        	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		        	//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Okuma", JOptionPane.ERROR_MESSAGE);
 				 }
 			}
 		});
@@ -590,7 +595,8 @@ public class RECETE extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur()
@@ -632,7 +638,8 @@ public class RECETE extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	private  void stk_kodu_auto(String field)
@@ -676,7 +683,8 @@ public class RECETE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Otomatik Doldurma", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Otomatik Doldurma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void satir_ilave()
@@ -743,16 +751,14 @@ public class RECETE extends JInternalFrame {
 	}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 }		
 	private void isimoku ()
 	{
 		try {
 			ResultSet rs = null;
-
-		
-			
 				rs = f_Access.urun_adi_oku(textField_1.getText(),"Kodu");
 			
 		if (!rs.isBeforeFirst() ) {  
@@ -776,7 +782,8 @@ public class RECETE extends JInternalFrame {
 	}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Urun Kodu", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Urun Kodu", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void kaydet()
@@ -797,7 +804,8 @@ public class RECETE extends JInternalFrame {
 			 }
 			 catch (Exception ex)
 			 {
-			    	 JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Recete Kaydetme", JOptionPane.ERROR_MESSAGE);
+				 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//    	 JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Recete Kaydetme", JOptionPane.ERROR_MESSAGE);
 			}
 	}
 	private static void koda_recete_yaz()
@@ -809,7 +817,8 @@ public class RECETE extends JInternalFrame {
 	}
 	   catch (Exception ex)
 	   {
-	       	 JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Recete Kaydetme", JOptionPane.ERROR_MESSAGE);
+		   OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+	       //	 JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Recete Kaydetme", JOptionPane.ERROR_MESSAGE);
 	   }
 	}
 	private static void acik_yaz()
@@ -826,7 +835,8 @@ public class RECETE extends JInternalFrame {
 	}
 	   catch (Exception ex)
 	   {
-	       	 JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Recete Aciksl", JOptionPane.ERROR_MESSAGE);
+		   OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+	     //  	 JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Recete Aciksl", JOptionPane.ERROR_MESSAGE);
 	   }
 	}
 	private static void aciklama_sil()
@@ -841,7 +851,8 @@ public class RECETE extends JInternalFrame {
 	}
 	   catch (Exception ex)
 	   {
-	       	 JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Recete Aciksl", JOptionPane.ERROR_MESSAGE);
+		   OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+	       //	 JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Recete Aciksl", JOptionPane.ERROR_MESSAGE);
 	   }
 	}
 	private static void satir_yaz_1 () 
@@ -862,7 +873,8 @@ public class RECETE extends JInternalFrame {
 	}
 	catch (Exception ex)
 	{
-		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Stayz1", JOptionPane.ERROR_MESSAGE);
+		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Stayz1", JOptionPane.ERROR_MESSAGE);
 	}
 	}
 	private static void gir_yaz ()
@@ -917,7 +929,8 @@ public class RECETE extends JInternalFrame {
 	}
 	catch (Exception ex)
 	{
-		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Giryz", JOptionPane.ERROR_MESSAGE);
+		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+	//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Giryz", JOptionPane.ERROR_MESSAGE);
 	}
 	}
 	private static void sat_yaz_2 (int sat) 
@@ -972,7 +985,8 @@ public class RECETE extends JInternalFrame {
 	}
 	catch (Exception ex)
 	{
-		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Stayz2", JOptionPane.ERROR_MESSAGE);
+		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+	//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Stayz2", JOptionPane.ERROR_MESSAGE);
 	}
 	}
 	public static void recete_sil()
@@ -1008,7 +1022,8 @@ public class RECETE extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Sil", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Sil", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void kontrol()
@@ -1052,8 +1067,8 @@ public class RECETE extends JInternalFrame {
 		 }
      catch (Exception ex)
 		 {
- 
-    	 JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Okuma", JOptionPane.ERROR_MESSAGE);
+    	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+    	// JOptionPane.showMessageDialog(null,  ex.getMessage(), "Recete Okuma", JOptionPane.ERROR_MESSAGE);
 		 }
 	}
 	private static void temizle()

@@ -4,8 +4,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
- 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -23,6 +21,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
+import raven.toast.Notifications;
 
 import java.awt.Font;
 import java.awt.Color;
@@ -372,7 +371,8 @@ public class EVRAK_FORMAT extends JInternalFrame {
 	}
 	catch (Exception ex)
 	{
-		JOptionPane.showMessageDialog(null,  ex.getMessage(), "Evrak Formatlama", JOptionPane.ERROR_MESSAGE);
+		OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Evrak Formatlama", JOptionPane.ERROR_MESSAGE);
 	}
 	}
 	public static void kaydet()
@@ -467,7 +467,8 @@ public class EVRAK_FORMAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Evrak formatlama Kayit", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Evrak formatlama Kayit", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

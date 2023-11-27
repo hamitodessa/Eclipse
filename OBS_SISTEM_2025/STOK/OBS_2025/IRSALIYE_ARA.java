@@ -39,6 +39,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -359,7 +360,8 @@ public class IRSALIYE_ARA extends JDialog {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Okuma", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Okuma", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 		private void ana_grup_doldur()
@@ -388,7 +390,8 @@ public class IRSALIYE_ARA extends JDialog {
 			catch (Exception ex)
 			{
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 			}
 		}
 		private void alt_grup_doldur()
@@ -431,7 +434,8 @@ public class IRSALIYE_ARA extends JDialog {
 			catch (Exception ex)
 			{
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+				//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 			}
 		}
 		public void isimoku()  {
@@ -454,7 +458,8 @@ public class IRSALIYE_ARA extends JDialog {
 		    }
 		    catch (Exception ex)
 		    {
-		    	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Unvan Okuma", JOptionPane.ERROR_MESSAGE);   
+		    	OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		    	//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Unvan Okuma", JOptionPane.ERROR_MESSAGE);   
 		    }
 	  }
 }

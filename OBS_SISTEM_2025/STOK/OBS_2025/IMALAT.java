@@ -41,6 +41,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TABLO_TEXTBOX;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.lOG_BILGI;
+import raven.toast.Notifications;
 
 import javax.swing.JComboBox;
 import java.awt.Color;
@@ -188,7 +189,9 @@ public class IMALAT extends JInternalFrame {
 					catch (Exception ex)
 					{
 						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						JOptionPane.showMessageDialog(null, "Numaralarda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
+						
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Numaralarda onceden harf ve rakkam kullanildigindan otomatik numara verilemez....");
+						//JOptionPane.showMessageDialog(null, "Numaralarda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
 			}
@@ -248,7 +251,8 @@ public class IMALAT extends JInternalFrame {
 					if ( textField.getText().equals("0") )
 					{
 						textField.setText("");
-						JOptionPane.showMessageDialog(null,  "Hic Kayit Yok...", "Imalat Okuma", JOptionPane.ERROR_MESSAGE);
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Hic Kayit Yok...");
+						//JOptionPane.showMessageDialog(null,  "Hic Kayit Yok...", "Imalat Okuma", JOptionPane.ERROR_MESSAGE);
 						textField.requestFocus();
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -256,7 +260,8 @@ public class IMALAT extends JInternalFrame {
 				catch (Exception ex)
 				{
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Okuma", JOptionPane.ERROR_MESSAGE);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Okuma", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -887,7 +892,8 @@ public class IMALAT extends JInternalFrame {
 					catch (Exception ex)
 					{
 						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						JOptionPane.showMessageDialog(null,  "Numaralarda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Numaralarda onceden harf ve rakkam kullanildigindan otomatik numara verilemez....");
+						//JOptionPane.showMessageDialog(null,  "Numaralarda onceden harf ve rakkam kullanildigindan otomatik numara verilemez...."); 	
 					}
 				}
 			});
@@ -895,7 +901,8 @@ public class IMALAT extends JInternalFrame {
 			btnNewButton_1.setVisible(false);
 			panel_2.add(btnNewButton_1);
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat", JOptionPane.ERROR_MESSAGE);
 		}
 		//***********
 		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
@@ -965,7 +972,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Stok Kodu", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Stok Kodu", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private  void depo_auto()
@@ -993,7 +1001,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void ana_grup_doldur()
@@ -1024,7 +1033,8 @@ public class IMALAT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ana Grup", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void alt_grup_doldur()
@@ -1066,7 +1076,8 @@ public class IMALAT extends JInternalFrame {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Alt Grup", JOptionPane.ERROR_MESSAGE);    	
 		}
 	}
 	public static void satir_ilave()
@@ -1120,7 +1131,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Toplam", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void bilgi_doldur(String cins)
@@ -1197,7 +1209,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 	}		
 	private static Date ilk_tarih(String kodu,String tarq)
@@ -1233,7 +1246,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Ort Fiat Okuma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Ort Fiat Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 		return result_tar;
 	}
@@ -1326,7 +1340,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Urun Kodu Deger Okuma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null,  ex.getMessage(), "Urun Kodu Deger Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void hesapla() 
@@ -1335,12 +1350,14 @@ public class IMALAT extends JInternalFrame {
 			Double dbmik = DecimalFormat.getNumberInstance().parse(txtmiktar.getText()).doubleValue();
 			if (dbmik == 0)
 			{
-				JOptionPane.showMessageDialog(null,  "Ilk Olarak Uretilecek Urun Miktarini Girmelisiniz...", "Hesaplama", JOptionPane.PLAIN_MESSAGE);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Ilk Olarak Uretilecek Urun Miktarini Girmelisiniz...");
+				//JOptionPane.showMessageDialog(null,  "Ilk Olarak Uretilecek Urun Miktarini Girmelisiniz...", "Hesaplama", JOptionPane.PLAIN_MESSAGE);
 				return;
 			}
 			if ( txtrecete.getText().equals(""))
 			{
-				JOptionPane.showMessageDialog(null, "Recete No Bos...", "Hesaplama", JOptionPane.PLAIN_MESSAGE);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Recete No Bos...");
+				//JOptionPane.showMessageDialog(null, "Recete No Bos...", "Hesaplama", JOptionPane.PLAIN_MESSAGE);
 				return;
 			}
 			ResultSet rs = null;
@@ -1348,7 +1365,9 @@ public class IMALAT extends JInternalFrame {
 			rs = f_Access.recete_oku(txtrecete.getText());
 
 			if (!rs.isBeforeFirst() ) {
-				JOptionPane.showMessageDialog(null, "Bu Numarada Kayitli Recete Bilgisi Yok ", "Hesaplama", JOptionPane.PLAIN_MESSAGE);
+			
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu Numarada Kayitli Recete Bilgisi Yok ");
+				//JOptionPane.showMessageDialog(null, "Bu Numarada Kayitli Recete Bilgisi Yok ", "Hesaplama", JOptionPane.PLAIN_MESSAGE);
 			}
 			else
 			{
@@ -1377,7 +1396,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Urun Kodu Deger Okuma", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Urun Kodu Deger Okuma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void kaydet()
@@ -1402,7 +1422,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Kayit", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Kayit", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void stok_isle()
@@ -1425,7 +1446,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz1", JOptionPane.ERROR_MESSAGE);             
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Fatura Satyz1", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
 	public static void sat_yaz_2(int i)
@@ -1502,7 +1524,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Imalat Satyz2", JOptionPane.ERROR_MESSAGE);             
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Imalat Satyz2", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
 	public static void stk_gir_yaz()
@@ -1571,7 +1594,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Imalat Satgiryz", JOptionPane.ERROR_MESSAGE);             
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Imalat Satgiryz", JOptionPane.ERROR_MESSAGE);             
 		}
 	}
 	public static void acik_yaz()
@@ -1588,7 +1612,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Imalat Acikyz", JOptionPane.ERROR_MESSAGE);   		
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+		//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Imalat Acikyz", JOptionPane.ERROR_MESSAGE);   		
 		}
 	}
 	private static void acik_sil()
@@ -1605,7 +1630,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Imalat Aciksl", JOptionPane.ERROR_MESSAGE);   		
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Imalat Aciksl", JOptionPane.ERROR_MESSAGE);   		
 		}
 	}
 	private static void sifirla()
@@ -1667,7 +1693,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Silme", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Silme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void kontrol ()
@@ -1725,7 +1752,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage(),  "Imalat", JOptionPane.ERROR_MESSAGE);              
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Imalat", JOptionPane.ERROR_MESSAGE);              
 		}
 	}
 	private void depo_doldur()
@@ -1754,7 +1782,8 @@ public class IMALAT extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Depo Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

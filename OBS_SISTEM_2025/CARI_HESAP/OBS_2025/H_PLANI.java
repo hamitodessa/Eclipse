@@ -30,8 +30,11 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -551,6 +554,24 @@ public class H_PLANI extends JInternalFrame {
 				arama();
 			}
 		});
+		txtarama.addAncestorListener(new AncestorListener() {
+			@Override
+			public void ancestorRemoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorMoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorAdded(AncestorEvent pEvent) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						txtarama.requestFocusInWindow();
+					}
+				});
+			}
+		});
+
 		panel.add(txtarama);
 
 		chcbas = new JCheckBox("Ile Baslayan");

@@ -10,8 +10,6 @@ import java.util.Vector;
 
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
-
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.FILE_UZANTI;
 import OBS_2025.FILTRE;
@@ -27,6 +25,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -218,7 +217,8 @@ public class FATURA_RAPOR extends JInternalFrame {
 				filtre_cari_kod();
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.PLAIN_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	public static void filtrele()
@@ -331,7 +331,8 @@ public class FATURA_RAPOR extends JInternalFrame {
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void genislik(int gen)
@@ -427,7 +428,8 @@ public class FATURA_RAPOR extends JInternalFrame {
 					kjk = "" ;
 				}	
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
 		} 
 	}
 	public static void filtre_fat_tarih()
@@ -566,7 +568,8 @@ public class FATURA_RAPOR extends JInternalFrame {
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void filtre_cari_kod()
@@ -693,7 +696,8 @@ public class FATURA_RAPOR extends JInternalFrame {
 		} 
 		catch (Exception ex) 
 		{
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama",  JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Fatura Raporlama",  JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void detay_doldur(String fatno,String har)
@@ -856,7 +860,8 @@ public class FATURA_RAPOR extends JInternalFrame {
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
 			}
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(), "Irsaliye Detay", JOptionPane.ERROR_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Irsaliye Detay", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void excell_aktar()
@@ -865,7 +870,8 @@ public class FATURA_RAPOR extends JInternalFrame {
 		
 		if (mdl.getRowCount() == 0 )
 		{
-		JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
+			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Aktarilacak Bilgi Yok.....");
+		//JOptionPane.showMessageDialog(null, "Aktarilacak Bilgi Yok.....","Imalat Grup Raporlama", JOptionPane.PLAIN_MESSAGE);
 		}
 		else
 		{
@@ -1331,11 +1337,13 @@ public class FATURA_RAPOR extends JInternalFrame {
 		    	  }
 				 Progres_Bar_Temizle();
 		    		GuiUtil.setWaitCursor(splitPane,false);
-			JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Stok Detay", JOptionPane.PLAIN_MESSAGE);
+		    		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO,"Aktarma Islemi Tamamlandi.....");
+			//JOptionPane.showMessageDialog(null, "Aktarma Islemi Tamamlandi.....","Stok Detay", JOptionPane.PLAIN_MESSAGE);
 	  }
 	  catch (Exception ex)
 	  {
-			JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
+		  OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
+			//JOptionPane.showMessageDialog(null,  ex.getMessage(),"Excell Aktarma", JOptionPane.ERROR_MESSAGE);
 	  }
 	    }
 	    };

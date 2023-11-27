@@ -84,7 +84,7 @@ public class H_PLANI extends JInternalFrame {
 	//private static CARI_ACCESS  c_Access ;
 	static ResultSet rs = null ;
 	private static int kayit_sayi = 0 ;
-	private JTextField txtarama;
+	private static JTextField txtarama;
 	public H_PLANI()  {
 		setTitle("HESAP GIRISI");
 		setIconifiable(true);
@@ -738,7 +738,8 @@ public class H_PLANI extends JInternalFrame {
 					, txtkimlik.getText(), txtaciklama.getText(),chcsms.isSelected() ,fis);
 
 			temizle();
-			hisset("");
+			txtarama.setText("");
+			//hisset("");
 			// Cursor = System.Windows.Forms.Cursors.Default
 		}
 		catch (Exception ex)
@@ -763,7 +764,8 @@ public class H_PLANI extends JInternalFrame {
 			
 			c_Access.hsp_sil(txtkodu.getText(), lBILGI,  BAGLAN_LOG.cariLogDizin);
 			temizle();
-			hisset("");
+			txtarama.setText("");
+			//hisset("");
 		}
 		catch (Exception ex)
 		{

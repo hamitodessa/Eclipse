@@ -764,10 +764,7 @@ public class URUN_KART extends JInternalFrame {
 	{
 		try {
 			temizle();
-
 			rss = f_Access.stk_urun(siralama,arama);
-
-
 			if (!rss.isBeforeFirst() ) {  
 				txtkayit.setText(rss.getRow() + "/" +   String.valueOf(kayit_sayi));
 				return;
@@ -777,7 +774,6 @@ public class URUN_KART extends JInternalFrame {
 				rss.last();
 				kayit_sayi = rss.getRow();
 				rss.first();
-
 				doldur("ILK");
 			}
 		}

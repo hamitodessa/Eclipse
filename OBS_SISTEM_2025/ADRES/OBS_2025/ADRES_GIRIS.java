@@ -576,7 +576,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 				});
 			}
 		});
-
+		
 		panel.add(txtarama);
 		txtarama.setColumns(10);
 
@@ -652,7 +652,8 @@ public class ADRES_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			JOptionPane.showMessageDialog(null, ex.getMessage()); 
+			//OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());1
 		}
 	}
 	private static void doldur(String nereye)
@@ -775,7 +776,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		chcmail.setSelected(true);
 		// lblNewLabel_5.setIcon(null);
 		imagePanel.setImage(null);
-		txtarama.setText("");
+
 		kayit_sayi =0 ;
 	}
 	private void arama()
@@ -857,7 +858,8 @@ public class ADRES_GIRIS extends JInternalFrame {
 			
 			a_Access.adres_kayit(aDEG,	lBILGI, BAGLAN_LOG.adrLogDizin);
 			temizle();
-			hisset("M_Kodu", "");
+			txtarama.setText("");
+			//hisset("M_Kodu", "");
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
@@ -884,7 +886,8 @@ public class ADRES_GIRIS extends JInternalFrame {
 			a_Access.sil(txtkodu.getText(),txtunvan.getText(),
 					lBILGI, BAGLAN_LOG.adrLogDizin);
 			temizle();
-			hisset("M_Kodu", "");
+			//hisset("M_Kodu", "");
+			txtarama.setText("");
 		}
 		catch (Exception ex)
 		{

@@ -98,6 +98,7 @@ public static MaterialTabbed orTabbedPane;
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		orTabbedPane = new MaterialTabbed();
 		orTabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
+		orTabbedPane.setForeground(new Color(0, 0, 128));
 		orTabbedPane.addTab("Genel", null,scrollPane , null);  //
 		JPanel tekPanel = new JPanel();
 		tekPanel.setLayout(null);

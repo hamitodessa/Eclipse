@@ -97,7 +97,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
 @SuppressWarnings({"static-access","unused","serial"})
-public class rEHBER extends JFrame {
+public class FIHRIST extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	boolean FIH_DOS_VAR;
@@ -144,7 +144,7 @@ public class rEHBER extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					rEHBER frame = new rEHBER();
+					FIHRIST frame = new FIHRIST();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -156,7 +156,7 @@ public class rEHBER extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public rEHBER() {
+	public FIHRIST() {
 
 		//		 try {
 		//			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
@@ -169,7 +169,7 @@ public class rEHBER extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
 		setTitle("FIHRIST");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(rEHBER.class.getResource("/obs/ayarlar/iconlar/fihrist.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FIHRIST.class.getResource("/obs/ayarlar/iconlar/fihrist.png")));
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 
@@ -187,7 +187,7 @@ public class rEHBER extends JFrame {
 		scrollPane.setViewportView(tabbedPane);
 
 		JPanel panel = new JPanel();
-		tabbedPane.addTab("Rehber", null, panel, null);
+		tabbedPane.addTab("FIHRIST", null, panel, null);
 		panel.setLayout(new BorderLayout(0, 0));
 
 		JSplitPane splitPane = new JSplitPane();
@@ -364,7 +364,7 @@ public class rEHBER extends JFrame {
 			}
 		});
 		btnKayitf.setToolTipText("Kaydet");
-		btnKayitf.setIcon(new ImageIcon(rEHBER.class.getResource("/obs/ayarlar/iconlar/save.png")));
+		btnKayitf.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/save.png")));
 		toolBar_1.add(btnKayitf);
 		
 		JButton btnSilf = new JButton("");
@@ -390,7 +390,7 @@ public class rEHBER extends JFrame {
 			}
 		});
 		btnSilf.setToolTipText("Sil");
-		btnSilf.setIcon(new ImageIcon(rEHBER.class.getResource("/obs/ayarlar/iconlar/sil.png")));
+		btnSilf.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/sil.png")));
 		toolBar_1.add(btnSilf);
 
 		JButton btnYenif = new JButton("");
@@ -405,7 +405,7 @@ public class rEHBER extends JFrame {
 			}
 		});
 		btnYenif.setToolTipText("Yeni");
-		btnYenif.setIcon(new ImageIcon(rEHBER.class.getResource("/obs/ayarlar/iconlar/yeni.png")));
+		btnYenif.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/yeni.png")));
 		toolBar_1.add(btnYenif);
 		///
 		JSplitPane splitPanealt = new JSplitPane();
@@ -420,7 +420,7 @@ public class rEHBER extends JFrame {
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
-		table.setFont(new Font("Calibri", Font.PLAIN, 12));
+		table.setFont(new Font("Calibri", Font.PLAIN, 13));
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent lse) {
 				if (!lse.getValueIsAdjusting()) {
@@ -640,7 +640,7 @@ public class rEHBER extends JFrame {
 		//////////////////////
 		btnServer = new JButton("");
 		btnServer.setToolTipText("Server Kontrol");
-		btnServer.setIcon(new ImageIcon(rEHBER.class.getResource("/obs/ayarlar/iconlar/server.png")));
+		btnServer.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/server.png")));
 		btnServer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				{
@@ -669,7 +669,7 @@ public class rEHBER extends JFrame {
 		btnVtKontrol = new JButton("");
 		btnVtKontrol.setToolTipText("Veritabani Kontrol");
 		btnVtKontrol.setEnabled(false);
-		btnVtKontrol.setIcon(new ImageIcon(rEHBER.class.getResource("/obs/ayarlar/iconlar/db.png")));
+		btnVtKontrol.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/db.png")));
 		btnVtKontrol.addActionListener(new ActionListener() {  // VERITABANI KONTROL
 			public void actionPerformed(ActionEvent e) {
 				try
@@ -715,7 +715,7 @@ public class rEHBER extends JFrame {
 			}
 		});
 		btnSil.setToolTipText("Sil");
-		btnSil.setIcon(new ImageIcon(rEHBER.class.getResource("/obs/ayarlar/iconlar/sil.png")));
+		btnSil.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/sil.png")));
 		toolBar.add(btnSil);
 
 		JButton btnYeni = new JButton("");
@@ -729,7 +729,7 @@ public class rEHBER extends JFrame {
 			}
 		});
 		btnYeni.setToolTipText("Yeni");
-		btnYeni.setIcon(new ImageIcon(rEHBER.class.getResource("/obs/ayarlar/iconlar/yeni.png")));
+		btnYeni.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/yeni.png")));
 		toolBar.add(btnYeni);
 
 		///////////////////////
@@ -1023,7 +1023,7 @@ public class rEHBER extends JFrame {
 		InputStream stream = null ;
 		try {
 			Notifications.getInstance().show(tipType,Notifications.Location.BOTTOM_RIGHT ,zaman ,mesaj);
-			stream = rEHBER.class.getClassLoader().getResourceAsStream("DOSYA/hata.mp3"); //whts
+			stream = FIHRIST.class.getClassLoader().getResourceAsStream("DOSYA/hata.mp3"); //whts
 			Player player = new Player(stream);
 			player.play();
 			if(stream != null)

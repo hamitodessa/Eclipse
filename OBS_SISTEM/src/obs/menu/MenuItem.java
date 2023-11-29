@@ -79,8 +79,22 @@ public class MenuItem extends JPanel {
     private Icon getIcon() {
         Color lightColor = FlatUIUtils.getUIColor("Menu.icon.lightColor", Color.red);
         Color darkColor = FlatUIUtils.getUIColor("Menu.icon.darkColor", Color.red);
+        System.out.println(menuIndex);
+        FlatSVGIcon icon = null ;
+        if (menuIndex ==0)
+        {
+        	  icon = new FlatSVGIcon("obs/menu/icon/1.svg");
+        }
+        else if (menuIndex ==1)
+        {
+      	   icon = new FlatSVGIcon("obs/menu/icon/ayar1.svg");
+      }
+        else if (menuIndex ==2)
+        {
+      	   icon = new FlatSVGIcon("obs/menu/icon/9.svg");
+      }
         //FlatSVGIcon icon = new FlatSVGIcon("obs/menu/icon/" + menuIndex + ".svg");
-        FlatSVGIcon icon = new FlatSVGIcon("obs/menu/icon/ayarlar.svg");
+       // FlatSVGIcon icon = new FlatSVGIcon("obs/menu/icon/1.svg");
         FlatSVGIcon.ColorFilter f = new FlatSVGIcon.ColorFilter();
         f.add(Color.decode("#969696"), lightColor, darkColor);
         icon.setColorFilter(f);

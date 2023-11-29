@@ -31,7 +31,7 @@ public class Menu extends JPanel {
         {"~Fihrist~"},
        // {"Email", "Inbox", "Read", "Compost"},
         {"Fihrist"},
-        //{"Chat"},
+        {"~Ayar~"},
         {"Ayarlar"},
 //        {"Calendar"},
 //        {"~COMPONENT~"},

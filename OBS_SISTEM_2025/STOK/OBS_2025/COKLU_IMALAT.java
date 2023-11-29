@@ -591,7 +591,8 @@ public class COKLU_IMALAT extends JInternalFrame {
 				}
 				Progres_Bar_Temizle();
 				GuiUtil.setWaitCursor(splitPane,false);
-				JOptionPane.showMessageDialog(null,  "Imalat Islemi Tamamlandi .....", "Coklu Imalat", JOptionPane.PLAIN_MESSAGE);
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Imalat Islemi Tamamlandi .....");
+				//JOptionPane.showMessageDialog(null,  "Imalat Islemi Tamamlandi .....", "Coklu Imalat", JOptionPane.PLAIN_MESSAGE);
 			}
 			catch (Exception ex)
 			{

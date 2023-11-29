@@ -83,7 +83,7 @@ public class MenuItem extends JPanel {
         FlatSVGIcon icon = null ;
         if (menuIndex ==0)
         {
-        	  icon = new FlatSVGIcon("obs/menu/icon/1.svg");
+        	  icon = new FlatSVGIcon("obs/menu/icon/rehber.svg");
         }
         else if (menuIndex ==1)
         {

@@ -26,20 +26,22 @@ import obs.menu.mode.ToolBarAccentColor;
 public class Menu extends JPanel {
 
     private final String menuItems[][] = {
-        {"~MAIN~"},
-        {"Dashboard"},
-        {"~WEB APP~"},
-        {"Email", "Inbox", "Read", "Compost"},
-        {"Chat"},
-        {"Calendar"},
-        {"~COMPONENT~"},
-        {"Advanced UI", "Cropper", "Owl Carousel", "Sweet Alert"},
-        {"Forms", "Basic Elements", "Advanced Elements", "Editors", "Wizard"},
-        {"~OTHER~"},
-        {"Charts", "Apex", "Flot", "Peity", "Sparkline"},
-        {"Icons", "Feather Icons", "Flag Icons", "Mdi Icons"},
-        {"Special Pages", "Blank page", "Faq", "Invoice", "Profile", "Pricing", "Timeline"},
-        {"Logout"}
+       // {"~MAIN~"},
+       // {"Dashboard"},
+        {"~Fihrist~"},
+       // {"Email", "Inbox", "Read", "Compost"},
+        {"Fihrist"},
+        //{"Chat"},
+        {"Ayarlar"},
+//        {"Calendar"},
+//        {"~COMPONENT~"},
+//        {"Advanced UI", "Cropper", "Owl Carousel", "Sweet Alert"},
+//        {"Forms", "Basic Elements", "Advanced Elements", "Editors", "Wizard"},
+//        {"~OTHER~"},
+//        {"Charts", "Apex", "Flot", "Peity", "Sparkline"},
+//        {"Icons", "Feather Icons", "Flag Icons", "Mdi Icons"},
+//        {"Special Pages", "Blank page", "Faq", "Invoice", "Profile", "Pricing", "Timeline"},
+        {"Cikis"}
     };
 
     public boolean isMenuFull() {

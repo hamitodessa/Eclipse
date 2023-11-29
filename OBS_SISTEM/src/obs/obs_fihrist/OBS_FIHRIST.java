@@ -1,38 +1,44 @@
-package obs.obs_sistem;
+package obs.obs_fihrist;
 
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+
+import javazoom.jl.player.Player;
+import obs.obs_fihrist.form.MainForm;
+
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.io.InputStream;
+
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-
-import obs.obs_sistem.form.LoginForm;
-import obs.obs_sistem.form.MainForm;
-
 
 import raven.toast.Notifications;
 
 @SuppressWarnings("serial")
-public class OBS_SISTEM extends javax.swing.JFrame {
+public class OBS_FIHRIST extends javax.swing.JFrame {
 
-    private static OBS_SISTEM app;
+    private static OBS_FIHRIST app;
     private final MainForm mainForm;
-    private final LoginForm loginForm;
 
-    public OBS_SISTEM() {
+    public OBS_FIHRIST() {
         initComponents();
         setSize(new Dimension(1366, 768));
+       
         setLocationRelativeTo(null);
         mainForm = new MainForm();
-        loginForm = new LoginForm();
-        setContentPane(loginForm);
+        setContentPane(mainForm);
         Notifications.getInstance().setJFrame(this);
+        basla();
     }
-
+    private void basla()
+    {
+    	OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.ERROR, "basla");
+    }
     public static void showForm(Component component) {
         component.applyComponentOrientation(app.getComponentOrientation());
         app.mainForm.showForm(component);
@@ -49,11 +55,12 @@ public class OBS_SISTEM extends javax.swing.JFrame {
     }
 
     public static void logout() {
-        FlatAnimatedLafChange.showSnapshot();
-        app.setContentPane(app.loginForm);
-        app.loginForm.applyComponentOrientation(app.getComponentOrientation());
-        SwingUtilities.updateComponentTreeUI(app.loginForm);
-        FlatAnimatedLafChange.hideSnapshotWithAnimation();
+       // FlatAnimatedLafChange.showSnapshot();
+        //app.setContentPane(app.mainForm);
+       // app.mainForm.applyComponentOrientation(app.getComponentOrientation());
+       // SwingUtilities.updateComponentTreeUI(app.mainForm);
+      //  FlatAnimatedLafChange.hideSnapshotWithAnimation();
+    	System.exit(1);
     }
 
     public static void setSelectedMenu(int index, int subIndex) {
@@ -85,10 +92,22 @@ public class OBS_SISTEM extends javax.swing.JFrame {
         UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
         FlatMacDarkLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
-            app = new OBS_SISTEM();
+            app = new OBS_FIHRIST();
              //app.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
             app.setVisible(true);
         });
     }
-
+	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
+	{
+		InputStream stream = null ;
+		try {
+			Notifications.getInstance().show(tipType,Notifications.Location.BOTTOM_RIGHT ,zaman ,mesaj);
+			stream = OBS_FIHRIST.class.getClassLoader().getResourceAsStream("DOSYA/hata.mp3"); //whts
+			Player player = new Player(stream);
+			player.play();
+			if(stream != null)
+				stream.close();
+		} catch (Exception ex) {
+		}
+	}
 }

@@ -1,4 +1,4 @@
-package obs.obs_sistem.form;
+package obs.obs_fihrist.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
@@ -15,12 +15,12 @@ import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import obs.obs_sistem.OBS_SISTEM;
-import obs.obs_sistem.form.other.FormDashboard;
-import obs.obs_sistem.form.other.FormInbox;
-import obs.obs_sistem.form.other.FormRead;
+
 import obs.menu.Menu;
 import obs.menu.MenuAction;
+import obs.obs_fihrist.OBS_FIHRIST;
+import obs.obs_fihrist.other.FormAyarlar;
+import obs.obs_fihrist.other.FormFihrist;
 
 /**
  *
@@ -71,18 +71,19 @@ public class MainForm extends JLayeredPane {
     private void initMenuEvent() {
         menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
             // Application.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
+        System.out.println(index);
             if (index == 0) {
-            	OBS_SISTEM.showForm(new FormDashboard());
+            	OBS_FIHRIST.showForm(new FormFihrist());
             } else if (index == 1) {
-                if (subIndex == 1) {
-                	OBS_SISTEM.showForm(new FormInbox());
-                } else if (subIndex == 2) {
-                	OBS_SISTEM.showForm(new FormRead());
-                } else {
-                    action.cancel();
-                }
-            } else if (index == 9) {
-            	OBS_SISTEM.logout();
+               // if (subIndex == 1) {
+               // 	OBS_FIHRIST.showForm(new FormInbox());
+               // } else if (subIndex == 2) {
+                	OBS_FIHRIST.showForm(new FormAyarlar());
+               // } else {
+               //     action.cancel();
+               // }
+            } else if (index == 2) {
+            	OBS_FIHRIST.logout(); // Logout button
             } else {
                 action.cancel();
             }

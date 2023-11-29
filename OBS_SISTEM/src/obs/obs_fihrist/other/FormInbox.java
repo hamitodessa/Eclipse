@@ -1,4 +1,4 @@
-package obs.obs_sistem.form.other;
+package obs.obs_fihrist.other;
 
 import com.formdev.flatlaf.FlatClientProperties;
 
@@ -6,22 +6,21 @@ import com.formdev.flatlaf.FlatClientProperties;
  *
  * @author Raven
  */
-@SuppressWarnings({"serial"})
-public class DefaultForm extends javax.swing.JPanel {
+@SuppressWarnings("serial")
+public class FormInbox extends javax.swing.JPanel {
 
-    public DefaultForm(String text) {
+    public FormInbox() {
         initComponents();
         lb.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h1.font");
-        lb.setText(text);
     }
 
-     private void initComponents() {
+    private void initComponents() {
 
         lb = new javax.swing.JLabel();
 
         lb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb.setText("Form");
+        lb.setText("Inbox");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

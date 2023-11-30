@@ -12,8 +12,12 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Insets;
+import java.awt.Rectangle;
 import java.io.InputStream;
 
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import raven.toast.Notifications;
@@ -24,7 +28,7 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
     public static OBS_FIHRIST app;
     public final MainForm mainForm;
     public final FormFihrist formFihrist;
-
+    private Rectangle maxBounds;
     public OBS_FIHRIST() {
         initComponents();
         setSize(new Dimension(1366, 768));
@@ -105,5 +109,36 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
 				stream.close();
 		} catch (Exception ex) {
 		}
+	}
+	public void minimized()
+	{
+		setState(Frame.ICONIFIED);
+		
+	}
+	public  void buyult()
+	{
+		 if(getExtendedState() == Frame.MAXIMIZED_BOTH){
+			 setBounds(0, 0, 1366, 768);
+	        }
+		 else {
+			 setExtendedState(JFrame.MAXIMIZED_BOTH);
+		}
+		
+		// 
+	}
+	public synchronized  void setExtendedStatee(int state)
+	{       
+		if (maxBounds == null &&
+				(state & Frame.MAXIMIZED_BOTH) == Frame.MAXIMIZED_BOTH)
+		{
+			Insets screenInsets = getToolkit().getScreenInsets(getGraphicsConfiguration());         
+			Rectangle screenSize = getGraphicsConfiguration().getBounds();
+			Rectangle maxBounds = new Rectangle(screenInsets.left + screenSize.x, 
+					screenInsets.top + screenSize.y, 
+					screenSize.x + screenSize.width - screenInsets.right - screenInsets.left,
+					screenSize.y + screenSize.height - screenInsets.bottom - screenInsets.top);
+			super.setMaximizedBounds(maxBounds);
+		}
+		super.setExtendedState(state);
 	}
 }

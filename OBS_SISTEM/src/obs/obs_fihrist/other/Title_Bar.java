@@ -5,10 +5,15 @@ import java.awt.Dimension;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JFrame;
 
 import obs.button.Buttont;
+import obs.obs_fihrist.OBS_FIHRIST;
 
-@SuppressWarnings("serial")
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+@SuppressWarnings({ "serial", "unused" })
 public class Title_Bar extends javax.swing.JPanel{
 
 	 private javaswingdev.GoogleMaterialIcon iconClose;
@@ -25,6 +30,11 @@ public class Title_Bar extends javax.swing.JPanel{
 		 add(horizontalGlue);
 		 	
 		 	Buttont btnNewButton = new Buttont();
+		 	btnNewButton.addActionListener(new ActionListener() {
+		 		public void actionPerformed(ActionEvent e) {
+		 			OBS_FIHRIST.app.minimized();
+		 		}
+		 	});
 		 	
 		 	iconMinimize = new javaswingdev.GoogleMaterialIcon();
 		 	iconMinimize.setColor1(new java.awt.Color(111, 111, 111));
@@ -36,6 +46,12 @@ public class Title_Bar extends javax.swing.JPanel{
 		 	add(btnNewButton);
 		 	
 		 	Buttont btnNewButton_1 = new Buttont();
+		 	btnNewButton_1.addActionListener(new ActionListener() {
+		 		public void actionPerformed(ActionEvent e) {
+		 		
+		 			OBS_FIHRIST.app.buyult();
+		 		}
+		 	});
 		 	
 		 	
 		 	btnNewButton_1.setPreferredSize(new Dimension(18, 17));
@@ -48,6 +64,11 @@ public class Title_Bar extends javax.swing.JPanel{
 		 	add(btnNewButton_1);
 		 	
 		 	Buttont btnNewButton_2 = new Buttont();
+		 	btnNewButton_2.addActionListener(new ActionListener() {
+		 		public void actionPerformed(ActionEvent e) {
+		 			System.exit(1);
+		 		}
+		 	});
 		 	btnNewButton_2.setPreferredSize(new Dimension(18, 17));
 		 	 iconClose = new javaswingdev.GoogleMaterialIcon();
 		 	iconClose.setColor1(new java.awt.Color(111, 111, 111));

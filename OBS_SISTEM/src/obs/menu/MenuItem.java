@@ -79,7 +79,7 @@ public class MenuItem extends JPanel {
     private Icon getIcon() {
         Color lightColor = FlatUIUtils.getUIColor("Menu.icon.lightColor", Color.red);
         Color darkColor = FlatUIUtils.getUIColor("Menu.icon.darkColor", Color.red);
-        System.out.println(menuIndex);
+       // System.out.println(menuIndex);
         FlatSVGIcon icon = null ;
         if (menuIndex ==0)
         {

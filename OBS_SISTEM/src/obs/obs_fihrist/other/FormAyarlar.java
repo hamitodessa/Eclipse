@@ -62,7 +62,7 @@ public class FormAyarlar extends javax.swing.JPanel{
 	BAGLAN bAGLAN = new BAGLAN();
 	aNA_Class oac = new aNA_Class();
 	FIHRIST_ACCESS  fih_Access ;
-	
+
 	private static JCheckBox chckbxS ;
 	private static JCheckBox chckbxL ;
 	private static JComboBox<String> cmbInstance ;
@@ -71,22 +71,22 @@ public class FormAyarlar extends javax.swing.JPanel{
 
 	private JButton btnServer ;
 	private JButton btnVtKontrol ;
-	
+
 	private static JTextField txtIp;
 	private static JTextField txtUser;
 	private static JTextField txtcdid;
 	private static JPasswordField txtPwd;
 	private static JTextField txtKodu;
 	private JTable table_1;
-	 
-	 public FormAyarlar() {
-	 	setLayout(new BorderLayout(0, 0));
-	 	
-	 	add(new Title_Bar(), BorderLayout.NORTH);
-	 	JSplitPane splitPane = new JSplitPane();
-	 	add(splitPane, BorderLayout.CENTER);
-		 	
-	 	ScrollPaneWin11 scrollPane_3 = new ScrollPaneWin11();
+
+	public FormAyarlar() {
+		setLayout(new BorderLayout(0, 0));
+
+		add(new Title_Bar(), BorderLayout.NORTH);
+		JSplitPane splitPane = new JSplitPane();
+		add(splitPane, BorderLayout.CENTER);
+
+		ScrollPaneWin11 scrollPane_3 = new ScrollPaneWin11();
 		scrollPane_3.setMinimumSize(new Dimension(300, 0));
 		scrollPane_3.setMaximumSize(new Dimension(300, 0));
 
@@ -242,9 +242,9 @@ public class FormAyarlar extends javax.swing.JPanel{
 		txtcdid.setText("");
 		txtcdid.setVisible(false);
 		panel_3.add(txtcdid);
-	       
+
 		/////////////////////
-		
+
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		toolBar.setBounds(88, 17, 138, 27);
@@ -373,296 +373,315 @@ public class FormAyarlar extends javax.swing.JPanel{
 		table_1.setFont(new Font("Calibri", Font.PLAIN, 14));
 		scrollPane_4.setViewportView(table_1);
 		ayar_doldur();
-	    }
-		void ayar_doldur() {
-			try {
-				GRID_TEMIZLE.grid_temizle(table_1);
-				ResultSet	rs = null;
-				rs = oac.uSER_ISL.user_db_izinleri("Admin", "Fihrist");
-				if (!rs.isBeforeFirst() ) {  
-					return;
-				} 
-				table_1.setModel(DbUtils.resultSetToTableModel(rs));
-				table_1.removeColumn(table_1.getColumnModel().getColumn(0));
-				table_1.removeColumn(table_1.getColumnModel().getColumn(1));
-				table_1.removeColumn(table_1.getColumnModel().getColumn(1));
-				table_1.removeColumn(table_1.getColumnModel().getColumn(1));
-				table_1.removeColumn(table_1.getColumnModel().getColumn(1));
-				table_1.removeColumn(table_1.getColumnModel().getColumn(3));
-				table_1.removeColumn(table_1.getColumnModel().getColumn(4));
-				table_1.removeColumn(table_1.getColumnModel().getColumn(4));
-				table_1.removeColumn(table_1.getColumnModel().getColumn(4));
-				table_1.removeColumn(table_1.getColumnModel().getColumn(5));
-				table_1.removeColumn(table_1.getColumnModel().getColumn(5));
-				JTableHeader th = table_1.getTableHeader();
-				TableColumnModel tcm = th.getColumnModel();
-				TableColumn tc = tcm.getColumn(0);
-				tc.setHeaderValue( "Kodu" );
-				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(70);
-				tc.setMaxWidth(70);
-
-				tc = tcm.getColumn(1);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setHeaderValue( "Ip" );
-				tc.setMinWidth(200);
-				//tc.setMaxWidth(200);
-
-				tc = tcm.getColumn(2);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setHeaderValue( "Modul" );
-
-				tc = tcm.getColumn(3);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setHeaderValue( "Yer" );
-				tc.setMinWidth(50);
-				tc.setMaxWidth(50);
-
-				tc = tcm.getColumn(4);
-				tc.setHeaderRenderer(new SOLA());
-				tc.setHeaderValue( "SQL" );
-				tc.setMinWidth(80);
-				tc.setMaxWidth(80);
-
-				th.repaint();
-				table_1.setRowHeight(22);
-				table_1.setRowSelectionInterval(0, 0);
-				doldur_kutu(table_1,0);
-			} catch (Exception e) {
-				OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());
-			}
-		}
-		private static  void doldur_kutu( JTable grd,int satir) throws ClassNotFoundException, SQLException 
-		{
-			if (grd.getRowCount()== 0 ) {  
-				kutu_temizle();
-				return;
-			} 
-			ip_doldur();
-			txtKodu.setText(grd.getModel().getValueAt(satir, 1).toString());
-			txtIp.setText(grd.getModel().getValueAt(satir, 6).toString());
-			txtUser.setText(grd.getModel().getValueAt(satir, 3).toString());
-			String decodedString = grd.getModel().getValueAt(satir, 4).toString();
-			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
-			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) {
-				bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
-			try {
-				txtPwd.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			txtcdid.setText(grd.getModel().getValueAt(satir, 0).toString());
-			cmbhangisql.setSelectedItem(grd.getModel().getValueAt(satir, 13).toString());
-			cmbInstance.removeAllItems();
-			cmbInstance.addItem(grd.getModel().getValueAt(satir, 5).toString());
-			if (grd.getModel().getValueAt(satir, 9).equals("L"))
-			{
-				chckbxL.setSelected(true);
-				chckbxS.setSelected(false);
-			}
-			else
-			{
-				chckbxS.setSelected(true);
-				chckbxL.setSelected(false);
-			}
-		}
-		private static void kutu_temizle() throws ClassNotFoundException, SQLException
-		{
-			txtKodu.setText("");
-			txtIp.setText("");
-			txtUser.setText("");
-			txtPwd.setText("");
-			txtcdid.setText("");
-			cmbInstance.removeAllItems();
-			chckbxL.setSelected(true);
-			chckbxS.setSelected(false);
-			cmbhangisql.setSelectedItem("MS SQL");
-			ip_doldur();
-		}
-		private static  void ip_doldur() throws ClassNotFoundException, SQLException
-		{
-			cmbip.removeAllItems();
+	}
+	void ayar_doldur() {
+		try {
+			GRID_TEMIZLE.grid_temizle(table_1);
 			ResultSet	rs = null;
-			USER_ISLEMLERI usr = new USER_ISLEMLERI();
-			rs = usr.ipp("Admin");
+			rs = oac.uSER_ISL.user_db_izinleri("Admin", "Fihrist");
 			if (!rs.isBeforeFirst() ) {  
 				return;
 			} 
-			else
-			{
-				cmbip.addItem("");
-				while (rs.next())
-				{
-					cmbip.addItem(rs.getString("IP"));
-				}
-			}
+			table_1.setModel(DbUtils.resultSetToTableModel(rs));
+			table_1.removeColumn(table_1.getColumnModel().getColumn(0));
+			table_1.removeColumn(table_1.getColumnModel().getColumn(1));
+			table_1.removeColumn(table_1.getColumnModel().getColumn(1));
+			table_1.removeColumn(table_1.getColumnModel().getColumn(1));
+			table_1.removeColumn(table_1.getColumnModel().getColumn(1));
+			table_1.removeColumn(table_1.getColumnModel().getColumn(3));
+			table_1.removeColumn(table_1.getColumnModel().getColumn(4));
+			table_1.removeColumn(table_1.getColumnModel().getColumn(4));
+			table_1.removeColumn(table_1.getColumnModel().getColumn(4));
+			table_1.removeColumn(table_1.getColumnModel().getColumn(5));
+			table_1.removeColumn(table_1.getColumnModel().getColumn(5));
+			JTableHeader th = table_1.getTableHeader();
+			TableColumnModel tcm = th.getColumnModel();
+			TableColumn tc = tcm.getColumn(0);
+			tc.setHeaderValue( "Kodu" );
+			tc.setHeaderRenderer(new SOLA());
+			tc.setMinWidth(70);
+			tc.setMaxWidth(70);
+
+			tc = tcm.getColumn(1);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderValue( "Ip" );
+			tc.setMinWidth(200);
+			//tc.setMaxWidth(200);
+
+			tc = tcm.getColumn(2);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderValue( "Modul" );
+
+			tc = tcm.getColumn(3);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderValue( "Yer" );
+			tc.setMinWidth(50);
+			tc.setMaxWidth(50);
+
+			tc = tcm.getColumn(4);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderValue( "SQL" );
+			tc.setMinWidth(80);
+			tc.setMaxWidth(80);
+
+			th.repaint();
+			table_1.setRowHeight(22);
+			table_1.setRowSelectionInterval(0, 0);
+			doldur_kutu(table_1,0);
+		} catch (Exception e) {
+			OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());
 		}
-		private void server_control() throws HeadlessException, ClassNotFoundException
+	}
+	private static  void doldur_kutu( JTable grd,int satir) throws ClassNotFoundException, SQLException 
+	{
+		if (grd.getRowCount()== 0 ) {  
+			kutu_temizle();
+			return;
+		} 
+		ip_doldur();
+		txtKodu.setText(grd.getModel().getValueAt(satir, 1).toString());
+		txtIp.setText(grd.getModel().getValueAt(satir, 6).toString());
+		txtUser.setText(grd.getModel().getValueAt(satir, 3).toString());
+		String decodedString = grd.getModel().getValueAt(satir, 4).toString();
+		String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+		byte[] bytes = new byte[byteValues.length];
+		for (int i=0, len=bytes.length; i<len; i++) {
+			bytes[i] = Byte.parseByte(byteValues[i].trim());     
+		}
+		try {
+			txtPwd.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		txtcdid.setText(grd.getModel().getValueAt(satir, 0).toString());
+		cmbhangisql.setSelectedItem(grd.getModel().getValueAt(satir, 13).toString());
+		cmbInstance.removeAllItems();
+		cmbInstance.addItem(grd.getModel().getValueAt(satir, 5).toString());
+		if (grd.getModel().getValueAt(satir, 9).equals("L"))
 		{
-			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
-			CONNECT s_CONN = new CONNECT(oac._IFihristCon);
-			if (chckbxL.isSelected() )
-			{
-				Server_Bilgi sBilgi = new Server_Bilgi() ;
-				sBilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString());
-				sBilgi.setKull(txtUser.getText()); 
-				sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtPwd)); 
-				sBilgi.setPort(txtIp.getText()); 
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				if ( s_CONN.Server_kontrol_L( sBilgi) == true  )
-				{
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					btnVtKontrol.setEnabled(true);
-				}
-				else
-				{
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.WARNING,  "Baglanti Saglanamadi........" );
-					btnVtKontrol.setEnabled(false);
-				}
-			}
-			else
-			{
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				Server_Bilgi sBilgi = new Server_Bilgi() ;
-				sBilgi.setServer(txtIp.getText());
-				sBilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() );
-				sBilgi.setKull(txtUser.getText()); 
-				sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtPwd));
-				if (s_CONN.Server_kontrol_S(sBilgi ) == true)
-				{
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					btnVtKontrol.setEnabled(true);
-				}
-				else
-				{
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.WARNING,  "Baglanti Saglanamadi........" );
-					btnVtKontrol.setEnabled(false);
-				}
-			}
+			chckbxL.setSelected(true);
+			chckbxS.setSelected(false);
 		}
-		private void cONN_AKTAR(String hangi)
+		else
 		{
-			if(hangi.equals("MS SQL"))
-			{
-				oac._IFihristCon = new OBS_ORTAK_MSSQL() ;
-			}
-			else if(hangi.equals("MY SQL"))
-			{
-				oac._IFihristCon = new OBS_ORTAK_MYSQL() ;
-			}
-			else if(hangi.equals("SQ LITE"))
-			{
-				oac._IFihristCon = new OBS_ORTAK_SQLITE() ;
-			}
+			chckbxS.setSelected(true);
+			chckbxL.setSelected(false);
 		}
-		private void mODUL_AKTAR(String hangi)
+	}
+	private static void kutu_temizle() throws ClassNotFoundException, SQLException
+	{
+		txtKodu.setText("");
+		txtIp.setText("");
+		txtUser.setText("");
+		txtPwd.setText("");
+		txtcdid.setText("");
+		cmbInstance.removeAllItems();
+		chckbxL.setSelected(true);
+		chckbxS.setSelected(false);
+		cmbhangisql.setSelectedItem("MS SQL");
+		ip_doldur();
+	}
+	private static  void ip_doldur() throws ClassNotFoundException, SQLException
+	{
+		cmbip.removeAllItems();
+		ResultSet	rs = null;
+		USER_ISLEMLERI usr = new USER_ISLEMLERI();
+		rs = usr.ipp("Admin");
+		if (!rs.isBeforeFirst() ) {  
+			return;
+		} 
+		else
 		{
-			if(hangi.equals("MS SQL"))
+			cmbip.addItem("");
+			while (rs.next())
 			{
-				oac._IFihrist =  new FIHRIST_MSSQL();
-			}
-			else if(hangi.equals("MY SQL"))
-			{
-				oac._IFihrist =  new FIHRIST_MYSQL();
-			}
-			else if(hangi.equals("SQ LITE"))
-			{
-				oac._IFihrist =  new FIHRIST_SQLITE();
+				cmbip.addItem(rs.getString("IP"));
 			}
 		}
-		private  void database_kontrol() throws ClassNotFoundException, HeadlessException, SQLException, IOException
-		{
-			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));	 
-			mODUL_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
-			CONNECT s_CONN = new CONNECT(oac._IFihristCon);
-			String program = "";
-			String modul = "";
-			modul = "Fihrist";
-			program = "OK_Fih" + txtKodu.getText();
-			if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("SQ LITE"))
-			{
-				BAGLAN.fihDizin.cONN_STR = GLOBAL.DBYERI +program  + ".DB" ;   //SQLITE
-			}
-			if (chckbxL.isSelected())
-			{
-				lokal_dosya(s_CONN,program,modul);//LOCAL DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-			}
-			else  // Server
-			{
-				server_dosya(s_CONN,program,modul);//SERVER DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-			}
-		}
-		private void lokal_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
-		{
-			Server_Bilgi sBilgi = new Server_Bilgi() ;
-			sBilgi.setDb(program);
-			sBilgi.setKull(txtUser.getText());
-			sBilgi.setSifre(oac.sDONDUR.sDONDUR(txtPwd));
-			sBilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() ); 
-			sBilgi.setPort(txtIp.getText());
-			if ( s_CONN.Dosya_kontrol_L(sBilgi) == true)
-			{
-				mdb_yaz();
-				ayar_doldur();
-				BAGLAN bAGLAN = new BAGLAN();
-				bAGLAN.cONNECT("Admin");
-				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
-				fih_Access.baglan();
-				//doldur();
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.INFO,   "Veritabani Baglantisi gerceklestirildi" );
-			}
-			else
-			{
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu............?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE,	 	null,    	oac.options,  	 	oac.options[1]); 
-				if(g != 0 ) { return;	}
-				dosya_olustur_L();
-				mdb_yaz();
-				ayar_doldur();
-				BAGLAN bAGLAN = new BAGLAN();
-				bAGLAN.cONNECT("Admin");
-				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
-				fih_Access.baglan();
-				//doldur();
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				OBS_FIHRIST. mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
-			}
-		}
-		private  void dosya_olustur_L() throws IOException, ClassNotFoundException, SQLException
-		{
-			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
-			mODUL_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
-			fih_Access = new FIHRIST_ACCESS(oac._IFihrist);
-			Server_Bilgi sbilgi = new Server_Bilgi();
-			sbilgi.setKod(txtKodu.getText());
-			sbilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString());
-			sbilgi.setKull(txtUser.getText());
-			sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtPwd));
-			sbilgi.setPort(txtIp.getText()); 
-			sbilgi.setDizin_yeri("default");
-			sbilgi.setDizin("");
-			fih_Access.fihrist_sifirdan_L(sbilgi);
-		}
-		private void server_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
+	}
+	private void server_control() throws HeadlessException, ClassNotFoundException
+	{
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
+		CONNECT s_CONN = new CONNECT(oac._IFihristCon);
+		if (chckbxL.isSelected() )
 		{
 			Server_Bilgi sBilgi = new Server_Bilgi() ;
-			sBilgi.setServer(txtIp.getText());;
-			sBilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString()); ;
-			sBilgi.setKull(txtUser.getText()); ;
-			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtPwd));;
-			sBilgi.setDb( program); ;
-			sBilgi.setPort(txtIp.getText());
-			if ( s_CONN.Dosya_kontrol_S(sBilgi) ==true)
+			sBilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString());
+			sBilgi.setKull(txtUser.getText()); 
+			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtPwd)); 
+			sBilgi.setPort(txtIp.getText()); 
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+			if ( s_CONN.Server_kontrol_L( sBilgi) == true  )
 			{
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				btnVtKontrol.setEnabled(true);
+			}
+			else
+			{
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.WARNING,  "Baglanti Saglanamadi........" );
+				btnVtKontrol.setEnabled(false);
+			}
+		}
+		else
+		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+			Server_Bilgi sBilgi = new Server_Bilgi() ;
+			sBilgi.setServer(txtIp.getText());
+			sBilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() );
+			sBilgi.setKull(txtUser.getText()); 
+			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtPwd));
+			if (s_CONN.Server_kontrol_S(sBilgi ) == true)
+			{
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				btnVtKontrol.setEnabled(true);
+			}
+			else
+			{
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.WARNING,  "Baglanti Saglanamadi........" );
+				btnVtKontrol.setEnabled(false);
+			}
+		}
+	}
+	private void cONN_AKTAR(String hangi)
+	{
+		if(hangi.equals("MS SQL"))
+		{
+			oac._IFihristCon = new OBS_ORTAK_MSSQL() ;
+		}
+		else if(hangi.equals("MY SQL"))
+		{
+			oac._IFihristCon = new OBS_ORTAK_MYSQL() ;
+		}
+		else if(hangi.equals("SQ LITE"))
+		{
+			oac._IFihristCon = new OBS_ORTAK_SQLITE() ;
+		}
+	}
+	private void mODUL_AKTAR(String hangi)
+	{
+		if(hangi.equals("MS SQL"))
+		{
+			oac._IFihrist =  new FIHRIST_MSSQL();
+		}
+		else if(hangi.equals("MY SQL"))
+		{
+			oac._IFihrist =  new FIHRIST_MYSQL();
+		}
+		else if(hangi.equals("SQ LITE"))
+		{
+			oac._IFihrist =  new FIHRIST_SQLITE();
+		}
+	}
+	private  void database_kontrol() throws ClassNotFoundException, HeadlessException, SQLException, IOException
+	{
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));	 
+		mODUL_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
+		CONNECT s_CONN = new CONNECT(oac._IFihristCon);
+		String program = "";
+		String modul = "";
+		modul = "Fihrist";
+		program = "OK_Fih" + txtKodu.getText();
+		if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("SQ LITE"))
+		{
+			BAGLAN.fihDizin.cONN_STR = GLOBAL.DBYERI +program  + ".DB" ;   //SQLITE
+		}
+		if (chckbxL.isSelected())
+		{
+			lokal_dosya(s_CONN,program,modul);//LOCAL DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+		}
+		else  // Server
+		{
+			server_dosya(s_CONN,program,modul);//SERVER DOSYA KONTROL \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+		}
+	}
+	private void lokal_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
+	{
+		Server_Bilgi sBilgi = new Server_Bilgi() ;
+		sBilgi.setDb(program);
+		sBilgi.setKull(txtUser.getText());
+		sBilgi.setSifre(oac.sDONDUR.sDONDUR(txtPwd));
+		sBilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() ); 
+		sBilgi.setPort(txtIp.getText());
+		if ( s_CONN.Dosya_kontrol_L(sBilgi) == true)
+		{
+			mdb_yaz();
+			ayar_doldur();
+			BAGLAN bAGLAN = new BAGLAN();
+			bAGLAN.cONNECT("Admin");
+			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
+			fih_Access.baglan();
+			//doldur();
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.INFO,   "Veritabani Baglantisi gerceklestirildi" );
+		}
+		else
+		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu............?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,	 	null,    	oac.options,  	 	oac.options[1]); 
+			if(g != 0 ) { return;	}
+			dosya_olustur_L();
+			mdb_yaz();
+			ayar_doldur();
+			BAGLAN bAGLAN = new BAGLAN();
+			bAGLAN.cONNECT("Admin");
+			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
+			fih_Access.baglan();
+			//doldur();
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			OBS_FIHRIST. mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
+		}
+	}
+	private  void dosya_olustur_L() throws IOException, ClassNotFoundException, SQLException
+	{
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
+		mODUL_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
+		fih_Access = new FIHRIST_ACCESS(oac._IFihrist);
+		Server_Bilgi sbilgi = new Server_Bilgi();
+		sbilgi.setKod(txtKodu.getText());
+		sbilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString());
+		sbilgi.setKull(txtUser.getText());
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtPwd));
+		sbilgi.setPort(txtIp.getText()); 
+		sbilgi.setDizin_yeri("default");
+		sbilgi.setDizin("");
+		fih_Access.fihrist_sifirdan_L(sbilgi);
+	}
+	private void server_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException
+	{
+		Server_Bilgi sBilgi = new Server_Bilgi() ;
+		sBilgi.setServer(txtIp.getText());;
+		sBilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString()); ;
+		sBilgi.setKull(txtUser.getText()); ;
+		sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtPwd));;
+		sBilgi.setDb( program); ;
+		sBilgi.setPort(txtIp.getText());
+		if ( s_CONN.Dosya_kontrol_S(sBilgi) ==true)
+		{
+			mdb_yaz();
+			ayar_doldur();
+			BAGLAN bAGLAN = new BAGLAN();
+			bAGLAN.cONNECT("Admin");
+			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
+			fih_Access.baglan();
+			//FormFihrist.doldur();
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Baglanti Kuruldu ..." );
+		}
+		else
+		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu............?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,null, oac.options, 	oac.options[1]); 
+			if(g != 0 ) { return;	}
+			{
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				dosya_olustur_S();
 				mdb_yaz();
 				ayar_doldur();
 				BAGLAN bAGLAN = new BAGLAN();
@@ -671,56 +690,37 @@ public class FormAyarlar extends javax.swing.JPanel{
 				fih_Access.baglan();
 				//FormFihrist.doldur();
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Baglanti Kuruldu ..." );
-			}
-			else
-			{
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu............?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE,null, oac.options, 	oac.options[1]); 
-				if(g != 0 ) { return;	}
-				{
-					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					dosya_olustur_S();
-					mdb_yaz();
-					ayar_doldur();
-					BAGLAN bAGLAN = new BAGLAN();
-					bAGLAN.cONNECT("Admin");
-					fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
-					fih_Access.baglan();
-					//FormFihrist.doldur();
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
-				}
+				OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
 			}
 		}
-		private void mdb_yaz() throws ClassNotFoundException, SQLException
+	}
+	private void mdb_yaz() throws ClassNotFoundException, SQLException
+	{
+		if(! txtIp.getText().toString().equals(""))
 		{
-			if(! txtIp.getText().toString().equals(""))
-			{
-				oac.uSER_ISL.ip_dos_kont(txtIp.getText());
-			}
-			oac.uSER_ISL.calisanmi_degis("Admin","Fihrist",chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
-			oac.uSER_ISL.details_yaz(txtKodu.getText(),"Admin",txtUser.getText(), oac.sDONDUR.sDONDUR(txtPwd),
-					cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() , 
-					txtIp.getText(), "Fihrist","", chckbxL.isSelected() ? "L" : "S",  "D" , "E", "E",
-					cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()), 
-					txtcdid.getText(), 0, "false,false,false,false");
+			oac.uSER_ISL.ip_dos_kont(txtIp.getText());
 		}
-		private void dosya_olustur_S()throws ClassNotFoundException, SQLException
-		{
-			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
-			mODUL_AKTAR( cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
-			fih_Access = new FIHRIST_ACCESS(oac._IFihrist);
-			Server_Bilgi sbilgi = new Server_Bilgi();
-			sbilgi.setKod(txtKodu.getText());;
-			sbilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString());;
-			sbilgi.setKull(txtUser.getText()); ;
-			sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtPwd)); ;
-			sbilgi.setServer(txtIp.getText()); ;
-			sbilgi.setDizin_yeri("default");;
-			sbilgi.setDizin("");;
-			fih_Access.fihrist_SIFIR_S(sbilgi);
-		}
+		oac.uSER_ISL.calisanmi_degis("Admin","Fihrist",chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
+		oac.uSER_ISL.details_yaz(txtKodu.getText(),"Admin",txtUser.getText(), oac.sDONDUR.sDONDUR(txtPwd),
+				cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() , 
+						txtIp.getText(), "Fihrist","", chckbxL.isSelected() ? "L" : "S",  "D" , "E", "E",
+								cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()), 
+								txtcdid.getText(), 0, "false,false,false,false");
+	}
+	private void dosya_olustur_S()throws ClassNotFoundException, SQLException
+	{
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		cONN_AKTAR(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
+		mODUL_AKTAR( cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()));
+		fih_Access = new FIHRIST_ACCESS(oac._IFihrist);
+		Server_Bilgi sbilgi = new Server_Bilgi();
+		sbilgi.setKod(txtKodu.getText());;
+		sbilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString());;
+		sbilgi.setKull(txtUser.getText()); ;
+		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtPwd)); ;
+		sbilgi.setServer(txtIp.getText()); ;
+		sbilgi.setDizin_yeri("default");;
+		sbilgi.setDizin("");;
+		fih_Access.fihrist_SIFIR_S(sbilgi);
+	}
 }

@@ -40,7 +40,7 @@ import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.OBS_ORTAK_SQLITE;
-import OBS_C_2025.SOLA;
+import OBS_C_2025.SOLA_DUZ_RENK;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.Server_Bilgi;
 import fih.FIHRIST_ACCESS;
@@ -533,47 +533,47 @@ public class FormFihrist  extends javax.swing.JPanel {
 					TableColumnModel tcm = th.getColumnModel();
 					TableColumn tc;
 					tc = tcm.getColumn(0);
-					tc.setHeaderRenderer(new SOLA());
+					tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 					tc.setMinWidth(250);
 					tc.setMaxWidth(250);
 
 					tc = tcm.getColumn(1);
-					tc.setHeaderRenderer(new SOLA());
+					tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 					tc.setMinWidth(125);
 					tc.setMaxWidth(125);
 
 					tc = tcm.getColumn(2);
-					tc.setHeaderRenderer(new SOLA());
+					tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 					tc.setMinWidth(125);
 					tc.setMaxWidth(125);
 
 					tc = tcm.getColumn(3);
-					tc.setHeaderRenderer(new SOLA());
+					tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 					tc.setMinWidth(125);
 					tc.setMaxWidth(125);
 
 					tc = tcm.getColumn(4);
-					tc.setHeaderRenderer(new SOLA());
+					tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 					tc.setMinWidth(125);
 					tc.setMaxWidth(125);
 
 					tc = tcm.getColumn(5);
-					tc.setHeaderRenderer(new SOLA());
+					tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 					tc.setMinWidth(150);
 					tc.setMaxWidth(150);
 
 					tc = tcm.getColumn(6);
-					tc.setHeaderRenderer(new SOLA());
+					tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 					tc.setMinWidth(200);
 					tc.setMaxWidth(200);
 
 					tc = tcm.getColumn(7);
-					tc.setHeaderRenderer(new SOLA());
+					tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 					tc.setMinWidth(200);
 					tc.setMaxWidth(200);
 					
 					tc = tcm.getColumn(8);
-					tc.setHeaderRenderer(new SOLA());
+					tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 					tc.setMinWidth(200);
 					tc.setMaxWidth(200);
 					

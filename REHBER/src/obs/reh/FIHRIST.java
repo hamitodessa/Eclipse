@@ -104,8 +104,9 @@ public class FIHRIST extends JFrame {
 	BAGLAN bAGLAN = new BAGLAN();
 	aNA_Class oac = new aNA_Class();
 	FIHRIST_ACCESS  fih_Access ;
-	obs.ayarlar.MaterialTabbed tabbedPane;
 	boolean surucubilgi = false;
+	obs.ayarlar.MaterialTabbed tabbedPane;
+	
 	private JTable table_1;
 	private JTable table;
 	private JTextField textField;

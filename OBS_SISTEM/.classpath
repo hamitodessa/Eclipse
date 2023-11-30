@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/TimingFramework-0.55.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/gradient-icon-font.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jl-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/rs2xml.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

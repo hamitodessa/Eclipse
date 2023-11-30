@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Container;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.LayoutManager;
@@ -36,6 +37,7 @@ public class MainForm extends JLayeredPane {
     private void init() {
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(new MainFormLayout());
+ 
         menu = new Menu();
         panelBody = new JPanel(new BorderLayout());
         initMenuArrowIcon();
@@ -52,6 +54,7 @@ public class MainForm extends JLayeredPane {
         add(menuButton);
         add(menu);
         add(panelBody);
+    
     }
 
     @Override
@@ -70,10 +73,12 @@ public class MainForm extends JLayeredPane {
 
     private void initMenuEvent() {
         menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
-            // Application.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
+       
         System.out.println(index);
             if (index == 0) {
+            	setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             	OBS_FIHRIST.showForm(new FormFihrist());
+            	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
             } else if (index == 1) {
                // if (subIndex == 1) {
                // 	OBS_FIHRIST.showForm(new FormInbox());
@@ -85,6 +90,7 @@ public class MainForm extends JLayeredPane {
             } else if (index == 2) {
             	OBS_FIHRIST.logout(); // Logout button
             } else {
+            
                 action.cancel();
             }
         });

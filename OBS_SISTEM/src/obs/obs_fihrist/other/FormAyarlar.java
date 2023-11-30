@@ -39,6 +39,7 @@ import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.OBS_ORTAK_SQLITE;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.SOLA_DUZ_RENK;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.Server_Bilgi;
 import OBS_C_2025.USER_ISLEMLERI;
@@ -398,28 +399,28 @@ public class FormAyarlar extends javax.swing.JPanel{
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc = tcm.getColumn(0);
 			tc.setHeaderValue( "Kodu" );
-			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setMinWidth(70);
 			tc.setMaxWidth(70);
 
 			tc = tcm.getColumn(1);
-			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setHeaderValue( "Ip" );
 			tc.setMinWidth(200);
 			//tc.setMaxWidth(200);
 
 			tc = tcm.getColumn(2);
-			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setHeaderValue( "Modul" );
 
 			tc = tcm.getColumn(3);
-			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setHeaderValue( "Yer" );
 			tc.setMinWidth(50);
 			tc.setMaxWidth(50);
 
 			tc = tcm.getColumn(4);
-			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setHeaderValue( "SQL" );
 			tc.setMinWidth(80);
 			tc.setMaxWidth(80);

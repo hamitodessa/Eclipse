@@ -32,17 +32,17 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
     public OBS_FIHRIST() {
         initComponents();
         setSize(new Dimension(1366, 768));
-       
+      
         setLocationRelativeTo(null);
         mainForm = new MainForm();
         formFihrist = new FormFihrist();
         setContentPane(mainForm);
         Notifications.getInstance().setJFrame(this);
-       
         basla();
     }
     private void basla()
     {
+    	
      	setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     	mainForm.showForm(formFihrist);
     	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -93,6 +93,7 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
         FlatMacDarkLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
             app = new OBS_FIHRIST();
+           
              //app.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
             app.setVisible(true);
         });

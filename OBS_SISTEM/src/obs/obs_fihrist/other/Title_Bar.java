@@ -12,16 +12,35 @@ import obs.obs_fihrist.OBS_FIHRIST;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
 
 @SuppressWarnings({ "serial", "unused" })
 public class Title_Bar extends javax.swing.JPanel{
-
+	int x ,y ;
 	 private javaswingdev.GoogleMaterialIcon iconClose;
 	    //private javaswingdev.GoogleMaterialIcon iconMax;
 	    private javaswingdev.GoogleMaterialIcon iconMinimize;
 	    private javaswingdev.GoogleMaterialIcon iconRestore;
 	    
 	 public Title_Bar() {
+	 	addMouseListener(new MouseAdapter() {
+	 		@Override
+	 		public void mousePressed(MouseEvent e) {
+	 			 x = e.getX(); 
+				  y = e.getY(); 
+	 		}
+	 	});
+	 	addMouseMotionListener(new MouseMotionAdapter() {
+	 		@Override
+	 		public void mouseDragged(MouseEvent e) {
+	 			
+	 			 int xx = e.getXOnScreen();
+				  int yy = e.getYOnScreen(); 
+				OBS_FIHRIST.app.setLocation(xx-x,yy-y);
+	 		}
+	 	});
 		 setMinimumSize(new Dimension(0, 18));
 		 setMaximumSize(new Dimension(0, 18));
 		 setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));

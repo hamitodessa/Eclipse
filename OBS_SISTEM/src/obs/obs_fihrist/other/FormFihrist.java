@@ -83,9 +83,10 @@ public class FormFihrist  extends javax.swing.JPanel {
 	public FormFihrist() {
 
 		setLayout(new BorderLayout(0, 0));
-		add(new Title_Bar(), BorderLayout.NORTH);
+		add(OBS_FIHRIST.app.title_Bar, BorderLayout.NORTH);
 
 		JSplitPane splitPane = new JSplitPane();
+		splitPane.setDividerSize(0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		add(splitPane, BorderLayout.CENTER);
 
@@ -652,5 +653,4 @@ public class FormFihrist  extends javax.swing.JPanel {
 			table.repaint();
 		}
 	}
-
 }

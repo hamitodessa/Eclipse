@@ -83,7 +83,7 @@ public class FormAyarlar extends javax.swing.JPanel{
 	public FormAyarlar() {
 		setLayout(new BorderLayout(0, 0));
 
-		add(new Title_Bar(), BorderLayout.NORTH);
+		add(OBS_FIHRIST.app.title_Bar, BorderLayout.NORTH);
 		JSplitPane splitPane = new JSplitPane();
 		add(splitPane, BorderLayout.CENTER);
 
@@ -95,7 +95,7 @@ public class FormAyarlar extends javax.swing.JPanel{
 		splitPane.setLeftComponent(scrollPane_3);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setPreferredSize(new Dimension(290,580));
+		panel_3.setPreferredSize(new Dimension(290,560));
 		scrollPane_3.setViewportView(panel_3);
 		panel_3.setLayout(null);
 

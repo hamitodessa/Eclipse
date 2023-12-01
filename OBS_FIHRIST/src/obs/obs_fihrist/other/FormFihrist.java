@@ -81,7 +81,7 @@ public class FormFihrist  extends javax.swing.JPanel {
 	private static JTextField txtNot;
 	private static JTextField txtNot2;
 	public FormFihrist() {
-
+		
 		setLayout(new BorderLayout(0, 0));
 		add(OBS_FIHRIST.app.title_Bar, BorderLayout.NORTH);
 
@@ -237,8 +237,6 @@ public class FormFihrist  extends javax.swing.JPanel {
 		txtcd.setBounds(45, 148, 15, 15);
 		panel_2.add(txtcd);
 		txtcd.setColumns(10);
-
-
 		///
 		JToolBar toolBar_1 = new JToolBar();
 		toolBar_1.setFloatable(false);
@@ -256,6 +254,7 @@ public class FormFihrist  extends javax.swing.JPanel {
 					doldur();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception ex) {
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
 				}
 			}
@@ -297,7 +296,7 @@ public class FormFihrist  extends javax.swing.JPanel {
 					fih_kutu_temizle();
 					txtAdi.requestFocus();
 				} catch (Exception e1) {
-					e1.printStackTrace();
+					OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.ERROR,  e1.getMessage().toString() );
 				}
 			}
 		});
@@ -305,7 +304,6 @@ public class FormFihrist  extends javax.swing.JPanel {
 		btnYenif.setIcon(new ImageIcon(OBS_FIHRIST.class.getResource("/obs/icon/png/yeni.png")));
 		toolBar_1.add(btnYenif);
 		///////////////////////////////////////////////////////////////////////////////////////////////
-
 		JSplitPane splitPanealt = new JSplitPane();
 		splitPanealt.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPanealt.setDividerSize(0);
@@ -337,8 +335,6 @@ public class FormFihrist  extends javax.swing.JPanel {
 		panel_4.add(lblbilgi);
 
 		/////////// fihrist tablo
-
-
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
 		splitPanealt.setLeftComponent(scrollPane_2);
 
@@ -366,7 +362,6 @@ public class FormFihrist  extends javax.swing.JPanel {
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_2.setViewportView(table);
-
 		//************SURUCU KONTROL**************************
 		basla();
 	}
@@ -377,7 +372,6 @@ public class FormFihrist  extends javax.swing.JPanel {
 		if(! surucubilgi) // Bilgi Yok
 		{
 			OBS_FIHRIST.setSelectedMenu(1, 0);
-			//ayar_doldur();
 		}
 		else 
 		{
@@ -486,7 +480,6 @@ public class FormFihrist  extends javax.swing.JPanel {
 		{
 			lblbilgi.setText ("" );
 			OBS_FIHRIST.setSelectedMenu(1, 0);
-			//ayar_doldur();
 			OBS_FIHRIST.mesaj_goster(7500,Notifications.Type.WARNING, "Dosya Baglanti Kurulamadi.....");
 		}
 	}

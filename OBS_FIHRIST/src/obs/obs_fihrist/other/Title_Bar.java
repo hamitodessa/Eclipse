@@ -88,6 +88,4 @@ public class Title_Bar extends javax.swing.JPanel{
 		btnNewButton_2.setIcon(iconClose.toIcon());
 		add(btnNewButton_2);
 	}
-
-
 }

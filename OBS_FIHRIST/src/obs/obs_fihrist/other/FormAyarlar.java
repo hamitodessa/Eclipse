@@ -91,7 +91,6 @@ public class FormAyarlar extends javax.swing.JPanel{
 		scrollPane_3.setMinimumSize(new Dimension(300, 0));
 		scrollPane_3.setMaximumSize(new Dimension(300, 0));
 
-
 		splitPane.setLeftComponent(scrollPane_3);
 
 		JPanel panel_3 = new JPanel();
@@ -245,11 +244,9 @@ public class FormAyarlar extends javax.swing.JPanel{
 		panel_3.add(txtcdid);
 
 		/////////////////////
-
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		toolBar.setBounds(88, 17, 138, 27);
-
 		//////////////////////
 		btnServer = new JButton("");
 		btnServer.setToolTipText("Server Kontrol");
@@ -293,7 +290,6 @@ public class FormAyarlar extends javax.swing.JPanel{
 					database_kontrol();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					String	qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
-					//lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe  + " / "+ BAGLAN.fihDizin.hAN_SQL );
 				}
 				catch  (Exception ex)
 				{
@@ -318,7 +314,6 @@ public class FormAyarlar extends javax.swing.JPanel{
 				try {
 					oac.uSER_ISL.cd_sil(Integer.parseInt(txtcdid.getText()) );
 					ayar_doldur();
-					//lblbilgi.setText ("");
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception ex)
 				{
@@ -344,10 +339,8 @@ public class FormAyarlar extends javax.swing.JPanel{
 		btnYeni.setToolTipText("Yeni");
 		btnYeni.setIcon(new ImageIcon(OBS_FIHRIST.class.getResource("/obs/icon/png/yeni.png")));
 		toolBar.add(btnYeni);
-
 		///////////////////////
 		panel_3.add(toolBar);
-
 		///////AYAR TABLO***********************
 		ScrollPaneWin11 scrollPane_4 = new ScrollPaneWin11();
 		splitPane.setRightComponent(scrollPane_4);
@@ -615,7 +608,6 @@ public class FormAyarlar extends javax.swing.JPanel{
 			bAGLAN.cONNECT("Admin");
 			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 			fih_Access.baglan();
-			//doldur();
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.INFO,   "Veritabani Baglantisi gerceklestirildi" );
 		}
@@ -632,7 +624,6 @@ public class FormAyarlar extends javax.swing.JPanel{
 			bAGLAN.cONNECT("Admin");
 			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 			fih_Access.baglan();
-			//doldur();
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			OBS_FIHRIST. mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
 		}
@@ -670,7 +661,6 @@ public class FormAyarlar extends javax.swing.JPanel{
 			bAGLAN.cONNECT("Admin");
 			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 			fih_Access.baglan();
-			//FormFihrist.doldur();
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Baglanti Kuruldu ..." );
 		}
@@ -689,7 +679,6 @@ public class FormAyarlar extends javax.swing.JPanel{
 				bAGLAN.cONNECT("Admin");
 				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 				fih_Access.baglan();
-				//FormFihrist.doldur();
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
 			}

@@ -63,6 +63,7 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
 import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
@@ -72,6 +73,7 @@ import fih.FIHRIST_ACCESS;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.JPasswordField;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
@@ -411,6 +413,37 @@ public class FIHRIST extends JFrame {
 		btnYenif.setToolTipText("Yeni");
 		btnYenif.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/yeni.png")));
 		toolBar_1.add(btnYenif);
+		
+		JButton btnNewButton = new JButton("Beyaz");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 boolean isDark = FlatLaf.isLafDark();
+				 if(!isDark) return;
+				 FlatAnimatedLafChange.showSnapshot();
+				 FlatArcOrangeIJTheme.setup();
+                 FlatLaf.updateUI();
+            
+                 FlatAnimatedLafChange.hideSnapshotWithAnimation();
+			}
+		});
+		btnNewButton.setBounds(577, 7, 89, 23);
+		panel_2.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Siyah");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 boolean isDark = FlatLaf.isLafDark();
+				 if(isDark) return;
+				 FlatAnimatedLafChange.showSnapshot();
+				 
+				 FlatMacDarkLaf.setup();
+                 FlatLaf.updateUI();
+            
+                 FlatAnimatedLafChange.hideSnapshotWithAnimation();
+			}
+		});
+		btnNewButton_1.setBounds(450, 7, 89, 23);
+		panel_2.add(btnNewButton_1);
 		///
 		JSplitPane splitPanealt = new JSplitPane();
 		splitPanealt.setDividerSize(0);
@@ -419,6 +452,7 @@ public class FIHRIST extends JFrame {
 		splitPane.setRightComponent(splitPanealt);
 		////
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
+		scrollPane_2.setBorder(BorderFactory.createEmptyBorder(5, 7, 5, 7));
 		splitPanealt.setLeftComponent(scrollPane_2);
 
 		table = new JTable(){
@@ -448,6 +482,7 @@ public class FIHRIST extends JFrame {
 		table.setShowVerticalLines(true);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	
 		scrollPane_2.setViewportView(table);
 
 		JPanel panel_4 = new JPanel();
@@ -741,6 +776,7 @@ public class FIHRIST extends JFrame {
 		txtcdid.setVisible(false);
 
 		ScrollPaneWin11 scrollPane_4 = new ScrollPaneWin11();
+		scrollPane_4.setBorder(BorderFactory.createEmptyBorder(5, 7, 5, 7));
 		splitPane_1.setRightComponent(scrollPane_4);
 
 		table_1 = new JTable(){
@@ -767,7 +803,7 @@ public class FIHRIST extends JFrame {
 		table_1.setShowHorizontalLines(true);
 		table_1.setShowVerticalLines(true);
 		table_1.setFont(new Font("Calibri", Font.PLAIN, 14));
-		scrollPane_4.setViewportView(table_1);
+		table_1.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 		Notifications.getInstance().setJFrame(this);
 		//************SURUCU KONTROL**************************
 		GLOBAL.surucu_kontrol();

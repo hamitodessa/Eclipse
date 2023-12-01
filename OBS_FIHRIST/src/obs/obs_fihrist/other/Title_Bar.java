@@ -8,7 +8,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
-import obs.button.Buttont;
+import OBS_C_2025.Buttont;
 import obs.obs_fihrist.OBS_FIHRIST;
 
 import java.awt.event.ActionListener;

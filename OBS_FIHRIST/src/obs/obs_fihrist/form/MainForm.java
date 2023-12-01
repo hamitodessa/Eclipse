@@ -73,7 +73,7 @@ public class MainForm extends JLayeredPane {
 
 	private void initMenuEvent() {
 		menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
-
+		
 			System.out.println(index);
 			if (index == 0) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

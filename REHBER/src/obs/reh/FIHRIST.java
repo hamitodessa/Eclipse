@@ -62,9 +62,10 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
+import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
-
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 import fih.FIHRIST_ACCESS;
 
@@ -165,7 +166,9 @@ public class FIHRIST extends JFrame {
 		//		
 		//			e.printStackTrace();
 		//		}
-		FlatArcOrangeIJTheme.setup();
+		FlatLaf.registerCustomDefaultsSource("obs.ayarlar");
+		//FlatArcOrangeIJTheme.setup();
+		FlatMacDarkLaf.setup();
 		//FlatLightFlatIJTheme.setup();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);

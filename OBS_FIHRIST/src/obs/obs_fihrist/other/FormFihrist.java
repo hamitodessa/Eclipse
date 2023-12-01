@@ -56,7 +56,6 @@ import obs.classes.aNA_Class;
 import obs.obs_fihrist.OBS_FIHRIST;
 
 import raven.toast.Notifications;
-
 @SuppressWarnings({"static-access","serial"})
 public class FormFihrist  extends javax.swing.JPanel {
 
@@ -83,7 +82,7 @@ public class FormFihrist  extends javax.swing.JPanel {
 	public FormFihrist() {
 		
 		setLayout(new BorderLayout(0, 0));
-		add(OBS_FIHRIST.app.title_Bar, BorderLayout.NORTH);
+		add(obs.obs_fihrist.OBS_FIHRIST.app.title_Bar, BorderLayout.NORTH);
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -367,22 +366,28 @@ public class FormFihrist  extends javax.swing.JPanel {
 	}
 	public  void basla()
 	{
-		GLOBAL.surucu_kontrol();
-		calisma_dizini_oku() ;
-		if(! surucubilgi) // Bilgi Yok
-		{
-			OBS_FIHRIST.setSelectedMenu(1, 0);
-		}
-		else 
-		{
+//		GLOBAL.surucu_kontrol();
+//		calisma_dizini_oku() ;
+//
+//		if(! surucubilgi) // Bilgi Yok
+//		{
+//			OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.WARNING, "fffffffff");
+//			OBS_FIHRIST.setSelectedMenu(1, 0);
+//		}
+//		else 
+//		{
 			try {
+				System.out.println("+++"+oac._IFihrist);
 				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 				fih_Access.baglan();
-				fihrist_kont();
+				String qwe = "" ;
+				qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
+				lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe.toString().trim()  + " / "+ BAGLAN.fihDizin.hAN_SQL );
+				doldur();
 			} catch (Exception e) {
 				OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());
 			}
-		}
+//		}
 	}
 	void calisma_dizini_oku() 
 	{
@@ -458,31 +463,7 @@ public class FormFihrist  extends javax.swing.JPanel {
 			}
 		}
 	}
-	void fihrist_kont() throws ClassNotFoundException, SQLException
-	{
-		String qwe = "" ;
-		if (oac.FIHRIST_CONN == true)
-		{
-			if (FIH_DOS_VAR == false)
-			{
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Fihrist -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....");
-				lblbilgi.setText ("" );
-			}
-			else 
-			{ 
-				qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
-				lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe.toString().trim()  + " / "+ BAGLAN.fihDizin.hAN_SQL );
-				doldur();
-			}
-		}
-		else
-		{
-			lblbilgi.setText ("" );
-			OBS_FIHRIST.setSelectedMenu(1, 0);
-			OBS_FIHRIST.mesaj_goster(7500,Notifications.Type.WARNING, "Dosya Baglanti Kurulamadi.....");
-		}
-	}
+
 	private void cONN_AKTAR(String hangi)
 	{
 		if(hangi.equals("MS SQL"))

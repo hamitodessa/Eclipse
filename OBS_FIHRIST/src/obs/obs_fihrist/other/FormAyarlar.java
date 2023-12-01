@@ -341,6 +341,7 @@ public class FormAyarlar extends javax.swing.JPanel{
 		toolBar.add(btnYeni);
 		///////////////////////
 		panel_3.add(toolBar);
+		
 		///////AYAR TABLO***********************
 		ScrollPaneWin11 scrollPane_4 = new ScrollPaneWin11();
 		splitPane.setRightComponent(scrollPane_4);

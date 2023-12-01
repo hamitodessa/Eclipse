@@ -18,6 +18,7 @@ import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.OBS_ORTAK_SQLITE;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
+import OBS_C_2025.SOLA_DUZ_RENK;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.Server_Bilgi;
 import OBS_C_2025.TABLO_RENDERER;
@@ -413,37 +414,6 @@ public class FIHRIST extends JFrame {
 		btnYenif.setToolTipText("Yeni");
 		btnYenif.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/yeni.png")));
 		toolBar_1.add(btnYenif);
-		
-		JButton btnNewButton = new JButton("Beyaz");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 boolean isDark = FlatLaf.isLafDark();
-				 if(!isDark) return;
-				 FlatAnimatedLafChange.showSnapshot();
-				 FlatArcOrangeIJTheme.setup();
-                 FlatLaf.updateUI();
-            
-                 FlatAnimatedLafChange.hideSnapshotWithAnimation();
-			}
-		});
-		btnNewButton.setBounds(577, 7, 89, 23);
-		panel_2.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("Siyah");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 boolean isDark = FlatLaf.isLafDark();
-				 if(isDark) return;
-				 FlatAnimatedLafChange.showSnapshot();
-				 
-				 FlatMacDarkLaf.setup();
-                 FlatLaf.updateUI();
-            
-                 FlatAnimatedLafChange.hideSnapshotWithAnimation();
-			}
-		});
-		btnNewButton_1.setBounds(450, 7, 89, 23);
-		panel_2.add(btnNewButton_1);
 		///
 		JSplitPane splitPanealt = new JSplitPane();
 		splitPanealt.setDividerSize(0);
@@ -498,14 +468,14 @@ public class FIHRIST extends JFrame {
 		panel_4.add(lblNewLabel_2_7);
 		
 		lblSatir = new JLabel("0");
-		lblSatir.setForeground(new Color(0, 0, 128));
+		//lblSatir.setForeground(new Color(0, 0, 128));
 		lblSatir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblSatir.setBounds(100, 7, 51, 14);
 		panel_4.add(lblSatir);
 		
 		lblbilgi = new JLabel("...");
 		lblbilgi.setBounds(174, 7, 300, 14);
-		lblbilgi.setForeground(new Color(0, 0, 128));
+		//lblbilgi.setForeground(new Color(0, 0, 128));
 		lblbilgi.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel_4.add(lblbilgi);
 
@@ -948,28 +918,28 @@ public class FIHRIST extends JFrame {
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc = tcm.getColumn(0);
 			tc.setHeaderValue( "Kodu" );
-			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setMinWidth(70);
 			tc.setMaxWidth(70);
 
 			tc = tcm.getColumn(1);
-			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setHeaderValue( "Ip" );
 			tc.setMinWidth(200);
 			//tc.setMaxWidth(200);
 
 			tc = tcm.getColumn(2);
-			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setHeaderValue( "Modul" );
 
 			tc = tcm.getColumn(3);
-			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setHeaderValue( "Yer" );
 			tc.setMinWidth(50);
 			tc.setMaxWidth(50);
 
 			tc = tcm.getColumn(4);
-			tc.setHeaderRenderer(new SOLA());
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setHeaderValue( "SQL" );
 			tc.setMinWidth(80);
 			tc.setMaxWidth(80);
@@ -1305,47 +1275,47 @@ public class FIHRIST extends JFrame {
 				TableColumnModel tcm = th.getColumnModel();
 				TableColumn tc;
 				tc = tcm.getColumn(0);
-				tc.setHeaderRenderer(new SOLA());
+				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(250);
 				tc.setMaxWidth(250);
 
 				tc = tcm.getColumn(1);
-				tc.setHeaderRenderer(new SOLA());
+				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(125);
 				tc.setMaxWidth(125);
 
 				tc = tcm.getColumn(2);
-				tc.setHeaderRenderer(new SOLA());
+				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(125);
 				tc.setMaxWidth(125);
 
 				tc = tcm.getColumn(3);
-				tc.setHeaderRenderer(new SOLA());
+				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(125);
 				tc.setMaxWidth(125);
 
 				tc = tcm.getColumn(4);
-				tc.setHeaderRenderer(new SOLA());
+				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(125);
 				tc.setMaxWidth(125);
 
 				tc = tcm.getColumn(5);
-				tc.setHeaderRenderer(new SOLA());
+				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(150);
 				tc.setMaxWidth(150);
 
 				tc = tcm.getColumn(6);
-				tc.setHeaderRenderer(new SOLA());
+				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(200);
 				tc.setMaxWidth(200);
 
 				tc = tcm.getColumn(7);
-				tc.setHeaderRenderer(new SOLA());
+				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(200);
 				tc.setMaxWidth(200);
 				
 				tc = tcm.getColumn(8);
-				tc.setHeaderRenderer(new SOLA());
+				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(200);
 				tc.setMaxWidth(200);
 				

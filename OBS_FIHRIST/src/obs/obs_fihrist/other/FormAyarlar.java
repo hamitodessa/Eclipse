@@ -509,11 +509,13 @@ public class FormAyarlar extends javax.swing.JPanel{
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			if ( s_CONN.Server_kontrol_L( sBilgi) == true  )
 			{
+				oac.FIHRIST_CONN = true;
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				btnVtKontrol.setEnabled(true);
 			}
 			else
 			{
+				oac.FIHRIST_CONN = false;
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.WARNING,  "Baglanti Saglanamadi........" );
 				btnVtKontrol.setEnabled(false);
@@ -531,12 +533,14 @@ public class FormAyarlar extends javax.swing.JPanel{
 			{
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				btnVtKontrol.setEnabled(true);
+				oac.FIHRIST_CONN = true;
 			}
 			else
 			{
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.WARNING,  "Baglanti Saglanamadi........" );
 				btnVtKontrol.setEnabled(false);
+				oac.FIHRIST_CONN = false;
 			}
 		}
 	}
@@ -583,6 +587,7 @@ public class FormAyarlar extends javax.swing.JPanel{
 		if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("SQ LITE"))
 		{
 			BAGLAN.fihDizin.cONN_STR = GLOBAL.DBYERI +program  + ".DB" ;   //SQLITE
+			 oac.FIH_DOS_VAR = true ;
 		}
 		if (chckbxL.isSelected())
 		{
@@ -611,13 +616,17 @@ public class FormAyarlar extends javax.swing.JPanel{
 			fih_Access.baglan();
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.INFO,   "Veritabani Baglantisi gerceklestirildi" );
+			 oac.FIH_DOS_VAR = true ;
 		}
 		else
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu............?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,	 	null,    	oac.options,  	 	oac.options[1]); 
-			if(g != 0 ) { return;	}
+			if(g != 0 ) { 
+				 oac.FIH_DOS_VAR = false ;
+				return;	
+				}
 			dosya_olustur_L();
 			mdb_yaz();
 			ayar_doldur();
@@ -626,6 +635,7 @@ public class FormAyarlar extends javax.swing.JPanel{
 			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 			fih_Access.baglan();
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			 oac.FIH_DOS_VAR = true ;
 			OBS_FIHRIST. mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
 		}
 	}
@@ -664,13 +674,17 @@ public class FormAyarlar extends javax.swing.JPanel{
 			fih_Access.baglan();
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Baglanti Kuruldu ..." );
+			 oac.FIH_DOS_VAR = true ;
 		}
 		else
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			int g =  JOptionPane.showOptionDialog( null,  "Yeni Dosya Olusturulsunmu............?", "Dosya Olusturma",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,null, oac.options, 	oac.options[1]); 
-			if(g != 0 ) { return;	}
+			if(g != 0 ) {
+				 oac.FIH_DOS_VAR = false ;
+				return;	
+				}
 			{
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				dosya_olustur_S();
@@ -682,6 +696,7 @@ public class FormAyarlar extends javax.swing.JPanel{
 				fih_Access.baglan();
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
+				 oac.FIH_DOS_VAR = true ;
 			}
 		}
 	}

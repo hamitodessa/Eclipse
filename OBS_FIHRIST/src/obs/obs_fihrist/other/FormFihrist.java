@@ -55,8 +55,7 @@ public class FormFihrist  extends javax.swing.JPanel {
 	aNA_Class oac = new aNA_Class();
 	private static FIHRIST_ACCESS  fih_Access = new FIHRIST_ACCESS(obs.classes.aNA_Class._IFihrist);
 
-	boolean surucubilgi = false;
-
+	
 	private JLabel lblSatir ;
 	private JLabel lblbilgi;
 	private JTable table;
@@ -354,35 +353,20 @@ public class FormFihrist  extends javax.swing.JPanel {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_2.setViewportView(table);
 		//************SURUCU KONTROL**************************
-//		System.out.println("+*+*+"+oac._IFihrist + "==="+ oac.FIHRIST_CONN + "===" + OBS_FIHRIST.FIH_DOS_VAR);
-//		if(oac._IFihrist != null && oac.FIHRIST_CONN != false && OBS_FIHRIST.FIH_DOS_VAR != false)
-//		{
-//			System.out.println("bASLA USTU");
-//			basla();
-//		}
-//		else {
-//			System.out.println("burdA");
-//		}
+		System.out.println("+*+*+"+oac._IFihrist + "==="+ oac.FIHRIST_CONN + "===" + oac.FIH_DOS_VAR);
+		if(oac._IFihrist != null && oac.FIHRIST_CONN != false && oac.FIH_DOS_VAR != false)
+		{
+			basla();
+		}
+		else {
+			//OBS_FIHRIST.kontrol();
+		}
 	}
 	public  void basla()
 	{
-//		GLOBAL.surucu_kontrol();
-//		calisma_dizini_oku() ;
-//
-//		if(! surucubilgi) // Bilgi Yok
-//		{
-//			OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.WARNING, "fffffffff");
-//			OBS_FIHRIST.setSelectedMenu(1, 0);
-//		}
-//		else 
-//		{
-		System.out.println("380");
 			try {
-				System.out.println("+-+-+"+oac._IFihrist + "==="+ oac.FIHRIST_CONN + "===" +  OBS_FIHRIST.FIH_DOS_VAR);
 				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
-				System.out.println("381-"+oac._IFihrist);
 				fih_Access.baglan();
-				System.out.println("387-"+oac._IFihrist);
 				String qwe = "" ;
 				qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
 				lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe.toString().trim()  + " / "+ BAGLAN.fihDizin.hAN_SQL );
@@ -390,15 +374,12 @@ public class FormFihrist  extends javax.swing.JPanel {
 			} catch (Exception e) {
 				OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());
 			}
-//		}
 	}
 
 	public void doldur()
 	{
 		try {
 			ResultSet	rs = null;
-			System.out.println("---"+oac._IFihrist + "==="+ oac.FIHRIST_CONN + "===" +  OBS_FIHRIST.FIH_DOS_VAR);
-			//fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 			rs = fih_Access.reh_doldur();
 			GRID_TEMIZLE.grid_temizle(table);
 			fih_kutu_temizle();
@@ -473,8 +454,8 @@ public class FormFihrist  extends javax.swing.JPanel {
 	private void fih_kaydet() throws NumberFormatException, ClassNotFoundException, SQLException
 	{
 		if(! txtcd.getText().toString().equals(""))
-			OBS_FIHRIST.fih_Access.reh_sil(Integer.parseInt(txtcd.getText().toString()));
-		OBS_FIHRIST.fih_Access.reh_kayit(txtAdi.getText(), txtT1.getText(), txtT2.getText(),txtT3.getText(),txtT4.getText(), txtFax.getText(),  txtNot.getText(),  txtNot2.getText(),txtMail.getText());
+			 fih_Access.reh_sil(Integer.parseInt(txtcd.getText().toString()));
+		 fih_Access.reh_kayit(txtAdi.getText(), txtT1.getText(), txtT2.getText(),txtT3.getText(),txtT4.getText(), txtFax.getText(),  txtNot.getText(),  txtNot2.getText(),txtMail.getText());
 	}
 	private static void fih_kutu_temizle() 
 	{

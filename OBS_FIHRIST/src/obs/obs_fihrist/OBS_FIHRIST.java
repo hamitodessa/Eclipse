@@ -52,7 +52,7 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
 	private Rectangle maxBounds;
 	int x ,y ;
 	
-	public static boolean FIH_DOS_VAR;
+	
 	BAGLAN bAGLAN = new BAGLAN();
 	aNA_Class oac = new aNA_Class();
 	public static  FIHRIST_ACCESS  fih_Access ;
@@ -93,7 +93,7 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
 	{
 		kontrol();
 		
-		if(surucubilgi && oac.FIHRIST_CONN  && FIH_DOS_VAR)
+		if(surucubilgi && oac.FIHRIST_CONN  && oac.FIH_DOS_VAR)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			mainForm.showForm(formFihrist);
@@ -217,10 +217,7 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
 			//mesaj_goster(5000,Notifications.Type.WARNING, "fffffffff");
 		return;
 		}
-		
 	}
-
-
 	void calisma_dizini_oku() 
 	{
 		try 
@@ -249,7 +246,7 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
 		if (BAGLAN.fihDizin.yER.equals(""))
 		{
 			oac.FIHRIST_CONN  = false;
-			FIH_DOS_VAR = false;
+		oac.FIH_DOS_VAR = false;
 			return;
 		}
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
@@ -265,11 +262,11 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
 			{
 				if (s_CONN.Dosya_kontrol_L( sBilgi) == false)
 				{
-					FIH_DOS_VAR = false;
+					oac.FIH_DOS_VAR = false;
 				}
 				else
 				{
-					FIH_DOS_VAR = true;
+					oac.FIH_DOS_VAR = true;
 					oac.FIHRIST_CONN = true ;
 				}
 			}
@@ -284,11 +281,11 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
 			{
 				if (s_CONN.Dosya_kontrol_S( sBilgi) == false)
 				{
-					FIH_DOS_VAR = false;
+					oac. FIH_DOS_VAR = false;
 				}
 				else
 				{
-					FIH_DOS_VAR = true;
+					oac. FIH_DOS_VAR = true;
 					oac.FIHRIST_CONN = true ;
 				}
 			}

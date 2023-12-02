@@ -12,5 +12,6 @@ public class aNA_Class {
 	public IConnection _IFihristCon ;
 	public USER_ISLEMLERI uSER_ISL = new USER_ISLEMLERI();
 	public SIFRE_DONDUR sDONDUR = new     SIFRE_DONDUR();
+	public static boolean FIH_DOS_VAR;
 	public String[] options = {"Tamam......       		!	", "Vazgec......       		!	"}; 
 }

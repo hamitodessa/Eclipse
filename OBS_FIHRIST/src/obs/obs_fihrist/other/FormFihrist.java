@@ -37,32 +37,24 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
+
 import OBS_C_2025.BAGLAN;
-import OBS_C_2025.CONNECT;
-import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
-import OBS_C_2025.OBS_ORTAK_MSSQL;
-import OBS_C_2025.OBS_ORTAK_MYSQL;
-import OBS_C_2025.OBS_ORTAK_SQLITE;
 import OBS_C_2025.SOLA_DUZ_RENK;
 import OBS_C_2025.ScrollPaneWin11;
-import OBS_C_2025.Server_Bilgi;
 import fih.FIHRIST_ACCESS;
-import fih.FIHRIST_MSSQL;
-import fih.FIHRIST_MYSQL;
-import fih.FIHRIST_SQLITE;
 import obs.classes.aNA_Class;
 import obs.obs_fihrist.OBS_FIHRIST;
-
 import raven.toast.Notifications;
 @SuppressWarnings({"static-access","serial"})
 public class FormFihrist  extends javax.swing.JPanel {
 
-	boolean FIH_DOS_VAR;
+	
 	BAGLAN bAGLAN = new BAGLAN();
 	aNA_Class oac = new aNA_Class();
-	FIHRIST_ACCESS  fih_Access ;
+	private static FIHRIST_ACCESS  fih_Access = new FIHRIST_ACCESS(obs.classes.aNA_Class._IFihrist);
+
 	boolean surucubilgi = false;
 
 	private JLabel lblSatir ;
@@ -82,7 +74,7 @@ public class FormFihrist  extends javax.swing.JPanel {
 	public FormFihrist() {
 		
 		setLayout(new BorderLayout(0, 0));
-		add(obs.obs_fihrist.OBS_FIHRIST.app.title_Bar, BorderLayout.NORTH);
+		add(new Title_Bar(), BorderLayout.NORTH);
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
@@ -274,7 +266,7 @@ public class FormFihrist  extends javax.swing.JPanel {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				try {
 					if(! txtcd.getText().toString().equals(""))
-						fih_Access.reh_sil(Integer.parseInt(txtcd.getText().toString()));
+						OBS_FIHRIST.fih_Access .reh_sil(Integer.parseInt(txtcd.getText().toString()));
 					doldur();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception ex)
@@ -362,7 +354,15 @@ public class FormFihrist  extends javax.swing.JPanel {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_2.setViewportView(table);
 		//************SURUCU KONTROL**************************
-		basla();
+//		System.out.println("+*+*+"+oac._IFihrist + "==="+ oac.FIHRIST_CONN + "===" + OBS_FIHRIST.FIH_DOS_VAR);
+//		if(oac._IFihrist != null && oac.FIHRIST_CONN != false && OBS_FIHRIST.FIH_DOS_VAR != false)
+//		{
+//			System.out.println("bASLA USTU");
+//			basla();
+//		}
+//		else {
+//			System.out.println("burdA");
+//		}
 	}
 	public  void basla()
 	{
@@ -376,10 +376,13 @@ public class FormFihrist  extends javax.swing.JPanel {
 //		}
 //		else 
 //		{
+		System.out.println("380");
 			try {
-				System.out.println("+++"+oac._IFihrist);
+				System.out.println("+-+-+"+oac._IFihrist + "==="+ oac.FIHRIST_CONN + "===" +  OBS_FIHRIST.FIH_DOS_VAR);
 				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
+				System.out.println("381-"+oac._IFihrist);
 				fih_Access.baglan();
+				System.out.println("387-"+oac._IFihrist);
 				String qwe = "" ;
 				qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
 				lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe.toString().trim()  + " / "+ BAGLAN.fihDizin.hAN_SQL );
@@ -389,116 +392,13 @@ public class FormFihrist  extends javax.swing.JPanel {
 			}
 //		}
 	}
-	void calisma_dizini_oku() 
-	{
-		try 
-		{
-			bAGLAN.cONNECT("Admin");
-			cONN_AKTAR(BAGLAN.fihDizin.hAN_SQL);
-			mODUL_AKTAR( BAGLAN.fihDizin.hAN_SQL);
-			String hangi_sql =  BAGLAN.fihDizin.hAN_SQL;
-			if(hangi_sql.equals("") )
-			{
-				surucubilgi = false ;
-				return ;
-			}
-			surucubilgi = true ;
-			fihrist_calisma_dizini_oku();
-		} catch (Exception e) {
-			OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
-		}
-	}
-	void fihrist_calisma_dizini_oku() throws ClassNotFoundException, SQLException
-	{
-		CONNECT s_CONN = new CONNECT( oac._IFihristCon);
-		if (BAGLAN.fihDizin.yER.equals(""))
-		{
-			oac.FIHRIST_CONN  = false;
-			FIH_DOS_VAR = false;
-			return;
-		}
-		Server_Bilgi sBilgi = new Server_Bilgi() ;
-		sBilgi.setIns(BAGLAN.fihDizin.iNSTANCE); 
-		sBilgi.setKull(BAGLAN.fihDizin.kULLANICI) ;
-		sBilgi.setSifre(BAGLAN.fihDizin.sIFRESI);
-		sBilgi.setPort(BAGLAN.fihDizin.sERVER);
-		sBilgi.setServer( BAGLAN.fihDizin.sERVER);
-		sBilgi.setDb("OK_Fih" + BAGLAN.fihDizin.kOD);
-		if (BAGLAN.fihDizin.yER.equals("L"))
-		{
-			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
-			{
-				if (s_CONN.Dosya_kontrol_L( sBilgi) == false)
-				{
-					FIH_DOS_VAR = false;
-				}
-				else
-				{
-					FIH_DOS_VAR = true;
-					oac.FIHRIST_CONN = true ;
-				}
-			}
-			else
-			{
-				oac.FIHRIST_CONN = false;
-			}
-		}
-		else
-		{
-			if (s_CONN.Server_kontrol_S(sBilgi) == true)   
-			{
-				if (s_CONN.Dosya_kontrol_S( sBilgi) == false)
-				{
-					FIH_DOS_VAR = false;
-				}
-				else
-				{
-					FIH_DOS_VAR = true;
-					oac.FIHRIST_CONN = true ;
-				}
-			}
-			else
-			{
-				oac.FIHRIST_CONN = false;
-			}
-		}
-	}
 
-	private void cONN_AKTAR(String hangi)
-	{
-		if(hangi.equals("MS SQL"))
-		{
-			oac._IFihristCon = new OBS_ORTAK_MSSQL() ;
-		}
-		else if(hangi.equals("MY SQL"))
-		{
-			oac._IFihristCon = new OBS_ORTAK_MYSQL() ;
-		}
-		else if(hangi.equals("SQ LITE"))
-		{
-			oac._IFihristCon = new OBS_ORTAK_SQLITE() ;
-		}
-	}
-	private void mODUL_AKTAR(String hangi)
-	{
-		if(hangi.equals("MS SQL"))
-		{
-			oac._IFihrist =  new FIHRIST_MSSQL();
-		}
-		else if(hangi.equals("MY SQL"))
-		{
-			oac._IFihrist =  new FIHRIST_MYSQL();
-		}
-		else if(hangi.equals("SQ LITE"))
-		{
-			oac._IFihrist =  new FIHRIST_SQLITE();
-		}
-	}
 	public void doldur()
 	{
 		try {
 			ResultSet	rs = null;
-			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
+			System.out.println("---"+oac._IFihrist + "==="+ oac.FIHRIST_CONN + "===" +  OBS_FIHRIST.FIH_DOS_VAR);
+			//fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 			rs = fih_Access.reh_doldur();
 			GRID_TEMIZLE.grid_temizle(table);
 			fih_kutu_temizle();
@@ -573,8 +473,8 @@ public class FormFihrist  extends javax.swing.JPanel {
 	private void fih_kaydet() throws NumberFormatException, ClassNotFoundException, SQLException
 	{
 		if(! txtcd.getText().toString().equals(""))
-			fih_Access.reh_sil(Integer.parseInt(txtcd.getText().toString()));
-		fih_Access.reh_kayit(txtAdi.getText(), txtT1.getText(), txtT2.getText(),txtT3.getText(),txtT4.getText(), txtFax.getText(),  txtNot.getText(),  txtNot2.getText(),txtMail.getText());
+			OBS_FIHRIST.fih_Access.reh_sil(Integer.parseInt(txtcd.getText().toString()));
+		OBS_FIHRIST.fih_Access.reh_kayit(txtAdi.getText(), txtT1.getText(), txtT2.getText(),txtT3.getText(),txtT4.getText(), txtFax.getText(),  txtNot.getText(),  txtNot2.getText(),txtMail.getText());
 	}
 	private static void fih_kutu_temizle() 
 	{

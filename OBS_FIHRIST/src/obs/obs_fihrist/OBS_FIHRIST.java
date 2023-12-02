@@ -33,8 +33,6 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.InputStream;
 import java.sql.SQLException;
 
@@ -43,7 +41,7 @@ import javax.swing.UIManager;
 
 import raven.toast.Notifications;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","static-access"})
 public class OBS_FIHRIST extends javax.swing.JFrame {
 
 	public static OBS_FIHRIST app;
@@ -54,10 +52,10 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
 	private Rectangle maxBounds;
 	int x ,y ;
 	
-	boolean FIH_DOS_VAR;
+	public static boolean FIH_DOS_VAR;
 	BAGLAN bAGLAN = new BAGLAN();
 	aNA_Class oac = new aNA_Class();
-	FIHRIST_ACCESS  fih_Access ;
+	public static  FIHRIST_ACCESS  fih_Access ;
 	boolean surucubilgi = false;
 	
 
@@ -88,19 +86,18 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
 				OBS_FIHRIST.app.setLocation(xx-x,yy-y);
 			}
 		});
-		//basla();
+		basla();
 		
 	}
 	private void basla()
 	{
-		
 		kontrol();
-		System.out.println("QQQQQQQ="+oac._IFihrist);
-		System.out.println(surucubilgi + "---"+  oac.FIHRIST_CONN );
+		
 		if(surucubilgi && oac.FIHRIST_CONN  && FIH_DOS_VAR)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			mainForm.showForm(formFihrist);
+			formFihrist.basla();
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 		else {
@@ -110,7 +107,7 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
 		}
 	}
 	public static void showForm(Component component) {
-		System.out.println("48");
+		//System.out.println("48");
 		component.applyComponentOrientation(app.getComponentOrientation());
 		app.mainForm.showForm(component);
 	}
@@ -222,6 +219,8 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
 		}
 		
 	}
+
+
 	void calisma_dizini_oku() 
 	{
 		try 
@@ -241,9 +240,11 @@ public class OBS_FIHRIST extends javax.swing.JFrame {
 		
 		}
 	}
+	
+	
 	void fihrist_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
-		System.out.println("--"+oac._IFihrist);
+	
 		CONNECT s_CONN = new CONNECT( oac._IFihristCon);
 		if (BAGLAN.fihDizin.yER.equals(""))
 		{

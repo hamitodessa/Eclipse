@@ -63,7 +63,7 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 	public ResultSet reh_doldur() throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
 		ResultSet	rss = null;
-		String sql = " SELECT Adi ,Tel_1,Tel_2,Tel_3,Tel_4,Fax ,Note,Note2,Mail ,ID  "  + 
+		String sql = " SELECT Adi ,Tel_1,Tel_2,Tel_3,Tel_4,Fax ,Note As Not_,Note2 as Not_2,Mail ,ID  "  + 
 				"  FROM FIHRIST   " + 
 				"  ORDER BY Adi   ";
 		PreparedStatement stmt = con.prepareStatement(sql);

@@ -82,7 +82,7 @@ public class FIHRIST_MYSQL implements I_Fihrist{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 
 		ResultSet	rss = null;
-		String sql = " SELECT Adi ,Tel_1,Tel_2,Tel_3,Tel_4,Fax ,Note,Note2,Mail ,ID  "  + 
+		String sql = " SELECT Adi ,Tel_1,Tel_2,Tel_3,Tel_4,Fax ,Note AS Not_,Note2 AS Not_2,Mail ,ID  "  + 
 				"  FROM FIHRIST   " + 
 				"  ORDER BY Adi   ";
 		PreparedStatement stmt = con.prepareStatement(sql);

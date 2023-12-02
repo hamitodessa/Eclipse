@@ -613,6 +613,11 @@ public class FIHRIST extends JFrame {
 		panel_3.add(lblKayitserver);
 
 		cmbip = new JComboBox<String>();
+		cmbip.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				txtIp.setText(cmbip.getItemAt(cmbip.getSelectedIndex()) );
+			}
+		});
 		cmbip.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbip.setEditable(true);
 		cmbip.setBounds(88, 205, 157, 22);
@@ -774,6 +779,7 @@ public class FIHRIST extends JFrame {
 		table_1.setShowVerticalLines(true);
 		table_1.setFont(new Font("Calibri", Font.PLAIN, 14));
 		table_1.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+		scrollPane_4.setViewportView(table_1);
 		Notifications.getInstance().setJFrame(this);
 		//************SURUCU KONTROL**************************
 		GLOBAL.surucu_kontrol();

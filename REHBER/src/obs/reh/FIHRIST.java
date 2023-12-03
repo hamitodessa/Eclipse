@@ -279,6 +279,7 @@ public class FIHRIST extends JFrame {
 		panel_2.add(lblNewLabel_2);
 
 		txtT1 = new JTextField();
+		txtT1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtT1.setDocument(new JTextFieldLimit(25));
 		txtT1.setBounds(68, 72, 148, 20);
 		panel_2.add(txtT1);
@@ -289,6 +290,7 @@ public class FIHRIST extends JFrame {
 		panel_2.add(lblNewLabel_2_1);
 
 		txtT2 = new JTextField();
+		txtT2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtT2.setDocument(new JTextFieldLimit(25));
 		txtT2.setColumns(10);
 		txtT2.setBounds(292, 69, 148, 20);
@@ -299,6 +301,7 @@ public class FIHRIST extends JFrame {
 		panel_2.add(lblNewLabel_2_2);
 
 		txtT3 = new JTextField();
+		txtT3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtT3.setDocument(new JTextFieldLimit(25));
 		txtT3.setColumns(10);
 		txtT3.setBounds(502, 69, 148, 20);
@@ -309,6 +312,7 @@ public class FIHRIST extends JFrame {
 		panel_2.add(lblNewLabel_2_3);
 
 		txtT4 = new JTextField();
+		txtT4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtT4.setDocument(new JTextFieldLimit(25));
 		txtT4.setColumns(10);
 		txtT4.setBounds(718, 69, 148, 20);
@@ -319,6 +323,7 @@ public class FIHRIST extends JFrame {
 		panel_2.add(lblNewLabel_2_4);
 
 		txtFax = new JTextField();
+		txtFax.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtFax.setDocument(new JTextFieldLimit(25));
 		txtFax.setColumns(10);
 		txtFax.setBounds(68, 98, 148, 20);
@@ -329,6 +334,7 @@ public class FIHRIST extends JFrame {
 		panel_2.add(lblNewLabel_2_5);
 
 		txtMail = new JTextField();
+		txtMail.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtMail.setDocument(new JTextFieldLimit(50));
 		txtMail.setColumns(10);
 		txtMail.setBounds(292, 97, 360, 20);
@@ -339,6 +345,7 @@ public class FIHRIST extends JFrame {
 		panel_2.add(lblNewLabel_2_6);
 
 		txtNot = new JTextField();
+		txtNot.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtNot.setDocument(new JTextFieldLimit(50));
 		txtNot.setColumns(10);
 		txtNot.setBounds(68, 126, 360, 20);
@@ -349,6 +356,7 @@ public class FIHRIST extends JFrame {
 		panel_2.add(lblNewLabel_2_6_1);
 		
 		txtNot2 = new JTextField();
+		txtNot2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtNot2.setDocument(new JTextFieldLimit(50));
 		txtNot2.setColumns(10);
 		txtNot2.setBounds(508, 126, 360, 20);

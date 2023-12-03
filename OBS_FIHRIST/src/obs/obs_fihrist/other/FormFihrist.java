@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -70,6 +71,7 @@ public class FormFihrist  extends javax.swing.JPanel {
 	private static JTextField txtMail;
 	private static JTextField txtNot;
 	private static JTextField txtNot2;
+	private JCheckBox chckbxKriter;
 	public FormFihrist() {
 		
 		setLayout(new BorderLayout(0, 0));
@@ -130,6 +132,11 @@ public class FormFihrist  extends javax.swing.JPanel {
 		textField.setBounds(68, 7, 372, 20);
 		panel_2.add(textField);
 		textField.setColumns(10);
+		
+		chckbxKriter = new JCheckBox("(Secili) Isim Sutununda / Butun Tabloda");
+		chckbxKriter.setSelected(true);
+		chckbxKriter.setBounds(461, 5, 273, 23);
+		panel_2.add(chckbxKriter);
 
 		JLabel lblNewLabel_1 = new JLabel("Adi");
 		lblNewLabel_1.setBounds(10, 46, 48, 14);
@@ -339,7 +346,13 @@ public class FormFihrist  extends javax.swing.JPanel {
 					if (table.getSelectedRow()  < 0) return;
 					try {
 						fih_kutu_temizle();
-						fih_doldur_kutu(table,table.getSelectedRow());
+						 if( table.getRowSorter() == null)
+						 {
+							 fih_doldur_kutu(table,table.getSelectedRow());
+						 }
+						 else {
+							 fih_doldur_kutu(table,table.getRowSorter().convertRowIndexToModel(table.getSelectedRow()));
+						}
 					} catch (Exception e1) {
 						OBS_FIHRIST.mesaj_goster(5000,Notifications.Type.ERROR, e1.getMessage());
 					}
@@ -353,7 +366,7 @@ public class FormFihrist  extends javax.swing.JPanel {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_2.setViewportView(table);
 		//************SURUCU KONTROL**************************
-		System.out.println("+*+*+"+oac._IFihrist + "==="+ oac.FIHRIST_CONN + "===" + oac.FIH_DOS_VAR);
+		//System.out.println("+*+*+"+oac._IFihrist + "==="+ oac.FIHRIST_CONN + "===" + oac.FIH_DOS_VAR);
 		if(oac._IFihrist != null && oac.FIHRIST_CONN != false && oac.FIH_DOS_VAR != false)
 		{
 			basla();
@@ -502,10 +515,27 @@ public class FormFihrist  extends javax.swing.JPanel {
 					return model.getValueAt(row, column).toString().toLowerCase();
 				}
 			});
-			sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + textField.getText().toLowerCase(),0));
+			if(chckbxKriter.isSelected())
+			{
+				sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + textField.getText().toLowerCase(),0));
+			}
+			else {
+				sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + textField.getText().toLowerCase()));
+			}
 			table.setRowSorter(sorter);
 			table.revalidate();
 			table.repaint();
+			if (table.getRowCount()== 0 ) {  
+				fih_kutu_temizle();
+				return;
+			} 
+			else {
+				try {
+					fih_doldur_kutu(table,table.getRowSorter().convertRowIndexToModel(0));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 }

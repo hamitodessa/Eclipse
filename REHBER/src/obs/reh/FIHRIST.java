@@ -63,7 +63,9 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
@@ -137,10 +139,11 @@ public class FIHRIST extends JFrame {
 	private static JComboBox<String> cmbhangisql ;
 
 	private JLabel lblSatir ;
-	private JLabel lblbilgi;
+	private JLabel lblbilgi ;
 	private JButton btnServer ;
 	private JButton btnVtKontrol ;
-	
+	private boolean baslangic = true;
+	private JCheckBox chckbxKriter;
 	
 	/**
 	 * Launch the application.
@@ -171,8 +174,10 @@ public class FIHRIST extends JFrame {
 		//		}
 		FlatLaf.registerCustomDefaultsSource("obs.ayarlar");
 		//FlatArcOrangeIJTheme.setup();
-		FlatMacDarkLaf.setup();
+		//FlatMacDarkLaf.setup();
 		//FlatLightFlatIJTheme.setup();
+		//FlatLightLaf.setup();
+		FlatDarculaLaf.setup();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
 		setTitle("FIHRIST");
@@ -187,9 +192,14 @@ public class FIHRIST extends JFrame {
 				{
 					ayar_doldur();
 				}
+				else {
+					if(baslangic) return ;
+					basla();
+					baslangic = false ;
+				}
 			}
 		});
-		tabbedPane.setPreferredSize(new Dimension(970,500));
+		tabbedPane.setPreferredSize(new Dimension(875,500));
 
 		scrollPane.setViewportView(tabbedPane);
 
@@ -414,6 +424,11 @@ public class FIHRIST extends JFrame {
 		btnYenif.setToolTipText("Yeni");
 		btnYenif.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/yeni.png")));
 		toolBar_1.add(btnYenif);
+		
+		chckbxKriter = new JCheckBox("(Secili) Isim Sutununda / Butun Tabloda");
+		chckbxKriter.setSelected(true);
+		chckbxKriter.setBounds(461, 5, 273, 23);
+		panel_2.add(chckbxKriter);
 		///
 		JSplitPane splitPanealt = new JSplitPane();
 		splitPanealt.setDividerSize(0);
@@ -422,6 +437,7 @@ public class FIHRIST extends JFrame {
 		splitPane.setRightComponent(splitPanealt);
 		////
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
+		    
 		scrollPane_2.setBorder(BorderFactory.createEmptyBorder(5, 7, 5, 7));
 		splitPanealt.setLeftComponent(scrollPane_2);
 
@@ -437,7 +453,13 @@ public class FIHRIST extends JFrame {
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					try {
 						fih_kutu_temizle();
-						fih_doldur_kutu(table,table.getSelectedRow());
+						 if( table.getRowSorter() == null)
+						 {
+							 fih_doldur_kutu(table,table.getSelectedRow());
+						 }
+						 else {
+							 fih_doldur_kutu(table,table.getRowSorter().convertRowIndexToModel(table.getSelectedRow()));
+						}
 						tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (Exception e1) {
 						tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -781,6 +803,10 @@ public class FIHRIST extends JFrame {
 		table_1.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 		scrollPane_4.setViewportView(table_1);
 		Notifications.getInstance().setJFrame(this);
+		basla();
+	}
+	private void basla()
+	{
 		//************SURUCU KONTROL**************************
 		GLOBAL.surucu_kontrol();
 		calisma_dizini_oku() ;
@@ -799,6 +825,7 @@ public class FIHRIST extends JFrame {
 				mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());
 			}
 		}
+
 	}
 	void calisma_dizini_oku() 
 	{
@@ -882,7 +909,7 @@ public class FIHRIST extends JFrame {
 			if (FIH_DOS_VAR == false)
 			{
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Fihrist -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....");
+				mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Fihrist -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....Lutfen Baglantilari Kontrol ediniz.....");
 				lblbilgi.setText ("" );
 			}
 			else 
@@ -897,7 +924,7 @@ public class FIHRIST extends JFrame {
 			lblbilgi.setText ("" );
 			tabbedPane.setSelectedIndex(1);
 			ayar_doldur();
-			mesaj_goster(7500,Notifications.Type.WARNING, "Dosya Baglanti Kurulamadi.....");
+			mesaj_goster(10000,Notifications.Type.WARNING, "Dosya Baglanti Kurulamadi.....Lutfen Baglantilari Kontrol ediniz.....");
 		}
 	}
 	void ayar_doldur() {
@@ -1266,6 +1293,7 @@ public class FIHRIST extends JFrame {
 	{
 		try {
 			ResultSet	rs = null;
+			
 			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 			rs = fih_Access.reh_doldur();
 			GRID_TEMIZLE.grid_temizle(table);
@@ -1282,48 +1310,48 @@ public class FIHRIST extends JFrame {
 				TableColumn tc;
 				tc = tcm.getColumn(0);
 				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-				tc.setMinWidth(250);
-				tc.setMaxWidth(250);
+				tc.setMinWidth(275);
+				//tc.setMaxWidth(250);
 
 				tc = tcm.getColumn(1);
 				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-				tc.setMinWidth(125);
-				tc.setMaxWidth(125);
+				tc.setMinWidth(150);
+				//tc.setMaxWidth(150);
 
 				tc = tcm.getColumn(2);
 				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-				tc.setMinWidth(125);
-				tc.setMaxWidth(125);
+				tc.setMinWidth(150);
+				//tc.setMaxWidth(150);
 
 				tc = tcm.getColumn(3);
 				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-				tc.setMinWidth(125);
-				tc.setMaxWidth(125);
+				tc.setMinWidth(150);
+				//tc.setMaxWidth(150);
 
 				tc = tcm.getColumn(4);
 				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-				tc.setMinWidth(125);
-				tc.setMaxWidth(125);
+				tc.setMinWidth(150);
+				//tc.setMaxWidth(150);
 
 				tc = tcm.getColumn(5);
 				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(150);
-				tc.setMaxWidth(150);
+				//tc.setMaxWidth(150);
 
 				tc = tcm.getColumn(6);
 				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(200);
-				tc.setMaxWidth(200);
+				//tc.setMaxWidth(200);
 
 				tc = tcm.getColumn(7);
 				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(200);
-				tc.setMaxWidth(200);
+				//tc.setMaxWidth(200);
 				
 				tc = tcm.getColumn(8);
 				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(200);
-				tc.setMaxWidth(200);
+				//tc.setMaxWidth(200);
 				
 				Dimension dd = th.getPreferredSize();
 				dd.height = 30;
@@ -1346,17 +1374,35 @@ public class FIHRIST extends JFrame {
 		}
 		else
 		{
-		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
-		sorter.setStringConverter(new TableStringConverter() {
-	        @Override
-	        public String toString(TableModel model, int row, int column) {
-	            return model.getValueAt(row, column).toString().toLowerCase();
-	        }
-	    });
-	    sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + textField.getText().toLowerCase(),0));
-	    table.setRowSorter(sorter);
-	    table.revalidate();
-	    table.repaint();
+			TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
+			sorter.setStringConverter(new TableStringConverter() {
+				@Override
+				public String toString(TableModel model, int row, int column) {
+					return model.getValueAt(row, column).toString().toLowerCase();
+				}
+			});
+			if(chckbxKriter.isSelected())
+			{
+				sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + textField.getText().toLowerCase(),0));
+			}
+			else {
+				sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + textField.getText().toLowerCase()));
+			}
+			
+			table.setRowSorter(sorter);
+			table.revalidate();
+			table.repaint();
+			if (table.getRowCount()== 0 ) {  
+				fih_kutu_temizle();
+				return;
+			} 
+			else {
+				try {
+					fih_doldur_kutu(table,table.getRowSorter().convertRowIndexToModel(0));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	private void fih_kaydet() throws NumberFormatException, ClassNotFoundException, SQLException

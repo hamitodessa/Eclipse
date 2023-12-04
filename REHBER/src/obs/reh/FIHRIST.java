@@ -142,7 +142,6 @@ public class FIHRIST extends JFrame {
 	private JLabel lblbilgi ;
 	private JButton btnServer ;
 	private JButton btnVtKontrol ;
-	private boolean baslangic = true;
 	private JCheckBox chckbxKriter;
 	
 	/**
@@ -186,19 +185,7 @@ public class FIHRIST extends JFrame {
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 
 		tabbedPane = new obs.ayarlar.MaterialTabbed();
-		tabbedPane.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				if (tabbedPane.getSelectedIndex() ==1)
-				{
-					ayar_doldur();
-				}
-				else {
-					if(baslangic) return ;
-					basla();
-					baslangic = false ;
-				}
-			}
-		});
+
 		tabbedPane.setPreferredSize(new Dimension(875,500));
 
 		scrollPane.setViewportView(tabbedPane);
@@ -803,6 +790,17 @@ public class FIHRIST extends JFrame {
 		table_1.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 		scrollPane_4.setViewportView(table_1);
 		Notifications.getInstance().setJFrame(this);
+		tabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if (tabbedPane.getSelectedIndex() ==1)
+				{
+					ayar_doldur();
+				}
+				else {
+					basla();
+				}
+			}
+		});
 		basla();
 	}
 	private void basla()
@@ -825,7 +823,6 @@ public class FIHRIST extends JFrame {
 				mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());
 			}
 		}
-
 	}
 	void calisma_dizini_oku() 
 	{
@@ -921,6 +918,7 @@ public class FIHRIST extends JFrame {
 		}
 		else
 		{
+			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			lblbilgi.setText ("" );
 			tabbedPane.setSelectedIndex(1);
 			ayar_doldur();
@@ -933,6 +931,7 @@ public class FIHRIST extends JFrame {
 			ResultSet	rs = null;
 			rs = oac.uSER_ISL.user_db_izinleri("Admin", "Fihrist");
 			if (!rs.isBeforeFirst() ) {  
+				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				return;
 			} 
 			table_1.setModel(DbUtils.resultSetToTableModel(rs));
@@ -981,6 +980,7 @@ public class FIHRIST extends JFrame {
 			table_1.setRowHeight(22);
 			table_1.setRowSelectionInterval(0, 0);
 			doldur_kutu(table_1,0);
+			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		} catch (Exception e) {
 			mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());
 		}
@@ -1299,7 +1299,7 @@ public class FIHRIST extends JFrame {
 			GRID_TEMIZLE.grid_temizle(table);
 			fih_kutu_temizle();
 			if (!rs.isBeforeFirst() ) {  
-				
+				lblSatir.setText( String.format("%,d %n" ,  0));
 			} 
 			else
 			{

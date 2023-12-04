@@ -81,6 +81,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.awt.event.ActionEvent;
@@ -228,6 +230,17 @@ public class FIHRIST extends JFrame {
 				arama();
 			}
 		});
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Down" )
+				{	
+					table.requestFocus();
+					table.setRowSelectionInterval(0, 0);
+				}
+			}
+		});
+
 		textField.addAncestorListener(new AncestorListener() {
 			@Override
 			public void ancestorRemoved(AncestorEvent pEvent) {

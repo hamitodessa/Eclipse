@@ -112,7 +112,7 @@ public class FIHRIST extends JFrame {
 	FIHRIST_ACCESS  fih_Access ;
 	boolean surucubilgi = false;
 	obs.ayarlar.MaterialTabbed tabbedPane;
-	
+
 	private JTable table_1;
 	private JTable table;
 	private JTextField textField;
@@ -143,7 +143,7 @@ public class FIHRIST extends JFrame {
 	private JButton btnServer ;
 	private JButton btnVtKontrol ;
 	private JCheckBox chckbxKriter;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -218,16 +218,16 @@ public class FIHRIST extends JFrame {
 
 		textField = new JTextField();
 		textField.getDocument().addDocumentListener(new DocumentListener() {
-			  public void changedUpdate(DocumentEvent e) {
-			    arama();
-			  }
-			  public void removeUpdate(DocumentEvent e) {
-			    arama();
-			  }
-			  public void insertUpdate(DocumentEvent e) {
-			    arama();
-			  }
-			});
+			public void changedUpdate(DocumentEvent e) {
+				arama();
+			}
+			public void removeUpdate(DocumentEvent e) {
+				arama();
+			}
+			public void insertUpdate(DocumentEvent e) {
+				arama();
+			}
+		});
 		textField.addAncestorListener(new AncestorListener() {
 			@Override
 			public void ancestorRemoved(AncestorEvent pEvent) {
@@ -337,24 +337,24 @@ public class FIHRIST extends JFrame {
 		txtNot.setColumns(10);
 		txtNot.setBounds(68, 126, 360, 20);
 		panel_2.add(txtNot);
-		
+
 		JLabel lblNewLabel_2_6_1 = new JLabel("Not_2");
 		lblNewLabel_2_6_1.setBounds(450, 129, 48, 14);
 		panel_2.add(lblNewLabel_2_6_1);
-		
+
 		txtNot2 = new JTextField();
 		txtNot2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtNot2.setDocument(new JTextFieldLimit(50));
 		txtNot2.setColumns(10);
 		txtNot2.setBounds(508, 126, 360, 20);
 		panel_2.add(txtNot2);
-		
+
 		txtcd = new JTextField();
 		txtcd.setVisible(false);
 		txtcd.setBounds(45, 148, 15, 15);
 		panel_2.add(txtcd);
 		txtcd.setColumns(10);
-		
+
 		JToolBar toolBar_1 = new JToolBar();
 		toolBar_1.setFloatable(false);
 		toolBar_1.setBounds(772, 5, 138, 27);
@@ -378,7 +378,7 @@ public class FIHRIST extends JFrame {
 		btnKayitf.setToolTipText("Kaydet");
 		btnKayitf.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/save.png")));
 		toolBar_1.add(btnKayitf);
-		
+
 		JButton btnSilf = new JButton("");
 		btnSilf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -391,7 +391,7 @@ public class FIHRIST extends JFrame {
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				try {
 					if(! txtcd.getText().toString().equals(""))
-					fih_Access.reh_sil(Integer.parseInt(txtcd.getText().toString()));
+						fih_Access.reh_sil(Integer.parseInt(txtcd.getText().toString()));
 					doldur();
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception ex)
@@ -419,7 +419,7 @@ public class FIHRIST extends JFrame {
 		btnYenif.setToolTipText("Yeni");
 		btnYenif.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/yeni.png")));
 		toolBar_1.add(btnYenif);
-		
+
 		chckbxKriter = new JCheckBox("(Secili) Isim Sutununda / Butun Tabloda");
 		chckbxKriter.setSelected(true);
 		chckbxKriter.setBounds(461, 5, 273, 23);
@@ -432,7 +432,7 @@ public class FIHRIST extends JFrame {
 		splitPane.setRightComponent(splitPanealt);
 		////
 		ScrollPaneWin11 scrollPane_2 = new ScrollPaneWin11();
-		    
+
 		scrollPane_2.setBorder(BorderFactory.createEmptyBorder(5, 7, 5, 7));
 		splitPanealt.setLeftComponent(scrollPane_2);
 
@@ -448,12 +448,12 @@ public class FIHRIST extends JFrame {
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					try {
 						fih_kutu_temizle();
-						 if( table.getRowSorter() == null)
-						 {
-							 fih_doldur_kutu(table,table.getSelectedRow());
-						 }
-						 else {
-							 fih_doldur_kutu(table,table.getRowSorter().convertRowIndexToModel(table.getSelectedRow()));
+						if( table.getRowSorter() == null)
+						{
+							fih_doldur_kutu(table,table.getSelectedRow());
+						}
+						else {
+							fih_doldur_kutu(table,table.getRowSorter().convertRowIndexToModel(table.getSelectedRow()));
 						}
 						tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (Exception e1) {
@@ -469,7 +469,7 @@ public class FIHRIST extends JFrame {
 		table.setShowVerticalLines(true);
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	
+
 		scrollPane_2.setViewportView(table);
 
 		JPanel panel_4 = new JPanel();
@@ -478,18 +478,18 @@ public class FIHRIST extends JFrame {
 
 		splitPanealt.setRightComponent(panel_4);
 		panel_4.setLayout(null);
-		
+
 		JLabel lblNewLabel_2_7 = new JLabel("Satir Sayisi :");
 		lblNewLabel_2_7.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_2_7.setBounds(10, 7, 85, 14);
 		panel_4.add(lblNewLabel_2_7);
-		
+
 		lblSatir = new JLabel("0");
 		//lblSatir.setForeground(new Color(0, 0, 128));
 		lblSatir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblSatir.setBounds(100, 7, 51, 14);
 		panel_4.add(lblSatir);
-		
+
 		lblbilgi = new JLabel("...");
 		lblbilgi.setBounds(174, 7, 300, 14);
 		//lblbilgi.setForeground(new Color(0, 0, 128));
@@ -1210,9 +1210,9 @@ public class FIHRIST extends JFrame {
 		oac.uSER_ISL.calisanmi_degis("Admin","Fihrist",chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
 		oac.uSER_ISL.details_yaz(txtKodu.getText(),"Admin",txtUser.getText(), oac.sDONDUR.sDONDUR(txtPwd),
 				cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() , 
-				txtIp.getText(), "Fihrist","", chckbxL.isSelected() ? "L" : "S",  "D" , "E", "E",
-				cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()), 
-				txtcdid.getText(), 0, "false,false,false,false");
+						txtIp.getText(), "Fihrist","", chckbxL.isSelected() ? "L" : "S",  "D" , "E", "E",
+								cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()), 
+								txtcdid.getText(), 0, "false,false,false,false");
 	}
 	private void dosya_olustur_S()throws ClassNotFoundException, SQLException
 	{
@@ -1301,7 +1301,7 @@ public class FIHRIST extends JFrame {
 	{
 		try {
 			ResultSet	rs = null;
-			
+
 			fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 			rs = fih_Access.reh_doldur();
 			GRID_TEMIZLE.grid_temizle(table);
@@ -1355,12 +1355,12 @@ public class FIHRIST extends JFrame {
 				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(200);
 				//tc.setMaxWidth(200);
-				
+
 				tc = tcm.getColumn(8);
 				tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 				tc.setMinWidth(200);
 				//tc.setMaxWidth(200);
-				
+
 				Dimension dd = th.getPreferredSize();
 				dd.height = 30;
 				th.setPreferredSize(dd); 
@@ -1396,7 +1396,7 @@ public class FIHRIST extends JFrame {
 			else {
 				sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + textField.getText().toLowerCase()));
 			}
-			
+
 			table.setRowSorter(sorter);
 			table.revalidate();
 			table.repaint();

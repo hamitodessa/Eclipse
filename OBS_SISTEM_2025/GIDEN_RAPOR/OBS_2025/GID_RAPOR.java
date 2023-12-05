@@ -48,7 +48,7 @@ public class GID_RAPOR extends JInternalFrame {
 	private static JTable table;
 	public static JSplitPane splitPane ;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private JTextField textField;
+	private static JTextField textField;
 
 	public GID_RAPOR() {
 		setTitle("GIDEN RAPORLAR");
@@ -151,6 +151,7 @@ public class GID_RAPOR extends JInternalFrame {
 			long startTime = System.currentTimeMillis(); 
 			ResultSet	rs = null;
 			GRID_TEMIZLE.grid_temizle(table);
+			textField.setText("");
 			rs = oac.uSER_ISL.giden_rapor(GLOBAL.KULL_ADI);				
 			if (!rs.isBeforeFirst() ) {  
 				return;
@@ -248,13 +249,23 @@ public class GID_RAPOR extends JInternalFrame {
 		try
 		{
 			GuiUtil.setWaitCursor(splitPane,true);
-			DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-			oac.uSER_ISL.giden_rapor_sil(Integer.parseInt(mdl.getValueAt(table.getSelectedRow(),0).toString()));
-			hisset();
+			
+			if( table.getRowSorter() == null)
+			{
+				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+				oac.uSER_ISL.giden_rapor_sil(Integer.parseInt(mdl.getValueAt(table.getSelectedRow(),0).toString()));
+				hisset();
+			}
+			else {
+				DefaultTableModel mdl = (DefaultTableModel) table.getModel();
+				oac.uSER_ISL.giden_rapor_sil(Integer.parseInt(mdl.getValueAt(table.getRowSorter().convertRowIndexToModel(table.getSelectedRow()),0).toString()));
+				hisset();
+			}
 			GuiUtil.setWaitCursor(splitPane,false);
 		}
 		catch (Exception ex)
 		{
+			GuiUtil.setWaitCursor(splitPane,false);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
 		}
 	}

@@ -813,12 +813,13 @@ public class FIHRIST extends JFrame {
 		Notifications.getInstance().setJFrame(this);
 		tabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				if (tabbedPane.getSelectedIndex() ==1)
+				if (tabbedPane.getSelectedIndex() ==0)
+				{
+					basla();
+				}
+				else if (tabbedPane.getSelectedIndex() ==1)
 				{
 					ayar_doldur();
-				}
-				else {
-					basla();
 				}
 			}
 		});
@@ -826,21 +827,24 @@ public class FIHRIST extends JFrame {
 	}
 	private void basla()
 	{
-		//************SURUCU KONTROL**************************
 		GLOBAL.surucu_kontrol();
 		calisma_dizini_oku() ;
 		if(! surucubilgi) // Bilgi Yok
 		{
+			mesaj_goster(5000,Notifications.Type.WARNING, "Ilk Olarak Veritabani olusturulmasi gereklidir.....");
 			tabbedPane.setSelectedIndex(1);
 			ayar_doldur();
 		}
 		else 
 		{
 			try {
+				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 				fih_Access.baglan();
 				fihrist_kont();
+				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			} catch (Exception e) {
+				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());
 			}
 		}
@@ -1389,6 +1393,7 @@ public class FIHRIST extends JFrame {
 	}
 	public void arama()  
 	{
+		tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		if (textField.getText().equals(""))
 		{
 			table.setRowSorter(null);
@@ -1415,12 +1420,15 @@ public class FIHRIST extends JFrame {
 			table.repaint();
 			if (table.getRowCount()== 0 ) {  
 				fih_kutu_temizle();
+				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				return;
 			} 
 			else {
 				try {
 					fih_doldur_kutu(table,table.getRowSorter().convertRowIndexToModel(0));
+					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e) {
+					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					e.printStackTrace();
 				}
 			}

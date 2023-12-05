@@ -747,7 +747,7 @@ public class FIHRIST extends JFrame {
 				catch  (Exception ex)
 				{
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
+					mesaj_goster(15000,Notifications.Type.ERROR,  ex.getMessage().toString() );
 				}
 			}
 		});
@@ -1129,7 +1129,7 @@ public class FIHRIST extends JFrame {
 		program = "OK_Fih" + txtKodu.getText();
 		if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("SQ LITE"))
 		{
-			BAGLAN.fihDizin.cONN_STR = GLOBAL.DBYERI +program  + ".DB" ;   //SQLITE
+			BAGLAN.fihDizin.cONN_STR = GLOBAL.DBYERI + program  + ".DB" ;   //SQLITE
 		}
 		if (chckbxL.isSelected())
 		{
@@ -1175,7 +1175,12 @@ public class FIHRIST extends JFrame {
 			fih_Access.baglan();
 			doldur();
 			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
+			String msgString = "Dosya Olusturuldu ..." ;
+			if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("SQ LITE"))
+			{
+				msgString = "C:\\OBS_DATABASES\\  Dizininde Dosya Olusturuldu ..." ;
+			}
+			mesaj_goster(5000,Notifications.Type.INFO,   msgString );
 		}
 	}
 	private  void dosya_olustur_L() throws IOException, ClassNotFoundException, SQLException

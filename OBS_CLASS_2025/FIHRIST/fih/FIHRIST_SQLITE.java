@@ -44,7 +44,6 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 		Statement stmt = con.createStatement();  
 		stmt.execute(sql);  
 		stmt.close();
-		
 		con.close();
 	}
 

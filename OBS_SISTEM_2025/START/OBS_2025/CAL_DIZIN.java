@@ -190,6 +190,10 @@ public class CAL_DIZIN extends JFrame {
 			    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 			    	cIKIS();	
 			    }
+			    @Override
+			      public void windowIconified(java.awt.event.WindowEvent we) {
+			        setState(JFrame.NORMAL);
+			      }
 			});
 		  
 		setUndecorated(true);

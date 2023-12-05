@@ -128,9 +128,8 @@ public class KASA extends JInternalFrame {
 					isimoku_ekstre();
 					yenile();
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (SQLException e1) {
+				} catch (Exception e1) {
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					e1.printStackTrace();
 				}
 			}
@@ -141,9 +140,8 @@ public class KASA extends JInternalFrame {
 					isimoku_ekstre();
 					yenile();
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (SQLException e1) {
+				} catch (Exception e1) {
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					e1.printStackTrace();
 				}
 			}
@@ -154,9 +152,8 @@ public class KASA extends JInternalFrame {
 					isimoku_ekstre();
 					yenile();
 					getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (SQLException e1) {
+				} catch (Exception e1) {
+					getContentPane().setCursor(oac.DEFAULT_CURSOR);
 					e1.printStackTrace();
 				}
 			}

@@ -656,7 +656,7 @@ public class LOGIN extends JDialog {
 		
 		lblModul = new JLabel();
 		lblModul.setForeground(new Color(0, 139, 139));
-		lblModul.setBounds(1, 138, 189, 14);
+		lblModul.setBounds(1, 136, 189, 16);
 		panel.add(lblModul);
 		
 		JSeparator separator_1 = new JSeparator();

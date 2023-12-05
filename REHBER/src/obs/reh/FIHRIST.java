@@ -25,6 +25,7 @@ import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.USER_ISLEMLERI;
+import OBS_C_2025.ValidEmailAddress;
 import fih.FIHRIST_MSSQL;
 import fih.FIHRIST_MYSQL;
 import fih.FIHRIST_SQLITE;
@@ -87,6 +88,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
@@ -338,6 +341,18 @@ public class FIHRIST extends JFrame {
 		txtMail.setDocument(new JTextFieldLimit(50));
 		txtMail.setColumns(10);
 		txtMail.setBounds(292, 97, 360, 20);
+		txtMail.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtMail.getText().equals("") ) return;
+				if (ValidEmailAddress.isValid(txtMail.getText()  ) == false )
+				{
+					mesaj_goster(5000,Notifications.Type.ERROR,"Gecersiz Email Adres Formati" );
+					txtMail.requestFocus();
+				}
+			}
+		});
+
 		panel_2.add(txtMail);
 
 		JLabel lblNewLabel_2_6 = new JLabel("Not");
@@ -381,9 +396,11 @@ public class FIHRIST extends JFrame {
 						return;
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					fih_kaydet();
+					textField.setText("");
 					doldur();
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception ex) {
+					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
 				}
 			}
@@ -405,6 +422,7 @@ public class FIHRIST extends JFrame {
 				try {
 					if(! txtcd.getText().toString().equals(""))
 						fih_Access.reh_sil(Integer.parseInt(txtcd.getText().toString()));
+					textField.setText("");
 					doldur();
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception ex)
@@ -1385,6 +1403,8 @@ public class FIHRIST extends JFrame {
 				table.setRowHeight(21);
 				lblSatir.setText( String.format("%,d %n" ,  table.getRowCount()));
 				fih_doldur_kutu(table,0);
+				table.setRowSelectionInterval(0, 0);
+				table.scrollRectToVisible(table.getCellRect(0, 0, true));
 			}
 		} catch (Exception ex) 
 		{

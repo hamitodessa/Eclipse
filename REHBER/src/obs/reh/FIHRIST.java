@@ -46,6 +46,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.HeadlessException;
+import java.awt.TextArea;
 import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -120,7 +121,7 @@ public class FIHRIST extends JFrame {
 
 	private JTable table_1;
 	private JTable table;
-	private JTextField textField;
+	private JTextField txtArama;
 	private static JTextField txtcd;
 	private static JTextField txtAdi;
 	private static JTextField txtT1;
@@ -221,8 +222,8 @@ public class FIHRIST extends JFrame {
 		lblNewLabel.setBounds(10, 11, 48, 14);
 		panel_2.add(lblNewLabel);
 
-		textField = new JTextField();
-		textField.getDocument().addDocumentListener(new DocumentListener() {
+		txtArama = new JTextField();
+		txtArama.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				arama();
 			}
@@ -233,7 +234,7 @@ public class FIHRIST extends JFrame {
 				arama();
 			}
 		});
-		textField.addKeyListener(new KeyAdapter() {
+		txtArama.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Down" )
@@ -244,7 +245,7 @@ public class FIHRIST extends JFrame {
 			}
 		});
 
-		textField.addAncestorListener(new AncestorListener() {
+		txtArama.addAncestorListener(new AncestorListener() {
 			@Override
 			public void ancestorRemoved(AncestorEvent pEvent) {
 			}
@@ -256,15 +257,15 @@ public class FIHRIST extends JFrame {
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						textField.requestFocusInWindow();
+						txtArama.requestFocusInWindow();
 					}
 				});
 			}
 		});
 
-		textField.setBounds(68, 7, 372, 20);
-		panel_2.add(textField);
-		textField.setColumns(10);
+		txtArama.setBounds(68, 7, 372, 20);
+		panel_2.add(txtArama);
+		txtArama.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("Adi");
 		lblNewLabel_1.setBounds(10, 46, 48, 14);
@@ -396,8 +397,9 @@ public class FIHRIST extends JFrame {
 						return;
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					fih_kaydet();
-					textField.setText("");
+					txtArama.setText("");
 					doldur();
+					txtArama.requestFocus();
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception ex) {
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -416,19 +418,23 @@ public class FIHRIST extends JFrame {
 				int g = JOptionPane.showOptionDialog(null,txtAdi.getText() + System.lineSeparator()  + System.lineSeparator() + "Kayit Silinecek..........?" ,
 						"Fihrist ", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
 				if(g ==  1) {
+					txtArama.setText("");
+					txtArama.requestFocus();
 					return;
 				}
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				try {
 					if(! txtcd.getText().toString().equals(""))
 						fih_Access.reh_sil(Integer.parseInt(txtcd.getText().toString()));
-					textField.setText("");
+					txtArama.setText("");
 					doldur();
+					txtArama.requestFocus();
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception ex)
 				{
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
+					txtArama.requestFocus();
 				}
 			}
 		});
@@ -616,7 +622,7 @@ public class FIHRIST extends JFrame {
 			}
 		});
 		chckbxL.setSelected(true);
-		chckbxL.setBounds(88, 107, 65, 23);
+		chckbxL.setBounds(88, 115, 65, 23);
 		panel_3.add(chckbxL);
 
 		chckbxS = new JCheckBox("Server");
@@ -633,7 +639,7 @@ public class FIHRIST extends JFrame {
 			}
 		});
 		chckbxS.setSelected(false);
-		chckbxS.setBounds(167, 107, 78, 23);
+		chckbxS.setBounds(167, 115, 78, 23);
 		panel_3.add(chckbxS);
 
 		JLabel lblInstance = new JLabel("Instance");
@@ -1419,7 +1425,7 @@ public class FIHRIST extends JFrame {
 	public void arama()  
 	{
 		tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		if (textField.getText().equals(""))
+		if (txtArama.getText().equals(""))
 		{
 			table.setRowSorter(null);
 		}
@@ -1434,10 +1440,10 @@ public class FIHRIST extends JFrame {
 			});
 			if(chckbxKriter.isSelected())
 			{
-				sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + textField.getText().toLowerCase(),0));
+				sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + txtArama.getText().toLowerCase(),0));
 			}
 			else {
-				sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + textField.getText().toLowerCase()));
+				sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + txtArama.getText().toLowerCase()));
 			}
 
 			table.setRowSorter(sorter);

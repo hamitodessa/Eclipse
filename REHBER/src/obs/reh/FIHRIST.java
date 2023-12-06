@@ -827,7 +827,13 @@ public class FIHRIST extends JFrame {
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
 				JFileChooser chooser = new JFileChooser();
-				chooser.setCurrentDirectory(new java.io.File("C:\\OBS_DATABASES"));
+				if(txtDizin.toString().equals(""))
+				{
+					chooser.setCurrentDirectory(new java.io.File(GLOBAL.DBYERI));
+				}
+				else {
+					chooser.setCurrentDirectory(new java.io.File(txtDizin.getText()));
+				}
 				chooser.setDialogTitle("Surucu Seciniz");
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				chooser.setAcceptAllFileFilterUsed(false);

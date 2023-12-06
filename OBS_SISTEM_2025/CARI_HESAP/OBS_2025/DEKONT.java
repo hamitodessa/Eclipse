@@ -705,7 +705,7 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		txtbtutar.setEnabled(false);
-		txtbtutar.setForeground(new Color(0, 0, 139));
+		//txtbtutar.setForeground(new Color(0, 0, 139));
 		txtbtutar.setFont(new Font("Tahoma", Font.BOLD, 22));
 
 		txtbtutar.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -1243,7 +1243,7 @@ public class DEKONT extends JInternalFrame {
 		dfat.setMaximumFractionDigits(2);
 		txtatutar.setFormatterFactory(f_dobat);
 		txtatutar.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtatutar.setForeground(new Color(0, 0, 139));
+		//txtatutar.setForeground(new Color(0, 0, 139));
 		txtatutar.setFont(new Font("Tahoma", Font.BOLD, 22));
 		txtatutar.setBounds(512, 40, 190, 30);
 		panel_1_1.add(txtatutar);

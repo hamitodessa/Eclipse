@@ -1609,6 +1609,7 @@ public class FIHRIST extends JFrame {
 		tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		if (txtArama.getText().equals(""))
 		{
+			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			table.setRowSorter(null);
 		}
 		else

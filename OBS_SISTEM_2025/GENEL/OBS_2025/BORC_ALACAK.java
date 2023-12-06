@@ -32,7 +32,7 @@ public class BORC_ALACAK extends JDialog {
 		setModal(true);
 		setResizable(false);
 		setTitle("HESAP");
-		setBounds(100, 100, 406, 118);
+		setBounds(100, 100, 406, 104);
 		getContentPane().setLayout(new BorderLayout());
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -41,7 +41,7 @@ public class BORC_ALACAK extends JDialog {
 
 		lblNewLabel = new JLabel("Hesap");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel.setBounds(10, 29, 91, 14);
+		lblNewLabel.setBounds(10, 15, 69, 14);
 		contentPanel.add(lblNewLabel);
 
 		txtcari = new JTextField();
@@ -91,14 +91,14 @@ public class BORC_ALACAK extends JDialog {
 		});
 
 		txtcari.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtcari.setBounds(100, 25, 124, 20);
+		txtcari.setBounds(75, 11, 124, 20);
 		contentPanel.add(txtcari);
 		txtcari.setColumns(10);
 
 		lblNewLabel_1 = new JLabel(".....");
 		lblNewLabel_1.setForeground(new Color(25, 25, 112));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setBounds(100, 50, 290, 14);
+		lblNewLabel_1.setBounds(75, 36, 305, 14);
 		contentPanel.add(lblNewLabel_1);
 	}
 

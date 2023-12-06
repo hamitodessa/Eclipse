@@ -67,7 +67,7 @@ public class BILGI_OKU {
 				}
 				else   if (dIZIN.hAN_SQL.toString().equals("SQ LITE") == true) 
 				{
-					dIZIN.cONN_STR = gLB.DBYERI + dOSYA_BASLANGIC  + dIZIN.kOD + ".DB" ;   //SQLITE
+					dIZIN.cONN_STR = dIZIN.dIZIN + "/" + dOSYA_BASLANGIC  + dIZIN.kOD + ".DB" ;   //SQLITE
 				}
 			}
 			else

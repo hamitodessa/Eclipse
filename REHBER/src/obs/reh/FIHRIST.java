@@ -76,6 +76,7 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import fih.FIHRIST_ACCESS;
 
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JCheckBox;
 import javax.swing.JPasswordField;
 import javax.swing.BorderFactory;
@@ -148,7 +149,9 @@ public class FIHRIST extends JFrame {
 	private JLabel lblbilgi ;
 	private JButton btnServer ;
 	private JButton btnVtKontrol ;
+	private JButton btndizsec;
 	private JCheckBox chckbxKriter;
+	private static JTextField txtDizin;
 
 	/**
 	 * Launch the application.
@@ -566,6 +569,8 @@ public class FIHRIST extends JFrame {
 					txtUser.setEnabled(true);
 					txtPwd.setEnabled(true);
 					btnServer.setEnabled(true);
+					txtDizin.setVisible(false);
+					btndizsec.setVisible(false);
 				}
 				else if (hangi == "MY SQL")
 				{
@@ -577,6 +582,8 @@ public class FIHRIST extends JFrame {
 					txtUser.setEnabled(true);
 					txtPwd.setEnabled(true);
 					btnServer.setEnabled(true);
+					txtDizin.setVisible(false);
+					btndizsec.setVisible(false);
 				}
 				else if (hangi == "SQ LITE")
 				{
@@ -589,6 +596,8 @@ public class FIHRIST extends JFrame {
 					txtPwd.setEnabled(false);
 					btnServer.setEnabled(false);
 					btnVtKontrol.setEnabled(true);
+					txtDizin.setVisible(true);
+					btndizsec.setVisible(true);
 				}
 			}
 		});
@@ -802,6 +811,41 @@ public class FIHRIST extends JFrame {
 
 		///////////////////////
 		panel_3.add(toolBar);
+		
+		txtDizin = new JTextField();
+		txtDizin.setText("C:\\OBS_DATABASES");
+		txtDizin.setVisible(false);
+		txtDizin.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtDizin.setBounds(10, 384, 255, 20);
+		panel_3.add(txtDizin);
+		
+		btndizsec = new JButton("Surucu Sec");
+		btndizsec.setVisible(false);
+		btndizsec.setBounds(10, 411, 107, 23);
+		btndizsec.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new java.io.File("C:\\OBS_DATABASES"));
+				chooser.setDialogTitle("Surucu Seciniz");
+				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				chooser.setAcceptAllFileFilterUsed(false);
+				chooser.setApproveButtonText("Surucu Sec");
+				chooser.setApproveButtonToolTipText("Surucu Sec");
+				chooser.setApproveButtonMnemonic('s');
+				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+					txtDizin.setText(chooser.getSelectedFile().toString());
+				}
+				else {
+					// System.out.println("No Selection ");
+				}
+			}
+		});
+
+		
+		panel_3.add(btndizsec);
 		txtcdid.setVisible(false);
 
 		ScrollPaneWin11 scrollPane_4 = new ScrollPaneWin11();
@@ -1046,6 +1090,7 @@ public class FIHRIST extends JFrame {
 			sBilgi.setKull(txtUser.getText()); 
 			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtPwd)); 
 			sBilgi.setPort(txtIp.getText()); 
+			sBilgi.setDizin(txtDizin.getText());
 			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			if ( s_CONN.Server_kontrol_L( sBilgi) == true  )
 			{
@@ -1135,7 +1180,7 @@ public class FIHRIST extends JFrame {
 		program = "OK_Fih" + txtKodu.getText();
 		if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("SQ LITE"))
 		{
-			BAGLAN.fihDizin.cONN_STR = GLOBAL.DBYERI + program  + ".DB" ;   //SQLITE
+			BAGLAN.fihDizin.cONN_STR = txtDizin.getText() + "/"  + program  + ".DB" ;   //SQLITE
 		}
 		if (chckbxL.isSelected())
 		{
@@ -1256,7 +1301,7 @@ public class FIHRIST extends JFrame {
 		oac.uSER_ISL.calisanmi_degis("Admin","Fihrist",chckbxL.isSelected() ? "L" : "S"); // CaLISANMI DOSYA KONTROLU
 		oac.uSER_ISL.details_yaz(txtKodu.getText(),"Admin",txtUser.getText(), oac.sDONDUR.sDONDUR(txtPwd),
 				cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() , 
-						txtIp.getText(), "Fihrist","", chckbxL.isSelected() ? "L" : "S",  "D" , "E", "E",
+						txtIp.getText(), "Fihrist",txtDizin.getText(), chckbxL.isSelected() ? "L" : "S",  "D" , "E", "E",
 								cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()), 
 								txtcdid.getText(), 0, "false,false,false,false");
 	}
@@ -1311,6 +1356,7 @@ public class FIHRIST extends JFrame {
 			chckbxS.setSelected(true);
 			chckbxL.setSelected(false);
 		}
+		txtDizin.setText(grd.getModel().getValueAt(satir, 8).toString());
 	}
 	private static void kutu_temizle() throws ClassNotFoundException, SQLException
 	{

@@ -26,7 +26,7 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 
 	@Override
 	public void reh_sifirdan_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		con = DriverManager.getConnection("jdbc:sqlite:" + GLOBAL.DBYERI + "OK_Fih" + sbilgi.getKod() + ".DB"  ) ;
+		con = DriverManager.getConnection("jdbc:sqlite:" + sbilgi.getDizin() + "/" + "OK_Fih" + sbilgi.getKod() + ".DB"  ) ;
 		con.close();
 		String sql = "CREATE TABLE [FIHRIST]("
 				+ " ID INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -40,7 +40,7 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 				+ " Note2 nvarchar(50) NULL,"
 				+ " Mail nvarchar(50) NULL) ";
 		
-		con = DriverManager.getConnection("jdbc:sqlite:" + GLOBAL.DBYERI + "OK_Fih" + sbilgi.getKod() + ".DB"  ) ;
+		con = DriverManager.getConnection("jdbc:sqlite:" +  sbilgi.getDizin() + "/" + "OK_Fih" + sbilgi.getKod() + ".DB"  ) ;
 		Statement stmt = con.createStatement();  
 		stmt.execute(sql);  
 		stmt.close();

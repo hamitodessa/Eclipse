@@ -1003,12 +1003,14 @@ public class FIHRIST extends JFrame {
 		table_1.setShowVerticalLines(true);
 		table_1.setFont(new Font("Calibri", Font.PLAIN, 14));
 		table_1.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+		table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_4.setViewportView(table_1);
 		Notifications.getInstance().setJFrame(this);
 		tabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				if (tabbedPane.getSelectedIndex() ==0)
 				{
+					txtArama.setText("");
 					basla();
 				}
 				else if (tabbedPane.getSelectedIndex() ==1)

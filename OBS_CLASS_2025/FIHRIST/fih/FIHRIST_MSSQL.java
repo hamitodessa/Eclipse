@@ -86,7 +86,11 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 				+ " Fax nvarchar(25) NULL,"
 				+ " Note nvarchar(50) NULL,"
 				+ " Note2 nvarchar(50) NULL,"
-				+ " Mail nvarchar(50) NULL) ";
+				+ " Mail nvarchar(50) NULL )";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
+		sql = "CREATE NONCLUSTERED INDEX [IX_FIHRIST] "
+				+"	ON [dbo].[FIHRIST] ([Adi])";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 	}

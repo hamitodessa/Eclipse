@@ -38,10 +38,18 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 				+ " Fax nvarchar(25) NULL,"
 				+ " Note nvarchar(50) NULL,"
 				+ " Note2 nvarchar(50) NULL,"
-				+ " Mail nvarchar(50) NULL) ";
+				+ " Mail nvarchar(50) NULL) " ;
 		
 		con = DriverManager.getConnection("jdbc:sqlite:" +  sbilgi.getDizin() + "/" + "OK_Fih" + sbilgi.getKod() + ".DB"  ) ;
 		Statement stmt = con.createStatement();  
+		stmt.execute(sql);  
+		stmt.close();
+		con.close();
+		con.close();
+		 sql = "CREATE INDEX IX_FIHRIST ON FIHRIST (Adi);" ;
+		
+		con = DriverManager.getConnection("jdbc:sqlite:" +  sbilgi.getDizin() + "/" + "OK_Fih" + sbilgi.getKod() + ".DB"  ) ;
+		stmt = con.createStatement();  
 		stmt.execute(sql);  
 		stmt.close();
 		con.close();

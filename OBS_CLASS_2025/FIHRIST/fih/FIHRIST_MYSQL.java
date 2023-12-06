@@ -72,7 +72,8 @@ public class FIHRIST_MYSQL implements I_Fihrist{
 				+ " `Fax` nvarchar(25) NULL,"
 				+ " `Note` nvarchar(50) NULL,"
 				+ " `Note2` nvarchar(50) NULL,"
-				+ " `Mail` nvarchar(50) NULL);";
+				+ " `Mail` nvarchar(50) NULL ,"
+				+ "  INDEX `IX_FIHRIST` (`Adi` ASC) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 	}

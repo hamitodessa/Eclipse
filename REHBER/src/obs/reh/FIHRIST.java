@@ -286,7 +286,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtT1.requestFocus();
 				}
-				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -311,7 +311,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtT2.requestFocus();
 				}
-				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -337,7 +337,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtT3.requestFocus();
 				}
-				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -361,7 +361,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtT4.requestFocus();
 				}
-				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -385,7 +385,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtFax.requestFocus();
 				}
-				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -409,7 +409,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtMail.requestFocus();
 				}
-				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -433,7 +433,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtNot.requestFocus();
 				}
-				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -469,7 +469,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtNot2.requestFocus();
 				}
-				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -493,7 +493,7 @@ public class FIHRIST extends JFrame {
 				{	
 					txtAdi.requestFocus();
 				}
-				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				if ((e.getKeyCode() == 83) && ((e.getModifiers() & (  KeyEvent.CTRL_MASK) ) != 0))
 				{
 					btnKayitf.doClick();
 				}
@@ -1035,8 +1035,6 @@ public class FIHRIST extends JFrame {
 		{
 			try {
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
-				fih_Access.baglan();
 				fihrist_kont();
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			} catch (Exception e) {
@@ -1059,13 +1057,16 @@ public class FIHRIST extends JFrame {
 				return ;
 			}
 			surucubilgi = true ;
+			
 			fihrist_calisma_dizini_oku();
+		
 		} catch (Exception e) {
 			mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
 		}
 	}
 	void fihrist_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
+	
 		CONNECT s_CONN = new CONNECT( oac._IFihristCon);
 		if (BAGLAN.fihDizin.yER.equals(""))
 		{
@@ -1084,6 +1085,7 @@ public class FIHRIST extends JFrame {
 		{
 			if (s_CONN.Server_kontrol_L(sBilgi) == true)   
 			{
+				oac.FIHRIST_CONN = true ;
 				if (s_CONN.Dosya_kontrol_L( sBilgi) == false)
 				{
 					FIH_DOS_VAR = false;
@@ -1091,7 +1093,6 @@ public class FIHRIST extends JFrame {
 				else
 				{
 					FIH_DOS_VAR = true;
-					oac.FIHRIST_CONN = true ;
 				}
 			}
 			else
@@ -1103,6 +1104,7 @@ public class FIHRIST extends JFrame {
 		{
 			if (s_CONN.Server_kontrol_S(sBilgi) == true)   
 			{
+				oac.FIHRIST_CONN = true ;
 				if (s_CONN.Dosya_kontrol_S( sBilgi) == false)
 				{
 					FIH_DOS_VAR = false;
@@ -1110,7 +1112,6 @@ public class FIHRIST extends JFrame {
 				else
 				{
 					FIH_DOS_VAR = true;
-					oac.FIHRIST_CONN = true ;
 				}
 			}
 			else
@@ -1118,22 +1119,28 @@ public class FIHRIST extends JFrame {
 				oac.FIHRIST_CONN = false;
 			}
 		}
+	
 	}
 	void fihrist_kont() throws ClassNotFoundException, SQLException
 	{
+		
 		String qwe = "" ;
 		if (oac.FIHRIST_CONN == true)
 		{
 			if (FIH_DOS_VAR == false)
 			{
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Fihrist -" + BAGLAN.cariDizin.kOD + "- Nolu Dosya Bulunamadi.....Lutfen Baglantilari Kontrol ediniz.....");
+				mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Fihrist -" + BAGLAN.fihDizin.kOD + " - Nolu Dosya Bulunamadi.....Lutfen Baglantilari Kontrol ediniz.....");
 				lblbilgi.setText ("" );
+				tabbedPane.setSelectedIndex(1);
+				ayar_doldur();
 			}
 			else 
 			{ 
 				qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
 				lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe.toString().trim()  + " / "+ BAGLAN.fihDizin.hAN_SQL );
+				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
+				fih_Access.baglan();
 				doldur();
 			}
 		}
@@ -1327,6 +1334,7 @@ public class FIHRIST extends JFrame {
 		sBilgi.setSifre(oac.sDONDUR.sDONDUR(txtPwd));
 		sBilgi.setIns(cmbInstance.getSelectedItem() == null ? "" :cmbInstance.getSelectedItem().toString() ); 
 		sBilgi.setPort(txtIp.getText());
+		sBilgi.setDizin(txtDizin.getText());
 		if ( s_CONN.Dosya_kontrol_L(sBilgi) == true)
 		{
 			mdb_yaz();
@@ -1375,7 +1383,7 @@ public class FIHRIST extends JFrame {
 		sbilgi.setSifre(oac.sDONDUR.sDONDUR(txtPwd));
 		sbilgi.setPort(txtIp.getText()); 
 		sbilgi.setDizin_yeri("default");
-		sbilgi.setDizin("");
+		sbilgi.setDizin(txtDizin.getText());
 		fih_Access.fihrist_sifirdan_L(sbilgi);
 	}
 	private void server_dosya(CONNECT s_CONN,String program,String modul) throws HeadlessException, ClassNotFoundException, SQLException, IOException

@@ -109,7 +109,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
-@SuppressWarnings({"static-access","unused","serial"})
+@SuppressWarnings({"static-access","unused","serial","deprecation"})
 public class FIHRIST extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -150,6 +150,7 @@ public class FIHRIST extends JFrame {
 	private JButton btnServer ;
 	private JButton btnVtKontrol ;
 	private JButton btndizsec;
+	private JButton btnKayitf ;
 	private JCheckBox chckbxKriter;
 	private static JTextField txtDizin;
 
@@ -278,6 +279,20 @@ public class FIHRIST extends JFrame {
 		txtAdi.setDocument(new JTextFieldLimit(50));
 		txtAdi.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtAdi.setBounds(68, 43, 372, 20);
+		txtAdi.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtT1.requestFocus();
+				}
+				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				{
+					btnKayitf.doClick();
+				}
+			}
+		});
+		
 		panel_2.add(txtAdi);
 		txtAdi.setColumns(10);
 
@@ -289,6 +304,20 @@ public class FIHRIST extends JFrame {
 		txtT1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtT1.setDocument(new JTextFieldLimit(25));
 		txtT1.setBounds(68, 72, 148, 20);
+		txtT1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtT2.requestFocus();
+				}
+				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				{
+					btnKayitf.doClick();
+				}
+			}
+		});
+
 		panel_2.add(txtT1);
 		txtT1.setColumns(10);
 
@@ -301,6 +330,19 @@ public class FIHRIST extends JFrame {
 		txtT2.setDocument(new JTextFieldLimit(25));
 		txtT2.setColumns(10);
 		txtT2.setBounds(292, 69, 148, 20);
+		txtT2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtT3.requestFocus();
+				}
+				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				{
+					btnKayitf.doClick();
+				}
+			}
+		});
 		panel_2.add(txtT2);
 
 		JLabel lblNewLabel_2_2 = new JLabel("Tel_3");
@@ -312,6 +354,19 @@ public class FIHRIST extends JFrame {
 		txtT3.setDocument(new JTextFieldLimit(25));
 		txtT3.setColumns(10);
 		txtT3.setBounds(502, 69, 148, 20);
+		txtT3.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtT4.requestFocus();
+				}
+				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				{
+					btnKayitf.doClick();
+				}
+			}
+		});
 		panel_2.add(txtT3);
 
 		JLabel lblNewLabel_2_3 = new JLabel("Tel_4");
@@ -323,6 +378,19 @@ public class FIHRIST extends JFrame {
 		txtT4.setDocument(new JTextFieldLimit(25));
 		txtT4.setColumns(10);
 		txtT4.setBounds(718, 69, 148, 20);
+		txtT4.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtFax.requestFocus();
+				}
+				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				{
+					btnKayitf.doClick();
+				}
+			}
+		});
 		panel_2.add(txtT4);
 
 		JLabel lblNewLabel_2_4 = new JLabel("Fax");
@@ -334,6 +402,19 @@ public class FIHRIST extends JFrame {
 		txtFax.setDocument(new JTextFieldLimit(25));
 		txtFax.setColumns(10);
 		txtFax.setBounds(68, 98, 148, 20);
+		txtFax.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtMail.requestFocus();
+				}
+				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				{
+					btnKayitf.doClick();
+				}
+			}
+		});
 		panel_2.add(txtFax);
 
 		JLabel lblNewLabel_2_5 = new JLabel("Mail");
@@ -345,6 +426,19 @@ public class FIHRIST extends JFrame {
 		txtMail.setDocument(new JTextFieldLimit(50));
 		txtMail.setColumns(10);
 		txtMail.setBounds(292, 97, 360, 20);
+		txtMail.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtNot.requestFocus();
+				}
+				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				{
+					btnKayitf.doClick();
+				}
+			}
+		});
 		txtMail.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -368,6 +462,19 @@ public class FIHRIST extends JFrame {
 		txtNot.setDocument(new JTextFieldLimit(50));
 		txtNot.setColumns(10);
 		txtNot.setBounds(68, 126, 360, 20);
+		txtNot.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtNot2.requestFocus();
+				}
+				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				{
+					btnKayitf.doClick();
+				}
+			}
+		});
 		panel_2.add(txtNot);
 
 		JLabel lblNewLabel_2_6_1 = new JLabel("Not_2");
@@ -379,6 +486,19 @@ public class FIHRIST extends JFrame {
 		txtNot2.setDocument(new JTextFieldLimit(50));
 		txtNot2.setColumns(10);
 		txtNot2.setBounds(508, 126, 360, 20);
+		txtNot2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtAdi.requestFocus();
+				}
+				if(	e.getKeyCode() == 83 && (KeyEvent.CTRL_MASK != 0) )
+				{
+					btnKayitf.doClick();
+				}
+			}
+		});
 		panel_2.add(txtNot2);
 
 		txtcd = new JTextField();
@@ -392,7 +512,7 @@ public class FIHRIST extends JFrame {
 		toolBar_1.setBounds(772, 5, 138, 27);
 		panel_2.add(toolBar_1);
 
-		JButton btnKayitf = new JButton("");
+		btnKayitf = new JButton("");
 		btnKayitf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

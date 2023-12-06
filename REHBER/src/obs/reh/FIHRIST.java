@@ -1123,7 +1123,6 @@ public class FIHRIST extends JFrame {
 	}
 	void fihrist_kont() throws ClassNotFoundException, SQLException
 	{
-		
 		String qwe = "" ;
 		if (oac.FIHRIST_CONN == true)
 		{

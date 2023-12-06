@@ -1149,6 +1149,7 @@ public class FIHRIST extends JFrame {
 			lblbilgi.setText ("" );
 			tabbedPane.setSelectedIndex(1);
 			ayar_doldur();
+			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			mesaj_goster(10000,Notifications.Type.WARNING, "Dosya Baglanti Kurulamadi.....Lutfen Baglantilari Kontrol ediniz.....");
 		}
 	}

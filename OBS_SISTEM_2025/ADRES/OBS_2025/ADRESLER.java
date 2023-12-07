@@ -29,6 +29,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
@@ -227,6 +228,16 @@ public class ADRESLER extends JInternalFrame {
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(100);
 			}
+			tc = tcm.getColumn(19);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new CheckBoxRenderer());
+			tc.setMinWidth(50);
+			
+			tc = tcm.getColumn(20);
+			tc.setHeaderRenderer(new SOLA());
+			tc.setCellRenderer(new CheckBoxRenderer());
+			tc.setMinWidth(50);
+			
 			lbladet.setText( String.format("%,d %n" ,  table.getRowCount()));
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime;

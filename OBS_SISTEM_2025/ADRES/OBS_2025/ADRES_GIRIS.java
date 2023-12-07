@@ -652,8 +652,8 @@ public class ADRES_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			JOptionPane.showMessageDialog(null, ex.getMessage()); 
-			//OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());1
+			//JOptionPane.showMessageDialog(null, ex.getMessage()); 
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
 	}
 	private static void doldur(String nereye)
@@ -859,7 +859,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 			a_Access.adres_kayit(aDEG,	lBILGI, BAGLAN_LOG.adrLogDizin);
 			temizle();
 			txtarama.setText("");
-			//hisset("M_Kodu", "");
+			hisset("M_Kodu", "");
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
@@ -886,8 +886,9 @@ public class ADRES_GIRIS extends JInternalFrame {
 			a_Access.sil(txtkodu.getText(),txtunvan.getText(),
 					lBILGI, BAGLAN_LOG.adrLogDizin);
 			temizle();
-			//hisset("M_Kodu", "");
 			txtarama.setText("");
+			hisset("M_Kodu", "");
+			
 		}
 		catch (Exception ex)
 		{

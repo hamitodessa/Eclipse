@@ -4,7 +4,7 @@ package OBS_C_2025;
 
 public class BAGLAN_LOG {
 
-	public static DIZIN_BILGILERI cariLogDizin = new DIZIN_BILGILERI();  // Cari
+	public static DIZIN_BILGILERI cariLogDizin = new DIZIN_BILGILERI(); // Cari
 	public static DIZIN_BILGILERI kurLogDizin = new DIZIN_BILGILERI();  // Kur
 	public static DIZIN_BILGILERI fatLogDizin = new DIZIN_BILGILERI();  // Fatura
 	public static DIZIN_BILGILERI adrLogDizin = new DIZIN_BILGILERI();  // Adres

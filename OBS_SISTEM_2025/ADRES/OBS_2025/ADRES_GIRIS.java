@@ -547,15 +547,12 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtarama.setBounds(102, 27, 288, 23);
 		txtarama.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				if (txtarama.getText().equals(""))   { hisset("M_Kodu", ""); return ;};
 				arama();
 			}
 			public void removeUpdate(DocumentEvent e) {
-				if (txtarama.getText().equals(""))   { hisset("M_Kodu", ""); return ;};
 				arama();
 			}
 			public void insertUpdate(DocumentEvent e) {
-				if (txtarama.getText().equals(""))   { hisset("M_Kodu", ""); return ;};
 				arama();
 			}
 		});

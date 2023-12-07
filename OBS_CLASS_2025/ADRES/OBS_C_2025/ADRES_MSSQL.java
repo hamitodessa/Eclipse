@@ -139,9 +139,9 @@ public class ADRES_MSSQL implements IADRES {
 		sql = "CREATE TABLE [dbo].[Adres]( "
 				+ " [ID] [int] IDENTITY(1,1) NOT NULL ,"
 				+ " [M_Kodu] [nvarchar](12)  NULL, "
-				+ " [Adi] [nvarchar](35) NULL,"
-				+ " [Adres_1] [nvarchar](35) NULL,"
-				+ " [Adres_2] [nvarchar](35) NULL,"
+				+ " [Adi] [nvarchar](50) NULL,"
+				+ " [Adres_1] [nvarchar] (50) NULL,"
+				+ " [Adres_2] [nvarchar](50) NULL,"
 				+ " [Semt] [nvarchar](25) NULL,"
 				+ " [Sehir] [nvarchar](25) NULL,"
 				+ " [Posta_Kodu] [nvarchar](10) NULL,"
@@ -299,7 +299,7 @@ public class ADRES_MSSQL implements IADRES {
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = " DELETE " +
-				" FROM Adres WHERE M_Kodu = '" + kod.trim() +"'"  ;
+				" FROM Adres WHERE M_Kodu = N'" + kod.trim() + "' AND Adi = N'" + adi.trim() + "'"  ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 
@@ -366,7 +366,6 @@ public class ADRES_MSSQL implements IADRES {
 	}
 	@Override
 	public void create_table_log() throws SQLException {
-		// TODO Auto-generated method stub
 		String sql = "" ;
 		sql = "CREATE TABLE [dbo].[LOGLAMA]("
 				+ "	[TARIH] [datetime] NOT NULL,"
@@ -396,7 +395,7 @@ public class ADRES_MSSQL implements IADRES {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT Adi , Adres_1 ,Adres_2 , Tel_1,Semt ,Sehir  FROM Adres "
-				+ " WHERE Adi Like '%" + arama + "%'";
+				+ " WHERE Adi Like N'%" + arama + "%'";
 		Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		rss = stmt.executeQuery(sql);
 		return rss;

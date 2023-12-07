@@ -132,9 +132,9 @@ public class ADRES_MYSQL implements IADRES {
 		String sql = null;
 		sql = "CREATE TABLE `Adres`( "
 				+ " `M_Kodu`  nvarchar (12) NOT NULL, "
-				+ " `Adi`  nvarchar (35) NULL,"
-				+ " `Adres_1`  nvarchar (35) NULL,"
-				+ " `Adres_2`  nvarchar (35) NULL,"
+				+ " `Adi`  nvarchar (50) NULL,"
+				+ " `Adres_1`  nvarchar (50) NULL,"
+				+ " `Adres_2`  nvarchar (50) NULL,"
 				+ " `Semt`  nvarchar (25) NULL,"
 				+ " `Sehir`  nvarchar (25) NULL,"
 				+ " `Posta_Kodu`  nvarchar (10) NULL,"
@@ -146,7 +146,7 @@ public class ADRES_MYSQL implements IADRES {
 				+ " `Tel_3`  nvarchar (25) NULL,"
 				+ " `Ozel`  nvarchar (30) NULL,"
 				+ " `Yetkili`  nvarchar (30) NULL,"
-				+ " `E_Mail`  nvarchar (30) NULL,"
+				+ " `E_Mail`  nvarchar (50) NULL,"
 				+ " `Not_1`  nvarchar (30) NULL,"
 				+ " `Not_2`  nvarchar (30) NULL,"
 				+ " `Not_3`  nvarchar (30) NULL,"
@@ -304,7 +304,7 @@ public class ADRES_MYSQL implements IADRES {
 	public void sil(String kod ,String adi) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		String sql = " DELETE  FROM Adres WHERE M_Kodu = '" + kod.trim() +"'"  ;
+		String sql = " DELETE  FROM Adres WHERE M_Kodu = N'" + kod.trim() + "' AND Adi = N'" + adi.trim() + "'"  ;
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -391,7 +391,7 @@ public class ADRES_MYSQL implements IADRES {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT Adi , Adres_1 ,Adres_2 , Tel_1,Semt ,Sehir  FROM Adres "
-				+ " WHERE Adi Like '%" + arama + "%'";
+				+ " WHERE Adi Like N'%" + arama + "%'";
 		Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		rss = stmt.executeQuery(sql);
 		return rss;

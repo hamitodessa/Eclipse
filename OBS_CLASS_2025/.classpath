@@ -33,5 +33,13 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-net-3.7.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/smsApi-Java-1.8.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/TimingFramework-0.55.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/ucanaccess-5.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/jackcess-4.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/jackcess-encrypt-4.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-logging.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-lang-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-lang3-3.8.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/hsqldb-2.5.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

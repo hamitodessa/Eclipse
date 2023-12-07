@@ -14,6 +14,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.OBS_ORTAK_MSACCESS;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.OBS_ORTAK_SQLITE;
@@ -75,6 +76,7 @@ import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 import fih.FIHRIST_ACCESS;
+import fih.FIHRIST_MSACCESS;
 
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -720,9 +722,23 @@ public class FIHRIST extends JFrame {
 					txtDizin.setVisible(true);
 					btndizsec.setVisible(true);
 				}
+				else if (hangi == "MS ACCESS")
+				{
+					chckbxS.setEnabled(false);
+					chckbxL.setEnabled(true);
+					cmbInstance.setEnabled(false);
+					cmbip.setEnabled(false);
+					txtIp.setEnabled(false);
+					txtUser.setEnabled(false);
+					txtPwd.setEnabled(false);
+					btnServer.setEnabled(false);
+					btnVtKontrol.setEnabled(true);
+					txtDizin.setVisible(true);
+					btndizsec.setVisible(true);
+				}
 			}
 		});
-		cmbhangisql.setModel(new DefaultComboBoxModel<String>(new String[] {"MS SQL", "MY SQL", "SQ LITE"}));
+		cmbhangisql.setModel(new DefaultComboBoxModel<String>(new String[] {"MS SQL", "MY SQL", "SQ LITE","MS ACCESS"}));
 		cmbhangisql.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbhangisql.setBounds(88, 55, 157, 22);
 		panel_3.add(cmbhangisql);
@@ -1259,7 +1275,10 @@ public class FIHRIST extends JFrame {
 			break;	
 		case "SQ LITE":
 			oac._IFihristCon = new OBS_ORTAK_SQLITE() ;
-			break;		
+			break;
+		case "MS ACCESS":
+			oac._IFihristCon = new OBS_ORTAK_MSACCESS() ;
+			break;	
 		}
 	}
 	private void mODUL_AKTAR(String hangi)
@@ -1273,7 +1292,10 @@ public class FIHRIST extends JFrame {
 			break;	
 		case "SQ LITE":
 			oac._IFihrist =  new FIHRIST_SQLITE();
-			break;		
+			break;	
+		case "MS ACCESS":
+			oac._IFihrist =  new FIHRIST_MSACCESS();
+			break;	
 		}
 	}
 	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
@@ -1301,6 +1323,10 @@ public class FIHRIST extends JFrame {
 		if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("SQ LITE"))
 		{
 			BAGLAN.fihDizin.cONN_STR = txtDizin.getText() + "/"  + program  + ".DB" ;   //SQLITE
+		}
+		if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("MS ACCESS"))
+		{
+			BAGLAN.fihDizin.cONN_STR = txtDizin.getText() + "/"  + program  + ".accdb" ;   //SQLITE
 		}
 		if (chckbxL.isSelected())
 		{
@@ -1349,6 +1375,10 @@ public class FIHRIST extends JFrame {
 			tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			String msgString = "Dosya Olusturuldu ..." ;
 			if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("SQ LITE"))
+			{
+				msgString = "C:\\OBS_DATABASES\\  Dizininde Dosya Olusturuldu ..." ;
+			}
+			if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("MS ACCESS"))
 			{
 				msgString = "C:\\OBS_DATABASES\\  Dizininde Dosya Olusturuldu ..." ;
 			}

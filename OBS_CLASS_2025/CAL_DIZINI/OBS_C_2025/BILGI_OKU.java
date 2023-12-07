@@ -69,6 +69,10 @@ public class BILGI_OKU {
 				{
 					dIZIN.cONN_STR = dIZIN.dIZIN + "/" + dOSYA_BASLANGIC  + dIZIN.kOD + ".DB" ;   //SQLITE
 				}
+				else   if (dIZIN.hAN_SQL.toString().equals("MS ACCESS") == true) 
+				{
+					dIZIN.cONN_STR = dIZIN.dIZIN + "/" + dOSYA_BASLANGIC  + dIZIN.kOD + ".accdb" ;   //ACCESS
+				}
 			}
 			else
 			{ 

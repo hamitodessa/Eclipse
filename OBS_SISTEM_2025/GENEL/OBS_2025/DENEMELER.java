@@ -146,7 +146,7 @@ public class DENEMELER extends JInternalFrame {
 				try {
 					Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 				} catch (ClassNotFoundException e2) {
-					// TODO Auto-generated catch block
+				System.out.println("149");
 					e2.printStackTrace();
 				}
 				Connection conn;

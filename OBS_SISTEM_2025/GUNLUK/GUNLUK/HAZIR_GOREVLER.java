@@ -197,11 +197,11 @@ public class HAZIR_GOREVLER extends JInternalFrame {
 			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi();
 			if (FILTRE.cmbGrv_Isim.getSelectedItem().toString().equals(""))
 			{
-				gbilgi.isim = " LikE '%' ";
+				gbilgi.isim = " Like N'%' ";
 			}
 			else
 			{
-				gbilgi.isim = " ='" + FILTRE.cmbGrv_Isim.getSelectedItem().toString() + "'";
+				gbilgi.isim = " = N'" + FILTRE.cmbGrv_Isim.getSelectedItem().toString() + "'";
 			}
 			gbilgi.saat1 = FILTRE.comboBox_75.getSelectedItem().toString();
 			gbilgi.saat2 = FILTRE.comboBox_76.getSelectedItem().toString();

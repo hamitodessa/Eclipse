@@ -20,10 +20,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	static Connection con = null;
 	static Statement stmt = null;
 
-	
-	//		if(con.isClosed())  baglan();
 
-	
 	@Override
 	public void baglan() throws SQLException {
 		String cumle = "jdbc:sqlserver://" + BAGLAN.gunDizin.cONN_STR + ";";
@@ -241,7 +238,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		ResultSet	rss = null;
 		String sql = "SELECT GID  " +
 				" FROM GOREV  " +
-				" WHERE ISIM =  '" + gbilgi.isim + "' AND GOREV = '" + gbilgi.gorev+ "'" +
+				" WHERE ISIM =  N'" + gbilgi.isim + "' AND GOREV = N'" + gbilgi.gorev+ "'" +
 				" AND BASL_TARIH = '" + gbilgi.tarih1 + "' AND BIT_TARIH = '" + gbilgi.tarih2 + "'";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -299,8 +296,8 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		ResultSet	rss = null;
 		String sql = "SELECT GID  " +
 				" FROM GOREV  " +
-				" WHERE ISIM =  '" + gbilgi.isim + "' AND GOREV = '" + gbilgi.gorev +   "' AND YER ='" + gbilgi.yer + "'" +
-				" AND MESAJ ='" + gbilgi.mesaj + "'";
+				" WHERE ISIM =  N'" + gbilgi.isim + "' AND GOREV = N'" + gbilgi.gorev +   "' AND YER = N'" + gbilgi.yer + "'" +
+				" AND MESAJ = N'" + gbilgi.mesaj + "'";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();

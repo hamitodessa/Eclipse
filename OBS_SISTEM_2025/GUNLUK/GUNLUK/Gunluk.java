@@ -1046,7 +1046,7 @@ public class Gunluk extends JInternalFrame {
 		}
 		else 
 		{
-			gbilgi.isim = " AND ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' " ;
+			gbilgi.isim = " AND ISIM = N'"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' " ;
 		}
 		ResultSet rs = g_Access.gorev_oku(gbilgi);
 
@@ -1364,7 +1364,7 @@ public class Gunluk extends JInternalFrame {
 		}
 		else 
 		{
-			gbilgi.isim = " ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' AND " ;
+			gbilgi.isim = " ISIM = N'"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' AND " ;
 		}
 		ResultSet rs =  g_Access. gorev_oku_yillik_pivot(gbilgi);
 		return rs;
@@ -1384,7 +1384,7 @@ public class Gunluk extends JInternalFrame {
 		}
 		else 
 		{
-			gbilgi.isim = " ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' AND " ;
+			gbilgi.isim = " ISIM = N'"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' AND " ;
 		}
         LocalDate givenDate = LocalDate.parse(formatted,   DateTimeFormatter.ofPattern("yyyy.MM.dd"));
         LocalDate lastDayOfMonthDateGivenDate  = givenDate.withDayOfMonth( givenDate.getMonth().length(givenDate.isLeapYear()));
@@ -1500,7 +1500,7 @@ public class Gunluk extends JInternalFrame {
 			}
 			else 
 			{
-				gbilgi.isim = " AND ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' " ;
+				gbilgi.isim = " AND ISIM = N'"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' " ;
 			}
 			gbilgi.tarih1 = trh1 ;
 			ResultSet rs = g_Access.gorev_oku_sonraki(gbilgi);
@@ -1543,7 +1543,7 @@ public class Gunluk extends JInternalFrame {
 			}
 			else 
 			{
-				gbilgi.isim = " AND ISIM = '"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' " ;
+				gbilgi.isim = " AND ISIM = N'"+ comboIsim.getItemAt(comboIsim.getSelectedIndex()).toString() + "' " ;
 			}
 			gbilgi.tarih1 = trh1 ;
 			ResultSet rs = g_Access.gorev_oku_sonraki_yil(gbilgi);

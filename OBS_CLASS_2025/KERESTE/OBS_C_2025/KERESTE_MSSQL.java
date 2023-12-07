@@ -676,7 +676,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public void ker_kod_degisken_sil(String nerden, String hangi_Y, int sira)
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
-		String sql = "DELETE " + nerden  + "    WHERE "+ hangi_Y +" = '" + sira + "'";
+		String sql = "DELETE " + nerden  + "    WHERE " + hangi_Y +" = '" + sira + "'";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		
@@ -698,7 +698,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		int maks = 0 ;
-		String sql =   "SELECT max(" +fieldd +")  as maks  FROM "+ nerden+ "" ; 
+		String sql =   "SELECT max(" + fieldd + ")  as maks  FROM " + nerden+ "" ; 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();

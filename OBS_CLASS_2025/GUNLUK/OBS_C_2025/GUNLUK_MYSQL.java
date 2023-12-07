@@ -231,7 +231,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		ResultSet	rss = null;
 		String sql = "SELECT GID  " +
 				" FROM GOREV  " +
-				" WHERE ISIM =  '" + gbilgi.isim + "' AND GOREV = '" + gbilgi.gorev+ "'" +
+				" WHERE ISIM =  N'" + gbilgi.isim + "' AND GOREV = N'" + gbilgi.gorev+ "'" +
 				" AND BASL_TARIH = '" + gbilgi.tarih1 + "' AND BIT_TARIH = '" + gbilgi.tarih2 + "'";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -288,8 +288,8 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		ResultSet	rss = null;
 		String sql = "SELECT GID  " +
 				" FROM GOREV  " +
-				" WHERE ISIM =  '" + gbilgi.isim + "' AND GOREV = '" + gbilgi.gorev +   "' AND YER ='" + gbilgi.yer + "'" +
-				" AND MESAJ ='" + gbilgi.mesaj + "'";
+				" WHERE ISIM =  N'" + gbilgi.isim + "' AND GOREV = N'" + gbilgi.gorev +   "' AND YER = N'" + gbilgi.yer + "'" +
+				" AND MESAJ = N'" + gbilgi.mesaj + "'";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -418,7 +418,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		ResultSet	rss = null;
 		String sql = "SELECT  TARIH,ISIM,GOREV,YER,MESAJ   " +
 				" FROM GUNLUK  " +
-				" WHERE "+ gbilgi.isim +" TARIH BETWEEN   '" + gbilgi.tarih1 + "' AND '" + gbilgi.tarih2 + "'" +
+				" WHERE " + gbilgi.isim + " TARIH BETWEEN   '" + gbilgi.tarih1 + "' AND '" + gbilgi.tarih2 + "'" +
 				" GROUP BY TARIH,ISIM,GOREV,YER,MESAJ  ORDER BY TARIH   ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -451,7 +451,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		ResultSet	rss = null;
 		String sql = "SELECT *  FROM  (SELECT  datepart(dd,GUNLUK.TARIH) as Gun , datepart(mm,GUNLUK.TARIH) as  Aylar ,GUNLUK.TARIH " +
 				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
-				" WHERE "+ gbilgi.isim +" TARIH BETWEEN   '" + gbilgi.tarih1 + "' AND '" + gbilgi.tarih2 + "' ) as s" +
+				" WHERE " + gbilgi.isim + " TARIH BETWEEN   '" + gbilgi.tarih1 + "' AND '" + gbilgi.tarih2 + "' ) as s" +
 				" PIVOT  (  COUNT(TARIH)  FOR Aylar  IN ( [1] , [2] , [3] , [4] , [5] , [6] , [7] , [8] , [9] , [10] , [11] , [12] )     )  AS p " +
 				"ORDER BY Gun   ";
 		PreparedStatement stmt = con.prepareStatement(sql);

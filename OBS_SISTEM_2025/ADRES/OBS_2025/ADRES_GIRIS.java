@@ -623,7 +623,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(lblNewLabel);
 
 		long startTime = System.currentTimeMillis(); 
-		hisset("M_Kodu", "");
+		hisset("M_Kodu , Adi", "");
 		long endTime = System.currentTimeMillis();
 		long estimatedTime = endTime - startTime; 
 		double seconds = (double)estimatedTime/1000; 
@@ -649,7 +649,6 @@ public class ADRES_GIRIS extends JInternalFrame {
 		}
 		catch (Exception ex)
 		{
-			//JOptionPane.showMessageDialog(null, ex.getMessage()); 
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
 	}
@@ -659,7 +658,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 			long startTime = System.currentTimeMillis(); 
 			if (txtkodu.isEnabled()) { 
 				txtkodu.setEnabled(false);
-				hisset("M_Kodu", "");
+				hisset("M_Kodu , Adi ", "");
 			};
 			txtkodu.setEnabled(false);
 			if ( rs.getRow()  == 0) return ;
@@ -781,11 +780,11 @@ public class ADRES_GIRIS extends JInternalFrame {
 		long startTime = System.currentTimeMillis(); 
 		if (chcbas.isSelected())
 		{
-			hisset("M_Kodu", "WHERE  M_Kodu like  '" + txtarama.getText() + "%' OR  Adi Like '" + txtarama.getText() + "%'");
+			hisset("M_Kodu , Adi", "WHERE  M_Kodu like  '" + txtarama.getText() + "%' OR  Adi Like '" + txtarama.getText() + "%'");
 		}
 		else
 		{
-			hisset("M_Kodu", "WHERE  M_Kodu like  '%" + txtarama.getText() + "%' OR  Adi Like '%" + txtarama.getText() + "%'");
+			hisset("M_Kodu , Adi ", "WHERE  M_Kodu like  '%" + txtarama.getText() + "%' OR  Adi Like '%" + txtarama.getText() + "%'");
 		}
 		long endTime = System.currentTimeMillis();
 		long estimatedTime = endTime - startTime; 
@@ -856,7 +855,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 			a_Access.adres_kayit(aDEG,	lBILGI, BAGLAN_LOG.adrLogDizin);
 			temizle();
 			txtarama.setText("");
-			hisset("M_Kodu", "");
+			hisset("M_Kodu , Adi ", "");
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
@@ -884,7 +883,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 					lBILGI, BAGLAN_LOG.adrLogDizin);
 			temizle();
 			txtarama.setText("");
-			hisset("M_Kodu", "");
+			hisset("M_Kodu , Adi ", "");
 			
 		}
 		catch (Exception ex)

@@ -497,7 +497,6 @@ public class EKSTRE extends JInternalFrame {
 
 		} catch (Exception ex) {
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Cari Ekstre", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private static void onceki_bakiye () throws ClassNotFoundException, SQLException
@@ -544,7 +543,6 @@ public class EKSTRE extends JInternalFrame {
 		stmt = SQLitecon.prepareStatement(sqll);
 		for (int i = 0; i < table.getRowCount()  ; i ++) 
 		{
-			
 			Progres_Bar(table.getRowCount()-1, i);
 			if (i == 0)
 			{
@@ -571,7 +569,7 @@ public class EKSTRE extends JInternalFrame {
 			double baki = Math.round(Double.parseDouble(model.getValueAt(i , 7).toString()) * 100.0) / 100.0;
 			stmt.setDouble(8, baki);
 			stmt.addBatch();
-			if ((i ) % 300 == 0) 
+			if ((i ) % 500 == 0) 
 			{
 				stmt.executeBatch();
 			}
@@ -588,7 +586,6 @@ public class EKSTRE extends JInternalFrame {
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Ekstre sqllt", JOptionPane.ERROR_MESSAGE);   		
 		}
 	}
 	static void Progres_Bar(int max, int deger) throws InterruptedException

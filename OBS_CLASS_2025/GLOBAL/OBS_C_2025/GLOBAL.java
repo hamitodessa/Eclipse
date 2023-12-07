@@ -51,7 +51,7 @@ import OBS_2025.Tema_Cari;
 public class GLOBAL {
 
 	static final String OBS_DOSYA = System.getProperty("user.name") + "_OBS_SISTEM_2025.DB";
-	static final String EKSTRE_DOSYA = System.getProperty("user.name") + "_EKSTRE.DB";
+	public static final String EKSTRE_DOSYA = System.getProperty("user.name") + "_EKSTRE.DB";
 	public static final String SURUCU = "C:\\OBS_SISTEM\\";
 	public static final String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
 	public static final String DBYERI = "C:\\OBS_DATABASES\\";

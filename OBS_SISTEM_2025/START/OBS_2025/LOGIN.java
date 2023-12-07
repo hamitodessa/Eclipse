@@ -633,6 +633,12 @@ public class LOGIN extends JDialog {
 						{   
 							GLOBAL.create_table_log(dsy,oac._IKereste.ker_firma_adi(),BAGLAN_LOG.kerLogDizin);
 						}
+						//KERESTE LOG KONTROL
+						dsy =  GLOBAL.SURUCU +  GLOBAL.EKSTRE_DOSYA ;
+						if (! glb.dos_kontrol(dsy))
+						{   
+							GLOBAL.ekstre_dosya_olustur();
+						}
 						dispose();
 						obmain.setExtendedState(JFrame.MAXIMIZED_BOTH);
 						obmain.setFont(new Font("Tahoma", Font.BOLD, 11));

@@ -10,8 +10,6 @@ import java.sql.Statement;
 
 import com.healthmarketscience.jackcess.Database;
 import com.healthmarketscience.jackcess.DatabaseBuilder;
-import com.healthmarketscience.jackcess.crypt.CryptCodecProvider;
-
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.Server_Bilgi;
@@ -24,6 +22,7 @@ public class FIHRIST_MSACCESS implements I_Fihrist{
 	public void baglan() throws SQLException, ClassNotFoundException {
 		boolean result = false ;
 		result = GLOBAL.dos_kontrol(BAGLAN.fihDizin.cONN_STR );
+		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 		if(result)
 			con = DriverManager.getConnection("jdbc:ucanaccess://" + BAGLAN.fihDizin.cONN_STR ,"","" ) ;
 		}
@@ -35,7 +34,7 @@ public class FIHRIST_MSACCESS implements I_Fihrist{
 		try {
 			Database db;
 			db = new DatabaseBuilder(file).setFileFormat(Database.FileFormat.V2019)	
-					.setCodecProvider(new CryptCodecProvider("oOk271972"))
+					//.setCodecProvider(new CryptCodecProvider("oOk271972"))
 					.create();
 			db.close();
 		} catch (Exception e) {
@@ -52,6 +51,7 @@ public class FIHRIST_MSACCESS implements I_Fihrist{
 				+ " Note TEXT(50) ,"
 				+ " Note2 TEXT(50) ,"
 				+ " Mail TEXT(50) ) " ;
+		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 		con = DriverManager.getConnection("jdbc:ucanaccess://" +  sbilgi.getDizin() + "/" + "OK_Fih" + sbilgi.getKod() + ".accdb" ,"","" ) ;
 		Statement stmt = con.createStatement();  
 		stmt.execute(sql);  

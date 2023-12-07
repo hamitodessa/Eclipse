@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.CARI_HESAP_MSSQL;
 import OBS_C_2025.CONNECT;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.FORMATLAMA;
@@ -174,13 +175,14 @@ public class FIHRIST extends JFrame {
 	 * Create the frame.
 	 */
 	public FIHRIST() {
-
-		//		 try {
-		//			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
-		//		} catch (Exception e) {
-		//		
-		//			e.printStackTrace();
-		//		}
+		
+//		try 
+//		{
+//			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
+//			} catch (Exception e) 
+//		{
+//			e.printStackTrace();
+//		}
 		FlatLaf.registerCustomDefaultsSource("obs.ayarlar");
 		//FlatArcOrangeIJTheme.setup();
 		//FlatMacDarkLaf.setup();
@@ -526,7 +528,7 @@ public class FIHRIST extends JFrame {
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception ex) {
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
+					mesaj_goster(7500,Notifications.Type.ERROR,  ex.getMessage().toString() );
 				}
 			}
 		});
@@ -556,7 +558,7 @@ public class FIHRIST extends JFrame {
 				} catch (Exception ex)
 				{
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
+					mesaj_goster(7500,Notifications.Type.ERROR,  ex.getMessage().toString() );
 					txtArama.requestFocus();
 				}
 			}
@@ -618,7 +620,7 @@ public class FIHRIST extends JFrame {
 						tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (Exception e1) {
 						tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						mesaj_goster(5000,Notifications.Type.ERROR, e1.getMessage());
+						mesaj_goster(7500,Notifications.Type.ERROR, e1.getMessage());
 					}
 					tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
@@ -666,7 +668,6 @@ public class FIHRIST extends JFrame {
 		ScrollPaneWin11 scrollPane_3 = new ScrollPaneWin11();
 		scrollPane_3.setMinimumSize(new Dimension(300, 0));
 		scrollPane_3.setMaximumSize(new Dimension(300, 0));
-
 
 		splitPane_1.setLeftComponent(scrollPane_3);
 
@@ -722,7 +723,6 @@ public class FIHRIST extends JFrame {
 			}
 		});
 		cmbhangisql.setModel(new DefaultComboBoxModel<String>(new String[] {"MS SQL", "MY SQL", "SQ LITE"}));
-		cmbhangisql.setForeground(new Color(0, 0, 139));
 		cmbhangisql.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbhangisql.setBounds(88, 55, 157, 22);
 		panel_3.add(cmbhangisql);
@@ -846,7 +846,10 @@ public class FIHRIST extends JFrame {
 					if (cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).toString().equals("MS SQL"))
 					{
 						if (cmbInstance.getSelectedItem().toString() == null)
+						{
+							mesaj_goster(7500,Notifications.Type.WARNING, "Server Instance Secilmemis...." );
 							return;
+						}
 					}
 					try {
 						tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -855,12 +858,11 @@ public class FIHRIST extends JFrame {
 					} catch  (Exception ex)
 					{
 						tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-						mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
+						mesaj_goster(7500,Notifications.Type.ERROR,  ex.getMessage().toString() );
 					}
 				}
 			}
 		});
-
 		toolBar.add(btnServer);
 
 		btnVtKontrol = new JButton("");
@@ -928,7 +930,6 @@ public class FIHRIST extends JFrame {
 		btnYeni.setToolTipText("Yeni");
 		btnYeni.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/yeni.png")));
 		toolBar.add(btnYeni);
-
 		///////////////////////
 		panel_3.add(toolBar);
 		
@@ -969,8 +970,6 @@ public class FIHRIST extends JFrame {
 				}
 			}
 		});
-
-		
 		panel_3.add(btndizsec);
 		txtcdid.setVisible(false);
 
@@ -1027,7 +1026,7 @@ public class FIHRIST extends JFrame {
 		calisma_dizini_oku() ;
 		if(! surucubilgi) // Bilgi Yok
 		{
-			mesaj_goster(5000,Notifications.Type.WARNING, "Ilk Olarak Veritabani olusturulmasi gereklidir.....");
+			mesaj_goster(5000,Notifications.Type.WARNING, "Baglanti Bilgileri mevcut degil.....");
 			tabbedPane.setSelectedIndex(1);
 			ayar_doldur();
 		}
@@ -1057,23 +1056,14 @@ public class FIHRIST extends JFrame {
 				return ;
 			}
 			surucubilgi = true ;
-			
 			fihrist_calisma_dizini_oku();
-		
 		} catch (Exception e) {
 			mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
 		}
 	}
 	void fihrist_calisma_dizini_oku() throws ClassNotFoundException, SQLException
 	{
-	
 		CONNECT s_CONN = new CONNECT( oac._IFihristCon);
-		if (BAGLAN.fihDizin.yER.equals(""))
-		{
-			oac.FIHRIST_CONN  = false;
-			FIH_DOS_VAR = false;
-			return;
-		}
 		Server_Bilgi sBilgi = new Server_Bilgi() ;
 		sBilgi.setIns(BAGLAN.fihDizin.iNSTANCE); 
 		sBilgi.setKull(BAGLAN.fihDizin.kULLANICI) ;
@@ -1119,24 +1109,22 @@ public class FIHRIST extends JFrame {
 				oac.FIHRIST_CONN = false;
 			}
 		}
-	
 	}
 	void fihrist_kont() throws ClassNotFoundException, SQLException
 	{
-		String qwe = "" ;
 		if (oac.FIHRIST_CONN == true)
 		{
 			if (FIH_DOS_VAR == false)
 			{
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Fihrist -" + BAGLAN.fihDizin.kOD + " - Nolu Dosya Bulunamadi.....Lutfen Baglantilari Kontrol ediniz.....");
+				mesaj_goster(5000,Notifications.Type.WARNING,  "Calisilan Fihrist - " + BAGLAN.fihDizin.kOD + " - Nolu Dosya Bulunamadi.....Lutfen Baglantilari Kontrol ediniz.....");
 				lblbilgi.setText ("" );
 				tabbedPane.setSelectedIndex(1);
 				ayar_doldur();
 			}
 			else 
 			{ 
-				qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
+				String qwe = BAGLAN.fihDizin.yER.equals("S") ?  BAGLAN.fihDizin.sERVER : "Lokal" ;
 				lblbilgi.setText (BAGLAN.fihDizin.kOD + "  /  " + qwe.toString().trim()  + " / "+ BAGLAN.fihDizin.hAN_SQL );
 				fih_Access = new FIHRIST_ACCESS(oac._IFihrist );
 				fih_Access.baglan();
@@ -1262,40 +1250,37 @@ public class FIHRIST extends JFrame {
 	}
 	private void cONN_AKTAR(String hangi)
 	{
-		if(hangi.equals("MS SQL"))
-		{
+		switch(hangi) {
+		case "MS SQL":
 			oac._IFihristCon = new OBS_ORTAK_MSSQL() ;
-		}
-		else if(hangi.equals("MY SQL"))
-		{
+			break;
+		case "MY SQL":
 			oac._IFihristCon = new OBS_ORTAK_MYSQL() ;
-		}
-		else if(hangi.equals("SQ LITE"))
-		{
+			break;	
+		case "SQ LITE":
 			oac._IFihristCon = new OBS_ORTAK_SQLITE() ;
+			break;		
 		}
 	}
 	private void mODUL_AKTAR(String hangi)
 	{
-		if(hangi.equals("MS SQL"))
-		{
+		switch(hangi) {
+		case "MS SQL":
 			oac._IFihrist =  new FIHRIST_MSSQL();
-		}
-		else if(hangi.equals("MY SQL"))
-		{
+			break;
+		case "MY SQL":
 			oac._IFihrist =  new FIHRIST_MYSQL();
-		}
-		else if(hangi.equals("SQ LITE"))
-		{
+			break;	
+		case "SQ LITE":
 			oac._IFihrist =  new FIHRIST_SQLITE();
+			break;		
 		}
 	}
 	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
 	{
-		InputStream stream = null ;
 		try {
 			Notifications.getInstance().show(tipType,Notifications.Location.BOTTOM_RIGHT ,zaman ,mesaj);
-			stream = FIHRIST.class.getClassLoader().getResourceAsStream("DOSYA/hata.mp3"); //whts
+			InputStream stream = FIHRIST.class.getClassLoader().getResourceAsStream("DOSYA/hata.mp3"); //whts
 			Player player = new Player(stream);
 			player.play();
 			if(stream != null)
@@ -1367,7 +1352,7 @@ public class FIHRIST extends JFrame {
 			{
 				msgString = "C:\\OBS_DATABASES\\  Dizininde Dosya Olusturuldu ..." ;
 			}
-			mesaj_goster(5000,Notifications.Type.INFO,   msgString );
+			mesaj_goster(7500,Notifications.Type.INFO,   msgString );
 		}
 	}
 	private  void dosya_olustur_L() throws IOException, ClassNotFoundException, SQLException

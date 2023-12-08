@@ -110,6 +110,7 @@ public class FIHRIST_MSACCESS implements I_Fihrist{
 		stmt.setString(9, mail);
 		stmt.executeUpdate();
 		stmt.close();
+		con.close();
 	}
 
 	@Override
@@ -119,7 +120,7 @@ public class FIHRIST_MSACCESS implements I_Fihrist{
 			baglan();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
+		stmt.close();
+		con.close();
 	}
-
 }

@@ -128,6 +128,7 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 		stmt.setString(9, mail);
 		stmt.executeUpdate();
 		stmt.close();
+		con.close();
 	}
 	@Override
 	public void reh_sil(int cdi) throws SQLException, ClassNotFoundException {
@@ -137,7 +138,8 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 			baglan();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
+		stmt.close();
+		con.close();
 	}
 
 }

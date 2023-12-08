@@ -964,7 +964,7 @@ public class FIHRIST extends JFrame {
 				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
 				JFileChooser chooser = new JFileChooser();
-				if(txtDizin.toString().equals(""))
+				if(txtDizin.getText().toString().equals(""))
 				{
 					chooser.setCurrentDirectory(new java.io.File(GLOBAL.DBYERI));
 				}
@@ -1322,11 +1322,11 @@ public class FIHRIST extends JFrame {
 		program = "OK_Fih" + txtKodu.getText();
 		if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("SQ LITE"))
 		{
-			BAGLAN.fihDizin.cONN_STR = txtDizin.getText() + "/"  + program  + ".DB" ;   //SQLITE
+			BAGLAN.fihDizin.cONN_STR = txtDizin.getText() + "\\"  + program  + ".DB" ;   //SQLITE
 		}
 		if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("MS ACCESS"))
 		{
-			BAGLAN.fihDizin.cONN_STR = txtDizin.getText() + "/"  + program  + ".accdb" ;   //SQLITE
+			BAGLAN.fihDizin.cONN_STR = txtDizin.getText() + "\\"  + program  + ".accdb" ;   //SQLITE
 		}
 		if (chckbxL.isSelected())
 		{
@@ -1376,11 +1376,11 @@ public class FIHRIST extends JFrame {
 			String msgString = "Dosya Olusturuldu ..." ;
 			if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("SQ LITE"))
 			{
-				msgString = "C:\\OBS_DATABASES\\  Dizininde Dosya Olusturuldu ..." ;
+				msgString = BAGLAN.fihDizin.cONN_STR  + "  Dosya Olusturuldu ..." ;
 			}
 			if(cmbhangisql.getItemAt(cmbhangisql.getSelectedIndex()).equals("MS ACCESS"))
 			{
-				msgString = "C:\\OBS_DATABASES\\  Dizininde Dosya Olusturuldu ..." ;
+				msgString = BAGLAN.fihDizin.cONN_STR  + "  Dosya Olusturuldu ..." ;
 			}
 			mesaj_goster(7500,Notifications.Type.INFO,   msgString );
 		}

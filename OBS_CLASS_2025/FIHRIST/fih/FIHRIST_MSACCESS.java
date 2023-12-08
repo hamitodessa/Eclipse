@@ -33,7 +33,7 @@ public class FIHRIST_MSACCESS implements I_Fihrist{
 		File file = new File(sbilgi.getDizin() + "/" + "OK_Fih" + sbilgi.getKod() + ".accdb" );
 		try {
 			Database db;
-			db = new DatabaseBuilder(file).setFileFormat(Database.FileFormat.V2019)	
+			db = new DatabaseBuilder(file).setFileFormat(Database.FileFormat.V2010)	
 					//.setCodecProvider(new CryptCodecProvider("oOk271972"))
 					.create();
 			db.close();

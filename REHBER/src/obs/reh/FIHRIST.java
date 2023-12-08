@@ -1688,15 +1688,15 @@ public class FIHRIST extends JFrame {
 			fih_kutu_temizle();
 			return;
 		} 
-		txtAdi.setText(grd.getModel().getValueAt(satir, 0).toString());
-		txtT1.setText(grd.getModel().getValueAt(satir, 1).toString());
-		txtT2.setText(grd.getModel().getValueAt(satir, 2).toString());
-		txtT3.setText(grd.getModel().getValueAt(satir, 3).toString());
-		txtT4.setText(grd.getModel().getValueAt(satir, 4).toString());
-		txtFax.setText(grd.getModel().getValueAt(satir, 5).toString());
-		txtNot.setText(grd.getModel().getValueAt(satir, 6).toString());
-		txtNot2.setText(grd.getModel().getValueAt(satir, 7).toString());
-		txtMail.setText(grd.getModel().getValueAt(satir, 8).toString());
+		txtAdi.setText(grd.getModel().getValueAt(satir, 0) == null ? "" :grd.getModel().getValueAt(satir, 0).toString());
+		txtT1.setText(grd.getModel().getValueAt(satir, 1)  == null ? "" :grd.getModel().getValueAt(satir, 1).toString());
+		txtT2.setText(grd.getModel().getValueAt(satir, 2)  == null ? "" :grd.getModel().getValueAt(satir, 2).toString());
+		txtT3.setText(grd.getModel().getValueAt(satir, 3)  == null ? "" :grd.getModel().getValueAt(satir, 3).toString());
+		txtT4.setText(grd.getModel().getValueAt(satir, 4)  == null ? "" :grd.getModel().getValueAt(satir, 4).toString());
+		txtFax.setText(grd.getModel().getValueAt(satir, 5) == null ? "" :grd.getModel().getValueAt(satir, 5).toString());
+		txtNot.setText(grd.getModel().getValueAt(satir, 6) == null ? "" :grd.getModel().getValueAt(satir, 6).toString());
+		txtNot2.setText(grd.getModel().getValueAt(satir, 7)== null ? "" :grd.getModel().getValueAt(satir, 7).toString());
+		txtMail.setText(grd.getModel().getValueAt(satir, 8)== null ? "" :grd.getModel().getValueAt(satir, 8).toString());
 		txtcd.setText(grd.getModel().getValueAt(satir, 9).toString());
 	}
 }

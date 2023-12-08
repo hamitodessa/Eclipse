@@ -205,7 +205,6 @@ public class PRINT_JASPER extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null, e.getMessage(), "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void satir_kontrol()
@@ -260,7 +259,6 @@ public class PRINT_JASPER extends JInternalFrame {
 			}
 		} catch (Exception e) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,i + " Nolu Satir da Kodu =" + kodString + " Problemli Veri");
-			//JOptionPane.showMessageDialog(null, i + " Nolu Satir da Kodu =" + kodString + " Problemli Veri", "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void satir_kontrol_tek()

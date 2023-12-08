@@ -224,7 +224,6 @@ public class ETIKET_PRINT extends JInternalFrame {
 		}
 		} catch (Exception e) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,i + " Nolu Satir da Kodu =" + kodString + " Problemli Veri");
-			//JOptionPane.showMessageDialog(null, i + " Nolu Satir da Kodu =" + kodString + " Problemli Veri", "Etiket Yazdirma", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private void satir_kontrol_tek()

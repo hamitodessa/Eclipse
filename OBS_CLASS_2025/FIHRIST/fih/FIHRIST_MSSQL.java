@@ -101,6 +101,8 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 		String sql = " SELECT Adi ,Tel_1,Tel_2,Tel_3,Tel_4,Fax ,Note As Not_,Note2 as Not_2,Mail ,ID  "  + 
 				"  FROM FIHRIST   " + 
 				"  ORDER BY Adi   ";
+		if(con.isClosed())    
+			baglan();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	 
@@ -112,6 +114,8 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 		String sql  = "INSERT INTO FIHRIST (Adi,Tel_1,Tel_2,Tel_3,Tel_4,Fax,Note,Note2,Mail) " +
 				" VALUES (?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		if(con.isClosed())    
+			baglan();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, adi);
 		stmt.setString(2, t1);
@@ -129,6 +133,8 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 	public void reh_sil(int cdi) throws SQLException, ClassNotFoundException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String sql = "DELETE FROM FIHRIST WHERE ID ='" + cdi + "'" ;
+		if(con.isClosed())    
+			baglan();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		

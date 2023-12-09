@@ -20,7 +20,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 	public void baglan() throws SQLException
 	{
 		String cumle = "jdbc:sqlserver://" + BAGLAN.kamDizin.cONN_STR + ";";
-		DriverManager.setLoginTimeout(0);
+		//DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.kamDizin.kULLANICI,BAGLAN.kamDizin.sIFRESI);
 	}
 	@Override
@@ -184,6 +184,8 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
 		ResultSet	rss = null;
+		String cumle = "jdbc:sqlserver://" +  BAGLAN.kamDizin.cONN_STR + ";";
+		con = DriverManager.getConnection(cumle, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI);
 		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();
 		rss.next();
@@ -204,6 +206,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT  MAX("+ tur + ") AS Expr1  FROM  " + cins );
 		rss = stmt.executeQuery();
 		rss.next();
@@ -225,6 +228,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		ResultSet	rss = null;
 		int E_NUMBER ;
 		String sql = "SELECT  NO  FROM EVRAK  WITH (HOLDLOCK, ROWLOCK)  WHERE EVRAK = '" + cins + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -244,6 +248,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		String sql = " DELETE " +
 				" FROM " + cins + "" +
 				" WHERE "+ tur +"  ='" + bno + "'" ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 
@@ -260,6 +265,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 				"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, cno);
 		stmt.setString(2, vade);
@@ -292,6 +298,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 				" WHERE EVRAK_CINS = N'" + evrcins + "'" +
 				" AND EVRAK_NO = N'" + evrno + "'" +
 				" AND Gir_Cik = N'" + cins + "'" ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 
@@ -303,6 +310,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 				"VALUES (?,?,?,?,?)" ;
 
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, evrcins);
 		stmt.setInt(2, satir);
@@ -322,6 +330,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		String sql = "SELECT * " +
 				" FROM " + cins + " WHERE " + gircik + " = N'" + bno + "'" +
 				" ORDER BY Vade ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -337,6 +346,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 				" AND SATIR = '" + satir + "'" +
 				" AND EVRAK_CINS = '" + evrcins + "'" +
 				" AND Gir_Cik = '" + gircik + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -361,6 +371,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		String sql = "SELECT Banka, Cek_No, Cikis_Bordro, Cikis_Musteri, Cikis_Tarihi, Cins, Durum, Giris_Bordro, Giris_Musteri, Giris_Tarihi, Ilk_Borclu, " +
 				" Seri_No, Sube, T_Tarih, Tutar, Vade, Cek_Hesap_No ,Cikis_Ozel_Kod,Giris_Ozel_Kod " +
 				" FROM cek WHERE Cek_No ='" + cek + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -371,6 +382,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = "UPDATE "+ ceksen + " SET Cikis_Bordro = '', Cikis_Musteri = '' , Cikis_Tarihi = '1900.01.01' " +
 				"  WHERE Cikis_Bordro  ='" + bno + "'" ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 
@@ -383,6 +395,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		String sql = "UPDATE "+ ceksenfrom + " SET Cikis_Bordro = '"+ cbor + "', Cikis_Musteri = '"+ cmus + "'" + 
 				",  Cikis_Tarihi = '"+ ctar + "', Cikis_Ozel_Kod = '" + ozkod + "'" +
 				" WHERE " + ceksencins_where + "  ='" + cekno + "'" ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -391,6 +404,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = "UPDATE "+ ceksen_from + " SET Durum = '"+ durum + "', T_Tarih = '"+ ttarih + "'" + 
 				" WHERE " + ceksen_where + "  ='" + numara + "'" ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -398,6 +412,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = "UPDATE OZEL SET FIRMA_ADI = N'" + fadi + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -430,6 +445,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 				" AND Giris_Ozel_Kod  LIKE '" + gozel + "'" +
 				" AND Cikis_Ozel_Kod  LIKE '" + cozel + "'" +
 				" ORDER BY Cek_No ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -437,7 +453,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 	}
 	@Override
 	public void create_table_log() throws SQLException {
-		// TODO Auto-generated method stub
+	
 		String sql = "" ;
 		sql = "CREATE TABLE [dbo].[LOGLAMA]("
 				+ "	[TARIH] [datetime] NOT NULL,"
@@ -451,5 +467,10 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+	}
+	private void kONTROL() throws SQLException, ClassNotFoundException
+	{
+		if(con.isClosed())    
+			baglan();
 	}
 }

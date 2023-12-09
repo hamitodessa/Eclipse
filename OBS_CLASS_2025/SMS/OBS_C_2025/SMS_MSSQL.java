@@ -19,7 +19,7 @@ public class SMS_MSSQL implements ISMS{
 	public void baglan() throws SQLException
 	{
 		String cumle = "jdbc:sqlserver://" + BAGLAN.smsDizin.cONN_STR + ";";
-		DriverManager.setLoginTimeout(0);
+		//DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.smsDizin.kULLANICI,BAGLAN.smsDizin.sIFRESI);
 	}
 	@Override
@@ -220,6 +220,7 @@ public class SMS_MSSQL implements ISMS{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT *  FROM MAIL_HESAP ORDER BY UNVAN ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -227,6 +228,7 @@ public class SMS_MSSQL implements ISMS{
 	public boolean kod_ismi(String kodu) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT MAIL  FROM MAIL_HESAP WHERE MAIL =N'" + kodu + "'");
 		rss = stmt.executeQuery();
 		rss.next();
@@ -247,6 +249,7 @@ public class SMS_MSSQL implements ISMS{
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = "DELETE  FROM MAIL_HESAP WHERE MAIL ='" + mail + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -256,6 +259,7 @@ public class SMS_MSSQL implements ISMS{
 		String sql  = "INSERT INTO MAIL_HESAP (MAIL,UNVAN,GRUP,KODU,DURUM,USER_NAME) " +
 				" VALUES (?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, mail);
 		stmt.setString(2,unv);
@@ -271,6 +275,7 @@ public class SMS_MSSQL implements ISMS{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT DISTINCT GRUP  FROM MAIL_HESAP ORDER BY GRUP ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -280,6 +285,7 @@ public class SMS_MSSQL implements ISMS{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT MAIL,UNVAN,GRUP,DURUM,KODU,'' AS GON_ZAMANI,USER_NAME AS [USER]  FROM MAIL_HESAP ORDER BY UNVAN ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -289,6 +295,7 @@ public class SMS_MSSQL implements ISMS{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT FORMAT(TARIH,'dd.mm.yyyy HH:m:s' )  AS TARIH,MAIL,KONU,MESAJ,HESAP,UNVAN,USER_NAME AS [USER]  FROM MAIL_BILGILERI ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -299,6 +306,7 @@ public class SMS_MSSQL implements ISMS{
 		String sql = "INSERT INTO MAIL_BILGILERI (USER_NAME,TARIH,MAIL,KONU,MESAJ,HESAP,UNVAN,GONDEREN) " +
 				"VALUES (?,?,?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1,  uname);
 		stmt.setString(2,  tar);
@@ -315,6 +323,7 @@ public class SMS_MSSQL implements ISMS{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql =  "SELECT *  FROM SMS_HESAP ORDER BY UNVAN ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -324,6 +333,7 @@ public class SMS_MSSQL implements ISMS{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT DISTINCT GRUP  FROM SMS_HESAP ORDER BY GRUP ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -333,6 +343,7 @@ public class SMS_MSSQL implements ISMS{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT FORMAT(TARIH,'dd.MM.yyyy hh:mm:ss tt')  AS TARIH,MOBILE,MESAJ,HESAP,UNVAN,USER_NAME AS [USER]  FROM SMS_BILGILERI ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -341,6 +352,7 @@ public class SMS_MSSQL implements ISMS{
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = "DELETE  FROM SMS_HESAP WHERE TEL_NO ='" + tel + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -350,6 +362,7 @@ public class SMS_MSSQL implements ISMS{
 		String sql  = "INSERT INTO SMS_HESAP (TEL_NO,UNVAN,GRUP,KODU,DURUM,USER_NAME) " +
 				" VALUES (?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, tel);
 		stmt.setString(2,unv);
@@ -365,6 +378,7 @@ public class SMS_MSSQL implements ISMS{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "SELECT TEL_NO,UNVAN,GRUP,DURUM,KODU,'' AS GON_ZAMANI,USER_NAME as [USER]  FROM SMS_HESAP ORDER BY UNVAN ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -376,6 +390,7 @@ public class SMS_MSSQL implements ISMS{
 		String sql =  "INSERT INTO SMS_BILGILERI (USER_NAME,TARIH,MOBILE,MESAJ,HESAP,UNVAN) " +
 				"VALUES (?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1,  uname);
 		stmt.setString(2,  tar);
@@ -388,7 +403,6 @@ public class SMS_MSSQL implements ISMS{
 	}
 	@Override
 	public void create_table_log() throws SQLException {
-		// TODO Auto-generated method stub
 		String sql = "" ;
 		sql = "CREATE TABLE [dbo].[LOGLAMA]("
 				+ "	[TARIH] [datetime] NOT NULL,"
@@ -402,5 +416,10 @@ public class SMS_MSSQL implements ISMS{
 				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+	}
+	private void kONTROL() throws SQLException, ClassNotFoundException
+	{
+		if(con.isClosed())    
+			baglan();
 	}
 }

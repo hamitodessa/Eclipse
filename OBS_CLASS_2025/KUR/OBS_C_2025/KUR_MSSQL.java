@@ -19,7 +19,7 @@ public class KUR_MSSQL implements IKUR{
 	public void baglan() throws SQLException
 	{
 		String cumle = "jdbc:sqlserver://" + BAGLAN.kurDizin.cONN_STR + ";";
-		DriverManager.setLoginTimeout(0);
+		//DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.kurDizin.kULLANICI,BAGLAN.kurDizin.sIFRESI);
 	}
 	@Override
@@ -144,6 +144,7 @@ public class KUR_MSSQL implements IKUR{
 		String sql = " SELECT Kur , MA , MS, SA, SS,BA, BS " +
 				" FROM KURLAR  " +
 				" WHERE Tarih ='" + tar + "' ORDER BY  Kur ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -155,6 +156,7 @@ public class KUR_MSSQL implements IKUR{
 		String sql = " SELECT Kur , MA , MS, SA, SS,BA, BS,  Tarih " +
 				" FROM kurlar  " +
 				" WHERE Tarih ='" + tar + "' AND Kur =N'" + kur + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -165,6 +167,7 @@ public class KUR_MSSQL implements IKUR{
 		String sql = " DELETE " +
 				" FROM kurlar " +
 				" WHERE Tarih ='" + tar + "' AND Kur =N'" + kur + "'" ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -174,6 +177,7 @@ public class KUR_MSSQL implements IKUR{
 		String sql  = "INSERT INTO kurlar (Tarih,Kur,MA,MS,SA,SS,BA,BS) " +
 				" VALUES (?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, tar);
 		stmt.setString(2, kur);
@@ -194,6 +198,7 @@ public class KUR_MSSQL implements IKUR{
 				" FROM kurlar  " +
 				" WHERE Tarih BETWEEN '" + t1 + "' AND '" + t2 + "'" +
 				" AND Kur BETWEEN '" + c1 + "' AND '" + c2 + "' ORDER BY Tarih DESC, Kur ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -206,6 +211,7 @@ public class KUR_MSSQL implements IKUR{
 				" FROM kurlar  " + 
 				" WHERE Tarih >= '" + t1 + "' AND  Tarih <= '" + t2 + "'" + 
 				" AND Kur = '" + c1 +"'    ORDER BY Tarih  ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -218,6 +224,7 @@ public class KUR_MSSQL implements IKUR{
 				" FROM kurlar  " + 
 				" WHERE Tarih >= '" + t1 + "' AND  Tarih <= '" + t2 + "'" + 
 				" AND Kur = '" + c1 +"'    ORDER BY Tarih  ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -230,6 +237,7 @@ public class KUR_MSSQL implements IKUR{
 				" FROM kurlar  "  + 
 				" WHERE Tarih >= '" + t1 +"' AND  Tarih <= '" + t2 + "'" + 
 				" AND Kur = '" + c1 + "'  ORDER BY Tarih  ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -249,5 +257,10 @@ public class KUR_MSSQL implements IKUR{
 				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+	}
+	private void kONTROL() throws SQLException, ClassNotFoundException
+	{
+		if(con.isClosed())    
+			baglan();
 	}
 }

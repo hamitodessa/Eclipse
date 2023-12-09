@@ -19,7 +19,7 @@ public class SMS_MYSQL implements ISMS{
 	public void baglan() throws SQLException
 	{
 		String cumle = "jdbc:mysql://" + BAGLAN.smsDizin.cONN_STR;
-		DriverManager.setLoginTimeout(0);
+		//DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.smsDizin.kULLANICI,BAGLAN.smsDizin.sIFRESI);
 	}
 	@Override
@@ -181,6 +181,7 @@ public class SMS_MYSQL implements ISMS{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT *  FROM MAIL_HESAP ORDER BY UNVAN ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -188,6 +189,7 @@ public class SMS_MYSQL implements ISMS{
 	public boolean kod_ismi(String kodu) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT MAIL  FROM MAIL_HESAP WHERE MAIL =N'" + kodu + "'");
 		rss = stmt.executeQuery();
 		rss.next();
@@ -208,6 +210,7 @@ public class SMS_MYSQL implements ISMS{
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "DELETE  FROM MAIL_HESAP WHERE MAIL ='" + mail + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -217,6 +220,7 @@ public class SMS_MYSQL implements ISMS{
 		String sql  = "INSERT INTO MAIL_HESAP (MAIL,UNVAN,GRUP,KODU,DURUM,USER_NAME) " +
 				" VALUES (?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, mail);
 		stmt.setString(2,unv);
@@ -232,6 +236,7 @@ public class SMS_MYSQL implements ISMS{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT DISTINCT GRUP  FROM MAIL_HESAP ORDER BY GRUP ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -241,6 +246,7 @@ public class SMS_MYSQL implements ISMS{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT MAIL,UNVAN,GRUP,DURUM,KODU,'' AS GON_ZAMANI,USER_NAME AS  USER   FROM MAIL_HESAP ORDER BY UNVAN ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -250,6 +256,7 @@ public class SMS_MYSQL implements ISMS{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT DATE_FORMAT(TARIH, '%d.%m.%Y %H:%m:%s') as TARIH,MAIL,KONU,MESAJ,HESAP,UNVAN,USER_NAME AS  USER   FROM MAIL_BILGILERI ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -260,6 +267,7 @@ public class SMS_MYSQL implements ISMS{
 		String sql = "INSERT INTO MAIL_BILGILERI (USER_NAME,TARIH,MAIL,KONU,MESAJ,HESAP,UNVAN,GONDEREN) " +
 				"VALUES (?,?,?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1,  uname);
 		stmt.setString(2,  tar);
@@ -276,6 +284,7 @@ public class SMS_MYSQL implements ISMS{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql =  "SELECT *  FROM SMS_HESAP ORDER BY UNVAN ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -285,6 +294,7 @@ public class SMS_MYSQL implements ISMS{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT DISTINCT GRUP  FROM SMS_HESAP ORDER BY GRUP ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -294,6 +304,7 @@ public class SMS_MYSQL implements ISMS{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT DATE_FORMAT(TARIH, '%d.%m.%Y %H:%m:%s') as TARIH,MOBILE,MESAJ,HESAP,UNVAN,USER_NAME AS  USER   FROM SMS_BILGILERI ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -302,6 +313,7 @@ public class SMS_MYSQL implements ISMS{
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "DELETE  FROM SMS_HESAP WHERE TEL_NO ='" + tel + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -311,6 +323,7 @@ public class SMS_MYSQL implements ISMS{
 		String sql  = "INSERT INTO SMS_HESAP (TEL_NO,UNVAN,GRUP,KODU,DURUM,USER_NAME) " +
 				" VALUES (?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, tel);
 		stmt.setString(2,unv);
@@ -326,6 +339,7 @@ public class SMS_MYSQL implements ISMS{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT TEL_NO,UNVAN,GRUP,DURUM,KODU,'' AS GON_ZAMANI,USER_NAME as  USER   FROM SMS_HESAP ORDER BY UNVAN ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -337,6 +351,7 @@ public class SMS_MYSQL implements ISMS{
 		String sql =  "INSERT INTO SMS_BILGILERI (USER_NAME,TARIH,MOBILE,MESAJ,HESAP,UNVAN) " +
 				"VALUES (?,?,?,?,?,?)";
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1,  uname);
 		stmt.setString(2,  tar);
@@ -359,5 +374,10 @@ public class SMS_MYSQL implements ISMS{
 				+ "  INDEX `IX_LOGLAMA` (`TARIH` ASC, `USER_NAME` ASC) VISIBLE);";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+	}
+	private void kONTROL() throws SQLException, ClassNotFoundException
+	{
+		if(con.isClosed())    
+			baglan();
 	}
 }

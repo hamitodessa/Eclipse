@@ -24,7 +24,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String cumle = "jdbc:mysql://" + BAGLAN.gunDizin.cONN_STR ;
-		DriverManager.setLoginTimeout(0);
+		//DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.gunDizin.kULLANICI,BAGLAN.gunDizin.sIFRESI);
 	}
 	@Override
@@ -160,7 +160,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = null;
 		ResultSet	rss = null;
-		String cumle = "jdbc:mysql://" + BAGLAN.gunDizin.cONN_STR ;
+		String cumle = "jdbc:mysql://" +  BAGLAN.gunDizin.cONN_STR + ";";
 		con = DriverManager.getConnection(cumle, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI);
 		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();
@@ -197,6 +197,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		String sql  = "INSERT INTO GOREV (BASL_TARIH,BASL_SAAT,BIT_TARIH,TEKRARLA,ISIM,GOREV,YER,MESAJ,SECENEK,DEGER,USER) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, gbilgi.tarih1);
 		stmt.setString(2, gbilgi.saat1);
@@ -217,6 +218,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	public void gorev_sil(int id) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "DELETE GOREV  WHERE  GID = " + id;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		sql = "DELETE GUNLUK  WHERE  GID = " + id;
@@ -233,6 +235,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 				" FROM GOREV  " +
 				" WHERE ISIM =  N'" + gbilgi.isim + "' AND GOREV = N'" + gbilgi.gorev+ "'" +
 				" AND BASL_TARIH = '" + gbilgi.tarih1 + "' AND BIT_TARIH = '" + gbilgi.tarih2 + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -254,6 +257,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 				" FROM GUNLUK  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
 				" ORDER BY TARIH ,ISIM ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -265,6 +269,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		String sql = "SELECT DISTINCT  ISIM  " +
 				" FROM GOREV  " +
 				" ORDER BY ISIM  ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -277,6 +282,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 				" FROM GUNLUK  " +
 				" WHERE TARIH =  '" + gbilgi.tarih1 + "' AND SAAT ='" + gbilgi.saat1 + "'" +
 				" GROUP BY  TARIH,SAAT,ISIM,GOREV,YER,MESAJ ORDER BY ISIM  ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -290,6 +296,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 				" FROM GOREV  " +
 				" WHERE ISIM =  N'" + gbilgi.isim + "' AND GOREV = N'" + gbilgi.gorev +   "' AND YER = N'" + gbilgi.yer + "'" +
 				" AND MESAJ = N'" + gbilgi.mesaj + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -310,6 +317,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		String sql = "SELECT *  " +
 				" FROM GOREV  " +
 				" WHERE GID =  " + gbilgi.gid + "";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -325,6 +333,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "' AND TARIH <= '" + gbilgi.tarih2 +"' AND SAAT >= '" + gbilgi.saat1 + "' AND SAAT <= '" + gbilgi.saat2 + "'" +
 				" AND ISIM " + gbilgi.isim + " " +
 				" ORDER BY TARIH ,SAAT ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -333,6 +342,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 	public void gorev_tek_sil(int id) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "DELETE GUNLUK  WHERE  GRVID = " + id;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -366,6 +376,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		String  anl_tS =  format1.format(anl_tarih);
 		String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,USER) " +
 					" VALUES (?,?,?,?,?,?,?,?)" ;
+		kONTROL();
 		PreparedStatement stmt =con.prepareStatement(sql);
 		stmt = con.prepareStatement(sql);
 		while (anl_t <= son_t)  
@@ -420,6 +431,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 				" FROM GUNLUK  " +
 				" WHERE " + gbilgi.isim + " TARIH BETWEEN   '" + gbilgi.tarih1 + "' AND '" + gbilgi.tarih2 + "'" +
 				" GROUP BY TARIH,ISIM,GOREV,YER,MESAJ  ORDER BY TARIH   ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -432,6 +444,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 				" FROM GUNLUK  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
 				" ORDER BY TARIH  ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -441,6 +454,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql  = "UPDATE OZEL SET FIRMA_ADI = N'" + fadi + "'" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -454,6 +468,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 				" WHERE " + gbilgi.isim + " TARIH BETWEEN   '" + gbilgi.tarih1 + "' AND '" + gbilgi.tarih2 + "' ) as s" +
 				" PIVOT  (  COUNT(TARIH)  FOR Aylar  IN ( [1] , [2] , [3] , [4] , [5] , [6] , [7] , [8] , [9] , [10] , [11] , [12] )     )  AS p " +
 				"ORDER BY Gun   ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -466,8 +481,14 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 				" FROM GUNLUK  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
 				" ORDER BY TARIH  ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
+	}
+	private void kONTROL() throws SQLException, ClassNotFoundException
+	{
+		if(con.isClosed())    
+			baglan();
 	}
 }

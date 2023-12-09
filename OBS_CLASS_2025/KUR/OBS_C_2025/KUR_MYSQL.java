@@ -20,7 +20,7 @@ public class KUR_MYSQL implements IKUR {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String cumle = "jdbc:mysql://" + BAGLAN.kurDizin.cONN_STR ;
-		DriverManager.setLoginTimeout(0);
+		//DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.kurDizin.kULLANICI,BAGLAN.kurDizin.sIFRESI);
 	}
 	@Override
@@ -131,6 +131,7 @@ public class KUR_MYSQL implements IKUR {
 		String sql =" SELECT Kur , MA , MS, SA, SS,BA, BS " +
 				" FROM KURLAR USE INDEX (IX_KUR) " +
 				" WHERE Tarih ='" + tar + "' ORDER BY  Kur ";
+		kONTROL();
 		Statement stmt =  con.prepareStatement(sql);
 		rss = stmt.executeQuery(sql);
 		return rss;	
@@ -143,6 +144,7 @@ public class KUR_MYSQL implements IKUR {
 		String sql =" SELECT Kur , MA , MS, SA, SS,BA, BS,  Tarih " +
 				" FROM KURLAR USE INDEX (IX_KUR)  " +
 				" WHERE Tarih ='" + tar + "' AND Kur =N'" + kur + "'";
+		kONTROL();
 		Statement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery(sql);
 		return rss;	
@@ -154,6 +156,7 @@ public class KUR_MYSQL implements IKUR {
 		String sql =  " DELETE " +
 				" FROM KURLAR " +
 				" WHERE Tarih ='" + tar + "' AND Kur =N'" + kur + "'" ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 
@@ -165,6 +168,7 @@ public class KUR_MYSQL implements IKUR {
 		String sql  ="INSERT INTO KURLAR (Tarih,Kur,MA,MS,SA,SS,BA,BS) " +
 				" VALUES (?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, tar);
 		stmt.setString(2, kur);
@@ -185,6 +189,7 @@ public class KUR_MYSQL implements IKUR {
 				" FROM KURLAR USE INDEX (IX_KUR)  " +
 				" WHERE Tarih BETWEEN '" + t1 + "' AND '" + t2 + "'" +
 				" AND Kur BETWEEN '" + c1 + "' AND '" + c2 + "' ORDER BY Tarih DESC, Kur ";
+		kONTROL();
 		Statement stmt =  con.prepareStatement(sql);
 		rss = stmt.executeQuery(sql);
 		return rss;	
@@ -197,6 +202,7 @@ public class KUR_MYSQL implements IKUR {
 				" FROM KURLAR USE INDEX (IX_KUR)  " + 
 				" WHERE Tarih >= '" + t1 + "' AND  Tarih <= '" + t2 + "'" + 
 				" AND Kur = '" + c1 +"'    ORDER BY Tarih  ";
+		kONTROL();
 		Statement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery(sql);
 		return rss;	
@@ -210,6 +216,7 @@ public class KUR_MYSQL implements IKUR {
 				" FROM KURLAR USE INDEX (IX_KUR)  "  + 
 				" WHERE Tarih >= '" + t1 +"' AND  Tarih <= '" + t2 + "'" + 
 				" AND Kur = '" + c1 + "'  ORDER BY Tarih  ";
+		kONTROL();
 		Statement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery(sql);
 		return rss;	
@@ -234,8 +241,14 @@ public class KUR_MYSQL implements IKUR {
 				" FROM kurlar USE INDEX (IX_KUR)   " + 
 				" WHERE Tarih >= '" + t1 + "' AND  Tarih <= '" + t2 + "'" + 
 				" AND Kur = '" + c1 +"'    ORDER BY Tarih  ";
+		kONTROL();
 		Statement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery(sql);
 		return rss;	
+	}
+	private void kONTROL() throws SQLException, ClassNotFoundException
+	{
+		if(con.isClosed())    
+			baglan();
 	}
 }

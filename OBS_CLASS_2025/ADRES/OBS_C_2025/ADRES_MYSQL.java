@@ -21,7 +21,7 @@ public class ADRES_MYSQL implements IADRES {
 	public void baglan() throws SQLException
 	{
 		String cumle = "jdbc:mysql://" + BAGLAN.adrDizin.cONN_STR ;
-		DriverManager.setLoginTimeout(0);
+		//DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.adrDizin.kULLANICI,BAGLAN.adrDizin.sIFRESI);
 	}
 	@Override
@@ -190,6 +190,8 @@ public class ADRES_MYSQL implements IADRES {
 	public String adr_firma_adi() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
+		String cumle = "jdbc:mysql://" +  BAGLAN.adrDizin.cONN_STR + ";";
+		con = DriverManager.getConnection(cumle, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI);
 		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();
 		rss.next();
@@ -211,6 +213,7 @@ public class ADRES_MYSQL implements IADRES {
 	public void adr_firma_adi_kayit(String fadi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "UPDATE OZEL SET FIRMA_ADI = N'" + fadi + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -225,6 +228,7 @@ public class ADRES_MYSQL implements IADRES {
 				" FROM Adres " +
 				arama +
 				" ORDER by " + sira;
+		kONTROL();
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss ;
@@ -233,6 +237,7 @@ public class ADRES_MYSQL implements IADRES {
 	public String kod_ismi(String kodu) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT Adi  FROM Adres WHERE M_Kodu =N'" + kodu + "'");
 		rss = stmt.executeQuery();
 		rss.next();
@@ -256,6 +261,7 @@ public class ADRES_MYSQL implements IADRES {
 				" ,Tel_2,Tel_3,Ozel,Yetkili,E_Mail,Not_1,Not_2,Not_3,Aciklama,Sms_Gonder,Mail_Gonder,Ozel_Kod_1,Ozel_Kod_2,Web,USER,Resim) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, aDEGIS.kodu);
 		stmt.setString(2, aDEGIS.adi);
@@ -305,6 +311,7 @@ public class ADRES_MYSQL implements IADRES {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = " DELETE  FROM Adres WHERE M_Kodu = N'" + kod.trim() + "' AND Adi = N'" + adi.trim() + "'"  ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -313,6 +320,7 @@ public class ADRES_MYSQL implements IADRES {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT M_Kodu,Adi  FROM Adres  ORDER BY M_Kodu";
+		kONTROL();
 		PreparedStatement  stmt = con.prepareStatement (sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -323,6 +331,7 @@ public class ADRES_MYSQL implements IADRES {
 		ResultSet	rss = null;
 		String sql = "SELECT " + nerden + " ,Adi ,'' AS GRUP ,'' AS DURUM ,M_Kodu ," + 
 				" '' as GON_ZAMANI,[USER] FROM Adres   WHERE Mail_Gonder = 'TRUE' ORDER BY M_Kodu ";
+		kONTROL();
 		PreparedStatement  stmt = con.prepareStatement (sql);
 		rss = stmt.executeQuery();
 		return rss;	 
@@ -335,6 +344,7 @@ public class ADRES_MYSQL implements IADRES {
 				" Vergi_No, Fax,Tel_1,Tel_2,Ozel,Yetkili,E_Mail,Not_1,Not_2,Not_3 " +
 				" FROM Adres " +
 				" WHERE M_Kodu = N'" + kod + "'";
+		kONTROL();
 		PreparedStatement  stmt = con.prepareStatement (sql);
 		rss = stmt.executeQuery(sql);
 		return rss;
@@ -348,6 +358,7 @@ public class ADRES_MYSQL implements IADRES {
 				" Vergi_No, Fax,Tel_1,Tel_2,Ozel,Yetkili,E_Mail,Not_1,Not_2,Not_3 " +
 				" FROM Adres " +
 				" WHERE M_Kodu = N'" + kodu + "'" ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -382,6 +393,7 @@ public class ADRES_MYSQL implements IADRES {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT Adi , Adres_1 ,Adres_2 ,Tel_1,Semt ,Sehir  FROM Adres  ORDER BY " + siralama +"";
+		kONTROL();
 		Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		rss = stmt.executeQuery(sql);
 		return rss;
@@ -392,8 +404,14 @@ public class ADRES_MYSQL implements IADRES {
 		ResultSet	rss = null;
 		String sql = "SELECT Adi , Adres_1 ,Adres_2 , Tel_1,Semt ,Sehir  FROM Adres "
 				+ " WHERE Adi Like N'%" + arama + "%'";
+		kONTROL();
 		Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		rss = stmt.executeQuery(sql);
 		return rss;
+	}
+	private void kONTROL() throws SQLException, ClassNotFoundException
+	{
+		if(con.isClosed())    
+			baglan();
 	}
 }

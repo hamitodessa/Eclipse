@@ -21,7 +21,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	@Override
 	public void baglan() throws SQLException, ClassNotFoundException {
 		String cumle = "jdbc:sqlserver://" + BAGLAN.kerDizin.cONN_STR + ";";
-		DriverManager.setLoginTimeout(0);
+		//DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.kerDizin.kULLANICI,BAGLAN.kerDizin.sIFRESI);
 	}
 
@@ -480,6 +480,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public void kER_firma_adi_kayit(String fadi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = "UPDATE OZEL SET FIRMA_ADI = N'" + fadi + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -512,6 +513,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public ResultSet kod_pln() throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT * FROM KOD_ACIKLAMA   ORDER BY KOD ");
 		rss = stmt.executeQuery();
 		return rss;	
@@ -523,6 +525,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String sql  = "INSERT INTO KOD_ACIKLAMA (KOD,ACIKLAMA) " +
 				" VALUES (?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, kodu);
 		stmt.setString(2, aciklama);
@@ -535,6 +538,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public void kod_sil(String kod) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String sql = "DELETE FROM KOD_ACIKLAMA WHERE KOD =N'" + kod + "'" ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -543,6 +547,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public ResultSet kons_pln() throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT * FROM KONS_ACIKLAMA   ORDER BY KONS ");
 		rss = stmt.executeQuery();
 		return rss;	
@@ -554,6 +559,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String sql  = "INSERT INTO KONS_ACIKLAMA (KONS,ACIKLAMA) " +
 				" VALUES (?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, kons);
 		stmt.setString(2, aciklama);
@@ -573,6 +579,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public int kons_sil(String kons) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String sql = "DELETE FROM KONS_ACIKLAMA WHERE KONS =N'" + kons + "'" ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		///
@@ -600,6 +607,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT ACIKLAMA FROM KOD_ACIKLAMA  WHERE KOD =N'" + kod+ "' ");
 		rss = stmt.executeQuery();
 		String result ;
@@ -622,6 +630,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String sql =  "SELECT " + sno + "  AS KOD , " + fieldd + " FROM " + nerden + "" +
 				" ORDER BY " + fieldd + "";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -633,6 +642,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql =   "SELECT  " + fieldd + " FROM " + nerden + " WHERE " + sno + " = N'" + arama + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -644,6 +654,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		String sql =   "SELECT ALID_Y , ALT_GRUP FROM ALT_GRUP_DEGISKEN   " +
 				" WHERE ANA_GRUP = N'" + sno + "' ORDER BY ALT_GRUP";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	 
@@ -657,6 +668,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String sql  = "" ;
 		PreparedStatement stmt =null;
 		sql = "SELECT  *  FROM KERESTE     WHERE Ana_Grup = '" + anagrp + "'  AND  Alt_Grup = '" + altgrp + "' ";
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		rs = stmt. executeQuery();
 		if (!rs.isBeforeFirst() )   result = false ;
@@ -667,6 +679,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public void ker_degisken_alt_grup_sil(int ID) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = "DELETE ALT_GRUP_DEGISKEN    WHERE ALID_Y = '" + ID + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		
@@ -677,6 +690,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = "DELETE " + nerden  + "    WHERE " + hangi_Y +" = '" + sira + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		
@@ -687,6 +701,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql =  "UPDATE " + nerden + "  SET " + fieldd + "  = N'" + degisken_adi + "'  WHERE " + sno + "  = '" + ID + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		
@@ -699,6 +714,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		int maks = 0 ;
 		String sql =   "SELECT max(" + fieldd + ")  as maks  FROM " + nerden+ "" ; 
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -731,6 +747,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		int maks =0 ;
 		String sql =   "SELECT max(ALID_Y)  AS ALID_Y  FROM ALT_GRUP_DEGISKEN   " ;// +
 		//	" WHERE ALT_GRUP = N'" + alt_grup + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -762,12 +779,10 @@ public class KERESTE_MSSQL implements IKERESTE {
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = "UPDATE ALT_GRUP_DEGISKEN  SET ALT_GRUP  = N'" + alt_grup + "' , ANA_GRUP  = N'" + ana_grup + "'  WHERE ALID_Y = '" + ID + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
-
-	
 	@Override
 	public String son_no_al(String cins) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -780,7 +795,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		else {
 			sql = "SELECT max(Cikis_Evrak)  as NO FROM KERESTE  ";
 		}
-		
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -800,6 +815,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String sql =  " DELETE " +
 				" FROM KERESTE " +
 				" WHERE Evrak_No  ='" + eno + "'" ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -813,6 +829,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		///////////////////
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1,kBILGI.getEvrak_No());
 		stmt.setString(2, kBILGI.getBarkod());
@@ -884,6 +901,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 					+ " FROM KERESTE   " 
 					+ " WHERE Cikis_Evrak  = N'" + eno + "' ORDER BY CSatir " ;//ORDER BY Paket_No ,Satir
 		}
+		kONTROL();
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;	
@@ -897,6 +915,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" WHERE Evrak_NO = N'" + ino + "'" +
 				" AND Tip = N'" + cins + "'" +
 				" AND Gir_Cik = '" + gircik + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		
@@ -909,6 +928,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String sql  ="INSERT INTO DPN (Evrak_No,Tip,Bir,Iki,Uc,Gir_Cik,[USER]) " +
 				" VALUES (?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eno);
 		stmt.setString(2, tip);
@@ -931,6 +951,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" WHERE Evrak_NO = N'" + ino + "'" +
 				" AND DPN.Tip = N'" + cins + "'" +
 				" AND Gir_Cik = '" + gircik + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -944,6 +965,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" WHERE EVRAK_CINS = N'" + evrcins + "'" +
 				" AND EVRAK_NO = N'" + evrno + "'" +
 				" AND Gir_Cik = N'" + cins + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		
@@ -956,6 +978,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String sql  ="INSERT INTO ACIKLAMA (EVRAK_CINS,SATIR,EVRAK_NO,ACIKLAMA,Gir_Cik) " +
 				" VALUES (?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, evrcins);
 		stmt.setInt(2, satir);
@@ -979,6 +1002,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" AND SATIR = '" + satir + "'" +
 				" AND EVRAK_CINS = '" + evrcins + "'" +
 				" AND Gir_Cik = '" + gircik + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -1010,6 +1034,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " FROM KERESTE   " 
 				+ " WHERE Paket_No = N'" + token[0] + "' AND Konsimento = N'"+ token[1] + "' "
 				+ dURUMString + "  ORDER BY Satir" ;
+		kONTROL();
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;
@@ -1021,6 +1046,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String sql = "UPDATE KERESTE SET Cikis_Evrak = '', CTarih = '1900.01.01',CKdv = 0,CDoviz ='',CFiat=0,Ctutar=0,CKur=0,CCari_Firma='',CAdres_Firma='' ," 
 				+ " CIskonto=0,CTevkifat=0,CAna_Grup=0,CAlt_Grup=0,CDepo=0,COzel_Kod='',CIzahat='',CNakliyeci=0,CUSER='' ,CSatir=0"
 				+ " WHERE Cikis_Evrak  ='" + eno + "'" ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -1043,6 +1069,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " CSatir="+ kBILGI.getCSatir() +""
 				+ " WHERE Paket_No  ='" + token[0] + "' AND Konsimento = '"+ token[1] +"' "
 				+ " AND Satir = "+ kBILGI.getSatir() + "" ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -1059,7 +1086,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		else {
 			sql = "SELECT max(Cikis_Evrak + 1) AS NO  FROM KERESTE  ";
 		}
-		
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -1111,6 +1138,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" AND " + qweString  + " between N'" + e1 + "' AND N'" + e2 + "'" +
 				tARIH +
 				" " + ordr + " ";
+		kONTROL();
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;	
@@ -1211,6 +1239,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				"    ) " +
 				" AS p" +
 				" ORDER BY  " + orderBY ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1315,6 +1344,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " CAlt_Grup " + ker_rap_BILGI.getCAlt_Grup()  + " AND" 
 				+ " CDepo " + ker_rap_BILGI.getCDepo()  + " AND " 
 				+ " COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() ; 
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1327,6 +1357,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String sql =   "SELECT  DISTINCT Paket_No , Konsimento FROM KERESTE   " +
 				" WHERE Cikis_Evrak = '' " +
 				" ORDER by " + sira;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1336,6 +1367,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public String kons_adi(String kons) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT ACIKLAMA FROM KONS_ACIKLAMA  WHERE KONS =N'" + kons + "' ");
 		rss = stmt.executeQuery();
 		String result ;
@@ -1413,6 +1445,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+" COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() 
 				+" GROUP BY " + eVRAKNO + ", " + hANGI + "Tarih ," + hANGI + "Cari_Firma," + hANGI + "Adres_Firma," + hANGI + "Doviz  " 
 				+" ORDER BY  " + eVRAKNO;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1461,6 +1494,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " ,[" + hANGI + "USER] " 
 				+ " FROM KERESTE    " 
 				+ " WHERE "  + fAT_TUR  + " ORDER BY " + hANGI + "Satir" ; 
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1532,6 +1566,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+" COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() 
 				+" GROUP BY " + qw3 + "" 
 				+" ORDER BY  " + qw3 + "";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1598,6 +1633,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+" COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() 
 				+" GROUP BY " + qw2  
 				+" ORDER BY  " + qw2 + "";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1678,6 +1714,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " Paket_No like N'"+ ker_rap_BILGI.getPaket_No1().toString()+ "%' AND " 
 				+ " Konsimento like N'"+ ker_rap_BILGI.getKonsimento1().toString() + "%'" 
 				+ " " + evrakString + " "; 
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1690,6 +1727,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " SET  Kodu = CONCAT(N'" + yenikod + "' , SUBSTRING (Kodu, 3,14))" 
 				+ " WHERE  Paket_No = N'" + paket_No + "' AND Konsimento = N'" + kon + "' AND " 
 				+ " Satir =" + satir;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -1707,6 +1745,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		{
 			sql = "UPDATE KERESTE  SET CAna_Grup = '" + anaygrp + "'  , CAlt_Grup = '" + altygrp + "'  WHERE CAna_Grup = '" + anagrp + "'  AND  CAlt_Grup = '" + altgrp + "' ";
 		}
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		
@@ -1716,6 +1755,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public String[] kod_aciklama_bul(String paket, String kons) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT DISTINCT (SELECT ACIKLAMA FROM KOD_ACIKLAMA WHERE Kod = SUBSTRING(KERESTE.Kodu,0,3)) as ACIKLAMA ,"
 					+ " (SELECT ACIKLAMA FROM KONS_ACIKLAMA WHERE KONS = '" + kons + "') as KONS_ACIKLAMA, Kodu"
 					+ " FROM KERESTE   " 
@@ -1812,6 +1852,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" Konsimento between N'" + s1 + "' AND N'" + m2 + "'" +
 				" GROUP BY  " + iu ;
 		}
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1821,6 +1862,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public boolean kons_kontrol(String kons) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement("SELECT count(KONS) as KONS  FROM KONS_ACIKLAMA  WHERE KONS =N'" + kons + "' ");
 		rss = stmt.executeQuery();
 		boolean result =false;
@@ -1851,6 +1893,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" ,CIskonto,CTevkifat,CAna_Grup,CAlt_Grup,CDepo,COzel_Kod,CIzahat,CNakliyeci,CUSER,Mensei,Satir,CSatir) " + //9
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		String  izahat ="";
 		double  miktar=0 , tutar =0,fiat =0, isk =0, kdv=0;
@@ -1980,6 +2023,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " Paket_No like N'" + ker_rap_BILGI.getPaket_No1().toString() + "%' AND " 
 				+ " Konsimento like N'" + ker_rap_BILGI.getKonsimento1().toString() + "%' " 
 				+ " AND Cikis_Evrak = '' "; 
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1991,6 +2035,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		ResultSet	rss = null;
 		int E_NUMBER ;
 		String sql = "SELECT  Pak_No FROM PAKET_NO WITH (HOLDLOCK, ROWLOCK) ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -2077,6 +2122,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" AND  KERESTE."+ dURUM + "Tarih BETWEEN '" +t1 + "'" + " AND  '" + t2 + " 23:59:59.998'" +
 				" GROUP BY PAKET_NO , Konsimento ,SUBSTRING(KERESTE.Kodu, 8, 4),SUBSTRING(KERESTE.Kodu, 4, 3) " +
 				" ORDER BY PAKET_NO "	 ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2093,6 +2139,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 				" WHERE  YEAR(s."+ dURUM + "Tarih) <> '1900' AND k." + cins + " IS NULL OR k." + cins + " =0 " +
 				" AND s."+ dURUM + "Tarih <> '1900.01.01' " +
 				" ORDER BY  convert(varchar(10), s."+ dURUM + "Tarih, 102)  " ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2102,6 +2149,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 	public ResultSet sql_sorgu(String sql) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2113,6 +2161,7 @@ public class KERESTE_MSSQL implements IKERESTE {
 		String sql = "UPDATE KERESTE  " 
 				+ " SET  Konsimento = '"+ yenikons + "'" 
 				+ " WHERE  Konsimento = N'" + kons + "' AND " ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		
@@ -2189,9 +2238,15 @@ public class KERESTE_MSSQL implements IKERESTE {
 				+ " CDepo " + ker_rap_BILGI.getCDepo()  + " AND " 
 				+ " COzel_Kod " + ker_rap_BILGI.getCOzel_Kod() 
 				+ " GROUP BY "+ gruplama[1] +"  ORDER BY " + gruplama[1]  ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
 
+	}
+	private void kONTROL() throws SQLException, ClassNotFoundException
+	{
+		if(con.isClosed())    
+			baglan();
 	}
 }

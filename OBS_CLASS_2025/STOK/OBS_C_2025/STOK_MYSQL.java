@@ -26,7 +26,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String cumle = "jdbc:mysql://" +  BAGLAN.fatDizin.cONN_STR ;
-		DriverManager.setLoginTimeout(0);
+		//DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI);
 	}
 	@Override
@@ -487,6 +487,8 @@ public class STOK_MYSQL implements ISTOK {
 	public String fat_firma_adi() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
+		String cumle = "jdbc:mysql://" +  BAGLAN.fatDizin.cONN_STR + ";";
+		con = DriverManager.getConnection(cumle, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI);
 		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();
 		rss.next();
@@ -509,6 +511,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		String sql =  "SELECT " + sno + "  AS KOD , " + fieldd + " FROM " + nerden + "" +
 				" ORDER BY " + fieldd + "";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -518,6 +521,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql =   "SELECT  " + fieldd + " FROM " + nerden + " WHERE " + sno + " = N'" + arama + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -528,6 +532,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		String sql =   "SELECT ALID_Y , ALT_GRUP FROM ALT_GRUP_DEGISKEN   " +
 				" WHERE ANA_GRUP = N'" + sno + "' ORDER BY ALT_GRUP";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	 
@@ -536,6 +541,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		String sql = "UPDATE OZEL SET FIRMA_ADI = N'" + fadi + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -543,6 +549,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		String sql =  "UPDATE " + nerden + "  SET " + fieldd + "  = N'" + degisken_adi + "'  WHERE " + sno + "  = '" + ID + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -550,6 +557,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		String sql = "UPDATE ALT_GRUP_DEGISKEN  SET ALT_GRUP  = N'" + alt_grup + "' , ANA_GRUP  = N'" + ana_grup + "'  WHERE ALID_Y = '" + ID + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -559,6 +567,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		int maks = 0 ;
 		String sql =   "SELECT max(" +fieldd +")  as maks  FROM "+ nerden+ "" ; 
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -589,6 +598,7 @@ public class STOK_MYSQL implements ISTOK {
 		int maks =0 ;
 		String sql =   "SELECT max(ALID_Y)  AS ALID_Y  FROM ALT_GRUP_DEGISKEN   " ;// +
 		//	" WHERE ALT_GRUP = N'" + alt_grup + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -620,6 +630,7 @@ public class STOK_MYSQL implements ISTOK {
 		String sql = "SELECT Kodu,Adi,Birim,Kusurat,Sinif,Ana_Grup,Alt_Grup,Aciklama_1,Aciklama_2 ," +
 				" Ozel_Kod_1 ,Ozel_Kod_2 ,Barkod,Mensei,Agirlik,Resim,Fiat,Fiat_2,Fiat_3,Recete, USER " +
 				" FROM MAL USE INDEX (IX_MAL)  "+ arama +"  ORDER by " + sira ;
+		kONTROL();
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;
@@ -628,6 +639,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql =  " DELETE  FROM MAL WHERE Kodu= N'" + kodu + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -640,6 +652,7 @@ public class STOK_MYSQL implements ISTOK {
 				" ,Ozel_Kod_2,Barkod,Mensei,Agirlik,Fiat,Fiat_2,Fiat_3,Recete,Kdv,Resim,Depo , Ozel_Kod_3,USER) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, kodu);
 		stmt.setString(2, adi);
@@ -687,6 +700,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT Kodu,Adi FROM MAL  USE INDEX (IX_MAL)  WHERE Kodu = N'" + kodu + "'" ;
+		kONTROL();
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;
@@ -698,6 +712,7 @@ public class STOK_MYSQL implements ISTOK {
 		String sql =   "SELECT   Kodu,Barkod FROM MAL USE INDEX (IX_MAL) " +
 				" WHERE " + sira + " <> '' " +
 				" ORDER by " + sira;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 
@@ -712,6 +727,7 @@ public class STOK_MYSQL implements ISTOK {
 				" (SELECT  ANA_GRUP FROM ANA_GRUP_DEGISKEN    WHERE AGID_Y = MAL.Ana_Grup) AS Ana_Grup ,  " + 
 				" (SELECT  ALT_GRUP FROM ALT_GRUP_DEGISKEN    WHERE ALID_Y = MAL.Alt_Grup) AS Alt_Grup,Resim " + 
 				"FROM MAL USE INDEX (IX_MAL)  WHERE " + kodbarcode + " = N'" + kodu + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -722,6 +738,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		String sql =   "SELECT DISTINCT  Ozel_Kod  " + 
 				"  FROM FATURA WHERE Gir_Cik = '" + cins+ "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -736,6 +753,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND  Kodu = N'" + kodu + "'" +
 				" AND Gir_Cik = '" + gircik + "'" +
 				" ORDER BY  Tarih desc   LIMIT 1 ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -747,6 +765,7 @@ public class STOK_MYSQL implements ISTOK {
 				" FROM FATURA " +
 				" WHERE Fatura_No  ='" + fno + "'" +
 				" AND Gir_Cik = '" + cins + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 
@@ -769,6 +788,7 @@ public class STOK_MYSQL implements ISTOK {
 				" ,Doviz,Adres_Firma,Cari_Firma,Ozel_Kod,Kur,Cins,Ana_Grup,Alt_Grup, USER ) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1,fatno);
 		stmt.setString(2, kodu);
@@ -803,6 +823,7 @@ public class STOK_MYSQL implements ISTOK {
 				" WHERE Evrak_NO = N'" + ino + "'" +
 				" AND Tip = N'" + cins + "'" +
 				" AND Gir_Cik = '" + gircik + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -812,6 +833,7 @@ public class STOK_MYSQL implements ISTOK {
 		String sql  ="INSERT INTO DPN (Evrak_No,Tip,Bir,Iki,Uc,Gir_Cik, USER ) " +
 				" VALUES (?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eno);
 		stmt.setString(2, tip);
@@ -827,6 +849,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		String sql = "UPDATE IRSALIYE   SET Fatura_No   = N'" + fatno + "'  WHERE Irsaliye_No   = '" + irsno + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -838,6 +861,7 @@ public class STOK_MYSQL implements ISTOK {
 				" WHERE EVRAK_CINS = N'" + evrcins + "'" +
 				" AND EVRAK_NO = N'" + evrno + "'" +
 				" AND Gir_Cik = N'" + cins + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -847,6 +871,7 @@ public class STOK_MYSQL implements ISTOK {
 		String sql  ="INSERT INTO ACIKLAMA (EVRAK_CINS,SATIR,EVRAK_NO,ACIKLAMA,Gir_Cik) " +
 				" VALUES (?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, evrcins);
 		stmt.setInt(2, satir);
@@ -864,6 +889,7 @@ public class STOK_MYSQL implements ISTOK {
 				" WHERE Evrak_No  = N'" + eno + "'" +
 				" AND Evrak_Cins = '" + ecins + "'" +
 				" AND Hareket = '" + cins + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -876,6 +902,7 @@ public class STOK_MYSQL implements ISTOK {
 				" ,Ana_Grup,Alt_Grup,Kur,B1,Doviz,Hesap_Kodu, USER ) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, evrno);
 		stmt.setString(2, evrcins);
@@ -910,6 +937,7 @@ public class STOK_MYSQL implements ISTOK {
 				" WHERE Fatura.Kodu = MAL.Kodu " +
 				" AND Fatura_No = N'" + fno + "'" +
 				" AND Gir_Cik = '" + cins + "'";
+		kONTROL();
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;	
@@ -925,6 +953,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND SATIR = '" + satir + "'" +
 				" AND EVRAK_CINS = '" + evrcins + "'" +
 				" AND Gir_Cik = '" + gircik + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -946,6 +975,7 @@ public class STOK_MYSQL implements ISTOK {
 				" FROM IRSALIYE   " +
 				" Where Fatura_No = N'" + fno + "'" +
 				" AND Hareket = '" + hareket + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -959,6 +989,7 @@ public class STOK_MYSQL implements ISTOK {
 				" WHERE Evrak_NO = N'" + ino + "'" +
 				" AND DPN.Tip = N'" + cins + "'" +
 				" AND Gir_Cik = '" + gircik + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -969,6 +1000,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		int E_NUMBER ;
 		String sql = "SELECT max(Fatura_No + 1) AS NO  FROM FATURA WHERE Gir_Cik = '" + cins + "' ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -988,6 +1020,7 @@ public class STOK_MYSQL implements ISTOK {
 		boolean result =false;
 		String sql = "SELECT  IFNULL(SUM(Miktar),-1) as MIKTAR   FROM STOK USE INDEX(IX_STOK) " +
 				" WHERE Urun_Kodu = N'" + kodu + "' ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  	}
@@ -1008,6 +1041,7 @@ public class STOK_MYSQL implements ISTOK {
 		String sql ="SELECT IFNULL(SUM(Miktar),-1) AS MIKTAR " +
 				" FROM STOK USE INDEX(IX_STOK)  LEFT JOIN MAL ON STOK.Urun_Kodu = MAL.Kodu " +
 				" WHERE Barkod = N'" + barkodu + "' ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  	}
@@ -1027,6 +1061,7 @@ public class STOK_MYSQL implements ISTOK {
 		String sql =   " DELETE " +
 				" FROM RECETE " +
 				" WHERE Recete_No  ='" + rno + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -1036,6 +1071,7 @@ public class STOK_MYSQL implements ISTOK {
 		String sql  ="INSERT INTO RECETE (Recete_No,Durum,Tur,Kodu,Miktar,Ana_Grup,Alt_Grup, USER ) " +
 				" VALUES (?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, recno);
 		stmt.setBoolean(2, durum);
@@ -1052,6 +1088,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		String sql = "UPDATE MAL SET Recete = N'" + rec + "'  WHERE Kodu = N'" + ukodu + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 
@@ -1062,6 +1099,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		int E_NUMBER ;
 		String sql = "SELECT max(Recete_No + 1) AS NO  FROM Recete  ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -1080,6 +1118,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		String E_NUMBER = "" ;
 		String sql =  "SELECT MAX(Recete_No) as NO  FROM RECETE   LIMIT 1";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -1103,6 +1142,7 @@ public class STOK_MYSQL implements ISTOK {
 				" FROM RECETE  , MAL USE INDEX (IX_MAL) "+
 				" Where RECETE.KODU = MAL.Kodu " +
 				" AND Recete_No = N'" + rno + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -1119,6 +1159,7 @@ public class STOK_MYSQL implements ISTOK {
 				" IFNULL((SELECT OZEL_KOD_2 FROM OZ_KOD_2_DEGISKEN WHERE OZ_KOD_2_DEGISKEN.OZ2ID = MAL.Ozel_Kod_2),'') as Ozel_Kod_2, " +
 				" mal.Aciklama_1,mal.Aciklama_2 " +
 				" FROM MAL USE INDEX (IX_MAL) ORDER BY MAL.Kodu ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -1131,6 +1172,7 @@ public class STOK_MYSQL implements ISTOK {
 				" Ozel_Kod_1 ,Ozel_Kod_2 ,Barkod,Mensei,Agirlik,Resim,Fiat,Fiat_2,Recete " +
 				" FROM MAL USE INDEX (IX_MAL) " +
 				" WHERE Kodu = N'" + kodu + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -1140,6 +1182,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql = "SELECT Resim FROM MAL USE INDEX (IX_MAL) WHERE Kodu  = N'" + ukodu + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -1157,6 +1200,7 @@ public class STOK_MYSQL implements ISTOK {
 				" ,IF(Durum = '1' , 'Aktif' ,'Pasif') AS Durum " +
 				" FROM RECETE " +
 				" WHERE Tur = 'Giren' ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -1176,6 +1220,7 @@ public class STOK_MYSQL implements ISTOK {
 				" FROM STOK  " +
 				" WHERE Evrak_No  =N'" + eno + "'" +
 				" AND Evrak_Cins = '" + cins + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;
@@ -1186,6 +1231,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		String E_NUMBER = "" ;
 		String sql =   "SELECT max(Evrak_No )  as NO FROM STOK  where Evrak_Cins = 'URE' LIMIT 1 ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -1198,6 +1244,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		int E_NUMBER ;
 		String sql =  "SELECT  E_No FROM URET_EVRAK  ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -1222,6 +1269,7 @@ public class STOK_MYSQL implements ISTOK {
 				" WHERE Evrak_Cins = 'URE' and Hareket ='C'  " +
 				" AND Urun_Kodu = N'" + kodu + "' " +
 				" ORDER BY  Tarih DESC LIMIT 1";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -1243,6 +1291,7 @@ public class STOK_MYSQL implements ISTOK {
 				" FROM STOK USE INDEX (IX_STOK)  WHERE  STOK.Tarih >= '" + baslangic + "'  AND STOK.Tarih < '" + tar + " 23:59:59.998'" +
 				" And STOK.Urun_Kodu = N'" + ukodu + "' AND Evrak_Cins <> 'DPO'" +
 				" Order by Tarih";
+		kONTROL();
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;
@@ -1256,6 +1305,7 @@ public class STOK_MYSQL implements ISTOK {
 				" FROM STOK  USE INDEX (IX_STOK) " +
 				" WHERE  Urun_Kodu = N'" + kodu + "' " +
 				" AND Hareket = 'G' AND Tarih > '" + ilkt + "' AND  Tarih < '" + tarih + " 23:59:59.998'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -1274,6 +1324,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		int E_NUMBER ;
 		String sql = "SELECT MAX(Irsaliye_No + 1 ) as NO FROM IRSALIYE WHERE Hareket = '" + cins + "' ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -1303,6 +1354,7 @@ public class STOK_MYSQL implements ISTOK {
 				" Where IRSALIYE.KODU = MAL.Kodu " +
 				" AND Irsaliye_No = N'" + ino + "'" +
 				" AND Hareket = '" + hareket + "'";
+		kONTROL();
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;
@@ -1314,6 +1366,7 @@ public class STOK_MYSQL implements ISTOK {
 				" FROM IRSALIYE" +
 				" WHERE Irsaliye_No  ='" + ino + "'" +
 				" AND Hareket = '" + hareket + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -1326,6 +1379,7 @@ public class STOK_MYSQL implements ISTOK {
 				",Cari_Hesap_Kodu,Sevk_Tarihi,Ozel_Kod,Ana_Grup,Alt_Grup,Fatura_No,Hareket,Cins, USER ,Izahat) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1,irsno);
 		stmt.setString(2, kodu);
@@ -1358,6 +1412,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		String sql =   "SELECT DISTINCT  Ozel_Kod  " + 
 				"  FROM IRSALIYE WHERE Hareket = '" + cins+ "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1372,6 +1427,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND  Kodu = N'" + kodu + "'" +
 				" AND Hareket = '" + gircik + "'" +
 				" ORDER BY  Tarih desc  LIMIT 1";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1381,6 +1437,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String sql =     "SELECT Isim,Adres,Semt,Sehir,GID FROM GDY ORDER BY Isim ASC ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1389,6 +1446,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql =    " DELETE  FROM GDY  WHERE GID  ='" + gid + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -1398,6 +1456,7 @@ public class STOK_MYSQL implements ISTOK {
 		String sql  ="INSERT INTO GDY (Isim,Adres,Semt,Sehir, USER ) " +
 				" VALUES (?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, isim);
 		stmt.setString(2, adres);
@@ -1413,6 +1472,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		String sql =   " SELECT * " +
 				" FROM " + nerden + " WHERE SAT_SUT ='"+ satsut + "' ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1425,6 +1485,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql =   "DELETE IRS_EVRAK_FORMAT WHERE SAT_SUT='" + satsut + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		sql  ="INSERT INTO IRS_EVRAK_FORMAT (SAT_SUT,TARIH,SEVK_TARIH,FIRMA_KODU,FIRMA_UNVANI,VERGI_DAIRESI,VERGI_NO,GIDECEGI_YER ," +  //8
@@ -1489,6 +1550,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql =   "DELETE FAT_EVRAK_FORMAT WHERE SAT_SUT='" + satsut + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		sql  ="INSERT INTO FAT_EVRAK_FORMAT (SAT_SUT,TARIH,FIRMA_KODU,FIRMA_UNVANI,VERGI_DAIRESI,VERGI_NO,GIDECEGI_YER ," +  //8
@@ -1571,6 +1633,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND FATURA.Gir_Cik Like '" + turu + "%'" +
 				" GROUP BY Fatura_No,Gir_Cik,Tarih ,Cari_Firma,Adres_Firma,Doviz  " +
 				" ORDER BY  Fatura_No";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1604,6 +1667,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND FATURA.Gir_Cik Like '" + turu + "%'" +
 				" GROUP BY " + grp + "" +
 				" ORDER BY  " + grp + "";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1636,6 +1700,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND FATURA.Gir_Cik Like '" + turu + "%'" +
 				" GROUP BY " + grp + ",Gir_Cik" +
 				" ORDER BY  " + grp + "";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1668,6 +1733,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND STOK.Alt_Grup " + altgrp +
 				" AND STOK.Depo " + depo +
 				" ORDER BY Evrak_No ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1711,6 +1777,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND Stok.Evrak_Cins " + ure1 +
 				" Group by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim " +
 				" ORDER by STOK.Urun_Kodu, Mal.Adi ,Mal.Birim ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1765,6 +1832,7 @@ public class STOK_MYSQL implements ISTOK {
 				" LEFT OUTER JOIN ALT_GRUP_DEGISKEN altDegisken on t.Alt_Grup = altDegisken.ALID_Y " +
 				" Group BY anaDegisken.ANA_GRUP, altDegisken.ALT_GRUP " +
 				" ORDER BY ANA_GRUP,ALT_GRUP ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1811,6 +1879,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND " + kjk1 +
 				" AND STOK.Hareket Like '" + turu + "%' " +
 				" Order by Tarih ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1828,6 +1897,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND  STOK.Tarih BETWEEN '" + t1 + "'" +
 				" AND  '"  + t2 + " 23:59:59.998'" +
 				" " + ordr+ " ";
+		kONTROL();
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;	
@@ -1883,7 +1953,7 @@ public class STOK_MYSQL implements ISTOK {
 						+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
 						+" AND  '" + t2 + " 23:59:59.998'" 
 						+ "  GROUP BY Urun_Kodu , Urun_Adi , Birim  ORDER BY  Urun_Kodu  ;";
-
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1938,7 +2008,7 @@ public class STOK_MYSQL implements ISTOK {
 						+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
 						+" AND  '" + t2 + " 23:59:59.998'" 
 						+ "  GROUP BY  Urun_Kodu , Urun_Adi , Birim  ORDER BY Urun_Kodu  ;";
-		//
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -1994,7 +2064,7 @@ public class STOK_MYSQL implements ISTOK {
 						+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
 						+" AND  '" + t2 + " 23:59:59.998'" 
 						+ "  GROUP BY Musteri_Kodu ,Musteri_Adi order by Musteri_Kodu  ;";
-		//
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2051,7 +2121,7 @@ public class STOK_MYSQL implements ISTOK {
 						+" AND  '" + t2 + " 23:59:59.998'" 
 						+ "  GROUP BY Musteri_Kodu ,Musteri_Adi,  YEAR(Tarih) order by Musteri_Kodu  ;";
 		//
-
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2107,7 +2177,7 @@ public class STOK_MYSQL implements ISTOK {
 						+" AND  '" + t2 + " 23:59:59.998'" 
 						+ "  GROUP BY  Yil,Ay  ORDER BY Yil,Ay  ;";
 		//
-
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2162,6 +2232,7 @@ public class STOK_MYSQL implements ISTOK {
 						+" AND  '" + t2 + " 23:59:59.998'" 
 						+ "  GROUP BY YEAR ORDER BY YEAR   ;";
 		//	+ "  GROUP BY YEAR  WITH ROLLUP ;";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2217,7 +2288,7 @@ public class STOK_MYSQL implements ISTOK {
 						+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
 						+" AND  '" + t2 + " 23:59:59.998'" 
 						+ "  GROUP BY Ana_Grup , Alt_Grup  ORDER BY Ana_Grup , Alt_Grup ;";
-		//
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2272,7 +2343,7 @@ public class STOK_MYSQL implements ISTOK {
 						+ " AND  STOK.Tarih BETWEEN '" + t1 + "'" 
 						+" AND  '" + t2 + " 23:59:59.998'" 
 						+ "  GROUP BY Ana_Grup , Alt_Grup,Yil  ORDER BY  Ana_Grup , Alt_Grup,Yil   ;";
-		//
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2294,6 +2365,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND  STOK.Tarih BETWEEN '" + t1 + "'" +
 				" AND  '" + t2 + " 23:59:59.998'" +
 				"" + ordrr + " ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2371,6 +2443,7 @@ public class STOK_MYSQL implements ISTOK {
 
 		//          	+ "  GROUP BY " + slct.split("as")[0]  + "   ;";
 		//     		+ "  GROUP BY Urun_Kodu , Urun_Adi , Birim   ;";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2397,6 +2470,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND Hareket Like '" + turu + "%' " +
 				" GROUP BY IRSALIYE.Irsaliye_No,Hareket  , IRSALIYE.Tarih,IRSALIYE.Cari_Hesap_Kodu,IRSALIYE.Firma,  mal.Birim " +
 				" ORDER BY IRSALIYE.Irsaliye_No ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2422,6 +2496,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND RECETE.Alt_Grup " + altgrp +
 				" AND RECETE.Durum Like '" + durum + "%'" +
 				" ORDER BY Recete_No";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2440,6 +2515,7 @@ public class STOK_MYSQL implements ISTOK {
 				" WHERE  Tur = 'Cikan' " +
 				" AND RECETE.Kodu = MAL.Kodu  " +
 				" AND RECETE.Recete_No >= '" + f1 + "' AND  RECETE.Recete_No <= '" + f2 + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2459,6 +2535,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND  IRSALIYE.Irsaliye_No = '" + ino + "'"  +
 				" AND Hareket Like '" + turu + "%' " +
 				" ORDER BY IRSALIYE.Kodu";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2487,7 +2564,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND kurlar.Tarih =DATE(Fatura.Tarih) and kurlar.Kur = '" + kurc + "' " +
 				" GROUP BY FATURA.Cari_Firma  " +
 				" ORDER BY FATURA.Cari_Firma  ";
-
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2517,6 +2594,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND kurlar.Tarih = DATE(Fatura.Tarih) and kurlar.Kur = '" + kurc + "' " +
 				" GROUP BY FATURA.Cari_Firma , MAL.Ana_Grup,MAL.Alt_Grup " +
 				" ORDER BY FATURA.Cari_Firma , MAL.Ana_Grup,MAL.Alt_Grup ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2548,7 +2626,7 @@ public class STOK_MYSQL implements ISTOK {
 				"  AND '" + t2 + " 23:59:59.998'"  +
 				"  AND kurlar.Tarih = DATE(STOK.Tarih) and kurlar.Kur = '" + kurc + "'  " +
 				"  GROUP BY  " + iu ;
-
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 
@@ -2581,6 +2659,7 @@ public class STOK_MYSQL implements ISTOK {
 				" WHERE FATURA.Fatura_No = '" + fno + "' " + 
 				" AND FATURA.Gir_Cik Like '" + turu + "%'" +
 				" AND FATURA .Kodu = mal.Kodu " ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2593,6 +2672,7 @@ public class STOK_MYSQL implements ISTOK {
 				" FROM STOK s left outer join ok_kur" +  BAGLAN.kurDizin.kOD + ".kurlar k on DATE( k.Tarih) = DATE( s.Tarih) and k.Kur = '" + kur + "'" +
 				" WHERE k." + cins + " IS NULL OR k." + cins + " =0 " +
 				" ORDER BY DATE(s.Tarih)  " ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2629,6 +2709,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND Ozel_Kod_2 " + o2 +
 				" AND Depo " + depo +
 				" ORDER BY Kodu " ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2643,6 +2724,7 @@ public class STOK_MYSQL implements ISTOK {
 				" WHERE STOK.Evrak_Cins = 'URE'  AND Hareket = 'G' " +
 				" AND Tarih >= '" + t1 + "' AND Tarih <= '" + t2 + " 23:59:59.998' " +
 				" ORDER BY Tarih " ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2652,6 +2734,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql  = "UPDATE STOK SET B1 = N'" + y_no + "'  WHERE Evrak_Cins = 'URE' AND Evrak_No = N'" + e_no + "'";
 		PreparedStatement stmt = con.prepareStatement(sql);
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -2659,6 +2742,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql  ="UPDATE STOK SET Evrak_No = N'" + y_no + "'  WHERE Evrak_Cins = 'URE' AND B1 = N'" + y_no + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -2668,6 +2752,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String zas = "" ;
 		String sql  ="UPDATE STOK SET B1 = '" + zas + "'  WHERE Evrak_Cins = 'URE' AND Evrak_No = N'" + y_no + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -2676,6 +2761,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql  ="UPDATE STOK SET Izahat = N'" + y_no + " Nolu Fis Ile Uretim'  WHERE Evrak_Cins = 'URE' AND Evrak_No = N'" + y_no + "' AND Hareket = 'G' ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -2684,6 +2770,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql  ="UPDATE STOK SET Izahat = N'" + y_no + " Nolu Uretimde CIKAN'  WHERE Evrak_Cins = 'URE' AND Evrak_No = N'" + y_no + "' AND Hareket = 'C' AND Izahat Like N'" + eski_no + "%'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -2692,6 +2779,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql  ="UPDATE ACIKLAMA SET EVRAK_NO = N'" + y_no + "'  WHERE  ACID = '" + asid + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -2700,6 +2788,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql  ="UPDATE URET_EVRAK SET E_No =" + nom + "  ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -2708,6 +2797,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2718,6 +2808,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		int E_NUMBER ;
 		String sql =  "SELECT  E_No FROM ZAYI_EVRAK  ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -2746,6 +2837,7 @@ public class STOK_MYSQL implements ISTOK {
 				" FROM STOK  " +
 				" WHERE Evrak_No  =N'" + eno + "'" +
 				" AND Evrak_Cins = '" + cins + "' AND Hareket ='C'";
+		kONTROL();
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
 		return rss;	
@@ -2756,6 +2848,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		String E_NUMBER = "" ;
 		String sql =   "SELECT max(Evrak_No )  as NO FROM STOK  where Evrak_Cins = 'ZAI'  LIMIT 1  ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -2778,6 +2871,7 @@ public class STOK_MYSQL implements ISTOK {
 				" WHERE Fatura.Kodu = MAL.Kodu " +
 				" AND Fatura_No = N'" + fno + "'" +
 				" AND Gir_Cik = '" + cins + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -2788,6 +2882,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		String result ;
 		String sql = "SELECT max(Fatura_No)  as NO FROM FATURA WHERE Gir_Cik = '" + cins + "' ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -3060,6 +3155,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND MAL.Alt_Grup " + ualtgrp +
 				" GROUP BY mal.kodu,mal.barkod,mal.adi,mal.birim,mal.kusurat " +
 				" ORDER BY mal.kodu ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -3088,6 +3184,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND STOK.Depo " + depo +
 				" AND  Evrak_Cins = 'ZAI' " +
 				" Order by Tarih ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -3107,6 +3204,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND Hareket = '" + hareket + "'" +
 				" " + arama + "" +
 				" ORDER BY Irsaliye_No " ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -3117,6 +3215,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rss = null;
 		String result ;
 		String sql = "SELECT max(Irsaliye_No)  as NO FROM IRSALIYE WHERE Hareket = '" + cins + "' ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		if (!rss.isBeforeFirst() ) {  
@@ -3259,7 +3358,7 @@ public class STOK_MYSQL implements ISTOK {
 				" Order by rt.Urun_Kodu asc   option (maxrecursion 0) ";
 
 
-
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 
 		rss = stmt.executeQuery();
@@ -3311,6 +3410,7 @@ public class STOK_MYSQL implements ISTOK {
 				" AND Evrak_Cins " + wee +
 				" AND Evrak_Cins " + ure1 +
 				" Order by Tarih " ;
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss;	
@@ -3344,6 +3444,7 @@ public class STOK_MYSQL implements ISTOK {
 			ure1 = "%";
 			ure2 = "URE" ;
 		}
+		kONTROL();
 		CallableStatement cstmt = con.prepareCall("{call LIFO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 		cstmt.setString(1, calisanpara);
 		cstmt.setString(2, t1);
@@ -3375,6 +3476,7 @@ public class STOK_MYSQL implements ISTOK {
 				"  ( AGID_Y,ANA_GRUP , USER  ) " +
 				"  SELECT  AGID_Y,ANA_GRUP  ,'" + kull + "' " +
 				"  FROM ANA_GRUP_DEGISKEN ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -3386,6 +3488,7 @@ public class STOK_MYSQL implements ISTOK {
 				" ( ALID_Y,ANA_GRUP,ALT_GRUP , USER  ) " +
 				" SELECT  ALID_Y,ANA_GRUP  ,ALT_GRUP ,'" + kull + "' " +
 				" FROM ALT_GRUP_DEGISKEN ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -3397,6 +3500,7 @@ public class STOK_MYSQL implements ISTOK {
 				" ( Isim,Adres,Semt,Sehir, USER   ) " +
 				" SELECT Isim,Adres,Semt,Sehir ,'" + kull + "' " +
 				" FROM GDY ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -3406,6 +3510,7 @@ public class STOK_MYSQL implements ISTOK {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "" ;
 		sql = "DELETE ok_fat" + ydosya + ".IRS_EVRAK_FORMAT ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 
@@ -3449,6 +3554,7 @@ public class STOK_MYSQL implements ISTOK {
 				" SELECT '" + yen_ukodu + "',Adi,Birim,Kusurat,Resim, Sinif, Ana_Grup, Alt_Grup,Aciklama_1,Aciklama_2,Ozel_Kod_1,Ozel_Kod_2,Ozel_Kod_3,KDV, " +  
 				" Barkod,Mensei,Agirlik,Depo,Fiat,Fiat_2 ,Fiat_3,Recete ,'" + kull + "' " +
 				" FROM MAL Where Kodu =N'" + eski_ukodu + "' ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -3463,6 +3569,7 @@ public class STOK_MYSQL implements ISTOK {
 				" ,Doviz,Adres_Firma,Cari_Firma,Ozel_Kod,Kur,Cins,Ana_Grup,Alt_Grup, USER ) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1,fatno);
 		stmt.setString(2, kodu);
@@ -3498,6 +3605,7 @@ public class STOK_MYSQL implements ISTOK {
 				" ,Ana_Grup,Alt_Grup,Kur,B1,Doviz,Hesap_Kodu, USER ) " +
 				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
+		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, evrno);
 		stmt.setString(2, evrcins);
@@ -3524,6 +3632,7 @@ public class STOK_MYSQL implements ISTOK {
 	public void degisken_degistir(int anagrp,int altgrp, int anaygrp,int altygrp) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver"); 
+		kONTROL();
 		String sql = "UPDATE MAL  SET Ana_Grup = '" + anaygrp + "'  , Alt_Grup = '" + altygrp + "'  WHERE Ana_Grup = '" + anagrp + "'  AND  Alt_Grup = '" + altgrp + "' ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -3547,6 +3656,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		String sql = "DELETE ALT_GRUP_DEGISKEN    WHERE ALID_Y = '" + ID + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -3554,6 +3664,7 @@ public class STOK_MYSQL implements ISTOK {
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver"); 
 		String sql = "DELETE " + nerden  + "    WHERE "+ hangi_Y +" = '" + sira + "'";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 	}
@@ -3563,6 +3674,7 @@ public class STOK_MYSQL implements ISTOK {
 		ResultSet	rs = null;
 		boolean result = true;
 		String sql  = "" ;
+		kONTROL();
 		PreparedStatement stmt =null;
 		sql = "SELECT  *  FROM MAL   WHERE Ana_Grup = '" + anagrp + "'  AND  Alt_Grup = '" + altgrp + "' ";
 		stmt = con.prepareStatement(sql);
@@ -3746,7 +3858,14 @@ public class STOK_MYSQL implements ISTOK {
 				" AND m.Alt_Grup " + ualtgrp +
 				" Group by m.Kodu, m.Adi ,m.Birim " +
 				" ORDER by m.Kodu, m.Adi ,m.Birim ";
+		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		return rss;		}
+		return rss;		
+		}
+	private void kONTROL() throws SQLException, ClassNotFoundException
+	{
+		if(con.isClosed())    
+			baglan();
+	}
 }

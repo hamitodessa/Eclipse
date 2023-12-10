@@ -17,13 +17,11 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 
 	@Override
 	public void baglan() throws SQLException, ClassNotFoundException {
-		
 		boolean result = false ;
 		result = GLOBAL.dos_kontrol(BAGLAN.fihDizin.cONN_STR );
 		if(result)
 			con = DriverManager.getConnection("jdbc:sqlite:" + BAGLAN.fihDizin.cONN_STR  ) ;
 	}
-
 	@Override
 	public void reh_sifirdan_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		con = DriverManager.getConnection("jdbc:sqlite:" + sbilgi.getDizin() + "/" + "OK_Fih" + sbilgi.getKod() + ".DB"  ) ;
@@ -39,14 +37,13 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 				+ " Note nvarchar(50) NULL,"
 				+ " Note2 nvarchar(50) NULL,"
 				+ " Mail nvarchar(50) NULL) " ;
-		
 		con = DriverManager.getConnection("jdbc:sqlite:" +  sbilgi.getDizin() + "/" + "OK_Fih" + sbilgi.getKod() + ".DB"  ) ;
 		Statement stmt = con.createStatement();  
 		stmt.execute(sql);  
 		stmt.close();
 		con.close();
 		con.close();
-		 sql = "CREATE INDEX IX_FIHRIST ON FIHRIST (Adi);" ;
+		sql = "CREATE INDEX IX_FIHRIST ON FIHRIST (Adi);" ;
 		
 		con = DriverManager.getConnection("jdbc:sqlite:" +  sbilgi.getDizin() + "/" + "OK_Fih" + sbilgi.getKod() + ".DB"  ) ;
 		stmt = con.createStatement();  
@@ -57,15 +54,10 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 
 	@Override
 	public void reh_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		
-		
 	}
-
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
-	
 	}
-
 	@Override
 	public ResultSet reh_doldur() throws ClassNotFoundException, SQLException {
 		Class.forName("org.sqlite.JDBC");
@@ -102,9 +94,7 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
-		
 	}
-
 	@Override
 	public void reh_sil(int cdi) throws SQLException, ClassNotFoundException {
 		Class.forName("org.sqlite.JDBC");
@@ -116,5 +106,4 @@ public class FIHRIST_SQLITE implements I_Fihrist{
 		stmt.close();
 		con.close();
 	}
-
 }

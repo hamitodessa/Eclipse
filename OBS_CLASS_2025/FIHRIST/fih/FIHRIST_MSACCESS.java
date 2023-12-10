@@ -17,7 +17,6 @@ import OBS_C_2025.Server_Bilgi;
 public class FIHRIST_MSACCESS implements I_Fihrist{
 	public static Connection con = null;
 
-
 	@Override
 	public void baglan() throws SQLException, ClassNotFoundException {
 		boolean result = false ;
@@ -26,10 +25,8 @@ public class FIHRIST_MSACCESS implements I_Fihrist{
 		if(result)
 			con = DriverManager.getConnection("jdbc:ucanaccess://" + BAGLAN.fihDizin.cONN_STR ,"","" ) ;
 		}
-
 	@Override
 	public void reh_sifirdan_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-
 		File file = new File(sbilgi.getDizin() + "/" + "OK_Fih" + sbilgi.getKod() + ".accdb" );
 		try {
 			Database db;
@@ -38,7 +35,6 @@ public class FIHRIST_MSACCESS implements I_Fihrist{
 					.create();
 			db.close();
 		} catch (Exception e) {
-			
 		}
 		String sql = "CREATE TABLE FIHRIST("
 				+ " ID AUTOINCREMENT PRIMARY KEY ,"
@@ -61,20 +57,13 @@ public class FIHRIST_MSACCESS implements I_Fihrist{
 		stmt.execute(sql);  
 		stmt.close();
 		con.close();
-		
 	}
-
 	@Override
 	public void reh_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		
-		
 	}
-
 	@Override
 	public void create_table(String fir_adi) throws SQLException {
-	
 	}
-
 	@Override
 	public ResultSet reh_doldur() throws ClassNotFoundException, SQLException {
 		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");

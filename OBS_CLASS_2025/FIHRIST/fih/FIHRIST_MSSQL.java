@@ -22,13 +22,12 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 	@Override
 	public void baglan() throws SQLException, ClassNotFoundException {
 		String cumle = "jdbc:sqlserver://" + BAGLAN.fihDizin.cONN_STR + ";";
-		DriverManager.setLoginTimeout(0);
+		//DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.fihDizin.kULLANICI,BAGLAN.fihDizin.sIFRESI);
 	}
 	@Override
 	public void reh_sifirdan_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
 		con = null;  
 		String cumle = "";
 		if ( ! sbilgi.getPort().toString().equals("") )
@@ -51,8 +50,6 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 		create_table(sbilgi.getFir_adi());
 		stmt.close();
 		con.close();
-
-
 	}
 	@Override
 	public void reh_SIFIR_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
@@ -141,5 +138,4 @@ public class FIHRIST_MSSQL implements I_Fihrist{
 		stmt.close();
 		con.close();
 	}
-
 }

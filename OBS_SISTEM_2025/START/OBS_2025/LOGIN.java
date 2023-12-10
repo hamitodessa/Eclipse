@@ -204,10 +204,8 @@ public class LOGIN extends JDialog {
 	
 	public LOGIN() throws IOException {
 		//************************************************************************
-		
 		try 
 		{ 
-
 			FlatLaf.registerCustomDefaultsSource("OBS_2025");
 			LOGIN.setDefaultLookAndFeelDecorated(true);
 
@@ -269,40 +267,48 @@ public class LOGIN extends JDialog {
 				//FlatAnimatedLafChange.showSnapshot();
 				FlatSolarizedLightIJTheme.setup();
 				//	FlatDarkLaf.setup();
-				// FlatLaf.updateUI();
+				 FlatLaf.updateUI();
 				// FlatAnimatedLafChange.hideSnapshotWithAnimation();
 
 			} 
 			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatArcOrangeIJTheme"))
 			{ 
-				FlatArcOrangeIJTheme.setup(); 
+				FlatArcOrangeIJTheme.setup();
+				FlatLaf.updateUI();
 			} 
 			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatSpacegrayIJTheme"))
 			{ 
-				FlatSpacegrayIJTheme.setup(); 
+				FlatSpacegrayIJTheme.setup();
+				FlatLaf.updateUI();
 			} 
 			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatArcIJTheme")) 
 			{
-				FlatArcIJTheme.setup(); 
+				FlatArcIJTheme.setup();
+				FlatLaf.updateUI();
 			} else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatCyanLightIJTheme"))
 			{ 
-				FlatCyanLightIJTheme.setup(); 
+				FlatCyanLightIJTheme.setup();
+				FlatLaf.updateUI();
 			} 
 			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatGradiantoNatureGreenIJTheme")) 
 			{
-				FlatGradiantoNatureGreenIJTheme.setup(); 
+				FlatGradiantoNatureGreenIJTheme.setup();
+				FlatLaf.updateUI();
 			}
 			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatHighContrastIJTheme" )) 
 			{ 
-				FlatHighContrastIJTheme.setup(); 
+				FlatHighContrastIJTheme.setup();
+				FlatLaf.updateUI();
 			} 
 			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatGrayIJTheme"))
 			{
-				FlatGrayIJTheme.setup(); 
+				FlatGrayIJTheme.setup();
+				FlatLaf.updateUI();
 			} 
 			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("FlatNordIJTheme")) 
 			{
 				FlatNordIJTheme.setup();
+				FlatLaf.updateUI();
 			}
 			SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
 			//FlatSolarizedLightIJTheme());

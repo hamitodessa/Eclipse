@@ -152,6 +152,8 @@ import OBS_C_2025.sayiyiYaziyaCevir;
 import raven.toast.Notifications;
 
 import javax.swing.JSeparator;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 @SuppressWarnings({"static-access","unused"})
 public class LOGIN extends JDialog {
 	/**
@@ -343,7 +345,7 @@ public class LOGIN extends JDialog {
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(null);
 		JLabel lblicon = new JLabel("");
-		lblicon.setBounds(29, 11, 137, 134);
+		lblicon.setBounds(29, 13, 137, 134);
 		panel.add(lblicon);
 		lblicon.setHorizontalAlignment(SwingConstants.CENTER);
 		lblicon.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/icons8-application-96.png")));
@@ -391,6 +393,8 @@ public class LOGIN extends JDialog {
 		panel.add(separator);
 		
 		txtpwd = new JPasswordField();
+		txtpwd.setHorizontalAlignment(SwingConstants.LEFT);
+		txtpwd.setEchoChar('*');
 		txtpwd.setBounds(310, 37, 110, 20);
 		txtpwd.setOpaque(false);
 		txtpwd.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -679,6 +683,22 @@ public class LOGIN extends JDialog {
 		separator_1.setForeground(Color.WHITE);
 		separator_1.setBounds(310, 57, 110, 7);
 		panel.add(separator_1);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setToolTipText("Sifre Goster");
+		btnNewButton.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/show-pwd-16.png")));
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				txtpwd .setEchoChar((char) 0);
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				txtpwd .setEchoChar('*');
+			}
+		});
+		btnNewButton.setBounds(438, 34, 23, 23);
+		panel.add(btnNewButton);
 		
 		
 	

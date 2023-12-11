@@ -498,14 +498,15 @@ public class KERESTE_MSSQL implements IKERESTE {
 		int count=0;
 		count = rss.getRow();
 		String result;
-		if (count  != 0) 
-		{
-			result = rss.getString("FIRMA_ADI");
-		}
-		else
-		{
-			result = "";
-		}
+		result = count != 0 ? rss.getString("FIRMA_ADI") : "" ;
+//		if (count  != 0) 
+//		{
+//			result = rss.getString("FIRMA_ADI");
+//		}
+//		else
+//		{
+//			result = "";
+//		}
 		return result;	
 	}
 

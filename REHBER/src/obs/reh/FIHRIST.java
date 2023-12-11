@@ -55,6 +55,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Desktop;
 
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -75,6 +76,7 @@ import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
+
 import fih.FIHRIST_ACCESS;
 import fih.FIHRIST_MSACCESS;
 
@@ -89,8 +91,12 @@ import javax.swing.ImageIcon;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -987,6 +993,53 @@ public class FIHRIST extends JFrame {
 			}
 		});
 		panel_3.add(btndizsec);
+		
+		JLabel lblNewLabel_1_2 = new JLabel();
+		lblNewLabel_1_2.setText("<html><font color=\"#0000CF\"><u>www.okumus.gen.tr</u></font></html>");
+		lblNewLabel_1_2.setBounds(53, 485, 225, 14);
+		lblNewLabel_1_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				        open("http://www.okumus.gen.tr");
+			}
+		});
+		panel_3.add(lblNewLabel_1_2);
+		
+		JLabel lblNewLabel_2_8 = new JLabel();
+		lblNewLabel_2_8.setText("<html><font color=\"#0000CF\"><u>info@okumus.gen.tr</u></font></html>");
+		lblNewLabel_2_8.setBounds(53, 511, 225, 14);
+		panel_3.add(lblNewLabel_2_8);
+		
+		JLabel lblNewLabel_1_1_1 = new JLabel();
+		lblNewLabel_1_1_1.setText("<html><font color=\"#0000CF\"><u>www.obs-web.com</u></font></html>");
+		lblNewLabel_1_1_1.setBounds(53, 530, 225, 14);
+		lblNewLabel_1_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+		        open("http://www.obs-web.com");
+			}
+		});
+		panel_3.add(lblNewLabel_1_1_1);
+		
+		JLabel lblinfookumus = new JLabel("@info_okumus");
+		lblinfookumus.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblinfookumus.setBounds(53, 558, 99, 14);
+		panel_3.add(lblinfookumus);
+		
+		JLabel lblInfookumusgentr = new JLabel("info@okumus.gen.tr");
+		lblInfookumusgentr.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblInfookumusgentr.setBounds(53, 582, 99, 14);
+		panel_3.add(lblInfookumusgentr);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("");
+		lblNewLabel_3_1.setBounds(10, 576, 19, 22);
+		lblNewLabel_3_1.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/skype.png")));
+		panel_3.add(lblNewLabel_3_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setBounds(10, 552, 19, 22);
+		lblNewLabel_3.setIcon(new ImageIcon(FIHRIST.class.getResource("/obs/ayarlar/iconlar/twitter.png")));
+		panel_3.add(lblNewLabel_3);
 		txtcdid.setVisible(false);
 
 		ScrollPaneWin11 scrollPane_4 = new ScrollPaneWin11();
@@ -1699,4 +1752,16 @@ public class FIHRIST extends JFrame {
 		txtMail.setText(grd.getModel().getValueAt(satir, 8)== null ? "" :grd.getModel().getValueAt(satir, 8).toString());
 		txtcd.setText(grd.getModel().getValueAt(satir, 9).toString());
 	}
+	private static void open(String sayfa) {
+		
+	    if (Desktop.isDesktopSupported()) {
+	      try {
+	    		URI uri = new URI(sayfa);
+	        Desktop.getDesktop().browse(uri);
+	      } catch (Exception e) 
+	      { 
+	    	  mesaj_goster(5000,Notifications.Type.INFO,    "Dosya Olusturuldu ..." );
+	      }
+	    } else {  }
+	  }
 }

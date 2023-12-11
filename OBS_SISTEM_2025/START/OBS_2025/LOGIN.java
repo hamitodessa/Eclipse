@@ -154,7 +154,7 @@ import raven.toast.Notifications;
 import javax.swing.JSeparator;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-@SuppressWarnings({"static-access","unused","deprecation"})
+@SuppressWarnings({"static-access","unused"})
 public class LOGIN extends JDialog {
 	/**
 	 * 
@@ -1500,6 +1500,7 @@ public class LOGIN extends JDialog {
 	{
 		try 
 		{
+			@SuppressWarnings("deprecation")
 			URL whatismyip = new URL("http://checkip.amazonaws.com");
 			BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
 

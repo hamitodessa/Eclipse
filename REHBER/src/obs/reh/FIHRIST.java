@@ -117,6 +117,8 @@ import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelEvent;
 
 @SuppressWarnings({"static-access","unused","serial","deprecation"})
 public class FIHRIST extends JFrame {
@@ -995,29 +997,46 @@ public class FIHRIST extends JFrame {
 		panel_3.add(btndizsec);
 		
 		JLabel lblNewLabel_1_2 = new JLabel();
-		lblNewLabel_1_2.setText("<html><font color=\"#0000CF\"><u>www.okumus.gen.tr</u></font></html>");
+		lblNewLabel_1_2.setText("<html><u>www.okumus.gen.tr</u></html>");
 		lblNewLabel_1_2.setBounds(53, 485, 225, 14);
 		lblNewLabel_1_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				        open("http://www.okumus.gen.tr");
 			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
 		});
 		panel_3.add(lblNewLabel_1_2);
 		
 		JLabel lblNewLabel_2_8 = new JLabel();
-		lblNewLabel_2_8.setText("<html><font color=\"#0000CF\"><u>info@okumus.gen.tr</u></font></html>");
+		lblNewLabel_2_8.setText("<html><u>info@okumus.gen.tr</u></html>");
 		lblNewLabel_2_8.setBounds(53, 511, 225, 14);
 		panel_3.add(lblNewLabel_2_8);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel();
-		lblNewLabel_1_1_1.setText("<html><font color=\"#0000CF\"><u>www.obs-web.com</u></font></html>");
+		lblNewLabel_1_1_1.setText("<html><u>www.obs-web.com</u></html>");
 		lblNewLabel_1_1_1.setBounds(53, 530, 225, 14);
 		lblNewLabel_1_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 		        open("http://www.obs-web.com");
 			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				tabbedPane.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+
 		});
 		panel_3.add(lblNewLabel_1_1_1);
 		

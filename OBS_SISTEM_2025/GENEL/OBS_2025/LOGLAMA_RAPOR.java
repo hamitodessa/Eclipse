@@ -71,9 +71,6 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings({ "static-access", "serial" ,"resource"})
 public class LOGLAMA_RAPOR extends JInternalFrame {

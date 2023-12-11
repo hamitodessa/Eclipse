@@ -597,6 +597,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 
 			File outputfile = new File("Loglama");
 			fileChooser.setSelectedFile(outputfile);
+
 			int returnVal = fileChooser.showSaveDialog(null);
 			if ( returnVal != JFileChooser.APPROVE_OPTION )
 			{

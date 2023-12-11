@@ -413,7 +413,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 	public String ker_firma_adi() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String cumle = "jdbc:mysql://" +  BAGLAN.kerDizin.cONN_STR + ";";
+		String cumle = "jdbc:mysql://" +  BAGLAN.kerDizin.cONN_STR ;
 		con = DriverManager.getConnection(cumle, BAGLAN.kerDizin.kULLANICI, BAGLAN.kerDizin.sIFRESI);
 		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();

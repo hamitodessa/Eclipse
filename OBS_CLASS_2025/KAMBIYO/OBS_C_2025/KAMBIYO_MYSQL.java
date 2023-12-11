@@ -182,7 +182,7 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 	public String kam_firma_adi() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String cumle = "jdbc:mysql://" +  BAGLAN.kamDizin.cONN_STR + ";";
+		String cumle = "jdbc:mysql://" +  BAGLAN.kamDizin.cONN_STR;
 		con = DriverManager.getConnection(cumle, BAGLAN.kamDizin.kULLANICI, BAGLAN.kamDizin.sIFRESI);
 		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();

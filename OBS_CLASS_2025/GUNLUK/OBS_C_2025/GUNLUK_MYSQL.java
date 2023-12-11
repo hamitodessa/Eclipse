@@ -160,7 +160,7 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		con = null;
 		ResultSet	rss = null;
-		String cumle = "jdbc:mysql://" +  BAGLAN.gunDizin.cONN_STR + ";";
+		String cumle = "jdbc:mysql://" +  BAGLAN.gunDizin.cONN_STR ;
 		con = DriverManager.getConnection(cumle, BAGLAN.gunDizin.kULLANICI, BAGLAN.gunDizin.sIFRESI);
 		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();

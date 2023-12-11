@@ -241,10 +241,10 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		stmt.executeUpdate(sql);
 
 	}
-		public String cari_firma_adi() throws ClassNotFoundException, SQLException {
+	public String cari_firma_adi() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String cumle = "jdbc:mysql://" +  BAGLAN.cariDizin.cONN_STR + ";";
+		String cumle = "jdbc:mysql://" +  BAGLAN.cariDizin.cONN_STR ;
 		con = DriverManager.getConnection(cumle, BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();

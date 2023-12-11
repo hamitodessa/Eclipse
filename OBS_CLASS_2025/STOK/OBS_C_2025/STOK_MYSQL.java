@@ -487,7 +487,7 @@ public class STOK_MYSQL implements ISTOK {
 	public String fat_firma_adi() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String cumle = "jdbc:mysql://" +  BAGLAN.fatDizin.cONN_STR + ";";
+		String cumle = "jdbc:mysql://" +  BAGLAN.fatDizin.cONN_STR ;
 		con = DriverManager.getConnection(cumle, BAGLAN.fatDizin.kULLANICI, BAGLAN.fatDizin.sIFRESI);
 		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();

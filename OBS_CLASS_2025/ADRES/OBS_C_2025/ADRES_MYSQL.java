@@ -190,7 +190,7 @@ public class ADRES_MYSQL implements IADRES {
 	public String adr_firma_adi() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String cumle = "jdbc:mysql://" +  BAGLAN.adrDizin.cONN_STR + ";";
+		String cumle = "jdbc:mysql://" +  BAGLAN.adrDizin.cONN_STR ;
 		con = DriverManager.getConnection(cumle, BAGLAN.adrDizin.kULLANICI, BAGLAN.adrDizin.sIFRESI);
 		PreparedStatement stmt = con.prepareStatement("SELECT *  FROM OZEL ");
 		rss = stmt.executeQuery();

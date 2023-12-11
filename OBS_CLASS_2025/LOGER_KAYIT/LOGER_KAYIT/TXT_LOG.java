@@ -54,7 +54,7 @@ public class TXT_LOG  implements ILOGER_KAYIT {
 		String nerde = "" ;
 		try
 		{
-			File file = new File(GLOBAL.LOG_SURUCU + dBILGI.mODULADI  + ".txt");  //OK_Car019_log.txt
+			File file = new File(GLOBAL.LOG_SURUCU + dBILGI.mODULADI  + ".txt");  //.txt
 			if (!file.exists())
 			{
 			}

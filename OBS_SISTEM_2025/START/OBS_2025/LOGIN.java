@@ -426,7 +426,7 @@ public class LOGIN extends JDialog {
 			public void actionPerformed(ActionEvent e) 
 			{
 				if (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) ) return ;
-				System.exit(1);
+				System.exit(0);
 			}
 		});
 		btncikis.setFont(new Font("Tahoma", Font.PLAIN, 11));

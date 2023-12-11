@@ -580,21 +580,22 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			UIManager.put("FileChooser.cancelButtonText", "Vazgec");
 			UIManager.put("FileChooser.saveButtonText", "Kaydet");
 			JFileChooser fileChooser = new JFileChooser();
-			File outputfile = new File("Loglama");
-			fileChooser.setSelectedFile(outputfile);
 			fileChooser.resetChoosableFileFilters();
 			fileChooser.setAcceptAllFileFilterUsed(false);
 			FileFilter xls = new FileNameExtensionFilter("Microsoft Excel 97-2003 Worksheet (.xls)", "xls");
 			FileFilter xlxs = new FileNameExtensionFilter("Microsoft Excel Worksheet (.xlsx) ", "xlsx");
 			fileChooser.addChoosableFileFilter(xls);
 			fileChooser.addChoosableFileFilter(xlxs);
-			fileChooser.setCurrentDirectory(new java.io.File("C:\\OBS_SISTEM\\"));
+			fileChooser.setCurrentDirectory(new java.io.File("."));
 			fileChooser.setApproveButtonText("Kaydet");
 			fileChooser.setDialogTitle("Excell Kayit");   
 
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
 			LocalDateTime now = LocalDateTime.now();  
 			String zaman = dtf.format(now)  ;
+
+			File outputfile = new File("Loglama_Rapor");
+			fileChooser.setSelectedFile(outputfile);
 
 			
 			int returnVal = fileChooser.showSaveDialog(null);

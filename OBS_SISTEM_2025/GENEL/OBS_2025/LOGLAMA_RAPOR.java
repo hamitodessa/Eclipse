@@ -558,7 +558,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Loglama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void excell_aktar()
@@ -581,13 +580,15 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			UIManager.put("FileChooser.cancelButtonText", "Vazgec");
 			UIManager.put("FileChooser.saveButtonText", "Kaydet");
 			JFileChooser fileChooser = new JFileChooser();
+			File outputfile = new File("Loglama");
+			fileChooser.setSelectedFile(outputfile);
 			fileChooser.resetChoosableFileFilters();
 			fileChooser.setAcceptAllFileFilterUsed(false);
 			FileFilter xls = new FileNameExtensionFilter("Microsoft Excel 97-2003 Worksheet (.xls)", "xls");
 			FileFilter xlxs = new FileNameExtensionFilter("Microsoft Excel Worksheet (.xlsx) ", "xlsx");
 			fileChooser.addChoosableFileFilter(xls);
 			fileChooser.addChoosableFileFilter(xlxs);
-			fileChooser.setCurrentDirectory(new java.io.File("."));
+			fileChooser.setCurrentDirectory(new java.io.File("C:\\OBS_SISTEM\\"));
 			fileChooser.setApproveButtonText("Kaydet");
 			fileChooser.setDialogTitle("Excell Kayit");   
 
@@ -595,16 +596,13 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			LocalDateTime now = LocalDateTime.now();  
 			String zaman = dtf.format(now)  ;
 
-			File outputfile = new File("Loglama");
-			fileChooser.setSelectedFile(outputfile);
-
+			
 			int returnVal = fileChooser.showSaveDialog(null);
 			if ( returnVal != JFileChooser.APPROVE_OPTION )
 			{
 				return;
 			}
 			GuiUtil.setWaitCursor(sp2,true);
-			//
 			String uzanti ="";
 			File excelFile =  FILE_UZANTI. getSelectedFileWithExtension(fileChooser);
 			uzanti  = excelFile.getName().substring(excelFile.getName().lastIndexOf("."));

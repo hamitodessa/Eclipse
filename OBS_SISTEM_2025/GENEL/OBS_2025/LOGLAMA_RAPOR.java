@@ -589,12 +589,7 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			fileChooser.setCurrentDirectory(new java.io.File("."));
 			fileChooser.setApproveButtonText("Kaydet");
 			fileChooser.setDialogTitle("Excell Kayit");   
-
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
-			LocalDateTime now = LocalDateTime.now();  
-			String zaman = dtf.format(now)  ;
-
-			File outputfile = new File("Loglama_Rapor");
+			File outputfile = new File("Loglama");
 			fileChooser.setSelectedFile(outputfile);
 
 			
@@ -607,6 +602,11 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 			String uzanti ="";
 			File excelFile =  FILE_UZANTI. getSelectedFileWithExtension(fileChooser);
 			uzanti  = excelFile.getName().substring(excelFile.getName().lastIndexOf("."));
+			
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
+			LocalDateTime now = LocalDateTime.now();  
+			String zaman = dtf.format(now)  ;
+
 			//
 			if  (uzanti.equals(".xls") )
 			{

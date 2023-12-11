@@ -106,6 +106,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.JSeparator;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings({"static-access","serial"})
 public class CAL_DIZIN extends JFrame {
@@ -1200,8 +1201,9 @@ public class CAL_DIZIN extends JFrame {
 		panel_4.add(panel_5);
 		panel_5.setLayout(null);
 		
-		JLabel lblNewLabel_3 = new JLabel("SQLEXPRESS        (Degisken Olabilir)");
-		lblNewLabel_3.setBounds(98, 37, 190, 14);
+		JLabel lblNewLabel_3 = new JLabel("SQLEXPRESS");
+		lblNewLabel_3.setToolTipText("Degisken Olabilir");
+		lblNewLabel_3.setBounds(98, 37, 71, 14);
 		panel_5.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Instance");
@@ -1236,6 +1238,16 @@ public class CAL_DIZIN extends JFrame {
 		lblPortNumaralariDegisken.setBounds(10, 158, 278, 14);
 		panel_5.add(lblPortNumaralariDegisken);
 		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setOrientation(SwingConstants.VERTICAL);
+		separator_2.setBounds(172, 24, 8, 125);
+		panel_5.add(separator_2);
+		
+		JLabel lblNewLabel_3_2 = new JLabel("SQLEXPRESS");
+		lblNewLabel_3_2.setToolTipText("Degisken Olabilir");
+		lblNewLabel_3_2.setBounds(186, 37, 71, 14);
+		panel_5.add(lblNewLabel_3_2);
+		
 		JPanel panel_5_1 = new JPanel();
 		panel_5_1.setLayout(null);
 		panel_5_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "MY SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -1243,7 +1255,7 @@ public class CAL_DIZIN extends JFrame {
 		panel_4.add(panel_5_1);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("BOS");
-		lblNewLabel_3_1.setBounds(98, 37, 105, 14);
+		lblNewLabel_3_1.setBounds(98, 37, 64, 14);
 		panel_5_1.add(lblNewLabel_3_1);
 		
 		JLabel lblNewLabel_4_1 = new JLabel("Instance");
@@ -1277,6 +1289,15 @@ public class CAL_DIZIN extends JFrame {
 		JLabel lblPortNumaralariDegisken_1 = new JLabel("Port Numaralari degisken olabilir");
 		lblPortNumaralariDegisken_1.setBounds(10, 158, 278, 14);
 		panel_5_1.add(lblPortNumaralariDegisken_1);
+		
+		JSeparator separator_2_1 = new JSeparator();
+		separator_2_1.setOrientation(SwingConstants.VERTICAL);
+		separator_2_1.setBounds(172, 24, 8, 125);
+		panel_5_1.add(separator_2_1);
+		
+		JLabel lblNewLabel_3_1_1 = new JLabel("BOS");
+		lblNewLabel_3_1_1.setBounds(186, 37, 64, 14);
+		panel_5_1.add(lblNewLabel_3_1_1);
 		
 		///
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();

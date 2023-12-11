@@ -3268,6 +3268,10 @@ public class OBS_MAIN extends JFrame  {
 				{
 					KER_FAT_RAPOR.excell_aktar();
 				}
+				else if (sonuc == "LOG RAPORLAMA")
+				{
+					LOGLAMA_RAPOR.excell_aktar();
+				}
 				GuiUtil.setWaitCursor(toolBar,false);//
 			}
 		});

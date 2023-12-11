@@ -1271,8 +1271,10 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 	}
 	private void kONTROL() throws SQLException
 	{
-		if(con.isClosed())    
+		if(con.isClosed())  
+		{
 			baglan();
+		}
 	}
 }
 

@@ -77,7 +77,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	static JSplitPane splitPane ;
 	static JTable table;
 	static JComboBox<String> comboBox = new JComboBox<String>();

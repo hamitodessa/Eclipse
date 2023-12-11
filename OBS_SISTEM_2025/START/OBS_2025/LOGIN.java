@@ -154,7 +154,7 @@ import raven.toast.Notifications;
 import javax.swing.JSeparator;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-@SuppressWarnings({"static-access","unused"})
+@SuppressWarnings({"static-access","unused","deprecation"})
 public class LOGIN extends JDialog {
 	/**
 	 * 
@@ -1498,12 +1498,20 @@ public class LOGIN extends JDialog {
 	}
 	private void versiyon_oku()
 	{
-		if (oac.glb.internet_kontrol() == false)
-		{
-			return ;
-		}
 		try 
 		{
+			URL whatismyip = new URL("http://checkip.amazonaws.com");
+			BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
+
+			String ip = in.readLine(); //you get the IP as a String
+			//System.out.println(ip);
+			if(ip.equals("78.189.76.247")) return;
+			if (oac.glb.internet_kontrol() == false)
+			{
+				return ;
+			}
+			
+			
 			String eskitar = "" ;
 			String eskiver = "";
 			String yeniver = "";

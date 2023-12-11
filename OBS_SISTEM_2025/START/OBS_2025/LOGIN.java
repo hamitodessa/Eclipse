@@ -203,7 +203,7 @@ public class LOGIN extends JDialog {
 			}
 		});
 	}
-	
+
 	public LOGIN() throws IOException {
 		//************************************************************************
 		try 
@@ -1496,11 +1496,11 @@ public class LOGIN extends JDialog {
 		progressBar.setValue(0);
 		progressBar.setStringPainted(false);
 	}
+
 	private void versiyon_oku()
 	{
 		try 
 		{
-			@SuppressWarnings("deprecation")
 			URL whatismyip = new URL("http://checkip.amazonaws.com");
 			BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
 

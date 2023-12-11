@@ -94,7 +94,6 @@ public class SQL_SORGULAMA extends JInternalFrame {
 			}
 		});
 		Border borderr = BorderFactory.createLineBorder(Color.GRAY);
-
 		textArea.setBorder(BorderFactory.createCompoundBorder(borderr,BorderFactory.createEmptyBorder(2, 2, 2, 2)));
 		splitPane.setLeftComponent(textArea);
 		modul = nerden ;
@@ -115,7 +114,6 @@ public class SQL_SORGULAMA extends JInternalFrame {
 			{
 				String mesaj = "Aranan:" ;
 				String mesaj1 = textArea.getText();
-				mesaj1 = mesaj1.replace("\n"," ");
 				if( mesaj1.length() <= 93)
 				{
 					mesaj = mesaj +  mesaj1 ;
@@ -155,7 +153,6 @@ public class SQL_SORGULAMA extends JInternalFrame {
 					GRID_TEMIZLE.grid_temizle(table);
 					return;
 				} 
-
 			}
 			else if (modul.equals("kereste"))
 			{
@@ -178,7 +175,6 @@ public class SQL_SORGULAMA extends JInternalFrame {
 					GRID_TEMIZLE.grid_temizle(table);
 					return;
 				} 
-
 			}
 			GRID_TEMIZLE.grid_temizle(table);
 			table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -195,7 +191,7 @@ public class SQL_SORGULAMA extends JInternalFrame {
 			 {
 				tc = tcm.getColumn(i);
 				tc.setHeaderRenderer(new SOLA());
-				tc.setMinWidth(75);
+				tc.setMinWidth(100);
 			 }
 			//table.setAutoResizeMode( JTable.AUTO_RESIZE_ALL_COLUMNS );
 			table.setRowSelectionInterval(0, 0);
@@ -205,7 +201,6 @@ public class SQL_SORGULAMA extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),"Sql Sorgulama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

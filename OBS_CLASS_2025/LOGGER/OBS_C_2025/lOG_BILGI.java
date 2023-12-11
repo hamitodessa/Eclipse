@@ -14,7 +14,7 @@ public class lOG_BILGI {
 		return mESAJ;
 	}
 	public void setmESAJ(String mESAJ) {
-		this.mESAJ = mESAJ;
+		this.mESAJ = mESAJ.replace("\n"," "); // Mesaj icinde Enter varsa Kaldirma
 	}
 	public String geteVRAK() {
 		return eVRAK;

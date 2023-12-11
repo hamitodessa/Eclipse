@@ -563,7 +563,6 @@ public class LOGLAMA_RAPOR extends JInternalFrame {
 	public static void excell_aktar()
 	{
 		DefaultTableModel mdl = (DefaultTableModel) table.getModel();
-
 		if (mdl.getRowCount() == 0 )
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Aktarilacak Bilgi Yok....." );

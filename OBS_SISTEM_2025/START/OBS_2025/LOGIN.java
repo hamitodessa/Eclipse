@@ -712,39 +712,43 @@ public class LOGIN extends JDialog {
 		//************SURUCU KONTROL**************************
 		GLOBAL.surucu_kontrol();
 		//VERSION KONTROL/////
-		versiyon_oku();
+		String deger = oac.glb.setting_oku("VERSION").toString();
+		if (deger.equals("0"))
+			versiyon_oku();
 		//************BENI_HATIRLA**	
-		String deger;
 		deger = GLOBAL.setting_oku("BENI_HATIRLA").toString();
-		if (new String(deger).equals("E") == true) 
+		try 
 		{
-			chckbxhatirla.setSelected(true);
-			String decodedString = GLOBAL.setting_oku("SIFRE").toString();
-			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
-			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) {
-				bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
-			txtUser.setText(GLOBAL.setting_oku("ISIM").toString());
-			try 
+			if (new String(deger).equals("E") == true) 
 			{
-				deger = GLOBAL.setting_oku("PRG_GRID_RENK").toString();
-				String[] parts;
-				parts = deger.split(",");
-				OBS_SIS_2025_ANA_CLASS.gridcolor =  new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-				deger = GLOBAL.setting_oku("PRG_GRID_BACK_RENK").toString();
-				parts = deger.split(",");
-				OBS_SIS_2025_ANA_CLASS.satBackColor =  new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
-				deger = GLOBAL.setting_oku("PRG_GRID_FORE_RENK").toString();
-				parts = deger.split(",");
-				OBS_SIS_2025_ANA_CLASS.satForeColor =  new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+				chckbxhatirla.setSelected(true);
+				String decodedString = GLOBAL.setting_oku("SIFRE").toString();
+				String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+				byte[] bytes = new byte[byteValues.length];
+				for (int i=0, len=bytes.length; i<len; i++) {
+					bytes[i] = Byte.parseByte(byteValues[i].trim());     
+				}
+				txtUser.setText(GLOBAL.setting_oku("ISIM").toString());
 				txtpwd.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
-			} catch (Exception e1) 
-			{
-				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, e1.getMessage());
 			}
-			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+			deger = GLOBAL.setting_oku("PRG_GRID_RENK").toString();
+			String[] parts;
+			parts = deger.split(",");
+			OBS_SIS_2025_ANA_CLASS.gridcolor =  new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			deger = GLOBAL.setting_oku("PRG_GRID_BACK_RENK").toString();
+			parts = deger.split(",");
+			OBS_SIS_2025_ANA_CLASS.satBackColor =  new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+			deger = GLOBAL.setting_oku("PRG_GRID_FORE_RENK").toString();
+			parts = deger.split(",");
+			OBS_SIS_2025_ANA_CLASS.satForeColor =  new Color( Integer.parseInt(parts[0].trim()), Integer.parseInt(parts[1].trim()), Integer.parseInt(parts[2].trim()));
+
+		} catch (Exception e1) 
+		{
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, e1.getMessage());
 		}
+		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		
 	}
 	void cari_kont() throws ClassNotFoundException, SQLException
 	{

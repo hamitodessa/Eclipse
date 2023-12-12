@@ -234,16 +234,9 @@ public class SMS_MSSQL implements ISMS{
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-		boolean result;
-		if (count  != 0) 
-		{
-			result = true;
-		}
-		else
-		{
-			result = false;
-		}
-		return result;	
+		//boolean result;
+		//result = count  != 0 ? true : false ;
+		return count  != 0;	
 	}
 	public void mail_giris_sil(String mail) throws ClassNotFoundException, SQLException
 	{

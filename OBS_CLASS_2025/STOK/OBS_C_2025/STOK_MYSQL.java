@@ -495,14 +495,7 @@ public class STOK_MYSQL implements ISTOK {
 		int count=0;
 		count = rss.getRow();
 		String result;
-		if (count  != 0) 
-		{
-			result = rss.getString("FIRMA_ADI");
-		}
-		else
-		{
-			result = "";
-		}
+		result = count  != 0 ? rss.getString("FIRMA_ADI") : "" ;
 		return result;	
 	}
 	public ResultSet stk_kod_degisken_oku(String fieldd,String sno,String nerden) throws ClassNotFoundException, SQLException

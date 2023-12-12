@@ -192,14 +192,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		int count=0;
 		count = rss.getRow();
 		String result;
-		if (count  != 0) 
-		{
-			result = rss.getString("FIRMA_ADI");
-		}
-		else
-		{
-			result = "";
-		}
+		result = count  != 0 ? rss.getString("FIRMA_ADI") : "" ;
 		return result;	
 	}
 	public String kam_son_bordro_no_al(String cins ,String tur) throws ClassNotFoundException, SQLException
@@ -211,15 +204,7 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		rss = stmt.executeQuery();
 		rss.next();
 		String result;
-		if ( rss.getString("Expr1") != null ) 
-		{
-			//result = Integer.toString(rss.getInt("Expr1"));
-			result = rss.getString("Expr1");
-		}
-		else
-		{
-			result = "";
-		}
+		result = rss.getString("Expr1") != null ? rss.getString("Expr1") : "" ;
 		return result;	
 	}
 	public int kam_bordro_no_al(String cins) throws ClassNotFoundException, SQLException

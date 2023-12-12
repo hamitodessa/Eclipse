@@ -190,14 +190,7 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		int count=0;
 		count = rss.getRow();
 		String result;
-		if (count  != 0) 
-		{
-			result = rss.getString("FIRMA_ADI");
-		}
-		else
-		{
-			result = "";
-		}
+		result = count  != 0 ? rss.getString("FIRMA_ADI") : "" ;
 		return result;	
 	}
 
@@ -210,14 +203,7 @@ public class KAMBIYO_MYSQL implements IKAMBIYO {
 		rss = stmt.executeQuery();
 		rss.next();
 		String result;
-		if ( rss.getString("Expr1") != null ) 
-		{
-			result = rss.getString("Expr1");
-		}
-		else
-		{
-			result = "";
-		}
+		result = rss.getString("Expr1") != null ? rss.getString("Expr1") : "" ;
 		return result;	
 	}
 	public int kam_bordro_no_al(String cins) throws ClassNotFoundException, SQLException

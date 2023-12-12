@@ -195,16 +195,16 @@ public class SMS_MYSQL implements ISMS{
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-		boolean result;
-		if (count  != 0) 
-		{
-			result = true;
-		}
-		else
-		{
-			result = false;
-		}
-		return result;	
+//		boolean result;
+//		if (count  != 0) 
+//		{
+//			result = true;
+//		}
+//		else
+//		{
+//			result = false;
+//		}
+		return count  != 0;	
 	}
 	public void mail_giris_sil(String mail) throws ClassNotFoundException, SQLException
 	{

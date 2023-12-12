@@ -252,14 +252,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		int count=0;
 		count = rss.getRow();
 		String result;
-		if (count  != 0) 
-		{
-			result = rss.getString("FIRMA_ADI");
-		}
-		else
-		{
-			result = "";
-		}
+		result = count  != 0 ? rss.getString("FIRMA_ADI") : "" ;
 		return result;	
 	}
 	public ResultSet ekstre(String hesap, String t1, String t2,boolean sqll) throws SQLException, ClassNotFoundException {

@@ -89,7 +89,7 @@ public class PRINT_JASPER extends JInternalFrame {
 		{
 			if (nerden.equals("etiket"))
 			{
-				File file = new File("C:\\OBS_SISTEM\\ETIKET.jrxml");
+				File file = new File(GLOBAL.SURUCU + "\\ETIKET.jrxml");
 				JasperDesign jasper = JRXmlLoader.load(file);
 				jasper.setColumnWidth(Integer.valueOf( GLOBAL.setting_oku("ETIKET_GEN")));
 				jasper.setColumnSpacing(Integer.valueOf( GLOBAL.setting_oku("ETIKET_ARA_BOSLUK")));
@@ -131,7 +131,7 @@ public class PRINT_JASPER extends JInternalFrame {
 			else if (nerden.equals("ekstre"))
 			{
 				
-				File file = new File("C:\\OBS_SISTEM\\Ekstre.jrxml");
+				File file = new File(GLOBAL.SURUCU + "\\Ekstre.jrxml");
 				JasperDesign jasper = JRXmlLoader.load(file);
 				JasperReport jr = JasperCompileManager.compileReport(jasper);
 				Map<String, Object> parameters = new HashMap<String, Object>();
@@ -154,7 +154,7 @@ public class PRINT_JASPER extends JInternalFrame {
 			}
 			else if (nerden.equals("ekstre_kisa"))
 			{
-				File file = new File("C:\\OBS_SISTEM\\Ekstre_Kisa.jrxml");
+				File file = new File(GLOBAL.SURUCU + "\\Ekstre_Kisa.jrxml");
 				JasperDesign jasper = JRXmlLoader.load(file);
 				JasperReport jr = JasperCompileManager.compileReport(jasper);
 				ekstre_kisa();

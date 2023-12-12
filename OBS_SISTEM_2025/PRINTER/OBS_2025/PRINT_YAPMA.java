@@ -104,7 +104,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 				//System.out.println(is.available());
 				//**************************************************************************
 				//File file = new File("src/RPT/HSP_PLN.rpt");
-				File file = new File("C:\\OBS_SISTEM\\HSP_PLN.rpt");
+				File file = new File(GLOBAL.SURUCU + "\\HSP_PLN.rpt");
 				clientDoc.open(file.getPath(), 0);
 				//clientDoc.open(is, 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
@@ -138,7 +138,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("ekstre"))
 			{
 				//**************************************************************************
-				File file = new File("C:\\OBS_SISTEM\\EKSTRE.rpt");
+				File file = new File(GLOBAL.SURUCU + "\\EKSTRE.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//**************************************************************************
@@ -260,7 +260,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("mizan"))
 			{
 				//**************************************************************************
-				File file = new File("C:\\OBS_SISTEM\\MIZAN.rpt");
+				File file = new File(GLOBAL.SURUCU + "\\MIZAN.rpt");
 				clientDoc.open(file.getPath(), 0);
 				//**************************************************************************
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
@@ -325,7 +325,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("karton_mizan"))
 			{
 				//**************************************************************************
-				File file = new File("C:\\OBS_SISTEM\\KARTON_MIZAN.rpt");
+				File file = new File(GLOBAL.SURUCU + "\\KARTON_MIZAN.rpt");
 				clientDoc.open(file.getPath(), 0);
 				//**************************************************************************
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
@@ -389,7 +389,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("ozel_mizan"))
 			{
 				//**************************************************************************
-				File file = new File("C:\\OBS_SISTEM\\OZEL_MIZAN.rpt");
+				File file = new File(GLOBAL.SURUCU + "\\OZEL_MIZAN.rpt");
 				clientDoc.open(file.getPath(), 0);
 				//**************************************************************************
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
@@ -482,7 +482,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("dvzcev"))
 			{
 				//**************************************************************************
-				File file = new File("C:\\OBS_SISTEM\\DVZ_CEVIRME.rpt");
+				File file = new File(GLOBAL.SURUCU + "\\DVZ_CEVIRME.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//*******************
@@ -549,7 +549,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("etiket"))
 			{
 				//**************************************************************************
-				File file = new File("C:\\OBS_SISTEM\\ETIKET.rpt");
+				File file = new File(GLOBAL.SURUCU + "\\ETIKET.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//*******************
@@ -614,7 +614,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("cekg"))
 			{
 				//**************************************************************************
-				File file = new File("C:\\OBS_SISTEM\\BORDRO.rpt");
+				File file = new File(GLOBAL.SURUCU + "\\BORDRO.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//**************************************************************************
@@ -750,7 +750,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("cekc"))
 			{
 				//**************************************************************************
-				File file = new File("C:\\OBS_SISTEM\\BORDRO.rpt");
+				File file = new File(GLOBAL.SURUCU + "\\BORDRO.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//**************************************************************************
@@ -886,7 +886,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("stok"))
 			{
 				//**************************************************************************
-				File file = new File("C:\\OBS_SISTEM\\STOK.rpt");
+				File file = new File(GLOBAL.SURUCU + "\\STOK.rpt");
 				clientDoc.open(file.getPath(), 0);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				//**************************************************************************
@@ -921,7 +921,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 			else if (nerden.equals("fatura"))
 			{
 				//**************************************************************************
-				File file = new File("C:\\OBS_SISTEM\\FATURA.rpt");
+				File file = new File(GLOBAL.SURUCU + "\\FATURA.rpt");
 				clientDoc.open(file.getPath(),  OpenReportOptions._openAsReadOnly);
 				clientDoc.getDatabaseController().logon(BAGLAN.cariDizin.kULLANICI, BAGLAN.cariDizin.sIFRESI);
 				int gen = 0 ;

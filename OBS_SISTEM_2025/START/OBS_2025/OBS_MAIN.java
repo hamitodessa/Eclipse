@@ -2958,7 +2958,7 @@ public class OBS_MAIN extends JFrame  {
 					if (sonuc == "HESAP PLANI DETAY")
 					{
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/HSP_PLN.rpt");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\HSP_PLN.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\HSP_PLN.rpt"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
@@ -2974,7 +2974,7 @@ public class OBS_MAIN extends JFrame  {
 						}
 
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/C_EKSTRE.rpt");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\EKSTRE.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\EKSTRE.rpt"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_YAPMA();
 						if (! TARIH_CEVIR.tarih_geri(FILTRE.dateChooser).equals("1900.01.01"))
 						{
@@ -3022,7 +3022,7 @@ public class OBS_MAIN extends JFrame  {
 							return ;
 						}
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/MIZAN.rpt");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\MIZAN.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\MIZAN.rpt"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
@@ -3037,7 +3037,7 @@ public class OBS_MAIN extends JFrame  {
 							return ;
 						}
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/KARTON_MIZANN.rpt");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\KARTON_MIZAN.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\KARTON_MIZAN.rpt"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
@@ -3052,7 +3052,7 @@ public class OBS_MAIN extends JFrame  {
 							return ;
 						}
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/OZEL_MIZAN.rpt");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\OZEL_MIZAN.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\OZEL_MIZAN.rpt"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
@@ -3067,7 +3067,7 @@ public class OBS_MAIN extends JFrame  {
 							return ;
 						}
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/DVZ_CEVIRME.rpt");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\DVZ_CEVIRME.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\DVZ_CEVIRME.rpt"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
@@ -3082,7 +3082,7 @@ public class OBS_MAIN extends JFrame  {
 							return ;
 						}
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/BORDRO_CEK.rpt");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\BORDRO.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\BORDRO.rpt"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
@@ -3097,7 +3097,7 @@ public class OBS_MAIN extends JFrame  {
 							return ;
 						}
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/BORDRO_CEK.rpt");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\BORDRO.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\BORDRO.rpt"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
@@ -3113,7 +3113,7 @@ public class OBS_MAIN extends JFrame  {
 						//PRINT_YAPMA.hisset("etiket","");
 						//**************************
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/ADRES_RPT/Etiket.jrxml");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\ETIKET.jrxml"),StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\ETIKET.jrxml"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_JASPER();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
@@ -3125,7 +3125,7 @@ public class OBS_MAIN extends JFrame  {
 						if (! TARIH_CEVIR.tarih_geri(FILTRE.dateChooser).equals("1900.01.01"))
 						{
 							InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/CARI_RPT/Ekstre_Kisa.jrxml");
-							Files.copy(is, Paths.get("C:\\OBS_SISTEM\\Ekstre_Kisa.jrxml"),StandardCopyOption.REPLACE_EXISTING);
+							Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\Ekstre_Kisa.jrxml"),StandardCopyOption.REPLACE_EXISTING);
 							internalFrame = new PRINT_JASPER();
 							desktopPane.add(internalFrame);
 							internalFrame.setVisible(true);
@@ -3135,7 +3135,7 @@ public class OBS_MAIN extends JFrame  {
 						else
 						{
 							InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/CARI_RPT/Ekstre.jrxml");
-							Files.copy(is, Paths.get("C:\\OBS_SISTEM\\Ekstre.jrxml"),StandardCopyOption.REPLACE_EXISTING);
+							Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\Ekstre.jrxml"),StandardCopyOption.REPLACE_EXISTING);
 							internalFrame = new PRINT_JASPER();
 							desktopPane.add(internalFrame);
 							internalFrame.setVisible(true);
@@ -3153,7 +3153,7 @@ public class OBS_MAIN extends JFrame  {
 							return ;
 						}
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/STOK_RPT/STOK.rpt");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\STOK.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\STOK.rpt"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
@@ -3168,7 +3168,7 @@ public class OBS_MAIN extends JFrame  {
 							return;
 						}
 						InputStream is = this.getClass().getClassLoader().getResourceAsStream("RPT/STOK_RPT/FATURA.rpt");
-						Files.copy(is, Paths.get("C:\\OBS_SISTEM\\FATURA.rpt"),StandardCopyOption.REPLACE_EXISTING);
+						Files.copy(is, Paths.get(GLOBAL.SURUCU + "\\FATURA.rpt"),StandardCopyOption.REPLACE_EXISTING);
 						internalFrame = new PRINT_YAPMA();
 						desktopPane.add(internalFrame);
 						internalFrame.setVisible(true);
@@ -3181,7 +3181,6 @@ public class OBS_MAIN extends JFrame  {
 				{
 					GuiUtil.setWaitCursor(toolBar,false);
 					mesaj_goster(7500,Notifications.Type.ERROR,ex.getMessage());
-					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Yazici", JOptionPane.ERROR_MESSAGE);   
 				}
 			}
 		});

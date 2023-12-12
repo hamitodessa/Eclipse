@@ -86,15 +86,15 @@ public class GLOBAL {
 	}  
 	public static Connection   myEkstreConnection ()
 	{
-			Connection conn = null;  
-			try 
-			{  
-				conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + EKSTRE_DOSYA );  
-			} 
-			catch (SQLException e) 
-			{	
-			}  
-			return conn;  
+		Connection conn = null;  
+		try 
+		{  
+			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + EKSTRE_DOSYA );  
+		} 
+		catch (SQLException e) 
+		{	
+		}  
+		return conn;  
 	}
 	public static  void obs_dosya_olustur() throws Exception 
 	{

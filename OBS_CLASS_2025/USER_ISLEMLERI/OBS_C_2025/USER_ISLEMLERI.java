@@ -91,7 +91,6 @@ public class USER_ISLEMLERI {
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
-		//result = false;
 		con = gLB.myConnection();
 		PreparedStatement stmt = con.prepareStatement("SELECT * FROM USERS WHERE USER_NAME=?");
 		stmt.setString(1, usr.toString());
@@ -99,7 +98,6 @@ public class USER_ISLEMLERI {
 		rs.next();
 		int count=0;
 		count = rs.getRow();
-		//if (count  != 0) result =true;
 		stmt.close();
 		con.close();
 		return count  != 0;
@@ -440,9 +438,9 @@ public class USER_ISLEMLERI {
 			}
 			MAIL_SETTINGS.PWD = decodedString  ;
 			MAIL_SETTINGS.SSL = (boolean) (rss.getInt("SSL") == -1 ? false :true );
-			MAIL_SETTINGS. TSL = (boolean) (rss.getInt("TSL") == -1 ? false :true );
+			MAIL_SETTINGS.TSL = (boolean) (rss.getInt("TSL") == -1 ? false :true );
 			MAIL_SETTINGS.GHESAP = rss.getString("GON_MAIL").toString();
-			MAIL_SETTINGS. GADI = rss.getString("GON_ISIM").toString();
+			MAIL_SETTINGS.GADI = rss.getString("GON_ISIM").toString();
 		}
 		con.close();
 		con = null;

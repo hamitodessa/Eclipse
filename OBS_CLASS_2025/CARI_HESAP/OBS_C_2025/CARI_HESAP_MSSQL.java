@@ -306,14 +306,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		count = rss.getRow();
 		String result;
 		result = count != 0 ? rss.getString("FIRMA_ADI") : "" ;
-//		if (count  != 0) 
-//		{
-//			result = rss.getString("FIRMA_ADI");
-//		}
-//		else
-//		{
-//			result = "";
-//		}
 		return result;	
 	}
 	public ResultSet ekstre(String hesap , String t1 ,String t2,boolean sqll) throws ClassNotFoundException, SQLException
@@ -488,16 +480,9 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-		boolean result;
-		if (count  != 0) 
-		{
-			result = true ;
-		}
-		else
-		{
-			result = false;
-		}
-		return result;	
+		//boolean result;
+		//result = count  != 0 ? true : false;
+		return count  != 0;
 
 	}
 	public void cari_dekont_kaydet(dEKONT_BILGI dBilgi) throws SQLException, ClassNotFoundException
@@ -581,14 +566,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		int count=0;
 		count = rss.getRow();
 		String result;
-		if (count  != 0) 
-		{
-			result = rss.getString("UNVAN") ;
-		}
-		else
-		{
-			result = "";
-		}
+		result = count  != 0 ? result = rss.getString("UNVAN") : "" ;
 		return result;	
 
 	}

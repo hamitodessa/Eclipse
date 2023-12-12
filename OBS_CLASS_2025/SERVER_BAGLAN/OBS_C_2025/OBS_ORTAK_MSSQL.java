@@ -40,12 +40,10 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		Connection conn = null;  
 		try
 		{
-			
 			String cumle = "";
 			cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";";
 			conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 			conn.close();
-			
 			result =  true;
 		} 
 		catch (SQLException e)
@@ -79,7 +77,6 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		Connection conn = null;  
 		String cumle = "";
 		cumle =  "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";";
-		 
 		conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM sys.databases where name = '" + sbilgi.getDb() + "'");
 		ResultSet rs = stmt.executeQuery();

@@ -635,14 +635,7 @@ public class STOK_MSSQL implements ISTOK {
 		int count=0;
 		count = rss.getRow();
 		String result;
-		if (count  != 0) 
-		{
-			result = rss.getString("FIRMA_ADI");
-		}
-		else
-		{
-			result = "";
-		}
+		result = count  != 0 ? rss.getString("FIRMA_ADI") : "" ;
 		return result;	
 	}
 	public ResultSet stk_kod_degisken_oku(String fieldd,String sno,String nerden) throws ClassNotFoundException, SQLException
@@ -713,14 +706,7 @@ public class STOK_MSSQL implements ISTOK {
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-		if (count  != 0)  
-		{
-			maks  = rss.getInt("maks");
-		}
-		else
-		{
-			maks  = 0 ;
-		}
+		maks = count  != 0 ?  rss.getInt("maks") : 0 ;
 		sql  =  "INSERT INTO " + nerden + " (" + fieldd + "," + degisken_adi + ",[USER]) " +
 				" VALUES (?,?,?)" ;
 		stmt = null;

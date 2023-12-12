@@ -164,7 +164,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 				for(int i=0; i< reportObjects.size();i++)
 				{
 					ITextObject textObject = (ITextObject)reportObjects.get(i);
-					if (textObject.getText().equals("100.01.0001"))
+					if (textObject.getName().equals("txtKodu"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
 						Paragraphs oParagraphs = new Paragraphs();
@@ -179,7 +179,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oTextObject.setParagraphs(oParagraphs);
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
-					else if (textObject.getText().equals("KASA"))
+					else if (textObject.getName().equals("txtUnvan"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
 						Paragraphs oParagraphs = new Paragraphs();
@@ -195,7 +195,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oTextObject.setParagraphs(oParagraphs);
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
-					else if (textObject.getText().equals("PERIYOT"))
+					else if (textObject.getName().equals("txtPeriyot"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
 						Paragraphs oParagraphs = new Paragraphs();
@@ -287,7 +287,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 				for(int i=0; i< reportObjects.size();i++)
 				{
 					ITextObject textObject = (ITextObject)reportObjects.get(i);
-					if (textObject.getText().equals("FIRMA"))
+					if (textObject.getName().equals("txtFirma"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
 						Paragraphs oParagraphs = new Paragraphs();
@@ -302,7 +302,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oTextObject.setParagraphs(oParagraphs);
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
-					else if (textObject.getText().equals("PERIYOT"))
+					else if (textObject.getName().equals("txtPeriyot"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
 						Paragraphs oParagraphs = new Paragraphs();
@@ -352,7 +352,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 				for(int i=0; i< reportObjects.size();i++)
 				{
 					ITextObject textObject = (ITextObject)reportObjects.get(i);
-					if (textObject.getText().equals("FIRMA"))
+					if (textObject.getName().equals("txtFirma"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
 						Paragraphs oParagraphs = new Paragraphs();
@@ -367,7 +367,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oTextObject.setParagraphs(oParagraphs);
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
-					else if (textObject.getText().equals("PERIYOT"))
+					else if (textObject.getName().equals("txtPeriyot"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
 						Paragraphs oParagraphs = new Paragraphs();
@@ -443,7 +443,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 				for(int i=0; i< reportObjects.size();i++)
 				{
 					ITextObject textObject = (ITextObject)reportObjects.get(i);
-					if (textObject.getText().equals("FIRMA"))
+					if (textObject.getName().equals("txtFirma"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
 						Paragraphs oParagraphs = new Paragraphs();
@@ -459,7 +459,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
 
-					else if (textObject.getText().equals("PERIYOT"))
+					else if (textObject.getName().equals("txtPeriyot"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
 						Paragraphs oParagraphs = new Paragraphs();
@@ -511,7 +511,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 				for(int i=0; i< reportObjects.size();i++)
 				{
 					ITextObject textObject = (ITextObject)reportObjects.get(i);
-					if (textObject.getText().equals("HESAP"))
+					if (textObject.getName().equals("txtHesap"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
 						Paragraphs oParagraphs = new Paragraphs();
@@ -526,7 +526,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oTextObject.setParagraphs(oParagraphs);
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
-					else if (textObject.getText().equals("KUR"))
+					else if (textObject.getName().equals("txtKur"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
 						Paragraphs oParagraphs = new Paragraphs();

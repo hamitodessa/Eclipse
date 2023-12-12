@@ -24,9 +24,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 		String cumle = "jdbc:mysql://" +  BAGLAN.kerDizin.cONN_STR ;
 		//DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle, BAGLAN.kerDizin.kULLANICI, BAGLAN.kerDizin.sIFRESI);
-		
 	}
-
 	@Override
 	public void kER_SIFIR_L(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -406,7 +404,6 @@ public class KERESTE_MYSQL implements IKERESTE {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
-		
 	}
 
 	@Override
@@ -421,14 +418,7 @@ public class KERESTE_MYSQL implements IKERESTE {
 		int count=0;
 		count = rss.getRow();
 		String result;
-		if (count  != 0) 
-		{
-			result = rss.getString("FIRMA_ADI");
-		}
-		else
-		{
-			result = "";
-		}
+		result = count  != 0 ? rss.getString("FIRMA_ADI") : "" ;
 		return result;	
 	}
 

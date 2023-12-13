@@ -55,6 +55,8 @@ import javax.swing.event.TableModelListener;
 
 import com.toedter.calendar.JDateChooser;
 
+import OBS_2025.KER_KOD_DEGISTIRME.CheckBoxHeader;
+import OBS_2025.KER_KOD_DEGISTIRME.MyItemListener;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
@@ -281,19 +283,6 @@ public class YIL_SONU extends JInternalFrame {
 		panel_1.add(lblNewLabel_1);
 
 		doldur();
-		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
-		{
-			public void tableChanged(TableModelEvent e) 
-			{
-				TableModel model = (TableModel)e.getSource();
-				if (model.getRowCount() > 0) {
-					int row;
-					row = table.getSelectedRow();     //e.getFirstRow();
-					int column = e.getColumn();
-					secilen_satir();
-				}
-			}
-		});
 	}
 	private void doldur()
 	{
@@ -301,23 +290,38 @@ public class YIL_SONU extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			ResultSet	rs = null;
-			rs = c_Access.hp_pln();
+			rs = c_Access.yilsonu_hp_pln();
 			if (!rs.isBeforeFirst() ) {  
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+				th.repaint();
+				table.repaint();
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 				return;
 			}
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			model.addColumn("Sec",Boolean);
-			table.moveColumn(table.getColumnCount()-1, 0);
+			
 
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
 
 			tc = tcm.getColumn(0);
-			tc.setHeaderRenderer(new SOLA());
 			JCheckBox checkBox = new JCheckBox();
+			checkBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					JTableHeader th = table.getTableHeader();
+					TableColumnModel tcm = th.getColumnModel();
+					TableColumn tc = tcm.getColumn(0);
+					tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+					th.repaint();
+					table.repaint();
+
+				}
+			});
 			checkBox.setHorizontalAlignment(JCheckBox.CENTER);
 			DefaultCellEditor dce = new DefaultCellEditor( checkBox );
 			tc.setCellEditor(dce);
@@ -355,6 +359,18 @@ public class YIL_SONU extends JInternalFrame {
 			tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
 			th.repaint();
 
+			table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
+			{
+				public void tableChanged(TableModelEvent e) 
+				{
+					TableModel model = (TableModel)e.getSource();
+					if (model.getRowCount() > 0) {
+						secilen_satir();
+					}
+				}
+			});
+
+			
 			String deger;
 			String[] parts;
 			Font bigFont;
@@ -377,11 +393,21 @@ public class YIL_SONU extends JInternalFrame {
 		DefaultTableModel modell = (DefaultTableModel)table.getModel();
 		for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
 		{
-			if ( modell.getValueAt(i,5) != null) 
+			if ( modell.getValueAt(i,0) != null) 
 			{
-				if (  (boolean) modell.getValueAt(i,5) )
+				if( BAGLAN.cariDizin.hAN_SQL.equals("MS SQL") )
 				{
-					satir += 1 ;
+					if (  (boolean) modell.getValueAt(i,0) )
+					{
+						satir += 1 ;
+					}
+				}
+				else {
+					//if ( ! modell.getValueAt(i,0).toString().equals("0") )
+					if (  modell.getValueAt(i,0).toString().equals("true")   )
+					{
+						satir += 1 ;
+					}
 				}
 			};
 
@@ -539,14 +565,48 @@ public class YIL_SONU extends JInternalFrame {
 		@Override
 		public void itemStateChanged(ItemEvent e)
 		{
+						//
+			Runnable runner = new Runnable()
+		    { public void run() {
+		    //
+			try 
+			{
 			Object source = e.getSource();
 			if (source instanceof AbstractButton == false) return;
 			boolean checked = e.getStateChange() == ItemEvent.SELECTED;
+			getContentPane().setCursor(oac.WAIT_CURSOR);
+			Progres_Bar_Temizle();  
+			OBS_MAIN.progressBar.setStringPainted(true);
+		     OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
 			for(int x = 0, y = table.getRowCount(); x < y; x++)
 			{
+				Progres_Bar(table.getRowCount()-1, x);
 				table.setValueAt(new Boolean(checked),x,0);
 			}
+			Progres_Bar_Temizle();
+			getContentPane().setCursor(oac.DEFAULT_CURSOR);
+			} catch (InterruptedException e1) 
+			{
+			e1.printStackTrace();
+			}
+		//// Progress Bar
+		    }
+	    };
+	    Thread t = new Thread(runner, "Code Executer");
+	    t.start();
+	    //
 		}
+		static void Progres_Bar(int max, int deger) throws InterruptedException
+	    {
+	 	    OBS_MAIN.progressBar.setValue(deger);
+	     }
+	    static void Progres_Bar_Temizle()
+	    {
+	    	OBS_MAIN.progressBar.setMaximum(0);
+	    	OBS_MAIN.progressBar.setValue(0);
+	    	OBS_MAIN.progressBar.setStringPainted(false);
+	    }
+
 	}
 	class CheckBoxHeader extends JCheckBox   implements TableCellRenderer, MouseListener 
 	{
@@ -570,9 +630,7 @@ public class YIL_SONU extends JInternalFrame {
 				}
 			}
 			setColumn(column);
-
 			setHorizontalAlignment(JLabel.CENTER);
-
 			setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 			//setSelected(true);
 			return rendererComponent;

@@ -385,7 +385,7 @@ public class ADRES_MYSQL implements IADRES {
 	public ResultSet adr_etiket(String siralama) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
-		String sql = "SELECT Adi , Adres_1 ,Adres_2 ,Tel_1,Semt ,Sehir  FROM Adres  ORDER BY " + siralama +"";
+		String sql = "SELECT CAST(0 AS UNSIGNED),Adi , Adres_1 ,Adres_2 ,Tel_1,Semt ,Sehir  FROM Adres  ORDER BY " + siralama +"";
 		kONTROL();
 		Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		rss = stmt.executeQuery(sql);

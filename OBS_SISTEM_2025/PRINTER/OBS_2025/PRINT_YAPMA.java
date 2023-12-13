@@ -65,9 +65,10 @@ public class PRINT_YAPMA extends JInternalFrame {
 
 	public PRINT_YAPMA() throws PropertyVetoException {
 		addInternalFrameListener(new InternalFrameAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void internalFrameClosed(InternalFrameEvent e) {
-				//OBS_MAIN.btnNewButton_23.setEnabled(false);
+				oac.nerden = "";
 			}
 		});
 		setResizable(true);

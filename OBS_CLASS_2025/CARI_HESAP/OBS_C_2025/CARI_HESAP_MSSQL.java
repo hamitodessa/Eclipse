@@ -1255,6 +1255,19 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 			baglan();
 		}
 	}
+	@Override
+	public ResultSet yilsonu_hp_pln() throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement("SELECT   CAST(0 as bit) ,[HESAP]"
+				+ "      ,[UNVAN]"
+				+ "      ,[KARTON]"
+				+ "      ,[HESAP_CINSI]"
+				+ "      ,[USER] FROM HESAP    ORDER BY HESAP ");
+		rss = stmt.executeQuery();
+		return rss;	
+	}
 }
 
 

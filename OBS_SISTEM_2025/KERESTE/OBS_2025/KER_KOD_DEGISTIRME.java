@@ -419,10 +419,23 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 
 			tc = tcm.getColumn(0);
 			JCheckBox checkBox = new JCheckBox();
+			checkBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					JTableHeader th = table.getTableHeader();
+					TableColumnModel tcm = th.getColumnModel();
+					TableColumn tc = tcm.getColumn(0);
+					tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+					th.repaint();
+					table.repaint();
+				
+				}
+			});
 			checkBox.setHorizontalAlignment(JCheckBox.CENTER);
 			DefaultCellEditor dce = new DefaultCellEditor( checkBox );
 			tc.setCellEditor(dce);
 			tc.setCellRenderer(new CheckBoxRenderer());
+			
 			tc.setMinWidth(50);
 
 			tc = tcm.getColumn(1);
@@ -663,8 +676,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				}
 			});
 			Thread.currentThread().isInterrupted();
-			//table.setSelectionBackground(Color.PINK);
-			//table.setSelectionForeground(Color.BLUE);
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime;
 			double seconds = (double)estimatedTime/1000; 
@@ -682,7 +693,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			}
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 		//}
 		//};
@@ -779,17 +789,18 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				if( BAGLAN.kerDizin.hAN_SQL.equals("MS SQL") )
 				{
 					if (  (boolean) modell.getValueAt(i,0) )
-						{
-							satir += 1 ;
-						}
-				}
-				else {
-					if ( ! modell.getValueAt(i,0).toString().equals("0") )
 					{
 						satir += 1 ;
 					}
 				}
-			
+				else
+				{
+					//if ( ! modell.getValueAt(i,0).toString().equals("0") )
+					if (  modell.getValueAt(i,0).toString().equals("true")   )
+					{
+						satir += 1 ;
+					}
+				}
 			};
 		}
 		return satir ;
@@ -829,14 +840,47 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		@Override
 		public void itemStateChanged(ItemEvent e)
 		{
-			Object source = e.getSource();
-			if (source instanceof AbstractButton == false) return;
-			boolean checked = e.getStateChange() == ItemEvent.SELECTED;
-			for(int x = 0, y = table.getRowCount(); x < y; x++)
-			{
-				table.setValueAt(new Boolean(checked),x,0);
+			//
+			Runnable runner = new Runnable()
+			{ public void run() {
+				//
+				try 
+				{
+				Object source = e.getSource();
+				if (source instanceof AbstractButton == false) return;
+				boolean checked = e.getStateChange() == ItemEvent.SELECTED;
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				Progres_Bar_Temizle();  
+				OBS_MAIN.progressBar.setStringPainted(true);
+			     OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
+				for(int x = 0, y = table.getRowCount(); x < y; x++)
+				{
+					Progres_Bar(table.getRowCount()-1, x);
+					table.setValueAt(new Boolean(checked),x,0);
+				}
+				Progres_Bar_Temizle();
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+				} catch (InterruptedException e1) 
+				{
+				e1.printStackTrace();
+				}
 			}
+			};
+			Thread t = new Thread(runner, "Code Executer");
+			t.start();
+			//
 		}
+		static void Progres_Bar(int max, int deger) throws InterruptedException
+	    {
+	 	    OBS_MAIN.progressBar.setValue(deger);
+	     }
+	    static void Progres_Bar_Temizle()
+	    {
+	    	OBS_MAIN.progressBar.setMaximum(0);
+	    	OBS_MAIN.progressBar.setValue(0);
+	    	OBS_MAIN.progressBar.setStringPainted(false);
+	    }
+
 	}
 	class CheckBoxHeader extends JCheckBox   implements TableCellRenderer, MouseListener 
 	{

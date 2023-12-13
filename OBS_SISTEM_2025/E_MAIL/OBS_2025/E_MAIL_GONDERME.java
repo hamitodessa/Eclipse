@@ -96,9 +96,9 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	static JPanel panel ;
-
+	private JLabel lblNewLabel_2;
+	
 	public E_MAIL_GONDERME() {
-
 		setTitle("E MAIL GONDERME");
 		setClosable(true);
 		setBounds(100, 100, 598, 455);
@@ -410,7 +410,8 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		btnNewButton_3.setBounds(466, 384, 106, 25);
 		panel.add(btnNewButton_3);
 
-		JLabel lblNewLabel_2 = new JLabel(".....");
+		lblNewLabel_2 = new JLabel();
+		lblNewLabel_2.setText(".....");
 		lblNewLabel_2.setForeground(Color.BLUE);
 		lblNewLabel_2.setBounds(344, 235, 195, 14);
 		panel.add(lblNewLabel_2);

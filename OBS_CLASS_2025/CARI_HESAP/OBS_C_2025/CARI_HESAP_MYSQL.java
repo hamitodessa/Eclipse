@@ -1197,4 +1197,17 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		if(con.isClosed())    
 			baglan();
 	}
+	@Override
+	public ResultSet yilsonu_hp_pln() throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		ResultSet	rss = null;
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement("SELECT CAST(0 AS UNSIGNED), HESAP"
+				+ " ,UNVAN"
+				+ " ,KARTON"
+				+ "	,HESAP_CINSI"
+				+ "	,USER] FROM HESAP    ORDER BY HESAP " );
+		rss = stmt.executeQuery();
+		return rss;	 
+	}
 }

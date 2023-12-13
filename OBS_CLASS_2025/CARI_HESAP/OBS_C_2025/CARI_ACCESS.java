@@ -95,6 +95,10 @@ public class CARI_ACCESS {
 	{
 		return _ICari.hp_pln();
 	}
+	public ResultSet yilsonu_hp_pln () throws ClassNotFoundException, SQLException
+	{
+		return _ICari.yilsonu_hp_pln();
+	}
 	public ResultSet hesap_adi_oku(String hesap) throws ClassNotFoundException, SQLException 
 	{
 		return _ICari.hesap_adi_oku(hesap);

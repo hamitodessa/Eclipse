@@ -6,6 +6,8 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
@@ -35,8 +37,10 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-
+import OBS_2025.KER_KOD_DEGISTIRME.CheckBoxHeader;
+import OBS_2025.KER_KOD_DEGISTIRME.MyItemListener;
 import OBS_C_2025.ADRES_ACCESS;
+import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
@@ -53,12 +57,12 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-@SuppressWarnings({"serial"})
+@SuppressWarnings({"serial","unused"})
 public class ETIKET extends JInternalFrame {
 static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 static ResultSet rs = null ;
-private static final Vector<?> Boolean = null;
+//private static final Vector<?> Boolean = null;
 public static JTable table;
 private JLabel lbladet;
 private JTextField textField;
@@ -250,20 +254,7 @@ public static MaterialTabbed orTabbedPane;
 			}
 		};
 		hisset();
-		table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
-		{
-			@SuppressWarnings("unused")
-			public void tableChanged(TableModelEvent e) 
-			{
-				TableModel model = (TableModel)e.getSource();
-				if (model.getRowCount() > 0) {
-					int row;
-					row = table.getSelectedRow();     //e.getFirstRow();
-					int column = e.getColumn();
-					secilen_satir();
-				}
-			}
-		});
+		
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
@@ -278,26 +269,42 @@ public static MaterialTabbed orTabbedPane;
 			GRID_TEMIZLE.grid_temizle(table);
 			if (!rs.isBeforeFirst() ) {  
 				lbladet.setText(FORMATLAMA.doub_0(0));
+				JTableHeader th = table.getTableHeader();
+				TableColumnModel tcm = th.getColumnModel();
+				TableColumn tc = tcm.getColumn(0);
+				tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+				th.repaint();
+				table.repaint();
 			} 
 			else
 			{
 				table.setModel(DbUtils.resultSetToTableModel(rs));
 
-				DefaultTableModel model = (DefaultTableModel) table.getModel();
-				model.addColumn("Sec",Boolean);
-				table.moveColumn(table.getColumnCount()-1, 0);
 
 				JTableHeader th = table.getTableHeader();
 				TableColumnModel tcm = th.getColumnModel();
 				TableColumn tc;
 
 				tc = tcm.getColumn(0);
-				tc.setHeaderRenderer(new SOLA());
 				JCheckBox checkBox = new JCheckBox();
+				checkBox.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+
+						JTableHeader th = table.getTableHeader();
+						TableColumnModel tcm = th.getColumnModel();
+						TableColumn tc = tcm.getColumn(0);
+						tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+						th.repaint();
+						table.repaint();
+
+					}
+				});
 				checkBox.setHorizontalAlignment(JCheckBox.CENTER);
 				DefaultCellEditor dce = new DefaultCellEditor( checkBox );
-				table.getColumnModel().getColumn(0).setCellEditor(dce);
+				tc.setCellEditor(dce);
 				tc.setCellRenderer(new CheckBoxRenderer());
+
+
 				tc.setMinWidth(50);
 				tc.setMaxWidth(50);
 
@@ -312,11 +319,11 @@ public static MaterialTabbed orTabbedPane;
 				tc = tcm.getColumn(3);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(150);
-				
+
 				tc = tcm.getColumn(4);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(150);
-				
+
 				tc = tcm.getColumn(5);
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(150);
@@ -325,7 +332,7 @@ public static MaterialTabbed orTabbedPane;
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(150);
 
-				
+
 
 				Dimension dd = table.getPreferredSize();
 				dd.height = 30;
@@ -342,10 +349,18 @@ public static MaterialTabbed orTabbedPane;
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
 
-				//table.setSelectionBackground(Color.PINK);
-				//table.setSelectionForeground(Color.BLUE);
-
 				//***
+				table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
+				{
+					public void tableChanged(TableModelEvent e) 
+					{
+						TableModel model = (TableModel)e.getSource();
+						if (model.getRowCount() > 0) {
+
+							secilen_satir();
+						}
+					}
+				});
 				long endTime = System.currentTimeMillis();
 				long estimatedTime = endTime - startTime;
 				double seconds = (double)estimatedTime/1000; 
@@ -364,7 +379,6 @@ public static MaterialTabbed orTabbedPane;
 		} 
 		catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Imalat Raporlama", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private int satir_kontrol()
@@ -373,14 +387,24 @@ public static MaterialTabbed orTabbedPane;
 		DefaultTableModel modell = (DefaultTableModel)table.getModel();
 		for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
 		{
-			if ( modell.getValueAt(i,6) != null) 
+			if ( modell.getValueAt(i,0) != null) 
 			{
-				if (  (boolean) modell.getValueAt(i,6) )
+				if( BAGLAN.adrDizin.hAN_SQL.equals("MS SQL") )
 				{
-					satir += 1 ;
+					if (  (boolean) modell.getValueAt(i,0) )
+						{
+							satir += 1 ;
+						}
+				}
+				else {
+					if (  modell.getValueAt(i,0).toString().equals("true")   )
+					{
+						satir += 1 ;
+					}
 				}
 			};
 		}
+		
 		return satir ;
 	}
 	public void arama() throws ClassNotFoundException, SQLException  

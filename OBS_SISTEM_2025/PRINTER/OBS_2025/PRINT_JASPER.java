@@ -54,6 +54,9 @@ import net.sf.jasperreports.view.JasperViewer;
 import raven.toast.Notifications;
 import net.sf.jasperreports.engine.fonts.*;
 import javax.swing.JScrollPane;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,7 +73,14 @@ public class PRINT_JASPER extends JInternalFrame {
 	private static JScrollPane scrollPane;
 
 	public PRINT_JASPER() throws PropertyVetoException {
-		
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@SuppressWarnings("static-access")
+			@Override
+			public void internalFrameClosed(InternalFrameEvent e) {
+				oac.nerden = "";
+			}
+		});
+
 		setResizable(true);
 		setMaximizable(true);
 		setIconifiable(true);
@@ -209,11 +219,11 @@ public class PRINT_JASPER extends JInternalFrame {
 			DefaultTableModel modell = (DefaultTableModel)ETIKET.table.getModel();
 			for (  i = 0; i <=  modell.getRowCount() - 1;i++)
 			{
-				if ( modell.getValueAt(i,6) != null) 
+				if ( modell.getValueAt(i,0) != null) 
 				{
-					if (  (boolean) modell.getValueAt(i,6) )
+					if (  (boolean) modell.getValueAt(i,0) )
 					{
-						kodString =modell.getValueAt(i, 0).toString();
+						kodString =modell.getValueAt(i, 1).toString();
 						String iSIM ="";
 						String aDR1 = "" ;
 						String aDR2 = "" ;
@@ -221,29 +231,29 @@ public class PRINT_JASPER extends JInternalFrame {
 						String sEMT = "" ;
 						String sEHIR = "";
 
-						if (modell.getValueAt(i, 0) != null)
-						{
-							iSIM = modell.getValueAt(i, 0).toString();
-						}
 						if (modell.getValueAt(i, 1) != null)
 						{
-							aDR1 = modell.getValueAt(i, 1).toString();
+							iSIM = modell.getValueAt(i, 1).toString();
 						}
 						if (modell.getValueAt(i, 2) != null)
 						{
-							aDR2 = modell.getValueAt(i, 2).toString();
+							aDR1 = modell.getValueAt(i, 2).toString();
 						}
 						if (modell.getValueAt(i, 3) != null)
 						{
-							tELEF = modell.getValueAt(i, 3).toString();
+							aDR2 = modell.getValueAt(i, 3).toString();
 						}
 						if (modell.getValueAt(i, 4) != null)
 						{
-							sEMT = modell.getValueAt(i, 4).toString();
+							tELEF = modell.getValueAt(i, 4).toString();
 						}
 						if (modell.getValueAt(i, 5) != null)
 						{
-							sEHIR = modell.getValueAt(i, 5).toString();
+							sEMT = modell.getValueAt(i, 5).toString();
+						}
+						if (modell.getValueAt(i, 6) != null)
+						{
+							sEHIR = modell.getValueAt(i, 6).toString();
 						}
 						ETIKET_ISIM ets1  = new ETIKET_ISIM(iSIM,aDR1,aDR2 ,sEMT,sEHIR,tELEF);
 						etISIM.add(ets1);
@@ -251,7 +261,7 @@ public class PRINT_JASPER extends JInternalFrame {
 				}
 			}
 		} catch (Exception e) {
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,i + " Nolu Satir da Kodu =" + kodString + " Problemli Veri");
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,i + " Nolu Satir da Unvan =" + kodString + " Problemli Veri");
 		}
 	}
 	private static void satir_kontrol_tek()

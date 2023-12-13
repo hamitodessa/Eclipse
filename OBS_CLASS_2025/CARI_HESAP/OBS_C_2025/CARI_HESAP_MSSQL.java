@@ -308,7 +308,7 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		result = count != 0 ? rss.getString("FIRMA_ADI") : "" ;
 		return result;	
 	}
-	public ResultSet ekstre(String hesap , String t1 ,String t2,boolean sqll) throws ClassNotFoundException, SQLException
+	public ResultSet ekstre(String hesap , String t1 ,String t2) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;

@@ -107,9 +107,9 @@ public class CARI_ACCESS {
 	{
 		return _ICari.ekstre_mizan(kod, ilktarih, sontarih, ilkhcins, sonhcins, ilkkar, sonkar);
 	}
-	public ResultSet ekstre(String hesap , String t1 ,String t2,boolean sql) throws ClassNotFoundException, SQLException
+	public ResultSet ekstre(String hesap , String t1 ,String t2) throws ClassNotFoundException, SQLException
 	{
-		return _ICari.ekstre(hesap, t1, t2,sql);
+		return _ICari.ekstre(hesap, t1, t2);
 	}
 	public void sqlite_sil() throws ClassNotFoundException, SQLException
 	{

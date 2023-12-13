@@ -115,7 +115,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 				for(int i=0; i< reportObjects.size();i++)
 				{
 					ITextObject textObject = (ITextObject)reportObjects.get(i);
-					if (textObject.getText().equals("Plast Bak"))
+					if (textObject.getName().equals("txtUnvan"))
 					{
 						ITextObject oTextObject =  (ITextObject) textObject.clone(true);
 						Paragraphs oParagraphs = new Paragraphs();
@@ -144,14 +144,7 @@ public class PRINT_YAPMA extends JInternalFrame {
 				//**************************************************************************
 				if (nasil.equals("normal"))
 				{
-					if(BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
-					{
-						rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1),false);
-					}
-					else {
-						rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1),true);
-					}
-					
+					rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
 				}
 				else if (nasil.equals("aratarih"))
 				{

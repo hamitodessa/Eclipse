@@ -255,16 +255,13 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 		result = count  != 0 ? rss.getString("FIRMA_ADI") : "" ;
 		return result;	
 	}
-	public ResultSet ekstre(String hesap, String t1, String t2,boolean sqll) throws SQLException, ClassNotFoundException {
+	public ResultSet ekstre(String hesap, String t1, String t2) throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		ResultSet	rss = null;
 		String tARIH = "" ;
 		if(! t1.equals("1900.01.01") || ! t2.equals("2100.12.31"))
 			tARIH = "  AND TARIH BETWEEN  '" + t1 + "' AND '" + t2 + " 23:59:59.998'" ;
-		String formatTarihString = " DATE_FORMAT(TARIH, '%Y.%m.%d')  AS TARIH " ;
-		if (sqll)
-			formatTarihString = " TARIH " ;			
-		String sql = " SELECT " + formatTarihString +",SATIRLAR.EVRAK ," +  //DATE_FORMAT(TARIH, '%Y.%m.%d')  AS
+		String sql = " SELECT TARIH ,SATIRLAR.EVRAK ," +  //DATE_FORMAT(TARIH, '%Y.%m.%d')  AS
 				" IFNULL( IZAHAT.IZAHAT,'') AS IZAHAT,KOD,KUR, BORC , ALACAK , "  + 
 				" SUM(ALACAK-BORC) OVER(ORDER BY TARIH  ROWS BETWEEN UNBOUNDED PRECEDING And CURRENT ROW)  AS BAKIYE ,USER "  + 
 				" FROM SATIRLAR  USE INDEX (IX_SATIRLAR)  LEFT JOIN IZAHAT  USE INDEX (IX_IZAHAT)  " + 

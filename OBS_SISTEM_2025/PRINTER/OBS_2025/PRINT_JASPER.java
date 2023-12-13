@@ -139,14 +139,7 @@ public class PRINT_JASPER extends JInternalFrame {
 				parameters.put("uNVAN",  FILTRE.lblNewLabel_1.getText().trim() + "   /  " + FILTRE.lblNewLabel_2.getText().trim());
 				parameters.put("pERIYOT","Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_1));
 				ResultSet rs ;
-				if(BAGLAN.cariDizin.hAN_SQL.equals("MS SQL"))
-				{
-					rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1),false);
-				}
-				else {
-					rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1),true);
-
-				}
+				rs = c_Access.ekstre(FILTRE.txtkodu.getText(), TARIH_CEVIR.tarih_geri(FILTRE.dateChooser),TARIH_CEVIR.tarih_geri(FILTRE.dateChooser_1));
 				jp = new JasperPrint();
 				jp = JasperFillManager.fillReport(jr,parameters,new JRResultSetDataSource(rs));
 			

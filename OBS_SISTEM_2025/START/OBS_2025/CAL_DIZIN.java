@@ -1248,6 +1248,10 @@ public class CAL_DIZIN extends JFrame {
 		lblNewLabel_3_2.setBounds(186, 37, 71, 14);
 		panel_5.add(lblNewLabel_3_2);
 		
+		JLabel lblInstanceIsmiDegisken = new JLabel("Instance Ismi degisken olabilir");
+		lblInstanceIsmiDegisken.setBounds(10, 178, 278, 14);
+		panel_5.add(lblInstanceIsmiDegisken);
+		
 		JPanel panel_5_1 = new JPanel();
 		panel_5_1.setLayout(null);
 		panel_5_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "MY SQL - Ornek", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));

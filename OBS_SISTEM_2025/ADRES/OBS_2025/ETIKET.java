@@ -37,8 +37,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import OBS_2025.KER_KOD_DEGISTIRME.CheckBoxHeader;
-import OBS_2025.KER_KOD_DEGISTIRME.MyItemListener;
+
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CheckBoxRenderer;
@@ -49,6 +48,7 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
+import OBS_C_2025.CheckBoxHeader;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -74,7 +74,7 @@ public static JTextField textField_5;
 public static JTextField textField_6;
 public static JSpinner spinner;
 public static MaterialTabbed orTabbedPane;
-
+private boolean hEPSI = false;
 
 	public ETIKET() {
 		setMaximizable(true);
@@ -356,8 +356,8 @@ public static MaterialTabbed orTabbedPane;
 					{
 						TableModel model = (TableModel)e.getSource();
 						if (model.getRowCount() > 0) {
-
-							secilen_satir();
+							if(!hEPSI)
+								secilen_satir();
 						}
 					}
 				});
@@ -479,11 +479,14 @@ public static MaterialTabbed orTabbedPane;
 			Progres_Bar_Temizle();  
 			OBS_MAIN.progressBar.setStringPainted(true);
 		     OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
+		     hEPSI  = true ;
 			for(int x = 0, y = table.getRowCount(); x < y; x++)
 			{
 				Progres_Bar(table.getRowCount()-1, x);
 				table.setValueAt(new Boolean(checked),x,0);
 			}
+			hEPSI = false;
+			secilen_satir();
 			Progres_Bar_Temizle();
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			} catch (InterruptedException e1) 
@@ -508,67 +511,6 @@ public static MaterialTabbed orTabbedPane;
 	    	OBS_MAIN.progressBar.setStringPainted(false);
 	    }
 	}
-	class CheckBoxHeader extends JCheckBox   implements TableCellRenderer, MouseListener 
-	{
-		protected CheckBoxHeader rendererComponent;
-		protected int column;
-		protected boolean mousePressed = false;
-		public CheckBoxHeader(ItemListener itemListener) {
-			rendererComponent = this;
-			rendererComponent.addItemListener(itemListener);
-		}
-		public Component getTableCellRendererComponent(
-				JTable table, Object value,
-				boolean isSelected, boolean hasFocus, int row, int column) {
-			if (table != null) {
-				JTableHeader header = table.getTableHeader();
-				if (header != null) {
-					rendererComponent.setForeground(header.getForeground());
-					rendererComponent.setBackground(header.getBackground());
-					rendererComponent.setFont(header.getFont());
-					header.addMouseListener(rendererComponent);
-				}
-			}
-			setColumn(column);
-			setHorizontalAlignment(JLabel.CENTER);
-			setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-			//setSelected(true);
-			return rendererComponent;
-		}
-		protected void setColumn(int column) {
-			this.column = column;
-		}
-		public int getColumn() {
-			return column;
-		}
-		protected void handleClickEvent(MouseEvent e) {
-			if (mousePressed) {
-				mousePressed=false;
-				JTableHeader header = (JTableHeader)(e.getSource());
-				JTable tableView = header.getTable();
-				TableColumnModel columnModel = tableView.getColumnModel();
-				int viewColumn = columnModel.getColumnIndexAtX(e.getX());
-				int column = tableView.convertColumnIndexToModel(viewColumn);
-				if (viewColumn == this.column && e.getClickCount() == 1 && column != -1) 
-				{
-					doClick();
-				}
-			}
-		}
-		public void mouseClicked(MouseEvent e) {
-			handleClickEvent(e);
-			((JTableHeader)e.getSource()).repaint();
-		}
-		public void mousePressed(MouseEvent e) {
-			mousePressed = true;
-		}
-		public void mouseReleased(MouseEvent e) {
-		}
-		public void mouseEntered(MouseEvent e) {
-		}
-		public void mouseExited(MouseEvent e) 
-		{
-		}
-	}
+
 }
 

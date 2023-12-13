@@ -2,14 +2,11 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -21,7 +18,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -29,7 +25,6 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
@@ -51,6 +46,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.TARIH;
 import OBS_C_2025.lOG_BILGI;
+import OBS_C_2025.CheckBoxHeader;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 
@@ -81,10 +77,9 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	private JLabel lblNewLabel_4_1 ;
 	private JSplitPane splitPane ;
 	private boolean ilk = true ;
-	CheckBoxHeader asdBoxHeader = new CheckBoxHeader(new MyItemListener());
 	private JTextField txtYKons;
 	private JTextField txtEvrak;
-
+	private boolean hEPSI = false;
 
 	public KER_KOD_DEGISTIRME() {
 		setMaximizable(true);
@@ -434,6 +429,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			checkBox.setHorizontalAlignment(JCheckBox.CENTER);
 			DefaultCellEditor dce = new DefaultCellEditor( checkBox );
 			tc.setCellEditor(dce);
+			tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
 			tc.setCellRenderer(new CheckBoxRenderer());
 			
 			tc.setMinWidth(50);
@@ -661,8 +657,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			dd.height = 30;
 			th.setPreferredSize(dd); 
 			//
-			tc = tcm.getColumn(0);
-			tc.setHeaderRenderer(asdBoxHeader);
+			
 			
 			th.repaint();
 			table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
@@ -671,7 +666,8 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				{
 					TableModel model = (TableModel)e.getSource();
 					if (model.getRowCount() > 0) {
-						secilen_satir();
+						if(!hEPSI)
+							secilen_satir();
 					}
 				}
 			});
@@ -734,7 +730,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		} catch (Exception ex) {
 			mDEFAULT();
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Kod Degisimi", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
@@ -769,7 +764,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		} catch (Exception ex) {
 			mDEFAULT();
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Kereste Kod Degisimi", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
@@ -852,12 +846,15 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				Progres_Bar_Temizle();  
 				OBS_MAIN.progressBar.setStringPainted(true);
-			     OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
+			    OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
+			    hEPSI = true;
 				for(int x = 0, y = table.getRowCount(); x < y; x++)
 				{
 					Progres_Bar(table.getRowCount()-1, x);
 					table.setValueAt(new Boolean(checked),x,0);
 				}
+				hEPSI = false;
+				secilen_satir();
 				Progres_Bar_Temizle();
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				} catch (InterruptedException e1) 
@@ -882,65 +879,5 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	    }
 
 	}
-	class CheckBoxHeader extends JCheckBox   implements TableCellRenderer, MouseListener 
-	{
-		protected CheckBoxHeader rendererComponent;
-		protected int column;
-		protected boolean mousePressed = false;
-		public CheckBoxHeader(ItemListener itemListener) {
-			rendererComponent = this;
-			rendererComponent.addItemListener(itemListener);
-		}
-		public Component getTableCellRendererComponent(
-				JTable table, Object value,
-				boolean isSelected, boolean hasFocus, int row, int column) {
-			if (table != null) {
-				JTableHeader header = table.getTableHeader();
-				if (header != null) {
-					rendererComponent.setForeground(header.getForeground());
-					rendererComponent.setBackground(header.getBackground());
-					rendererComponent.setFont(header.getFont());
-					header.addMouseListener(rendererComponent);
-				}
-			}
-			setColumn(column);
-			setHorizontalAlignment(JLabel.CENTER);
-			setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-			return rendererComponent;
-		}
-		protected void setColumn(int column) {
-			this.column = column;
-		}
-		public int getColumn() {
-			return column;
-		}
-		protected void handleClickEvent(MouseEvent e) {
-			if (mousePressed) {
-				mousePressed=false;
-				JTableHeader header = (JTableHeader)(e.getSource());
-				JTable tableView = header.getTable();
-				TableColumnModel columnModel = tableView.getColumnModel();
-				int viewColumn = columnModel.getColumnIndexAtX(e.getX());
-				int column = tableView.convertColumnIndexToModel(viewColumn);
-				if (viewColumn == this.column && e.getClickCount() == 1 && column != -1) {
-					doClick();
-				}
-			}
-		}
-		public void mouseClicked(MouseEvent e) {
-			handleClickEvent(e);
-			((JTableHeader)e.getSource()).repaint();
-		}
-		public void mousePressed(MouseEvent e) {
-			mousePressed = true;
-		}
-		public void mouseReleased(MouseEvent e) {
-		}
-		public void mouseEntered(MouseEvent e) {
-		}
-		public void mouseExited(MouseEvent e) 
-		{
-		}
-		
-	}
+
 }

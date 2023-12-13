@@ -1,17 +1,19 @@
 package OBS_2025;
 
-import java.awt.EventQueue;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,25 +26,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-
-import javax.swing.JTable;
-import javax.swing.UIManager;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
-
-import net.proteanit.sql.DbUtils;
-import raven.toast.Notifications;
-
-import javax.swing.JSplitPane;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EtchedBorder;
@@ -52,11 +38,15 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 import com.toedter.calendar.JDateChooser;
 
-import OBS_2025.KER_KOD_DEGISTIRME.CheckBoxHeader;
-import OBS_2025.KER_KOD_DEGISTIRME.MyItemListener;
+
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
@@ -68,9 +58,9 @@ import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.lOG_BILGI;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import OBS_C_2025.CheckBoxHeader;
+import net.proteanit.sql.DbUtils;
+import raven.toast.Notifications;
 
 @SuppressWarnings({"serial" , "static-access" ,"deprecation" ,"unused"})
 public class YIL_SONU extends JInternalFrame {
@@ -87,7 +77,7 @@ public class YIL_SONU extends JInternalFrame {
 	private  JLabel lblNewLabel_3 ;
 	private static JSplitPane splitPaneana ;
 	private static JPanel panel ;
-
+	private boolean hEPSI = false;
 
 	public YIL_SONU() {
 		setClosable(true);
@@ -365,7 +355,8 @@ public class YIL_SONU extends JInternalFrame {
 				{
 					TableModel model = (TableModel)e.getSource();
 					if (model.getRowCount() > 0) {
-						secilen_satir();
+						if(!hEPSI)
+							secilen_satir();
 					}
 				}
 			});
@@ -577,12 +568,15 @@ public class YIL_SONU extends JInternalFrame {
 			getContentPane().setCursor(oac.WAIT_CURSOR);
 			Progres_Bar_Temizle();  
 			OBS_MAIN.progressBar.setStringPainted(true);
-		     OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
+		    OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
+		    hEPSI = true;
 			for(int x = 0, y = table.getRowCount(); x < y; x++)
 			{
 				Progres_Bar(table.getRowCount()-1, x);
 				table.setValueAt(new Boolean(checked),x,0);
 			}
+			hEPSI = false;
+			secilen_satir();
 			Progres_Bar_Temizle();
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			} catch (InterruptedException e1) 
@@ -608,66 +602,5 @@ public class YIL_SONU extends JInternalFrame {
 	    }
 
 	}
-	class CheckBoxHeader extends JCheckBox   implements TableCellRenderer, MouseListener 
-	{
-		protected CheckBoxHeader rendererComponent;
-		protected int column;
-		protected boolean mousePressed = false;
-		public CheckBoxHeader(ItemListener itemListener) {
-			rendererComponent = this;
-			rendererComponent.addItemListener(itemListener);
-		}
-		public Component getTableCellRendererComponent(
-				JTable table, Object value,
-				boolean isSelected, boolean hasFocus, int row, int column) {
-			if (table != null) {
-				JTableHeader header = table.getTableHeader();
-				if (header != null) {
-					rendererComponent.setForeground(header.getForeground());
-					rendererComponent.setBackground(header.getBackground());
-					rendererComponent.setFont(header.getFont());
-					header.addMouseListener(rendererComponent);
-				}
-			}
-			setColumn(column);
-			setHorizontalAlignment(JLabel.CENTER);
-			setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-			//setSelected(true);
-			return rendererComponent;
-		}
-		protected void setColumn(int column) {
-			this.column = column;
-		}
-		public int getColumn() {
-			return column;
-		}
-		protected void handleClickEvent(MouseEvent e) {
-			if (mousePressed) {
-				mousePressed=false;
-				JTableHeader header = (JTableHeader)(e.getSource());
-				JTable tableView = header.getTable();
-				TableColumnModel columnModel = tableView.getColumnModel();
-				int viewColumn = columnModel.getColumnIndexAtX(e.getX());
-				int column = tableView.convertColumnIndexToModel(viewColumn);
 
-				if (viewColumn == this.column && e.getClickCount() == 1 && column != -1) {
-					doClick();
-				}
-			}
-		}
-		public void mouseClicked(MouseEvent e) {
-			handleClickEvent(e);
-			((JTableHeader)e.getSource()).repaint();
-		}
-		public void mousePressed(MouseEvent e) {
-			mousePressed = true;
-		}
-		public void mouseReleased(MouseEvent e) {
-		}
-		public void mouseEntered(MouseEvent e) {
-		}
-		public void mouseExited(MouseEvent e) 
-		{
-		}
-	}
 }

@@ -166,10 +166,18 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(FILTRE.txtkodu.getText());
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
+					
 						oTextObject.setParagraphs(oParagraphs);
+						
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
 					else if (textObject.getName().equals("txtUnvan"))
@@ -182,9 +190,16 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oParagraphTextElement.setText("");
 						oParagraphTextElement.setText( FILTRE.lblNewLabel_1.getText().trim() + "   /  " + FILTRE.lblNewLabel_2.getText().trim());
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
+						
 						oTextObject.setParagraphs(oParagraphs);
 						clientDoc.getReportDefController().getReportObjectController().modify(textObject, oTextObject);
 					}
@@ -196,7 +211,9 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						String yazi = "Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_1);
-						oParagraphTextElement.setText("        " + yazi );
+						oParagraph.setAlignment(Alignment.right);
+						//oParagraphTextElement.setText("        " + yazi );
+						oParagraphTextElement.setText(yazi );
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
@@ -290,6 +307,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oParagraphTextElement.setText(BAGLAN.cariDizin.fIRMA_ADI);
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						oParagraphs.add(oParagraph);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
 						oTextObject.setParagraphs(oParagraphs);
@@ -354,6 +377,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(BAGLAN.cariDizin.fIRMA_ADI);
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -445,6 +474,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(BAGLAN.cariDizin.fIRMA_ADI);
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -513,6 +548,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(DVZ_CEVIRME.lblkod.getText()+ " / " + DVZ_CEVIRME.lblunvan.getText() + " / " + DVZ_CEVIRME.lblcins.getText());
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -528,6 +569,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(DVZ_CEVIRME.lblcevrilen.getText());
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -627,6 +674,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(CEK_GIRIS.textField_1.getText());
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -643,6 +696,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oParagraphTextElement.setText("");
 						oParagraphTextElement.setText( CEK_GIRIS.lblNewLabel_2.getText());
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -658,6 +717,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(nasil );
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -673,6 +738,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText("GIRIS");
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Arial", Font.BOLD, 10);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -687,8 +758,15 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						String yazi = TARIH_CEVIR.tarih_dt_ddMMyyyy(CEK_GIRIS.dateChooser)  ;
-						oParagraphTextElement.setText("     " + yazi );
+						oParagraphTextElement.setText( yazi );
+						oParagraph.setAlignment(Alignment.right);
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 10);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -763,6 +841,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(CEK_CIKIS.textField_1.getText());
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -779,6 +863,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						oParagraphTextElement.setText("");
 						oParagraphTextElement.setText( CEK_CIKIS.lblNewLabel_2.getText());
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -794,6 +884,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText(nasil );
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 12);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -809,6 +905,12 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						oParagraphTextElement.setText( "CIKIŞ" );
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Arial", Font.BOLD, 10);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -823,8 +925,15 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						String yazi = TARIH_CEVIR.tarih_dt_ddMMyyyy(CEK_CIKIS.dateChooser)  ;
-						oParagraphTextElement.setText("     " + yazi );
+						oParagraphTextElement.setText( yazi );
+						oParagraph.setAlignment(Alignment.right);
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
+						
+						IFontColor newFontColor = oTextObject.getFontColor();
+						Font fnt = new Font("Verdana", Font.BOLD, 10);
+						newFontColor.setFont(fnt);
+						oParagraphTextElement.setFontColor(newFontColor);
+						
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);
 						oParagraphElements.add(oParagraphTextElement);
@@ -901,7 +1010,8 @@ public class PRINT_YAPMA extends JInternalFrame {
 						ParagraphElements oParagraphElements = new ParagraphElements();
 						ParagraphTextElement oParagraphTextElement = new ParagraphTextElement();
 						String yazi = "Periyot :" + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_16)  + " - " + TARIH_CEVIR.tarih_dt_ddMMyyyy(FILTRE.dateChooser_17);
-						oParagraphTextElement.setText("        " + yazi );
+						oParagraphTextElement.setText( yazi );
+						oParagraph.setAlignment(Alignment.right);
 						oParagraphTextElement.setKind(ParagraphElementKind.text);
 						oParagraphs.add(oParagraph);
 						oParagraph.setParagraphElements(oParagraphElements);

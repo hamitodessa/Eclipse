@@ -3754,6 +3754,7 @@ public class OBS_MAIN extends JFrame  {
 			String deger = GLOBAL.setting_oku("GUN_KON").toString();
 			if (deger.equals("-1"))
 			{
+				btnNewButton_72.setVisible(false);
 				return ;
 			}
 			deger = GLOBAL.setting_oku("GUN_KON_ZAM").toString();

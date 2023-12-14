@@ -415,8 +415,7 @@ public class YIL_SONU extends JInternalFrame {
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
 			{
-				boolean durum =  model.getValueAt(i, 5) != null ?    (boolean) model.getValueAt(i, 5) : false;
-				if (durum) 
+				if ( model.getValueAt(i,0).toString().equals("true")) 
 				{
 					kaysay += 1 ;
 				}
@@ -430,19 +429,18 @@ public class YIL_SONU extends JInternalFrame {
 			int say   = 0 ;
 			for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
 			{
-				boolean durum =  model.getValueAt(i, 5) != null ?    (boolean) model.getValueAt(i, 5) : false;
-				if (durum) 
+				if ( model.getValueAt(i,0).toString().equals("true")) 
 				{
-					c_Access.yilsonu_hpln_kayit(model.getValueAt(i, 0).toString(),
-							model.getValueAt(i, 1).toString(), model.getValueAt(i, 2).toString(), 
-							model.getValueAt(i, 3).toString(), GLOBAL.KULL_ADI);
-					c_Access.yilsonu_hpln_detay_kayit(model.getValueAt(i, 0).toString(), "", "", "", "", "", "", "" 
+					c_Access.yilsonu_hpln_kayit(model.getValueAt(i, 1).toString(),
+							model.getValueAt(i, 2).toString(), model.getValueAt(i, 3).toString(), 
+							model.getValueAt(i, 4).toString(), GLOBAL.KULL_ADI);
+					c_Access.yilsonu_hpln_detay_kayit(model.getValueAt(i, 1).toString(), "", "", "", "", "", "", "" 
 							, "", "", "", "", "", "", "", "", "" 
 							, "", "");
 					say += 1;
 				}
 			}
-			OBS_MAIN.mesaj_goster(10000,Notifications.Type.ERROR, "Hesap Plani Aktarma Islemi Basari ile gerceklestirildi...." 
+			OBS_MAIN.mesaj_goster(10000,Notifications.Type.INFO, "Hesap Plani Aktarma Islemi Basari ile gerceklestirildi...." 
 					+ System.lineSeparator() + System.lineSeparator()  + "Aktarilan Hesap Sayisi...: " + say );
 			//'*****MIZAN AKTARMA YAP '******
 			if (chckbxNewCheckBox.isSelected() )
@@ -468,10 +466,9 @@ public class YIL_SONU extends JInternalFrame {
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			for(int  i = 0 ;i <= model.getRowCount() - 1; i ++)
 			{
-				boolean durum =  model.getValueAt(i, 5) != null ?    (boolean) model.getValueAt(i, 5) : false;
-				if (durum) 
+				if ( model.getValueAt(i,0).toString().equals("true")) 
 				{
-					rs =  c_Access.mizan_aktar(model.getValueAt(i, 0).toString());
+					rs =  c_Access.mizan_aktar(model.getValueAt(i, 1).toString());
 					bir = 0;
 					iki = 0;
 					uc = 0;
@@ -526,7 +523,7 @@ public class YIL_SONU extends JInternalFrame {
 				}
 
 			}  // ilk For INT
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, "Mizan Aktarma Islemi Basari ile Tamamlandi...." );
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Mizan Aktarma Islemi Basari ile Tamamlandi...." );
 		}
 		catch (Exception ex)
 		{

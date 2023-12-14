@@ -153,7 +153,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		
 		txtYKod = new JTextField();
 		txtYKod.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtYKod.setBounds(10, 18, 30, 20);
+		txtYKod.setBounds(10, 18, 42, 20);
 		txtYKod.setDocument(new JTextFieldLimit(2));
 		txtYKod.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
@@ -697,17 +697,19 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	{
 		try {
 			lOG_BILGI lBILGI = new lOG_BILGI();
-			lBILGI.setmESAJ("Kod Degisim ,  Paket_No :"  );
-			lBILGI.seteVRAK("");
+			
 			DefaultTableModel modell = (DefaultTableModel)table.getModel();
 			for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
 			{
-				if (  (boolean) modell.getValueAt(i,43) )
+				if (  modell.getValueAt(i,0).toString().equals("true")   )
 				{
-					ker_Access.ker_kod_degis(modell.getValueAt(i, 3).toString(),
-							modell.getValueAt(i, 4).toString(),
+					String[] token = modell.getValueAt(i, 3).toString().split("-");
+					lBILGI.setmESAJ("Kod Degisim,Paket_No :" + modell.getValueAt(i, 4).toString() + " Eski Kod=" + token[0] + " Yeni Kod=" + txtYKod.getText());
+					lBILGI.seteVRAK(modell.getValueAt(i, 1).toString());
+					ker_Access.ker_kod_degis(modell.getValueAt(i, 4).toString(),
+							modell.getValueAt(i, 5).toString(),
 							txtYKod.getText(),
-							(int) modell.getValueAt(i, 0) ,
+							(int) modell.getValueAt(i, 44) ,
 							lBILGI,BAGLAN_LOG.kerLogDizin);
 				}
 			}
@@ -734,14 +736,16 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	{
 		try {
 			lOG_BILGI lBILGI = new lOG_BILGI();
-			lBILGI.setmESAJ("Konsimento Degisim ,  Konsimento_No :"  );
-			lBILGI.seteVRAK("");
+			
+			
 			DefaultTableModel modell = (DefaultTableModel)table.getModel();
 			for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
 			{
-				if (  (boolean) modell.getValueAt(i,43) )
+				if (  modell.getValueAt(i,0).toString().equals("true")   )
 				{
-					ker_Access.ker_kons_degis(modell.getValueAt(i, 5).toString(),txtYKons.getText() ,lBILGI,BAGLAN_LOG.kerLogDizin);
+					lBILGI.seteVRAK(modell.getValueAt(i, 1).toString());
+					lBILGI.setmESAJ("Kon Degisim,Eski Kon_No=" + modell.getValueAt(i, 5).toString() + " Yeni Kon_No :" + txtYKons.getText() + " Paket_No :" + modell.getValueAt(i, 4).toString() );
+					ker_Access.ker_kons_degis(modell.getValueAt(i, 5).toString(),txtYKons.getText() , (int) modell.getValueAt(i, 44) ,lBILGI,BAGLAN_LOG.kerLogDizin);
 				}
 			}
 			GRID_TEMIZLE.grid_temizle(table);

@@ -2092,11 +2092,11 @@ public class KERESTE_MYSQL implements IKERESTE {
 	}
 
 	@Override
-	public void ker_kons_degis(String kons, String yenikons) throws ClassNotFoundException, SQLException {
+	public void ker_kons_degis(String kons, String yenikons ,int satir) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		String sql = "UPDATE KERESTE  " 
 				+ " SET  Konsimento = '"+ yenikons + "'" 
-				+ " WHERE  Konsimento = N'" + kons + "' AND " ;
+				+ " WHERE  Konsimento = N'" + kons + "' AND  Satir =" + satir;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();

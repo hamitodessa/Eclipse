@@ -374,19 +374,10 @@ private boolean hEPSI = false;
 		{
 			if ( modell.getValueAt(i,0) != null) 
 			{
-				if( BAGLAN.adrDizin.hAN_SQL.equals("MS SQL") )
+				if (  modell.getValueAt(i,0).toString().equals("true")   )
 				{
-					if (  (boolean) modell.getValueAt(i,0) )
-						{
-							satir += 1 ;
-						}
-				}
-				else {
-					if (  modell.getValueAt(i,0).toString().equals("true")   )
-					{
-						satir += 1 ;
-					}
-				}
+					satir += 1 ;
+				}	
 			};
 		}
 		return satir ;

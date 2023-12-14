@@ -1206,7 +1206,7 @@ public class CARI_HESAP_MYSQL implements ICARI_HESAP {
 				+ " ,UNVAN"
 				+ " ,KARTON"
 				+ "	,HESAP_CINSI"
-				+ "	,USER] FROM HESAP    ORDER BY HESAP " );
+				+ "	,USER FROM HESAP    ORDER BY HESAP " );
 		rss = stmt.executeQuery();
 		return rss;	 
 	}

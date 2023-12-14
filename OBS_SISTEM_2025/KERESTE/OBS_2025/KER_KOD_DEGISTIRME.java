@@ -30,7 +30,6 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.text.MaskFormatter;
 
-import OBS_C_2025.BAGLAN;
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
@@ -776,20 +775,10 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		{
 			if ( modell.getValueAt(i,0) != null) 
 			{
-				if( BAGLAN.kerDizin.hAN_SQL.equals("MS SQL") )
+				if (  modell.getValueAt(i,0).toString().equals("true")   )
 				{
-					if (  (boolean) modell.getValueAt(i,0) )
-					{
-						satir += 1 ;
-					}
-				}
-				else
-				{
-					if (  modell.getValueAt(i,0).toString().equals("true")   )
-					{
-						satir += 1 ;
-					}
-				}
+					satir += 1 ;
+				}	
 			};
 		}
 		return satir ;

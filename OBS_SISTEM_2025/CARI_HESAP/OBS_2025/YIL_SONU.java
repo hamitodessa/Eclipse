@@ -291,8 +291,6 @@ public class YIL_SONU extends JInternalFrame {
 				return;
 			}
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			
-
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
@@ -383,19 +381,10 @@ public class YIL_SONU extends JInternalFrame {
 		{
 			if ( modell.getValueAt(i,0) != null) 
 			{
-				if( BAGLAN.cariDizin.hAN_SQL.equals("MS SQL") )
+				if (  modell.getValueAt(i,0).toString().equals("true")   )
 				{
-					if (  (boolean) modell.getValueAt(i,0) )
-					{
-						satir += 1 ;
-					}
-				}
-				else {
-					if (  modell.getValueAt(i,0).toString().equals("true")   )
-					{
-						satir += 1 ;
-					}
-				}
+					satir += 1 ;
+				}	
 			};
 		}
 		return satir ;

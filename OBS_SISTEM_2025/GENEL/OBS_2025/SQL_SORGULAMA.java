@@ -89,7 +89,11 @@ public class SQL_SORGULAMA extends JInternalFrame {
 			public void keyPressed(KeyEvent e) {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
 				{	
+					GuiUtil.setWaitCursor(getContentPane(),true);
+					GuiUtil.setWaitCursor(textArea,true);
 					hisset ();
+					GuiUtil.setWaitCursor(textArea,false);
+					GuiUtil.setWaitCursor(getContentPane(),false);
 				}
 			}
 		});

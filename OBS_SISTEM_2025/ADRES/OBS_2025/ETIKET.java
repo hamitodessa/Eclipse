@@ -57,7 +57,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-@SuppressWarnings({"serial","unused"})
+@SuppressWarnings({"serial","unused","removal"})
 public class ETIKET extends JInternalFrame {
 static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
@@ -178,11 +178,6 @@ private boolean hEPSI = false;
 		tekPanel.add(spinner);
 		
 		splitPane_1.setLeftComponent(orTabbedPane);
-		
-		//
-		
-		
-		//splitPane_1.setLeftComponent(scrollPane);
 		JPanel panel = new JPanel();
 		panel.setMinimumSize(new Dimension(0, 25));
 		panel.setMaximumSize(new Dimension(0, 25));
@@ -279,8 +274,6 @@ private boolean hEPSI = false;
 			else
 			{
 				table.setModel(DbUtils.resultSetToTableModel(rs));
-
-
 				JTableHeader th = table.getTableHeader();
 				TableColumnModel tcm = th.getColumnModel();
 				TableColumn tc;
@@ -303,7 +296,7 @@ private boolean hEPSI = false;
 				DefaultCellEditor dce = new DefaultCellEditor( checkBox );
 				tc.setCellEditor(dce);
 				tc.setCellRenderer(new CheckBoxRenderer());
-
+				tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
 
 				tc.setMinWidth(50);
 				tc.setMaxWidth(50);
@@ -332,24 +325,16 @@ private boolean hEPSI = false;
 				tc.setHeaderRenderer(new SOLA());
 				tc.setMinWidth(150);
 
-
-
 				Dimension dd = table.getPreferredSize();
 				dd.height = 30;
 				th.setPreferredSize(dd); 
-				//
-				tc = tcm.getColumn(0);
-				tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
-				//
-				th.repaint();
+				
 				table.setRowSelectionInterval(0, 0);
 				table.setRowHeight(21);
 
 				int lastRow = table.convertRowIndexToView(table.getRowCount() - 1);
 				table.scrollRectToVisible(table.getCellRect(table.getRowCount()-1, 0, true));
 				table.setRowSelectionInterval(lastRow, lastRow);
-
-				//***
 				table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
 				{
 					public void tableChanged(TableModelEvent e) 
@@ -404,7 +389,6 @@ private boolean hEPSI = false;
 				}
 			};
 		}
-		
 		return satir ;
 	}
 	public void arama() throws ClassNotFoundException, SQLException  
@@ -462,7 +446,6 @@ private boolean hEPSI = false;
 	///********
 	class MyItemListener implements ItemListener
 	{
-		@SuppressWarnings("removal")
 		@Override
 		public void itemStateChanged(ItemEvent e)
 		{
@@ -511,6 +494,5 @@ private boolean hEPSI = false;
 	    	OBS_MAIN.progressBar.setStringPainted(false);
 	    }
 	}
-
 }
 

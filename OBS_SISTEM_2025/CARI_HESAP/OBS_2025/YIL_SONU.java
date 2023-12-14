@@ -62,7 +62,7 @@ import OBS_C_2025.CheckBoxHeader;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 
-@SuppressWarnings({"serial" , "static-access" ,"deprecation" ,"unused"})
+@SuppressWarnings({"serial" , "static-access" ,"deprecation" ,"unused","removal"})
 public class YIL_SONU extends JInternalFrame {
 	private static final Vector<?> Boolean = null;
 	private static JTable table;
@@ -271,7 +271,6 @@ public class YIL_SONU extends JInternalFrame {
 		lblNewLabel_1 = new JLabel("....");
 		lblNewLabel_1.setBounds(148, 42, 233, 14);
 		panel_1.add(lblNewLabel_1);
-
 		doldur();
 	}
 	private void doldur()
@@ -360,8 +359,6 @@ public class YIL_SONU extends JInternalFrame {
 					}
 				}
 			});
-
-			
 			String deger;
 			String[] parts;
 			Font bigFont;
@@ -394,14 +391,12 @@ public class YIL_SONU extends JInternalFrame {
 					}
 				}
 				else {
-					//if ( ! modell.getValueAt(i,0).toString().equals("0") )
 					if (  modell.getValueAt(i,0).toString().equals("true")   )
 					{
 						satir += 1 ;
 					}
 				}
 			};
-
 		}
 		return satir ;
 	}
@@ -502,7 +497,7 @@ public class YIL_SONU extends JInternalFrame {
 						bir = rs.getDouble("BORC");
 						iki = rs.getDouble("ALACAK");
 						uc = iki - bir ;
-						
+
 						lOG_BILGI lBILGI = new lOG_BILGI();
 						if ( bir == iki)   // ' Bakiye Sifir  bir = iki
 						{
@@ -510,7 +505,7 @@ public class YIL_SONU extends JInternalFrame {
 							double sifir = 0 ;
 							lBILGI.setmESAJ("A.Hes:" + textField_1.getText() + " B.Hes:" + rs.getString("HESAP")  + " Tut:" +sifir + " Msj:" +"Devir Islemi...");
 							lBILGI.seteVRAK(String.valueOf(enumara));
-							
+
 							c_Access.yilsonu_cari_dekont_kaydet(rs.getString("HESAP"), str, 
 									enumara, "", 1.0, sifir,textField_1.getText(),"", 1.0,sifir,"Devir Islemi...", "D", GLOBAL.KULL_ADI,
 									lBILGI ,BAGLAN_LOG.cariLogDizin);
@@ -535,7 +530,6 @@ public class YIL_SONU extends JInternalFrame {
 									BAGLAN_LOG.cariLogDizin);
 						}
 					}
-
 				}
 				else
 				{
@@ -552,11 +546,10 @@ public class YIL_SONU extends JInternalFrame {
 	}
 	class MyItemListener implements ItemListener
 	{
-		@SuppressWarnings("removal")
 		@Override
 		public void itemStateChanged(ItemEvent e)
 		{
-						//
+			//
 			Runnable runner = new Runnable()
 		    { public void run() {
 		    //
@@ -583,7 +576,6 @@ public class YIL_SONU extends JInternalFrame {
 			{
 			e1.printStackTrace();
 			}
-		//// Progress Bar
 		    }
 	    };
 	    Thread t = new Thread(runner, "Code Executer");
@@ -600,7 +592,5 @@ public class YIL_SONU extends JInternalFrame {
 	    	OBS_MAIN.progressBar.setValue(0);
 	    	OBS_MAIN.progressBar.setStringPainted(false);
 	    }
-
 	}
-
 }

@@ -63,7 +63,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.border.EtchedBorder;
 
-@SuppressWarnings({"serial","static-access"})
+@SuppressWarnings({"serial","static-access","removal"})
 public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(OBS_SIS_2025_ANA_CLASS._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
@@ -657,8 +657,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			dd.height = 30;
 			th.setPreferredSize(dd); 
 			//
-			
-			
 			th.repaint();
 			table.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
 			{
@@ -748,7 +746,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				}
 			}
 			GRID_TEMIZLE.grid_temizle(table);
-			
 			JTableHeader th = table.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc = tcm.getColumn(0);
@@ -765,7 +762,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			mDEFAULT();
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
-
 	}
 	private void secilen_satir()
 	{
@@ -789,7 +785,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 				}
 				else
 				{
-					//if ( ! modell.getValueAt(i,0).toString().equals("0") )
 					if (  modell.getValueAt(i,0).toString().equals("true")   )
 					{
 						satir += 1 ;
@@ -815,7 +810,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		GuiUtil.setWaitCursor(txtPaketNo,true);
 		GuiUtil.setWaitCursor(txtEvrak,true);
 		GuiUtil.setWaitCursor(txtKodu,true);
-
 	}
 	private void mDEFAULT()
 	{
@@ -825,59 +819,54 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		GuiUtil.setWaitCursor(txtPaketNo,false);
 		GuiUtil.setWaitCursor(txtEvrak,false);
 		GuiUtil.setWaitCursor(txtKodu,false);
-
 	}
-	///********
-	class MyItemListener implements ItemListener
-	{
-		@SuppressWarnings("removal")
-		@Override
-		public void itemStateChanged(ItemEvent e)
-		{
-			//
-			Runnable runner = new Runnable()
-			{ public void run() {
-				//
-				try 
-				{
-				Object source = e.getSource();
-				if (source instanceof AbstractButton == false) return;
-				boolean checked = e.getStateChange() == ItemEvent.SELECTED;
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
-				Progres_Bar_Temizle();  
-				OBS_MAIN.progressBar.setStringPainted(true);
-			    OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
-			    hEPSI = true;
-				for(int x = 0, y = table.getRowCount(); x < y; x++)
-				{
-					Progres_Bar(table.getRowCount()-1, x);
-					table.setValueAt(new Boolean(checked),x,0);
-				}
-				hEPSI = false;
-				secilen_satir();
-				Progres_Bar_Temizle();
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
-				} catch (InterruptedException e1) 
-				{
-				e1.printStackTrace();
-				}
-			}
-			};
-			Thread t = new Thread(runner, "Code Executer");
-			t.start();
-			//
-		}
-		static void Progres_Bar(int max, int deger) throws InterruptedException
-	    {
-	 	    OBS_MAIN.progressBar.setValue(deger);
-	     }
-	    static void Progres_Bar_Temizle()
-	    {
-	    	OBS_MAIN.progressBar.setMaximum(0);
-	    	OBS_MAIN.progressBar.setValue(0);
-	    	OBS_MAIN.progressBar.setStringPainted(false);
-	    }
-
-	}
-
+	static void Progres_Bar(int max, int deger) throws InterruptedException
+    {
+ 	    OBS_MAIN.progressBar.setValue(deger);
+     }
+    static void Progres_Bar_Temizle()
+    {
+    	OBS_MAIN.progressBar.setMaximum(0);
+    	OBS_MAIN.progressBar.setValue(0);
+    	OBS_MAIN.progressBar.setStringPainted(false);
+    }
+    class MyItemListener implements ItemListener
+    {
+    	@Override
+    	public void itemStateChanged(ItemEvent e)
+    	{
+    		//
+    		Runnable runner = new Runnable()
+    		{ public void run() {
+    			//
+    			try 
+    			{
+    				Object source = e.getSource();
+    				if (source instanceof AbstractButton == false) return;
+    				boolean checked = e.getStateChange() == ItemEvent.SELECTED;
+    				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+    				Progres_Bar_Temizle();  
+    				OBS_MAIN.progressBar.setStringPainted(true);
+    				OBS_MAIN.progressBar.setMaximum(table.getRowCount()-1); 
+    				hEPSI = true;
+    				for(int x = 0, y = table.getRowCount(); x < y; x++)
+    				{
+    					Progres_Bar(table.getRowCount()-1, x);
+    					table.setValueAt(new Boolean(checked),x,0);
+    				}
+    				hEPSI = false;
+    				secilen_satir();
+    				Progres_Bar_Temizle();
+    				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+    			} catch (InterruptedException e1) 
+    			{
+    				e1.printStackTrace();
+    			}
+    		}
+    		};
+    		Thread t = new Thread(runner, "Code Executer");
+    		t.start();
+    		//
+    	}
+    }
 }

@@ -98,17 +98,23 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 	}
 	@Override
 	public void job_sil_L(String jobName,Server_Bilgi sbilgi) {
-		// TODO Auto-generated method stub
+		//DROP EVENT [IF EXISTS] jobName
 		
 	}
 	@Override
 	public void job_sil_S(String jobName, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+		//DROP EVENT [IF EXISTS] jobName
 		
 	}
 	@Override
 	public void job_baslat_L(String jobName, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
+//		CREATE EVENT Satirlar_Yenile
+//		  ON SCHEDULE EVERY '1' DAY
+//		STARTS CONCAT(DATE(NOW()+INTERVAL 1 DAY ), ' 00:00:00')
+//		    DO
+//		      OPTIMIZE TABLE Satirlar;
+//		      OPTIMIZE TABLE izahat;
+//		      OPTIMIZE TABLE hesap;
 		
 	}
 	@Override
@@ -126,4 +132,5 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		// TODO Auto-generated method stub
 		
 	}
+	//OPTIMIZE TABLE Satirlar
 }

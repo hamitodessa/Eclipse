@@ -446,7 +446,7 @@ public class CAL_DIZIN extends JFrame {
 						case 6:
 							s_CONN.job_sil_L("OK_Gun" +  txtKodu.getText() + "_Index", sBilgi);
 							stb.append(" ALTER INDEX [IDX_GUNLUK] ON [dbo].[GUNLUK] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
-						//Gorev index Koy
+							stb.append(" ALTER INDEX [IX_GOREV] ON [dbo].[GOREV] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
 							s_CONN.job_olustur_L("OK_Gun" +  txtKodu.getText() + "_Index","OK_Gun" +  txtKodu.getText() , stb.toString() ,sBilgi);
 							s_CONN.job_baslat_L("OK_Gun" +  txtKodu.getText() + "_Index", sBilgi);
 							break;

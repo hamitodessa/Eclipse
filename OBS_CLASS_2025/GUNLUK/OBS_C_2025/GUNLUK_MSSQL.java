@@ -138,6 +138,10 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		sql = "CREATE TABLE GOREV ([GID] [int] IDENTITY(1,1) NOT NULL , BASL_TARIH DATE , BASL_SAAT nvarchar(5), BIT_TARIH DATE , BIT_SAAT nvarchar(5),TEKRARLA bit,ISIM nvarchar(30),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,SECENEK nvarchar(10),DEGER int ,[USER] nvarchar(15) NULL)" ;  
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+		sql = "CREATE NONCLUSTERED INDEX [IX_GOREV] ON [dbo].[GOREV]([ISIM] ASC ,	[GOREV] ASC "
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE GUNLUK ( [GRVID] [int] IDENTITY(1,1) NOT NULL  ,  [GID] [int]  , TARIH DATE ,SAAT nvarchar(5),ISIM nvarchar(30),GOREV nvarchar(30),YER nvarchar(30),MESAJ nvarchar(100) ,[USER] nvarchar(15) NULL)" ;  
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);

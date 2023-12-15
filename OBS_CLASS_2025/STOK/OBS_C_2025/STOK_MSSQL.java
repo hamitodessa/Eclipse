@@ -279,6 +279,13 @@ public class STOK_MSSQL implements ISTOK {
 				+ " [USER] [nvarchar](15) NOT NULL) ON [PRIMARY]";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
+		sql = "CREATE NONCLUSTERED INDEX [IX_RECETE] ON [dbo].[RECETE]( "
+				+ " [Recete_No] ASC,"
+				+ " [Kodu] ASC"
+				+ " )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, "
+				+ " ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)";
+		stmt = con.createStatement();  
+		stmt.executeUpdate(sql);
 		sql = "CREATE TABLE [dbo].[OZEL]("
 				+ " [YONETICI] [nvarchar](25) NULL,"
 				+ " [YON_SIFRE] [nvarchar](15) NULL,"

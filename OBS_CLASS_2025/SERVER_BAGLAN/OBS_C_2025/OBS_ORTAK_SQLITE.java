@@ -32,4 +32,40 @@ public class OBS_ORTAK_SQLITE implements IConnection {
 		return false;
 	}
 
+	@Override
+	public void job_sil_L(String jobName,Server_Bilgi sbilgi) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void job_sil_S(String jobName, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void job_baslat_L(String jobName, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void job_baslat_S(String jobName, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void job_olustur_L(String jobName, String dosya,String indexISIM, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void job_olustur_S(String jobName, String dosya,String indexISIM, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

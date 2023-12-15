@@ -225,7 +225,7 @@ public class CAL_DIZIN extends JFrame {
 
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
-		toolBar.setBounds(100, 5, 138, 27);
+		toolBar.setBounds(100, 5, 155, 27);
 		panel.add(toolBar);
 
 		JButton btnNewButton = new JButton("");
@@ -360,6 +360,125 @@ public class CAL_DIZIN extends JFrame {
 		});
 		btnNewButton_5.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/exit.png")));
 		toolBar.add(btnNewButton_5);
+		
+		JButton btnNewButton_8 = new JButton("");
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					contentPane.setCursor(WAIT_CURSOR);
+					cONN_AKTAR();
+					CONNECT s_CONN = new CONNECT(oac._IConn);
+					Server_Bilgi sBilgi = new Server_Bilgi() ;
+					if (chckbxL.isSelected())
+					{
+						sBilgi.setIns(comboBox.getSelectedItem().toString()); 
+						sBilgi.setKull(txtkul.getText());  
+						sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr)); 
+						sBilgi.setPort(txtIp.getText());
+					}
+					else  // Server
+					{
+						sBilgi.setServer(txtIp.getText());;
+						sBilgi.setIns(comboBox.getSelectedItem().toString() );;
+						sBilgi.setKull(txtkul.getText()); ;
+						sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr));;
+					}
+					
+					StringBuilder stb = new StringBuilder();
+					if ( s_CONN.Server_kontrol_L( sBilgi) == true  )
+					{
+						
+						switch(activ_sayfa) {
+						case 0:
+							s_CONN.job_sil_L("OK_Car" +  txtKodu.getText() + "_Index", sBilgi);
+							stb.append(" ALTER INDEX [IX_SATIRLAR] ON [dbo].[SATIRLAR] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_SID] ON [dbo].[SATIRLAR] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_EVRAK] ON [dbo].[IZAHAT] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_HESAP] ON [dbo].[HESAP] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IDX_HESAP] ON [dbo].[HESAP] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [D_HESAP] ON [dbo].[HESAP_DETAY] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							s_CONN.job_olustur_L("OK_Car" +  txtKodu.getText() + "_Index","OK_Car" +  txtKodu.getText() , stb.toString() ,sBilgi);
+							s_CONN.job_baslat_L("OK_Car" +  txtKodu.getText() + "_Index", sBilgi);
+							break;
+						case 1:
+							s_CONN.job_sil_L("OK_Fat" +  txtKodu.getText() + "_Index", sBilgi);
+							stb.append(" ALTER INDEX [IX_FATURA] ON [dbo].[FATURA] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_Kodu] ON [dbo].[MAL] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_GRUP] ON [dbo].[STOK] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_Cikan] ON [dbo].[STOK] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_Giren] ON [dbo].[STOK] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_STOK] ON [dbo].[STOK] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_RECETE] ON [dbo].[RECETE] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							s_CONN.job_olustur_L("OK_Fat" +  txtKodu.getText() + "_Index","OK_Fat" +  txtKodu.getText() , stb.toString() ,sBilgi);
+							s_CONN.job_baslat_L("OK_Fat" +  txtKodu.getText() + "_Index", sBilgi);
+							break;
+						case 2:
+							s_CONN.job_sil_L("OK_Adr" +  txtKodu.getText() + "_Index", sBilgi);
+							stb.append(" ALTER INDEX [IX_SATIRLAR] ON [dbo].[Adres] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							s_CONN.job_olustur_L("OK_Adr" +  txtKodu.getText() + "_Index","OK_Adr" +  txtKodu.getText() , stb.toString() ,sBilgi);
+							s_CONN.job_baslat_L("OK_Adr" +  txtKodu.getText() + "_Index", sBilgi);
+							break;
+						case 3:
+							s_CONN.job_sil_L("OK_Kur" +  txtKodu.getText() + "_Index", sBilgi);
+							stb.append(" ALTER INDEX [IX_KUR] ON [dbo].[Kurlar] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							s_CONN.job_olustur_L("OK_Kur" +  txtKodu.getText() + "_Index","OK_Kur" +  txtKodu.getText() , stb.toString() ,sBilgi);
+							s_CONN.job_baslat_L("OK_Kur" +  txtKodu.getText() + "_Index", sBilgi);
+							break;
+						case 4:
+							s_CONN.job_sil_L("OK_Kam" +  txtKodu.getText() + "_Index", sBilgi);
+							stb.append(" ALTER INDEX [IX_CEK] ON [dbo].[CEK] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							s_CONN.job_olustur_L("OK_Kam" +  txtKodu.getText() + "_Index","OK_Kam" +  txtKodu.getText() , stb.toString() ,sBilgi);
+							s_CONN.job_baslat_L("OK_Kam" +  txtKodu.getText() + "_Index", sBilgi);
+							break;
+						case 5:
+							s_CONN.job_sil_L("OK_Sms" +  txtKodu.getText() + "_Index", sBilgi);
+							stb.append(" ALTER INDEX [IDX_SMS_HESAP] ON [dbo].[SMS_HESAP] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_HESAP] ON [dbo].[SMS_HESAP] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IDX_SMS_BILGILERI] ON [dbo].[SMS_BILGILERI] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_SID] ON [dbo].[SMS_BILGILERI] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IDX_MAIL_HESAP] ON [dbo].[MAIL_HESAP] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_MAIL] ON [dbo].[MAIL_HESAP] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IDX_MAIL_BILGILERI] ON [dbo].[MAIL_BILGILERI] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_MID] ON [dbo].[MAIL_BILGILERI] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							s_CONN.job_olustur_L("OK_Sms" +  txtKodu.getText() + "_Index","OK_Sms" +  txtKodu.getText() , stb.toString() ,sBilgi);
+							s_CONN.job_baslat_L("OK_Sms" +  txtKodu.getText() + "_Index", sBilgi);
+							break;
+						case 6:
+							s_CONN.job_sil_L("OK_Gun" +  txtKodu.getText() + "_Index", sBilgi);
+							stb.append(" ALTER INDEX [IDX_GUNLUK] ON [dbo].[GUNLUK] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+						//Gorev index Koy
+							s_CONN.job_olustur_L("OK_Gun" +  txtKodu.getText() + "_Index","OK_Gun" +  txtKodu.getText() , stb.toString() ,sBilgi);
+							s_CONN.job_baslat_L("OK_Gun" +  txtKodu.getText() + "_Index", sBilgi);
+							break;
+						case 7:
+							s_CONN.job_sil_L("OK_Ker" +  txtKodu.getText() + "_Index", sBilgi);
+							stb.append(" ALTER INDEX [IX_GRP_I] ON [dbo].[KERESTE] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_GRP_II] ON [dbo].[KERESTE] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_KERESTE] ON [dbo].[KERESTE] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [PID] ON [dbo].[KERESTE] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							stb.append(" ALTER INDEX [IX_ACIKLAMA] ON [dbo].[ACIKLAMA] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)") ; 
+							s_CONN.job_olustur_L("OK_Ker" +  txtKodu.getText() + "_Index","OK_Ker" +  txtKodu.getText() , stb.toString() ,sBilgi);
+							s_CONN.job_baslat_L("OK_Ker" +  txtKodu.getText() + "_Index", sBilgi);
+							break;
+						}
+						
+					}
+					else
+					{
+						contentPane.setCursor(DEFAULT_CURSOR);
+						OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Baglanti Saglanamadi........" );
+						
+					}
+					
+					contentPane.setCursor(DEFAULT_CURSOR);
+				} catch (Exception e1) {
+					contentPane.setCursor(DEFAULT_CURSOR);
+					OBS_MAIN.mesaj_goster(7500,Notifications.Type.WARNING, e1.getMessage() );
+				}
+			}
+		});
+		btnNewButton_8.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/exit.png")));
+		toolBar.add(btnNewButton_8);
 
 		JLabel lblNewLabel_1 = new JLabel("Kodu");
 		lblNewLabel_1.setBounds(24, 76, 68, 14);
@@ -1734,9 +1853,9 @@ public class CAL_DIZIN extends JFrame {
 		{
 			Server_Bilgi sBilgi = new Server_Bilgi() ;
 			sBilgi.setIns(comboBox.getSelectedItem().toString()); 
-			sBilgi.setKull(txtkul.getText());  ;
-			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr)); ;
-			sBilgi.setPort(txtIp.getText()); ;
+			sBilgi.setKull(txtkul.getText()); 
+			sBilgi.setSifre( oac.sDONDUR.sDONDUR(txtsifr)); 
+			sBilgi.setPort(txtIp.getText());
 			contentPane.setCursor(WAIT_CURSOR);
 			if ( s_CONN.Server_kontrol_L( sBilgi) == true  )
 			{

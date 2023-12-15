@@ -32,13 +32,13 @@ public class OBS_ORTAK_MSACCESS implements IConnection {
 	}
 
 	@Override
-	public void job_sil_L(String jobName,Server_Bilgi sbilgi) {
+	public void job_sil_L(String jobName, String dosya,Server_Bilgi sbilgi) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void job_sil_S(String jobName, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
+	public void job_sil_S(String jobName, String dosya, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		
 	}

@@ -26,13 +26,13 @@ public class CONNECT {
 	{
 		return _IConnect.Dosyakontrol_S(sbilgi);
 	}
-	public void job_sil_L(String jobName,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException
+	public void job_sil_L(String jobName, String dosya,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException
 	{
-		_IConnect.job_sil_L(jobName,sbilgi);
+		_IConnect.job_sil_L(jobName, dosya,sbilgi);
 	}
-	public void job_sil_S(String jobName,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException
+	public void job_sil_S(String jobName, String dosya,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException
 	{
-		_IConnect.job_sil_S(jobName,sbilgi);
+		_IConnect.job_sil_S(jobName,dosya,sbilgi);
 	}
 	public void job_baslat_L(String jobName,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException
 	{

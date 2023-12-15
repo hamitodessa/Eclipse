@@ -88,7 +88,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		return result;
 	}
 	@Override
-	public void job_sil_L(String jobName,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
+	public void job_sil_L(String jobName, String dosya,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null;  
@@ -110,7 +110,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		conn.close();
 	}
 	@Override
-	public void job_sil_S(String jobName, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
+	public void job_sil_S(String jobName, String dosya, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null;  
 		String cumle = "";
@@ -272,8 +272,6 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 							+ " @os_run_priority=0, @subsystem=N'TSQL', "
 							+ " @command=N'USE ["+ dosya +"] "
 							+ indexISIM 
-							//+ " ALTER INDEX [IX_SATIRLAR] ON [dbo].[SATIRLAR] REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)"
-							//+ " ALTER INDEX [IX_EVRAK] ON [dbo].[IZAHAT]      REBUILD PARTITION = ALL WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)"
 							+ " ', "
 							+ " @database_name=N'"+ dosya +"', "
 							+ " @flags=0 "

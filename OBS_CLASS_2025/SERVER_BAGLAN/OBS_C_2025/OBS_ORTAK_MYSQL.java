@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 
 public class OBS_ORTAK_MYSQL implements IConnection {
 	private static boolean result;
-	@SuppressWarnings("unused")
 	public boolean Server_kontrol_L(Server_Bilgi sbilgi) throws ClassNotFoundException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -19,6 +18,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		try 
 		{
 			conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
+			conn.close();
 			result = true;
 		} catch (SQLException e)
 		{
@@ -27,7 +27,6 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		}
 		return result;
 	}
-	@SuppressWarnings("unused")
 	public boolean Server_kontrol_S(Server_Bilgi sbilgi) throws ClassNotFoundException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
@@ -36,6 +35,7 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		try 
 		{
 			conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
+			conn.close();
 			result = true;
 		} catch (SQLException e)
 		{
@@ -68,6 +68,8 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		{
 			result =false;
 		}
+		stmt.close();
+		conn.close();
 		return result;
 	}
 	public boolean Dosyakontrol_S(Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException
@@ -94,43 +96,73 @@ public class OBS_ORTAK_MYSQL implements IConnection {
 		{
 			result =false;
 		}
+		stmt.close();
+		conn.close();
 		return result;
 	}
 	@Override
-	public void job_sil_L(String jobName,Server_Bilgi sbilgi) {
-		//DROP EVENT [IF EXISTS] jobName
-		
+	public void job_sil_L(String jobName, String dosya,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;  
+		Statement stmt = null;
+		String url = "jdbc:mysql://localhost:" + sbilgi.getPort() + dosya ; //pointing to no database.
+		conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
+		stmt = conn.createStatement();
+		stmt.execute("DROP EVENT IF EXISTS " + jobName +";");
+		stmt.close();
+		conn.close();
 	}
 	@Override
-	public void job_sil_S(String jobName, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		//DROP EVENT [IF EXISTS] jobName
-		
+	public void job_sil_S(String jobName, String dosya, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;  
+		Statement stmt = null;
+		String url = "jdbc:mysql://" + sbilgi.getServer() + dosya ; //pointing to no database.
+		conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
+		stmt = conn.createStatement();
+		stmt.execute("DROP EVENT IF EXISTS " + jobName +";");
+		stmt.close();
+		conn.close();
 	}
 	@Override
 	public void job_baslat_L(String jobName, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-//		CREATE EVENT Satirlar_Yenile
-//		  ON SCHEDULE EVERY '1' DAY
-//		STARTS CONCAT(DATE(NOW()+INTERVAL 1 DAY ), ' 00:00:00')
-//		    DO
-//		      OPTIMIZE TABLE Satirlar;
-//		      OPTIMIZE TABLE izahat;
-//		      OPTIMIZE TABLE hesap;
-		
 	}
 	@Override
 	public void job_baslat_S(String jobName, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
 	}
 	@Override
 	public void job_olustur_L(String jobName, String dosya,String indexISIM, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;  
+		Statement stmt = null;
+		String url = "jdbc:mysql://localhost:" + sbilgi.getPort() + dosya; //pointing to no database.
+		conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
+		stmt = conn.createStatement();
+		String sql = " CREATE  EVENT IF NOT EXISTS " + jobName
+				+ " ON SCHEDULE EVERY '1' DAY "
+				+ "	STARTS CONCAT(DATE(NOW()+INTERVAL 1 DAY ), ' 00:00:00')"
+				+ "	DO"
+				+ indexISIM  ;
+		stmt.execute(sql);
+		stmt.close();
+		conn.close();
 	}
 	@Override
 	public void job_olustur_S(String jobName, String dosya,String indexISIM, Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection conn = null;  
+		Statement stmt = null;
+		String url = "jdbc:mysql://" + sbilgi.getServer() + dosya ; //pointing to no database.
+		conn = DriverManager.getConnection(url, sbilgi.getKull(), sbilgi.getSifre());
+		stmt = conn.createStatement();
+		String sql = "CREATE  EVENT IF NOT EXISTS " + jobName
+				+ " ON SCHEDULE EVERY '1' DAY "
+				+ "	STARTS CONCAT(DATE(NOW()+INTERVAL 1 DAY ), ' 00:00:00')"
+				+ "	DO"
+				+ indexISIM  ;
+		stmt.execute(sql);
+		stmt.close();
+		conn.close();
 	}
 	//OPTIMIZE TABLE Satirlar
 }

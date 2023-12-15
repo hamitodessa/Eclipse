@@ -8,8 +8,8 @@ public interface IConnection {
 	public boolean Server_kontrol_S(Server_Bilgi sbilgi)throws ClassNotFoundException;
 	public boolean Dosyakontrol_L(Server_Bilgi sbilgi)throws ClassNotFoundException, SQLException;
 	public boolean Dosyakontrol_S(Server_Bilgi sbilgi)throws ClassNotFoundException, SQLException;
-	public void job_sil_L(String jobName,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException;
-	public void job_sil_S(String jobName,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException;
+	public void job_sil_L(String jobName, String dosya,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException;
+	public void job_sil_S(String jobName, String dosya,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException;
 	public void job_baslat_L(String jobName,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException;
 	public void job_baslat_S(String jobName,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException;
 	public void job_olustur_L(String jobName, String dosya,String indexISIM ,Server_Bilgi sbilgi) throws ClassNotFoundException, SQLException;

@@ -79,10 +79,13 @@ public class SQL_SORGULAMA extends JInternalFrame {
 
 		textArea = new JTextArea();
 		textArea.setBorder(new LineBorder(new Color(0, 191, 255)));
-		textArea.setFont(new Font("Monospaced", Font.BOLD, 16));
+		textArea.setFont(new Font("Monospaced", Font.BOLD, 14));
 		textArea.setMinimumSize(new Dimension(0, 100));
 		textArea.setMaximumSize(new Dimension(0, 100));
 		textArea.setLineWrap(true);
+		
+		textArea.setWrapStyleWord(true);
+		textArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		textArea.setDocument(new JTextFieldLimit(100));
 		textArea.addKeyListener(new KeyAdapter() {
 			@Override

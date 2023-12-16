@@ -1046,6 +1046,7 @@ public class CAL_DIZIN extends JFrame {
 		txt_Lmaill.setColumns(10);
 			
 		JButton btnNewButton_7 = new JButton("Mail Gonder");
+		btnNewButton_7.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/mail-16.png")));
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txt_Lmaill.getText().equals("")) return ;
@@ -1072,75 +1073,9 @@ public class CAL_DIZIN extends JFrame {
 		btnNewButton_7.setBounds(465, 36, 142, 23);
 		panel_3.add(btnNewButton_7);
 		
-		btnNewButton_2_2 = new JButton("");
-		btnNewButton_2_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try
-				{
-					contentPane.setCursor(WAIT_CURSOR);
-					String oku = txt_Lmaill.getText();
-					if (! oku.equals(""))
-					{
-						ResultSet	rs = null;
-						oac.uSER_ISL.log_mail_kont_kayit(GLOBAL.KULL_ADI , oku);
-						rs = oac.uSER_ISL.log_mail_oku(GLOBAL.KULL_ADI);
-						if (!rs.isBeforeFirst() ) {  
-							return;
-						} 
-						else
-						{
-							 mail_doldur();
-						}
-						txt_Lmaill.setText(oac.uSER_ISL.log_mail_aktiv_oku(GLOBAL.KULL_ADI));
-					}
-					contentPane.setCursor(DEFAULT_CURSOR);
-				}
-				catch (Exception ex)
-				{
-					contentPane.setCursor(DEFAULT_CURSOR);
-					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
-					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Kaydet", JOptionPane.PLAIN_MESSAGE);
-					txtsif.requestFocus();		
-				}				
-
-			}
-		});
-		btnNewButton_2_2.setToolTipText("Kaydet");
-		btnNewButton_2_2.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/save.png")));
-		btnNewButton_2_2.setBounds(385, 11, 25, 23);
-		panel_3.add(btnNewButton_2_2);
-		
-		btnNewButton_4 = new JButton("");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					int g = JOptionPane.showOptionDialog(null, "E Mail  Silinecek ?" ,
-							"Calisma Dizini ", JOptionPane.YES_NO_OPTION,	JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
-					if(g ==  1) {
-						return;
-					}
-					contentPane.setCursor(WAIT_CURSOR);
-					USER_ISLEMLERI usr = new USER_ISLEMLERI();
-					usr.log_mail_sil(GLOBAL.KULL_ADI , txt_Lmaill.getText());
-					mail_doldur();
-					contentPane.setCursor(DEFAULT_CURSOR);
-				}
-				catch (Exception ex)
-				{
-					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
-					//JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "E_Mail Silme", JOptionPane.ERROR_MESSAGE);   
-				}
-			}
-		});
-		btnNewButton_4.setToolTipText("Sil");
-		btnNewButton_4.setBounds(411, 11, 23, 23);
-		btnNewButton_4.setToolTipText("Sil");
-		btnNewButton_4.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/sil.png")));
-		panel_3.add(btnNewButton_4);
-		
 		btnNewButton_5_2 = new JButton("");
 		btnNewButton_5_2.setToolTipText("Kapat");
-		btnNewButton_5_2.setBounds(663, 11, 23, 23);
+		btnNewButton_5_2.setBounds(713, 11, 23, 23);
 		btnNewButton_5_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cIKIS();			}
@@ -1184,6 +1119,72 @@ public class CAL_DIZIN extends JFrame {
 
 		//table_1.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		scrollPane_10.setViewportView(table_1);
+		
+		btnNewButton_4 = new JButton("");
+		btnNewButton_4.setBounds(680, 11, 23, 23);
+		panel_2.add(btnNewButton_4);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int g = JOptionPane.showOptionDialog(null, "E Mail  Silinecek ?" ,
+							"Calisma Dizini ", JOptionPane.YES_NO_OPTION,	JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
+					if(g ==  1) {
+						return;
+					}
+					contentPane.setCursor(WAIT_CURSOR);
+					USER_ISLEMLERI usr = new USER_ISLEMLERI();
+					usr.log_mail_sil(GLOBAL.KULL_ADI , txt_Lmaill.getText());
+					mail_doldur();
+					contentPane.setCursor(DEFAULT_CURSOR);
+				}
+				catch (Exception ex)
+				{
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
+					//JOptionPane.showMessageDialog(null,  ex.getMessage().toString(),  "E_Mail Silme", JOptionPane.ERROR_MESSAGE);   
+				}
+			}
+		});
+		btnNewButton_4.setToolTipText("Sil");
+		btnNewButton_4.setToolTipText("Sil");
+		btnNewButton_4.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/sil.png")));
+		
+		btnNewButton_2_2 = new JButton("");
+		btnNewButton_2_2.setBounds(653, 11, 25, 23);
+		panel_2.add(btnNewButton_2_2);
+		btnNewButton_2_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try
+				{
+					contentPane.setCursor(WAIT_CURSOR);
+					String oku = txt_Lmaill.getText();
+					if (! oku.equals(""))
+					{
+						ResultSet	rs = null;
+						oac.uSER_ISL.log_mail_kont_kayit(GLOBAL.KULL_ADI , oku);
+						rs = oac.uSER_ISL.log_mail_oku(GLOBAL.KULL_ADI);
+						if (!rs.isBeforeFirst() ) {  
+							return;
+						} 
+						else
+						{
+							 mail_doldur();
+						}
+						txt_Lmaill.setText(oac.uSER_ISL.log_mail_aktiv_oku(GLOBAL.KULL_ADI));
+					}
+					contentPane.setCursor(DEFAULT_CURSOR);
+				}
+				catch (Exception ex)
+				{
+					contentPane.setCursor(DEFAULT_CURSOR);
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
+					//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Mail Kaydet", JOptionPane.PLAIN_MESSAGE);
+					txtsif.requestFocus();		
+				}				
+
+			}
+		});
+		btnNewButton_2_2.setToolTipText("Kaydet");
+		btnNewButton_2_2.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/save.png")));
 
 		//====================SQL baglanti 
 		

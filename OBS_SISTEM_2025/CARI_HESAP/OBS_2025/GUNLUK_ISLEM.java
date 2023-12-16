@@ -2,7 +2,6 @@ package OBS_2025;
 
 import java.awt.Font;
 import java.sql.ResultSet;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,14 +14,21 @@ import java.awt.Dimension;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import javax.swing.table.TableStringConverter;
 
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
@@ -42,6 +48,10 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JTextField;
+import java.awt.Component;
+import javax.swing.Box;
+import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings({"serial" , "static-access" , "deprecation"})
 public class GUNLUK_ISLEM extends JInternalFrame {
@@ -52,6 +62,7 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 	public static JScrollPane scrollPane;
 	public static JSplitPane splitPane;
 	private static JLabel lblNewLabel_1;
+	private JTextField textField;
 	public GUNLUK_ISLEM() {
 		setTitle("GUNLUK ISLEM");
 		setResizable(true);
@@ -60,10 +71,42 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 		setClosable(true);
 		setBounds(0,0, 1025, 600);
 
+		JPanel pnlust = new JPanel();
+		pnlust.setMinimumSize(new Dimension(0, 30));
+		pnlust.setMaximumSize(new Dimension(0, 30));
+		getContentPane().add(pnlust, BorderLayout.NORTH);
+		pnlust.setLayout(new MigLayout("", "[1009px]", "[1px]"));
+		JLabel lblNewLabel_2 = new JLabel("Arama");
+		pnlust.add(lblNewLabel_2, "cell 0 0,alignx left,growy");
+		
+		textField = new JTextField();
+		textField.setMinimumSize(new Dimension(200, 22));
+		
+		pnlust.add(textField, "cell 0 0,alignx left,growy");
+		textField.setColumns(10);
+		textField.getDocument().addDocumentListener(new DocumentListener() 
+		{
+			  public void changedUpdate(DocumentEvent e) 
+			  {
+					arama();
+			  }
+			  public void removeUpdate(DocumentEvent e) 
+			  {
+					arama();
+			  }
+			  public void insertUpdate(DocumentEvent e) 
+			  {
+					arama();
+			  }
+		});
+		Component horizontalStrut = Box.createHorizontalStrut(20);
+		pnlust.add(horizontalStrut, "cell 0 0,grow");
+		
 		splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
 		splitPane.setDividerSize(0);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		
 		getContentPane().add(splitPane, BorderLayout.CENTER);
 
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
@@ -260,6 +303,27 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
+		}
+	}
+	private void arama()
+	{
+		if (textField.getText().equals(""))
+		{
+			table.setRowSorter(null);
+		}
+		else
+		{
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) table.getModel())); 
+		sorter.setStringConverter(new TableStringConverter() {
+	        @Override
+	        public String toString(TableModel model, int row, int column) {
+	            return model.getValueAt(row, column).toString().toLowerCase();
+	        }
+	    });
+	    sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + textField.getText().toLowerCase()));
+	    table.setRowSorter(sorter);
+	    table.revalidate();
+	    table.repaint();
 		}
 	}
 }

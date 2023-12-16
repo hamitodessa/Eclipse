@@ -564,7 +564,6 @@ public class HESAP_BAK extends JInternalFrame {
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cari Hesap", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public void arama()  

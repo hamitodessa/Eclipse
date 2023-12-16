@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -73,13 +74,13 @@ public class KUR_RAPORLAMA extends JInternalFrame {
 				catch (Exception ex)
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-					//JOptionPane.showMessageDialog(null, ex.getMessage());   
 				}
 			}
 		});
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
-		//table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setSurrendersFocusOnKeystroke(true);
 		scrollPane.setViewportView(table);
 
 	}

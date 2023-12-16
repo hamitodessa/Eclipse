@@ -602,8 +602,6 @@ public class MAIL extends JInternalFrame {
 			th.repaint();
 			table_2.setRowSelectionInterval(0, 0);
 			table_2.setRowHeight(21);
-			table_2.setSelectionBackground(Color.PINK);
-			table_2.setSelectionForeground(Color.BLUE);
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 
@@ -774,16 +772,12 @@ public class MAIL extends JInternalFrame {
 			th.repaint();
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
-			//table.setSelectionBackground(Color.PINK);
-			//table.setSelectionForeground(Color.BLUE);
-
 			lblNewLabel_12.setText(Integer.toString(table.getRowCount()));
 		}
 		catch (Exception ex)
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Alici Doldurma", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
 	@SuppressWarnings("static-access")
@@ -797,14 +791,12 @@ public class MAIL extends JInternalFrame {
 		if (txtkonu.getText().equals(""))
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Konu Bos");
-			//JOptionPane.showMessageDialog(null,  "Konu Bos...",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
 			txtkonu.requestFocus();
 			return ;
 		}
 		if (txtaciklama.getText().equals(""))
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Aciklama Bos");
-			//JOptionPane.showMessageDialog(null,  "Aciklama Bos...",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
 			txtaciklama.requestFocus();
 			return ;
 		}
@@ -812,7 +804,6 @@ public class MAIL extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "SMTP Bilgilerine Ulasilamadi ...");
-			//JOptionPane.showMessageDialog(null,  "SMTP Bilgilerine Ulasilamadi ...",  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
 			return ;
 		}
 		Runnable runner = new Runnable()
@@ -1070,8 +1061,6 @@ public class MAIL extends JInternalFrame {
 			th.repaint();
 			table_1.setRowSelectionInterval(0, 0);
 			table_1.setRowHeight(21);
-			table_1.setSelectionBackground(Color.PINK);
-			table_1.setSelectionForeground(Color.BLUE);
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			lblNewLabel_12.setText(Integer.toString(table_1.getRowCount()));
 			long endTime = System.currentTimeMillis();
@@ -1083,7 +1072,6 @@ public class MAIL extends JInternalFrame {
 		{
 			getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(),  "Mail Gonderme", JOptionPane.PLAIN_MESSAGE);	
 		}
 	}
 	static void Progres_Bar(int max, int deger) throws InterruptedException

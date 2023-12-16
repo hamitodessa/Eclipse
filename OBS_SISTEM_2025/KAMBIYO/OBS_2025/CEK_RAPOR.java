@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.JTableHeader;
@@ -91,13 +92,14 @@ public class CEK_RAPOR extends JInternalFrame {
 				catch (Exception ex)
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-					//JOptionPane.showMessageDialog(null, ex.getMessage());   
 				}
 			}
 		});
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setSurrendersFocusOnKeystroke(true);
 		scrollPane.setViewportView(table);
 		
 		JPanel panel = new JPanel();

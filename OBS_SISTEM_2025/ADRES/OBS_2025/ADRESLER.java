@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
@@ -111,6 +112,8 @@ public class ADRESLER extends JInternalFrame {
 	table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 	table.setShowHorizontalLines(true);
 	table.setShowVerticalLines(true);
+	table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	table.setSurrendersFocusOnKeystroke(true);
 	scrollPane.setViewportView(table);
 
 	JPanel panel = new JPanel();
@@ -256,7 +259,6 @@ public class ADRESLER extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage());
 		}
 	}
 	public void arama()  

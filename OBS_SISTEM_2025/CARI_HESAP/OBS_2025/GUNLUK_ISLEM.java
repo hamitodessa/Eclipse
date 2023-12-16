@@ -80,7 +80,7 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 		pnlust.add(lblNewLabel_2, "cell 0 0,alignx left,growy");
 		
 		textField = new JTextField();
-		textField.setMinimumSize(new Dimension(200, 22));
+		textField.setMinimumSize(new Dimension(300, 22));
 		
 		pnlust.add(textField, "cell 0 0,alignx left,growy");
 		textField.setColumns(10);

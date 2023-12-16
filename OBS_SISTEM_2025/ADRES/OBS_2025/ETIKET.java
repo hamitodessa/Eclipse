@@ -52,6 +52,7 @@ import OBS_C_2025.CheckBoxHeader;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.border.TitledBorder;
 import javax.swing.JSpinner;
@@ -249,7 +250,8 @@ private boolean hEPSI = false;
 			}
 		};
 		hisset();
-		
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setSurrendersFocusOnKeystroke(true);
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);

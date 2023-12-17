@@ -2,6 +2,7 @@ package obs.backup.main;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Frame;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,8 +12,18 @@ import javax.swing.border.EmptyBorder;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+
+import obs.backup.gorev.gOREV_TAKIP;
+
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.GridLayout;
 
 public class OBS_BACKUP extends JFrame {
 
@@ -20,7 +31,7 @@ public class OBS_BACKUP extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
+	 * Hamit.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -51,8 +62,52 @@ public class OBS_BACKUP extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
+
+		
 		JSplitPane splitPane = new JSplitPane();
-		contentPane.add(splitPane);
+		contentPane.add(splitPane, BorderLayout.CENTER);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		splitPane.setRightComponent(scrollPane);
+		
+		JPanel container = new JPanel(); 
+		scrollPane.setViewportView(container);
+	
+		container.setLayout(new GridLayout(10, 1, 0, 0));
+		
+
+
+	JButton btnNewButton = new JButton("New button");
+	btnNewButton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+				gOREV_TAKIP x = new gOREV_TAKIP("hamit");
+				//x.setBounds(0, 0, 400, 100);
+				
+				container.add(x);
+				gOREV_TAKIP x2 = new gOREV_TAKIP("aden");
+				//x2.setBounds(0, 110, 400, 100);
+				container.add(x2);
+//			for (int i = 0; i < 15; i++) {
+//				gOREV_TAKIP x = new gOREV_TAKIP(String.valueOf(i + 1));
+//		          x.setLocation(0, 45 *i);
+//		         container.add(x);
+//		      }
+				pack();
+			}
+		});
+		splitPane.setLeftComponent(btnNewButton);
 	}
+	public static void okuma(String isim)
+	{
+		System.out.println(isim);
+	}
+	@Override
+	   public Dimension getPreferredSize() {
+	      Dimension superSz = super.getPreferredSize();
+	      if (isPreferredSizeSet()) {
+	         return superSz;
+	      }
+	      return new Dimension(800, 600);
+	   }
 
 }

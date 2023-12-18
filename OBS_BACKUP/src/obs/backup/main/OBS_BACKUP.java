@@ -11,6 +11,7 @@ import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
+import OBS_C_2025.GLOBAL;
 import obs.backup.gorev.gOREV_TAKIP;
 import obs.backup.other.Title_Bar;
 
@@ -33,6 +34,7 @@ import java.awt.Component;
 
 public class OBS_BACKUP extends JFrame {
 
+	GLOBAL glb = new GLOBAL();
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel container ;
@@ -204,6 +206,17 @@ public class OBS_BACKUP extends JFrame {
 		
 		JPanel panel_4 = new JPanel();
 		tabbedPane_1.addTab("Genel", null, panel_4, null);
+		panel_4.setLayout(new BorderLayout(0, 0));
+		
+		JSplitPane splitPane_2 = new JSplitPane();
+		panel_4.add(splitPane_2, BorderLayout.CENTER);
+		
+		JPanel panel_9 = new JPanel();
+		panel_9.setPreferredSize(new Dimension(200,0));
+		splitPane_2.setLeftComponent(panel_9);
+		
+		JPanel panel_10 = new JPanel();
+		splitPane_2.setRightComponent(panel_10);
 		
 		JPanel panel_5 = new JPanel();
 		tabbedPane_1.addTab("Surucu Ayarlari", null, panel_5, null);
@@ -216,6 +229,12 @@ public class OBS_BACKUP extends JFrame {
 		
 		JPanel panel_8 = new JPanel();
 		tabbedPane_1.addTab("Emir Kopyala", null, panel_8, null);
+		
+	 	try {
+			glb.backup_surucu_kontrol();
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
 	}
 	public static void okuma(String isim)
 	{

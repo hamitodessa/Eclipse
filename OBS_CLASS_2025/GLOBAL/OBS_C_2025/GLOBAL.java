@@ -55,6 +55,9 @@ public class GLOBAL {
 	public static final String SURUCU = "C:\\OBS_SISTEM\\";
 	public static final String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
 	public static final String DBYERI = "C:\\OBS_DATABASES\\";
+	public static final String BACKUP_YERI = "C:\\OBS_SISTEM\\BACKUP\\";
+	public static final String BACKUP_DOSYA = System.getProperty("user.name") + "SQL_BACKUP.DB";
+	public static final String LOG_DOSYA = System.getProperty("user.name") + "SQL_LOG.DB";
 	static Connection con ;
 	static Connection Ekstrecon ;
 	static String ayarlar[][]; // = new String[5][5];
@@ -79,6 +82,28 @@ public class GLOBAL {
 		try 
 		{  
 			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + OBS_DOSYA );  
+		} 
+		catch (SQLException e) 
+		{	}  
+		return conn;  
+	}  
+	public static  Connection myBackupConnection() throws SQLException
+	{  
+		Connection conn = null;  
+		try 
+		{  
+			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + BACKUP_DOSYA );  
+		} 
+		catch (SQLException e) 
+		{	}  
+		return conn;  
+	}  
+	public static  Connection myBackupLogConnection() throws SQLException
+	{  
+		Connection conn = null;  
+		try 
+		{  
+			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + LOG_DOSYA );  
 		} 
 		catch (SQLException e) 
 		{	}  
@@ -230,6 +255,92 @@ public class GLOBAL {
 			}
 		}
 	}
+	public void backup_surucu_kontrol() throws ClassNotFoundException
+	{
+		File tmpDir = new File(SURUCU);
+		boolean exists = tmpDir.exists();
+		if (exists)
+		{  
+			
+		}
+		else {
+			tmpDir.mkdirs();
+		}
+		tmpDir = new File(BACKUP_YERI);
+		exists = tmpDir.exists();
+		if (exists)
+		{  
+			
+		}
+		else {
+			tmpDir.mkdirs();
+		}
+	    
+	    if( ! dos_kontrol(SURUCU + BACKUP_DOSYA))
+	    {
+	    	backup_obs_dosya_olustur(); // OBS SISTEM BACKUP DOSYASI KONTROL
+	    }
+	    if( ! dos_kontrol(SURUCU + LOG_DOSYA))
+	    {
+	    	backup_log_dosya_olustur(); // OBS SISTEM BACKUP LOGDOSYASI KONTROL
+	    }
+	}
+	public void backup_obs_dosya_olustur() throws ClassNotFoundException
+	{
+		try {
+			Class.forName("org.sqlite.JDBC");
+			String sorgu= null;
+
+			sorgu = "CREATE TABLE EMIRLER ( EMIR_ISMI nvarchar(30) CONSTRAINT EMIR_ISMI PRIMARY KEY,DURUM BIT,EMIR_ACIKLAMA nvarchar(50),INSTANCE nvarchar(30),SON_DURUM BIT ,SON_YUKLEME DATETIME,SQL_YEDEK BIT,MESAJ nvarchar(40),OLUSTURMA DATETIME) ";
+			backup_tablo_yap(sorgu);
+			sorgu =  "CREATE TABLE FTP ( EMIR_ISMI nvarchar(30),NERESI nvarchar(3),HOST nvarchar(30) ,KULLANICI nvarchar(50),SIFRE nvarchar(50),SURUCU nvarchar(50),PORT nvarchar(3),ZMN_ASIMI nvarchar(10),ESKI_YEDEK nvarchar(3),SURUCU_YER nvarchar(100)) ";
+			backup_tablo_yap(sorgu);
+			sorgu = "CREATE TABLE BILGILENDIRME ( EMIR_ISMI nvarchar(30) ,DURUM BIT,GONDERILDIGINDE BIT,HATA_DURUMUNDA BIT ,GON_ISIM  nvarchar(50),GON_HESAP nvarchar(30), ALICI nvarchar(30), KONU nvarchar(50), SMTP nvarchar(30), SMTP_PORT nvarchar(3), KULLANICI nvarchar(30), SIFRE nvarchar(30), SSL BIT,TSL BIT) ";
+			backup_tablo_yap(sorgu);
+			sorgu = "CREATE TABLE YEDEKLEME (EMIR_ISMI nvarchar(30) , SAAT nvarchar(2),P_TESI BIT,SALI BIT " +
+					" ,CARS BIT,PERS BIT,CUMA BIT,C_TESI BIT,PAZAR BIT,BASLAMA DATETIME,BITIS DATETIME ) ";
+			backup_tablo_yap(sorgu);
+			sorgu = "CREATE TABLE SERVER (  EMIR_ISMI nvarchar(30) ,HANGI_SQL nvarchar(6) ,INSTANCE nvarchar(50) " +
+					" ,WIN BIT,SERV BIT,KULLANICI nvarchar(50) " +
+					" ,SIFRE nvarchar(50) , PORT nvarchar(10)) ";
+			backup_tablo_yap(sorgu);
+			sorgu = "CREATE TABLE DB_ISIM (  EMIR_ISMI nvarchar(30) ,DB_ADI nvarchar(50)) ";
+			backup_tablo_yap(sorgu);
+			sorgu = "CREATE TABLE DIGER_DOSYA_ISIM (EMIR_ISMI nvarchar(30) ,DOSYA_ADI nvarchar(200),DOSYA_PATH nvarchar(200)) ";
+			backup_tablo_yap(sorgu);
+		}
+		catch (SQLException ex) 
+		{  
+			JOptionPane.showMessageDialog(null, ex.getMessage());  
+		}  
+	}
+	public void backup_log_dosya_olustur() throws ClassNotFoundException
+	{
+		try {
+		Class.forName("org.sqlite.JDBC");
+		con = myBackupLogConnection();
+		String sorgu= null;
+		java.sql.Statement stmt = null;
+	    sorgu = "CREATE TABLE LOG ( EMIR_ISMI nvarchar(30) ,TARIH DATETIME,ACIKLAMA nvarchar(150) ) ";
+	    stmt = con.createStatement();  
+		stmt.execute(sorgu);  
+		stmt.close();
+		con.close();
+		}
+		catch (SQLException ex) 
+		{  
+			JOptionPane.showMessageDialog(null, ex.getMessage());  
+		}  
+	}
+	 private static void backup_tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {
+			Class.forName("org.sqlite.JDBC");
+			con = myBackupConnection();
+			java.sql.Statement stmt = null;
+			stmt = con.createStatement();  
+			stmt.execute(sorgu);  
+			stmt.close();
+			con.close();
+		}
 	public static void setting_yaz(String anahtar,String deger)
 	{
 		OutputStream output;

@@ -8,8 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -71,7 +69,7 @@ public class Aylik_Gorunum extends JPanel{
                             	Gunluk.aYLIK(but.getActionCommand());
                             	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	 
                             	 }
-							} catch (ClassNotFoundException | SQLException e) 
+							} catch (Exception e) 
                              {
 								e.printStackTrace();
 							}

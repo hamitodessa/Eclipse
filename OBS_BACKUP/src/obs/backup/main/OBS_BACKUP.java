@@ -2,8 +2,6 @@ package obs.backup.main;
 
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Frame;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -13,8 +11,8 @@ import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
-import OBS_C_2025.ScrollPaneWin11;
 import obs.backup.gorev.gOREV_TAKIP;
+import obs.backup.other.Title_Bar;
 
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
@@ -25,19 +23,22 @@ import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Color;
-import java.awt.CardLayout;
 import java.awt.Component;
-import javax.swing.Box;
-import java.awt.FlowLayout;
 
 public class OBS_BACKUP extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel container ;
+	private JPanel panel_2 ;
+	private JTabbedPane tabbedPane ;
+	int x ,y ;
 	/**
 	 * Hamit.
 	 */
@@ -58,19 +59,40 @@ public class OBS_BACKUP extends JFrame {
 	 * Create the frame.
 	 */
 	public OBS_BACKUP() {
+		setUndecorated(true);
 		FlatRobotoFont.install();
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
 		UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
 		FlatMacDarkLaf.setup();
+		
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				x = e.getX(); 
+				y = e.getY(); 
+			}
+		});
+		addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int xx = e.getXOnScreen();
+				int yy = e.getYOnScreen(); 
+				setLocation(xx-x,yy-y);
+			}
+		});
 		
 		setBounds(100, 100, 900, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
+		contentPane.add(new Title_Bar(this), BorderLayout.NORTH);
+
 		JSplitPane splitPane = new JSplitPane();
 		contentPane.add(splitPane, BorderLayout.CENTER);
 		
@@ -78,10 +100,11 @@ public class OBS_BACKUP extends JFrame {
 		panel.setPreferredSize(new Dimension(100,0));
 		splitPane.setLeftComponent(panel);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setPreferredSize(new Dimension(0,25));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnGorevler = new JButton("Gorevler");
+		btnGorevler.setPreferredSize(new Dimension(0,25));
+		btnGorevler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedIndex(0);
 				container.removeAll();
 					gOREV_TAKIP x = new gOREV_TAKIP("hamit");
 					//x.setBounds(0, 0, 400, 100);
@@ -99,30 +122,53 @@ public class OBS_BACKUP extends JFrame {
 				}
 			});
 		panel.setLayout(new GridLayout(20, 1, 0, 0));
-		panel.add(btnNewButton);
+		panel.add(btnGorevler);
 		
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				List<JTextField> list = new ArrayLists<JTextField>();
-				Component[] components = panel.getComponents();
+
+				Component[] components = container.getComponents();
 
 				for (Component component : components) {
-				    if (component.getClass().equals(JTextField.class)) {
-				        list.add((JTextField)component);
-				    }
+					System.out.println(component.getName());
+					if (component.getName().toString().equals("hamit")) {
+
+
+						JPanel qweJPanel = (JPanel) component ; 
+
+						Component[] componentt = qweJPanel.getComponents();
+						for (Component compo : componentt) {
+
+							System.out.println(compo.getName());
+						}
+
+					}
+
+
+					// }
 				}
 			}
 		});
+		
+		JButton btnYeni_Gorev = new JButton("Yeni Gorev");
+		panel.add(btnYeni_Gorev);
 		btnNewButton_1.setPreferredSize(new Dimension(0,25));
 		panel.add(btnNewButton_1);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		JButton btnNewButton = new JButton("alt pan");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panel_2.setVisible(false);
+			}
+		});
+		panel.add(btnNewButton);
+		
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		splitPane.setRightComponent(tabbedPane);
 		
 		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_1, null);
+		tabbedPane.addTab("Gorevler", null, panel_1, null);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JSplitPane splitPane_1 = new JSplitPane();
@@ -130,7 +176,7 @@ public class OBS_BACKUP extends JFrame {
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		panel_1.add(splitPane_1, BorderLayout.CENTER);
 		
-		JPanel panel_2 = new JPanel();
+		panel_2 = new JPanel();
 		panel_2.setBackground(new Color(0, 128, 128));
 		panel_2.setPreferredSize(new Dimension(0,75));
 		splitPane_1.setRightComponent(panel_2);
@@ -143,6 +189,22 @@ public class OBS_BACKUP extends JFrame {
 		scrollPane.setViewportView(container);
 	
 		container.setLayout(new GridLayout(10, 1, 0, 0));
+		
+		JPanel panel_3 = new JPanel();
+		tabbedPane.addTab("Yeni Gorev", null, panel_3, null);
+		panel_3.setLayout(new BorderLayout(0, 0));
+		
+		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		panel_3.add(tabbedPane_1, BorderLayout.CENTER);
+		
+		JPanel panel_4 = new JPanel();
+		tabbedPane_1.addTab("New tab", null, panel_4, null);
+		
+		JPanel panel_5 = new JPanel();
+		tabbedPane_1.addTab("New tab", null, panel_5, null);
+		
+		JPanel panel_6 = new JPanel();
+		tabbedPane_1.addTab("New tab", null, panel_6, null);
 		
 		
 

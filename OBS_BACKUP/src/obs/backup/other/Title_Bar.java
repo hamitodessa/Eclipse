@@ -2,7 +2,7 @@ package obs.backup.other;
 
 import java.awt.Component;
 import java.awt.Dimension;
-
+import java.awt.Frame;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -25,7 +25,7 @@ public class Title_Bar extends javax.swing.JPanel{
 	private javaswingdev.GoogleMaterialIcon iconMinimize;
 	public javaswingdev.GoogleMaterialIcon iconRestore;
 	public Buttont btnNewButton_1;   
-	public Title_Bar() {
+	public Title_Bar(JFrame frame) {
 
 		setMinimumSize(new Dimension(0, 18));
 		setMaximumSize(new Dimension(0, 18));
@@ -37,7 +37,7 @@ public class Title_Bar extends javax.swing.JPanel{
 		Buttont btnNewButton = new Buttont();
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//OBS_BACKUP.minimized();
+			frame.setState(Frame.ICONIFIED);
 			}
 		});
 
@@ -54,7 +54,14 @@ public class Title_Bar extends javax.swing.JPanel{
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				//OBS_BACKUP.buyult();
+				if(frame. getExtendedState() == Frame.MAXIMIZED_BOTH){
+					btnNewButton_1.setIcon(iconRestore.toIcon() );
+					setBounds(0, 0, 900, 700);
+				}
+				else {
+				frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					btnNewButton_1.setIcon(iconMax.toIcon() );
+				}
 			}
 		});
 

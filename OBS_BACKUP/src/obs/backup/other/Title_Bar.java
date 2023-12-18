@@ -56,7 +56,7 @@ public class Title_Bar extends javax.swing.JPanel{
 
 				if(frame. getExtendedState() == Frame.MAXIMIZED_BOTH){
 					btnNewButton_1.setIcon(iconRestore.toIcon() );
-					setBounds(0, 0, 900, 700);
+				frame.setBounds(0, 0, 900, 700);
 				}
 				else {
 				frame.setExtendedState(JFrame.MAXIMIZED_BOTH);

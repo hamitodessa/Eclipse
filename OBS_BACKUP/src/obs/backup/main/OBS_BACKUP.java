@@ -152,6 +152,11 @@ public class OBS_BACKUP extends JFrame {
 		});
 		
 		JButton btnYeni_Gorev = new JButton("Yeni Gorev");
+		btnYeni_Gorev.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedIndex(1);
+			}
+		});
 		panel.add(btnYeni_Gorev);
 		btnNewButton_1.setPreferredSize(new Dimension(0,25));
 		panel.add(btnNewButton_1);
@@ -198,18 +203,19 @@ public class OBS_BACKUP extends JFrame {
 		panel_3.add(tabbedPane_1, BorderLayout.CENTER);
 		
 		JPanel panel_4 = new JPanel();
-		tabbedPane_1.addTab("New tab", null, panel_4, null);
+		tabbedPane_1.addTab("Genel", null, panel_4, null);
 		
 		JPanel panel_5 = new JPanel();
-		tabbedPane_1.addTab("New tab", null, panel_5, null);
+		tabbedPane_1.addTab("Surucu Ayarlari", null, panel_5, null);
 		
 		JPanel panel_6 = new JPanel();
-		tabbedPane_1.addTab("New tab", null, panel_6, null);
+		tabbedPane_1.addTab("Bilgilendirme", null, panel_6, null);
 		
+		JPanel panel_7 = new JPanel();
+		tabbedPane_1.addTab("Yedekleme Araligi", null, panel_7, null);
 		
-
-
-	
+		JPanel panel_8 = new JPanel();
+		tabbedPane_1.addTab("Emir Kopyala", null, panel_8, null);
 	}
 	public static void okuma(String isim)
 	{

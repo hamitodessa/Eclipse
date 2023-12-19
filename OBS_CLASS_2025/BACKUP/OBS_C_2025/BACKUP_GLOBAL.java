@@ -22,6 +22,8 @@ import java.util.zip.ZipOutputStream;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
+
+@SuppressWarnings({"static-access","null"})
 public class BACKUP_GLOBAL {
 	public Connection S_CONN;
 	public Connection MY_CONN; //= new MySqlConnection();
@@ -59,6 +61,7 @@ public class BACKUP_GLOBAL {
 		rss = stmt.executeQuery("SHOW DATABASES;");
 		return rss;
 	}
+
 	public void genel_kayit(String eismi, boolean drm, String konu, String inst, boolean sdrm, Date syukl, boolean sqlyed, String mesaj, Date ilkkayit)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
@@ -137,6 +140,7 @@ public class BACKUP_GLOBAL {
 		con = null;
 
 	}
+	
 	public void instance_update(String eismi,  String ins)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");

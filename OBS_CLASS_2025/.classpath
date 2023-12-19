@@ -18,6 +18,7 @@
 	<classpathentry kind="src" path="TEMA_CARI"/>
 	<classpathentry kind="src" path="KERESTE"/>
 	<classpathentry kind="src" path="FIHRIST"/>
+	<classpathentry kind="src" path="BACKUP"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>

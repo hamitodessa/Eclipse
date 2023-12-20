@@ -1,8 +1,5 @@
 package obs.backup.other;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
@@ -13,18 +10,13 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.BACKUP_GLOBAL;
-import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.SIFRE_DONDUR;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.SocketException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -226,10 +218,12 @@ public class SunucuAyarlari extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			
 				try {
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.sunucuKaydet();
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 				
-					e1.printStackTrace();
+					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e1.getMessage());
 				}
 			}
 		});
@@ -241,7 +235,9 @@ public class SunucuAyarlari extends JPanel {
 		 btnftpkont.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				try {
+					
 					AnaFtpKontrol();
+					
 				} catch (Exception e1) {
 					
 					e1.printStackTrace();
@@ -255,7 +251,7 @@ public class SunucuAyarlari extends JPanel {
 		if (chckbxYerel.isSelected()) return;
 		if (textHost.getText().equals("")) return;
 		if (textKull.getText().equals("")) return;
-		if (textSifre.equals("")) return;
+		if (textSifre.getPassword().length == 0) return;
 		if (textFtpSurucu.getText().equals("")) return;
 		if (textPort.getText().equals("")) return;
 		int portt = 21 ;
@@ -284,7 +280,7 @@ public class SunucuAyarlari extends JPanel {
 		if (chckbxYerel.isSelected()) return;
 		if (textHost.getText().equals("")) return;
 		if (textKull.getText().equals("")) return;
-		//if (textSifre.equals("")) return;
+		if (textSifre.getPassword().length == 0) return;
 		if (textFtpSurucu.getText().equals("")) return;
 		if (textPort.getText().equals("")) return;
 		int portt = 21 ;

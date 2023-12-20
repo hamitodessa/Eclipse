@@ -27,6 +27,7 @@ public class YedeklemeAraligi extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	@SuppressWarnings("deprecation")
 	public YedeklemeAraligi() {
 		setLayout(null);
 		

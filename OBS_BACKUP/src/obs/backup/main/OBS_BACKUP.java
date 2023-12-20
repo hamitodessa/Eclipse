@@ -546,8 +546,7 @@ public class OBS_BACKUP extends JFrame {
 		 try
 		 {
 			 if (txtEmir.getText().toString().equals("")) return;
-			// if (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) ) return ;
-			 Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
+			 System.out.println("549");
 		     bckp.ftp_kayit_sil(txtEmir.getText().toString());
 		     String neresi = "";
 		     if ( SunucuAyarlari.chckbxFtp.isSelected())
@@ -561,11 +560,11 @@ public class OBS_BACKUP extends JFrame {
 		     SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 		     bckp.ftp_ismi_kayit(txtEmir.getText().toString(), SunucuAyarlari.textHost.getText(), SunucuAyarlari.textKull.getText(), sdon.sDONDUR(SunucuAyarlari.textSifre), SunucuAyarlari.textFtpSurucu.getText(),  SunucuAyarlari.textPort.getText(),Integer.parseInt( SunucuAyarlari.textZmnasm.getText()) , SunucuAyarlari.textEskisilme.getText(), neresi,  SunucuAyarlari.textSurucu.getText());
 		     bckp.log_kayit(txtEmir.getText().toString(),new Date(), "Emir FTP Bilgileri  Kaydedildi...");
-		     Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+		    
 		 }
 		 catch (Exception ex)
 		 {
-			 Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+			 //Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 		     bckp.log_kayit(txtEmir.getText().toString(), new Date(), ex.getMessage());
 		     mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		 }

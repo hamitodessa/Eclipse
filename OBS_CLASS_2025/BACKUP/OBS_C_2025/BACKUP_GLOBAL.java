@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -280,7 +281,13 @@ public class BACKUP_GLOBAL {
 		stmt.setString(1, eismi);
 		stmt.setString(2, hst);
 		stmt.setString(3, kll);
-		stmt.setString(4, sif);
+		byte[] qaz = null;
+		try {
+			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sif);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		stmt.setString(4, Arrays.toString(qaz));
 		stmt.setString(5, sur);
 		stmt.setString(6, prt);
 		stmt.setInt(7, zmn);

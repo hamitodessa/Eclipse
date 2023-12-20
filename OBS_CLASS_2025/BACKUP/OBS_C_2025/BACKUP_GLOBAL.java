@@ -23,7 +23,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
 
-@SuppressWarnings({"static-access","null"})
+@SuppressWarnings({"static-access"})
 public class BACKUP_GLOBAL {
 	public Connection S_CONN;
 	public Connection MY_CONN; //= new MySqlConnection();
@@ -149,6 +149,7 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupConnection();
 		String sql = "";
 		sql = "UPDATE EMIRLER SET INSTANCE = @ins WHERE EMIR_ISMI = '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
 		stmt.setString(1, ins);
 		stmt.executeUpdate();
 		stmt.close();
@@ -164,6 +165,7 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupConnection();
 		String sql = "";
 		sql = "UPDATE EMIRLER SET DURUM = @dur ,MESAJ = @msg WHERE EMIR_ISMI = '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
 		stmt.setBoolean(1, drm);
 		stmt.setString(2, mesaj);
 		stmt.executeUpdate();
@@ -180,6 +182,7 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupConnection();
 		String sql = "";
 		sql = "DELETE FROM EMIRLER  WHERE EMIR_ISMI = '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -194,6 +197,7 @@ public class BACKUP_GLOBAL {
 		String sql = "";
 		sql = "INSERT INTO DB_ISIM ([EMIR_ISMI],[DB_ADI]) "
 				+ "VALUES (?,?)";
+		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
 		stmt.setString(2, dad);
 		stmt.executeUpdate();
@@ -209,6 +213,7 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupConnection();
 		String sql = "";
 		sql = "DELETE FROM DB_ISIM WHERE EMIR_ISMI = '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -223,6 +228,7 @@ public class BACKUP_GLOBAL {
 		String sql = "";
 		sql = "INSERT INTO DIGER_DOSYA_ISIM ([EMIR_ISMI],[DOSYA_ADI],[DOSYA_PATH]) "
 				+ "VALUES (?,?,?)";
+		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
 		stmt.setString(2, dad);
 		stmt.setString(3, dpath);
@@ -240,6 +246,7 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupConnection();
 		String sql = "";
 		sql = "DELETE FROM DIGER_DOSYA_ISIM WHERE EMIR_ISMI = '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -253,6 +260,7 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupConnection();
 		String sql = "";
 		sql = "DELETE FROM FTP  WHERE EMIR_ISMI =  '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -268,6 +276,7 @@ public class BACKUP_GLOBAL {
 		String sql = "";
 		sql = "INSERT INTO FTP ([EMIR_ISMI],[HOST],[KULLANICI],[SIFRE],[SURUCU],[PORT],[ZMN_ASIMI],[ESKI_YEDEK],[NERESI],[SURUCU_YER]) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
+		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
 		stmt.setString(2, hst);
 		stmt.setString(3, kll);
@@ -291,6 +300,7 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupConnection();
 		String sql = "";
 		sql = "DELETE FROM BILGILENDIRME  WHERE EMIR_ISMI =  '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -308,7 +318,7 @@ public class BACKUP_GLOBAL {
 		String sql = "";
 		sql = "INSERT INTO BILGILENDIRME ([EMIR_ISMI],[DURUM],[GONDERILDIGINDE],[HATA_DURUMUNDA],[GON_ISIM],[GON_HESAP],[ALICI],[KONU],[SMTP],[SMTP_PORT],[KULLANICI],[SIFRE],[SSL],[TSL]) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
+		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
 		stmt.setBoolean(2, drm);
 		stmt.setBoolean(3, gon);
@@ -335,6 +345,7 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupConnection();
 		String sql = "";
 		sql = "DELETE FROM YEDEKLEME  WHERE EMIR_ISMI =  '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -350,7 +361,7 @@ public class BACKUP_GLOBAL {
 		String sql = "";
 		sql = "INSERT INTO YEDEKLEME ([EMIR_ISMI],[SAAT],[P_TESI],[SALI],[CARS],[PERS],[CUMA],[C_TESI],[PAZAR],[BASLAMA],[BITIS]) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-
+		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
 		stmt.setString(2, saa);
 		stmt.setBoolean(3, pt);
@@ -376,6 +387,7 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupConnection();
 		String sql = "";
 		sql ="DELETE FROM SERVER  WHERE EMIR_ISMI =  '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -390,6 +402,7 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupLogConnection();
 		String sql = "";
 		sql ="DELETE FROM LOG  WHERE EMIR_ISMI =  '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -403,6 +416,7 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupLogConnection();
 		String sql = "";
 		sql = "DELETE FROM LOG ";
+		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -418,6 +432,7 @@ public class BACKUP_GLOBAL {
 		String sql = "";
 		sql = "INSERT INTO SERVER ([EMIR_ISMI],[INSTANCE],[WIN],[SERV],[KULLANICI],[SIFRE],[HANGI_SQL],[PORT]) "
 				+ "VALUES (?,?,?,?,?,?,?,?)";
+		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
 		stmt.setString(2, ins);
 		stmt.setBoolean(3, wi);
@@ -633,10 +648,11 @@ public class BACKUP_GLOBAL {
 		rss.next();
 		return rss.getString("InstanceDefaultDataPath");
 	}
-	public Boolean DoesFtpDirectoryExist(String dirPath, String kull, String sifre) throws SocketException, IOException  
+	public Boolean DoesFtpDirectoryExist(String ftpp ,String dirPath,int port ,String kull, String sifre) throws SocketException, IOException  
 	{
+		System.out.println(ftpp +"=="+ port +"=="+ dirPath + "=="+ kull +"=="+ sifre);
 		FTPClient ftp = new FTPClient();
-		ftp.connect(dirPath);
+		ftp.connect(ftpp, port);
 		ftp.login(kull, sifre);
 		ftp.changeWorkingDirectory(dirPath);
 		int    returnCode = ftp.getReplyCode();
@@ -644,7 +660,23 @@ public class BACKUP_GLOBAL {
 			ftp.logout();
 			ftp.disconnect();
 		}
-		if (returnCode == 550) {
+		if (returnCode == 530) {
+			return false;
+		}
+		return true;
+	}
+	public Boolean DoesFtpExist(String ftpp ,int port ,String kull, String sifre) throws SocketException, IOException  
+	{
+		FTPClient ftp = new FTPClient();
+		ftp.connect(ftpp, port);
+		ftp.login(kull, sifre);
+		int    returnCode = ftp.getReplyCode();
+		if (ftp != null && ftp.isConnected()) {
+			ftp.logout();
+			ftp.disconnect();
+		}
+		
+		if (returnCode == 530) {
 			return false;
 		}
 		return true;
@@ -727,7 +759,7 @@ public class BACKUP_GLOBAL {
 		File directoryPath = new File(surucu);
 
 		String contents[] = directoryPath.list();
-		List<String> ListOfFiles = new ArrayList();
+		List<String> ListOfFiles = new ArrayList<String>();
 		for(int i=0; i<contents.length; i++) {
 			ListOfFiles.add(contents[i]);
 			System.out.println(contents[i]);

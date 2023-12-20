@@ -56,8 +56,8 @@ public class GLOBAL {
 	public static final String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
 	public static final String DBYERI = "C:\\OBS_DATABASES\\";
 	public static final String BACKUP_YERI = "C:\\OBS_SISTEM\\BACKUP\\";
-	public static final String BACKUP_DOSYA = System.getProperty("user.name") + "SQL_BACKUP.DB";
-	public static final String LOG_DOSYA = System.getProperty("user.name") + "SQL_LOG.DB";
+	public static final String BACKUP_DOSYA = System.getProperty("user.name") + "_SQL_BACKUP.DB";
+	public static final String LOG_DOSYA = System.getProperty("user.name") + "_SQL_LOG.DB";
 	static Connection con ;
 	static Connection Ekstrecon ;
 	static String ayarlar[][]; // = new String[5][5];

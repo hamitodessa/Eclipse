@@ -5,6 +5,7 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import com.formdev.flatlaf.FlatLaf;
@@ -15,6 +16,7 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import OBS_C_2025.BACKUP_GLOBAL;
 
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.JTextFieldLimit;
 import javazoom.jl.player.Player;
 import obs.backup.gorev.gOREV_TAKIP;
 import obs.backup.other.Bilgilendirme;
@@ -25,12 +27,13 @@ import raven.toast.Notifications;
 
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
-
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -52,23 +55,24 @@ import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.JList;
-
+import OBS_C_2025.SIFRE_DONDUR;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class OBS_BACKUP extends JFrame {
 
 	GLOBAL glb = new GLOBAL();
-	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
+	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	public JPanel contentPane;
 	private JPanel container ;
 	private JPanel panel_2 ;
 	private JTabbedPane tabbedPane ;
 	int x ,y ;
 	private YedeklemeAraligi yedekaraligiPanel;
+	private SunucuAyarlari sunucuayarPanel;
 	
-	private JTextField txtEmir;
-	private JTextField textAciklama;
+	private static JTextField txtEmir;
+	private JTextArea textAciklama;
 	private JButton btnServer ;
 	private JButton btnSurucuSec ;
 	private JButton btnDosyaSec ;
@@ -291,10 +295,16 @@ public class OBS_BACKUP extends JFrame {
 		lblNewLabel_2.setBounds(26, 150, 99, 14);
 		panel_10.add(lblNewLabel_2);
 		
-		textAciklama = new JTextField();
+		textAciklama = new JTextArea();
 		textAciklama.setBounds(150, 150, 219, 77);
+		textAciklama.setDocument(new JTextFieldLimit(50));
+		//textAciklama.setBorder(txtEmir.getBorder());
+		Border borderr = BorderFactory.createLineBorder(new Color(235,235,235));
+	
+		
+		textAciklama.setBorder(BorderFactory.createCompoundBorder(borderr, BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		panel_10.add(textAciklama);
-		textAciklama.setColumns(10);
+		
 		
 		chckbxServerDosya = new JCheckBox("Sql Server / Diger Dosya Yedekleme");
 		chckbxServerDosya.addActionListener(new ActionListener() {
@@ -417,7 +427,7 @@ public class OBS_BACKUP extends JFrame {
 		
 		
 		
-		SunucuAyarlari sunucuayarPanel = new SunucuAyarlari();
+		sunucuayarPanel = new SunucuAyarlari();
 		tabbedPane_1.addTab("Surucu Ayarlari", null,sunucuayarPanel, null);
 		
 		
@@ -459,7 +469,7 @@ public class OBS_BACKUP extends JFrame {
 		 if (drm == false) // ' Isaretli olan yok 
 		 {
 			 chckbxDurum.setSelected(false);
-			mesaj_goster(5000,Notifications.Type.ERROR, "Yedekleme Icin Gun secilmediginden " + System.lineSeparator() + System.lineSeparator()  + "Emir durumu Pasiv olarak Degistirildi");
+			mesaj_goster(5000,Notifications.Type.WARNING, "Yedekleme Icin Gun secilmediginden " + System.lineSeparator() + System.lineSeparator()  + "Emir durumu Pasiv olarak Degistirildi");
 		 }
 		 boolean sondurum = false;
 		 boolean kontrol = false;
@@ -531,6 +541,35 @@ public class OBS_BACKUP extends JFrame {
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		 }
  	}
+	public static void sunucuKaydet() throws ClassNotFoundException, SQLException
+	{
+		 try
+		 {
+			 if (txtEmir.getText().toString().equals("")) return;
+			// if (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) ) return ;
+			 Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
+		     bckp.ftp_kayit_sil(txtEmir.getText().toString());
+		     String neresi = "";
+		     if ( SunucuAyarlari.chckbxFtp.isSelected())
+		     {
+		         neresi = "FTP";
+		     }
+		     else
+		     {
+		         neresi = "SUR";
+		     }
+		     SIFRE_DONDUR sdon = new SIFRE_DONDUR();
+		     bckp.ftp_ismi_kayit(txtEmir.getText().toString(), SunucuAyarlari.textHost.getText(), SunucuAyarlari.textKull.getText(), sdon.sDONDUR(SunucuAyarlari.textSifre), SunucuAyarlari.textFtpSurucu.getText(),  SunucuAyarlari.textPort.getText(),Integer.parseInt( SunucuAyarlari.textZmnasm.getText()) , SunucuAyarlari.textEskisilme.getText(), neresi,  SunucuAyarlari.textSurucu.getText());
+		     bckp.log_kayit(txtEmir.getText().toString(),new Date(), "Emir FTP Bilgileri  Kaydedildi...");
+		     Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+		 }
+		 catch (Exception ex)
+		 {
+			 Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+		     bckp.log_kayit(txtEmir.getText().toString(), new Date(), ex.getMessage());
+		     mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+		 }
+	}
 	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
 	{
 		InputStream stream = null ;

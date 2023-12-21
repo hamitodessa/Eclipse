@@ -291,17 +291,17 @@ public class GLOBAL {
 			Class.forName("org.sqlite.JDBC");
 			String sorgu= null;
 
-			sorgu = "CREATE TABLE EMIRLER ( EMIR_ISMI nvarchar(30) CONSTRAINT EMIR_ISMI PRIMARY KEY,DURUM BIT,EMIR_ACIKLAMA nvarchar(50),INSTANCE nvarchar(30),SON_DURUM BIT ,SON_YUKLEME DATETIME,SQL_YEDEK BIT,MESAJ nvarchar(40),OLUSTURMA DATETIME) ";
+			sorgu = "CREATE TABLE EMIRLER ( EMIR_ISMI nvarchar(30) CONSTRAINT EMIR_ISMI PRIMARY KEY,DURUM INTEGER,EMIR_ACIKLAMA nvarchar(50),INSTANCE nvarchar(30),SON_DURUM INTEGER ,SON_YUKLEME DATETIME,SQL_YEDEK INTEGER,MESAJ nvarchar(40),OLUSTURMA DATETIME) ";
 			backup_tablo_yap(sorgu);
 			sorgu =  "CREATE TABLE FTP ( EMIR_ISMI nvarchar(30),NERESI nvarchar(3),HOST nvarchar(30) ,KULLANICI nvarchar(50),SIFRE nvarchar(50),SURUCU nvarchar(50),PORT nvarchar(3),ZMN_ASIMI nvarchar(10),ESKI_YEDEK nvarchar(3),SURUCU_YER nvarchar(100)) ";
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE BILGILENDIRME ( EMIR_ISMI nvarchar(30) ,DURUM BIT,GONDERILDIGINDE BIT,HATA_DURUMUNDA BIT ,GON_ISIM  nvarchar(50),GON_HESAP nvarchar(30), ALICI nvarchar(30), KONU nvarchar(50), SMTP nvarchar(30), SMTP_PORT nvarchar(3), KULLANICI nvarchar(30), SIFRE nvarchar(30), SSL BIT,TSL BIT) ";
+			sorgu = "CREATE TABLE BILGILENDIRME ( EMIR_ISMI nvarchar(30) ,DURUM INTEGER,GONDERILDIGINDE INTEGER,HATA_DURUMUNDA INTEGER ,GON_ISIM  nvarchar(50),GON_HESAP nvarchar(30), ALICI nvarchar(30), KONU nvarchar(50), SMTP nvarchar(30), SMTP_PORT nvarchar(3), KULLANICI nvarchar(30), SIFRE nvarchar(50), SSL INTEGER,TSL INTEGER) ";
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE YEDEKLEME (EMIR_ISMI nvarchar(30) , SAAT nvarchar(2),P_TESI BIT,SALI BIT " +
-					" ,CARS BIT,PERS BIT,CUMA BIT,C_TESI BIT,PAZAR BIT,BASLAMA DATETIME,BITIS DATETIME ) ";
+			sorgu = "CREATE TABLE YEDEKLEME (EMIR_ISMI nvarchar(30) , SAAT nvarchar(2),P_TESI INTEGER,SALI INTEGER " +
+					" ,CARS INTEGER,PERS INTEGER,CUMA INTEGER,C_TESI INTEGER,PAZAR INTEGER,BASLAMA DATETIME,BITIS DATETIME ) ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE SERVER (  EMIR_ISMI nvarchar(30) ,HANGI_SQL nvarchar(6) ,INSTANCE nvarchar(50) " +
-					" ,WIN BIT,SERV BIT,KULLANICI nvarchar(50) " +
+					" ,WIN INTEGER,SERV INTEGER,KULLANICI nvarchar(50) " +
 					" ,SIFRE nvarchar(50) , PORT nvarchar(10)) ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE DB_ISIM (  EMIR_ISMI nvarchar(30) ,DB_ADI nvarchar(50)) ";

@@ -22,6 +22,7 @@ import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
+import org.hsqldb.lib.CountdownInputStream;
 
 
 @SuppressWarnings({"static-access","unused"})
@@ -132,11 +133,11 @@ public class BACKUP_GLOBAL {
 		stmt.setString(4, inst);
 		stmt.setBoolean(5,  sdrm);
 
-		String str = TARIH_CEVIR.milis_ddMMyyyy(syukl.getTime());
+		String str = TARIH_CEVIR.milis_yyyymmss(syukl.getTime());
 		stmt.setString(6, str);
 		stmt.setBoolean(7, sqlyed);
 		stmt.setString(8,  mesaj);
-		str = TARIH_CEVIR.milis_ddMMyyyy(ilkkayit.getTime());
+		str = TARIH_CEVIR.milis_yyyymmss(ilkkayit.getTime());
 		stmt.setString(9, str);
 		stmt.executeUpdate();
 		stmt.close();
@@ -156,7 +157,7 @@ public class BACKUP_GLOBAL {
 		sql  = "INSERT INTO LOG ([EMIR_ISMI],[TARIH],[ACIKLAMA]) "
 				+ "VALUES (?,?,?)";
 		stmt = con.prepareStatement(sql);
-		String str = TARIH_CEVIR.milis_ddMMyyyy(tar.getTime());
+		String str = TARIH_CEVIR.milis_yyyymmss(tar.getTime());
 		stmt.setString(1, eismi);
 		stmt.setString(2, str);
 
@@ -499,7 +500,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
 		String sql = "";
-		sql = "INSERT INTO SERVER ([EMIR_ISMI],[INSTANCE],[WIN],[SERV],[KULLANICI],[SIFRE],[HANGI_SQL],[PORT]) "
+		sql = "INSERT INTO SERVER (EMIR_ISMI,INSTANCE,WIN,SERV,KULLANICI,SIFRE,HANGI_SQL,PORT) "
 				+ "VALUES (?,?,?,?,?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
@@ -507,7 +508,13 @@ public class BACKUP_GLOBAL {
 		stmt.setBoolean(3, wi);
 		stmt.setBoolean(4, ser);
 		stmt.setString(5, kull);
-		stmt.setString(6, sif);
+		byte[] qaz = null;
+		try {
+			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sif);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		stmt.setString(6, Arrays.toString(qaz));
 		stmt.setString(7, hsql);
 		stmt.setString(8, port);
 		stmt.executeUpdate();
@@ -557,6 +564,7 @@ public class BACKUP_GLOBAL {
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
+		con = glb.myBackupConnection();
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
@@ -627,14 +635,11 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupConnection();
 		String sql = "";
 		sql = "SELECT NERESI FROM FTP WHERE  EMIR_ISMI= '" + eismi + "'";
-
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-		stmt.close();
-		con.close();
 		if (count  > 0)
 		{
 			return rss.getString("NERESI");
@@ -657,8 +662,8 @@ public class BACKUP_GLOBAL {
 	rss.next();
 	int count=0;
 	count = rss.getRow();
-	stmt.close();
-	con.close();
+	//stmt.close();
+	//con.close();
 	if (count  > 0)
 	{
 		return rss.getString(nerden);

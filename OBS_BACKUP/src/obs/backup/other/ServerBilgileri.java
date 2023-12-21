@@ -49,8 +49,8 @@ public class ServerBilgileri extends JPanel {
 		tabbedPane.addTab("MS Sql", null, panel, null);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Server");
-		lblNewLabel.setBounds(26, 38, 48, 14);
+		JLabel lblNewLabel = new JLabel("Instance");
+		lblNewLabel.setBounds(26, 38, 71, 14);
 		panel.add(lblNewLabel);
 		
 		textMSServer = new JTextField();
@@ -106,13 +106,17 @@ public class ServerBilgileri extends JPanel {
 
 			}
 		});
-		btnMSTest.setBounds(10, 238, 129, 23);
+		btnMSTest.setBounds(10, 400, 129, 23);
 		panel.add(btnMSTest);
 		
 		JButton btnMSkaydet = new JButton("Kaydet");
 		btnMSkaydet.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(textMSServer.getText().equals("")) return ;
+					if(textMSkull.getText().equals("")) return ;
+					if(textMSsifre.getText().equals("")) return ;
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.MS_Server_Kayit();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -122,11 +126,11 @@ public class ServerBilgileri extends JPanel {
 				}
 			}
 		});
-		btnMSkaydet.setBounds(330, 238, 89, 23);
+		btnMSkaydet.setBounds(330, 400, 89, 23);
 		panel.add(btnMSkaydet);
 		
 		JLabel lblNewLabel_4_1 = new JLabel("Port");
-		lblNewLabel_4_1.setBounds(358, 33, 48, 14);
+		lblNewLabel_4_1.setBounds(358, 38, 48, 14);
 		panel.add(lblNewLabel_4_1);
 		
 		textMSPort = new JTextField();
@@ -164,7 +168,7 @@ public class ServerBilgileri extends JPanel {
 		JPanel panel_2_2 = new JPanel();
 		panel_2_2.setLayout(null);
 		panel_2_2.setBorder(new TitledBorder(null, "Baglanti", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2_2.setBounds(10, 70, 339, 104);
+		panel_2_2.setBounds(26, 70, 339, 104);
 		panel_1.add(panel_2_2);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Kullanici");
@@ -208,28 +212,44 @@ public class ServerBilgileri extends JPanel {
 
 			}
 		});
-		btnMyTest.setBounds(10, 238, 129, 23);
+		btnMyTest.setBounds(10, 400, 129, 23);
 		panel_1.add(btnMyTest);
 		
 		JButton btnMyKaydet = new JButton("Kaydet");
-		btnMyKaydet.setBounds(330, 238, 89, 23);
+		btnMyKaydet.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if(textMYPort.getText().equals("")) return ;
+					if(textMykull.getText().equals("")) return ;
+					if(textMySifre.getText().equals("")) return ;
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					OBS_BACKUP.MY_Server_Kayit();
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				} catch (Exception e1) {
+				
+					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e1.getMessage());
+				}
+			}
+		});
+		btnMyKaydet.setBounds(330, 400, 89, 23);
 		panel_1.add(btnMyKaydet);
 		
 		JLabel lblNewLabel_4 = new JLabel("Port");
-		lblNewLabel_4.setBounds(10, 17, 48, 14);
+		lblNewLabel_4.setBounds(26, 38, 48, 14);
 		panel_1.add(lblNewLabel_4);
 		
 		textMYPort = new JTextField();
-		textMYPort.setBounds(67, 16, 61, 20);
+		textMYPort.setBounds(100, 38, 61, 20);
 		panel_1.add(textMYPort);
 		textMYPort.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("My Sql Dump");
-		lblNewLabel_5.setBounds(10, 185, 77, 14);
+		lblNewLabel_5.setBounds(26, 189, 96, 14);
 		panel_1.add(lblNewLabel_5);
 		
 		textMyDump = new JTextField();
-		textMyDump.setBounds(91, 183, 328, 20);
+		textMyDump.setBounds(120, 183, 299, 20);
 		panel_1.add(textMyDump);
 		textMyDump.setColumns(10);
 		

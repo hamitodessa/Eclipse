@@ -5,7 +5,6 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
@@ -14,12 +13,12 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckListItem;
-import OBS_C_2025.CheckListRenderer;
 import OBS_C_2025.GLOBAL;
-import OBS_C_2025.JTextFieldLimit;
 import javazoom.jl.player.Player;
 import obs.backup.gorev.gOREV_TAKIP;
 import obs.backup.other.Bilgilendirme;
+import obs.backup.other.EmirAnaGiris;
+import obs.backup.other.EmirKopyala;
 import obs.backup.other.ServerBilgileri;
 import obs.backup.other.SunucuAyarlari;
 import obs.backup.other.Title_Bar;
@@ -28,74 +27,56 @@ import raven.toast.Notifications;
 
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
-import javax.swing.BorderFactory;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.io.File;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetDropEvent;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import javax.swing.JLabel;
-import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.JList;
 import OBS_C_2025.SIFRE_DONDUR;
 
-@SuppressWarnings({ "unchecked", "rawtypes","static-access" })
+@SuppressWarnings({ "static-access" })
 public class OBS_BACKUP extends JFrame {
 
 	GLOBAL glb = new GLOBAL();
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
-	private JPanel container ;
+	public static JPanel container ;
 	private JPanel panel_2 ;
 	private JTabbedPane tabbedPane ;
+	public static JTabbedPane tabbedPane_1;
 	int x ,y ;
 	private static YedeklemeAraligi yedekaraligiPanel;
 	private static SunucuAyarlari sunucuayarPanel;
 	private static Bilgilendirme bilgilendirmePanel;
 	private static ServerBilgileri serverBilgileriPanel;
-	
+	private static EmirKopyala emirKopyalaPanel ;
+	private static EmirAnaGiris emirAnaGirisPanel;
 	private static JTextField txtEmir;
-	private JTextArea textAciklama;
-	private JButton btnServer ;
-	private JButton btnSurucuSec ;
-	private JButton btnDosyaSec ;
-	
-	private static JCheckBox chckbxDurum;
-	private JCheckBox chckbxServerDosya ;
 	
 	private static JLabel lblNewLabel_6 ;
 	private static JLabel lblNewLabel_5;
 
 
-	private static JList list;
-	private static DefaultListModel<CheckListItem> model ;
+	//private static JList list;
+	//private static DefaultListModel<CheckListItem> model ;
 	
 	/**
 	 * Hamit.
@@ -117,7 +98,7 @@ public class OBS_BACKUP extends JFrame {
 	 * Create the frame.
 	 */
 	
-	@SuppressWarnings("serial")
+	
 	public OBS_BACKUP() {
 		setUndecorated(true);
 		FlatRobotoFont.install();
@@ -165,36 +146,33 @@ public class OBS_BACKUP extends JFrame {
 		btnGorevler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedIndex(0);
-				container.removeAll();
-					gOREV_TAKIP x = new gOREV_TAKIP("hamit");
-					//x.setBounds(0, 0, 400, 100);
-					
-					container.add(x);
-					gOREV_TAKIP x2 = new gOREV_TAKIP("aden");
-					//x2.setBounds(0, 110, 400, 100);
-					container.add(x2);
+//				container.removeAll();
+//					gOREV_TAKIP x = new gOREV_TAKIP("hamit");
+//					//x.setBounds(0, 0, 400, 100);
+//					
+//					container.add(x);
+//					gOREV_TAKIP x2 = new gOREV_TAKIP("aden");
+//					//x2.setBounds(0, 110, 400, 100);
+//					container.add(x2);
 //				for (int i = 0; i < 15; i++) {
 //					gOREV_TAKIP x = new gOREV_TAKIP(String.valueOf(i + 1));
 //			          x.setLocation(0, 45 *i);
 //			         container.add(x);
 //			      }
-					pack();
+//					pack();
 				}
 			});
 		panel.setLayout(new GridLayout(20, 1, 0, 0));
 		panel.add(btnGorevler);
 		
-		JButton btnNewButton_1 = new JButton("New button");
+		JButton btnNewButton_1 = new JButton("Kompon.bulma");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				Component[] components = container.getComponents();
-
 				for (Component component : components) {
 					System.out.println(component.getName());
 					if (component.getName().toString().equals("hamit")) {
-
-
 						JPanel qweJPanel = (JPanel) component ; 
 
 						Component[] componentt = qweJPanel.getComponents();
@@ -202,11 +180,7 @@ public class OBS_BACKUP extends JFrame {
 
 							System.out.println(compo.getName());
 						}
-
 					}
-
-
-					// }
 				}
 			}
 		});
@@ -214,7 +188,16 @@ public class OBS_BACKUP extends JFrame {
 		JButton btnYeni_Gorev = new JButton("Yeni Gorev");
 		btnYeni_Gorev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				emirAnaGirisPanel = new EmirAnaGiris();
+				sunucuayarPanel = new SunucuAyarlari();
+				bilgilendirmePanel = new Bilgilendirme();
+				yedekaraligiPanel = new YedeklemeAraligi();
+				emirKopyalaPanel = new EmirKopyala();
+				serverBilgileriPanel = new ServerBilgileri();
+				
 				tabbedPane.setSelectedIndex(1);
+				tabbedPane_1.setSelectedIndex(0);
+				
 			}
 		});
 		panel.add(btnYeni_Gorev);
@@ -254,7 +237,8 @@ public class OBS_BACKUP extends JFrame {
 		
 		panel_2 = new JPanel();
 		panel_2.setBackground(new Color(0, 128, 128));
-		panel_2.setPreferredSize(new Dimension(0,75));
+		panel_2.setMinimumSize(new Dimension(0,100));
+		panel_2.setPreferredSize(new Dimension(0,100));
 		splitPane_1.setRightComponent(panel_2);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -270,239 +254,9 @@ public class OBS_BACKUP extends JFrame {
 		tabbedPane.addTab("Yeni Gorev", null, panel_3, null);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
-		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		panel_3.add(tabbedPane_1, BorderLayout.CENTER);
 		
-		JPanel panel_4 = new JPanel();
-		tabbedPane_1.addTab("Genel", null, panel_4, null);
-		panel_4.setLayout(new BorderLayout(0, 0));
-		
-		JSplitPane splitPane_2 = new JSplitPane();
-		panel_4.add(splitPane_2, BorderLayout.CENTER);
-		
-		
-		JPanel panel_10 = new JPanel();
-		splitPane_2.setRightComponent(panel_10);
-		panel_10.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Durum");
-		lblNewLabel.setBounds(26, 68, 86, 14);
-		panel_10.add(lblNewLabel);
-		
-		chckbxDurum = new JCheckBox("");
-		chckbxDurum.setBounds(150, 68, 99, 23);
-		panel_10.add(chckbxDurum);
-		
-		JLabel lblNewLabel_1 = new JLabel("Emir Ismi");
-		lblNewLabel_1.setBounds(26, 100, 99, 14);
-		panel_10.add(lblNewLabel_1);
-		
-		txtEmir = new JTextField();
-		txtEmir.setBounds(150, 100, 219, 20);
-		panel_10.add(txtEmir);
-		txtEmir.setColumns(10);
-		
-		JLabel lblNewLabel_2 = new JLabel("Aciklama");
-		lblNewLabel_2.setBounds(26, 150, 99, 14);
-		panel_10.add(lblNewLabel_2);
-		
-		textAciklama = new JTextArea();
-		textAciklama.setBounds(150, 150, 219, 77);
-		textAciklama.setDocument(new JTextFieldLimit(50));
-		//textAciklama.setBorder(txtEmir.getBorder());
-		Border borderr = BorderFactory.createLineBorder(new Color(235,235,235));
-	
-		
-		textAciklama.setBorder(BorderFactory.createCompoundBorder(borderr, BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-		panel_10.add(textAciklama);
-		
-		
-		chckbxServerDosya = new JCheckBox("Sql Server / Diger Dosya Yedekleme");
-		chckbxServerDosya.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(chckbxServerDosya.isSelected())
-				{
-					btnServer.setVisible(true);
-					btnDosyaSec.setVisible(false);
-					btnSurucuSec.setVisible(false);
-				}
-				else {
-					btnServer.setVisible(false);
-					btnDosyaSec.setVisible(true);
-					btnSurucuSec.setVisible(true);
-				}
-			}
-		});
-		chckbxServerDosya.setToolTipText("");
-		chckbxServerDosya.setBounds(150, 302, 250, 23);
-		panel_10.add(chckbxServerDosya);
-		
-		JLabel lblNewLabel_4 = new JLabel("Dosya Sayisi");
-		lblNewLabel_4.setBounds(26, 373, 100, 14);
-		panel_10.add(lblNewLabel_4);
-		
-		lblNewLabel_5 = new JLabel("0");
-		lblNewLabel_5.setBounds(150, 373, 48, 14);
-		panel_10.add(lblNewLabel_5);
-		
-		JButton btnNewButton_4 = new JButton("Kayit");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					genelKayit();
-				} catch (Exception e1) {
-					
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton_4.setBounds(317, 579, 89, 23);
-		panel_10.add(btnNewButton_4);
-		
-		JButton btnNewButton_5 = new JButton("Cikis");
-		btnNewButton_5.setBounds(218, 579, 89, 23);
-		panel_10.add(btnNewButton_5);
-		
-		JPanel panel_9 = new JPanel();
-		panel_9.setPreferredSize(new Dimension(300,0));
-		splitPane_2.setLeftComponent(panel_9);
-		panel_9.setLayout(new BorderLayout(0, 0));
-		
-		JSplitPane splitPane_3 = new JSplitPane();
-		splitPane_3.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		panel_9.add(splitPane_3, BorderLayout.CENTER);
-		
-		JPanel panel_11 = new JPanel();
-		panel_11.setPreferredSize(new Dimension(0,75));
-		splitPane_3.setLeftComponent(panel_11);
-		panel_11.setLayout(null);
-		
-		lblNewLabel_6 = new JLabel(".......");
-		lblNewLabel_6.setBounds(10, 11, 121, 14);
-		panel_11.add(lblNewLabel_6);
-		
-		btnDosyaSec = new JButton("Dosya Sec");
-		btnDosyaSec.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
-				JFileChooser chooser = new JFileChooser();
-				chooser.setCurrentDirectory(new java.io.File("."));
-				chooser.setDialogTitle("Dosya Seciniz");
-				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-				chooser.setAcceptAllFileFilterUsed(false);
-				chooser.setApproveButtonText("Dosya Sec");
-				chooser.setApproveButtonToolTipText("Dosya Sec");
-				//FileNameExtensionFilter docFilter = new FileNameExtensionFilter(".docx", "Microsoft Word Documents");
-				//chooser.addChoosableFileFilter(docFilter);
-				
-				//chooser.addChoosableFileFilter(new FileNameExtensionFilter("Dosyalar", "jpg", "png", "gif", "bmp","pdf","txt","xls","xlsx","doc","docx","db","xml","mdb","accdb"));
-				chooser.setApproveButtonMnemonic('s');
-				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
-					model.addElement( new CheckListItem(chooser.getSelectedFile().getName(),chooser.getSelectedFile().getParent()));
-					list.repaint();
-				}
-				else {
-				}
-			}
-		});
-	
-		btnDosyaSec.setBounds(2, 41, 146, 30);
-		panel_11.add(btnDosyaSec);
-		
-		btnSurucuSec = new JButton("Surucu Sec");
-		btnSurucuSec.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
-				JFileChooser chooser = new JFileChooser();
-				chooser.setCurrentDirectory(new java.io.File("."));
-				chooser.setDialogTitle("Surucu Seciniz");
-				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				chooser.setAcceptAllFileFilterUsed(false);
-				chooser.setApproveButtonText("Surucu Sec");
-				chooser.setApproveButtonToolTipText("Surucu Sec");
-				chooser.setApproveButtonMnemonic('s');
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
-					model.addElement( new CheckListItem(chooser.getSelectedFile().toString(),"Surucu"));
-					list.repaint();
-				}
-				else {
-					// System.out.println("No Selection ");
-				}
-			}
-		});
-		btnSurucuSec.setBounds(147, 41, 148, 30);
-		panel_11.add(btnSurucuSec);
-		
-		btnServer = new JButton("Server Baglanti");
-		btnServer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				tabbedPane_1.setSelectedIndex(5);
-			}
-		});
-		btnServer.setVisible(false);
-		btnServer.setBounds(2, 41, 290, 30);
-		panel_11.add(btnServer);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		splitPane_3.setRightComponent(scrollPane_1);
-
-		model = new DefaultListModel<>();
-		
-		//model.addElement( new CheckListItem("apple","C:\\"));
-		list = new JList(model);
-				
-				
-		list.setCellRenderer(new CheckListRenderer());
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent event) {
-				JList list = (JList) event.getSource();
-				int index = list.locationToIndex(event.getPoint());// Get index of item
-
-				CheckListItem item = (CheckListItem) list.getModel().getElementAt(index);
-				item.setSelected(!item.isSelected()); // Toggle selected state
-				list.repaint(list.getCellBounds(index, index));// Repaint cell
-				if (list.getModel().getSize() != 0) 
-				{
-					int dosyaSayi = 0 ;
-					for (int i =0; i< list.getModel().getSize(); i++)
-					{
-						item = (CheckListItem) list.getModel().getElementAt(i);
-						if(item.isSelected)
-						{
-							dosyaSayi +=1 ;
-						}
-					} 
-					lblNewLabel_5.setText(Integer.toString(dosyaSayi));
-				}
-			}
-		});
-		list.setDropTarget(new DropTarget() {
-			
-			public synchronized void drop(DropTargetDropEvent evt) {
-				try {
-					evt.acceptDrop(DnDConstants.ACTION_COPY);
-					List<File> droppedFiles = (List<File>) evt .getTransferable().getTransferData(  DataFlavor.javaFileListFlavor);
-					if(droppedFiles.size() > 1){
-						mesaj_goster(5000,Notifications.Type.WARNING,  "Tek Seferde 1 Dosya Ekleyebilirsiniz.....!!");
-					}
-					else{
-						File droppedFile = (File) droppedFiles.get(0);
-						model.addElement( new CheckListItem(droppedFile.getName(),droppedFile.getParent() ));
-						list.repaint();
-					}
-				} catch (Exception ex) {
-					mesaj_goster(15000,Notifications.Type.ERROR, ex.getMessage() );
-				}
-			}
-		});	
-		scrollPane_1.setViewportView(list);
-
 		
 		
 		
@@ -519,31 +273,31 @@ public class OBS_BACKUP extends JFrame {
 
 		
 		
-		
+		emirAnaGirisPanel = new EmirAnaGiris();
+		tabbedPane_1.addTab("Yeni Emir", null,emirAnaGirisPanel, null);
 		sunucuayarPanel = new SunucuAyarlari();
 		tabbedPane_1.addTab("Surucu Ayarlari", null,sunucuayarPanel, null);
 		bilgilendirmePanel = new Bilgilendirme();
 		tabbedPane_1.addTab("Bilgilendirme", null, bilgilendirmePanel, null);
-		
 		yedekaraligiPanel = new YedeklemeAraligi();
 		tabbedPane_1.addTab("Yedekleme Araligi", null, yedekaraligiPanel, null);
-		
-		JPanel panel_8 = new JPanel();
-		tabbedPane_1.addTab("Emir Kopyala", null, panel_8, null);
-		
 		serverBilgileriPanel = new ServerBilgileri();
 		tabbedPane_1.addTab("Server Bilgileri", null, serverBilgileriPanel, null);
+		emirKopyalaPanel = new EmirKopyala();
+		tabbedPane_1.addTab("Emir Kopyala", null, emirKopyalaPanel, null);
 	 	try {
 			glb.backup_surucu_kontrol();
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
+			emir_yukle("EMIR_ISMI") ;
+		} catch (Exception e1) {
+			//System.out.println(e1.getMessage());
 		}
+	 	
 	}
 
-	public void genelKayit() throws ClassNotFoundException, SQLException
+	public static void genelKayit() throws ClassNotFoundException, SQLException
 	{
 		 if (txtEmir.getText().toString().equals("")) return;
-		 if (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) ) return ;
+		// if (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) ) return ;
 		 Boolean drm = false;
 		 if (yedekaraligiPanel.chckbxPtesi.isSelected())
 		     drm = true;
@@ -561,23 +315,19 @@ public class OBS_BACKUP extends JFrame {
 		     drm = true;
 		 if (drm == false) // ' Isaretli olan yok 
 		 {
-			 chckbxDurum.setSelected(false);
+			 emirAnaGirisPanel. chckbxDurum.setSelected(false);
 			mesaj_goster(5000,Notifications.Type.WARNING, "Yedekleme Icin Gun secilmediginden " + System.lineSeparator() + System.lineSeparator()  + "Emir durumu Pasiv olarak Degistirildi");
 		 }
-		 boolean sondurum = false;
-		 boolean kontrol = false;
-		 Date ilkkayit =  new Date();
-		 String mesaj = "";
-		 Date sonyuk = new Date();
+		
 		 try
 		 {
-			 contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		     if (chckbxServerDosya.isSelected()) //= True Then ' SQL DOSYALARI
+			// contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		     if (emirAnaGirisPanel.chckbxServerDosya.isSelected()) //= True Then ' SQL DOSYALARI
 		     {
 		         bckp.db_adi_kayit_sil(txtEmir.getText());
-		         for (int i = 0; i <= list.getModel().getSize() - 1; i++)
+		         for (int i = 0; i <= emirAnaGirisPanel.list.getModel().getSize() - 1; i++)
 		         {
-		        	 CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
+		        	 CheckListItem item = (CheckListItem) emirAnaGirisPanel.list.getModel().getElementAt(i);
 		             if (item.isSelected)
 		             {
 		                 bckp.db_ismi_kayit(txtEmir.getText(), item.toString());
@@ -588,9 +338,9 @@ public class OBS_BACKUP extends JFrame {
 		     else
 		     {
 		         bckp.diger_dosya_adi_kayit_sil(txtEmir.getText());
-		         for (int i = 0; i <= list.getModel().getSize()  - 1; i++)
+		         for (int i = 0; i <= emirAnaGirisPanel.list.getModel().getSize()  - 1; i++)
 		         {
-		        	 CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
+		        	 CheckListItem item = (CheckListItem) emirAnaGirisPanel.list.getModel().getElementAt(i);
 		             if (item.isSelected)
 		             {
 		                 bckp.diger_dosya_ismi_kayit(txtEmir.getText(), item.toString(),  item.surucu());
@@ -602,15 +352,39 @@ public class OBS_BACKUP extends JFrame {
 		     }
 		     ResultSet rs ;
 		     rs = bckp.emir_bilgi(txtEmir.getText());
-		     if (!rs.isBeforeFirst() ) {  
-		    	  kontrol = false;
-		     }
-		     else
-		     {
-		    	 rs.next();
-		         sondurum =  rs.getBoolean("SON_DURUM");
-		         sonyuk =  rs.getDate("SON_YUKLEME");
-		         ilkkayit = rs.getDate("OLUSTURMA");
+		     
+		     boolean sondurum = false;
+			 boolean kontrol = false;
+			 Date ilkkayit =  new Date();
+			 String mesaj = "";
+			 //
+			 Calendar cal = Calendar.getInstance();
+			 cal.set(Calendar.YEAR,1900);
+			 cal.set(Calendar.MONTH,1);
+			 cal.set(Calendar.DAY_OF_YEAR,1);
+			 cal.set(Calendar.HOUR_OF_DAY,0);
+			 cal.set(Calendar.MINUTE,0);
+			 cal.set(Calendar.SECOND,0);
+			 cal.set(Calendar.MILLISECOND,0);
+
+			 //Date d = cal.getTime();
+			 //
+			 Date sonyuk = cal.getTime();
+			 rs.next();
+			 int count = rs .getRow();
+
+			 if (count == 0 ) {  
+				 kontrol = false;
+			 }
+			 else
+			 {
+				 rs.next();
+				 sondurum =  rs.getBoolean("SON_DURUM");
+				 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				 Date tarih = df.parse(rs.getString("SON_YUKLEME"));
+		         sonyuk = tarih ; 
+		         tarih = df.parse(rs.getString("OLUSTURMA"));
+		         ilkkayit = tarih;
 		         mesaj = rs.getString("MESAJ");
 		         kontrol = true;
 		     }
@@ -618,18 +392,18 @@ public class OBS_BACKUP extends JFrame {
 		     bckp.genel_kayit_sil(txtEmir.getText());
 		     if (kontrol)
 		     {
-		         bckp.genel_kayit(txtEmir.getText(), chckbxDurum.isSelected(), textAciklama.getText(), lblNewLabel_6.getText(), sondurum, sonyuk, chckbxServerDosya.isSelected(), mesaj, ilkkayit);
+		         bckp.genel_kayit(txtEmir.getText(), emirAnaGirisPanel.chckbxDurum.isSelected(),emirAnaGirisPanel. textAciklama.getText(), lblNewLabel_6.getText(), sondurum, sonyuk,emirAnaGirisPanel. chckbxServerDosya.isSelected(), mesaj, ilkkayit);
 		     }
 		     else
 		     {
-		         bckp.genel_kayit(txtEmir.getText(), chckbxDurum.isSelected(), textAciklama.getText(), lblNewLabel_6.getText(), false, sonyuk,  chckbxServerDosya.isSelected(), mesaj, ilkkayit);
+		         bckp.genel_kayit(txtEmir.getText(),emirAnaGirisPanel. chckbxDurum.isSelected(),emirAnaGirisPanel. textAciklama.getText(), lblNewLabel_6.getText(), false, sonyuk, emirAnaGirisPanel. chckbxServerDosya.isSelected(), mesaj, ilkkayit);
 		     }
 		   
-		     contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		     //contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		 }
 		 catch (Exception ex)
 		 {
-			 contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			// contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		     bckp.log_kayit(txtEmir.getText(), new Date(), ex.getMessage());
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		 }
@@ -655,7 +429,7 @@ public class OBS_BACKUP extends JFrame {
 		        drm = true;
 		    if (drm == false) // ' Isaretli olan yok 
 		    {
-				 chckbxDurum.setSelected(false);
+		    	emirAnaGirisPanel. chckbxDurum.setSelected(false);
 					mesaj_goster(5000,Notifications.Type.WARNING, "Yedekleme Icin Gun secilmediginden " + System.lineSeparator() + System.lineSeparator()  + "Emir durumu Pasiv olarak Degistirildi");
 		    }
 		    Date date = (Date) (yedekaraligiPanel.timeBaslangic.getValue());
@@ -676,7 +450,7 @@ public class OBS_BACKUP extends JFrame {
 		    		yedekaraligiPanel.chckbxCumartesi.isSelected(),
 		    		yedekaraligiPanel.chckbxPazar.isSelected(), date, date2);
 		    bckp.log_kayit(txtEmir.getText(), new Date(), "Emir Yedekleme Bilgileri  Kaydedildi...");
-		    
+		    tabbedPane_1.setSelectedIndex(1); 
 		}
 		catch (Exception ex)
 		{
@@ -693,6 +467,7 @@ public class OBS_BACKUP extends JFrame {
 			String response =sdon.sDONDUR(bilgilendirmePanel.textSifre);
 		    bckp.bilgilendirme_ismi_kayit(txtEmir.getText(),bilgilendirmePanel.chckbxAktifPasif.isSelected() ,bilgilendirmePanel.chckbxIslem.isSelected(), bilgilendirmePanel.chckbxHata.isSelected(), bilgilendirmePanel.textGonIsim.getText(), bilgilendirmePanel.textGonHesap.getText() , bilgilendirmePanel.textAlici.getText(), bilgilendirmePanel.textKonu.getText(), bilgilendirmePanel.textSmtp.getText(), bilgilendirmePanel.textPort.getText(),bilgilendirmePanel.textKull.getText(), response, bilgilendirmePanel.chckbxSSL.isSelected(), bilgilendirmePanel.chckbxTSL.isSelected());
 		    bckp.log_kayit(txtEmir.getText(), new Date(), "Bilgilendirme Bilgileri  Kaydedildi...");
+		    tabbedPane_1.setSelectedIndex(1);
 		 }
 		 catch (Exception ex)
 		 {
@@ -704,7 +479,6 @@ public class OBS_BACKUP extends JFrame {
 		 try
 		 {
 			 if (txtEmir.getText().toString().equals("")) return;
-			 System.out.println("549");
 		     bckp.ftp_kayit_sil(txtEmir.getText().toString());
 		     String neresi = "";
 		     if ( sunucuayarPanel.chckbxFtp.isSelected())
@@ -718,7 +492,7 @@ public class OBS_BACKUP extends JFrame {
 		     SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 		     bckp.ftp_ismi_kayit(txtEmir.getText().toString(), sunucuayarPanel.textHost.getText(), sunucuayarPanel.textKull.getText(), sdon.sDONDUR(sunucuayarPanel.textSifre), sunucuayarPanel.textFtpSurucu.getText(),  sunucuayarPanel.textPort.getText(),Integer.parseInt( sunucuayarPanel.textZmnasm.getText()) , sunucuayarPanel.textEskisilme.getText(), neresi,  sunucuayarPanel.textSurucu.getText());
 		     bckp.log_kayit(txtEmir.getText().toString(),new Date(), "Emir FTP Bilgileri  Kaydedildi...");
-		    
+		     tabbedPane_1.setSelectedIndex(1);
 		 }
 		 catch (Exception ex)
 		 {
@@ -740,30 +514,30 @@ public class OBS_BACKUP extends JFrame {
 		bckp.MsSql_baglan( serverBilgileriPanel.textMSServer.getText() ,serverBilgileriPanel.textMSkull.getText(),response,serverBilgileriPanel.textMSPort.getText());
 		ResultSet rs;
 		rs = bckp.db_ismi();
-		list.removeAll();
+		emirAnaGirisPanel.list.removeAll();
 		lblNewLabel_5.setText(Integer.toString(0));
 		while (rs.next())
 		{
-			model.addElement(new CheckListItem(rs.getString("name"),""));
-			list.repaint();
+			emirAnaGirisPanel.model.addElement(new CheckListItem(rs.getString("name"),""));
+			emirAnaGirisPanel.list.repaint();
 		}
 		rs = bckp.db_liste(txtEmir.getText().toString());
-		int sayi = list.getModel().getSize() - 1;
+		int sayi = emirAnaGirisPanel.list.getModel().getSize() - 1;
 		int dosyaSAYI = 0;
 		for (int r = 0; r <= sayi; r++)
 		{
 			while (rs.next())
 			{
-				CheckListItem item = (CheckListItem) list.getModel().getElementAt(r);
+				CheckListItem item = (CheckListItem) emirAnaGirisPanel.list.getModel().getElementAt(r);
 				if (item.toString().equals(rs.getString("DB_ADI")))
 				{
-					model.remove(r);
+					emirAnaGirisPanel.model.remove(r);
 					item.setSelected(true);
-					model.insertElementAt(item, dosyaSAYI);
+					emirAnaGirisPanel.model.insertElementAt(item, dosyaSAYI);
 					dosyaSAYI += 1;
 				}
 			}
-			list.repaint();
+			emirAnaGirisPanel.list.repaint();
 		}
 		bckp.log_kayit(txtEmir.getText().toString(), new Date(), "Veritabani Isimleri yuklendi...");
 		lblNewLabel_6.setText("Ms Sql");
@@ -773,6 +547,7 @@ public class OBS_BACKUP extends JFrame {
 			bckp.server_ismi_kayit(txtEmir.getText().toString(), serverBilgileriPanel.textMSServer.getText(), true, true, serverBilgileriPanel.textMSkull.getText(), response, "Ms Sql", "");
 			bckp.log_kayit(txtEmir.getText().toString(), new Date(), "SQL SERVER Instance Bilgileri Kaydedildi...");
 			bckp.instance_update(txtEmir.getText().toString(), "Ms Sql");
+			tabbedPane_1.setSelectedIndex(1);
 		}
 		catch (Exception ex)
 		{
@@ -780,6 +555,110 @@ public class OBS_BACKUP extends JFrame {
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());		
 		}
 	}
+	public static void MY_Server_Kayit() throws ClassNotFoundException, SQLException
+	{
+		if (txtEmir.getText().toString().equals(""))
+		{
+			mesaj_goster(5000,Notifications.Type.ERROR, "Emir Adi Bos Olamaz");
+			return;
+		}
+		SIFRE_DONDUR sdon = new SIFRE_DONDUR();
+		String response =sdon.sDONDUR(serverBilgileriPanel.textMySifre);
+
+		bckp.MySql_baglan( serverBilgileriPanel.textMykull.getText(),response,serverBilgileriPanel.textMYPort.getText());
+		ResultSet rs;
+		rs = bckp.db_ismiMySql();
+		emirAnaGirisPanel.list.removeAll();
+		lblNewLabel_5.setText(Integer.toString(0));
+		while (rs.next())
+		{
+			emirAnaGirisPanel.model.addElement(new CheckListItem(rs.getString("Database"),""));
+			emirAnaGirisPanel.list.repaint();
+		}
+		rs = bckp.db_liste(txtEmir.getText().toString());
+		int sayi = emirAnaGirisPanel.list.getModel().getSize() - 1;
+		int dosyaSAYI = 0;
+		for (int r = 0; r <= sayi; r++)
+		{
+			while (rs.next())
+			{
+				CheckListItem item = (CheckListItem) emirAnaGirisPanel.list.getModel().getElementAt(r);
+				if (item.toString().equals(rs.getString("DB_ADI")))
+				{
+					emirAnaGirisPanel.model.remove(r);
+					item.setSelected(true);
+					emirAnaGirisPanel.model.insertElementAt(item, dosyaSAYI);
+					dosyaSAYI += 1;
+				}
+			}
+			emirAnaGirisPanel.list.repaint();
+		}
+		bckp.log_kayit(txtEmir.getText().toString(), new Date(), "Veritabani Isimleri yuklendi...");
+		lblNewLabel_6.setText("My Sql");
+		try
+		{
+			bckp.server_kayit_sil(txtEmir.getText().toString());
+			bckp.server_ismi_kayit(txtEmir.getText().toString(), "localhost", true, true, serverBilgileriPanel.textMykull.getText(), response, "My Sql",  serverBilgileriPanel.textMYPort.getText());
+			bckp.log_kayit(txtEmir.getText().toString(), new Date(), "MY SQL SERVER Instance Bilgileri Kaydedildi...");
+			bckp.instance_update(txtEmir.getText().toString(), "My Sql");
+			tabbedPane_1.setSelectedIndex(1);
+		}
+		catch (Exception ex)
+		{
+			bckp.log_kayit(txtEmir.getText().toString(), new Date(), ex.getMessage());
+			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());		
+		}
+	}
+	 public void emir_yukle(String siralama) throws ClassNotFoundException, SQLException
+	 {
+	     String hataISMI = "";
+	     try
+	     {
+	    	 contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+	    	 container.removeAll();
+			
+	        ResultSet rs ;
+	        // DURUM DESC , EMIR_ISMI 
+	        
+	        rs = bckp.emir_liste(siralama);
+	       //  RadLabelElement1.Text = "Emir Sayisi:";
+	       //  RadLabelElement2.Text = "...";
+	        if (!rs.isBeforeFirst() ) {  
+	        	 contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		     }
+	        else {
+
+	        	while (rs.next())
+	             {
+	        	
+	                 hataISMI =rs.getString("EMIR_ISMI");
+	                 //RadLabelElement2.Text = dtss.Tables[0].Rows.Count.ToString("N0");
+	                 emirTEKYUKLE(rs.getString("EMIR_ISMI"));
+	             }
+	        	 contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+	        
+	        
+	     }
+	     catch (Exception ex)
+	     {
+	    		System.out.println(ex.getMessage());
+	    	 contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	    	 bckp.log_kayit(txtEmir.getText().toString(), new Date(), ex.getMessage());
+				mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());	
+	     }
+	 }
+	 public void emirTEKYUKLE(String eismi)
+	 {
+	     if (eismi.equals("")) return;
+	     gOREV_TAKIP emir = new gOREV_TAKIP(eismi);
+	
+	     emir.setName(eismi);
+	     emir.lblemirISMI.setText(eismi);
+	    
+	     container.add(emir);
+	     //RadLabelElement2.Text = radScrollablePanel1.Controls[0].Controls.Count.ToString("N0");
+	 }
 	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
 	{
 		InputStream stream = null ;

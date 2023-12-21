@@ -97,12 +97,12 @@ public class Bilgilendirme extends JPanel {
 		
 		textAlici = new JTextField();
 		textAlici.setColumns(10);
-		textAlici.setBounds(119, 71, 329, 20);
+		textAlici.setBounds(119, 69, 329, 20);
 		panel_1.add(textAlici);
 		
 		textKonu = new JTextField();
 		textKonu.setColumns(10);
-		textKonu.setBounds(119, 94, 329, 20);
+		textKonu.setBounds(119, 92, 329, 20);
 		panel_1.add(textKonu);
 		
 		JLabel lblNewLabel_1 = new JLabel("Gonderen Isim");
@@ -110,15 +110,15 @@ public class Bilgilendirme extends JPanel {
 		panel_1.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Gonderen Hesap");
-		lblNewLabel_2.setBounds(21, 49, 88, 14);
+		lblNewLabel_2.setBounds(21, 49, 98, 14);
 		panel_1.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Alici");
-		lblNewLabel_3.setBounds(21, 74, 48, 14);
+		lblNewLabel_3.setBounds(21, 72, 48, 14);
 		panel_1.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Konu");
-		lblNewLabel_4.setBounds(21, 97, 48, 14);
+		lblNewLabel_4.setBounds(21, 95, 48, 14);
 		panel_1.add(lblNewLabel_4);
 		
 		JPanel panel_1_1 = new JPanel();
@@ -134,17 +134,17 @@ public class Bilgilendirme extends JPanel {
 		
 		textPort = new JTextField();
 		textPort.setColumns(10);
-		textPort.setBounds(383, 23, 69, 20);
+		textPort.setBounds(383, 23, 65, 20);
 		panel_1_1.add(textPort);
 		
 		textKull = new JTextField();
 		textKull.setColumns(10);
-		textKull.setBounds(119, 54, 264, 20);
+		textKull.setBounds(119, 46, 329, 20);
 		panel_1_1.add(textKull);
 		
 		textSifre = new JPasswordField();
 		textSifre.setColumns(10);
-		textSifre.setBounds(119, 77, 264, 20);
+		textSifre.setBounds(119, 69, 329, 20);
 		panel_1_1.add(textSifre);
 		
 		chckbxSSL = new JCheckBox("SSL");
@@ -168,11 +168,11 @@ public class Bilgilendirme extends JPanel {
 		panel_1_1.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_7 = new JLabel("Kullanici");
-		lblNewLabel_7.setBounds(22, 57, 87, 14);
+		lblNewLabel_7.setBounds(22, 49, 87, 14);
 		panel_1_1.add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_8 = new JLabel("Sifre");
-		lblNewLabel_8.setBounds(22, 80, 87, 14);
+		lblNewLabel_8.setBounds(22, 72, 87, 14);
 		panel_1_1.add(lblNewLabel_8);
 		
 		JButton btnNewButton_9 = new JButton("Kaydet");

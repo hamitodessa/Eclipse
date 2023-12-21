@@ -87,7 +87,7 @@ public class SunucuAyarlari extends JPanel {
 		
 		JPanel panel_12 = new JPanel();
 		panel_12.setBorder(new TitledBorder(null, "FTP Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_12.setBounds(10, 73, 500, 100);
+		panel_12.setBounds(10, 73, 627, 100);
 		 add(panel_12);
 		panel_12.setLayout(null);
 		

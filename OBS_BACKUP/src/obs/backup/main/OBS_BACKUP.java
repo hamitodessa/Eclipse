@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
@@ -20,6 +19,7 @@ import OBS_C_2025.JTextFieldLimit;
 import javazoom.jl.player.Player;
 import obs.backup.gorev.gOREV_TAKIP;
 import obs.backup.other.Bilgilendirme;
+import obs.backup.other.ServerBilgileri;
 import obs.backup.other.SunucuAyarlari;
 import obs.backup.other.Title_Bar;
 import obs.backup.other.YedeklemeAraligi;
@@ -40,24 +40,33 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.io.File;
 import java.io.InputStream;
+import java.security.PublicKey;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import java.util.Date;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.JList;
 import OBS_C_2025.SIFRE_DONDUR;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes","static-access" })
 public class OBS_BACKUP extends JFrame {
 
 	GLOBAL glb = new GLOBAL();
@@ -68,8 +77,10 @@ public class OBS_BACKUP extends JFrame {
 	private JPanel panel_2 ;
 	private JTabbedPane tabbedPane ;
 	int x ,y ;
-	private YedeklemeAraligi yedekaraligiPanel;
-	private SunucuAyarlari sunucuayarPanel;
+	private static YedeklemeAraligi yedekaraligiPanel;
+	private static SunucuAyarlari sunucuayarPanel;
+	private static Bilgilendirme bilgilendirmePanel;
+	private static ServerBilgileri serverBilgileriPanel;
 	
 	private static JTextField txtEmir;
 	private JTextArea textAciklama;
@@ -77,15 +88,15 @@ public class OBS_BACKUP extends JFrame {
 	private JButton btnSurucuSec ;
 	private JButton btnDosyaSec ;
 	
-	private JCheckBox chckbxDurum;
+	private static JCheckBox chckbxDurum;
 	private JCheckBox chckbxServerDosya ;
 	
-	private JLabel lblNewLabel_6 ;
-	
+	private static JLabel lblNewLabel_6 ;
+	private static JLabel lblNewLabel_5;
 
 
-	private JList list;
-	
+	private static JList list;
+	private static DefaultListModel<CheckListItem> model ;
 	
 	/**
 	 * Hamit.
@@ -107,6 +118,7 @@ public class OBS_BACKUP extends JFrame {
 	 * Create the frame.
 	 */
 	
+	@SuppressWarnings("serial")
 	public OBS_BACKUP() {
 		setUndecorated(true);
 		FlatRobotoFont.install();
@@ -330,7 +342,7 @@ public class OBS_BACKUP extends JFrame {
 		lblNewLabel_4.setBounds(26, 373, 100, 14);
 		panel_10.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("0");
+		lblNewLabel_5 = new JLabel("0");
 		lblNewLabel_5.setBounds(150, 373, 48, 14);
 		panel_10.add(lblNewLabel_5);
 		
@@ -371,10 +383,58 @@ public class OBS_BACKUP extends JFrame {
 		panel_11.add(lblNewLabel_6);
 		
 		btnDosyaSec = new JButton("Dosya Sec");
+		btnDosyaSec.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new java.io.File("."));
+				chooser.setDialogTitle("Dosya Seciniz");
+				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				chooser.setAcceptAllFileFilterUsed(false);
+				chooser.setApproveButtonText("Dosya Sec");
+				chooser.setApproveButtonToolTipText("Dosya Sec");
+				//FileNameExtensionFilter docFilter = new FileNameExtensionFilter(".docx", "Microsoft Word Documents");
+				//chooser.addChoosableFileFilter(docFilter);
+				
+				//chooser.addChoosableFileFilter(new FileNameExtensionFilter("Dosyalar", "jpg", "png", "gif", "bmp","pdf","txt","xls","xlsx","doc","docx","db","xml","mdb","accdb"));
+				chooser.setApproveButtonMnemonic('s');
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+					model.addElement( new CheckListItem(chooser.getSelectedFile().getName(),chooser.getSelectedFile().getParent()));
+					list.repaint();
+				}
+				else {
+				}
+			}
+		});
+	
 		btnDosyaSec.setBounds(2, 41, 146, 30);
 		panel_11.add(btnDosyaSec);
 		
 		btnSurucuSec = new JButton("Surucu Sec");
+		btnSurucuSec.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new java.io.File("."));
+				chooser.setDialogTitle("Surucu Seciniz");
+				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				chooser.setAcceptAllFileFilterUsed(false);
+				chooser.setApproveButtonText("Surucu Sec");
+				chooser.setApproveButtonToolTipText("Surucu Sec");
+				chooser.setApproveButtonMnemonic('s');
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+					model.addElement( new CheckListItem(chooser.getSelectedFile().toString(),"Surucu"));
+					list.repaint();
+				}
+				else {
+					// System.out.println("No Selection ");
+				}
+			}
+		});
 		btnSurucuSec.setBounds(147, 41, 148, 30);
 		panel_11.add(btnSurucuSec);
 		
@@ -386,12 +446,9 @@ public class OBS_BACKUP extends JFrame {
 		JScrollPane scrollPane_1 = new JScrollPane();
 		splitPane_3.setRightComponent(scrollPane_1);
 
-		DefaultListModel<CheckListItem> model = new DefaultListModel<>();
+		model = new DefaultListModel<>();
 		
-		model.addElement( new CheckListItem("apple","C:\\"));
-		//JList list = new JList(new CheckListItem[] { new CheckListItem("apple","C:\\"),
-		//		new CheckListItem("orange","D:\\") });
-		
+		//model.addElement( new CheckListItem("apple","C:\\"));
 		list = new JList(model);
 				
 				
@@ -402,38 +459,67 @@ public class OBS_BACKUP extends JFrame {
 			public void mouseClicked(MouseEvent event) {
 				JList list = (JList) event.getSource();
 				int index = list.locationToIndex(event.getPoint());// Get index of item
-				// clicked
+
 				CheckListItem item = (CheckListItem) list.getModel().getElementAt(index);
 				item.setSelected(!item.isSelected()); // Toggle selected state
 				list.repaint(list.getCellBounds(index, index));// Repaint cell
+				if (list.getModel().getSize() != 0) 
+				{
+					int dosyaSayi = 0 ;
+					for (int i =0; i< list.getModel().getSize(); i++)
+					{
+						item = (CheckListItem) list.getModel().getElementAt(i);
+						if(item.isSelected)
+						{
+							dosyaSayi +=1 ;
+						}
+					} 
+					lblNewLabel_5.setText(Integer.toString(dosyaSayi));
+				}
 			}
 		});
+		list.setDropTarget(new DropTarget() {
+			
+			public synchronized void drop(DropTargetDropEvent evt) {
+				try {
+					evt.acceptDrop(DnDConstants.ACTION_COPY);
+					List<File> droppedFiles = (List<File>) evt .getTransferable().getTransferData(  DataFlavor.javaFileListFlavor);
+					if(droppedFiles.size() > 1){
+						mesaj_goster(5000,Notifications.Type.WARNING,  "Tek Seferde 1 Dosya Ekleyebilirsiniz.....!!");
+					}
+					else{
+						File droppedFile = (File) droppedFiles.get(0);
+						model.addElement( new CheckListItem(droppedFile.getName(),droppedFile.getParent() ));
+						list.repaint();
+					}
+				} catch (Exception ex) {
+					mesaj_goster(15000,Notifications.Type.ERROR, ex.getMessage() );
+				}
+			}
+		});	
 		scrollPane_1.setViewportView(list);
 
 		
 		
 		
-		if (list.getModel().getSize() != 0) 
-		{
-			for (int i =0; i< list.getModel().getSize(); i++)
-			{
-				CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
-				
-				System.out.println(item.isSelected + "=="+    item.surucu() + "=="+item.toString());
-			//	System.out.println(item.surucu() + "=="+list.getModel().getElementAt(i).toString());
-			} 
-		}
+//		if (list.getModel().getSize() != 0) 
+//		{
+//			for (int i =0; i< list.getModel().getSize(); i++)
+//			{
+//				CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
+//				
+//				System.out.println(item.isSelected + "=="+    item.surucu() + "=="+item.toString());
+//			//	System.out.println(item.surucu() + "=="+list.getModel().getElementAt(i).toString());
+//			} 
+//		}
 
 		
 		
 		
 		sunucuayarPanel = new SunucuAyarlari();
 		tabbedPane_1.addTab("Surucu Ayarlari", null,sunucuayarPanel, null);
-		
-		
-		
-		Bilgilendirme bilgiPanel = new Bilgilendirme();
-		tabbedPane_1.addTab("Bilgilendirme", null, bilgiPanel, null);
+		bilgilendirmePanel = new Bilgilendirme();
+		tabbedPane_1.addTab("Bilgilendirme", null, bilgilendirmePanel, null);
 		
 		yedekaraligiPanel = new YedeklemeAraligi();
 		tabbedPane_1.addTab("Yedekleme Araligi", null, yedekaraligiPanel, null);
@@ -441,12 +527,15 @@ public class OBS_BACKUP extends JFrame {
 		JPanel panel_8 = new JPanel();
 		tabbedPane_1.addTab("Emir Kopyala", null, panel_8, null);
 		
+		serverBilgileriPanel = new ServerBilgileri();
+		tabbedPane_1.addTab("Server Bilgileri", null, serverBilgileriPanel, null);
 	 	try {
 			glb.backup_surucu_kontrol();
 		} catch (ClassNotFoundException e1) {
 			e1.printStackTrace();
 		}
 	}
+
 	public void genelKayit() throws ClassNotFoundException, SQLException
 	{
 		 if (txtEmir.getText().toString().equals("")) return;
@@ -541,6 +630,71 @@ public class OBS_BACKUP extends JFrame {
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		 }
  	}
+	public static void yedeklemeKaydet() throws ClassNotFoundException, SQLException
+	{
+		Boolean drm = false; // Yedekleme
+		try
+		{
+		    if (yedekaraligiPanel.chckbxPtesi.isSelected())
+		        drm = true;
+		    else if (yedekaraligiPanel.chckbxSali.isSelected())
+		        drm = true;
+		    else if (yedekaraligiPanel.chckbxCarsamba.isSelected())
+		        drm = true;
+		    else if (yedekaraligiPanel.chckbxPersembe.isSelected())
+		        drm = true;
+		    else if (yedekaraligiPanel.chckbxCuma.isSelected())
+		        drm = true;
+		    else if (yedekaraligiPanel.chckbxCumartesi.isSelected())
+		        drm = true;
+		    else if (yedekaraligiPanel.chckbxPazar.isSelected())
+		        drm = true;
+		    if (drm == false) // ' Isaretli olan yok 
+		    {
+				 chckbxDurum.setSelected(false);
+					mesaj_goster(5000,Notifications.Type.WARNING, "Yedekleme Icin Gun secilmediginden " + System.lineSeparator() + System.lineSeparator()  + "Emir durumu Pasiv olarak Degistirildi");
+		    }
+		    Date date = (Date) (yedekaraligiPanel.timeBaslangic.getValue());
+		    Date date2 = (Date) (yedekaraligiPanel.timeBitis.getValue());
+		    if (date.after(date2) )
+		    {
+				mesaj_goster(5000,Notifications.Type.WARNING,  "Bitis Zamani Baslangic Zamanindan Kucuk olamaz");
+		        return;
+		    }
+		   
+		    bckp.yedekleme_kayit_sil(txtEmir.getText());
+		   
+		    bckp.yedekleme_ismi_kayit(txtEmir.getText(), yedekaraligiPanel.textHerDakka.getText(), yedekaraligiPanel.chckbxPtesi.isSelected(),
+		    		yedekaraligiPanel.chckbxSali.isSelected(), 
+		    		yedekaraligiPanel.chckbxCarsamba.isSelected(), 
+		    		yedekaraligiPanel.chckbxPersembe.isSelected(),
+		    		yedekaraligiPanel.chckbxCuma.isSelected(),
+		    		yedekaraligiPanel.chckbxCumartesi.isSelected(),
+		    		yedekaraligiPanel.chckbxPazar.isSelected(), date, date2);
+		    bckp.log_kayit(txtEmir.getText(), new Date(), "Emir Yedekleme Bilgileri  Kaydedildi...");
+		    
+		}
+		catch (Exception ex)
+		{
+			  bckp.log_kayit(txtEmir.getText(), new Date(), ex.getMessage());
+				mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());	
+				}
+	}
+	public static void BilgilendirmeKaydet() throws ClassNotFoundException, SQLException
+	{
+		 try
+		 {
+		    bckp.bilgilendirme_kayit_sil(txtEmir.getText());
+		    SIFRE_DONDUR sdon = new SIFRE_DONDUR();
+			String response =sdon.sDONDUR(bilgilendirmePanel.textSifre);
+		    bckp.bilgilendirme_ismi_kayit(txtEmir.getText(),bilgilendirmePanel.chckbxAktifPasif.isSelected() ,bilgilendirmePanel.chckbxIslem.isSelected(), bilgilendirmePanel.chckbxHata.isSelected(), bilgilendirmePanel.textGonIsim.getText(), bilgilendirmePanel.textGonHesap.getText() , bilgilendirmePanel.textAlici.getText(), bilgilendirmePanel.textKonu.getText(), bilgilendirmePanel.textSmtp.getText(), bilgilendirmePanel.textPort.getText(),bilgilendirmePanel.textKull.getText(), response, bilgilendirmePanel.chckbxSSL.isSelected(), bilgilendirmePanel.chckbxTSL.isSelected());
+		    bckp.log_kayit(txtEmir.getText(), new Date(), "Bilgilendirme Bilgileri  Kaydedildi...");
+		 }
+		 catch (Exception ex)
+		 {
+			bckp.log_kayit(txtEmir.getText(), new Date(), ex.getMessage());
+			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());			 }
+	}
 	public static void sunucuKaydet() throws ClassNotFoundException, SQLException
 	{
 		 try
@@ -549,7 +703,7 @@ public class OBS_BACKUP extends JFrame {
 			 System.out.println("549");
 		     bckp.ftp_kayit_sil(txtEmir.getText().toString());
 		     String neresi = "";
-		     if ( SunucuAyarlari.chckbxFtp.isSelected())
+		     if ( sunucuayarPanel.chckbxFtp.isSelected())
 		     {
 		         neresi = "FTP";
 		     }
@@ -558,16 +712,80 @@ public class OBS_BACKUP extends JFrame {
 		         neresi = "SUR";
 		     }
 		     SIFRE_DONDUR sdon = new SIFRE_DONDUR();
-		     bckp.ftp_ismi_kayit(txtEmir.getText().toString(), SunucuAyarlari.textHost.getText(), SunucuAyarlari.textKull.getText(), sdon.sDONDUR(SunucuAyarlari.textSifre), SunucuAyarlari.textFtpSurucu.getText(),  SunucuAyarlari.textPort.getText(),Integer.parseInt( SunucuAyarlari.textZmnasm.getText()) , SunucuAyarlari.textEskisilme.getText(), neresi,  SunucuAyarlari.textSurucu.getText());
+		     bckp.ftp_ismi_kayit(txtEmir.getText().toString(), sunucuayarPanel.textHost.getText(), sunucuayarPanel.textKull.getText(), sdon.sDONDUR(sunucuayarPanel.textSifre), sunucuayarPanel.textFtpSurucu.getText(),  sunucuayarPanel.textPort.getText(),Integer.parseInt( sunucuayarPanel.textZmnasm.getText()) , sunucuayarPanel.textEskisilme.getText(), neresi,  sunucuayarPanel.textSurucu.getText());
 		     bckp.log_kayit(txtEmir.getText().toString(),new Date(), "Emir FTP Bilgileri  Kaydedildi...");
 		    
 		 }
 		 catch (Exception ex)
 		 {
-			 //Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 		     bckp.log_kayit(txtEmir.getText().toString(), new Date(), ex.getMessage());
 		     mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		 }
+		 
+	}
+	public static void Server_Kayit() throws ClassNotFoundException, SQLException
+	{
+		 if (txtEmir.getText().toString().equals(""))
+		 {
+			 mesaj_goster(5000,Notifications.Type.ERROR, "Emir Adi Bos Olamaz");
+		     return;
+		 }
+		 SIFRE_DONDUR sdon = new SIFRE_DONDUR();
+			String response =sdon.sDONDUR(serverBilgileriPanel.textMSsifre);
+			
+		 bckp.MsSql_baglan( serverBilgileriPanel.textMSServer.getText() ,serverBilgileriPanel.textMSkull.getText(),response,serverBilgileriPanel.textMSPort.getText());
+		 ResultSet rs;
+		 rs = bckp.db_ismi();
+		     list.removeAll();
+		     lblNewLabel_5.setText(Integer.toString(0));
+		     while (rs.next())
+		     {
+		    	
+		    	 model.addElement( new CheckListItem(rs.getString("name"),""));
+		     }
+		 rs = bckp.db_liste(txtEmir.getText().toString());
+		
+		     int sayi = list.getModel().getSize() - 1;
+		     int dosyaSAYI = 0;
+		     for (int r = 0; r <= sayi; r++)
+		     {
+		         while (rs.next())
+		         {
+		        	 CheckListItem item = (CheckListItem) list.getModel().getElementAt(r);
+//						
+//						System.out.println(item.isSelected + "=="+    item.surucu() + "=="+item.toString());
+		             if (item.toString().equals(rs.getString("DB_ADI")))
+		             {
+		            	
+		            	 model.remove(r);
+		            	 item.setSelected(true);
+		            	
+		            	 model.insertElementAt(item, dosyaSAYI);
+		               
+		                 dosyaSAYI += 1;
+		             }
+		         }
+		      list.repaint();
+		     }
+		
+		 bckp.log_kayit(txtEmir.getText().toString(), new Date(), "Veritabani Isimleri yuklendi...");
+		 
+			 lblNewLabel_6.setText("Ms Sql");
+		
+		 try
+		 {
+		     bckp.server_kayit_sil(txtEmir.getText().toString());
+		     bckp.server_ismi_kayit(txtEmir.getText().toString(), serverBilgileriPanel.textMSServer.getText(), true, true, serverBilgileriPanel.textMSkull.getText(), response, "Ms Sql", "");
+		     bckp.log_kayit(txtEmir.getText().toString(), new Date(), "SQL SERVER Instance Bilgileri Kaydedildi...");
+		     bckp.instance_update(txtEmir.getText().toString(), "Ms Sql");
+		     
+		   
+		     
+		 }
+		 catch (Exception ex)
+		 {
+			 bckp.log_kayit(txtEmir.getText().toString(), new Date(), ex.getMessage());
+		     mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());		 }
 	}
 	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
 	{

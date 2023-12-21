@@ -46,6 +46,9 @@ public class SunucuAyarlari extends JPanel {
 	private JLabel lblNewLabel_6;
 	private JLabel lblNewLabel_7;
 	private JLabel lblNewLabel_8;
+	
+	private static JButton btnNewButton_6 ;
+	private static JButton btnftpkont;
 	/**
 	 * Create the panel.
 	 */
@@ -54,11 +57,32 @@ public class SunucuAyarlari extends JPanel {
  setLayout(null);
 		
 		chckbxFtp = new JCheckBox("FTP");
+		chckbxFtp.setSelected(true);
+		chckbxFtp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(chckbxFtp.isSelected())
+				{
+					chckbxYerel.setSelected(false);
+					btnNewButton_6.setEnabled(true);
+					btnftpkont.setEnabled(true);
+				}
+			}
+		});
 		chckbxFtp.setBounds(67, 22, 99, 23);
 		 add(chckbxFtp);
 		
 		chckbxYerel = new JCheckBox("Yerel Surucu");
 		chckbxYerel.setBounds(215, 22, 150, 23);
+		chckbxYerel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(chckbxYerel.isSelected())
+				{
+					chckbxFtp.setSelected(false);
+					btnNewButton_6.setEnabled(false);
+					btnftpkont.setEnabled(false);
+				}
+			}
+		});
 		 add(chckbxYerel);
 		
 		JPanel panel_12 = new JPanel();
@@ -99,7 +123,7 @@ public class SunucuAyarlari extends JPanel {
 		
 		JPanel panel_12_1 = new JPanel();
 		panel_12_1.setLayout(null);
-		panel_12_1.setBorder(new TitledBorder(null, "Diger Ayarlar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_12_1.setBorder(new TitledBorder(null, "FTP Diger Ayarlar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		//, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_12_1.setBounds(10, 174, 627, 100);
 		 add(panel_12_1);
@@ -122,7 +146,7 @@ public class SunucuAyarlari extends JPanel {
 		textPort.setBounds(328, 46, 96, 20);
 		panel_12_1.add(textPort);
 		
-		JButton btnNewButton_6 = new JButton("Surucu Kontrol");
+		btnNewButton_6 = new JButton("Surucu Kontrol");
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -230,7 +254,7 @@ public class SunucuAyarlari extends JPanel {
 		btnNewButton_9.setBounds(624, 581, 89, 23);
 		 add(btnNewButton_9);
 		 
-		 JButton btnftpkont = new JButton("Ftp Kontrol");
+		 btnftpkont = new JButton("Ftp Kontrol");
 		 btnftpkont.setBounds(10, 581, 89, 23);
 		 btnftpkont.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {

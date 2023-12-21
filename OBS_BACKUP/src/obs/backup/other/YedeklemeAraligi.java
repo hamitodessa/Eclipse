@@ -5,25 +5,34 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 
+import java.awt.Cursor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.border.TitledBorder;
+
+import obs.backup.main.OBS_BACKUP;
+
 import javax.swing.JSpinner;
 
 public class YedeklemeAraligi extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	public JTextField textHerDakka;
+	public static JTextField textHerDakka;
 	
-	public JCheckBox chckbxPtesi;
-	public JCheckBox chckbxSali ;
-	public JCheckBox chckbxCarsamba ;
-	public JCheckBox chckbxPersembe ;
-	public JCheckBox chckbxCuma ;
-	public JCheckBox chckbxCumartesi ;
-	public JCheckBox chckbxPazar ;
+	public static JCheckBox chckbxPtesi;
+	public static JCheckBox chckbxSali ;
+	public static JCheckBox chckbxCarsamba ;
+	public static JCheckBox chckbxPersembe ;
+	public static JCheckBox chckbxCuma ;
+	public static JCheckBox chckbxCumartesi ;
+	public static JCheckBox chckbxPazar ;
+	
+	public static JSpinner timeBaslangic;
+	public static JSpinner timeBitis;
 	/**
 	 * Create the panel.
 	 */
@@ -92,30 +101,43 @@ public class YedeklemeAraligi extends JPanel {
 		
 		
 
-		JSpinner timeSpinner = new JSpinner( new SpinnerDateModel() );
-		timeSpinner.setBounds(111, 29, 75, 25);
-		panel.add(timeSpinner);
-		JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "HH:mm");
-		timeSpinner.setEditor(timeEditor);
+		timeBaslangic = new JSpinner( new SpinnerDateModel() );
+		timeBaslangic.setBounds(111, 29, 75, 25);
+		panel.add(timeBaslangic);
+		JSpinner.DateEditor de_timeBaslangic = new JSpinner.DateEditor(timeBaslangic, "HH:mm");
+		timeBaslangic.setEditor(de_timeBaslangic);
 		Date qweDate = new Date();
 		qweDate.setHours(00);
 		qweDate.setMinutes(00);
-		timeSpinner.setValue(qweDate);
+		timeBaslangic.setValue(qweDate);
 		
-		JSpinner timeSpinnerBitis = new JSpinner( new SpinnerDateModel() );
-		timeSpinnerBitis.setBounds(111, 62, 75, 25);
-		panel.add(timeSpinnerBitis);
-		JSpinner.DateEditor timeEditorBitis = new JSpinner.DateEditor(timeSpinnerBitis, "HH:mm");
-		timeSpinnerBitis.setEditor(timeEditorBitis);
+		timeBitis = new JSpinner( new SpinnerDateModel() );
+		timeBitis.setBounds(111, 62, 75, 25);
+		panel.add(timeBitis);
+		JSpinner.DateEditor de_timeBitis = new JSpinner.DateEditor(timeBitis, "HH:mm");
+		timeBitis.setEditor(de_timeBitis);
 		
 		qweDate = new Date();
 		qweDate.setHours(00);
 		qweDate.setMinutes(00);
-		timeSpinnerBitis.setValue(qweDate);
+		timeBitis.setValue(qweDate);
 			
 		JButton btnNewButton_9 = new JButton("Kaydet");
 		btnNewButton_9.setBounds(624, 581, 89, 23);
+		btnNewButton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
+				try {
+					OBS_BACKUP.	yedeklemeKaydet();
+				} catch (Exception e1) {
+				
+					e1.printStackTrace();
+				}
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+			}
+		});
 		 add(btnNewButton_9);
 
 	}
+	
 }

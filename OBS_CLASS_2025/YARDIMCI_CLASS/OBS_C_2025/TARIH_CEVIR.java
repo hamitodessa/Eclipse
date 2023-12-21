@@ -159,6 +159,13 @@ public class TARIH_CEVIR {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return df.format(currentDate); 
 	}
+	public static String milismmss(long lg)
+	{
+		long currentDateTime = lg ;
+		Date currentDate = new Date(currentDateTime);
+		DateFormat df = new SimpleDateFormat("HH:mm");
+		return df.format(currentDate); 
+	}
 	public static String milis_ddMMyyyy(long lg)
 	{
 		long currentDateTime = lg ;

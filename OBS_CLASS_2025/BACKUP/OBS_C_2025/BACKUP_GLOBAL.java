@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +18,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+
+import javax.swing.JOptionPane;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -37,11 +38,28 @@ public class BACKUP_GLOBAL {
 		MY_CONN = DriverManager.getConnection(cumle,user,pwd);
 
 	}
-	public void MsSql_baglan(String connstr, String user, String pwd) throws ClassNotFoundException, SQLException
+	public void MsSql_baglan(String inss, String user, String pwd, String port) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String cumle = "jdbc:sqlserver://" + connstr + ";";
-		S_CONN = DriverManager.getConnection(cumle,user,pwd);
+
+		String porttString="" ;
+		if ( ! port.equals("") )
+		{
+			porttString= ":" + port;
+		}
+		try
+		{
+			String cumle = "";
+			cumle = "jdbc:sqlserver://localhost" + porttString  +";instanceName=" + inss + ";";
+			S_CONN = DriverManager.getConnection(cumle,user,pwd);
+		} 
+		catch (SQLException e)
+		{  
+		   
+			S_CONN = null ;
+		}  
+		
+	
 	}
 	public ResultSet db_ismi() throws ClassNotFoundException, SQLException
 	{
@@ -323,7 +341,8 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
 		String sql = "";
-		sql = "INSERT INTO BILGILENDIRME ([EMIR_ISMI],[DURUM],[GONDERILDIGINDE],[HATA_DURUMUNDA],[GON_ISIM],[GON_HESAP],[ALICI],[KONU],[SMTP],[SMTP_PORT],[KULLANICI],[SIFRE],[SSL],[TSL]) "
+		sql = "INSERT INTO BILGILENDIRME (EMIR_ISMI,DURUM,GONDERILDIGINDE,HATA_DURUMUNDA,GON_ISIM,GON_HESAP, " + 
+					" ALICI,KONU,SMTP,SMTP_PORT,KULLANICI,SIFRE,SSL,TSL) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
@@ -336,9 +355,16 @@ public class BACKUP_GLOBAL {
 		stmt.setString(8, konu);
 		stmt.setString(9, smtp);
 		stmt.setString(10, smtppo);
-		stmt.setString(11, sif);
-		stmt.setBoolean(12, ssl);
-		stmt.setBoolean(13, tsl);
+		stmt.setString(11, kull);
+		byte[] qaz = null;
+		try {
+			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sif);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		stmt.setString(12, Arrays.toString(qaz));
+		stmt.setBoolean(13, ssl);
+		stmt.setBoolean(14, tsl);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -359,7 +385,7 @@ public class BACKUP_GLOBAL {
 		con = null;
 	}
 	public void yedekleme_ismi_kayit(String eismi, String saa, boolean pt, boolean sa, boolean ca
-			, boolean pe, boolean cu, boolean ct, boolean pz, Time bas, Time bit)throws ClassNotFoundException, SQLException
+			, boolean pe, boolean cu, boolean ct, boolean pz, Date bas, Date bit)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -378,8 +404,11 @@ public class BACKUP_GLOBAL {
 		stmt.setBoolean(7, cu);
 		stmt.setBoolean(8, ct);
 		stmt.setBoolean(9, pz);
-		stmt.setTime(10, bas);
-		stmt.setTime(11, bit);
+		String str = TARIH_CEVIR.milismmss(bas.getTime());
+		
+		stmt.setString(10, str);
+		str = TARIH_CEVIR.milismmss(bit.getTime());
+		stmt.setString(11, str);
 
 		stmt.executeUpdate();
 		stmt.close();

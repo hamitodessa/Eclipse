@@ -1,23 +1,37 @@
 package obs.backup.other;
 
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import javax.swing.border.TitledBorder;
+
+import obs.backup.main.OBS_BACKUP;
+import raven.toast.Notifications;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.Cursor;
+import java.awt.event.ActionEvent;
 
 public class Bilgilendirme extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	public static JTextField textGonIsim;
+	public static JTextField textGonHesap;
+	public static JTextField textAlici;
+	public static JTextField textKonu;
+	public static JTextField textSmtp;
+	public static JTextField textPort;
+	public static JTextField textKull;
+	public static JPasswordField textSifre;
+	
+	public static JCheckBox chckbxIslem;
+	public static JCheckBox chckbxHata;
+	public static JCheckBox chckbxAktifPasif;
+	public static JCheckBox chckbxSSL ;
+	public static JCheckBox chckbxTSL ;
 
 	/**
 	 * Create the panel.
@@ -29,9 +43,9 @@ public class Bilgilendirme extends JPanel {
 		lblNewLabel.setBounds(37, 28, 48, 14);
 		add(lblNewLabel);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Aktif / Pasif");
-		chckbxNewCheckBox.setBounds(141, 24, 99, 23);
-		add(chckbxNewCheckBox);
+		chckbxAktifPasif = new JCheckBox("Aktif / Pasif");
+		chckbxAktifPasif.setBounds(141, 24, 99, 23);
+		add(chckbxAktifPasif);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Gonderme Durumu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -39,84 +53,144 @@ public class Bilgilendirme extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Islem Gerceklestiginde");
-		chckbxNewCheckBox_1.setBounds(63, 28, 184, 23);
-		panel.add(chckbxNewCheckBox_1);
+		chckbxIslem = new JCheckBox("Islem Gerceklestiginde");
+		chckbxIslem.setSelected(true);
+		chckbxIslem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(chckbxIslem.isSelected())
+				{
+					chckbxHata.setSelected(false);
+				}
+			}
+		});
+		chckbxIslem.setBounds(63, 28, 184, 23);
+		panel.add(chckbxIslem);
 		
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Hata Durumunda");
-		chckbxNewCheckBox_2.setBounds(299, 28, 153, 23);
-		panel.add(chckbxNewCheckBox_2);
+		chckbxHata = new JCheckBox("Hata Durumunda");
+		chckbxHata.setBounds(299, 28, 153, 23);
+		chckbxHata.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(chckbxHata.isSelected())
+				{
+					chckbxIslem.setSelected(false);
+			
+				}
+		}
+		});
+		panel.add(chckbxHata);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBorder(new TitledBorder(null, "Mail Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mail Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBounds(37, 153, 504, 125);
 		add(panel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(119, 23, 264, 20);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		textGonIsim = new JTextField();
+		textGonIsim.setBounds(119, 23, 329, 20);
+		panel_1.add(textGonIsim);
+		textGonIsim.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(119, 46, 264, 20);
-		panel_1.add(textField_1);
+		textGonHesap = new JTextField();
+		textGonHesap.setColumns(10);
+		textGonHesap.setBounds(119, 46, 329, 20);
+		panel_1.add(textGonHesap);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(119, 71, 264, 20);
-		panel_1.add(textField_2);
+		textAlici = new JTextField();
+		textAlici.setColumns(10);
+		textAlici.setBounds(119, 71, 329, 20);
+		panel_1.add(textAlici);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(119, 94, 264, 20);
-		panel_1.add(textField_3);
+		textKonu = new JTextField();
+		textKonu.setColumns(10);
+		textKonu.setBounds(119, 94, 329, 20);
+		panel_1.add(textKonu);
+		
+		JLabel lblNewLabel_1 = new JLabel("Gonderen Isim");
+		lblNewLabel_1.setBounds(21, 26, 88, 14);
+		panel_1.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Gonderen Hesap");
+		lblNewLabel_2.setBounds(21, 49, 88, 14);
+		panel_1.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Alici");
+		lblNewLabel_3.setBounds(21, 74, 48, 14);
+		panel_1.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Konu");
+		lblNewLabel_4.setBounds(21, 97, 48, 14);
+		panel_1.add(lblNewLabel_4);
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
 		panel_1_1.setBorder(new TitledBorder(null, "Server Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		//panel_1_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Server Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1_1.setBounds(37, 285, 504, 132);
 		add(panel_1_1);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(119, 23, 173, 20);
-		panel_1_1.add(textField_4);
+		textSmtp = new JTextField();
+		textSmtp.setColumns(10);
+		textSmtp.setBounds(119, 23, 173, 20);
+		panel_1_1.add(textSmtp);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(341, 23, 69, 20);
-		panel_1_1.add(textField_5);
+		textPort = new JTextField();
+		textPort.setColumns(10);
+		textPort.setBounds(383, 23, 69, 20);
+		panel_1_1.add(textPort);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(119, 54, 264, 20);
-		panel_1_1.add(textField_6);
+		textKull = new JTextField();
+		textKull.setColumns(10);
+		textKull.setBounds(119, 54, 264, 20);
+		panel_1_1.add(textKull);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(119, 77, 264, 20);
-		panel_1_1.add(textField_7);
+		textSifre = new JPasswordField();
+		textSifre.setColumns(10);
+		textSifre.setBounds(119, 77, 264, 20);
+		panel_1_1.add(textSifre);
 		
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("SSL");
-		chckbxNewCheckBox_3.setBounds(119, 100, 99, 23);
-		panel_1_1.add(chckbxNewCheckBox_3);
+		chckbxSSL = new JCheckBox("SSL");
+		chckbxSSL.setBounds(119, 100, 99, 23);
+		panel_1_1.add(chckbxSSL);
 		
-		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("TSL");
-		chckbxNewCheckBox_4.setBounds(252, 100, 99, 23);
-		panel_1_1.add(chckbxNewCheckBox_4);
+		chckbxTSL = new JCheckBox("TSL");
+		chckbxTSL.setBounds(252, 100, 99, 23);
+		panel_1_1.add(chckbxTSL);
 		
-		JButton btnNewButton = new JButton("Deneme Maili");
-		btnNewButton.setBounds(393, 100, 101, 23);
-		panel_1_1.add(btnNewButton);
+		JButton btnDenemeMail = new JButton("Deneme Maili");
+		btnDenemeMail.setBounds(393, 100, 101, 23);
+		panel_1_1.add(btnDenemeMail);
+		
+		JLabel lblNewLabel_5 = new JLabel("SMTP Server");
+		lblNewLabel_5.setBounds(22, 26, 87, 14);
+		panel_1_1.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("Port");
+		lblNewLabel_6.setBounds(303, 26, 48, 14);
+		panel_1_1.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("Kullanici");
+		lblNewLabel_7.setBounds(22, 57, 87, 14);
+		panel_1_1.add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_8 = new JLabel("Sifre");
+		lblNewLabel_8.setBounds(22, 80, 87, 14);
+		panel_1_1.add(lblNewLabel_8);
 		
 		JButton btnNewButton_9 = new JButton("Kaydet");
 		btnNewButton_9.setBounds(624, 581, 89, 23);
+		btnNewButton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				try {
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					OBS_BACKUP.BilgilendirmeKaydet();
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				} catch (Exception e1) {
+				
+					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e1.getMessage());
+				}
+			}
+		});
 		 add(btnNewButton_9);
-
-
 	}
+	
 }

@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import OBS_C_2025.BACKUP_GLOBAL;
+import OBS_C_2025.SIFRE_DONDUR;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -28,7 +30,6 @@ public class ServerBilgileri extends JPanel {
 	public static JPasswordField textMSsifre;
 	public static JTextField textField_3;
 	public static JPasswordField passwordField_1;
-	public static JTextField textMYServer;
 	public static JTextField textMykull;
 	public static JPasswordField textMySifre;
 	public static JTextField textMYPort;
@@ -81,6 +82,30 @@ public class ServerBilgileri extends JPanel {
 		panel_2.add(textMSsifre);
 		
 		JButton btnMSTest = new JButton("Baglanti Test");
+		btnMSTest.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				SIFRE_DONDUR sdon = new SIFRE_DONDUR();
+				String response =sdon.sDONDUR(textMSsifre);
+				BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
+			try {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				Boolean result =	bckp.MsSql_server_test( textMSServer.getText() ,textMSkull.getText(),response,textMSPort.getText());
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				if(result)
+			{
+				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Baglanti Saglandi");
+			}
+			else {
+				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, "Baglanti Saglanmadi");
+			}
+			} catch (Exception e1) {
+			
+				e1.printStackTrace();
+			}
+
+			}
+		});
 		btnMSTest.setBounds(10, 238, 129, 23);
 		panel.add(btnMSTest);
 		
@@ -89,7 +114,7 @@ public class ServerBilgileri extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					OBS_BACKUP.Server_Kayit();
+					OBS_BACKUP.MS_Server_Kayit();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 				
@@ -136,15 +161,6 @@ public class ServerBilgileri extends JPanel {
 		passwordField_1.setBounds(91, 63, 162, 20);
 		panel_2_1.add(passwordField_1);
 		
-		JLabel lblNewLabel_3 = new JLabel("Server");
-		lblNewLabel_3.setBounds(10, 14, 48, 14);
-		panel_1.add(lblNewLabel_3);
-		
-		textMYServer = new JTextField();
-		textMYServer.setColumns(10);
-		textMYServer.setBounds(91, 11, 216, 20);
-		panel_1.add(textMYServer);
-		
 		JPanel panel_2_2 = new JPanel();
 		panel_2_2.setLayout(null);
 		panel_2_2.setBorder(new TitledBorder(null, "Baglanti", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -169,6 +185,29 @@ public class ServerBilgileri extends JPanel {
 		panel_2_2.add(textMySifre);
 		
 		JButton btnMyTest = new JButton("Baglanti Test");
+		btnMyTest.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SIFRE_DONDUR sdon = new SIFRE_DONDUR();
+				String response =sdon.sDONDUR(textMySifre);
+				BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
+			try {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				Boolean result =	bckp.MySql_server_test( textMykull.getText(),response,textMYPort.getText());
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			if(result)
+			{
+				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Baglanti Saglandi");
+			}
+			else {
+				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, "Baglanti Saglanmadi");
+			}
+			} catch (Exception e1) {
+			
+				e1.printStackTrace();
+			}
+
+			}
+		});
 		btnMyTest.setBounds(10, 238, 129, 23);
 		panel_1.add(btnMyTest);
 		
@@ -177,11 +216,11 @@ public class ServerBilgileri extends JPanel {
 		panel_1.add(btnMyKaydet);
 		
 		JLabel lblNewLabel_4 = new JLabel("Port");
-		lblNewLabel_4.setBounds(317, 14, 48, 14);
+		lblNewLabel_4.setBounds(10, 17, 48, 14);
 		panel_1.add(lblNewLabel_4);
 		
 		textMYPort = new JTextField();
-		textMYPort.setBounds(374, 13, 61, 20);
+		textMYPort.setBounds(67, 16, 61, 20);
 		panel_1.add(textMYPort);
 		textMYPort.setColumns(10);
 		

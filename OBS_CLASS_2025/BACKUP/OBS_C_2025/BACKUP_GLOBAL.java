@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.SocketException;
+import java.security.KeyStore.TrustedCertificateEntry;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,29 +20,42 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import javax.swing.JOptionPane;
-
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
 
-@SuppressWarnings({"static-access"})
+@SuppressWarnings({"static-access","unused"})
 public class BACKUP_GLOBAL {
 	public Connection S_CONN;
 	public Connection MY_CONN; //= new MySqlConnection();
 	GLOBAL glb = new GLOBAL();
 	private Connection con ;
-	public void MySql_baglan(String connstr, String user, String pwd) throws ClassNotFoundException, SQLException
+	public void MySql_baglan( String user, String pwd,String port) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		String cumle = "jdbc:mysql://" + connstr ;
+		String cumle = "jdbc:mysql://localhost:" + port ;
 		MY_CONN = DriverManager.getConnection(cumle,user,pwd);
 
+	}
+	public boolean MySql_server_test( String user, String pwd, String port) throws ClassNotFoundException, SQLException
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		String porttString="" ;
+		Connection con ;
+		try
+		{
+			String cumle = "jdbc:mysql://localhost:" + port ;
+			con = DriverManager.getConnection(cumle,user,pwd);
+			return true ;
+		} 
+		catch (SQLException e)
+		{  
+			return false;
+		}  
 	}
 	public void MsSql_baglan(String inss, String user, String pwd, String port) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
 		String porttString="" ;
 		if ( ! port.equals("") )
 		{
@@ -55,11 +69,30 @@ public class BACKUP_GLOBAL {
 		} 
 		catch (SQLException e)
 		{  
-		   
 			S_CONN = null ;
 		}  
-		
-	
+	}
+
+	public boolean MsSql_server_test(String inss, String user, String pwd, String port) throws ClassNotFoundException, SQLException
+	{
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		String porttString="" ;
+		Connection con ;
+		if ( ! port.equals("") )
+		{
+			porttString= ":" + port;
+		}
+		try
+		{
+			String cumle = "";
+			cumle = "jdbc:sqlserver://localhost" + porttString  +";instanceName=" + inss + ";";
+			con = DriverManager.getConnection(cumle,user,pwd);
+			return true ;
+		} 
+		catch (SQLException e)
+		{  
+			return false;
+		}  
 	}
 	public ResultSet db_ismi() throws ClassNotFoundException, SQLException
 	{

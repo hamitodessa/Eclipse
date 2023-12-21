@@ -13,7 +13,8 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 
 import OBS_C_2025.BACKUP_GLOBAL;
-
+import OBS_C_2025.CheckListItem;
+import OBS_C_2025.CheckListRenderer;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import javazoom.jl.player.Player;
@@ -42,7 +43,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.File;
 import java.io.InputStream;
-import java.security.PublicKey;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -61,7 +61,6 @@ import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
-import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.JList;
 import OBS_C_2025.SIFRE_DONDUR;
@@ -439,6 +438,11 @@ public class OBS_BACKUP extends JFrame {
 		panel_11.add(btnSurucuSec);
 		
 		btnServer = new JButton("Server Baglanti");
+		btnServer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane_1.setSelectedIndex(5);
+			}
+		});
 		btnServer.setVisible(false);
 		btnServer.setBounds(2, 41, 290, 30);
 		panel_11.add(btnServer);
@@ -723,69 +727,58 @@ public class OBS_BACKUP extends JFrame {
 		 }
 		 
 	}
-	public static void Server_Kayit() throws ClassNotFoundException, SQLException
+	public static void MS_Server_Kayit() throws ClassNotFoundException, SQLException
 	{
-		 if (txtEmir.getText().toString().equals(""))
-		 {
-			 mesaj_goster(5000,Notifications.Type.ERROR, "Emir Adi Bos Olamaz");
-		     return;
-		 }
-		 SIFRE_DONDUR sdon = new SIFRE_DONDUR();
-			String response =sdon.sDONDUR(serverBilgileriPanel.textMSsifre);
-			
-		 bckp.MsSql_baglan( serverBilgileriPanel.textMSServer.getText() ,serverBilgileriPanel.textMSkull.getText(),response,serverBilgileriPanel.textMSPort.getText());
-		 ResultSet rs;
-		 rs = bckp.db_ismi();
-		     list.removeAll();
-		     lblNewLabel_5.setText(Integer.toString(0));
-		     while (rs.next())
-		     {
-		    	
-		    	 model.addElement( new CheckListItem(rs.getString("name"),""));
-		     }
-		 rs = bckp.db_liste(txtEmir.getText().toString());
-		
-		     int sayi = list.getModel().getSize() - 1;
-		     int dosyaSAYI = 0;
-		     for (int r = 0; r <= sayi; r++)
-		     {
-		         while (rs.next())
-		         {
-		        	 CheckListItem item = (CheckListItem) list.getModel().getElementAt(r);
-//						
-//						System.out.println(item.isSelected + "=="+    item.surucu() + "=="+item.toString());
-		             if (item.toString().equals(rs.getString("DB_ADI")))
-		             {
-		            	
-		            	 model.remove(r);
-		            	 item.setSelected(true);
-		            	
-		            	 model.insertElementAt(item, dosyaSAYI);
-		               
-		                 dosyaSAYI += 1;
-		             }
-		         }
-		      list.repaint();
-		     }
-		
-		 bckp.log_kayit(txtEmir.getText().toString(), new Date(), "Veritabani Isimleri yuklendi...");
-		 
-			 lblNewLabel_6.setText("Ms Sql");
-		
-		 try
-		 {
-		     bckp.server_kayit_sil(txtEmir.getText().toString());
-		     bckp.server_ismi_kayit(txtEmir.getText().toString(), serverBilgileriPanel.textMSServer.getText(), true, true, serverBilgileriPanel.textMSkull.getText(), response, "Ms Sql", "");
-		     bckp.log_kayit(txtEmir.getText().toString(), new Date(), "SQL SERVER Instance Bilgileri Kaydedildi...");
-		     bckp.instance_update(txtEmir.getText().toString(), "Ms Sql");
-		     
-		   
-		     
-		 }
-		 catch (Exception ex)
-		 {
-			 bckp.log_kayit(txtEmir.getText().toString(), new Date(), ex.getMessage());
-		     mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());		 }
+		if (txtEmir.getText().toString().equals(""))
+		{
+			mesaj_goster(5000,Notifications.Type.ERROR, "Emir Adi Bos Olamaz");
+			return;
+		}
+		SIFRE_DONDUR sdon = new SIFRE_DONDUR();
+		String response =sdon.sDONDUR(serverBilgileriPanel.textMSsifre);
+
+		bckp.MsSql_baglan( serverBilgileriPanel.textMSServer.getText() ,serverBilgileriPanel.textMSkull.getText(),response,serverBilgileriPanel.textMSPort.getText());
+		ResultSet rs;
+		rs = bckp.db_ismi();
+		list.removeAll();
+		lblNewLabel_5.setText(Integer.toString(0));
+		while (rs.next())
+		{
+			model.addElement(new CheckListItem(rs.getString("name"),""));
+			list.repaint();
+		}
+		rs = bckp.db_liste(txtEmir.getText().toString());
+		int sayi = list.getModel().getSize() - 1;
+		int dosyaSAYI = 0;
+		for (int r = 0; r <= sayi; r++)
+		{
+			while (rs.next())
+			{
+				CheckListItem item = (CheckListItem) list.getModel().getElementAt(r);
+				if (item.toString().equals(rs.getString("DB_ADI")))
+				{
+					model.remove(r);
+					item.setSelected(true);
+					model.insertElementAt(item, dosyaSAYI);
+					dosyaSAYI += 1;
+				}
+			}
+			list.repaint();
+		}
+		bckp.log_kayit(txtEmir.getText().toString(), new Date(), "Veritabani Isimleri yuklendi...");
+		lblNewLabel_6.setText("Ms Sql");
+		try
+		{
+			bckp.server_kayit_sil(txtEmir.getText().toString());
+			bckp.server_ismi_kayit(txtEmir.getText().toString(), serverBilgileriPanel.textMSServer.getText(), true, true, serverBilgileriPanel.textMSkull.getText(), response, "Ms Sql", "");
+			bckp.log_kayit(txtEmir.getText().toString(), new Date(), "SQL SERVER Instance Bilgileri Kaydedildi...");
+			bckp.instance_update(txtEmir.getText().toString(), "Ms Sql");
+		}
+		catch (Exception ex)
+		{
+			bckp.log_kayit(txtEmir.getText().toString(), new Date(), ex.getMessage());
+			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());		
+		}
 	}
 	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
 	{
@@ -812,48 +805,5 @@ public class OBS_BACKUP extends JFrame {
 	      }
 	      return new Dimension(900, 700);
 	   }
-	class CheckListItem {
-
-		  private String[] label = {"",""};
-		 
-		 
-		  private boolean isSelected = false;
-
-		  public CheckListItem(String label ,String name) {
-		    this.label[0] = label;
-		    this.label[1] = name ;
-		  }
-
-		  public boolean isSelected() {
-		    return isSelected;
-		  }
-
-		  public void setSelected(boolean isSelected) {
-		    this.isSelected = isSelected;
-		  }
-
-		  @Override
-		  public String toString() {
-			 return  label[0]  ;
-		  }
-		  
-		  public String surucu(){
-				    return label[1];
-			}
-		}
-
-		@SuppressWarnings("serial")
-		class CheckListRenderer extends JCheckBox implements ListCellRenderer {
-		  public Component getListCellRendererComponent(JList list, Object value,
-		      int index, boolean isSelected, boolean hasFocus) {
-		    setEnabled(list.isEnabled());
-		    setSelected(((CheckListItem) value).isSelected());
-		    setFont(list.getFont());
-		    setBackground(list.getBackground());
-		    setForeground(list.getForeground());
-		    setText(value.toString());
-		  
-		    return this;
-		  }
-		}
+	
 }

@@ -66,6 +66,7 @@ public class BACKUP_GLOBAL {
 		{
 			String cumle = "";
 			cumle = "jdbc:sqlserver://localhost" + porttString  +";instanceName=" + inss + ";";
+		
 			S_CONN = DriverManager.getConnection(cumle,user,pwd);
 		} 
 		catch (SQLException e)

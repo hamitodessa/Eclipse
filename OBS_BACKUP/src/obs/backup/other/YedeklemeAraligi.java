@@ -21,18 +21,18 @@ import javax.swing.JSpinner;
 public class YedeklemeAraligi extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	public static JTextField textHerDakka;
+	public JTextField textHerDakka;
 	
-	public static JCheckBox chckbxPtesi;
-	public static JCheckBox chckbxSali ;
-	public static JCheckBox chckbxCarsamba ;
-	public static JCheckBox chckbxPersembe ;
-	public static JCheckBox chckbxCuma ;
-	public static JCheckBox chckbxCumartesi ;
-	public static JCheckBox chckbxPazar ;
+	public JCheckBox chckbxPtesi;
+	public JCheckBox chckbxSali ;
+	public JCheckBox chckbxCarsamba ;
+	public JCheckBox chckbxPersembe ;
+	public JCheckBox chckbxCuma ;
+	public JCheckBox chckbxCumartesi ;
+	public JCheckBox chckbxPazar ;
 	
-	public static JSpinner timeBaslangic;
-	public static JSpinner timeBitis;
+	public JSpinner timeBaslangic;
+	public JSpinner timeBitis;
 	/**
 	 * Create the panel.
 	 */

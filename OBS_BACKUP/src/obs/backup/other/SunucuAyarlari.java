@@ -25,18 +25,18 @@ public class SunucuAyarlari extends JPanel {
 
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private static final long serialVersionUID = 1L;
-	public static JTextField textHost;
-	public static JTextField textKull;
-	public static JPasswordField textSifre;
-	public static JTextField textFtpSurucu;
-	public static JTextField textPort;
-	public static JTextField textZmnasm;
+	public JTextField textHost;
+	public JTextField textKull;
+	public JPasswordField textSifre;
+	public JTextField textFtpSurucu;
+	public JTextField textPort;
+	public JTextField textZmnasm;
 	
-	public static JTextField textSurucu;
-	public static JTextField textEskisilme;
+	public JTextField textSurucu;
+	public JTextField textEskisilme;
 	
-	public static JCheckBox chckbxFtp;
-	public static JCheckBox chckbxYerel ;
+	public JCheckBox chckbxFtp;
+	public JCheckBox chckbxYerel ;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
@@ -92,13 +92,11 @@ public class SunucuAyarlari extends JPanel {
 		panel_12.setLayout(null);
 		
 		textHost = new JTextField();
-		textHost.setText("okumus.gen.tr");
 		textHost.setBounds(124, 22, 300, 20);
 		panel_12.add(textHost);
 		textHost.setColumns(10);
 		
 		textKull = new JTextField();
-		textKull.setText("u5789784");
 		textKull.setBounds(124, 46, 96, 20);
 		panel_12.add(textKull);
 		textKull.setColumns(10);
@@ -129,7 +127,6 @@ public class SunucuAyarlari extends JPanel {
 		 add(panel_12_1);
 		
 		textFtpSurucu = new JTextField();
-		textFtpSurucu.setText("PLAST_BAK_2022/Diger_Dosyalar/");
 		textFtpSurucu.setColumns(10);
 		textFtpSurucu.setBounds(124, 22, 300, 20);
 		panel_12_1.add(textFtpSurucu);
@@ -180,7 +177,6 @@ public class SunucuAyarlari extends JPanel {
 		 add(panel_12_1_1);
 		
 		textSurucu = new JTextField();
-		textSurucu.setText("4wX.5Wx53-Y..nlG");
 		textSurucu.setToolTipText("");
 		textSurucu.setColumns(10);
 		textSurucu.setBounds(124, 22, 300, 20);

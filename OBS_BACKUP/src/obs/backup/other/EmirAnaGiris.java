@@ -12,7 +12,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -20,6 +26,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -28,15 +35,19 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 
+import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckListItem;
 import OBS_C_2025.CheckListRenderer;
+import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.SIFRE_DONDUR;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
 @SuppressWarnings({"rawtypes","unchecked","serial"})
 public class EmirAnaGiris extends JPanel {
-
+	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private static final long serialVersionUID = 1L;
 	public static JPanel container ;
 	
@@ -293,9 +304,273 @@ public class EmirAnaGiris extends JPanel {
 			}
 		});	
 		scrollPane_1.setViewportView(list);
-
-		
 		
 	}
+	public void emirDOLDUR()
+	{
+		if(! OBS_BACKUP.gelenISIM.equals(""))
+		{
+			try {
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				emirBilgiDoldur();
+				OBS_BACKUP.tabbedPane.setSelectedIndex(1);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			} catch (Exception e1) {
+		
+				e1.printStackTrace();
+			}
+		}
+	}
+	private void emirBilgiDoldur() throws ClassNotFoundException, SQLException
+	{
+        try
+        {
+        	setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            ResultSet dtss;
+            dtss = bckp.emir_bilgi(OBS_BACKUP.gelenISIM);
+            dtss.next();
+            int count = dtss.getRow();
+            if (count  == 0) return;
+            txtEmir.setText(OBS_BACKUP.gelenISIM);
+            textAciklama.setText(dtss.getString("EMIR_ACIKLAMA"));
+            lblNewLabel_6.setText(dtss.getString("INSTANCE"));
+            chckbxServerDosya.setSelected( (Boolean) dtss.getBoolean("SQL_YEDEK"));
+            chckbxDurum.setSelected( (Boolean) dtss.getBoolean("DURUM"));
+           //'**********FTP DOLDUR
+        
+            ResultSet dbss = bckp.ftp_bilgi(OBS_BACKUP.gelenISIM);
+            dbss.next();
+            count = dbss.getRow();
+           
+            if (count > 0)
+            {
+            	
+                if (dbss.getString("NERESI").equals("FTP"))
+                {
+                   OBS_BACKUP.sunucuayarPanel.chckbxFtp.setSelected(true);
+                   OBS_BACKUP.sunucuayarPanel.chckbxYerel.setSelected(false);
+                }
+                else
+                {
+                	OBS_BACKUP.sunucuayarPanel.chckbxFtp.setSelected(false);
+                    OBS_BACKUP.sunucuayarPanel.chckbxYerel.setSelected(true);
+                }
+                OBS_BACKUP.sunucuayarPanel.textHost.setText(dbss.getString("HOST"));
+                OBS_BACKUP.sunucuayarPanel.textKull.setText(dbss.getString("KULLANICI"));
+               
+                String decodedString = dbss.getString("SIFRE");
+				String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+				byte[] bytes = new byte[byteValues.length];
+				for (int i=0, len=bytes.length; i<len; i++) {
+					bytes[i] = Byte.parseByte(byteValues[i].trim());     
+				}
+				OBS_BACKUP.sunucuayarPanel.textSifre.setText(ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
+				OBS_BACKUP.sunucuayarPanel.textFtpSurucu.setText(dbss.getString("SURUCU"));
+				OBS_BACKUP.sunucuayarPanel.textPort.setText(dbss.getString("PORT"));
+				OBS_BACKUP.sunucuayarPanel.textZmnasm.setText(dbss.getString("ZMN_ASIMI"));
+				OBS_BACKUP.sunucuayarPanel.textEskisilme.setText(dbss.getString("ESKI_YEDEK"));
+				OBS_BACKUP.sunucuayarPanel.textSurucu.setText(dbss.getString("SURUCU_YER"));
+			
+            }
+           
+         // '**********BILGILENDIRME
+          
+            dbss = bckp.bilgilendirme_bilgi(OBS_BACKUP.gelenISIM);
+            dbss.next();
+            count = dbss.getRow();
+            
+            if (count > 0)
+            {
+            	OBS_BACKUP.bilgilendirmePanel.chckbxAktifPasif.setSelected(dbss.getBoolean("DURUM"));
+            	OBS_BACKUP.bilgilendirmePanel.chckbxIslem.setSelected(dbss.getBoolean("GONDERILDIGINDE"));
+            	OBS_BACKUP.bilgilendirmePanel.chckbxHata.setSelected(dbss.getBoolean("HATA_DURUMUNDA"));
+            	OBS_BACKUP.bilgilendirmePanel.textGonIsim.setText(dbss.getString("GON_ISIM"));
+            	OBS_BACKUP.bilgilendirmePanel.textGonHesap.setText(dbss.getString("GON_HESAP"));
+            	OBS_BACKUP.bilgilendirmePanel.textAlici.setText(dbss.getString("ALICI"));
+            	OBS_BACKUP.bilgilendirmePanel.textKonu.setText(dbss.getString("KONU"));
+            	OBS_BACKUP.bilgilendirmePanel.textSmtp.setText(dbss.getString("SMTP"));
+            	OBS_BACKUP.bilgilendirmePanel.textPort.setText(dbss.getString("SMTP_PORT"));
+            	OBS_BACKUP.bilgilendirmePanel.textKull.setText(dbss.getString("KULLANICI"));
+            	String decodedString = dbss.getString("SIFRE");
+				String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+				byte[] bytes = new byte[byteValues.length];
+				for (int i=0, len=bytes.length; i<len; i++) {
+					bytes[i] = Byte.parseByte(byteValues[i].trim());     
+				}
+				OBS_BACKUP.bilgilendirmePanel.textSifre.setText(ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
+				OBS_BACKUP.bilgilendirmePanel.chckbxSSL.setSelected(dbss.getBoolean("SSL"));
+				OBS_BACKUP.bilgilendirmePanel.chckbxTSL.setSelected(dbss.getBoolean("TSL"));
+            }
+          
+            //'**********YEDEKLEME
+           
+            dbss = bckp.yedekleme_bilgi(OBS_BACKUP.gelenISIM);
+            dbss.next();
+            count = dbss.getRow();
+            
+            if (count > 0)
+            {
+            	OBS_BACKUP.yedekaraligiPanel.textHerDakka.setText(dbss.getString("SAAT"));
+            	OBS_BACKUP.yedekaraligiPanel.chckbxPtesi.setSelected(dbss.getBoolean("P_TESI"));
+            	OBS_BACKUP.yedekaraligiPanel.chckbxSali.setSelected(dbss.getBoolean("SALI"));
+            	OBS_BACKUP.yedekaraligiPanel.chckbxCarsamba.setSelected(dbss.getBoolean("CARS"));
+            	OBS_BACKUP.yedekaraligiPanel.chckbxPersembe.setSelected(dbss.getBoolean("PERS"));
+            	OBS_BACKUP.yedekaraligiPanel.chckbxCuma.setSelected(dbss.getBoolean("CUMA"));
+            	OBS_BACKUP.yedekaraligiPanel.chckbxCumartesi.setSelected(dbss.getBoolean("C_TESI"));
+            	OBS_BACKUP.yedekaraligiPanel.chckbxPazar.setSelected(dbss.getBoolean("PAZAR"));
+            	//OBS_BACKUP.yedekaraligiPanel.timeBaslangic.setValue(dbss.getDate("BASLAMA"));
+            	//OBS_BACKUP.yedekaraligiPanel.timeBitis.setValue(dbss.getDate("BITIS"));
+            }
+          //'**********SERVER BILGILERI
+          
+            dbss = bckp.server_bilgi(OBS_BACKUP.gelenISIM);
+            dbss.next();
+            count = dbss.getRow();
+            
+            if (count > 0)
+            {
+            	
+            	     if (dbss.getString("HANGI_SQL").equals("Ms Sql"))
+            	     {
+            	    	 OBS_BACKUP.serverBilgileriPanel.textMSServer.setText(dbss.getString("INSTANCE"));
+            	    	 OBS_BACKUP.serverBilgileriPanel.textMSPort.setText(dbss.getString("PORT"));
+            	    	 OBS_BACKUP.serverBilgileriPanel.textMSkull.setText(dbss.getString("KULLANICI"));
+            	    	 String decodedString = dbss.getString("SIFRE");
+         				String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+         				byte[] bytes = new byte[byteValues.length];
+         				for (int i=0, len=bytes.length; i<len; i++) {
+         					bytes[i] = Byte.parseByte(byteValues[i].trim());     
+         				}
+         				OBS_BACKUP.serverBilgileriPanel.textMSsifre.setText(ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
+           	     }
+            	     else if (dbss.getString("HANGI_SQL").equals("My Sql"))
+            	     {
+            	    	 OBS_BACKUP.serverBilgileriPanel.textMYPort.setText(dbss.getString("INSTANCE"));
+            	    	 OBS_BACKUP.serverBilgileriPanel.textMykull.setText(dbss.getString("KULLANICI"));
+            	    	 String decodedString = dbss.getString("SIFRE");
+         				String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+         				byte[] bytes = new byte[byteValues.length];
+         				for (int i=0, len=bytes.length; i<len; i++) {
+         					bytes[i] = Byte.parseByte(byteValues[i].trim());     
+         				}
+         				OBS_BACKUP.serverBilgileriPanel.textMySifre.setText(ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
+            	     }
 
+            }
+            ///
+
+            if (chckbxServerDosya.isSelected())
+            {
+            	if (!lblNewLabel_6.getText().equals(""))
+            	{
+            		if (lblNewLabel_6.getText().equals("Ms Sql"))
+            		{
+            			//ResultSet msss = bckp.server_bilgi(OBS_BACKUP.gelenISIM);
+            			SIFRE_DONDUR sdon = new SIFRE_DONDUR();
+            			String response =sdon.sDONDUR(OBS_BACKUP.serverBilgileriPanel.textMSsifre);
+            			bckp.MsSql_baglan(OBS_BACKUP. serverBilgileriPanel.textMSServer.getText() ,OBS_BACKUP.serverBilgileriPanel.textMSkull.getText(),response,OBS_BACKUP.serverBilgileriPanel.textMSPort.getText());
+
+            			dbss = bckp.db_liste(OBS_BACKUP.gelenISIM);
+            			//
+            			List<String> dbList = new ArrayList<String>(); 
+            			while (dbss.next())
+            			{              
+            				dbList.add(dbss.getString("DB_ADI"));
+            			}
+            			//
+            			ResultSet dsss = bckp.db_ismi();
+            			list.removeAll();
+            			while (dsss.next())
+            			{
+            				int index = dbList.indexOf(dsss.getString("name"));
+            				CheckListItem item = (CheckListItem) new CheckListItem(dsss.getString("name"),"");
+            				if (index != -1)
+            				{
+            					item.setSelected(true);
+            				}
+            				model.addElement(item);
+            				list.repaint();
+
+            			}
+            		}
+            		else if (lblNewLabel_6.getText().equals("My Sql"))
+            		{
+            			SIFRE_DONDUR sdon = new SIFRE_DONDUR();
+            			String response = sdon.sDONDUR(OBS_BACKUP.serverBilgileriPanel.textMySifre);
+            			BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
+
+            			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            			Boolean result =	bckp.MySql_server_test( OBS_BACKUP.serverBilgileriPanel.textMykull.getText(),response,OBS_BACKUP.serverBilgileriPanel.textMYPort.getText());
+
+            			if(result)
+            			{
+            				bckp.MySql_baglan( OBS_BACKUP.serverBilgileriPanel.textMykull.getText(),response,OBS_BACKUP.serverBilgileriPanel.textMYPort.getText());   
+            				ResultSet dsss = bckp.db_ismiMySql();
+            				
+            				//
+                			List<String> dbList = new ArrayList<String>(); 
+                			dbss = bckp.db_liste(OBS_BACKUP.gelenISIM);
+                			while (dbss.next())
+                			{              
+                				dbList.add(dbss.getString("DB_ADI"));
+                			}
+            				list.removeAll();
+            				while (dsss.next())
+            				{
+            					int index = dbList.indexOf(dsss.getString("Database"));
+                				CheckListItem item = (CheckListItem) new CheckListItem(dsss.getString("Database"),"");
+                				if (index != -1)
+                				{
+                					item.setSelected(true);
+                				}
+                				model.addElement(item);
+                				list.repaint();
+            				}
+            			}
+            		}
+                    //RadLabel32.Text = "0";
+                 
+                    int dosyaSAYI = 0;
+                    for (int i = 0; i <= list.getModel().getSize() - 1; i++)
+                    {
+                    	CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
+                    	if (item.isSelected)
+                    	{
+                    		CheckListItem item2 = item;
+                    		item2.setSelected(true);
+                    		model.remove(i);
+                    		model.insertElementAt(item2, dosyaSAYI);
+
+                    		dosyaSAYI += 1;
+                    	}
+                    }
+               
+                   // RadLabel32.Text = dosyaSAYI.ToString();
+                    if (list.getModel().getSize() > 0)
+                    {
+                    	list.setSelectedIndex(0);;
+                    }
+                }
+            }
+            else // 'DIGER DOSYA
+            {
+                ResultSet ddds = bckp.diger_dosya_liste(OBS_BACKUP.gelenISIM);
+                list.removeAll();
+                while (ddds.next())
+                {
+                	CheckListItem item = (CheckListItem) new CheckListItem(ddds.getString("DOSYA_ADI"),"DOSYA_PATH");
+                	 item.setSelected(true);
+                     model.addElement(item);
+                 //    RadLabel32.Text = (r + 1).ToString();
+                }
+            }
+            //'************
+            setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        }
+        catch (Exception ex)
+        {
+        	  setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            bckp.log_kayit(OBS_BACKUP.gelenISIM, new Date(), ex.getMessage());
+            OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());        }
+	}
 }

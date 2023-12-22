@@ -20,7 +20,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -31,9 +30,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings({"serial","deprecation"})
 public class gOREV_TAKIP extends JPanel implements Runnable{
+	public TimerTask tt;
+	
 	JLabel lblNewLabel;
 	private String eADI="";
 	boolean[] gunKONTROL = { false, false, false, false, false, false, false };
@@ -66,18 +69,32 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 	public gOREV_TAKIP(String emirADI) {
 
 		eADI = emirADI;
-		System.out.println("50=" + eADI);
 		setBorder(new CompoundBorder(new EmptyBorder(5, 5, 0, 5), BorderFactory.createLineBorder(new Color(235, 235, 235))));
 		setName(emirADI); 
 		setPreferredSize(new Dimension(700,185));
 		setLayout(null);
 
 		JButton btnDuzelt = new JButton("Emir Duzelt");
+		btnDuzelt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tt.cancel();
+				OBS_BACKUP.gelenISIM = eADI ;
+				OBS_BACKUP.btnNewButton_2.doClick();
+				System.out.println("=*="+eADI);
+				
+			}
+		});
 		btnDuzelt.setName("btnDuzelt");
 		btnDuzelt.setBounds(586, 26, 110, 23);
 		add(btnDuzelt);
 
 		JButton btnSil = new JButton("Sil");
+		btnSil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//tt.cancel();
+			}
+			
+		});
 		btnSil.setBounds(586, 69, 110, 23);
 		add(btnSil);
 
@@ -158,6 +175,8 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		add(lblNewLabel_2);
 
 		lblDurum = new JLabel(".....");
+		lblDurum.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblDurum.setForeground(new Color(128, 0, 0));
 		lblDurum.setBounds(35, 16, 195, 14);
 		add(lblDurum);
 
@@ -190,7 +209,6 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		btnyenidenBASLAT.setBounds(20, 31, 23, 23);
 		btnyenidenBASLAT.setVisible(false);
 		add(btnyenidenBASLAT);
-		run();
 		try {
 			ilkBasla();
 		} catch (Exception ex) {
@@ -201,13 +219,11 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 
 	@Override
 	public void run() {
-		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-
-
-		TimerTask tt = new TimerTask() {  
+		 tt = new TimerTask() {  
 			@Override  
 			public void run() {  
 				try {
+					
 					JSpinner tsnot = new JSpinner( new SpinnerDateModel() );
 					JSpinner.DateEditor de_timetsnot = new JSpinner.DateEditor(tsnot, "dd.MM.yyyy HH:mm:ss");
 					tsnot .setEditor(de_timetsnot);
@@ -222,6 +238,14 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 					int minutes = (int) ((DakikaFarki / (1000*60)) % 60);
 					int hours   = (int) ((DakikaFarki / (1000*60*60)) % 24);
 					lblKalanZaman.setText(String.format("%02d:%02d:%02d", hours,minutes ,seconds	));
+					
+					
+					String simDI = df.format(aDate);
+					if (simDI.equals(lblGelecekYedekleme.getText())) // YEDEKLEME ZAMANI 
+					{
+					    yedekSirasinaKoy();
+					}
+					
 				} catch (Exception e) {
 
 					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
@@ -231,10 +255,21 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		timerr.schedule(tt,0,  100);;  
 
 	}
+	private void yedekSirasinaKoy() throws ClassNotFoundException, SQLException
+	{
+		tt.cancel();
+		lblSonDurum.setText("Yedekleme Sirasina Konuldu");
+	    bckp.log_kayit(eADI, new Date(), "Yedekleme Sirasina Konuldu.....");
+	    OBS_BACKUP.gorevLER.add(eADI);
+	}
 	private void basla() throws ClassNotFoundException, ParseException, SQLException
 	{
 		GunLERE_BAK();
-		run();
+		if (! lblDurum.getText().equals("Pasiv Durumda"))
+		{
+			run();
+		}
+		
 	}
 	private void ilkBasla() throws ClassNotFoundException, SQLException
 	{
@@ -267,7 +302,6 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		}
 		ResultSet dtss = bckp.emir_tek(eADI);
 		dtss.next();
-		System.out.println("sonyuk=" +dtss.getString("SON_YUKLEME"));  //1900-01-01 00:00:00
 		if(dtss.getString("SON_YUKLEME").equals("1900-01-01 00:00:00"))
 		{
 			lblSonYedek.setText("01.01.1900 00:00:00");
@@ -393,11 +427,6 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 	}
 	private void GunLERE_BAK() throws ParseException, SQLException, ClassNotFoundException
 	{
-		// Date dt = new Date();
-		//  Calendar cal = Calendar.getInstance();
-		//  cal.setFirstDayOfWeek(Calendar.MONDAY);
-		//  cal.setTime(dt);
-		///
 
 		LocalDate localDate = LocalDate.now(); // today
 		java.time.DayOfWeek dayOfWeek = localDate.getDayOfWeek();

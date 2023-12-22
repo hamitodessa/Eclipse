@@ -25,16 +25,16 @@ import java.awt.event.ActionEvent;
 public class ServerBilgileri extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	public static JTextField textMSServer;
-	public static JTextField textMSkull;
-	public static JPasswordField textMSsifre;
+	public JTextField textMSServer;
+	public JTextField textMSkull;
+	public JPasswordField textMSsifre;
 	public static JTextField textField_3;
 	public static JPasswordField passwordField_1;
-	public static JTextField textMykull;
-	public static JPasswordField textMySifre;
-	public static JTextField textMYPort;
+	public JTextField textMykull;
+	public JPasswordField textMySifre;
+	public JTextField textMYPort;
 	public static JTextField textMyDump;
-	public static JTextField textMSPort;
+	public JTextField textMSPort;
 
 	/**
 	 * Create the panel.

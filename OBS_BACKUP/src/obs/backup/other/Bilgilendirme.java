@@ -18,20 +18,20 @@ import java.awt.event.ActionEvent;
 public class Bilgilendirme extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	public static JTextField textGonIsim;
-	public static JTextField textGonHesap;
-	public static JTextField textAlici;
-	public static JTextField textKonu;
-	public static JTextField textSmtp;
-	public static JTextField textPort;
-	public static JTextField textKull;
-	public static JPasswordField textSifre;
+	public JTextField textGonIsim;
+	public JTextField textGonHesap;
+	public JTextField textAlici;
+	public JTextField textKonu;
+	public JTextField textSmtp;
+	public JTextField textPort;
+	public JTextField textKull;
+	public JPasswordField textSifre;
 	
-	public static JCheckBox chckbxIslem;
-	public static JCheckBox chckbxHata;
-	public static JCheckBox chckbxAktifPasif;
-	public static JCheckBox chckbxSSL ;
-	public static JCheckBox chckbxTSL ;
+	public JCheckBox chckbxIslem;
+	public JCheckBox chckbxHata;
+	public JCheckBox chckbxAktifPasif;
+	public JCheckBox chckbxSSL ;
+	public JCheckBox chckbxTSL ;
 
 	/**
 	 * Create the panel.

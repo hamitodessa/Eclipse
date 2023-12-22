@@ -40,8 +40,10 @@ import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Color;
@@ -55,24 +57,29 @@ import OBS_C_2025.SIFRE_DONDUR;
 public class OBS_BACKUP extends JFrame {
 
 	GLOBAL glb = new GLOBAL();
+	public static List<String> gorevLER = new ArrayList<String>();
+	public static String gelenISIM ="";
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
 	public static JPanel container ;
 	private JPanel panel_2 ;
-	private JTabbedPane tabbedPane ;
+	public static JTabbedPane tabbedPane ;
 	public static JTabbedPane tabbedPane_1;
 	int x ,y ;
-	private static YedeklemeAraligi yedekaraligiPanel;
-	private static SunucuAyarlari sunucuayarPanel;
-	private static Bilgilendirme bilgilendirmePanel;
-	private static ServerBilgileri serverBilgileriPanel;
-	private static EmirKopyala emirKopyalaPanel ;
-	private static EmirAnaGiris emirAnaGirisPanel;
+	public static YedeklemeAraligi yedekaraligiPanel;
+	public static SunucuAyarlari sunucuayarPanel;
+	public static Bilgilendirme bilgilendirmePanel;
+	public static ServerBilgileri serverBilgileriPanel;
+	public static EmirKopyala emirKopyalaPanel ;
+	public static EmirAnaGiris emirAnaGirisPanel;
 	private static JTextField txtEmir;
 	
 	private static JLabel lblNewLabel_6 ;
 	private static JLabel lblNewLabel_5;
+	
+	public static JButton btnYeni_Gorev;
+	public static JButton btnNewButton_2;
 
 
 	//private static JList list;
@@ -185,16 +192,16 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		
-		JButton btnYeni_Gorev = new JButton("Yeni Gorev");
+		btnYeni_Gorev = new JButton("Yeni Gorev");
 		btnYeni_Gorev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//OBS_BACKUP.gelenISIM = "" ;
 				emirAnaGirisPanel = new EmirAnaGiris();
 				sunucuayarPanel = new SunucuAyarlari();
 				bilgilendirmePanel = new Bilgilendirme();
 				yedekaraligiPanel = new YedeklemeAraligi();
 				emirKopyalaPanel = new EmirKopyala();
 				serverBilgileriPanel = new ServerBilgileri();
-				
 				tabbedPane.setSelectedIndex(1);
 				tabbedPane_1.setSelectedIndex(0);
 				
@@ -211,6 +218,14 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		panel.add(btnNewButton);
+		
+		btnNewButton_2 = new JButton("emir duzelt");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				emirAnaGirisPanel.emirDOLDUR();
+			}
+		});
+		panel.add(btnNewButton_2);
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		

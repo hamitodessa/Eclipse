@@ -19,6 +19,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -30,21 +32,22 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","deprecation"})
 public class gOREV_TAKIP extends JPanel implements Runnable{
 	JLabel lblNewLabel;
 	private String eADI="";
-	 boolean[] gunKONTROL = { false, false, false, false, false, false, false };
-	 JSpinner tsbas = new JSpinner();
-	 JSpinner tsbit = new JSpinner();
-	 Date dtmBASLAMA;
-	 Date dtmBITIS;
-	 JSpinner tsNOW;
-	 
-	 Date dateNOW ;
-	  Date dateBIT ;
-	  Date dateBAS;
-	 
+	boolean[] gunKONTROL = { false, false, false, false, false, false, false };
+	JSpinner tsbas = new JSpinner();
+	JSpinner tsbit = new JSpinner();
+	JSpinner tsNOW = new JSpinner();
+	Date dtmBASLAMA;
+	Date dtmBITIS;
+
+
+	Date dateNOW ;
+	Date dateBIT ;
+	Date dateBAS;
+
 	Timer timerr = new Timer();  
 	public JLabel lblemirISMI ;
 	private static JLabel lblDosyaSayisi;
@@ -57,12 +60,13 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 	private static JLabel lblKACDAKKA;
 	private static JLabel lblSonDurum;
 	private static JLabel lblGelecekYedekleme ;
-	
+	private static JLabel lblKalanZaman;
+
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	public gOREV_TAKIP(String emirADI) {
 
 		eADI = emirADI;
-		 System.out.println("50=" + eADI);
+		System.out.println("50=" + eADI);
 		setBorder(new CompoundBorder(new EmptyBorder(5, 5, 0, 5), BorderFactory.createLineBorder(new Color(235, 235, 235))));
 		setName(emirADI); 
 		setPreferredSize(new Dimension(700,185));
@@ -120,9 +124,9 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		lblNewLabel_6.setBounds(397, 132, 20, 14);
 		add(lblNewLabel_6);
 
-		JLabel lblNewLabel_7 = new JLabel("0");
-		lblNewLabel_7.setBounds(412, 132, 164, 14);
-		add(lblNewLabel_7);
+		lblKalanZaman = new JLabel("0");
+		lblKalanZaman.setBounds(412, 132, 164, 14);
+		add(lblKalanZaman);
 
 		JLabel lblNewLabel = new JLabel("Son Durum");
 		lblNewLabel.setBounds(131, 47, 83, 14);
@@ -186,7 +190,7 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		btnyenidenBASLAT.setBounds(20, 31, 23, 23);
 		btnyenidenBASLAT.setVisible(false);
 		add(btnyenidenBASLAT);
-		//  run();
+		run();
 		try {
 			ilkBasla();
 		} catch (Exception ex) {
@@ -203,38 +207,54 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		TimerTask tt = new TimerTask() {  
 			@Override  
 			public void run() {  
-				//lblNewLabel.setText(gadiString +"=="+ df.format(new Date()));
-				//System.out.println(gadiString +"=="+ df.format(new Date()));
 				try {
-					
+					JSpinner tsnot = new JSpinner( new SpinnerDateModel() );
+					JSpinner.DateEditor de_timetsnot = new JSpinner.DateEditor(tsnot, "dd.MM.yyyy HH:mm:ss");
+					tsnot .setEditor(de_timetsnot);
+					Date q1 = new Date();
+					tsnot.setValue(q1);
+					Date aDate = 	(Date) (tsnot.getValue());
+					SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+					Date dt = new Date();
+					dt =  df.parse(lblGelecekYedekleme.getText());//
+					long DakikaFarki = dt.getTime() - aDate.getTime();
+					int seconds = (int) (DakikaFarki / 1000) % 60 ;
+					int minutes = (int) ((DakikaFarki / (1000*60)) % 60);
+					int hours   = (int) ((DakikaFarki / (1000*60*60)) % 24);
+					lblKalanZaman.setText(String.format("%02d:%02d:%02d", hours,minutes ,seconds	));
 				} catch (Exception e) {
-					
-					  OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
+
+					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
 				}
 			};  
 		};
 		timerr.schedule(tt,0,  100);;  
 
 	}
+	private void basla() throws ClassNotFoundException, ParseException, SQLException
+	{
+		GunLERE_BAK();
+		run();
+	}
 	private void ilkBasla() throws ClassNotFoundException, SQLException
 	{
-		 try
-		 {
-		    
-		     bckp.log_kayit(eADI, new Date(), "Emir ilk Load....");
-		     emirBILGIYUKLE();
-		   //  basla();
-		 }
-		 catch (Exception ex)
-		 {
-			 setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		   
-		     bckp.log_kayit(eADI, new Date(), ex.getMessage());
-		     OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-		     //hataDURUMU();
-		 }
+		try
+		{
+
+			bckp.log_kayit(eADI, new Date(), "Emir ilk Load....");
+			emirBILGIYUKLE();
+			basla();
+		}
+		catch (Exception ex)
+		{
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+			bckp.log_kayit(eADI, new Date(), ex.getMessage());
+			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			//hataDURUMU();
+		}
 	}
-	private void emirBILGIYUKLE() throws SQLException, ClassNotFoundException
+	private void emirBILGIYUKLE() throws SQLException, ClassNotFoundException, ParseException
 	{
 		if (eADI.equals(""))
 		{
@@ -247,15 +267,19 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		}
 		ResultSet dtss = bckp.emir_tek(eADI);
 		dtss.next();
-		System.out.println(dtss.getString("SON_YUKLEME"));  //1900-01-01 00:00:00
+		System.out.println("sonyuk=" +dtss.getString("SON_YUKLEME"));  //1900-01-01 00:00:00
 		if(dtss.getString("SON_YUKLEME").equals("1900-01-01 00:00:00"))
 		{
-			lblSonYedek.setText("");
+			lblSonYedek.setText("01.01.1900 00:00:00");
 		}
 		else {
-			lblSonYedek.setText(dtss.getString("SON_YUKLEME"));
+
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.ENGLISH);
+			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss", Locale.ENGLISH);
+			Date snyk =  formatter.parse(dtss.getString("SON_YUKLEME"));
+			lblSonYedek.setText( df.format(snyk));
 		}
-		
+
 		lblAciklama.setText(dtss.getString("EMIR_ACIKLAMA"));
 		if ((Boolean) dtss.getBoolean("DURUM") == false)
 		{
@@ -367,488 +391,487 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		}
 
 	}
-	  private void GunLERE_BAK() throws ParseException, SQLException, ClassNotFoundException
-	  {
-	      Date dt = new Date();
-	      Calendar cal = Calendar.getInstance();
-	      cal.setTime(dt);
-	     
-	      
-	      int hangiGUNDEYIZ = (int) cal.get(Calendar.DAY_OF_WEEK);
-	      Boolean varmi = false;
-	      //
-	      
-	      ResultSet rss = bckp.yedekleme_bilgi(eADI);
-	      rss.next();
-	      for(int i = 0;i <= gunKONTROL.length - 1;i++)
-	      {
-	          gunKONTROL[i] = (boolean) rss.getBoolean(i + 2);
-	      }
-	      ///
-	      
-	      
-	      ///
-	      SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.ENGLISH);
-	      dtmBITIS =  formatter.parse(rss.getString("BITIS"));
-	      
-	      //
-	      JSpinner tsbtt = new JSpinner( new SpinnerDateModel() );
-		  JSpinner.DateEditor de_timeBaslangic = new JSpinner.DateEditor(tsbtt, "HH:mm:ss");
-		  tsbtt .setEditor(de_timeBaslangic);
-			Date qweDate = new Date();
-			qweDate.setHours(dtmBITIS.getHours());
-			qweDate.setMinutes(dtmBITIS.getMinutes());
-			qweDate.setSeconds(dtmBITIS.getSeconds());
-			tsbtt.setValue(qweDate);
-	      //
-	      
-	      tsbit = tsbtt ;
-	      dtmBASLAMA = formatter.parse(rss.getString("BASLAMA"));
-	      
-	      qweDate = new Date();
-			qweDate.setHours(dtmBASLAMA.getHours());
-			qweDate.setMinutes(dtmBASLAMA.getMinutes());
-			qweDate.setSeconds(dtmBASLAMA.getSeconds());
-			tsbtt.setValue(qweDate);
-			
-	      tsbas = tsbtt;
-	      
-	      qweDate = new Date();
-			
+	private void GunLERE_BAK() throws ParseException, SQLException, ClassNotFoundException
+	{
+		// Date dt = new Date();
+		//  Calendar cal = Calendar.getInstance();
+		//  cal.setFirstDayOfWeek(Calendar.MONDAY);
+		//  cal.setTime(dt);
+		///
+
+		LocalDate localDate = LocalDate.now(); // today
+		java.time.DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+		System.out.println(localDate.getDayOfWeek().name());   // Gun ISMI
+		///
+
+		int hangiGUNDEYIZ = (int) dayOfWeek.getValue();
+		Boolean varmi = false;
+		//
+
+		ResultSet rss = bckp.yedekleme_bilgi(eADI);
+		rss.next();
+		for(int i = 0;i <= gunKONTROL.length - 1;i++)
+		{
+			gunKONTROL[i] = (boolean) rss.getBoolean(i + 2);
+		}
+		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
+		dtmBITIS =  formatter.parse(rss.getString("BITIS"));
+		//
+		JSpinner tsbtt = new JSpinner( new SpinnerDateModel() );
+		JSpinner.DateEditor de_timeBaslangic = new JSpinner.DateEditor(tsbtt, "HH:mm");
+		tsbtt .setEditor(de_timeBaslangic);
+		Date qweDate = new Date();
+		qweDate.setHours(dtmBITIS.getHours());
+		qweDate.setMinutes(dtmBITIS.getMinutes());
+		qweDate.setSeconds(0);
 		tsbtt.setValue(qweDate);
-	      tsNOW = tsbtt ;
-	      //
-	      //
-      	  Date dateNOW = (Date) (tsNOW.getValue());
-		  Date dateBIT = (Date) (tsbit.getValue());
-		  Date dateBAS = (Date) (tsbas.getValue());
-	      //
-	      if (hangiGUNDEYIZ == 1)
-	      {
-	          hangiGUN_P_TESI(varmi, 0, false);
-	      }
-	      else if (hangiGUNDEYIZ == 2)
-	      {
-	          hangiGUN_SALI(varmi, 0, false);
-	      }
-	      if (hangiGUNDEYIZ == 3)
-	      {
-	          hangiGUN_CARS(varmi, 0, false);
-	      }
-	      if (hangiGUNDEYIZ == 4)
-	      {
-	          hangiGUN_PERS(varmi, 0, false);
-	      }
-	      if (hangiGUNDEYIZ == 5)
-	      {
-	          hangiGUN_CUMA(varmi, 0, false);
-	      }
-	      if (hangiGUNDEYIZ == 6)
-	      {
-	          hangiGUN_C_TESI(varmi, 0, false);
-	      }
-	      if (hangiGUNDEYIZ == 0)
-	      {
-	          hangiGUN_PAZAR(varmi, 0, false);
-	      }
-	  }
-	  private void hangiGUN_P_TESI(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
-	  {
-	      if (gunKONTROL[0])
-	      {
-	          for (int i = 2; i < 9; i++) 
-	          {
-	              if (gunKONTROL[i-2])
-	              {
-	                  if (disardan == false)
-	                  {
-	                      if (kacGUN == 0)
-	                      {
-	                    	
-	                    	  //
-	                          if (dateNOW == dateBIT || dateNOW.after(dateBIT))
-	                          {
-	                              hangiGUN_SALI(varmi, kacGUN + 1, true);
-	                              return;
-	                          }
-	                          else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
-	                          {
-	                              guniciKONTROL();
-	                              return; 
-	                          }
-	                          else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
-	                          {
-	                              guniciKONTROL();
-	                              return;
-	                          }
-	                          else
-	                          {
-	                              guniciKONTROL();
-	                             
-	                              bckp.log_kayit(eADI,new Date(), "p.tesi else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
-	                              return;
-	                          }
-	                      }
-	                  }
-	                  gunEKLE(dtmBASLAMA, kacGUN);
-	                  return;
-	              }
-	          }
-	      }
-	      else
-	      { 
-	          hangiGUN_SALI(varmi, kacGUN + 1, false);
-	      }
-	  }
-	  private void hangiGUN_SALI(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
-	  {
-	      if (gunKONTROL[1])
-	      {
-	          for (int i = 3; i < 9; i++)
-	          {
-	              if (gunKONTROL[i-2])
-	              {
-	                  if (disardan == false)
-	                  {
-	                      if (kacGUN == 0)
-	                      {
-	                    	  if (dateNOW == dateBIT || dateNOW.after(dateBIT))
-	                          {
-	                              hangiGUN_CARS(varmi, kacGUN + 1, true);
-	                              return;
-	                          }
-	                    	  else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
-	                          {
-	                              guniciKONTROL();
-	                              return; 
-	                          }
-	                    	  else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
-	                          {
-	                              guniciKONTROL();
-	                              return;
-	                          }
-	                          else
-	                          {
-	                              guniciKONTROL();
-	                              
-	                              bckp.log_kayit(eADI, new Date(), "sali else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
-	                              return;
-	                          }
-	                      }
-	                  }
-	                  gunEKLE(dtmBASLAMA, kacGUN);
-	                  return;
-	              }
-	          }
-	      }
-	      else
-	      {
-	          hangiGUN_CARS(varmi, kacGUN + 1, false);
-	      }
-	  }
-	  private void hangiGUN_CARS(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
-	  {
-	      if (gunKONTROL[2])  // Persembeden Say 
-	      {
-	          for (int i = 4; i < 9; i++)
-	          {
-	              if (gunKONTROL[i-2])
-	              {
-	                  if (disardan == false)
-	                  {
-	                      if (kacGUN == 0)
-	                      {
-	                    	  if (dateNOW == dateBIT || dateNOW.after(dateBIT))
-	                          {
-	                              hangiGUN_PERS(varmi, kacGUN + 1, true);
-	                              return;
-	                          }
-	                    	  else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
-	                          {
-	                              guniciKONTROL();
-	                              return; 
-	                          }
-	                    	  else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
-	                          {
-	                              guniciKONTROL();
-	                              return;
-	                          }
-	                          else
-	                          {
-	                              guniciKONTROL();
-	                            
-	                              bckp.log_kayit(eADI, new Date(), "Cars else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
-	                              return;
-	                          }
-	                      }
-	                  }
-	                  gunEKLE(dtmBASLAMA, kacGUN);
-	                  return;
-	              }
-	          }
-	      }
-	      else
-	      {
-	          hangiGUN_PERS(varmi, kacGUN + 1, false);
-	      }
-	  }
-	  private void hangiGUN_PERS(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
-	  {
-	      if (gunKONTROL[3])
-	      {
-	          for (int i = 5; i < 9; i++)
-	          {
-	              if (gunKONTROL[i-2])
-	              {
-	                  if (disardan == false)
-	                  {
-	                      if (kacGUN == 0)
-	                      {
-	                    	  if (dateNOW == dateBIT || dateNOW.after(dateBIT))
-	                          {
-	                              hangiGUN_CUMA(varmi, kacGUN + 1, true);
-	                              return;
-	                          }
-	                    	  else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
-	                          {
-	                              guniciKONTROL();
-	                              return;
-	                          }
-	                    	  else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
-	                          {
-	                              guniciKONTROL();
-	                              return;
-	                          }
-	                          else
-	                          {
-	                              guniciKONTROL();
-	                           
-	                              bckp.log_kayit(eADI, new Date(), "Pers else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
-	                              return;
-	                          }
-	                      }
-	                  }
-	                  gunEKLE(dtmBASLAMA, kacGUN);
-	                  return; 
-	              }
-	          }
-	      }
-	      else
-	      {
-	          hangiGUN_CUMA(varmi, kacGUN + 1, false);
-	      }
-	  }
-	  private void hangiGUN_CUMA(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
-	  {
-	      if (gunKONTROL[4])  //  C.tesiden Say 
-	      {
-	          for (int i = 6; i < 9; i++)
-	          {
-	              if (gunKONTROL[i-2])
-	              {
-	                  if (disardan == false)
-	                  {
-	                      if (kacGUN == 0)
-	                      {
-	                    	  if (dateNOW == dateBIT || dateNOW.after(dateBIT))
-	                          {
-	                              hangiGUN_C_TESI(varmi, kacGUN + 1, true);
-	                              return;
-	                          }
-	                    	  else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
-	                          {
-	                              guniciKONTROL();
-	                              return;
-	                          }
-	                    	  else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
-	                          {
-	                              guniciKONTROL();
-	                              return;
-	                          }
-	                          else
-	                          {
-	                              guniciKONTROL();
-	                        
-	                              bckp.log_kayit(eADI, new Date(), "cuma else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
-	                              return;
-	                          }
-	                      }
-	                  }
-	                  gunEKLE(dtmBASLAMA, kacGUN);
-	                  return;
-	              }
-	          }
-	      }
-	      else
-	      {
-	          hangiGUN_C_TESI(varmi, kacGUN + 1, false);
-	      }
-	  }
-	  private void hangiGUN_C_TESI(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
-	  {
-	      if (gunKONTROL[5]) // 
-	      {
-	          for (int i = 7; i < 9; i++)
-	          {
-	              if (gunKONTROL[i-2])
-	              {
-	                  if (disardan == false)
-	                  {
-	                      if (kacGUN == 0)
-	                      {
-	                    	  if (dateNOW == dateBIT || dateNOW.after(dateBIT))
-	                          {
-	                              hangiGUN_PAZAR(varmi, kacGUN + 1, true);
-	                              return;
-	                          }
-	                    	  else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
-	                          {
-	                              guniciKONTROL();
-	                              return; 
-	                          }
-	                    	  else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
-	                          {
-	                              guniciKONTROL();
-	                              return;
-	                          }
-	                          else
-	                          {
-	                              guniciKONTROL();
-	                            
-	                              bckp.log_kayit(eADI, new Date(), "Ctesi else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
-	                              return;
-	                          }
-	                      }
-	                  }
-	                  gunEKLE(dtmBASLAMA, kacGUN);
-	                  return;
-	              }
-	          }
-	      }
-	      else
-	      {
-	          hangiGUN_PAZAR(varmi, kacGUN + 1, false);
-	      }
-	  }
-	  private void hangiGUN_PAZAR(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
-	  {
-	      if (gunKONTROL[6])
-	      {
-	          for (int i = 8; i < 9; i++)
-	          {
-	              if (gunKONTROL[i-2])
-	              {
-	                  if (disardan == false)
-	                  {
-	                      if (kacGUN == 0)
-	                      {
-	                    	  if (dateNOW == dateBIT || dateNOW.after(dateBIT))
-	                          {
-	                              hangiGUN_P_TESI(varmi, kacGUN + 1, true);
-	                              return;
-	                          }
-	                    	  else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
-	                          {
-	                              guniciKONTROL();
-	                              return;
-	                          }
-	                    	  else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
-	                          {
-	                              guniciKONTROL();
-	                              return;
-	                          }
-	                          else
-	                          {
-	                              guniciKONTROL();
-	                            
-	                              bckp.log_kayit(eADI, new Date(), "pazar else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
-	                              return;
-	                          }
-	                      }
-	                  }
-	                  gunEKLE(dtmBASLAMA, kacGUN);
-	                  return;
-	              }
-	          }
-	      }
-	      else
-	      {
-	          hangiGUN_P_TESI(varmi, kacGUN + 1, true);
-	      }
-	  }
-	  private void gunEKLE(Date basLA, int gun)
-	  {
-	      Date date1 = basLA; 
-	      Date dt = new Date(new Date().getYear(), new Date().getMonth(), new Date().getDay(), date1.getHours(), date1.getMinutes(), 0);
-	     
-	     
-	      Calendar c = Calendar.getInstance(); 
-	      c.setTime(dt); 
-	      c.add(Calendar.DATE, gun);
-	      dt = c.getTime();
-	      
-	      
-	      Date now = dt ;
-	      Date dtt = new Date(now.getYear(), now.getMonth(), now.getDay(), dt.getHours(), dt.getMinutes(), 0);
-	      
-	      SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-	      lblGelecekYedekleme.setText( df.format(dtt));
-	  }
-	  private void guniciKONTROL() throws ParseException
-	  {
-	     // var cultureInfo = new CultureInfo("en-EN");
-	      //
-	      SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss", Locale.ENGLISH);
-	      Date basLAMA =  formatter.parse(lblBASLAMA.getText());
-	      Date basLAMA_1 = new Date(new Date().getYear() + "." + new Date().getMonth() + "." + new Date().getDay() + " " + basLAMA.getHours() + ":" + basLAMA.getMinutes() + ":" + basLAMA.getSeconds());
+		tsbit = tsbtt ;
+		dtmBASLAMA = formatter.parse(rss.getString("BASLAMA"));
 
-	      //
-	      lblGelecekYedekleme.setText( formatter.format(basLAMA_1));
-	     
+		////
+		JSpinner tsbass = new JSpinner( new SpinnerDateModel() );
+		JSpinner.DateEditor de_bass = new JSpinner.DateEditor(tsbass, "HH:mm");
+		tsbass .setEditor(de_bass);
+		qweDate = new Date();
+		qweDate.setHours(dtmBASLAMA.getHours());
+		qweDate.setMinutes(dtmBASLAMA.getMinutes());
+		qweDate.setSeconds(0);
+		tsbass.setValue(qweDate);
 
-	      Date gelYEDEK =  formatter.parse(lblGelecekYedekleme.getText());// Gelecek Yedekleme
-	      Date sonYEDE =  formatter.parse(lblSonYedek.getText());// Son Yedekleme
-	     
-	      Date sonYEDEK = new Date(gelYEDEK.getYear() + "." + gelYEDEK.getMonth() + "." + gelYEDEK.getDay() + " " + sonYEDE.getHours() + ":" + sonYEDE.getMinutes() + ":" + sonYEDE.getSeconds());
+		tsbas = tsbass;
 
-	      Date biTIS = formatter.parse(lblBITIS.getText()); 
-	      Date biTISS = new Date(sonYEDEK.getYear() + "." + sonYEDEK.getMonth() + "." + sonYEDEK.getDay() + " " + biTIS.getHours() + ":" + biTIS.getMinutes() + ":" + biTIS.getSeconds());
-	      do
-	      {
-	          if (new Date().before(basLAMA_1))
-	          {
-	              Date baSL =  formatter.parse(lblBASLAMA.getText());
-	              gunEKLE(new Date(new Date().getYear(), new Date().getMonth(), new Date().getDay() , baSL.getHours(), baSL.getMinutes(), 0), 0);
-	              return;
-	          }
-	          Calendar c = Calendar.getInstance(); 
-		      c.setTime(basLAMA_1); 
-		      c.add(Calendar.DATE,Integer.valueOf(lblKACDAKKA.getText()));
-		      basLAMA_1 = c.getTime();
-		      
-	         
-	          Date suAN = new Date(new Date().getYear(), new Date().getMonth(),new Date().getDay(), new Date().getHours(), new Date().getMinutes(), 0);
-	          if (basLAMA_1.after(suAN))
-	          {
-	              if (basLAMA_1.after(biTISS)  || basLAMA_1 == biTISS)
-	              {
-	                  if (new Date().before(biTISS))
-	                  {
-	                      gunEKLE(formatter.parse(lblBITIS.getText()), 0);
-	                      return;
-	                  }
-	                  else
-	                  {
-	                      gunEKLE(formatter.parse(lblBASLAMA.getText()), 1);
-	                      return;
-	                  }
-	              }
-	              else
-	              {
-	                  gunEKLE(basLAMA_1, 0);
-	                  return;
-	              }
-	          }
-	      } while (basLAMA_1.before(biTISS) || basLAMA_1 == biTISS);
-	  }
+//		JSpinner tsnot = new JSpinner( new SpinnerDateModel() );
+//		JSpinner.DateEditor de_timetsnot = new JSpinner.DateEditor(tsnot, "dd.MM.yyyy HH:mm:ss");
+//		tsnot .setEditor(de_timetsnot);
+//		Date q1 = new Date();
+//		tsnot.setValue(q1);
+//		tsNOW  = tsnot;
+	
+		dateNOW  = new Date();
+		dateBIT = (Date) (tsbit.getValue());
+		dateBAS = (Date) (tsbas.getValue());
+		if (hangiGUNDEYIZ == 1)
+		{
+			hangiGUN_P_TESI(varmi, 0, false);
+		}
+		else if (hangiGUNDEYIZ == 2)
+		{
+			hangiGUN_SALI(varmi, 0, false);
+		}
+		if (hangiGUNDEYIZ == 3)
+		{
+			hangiGUN_CARS(varmi, 0, false);
+		}
+		if (hangiGUNDEYIZ == 4)
+		{
+			hangiGUN_PERS(varmi, 0, false);
+		}
+		if (hangiGUNDEYIZ == 5)
+		{
+			hangiGUN_CUMA(varmi, 0, false);
+		}
+		if (hangiGUNDEYIZ == 6)
+		{
+			hangiGUN_C_TESI(varmi, 0, false);
+		}
+		if (hangiGUNDEYIZ == 0)
+		{
+			hangiGUN_PAZAR(varmi, 0, false);
+		}
+	}
+	private void hangiGUN_P_TESI(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
+	{
+		if (gunKONTROL[0])
+		{
+			for (int i = 2; i < 9; i++) 
+			{
+				if (gunKONTROL[i-2])
+				{
+					if (disardan == false)
+					{
+						if (kacGUN == 0)
+						{
+
+							//
+							if (dateNOW == dateBIT || dateNOW.after(dateBIT))
+							{
+								hangiGUN_SALI(varmi, kacGUN + 1, true);
+								return;
+							}
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
+							{
+								guniciKONTROL();
+								return; 
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+								guniciKONTROL();
+								return;
+							}
+							else
+							{
+								guniciKONTROL();
+
+								bckp.log_kayit(eADI,new Date(), "p.tesi else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
+								return;
+							}
+						}
+					}
+					gunEKLE(dtmBASLAMA, kacGUN);
+					return;
+				}
+			}
+		}
+		else
+		{ 
+			hangiGUN_SALI(varmi, kacGUN + 1, false);
+		}
+	}
+	private void hangiGUN_SALI(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
+	{
+		if (gunKONTROL[1])
+		{
+			for (int i = 3; i < 9; i++)
+			{
+				if (gunKONTROL[i-2])
+				{
+					if (disardan == false)
+					{
+						if (kacGUN == 0)
+						{
+							if (dateNOW == dateBIT || dateNOW.after(dateBIT))
+							{
+								hangiGUN_CARS(varmi, kacGUN + 1, true);
+								return;
+							}
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
+							{
+								guniciKONTROL();
+								return; 
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+								guniciKONTROL();
+								return;
+							}
+							else
+							{
+								guniciKONTROL();
+
+								bckp.log_kayit(eADI, new Date(), "sali else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
+								return;
+							}
+						}
+					}
+					gunEKLE(dtmBASLAMA, kacGUN);
+					return;
+				}
+			}
+		}
+		else
+		{
+			hangiGUN_CARS(varmi, kacGUN + 1, false);
+		}
+	}
+	private void hangiGUN_CARS(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
+	{
+		if (gunKONTROL[2])  // Persembeden Say 
+		{
+			for (int i = 4; i < 9; i++)
+			{
+				if (gunKONTROL[i-2])
+				{
+					if (disardan == false)
+					{
+						if (kacGUN == 0)
+						{
+							if (dateNOW == dateBIT || dateNOW.after(dateBIT))
+							{
+								hangiGUN_PERS(varmi, kacGUN + 1, true);
+								return;
+							}
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
+							{
+								guniciKONTROL();
+								return; 
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+								guniciKONTROL();
+								return;
+							}
+							else
+							{
+								guniciKONTROL();
+
+								bckp.log_kayit(eADI, new Date(), "Cars else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
+								return;
+							}
+						}
+					}
+					gunEKLE(dtmBASLAMA, kacGUN);
+					return;
+				}
+			}
+		}
+		else
+		{
+			hangiGUN_PERS(varmi, kacGUN + 1, false);
+		}
+	}
+	private void hangiGUN_PERS(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
+	{
+		if (gunKONTROL[3])
+		{
+			for (int i = 5; i < 9; i++)
+			{
+				if (gunKONTROL[i-2])
+				{
+					if (disardan == false)
+					{
+						if (kacGUN == 0)
+						{
+							if (dateNOW == dateBIT || dateNOW.after(dateBIT))
+							{
+								hangiGUN_CUMA(varmi, kacGUN + 1, true);
+								return;
+							}
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
+							{
+								guniciKONTROL();
+								return;
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+								guniciKONTROL();
+								return;
+							}
+							else
+							{
+								guniciKONTROL();
+
+								bckp.log_kayit(eADI, new Date(), "Pers else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
+								return;
+							}
+						}
+					}
+					gunEKLE(dtmBASLAMA, kacGUN);
+					return; 
+				}
+			}
+		}
+		else
+		{
+			hangiGUN_CUMA(varmi, kacGUN + 1, false);
+		}
+	}
+	private void hangiGUN_CUMA(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
+	{
+		System.out.println("dk=="+gunKONTROL[4]);
+		if (gunKONTROL[4])  //  C.tesiden Say 
+		{
+			for (int i = 6; i < 9; i++)
+			{
+
+				if (gunKONTROL[i-2])
+				{
+					if (disardan == false)
+					{
+						if (kacGUN == 0)
+						{
+
+							if (dateNOW == dateBIT || dateNOW.after(dateBIT))
+							{
+								hangiGUN_C_TESI(varmi, kacGUN + 1, true);
+								return;
+							}
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
+							{
+								guniciKONTROL();
+								return;
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+
+								guniciKONTROL();
+								return;
+							}
+							else
+							{
+								guniciKONTROL();
+
+								bckp.log_kayit(eADI, new Date(), "cuma else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
+								return;
+							}
+						}
+					}
+					gunEKLE(dtmBASLAMA, kacGUN);
+					return;
+				}
+			}
+		}
+		else
+		{
+			hangiGUN_C_TESI(varmi, kacGUN + 1, false);
+		}
+	}
+	private void hangiGUN_C_TESI(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
+	{
+		if (gunKONTROL[5]) // 
+		{
+			for (int i = 7; i < 9; i++)
+			{
+				if (gunKONTROL[i-2])
+				{
+					if (disardan == false)
+					{
+						if (kacGUN == 0)
+						{
+							if (dateNOW == dateBIT || dateNOW.after(dateBIT))
+							{
+								hangiGUN_PAZAR(varmi, kacGUN + 1, true);
+								return;
+							}
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
+							{
+								guniciKONTROL();
+								return; 
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+								guniciKONTROL();
+								return;
+							}
+							else
+							{
+								guniciKONTROL();
+
+								bckp.log_kayit(eADI, new Date(), "Ctesi else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
+								return;
+							}
+						}
+					}
+					gunEKLE(dtmBASLAMA, kacGUN);
+					return;
+				}
+			}
+		}
+		else
+		{
+			hangiGUN_PAZAR(varmi, kacGUN + 1, false);
+		}
+	}
+	private void hangiGUN_PAZAR(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
+	{
+		if (gunKONTROL[6])
+		{
+			for (int i = 8; i < 9; i++)
+			{
+				if (gunKONTROL[i-2])
+				{
+					if (disardan == false)
+					{
+						if (kacGUN == 0)
+						{
+							if (dateNOW == dateBIT || dateNOW.after(dateBIT))
+							{
+								hangiGUN_P_TESI(varmi, kacGUN + 1, true);
+								return;
+							}
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
+							{
+								guniciKONTROL();
+								return;
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+								guniciKONTROL();
+								return;
+							}
+							else
+							{
+								guniciKONTROL();
+
+								bckp.log_kayit(eADI, new Date(), "pazar else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
+								return;
+							}
+						}
+					}
+					gunEKLE(dtmBASLAMA, kacGUN);
+					return;
+				}
+			}
+		}
+		else
+		{
+			hangiGUN_P_TESI(varmi, kacGUN + 1, true);
+		}
+	}
+	private void gunEKLE(Date basLA, int gun)
+	{
+		Date date1 = basLA; 
+		Date dt = new Date();
+		dt = new Date(new Date().getYear(), new Date().getMonth(), new Date().getDate(), date1.getHours(), date1.getMinutes(), 0);
+		Calendar c = Calendar.getInstance(); 
+		c.setTime(dt); 
+		c.add(Calendar.DATE, gun);
+		dt = c.getTime();
+		Date now = dt ;
+		Date dtt = new Date();
+		dtt = new Date(now.getYear(), now.getMonth(), now.getDate(), dt.getHours(), dt.getMinutes(), 0);
+		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+		lblGelecekYedekleme.setText( df.format(dtt));
+	}
+	private void guniciKONTROL() throws ParseException
+	{
+		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
+		Date basLAMA =  formatter.parse(lblBASLAMA.getText());
+		Date basLAMA_1 = new Date();
+		basLAMA_1 = new Date(new Date().getYear()  ,  new Date().getMonth()  ,  new Date().getDate()  ,  basLAMA.getHours() ,  basLAMA.getMinutes() , basLAMA.getSeconds());
+		formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH);
+		lblGelecekYedekleme.setText( formatter.format(basLAMA_1));
+		Date gelYEDEK =  formatter.parse(lblGelecekYedekleme.getText());// Gelecek Yedekleme
+		Date sonYEDE =  formatter.parse(lblSonYedek.getText());// Son Yedekleme
+		Date sonYEDEK = new Date();
+		sonYEDEK = new Date(gelYEDEK.getYear() , gelYEDEK.getMonth() , gelYEDEK.getDate() , sonYEDE.getHours() , sonYEDE.getMinutes() , sonYEDE.getSeconds());
+		formatter = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
+		Date biTIS  = formatter.parse(lblBITIS.getText());
+		Date biTISS = new Date();
+		biTISS = new Date(sonYEDEK.getYear() ,sonYEDEK.getMonth() , sonYEDEK.getDate() , biTIS.getHours() , biTIS.getMinutes() , biTIS.getSeconds());
+		do
+		{
+			if (new Date().before(basLAMA_1))
+			{
+				Date baSL =  formatter.parse(lblBASLAMA.getText());
+				gunEKLE(new Date(new Date().getYear(), new Date().getMonth(), new Date().getDate() , baSL.getHours(), baSL.getMinutes(), 0), 0);
+				return;
+			}
+			Calendar c = Calendar.getInstance(); 
+			c.setTime(basLAMA_1); 
+			c.add(Calendar.MINUTE,Integer.valueOf(lblKACDAKKA.getText()));
+			basLAMA_1 = c.getTime();
+			Date suAN = new Date(new Date().getYear(), new Date().getMonth(),new Date().getDate(), new Date().getHours(), new Date().getMinutes(), 0);
+			if (basLAMA_1.after(suAN))
+			{
+				if (basLAMA_1.after(biTISS)  || basLAMA_1 == biTISS)
+				{
+					if (new Date().before(biTISS))
+					{
+						gunEKLE(formatter.parse(lblBITIS.getText()), 0);
+						return;
+					}
+					else
+					{
+						gunEKLE(formatter.parse(lblBASLAMA.getText()), 1);
+						return;
+					}
+				}
+				else
+				{
+					gunEKLE(basLAMA_1, 0);
+					return;
+				}
+			}
+		} while (basLAMA_1.before(biTISS) || basLAMA_1 == biTISS);
+	}
 }

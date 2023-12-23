@@ -38,7 +38,7 @@ public class Bilgilendirme extends JPanel {
 	 */
 	public Bilgilendirme() {
 		setLayout(null);
-		
+		setName("bilgilendirmePanel");
 		JLabel lblNewLabel = new JLabel("Durum");
 		lblNewLabel.setBounds(37, 28, 48, 14);
 		add(lblNewLabel);

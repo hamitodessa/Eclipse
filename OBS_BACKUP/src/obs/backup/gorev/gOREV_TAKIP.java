@@ -7,6 +7,9 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
 import OBS_C_2025.BACKUP_GLOBAL;
+import OBS_C_2025.db_List;
+import OBS_C_2025.emir_bilgiler;
+import OBS_C_2025.yedekleme_bilgiler;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -22,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,6 +33,7 @@ import java.util.TimerTask;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -79,8 +84,10 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				tt.cancel();
 				OBS_BACKUP.gelenISIM = eADI ;
+				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 				OBS_BACKUP.btnNewButton_2.doClick();
-				System.out.println("=*="+eADI);
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				
 			}
 		});
@@ -300,22 +307,23 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 				}
 			}
 		}
-		ResultSet dtss = bckp.emir_tek(eADI);
-		dtss.next();
-		if(dtss.getString("SON_YUKLEME").equals("1900-01-01 00:00:00"))
+		 List<emir_bilgiler> emirBilgiler =  bckp.emir_tek(eADI);
+
+		if(emirBilgiler.get(0).getSON_YUKLEME().toString().equals("1900-01-01 00:00:00"))
 		{
 			lblSonYedek.setText("01.01.1900 00:00:00");
 		}
 		else {
 
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.ENGLISH);
-			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss", Locale.ENGLISH);
-			Date snyk =  formatter.parse(dtss.getString("SON_YUKLEME"));
+			SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH);
+			Date snyk =  formatter.parse(emirBilgiler.get(0).getSON_YUKLEME().toString());
+		
 			lblSonYedek.setText( df.format(snyk));
 		}
 
-		lblAciklama.setText(dtss.getString("EMIR_ACIKLAMA"));
-		if ((Boolean) dtss.getBoolean("DURUM") == false)
+		lblAciklama.setText(emirBilgiler.get(0).getEMIR_ACIKLAMA());
+		if (emirBilgiler.get(0).isDURUM() == false)
 		{
 			lblDurum.setVisible(true);
 			lblDurum.setText("Pasiv Durumda");
@@ -325,7 +333,7 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 			lblDurum.setVisible(false);
 			lblDurum.setText(".....");
 		}
-		Boolean kontrol = (Boolean)   dtss.getBoolean("SON_DURUM");
+		Boolean kontrol = emirBilgiler.get(0).isSON_DURUM();
 		if (kontrol)
 		{
 			lblSonDurum.setForeground(Color.GREEN);
@@ -333,44 +341,39 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		}
 		else
 		{
-			lblSonDurum.setText(dtss.getString("MESAJ"));
+			lblSonDurum.setText(emirBilgiler.get(0).getMESAJ());
 			lblSonDurum.setForeground(Color.RED);
 		}
-		String insTANCE = dtss.getString("INSTANCE") ;
-		boolean SQL_YEDEK_MI = dtss.getBoolean("SQL_YEDEK");
+		String insTANCE = emirBilgiler.get(0).getINSTANCE() ;
+		boolean SQL_YEDEK_MI = emirBilgiler.get(0).isSQL_YEDEK();
 		if (SQL_YEDEK_MI)
 		{
 			if (bckp.ftp_neresi(eADI).equals("FTP"))
 			{
 				// btnINDIR.Enabled = true;
-				System.out.println("248");
-				ResultSet dtds ;
-				dtds = bckp.db_liste(eADI);
-				dtds.next();
-				int count = dtds .getRow();
-				if (count == 0 ) {  
+					List<String> dbliste = bckp.db_liste(eADI);
+				
+				if (dbliste.size() == 0 ) {  
 					lblDosyaSayisi.setText("0 Adet Dosya");
 				}
 				else {
-					lblDosyaSayisi.setText(count + " Adet Dosya - " + insTANCE);
+					lblDosyaSayisi.setText(dbliste.size() + " Adet Dosya - " + insTANCE);
 					lblSurucu.setText(bckp.surucu_bilgi(eADI, "HOST") + "\\" + bckp.surucu_bilgi(eADI, "SURUCU").replace("/", "\\"));
 				}
 			}
 			else
 			{
 				// btnINDIR.Enabled = false;
-				ResultSet dtds ;
-				dtds = bckp.db_liste(eADI);
-				dtds.next();
-				int count = dtds .getRow();
-
-				if (count == 0 ) {  
+			
+				List<String> dbliste = bckp.db_liste(eADI);
+				
+				if (dbliste.size() == 0 ) {  
 					lblDosyaSayisi.setText("0 Adet Dosya");
 					lblSurucu.setText(bckp.surucu_bilgi(eADI, "SURUCU_YER"));
 				}
 				else
 				{
-					lblDosyaSayisi.setText(count +  " Adet Dosya...");
+					lblDosyaSayisi.setText(dbliste.size() +  " Adet Dosya...");
 					lblSurucu.setText(bckp.surucu_bilgi(eADI, "SURUCU_YER"));
 				}
 			}
@@ -380,48 +383,44 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 			if (bckp.ftp_neresi(eADI) == "FTP")
 			{
 				//btnINDIR.Enabled = true;
-				ResultSet dtds ;
-				dtds = bckp.diger_dosya_liste(lblemirISMI.getText());
-				dtds.next();
-				int count = dtds .getRow();
-				if (count == 0 ) {  
+				List<db_List> dosliste = bckp.diger_dosya_liste(lblemirISMI.getText());
+				if (dosliste.size() == 0 ) {  
 					lblDosyaSayisi.setText("0 Adet Dosya");
 				}
 				else
 				{
-					lblDosyaSayisi.setText(count +  " Adet Dosya...");
+					lblDosyaSayisi.setText(dosliste.size() +  " Adet Dosya...");
 					lblSurucu.setText(bckp.surucu_bilgi(eADI,"HOST") + "\\" + bckp.surucu_bilgi(eADI, "SURUCU").replace("/", "\\"));
 				}
 			}
 			else
 			{
 				//btnINDIR.Enabled = false;
-				ResultSet dtds = bckp.diger_dosya_liste(eADI);
-				dtds.next();
-				int count = dtds .getRow();
-				if (count == 0 ) {  
+				List<db_List> dosliste = bckp.diger_dosya_liste(lblemirISMI.getText());
+				if (dosliste.size() == 0 ) 
+				{  
 					lblDosyaSayisi.setText("0 Adet Dosya");
 					lblSurucu.setText(bckp.surucu_bilgi(eADI, "SURUCU_YER"));
 				}
 				else
 				{
-					lblDosyaSayisi.setText(count +  " Adet Dosya...");
+					lblDosyaSayisi.setText(dosliste.size() +  " Adet Dosya...");
 					lblSurucu.setText(bckp.surucu_bilgi(lblemirISMI.getText(), "SURUCU_YER"));
 				}
 			}
 		}
-		ResultSet dysss = bckp.yedekleme_bilgi(lblemirISMI.getText());
-		dysss .next();
-		int count = dysss .getRow();
-		if (count ==0 ) {  
-
+		
+		 List<yedekleme_bilgiler> yedekBilgiler =  bckp.yedekleme_bilgi(lblemirISMI.getText());
+		
+		 if ( yedekBilgiler.size() > 0) {
 		}
 
 		else
 		{
-			lblBASLAMA.setText(dysss.getString("BASLAMA"));
-			lblBITIS.setText(dysss.getString("BITIS"));
-			lblKACDAKKA.setText(dysss.getString("SAAT"));
+			JOptionPane.showConfirmDialog(null,"420=="+yedekBilgiler.get(0).getBASLAMA().toString() );
+			lblBASLAMA.setText(yedekBilgiler.get(0).getBASLAMA().toString());
+			lblBITIS.setText(yedekBilgiler.get(0).getBITIS().toString());
+			lblKACDAKKA.setText(yedekBilgiler.get(0).getSAAT());
 		}
 
 	}
@@ -436,15 +435,22 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		int hangiGUNDEYIZ = (int) dayOfWeek.getValue();
 		Boolean varmi = false;
 		//
-
-		ResultSet rss = bckp.yedekleme_bilgi(eADI);
-		rss.next();
-		for(int i = 0;i <= gunKONTROL.length - 1;i++)
-		{
-			gunKONTROL[i] = (boolean) rss.getBoolean(i + 2);
-		}
+	
+		 List<yedekleme_bilgiler> yedekBilgiler =  bckp.yedekleme_bilgi(lblemirISMI.getText());
+		//for(int i = 0;i <= gunKONTROL.length - 1;i++)
+		//{
+			gunKONTROL[0] = yedekBilgiler.get(0).isP_TESI();
+			gunKONTROL[1] = yedekBilgiler.get(0).isSALI();
+			gunKONTROL[2] = yedekBilgiler.get(0).isCARS();
+			gunKONTROL[3] = yedekBilgiler.get(0).isPERS();
+			gunKONTROL[4] = yedekBilgiler.get(0).isCUMA();
+			gunKONTROL[5] = yedekBilgiler.get(0).isC_TESI();
+			gunKONTROL[6] = yedekBilgiler.get(0).isPAZAR();
+		//}
 		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
-		dtmBITIS =  formatter.parse(rss.getString("BITIS"));
+		dtmBITIS =  formatter.parse(yedekBilgiler.get(0).getBITIS().toString());
+		
+	
 		//
 		JSpinner tsbtt = new JSpinner( new SpinnerDateModel() );
 		JSpinner.DateEditor de_timeBaslangic = new JSpinner.DateEditor(tsbtt, "HH:mm");
@@ -455,7 +461,7 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		qweDate.setSeconds(0);
 		tsbtt.setValue(qweDate);
 		tsbit = tsbtt ;
-		dtmBASLAMA = formatter.parse(rss.getString("BASLAMA"));
+		dtmBASLAMA = formatter.parse(yedekBilgiler.get(0).getBASLAMA().toString());
 
 		////
 		JSpinner tsbass = new JSpinner( new SpinnerDateModel() );

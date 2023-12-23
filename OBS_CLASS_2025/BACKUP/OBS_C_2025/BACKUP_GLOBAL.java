@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,9 +21,15 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import javax.swing.JOptionPane;
+
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.hsqldb.lib.CountdownInputStream;
+
+
+
+
 
 
 @SuppressWarnings({"static-access","unused"})
@@ -182,8 +189,6 @@ public class BACKUP_GLOBAL {
 		String sql = "";
 		sql = "UPDATE EMIRLER SET SON_DURUM = @dur,SON_YUKLEME = @yuk ,MESAJ = @msg WHERE EMIR_ISMI = '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
-
-
 		stmt.setBoolean(1, drm);
 		String str = TARIH_CEVIR.milis_ddMMyyyy(yuk.getTime());
 		stmt.setString(2, str);
@@ -264,8 +269,9 @@ public class BACKUP_GLOBAL {
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
-		con = glb.myBackupConnection();
+		con =  glb.myBackupConnection();
 		String sql = "";
+	 
 		sql = "DELETE FROM DB_ISIM WHERE EMIR_ISMI = '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
@@ -541,7 +547,7 @@ public class BACKUP_GLOBAL {
 		con.close();
 		return count  != 0;
 	}
-	public ResultSet emir_liste(String siralama)throws ClassNotFoundException, SQLException
+	public List<emir_bilgiler> emir_liste(String siralama)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -549,6 +555,7 @@ public class BACKUP_GLOBAL {
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
 		String sql = "";
+		
 		if (siralama == "DURUM")
 		{
 			sql = "SELECT * FROM EMIRLER ORDER BY  DURUM DESC , EMIR_ISMI   ";
@@ -559,9 +566,30 @@ public class BACKUP_GLOBAL {
 		}
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		return rss ;
+		
+		List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
+		 //new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("CREATION_TIME"));
+		 int i = 0 ;
+		 while (rss.next())
+		 {     
+			 try {
+				 Date sonyuk =	new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("SON_YUKLEME"));
+				 Date olus =	new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("OLUSTURMA"));
+				 emir_bilgiler liste  = new emir_bilgiler(rss.getString("EMIR_ISMI") ,rss.getInt("DURUM") == 0 ? false:true,
+						 rss.getString("EMIR_ACIKLAMA"),rss.getString("INSTANCE"),rss.getInt("SON_DURUM")== 0 ? false:true,
+						 sonyuk, rss.getInt("SQL_YEDEK")== 0 ? false:true,
+						 rss.getString("MESAJ"),olus);
+
+				 emirBilgi.add(liste);
+			 } catch (Exception e) {
+				 e.printStackTrace();
+			 }
+		 }
+		 stmt.close();
+		 con.close();
+		 return emirBilgi ;
 	}
-	public ResultSet emir_tek(String eismi)throws ClassNotFoundException, SQLException
+	public List<emir_bilgiler> emir_tek(String eismi)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -573,9 +601,28 @@ public class BACKUP_GLOBAL {
 		sql = "SELECT * FROM EMIRLER WHERE EMIR_ISMI ='" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		return rss ;
+		List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
+
+		int i = 0 ;
+		while (rss.next())
+		{     
+			try {
+				Date sonyuk =	new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("SON_YUKLEME"));
+				Date olus = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("OLUSTURMA"));
+				emir_bilgiler liste  = new emir_bilgiler(rss.getString("EMIR_ISMI") ,rss.getInt("DURUM") == 0 ? false:true,
+						rss.getString("EMIR_ACIKLAMA"),rss.getString("INSTANCE"),rss.getInt("SON_DURUM") == 0 ? false:true,
+								sonyuk, rss.getInt("SQL_YEDEK")== 0 ? false:true,
+										rss.getString("MESAJ"),olus);
+				emirBilgi.add(liste);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		stmt.close();
+		con.close();
+		return emirBilgi ;
 	}
-	public ResultSet db_liste(String eismi)throws ClassNotFoundException, SQLException
+	public List<String>  db_liste(String eismi)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -586,9 +633,18 @@ public class BACKUP_GLOBAL {
 		sql = "SELECT * FROM DB_ISIM WHERE  EMIR_ISMI= '" + eismi + "' ORDER BY DB_ADI ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		return rss ;
+		List<String>  dbadi =new ArrayList<String>();
+		int i = 0 ;
+		while (rss.next())
+		{              
+			dbadi.add(rss.getString("DB_ADI").toString());
+			i +=1 ;
+		}
+		stmt.close();
+		con.close();
+		return dbadi ;
 	}
-	public ResultSet diger_dosya_liste(String eismi)throws ClassNotFoundException, SQLException
+	public List<db_List> diger_dosya_liste(String eismi)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -599,22 +655,33 @@ public class BACKUP_GLOBAL {
 		sql = "SELECT * FROM DIGER_DOSYA_ISIM WHERE  EMIR_ISMI= '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		return rss ;
+		List<db_List> dbliste = new ArrayList<db_List>();
+
+		int i = 0 ;
+		while (rss.next())
+		{     
+			db_List liste  = new db_List(rss.getString("DOSYA_ADI") ,rss.getString("DOSYA_PATH"));
+			dbliste.add(liste);
+		
+		}
+		stmt.close();
+		con.close();
+		return dbliste ;
 	}
-	public ResultSet emir_bilgi(String eismi)throws ClassNotFoundException, SQLException
-	{
-		Class.forName("org.sqlite.JDBC");
-		if (con != null && ! con.isClosed()) con.close();
-		PreparedStatement stmt = null;
-		ResultSet	rss = null;
-		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "SELECT * FROM EMIRLER WHERE  EMIR_ISMI = '" + eismi + "'";
-		stmt = con.prepareStatement(sql);
-		rss = stmt.executeQuery();
-		return rss ;
-	}
-	public ResultSet ftp_bilgi(String eismi)throws ClassNotFoundException, SQLException
+//	public ResultSet emir_bilgi(String eismi)throws ClassNotFoundException, SQLException
+//	{
+//		Class.forName("org.sqlite.JDBC");
+//		if (con != null && ! con.isClosed()) con.close();
+//		PreparedStatement stmt = null;
+//		ResultSet	rss = null;
+//		con = glb.myBackupConnection();
+//		String sql = "";
+//		sql = "SELECT * FROM EMIRLER WHERE  EMIR_ISMI = '" + eismi + "'";
+//		stmt = con.prepareStatement(sql);
+//		rss = stmt.executeQuery();
+//		return rss ;
+//	}
+	public List<ftp_bilgiler> ftp_bilgi(String eismi)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -625,7 +692,31 @@ public class BACKUP_GLOBAL {
 		sql = "SELECT * FROM FTP WHERE  EMIR_ISMI= '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		return rss ;
+		List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
+
+		int i = 0 ;
+		while (rss.next())
+		{     
+			String EMIR_ISMI ;
+			String NERESI ;
+			String HOST ;
+			String KULLANICI ;
+			String SIFRE ;
+			String SURUCU ;
+			String PORT ;
+			String ZMN_ASIMI ;
+			String ESKI_YEDEK ;
+			String SURUCU_YER ;
+			
+			ftp_bilgiler liste  = new ftp_bilgiler(rss.getString("EMIR_ISMI") ,rss.getString("NERESI"),
+					rss.getString("HOST"),rss.getString("KULLANICI"),rss.getString("SIFRE"),rss.getString("SURUCU"),
+					rss.getString("PORT"),rss.getString("ZMN_ASIMI"),rss.getString("ESKI_YEDEK"),rss.getString("SURUCU_YER"));
+			ftpBilgi.add(liste);
+		
+		}
+		stmt.close();
+		con.close();
+		return ftpBilgi ;
 	}
 	public String ftp_neresi(String eismi)throws ClassNotFoundException, SQLException
 	{
@@ -663,17 +754,22 @@ public class BACKUP_GLOBAL {
 	rss.next();
 	int count=0;
 	count = rss.getRow();
-	//stmt.close();
-	//con.close();
+	
+	
 	if (count  > 0)
 	{
-		return rss.getString(nerden);
+		String qweString = rss.getString(nerden);
+		stmt.close();
+		con.close();
+		return qweString ;
 	}
 	else {
+		stmt.close();
+		con.close();
 		return "";
 	}
 	}
-	public ResultSet bilgilendirme_bilgi(String eismi)throws ClassNotFoundException, SQLException
+	public List<bilgilendirme_bilgiler> bilgilendirme_bilgi(String eismi)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -684,9 +780,27 @@ public class BACKUP_GLOBAL {
 		sql = "SELECT * FROM BILGILENDIRME WHERE  EMIR_ISMI= '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		return rss ;
+		List<bilgilendirme_bilgiler> bilgiBilgi = new ArrayList<bilgilendirme_bilgiler>();
+
+		int i = 0 ;
+		while (rss.next())
+		{     
+			
+			bilgilendirme_bilgiler liste  = new bilgilendirme_bilgiler(rss.getString("EMIR_ISMI") ,
+					rss.getInt("DURUM") == 0 ? false:true,rss.getInt("GONDERILDIGINDE") == 0 ? false:true,
+							rss.getInt("HATA_DURUMUNDA") == 0 ? false:true ,
+					rss.getString("GON_ISIM"),rss.getString("GON_HESAP"),rss.getString("ALICI"),rss.getString("KONU"),
+					rss.getString("SMTP"),rss.getString("SMTP_PORT"),rss.getString("KULLANICI"),rss.getString("SIFRE"),
+					rss.getInt("SSL") == 0 ? false:true ,rss.getInt("TSL") == 0 ? false:true );
+			bilgiBilgi.add(liste);
+		
+		}
+		stmt.close();
+		con.close();
+		return bilgiBilgi ;
+		
 	}
-	public ResultSet yedekleme_bilgi(String eismi)throws ClassNotFoundException, SQLException
+	public List<yedekleme_bilgiler> yedekleme_bilgi(String eismi)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -697,10 +811,33 @@ public class BACKUP_GLOBAL {
 		sql =  "SELECT * FROM YEDEKLEME WHERE  EMIR_ISMI= '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		return rss ;
+		List<yedekleme_bilgiler> bilgiBilgi = new ArrayList<yedekleme_bilgiler>();
+
+		int i = 0 ;
+		while (rss.next())
+		{     
+			try {
+			Date bas =	new SimpleDateFormat("HH:mm").parse(rss.getString("BASLAMA"));
+			Date bit= new SimpleDateFormat("HH:mm").parse(rss.getString("BITIS"));
+			
+			
+			yedekleme_bilgiler liste  = new yedekleme_bilgiler(rss.getString("EMIR_ISMI") ,rss.getString("SAAT"),
+					rss.getInt("P_TESI") == 0 ? false:true,rss.getInt("SALI") == 0 ? false:true,
+					rss.getInt("CARS") == 0 ? false:true ,rss.getInt("PERS") == 0 ? false:true ,
+					rss.getInt("CUMA") == 0 ? false:true ,rss.getInt("C_TESI") == 0 ? false:true ,
+					rss.getInt("PAZAR") == 0 ? false:true ,bas,bit);
+			bilgiBilgi.add(liste);
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+		}
+		stmt.close();
+		con.close();
+		return bilgiBilgi ;
 
 	}
-	public ResultSet server_bilgi(String eismi)throws ClassNotFoundException, SQLException
+	public List<server_bilgiler> server_bilgi(String eismi)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -711,7 +848,21 @@ public class BACKUP_GLOBAL {
 		sql =  "SELECT * FROM SERVER WHERE  EMIR_ISMI= '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		return rss ;
+		List<server_bilgiler> bilgiBilgi = new ArrayList<server_bilgiler>();
+
+		int i = 0 ;
+		while (rss.next())
+		{     
+			server_bilgiler liste  = new server_bilgiler(rss.getString("EMIR_ISMI") ,rss.getString("HANGI_SQL")
+					,rss.getString("INSTANCE"),
+					rss.getInt("WIN") == 0 ? false:true,rss.getInt("SERV") == 0 ? false:true,
+							rss.getString("KULLANICI"),rss.getString("SIFRE"),rss.getString("PORT"));
+			bilgiBilgi.add(liste);
+		
+		}
+		stmt.close();
+		con.close();
+		return bilgiBilgi ;
 	}
 	public String default_path()throws ClassNotFoundException, SQLException
 	{

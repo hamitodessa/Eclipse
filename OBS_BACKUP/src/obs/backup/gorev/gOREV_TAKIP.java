@@ -18,7 +18,6 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,7 +38,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings({"serial","deprecation"})
-public class gOREV_TAKIP extends JPanel implements Runnable{
+public  class gOREV_TAKIP extends JPanel { //implements Runnable
 	public TimerTask tt;
 	
 	JLabel lblNewLabel;
@@ -56,7 +55,8 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 	Date dateBIT ;
 	Date dateBAS;
 
-	Timer timerr = new Timer();  
+	private JButton btn1 ;
+	
 	public JLabel lblemirISMI ;
 	private static JLabel lblDosyaSayisi;
 	private static JLabel lblSurucu;
@@ -67,28 +67,28 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 	private static JLabel lblBITIS;
 	private static JLabel lblKACDAKKA;
 	private static JLabel lblSonDurum;
-	private static JLabel lblGelecekYedekleme ;
-	private static JLabel lblKalanZaman;
+	private JLabel lblGelecekYedekleme ;
+	private JLabel lblKalanZaman;
 
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
+
 	public gOREV_TAKIP(String emirADI) {
 
 		eADI = emirADI;
 		setBorder(new CompoundBorder(new EmptyBorder(5, 5, 0, 5), BorderFactory.createLineBorder(new Color(235, 235, 235))));
 		setName(emirADI); 
-		setPreferredSize(new Dimension(700,185));
+		setPreferredSize(new Dimension(0,175));
 		setLayout(null);
 
 		JButton btnDuzelt = new JButton("Emir Duzelt");
 		btnDuzelt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tt.cancel();
+				if(tt != null)
+					tt.cancel();
 				OBS_BACKUP.gelenISIM = eADI ;
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
-				OBS_BACKUP.btnNewButton_2.doClick();
+				OBS_BACKUP.emirAnaGirisPanel.emirDOLDUR();
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				
 			}
 		});
 		btnDuzelt.setName("btnDuzelt");
@@ -98,23 +98,37 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		JButton btnSil = new JButton("Sil");
 		btnSil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//tt.cancel();
+
+				int g = JOptionPane.showOptionDialog(null,"Emir Dosyadan Silinecek ..?" ,
+						"OBS BACKUP ", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
+				if(g ==  1) {
+					return;
+				}
+				tt.cancel();
+				try {
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					OBS_BACKUP.emirSIL(eADI);
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				} catch (Exception e1) {
+
+					e1.printStackTrace();
+				}
 			}
-			
 		});
 		btnSil.setBounds(586, 69, 110, 23);
 		add(btnSil);
 
 		JButton btnYedekle = new JButton("Yedekle");
+		btnYedekle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OBS_BACKUP.gorevLER.add(eADI);
+			}
+		});
 		btnYedekle.setBounds(586, 104, 110, 23);
 		add(btnYedekle);
 
-		JButton btnIndir = new JButton("Indir");
-		btnIndir.setBounds(586, 133, 110, 23);
-		add(btnIndir);
-
 		lblemirISMI = new JLabel("New label");
-		lblemirISMI.setForeground(new Color(0, 0, 128));
+		//lblemirISMI.setForeground(new Color(0, 0, 128));
 		lblemirISMI.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblemirISMI.setBounds(240, 19, 221, 16);
 		lblemirISMI.setText(eADI);
@@ -202,9 +216,14 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		lblKACDAKKA.setBounds(97, 39, 18, 18);
 		add(lblKACDAKKA);
 
-		JButton btn1 = new JButton(".....");
-		btn1.setVisible(false);
-		btn1.setBounds(0, 11, 23, 23);
+		btn1 = new JButton("Y");
+		btn1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OBS_BACKUP.gorevYUKARI(eADI);
+				}
+		});
+		btn1.setVisible(true);
+		btn1.setBounds(10, 11, 23, 23);
 		add(btn1);
 
 		JButton btn2 = new JButton(".....");
@@ -218,19 +237,20 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		add(btnyenidenBASLAT);
 		try {
 			ilkBasla();
+		
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
 	}
 
 
-	@Override
+	//@Override
 	public void run() {
-		 tt = new TimerTask() {  
+		Timer timerr = new Timer();  
+		tt = new TimerTask() {  
 			@Override  
 			public void run() {  
 				try {
-					
 					JSpinner tsnot = new JSpinner( new SpinnerDateModel() );
 					JSpinner.DateEditor de_timetsnot = new JSpinner.DateEditor(tsnot, "dd.MM.yyyy HH:mm:ss");
 					tsnot .setEditor(de_timetsnot);
@@ -245,21 +265,17 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 					int minutes = (int) ((DakikaFarki / (1000*60)) % 60);
 					int hours   = (int) ((DakikaFarki / (1000*60*60)) % 24);
 					lblKalanZaman.setText(String.format("%02d:%02d:%02d", hours,minutes ,seconds	));
-					
-					
 					String simDI = df.format(aDate);
 					if (simDI.equals(lblGelecekYedekleme.getText())) // YEDEKLEME ZAMANI 
 					{
-					    yedekSirasinaKoy();
+						yedekSirasinaKoy();
 					}
-					
 				} catch (Exception e) {
-
 					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
 				}
 			};  
 		};
-		timerr.schedule(tt,0,  100);;  
+		timerr.schedule(tt,0,  1000);;  
 
 	}
 	private void yedekSirasinaKoy() throws ClassNotFoundException, SQLException
@@ -282,7 +298,6 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 	{
 		try
 		{
-
 			bckp.log_kayit(eADI, new Date(), "Emir ilk Load....");
 			emirBILGIYUKLE();
 			basla();
@@ -309,12 +324,13 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		}
 		 List<emir_bilgiler> emirBilgiler =  bckp.emir_tek(eADI);
 
-		if(emirBilgiler.get(0).getSON_YUKLEME().toString().equals("1900-01-01 00:00:00"))
+		if(emirBilgiler.get(0).getSON_YUKLEME().toString().equals("Mon Jan 01 00:00:00 TRT 1900"))
 		{
 			lblSonYedek.setText("01.01.1900 00:00:00");
+			lblSonYedek.setVisible(false);
 		}
 		else {
-
+			lblSonYedek.setVisible(true);
 			SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH);
 			Date snyk =  formatter.parse(emirBilgiler.get(0).getSON_YUKLEME().toString());
@@ -411,18 +427,24 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		}
 		
 		 List<yedekleme_bilgiler> yedekBilgiler =  bckp.yedekleme_bilgi(lblemirISMI.getText());
-		
-		 if ( yedekBilgiler.size() > 0) {
+	
+		 if ( yedekBilgiler.size() == 0) {
 		}
 
 		else
 		{
-			JOptionPane.showConfirmDialog(null,"420=="+yedekBilgiler.get(0).getBASLAMA().toString() );
-			lblBASLAMA.setText(yedekBilgiler.get(0).getBASLAMA().toString());
-			lblBITIS.setText(yedekBilgiler.get(0).getBITIS().toString());
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH);
+			Date basl =  formatter.parse(yedekBilgiler.get(0).getBASLAMA().toString());
+			Date bitis =  formatter.parse(yedekBilgiler.get(0).getBITIS().toString());
+			lblBASLAMA.setText(df.format(basl));
+			lblBITIS.setText(df.format(bitis));
 			lblKACDAKKA.setText(yedekBilgiler.get(0).getSAAT());
+			
+			
 		}
-
+		
 	}
 	private void GunLERE_BAK() throws ParseException, SQLException, ClassNotFoundException
 	{
@@ -434,23 +456,20 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 
 		int hangiGUNDEYIZ = (int) dayOfWeek.getValue();
 		Boolean varmi = false;
-		//
-	
-		 List<yedekleme_bilgiler> yedekBilgiler =  bckp.yedekleme_bilgi(lblemirISMI.getText());
-		//for(int i = 0;i <= gunKONTROL.length - 1;i++)
-		//{
-			gunKONTROL[0] = yedekBilgiler.get(0).isP_TESI();
-			gunKONTROL[1] = yedekBilgiler.get(0).isSALI();
-			gunKONTROL[2] = yedekBilgiler.get(0).isCARS();
-			gunKONTROL[3] = yedekBilgiler.get(0).isPERS();
-			gunKONTROL[4] = yedekBilgiler.get(0).isCUMA();
-			gunKONTROL[5] = yedekBilgiler.get(0).isC_TESI();
-			gunKONTROL[6] = yedekBilgiler.get(0).isPAZAR();
-		//}
-		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
-		dtmBITIS =  formatter.parse(yedekBilgiler.get(0).getBITIS().toString());
-		
-	
+
+		List<yedekleme_bilgiler> yedekBilgiler =  bckp.yedekleme_bilgi(lblemirISMI.getText());
+		gunKONTROL[0] = yedekBilgiler.get(0).isP_TESI();
+		gunKONTROL[1] = yedekBilgiler.get(0).isSALI();
+		gunKONTROL[2] = yedekBilgiler.get(0).isCARS();
+		gunKONTROL[3] = yedekBilgiler.get(0).isPERS();
+		gunKONTROL[4] = yedekBilgiler.get(0).isCUMA();
+		gunKONTROL[5] = yedekBilgiler.get(0).isC_TESI();
+		gunKONTROL[6] = yedekBilgiler.get(0).isPAZAR();
+
+		SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		dtmBITIS = formatter.parse(yedekBilgiler.get(0).getBITIS().toString());
+
+
 		//
 		JSpinner tsbtt = new JSpinner( new SpinnerDateModel() );
 		JSpinner.DateEditor de_timeBaslangic = new JSpinner.DateEditor(tsbtt, "HH:mm");
@@ -462,7 +481,6 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		tsbtt.setValue(qweDate);
 		tsbit = tsbtt ;
 		dtmBASLAMA = formatter.parse(yedekBilgiler.get(0).getBASLAMA().toString());
-
 		////
 		JSpinner tsbass = new JSpinner( new SpinnerDateModel() );
 		JSpinner.DateEditor de_bass = new JSpinner.DateEditor(tsbass, "HH:mm");
@@ -472,16 +490,7 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		qweDate.setMinutes(dtmBASLAMA.getMinutes());
 		qweDate.setSeconds(0);
 		tsbass.setValue(qweDate);
-
 		tsbas = tsbass;
-
-//		JSpinner tsnot = new JSpinner( new SpinnerDateModel() );
-//		JSpinner.DateEditor de_timetsnot = new JSpinner.DateEditor(tsnot, "dd.MM.yyyy HH:mm:ss");
-//		tsnot .setEditor(de_timetsnot);
-//		Date q1 = new Date();
-//		tsnot.setValue(q1);
-//		tsNOW  = tsnot;
-	
 		dateNOW  = new Date();
 		dateBIT = (Date) (tsbit.getValue());
 		dateBAS = (Date) (tsbas.getValue());
@@ -509,7 +518,7 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		{
 			hangiGUN_C_TESI(varmi, 0, false);
 		}
-		if (hangiGUNDEYIZ == 0)
+		if (hangiGUNDEYIZ == 7)
 		{
 			hangiGUN_PAZAR(varmi, 0, false);
 		}
@@ -855,11 +864,12 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		Date dtt = new Date();
 		dtt = new Date(now.getYear(), now.getMonth(), now.getDate(), dt.getHours(), dt.getMinutes(), 0);
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+
 		lblGelecekYedekleme.setText( df.format(dtt));
 	}
 	private void guniciKONTROL() throws ParseException
 	{
-		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
+		SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH);
 		Date basLAMA =  formatter.parse(lblBASLAMA.getText());
 		Date basLAMA_1 = new Date();
 		basLAMA_1 = new Date(new Date().getYear()  ,  new Date().getMonth()  ,  new Date().getDate()  ,  basLAMA.getHours() ,  basLAMA.getMinutes() , basLAMA.getSeconds());
@@ -869,7 +879,7 @@ public class gOREV_TAKIP extends JPanel implements Runnable{
 		Date sonYEDE =  formatter.parse(lblSonYedek.getText());// Son Yedekleme
 		Date sonYEDEK = new Date();
 		sonYEDEK = new Date(gelYEDEK.getYear() , gelYEDEK.getMonth() , gelYEDEK.getDate() , sonYEDE.getHours() , sonYEDE.getMinutes() , sonYEDE.getSeconds());
-		formatter = new SimpleDateFormat("HH:mm", Locale.ENGLISH);
+		formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH);
 		Date biTIS  = formatter.parse(lblBITIS.getText());
 		Date biTISS = new Date();
 		biTISS = new Date(sonYEDEK.getYear() ,sonYEDEK.getMonth() , sonYEDEK.getDate() , biTIS.getHours() , biTIS.getMinutes() , biTIS.getSeconds());

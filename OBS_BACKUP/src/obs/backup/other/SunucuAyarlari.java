@@ -97,13 +97,13 @@ public class SunucuAyarlari extends JPanel {
 		textHost.setColumns(10);
 		
 		textKull = new JTextField();
-		textKull.setBounds(124, 46, 96, 20);
+		textKull.setBounds(124, 46, 164, 20);
 		panel_12.add(textKull);
 		textKull.setColumns(10);
 		
 		textSifre = new JPasswordField();
 		textSifre.setToolTipText("");
-		textSifre.setBounds(124, 69, 96, 20);
+		textSifre.setBounds(124, 69, 164, 20);
 		panel_12.add(textSifre);
 		textSifre.setColumns(10);
 		
@@ -162,7 +162,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.add(lblNewLabel_3);
 		
 		lblNewLabel_4 = new JLabel("Port");
-		lblNewLabel_4.setBounds(248, 53, 48, 14);
+		lblNewLabel_4.setBounds(248, 49, 48, 14);
 		panel_12_1.add(lblNewLabel_4);
 		
 		lblNewLabel_5 = new JLabel("Zaman Asimi");
@@ -240,6 +240,7 @@ public class SunucuAyarlari extends JPanel {
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.sunucuKaydet();
+					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 				

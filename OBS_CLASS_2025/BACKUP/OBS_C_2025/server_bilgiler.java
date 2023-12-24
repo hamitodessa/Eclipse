@@ -9,8 +9,9 @@ public class server_bilgiler {
 	String KULLANICI ;
 	String SIFRE ;
 	String PORT;
+	String MY_DUMP ;
 	public server_bilgiler(String eMIR_ISMI, String hANGI_SQL, String iNSTANCE, boolean wIN, boolean sERV,
-			String kULLANICI, String sIFRE, String pORT) {
+			String kULLANICI, String sIFRE, String pORT, String mY_DUMP) {
 		super();
 		EMIR_ISMI = eMIR_ISMI;
 		HANGI_SQL = hANGI_SQL;
@@ -20,6 +21,7 @@ public class server_bilgiler {
 		KULLANICI = kULLANICI;
 		SIFRE = sIFRE;
 		PORT = pORT;
+		MY_DUMP = mY_DUMP;
 	}
 	public String getEMIR_ISMI() {
 		return EMIR_ISMI;
@@ -69,5 +71,11 @@ public class server_bilgiler {
 	public void setPORT(String pORT) {
 		PORT = pORT;
 	}
-	
+	public String getMY_DUMP() {
+		return MY_DUMP;
+	}
+	public void setMY_DUMP(String mY_DUMP) {
+		MY_DUMP = mY_DUMP;
+	}
+
 }

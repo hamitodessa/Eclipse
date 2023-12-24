@@ -7,8 +7,6 @@ import javax.swing.JCheckBox;
 import javax.swing.border.TitledBorder;
 
 import obs.backup.main.OBS_BACKUP;
-import raven.toast.Notifications;
-
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -183,10 +181,9 @@ public class Bilgilendirme extends JPanel {
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.BilgilendirmeKaydet();
+					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
-				
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e1.getMessage());
 				}
 			}
 		});

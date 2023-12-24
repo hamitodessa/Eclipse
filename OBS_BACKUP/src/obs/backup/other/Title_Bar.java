@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 @SuppressWarnings({ "serial", "unused" })
 public class Title_Bar extends javax.swing.JPanel{
@@ -30,6 +32,10 @@ public class Title_Bar extends javax.swing.JPanel{
 		setMinimumSize(new Dimension(0, 18));
 		setMaximumSize(new Dimension(0, 18));
 		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
+		
+		JLabel lblNewLabel = new JLabel("OBS BACKUP");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		add(lblNewLabel);
 
 		Component horizontalGlue = Box.createHorizontalGlue();
 		add(horizontalGlue);

@@ -197,7 +197,6 @@ public class BACKUP_GLOBAL {
 		stmt.close();
 		con.close();
 		con = null;
-
 	}
 	
 	public void instance_update(String eismi,  String ins)throws ClassNotFoundException, SQLException
@@ -499,7 +498,7 @@ public class BACKUP_GLOBAL {
 		con.close();
 		con = null;
 	}
-	public void server_ismi_kayit(String eismi, String ins, boolean wi, boolean ser, String kull, String sif, String hsql, String port)throws ClassNotFoundException, SQLException
+	public void server_ismi_kayit(String eismi, String ins, boolean wi, boolean ser, String kull, String sif, String hsql, String port,String mydump)throws ClassNotFoundException, SQLException
 	{
 
 		Class.forName("org.sqlite.JDBC");
@@ -507,8 +506,8 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
 		String sql = "";
-		sql = "INSERT INTO SERVER (EMIR_ISMI,INSTANCE,WIN,SERV,KULLANICI,SIFRE,HANGI_SQL,PORT) "
-				+ "VALUES (?,?,?,?,?,?,?,?)";
+		sql = "INSERT INTO SERVER (EMIR_ISMI,INSTANCE,WIN,SERV,KULLANICI,SIFRE,HANGI_SQL,PORT,MY_DUMP) "
+				+ "VALUES (?,?,?,?,?,?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
 		stmt.setString(2, ins);
@@ -524,6 +523,7 @@ public class BACKUP_GLOBAL {
 		stmt.setString(6, Arrays.toString(qaz));
 		stmt.setString(7, hsql);
 		stmt.setString(8, port);
+		stmt.setString(9, mydump );
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -697,17 +697,6 @@ public class BACKUP_GLOBAL {
 		int i = 0 ;
 		while (rss.next())
 		{     
-			String EMIR_ISMI ;
-			String NERESI ;
-			String HOST ;
-			String KULLANICI ;
-			String SIFRE ;
-			String SURUCU ;
-			String PORT ;
-			String ZMN_ASIMI ;
-			String ESKI_YEDEK ;
-			String SURUCU_YER ;
-			
 			ftp_bilgiler liste  = new ftp_bilgiler(rss.getString("EMIR_ISMI") ,rss.getString("NERESI"),
 					rss.getString("HOST"),rss.getString("KULLANICI"),rss.getString("SIFRE"),rss.getString("SURUCU"),
 					rss.getString("PORT"),rss.getString("ZMN_ASIMI"),rss.getString("ESKI_YEDEK"),rss.getString("SURUCU_YER"));
@@ -732,13 +721,14 @@ public class BACKUP_GLOBAL {
 		rss.next();
 		int count=0;
 		count = rss.getRow();
+		String sonucString = "" ;
 		if (count  > 0)
 		{
-			return rss.getString("NERESI");
+			sonucString =  rss.getString("NERESI");
 		}
-		else {
-			return "";
-		}
+		stmt.close();
+		con.close();
+		return sonucString;
 	}
 	public String surucu_bilgi(String eismi, String nerden)throws ClassNotFoundException, SQLException
 	{Class.forName("org.sqlite.JDBC");
@@ -754,20 +744,19 @@ public class BACKUP_GLOBAL {
 	rss.next();
 	int count=0;
 	count = rss.getRow();
-	
+	String qweString = "" ;
 	
 	if (count  > 0)
 	{
-		String qweString = rss.getString(nerden);
+		qweString = rss.getString(nerden);
 		stmt.close();
 		con.close();
 		return qweString ;
 	}
-	else {
-		stmt.close();
-		con.close();
-		return "";
-	}
+	stmt.close();
+	con.close();
+	return qweString ;
+	
 	}
 	public List<bilgilendirme_bilgiler> bilgilendirme_bilgi(String eismi)throws ClassNotFoundException, SQLException
 	{
@@ -788,7 +777,7 @@ public class BACKUP_GLOBAL {
 			
 			bilgilendirme_bilgiler liste  = new bilgilendirme_bilgiler(rss.getString("EMIR_ISMI") ,
 					rss.getInt("DURUM") == 0 ? false:true,rss.getInt("GONDERILDIGINDE") == 0 ? false:true,
-							rss.getInt("HATA_DURUMUNDA") == 0 ? false:true ,
+					rss.getInt("HATA_DURUMUNDA") == 0 ? false:true ,
 					rss.getString("GON_ISIM"),rss.getString("GON_HESAP"),rss.getString("ALICI"),rss.getString("KONU"),
 					rss.getString("SMTP"),rss.getString("SMTP_PORT"),rss.getString("KULLANICI"),rss.getString("SIFRE"),
 					rss.getInt("SSL") == 0 ? false:true ,rss.getInt("TSL") == 0 ? false:true );
@@ -850,15 +839,15 @@ public class BACKUP_GLOBAL {
 		rss = stmt.executeQuery();
 		List<server_bilgiler> bilgiBilgi = new ArrayList<server_bilgiler>();
 
-		int i = 0 ;
 		while (rss.next())
 		{     
-			server_bilgiler liste  = new server_bilgiler(rss.getString("EMIR_ISMI") ,rss.getString("HANGI_SQL")
-					,rss.getString("INSTANCE"),
-					rss.getInt("WIN") == 0 ? false:true,rss.getInt("SERV") == 0 ? false:true,
-							rss.getString("KULLANICI"),rss.getString("SIFRE"),rss.getString("PORT"));
+			server_bilgiler liste  = new server_bilgiler(rss.getString("EMIR_ISMI") ,
+					rss.getString("HANGI_SQL"),
+					rss.getString("INSTANCE"),
+					rss.getInt("WIN") == 0 ? false:true,
+					rss.getInt("SERV") == 0 ? false:true,
+					rss.getString("KULLANICI"),rss.getString("SIFRE"),rss.getString("PORT"),rss.getString("MY_DUMP"));
 			bilgiBilgi.add(liste);
-		
 		}
 		stmt.close();
 		con.close();
@@ -876,7 +865,7 @@ public class BACKUP_GLOBAL {
 	}
 	public Boolean DoesFtpDirectoryExist(String ftpp ,String dirPath,int port ,String kull, String sifre) throws SocketException, IOException  
 	{
-		System.out.println(ftpp +"=="+ port +"=="+ dirPath + "=="+ kull +"=="+ sifre);
+		//System.out.println(ftpp +"=="+ port +"=="+ dirPath + "=="+ kull +"=="+ sifre);
 		FTPClient ftp = new FTPClient();
 		ftp.connect(ftpp, port);
 		ftp.login(kull, sifre);
@@ -988,7 +977,7 @@ public class BACKUP_GLOBAL {
 		List<String> ListOfFiles = new ArrayList<String>();
 		for(int i=0; i<contents.length; i++) {
 			ListOfFiles.add(contents[i]);
-			System.out.println(contents[i]);
+			//System.out.println(contents[i]);
 		}
 		return ListOfFiles;
 	}
@@ -1039,7 +1028,56 @@ public class BACKUP_GLOBAL {
 		//   	String savePath = "C:/OBS_SISTEM/" + dbName +".sql";
 		//		String executeCmd = myDUMP +"/mysqldump.exe -u" + dbUser + " -p" + dbPass + " -B " + dbName + " -r " + savePath;
 	}
-
-
+	public void kopyala(String eski, String yeni) throws ClassNotFoundException, SQLException
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		Statement stmt = null;
+		con = glb.myBackupConnection();
+		String sql = "";
+		sql =  "INSERT INTO EMIRLER  (EMIR_ISMI, DURUM,EMIR_ACIKLAMA,INSTANCE,SON_DURUM,SON_YUKLEME,SQL_YEDEK,MESAJ,OLUSTURMA)" 
+				+ "SELECT '" + yeni + "', DURUM,EMIR_ACIKLAMA,INSTANCE,SON_DURUM,SON_YUKLEME,SQL_YEDEK,MESAJ,OLUSTURMA FROM EMIRLER  " 
+				+ "WHERE EMIR_ISMI = '" + eski + "' " ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);  
+		// '**************** YEDEKLEME
+		sql =  "INSERT INTO YEDEKLEME  (EMIR_ISMI, SAAT ,P_TESI ,SALI  ,CARS ,PERS ,CUMA ,C_TESI ,PAZAR ,BASLAMA ,BITIS )" 
+				+ " SELECT '" + yeni + "',  SAAT ,P_TESI ,SALI  ,CARS ,PERS ,CUMA ,C_TESI ,PAZAR ,BASLAMA ,BITIS  FROM YEDEKLEME  " 
+				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);  
+		//'**************** FTP
+		sql =  "INSERT INTO FTP  (EMIR_ISMI, NERESI ,HOST  ,KULLANICI ,SIFRE ,SURUCU ,PORT ,ZMN_ASIMI ,ESKI_YEDEK,SURUCU_YER )" 
+				+ " SELECT '" + yeni + "',  NERESI ,HOST  ,KULLANICI ,SIFRE ,SURUCU ,PORT ,ZMN_ASIMI ,ESKI_YEDEK,SURUCU_YER  FROM FTP  " 
+				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);  
+		//'**************** BILGILENDIRME
+		sql =  "INSERT INTO BILGILENDIRME  (EMIR_ISMI, DURUM ,GONDERILDIGINDE ,HATA_DURUMUNDA ,GON_ISIM,GON_HESAP , ALICI , KONU , SMTP, SMTP_PORT, KULLANICI , SIFRE, SSL,TSL )" 
+				+ " SELECT '" + yeni + "',  DURUM ,GONDERILDIGINDE ,HATA_DURUMUNDA ,GON_ISIM,GON_HESAP , ALICI , KONU , SMTP, SMTP_PORT, KULLANICI , SIFRE, SSL,TSL  FROM BILGILENDIRME  " 
+				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);  
+		//'**************** SERVER
+		sql =  "INSERT INTO SERVER  (EMIR_ISMI,HANGI_SQL ,INSTANCE,WIN ,SERV ,KULLANICI,SIFRE , PORT ,MY_DUMP  )" 
+				+ " SELECT '" + yeni + "', HANGI_SQL ,INSTANCE,WIN ,SERV ,KULLANICI,SIFRE , PORT ,MY_DUMP   FROM SERVER  " 
+				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);  
+		//'**************** DB ISIM
+		sql =  "INSERT INTO DB_ISIM  (EMIR_ISMI,DB_ADI  )" 
+				+ " SELECT '" + yeni + "', DB_ADI   FROM DB_ISIM  " 
+				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);  
+		//'**************** DIGER DOSYA ISIM
+		sql =  "INSERT INTO DIGER_DOSYA_ISIM  (EMIR_ISMI,DOSYA_ADI ,DOSYA_PATH   )" 
+				+ " SELECT '" + yeni + "', DOSYA_ADI ,DOSYA_PATH   FROM DIGER_DOSYA_ISIM  " 
+				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);  
+		stmt.close();
+		con.close();
+	}
 }
 

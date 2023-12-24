@@ -33,16 +33,16 @@ public class ServerBilgileri extends JPanel {
 	public JTextField textMykull;
 	public JPasswordField textMySifre;
 	public JTextField textMYPort;
-	public static JTextField textMyDump;
+	public JTextField textMyDump;
 	public JTextField textMSPort;
-
+	public JTabbedPane tabbedPane ;
 	/**
 	 * Create the panel.
 	 */
 	public ServerBilgileri() {
 		setLayout(new BorderLayout(0, 0));
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		add(tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
@@ -106,7 +106,7 @@ public class ServerBilgileri extends JPanel {
 
 			}
 		});
-		btnMSTest.setBounds(10, 400, 129, 23);
+		btnMSTest.setBounds(10, 540, 129, 23);
 		panel.add(btnMSTest);
 		
 		JButton btnMSkaydet = new JButton("Kaydet");
@@ -119,6 +119,7 @@ public class ServerBilgileri extends JPanel {
 					if(textMSsifre.getText().equals("")) return ;
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.MS_Server_Kayit();
+					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 				
@@ -126,7 +127,8 @@ public class ServerBilgileri extends JPanel {
 				}
 			}
 		});
-		btnMSkaydet.setBounds(330, 400, 89, 23);
+	
+		btnMSkaydet.setBounds(624, 540, 89, 23);
 		panel.add(btnMSkaydet);
 		
 		JLabel lblNewLabel_4_1 = new JLabel("Port");
@@ -225,6 +227,7 @@ public class ServerBilgileri extends JPanel {
 					if(textMySifre.getText().equals("")) return ;
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.MY_Server_Kayit();
+					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 				

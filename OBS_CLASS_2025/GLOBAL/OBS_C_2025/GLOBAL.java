@@ -302,7 +302,7 @@ public class GLOBAL {
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE SERVER (  EMIR_ISMI nvarchar(30) ,HANGI_SQL nvarchar(6) ,INSTANCE nvarchar(50) " +
 					" ,WIN INTEGER,SERV INTEGER,KULLANICI nvarchar(50) " +
-					" ,SIFRE nvarchar(50) , PORT nvarchar(10)) ";
+					" ,SIFRE nvarchar(50) , PORT nvarchar(10),MY_DUMP nvarchar(150)) ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE DB_ISIM (  EMIR_ISMI nvarchar(30) ,DB_ADI nvarchar(50)) ";
 			backup_tablo_yap(sorgu);

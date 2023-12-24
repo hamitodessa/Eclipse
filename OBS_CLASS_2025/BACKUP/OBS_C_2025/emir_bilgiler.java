@@ -2,8 +2,6 @@ package OBS_C_2025;
 
 import java.util.Date;
 
-import javax.swing.JOptionPane;
-
 public class emir_bilgiler {
 	String EMIR_ISMI ;
 	boolean DURUM ;
@@ -22,7 +20,6 @@ public class emir_bilgiler {
 		EMIR_ACIKLAMA = eMIR_ACIKLAMA;
 		INSTANCE = iNSTANCE;
 		SON_DURUM = sON_DURUM;
-		 JOptionPane.showConfirmDialog(null,"25");
 		SON_YUKLEME = sON_YUKLEME;
 		SQL_YEDEK = sQL_YEDEK;
 		MESAJ = mESAJ;

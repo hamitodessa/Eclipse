@@ -129,6 +129,7 @@ public class YedeklemeAraligi extends JPanel {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				try {
 					OBS_BACKUP.	yedeklemeKaydet();
+					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 				} catch (Exception e1) {
 				
 					e1.printStackTrace();

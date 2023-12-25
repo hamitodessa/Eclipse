@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.nntp.NewGroupsOrNewsQuery;
 
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
@@ -63,13 +64,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Color;
@@ -226,7 +231,7 @@ public class OBS_BACKUP extends JFrame {
 						Component[] componentt = qweJPanel.getComponents();
 						for (Component compo : componentt) {
 
-						//	System.out.println(compo.getName());
+							System.out.println(compo.getName());
 						}
 					}
 					
@@ -353,7 +358,7 @@ public class OBS_BACKUP extends JFrame {
 		try {
 			glb.backup_surucu_kontrol();
 			emir_yukle("EMIR_ISMI") ;
-			//jobTimerBasla();
+			jobTimerBasla();
 		} catch (Exception e1) {
 		
 		}
@@ -924,6 +929,7 @@ public class OBS_BACKUP extends JFrame {
 	{
 		Runnable runner = new Runnable()
 		{ 
+			@SuppressWarnings("deprecation")
 			public void run() {
 		/////
 		try {
@@ -982,9 +988,8 @@ public class OBS_BACKUP extends JFrame {
 				
 		        emirBOSALT(emirADI);
 		        bckp.log_kayit(emirADI, new Date(), "FTP Surucu Bulunamadi...");
-		     
 		        bckp.log_kayit(emirADI, new Date(), "Emir Yuklendi...");
-		 
+	 
 		        return;
 		    }
 		    // SERVER baglanti Ogren
@@ -1020,7 +1025,7 @@ public class OBS_BACKUP extends JFrame {
 		        	
 		            dosADI = dbliste.get(i); // Dosya Adi
 		            UploadPanel.Progres_Bar_1( i + 1);
-		            //UploadPanel.RPB2.set = "Backup Aliniyor.........";
+		            //UploadPanel.RPB2.setString("Backup Aliniyor.........");
 		            if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 		            {
 		        	   
@@ -1072,51 +1077,97 @@ public class OBS_BACKUP extends JFrame {
 		            bckp.log_kayit(emirADI, new Date(), dosADI + " ZIP Dosyasi Silindi...");
 		        }
 //		    }
+		        
 //		    //radScrollablePanel1.Controls[0].Controls[emirADI].Controls[0].Controls["RadLabel11"].Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss tt");
 //		    //radScrollablePanel1.Controls[0].Controls[emirADI].Controls[0].Controls["RadLabel13"].ForeColor = Color.Green;
 //		    //radScrollablePanel1.Controls[0].Controls[emirADI].Controls[0].Controls["RadLabel13"].Text = "Yedeklendi";
-//		    oac.bckp.genel_kayit_durum(emirADI, true, cervirmeTARIH, "Yedeklendi.....637");
+		        Date nowwDate = new Date();
+		        Component[] components = container.getComponents();
+		        for (Component component : components) {
+		        	if (component.getName().toString().equals(emirADI)) {
+		        		JPanel qweJPanel = (JPanel) component ; 
+		        		Component[] componentt = qweJPanel.getComponents();
+		        		for (Component compo : componentt) {
+		        			if(compo.getName() != null)
+		        			{
+		        				if(compo.getName().equals("lblSonDurum"))
+		        				{
+		        					JLabel sndrm = (JLabel) compo;
+		        					sndrm.setText("Yedeklendi");
+		        				}
+		        				if(compo.getName().equals("lblSonYedek"))
+		        				{
+		        					JLabel sndrm = (JLabel) compo;
+		        					SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+		        					sndrm.setText(df.format(nowwDate));
+		        				}
+		        			}
+		        		}
+		        	}
+		        	component.revalidate();
+		        }
+		    bckp.genel_kayit_durum(emirADI, true,nowwDate, "Yedeklendi.....");
 //		    
-//		    if (eskiyedek > 0) // **************FTP ESKILERI SIL
-//		    {
+		    System.out.println(eskiyedek);
+		    if (eskiyedek > 0) // **************FTP ESKILERI SIL
+		    {
 		       UploadPanel.Progres_Bar_Temizle_1();
 		       UploadPanel.Progres_Bar_Temizle_2();
-//		        List<string> ls = new List<string>();
-//		        DateTime ftar = new DateTime();
-//		        String dosADI = "";
-//		        int gunfark;
-//		        ls = oac.bckp.ListRmtFiles("ftp://" + ftp + ":" + port + "/" + surucu, kull, sifre);
-//		        // ls = oac.bckp.ListRemoteFiles("ftp://" + ftp + ":" + port + "/" + surucu, kull, sifre);
-//		        for (int i = 0; i <= dbss.Tables[0].Rows.Count - 1; i++)
-//		        {
-//		            Application.DoEvents();
-//		            dosADI = dbss.Tables[0].Rows[i]["DB_ADI"].ToString();
-//		            Progres_Bar(dbss.Tables[0].Rows.Count, i + 1, dosADI + "  FTP Eski Tarih Kontrol");
-//		            for (int r = 0; r <= ls.Count - 1; r++)
-//		            {
-//		                Progres_Bar2(ls.Count, r + 1);
-//		                Application.DoEvents();
-//		                String ftpDOSYA = ls[r].ToString();
-//		                string test1 = "";
-//		                if (ftpDOSYA.Length > 13)
-//		                {
-//		                    test1 = ftpDOSYA.ToString().Split(new Char[] { '.' })[0];
-//		                    ftpDOSYA = test1.Substring(13, test1.Length - 13).ToString();
-//		                }
-//		                if (ftpDOSYA.ToString().Equals(dosADI))
-//		                {
-//		                    ftar = new DateTime(Int32.Parse(ls[r].Substring(4, 4).ToString()), Int32.Parse(ls[r].Substring(2, 2).ToString()), Int32.Parse(ls[r].Substring(0, 2).ToString()));
-//		                    gunfark = Int32.Parse((DateTime.Today - ftar).TotalDays.ToString());
-//		                    if (gunfark > eskiyedek)
-//		                    {
-//		                        oac.bckp.log_kayit(emirADI, DateTime.Now, ls[r].ToString() + " FTP ye Silmeye Gitti...");
-//		                        oac.bckp.ftp_sil("ftp://" + ftp, surucu, ls[r].ToString(), kull, sifre, port);
-//		                        oac.bckp.log_kayit(emirADI, DateTime.Now, dosADI + " Dosya FTP Eski Tarihli Silindi...");
-//		                    }
-//		                }
-//		            }
-//		        }
-//		    }
+		        List<String> ls = new ArrayList<String>();
+		      
+		        dosADI = "";
+		        int gunfark;
+		        
+		        ls = bckp.ListRmtFiles( ftp , surucu, kull, sifre);
+		        UploadPanel.RPB1.setMaximum(dbliste.size());
+		        UploadPanel.RPB1.setStringPainted(true);
+		        UploadPanel.RPB2.setMaximum(ls.size());
+		        UploadPanel.RPB2.setStringPainted(true);
+		        for (int i = 0; i <= dbliste.size() - 1; i++)
+		        {
+		        	
+		            dosADI = dbliste.get(i);
+		            UploadPanel. Progres_Bar_1( i + 1);
+		           
+		            for (int r = 0; r <= ls.size() - 1; r++)
+		            {
+		            	
+		            	UploadPanel.  Progres_Bar_2( r + 1);
+		                String ftpDOSYA = ls.get(r);
+		                String test1 = "";
+		                
+		                if (ftpDOSYA.toString().length() > 13)
+		                {
+		                	test1 ="";
+		                	int lastIndxDot = ftpDOSYA.lastIndexOf('.');
+		                	if (lastIndxDot != -1) {
+		                		test1 = ftpDOSYA.substring(0, lastIndxDot);
+		                	}
+		                	ftpDOSYA = test1.substring(13, lastIndxDot);
+		                }
+		               
+		                if (ftpDOSYA.toString().equals(dosADI))
+		                {
+		                    String[] token = ls.get(r).split("\t");
+		                    SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+		                    String dateInString = token[4].substring(8,10) +"."+token[4].substring(5,7) +"."+ token[4].substring(0,4);
+		                    Date ftar = formatter.parse(dateInString);
+		                    long dateBeforeInMs = ftar.getTime();
+		                    long dateAfterInMs = new Date().getTime();
+		                    long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
+		                    long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
+		                    //long daysDiff1 = TimeUnit.HOURS.convert(timeDiff, TimeUnit.MILLISECONDS);
+		                    gunfark = (int)daysDiff;
+		                    if (gunfark > eskiyedek)
+		                    {
+		                        bckp.log_kayit(emirADI, new Date(), ls.get(r) + " FTP ye Silmeye Gitti...");
+		                        bckp.ftp_sil( ftp, surucu, ls.get(r), kull, sifre, port);
+		                        bckp.log_kayit(emirADI, new Date(), dosADI + " Dosya FTP Eski Tarihli Silindi...");
+		                    }
+		                }
+		            }
+		        }
+		    }
 //		    DataSet dbiss = new DataSet();
 //		    dbiss = oac.bckp.bilgilendirme_bilgi(emirADI);
 //		    if (dbiss.Tables[0].Rows.Count > 0)
@@ -1131,18 +1182,46 @@ public class OBS_BACKUP extends JFrame {
 //		        }
 //		    }
 //		
+		       uplpnl.setPreferredSize(new Dimension(0,00));
+				uplpnl.setMaximumSize(new Dimension(0,0));
+				uplpnl.revalidate();
 		         ////
 					}
 					catch (Exception ex)
 					{
-					//	bckp.log_kayit(eadi,new Date(), ex.getMessage());
-					//	mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());			
 					} 
 		         //////
 					}
 				};
 				Thread t = new Thread(runner, "Code Executer");
 				t.start();
+	}
+	private void bilgilendirme_oku(string emir, string mesaj)
+	{
+	    DataSet dbss = new DataSet();
+	    dbss = oac.bckp.bilgilendirme_bilgi(emir);
+	    if (dbss.Tables[0].Rows.Count > 0)
+	    {
+	        string gonisim, gonhesap, alici, konu, smtp, port, kull, sifre;
+	        bool ssl, tsl;
+	        gonisim = dbss.Tables[0].Rows[0]["GON_ISIM"].ToString();
+	        gonhesap = dbss.Tables[0].Rows[0]["GON_HESAP"].ToString();
+	        alici = dbss.Tables[0].Rows[0]["ALICI"].ToString();
+	        konu = dbss.Tables[0].Rows[0]["KONU"].ToString();
+	        smtp = dbss.Tables[0].Rows[0]["SMTP"].ToString();
+	        port = dbss.Tables[0].Rows[0]["SMTP_PORT"].ToString();
+	        kull = dbss.Tables[0].Rows[0]["KULLANICI"].ToString();
+	        sifre = AesOperation.DecryptString(oac.glb.key, dbss.Tables[0].Rows[0]["SIFRE"].ToString());
+	        if ((Boolean)dbss.Tables[0].Rows[0]["SSL"])
+	            ssl = true;
+	        else
+	            ssl = false;
+	        if ((Boolean)dbss.Tables[0].Rows[0]["TSL"])
+	            tsl = true;
+	        else
+	            tsl = false;
+	        mail_gonder(gonisim, gonhesap, port, ssl, tsl, kull, sifre, smtp, alici, konu, mesaj);
+	    }
 	}
 	private void diger_dosya(String eismi, String aciklama)
 	{

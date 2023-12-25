@@ -928,9 +928,8 @@ public class BACKUP_GLOBAL {
 		ftp.changeWorkingDirectory(surucu);
 		FTPFile[] files = ftp.listFiles();
 
-		// iterates over the files and prints details for each
 		SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
+		List<String> listeList = new ArrayList<String>();
 		for (FTPFile file : files) {
 			String details = file.getName();
 			if (file.isDirectory()) {
@@ -938,34 +937,12 @@ public class BACKUP_GLOBAL {
 			}
 			details += "\t\t" + file.getSize();
 			details += "\t\t" + dateFormater.format(file.getTimestamp().getTime());
-			System.out.println(details);
+			listeList.add(details);
 		}
 
 		ftp.logout();
 		ftp.disconnect();
-		return null;
-
-
-
-		//            List<String> returnValue = new List<String>();
-		//            WebRequest request = WebRequest.Create(ftpAddress);
-		//            request.Method = WebRequestMethods.Ftp.ListDirectory;
-		//            request.Credentials = new NetworkCredential(ftpUser, ftpPassword);
-		//            using (WebResponse response = request.GetResponse())
-		//            {
-		//                using (System.IO.StreamReader reader = new System.IO.StreamReader(response.GetResponseStream()))
-		//                {
-		//                    string responseString = reader.ReadToEnd();
-		//                    string[] fileList = responseString.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-		//                    foreach (string file in fileList)
-		//                    {
-		//                        //Console.WriteLine(file);
-		//                        returnValue.Add(file);
-		//                    }
-		//                }
-		//                response.Close();
-		//            }
-		//            return returnValue;
+		return listeList;
 	}
 	public ResultSet log_liste()throws ClassNotFoundException, SQLException
 	{

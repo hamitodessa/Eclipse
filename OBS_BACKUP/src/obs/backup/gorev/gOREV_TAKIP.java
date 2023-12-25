@@ -60,13 +60,13 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 	public JLabel lblemirISMI ;
 	private static JLabel lblDosyaSayisi;
 	private static JLabel lblSurucu;
-	private static JLabel lblSonYedek;
+	private JLabel lblSonYedek;
 	private static JLabel lblAciklama;
-	private static JLabel lblDurum;
+	private  JLabel lblDurum;
 	private static JLabel lblBASLAMA;
 	private static JLabel lblBITIS;
 	private static JLabel lblKACDAKKA;
-	private static JLabel lblSonDurum;
+	private JLabel lblSonDurum;
 	private JLabel lblGelecekYedekleme ;
 	private JLabel lblKalanZaman;
 
@@ -121,7 +121,12 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		JButton btnYedekle = new JButton("Yedekle");
 		btnYedekle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OBS_BACKUP.gorevLER.add(eADI);
+				try {
+					yedekSirasinaKoy();
+				} catch (Exception e1) {
+				
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnYedekle.setBounds(586, 104, 110, 23);
@@ -136,6 +141,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 
 		lblSonDurum = new JLabel(".....");
 		lblSonDurum.setBounds(240, 47, 336, 14);
+		lblSonDurum.setName("lblSonDurum"); 
 		add(lblSonDurum);
 
 		lblDosyaSayisi = new JLabel("0");
@@ -148,6 +154,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 
 		lblSonYedek = new JLabel(".....");
 		lblSonYedek.setBounds(240, 111, 336, 14);
+		lblSonYedek.setName("lblSonYedek"); 
 		add(lblSonYedek);
 
 		lblGelecekYedekleme = new JLabel(".....");
@@ -278,11 +285,12 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		timerr.schedule(tt,0,  1000);;  
 
 	}
-	private void yedekSirasinaKoy() throws ClassNotFoundException, SQLException
+	private void yedekSirasinaKoy() throws ClassNotFoundException, SQLException, InterruptedException
 	{
 		tt.cancel();
 		lblSonDurum.setText("Yedekleme Sirasina Konuldu");
 	    bckp.log_kayit(eADI, new Date(), "Yedekleme Sirasina Konuldu.....");
+//	    Thread.sleep(3000);
 	    OBS_BACKUP.gorevLER.add(eADI);
 	}
 	private void basla() throws ClassNotFoundException, ParseException, SQLException

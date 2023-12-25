@@ -23,6 +23,12 @@ public class TARIH_CEVIR {
 		return tarih;
 
 	}
+	public static  String tarihddMMyyyyHHmm(Date tar) {
+
+		SimpleDateFormat df = new SimpleDateFormat("ddMMyyyyHHmm");
+		String tarih = df.format(tar);
+		return tarih;
+	}
 	public static  Date tarih_ekstre(String tar) {
 
 		DateFormat df = new SimpleDateFormat("yyyy.MM.dd");

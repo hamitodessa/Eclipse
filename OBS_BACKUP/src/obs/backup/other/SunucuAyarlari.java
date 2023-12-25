@@ -273,7 +273,7 @@ public class SunucuAyarlari extends JPanel {
 		if (textHost.getText().equals("")) return;
 		if (textKull.getText().equals("")) return;
 		if (textSifre.getPassword().length == 0) return;
-		if (textFtpSurucu.getText().equals("")) return;
+		
 		if (textPort.getText().equals("")) return;
 		int portt = 21 ;
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -282,11 +282,11 @@ public class SunucuAyarlari extends JPanel {
 		{
 			portt = Integer.parseInt(textPort.getText());
 		}
-		String ftphost = "ftp." + textHost.getText()  ; // + RadTextBox8.Text;
+	
 		SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 		String response =sdon.sDONDUR(textSifre);
 		
-		boolean result =   bckp.DoesFtpExist(ftphost ,portt,textKull.getText(), response);
+		boolean result =   bckp.DoesFtpExist(textHost.getText() ,portt,textKull.getText(), response);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		if(result)
 		{
@@ -311,13 +311,10 @@ public class SunucuAyarlari extends JPanel {
 		{
 			portt = Integer.parseInt(textPort.getText());
 		}
-		String ftphost = "ftp." + textHost.getText()  ; // + RadTextBox8.Text;
 		SIFRE_DONDUR sdon = new SIFRE_DONDUR();
-
-		
 		String response =sdon.sDONDUR(textSifre);
 		
-		boolean result =   bckp.DoesFtpDirectoryExist(ftphost ,textFtpSurucu.getText(),portt,textKull.getText(), response);
+		boolean result =   bckp.DoesFtpDirectoryExist(textHost.getText() ,textFtpSurucu.getText(),portt,textKull.getText(), response);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		if(result)
 		{

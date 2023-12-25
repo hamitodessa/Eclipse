@@ -73,7 +73,6 @@ public class BACKUP_GLOBAL {
 		{
 			String cumle = "";
 			cumle = "jdbc:sqlserver://localhost" + porttString  +";instanceName=" + inss + ";";
-		
 			S_CONN = DriverManager.getConnection(cumle,user,pwd);
 		} 
 		catch (SQLException e)
@@ -190,7 +189,7 @@ public class BACKUP_GLOBAL {
 		sql = "UPDATE EMIRLER SET SON_DURUM = @dur,SON_YUKLEME = @yuk ,MESAJ = @msg WHERE EMIR_ISMI = '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.setBoolean(1, drm);
-		String str = TARIH_CEVIR.milis_ddMMyyyy(yuk.getTime());
+		String str = TARIH_CEVIR.milis_yyyymmss(yuk.getTime());
 		stmt.setString(2, str);
 		stmt.setString(3, mesaj);
 		stmt.executeUpdate();
@@ -869,16 +868,23 @@ public class BACKUP_GLOBAL {
 		FTPClient ftp = new FTPClient();
 		ftp.connect(ftpp, port);
 		ftp.login(kull, sifre);
+		
 		ftp.changeWorkingDirectory(dirPath);
 		int    returnCode = ftp.getReplyCode();
+		
 		if (ftp != null && ftp.isConnected()) {
 			ftp.logout();
 			ftp.disconnect();
 		}
+		boolean result = false;
 		if (returnCode == 530) {
-			return false;
+			result = false;
 		}
-		return true;
+		else if (returnCode == 250) {
+			result= true;
+		}
+		return result;
+
 	}
 	public Boolean DoesFtpExist(String ftpp ,int port ,String kull, String sifre) throws SocketException, IOException  
 	{
@@ -886,15 +892,20 @@ public class BACKUP_GLOBAL {
 		ftp.connect(ftpp, port);
 		ftp.login(kull, sifre);
 		int    returnCode = ftp.getReplyCode();
+		boolean result = false;
 		if (ftp != null && ftp.isConnected()) {
 			ftp.logout();
 			ftp.disconnect();
+		
 		}
 		
 		if (returnCode == 530) {
-			return false;
+			result = false;
 		}
-		return true;
+		else if (returnCode == 230) {
+			result= true;
+		}
+		return result;
 	}
 	public void ftp_sil(String ftpp, String ftpsurucu, String dosadi, String kull, String sifre, String port) throws IOException
 	{
@@ -984,9 +995,8 @@ public class BACKUP_GLOBAL {
 
 	public void zip_yap(String dosadi, String dosyolu, String dosadi_zip, Boolean Sifrele, String Sifre) throws IOException
 	{
-
 		String sourceFile = dosyolu + dosadi;
-		FileOutputStream fos = new FileOutputStream(dosadi_zip);
+		FileOutputStream fos = new FileOutputStream(dosyolu +dosadi_zip);
 		ZipOutputStream zipOut = new ZipOutputStream(fos);
 
 		File fileToZip = new File(sourceFile);
@@ -1004,24 +1014,21 @@ public class BACKUP_GLOBAL {
 		fis.close();
 		fos.close();
 
-
-
+//251220231845_OK_Adr2019.bak
+//251220231845_OK_Adr2019.bak
 	}
 
-	public void backup_al(String dbismi, String dbyer)
+	public void backup_al(String dbismi, String dbyer) throws ClassNotFoundException, SQLException
 	{
-		//            DataSet hdts = new DataSet();
-		//            using (SqlCommand F_CCMD = new SqlCommand())
-		//            {
-		//                F_CCMD.CommandText = "BACKUP DATABASE [" + dbismi + "] TO  DISK = N'C:\\OBS_SISTEM\\BACKUP\\" + dbyer + ".bak' " +
-		//                                    " WITH NOFORMAT , NOINIT , NAME = N'" + dbismi + "' , SKIP , NOREWIND  ,NOUNLOAD , STATS = 10 ";
-		//                F_CCMD.Connection = S_CONN;
-		//                SqlDataAdapter F_ADP = new SqlDataAdapter();
-		//                F_ADP.SelectCommand = F_CCMD;
-		//                hdts.Tables.Clear();
-		//                hdts.Clear();
-		//                F_ADP.Fill(hdts);
-		//            }
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		
+		String sql = "BACKUP DATABASE [" + dbismi + "] TO  DISK = N'"+ glb.BACKUP_YERI +  dbyer + ".bak'" +
+		             " WITH NOFORMAT , NOINIT , NAME = N'" + dbismi + "' , SKIP , NOREWIND  ,NOUNLOAD , STATS = 10 ";
+		Statement stmt ;
+		stmt = S_CONN.createStatement();  
+		stmt.execute(sql);  
+		stmt.close();
 	}
 	public void mySQL_backup( String emiradi,String dosya, String kull, String pwd, String port,String nereye,String backupadi,String server)
 	{

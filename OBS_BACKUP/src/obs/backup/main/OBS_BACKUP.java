@@ -3,8 +3,6 @@ package obs.backup.main;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -12,13 +10,8 @@ import javax.swing.border.EmptyBorder;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPFile;
-import org.apache.commons.net.nntp.NewGroupsOrNewsQuery;
-
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
-import com.formdev.flatlaf.intellijthemes.FlatArcIJTheme;
-import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 
@@ -44,7 +37,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -55,6 +47,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -64,37 +59,40 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
+import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import OBS_C_2025.SIFRE_DONDUR;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.bilgilendirme_bilgiler;
 import OBS_C_2025.emir_bilgiler;
 import OBS_C_2025.ftp_bilgiler;
 import OBS_C_2025.server_bilgiler;
 import OBS_C_2025.FORMATLAMA;
 
-import javax.swing.JProgressBar;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import javax.swing.Box;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.Message.RecipientType;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 @SuppressWarnings({ "static-access" })
 public class OBS_BACKUP extends JFrame {
@@ -1168,20 +1166,22 @@ public class OBS_BACKUP extends JFrame {
 		            }
 		        }
 		    }
-//		    DataSet dbiss = new DataSet();
-//		    dbiss = oac.bckp.bilgilendirme_bilgi(emirADI);
-//		    if (dbiss.Tables[0].Rows.Count > 0)
-//		    {
-//		        if ((Boolean)dbiss.Tables[0].Rows[0]["DURUM"])
-//		        {
-//		            if ((Boolean)dbiss.Tables[0].Rows[0]["GONDERILDIGINDE"])
-//		            {
-//		                bilgilendirme_oku(emirADI, emirADI + "    " + DateTime.Now + "     Yedekleme Yapildi");
-//		                oac.bckp.log_kayit(emirADI, DateTime.Now, "Yedekleme Yapildi Maili Gonderildi...");
-//		            }
-//		        }
-//		    }
-//		
+		    List<bilgilendirme_bilgiler> bilgiBilgi = new ArrayList<bilgilendirme_bilgiler>();
+		    bilgiBilgi  = bckp.bilgilendirme_bilgi(emirADI);
+		    if ( bilgiBilgi.size() > 0)
+		    {
+		        if ( bilgiBilgi.get(0).isDURUM() )
+		        {
+		            if (bilgiBilgi.get(0).isGONDERILDIGINDE())
+		            {
+		                SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH.mm:ss");
+			             Date today = new Date();        
+		                bilgilendirme_oku(emirADI, emirADI + "    " + df.format(today) + "     Yedekleme Yapildi",bilgiBilgi);
+		                bckp.log_kayit(emirADI, new Date(), "Yedekleme Yapildi Maili Gonderildi...");
+		            }
+		        }
+		    }
+		
 		       uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
@@ -1196,31 +1196,13 @@ public class OBS_BACKUP extends JFrame {
 				Thread t = new Thread(runner, "Code Executer");
 				t.start();
 	}
-	private void bilgilendirme_oku(string emir, string mesaj)
+	private void bilgilendirme_oku(String emir, String mesaj ,List<bilgilendirme_bilgiler> bilgiBilgi) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
-	    DataSet dbss = new DataSet();
-	    dbss = oac.bckp.bilgilendirme_bilgi(emir);
-	    if (dbss.Tables[0].Rows.Count > 0)
+	   
+	    if (bilgiBilgi.size() > 0)
 	    {
-	        string gonisim, gonhesap, alici, konu, smtp, port, kull, sifre;
-	        bool ssl, tsl;
-	        gonisim = dbss.Tables[0].Rows[0]["GON_ISIM"].ToString();
-	        gonhesap = dbss.Tables[0].Rows[0]["GON_HESAP"].ToString();
-	        alici = dbss.Tables[0].Rows[0]["ALICI"].ToString();
-	        konu = dbss.Tables[0].Rows[0]["KONU"].ToString();
-	        smtp = dbss.Tables[0].Rows[0]["SMTP"].ToString();
-	        port = dbss.Tables[0].Rows[0]["SMTP_PORT"].ToString();
-	        kull = dbss.Tables[0].Rows[0]["KULLANICI"].ToString();
-	        sifre = AesOperation.DecryptString(oac.glb.key, dbss.Tables[0].Rows[0]["SIFRE"].ToString());
-	        if ((Boolean)dbss.Tables[0].Rows[0]["SSL"])
-	            ssl = true;
-	        else
-	            ssl = false;
-	        if ((Boolean)dbss.Tables[0].Rows[0]["TSL"])
-	            tsl = true;
-	        else
-	            tsl = false;
-	        mail_gonder(gonisim, gonhesap, port, ssl, tsl, kull, sifre, smtp, alici, konu, mesaj);
+	       
+	        mail_at( bilgiBilgi , mesaj);
 	    }
 	}
 	private void diger_dosya(String eismi, String aciklama)
@@ -1288,6 +1270,91 @@ public class OBS_BACKUP extends JFrame {
 		}
 		container.repaint();
 		emirSAYI_COUNT();
+	}
+	private static void mail_at(List<bilgilendirme_bilgiler> bilgiBilgi,String mesaj )
+	{
+		try {
+			 String gonisim, gonhesap, alici, konu, smtp, port, kull, sifre;
+		        boolean ssl, tsl;
+		        gonisim = bilgiBilgi.get(0).getGON_ISIM();
+		        gonhesap = bilgiBilgi.get(0).getGON_HESAP();
+		        alici = bilgiBilgi.get(0).getALICI();
+		        konu = bilgiBilgi.get(0).getKONU();
+		        smtp = bilgiBilgi.get(0).getSMTP();
+		        port = bilgiBilgi.get(0).getSMTP_PORT();
+		        kull = bilgiBilgi.get(0).getKULLANICI();
+		       
+		        String decodedString = bilgiBilgi.get(0).getSIFRE();
+				String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+				byte[] bytes = new byte[byteValues.length];
+				for (int i=0, len=bytes.length; i<len; i++) {
+				   bytes[i] = Byte.parseByte(byteValues[i].trim());     
+				}
+			    sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
+			    
+		        if (bilgiBilgi.get(0).isSSL())
+		            ssl = true;
+		        else
+		            ssl = false;
+		        if (bilgiBilgi.get(0).isTSL())
+		            tsl = true;
+		        else
+		            tsl = false;
+		        
+		        
+			String[] to = { alici };
+			MimeBodyPart messagePart = null ;
+			Properties props = System.getProperties();
+			props.put("mail.smtp.host", smtp);
+			props.put("mail.smtp.user", kull);
+			props.put("mail.smtp.password",sifre);
+			props.put("mail.smtp.port", port);
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+
+			props.put("mail.smtp.starttls.enable", tsl);
+			if (ssl)
+			{
+				props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
+				//props.put("mail.smtp.startsls.enable", SSL);
+			}
+			
+			Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(kull, sifre);
+				}
+			});
+			
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(gonhesap ,gonisim ));
+			InternetAddress[] toAddress = new InternetAddress[to.length];
+			for (int i = 0; i < to.length; i++) {
+				toAddress[i] = new InternetAddress(to[i]);
+			}
+			for (int i = 0; i < toAddress.length; i++) {
+				message.setRecipient(RecipientType.TO,  toAddress[i]);
+			}
+			messagePart = new MimeBodyPart();
+			DatagramSocket socket = new DatagramSocket();
+			socket.connect(new InetSocketAddress("google.com", 80));
+			messagePart.setText(mesaj + " -mesaj -2","UTF-8");
+			Multipart multipart = new MimeMultipart();
+			multipart.addBodyPart(messagePart);
+			
+			
+			message.setSentDate(new Date());
+			
+			message.setSubject("OBS BACKUP YEDEKLEME" , "UTF-8");
+			message.setContent(multipart);
+			//message.setSentDate(new Date());
+			Transport.send(message);
+			message= null;
+			session = null;
+		}
+		catch (Exception ex)
+		{
+			
+		}
 	}
 	@Override
 	public Dimension getPreferredSize() {

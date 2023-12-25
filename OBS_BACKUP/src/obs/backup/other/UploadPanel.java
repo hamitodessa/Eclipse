@@ -45,14 +45,14 @@ public class UploadPanel extends JPanel {
 		panel.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		RPB1 = new JProgressBar();
-		RPB1.setForeground(new Color(39, 45, 61));
+		//RPB1.setForeground(new Color(39, 45, 61));
 		RPB1.setBorder(new LineBorder(new Color(0, 191, 255)));
 		RPB1.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		RPB1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel.add(RPB1);
 		
 		RPB2 = new JProgressBar();
-		RPB2.setForeground(new Color(39, 45, 61));
+		//RPB2.setForeground(new Color(39, 45, 61));
 		RPB2.setBorder(new LineBorder(new Color(0, 191, 255)));
 		RPB2.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		RPB2.setFont(new Font("Tahoma", Font.BOLD, 11));

@@ -871,7 +871,6 @@ public class BACKUP_GLOBAL {
 		
 		ftp.changeWorkingDirectory(dirPath);
 		int    returnCode = ftp.getReplyCode();
-		
 		if (ftp != null && ftp.isConnected()) {
 			ftp.logout();
 			ftp.disconnect();
@@ -920,7 +919,7 @@ public class BACKUP_GLOBAL {
 		// txt = ftpp + ":" + port + "/" + ftpsurucu + "/" + dosadi;
 	}
 
-	public List<String> ListRmtFiles(String ftpAddress, String surucu,String ftpUser, String ftpPassword) throws SocketException, IOException
+	public List<remote_filelist> ListRmtFiles(String ftpAddress, String surucu,String ftpUser, String ftpPassword) throws SocketException, IOException
 	{
 		FTPClient ftp = new FTPClient();
 		ftp.connect(ftpAddress);
@@ -928,21 +927,27 @@ public class BACKUP_GLOBAL {
 		ftp.changeWorkingDirectory(surucu);
 		FTPFile[] files = ftp.listFiles();
 
+		List<remote_filelist> filelists= new ArrayList<remote_filelist>();
 		SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		List<String> listeList = new ArrayList<String>();
+		//List<String> listeList = new ArrayList<String>();
 		for (FTPFile file : files) {
-			String details = file.getName();
+		
+			//String details = file.getName();
 			if (file.isDirectory()) {
-				details = "[" + details + "]";
+				//details = "[" + details + "]";
+				remote_filelist	filebilgi = new remote_filelist("[" + file.getName().toString()+ "]",(int) file.getSize(), dateFormater.format(file.getTimestamp().getTime()),"");
+				filelists.add(filebilgi);
 			}
-			details += "\t\t" + file.getSize();
-			details += "\t\t" + dateFormater.format(file.getTimestamp().getTime());
-			listeList.add(details);
+			//details += "\t\t" + file.getSize();
+		//	details += "\t\t" + dateFormater.format(file.getTimestamp().getTime());
+		//	listeList.add(details);
+			remote_filelist	filebilgi = new remote_filelist(file.getName().toString(),(int) file.getSize(), dateFormater.format(file.getTimestamp().getTime()),"");
+			filelists.add(filebilgi);
 		}
 
 		ftp.logout();
 		ftp.disconnect();
-		return listeList;
+		return filelists;
 	}
 	public ResultSet log_liste()throws ClassNotFoundException, SQLException
 	{
@@ -957,17 +962,17 @@ public class BACKUP_GLOBAL {
 		rss = stmt.executeQuery();
 		return rss ;
 	}
-	public List<String> sur_liste(String surucu)
+	public List<remote_filelist> sur_liste(String surucu)
 	{
+		List<remote_filelist> filelists= new ArrayList<remote_filelist>();
 		File directoryPath = new File(surucu);
 
 		String contents[] = directoryPath.list();
-		List<String> ListOfFiles = new ArrayList<String>();
 		for(int i=0; i<contents.length; i++) {
-			ListOfFiles.add(contents[i]);
-			//System.out.println(contents[i]);
+			remote_filelist 	ListOfFiles = new remote_filelist(contents[i].toString(),0,"",surucu);
+			filelists.add(ListOfFiles);
 		}
-		return ListOfFiles;
+		return filelists;
 	}
 
 	public void zip_yap(String dosadi, String dosyolu, String dosadi_zip, Boolean Sifrele, String Sifre) throws IOException

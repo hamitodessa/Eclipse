@@ -204,7 +204,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 
 		lblDurum = new JLabel(".....");
 		lblDurum.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDurum.setForeground(new Color(128, 0, 0));
+		//lblDurum.setForeground(new Color(128, 0, 0));
 		lblDurum.setBounds(35, 16, 195, 14);
 		add(lblDurum);
 
@@ -289,8 +289,8 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 	{
 		tt.cancel();
 		lblSonDurum.setText("Yedekleme Sirasina Konuldu");
+		lblSonDurum.setForeground(Color.GREEN);
 	    bckp.log_kayit(eADI, new Date(), "Yedekleme Sirasina Konuldu.....");
-//	    Thread.sleep(3000);
 	    OBS_BACKUP.gorevLER.add(eADI);
 	}
 	private void basla() throws ClassNotFoundException, ParseException, SQLException
@@ -459,7 +459,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 
 		LocalDate localDate = LocalDate.now(); // today
 		java.time.DayOfWeek dayOfWeek = localDate.getDayOfWeek();
-		System.out.println(localDate.getDayOfWeek().name());   // Gun ISMI
+		//System.out.println(localDate.getDayOfWeek().name());   // Gun ISMI
 		///
 
 		int hangiGUNDEYIZ = (int) dayOfWeek.getValue();

@@ -132,6 +132,7 @@ public class EmirAnaGiris extends JPanel {
 					btnServer.setVisible(false);
 					btnDosyaSec.setVisible(true);
 					btnSurucuSec.setVisible(true);
+					lblNewLabel_6.setText(".......");
 				}
 			}
 		});
@@ -227,7 +228,7 @@ public class EmirAnaGiris extends JPanel {
 				chooser.setApproveButtonMnemonic('s');
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
-					model.addElement( new CheckListItem(chooser.getSelectedFile().toString(),"Surucu"));
+					model.addElement( new CheckListItem(chooser.getSelectedFile().getName(),chooser.getSelectedFile().getParent()));
 					list.repaint();
 				}
 				else {

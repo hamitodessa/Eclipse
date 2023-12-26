@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.db_List;
 import OBS_C_2025.emir_bilgiler;
+import OBS_C_2025.ftp_bilgiler;
 import OBS_C_2025.yedekleme_bilgiler;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -22,6 +23,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -370,43 +372,40 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		}
 		String insTANCE = emirBilgiler.get(0).getINSTANCE() ;
 		boolean SQL_YEDEK_MI = emirBilgiler.get(0).isSQL_YEDEK();
+		List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
+		ftpBilgi = bckp.ftp_bilgi(eADI);
+		
 		if (SQL_YEDEK_MI)
 		{
-			if (bckp.ftp_neresi(eADI).equals("FTP"))
+			if (ftpBilgi.get(0).getNERESI().equals("FTP"))
 			{
-				// btnINDIR.Enabled = true;
-					List<String> dbliste = bckp.db_liste(eADI);
-				
+				List<String> dbliste = bckp.db_liste(eADI);
 				if (dbliste.size() == 0 ) {  
 					lblDosyaSayisi.setText("0 Adet Dosya");
 				}
 				else {
 					lblDosyaSayisi.setText(dbliste.size() + " Adet Dosya - " + insTANCE);
-					lblSurucu.setText(bckp.surucu_bilgi(eADI, "HOST") + "\\" + bckp.surucu_bilgi(eADI, "SURUCU").replace("/", "\\"));
+					lblSurucu.setText(ftpBilgi.get(0).getHOST() + "\\" + ftpBilgi.get(0).getSURUCU().replace("/", "\\"));
 				}
 			}
 			else
 			{
-				// btnINDIR.Enabled = false;
-			
 				List<String> dbliste = bckp.db_liste(eADI);
-				
 				if (dbliste.size() == 0 ) {  
 					lblDosyaSayisi.setText("0 Adet Dosya");
-					lblSurucu.setText(bckp.surucu_bilgi(eADI, "SURUCU_YER"));
+					lblSurucu.setText(ftpBilgi.get(0).getSURUCU_YER());
 				}
 				else
 				{
 					lblDosyaSayisi.setText(dbliste.size() +  " Adet Dosya...");
-					lblSurucu.setText(bckp.surucu_bilgi(eADI, "SURUCU_YER"));
+					lblSurucu.setText(ftpBilgi.get(0).getSURUCU_YER());
 				}
 			}
 		}
 		else  //' Diger Dosya
 		{
-			if (bckp.ftp_neresi(eADI) == "FTP")
+			if (ftpBilgi.get(0).getNERESI().equals("FTP"))
 			{
-				//btnINDIR.Enabled = true;
 				List<db_List> dosliste = bckp.diger_dosya_liste(lblemirISMI.getText());
 				if (dosliste.size() == 0 ) {  
 					lblDosyaSayisi.setText("0 Adet Dosya");
@@ -414,28 +413,25 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 				else
 				{
 					lblDosyaSayisi.setText(dosliste.size() +  " Adet Dosya...");
-					lblSurucu.setText(bckp.surucu_bilgi(eADI,"HOST") + "\\" + bckp.surucu_bilgi(eADI, "SURUCU").replace("/", "\\"));
+					lblSurucu.setText(ftpBilgi.get(0).getHOST() + "\\" + ftpBilgi.get(0).getSURUCU().replace("/", "\\"));
 				}
 			}
 			else
 			{
-				//btnINDIR.Enabled = false;
 				List<db_List> dosliste = bckp.diger_dosya_liste(lblemirISMI.getText());
 				if (dosliste.size() == 0 ) 
 				{  
 					lblDosyaSayisi.setText("0 Adet Dosya");
-					lblSurucu.setText(bckp.surucu_bilgi(eADI, "SURUCU_YER"));
+					lblSurucu.setText(ftpBilgi.get(0).getSURUCU_YER());
 				}
 				else
 				{
 					lblDosyaSayisi.setText(dosliste.size() +  " Adet Dosya...");
-					lblSurucu.setText(bckp.surucu_bilgi(lblemirISMI.getText(), "SURUCU_YER"));
+					lblSurucu.setText(ftpBilgi.get(0).getSURUCU_YER());
 				}
 			}
 		}
-		
 		 List<yedekleme_bilgiler> yedekBilgiler =  bckp.yedekleme_bilgi(lblemirISMI.getText());
-	
 		 if ( yedekBilgiler.size() == 0) {
 		}
 
@@ -449,8 +445,6 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 			lblBASLAMA.setText(df.format(basl));
 			lblBITIS.setText(df.format(bitis));
 			lblKACDAKKA.setText(yedekBilgiler.get(0).getSAAT());
-			
-			
 		}
 		
 	}

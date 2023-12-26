@@ -5,6 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.SocketException;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.security.KeyStore.TrustedCertificateEntry;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,9 +31,6 @@ import javax.swing.JOptionPane;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.hsqldb.lib.CountdownInputStream;
-
-
-
 
 
 
@@ -864,7 +866,6 @@ public class BACKUP_GLOBAL {
 	}
 	public Boolean DoesFtpDirectoryExist(String ftpp ,String dirPath,int port ,String kull, String sifre) throws SocketException, IOException  
 	{
-		//System.out.println(ftpp +"=="+ port +"=="+ dirPath + "=="+ kull +"=="+ sifre);
 		FTPClient ftp = new FTPClient();
 		ftp.connect(ftpp, port);
 		ftp.login(kull, sifre);
@@ -979,6 +980,7 @@ public class BACKUP_GLOBAL {
 	{
 		String sourceFile = dosyolu + dosadi;
 		FileOutputStream fos = new FileOutputStream(dosyolu +dosadi_zip);
+		
 		ZipOutputStream zipOut = new ZipOutputStream(fos);
 
 		File fileToZip = new File(sourceFile);
@@ -999,7 +1001,40 @@ public class BACKUP_GLOBAL {
 //251220231845_OK_Adr2019.bak
 //251220231845_OK_Adr2019.bak
 	}
+	public void diger_zip_yap(String okumadosyaadii, String dosyolu, String dosadi_zip, Boolean Sifrele, String Sifre) throws IOException
+	{
+		String sourceFile = okumadosyaadii;
+		FileOutputStream fos = new FileOutputStream(dosyolu +dosadi_zip);
+		ZipOutputStream zipOut = new ZipOutputStream(fos);
 
+		File fileToZip = new File(sourceFile);
+		FileInputStream fis = new FileInputStream(fileToZip);
+		ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
+		zipOut.putNextEntry(zipEntry);
+
+		byte[] bytes = new byte[1024];
+		int length;
+		while((length = fis.read(bytes)) >= 0) {
+			zipOut.write(bytes, 0, length);
+		}
+
+		zipOut.close();
+		fis.close();
+		fos.close();
+	}
+	public  void zipFolder(Path sourceFolderPath, Path zipPath) throws Exception {
+		   ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipPath.toFile()));
+		   Files.walkFileTree(sourceFolderPath, new SimpleFileVisitor<Path>() 
+		   {
+		       public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+		           zos.putNextEntry(new ZipEntry(sourceFolderPath.relativize(file).toString()));
+		           Files.copy(file, zos);
+		           zos.closeEntry();
+		           return FileVisitResult.CONTINUE;
+		        }
+		    });
+		    zos.close();
+		 }
 	public void backup_al(String dbismi, String dbyer) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

@@ -424,12 +424,18 @@ public class EmirAnaGiris extends JPanel {
         		Date qweDate = new Date();
         		qweDate.setHours(snyk.getHours());
         		qweDate.setMinutes(snyk.getMinutes());
+        		qweDate.setSeconds(0);
         		OBS_BACKUP.yedekaraligiPanel.timeBaslangic.setValue(qweDate);
         		
         		Date bts =  formatter.parse(yedekBilgiler.get(0).getBITIS().toString());
         		Date bts1  = new Date();
+        		bts1.setYear(qweDate.getYear());
+        		bts1.setMonth(qweDate.getMonth());
+        		bts1.setDate(qweDate.getDate());
         		bts1.setHours(bts.getHours());
         		bts1.setMinutes(bts.getMinutes());
+        		bts1.setSeconds(0);
+        	
         		OBS_BACKUP.yedekaraligiPanel.timeBaslangic.setValue(qweDate);
         		OBS_BACKUP.yedekaraligiPanel.timeBitis.setValue(bts1);
             }

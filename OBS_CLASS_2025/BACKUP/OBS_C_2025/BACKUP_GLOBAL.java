@@ -19,14 +19,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Vector;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -950,7 +954,46 @@ public class BACKUP_GLOBAL {
 		ftp.disconnect();
 		return filelists;
 	}
-	public ResultSet log_liste()throws ClassNotFoundException, SQLException
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public DefaultTableModel emir_liste() throws SQLException, ClassNotFoundException, ParseException
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		PreparedStatement stmt = null;
+		ResultSet	rss = null;
+		con = glb.myBackupConnection();
+		String sql = "";
+
+		sql = "SELECT * FROM EMIRLER ORDER BY   EMIR_ISMI   ";
+		stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+
+		DefaultTableModel model = new DefaultTableModel();
+		model.addColumn("EMIR_ISMI");
+		model.addColumn("DURUM");
+		model.addColumn("MESAJ");
+		model.addColumn("INSTANCE");
+		model.addColumn("SON_YUKLEME");
+		int i = 0 ;
+		while (rss.next())
+		{     
+				Vector data = new Vector();
+				SimpleDateFormat form = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH);
+				Date sonyuk =	new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("SON_YUKLEME"));
+				data.add(rss.getString("EMIR_ISMI") );
+				data.add(rss.getInt("DURUM") == 0 ? Boolean.FALSE:Boolean.TRUE);
+				data.add(rss.getString("MESAJ"));
+				data.add(rss.getString("INSTANCE"));
+				data.add(form.format(sonyuk));
+				model.addRow(data);
+			
+		}
+		stmt.close();
+		con.close();
+	
+		return model ;
+	}
+	public DefaultTableModel log_liste()throws ClassNotFoundException, SQLException, ParseException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -958,10 +1001,25 @@ public class BACKUP_GLOBAL {
 		ResultSet	rss = null;
 		con = glb.myBackupLogConnection();
 		String sql = "";
-		sql =  "SELECT * FROM LOG ORDER BY TARIH";
+		sql =  "SELECT TARIH,ACIKLAMA,EMIR_ISMI FROM LOG ORDER BY TARIH";
+
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		return rss ;
+		DefaultTableModel model =new DefaultTableModel(new String[] {"TARIH", "ACIKLAMA", "EMIR_ISMI"},0);
+		while(rss.next())
+		{
+			Vector<String> data = new Vector<String>();
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+			SimpleDateFormat form = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH);
+			Date date = formatter.parse(rss.getString("TARIH"));
+			data.add( form.format(date));
+			data.add( rss.getString("ACIKLAMA"));
+			data.add( rss.getString("EMIR_ISMI"));
+			model.addRow(data);
+		}
+		stmt.close();
+		con.close();
+		return model ;
 	}
 	public List<remote_filelist> sur_liste(String surucu)
 	{

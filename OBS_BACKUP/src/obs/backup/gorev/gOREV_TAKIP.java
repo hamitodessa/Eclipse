@@ -37,6 +37,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings({"serial","deprecation"})
@@ -60,22 +62,24 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 	private JButton btn1 ;
 	
 	public JLabel lblemirISMI ;
-	private static JLabel lblDosyaSayisi;
-	private static JLabel lblSurucu;
+	private JLabel lblDosyaSayisi;
+	private JLabel lblSurucu;
 	private JLabel lblSonYedek;
-	private static JLabel lblAciklama;
-	private  JLabel lblDurum;
-	private static JLabel lblBASLAMA;
-	private static JLabel lblBITIS;
-	private static JLabel lblKACDAKKA;
+	private JLabel lblAciklama;
+	private JLabel lblDurum;
+	private JLabel lblBASLAMA;
+	private JLabel lblBITIS;
+	private JLabel lblKACDAKKA;
 	private JLabel lblSonDurum;
 	private JLabel lblGelecekYedekleme ;
 	private JLabel lblKalanZaman;
+	private JLabel lblNewLabel_6 ;
 
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
-
+	public JButton btnyenidenBASLAT;
+	
 	public gOREV_TAKIP(String emirADI) {
-
+		
 		eADI = emirADI;
 		setBorder(new CompoundBorder(new EmptyBorder(5, 5, 0, 5), BorderFactory.createLineBorder(new Color(235, 235, 235))));
 		setName(emirADI); 
@@ -167,12 +171,14 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		lblAciklama.setBounds(240, 153, 336, 14);
 		add(lblAciklama);
 
-		JLabel lblNewLabel_6 = new JLabel("~");
+		lblNewLabel_6 = new JLabel("~");
 		lblNewLabel_6.setBounds(397, 132, 20, 14);
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		add(lblNewLabel_6);
 
 		lblKalanZaman = new JLabel("0");
 		lblKalanZaman.setBounds(412, 132, 164, 14);
+		lblKalanZaman.setFont(new Font("Tahoma", Font.BOLD, 11));
 		add(lblKalanZaman);
 
 		JLabel lblNewLabel = new JLabel("Son Durum");
@@ -225,11 +231,23 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		lblKACDAKKA.setBounds(97, 39, 18, 18);
 		add(lblKACDAKKA);
 
-		btn1 = new JButton("Y");
+		btn1 = new JButton();
+		btn1.setName("⇈");
+		btn1.setIcon(new ImageIcon(gOREV_TAKIP.class.getResource("/obs/backup/icons/double-up-16.png")));
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OBS_BACKUP.gorevYUKARI(eADI);
+				if (btn1.getName().equals("⇈"))
+				{
+					OBS_BACKUP.gorevYUKARI(eADI);
+					btn1.setIcon(new ImageIcon(gOREV_TAKIP.class.getResource("/obs/backup/icons/down-16.png")));
+					btn1.setName("⇊");
 				}
+				else
+				{
+					OBS_BACKUP.gorevASAGI(eADI);
+					btn1.setName( "⇈");
+				}
+			}
 		});
 		btn1.setVisible(true);
 		btn1.setBounds(10, 11, 23, 23);
@@ -240,10 +258,37 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		btn2.setBounds(0, 31, 23, 23);
 		add(btn2);
 
-		JButton btnyenidenBASLAT = new JButton(".....");
+		btnyenidenBASLAT = new JButton(".....");
 		btnyenidenBASLAT.setBounds(20, 31, 23, 23);
 		btnyenidenBASLAT.setVisible(false);
+		btnyenidenBASLAT.setName("btnyenidenBASLAT");
+		btnyenidenBASLAT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ilkBasla();
+				} catch (Exception e1) {
+				
+					e1.printStackTrace();
+				}
+			}
+		});
 		add(btnyenidenBASLAT);
+		
+		addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				if(getPreferredSize().height == 175)
+				{
+					btn1.setIcon(new ImageIcon(gOREV_TAKIP.class.getResource("/obs/backup/icons/double-up-16.png")));
+					lblNewLabel_6.setBounds(397, 132, 20, 14);
+					lblKalanZaman.setBounds(412, 132, 164, 14);
+				}
+				else {
+					btn1.setIcon(new ImageIcon(gOREV_TAKIP.class.getResource("/obs/backup/icons/down-16.png")));
+					lblNewLabel_6.setBounds(397, 47, 20, 14);
+					lblKalanZaman.setBounds(412, 47, 164, 14);
+				}
+			}
+		});
 		try {
 			ilkBasla();
 		
@@ -713,7 +758,6 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 	}
 	private void hangiGUN_CUMA(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException
 	{
-		System.out.println("dk=="+gunKONTROL[4]);
 		if (gunKONTROL[4])  //  C.tesiden Say 
 		{
 			for (int i = 6; i < 9; i++)
@@ -853,7 +897,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 			hangiGUN_P_TESI(varmi, kacGUN + 1, true);
 		}
 	}
-	private void gunEKLE(Date basLA, int gun)
+	private void gunEKLE(Date basLA, int gun) throws ClassNotFoundException, SQLException
 	{
 		Date date1 = basLA; 
 		Date dt = new Date();
@@ -866,10 +910,10 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		Date dtt = new Date();
 		dtt = new Date(now.getYear(), now.getMonth(), now.getDate(), dt.getHours(), dt.getMinutes(), 0);
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-
+		bckp.log_kayit(eADI, new Date(),"Gel.Yed:" + df.format(dtt));
 		lblGelecekYedekleme.setText( df.format(dtt));
 	}
-	private void guniciKONTROL() throws ParseException
+	private void guniciKONTROL() throws ParseException, ClassNotFoundException, SQLException
 	{
 		SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH);
 		Date basLAMA =  formatter.parse(lblBASLAMA.getText());

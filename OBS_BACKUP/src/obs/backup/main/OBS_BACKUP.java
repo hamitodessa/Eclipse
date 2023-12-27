@@ -1818,7 +1818,6 @@ public class OBS_BACKUP extends JFrame {
 						uplpnl.setPreferredSize(new Dimension(0,00));
 						uplpnl.setMaximumSize(new Dimension(0,0));
 						uplpnl.revalidate();
-
 						yapilmadiMAILI(emirADI);
 						emirBOSALT(emirADI);
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
@@ -1831,7 +1830,6 @@ public class OBS_BACKUP extends JFrame {
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 						e.printStackTrace();
 					}
-
 				} 
 				//////
 			}

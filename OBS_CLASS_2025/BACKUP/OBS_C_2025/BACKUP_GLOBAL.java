@@ -34,7 +34,7 @@ import org.hsqldb.lib.CountdownInputStream;
 
 
 
-@SuppressWarnings({"static-access","unused","deprecation"})
+@SuppressWarnings({"static-access","unused"})
 public class BACKUP_GLOBAL {
 	public Connection S_CONN;
 	public Connection MY_CONN; //= new MySqlConnection();

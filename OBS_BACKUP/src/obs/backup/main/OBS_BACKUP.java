@@ -425,7 +425,7 @@ public class OBS_BACKUP extends JFrame {
 						break;
 					}
 				}
-				Thread.sleep(1000);
+				Thread.sleep(500);
 				List<emir_bilgiler> ebilgiler = bckp.emir_tek(eISMI);
 				boolean SQL_YEDEK_MI;
 				SQL_YEDEK_MI = ebilgiler.get(0).isSQL_YEDEK();
@@ -958,6 +958,7 @@ public class OBS_BACKUP extends JFrame {
 		{
 			sql_yerel_surucu( emirADI  ,ftpBilgi);
 		}
+	
 	}
 	private void sql_yerel_surucu( String emirADI,     List<ftp_bilgiler> ftpBilgi) 
 	{
@@ -1115,7 +1116,8 @@ public class OBS_BACKUP extends JFrame {
 					uplpnl.setPreferredSize(new Dimension(0,00));
 					uplpnl.setMaximumSize(new Dimension(0,0));
 					uplpnl.revalidate();
-					///
+					emirBOSALT(emirADI);
+					emirTEKYUKLE(emirADI);
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
 				catch (Exception ex)
@@ -1137,6 +1139,8 @@ public class OBS_BACKUP extends JFrame {
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 						emirtekSIL_HATA(emirADI);
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Yuklendi...");
+						emirBOSALT(emirADI);
+						emirTEKYUKLE(emirADI);
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (Exception e) {
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1333,6 +1337,9 @@ public class OBS_BACKUP extends JFrame {
 					uplpnl.setPreferredSize(new Dimension(0,00));
 					uplpnl.setMaximumSize(new Dimension(0,0));
 					uplpnl.revalidate();
+					
+					emirBOSALT(emirADI);
+					emirTEKYUKLE(emirADI);
 					////
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
@@ -1353,6 +1360,8 @@ public class OBS_BACKUP extends JFrame {
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 						emirtekSIL_HATA(emirADI);
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Yuklendi...");
+						emirBOSALT(emirADI);
+						emirTEKYUKLE(emirADI);
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (Exception e) {
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1442,6 +1451,7 @@ public class OBS_BACKUP extends JFrame {
 		{
 			diger_yerel_surucu( emirADI ,ftpBilgi );
 		}
+		
 	}
 	private void diger_yerel_surucu(String emirADI,List<ftp_bilgiler> ftpBilgi )
 	{
@@ -1579,7 +1589,8 @@ public class OBS_BACKUP extends JFrame {
 					uplpnl.setPreferredSize(new Dimension(0,00));
 					uplpnl.setMaximumSize(new Dimension(0,0));
 					uplpnl.revalidate();
-					////
+					emirBOSALT(emirADI);
+					emirTEKYUKLE(emirADI);
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					////
 				}
@@ -1596,11 +1607,12 @@ public class OBS_BACKUP extends JFrame {
 						uplpnl.revalidate();
 
 						yapilmadiMAILI( emirADI);
-						//hataDURUMUNDA(emirADI);
 						emirBOSALT(emirADI);
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 						emirtekSIL_HATA(emirADI);
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Yuklendi...");
+						emirBOSALT(emirADI);
+						emirTEKYUKLE(emirADI);
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (Exception e) {
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1790,7 +1802,8 @@ public class OBS_BACKUP extends JFrame {
 					uplpnl.setPreferredSize(new Dimension(0,00));
 					uplpnl.setMaximumSize(new Dimension(0,0));
 					uplpnl.revalidate();
-					////
+					emirBOSALT(emirADI);
+					emirTEKYUKLE(emirADI);
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					////
 				}
@@ -1807,11 +1820,12 @@ public class OBS_BACKUP extends JFrame {
 						uplpnl.revalidate();
 
 						yapilmadiMAILI(emirADI);
-						//hataDURUMUNDA(emirADI);
 						emirBOSALT(emirADI);
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 						emirtekSIL_HATA(emirADI);
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Yuklendi...");
+						emirBOSALT(emirADI);
+						emirTEKYUKLE(emirADI);
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (Exception e) {
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

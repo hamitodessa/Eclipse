@@ -304,7 +304,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		}
 		
 	}
-	private void ilkBasla() throws ClassNotFoundException, SQLException
+	public void ilkBasla() throws ClassNotFoundException, SQLException
 	{
 		try
 		{

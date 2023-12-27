@@ -41,6 +41,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -131,10 +133,13 @@ public class OBS_BACKUP extends JFrame {
 	public static EmirAnaGiris emirAnaGirisPanel;
 	UploadPanel uplpnl ;
 
+	private JScrollPane scrollPane;
 	public static JButton btnYeni_Gorev;
 	public static JButton btnNewButton_2;
 	public static JButton btnGorevler;
 	private static JLabel lblemirSAYI;
+	
+	static Component horizontalGlue = null ;
 	/**
 	 * Hamit.
 	 */
@@ -321,13 +326,14 @@ public class OBS_BACKUP extends JFrame {
 		uplpnl.setPreferredSize(new Dimension(0,00));
 		panel_1.add(uplpnl, BorderLayout.SOUTH);
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		panel_1.add(scrollPane, BorderLayout.CENTER);
-
+//**************************************************************************************
 		container = new JPanel(); 
 		scrollPane.setViewportView(container);
-
-		container.setLayout(new GridLayout(15, 1, 5, 5));
+		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+		
+		//container.setLayout(new GridLayout(4, 1, 5, 5));
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("Yeni Gorev", null, panel_3, null);
 		panel_3.setLayout(new BorderLayout(0, 0));
@@ -379,6 +385,7 @@ public class OBS_BACKUP extends JFrame {
 		try {
 			glb.backup_surucu_kontrol();
 			emir_yukle("EMIR_ISMI") ;
+		
 			jobTimerBasla();
 		} catch (Exception e1) {
 
@@ -440,7 +447,7 @@ public class OBS_BACKUP extends JFrame {
 				}
 
 			}
-
+		
 			jobTimerBasla();
 		}
 		catch (Exception ex)
@@ -772,12 +779,33 @@ public class OBS_BACKUP extends JFrame {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 			else {
-
+				int toplam = emirliste.size();
 				for (int i = 0; i<=  emirliste.size() -1 ; i++)
 				{
-					emirTEKYUKLE( emirliste.get(i).getEMIR_ISMI());
+					emirTEKYUKLE( emirliste.get(i).getEMIR_ISMI(),"ana");
 				}
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				
+				
+//				int yuk = 175;
+//				switch(toplam) {
+//				case 1:
+//					horizontalGlue = Box.createVerticalStrut(625 - yuk);
+//					break;
+//				case 2:
+//					horizontalGlue = Box.createVerticalStrut(625 - (yuk * 2));
+//					break;
+//				case 3:
+//					horizontalGlue = Box.createVerticalStrut(625 - (yuk *3));
+//					break;
+//				case 4:
+//					horizontalGlue = Box.createVerticalStrut(625 - (yuk *4));
+//					break; 
+//				default:
+//					
+//				}
+				horizontalGlue = Box.createVerticalStrut(555);
+				container.add(horizontalGlue);
 			}
 		}
 		catch (Exception ex)
@@ -787,14 +815,18 @@ public class OBS_BACKUP extends JFrame {
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());	
 		}
 	}
-	public void emirTEKYUKLE(String eismi)
+	public void emirTEKYUKLE(String eismi,String nerden)
 	{
 		if (eismi.equals("")) return;
 		gOREV_TAKIP emir = new gOREV_TAKIP(eismi);
-
 		emir.setName(eismi);
 		emir.lblemirISMI.setText(eismi);
 		container.add(emir);
+		if(!nerden.equals("ana"))
+		{
+			horizontalGlue = Box.createVerticalStrut(555);
+			container.add(horizontalGlue);
+		}
 		emirSAYI_COUNT();
 	}
 	private static void emirSAYI_COUNT()
@@ -811,14 +843,21 @@ public class OBS_BACKUP extends JFrame {
 		Component[] components = container.getComponents();
 		for (Component component : components) 
 		{
-			if (component.getName().toString().equals(eadi)) 
+			if(component.getName()!= null)
 			{
-				container.remove(component);
+				if (component.getName().toString().equals(eadi)) 
+				{
+					container.remove(component);
+				}
+			}
+			else if(component.getName()== null)
+			{
+					container.remove(component);
 			}
 		}
 		container.revalidate();
 		container.repaint();
-		emirTEKYUKLE(eadi);
+		emirTEKYUKLE(eadi,"");
 
 	}
 	public static void emirSIL(String eadi) throws ClassNotFoundException, SQLException
@@ -826,9 +865,12 @@ public class OBS_BACKUP extends JFrame {
 		Component[] components = container.getComponents();
 		for (Component component : components) 
 		{
+			if(component.getName()!= null)
+			{
 			if (component.getName().toString().equals(eadi)) 
 			{
 				container.remove(component);
+			}
 			}
 		}
 		container.repaint();
@@ -866,15 +908,26 @@ public class OBS_BACKUP extends JFrame {
 	public static void gorevYUKARI(String eadi) {
 		Component[] components = container.getComponents();
 		for (Component component : components) {
-
-			System.out.println(component.getName());
-			component.setPreferredSize(new Dimension(00,60));
-
-
+			if(component.getName() != null)
+			{
+				if( component.getName().toString().equals(eadi))
+					component.setPreferredSize(new Dimension(00,70));
+			}
 		}
-		container.repaint();
-
+		container.revalidate();
 	}
+	public static void gorevASAGI(String eadi) {
+		Component[] components = container.getComponents();
+		for (Component component : components) {
+			if(component.getName() != null)
+			{
+				if( component.getName().toString().equals(eadi))
+					component.setPreferredSize(new Dimension(00,175));
+			}
+		}
+		container.revalidate();
+	}
+
 	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
 	{
 		InputStream stream = null ;
@@ -1117,7 +1170,7 @@ public class OBS_BACKUP extends JFrame {
 					uplpnl.setMaximumSize(new Dimension(0,0));
 					uplpnl.revalidate();
 					emirBOSALT(emirADI);
-					emirTEKYUKLE(emirADI);
+					emirTEKYUKLE(emirADI,"");
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
 				catch (Exception ex)
@@ -1135,12 +1188,12 @@ public class OBS_BACKUP extends JFrame {
 
 						yapilmadiMAILI( emirADI);
 						//hataDURUMUNDA(emirADI);
-						emirBOSALT(emirADI);
+						
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 						emirtekSIL_HATA(emirADI);
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Yuklendi...");
-						emirBOSALT(emirADI);
-						emirTEKYUKLE(emirADI);
+						//emirBOSALT(emirADI);
+						//emirTEKYUKLE(emirADI,"");
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (Exception e) {
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1290,7 +1343,9 @@ public class OBS_BACKUP extends JFrame {
 						bckp.log_kayit(emirADI, new Date(), dosADI + " ZIP Dosyasi Silindi...");
 					}
 					Date nowwDate = new Date();
+					JOptionPane.showConfirmDialog(null, "");
 					durumYAZ(emirADI,nowwDate);		
+					
 					bckp.genel_kayit_durum(emirADI, true,nowwDate, "Yedeklendi.....");
 					if (eskiyedek > 0) // **************FTP ESKILERI SIL
 					{
@@ -1339,7 +1394,7 @@ public class OBS_BACKUP extends JFrame {
 					uplpnl.revalidate();
 					
 					emirBOSALT(emirADI);
-					emirTEKYUKLE(emirADI);
+					emirTEKYUKLE(emirADI,"");
 					////
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
@@ -1356,12 +1411,12 @@ public class OBS_BACKUP extends JFrame {
 						uplpnl.revalidate();
 
 						yapilmadiMAILI( emirADI);
-						emirBOSALT(emirADI);
+						
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 						emirtekSIL_HATA(emirADI);
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Yuklendi...");
-						emirBOSALT(emirADI);
-						emirTEKYUKLE(emirADI);
+						//emirBOSALT(emirADI);
+						//emirTEKYUKLE(emirADI,"");
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (Exception e) {
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1590,7 +1645,7 @@ public class OBS_BACKUP extends JFrame {
 					uplpnl.setMaximumSize(new Dimension(0,0));
 					uplpnl.revalidate();
 					emirBOSALT(emirADI);
-					emirTEKYUKLE(emirADI);
+					emirTEKYUKLE(emirADI,"");
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					////
 				}
@@ -1607,12 +1662,12 @@ public class OBS_BACKUP extends JFrame {
 						uplpnl.revalidate();
 
 						yapilmadiMAILI( emirADI);
-						emirBOSALT(emirADI);
+						
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 						emirtekSIL_HATA(emirADI);
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Yuklendi...");
-						emirBOSALT(emirADI);
-						emirTEKYUKLE(emirADI);
+						//emirBOSALT(emirADI);
+						//emirTEKYUKLE(emirADI,"");
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (Exception e) {
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1803,7 +1858,7 @@ public class OBS_BACKUP extends JFrame {
 					uplpnl.setMaximumSize(new Dimension(0,0));
 					uplpnl.revalidate();
 					emirBOSALT(emirADI);
-					emirTEKYUKLE(emirADI);
+					emirTEKYUKLE(emirADI,"");
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					////
 				}
@@ -1819,12 +1874,12 @@ public class OBS_BACKUP extends JFrame {
 						uplpnl.setMaximumSize(new Dimension(0,0));
 						uplpnl.revalidate();
 						yapilmadiMAILI(emirADI);
-						emirBOSALT(emirADI);
+						
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 						emirtekSIL_HATA(emirADI);
 						bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Yuklendi...");
-						emirBOSALT(emirADI);
-						emirTEKYUKLE(emirADI);
+						//emirBOSALT(emirADI);
+						//emirTEKYUKLE(emirADI,"");
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					} catch (Exception e) {
 						contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1891,11 +1946,19 @@ public class OBS_BACKUP extends JFrame {
 		Component[] components = container.getComponents();
 		for (Component component : components) 
 		{
-			if (component.getName().toString().equals(emirADI)) 
+			if(component.getName()!= null)
+			{
+				if (component.getName().toString().equals(emirADI)) 
+				{
+					container.remove(component);
+				}
+			}
+			else if (component.getName() == null)
 			{
 				container.remove(component);
 			}
 		}
+	
 		container.revalidate();
 		container.repaint();
 		emirSAYI_COUNT();
@@ -1991,6 +2054,8 @@ public class OBS_BACKUP extends JFrame {
 		
 		Component[] components = container.getComponents();
 		for (Component component : components) {
+			if (component.getName()!= null)
+			{
 			if (component.getName().toString().equals(emirADI)) {
 				JPanel qweJPanel = (JPanel) component ; 
 				Component[] componentt = qweJPanel.getComponents();
@@ -2011,6 +2076,7 @@ public class OBS_BACKUP extends JFrame {
 					}
 				}
 			}
+		}
 			component.revalidate();
 		}
 

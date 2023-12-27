@@ -452,7 +452,7 @@ public class EmirAnaGiris extends JPanel {
             	}
             	else if (serverBilgiler.get(0).getHANGI_SQL().equals("My Sql"))
             	{
-            		OBS_BACKUP.serverBilgileriPanel.textMYPort.setText(serverBilgiler.get(0).getINSTANCE());
+            		OBS_BACKUP.serverBilgileriPanel.textMYPort.setText(serverBilgiler.get(0).getPORT());
             		OBS_BACKUP.serverBilgileriPanel.textMykull.setText(serverBilgiler.get(0).getKULLANICI());
             		String decodedString = serverBilgiler.get(0).getSIFRE();
             		String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
@@ -500,8 +500,7 @@ public class EmirAnaGiris extends JPanel {
 
             			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             			Boolean result =	bckp.MySql_server_test( OBS_BACKUP.serverBilgileriPanel.textMykull.getText(),response,OBS_BACKUP.serverBilgileriPanel.textMYPort.getText());
-
-            			if(result)
+             			if(result)
             			{
             				bckp.MySql_baglan( OBS_BACKUP.serverBilgileriPanel.textMykull.getText(),response,OBS_BACKUP.serverBilgileriPanel.textMYPort.getText());   
             				ResultSet dsss = bckp.db_ismiMySql();
@@ -509,6 +508,7 @@ public class EmirAnaGiris extends JPanel {
             				list.removeAll();
             				while (dsss.next())
             				{
+            					
             					int index = dbList.indexOf(dsss.getString("Database"));
             					CheckListItem item = (CheckListItem) new CheckListItem(dsss.getString("Database"),"");
             					if (index != -1)

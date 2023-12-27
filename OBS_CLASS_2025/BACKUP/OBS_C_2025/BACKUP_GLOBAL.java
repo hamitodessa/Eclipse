@@ -34,7 +34,7 @@ import org.hsqldb.lib.CountdownInputStream;
 
 
 
-@SuppressWarnings({"static-access","unused"})
+@SuppressWarnings({"static-access","unused","deprecation"})
 public class BACKUP_GLOBAL {
 	public Connection S_CONN;
 	public Connection MY_CONN; //= new MySqlConnection();
@@ -1023,6 +1023,7 @@ public class BACKUP_GLOBAL {
 		fos.close();
 	}
 	public  void zipFolder(Path sourceFolderPath, Path zipPath) throws Exception {
+		
 		   ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipPath.toFile()));
 		   Files.walkFileTree(sourceFolderPath, new SimpleFileVisitor<Path>() 
 		   {
@@ -1047,10 +1048,15 @@ public class BACKUP_GLOBAL {
 		stmt.execute(sql);  
 		stmt.close();
 	}
-	public void mySQL_backup( String emiradi,String dosya, String kull, String pwd, String port,String nereye,String backupadi,String server)
+	
+	public void mySQL_backup( String myDUMP, String dbUser, String dbPass, String dbName,String savePath) throws IOException, InterruptedException
 	{
-		//   	String savePath = "C:/OBS_SISTEM/" + dbName +".sql";
-		//		String executeCmd = myDUMP +"/mysqldump.exe -u" + dbUser + " -p" + dbPass + " -B " + dbName + " -r " + savePath;
+		String executeCmd = myDUMP +"\\mysqldump.exe -u" + dbUser + " -p" + dbPass + " -B " + dbName + " -r " + savePath;
+		Process runtimeProcess;
+		Runtime runtime = Runtime.getRuntime();
+		runtimeProcess = runtime.exec(executeCmd,null);
+		int processComplete = runtimeProcess.waitFor();
+//		System.out.println(processComplete); //0 completed
 	}
 	public void kopyala(String eski, String yeni) throws ClassNotFoundException, SQLException
 	{

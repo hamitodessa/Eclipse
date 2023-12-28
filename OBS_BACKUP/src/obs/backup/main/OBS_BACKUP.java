@@ -168,10 +168,12 @@ public class OBS_BACKUP extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
 
 
-	public OBS_BACKUP() {
+	public OBS_BACKUP() throws ClassNotFoundException, SQLException {
 		setUndecorated(true);
 		FlatRobotoFont.install();
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
@@ -215,11 +217,11 @@ public class OBS_BACKUP extends JFrame {
 		splitPane.setLeftComponent(panel);
 
 		//***************
-				JToolBar toolBar = new JToolBar();
-				toolBar.setFloatable(false);
-				toolBar.setOrientation(SwingConstants.VERTICAL);
-				//toolBar.setBounds(100, 5, 130, 27);
-				panel.add(toolBar );
+		JToolBar toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+		toolBar.setOrientation(SwingConstants.VERTICAL);
+		//toolBar.setBounds(100, 5, 130, 27);
+		panel.add(toolBar );
 		//***************
 				
 		btnGorevler = new JButton();
@@ -272,8 +274,10 @@ public class OBS_BACKUP extends JFrame {
 		});
 		btnLoglama.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/log.png")));
 		toolBar.add(btnLoglama );
+		
 		JButton btnKayitliEmirler = new JButton();
 		btnKayitliEmirler.setToolTipText("Kayitli Emirler");
+		btnKayitliEmirler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/jobs.png")));
 		btnKayitliEmirler .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -428,8 +432,9 @@ public class OBS_BACKUP extends JFrame {
 			emir_yukle("EMIR_ISMI") ;
 
 			jobTimerBasla();
-		} catch (Exception e1) {
-
+		} catch (Exception ex) {
+			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText(), new Date(), ex.getMessage());
+			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
 
 	}

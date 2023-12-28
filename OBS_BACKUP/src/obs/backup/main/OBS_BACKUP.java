@@ -850,14 +850,13 @@ public class OBS_BACKUP extends JFrame {
 			container.repaint();
 			// DURUM DESC , EMIR_ISMI 
 			///
-
 			List<emir_bilgiler> emirliste = bckp.emir_liste(siralama);
 			if (emirliste.size() == 0 ) {  
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 			else {
 				int toplam = emirliste.size();
-				for (int i = 0; i<=  emirliste.size() -3 ; i++)
+				for (int i = 0; i<=  emirliste.size() -1 ; i++)
 				{
 					emirTEKYUKLE( emirliste.get(i).getEMIR_ISMI(),"ana");
 					container.add(Box.createRigidArea(new Dimension(0, 5)));

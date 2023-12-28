@@ -54,6 +54,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -1955,7 +1956,8 @@ public class OBS_BACKUP extends JFrame {
 			File secondLocalFile = new File(dosyayolu + dosadi );
 			String secondRemoteFile = dosadi;
 			InputStream inputStream = new FileInputStream(secondLocalFile);
-			OutputStream outputStream = ftp.storeFileStream(secondRemoteFile);
+			BufferedOutputStream outputStream = (BufferedOutputStream) ftp.storeFileStream(secondRemoteFile);
+			// FilterOutputStream should work, if BufferedOutputStream w
 			byte[] bytesIn = new byte[8192]; //4196
 			int read = 0;
 			long toplam = 0 ;

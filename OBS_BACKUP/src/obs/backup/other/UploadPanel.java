@@ -67,6 +67,7 @@ public class UploadPanel extends JPanel {
 		panel_1.add(lblNewLabel);
 		
 		lblDosAdet = new JLabel("0");
+		lblDosAdet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblDosAdet.setBounds(78, 31, 48, 14);
 		panel_1.add(lblDosAdet);
 		
@@ -75,16 +76,18 @@ public class UploadPanel extends JPanel {
 		panel_1.add(lblNewLabel_2);
 		
 		lblEmirAdi = new JLabel("New label");
+		lblEmirAdi.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblEmirAdi.setBounds(78, 11, 237, 14);
 		panel_1.add(lblEmirAdi);
 		
 		JLabel lblNewLabel_4 = new JLabel("Hiz");
-		lblNewLabel_4.setBounds(590, 31, 39, 14);
+		lblNewLabel_4.setBounds(632, 31, 58, 14);
 		panel_1.add(lblNewLabel_4);
 		
 		lblHiz = new JLabel("0.00 kb/sec");
+		lblHiz.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblHiz.setHorizontalAlignment(SwingConstants.LEFT);
-		lblHiz.setBounds(619, 31, 100, 14);
+		lblHiz.setBounds(700, 31, 124, 14);
 		panel_1.add(lblHiz);
 		
 		JLabel lblNewLabel_6 = new JLabel("Aciklama");
@@ -92,7 +95,8 @@ public class UploadPanel extends JPanel {
 		panel_1.add(lblNewLabel_6);
 		
 		lblAciklama = new JLabel("");
-		lblAciklama.setBounds(383, 11, 357, 14);
+		lblAciklama.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblAciklama.setBounds(383, 11, 417, 14);
 		panel_1.add(lblAciklama);
 		
 		JLabel lblNewLabel_8 = new JLabel("Surucu");
@@ -100,7 +104,8 @@ public class UploadPanel extends JPanel {
 		panel_1.add(lblNewLabel_8);
 		
 		lblSurucu = new JLabel("");
-		lblSurucu.setBounds(383, 31, 193, 14);
+		lblSurucu.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblSurucu.setBounds(383, 31, 239, 14);
 		panel_1.add(lblSurucu);
 
 	}

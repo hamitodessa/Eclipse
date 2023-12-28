@@ -31,6 +31,7 @@ import obs.backup.other.EmirKopyala;
 import obs.backup.other.KayitliEmirler;
 import obs.backup.other.LoglamaRapor;
 import obs.backup.other.ServerBilgileri;
+import obs.backup.other.SifreGiris;
 import obs.backup.other.SunucuAyarlari;
 import obs.backup.other.Title_Bar;
 import obs.backup.other.UploadPanel;
@@ -142,12 +143,18 @@ public class OBS_BACKUP extends JFrame {
 	public static LoglamaRapor loglamaPanel;
 	public static KayitliEmirler kayitliEmirlerPanelEmirler;
 	UploadPanel uplpnl ;
+	public static SifreGiris sifreGirisPanel;
 
 	private JScrollPane scrollPane;
 	public static JButton btnYeni_Gorev;
 	public static JButton btnNewButton_2;
+	public static JButton btnLoglama;
+	public static JButton btnKayitliEmirler;
 	public static JButton btnGorevler;
+	public static JButton btnHepsiYukari;
+	public static JButton btnHepsiAsagi;
 	private static JLabel lblemirSAYI;
+	
 
 	static Component horizontalGlue = null ;
 	/**
@@ -226,7 +233,7 @@ public class OBS_BACKUP extends JFrame {
 				
 		btnGorevler = new JButton();
 		btnGorevler.setToolTipText("Gorevler");
-		//btnGorevler.setPreferredSize(new Dimension(25,25));
+		btnGorevler.setEnabled(false);
 		btnGorevler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/emirler.png")));
 		btnGorevler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -247,6 +254,7 @@ public class OBS_BACKUP extends JFrame {
 		
 		btnYeni_Gorev = new JButton();
 		btnYeni_Gorev.setToolTipText("Yeni Gorev");
+		btnYeni_Gorev.setEnabled(false);
 		btnYeni_Gorev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gelenISIM = "" ;
@@ -258,8 +266,9 @@ public class OBS_BACKUP extends JFrame {
 		btnYeni_Gorev.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/yeniemir.png")));
 		toolBar.add(btnYeni_Gorev);
 
-		JButton btnLoglama = new JButton();
+		btnLoglama = new JButton();
 		btnLoglama.setToolTipText("Log Goruntule");
+		btnLoglama.setEnabled(false);
 		btnLoglama .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedIndex(2);
@@ -275,7 +284,8 @@ public class OBS_BACKUP extends JFrame {
 		btnLoglama.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/log.png")));
 		toolBar.add(btnLoglama );
 		
-		JButton btnKayitliEmirler = new JButton();
+		btnKayitliEmirler = new JButton();
+		btnKayitliEmirler.setEnabled(false);
 		btnKayitliEmirler.setToolTipText("Kayitli Emirler");
 		btnKayitliEmirler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/jobs.png")));
 		btnKayitliEmirler .addActionListener(new ActionListener() {
@@ -293,7 +303,8 @@ public class OBS_BACKUP extends JFrame {
 		});
 		toolBar.add(btnKayitliEmirler );
 
-		JButton btnHepsiYukari = new JButton();
+		btnHepsiYukari = new JButton();
+		btnHepsiYukari.setEnabled(false);
 		btnHepsiYukari.setToolTipText("Gorev Paneli Yukari");
 		btnHepsiYukari.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/up.png")));
 		btnHepsiYukari .addActionListener(new ActionListener() {
@@ -313,7 +324,8 @@ public class OBS_BACKUP extends JFrame {
 		});
 		toolBar.add(btnHepsiYukari );
 
-		JButton btnHepsiAsagi = new JButton();
+		btnHepsiAsagi = new JButton();
+		btnHepsiAsagi.setEnabled(false);
 		btnHepsiAsagi.setToolTipText("Gorev Paneli Asagi");
 		btnHepsiAsagi.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/down.png")));
 		btnHepsiAsagi .addActionListener(new ActionListener() {
@@ -408,8 +420,6 @@ public class OBS_BACKUP extends JFrame {
 		//			} 
 		//		}
 
-
-
 		emirAnaGirisPanel = new EmirAnaGiris();
 		tabbedPane_1.addTab("Yeni Emir", null,emirAnaGirisPanel, null);
 		sunucuayarPanel = new SunucuAyarlari();
@@ -426,17 +436,25 @@ public class OBS_BACKUP extends JFrame {
 		tabbedPane.addTab("Loglama", null, loglamaPanel, null);
 		kayitliEmirlerPanelEmirler = new KayitliEmirler();
 		tabbedPane.addTab("Emirler", null, kayitliEmirlerPanelEmirler, null);
+		sifreGirisPanel = new SifreGiris();
+		tabbedPane.addTab("Sifre", null, sifreGirisPanel, null);
 		//***********************************************************************************
 		try {
 			glb.backup_surucu_kontrol();
 			emir_yukle("EMIR_ISMI") ;
-
 			jobTimerBasla();
+			tabbedPane.setSelectedIndex(4);
+
 		} catch (Exception ex) {
 			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText(), new Date(), ex.getMessage());
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
 
+	}
+	public void sifreden() throws ClassNotFoundException, SQLException
+	{
+		emir_yukle("EMIR_ISMI") ;
+		jobTimerBasla();
 	}
 	private void jobTimerBasla()
 	{
@@ -846,7 +864,14 @@ public class OBS_BACKUP extends JFrame {
 				//				default:
 				//					
 				//				}
-				horizontalGlue = Box.createVerticalStrut(555);
+				if(toplam >3)
+				{
+					horizontalGlue = Box.createVerticalStrut(50);
+				}
+				else {
+					horizontalGlue = Box.createVerticalStrut(555);
+				}
+				
 				container.add(horizontalGlue);
 			}
 		}

@@ -7,11 +7,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -38,6 +41,9 @@ import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
@@ -255,7 +261,7 @@ public class GLOBAL {
 			}
 		}
 	}
-	public void backup_surucu_kontrol() throws ClassNotFoundException
+	public void backup_surucu_kontrol() throws ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		File tmpDir = new File(SURUCU);
 		boolean exists = tmpDir.exists();
@@ -285,7 +291,7 @@ public class GLOBAL {
 	    	backup_log_dosya_olustur(); // OBS SISTEM BACKUP LOGDOSYASI KONTROL
 	    }
 	}
-	public void backup_obs_dosya_olustur() throws ClassNotFoundException
+	public void backup_obs_dosya_olustur() throws ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -293,21 +299,36 @@ public class GLOBAL {
 
 			sorgu = "CREATE TABLE EMIRLER ( EMIR_ISMI nvarchar(30) CONSTRAINT EMIR_ISMI PRIMARY KEY,DURUM INTEGER,EMIR_ACIKLAMA nvarchar(50),INSTANCE nvarchar(30),SON_DURUM INTEGER ,SON_YUKLEME DATETIME,SQL_YEDEK INTEGER,MESAJ nvarchar(40),OLUSTURMA DATETIME) ";
 			backup_tablo_yap(sorgu);
-			sorgu =  "CREATE TABLE FTP ( EMIR_ISMI nvarchar(30),NERESI nvarchar(3),HOST nvarchar(30) ,KULLANICI nvarchar(50),SIFRE nvarchar(50),SURUCU nvarchar(50),PORT nvarchar(3),ZMN_ASIMI nvarchar(10),ESKI_YEDEK nvarchar(3),SURUCU_YER nvarchar(100)) ";
+			sorgu =  "CREATE TABLE FTP ( EMIR_ISMI nvarchar(30),NERESI nvarchar(3),HOST nvarchar(30) ,KULLANICI nvarchar(50),SIFRE nvarchar(200),SURUCU nvarchar(200),PORT nvarchar(3),ZMN_ASIMI nvarchar(10),ESKI_YEDEK nvarchar(3),SURUCU_YER nvarchar(200)) ";
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE BILGILENDIRME ( EMIR_ISMI nvarchar(30) ,DURUM INTEGER,GONDERILDIGINDE INTEGER,HATA_DURUMUNDA INTEGER ,GON_ISIM  nvarchar(50),GON_HESAP nvarchar(30), ALICI nvarchar(30), KONU nvarchar(50), SMTP nvarchar(30), SMTP_PORT nvarchar(3), KULLANICI nvarchar(30), SIFRE nvarchar(50), SSL INTEGER,TSL INTEGER) ";
+			sorgu = "CREATE TABLE BILGILENDIRME ( EMIR_ISMI nvarchar(30) ,DURUM INTEGER,GONDERILDIGINDE INTEGER,HATA_DURUMUNDA INTEGER ,GON_ISIM  nvarchar(50),GON_HESAP nvarchar(30), ALICI nvarchar(30), KONU nvarchar(50), SMTP nvarchar(30), SMTP_PORT nvarchar(3), KULLANICI nvarchar(30), SIFRE nvarchar(200), SSL INTEGER,TSL INTEGER) ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE YEDEKLEME (EMIR_ISMI nvarchar(30) , SAAT nvarchar(2),P_TESI INTEGER,SALI INTEGER " +
 					" ,CARS INTEGER,PERS INTEGER,CUMA INTEGER,C_TESI INTEGER,PAZAR INTEGER,BASLAMA DATETIME,BITIS DATETIME ) ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE SERVER (  EMIR_ISMI nvarchar(30) ,HANGI_SQL nvarchar(6) ,INSTANCE nvarchar(50) " +
 					" ,WIN INTEGER,SERV INTEGER,KULLANICI nvarchar(50) " +
-					" ,SIFRE nvarchar(50) , PORT nvarchar(10),MY_DUMP nvarchar(150)) ";
+					" ,SIFRE nvarchar(200) , PORT nvarchar(10),MY_DUMP nvarchar(200)) ";
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE DB_ISIM (  EMIR_ISMI nvarchar(30) ,DB_ADI nvarchar(50)) ";
+			sorgu = "CREATE TABLE DB_ISIM (  EMIR_ISMI nvarchar(30) ,DB_ADI nvarchar(100)) ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE DIGER_DOSYA_ISIM (EMIR_ISMI nvarchar(30) ,DOSYA_ADI nvarchar(200),DOSYA_PATH nvarchar(200)) ";
 			backup_tablo_yap(sorgu);
+			sorgu = "CREATE TABLE YONETICI (SIFRE nvarchar(200) ) ";
+			backup_tablo_yap(sorgu);
+			
+			Class.forName("org.sqlite.JDBC");
+			con = myBackupConnection();
+			sorgu = "INSERT INTO YONETICI(SIFRE)  VALUES(?); " ;
+			java.sql.PreparedStatement pstmt = con.prepareStatement(sorgu) ;
+			
+			byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("obs") ;
+			String encodedString = Arrays.toString(qaz);
+			pstmt.setString(1, encodedString);
+			pstmt.executeUpdate();
+			pstmt.close();
+			con.close();
+			
 		}
 		catch (SQLException ex) 
 		{  

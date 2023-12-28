@@ -364,7 +364,6 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			bckp.log_kayit(eADI, new Date(), ex.getMessage());
-//			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
 	}
 	private void emirBILGIYUKLE() throws SQLException, ClassNotFoundException, ParseException
@@ -389,10 +388,8 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 			SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH);
 			Date snyk =  formatter.parse(emirBilgiler.get(0).getSON_YUKLEME().toString());
-		
 			lblSonYedek.setText( df.format(snyk));
 		}
-
 		lblAciklama.setText(emirBilgiler.get(0).getEMIR_ACIKLAMA());
 		if (emirBilgiler.get(0).isDURUM() == false)
 		{
@@ -457,7 +454,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 				}
 				else
 				{
-					lblDosyaSayisi.setText(dosliste.size() +  " Adet Dosya...");
+					lblDosyaSayisi.setText(dosliste.size() +  " Adet Dosya");
 					lblSurucu.setText(ftpBilgi.get(0).getHOST() + "\\" + ftpBilgi.get(0).getSURUCU().replace("/", "\\"));
 				}
 			}
@@ -471,7 +468,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 				}
 				else
 				{
-					lblDosyaSayisi.setText(dosliste.size() +  " Adet Dosya...");
+					lblDosyaSayisi.setText(dosliste.size() +  " Adet Dosya");
 					lblSurucu.setText(ftpBilgi.get(0).getSURUCU_YER());
 				}
 			}

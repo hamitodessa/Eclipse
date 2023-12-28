@@ -4,13 +4,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.SocketException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.security.InvalidKeyException;
 import java.security.KeyStore.TrustedCertificateEntry;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -29,12 +32,17 @@ import java.util.Vector;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.hsqldb.lib.CountdownInputStream;
+
+
 
 
 
@@ -735,6 +743,36 @@ public class BACKUP_GLOBAL {
 		con.close();
 		return sonucString;
 	}
+	public String backup_sifre_oku(String sifre) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		PreparedStatement stmt = null;
+		ResultSet	rss = null;
+		con = glb.myBackupConnection();
+		String sql = "";
+		sql = "SELECT SIFRE FROM YONETICI ";
+		stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		rss.next();
+		int count=0;
+		count = rss.getRow();
+		String sonucString = "" ;
+		
+		
+		String decodedString =  rss.getString("SIFRE");
+		String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+		byte[] bytes = new byte[byteValues.length];
+		for (int i=0, len=bytes.length; i<len; i++) {
+			bytes[i] = Byte.parseByte(byteValues[i].trim());     
+		}
+		sonucString =ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
+		
+		stmt.close();
+		con.close();
+		return sonucString;
+	}
+
 	public String surucu_bilgi(String eismi, String nerden)throws ClassNotFoundException, SQLException
 	{Class.forName("org.sqlite.JDBC");
 	if (con != null && ! con.isClosed()) con.close();

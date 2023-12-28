@@ -32,6 +32,7 @@ import obs.backup.other.KayitliEmirler;
 import obs.backup.other.LoglamaRapor;
 import obs.backup.other.ServerBilgileri;
 import obs.backup.other.SifreGiris;
+import obs.backup.other.SifreYenile;
 import obs.backup.other.SunucuAyarlari;
 import obs.backup.other.Title_Bar;
 import obs.backup.other.UploadPanel;
@@ -142,8 +143,9 @@ public class OBS_BACKUP extends JFrame {
 
 	public static LoglamaRapor loglamaPanel;
 	public static KayitliEmirler kayitliEmirlerPanelEmirler;
-	UploadPanel uplpnl ;
+	public static UploadPanel uplpnl ;
 	public static SifreGiris sifreGirisPanel;
+	public static SifreYenile sifreYenilePanel;
 
 	private JScrollPane scrollPane;
 	public static JButton btnYeni_Gorev;
@@ -153,6 +155,7 @@ public class OBS_BACKUP extends JFrame {
 	public static JButton btnGorevler;
 	public static JButton btnHepsiYukari;
 	public static JButton btnHepsiAsagi;
+	public static JButton btnYeniSifre;
 	private static JLabel lblemirSAYI;
 	
 
@@ -227,10 +230,8 @@ public class OBS_BACKUP extends JFrame {
 		JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		toolBar.setOrientation(SwingConstants.VERTICAL);
-		//toolBar.setBounds(100, 5, 130, 27);
 		panel.add(toolBar );
 		//***************
-				
 		btnGorevler = new JButton();
 		btnGorevler.setToolTipText("Gorevler");
 		btnGorevler.setEnabled(false);
@@ -290,7 +291,6 @@ public class OBS_BACKUP extends JFrame {
 		btnKayitliEmirler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/jobs.png")));
 		btnKayitliEmirler .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				tabbedPane.setSelectedIndex(3);
 				try {
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -345,6 +345,20 @@ public class OBS_BACKUP extends JFrame {
 		});
 		toolBar.add(btnHepsiAsagi );
 		
+		//
+		btnYeniSifre = new JButton();
+		btnYeniSifre.setEnabled(false);
+		btnYeniSifre.setToolTipText("Sifre Yenile");
+		btnYeniSifre.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/password.png")));
+		btnYeniSifre .addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				tabbedPane.setSelectedIndex(5);
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		toolBar.add(btnYeniSifre );
+		
 		Component horizontalGlue = Box.createVerticalGlue();
 		toolBar.add(horizontalGlue);
 		
@@ -386,7 +400,6 @@ public class OBS_BACKUP extends JFrame {
 		scrollPane.setViewportView(container);
 		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
 
-		//container.setLayout(new GridLayout(4, 1, 5, 5));
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("Yeni Gorev", null, panel_3, null);
 		panel_3.setLayout(new BorderLayout(0, 0));
@@ -438,6 +451,9 @@ public class OBS_BACKUP extends JFrame {
 		tabbedPane.addTab("Emirler", null, kayitliEmirlerPanelEmirler, null);
 		sifreGirisPanel = new SifreGiris();
 		tabbedPane.addTab("Sifre", null, sifreGirisPanel, null);
+		
+		sifreYenilePanel = new SifreYenile();
+		tabbedPane.addTab("Sifre Yenile", null, sifreYenilePanel, null);
 		//***********************************************************************************
 		try {
 			glb.backup_surucu_kontrol();
@@ -841,38 +857,13 @@ public class OBS_BACKUP extends JFrame {
 			}
 			else {
 				int toplam = emirliste.size();
-				for (int i = 0; i<=  emirliste.size() -1 ; i++)
+				for (int i = 0; i<=  emirliste.size() -3 ; i++)
 				{
 					emirTEKYUKLE( emirliste.get(i).getEMIR_ISMI(),"ana");
-					
+					container.add(Box.createRigidArea(new Dimension(0, 5)));
 				}
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				//				int yuk = 175;
-				//				switch(toplam) {
-				//				case 1:
-				//					horizontalGlue = Box.createVerticalStrut(625 - yuk);
-				//					break;
-				//				case 2:
-				//					horizontalGlue = Box.createVerticalStrut(625 - (yuk * 2));
-				//					break;
-				//				case 3:
-				//					horizontalGlue = Box.createVerticalStrut(625 - (yuk *3));
-				//					break;
-				//				case 4:
-				//					horizontalGlue = Box.createVerticalStrut(625 - (yuk *4));
-				//					break; 
-				//				default:
-				//					
-				//				}
-				if(toplam >3)
-				{
-					horizontalGlue = Box.createVerticalStrut(50);
-				}
-				else {
-					horizontalGlue = Box.createVerticalStrut(555);
-				}
-				
-				container.add(horizontalGlue);
+				container.add(Box.createVerticalGlue());
 			}
 		}
 		catch (Exception ex)
@@ -888,12 +879,8 @@ public class OBS_BACKUP extends JFrame {
 		gOREV_TAKIP emir = new gOREV_TAKIP(eismi);
 		emir.setName(eismi);
 		emir.lblemirISMI.setText(eismi);
+		emir.setMaximumSize(new Dimension(Integer.MAX_VALUE, emir.getPreferredSize().height));
 		container.add(emir);
-		if(!nerden.equals("ana"))
-		{
-			horizontalGlue = Box.createVerticalStrut(555);
-			container.add(horizontalGlue);
-		}
 		emirSAYI_COUNT();
 	}
 	private static void emirSAYI_COUNT()
@@ -905,7 +892,7 @@ public class OBS_BACKUP extends JFrame {
 		}
 		lblemirSAYI.setText(Integer.toString(say));
 	}
-	private void emirtekSIL_HATA(String eadi)
+	public void emirtekSIL_HATA(String eadi)
 	{
 		Component[] components = container.getComponents();
 		for (Component component : components) 

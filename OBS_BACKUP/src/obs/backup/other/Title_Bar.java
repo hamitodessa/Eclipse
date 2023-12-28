@@ -84,7 +84,7 @@ public class Title_Bar extends javax.swing.JPanel{
 		iconRestore.setIcon(javaswingdev.GoogleMaterialDesignIcon.CROP_DIN);
 		iconRestore.setSize(17);
 		btnNewButton_1.setIcon(iconRestore.toIcon());
-		add(btnNewButton_1);
+		//add(btnNewButton_1);
 
 		Buttont btnNewButton_2 = new Buttont();
 		btnNewButton_2.addActionListener(new ActionListener() {

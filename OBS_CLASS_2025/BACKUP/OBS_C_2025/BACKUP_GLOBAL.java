@@ -869,6 +869,22 @@ public class BACKUP_GLOBAL {
 		return bilgiBilgi ;
 
 	}
+	public void sifre_degis(String sifre) throws SQLException, ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		Class.forName("org.sqlite.JDBC");
+		PreparedStatement stmt = null;
+		if (con != null && ! con.isClosed()) con.close();
+		con = glb.myBackupConnection();
+		String sql ="UPDATE  YONETICI  SET SIFRE=? ";
+		stmt = con.prepareStatement(sql);
+		byte[] qaz;
+		qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
+		stmt.setString(1, Arrays.toString(qaz));
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+		con = null;
+	}
 	public List<server_bilgiler> server_bilgi(String eismi)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");

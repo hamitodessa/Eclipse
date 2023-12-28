@@ -42,7 +42,6 @@ public class SifreGiris extends JPanel {
 			}
 			@Override
 			public void ancestorAdded(AncestorEvent pEvent) {
-				// TextField is added to its parent => request focus in Event Dispatch Thread
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
@@ -72,7 +71,7 @@ public class SifreGiris extends JPanel {
 						OBS_BACKUP.btnKayitliEmirler.setEnabled(true);
 						OBS_BACKUP. btnHepsiYukari.setEnabled(true);
 						OBS_BACKUP.btnHepsiAsagi.setEnabled(true);
-						
+						OBS_BACKUP.btnYeniSifre.setEnabled(true);
 					}
 					else {
 						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,"Sifre Yanlis");
@@ -85,6 +84,5 @@ public class SifreGiris extends JPanel {
 		});
 		passwordField.setBounds(329, 282, 248, 20);
 		add(passwordField);
-
 	}
 }

@@ -326,6 +326,9 @@ public class EmirAnaGiris extends JPanel {
 				e1.printStackTrace();
 			}
 		}
+		else {
+			  txtEmir .setEnabled(true);
+		}
 	}
 
 	private void emirBilgiDoldur() throws ClassNotFoundException, SQLException
@@ -337,6 +340,7 @@ public class EmirAnaGiris extends JPanel {
            
             if (emirBilgiler.size()  == 0) return;
             txtEmir.setText(OBS_BACKUP.gelenISIM);
+            txtEmir .setEnabled(false);
             textAciklama.setText(emirBilgiler.get(0).getEMIR_ACIKLAMA());
             lblNewLabel_6.setText(emirBilgiler.get(0).getINSTANCE());
             chckbxServerDosya.setSelected( emirBilgiler.get(0).isSQL_YEDEK());

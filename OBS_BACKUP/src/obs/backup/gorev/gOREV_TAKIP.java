@@ -12,8 +12,6 @@ import OBS_C_2025.emir_bilgiler;
 import OBS_C_2025.ftp_bilgiler;
 import OBS_C_2025.yedekleme_bilgiler;
 import obs.backup.main.OBS_BACKUP;
-import raven.toast.Notifications;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -98,7 +96,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 			}
 		});
 		btnDuzelt.setName("btnDuzelt");
-		btnDuzelt.setBounds(586, 26, 110, 23);
+		btnDuzelt.setBounds(650, 26, 110, 23);
 		add(btnDuzelt);
 
 		JButton btnSil = new JButton("Sil");
@@ -121,7 +119,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 				}
 			}
 		});
-		btnSil.setBounds(586, 69, 110, 23);
+		btnSil.setBounds(650, 69, 110, 23);
 		add(btnSil);
 
 		JButton btnYedekle = new JButton("Yedekle");
@@ -135,7 +133,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 				}
 			}
 		});
-		btnYedekle.setBounds(586, 104, 110, 23);
+		btnYedekle.setBounds(650, 104, 110, 23);
 		add(btnYedekle);
 
 		lblemirISMI = new JLabel("New label");
@@ -172,12 +170,12 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		add(lblAciklama);
 
 		lblNewLabel_6 = new JLabel("~");
-		lblNewLabel_6.setBounds(397, 132, 20, 14);
+		lblNewLabel_6.setBounds(450, 132, 20, 14);
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		add(lblNewLabel_6);
 
 		lblKalanZaman = new JLabel("0");
-		lblKalanZaman.setBounds(412, 132, 164, 14);
+		lblKalanZaman.setBounds(465, 132, 164, 14);
 		lblKalanZaman.setFont(new Font("Tahoma", Font.BOLD, 11));
 		add(lblKalanZaman);
 
@@ -279,13 +277,13 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 				if(getPreferredSize().height == 175)
 				{
 					btn1.setIcon(new ImageIcon(gOREV_TAKIP.class.getResource("/obs/backup/icons/double-up-16.png")));
-					lblNewLabel_6.setBounds(397, 132, 20, 14);
-					lblKalanZaman.setBounds(412, 132, 164, 14);
+					lblNewLabel_6.setBounds(450, 132, 20, 14);
+					lblKalanZaman.setBounds(465, 132, 164, 14);
 				}
 				else {
 					btn1.setIcon(new ImageIcon(gOREV_TAKIP.class.getResource("/obs/backup/icons/down-16.png")));
-					lblNewLabel_6.setBounds(397, 47, 20, 14);
-					lblKalanZaman.setBounds(412, 47, 164, 14);
+					lblNewLabel_6.setBounds(450, 47, 20, 14);
+					lblKalanZaman.setBounds(465, 47, 164, 14);
 				}
 			}
 		});
@@ -293,12 +291,11 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 			ilkBasla();
 		
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
+		
 		}
 	}
 
 
-	//@Override
 	public void run() {
 		Timer timerr = new Timer();  
 		tt = new TimerTask() {  
@@ -325,7 +322,13 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 						yedekSirasinaKoy();
 					}
 				} catch (Exception e) {
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e.getMessage());
+					tt.cancel();
+					try {
+						emirBILGIYUKLE();
+						basla();
+					} catch (ClassNotFoundException | SQLException | ParseException e1) {
+						e1.printStackTrace();
+					}
 				}
 			};  
 		};
@@ -337,7 +340,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		tt.cancel();
 		lblSonDurum.setText("Yedekleme Sirasina Konuldu");
 		lblSonDurum.setForeground(Color.GREEN);
-	    bckp.log_kayit(eADI, new Date(), "Yedekleme Sirasina Konuldu.....");
+	    //bckp.log_kayit(eADI, new Date(), "Yedekleme Sirasina Konuldu.....");
 	    OBS_BACKUP.gorevLER.add(eADI);
 	}
 	private void basla() throws ClassNotFoundException, ParseException, SQLException
@@ -347,23 +350,21 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		{
 			run();
 		}
-		
 	}
 	public void ilkBasla() throws ClassNotFoundException, SQLException
 	{
 		try
 		{
-			bckp.log_kayit(eADI, new Date(), "Emir ilk Load....");
+			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			emirBILGIYUKLE();
 			basla();
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
 			bckp.log_kayit(eADI, new Date(), ex.getMessage());
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//hataDURUMU();
+//			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
 	}
 	private void emirBILGIYUKLE() throws SQLException, ClassNotFoundException, ParseException
@@ -378,7 +379,6 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 			}
 		}
 		 List<emir_bilgiler> emirBilgiler =  bckp.emir_tek(eADI);
-
 		if(emirBilgiler.get(0).getSON_YUKLEME().toString().equals("Mon Jan 01 00:00:00 TRT 1900"))
 		{
 			lblSonYedek.setText("01.01.1900 00:00:00");
@@ -482,7 +482,6 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 
 		else
 		{
-			
 			SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH);
 			Date basl =  formatter.parse(yedekBilgiler.get(0).getBASLAMA().toString());
@@ -491,11 +490,9 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 			lblBITIS.setText(df.format(bitis));
 			lblKACDAKKA.setText(yedekBilgiler.get(0).getSAAT());
 		}
-		
 	}
 	private void GunLERE_BAK() throws ParseException, SQLException, ClassNotFoundException
 	{
-
 		LocalDate localDate = LocalDate.now(); // today
 		java.time.DayOfWeek dayOfWeek = localDate.getDayOfWeek();
 		//System.out.println(localDate.getDayOfWeek().name());   // Gun ISMI
@@ -503,7 +500,6 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 
 		int hangiGUNDEYIZ = (int) dayOfWeek.getValue();
 		Boolean varmi = false;
-
 		List<yedekleme_bilgiler> yedekBilgiler =  bckp.yedekleme_bilgi(lblemirISMI.getText());
 		gunKONTROL[0] = yedekBilgiler.get(0).isP_TESI();
 		gunKONTROL[1] = yedekBilgiler.get(0).isSALI();
@@ -515,8 +511,6 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 
 		SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 		dtmBITIS = formatter.parse(yedekBilgiler.get(0).getBITIS().toString());
-
-
 		//
 		JSpinner tsbtt = new JSpinner( new SpinnerDateModel() );
 		JSpinner.DateEditor de_timeBaslangic = new JSpinner.DateEditor(tsbtt, "HH:mm");
@@ -582,8 +576,6 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 					{
 						if (kacGUN == 0)
 						{
-
-							//
 							if (dateNOW == dateBIT || dateNOW.after(dateBIT))
 							{
 								hangiGUN_SALI(varmi, kacGUN + 1, true);
@@ -694,7 +686,6 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 							else
 							{
 								guniciKONTROL();
-
 								bckp.log_kayit(eADI, new Date(), "Cars else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}
@@ -910,7 +901,6 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		Date dtt = new Date();
 		dtt = new Date(now.getYear(), now.getMonth(), now.getDate(), dt.getHours(), dt.getMinutes(), 0);
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-		bckp.log_kayit(eADI, new Date(),"Gel.Yed:" + df.format(dtt));
 		lblGelecekYedekleme.setText( df.format(dtt));
 	}
 	private void guniciKONTROL() throws ParseException, ClassNotFoundException, SQLException

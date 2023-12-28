@@ -18,6 +18,7 @@ import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 import LOGER_KAYIT.TXT_LOG;
+
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckListItem;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
@@ -45,6 +46,7 @@ import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -112,6 +114,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.swing.JTable;
+import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings({ "static-access" ,"resource","unused","deprecation"})
 public class OBS_BACKUP extends JFrame {
@@ -207,11 +211,21 @@ public class OBS_BACKUP extends JFrame {
 		contentPane.add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(160,0));
+		panel.setPreferredSize(new Dimension(30,0));//160
 		splitPane.setLeftComponent(panel);
 
-		btnGorevler = new JButton("Gorevler");
-		btnGorevler.setPreferredSize(new Dimension(0,25));
+		//***************
+				JToolBar toolBar = new JToolBar();
+				toolBar.setFloatable(false);
+				toolBar.setOrientation(SwingConstants.VERTICAL);
+				//toolBar.setBounds(100, 5, 130, 27);
+				panel.add(toolBar );
+		//***************
+				
+		btnGorevler = new JButton();
+		btnGorevler.setToolTipText("Gorevler");
+		//btnGorevler.setPreferredSize(new Dimension(25,25));
+		btnGorevler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/emirler.png")));
 		btnGorevler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gelenISIM = "" ;
@@ -225,10 +239,12 @@ public class OBS_BACKUP extends JFrame {
 				}
 			}
 		});
-		panel.setLayout(new GridLayout(20, 1, 0, 0));
-		panel.add(btnGorevler);
-
-		btnYeni_Gorev = new JButton("Yeni Gorev");
+		panel.setLayout(new BorderLayout());
+		panel.add(toolBar,BorderLayout.CENTER);
+		toolBar.add(btnGorevler);
+		
+		btnYeni_Gorev = new JButton();
+		btnYeni_Gorev.setToolTipText("Yeni Gorev");
 		btnYeni_Gorev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gelenISIM = "" ;
@@ -237,9 +253,11 @@ public class OBS_BACKUP extends JFrame {
 				emirAnaGirisPanel.emirDOLDUR();
 			}
 		});
-		panel.add(btnYeni_Gorev);
+		btnYeni_Gorev.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/yeniemir.png")));
+		toolBar.add(btnYeni_Gorev);
 
-		JButton btnLoglama = new JButton("Log Goruntule");
+		JButton btnLoglama = new JButton();
+		btnLoglama.setToolTipText("Log Goruntule");
 		btnLoglama .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedIndex(2);
@@ -252,8 +270,10 @@ public class OBS_BACKUP extends JFrame {
 				}
 			}
 		});
-		panel.add(btnLoglama );
-		JButton btnKayitliEmirler = new JButton("Kayitli Emirler");
+		btnLoglama.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/log.png")));
+		toolBar.add(btnLoglama );
+		JButton btnKayitliEmirler = new JButton();
+		btnKayitliEmirler.setToolTipText("Kayitli Emirler");
 		btnKayitliEmirler .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -267,9 +287,11 @@ public class OBS_BACKUP extends JFrame {
 				}
 			}
 		});
-		panel.add(btnKayitliEmirler );
+		toolBar.add(btnKayitliEmirler );
 
-		JButton btnHepsiYukari = new JButton("Gorev Paneli Yukari");
+		JButton btnHepsiYukari = new JButton();
+		btnHepsiYukari.setToolTipText("Gorev Paneli Yukari");
+		btnHepsiYukari.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/up.png")));
 		btnHepsiYukari .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -285,9 +307,11 @@ public class OBS_BACKUP extends JFrame {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		panel.add(btnHepsiYukari );
+		toolBar.add(btnHepsiYukari );
 
-		JButton btnHepsiAsagi = new JButton("Gorev Paneli Asagi");
+		JButton btnHepsiAsagi = new JButton();
+		btnHepsiAsagi.setToolTipText("Gorev Paneli Asagi");
+		btnHepsiAsagi.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/down.png")));
 		btnHepsiAsagi .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -303,9 +327,22 @@ public class OBS_BACKUP extends JFrame {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		panel.add(btnHepsiAsagi );
+		toolBar.add(btnHepsiAsagi );
+		
+		Component horizontalGlue = Box.createVerticalGlue();
+		toolBar.add(horizontalGlue);
+		
+		JButton btnkapat= new JButton("");
+		btnkapat.setToolTipText("Kapat");
+		btnkapat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+				}
+		});
+		btnkapat.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/exit.png")));
+		toolBar.add(btnkapat);
 
-
+//*********************************************************************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
 		final boolean showTabsHeader = false; tabbedPane.setUI(new
@@ -784,10 +821,9 @@ public class OBS_BACKUP extends JFrame {
 				for (int i = 0; i<=  emirliste.size() -1 ; i++)
 				{
 					emirTEKYUKLE( emirliste.get(i).getEMIR_ISMI(),"ana");
+					
 				}
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-
-
 				//				int yuk = 175;
 				//				switch(toplam) {
 				//				case 1:

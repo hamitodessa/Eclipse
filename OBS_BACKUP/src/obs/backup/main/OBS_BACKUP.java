@@ -510,10 +510,11 @@ public class OBS_BACKUP extends JFrame {
 						break;
 					}
 				}
-				Thread.sleep(1000);
+				Thread.sleep(500);
 				List<emir_bilgiler> ebilgiler = bckp.emir_tek(eISMI);
 				boolean SQL_YEDEK_MI;
 				SQL_YEDEK_MI = ebilgiler.get(0).isSQL_YEDEK();
+				uplpnl.temizLE();
 				if (SQL_YEDEK_MI == false)
 				{
 					diger_dosya(eISMI, ebilgiler.get(0).getEMIR_ACIKLAMA());   // DIGER DOSYA 
@@ -1032,7 +1033,6 @@ public class OBS_BACKUP extends JFrame {
 			bckp.genel_kayit_durum(emirADI, false, sonyuk, "Yuklenecek Dosya Secilmemis....");
 
 			uplpnl.setVisible(false);
-			//emirBOSALT(emirADI);
 			bckp.log_kayit(emirADI, new Date(), "Dosya Secilmemis...");
 			bckp.log_kayit(emirADI, new Date(), "Emir Yuklendi...");
 			emir_yukle("EMIR_ISMI") ;
@@ -1042,10 +1042,8 @@ public class OBS_BACKUP extends JFrame {
 		uplpnl.lblDosAdet.setText(Integer.toString(dbliste.size()));
 		uplpnl.lblAciklama.setText(emirBilgi.get(0).getEMIR_ACIKLAMA());
 		// ***FTP BILGILERI AL
-
 		List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
 		ftpBilgi = bckp.ftp_bilgi(emirADI);
-
 		String neresi =ftpBilgi.get(0).getNERESI();
 		if(neresi.equals("FTP"))
 		{
@@ -1066,7 +1064,6 @@ public class OBS_BACKUP extends JFrame {
 		{
 			sql_yerel_surucu( emirADI  ,ftpBilgi);
 		}
-
 	}
 	private void sql_yerel_surucu( String emirADI,     List<ftp_bilgiler> ftpBilgi) 
 	{
@@ -1107,7 +1104,6 @@ public class OBS_BACKUP extends JFrame {
 			{
 				dosADI = dbliste.get(i); // Dosya Adi
 				uplpnl.Progres_Bar_1( i + 1);
-				uplpnl.RPB2.setString("Backup Aliniyor..........");
 				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
 					bckp.backup_al(dosADI, tarr + "_" + dosADI);
@@ -1128,7 +1124,6 @@ public class OBS_BACKUP extends JFrame {
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
-				uplpnl.RPB2.setString("Zip Haline Getiriliyor..........");
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
@@ -1142,9 +1137,7 @@ public class OBS_BACKUP extends JFrame {
 					glb.dos_sil(surucu_yer + "\\" + dzip);
 				}
 				File okunanFile = new File(glb.BACKUP_YERI + dzip);
-				uplpnl.RPB2.setString("Kopyalaniyor..........");
 				fileCOPY(glb.BACKUP_YERI + dzip,surucu_yer + "\\" + dzip);
-				uplpnl.RPB2.setString("");
 				if (glb.dos_kontrol(glb.BACKUP_YERI + dzip))
 				{ 
 					glb.dos_sil(glb.BACKUP_YERI + dzip);
@@ -1762,7 +1755,7 @@ public class OBS_BACKUP extends JFrame {
 			Boolean folderMI = false;
 			List<db_List>  dbliste = bckp.diger_dosya_liste (emirADI);
 
-
+			uplpnl.Progres_Bar_Temizle_1();
 			uplpnl.RPB1.setMaximum(dbliste.size());
 			uplpnl.RPB1.setStringPainted(true);
 			//uplpnl.RPB2.setStringPainted(true);
@@ -1791,18 +1784,14 @@ public class OBS_BACKUP extends JFrame {
 				dosya = dbliste.get(i).getPath() + "\\" + dosADI;
 				dpath = dbliste.get(i).getPath() + "\\";
 				dzip = tarr + "_" + uzantisiz + ".zip";
+				uplpnl.Progres_Bar_Temizle_2();
 				if (folderMI)
 				{
-					//
-					uplpnl.Progres_Bar_Temizle_2();
-					uplpnl.RPB2.setStringPainted(true);
-					uplpnl.RPB2.setString("Zip Haline Getiriliyor..........");
 					dzip = tarr + "_" + dbliste.get(i).getAdi() + ".zip";
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()+"\\";
 					Path pathokuma = Paths.get(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()); 
 					Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
 					bckp. zipFolder(pathokuma,pathyazma);
-					uplpnl.Progres_Bar_Temizle_2();
 				}
 				else
 				{
@@ -1823,7 +1812,6 @@ public class OBS_BACKUP extends JFrame {
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);		
 			bckp.genel_kayit_durum(emirADI, true,nowwDate, "Yedeklendi.....");
-
 			if (eskiyedek > 0) // **************FTP ESKILERI SIL
 			{
 				uplpnl.Progres_Bar_Temizle_1();
@@ -1914,7 +1902,6 @@ public class OBS_BACKUP extends JFrame {
 			String secondRemoteFile = dosadi;
 			InputStream inputStream = new FileInputStream(secondLocalFile);
 			OutputStream outputStream = ftp.storeFileStream(secondRemoteFile);
-			// FilterOutputStream should work, if BufferedOutputStream w
 			byte[] bytesIn = new byte[8192]; //4196
 			int read = 0;
 			long toplam = 0 ;
@@ -1928,18 +1915,15 @@ public class OBS_BACKUP extends JFrame {
 				outputStream.write(bytesIn, 0, read);
 				toplam += read;
 				uplpnl.Progres_Bar_2( (int)toplam);
-				//double yuzde = ((double) toplam  / (long) uplpnl.RPB2.getMaximum()) * 100;    
-				//uplpnl.RPB2.setString(String.valueOf(FORMATLAMA.doub_2(yuzde))+ " %");
 				Instant finish = Instant.now();
 				long timeElapsed = Duration.between(start, finish).toMillis();
 				int seconds = (int)((timeElapsed / 1000) % 60);
-				speedInKBps = ( (toplam * 1000) / (seconds + 1))  ;
-				uplpnl.lblHiz.setText(FORMATLAMA.doub_0(speedInKBps /1024) + " KBytes");
+				double speedInBytesPerSecond =  toplam / (timeElapsed / 1000.0);
+				uplpnl.lblHiz.setText(FORMATLAMA.doub_0(speedInBytesPerSecond/1024) + " KBytes");
 			}
-		
-			//uplpnl.RPB2.setString("");
 			inputStream.close();
 			outputStream.close();
+			uplpnl.Progres_Bar_Temizle_2();
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
@@ -2175,14 +2159,11 @@ public class OBS_BACKUP extends JFrame {
 					for (Component compo : componentt) {
 						if(compo.getName() != null)
 						{
-
 							if(compo.getName().equals("btnyenidenBASLAT"))
 							{
 								JButton sndrm = (JButton) compo;
 								sndrm.doClick();
-
 							}
-
 						}
 					}
 				}

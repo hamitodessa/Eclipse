@@ -32,7 +32,6 @@ public class UploadPanel extends JPanel {
 	public UploadPanel() {
 		setBackground(Color.RED);
 		setLayout(new BorderLayout(0, 0));
-		//setPreferredSize(new Dimension(0,100));
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
 		splitPane.setDividerSize(0);
@@ -45,14 +44,12 @@ public class UploadPanel extends JPanel {
 		panel.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		RPB1 = new JProgressBar();
-		//RPB1.setForeground(new Color(39, 45, 61));
 		RPB1.setBorder(new LineBorder(new Color(0, 191, 255)));
 		RPB1.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		RPB1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panel.add(RPB1);
 		
 		RPB2 = new JProgressBar();
-		//RPB2.setForeground(new Color(39, 45, 61));
 		RPB2.setBorder(new LineBorder(new Color(0, 191, 255)));
 		RPB2.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		RPB2.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -108,6 +105,14 @@ public class UploadPanel extends JPanel {
 		lblSurucu.setBounds(383, 31, 239, 14);
 		panel_1.add(lblSurucu);
 
+	}
+	public void temizLE()
+	{
+		lblDosAdet.setText("");
+		lblEmirAdi.setText("");
+		lblHiz.setText("");
+		lblAciklama.setText("");
+		lblSurucu.setText("");
 	}
 	public static void Progres_Bar_1( int deger) throws InterruptedException
 	{

@@ -158,7 +158,8 @@ public class OBS_BACKUP extends JFrame {
 	public static JButton btnHepsiYukari;
 	public static JButton btnHepsiAsagi;
 	public static JButton btnYeniSifre;
-	private static JLabel lblemirSAYI;
+	public static JLabel lblemirSAYI;
+	public static JLabel lblEmir ;
 	
 
 	static Component horizontalGlue = null ;
@@ -415,9 +416,9 @@ public class OBS_BACKUP extends JFrame {
 		altPane.setLayout(null);
 		contentPane.add(altPane, BorderLayout.SOUTH);
 
-		JLabel lblNewLabel = new JLabel("Emir Sayisi");
-		lblNewLabel.setBounds(10, 5, 75, 14);
-		altPane.add(lblNewLabel);
+		lblEmir = new JLabel("Emir Sayisi");
+		lblEmir.setBounds(10, 5, 75, 14);
+		altPane.add(lblEmir);
 
 		lblemirSAYI = new JLabel("0");
 		lblemirSAYI.setBounds(95, 5, 48, 14);
@@ -893,6 +894,7 @@ public class OBS_BACKUP extends JFrame {
 			say +=1 ;			
 		}
 		lblemirSAYI.setText(Integer.toString(say));
+		lblEmir.setText("Emir Sayisi"); ;
 	}
 	public void emirtekSIL_HATA(String eadi)
 	{

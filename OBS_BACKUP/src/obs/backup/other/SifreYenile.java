@@ -40,7 +40,7 @@ public class SifreYenile extends JPanel {
 		setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Sifreniz");
-		lblNewLabel.setBounds(217, 285, 86, 20);
+		lblNewLabel.setBounds(217, 288, 86, 20);
 		add(lblNewLabel);
 
 		txtsif = new JPasswordField();
@@ -91,21 +91,21 @@ public class SifreYenile extends JPanel {
 				}
 			}
 		});
-		txtsif.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtsif.setBounds(329, 282, 248, 20);
+		txtsif.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtsif.setBounds(329, 282, 248, 25);
 		add(txtsif);
 		txtsif.setColumns(10);
 
 		txtyenisif = new JTextField();
-		txtyenisif.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtyenisif.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtyenisif.setColumns(10);
-		txtyenisif.setBounds(329,315, 248, 20);
+		txtyenisif.setBounds(329,315, 248, 25);
 		txtyenisif.setVisible(false);
 		txtyenisif.setText("");
 		add(txtyenisif);
 
 		lblysif = new JLabel("Yeni Sifreniz");
-		lblysif.setBounds(217,315, 86, 20);
+		lblysif.setBounds(217,318, 86, 20);
 		
 		lblysif.setVisible(false);
 		add(lblysif);
@@ -140,7 +140,7 @@ public class SifreYenile extends JPanel {
 				}		
 			}
 		});
-		btnNewButton.setBounds(600, 315, 30, 23);
+		btnNewButton.setBounds(600, 315, 25, 25);
 		btnNewButton.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/save.png")));
 		add(btnNewButton);
 	}

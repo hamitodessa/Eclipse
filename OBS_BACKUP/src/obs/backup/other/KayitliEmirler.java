@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,6 +31,9 @@ import javax.swing.table.TableStringConverter;
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.SOLA_DUZ_RENK;
+import obs.backup.main.OBS_BACKUP;
+import raven.toast.Notifications;
+import java.awt.Font;
 
 public class KayitliEmirler extends JPanel {
 
@@ -45,16 +49,17 @@ public class KayitliEmirler extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(0,40));
+		panel.setPreferredSize(new Dimension(0, 50));
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Arama");
-		lblNewLabel.setBounds(10, 12, 48, 14);
+		lblNewLabel.setBounds(10, 15, 48, 14);
 		panel.add(lblNewLabel);
 		
 		txtArama = new JTextField();
-		txtArama.setBounds(79, 9, 298, 20);
+		txtArama.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtArama.setBounds(79, 10, 298, 25);
 		panel.add(txtArama);
 		txtArama.setColumns(10);
 		txtArama.getDocument().addDocumentListener(new DocumentListener() {
@@ -157,8 +162,11 @@ public class KayitliEmirler extends JPanel {
 				tblEmir.scrollRectToVisible(tblEmir.getCellRect(tblEmir.getRowCount()-1, 0, true));
 				tblEmir.setRowSelectionInterval(lastRow, lastRow);
 			}
-		} catch (Exception e) {
-System.out.println(e.getMessage());
+			OBS_BACKUP.lblemirSAYI.setText(Integer.toString(tblEmir.getRowCount()));
+			OBS_BACKUP.lblEmir.setText("Emir Sayisi"); 
+		} catch (Exception ex) {
+			bckp.log_kayit("Kayitli Emir", new Date(), ex.getMessage());
+			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());	
 		}
 	}
 	public void arama()  

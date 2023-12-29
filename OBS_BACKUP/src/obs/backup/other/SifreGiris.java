@@ -16,6 +16,7 @@ import raven.toast.Notifications;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
+import java.awt.Font;
 
 public class SifreGiris extends JPanel {
 
@@ -33,6 +34,7 @@ public class SifreGiris extends JPanel {
 		add(lblNewLabel);
 		
 		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Tahoma", Font.BOLD, 12));
 		passwordField.addAncestorListener(new AncestorListener() {
 			@Override
 			public void ancestorRemoved(AncestorEvent pEvent) {
@@ -82,7 +84,7 @@ public class SifreGiris extends JPanel {
 				}
 			}
 		});
-		passwordField.setBounds(329, 282, 248, 20);
+		passwordField.setBounds(329, 282, 248, 25);
 		add(passwordField);
 	}
 }

@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.Date;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -26,9 +27,14 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
 import OBS_C_2025.BACKUP_GLOBAL;
+import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.SOLA_DUZ_RENK;
+import obs.backup.main.OBS_BACKUP;
+import raven.toast.Notifications;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.awt.Font;
 
 public class LoglamaRapor extends JPanel {
 
@@ -45,16 +51,17 @@ public class LoglamaRapor extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(0,40));
+		panel.setPreferredSize(new Dimension(0, 50));
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Arama");
-		lblNewLabel.setBounds(10, 12, 48, 14);
+		lblNewLabel.setBounds(10, 15, 48, 14);
 		panel.add(lblNewLabel);
 		
 		txtArama = new JTextField();
-		txtArama.setBounds(79, 9, 298, 20);
+		txtArama.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtArama.setBounds(79, 10, 298, 25);
 		panel.add(txtArama);
 		txtArama.setColumns(10);
 		txtArama.getDocument().addDocumentListener(new DocumentListener() {
@@ -113,11 +120,8 @@ public class LoglamaRapor extends JPanel {
 	public void doldur() throws ClassNotFoundException, SQLException
 	{
 		try {
-
-
 			DefaultTableModel tbm   = 	bckp.log_liste();
 			tblLog.setModel(tbm);
-
 
 			JTableHeader th = tblLog.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
@@ -147,8 +151,12 @@ public class LoglamaRapor extends JPanel {
 				tblLog.scrollRectToVisible(tblLog.getCellRect(tblLog.getRowCount()-1, 0, true));
 				tblLog.setRowSelectionInterval(lastRow, lastRow);
 			}
-		} catch (Exception e) {
-
+			OBS_BACKUP.lblemirSAYI.setText(FORMATLAMA.doub_0(tblLog.getRowCount()));
+			OBS_BACKUP.lblEmir.setText("Log Sayisi"); 
+		} catch (Exception ex) 
+		{
+			bckp.log_kayit("Loglama", new Date(), ex.getMessage());
+			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());	
 		}
 	}
 	public void arama()  

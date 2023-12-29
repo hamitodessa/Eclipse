@@ -45,16 +45,16 @@ public class LoglamaRapor extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(0,30));
+		panel.setPreferredSize(new Dimension(0,40));
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Arama");
-		lblNewLabel.setBounds(10, 7, 48, 14);
+		lblNewLabel.setBounds(10, 12, 48, 14);
 		panel.add(lblNewLabel);
 		
 		txtArama = new JTextField();
-		txtArama.setBounds(79, 4, 298, 20);
+		txtArama.setBounds(79, 9, 298, 20);
 		panel.add(txtArama);
 		txtArama.setColumns(10);
 		txtArama.getDocument().addDocumentListener(new DocumentListener() {

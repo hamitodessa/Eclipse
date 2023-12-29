@@ -119,7 +119,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 				}
 			}
 		});
-		btnSil.setBounds(650, 69, 110, 23);
+		btnSil.setBounds(650, 75, 110, 23);
 		add(btnSil);
 
 		JButton btnYedekle = new JButton("Yedekle");
@@ -439,7 +439,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 				}
 				else
 				{
-					lblDosyaSayisi.setText(dbliste.size() +  " Adet Dosya...");
+					lblDosyaSayisi.setText(dbliste.size() +  " Adet Dosya");
 					lblSurucu.setText(ftpBilgi.get(0).getSURUCU_YER());
 				}
 			}

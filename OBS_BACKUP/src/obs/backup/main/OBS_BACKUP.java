@@ -54,8 +54,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -358,7 +360,7 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		toolBar.add(btnYeniSifre );
-		
+
 		Component horizontalGlue = Box.createVerticalGlue();
 		toolBar.add(horizontalGlue);
 		
@@ -1068,13 +1070,9 @@ public class OBS_BACKUP extends JFrame {
 	}
 	private void sql_yerel_surucu( String emirADI,     List<ftp_bilgiler> ftpBilgi) 
 	{
-		//		Runnable runner = new Runnable()
-		//		{ 
-		//			public void run() {
-		/////
 		try {
-			///
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+			gorevSETCURSOR(Cursor.WAIT_CURSOR);
 			List<server_bilgiler> serverBilgi = new ArrayList<server_bilgiler>();
 			serverBilgi = bckp.server_bilgi(emirADI);
 			String decodedString = serverBilgi.get(0).getSIFRE();
@@ -1103,10 +1101,13 @@ public class OBS_BACKUP extends JFrame {
 			List<String> dbliste = bckp.db_liste(emirADI);
 			uplpnl.RPB1.setMaximum(dbliste.size());
 			uplpnl.RPB1.setStringPainted(true);
+			uplpnl.RPB2.setStringPainted(true);
+			uplpnl.RPB2.setMaximum(0);
 			for (int i = 0; i <= dbliste.size() - 1; i++)
 			{
 				dosADI = dbliste.get(i); // Dosya Adi
 				uplpnl.Progres_Bar_1( i + 1);
+				uplpnl.RPB2.setString("Backup Aliniyor..........");
 				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
 					bckp.backup_al(dosADI, tarr + "_" + dosADI);
@@ -1127,6 +1128,7 @@ public class OBS_BACKUP extends JFrame {
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
+				uplpnl.RPB2.setString("Zip Haline Getiriliyor..........");
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
@@ -1140,7 +1142,9 @@ public class OBS_BACKUP extends JFrame {
 					glb.dos_sil(surucu_yer + "\\" + dzip);
 				}
 				File okunanFile = new File(glb.BACKUP_YERI + dzip);
-				okunanFile.renameTo(new File(surucu_yer + "\\" + dzip));
+				uplpnl.RPB2.setString("Kopyalaniyor..........");
+				fileCOPY(glb.BACKUP_YERI + dzip,surucu_yer + "\\" + dzip);
+				uplpnl.RPB2.setString("");
 				if (glb.dos_kontrol(glb.BACKUP_YERI + dzip))
 				{ 
 					glb.dos_sil(glb.BACKUP_YERI + dzip);
@@ -1180,7 +1184,6 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.RPB2.setStringPainted(true);
 				for (int i = 0; i <= dbliste.size() - 1; i++)
 				{
-
 					dosADI = dbliste.get(i);
 					uplpnl. Progres_Bar_1( i + 1);
 					for (int r = 0; r <= ls.size() - 1; r++)
@@ -1200,7 +1203,6 @@ public class OBS_BACKUP extends JFrame {
 							long dateAfterInMs = new Date().getTime();
 							long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
 							long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
-							//long daysDiff1 = TimeUnit.HOURS.convert(timeDiff, TimeUnit.MILLISECONDS);
 							gunfark = (int)daysDiff;
 							if (gunfark > eskiyedek)
 							{
@@ -1210,8 +1212,6 @@ public class OBS_BACKUP extends JFrame {
 									glb.dos_sil(ls.get(r).getDosyaADI());
 									bckp.log_kayit(emirADI, new Date(), dosADI + " Dosyasi Silindi...");
 								}
-
-
 								bckp.log_kayit(emirADI, new Date(), dosADI + " Dosya Surucuden Eski Tarihli Silindi...");
 							}
 						}
@@ -1222,52 +1222,37 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setPreferredSize(new Dimension(0,00));
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
-			//emirBOSALT(emirADI);
-			//emirTEKYUKLE(emirADI,"");
 			emirYENIDENBASLAT(emirADI);
+			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 		catch (Exception ex)
 		{
-
 			try {
 				bckp.genel_kayit_durum(emirADI, false, new Date(), ex.getMessage().substring(0, 40).toString());
-
 				bckp.log_kayit(emirADI, new Date(), ex.getMessage());
 				uplpnl. Progres_Bar_Temizle_1();
 				uplpnl. Progres_Bar_Temizle_2();
 				uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
-
 				yapilmadiMAILI( emirADI);
-				//hataDURUMUNDA(emirADI);
-
 				bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 				emirtekSIL_HATA(emirADI);
-
-				//emirBOSALT(emirADI);
-				//emirTEKYUKLE(emirADI,"");
+				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			} catch (Exception e) {
+				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				e.printStackTrace();
 			}
 		} 
-		//////
-		//			}
-		//		};
-		//		Thread t = new Thread(runner, "Code Executer");
-		//		t.start();
 	}
 	private void sql_ftp_yukleme(String emirADI,List<ftp_bilgiler> ftpBilgi) 
 	{
-		//Runnable runner = new Runnable()
-		//{ 
-		//	public void run() {
-		//////////////////////////
 		try {
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+			gorevSETCURSOR(Cursor.WAIT_CURSOR);
 			String ftp, kull, sifre, surucu, port, neresi, surucu_yer;
 			int eskiyedek, zmnasimi;
 			ftp = ftpBilgi.get(0).getHOST();
@@ -1286,9 +1271,7 @@ public class OBS_BACKUP extends JFrame {
 			zmnasimi = Integer.valueOf(ftpBilgi.get(0).getZMN_ASIMI());
 			neresi =ftpBilgi.get(0).getNERESI();
 			surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
-
 			uplpnl.lblSurucu.setText( ftp + "\\" + surucu.replace("/", "\\"));
-
 			if (glb.internet_kontrol() == false)
 			{
 				bckp.genel_kayit_durum(emirADI, false, new Date(), "Yedeklenmedi Internet Baglantisi Yok...");
@@ -1300,6 +1283,7 @@ public class OBS_BACKUP extends JFrame {
 				emirtekSIL_HATA(emirADI);
 				bckp.log_kayit(emirADI, new Date(), "Emir Yuklendi...");
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				return;
 			}
 			boolean result =   bckp.DoesFtpDirectoryExist(ftp ,surucu,Integer.valueOf(port),kull, sifre);
@@ -1313,6 +1297,7 @@ public class OBS_BACKUP extends JFrame {
 				bckp.log_kayit(emirADI, new Date(), "FTP Surucu Bulunamadi...");
 				emirtekSIL_HATA(emirADI);
 				bckp.log_kayit(emirADI, new Date(), "Emir Yuklendi...");
+				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				return;
 			}
@@ -1368,9 +1353,7 @@ public class OBS_BACKUP extends JFrame {
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 				UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
-
 				bckp.log_kayit(emirADI, new Date(), dosADI + " FTP Yuklendi...");
-
 				if( serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
 					File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
@@ -1444,43 +1427,31 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setPreferredSize(new Dimension(0,00));
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
-
-			//emirBOSALT(emirADI);
-			//emirTEKYUKLE(emirADI,"");
 			emirYENIDENBASLAT(emirADI);
-			////
+			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 		catch (Exception ex)
 		{
 			try {
 				bckp.genel_kayit_durum(emirADI, false, new Date(), ex.getMessage().toString().length() > 40 ?  ex.getMessage().substring(0, 40).toString(): ex.getMessage());
-
 				bckp.log_kayit(emirADI, new Date(), ex.getMessage());
 				uplpnl. Progres_Bar_Temizle_1();
 				uplpnl. Progres_Bar_Temizle_2();
 				uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
-
 				yapilmadiMAILI( emirADI);
-
 				bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 				emirtekSIL_HATA(emirADI);
-
-				//emirBOSALT(emirADI);
-				//emirTEKYUKLE(emirADI,"");
+				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			} catch (Exception e) {
+				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				e.printStackTrace();
 			}
 		} 
-		//////
-		//			}
-		//		};
-		//		Thread t = new Thread(runner, "Code Executer");
-		//		t.start();
 	}
 	private void bilgilendirme_oku(String emir, String mesaj ,List<bilgilendirme_bilgiler> bilgiBilgi) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
@@ -1495,9 +1466,7 @@ public class OBS_BACKUP extends JFrame {
 		uplpnl.setMaximumSize(new Dimension(0,100));
 		uplpnl.revalidate();
 		List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
-
 		emirBilgi = bckp.emir_tek(emirADI);
-		///
 		Date sonyuk ;
 		if(emirBilgi.get(0).getSON_YUKLEME().toString().equals("Mon Jan 01 00:00:00 TRT 1900"))
 		{
@@ -1534,10 +1503,8 @@ public class OBS_BACKUP extends JFrame {
 		uplpnl.lblDosAdet.setText(Integer.toString(dbliste.size()));
 		uplpnl.lblAciklama.setText(emirBilgi.get(0).getEMIR_ACIKLAMA());
 		// ***FTP BILGILERI AL
-
 		List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
 		ftpBilgi = bckp.ftp_bilgi(emirADI);
-
 		String neresi =ftpBilgi.get(0).getNERESI();
 		if(neresi.equals("FTP"))
 		{
@@ -1563,12 +1530,9 @@ public class OBS_BACKUP extends JFrame {
 	}
 	private void diger_yerel_surucu(String emirADI,List<ftp_bilgiler> ftpBilgi )
 	{
-		//		Runnable runner = new Runnable()
-		//		{ 
-		//			public void run() {
 		try {
-			//
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+			gorevSETCURSOR(Cursor.WAIT_CURSOR);
 			int eskiyedek;
 			eskiyedek =  Integer.valueOf(ftpBilgi.get(0).getESKI_YEDEK());
 			uplpnl.lblSurucu.setText( ftpBilgi.get(0).getSURUCU_YER().replace("/", "\\"));
@@ -1617,8 +1581,10 @@ public class OBS_BACKUP extends JFrame {
 				}
 				else
 				{
+					uplpnl.RPB2.setString("Zip Haline Getiriliyor..........");
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
 					bckp.diger_zip_yap(okumadosyaadi, glb.BACKUP_YERI, dzip, false, "");
+					uplpnl.RPB2.setString("");
 				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 
@@ -1630,7 +1596,8 @@ public class OBS_BACKUP extends JFrame {
 				}
 
 				File okunanFile = new File(glb.BACKUP_YERI + dzip);
-				okunanFile.renameTo(new File(ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip));
+				fileCOPY(glb.BACKUP_YERI + dzip, ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip);
+				//okunanFile.renameTo(new File(ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip));
 				if (glb.dos_kontrol( glb.BACKUP_YERI + "\\" + dzip))
 				{ 
 					glb.dos_sil( glb.BACKUP_YERI + "\\" + dzip);
@@ -1700,8 +1667,8 @@ public class OBS_BACKUP extends JFrame {
 			//emirBOSALT(emirADI);
 			//emirTEKYUKLE(emirADI,"");
 			emirYENIDENBASLAT(emirADI);
+			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			////
 		}
 		catch (Exception ex)
 		{
@@ -1722,27 +1689,21 @@ public class OBS_BACKUP extends JFrame {
 
 				//emirBOSALT(emirADI);
 				//emirTEKYUKLE(emirADI,"");
+				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			} catch (Exception e) {
+				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				e.printStackTrace();
 			}
 
 		} 
-		//////
-		//			}
-		//		};
-		//		Thread t = new Thread(runner, "Code Executer");
-		//		t.start();
 	}
 	private void diger_ftp_yukleme(String emirADI,List<ftp_bilgiler> ftpBilgi )
 	{
-		//		Runnable runner = new Runnable()
-		//		{ 
-		//			public void run() {
 		try {
-			//
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+			gorevSETCURSOR(Cursor.WAIT_CURSOR);
 			String ftp, kull, sifre, surucu, port, neresi, surucu_yer;
 			int eskiyedek, zmnasimi;
 			ftp = ftpBilgi.get(0).getHOST();
@@ -1774,6 +1735,7 @@ public class OBS_BACKUP extends JFrame {
 				bckp.log_kayit(emirADI, new Date(), "Internet Baglantisi Yok...");
 				emirtekSIL_HATA(emirADI);
 				bckp.log_kayit(emirADI, new Date(), "Emir Yuklendi...");
+				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				return;
 			}
@@ -1788,6 +1750,7 @@ public class OBS_BACKUP extends JFrame {
 				bckp.log_kayit(emirADI, new Date(), "FTP Surucu Bulunamadi...");
 				emirtekSIL_HATA(emirADI);
 				bckp.log_kayit(emirADI, new Date(), "Emir Yuklendi...");
+				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				return;
 			}
@@ -1840,8 +1803,6 @@ public class OBS_BACKUP extends JFrame {
 					Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
 					bckp. zipFolder(pathokuma,pathyazma);
 					uplpnl.Progres_Bar_Temizle_2();
-					//uplpnl.RPB2.setString("");
-
 				}
 				else
 				{
@@ -1912,8 +1873,8 @@ public class OBS_BACKUP extends JFrame {
 			//emirBOSALT(emirADI);
 			//emirTEKYUKLE(emirADI,"");
 			emirYENIDENBASLAT(emirADI);
+			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			////
 		}
 		catch (Exception ex)
 		{
@@ -1932,17 +1893,14 @@ public class OBS_BACKUP extends JFrame {
 				emirtekSIL_HATA(emirADI);
 				//emirBOSALT(emirADI);
 				//emirTEKYUKLE(emirADI,"");
+				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			} catch (Exception e) {
+				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				e.printStackTrace();
 			}
 		} 
-		//////
-		//			}
-		//		};
-		//		Thread t = new Thread(runner, "Code Executer");
-		//		t.start();
 	}
 	private void UploadFTPFiles(String ftpp, String ftpsurucu, String dosyayolu, String dosadi, String kull, String sifre, String port, int zmn) throws IOException, InterruptedException
 	{
@@ -1978,6 +1936,7 @@ public class OBS_BACKUP extends JFrame {
 				speedInKBps = ( (toplam * 1000) / (seconds + 1))  ;
 				uplpnl.lblHiz.setText(FORMATLAMA.doub_0(speedInKBps /1024) + " KBytes");
 			}
+		
 			//uplpnl.RPB2.setString("");
 			inputStream.close();
 			outputStream.close();
@@ -2171,6 +2130,39 @@ public class OBS_BACKUP extends JFrame {
 			}
 		}
 	}
+	private void fileCOPY(String from, String tO) throws IOException, InterruptedException
+	{
+		    File sourceFile = new File(from);
+	        long  toplam = (int) sourceFile.length();
+            File destFile =new File(tO);
+ 			OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(destFile));
+			InputStream inputStream =new FileInputStream(sourceFile);
+			long inen= 0;
+			byte[] bytesArray = new byte[8192];
+			int bytesRead = -1;
+			uplpnl.Progres_Bar_Temizle_2();
+			uplpnl.RPB2.setMaximum((int) toplam);
+			uplpnl.RPB2.setStringPainted(true);
+			double speedInKBps = 0.00;
+			Instant start = Instant.now();
+			while ((bytesRead = inputStream.read(bytesArray)) != -1)
+			{
+				outputStream2.write(bytesArray, 0, bytesRead);
+				inen +=(long) bytesRead ;
+				double yuzde =( Double.valueOf(inen)/ Double.valueOf(toplam))*100;
+				uplpnl.Progres_Bar_2((int)inen);
+				uplpnl.RPB2.setString(FORMATLAMA.doub_2(yuzde) + " %");
+				Instant finish = Instant.now();
+				long timeElapsed = Duration.between(start, finish).toMillis();
+				int seconds = (int)((timeElapsed / 1000) % 60);
+				double speedInBytesPerSecond =  inen / (timeElapsed / 1000.0);
+				uplpnl.lblHiz.setText(FORMATLAMA.doub_0(speedInBytesPerSecond/1024) + " KBytes");
+			}
+			uplpnl.Progres_Bar_Temizle_2();
+			uplpnl.RPB2.setString("");
+			outputStream2.close();
+			inputStream.close();
+	}
 	private void emirYENIDENBASLAT(String emirADI)
 	{
 		Component[] components = container.getComponents();
@@ -2194,6 +2186,17 @@ public class OBS_BACKUP extends JFrame {
 						}
 					}
 				}
+			}
+			component.revalidate();
+		}
+	}
+	private void gorevSETCURSOR(int crsr)
+	{
+		Component[] components = container.getComponents();
+		for (Component component : components) {
+			if (component.getName()!= null)
+			{
+				component.setCursor( Cursor.getPredefinedCursor(crsr));
 			}
 			component.revalidate();
 		}

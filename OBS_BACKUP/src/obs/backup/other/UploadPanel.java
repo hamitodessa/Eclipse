@@ -113,6 +113,12 @@ public class UploadPanel extends JPanel {
 		lblHiz.setText("");
 		lblAciklama.setText("");
 		lblSurucu.setText("");
+		RPB1.setStringPainted(false);
+		RPB2.setStringPainted(false);
+		RPB1.setMaximum(0);
+		RPB1.setValue(0);
+		RPB2.setMaximum(0);
+		RPB2.setValue(0);
 	}
 	public static void Progres_Bar_1( int deger) throws InterruptedException
 	{
@@ -133,5 +139,6 @@ public class UploadPanel extends JPanel {
 		RPB2.setMaximum(0);
 		RPB2.setValue(0);
 		RPB2.setStringPainted(false);
+
 	}
 }

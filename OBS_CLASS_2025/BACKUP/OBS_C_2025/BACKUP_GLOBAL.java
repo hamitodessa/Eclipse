@@ -575,13 +575,12 @@ public class BACKUP_GLOBAL {
 		}
 		else
 		{
-			sql = "SELECT * FROM EMIRLER ORDER BY   " + siralama + " DESC ";
+			sql = "SELECT * FROM EMIRLER ORDER BY   " + siralama + " ASC ";
 		}
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		
+		System.out.println(sql);
 		List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
-		 //new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs.getString("CREATION_TIME"));
 		 int i = 0 ;
 		 while (rss.next())
 		 {     

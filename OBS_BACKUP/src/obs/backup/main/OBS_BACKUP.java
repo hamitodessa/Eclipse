@@ -46,6 +46,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -158,6 +159,10 @@ public class OBS_BACKUP extends JFrame {
 	public static JButton btnHepsiYukari;
 	public static JButton btnHepsiAsagi;
 	public static JButton btnYeniSifre;
+	public static JButton btnUploadAll ;
+	public static JButton btnStartAll ;
+	public static JButton btnStopAll ;
+	
 	public static JLabel lblemirSAYI;
 	public static JLabel lblEmir ;
 	
@@ -306,6 +311,10 @@ public class OBS_BACKUP extends JFrame {
 		});
 		toolBar.add(btnKayitliEmirler );
 
+		JLabel sprt = new JLabel("   ");
+		sprt.setSize(new Dimension(25,25));
+		toolBar.add(sprt );
+		
 		btnHepsiYukari = new JButton();
 		btnHepsiYukari.setEnabled(false);
 		btnHepsiYukari.setToolTipText("Gorev Paneli Yukari");
@@ -348,6 +357,9 @@ public class OBS_BACKUP extends JFrame {
 		});
 		toolBar.add(btnHepsiAsagi );
 		
+		sprt = new JLabel("   ");
+		sprt.setSize(new Dimension(25,25));
+		toolBar.add(sprt );
 		//
 		btnYeniSifre = new JButton();
 		btnYeniSifre.setEnabled(false);
@@ -361,6 +373,94 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		toolBar.add(btnYeniSifre );
+		
+		btnStartAll= new JButton("");
+		btnStartAll.setToolTipText("Emirleri Baslat");
+		btnStartAll.setEnabled(false);
+		btnStartAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Component[] components = container.getComponents();
+				for (Component component : components) {
+					if (component.getName()!= null)
+					{
+						JPanel qweJPanel = (JPanel) component ; 
+						Component[] componentt = qweJPanel.getComponents();
+						for (Component compo : componentt) {
+							if(compo.getName() != null)
+							{
+								if(compo.getName().equals("btnStart"))
+								{
+									JButton strt = (JButton) compo;
+									strt.doClick();
+								}
+							}
+						}
+					}
+					component.revalidate();
+				}
+			}
+		});
+		btnStartAll.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/start.png")));
+		toolBar.add(btnStartAll);
+		
+		btnStopAll= new JButton("");
+		btnStopAll.setToolTipText("Emirleri Durdur");
+		btnStopAll.setEnabled(false);
+		btnStopAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Component[] components = container.getComponents();
+				for (Component component : components) {
+					if (component.getName()!= null)
+					{
+						JPanel qweJPanel = (JPanel) component ; 
+						Component[] componentt = qweJPanel.getComponents();
+						for (Component compo : componentt) {
+							if(compo.getName() != null)
+							{
+								if(compo.getName().equals("btnStop"))
+								{
+									JButton stp = (JButton) compo;
+									stp.doClick();
+								}
+							}
+						}
+					}
+					component.revalidate();
+				}
+			}
+		});
+		btnStopAll.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/stop.png")));
+		toolBar.add(btnStopAll);
+		
+		btnUploadAll= new JButton("");
+		btnUploadAll.setEnabled(false);
+		btnUploadAll.setToolTipText("Aktif Emirleri Yedekle");
+		btnUploadAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Component[] components = container.getComponents();
+				for (Component component : components) {
+					if (component.getName()!= null)
+					{
+						JPanel qweJPanel = (JPanel) component ; 
+						Component[] componentt = qweJPanel.getComponents();
+						for (Component compo : componentt) {
+							if(compo.getName() != null)
+							{
+								if(compo.getName().equals("btnYedekle"))
+								{
+									JButton ydkl = (JButton) compo;
+									ydkl.doClick();
+								}
+							}
+						}
+					}
+					component.revalidate();
+				}
+				}
+		});
+		btnUploadAll.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/upload.png")));
+		toolBar.add(btnUploadAll);
+		
 
 		Component horizontalGlue = Box.createVerticalGlue();
 		toolBar.add(horizontalGlue);
@@ -1100,8 +1200,6 @@ public class OBS_BACKUP extends JFrame {
 			List<String> dbliste = bckp.db_liste(emirADI);
 			uplpnl.RPB1.setMaximum(dbliste.size());
 			uplpnl.RPB1.setStringPainted(true);
-			uplpnl.RPB2.setStringPainted(true);
-			uplpnl.RPB2.setMaximum(0);
 			for (int i = 0; i <= dbliste.size() - 1; i++)
 			{
 				dosADI = dbliste.get(i); // Dosya Adi
@@ -1904,12 +2002,11 @@ public class OBS_BACKUP extends JFrame {
 			String secondRemoteFile = dosadi;
 			InputStream inputStream = new FileInputStream(secondLocalFile);
 			OutputStream outputStream = ftp.storeFileStream(secondRemoteFile);
-			byte[] bytesIn = new byte[8192]; //4196
+			byte[] bytesIn = new byte[4196]; //4196
 			int read = 0;
 			long toplam = 0 ;
 			int fileLenght = (int) secondLocalFile.length();
 			double speedInKBps = 0.00;
-			uplpnl.Progres_Bar_Temizle_2();
 			uplpnl.RPB2.setMaximum((int) fileLenght);
 			uplpnl.RPB2.setStringPainted(true);
 			Instant start = Instant.now();
@@ -1925,7 +2022,10 @@ public class OBS_BACKUP extends JFrame {
 			}
 			inputStream.close();
 			outputStream.close();
-			uplpnl.Progres_Bar_Temizle_2();
+			uplpnl.RPB2.setStringPainted(false);
+			uplpnl.Progres_Bar_2( 0);
+			//uplpnl.RPB2.setMaximum(0);
+			
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
@@ -2124,9 +2224,8 @@ public class OBS_BACKUP extends JFrame {
  			OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(destFile));
 			InputStream inputStream =new FileInputStream(sourceFile);
 			long inen= 0;
-			byte[] bytesArray = new byte[8192];
+			byte[] bytesArray = new byte[16384];
 			int bytesRead = -1;
-			uplpnl.Progres_Bar_Temizle_2();
 			uplpnl.RPB2.setMaximum((int) toplam);
 			uplpnl.RPB2.setStringPainted(true);
 			double speedInKBps = 0.00;
@@ -2137,15 +2236,14 @@ public class OBS_BACKUP extends JFrame {
 				inen +=(long) bytesRead ;
 				double yuzde =( Double.valueOf(inen)/ Double.valueOf(toplam))*100;
 				uplpnl.Progres_Bar_2((int)inen);
-				uplpnl.RPB2.setString(FORMATLAMA.doub_2(yuzde) + " %");
 				Instant finish = Instant.now();
 				long timeElapsed = Duration.between(start, finish).toMillis();
 				int seconds = (int)((timeElapsed / 1000) % 60);
 				double speedInBytesPerSecond =  inen / (timeElapsed / 1000.0);
 				uplpnl.lblHiz.setText(FORMATLAMA.doub_0(speedInBytesPerSecond/1024) + " KBytes");
 			}
-			uplpnl.Progres_Bar_Temizle_2();
-			uplpnl.RPB2.setString("");
+			uplpnl.RPB2.setStringPainted(false);
+			uplpnl.Progres_Bar_2( 0);
 			outputStream2.close();
 			inputStream.close();
 	}

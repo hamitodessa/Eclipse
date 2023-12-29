@@ -74,6 +74,9 @@ public class SifreGiris extends JPanel {
 						OBS_BACKUP. btnHepsiYukari.setEnabled(true);
 						OBS_BACKUP.btnHepsiAsagi.setEnabled(true);
 						OBS_BACKUP.btnYeniSifre.setEnabled(true);
+						OBS_BACKUP.btnUploadAll.setEnabled(true);
+						OBS_BACKUP.btnStartAll.setEnabled(true);
+						OBS_BACKUP.btnStopAll.setEnabled(true);
 					}
 					else {
 						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,"Sifre Yanlis");

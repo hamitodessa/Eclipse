@@ -59,6 +59,10 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 
 	private JButton btn1 ;
 	
+	public JButton btnStart ;
+	public JButton btnStop;
+	public JButton btnYedekle;
+	
 	public JLabel lblemirISMI ;
 	private JLabel lblDosyaSayisi;
 	private JLabel lblSurucu;
@@ -122,13 +126,13 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		btnSil.setBounds(650, 75, 110, 23);
 		add(btnSil);
 
-		JButton btnYedekle = new JButton("Yedekle");
+		btnYedekle = new JButton("Yedekle");
+		btnYedekle.setName("btnYedekle");
 		btnYedekle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					yedekSirasinaKoy();
 				} catch (Exception e1) {
-				
 					e1.printStackTrace();
 				}
 			}
@@ -251,10 +255,27 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		btn1.setBounds(10, 11, 23, 23);
 		add(btn1);
 
-		JButton btn2 = new JButton(".....");
-		btn2.setVisible(false);
-		btn2.setBounds(0, 31, 23, 23);
-		add(btn2);
+		btnStart = new JButton(".....");
+		btnStart.setName("btnStart");
+		btnStart.setVisible(false);
+		btnStart.setBounds(0, 31, 23, 23);
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				run();
+			}
+		});
+		add(btnStart);
+		
+		btnStop = new JButton(".....");
+		btnStop.setName("btnStop");
+		btnStop.setVisible(false);
+		btnStop.setBounds(0, 31, 23, 23);
+		btnStop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tt.cancel();
+			}
+		});
+		add(btnStop);
 
 		btnyenidenBASLAT = new JButton(".....");
 		btnyenidenBASLAT.setBounds(20, 31, 23, 23);
@@ -265,7 +286,6 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 				try {
 					ilkBasla();
 				} catch (Exception e1) {
-				
 					e1.printStackTrace();
 				}
 			}

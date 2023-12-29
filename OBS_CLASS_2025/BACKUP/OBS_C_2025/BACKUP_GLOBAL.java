@@ -121,7 +121,7 @@ public class BACKUP_GLOBAL {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		//F_CCMD.CommandText = "SELECT name FROM master.dbo.sysdatabases where name like 'OK_ % ' "
-		String sql  = "SELECT NAME FROM master.dbo.sysdatabases ORDER BY NAME";
+		String sql  = "SELECT NAME FROM master.dbo.sysdatabases ORDER BY NAME COLLATE NOCASE ASC ";
 		PreparedStatement stmt = S_CONN.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss ;
@@ -571,11 +571,11 @@ public class BACKUP_GLOBAL {
 		
 		if (siralama == "DURUM")
 		{
-			sql = "SELECT * FROM EMIRLER ORDER BY  DURUM DESC , EMIR_ISMI   ";
+			sql = "SELECT * FROM EMIRLER ORDER BY  DURUM DESC , EMIR_ISMI COLLATE NOCASE ASC  ";
 		}
 		else
 		{
-			sql = "SELECT * FROM EMIRLER ORDER BY   " + siralama + " ASC ";
+			sql = "SELECT * FROM EMIRLER ORDER BY   " + siralama + " COLLATE NOCASE ASC ";
 		}
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -642,7 +642,7 @@ public class BACKUP_GLOBAL {
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
 		String sql = "";
-		sql = "SELECT * FROM DB_ISIM WHERE  EMIR_ISMI= '" + eismi + "' ORDER BY DB_ADI ";
+		sql = "SELECT * FROM DB_ISIM WHERE  EMIR_ISMI= '" + eismi + "' ORDER BY DB_ADI COLLATE NOCASE ASC ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<String>  dbadi =new ArrayList<String>();
@@ -1017,7 +1017,7 @@ public class BACKUP_GLOBAL {
 		con = glb.myBackupConnection();
 		String sql = "";
 
-		sql = "SELECT * FROM EMIRLER ORDER BY   EMIR_ISMI   ";
+		sql = "SELECT * FROM EMIRLER ORDER BY   EMIR_ISMI COLLATE NOCASE ASC  ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 

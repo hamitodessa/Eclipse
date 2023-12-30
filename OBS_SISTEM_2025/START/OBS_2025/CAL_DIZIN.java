@@ -1598,6 +1598,7 @@ public class CAL_DIZIN extends JFrame {
 		if (grd.getRowCount()== 0 ) {  
 			txtKodu.setEnabled(true);
 			kutu_temizle();
+			contentPane.setCursor(DEFAULT_CURSOR);
 			return;
 		} 
 		ip_doldur();

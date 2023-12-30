@@ -1,11 +1,13 @@
 package OBS_C_2025;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
@@ -19,12 +21,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
@@ -33,6 +38,8 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.internet.MimeBodyPart;
 import javax.swing.JOptionPane;
+
+import org.apache.commons.lang3.StringUtils;
 import org.jfree.data.category.DefaultCategoryDataset;
 import LOGER_KAYIT.ILOGER_KAYIT;
 import LOGER_KAYIT.SQLITE_LOG;
@@ -637,5 +644,31 @@ public class GLOBAL {
 		{
 			
 		}
+	}
+	
+	public boolean  checkFTPFirewall() throws IOException, InterruptedException
+	{
+		StringBuilder output = new StringBuilder();
+		Process p = Runtime.getRuntime().exec("netsh advfirewall show global StatefulFTP");
+		//Process p = Runtime.getRuntime().exec("netsh advfirewall show allprofiles state");
+		p.waitFor(); //Wait for the process to finish before continuing the Java program.
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		String line = "";   
+		boolean result = false;
+		List<String> satirStrings = new ArrayList<String>();
+		while ((line = reader.readLine()) != null) {
+			satirStrings.add(line.toString()) ;
+			output.append(line + "\n");
+
+		}
+		if(satirStrings.get(3).contains("StatefulFTP"))
+		{
+			if(satirStrings.get(3).contains("Enable"))
+			{
+				result =true;
+			}
+		}
+		return result;
 	}
 }

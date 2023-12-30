@@ -26,6 +26,7 @@ import OBS_C_2025.GLOBAL;
 import javazoom.jl.player.Player;
 import obs.backup.gorev.gOREV_TAKIP;
 import obs.backup.other.Bilgilendirme;
+import obs.backup.other.DownloadFile;
 import obs.backup.other.EmirAnaGiris;
 import obs.backup.other.EmirKopyala;
 import obs.backup.other.KayitliEmirler;
@@ -149,6 +150,7 @@ public class OBS_BACKUP extends JFrame {
 	public static UploadPanel uplpnl ;
 	public static SifreGiris sifreGirisPanel;
 	public static SifreYenile sifreYenilePanel;
+	public static DownloadFile downloadFilePanel;
 
 	private JScrollPane scrollPane;
 	public static JButton btnYeni_Gorev;
@@ -162,6 +164,7 @@ public class OBS_BACKUP extends JFrame {
 	public static JButton btnUploadAll ;
 	public static JButton btnStartAll ;
 	public static JButton btnStopAll ;
+	public static JButton btnFileIndir;
 	
 	public static JLabel lblemirSAYI;
 	public static JLabel lblEmir ;
@@ -461,6 +464,18 @@ public class OBS_BACKUP extends JFrame {
 		btnUploadAll.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/upload.png")));
 		toolBar.add(btnUploadAll);
 		
+		btnFileIndir= new JButton("");
+		btnFileIndir.setEnabled(false);
+		btnFileIndir.setToolTipText("Aktif Emirleri Yedekle");
+		btnFileIndir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				tabbedPane.setSelectedIndex(6);
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		btnFileIndir.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/upload.png")));
+		toolBar.add(btnFileIndir);
 
 		Component horizontalGlue = Box.createVerticalGlue();
 		toolBar.add(horizontalGlue);
@@ -554,9 +569,10 @@ public class OBS_BACKUP extends JFrame {
 		tabbedPane.addTab("Emirler", null, kayitliEmirlerPanelEmirler, null);
 		sifreGirisPanel = new SifreGiris();
 		tabbedPane.addTab("Sifre", null, sifreGirisPanel, null);
-		
 		sifreYenilePanel = new SifreYenile();
 		tabbedPane.addTab("Sifre Yenile", null, sifreYenilePanel, null);
+		downloadFilePanel = new DownloadFile();
+		tabbedPane.addTab("Dosya Indir", null, downloadFilePanel, null);
 		//***********************************************************************************
 		try {
 			glb.backup_surucu_kontrol();
@@ -2282,6 +2298,7 @@ public class OBS_BACKUP extends JFrame {
 			component.revalidate();
 		}
 	}
+	
 	@Override
 	public Dimension getPreferredSize() {
 		Dimension superSz = super.getPreferredSize();

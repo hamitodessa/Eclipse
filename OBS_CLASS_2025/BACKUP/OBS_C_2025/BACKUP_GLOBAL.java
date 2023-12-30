@@ -46,7 +46,7 @@ import org.hsqldb.lib.CountdownInputStream;
 
 
 
-@SuppressWarnings({"static-access","unused"})
+@SuppressWarnings({"static-access","unused","rawtypes","unchecked"})
 public class BACKUP_GLOBAL {
 	public Connection S_CONN;
 	public Connection MY_CONN; //= new MySqlConnection();
@@ -579,7 +579,6 @@ public class BACKUP_GLOBAL {
 		}
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		System.out.println(sql);
 		List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
 		 int i = 0 ;
 		 while (rss.next())
@@ -1007,7 +1006,8 @@ public class BACKUP_GLOBAL {
 		ftp.disconnect();
 		return filelists;
 	}
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+
+
 	public DefaultTableModel emir_liste() throws SQLException, ClassNotFoundException, ParseException
 	{
 		Class.forName("org.sqlite.JDBC");
@@ -1072,6 +1072,36 @@ public class BACKUP_GLOBAL {
 		}
 		stmt.close();
 		con.close();
+		return model ;
+	}
+
+	public DefaultTableModel file_liste(String ftpAddress, String surucu,String ftpUser, String ftpPassword)throws ClassNotFoundException, SQLException, ParseException, SocketException, IOException
+	{
+		FTPClient ftp = new FTPClient();
+		ftp.connect(ftpAddress);
+		ftp.login(ftpUser, ftpPassword);
+		ftp.changeWorkingDirectory(surucu);
+		FTPFile[] files = ftp.listFiles();
+		DefaultTableModel model = new DefaultTableModel();
+	
+		model.addColumn("SEC");
+		model.addColumn("DOSYA_ADI");
+		model.addColumn("BOYUT");
+		model.addColumn("TARIH");
+		SimpleDateFormat dateFormater = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+		for (FTPFile file : files) {
+			if( file.getName().toString().trim().length() !=1 &&  file.getName().toString().trim().length() != 2)
+			{
+				Vector data = new Vector();
+				data.add( Boolean.FALSE );
+				data.add(file.getName().toString());
+				data.add((int) file.getSize());
+				data.add(dateFormater.format(file.getTimestamp().getTime()));
+				model.addRow(data);
+			}
+		}
+		ftp.logout();
+		ftp.disconnect();
 		return model ;
 	}
 	public List<remote_filelist> sur_liste(String surucu)

@@ -647,7 +647,7 @@ public class LOGIN extends JDialog {
 						{   
 							GLOBAL.create_table_log(dsy,oac._IKereste.ker_firma_adi(),BAGLAN_LOG.kerLogDizin);
 						}
-						//KERESTE LOG KONTROL
+						//CARI EKSTRE SQL
 						dsy =  GLOBAL.SURUCU +  GLOBAL.EKSTRE_DOSYA ;
 						if (! glb.dos_kontrol(dsy))
 						{   

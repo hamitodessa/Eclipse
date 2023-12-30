@@ -360,7 +360,7 @@ public class CEK_TAKIP extends JInternalFrame {
 				durum= "";
 			}
 
-			ka_Access.kam_durum_yaz(textField.getText(), "cek", "Cek_No", durum,  TARIH_CEVIR.tarih_geri(dateChooser_3));
+			ka_Access.kam_durum_yaz(textField.getText(), "CEK", "Cek_No", durum,  TARIH_CEVIR.tarih_geri(dateChooser_3));
 			textField.setText("");
 			textField.requestFocus();
 		}

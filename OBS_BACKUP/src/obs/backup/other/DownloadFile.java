@@ -123,6 +123,11 @@ public class DownloadFile extends JPanel {
 		panel.add(comboBox);
 		
 		JButton btnNewButton = new JButton("Indir");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inDIR();
+			}
+		});
 		btnNewButton.setBounds(327, 11, 89, 23);
 		panel.add(btnNewButton);
 		
@@ -147,6 +152,12 @@ public class DownloadFile extends JPanel {
 		tblFile.setShowHorizontalLines(true);
 		tblFile.setShowVerticalLines(true);
 		scrollPane.setViewportView(tblFile);
+		
+		JPanel panelalt = new JPanel();
+		panelalt.setPreferredSize(new Dimension(0, 50));
+		add(panelalt, BorderLayout.SOUTH);
+		panelalt.setLayout(null);
+		
 		try {
 			eismiDOLDUR();
 			ilkBASLA = false;
@@ -166,6 +177,7 @@ public class DownloadFile extends JPanel {
 			{
 				if (  modell.getValueAt(i,0).toString().equals("true")   )
 				{
+					
 					indirME( modell.getValueAt(i,1).toString());
 				}	
 			};
@@ -201,25 +213,23 @@ public class DownloadFile extends JPanel {
 				ftpc.connect(ftp);
 				ftpc.login(kull, sifre);
 				ftpc.changeWorkingDirectory(surucu);
-				
-				
-
-	
-					ftpc.setFileType(FTP.BINARY_FILE_TYPE);
-					ftpc.enterLocalPassiveMode();
+				ftpc.setFileType(FTP.BINARY_FILE_TYPE);
+				ftpc.enterLocalPassiveMode();
 					boolean success ;
 					//******************************
 					double toplam = 0 ;
 					FTPFile[] files = ftpc.listFiles();
-					for (FTPFile file : files) {
-						if (file.getName().equals(FileName))  
-							toplam = file.getSize();
+					for (int i=0;i<= files.length-1;i++) {
+					//	System.out.println(files[i].getName());
+						if (files[i].getName().equals(FileName))  
+						{
+							toplam =  files[i].getSize();
 						double topl =  toplam ;
-						//lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
+						System.out.println(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
 					
 					
-					String remoteFile2 =  ftpc.printWorkingDirectory() + file.getName();
-					File downloadFile2 = new File(glb.BACKUP_YERI + file.getName());
+					String remoteFile2 =   files[i].getName();
+					File downloadFile2 = new File(glb.BACKUP_YERI +  files[i].getName());
 					OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
 					InputStream inputStream = ftpc.retrieveFileStream(remoteFile2);
 					double inen= 0;
@@ -234,18 +244,21 @@ public class DownloadFile extends JPanel {
 						outputStream2.write(bytesArray, 0, bytesRead);
 						inen += bytesRead ;
 						//lblinen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
+						System.out.println(FORMATLAMA.doub_0(inen /1024 )+ " KBytes" +"= Inen");
 						//lblkalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
+						System.out.println(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes" +"= kalan");
 						//Lgn_Progres_Bar((int) toplam,(int) inen);
 						double speedInKBps = 0.00;
 						timeInSecs = (System.currentTimeMillis() - start) ; 
 						speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
+						System.out.println(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes" +"= surat");
 						//label.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
 					}
 					success = ftpc.completePendingCommand();
 					outputStream2.close();
 					inputStream.close();
 					
-					
+						}
 					}
 				} catch (Exception e) {
 					// TODO: handle exception

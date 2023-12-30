@@ -466,7 +466,7 @@ public class OBS_BACKUP extends JFrame {
 		
 		btnFileIndir= new JButton("");
 		btnFileIndir.setEnabled(false);
-		btnFileIndir.setToolTipText("Aktif Emirleri Yedekle");
+		btnFileIndir.setToolTipText("FTP Dosya Indirme");
 		btnFileIndir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -474,7 +474,7 @@ public class OBS_BACKUP extends JFrame {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		btnFileIndir.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/upload.png")));
+		btnFileIndir.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/download-30.png")));
 		toolBar.add(btnFileIndir);
 
 		Component horizontalGlue = Box.createVerticalGlue();

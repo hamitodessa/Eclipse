@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 

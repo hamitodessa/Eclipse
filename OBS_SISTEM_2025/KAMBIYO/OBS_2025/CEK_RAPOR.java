@@ -1,10 +1,14 @@
 package OBS_2025;
 
 import java.awt.Font;
+import java.awt.Point;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
@@ -14,11 +18,15 @@ import java.awt.Dimension;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
@@ -35,6 +43,8 @@ import raven.toast.Notifications;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings({"serial","static-access"})
 public class CEK_RAPOR extends JInternalFrame {
@@ -66,6 +76,9 @@ public class CEK_RAPOR extends JInternalFrame {
 		table = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
+		JTableHeader header = table.getTableHeader();
+		header.addMouseListener(new TableHeaderMouseListener(table));
+		
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
@@ -95,6 +108,7 @@ public class CEK_RAPOR extends JInternalFrame {
 				}
 			}
 		});
+		
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
@@ -251,7 +265,30 @@ public class CEK_RAPOR extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null, ex.getMessage());   
 		}
 	}
+	public class TableHeaderMouseListener extends MouseAdapter {
+	    private JTable table;
+	    public TableHeaderMouseListener(JTable table) {
+	        this.table = table;
+	    }
+	    public void mouseClicked(MouseEvent event) {
+	        Point point = event.getPoint();
+	        int column = table.columnAtPoint(point);
+	        TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+	        table.setRowSorter(sorter);
+	        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+	        int columnIndexToSort = column;
+	        sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+	        sorter.setSortKeys(sortKeys);
+	        sorter.sort();
+	    }
+	}
 }
+
+//table.getRowSorter().addRowSorterListener(new RowSorterListener() {
+//    @Override
+//    public void sorterChanged(RowSorterEvent e) {
+//        // Sorting changed
+//    }
+//});

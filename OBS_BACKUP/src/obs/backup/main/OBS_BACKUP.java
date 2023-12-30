@@ -58,11 +58,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.DatagramSocket;
@@ -485,6 +487,12 @@ public class OBS_BACKUP extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				tabbedPane.setSelectedIndex(6);
+				try {
+					downloadFilePanel.eismiDOLDUR();
+				} catch (ClassNotFoundException | SQLException e1) {
+			
+					e1.printStackTrace();
+				}
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
@@ -2031,6 +2039,16 @@ public class OBS_BACKUP extends JFrame {
 	}
 	private void UploadFTPFiles(String ftpp, String ftpsurucu, String dosyayolu, String dosadi, String kull, String sifre, String port, int zmn) throws IOException, InterruptedException
 	{
+		Process p = Runtime.getRuntime().exec("netsh advfirewall set global StatefulFTP disable");
+        p.waitFor();
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+        String line = reader.readLine();
+        while (line != null) 
+        {
+             line = reader.readLine();
+        }
+        
 		FTPClient ftp = new FTPClient();
 		try {
 			ftp.connect(ftpp, Integer.valueOf(port));

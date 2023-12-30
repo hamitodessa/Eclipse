@@ -19,6 +19,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -288,7 +289,6 @@ public class GLOBAL {
 		else {
 			tmpDir.mkdirs();
 		}
-	    
 	    if( ! dos_kontrol(SURUCU + BACKUP_DOSYA))
 	    {
 	    	backup_obs_dosya_olustur(); // OBS SISTEM BACKUP DOSYASI KONTROL
@@ -324,16 +324,14 @@ public class GLOBAL {
 			sorgu = "CREATE TABLE YONETICI (SIFRE nvarchar(200) ) ";
 			backup_tablo_yap(sorgu);
 			
-			Class.forName("org.sqlite.JDBC");
+	
 			con = myBackupConnection();
-			sorgu = "INSERT INTO YONETICI(SIFRE)  VALUES(?); " ;
-			java.sql.PreparedStatement pstmt = con.prepareStatement(sorgu) ;
-			
 			byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("obs") ;
 			String encodedString = Arrays.toString(qaz);
-			pstmt.setString(1, encodedString);
-			pstmt.executeUpdate();
-			pstmt.close();
+			sorgu = "INSERT INTO YONETICI(SIFRE)  VALUES('"+ encodedString+"')" ;
+			Statement pstmt = con.prepareStatement(sorgu) ;
+			pstmt = con.createStatement();  
+			pstmt.execute(sorgu);  
 			con.close();
 			
 		}
@@ -363,7 +361,7 @@ public class GLOBAL {
 	 private static void backup_tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {
 			Class.forName("org.sqlite.JDBC");
 			con = myBackupConnection();
-			java.sql.Statement stmt = null;
+			Statement stmt = null;
 			stmt = con.createStatement();  
 			stmt.execute(sorgu);  
 			stmt.close();

@@ -166,13 +166,6 @@ public class DownloadFile extends JPanel {
 		panelalt = new DownloadPanel();
 		panelalt.setPreferredSize(new Dimension(0, 0));
 		add(panelalt, BorderLayout.SOUTH);
-		try {
-			eismiDOLDUR();
-			ilkBASLA = false;
-		} catch (Exception e1) {
-
-			e1.printStackTrace();
-		}
 	}
 
 	private void inDIR() throws InterruptedException, ClassNotFoundException, SQLException
@@ -364,7 +357,7 @@ public class DownloadFile extends JPanel {
 			}
 		});
 	}
-	private void eismiDOLDUR() throws ClassNotFoundException, SQLException
+	public void eismiDOLDUR() throws ClassNotFoundException, SQLException
 	{
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		List<emir_bilgiler> emirliste = bckp.emir_liste_download();
@@ -377,7 +370,7 @@ public class DownloadFile extends JPanel {
 				comboBox.addItem(emirliste.get(i).getEMIR_ISMI());
 			}
 		}
-
+		ilkBASLA = false;
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	private int satir_kontrol()

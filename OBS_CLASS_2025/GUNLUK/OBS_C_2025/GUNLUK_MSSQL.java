@@ -54,7 +54,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		if (sbilgi.getDizin_yeri() == "default")
 			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
 		else
-			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG" + "', FILENAME = N'" + sbilgi.getDizin() 	+ "\\" + VERITABANI + ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_LOG" + "_log', FILENAME = N'" + sbilgi.getDizin() + "\\" + VERITABANI + "_LOG" + "_log.ldf' ) ";
+			sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]  ON PRIMARY " + " ( NAME = N'" + VERITABANI + "_LOG" + "', FILENAME = N'" + sbilgi.getDizin() 	+ "\\" + VERITABANI + "_LOG"+ ".mdf  ) " + " LOG ON " + " ( NAME = N'" + VERITABANI + "_LOG" + "_log', FILENAME = N'" + sbilgi.getDizin() + "\\" + VERITABANI + "_LOG" + "_log.ldf' ) ";
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		cumle = "jdbc:sqlserver://localhost" + sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";database=" + VERITABANI + "_LOG" + ";";
@@ -102,6 +102,10 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";database=" + VERITABANI + ";";
 		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		create_table(sbilgi.getFir_adi());
+		
+		sql = "CREATE DATABASE [" + VERITABANI + "_LOG" + "]";
+		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";";
+		con = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		stmt = con.createStatement();  
 		stmt.executeUpdate(sql);
 		cumle = "jdbc:sqlserver://" + sbilgi.getServer() + ";instanceName=" + sbilgi.getIns() + ";database=" + VERITABANI + "_LOG" + ";";

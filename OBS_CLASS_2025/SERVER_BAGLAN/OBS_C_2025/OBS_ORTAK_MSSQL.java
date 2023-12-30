@@ -119,7 +119,7 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		PreparedStatement stmt = conn.prepareStatement("SELECT job_id, [name] FROM msdb.dbo.sysjobs where name= N'"+ jobName + "'");
 		ResultSet rs = stmt.executeQuery();
 		if (!rs.isBeforeFirst() ) {  
-				System.out.println("Kaayit yok");
+				//System.out.println("Kaayit yok");
 			} 
 		else {
 			System.out.println("Kaayit var");

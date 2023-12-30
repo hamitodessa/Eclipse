@@ -10,7 +10,13 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.lang.invoke.StringConcatFactory;
 import java.net.SocketException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -21,6 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -39,11 +46,17 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.ftp.FTPReply;
+
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckBoxHeader;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SAGA_DUZ_RENK;
@@ -71,6 +84,7 @@ public class DownloadFile extends JPanel {
 	private JTable tblFile;
 	private boolean hEPSI = false;
 	private JComboBox<String> comboBox;
+	GLOBAL glb = new GLOBAL();
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private boolean ilkBASLA= true;
 	/**
@@ -96,7 +110,7 @@ public class DownloadFile extends JPanel {
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					if(!ilkBASLA)
-						inDIR();
+					lisTELE();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -142,7 +156,107 @@ public class DownloadFile extends JPanel {
 		}
 	}
 
-	private void inDIR() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, SocketException, ParseException, IOException
+	private void inDIR()
+	{
+		int satir = 0 ;
+		DefaultTableModel modell = (DefaultTableModel)tblFile.getModel();
+		for ( int i = 0; i <=  modell.getRowCount() - 1;i++)
+		{
+			if ( modell.getValueAt(i,0) != null) 
+			{
+				if (  modell.getValueAt(i,0).toString().equals("true")   )
+				{
+					indirME( modell.getValueAt(i,1).toString());
+				}	
+			};
+		}
+	}
+	private void indirME(String FileName)
+	{
+		Runnable runner = new Runnable()
+		{ 
+			public void run() {
+				/////  
+				try {
+					
+				
+				List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
+				ftpBilgi = bckp.ftp_bilgi(comboBox.getSelectedItem().toString());
+				
+				String ftp, kull, sifre, surucu, port, neresi, surucu_yer;
+				ftp = ftpBilgi.get(0).getHOST();
+				kull = ftpBilgi.get(0).getKULLANICI();
+
+				String decodedString = ftpBilgi.get(0).getSIFRE();
+				String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+				byte[] bytes = new byte[byteValues.length];
+				for (int i=0, len=bytes.length; i<len; i++) {
+					bytes[i] = Byte.parseByte(byteValues[i].trim());     
+				}
+				sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
+				surucu = ftpBilgi.get(0).getSURUCU();
+				port = ftpBilgi.get(0).getPORT();
+				surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
+				FTPClient ftpc = new FTPClient();
+				ftpc.connect(ftp);
+				ftpc.login(kull, sifre);
+				ftpc.changeWorkingDirectory(surucu);
+				
+				
+
+	
+					ftpc.setFileType(FTP.BINARY_FILE_TYPE);
+					ftpc.enterLocalPassiveMode();
+					boolean success ;
+					//******************************
+					double toplam = 0 ;
+					FTPFile[] files = ftpc.listFiles();
+					for (FTPFile file : files) {
+						if (file.getName().equals(FileName))  
+							toplam = file.getSize();
+						double topl =  toplam ;
+						//lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
+					
+					
+					String remoteFile2 =  ftpc.printWorkingDirectory() + file.getName();
+					File downloadFile2 = new File(glb.BACKUP_YERI + file.getName());
+					OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
+					InputStream inputStream = ftpc.retrieveFileStream(remoteFile2);
+					double inen= 0;
+					byte[] bytesArray = new byte[4096];
+					int bytesRead = -1;
+					//progressBar.setMaximum((int) toplam);
+					//progressBar.setStringPainted(true);
+					Long start = System.currentTimeMillis();
+					long timeInSecs = 0;
+					while ((bytesRead = inputStream.read(bytesArray)) != -1)
+					{
+						outputStream2.write(bytesArray, 0, bytesRead);
+						inen += bytesRead ;
+						//lblinen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
+						//lblkalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
+						//Lgn_Progres_Bar((int) toplam,(int) inen);
+						double speedInKBps = 0.00;
+						timeInSecs = (System.currentTimeMillis() - start) ; 
+						speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
+						//label.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
+					}
+					success = ftpc.completePendingCommand();
+					outputStream2.close();
+					inputStream.close();
+					
+					
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
+
+	}
+	private void lisTELE() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, SocketException, ParseException, IOException
 	{
 		
 		List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
@@ -232,7 +346,7 @@ public class DownloadFile extends JPanel {
 	private void eismiDOLDUR() throws ClassNotFoundException, SQLException
 	{
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		List<emir_bilgiler> emirliste = bckp.emir_liste("EMIR_ISMI");
+		List<emir_bilgiler> emirliste = bckp.emir_liste_download();
 		if (emirliste.size() == 0 ) {  
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}

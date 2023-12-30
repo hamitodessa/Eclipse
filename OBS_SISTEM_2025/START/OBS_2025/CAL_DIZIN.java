@@ -1527,7 +1527,7 @@ public class CAL_DIZIN extends JFrame {
 		ResultSet	rs = null;
 		rs = oac.uSER_ISL.user_db_izinleri(GLOBAL.KULL_ADI, prg);
 		if (!rs.isBeforeFirst() ) {  
-			
+			txtKodu.setEnabled(true);
 			return;
 		} 
 		grd.setModel(DbUtils.resultSetToTableModel(rs));
@@ -1596,6 +1596,7 @@ public class CAL_DIZIN extends JFrame {
 	private static  void doldur_kutu( JTable grd,int satir) throws ClassNotFoundException, SQLException 
 	{
 		if (grd.getRowCount()== 0 ) {  
+			txtKodu.setEnabled(true);
 			kutu_temizle();
 			return;
 		} 

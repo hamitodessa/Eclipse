@@ -125,6 +125,7 @@ public class OBS_MAIN extends JFrame  {
 	private JButton btnNewButton_34 ;//Kur Grafik
 	private JButton btnNewButton_92 ;//Eksik Kur
 	public static JLabel lblKurBilgi ;
+	private JButton btnMerkez; // Merkez Bankasi
 	//ADRES
 	private JButton btnNewButton_36;//Adres Giris
 	private JButton btnNewButton_37;//Adres Detay
@@ -1535,6 +1536,18 @@ public class OBS_MAIN extends JFrame  {
 		btnNewButton_92.setToolTipText("Eksik Kur");
 		btnNewButton_92.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-data-transfer-30.png")));
 		toolBar_3.add(btnNewButton_92);
+		
+		
+		btnMerkez = new JButton("");
+		btnMerkez.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				form_ac("MERKEZ","");
+			}
+		});
+		btnMerkez.setToolTipText("Merkez Bankasi");
+		btnMerkez.setIcon(new ImageIcon(OBS_MAIN.class.getResource("/ICONLAR/icons8-data-transfer-30.png")));
+		toolBar_3.add(btnMerkez);
+		
 		
 		JLabel lblNewLabel_46 = new JLabel("          ");
 		toolBar_3.add(lblNewLabel_46);
@@ -3607,6 +3620,7 @@ public class OBS_MAIN extends JFrame  {
 			else if (pencere.equals("KUR RAPORLAMA")) internalFrame  = new KUR_RAPORLAMA();
 			else if (pencere.equals("KUR GRAFIK")) internalFrame  = new KUR_GRAFIK();
 			else if (pencere.equals("EKSIK_KUR")) internalFrame  = new EKSIK_KUR();
+			else if (pencere.equals("MERKEZ")) internalFrame  = new MERKEZ_BANKASI();
 			//ADRES
 			else if (pencere.equals("ADRES GIRISI")) internalFrame  = new ADRES_GIRIS();
 			else if (pencere.equals("ADRES DETAY")) internalFrame  = new ADRESLER();

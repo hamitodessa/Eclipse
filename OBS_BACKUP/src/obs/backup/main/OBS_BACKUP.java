@@ -48,6 +48,7 @@ import java.awt.Dimension;
 
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -246,6 +247,8 @@ public class OBS_BACKUP extends JFrame {
 		btnGorevler = new JButton();
 		btnGorevler.setToolTipText("Gorevler");
 		btnGorevler.setEnabled(false);
+		btnGorevler.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+		
 		btnGorevler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/emirler.png")));
 		btnGorevler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -267,6 +270,8 @@ public class OBS_BACKUP extends JFrame {
 		btnYeni_Gorev = new JButton();
 		btnYeni_Gorev.setToolTipText("Yeni Gorev");
 		btnYeni_Gorev.setEnabled(false);
+	
+		btnYeni_Gorev.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnYeni_Gorev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gelenISIM = "" ;
@@ -281,6 +286,7 @@ public class OBS_BACKUP extends JFrame {
 		btnLoglama = new JButton();
 		btnLoglama.setToolTipText("Log Goruntule");
 		btnLoglama.setEnabled(false);
+		btnLoglama.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnLoglama .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedIndex(2);
@@ -298,6 +304,7 @@ public class OBS_BACKUP extends JFrame {
 		
 		btnKayitliEmirler = new JButton();
 		btnKayitliEmirler.setEnabled(false);
+		btnKayitliEmirler.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnKayitliEmirler.setToolTipText("Kayitli Emirler");
 		btnKayitliEmirler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/jobs.png")));
 		btnKayitliEmirler .addActionListener(new ActionListener() {
@@ -320,6 +327,7 @@ public class OBS_BACKUP extends JFrame {
 		
 		btnHepsiYukari = new JButton();
 		btnHepsiYukari.setEnabled(false);
+		btnHepsiYukari.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnHepsiYukari.setToolTipText("Gorev Paneli Yukari");
 		btnHepsiYukari.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/up.png")));
 		btnHepsiYukari .addActionListener(new ActionListener() {
@@ -341,6 +349,7 @@ public class OBS_BACKUP extends JFrame {
 
 		btnHepsiAsagi = new JButton();
 		btnHepsiAsagi.setEnabled(false);
+		btnHepsiAsagi.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnHepsiAsagi.setToolTipText("Gorev Paneli Asagi");
 		btnHepsiAsagi.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/down.png")));
 		btnHepsiAsagi .addActionListener(new ActionListener() {
@@ -366,6 +375,7 @@ public class OBS_BACKUP extends JFrame {
 		//
 		btnYeniSifre = new JButton();
 		btnYeniSifre.setEnabled(false);
+		btnYeniSifre.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnYeniSifre.setToolTipText("Sifre Yenile");
 		btnYeniSifre.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/password.png")));
 		btnYeniSifre .addActionListener(new ActionListener() {
@@ -380,6 +390,7 @@ public class OBS_BACKUP extends JFrame {
 		btnStartAll= new JButton("");
 		btnStartAll.setToolTipText("Emirleri Baslat");
 		btnStartAll.setEnabled(false);
+		btnStartAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnStartAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Component[] components = container.getComponents();
@@ -409,6 +420,7 @@ public class OBS_BACKUP extends JFrame {
 		btnStopAll= new JButton("");
 		btnStopAll.setToolTipText("Emirleri Durdur");
 		btnStopAll.setEnabled(false);
+		btnStopAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnStopAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Component[] components = container.getComponents();
@@ -437,6 +449,7 @@ public class OBS_BACKUP extends JFrame {
 		
 		btnUploadAll= new JButton("");
 		btnUploadAll.setEnabled(false);
+		btnUploadAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnUploadAll.setToolTipText("Aktif Emirleri Yedekle");
 		btnUploadAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -467,6 +480,7 @@ public class OBS_BACKUP extends JFrame {
 		btnFileIndir= new JButton("");
 		btnFileIndir.setEnabled(false);
 		btnFileIndir.setToolTipText("FTP Dosya Indirme");
+		btnFileIndir.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnFileIndir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -482,6 +496,7 @@ public class OBS_BACKUP extends JFrame {
 		
 		JButton btnkapat= new JButton("");
 		btnkapat.setToolTipText("Kapat");
+		btnkapat.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
 		btnkapat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);

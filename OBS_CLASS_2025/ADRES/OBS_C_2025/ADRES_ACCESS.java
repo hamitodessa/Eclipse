@@ -96,4 +96,8 @@ public class ADRES_ACCESS {
 	{
 		return _IAdres.adr_etiket_arama( arama);
 	}
+	public ResultSet kod_kontrol(String arama)throws ClassNotFoundException, SQLException
+	{
+		return _IAdres.kod_kontrol(arama);
+	}
 }

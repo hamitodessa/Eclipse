@@ -411,4 +411,17 @@ public class ADRES_MSSQL implements IADRES {
 		if(con.isClosed())    
 			baglan();
 	}
+	@Override
+	public ResultSet kod_kontrol(String arama) throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = " SELECT M_Kodu , Adi "
+				 + " FROM Adres "
+				+ " WHERE Adi Like N'" + arama + "%'"
+				+ " ORDER BY M_Kodu DESC ";
+		kONTROL();
+		Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		rss = stmt.executeQuery(sql);
+		return rss;
+	}
 }

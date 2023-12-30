@@ -49,6 +49,7 @@ import OBS_C_2025.ImagePanel;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
+import javax.swing.JComboBox;
 
 @SuppressWarnings({"serial","static-access","deprecation"})
 public class ADRES_GIRIS extends JInternalFrame {
@@ -87,7 +88,8 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 	private static JCheckBox chcbas ;
 	private static JCheckBox chcici ;
-	private static 	 ImagePanel imagePanel ;
+	private static ImagePanel imagePanel ;
+	private static JComboBox<String> cmbKodKontrol;
 	
 	public ADRES_GIRIS() {
 		setTitle("ADRES GIRISI");
@@ -544,16 +546,31 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 		txtarama = new JTextField();
 		txtarama.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtarama.setBounds(102, 27, 288, 23);
+		txtarama.setBounds(102, 27, 200, 23);
 		txtarama.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				arama();
+				try {
+					arama();
+				} catch (Exception e1) {
+					
+					e1.printStackTrace();
+				}
 			}
 			public void removeUpdate(DocumentEvent e) {
-				arama();
+				try {
+					arama();
+				} catch (Exception e1) {
+					
+					e1.printStackTrace();
+				}
 			}
 			public void insertUpdate(DocumentEvent e) {
-				arama();
+				try {
+					arama();
+				} catch (Exception e1) {
+					
+					e1.printStackTrace();
+				}
 			}
 		});
 		txtarama.addAncestorListener(new AncestorListener() {
@@ -597,7 +614,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 			}
 		});
 		chcbas.setSelected(true);
-		chcbas.setBounds(464, 26, 97, 23);
+		chcbas.setBounds(650, 26, 97, 23);
 		panel.add(chcbas);
 
 		chcici = new JCheckBox("Icinde");
@@ -614,13 +631,17 @@ public class ADRES_GIRIS extends JInternalFrame {
 				}
 			}
 		});
-		chcici.setBounds(595, 26, 97, 23);
+		chcici.setBounds(750, 26, 60, 23);
 		panel.add(chcici);
 
 		JLabel lblNewLabel = new JLabel("Arama");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(28, 31, 64, 14);
 		panel.add(lblNewLabel);
+		
+		cmbKodKontrol = new JComboBox<String>();
+		cmbKodKontrol.setBounds(320, 27, 300, 23);
+		panel.add(cmbKodKontrol);
 
 		long startTime = System.currentTimeMillis(); 
 		hisset("M_Kodu , Adi", "");
@@ -775,7 +796,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 		kayit_sayi =0 ;
 	}
-	private void arama()
+	private void arama() throws ClassNotFoundException, SQLException
 	{
 		long startTime = System.currentTimeMillis(); 
 		if (chcbas.isSelected())
@@ -786,6 +807,26 @@ public class ADRES_GIRIS extends JInternalFrame {
 		{
 			hisset("M_Kodu , Adi ", "WHERE  M_Kodu like  '%" + txtarama.getText() + "%' OR  Adi Like '%" + txtarama.getText() + "%'");
 		}
+		//
+		rs = a_Access.kod_kontrol(txtarama.getText());
+		if (!rs.isBeforeFirst() ) {  
+			cmbKodKontrol.removeAllItems();
+			cmbKodKontrol.addItem("");
+			cmbKodKontrol.setSelectedItem("");
+			return;
+		} 
+		else {
+			cmbKodKontrol.removeAllItems();
+			cmbKodKontrol.addItem("");
+			while(rs.next())
+			{
+				cmbKodKontrol.addItem(rs.getString("M_Kodu") + " -"+rs.getString("Adi") );
+			}
+			rs.first();
+			cmbKodKontrol.setSelectedItem(rs.getString("M_Kodu") + " -"+rs.getString("Adi") );
+		}
+		//
+		
 		long endTime = System.currentTimeMillis();
 		long estimatedTime = endTime - startTime; 
 		double seconds = (double)estimatedTime/1000; 

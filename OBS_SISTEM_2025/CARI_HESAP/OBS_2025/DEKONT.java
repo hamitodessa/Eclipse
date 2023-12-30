@@ -108,6 +108,7 @@ public class DEKONT extends JInternalFrame {
 	private static JButton btnah ;
 	private static JButton btnHYenileB;
 	private static JButton btnHYenileA;
+	private JButton btnNewButton;
 	private JLabel lblNewLabel_2_1  ;
 	private JLabel lblNewLabel_2 ;
 	private static JLabel lblNewLabel ;
@@ -281,7 +282,7 @@ public class DEKONT extends JInternalFrame {
 		});
 		panel.add(dtc);
 
-		JButton btnNewButton = new JButton("");
+		btnNewButton = new JButton("");
 		btnNewButton.setToolTipText("Yeni Dekont");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -389,6 +390,15 @@ public class DEKONT extends JInternalFrame {
 		txtevrak.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtevrak.setFont(new Font("Tahoma", Font.BOLD, 22));
 		txtevrak.setBounds(511, 25, 117, 30);
+		txtevrak.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) 
+				{
+					btnNewButton.doClick();
+				}
+			}
+		});
 
 		panel.add(txtevrak);
 		txtevrak.setColumns(10);
@@ -607,7 +617,7 @@ public class DEKONT extends JInternalFrame {
 		txtbtutar.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				//		txtbtutar.selectAll();
+						txtbtutar.selectAll();
 			}
 		});
 
@@ -1138,7 +1148,7 @@ public class DEKONT extends JInternalFrame {
 		txtatutar.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				//txtatutar.selectAll();
+				txtatutar.selectAll();
 			}
 		});
 		txtatutar.addMouseListener(new MouseAdapter() {
@@ -1186,6 +1196,33 @@ public class DEKONT extends JInternalFrame {
 				try {
 					if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
 					{	
+						if (txtatutar.isEnabled() == false) return;
+						
+							Double dbborc = DecimalFormat.getNumberInstance().parse(txtbtutar.getText()).doubleValue();
+							Double kusur = Double.parseDouble(txtakur.getText());
+							Double kusur2 = Double.parseDouble(txtbkur.getText());
+							if (kusur !=  1)
+							{
+								if (kusur2 != 1 ) // ' capraz kur
+								{
+									double	db1 = (kusur2 * dbborc) / kusur;
+									//txtatutar.setText(Double.toString(db1));
+									txtatutar.setText(FORMATLAMA.doub_2(db1));
+								}
+								else  //' carpraz kur degil 
+								{
+									double d1 =  dbborc  / kusur ;
+									//txtatutar.setText(Double.toString(d1));
+									txtatutar.setText(FORMATLAMA.doub_2(d1));
+								}
+							}
+							else
+							{
+								double d2 = kusur2 * dbborc;
+								//txtatutar.setText(Double.toString(d2));
+								txtatutar.setText(FORMATLAMA.doub_2(d2));
+							}
+						
 						txtaciklama.requestFocus();
 					}
 					else
@@ -1213,7 +1250,8 @@ public class DEKONT extends JInternalFrame {
 							}
 						}
 					}
-				} catch (IOException e1) {
+				} catch (Exception e1) {
+				
 					e1.printStackTrace();
 				}
 

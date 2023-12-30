@@ -435,7 +435,6 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 				" AND Giris_Ozel_Kod  LIKE '" + gozel + "'" +
 				" AND Cikis_Ozel_Kod  LIKE '" + cozel + "'" +
 				" ORDER BY Cek_No ";
-		System.out.println(sql);
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();

@@ -1279,6 +1279,7 @@ public class OBS_BACKUP extends JFrame {
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);					
 			bckp.genel_kayit_durum(emirADI, true, nowwDate, "Yedeklendi.....");
+			
 			if (eskiyedek > 0) // **************SURUCU ESKILERI SIL
 			{
 				uplpnl.Progres_Bar_Temizle_1();
@@ -1316,9 +1317,9 @@ public class OBS_BACKUP extends JFrame {
 							if (gunfark > eskiyedek)
 							{
 								bckp.log_kayit(emirADI, new Date(),ls.get(r).getDosyaADI() + " Surucuye Silmeye Gitti...");
-								if (glb.dos_kontrol(ls.get(r).getDosyaADI()))
+								if (glb.dos_kontrol(surucu_yer + "\\" + ls.get(r).getDosyaADI()))
 								{ 
-									glb.dos_sil(ls.get(r).getDosyaADI());
+									glb.dos_sil(surucu_yer + "\\" +  ls.get(r).getDosyaADI());
 									bckp.log_kayit(emirADI, new Date(), dosADI + " Dosyasi Silindi...");
 								}
 								bckp.log_kayit(emirADI, new Date(), dosADI + " Dosya Surucuden Eski Tarihli Silindi...");
@@ -1338,8 +1339,10 @@ public class OBS_BACKUP extends JFrame {
 		catch (Exception ex)
 		{
 			try {
-				bckp.genel_kayit_durum(emirADI, false, new Date(), ex.getMessage().substring(0, 40).toString());
-				bckp.log_kayit(emirADI, new Date(), ex.getMessage());
+				String mesaj= ex.getMessage().substring(0, 40).toString();
+				mesaj = mesaj.length() > 40 ? ex.getMessage().substring(0, 40) :ex.getMessage().toString();  
+				bckp.genel_kayit_durum(emirADI, false, new Date(),  ex.getMessage().substring(0, 40).toString());
+				bckp.log_kayit(emirADI, new Date(), mesaj);
 				uplpnl. Progres_Bar_Temizle_1();
 				uplpnl. Progres_Bar_Temizle_2();
 				uplpnl.setPreferredSize(new Dimension(0,00));
@@ -1740,6 +1743,11 @@ public class OBS_BACKUP extends JFrame {
 					{
 						uplpnl.  Progres_Bar_2( r + 1);
 						String ftpDOSYA = ls.get(r).getDosyaADI();
+						int index = dosADI.lastIndexOf(".");
+						if (index >= 0)
+						{
+							dosADI = dosADI.substring(0, index); // or index + 1 to keep slash
+						}
 						boolean found = ftpDOSYA.contains(dosADI);
 						if (found)
 						{
@@ -1753,10 +1761,10 @@ public class OBS_BACKUP extends JFrame {
 							long dateAfterInMs = new Date().getTime();
 							long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
 							long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
-							//long daysDiff1 = TimeUnit.HOURS.convert(timeDiff, TimeUnit.MILLISECONDS);
 							gunfark = (int)daysDiff;
 							if (gunfark > eskiyedek)
 							{
+								System.out.println(ls.get(r).getFilePATH()+"\\"+ ls.get(r).getDosyaADI());
 								bckp.log_kayit(emirADI, new Date(),ls.get(r).getDosyaADI() + " Surucuye Silmeye Gitti...");
 								if (glb.dos_kontrol(ls.get(r).getFilePATH()+"\\"+  ls.get(r).getDosyaADI()))
 								{ 

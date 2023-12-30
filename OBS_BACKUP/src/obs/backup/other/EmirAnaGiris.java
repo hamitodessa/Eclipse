@@ -573,7 +573,8 @@ public class EmirAnaGiris extends JPanel {
         {
         	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         	bckp.log_kayit(OBS_BACKUP.gelenISIM, new Date(), ex.getMessage());
-        	OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());        }
+        	OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());        
+        	}
 	}
 	private void temizle()
 	{

@@ -14,23 +14,22 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-public class UploadPanel extends JPanel {
+public class DownloadPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	public JLabel lblEmirAdi;
-	public JLabel lblDosAdet;
+	public JLabel lblDosBoyut;
 	public JLabel lblSurucu;
+	public JLabel lblInen;
+	public JLabel lblKalan;
 	public static JLabel lblHiz ;
-	public JLabel lblAciklamaJLabel;
-	public JLabel lblAciklama;
 	
 	public static JProgressBar RPB1;
 	public static JProgressBar RPB2;
 	/**
 	 * Create the panel.
 	 */
-	public UploadPanel() {
-
+	public DownloadPanel() {
 		setLayout(new BorderLayout(0, 0));
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(1.0);
@@ -59,20 +58,20 @@ public class UploadPanel extends JPanel {
 		splitPane.setLeftComponent(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Dos.Adet:");
-		lblNewLabel.setBounds(10, 31, 58, 14);
+		JLabel lblNewLabel = new JLabel("Dos.Boyut");
+		lblNewLabel.setBounds(10, 31, 69, 14);
 		panel_1.add(lblNewLabel);
 		
-		lblDosAdet = new JLabel("0");
-		lblDosAdet.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDosAdet.setBounds(78, 31, 48, 14);
-		panel_1.add(lblDosAdet);
+		lblDosBoyut = new JLabel("0");
+		lblDosBoyut.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblDosBoyut.setBounds(78, 31, 100, 14);
+		panel_1.add(lblDosBoyut);
 		
-		JLabel lblNewLabel_2 = new JLabel("Emir Adi");
+		JLabel lblNewLabel_2 = new JLabel("Dosya Adi");
 		lblNewLabel_2.setBounds(10, 11, 58, 14);
 		panel_1.add(lblNewLabel_2);
 		
-		lblEmirAdi = new JLabel("New label");
+		lblEmirAdi = new JLabel(".....");
 		lblEmirAdi.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblEmirAdi.setBounds(78, 11, 237, 14);
 		panel_1.add(lblEmirAdi);
@@ -87,32 +86,42 @@ public class UploadPanel extends JPanel {
 		lblHiz.setBounds(700, 31, 124, 14);
 		panel_1.add(lblHiz);
 		
-		JLabel lblNewLabel_6 = new JLabel("Aciklama");
-		lblNewLabel_6.setBounds(325, 11, 58, 14);
-		panel_1.add(lblNewLabel_6);
-		
-		lblAciklama = new JLabel("");
-		lblAciklama.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblAciklama.setBounds(383, 11, 417, 14);
-		panel_1.add(lblAciklama);
-		
 		JLabel lblNewLabel_8 = new JLabel("Surucu");
-		lblNewLabel_8.setBounds(325, 31, 58, 14);
+		lblNewLabel_8.setBounds(386, 11, 58, 14);
 		panel_1.add(lblNewLabel_8);
 		
-		lblSurucu = new JLabel("");
+		lblSurucu = new JLabel(".....");
 		lblSurucu.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblSurucu.setBounds(383, 31, 239, 14);
+		lblSurucu.setBounds(454, 11, 337, 14);
 		panel_1.add(lblSurucu);
+		
+		JLabel lblInenn = new JLabel("Inen");
+		lblInenn.setBounds(188, 31, 58, 14);
+		panel_1.add(lblInenn);
+		
+		lblInen = new JLabel("0");
+		lblInen.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblInen.setBounds(256, 31, 103, 14);
+		panel_1.add(lblInen);
+		
+		JLabel lblKalann = new JLabel("Kalan");
+		lblKalann.setBounds(386, 31, 58, 14);
+		panel_1.add(lblKalann);
+		
+		lblKalan = new JLabel("0");
+		lblKalan.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblKalan.setBounds(454, 31, 108, 14);
+		panel_1.add(lblKalan);
 
 	}
 	public void temizLE()
 	{
-		lblDosAdet.setText("");
+		lblDosBoyut.setText("");
 		lblEmirAdi.setText("");
 		lblHiz.setText("");
-		lblAciklama.setText("");
 		lblSurucu.setText("");
+		lblInen.setText("");
+		lblKalan.setText("");
 		RPB1.setStringPainted(false);
 		RPB2.setStringPainted(false);
 		RPB1.setMaximum(0);

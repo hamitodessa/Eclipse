@@ -38,8 +38,10 @@ import javax.crypto.NoSuchPaddingException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.ftp.FTPReply;
 import org.hsqldb.lib.CountdownInputStream;
 
 
@@ -997,45 +999,60 @@ public class BACKUP_GLOBAL {
 		}
 		return result;
 	}
-	public void ftp_sil(String ftpp, String ftpsurucu, String dosadi, String kull, String sifre, String port) throws IOException
+	public void ftp_sil(String ftpp, String ftpsurucu, String dosadi, String kull, String sifre, int port) throws IOException
 	{
 		FTPClient ftp = new FTPClient();
-		ftp.connect(ftpp);
-		ftp.login(kull, sifre);
+		ftp.connect(ftpp, port);
+		if(!ftp.login(kull, sifre))
+		{
+			ftp.logout();
+			JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS  Backup", JOptionPane.ERROR_MESSAGE);   
+		}
+		int reply = ftp.getReplyCode();
+		if (!FTPReply.isPositiveCompletion(reply))
+		{
+			ftp.disconnect();
+			JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Backup", JOptionPane.ERROR_MESSAGE);   
+		}
+		ftp.setFileType(FTP.BINARY_FILE_TYPE);
+		ftp.enterLocalPassiveMode();
 		ftp.changeWorkingDirectory(ftpsurucu);
 		ftp.deleteFile(dosadi);
 		ftp.logout();
 		ftp.disconnect();	
-
-		// txt = ftpp + ":" + port + "/" + ftpsurucu + "/" + dosadi;
 	}
 
-	public List<remote_filelist> ListRmtFiles(String ftpAddress, String surucu,String ftpUser, String ftpPassword) throws SocketException, IOException
+	public List<remote_filelist> ListRmtFiles(String ftpAddress, String surucu,String ftpUser, String ftpPassword,int port) throws SocketException, IOException
 	{
 		FTPClient ftp = new FTPClient();
-		ftp.connect(ftpAddress);
-		ftp.login(ftpUser, ftpPassword);
+		ftp.connect(ftpAddress, port);
+		if(!ftp.login(ftpUser, ftpPassword))
+		{
+			ftp.logout();
+			JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS  Backup", JOptionPane.ERROR_MESSAGE);   
+		}
+		int reply = ftp.getReplyCode();
+		if (!FTPReply.isPositiveCompletion(reply))
+		{
+			ftp.disconnect();
+			JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Backup", JOptionPane.ERROR_MESSAGE);   
+		}
+		ftp.enterLocalPassiveMode();
 		ftp.changeWorkingDirectory(surucu);
+		ftp.setFileType(FTP.BINARY_FILE_TYPE);
 		FTPFile[] files = ftp.listFiles();
-
 		List<remote_filelist> filelists= new ArrayList<remote_filelist>();
 		SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		//List<String> listeList = new ArrayList<String>();
-		for (FTPFile file : files) {
-		
-			//String details = file.getName();
-			if (file.isDirectory()) {
-				//details = "[" + details + "]";
+		for (FTPFile file : files)
+		{
+			if (file.isDirectory()) 
+			{
 				remote_filelist	filebilgi = new remote_filelist("[" + file.getName().toString()+ "]",(int) file.getSize(), dateFormater.format(file.getTimestamp().getTime()),"");
 				filelists.add(filebilgi);
 			}
-			//details += "\t\t" + file.getSize();
-		//	details += "\t\t" + dateFormater.format(file.getTimestamp().getTime());
-		//	listeList.add(details);
 			remote_filelist	filebilgi = new remote_filelist(file.getName().toString(),(int) file.getSize(), dateFormater.format(file.getTimestamp().getTime()),"");
 			filelists.add(filebilgi);
 		}
-
 		ftp.logout();
 		ftp.disconnect();
 		return filelists;
@@ -1109,11 +1126,22 @@ public class BACKUP_GLOBAL {
 		return model ;
 	}
 
-	public DefaultTableModel file_liste(String ftpAddress, String surucu,String ftpUser, String ftpPassword)throws ClassNotFoundException, SQLException, ParseException, SocketException, IOException
+	public DefaultTableModel file_liste(String ftpAddress, String surucu,String ftpUser, String ftpPassword,int port)throws ClassNotFoundException, SQLException, ParseException, SocketException, IOException
 	{
 		FTPClient ftp = new FTPClient();
-		ftp.connect(ftpAddress);
-		ftp.login(ftpUser, ftpPassword);
+		ftp.connect(ftpAddress, port);
+		if(!ftp.login(ftpUser, ftpPassword))
+		{
+			ftp.logout();
+			JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS  Backup", JOptionPane.ERROR_MESSAGE);   
+		}
+		int reply = ftp.getReplyCode();
+		if (!FTPReply.isPositiveCompletion(reply))
+		{
+			ftp.disconnect();
+			JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Backup", JOptionPane.ERROR_MESSAGE);   
+		}
+		ftp.enterLocalPassiveMode();
 		ftp.changeWorkingDirectory(surucu);
 		FTPFile[] files = ftp.listFiles();
 		DefaultTableModel model = new DefaultTableModel();

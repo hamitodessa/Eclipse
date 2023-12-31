@@ -10,6 +10,9 @@ import javax.swing.border.EmptyBorder;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.ftp.FTPReply;
+
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
@@ -498,6 +501,21 @@ public class OBS_BACKUP extends JFrame {
 		});
 		btnFileIndir.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/download-30.png")));
 		toolBar.add(btnFileIndir);
+		
+		///
+		JButton btndnm= new JButton("");
+		btndnm.setToolTipText("Kapat");
+		btndnm.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+		btndnm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				deneme();
+				}
+		});
+		btndnm.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/exit.png")));
+		toolBar.add(btndnm);
+
+		
+		///
 
 		Component horizontalGlue = Box.createVerticalGlue();
 		toolBar.add(horizontalGlue);
@@ -1356,6 +1374,7 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
 			emirYENIDENBASLAT(emirADI);
+
 			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
@@ -1388,7 +1407,7 @@ public class OBS_BACKUP extends JFrame {
 		try {
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			gorevSETCURSOR(Cursor.WAIT_CURSOR);
-			String ftp, kull, sifre, surucu, port, neresi, surucu_yer;
+			String ftp, kull, sifre, surucu, neresi, surucu_yer;
 			int eskiyedek, zmnasimi;
 			ftp = ftpBilgi.get(0).getHOST();
 			kull = ftpBilgi.get(0).getKULLANICI();
@@ -1401,7 +1420,7 @@ public class OBS_BACKUP extends JFrame {
 			}
 			sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 			surucu = ftpBilgi.get(0).getSURUCU();
-			port = ftpBilgi.get(0).getPORT();
+			int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
 			eskiyedek =  Integer.valueOf(ftpBilgi.get(0).getESKI_YEDEK());
 			zmnasimi = Integer.valueOf(ftpBilgi.get(0).getZMN_ASIMI());
 			neresi =ftpBilgi.get(0).getNERESI();
@@ -1524,7 +1543,7 @@ public class OBS_BACKUP extends JFrame {
 				dosADI = "";
 				int gunfark;
 				List<remote_filelist> ls = new ArrayList<remote_filelist>();
-				ls = bckp.ListRmtFiles( ftp , surucu, kull, sifre);
+				ls = bckp.ListRmtFiles( ftp , surucu, kull, sifre,port);
 				uplpnl.RPB1.setMaximum(dbliste.size());
 				uplpnl.RPB1.setStringPainted(true);
 				uplpnl.RPB2.setMaximum(ls.size());
@@ -1563,6 +1582,7 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
 			emirYENIDENBASLAT(emirADI);
+	
 			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
@@ -1587,6 +1607,7 @@ public class OBS_BACKUP extends JFrame {
 				e.printStackTrace();
 			}
 		} 
+
 	}
 	private void bilgilendirme_oku(String emir, String mesaj ,List<bilgilendirme_bilgiler> bilgiBilgi) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
@@ -1844,7 +1865,7 @@ public class OBS_BACKUP extends JFrame {
 		try {
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			gorevSETCURSOR(Cursor.WAIT_CURSOR);
-			String ftp, kull, sifre, surucu, port, neresi, surucu_yer;
+			String ftp, kull, sifre, surucu, neresi, surucu_yer;
 			int eskiyedek, zmnasimi;
 			ftp = ftpBilgi.get(0).getHOST();
 			kull = ftpBilgi.get(0).getKULLANICI();
@@ -1857,7 +1878,7 @@ public class OBS_BACKUP extends JFrame {
 			}
 			sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 			surucu = ftpBilgi.get(0).getSURUCU();
-			port = ftpBilgi.get(0).getPORT();
+			int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
 			eskiyedek =  Integer.valueOf(ftpBilgi.get(0).getESKI_YEDEK());
 			zmnasimi = Integer.valueOf(ftpBilgi.get(0).getZMN_ASIMI());
 			neresi =ftpBilgi.get(0).getNERESI();
@@ -1966,7 +1987,7 @@ public class OBS_BACKUP extends JFrame {
 				dosADI = "";
 				int gunfark;
 				List<remote_filelist> ls = new ArrayList<remote_filelist>();
-				ls = bckp.ListRmtFiles( ftp , surucu, kull, sifre);
+				ls = bckp.ListRmtFiles( ftp , surucu, kull, sifre,port);
 				uplpnl.RPB1.setMaximum(dbliste.size());
 				uplpnl.RPB1.setStringPainted(true);
 				uplpnl.RPB2.setMaximum(ls.size());
@@ -2005,8 +2026,6 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setPreferredSize(new Dimension(0,00));
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
-			//emirBOSALT(emirADI);
-			//emirTEKYUKLE(emirADI,"");
 			emirYENIDENBASLAT(emirADI);
 			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -2037,30 +2056,30 @@ public class OBS_BACKUP extends JFrame {
 			}
 		} 
 	}
-	private void UploadFTPFiles(String ftpp, String ftpsurucu, String dosyayolu, String dosadi, String kull, String sifre, String port, int zmn) throws IOException, InterruptedException
+	private void UploadFTPFiles(String ftpp, String ftpsurucu, String dosyayolu, String dosadi, String kull, String sifre, int port, int zmn) throws IOException, InterruptedException
 	{
-		Process p = Runtime.getRuntime().exec("netsh advfirewall set global StatefulFTP disable");
-        p.waitFor();
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(p.getInputStream()));
-        String line = reader.readLine();
-        while (line != null) 
-        {
-             line = reader.readLine();
-        }
-        
-		FTPClient ftp = new FTPClient();
+				FTPClient ftp = new FTPClient();
 		try {
-			ftp.connect(ftpp, Integer.valueOf(port));
-			ftp.login(kull, sifre);
+			ftp.connect(ftpp,port);
+			if(!ftp.login(kull, sifre))
+			{
+				ftp.logout();
+				JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS  Backup", JOptionPane.ERROR_MESSAGE);   
+			}
 			int reply = ftp.getReplyCode();
-			System.out.println(reply);
+			if (!FTPReply.isPositiveCompletion(reply))
+			{
+				ftp.disconnect();
+				JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Backup", JOptionPane.ERROR_MESSAGE);   
+			}
+			ftp.setFileType(FTP.BINARY_FILE_TYPE);
+			ftp.enterLocalPassiveMode();
 			ftp.changeWorkingDirectory(ftpsurucu);
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
 			File secondLocalFile = new File(dosyayolu + dosadi );
 			String secondRemoteFile = dosadi;
-			InputStream inputStream = new FileInputStream(secondLocalFile);
 			OutputStream outputStream = ftp.storeFileStream(secondRemoteFile);
+			InputStream inputStream = new FileInputStream(secondLocalFile);
 			byte[] bytesIn = new byte[4196]; //4196
 			int read = 0;
 			long toplam = 0 ;
@@ -2085,18 +2104,10 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.Progres_Bar_2( 0);
 			//uplpnl.RPB2.setMaximum(0);
 			
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-				if (ftp.isConnected()) {
-					ftp.logout();
-					ftp.disconnect();
-				}
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
 		}
+
 	}
 	private void emirBOSALT(String emirADI)
 	{
@@ -2341,7 +2352,72 @@ public class OBS_BACKUP extends JFrame {
 			component.revalidate();
 		}
 	}
+	private void deneme()
+	{		
+		Runnable runner = new Runnable()
+		{ 
+			public void run() {
+		/////  
+		FTPClient ftp = new FTPClient();
+	try {
+				String serverAddress = "85.104.100.135";
+			String userId ="hamitadmin";
+			String password ="SDFSGKgpoji24h2#@";
+			ftp.connect(serverAddress,21);
+			if(!ftp.login(userId, password))
+			{
+				ftp.logout();
+				JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+			}
+			int reply = ftp.getReplyCode();
+			if (!FTPReply.isPositiveCompletion(reply))
+			{
+				ftp.disconnect();
+				JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
+			}
+			ftp.setFileType(FTP.BINARY_FILE_TYPE);
+			ftp.enterLocalPassiveMode();
+			boolean success ;
+			//******************************
+			double toplam = 0 ;
+			FTPFile[] files = ftp.listFiles();
+			for (FTPFile file : files) {
+				if (file.getName().equals("281220232346_OK_Car019.zip"))  
+					toplam = file.getSize();
+				double topl =  toplam ;
+			}
+			String remoteFile2 =   "281220232346_OK_Car019.zip";
+			File downloadFile2 = new File( "C:\\281220232346_OK_Car019.zip");
+			OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
+			InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
+			double inen= 0;
+			byte[] bytesArray = new byte[4096];
+			int bytesRead = -1;
+			Long start = System.currentTimeMillis();
+			long timeInSecs = 0;
+			while ((bytesRead = inputStream.read(bytesArray)) != -1)
+			{
+				outputStream2.write(bytesArray, 0, bytesRead);
+				inen += bytesRead ;
+				double speedInKBps = 0.00;
+				timeInSecs = (System.currentTimeMillis() - start) ; 
+				speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
+			System.out.println(inen);
+			}
+			success = ftp.completePendingCommand();
+			outputStream2.close();
+			inputStream.close();
 	
+	} catch (Exception e) {
+		// TODO: handle exception
+	}
+	//
+		}
+	};
+	Thread t = new Thread(runner, "Code Executer");
+	t.start();
+
+	}
 	@Override
 	public Dimension getPreferredSize() {
 		Dimension superSz = super.getPreferredSize();

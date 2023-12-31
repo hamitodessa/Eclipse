@@ -191,7 +191,7 @@ public class DownloadFile extends JPanel {
 							{
 								satir +=1;
 								panelalt.Progres_Bar_1(satir);
-								String ftp, kull, sifre, surucu, port, neresi, surucu_yer;
+								String ftp, kull, sifre, surucu,  neresi, surucu_yer;
 								ftp = ftpBilgi.get(0).getHOST();
 								kull = ftpBilgi.get(0).getKULLANICI();
 
@@ -203,11 +203,22 @@ public class DownloadFile extends JPanel {
 								}
 								sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 								surucu = ftpBilgi.get(0).getSURUCU();
-								port = ftpBilgi.get(0).getPORT();
+								int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
 								surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
 								FTPClient ftpc = new FTPClient();
-								ftpc.connect(ftp);
-								ftpc.login(kull, sifre);
+								ftpc.connect(ftp, port);
+								if(!ftpc.login(kull, sifre))
+								{
+									ftpc.logout();
+									JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS  Backup", JOptionPane.ERROR_MESSAGE);   
+								}
+								int reply = ftpc.getReplyCode();
+								if (!FTPReply.isPositiveCompletion(reply))
+								{
+									ftpc.disconnect();
+									JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Backup", JOptionPane.ERROR_MESSAGE);   
+								}
+								ftpc.enterLocalPassiveMode();
 								ftpc.changeWorkingDirectory(surucu);
 								ftpc.setFileType(FTP.BINARY_FILE_TYPE);
 								ftpc.enterLocalPassiveMode();
@@ -281,7 +292,7 @@ public class DownloadFile extends JPanel {
 		List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
 		ftpBilgi = bckp.ftp_bilgi(comboBox.getSelectedItem().toString());
 
-		String ftp, kull, sifre, surucu, port, neresi, surucu_yer;
+		String ftp, kull, sifre, surucu,  neresi, surucu_yer;
 		ftp = ftpBilgi.get(0).getHOST();
 		kull = ftpBilgi.get(0).getKULLANICI();
 
@@ -293,12 +304,12 @@ public class DownloadFile extends JPanel {
 		}
 		sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 		surucu = ftpBilgi.get(0).getSURUCU();
-		port = ftpBilgi.get(0).getPORT();
+		int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
 		surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
 
 		GRID_TEMIZLE.grid_temizle(tblFile);
 
-		tblFile.setModel(bckp.file_liste( ftp , surucu, kull, sifre));
+		tblFile.setModel(bckp.file_liste( ftp , surucu, kull, sifre,port));
 		JTableHeader th = tblFile.getTableHeader();
 		TableColumnModel tcm = th.getColumnModel();
 		TableColumn tc;

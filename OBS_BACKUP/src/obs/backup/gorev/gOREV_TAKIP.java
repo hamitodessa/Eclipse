@@ -167,6 +167,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 
 		lblGelecekYedekleme = new JLabel(".....");
 		lblGelecekYedekleme.setBounds(240, 132, 148, 14);
+		lblGelecekYedekleme.setFont(new Font("Tahoma", Font.BOLD, 11));
 		add(lblGelecekYedekleme);
 
 		lblAciklama = new JLabel(".....");

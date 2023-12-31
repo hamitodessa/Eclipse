@@ -108,9 +108,8 @@ public class DownloadFile extends JPanel {
 		panel.add(lblNewLabel);
 
 		comboBox = new JComboBox<String>();
-		comboBox.addItemListener(new ItemListener() 
-		{
-			public void itemStateChanged(ItemEvent e) {
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					if(!ilkBASLA)
@@ -120,6 +119,12 @@ public class DownloadFile extends JPanel {
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					e1.printStackTrace();
 				}
+			}
+		});
+		comboBox.addItemListener(new ItemListener() 
+		{
+			public void itemStateChanged(ItemEvent e) {
+				
 			}
 		});
 

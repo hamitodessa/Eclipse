@@ -502,21 +502,6 @@ public class OBS_BACKUP extends JFrame {
 		btnFileIndir.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/download-30.png")));
 		toolBar.add(btnFileIndir);
 		
-		///
-		JButton btndnm= new JButton("");
-		btndnm.setToolTipText("Kapat");
-		btndnm.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
-		btndnm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				deneme();
-				}
-		});
-		btndnm.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/exit.png")));
-		toolBar.add(btndnm);
-
-		
-		///
-
 		Component horizontalGlue = Box.createVerticalGlue();
 		toolBar.add(horizontalGlue);
 		

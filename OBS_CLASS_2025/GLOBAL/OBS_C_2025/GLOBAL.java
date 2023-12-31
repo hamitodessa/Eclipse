@@ -339,6 +339,9 @@ public class GLOBAL {
 	    stmt = con.createStatement();  
 		stmt.execute(sorgu); 
 		sorgu = "CREATE TABLE GOREV_ZAMANI ( Zaman DateTime  ) ";
+	    stmt = con.createStatement(); 
+	    stmt.execute(sorgu);
+	    sorgu = "CREATE TABLE BILGILER ( OBS_KULLANICI nvarchar(25 )) ";
 	    stmt = con.createStatement();  
 		stmt.execute(sorgu); 
 		stmt.close();

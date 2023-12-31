@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -14,11 +15,15 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+
 import OBS_C_2025.BAGLAN;
 import OBS_C_2025.CONNECT;
 import OBS_C_2025.CheckListItem;
 import OBS_C_2025.CheckListRenderer;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GOREV_GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.IConnection;
 import OBS_C_2025.IKUR;
 import OBS_C_2025.ILOGGER;
@@ -31,6 +36,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.SpinnerDateModel;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
@@ -40,12 +46,16 @@ import javax.swing.JList;
 import OBS_C_2025.KUR_MSSQL;
 import OBS_C_2025.KUR_MYSQL;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings({"unused","deprecation","rawtypes","unchecked"})
 public class OBS_GOREV extends JDialog  {
 
 	private static final long serialVersionUID = 1L;
 	GLOBAL glb = new GLOBAL();
+	GOREV_GLOBAL grvglb = new GOREV_GLOBAL();
 	private JSpinner timeBaslangic;
 	private static DefaultListModel<CheckListItem> model ;
 	BAGLAN bAGLAN = new BAGLAN();
@@ -170,16 +180,42 @@ public class OBS_GOREV extends JDialog  {
 		panel.add(textKurKullanici);
 		textKurKullanici.setColumns(10);
 		
+		JButton btnNewButton = new JButton("Kaydet");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(textKurKullanici.getText().equals("")) return;
+				try {
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					grvglb.bilgi_kayit(textKurKullanici.getText());
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				} catch (Exception e1) {
+				
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.setBounds(111, 251, 89, 23);
+		panel.add(btnNewButton);
+		
 		
 		//***********************************************************************************
 		try {
 			glb.gorev_surucu_kontrol();
 			// gorev ilk ise kontrol yap
-			
+			ResultSet rSet = grvglb.gorev_bilgi_oku();
+			if (!rSet.isBeforeFirst() ) {  
+   				//Dosya Bos
+   			} 
+			else {
+				rSet.next();
+				textKurKullanici.setText(rSet.getString("OBS_KULLANICI"));
+				calisma_dizini_oku() ;
+				tabbedPane.setSelectedIndex(0);
+			}
 			//
 			
-			calisma_dizini_oku() ;
-			tabbedPane.setSelectedIndex(0);
+		
+			
 			
 			
 			
@@ -205,6 +241,7 @@ public class OBS_GOREV extends JDialog  {
 			}
 			surucubilgi = true ;
 			kur_calisma_dizini_oku();
+			
 			System.out.println(KUR_CONN +"=="+ KUR_DOS_VAR);
 		} catch (Exception e) {
 		

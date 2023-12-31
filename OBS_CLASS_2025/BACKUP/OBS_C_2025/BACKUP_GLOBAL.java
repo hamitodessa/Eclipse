@@ -1006,13 +1006,11 @@ public class BACKUP_GLOBAL {
 		if(!ftp.login(kull, sifre))
 		{
 			ftp.logout();
-			JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS  Backup", JOptionPane.ERROR_MESSAGE);   
 		}
 		int reply = ftp.getReplyCode();
 		if (!FTPReply.isPositiveCompletion(reply))
 		{
 			ftp.disconnect();
-			JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Backup", JOptionPane.ERROR_MESSAGE);   
 		}
 		ftp.setFileType(FTP.BINARY_FILE_TYPE);
 		ftp.enterLocalPassiveMode();
@@ -1029,13 +1027,11 @@ public class BACKUP_GLOBAL {
 		if(!ftp.login(ftpUser, ftpPassword))
 		{
 			ftp.logout();
-			JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS  Backup", JOptionPane.ERROR_MESSAGE);   
 		}
 		int reply = ftp.getReplyCode();
 		if (!FTPReply.isPositiveCompletion(reply))
 		{
 			ftp.disconnect();
-			JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Backup", JOptionPane.ERROR_MESSAGE);   
 		}
 		ftp.enterLocalPassiveMode();
 		ftp.changeWorkingDirectory(surucu);
@@ -1130,17 +1126,16 @@ public class BACKUP_GLOBAL {
 	{
 		FTPClient ftp = new FTPClient();
 		ftp.connect(ftpAddress, port);
-		if(!ftp.login(ftpUser, ftpPassword))
-		{
-			ftp.logout();
-			JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS  Backup", JOptionPane.ERROR_MESSAGE);   
-		}
-		int reply = ftp.getReplyCode();
-		if (!FTPReply.isPositiveCompletion(reply))
-		{
-			ftp.disconnect();
-			JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Backup", JOptionPane.ERROR_MESSAGE);   
-		}
+		ftp.login(ftpUser, ftpPassword);
+//		if(!ftp.login(ftpUser, ftpPassword))
+//		{
+//			ftp.logout();
+//		}
+//		int reply = ftp.getReplyCode();
+//		if (!FTPReply.isPositiveCompletion(reply))
+//		{
+//			ftp.disconnect();
+//		}
 		ftp.enterLocalPassiveMode();
 		ftp.changeWorkingDirectory(surucu);
 		FTPFile[] files = ftp.listFiles();

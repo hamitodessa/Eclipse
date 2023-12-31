@@ -2058,19 +2058,20 @@ public class OBS_BACKUP extends JFrame {
 	}
 	private void UploadFTPFiles(String ftpp, String ftpsurucu, String dosyayolu, String dosadi, String kull, String sifre, int port, int zmn) throws IOException, InterruptedException
 	{
-				FTPClient ftp = new FTPClient();
-		try {
+		FTPClient ftp = new FTPClient();
+		try 
+		{
 			ftp.connect(ftpp,port);
 			if(!ftp.login(kull, sifre))
 			{
 				ftp.logout();
-				JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS  Backup", JOptionPane.ERROR_MESSAGE);   
+				//JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS  Backup", JOptionPane.ERROR_MESSAGE);   
 			}
 			int reply = ftp.getReplyCode();
 			if (!FTPReply.isPositiveCompletion(reply))
 			{
 				ftp.disconnect();
-				JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Backup", JOptionPane.ERROR_MESSAGE);   
+				//JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Backup", JOptionPane.ERROR_MESSAGE);   
 			}
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
 			ftp.enterLocalPassiveMode();

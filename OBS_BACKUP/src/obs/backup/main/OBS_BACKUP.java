@@ -97,6 +97,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.Component;
 import java.awt.Cursor;
 import javax.swing.JLabel;
@@ -226,6 +227,7 @@ public class OBS_BACKUP extends JFrame {
 
 		setBounds(100, 100, 900, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_BACKUP.class.getResource("/obs/backup/icons/backup-100.png")));
 		contentPane = new JPanel();
 
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

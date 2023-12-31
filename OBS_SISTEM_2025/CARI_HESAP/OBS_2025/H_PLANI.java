@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.sql.ResultSet;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
@@ -29,6 +30,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -38,6 +40,8 @@ import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
@@ -50,6 +54,7 @@ import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.JComboBox;
 
 @SuppressWarnings({"serial" , "static-access" , "deprecation"})
 public class H_PLANI extends JInternalFrame {
@@ -99,12 +104,12 @@ public class H_PLANI extends JInternalFrame {
 		panel.setLayout(null);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(28, 52, 791, 2);
+		separator.setBounds(28, 46, 791, 2);
 		separator.setForeground(new Color(0, 191, 255));
 		panel.add(separator);
 
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(28, 97, 791, 2);
+		separator_1.setBounds(28, 83, 791, 2);
 		separator_1.setForeground(new Color(0, 191, 255));
 		panel.add(separator_1);
 
@@ -115,7 +120,7 @@ public class H_PLANI extends JInternalFrame {
 				doldur("ILK");
 			}
 		});
-		btnNewButton.setBounds(102, 61, 60, 30);
+		btnNewButton.setBounds(102, 50, 60, 30);
 		panel.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("<<");
@@ -125,7 +130,7 @@ public class H_PLANI extends JInternalFrame {
 				doldur("G");
 			}
 		});
-		btnNewButton_1.setBounds(162, 61, 54, 30);
+		btnNewButton_1.setBounds(162, 50, 54, 30);
 		panel.add(btnNewButton_1);
 
 		txtkayit = new JTextField();
@@ -133,7 +138,7 @@ public class H_PLANI extends JInternalFrame {
 		txtkayit.setEditable(false);
 		txtkayit.setHorizontalAlignment(SwingConstants.CENTER);
 		txtkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtkayit.setBounds(222, 61, 60, 30);
+		txtkayit.setBounds(222, 50, 60, 30);
 		panel.add(txtkayit);
 		txtkayit.setColumns(10);
 
@@ -144,7 +149,7 @@ public class H_PLANI extends JInternalFrame {
 				doldur("I");
 			}
 		});
-		btnNewButton_2.setBounds(287, 61, 54, 30);
+		btnNewButton_2.setBounds(287, 50, 54, 30);
 		panel.add(btnNewButton_2);
 
 		JButton btnNewButton_3 = new JButton(">>|");
@@ -154,7 +159,7 @@ public class H_PLANI extends JInternalFrame {
 				doldur("SON");
 			}
 		});
-		btnNewButton_3.setBounds(342, 61, 60, 30);
+		btnNewButton_3.setBounds(342, 50, 60, 30);
 		panel.add(btnNewButton_3);
 
 		JSeparator separator_2 = new JSeparator();
@@ -164,7 +169,7 @@ public class H_PLANI extends JInternalFrame {
 
 		JLabel lblNewLabel_1 = new JLabel("Kodu");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_1.setBounds(28, 112, 46, 14);
+		lblNewLabel_1.setBounds(28, 117, 46, 14);
 		panel.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Karton");
@@ -196,19 +201,19 @@ public class H_PLANI extends JInternalFrame {
 		});
 		txtkodu.setEnabled(false);
 		txtkodu.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtkodu.setBounds(102, 110, 137, 20);
+		txtkodu.setBounds(102, 115, 137, 20);
 		txtkodu.setDocument(new JTextFieldLimit(12));
 		panel.add(txtkodu);
 		
 
 		JLabel lblNewLabel_3 = new JLabel("Unvan");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_3.setBounds(276, 112, 46, 14);
+		lblNewLabel_3.setBounds(276, 117, 46, 14);
 		panel.add(lblNewLabel_3);
 
 		txtunvan = new JTextField();
 		txtunvan.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtunvan.setBounds(354, 110, 301, 20);
+		txtunvan.setBounds(354, 115, 301, 20);
 		txtunvan.setDocument(new JTextFieldLimit(50));
 		panel.add(txtunvan);
 		
@@ -528,7 +533,7 @@ public class H_PLANI extends JInternalFrame {
 		});
 		btnNewButton_6.setToolTipText("Hesap Plani");
 		btnNewButton_6.setIcon(new ImageIcon(H_PLANI.class.getResource("/ICONLAR/user-16.png")));
-		btnNewButton_6.setBounds(665, 110, 22, 23);
+		btnNewButton_6.setBounds(665, 115, 22, 23);
 		panel.add(btnNewButton_6);
 
 		JSeparator separator_3 = new JSeparator();
@@ -613,6 +618,30 @@ public class H_PLANI extends JInternalFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(28, 27, 64, 14);
 		panel.add(lblNewLabel);
+		
+		JComboBox<String> cmbKodu = new JComboBox<String>();
+		JTextField editorComponent = (JTextField)  cmbKodu.getEditor().getEditorComponent();
+		InputMap txtbhesMap = editorComponent.getInputMap(editorComponent.WHEN_FOCUSED);
+		txtbhesMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK), "none");
+		
+		cmbKodu.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
+	
+		AutoCompleteDecorator.decorate(cmbKodu);
+		AUTO_HESAP_KODU.auto_doldur(cmbKodu);
+		
+		cmbKodu.setBounds(102, 88, 206, 22);
+		panel.add(cmbKodu);
+		
+		JButton btnNewButton_6_1 = new JButton("");
+		btnNewButton_6_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cmbKodu.removeAll();
+				AUTO_HESAP_KODU.auto_doldur(cmbKodu);
+			}
+		});
+		btnNewButton_6_1.setToolTipText("Hesap Plani");
+		btnNewButton_6_1.setBounds(318, 88, 22, 23);
+		panel.add(btnNewButton_6_1);
 
 		hisset("");
 

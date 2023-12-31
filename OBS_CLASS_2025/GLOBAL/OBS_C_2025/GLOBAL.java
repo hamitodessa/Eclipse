@@ -341,7 +341,7 @@ public class GLOBAL {
 		sorgu = "CREATE TABLE GOREV_ZAMANI ( Zaman DateTime  ) ";
 	    stmt = con.createStatement(); 
 	    stmt.execute(sorgu);
-	    sorgu = "CREATE TABLE BILGILER ( OBS_KULLANICI nvarchar(25 )) ";
+	    sorgu = "CREATE TABLE BILGILER ( OBS_KULLANICI nvarchar(25 ),Durum INTEGER) ";
 	    stmt = con.createStatement();  
 		stmt.execute(sorgu); 
 		stmt.close();

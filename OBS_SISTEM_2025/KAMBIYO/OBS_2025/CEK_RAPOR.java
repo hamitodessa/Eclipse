@@ -53,6 +53,7 @@ public class CEK_RAPOR extends JInternalFrame {
 	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(OBS_SIS_2025_ANA_CLASS._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
 	public static ScrollPaneWin11 scrollPane;
 	private static JLabel lbladet;
+	private static JLabel lblToplam;
 
 	public CEK_RAPOR() {
 		setTitle("CEK RAPOR");
@@ -132,6 +133,12 @@ public class CEK_RAPOR extends JInternalFrame {
 		lbladet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbladet.setBounds(100, 5, 47, 14);
 		panel.add(lbladet);
+		
+		lblToplam = new JLabel("");
+		lblToplam.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblToplam.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblToplam.setBounds(687, 5, 150, 14);
+		panel.add(lblToplam);
 
 	}
 	public static void hisset()
@@ -242,6 +249,7 @@ public class CEK_RAPOR extends JInternalFrame {
 			th.repaint();
 			table.setRowSelectionInterval(0, 0);
 			table.setRowHeight(21);
+			int toplam=0;
 			for (int i = 0 ; i <= table.getRowCount() -1 ; i ++)
 			{
 				if (table.getValueAt(i , 10).toString().equals("01.01.1900"))
@@ -252,9 +260,11 @@ public class CEK_RAPOR extends JInternalFrame {
 				{
 					table.setValueAt("",i , 13);
 				}
+				toplam += (double) table.getValueAt(i , 8);
 			}
 			//table.setSelectionBackground(Color.PINK);
 			//table.setSelectionForeground(Color.BLUE);
+			lblToplam.setText(FORMATLAMA.doub_2(toplam));
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 
 			double seconds = (double)estimatedTime/1000; 

@@ -165,44 +165,6 @@ public class DEKONT extends JInternalFrame {
 				}
 			}
 		});
-		dtc.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				try {
-					if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-					{	
-						cmbbhes.requestFocus();
-					}
-					else
-					{
-						String[] parts;
-						String deger ;
-						deger = oac.glb.setting_oku("PRG_KAYDET").toString();
-						parts = deger.split(",");
-						if ( ! parts[2].equals(" ")) 
-						{
-							char c=parts[2].charAt(0);
-							if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
-							{
-								kaydet();
-							}
-						}
-						deger = oac.glb.setting_oku("CARI_DEK_Y_FIS").toString();
-						parts = deger.split(",");
-						if ( ! parts[2].equals(" ")) 
-						{
-							char c=parts[2].charAt(0);
-							if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
-							{
-								yeni();
-							}
-						}
-					}
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
 		dtc.setDateFormatString("dd.MM.yyyy");
 		dtc.setFont(new Font("Tahoma", Font.BOLD, 16));
 		dtc.setDate(new Date());
@@ -213,11 +175,16 @@ public class DEKONT extends JInternalFrame {
 			}
 			@Override
 			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					cmbbhes.requestFocus();
+				}
 				if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 					if (TARIH_CEVIR.tarih_dt_ddMMyyyy(dtc) == null)
 					{
 						return;
 					}
+					
 					final JTextComponent textComponent=((JTextComponent)e.getSource());
 					int currentCaretPosition = textComponent.getCaretPosition();
 					SimpleDateFormat datefmt = new SimpleDateFormat("dd.MM.yyyy"); // Or format you're using
@@ -274,6 +241,32 @@ public class DEKONT extends JInternalFrame {
 					} catch (ParseException e1) {
 						e1.printStackTrace();
 					}
+				}
+				try {
+				String[] parts;
+				String deger ;
+				deger = oac.glb.setting_oku("PRG_KAYDET").toString();
+				parts = deger.split(",");
+				if ( ! parts[2].equals(" ")) 
+				{
+					char c=parts[2].charAt(0);
+					if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+					{
+						kaydet();
+					}
+				}
+				deger = oac.glb.setting_oku("CARI_DEK_Y_FIS").toString();
+				parts = deger.split(",");
+				if ( ! parts[2].equals(" ")) 
+				{
+					char c=parts[2].charAt(0);
+					if ((e.getKeyCode() == c) && ((e.getModifiers() & (parts[0].equals("E") ?  KeyEvent.CTRL_MASK : KeyEvent.ALT_MASK) ) != 0))
+					{
+						yeni();
+					}
+				}
+				} catch (Exception e1) {
+					e1.printStackTrace();
 				}
 			}
 			@Override
@@ -986,12 +979,6 @@ public class DEKONT extends JInternalFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				try {
-					if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
-					{	
-						txtkod.requestFocus();
-					}
-					else
-					{
 						String[] parts;
 						String deger ;
 						deger = oac.glb.setting_oku("PRG_KAYDET").toString();
@@ -1014,7 +1001,7 @@ public class DEKONT extends JInternalFrame {
 								yeni();
 							}
 						}
-					}
+					
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}

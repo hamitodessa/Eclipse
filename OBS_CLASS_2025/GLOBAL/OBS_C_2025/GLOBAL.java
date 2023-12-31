@@ -70,6 +70,7 @@ public class GLOBAL {
 	public static final String LOG_SURUCU =  "C:\\OBS_SISTEM\\LOGLAMA\\";
 	public static final String DBYERI = "C:\\OBS_DATABASES\\";
 	public static final String BACKUP_YERI = "C:\\OBS_SISTEM\\BACKUP\\";
+	public static final String GOREV_DOSYA = System.getProperty("user.name") + "_OBS_GOREV.DB";
 	public static final String BACKUP_DOSYA = System.getProperty("user.name") + "_SQL_BACKUP.DB";
 	public static final String LOG_DOSYA = System.getProperty("user.name") + "_SQL_LOG.DB";
 	static Connection con ;
@@ -123,6 +124,18 @@ public class GLOBAL {
 		{	}  
 		return conn;  
 	}  
+	public static  Connection myGorevConnection() throws SQLException
+	{  
+		Connection conn = null;  
+		try 
+		{  
+			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + GOREV_DOSYA );  
+		} 
+		catch (SQLException e) 
+		{	}  
+		return conn;  
+	}  
+
 	public static Connection   myEkstreConnection ()
 	{
 		Connection conn = null;  
@@ -298,6 +311,45 @@ public class GLOBAL {
 	    	backup_log_dosya_olustur(); // OBS SISTEM BACKUP LOGDOSYASI KONTROL
 	    }
 	}
+	public void gorev_surucu_kontrol() throws ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	{
+		File tmpDir = new File(SURUCU);
+		boolean exists = tmpDir.exists();
+		if (exists)
+		{  
+			
+		}
+		else {
+			tmpDir.mkdirs();
+		}
+		
+	    if( ! dos_kontrol(SURUCU + GOREV_DOSYA))
+	    {
+	    	gorev_dosya_olustur(); // OBS SISTEM BACKUP DOSYASI KONTROL
+	    }
+	}
+	public void gorev_dosya_olustur() throws ClassNotFoundException
+	{
+		try {
+		Class.forName("org.sqlite.JDBC");
+		con = myGorevConnection();
+		String sorgu= null;
+		java.sql.Statement stmt = null;
+	    sorgu = "CREATE TABLE KUR_CINSI ( Kur nvarchar(5)  ) ";
+	    stmt = con.createStatement();  
+		stmt.execute(sorgu); 
+		sorgu = "CREATE TABLE GOREV_ZAMANI ( Zaman DateTime  ) ";
+	    stmt = con.createStatement();  
+		stmt.execute(sorgu); 
+		stmt.close();
+		con.close();
+		}
+		catch (SQLException ex) 
+		{  
+			JOptionPane.showMessageDialog(null, ex.getMessage());  
+		}  
+	}
+
 	public void backup_obs_dosya_olustur() throws ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		try {

@@ -2053,6 +2053,8 @@ public class OBS_BACKUP extends JFrame {
 		try {
 			ftp.connect(ftpp, Integer.valueOf(port));
 			ftp.login(kull, sifre);
+			int reply = ftp.getReplyCode();
+			System.out.println(reply);
 			ftp.changeWorkingDirectory(ftpsurucu);
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
 			File secondLocalFile = new File(dosyayolu + dosadi );

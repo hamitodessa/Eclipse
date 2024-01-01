@@ -60,6 +60,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 	public static JDateChooser dtcBaslama ;
 	public static JDateChooser dtcBitis;
 	public static JComboBox<String> cmbBaslamaSaat ;
+	public static JComboBox<String> cmbBitisSaat;
 	private static JComboBox<String> cmbSecenek;
 	private JLabel lblBitis;
 	private static JTextField txtYer;
@@ -244,6 +245,14 @@ public class GOREV_GIRIS extends JInternalFrame {
 		cmbBaslamaSaat.setBounds(245, 173, 80, 25);
 		panel.add(cmbBaslamaSaat);
 
+		
+		cmbBitisSaat = new JComboBox<String>();
+		cmbBitisSaat.setModel(new DefaultComboBoxModel<String>(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
+		cmbBitisSaat.setFont(new Font("Tahoma", Font.BOLD, 14));
+		cmbBitisSaat.setBounds(245, 200, 80, 25);
+		panel.add(cmbBitisSaat);
+		
+		
 		txtGID = new JTextField();
 		txtGID.setBounds(10, 135, 39, 20);
 
@@ -384,6 +393,8 @@ public class GOREV_GIRIS extends JInternalFrame {
 		lblNewLabel_5.setBounds(355, 205, 50, 14);
 		panel.add(lblNewLabel_5);
 		
+
+		
 		
 		sifirla();
 
@@ -439,6 +450,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 			gbilgi.tarih1 = str1;
 			gbilgi.tarih2 = str2;
 			gbilgi.saat1 =cmbBaslamaSaat.getSelectedItem().toString() ;
+			gbilgi.saat2 =cmbBitisSaat.getSelectedItem().toString() ;
 			gbilgi.isim = txtIsim.getText();
 			gbilgi.gorev = txtGorev.getText();
 			gbilgi.tekrarla = true;
@@ -507,7 +519,6 @@ public class GOREV_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gorev  Silme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void gOKU() throws ClassNotFoundException, SQLException
@@ -527,6 +538,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 			txtMesaj.setText(rSet.getString("MESAJ"));
 			dtcBaslama.setDate(rSet.getDate("BASL_TARIH"));
 			dtcBitis.setDate(rSet.getDate("BIT_TARIH"));
+			cmbBitisSaat.setSelectedItem(rSet.getString("BIT_SAAT"));
 			cmbBaslamaSaat.setSelectedItem(rSet.getString("BASL_SAAT"));
 			cmbSecenek.setSelectedItem(rSet.getString("SECENEK"));
 			txtDeger.setText(Integer.toString(rSet.getInt("DEGER")));
@@ -540,6 +552,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		txtMesaj.setText("");
 		txtYer.setText("");
 		cmbBaslamaSaat.setSelectedItem("06:00");
+		cmbBitisSaat.setSelectedItem("23:00");
 		dtcBaslama.setDate(new Date());
 		dtcBitis.setDate(new Date());
 		cmbSecenek.setSelectedItem("Ayda");

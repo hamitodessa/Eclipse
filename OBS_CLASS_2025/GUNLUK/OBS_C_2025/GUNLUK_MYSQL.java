@@ -345,33 +345,29 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		//***********************KAYIT TEKRARINA GORE KAYIT YAP **************************
 		Date son_tarih ;
+		Date bas_tarih;
 		if (gbilgi.secenek == "Saatte")
 		{
-			son_tarih = new SimpleDateFormat("yyyy.MM.dd HH:mm").parse(gbilgi.tarih2 + " 23:00");
-			Calendar qwe = Calendar.getInstance();
-			qwe.setTime(son_tarih);
-			qwe.add(Calendar.DATE, -1 );
-			son_tarih = qwe.getTime();
+			son_tarih = new SimpleDateFormat("yyyy.MM.dd HH:mm").parse(gbilgi.tarih2 + " "+ gbilgi.saat2);
+			bas_tarih = new SimpleDateFormat("yyyy.MM.dd HH:mm").parse(gbilgi.tarih1 + " " + gbilgi.saat1);
 		}
 		else
 		{
-			son_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih2 );
+			son_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih2 + " " + gbilgi.saat2);
+			bas_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih1 + " " + gbilgi.saat1);
 		}
-		//
-		long son_t = son_tarih.getTime();
-		Date anl_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih1);
-		//
 		Date secSAAT = new SimpleDateFormat("yyyy.MM.dd HH:mm").parse(gbilgi.tarih1 + " " + gbilgi.saat1);
 		Calendar saatCalendar = Calendar.getInstance();
-		//
-		Long anl_t = anl_tarih.getTime();
+		
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
-		String  anl_tS =  format1.format(anl_tarih);
-		String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,USER) " +
+		String  anl_tS =  format1.format(bas_tarih);
+		String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,[USER]) " +
 					" VALUES (?,?,?,?,?,?,?,?)" ;
 		kONTROL();
-		PreparedStatement stmt =con.prepareStatement(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt = con.prepareStatement(sql);
+		long anl_t = bas_tarih.getTime();
+		long son_t = son_tarih.getTime();
 		while (anl_t <= son_t)  
 		{
 			stmt.setInt(1, gbilgi.gid);
@@ -385,33 +381,33 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 			stmt.addBatch();
 
 			Calendar c = Calendar.getInstance(); 
-			c.setTime(anl_tarih); 
+			c.setTime(son_tarih); 
 			if(gbilgi.secenek =="Ayda")
 			{
 				c.add(Calendar.MONTH, gbilgi.deger);
-				anl_tarih = c.getTime();
+				son_tarih = c.getTime();
 			}
 			else if(gbilgi.secenek =="Haftada")
 			{
 				c.add(Calendar.DATE, gbilgi.deger * 7);
-				anl_tarih = c.getTime();
+				son_tarih = c.getTime();
 			}
 			else if(gbilgi.secenek =="Gunde")
 			{
 				c.add(Calendar.DATE, gbilgi.deger );
-				anl_tarih = c.getTime();
+				son_tarih = c.getTime();
 			}
 			else if(gbilgi.secenek =="Saatte")
 			{
 				saatCalendar.setTime(secSAAT);
 				saatCalendar.add(Calendar.HOUR, gbilgi.deger );
-				anl_tarih = saatCalendar.getTime();
-				secSAAT = anl_tarih;
+				son_tarih = saatCalendar.getTime();
+				secSAAT = son_tarih;
 				SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
 				gbilgi.saat1 =  format2.format(saatCalendar.getTime());
 			}
-			anl_tS =  format1.format(anl_tarih);
-			anl_t = anl_tarih.getTime() ;
+			anl_tS =  format1.format(son_tarih);
+			anl_t = son_tarih.getTime() ;
 		}
 		stmt.executeBatch();
 		stmt.close();

@@ -201,22 +201,23 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void gorev_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String sql  = "INSERT INTO GOREV (BASL_TARIH,BASL_SAAT,BIT_TARIH,TEKRARLA,ISIM,GOREV,YER,MESAJ,SECENEK,DEGER,[USER]) " +
-				" VALUES (?,?,?,?,?,?,?,?,?,?,?)" ;
+		String sql  = "INSERT INTO GOREV (BASL_TARIH,BASL_SAAT,BIT_TARIH,BIT_SAAT ,TEKRARLA,ISIM,GOREV,YER,MESAJ,SECENEK,DEGER,[USER]) " +
+				" VALUES (?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement stmt = null;
 		kONTROL();
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, gbilgi.tarih1);
 		stmt.setString(2, gbilgi.saat1);
 		stmt.setString(3, gbilgi.tarih2);
-		stmt.setBoolean(4, gbilgi.tekrarla);
-		stmt.setString(5, gbilgi.isim);
-		stmt.setString(6, gbilgi.gorev);
-		stmt.setString(7, gbilgi.yer);
-		stmt.setString(8, gbilgi.mesaj);
-		stmt.setString(9, gbilgi.secenek);
-		stmt.setInt(10, gbilgi.deger);
-		stmt.setString(11, gbilgi.user);
+		stmt.setString(4, gbilgi.saat2);
+		stmt.setBoolean(5, gbilgi.tekrarla);
+		stmt.setString(6, gbilgi.isim);
+		stmt.setString(7, gbilgi.gorev);
+		stmt.setString(8, gbilgi.yer);
+		stmt.setString(9, gbilgi.mesaj);
+		stmt.setString(10, gbilgi.secenek);
+		stmt.setInt(11, gbilgi.deger);
+		stmt.setString(12, gbilgi.user);
 		stmt.executeUpdate();
 		stmt.close();
 
@@ -265,6 +266,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
 				" ORDER BY TARIH ,ISIM ";
+		
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -358,38 +360,28 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		//***********************KAYIT TEKRARINA GORE KAYIT YAP **************************
 		Date son_tarih ;
+		Date bas_tarih;
 		if (gbilgi.secenek == "Saatte")
 		{
-			son_tarih = new SimpleDateFormat("yyyy.MM.dd HH:mm").parse(gbilgi.tarih2 + " 23:00");
-			Calendar qwe = Calendar.getInstance();
-			qwe.setTime(son_tarih);
-			qwe.add(Calendar.DATE, -1 );
-			son_tarih = qwe.getTime();
+			son_tarih = new SimpleDateFormat("yyyy.MM.dd HH:mm").parse(gbilgi.tarih2 + " "+ gbilgi.saat2);
+			bas_tarih = new SimpleDateFormat("yyyy.MM.dd HH:mm").parse(gbilgi.tarih1 + " " + gbilgi.saat1);
 		}
 		else
 		{
-			son_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih2 );
+			son_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih2 + " " + gbilgi.saat2);
+			bas_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih1 + " " + gbilgi.saat1);
 		}
-		//
-		
-		Date anl_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih1);
-		
-		
-		//
 		Date secSAAT = new SimpleDateFormat("yyyy.MM.dd HH:mm").parse(gbilgi.tarih1 + " " + gbilgi.saat1);
 		Calendar saatCalendar = Calendar.getInstance();
-		//
-		
-		//System.out.println(anl_tarih.toString() +"=="+ son_tarih.toString());
 		
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
-		String  anl_tS =  format1.format(anl_tarih);
+		String  anl_tS =  format1.format(bas_tarih);
 		String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,[USER]) " +
 					" VALUES (?,?,?,?,?,?,?,?)" ;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt = con.prepareStatement(sql);
-		long anl_t = anl_tarih.getTime();
+		long anl_t = bas_tarih.getTime();
 		long son_t = son_tarih.getTime();
 		while (anl_t <= son_t)  
 		{
@@ -404,33 +396,33 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 			stmt.addBatch();
 	
 			Calendar c = Calendar.getInstance(); 
-			c.setTime(anl_tarih); 
+			c.setTime(bas_tarih); 
 			if(gbilgi.secenek =="Ayda")
 			{
 				c.add(Calendar.MONTH, gbilgi.deger);
-				anl_tarih = c.getTime();
+				bas_tarih = c.getTime();
 			}
 			else if(gbilgi.secenek =="Haftada")
 			{
 				c.add(Calendar.DATE, gbilgi.deger * 7);
-				anl_tarih = c.getTime();
+				bas_tarih = c.getTime();
 			}
 			else if(gbilgi.secenek =="Gunde")
 			{
 				c.add(Calendar.DATE, gbilgi.deger );
-				anl_tarih = c.getTime();
+				bas_tarih = c.getTime();
 			}
 			else if(gbilgi.secenek =="Saatte")
 			{
 				saatCalendar.setTime(secSAAT);
 				saatCalendar.add(Calendar.HOUR, gbilgi.deger );
-				anl_tarih = saatCalendar.getTime();
-				secSAAT = anl_tarih;
+				bas_tarih = saatCalendar.getTime();
+				secSAAT = bas_tarih;
 				SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
 				gbilgi.saat1 =  format2.format(saatCalendar.getTime());
 			}
-			anl_tS =  format1.format(anl_tarih);
-			anl_t = anl_tarih.getTime() ;
+			anl_tS =  format1.format(bas_tarih);
+			anl_t = bas_tarih.getTime() ;
 		}
 		stmt.executeBatch();
 		stmt.close();

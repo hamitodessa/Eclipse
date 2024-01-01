@@ -130,7 +130,7 @@ public class OBS_GOREV extends JFrame  {
 		       
 		      }
 		});
-	  
+		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_GOREV.class.getResource("/obs/gorev/other/job-24.png")));
 		FlatRobotoFont.install();
 		FlatLaf.registerCustomDefaultsSource("obs.gorev.theme");
 		UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));

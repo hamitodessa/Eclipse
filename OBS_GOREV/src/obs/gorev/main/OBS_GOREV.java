@@ -214,6 +214,7 @@ public class OBS_GOREV extends JFrame  {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					kayit();
+					 sirala();
 				} catch (Exception e1) {
 
 					e1.printStackTrace();
@@ -305,6 +306,7 @@ public class OBS_GOREV extends JFrame  {
 		    };  
 		};  
 		timerr.schedule(tt,getTomorrowMorning2AM(),  1000*60*60*24); 
+		//merkez_oku_kayit();
 	}
 	private static Date getTomorrowMorning2AM( ) throws ParseException
 	{
@@ -346,24 +348,44 @@ public class OBS_GOREV extends JFrame  {
 			//kur cinsi secilmemis
 		} 
 		else {
-			for (int i = 0; i <= rSet.size()-1;i++) {
-				CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
-				if (item.toString().equals(rSet.get(i).getKur()))
-				{
-					item.setSelected(true);
+			for (int i = 0; i <=  list.getModel().getSize() -1 ;i++) {
+				for (int r = 0; r <= rSet.size()-1;r++) {
+					CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
+					if (item.toString().equals(rSet.get(r).getKur()))
+					{
+						item.setSelected(true);
+					}
 				}
 			}
 		}
+		 sirala();
+		
 	}
+	void sirala()
+	{
+		int dosyaSAYI = 0;
+		for (int i = 0; i <= list.getModel().getSize() - 1; i++)
+		{
+			CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
+			if (item.isSelected)
+			{
+				CheckListItem item2 = item;
+				item2.setSelected(true);
+				model.remove(i);
+				model.insertElementAt(item2, dosyaSAYI);
 
+				dosyaSAYI += 1;
+			}
+		}
+	}
 	void calisma_dizini_oku() 
 	{
 		try 
 		{
 			bAGLAN.cONNECT(textKurKullanici.getText());//BAGLAN.kurDizin.kULLANICI
 			cONN_AKTAR( BAGLAN.kurDizin.hAN_SQL );
-			mODUL_AKTAR( BAGLAN.kurDizin.hAN_SQL );
 			String hangi_sql =  BAGLAN.kurDizin.hAN_SQL;
+			_IKur = hangi_sql.equals("MS SQL") ? new KUR_MSSQL() : new KUR_MYSQL();
 			if(hangi_sql.equals("") )
 			{
 				surucubilgi = false ;
@@ -475,6 +497,7 @@ public class OBS_GOREV extends JFrame  {
 	}
 	private void cONN_AKTAR(String hangi)
 	{
+	
 		switch(hangi) {
 		case "MS SQL":
 			_IKurCon = new OBS_ORTAK_MSSQL() ;

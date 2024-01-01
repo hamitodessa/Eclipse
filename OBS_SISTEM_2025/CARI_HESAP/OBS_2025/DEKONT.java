@@ -124,6 +124,12 @@ public class DEKONT extends JInternalFrame {
 	private JPanel pnla;
 
 	public DEKONT() {
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				System.out.println("===");
+			}
+		});
 		setResizable(true);
 
 		setTitle("DEKONT");
@@ -1001,9 +1007,8 @@ public class DEKONT extends JInternalFrame {
 								yeni();
 							}
 						}
-					
-				} catch (IOException e1) {
-					e1.printStackTrace();
+				} catch (Exception e1) {
+					System.out.println(e1.getMessage());
 				}
 			}
 		});
@@ -1193,23 +1198,19 @@ public class DEKONT extends JInternalFrame {
 								if (kusur2 != 1 ) // ' capraz kur
 								{
 									double	db1 = (kusur2 * dbborc) / kusur;
-									//txtatutar.setText(Double.toString(db1));
 									txtatutar.setText(FORMATLAMA.doub_2(db1));
 								}
 								else  //' carpraz kur degil 
 								{
 									double d1 =  dbborc  / kusur ;
-									//txtatutar.setText(Double.toString(d1));
 									txtatutar.setText(FORMATLAMA.doub_2(d1));
 								}
 							}
 							else
 							{
 								double d2 = kusur2 * dbborc;
-								//txtatutar.setText(Double.toString(d2));
 								txtatutar.setText(FORMATLAMA.doub_2(d2));
 							}
-						
 						txtaciklama.requestFocus();
 					}
 					else
@@ -1695,7 +1696,6 @@ public class DEKONT extends JInternalFrame {
 		if(dtc.getDate() == null) return;
 		if (cmbbhes.getSelectedItem().toString().equals(cmbahes.getSelectedItem().toString())) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Alacak ve Borclu Hesap Ayni...."  );
-			//JOptionPane.showMessageDialog(null, "Alacak ve Borclu Hesap Ayni....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 			return ;
 		}
 		try 
@@ -1703,13 +1703,11 @@ public class DEKONT extends JInternalFrame {
 			if ( borc_kutu == false )
 			{
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir...."  );
-				//JOptionPane.showMessageDialog(null,  "Borclu Hesap Kodu  Hesap Planinda Bulunmamaktadir....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
 			if ( alacak_kutu == false )
 			{
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir...."  );
-				//JOptionPane.showMessageDialog(null,  "Alacakli Hesap Kodu Hesap Planinda Bulunmamaktadir....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
 
@@ -1718,7 +1716,6 @@ public class DEKONT extends JInternalFrame {
 				if ( ! txtbtutar.getText().equals(txtatutar.getText()))
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Alacakli ve Borclu Tutar Esit Degil...." );
-					//JOptionPane.showMessageDialog(null,"Alacakli ve Borclu Tutar Esit Degil....", "Dekont Kayit ",JOptionPane.ERROR_MESSAGE);
 					return ;
 				}
 			}
@@ -1741,13 +1738,10 @@ public class DEKONT extends JInternalFrame {
 			{
 				mesaj = mesaj + " Msj:" + mesaj1.substring(0, 95  -(mesaj.length())) ;
 			}
-			
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ(txtevrak.getText() + " Dekont Silme");
 			lBILGI.seteVRAK(txtevrak.getText());
-			
 			c_Access.evrak_yoket(Integer.parseInt(txtevrak.getText()),lBILGI, BAGLAN_LOG.cariLogDizin);
-			
 			dEKONT_BILGI dBilgi = new dEKONT_BILGI();
 			dBilgi.setbHES(cmbbhes.getSelectedItem().toString());
 			dBilgi.settAR(str);
@@ -1767,18 +1761,18 @@ public class DEKONT extends JInternalFrame {
 			c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,BAGLAN_LOG.cariLogDizin	);
 
 			sifirla();
-			txtevrak.setText("0");
+			
 			kutu_kapa();
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime;
 			double seconds = (double)estimatedTime/1000; 
 			OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + FORMATLAMA.doub_4(seconds) +  " saniye");
-			dtc.requestFocus();
+			txtevrak.setText("0");
+			txtevrak.requestFocus();
 		}
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Kaydetme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void kutu_ac()

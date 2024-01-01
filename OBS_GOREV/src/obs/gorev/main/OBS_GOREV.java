@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -253,35 +254,36 @@ public class OBS_GOREV extends JFrame  {
 		panel.add(btnNewButton);
 		//***********************************************************************************
 		try {
-			glb.gorev_surucu_kontrol();
-			// gorev ilk ise kontrol yap
-			List<g_bilgiler> rSet = grvglb.gorev_bilgi_oku();
-			if ( rSet.size() == 0 ) {  
-				//Dosya Bos
-			} 
-			else {
-				textKurKullanici.setText(rSet.get(0).getObs_kullanici());
-				chckbxDurum.setSelected(rSet.get(0).isDurum());
-				List<g_bilgiler> gzaman = grvglb.gorev_zaman_oku();
-				SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-				Date snyk =  formatter.parse(gzaman.get(0).getBaslangicDate().toString());
-				Date zamDate = new Date();
-				zamDate.setHours(snyk.getHours());
-				zamDate.setMinutes(snyk.getMinutes());
-				zamDate.setSeconds(0);
-				timeBaslangic.setValue(zamDate);
-				calisma_dizini_oku() ;
-				kur_doldur();
-				tabbedPane.setSelectedIndex(0);
-				if(chckbxDurum.isSelected())
-				{
-					jobTimerBasla();
+			if (glb.dos_kontrol(glb.SURUCU + glb.OBS_DOSYA))
+			{
+				glb.gorev_surucu_kontrol();
+				List<g_bilgiler> rSet = grvglb.gorev_bilgi_oku();
+				if ( rSet.size() == 0 ) {  
+				} 
+				else {
+					textKurKullanici.setText(rSet.get(0).getObs_kullanici());
+					chckbxDurum.setSelected(rSet.get(0).isDurum());
+					List<g_bilgiler> gzaman = grvglb.gorev_zaman_oku();
+					SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+					Date snyk =  formatter.parse(gzaman.get(0).getBaslangicDate().toString());
+					Date zamDate = new Date();
+					zamDate.setHours(snyk.getHours());
+					zamDate.setMinutes(snyk.getMinutes());
+					zamDate.setSeconds(0);
+					timeBaslangic.setValue(zamDate);
+					calisma_dizini_oku() ;
+					kur_doldur();
+					tabbedPane.setSelectedIndex(0);
+					if(chckbxDurum.isSelected())
+					{
+						jobTimerBasla();
+					}
 				}
 			}
+			
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, ex.getMessage());
 		}
-
 	}
 	private void jobTimerBasla() throws ParseException, NumberFormatException, ClassNotFoundException, SQLException
 	{
@@ -302,7 +304,7 @@ public class OBS_GOREV extends JFrame  {
 				}
 		    };  
 		};  
-		timerr.schedule(tt,getTomorrowMorning2AM(),  1000*60*60*24); ;  
+		timerr.schedule(tt,getTomorrowMorning2AM(),  1000*60*60*24); 
 	}
 	private static Date getTomorrowMorning2AM( ) throws ParseException
 	{
@@ -320,8 +322,6 @@ public class OBS_GOREV extends JFrame  {
 		Date ytr = c.getTime();
 		ytr.setMinutes(datet.getMinutes());
 		ytr.setSeconds(0);
-//		System.out.println(ytr.toString());
-	//	System.out.println( hour < targetHour ? targetHour - hour : targetHour - hour + 24);
 		return ytr;
       }
 	void kayit() throws ClassNotFoundException, SQLException
@@ -432,15 +432,18 @@ public class OBS_GOREV extends JFrame  {
 		for(int i = 0 ;i <= list.getModel().getSize() -1;i++)
 		{
 			CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
-			String kurString[] = merkez(item.toString());
-			if(! kurString[0].equals(""))
+			if (item.isSelected)
 			{
-			DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-			String tarString = df.format(new Date());
-			k_Access.kur_sil(tarString,item.toString());
-			k_Access.kur_kayit(tarString,item.toString() ,
-					Double.parseDouble(kurString[0]),Double.parseDouble(kurString[1]),
-					0,0,0,0);
+				String kurString[] = merkez(item.toString());
+				if(! kurString[0].equals(""))
+				{
+				DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+				String tarString = df.format(new Date());
+				k_Access.kur_sil(tarString,item.toString());
+				k_Access.kur_kayit(tarString,item.toString() ,
+						Double.parseDouble(kurString[0]),Double.parseDouble(kurString[1]),
+						0,0,0,0);
+				}
 			}
 		}
 	}

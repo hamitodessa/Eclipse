@@ -371,13 +371,17 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 			son_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih2 );
 		}
 		//
-		long son_t = son_tarih.getTime();
+		
 		Date anl_tarih = new SimpleDateFormat("yyyy.MM.dd").parse(gbilgi.tarih1);
+		
+		
 		//
 		Date secSAAT = new SimpleDateFormat("yyyy.MM.dd HH:mm").parse(gbilgi.tarih1 + " " + gbilgi.saat1);
 		Calendar saatCalendar = Calendar.getInstance();
 		//
-		Long anl_t = anl_tarih.getTime();
+		
+		//System.out.println(anl_tarih.toString() +"=="+ son_tarih.toString());
+		
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
 		String  anl_tS =  format1.format(anl_tarih);
 		String sql  = "INSERT INTO GUNLUK (GID,TARIH,SAAT,ISIM,GOREV,YER,MESAJ,[USER]) " +
@@ -385,6 +389,8 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt = con.prepareStatement(sql);
+		long anl_t = anl_tarih.getTime();
+		long son_t = son_tarih.getTime();
 		while (anl_t <= son_t)  
 		{
 			stmt.setInt(1, gbilgi.gid);

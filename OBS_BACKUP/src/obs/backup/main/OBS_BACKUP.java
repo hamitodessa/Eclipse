@@ -655,7 +655,7 @@ public class OBS_BACKUP extends JFrame {
 						break;
 					}
 				}
-				Thread.sleep(500);
+				Thread.sleep(1000);
 				List<emir_bilgiler> ebilgiler = bckp.emir_tek(eISMI);
 				boolean SQL_YEDEK_MI;
 				SQL_YEDEK_MI = ebilgiler.get(0).isSQL_YEDEK();

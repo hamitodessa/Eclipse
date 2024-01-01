@@ -290,7 +290,7 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		ResultSet	rss = null;
 		String sql = "SELECT    TARIH,SAAT,ISIM,GOREV,YER,MESAJ   " +
 				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
-				" WHERE TARIH =  '" + gbilgi.tarih1 + "' AND SAAT ='" + gbilgi.saat1 + "'" +
+				" WHERE TARIH =  '" + gbilgi.tarih1 + "' AND SAAT >='" + gbilgi.saat1 + "' AND SAAT  <= '" + gbilgi.saat2 + "'" +
 				" GROUP BY  TARIH,SAAT,ISIM,GOREV,YER,MESAJ ORDER BY ISIM  ";
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);

@@ -3771,12 +3771,12 @@ public class OBS_MAIN extends JFrame  {
 				btnNewButton_72.setVisible(false);
 				return ;
 			}
+			
 			deger = GLOBAL.setting_oku("GUN_KON_ZAM").toString();
 			int kontolsuresi = (Integer. parseInt(deger) * 60 ) * 1000;
 			if (kontolsuresi == 0) 
 			{
 				mesaj_goster(10000,Notifications.Type.ERROR,"Gunluk Kontrol Suresi Girilmemis....");
-				//JOptionPane.showMessageDialog(null,"Kontrol Suresi Girilmemis....", "Gunluk Kontrol", JOptionPane.ERROR_MESSAGE);
 				return ;
 			}
 			Calendar calendar = Calendar.getInstance();
@@ -3796,7 +3796,6 @@ public class OBS_MAIN extends JFrame  {
 			    };  
 			};  
 			timerr.schedule(tt,millisToNextHour(calendar),  kontolsuresi); ;  
-
 			gunluk_goster();
 		} catch (Exception e) 
 		{
@@ -3813,6 +3812,20 @@ public class OBS_MAIN extends JFrame  {
 			gbilgi.tarih1 = dtf.format(now) ;
 			dtf = DateTimeFormatter.ofPattern("HH:00");  
 			gbilgi.saat1 = dtf.format(now) ;
+			
+			String deger = GLOBAL.setting_oku("GUN_KON_ZAM").toString();
+			int deg = Integer.valueOf(deger);
+			deg = deg -1;
+	
+			if (deg <10 )
+			{
+				deger = "0" +  String.valueOf(deg) ;
+			}
+			else {
+				deger =  String.valueOf(deg);
+			}
+			deger = gbilgi.saat1.substring(0,2) + ":" + deger ;
+			gbilgi.saat2 = deger;
 			ResultSet rs;
 			
 			rs = g_Access.gorev_oku_tarih(gbilgi);
@@ -3821,12 +3834,12 @@ public class OBS_MAIN extends JFrame  {
 				if(mESAJ_SAYI ==0)
 				{
 					btnNewButton_72.setVisible(false);
+					return; // Kayit Yok
 				}
-				else {
-					btnNewButton_72.setVisible(true);
-				}
-				return; // Kayit Yok
 			} 
+			else {
+				btnNewButton_72.setVisible(true);
+			}
 			while (rs.next()) 
 			{
 				String mESAJ = TARIH_CEVIR.tarih_ters(rs.getString("TARIH")) + "  " + rs.getString("SAAT")  + "  "

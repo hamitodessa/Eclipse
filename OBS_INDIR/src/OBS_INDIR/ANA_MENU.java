@@ -87,7 +87,7 @@ public class ANA_MENU extends JDialog {
 		
 		setTitle("OBS INDIRME");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 483, 239);
+		setBounds(100, 100, 547, 239);
 		setResizable(false);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -110,7 +110,7 @@ public class ANA_MENU extends JDialog {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				indir();
+				indir("OBS_2025.exe");
 
 			}
 		});
@@ -223,7 +223,7 @@ public class ANA_MENU extends JDialog {
 		JButton btnBackupIndir = new JButton("BACKUP INDIR");
 		btnBackupIndir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				backup_indir();
+				backup_indir("OBS_BACKUP.exe");
 			}
 		});
 	
@@ -234,16 +234,43 @@ public class ANA_MENU extends JDialog {
 		JButton btnNewButton_2 = new JButton("OBS GOREV INDIR");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gorev_indir();
+				gorev_indir("OBS_GOREV.exe");
 			}
 		});
 		
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_2.setBounds(299, 125, 152, 23);
 		panel.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("New button");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				indir("OBS_2025.jar");
+			}
+		});
+		btnNewButton_3.setBounds(456, 75, 48, 23);
+		panel.add(btnNewButton_3);
+		
+		JButton btnNewButton_3_1 = new JButton("New button");
+		btnNewButton_3_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				backup_indir("OBS_BACKUP.jar");
+			}
+		});
+		btnNewButton_3_1.setBounds(456, 99, 48, 23);
+		panel.add(btnNewButton_3_1);
+		
+		JButton btnNewButton_3_2 = new JButton("New button");
+		btnNewButton_3_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gorev_indir("OBS_GOREV.jar");
+			}
+		});
+		btnNewButton_3_2.setBounds(456, 124, 48, 23);
+		panel.add(btnNewButton_3_2);
 
 	}
-	private void indir()
+	private void indir(String hangi)
 	{
 
 		Runnable runner = new Runnable()
@@ -284,14 +311,14 @@ public class ANA_MENU extends JDialog {
 					double toplam = 0 ;
 					FTPFile[] files = ftp.listFiles();
 					for (FTPFile file : files) {
-						if (file.getName().equals("OBS_2025.exe"))  
+						if (file.getName().equals(hangi))  
 							toplam = file.getSize();
 						double topl =  toplam ;
 						lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
 					}
 					contentPane.setCursor(WAIT_CURSOR);
-					String remoteFile2 =  ftp.printWorkingDirectory() + "/OBS_2025.exe";
-					File downloadFile2 = new File(txtdiz.getText() + "/OBS_2025.exe");
+					String remoteFile2 =  ftp.printWorkingDirectory() + "/" + hangi;
+					File downloadFile2 = new File(txtdiz.getText() + "/" + hangi);
 					OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
 					InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
 					double inen= 0;
@@ -340,7 +367,7 @@ public class ANA_MENU extends JDialog {
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
 	}
-	private void backup_indir()
+	private void backup_indir(String hangi)
 	{
 
 		Runnable runner = new Runnable()
@@ -381,14 +408,14 @@ public class ANA_MENU extends JDialog {
 					double toplam = 0 ;
 					FTPFile[] files = ftp.listFiles();
 					for (FTPFile file : files) {
-						if (file.getName().equals("OBS_BACKUP.exe"))  
+						if (file.getName().equals(hangi))  
 							toplam = file.getSize();
 						double topl =  toplam ;
 						lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
 					}
 					contentPane.setCursor(WAIT_CURSOR);
-					String remoteFile2 =  ftp.printWorkingDirectory() + "/OBS_BACKUP.exe";
-					File downloadFile2 = new File(txtdiz.getText() + "/OBS_BACKUP.exe");
+					String remoteFile2 =  ftp.printWorkingDirectory() + "/"+ hangi;
+					File downloadFile2 = new File(txtdiz.getText() + "/" + hangi);
 					OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
 					InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
 					double inen= 0;
@@ -431,7 +458,7 @@ public class ANA_MENU extends JDialog {
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
 	}
-	private void gorev_indir()
+	private void gorev_indir(String hangi)
 	{
 
 		Runnable runner = new Runnable()
@@ -472,14 +499,14 @@ public class ANA_MENU extends JDialog {
 					double toplam = 0 ;
 					FTPFile[] files = ftp.listFiles();
 					for (FTPFile file : files) {
-						if (file.getName().equals("OBS_GOREV.exe"))  
+						if (file.getName().equals(hangi))  
 							toplam = file.getSize();
 						double topl =  toplam ;
 						lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
 					}
 					contentPane.setCursor(WAIT_CURSOR);
-					String remoteFile2 =  ftp.printWorkingDirectory() + "/OBS_GOREV.exe";
-					File downloadFile2 = new File(txtdiz.getText() + "/OBS_GOREV.exe");
+					String remoteFile2 =  ftp.printWorkingDirectory() + "/" + hangi;
+					File downloadFile2 = new File(txtdiz.getText() + "/" + hangi);
 					OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
 					InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
 					double inen= 0;

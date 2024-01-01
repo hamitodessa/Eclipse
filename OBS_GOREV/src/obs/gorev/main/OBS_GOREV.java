@@ -360,7 +360,7 @@ public class OBS_GOREV extends JFrame  {
 	{
 		try 
 		{
-			bAGLAN.cONNECT("hamit");//BAGLAN.kurDizin.kULLANICI
+			bAGLAN.cONNECT(textKurKullanici.getText());//BAGLAN.kurDizin.kULLANICI
 			cONN_AKTAR( BAGLAN.kurDizin.hAN_SQL );
 			mODUL_AKTAR( BAGLAN.kurDizin.hAN_SQL );
 			String hangi_sql =  BAGLAN.kurDizin.hAN_SQL;

@@ -9,5 +9,9 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-net-3.7.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-net-3.7-sources.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/flatlaf-3.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/flatlaf-extras-3.2.5.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/jsvg-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/flatlaf-fonts-roboto-2.137.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

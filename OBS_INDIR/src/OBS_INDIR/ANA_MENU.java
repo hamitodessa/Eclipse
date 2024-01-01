@@ -14,6 +14,9 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -74,16 +77,22 @@ public class ANA_MENU extends JDialog {
 	 * @throws ClassNotFoundException 
 	 */
 	public ANA_MENU() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+	
+		FlatRobotoFont.install();
+		FlatLaf.registerCustomDefaultsSource("OBS_INDIR_THEME");
+		UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
+		FlatMacDarkLaf.setup();
+
+		
 		setTitle("OBS INDIRME");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 239);
+		setBounds(100, 100, 483, 239);
 		setResizable(false);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
-		//MetalLookAndFeel.setCurrentTheme(new  DefaultMetalTheme());
-		//UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-		UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
+		
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -94,28 +103,28 @@ public class ANA_MENU extends JDialog {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		JButton btnNewButton = new JButton("Indir 2");
+		JButton btnNewButton = new JButton("OBS INDIR");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setForeground(new Color(0, 0, 205));
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				indir();
 
 			}
 		});
-		btnNewButton.setBounds(314, 119, 80, 23);
+		btnNewButton.setBounds(299, 75, 152, 23);
 		panel.add(btnNewButton);
 
 		progressBar = new JProgressBar();
-		progressBar.setForeground(new Color(39, 45, 61));
+	
 		progressBar.setBorder(new LineBorder(new Color(0, 191, 255)));
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		progressBar.setBounds(52, 153, 342, 25);
+		progressBar.setBounds(52, 153, 399, 25);
 		panel.add(progressBar);
 
 		txtdiz = new JTextField();
-		txtdiz.setForeground(new Color(0, 0, 128));
+		//txtdiz.setForeground(new Color(0, 0, 128));
 		txtdiz.setText("C:\\OBS_SISTEM");
 		txtdiz.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtdiz.setBounds(52, 24, 281, 20);
@@ -146,23 +155,23 @@ public class ANA_MENU extends JDialog {
 			}
 
 		});
-		btnNewButton_1.setBounds(343, 23, 51, 23);
+		btnNewButton_1.setBounds(343, 23, 75, 23);
 		panel.add(btnNewButton_1);
 
 		JLabel lblNewLabel = new JLabel("Kalan");
-		lblNewLabel.setForeground(new Color(128, 0, 0));
+		//lblNewLabel.setForeground(new Color(128, 0, 0));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setBounds(52, 103, 85, 14);
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Dosya Boyutu");
-		lblNewLabel_1.setForeground(new Color(128, 0, 0));
+		//lblNewLabel_1.setForeground(new Color(128, 0, 0));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_1.setBounds(52, 55, 85, 14);
 		panel.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Indirilen");
-		lblNewLabel_2.setForeground(new Color(128, 0, 0));
+		//lblNewLabel_2.setForeground(new Color(128, 0, 0));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_2.setBounds(52, 80, 85, 14);
 		panel.add(lblNewLabel_2);
@@ -170,43 +179,66 @@ public class ANA_MENU extends JDialog {
 		lblboyut = new JLabel("");
 		lblboyut.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblboyut.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblboyut.setBounds(146, 55, 115, 14);
+		lblboyut.setBounds(146, 55, 143, 14);
 		panel.add(lblboyut);
 
 		lblinen = new JLabel("");
 		lblinen.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblinen.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblinen.setBounds(146, 80, 115, 14);
+		lblinen.setBounds(146, 80, 143, 14);
 		panel.add(lblinen);
 
 		lblkalan = new JLabel("");
 		lblkalan.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblkalan.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblkalan.setBounds(146, 103, 115, 14);
+		lblkalan.setBounds(146, 103, 143, 14);
 		panel.add(lblkalan);
 
 		label = new JLabel("");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label.setBounds(146, 128, 115, 14);
+		label.setBounds(146, 128, 143, 14);
 		panel.add(label);
 
 		lblHiz = new JLabel("Hiz   Saniye");
-		lblHiz.setForeground(new Color(128, 0, 0));
+		//lblHiz.setForeground(new Color(128, 0, 0));
 		lblHiz.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblHiz.setBounds(52, 128, 85, 14);
 		panel.add(lblHiz);
 
 		JButton btnIndir = new JButton("Indir 1");
+		btnIndir.setVisible(false);
 		btnIndir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				indir_natro();
 			}
 		});
-		btnIndir.setForeground(new Color(0, 0, 205));
+		
 		btnIndir.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnIndir.setBounds(314, 95, 80, 23);
+		btnIndir.setBounds(10, 135, 28, 23);
 		panel.add(btnIndir);
+		
+		JButton btnBackupIndir = new JButton("BACKUP INDIR");
+		btnBackupIndir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				backup_indir();
+			}
+		});
+	
+		btnBackupIndir.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnBackupIndir.setBounds(299, 100, 152, 23);
+		panel.add(btnBackupIndir);
+		
+		JButton btnNewButton_2 = new JButton("OBS GOREV INDIR");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gorev_indir();
+			}
+		});
+		
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_2.setBounds(299, 125, 152, 23);
+		panel.add(btnNewButton_2);
 
 	}
 	private void indir()
@@ -306,6 +338,189 @@ public class ANA_MENU extends JDialog {
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
 	}
+	private void backup_indir()
+	{
+
+		Runnable runner = new Runnable()
+		{ 
+			public void run() {
+				/////  
+				FTPClient ftp = new FTPClient();
+				try {
+					lblboyut.setText(FORMATLAMA.doub_0(0) + " bytes");
+					lblinen.setText(FORMATLAMA.doub_0(0)+ " bytes");
+					lblkalan.setText(FORMATLAMA.doub_0(0)+ " bytes");
+					Login_Progres_Bar_Temizle();
+					if (txtdiz.getText().equals(""))
+					{
+						JOptionPane.showMessageDialog(null, "Dizin Secilmemis....",  "OBS Backup Indirme", JOptionPane.ERROR_MESSAGE);   
+						txtdiz.requestFocus();
+						return;
+					}
+					String serverAddress = "78.189.76.247";
+					String userId ="hamitadmin";
+					String password ="SDFks9hfji3#DEd";
+					ftp.connect(serverAddress);
+					if(!ftp.login(userId, password))
+					{
+						ftp.logout();
+						JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",   "OBS Backup Indirme", JOptionPane.ERROR_MESSAGE);   
+					}
+					int reply = ftp.getReplyCode();
+					if (!FTPReply.isPositiveCompletion(reply))
+					{
+						ftp.disconnect();
+						JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",   "OBS Backup Indirme", JOptionPane.ERROR_MESSAGE);   
+					}
+					ftp.setFileType(FTP.BINARY_FILE_TYPE);
+					ftp.enterLocalPassiveMode();
+					boolean success ;
+					//******************************
+					double toplam = 0 ;
+					FTPFile[] files = ftp.listFiles();
+					for (FTPFile file : files) {
+						if (file.getName().equals("OBS_BACKUP.exe"))  
+							toplam = file.getSize();
+						double topl =  toplam ;
+						lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
+					}
+					contentPane.setCursor(WAIT_CURSOR);
+					String remoteFile2 =  ftp.printWorkingDirectory() + "/OBS_BACKUP.exe";
+					File downloadFile2 = new File(txtdiz.getText() + "/OBS_BACKUP.exe");
+					OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
+					InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
+					double inen= 0;
+					byte[] bytesArray = new byte[4096];
+					int bytesRead = -1;
+					progressBar.setMaximum((int) toplam);
+					progressBar.setStringPainted(true);
+					Long start = System.currentTimeMillis();
+					long timeInSecs = 0;
+					while ((bytesRead = inputStream.read(bytesArray)) != -1)
+					{
+						outputStream2.write(bytesArray, 0, bytesRead);
+						inen += bytesRead ;
+						lblinen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
+						lblkalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
+						Lgn_Progres_Bar((int) toplam,(int) inen);
+						double speedInKBps = 0.00;
+						timeInSecs = (System.currentTimeMillis() - start) ; 
+						speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
+						label.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
+					}
+					success = ftp.completePendingCommand();
+					outputStream2.close();
+					inputStream.close();
+					//*******************************
+					if (success) {
+						JOptionPane.showMessageDialog(null, "Indirme Islemi Basari ile tamamlandi....",   "OBS Backup Indirme", JOptionPane.PLAIN_MESSAGE);   
+					}
+					contentPane.setCursor(DEFAULT_CURSOR);
+					Thread.currentThread().isInterrupted();
+					System.exit(1);
+				}
+				catch (Exception ex)
+				{
+					contentPane.setCursor(DEFAULT_CURSOR);
+					JOptionPane.showMessageDialog(null, ex.getMessage(),   "OBS Backup Indirme", JOptionPane.ERROR_MESSAGE);   
+				} 
+			}
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
+	}
+	private void gorev_indir()
+	{
+
+		Runnable runner = new Runnable()
+		{ 
+			public void run() {
+				/////  
+				FTPClient ftp = new FTPClient();
+				try {
+					lblboyut.setText(FORMATLAMA.doub_0(0) + " bytes");
+					lblinen.setText(FORMATLAMA.doub_0(0)+ " bytes");
+					lblkalan.setText(FORMATLAMA.doub_0(0)+ " bytes");
+					Login_Progres_Bar_Temizle();
+					if (txtdiz.getText().equals(""))
+					{
+						JOptionPane.showMessageDialog(null, "Dizin Secilmemis....",  "OBS GOREV Indirme", JOptionPane.ERROR_MESSAGE);   
+						txtdiz.requestFocus();
+						return;
+					}
+					String serverAddress = "78.189.76.247";
+					String userId ="hamitadmin";
+					String password ="SDFks9hfji3#DEd";
+					ftp.connect(serverAddress);
+					if(!ftp.login(userId, password))
+					{
+						ftp.logout();
+						JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",   "OBS GOREV Indirme", JOptionPane.ERROR_MESSAGE);   
+					}
+					int reply = ftp.getReplyCode();
+					if (!FTPReply.isPositiveCompletion(reply))
+					{
+						ftp.disconnect();
+						JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",   "OBS GOREV Indirme", JOptionPane.ERROR_MESSAGE);   
+					}
+					ftp.setFileType(FTP.BINARY_FILE_TYPE);
+					ftp.enterLocalPassiveMode();
+					boolean success ;
+					//******************************
+					double toplam = 0 ;
+					FTPFile[] files = ftp.listFiles();
+					for (FTPFile file : files) {
+						if (file.getName().equals("OBS_GOREV.exe"))  
+							toplam = file.getSize();
+						double topl =  toplam ;
+						lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
+					}
+					contentPane.setCursor(WAIT_CURSOR);
+					String remoteFile2 =  ftp.printWorkingDirectory() + "/OBS_GOREV.exe";
+					File downloadFile2 = new File(txtdiz.getText() + "/OBS_GOREV.exe");
+					OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
+					InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
+					double inen= 0;
+					byte[] bytesArray = new byte[4096];
+					int bytesRead = -1;
+					progressBar.setMaximum((int) toplam);
+					progressBar.setStringPainted(true);
+					Long start = System.currentTimeMillis();
+					long timeInSecs = 0;
+					while ((bytesRead = inputStream.read(bytesArray)) != -1)
+					{
+						outputStream2.write(bytesArray, 0, bytesRead);
+						inen += bytesRead ;
+						lblinen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
+						lblkalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
+						Lgn_Progres_Bar((int) toplam,(int) inen);
+						double speedInKBps = 0.00;
+						timeInSecs = (System.currentTimeMillis() - start) ; 
+						speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
+						label.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
+					}
+					success = ftp.completePendingCommand();
+					outputStream2.close();
+					inputStream.close();
+					//*******************************
+					if (success) {
+						JOptionPane.showMessageDialog(null, "Indirme Islemi Basari ile tamamlandi....",  "OBS GOREV Indirme", JOptionPane.PLAIN_MESSAGE);   
+					}
+					contentPane.setCursor(DEFAULT_CURSOR);
+					Thread.currentThread().isInterrupted();
+					System.exit(1);
+				}
+				catch (Exception ex)
+				{
+					contentPane.setCursor(DEFAULT_CURSOR);
+					JOptionPane.showMessageDialog(null, ex.getMessage(),   "OBS Backup Indirme", JOptionPane.ERROR_MESSAGE);   
+				} 
+			}
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
+	}
+
 	private void indir_natro()
 	{
 		Runnable runner = new Runnable()

@@ -26,6 +26,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
@@ -40,8 +41,9 @@ import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.plaf.basic.BasicComboPopup;
 
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+
 
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
@@ -93,6 +95,9 @@ public class H_PLANI extends JInternalFrame {
 	static ResultSet rs = null ;
 	private static int kayit_sayi = 0 ;
 	private static JTextField txtarama;
+	private static  JComboBox<String> cmbKodu ;
+	
+	
 	public H_PLANI()  {
 		setTitle("HESAP GIRISI");
 		setIconifiable(true);
@@ -619,23 +624,79 @@ public class H_PLANI extends JInternalFrame {
 		lblNewLabel.setBounds(28, 27, 64, 14);
 		panel.add(lblNewLabel);
 		
-		JComboBox<String> cmbKodu = new JComboBox<String>();
+		cmbKodu = new JComboBox<String>();
+		cmbKodu.setEditable(true);
 		JTextField editorComponent = (JTextField)  cmbKodu.getEditor().getEditorComponent();
 		InputMap txtbhesMap = editorComponent.getInputMap(editorComponent.WHEN_FOCUSED);
 		txtbhesMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK), "none");
 		
 		cmbKodu.getEditor().getEditorComponent().setForeground(new Color(0, 0, 128));
-	
-		AutoCompleteDecorator.decorate(cmbKodu);
+		editorComponent.setFont(new Font("Tahoma", Font.BOLD, 12));
+		editorComponent.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(cmbKodu.getEditor().getItem() == null ) return;
+				cmbKodu.showPopup();
+				Object child =  cmbKodu.getAccessibleContext().getAccessibleChild(0);
+				BasicComboPopup popup = (BasicComboPopup)child;
+				
+				JList<Object> list = popup.getList();
+				boolean result = false;
+				for (int i = 0; i < list.getModel().getSize(); i++)
+				{
+					String value =  list.getModel().getElementAt(i).toString();
+					if ( value.toString().startsWith(cmbKodu.getEditor().getItem().toString())  )
+					{
+						result = true;
+					}
+				}
+				if (result == false)
+				{
+					cmbKodu.getEditor().setItem( cmbKodu.getEditor().getItem().toString().substring(0, cmbKodu.getEditor().getItem().toString().length() - 1));
+				}
+				//***********************************
+				for (int i = 0; i < list.getModel().getSize(); i++)
+				{
+					String value =  list.getModel().getElementAt(i).toString();
+					if(cmbKodu.getEditor().getItem() != null)
+					{
+					if (value.toString().startsWith(cmbKodu.getEditor().getItem().toString()))
+					{
+						list.setSelectedIndex(i);
+						list.scrollRectToVisible(list.getCellBounds(i, i+14));
+						
+						//	FATURA.bilgi_doldur( value);
+						//System.out.println(value);
+						return;
+					}
+					///
+					}
+					//
+				}
+			}
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == 27)
+				{
+					cmbKodu.getEditor().setItem("");
+					
+						try {
+							//KERESTE_CIKIS.kod_aciklama_bul(editorComponent.getText().toString());
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+					
+				}
+			}
+		});
 		AUTO_HESAP_KODU.auto_doldur(cmbKodu);
 		
 		cmbKodu.setBounds(102, 88, 206, 22);
 		panel.add(cmbKodu);
 		
 		JButton btnNewButton_6_1 = new JButton("");
+		btnNewButton_6_1.setIcon(new ImageIcon(H_PLANI.class.getResource("/ICONLAR/icons8-repeat-16.png")));
 		btnNewButton_6_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cmbKodu.removeAll();
 				AUTO_HESAP_KODU.auto_doldur(cmbKodu);
 			}
 		});

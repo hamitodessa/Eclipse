@@ -242,31 +242,31 @@ public class ANA_MENU extends JDialog {
 		btnNewButton_2.setBounds(299, 125, 152, 23);
 		panel.add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("New button");
+		JButton btnNewButton_3 = new JButton(".....");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				indir("OBS_2025.jar");
 			}
 		});
-		btnNewButton_3.setBounds(456, 75, 48, 23);
+		btnNewButton_3.setBounds(456, 75, 59, 23);
 		panel.add(btnNewButton_3);
 		
-		JButton btnNewButton_3_1 = new JButton("New button");
+		JButton btnNewButton_3_1 = new JButton(".....");
 		btnNewButton_3_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				backup_indir("OBS_BACKUP.jar");
 			}
 		});
-		btnNewButton_3_1.setBounds(456, 99, 48, 23);
+		btnNewButton_3_1.setBounds(456, 99, 59, 23);
 		panel.add(btnNewButton_3_1);
 		
-		JButton btnNewButton_3_2 = new JButton("New button");
+		JButton btnNewButton_3_2 = new JButton(".....");
 		btnNewButton_3_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gorev_indir("OBS_GOREV.jar");
 			}
 		});
-		btnNewButton_3_2.setBounds(456, 124, 48, 23);
+		btnNewButton_3_2.setBounds(456, 124, 59, 23);
 		panel.add(btnNewButton_3_2);
 
 	}

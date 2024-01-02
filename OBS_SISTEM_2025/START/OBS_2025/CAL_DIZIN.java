@@ -1474,7 +1474,8 @@ public class CAL_DIZIN extends JFrame {
 			grid_doldur();
 			doldur_kutu(tblCari,0);
 			tblCari.requestFocus();
-			tblCari.setRowSelectionInterval(0, 0);
+			if(tblCari.getRowCount() > 0)
+				tblCari.setRowSelectionInterval(0, 0);
 			contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		} catch (Exception e1) {
 	

@@ -100,9 +100,9 @@ public class OBS_GOREV extends JFrame  {
 	static KUR_ACCESS k_Access ;
 	public USER_ISLEMLERI uSER_ISL = new USER_ISLEMLERI();
 	public SIFRE_DONDUR sDONDUR = new     SIFRE_DONDUR();
-	private JTextField textKurKullanici;
 	static Timer timerr ;
 	String[] kurrakkam;
+	private JTextField textKurKullanici;
 	/**
 	 * Launch the application.
 	 */
@@ -143,8 +143,7 @@ public class OBS_GOREV extends JFrame  {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		getContentPane().add(tabbedPane, BorderLayout.CENTER);
+		
 
 		JPanel panelalt = new JPanel();
 		panelalt.setPreferredSize(new Dimension(0,30));
@@ -156,11 +155,12 @@ public class OBS_GOREV extends JFrame  {
 		panelalt.add(lblAciklama);
 
 		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Kur Takip", null, panel_1, null);
+		getContentPane().add(panel_1 , BorderLayout.CENTER);
+		//tabbedPane.addTab("Kur Takip", null, panel_1, null);
 		panel_1.setLayout(null);
 
 		chckbxDurum = new JCheckBox("Aktif / Pasif");
-		chckbxDurum.setBounds(118, 32, 99, 23);
+		chckbxDurum.setBounds(149, 33, 99, 23);
 		panel_1.add(chckbxDurum);
 
 		JLabel lblNewLabel = new JLabel("Gorev Saati");
@@ -168,7 +168,7 @@ public class OBS_GOREV extends JFrame  {
 		panel_1.add(lblNewLabel);
 
 		timeBaslangic = new JSpinner( new SpinnerDateModel() );
-		timeBaslangic.setBounds(118, 71, 75, 25);
+		timeBaslangic.setBounds(149, 71, 75, 25);
 		panel_1.add(timeBaslangic);
 		JSpinner.DateEditor de_timeBaslangic = new JSpinner.DateEditor(timeBaslangic, "HH:mm");
 		timeBaslangic.setEditor(de_timeBaslangic);
@@ -224,36 +224,17 @@ public class OBS_GOREV extends JFrame  {
 		});
 		btnNewButton_1.setBounds(118, 273, 89, 23);
 		panel_1.add(btnNewButton_1);
-
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Ayarlar", null, panel, null);
-		panel.setLayout(null);
-
+		
 		JLabel lblNewLabel_1 = new JLabel("OBS Kur Kullanici");
-		lblNewLabel_1.setBounds(10, 36, 118, 14);
-		panel.add(lblNewLabel_1);
-
+		lblNewLabel_1.setBounds(21, 140, 121, 14);
+		panel_1.add(lblNewLabel_1);
+		
 		textKurKullanici = new JTextField();
-		textKurKullanici.setBounds(138, 33, 219, 20);
-		panel.add(textKurKullanici);
 		textKurKullanici.setColumns(10);
+		textKurKullanici.setBounds(149, 137, 106, 20);
+		panel_1.add(textKurKullanici);
 
-		JButton btnNewButton = new JButton("Kaydet");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(textKurKullanici.getText().equals("")) return;
-				try {
-					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					grvglb.bilgi_kayit(textKurKullanici.getText());
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				} catch (Exception e1) {
-
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnNewButton.setBounds(138, 213, 89, 23);
-		panel.add(btnNewButton);
+		
 		//***********************************************************************************
 		try {
 			if (glb.dos_kontrol(glb.SURUCU + glb.OBS_DOSYA))
@@ -275,7 +256,6 @@ public class OBS_GOREV extends JFrame  {
 					timeBaslangic.setValue(zamDate);
 					calisma_dizini_oku() ;
 					kur_doldur();
-					tabbedPane.setSelectedIndex(0);
 					if(chckbxDurum.isSelected())
 					{
 						jobTimerBasla();
@@ -329,7 +309,7 @@ public class OBS_GOREV extends JFrame  {
       }
 	void kayit() throws ClassNotFoundException, SQLException
 	{
-		grvglb.durum_kaydet(chckbxDurum.isSelected());
+		grvglb.bilgi_kayit( textKurKullanici.getText() , chckbxDurum.isSelected());
 		Date date = (Date) (timeBaslangic.getValue());
 		grvglb.zaman_kaydet(date);
 		grvglb.kur_sil();

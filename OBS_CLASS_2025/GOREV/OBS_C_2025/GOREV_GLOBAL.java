@@ -92,36 +92,27 @@ public class GOREV_GLOBAL {
 		con.close();
 		return bilgi;
 	}
-	public void bilgi_kayit(String kull) throws ClassNotFoundException, SQLException
+	public void bilgi_kayit(String kull,boolean drm) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myGorevConnection();
 		String sql = "";
-		sql = "INSERT INTO BILGILER (OBS_KULLANICI) "
-				+ "VALUES (?)";
+		sql = "DELETE FROM BILGILER ";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		
+		sql = "INSERT INTO BILGILER (OBS_KULLANICI,Durum) "
+				+ "VALUES (?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, kull);
+		stmt.setInt(2, drm == false ? 0:1);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
 		con = null;
 	}
-public void durum_kaydet(boolean drm) throws SQLException, ClassNotFoundException
-{
-	Class.forName("org.sqlite.JDBC");
-	PreparedStatement stmt = null;
-	if (con != null && ! con.isClosed()) con.close();
-	con = glb.myGorevConnection();
-	String sql ="UPDATE  BILGILER  SET Durum=? ";
-	stmt = con.prepareStatement(sql);
-	stmt.setInt(1, drm == false ? 0:1);
-	stmt.executeUpdate();
-	stmt.close();
-	con.close();
-	con = null;
-}
 public void kur_sil()throws ClassNotFoundException, SQLException
 {
 	Class.forName("org.sqlite.JDBC");

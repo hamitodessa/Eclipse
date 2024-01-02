@@ -36,6 +36,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -49,6 +51,7 @@ import java.text.DecimalFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import javax.swing.JFormattedTextField;
+import javax.swing.DefaultComboBoxModel;
 
 @SuppressWarnings({"serial","static-access"})
 public class URUN_KART extends JInternalFrame {
@@ -751,6 +754,19 @@ public class URUN_KART extends JInternalFrame {
 		button_8.setToolTipText("Hesap Plani");
 		button_8.setBounds(611, 103, 24, 24);
 		panel.add(button_8);
+		
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Adet", "Kg", "Ton", "m3", "m2", "m/Tul"}));
+		comboBox.setBounds(184, 132, 57, 22);
+		comboBox.addItemListener(new ItemListener() 
+		{
+			public void itemStateChanged(ItemEvent e) {
+				txtbirim.setText(comboBox.getItemAt(comboBox.getSelectedIndex()));
+			}
+		});
+
+		panel.add(comboBox);
 
 		rd_yenile();
 		hisset("Kodu","");

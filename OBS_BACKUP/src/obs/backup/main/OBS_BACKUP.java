@@ -1493,9 +1493,9 @@ public class OBS_BACKUP extends JFrame {
 				dzip = tarr + "_" + dosADI + ".zip";
 
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
-				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
+				bckp.log_kayit(emirADI, new Date(), dosADI + "Zip Haline Getirildi...");
 				UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
-				bckp.log_kayit(emirADI, new Date(), dosADI + " FTP Yuklendi...");
+				bckp.log_kayit(emirADI, new Date(), dosADI + "FTP Yuklendi...");
 				if( serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
 					File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
@@ -2053,13 +2053,13 @@ public class OBS_BACKUP extends JFrame {
 			if(!ftp.login(kull, sifre))
 			{
 				ftp.logout();
-				//JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS  Backup", JOptionPane.ERROR_MESSAGE);   
+				bckp.genel_kayit_durum("Sistem", false, new Date(), "FTP Baglanti Hatasi Login"); 
 			}
 			int reply = ftp.getReplyCode();
 			if (!FTPReply.isPositiveCompletion(reply))
 			{
 				ftp.disconnect();
-				//JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Backup", JOptionPane.ERROR_MESSAGE);   
+				bckp.genel_kayit_durum("Sistem", false, new Date(), "FTP Baglanti Hatasi isPositiveCompletion");  
 			}
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
 			ftp.enterLocalPassiveMode();
@@ -2340,72 +2340,6 @@ public class OBS_BACKUP extends JFrame {
 			}
 			component.revalidate();
 		}
-	}
-	private void deneme()
-	{		
-		Runnable runner = new Runnable()
-		{ 
-			public void run() {
-		/////  
-		FTPClient ftp = new FTPClient();
-	try {
-				String serverAddress = "85.104.100.135";
-			String userId ="hamitadmin";
-			String password ="SDFSGKgpoji24h2#@";
-			ftp.connect(serverAddress,21);
-			if(!ftp.login(userId, password))
-			{
-				ftp.logout();
-				JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
-			}
-			int reply = ftp.getReplyCode();
-			if (!FTPReply.isPositiveCompletion(reply))
-			{
-				ftp.disconnect();
-				JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Indirme", JOptionPane.ERROR_MESSAGE);   
-			}
-			ftp.setFileType(FTP.BINARY_FILE_TYPE);
-			ftp.enterLocalPassiveMode();
-			boolean success ;
-			//******************************
-			double toplam = 0 ;
-			FTPFile[] files = ftp.listFiles();
-			for (FTPFile file : files) {
-				if (file.getName().equals("281220232346_OK_Car019.zip"))  
-					toplam = file.getSize();
-				double topl =  toplam ;
-			}
-			String remoteFile2 =   "281220232346_OK_Car019.zip";
-			File downloadFile2 = new File( "C:\\281220232346_OK_Car019.zip");
-			OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
-			InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
-			double inen= 0;
-			byte[] bytesArray = new byte[4096];
-			int bytesRead = -1;
-			Long start = System.currentTimeMillis();
-			long timeInSecs = 0;
-			while ((bytesRead = inputStream.read(bytesArray)) != -1)
-			{
-				outputStream2.write(bytesArray, 0, bytesRead);
-				inen += bytesRead ;
-				double speedInKBps = 0.00;
-				timeInSecs = (System.currentTimeMillis() - start) ; 
-				speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
-			System.out.println(inen);
-			}
-			success = ftp.completePendingCommand();
-			outputStream2.close();
-			inputStream.close();
-	
-	} catch (Exception e) {
-		// TODO: handle exception
-	}
-	//
-		}
-	};
-	Thread t = new Thread(runner, "Code Executer");
-	t.start();
-
 	}
 	@Override
 	public Dimension getPreferredSize() {

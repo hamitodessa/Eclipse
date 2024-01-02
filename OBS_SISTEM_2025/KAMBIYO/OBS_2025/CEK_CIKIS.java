@@ -2,6 +2,7 @@ package OBS_2025;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -40,6 +42,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import org.apache.commons.lang.StringUtils;
@@ -84,7 +87,7 @@ public class CEK_CIKIS extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(OBS_SIS_2025_ANA_CLASS._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
 	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar ,OBS_SIS_2025_ANA_CLASS._ICari_Loger);
-
+	private ArrayList<String> listCek = new ArrayList<String>();
 	@SuppressWarnings({"removal","deprecation"})
 	public CEK_CIKIS() {
 
@@ -116,19 +119,35 @@ public class CEK_CIKIS extends JInternalFrame {
 
 		DefaultTableModel model = new DefaultTableModel() ; 
 
-		table = new JTable(model){public boolean isCellEditable(int row,int column)
+		table = new JTable(model){
+			public boolean isCellEditable(int row,int column)
 		{switch(column){
 		case 0:
 			return true;
 		default: return false;}
-		}};
+		}
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
+				Component c = super.prepareRenderer(renderer, row, col);
+				String status = (String)table.getModel().getValueAt(row,0);
+				 
+					if (col == 1)
+					{
+						if(status=="")
+						{
+							DefaultTableModel model = (DefaultTableModel) table.getModel();
+							model.setValueAt( "" , row,  1);
+						}
+					} 
+				return c;
+			}
+		};
 
-
+		
+		
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
 		}
-
 		model.addColumn("Cek No", new String []{""});
 		model.addColumn("Vade", new Date []{ new Date() });
 		model.addColumn("Banka", new String []{""});
@@ -149,10 +168,19 @@ public class CEK_CIKIS extends JInternalFrame {
 		TableColumn col ;
 
 		col = table.getColumnModel().getColumn(0);
-		col.setCellEditor(new KAM_CEKNO(new JTextField(),"CC"));
-		col.setCellRenderer(new KAM_CEKNO_REN());
+		//col.setCellEditor(new KAM_CEKNO(new JTextField(),"CC"));
+		//col.setCellRenderer(new KAM_CEKNO_REN());
 		col.setMinWidth(100);
 		col.setHeaderRenderer(new SOLA());
+		/////
+		listCek = new ArrayList<String> () ;
+		cek_auto();
+		ComboBoxTableCellEditor editor = new ComboBoxTableCellEditor( listCek ,table,"kam_cikis");
+		col = table.getColumnModel().getColumn(0);
+		col.setCellEditor(editor);
+		col.setCellRenderer(new KAM_CEKNO_REN());
+		
+		/////
 
 		col = table.getColumnModel().getColumn(1);
 
@@ -194,6 +222,9 @@ public class CEK_CIKIS extends JInternalFrame {
 		{
 			table.removeColumn(table.getColumnModel().getColumn(9));
 		}
+		
+		
+		
 		JTableHeader th = table.getTableHeader();
 		Dimension dd = table.getPreferredSize();
 		dd.height = 30;
@@ -243,7 +274,7 @@ public class CEK_CIKIS extends JInternalFrame {
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new LineBorder(new Color(0, 191, 255)));
-		tabbedPane.addTab("Cek Giris", null, panel_2, null);
+		tabbedPane.addTab("Cek Cikis", null, panel_2, null);
 		panel_2.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Bordro No");
@@ -341,6 +372,7 @@ public class CEK_CIKIS extends JInternalFrame {
 		textField_1.setColumns(10);
 
 		lblNewLabel_2 = new JLabel(".....");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_2.setForeground(new Color(139, 0, 0));
 		lblNewLabel_2.setBounds(87, 60, 273, 14);
 		panel_2.add(lblNewLabel_2);
@@ -697,12 +729,15 @@ public class CEK_CIKIS extends JInternalFrame {
 				long startTime = System.currentTimeMillis(); 
 				Progres_Bar_Temizle();
 				//'***************** hsp cinsleri ogren***********************BORCLU HESAP
-				String alh = "" ;
-				alh = JOptionPane.showInputDialog(null,"Alacakli Hesabi Giriniz....", "Alacakli Hesap",JOptionPane.QUESTION_MESSAGE);
-				if(alh == null || (alh != null && ("".equals(alh))))   
-				{
-					return;
-				}
+				BORC_ALACAK hsp ;
+				hsp = new BORC_ALACAK();
+				hsp.setLocationRelativeTo(OBS_MAIN.desktopPane);
+				oac.hsp_hsp_kodu = "" ;
+				String alh="";
+				hsp.lblNewLabel.setText("Borclu Hesap");
+				hsp.setVisible(true);
+				alh = oac.hsp_hsp_kodu;
+				if (alh.equals("")) return ;
 				ResultSet rs ;
 				//*******************************************************************************
 				rs = c_Access.hesap_adi_oku(alh);
@@ -811,36 +846,33 @@ public class CEK_CIKIS extends JInternalFrame {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
 	}
-	public static boolean cek_kontrol (String cekno,String tur, int satir)
+	public static void cek_kontrol (String cekno, int satir)
 	{
-		boolean result = false ;
 		try
 		{
+			if(cekno.equals(""))
+			{
+				DefaultTableModel mdll = (DefaultTableModel) table.getModel();
+				if (table.getCellEditor() != null) {
+					table.getCellEditor().stopCellEditing();
+				}
+				
+				mdll.removeRow(table.getSelectedRow());
+			
+			satir_ilave();
+				table.repaint();
+			}
 			ResultSet rs = null ;
 			rs= ka_Access.cek_kontrol(cekno);
 			if (!rs.isBeforeFirst() ) {  
-				result = false;
+				
 			} 
 			else
 			{
 				rs.next();
-				String bno = rs.getString("Cikis_Bordro").toString() ;
-				if ( ! bno.equals("")   && textField.getText().toString().equals(bno))
-				{
-					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu Cek bu Bordroda Cikis Yapilmis..");
-					result = true;
-				}
-				else if ( ! bno.equals("")   &&  ! textField.getText().toString().equals(bno))
-				{
-					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu Cek " + bno + " 'nolu Bordroda Cikis Yapilmis..");
-					result = true ;
-				}
-				else
-				{  // DOLDUR
-					DefaultTableModel model = (DefaultTableModel) table.getModel();
-					String sDate1 = rs.getDate("Vade").toString(); 
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				String sDate1 = rs.getDate("Vade").toString(); 
 					Date vade= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);  
-
 					model.setValueAt(vade,satir, 1);
 					model.setValueAt(rs.getString("Banka"),satir, 2);
 					model.setValueAt(rs.getString("Sube"),satir, 3);
@@ -859,17 +891,13 @@ public class CEK_CIKIS extends JInternalFrame {
 					Date tt= new SimpleDateFormat("yyyy-MM-dd").parse(sDate1); 
 					model.setValueAt(tt,satir, 13);
 					model.setValueAt(rs.getString("Cikis_Ozel_Kod"),satir, 14);
-					result = false ;
-				}
 			}
 		}
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
-		return result ;
 	}
-
 	private void satir_tamamla(int satir)
 	{
 		DefaultTableModel mdll = (DefaultTableModel) table.getModel();
@@ -909,11 +937,15 @@ public class CEK_CIKIS extends JInternalFrame {
 		int evr_sayi = 0 ;
 		for (int i = 0; i <= table.getRowCount() - 1 ; i ++)
 		{
-			if (! model.getValueAt(i,0).toString().equals(""))
+			if(model.getValueAt(i,0) !=null)
 			{
-				tutar  += (double) model.getValueAt(i , 8);
-				evr_sayi += 1 ;
+				if (! model.getValueAt(i,0).toString().equals(""))
+				{
+					tutar  += (double) model.getValueAt(i , 8);
+					evr_sayi += 1 ;
+				}
 			}
+			
 		}
 		label.setText(FORMATLAMA.doub_2(tutar));
 		lblNewLabel_12.setText(FORMATLAMA.doub_0(evr_sayi));
@@ -999,4 +1031,28 @@ public class CEK_CIKIS extends JInternalFrame {
 		}
 		return convertedDate;
 	}
+	private  void cek_auto()
+	{
+		try {
+			ResultSet rs = null;
+			rs = ka_Access.kalan_cek_liste();
+			if (!rs.isBeforeFirst() ) {  
+				listCek.add("");
+			}
+			else
+			{
+				listCek.clear();
+				listCek.add("");
+				while (rs.next())
+				{
+					listCek.add(rs.getString("Cek_No").toString() );
+				}
+			}
+		}
+		catch (Exception ex)
+		{
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
+		}
+	}
+
 }

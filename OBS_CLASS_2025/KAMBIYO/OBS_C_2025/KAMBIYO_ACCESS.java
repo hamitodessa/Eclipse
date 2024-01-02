@@ -114,4 +114,8 @@ public class KAMBIYO_ACCESS {
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(lBILGI, dBILGI);
 	}
+	public ResultSet kalan_cek_liste() throws ClassNotFoundException, SQLException
+	{
+		return _IKambiyo.kalan_cek_liste();
+	}
 }

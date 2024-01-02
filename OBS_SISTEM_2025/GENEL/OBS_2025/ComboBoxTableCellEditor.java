@@ -83,6 +83,8 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 				//***********************************
 				for (int i = 0; i < list.getModel().getSize(); i++)
 				{
+					if(editor.getEditor().getItem() != null)
+					{
 					String value =  list.getModel().getElementAt(i).toString();
 					if (value.toString().startsWith(editor.getEditor().getItem().toString()))
 					{
@@ -112,6 +114,10 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 						{
 							RECETE.bilgi_doldur(editorComponent.getText().toString());
 						}
+						else if (nerden.equals("kam_cikis"))
+						{
+							CEK_CIKIS.cek_kontrol(editorComponent.getText().toString(),table.getSelectedRow());
+						}
 						else if (nerden.equals("ker_cikis"))
 						{
 							try {
@@ -122,6 +128,7 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 						}
 						return;
 					}
+				}
 				}
 			}
 			public void keyPressed(KeyEvent e) {
@@ -200,6 +207,10 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 				{
 					RECETE.bilgi_doldur(editorComponent.getText().toString());
 				}
+				else if (nerden.equals("kam_cikis"))
+				{
+					CEK_CIKIS.cek_kontrol(editorComponent.getText().toString(),table.getSelectedRow());
+				}
 				else if (nerden.equals("ker_cikis"))
 				{
 					try {
@@ -210,7 +221,8 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 					KERESTE_CIKIS.pakkont(editorComponent.getText().toString());
 				}
 				editor.setSelectedItem(editorComponent.getText());
-				table.getCellEditor().stopCellEditing();
+				if(table.getCellEditor() != null)
+					table.getCellEditor().stopCellEditing();
 			}
 			@Override
 			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {

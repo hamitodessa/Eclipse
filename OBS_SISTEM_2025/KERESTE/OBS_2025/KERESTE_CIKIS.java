@@ -1143,7 +1143,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		{
 			table.setGridColor(oac.gridcolor);
 		}
-		//table.setCellSelectionEnabled(true);
 		model.addColumn("Paket_No", new String []{""});
 		model.addColumn("Barkod", new String []{""});
 		model.addColumn("Urun Kodu", new String []{""});
@@ -2108,7 +2107,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Aciklama Silme", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	public static void pakkont(String pakno)
@@ -2126,7 +2124,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 				if (! rSet.getString("Cikis_Evrak").toString().equals("")   && ! rSet.getString("Cikis_Evrak").toString().equals(textField.getText()))
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu Paket daha Once " + rSet.getString("Cikis_Evrak").toString() + " da Cikis Yapilmis" );
-					//JOptionPane.showMessageDialog(null, "Bu Paket daha Once " + rSet.getString("Cikis_Evrak").toString() + " da Cikis Yapilmis"  ,  "Urun Cikis", JOptionPane.ERROR_MESSAGE);  
 				}
 				else 
 				{
@@ -2164,7 +2161,6 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Kereste Paket Kontrol", JOptionPane.ERROR_MESSAGE);  
 		}
 	}
 	private  void depo_auto()

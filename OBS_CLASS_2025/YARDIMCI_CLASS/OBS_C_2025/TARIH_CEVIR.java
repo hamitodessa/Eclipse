@@ -12,6 +12,7 @@ public class TARIH_CEVIR {
 
 	public static  Date tarih(String tar) {
 
+		if(tar.equals("")) return new Date();
 		DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 		Date tarih = null;
 

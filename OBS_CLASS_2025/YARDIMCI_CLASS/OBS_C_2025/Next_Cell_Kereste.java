@@ -61,5 +61,24 @@ public class Next_Cell_Kereste extends AbstractAction {
 				table.transferFocus();
 			}
 		}
+		else  if (nerden.equals("cek_gir"))
+		{
+			if (col >= colCount) 
+			{
+				col = 0;
+				row++;
+			}
+			if (row >= rowCount) 
+			{
+				row = 0;
+			}
+			table.getSelectionModel().setSelectionInterval(row, row);
+			table.getColumnModel().getSelectionModel().setSelectionInterval(col, col);
+			if (col == 0 )
+			{
+				table.editCellAt(row == -1 ? 0:row, col);
+				table.transferFocus();
+			}
+		}
 	}
 }

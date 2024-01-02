@@ -66,7 +66,7 @@ public class KAM_CEKNO extends DefaultCellEditor {
 				if (varmi) textField.setText(""); 
 			}
 			else if (turu.equals("CC")) { 
-				varmi =  CEK_CIKIS.cek_kontrol(textField.getText(),turu,satir);
+				//varmi =  CEK_CIKIS.cek_kontrol(textField.getText(),turu,satir);
 				if (varmi) textField.setText(""); 
 			}
 		} catch (NumberFormatException e) {

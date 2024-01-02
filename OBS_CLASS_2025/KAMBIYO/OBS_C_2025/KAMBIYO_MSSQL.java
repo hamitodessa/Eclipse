@@ -463,4 +463,19 @@ public class KAMBIYO_MSSQL implements IKAMBIYO{
 		if(con.isClosed())    
 			baglan();
 	}
+	@Override
+	public ResultSet kalan_cek_liste() throws ClassNotFoundException, SQLException {
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		String sql = " SELECT  Cek_No " +
+				" FROM CEK " +
+				" WHERE " +
+				" Cikis_Bordro =''" +
+				" ORDER BY Cek_No ";
+		kONTROL();
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		return rss;
+
+	}
 }

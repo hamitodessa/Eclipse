@@ -4,6 +4,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
@@ -11,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
@@ -26,6 +28,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JDateChooserEditor;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KAMBIYO_ACCESS;
+import OBS_C_2025.Next_Cell_Kereste;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
@@ -45,6 +48,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import org.apache.commons.lang.StringUtils;
 
@@ -62,7 +66,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.SwingConstants;
+import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -119,14 +126,35 @@ public class CEK_GIRIS extends JInternalFrame {
 
 
 		DefaultTableModel model = new DefaultTableModel() ; 
-		table = new JTable(model);
+		table = new JTable(model) {
+			
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
+				Component c = super.prepareRenderer(renderer, row, col);
+				String status = (String)table.getModel().getValueAt(row,0);
+				 
+					if (col == 1)
+					{
+						if(status=="")
+						{
+							DefaultTableModel model = (DefaultTableModel) table.getModel();
+							model.setValueAt( "" , row,  1);
+						}
+					} 
+				return c;
+			}
+
+		};
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			table.setGridColor(oac.gridcolor);
 		}
 
-		//table.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT)
-		//  .put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "selectNextColumnCell");
+		InputMap im = table.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Action.NextCell");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), "Action.NextCell");
+		ActionMap am = table.getActionMap();
+		am.put("Action.NextCell", new Next_Cell_Kereste(table,"cek_gir"));
+		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 
 
 		model.addColumn("Cek No", new String []{"0"});
@@ -351,6 +379,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		textField_1.setColumns(10);
 
 		lblNewLabel_2 = new JLabel(".....");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_2.setForeground(new Color(139, 0, 0));
 		lblNewLabel_2.setBounds(87, 60, 273, 14);
 		panel_2.add(lblNewLabel_2);
@@ -897,19 +926,20 @@ public class CEK_GIRIS extends JInternalFrame {
 			try 
 			{
 				Progres_Bar_Temizle();
-				//'***************** hsp cinsleri ogren***********************BORCLU HESAP
-				String bh = "" ;
-				bh = JOptionPane.showInputDialog(null,"Borclu Hesabi Giriniz....", "Borclu Hesap",JOptionPane.QUESTION_MESSAGE);
-				if(bh == null || (bh != null && ("".equals(bh))))   
-				{
-					return;
-				}
+				BORC_ALACAK hsp ;
+				hsp = new BORC_ALACAK();
+				hsp.setLocationRelativeTo(OBS_MAIN.desktopPane);
+				oac.hsp_hsp_kodu = "" ;
+				String bh="";
+				hsp.lblNewLabel.setText("Alacakli Hesap");
+				hsp.setVisible(true);
+				bh = oac.hsp_hsp_kodu;
+				if (bh.equals("")) return ;
 				ResultSet rs ;
 				//*******************************************************************************
 				rs = c_Access.hesap_adi_oku(bh);
 				if (!rs.isBeforeFirst() ) {  
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Bu numarada hesaba rastlanmadi!!!!");
-					//JOptionPane.showMessageDialog(null,  "Bu numarada hesaba rastlanmadi!!!!"); 
 					return ;
 				} 
 				//********************************************************************************
@@ -918,7 +948,6 @@ public class CEK_GIRIS extends JInternalFrame {
 
 				if (!rs.isBeforeFirst() ) {  
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Bu numarada hesaba rastlanmadi!!!!");
-					//JOptionPane.showMessageDialog(null,  "Bu numarada hesaba rastlanmadi!!!!"); 
 					return;
 				} 
 

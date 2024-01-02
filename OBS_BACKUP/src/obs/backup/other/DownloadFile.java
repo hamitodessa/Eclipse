@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.invoke.StringConcatFactory;
 import java.net.SocketException;
 import java.security.InvalidKeyException;
@@ -39,6 +40,8 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -121,13 +124,6 @@ public class DownloadFile extends JPanel {
 				}
 			}
 		});
-		comboBox.addItemListener(new ItemListener() 
-		{
-			public void itemStateChanged(ItemEvent e) {
-				
-			}
-		});
-
 		comboBox.setBounds(84, 11, 233, 25);
 		panel.add(comboBox);
 
@@ -291,12 +287,15 @@ public class DownloadFile extends JPanel {
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
 	}
-	private void lisTELE() throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, SocketException, ParseException, IOException
+	private void lisTELE() 
 	{
-
+		if(comboBox.getSelectedItem().toString().equals("")) {
+			GRID_TEMIZLE.grid_temizle(tblFile);
+			return;
+		}
+		try {
 		List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
 		ftpBilgi = bckp.ftp_bilgi(comboBox.getSelectedItem().toString());
-
 		String ftp, kull, sifre, surucu,  neresi, surucu_yer;
 		ftp = ftpBilgi.get(0).getHOST();
 		kull = ftpBilgi.get(0).getKULLANICI();
@@ -323,7 +322,6 @@ public class DownloadFile extends JPanel {
 		JCheckBox checkBox = new JCheckBox();
 		checkBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				JTableHeader th = tblFile.getTableHeader();
 				TableColumnModel tcm = th.getColumnModel();
 				TableColumn tc = tcm.getColumn(0);
@@ -372,6 +370,9 @@ public class DownloadFile extends JPanel {
 				}
 			}
 		});
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 	public void eismiDOLDUR() throws ClassNotFoundException, SQLException
 	{
@@ -381,7 +382,7 @@ public class DownloadFile extends JPanel {
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 		else {
-			comboBox.addItem("");
+			//comboBox.addItem("");
 			for (int i =0; i<= emirliste.size()-1; i++) {
 				comboBox.addItem(emirliste.get(i).getEMIR_ISMI());
 			}

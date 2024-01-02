@@ -87,7 +87,7 @@ public class ANA_MENU extends JDialog {
 		
 		setTitle("OBS INDIRME");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 547, 239);
+		setBounds(100, 100, 547, 289);
 		setResizable(false);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -122,7 +122,7 @@ public class ANA_MENU extends JDialog {
 		progressBar.setBorder(new LineBorder(new Color(0, 191, 255)));
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		progressBar.setBounds(52, 153, 399, 25);
+		progressBar.setBounds(52, 183, 399, 25);
 		panel.add(progressBar);
 
 		txtdiz = new JTextField();
@@ -268,6 +268,25 @@ public class ANA_MENU extends JDialog {
 		});
 		btnNewButton_3_2.setBounds(456, 124, 59, 23);
 		panel.add(btnNewButton_3_2);
+		
+		JButton btnNewButton_2_1 = new JButton("OBS FIHRIST INDIR");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fihrist_indir("FIHRIST.exe");
+			}
+		});
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_2_1.setBounds(299, 150, 152, 23);
+		panel.add(btnNewButton_2_1);
+		
+		JButton btnNewButton_3_2_1 = new JButton(".....");
+		btnNewButton_3_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fihrist_indir("FIHRIST.jar");
+			}
+		});
+		btnNewButton_3_2_1.setBounds(456, 150, 59, 23);
+		panel.add(btnNewButton_3_2_1);
 
 	}
 	private void indir(String hangi)
@@ -549,7 +568,97 @@ public class ANA_MENU extends JDialog {
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
 	}
+	private void fihrist_indir(String hangi)
+	{
 
+		Runnable runner = new Runnable()
+		{ 
+			public void run() {
+				/////  
+				FTPClient ftp = new FTPClient();
+				try {
+					lblboyut.setText(FORMATLAMA.doub_0(0) + " bytes");
+					lblinen.setText(FORMATLAMA.doub_0(0)+ " bytes");
+					lblkalan.setText(FORMATLAMA.doub_0(0)+ " bytes");
+					Login_Progres_Bar_Temizle();
+					if (txtdiz.getText().equals(""))
+					{
+						JOptionPane.showMessageDialog(null, "Dizin Secilmemis....",  "OBS FIHRIST Indirme", JOptionPane.ERROR_MESSAGE);   
+						txtdiz.requestFocus();
+						return;
+					}
+					String serverAddress = "78.189.76.247";
+					String userId ="hamitadmin";
+					String password ="SDFks9hfji3#DEd";
+					ftp.connect(serverAddress);
+					if(!ftp.login(userId, password))
+					{
+						ftp.logout();
+						JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",   "OBS FIHRIST  Indirme", JOptionPane.ERROR_MESSAGE);   
+					}
+					int reply = ftp.getReplyCode();
+					if (!FTPReply.isPositiveCompletion(reply))
+					{
+						ftp.disconnect();
+						JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",   "OBS FIHRIST  Indirme", JOptionPane.ERROR_MESSAGE);   
+					}
+					ftp.setFileType(FTP.BINARY_FILE_TYPE);
+					ftp.enterLocalPassiveMode();
+					boolean success ;
+					//******************************
+					double toplam = 0 ;
+					FTPFile[] files = ftp.listFiles();
+					for (FTPFile file : files) {
+						if (file.getName().equals(hangi))  
+							toplam = file.getSize();
+						double topl =  toplam ;
+						lblboyut.setText(FORMATLAMA.doub_0(topl /1024)+ " KBytes");
+					}
+					contentPane.setCursor(WAIT_CURSOR);
+					String remoteFile2 =  ftp.printWorkingDirectory() + "/" + hangi;
+					File downloadFile2 = new File(txtdiz.getText() + "/" + hangi);
+					OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
+					InputStream inputStream = ftp.retrieveFileStream(remoteFile2);
+					double inen= 0;
+					byte[] bytesArray = new byte[4096];
+					int bytesRead = -1;
+					progressBar.setMaximum((int) toplam);
+					progressBar.setStringPainted(true);
+					Long start = System.currentTimeMillis();
+					long timeInSecs = 0;
+					while ((bytesRead = inputStream.read(bytesArray)) != -1)
+					{
+						outputStream2.write(bytesArray, 0, bytesRead);
+						inen += bytesRead ;
+						lblinen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
+						lblkalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
+						Lgn_Progres_Bar((int) toplam,(int) inen);
+						double speedInKBps = 0.00;
+						timeInSecs = (System.currentTimeMillis() - start) ; 
+						speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
+						label.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
+					}
+					success = ftp.completePendingCommand();
+					outputStream2.close();
+					inputStream.close();
+					//*******************************
+					if (success) {
+						JOptionPane.showMessageDialog(null, "Indirme Islemi Basari ile tamamlandi....",  "OBS FIHRIST  Indirme", JOptionPane.PLAIN_MESSAGE);   
+					}
+					contentPane.setCursor(DEFAULT_CURSOR);
+					Thread.currentThread().isInterrupted();
+					System.exit(1);
+				}
+				catch (Exception ex)
+				{
+					contentPane.setCursor(DEFAULT_CURSOR);
+					JOptionPane.showMessageDialog(null, ex.getMessage(),   "OBS FIHRIST Indirme", JOptionPane.ERROR_MESSAGE);   
+				} 
+			}
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
+	}
 	private void indir_natro()
 	{
 		Runnable runner = new Runnable()

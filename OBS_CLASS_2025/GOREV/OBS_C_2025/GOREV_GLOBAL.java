@@ -28,12 +28,8 @@ public class GOREV_GLOBAL {
 		String sql = "SELECT * FROM BILGILER ";
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		
 		List<g_bilgiler> bilgi = new ArrayList<g_bilgiler>();
-		
-		
 		rss.next();
-	
 		int count=0;
 		count = rss.getRow();
 		if (count == 0 ) {  
@@ -41,10 +37,8 @@ public class GOREV_GLOBAL {
 				bilgi.add(list);
 			} 
 		else {
-
 			g_bilgiler list = new g_bilgiler("", new Date(), rss.getString("OBS_KULLANICI"),rss.getInt("Durum") == 0 ? false:true);
 					bilgi.add(list);
-			
 		}
 		stmt.close();
 		con.close();
@@ -61,13 +55,10 @@ public class GOREV_GLOBAL {
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<g_bilgiler> bilgi = new ArrayList<g_bilgiler>();
-		
 		while(rss.next())
 		{
-			
 			g_bilgiler list = new g_bilgiler(rss.getString("Kur"), new Date(), "",false);
 					bilgi.add(list);
-			
 		}
 		stmt.close();
 		con.close();
@@ -84,7 +75,6 @@ public class GOREV_GLOBAL {
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<g_bilgiler> bilgi = new ArrayList<g_bilgiler>();
-		
 		rss.next();
 		int count=0;
 		count = rss.getRow();
@@ -97,7 +87,6 @@ public class GOREV_GLOBAL {
 			Date bas =	new SimpleDateFormat("HH:mm").parse(rss.getString("Zaman"));
 			g_bilgiler list = new g_bilgiler("", bas, "",false);
 					bilgi.add(list);
-			
 		}
 		stmt.close();
 		con.close();
@@ -114,7 +103,6 @@ public class GOREV_GLOBAL {
 				+ "VALUES (?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, kull);
-		
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -128,7 +116,6 @@ public void durum_kaydet(boolean drm) throws SQLException, ClassNotFoundExceptio
 	con = glb.myGorevConnection();
 	String sql ="UPDATE  BILGILER  SET Durum=? ";
 	stmt = con.prepareStatement(sql);
-	
 	stmt.setInt(1, drm == false ? 0:1);
 	stmt.executeUpdate();
 	stmt.close();

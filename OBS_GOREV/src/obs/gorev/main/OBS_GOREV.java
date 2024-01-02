@@ -215,6 +215,7 @@ public class OBS_GOREV extends JFrame  {
 				try {
 					kayit();
 					 sirala();
+						JOptionPane.showMessageDialog(null, "Kaydedildi......");
 				} catch (Exception e1) {
 
 					JOptionPane.showMessageDialog(null, e1.getMessage());

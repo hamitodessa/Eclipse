@@ -138,7 +138,7 @@ public class OBS_GOREV extends JFrame  {
 		
 		setTitle("OBS MERKEZ KUR");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 400);
+		setBounds(100, 100, 450, 293);
 		setResizable(false);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -178,7 +178,7 @@ public class OBS_GOREV extends JFrame  {
 		timeBaslangic.setValue(qweDate);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(287, 11, 136, 285);
+		scrollPane.setBounds(287, 11, 136, 198);
 		panel_1.add(scrollPane);
 
 		model = new DefaultListModel<>();
@@ -222,7 +222,7 @@ public class OBS_GOREV extends JFrame  {
 				}
 			}
 		});
-		btnNewButton_1.setBounds(118, 273, 89, 23);
+		btnNewButton_1.setBounds(149, 185, 89, 23);
 		panel_1.add(btnNewButton_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("OBS Kur Kullanici");

@@ -1162,7 +1162,7 @@ public class BACKUP_GLOBAL {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		String sql = "BACKUP DATABASE [" + dbismi + "] TO  DISK = N'"+ glb.BACKUP_YERI +  dbyer + ".bak'" +
-				" WITH NOFORMAT , NOINIT , NAME = N'" + dbismi + "' , SKIP , NOREWIND  ,NOUNLOAD  ";
+				" WITH  NAME = N'" + dbismi + "'   ";
 		Statement stmt ;
 		stmt = S_CONN.createStatement();  
 		stmt.execute(sql);  

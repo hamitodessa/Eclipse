@@ -1496,9 +1496,11 @@ public class OBS_BACKUP extends JFrame {
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
-				Thread.sleep(750);
+				File kontrolDosya = new File(glb.BACKUP_YERI + dosya);
+				while(! kontrolDosya.canRead());
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
-				Thread.sleep(750);
+				kontrolDosya = new File(glb.BACKUP_YERI + dzip);
+				while(! kontrolDosya.canRead());
 				bckp.log_kayit(emirADI, new Date(), dosADI + "Zip Haline Getirildi...");
 				UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "FTP Yuklendi...");

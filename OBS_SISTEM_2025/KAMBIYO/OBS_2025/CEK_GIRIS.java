@@ -597,7 +597,6 @@ public class CEK_GIRIS extends JInternalFrame {
 			textField.requestFocus();
 		} catch (Exception ex) {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Cek Giris", JOptionPane.PLAIN_MESSAGE);
 		}
 		//***********
 	}

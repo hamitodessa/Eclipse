@@ -11,29 +11,39 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import com.toedter.calendar.JDateChooser;
 
+import OBS_C_2025.BAGLAN_LOG;
+import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.dEKONT_BILGI;
+import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-@SuppressWarnings({"serial"})
+@SuppressWarnings({"serial","static-access"})
 public class CEK_TAKIP extends JInternalFrame {
-	private static JTextField textField;
+	public static JTextField textField;
 	private static JLabel lblNewLabel_10 ;
 	private static JLabel lblNewLabel_11 ;
 	private static JLabel lblNewLabel_12 ;
@@ -47,25 +57,28 @@ public class CEK_TAKIP extends JInternalFrame {
 	private static JLabel lblNewLabel_22 ;
 	private static JLabel lblNewLabel_25 ;
 	private static JLabel label ;
-	private JDateChooser dateChooser;
-	private JDateChooser dateChooser_1;
-	private JDateChooser dateChooser_2;
+	private static JDateChooser dateChooser;
+	private static JDateChooser dateChooser_1;
+	private static JDateChooser dateChooser_2;
 	private static JDateChooser dateChooser_3;
 	private static JComboBox<String> comboBox ;
+	private static double tutar=0;
 
-
-	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
+	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
+	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 
 	static KAMBIYO_ACCESS ka_Access = new KAMBIYO_ACCESS(OBS_SIS_2025_ANA_CLASS._IKambiyo , OBS_SIS_2025_ANA_CLASS._IKambiyo_Loger);
+	private static JTextField textDurum;
 
+	static JPanel panel ;
 	public CEK_TAKIP() {
 		setTitle("CEK TAKIP");
 		setClosable(true);
 		setBounds(100, 100, 614, 410);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
@@ -97,6 +110,25 @@ public class CEK_TAKIP extends JInternalFrame {
 				getContentPane().setCursor(DEFAULT_CURSOR);
 			}
 		});
+		textField.addAncestorListener(new AncestorListener() {
+			@Override
+			public void ancestorRemoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorMoved(AncestorEvent pEvent) {
+			}
+			@Override
+			public void ancestorAdded(AncestorEvent pEvent) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						textField.requestFocusInWindow();
+					}
+				});
+			}
+		});
+
+
 		panel_1.add(textField);
 		textField.setColumns(10);
 
@@ -160,13 +192,26 @@ public class CEK_TAKIP extends JInternalFrame {
 		});
 		dateChooser_3.setBounds(88, 20, 127, 25);
 		dateChooser_3.setDateFormatString("dd.MM.yyyy");
+		dateChooser_3.setDate(new Date());
 		dateChooser_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel_1_1.add(dateChooser_3);
 
 		comboBox = new JComboBox<String>();
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"", "1-Iade", "2-Protesto", "3-Tahsil"}));
 		comboBox.setBounds(320, 20, 106, 25);
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(! comboBox.getItemAt(comboBox.getSelectedIndex()).equals(""))
+					textDurum.setText(comboBox.getItemAt(comboBox.getSelectedIndex()).substring(0,1));
+			}
+		});
+		
 		panel_1_1.add(comboBox);
+		
+		textDurum = new JTextField();
+		textDurum.setBounds(225, 20, 46, 20);
+		panel_1_1.add(textDurum);
+		textDurum.setColumns(10);
 
 		JLabel lblNewLabel_5 = new JLabel("Banka");
 		lblNewLabel_5.setBounds(282, 91, 79, 14);
@@ -267,16 +312,15 @@ public class CEK_TAKIP extends JInternalFrame {
 		panel.add(lblNewLabel_25);
 
 	}
-	private void kontrol()
+	public static void kontrol()
 	{
 		try
 		{
 			ResultSet rs = null ;
-			getContentPane().setCursor(WAIT_CURSOR);
 			rs= ka_Access.cek_kontrol(textField.getText());
 			if (!rs.isBeforeFirst() ) {  
-				getContentPane().setCursor(DEFAULT_CURSOR);
 				temizle();
+				tutar=0;
 			} 
 			else
 			{
@@ -292,6 +336,7 @@ public class CEK_TAKIP extends JInternalFrame {
 				lblNewLabel_18.setText(rs.getString("Sube").toString() );
 				lblNewLabel_20.setText(rs.getString("Ilk_Borclu").toString() );
 				lblNewLabel_22.setText(FORMATLAMA.doub_2(rs.getDouble("Tutar")) );
+				tutar = rs.getDouble("Tutar");
 
 				dateChooser.setDate(rs.getDate("Cikis_Tarihi"));   // Cikis Tarihi
 				dateChooser_2.setDate(rs.getDate("Vade")); // Vade
@@ -327,11 +372,9 @@ public class CEK_TAKIP extends JInternalFrame {
 
 
 			}
-			getContentPane().setCursor(DEFAULT_CURSOR);
 		}
 		catch (Exception ex)
 		{
-			getContentPane().setCursor(DEFAULT_CURSOR);
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 			//JOptionPane.showMessageDialog(null,ex.getMessage(), "Cek Takip", JOptionPane.PLAIN_MESSAGE);
 		}
@@ -359,18 +402,18 @@ public class CEK_TAKIP extends JInternalFrame {
 			{
 				durum= "";
 			}
-
+			GuiUtil.setWaitCursor(panel,true);
 			ka_Access.kam_durum_yaz(textField.getText(), "CEK", "Cek_No", durum,  TARIH_CEVIR.tarih_geri(dateChooser_3));
 			textField.setText("");
+			GuiUtil.setWaitCursor(panel,false);
 			textField.requestFocus();
 		}
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			//JOptionPane.showMessageDialog(null,ex.getMessage(), "Cek Takip", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
-	private void temizle()
+	private static void temizle()
 	{
 		lblNewLabel_10.setText("" );
 		lblNewLabel_11.setText("" );
@@ -390,5 +433,105 @@ public class CEK_TAKIP extends JInternalFrame {
 		label.setText("" );
 		lblNewLabel_25.setText("" );
 		comboBox.setSelectedItem("");
+	}
+	
+	public static void cari_kaydet()
+	{
+		if(lblNewLabel_10.getText().equals("")) return;
+		
+		//***************** hsp cinsleri ogren***********************BORCLU HESAP
+		BORC_ALACAK hsp ;
+		hsp = new BORC_ALACAK();
+		hsp.setLocationRelativeTo(OBS_MAIN.desktopPane);
+		oac.hsp_hsp_kodu = "" ;
+		String bh="";
+		hsp.lblNewLabel.setText("Borclu Hesap");
+		hsp.setVisible(true);
+		bh = oac.hsp_hsp_kodu;
+		if (bh.equals(""))
+		{
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Hesap No bos !!!!");
+			return ;
+		}
+		//***************** hsp cinsleri ogren***********************ALACAKLI HESAP
+		hsp = new BORC_ALACAK();
+		hsp.setLocationRelativeTo(OBS_MAIN.desktopPane);
+		oac.hsp_hsp_kodu = "" ;
+		String alh="";
+		hsp.lblNewLabel.setText("Alacakli Hesap");
+		hsp.setVisible(true);
+		alh = oac.hsp_hsp_kodu;
+		if (alh.equals(""))
+		{
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Hesap No bos !!!!");
+			return ;
+		}
+		//********************************************************************************
+		if( bh.equals(alh))
+		{
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Borclu ve Alacakli Hesap Ayni...");
+			return;
+		}
+		GuiUtil.setWaitCursor(panel,true);
+		String str_1 = "";
+		String str_4  = "";
+		try {
+			if(textDurum.getText().equals("1") )
+			{
+				str_1 = "Iade";
+			}
+			else if(textDurum.getText().equals("2") )
+			{
+				str_1 = "Protesto";
+			}
+			else if(textDurum.getText().equals("3") )
+			{
+				str_1 = "Tahsil";
+			}
+			int eno =0;
+			eno = c_Access.cari_fisno_al();
+			str_4 = lblNewLabel_10.getText() + " Nolu Cek " + str_1;
+			///
+			String str = TARIH_CEVIR.tarih_geri_saatli(dateChooser_3) ;
+			String mesaj = "Cek no :" +lblNewLabel_10.getText()  + " A. Hes:" + alh + " Tut:" + lblNewLabel_22.getText() +
+					" B. Hes:"+ bh + " Tut:" + lblNewLabel_22.getText() + " Cek " + str_1;
+			String mesaj1 = mesaj;
+			if( mesaj.length() + mesaj1.length() <= 95)
+			{
+				mesaj = mesaj + " Msj:" + mesaj1 ;
+			}
+			else
+			{
+				mesaj = mesaj + " Msj:" + mesaj1.substring(0, 95  -(mesaj.length())) ;
+			}
+			lOG_BILGI lBILGI = new lOG_BILGI();
+			lBILGI.setmESAJ(mesaj);
+			lBILGI.seteVRAK("");
+			dEKONT_BILGI dBilgi = new dEKONT_BILGI();
+			dBilgi.setbHES(bh);
+			dBilgi.settAR(str);
+			dBilgi.seteVRAK(eno);
+			dBilgi.setbCINS("");
+			dBilgi.setbKUR(1);
+			dBilgi.setbORC(tutar);
+			dBilgi.setaHES(alh);
+			dBilgi.setaCINS("");
+			dBilgi.setaKUR(1);
+			dBilgi.setaLACAK(tutar);
+
+			str_4 = lblNewLabel_10.getText() + " Nolu Cek " + str_1;
+			dBilgi.setiZAHAT(str_4);
+			dBilgi.setkOD("");
+			dBilgi.setuSER( GLOBAL.KULL_ADI);
+			lBILGI.setmESAJ(mesaj);
+
+			c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,BAGLAN_LOG.cariLogDizin	);
+			GuiUtil.setWaitCursor(panel,false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.INFO, "Cari Hesaba Basari ile Kaydedilmistir....");
+		} catch (Exception ex) {
+			GuiUtil.setWaitCursor(panel,false);
+			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+		}
+
 	}
 }

@@ -3397,6 +3397,7 @@ public class OBS_MAIN extends JFrame  {
 				else if (sonuc =="FATURA		- SATIS" || sonuc =="FATURA		- ALIS" )	FATURA.cari_kaydet();
 				else if (sonuc == "KERESTE GIRIS")	KERESTE_GIRIS.cari_kaydet();
 				else if (sonuc == "KERESTE CIKIS")	KERESTE_CIKIS.cari_kaydet();
+				else if (sonuc == "CEK TAKIP")	CEK_TAKIP.cari_kaydet();
 				GuiUtil.setWaitCursor(toolBar,false);
 			}
 		});

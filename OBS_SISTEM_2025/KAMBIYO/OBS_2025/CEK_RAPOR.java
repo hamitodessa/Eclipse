@@ -44,6 +44,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyVetoException;
 
 @SuppressWarnings({"serial","static-access"})
 public class CEK_RAPOR extends JInternalFrame {
@@ -108,7 +109,39 @@ public class CEK_RAPOR extends JInternalFrame {
 				}
 			}
 		});
-		
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					boolean varmi = OBS_MAIN.pencere_bak("CEK TAKIP");
+					if (varmi  ) 
+					{
+						try {
+							OBS_MAIN.pencere_aktiv_yap("CEK TAKIP");
+						} catch (PropertyVetoException e1) {
+							e1.printStackTrace();
+						}
+					}
+					else
+					{
+						JInternalFrame internalFrame;
+						internalFrame  = new CEK_TAKIP();
+						OBS_MAIN.desktopPane.add(internalFrame);
+						internalFrame.setVisible(true);
+					}
+					try 
+					{
+						CEK_TAKIP.textField.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+						CEK_TAKIP.kontrol();
+					} 
+					catch (NumberFormatException e1) 
+					{
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
@@ -262,8 +295,6 @@ public class CEK_RAPOR extends JInternalFrame {
 				}
 				toplam += (double) table.getValueAt(i , 8);
 			}
-			//table.setSelectionBackground(Color.PINK);
-			//table.setSelectionForeground(Color.BLUE);
 			lblToplam.setText(FORMATLAMA.doub_2(toplam));
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime; 

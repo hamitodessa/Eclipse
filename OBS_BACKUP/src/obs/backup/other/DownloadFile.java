@@ -309,7 +309,6 @@ public class DownloadFile extends JPanel {
 		if(comboBox.getSelectedItem() == null) return;
 		GRID_TEMIZLE.grid_temizle(tblFile);
 		if(comboBox.getSelectedItem().toString().equals("")) {
-
 			return;
 		}
 		Runnable runner = new Runnable()
@@ -408,10 +407,10 @@ public class DownloadFile extends JPanel {
 			GuiUtil.setWaitCursor(scrollPane,false);
 			GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
 		}
-	}
-};
-Thread t = new Thread(runner, "Code Executer");
-t.start();
+			}
+		};
+		Thread t = new Thread(runner, "Code Executer");
+		t.start();
 
 	}
 	public void eismiDOLDUR() throws ClassNotFoundException, SQLException

@@ -638,6 +638,6 @@ public class EmirAnaGiris extends JPanel {
 		OBS_BACKUP.serverBilgileriPanel.textMySifre.setText("");
 		OBS_BACKUP.serverBilgileriPanel.textMyDump.setText("");
 		OBS_BACKUP.serverBilgileriPanel.tabbedPane.setSelectedIndex(0);
-
+		OBS_BACKUP.emirKopyalaPanel.textField.setText("");
 	}
 }

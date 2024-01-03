@@ -1037,7 +1037,7 @@ public class BACKUP_GLOBAL {
 		con.close();
 		return model ;
 	}
-	public DefaultTableModel log_liste()throws ClassNotFoundException, SQLException, ParseException
+	public DefaultTableModel log_liste(String eismi)throws ClassNotFoundException, SQLException, ParseException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -1045,7 +1045,17 @@ public class BACKUP_GLOBAL {
 		ResultSet	rss = null;
 		con = glb.myBackupLogConnection();
 		String sql = "";
-		sql =  "SELECT TARIH,ACIKLAMA,EMIR_ISMI FROM LOG ORDER BY TARIH COLLATE NOCASE ASC";
+		String where = "" ;
+		if(eismi.equals("Hepsi"))
+		{
+			where = "";
+		}
+		else {
+			where = " WHERE EMIR_ISMI = '" + eismi + "'";
+		}
+		sql =  "SELECT TARIH,ACIKLAMA,EMIR_ISMI FROM LOG " 
+				+ where
+				+ " ORDER BY TARIH COLLATE NOCASE ASC";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		DefaultTableModel model =new DefaultTableModel(new String[] {"TARIH", "ACIKLAMA", "EMIR_ISMI"},0);
@@ -1064,7 +1074,26 @@ public class BACKUP_GLOBAL {
 		con.close();
 		return model ;
 	}
-
+	public ArrayList<String> log_isim() throws ClassNotFoundException, SQLException
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		PreparedStatement stmt = null;
+		ResultSet	rss = null;
+		con = glb.myBackupLogConnection();
+		String sql = "";
+		sql =  "SELECT DISTINCT EMIR_ISMI FROM LOG ORDER BY EMIR_ISMI COLLATE NOCASE ASC";
+		stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		ArrayList<String> listeStrings = new ArrayList<String>();
+		while(rss.next())
+		{
+			listeStrings.add(rss.getString("EMIR_ISMI"));
+		}
+		stmt.close();
+		con.close();
+		return listeStrings;
+	}
 	public DefaultTableModel file_liste(String ftpAddress, String surucu,String ftpUser, String ftpPassword,int port)throws ClassNotFoundException, SQLException, ParseException, SocketException, IOException
 	{
 		FTPClient ftp = new FTPClient();

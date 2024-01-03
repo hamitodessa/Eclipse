@@ -7,8 +7,8 @@ import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -28,13 +28,19 @@ import javax.swing.table.TableStringConverter;
 
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.FORMATLAMA;
+import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.SOLA_DUZ_RENK;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LoglamaRapor extends JPanel {
 
@@ -42,7 +48,10 @@ public class LoglamaRapor extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable tblLog;
 	private JTextField txtArama;
-
+	private JComboBox<String> comboBox ;
+	private boolean ilkBASLA= true;
+	JPanel panel;
+	JScrollPane scrollPane ;
 	/**
 	 * Create the panel.
 	 */
@@ -50,7 +59,7 @@ public class LoglamaRapor extends JPanel {
 	public LoglamaRapor() {
 		setLayout(new BorderLayout(0, 0));
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setPreferredSize(new Dimension(0, 50));
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
@@ -64,6 +73,56 @@ public class LoglamaRapor extends JPanel {
 		txtArama.setBounds(79, 10, 298, 25);
 		panel.add(txtArama);
 		txtArama.setColumns(10);
+		
+		comboBox = new JComboBox<String>();
+		comboBox.setBounds(398, 11, 140, 22);
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					if(!ilkBASLA)
+					{
+						if(comboBox.getSelectedItem() != null)
+							doldur_log(comboBox.getSelectedItem().toString());
+					}
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				} catch (Exception e1) {
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+					e1.printStackTrace();
+				}
+			}
+		});
+
+		panel.add(comboBox);
+		
+		JButton btnNewButton = new JButton("Sil");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int g = JOptionPane.showOptionDialog(null,comboBox.getSelectedItem().toString() + " -  Log  Silinecek ..?" ,
+						"OBS BACKUP ", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
+				if(g ==  1) {
+					return;
+				}
+				try {
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					if(comboBox.getSelectedItem().toString().equals("Hepsi"))
+					{
+						bckp.log_kayit_komple_sil();
+					}
+					else {
+						bckp.log_kayit_sil(comboBox.getSelectedItem().toString());
+					}
+					doldur();
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				} catch (Exception e1) 
+				{
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.setBounds(548, 11, 89, 23);
+		panel.add(btnNewButton);
 		txtArama.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				arama();
@@ -105,7 +164,7 @@ public class LoglamaRapor extends JPanel {
 		});
 
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
 
 		tblLog = new JTable(){
@@ -119,8 +178,28 @@ public class LoglamaRapor extends JPanel {
 	}
 	public void doldur() throws ClassNotFoundException, SQLException
 	{
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		ArrayList<String> emirliste = bckp.log_isim();
+		comboBox.removeAllItems();
+		if (emirliste.size() == 0 ) {  
+			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		}
+		else {
+			comboBox.addItem("Hepsi");
+			for (int i =0; i<= emirliste.size()-1; i++) {
+				comboBox.addItem(emirliste.get(i));
+			}
+		}
+		doldur_log("Hepsi");
+		ilkBASLA = false;
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+	}
+
+	public void doldur_log(String eismi) throws ClassNotFoundException, SQLException
+	{
 		try {
-			DefaultTableModel tbm   = 	bckp.log_liste();
+			GRID_TEMIZLE.grid_temizle(tblLog);
+			DefaultTableModel tbm   = bckp.log_liste(eismi);
 			tblLog.setModel(tbm);
 
 			JTableHeader th = tblLog.getTableHeader();
@@ -136,8 +215,8 @@ public class LoglamaRapor extends JPanel {
 
 			tc = tcm.getColumn(2);
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-			tc.setMinWidth(100);
-			tc.setMaxWidth(100);
+			tc.setMinWidth(200);
+			tc.setMaxWidth(200);
 
 			Dimension dd = th.getPreferredSize();
 			dd.height = 30;

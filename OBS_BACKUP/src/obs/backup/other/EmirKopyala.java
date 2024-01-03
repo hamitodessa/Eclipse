@@ -19,7 +19,7 @@ import raven.toast.Notifications;
 public class EmirKopyala extends JPanel {
 	 BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
+	public JTextField textField;
 
 	/**
 	 * Create the panel.

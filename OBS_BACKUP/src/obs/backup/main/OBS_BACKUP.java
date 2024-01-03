@@ -571,19 +571,8 @@ public class OBS_BACKUP extends JFrame {
 		altPane.add(lblemirSAYI);
 
 
-		//		if (list.getModel().getSize() != 0) 
-		//		{
-		//			for (int i =0; i< list.getModel().getSize(); i++)
-		//			{
-		//				CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
-		//				
-		//				System.out.println(item.isSelected + "=="+    item.surucu() + "=="+item.toString());
-		//			//	System.out.println(item.surucu() + "=="+list.getModel().getElementAt(i).toString());
-		//			} 
-		//		}
-
 		emirAnaGirisPanel = new EmirAnaGiris();
-		tabbedPane_1.addTab("Yeni Emir", null,emirAnaGirisPanel, null);
+		tabbedPane_1.addTab("Emir", null,emirAnaGirisPanel, null);
 		sunucuayarPanel = new SunucuAyarlari();
 		tabbedPane_1.addTab("Surucu Ayarlari", null,sunucuayarPanel, null);
 		bilgilendirmePanel = new Bilgilendirme();

@@ -148,6 +148,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		add(lblemirISMI);
 
 		lblSonDurum = new JLabel(".....");
+		lblSonDurum.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblSonDurum.setBounds(240, 47, 336, 14);
 		lblSonDurum.setName("lblSonDurum"); 
 		add(lblSonDurum);
@@ -215,8 +216,8 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 
 		lblDurum = new JLabel(".....");
 		lblDurum.setFont(new Font("Tahoma", Font.BOLD, 11));
-		//lblDurum.setForeground(new Color(128, 0, 0));
-		lblDurum.setBounds(35, 16, 195, 14);
+		lblDurum.setForeground(Color.RED);
+		lblDurum.setBounds(40, 16, 195, 14);
 		add(lblDurum);
 
 		lblBASLAMA = new JLabel(".....");

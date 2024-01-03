@@ -55,6 +55,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
+
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckBoxHeader;
 import OBS_C_2025.CheckBoxRenderer;
@@ -86,14 +87,15 @@ import javax.swing.JCheckBox;
 public class DownloadFile extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTable tblFile;
+	public static JTable tblFile;
 	private boolean hEPSI = false;
-	private JComboBox<String> comboBox;
+	public JComboBox<String> comboBox;
 	GLOBAL glb = new GLOBAL();
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private boolean ilkBASLA= true;
 	DownloadPanel panelalt ;
 	int satir = 0 ;
+	JPanel panel;
 	/**
 	 * Create the panel.
 	 */
@@ -101,7 +103,7 @@ public class DownloadFile extends JPanel {
 	public DownloadFile() {
 		setLayout(new BorderLayout(0, 0));
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setPreferredSize(new Dimension(0, 50));
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
@@ -167,6 +169,7 @@ public class DownloadFile extends JPanel {
 		panelalt = new DownloadPanel();
 		panelalt.setPreferredSize(new Dimension(0, 0));
 		add(panelalt, BorderLayout.SOUTH);
+	
 	}
 
 	private void inDIR() throws InterruptedException, ClassNotFoundException, SQLException
@@ -289,87 +292,90 @@ public class DownloadFile extends JPanel {
 	}
 	private void lisTELE() 
 	{
+		if(comboBox.getSelectedItem() == null) return;
+		GRID_TEMIZLE.grid_temizle(tblFile);
 		if(comboBox.getSelectedItem().toString().equals("")) {
-			GRID_TEMIZLE.grid_temizle(tblFile);
+
 			return;
 		}
-		try {
-		List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
-		ftpBilgi = bckp.ftp_bilgi(comboBox.getSelectedItem().toString());
-		String ftp, kull, sifre, surucu,  neresi, surucu_yer;
-		ftp = ftpBilgi.get(0).getHOST();
-		kull = ftpBilgi.get(0).getKULLANICI();
-
-		String decodedString = ftpBilgi.get(0).getSIFRE();
-		String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
-		byte[] bytes = new byte[byteValues.length];
-		for (int i=0, len=bytes.length; i<len; i++) {
-			bytes[i] = Byte.parseByte(byteValues[i].trim());     
-		}
-		sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
-		surucu = ftpBilgi.get(0).getSURUCU();
-		int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
-		surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
-
-		GRID_TEMIZLE.grid_temizle(tblFile);
-
-		tblFile.setModel(bckp.file_liste( ftp , surucu, kull, sifre,port));
-		JTableHeader th = tblFile.getTableHeader();
-		TableColumnModel tcm = th.getColumnModel();
-		TableColumn tc;
-
-		tc = tcm.getColumn(0);
-		JCheckBox checkBox = new JCheckBox();
-		checkBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JTableHeader th = tblFile.getTableHeader();
-				TableColumnModel tcm = th.getColumnModel();
-				TableColumn tc = tcm.getColumn(0);
-				tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
-				th.repaint();
-				tblFile.repaint();
-			}
-		});
-		checkBox.setHorizontalAlignment(JCheckBox.CENTER);
-		DefaultCellEditor dce = new DefaultCellEditor( checkBox );
-		tc.setCellEditor(dce);
-		tc.setCellRenderer(new CheckBoxRenderer());
-		tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
-
-		tc.setMinWidth(50);
-		tc.setMaxWidth(50);
-
-		tc = tcm.getColumn(1);
-		tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-
-		tc = tcm.getColumn(2);
-		tc.setHeaderRenderer(new SAGA_DUZ_RENK());
-		tc.setCellRenderer(new TABLO_RENDERER(0,false));
-		tc.setMinWidth(100);
-		tc.setMaxWidth(100);
-
-		tc = tcm.getColumn(3);
-		tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-		tc.setMinWidth(150);
-		tc.setMaxWidth(150);
-
-		Dimension dd = tblFile.getPreferredSize();
-		dd.height = 30;
-		th.setPreferredSize(dd); 
-
-		tblFile.setRowSelectionInterval(0, 0);
-		tblFile.setRowHeight(21);
-		tblFile.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
+		try 
 		{
-			public void tableChanged(TableModelEvent e) 
-			{
-				TableModel model = (TableModel)e.getSource();
-				if (model.getRowCount() > 0) {
-					if(!hEPSI)
-						secilen_satir();
-				}
+			List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
+			ftpBilgi = bckp.ftp_bilgi(comboBox.getSelectedItem().toString());
+			String ftp, kull, sifre, surucu,  neresi, surucu_yer;
+			ftp = ftpBilgi.get(0).getHOST();
+			kull = ftpBilgi.get(0).getKULLANICI();
+
+			String decodedString = ftpBilgi.get(0).getSIFRE();
+			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+			byte[] bytes = new byte[byteValues.length];
+			for (int i=0, len=bytes.length; i<len; i++) {
+				bytes[i] = Byte.parseByte(byteValues[i].trim());     
 			}
-		});
+			sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
+			surucu = ftpBilgi.get(0).getSURUCU();
+			int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
+			surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
+
+			GRID_TEMIZLE.grid_temizle(tblFile);
+
+			tblFile.setModel(bckp.file_liste( ftp , surucu, kull, sifre,port));
+			JTableHeader th = tblFile.getTableHeader();
+			TableColumnModel tcm = th.getColumnModel();
+			TableColumn tc;
+
+			tc = tcm.getColumn(0);
+			JCheckBox checkBox = new JCheckBox();
+			checkBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JTableHeader th = tblFile.getTableHeader();
+					TableColumnModel tcm = th.getColumnModel();
+					TableColumn tc = tcm.getColumn(0);
+					tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+					th.repaint();
+					tblFile.repaint();
+				}
+			});
+			checkBox.setHorizontalAlignment(JCheckBox.CENTER);
+			DefaultCellEditor dce = new DefaultCellEditor( checkBox );
+			tc.setCellEditor(dce);
+			tc.setCellRenderer(new CheckBoxRenderer());
+			tc.setHeaderRenderer(new CheckBoxHeader(new MyItemListener()));
+
+			tc.setMinWidth(50);
+			tc.setMaxWidth(50);
+
+			tc = tcm.getColumn(1);
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
+
+			tc = tcm.getColumn(2);
+			tc.setHeaderRenderer(new SAGA_DUZ_RENK());
+			tc.setCellRenderer(new TABLO_RENDERER(0,false));
+			tc.setMinWidth(100);
+			tc.setMaxWidth(100);
+
+			tc = tcm.getColumn(3);
+			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
+			tc.setMinWidth(150);
+			tc.setMaxWidth(150);
+
+			Dimension dd = tblFile.getPreferredSize();
+			dd.height = 30;
+			th.setPreferredSize(dd); 
+
+			tblFile.setRowSelectionInterval(0, 0);
+			tblFile.setRowHeight(21);
+			tblFile.getModel().addTableModelListener(	(TableModelListener) new TableModelListener() 
+			{
+				public void tableChanged(TableModelEvent e) 
+				{
+					TableModel model = (TableModel)e.getSource();
+					if (model.getRowCount() > 0) {
+						if(!hEPSI)
+							secilen_satir();
+					}
+				}
+			});
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -382,7 +388,7 @@ public class DownloadFile extends JPanel {
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 		else {
-			//comboBox.addItem("");
+			comboBox.addItem("");
 			for (int i =0; i<= emirliste.size()-1; i++) {
 				comboBox.addItem(emirliste.get(i).getEMIR_ISMI());
 			}

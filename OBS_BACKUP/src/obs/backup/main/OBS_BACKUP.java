@@ -26,6 +26,7 @@ import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckListItem;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.GRID_TEMIZLE;
 import javazoom.jl.player.Player;
 import obs.backup.gorev.gOREV_TAKIP;
 import obs.backup.other.Bilgilendirme;
@@ -493,6 +494,8 @@ public class OBS_BACKUP extends JFrame {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				tabbedPane.setSelectedIndex(6);
 				try {
+					GRID_TEMIZLE.grid_temizle(downloadFilePanel.tblFile);
+					downloadFilePanel.comboBox.removeAllItems();
 					downloadFilePanel.eismiDOLDUR();
 				} catch (ClassNotFoundException | SQLException e1) {
 

@@ -19,14 +19,19 @@ import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -42,7 +47,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class ANA_MENU extends JDialog {
+public class ANA_MENU extends JFrame {
 	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	private JPanel contentPane;
@@ -53,7 +58,7 @@ public class ANA_MENU extends JDialog {
 	private JProgressBar progressBar ;
 	private JLabel label;
 	private JLabel lblHiz;
-
+	int x ,y ;
 	/**
 	 * Launch the application.
 	 */
@@ -79,16 +84,31 @@ public class ANA_MENU extends JDialog {
 	 */
 	public ANA_MENU() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 	
+		setUndecorated(true);
 		FlatRobotoFont.install();
 		FlatLaf.registerCustomDefaultsSource("OBS_INDIR_THEME");
 		UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
 		FlatMacDarkLaf.setup();
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				x = e.getX(); 
+				y = e.getY(); 
+			}
+		});
+		addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int xx = e.getXOnScreen();
+				int yy = e.getYOnScreen(); 
+				setLocation(xx-x,yy-y);
+			}
+		});
 
 		
 		setTitle("OBS INDIRME");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 547, 289);
-		setResizable(false);
+		setBounds(100, 100, 561, 255);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
@@ -100,12 +120,14 @@ public class ANA_MENU extends JDialog {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
+		contentPane.add(new Title_Bar(this), BorderLayout.NORTH);
+		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		JButton btnNewButton = new JButton("OBS INDIR");
+		JButton btnNewButton = new JButton("OBS_2025 -EXE");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		btnNewButton.addActionListener(new ActionListener() {
@@ -114,7 +136,7 @@ public class ANA_MENU extends JDialog {
 
 			}
 		});
-		btnNewButton.setBounds(299, 75, 152, 23);
+		btnNewButton.setBounds(318, 75, 133, 23);
 		panel.add(btnNewButton);
 
 		progressBar = new JProgressBar();
@@ -129,11 +151,12 @@ public class ANA_MENU extends JDialog {
 		//txtdiz.setForeground(new Color(0, 0, 128));
 		txtdiz.setText("C:\\OBS_SISTEM");
 		txtdiz.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtdiz.setBounds(52, 24, 281, 20);
+		txtdiz.setBounds(52, 24, 399, 20);
 		panel.add(txtdiz);
 		txtdiz.setColumns(10);
 
-		JButton btnNewButton_1 = new JButton(".....");
+		JButton btnNewButton_1 = new JButton("INDIR");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(WAIT_CURSOR);
@@ -157,7 +180,7 @@ public class ANA_MENU extends JDialog {
 			}
 
 		});
-		btnNewButton_1.setBounds(343, 23, 75, 23);
+		btnNewButton_1.setBounds(456, 23, 80, 23);
 		panel.add(btnNewButton_1);
 
 		JLabel lblNewLabel = new JLabel("Kalan");
@@ -220,7 +243,7 @@ public class ANA_MENU extends JDialog {
 		btnIndir.setBounds(10, 135, 28, 23);
 		panel.add(btnIndir);
 		
-		JButton btnBackupIndir = new JButton("BACKUP INDIR");
+		JButton btnBackupIndir = new JButton("BACKUP -EXE");
 		btnBackupIndir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				backup_indir("OBS_BACKUP.exe");
@@ -228,10 +251,10 @@ public class ANA_MENU extends JDialog {
 		});
 	
 		btnBackupIndir.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnBackupIndir.setBounds(299, 100, 152, 23);
+		btnBackupIndir.setBounds(318, 100, 133, 23);
 		panel.add(btnBackupIndir);
 		
-		JButton btnNewButton_2 = new JButton("OBS GOREV INDIR");
+		JButton btnNewButton_2 = new JButton("OBS GOREV -EXE");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gorev_indir("OBS_GOREV.exe");
@@ -239,53 +262,57 @@ public class ANA_MENU extends JDialog {
 		});
 		
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_2.setBounds(299, 125, 152, 23);
+		btnNewButton_2.setBounds(318, 125, 133, 23);
 		panel.add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton(".....");
+		JButton btnNewButton_3 = new JButton("JAR");
+		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				indir("OBS_2025.jar");
 			}
 		});
-		btnNewButton_3.setBounds(456, 75, 59, 23);
+		btnNewButton_3.setBounds(456, 75, 80, 23);
 		panel.add(btnNewButton_3);
 		
-		JButton btnNewButton_3_1 = new JButton(".....");
+		JButton btnNewButton_3_1 = new JButton("JAR");
+		btnNewButton_3_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_3_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				backup_indir("OBS_BACKUP.jar");
 			}
 		});
-		btnNewButton_3_1.setBounds(456, 99, 59, 23);
+		btnNewButton_3_1.setBounds(456, 99, 80, 23);
 		panel.add(btnNewButton_3_1);
 		
-		JButton btnNewButton_3_2 = new JButton(".....");
+		JButton btnNewButton_3_2 = new JButton("JAR");
+		btnNewButton_3_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_3_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gorev_indir("OBS_GOREV.jar");
 			}
 		});
-		btnNewButton_3_2.setBounds(456, 124, 59, 23);
+		btnNewButton_3_2.setBounds(456, 124, 80, 23);
 		panel.add(btnNewButton_3_2);
 		
-		JButton btnNewButton_2_1 = new JButton("OBS FIHRIST INDIR");
+		JButton btnNewButton_2_1 = new JButton("FIHRIST -EXE");
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fihrist_indir("FIHRIST.exe");
 			}
 		});
 		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_2_1.setBounds(299, 150, 152, 23);
+		btnNewButton_2_1.setBounds(318, 150, 133, 23);
 		panel.add(btnNewButton_2_1);
 		
-		JButton btnNewButton_3_2_1 = new JButton(".....");
+		JButton btnNewButton_3_2_1 = new JButton("JAR");
+		btnNewButton_3_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_3_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fihrist_indir("FIHRIST.jar");
 			}
 		});
-		btnNewButton_3_2_1.setBounds(456, 150, 59, 23);
+		btnNewButton_3_2_1.setBounds(456, 150, 80, 23);
 		panel.add(btnNewButton_3_2_1);
 
 	}

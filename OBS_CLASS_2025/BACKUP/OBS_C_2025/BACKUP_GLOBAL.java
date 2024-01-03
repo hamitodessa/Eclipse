@@ -1197,6 +1197,7 @@ public class BACKUP_GLOBAL {
 		stmt.execute(sql);  
 		stmt.close();
 	}
+	@SuppressWarnings("deprecation")
 	public void mySQL_backup( String myDUMP, String dbUser, String dbPass, String dbName,String savePath) throws IOException, InterruptedException
 	{
 		String executeCmd = myDUMP +"\\mysqldump.exe -u" + dbUser + " -p" + dbPass + " -B " + dbName + " -r " + savePath;

@@ -20,6 +20,7 @@ public class BACKUP_RESTORE {
 	
 	
 	
+	@SuppressWarnings("deprecation")
 	public static void BackupdbtoMYsql(String dbName ,String dbUser,String dbPass , String myDUMP) {
 
 		String savePath = "C:/OBS_SISTEM/" + dbName +".sql";

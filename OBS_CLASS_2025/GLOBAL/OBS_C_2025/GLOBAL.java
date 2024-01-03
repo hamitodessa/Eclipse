@@ -604,6 +604,7 @@ public class GLOBAL {
 		} catch (IOException e1) {
 		}
 	}
+	
 	public boolean internet_kontrol()
 	{
 		boolean result = false ;
@@ -699,29 +700,5 @@ public class GLOBAL {
 		}
 	}
 	
-	public boolean  checkFTPFirewall() throws IOException, InterruptedException
-	{
-		StringBuilder output = new StringBuilder();
-		Process p = Runtime.getRuntime().exec("netsh advfirewall show global StatefulFTP");
-		//Process p = Runtime.getRuntime().exec("netsh advfirewall show allprofiles state");
-		p.waitFor(); //Wait for the process to finish before continuing the Java program.
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-		String line = "";   
-		boolean result = false;
-		List<String> satirStrings = new ArrayList<String>();
-		while ((line = reader.readLine()) != null) {
-			satirStrings.add(line.toString()) ;
-			output.append(line + "\n");
-
-		}
-		if(satirStrings.get(3).contains("StatefulFTP"))
-		{
-			if(satirStrings.get(3).contains("Enable"))
-			{
-				result =true;
-			}
-		}
-		return result;
-	}
 }

@@ -359,10 +359,10 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 	}
 	private void yedekSirasinaKoy() throws ClassNotFoundException, SQLException, InterruptedException
 	{
-		tt.cancel();
+		if(tt != null)
+			tt.cancel();
 		lblSonDurum.setText("Yedekleme Sirasina Konuldu");
 		lblSonDurum.setForeground(Color.GREEN);
-	    //bckp.log_kayit(eADI, new Date(), "Yedekleme Sirasina Konuldu.....");
 	    OBS_BACKUP.gorevLER.add(eADI);
 	}
 	private void basla() throws ClassNotFoundException, ParseException, SQLException

@@ -132,7 +132,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.add(textFtpSurucu);
 		
 		textZmnasm = new JTextField();
-		textZmnasm.setText("300");
+		textZmnasm.setText("60");
 		textZmnasm.setColumns(10);
 		textZmnasm.setBounds(124, 46, 96, 20);
 		panel_12_1.add(textZmnasm);

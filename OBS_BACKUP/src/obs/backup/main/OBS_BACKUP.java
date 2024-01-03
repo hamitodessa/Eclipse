@@ -2049,6 +2049,7 @@ public class OBS_BACKUP extends JFrame {
 		FTPClient ftp = new FTPClient();
 		try 
 		{
+			ftp.setConnectTimeout(zmn * 1000);
 			ftp.connect(ftpp,port);
 			if(!ftp.login(kull, sifre))
 			{

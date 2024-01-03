@@ -1272,9 +1272,9 @@ public class OBS_BACKUP extends JFrame {
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
-				Thread.sleep(500);
+				Thread.sleep(750);
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
-				Thread.sleep(500);
+				Thread.sleep(750);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 				boolean exists = tmpDir.exists();
@@ -1496,9 +1496,9 @@ public class OBS_BACKUP extends JFrame {
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
-				Thread.sleep(500);
+				Thread.sleep(750);
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
-				Thread.sleep(500);
+				Thread.sleep(750);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "Zip Haline Getirildi...");
 				UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "FTP Yuklendi...");
@@ -1744,7 +1744,7 @@ public class OBS_BACKUP extends JFrame {
 				{
 					tmpDir.mkdirs();
 				}
-				Thread.sleep(500);
+				Thread.sleep(750);
 				File okunanFile = new File(glb.BACKUP_YERI + dzip);
 				fileCOPY(glb.BACKUP_YERI + dzip, ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip);
 				//okunanFile.renameTo(new File(ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip));
@@ -1955,7 +1955,7 @@ public class OBS_BACKUP extends JFrame {
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
 					bckp.diger_zip_yap(okumadosyaadi, glb.BACKUP_YERI, dzip, false, "");
 				}
-				Thread.sleep(500);
+				Thread.sleep(750);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 				UploadFTPFiles(ftp, surucu, glb.BACKUP_YERI, dzip, kull, sifre, port, zmnasimi);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " FTP Yuklendi...");

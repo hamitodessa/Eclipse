@@ -34,6 +34,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.event.AncestorEvent;
@@ -96,6 +97,7 @@ public class DownloadFile extends JPanel {
 	DownloadPanel panelalt ;
 	int satir = 0 ;
 	JPanel panel;
+	JScrollPane scrollPane;
 	/**
 	 * Create the panel.
 	 */
@@ -116,10 +118,8 @@ public class DownloadFile extends JPanel {
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					if(!ilkBASLA)
 						lisTELE();
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					e1.printStackTrace();
@@ -145,7 +145,7 @@ public class DownloadFile extends JPanel {
 		btnNewButton.setBounds(327, 11, 89, 23);
 		panel.add(btnNewButton);
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
 
 		tblFile = new JTable(){
@@ -179,6 +179,11 @@ public class DownloadFile extends JPanel {
 			public void run() {
 				////////////////
 				try {
+					GuiUtil.setWaitCursor(tblFile,true);
+					GuiUtil.setWaitCursor(panel,true);
+					GuiUtil.setWaitCursor(scrollPane,true);
+					GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,true);
+					GuiUtil.setWaitCursor(panelalt,true);
 					panelalt.setPreferredSize(new Dimension(0, 100));
 					panelalt.revalidate();
 					DefaultTableModel modell = (DefaultTableModel)tblFile.getModel();
@@ -275,12 +280,20 @@ public class DownloadFile extends JPanel {
 					panelalt.Progres_Bar_Temizle_1();
 					panelalt.setPreferredSize(new Dimension(0, 0));
 					panelalt.revalidate();
+					GuiUtil.setWaitCursor(tblFile,false);
+					GuiUtil.setWaitCursor(panel,false);
+					GuiUtil.setWaitCursor(scrollPane,false);
+					GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
+					GuiUtil.setWaitCursor(panelalt,false);
 				} catch (Exception ex) {
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+					GuiUtil.setWaitCursor(tblFile,false);
+					GuiUtil.setWaitCursor(panel,false);
+					GuiUtil.setWaitCursor(scrollPane,false);
+					GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
+					GuiUtil.setWaitCursor(panelalt,false);
 					try {
 						bckp.log_kayit(OBS_BACKUP.gelenISIM, new Date(), ex.getMessage());
 					} catch (Exception e) {
-
 						e.printStackTrace();
 					}
 					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());        
@@ -292,14 +305,23 @@ public class DownloadFile extends JPanel {
 	}
 	private void lisTELE() 
 	{
+		
 		if(comboBox.getSelectedItem() == null) return;
 		GRID_TEMIZLE.grid_temizle(tblFile);
 		if(comboBox.getSelectedItem().toString().equals("")) {
 
 			return;
 		}
+		Runnable runner = new Runnable()
+		{ 
+			public void run() {
+
 		try 
 		{
+			GuiUtil.setWaitCursor(tblFile,true);
+			GuiUtil.setWaitCursor(panel,true);
+			GuiUtil.setWaitCursor(scrollPane,true);
+			GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,true);
 			List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
 			ftpBilgi = bckp.ftp_bilgi(comboBox.getSelectedItem().toString());
 			String ftp, kull, sifre, surucu,  neresi, surucu_yer;
@@ -376,9 +398,21 @@ public class DownloadFile extends JPanel {
 					}
 				}
 			});
+			GuiUtil.setWaitCursor(tblFile,false);
+			GuiUtil.setWaitCursor(panel,false);
+			GuiUtil.setWaitCursor(scrollPane,false);
+			GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
 		} catch (Exception e1) {
-			e1.printStackTrace();
+			GuiUtil.setWaitCursor(tblFile,false);
+			GuiUtil.setWaitCursor(panel,false);
+			GuiUtil.setWaitCursor(scrollPane,false);
+			GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
 		}
+	}
+};
+Thread t = new Thread(runner, "Code Executer");
+t.start();
+
 	}
 	public void eismiDOLDUR() throws ClassNotFoundException, SQLException
 	{

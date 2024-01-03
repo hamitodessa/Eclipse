@@ -142,7 +142,7 @@ public class OBS_BACKUP extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
 	public static JPanel container ;
-
+	public static JToolBar toolBar;
 	public static JTabbedPane tabbedPane ;
 	public static JTabbedPane tabbedPane_1;
 	int x ,y ;
@@ -247,7 +247,7 @@ public class OBS_BACKUP extends JFrame {
 		splitPane.setLeftComponent(panel);
 
 		//***************
-		JToolBar toolBar = new JToolBar();
+		toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		toolBar.setOrientation(SwingConstants.VERTICAL);
 		panel.add(toolBar );

@@ -77,4 +77,17 @@ public class OBS_SIS_2025_ANA_CLASS
 	public BufferedImage kam_resmi ;
 	public static String irs_no =""; 
 	public static String nerden ="";
+	public int mesajDeger(String mesaj)
+	{
+		int result = 0;
+		if(mesaj.equals(options[0]))
+		{
+			result = 1;
+		}
+		else if(mesaj.equals(options[1]))
+		{
+			result = 0;
+		}
+		return result;
+	}
 }

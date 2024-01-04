@@ -88,6 +88,8 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextPane;
@@ -416,20 +418,27 @@ public class DENEMELER extends JInternalFrame {
 		JButton btnNewButton_10 = new JButton("New button");
 		btnNewButton_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			JOptionPane optionPane = new JOptionPane("File haven't save yet." +
-			            " \n Are you want to save the file?", JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
+			JOptionPane optionPane = new JOptionPane("Eminmisin", JOptionPane.QUESTION_MESSAGE,
+		    		JOptionPane.YES_NO_OPTION, null,
+		    		oac.options,  oac.options[1]);
 			
-			////
 			JDialog	dialog = optionPane.createDialog("Confirm Dialog");
-			    Set focusTraversalKeys = new HashSet(dialog.getFocusTraversalKeys(0));
-			    focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_UNDEFINED));
-			    focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_LEFT, KeyEvent.VK_UNDEFINED));
-			    dialog.setFocusTraversalKeys(0, focusTraversalKeys);
-			    dialog.setVisible(true);
-			    dialog.dispose();
-			    int option = (Integer) optionPane.getValue();
-			    System.out.println(option);
-			
+			Set focusTraversalKeys = new HashSet(dialog.getFocusTraversalKeys(0));
+			focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_UNDEFINED));
+			focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_LEFT, KeyEvent.VK_UNDEFINED));
+			dialog.setFocusTraversalKeys(0, focusTraversalKeys);
+			dialog.setVisible(true);
+		    dialog.dispose();
+			    if(optionPane.getValue() == null)
+			    {
+			    	
+			    }
+			    else {
+			    //	int option = Integer.valueOf(optionPane.getValue());
+				    System.out.println( oac.mesajDeger(optionPane.getValue().toString()));
+				}
+			    
+			    //////////////////////////////////////////////
 			}
 		});
 		btnNewButton_10.setBounds(54, 359, 89, 23);

@@ -209,19 +209,38 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 		txtunvan = new JTextField();
 		txtunvan.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtunvan.setBounds(354, 114, 301, 20);
-		txtunvan.setDocument(new JTextFieldLimit(35));
+		txtunvan.setBounds(340, 114, 400, 20);
+		txtunvan.setDocument(new JTextFieldLimit(50));
+		txtunvan.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtadres1.requestFocus();
+				}
+			}
+		});
+
 		panel.add(txtunvan);
 		txtunvan.setColumns(10);
 
 		txtyetkili = new JTextField();
 		txtyetkili.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtyetkili.setBounds(102, 322, 313, 20);
+		txtyetkili.setBounds(102, 430, 313, 20);
 		txtyetkili.setDocument(new JTextFieldLimit(30));
 		panel.add(txtyetkili);
 		txtyetkili.setColumns(10);
 
 		txtadres1 = new JTextField();
+		txtadres1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtadres2.requestFocus();
+				}
+			}
+		});
 		txtadres1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtadres1.setBounds(102, 160, 313, 20);
 		txtadres1.setDocument(new JTextFieldLimit(35));
@@ -229,6 +248,15 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtadres1.setColumns(10);
 
 		txtadres2 = new JTextField();
+		txtadres2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtsemt.requestFocus();
+				}
+			}
+		});
 		txtadres2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtadres2.setBounds(102, 187, 313, 20);
 		txtadres2.setDocument(new JTextFieldLimit(35));
@@ -237,8 +265,18 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 		txtvd = new JTextField();
 		txtvd.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtvd.setBounds(102, 241, 194, 20);
+		txtvd.setBounds(102, 214, 194, 20);
 		txtvd.setDocument(new JTextFieldLimit(25));
+		txtvd.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtvn.requestFocus();
+				}
+			}
+		});
+
 		panel.add(txtvd);
 		txtvd.setColumns(10);
 
@@ -295,7 +333,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		chcsms.setBounds(505, 411, 124, 23);
 		panel.add(chcsms);
 
-		JLabel lblNewLabel_6 = new JLabel("Yetkili");
+		JLabel lblNewLabel_6 = new JLabel("E Mail");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_6.setBounds(28, 327, 46, 14);
 		panel.add(lblNewLabel_6);
@@ -310,7 +348,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		lblNewLabel_8.setBounds(28, 192, 46, 14);
 		panel.add(lblNewLabel_8);
 
-		JLabel lblNewLabel_9 = new JLabel("Vergi D.");
+		JLabel lblNewLabel_9 = new JLabel("Posta Kodu");
 		lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_9.setBounds(28, 246, 64, 14);
 		panel.add(lblNewLabel_9);
@@ -355,7 +393,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		lblNewLabel_8_2.setBounds(432, 192, 46, 14);
 		panel.add(lblNewLabel_8_2);
 
-		JLabel lblNewLabel_9_2 = new JLabel("Vergi No.");
+		JLabel lblNewLabel_9_2 = new JLabel("Ozel");
 		lblNewLabel_9_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_9_2.setBounds(432, 246, 64, 14);
 		panel.add(lblNewLabel_9_2);
@@ -375,12 +413,21 @@ public class ADRES_GIRIS extends JInternalFrame {
 		lblNewLabel_8_1_1.setBounds(28, 381, 64, 14);
 		panel.add(lblNewLabel_8_1_1);
 
-		JLabel lblNewLabel_9_1_1 = new JLabel("E Mail");
+		JLabel lblNewLabel_9_1_1 = new JLabel("Yetkili");
 		lblNewLabel_9_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_9_1_1.setBounds(28, 435, 46, 14);
 		panel.add(lblNewLabel_9_1_1);
 
 		txtsemt = new JTextField();
+		txtsemt.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtsehir.requestFocus();
+				}
+			}
+		});
 		txtsemt.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtsemt.setBounds(506, 160, 202, 20);
 		txtsemt.setDocument(new JTextFieldLimit(25));
@@ -388,6 +435,15 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtsemt.setColumns(10);
 
 		txtsehir = new JTextField();
+		txtsehir.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
+				{	
+					txtvd.requestFocus();
+				}
+			}
+		});
 		txtsehir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtsehir.setBounds(506, 187, 202, 20);
 		txtsehir.setDocument(new JTextFieldLimit(25));
@@ -396,7 +452,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 		txtvn = new JTextField();
 		txtvn.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtvn.setBounds(506, 241, 202, 20);
+		txtvn.setBounds(506, 214, 202, 20);
 		txtvn.setDocument(new JTextFieldLimit(15));
 		panel.add(txtvn);
 		txtvn.setColumns(10);
@@ -424,7 +480,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 
 		txtmail = new JTextField();
 		txtmail.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtmail.setBounds(102, 430, 313, 20);
+		txtmail.setBounds(102, 322, 313, 20);
 		txtmail.setDocument(new JTextFieldLimit(50));
 		panel.add(txtmail);
 		txtmail.setColumns(10);
@@ -500,10 +556,10 @@ public class ADRES_GIRIS extends JInternalFrame {
 		});
 		btnNewButton_6.setToolTipText("Hesap Plani");
 		btnNewButton_6.setIcon(new ImageIcon(H_PLANI.class.getResource("/ICONLAR/user-16.png")));
-		btnNewButton_6.setBounds(665, 114, 22, 23);
+		btnNewButton_6.setBounds(750, 114, 22, 23);
 		panel.add(btnNewButton_6);
 
-		JLabel lblNewLabel_8_2_1 = new JLabel("Posta Kodu");
+		JLabel lblNewLabel_8_2_1 = new JLabel("Vergi D.");
 		lblNewLabel_8_2_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_8_2_1.setBounds(28, 219, 74, 14);
 		panel.add(lblNewLabel_8_2_1);
@@ -511,11 +567,11 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtpkodu = new JTextField();
 		txtpkodu.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtpkodu.setColumns(10);
-		txtpkodu.setBounds(102, 214, 194, 20);
+		txtpkodu.setBounds(102, 241, 194, 20);
 		txtpkodu.setDocument(new JTextFieldLimit(10));
 		panel.add(txtpkodu);
 
-		JLabel lblNewLabel_11_2_1 = new JLabel("Ozel");
+		JLabel lblNewLabel_11_2_1 = new JLabel("Vergi No.");
 		lblNewLabel_11_2_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_11_2_1.setBounds(431, 219, 46, 14);
 		panel.add(lblNewLabel_11_2_1);
@@ -523,7 +579,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtozel = new JTextField();
 		txtozel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtozel.setColumns(10);
-		txtozel.setBounds(505, 214, 203, 20);
+		txtozel.setBounds(506, 241, 203, 20);
 		txtozel.setDocument(new JTextFieldLimit(30));
 		panel.add(txtozel);
 

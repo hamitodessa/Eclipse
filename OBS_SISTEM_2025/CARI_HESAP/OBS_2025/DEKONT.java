@@ -43,6 +43,7 @@ import javax.swing.KeyStroke;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -54,9 +55,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.DefaultComboBoxModel;
+
+import java.awt.AWTKeyStroke;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -1683,6 +1689,7 @@ public class DEKONT extends JInternalFrame {
 			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Dekont Silme", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void kaydet () 
 	{
 		if (txtevrak.getText() == null ) return ;
@@ -1721,9 +1728,22 @@ public class DEKONT extends JInternalFrame {
 			}
 			if (c_Access.cari_fino_bak(Integer.parseInt(txtevrak.getText()))) 
 			{
-				int g =  JOptionPane.showOptionDialog( null, "Islem Dosyada mevcut Fis eskisi ile degisecek ..", "Cari Fis Kayit",   JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE,null, oac.options, oac.options[1]);
-				if(g != 0 ) { return;	}
+				JOptionPane optionPane = new JOptionPane("Islem Dosyada mevcut Fis eskisi ile degisecek ..", JOptionPane.QUESTION_MESSAGE,
+						JOptionPane.YES_NO_OPTION, null,oac.options,  oac.options[1]);
+				JDialog	dialog = optionPane.createDialog("Dekont Kaydet");
+				Set focusTraversalKeys = new HashSet(dialog.getFocusTraversalKeys(0));
+				focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_UNDEFINED));
+				focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_LEFT, KeyEvent.VK_UNDEFINED));
+				dialog.setFocusTraversalKeys(0, focusTraversalKeys);
+				dialog.setVisible(true);
+				dialog.dispose();
+				if(optionPane.getValue() == null)
+				{
+					return;
+				}
+				else {
+					if(oac.mesajDeger(optionPane.getValue().toString()) ==0) return;
+				}
 			}
 			long startTime = System.currentTimeMillis(); 
 			String str = TARIH_CEVIR.tarih_geri_saatli(dtc) ;

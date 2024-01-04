@@ -21,7 +21,7 @@ import java.awt.Font;
 public class SifreGiris extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JPasswordField passwordField;
+	public JPasswordField passwordField;
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	/**
 	 * Create the panel.
@@ -69,15 +69,16 @@ public class SifreGiris extends JPanel {
 						OBS_BACKUP.tabbedPane.setSelectedIndex(0);
 						OBS_BACKUP.btnGorevler.setEnabled(true);
 						OBS_BACKUP.btnYeni_Gorev.setEnabled(true);
-						OBS_BACKUP. btnLoglama.setEnabled(true);
+						OBS_BACKUP.btnLoglama.setEnabled(true);
 						OBS_BACKUP.btnKayitliEmirler.setEnabled(true);
-						OBS_BACKUP. btnHepsiYukari.setEnabled(true);
+						OBS_BACKUP.btnHepsiYukari.setEnabled(true);
 						OBS_BACKUP.btnHepsiAsagi.setEnabled(true);
 						OBS_BACKUP.btnYeniSifre.setEnabled(true);
 						OBS_BACKUP.btnUploadAll.setEnabled(true);
 						OBS_BACKUP.btnStartAll.setEnabled(true);
 						OBS_BACKUP.btnStopAll.setEnabled(true);
 						OBS_BACKUP.btnFileIndir.setEnabled(true);
+						OBS_BACKUP.btnSifreEkrani.setVisible(true);
 					}
 					else {
 						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,"Sifre Yanlis");

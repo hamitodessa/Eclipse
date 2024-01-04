@@ -274,7 +274,8 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		btnStop.setBounds(0, 31, 23, 23);
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tt.cancel();
+				if(tt != null)
+					tt.cancel();
 			}
 		});
 		add(btnStop);
@@ -311,14 +312,16 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		});
 		try {
 			ilkBasla();
-		
 		} catch (Exception ex) {
-		
 		}
 	}
 
 
 	public void run() {
+		if (lblDurum.getText().equals("Pasiv Durumda"))
+		{
+		return;
+		}
 		Timer timerr = new Timer();  
 		tt = new TimerTask() {  
 			@Override  

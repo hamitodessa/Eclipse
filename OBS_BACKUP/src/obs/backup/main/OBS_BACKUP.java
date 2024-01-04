@@ -173,6 +173,7 @@ public class OBS_BACKUP extends JFrame {
 	public static JButton btnStartAll ;
 	public static JButton btnStopAll ;
 	public static JButton btnFileIndir;
+	public static JButton btnSifreEkrani;
 
 	public static JLabel lblemirSAYI;
 	public static JLabel lblEmir ;
@@ -255,7 +256,7 @@ public class OBS_BACKUP extends JFrame {
 		btnGorevler = new JButton();
 		btnGorevler.setToolTipText("Gorevler");
 		btnGorevler.setEnabled(false);
-		btnGorevler.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+		btnGorevler.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 5));
 
 		btnGorevler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/emirler.png")));
 		btnGorevler.addActionListener(new ActionListener() {
@@ -380,25 +381,11 @@ public class OBS_BACKUP extends JFrame {
 		sprt = new JLabel("   ");
 		sprt.setSize(new Dimension(25,25));
 		toolBar.add(sprt );
-		//
-		btnYeniSifre = new JButton();
-		btnYeniSifre.setEnabled(false);
-		btnYeniSifre.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
-		btnYeniSifre.setToolTipText("Sifre Yenile");
-		btnYeniSifre.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/password.png")));
-		btnYeniSifre .addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				tabbedPane.setSelectedIndex(5);
-				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			}
-		});
-		toolBar.add(btnYeniSifre );
 
 		btnStartAll= new JButton("");
 		btnStartAll.setToolTipText("Emirleri Baslat");
 		btnStartAll.setEnabled(false);
-		btnStartAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
+		btnStartAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnStartAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Component[] components = container.getComponents();
@@ -428,7 +415,7 @@ public class OBS_BACKUP extends JFrame {
 		btnStopAll= new JButton("");
 		btnStopAll.setToolTipText("Emirleri Durdur");
 		btnStopAll.setEnabled(false);
-		btnStopAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
+		btnStopAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnStopAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Component[] components = container.getComponents();
@@ -457,7 +444,7 @@ public class OBS_BACKUP extends JFrame {
 
 		btnUploadAll= new JButton("");
 		btnUploadAll.setEnabled(false);
-		btnUploadAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
+		btnUploadAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnUploadAll.setToolTipText("Aktif Emirleri Yedekle");
 		btnUploadAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -488,7 +475,7 @@ public class OBS_BACKUP extends JFrame {
 		btnFileIndir= new JButton("");
 		btnFileIndir.setEnabled(false);
 		btnFileIndir.setToolTipText("FTP Dosya Indirme");
-		btnFileIndir.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
+		btnFileIndir.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnFileIndir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -507,12 +494,59 @@ public class OBS_BACKUP extends JFrame {
 		btnFileIndir.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/download-30.png")));
 		toolBar.add(btnFileIndir);
 
+		//
+		btnYeniSifre = new JButton();
+		btnYeniSifre.setEnabled(false);
+		btnYeniSifre.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
+		btnYeniSifre.setToolTipText("Sifre Yenile");
+		btnYeniSifre.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/password.png")));
+		btnYeniSifre .addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				sifreYenilePanel.txtsif.setText("");
+				tabbedPane.setSelectedIndex(5);
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		toolBar.add(btnYeniSifre );
+
+		
 		Component horizontalGlue = Box.createVerticalGlue();
 		toolBar.add(horizontalGlue);
 
+		//
+		btnSifreEkrani= new JButton("");
+		btnSifreEkrani.setToolTipText("Sifre Ekrani");
+		btnSifreEkrani.setVisible(false);
+		btnSifreEkrani.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 5));
+		btnSifreEkrani.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/protect-24.png")));
+		btnSifreEkrani .addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				btnSifreEkrani.setVisible(false);
+				btnGorevler.setEnabled(false);
+				btnYeni_Gorev.setEnabled(false);
+				btnLoglama.setEnabled(false);
+				btnKayitliEmirler.setEnabled(false);
+				btnHepsiYukari.setEnabled(false);
+				btnHepsiAsagi.setEnabled(false);
+				btnYeniSifre.setEnabled(false);
+				btnUploadAll.setEnabled(false);
+				btnStartAll.setEnabled(false);
+				btnStopAll.setEnabled(false);
+				btnFileIndir.setEnabled(false);
+				sifreGirisPanel.passwordField.setText("");
+				tabbedPane.setSelectedIndex(4);
+				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+		});
+		toolBar.add(btnSifreEkrani );
+		
+		toolBar.add(sprt );
+		
 		JButton btnkapat= new JButton("");
 		btnkapat.setToolTipText("Kapat");
-		btnkapat.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+		btnkapat.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 5));
 		btnkapat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -520,7 +554,7 @@ public class OBS_BACKUP extends JFrame {
 		});
 		btnkapat.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/exit.png")));
 		toolBar.add(btnkapat);
-
+		toolBar.add(sprt );
 		//*********************************************************************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
@@ -567,6 +601,7 @@ public class OBS_BACKUP extends JFrame {
 		altPane.add(lblEmir);
 
 		lblemirSAYI = new JLabel("0");
+		lblemirSAYI.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblemirSAYI.setBounds(95, 5, 48, 14);
 		altPane.add(lblemirSAYI);
 
@@ -1252,9 +1287,9 @@ public class OBS_BACKUP extends JFrame {
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
-				Thread.sleep(750);
+				Thread.sleep(1000);
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
-				Thread.sleep(750);
+				Thread.sleep(1000);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 				boolean exists = tmpDir.exists();
@@ -1474,9 +1509,9 @@ public class OBS_BACKUP extends JFrame {
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
-				Thread.sleep(750);
+				Thread.sleep(1000);
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
-				Thread.sleep(750);
+				Thread.sleep(1000);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "Zip Haline Getirildi...");
 				UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "FTP Yuklendi...");
@@ -1722,10 +1757,9 @@ public class OBS_BACKUP extends JFrame {
 				{
 					tmpDir.mkdirs();
 				}
-				Thread.sleep(750);
+				Thread.sleep(1000);
 				File okunanFile = new File(glb.BACKUP_YERI + dzip);
 				fileCOPY(glb.BACKUP_YERI + dzip, ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip);
-				//okunanFile.renameTo(new File(ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip));
 				if (glb.dos_kontrol( glb.BACKUP_YERI + "\\" + dzip))
 				{ 
 					glb.dos_sil( glb.BACKUP_YERI + "\\" + dzip);
@@ -1925,7 +1959,7 @@ public class OBS_BACKUP extends JFrame {
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
 					bckp.diger_zip_yap(okumadosyaadi, glb.BACKUP_YERI, dzip, false, "");
 				}
-				Thread.sleep(750);
+				Thread.sleep(1000);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 				UploadFTPFiles(ftp, surucu, glb.BACKUP_YERI, dzip, kull, sifre, port, zmnasimi);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " FTP Yuklendi...");

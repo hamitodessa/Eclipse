@@ -540,7 +540,6 @@ public class CARI_HESAP_MSSQL implements ICARI_HESAP {
 		kONTROL();
 		Statement stmt = con.createStatement( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rss = stmt.executeQuery(sql);
-
 		return rss;	
 	}
 	public void hsp_sil(String hesap) throws ClassNotFoundException, SQLException

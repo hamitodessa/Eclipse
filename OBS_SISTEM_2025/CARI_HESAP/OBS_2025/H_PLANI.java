@@ -713,6 +713,8 @@ public class H_PLANI extends JInternalFrame {
 		try {
 			rs = c_Access.hsp_pln(arama);
 			if (!rs.isBeforeFirst() ) {  
+				temizle();
+				txtkayit.setText(0 + "/" + 0);
 				return;
 			} 
 			else
@@ -726,7 +728,6 @@ public class H_PLANI extends JInternalFrame {
 		catch (Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void doldur(String nereye) 
@@ -804,7 +805,6 @@ public class H_PLANI extends JInternalFrame {
 		catch(Exception ex)
 		{
 			 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Hesap Plani", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	public static void yeni()
@@ -850,8 +850,8 @@ public class H_PLANI extends JInternalFrame {
 
 			temizle();
 			txtarama.setText("");
-			//hisset("");
-			// Cursor = System.Windows.Forms.Cursors.Default
+			hisset("");
+			txtarama.requestFocus();
 		}
 		catch (Exception ex)
 		{
@@ -876,7 +876,7 @@ public class H_PLANI extends JInternalFrame {
 			c_Access.hsp_sil(txtkodu.getText(), lBILGI,  BAGLAN_LOG.cariLogDizin);
 			temizle();
 			txtarama.setText("");
-			//hisset("");
+			hisset("");
 		}
 		catch (Exception ex)
 		{

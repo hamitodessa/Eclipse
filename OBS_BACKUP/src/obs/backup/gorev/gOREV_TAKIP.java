@@ -40,7 +40,7 @@ import java.beans.PropertyChangeListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings({"serial","deprecation"})
-public  class gOREV_TAKIP extends JPanel { //implements Runnable
+public  class gOREV_TAKIP extends JPanel { 
 	public TimerTask tt;
 	
 	JLabel lblNewLabel;
@@ -89,6 +89,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		setLayout(null);
 
 		JButton btnDuzelt = new JButton("Emir Duzelt");
+		btnDuzelt.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnDuzelt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tt != null)
@@ -104,6 +105,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		add(btnDuzelt);
 
 		JButton btnSil = new JButton("Sil");
+		btnSil.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnSil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -127,10 +129,12 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		add(btnSil);
 
 		btnYedekle = new JButton("Yedekle");
+		btnYedekle.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnYedekle.setName("btnYedekle");
 		btnYedekle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(lblDurum.getText().equals("Pasiv Durumda")) return;
 					yedekSirasinaKoy();
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -143,36 +147,36 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		lblemirISMI = new JLabel("New label");
 		//lblemirISMI.setForeground(new Color(0, 0, 128));
 		lblemirISMI.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblemirISMI.setBounds(240, 19, 221, 16);
+		lblemirISMI.setBounds(240, 19, 400, 16);
 		lblemirISMI.setText(eADI);
 		add(lblemirISMI);
 
 		lblSonDurum = new JLabel(".....");
 		lblSonDurum.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblSonDurum.setBounds(240, 47, 336, 14);
+		lblSonDurum.setBounds(240, 47, 400, 14);
 		lblSonDurum.setName("lblSonDurum"); 
 		add(lblSonDurum);
 
 		lblDosyaSayisi = new JLabel("0");
-		lblDosyaSayisi.setBounds(240, 68, 336, 14);
+		lblDosyaSayisi.setBounds(240, 68, 200, 14);
 		add(lblDosyaSayisi);
 
 		lblSurucu = new JLabel(".....");
-		lblSurucu.setBounds(240, 89, 336, 14);
+		lblSurucu.setBounds(240, 89, 400, 14);
 		add(lblSurucu);
 
 		lblSonYedek = new JLabel(".....");
-		lblSonYedek.setBounds(240, 111, 336, 14);
+		lblSonYedek.setBounds(240, 111, 175, 14);
 		lblSonYedek.setName("lblSonYedek"); 
 		add(lblSonYedek);
 
 		lblGelecekYedekleme = new JLabel(".....");
-		lblGelecekYedekleme.setBounds(240, 132, 148, 14);
+		lblGelecekYedekleme.setBounds(240, 132, 175, 14);
 		lblGelecekYedekleme.setFont(new Font("Tahoma", Font.BOLD, 11));
 		add(lblGelecekYedekleme);
 
 		lblAciklama = new JLabel(".....");
-		lblAciklama.setBounds(240, 153, 336, 14);
+		lblAciklama.setBounds(240, 153, 520, 14);
 		add(lblAciklama);
 
 		lblNewLabel_6 = new JLabel("~");
@@ -215,6 +219,7 @@ public  class gOREV_TAKIP extends JPanel { //implements Runnable
 		add(lblNewLabel_2);
 
 		lblDurum = new JLabel(".....");
+		lblDurum.setName("lblDurum");
 		lblDurum.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblDurum.setForeground(Color.RED);
 		lblDurum.setBounds(40, 16, 195, 14);

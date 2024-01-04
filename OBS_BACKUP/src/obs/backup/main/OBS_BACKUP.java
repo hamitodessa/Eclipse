@@ -636,11 +636,11 @@ public class OBS_BACKUP extends JFrame {
 		//***********************************************************************************
 		try {
 			glb.backup_surucu_kontrol();
-			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText(), new Date(), "Program Baslangici");
+			bckp.log_kayit("Sistem", new Date(), "Program Baslangici");
 			emir_yukle("EMIR_ISMI") ;
 			jobTimerBasla();
 			tabbedPane.setSelectedIndex(4);
-
+			
 		} catch (Exception ex) {
 			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText(), new Date(), ex.getMessage());
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());

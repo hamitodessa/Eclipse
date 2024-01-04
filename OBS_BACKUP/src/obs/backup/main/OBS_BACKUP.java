@@ -253,10 +253,14 @@ public class OBS_BACKUP extends JFrame {
 		toolBar.setOrientation(SwingConstants.VERTICAL);
 		panel.add(toolBar );
 		//***************
+		JLabel spr = new JLabel("   ");
+		spr.setSize(new Dimension(25,25));
+		
+		toolBar.add(spr);
 		btnGorevler = new JButton();
 		btnGorevler.setToolTipText("Gorevler");
 		btnGorevler.setEnabled(false);
-		btnGorevler.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 5));
+		btnGorevler.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 
 		btnGorevler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/emirler.png")));
 		btnGorevler.addActionListener(new ActionListener() {
@@ -1017,14 +1021,11 @@ public class OBS_BACKUP extends JFrame {
 	}
 	public void emir_yukle(String siralama) throws ClassNotFoundException, SQLException
 	{
-		//System.out.println("==="+siralama);
 		try
 		{
 			container.removeAll();
 			container.revalidate();
 			container.repaint();
-			// DURUM DESC , EMIR_ISMI 
-			///
 			List<emir_bilgiler> emirliste = bckp.emir_liste(siralama);
 			if (emirliste.size() == 0 ) {  
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1062,7 +1063,8 @@ public class OBS_BACKUP extends JFrame {
 		Component[] components = container.getComponents();
 		int say = 0 ;
 		for (Component component : components) {
-			say +=1 ;			
+			if(component.getName() !=null)
+				say +=1 ;			
 		}
 		lblemirSAYI.setText(Integer.toString(say));
 		lblEmir.setText("Emir Sayisi"); ;

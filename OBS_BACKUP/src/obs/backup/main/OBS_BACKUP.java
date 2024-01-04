@@ -776,7 +776,6 @@ public class OBS_BACKUP extends JFrame {
 			cal.set(Calendar.MINUTE,0);
 			cal.set(Calendar.SECOND,0);
 			cal.set(Calendar.MILLISECOND,0);
-
 			Date sonyuk = cal.getTime();
 			if (emirBilgiler.size() == 0 ) {  
 				kontrol = false;
@@ -792,7 +791,6 @@ public class OBS_BACKUP extends JFrame {
 				mesaj = emirBilgiler.get(0).getMESAJ();
 				kontrol = true;
 			}
-
 			bckp.genel_kayit_sil(emirAnaGirisPanel.txtEmir.getText());
 			if (kontrol)
 			{
@@ -802,12 +800,9 @@ public class OBS_BACKUP extends JFrame {
 			{
 				bckp.genel_kayit(emirAnaGirisPanel.txtEmir.getText(),emirAnaGirisPanel. chckbxDurum.isSelected(),emirAnaGirisPanel. textAciklama.getText(), emirAnaGirisPanel.lblNewLabel_6.getText(), false, sonyuk, emirAnaGirisPanel. chckbxServerDosya.isSelected(), mesaj, ilkkayit);
 			}
-
-			//contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 		catch (Exception ex)
 		{
-			// contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText(), new Date(), ex.getMessage());
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
@@ -836,7 +831,6 @@ public class OBS_BACKUP extends JFrame {
 				emirAnaGirisPanel. chckbxDurum.setSelected(false);
 				mesaj_goster(5000,Notifications.Type.WARNING, "Yedekleme Icin Gun secilmediginden " + System.lineSeparator() + System.lineSeparator()  + "Emir durumu Pasiv olarak Degistirildi");
 			}
-
 			Date date = (Date) (yedekaraligiPanel.timeBaslangic.getValue());
 			Date date2 = (Date) (yedekaraligiPanel.timeBitis.getValue());
 			date2.setYear(date.getYear());
@@ -880,7 +874,8 @@ public class OBS_BACKUP extends JFrame {
 		catch (Exception ex)
 		{
 			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText(), new Date(), ex.getMessage());
-			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());			 }
+			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());			 
+		}
 	}
 	public static void sunucuKaydet() throws ClassNotFoundException, SQLException
 	{
@@ -907,7 +902,6 @@ public class OBS_BACKUP extends JFrame {
 			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText().toString(), new Date(), ex.getMessage());
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
-
 	}
 	public static void MS_Server_Kayit() throws ClassNotFoundException, SQLException
 	{
@@ -1153,7 +1147,6 @@ public class OBS_BACKUP extends JFrame {
 		}
 		container.revalidate();
 	}
-
 	public static void mesaj_goster(int zaman, Notifications.Type tipType , String mesaj)
 	{
 		InputStream stream = null ;
@@ -1696,7 +1689,6 @@ public class OBS_BACKUP extends JFrame {
 		{
 			diger_yerel_surucu( emirADI ,ftpBilgi );
 		}
-
 	}
 	private void diger_yerel_surucu(String emirADI,List<ftp_bilgiler> ftpBilgi )
 	{
@@ -2343,18 +2335,24 @@ public class OBS_BACKUP extends JFrame {
 	{
 		boolean result = false;
 		while (result == true) {
-	    	if (Files.isReadable(pathh)) {
-	           result = false;    
-            }}
-	}
-	@Override
-	public Dimension getPreferredSize() {
-		Dimension superSz = super.getPreferredSize();
-		if (isPreferredSizeSet()) {
-			return superSz;
+			if (Files.isReadable(pathh)) {
+				result = false;    
+			}
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
-		return new Dimension(900, 700);
 	}
+//	@Override
+//	public Dimension getPreferredSize() {
+//		Dimension superSz = super.getPreferredSize();
+//		if (isPreferredSizeSet()) {
+//			return superSz;
+//		}
+//		return new Dimension(900, 700);
+//	}
 }
 
 

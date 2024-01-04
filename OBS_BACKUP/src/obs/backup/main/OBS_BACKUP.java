@@ -605,7 +605,6 @@ public class OBS_BACKUP extends JFrame {
 			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText(), new Date(), ex.getMessage());
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
-
 	}
 	public void sifreden() throws ClassNotFoundException, SQLException
 	{
@@ -1053,7 +1052,6 @@ public class OBS_BACKUP extends JFrame {
 		container.revalidate();
 		container.repaint();
 		emirTEKYUKLE(eadi,"");
-
 	}
 	public static void emirSIL(String eadi) throws ClassNotFoundException, SQLException
 	{
@@ -1070,12 +1068,8 @@ public class OBS_BACKUP extends JFrame {
 		}
 		container.repaint();
 		emirSAYI_COUNT();
-
 		try
 		{
-			//   timer1.Stop();
-			//   timer1.Dispose();
-
 			bckp.log_kayit(eadi, new Date(), "Emir Silme Islemine Baslandi...");
 			bckp.genel_kayit_sil(eadi);
 			bckp.db_adi_kayit_sil(eadi);
@@ -1085,7 +1079,6 @@ public class OBS_BACKUP extends JFrame {
 			bckp.server_kayit_sil(eadi);
 			bckp.diger_dosya_adi_kayit_sil(eadi);
 			bckp.log_kayit(eadi, new Date(), "Emir Islemi Silindi...");
-
 			for (int gg = 0; gg < gorevLER.size() ; gg++)
 			{
 				if (gorevLER.get(gg).toString() == eadi)
@@ -1142,9 +1135,7 @@ public class OBS_BACKUP extends JFrame {
 		uplpnl.setMaximumSize(new Dimension(0,100));
 		uplpnl.revalidate();
 		List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
-
 		emirBilgi = bckp.emir_tek(emirADI);
-		///
 		Date sonyuk ;
 		if(emirBilgi.get(0).getSON_YUKLEME().toString().equals("Mon Jan 01 00:00:00 TRT 1900"))
 		{
@@ -1302,8 +1293,7 @@ public class OBS_BACKUP extends JFrame {
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);					
 			bckp.genel_kayit_durum(emirADI, true, nowwDate, "Yedeklendi.....");
-
-			if (eskiyedek > 0) // **************SURUCU ESKILERI SIL
+			if (eskiyedek > 0) // **************SURUCU ESKILERI SIL ************************************************
 			{
 				uplpnl.Progres_Bar_Temizle_1();
 				uplpnl.Progres_Bar_Temizle_2();
@@ -1356,7 +1346,6 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
 			emirYENIDENBASLAT(emirADI);
-
 			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
@@ -1372,7 +1361,7 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
-				yapilmadiMAILI( emirADI);
+				yapilmadiMAILI( emirADI,ex.getMessage());
 				bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 				emirtekSIL_HATA(emirADI);
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
@@ -1580,7 +1569,7 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
-				yapilmadiMAILI( emirADI);
+				yapilmadiMAILI( emirADI,ex.getMessage());
 				bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 				emirtekSIL_HATA(emirADI);
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
@@ -1808,8 +1797,6 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setPreferredSize(new Dimension(0,00));
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
-			//emirBOSALT(emirADI);
-			//emirTEKYUKLE(emirADI,"");
 			emirYENIDENBASLAT(emirADI);
 			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1826,7 +1813,7 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
-				yapilmadiMAILI( emirADI);
+				yapilmadiMAILI( emirADI,ex.getMessage());
 				bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 				emirtekSIL_HATA(emirADI);
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
@@ -1847,7 +1834,6 @@ public class OBS_BACKUP extends JFrame {
 			int eskiyedek, zmnasimi;
 			ftp = ftpBilgi.get(0).getHOST();
 			kull = ftpBilgi.get(0).getKULLANICI();
-
 			String decodedString = ftpBilgi.get(0).getSIFRE();
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
@@ -1861,9 +1847,7 @@ public class OBS_BACKUP extends JFrame {
 			zmnasimi = Integer.valueOf(ftpBilgi.get(0).getZMN_ASIMI());
 			neresi =ftpBilgi.get(0).getNERESI();
 			surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
-
 			uplpnl.lblSurucu.setText( ftp + "\\" + surucu.replace("/", "\\"));
-
 			if (glb.internet_kontrol() == false)
 			{
 				bckp.genel_kayit_durum(emirADI, false, new Date(), "Yedeklenmedi Internet Baglantisi Yok...");
@@ -1896,15 +1880,12 @@ public class OBS_BACKUP extends JFrame {
 
 			String tarr =  TARIH_CEVIR.tarihddMMyyyyHHmm(new Date());
 			bckp.log_kayit(emirADI, new Date(), "Yedeklemeye Baslandi....");
-
 			String dosADI = "";
 			Boolean folderMI = false;
 			List<db_List>  dbliste = bckp.diger_dosya_liste (emirADI);
-
 			uplpnl.Progres_Bar_Temizle_1();
 			uplpnl.RPB1.setMaximum(dbliste.size());
 			uplpnl.RPB1.setStringPainted(true);
-			//uplpnl.RPB2.setStringPainted(true);
 			for (int i = 0; i <= dbliste.size() - 1; i++)
 			{
 				uplpnl. Progres_Bar_1( i + 1);
@@ -1971,7 +1952,6 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.RPB1.setStringPainted(true);
 				uplpnl.RPB2.setMaximum(ls.size());
 				uplpnl.RPB2.setStringPainted(true);
-
 				for (int i = 0; i <= dbliste.size() - 1; i++)
 				{
 					uplpnl. Progres_Bar_1( i + 1);
@@ -2021,7 +2001,7 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
-				yapilmadiMAILI(emirADI);
+				yapilmadiMAILI( emirADI,ex.getMessage());
 				bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 				emirtekSIL_HATA(emirADI);
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
@@ -2106,7 +2086,6 @@ public class OBS_BACKUP extends JFrame {
 		container.repaint();
 		emirSAYI_COUNT();
 	}
-
 	private static void mail_at(List<bilgilendirme_bilgiler> bilgiBilgi,String mesaj )
 	{
 		try {
@@ -2233,7 +2212,7 @@ public class OBS_BACKUP extends JFrame {
 		}
 
 	}
-	private void yapilmadiMAILI(String emirADI) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	private void yapilmadiMAILI(String emirADI,String mesaj) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		List<bilgilendirme_bilgiler> bilgiBilgi = new ArrayList<bilgilendirme_bilgiler>();
 		bilgiBilgi  = bckp.bilgilendirme_bilgi(emirADI);
@@ -2245,7 +2224,7 @@ public class OBS_BACKUP extends JFrame {
 				{
 					SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH.mm:ss");
 					Date today = new Date();        
-					bilgilendirme_oku(emirADI, emirADI + "    " + df.format(today) + "     Yedekleme Yapilamadi",bilgiBilgi);
+					bilgilendirme_oku(emirADI, emirADI + "    " + df.format(today) + " =" + mesaj,bilgiBilgi);
 					bckp.log_kayit(emirADI, new Date(), "Yedekleme Yapilamadi Maili gonderildi...");
 				}
 			}

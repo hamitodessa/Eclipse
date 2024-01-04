@@ -241,6 +241,8 @@ public class ADRESLER extends JInternalFrame {
 			tc.setCellRenderer(new CheckBoxRenderer());
 			tc.setMinWidth(50);
 			
+			table.removeColumn(table.getColumnModel().getColumn(26));
+			
 			lbladet.setText( String.format("%,d %n" ,  table.getRowCount()));
 			long endTime = System.currentTimeMillis();
 			long estimatedTime = endTime - startTime;

@@ -59,9 +59,9 @@ public class ADRES_ACCESS {
 	{
 		return _IAdres.adres(sira, arama);
 	}
-	public void sil(String kod ,String adi, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
+	public void sil(String id, lOG_BILGI lBILGI, DIZIN_BILGILERI dBILGI) throws ClassNotFoundException, SQLException
 	{
-		_IAdres.sil(kod, adi);
+		_IAdres.sil(id);
 		 for ( ILOGGER  _Logger : _Logger )
 			  	_Logger.Logla(lBILGI, dBILGI);
 	}

@@ -211,7 +211,7 @@ public class ADRES_MSSQL implements IADRES {
 		ResultSet	rss = null;
 		String sql = " SELECT M_Kodu,Adi,Adres_1,Adres_2,Semt,Sehir,Vergi_Dairesi ," +
 				" Vergi_No, Fax,Tel_1,Tel_2,Tel_3,Ozel,Yetkili,E_Mail,Not_1,Not_2,Not_3 ,Aciklama,Sms_Gonder,Mail_Gonder,Ozel_Kod_1,Ozel_Kod_2" +
-				" ,Web ,Posta_Kodu ,Resim" +
+				" ,Web ,Posta_Kodu ,Resim,ID" +
 				" FROM Adres " +
 				arama +
 				" ORDER by " + sira;
@@ -294,11 +294,11 @@ public class ADRES_MSSQL implements IADRES {
 		stmt.executeUpdate();
 		stmt.close();
 	}
-	public void sil(String kod ,String adi) throws ClassNotFoundException, SQLException
+	public void sil(String id) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
 		String sql = " DELETE " +
-				" FROM Adres WHERE M_Kodu = N'" + kod.trim() + "' AND Adi = N'" + adi.trim() + "'"  ;
+				" FROM Adres WHERE ID = '" + id + "'"  ;
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();

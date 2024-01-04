@@ -90,6 +90,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 	private static JCheckBox chcici ;
 	private static ImagePanel imagePanel ;
 	private static JComboBox<String> cmbKodKontrol;
+	private static JTextField textID;
 	
 	public ADRES_GIRIS() {
 		setTitle("ADRES GIRISI");
@@ -642,6 +643,12 @@ public class ADRES_GIRIS extends JInternalFrame {
 		cmbKodKontrol = new JComboBox<String>();
 		cmbKodKontrol.setBounds(320, 27, 300, 23);
 		panel.add(cmbKodKontrol);
+		
+		textID = new JTextField();
+		textID.setBounds(18, 71, 74, 20);
+		textID.setVisible(false);
+		panel.add(textID);
+		textID.setColumns(10);
 
 		long startTime = System.currentTimeMillis(); 
 		hisset("M_Kodu , Adi", "");
@@ -703,7 +710,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 			{
 				rs.last();
 			}
-
+			textID.setText(String.valueOf(rs.getInt("ID")));
 			txtkayit.setText(rs.getRow() + "/" +   String.valueOf(kayit_sayi));
 			txtkodu.setText(rs.getString("M_Kodu"));
 			txtunvan.setText(rs.getString("Adi"));
@@ -793,7 +800,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		chcmail.setSelected(true);
 		// lblNewLabel_5.setIcon(null);
 		imagePanel.setImage(null);
-
+		textID.setText("");
 		kayit_sayi =0 ;
 	}
 	private void arama() throws ClassNotFoundException, SQLException
@@ -857,10 +864,8 @@ public class ADRES_GIRIS extends JInternalFrame {
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ("Hesap Kodu:" + txtkodu.getText() + " Hesap Silme");
 			lBILGI.seteVRAK("");
-			
-			a_Access.sil(txtkodu.getText(),txtunvan.getText(),
-					lBILGI, BAGLAN_LOG.adrLogDizin);
-
+			if(! textID.getText().equals(""))
+				a_Access.sil(textID.getText(),lBILGI, BAGLAN_LOG.adrLogDizin);
 			ADRESS_DEGISKENLER aDEG = new ADRESS_DEGISKENLER();
 			aDEG.kodu = txtkodu.getText();
 			aDEG.adi = txtunvan.getText();
@@ -909,6 +914,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 	}
 	public static void sil()
 	{
+		if ( textID.getText().equals("") ) return ;
 		if ( txtkodu.getText().equals("") &&  txtunvan.getText().equals("")) return ;
 		int g =  JOptionPane.showOptionDialog( null,  "Kayit Dosyadan Silinecek ..?"  ,
 				"Adres Silme",   JOptionPane.YES_NO_OPTION,
@@ -920,7 +926,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 			lBILGI.setmESAJ("Hesap Kodu:" + txtkodu.getText() + " Hesap Silme");
 			lBILGI.seteVRAK("");
 			
-			a_Access.sil(txtkodu.getText(),txtunvan.getText(),
+			a_Access.sil(textID.getText(),
 					lBILGI, BAGLAN_LOG.adrLogDizin);
 			temizle();
 			txtarama.setText("");

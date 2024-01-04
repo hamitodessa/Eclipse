@@ -6,7 +6,9 @@ import java.awt.Insets;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -18,6 +20,7 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JFormattedTextField;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.DocumentEvent;
@@ -44,6 +47,7 @@ import OBS_C_2025.ManualResultSet;
 import OBS_C_2025.SearchOption;
 import OBS_C_2025.TextFieldSearchOption;
 
+import java.awt.AWTKeyStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -81,6 +85,7 @@ import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
@@ -407,6 +412,28 @@ public class DENEMELER extends JInternalFrame {
 		panel_1.setBounds(620, 91, 115, 169);
 		panel.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnNewButton_10 = new JButton("New button");
+		btnNewButton_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			JOptionPane optionPane = new JOptionPane("File haven't save yet." +
+			            " \n Are you want to save the file?", JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
+			
+			////
+			JDialog	dialog = optionPane.createDialog("Confirm Dialog");
+			    Set focusTraversalKeys = new HashSet(dialog.getFocusTraversalKeys(0));
+			    focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_UNDEFINED));
+			    focusTraversalKeys.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_LEFT, KeyEvent.VK_UNDEFINED));
+			    dialog.setFocusTraversalKeys(0, focusTraversalKeys);
+			    dialog.setVisible(true);
+			    dialog.dispose();
+			    int option = (Integer) optionPane.getValue();
+			    System.out.println(option);
+			
+			}
+		});
+		btnNewButton_10.setBounds(54, 359, 89, 23);
+		panel.add(btnNewButton_10);
 		
 		
 

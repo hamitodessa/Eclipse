@@ -1113,12 +1113,15 @@ public class BACKUP_GLOBAL {
 			{
 			}
 			else {
-				Vector data = new Vector();
-				data.add( Boolean.FALSE );
-				data.add(file.getName().toString());
-				data.add((int) file.getSize());
-				data.add(dateFormater.format(file.getTimestamp().getTime()));
-				model.addRow(data);
+				if (! file.isDirectory()) 
+				{
+					Vector data = new Vector();
+					data.add( Boolean.FALSE );
+					data.add(file.getName().toString());
+					data.add((int) file.getSize());
+					data.add(dateFormater.format(file.getTimestamp().getTime()));
+					model.addRow(data);
+				}
 			}
 		}
 		ftp.logout();

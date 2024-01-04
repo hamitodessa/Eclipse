@@ -155,7 +155,7 @@ public class ANA_MENU extends JFrame {
 		panel.add(txtdiz);
 		txtdiz.setColumns(10);
 
-		JButton btnNewButton_1 = new JButton("INDIR");
+		JButton btnNewButton_1 = new JButton("SURUCU");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -401,7 +401,6 @@ public class ANA_MENU extends JFrame {
 					}
 					contentPane.setCursor(DEFAULT_CURSOR);
 					Thread.currentThread().isInterrupted();
-					System.exit(1);
 				}
 				catch (Exception ex)
 				{
@@ -492,7 +491,6 @@ public class ANA_MENU extends JFrame {
 					}
 					contentPane.setCursor(DEFAULT_CURSOR);
 					Thread.currentThread().isInterrupted();
-					System.exit(1);
 				}
 				catch (Exception ex)
 				{
@@ -583,7 +581,6 @@ public class ANA_MENU extends JFrame {
 					}
 					contentPane.setCursor(DEFAULT_CURSOR);
 					Thread.currentThread().isInterrupted();
-					System.exit(1);
 				}
 				catch (Exception ex)
 				{
@@ -674,7 +671,6 @@ public class ANA_MENU extends JFrame {
 					}
 					contentPane.setCursor(DEFAULT_CURSOR);
 					Thread.currentThread().isInterrupted();
-					System.exit(1);
 				}
 				catch (Exception ex)
 				{
@@ -782,7 +778,6 @@ public class ANA_MENU extends JFrame {
 					}
 					contentPane.setCursor(DEFAULT_CURSOR);
 					Thread.currentThread().isInterrupted();
-					System.exit(1);
 				}
 				catch (Exception ex)
 				{

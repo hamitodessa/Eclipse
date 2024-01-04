@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.sql.ResultSet;
@@ -57,7 +58,9 @@ import OBS_C_2025.Server_Bilgi;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.USER_ISLEMLERI;
 import OBS_C_2025.g_bilgiler;
+
 import fih.FIHRIST_ACCESS;
+import obs.gorev.theme.Title_Bar;
 
 import javax.swing.JTabbedPane;
 import javax.swing.SpinnerDateModel;
@@ -103,6 +106,7 @@ public class OBS_GOREV extends JFrame  {
 	static Timer timerr ;
 	String[] kurrakkam;
 	private JTextField textKurKullanici;
+	int x ,y ;
 	/**
 	 * Launch the application.
 	 */
@@ -120,16 +124,23 @@ public class OBS_GOREV extends JFrame  {
 	}
 
 	public OBS_GOREV() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-		addWindowListener(new java.awt.event.WindowAdapter() {
-		    @Override
-		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-		    	System.exit(0);	
-		    }
-		    @Override
-		      public void windowIconified(java.awt.event.WindowEvent we) {
-		       
-		      }
+		setUndecorated(true);
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				x = e.getX(); 
+				y = e.getY(); 
+			}
 		});
+		addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int xx = e.getXOnScreen();
+				int yy = e.getYOnScreen(); 
+				setLocation(xx-x,yy-y);
+			}
+		});
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_GOREV.class.getResource("/obs/gorev/other/job-24.png")));
 		FlatRobotoFont.install();
 		FlatLaf.registerCustomDefaultsSource("obs.gorev.theme");
@@ -143,7 +154,7 @@ public class OBS_GOREV extends JFrame  {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
-		
+		getContentPane().add(new Title_Bar(this), BorderLayout.NORTH);
 
 		JPanel panelalt = new JPanel();
 		panelalt.setPreferredSize(new Dimension(0,30));
@@ -156,7 +167,6 @@ public class OBS_GOREV extends JFrame  {
 
 		JPanel panel_1 = new JPanel();
 		getContentPane().add(panel_1 , BorderLayout.CENTER);
-		//tabbedPane.addTab("Kur Takip", null, panel_1, null);
 		panel_1.setLayout(null);
 
 		chckbxDurum = new JCheckBox("Aktif / Pasif");

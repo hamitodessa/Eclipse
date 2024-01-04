@@ -64,6 +64,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.nio.file.Files;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -178,7 +179,7 @@ public class OBS_BACKUP extends JFrame {
 	public static JLabel lblemirSAYI;
 	public static JLabel lblEmir ;
 
-
+	private Path path;
 	static Component horizontalGlue = null ;
 	/**
 	 * Hamit.
@@ -1289,9 +1290,11 @@ public class OBS_BACKUP extends JFrame {
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
-				Thread.sleep(1000);
+				path = Paths.get(glb.BACKUP_YERI + dosya);
+				isReadiable(path);
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
-				Thread.sleep(1000);
+				path = Paths.get(glb.BACKUP_YERI + dzip);
+				isReadiable(path);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 				boolean exists = tmpDir.exists();
@@ -1511,9 +1514,11 @@ public class OBS_BACKUP extends JFrame {
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
-				Thread.sleep(1000);
+				path = Paths.get(glb.BACKUP_YERI + dosya);
+				isReadiable(path);
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
-				Thread.sleep(1000);
+				path = Paths.get(glb.BACKUP_YERI + dzip);
+				isReadiable(path);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "Zip Haline Getirildi...");
 				UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "FTP Yuklendi...");
@@ -1759,7 +1764,8 @@ public class OBS_BACKUP extends JFrame {
 				{
 					tmpDir.mkdirs();
 				}
-				Thread.sleep(1000);
+				path = Paths.get(glb.BACKUP_YERI + dzip);
+				isReadiable(path);
 				File okunanFile = new File(glb.BACKUP_YERI + dzip);
 				fileCOPY(glb.BACKUP_YERI + dzip, ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip);
 				if (glb.dos_kontrol( glb.BACKUP_YERI + "\\" + dzip))
@@ -1961,7 +1967,8 @@ public class OBS_BACKUP extends JFrame {
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
 					bckp.diger_zip_yap(okumadosyaadi, glb.BACKUP_YERI, dzip, false, "");
 				}
-				Thread.sleep(1000);
+				path = Paths.get(glb.BACKUP_YERI + dzip);
+				isReadiable(path);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 				UploadFTPFiles(ftp, surucu, glb.BACKUP_YERI, dzip, kull, sifre, port, zmnasimi);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " FTP Yuklendi...");
@@ -2331,6 +2338,14 @@ public class OBS_BACKUP extends JFrame {
 			}
 			component.revalidate();
 		}
+	}
+	private void isReadiable(Path pathh)
+	{
+		boolean result = false;
+		while (result == true) {
+	    	if (Files.isReadable(pathh)) {
+	           result = false;    
+            }}
 	}
 	@Override
 	public Dimension getPreferredSize() {

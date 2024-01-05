@@ -773,7 +773,7 @@ public class OBS_BACKUP extends JFrame {
 				}
 			};  
 		};  
-		timerr.scheduleAtFixedRate(tt, 100, 1000);
+		timerr.scheduleAtFixedRate(tt, 100, 5000);
 	}
 	private void yEDEKLE() throws ClassNotFoundException, SQLException
 	{

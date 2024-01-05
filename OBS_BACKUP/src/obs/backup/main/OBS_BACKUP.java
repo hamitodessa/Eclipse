@@ -461,10 +461,24 @@ public class OBS_BACKUP extends JFrame {
 				{
 					if (component.getName()!= null)
 					{
-						try {
-							bckp.durum_kayit_durum(component.getName().toString(), true,"Durum Aktivlestirildi...");
-						} catch (Exception e1) {
-							e1.printStackTrace();
+						JPanel qweJPanel = (JPanel) component ; 
+						Component[] componentt = qweJPanel.getComponents();
+						for (Component compo : componentt) {
+							if(compo.getName() != null)
+							{
+								if(compo.getName().equals("lblDurum"))
+								{
+									JLabel stp = (JLabel) compo;
+									if(stp.getText().equals("Pasiv Durumda"))
+									{
+										try {
+											bckp.durum_kayit_durum(component.getName().toString(), true,"Durum Aktivlestirildi...");
+										} catch (Exception e1) {
+											e1.printStackTrace();
+										}
+									}
+								}
+							}
 						}
 					}
 					component.revalidate();
@@ -488,13 +502,28 @@ public class OBS_BACKUP extends JFrame {
 		btnHepsiPasiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Component[] components = container.getComponents();
-				for (Component component : components) {
+				for (Component component : components) 
+				{
 					if (component.getName()!= null)
 					{
-						try {
-							bckp.durum_kayit_durum(component.getName().toString(), false,"Durum Pasivlestirildi...");
-						} catch (Exception e1) {
-							e1.printStackTrace();
+						JPanel qweJPanel = (JPanel) component ; 
+						Component[] componentt = qweJPanel.getComponents();
+						for (Component compo : componentt) {
+							if(compo.getName() != null)
+							{
+								if(compo.getName().equals("lblDurum"))
+								{
+									JLabel stp = (JLabel) compo;
+									if(! stp.getText().equals("Pasiv Durumda"))
+									{
+										try {
+											bckp.durum_kayit_durum(component.getName().toString(), false,"Durum Pasivlestirildi...");
+										} catch (Exception e1) {
+											e1.printStackTrace();
+										}
+									}
+								}
+							}
 						}
 					}
 					component.revalidate();

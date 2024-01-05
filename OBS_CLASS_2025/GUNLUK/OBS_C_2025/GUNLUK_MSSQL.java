@@ -24,7 +24,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void baglan() throws SQLException {
 		String cumle = "jdbc:sqlserver://" + BAGLAN.gunDizin.cONN_STR + ";";
-		//DriverManager.setLoginTimeout(0);
 		con = DriverManager.getConnection(cumle,BAGLAN.gunDizin.kULLANICI,BAGLAN.gunDizin.sIFRESI);
 	}
 	@Override
@@ -250,7 +249,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		rss.next();
 		int count=0;
 		count = rss.getRow();
-
 		if (count  != 0) 
 		{
 			gid =  rss.getInt("GID");
@@ -266,7 +264,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 				" FROM GUNLUK WITH (INDEX (IDX_GUNLUK))  " +
 				" WHERE TARIH >=  '" + gbilgi.tarih1 + "'" + gbilgi.isim +
 				" ORDER BY TARIH ,ISIM ";
-		
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
@@ -358,7 +355,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 	@Override
 	public void gunluk_farkli_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException, ParseException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		//***********************KAYIT TEKRARINA GORE KAYIT YAP **************************
 		Date son_tarih ;
 		Date bas_tarih;
 		if (gbilgi.secenek == "Saatte")
@@ -394,7 +390,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 			stmt.setString(7, gbilgi.mesaj);
 			stmt.setString(8, gbilgi.user);
 			stmt.addBatch();
-	
 			Calendar c = Calendar.getInstance(); 
 			c.setTime(bas_tarih); 
 			if(gbilgi.secenek =="Ayda")
@@ -438,7 +433,6 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		kONTROL();
 		PreparedStatement stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		
 		return rss;	
 	}
 	@Override

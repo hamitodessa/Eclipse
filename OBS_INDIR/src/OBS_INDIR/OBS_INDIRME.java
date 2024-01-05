@@ -47,7 +47,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class ANA_MENU extends JFrame {
+public class OBS_INDIRME extends JFrame {
 	Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
 	private JPanel contentPane;
@@ -66,7 +66,7 @@ public class ANA_MENU extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ANA_MENU frame = new ANA_MENU();
+					OBS_INDIRME frame = new OBS_INDIRME();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -82,7 +82,7 @@ public class ANA_MENU extends JFrame {
 	 * @throws InstantiationException 
 	 * @throws ClassNotFoundException 
 	 */
-	public ANA_MENU() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+	public OBS_INDIRME() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 	
 		setUndecorated(true);
 		FlatRobotoFont.install();
@@ -112,7 +112,7 @@ public class ANA_MENU extends JFrame {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ANA_MENU.class.getResource("/OBS_INDIR/download-48.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_INDIRME.class.getResource("/OBS_INDIR/download-48.png")));
 
 		
 		contentPane = new JPanel();

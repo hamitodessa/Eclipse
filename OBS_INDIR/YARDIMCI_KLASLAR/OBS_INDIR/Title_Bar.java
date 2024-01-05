@@ -9,7 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
 import OBS_C_2025.Buttont;
-import OBS_INDIR.ANA_MENU;
+import OBS_INDIR.OBS_INDIRME;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

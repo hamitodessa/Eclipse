@@ -151,7 +151,7 @@ public class OBS_INDIRME extends JFrame {
 		//txtdiz.setForeground(new Color(0, 0, 128));
 		txtdiz.setText("C:\\OBS_SISTEM");
 		txtdiz.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtdiz.setBounds(52, 24, 399, 20);
+		txtdiz.setBounds(52, 24, 399, 23);
 		panel.add(txtdiz);
 		txtdiz.setColumns(10);
 
@@ -180,7 +180,7 @@ public class OBS_INDIRME extends JFrame {
 			}
 
 		});
-		btnNewButton_1.setBounds(456, 23, 80, 23);
+		btnNewButton_1.setBounds(456, 23, 80, 25);
 		panel.add(btnNewButton_1);
 
 		JLabel lblNewLabel = new JLabel("Kalan");

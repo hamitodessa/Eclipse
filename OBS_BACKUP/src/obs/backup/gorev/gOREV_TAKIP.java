@@ -217,7 +217,7 @@ public  class gOREV_TAKIP extends JPanel {
 
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon(gOREV_TAKIP.class.getResource("/obs/backup/icons/icons8-backup-100.png")));
-		lblNewLabel_2.setBounds(10, 66, 100, 100);
+		lblNewLabel_2.setBounds(20, 65, 100, 100);
 		add(lblNewLabel_2);
 
 		lblDurum = new JLabel(".....");
@@ -328,8 +328,6 @@ public  class gOREV_TAKIP extends JPanel {
 		} catch (Exception ex) {
 		}
 	}
-
-
 	public void run() {
 		if (lblDurum.getText().equals("Pasiv Durumda"))
 		{

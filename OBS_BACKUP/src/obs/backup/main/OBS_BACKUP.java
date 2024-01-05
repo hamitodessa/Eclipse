@@ -2,10 +2,12 @@ package obs.backup.main;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.commons.net.ftp.FTP;
@@ -46,6 +48,8 @@ import raven.toast.Notifications;
 
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+
+import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -61,6 +65,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -99,7 +104,12 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.SystemTray;
 import java.awt.Toolkit;
+import java.awt.TrayIcon;
 import java.awt.Component;
 import java.awt.Cursor;
 import javax.swing.JLabel;
@@ -183,6 +193,10 @@ public class OBS_BACKUP extends JFrame {
 
 	private Path path;
 	static Component horizontalGlue = null ;
+	
+	public static JButton btntry;
+	static JButton btnBuyult;
+	static TrayIcon trayIcon = null ;
 	/**
 	 * Hamit.
 	 */
@@ -199,11 +213,6 @@ public class OBS_BACKUP extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
 
 
 	public OBS_BACKUP() throws ClassNotFoundException, SQLException {
@@ -247,7 +256,7 @@ public class OBS_BACKUP extends JFrame {
 		contentPane.add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(30,0));//160
+		panel.setPreferredSize(new Dimension(40,0));//160
 		splitPane.setLeftComponent(panel);
 
 		//***************
@@ -263,7 +272,6 @@ public class OBS_BACKUP extends JFrame {
 		btnGorevler = new JButton();
 		btnGorevler.setToolTipText("Gorevler");
 		btnGorevler.setEnabled(false);
-		btnGorevler.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 
 		btnGorevler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/emirler.png")));
 		btnGorevler.addActionListener(new ActionListener() {
@@ -287,7 +295,6 @@ public class OBS_BACKUP extends JFrame {
 		btnYeni_Gorev.setToolTipText("Yeni Gorev");
 		btnYeni_Gorev.setEnabled(false);
 
-		btnYeni_Gorev.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnYeni_Gorev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gelenISIM = "" ;
@@ -302,7 +309,6 @@ public class OBS_BACKUP extends JFrame {
 		btnLoglama = new JButton();
 		btnLoglama.setToolTipText("Log Goruntule");
 		btnLoglama.setEnabled(false);
-		btnLoglama.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnLoglama .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedIndex(2);
@@ -320,7 +326,6 @@ public class OBS_BACKUP extends JFrame {
 
 		btnKayitliEmirler = new JButton();
 		btnKayitliEmirler.setEnabled(false);
-		btnKayitliEmirler.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnKayitliEmirler.setToolTipText("Kayitli Emirler");
 		btnKayitliEmirler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/jobs.png")));
 		btnKayitliEmirler .addActionListener(new ActionListener() {
@@ -343,7 +348,6 @@ public class OBS_BACKUP extends JFrame {
 
 		btnHepsiYukari = new JButton();
 		btnHepsiYukari.setEnabled(false);
-		btnHepsiYukari.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnHepsiYukari.setToolTipText("Gorev Paneli Yukari");
 		btnHepsiYukari.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/up.png")));
 		btnHepsiYukari .addActionListener(new ActionListener() {
@@ -365,7 +369,6 @@ public class OBS_BACKUP extends JFrame {
 
 		btnHepsiAsagi = new JButton();
 		btnHepsiAsagi.setEnabled(false);
-		btnHepsiAsagi.setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 5));
 		btnHepsiAsagi.setToolTipText("Gorev Paneli Asagi");
 		btnHepsiAsagi.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/down.png")));
 		btnHepsiAsagi .addActionListener(new ActionListener() {
@@ -392,7 +395,6 @@ public class OBS_BACKUP extends JFrame {
 		btnStartAll= new JButton("");
 		btnStartAll.setToolTipText("Emirleri Baslat");
 		btnStartAll.setEnabled(false);
-		btnStartAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnStartAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -424,7 +426,6 @@ public class OBS_BACKUP extends JFrame {
 		btnStopAll= new JButton("");
 		btnStopAll.setToolTipText("Emirleri Durdur");
 		btnStopAll.setEnabled(false);
-		btnStopAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnStopAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -456,12 +457,10 @@ public class OBS_BACKUP extends JFrame {
 		btnHepsiAktiv= new JButton("");
 		btnHepsiAktiv.setToolTipText("Hepsini Aktivlestir");
 		btnHepsiAktiv.setEnabled(false);
-		btnHepsiAktiv.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnHepsiAktiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				Component[] components = container.getComponents();
-				timerr.cancel();
 				for (Component component : components) 
 				{
 					if (component.getName()!= null)
@@ -479,7 +478,7 @@ public class OBS_BACKUP extends JFrame {
 										try {
 											bckp.durum_kayit_durum(component.getName().toString(), true,"Durum Aktivlestirildi...");
 										} catch (Exception e1) {
-											e1.printStackTrace();
+											//e1.printStackTrace();
 										}
 									}
 								}
@@ -491,10 +490,8 @@ public class OBS_BACKUP extends JFrame {
 				try {
 					emir_yukle("EMIR_ISMI");
 				} catch (Exception e1) {
-
 					e1.printStackTrace();
 				}
-				jobTimerBasla();
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
@@ -504,7 +501,6 @@ public class OBS_BACKUP extends JFrame {
 		btnHepsiPasiv= new JButton("");
 		btnHepsiPasiv.setToolTipText("Hepsini Pasivlestir");
 		btnHepsiPasiv.setEnabled(false);
-		btnHepsiPasiv.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnHepsiPasiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -538,20 +534,16 @@ public class OBS_BACKUP extends JFrame {
 				try {
 					emir_yukle("EMIR_ISMI");
 				} catch (Exception e1) {
-
 					e1.printStackTrace();
 				}
-				jobTimerBasla();
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		btnHepsiPasiv.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/pasiv-24.png")));
 		toolBar.add(btnHepsiPasiv);
 
-		
 		btnUploadAll= new JButton("");
 		btnUploadAll.setEnabled(false);
-		btnUploadAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnUploadAll.setToolTipText("Aktif Emirleri Yedekle");
 		btnUploadAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -584,7 +576,6 @@ public class OBS_BACKUP extends JFrame {
 		btnFileIndir= new JButton("");
 		btnFileIndir.setEnabled(false);
 		btnFileIndir.setToolTipText("FTP Dosya Indirme");
-		btnFileIndir.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnFileIndir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -603,10 +594,8 @@ public class OBS_BACKUP extends JFrame {
 		btnFileIndir.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/download-30.png")));
 		toolBar.add(btnFileIndir);
 
-		//
 		btnYeniSifre = new JButton();
 		btnYeniSifre.setEnabled(false);
-		btnYeniSifre.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnYeniSifre.setToolTipText("Sifre Yenile");
 		btnYeniSifre.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/password.png")));
 		btnYeniSifre .addActionListener(new ActionListener() {
@@ -623,11 +612,9 @@ public class OBS_BACKUP extends JFrame {
 		Component horizontalGlue = Box.createVerticalGlue();
 		toolBar.add(horizontalGlue);
 
-		//
 		btnSifreEkrani= new JButton("");
 		btnSifreEkrani.setToolTipText("Sifre Ekrani");
 		btnSifreEkrani.setVisible(false);
-		btnSifreEkrani.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 5));
 		btnSifreEkrani.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/protect-24.png")));
 		btnSifreEkrani .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -644,6 +631,8 @@ public class OBS_BACKUP extends JFrame {
 				btnStartAll.setEnabled(false);
 				btnStopAll.setEnabled(false);
 				btnFileIndir.setEnabled(false);
+				btnHepsiAktiv.setEnabled(false);
+				btnHepsiPasiv.setEnabled(false);
 				sifreGirisPanel.passwordField.setText("");
 				tabbedPane.setSelectedIndex(4);
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -655,7 +644,6 @@ public class OBS_BACKUP extends JFrame {
 		
 		JButton btnkapat= new JButton("");
 		btnkapat.setToolTipText("Kapat");
-		btnkapat.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 5));
 		btnkapat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -714,7 +702,6 @@ public class OBS_BACKUP extends JFrame {
 		lblemirSAYI.setBounds(95, 5, 48, 14);
 		altPane.add(lblemirSAYI);
 
-
 		emirAnaGirisPanel = new EmirAnaGiris();
 		tabbedPane_1.addTab("Emir", null,emirAnaGirisPanel, null);
 		sunucuayarPanel = new SunucuAyarlari();
@@ -738,6 +725,24 @@ public class OBS_BACKUP extends JFrame {
 		downloadFilePanel = new DownloadFile();
 		tabbedPane.addTab("Dosya Indir", null, downloadFilePanel, null);
 		//***********************************************************************************
+		btntry= new JButton("");
+		btntry.setVisible(false);
+		btntry.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				systemTRY();
+			}
+		});
+		btnBuyult = new JButton("");
+		btnBuyult.setVisible(false);
+		btnBuyult.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 SystemTray tray = SystemTray.getSystemTray();
+				 if (trayIcon != null)
+					 tray.remove(trayIcon); 
+				setVisible(true);
+			}
+		});
 		try {
 			glb.backup_surucu_kontrol();
 			bckp.log_kayit("Sistem", new Date(), "Program Baslangici");
@@ -768,14 +773,17 @@ public class OBS_BACKUP extends JFrame {
 				}
 			};  
 		};  
-		timerr.scheduleAtFixedRate(tt, 1000, 1000);
+		timerr.scheduleAtFixedRate(tt, 100, 1000);
 	}
 	private void yEDEKLE() throws ClassNotFoundException, SQLException
 	{
 		String hataEMIR = "";
 		try
 		{
-			timerr.cancel();;
+			if(gorevLER.size() == 0) return;
+			timerr.cancel();
+            timerr.purge();
+            timerr = null;
 			for (int g = 0; g <= gorevLER.size()-1; g++)
 			{
 				String eISMI = gorevLER.get(g);
@@ -2449,6 +2457,53 @@ public class OBS_BACKUP extends JFrame {
 			}
 		}
 	}
+	private void deneme()
+	{
+		
+	}
+	public static  void systemTRY()
+	{
+		 PopupMenu popup;
+		 Image image;
+		if (SystemTray.isSupported()) {
+		    SystemTray tray = SystemTray.getSystemTray();
+		    image = Toolkit.getDefaultToolkit().getImage(OBS_BACKUP.class.getResource("/obs/backup/icons/backup-100.png"));
+		    ActionListener listener = new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		        	btnBuyult.doClick();
+		        }
+		    };
+		    ActionListener kapat = new ActionListener() {
+		        public void actionPerformed(ActionEvent e) {
+		        	System.exit(1);
+		        }
+		    };
+		    popup = new PopupMenu();
+		    MenuItem buyultITEM = new MenuItem("Buyult");
+		    buyultITEM.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		    buyultITEM.addActionListener(listener);
+		    MenuItem kapatItem = new MenuItem("Kapat");
+		    kapatItem.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		    kapatItem.addActionListener(kapat);
+		    popup.addSeparator();
+		    popup.add(buyultITEM);
+		    popup.addSeparator();
+		    popup.add(kapatItem);
+		    popup.addSeparator();
+		    trayIcon = new TrayIcon(image, "OBS_BACKUP", popup);
+		    trayIcon.addActionListener(listener);
+		    try {
+		        tray.add(trayIcon);
+		    } catch (AWTException e) {
+		    	mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());	
+		    }
+		} else {
+			btnBuyult.doClick();
+		}
+		if (trayIcon != null) {
+		    trayIcon.setImage(Toolkit.getDefaultToolkit().getImage(OBS_BACKUP.class.getResource("/obs/backup/icons/backup-100.png")));
+		}	
+	}
 //	@Override
 //	public Dimension getPreferredSize() {
 //		Dimension superSz = super.getPreferredSize();
@@ -2457,6 +2512,7 @@ public class OBS_BACKUP extends JFrame {
 //		}
 //		return new Dimension(900, 700);
 //	}
+
 }
 
 

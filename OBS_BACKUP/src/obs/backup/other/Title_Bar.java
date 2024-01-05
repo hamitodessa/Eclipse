@@ -1,8 +1,15 @@
 package obs.backup.other;
 
+import java.awt.AWTException;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Image;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.SystemTray;
+import java.awt.Toolkit;
+import java.awt.TrayIcon;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -43,7 +50,8 @@ public class Title_Bar extends javax.swing.JPanel{
 		Buttont btnNewButton = new Buttont();
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			frame.setState(Frame.ICONIFIED);
+			//frame.setState(Frame.ICONIFIED);
+			OBS_BACKUP.btntry.doClick();
 			}
 		});
 
@@ -101,4 +109,6 @@ public class Title_Bar extends javax.swing.JPanel{
 		btnNewButton_2.setIcon(iconClose.toIcon());
 		add(btnNewButton_2);
 	}
+
+
 }

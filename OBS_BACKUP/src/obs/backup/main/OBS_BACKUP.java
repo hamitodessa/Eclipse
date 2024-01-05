@@ -395,6 +395,7 @@ public class OBS_BACKUP extends JFrame {
 		btnStartAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnStartAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				Component[] components = container.getComponents();
 				for (Component component : components) {
 					if (component.getName()!= null)
@@ -414,6 +415,7 @@ public class OBS_BACKUP extends JFrame {
 					}
 					component.revalidate();
 				}
+				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		btnStartAll.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/start.png")));
@@ -425,6 +427,7 @@ public class OBS_BACKUP extends JFrame {
 		btnStopAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnStopAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				Component[] components = container.getComponents();
 				for (Component component : components) {
 					if (component.getName()!= null)
@@ -444,6 +447,7 @@ public class OBS_BACKUP extends JFrame {
 					}
 					component.revalidate();
 				}
+				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		btnStopAll.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/stop.png")));
@@ -455,6 +459,7 @@ public class OBS_BACKUP extends JFrame {
 		btnHepsiAktiv.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnHepsiAktiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				Component[] components = container.getComponents();
 				timerr.cancel();
 				for (Component component : components) 
@@ -490,6 +495,7 @@ public class OBS_BACKUP extends JFrame {
 					e1.printStackTrace();
 				}
 				jobTimerBasla();
+				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		btnHepsiAktiv.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/activ-24.png")));
@@ -501,6 +507,7 @@ public class OBS_BACKUP extends JFrame {
 		btnHepsiPasiv.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
 		btnHepsiPasiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				Component[] components = container.getComponents();
 				for (Component component : components) 
 				{
@@ -535,6 +542,7 @@ public class OBS_BACKUP extends JFrame {
 					e1.printStackTrace();
 				}
 				jobTimerBasla();
+				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		btnHepsiPasiv.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/pasiv-24.png")));
@@ -547,6 +555,7 @@ public class OBS_BACKUP extends JFrame {
 		btnUploadAll.setToolTipText("Aktif Emirleri Yedekle");
 		btnUploadAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				Component[] components = container.getComponents();
 				for (Component component : components) {
 					if (component.getName()!= null)
@@ -566,6 +575,7 @@ public class OBS_BACKUP extends JFrame {
 					}
 					component.revalidate();
 				}
+				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		btnUploadAll.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/upload.png")));

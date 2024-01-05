@@ -12,6 +12,8 @@ import OBS_C_2025.emir_bilgiler;
 import OBS_C_2025.ftp_bilgiler;
 import OBS_C_2025.yedekleme_bilgiler;
 import obs.backup.main.OBS_BACKUP;
+import raven.toast.Notifications;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -268,7 +270,13 @@ public  class gOREV_TAKIP extends JPanel {
 		btnStart.setBounds(0, 31, 23, 23);
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				run();
+				if(! lblDurum.getText().equals("Pasiv Durumda"))
+				{
+					run();
+				}
+				else {
+					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,emirADI + "- Isimli Emir Pasiv Durumda !!! ,  Oncelikle aktivlestirin....");       
+				}
 			}
 		});
 		add(btnStart);

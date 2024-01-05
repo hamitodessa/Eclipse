@@ -175,6 +175,8 @@ public class OBS_BACKUP extends JFrame {
 	public static JButton btnStopAll ;
 	public static JButton btnFileIndir;
 	public static JButton btnSifreEkrani;
+	public static JButton btnHepsiAktiv;
+	public static JButton btnHepsiPasiv;
 
 	public static JLabel lblemirSAYI;
 	public static JLabel lblEmir ;
@@ -447,6 +449,69 @@ public class OBS_BACKUP extends JFrame {
 		btnStopAll.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/stop.png")));
 		toolBar.add(btnStopAll);
 
+		btnHepsiAktiv= new JButton("");
+		btnHepsiAktiv.setToolTipText("Hepsini Aktivlestir");
+		btnHepsiAktiv.setEnabled(false);
+		btnHepsiAktiv.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
+		btnHepsiAktiv.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Component[] components = container.getComponents();
+				timerr.cancel();
+				for (Component component : components) 
+				{
+					if (component.getName()!= null)
+					{
+						try {
+							bckp.durum_kayit_durum(component.getName().toString(), true,"Durum Aktivlestirildi...");
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+					}
+					component.revalidate();
+				}
+				try {
+					emir_yukle("EMIR_ISMI");
+				} catch (Exception e1) {
+
+					e1.printStackTrace();
+				}
+				jobTimerBasla();
+			}
+		});
+		btnHepsiAktiv.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/activ-24.png")));
+		toolBar.add(btnHepsiAktiv);
+		
+		btnHepsiPasiv= new JButton("");
+		btnHepsiPasiv.setToolTipText("Hepsini Pasivlestir");
+		btnHepsiPasiv.setEnabled(false);
+		btnHepsiPasiv.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));
+		btnHepsiPasiv.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Component[] components = container.getComponents();
+				for (Component component : components) {
+					if (component.getName()!= null)
+					{
+						try {
+							bckp.durum_kayit_durum(component.getName().toString(), false,"Durum Pasivlestirildi...");
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+					}
+					component.revalidate();
+				}
+				try {
+					emir_yukle("EMIR_ISMI");
+				} catch (Exception e1) {
+
+					e1.printStackTrace();
+				}
+				jobTimerBasla();
+			}
+		});
+		btnHepsiPasiv.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/pasiv-24.png")));
+		toolBar.add(btnHepsiPasiv);
+
+		
 		btnUploadAll= new JButton("");
 		btnUploadAll.setEnabled(false);
 		btnUploadAll.setBorder(BorderFactory.createEmptyBorder(2, 0, 5, 5));

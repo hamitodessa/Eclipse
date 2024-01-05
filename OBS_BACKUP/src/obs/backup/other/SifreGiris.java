@@ -79,6 +79,8 @@ public class SifreGiris extends JPanel {
 						OBS_BACKUP.btnStopAll.setEnabled(true);
 						OBS_BACKUP.btnFileIndir.setEnabled(true);
 						OBS_BACKUP.btnSifreEkrani.setVisible(true);
+						OBS_BACKUP.btnHepsiAktiv.setEnabled(true);
+						OBS_BACKUP.btnHepsiPasiv.setEnabled(true);
 						OBS_BACKUP.btnHepsiYukari.doClick();
 					}
 					else {

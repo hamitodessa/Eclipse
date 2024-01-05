@@ -144,7 +144,7 @@ public class ANA_MENU extends JFrame {
 		progressBar.setBorder(new LineBorder(new Color(0, 191, 255)));
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		progressBar.setBounds(52, 183, 399, 25);
+		progressBar.setBounds(52, 183, 484, 25);
 		panel.add(progressBar);
 
 		txtdiz = new JTextField();

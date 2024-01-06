@@ -24,6 +24,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JCheckBox;
 
 import java.awt.Font;
+import java.awt.Point;
+
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 
@@ -52,6 +54,9 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import javax.swing.table.TableStringConverter;
+
+import org.apache.log4j.jmx.AbstractDynamicMBean;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -82,12 +87,16 @@ import raven.toast.Notifications;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
+import javax.swing.RowFilter.ComparisonType;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.DefaultComboBoxModel;
 
 @SuppressWarnings({"serial" , "static-access","deprecation"})
 public class DISTAN_AKTAR extends JInternalFrame {
@@ -113,6 +122,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private JTextField txtALACAK;
 	private JLabel lblunvan_1 ;
 	private JLabel lblunvan_2 ;
+	private JTextField textAlacakAra;
+	private JComboBox<String> cmbArama;
 	@SuppressWarnings("removal")
 	public DISTAN_AKTAR() {
 		
@@ -133,13 +144,13 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		
 		
 		ScrollPaneWin11 scrollPaneust = new ScrollPaneWin11();
-		scrollPaneust.setMinimumSize(new Dimension(1160, 80));
-		scrollPaneust.setMaximumSize(new Dimension(1160, 80));
+		scrollPaneust.setMinimumSize(new Dimension(1160, 105));
+		scrollPaneust.setMaximumSize(new Dimension(1160, 105));
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		
-		panel.setPreferredSize(new Dimension(1160,75));
+		panel.setPreferredSize(new Dimension(1160,100));
 		scrollPaneust.setViewportView(panel);
 		splitPane.setLeftComponent(scrollPaneust);
 		
@@ -280,28 +291,31 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		txtARAMA.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				aciklamaARAMA();
+				//aciklamaARAMA();
 			}
 		});
 		txtARAMA.getDocument().addDocumentListener(new DocumentListener() {
 			 public void changedUpdate(DocumentEvent e) {
 				    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-				    	aciklamaARAMA();
+				    	//aciklamaARAMA();
+				    	 arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText());
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 			  }
 			  public void removeUpdate(DocumentEvent e) {
 				    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-				    	aciklamaARAMA();
+				    	//aciklamaARAMA();
+				    	arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText());
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				  }
 			  public void insertUpdate(DocumentEvent e) {
 				    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
-				    	aciklamaARAMA();
+				    	//aciklamaARAMA();
+				    	arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText());
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				  }
 				});
 
-		txtARAMA.setBounds(160, 46, 287, 20);
+		txtARAMA.setBounds(160, 46, 200, 20);
 		panel.add(txtARAMA);
 		txtARAMA.setColumns(10);
 		
@@ -402,6 +416,49 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		btnNewButton_3_1.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/icons8-approved-16.png")));
 		btnNewButton_3_1.setBounds(1050, 17, 24, 24);
 		panel.add(btnNewButton_3_1);
+		
+		JButton btnNewButton_10 = new JButton(".....");
+		btnNewButton_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tblexcell.setRowSorter(null);
+			}
+		});
+		btnNewButton_10.setBounds(1100, 18, 40, 23);
+		panel.add(btnNewButton_10);
+		
+		textAlacakAra = new JTextField();
+		textAlacakAra.setBounds(300, 74, 100, 20);
+		textAlacakAra.getDocument().addDocumentListener(new DocumentListener() {
+			  public void changedUpdate(DocumentEvent e) {
+			    arama(5  ,textAlacakAra.getText());
+			  }
+			  public void removeUpdate(DocumentEvent e) {
+				  arama(5  ,textAlacakAra.getText());
+			  }
+			  public void insertUpdate(DocumentEvent e) {
+				  arama(5  ,textAlacakAra.getText());
+			  }
+			});
+
+		panel.add(textAlacakAra);
+		textAlacakAra.setColumns(10);
+		
+		cmbArama = new JComboBox<String>();
+		cmbArama.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cmbArama.setModel(new DefaultComboBoxModel<String>(new String[] {"Tarih", "Aciklama", "Borclu", "Borc", "Alacak", "Alacakli"}));
+		cmbArama.setBounds(370, 45, 125, 22);
+		panel.add(cmbArama);
+		
+		JButton btnNewButton_11 = new JButton("...");
+		btnNewButton_11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+					tblexcell.setRowSorter(null);
+				
+			}
+		});
+		btnNewButton_11.setBounds(504, 45, 30, 23);
+		panel.add(btnNewButton_11);
 
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setDividerSize(0);
@@ -441,6 +498,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			}
 		};
 		tblexcell.getTableHeader().setReorderingAllowed(false);
+		JTableHeader header = tblexcell.getTableHeader();
+		header.addMouseListener(new TableHeaderMouseListener(tblexcell));
 		if(! oac.gridcolor.toString().equals("java.awt.Color[r=255,g=255,b=255]")) 
 		{
 			tblexcell.setGridColor(oac.gridcolor);
@@ -1547,6 +1606,54 @@ public class DISTAN_AKTAR extends JInternalFrame {
     	OBS_MAIN.progressBar.setValue(0);
     	OBS_MAIN.progressBar.setStringPainted(false);
     }
+	public void arama(int column,String arama)  
+	{
+		if(arama.equals(""))
+		{
+			tblexcell.setRowSorter(null);
+		}
+		else {
+			
+		
+		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tblexcell.getModel())); 
+		sorter.setStringConverter(new TableStringConverter() {
+	        @Override
+	        public String toString(TableModel model, int row, int column) {
+	            return model.getValueAt(row, column).toString().toLowerCase();
+	        }
+	    });
+		if(column == 3 || column == 4)
+		{
+	    sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.AFTER ,Double.valueOf(arama),column));
+		}
+		else {
+			//^?
+			sorter.setRowFilter(RowFilter.regexFilter("^$",column));
+			//sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + arama.toLowerCase(),column));
+		}
+	    tblexcell.setRowSorter(sorter);
+	    tblexcell.revalidate();
+	    tblexcell.repaint();
+		}
+	}
+
+	public class TableHeaderMouseListener extends MouseAdapter {
+	    private JTable table;
+	    public TableHeaderMouseListener(JTable table) {
+	        this.table = table;
+	    }
+	    public void mouseClicked(MouseEvent event) {
+	        Point point = event.getPoint();
+	        int column = table.columnAtPoint(point);
+	        TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+	        table.setRowSorter(sorter);
+	        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+	        int columnIndexToSort = column;
+	        sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+	        sorter.setSortKeys(sortKeys);
+	        sorter.sort();
+	    }
+	}
 }
 //IIf(RG2.Rows(t).Cells(0).Value.ToString = "vbLf", vbLf, RG2.Rows(t).Cells(0).Value.ToString), RG2.Rows(t).Cells(1).Value.ToString)
 //System.lineSeparator()

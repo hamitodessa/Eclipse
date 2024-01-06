@@ -1634,7 +1634,6 @@ public class DEKONT extends JInternalFrame {
 				sifirla();
 				kutu_kapa();
 				OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,"Bu Numarada Kayitli Fis Yok......" );
-				//JOptionPane.showMessageDialog(null, "Bu Numarada Kayitli Fis Yok......", "Dekont Kontrol", JOptionPane.ERROR_MESSAGE);
 				return; // Kayit Yok
 			} 
 			sifirla();

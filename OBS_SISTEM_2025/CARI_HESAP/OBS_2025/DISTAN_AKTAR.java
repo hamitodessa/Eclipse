@@ -33,11 +33,14 @@ import java.awt.Color;
 import java.awt.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.awt.event.ActionListener;
@@ -56,7 +59,6 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
-import org.apache.log4j.jmx.AbstractDynamicMBean;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -67,6 +69,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
@@ -122,8 +126,9 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private JTextField txtALACAK;
 	private JLabel lblunvan_1 ;
 	private JLabel lblunvan_2 ;
-	private JTextField textAlacakAra;
 	private JComboBox<String> cmbArama;
+	private JComboBox<String> cmbSecenek;
+	//Date simDIDate = new Date();;
 	@SuppressWarnings("removal")
 	public DISTAN_AKTAR() {
 		
@@ -298,19 +303,34 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			 public void changedUpdate(DocumentEvent e) {
 				    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 				    	//aciklamaARAMA();
-				    	 arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText());
+				    	 try {
+							arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText(),cmbSecenek.getSelectedItem().toString());
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 			  }
 			  public void removeUpdate(DocumentEvent e) {
 				    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 				    	//aciklamaARAMA();
-				    	arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText());
+				    	try {
+							arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText(),cmbSecenek.getSelectedItem().toString());
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				  }
 			  public void insertUpdate(DocumentEvent e) {
 				    	getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.WAIT_CURSOR);
 				    	//aciklamaARAMA();
-				    	arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText());
+				    	try {
+							arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText(),cmbSecenek.getSelectedItem().toString());
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						getContentPane().setCursor(OBS_SIS_2025_ANA_CLASS.DEFAULT_CURSOR);
 				  }
 				});
@@ -426,22 +446,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		btnNewButton_10.setBounds(1100, 18, 40, 23);
 		panel.add(btnNewButton_10);
 		
-		textAlacakAra = new JTextField();
-		textAlacakAra.setBounds(300, 74, 100, 20);
-		textAlacakAra.getDocument().addDocumentListener(new DocumentListener() {
-			  public void changedUpdate(DocumentEvent e) {
-			    arama(5  ,textAlacakAra.getText());
-			  }
-			  public void removeUpdate(DocumentEvent e) {
-				  arama(5  ,textAlacakAra.getText());
-			  }
-			  public void insertUpdate(DocumentEvent e) {
-				  arama(5  ,textAlacakAra.getText());
-			  }
-			});
-
-		panel.add(textAlacakAra);
-		textAlacakAra.setColumns(10);
 		
 		cmbArama = new JComboBox<String>();
 		cmbArama.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -453,12 +457,36 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		btnNewButton_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-					tblexcell.setRowSorter(null);
+				//	tblexcell.setRowSorter(null);
+				 DefaultTableModel model = (DefaultTableModel) tblexcell.getModel();
+		 for(int i =0;i<= model.getRowCount()-1;i++)
+				 {
+					 SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+						Date date;
+				try {
+							date = formatter.parse(tblexcell.getModel().getValueAt(i, 0).toString());
+							//date.setHours(simDIDate.getHours());
+							//date.setMinutes(simDIDate.getMinutes());
+							//date.setSeconds(simDIDate.getSeconds());
+						 System.out.println( date.toString() + "==" + date.getTime());
+					} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+				
+				 }
+			
 				
 			}
 		});
 		btnNewButton_11.setBounds(504, 45, 30, 23);
 		panel.add(btnNewButton_11);
+		
+		cmbSecenek = new JComboBox<String>();
+		cmbSecenek.setFont(new Font("Tahoma", Font.BOLD, 11));
+		cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] {"Bos Olanlar", "Icinde", "Buyuk", "Kucuk", "Esit"}));
+		cmbSecenek.setBounds(370, 70, 125, 22);
+		panel.add(cmbSecenek);
 
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setDividerSize(0);
@@ -1089,6 +1117,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		 GRID_TEMIZLE.grid_temizle(tblexcell);
 		 DefaultTableModel defaultModel = (DefaultTableModel) tblexcell.getModel();
 			Row row = rowIt.next();
+			
 		    while(rowIt.hasNext()) 
 		    {
 		      row = rowIt.next();
@@ -1127,12 +1156,18 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		      if (row.getCell(0).getCellType().toString().equals("NUMERIC"))
 		       {
 		    	 tar = row.getCell(0).getDateCellValue() ;
+		    	// tar.setHours(simDIDate.getHours());
+				//	tar.setMinutes(simDIDate.getMinutes());
+				//	tar.setSeconds(simDIDate.getSeconds());
 	    	     }
 		      else
 		      {
 		    	    	String sDate1= row.getCell(0).toString();
 						tar = new SimpleDateFormat("dd.MM.yy").parse(sDate1);
-		      }
+						//tar.setHours(simDIDate.getHours());
+						//tar.setMinutes(simDIDate.getMinutes());
+						//tar.setSeconds(simDIDate.getSeconds());
+			}
 		      defaultModel.addRow(new Object[]{tar, izahat  ,"", borc ,alacak,"",""});
 		    }
 	    workbook.close();
@@ -1392,7 +1427,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
         }
         if ( kon > 0 )
         {
-            //JOptionPane.showMessageDialog(null, "Bos Hesap Kodlari mevcut .... Satir Sayisi:" + kon); 
             OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,"Bos Hesap Kodlari mevcut .... Satir Sayisi:" + kon );
             return;
         }
@@ -1402,7 +1436,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
         	if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
         	{
         		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, uniqueDataList.get(iterator) + " --Borclu_Hesap Kodu Dosyada Bulunamadi....." );
-        		//JOptionPane.showMessageDialog(null, uniqueDataList.get(iterator) + " --Borclu_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
         		return;
         	}
         }
@@ -1412,7 +1445,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
         	if(CARI_ISIM_OKU.isim(uniqueDataList.get(iterator))[2].toString().equals("F") )
         	{
         		 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, uniqueDataList.get(iterator) + " --Alacakli_Hesap Kodu Dosyada Bulunamadi....." );
-        		//JOptionPane.showMessageDialog(null, uniqueDataList.get(iterator) + " --Alacakli_Hesap Kodu Dosyada Bulunamadi.....",  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
         		return;
         	}
         }
@@ -1425,7 +1457,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
     catch (Exception ex)
 		{
     	 OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
-		//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Distan aktar", JOptionPane.ERROR_MESSAGE);   
 		}
 	}
 	private void aciklamaARAMA()
@@ -1606,15 +1637,8 @@ public class DISTAN_AKTAR extends JInternalFrame {
     	OBS_MAIN.progressBar.setValue(0);
     	OBS_MAIN.progressBar.setStringPainted(false);
     }
-	public void arama(int column,String arama)  
+	public void arama(int column,String arama,String secenek) throws ParseException  
 	{
-		if(arama.equals(""))
-		{
-			tblexcell.setRowSorter(null);
-		}
-		else {
-			
-		
 		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) tblexcell.getModel())); 
 		sorter.setStringConverter(new TableStringConverter() {
 	        @Override
@@ -1624,17 +1648,79 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	    });
 		if(column == 3 || column == 4)
 		{
-	    sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.AFTER ,Double.valueOf(arama),column));
+			if(arama.equals(""))
+			{
+       		 tblexcell.setRowSorter(null);
+       		 return;
+			}
+			if(secenek.equals("Esit"))
+			{
+				  sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.EQUAL ,Double.valueOf(arama),column));
+			}
+			else if(secenek.equals("Buyuk"))
+			{
+				  sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.AFTER ,Double.valueOf(arama),column));
+			}
+			else if(secenek.equals("Kucuk"))
+			{
+				  sorter.setRowFilter(RowFilter.numberFilter(ComparisonType.BEFORE ,Double.valueOf(arama),column));
+			}
+		}
+		else if(column == 0 )
+		{
+			//Mon Jul 12 13:01:34 TRT 2021  //"EEE MMM dd HH:mm:ss z yyyy"
+			if(arama.length() <10) return;
+			SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+			Date date = formatter.parse(arama);
+			
+		
+			Date sonDate= formatter.parse(arama);
+			
+			Calendar c = Calendar.getInstance(); 
+			c.setTime(date); 
+			c.add(Calendar.DATE, -1);
+			date = c.getTime();
+			date.setHours(23);
+			date.setMinutes(59);
+			date.setSeconds(59);
+			
+			c = Calendar.getInstance(); 
+			c.setTime(sonDate); 
+			c.add(Calendar.DATE, +1);
+			sonDate = c.getTime();
+			sonDate.setHours(00);
+			sonDate.setMinutes(00);
+			sonDate.setSeconds(0);
+			
+			System.out.println(date.toString() +"=="+ sonDate.toString());
+			
+			// sorter.setRowFilter(RowFilter.dateFilter(ComparisonType.NOT_EQUAL ,date,column));
+			//sorter.setRowFilter(RowFilter.dateFilter(ComparisonType.AFTER ,date,column));
+			// sorter.setRowFilter(RowFilter.dateFilter(ComparisonType.BEFORE ,sonDate,column));
+			 ///
+			 List<RowFilter<Object,Object>> filters = new ArrayList<RowFilter<Object,Object>>(2);
+			 filters.add(RowFilter.dateFilter(ComparisonType.AFTER ,date,column));
+			 filters.add(RowFilter.dateFilter(ComparisonType.BEFORE ,sonDate,column));
+			 sorter.setRowFilter(RowFilter.andFilter(filters));
+			
+			 
+			 ///
 		}
 		else {
 			//^?
-			sorter.setRowFilter(RowFilter.regexFilter("^$",column));
-			//sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + arama.toLowerCase(),column));
+			if(secenek.equals("Bos Olanlar"))
+			{
+				sorter.setRowFilter(RowFilter.regexFilter("^$",column));
+			}
+			else if(secenek.equals("Icinde"))
+			{
+				sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + arama.toLowerCase(),column));
+			}
 		}
 	    tblexcell.setRowSorter(sorter);
 	    tblexcell.revalidate();
 	    tblexcell.repaint();
-		}
+	
 	}
 
 	public class TableHeaderMouseListener extends MouseAdapter {

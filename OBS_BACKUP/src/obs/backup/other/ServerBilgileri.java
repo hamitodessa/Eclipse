@@ -11,6 +11,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.BACKUP_GLOBAL;
+import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.SIFRE_DONDUR;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -54,6 +55,7 @@ public class ServerBilgileri extends JPanel {
 		panel.add(lblNewLabel);
 		
 		textMSServer = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textMSServer);
 		textMSServer.setBounds(107, 35, 216, 20);
 		panel.add(textMSServer);
 		textMSServer.setColumns(10);
@@ -69,6 +71,7 @@ public class ServerBilgileri extends JPanel {
 		panel_2.add(lblNewLabel_1);
 		
 		textMSkull = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textMSkull);
 		textMSkull.setBounds(91, 27, 162, 20);
 		panel_2.add(textMSkull);
 		textMSkull.setColumns(10);
@@ -78,6 +81,7 @@ public class ServerBilgileri extends JPanel {
 		panel_2.add(lblNewLabel_2);
 		
 		textMSsifre = new JPasswordField();
+		JTextFieldRegularPopupMenu.addTo(textMSsifre);
 		textMSsifre.setBounds(91, 63, 162, 20);
 		panel_2.add(textMSsifre);
 		
@@ -136,6 +140,7 @@ public class ServerBilgileri extends JPanel {
 		panel.add(lblNewLabel_4_1);
 		
 		textMSPort = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textMSPort);
 		textMSPort.setColumns(10);
 		textMSPort.setBounds(415, 32, 61, 20);
 		panel.add(textMSPort);
@@ -155,6 +160,7 @@ public class ServerBilgileri extends JPanel {
 		panel_2_1.add(lblNewLabel_1_1);
 		
 		textField_3 = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textField_3);
 		textField_3.setColumns(10);
 		textField_3.setBounds(91, 27, 162, 20);
 		panel_2_1.add(textField_3);
@@ -164,6 +170,7 @@ public class ServerBilgileri extends JPanel {
 		panel_2_1.add(lblNewLabel_2_1);
 		
 		passwordField_1 = new JPasswordField();
+		JTextFieldRegularPopupMenu.addTo(passwordField_1);
 		passwordField_1.setBounds(91, 63, 162, 20);
 		panel_2_1.add(passwordField_1);
 		
@@ -178,6 +185,7 @@ public class ServerBilgileri extends JPanel {
 		panel_2_2.add(lblNewLabel_1_2);
 		
 		textMykull = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textMykull);
 		textMykull.setColumns(10);
 		textMykull.setBounds(91, 27, 162, 20);
 		panel_2_2.add(textMykull);
@@ -187,6 +195,7 @@ public class ServerBilgileri extends JPanel {
 		panel_2_2.add(lblNewLabel_2_2);
 		
 		textMySifre = new JPasswordField();
+		JTextFieldRegularPopupMenu.addTo(textMySifre);
 		textMySifre.setBounds(91, 63, 162, 20);
 		panel_2_2.add(textMySifre);
 		
@@ -243,6 +252,7 @@ public class ServerBilgileri extends JPanel {
 		panel_1.add(lblNewLabel_4);
 		
 		textMYPort = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textMYPort);
 		textMYPort.setBounds(120, 38, 56, 20);
 		panel_1.add(textMYPort);
 		textMYPort.setColumns(10);
@@ -252,6 +262,7 @@ public class ServerBilgileri extends JPanel {
 		panel_1.add(lblNewLabel_5);
 		
 		textMyDump = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textMyDump);
 		textMyDump.setBounds(120, 183, 450, 20);
 		panel_1.add(textMyDump);
 		textMyDump.setColumns(10);

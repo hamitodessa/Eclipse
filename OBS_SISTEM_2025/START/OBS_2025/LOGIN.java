@@ -70,6 +70,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.apache.poi.sl.usermodel.Background;
 
+import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
@@ -378,7 +379,7 @@ public class LOGIN extends JDialog {
 		txtUser.setBounds(310, 11, 110, 20);
 		txtUser.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtUser.setDocument(new JTextFieldLimit(10));
-		
+		txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Kullanici");
 		txtUser.setColumns(10);
 		JTextFieldRegularPopupMenu.addTo(txtUser);
 		txtUser.setColumns(10);
@@ -398,6 +399,7 @@ public class LOGIN extends JDialog {
 		txtpwd.setBounds(310, 37, 110, 20);
 		txtpwd.setOpaque(false);
 		txtpwd.setBorder(new EmptyBorder(0, 0, 0, 0));
+		txtpwd.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
 		txtpwd.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {

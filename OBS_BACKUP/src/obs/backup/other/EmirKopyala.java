@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import OBS_C_2025.BACKUP_GLOBAL;
+import OBS_C_2025.JTextFieldRegularPopupMenu;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -32,6 +33,7 @@ public class EmirKopyala extends JPanel {
 		add(lblNewLabel);
 		
 		textField = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textField);
 		textField.setBounds(185, 83, 250, 20);
 		add(textField);
 		textField.setColumns(10);

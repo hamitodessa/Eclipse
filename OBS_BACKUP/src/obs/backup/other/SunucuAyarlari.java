@@ -10,6 +10,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.BACKUP_GLOBAL;
+import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.SIFRE_DONDUR;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -95,16 +96,19 @@ public class SunucuAyarlari extends JPanel {
 		panel_12.setLayout(null);
 		
 		textHost = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textHost);
 		textHost.setBounds(135, 22, 300, 20);
 		panel_12.add(textHost);
 		textHost.setColumns(10);
 		
 		textKull = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textKull);
 		textKull.setBounds(135, 46, 164, 20);
 		panel_12.add(textKull);
 		textKull.setColumns(10);
 		
 		textSifre = new JPasswordField();
+		JTextFieldRegularPopupMenu.addTo(textSifre);
 		textSifre.setToolTipText("");
 		textSifre.setBounds(135, 69, 164, 20);
 		panel_12.add(textSifre);
@@ -130,17 +134,20 @@ public class SunucuAyarlari extends JPanel {
 		 add(panel_12_1);
 		
 		textFtpSurucu = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textFtpSurucu);
 		textFtpSurucu.setColumns(10);
 		textFtpSurucu.setBounds(135, 22, 300, 20);
 		panel_12_1.add(textFtpSurucu);
 		
 		textZmnasm = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textZmnasm);
 		textZmnasm.setText("120");
 		textZmnasm.setColumns(10);
 		textZmnasm.setBounds(135, 46, 50, 20);
 		panel_12_1.add(textZmnasm);
 		
 		textPort = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textPort);
 		textPort.setText("21");
 		textPort.setColumns(10);
 		textPort.setBounds(378, 46, 57, 20);
@@ -184,6 +191,7 @@ public class SunucuAyarlari extends JPanel {
 		 add(panel_12_1_1);
 		
 		textSurucu = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textSurucu);
 		textSurucu.setToolTipText("");
 		textSurucu.setColumns(10);
 		textSurucu.setBounds(135, 22, 300, 20);
@@ -226,6 +234,7 @@ public class SunucuAyarlari extends JPanel {
 		 add(panel_12_1_1_1);
 		
 		textEskisilme = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(textEskisilme);
 		textEskisilme.setText("0");
 		textEskisilme.setColumns(10);
 		textEskisilme.setBounds(135, 22, 76, 20);

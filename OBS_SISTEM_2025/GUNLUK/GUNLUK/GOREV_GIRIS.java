@@ -90,6 +90,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(lblNewLabel_2);
 
 		txtIsim = new JTextField(30);
+		JTextFieldRegularPopupMenu.addTo(txtIsim);
 		txtIsim.setBounds(100, 10, 354, 20);
 		panel.add(txtIsim);
 		txtIsim.setColumns(10);
@@ -113,6 +114,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 
 
 		txtGorev = new JTextField(30);
+		JTextFieldRegularPopupMenu.addTo(txtGorev);
 		txtGorev.setBounds(100, 60, 354, 20);
 		panel.add(txtGorev);
 		txtGorev.setColumns(10);

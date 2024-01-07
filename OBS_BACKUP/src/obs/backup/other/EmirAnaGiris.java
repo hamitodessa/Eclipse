@@ -37,6 +37,7 @@ import OBS_C_2025.CheckListItem;
 import OBS_C_2025.CheckListRenderer;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.SIFRE_DONDUR;
 import OBS_C_2025.bilgilendirme_bilgiler;
 import OBS_C_2025.db_List;
@@ -104,6 +105,7 @@ public class EmirAnaGiris extends JPanel {
 		panel_10.add(lblNewLabel_1);
 		
 		txtEmir = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtEmir);
 		txtEmir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtEmir.setBounds(150, 100, 219, 23);
 		panel_10.add(txtEmir);
@@ -116,6 +118,7 @@ public class EmirAnaGiris extends JPanel {
 		textAciklama = new JTextArea();
 		textAciklama.setBounds(150, 150, 219, 77);
 		textAciklama.setDocument(new JTextFieldLimit(50));
+		JTextFieldRegularPopupMenu.addTo(textAciklama,50);
 		//textAciklama.setBorder(txtEmir.getBorder());
 		//Border borderr = BorderFactory.createLineBorder(new Color(235,235,235));
 		//textAciklama.setBorder(BorderFactory.createCompoundBorder(borderr, null));

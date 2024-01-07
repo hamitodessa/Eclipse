@@ -47,6 +47,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 import javax.swing.JComboBox;
@@ -173,6 +174,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(lblNewLabel_1);
 
 		txtkodu = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtkodu);
 		txtkodu.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -211,6 +213,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtunvan.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtunvan.setBounds(340, 114, 400, 20);
 		txtunvan.setDocument(new JTextFieldLimit(50));
+		JTextFieldRegularPopupMenu.addTo(txtunvan);
 		txtunvan.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -232,6 +235,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtyetkili.setColumns(10);
 
 		txtadres1 = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtadres1);
 		txtadres1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -248,6 +252,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtadres1.setColumns(10);
 
 		txtadres2 = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtadres2);
 		txtadres2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -264,6 +269,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtadres2.setColumns(10);
 
 		txtvd = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtvd);
 		txtvd.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtvd.setBounds(102, 214, 194, 20);
 		txtvd.setDocument(new JTextFieldLimit(25));
@@ -281,6 +287,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtvd.setColumns(10);
 
 		txttel1 = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txttel1);
 		txttel1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel1.setColumns(10);
 		txttel1.setBounds(102, 268, 194, 20);
@@ -288,6 +295,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(txttel1);
 
 		txttel3 = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txttel3);
 		txttel3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel3.setColumns(10);
 		txttel3.setBounds(102, 295, 194, 20);
@@ -295,6 +303,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(txttel3);
 
 		txtn1 = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtn1);
 		txtn1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtn1.setColumns(10);
 		txtn1.setBounds(102, 349, 313, 20);
@@ -302,6 +311,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(txtn1);
 
 		txtweb = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtweb);
 		txtweb.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtweb.setColumns(10);
 		txtweb.setBounds(102, 457, 313, 20);
@@ -309,6 +319,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(txtweb);
 
 		txtoz1 = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtoz1);
 		txtoz1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtoz1.setColumns(10);
 		txtoz1.setBounds(505, 322, 150, 20);
@@ -316,6 +327,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(txtoz1);
 
 		txtaciklama = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtaciklama);
 		txtaciklama.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtaciklama.setColumns(10);
 		txtaciklama.setBounds(102, 484, 553, 20);
@@ -419,6 +431,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(lblNewLabel_9_1_1);
 
 		txtsemt = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtsemt);
 		txtsemt.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -435,6 +448,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtsemt.setColumns(10);
 
 		txtsehir = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtsehir);
 		txtsehir.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -451,6 +465,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtsehir.setColumns(10);
 
 		txtvn = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtvn);
 		txtvn.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtvn.setBounds(506, 214, 202, 20);
 		txtvn.setDocument(new JTextFieldLimit(15));
@@ -458,6 +473,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtvn.setColumns(10);
 
 		txttel2 = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txttel2);
 		txttel2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel2.setBounds(506, 268, 150, 20);
 		txttel2.setDocument(new JTextFieldLimit(25));
@@ -465,6 +481,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txttel2.setColumns(10);
 
 		txtfax = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtfax);
 		txtfax.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtfax.setBounds(506, 295, 150, 20);
 		txtfax.setDocument(new JTextFieldLimit(25));
@@ -472,6 +489,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtfax.setColumns(10);
 
 		txtn2 = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtn2);
 		txtn2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtn2.setBounds(102, 376, 313, 20);
 		txtn2.setDocument(new JTextFieldLimit(30));
@@ -479,6 +497,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtn2.setColumns(10);
 
 		txtmail = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtmail);
 		txtmail.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtmail.setBounds(102, 322, 313, 20);
 		txtmail.setDocument(new JTextFieldLimit(50));
@@ -486,6 +505,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtmail.setColumns(10);
 
 		txtn3 = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtn3);
 		txtn3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtn3.setColumns(10);
 		txtn3.setBounds(102, 403, 313, 20);
@@ -565,6 +585,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(lblNewLabel_8_2_1);
 
 		txtpkodu = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtpkodu);
 		txtpkodu.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtpkodu.setColumns(10);
 		txtpkodu.setBounds(102, 241, 194, 20);
@@ -577,6 +598,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(lblNewLabel_11_2_1);
 
 		txtozel = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtozel);
 		txtozel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtozel.setColumns(10);
 		txtozel.setBounds(506, 241, 203, 20);
@@ -584,6 +606,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(txtozel);
 
 		txtoz2 = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtoz2);
 		txtoz2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtoz2.setColumns(10);
 		txtoz2.setBounds(505, 349, 150, 20);
@@ -602,6 +625,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(chcmail);
 
 		txtarama = new JTextField();
+		JTextFieldRegularPopupMenu.addTo(txtarama);
 		txtarama.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtarama.setBounds(102, 27, 200, 23);
 		txtarama.getDocument().addDocumentListener(new DocumentListener() {

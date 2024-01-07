@@ -3,6 +3,7 @@ package obs.gorev.main;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
@@ -116,6 +117,7 @@ public class OBS_GOREV extends JFrame  {
 	int x ,y ;
 	public static JButton btntry;
 	static JButton btnBuyult;
+	static JButton btnMinimize;
 	static TrayIcon trayIcon = null ;
 	/**
 	 * Launch the application.
@@ -272,8 +274,13 @@ public class OBS_GOREV extends JFrame  {
 				setVisible(true);
 			}
 		});
-
-		
+		btnMinimize = new JButton("");
+		btnMinimize.setVisible(false);
+		btnMinimize.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setState(Frame.ICONIFIED);
+			}
+		});
 		//***********************************************************************************
 		try {
 			if (glb.dos_kontrol(glb.SURUCU + glb.OBS_DOSYA))
@@ -574,7 +581,7 @@ public class OBS_GOREV extends JFrame  {
 			} catch (AWTException e) {
 			}
 		} else {
-			btnBuyult.doClick();
+			btnMinimize.doClick();
 		}
 		if (trayIcon != null) {
 			trayIcon.setImage(Toolkit.getDefaultToolkit().getImage(OBS_GOREV.class.getResource("/obs/gorev/other/job-24.png")));

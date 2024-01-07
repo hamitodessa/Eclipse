@@ -196,6 +196,7 @@ public class OBS_BACKUP extends JFrame {
 	
 	public static JButton btntry;
 	static JButton btnBuyult;
+	static JButton btnMinimize;
 	static TrayIcon trayIcon = null ;
 	/**
 	 * Hamit.
@@ -740,6 +741,14 @@ public class OBS_BACKUP extends JFrame {
 				 if (trayIcon != null)
 					 tray.remove(trayIcon); 
 				setVisible(true);
+			}
+		});
+		//
+		btnMinimize = new JButton("");
+		btnMinimize.setVisible(false);
+		btnMinimize.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setState(Frame.ICONIFIED);
 			}
 		});
 		try {
@@ -2450,7 +2459,8 @@ public class OBS_BACKUP extends JFrame {
 	{
 		PopupMenu popup;
 		Image image;
-		if (SystemTray.isSupported()) {
+		if (SystemTray.isSupported()) 
+		{
 			SystemTray tray = SystemTray.getSystemTray();
 			image = Toolkit.getDefaultToolkit().getImage(OBS_BACKUP.class.getResource("/obs/backup/icons/backup-100.png"));
 			ActionListener listener = new ActionListener() {
@@ -2483,7 +2493,7 @@ public class OBS_BACKUP extends JFrame {
 				mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());	
 			}
 		} else {
-			btnBuyult.doClick();
+			btnMinimize.doClick();
 		}
 		if (trayIcon != null) {
 			trayIcon.setImage(Toolkit.getDefaultToolkit().getImage(OBS_BACKUP.class.getResource("/obs/backup/icons/backup-100.png")));

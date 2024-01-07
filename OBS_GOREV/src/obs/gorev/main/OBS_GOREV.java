@@ -3,7 +3,12 @@ package obs.gorev.main;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.SystemTray;
 import java.awt.Toolkit;
+import java.awt.TrayIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -60,11 +65,13 @@ import OBS_C_2025.USER_ISLEMLERI;
 import OBS_C_2025.g_bilgiler;
 
 import fih.FIHRIST_ACCESS;
+
 import obs.gorev.theme.Title_Bar;
 
 import javax.swing.JTabbedPane;
 import javax.swing.SpinnerDateModel;
 
+import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 
@@ -107,6 +114,9 @@ public class OBS_GOREV extends JFrame  {
 	String[] kurrakkam;
 	private JTextField textKurKullanici;
 	int x ,y ;
+	public static JButton btntry;
+	static JButton btnBuyult;
+	static TrayIcon trayIcon = null ;
 	/**
 	 * Launch the application.
 	 */
@@ -243,6 +253,25 @@ public class OBS_GOREV extends JFrame  {
 		textKurKullanici.setColumns(10);
 		textKurKullanici.setBounds(149, 137, 106, 20);
 		panel_1.add(textKurKullanici);
+		/////
+		btntry= new JButton("");
+		btntry.setVisible(false);
+		btntry.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				systemTRY();
+			}
+		});
+		btnBuyult = new JButton("");
+		btnBuyult.setVisible(false);
+		btnBuyult.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 SystemTray tray = SystemTray.getSystemTray();
+				 if (trayIcon != null)
+					 tray.remove(trayIcon); 
+				setVisible(true);
+			}
+		});
 
 		
 		//***********************************************************************************
@@ -508,5 +537,47 @@ public class OBS_GOREV extends JFrame  {
 			_IKur =  new KUR_MYSQL();
 			break;	
 		}
+	}
+	public static  void systemTRY()
+	{
+		PopupMenu popup;
+		Image image;
+		if (SystemTray.isSupported()) {
+			SystemTray tray = SystemTray.getSystemTray();
+			image = Toolkit.getDefaultToolkit().getImage(OBS_GOREV.class.getResource("/obs/gorev/other/job-24.png"));
+			ActionListener listener = new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					btnBuyult.doClick();
+				}
+			};
+			ActionListener kapat = new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.exit(1);
+				}
+			};
+			popup = new PopupMenu();
+			MenuItem buyultITEM = new MenuItem("Buyult");
+			buyultITEM.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			buyultITEM.addActionListener(listener);
+			MenuItem kapatItem = new MenuItem("Kapat");
+			kapatItem.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			kapatItem.addActionListener(kapat);
+			popup.addSeparator();
+			popup.add(buyultITEM);
+			popup.addSeparator();
+			popup.add(kapatItem);
+			popup.addSeparator();
+			trayIcon = new TrayIcon(image, "OBS_GOREV", popup);
+			trayIcon.addActionListener(listener);
+			try {
+				tray.add(trayIcon);
+			} catch (AWTException e) {
+			}
+		} else {
+			btnBuyult.doClick();
+		}
+		if (trayIcon != null) {
+			trayIcon.setImage(Toolkit.getDefaultToolkit().getImage(OBS_GOREV.class.getResource("/obs/gorev/other/job-24.png")));
+		}	
 	}
 }

@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 
 import OBS_C_2025.Buttont;
 
+import obs.gorev.main.OBS_GOREV;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -43,7 +44,7 @@ public class Title_Bar extends javax.swing.JPanel{
 		Buttont btnNewButton = new Buttont();
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			frame.setState(Frame.ICONIFIED);
+				OBS_GOREV.btntry.doClick();
 			}
 		});
 

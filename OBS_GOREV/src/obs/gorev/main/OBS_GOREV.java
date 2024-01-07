@@ -161,7 +161,7 @@ public class OBS_GOREV extends JFrame  {
 		
 		setTitle("OBS MERKEZ KUR");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 293);
+		setBounds(100, 100, 450, 248);
 		setResizable(false);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -182,15 +182,15 @@ public class OBS_GOREV extends JFrame  {
 		panel_1.setLayout(null);
 
 		chckbxDurum = new JCheckBox("Aktif / Pasif");
-		chckbxDurum.setBounds(149, 33, 99, 23);
+		chckbxDurum.setBounds(149, 9, 99, 23);
 		panel_1.add(chckbxDurum);
 
 		JLabel lblNewLabel = new JLabel("Gorev Saati");
-		lblNewLabel.setBounds(21, 76, 73, 14);
+		lblNewLabel.setBounds(21, 44, 73, 14);
 		panel_1.add(lblNewLabel);
 
 		timeBaslangic = new JSpinner( new SpinnerDateModel() );
-		timeBaslangic.setBounds(149, 71, 75, 25);
+		timeBaslangic.setBounds(149, 39, 75, 25);
 		panel_1.add(timeBaslangic);
 		JSpinner.DateEditor de_timeBaslangic = new JSpinner.DateEditor(timeBaslangic, "HH:mm");
 		timeBaslangic.setEditor(de_timeBaslangic);
@@ -200,7 +200,7 @@ public class OBS_GOREV extends JFrame  {
 		timeBaslangic.setValue(qweDate);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(287, 11, 136, 198);
+		scrollPane.setBounds(309, 11, 131, 179);
 		panel_1.add(scrollPane);
 
 		model = new DefaultListModel<>();
@@ -244,16 +244,16 @@ public class OBS_GOREV extends JFrame  {
 				}
 			}
 		});
-		btnNewButton_1.setBounds(149, 185, 89, 23);
+		btnNewButton_1.setBounds(149, 155, 89, 23);
 		panel_1.add(btnNewButton_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("OBS Kur Kullanici");
-		lblNewLabel_1.setBounds(21, 140, 121, 14);
+		lblNewLabel_1.setBounds(21, 78, 121, 14);
 		panel_1.add(lblNewLabel_1);
 		
 		textKurKullanici = new JTextField();
 		textKurKullanici.setColumns(10);
-		textKurKullanici.setBounds(149, 137, 106, 20);
+		textKurKullanici.setBounds(149, 75, 106, 20);
 		panel_1.add(textKurKullanici);
 		/////
 		btntry= new JButton("");

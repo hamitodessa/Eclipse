@@ -694,12 +694,12 @@ public class OBS_BACKUP extends JFrame {
 		contentPane.add(altPane, BorderLayout.SOUTH);
 
 		lblEmir = new JLabel("Emir Sayisi");
-		lblEmir.setBounds(10, 5, 75, 14);
+		lblEmir.setBounds(40, 5, 75, 14);
 		altPane.add(lblEmir);
 
 		lblemirSAYI = new JLabel("0");
 		lblemirSAYI.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblemirSAYI.setBounds(95, 5, 48, 14);
+		lblemirSAYI.setBounds(125, 5, 48, 14);
 		altPane.add(lblemirSAYI);
 
 		emirAnaGirisPanel = new EmirAnaGiris();
@@ -1458,29 +1458,22 @@ public class OBS_BACKUP extends JFrame {
 					{
 						uplpnl.  Progres_Bar_2( r + 1);
 						String ftpDOSYA = ls.get(r).getDosyaADI();
-						boolean found = ftpDOSYA.contains(dosADI);
+						boolean found = fileESITMI(ftpDOSYA,dosADI);
 						if (found)
 						{
-							SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
-							BasicFileAttributes attr;
-							Path path = Paths.get(ls.get(r).getFilePATH()+"\\"+ ls.get(r).getDosyaADI().toString());
-							attr = Files.readAttributes(path, BasicFileAttributes.class);
-							String dateInString = attr.creationTime().toString().substring(8,10) + "." +  attr.creationTime().toString().substring(5,7) +"."+attr.creationTime().toString().substring(0,4)  ;
-							Date ftar = formatter.parse(dateInString);
+							Date ftar = dosyaTAIRIHI(ls.get(r).getDosyaADI().toString());
 							long dateBeforeInMs = ftar.getTime();
 							long dateAfterInMs = new Date().getTime();
 							long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
-							long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
-							gunfark = (int)daysDiff;
-							if (gunfark > eskiyedek)
+							int araFARK = (int)TimeUnit.HOURS.convert(timeDiff, TimeUnit.MILLISECONDS);
+							if (araFARK> (eskiyedek*24)) 
 							{
 								bckp.log_kayit(emirADI, new Date(),ls.get(r).getDosyaADI() + " Surucuye Silmeye Gitti...");
 								if (glb.dos_kontrol(surucu_yer + "\\" + ls.get(r).getDosyaADI()))
 								{ 
 									glb.dos_sil(surucu_yer + "\\" +  ls.get(r).getDosyaADI());
-									bckp.log_kayit(emirADI, new Date(), dosADI + " Dosyasi Silindi...");
 								}
-								bckp.log_kayit(emirADI, new Date(), dosADI + " Dosya Surucuden Eski Tarihli Silindi...");
+								bckp.log_kayit(emirADI, new Date(), ls.get(r).getDosyaADI() + " Dosya Surucuden Eski Tarihli Silindi...");
 							}
 						}
 					}
@@ -1506,7 +1499,7 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
-				yapilmadiMAILI( emirADI,ex.getMessage());
+				yapilmadiMAILI(emirADI,ex.getMessage());
 				bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
 				emirtekSIL_HATA(emirADI);
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
@@ -1675,18 +1668,15 @@ public class OBS_BACKUP extends JFrame {
 					{
 						uplpnl.  Progres_Bar_2( r + 1);
 						String ftpDOSYA = ls.get(r).getDosyaADI();
-						boolean found = ftpDOSYA.contains(dosADI);
+						boolean found = fileESITMI(ftpDOSYA,dosADI); 
 						if (found)
 						{
-							SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
-							String dateInString = ls.get(r).getTaRIH().substring(8,10) +"."+ls.get(r).getTaRIH().substring(5,7) +"."+ ls.get(r).getTaRIH().substring(0,4);
-							Date ftar = formatter.parse(dateInString);
+							Date ftar = dosyaTAIRIHI(ls.get(r).getDosyaADI().toString());
 							long dateBeforeInMs = ftar.getTime();
 							long dateAfterInMs = new Date().getTime();
 							long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
-							long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
-							gunfark = (int)daysDiff;
-							if (gunfark > eskiyedek)
+							int araFARK = (int)TimeUnit.HOURS.convert(timeDiff, TimeUnit.MILLISECONDS);
+							if (araFARK> (eskiyedek*24)) 
 							{
 								bckp.log_kayit(emirADI, new Date(),  dosADI + " FTP ye Silmeye Gitti...");
 								bckp.ftp_sil( ftp, surucu, ls.get(r).getDosyaADI(), kull, sifre, port);
@@ -1898,7 +1888,6 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.RPB2.setStringPainted(true);
 				for (int i = 0; i <= dbliste.size() - 1; i++)
 				{
-
 					dosADI = dbliste.get(i).getAdi();
 					uplpnl. Progres_Bar_1( i + 1);
 					for (int r = 0; r <= ls.size() - 1; r++)
@@ -1910,28 +1899,20 @@ public class OBS_BACKUP extends JFrame {
 						{
 							dosADI = dosADI.substring(0, index); // or index + 1 to keep slash
 						}
-						boolean found = ftpDOSYA.contains(dosADI);
+						boolean found = fileESITMI(ftpDOSYA,dosADI);
 						if (found)
 						{
-							SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
-							BasicFileAttributes attr;
-							Path path = Paths.get(ls.get(r).getFilePATH()+"\\"+ ls.get(r).getDosyaADI().toString());
-							attr = Files.readAttributes(path, BasicFileAttributes.class);
-							String dateInString = attr.creationTime().toString().substring(8,10) + "." +  attr.creationTime().toString().substring(5,7) +"."+attr.creationTime().toString().substring(0,4)  ;
-							Date ftar = formatter.parse(dateInString);
+							Date ftar = dosyaTAIRIHI(ls.get(r).getDosyaADI().toString());
 							long dateBeforeInMs = ftar.getTime();
 							long dateAfterInMs = new Date().getTime();
 							long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
-							long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
-							gunfark = (int)daysDiff;
-							if (gunfark > eskiyedek)
+							int araFARK = (int)TimeUnit.HOURS.convert(timeDiff, TimeUnit.MILLISECONDS);
+							if (araFARK> (eskiyedek*24)) 
 							{
-								System.out.println(ls.get(r).getFilePATH()+"\\"+ ls.get(r).getDosyaADI());
 								bckp.log_kayit(emirADI, new Date(),ls.get(r).getDosyaADI() + " Surucuye Silmeye Gitti...");
 								if (glb.dos_kontrol(ls.get(r).getFilePATH()+"\\"+  ls.get(r).getDosyaADI()))
 								{ 
 									glb.dos_sil(ls.get(r).getFilePATH()+"\\"+ ls.get(r).getDosyaADI());
-									bckp.log_kayit(emirADI, new Date(), dosADI + " Dosyasi Silindi...");
 								}
 								bckp.log_kayit(emirADI, new Date(), dosADI + " Dosya Surucuden Eski Tarihli Silindi...");
 							}
@@ -2107,18 +2088,15 @@ public class OBS_BACKUP extends JFrame {
 						uplpnl.  Progres_Bar_2( r + 1);
 						dosADI = dbliste.get(i).getAdi();
 						String ftpDOSYA = ls.get(r).getDosyaADI();
-						boolean found = ftpDOSYA.contains(dosADI);
+						boolean found = fileESITMI(ftpDOSYA,dosADI);
 						if (found)
 						{
-							SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
-							String dateInString = ls.get(r).getTaRIH().substring(8,10) +"."+ls.get(r).getTaRIH().substring(5,7) +"."+ ls.get(r).getTaRIH().substring(0,4);
-							Date ftar = formatter.parse(dateInString);
+							Date ftar = dosyaTAIRIHI(ls.get(r).getDosyaADI().toString());
 							long dateBeforeInMs = ftar.getTime();
 							long dateAfterInMs = new Date().getTime();
 							long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
-							long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
-							gunfark = (int)daysDiff;
-							if (gunfark > eskiyedek)
+							int araFARK = (int)TimeUnit.HOURS.convert(timeDiff, TimeUnit.MILLISECONDS);
+							if (araFARK> (eskiyedek*24)) 
 							{
 								bckp.log_kayit(emirADI, new Date(), dosADI + " FTP ye Silmeye Gitti...");
 								bckp.ftp_sil( ftp, surucu, ls.get(r).getDosyaADI(), kull, sifre, port);
@@ -2457,61 +2435,76 @@ public class OBS_BACKUP extends JFrame {
 			}
 		}
 	}
-	private void deneme()
+	private boolean fileESITMI(String ftpDOSYA , String dosYA)
 	{
-		
+		boolean result = false;
+		if(ftpDOSYA.length() < 13) return false;
+		String dosADIOGREN = ftpDOSYA.substring(13,ftpDOSYA.indexOf("."));
+		if(dosADIOGREN.equals(dosYA))
+		{
+			result = true ;
+		}
+		return result;
+	}
+	private Date dosyaTAIRIHI(String ftpDOSYA) throws ParseException
+	{
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.ENGLISH);
+		String dateInString = ftpDOSYA.substring(4,8) + "." +  ftpDOSYA.substring(2,4) +"." +
+						ftpDOSYA.substring(0,2) +" " + ftpDOSYA.substring(8,10)  +":" + ftpDOSYA.substring(10,12)  ;
+		Date ftar = formatter.parse(dateInString);
+		return ftar;
 	}
 	public static  void systemTRY()
 	{
-		 PopupMenu popup;
-		 Image image;
+		PopupMenu popup;
+		Image image;
 		if (SystemTray.isSupported()) {
-		    SystemTray tray = SystemTray.getSystemTray();
-		    image = Toolkit.getDefaultToolkit().getImage(OBS_BACKUP.class.getResource("/obs/backup/icons/backup-100.png"));
-		    ActionListener listener = new ActionListener() {
-		        public void actionPerformed(ActionEvent e) {
-		        	btnBuyult.doClick();
-		        }
-		    };
-		    ActionListener kapat = new ActionListener() {
-		        public void actionPerformed(ActionEvent e) {
-		        	System.exit(1);
-		        }
-		    };
-		    popup = new PopupMenu();
-		    MenuItem buyultITEM = new MenuItem("Buyult");
-		    buyultITEM.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		    buyultITEM.addActionListener(listener);
-		    MenuItem kapatItem = new MenuItem("Kapat");
-		    kapatItem.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		    kapatItem.addActionListener(kapat);
-		    popup.addSeparator();
-		    popup.add(buyultITEM);
-		    popup.addSeparator();
-		    popup.add(kapatItem);
-		    popup.addSeparator();
-		    trayIcon = new TrayIcon(image, "OBS_BACKUP", popup);
-		    trayIcon.addActionListener(listener);
-		    try {
-		        tray.add(trayIcon);
-		    } catch (AWTException e) {
-		    	mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());	
-		    }
+			SystemTray tray = SystemTray.getSystemTray();
+			image = Toolkit.getDefaultToolkit().getImage(OBS_BACKUP.class.getResource("/obs/backup/icons/backup-100.png"));
+			ActionListener listener = new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					btnBuyult.doClick();
+				}
+			};
+			ActionListener kapat = new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.exit(1);
+				}
+			};
+			popup = new PopupMenu();
+			MenuItem buyultITEM = new MenuItem("Buyult");
+			buyultITEM.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			buyultITEM.addActionListener(listener);
+			MenuItem kapatItem = new MenuItem("Kapat");
+			kapatItem.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			kapatItem.addActionListener(kapat);
+			popup.addSeparator();
+			popup.add(buyultITEM);
+			popup.addSeparator();
+			popup.add(kapatItem);
+			popup.addSeparator();
+			trayIcon = new TrayIcon(image, "OBS_BACKUP", popup);
+			trayIcon.addActionListener(listener);
+			try {
+				tray.add(trayIcon);
+			} catch (AWTException e) {
+				mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());	
+			}
 		} else {
 			btnBuyult.doClick();
 		}
 		if (trayIcon != null) {
-		    trayIcon.setImage(Toolkit.getDefaultToolkit().getImage(OBS_BACKUP.class.getResource("/obs/backup/icons/backup-100.png")));
+			trayIcon.setImage(Toolkit.getDefaultToolkit().getImage(OBS_BACKUP.class.getResource("/obs/backup/icons/backup-100.png")));
 		}	
 	}
-//	@Override
-//	public Dimension getPreferredSize() {
-//		Dimension superSz = super.getPreferredSize();
-//		if (isPreferredSizeSet()) {
-//			return superSz;
-//		}
-//		return new Dimension(900, 700);
-//	}
+	//	@Override
+	//	public Dimension getPreferredSize() {
+	//		Dimension superSz = super.getPreferredSize();
+	//		if (isPreferredSizeSet()) {
+	//			return superSz;
+	//		}
+	//		return new Dimension(900, 700);
+	//	}
 
 }
 

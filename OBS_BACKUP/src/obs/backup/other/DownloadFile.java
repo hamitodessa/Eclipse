@@ -215,7 +215,9 @@ public class DownloadFile extends JPanel {
 								int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
 								surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
 								FTPClient ftpc = new FTPClient();
+								ftpc.setConnectTimeout(120 * 1000);
 								ftpc.connect(ftp, port);
+								
 								if(!ftpc.login(kull, sifre))
 								{
 									ftpc.logout();

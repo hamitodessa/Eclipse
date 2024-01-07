@@ -82,6 +82,7 @@ public class EmirAnaGiris extends JPanel {
 		panel_4.setLayout(new BorderLayout(0, 0));
 		
 		JSplitPane splitPane_2 = new JSplitPane();
+		splitPane_2.setDividerSize(0);
 		panel_4.add(splitPane_2, BorderLayout.CENTER);
 		
 		
@@ -171,6 +172,7 @@ public class EmirAnaGiris extends JPanel {
 		panel_9.setLayout(new BorderLayout(0, 0));
 		
 		JSplitPane splitPane_3 = new JSplitPane();
+		splitPane_3.setDividerSize(0);
 		splitPane_3.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		panel_9.add(splitPane_3, BorderLayout.CENTER);
 		
@@ -195,6 +197,7 @@ public class EmirAnaGiris extends JPanel {
 				chooser.setAcceptAllFileFilterUsed(false);
 				chooser.setApproveButtonText("Dosya Sec");
 				chooser.setApproveButtonToolTipText("Dosya Sec");
+				chooser.setMultiSelectionEnabled(true);
 				//FileNameExtensionFilter docFilter = new FileNameExtensionFilter(".docx", "Microsoft Word Documents");
 				//chooser.addChoosableFileFilter(docFilter);
 				
@@ -202,8 +205,12 @@ public class EmirAnaGiris extends JPanel {
 				chooser.setApproveButtonMnemonic('s');
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
-					model.addElement( new CheckListItem(chooser.getSelectedFile().getName(),chooser.getSelectedFile().getParent()));
+					File selected[] = chooser.getSelectedFiles();
+					for(int i=0;i<= selected.length-1;i++)
+					{
+					model.addElement( new CheckListItem(selected[i].getName(),selected[i].getParent()));
 					list.repaint();
+					}
 				}
 				else {
 				}
@@ -226,10 +233,15 @@ public class EmirAnaGiris extends JPanel {
 				chooser.setApproveButtonText("Surucu Sec");
 				chooser.setApproveButtonToolTipText("Surucu Sec");
 				chooser.setApproveButtonMnemonic('s');
+				chooser.setMultiSelectionEnabled(true);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
-					model.addElement( new CheckListItem(chooser.getSelectedFile().getName(),chooser.getSelectedFile().getParent()));
+					File selected[] = chooser.getSelectedFiles();
+					for(int i=0;i<= selected.length-1;i++)
+					{
+					model.addElement( new CheckListItem(selected[i].getName(),selected[i].getParent()));
 					list.repaint();
+					}
 				}
 				else {
 					// System.out.println("No Selection ");

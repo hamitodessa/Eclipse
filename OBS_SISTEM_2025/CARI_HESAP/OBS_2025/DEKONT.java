@@ -720,7 +720,7 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		txtbtutar.setEnabled(false);
-		//txtbtutar.setForeground(new Color(0, 0, 139));
+	
 		txtbtutar.setFont(new Font("Tahoma", Font.BOLD, 22));
 
 		txtbtutar.setHorizontalAlignment(SwingConstants.RIGHT);

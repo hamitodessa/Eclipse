@@ -8,14 +8,12 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
 import OBS_C_2025.BACKUP_GLOBAL;
-import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.SIFRE_DONDUR;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Arrays;
 import java.awt.Font;
 
 public class SifreGiris extends JPanel {
@@ -23,6 +21,7 @@ public class SifreGiris extends JPanel {
 	private static final long serialVersionUID = 1L;
 	public JPasswordField passwordField;
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
+	JLabel lblDefaultpwd;
 	/**
 	 * Create the panel.
 	 */
@@ -59,11 +58,8 @@ public class SifreGiris extends JPanel {
 				if (KeyEvent.getKeyText(e.getKeyCode()) == "Enter" )
 				{	
 					SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
-					byte[] qaz;
 					try {
-						qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sDondur.sDONDUR(passwordField));
-					String response = Arrays.toString(qaz);
-					String varmi =	bckp.backup_sifre_oku(response);
+					String varmi =	bckp.backup_sifre_oku();
 					if (varmi.equals(sDondur.sDONDUR(passwordField)) == true)
 					{
 						OBS_BACKUP.tabbedPane.setSelectedIndex(0);
@@ -94,5 +90,20 @@ public class SifreGiris extends JPanel {
 		});
 		passwordField.setBounds(329, 282, 248, 25);
 		add(passwordField);
+		
+		lblDefaultpwd = new JLabel("Varsayilan Sifre :       obs");
+		lblDefaultpwd.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblDefaultpwd.setVisible(false);
+		lblDefaultpwd.setBounds(329, 241, 248, 14);
+		add(lblDefaultpwd);
+
+
+		try {
+			String varmi =	bckp.backup_sifre_oku();
+			if(varmi.equals("obs")) 
+				lblDefaultpwd.setVisible(true);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 }

@@ -4,8 +4,6 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Arrays;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -15,7 +13,6 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
 import OBS_C_2025.BACKUP_GLOBAL;
-import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.SIFRE_DONDUR;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -68,16 +65,14 @@ public class SifreYenile extends JPanel {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER)
 				{
 					SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
-					byte[] qaz;
 					try {
-						qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sDondur.sDONDUR(txtsif));
-						String response = Arrays.toString(qaz);
-						String varmi =	bckp.backup_sifre_oku(response);
+						String varmi =	bckp.backup_sifre_oku();
 						if (varmi.equals(sDondur.sDONDUR(txtsif)) == true)
 						{
 							lblysif.setVisible(true);
 							txtyenisif.setVisible(true);
 							btnNewButton.setVisible(true);
+							txtyenisif.requestFocus();
 						}
 						else {
 							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,"Sifre Yanlis");

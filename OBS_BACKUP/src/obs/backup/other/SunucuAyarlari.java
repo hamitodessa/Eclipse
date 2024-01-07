@@ -47,14 +47,15 @@ public class SunucuAyarlari extends JPanel {
 	private JLabel lblNewLabel_7;
 	private JLabel lblNewLabel_8;
 	
-	private static JButton btnNewButton_6 ;
+	public JButton btnNewButton_6 ;
+	public JButton btnNewButton_7 ;
 	private static JButton btnftpkont;
 	/**
 	 * Create the panel.
 	 */
 	public SunucuAyarlari() {
 
- setLayout(null);
+		setLayout(null);
 		
 		chckbxFtp = new JCheckBox("FTP");
 		chckbxFtp.setSelected(true);
@@ -64,6 +65,7 @@ public class SunucuAyarlari extends JPanel {
 				{
 					chckbxYerel.setSelected(false);
 					btnNewButton_6.setEnabled(true);
+					btnNewButton_7.setEnabled(false);
 					btnftpkont.setEnabled(true);
 				}
 			}
@@ -79,6 +81,7 @@ public class SunucuAyarlari extends JPanel {
 				{
 					chckbxFtp.setSelected(false);
 					btnNewButton_6.setEnabled(false);
+					btnNewButton_7.setEnabled(true);
 					btnftpkont.setEnabled(false);
 				}
 			}
@@ -132,9 +135,9 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.add(textFtpSurucu);
 		
 		textZmnasm = new JTextField();
-		textZmnasm.setText("60");
+		textZmnasm.setText("120");
 		textZmnasm.setColumns(10);
-		textZmnasm.setBounds(135, 46, 38, 20);
+		textZmnasm.setBounds(135, 46, 50, 20);
 		panel_12_1.add(textZmnasm);
 		
 		textPort = new JTextField();
@@ -170,7 +173,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_9 = new JLabel("sn.");
-		lblNewLabel_9.setBounds(183, 49, 31, 14);
+		lblNewLabel_9.setBounds(200, 49, 31, 14);
 		panel_12_1.add(lblNewLabel_9);
 		
 		JPanel panel_12_1_1 = new JPanel();
@@ -186,7 +189,7 @@ public class SunucuAyarlari extends JPanel {
 		textSurucu.setBounds(135, 22, 300, 20);
 		panel_12_1_1.add(textSurucu);
 		
-		JButton btnNewButton_7 = new JButton("Surucu Sec");
+		btnNewButton_7 = new JButton("Surucu Sec");
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

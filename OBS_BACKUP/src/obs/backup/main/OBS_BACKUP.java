@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -221,9 +223,9 @@ public class OBS_BACKUP extends JFrame {
 		FlatRobotoFont.install();
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
 		UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
-		FlatMacDarkLaf.setup();
+		//FlatMacDarkLaf.setup();
 
-		//FlatCarbonIJTheme.setup();
+		FlatCarbonIJTheme.setup();
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -685,6 +687,22 @@ public class OBS_BACKUP extends JFrame {
 		panel_3.setLayout(new BorderLayout(0, 0));
 
 		tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane_1.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if(tabbedPane_1.getSelectedIndex()==4)
+				{
+					if(OBS_BACKUP.emirAnaGirisPanel.lblNewLabel_6.getText().equals("Ms Sql"))
+					{
+						OBS_BACKUP.serverBilgileriPanel.tabbedPane.setSelectedIndex(0);
+					}
+					else if(OBS_BACKUP.emirAnaGirisPanel.lblNewLabel_6.getText().equals("My Sql"))
+					{
+						OBS_BACKUP.serverBilgileriPanel.tabbedPane.setSelectedIndex(1);
+					}
+				}
+			}
+		});
+
 		panel_3.add(tabbedPane_1, BorderLayout.CENTER);
 
 

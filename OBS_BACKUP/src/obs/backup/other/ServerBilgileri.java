@@ -243,7 +243,7 @@ public class ServerBilgileri extends JPanel {
 		panel_1.add(lblNewLabel_4);
 		
 		textMYPort = new JTextField();
-		textMYPort.setBounds(100, 38, 61, 20);
+		textMYPort.setBounds(120, 38, 56, 20);
 		panel_1.add(textMYPort);
 		textMYPort.setColumns(10);
 		
@@ -252,7 +252,7 @@ public class ServerBilgileri extends JPanel {
 		panel_1.add(lblNewLabel_5);
 		
 		textMyDump = new JTextField();
-		textMyDump.setBounds(120, 183, 299, 20);
+		textMyDump.setBounds(120, 183, 450, 20);
 		panel_1.add(textMyDump);
 		textMyDump.setColumns(10);
 		
@@ -278,7 +278,7 @@ public class ServerBilgileri extends JPanel {
 				}
 			}
 		});
-		btnDumpSec.setBounds(447, 181, 89, 23);
+		btnDumpSec.setBounds(481, 214, 89, 23);
 		panel_1.add(btnDumpSec);
 
 	}

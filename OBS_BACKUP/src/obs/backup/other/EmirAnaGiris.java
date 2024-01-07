@@ -104,7 +104,8 @@ public class EmirAnaGiris extends JPanel {
 		panel_10.add(lblNewLabel_1);
 		
 		txtEmir = new JTextField();
-		txtEmir.setBounds(150, 100, 219, 20);
+		txtEmir.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtEmir.setBounds(150, 100, 219, 23);
 		panel_10.add(txtEmir);
 		txtEmir.setColumns(10);
 		
@@ -255,7 +256,15 @@ public class EmirAnaGiris extends JPanel {
 		btnServer = new JButton("Server Baglanti");
 		btnServer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			OBS_BACKUP.tabbedPane_1.setSelectedIndex(4);
+				OBS_BACKUP.tabbedPane_1.setSelectedIndex(4);
+				if(lblNewLabel_6.getText().equals("My Sql"))
+				{
+					OBS_BACKUP.serverBilgileriPanel.tabbedPane.setSelectedIndex(1);
+				}
+				else if(lblNewLabel_6.getText().equals("Ms Sql"))
+				{
+					OBS_BACKUP.serverBilgileriPanel.tabbedPane.setSelectedIndex(0);
+				}
 			}
 		});
 		btnServer.setVisible(false);
@@ -376,11 +385,16 @@ public class EmirAnaGiris extends JPanel {
                 {
                    OBS_BACKUP.sunucuayarPanel.chckbxFtp.setSelected(true);
                    OBS_BACKUP.sunucuayarPanel.chckbxYerel.setSelected(false);
+                   OBS_BACKUP.sunucuayarPanel.btnNewButton_6.setEnabled(true);
+                   OBS_BACKUP.sunucuayarPanel.btnNewButton_7.setEnabled(false);
                 }
                 else
                 {
                 	OBS_BACKUP.sunucuayarPanel.chckbxFtp.setSelected(false);
                     OBS_BACKUP.sunucuayarPanel.chckbxYerel.setSelected(true);
+                    OBS_BACKUP.sunucuayarPanel.btnNewButton_6.setEnabled(false);
+                    OBS_BACKUP.sunucuayarPanel.btnNewButton_7.setEnabled(true);
+
                 }
                 OBS_BACKUP.sunucuayarPanel.textHost.setText(ftpBilgiler.get(0).getHOST());
                 OBS_BACKUP.sunucuayarPanel.textKull.setText(ftpBilgiler.get(0).getKULLANICI());

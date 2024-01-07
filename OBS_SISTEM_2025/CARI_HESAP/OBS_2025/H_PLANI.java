@@ -43,8 +43,6 @@ import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicComboPopup;
 
-
-
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FIT_IMAGE;
@@ -105,6 +103,7 @@ public class H_PLANI extends JInternalFrame {
 		setClosable(true);
 		setBounds(0, 0, 846, 488);
 
+		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -727,7 +726,7 @@ public class H_PLANI extends JInternalFrame {
 		btnNewButton_6_1.setToolTipText("Hesap Plani");
 		btnNewButton_6_1.setBounds(318, 88, 22, 23);
 		panel.add(btnNewButton_6_1);
-
+		
 		hisset("");
 
 	}

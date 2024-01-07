@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -51,8 +50,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.awt.event.ActionEvent;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingUtilities;
-
 import OBS_2025_RAPORLAR.ENVANTER;
 import OBS_2025_RAPORLAR.FATURA_RAPOR;
 import OBS_2025_RAPORLAR.GRUP_RAPOR;
@@ -283,7 +280,8 @@ public class OBS_MAIN extends JFrame  {
 	        public void windowDeactivated(WindowEvent e) {
 	        }
 	    });		
-		SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
+		//getRootPane().putClientProperty(FlatClientProperties.TITLE_BAR_BACKGROUND,Color.RED);
+		//SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
 		setFont(new Font("Dialog", Font.BOLD, 12));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_MAIN.class.getResource("/ICONLAR/icon-obs-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

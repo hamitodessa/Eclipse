@@ -77,6 +77,7 @@ import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.IntelliJTheme;
 import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
+import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.icons.FlatClearIcon;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
@@ -314,7 +315,6 @@ public class LOGIN extends JDialog {
 				FlatLaf.updateUI();
 			}
 			SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
-			//FlatSolarizedLightIJTheme());
 
 		} catch (Exception ex) {
 			java.util.logging.Logger.getLogger(LOGIN.class.getName()).log(java.util. logging.Level.SEVERE, null, ex); 
@@ -351,21 +351,6 @@ public class LOGIN extends JDialog {
 		lblicon.setHorizontalAlignment(SwingConstants.CENTER);
 		lblicon.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/icons8-application-96.png")));
 
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/userb-16.png")));
-		lblNewLabel.setForeground(new Color(0, 0, 128));
-		lblNewLabel.setBounds(284, 15, 16, 16);
-		panel.add(lblNewLabel);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/password-16.png")));
-
-		lblNewLabel_1.setForeground(new Color(0, 0, 128));
-		lblNewLabel_1.setBounds(284, 41, 16, 16);
-		panel.add(lblNewLabel_1);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-
 		txtUser = new JTextField();
 		txtUser.addKeyListener(new KeyAdapter() {
 			@Override
@@ -376,10 +361,13 @@ public class LOGIN extends JDialog {
 				}
 			}
 		});
-		txtUser.setBounds(310, 11, 110, 20);
+		txtUser.setBounds(310, 11, 151, 20);
 		txtUser.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtUser.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new ImageIcon(LOGIN.class.getResource("/ICONLAR/userb-16.png")));
+
 		txtUser.setDocument(new JTextFieldLimit(10));
 		txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Kullanici");
+		txtUser.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtUser.setColumns(10);
 		JTextFieldRegularPopupMenu.addTo(txtUser);
 		txtUser.setColumns(10);
@@ -396,10 +384,14 @@ public class LOGIN extends JDialog {
 		txtpwd = new JPasswordField();
 		txtpwd.setHorizontalAlignment(SwingConstants.LEFT);
 		txtpwd.setEchoChar('*');
-		txtpwd.setBounds(310, 37, 110, 20);
+		txtpwd.setBounds(310, 37, 151, 20);
 		txtpwd.setOpaque(false);
 		txtpwd.setBorder(new EmptyBorder(0, 0, 0, 0));
 		txtpwd.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
+		txtpwd.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		txtpwd.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON,new ImageIcon(LOGIN.class.getResource("/ICONLAR/password-16.png")));
+		txtpwd.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true");
+
 		txtpwd.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -485,11 +477,13 @@ public class LOGIN extends JDialog {
 							GLOBAL.setting_yaz("BENI_HATIRLA", "");	
 						}
 						btndevam.requestFocusInWindow();
+						txtpwd.putClientProperty("JComponent.outline","clear");
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					}
 					else
 					{
 						contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+						txtpwd.putClientProperty("JComponent.outline","error");
 						OBS_MAIN.mesaj_goster(7000,Notifications.Type.ERROR,   "Kullanici veya Sifresi Yanlis......!");
 						txtUser.requestFocus();
 					}
@@ -685,23 +679,6 @@ public class LOGIN extends JDialog {
 		separator_1.setForeground(Color.WHITE);
 		separator_1.setBounds(310, 57, 110, 7);
 		panel.add(separator_1);
-		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setToolTipText("Sifre Goster");
-		btnNewButton.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/show-pwd-16.png")));
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				txtpwd .setEchoChar((char) 0);
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				txtpwd .setEchoChar('*');
-			}
-		});
-		btnNewButton.setBounds(438, 34, 23, 23);
-		panel.add(btnNewButton);
-		
 		
 	
 		progressBar = new JProgressBar();

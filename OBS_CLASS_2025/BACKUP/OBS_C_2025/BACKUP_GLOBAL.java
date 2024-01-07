@@ -990,13 +990,16 @@ public class BACKUP_GLOBAL {
 			}
 			else 
 			{
-				if (file.isDirectory()) 
-				{
-					remote_filelist	filebilgi = new remote_filelist("[" + file.getName().toString()+ "]",(int) file.getSize(), dateFormater.format(file.getTimestamp().getTime()),"");
-					filelists.add(filebilgi);
-				}
-				remote_filelist	filebilgi = new remote_filelist(file.getName().toString(),(int) file.getSize(), dateFormater.format(file.getTimestamp().getTime()),"");
-				filelists.add(filebilgi);
+				//if (file.isDirectory()) 
+				//{
+				//	remote_filelist	filebilgi = new remote_filelist("[" + file.getName().toString()+ "]",(int) file.getSize(), dateFormater.format(file.getTimestamp().getTime()),"");
+				//	filelists.add(filebilgi);
+				//}
+					if (! file.isDirectory()) 
+					{
+						remote_filelist	filebilgi = new remote_filelist(file.getName().toString(),(int) file.getSize(), dateFormater.format(file.getTimestamp().getTime()),"");
+						filelists.add(filebilgi);
+					}
 			}
 		}
 		ftp.logout();

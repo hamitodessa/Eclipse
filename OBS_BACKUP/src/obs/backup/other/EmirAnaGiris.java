@@ -46,6 +46,7 @@ import OBS_C_2025.server_bilgiler;
 import OBS_C_2025.yedekleme_bilgiler;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
+import java.awt.Font;
 
 @SuppressWarnings({"rawtypes","unchecked","serial","deprecation"})
 public class EmirAnaGiris extends JPanel {
@@ -146,6 +147,7 @@ public class EmirAnaGiris extends JPanel {
 		panel_10.add(lblNewLabel_4);
 		
 		lblNewLabel_5 = new JLabel("0");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5.setBounds(150, 373, 48, 14);
 		panel_10.add(lblNewLabel_5);
 		
@@ -156,9 +158,7 @@ public class EmirAnaGiris extends JPanel {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.genelKayit();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					
 				} catch (Exception e1) {
-					
 					e1.printStackTrace();
 				}
 			}
@@ -182,7 +182,8 @@ public class EmirAnaGiris extends JPanel {
 		panel_11.setLayout(null);
 		
 		lblNewLabel_6 = new JLabel(".......");
-		lblNewLabel_6.setBounds(10, 11, 121, 14);
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_6.setBounds(10, 13, 121, 14);
 		panel_11.add(lblNewLabel_6);
 		
 		btnDosyaSec = new JButton("Dosya Sec");
@@ -266,9 +267,7 @@ public class EmirAnaGiris extends JPanel {
 
 		model = new DefaultListModel<>();
 		
-		//model.addElement( new CheckListItem("apple","C:\\"));
 		list = new JList(model);
-				
 				
 		list.setCellRenderer(new CheckListRenderer());
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -485,16 +484,13 @@ public class EmirAnaGiris extends JPanel {
             		OBS_BACKUP.serverBilgileriPanel.textMySifre.setText(ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
             		OBS_BACKUP.serverBilgileriPanel.textMyDump.setText(serverBilgiler.get(0).getMY_DUMP());
             	}
-
             }
-            ///
             if (chckbxServerDosya.isSelected())
             {
             	if (!lblNewLabel_6.getText().equals(""))
             	{
             		if (lblNewLabel_6.getText().equals("Ms Sql"))
             		{
-            			//ResultSet msss = bckp.server_bilgi(OBS_BACKUP.gelenISIM);
             			SIFRE_DONDUR sdon = new SIFRE_DONDUR();
             			String response =sdon.sDONDUR(OBS_BACKUP.serverBilgileriPanel.textMSsifre);
             			bckp.MsSql_baglan(OBS_BACKUP. serverBilgileriPanel.textMSServer.getText() ,OBS_BACKUP.serverBilgileriPanel.textMSkull.getText(),response,OBS_BACKUP.serverBilgileriPanel.textMSPort.getText());
@@ -530,7 +526,6 @@ public class EmirAnaGiris extends JPanel {
             				list.removeAll();
             				while (dsss.next())
             				{
-            					
             					int index = dbList.indexOf(dsss.getString("Database"));
             					CheckListItem item = (CheckListItem) new CheckListItem(dsss.getString("Database"),"");
             					if (index != -1)
@@ -557,7 +552,6 @@ public class EmirAnaGiris extends JPanel {
             				dosyaSAYI += 1;
             			}
             		}
-
             		// RadLabel32.Text = dosyaSAYI.ToString();
             		if (list.getModel().getSize() > 0)
             		{

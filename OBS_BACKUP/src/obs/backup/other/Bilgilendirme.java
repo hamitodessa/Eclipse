@@ -48,7 +48,7 @@ public class Bilgilendirme extends JPanel {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Gonderme Durumu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(37, 71, 504, 71);
+		panel.setBounds(37, 71, 580, 71);
 		add(panel);
 		panel.setLayout(null);
 		
@@ -62,11 +62,11 @@ public class Bilgilendirme extends JPanel {
 				}
 			}
 		});
-		chckbxIslem.setBounds(63, 28, 184, 23);
+		chckbxIslem.setBounds(135, 28, 184, 23);
 		panel.add(chckbxIslem);
 		
 		chckbxHata = new JCheckBox("Hata Durumunda");
-		chckbxHata.setBounds(299, 28, 153, 23);
+		chckbxHata.setBounds(325, 28, 153, 23);
 		chckbxHata.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxHata.isSelected())
@@ -81,27 +81,27 @@ public class Bilgilendirme extends JPanel {
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBorder(new TitledBorder(null, "Mail Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(37, 153, 504, 125);
+		panel_1.setBounds(37, 153, 580, 125);
 		add(panel_1);
 		
 		textGonIsim = new JTextField();
-		textGonIsim.setBounds(119, 23, 329, 20);
+		textGonIsim.setBounds(135, 23, 329, 20);
 		panel_1.add(textGonIsim);
 		textGonIsim.setColumns(10);
 		
 		textGonHesap = new JTextField();
 		textGonHesap.setColumns(10);
-		textGonHesap.setBounds(119, 46, 329, 20);
+		textGonHesap.setBounds(135, 46, 329, 20);
 		panel_1.add(textGonHesap);
 		
 		textAlici = new JTextField();
 		textAlici.setColumns(10);
-		textAlici.setBounds(119, 69, 329, 20);
+		textAlici.setBounds(135, 69, 329, 20);
 		panel_1.add(textAlici);
 		
 		textKonu = new JTextField();
 		textKonu.setColumns(10);
-		textKonu.setBounds(119, 92, 329, 20);
+		textKonu.setBounds(135, 92, 329, 20);
 		panel_1.add(textKonu);
 		
 		JLabel lblNewLabel_1 = new JLabel("Gonderen Isim");
@@ -123,31 +123,31 @@ public class Bilgilendirme extends JPanel {
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
 		panel_1_1.setBorder(new TitledBorder(null, "Server Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1_1.setBounds(37, 285, 504, 132);
+		panel_1_1.setBounds(37, 285, 580, 132);
 		add(panel_1_1);
 		
 		textSmtp = new JTextField();
 		textSmtp.setColumns(10);
-		textSmtp.setBounds(119, 23, 173, 20);
+		textSmtp.setBounds(135, 23, 173, 20);
 		panel_1_1.add(textSmtp);
 		
 		textPort = new JTextField();
 		textPort.setColumns(10);
-		textPort.setBounds(383, 23, 65, 20);
+		textPort.setBounds(404, 23, 60, 20);
 		panel_1_1.add(textPort);
 		
 		textKull = new JTextField();
 		textKull.setColumns(10);
-		textKull.setBounds(119, 46, 329, 20);
+		textKull.setBounds(135, 46, 329, 20);
 		panel_1_1.add(textKull);
 		
 		textSifre = new JPasswordField();
 		textSifre.setColumns(10);
-		textSifre.setBounds(119, 69, 329, 20);
+		textSifre.setBounds(135, 69, 329, 20);
 		panel_1_1.add(textSifre);
 		
 		chckbxSSL = new JCheckBox("SSL");
-		chckbxSSL.setBounds(119, 100, 99, 23);
+		chckbxSSL.setBounds(135, 100, 99, 23);
 		panel_1_1.add(chckbxSSL);
 		
 		chckbxTSL = new JCheckBox("TSL");
@@ -155,7 +155,7 @@ public class Bilgilendirme extends JPanel {
 		panel_1_1.add(chckbxTSL);
 		
 		JButton btnDenemeMail = new JButton("Deneme Maili");
-		btnDenemeMail.setBounds(393, 100, 101, 23);
+		btnDenemeMail.setBounds(364, 100, 100, 23);
 		panel_1_1.add(btnDenemeMail);
 		
 		JLabel lblNewLabel_5 = new JLabel("SMTP Server");
@@ -163,7 +163,7 @@ public class Bilgilendirme extends JPanel {
 		panel_1_1.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("Port");
-		lblNewLabel_6.setBounds(303, 26, 48, 14);
+		lblNewLabel_6.setBounds(338, 26, 52, 14);
 		panel_1_1.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_7 = new JLabel("Kullanici");

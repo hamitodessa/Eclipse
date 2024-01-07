@@ -68,11 +68,11 @@ public class SunucuAyarlari extends JPanel {
 				}
 			}
 		});
-		chckbxFtp.setBounds(67, 22, 99, 23);
+		chckbxFtp.setBounds(135, 22, 99, 23);
 		 add(chckbxFtp);
 		
 		chckbxYerel = new JCheckBox("Yerel Surucu");
-		chckbxYerel.setBounds(215, 22, 150, 23);
+		chckbxYerel.setBounds(276, 22, 134, 23);
 		chckbxYerel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxYerel.isSelected())
@@ -87,23 +87,23 @@ public class SunucuAyarlari extends JPanel {
 		
 		JPanel panel_12 = new JPanel();
 		panel_12.setBorder(new TitledBorder(null, "FTP Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_12.setBounds(10, 73, 627, 100);
+		panel_12.setBounds(10, 75, 627, 100);
 		 add(panel_12);
 		panel_12.setLayout(null);
 		
 		textHost = new JTextField();
-		textHost.setBounds(124, 22, 300, 20);
+		textHost.setBounds(135, 22, 300, 20);
 		panel_12.add(textHost);
 		textHost.setColumns(10);
 		
 		textKull = new JTextField();
-		textKull.setBounds(124, 46, 164, 20);
+		textKull.setBounds(135, 46, 164, 20);
 		panel_12.add(textKull);
 		textKull.setColumns(10);
 		
 		textSifre = new JPasswordField();
 		textSifre.setToolTipText("");
-		textSifre.setBounds(124, 69, 164, 20);
+		textSifre.setBounds(135, 69, 164, 20);
 		panel_12.add(textSifre);
 		textSifre.setColumns(10);
 		
@@ -123,24 +123,24 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.setLayout(null);
 		panel_12_1.setBorder(new TitledBorder(null, "FTP Diger Ayarlar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		//, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_12_1.setBounds(10, 174, 627, 100);
+		panel_12_1.setBounds(10, 180, 627, 100);
 		 add(panel_12_1);
 		
 		textFtpSurucu = new JTextField();
 		textFtpSurucu.setColumns(10);
-		textFtpSurucu.setBounds(124, 22, 300, 20);
+		textFtpSurucu.setBounds(135, 22, 300, 20);
 		panel_12_1.add(textFtpSurucu);
 		
 		textZmnasm = new JTextField();
 		textZmnasm.setText("60");
 		textZmnasm.setColumns(10);
-		textZmnasm.setBounds(124, 46, 96, 20);
+		textZmnasm.setBounds(135, 46, 38, 20);
 		panel_12_1.add(textZmnasm);
 		
 		textPort = new JTextField();
 		textPort.setText("21");
 		textPort.setColumns(10);
-		textPort.setBounds(328, 46, 96, 20);
+		textPort.setBounds(378, 46, 57, 20);
 		panel_12_1.add(textPort);
 		
 		btnNewButton_6 = new JButton("Surucu Kontrol");
@@ -162,24 +162,28 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.add(lblNewLabel_3);
 		
 		lblNewLabel_4 = new JLabel("Port");
-		lblNewLabel_4.setBounds(248, 49, 48, 14);
+		lblNewLabel_4.setBounds(311, 49, 57, 14);
 		panel_12_1.add(lblNewLabel_4);
 		
 		lblNewLabel_5 = new JLabel("Zaman Asimi");
 		lblNewLabel_5.setBounds(25, 49, 89, 14);
 		panel_12_1.add(lblNewLabel_5);
 		
+		JLabel lblNewLabel_9 = new JLabel("sn.");
+		lblNewLabel_9.setBounds(183, 49, 31, 14);
+		panel_12_1.add(lblNewLabel_9);
+		
 		JPanel panel_12_1_1 = new JPanel();
 		panel_12_1_1.setLayout(null);
 		panel_12_1_1.setBorder(new TitledBorder(null, "Yerel Surucu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
-		panel_12_1_1.setBounds(10, 276, 627, 75);
+		panel_12_1_1.setBounds(10, 285, 627, 75);
 		 add(panel_12_1_1);
 		
 		textSurucu = new JTextField();
 		textSurucu.setToolTipText("");
 		textSurucu.setColumns(10);
-		textSurucu.setBounds(124, 22, 300, 20);
+		textSurucu.setBounds(135, 22, 300, 20);
 		panel_12_1_1.add(textSurucu);
 		
 		JButton btnNewButton_7 = new JButton("Surucu Sec");
@@ -215,13 +219,13 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1_1_1.setLayout(null);
 		panel_12_1_1_1.setBorder(new TitledBorder(null, "Eski Yedek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
-		panel_12_1_1_1.setBounds(10, 367, 627, 75);
+		panel_12_1_1_1.setBounds(10, 365, 627, 75);
 		 add(panel_12_1_1_1);
 		
 		textEskisilme = new JTextField();
 		textEskisilme.setText("0");
 		textEskisilme.setColumns(10);
-		textEskisilme.setBounds(124, 22, 76, 20);
+		textEskisilme.setBounds(135, 22, 76, 20);
 		panel_12_1_1_1.add(textEskisilme);
 		
 		lblNewLabel_6 = new JLabel("Eski Yed.Silme");

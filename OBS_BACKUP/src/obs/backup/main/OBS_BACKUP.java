@@ -277,7 +277,8 @@ public class OBS_BACKUP extends JFrame {
 		btnGorevler.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gelenISIM = "" ;
-				try {
+				try 
+				{
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					emir_yukle("EMIR_ISMI") ;
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -312,7 +313,8 @@ public class OBS_BACKUP extends JFrame {
 		btnLoglama .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedIndex(2);
-				try {
+				try 
+				{
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					loglamaPanel.doldur();
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -331,7 +333,8 @@ public class OBS_BACKUP extends JFrame {
 		btnKayitliEmirler .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedIndex(3);
-				try {
+				try 
+				{
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					kayitliEmirlerPanelEmirler.doldur();
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -459,84 +462,79 @@ public class OBS_BACKUP extends JFrame {
 		btnHepsiAktiv.setEnabled(false);
 		btnHepsiAktiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				Component[] components = container.getComponents();
-				for (Component component : components) 
+				try 
 				{
-					if (component.getName()!= null)
+					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					Component[] components = container.getComponents();
+					for (Component component : components) 
 					{
-						JPanel qweJPanel = (JPanel) component ; 
-						Component[] componentt = qweJPanel.getComponents();
-						for (Component compo : componentt) {
-							if(compo.getName() != null)
-							{
-								if(compo.getName().equals("lblDurum"))
+						if (component.getName()!= null)
+						{
+							JPanel qweJPanel = (JPanel) component ; 
+							Component[] componentt = qweJPanel.getComponents();
+							for (Component compo : componentt) {
+								if(compo.getName() != null)
 								{
-									JLabel stp = (JLabel) compo;
-									if(stp.getText().equals("Pasiv Durumda"))
+									if(compo.getName().equals("lblDurum"))
 									{
-										try {
+										JLabel stp = (JLabel) compo;
+										if(stp.getText().equals("Pasiv Durumda"))
+										{
 											bckp.durum_kayit_durum(component.getName().toString(), true,"Durum Aktivlestirildi...");
-										} catch (Exception e1) {
-											//e1.printStackTrace();
 										}
 									}
 								}
 							}
 						}
+						component.revalidate();
 					}
-					component.revalidate();
-				}
-				try {
 					emir_yukle("EMIR_ISMI");
+					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
-					e1.printStackTrace();
+					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
-				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		btnHepsiAktiv.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/activ-24.png")));
 		toolBar.add(btnHepsiAktiv);
-		
+
 		btnHepsiPasiv= new JButton("");
 		btnHepsiPasiv.setToolTipText("Hepsini Pasivlestir");
 		btnHepsiPasiv.setEnabled(false);
 		btnHepsiPasiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				Component[] components = container.getComponents();
-				for (Component component : components) 
+				try 
 				{
-					if (component.getName()!= null)
+					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					Component[] components = container.getComponents();
+					for (Component component : components) 
 					{
-						JPanel qweJPanel = (JPanel) component ; 
-						Component[] componentt = qweJPanel.getComponents();
-						for (Component compo : componentt) {
-							if(compo.getName() != null)
+						if (component.getName()!= null)
+						{
+							JPanel qweJPanel = (JPanel) component ; 
+							Component[] componentt = qweJPanel.getComponents();
+							for (Component compo : componentt) 
 							{
-								if(compo.getName().equals("lblDurum"))
+								if(compo.getName() != null)
 								{
-									JLabel stp = (JLabel) compo;
-									if(! stp.getText().equals("Pasiv Durumda"))
+									if(compo.getName().equals("lblDurum"))
 									{
-										try {
+										JLabel stp = (JLabel) compo;
+										if(! stp.getText().equals("Pasiv Durumda"))
+										{
 											bckp.durum_kayit_durum(component.getName().toString(), false,"Durum Pasivlestirildi...");
-										} catch (Exception e1) {
-											e1.printStackTrace();
 										}
 									}
 								}
 							}
 						}
+						component.revalidate();
 					}
-					component.revalidate();
-				}
-				try {
 					emir_yukle("EMIR_ISMI");
+					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
-					e1.printStackTrace();
+					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
-				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		btnHepsiPasiv.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/pasiv-24.png")));
@@ -549,7 +547,8 @@ public class OBS_BACKUP extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				Component[] components = container.getComponents();
-				for (Component component : components) {
+				for (Component component : components) 
+				{
 					if (component.getName()!= null)
 					{
 						JPanel qweJPanel = (JPanel) component ; 
@@ -751,7 +750,7 @@ public class OBS_BACKUP extends JFrame {
 			tabbedPane.setSelectedIndex(4);
 			
 		} catch (Exception ex) {
-			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText(), new Date(), ex.getMessage());
+			bckp.log_kayit("Sistem", new Date(), ex.getMessage());
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
 	}
@@ -1443,7 +1442,6 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.Progres_Bar_Temizle_1();
 				uplpnl.Progres_Bar_Temizle_2();
 				dosADI = "";
-				int gunfark;
 				List<remote_filelist> ls = new ArrayList<remote_filelist>();
 				ls = bckp. sur_liste(surucu_yer);
 				uplpnl.RPB1.setMaximum(dbliste.size());
@@ -1653,7 +1651,6 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.Progres_Bar_Temizle_1();
 				uplpnl.Progres_Bar_Temizle_2();
 				dosADI = "";
-				int gunfark;
 				List<remote_filelist> ls = new ArrayList<remote_filelist>();
 				ls = bckp.ListRmtFiles( ftp , surucu, kull, sifre,port);
 				uplpnl.RPB1.setMaximum(dbliste.size());
@@ -1718,11 +1715,11 @@ public class OBS_BACKUP extends JFrame {
 			}
 		} 
 	}
-	private void bilgilendirme_oku(String emir, String mesaj ,List<bilgilendirme_bilgiler> bilgiBilgi) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
+	private void bilgilendirme_oku(String emir, String mesaj ,List<bilgilendirme_bilgiler> bilgiBilgi) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException, SQLException
 	{
 		if (bilgiBilgi.size() > 0)
 		{
-			mail_at( bilgiBilgi , mesaj);
+			mail_at( bilgiBilgi , mesaj,emir);
 		}
 	}
 	private void diger_dosya(String emirADI, String aciklama) throws ClassNotFoundException, SQLException, ParseException, InterruptedException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, NumberFormatException, SocketException, IOException
@@ -1778,7 +1775,6 @@ public class OBS_BACKUP extends JFrame {
 				bckp.log_kayit(emirADI, new Date(), "FTP Surucu Secilmemis....");
 				bckp.genel_kayit_durum(emirADI, false, sonyuk, "FTP Surucu Secilmemis....");
 				uplpnl.setVisible(false);
-				//emirBOSALT(emirADI);
 				bckp.log_kayit(emirADI, new Date(), "FTP Surucu Secilmemis....");
 				bckp.log_kayit(emirADI, new Date(), "Emir Yuklendi...");
 				mesaj_goster(5000,Notifications.Type.WARNING, "FTP Surucu Secilmemis....");	
@@ -1825,7 +1821,7 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.Progres_Bar_1( i + 1);
 				String dosya, dzip,  dpath,uzantisiz = "";
 				String input = dosADI;
-				int index = input.lastIndexOf(".");
+				int index = dosADI.lastIndexOf(".");
 				if (index >= 0)
 				{
 					uzantisiz = input.substring(0, index); // or index + 1 to keep slash
@@ -1879,7 +1875,6 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.Progres_Bar_Temizle_1();
 				uplpnl.Progres_Bar_Temizle_2();
 				dosADI = "";
-				int gunfark;
 				List<remote_filelist> ls = new ArrayList<remote_filelist>();
 				ls = bckp. sur_liste(ftpBilgi.get(0).getSURUCU_YER());
 				uplpnl.RPB1.setMaximum(dbliste.size());
@@ -2073,7 +2068,6 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.Progres_Bar_Temizle_1();
 				uplpnl.Progres_Bar_Temizle_2();
 				dosADI = "";
-				int gunfark;
 				List<remote_filelist> ls = new ArrayList<remote_filelist>();
 				ls = bckp.ListRmtFiles( ftp , surucu, kull, sifre,port);
 				uplpnl.RPB1.setMaximum(dbliste.size());
@@ -2211,7 +2205,7 @@ public class OBS_BACKUP extends JFrame {
 		container.repaint();
 		emirSAYI_COUNT();
 	}
-	private static void mail_at(List<bilgilendirme_bilgiler> bilgiBilgi,String mesaj )
+	private static void mail_at(List<bilgilendirme_bilgiler> bilgiBilgi,String mesaj ,String eADI) throws ClassNotFoundException, SQLException
 	{
 		try {
 			String gonisim, gonhesap, alici, konu, smtp, port, kull, sifre;
@@ -2230,7 +2224,6 @@ public class OBS_BACKUP extends JFrame {
 				bytes[i] = Byte.parseByte(byteValues[i].trim());     
 			}
 			sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
-
 			if (bilgiBilgi.get(0).isSSL())
 				ssl = true;
 			else
@@ -2248,7 +2241,6 @@ public class OBS_BACKUP extends JFrame {
 			props.put("mail.smtp.port", port);
 			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.ssl.protocols", "TLSv1.2");
-
 			props.put("mail.smtp.starttls.enable", tsl);
 			if (ssl)
 			{
@@ -2260,7 +2252,6 @@ public class OBS_BACKUP extends JFrame {
 					return new PasswordAuthentication(kull, sifre);
 				}
 			});
-
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(gonhesap ,gonisim ));
 			InternetAddress[] toAddress = new InternetAddress[to.length];
@@ -2285,7 +2276,7 @@ public class OBS_BACKUP extends JFrame {
 		}
 		catch (Exception ex)
 		{
-
+			bckp.log_kayit(eADI, new Date(), "Mail Gonderirken Hata Olustu...");
 		}
 	}
 	private void durumYAZ(String emirADI,Date nowwDate)
@@ -2439,7 +2430,7 @@ public class OBS_BACKUP extends JFrame {
 	{
 		boolean result = false;
 		if(ftpDOSYA.length() < 13) return false;
-		String dosADIOGREN = ftpDOSYA.substring(13,ftpDOSYA.indexOf("."));
+		String dosADIOGREN = ftpDOSYA.substring(13,ftpDOSYA.lastIndexOf("."));
 		if(dosADIOGREN.equals(dosYA))
 		{
 			result = true ;

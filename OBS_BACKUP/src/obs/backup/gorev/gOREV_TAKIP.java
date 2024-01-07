@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -350,7 +351,8 @@ public  class gOREV_TAKIP extends JPanel {
 					long DakikaFarki = dt.getTime() - aDate.getTime();
 					int seconds = (int) (DakikaFarki / 1000) % 60 ;
 					int minutes = (int) ((DakikaFarki / (1000*60)) % 60);
-					int hours   = (int) ((DakikaFarki / (1000*60*60)) % 24);
+					//int hours   = (int) ((DakikaFarki / (1000*60*60)) % 24);
+					int hours = (int)TimeUnit.HOURS.convert(DakikaFarki, TimeUnit.MILLISECONDS);
 					lblKalanZaman.setText(String.format("%02d:%02d:%02d", hours,minutes ,seconds	));
 					String simDI = df.format(aDate);
 					if (simDI.equals(lblGelecekYedekleme.getText())) // YEDEKLEME ZAMANI 

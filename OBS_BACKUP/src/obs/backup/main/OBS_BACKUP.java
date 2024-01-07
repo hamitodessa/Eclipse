@@ -2153,7 +2153,6 @@ public class OBS_BACKUP extends JFrame {
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
 			ftp.enterLocalPassiveMode();
 			ftp.changeWorkingDirectory(ftpsurucu);
-			ftp.setFileType(FTP.BINARY_FILE_TYPE);
 			File secondLocalFile = new File(dosyayolu + dosadi );
 			String secondRemoteFile = dosadi;
 			OutputStream outputStream = ftp.storeFileStream(secondRemoteFile);
@@ -2180,6 +2179,8 @@ public class OBS_BACKUP extends JFrame {
 			outputStream.close();
 			uplpnl.RPB2.setStringPainted(false);
 			uplpnl.Progres_Bar_2( 0);
+			ftp.logout();
+			ftp.disconnect();
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}

@@ -1,15 +1,11 @@
 package OBS_C_2025;
 
 
-import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
-
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -153,10 +149,9 @@ public class JTextFieldRegularPopupMenu {
             	 
 					String data = "";
 					try {
-						data = (String) Toolkit.getDefaultToolkit()
-						          .getSystemClipboard().getData(DataFlavor.stringFlavor);
+						data = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
 				
-					} catch (HeadlessException | UnsupportedFlavorException | IOException e) {
+					} catch (Exception e) {
 					
 					}
 				//	System.out.println(txtField.getColumns());

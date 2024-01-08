@@ -276,6 +276,7 @@ public class DownloadFile extends JPanel {
 									}
 									panelalt.Progres_Bar_Temizle_2();
 								}	
+								OBS_BACKUP.mesaj_goster(15000,Notifications.Type.INFO, glb.BACKUP_YERI + " Surucusune Indirilmistir.." );  
 							}
 						}
 					}

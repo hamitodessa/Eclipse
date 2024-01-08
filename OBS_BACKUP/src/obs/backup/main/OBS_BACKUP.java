@@ -208,8 +208,8 @@ public class OBS_BACKUP extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					OBS_BACKUP frame = new OBS_BACKUP();
-					frame.setVisible(true);
+					//OBS_BACKUP frame = new OBS_BACKUP();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -749,8 +749,9 @@ public class OBS_BACKUP extends JFrame {
 		btntry.setVisible(false);
 		btntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+			
 				systemTRY();
+				setVisible(false);
 			}
 		});
 		btnBuyult = new JButton("");
@@ -777,7 +778,7 @@ public class OBS_BACKUP extends JFrame {
 			emir_yukle("EMIR_ISMI") ;
 			jobTimerBasla();
 			tabbedPane.setSelectedIndex(4);
-			
+			btntry.doClick();
 		} catch (Exception ex) {
 			bckp.log_kayit("Sistem", new Date(), ex.getMessage());
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());

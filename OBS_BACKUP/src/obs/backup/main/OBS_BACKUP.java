@@ -209,7 +209,7 @@ public class OBS_BACKUP extends JFrame {
 			public void run() {
 				try {
 					OBS_BACKUP frame = new OBS_BACKUP();
-					//frame.setVisible(true);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -778,7 +778,7 @@ public class OBS_BACKUP extends JFrame {
 			emir_yukle("EMIR_ISMI") ;
 			jobTimerBasla();
 			tabbedPane.setSelectedIndex(4);
-			btntry.doClick();
+			systemTRY();
 		} catch (Exception ex) {
 			bckp.log_kayit("Sistem", new Date(), ex.getMessage());
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());

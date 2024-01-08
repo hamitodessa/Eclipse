@@ -32,6 +32,7 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 import javax.swing.text.JTextComponent;
 
+import com.formdev.flatlaf.FlatClientProperties;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_2025.GuiUtil;
@@ -91,6 +92,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 
 		txtIsim = new JTextField(30);
 		JTextFieldRegularPopupMenu.addTo(txtIsim);
+		txtIsim.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtIsim.setBounds(100, 10, 354, 20);
 		panel.add(txtIsim);
 		txtIsim.setColumns(10);
@@ -114,12 +116,14 @@ public class GOREV_GIRIS extends JInternalFrame {
 
 
 		txtGorev = new JTextField(30);
+		txtGorev.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtGorev);
 		txtGorev.setBounds(100, 60, 354, 20);
 		panel.add(txtGorev);
 		txtGorev.setColumns(10);
 
 		txtMesaj = new JTextArea();
+		txtMesaj.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtMesaj.setBounds(100, 85, 354, 75);
 		txtMesaj.addFocusListener(new FocusAdapter() {
 			@Override
@@ -366,6 +370,7 @@ public class GOREV_GIRIS extends JInternalFrame {
 		panel.add(lblNewLabel_3);
 		
 		txtYer = new JTextField(30);
+		txtYer.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtYer.setBounds(100, 35, 354, 20);
 		panel.add(txtYer);
 		txtYer.setColumns(10);

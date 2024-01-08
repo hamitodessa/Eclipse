@@ -23,6 +23,8 @@ import OBS_C_2025.ScrollPaneWin11;
 
 import com.businessobjects.visualization.dataexchange.consumer.DataHandler;
 import com.crystaldecisions.reports.queryengine.EnumValueToNameMaps;
+import com.formdev.flatlaf.FlatClientProperties;
+import com.formdev.flatlaf.FlatLaf;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.BAGLAN_LOG;
@@ -130,6 +132,7 @@ public class DEKONT extends JInternalFrame {
 	private JPanel pnla;
 
 	public DEKONT() {
+		FlatLaf.registerCustomDefaultsSource("OBS_2025");
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -317,6 +320,7 @@ public class DEKONT extends JInternalFrame {
 		panel.add(btnNewButton);
 
 		txtevrak = new JTextField();
+		txtevrak.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtevrak.setText("0");
 		txtevrak.addKeyListener(new KeyAdapter() {
 			@Override
@@ -619,6 +623,7 @@ public class DEKONT extends JInternalFrame {
 		panel_1.add(cmbb);
 
 		txtbtutar = new JFormattedTextField();
+		txtbtutar.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtbtutar.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -735,6 +740,7 @@ public class DEKONT extends JInternalFrame {
 		panel_1.add(txtbtutar);
 
 		txtbkur = new JFormattedTextField();
+		txtbkur.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtbkur.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -846,6 +852,7 @@ public class DEKONT extends JInternalFrame {
 
 		
 		cmbbhes = new JComboBox<String>();  //******************************BORCLU HESAP **********************
+		cmbbhes.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		cmbbhes.setFont(new Font("Tahoma", Font.BOLD, 15));
 		cmbbhes.setEnabled(false);
        
@@ -974,6 +981,7 @@ public class DEKONT extends JInternalFrame {
 		panel_3.setLayout(new BorderLayout(0, 0));
 
 		txtaciklama =   new JTextArea();
+		txtaciklama.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtaciklama.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -1143,6 +1151,7 @@ public class DEKONT extends JInternalFrame {
 		panel_1_1.add(cmba);
 
 		txtatutar = new JFormattedTextField();
+		txtatutar.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtatutar.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -1281,6 +1290,7 @@ public class DEKONT extends JInternalFrame {
 		panel_1_1.add(txtatutar);
 
 		txtakur = new JFormattedTextField();
+		txtakur.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtakur.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -1512,6 +1522,7 @@ public class DEKONT extends JInternalFrame {
 		panel_3_1.setLayout(new BorderLayout(0, 0));
 
 		txtkod = new JTextField();
+		txtkod.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtkod.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {

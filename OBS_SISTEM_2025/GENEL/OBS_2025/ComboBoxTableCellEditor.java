@@ -172,7 +172,9 @@ public class ComboBoxTableCellEditor extends AbstractCellEditor implements Table
 						arm = new URUN_ARAMA();
 						arm.setVisible(true);
 						editor.setSelectedItem(oac.stk_kodu);
-						table.getCellEditor().stopCellEditing();
+						FATURA.bilgi_doldur(oac.stk_kodu);
+						if(table.getCellEditor() != null)
+							table.getCellEditor().stopCellEditing();
 					}
 				}
 			}});

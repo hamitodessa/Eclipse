@@ -2298,6 +2298,7 @@ public class FATURA extends JInternalFrame {
 				}
 				else
 				{
+					
 					rs.next();
 					lblNewLabel_12.setText(rs.getString("Adi"));
 					label_5.setText(rs.getString("Ana_Grup") + "  /  " + rs.getString("Alt_Grup") );
@@ -2374,7 +2375,8 @@ public class FATURA extends JInternalFrame {
 				{
 					rs.next();
 					lblNewLabel_12.setText(rs.getString("Adi"));
-					label_5.setText(rs.getString("Ana_Grup") + "  /  " + rs.getString("Alt_Grup"));
+					label_5.setText(rs.getString("Ana_Grup") == null ? "":rs.getString("Ana_Grup")  + "  /  " + 
+							rs.getString("Alt_Grup") == null ? "":rs.getString("Alt_Grup"));
 					table.getModel().setValueAt(rs.getString("Barkod"),table.getSelectedRow(), 0) ;
 					table.getModel().setValueAt(rs.getString("Birim"),table.getSelectedRow(), 6) ;
 					//
@@ -2901,14 +2903,14 @@ public class FATURA extends JInternalFrame {
 			{
 				rs.next();
 				lblNewLabel_12.setText(rs.getString("Adi"));
-				label_5.setText(rs.getString("Ana_Grup") + "  /  " + rs.getString("Alt_Grup"));
+				label_5.setText(rs.getString("Ana_Grup") == null ? "": rs.getString("Ana_Grup") + "  /  " +
+							rs.getString("Alt_Grup") == null ? "" : rs.getString("Alt_Grup"));
 				resim_doldur( rs.getBytes("Resim"));
 			}
 		}
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Bilgi Doldur", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	private static void resim_doldur( byte[] img)

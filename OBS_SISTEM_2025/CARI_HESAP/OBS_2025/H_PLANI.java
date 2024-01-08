@@ -43,6 +43,8 @@ import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicComboPopup;
 
+import com.formdev.flatlaf.FlatClientProperties;
+
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FIT_IMAGE;
@@ -183,6 +185,7 @@ public class H_PLANI extends JInternalFrame {
 		panel.add(lblNewLabel_2);
 
 		txtkodu = new JTextField();
+		txtkodu.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtkodu.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -218,6 +221,7 @@ public class H_PLANI extends JInternalFrame {
 		panel.add(lblNewLabel_3);
 
 		txtunvan = new JTextField();
+		txtunvan.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtunvan);
 		txtunvan.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtunvan.setBounds(354, 115, 301, 20);
@@ -226,6 +230,7 @@ public class H_PLANI extends JInternalFrame {
 		
 
 		txtkarton = new JTextField();
+		txtkarton.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtkarton);
 		txtkarton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtkarton.setBounds(102, 141, 86, 20);
@@ -238,6 +243,7 @@ public class H_PLANI extends JInternalFrame {
 		panel.add(lblNewLabel_4);
 
 		txthcinsi = new JTextField();
+		txthcinsi.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txthcinsi);
 		txthcinsi.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txthcinsi.setBounds(354, 141, 68, 20);
@@ -245,6 +251,7 @@ public class H_PLANI extends JInternalFrame {
 		txthcinsi.setDocument(new JTextFieldLimit(3));
 
 		txtyetkili = new JTextField();
+		txtyetkili.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtyetkili);
 		txtyetkili.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtyetkili.setBounds(102, 182, 254, 20);
@@ -252,6 +259,7 @@ public class H_PLANI extends JInternalFrame {
 		txtyetkili.setDocument(new JTextFieldLimit(30));
 
 		txtadres1 = new JTextField();
+		txtadres1.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtadres1);
 		txtadres1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtadres1.setBounds(102, 209, 320, 20);
@@ -259,6 +267,7 @@ public class H_PLANI extends JInternalFrame {
 		txtadres1.setDocument(new JTextFieldLimit(35));
 
 		txtadres2 = new JTextField();
+		txtadres2.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtadres2);
 		txtadres2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtadres2.setBounds(102, 236, 320, 20);
@@ -266,6 +275,7 @@ public class H_PLANI extends JInternalFrame {
 		txtadres2.setDocument(new JTextFieldLimit(35));
 
 		txtvd = new JTextField();
+		txtvd.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtvd);
 		txtvd.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtvd.setBounds(102, 263, 196, 20);
@@ -273,6 +283,7 @@ public class H_PLANI extends JInternalFrame {
 		txtvd.setDocument(new JTextFieldLimit(25));
 
 		txttel1 = new JTextField();
+		txttel1.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txttel1);
 		txttel1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel1.setColumns(10);
@@ -281,6 +292,7 @@ public class H_PLANI extends JInternalFrame {
 		panel.add(txttel1);
 
 		txttel3 = new JTextField();
+		txttel3.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txttel3);
 		txttel3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel3.setColumns(10);
@@ -289,6 +301,7 @@ public class H_PLANI extends JInternalFrame {
 		panel.add(txttel3);
 
 		txto1 = new JTextField();
+		txto1.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txto1);
 		txto1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txto1.setColumns(10);
@@ -297,6 +310,7 @@ public class H_PLANI extends JInternalFrame {
 		panel.add(txto1);
 
 		txtweb = new JTextField();
+		txtweb.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtweb);
 		txtweb.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtweb.setColumns(10);
@@ -305,6 +319,7 @@ public class H_PLANI extends JInternalFrame {
 		panel.add(txtweb);
 
 		txtkimlik = new JTextField();
+		txtkimlik.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtkimlik);
 		txtkimlik.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtkimlik.setColumns(10);
@@ -313,6 +328,7 @@ public class H_PLANI extends JInternalFrame {
 		panel.add(txtkimlik);
 
 		txtaciklama = new JTextField();
+		txtaciklama.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtaciklama);
 		txtaciklama.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtaciklama.setColumns(10);
@@ -425,6 +441,7 @@ public class H_PLANI extends JInternalFrame {
 		
 
 		txtsehir = new JTextField();
+		txtsehir.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtsehir);
 		txtsehir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtsehir.setBounds(506, 236, 150, 20);
@@ -432,6 +449,7 @@ public class H_PLANI extends JInternalFrame {
 		txtsehir.setDocument(new JTextFieldLimit(15));
 
 		txtvn = new JTextField();
+		txtvn.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtvn);
 		txtvn.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtvn.setBounds(506, 263, 150, 20);
@@ -439,6 +457,7 @@ public class H_PLANI extends JInternalFrame {
 		txtvn.setDocument(new JTextFieldLimit(15));
 
 		txttel2 = new JTextField();
+		txttel2.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txttel2);
 		txttel2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel2.setBounds(506, 290, 150, 20);
@@ -446,6 +465,7 @@ public class H_PLANI extends JInternalFrame {
 		txttel2.setDocument(new JTextFieldLimit(25));
 
 		txtfax = new JTextField();
+		txtfax.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtfax);
 		txtfax.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtfax.setBounds(506, 317, 150, 20);
@@ -453,6 +473,7 @@ public class H_PLANI extends JInternalFrame {
 		txtfax.setDocument(new JTextFieldLimit(25));
 
 		txto3 = new JTextField();
+		txto3.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txto3);
 		txto3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txto3.setBounds(506, 344, 114, 20);
@@ -460,6 +481,7 @@ public class H_PLANI extends JInternalFrame {
 		txto3.setDocument(new JTextFieldLimit(15));
 
 		txtmail = new JTextField();
+		txtmail.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txtmail);
 		txtmail.addFocusListener(new FocusAdapter() {
 			@Override
@@ -478,6 +500,7 @@ public class H_PLANI extends JInternalFrame {
 		txtmail.setDocument(new JTextFieldLimit(30));
 
 		txto2 = new JTextField();
+		txto2.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(txto2);
 		txto2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txto2.setColumns(10);
@@ -570,6 +593,7 @@ public class H_PLANI extends JInternalFrame {
 
 		txtarama = new JTextField();
 		JTextFieldRegularPopupMenu.addTo(txtarama);
+		txtarama.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtarama.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtarama.setColumns(10);
 		txtarama.setBounds(102, 22, 288, 20);

@@ -8,6 +8,8 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.NumberFormatter;
@@ -116,6 +118,7 @@ public class DEKONT extends JInternalFrame {
 	private static JButton btnah ;
 	private static JButton btnHYenileB;
 	private static JButton btnHYenileA;
+	private JButton btnAciksil ;
 	private JButton btnNewButton;
 	private JLabel lblNewLabel_2_1  ;
 	private JLabel lblNewLabel_2 ;
@@ -1026,6 +1029,36 @@ public class DEKONT extends JInternalFrame {
 				}
 			}
 		});
+		txtaciklama.getDocument().addDocumentListener(new DocumentListener() {
+			  public void changedUpdate(DocumentEvent e) {
+				  if(txtaciklama.getText().equals("")) 
+					{
+						btnAciksil.setVisible(false);
+					}
+					else {
+						btnAciksil.setVisible(true);
+					}
+			  }
+			  public void removeUpdate(DocumentEvent e) {
+				  if(txtaciklama.getText().equals("")) 
+					{
+						btnAciksil.setVisible(false);
+					}
+					else {
+						btnAciksil.setVisible(true);
+					}
+			  }
+			  public void insertUpdate(DocumentEvent e) {
+				  if(txtaciklama.getText().equals("")) 
+					{
+						btnAciksil.setVisible(false);
+					}
+					else {
+						btnAciksil.setVisible(true);
+					}
+			  }
+			});
+
 		panel_3.add(txtaciklama, BorderLayout.CENTER);
 
 		JPanel panel_1_1 = new JPanel();
@@ -1608,6 +1641,17 @@ public class DEKONT extends JInternalFrame {
 		lblNewLabel.setBounds(568, 340, 152, 14);
 		//getContentPane().add(lblNewLabel);
 		panelANA.add(lblNewLabel);
+		
+		btnAciksil = new JButton("X");
+		btnAciksil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtaciklama.setText("");
+				txtaciklama.requestFocus();
+			}
+		});
+		btnAciksil.setVisible(false);
+		btnAciksil.setBounds(557, 320, 19, 19);
+		panelANA.add(btnAciksil);
 		try {
 			String deger;
 			deger = oac.glb.setting_oku("CARI_DEKONT_BAKIYE_GOSTER").toString();

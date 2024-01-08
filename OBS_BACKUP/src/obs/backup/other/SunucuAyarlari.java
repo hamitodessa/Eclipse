@@ -21,6 +21,7 @@ import java.net.SocketException;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import java.awt.Font;
 
 public class SunucuAyarlari extends JPanel {
 
@@ -59,6 +60,7 @@ public class SunucuAyarlari extends JPanel {
 		setLayout(null);
 		
 		chckbxFtp = new JCheckBox("FTP");
+		chckbxFtp.setFont(new Font("Tahoma", Font.BOLD, 11));
 		chckbxFtp.setSelected(true);
 		chckbxFtp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -75,6 +77,7 @@ public class SunucuAyarlari extends JPanel {
 		 add(chckbxFtp);
 		
 		chckbxYerel = new JCheckBox("Yerel Surucu");
+		chckbxYerel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		chckbxYerel.setBounds(276, 22, 134, 23);
 		chckbxYerel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

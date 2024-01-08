@@ -89,6 +89,9 @@ public class ServerBilgileri extends JPanel {
 		btnMSTest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if(textMSServer.getText().equals("")) return;
+				if(textMSkull.getText().equals("")) return;
+				if(textMSServer.getText().equals("")) return;
 				SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 				String response =sdon.sDONDUR(textMSsifre);
 				BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
@@ -110,7 +113,7 @@ public class ServerBilgileri extends JPanel {
 
 			}
 		});
-		btnMSTest.setBounds(10, 540, 129, 23);
+		btnMSTest.setBounds(10, 548, 129, 23);
 		panel.add(btnMSTest);
 		
 		JButton btnMSkaydet = new JButton("Kaydet");
@@ -132,7 +135,7 @@ public class ServerBilgileri extends JPanel {
 			}
 		});
 	
-		btnMSkaydet.setBounds(624, 540, 89, 23);
+		btnMSkaydet.setBounds(624, 548, 100, 23);
 		panel.add(btnMSkaydet);
 		
 		JLabel lblNewLabel_4_1 = new JLabel("Port");
@@ -201,7 +204,11 @@ public class ServerBilgileri extends JPanel {
 		
 		JButton btnMyTest = new JButton("Baglanti Test");
 		btnMyTest.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
+				if(textMYPort.getText().equals("")) return;
+				if(textMykull.getText().equals("")) return;
+				if(textMySifre.getText().equals("")) return;
 				SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 				String response =sdon.sDONDUR(textMySifre);
 				BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
@@ -223,7 +230,7 @@ public class ServerBilgileri extends JPanel {
 
 			}
 		});
-		btnMyTest.setBounds(10, 400, 129, 23);
+		btnMyTest.setBounds(10, 548, 129, 23);
 		panel_1.add(btnMyTest);
 		
 		JButton btnMyKaydet = new JButton("Kaydet");
@@ -244,7 +251,7 @@ public class ServerBilgileri extends JPanel {
 				}
 			}
 		});
-		btnMyKaydet.setBounds(330, 400, 100, 23);
+		btnMyKaydet.setBounds(624, 548, 100, 23);
 		panel_1.add(btnMyKaydet);
 		
 		JLabel lblNewLabel_4 = new JLabel("Port");

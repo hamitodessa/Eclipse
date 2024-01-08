@@ -93,7 +93,7 @@ public class EmirAnaGiris extends JPanel {
 		panel_10.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Durum");
-		lblNewLabel.setBounds(26, 68, 86, 14);
+		lblNewLabel.setBounds(25, 68, 86, 14);
 		panel_10.add(lblNewLabel);
 		
 		chckbxDurum = new JCheckBox("");
@@ -101,7 +101,7 @@ public class EmirAnaGiris extends JPanel {
 		panel_10.add(chckbxDurum);
 		
 		JLabel lblNewLabel_1 = new JLabel("Emir Ismi");
-		lblNewLabel_1.setBounds(26, 100, 99, 14);
+		lblNewLabel_1.setBounds(25, 100, 99, 14);
 		panel_10.add(lblNewLabel_1);
 		
 		txtEmir = new JTextField();
@@ -112,7 +112,7 @@ public class EmirAnaGiris extends JPanel {
 		txtEmir.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Aciklama");
-		lblNewLabel_2.setBounds(26, 150, 99, 14);
+		lblNewLabel_2.setBounds(25, 150, 99, 14);
 		panel_10.add(lblNewLabel_2);
 		
 		textAciklama = new JTextArea();
@@ -147,12 +147,12 @@ public class EmirAnaGiris extends JPanel {
 		panel_10.add(chckbxServerDosya);
 		
 		JLabel lblNewLabel_4 = new JLabel("Dosya Sayisi");
-		lblNewLabel_4.setBounds(26, 373, 100, 14);
+		lblNewLabel_4.setBounds(25, 450, 100, 14);
 		panel_10.add(lblNewLabel_4);
 		
 		lblNewLabel_5 = new JLabel("0");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_5.setBounds(150, 373, 48, 14);
+		lblNewLabel_5.setBounds(150, 450, 48, 14);
 		panel_10.add(lblNewLabel_5);
 		
 		JButton btnNewButton_4 = new JButton("Kayit");
@@ -167,7 +167,7 @@ public class EmirAnaGiris extends JPanel {
 				}
 			}
 		});
-		btnNewButton_4.setBounds(317, 579, 100, 23);
+		btnNewButton_4.setBounds(324, 581, 100, 23);
 		panel_10.add(btnNewButton_4);
 		
 		JPanel panel_9 = new JPanel();

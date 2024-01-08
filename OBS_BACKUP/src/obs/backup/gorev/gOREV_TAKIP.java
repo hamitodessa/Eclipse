@@ -155,30 +155,34 @@ public  class gOREV_TAKIP extends JPanel {
 		add(lblemirISMI);
 
 		lblSonDurum = new JLabel(".....");
-		lblSonDurum.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblSonDurum.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblSonDurum.setBounds(240, 47, 400, 14);
 		lblSonDurum.setName("lblSonDurum"); 
 		add(lblSonDurum);
 
 		lblDosyaSayisi = new JLabel("0");
+		lblDosyaSayisi.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblDosyaSayisi.setBounds(240, 68, 200, 14);
 		add(lblDosyaSayisi);
 
 		lblSurucu = new JLabel(".....");
+		lblSurucu.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblSurucu.setBounds(240, 89, 400, 14);
 		add(lblSurucu);
 
 		lblSonYedek = new JLabel(".....");
+		lblSonYedek.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblSonYedek.setBounds(240, 111, 175, 14);
 		lblSonYedek.setName("lblSonYedek"); 
 		add(lblSonYedek);
 
 		lblGelecekYedekleme = new JLabel(".....");
 		lblGelecekYedekleme.setBounds(240, 132, 175, 14);
-		lblGelecekYedekleme.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblGelecekYedekleme.setFont(new Font("Tahoma", Font.BOLD, 12));
 		add(lblGelecekYedekleme);
 
 		lblAciklama = new JLabel(".....");
+		lblAciklama.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblAciklama.setBounds(240, 153, 520, 14);
 		add(lblAciklama);
 

@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class Bilgilendirme extends JPanel {
 
@@ -44,12 +45,13 @@ public class Bilgilendirme extends JPanel {
 		add(lblNewLabel);
 		
 		chckbxAktifPasif = new JCheckBox("Aktif / Pasif");
-		chckbxAktifPasif.setBounds(141, 24, 99, 23);
+		chckbxAktifPasif.setFont(new Font("Tahoma", Font.BOLD, 11));
+		chckbxAktifPasif.setBounds(172, 24, 157, 23);
 		add(chckbxAktifPasif);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Gonderme Durumu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(37, 71, 580, 71);
+		panel.setBounds(37, 70, 580, 71);
 		add(panel);
 		panel.setLayout(null);
 		
@@ -184,7 +186,7 @@ public class Bilgilendirme extends JPanel {
 		panel_1_1.add(lblNewLabel_8);
 		
 		JButton btnNewButton_9 = new JButton("Kaydet");
-		btnNewButton_9.setBounds(624, 581, 89, 23);
+		btnNewButton_9.setBounds(624, 581, 100, 23);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			

@@ -208,7 +208,7 @@ public class OBS_BACKUP extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//OBS_BACKUP frame = new OBS_BACKUP();
+					OBS_BACKUP frame = new OBS_BACKUP();
 					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

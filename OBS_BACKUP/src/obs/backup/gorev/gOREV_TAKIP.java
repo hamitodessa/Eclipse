@@ -104,7 +104,7 @@ public  class gOREV_TAKIP extends JPanel {
 			}
 		});
 		btnDuzelt.setName("btnDuzelt");
-		btnDuzelt.setBounds(650, 26, 110, 23);
+		btnDuzelt.setBounds(675, 26, 110, 25);
 		add(btnDuzelt);
 
 		JButton btnSil = new JButton("Sil");
@@ -128,7 +128,7 @@ public  class gOREV_TAKIP extends JPanel {
 				}
 			}
 		});
-		btnSil.setBounds(650, 75, 110, 23);
+		btnSil.setBounds(675, 75, 110, 25);
 		add(btnSil);
 
 		btnYedekle = new JButton("Yedekle");
@@ -144,7 +144,7 @@ public  class gOREV_TAKIP extends JPanel {
 				}
 			}
 		});
-		btnYedekle.setBounds(650, 104, 110, 23);
+		btnYedekle.setBounds(675, 104, 110, 25);
 		add(btnYedekle);
 
 		lblemirISMI = new JLabel("New label");

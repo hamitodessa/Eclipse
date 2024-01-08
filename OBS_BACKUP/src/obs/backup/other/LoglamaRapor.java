@@ -121,7 +121,7 @@ public class LoglamaRapor extends JPanel {
 				}
 			}
 		});
-		btnNewButton.setBounds(548, 11, 89, 23);
+		btnNewButton.setBounds(548, 11, 100, 23);
 		panel.add(btnNewButton);
 		txtArama.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {

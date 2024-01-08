@@ -142,7 +142,7 @@ public class DownloadFile extends JPanel {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		btnNewButton.setBounds(327, 11, 89, 23);
+		btnNewButton.setBounds(327, 11, 100, 23);
 		panel.add(btnNewButton);
 
 		scrollPane = new JScrollPane();

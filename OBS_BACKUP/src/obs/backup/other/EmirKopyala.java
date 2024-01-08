@@ -39,7 +39,7 @@ public class EmirKopyala extends JPanel {
 		textField.setColumns(10);
 		
 		JButton btnNewButton_9 = new JButton("Kaydet");
-		btnNewButton_9.setBounds(624, 581, 89, 23);
+		btnNewButton_9.setBounds(624, 581, 100, 23);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

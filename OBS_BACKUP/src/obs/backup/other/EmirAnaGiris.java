@@ -167,7 +167,7 @@ public class EmirAnaGiris extends JPanel {
 				}
 			}
 		});
-		btnNewButton_4.setBounds(317, 579, 89, 23);
+		btnNewButton_4.setBounds(317, 579, 100, 23);
 		panel_10.add(btnNewButton_4);
 		
 		JPanel panel_9 = new JPanel();

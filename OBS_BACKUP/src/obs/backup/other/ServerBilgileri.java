@@ -244,7 +244,7 @@ public class ServerBilgileri extends JPanel {
 				}
 			}
 		});
-		btnMyKaydet.setBounds(330, 400, 89, 23);
+		btnMyKaydet.setBounds(330, 400, 100, 23);
 		panel_1.add(btnMyKaydet);
 		
 		JLabel lblNewLabel_4 = new JLabel("Port");
@@ -289,7 +289,7 @@ public class ServerBilgileri extends JPanel {
 				}
 			}
 		});
-		btnDumpSec.setBounds(481, 214, 89, 23);
+		btnDumpSec.setBounds(470, 214, 100, 23);
 		panel_1.add(btnDumpSec);
 
 	}

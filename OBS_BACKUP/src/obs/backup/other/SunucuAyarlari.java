@@ -237,7 +237,7 @@ public class SunucuAyarlari extends JPanel {
 		JTextFieldRegularPopupMenu.addTo(textEskisilme);
 		textEskisilme.setText("0");
 		textEskisilme.setColumns(10);
-		textEskisilme.setBounds(135, 22, 76, 20);
+		textEskisilme.setBounds(135, 22, 50, 20);
 		panel_12_1_1_1.add(textEskisilme);
 		
 		lblNewLabel_6 = new JLabel("Eski Yed.Silme");
@@ -245,7 +245,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1_1_1.add(lblNewLabel_6);
 		
 		lblNewLabel_7 = new JLabel("gunden eski olanari silme (0 Silinmez)");
-		lblNewLabel_7.setBounds(225, 25, 262, 14);
+		lblNewLabel_7.setBounds(200, 25, 262, 14);
 		panel_12_1_1_1.add(lblNewLabel_7);
 		
 	
@@ -264,11 +264,11 @@ public class SunucuAyarlari extends JPanel {
 				}
 			}
 		});
-		btnNewButton_9.setBounds(624, 581, 89, 23);
+		btnNewButton_9.setBounds(624, 581, 100, 23);
 		 add(btnNewButton_9);
 		 
 		 btnftpkont = new JButton("Ftp Kontrol");
-		 btnftpkont.setBounds(10, 581, 89, 23);
+		 btnftpkont.setBounds(10, 581, 100, 23);
 		 btnftpkont.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				try {

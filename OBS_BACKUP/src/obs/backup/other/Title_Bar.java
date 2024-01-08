@@ -48,6 +48,7 @@ public class Title_Bar extends javax.swing.JPanel{
 		add(horizontalGlue);
 
 		Buttont btnNewButton = new Buttont();
+		btnNewButton.setToolTipText("Sistem Tray Ekle");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			//frame.setState(Frame.ICONIFIED);

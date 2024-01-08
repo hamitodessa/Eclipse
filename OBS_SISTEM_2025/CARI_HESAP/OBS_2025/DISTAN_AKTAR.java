@@ -435,29 +435,31 @@ public class DISTAN_AKTAR extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				cmbSecenek.removeAllItems();
 				txtARAMA.setText("");
-				if(cmbArama.getSelectedIndex()==0)
+				if(cmbArama.getSelectedIndex()==0 || cmbArama.getSelectedIndex()==3 || cmbArama.getSelectedIndex()==4)
 				{
-					cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] { "Buyuk", "Kucuk", "Esit"}));
+					cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] {"Buyuk", "Kucuk", "Esit"}));
+					cmbSecenek.setSelectedIndex(0);
 				}
 				if(cmbArama.getSelectedIndex()==1)
 				{
-					cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] {  "Icinde"}));
+					cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] {"Icinde"}));
+					cmbSecenek.setSelectedIndex(0);
 				}
-				if(cmbArama.getSelectedIndex()==2)
+				if(cmbArama.getSelectedIndex()==2 || cmbArama.getSelectedIndex()==5)
 				{
 					cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] {"Bos Olanlar","Bos Olmayanlar" , "Esit"}));
+					cmbSecenek.setSelectedIndex(0);
 				}
-				if(cmbArama.getSelectedIndex()==3)
+				if(cmbArama.getSelectedIndex() ==2 || cmbArama.getSelectedIndex() ==5)
 				{
-					cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] {"Buyuk", "Kucuk", "Esit"}));
-				}
-				if(cmbArama.getSelectedIndex()==4)
-				{
-					cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] {"Buyuk", "Kucuk", "Esit"}));
-				}
-				if(cmbArama.getSelectedIndex()==5)
-				{
-					cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] {"Bos Olanlar","Bos Olmayanlar" , "Esit"}));
+					if(cmbSecenek.getSelectedIndex()==0 || cmbSecenek.getSelectedIndex()==1)
+					{
+						try {
+							arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText(),cmbSecenek.getSelectedItem().toString());
+						} catch (ParseException e1) {
+							e1.printStackTrace();
+						}
+					}
 				}
 			}
 		});
@@ -465,17 +467,50 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		cmbArama.setModel(new DefaultComboBoxModel<String>(new String[] {"Tarih", "Aciklama", "Borclu Hesap", "Borc", "Alacak", "Alacakli Hesap"}));
 		cmbArama.setBounds(377, 18, 125, 22);
 		panel.add(cmbArama);
-		
+
 		JButton btnNewButton_11 = new JButton("...");
 		btnNewButton_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					tblexcell.setRowSorter(null);
+				tblexcell.setRowSorter(null);
 			}
 		});
 		btnNewButton_11.setBounds(511, 18, 30, 23);
 		panel.add(btnNewButton_11);
-		
+
 		cmbSecenek = new JComboBox<String>();
+		cmbSecenek.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(cmbArama.getSelectedIndex() ==2 || cmbArama.getSelectedIndex() ==5)
+				{
+					if(cmbSecenek.getSelectedIndex()==0 || cmbSecenek.getSelectedIndex()==1)
+					{
+						try 
+						{
+							arama(cmbArama.getSelectedIndex()  ,txtARAMA.getText(),cmbSecenek.getSelectedItem().toString());
+						} catch (ParseException e1) {
+							e1.printStackTrace();
+						}
+					}
+					else if(cmbSecenek.getSelectedIndex()==2)
+					{
+						try 
+						{
+							if(txtARAMA.getText().equals(""))
+							{
+								tblexcell.setRowSorter(null);
+							}
+							else 
+							{
+								arama(cmbArama.getSelectedIndex()  ,"",cmbSecenek.getSelectedItem().toString());
+							}
+
+						} catch (ParseException e1) {
+							e1.printStackTrace();
+						}
+					}
+				}
+			}
+		});
 		cmbSecenek.setFont(new Font("Tahoma", Font.BOLD, 11));
 		cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] { "Buyuk", "Kucuk", "Esit"}));
 
@@ -1687,7 +1722,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
     		{
     			sorter.setRowFilter(RowFilter.regexFilter("^$",column));
     		}
-    		else if(secenek.equals("Icinde"))
+    		else if(secenek.equals("Esit"))
     		{
     			sorter.setRowFilter(RowFilter.regexFilter("(?iu)" + arama.toLowerCase(),column));
     		}
@@ -1695,7 +1730,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
     		{
     			sorter.setRowFilter(RowFilter.regexFilter(".*\\S.*",column));
     		}
-    		//
     	}
     	else if(column == 3 || column == 4)
 		{

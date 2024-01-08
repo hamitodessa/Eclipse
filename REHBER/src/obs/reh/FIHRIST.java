@@ -18,6 +18,7 @@ import OBS_C_2025.OBS_ORTAK_MSACCESS;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.OBS_ORTAK_SQLITE;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.SOLA_DUZ_RENK;
@@ -135,7 +136,7 @@ public class FIHRIST extends JFrame {
 	private JTable table;
 	private JTextField txtArama;
 	private static JTextField txtcd;
-	private static JTextField txtAdi;
+	private static Obs_TextFIeld  txtAdi;
 	private static JTextField txtT1;
 	private static JTextField txtT2;
 	private static JTextField txtT3;
@@ -287,8 +288,7 @@ public class FIHRIST extends JFrame {
 		lblNewLabel_1.setBounds(10, 46, 48, 14);
 		panel_2.add(lblNewLabel_1);
 
-		txtAdi = new JTextField();
-		txtAdi.setDocument(new JTextFieldLimit(50));
+		txtAdi = new Obs_TextFIeld (50,"Adi");
 		txtAdi.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtAdi.setBounds(68, 43, 372, 20);
 		txtAdi.addKeyListener(new KeyAdapter() {

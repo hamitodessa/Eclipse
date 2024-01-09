@@ -7,12 +7,14 @@ import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
+import com.formdev.flatlaf.FlatClientProperties;
+
 import OBS_C_2025.BACKUP_GLOBAL;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SIFRE_DONDUR;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -28,7 +30,7 @@ public class SifreYenile extends JPanel {
 	public static JPasswordField txtsif;
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private static JLabel lblysif;
-	private static JTextField txtyenisif;
+	private static Obs_TextFIeld txtyenisif;
 	private JButton btnNewButton;
 	/**
 	 * Create the panel.
@@ -41,6 +43,8 @@ public class SifreYenile extends JPanel {
 		add(lblNewLabel);
 
 		txtsif = new JPasswordField();
+		txtsif.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
+		txtsif.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtsif.addAncestorListener(new AncestorListener() {
 			@Override
 			public void ancestorRemoved(AncestorEvent pEvent) {
@@ -91,7 +95,7 @@ public class SifreYenile extends JPanel {
 		add(txtsif);
 		txtsif.setColumns(10);
 
-		txtyenisif = new JTextField();
+		txtyenisif = new Obs_TextFIeld(30,"Yeni Sifre");
 		txtyenisif.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtyenisif.setColumns(10);
 		txtyenisif.setBounds(329,315, 248, 25);

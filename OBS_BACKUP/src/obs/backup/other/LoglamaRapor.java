@@ -29,13 +29,13 @@ import javax.swing.table.TableStringConverter;
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA_DUZ_RENK;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -47,7 +47,7 @@ public class LoglamaRapor extends JPanel {
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private static final long serialVersionUID = 1L;
 	private JTable tblLog;
-	private JTextField txtArama;
+	private Obs_TextFIeld txtArama;
 	private JComboBox<String> comboBox ;
 	private boolean ilkBASLA= true;
 	JPanel panel;
@@ -68,7 +68,7 @@ public class LoglamaRapor extends JPanel {
 		lblNewLabel.setBounds(10, 15, 48, 14);
 		panel.add(lblNewLabel);
 		
-		txtArama = new JTextField();
+		txtArama = new Obs_TextFIeld(50,"Arama");
 		txtArama.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtArama.setBounds(79, 10, 298, 25);
 		panel.add(txtArama);

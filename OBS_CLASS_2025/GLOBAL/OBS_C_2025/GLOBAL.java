@@ -361,9 +361,11 @@ public class GLOBAL {
 
 			sorgu = "CREATE TABLE EMIRLER ( EMIR_ISMI nvarchar(30) CONSTRAINT EMIR_ISMI PRIMARY KEY,DURUM INTEGER,EMIR_ACIKLAMA nvarchar(50),INSTANCE nvarchar(30),SON_DURUM INTEGER ,SON_YUKLEME DATETIME,SQL_YEDEK INTEGER,MESAJ nvarchar(40),OLUSTURMA DATETIME) ";
 			backup_tablo_yap(sorgu);
-			sorgu =  "CREATE TABLE FTP ( EMIR_ISMI nvarchar(30),NERESI nvarchar(3),HOST nvarchar(30) ,KULLANICI nvarchar(50),SIFRE nvarchar(200),SURUCU nvarchar(200),PORT nvarchar(3),ZMN_ASIMI nvarchar(10),ESKI_YEDEK nvarchar(3),SURUCU_YER nvarchar(200)) ";
+			sorgu =  "CREATE TABLE FTP ( EMIR_ISMI nvarchar(30),NERESI nvarchar(3),HOST nvarchar(30) ,KULLANICI nvarchar(50), " + 
+					"SIFRE nvarchar(200),SURUCU nvarchar(200),PORT nvarchar(3),ZMN_ASIMI nvarchar(10),ESKI_YEDEK nvarchar(3), " + 
+					"SURUCU_YER nvarchar(200)) ";
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE BILGILENDIRME ( EMIR_ISMI nvarchar(30) ,DURUM INTEGER,GONDERILDIGINDE INTEGER,HATA_DURUMUNDA INTEGER ,GON_ISIM  nvarchar(50),GON_HESAP nvarchar(30), ALICI nvarchar(30), KONU nvarchar(50), SMTP nvarchar(30), SMTP_PORT nvarchar(3), KULLANICI nvarchar(30), SIFRE nvarchar(200), SSL INTEGER,TSL INTEGER) ";
+			sorgu = "CREATE TABLE BILGILENDIRME ( EMIR_ISMI nvarchar(30) ,DURUM INTEGER,GONDERILDIGINDE INTEGER,HATA_DURUMUNDA INTEGER ,GON_ISIM  nvarchar(50),GON_HESAP nvarchar(50), ALICI nvarchar(50), KONU nvarchar(50), SMTP nvarchar(30), SMTP_PORT nvarchar(3), KULLANICI nvarchar(50), SIFRE nvarchar(200), SSL INTEGER,TSL INTEGER) ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE YEDEKLEME (EMIR_ISMI nvarchar(30) , SAAT nvarchar(2),P_TESI INTEGER,SALI INTEGER " +
 					" ,CARS INTEGER,PERS INTEGER,CUMA INTEGER,C_TESI INTEGER,PAZAR INTEGER,BASLAMA DATETIME,BITIS DATETIME ) ";

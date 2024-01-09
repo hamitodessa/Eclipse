@@ -28,7 +28,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 
@@ -38,6 +37,7 @@ import OBS_C_2025.CheckListRenderer;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SIFRE_DONDUR;
 import OBS_C_2025.bilgilendirme_bilgiler;
 import OBS_C_2025.db_List;
@@ -55,7 +55,7 @@ public class EmirAnaGiris extends JPanel {
 	private static final long serialVersionUID = 1L;
 	public static JPanel container ;
 	
-	public JTextField txtEmir;
+	public Obs_TextFIeld txtEmir;
 	public JTextArea textAciklama;
 	private JButton btnServer ;
 	private JButton btnSurucuSec ;
@@ -104,10 +104,10 @@ public class EmirAnaGiris extends JPanel {
 		lblNewLabel_1.setBounds(25, 100, 99, 14);
 		panel_10.add(lblNewLabel_1);
 		
-		txtEmir = new JTextField();
+		txtEmir = new Obs_TextFIeld(30,"Emir Adi");
 		JTextFieldRegularPopupMenu.addTo(txtEmir);
 		txtEmir.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtEmir.setBounds(150, 100, 219, 23);
+		txtEmir.setBounds(150, 100, 300, 23);
 		panel_10.add(txtEmir);
 		txtEmir.setColumns(10);
 		

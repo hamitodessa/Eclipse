@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
@@ -30,6 +29,7 @@ import javax.swing.table.TableStringConverter;
 
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckBoxRenderer;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA_DUZ_RENK;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -40,7 +40,7 @@ public class KayitliEmirler extends JPanel {
 	private static final long serialVersionUID = 1L;
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private JTable tblEmir;
-	private JTextField txtArama;
+	private Obs_TextFIeld txtArama;
 	/**
 	 * Create the panel.
 	 */
@@ -57,7 +57,7 @@ public class KayitliEmirler extends JPanel {
 		lblNewLabel.setBounds(10, 15, 48, 14);
 		panel.add(lblNewLabel);
 		
-		txtArama = new JTextField();
+		txtArama = new Obs_TextFIeld(50,"Aranacak");
 		txtArama.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtArama.setBounds(79, 10, 298, 25);
 		panel.add(txtArama);

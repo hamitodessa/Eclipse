@@ -5,12 +5,14 @@ import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import com.formdev.flatlaf.FlatClientProperties;
+
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SIFRE_DONDUR;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -27,15 +29,15 @@ public class SunucuAyarlari extends JPanel {
 
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private static final long serialVersionUID = 1L;
-	public JTextField textHost;
-	public JTextField textKull;
+	public Obs_TextFIeld textHost;
+	public Obs_TextFIeld textKull;
 	public JPasswordField textSifre;
-	public JTextField textFtpSurucu;
-	public JTextField textPort;
-	public JTextField textZmnasm;
+	public Obs_TextFIeld textFtpSurucu;
+	public Obs_TextFIeld textPort;
+	public Obs_TextFIeld textZmnasm;
 	
-	public JTextField textSurucu;
-	public JTextField textEskisilme;
+	public Obs_TextFIeld textSurucu;
+	public Obs_TextFIeld textEskisilme;
 	
 	public JCheckBox chckbxFtp;
 	public JCheckBox chckbxYerel ;
@@ -98,22 +100,24 @@ public class SunucuAyarlari extends JPanel {
 		 add(panel_12);
 		panel_12.setLayout(null);
 		
-		textHost = new JTextField();
+		textHost = new Obs_TextFIeld(30,"Host");
 		JTextFieldRegularPopupMenu.addTo(textHost);
 		textHost.setBounds(135, 22, 300, 20);
 		panel_12.add(textHost);
 		textHost.setColumns(10);
 		
-		textKull = new JTextField();
+		textKull = new Obs_TextFIeld(30,"Kullanici");
 		JTextFieldRegularPopupMenu.addTo(textKull);
-		textKull.setBounds(135, 46, 164, 20);
+		textKull.setBounds(135, 46, 213, 20);
 		panel_12.add(textKull);
 		textKull.setColumns(10);
 		
 		textSifre = new JPasswordField();
+		textSifre.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
+		textSifre.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(textSifre);
 		textSifre.setToolTipText("");
-		textSifre.setBounds(135, 69, 164, 20);
+		textSifre.setBounds(135, 69, 213, 20);
 		panel_12.add(textSifre);
 		textSifre.setColumns(10);
 		
@@ -136,20 +140,20 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.setBounds(10, 180, 627, 100);
 		 add(panel_12_1);
 		
-		textFtpSurucu = new JTextField();
+		textFtpSurucu = new Obs_TextFIeld(200, "Ftp Surucu");
 		JTextFieldRegularPopupMenu.addTo(textFtpSurucu);
 		textFtpSurucu.setColumns(10);
-		textFtpSurucu.setBounds(135, 22, 300, 20);
+		textFtpSurucu.setBounds(135, 22, 482, 20);
 		panel_12_1.add(textFtpSurucu);
 		
-		textZmnasm = new JTextField();
+		textZmnasm = new Obs_TextFIeld(10,"Saniye");
 		JTextFieldRegularPopupMenu.addTo(textZmnasm);
 		textZmnasm.setText("120");
 		textZmnasm.setColumns(10);
-		textZmnasm.setBounds(135, 46, 50, 20);
+		textZmnasm.setBounds(135, 46, 75, 20);
 		panel_12_1.add(textZmnasm);
 		
-		textPort = new JTextField();
+		textPort = new Obs_TextFIeld(3,"Port");
 		JTextFieldRegularPopupMenu.addTo(textPort);
 		textPort.setText("21");
 		textPort.setColumns(10);
@@ -183,7 +187,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_9 = new JLabel("sn.");
-		lblNewLabel_9.setBounds(200, 49, 31, 14);
+		lblNewLabel_9.setBounds(209, 49, 48, 14);
 		panel_12_1.add(lblNewLabel_9);
 		
 		JPanel panel_12_1_1 = new JPanel();
@@ -193,11 +197,11 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1_1.setBounds(10, 285, 627, 75);
 		 add(panel_12_1_1);
 		
-		textSurucu = new JTextField();
+		textSurucu = new Obs_TextFIeld(200,"Surucu");
 		JTextFieldRegularPopupMenu.addTo(textSurucu);
 		textSurucu.setToolTipText("");
 		textSurucu.setColumns(10);
-		textSurucu.setBounds(135, 22, 300, 20);
+		textSurucu.setBounds(135, 22, 482, 20);
 		panel_12_1_1.add(textSurucu);
 		
 		btnNewButton_7 = new JButton("Surucu Sec");
@@ -222,7 +226,7 @@ public class SunucuAyarlari extends JPanel {
 				}
 			}
 		});
-		btnNewButton_7.setBounds(502, 41, 115, 23);
+		btnNewButton_7.setBounds(502, 45, 115, 23);
 		panel_12_1_1.add(btnNewButton_7);
 		
 		lblNewLabel_8 = new JLabel("Surucu");
@@ -236,11 +240,11 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1_1_1.setBounds(10, 365, 627, 75);
 		 add(panel_12_1_1_1);
 		
-		textEskisilme = new JTextField();
+		textEskisilme = new Obs_TextFIeld(3,"Gun");
 		JTextFieldRegularPopupMenu.addTo(textEskisilme);
 		textEskisilme.setText("0");
 		textEskisilme.setColumns(10);
-		textEskisilme.setBounds(135, 22, 50, 20);
+		textEskisilme.setBounds(135, 22, 68, 20);
 		panel_12_1_1_1.add(textEskisilme);
 		
 		lblNewLabel_6 = new JLabel("Eski Yed.Silme");
@@ -248,7 +252,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1_1_1.add(lblNewLabel_6);
 		
 		lblNewLabel_7 = new JLabel("gunden eski olanari silme (0 Silinmez)");
-		lblNewLabel_7.setBounds(200, 25, 262, 14);
+		lblNewLabel_7.setBounds(210, 25, 252, 14);
 		panel_12_1_1_1.add(lblNewLabel_7);
 		
 	

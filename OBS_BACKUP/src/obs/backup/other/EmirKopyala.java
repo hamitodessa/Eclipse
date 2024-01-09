@@ -10,17 +10,16 @@ import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
+import OBS_C_2025.Obs_TextFIeld;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
 public class EmirKopyala extends JPanel {
 	 BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private static final long serialVersionUID = 1L;
-	public JTextField textField;
+	public Obs_TextFIeld textField;
 
 	/**
 	 * Create the panel.
@@ -32,9 +31,9 @@ public class EmirKopyala extends JPanel {
 		lblNewLabel.setBounds(56, 86, 107, 14);
 		add(lblNewLabel);
 		
-		textField = new JTextField();
+		textField = new Obs_TextFIeld(30,"Yeni Emir Ismi");
 		JTextFieldRegularPopupMenu.addTo(textField);
-		textField.setBounds(185, 83, 250, 20);
+		textField.setBounds(185, 83, 300, 20);
 		add(textField);
 		textField.setColumns(10);
 		

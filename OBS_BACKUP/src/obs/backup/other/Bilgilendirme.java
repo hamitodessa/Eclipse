@@ -6,9 +6,11 @@ import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import javax.swing.border.TitledBorder;
 
+import com.formdev.flatlaf.FlatClientProperties;
+
 import OBS_C_2025.JTextFieldRegularPopupMenu;
+import OBS_C_2025.Obs_TextFIeld;
 import obs.backup.main.OBS_BACKUP;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.Cursor;
@@ -18,13 +20,13 @@ import java.awt.Font;
 public class Bilgilendirme extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	public JTextField textGonIsim;
-	public JTextField textGonHesap;
-	public JTextField textAlici;
-	public JTextField textKonu;
-	public JTextField textSmtp;
-	public JTextField textPort;
-	public JTextField textKull;
+	public Obs_TextFIeld textGonIsim;
+	public Obs_TextFIeld textGonHesap;
+	public Obs_TextFIeld textAlici;
+	public Obs_TextFIeld textKonu;
+	public Obs_TextFIeld textSmtp;
+	public Obs_TextFIeld textPort;
+	public Obs_TextFIeld textKull;
 	public JPasswordField textSifre;
 	
 	public JCheckBox chckbxIslem;
@@ -87,25 +89,25 @@ public class Bilgilendirme extends JPanel {
 		panel_1.setBounds(37, 153, 580, 125);
 		add(panel_1);
 		
-		textGonIsim = new JTextField();
+		textGonIsim = new Obs_TextFIeld(50,"Gonderen Isim");
 		JTextFieldRegularPopupMenu.addTo(textGonIsim);
 		textGonIsim.setBounds(135, 23, 329, 20);
 		panel_1.add(textGonIsim);
 		textGonIsim.setColumns(10);
 		
-		textGonHesap = new JTextField();
+		textGonHesap = new Obs_TextFIeld(50,"Gonderen Hesap");
 		JTextFieldRegularPopupMenu.addTo(textGonHesap);
 		textGonHesap.setColumns(10);
 		textGonHesap.setBounds(135, 46, 329, 20);
 		panel_1.add(textGonHesap);
 		
-		textAlici = new JTextField();
+		textAlici = new Obs_TextFIeld(50,"Alici Hesap");
 		JTextFieldRegularPopupMenu.addTo(textAlici);
 		textAlici.setColumns(10);
 		textAlici.setBounds(135, 69, 329, 20);
 		panel_1.add(textAlici);
 		
-		textKonu = new JTextField();
+		textKonu = new Obs_TextFIeld(50,"Konu");
 		JTextFieldRegularPopupMenu.addTo(textKonu);
 		textKonu.setColumns(10);
 		textKonu.setBounds(135, 92, 329, 20);
@@ -133,25 +135,27 @@ public class Bilgilendirme extends JPanel {
 		panel_1_1.setBounds(37, 285, 580, 132);
 		add(panel_1_1);
 		
-		textSmtp = new JTextField();
+		textSmtp = new Obs_TextFIeld(30,"Smtp");
 		JTextFieldRegularPopupMenu.addTo(textSmtp);
 		textSmtp.setColumns(10);
-		textSmtp.setBounds(135, 23, 173, 20);
+		textSmtp.setBounds(135, 23, 216, 20);
 		panel_1_1.add(textSmtp);
 		
-		textPort = new JTextField();
+		textPort = new Obs_TextFIeld(3,"Port");
 		JTextFieldRegularPopupMenu.addTo(textPort);
 		textPort.setColumns(10);
 		textPort.setBounds(404, 23, 60, 20);
 		panel_1_1.add(textPort);
 		
-		textKull = new JTextField();
+		textKull = new Obs_TextFIeld(50,"Kullanici");
 		JTextFieldRegularPopupMenu.addTo(textKull);
 		textKull.setColumns(10);
 		textKull.setBounds(135, 46, 329, 20);
 		panel_1_1.add(textKull);
 		
 		textSifre = new JPasswordField();
+		textSifre.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
+		textSifre.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(textSifre);
 		textSifre.setColumns(10);
 		textSifre.setBounds(135, 69, 329, 20);
@@ -174,7 +178,7 @@ public class Bilgilendirme extends JPanel {
 		panel_1_1.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("Port");
-		lblNewLabel_6.setBounds(338, 26, 52, 14);
+		lblNewLabel_6.setBounds(357, 26, 49, 14);
 		panel_1_1.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_7 = new JLabel("Kullanici");

@@ -2,7 +2,6 @@ package obs.backup.other;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 
 import java.awt.Cursor;
@@ -15,6 +14,7 @@ import javax.swing.JCheckBox;
 import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.JTextFieldRegularPopupMenu;
+import OBS_C_2025.Obs_TextFIeld;
 import obs.backup.main.OBS_BACKUP;
 
 import javax.swing.JSpinner;
@@ -22,7 +22,7 @@ import javax.swing.JSpinner;
 public class YedeklemeAraligi extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	public JTextField textHerDakka;
+	public Obs_TextFIeld textHerDakka;
 	
 	public JCheckBox chckbxPtesi;
 	public JCheckBox chckbxSali ;
@@ -45,9 +45,9 @@ public class YedeklemeAraligi extends JPanel {
 		lblNewLabel.setBounds(43, 35, 48, 14);
 		add(lblNewLabel);
 		
-		textHerDakka = new JTextField();
+		textHerDakka = new Obs_TextFIeld(2, "Dakka");
 		JTextFieldRegularPopupMenu.addTo(textHerDakka);
-		textHerDakka.setBounds(118, 32, 48, 20);
+		textHerDakka.setBounds(118, 32, 60, 20);
 		add(textHerDakka);
 		textHerDakka.setColumns(10);
 		

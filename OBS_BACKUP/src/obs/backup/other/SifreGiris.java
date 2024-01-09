@@ -7,6 +7,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
+import com.formdev.flatlaf.FlatClientProperties;
+
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.SIFRE_DONDUR;
 import obs.backup.main.OBS_BACKUP;
@@ -34,6 +36,7 @@ public class SifreGiris extends JPanel {
 		
 		passwordField = new JPasswordField();
 		passwordField.setFont(new Font("Tahoma", Font.BOLD, 12));
+		passwordField.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		passwordField.addAncestorListener(new AncestorListener() {
 			@Override
 			public void ancestorRemoved(AncestorEvent pEvent) {

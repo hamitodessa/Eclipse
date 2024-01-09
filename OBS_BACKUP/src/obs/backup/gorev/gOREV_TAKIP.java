@@ -128,7 +128,6 @@ public  class gOREV_TAKIP extends JPanel {
 					OBS_BACKUP.emirSIL(eADI);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
-
 					e1.printStackTrace();
 				}
 			}
@@ -153,7 +152,6 @@ public  class gOREV_TAKIP extends JPanel {
 		add(btnYedekle);
 
 		lblemirISMI = new JLabel("New label");
-		//lblemirISMI.setForeground(new Color(0, 0, 128));
 		lblemirISMI.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblemirISMI.setBounds(240, 19, 400, 16);
 		lblemirISMI.setText(eADI);
@@ -366,7 +364,7 @@ public  class gOREV_TAKIP extends JPanel {
 		if (lblDurum.getText().equals("Pasiv Durumda"))
 		{
 			timerDURDUR = true;
-		//return;
+		return;
 		}
 		timerr = new Timer();  
 		tt = new TimerTask() {  

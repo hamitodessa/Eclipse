@@ -48,6 +48,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
@@ -1488,13 +1489,11 @@ public class LOGIN extends JDialog {
 			BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
 			String ip = in.readLine(); //you get the IP as a String
 			//System.out.println(ip);
-			if(ip.equals("78.189.76.247")) return;
+			if(ip.equals("78.189.76.2477")) return;
 			if (oac.glb.internet_kontrol() == false)
 			{
 				return ;
 			}
-			
-			
 			String eskitar = "" ;
 			String eskiver = "";
 			String yeniver = "";
@@ -1549,6 +1548,7 @@ public class LOGIN extends JDialog {
 			if(!ftp.login(userId, password))
 			{
 				ftp.logout();
+				ftp.disconnect();
 				return ;
 			}
 			int reply = ftp.getReplyCode();
@@ -1567,9 +1567,13 @@ public class LOGIN extends JDialog {
 				{
 				File f= new File(GLOBAL.SURUCU + "/OBS_VERSIONS.txt");           //file to be delete  
 				success = f.delete();  
+				ftp.logout();
+				ftp.disconnect();
 				return ;
 				}
 			//************************************
+			ftp.logout();
+			ftp.disconnect();
 			fileName = "" ;
 			fileName = GLOBAL.SURUCU + "/OBS_VERSIONS.txt";
 			fileReader = null;
@@ -1600,12 +1604,13 @@ public class LOGIN extends JDialog {
 			{
 				File f= new File(GLOBAL.SURUCU + "OBS_VERSIONS.txt");           //file to be delete  
 				f.delete();  
-				String html = "<html><body >"
-						+ "Yeni Versiyon Mevcut"
-						+ "<br><br> "
+				String html = "Yeni Versiyon Mevcut"
+						+ System.lineSeparator()
 						+ "Mevcut Version = " + eskiver + "      "
-						+ "<br><br> "
-						+ "Yeni Version = " + yeniver + "" ;
+						+ System.lineSeparator()
+						+ "Yeni Version = " + yeniver 
+						+ System.lineSeparator();
+				
 				OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO,  String.format(html));
 			}
 		}

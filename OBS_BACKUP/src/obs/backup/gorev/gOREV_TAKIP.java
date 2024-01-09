@@ -276,7 +276,6 @@ public  class gOREV_TAKIP extends JPanel {
 
 		btnStart = new JButton("");
 		btnStart.setName("btnStart");
-		//btnStart.setVisible(false);
 		btnStart.setToolTipText("Baslat");
 		btnStart.setBounds(740, 133, 45, 25);
 		btnStart.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/start16.png")));
@@ -476,12 +475,14 @@ public  class gOREV_TAKIP extends JPanel {
 		if (emirBilgiler.get(0).isDURUM() == false)
 		{
 			lblDurum.setVisible(true);
+			timerDURDUR = true;
 			lblDurum.setText("Pasiv Durumda");
 		}
 		else
 		{
 			lblDurum.setVisible(false);
 			lblDurum.setText("");
+			timerDURDUR = false;
 		}
 		Boolean kontrol = emirBilgiler.get(0).isSON_DURUM();
 		if (kontrol)

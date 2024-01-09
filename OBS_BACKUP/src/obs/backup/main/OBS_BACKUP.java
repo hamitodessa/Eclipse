@@ -11,6 +11,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.text.Position;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -32,6 +33,7 @@ import OBS_C_2025.CheckListItem;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.JTextFieldRegularPopupMenu;
 import javazoom.jl.player.Player;
 import obs.backup.gorev.gOREV_TAKIP;
 import obs.backup.other.Bilgilendirme;
@@ -113,6 +115,7 @@ import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
+import java.awt.TrayIcon.MessageType;
 import java.awt.Component;
 import java.awt.Cursor;
 import javax.swing.JLabel;
@@ -285,6 +288,7 @@ public class OBS_BACKUP extends JFrame {
 				try 
 				{
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					emirleriSTOPYAP();
 					emir_yukle("EMIR_ISMI") ;
 					contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					tabbedPane.setSelectedIndex(0);
@@ -437,25 +441,7 @@ public class OBS_BACKUP extends JFrame {
 		btnStopAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				Component[] components = container.getComponents();
-				for (Component component : components) {
-					if (component.getName()!= null)
-					{
-						JPanel qweJPanel = (JPanel) component ; 
-						Component[] componentt = qweJPanel.getComponents();
-						for (Component compo : componentt) {
-							if(compo.getName() != null)
-							{
-								if(compo.getName().equals("btnStop"))
-								{
-									JButton stp = (JButton) compo;
-									stp.doClick();
-								}
-							}
-						}
-					}
-					component.revalidate();
-				}
+				emirleriSTOPYAP();
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
@@ -482,8 +468,8 @@ public class OBS_BACKUP extends JFrame {
 								{
 									if(compo.getName().equals("lblDurum"))
 									{
-										JLabel stp = (JLabel) compo;
-										if(stp.getText().equals("Pasiv Durumda"))
+										JLabel lblDURUM = (JLabel) compo;
+										if(lblDURUM.getText().equals("Pasiv Durumda"))
 										{
 											bckp.durum_kayit_durum(component.getName().toString(), true,"Durum Aktivlestirildi...");
 										}
@@ -524,15 +510,14 @@ public class OBS_BACKUP extends JFrame {
 								{
 									if(compo.getName().equals("lblDurum"))
 									{
-										JLabel stp = (JLabel) compo;
-										if(! stp.getText().equals("Pasiv Durumda"))
+										JLabel lblDURUM = (JLabel) compo;
+										if(! lblDURUM.getText().equals("Pasiv Durumda"))
 										{
 											bckp.durum_kayit_durum(component.getName().toString(), false,"Durum Pasivlestirildi...");
 										}
 									}
 								}
 							}
-							///
 							for (Component compo : componentt) {
 								if(compo.getName() != null)
 								{
@@ -543,11 +528,9 @@ public class OBS_BACKUP extends JFrame {
 									}
 								}
 							}
-							//
 						}
 						component.revalidate();
 					}
-					//emir_yukle("EMIR_ISMI");
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -575,8 +558,8 @@ public class OBS_BACKUP extends JFrame {
 							{
 								if(compo.getName().equals("btnYedekle"))
 								{
-									JButton ydkl = (JButton) compo;
-									ydkl.doClick();
+									JButton btnydkl = (JButton) compo;
+									btnydkl.doClick();
 								}
 							}
 						}
@@ -655,7 +638,6 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		toolBar.add(btnSifreEkrani );
-		
 		toolBar.add(sprt );
 		
 		JButton btnkapat= new JButton("");
@@ -719,7 +701,6 @@ public class OBS_BACKUP extends JFrame {
 
 		panel_3.add(tabbedPane_1, BorderLayout.CENTER);
 
-
 		JPanel altPane = new JPanel();
 		altPane.setPreferredSize(new Dimension(0,25));
 		altPane.setLayout(null);
@@ -761,9 +742,8 @@ public class OBS_BACKUP extends JFrame {
 		btntry.setVisible(false);
 		btntry.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-				systemTRY();
 				setVisible(false);
+				systemTRY();
 			}
 		});
 		btnBuyult = new JButton("");
@@ -776,7 +756,6 @@ public class OBS_BACKUP extends JFrame {
 				setVisible(true);
 			}
 		});
-		//
 		btnMinimize = new JButton("");
 		btnMinimize.setVisible(false);
 		btnMinimize.addActionListener(new ActionListener() {
@@ -784,6 +763,7 @@ public class OBS_BACKUP extends JFrame {
 				setState(Frame.ICONIFIED);
 			}
 		});
+		//***********************************BASLAMA*********************************************
 		try {
 			glb.backup_surucu_kontrol();
 			bckp.log_kayit("Sistem", new Date(), "Program Baslangici");
@@ -2487,6 +2467,27 @@ public class OBS_BACKUP extends JFrame {
 		Date ftar = formatter.parse(dateInString);
 		return ftar;
 	}
+	private void emirleriSTOPYAP()
+	{
+		Component[] components = container.getComponents();
+		for (Component component : components) {
+			if (component.getName()!= null)
+			{
+				JPanel qweJPanel = (JPanel) component ; 
+				Component[] componentt = qweJPanel.getComponents();
+				for (Component compo : componentt) {
+					if(compo.getName() != null)
+					{
+						if(compo.getName().equals("btnStop"))
+						{
+							JButton stp = (JButton) compo;
+							stp.doClick();
+						}
+					}
+				}
+			}
+		}
+	}
 	public static  void systemTRY()
 	{
 		PopupMenu popup;
@@ -2506,11 +2507,16 @@ public class OBS_BACKUP extends JFrame {
 				}
 			};
 			popup = new PopupMenu();
+			Font defaultFont = new Font("Tahoma", Font.PLAIN, 11); //Font.decode(null); // default font 
+			float adjustmentRatio = 1.2f; 
+			float newFontSize = defaultFont.getSize() * adjustmentRatio ; 
+			Font derivedFont = defaultFont.deriveFont(newFontSize);
+			
 			MenuItem buyultITEM = new MenuItem("Buyult");
-			buyultITEM.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			buyultITEM.setFont(derivedFont);
 			buyultITEM.addActionListener(listener);
 			MenuItem kapatItem = new MenuItem("Kapat");
-			kapatItem.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			kapatItem.setFont(derivedFont);
 			kapatItem.addActionListener(kapat);
 			popup.addSeparator();
 			popup.add(buyultITEM);
@@ -2518,18 +2524,22 @@ public class OBS_BACKUP extends JFrame {
 			popup.add(kapatItem);
 			popup.addSeparator();
 			trayIcon = new TrayIcon(image, "OBS_BACKUP", popup);
+			trayIcon.setImageAutoSize(true);			
 			trayIcon.addActionListener(listener);
 			try {
 				tray.add(trayIcon);
+				trayIcon.displayMessage("OBS BACKUP", "Arka Plan basladi", MessageType.INFO);
+				trayIcon.setToolTip("OBS BACKUP");
 			} catch (AWTException e) {
 				mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());	
+			}
+			if (trayIcon != null) {
+				trayIcon.setImage(Toolkit.getDefaultToolkit().getImage(OBS_BACKUP.class.getResource("/obs/backup/icons/backup-100.png")));
 			}
 		} else {
 			btnMinimize.doClick();
 		}
-		if (trayIcon != null) {
-			trayIcon.setImage(Toolkit.getDefaultToolkit().getImage(OBS_BACKUP.class.getResource("/obs/backup/icons/backup-100.png")));
-		}	
+		
 	}
 	//	@Override
 	//	public Dimension getPreferredSize() {

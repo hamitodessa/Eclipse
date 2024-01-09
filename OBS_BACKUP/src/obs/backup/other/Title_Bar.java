@@ -51,8 +51,8 @@ public class Title_Bar extends javax.swing.JPanel{
 		btnNewButton.setToolTipText("Sistem Tray Ekle");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			frame.setState(Frame.ICONIFIED);
-			//OBS_BACKUP.btntry.doClick();
+			//frame.setState(Frame.ICONIFIED);
+			OBS_BACKUP.btntry.doClick();
 			}
 		});
 

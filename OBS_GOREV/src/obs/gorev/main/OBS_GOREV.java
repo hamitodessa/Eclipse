@@ -10,6 +10,7 @@ import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
+import java.awt.TrayIcon.MessageType;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -563,11 +564,16 @@ public class OBS_GOREV extends JFrame  {
 				}
 			};
 			popup = new PopupMenu();
+			Font defaultFont = new Font("Tahoma", Font.PLAIN, 11); //Font.decode(null); // default font 
+			float adjustmentRatio = 1.2f; 
+			float newFontSize = defaultFont.getSize() * adjustmentRatio ; 
+			Font derivedFont = defaultFont.deriveFont(newFontSize);
+			
 			MenuItem buyultITEM = new MenuItem("Buyult");
-			buyultITEM.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			buyultITEM.setFont(derivedFont);
 			buyultITEM.addActionListener(listener);
 			MenuItem kapatItem = new MenuItem("Kapat");
-			kapatItem.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			kapatItem.setFont(derivedFont);
 			kapatItem.addActionListener(kapat);
 			popup.addSeparator();
 			popup.add(buyultITEM);
@@ -575,16 +581,22 @@ public class OBS_GOREV extends JFrame  {
 			popup.add(kapatItem);
 			popup.addSeparator();
 			trayIcon = new TrayIcon(image, "OBS_GOREV", popup);
+			trayIcon.setImageAutoSize(true);		
 			trayIcon.addActionListener(listener);
 			try {
 				tray.add(trayIcon);
+				trayIcon.displayMessage("OBS GOREV", "Arka Plan basladi", MessageType.INFO);
+				trayIcon.setToolTip("OBS GOREV");
 			} catch (AWTException e) {
 			}
-		} else {
+			if (trayIcon != null) 
+			{
+				trayIcon.setImage(Toolkit.getDefaultToolkit().getImage(OBS_GOREV.class.getResource("/obs/gorev/other/job-24.png")));
+			}
+		} else 
+		{
 			btnMinimize.doClick();
 		}
-		if (trayIcon != null) {
-			trayIcon.setImage(Toolkit.getDefaultToolkit().getImage(OBS_GOREV.class.getResource("/obs/gorev/other/job-24.png")));
-		}	
+			
 	}
 }

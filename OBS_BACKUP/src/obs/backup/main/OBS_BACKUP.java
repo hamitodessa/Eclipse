@@ -532,10 +532,22 @@ public class OBS_BACKUP extends JFrame {
 									}
 								}
 							}
+							///
+							for (Component compo : componentt) {
+								if(compo.getName() != null)
+								{
+									if(compo.getName().equals("btnHepsiPasivden"))
+									{
+										JButton stp = (JButton) compo;
+										stp.doClick();
+									}
+								}
+							}
+							//
 						}
 						component.revalidate();
 					}
-					emir_yukle("EMIR_ISMI");
+					//emir_yukle("EMIR_ISMI");
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

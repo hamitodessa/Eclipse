@@ -45,8 +45,9 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings({"serial","deprecation"})
 public  class gOREV_TAKIP extends JPanel { 
 	public TimerTask tt;
-	
+	Timer timerr;
 	JLabel lblNewLabel;
+	boolean timerDURDUR = false;
 	private String eADI="";
 	boolean[] gunKONTROL = { false, false, false, false, false, false, false };
 	JSpinner tsbas = new JSpinner();
@@ -82,7 +83,7 @@ public  class gOREV_TAKIP extends JPanel {
 
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	public JButton btnyenidenBASLAT;
-	
+	public JButton btnHepsiPasivden;
 	public gOREV_TAKIP(String emirADI) {
 		
 		eADI = emirADI;
@@ -96,7 +97,10 @@ public  class gOREV_TAKIP extends JPanel {
 		btnDuzelt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tt != null)
+				{
+					timerDURDUR=true;
 					tt.cancel();
+				}
 				OBS_BACKUP.gelenISIM = eADI ;
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				OBS_BACKUP.emirAnaGirisPanel.emirDOLDUR();
@@ -117,6 +121,7 @@ public  class gOREV_TAKIP extends JPanel {
 				if(g ==  1) {
 					return;
 				}
+				timerDURDUR=true;
 				tt.cancel();
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -225,7 +230,7 @@ public  class gOREV_TAKIP extends JPanel {
 		lblNewLabel_2.setBounds(20, 65, 100, 100);
 		add(lblNewLabel_2);
 
-		lblDurum = new JLabel(".....");
+		lblDurum = new JLabel("");
 		lblDurum.setName("lblDurum");
 		lblDurum.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblDurum.setForeground(Color.RED);
@@ -269,14 +274,17 @@ public  class gOREV_TAKIP extends JPanel {
 		btn1.setBounds(10, 11, 23, 23);
 		add(btn1);
 
-		btnStart = new JButton(".....");
+		btnStart = new JButton("");
 		btnStart.setName("btnStart");
-		btnStart.setVisible(false);
-		btnStart.setBounds(0, 31, 23, 23);
+		//btnStart.setVisible(false);
+		btnStart.setToolTipText("Baslat");
+		btnStart.setBounds(740, 133, 45, 25);
+		btnStart.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/start16.png")));
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(! lblDurum.getText().equals("Pasiv Durumda"))
 				{
+					timerDURDUR = false;
 					run();
 				}
 				else {
@@ -286,14 +294,18 @@ public  class gOREV_TAKIP extends JPanel {
 		});
 		add(btnStart);
 		
-		btnStop = new JButton(".....");
+		btnStop = new JButton("");
+		btnStop.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/stop16.png")));
 		btnStop.setName("btnStop");
-		btnStop.setVisible(false);
-		btnStop.setBounds(0, 31, 23, 23);
+		btnStop.setToolTipText("Durdur");
+		//btnStop.setVisible(false);
+		btnStop.setBounds(675, 133, 45, 25);
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tt != null)
-					tt.cancel();
+				{
+					timerDURDUR = true;
+				}
 			}
 		});
 		add(btnStop);
@@ -313,6 +325,23 @@ public  class gOREV_TAKIP extends JPanel {
 		});
 		add(btnyenidenBASLAT);
 		
+		btnHepsiPasivden = new JButton("");
+		btnHepsiPasivden.setBounds(20, 31, 23, 23);
+		btnHepsiPasivden.setVisible(false);
+		btnHepsiPasivden.setName("btnHepsiPasivden");
+		btnHepsiPasivden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				timerDURDUR=true;
+				try {
+					ilkBasla();
+				} catch (Exception e1) {
+				
+					e1.printStackTrace();
+				}
+			}
+		});
+		add(btnHepsiPasivden);
+		
 		addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
 				if(getPreferredSize().height == 175)
@@ -329,6 +358,7 @@ public  class gOREV_TAKIP extends JPanel {
 			}
 		});
 		try {
+			tt= null;
 			ilkBasla();
 		} catch (Exception ex) {
 		}
@@ -336,13 +366,19 @@ public  class gOREV_TAKIP extends JPanel {
 	public void run() {
 		if (lblDurum.getText().equals("Pasiv Durumda"))
 		{
-		return;
+			timerDURDUR = true;
+		//return;
 		}
-		Timer timerr = new Timer();  
+		timerr = new Timer();  
 		tt = new TimerTask() {  
 			@Override  
 			public void run() {  
 				try {
+					if(timerDURDUR == true)
+					{
+						tt.cancel();
+						return;
+					}
 					JSpinner tsnot = new JSpinner( new SpinnerDateModel() );
 					JSpinner.DateEditor de_timetsnot = new JSpinner.DateEditor(tsnot, "dd.MM.yyyy HH:mm:ss");
 					tsnot .setEditor(de_timetsnot);
@@ -364,6 +400,7 @@ public  class gOREV_TAKIP extends JPanel {
 						yedekSirasinaKoy();
 					}
 				} catch (Exception e) {
+					timerDURDUR=true;
 					tt.cancel();
 					try {
 						emirBILGIYUKLE();
@@ -380,7 +417,10 @@ public  class gOREV_TAKIP extends JPanel {
 	private void yedekSirasinaKoy() throws ClassNotFoundException, SQLException, InterruptedException
 	{
 		if(tt != null)
+		{
+			timerDURDUR=true;
 			tt.cancel();
+		}
 		lblSonDurum.setText("Yedekleme Sirasina Konuldu");
 		lblSonDurum.setForeground(Color.GREEN);
 	    OBS_BACKUP.gorevLER.add(eADI);
@@ -441,7 +481,7 @@ public  class gOREV_TAKIP extends JPanel {
 		else
 		{
 			lblDurum.setVisible(false);
-			lblDurum.setText(".....");
+			lblDurum.setText("");
 		}
 		Boolean kontrol = emirBilgiler.get(0).isSON_DURUM();
 		if (kontrol)

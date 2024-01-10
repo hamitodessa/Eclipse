@@ -100,6 +100,7 @@ public class DENEMELER extends JInternalFrame {
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	BadgeButton badgeButton1 ;
 	private JTextField textField;
+	
 	@SuppressWarnings("rawtypes")
 	public DENEMELER() {
 		setClosable(true);
@@ -443,7 +444,6 @@ public class DENEMELER extends JInternalFrame {
 		});
 		btnNewButton_10.setBounds(54, 359, 89, 23);
 		panel.add(btnNewButton_10);
-		
 		
 
 	}

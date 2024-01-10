@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class Obs_Text_New extends JTextField {
+public class Obs_TextField_Icon extends JTextField {
 
     public Icon getPrefixIcon() {
         return prefixIcon;
@@ -33,7 +33,7 @@ public class Obs_Text_New extends JTextField {
     private Icon prefixIcon;
     private Icon suffixIcon;
 
-    public Obs_Text_New() {
+    public Obs_TextField_Icon() {
         setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
     }
 

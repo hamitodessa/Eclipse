@@ -2345,7 +2345,7 @@ public class OBS_BACKUP extends JFrame {
 			messagePart = new MimeBodyPart();
 			DatagramSocket socket = new DatagramSocket();
 			socket.connect(new InetSocketAddress("google.com", 80));
-			messagePart.setText(mesaj + " -mesaj -2","UTF-8");
+			messagePart.setText(mesaj ,"UTF-8");
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messagePart);
 			message.setSentDate(new Date());

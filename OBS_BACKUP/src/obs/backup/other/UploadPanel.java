@@ -78,13 +78,13 @@ public class UploadPanel extends JPanel {
 		panel_1.add(lblEmirAdi);
 		
 		JLabel lblNewLabel_4 = new JLabel("Hiz");
-		lblNewLabel_4.setBounds(632, 31, 58, 14);
+		lblNewLabel_4.setBounds(690, 31, 40, 14);
 		panel_1.add(lblNewLabel_4);
 		
 		lblHiz = new JLabel("0.00 kb/sec");
 		lblHiz.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblHiz.setHorizontalAlignment(SwingConstants.LEFT);
-		lblHiz.setBounds(700, 31, 124, 14);
+		lblHiz.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblHiz.setBounds(710, 31, 124, 14);
 		panel_1.add(lblHiz);
 		
 		JLabel lblNewLabel_6 = new JLabel("Aciklama");
@@ -102,7 +102,7 @@ public class UploadPanel extends JPanel {
 		
 		lblSurucu = new JLabel("");
 		lblSurucu.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblSurucu.setBounds(383, 31, 239, 14);
+		lblSurucu.setBounds(383, 31, 300, 14);
 		panel_1.add(lblSurucu);
 
 	}

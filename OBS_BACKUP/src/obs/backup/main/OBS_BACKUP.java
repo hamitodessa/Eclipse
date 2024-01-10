@@ -1693,7 +1693,6 @@ public class OBS_BACKUP extends JFrame {
 					if(exists)
 					{
 						path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
-						isReadiable(path);
 						tmpDir.delete();
 					}
 					bckp.log_kayit(emirADI, new Date(), dosADI + " BAK Dosyasi Silindi...");
@@ -1705,22 +1704,17 @@ public class OBS_BACKUP extends JFrame {
 					if(exists)
 					{
 						path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
-						isReadiable(path);
 						tmpDir.delete();
 					}
 					bckp.log_kayit(emirADI, new Date(), dosADI + ".sql" + " Dosyasi Silindi...");
 				}
-
 				File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".zip");
 				boolean exists = tmpDir.exists();
-
 				if(exists)
 				{
 					path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".zip");
-					isReadiable(path);
 					tmpDir.delete();
 				}
-					
 				bckp.log_kayit(emirADI, new Date(), dosADI + " ZIP Dosyasi Silindi...");
 			}
 			Date nowwDate = new Date();
@@ -2262,6 +2256,9 @@ public class OBS_BACKUP extends JFrame {
 			outputStream.close();
 			uplpnl.RPB2.setStringPainted(false);
 			uplpnl.Progres_Bar_2( 0);
+			secondLocalFile = null ;
+			inputStream = null;
+			outputStream = null;
 			ftp.logout();
 			ftp.disconnect();
 		} catch (Exception ex) {

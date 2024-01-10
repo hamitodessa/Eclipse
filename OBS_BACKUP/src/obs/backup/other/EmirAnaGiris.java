@@ -104,7 +104,7 @@ public class EmirAnaGiris extends JPanel {
 		lblNewLabel_1.setBounds(25, 100, 99, 14);
 		panel_10.add(lblNewLabel_1);
 		
-		txtEmir = new Obs_TextFIeld(30,"Emir Adi");
+		txtEmir = new Obs_TextFIeld(30,"");
 		JTextFieldRegularPopupMenu.addTo(txtEmir);
 		txtEmir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtEmir.setBounds(150, 100, 300, 23);

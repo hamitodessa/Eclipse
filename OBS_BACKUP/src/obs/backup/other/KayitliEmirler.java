@@ -57,7 +57,7 @@ public class KayitliEmirler extends JPanel {
 		lblNewLabel.setBounds(10, 15, 48, 14);
 		panel.add(lblNewLabel);
 		
-		txtArama = new Obs_TextFIeld(50,"Aranacak");
+		txtArama = new Obs_TextFIeld(50,"");
 		txtArama.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtArama.setBounds(79, 10, 298, 25);
 		panel.add(txtArama);

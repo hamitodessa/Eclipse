@@ -54,7 +54,7 @@ public class ServerBilgileri extends JPanel {
 		lblNewLabel.setBounds(26, 38, 71, 14);
 		panel.add(lblNewLabel);
 		
-		textMSServer = new Obs_TextFIeld(50,"Instance");
+		textMSServer = new Obs_TextFIeld(50,"");
 		JTextFieldRegularPopupMenu.addTo(textMSServer);
 		textMSServer.setBounds(107, 35, 216, 20);
 		panel.add(textMSServer);
@@ -70,7 +70,7 @@ public class ServerBilgileri extends JPanel {
 		lblNewLabel_1.setBounds(10, 30, 71, 14);
 		panel_2.add(lblNewLabel_1);
 		
-		textMSkull = new Obs_TextFIeld(50,"Kullanici");
+		textMSkull = new Obs_TextFIeld(50,"");
 		JTextFieldRegularPopupMenu.addTo(textMSkull);
 		textMSkull.setBounds(91, 27, 162, 20);
 		panel_2.add(textMSkull);
@@ -81,7 +81,7 @@ public class ServerBilgileri extends JPanel {
 		panel_2.add(lblNewLabel_2);
 		
 		textMSsifre = new JPasswordField();
-		textMSsifre.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
+		//textMSsifre.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
 		textMSsifre.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(textMSsifre);
 		textMSsifre.setBounds(91, 63, 162, 20);
@@ -144,7 +144,7 @@ public class ServerBilgileri extends JPanel {
 		lblNewLabel_4_1.setBounds(358, 38, 48, 14);
 		panel.add(lblNewLabel_4_1);
 		
-		textMSPort = new Obs_TextFIeld(10,"Port");
+		textMSPort = new Obs_TextFIeld(10,"");
 		JTextFieldRegularPopupMenu.addTo(textMSPort);
 		textMSPort.setColumns(10);
 		textMSPort.setBounds(415, 32, 61, 20);
@@ -165,7 +165,7 @@ public class ServerBilgileri extends JPanel {
 		lblNewLabel_1_2.setBounds(10, 30, 71, 14);
 		panel_2_2.add(lblNewLabel_1_2);
 		
-		textMykull = new Obs_TextFIeld(50,"Kullanici");
+		textMykull = new Obs_TextFIeld(50,"");
 		JTextFieldRegularPopupMenu.addTo(textMykull);
 		textMykull.setColumns(10);
 		textMykull.setBounds(91, 27, 209, 20);
@@ -176,7 +176,7 @@ public class ServerBilgileri extends JPanel {
 		panel_2_2.add(lblNewLabel_2_2);
 		
 		textMySifre = new JPasswordField();
-		textMySifre.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
+		//textMySifre.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
 		textMySifre.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(textMySifre);
 		textMySifre.setBounds(91, 63, 209, 20);
@@ -238,7 +238,7 @@ public class ServerBilgileri extends JPanel {
 		lblNewLabel_4.setBounds(26, 38, 48, 14);
 		panel_1.add(lblNewLabel_4);
 		
-		textMYPort = new Obs_TextFIeld(10,"Port");
+		textMYPort = new Obs_TextFIeld(10,"");
 		JTextFieldRegularPopupMenu.addTo(textMYPort);
 		textMYPort.setBounds(120, 38, 73, 20);
 		panel_1.add(textMYPort);
@@ -248,7 +248,7 @@ public class ServerBilgileri extends JPanel {
 		lblNewLabel_5.setBounds(26, 189, 96, 14);
 		panel_1.add(lblNewLabel_5);
 		
-		textMyDump = new Obs_TextFIeld(200,"My Sql My Dump Yeri");
+		textMyDump = new Obs_TextFIeld(200,"");
 		JTextFieldRegularPopupMenu.addTo(textMyDump);
 		textMyDump.setBounds(120, 183, 450, 20);
 		panel_1.add(textMyDump);

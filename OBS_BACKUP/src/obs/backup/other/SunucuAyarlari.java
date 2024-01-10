@@ -100,20 +100,20 @@ public class SunucuAyarlari extends JPanel {
 		 add(panel_12);
 		panel_12.setLayout(null);
 		
-		textHost = new Obs_TextFIeld(30,"Host");
+		textHost = new Obs_TextFIeld(30,"");
 		JTextFieldRegularPopupMenu.addTo(textHost);
 		textHost.setBounds(135, 22, 300, 20);
 		panel_12.add(textHost);
 		textHost.setColumns(10);
 		
-		textKull = new Obs_TextFIeld(30,"Kullanici");
+		textKull = new Obs_TextFIeld(30,"");
 		JTextFieldRegularPopupMenu.addTo(textKull);
 		textKull.setBounds(135, 46, 213, 20);
 		panel_12.add(textKull);
 		textKull.setColumns(10);
 		
 		textSifre = new JPasswordField();
-		textSifre.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
+		//textSifre.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
 		textSifre.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(textSifre);
 		textSifre.setToolTipText("");
@@ -140,20 +140,20 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.setBounds(10, 180, 627, 100);
 		 add(panel_12_1);
 		
-		textFtpSurucu = new Obs_TextFIeld(200, "Ftp Surucu");
+		textFtpSurucu = new Obs_TextFIeld(200,"");
 		JTextFieldRegularPopupMenu.addTo(textFtpSurucu);
 		textFtpSurucu.setColumns(10);
 		textFtpSurucu.setBounds(135, 22, 482, 20);
 		panel_12_1.add(textFtpSurucu);
 		
-		textZmnasm = new Obs_TextFIeld(10,"Saniye");
+		textZmnasm = new Obs_TextFIeld(10,"");
 		JTextFieldRegularPopupMenu.addTo(textZmnasm);
 		textZmnasm.setText("120");
 		textZmnasm.setColumns(10);
 		textZmnasm.setBounds(135, 46, 75, 20);
 		panel_12_1.add(textZmnasm);
 		
-		textPort = new Obs_TextFIeld(3,"Port");
+		textPort = new Obs_TextFIeld(3,"");
 		JTextFieldRegularPopupMenu.addTo(textPort);
 		textPort.setText("21");
 		textPort.setColumns(10);
@@ -197,7 +197,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1_1.setBounds(10, 285, 627, 75);
 		 add(panel_12_1_1);
 		
-		textSurucu = new Obs_TextFIeld(200,"Surucu");
+		textSurucu = new Obs_TextFIeld(200,"");
 		JTextFieldRegularPopupMenu.addTo(textSurucu);
 		textSurucu.setToolTipText("");
 		textSurucu.setColumns(10);
@@ -240,7 +240,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1_1_1.setBounds(10, 365, 627, 75);
 		 add(panel_12_1_1_1);
 		
-		textEskisilme = new Obs_TextFIeld(3,"Gun");
+		textEskisilme = new Obs_TextFIeld(3,"");
 		JTextFieldRegularPopupMenu.addTo(textEskisilme);
 		textEskisilme.setText("0");
 		textEskisilme.setColumns(10);

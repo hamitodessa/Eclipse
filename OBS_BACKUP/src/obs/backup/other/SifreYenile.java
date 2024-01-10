@@ -43,7 +43,7 @@ public class SifreYenile extends JPanel {
 		add(lblNewLabel);
 
 		txtsif = new JPasswordField();
-		txtsif.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
+		//txtsif.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
 		txtsif.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtsif.addAncestorListener(new AncestorListener() {
 			@Override
@@ -95,7 +95,7 @@ public class SifreYenile extends JPanel {
 		add(txtsif);
 		txtsif.setColumns(10);
 
-		txtyenisif = new Obs_TextFIeld(30,"Yeni Sifre");
+		txtyenisif = new Obs_TextFIeld(30,"");
 		txtyenisif.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtyenisif.setColumns(10);
 		txtyenisif.setBounds(329,315, 248, 25);

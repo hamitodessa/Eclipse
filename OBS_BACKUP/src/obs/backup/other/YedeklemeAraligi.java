@@ -45,7 +45,7 @@ public class YedeklemeAraligi extends JPanel {
 		lblNewLabel.setBounds(43, 35, 48, 14);
 		add(lblNewLabel);
 		
-		textHerDakka = new Obs_TextFIeld(2, "Dakka");
+		textHerDakka = new Obs_TextFIeld(2, "");
 		JTextFieldRegularPopupMenu.addTo(textHerDakka);
 		textHerDakka.setBounds(118, 32, 60, 20);
 		add(textHerDakka);

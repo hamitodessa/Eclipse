@@ -288,7 +288,7 @@ public class FIHRIST extends JFrame {
 		lblNewLabel_1.setBounds(10, 46, 48, 14);
 		panel_2.add(lblNewLabel_1);
 
-		txtAdi = new Obs_TextFIeld (50,"Adi");
+		txtAdi = new Obs_TextFIeld (50,"");
 		txtAdi.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtAdi.setBounds(68, 43, 372, 20);
 		txtAdi.addKeyListener(new KeyAdapter() {

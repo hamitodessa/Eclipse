@@ -31,7 +31,7 @@ public class EmirKopyala extends JPanel {
 		lblNewLabel.setBounds(56, 86, 107, 14);
 		add(lblNewLabel);
 		
-		textField = new Obs_TextFIeld(30,"Yeni Emir Ismi");
+		textField = new Obs_TextFIeld(30,"");
 		JTextFieldRegularPopupMenu.addTo(textField);
 		textField.setBounds(185, 83, 300, 20);
 		add(textField);

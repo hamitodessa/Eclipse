@@ -89,7 +89,7 @@ public  class gOREV_TAKIP extends JPanel {
 		eADI = emirADI;
 		setBorder(new CompoundBorder(new EmptyBorder(5, 5, 0, 5), BorderFactory.createLineBorder(new Color(235, 235, 235))));
 		setName(emirADI); 
-		setPreferredSize(new Dimension(0,175));
+		setPreferredSize(new Dimension(800,175));
 		setLayout(null);
 
 		JButton btnDuzelt = new JButton("Emir Duzelt");
@@ -487,11 +487,13 @@ public  class gOREV_TAKIP extends JPanel {
 		{
 			lblSonDurum.setForeground(Color.GREEN);
 			lblSonDurum.setText("Yedeklendi");
+			lblSonDurum.setToolTipText("");
 		}
 		else
 		{
 			lblSonDurum.setText(emirBilgiler.get(0).getMESAJ());
 			lblSonDurum.setForeground(Color.RED);
+			lblSonDurum.setToolTipText(lblSonDurum.getText());
 		}
 		String insTANCE = emirBilgiler.get(0).getINSTANCE() ;
 		boolean SQL_YEDEK_MI = emirBilgiler.get(0).isSQL_YEDEK();

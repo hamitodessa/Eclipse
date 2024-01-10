@@ -166,7 +166,6 @@ public class KUR_GIRIS extends JInternalFrame {
 				if (oac.glb.internet_kontrol() == false)
 				{
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING, "Internet Baglantisi Yok ");
-					//JOptionPane.showMessageDialog(null,  "Internet Baglantisi Yok ",  "Merkez Bankasi Kur Okuma", JOptionPane.ERROR_MESSAGE);	
 					return ;
 				}
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -413,7 +412,6 @@ public class KUR_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
 	private void kur_oku()
@@ -421,7 +419,6 @@ public class KUR_GIRIS extends JInternalFrame {
 		ResultSet rs ;
 		try
 		{
-
 			rs = k_Access.kur_oku(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()));
 
 			if (!rs.isBeforeFirst() ) {  
@@ -454,7 +451,6 @@ public class KUR_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage()); 
 		}
 	}
 	private static void sifirla()
@@ -486,7 +482,6 @@ public class KUR_GIRIS extends JInternalFrame {
 		catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage());  
 		}
 	}
 	public static void sil()
@@ -500,7 +495,6 @@ public class KUR_GIRIS extends JInternalFrame {
 		catch (Exception ex )
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage());  
 		}
 	}
 	private void merkez ()

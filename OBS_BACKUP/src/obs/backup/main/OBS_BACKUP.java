@@ -1682,7 +1682,6 @@ public class OBS_BACKUP extends JFrame {
 				isfileVAR(path);
 				isReadiable(path);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "Zip Haline Getirildi...");
-				
 				UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
 				isReadiable(path);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "FTP Yuklendi...");

@@ -77,6 +77,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FilePermission;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -90,6 +91,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
+import java.security.AccessController;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
@@ -1630,21 +1632,28 @@ public class OBS_BACKUP extends JFrame {
 				{
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
-				dzip = tarr + "_" + dosADI + ".zip";
 				path = Paths.get(glb.BACKUP_YERI + dosya);
+				isfileVAR(path);
+				dzip = tarr + "_" + dosADI + ".zip";
 				isReadiable(path);
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
 				path = Paths.get(glb.BACKUP_YERI + dzip);
+				isfileVAR(path);
 				isReadiable(path);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "Zip Haline Getirildi...");
 				UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
+				isReadiable(path);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "FTP Yuklendi...");
 				if( serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
 					File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
 					boolean exists = tmpDir.exists();
 					if(exists)
+					{
+						path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
+						isReadiable(path);
 						tmpDir.delete();
+					}
 					bckp.log_kayit(emirADI, new Date(), dosADI + " BAK Dosyasi Silindi...");
 				}
 				else
@@ -1652,7 +1661,11 @@ public class OBS_BACKUP extends JFrame {
 					File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
 					boolean exists = tmpDir.exists();
 					if(exists)
+					{
+						path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
+						isReadiable(path);
 						tmpDir.delete();
+					}
 					bckp.log_kayit(emirADI, new Date(), dosADI + ".sql" + " Dosyasi Silindi...");
 				}
 
@@ -1660,7 +1673,12 @@ public class OBS_BACKUP extends JFrame {
 				boolean exists = tmpDir.exists();
 
 				if(exists)
+				{
+					path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".zip");
+					isReadiable(path);
 					tmpDir.delete();
+				}
+					
 				bckp.log_kayit(emirADI, new Date(), dosADI + " ZIP Dosyasi Silindi...");
 			}
 			Date nowwDate = new Date();
@@ -2436,20 +2454,28 @@ public class OBS_BACKUP extends JFrame {
 	}
 	private void isReadiable(Path pathh)
 	{
-		boolean result = false;
-		while (result == true) {
-			if (Files.isReadable(pathh)) {
-				result = false;    
-			}
+		File file = new File(pathh.toString());
+		while (!file.canRead()) {
 			try {
-				Thread.sleep(500);
+				Thread.sleep(1000); // Sleep for 1 second (adjust as needed)
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	private void isfileVAR(Path pathh)
+	{
+		File file = new File(pathh.toString());
+		while (!glb.dos_kontrol(pathh.toString())) {
+			try {
+				Thread.sleep(1000); // Sleep for 1 second (adjust as needed)
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 	private boolean fileESITMI(String ftpDOSYA , String dosYA)
-	{
+	{;
 		boolean result = false;
 		if(ftpDOSYA.length() < 13) return false;
 		String dosADIOGREN = ftpDOSYA.substring(13,ftpDOSYA.lastIndexOf("."));

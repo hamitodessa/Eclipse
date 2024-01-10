@@ -1415,6 +1415,8 @@ public class OBS_BACKUP extends JFrame {
 				{
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
+				path = Paths.get(glb.BACKUP_YERI + dosya);
+				isfileVAR(path);
 				dzip = tarr + "_" + dosADI + ".zip";
 				path = Paths.get(glb.BACKUP_YERI + dosya);
 				isReadiable(path);
@@ -2085,6 +2087,8 @@ public class OBS_BACKUP extends JFrame {
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
 					bckp.diger_zip_yap(okumadosyaadi, glb.BACKUP_YERI, dzip, false, "");
 				}
+				path = Paths.get(glb.BACKUP_YERI + dzip);
+				isfileVAR(path);
 				path = Paths.get(glb.BACKUP_YERI + dzip);
 				isReadiable(path);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");

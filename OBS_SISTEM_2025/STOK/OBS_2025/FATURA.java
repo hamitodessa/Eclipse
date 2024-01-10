@@ -55,6 +55,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
 import javax.swing.ActionMap;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
@@ -387,62 +388,24 @@ public class FATURA extends JInternalFrame {
 		txtadres.setDocument(new JTextFieldLimit(12));
 		txtadres.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
-				if (txtadres.getText().equals(""))
-				{
-					lblNewLabel_6.setText("");
-					return;
-				}
-				String sonuc = "";
-				try 
-				{
-
-					sonuc = a_Access.kod_ismi(txtadres.getText());
-					lblNewLabel_6.setText(sonuc);
-
-				}
-				catch (Exception ex)
-				{	
-					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
-				}
+					try {
+						lblNewLabel_6.setText(a_Access.kod_ismi(txtadres.getText()));
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 			}
 			public void removeUpdate(DocumentEvent e) {
-				if (txtadres.getText().equals(""))
-				{
-					lblNewLabel_6.setText("");
-					return;
-				}
-				String sonuc = "";
-				try 
-				{
-					sonuc = a_Access.kod_ismi(txtadres.getText());
-					lblNewLabel_6.setText(sonuc);
-
-				}
-				catch (Exception ex)
-				{	
-					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-					//JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
+				try {
+					lblNewLabel_6.setText(a_Access.kod_ismi(txtadres.getText()));
+				} catch (Exception e1) {
+					e1.printStackTrace();
 				}
 			}
 			public void insertUpdate(DocumentEvent e) {
-				if (txtadres.getText().equals(""))
-				{
-					lblNewLabel_6.setText("");
-					return;
-				}
-				String sonuc = "";
-				try 
-				{
-
-					sonuc = a_Access.kod_ismi(txtadres.getText());
-					lblNewLabel_6.setText(sonuc);
-
-				}
-				catch (Exception ex)
-				{	
-					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage());
-				//	JOptionPane.showMessageDialog(null, ex.getMessage(),  "Adres Hesap  Okuma", JOptionPane.ERROR_MESSAGE);   
+				try {
+					lblNewLabel_6.setText(a_Access.kod_ismi(txtadres.getText()));
+				} catch (Exception e1) {
+					e1.printStackTrace();
 				}
 			}
 		});
@@ -467,7 +430,7 @@ public class FATURA extends JInternalFrame {
 		lblNewLabel_6 = new JLabel(".....");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_6.setForeground(new Color(139, 0, 0));
-		lblNewLabel_6.setBounds(353, 62, 237, 14);
+		lblNewLabel_6.setBounds(353, 62, 363, 14);
 		panel_2.add(lblNewLabel_6);
 
 		JLabel lblNewLabel_7 = new JLabel("Ozel Kod");
@@ -1631,7 +1594,7 @@ public class FATURA extends JInternalFrame {
 			{
 				rss.next();
 				yeni_fat = false;
-				txtadres.setText("");
+				//txtadres.setText("");
 				GRID_TEMIZLE.grid_temizle(table);
 				GRID_TEMIZLE.grid_temizle(table_1);
 				sifirla();

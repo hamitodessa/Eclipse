@@ -1443,7 +1443,6 @@ public class OBS_BACKUP extends JFrame {
 					} catch (Exception e) {
 						bckp.log_kayit(emirADI, new Date(), "1444=" +e.getMessage());
 					}
-					
 				}
 				else
 				{
@@ -1453,7 +1452,6 @@ public class OBS_BACKUP extends JFrame {
 					} catch (Exception e) {
 						bckp.log_kayit(emirADI, new Date(), "1454=" +e.getMessage());
 					}
-					
 				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Backup Alindi...");
 				String dosya, dzip;
@@ -1476,16 +1474,13 @@ public class OBS_BACKUP extends JFrame {
 				} catch (Exception e) {
 					bckp.log_kayit(emirADI, new Date(), "1477=" +e.getMessage());
 				}
-				
 				//path = Paths.get(glb.BACKUP_YERI + dzip);
 				//isReadiable(path);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 				boolean exists = tmpDir.exists();
 				if (!exists)
-				{
 					tmpDir.mkdirs();
-				}
 				if (glb.dos_kontrol(surucu_yer + "\\" + dzip))
 				{ 
 					glb.dos_sil(surucu_yer + "\\" + dzip);
@@ -1496,7 +1491,6 @@ public class OBS_BACKUP extends JFrame {
 				} catch (Exception e) {
 					bckp.log_kayit(emirADI, new Date(), "1497=" +e.getMessage());
 				}
-				
 				if (glb.dos_kontrol(glb.BACKUP_YERI + dzip))
 				{ 
 					glb.dos_sil(glb.BACKUP_YERI + dzip);
@@ -1682,7 +1676,6 @@ public class OBS_BACKUP extends JFrame {
 					} catch (Exception e) {
 						bckp.log_kayit(emirADI, new Date(),"1662=" + e.getMessage());
 					}
-					
 				}
 				else
 				{
@@ -1709,7 +1702,6 @@ public class OBS_BACKUP extends JFrame {
 				} catch (Exception e) {
 					bckp.log_kayit(emirADI, new Date(),"1689=" + e.getMessage());
 				}
-				
 				//path = Paths.get(glb.BACKUP_YERI + dzip);
 				//isfileVAR(path);
 				//isReadiable(path);
@@ -1720,7 +1712,6 @@ public class OBS_BACKUP extends JFrame {
 				} catch (Exception e) {
 					bckp.log_kayit(emirADI, new Date(),"1700=" + e.getMessage());
 				}
-				
 				//isReadiable(path);
 				Thread.sleep(500);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "FTP Yuklendi...");
@@ -1730,10 +1721,7 @@ public class OBS_BACKUP extends JFrame {
 					File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
 					boolean exists = tmpDir.exists();
 					if(exists)
-					{
-						//path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
 						tmpDir.delete();
-					}
 					bckp.log_kayit(emirADI, new Date(), dosADI + " BAK Dosyasi Silindi...");
 				}
 				else
@@ -1741,25 +1729,18 @@ public class OBS_BACKUP extends JFrame {
 					File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
 					boolean exists = tmpDir.exists();
 					if(exists)
-					{
-						//path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
 						tmpDir.delete();
-					}
 					bckp.log_kayit(emirADI, new Date(), dosADI + ".sql" + " Dosyasi Silindi...");
 				}
 				File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".zip");
 				bckp.log_kayit(emirADI, new Date(), dosADI + " ZIP Dosyasi Kontrol...");
 				boolean exists = tmpDir.exists();
 				if(exists)
-				{
-					//path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".zip");
 					tmpDir.delete();
-				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + " ZIP Dosyasi Silindi...");
 			}
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);		
-
 			bckp.genel_kayit_durum(emirADI, true,nowwDate, "Yedeklendi.....");
 			if (eskiyedek > 0) // **************FTP ESKILERI SIL
 			{
@@ -1956,7 +1937,6 @@ public class OBS_BACKUP extends JFrame {
 					} catch (Exception e) {
 						bckp.log_kayit(emirADI, new Date(),"1957="+e.getMessage());
 					}
-					
 					uplpnl.RPB2.setString("");
 				}
 				else
@@ -1968,7 +1948,6 @@ public class OBS_BACKUP extends JFrame {
 					} catch (Exception e) {
 						bckp.log_kayit(emirADI, new Date(),"1969="+e.getMessage());
 					}
-					
 					uplpnl.RPB2.setString("");
 				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
@@ -1976,9 +1955,7 @@ public class OBS_BACKUP extends JFrame {
 				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 				boolean exists = tmpDir.exists();
 				if (!exists)
-				{
 					tmpDir.mkdirs();
-				}
 				//path = Paths.get(glb.BACKUP_YERI + dzip);
 				//isReadiable(path);
 				Thread.sleep(500);
@@ -2205,7 +2182,6 @@ public class OBS_BACKUP extends JFrame {
 				if(exists)
 					tmpDir.delete();
 			}
-
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);		
 			bckp.genel_kayit_durum(emirADI, true,nowwDate, "Yedeklendi.....");

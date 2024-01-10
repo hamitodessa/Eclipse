@@ -71,6 +71,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -202,6 +203,7 @@ public class OBS_BACKUP extends JFrame {
 	static Component horizontalGlue = null ;
 	
 	public static JButton btntry;
+	public static JButton btnKapat;
 	static JButton btnBuyult;
 	static JButton btnMinimize;
 	static TrayIcon trayIcon = null ;
@@ -224,6 +226,32 @@ public class OBS_BACKUP extends JFrame {
 
 
 	public OBS_BACKUP() throws ClassNotFoundException, SQLException {
+		
+		addWindowListener(new WindowListener() {
+
+			@Override
+			public void windowOpened(WindowEvent e) {
+			}
+			@Override
+			public void windowClosing(WindowEvent e) {
+			}
+			@Override
+			public void windowClosed(WindowEvent e) {
+				btnKapat.doClick();
+			}
+			@Override
+			public void windowIconified(WindowEvent e) {
+			}
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+			}
+			@Override
+			public void windowActivated(WindowEvent e) {
+			}
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+			}
+	    });		
 		setUndecorated(true);
 		FlatRobotoFont.install();
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
@@ -747,6 +775,18 @@ public class OBS_BACKUP extends JFrame {
 				systemTRY();
 			}
 		});
+		btnKapat= new JButton("");
+		btnKapat.setVisible(false);
+		btnKapat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				emirleriSTOPYAP();
+				timerr.cancel();
+	            timerr.purge();
+	            timerr = null;
+				System.exit(0);
+			}
+		});
+		
 		btnBuyult = new JButton("");
 		btnBuyult.setVisible(false);
 		btnBuyult.addActionListener(new ActionListener() {

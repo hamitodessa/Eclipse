@@ -98,7 +98,8 @@ public class Title_Bar extends javax.swing.JPanel{
 		Buttont btnNewButton_2 = new Buttont();
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(1);
+				OBS_BACKUP.btnKapat.doClick();
+				//System.exit(1);
 			}
 		});
 		btnNewButton_2.setPreferredSize(new Dimension(18, 17));

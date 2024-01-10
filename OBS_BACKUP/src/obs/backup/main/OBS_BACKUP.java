@@ -1673,25 +1673,29 @@ public class OBS_BACKUP extends JFrame {
 				{
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
-				path = Paths.get(glb.BACKUP_YERI + dosya);
-				isfileVAR(path);
+				//path = Paths.get(glb.BACKUP_YERI + dosya);
+				//isfileVAR(path);
 				dzip = tarr + "_" + dosADI + ".zip";
-				isReadiable(path);
+				Thread.sleep(500);
+				//isReadiable(path);
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
-				path = Paths.get(glb.BACKUP_YERI + dzip);
-				isfileVAR(path);
-				isReadiable(path);
+				//path = Paths.get(glb.BACKUP_YERI + dzip);
+				//isfileVAR(path);
+				//isReadiable(path);
+				Thread.sleep(500);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "Zip Haline Getirildi...");
 				UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
-				isReadiable(path);
+				//isReadiable(path);
+				Thread.sleep(500);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "FTP Yuklendi...");
 				if( serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
+					bckp.log_kayit(emirADI, new Date(), dosADI + " BAK Dosyasi Kontrol...");
 					File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
 					boolean exists = tmpDir.exists();
 					if(exists)
 					{
-						path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
+						//path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
 						tmpDir.delete();
 					}
 					bckp.log_kayit(emirADI, new Date(), dosADI + " BAK Dosyasi Silindi...");
@@ -1702,16 +1706,17 @@ public class OBS_BACKUP extends JFrame {
 					boolean exists = tmpDir.exists();
 					if(exists)
 					{
-						path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
+						//path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
 						tmpDir.delete();
 					}
 					bckp.log_kayit(emirADI, new Date(), dosADI + ".sql" + " Dosyasi Silindi...");
 				}
 				File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".zip");
+				bckp.log_kayit(emirADI, new Date(), dosADI + " ZIP Dosyasi Kontrol...");
 				boolean exists = tmpDir.exists();
 				if(exists)
 				{
-					path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".zip");
+					//path = Paths.get(glb.BACKUP_YERI + tarr + "_" + dosADI + ".zip");
 					tmpDir.delete();
 				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + " ZIP Dosyasi Silindi...");

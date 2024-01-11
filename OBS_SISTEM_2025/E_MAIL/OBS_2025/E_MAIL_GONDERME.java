@@ -49,7 +49,6 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
@@ -75,6 +74,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.MAIL_SETTINGS;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.ValidEmailAddress;
 import raven.toast.Notifications;
 
@@ -82,9 +82,9 @@ import javax.swing.SwingConstants;
 
 @SuppressWarnings({"serial","static-access","deprecation"})
 public class E_MAIL_GONDERME extends JInternalFrame {
-	private JTextField txtkonu;
-	private JTextField txtgonhesap;
-	private JTextField txtgonisim;
+	private Obs_TextFIeld txtkonu;
+	private Obs_TextFIeld txtgonhesap;
+	private Obs_TextFIeld txtgonisim;
 	private JTextArea txtaciklama ;
 	private JList<String> list ;
 	private JComboBox<String> comboBox ;
@@ -113,14 +113,14 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
-		txtgonhesap = new JTextField();
+		txtgonhesap = new Obs_TextFIeld(35,"");
 
 		txtgonhesap.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtgonhesap.setBounds(75, 22, 240, 20);
 		panel_1.add(txtgonhesap);
 		txtgonhesap.setColumns(10);
 
-		txtgonisim = new JTextField();
+		txtgonisim = new Obs_TextFIeld(35,"");
 		txtgonisim.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtgonisim.setBounds(75, 46, 240, 20);
 		panel_1.add(txtgonisim);
@@ -167,7 +167,7 @@ public class E_MAIL_GONDERME extends JInternalFrame {
 		panel.add(panel_1_3);
 		panel_1_3.setLayout(null);
 
-		txtkonu = new JTextField();
+		txtkonu = new Obs_TextFIeld(50,"");
 		txtkonu.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtkonu.setBounds(75, 23, 240, 20);
 		panel_1_3.add(txtkonu);

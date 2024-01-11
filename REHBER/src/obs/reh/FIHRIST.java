@@ -137,18 +137,18 @@ public class FIHRIST extends JFrame {
 	private JTextField txtArama;
 	private static JTextField txtcd;
 	private static Obs_TextFIeld  txtAdi;
-	private static JTextField txtT1;
-	private static JTextField txtT2;
-	private static JTextField txtT3;
-	private static JTextField txtT4;
-	private static JTextField txtFax;
-	private static JTextField txtMail;
-	private static JTextField txtNot;
-	private static JTextField txtNot2;
-	private static JTextField txtKodu;
-	private static JTextField txtIp;
-	private static JTextField txtUser;
-	private static JTextField txtcdid;
+	private static Obs_TextFIeld txtT1;
+	private static Obs_TextFIeld txtT2;
+	private static Obs_TextFIeld txtT3;
+	private static Obs_TextFIeld txtT4;
+	private static Obs_TextFIeld txtFax;
+	private static Obs_TextFIeld txtMail;
+	private static Obs_TextFIeld txtNot;
+	private static Obs_TextFIeld txtNot2;
+	private static Obs_TextFIeld txtKodu;
+	private static Obs_TextFIeld txtIp;
+	private static Obs_TextFIeld txtUser;
+	private static Obs_TextFIeld txtcdid;
 	private static JPasswordField txtPwd;
 
 	private static JCheckBox chckbxS ;
@@ -164,7 +164,7 @@ public class FIHRIST extends JFrame {
 	private JButton btndizsec;
 	private JButton btnKayitf ;
 	private JCheckBox chckbxKriter;
-	private static JTextField txtDizin;
+	private static Obs_TextFIeld txtDizin;
 
 	/**
 	 * Launch the application.
@@ -312,9 +312,8 @@ public class FIHRIST extends JFrame {
 		lblNewLabel_2.setBounds(10, 75, 48, 14);
 		panel_2.add(lblNewLabel_2);
 
-		txtT1 = new JTextField();
+		txtT1 = new Obs_TextFIeld(25,"");
 		txtT1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtT1.setDocument(new JTextFieldLimit(25));
 		txtT1.setBounds(68, 72, 148, 20);
 		txtT1.addKeyListener(new KeyAdapter() {
 			@Override
@@ -337,9 +336,8 @@ public class FIHRIST extends JFrame {
 		lblNewLabel_2_1.setBounds(234, 72, 48, 14);
 		panel_2.add(lblNewLabel_2_1);
 
-		txtT2 = new JTextField();
+		txtT2 = new Obs_TextFIeld(25,"");
 		txtT2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtT2.setDocument(new JTextFieldLimit(25));
 		txtT2.setColumns(10);
 		txtT2.setBounds(292, 69, 148, 20);
 		txtT2.addKeyListener(new KeyAdapter() {
@@ -361,9 +359,8 @@ public class FIHRIST extends JFrame {
 		lblNewLabel_2_2.setBounds(450, 72, 48, 14);
 		panel_2.add(lblNewLabel_2_2);
 
-		txtT3 = new JTextField();
+		txtT3 = new Obs_TextFIeld(25,"");
 		txtT3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtT3.setDocument(new JTextFieldLimit(25));
 		txtT3.setColumns(10);
 		txtT3.setBounds(502, 69, 148, 20);
 		txtT3.addKeyListener(new KeyAdapter() {
@@ -385,9 +382,8 @@ public class FIHRIST extends JFrame {
 		lblNewLabel_2_3.setBounds(660, 72, 48, 14);
 		panel_2.add(lblNewLabel_2_3);
 
-		txtT4 = new JTextField();
+		txtT4 = new Obs_TextFIeld(25,"");
 		txtT4.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtT4.setDocument(new JTextFieldLimit(25));
 		txtT4.setColumns(10);
 		txtT4.setBounds(718, 69, 148, 20);
 		txtT4.addKeyListener(new KeyAdapter() {
@@ -409,9 +405,8 @@ public class FIHRIST extends JFrame {
 		lblNewLabel_2_4.setBounds(10, 101, 48, 14);
 		panel_2.add(lblNewLabel_2_4);
 
-		txtFax = new JTextField();
+		txtFax = new Obs_TextFIeld(25,"");
 		txtFax.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtFax.setDocument(new JTextFieldLimit(25));
 		txtFax.setColumns(10);
 		txtFax.setBounds(68, 98, 148, 20);
 		txtFax.addKeyListener(new KeyAdapter() {
@@ -433,9 +428,8 @@ public class FIHRIST extends JFrame {
 		lblNewLabel_2_5.setBounds(234, 100, 48, 14);
 		panel_2.add(lblNewLabel_2_5);
 
-		txtMail = new JTextField();
+		txtMail = new Obs_TextFIeld(50,"");
 		txtMail.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtMail.setDocument(new JTextFieldLimit(50));
 		txtMail.setColumns(10);
 		txtMail.setBounds(292, 97, 360, 20);
 		txtMail.addKeyListener(new KeyAdapter() {
@@ -469,9 +463,8 @@ public class FIHRIST extends JFrame {
 		lblNewLabel_2_6.setBounds(10, 129, 48, 14);
 		panel_2.add(lblNewLabel_2_6);
 
-		txtNot = new JTextField();
+		txtNot = new Obs_TextFIeld(50,"");
 		txtNot.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtNot.setDocument(new JTextFieldLimit(50));
 		txtNot.setColumns(10);
 		txtNot.setBounds(68, 126, 360, 20);
 		txtNot.addKeyListener(new KeyAdapter() {
@@ -493,9 +486,8 @@ public class FIHRIST extends JFrame {
 		lblNewLabel_2_6_1.setBounds(450, 129, 48, 14);
 		panel_2.add(lblNewLabel_2_6_1);
 
-		txtNot2 = new JTextField();
+		txtNot2 = new Obs_TextFIeld(50,"");
 		txtNot2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtNot2.setDocument(new JTextFieldLimit(50));
 		txtNot2.setColumns(10);
 		txtNot2.setBounds(508, 126, 360, 20);
 		txtNot2.addKeyListener(new KeyAdapter() {
@@ -755,7 +747,7 @@ public class FIHRIST extends JFrame {
 		lblNewLabel_1_1.setBounds(10, 88, 68, 14);
 		panel_3.add(lblNewLabel_1_1);
 
-		txtKodu = new JTextField();
+		txtKodu = new Obs_TextFIeld(12,"");
 		txtKodu.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtKodu.setColumns(10);
 		txtKodu.setBounds(88, 83, 78, 20);
@@ -808,7 +800,7 @@ public class FIHRIST extends JFrame {
 		lblServer.setBounds(10, 185, 78, 14);
 		panel_3.add(lblServer);
 
-		txtIp = new JTextField();
+		txtIp = new Obs_TextFIeld(50,"");
 		txtIp.setText("");
 		txtIp.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtIp.setColumns(10);
@@ -834,7 +826,7 @@ public class FIHRIST extends JFrame {
 		lblSifre.setBounds(10, 240, 68, 14);
 		panel_3.add(lblSifre);
 
-		txtUser = new JTextField();
+		txtUser = new Obs_TextFIeld(30,"");
 		txtUser.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtUser.setColumns(10);
 		txtUser.setBounds(88, 235, 157, 20);
@@ -849,7 +841,7 @@ public class FIHRIST extends JFrame {
 		txtPwd.setBounds(88, 258, 157, 20);
 		panel_3.add(txtPwd);
 
-		txtcdid = new JTextField();
+		txtcdid = new Obs_TextFIeld(30,"");
 		txtcdid.setBounds(10, 108, 32, 20);
 		txtcdid.setText("");
 		panel_3.add(txtcdid);
@@ -957,7 +949,7 @@ public class FIHRIST extends JFrame {
 		///////////////////////
 		panel_3.add(toolBar);
 		
-		txtDizin = new JTextField();
+		txtDizin = new Obs_TextFIeld(100,"");
 		txtDizin.setText("C:\\OBS_DATABASES");
 		txtDizin.setVisible(false);
 		txtDizin.setFont(new Font("Tahoma", Font.BOLD, 11));

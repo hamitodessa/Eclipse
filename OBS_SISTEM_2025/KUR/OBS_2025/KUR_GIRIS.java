@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import javax.swing.JTable;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
+
+import com.formdev.flatlaf.FlatClientProperties;
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.FORMATLAMA;
@@ -184,6 +186,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel_1.setLayout(null);
 
 		formattedTextField = new JFormattedTextField();
+		formattedTextField.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		formattedTextField.setFont(new Font("Tahoma", Font.BOLD, 12));
 		formattedTextField.setHorizontalAlignment(SwingConstants.RIGHT);
 		formattedTextField.setText("0.0000");
@@ -196,6 +199,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel_1.add(formattedTextField);
 
 		formattedTextField_1 = new JFormattedTextField();
+		formattedTextField_1.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		formattedTextField_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -223,6 +227,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel.add(panel_1_1);
 
 		formattedTextField_2 = new JFormattedTextField();
+		formattedTextField_2.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		formattedTextField_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		formattedTextField_2.setText("0.0000");
 		DefaultFormatterFactory f_dob2 = new DefaultFormatterFactory(dnff); 
@@ -234,6 +239,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel_1_1.add(formattedTextField_2);
 
 		formattedTextField_1_1 = new JFormattedTextField();
+		formattedTextField_1_1.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		formattedTextField_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -260,6 +266,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel.add(panel_1_2);
 
 		formattedTextField_3 = new JFormattedTextField();
+		formattedTextField_3.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		formattedTextField_3.setFont(new Font("Tahoma", Font.BOLD, 12));
 		formattedTextField_3.setText("0.0000");
 		DefaultFormatterFactory f_dob3 = new DefaultFormatterFactory(dnff); 
@@ -271,6 +278,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		panel_1_2.add(formattedTextField_3);
 
 		formattedTextField_1_2 = new JFormattedTextField();
+		formattedTextField_1_2.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		formattedTextField_1_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -60,7 +60,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JScrollPane;
+
 import javax.swing.JSeparator;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -125,6 +125,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import OBS_C_2025.SIFRE_DONDUR;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.bilgilendirme_bilgiler;
 import OBS_C_2025.db_List;
@@ -180,7 +181,7 @@ public class OBS_BACKUP extends JFrame {
 	public static SifreYenile sifreYenilePanel;
 	public static DownloadFile downloadFilePanel;
 
-	private JScrollPane scrollPane;
+	private ScrollPaneWin11 scrollPane;
 	public static JButton btnYeni_Gorev;
 	public static JButton btnNewButton_2;
 	public static JButton btnLoglama;
@@ -701,7 +702,7 @@ public class OBS_BACKUP extends JFrame {
 		uplpnl.setPreferredSize(new Dimension(0,00));
 		panel_1.add(uplpnl, BorderLayout.SOUTH);
 
-		scrollPane = new JScrollPane();
+		scrollPane = new ScrollPaneWin11();
 		panel_1.add(scrollPane, BorderLayout.CENTER);
 		//**************************************************************************************
 		container = new JPanel(); 

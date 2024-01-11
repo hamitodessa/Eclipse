@@ -10,7 +10,6 @@ import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
@@ -31,6 +30,7 @@ import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA_DUZ_RENK;
+import OBS_C_2025.ScrollPaneWin11;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 import java.awt.Font;
@@ -103,7 +103,7 @@ public class KayitliEmirler extends JPanel {
 		});
 
 
-		JScrollPane scrollPane = new JScrollPane();
+		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		add(scrollPane, BorderLayout.CENTER);
 
 		tblEmir = new JTable(){

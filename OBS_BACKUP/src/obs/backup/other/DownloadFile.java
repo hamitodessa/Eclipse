@@ -68,6 +68,7 @@ import OBS_C_2025.SAGA;
 import OBS_C_2025.SAGA_DUZ_RENK;
 import OBS_C_2025.SAGA_YANAS;
 import OBS_C_2025.SOLA_DUZ_RENK;
+import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.emir_bilgiler;
 import OBS_C_2025.ftp_bilgiler;
@@ -97,7 +98,7 @@ public class DownloadFile extends JPanel {
 	DownloadPanel panelalt ;
 	int satir = 0 ;
 	JPanel panel;
-	JScrollPane scrollPane;
+	ScrollPaneWin11 scrollPane;
 	/**
 	 * Create the panel.
 	 */
@@ -145,7 +146,7 @@ public class DownloadFile extends JPanel {
 		btnNewButton.setBounds(327, 11, 100, 23);
 		panel.add(btnNewButton);
 
-		scrollPane = new JScrollPane();
+		scrollPane = new ScrollPaneWin11();
 		add(scrollPane, BorderLayout.CENTER);
 
 		tblFile = new JTable(){

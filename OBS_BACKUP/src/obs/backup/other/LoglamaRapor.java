@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
@@ -31,6 +30,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA_DUZ_RENK;
+import OBS_C_2025.ScrollPaneWin11;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -51,7 +51,7 @@ public class LoglamaRapor extends JPanel {
 	private JComboBox<String> comboBox ;
 	private boolean ilkBASLA= true;
 	JPanel panel;
-	JScrollPane scrollPane ;
+	ScrollPaneWin11 scrollPane ;
 	/**
 	 * Create the panel.
 	 */
@@ -164,7 +164,7 @@ public class LoglamaRapor extends JPanel {
 		});
 
 
-		scrollPane = new JScrollPane();
+		scrollPane = new ScrollPaneWin11();
 		add(scrollPane, BorderLayout.CENTER);
 
 		tblLog = new JTable(){

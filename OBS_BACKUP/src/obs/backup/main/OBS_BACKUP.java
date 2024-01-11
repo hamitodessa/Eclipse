@@ -1443,7 +1443,7 @@ public class OBS_BACKUP extends JFrame {
 					try {
 						bckp.backup_al(dosADI, tarr + "_" + dosADI);
 					} catch (Exception e) {
-						bckp.log_kayit(emirADI, new Date(), "1444=" +e.getMessage());
+						bckp.log_kayit(emirADI, new Date(), "1446=" +e.getMessage());
 					}
 				}
 				else
@@ -1452,7 +1452,7 @@ public class OBS_BACKUP extends JFrame {
 						bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),
 							sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
 					} catch (Exception e) {
-						bckp.log_kayit(emirADI, new Date(), "1454=" +e.getMessage());
+						bckp.log_kayit(emirADI, new Date(), "1455=" +e.getMessage());
 					}
 				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Backup Alindi...");
@@ -1465,19 +1465,19 @@ public class OBS_BACKUP extends JFrame {
 				{
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
-				//path = Paths.get(glb.BACKUP_YERI + dosya);
-				//isfileVAR(path);
+				path = Paths.get(glb.BACKUP_YERI + dosya);
+				isfileVAR(path);
 				dzip = tarr + "_" + dosADI + ".zip";
-				//path = Paths.get(glb.BACKUP_YERI + dosya);
-				//isReadiable(path);
+				path = Paths.get(glb.BACKUP_YERI + dosya);
+				isReadiable(path);
 				Thread.sleep(500);
 				try {
 					bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
 				} catch (Exception e) {
 					bckp.log_kayit(emirADI, new Date(), "1477=" +e.getMessage());
 				}
-				//path = Paths.get(glb.BACKUP_YERI + dzip);
-				//isReadiable(path);
+				path = Paths.get(glb.BACKUP_YERI + dzip);
+				isReadiable(path);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 				boolean exists = tmpDir.exists();
@@ -1491,7 +1491,7 @@ public class OBS_BACKUP extends JFrame {
 				try {
 					fileCOPY(glb.BACKUP_YERI + dzip,surucu_yer + "\\" + dzip);
 				} catch (Exception e) {
-					bckp.log_kayit(emirADI, new Date(), "1497=" +e.getMessage());
+					bckp.log_kayit(emirADI, new Date(), "1494=" +e.getMessage());
 				}
 				if (glb.dos_kontrol(glb.BACKUP_YERI + dzip))
 				{ 
@@ -1681,8 +1681,12 @@ public class OBS_BACKUP extends JFrame {
 				}
 				else
 				{
-					bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),
-							sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
+					try {
+						bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),
+								sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");	
+					} catch (Exception e) {
+						bckp.log_kayit(emirADI, new Date(),"1688=" + e.getMessage());
+					}
 				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Backup Alindi...");
 				String dosya, dzip;
@@ -1702,7 +1706,7 @@ public class OBS_BACKUP extends JFrame {
 				try {
 					bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
 				} catch (Exception e) {
-					bckp.log_kayit(emirADI, new Date(),"1689=" + e.getMessage());
+					bckp.log_kayit(emirADI, new Date(),"1709=" + e.getMessage());
 				}
 				path = Paths.get(glb.BACKUP_YERI + dzip);
 				isfileVAR(path);
@@ -1712,7 +1716,7 @@ public class OBS_BACKUP extends JFrame {
 				try {
 					UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
 				} catch (Exception e) {
-					bckp.log_kayit(emirADI, new Date(),"1700=" + e.getMessage());
+					bckp.log_kayit(emirADI, new Date(),"1719=" + e.getMessage());
 				}
 				isReadiable(path);
 				Thread.sleep(500);
@@ -1937,7 +1941,7 @@ public class OBS_BACKUP extends JFrame {
 					try {
 						bckp. zipFolder(pathokuma,pathyazma);
 					} catch (Exception e) {
-						bckp.log_kayit(emirADI, new Date(),"1957="+e.getMessage());
+						bckp.log_kayit(emirADI, new Date(),"1944="+e.getMessage());
 					}
 					uplpnl.RPB2.setString("");
 				}
@@ -1948,24 +1952,25 @@ public class OBS_BACKUP extends JFrame {
 					try {
 						bckp.diger_zip_yap(okumadosyaadi, glb.BACKUP_YERI, dzip, false, "");
 					} catch (Exception e) {
-						bckp.log_kayit(emirADI, new Date(),"1969="+e.getMessage());
+						bckp.log_kayit(emirADI, new Date(),"1955="+e.getMessage());
 					}
 					uplpnl.RPB2.setString("");
 				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
-
 				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 				boolean exists = tmpDir.exists();
 				if (!exists)
 					tmpDir.mkdirs();
-				//path = Paths.get(glb.BACKUP_YERI + dzip);
-				//isReadiable(path);
+				path = Paths.get(glb.BACKUP_YERI + dzip);
+				isfileVAR(path);
+				path = Paths.get(glb.BACKUP_YERI + dzip);
+				isReadiable(path);
 				Thread.sleep(500);
 				File okunanFile = new File(glb.BACKUP_YERI + dzip);
 				try {
 					fileCOPY(glb.BACKUP_YERI + dzip, ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip);
 				} catch (Exception e) {
-					bckp.log_kayit(emirADI, new Date(),"1989="+e.getMessage());
+					bckp.log_kayit(emirADI, new Date(),"1973="+e.getMessage());
 				}
 				
 				if (glb.dos_kontrol( glb.BACKUP_YERI + "\\" + dzip))
@@ -2152,7 +2157,7 @@ public class OBS_BACKUP extends JFrame {
 					try {
 						bckp. zipFolder(pathokuma,pathyazma);
 					} catch (Exception e) {
-						bckp.log_kayit(emirADI, new Date(), "2176=" + e.getMessage());
+						bckp.log_kayit(emirADI, new Date(), "2160=" + e.getMessage());
 					}
 				}
 				else
@@ -2161,24 +2166,22 @@ public class OBS_BACKUP extends JFrame {
 					try {
 						bckp.diger_zip_yap(okumadosyaadi, glb.BACKUP_YERI, dzip, false, "");
 					} catch (Exception e) {
-						bckp.log_kayit(emirADI, new Date(), "2186=" + e.getMessage());
+						bckp.log_kayit(emirADI, new Date(), "2169=" + e.getMessage());
 					}
 				}
-				//path = Paths.get(glb.BACKUP_YERI + dzip);
-				//isfileVAR(path);
-				//path = Paths.get(glb.BACKUP_YERI + dzip);
-				//isReadiable(path);
+				path = Paths.get(glb.BACKUP_YERI + dzip);
+				isfileVAR(path);
+				path = Paths.get(glb.BACKUP_YERI + dzip);
+				isReadiable(path);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 				Thread.sleep(500);
 				try {
 					UploadFTPFiles(ftp, surucu, glb.BACKUP_YERI, dzip, kull, sifre, port, zmnasimi);
 				} catch (Exception e) {
-					bckp.log_kayit(emirADI, new Date(), "2197=" + e.getMessage());
+					bckp.log_kayit(emirADI, new Date(), "2179=" + e.getMessage());
 				}
-				
 				bckp.log_kayit(emirADI, new Date(), dosADI + " FTP Yuklendi...");
 				bckp.log_kayit(emirADI,new Date(), uzantisiz + " ZIP Dosyasi Silindi...");
-
 				File tmpDir = new File(glb.BACKUP_YERI + dzip);
 				boolean exists = tmpDir.exists();
 				if(exists)

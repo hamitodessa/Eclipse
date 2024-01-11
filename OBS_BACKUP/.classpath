@@ -19,5 +19,14 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/commons-net-3.7-sources.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/mail.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/activation.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/poi-ooxml-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/poi-ooxml-schemas-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/poi-scratchpad-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/pfjgraphics.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/poi-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/rs2xml.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/xmlbeans-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/commons-compress-1.22.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1675,6 +1675,7 @@ public class OBS_BACKUP extends JFrame {
 				{
 					try {
 						bckp.backup_al(dosADI, tarr + "_" + dosADI);
+						Thread.sleep(1000);
 					} catch (Exception e) {
 						bckp.log_kayit(emirADI, new Date(),"1662=" + e.getMessage());
 					}
@@ -1684,6 +1685,7 @@ public class OBS_BACKUP extends JFrame {
 					try {
 						bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),
 								sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");	
+						Thread.sleep(1000);
 					} catch (Exception e) {
 						bckp.log_kayit(emirADI, new Date(),"1688=" + e.getMessage());
 					}

@@ -17,6 +17,7 @@ import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
+import org.apache.commons.net.io.CopyStreamAdapter;
 
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
@@ -2286,7 +2287,7 @@ public class OBS_BACKUP extends JFrame {
 			String secondRemoteFile = dosadi;
 			OutputStream outputStream = ftp.storeFileStream(secondRemoteFile);
 			InputStream inputStream = new FileInputStream(secondLocalFile);
-			byte[] bytesIn = new byte[4196]; //4196
+			byte[] bytesIn = new byte[1024]; 
 			int read = 0;
 			long toplam = 0 ;
 			int fileLenght = (int) secondLocalFile.length();
@@ -2304,15 +2305,19 @@ public class OBS_BACKUP extends JFrame {
 				double speedInBytesPerSecond =  toplam / (timeElapsed / 1000.0);
 				uplpnl.lblHiz.setText(FORMATLAMA.doub_0(speedInBytesPerSecond/1024) + " KBytes");
 			}
-			inputStream.close();
+			outputStream.flush();
 			outputStream.close();
+			ftp.completePendingCommand();
+			inputStream.close();
+			
+			ftp.logout();
+			ftp.disconnect();
 			uplpnl.RPB2.setStringPainted(false);
 			uplpnl.Progres_Bar_2( 0);
 			secondLocalFile = null ;
 			inputStream = null;
 			outputStream = null;
-			ftp.logout();
-			ftp.disconnect();
+			
 		} catch (Exception ex) {
 			bckp.log_kayit("Sistem", new Date(), "2334=" + ex.getMessage());
 		}

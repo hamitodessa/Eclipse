@@ -11,11 +11,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Properties;
+
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
@@ -47,12 +52,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 import OBS_C_2025.BACKUP_GLOBAL;
+import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.FILE_UZANTI;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA_DUZ_RENK;
 import OBS_C_2025.ScrollPaneWin11;
+import OBS_C_2025.bilgilendirme_bilgiler;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -65,9 +72,18 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import javax.mail.util.ByteArrayDataSource;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.Message.RecipientType;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.swing.ImageIcon;
 
+@SuppressWarnings({"serial","unused","resource"})
 public class LoglamaRapor extends JPanel {
 
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
@@ -81,7 +97,7 @@ public class LoglamaRapor extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	@SuppressWarnings("serial")
+	
 	public LoglamaRapor() {
 		setLayout(new BorderLayout(0, 0));
 
@@ -151,6 +167,7 @@ public class LoglamaRapor extends JPanel {
 		panel.add(btnNewButton);
 		
 		JButton btnExcell = new JButton("");
+		btnExcell.setToolTipText("Excell Aktarma");
 		btnExcell.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				excel_aktar();
@@ -161,6 +178,7 @@ public class LoglamaRapor extends JPanel {
 		panel.add(btnExcell);
 		
 		JButton btnMail = new JButton("");
+		btnMail.setVisible(false);
 		btnMail.setIcon(new ImageIcon(LoglamaRapor.class.getResource("/ICONLAR/mail-16.png")));
 		btnMail.setBounds(681, 11, 23, 23);
 		panel.add(btnMail);
@@ -316,7 +334,7 @@ public class LoglamaRapor extends JPanel {
 			write(false) ;	
 		}
 	}
-	@SuppressWarnings("resource")
+
 	private void write(boolean mail)
 	{
 		try 
@@ -430,19 +448,20 @@ public class LoglamaRapor extends JPanel {
 				}
 				if (mail)
 				{
-					FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile()  + "_" + zaman + uzanti));
-					workbook.write(out);
-					out.close();
-					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Aktarma Islemi Tamamlandi....." );
-				}
-				else {
 					ByteArrayOutputStream bos = new ByteArrayOutputStream();
 					workbook.write(bos);
 					byte[] byteArray= bos.toByteArray();
 					InputStream in = new ByteArrayInputStream(byteArray);
 				//	oac.ds = new ByteArrayDataSource(in, "application/x-any");
 					bos.close();
+				}
+				else {
+				
+					FileOutputStream out = new FileOutputStream(new File(fileChooser.getSelectedFile()  + "_" + zaman + uzanti));
+					workbook.write(out);
+					out.close();
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Aktarma Islemi Tamamlandi....." );
 				}
 				
 			
@@ -455,5 +474,81 @@ public class LoglamaRapor extends JPanel {
 		}
 	}
 
+
+	private static void mail_at(List<bilgilendirme_bilgiler> bilgiBilgi,String mesaj ,String eADI) throws ClassNotFoundException, SQLException
+	{
+		try {
+			
+			String gonisim, gonhesap, alici, konu, smtp, port, kull, sifre;
+			boolean ssl, tsl;
+			gonisim = bilgiBilgi.get(0).getGON_ISIM();
+			gonhesap = bilgiBilgi.get(0).getGON_HESAP();
+			alici = bilgiBilgi.get(0).getALICI();
+			konu = bilgiBilgi.get(0).getKONU();
+			smtp = bilgiBilgi.get(0).getSMTP();
+			port = bilgiBilgi.get(0).getSMTP_PORT();
+			kull = bilgiBilgi.get(0).getKULLANICI();
+			String decodedString = bilgiBilgi.get(0).getSIFRE();
+			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+			byte[] bytes = new byte[byteValues.length];
+			for (int i=0, len=bytes.length; i<len; i++) {
+				bytes[i] = Byte.parseByte(byteValues[i].trim());     
+			}
+			sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
+			if (bilgiBilgi.get(0).isSSL())
+				ssl = true;
+			else
+				ssl = false;
+			if (bilgiBilgi.get(0).isTSL())
+				tsl = true;
+			else
+				tsl = false;
+			String[] to = { alici };
+			MimeBodyPart messagePart = null ;
+			Properties props = System.getProperties();
+			props.put("mail.smtp.host", smtp);
+			props.put("mail.smtp.user", kull);
+			props.put("mail.smtp.password",sifre);
+			props.put("mail.smtp.port", port);
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+			props.put("mail.smtp.starttls.enable", tsl);
+			if (ssl)
+			{
+				props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
+				//props.put("mail.smtp.startsls.enable", SSL);
+			}
+			Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(kull, sifre);
+				}
+			});
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(gonhesap ,gonisim ));
+			InternetAddress[] toAddress = new InternetAddress[to.length];
+			for (int i = 0; i < to.length; i++) {
+				toAddress[i] = new InternetAddress(to[i]);
+			}
+			for (int i = 0; i < toAddress.length; i++) {
+				message.setRecipient(RecipientType.TO,  toAddress[i]);
+			}
+			messagePart = new MimeBodyPart();
+			DatagramSocket socket = new DatagramSocket();
+			socket.connect(new InetSocketAddress("google.com", 80));
+			messagePart.setText(mesaj ,"UTF-8");
+			Multipart multipart = new MimeMultipart();
+			multipart.addBodyPart(messagePart);
+			message.setSentDate(new Date());
+			message.setSubject("OBS BACKUP YEDEKLEME" , "UTF-8");
+			message.setContent(multipart);
+			Transport.send(message);
+			message= null;
+			session = null;
+		}
+		catch (Exception ex)
+		{
+			
+		}
+	}
 }
 

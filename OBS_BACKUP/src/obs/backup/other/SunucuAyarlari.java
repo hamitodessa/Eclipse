@@ -271,11 +271,11 @@ public class SunucuAyarlari extends JPanel {
 				}
 			}
 		});
-		btnNewButton_9.setBounds(624, 581, 100, 23);
+		btnNewButton_9.setBounds(624, 550, 100, 23);
 		 add(btnNewButton_9);
 		 
 		 btnftpkont = new JButton("Ftp Kontrol");
-		 btnftpkont.setBounds(10, 581, 100, 23);
+		 btnftpkont.setBounds(10, 550, 100, 23);
 		 btnftpkont.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				try {

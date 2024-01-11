@@ -115,7 +115,7 @@ public class ServerBilgileri extends JPanel {
 
 			}
 		});
-		btnMSTest.setBounds(10, 548, 129, 23);
+		btnMSTest.setBounds(10, 517, 129, 23);
 		panel.add(btnMSTest);
 		
 		JButton btnMSkaydet = new JButton("Kaydet");
@@ -137,7 +137,7 @@ public class ServerBilgileri extends JPanel {
 			}
 		});
 	
-		btnMSkaydet.setBounds(624, 548, 100, 23);
+		btnMSkaydet.setBounds(624, 517, 100, 23);
 		panel.add(btnMSkaydet);
 		
 		JLabel lblNewLabel_4_1 = new JLabel("Port");
@@ -210,7 +210,7 @@ public class ServerBilgileri extends JPanel {
 
 			}
 		});
-		btnMyTest.setBounds(10, 548, 129, 23);
+		btnMyTest.setBounds(10, 517, 129, 23);
 		panel_1.add(btnMyTest);
 		
 		JButton btnMyKaydet = new JButton("Kaydet");
@@ -231,7 +231,7 @@ public class ServerBilgileri extends JPanel {
 				}
 			}
 		});
-		btnMyKaydet.setBounds(624, 548, 100, 23);
+		btnMyKaydet.setBounds(624, 517, 100, 23);
 		panel_1.add(btnMyKaydet);
 		
 		JLabel lblNewLabel_4 = new JLabel("Port");

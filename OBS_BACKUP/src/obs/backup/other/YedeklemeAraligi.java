@@ -125,7 +125,7 @@ public class YedeklemeAraligi extends JPanel {
 		timeBitis.setValue(qweDate);
 			
 		JButton btnNewButton_9 = new JButton("Kaydet");
-		btnNewButton_9.setBounds(624, 581, 100, 23);
+		btnNewButton_9.setBounds(624, 550, 100, 23);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	

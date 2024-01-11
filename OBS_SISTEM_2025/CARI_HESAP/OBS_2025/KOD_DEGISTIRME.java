@@ -10,11 +10,11 @@ import javax.swing.event.DocumentListener;
 
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
-import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 
-import javax.swing.JTextField;
+
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.Font;
@@ -31,13 +31,13 @@ import javax.swing.JLabel;
 @SuppressWarnings({"serial" , "static-access" , "deprecation"})
 public class KOD_DEGISTIRME extends JInternalFrame {
 	
-	private static JTextField textField_1;
+	private static Obs_TextFIeld textField_1;
 	private static JLabel lblNewLabel ;
 	private static JLabel lblNewLabel_1 ;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 
-	private JTextField textField_2;
+	private Obs_TextFIeld textField_2;
 
 	public KOD_DEGISTIRME() {
 		setTitle("KOD DEGISTIRME");
@@ -62,7 +62,7 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 		lblNewLabel.setBounds(28, 49, 212, 14);
 		panel_1.add(lblNewLabel);
 		
-		textField_2 = new JTextField();
+		textField_2 = new Obs_TextFIeld(12,"");
 		textField_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -81,7 +81,6 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 		});
 		textField_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_2.setBounds(28, 21, 150, 20);
-		textField_2.setDocument(new JTextFieldLimit(12));
 		textField_2.getDocument().addDocumentListener(new DocumentListener() {
 
 			@Override
@@ -112,7 +111,7 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 		panel_1_1.setBounds(313, 21, 250, 74);
 		panel.add(panel_1_1);
 		
-		textField_1 = new JTextField();
+		textField_1 = new Obs_TextFIeld(12,"");
 		textField_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -132,7 +131,6 @@ public class KOD_DEGISTIRME extends JInternalFrame {
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_1.setColumns(10);
 		textField_1.setBounds(28, 21, 150, 20);
-		textField_1.setDocument(new JTextFieldLimit(12));
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void insertUpdate(DocumentEvent e) {

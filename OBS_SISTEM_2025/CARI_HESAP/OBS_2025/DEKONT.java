@@ -36,6 +36,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.KUR_ACCESS;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
@@ -99,9 +100,9 @@ public class DEKONT extends JInternalFrame {
 	NumberFormat nf = NumberFormat.getIntegerInstance();
 	NumberFormatter nff = new NumberFormatter(nf);
 	DefaultFormatterFactory f_int = new DefaultFormatterFactory(nff);
-	public static  JTextField txtevrak;
+	public static  Obs_TextFIeld txtevrak;
 	private static JTextArea txtaciklama ;
-	private static JTextField txtkod;
+	private static Obs_TextFIeld txtkod;
 	private static JDateChooser dtc ;
 	private static JFormattedTextField txtbkur ;
 	private static JFormattedTextField txtbtutar  ;
@@ -136,12 +137,6 @@ public class DEKONT extends JInternalFrame {
 
 	public DEKONT() {
 		FlatLaf.registerCustomDefaultsSource("OBS_2025");
-		addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				System.out.println("===");
-			}
-		});
 		setResizable(true);
 
 		setTitle("DEKONT");
@@ -322,8 +317,7 @@ public class DEKONT extends JInternalFrame {
 
 		panel.add(btnNewButton);
 
-		txtevrak = new JTextField();
-		txtevrak.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		txtevrak = new Obs_TextFIeld(20,"");
 		txtevrak.setText("0");
 		txtevrak.addKeyListener(new KeyAdapter() {
 			@Override
@@ -1554,7 +1548,7 @@ public class DEKONT extends JInternalFrame {
 		//getContentPane().add(panel_3_1);
 		panel_3_1.setLayout(new BorderLayout(0, 0));
 
-		txtkod = new JTextField();
+		txtkod = new Obs_TextFIeld(5,"");
 		txtkod.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtkod.addFocusListener(new FocusAdapter() {
 			@Override
@@ -1564,8 +1558,8 @@ public class DEKONT extends JInternalFrame {
 		});
 		txtkod.setEnabled(false);
 		txtkod.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtkod.setDocument(new JTextFieldLimit(5));
-		JTextFieldRegularPopupMenu.addTo(txtkod);
+		//txtkod.setDocument(new JTextFieldLimit(5));
+		//JTextFieldRegularPopupMenu.addTo(txtkod);
 		txtkod.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {

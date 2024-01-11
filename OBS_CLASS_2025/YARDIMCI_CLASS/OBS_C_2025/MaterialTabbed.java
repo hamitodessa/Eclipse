@@ -1,4 +1,4 @@
-package OBS_2025;
+package OBS_C_2025;
 
 import java.awt.Color;
 import java.awt.Graphics;

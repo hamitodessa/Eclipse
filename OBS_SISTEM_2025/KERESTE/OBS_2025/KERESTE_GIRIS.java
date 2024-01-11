@@ -122,6 +122,7 @@ import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KERESTE_KOD_KONTROL;
 import OBS_C_2025.KER_BILGI;
 import OBS_C_2025.KER_RAPOR_BILGI;
+import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.Next_Cell_Kereste;
 import OBS_C_2025.SAGA;

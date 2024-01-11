@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
@@ -35,6 +34,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.IMAGE_RENDERER;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
@@ -46,7 +46,7 @@ public class ADRESLER extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	private JTable table;
-	private JTextField textField;
+	private Obs_TextFIeld textField;
 	private JLabel lbladet ;
 	
 	public ADRESLER() { 
@@ -127,7 +127,7 @@ public class ADRESLER extends JInternalFrame {
 	lblNewLabel.setBounds(21, 7, 46, 14);
 	panel.add(lblNewLabel);
 
-	textField = new JTextField();
+	textField = new Obs_TextFIeld(30,"");
 	textField.getDocument().addDocumentListener(new DocumentListener() {
 		public void changedUpdate(DocumentEvent e) {
 			arama();

@@ -44,6 +44,8 @@ import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.MaterialTabbed;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
@@ -51,7 +53,7 @@ import raven.toast.Notifications;
 import OBS_C_2025.CheckBoxHeader;
 
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.border.TitledBorder;
@@ -66,13 +68,13 @@ static ResultSet rs = null ;
 //private static final Vector<?> Boolean = null;
 public static JTable table;
 private JLabel lbladet;
-private JTextField textField;
-public static JTextField textField_1;
-public static JTextField textField_2;
-public static JTextField textField_3;
-public static JTextField textField_4;
-public static JTextField textField_5;
-public static JTextField textField_6;
+private Obs_TextFIeld textField;
+public static Obs_TextFIeld textField_1;
+public static Obs_TextFIeld textField_2;
+public static Obs_TextFIeld textField_3;
+public static Obs_TextFIeld textField_4;
+public static Obs_TextFIeld textField_5;
+public static Obs_TextFIeld textField_6;
 public static JSpinner spinner;
 public static MaterialTabbed orTabbedPane;
 private boolean hEPSI = false;
@@ -139,32 +141,32 @@ private boolean hEPSI = false;
 		lblNewLabel_8.setBounds(10, 162, 91, 14);
 		panel_2.add(lblNewLabel_8);
 		
-		textField_1 = new JTextField();
+		textField_1 = new Obs_TextFIeld(50,"");
 		textField_1.setBounds(111, 34, 267, 20);
 		panel_2.add(textField_1);
 		textField_1.setColumns(10);
 		
-		textField_2 = new JTextField();
+		textField_2 = new Obs_TextFIeld(50,"");
 		textField_2.setBounds(111, 59, 267, 20);
 		panel_2.add(textField_2);
 		textField_2.setColumns(10);
 		
-		textField_3 = new JTextField();
+		textField_3 = new Obs_TextFIeld(50,"");
 		textField_3.setBounds(111, 84, 267, 20);
 		panel_2.add(textField_3);
 		textField_3.setColumns(10);
 		
-		textField_4 = new JTextField();
+		textField_4 = new Obs_TextFIeld(50,"");
 		textField_4.setBounds(111, 109, 267, 20);
 		panel_2.add(textField_4);
 		textField_4.setColumns(10);
 		
-		textField_5 = new JTextField();
+		textField_5 = new Obs_TextFIeld(50,"");
 		textField_5.setBounds(111, 134, 267, 20);
 		panel_2.add(textField_5);
 		textField_5.setColumns(10);
 		
-		textField_6 = new JTextField();
+		textField_6 = new Obs_TextFIeld(50,"");
 		textField_6.setBounds(111, 159, 267, 20);
 		panel_2.add(textField_6);
 		textField_6.setColumns(10);
@@ -205,7 +207,7 @@ private boolean hEPSI = false;
 		lblNewLabel_1.setBounds(10, 14, 48, 14);
 		panel_1.add(lblNewLabel_1);
 		
-		textField = new JTextField();
+		textField = new Obs_TextFIeld(30,"");
 		textField.setBounds(87, 11, 259, 20);
 		textField.getDocument().addDocumentListener(new DocumentListener() 
 		{

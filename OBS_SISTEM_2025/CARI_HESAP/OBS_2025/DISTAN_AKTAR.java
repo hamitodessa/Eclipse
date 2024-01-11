@@ -77,7 +77,8 @@ import OBS_C_2025.DoubleEditor;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JDateChooserEditor;
-import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.MaterialTabbed;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
@@ -116,12 +117,12 @@ public class DISTAN_AKTAR extends JInternalFrame {
 	private JFileChooser chooser;
 	private static JTable table;
 	private static JTable table_1;
-	private JTextField textField;
+	private Obs_TextFIeld textField;
 	private static boolean ilk = true;
 	public static JSplitPane splitPane ;
-	private JTextField txtBORCLU;
-	private JTextField txtARAMA;
-	private JTextField txtALACAK;
+	private Obs_TextFIeld txtBORCLU;
+	private Obs_TextFIeld txtARAMA;
+	private Obs_TextFIeld txtALACAK;
 	private JLabel lblunvan_1 ;
 	private JLabel lblunvan_2 ;
 	private JComboBox<String> cmbArama;
@@ -198,7 +199,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		btnNewButton_2.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/icons8-compose-16.png")));
 		toolBar_1.add(btnNewButton_2);
 		
-		txtBORCLU = new JTextField();
+		txtBORCLU = new Obs_TextFIeld(12,"");
 		txtBORCLU.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtBORCLU.setBounds(603, 18, 100, 20);
 		txtBORCLU.setColumns(12);
@@ -289,7 +290,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		btnNewButton_3.setBounds(708, 17, 24, 24);
 		panel.add(btnNewButton_3);
 		
-		txtARAMA = new JTextField();
+		txtARAMA = new Obs_TextFIeld(30,"");
 		txtARAMA.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtARAMA.addKeyListener(new KeyAdapter() {
 			@Override
@@ -336,7 +337,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		lblNewLabel_4.setBounds(107, 22, 46, 14);
 		panel.add(lblNewLabel_4);
 		
-		txtALACAK = new JTextField();
+		txtALACAK = new Obs_TextFIeld(12,"");
 		txtALACAK.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtALACAK.setColumns(12);
 		txtALACAK.setBounds(945, 18, 100, 20);
@@ -828,7 +829,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		btnNewButton_7.setIcon(new ImageIcon(DISTAN_AKTAR.class.getResource("/ICONLAR/sil.png")));
 		toolBar_2.add(btnNewButton_7);
 		
-		textField = new JTextField();
+		textField = new Obs_TextFIeld(12,"");
 		textField.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -851,7 +852,6 @@ public class DISTAN_AKTAR extends JInternalFrame {
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setColumns(10);
 		textField.setBounds(76, 116, 156, 20);
-		textField.setDocument(new JTextFieldLimit(12));
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 		@Override
 		public void insertUpdate(DocumentEvent e) {

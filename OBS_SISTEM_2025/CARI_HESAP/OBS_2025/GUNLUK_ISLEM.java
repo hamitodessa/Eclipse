@@ -34,6 +34,7 @@ import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
@@ -48,7 +49,6 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.JTextField;
 import java.awt.Component;
 import javax.swing.Box;
 import net.miginfocom.swing.MigLayout;
@@ -62,7 +62,7 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 	public static JScrollPane scrollPane;
 	public static JSplitPane splitPane;
 	private static JLabel lblNewLabel_1;
-	private JTextField textField;
+	private Obs_TextFIeld textField;
 	public GUNLUK_ISLEM() {
 		setTitle("GUNLUK ISLEM");
 		setResizable(true);
@@ -79,7 +79,7 @@ public class GUNLUK_ISLEM extends JInternalFrame {
 		JLabel lblNewLabel_2 = new JLabel("Arama");
 		pnlust.add(lblNewLabel_2, "cell 0 0,alignx left,growy");
 		
-		textField = new JTextField();
+		textField = new Obs_TextFIeld(30,"");
 		textField.setMinimumSize(new Dimension(300, 22));
 		
 		pnlust.add(textField, "cell 0 0,alignx left,growy");

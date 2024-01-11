@@ -31,6 +31,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.*;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.SOLA;
 import raven.toast.Notifications;
 

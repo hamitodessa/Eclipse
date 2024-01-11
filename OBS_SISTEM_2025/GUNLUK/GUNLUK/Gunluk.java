@@ -16,8 +16,9 @@ import javax.swing.JScrollPane;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDayChooser;
 import OBS_C_2025.Gunluk_Bilgi;
+import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.MyTreeCellRenderer;
-import OBS_2025.MaterialTabbed;
+
 import OBS_2025.OBS_MAIN;
 import OBS_2025.OBS_SIS_2025_ANA_CLASS;
 

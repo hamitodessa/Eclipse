@@ -122,6 +122,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KER_BILGI;
+import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.Next_Cell_Kereste;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SAGA_BOLD;

@@ -53,7 +53,7 @@ import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
-import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_CEVIR;
@@ -68,8 +68,8 @@ public class YIL_SONU extends JInternalFrame {
 	private static JTable table;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
-	private static JTextField textField;
-	private static JTextField textField_1;
+	private static Obs_TextFIeld textField;
+	private static Obs_TextFIeld textField_1;
 	private JPanel panel_1 ;
 	private JLabel lblNewLabel_1;
 	private static JCheckBox chckbxNewCheckBox ;
@@ -151,7 +151,7 @@ public class YIL_SONU extends JInternalFrame {
 		lblNewLabel.setBounds(10, 11, 136, 14);
 		panel.add(lblNewLabel);
 
-		textField = new JTextField();
+		textField = new Obs_TextFIeld(12,"");
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setBounds(10, 30, 77, 20);
 		panel.add(textField);
@@ -225,7 +225,7 @@ public class YIL_SONU extends JInternalFrame {
 		});
 		panel_1.add(dateChooser);
 
-		textField_1 = new JTextField();
+		textField_1 = new Obs_TextFIeld(12,"");
 		textField_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -246,7 +246,6 @@ public class YIL_SONU extends JInternalFrame {
 		textField_1.setColumns(10);
 		textField_1.setBounds(148, 20, 138, 20);
 		textField_1.setToolTipText("Devir Hesabi");
-		textField_1.setDocument(new JTextFieldLimit(12));
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 
 			@Override

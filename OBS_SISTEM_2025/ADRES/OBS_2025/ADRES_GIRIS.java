@@ -28,7 +28,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -46,8 +45,7 @@ import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
-import OBS_C_2025.JTextFieldLimit;
-import OBS_C_2025.JTextFieldRegularPopupMenu;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
 import javax.swing.JComboBox;
@@ -55,43 +53,43 @@ import javax.swing.JComboBox;
 @SuppressWarnings({"serial","static-access","deprecation"})
 public class ADRES_GIRIS extends JInternalFrame {
 
-	private static JTextField txtkayit;
-	private static JTextField txtkodu;
-	private static JTextField txtunvan;
-	private static JTextField txtyetkili;
-	private static JTextField txtadres1;
-	private static JTextField txtadres2;
-	private static JTextField txtvd;
-	private static JTextField txttel1;
-	private static JTextField txttel3;
-	private static JTextField txtn1;
-	private static JTextField txtweb;
-	private static JTextField txtoz1;
-	private static JTextField txtaciklama;
-	private static JTextField txtsemt;
-	private static JTextField txtsehir;
-	private static JTextField txtvn;
-	private static JTextField txttel2;
-	private static JTextField txtfax;
-	private static JTextField txtn2;
-	private static JTextField txtmail;
-	private static JTextField txtn3;
+	private static Obs_TextFIeld txtkayit;
+	private static Obs_TextFIeld txtkodu;
+	private static Obs_TextFIeld txtunvan;
+	private static Obs_TextFIeld txtyetkili;
+	private static Obs_TextFIeld txtadres1;
+	private static Obs_TextFIeld txtadres2;
+	private static Obs_TextFIeld txtvd;
+	private static Obs_TextFIeld txttel1;
+	private static Obs_TextFIeld txttel3;
+	private static Obs_TextFIeld txtn1;
+	private static Obs_TextFIeld txtweb;
+	private static Obs_TextFIeld txtoz1;
+	private static Obs_TextFIeld txtaciklama;
+	private static Obs_TextFIeld txtsemt;
+	private static Obs_TextFIeld txtsehir;
+	private static Obs_TextFIeld txtvn;
+	private static Obs_TextFIeld txttel2;
+	private static Obs_TextFIeld txtfax;
+	private static Obs_TextFIeld txtn2;
+	private static Obs_TextFIeld txtmail;
+	private static Obs_TextFIeld txtn3;
 	private static JCheckBox chcsms ;
 	private static JCheckBox chcmail ;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	static ResultSet rs = null ;
 	private static int kayit_sayi = 0 ;
-	private static JTextField txtpkodu;
-	private static JTextField txtozel;
-	private static JTextField txtoz2;
-	private static JTextField txtarama;
+	private static Obs_TextFIeld txtpkodu;
+	private static Obs_TextFIeld txtozel;
+	private static Obs_TextFIeld txtoz2;
+	private static Obs_TextFIeld txtarama;
 
 	private static JCheckBox chcbas ;
 	private static JCheckBox chcici ;
 	private static ImagePanel imagePanel ;
 	private static JComboBox<String> cmbKodKontrol;
-	private static JTextField textID;
+	private static Obs_TextFIeld textID;
 	
 	public ADRES_GIRIS() {
 		setTitle("ADRES GIRISI");
@@ -134,7 +132,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		btnNewButton_1.setBounds(165, 65, 54, 30);
 		panel.add(btnNewButton_1);
 
-		txtkayit = new JTextField();
+		txtkayit = new Obs_TextFIeld(30,"");
 		txtkayit.setForeground(new Color(0, 0, 205));
 		txtkayit.setEditable(false);
 		txtkayit.setHorizontalAlignment(SwingConstants.CENTER);
@@ -173,8 +171,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		lblNewLabel_1.setBounds(28, 116, 46, 14);
 		panel.add(lblNewLabel_1);
 
-		txtkodu = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtkodu);
+		txtkodu = new Obs_TextFIeld(12,"");
 		txtkodu.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -200,7 +197,6 @@ public class ADRES_GIRIS extends JInternalFrame {
 		txtkodu.setEnabled(false);
 		txtkodu.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtkodu.setBounds(102, 114, 137, 20);
-		txtkodu.setDocument(new JTextFieldLimit(12));
 		panel.add(txtkodu);
 		txtkodu.setColumns(10);
 
@@ -209,11 +205,9 @@ public class ADRES_GIRIS extends JInternalFrame {
 		lblNewLabel_3.setBounds(276, 116, 46, 14);
 		panel.add(lblNewLabel_3);
 
-		txtunvan = new JTextField();
+		txtunvan = new Obs_TextFIeld(50,"");
 		txtunvan.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtunvan.setBounds(340, 114, 400, 20);
-		txtunvan.setDocument(new JTextFieldLimit(50));
-		JTextFieldRegularPopupMenu.addTo(txtunvan);
 		txtunvan.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -227,15 +221,14 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(txtunvan);
 		txtunvan.setColumns(10);
 
-		txtyetkili = new JTextField();
+		txtyetkili = new Obs_TextFIeld(30,"");
 		txtyetkili.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtyetkili.setBounds(102, 430, 313, 20);
-		txtyetkili.setDocument(new JTextFieldLimit(30));
+	
 		panel.add(txtyetkili);
 		txtyetkili.setColumns(10);
 
-		txtadres1 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtadres1);
+		txtadres1 = new Obs_TextFIeld(35,"");
 		txtadres1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -247,12 +240,11 @@ public class ADRES_GIRIS extends JInternalFrame {
 		});
 		txtadres1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtadres1.setBounds(102, 160, 313, 20);
-		txtadres1.setDocument(new JTextFieldLimit(35));
+		
 		panel.add(txtadres1);
 		txtadres1.setColumns(10);
 
-		txtadres2 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtadres2);
+		txtadres2 = new Obs_TextFIeld(35,"");
 		txtadres2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -264,15 +256,12 @@ public class ADRES_GIRIS extends JInternalFrame {
 		});
 		txtadres2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtadres2.setBounds(102, 187, 313, 20);
-		txtadres2.setDocument(new JTextFieldLimit(35));
 		panel.add(txtadres2);
 		txtadres2.setColumns(10);
 
-		txtvd = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtvd);
+		txtvd = new Obs_TextFIeld(25,"");
 		txtvd.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtvd.setBounds(102, 214, 194, 20);
-		txtvd.setDocument(new JTextFieldLimit(25));
 		txtvd.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -286,52 +275,40 @@ public class ADRES_GIRIS extends JInternalFrame {
 		panel.add(txtvd);
 		txtvd.setColumns(10);
 
-		txttel1 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txttel1);
+		txttel1 = new Obs_TextFIeld(25,"");
 		txttel1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel1.setColumns(10);
 		txttel1.setBounds(102, 268, 194, 20);
-		txttel1.setDocument(new JTextFieldLimit(25));
 		panel.add(txttel1);
 
-		txttel3 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txttel3);
+		txttel3 = new Obs_TextFIeld(25,"");
 		txttel3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel3.setColumns(10);
 		txttel3.setBounds(102, 295, 194, 20);
-		txttel3.setDocument(new JTextFieldLimit(25));
 		panel.add(txttel3);
 
-		txtn1 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtn1);
+		txtn1 = new Obs_TextFIeld(30,"");
 		txtn1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtn1.setColumns(10);
 		txtn1.setBounds(102, 349, 313, 20);
-		txtn1.setDocument(new JTextFieldLimit(30));
 		panel.add(txtn1);
 
-		txtweb = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtweb);
+		txtweb = new Obs_TextFIeld(50,"");
 		txtweb.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtweb.setColumns(10);
 		txtweb.setBounds(102, 457, 313, 20);
-		txtweb.setDocument(new JTextFieldLimit(50));
 		panel.add(txtweb);
 
-		txtoz1 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtoz1);
+		txtoz1 = new Obs_TextFIeld(15,"");
 		txtoz1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtoz1.setColumns(10);
 		txtoz1.setBounds(505, 322, 150, 20);
-		txtoz1.setDocument(new JTextFieldLimit(15));
 		panel.add(txtoz1);
 
-		txtaciklama = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtaciklama);
+		txtaciklama = new Obs_TextFIeld(50,"");
 		txtaciklama.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtaciklama.setColumns(10);
 		txtaciklama.setBounds(102, 484, 553, 20);
-		txtaciklama.setDocument(new JTextFieldLimit(50));
 		panel.add(txtaciklama);
 
 		imagePanel = new ImagePanel();
@@ -430,8 +407,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		lblNewLabel_9_1_1.setBounds(28, 435, 46, 14);
 		panel.add(lblNewLabel_9_1_1);
 
-		txtsemt = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtsemt);
+		txtsemt = new Obs_TextFIeld(25,"");
 		txtsemt.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -443,12 +419,10 @@ public class ADRES_GIRIS extends JInternalFrame {
 		});
 		txtsemt.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtsemt.setBounds(506, 160, 202, 20);
-		txtsemt.setDocument(new JTextFieldLimit(25));
 		panel.add(txtsemt);
 		txtsemt.setColumns(10);
 
-		txtsehir = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtsehir);
+		txtsehir = new Obs_TextFIeld(25,"");
 		txtsehir.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -460,56 +434,43 @@ public class ADRES_GIRIS extends JInternalFrame {
 		});
 		txtsehir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtsehir.setBounds(506, 187, 202, 20);
-		txtsehir.setDocument(new JTextFieldLimit(25));
 		panel.add(txtsehir);
 		txtsehir.setColumns(10);
 
-		txtvn = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtvn);
+		txtvn = new Obs_TextFIeld(15,"");
 		txtvn.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtvn.setBounds(506, 214, 202, 20);
-		txtvn.setDocument(new JTextFieldLimit(15));
 		panel.add(txtvn);
 		txtvn.setColumns(10);
 
-		txttel2 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txttel2);
+		txttel2 = new Obs_TextFIeld(25,"");
 		txttel2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel2.setBounds(506, 268, 150, 20);
-		txttel2.setDocument(new JTextFieldLimit(25));
 		panel.add(txttel2);
 		txttel2.setColumns(10);
 
-		txtfax = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtfax);
+		txtfax = new Obs_TextFIeld(25,"");
 		txtfax.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtfax.setBounds(506, 295, 150, 20);
-		txtfax.setDocument(new JTextFieldLimit(25));
 		panel.add(txtfax);
 		txtfax.setColumns(10);
 
-		txtn2 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtn2);
+		txtn2 = new Obs_TextFIeld(30,"");
 		txtn2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtn2.setBounds(102, 376, 313, 20);
-		txtn2.setDocument(new JTextFieldLimit(30));
 		panel.add(txtn2);
 		txtn2.setColumns(10);
 
-		txtmail = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtmail);
+		txtmail = new Obs_TextFIeld(50,"");
 		txtmail.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtmail.setBounds(102, 322, 313, 20);
-		txtmail.setDocument(new JTextFieldLimit(50));
 		panel.add(txtmail);
 		txtmail.setColumns(10);
 
-		txtn3 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtn3);
+		txtn3 = new Obs_TextFIeld(30,"");
 		txtn3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtn3.setColumns(10);
 		txtn3.setBounds(102, 403, 313, 20);
-		txtn3.setDocument(new JTextFieldLimit(30));
 		panel.add(txtn3);
 
 		JLabel lblNewLabel_8_1_2 = new JLabel("Not 3");
@@ -584,12 +545,10 @@ public class ADRES_GIRIS extends JInternalFrame {
 		lblNewLabel_8_2_1.setBounds(28, 219, 74, 14);
 		panel.add(lblNewLabel_8_2_1);
 
-		txtpkodu = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtpkodu);
+		txtpkodu = new Obs_TextFIeld(10,"");
 		txtpkodu.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtpkodu.setColumns(10);
 		txtpkodu.setBounds(102, 241, 194, 20);
-		txtpkodu.setDocument(new JTextFieldLimit(10));
 		panel.add(txtpkodu);
 
 		JLabel lblNewLabel_11_2_1 = new JLabel("Vergi No.");
@@ -597,20 +556,16 @@ public class ADRES_GIRIS extends JInternalFrame {
 		lblNewLabel_11_2_1.setBounds(431, 219, 46, 14);
 		panel.add(lblNewLabel_11_2_1);
 
-		txtozel = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtozel);
+		txtozel = new Obs_TextFIeld(30,"");
 		txtozel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtozel.setColumns(10);
 		txtozel.setBounds(506, 241, 203, 20);
-		txtozel.setDocument(new JTextFieldLimit(30));
 		panel.add(txtozel);
 
-		txtoz2 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtoz2);
+		txtoz2 = new Obs_TextFIeld(15,"");
 		txtoz2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtoz2.setColumns(10);
 		txtoz2.setBounds(505, 349, 150, 20);
-		txtoz2.setDocument(new JTextFieldLimit(15));
 		panel.add(txtoz2);
 
 		JLabel lblNewLabel_10_1_1 = new JLabel("Oz Kod 2");
@@ -624,8 +579,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		chcmail.setBounds(505, 437, 124, 23);
 		panel.add(chcmail);
 
-		txtarama = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtarama);
+		txtarama = new Obs_TextFIeld(30,"");
 		txtarama.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtarama.setBounds(102, 27, 200, 23);
 		txtarama.getDocument().addDocumentListener(new DocumentListener() {
@@ -724,7 +678,7 @@ public class ADRES_GIRIS extends JInternalFrame {
 		cmbKodKontrol.setBounds(320, 27, 300, 23);
 		panel.add(cmbKodKontrol);
 		
-		textID = new JTextField();
+		textID = new Obs_TextFIeld(30,"");
 		textID.setBounds(18, 71, 74, 20);
 		textID.setVisible(false);
 		panel.add(textID);

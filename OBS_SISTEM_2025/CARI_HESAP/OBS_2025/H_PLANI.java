@@ -43,15 +43,13 @@ import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.basic.BasicComboPopup;
 
-import com.formdev.flatlaf.FlatClientProperties;
-
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
-import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.ValidEmailAddress;
 import OBS_C_2025.lOG_BILGI;
 import raven.toast.Notifications;
@@ -62,28 +60,28 @@ import javax.swing.JComboBox;
 @SuppressWarnings({"serial" , "static-access" , "deprecation"})
 public class H_PLANI extends JInternalFrame {
 	private static JTextField txtkayit;
-	private static JTextField txtkodu;
-	private static JTextField txtunvan;
-	private static JTextField txtkarton;
-	private static JTextField txthcinsi;
-	private static JTextField txtyetkili;
-	private static JTextField txtadres1;
-	private static JTextField txtadres2;
-	private static JTextField txtvd;
-	private static JTextField txttel1;
-	private static JTextField txttel3;
-	private static JTextField txto1;
-	private static JTextField txtweb;
-	private static JTextField txtkimlik;
-	private static JTextField txtaciklama;
-	private static JTextField txtsemt;
-	private static JTextField txtsehir;
-	private static JTextField txtvn;
-	private static JTextField txttel2;
-	private static JTextField txtfax;
-	private static JTextField txto3;
-	private static JTextField txtmail;
-	private static JTextField txto2;
+	private static Obs_TextFIeld txtkodu;
+	private static Obs_TextFIeld txtunvan;
+	private static Obs_TextFIeld txtkarton;
+	private static Obs_TextFIeld txthcinsi;
+	private static Obs_TextFIeld txtyetkili;
+	private static Obs_TextFIeld txtadres1;
+	private static Obs_TextFIeld txtadres2;
+	private static Obs_TextFIeld txtvd;
+	private static Obs_TextFIeld txttel1;
+	private static Obs_TextFIeld txttel3;
+	private static Obs_TextFIeld txto1;
+	private static Obs_TextFIeld txtweb;
+	private static Obs_TextFIeld txtkimlik;
+	private static Obs_TextFIeld txtaciklama;
+	private static Obs_TextFIeld txtsemt;
+	private static Obs_TextFIeld txtsehir;
+	private static Obs_TextFIeld txtvn;
+	private static Obs_TextFIeld txttel2;
+	private static Obs_TextFIeld txtfax;
+	private static Obs_TextFIeld txto3;
+	private static Obs_TextFIeld txtmail;
+	private static Obs_TextFIeld txto2;
 	private static JCheckBox chcsms ;
 	private static ImagePanel imagePanel ;
 	private static JCheckBox chcbas ;
@@ -95,7 +93,7 @@ public class H_PLANI extends JInternalFrame {
 	//private static CARI_ACCESS  c_Access ;
 	static ResultSet rs = null ;
 	private static int kayit_sayi = 0 ;
-	private static JTextField txtarama;
+	private static Obs_TextFIeld txtarama;
 	private static  JComboBox<String> cmbKodu ;
 	
 	
@@ -184,8 +182,7 @@ public class H_PLANI extends JInternalFrame {
 		lblNewLabel_2.setBounds(28, 144, 46, 14);
 		panel.add(lblNewLabel_2);
 
-		txtkodu = new JTextField();
-		txtkodu.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		txtkodu = new Obs_TextFIeld(12,"");
 		txtkodu.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -207,11 +204,9 @@ public class H_PLANI extends JInternalFrame {
 				}
 			}
 		});
-		JTextFieldRegularPopupMenu.addTo(txtkodu);
 		txtkodu.setEnabled(false);
 		txtkodu.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtkodu.setBounds(102, 115, 137, 20);
-		txtkodu.setDocument(new JTextFieldLimit(12));
 		panel.add(txtkodu);
 		
 
@@ -220,120 +215,81 @@ public class H_PLANI extends JInternalFrame {
 		lblNewLabel_3.setBounds(276, 117, 46, 14);
 		panel.add(lblNewLabel_3);
 
-		txtunvan = new JTextField();
-		txtunvan.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtunvan);
+		txtunvan = new Obs_TextFIeld(50,"");
 		txtunvan.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtunvan.setBounds(354, 115, 301, 20);
-		txtunvan.setDocument(new JTextFieldLimit(50));
 		panel.add(txtunvan);
 		
 
-		txtkarton = new JTextField();
-		txtkarton.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtkarton);
+		txtkarton = new Obs_TextFIeld(5,"");
 		txtkarton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtkarton.setBounds(102, 141, 86, 20);
 		panel.add(txtkarton);
-		txtkarton.setDocument(new JTextFieldLimit(5));
 
 		JLabel lblNewLabel_4 = new JLabel("Hesap Cins");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_4.setBounds(276, 144, 68, 14);
 		panel.add(lblNewLabel_4);
 
-		txthcinsi = new JTextField();
-		txthcinsi.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txthcinsi);
+		txthcinsi = new Obs_TextFIeld(3,"");
 		txthcinsi.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txthcinsi.setBounds(354, 141, 68, 20);
 		panel.add(txthcinsi);
-		txthcinsi.setDocument(new JTextFieldLimit(3));
 
-		txtyetkili = new JTextField();
-		txtyetkili.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtyetkili);
+		txtyetkili = new Obs_TextFIeld(30,"");
 		txtyetkili.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtyetkili.setBounds(102, 182, 254, 20);
 		panel.add(txtyetkili);
-		txtyetkili.setDocument(new JTextFieldLimit(30));
 
-		txtadres1 = new JTextField();
-		txtadres1.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtadres1);
+		txtadres1 = new Obs_TextFIeld(35,"");
 		txtadres1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtadres1.setBounds(102, 209, 320, 20);
 		panel.add(txtadres1);
-		txtadres1.setDocument(new JTextFieldLimit(35));
 
-		txtadres2 = new JTextField();
-		txtadres2.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtadres2);
+		txtadres2 = new Obs_TextFIeld(35,"");
 		txtadres2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtadres2.setBounds(102, 236, 320, 20);
 		panel.add(txtadres2);
-		txtadres2.setDocument(new JTextFieldLimit(35));
 
-		txtvd = new JTextField();
-		txtvd.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtvd);
+		txtvd = new Obs_TextFIeld(25,"");
 		txtvd.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtvd.setBounds(102, 263, 196, 20);
 		panel.add(txtvd);
-		txtvd.setDocument(new JTextFieldLimit(25));
 
-		txttel1 = new JTextField();
-		txttel1.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txttel1);
+		txttel1 = new Obs_TextFIeld(25,"");
 		txttel1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel1.setColumns(10);
 		txttel1.setBounds(102, 290, 150, 20);
-		txttel1.setDocument(new JTextFieldLimit(25));
 		panel.add(txttel1);
 
-		txttel3 = new JTextField();
-		txttel3.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txttel3);
+		txttel3 = new Obs_TextFIeld(25,"");
 		txttel3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel3.setColumns(10);
 		txttel3.setBounds(102, 317, 86, 20);
-		txttel3.setDocument(new JTextFieldLimit(25));
 		panel.add(txttel3);
 
-		txto1 = new JTextField();
-		txto1.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txto1);
+		txto1 = new Obs_TextFIeld(15,"");
 		txto1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txto1.setColumns(10);
 		txto1.setBounds(102, 344, 114, 20);
-		txto1.setDocument(new JTextFieldLimit(15));
 		panel.add(txto1);
 
-		txtweb = new JTextField();
-		txtweb.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtweb);
+		txtweb = new Obs_TextFIeld(50,"");
 		txtweb.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtweb.setColumns(10);
 		txtweb.setBounds(102, 371, 320, 20);
-		txtweb.setDocument(new JTextFieldLimit(50));
 		panel.add(txtweb);
 
-		txtkimlik = new JTextField();
-		txtkimlik.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtkimlik);
+		txtkimlik = new Obs_TextFIeld(15,"");
 		txtkimlik.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtkimlik.setColumns(10);
 		txtkimlik.setBounds(506, 371, 150, 20);
-		txtkimlik.setDocument(new JTextFieldLimit(15));
 		panel.add(txtkimlik);
 
-		txtaciklama = new JTextField();
-		txtaciklama.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtaciklama);
+		txtaciklama = new Obs_TextFIeld(30,"");
 		txtaciklama.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtaciklama.setColumns(10);
 		txtaciklama.setBounds(102, 425, 553, 20);
-		txtaciklama.setDocument(new JTextFieldLimit(30));
 		panel.add(txtaciklama);
 
 		imagePanel = new ImagePanel();
@@ -432,57 +388,39 @@ public class H_PLANI extends JInternalFrame {
 		lblNewLabel_9_1_1.setBounds(28, 403, 46, 14);
 		panel.add(lblNewLabel_9_1_1);
 
-		txtsemt = new JTextField();
+		txtsemt = new Obs_TextFIeld(15,"");
 		JTextFieldRegularPopupMenu.addTo(txtsemt);
 		txtsemt.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtsemt.setBounds(506, 209, 150, 20);
-		txtsemt.setDocument(new JTextFieldLimit(15));
 		panel.add(txtsemt);
 		
 
-		txtsehir = new JTextField();
-		txtsehir.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtsehir);
+		txtsehir = new Obs_TextFIeld(15,"");
 		txtsehir.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtsehir.setBounds(506, 236, 150, 20);
 		panel.add(txtsehir);
-		txtsehir.setDocument(new JTextFieldLimit(15));
 
-		txtvn = new JTextField();
-		txtvn.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtvn);
+		txtvn = new Obs_TextFIeld(15,"");
 		txtvn.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtvn.setBounds(506, 263, 150, 20);
 		panel.add(txtvn);
-		txtvn.setDocument(new JTextFieldLimit(15));
 
-		txttel2 = new JTextField();
-		txttel2.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txttel2);
+		txttel2 = new Obs_TextFIeld(25,"");
 		txttel2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txttel2.setBounds(506, 290, 150, 20);
 		panel.add(txttel2);
-		txttel2.setDocument(new JTextFieldLimit(25));
 
-		txtfax = new JTextField();
-		txtfax.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtfax);
+		txtfax = new Obs_TextFIeld(25,"");
 		txtfax.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtfax.setBounds(506, 317, 150, 20);
 		panel.add(txtfax);
-		txtfax.setDocument(new JTextFieldLimit(25));
 
-		txto3 = new JTextField();
-		txto3.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txto3);
+		txto3 = new Obs_TextFIeld(15,"");
 		txto3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txto3.setBounds(506, 344, 114, 20);
 		panel.add(txto3);
-		txto3.setDocument(new JTextFieldLimit(15));
 
-		txtmail = new JTextField();
-		txtmail.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txtmail);
+		txtmail = new Obs_TextFIeld(30,"");
 		txtmail.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -497,15 +435,11 @@ public class H_PLANI extends JInternalFrame {
 		txtmail.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtmail.setBounds(102, 398, 320, 20);
 		panel.add(txtmail);
-		txtmail.setDocument(new JTextFieldLimit(30));
 
-		txto2 = new JTextField();
-		txto2.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		JTextFieldRegularPopupMenu.addTo(txto2);
+		txto2 = new Obs_TextFIeld(15,"");
 		txto2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txto2.setColumns(10);
 		txto2.setBounds(308, 344, 114, 20);
-		txto2.setDocument(new JTextFieldLimit(15));
 		panel.add(txto2);
 
 		JLabel lblNewLabel_8_1_2 = new JLabel("Oz Kod 2");
@@ -591,9 +525,7 @@ public class H_PLANI extends JInternalFrame {
 		separator_3.setForeground(new Color(0, 191, 255));
 		panel.add(separator_3);
 
-		txtarama = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(txtarama);
-		txtarama.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		txtarama = new Obs_TextFIeld(40,"");
 		txtarama.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtarama.setColumns(10);
 		txtarama.setBounds(102, 22, 288, 20);

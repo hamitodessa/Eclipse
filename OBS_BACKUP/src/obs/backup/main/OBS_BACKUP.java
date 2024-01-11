@@ -34,6 +34,7 @@ import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
+import OBS_C_2025.MaterialTabbed;
 import javazoom.jl.player.Player;
 import obs.backup.gorev.gOREV_TAKIP;
 import obs.backup.other.Bilgilendirme;
@@ -163,7 +164,7 @@ public class OBS_BACKUP extends JFrame {
 	public static JPanel container ;
 	public static JToolBar toolBar;
 	public static JTabbedPane tabbedPane ;
-	public static JTabbedPane tabbedPane_1;
+	public static MaterialTabbed tabbedPane_1;
 	int x ,y ;
 	public static YedeklemeAraligi yedekaraligiPanel;
 	public static SunucuAyarlari sunucuayarPanel;
@@ -711,7 +712,7 @@ public class OBS_BACKUP extends JFrame {
 		tabbedPane.addTab("Yeni Gorev", null, panel_3, null);
 		panel_3.setLayout(new BorderLayout(0, 0));
 
-		tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				if(tabbedPane_1.getSelectedIndex()==4)

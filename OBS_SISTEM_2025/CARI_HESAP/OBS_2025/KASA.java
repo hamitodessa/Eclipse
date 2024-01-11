@@ -28,7 +28,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -44,7 +43,7 @@ import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
-import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
@@ -59,7 +58,7 @@ import raven.toast.Notifications;
 public class KASA extends JInternalFrame {
 
 	private JTable table_1;
-	private static JTextField textField;
+	private static Obs_TextFIeld textField;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_6;
 	private JDateChooser dateChooser;
@@ -117,8 +116,7 @@ public class KASA extends JInternalFrame {
 		lblNewLabel.setBounds(10, 14, 46, 14);
 		leftPanel.add(lblNewLabel);
 
-		textField = new JTextField();
-		textField.setDocument(new JTextFieldLimit(12));
+		textField = new Obs_TextFIeld(12,"");
 		InputMap txtkoduMap = textField.getInputMap();
 		txtkoduMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK), "foo");
 		textField.getDocument().addDocumentListener(new DocumentListener() {

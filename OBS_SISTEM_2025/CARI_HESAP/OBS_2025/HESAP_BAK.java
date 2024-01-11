@@ -10,7 +10,6 @@ import java.awt.Dimension;
 
 import javax.swing.JTable;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 
@@ -35,6 +34,7 @@ import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
@@ -53,7 +53,7 @@ public class HESAP_BAK extends JInternalFrame {
 	private JTable tblhesap;
 	private JTable tblkarton;
 	private JTable tbldetay;
-	private JTextField textField;
+	private Obs_TextFIeld textField;
 	private JLabel lblNewLabel_1 ;
 	private JLabel lblNewLabel_2_2 ;
 	private static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -286,7 +286,7 @@ public class HESAP_BAK extends JInternalFrame {
 		lblNewLabel.setBounds(10, 7, 61, 14);
 		panel.add(lblNewLabel);
 
-		textField = new JTextField();
+		textField = new Obs_TextFIeld(30,"");
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				arama();

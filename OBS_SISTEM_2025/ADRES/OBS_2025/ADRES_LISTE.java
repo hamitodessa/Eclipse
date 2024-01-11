@@ -18,7 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -35,6 +34,7 @@ import javax.swing.table.TableStringConverter;
 import OBS_C_2025.ADRES_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
@@ -50,7 +50,7 @@ public class ADRES_LISTE extends JDialog {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	private JTable table;
-	private JTextField textField;
+	private Obs_TextFIeld textField;
 
 	public ADRES_LISTE() {setResizable(false);
 	setTitle("ADRES  DOKUMU");
@@ -76,7 +76,7 @@ public class ADRES_LISTE extends JDialog {
 	panel.setMaximumSize(new Dimension(0, 40));
 	panel.setLayout(null);
 
-	textField = new JTextField();
+	textField = new Obs_TextFIeld(30,"");
 	textField.addKeyListener(new KeyAdapter() {
 		@Override
 		public void keyPressed(KeyEvent e) {

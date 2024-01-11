@@ -16,6 +16,7 @@ import javax.swing.table.TableModel;
 import OBS_C_2025.Degisken;
 import OBS_C_2025.DoubleEditor;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;

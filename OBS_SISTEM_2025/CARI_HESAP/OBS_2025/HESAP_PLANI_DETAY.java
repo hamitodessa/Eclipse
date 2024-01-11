@@ -22,6 +22,7 @@ import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.IMAGE_RENDERER;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
@@ -30,7 +31,6 @@ import raven.toast.Notifications;
 import javax.swing.JSplitPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 
@@ -45,7 +45,7 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 
 	private JTable table;
-	private JTextField textField;
+	private Obs_TextFIeld textField;
 	public HESAP_PLANI_DETAY()
 	{
 		
@@ -154,7 +154,7 @@ public class HESAP_PLANI_DETAY extends JInternalFrame {
 		lblNewLabel.setBounds(21, 7, 46, 14);
 		panel.add(lblNewLabel);
 		
-		textField = new JTextField();
+		textField = new Obs_TextFIeld(30,"");
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
 			    arama();

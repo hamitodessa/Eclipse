@@ -22,13 +22,13 @@ import javax.swing.table.TableStringConverter;
 
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 
 import javax.swing.JSplitPane;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.JTable;
@@ -55,7 +55,7 @@ public class HESAP_PLN extends JDialog {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static CARI_ACCESS  c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar ,OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	private JTable table;
-	private JTextField textField;
+	private Obs_TextFIeld textField;
 
 	public HESAP_PLN() throws ClassNotFoundException, SQLException {
 		setResizable(false);
@@ -83,7 +83,7 @@ public class HESAP_PLN extends JDialog {
 		panel.setMaximumSize(new Dimension(0, 40));
 		panel.setLayout(null);
 		
-		textField = new JTextField();
+		textField = new Obs_TextFIeld(12,"");
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {

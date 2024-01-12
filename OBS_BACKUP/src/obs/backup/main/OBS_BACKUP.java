@@ -106,10 +106,13 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Properties;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -813,12 +816,14 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		//***********************************BASLAMA*********************************************
-//		try {
-//			checkWORK();
-//		} catch (IOException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
+		
+			try {
+				checkWORK();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
 		try 
 		{
 			glb.backup_surucu_kontrol();
@@ -826,7 +831,6 @@ public class OBS_BACKUP extends JFrame {
 			emir_yukle("EMIR_ISMI") ;
 			jobTimerBasla();
 			tabbedPane.setSelectedIndex(4);
-			btntry.doClick();
 		} catch (Exception ex) 
 		{
 			bckp.log_kayit("Sistem", new Date(), ex.getMessage());
@@ -2594,22 +2598,44 @@ public class OBS_BACKUP extends JFrame {
 		}
 		
 	}
-	private void checkWORK() throws IOException
+	private void checkWORK() throws IOException 
 	{
-		String procss;
-		//wmic process where "name like '%java%'" get commandline,processid
-        Process pRun = Runtime.getRuntime().exec("wmic process where \"name like '%java%'\" get commandline,processid");
-        BufferedReader input = new BufferedReader(new InputStreamReader(pRun.getInputStream()));
-        while ((procss = input.readLine()) != null) {
-        
-            if(procss.contains("OBS_BACKUP.exe"))
-            {
-            	System.out.println(procss);
-            	Runtime.getRuntime().exec("TASKKILL /PID %C:\\Users\\hamit\\OneDrive\\Desktop\\OBS_BACKUP.exe%");
-            	// Process pRun = Runtime.getRuntime().exec("wmic process where \"name like '%java%'\" get commandline,processid");
-            }
-        }
-        input.close();
+		ArrayList<String> cmds = new ArrayList<String>();
+		cmds.add("wmic");
+		cmds.add("process");
+		cmds.add("get");
+		cmds.add("commandline,processid");
+		ProcessBuilder pb = new ProcessBuilder(cmds);
+		Process p = pb.start();
+		//p.waitFor();
+		BufferedReader rd = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		String line;
+		int pid=0;
+		int ownPID = 0 ;
+		while((line = rd.readLine()) != null)
+		{
+			if(line.contains("OBS_BACKUP.exe"))
+			{
+				//System.out.println("OK" + line);
+				String[] split = line.split(" ");
+				pid=Integer.parseInt(split[split.length - 1]);
+				//System.out.println("pid=" + pid);
+				ownPID = (int) ProcessHandle.current().pid() ;
+				if(pid != ownPID)
+				{
+					cmds = new ArrayList<String>();
+					cmds.add("taskkill");
+					cmds.add("/T");
+					cmds.add("/F");
+					cmds.add("/PID");
+					cmds.add("" + pid);
+					pb = new ProcessBuilder(cmds);
+					pb.start();
+					break;
+				}
+			}
+
+		}
 	}
 	//	@Override
 	//	public Dimension getPreferredSize() {
@@ -2619,7 +2645,6 @@ public class OBS_BACKUP extends JFrame {
 	//		}
 	//		return new Dimension(900, 700);
 	//	}
-
 }
 
 

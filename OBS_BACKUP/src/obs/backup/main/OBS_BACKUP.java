@@ -87,6 +87,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
@@ -110,12 +112,14 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Vector;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -2616,23 +2620,26 @@ public class OBS_BACKUP extends JFrame {
 				//System.out.println("OK" + line);
 				String[] split = line.split(" ");
 				pid=Integer.parseInt(split[split.length - 1]);
-				//System.out.println("pid=" + pid);
+				
 				ownPID = (int) ProcessHandle.current().pid() ;
+				System.out.println("own=" +ownPID +"  pid=" + pid);
 				if(pid != ownPID)
 				{
-					cmds = new ArrayList<String>();
-					cmds.add("taskkill");
-					cmds.add("/T");
-					cmds.add("/F");
-					cmds.add("/PID");
-					cmds.add("" + pid);
-					pb = new ProcessBuilder(cmds);
-					pb.start();
-					break;
+					System.out.println(line.toString());
+//					cmds = new ArrayList<String>();
+//					cmds.add("taskkill");
+//					cmds.add("/T");
+//					cmds.add("/F");
+//					cmds.add("/PID");
+//					cmds.add("" + pid);
+//					pb = new ProcessBuilder(cmds);
+//					pb.start();
+//					break;
 				}
 			}
-
+			System.out.println(line.toString());
 		}
+		
 	}
 	//	@Override
 	//	public Dimension getPreferredSize() {

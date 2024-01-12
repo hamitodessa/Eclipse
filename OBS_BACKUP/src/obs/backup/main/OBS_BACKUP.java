@@ -85,6 +85,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
@@ -105,12 +106,16 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -808,13 +813,22 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		//***********************************BASLAMA*********************************************
-		try {
+//		try {
+//			checkWORK();
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+		try 
+		{
 			glb.backup_surucu_kontrol();
 			bckp.log_kayit("Sistem", new Date(), "Program Baslangici");
 			emir_yukle("EMIR_ISMI") ;
 			jobTimerBasla();
 			tabbedPane.setSelectedIndex(4);
-		} catch (Exception ex) {
+			btntry.doClick();
+		} catch (Exception ex) 
+		{
 			bckp.log_kayit("Sistem", new Date(), ex.getMessage());
 			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
@@ -2579,6 +2593,23 @@ public class OBS_BACKUP extends JFrame {
 			btnMinimize.doClick();
 		}
 		
+	}
+	private void checkWORK() throws IOException
+	{
+		String procss;
+		//wmic process where "name like '%java%'" get commandline,processid
+        Process pRun = Runtime.getRuntime().exec("wmic process where \"name like '%java%'\" get commandline,processid");
+        BufferedReader input = new BufferedReader(new InputStreamReader(pRun.getInputStream()));
+        while ((procss = input.readLine()) != null) {
+        
+            if(procss.contains("OBS_BACKUP.exe"))
+            {
+            	System.out.println(procss);
+            	Runtime.getRuntime().exec("TASKKILL /PID %C:\\Users\\hamit\\OneDrive\\Desktop\\OBS_BACKUP.exe%");
+            	// Process pRun = Runtime.getRuntime().exec("wmic process where \"name like '%java%'\" get commandline,processid");
+            }
+        }
+        input.close();
 	}
 	//	@Override
 	//	public Dimension getPreferredSize() {

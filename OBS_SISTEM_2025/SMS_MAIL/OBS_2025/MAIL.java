@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -58,6 +57,7 @@ import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.MAIL_SETTINGS;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.ORTA;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
@@ -93,14 +93,14 @@ public class MAIL extends JInternalFrame {
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 
 	private static JTable table;
-	private JTextField txtgonderen;
-	private JTextField txtgonadi;
-	private static JTextField txtalici;
-	private JTextField txtkonu;
+	private Obs_TextFIeld txtgonderen;
+	private Obs_TextFIeld txtgonadi;
+	private static Obs_TextFIeld txtalici;
+	private Obs_TextFIeld txtkonu;
 	private JTable table_1;
-	private static JTextField txtmail;
-	private static JTextField txtunvan;
-	private static JTextField txtkodu;
+	private static Obs_TextFIeld txtmail;
+	private static Obs_TextFIeld txtunvan;
+	private static Obs_TextFIeld txtkodu;
 	private static JTable table_2;
 	private static JCheckBox chcdurum ;
 	private static JComboBox<String> comboBox_2  ;
@@ -197,7 +197,7 @@ public class MAIL extends JInternalFrame {
 		lblNewLabel_4.setBounds(10, 110, 86, 14);
 		panel_1.add(lblNewLabel_4);
 
-		txtgonderen = new JTextField();
+		txtgonderen = new Obs_TextFIeld(50);
 		txtgonderen.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -210,19 +210,18 @@ public class MAIL extends JInternalFrame {
 			}
 		});
 		txtgonderen.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtgonderen.setDocument(new JTextFieldLimit(50));
+
 		txtgonderen.setBounds(120, 8, 258, 20);
 		panel_1.add(txtgonderen);
 		txtgonderen.setColumns(10);
 
-		txtgonadi = new JTextField();
+		txtgonadi = new Obs_TextFIeld(50);
 		txtgonadi.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtgonadi.setBounds(120, 33, 258, 20);
-		txtgonadi.setDocument(new JTextFieldLimit(50));
 		panel_1.add(txtgonadi);
 		txtgonadi.setColumns(10);
 
-		txtalici = new JTextField();
+		txtalici = new Obs_TextFIeld(50);
 		txtalici.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -236,15 +235,13 @@ public class MAIL extends JInternalFrame {
 		});
 
 		txtalici.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtgonderen.setDocument(new JTextFieldLimit(50));
 		txtalici.setBounds(120, 58, 258, 20);
 		panel_1.add(txtalici);
 		txtalici.setColumns(10);
 
-		txtkonu = new JTextField();
+		txtkonu = new Obs_TextFIeld(50);
 		txtkonu.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtkonu.setBounds(120, 83, 365, 20);
-		txtkonu.setDocument(new JTextFieldLimit(50));
 		panel_1.add(txtkonu);
 		txtkonu.setColumns(10);
 
@@ -445,7 +442,7 @@ public class MAIL extends JInternalFrame {
 		lblNewLabel_8.setBounds(10, 61, 46, 14);
 		panel_3.add(lblNewLabel_8);
 
-		txtmail = new JTextField();
+		txtmail = new Obs_TextFIeld(50);
 		txtmail.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -482,7 +479,6 @@ public class MAIL extends JInternalFrame {
 				}
 			}
 		});
-		txtmail.setDocument(new JTextFieldLimit(50));
 		panel_3.add(txtmail);
 		txtmail.setColumns(10);
 
@@ -490,9 +486,8 @@ public class MAIL extends JInternalFrame {
 		chcdurum.setBounds(78, 32, 97, 23);
 		panel_3.add(chcdurum);
 
-		txtunvan = new JTextField();
+		txtunvan = new Obs_TextFIeld(50);
 		txtunvan.setBounds(81, 58, 374, 20);
-		txtunvan.setDocument(new JTextFieldLimit(50));
 		panel_3.add(txtunvan);
 		txtunvan.setColumns(10);
 
@@ -504,9 +499,8 @@ public class MAIL extends JInternalFrame {
 		lblNewLabel_10.setBounds(491, 36, 46, 14);
 		panel_3.add(lblNewLabel_10);
 
-		txtkodu = new JTextField();
+		txtkodu = new Obs_TextFIeld(12);
 		txtkodu.setBounds(572, 8, 122, 20);
-		txtkodu.setDocument(new JTextFieldLimit(12));
 		panel_3.add(txtkodu);
 		txtkodu.setColumns(10);
 

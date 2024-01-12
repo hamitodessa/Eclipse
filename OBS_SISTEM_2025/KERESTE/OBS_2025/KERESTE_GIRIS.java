@@ -125,6 +125,7 @@ import OBS_C_2025.KER_RAPOR_BILGI;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.Next_Cell_Kereste;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SAGA_BOLD;
 import OBS_C_2025.SOLA;
@@ -140,15 +141,15 @@ import raven.toast.Notifications;
 @SuppressWarnings({"serial","static-access","unused","deprecation"})
 public class KERESTE_GIRIS extends JInternalFrame {
 	private static JSplitPane splitPane ;
-	private static JTextField textField;
-	private static JTextField txtcari;
-	private static JTextField txtadres;
-	private static JTextField txtdoviz;
-	private static JTextField textField_5;
-	private static JTextField textField_6;
-	private static JTextField textField_7;
-	private static JTextField textField_9;
-	private static JTextField textField_10;
+	private static Obs_TextFIeld textField;
+	private static Obs_TextFIeld txtcari;
+	private static Obs_TextFIeld txtadres;
+	private static Obs_TextFIeld txtdoviz;
+	private static Obs_TextFIeld textField_5;
+	private static Obs_TextFIeld textField_6;
+	private static Obs_TextFIeld textField_7;
+	private static Obs_TextFIeld textField_9;
+	private static Obs_TextFIeld textField_10;
 	
 	private static JFormattedTextField txtkur ;
 	private static JFormattedTextField txttev ;
@@ -234,8 +235,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		lblNewLabel_1.setBounds(10, 11, 69, 14);
 		panel_2.add(lblNewLabel_1);
 
-		textField = new JTextField();
-		textField.setDocument(new JTextFieldLimit(10));
+		textField = new Obs_TextFIeld(10);
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -332,7 +332,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		lblNewLabel_2.setBounds(10, 36, 69, 14);
 		panel_2.add(lblNewLabel_2);
 
-		txtcari = new JTextField();
+		txtcari = new Obs_TextFIeld(12);
 		InputMap inputMap = txtcari.getInputMap(txtcari.WHEN_FOCUSED);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
 		txtcari.addKeyListener(new KeyAdapter() {
@@ -365,7 +365,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 			}
 		});
 
-		txtcari.setDocument(new JTextFieldLimit(12));
+
 		txtcari.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				lblNewLabel_3.setText(CARI_ISIM_OKU.isim(txtcari.getText())[0]);
@@ -473,10 +473,10 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		lblNewLabel_5.setBounds(290, 36, 46, 14);
 		panel_2.add(lblNewLabel_5);
 
-		txtadres = new JTextField();
+		txtadres = new Obs_TextFIeld(12);
 		InputMap inputMapa = txtadres.getInputMap(txtadres.WHEN_FOCUSED);
         inputMapa.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
-		txtadres.setDocument(new JTextFieldLimit(12));
+
 		txtadres.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				if (txtadres.getText().equals(""))
@@ -643,7 +643,7 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		lblNewLabel_10.setBounds(995, 36, 46, 14);
 		panel_2.add(lblNewLabel_10);
 
-		txtdoviz = new JTextField();
+		txtdoviz = new Obs_TextFIeld();
 		txtdoviz.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtdoviz.setBounds(1050, 8, 73, 20);
 		panel_2.add(txtdoviz);
@@ -745,21 +745,19 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		lblNewLabel_14.setBounds(10, 11, 46, 14);
 		panel_4.add(lblNewLabel_14);
 
-		textField_5 = new JTextField();
+		textField_5 = new Obs_TextFIeld(40);
 		textField_5.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_5.setBounds(81, 8, 312, 20);
-		textField_5.setDocument(new JTextFieldLimit(40));
 		panel_4.add(textField_5);
 		textField_5.setColumns(10);
 
-		textField_6 = new JTextField();
+		textField_6 = new Obs_TextFIeld(40);
 		textField_6.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_6.setBounds(81, 35, 312, 20);
-		textField_6.setDocument(new JTextFieldLimit(40));
 		panel_4.add(textField_6);
 		textField_6.setColumns(10);
 
-		textField_7 = new JTextField();
+		textField_7 = new Obs_TextFIeld();
 		textField_7.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_7.setBounds(81, 62, 312, 20);
 		panel_4.add(textField_7);
@@ -790,17 +788,15 @@ public class KERESTE_GIRIS extends JInternalFrame {
 		lblNewLabel_19.setBounds(10, 38, 34, 14);
 		panel_5.add(lblNewLabel_19);
 
-		textField_9 = new JTextField();
+		textField_9 = new Obs_TextFIeld(50);
 		textField_9.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_9.setBounds(54, 8, 447, 20);
-		textField_9.setDocument(new JTextFieldLimit(50));
 		panel_5.add(textField_9);
 		textField_9.setColumns(10);
 
-		textField_10 = new JTextField();
+		textField_10 = new Obs_TextFIeld(50);
 		textField_10.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_10.setBounds(54, 33, 447, 20);
-		textField_10.setDocument(new JTextFieldLimit(50));
 		panel_5.add(textField_10);
 		textField_10.setColumns(10);
 		

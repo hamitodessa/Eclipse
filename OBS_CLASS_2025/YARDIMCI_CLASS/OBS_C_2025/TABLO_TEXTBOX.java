@@ -9,6 +9,8 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import com.formdev.flatlaf.FlatClientProperties;
+
 @SuppressWarnings("serial")
 public class TABLO_TEXTBOX  extends DefaultCellEditor {
 
@@ -22,10 +24,10 @@ public class TABLO_TEXTBOX  extends DefaultCellEditor {
         this.textField = textField;
         //this.textField.setHorizontalAlignment(JTextField.LEFT);
         this.textField.setHorizontalAlignment(alignment);
-              
+        this.textField.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);    
         this.textField.setDocument(new  JTextFieldLimit(karakter));
         this.textField.setFont(font);
-      
+        JTextFieldRegularPopupMenu.addTo(this.textField);
         this.textField.addFocusListener(new FocusListener() {
        
 			@Override

@@ -23,8 +23,9 @@ import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
-import OBS_C_2025.JTextFieldLimit;
+
 import OBS_C_2025.KAMBIYO_ACCESS;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.TARIH_CEVIR;
 import OBS_C_2025.dEKONT_BILGI;
 import OBS_C_2025.lOG_BILGI;
@@ -43,7 +44,7 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings({"serial","static-access"})
 public class CEK_TAKIP extends JInternalFrame {
-	public static JTextField textField;
+	public static Obs_TextFIeld textField;
 	private static JLabel lblNewLabel_10 ;
 	private static JLabel lblNewLabel_11 ;
 	private static JLabel lblNewLabel_12 ;
@@ -88,11 +89,10 @@ public class CEK_TAKIP extends JInternalFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
-		textField = new JTextField();
+		textField = new Obs_TextFIeld(10);
 		textField.setBounds(99, 20, 137, 20);
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		textField.setDocument(new JTextFieldLimit(10));
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				getContentPane().setCursor(WAIT_CURSOR);

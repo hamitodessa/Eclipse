@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -22,8 +21,8 @@ import javax.swing.table.TableColumnModel;
 
 import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.GLOBAL;
-import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.lOG_BILGI;
@@ -35,8 +34,8 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(OBS_SIS_2025_ANA_CLASS._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 	private static JTable table;
-	private static JTextField txtKons;
-	private static JTextField txtAciklama;
+	private static Obs_TextFIeld txtKons;
+	private static Obs_TextFIeld txtAciklama;
 
 	public KONS_ACIKLAMA() {
 		setIconifiable(true);
@@ -60,9 +59,7 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		lblNewLabel.setBounds(10, 18, 70, 14);
 		panel.add(lblNewLabel);
 		
-		txtKons = new JTextField();
-		
-		txtKons.setDocument(new JTextFieldLimit(15));
+		txtKons = new Obs_TextFIeld(15);
 		txtKons.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtKons.setBounds(88, 15, 102, 20);
 		panel.add(txtKons);
@@ -71,9 +68,8 @@ public class KONS_ACIKLAMA extends JInternalFrame {
 		lblNewLabel_1.setBounds(200, 18, 60, 14);
 		panel.add(lblNewLabel_1);
 		
-		txtAciklama = new JTextField();
+		txtAciklama = new Obs_TextFIeld(50);
 		txtAciklama.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtAciklama.setDocument(new JTextFieldLimit(50));
 		txtAciklama.setBounds(260, 15, 320, 20);
 		panel.add(txtAciklama);
 		

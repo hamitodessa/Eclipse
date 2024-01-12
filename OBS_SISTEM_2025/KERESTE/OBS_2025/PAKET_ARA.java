@@ -19,7 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 import javax.swing.table.JTableHeader;
@@ -30,9 +29,9 @@ import javax.swing.text.MaskFormatter;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
-import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KER_RAPOR_BILGI;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.SOLA_ORTA;
@@ -47,8 +46,8 @@ public class PAKET_ARA extends JDialog {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(OBS_SIS_2025_ANA_CLASS._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 	private static JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
+	private Obs_TextFIeld textField;
+	private Obs_TextFIeld textField_1;
 	private JFormattedTextField formattedTextField ;
 	private JLabel lblNewLabel_2;
 	private JSplitPane splitPane ;
@@ -80,9 +79,8 @@ public class PAKET_ARA extends JDialog {
 		lblNewLabel_1.setBounds(29, 14, 70, 14);
 		panel.add(lblNewLabel_1);
 		
-		textField = new JTextField();
+		textField = new Obs_TextFIeld(10);
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField.setDocument(new JTextFieldLimit(10));
 		textField.setBounds(117, 11, 96, 20);
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
@@ -96,9 +94,8 @@ public class PAKET_ARA extends JDialog {
 		
 		panel.add(textField);
 		
-		textField_1 = new JTextField();
+		textField_1 = new Obs_TextFIeld(10);
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		textField_1.setDocument(new JTextFieldLimit(10));
 		textField_1.setBounds(117, 36, 130, 20);
 		textField_1.addKeyListener(new KeyAdapter() {
 			@Override

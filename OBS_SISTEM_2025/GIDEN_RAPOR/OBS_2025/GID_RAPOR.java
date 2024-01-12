@@ -22,6 +22,7 @@ import javax.swing.table.TableRowSorter;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.SOLA_ORTA;
 import OBS_C_2025.ScrollPaneWin11;
@@ -30,7 +31,7 @@ import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 
 import javax.swing.JLabel;
-import javax.swing.JTextField;
+
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
@@ -48,7 +49,7 @@ public class GID_RAPOR extends JInternalFrame {
 	private static JTable table;
 	public static JSplitPane splitPane ;
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
-	private static JTextField textField;
+	private static Obs_TextFIeld textField;
 
 	public GID_RAPOR() {
 		setTitle("GIDEN RAPORLAR");
@@ -75,7 +76,7 @@ public class GID_RAPOR extends JInternalFrame {
 		lblNewLabel.setBounds(10, 5, 46, 14);
 		panel.add(lblNewLabel);
 
-		textField = new JTextField();
+		textField = new Obs_TextFIeld();
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setBounds(69, 5, 312, 20);
 		textField.getDocument().addDocumentListener(new DocumentListener() {

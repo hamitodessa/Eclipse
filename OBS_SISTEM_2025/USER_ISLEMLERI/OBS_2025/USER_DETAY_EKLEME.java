@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -38,6 +38,7 @@ import javax.swing.table.TableColumn;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.StayOpenCheckBoxMenuItemUI;
@@ -53,13 +54,13 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 	private static JSplitPane splitPane;
 	private static JComboBox<String> comboBox_1;
 	private static JComboBox<String> comboBox;
-	private static JTextField txtkodu;
-	private static JTextField txtskull;
-	private static JTextField txtins;
-	private static JTextField txtip;
-	private static JTextField txtdiz;
-	private static JTextField txtyer;
-	private static JTextField txtdcins;
+	private static Obs_TextFIeld txtkodu;
+	private static Obs_TextFIeld txtskull;
+	private static Obs_TextFIeld txtins;
+	private static Obs_TextFIeld txtip;
+	private static Obs_TextFIeld txtdiz;
+	private static Obs_TextFIeld txtyer;
+	private static Obs_TextFIeld txtdcins;
 	private static JLabel lblcdid ;
 	private static JTable table_1;
 	private static JCheckBox chckbxNewCheckBox;
@@ -131,7 +132,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		comboBox_1.setBounds(107, 33, 125, 22);
 		panel.add(comboBox_1);
 
-		txtkodu = new JTextField();
+		txtkodu = new Obs_TextFIeld();
 		txtkodu.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtkodu.setBounds(107, 58, 74, 20);
 		panel.add(txtkodu);
@@ -149,13 +150,13 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		lblNewLabel_5.setBounds(250, 61, 74, 14);
 		panel.add(lblNewLabel_5);
 
-		txtskull = new JTextField();
+		txtskull = new Obs_TextFIeld();
 		txtskull.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtskull.setBounds(357, 8, 125, 20);
 		panel.add(txtskull);
 		txtskull.setColumns(10);
 
-		txtins = new JTextField();
+		txtins = new Obs_TextFIeld();
 		txtins.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtins.setBounds(568, 8, 138, 20);
 		panel.add(txtins);
@@ -173,7 +174,7 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		lblNewLabel_7.setBounds(505, 36, 46, 14);
 		panel.add(lblNewLabel_7);
 
-		txtip = new JTextField();
+		txtip = new Obs_TextFIeld();
 		txtip.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtip.setBounds(568, 33, 138, 20);
 		panel.add(txtip);
@@ -199,19 +200,19 @@ public class USER_DETAY_EKLEME extends JInternalFrame {
 		lblNewLabel_11.setBounds(718, 61, 80, 14);
 		panel.add(lblNewLabel_11);
 
-		txtdiz = new JTextField();
+		txtdiz = new Obs_TextFIeld();
 		txtdiz.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtdiz.setBounds(800, 8, 314, 20);
 		panel.add(txtdiz);
 		txtdiz.setColumns(10);
 
-		txtyer = new JTextField();
+		txtyer = new Obs_TextFIeld();
 		txtyer.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtyer.setBounds(800, 33, 46, 20);
 		panel.add(txtyer);
 		txtyer.setColumns(10);
 
-		txtdcins = new JTextField();
+		txtdcins = new Obs_TextFIeld();
 		txtdcins.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtdcins.setBounds(800, 58, 46, 20);
 		panel.add(txtdcins);

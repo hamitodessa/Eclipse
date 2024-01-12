@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
@@ -35,9 +34,9 @@ import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
-import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.KERESTE_ACCESS;
 import OBS_C_2025.KER_RAPOR_BILGI;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.SOLA_ORTA;
@@ -67,17 +66,17 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	private static KERESTE_ACCESS  ker_Access = new KERESTE_ACCESS(OBS_SIS_2025_ANA_CLASS._IKereste , OBS_SIS_2025_ANA_CLASS._IKereste_Loger);
 	private static JTable table;
-	private JTextField txtKons;
-	private JTextField txtPaketNo;
-	private JTextField txtYKod;
+	private Obs_TextFIeld txtKons;
+	private Obs_TextFIeld txtPaketNo;
+	private Obs_TextFIeld txtYKod;
 	private JFormattedTextField txtKodu ;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_4 ;
 	private JLabel lblNewLabel_4_1 ;
 	private JSplitPane splitPane ;
 	private boolean ilk = true ;
-	private JTextField txtYKons;
-	private JTextField txtEvrak;
+	private Obs_TextFIeld txtYKons;
+	private Obs_TextFIeld txtEvrak;
 	private boolean hEPSI = false;
 
 	public KER_KOD_DEGISTIRME() {
@@ -114,7 +113,7 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		lblNewLabel_1.setBounds(29, 14, 70, 14);
 		panel.add(lblNewLabel_1);
 		
-		txtKons = new JTextField();
+		txtKons = new Obs_TextFIeld(15);
 		txtKons.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -125,12 +124,11 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			}
 		});
 		txtKons.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtKons.setDocument(new JTextFieldLimit(15));
 		txtKons.setBounds(117, 11, 96, 20);
 	
 		panel.add(txtKons);
 		
-		txtPaketNo = new JTextField();
+		txtPaketNo = new Obs_TextFIeld(10);
 		txtPaketNo.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -141,7 +139,6 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 			}
 		});
 		txtPaketNo.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtPaketNo.setDocument(new JTextFieldLimit(10));
 		txtPaketNo.setBounds(117, 36, 118, 20);
 		panel.add(txtPaketNo);
 		
@@ -151,10 +148,9 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		panel_1.setLayout(null);
 		panel.add(panel_1);
 		
-		txtYKod = new JTextField();
+		txtYKod = new Obs_TextFIeld(2);
 		txtYKod.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtYKod.setBounds(10, 18, 42, 20);
-		txtYKod.setDocument(new JTextFieldLimit(2));
 		txtYKod.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 			}
@@ -242,10 +238,10 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		panel_1_1.setBounds(678, 14, 224, 65);
 		panel.add(panel_1_1);
 		
-		txtYKons = new JTextField();
+		txtYKons = new Obs_TextFIeld(15);
 		txtYKons.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtYKons.setBounds(10, 18, 96, 20);
-		txtYKons.setDocument(new JTextFieldLimit(15));
+
 		txtYKons.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 			}
@@ -306,10 +302,9 @@ public class KER_KOD_DEGISTIRME extends JInternalFrame {
 		lblNewLabel_1_1.setBounds(29, 62, 78, 14);
 		panel.add(lblNewLabel_1_1);
 		
-		txtEvrak = new JTextField();
+		txtEvrak = new Obs_TextFIeld(10);
 		txtEvrak.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtEvrak.setBounds(117, 59, 118, 20);
-		txtEvrak.setDocument(new JTextFieldLimit(10));
 		txtEvrak.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {

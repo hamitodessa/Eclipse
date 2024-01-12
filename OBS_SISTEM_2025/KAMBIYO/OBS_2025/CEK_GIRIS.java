@@ -26,10 +26,11 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JDateChooserEditor;
-import OBS_C_2025.JTextFieldLimit;
+
 import OBS_C_2025.KAMBIYO_ACCESS;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.Next_Cell_Kereste;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
@@ -77,12 +78,12 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings({"serial","static-access","removal","deprecation"})
 public class CEK_GIRIS extends JInternalFrame {
 	private static JTable table;
-	public static JTextField textField;
-	public static JTextField textField_1;
-	private static JTextField textField_2;
-	public static JTextField textField_4;
-	private static JTextField textField_5;
-	private static JTextField textField_6;
+	public static Obs_TextFIeld textField;
+	public static Obs_TextFIeld textField_1;
+	private static Obs_TextFIeld textField_2;
+	public static Obs_TextFIeld textField_4;
+	private static Obs_TextFIeld textField_5;
+	private static Obs_TextFIeld textField_6;
 	public static JLabel lblNewLabel_2 ;
 	public static JDateChooser dateChooser ;
 	private static JComboBox<String> comboBox  ;
@@ -292,7 +293,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		lblNewLabel_1.setBounds(10, 38, 46, 14);
 		panel_2.add(lblNewLabel_1);
 
-		textField = new JTextField();
+		textField = new Obs_TextFIeld(10);
 
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
@@ -316,7 +317,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		});
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField.setBounds(87, 8, 108, 20);
-		textField.setDocument(new JTextFieldLimit(10));
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -337,7 +337,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		panel_2.add(textField);
 		textField.setColumns(10);
 
-		textField_1 = new JTextField();
+		textField_1 = new Obs_TextFIeld(12);
 
 		textField_1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -357,7 +357,6 @@ public class CEK_GIRIS extends JInternalFrame {
 		});
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_1.setBounds(87, 35, 108, 20);
-		textField_1.setDocument(new JTextFieldLimit(12));
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
@@ -490,7 +489,7 @@ public class CEK_GIRIS extends JInternalFrame {
 		lblNewLabel_4.setBounds(10, 27, 25, 14);
 		panel_3.add(lblNewLabel_4);
 
-		textField_2 = new JTextField();
+		textField_2 = new Obs_TextFIeld();
 		textField_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_2.setBounds(39, 24, 44, 20);
 		textField_2.getDocument().addDocumentListener(new DocumentListener() {
@@ -544,10 +543,9 @@ public class CEK_GIRIS extends JInternalFrame {
 		lblNewLabel_9.setBounds(826, 39, 82, 14);
 		panel_2.add(lblNewLabel_9);
 
-		textField_4 = new JTextField();
+		textField_4 = new Obs_TextFIeld(3);
 		textField_4.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_4.setBounds(918, 35, 62, 20);
-		textField_4.setDocument(new JTextFieldLimit(3));
 		panel_2.add(textField_4);
 		textField_4.setColumns(10);
 
@@ -567,17 +565,15 @@ public class CEK_GIRIS extends JInternalFrame {
 		lblNewLabel_11.setBounds(10, 36, 72, 14);
 		panel_1.add(lblNewLabel_11);
 
-		textField_5 = new JTextField();
+		textField_5 = new Obs_TextFIeld(50);
 		textField_5.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_5.setBounds(92, 8, 563, 20);
-		textField_5.setDocument(new JTextFieldLimit(50));
 		panel_1.add(textField_5);
 		textField_5.setColumns(10);
 
-		textField_6 = new JTextField();
+		textField_6 = new Obs_TextFIeld(50);
 		textField_6.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_6.setBounds(92, 33, 563, 20);
-		textField_6.setDocument(new JTextFieldLimit(50));
 		panel_1.add(textField_6);
 		textField_6.setColumns(10);
 

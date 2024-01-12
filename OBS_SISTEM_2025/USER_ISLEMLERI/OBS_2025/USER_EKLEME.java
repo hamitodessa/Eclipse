@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JSplitPane;
 import java.awt.Dimension;
-import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +27,7 @@ import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.ORTA;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
 import raven.toast.Notifications;
@@ -44,10 +44,10 @@ import javax.swing.JPasswordField;
 public class USER_EKLEME extends JInternalFrame {
 
 	private static JTable table_1;
-	private static JTextField txtkull;
-	private static JTextField txtsev;
-	private static JTextField txtmail;
-	private static JTextField txtdb;
+	private static Obs_TextFIeld txtkull;
+	private static Obs_TextFIeld txtsev;
+	private static Obs_TextFIeld txtmail;
+	private static Obs_TextFIeld txtdb;
 	private static JCheckBox chckbxl;
 	private static JCheckBox chckbxs;
 	private static JSplitPane splitPane ;
@@ -189,7 +189,7 @@ public class USER_EKLEME extends JInternalFrame {
 		lblNewLabel_1.setBounds(21, 39, 62, 14);
 		panel.add(lblNewLabel_1);
 
-		txtkull = new JTextField();
+		txtkull = new Obs_TextFIeld();
 		txtkull.setEnabled(false);
 		txtkull.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtkull.setBounds(105, 10, 113, 20);
@@ -204,13 +204,13 @@ public class USER_EKLEME extends JInternalFrame {
 		lblNewLabel_3.setBounds(370, 39, 58, 14);
 		panel.add(lblNewLabel_3);
 
-		txtsev = new JTextField();
+		txtsev = new Obs_TextFIeld();
 		txtsev.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtsev.setBounds(440, 10, 41, 20);
 		panel.add(txtsev);
 		txtsev.setColumns(10);
 
-		txtmail = new JTextField();
+		txtmail = new Obs_TextFIeld();
 		txtmail.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtmail.setBounds(440, 36, 284, 20);
 		panel.add(txtmail);
@@ -220,7 +220,7 @@ public class USER_EKLEME extends JInternalFrame {
 		lblNewLabel_4.setBounds(370, 64, 58, 14);
 		panel.add(lblNewLabel_4);
 
-		txtdb = new JTextField();
+		txtdb = new Obs_TextFIeld();
 		txtdb.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtdb.setBounds(440, 61, 284, 20);
 		panel.add(txtdb);

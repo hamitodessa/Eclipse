@@ -19,7 +19,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.MaskFormatter;
 
 import javax.swing.JLabel;
-import javax.swing.JTextField;
+
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
@@ -46,9 +46,8 @@ import OBS_2025_RAPORLAR.ZAYI_RAPOR;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GUNLUK_ACCESS;
-import OBS_C_2025.JTextFieldLimit;
-import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.KERESTE_ACCESS;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.TARIH_CEVIR;
 import raven.toast.Notifications;
@@ -97,23 +96,23 @@ public class FILTRE extends JDialog {
 	public static JTabbedPane tabbedPane ;
 	private static String [] hpl = {"","",""};
 	//EKSTRE
-	public static JTextField txtkodu;
+	public static Obs_TextFIeld txtkodu;
 	public static JDateChooser dateChooser ;
 	public static JDateChooser dateChooser_1 ; 
 	public static JLabel lblNewLabel_1 ;
 	public static JLabel lblNewLabel_2 ; 
 	//**** MIZAN
 	public static JComboBox<String> comboBox ;
-	public static JTextField txtilk;
-	public static JTextField txtson;
-	public static JTextField txticins;
-	public static JTextField txtscins;
-	public static JTextField txtikarton;
-	public static JTextField txtskarton;
+	public static Obs_TextFIeld txtilk;
+	public static Obs_TextFIeld txtson;
+	public static Obs_TextFIeld txticins;
+	public static Obs_TextFIeld txtscins;
+	public static Obs_TextFIeld txtikarton;
+	public static Obs_TextFIeld txtskarton;
 	public static JDateChooser dateChooser_2 ;
 	public static JDateChooser dateChooser_2_1 ;
 	//**** DVZ CEVIR
-	public static JTextField txtdvz;
+	public static Obs_TextFIeld txtdvz;
 	private static JLabel lblNewLabel_1_1  ;
 	public static JLabel lblNewLabel_2_1  ;
 	public static JComboBox<String> comboBox_1 ;
@@ -122,13 +121,13 @@ public class FILTRE extends JDialog {
 	public static JDateChooser dateChooser_4 ;
 	public static JCheckBox chckbxNewCheckBox_4 ;
 	//**** ARAMA
-	public static JTextField textField;
-	public static JTextField textField_1;
-	public static JTextField textField_2;
-	public static JTextField textField_3;
-	public static JTextField textField_4;
-	public static JTextField textField_5;
-	public static JTextField textField_79;
+	public static Obs_TextFIeld textField;
+	public static Obs_TextFIeld textField_1;
+	public static Obs_TextFIeld textField_2;
+	public static Obs_TextFIeld textField_3;
+	public static Obs_TextFIeld textField_4;
+	public static Obs_TextFIeld textField_5;
+	public static Obs_TextFIeld textField_79;
 	public static JCheckBox chcbaslayan ;
 	public static JCheckBox chcile ;
 	private JPanel panel_3;
@@ -136,20 +135,20 @@ public class FILTRE extends JDialog {
 	public static JDateChooser dateChooser_5 ;
 	public static JDateChooser dateChooser_5_1 ;
 	//**** CEK RAPOR
-	public static JTextField txtcn1;
-	public static JTextField txtcn2;
-	public static JTextField txtgb1;
-	public static JTextField txtgb2;
-	public static JTextField txtcb1;
-	public static JTextField txtcb2;
-	public static JTextField txtgh1;
-	public static JTextField txtgh2;
-	public static JTextField txtd1;
-	public static JTextField txtd2;
-	public static JTextField txtc1;
-	public static JTextField txtc2;
-	public static JTextField txtch1;
-	public static JTextField txtch2;
+	public static Obs_TextFIeld txtcn1;
+	public static Obs_TextFIeld txtcn2;
+	public static Obs_TextFIeld txtgb1;
+	public static Obs_TextFIeld txtgb2;
+	public static Obs_TextFIeld txtcb1;
+	public static Obs_TextFIeld txtcb2;
+	public static Obs_TextFIeld txtgh1;
+	public static Obs_TextFIeld txtgh2;
+	public static Obs_TextFIeld txtd1;
+	public static Obs_TextFIeld txtd2;
+	public static Obs_TextFIeld txtc1;
+	public static Obs_TextFIeld txtc2;
+	public static Obs_TextFIeld txtch1;
+	public static Obs_TextFIeld txtch2;
 	public static JDateChooser dateChooser_6 ;
 	public static JDateChooser dateChooser_6_1 ;
 	public static JDateChooser dateChooser_7 ;
@@ -163,8 +162,8 @@ public class FILTRE extends JDialog {
 	//*** KUR 
 	public static JDateChooser dateChooser_11 ;
 	public static JDateChooser dateChooser_11_1 ;
-	public static  JTextField txtkc1;
-	public static  JTextField txtkc2;
+	public static  Obs_TextFIeld txtkc1;
+	public static  Obs_TextFIeld txtkc2;
 	//KUR RAPORLAMA
 	public static JDateChooser dateChooser_32;
 	public static JDateChooser dateChooser_32_1;
@@ -172,28 +171,28 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_73;
 	public static JComboBox<String> comboBox_74;
 	//*** FATURA
-	public static  JPanel panel_6;
-	public static  JTextField textField_6;
-	public static  JTextField textField_7;
-	public static  JTextField textField_8;
-	public static  JTextField textField_9;
-	public static  JTextField textField_10;
-	public static  JTextField textField_11;
-	public static  JTextField txtZzzzzzzzzz;
-	public static  JTextField txtZzzzzzzzzzzz;
-	public static  JTextField txtZzzzzzzzzzzz_1;
-	public static  JTextField textField_15;
-	public static  JTextField txtZzzzzzzzzz_1;
-	public static  JTextField txtZzz;
+	public static JPanel panel_6;
+	public static Obs_TextFIeld textField_6;
+	public static Obs_TextFIeld textField_7;
+	public static Obs_TextFIeld textField_8;
+	public static Obs_TextFIeld textField_9;
+	public static Obs_TextFIeld textField_10;
+	public static Obs_TextFIeld textField_11;
+	public static Obs_TextFIeld txtZzzzzzzzzz;
+	public static Obs_TextFIeld txtZzzzzzzzzzzz;
+	public static Obs_TextFIeld txtZzzzzzzzzzzz_1;
+	public static Obs_TextFIeld textField_15;
+	public static Obs_TextFIeld txtZzzzzzzzzz_1;
+	public static Obs_TextFIeld txtZzz;
 	public static JComboBox<String> comboBox_3;
 	public static JComboBox<String> comboBox_4;
 	public static JComboBox<String> comboBox_5;
 	public static JComboBox<String> comboBox_6;
 	public static JComboBox<String> comboBox_7;
 	public static JComboBox<String> comboBox_8;
-	public static  JLabel lblUrunKodu;
-	public static  JTextField textField_12;
-	public static  JTextField textField_13;
+	public static JLabel lblUrunKodu;
+	public static Obs_TextFIeld textField_12;
+	public static Obs_TextFIeld textField_13;
 	public static JDateChooser dateChooser_12 ;
 	public static JDateChooser dateChooser_13 ;
 	//*** IMALAT RAPORLAMA
@@ -202,22 +201,22 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_11 ;
 	public static JComboBox<String> comboBox_12 ;
 	public static JComboBox<String> comboBox_13 ;
-	public static  JTextField textField_14;
-	public static  JTextField textField_16;
-	public static  JTextField textField_17;
-	public static  JTextField textField_21;
-	public static  JTextField textField_22;
-	public static  JTextField textField_23;
-	public static  JTextField textField_27;
-	public static  JTextField textField_28;
+	public static Obs_TextFIeld textField_14;
+	public static Obs_TextFIeld textField_16;
+	public static Obs_TextFIeld textField_17;
+	public static Obs_TextFIeld textField_21;
+	public static Obs_TextFIeld textField_22;
+	public static Obs_TextFIeld textField_23;
+	public static Obs_TextFIeld textField_27;
+	public static Obs_TextFIeld textField_28;
 	public static JDateChooser dateChooser_14 ;
 	public static JDateChooser dateChooser_15 ;
 	//** STOK_RAPOR
 	//private JPanel panel_9;
-	public static JTextField textField_18;
-	public static JTextField textField_19;
-	public static JTextField textField_20;
-	public static JTextField textField_24;
+	public static Obs_TextFIeld textField_18;
+	public static Obs_TextFIeld textField_19;
+	public static Obs_TextFIeld textField_20;
+	public static Obs_TextFIeld textField_24;
 	public static JDateChooser dateChooser_16 ;
 	public static JDateChooser dateChooser_17 ;
 	public static JComboBox<String> comboBox_14 ;
@@ -230,10 +229,10 @@ public class FILTRE extends JDialog {
 	public static JCheckBox chckbxNewCheckBox_1 ;
 	public static JCheckBox chckbxNewCheckBox_2;
 	//** STOK_DETAY
-	public static  JTextField textField_25;
-	public static  JTextField textField_26;
-	public static  JTextField textField_29;
-	public static  JTextField textField_30;
+	public static  Obs_TextFIeld textField_25;
+	public static  Obs_TextFIeld textField_26;
+	public static  Obs_TextFIeld textField_29;
+	public static  Obs_TextFIeld textField_30;
 	public static JComboBox<String> comboBox_20;
 	public static JComboBox<String> comboBox_21;
 	public static JComboBox<String> comboBox_22;
@@ -244,16 +243,16 @@ public class FILTRE extends JDialog {
 	public static JDateChooser dateChooser_19 ;
 	public static JCheckBox checkBox ;
 	public static JCheckBox checkBox_1 ;
-	public static JTextField textField_80;
-	public static JTextField textField_81;
+	public static Obs_TextFIeld textField_80;
+	public static Obs_TextFIeld textField_81;
 	//** GRUP RAPOR
-	public static  JTextField textField_31;
-	public static  JTextField textField_32;
-	public static  JTextField textField_33;
-	public static  JTextField textField_34;
-	public static  JTextField textField_35;
-	public static  JTextField textField_36;
-	public static  JTextField textField_37;
+	public static  Obs_TextFIeld textField_31;
+	public static  Obs_TextFIeld textField_32;
+	public static  Obs_TextFIeld textField_33;
+	public static  Obs_TextFIeld textField_34;
+	public static  Obs_TextFIeld textField_35;
+	public static  Obs_TextFIeld textField_36;
+	public static  Obs_TextFIeld textField_37;
 	public static JDateChooser dateChooser_20 ;
 	public static JDateChooser dateChooser_21 ;
 	public static JComboBox<String> comboBox_26;
@@ -266,10 +265,10 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_33;
 	public static JCheckBox chckbxIstenenAy ;
 	public static JCheckBox chckbxDovizeCevirme ;
-	public static  JTextField textField_39;
-	public static  JTextField textField_40;
-	public static  JTextField textField_42;
-	public static  JTextField textField_43;
+	public static  Obs_TextFIeld textField_39;
+	public static  Obs_TextFIeld textField_40;
+	public static  Obs_TextFIeld textField_42;
+	public static  Obs_TextFIeld textField_43;
 	public static JDateChooser dateChooser_22 ;
 	public static JDateChooser dateChooser_23 ;
 	public static JComboBox<String> comboBox_34;
@@ -281,17 +280,17 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_40;
 	public static JComboBox<String> comboBox_41;
 	//** IRSALIYE RAPOR
-	public static  JTextField textField_38;
-	public static  JTextField textField_41;
-	public static  JTextField textField_44;
-	public static  JTextField textField_46;
-	public static  JTextField textField_47;
-	public static  JTextField textField_48;
-	public static  JTextField textField_49;
-	public static  JTextField textField_50;
-	public static  JTextField  textField_53;
-	public static  JTextField textField_54;
-	public static  JTextField textField_55;
+	public static  Obs_TextFIeld textField_38;
+	public static  Obs_TextFIeld textField_41;
+	public static  Obs_TextFIeld textField_44;
+	public static  Obs_TextFIeld textField_46;
+	public static  Obs_TextFIeld textField_47;
+	public static  Obs_TextFIeld textField_48;
+	public static  Obs_TextFIeld textField_49;
+	public static  Obs_TextFIeld textField_50;
+	public static  Obs_TextFIeld  textField_53;
+	public static  Obs_TextFIeld textField_54;
+	public static  Obs_TextFIeld textField_55;
 	public static JComboBox<String> comboBox_42;
 	public static JComboBox<String> comboBox_43;
 	public static JComboBox<String> comboBox_45;
@@ -299,22 +298,22 @@ public class FILTRE extends JDialog {
 	public static JDateChooser dateChooser_25 ;
 
 	//** RECETE RAPOR
-	public static JTextField textField_45;
-	public static JTextField textField_58;
-	public static JTextField textField_62;
-	public static JTextField textField_63;
+	public static Obs_TextFIeld textField_45;
+	public static Obs_TextFIeld textField_58;
+	public static Obs_TextFIeld textField_62;
+	public static Obs_TextFIeld textField_63;
 	public static JComboBox<String> comboBox_44;
 	public static JComboBox<String> comboBox_46;
 	public static JComboBox<String> comboBox_47;
 	public static JComboBox<String> comboBox_48;
 	public static JComboBox<String> comboBox_49;
 	//** ORTALAMA FIAT
-	public static JTextField textField_51;
-	public static JTextField textField_52;
-	public static JTextField textField_56;
-	public static JTextField textField_57;
-	public static JTextField textField_59;
-	public static JTextField textField_60;
+	public static Obs_TextFIeld textField_51;
+	public static Obs_TextFIeld textField_52;
+	public static Obs_TextFIeld textField_56;
+	public static Obs_TextFIeld textField_57;
+	public static Obs_TextFIeld textField_59;
+	public static Obs_TextFIeld textField_60;
 	public static JComboBox<String> comboBox_56;
 	public static JComboBox<String> comboBox_57;
 	public static JComboBox<String> comboBox_51;
@@ -323,14 +322,14 @@ public class FILTRE extends JDialog {
 	public static JDateChooser dateChooser_27 ;
 	private JLabel lblDoviz;
 	//*** URUN LISTE
-	public static JTextField textField_61;
-	public static JTextField textField_64;
-	public static JTextField textField_65;
-	public static JTextField textField_66;
-	public static JTextField textField_67;
-	public static JTextField textField_68;
-	public static JTextField textField_69;
-	public static JTextField textField_70;
+	public static Obs_TextFIeld textField_61;
+	public static Obs_TextFIeld textField_64;
+	public static Obs_TextFIeld textField_65;
+	public static Obs_TextFIeld textField_66;
+	public static Obs_TextFIeld textField_67;
+	public static Obs_TextFIeld textField_68;
+	public static Obs_TextFIeld textField_69;
+	public static Obs_TextFIeld textField_70;
 	public static JComboBox<String> comboBox_52;
 	public static JComboBox<String> comboBox_53;
 	public static JComboBox<String> comboBox_54;
@@ -338,10 +337,10 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_58;
 	public static JComboBox<String> comboBox_59;
 	//*** ENVANTER
-	public static JTextField textField_71;
-	public static JTextField textField_72;
-	public static JTextField textField_73;
-	public static JTextField textField_74;
+	public static Obs_TextFIeld textField_71;
+	public static Obs_TextFIeld textField_72;
+	public static Obs_TextFIeld textField_73;
+	public static Obs_TextFIeld textField_74;
 	public static JComboBox<String> comboBox_60;
 	public static JComboBox<String> comboBox_61;
 	public static JComboBox<String> comboBox_62;
@@ -356,10 +355,10 @@ public class FILTRE extends JDialog {
 	//*** ZAYI
 	public static JDateChooser dateChooser_30;
 	public static JDateChooser dateChooser_31;
-	public static JTextField textField_75;
-	public static JTextField textField_76;
-	public static JTextField textField_77;
-	public static JTextField textField_78;
+	public static Obs_TextFIeld textField_75;
+	public static Obs_TextFIeld textField_76;
+	public static Obs_TextFIeld textField_77;
+	public static Obs_TextFIeld textField_78;
 	public static JComboBox<String> comboBox_67;
 	public static JComboBox<String> comboBox_68;
 	public static JComboBox<String> comboBox_69;
@@ -388,10 +387,10 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_77_2;
 	public static JComboBox<String> comboBox_80_6 ;
 	
-	public static JTextField textField_82;
-	public static JTextField textField_83;
-	public static JTextField textField_99;
-	public static JTextField textField_100;
+	public static Obs_TextFIeld textField_82;
+	public static Obs_TextFIeld textField_83;
+	public static Obs_TextFIeld textField_99;
+	public static Obs_TextFIeld textField_100;
 	public static JCheckBox chckbxDovizeCevirme_1 ;
 	public static JCheckBox chckbxNewCheckBox_3 ;
 	public static JLabel lblNewLabel_41;
@@ -414,18 +413,18 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_7_1 ;
 	public static JComboBox<String> comboBox_8_1 ;
 	public static JComboBox<String> comboBox_81;
-	public static JTextField textField_84;
-	public static JTextField textField_85;
-	public static JTextField textField_86;
-	public static JTextField textField_87;
-	public static JTextField textField_88;
-	public static JTextField textField_88_1;
-	public static JTextField textField_90;
-	public static JTextField textField_91;
-	public static JTextField textField_92;
-	public static JTextField textField_93;
-	public static JTextField textField_89;
-	public static JTextField textField_94;
+	public static Obs_TextFIeld textField_84;
+	public static Obs_TextFIeld textField_85;
+	public static Obs_TextFIeld textField_86;
+	public static Obs_TextFIeld textField_87;
+	public static Obs_TextFIeld textField_88;
+	public static Obs_TextFIeld textField_88_1;
+	public static Obs_TextFIeld textField_90;
+	public static Obs_TextFIeld textField_91;
+	public static Obs_TextFIeld textField_92;
+	public static Obs_TextFIeld textField_93;
+	public static Obs_TextFIeld textField_89;
+	public static Obs_TextFIeld textField_94;
 	public static JComboBox<String> comboBox_84;
 	public JLabel lblGrup;
 	//KERESTE ORT FIAT
@@ -434,10 +433,10 @@ public class FILTRE extends JDialog {
 	public static JComboBox<String> comboBox_78_3;
 	public static JComboBox<String> comboBox_79_3;
 	public static JComboBox<String> comboBox_27_1_1;
-	public static JTextField textField_95;
-	public static JTextField textField_96;
-	public static JTextField textField_97;
-	public static JTextField textField_98;
+	public static Obs_TextFIeld textField_95;
+	public static Obs_TextFIeld textField_96;
+	public static Obs_TextFIeld textField_97;
+	public static Obs_TextFIeld textField_98;
 	public static JFormattedTextField formattedTextField_3 ;
 	public static JFormattedTextField formattedTextField_1_2;
 	public static JDateChooser dateChooser_20_1_2 ;
@@ -626,9 +625,7 @@ public class FILTRE extends JDialog {
 			}
 		});
 		paneleks.add(dateChooser_1);
-		txtkodu = new JTextField();
-		txtkodu.setDocument(new JTextFieldLimit(12));
-		JTextFieldRegularPopupMenu.addTo(txtkodu);
+		txtkodu = new Obs_TextFIeld(12);
 		InputMap txtkoduMap = txtkodu.getInputMap();
 		txtkoduMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
 		txtkodu.getDocument().addDocumentListener(new DocumentListener() {
@@ -723,14 +720,13 @@ public class FILTRE extends JDialog {
 		lblNewLabel_5.setBounds(27, 26, 59, 14);
 		panel_1m.add(lblNewLabel_5);
 
-		txtilk = new JTextField();
+		txtilk = new Obs_TextFIeld(12);
 		txtilk.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				txtilk.selectAll();
 			}
 		});
-		JTextFieldRegularPopupMenu.addTo(txtilk);
 		InputMap txtilkMap =txtilk.getInputMap();
 		txtilkMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
 		txtilk.addMouseListener(new MouseAdapter() {
@@ -801,7 +797,6 @@ public class FILTRE extends JDialog {
 				});
 			}
 		});
-		txtilk.setDocument(new JTextFieldLimit(12));
 		panel_1m.add(txtilk);
 
 		JLabel lblNewLabel_6 = new JLabel("Son Hesap");
@@ -809,14 +804,13 @@ public class FILTRE extends JDialog {
 		lblNewLabel_6.setBounds(283, 26, 78, 14);
 		panel_1m.add(lblNewLabel_6);
 
-		txtson = new JTextField();
+		txtson = new Obs_TextFIeld(12);
 		txtson.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				txtson.selectAll();
 			}
 		});
-		JTextFieldRegularPopupMenu.addTo(txtson);
 		InputMap txtsonMap =txtilk.getInputMap();
 		txtsonMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
 		txtson.addMouseListener(new MouseAdapter() {
@@ -866,7 +860,6 @@ public class FILTRE extends JDialog {
 			}
 		});
 		txtson.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtson.setDocument(new JTextFieldLimit(12));
 		txtson.setText("ZZZZZZZZZZZZ");
 		txtson.setBounds(371, 23, 141, 20);
 		panel_1m.add(txtson);
@@ -876,7 +869,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_5_1.setBounds(27, 54, 59, 14);
 		panel_1m.add(lblNewLabel_5_1);
 
-		txticins = new JTextField();
+		txticins = new Obs_TextFIeld(3);
 		txticins.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -893,7 +886,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_6_1.setBounds(283, 54, 61, 14);
 		panel_1m.add(lblNewLabel_6_1);
 
-		txtscins = new JTextField();
+		txtscins = new Obs_TextFIeld(3);
 		txtscins.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -911,7 +904,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_5_2.setBounds(27, 82, 69, 14);
 		panel_1m.add(lblNewLabel_5_2);
 
-		txtikarton = new JTextField();
+		txtikarton = new Obs_TextFIeld(5);
 		txtikarton.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -928,7 +921,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_6_2.setBounds(283, 82, 78, 14);
 		panel_1m.add(lblNewLabel_6_2);
 
-		txtskarton = new JTextField();
+		txtskarton = new Obs_TextFIeld(5);
 		txtskarton.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
@@ -1089,9 +1082,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel.setBounds(10, 28, 103, 14);
 		panel.add(lblNewLabel);
 
-		txtdvz = new JTextField();
-		txtdvz.setDocument(new JTextFieldLimit(12));
-		JTextFieldRegularPopupMenu.addTo(txtdvz);
+		txtdvz = new Obs_TextFIeld(12);
 		InputMap txtdvzMap = txtdvz.getInputMap();
 		txtdvzMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK ), "foo");
 		txtdvz.addAncestorListener(new AncestorListener() {
@@ -1373,8 +1364,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_3.setBounds(10, 29, 103, 14);
 		panel_1.add(lblNewLabel_3);
 
-		textField = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(textField);
+		textField = new Obs_TextFIeld(12);
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1392,7 +1382,6 @@ public class FILTRE extends JDialog {
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setBounds(123, 26, 145, 20);
 
-		textField.setDocument(new JTextFieldLimit(12));
 		panel_1.add(textField);
 
 		JLabel lblIzahat = new JLabel("Izahat");
@@ -1400,8 +1389,7 @@ public class FILTRE extends JDialog {
 		lblIzahat.setBounds(10, 57, 103, 14);
 		panel_1.add(lblIzahat);
 
-		textField_1 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(textField_1);
+		textField_1 = new Obs_TextFIeld();
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_1.setBounds(123, 54, 290, 20);
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
@@ -1460,8 +1448,7 @@ public class FILTRE extends JDialog {
 		lblGun.setBounds(10, 85, 103, 14);
 		panel_1.add(lblGun);
 
-		textField_2 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(textField_2);
+		textField_2 = new Obs_TextFIeld();
 		textField_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_2.setBounds(123, 82, 49, 20);
 		panel_1.add(textField_2);
@@ -1471,8 +1458,7 @@ public class FILTRE extends JDialog {
 		lblAy.setBounds(10, 113, 103, 14);
 		panel_1.add(lblAy);
 
-		textField_3 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(textField_3);
+		textField_3 = new Obs_TextFIeld();
 		textField_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_3.setBounds(123, 110, 49, 20);
 		panel_1.add(textField_3);
@@ -1482,8 +1468,7 @@ public class FILTRE extends JDialog {
 		lblYil.setBounds(10, 141, 103, 14);
 		panel_1.add(lblYil);
 
-		textField_4 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(textField_4);
+		textField_4 = new Obs_TextFIeld();
 		textField_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_4.setBounds(123, 138, 71, 20);
 		panel_1.add(textField_4);
@@ -1493,8 +1478,7 @@ public class FILTRE extends JDialog {
 		lblKod.setBounds(10, 169, 103, 14);
 		panel_1.add(lblKod);
 
-		textField_5 = new JTextField();
-		JTextFieldRegularPopupMenu.addTo(textField_5);
+		textField_5 = new Obs_TextFIeld();
 		textField_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_5.setBounds(123, 166, 71, 20);
 		panel_1.add(textField_5);
@@ -1540,7 +1524,7 @@ public class FILTRE extends JDialog {
 		chcile.setBounds(51, 53, 97, 23);
 		panel_2.add(chcile);
 
-		textField_79 = new JTextField();
+		textField_79 = new Obs_TextFIeld();
 		textField_79.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_79.setBounds(123, 194, 145, 20);
 		panel_1.add(textField_79);
@@ -1692,13 +1676,13 @@ public class FILTRE extends JDialog {
 		lblNewLabel_11.setBounds(10, 11, 46, 14);
 		panel_4.add(lblNewLabel_11);
 
-		txtcn1 = new JTextField();
+		txtcn1 = new Obs_TextFIeld(10);
 		txtcn1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtcn1.setBounds(85, 8, 114, 20);
 		panel_4.add(txtcn1);
 		txtcn1.setColumns(10);
 
-		txtcn2 = new JTextField();
+		txtcn2 = new Obs_TextFIeld(10);
 		txtcn2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtcn2.setText("ZZZZZZZZZZ");
 		txtcn2.setColumns(10);
@@ -1767,13 +1751,13 @@ public class FILTRE extends JDialog {
 		dateChooser_6_1.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		panel_4.add(dateChooser_6_1);
 
-		txtgb1 = new JTextField();
+		txtgb1 = new Obs_TextFIeld(10);
 		txtgb1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtgb1.setBounds(85, 58, 114, 20);
 		panel_4.add(txtgb1);
 		txtgb1.setColumns(10);
 
-		txtgb2 = new JTextField();
+		txtgb2 = new Obs_TextFIeld(10);
 		txtgb2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtgb2.setText("ZZZZZZZZZZ");
 		txtgb2.setBounds(219, 58, 114, 20);
@@ -1812,13 +1796,13 @@ public class FILTRE extends JDialog {
 		dateChooser_8.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		panel_4.add(dateChooser_8);
 
-		txtcb1 = new JTextField();
+		txtcb1 = new Obs_TextFIeld(10);
 		txtcb1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtcb1.setBounds(85, 108, 114, 20);
 		panel_4.add(txtcb1);
 		txtcb1.setColumns(10);
 
-		txtcb2 = new JTextField();
+		txtcb2 = new Obs_TextFIeld(10);
 		txtcb2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtcb2.setText("ZZZZZZZZZZ");
 		txtcb2.setBounds(219, 108, 114, 20);
@@ -1857,7 +1841,7 @@ public class FILTRE extends JDialog {
 		dateChooser_10.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		panel_4.add(dateChooser_10);
 
-		txtgh1 = new JTextField();
+		txtgh1 = new Obs_TextFIeld(12);
 		txtgh1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtgh1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -1878,7 +1862,7 @@ public class FILTRE extends JDialog {
 		panel_4.add(txtgh1);
 		txtgh1.setColumns(10);
 
-		txtgh2 = new JTextField();
+		txtgh2 = new Obs_TextFIeld(12);
 		txtgh2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtgh2.addMouseListener(new MouseAdapter() {
 			@Override
@@ -1909,7 +1893,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_19.setBounds(375, 36, 46, 14);
 		panel_4.add(lblNewLabel_19);
 
-		txtd1 = new JTextField();
+		txtd1 = new Obs_TextFIeld();
 		txtd1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtd1.setBounds(444, 8, 114, 20);
 		panel_4.add(txtd1);
@@ -1931,7 +1915,7 @@ public class FILTRE extends JDialog {
 		dateChooser_6_2.setDate(TARIH_CEVIR.tarih("01.01.1900"));
 		panel_4.add(dateChooser_6_2);
 
-		txtd2 = new JTextField();
+		txtd2 = new Obs_TextFIeld();
 		txtd2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtd2.setText("Z");
 		txtd2.setColumns(10);
@@ -1985,14 +1969,14 @@ public class FILTRE extends JDialog {
 		lblNewLabel_17_1.setBounds(376, 136, 76, 14);
 		panel_4.add(lblNewLabel_17_1);
 
-		txtc1 = new JTextField();
+		txtc1 = new Obs_TextFIeld();
 		txtc1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtc1.setText("");
 		txtc1.setColumns(10);
 		txtc1.setBounds(444, 133, 114, 20);
 		panel_4.add(txtc1);
 
-		txtc2 = new JTextField();
+		txtc2 = new Obs_TextFIeld();
 		txtc2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtc2.setText("ZZZ");
 		txtc2.setColumns(10);
@@ -2004,7 +1988,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_17_2.setBounds(375, 161, 76, 14);
 		panel_4.add(lblNewLabel_17_2);
 
-		txtch1 = new JTextField();
+		txtch1 = new Obs_TextFIeld(12);
 		txtch1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtch1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -2025,7 +2009,7 @@ public class FILTRE extends JDialog {
 		txtch1.setBounds(444, 158, 114, 20);
 		panel_4.add(txtch1);
 
-		txtch2 = new JTextField();
+		txtch2 = new Obs_TextFIeld(12);
 		txtch2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtch2.addMouseListener(new MouseAdapter() {
 			@Override
@@ -2093,7 +2077,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_22.setBounds(10, 62, 46, 14);
 		panel_5.add(lblNewLabel_22);
 
-		txtkc1 = new JTextField();
+		txtkc1 = new Obs_TextFIeld();
 		txtkc1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtkc1.setBounds(76, 59, 63, 20);
 		txtkc1.addAncestorListener(new AncestorListener() {
@@ -2117,7 +2101,7 @@ public class FILTRE extends JDialog {
 		panel_5.add(txtkc1);
 		txtkc1.setColumns(10);
 
-		txtkc2 = new JTextField();
+		txtkc2 = new Obs_TextFIeld();
 		txtkc2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtkc2.setText("ZZZ");
 		txtkc2.setColumns(10);
@@ -2134,7 +2118,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_23.setBounds(10, 11, 69, 14);
 		panel_6.add(lblNewLabel_23);
 
-		textField_6 = new JTextField();
+		textField_6 = new Obs_TextFIeld();
 		textField_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_6.setBounds(79, 8, 104, 20);
 		panel_6.add(textField_6);
@@ -2166,7 +2150,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_25.setBounds(10, 64, 58, 14);
 		panel_6.add(lblNewLabel_25);
 
-		textField_7 = new JTextField();
+		textField_7 = new Obs_TextFIeld();
 		textField_7.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_7.setBounds(79, 58, 125, 20);
 		panel_6.add(textField_7);
@@ -2193,7 +2177,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_26.setBounds(10, 89, 69, 14);
 		panel_6.add(lblNewLabel_26);
 
-		textField_8 = new JTextField();
+		textField_8 = new Obs_TextFIeld();
 		textField_8.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_8.setBounds(79, 83, 125, 20);
 		panel_6.add(textField_8);
@@ -2204,7 +2188,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_27.setBounds(10, 139, 69, 14);
 		panel_6.add(lblNewLabel_27);
 
-		textField_9 = new JTextField();
+		textField_9 = new Obs_TextFIeld();
 		textField_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_9.setHorizontalAlignment(SwingConstants.RIGHT);
 		textField_9.setText("0");
@@ -2217,7 +2201,7 @@ public class FILTRE extends JDialog {
 		lblNewLabel_28.setBounds(10, 164, 69, 14);
 		panel_6.add(lblNewLabel_28);
 
-		textField_10 = new JTextField();
+		textField_10 = new Obs_TextFIeld();
 		textField_10.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_10.setBounds(79, 158, 86, 20);
 		panel_6.add(textField_10);
@@ -2228,13 +2212,13 @@ public class FILTRE extends JDialog {
 		lblNewLabel_29.setBounds(10, 189, 46, 14);
 		panel_6.add(lblNewLabel_29);
 
-		textField_11 = new JTextField();
+		textField_11 = new Obs_TextFIeld();
 		textField_11.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_11.setBounds(79, 183, 86, 20);
 		panel_6.add(textField_11);
 		textField_11.setColumns(10);
 
-		txtZzzzzzzzzz = new JTextField();
+		txtZzzzzzzzzz = new Obs_TextFIeld();
 		txtZzzzzzzzzz.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtZzzzzzzzzz.setText("ZZZZZZZZZZ");
 		txtZzzzzzzzzz.setColumns(10);
@@ -2257,7 +2241,7 @@ public class FILTRE extends JDialog {
 		dateChooser_13.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		panel_6.add(dateChooser_13);
 
-		txtZzzzzzzzzzzz = new JTextField();
+		txtZzzzzzzzzzzz = new Obs_TextFIeld();
 		txtZzzzzzzzzzzz.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtZzzzzzzzzzzz.setText("ZZZZZZZZZZZZ");
 		txtZzzzzzzzzzzz.setColumns(10);
@@ -2280,14 +2264,14 @@ public class FILTRE extends JDialog {
 		});
 		panel_6.add(txtZzzzzzzzzzzz);
 
-		txtZzzzzzzzzzzz_1 = new JTextField();
+		txtZzzzzzzzzzzz_1 = new Obs_TextFIeld();
 		txtZzzzzzzzzzzz_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtZzzzzzzzzzzz_1.setText("ZZZZZZZZZZZZ");
 		txtZzzzzzzzzzzz_1.setColumns(10);
 		txtZzzzzzzzzzzz_1.setBounds(248, 83, 125, 20);
 		panel_6.add(txtZzzzzzzzzzzz_1);
 
-		textField_15 = new JTextField();
+		textField_15 = new Obs_TextFIeld();
 		textField_15.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_15.setText("99");
 		textField_15.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -2295,14 +2279,14 @@ public class FILTRE extends JDialog {
 		textField_15.setBounds(248, 133, 46, 20);
 		panel_6.add(textField_15);
 
-		txtZzzzzzzzzz_1 = new JTextField();
+		txtZzzzzzzzzz_1 = new Obs_TextFIeld();
 		txtZzzzzzzzzz_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtZzzzzzzzzz_1.setText("ZZZZZZZZZZ");
 		txtZzzzzzzzzz_1.setColumns(10);
 		txtZzzzzzzzzz_1.setBounds(248, 158, 86, 20);
 		panel_6.add(txtZzzzzzzzzz_1);
 
-		txtZzz = new JTextField();
+		txtZzz = new Obs_TextFIeld();
 		txtZzz.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtZzz.setText("ZZZ");
 		txtZzz.setColumns(10);
@@ -2386,13 +2370,13 @@ public class FILTRE extends JDialog {
 		lblUrunKodu.setBounds(10, 114, 69, 14);
 		panel_6.add(lblUrunKodu);
 
-		textField_12 = new JTextField();
+		textField_12 = new Obs_TextFIeld();
 		textField_12.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_12.setColumns(10);
 		textField_12.setBounds(79, 108, 125, 20);
 		panel_6.add(textField_12);
 
-		textField_13 = new JTextField();
+		textField_13 = new Obs_TextFIeld();
 		textField_13.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_13.setText("ZZZZZZZZZZZZ");
 		textField_13.setColumns(10);
@@ -2409,7 +2393,7 @@ public class FILTRE extends JDialog {
 		lblEvrakNo.setBounds(10, 11, 69, 14);
 		panel_8.add(lblEvrakNo);
 
-		textField_14 = new JTextField();
+		textField_14 = new Obs_TextFIeld();
 		textField_14.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_14.setColumns(10);
 		textField_14.setBounds(90, 8, 104, 20);
@@ -2441,7 +2425,7 @@ public class FILTRE extends JDialog {
 		lblBarkod.setBounds(10, 64, 58, 14);
 		panel_8.add(lblBarkod);
 
-		textField_16 = new JTextField();
+		textField_16 = new Obs_TextFIeld();
 		textField_16.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_16.setColumns(10);
 		textField_16.setBounds(90, 58, 125, 20);
@@ -2452,13 +2436,13 @@ public class FILTRE extends JDialog {
 		lblUrunKodu_1.setBounds(10, 89, 69, 14);
 		panel_8.add(lblUrunKodu_1);
 
-		textField_17 = new JTextField();
+		textField_17 = new Obs_TextFIeld();
 		textField_17.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_17.setColumns(10);
 		textField_17.setBounds(90, 83, 125, 20);
 		panel_8.add(textField_17);
 
-		textField_21 = new JTextField();
+		textField_21 = new Obs_TextFIeld();
 		textField_21.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_21.setText("ZZZZZZZZZZ");
 		textField_21.setColumns(10);
@@ -2481,14 +2465,14 @@ public class FILTRE extends JDialog {
 		dateChooser_15.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		panel_8.add(dateChooser_15);
 
-		textField_22 = new JTextField();
+		textField_22 = new Obs_TextFIeld();
 		textField_22.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_22.setText("ZZZZZZZZZZZZ");
 		textField_22.setColumns(10);
 		textField_22.setBounds(248, 58, 125, 20);
 		panel_8.add(textField_22);
 
-		textField_23 = new JTextField();
+		textField_23 = new Obs_TextFIeld();
 		textField_23.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_23.setText("ZZZZZZZZZZZZ");
 		textField_23.setColumns(10);
@@ -2539,13 +2523,13 @@ public class FILTRE extends JDialog {
 		lblRecete.setBounds(10, 114, 69, 14);
 		panel_8.add(lblRecete);
 
-		textField_27 = new JTextField();
+		textField_27 = new Obs_TextFIeld();
 		textField_27.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_27.setColumns(10);
 		textField_27.setBounds(90, 108, 125, 20);
 		panel_8.add(textField_27);
 
-		textField_28 = new JTextField();
+		textField_28 = new Obs_TextFIeld();
 		textField_28.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_28.setText("ZZZZZZZZZZZZ");
 		textField_28.setColumns(10);
@@ -2632,26 +2616,26 @@ public class FILTRE extends JDialog {
 		lblEvrakNo_1.setBounds(10, 67, 69, 14);
 		panel_9.add(lblEvrakNo_1);
 
-		textField_18 = new JTextField();
+		textField_18 = new Obs_TextFIeld();
 		textField_18.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_18.setColumns(10);
 		textField_18.setBounds(79, 61, 125, 20);
 		panel_9.add(textField_18);
 
-		textField_19 = new JTextField();
+		textField_19 = new Obs_TextFIeld();
 		textField_19.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_19.setColumns(10);
 		textField_19.setBounds(79, 36, 125, 20);
 		panel_9.add(textField_19);
 
-		textField_20 = new JTextField();
+		textField_20 = new Obs_TextFIeld();
 		textField_20.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_20.setText("ZZZZZZZZZZZZ");
 		textField_20.setColumns(10);
 		textField_20.setBounds(248, 36, 125, 20);
 		panel_9.add(textField_20);
 
-		textField_24 = new JTextField();
+		textField_24 = new Obs_TextFIeld();
 		textField_24.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_24.setText("ZZZZZZZZZZZZ");
 		textField_24.setColumns(10);
@@ -2819,26 +2803,26 @@ public class FILTRE extends JDialog {
 		label_12.setBounds(10, 67, 69, 14);
 		panel_11.add(label_12);
 
-		textField_25 = new JTextField();
+		textField_25 = new Obs_TextFIeld();
 		textField_25.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_25.setColumns(10);
 		textField_25.setBounds(79, 61, 125, 20);
 		panel_11.add(textField_25);
 
-		textField_26 = new JTextField();
+		textField_26 = new Obs_TextFIeld();
 		textField_26.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_26.setColumns(10);
 		textField_26.setBounds(79, 36, 125, 20);
 		panel_11.add(textField_26);
 
-		textField_29 = new JTextField();
+		textField_29 = new Obs_TextFIeld();
 		textField_29.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_29.setText("ZZZZZZZZZZZZ");
 		textField_29.setColumns(10);
 		textField_29.setBounds(248, 36, 125, 20);
 		panel_11.add(textField_29);
 
-		textField_30 = new JTextField();
+		textField_30 = new Obs_TextFIeld();
 		textField_30.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_30.setText("ZZZZZZZZZZZZ");
 		textField_30.setColumns(10);
@@ -2940,13 +2924,13 @@ public class FILTRE extends JDialog {
 		label_11_1.setBounds(10, 92, 69, 14);
 		panel_11.add(label_11_1);
 
-		textField_80 = new JTextField(12);
+		textField_80 = new Obs_TextFIeld(12);
 		textField_80.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_80.setColumns(10);
 		textField_80.setBounds(79, 89, 125, 20);
 		panel_11.add(textField_80);
 
-		textField_81 = new JTextField(12);
+		textField_81 = new Obs_TextFIeld(12);
 		textField_81.setText("ZZZZZZZZZZZZ");
 		textField_81.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_81.setColumns(10);
@@ -3005,7 +2989,7 @@ public class FILTRE extends JDialog {
 		lblHesapKodu.setBounds(10, 67, 82, 14);
 		panel_12.add(lblHesapKodu);
 
-		textField_31 = new JTextField();
+		textField_31 = new Obs_TextFIeld();
 		textField_31.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_31.setColumns(10);
 		textField_31.setBounds(90, 61, 125, 20);
@@ -3027,20 +3011,20 @@ public class FILTRE extends JDialog {
 		});
 		panel_12.add(textField_31);
 
-		textField_32 = new JTextField();
+		textField_32 = new Obs_TextFIeld();
 		textField_32.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_32.setColumns(10);
 		textField_32.setBounds(90, 36, 125, 20);
 		panel_12.add(textField_32);
 
-		textField_33 = new JTextField();
+		textField_33 = new Obs_TextFIeld();
 		textField_33.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_33.setText("ZZZZZZZZZZZZ");
 		textField_33.setColumns(10);
 		textField_33.setBounds(248, 36, 125, 20);
 		panel_12.add(textField_33);
 
-		textField_34 = new JTextField();
+		textField_34 = new Obs_TextFIeld();
 		textField_34.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_34.setText("ZZZZZZZZZZZZ");
 		textField_34.setColumns(10);
@@ -3133,13 +3117,13 @@ public class FILTRE extends JDialog {
 		lblSinif.setBounds(10, 92, 69, 14);
 		panel_12.add(lblSinif);
 
-		textField_35 = new JTextField();
+		textField_35 = new Obs_TextFIeld();
 		textField_35.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_35.setColumns(10);
 		textField_35.setBounds(90, 86, 125, 20);
 		panel_12.add(textField_35);
 
-		textField_36 = new JTextField();
+		textField_36 = new Obs_TextFIeld();
 		textField_36.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_36.setText("ZZZZZZZZZZZZ");
 		textField_36.setColumns(10);
@@ -3195,7 +3179,7 @@ public class FILTRE extends JDialog {
 		comboBox_31.setBounds(520, 72, 184, 22);
 		panel_12.add(comboBox_31);
 
-		textField_37 = new JTextField();
+		textField_37 = new Obs_TextFIeld();
 		textField_37.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_37.setBounds(520, 114, 58, 20);
 		textField_37.setVisible(false);
@@ -3228,13 +3212,13 @@ public class FILTRE extends JDialog {
 		label_20.setBounds(10, 17, 69, 14);
 		panel_13.add(label_20);
 
-		textField_39 = new JTextField();
+		textField_39 = new Obs_TextFIeld();
 		textField_39.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_39.setColumns(10);
 		textField_39.setBounds(90, 11, 125, 20);
 		panel_13.add(textField_39);
 
-		textField_40 = new JTextField();
+		textField_40 = new Obs_TextFIeld();
 		textField_40.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_40.setText("ZZZZZZZZZZZZ");
 		textField_40.setColumns(10);
@@ -3283,13 +3267,13 @@ public class FILTRE extends JDialog {
 		label_23.setBounds(10, 70, 69, 14);
 		panel_13.add(label_23);
 
-		textField_42 = new JTextField();
+		textField_42 = new Obs_TextFIeld();
 		textField_42.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_42.setColumns(10);
 		textField_42.setBounds(90, 64, 125, 20);
 		panel_13.add(textField_42);
 
-		textField_43 = new JTextField();
+		textField_43 = new Obs_TextFIeld();
 		textField_43.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_43.setText("ZZZZZZZZZZZZ");
 		textField_43.setColumns(10);
@@ -3408,7 +3392,7 @@ public class FILTRE extends JDialog {
 		lblIrsaliyeNo.setBounds(10, 11, 69, 14);
 		panel_15.add(lblIrsaliyeNo);
 
-		textField_38 = new JTextField();
+		textField_38 = new Obs_TextFIeld();
 		textField_38.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_38.setColumns(10);
 		textField_38.setBounds(90, 8, 104, 20);
@@ -3440,7 +3424,7 @@ public class FILTRE extends JDialog {
 		label_30.setBounds(10, 64, 58, 14);
 		panel_15.add(label_30);
 
-		textField_41 = new JTextField();
+		textField_41 = new Obs_TextFIeld();
 		textField_41.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_41.setColumns(10);
 		textField_41.setBounds(90, 58, 125, 20);
@@ -3467,7 +3451,7 @@ public class FILTRE extends JDialog {
 		label_33.setBounds(10, 89, 69, 14);
 		panel_15.add(label_33);
 
-		textField_44 = new JTextField();
+		textField_44 = new Obs_TextFIeld();
 		textField_44.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_44.setColumns(10);
 		textField_44.setBounds(90, 83, 125, 20);
@@ -3478,7 +3462,7 @@ public class FILTRE extends JDialog {
 		label_35.setBounds(10, 139, 69, 14);
 		panel_15.add(label_35);
 
-		textField_46 = new JTextField();
+		textField_46 = new Obs_TextFIeld();
 		textField_46.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_46.setColumns(10);
 		textField_46.setBounds(90, 133, 86, 20);
@@ -3489,13 +3473,13 @@ public class FILTRE extends JDialog {
 		lblFaturaNo.setBounds(10, 164, 69, 14);
 		panel_15.add(lblFaturaNo);
 
-		textField_47 = new JTextField();
+		textField_47 = new Obs_TextFIeld();
 		textField_47.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_47.setColumns(10);
 		textField_47.setBounds(90, 158, 86, 20);
 		panel_15.add(textField_47);
 
-		textField_48 = new JTextField();
+		textField_48 = new Obs_TextFIeld();
 		textField_48.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_48.setText("ZZZZZZZZZZ");
 		textField_48.setColumns(10);
@@ -3518,7 +3502,7 @@ public class FILTRE extends JDialog {
 		dateChooser_25.setDate(TARIH_CEVIR.tarih("31.12.2100"));
 		panel_15.add(dateChooser_25);
 
-		textField_49 = new JTextField();
+		textField_49 = new Obs_TextFIeld();
 		textField_49.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_49.setText("ZZZZZZZZZZZZ");
 		textField_49.setColumns(10);
@@ -3541,14 +3525,14 @@ public class FILTRE extends JDialog {
 		});
 		panel_15.add(textField_49);
 
-		textField_50 = new JTextField();
+		textField_50 = new Obs_TextFIeld();
 		textField_50.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_50.setText("ZZZZZZZZZZZZ");
 		textField_50.setColumns(10);
 		textField_50.setBounds(248, 83, 125, 20);
 		panel_15.add(textField_50);
 
-		textField_53 = new JTextField();
+		textField_53 = new Obs_TextFIeld();
 		textField_53.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_53.setText("ZZZZZZZZZZ");
 		textField_53.setColumns(10);
@@ -3600,13 +3584,13 @@ public class FILTRE extends JDialog {
 		label_41.setBounds(10, 114, 69, 14);
 		panel_15.add(label_41);
 
-		textField_54 = new JTextField();
+		textField_54 = new Obs_TextFIeld();
 		textField_54.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_54.setColumns(10);
 		textField_54.setBounds(90, 108, 125, 20);
 		panel_15.add(textField_54);
 
-		textField_55 = new JTextField();
+		textField_55 = new Obs_TextFIeld();
 		textField_55.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_55.setText("ZZZZZZZZZZZZ");
 		textField_55.setColumns(10);
@@ -3623,13 +3607,13 @@ public class FILTRE extends JDialog {
 		lblReceteNo.setBounds(10, 11, 69, 14);
 		panel_16.add(lblReceteNo);
 
-		textField_45 = new JTextField();
+		textField_45 = new Obs_TextFIeld();
 		textField_45.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_45.setColumns(10);
 		textField_45.setBounds(90, 8, 104, 20);
 		panel_16.add(textField_45);
 
-		textField_58 = new JTextField();
+		textField_58 = new Obs_TextFIeld();
 		textField_58.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_58.setText("ZZZZZZZZZZ");
 		textField_58.setColumns(10);
@@ -3681,13 +3665,13 @@ public class FILTRE extends JDialog {
 		label_47.setBounds(10, 42, 69, 14);
 		panel_16.add(label_47);
 
-		textField_62 = new JTextField();
+		textField_62 = new Obs_TextFIeld();
 		textField_62.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_62.setColumns(10);
 		textField_62.setBounds(90, 36, 125, 20);
 		panel_16.add(textField_62);
 
-		textField_63 = new JTextField();
+		textField_63 = new Obs_TextFIeld();
 		textField_63.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_63.setText("ZZZZZZZZZZZZ");
 		textField_63.setColumns(10);
@@ -3729,13 +3713,13 @@ public class FILTRE extends JDialog {
 		label_21.setBounds(10, 17, 69, 14);
 		panel_18.add(label_21);
 
-		textField_51 = new JTextField();
+		textField_51 = new Obs_TextFIeld();
 		textField_51.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_51.setColumns(10);
 		textField_51.setBounds(90, 11, 125, 20);
 		panel_18.add(textField_51);
 
-		textField_52 = new JTextField();
+		textField_52 = new Obs_TextFIeld();
 		textField_52.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_52.setText("ZZZZZZZZZZZZ");
 		textField_52.setColumns(10);
@@ -3784,13 +3768,13 @@ public class FILTRE extends JDialog {
 		label_36.setBounds(10, 70, 69, 14);
 		panel_18.add(label_36);
 
-		textField_56 = new JTextField();
+		textField_56 = new Obs_TextFIeld();
 		textField_56.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_56.setColumns(10);
 		textField_56.setBounds(90, 64, 125, 20);
 		panel_18.add(textField_56);
 
-		textField_57 = new JTextField();
+		textField_57 = new Obs_TextFIeld();
 		textField_57.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_57.setText("ZZZZZZZZZZZZ");
 		textField_57.setColumns(10);
@@ -3838,7 +3822,7 @@ public class FILTRE extends JDialog {
 		lblHesapKodu_1.setBounds(10, 97, 69, 14);
 		panel_18.add(lblHesapKodu_1);
 
-		textField_59 = new JTextField();
+		textField_59 = new Obs_TextFIeld();
 		textField_59.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_59.setColumns(10);
 		textField_59.setBounds(90, 91, 125, 20);
@@ -3860,7 +3844,7 @@ public class FILTRE extends JDialog {
 		});
 		panel_18.add(textField_59);
 
-		textField_60 = new JTextField();
+		textField_60 = new Obs_TextFIeld();
 		textField_60.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_60.setText("ZZZZZZZZZZZZ");
 		textField_60.setColumns(10);
@@ -3912,26 +3896,26 @@ public class FILTRE extends JDialog {
 		lblBarkod_1.setBounds(10, 41, 69, 14);
 		panel_20.add(lblBarkod_1);
 
-		textField_61 = new JTextField();
+		textField_61 = new Obs_TextFIeld();
 		textField_61.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_61.setColumns(10);
 		textField_61.setBounds(79, 35, 125, 20);
 		panel_20.add(textField_61);
 
-		textField_64 = new JTextField();
+		textField_64 = new Obs_TextFIeld();
 		textField_64.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_64.setColumns(10);
 		textField_64.setBounds(79, 10, 125, 20);
 		panel_20.add(textField_64);
 
-		textField_65 = new JTextField();
+		textField_65 = new Obs_TextFIeld();
 		textField_65.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_65.setText("ZZZZZZZZZZZZ");
 		textField_65.setColumns(10);
 		textField_65.setBounds(248, 10, 125, 20);
 		panel_20.add(textField_65);
 
-		textField_66 = new JTextField();
+		textField_66 = new Obs_TextFIeld();
 		textField_66.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_66.setText("ZZZZZZZZZZZZ");
 		textField_66.setColumns(10);
@@ -3998,26 +3982,26 @@ public class FILTRE extends JDialog {
 		lblSinif_1.setBounds(10, 91, 69, 14);
 		panel_20.add(lblSinif_1);
 
-		textField_67 = new JTextField();
+		textField_67 = new Obs_TextFIeld();
 		textField_67.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_67.setColumns(10);
 		textField_67.setBounds(79, 85, 125, 20);
 		panel_20.add(textField_67);
 
-		textField_68 = new JTextField();
+		textField_68 = new Obs_TextFIeld();
 		textField_68.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_68.setColumns(10);
 		textField_68.setBounds(79, 60, 125, 20);
 		panel_20.add(textField_68);
 
-		textField_69 = new JTextField();
+		textField_69 = new Obs_TextFIeld();
 		textField_69.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_69.setText("ZZZZZZZZZZZZ");
 		textField_69.setColumns(10);
 		textField_69.setBounds(248, 60, 125, 20);
 		panel_20.add(textField_69);
 
-		textField_70 = new JTextField();
+		textField_70 = new Obs_TextFIeld();
 		textField_70.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_70.setText("ZZZZZZZZZZZZ");
 		textField_70.setColumns(10);
@@ -4099,26 +4083,26 @@ public class FILTRE extends JDialog {
 		label_49.setBounds(10, 67, 69, 14);
 		panel_21.add(label_49);
 
-		textField_71 = new JTextField();
+		textField_71 = new Obs_TextFIeld();
 		textField_71.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_71.setColumns(10);
 		textField_71.setBounds(79, 61, 125, 20);
 		panel_21.add(textField_71);
 
-		textField_72 = new JTextField();
+		textField_72 = new Obs_TextFIeld();
 		textField_72.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_72.setColumns(10);
 		textField_72.setBounds(79, 36, 125, 20);
 		panel_21.add(textField_72);
 
-		textField_73 = new JTextField();
+		textField_73 = new Obs_TextFIeld();
 		textField_73.setText("ZZZZZZZZZZZZ");
 		textField_73.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_73.setColumns(10);
 		textField_73.setBounds(248, 36, 125, 20);
 		panel_21.add(textField_73);
 
-		textField_74 = new JTextField();
+		textField_74 = new Obs_TextFIeld();
 		textField_74.setText("ZZZZZZZZZZZZ");
 		textField_74.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_74.setColumns(10);
@@ -4295,26 +4279,26 @@ public class FILTRE extends JDialog {
 		label_60.setBounds(10, 67, 69, 14);
 		panel_22.add(label_60);
 
-		textField_75 = new JTextField();
+		textField_75 = new Obs_TextFIeld();
 		textField_75.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_75.setColumns(10);
 		textField_75.setBounds(79, 61, 125, 20);
 		panel_22.add(textField_75);
 
-		textField_76 = new JTextField();
+		textField_76 = new Obs_TextFIeld();
 		textField_76.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_76.setColumns(10);
 		textField_76.setBounds(79, 36, 125, 20);
 		panel_22.add(textField_76);
 
-		textField_77 = new JTextField();
+		textField_77 = new Obs_TextFIeld();
 		textField_77.setText("ZZZZZZZZZZZZ");
 		textField_77.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_77.setColumns(10);
 		textField_77.setBounds(248, 36, 125, 20);
 		panel_22.add(textField_77);
 
-		textField_78 = new JTextField();
+		textField_78 = new Obs_TextFIeld();
 		textField_78.setText("ZZZZZZZZZZZZ");
 		textField_78.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_78.setColumns(10);
@@ -4571,13 +4555,13 @@ public class FILTRE extends JDialog {
 		dateChooser_21_1.setBounds(248, 11, 125, 20);
 		panel_KERESTE.add(dateChooser_21_1);
 
-		textField_82 = new JTextField();
+		textField_82 = new Obs_TextFIeld();
 		textField_82.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_82.setColumns(10);
 		textField_82.setBounds(90, 55, 125, 20);
 		panel_KERESTE.add(textField_82);
 
-		textField_83 = new JTextField();
+		textField_83 = new Obs_TextFIeld();
 		textField_83.setText("ZZZZZZZZZZZZ");
 		textField_83.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_83.setColumns(10);
@@ -4748,13 +4732,13 @@ public class FILTRE extends JDialog {
 		comboBox_77_2.setVisible(false);
 		panel_KERESTE.add(comboBox_77_2);
 
-		textField_89 = new JTextField();
+		textField_89 = new Obs_TextFIeld();
 		textField_89.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_89.setColumns(10);
 		textField_89.setBounds(90, 77, 125, 20);
 		panel_KERESTE.add(textField_89);
 
-		textField_94 = new JTextField();
+		textField_94 = new Obs_TextFIeld();
 		textField_94.setText("ZZZZZZZZZZZZ");
 		textField_94.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_94.setColumns(10);
@@ -4781,13 +4765,13 @@ public class FILTRE extends JDialog {
 		lblNewLabel_44.setBounds(401, 94, 48, 14);
 		panel_KERESTE.add(lblNewLabel_44);
 
-		textField_99 = new JTextField();
+		textField_99 = new Obs_TextFIeld();
 		textField_99.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_99.setColumns(10);
 		textField_99.setBounds(90, 100, 99, 20);
 		panel_KERESTE.add(textField_99);
 
-		textField_100 = new JTextField();
+		textField_100 = new Obs_TextFIeld();
 		textField_100.setText("ZZZZZZZZZZZZ");
 		textField_100.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_100.setColumns(10);
@@ -4859,13 +4843,13 @@ public class FILTRE extends JDialog {
 		formattedTextField_1_1.setBounds(258, 33, 125, 20);
 		panel_KERESTE_DETAY.add(formattedTextField_1_1);
 
-		textField_84 = new JTextField();
+		textField_84 = new Obs_TextFIeld();
 		textField_84.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_84.setColumns(10);
 		textField_84.setBounds(100, 77, 125, 20);
 		panel_KERESTE_DETAY.add(textField_84);
 
-		textField_85 = new JTextField();
+		textField_85 = new Obs_TextFIeld();
 		textField_85.setText("ZZZZZZZZZZZZ");
 		textField_85.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_85.setColumns(10);
@@ -4879,13 +4863,13 @@ public class FILTRE extends JDialog {
 		dateChooser_20_1_1_1.setBounds(480, 11, 125, 20);
 		panel_KERESTE_DETAY.add(dateChooser_20_1_1_1);
 
-		textField_86 = new JTextField();
+		textField_86 = new Obs_TextFIeld();
 		textField_86.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_86.setColumns(10);
 		textField_86.setBounds(480, 33, 125, 20);
 		panel_KERESTE_DETAY.add(textField_86);
 
-		textField_87 = new JTextField();
+		textField_87 = new Obs_TextFIeld();
 		textField_87.setText("ZZZZZZZZZZZZ");
 		textField_87.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_87.setColumns(10);
@@ -4914,13 +4898,13 @@ public class FILTRE extends JDialog {
 		lblHesapKodu_2_2.setBounds(10, 61, 82, 14);
 		panel_KERESTE_DETAY.add(lblHesapKodu_2_2);
 
-		textField_88 = new JTextField();
+		textField_88 = new Obs_TextFIeld();
 		textField_88.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_88.setColumns(10);
 		textField_88.setBounds(100, 55, 125, 20);
 		panel_KERESTE_DETAY.add(textField_88);
 
-		textField_88_1 = new JTextField();
+		textField_88_1 = new Obs_TextFIeld();
 		textField_88_1.setText("ZZZZZZZZZZ");
 		textField_88_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_88_1.setColumns(10);
@@ -4984,13 +4968,13 @@ public class FILTRE extends JDialog {
 		lblHesapKodu_2_3.setBounds(10, 105, 82, 14);
 		panel_KERESTE_DETAY.add(lblHesapKodu_2_3);
 
-		textField_90 = new JTextField();
+		textField_90 = new Obs_TextFIeld();
 		textField_90.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_90.setColumns(10);
 		textField_90.setBounds(100, 99, 125, 20);
 		panel_KERESTE_DETAY.add(textField_90);
 
-		textField_91 = new JTextField();
+		textField_91 = new Obs_TextFIeld();
 		textField_91.setText("ZZZZZZZZZZZZ");
 		textField_91.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_91.setColumns(10);
@@ -5002,13 +4986,13 @@ public class FILTRE extends JDialog {
 		lblHesapKodu_2_1_2.setBounds(390, 61, 82, 14);
 		panel_KERESTE_DETAY.add(lblHesapKodu_2_1_2);
 
-		textField_92 = new JTextField();
+		textField_92 = new Obs_TextFIeld();
 		textField_92.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_92.setColumns(10);
 		textField_92.setBounds(480, 55, 125, 20);
 		panel_KERESTE_DETAY.add(textField_92);
 
-		textField_93 = new JTextField();
+		textField_93 = new Obs_TextFIeld();
 		textField_93.setText("ZZZZZZZZZZZZ");
 		textField_93.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_93.setColumns(10);
@@ -5200,26 +5184,26 @@ public class FILTRE extends JDialog {
 		lblNewLabel_42_1.setFont(new Font("Tahoma",Font.PLAIN,11));
 		panel_KERESTE_ORTFIAT.add(lblNewLabel_42_1);
 
-		textField_95 = new JTextField();
+		textField_95 = new Obs_TextFIeld();
 		textField_95.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_95.setColumns(10);
 		textField_95.setBounds(90, 86, 125, 20);
 		panel_KERESTE_ORTFIAT.add(textField_95);
 
-		textField_96 = new JTextField();
+		textField_96 = new Obs_TextFIeld();
 		textField_96.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_96.setColumns(10);
 		textField_96.setBounds(90, 64, 125, 20);
 		panel_KERESTE_ORTFIAT.add(textField_96);
 
-		textField_97 = new JTextField();
+		textField_97 = new Obs_TextFIeld();
 		textField_97.setText("ZZZZZZZZZZZZ");
 		textField_97.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_97.setColumns(10);
 		textField_97.setBounds(248, 64, 125, 20);
 		panel_KERESTE_ORTFIAT.add(textField_97);
 
-		textField_98 = new JTextField();
+		textField_98 = new Obs_TextFIeld();
 		textField_98.setText("ZZZZZZZZZZZZ");
 		textField_98.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_98.setColumns(10);

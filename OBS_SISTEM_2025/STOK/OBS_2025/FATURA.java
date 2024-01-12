@@ -31,6 +31,7 @@ import OBS_C_2025.ImagePanel;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.NextCellActioin;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
@@ -95,16 +96,16 @@ import javax.swing.border.LineBorder;
 @SuppressWarnings({"serial","static-access"})
 public class FATURA extends JInternalFrame {
 
-	public static JTextField textField;
-	public static JTextField txtcari;
-	public static JTextField txtadres;
-	public static JTextField txtdoviz;
-	public static JTextField textField_5;
-	public static JTextField textField_6;
-	public static JTextField textField_7;
-	public static JTextField textField_8;
-	public static JTextField textField_11;
-	public static JTextField textField_12;
+	public static Obs_TextFIeld textField;
+	public static Obs_TextFIeld txtcari;
+	public static Obs_TextFIeld txtadres;
+	public static Obs_TextFIeld txtdoviz;
+	public static Obs_TextFIeld textField_5;
+	public static Obs_TextFIeld textField_6;
+	public static Obs_TextFIeld textField_7;
+	public static Obs_TextFIeld textField_8;
+	public static Obs_TextFIeld textField_11;
+	public static Obs_TextFIeld textField_12;
 	public static JTable table;
 	public static JFormattedTextField txttev ;
 	public static JDateChooser dtc ;
@@ -134,9 +135,9 @@ public class FATURA extends JInternalFrame {
 	private ArrayList<String> listdepo = null ;
 	private static JTable table_1;
 	private static JFormattedTextField txtkur ;
-	private static JTextField textField_9;
-	private static JTextField textField_10;
-	private JTextField textField_4;
+	private static Obs_TextFIeld textField_9;
+	private static Obs_TextFIeld textField_10;
+	private Obs_TextFIeld textField_4;
 	private static JLabel lblNewLabel_12 ;
 	private static JLabel lblNewLabel_13 ;
 	private static JLabel label_5 ;
@@ -190,8 +191,7 @@ public class FATURA extends JInternalFrame {
 		lblNewLabel_1.setBounds(10, 11, 69, 14);
 		panel_2.add(lblNewLabel_1);
 
-		textField = new JTextField();
-		textField.setDocument(new JTextFieldLimit(10));
+		textField = new Obs_TextFIeld(10);
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -275,9 +275,9 @@ public class FATURA extends JInternalFrame {
 		lblNewLabel_2.setBounds(10, 36, 69, 14);
 		panel_2.add(lblNewLabel_2);
 
-		txtcari = new JTextField();
+		txtcari = new Obs_TextFIeld(12);
 
-		txtcari.setDocument(new JTextFieldLimit(12));
+
 		txtcari.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				lblNewLabel_3.setText(CARI_ISIM_OKU.isim(txtcari.getText())[0]);
@@ -385,8 +385,8 @@ public class FATURA extends JInternalFrame {
 		lblNewLabel_5.setBounds(300, 36, 46, 14);
 		panel_2.add(lblNewLabel_5);
 
-		txtadres = new JTextField();
-		txtadres.setDocument(new JTextFieldLimit(12));
+		txtadres = new Obs_TextFIeld(12);
+	
 		txtadres.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 					try {
@@ -496,7 +496,7 @@ public class FATURA extends JInternalFrame {
 		lblNewLabel_10.setBounds(726, 88, 46, 14);
 		panel_2.add(lblNewLabel_10);
 
-		txtdoviz = new JTextField();
+		txtdoviz = new Obs_TextFIeld();
 		txtdoviz.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtdoviz.setBounds(797, 60, 73, 20);
 		panel_2.add(txtdoviz);
@@ -525,21 +525,20 @@ public class FATURA extends JInternalFrame {
 		lblNewLabel_14.setBounds(10, 11, 46, 14);
 		panel_4.add(lblNewLabel_14);
 
-		textField_5 = new JTextField();
+		textField_5 = new Obs_TextFIeld(40);
 		textField_5.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_5.setBounds(81, 8, 312, 20);
-		textField_5.setDocument(new JTextFieldLimit(40));
 		panel_4.add(textField_5);
 		textField_5.setColumns(10);
 
-		textField_6 = new JTextField();
+		textField_6 = new Obs_TextFIeld(40);
 		textField_6.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_6.setBounds(81, 35, 312, 20);
-		textField_6.setDocument(new JTextFieldLimit(40));
+
 		panel_4.add(textField_6);
 		textField_6.setColumns(10);
 
-		textField_7 = new JTextField();
+		textField_7 = new Obs_TextFIeld();
 		textField_7.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_7.setBounds(81, 62, 312, 20);
 		panel_4.add(textField_7);
@@ -567,7 +566,7 @@ public class FATURA extends JInternalFrame {
 		panel_4.add(panel_7);
 		panel_7.setLayout(null);
 
-		textField_8 = new JTextField();
+		textField_8 = new Obs_TextFIeld();
 		textField_8.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				String sonuc = "";
@@ -688,17 +687,16 @@ public class FATURA extends JInternalFrame {
 		lblNewLabel_19.setBounds(10, 38, 34, 14);
 		panel_5.add(lblNewLabel_19);
 
-		textField_9 = new JTextField();
+		textField_9 = new Obs_TextFIeld(50);
 		textField_9.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_9.setBounds(54, 8, 447, 20);
-		textField_9.setDocument(new JTextFieldLimit(50));
 		panel_5.add(textField_9);
 		textField_9.setColumns(10);
 
-		textField_10 = new JTextField();
+		textField_10 = new Obs_TextFIeld(50);
 		textField_10.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_10.setBounds(54, 33, 447, 20);
-		textField_10.setDocument(new JTextFieldLimit(50));
+
 		panel_5.add(textField_10);
 		textField_10.setColumns(10);
 
@@ -774,7 +772,7 @@ public class FATURA extends JInternalFrame {
 		lblNewLabel_11.setBounds(10, 11, 46, 14);
 		panel_1.add(lblNewLabel_11);
 
-		textField_4 = new JTextField();
+		textField_4 = new Obs_TextFIeld();
 		textField_4.setBounds(66, 8, 156, 20);
 		panel_1.add(textField_4);
 		textField_4.setColumns(10);
@@ -934,13 +932,13 @@ public class FATURA extends JInternalFrame {
 		panel_6.add(panel_8);
 		panel_8.setLayout(null);
 
-		textField_11 = new JTextField();
+		textField_11 = new Obs_TextFIeld();
 		textField_11.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_11.setBounds(10, 24, 200, 20);
 		panel_8.add(textField_11);
 		textField_11.setColumns(10);
 
-		textField_12 = new JTextField();
+		textField_12 = new Obs_TextFIeld();
 		textField_12.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_12.setColumns(10);
 		textField_12.setBounds(258, 24, 200, 20);

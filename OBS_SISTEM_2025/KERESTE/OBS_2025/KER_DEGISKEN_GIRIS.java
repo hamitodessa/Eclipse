@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -40,6 +39,7 @@ import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
 import raven.toast.Notifications;
 import OBS_C_2025.KERESTE_ACCESS;
+import OBS_C_2025.Obs_TextFIeld;
 
 @SuppressWarnings({"serial","static-access"})
 public class KER_DEGISKEN_GIRIS extends JInternalFrame {
@@ -49,13 +49,13 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 
 	
 	private static JTable table;
-	private static JTextField textField;
-	private static JTextField textField_1;
+	private static Obs_TextFIeld textField;
+	private static Obs_TextFIeld textField_1;
 	private static String hangi = "" ;
 	private static JComboBox<String> cmbanagrup  ;
 	
 	private static ResultSet rs=null;
-	private static JTextField textField_2;
+	private static Obs_TextFIeld textField_2;
 	private static boolean ilkmi = true;
 	
 	private static JPanel panel ;
@@ -87,7 +87,7 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		textField = new JTextField();
+		textField = new Obs_TextFIeld();
 		textField.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
@@ -110,13 +110,13 @@ public class KER_DEGISKEN_GIRIS extends JInternalFrame {
 		panel_2.setBounds(10, 72, 320, 50);
 		panel.add(panel_2);
 		
-		textField_1 = new JTextField();
+		textField_1 = new Obs_TextFIeld();
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_1.setColumns(10);
 		textField_1.setBounds(43, 19, 248, 20);
 		panel_2.add(textField_1);
 		
-		textField_2 = new JTextField();
+		textField_2 = new Obs_TextFIeld();
 		textField_2.setBounds(10, 19, 24, 20);
 		textField_2.setVisible(false);
 		panel_2.add(textField_2);

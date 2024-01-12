@@ -32,7 +32,6 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -56,6 +55,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.ORTA;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.ScrollPaneWin11;
@@ -74,11 +74,11 @@ public class SMS extends JInternalFrame {
 	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);
 	static ADRES_ACCESS a_Access = new ADRES_ACCESS(OBS_SIS_2025_ANA_CLASS._IAdres , OBS_SIS_2025_ANA_CLASS._IAdres_Loger);
 	private static JTable table;
-	private JTextField txtgonderen;
+	private Obs_TextFIeld txtgonderen;
 	private JTable table_1;
-	private static JTextField txttel;
-	private static JTextField txtunvan;
-	private static JTextField txtkodu;
+	private static Obs_TextFIeld txttel;
+	private static Obs_TextFIeld txtunvan;
+	private static Obs_TextFIeld txtkodu;
 	private static JTable table_2;
 	private static JCheckBox chcdurum ;
 	private static JComboBox<String> comboBox_2  ;
@@ -89,8 +89,8 @@ public class SMS extends JInternalFrame {
 	private JComboBox<String> comboBox_3 ;
 	private static MaterialTabbed tabbedPane ;
 	private static JCheckBox chckbxNewCheckBox ;
-	private JTextField textField;
-	private JTextField textField_1;
+	private Obs_TextFIeld textField;
+	private Obs_TextFIeld textField_1;
 	private CommPortIdentifier com ;
 	private JLabel lblNewLabel_3 ;
 	private CommPort commPort ;
@@ -173,13 +173,11 @@ public class SMS extends JInternalFrame {
 		lblNewLabel_4.setBounds(10, 40, 86, 14);
 		panel_1.add(lblNewLabel_4);
 
-		txtgonderen = new JTextField();
+		txtgonderen = new Obs_TextFIeld(50);
 		txtgonderen.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtgonderen.setDocument(new JTextFieldLimit(50));
 		txtgonderen.setBounds(120, 8, 150, 20);
 		panel_1.add(txtgonderen);
 		txtgonderen.setColumns(10);
-		txtgonderen.setDocument(new JTextFieldLimit(15));
 
 		txtaciklama = new JTextArea();
 		txtaciklama.setFont(new Font("Monospaced", Font.BOLD, 13));
@@ -386,13 +384,13 @@ public class SMS extends JInternalFrame {
 		lblWriteTimeout.setBounds(97, 258, 90, 14);
 		panel_4.add(lblWriteTimeout);
 
-		textField = new JTextField();
+		textField = new Obs_TextFIeld();
 		textField.setText("300");
 		textField.setBounds(220, 228, 86, 20);
 		panel_4.add(textField);
 		textField.setColumns(10);
 
-		textField_1 = new JTextField();
+		textField_1 = new Obs_TextFIeld();
 		textField_1.setText("300");
 		textField_1.setBounds(220, 255, 86, 20);
 		panel_4.add(textField_1);
@@ -492,7 +490,7 @@ public class SMS extends JInternalFrame {
 		lblNewLabel_8.setBounds(10, 61, 46, 14);
 		panel_3.add(lblNewLabel_8);
 
-		txttel = new JTextField();
+		txttel = new Obs_TextFIeld();
 		txttel.setBounds(81, 8, 150, 20);
 		txttel.addKeyListener(new KeyAdapter() {
 
@@ -526,7 +524,7 @@ public class SMS extends JInternalFrame {
 		chcdurum.setBounds(78, 32, 97, 23);
 		panel_3.add(chcdurum);
 
-		txtunvan = new JTextField();
+		txtunvan = new Obs_TextFIeld();
 		txtunvan.setBounds(81, 58, 374, 20);
 		txtunvan.setDocument(new JTextFieldLimit(50));
 		panel_3.add(txtunvan);
@@ -540,9 +538,8 @@ public class SMS extends JInternalFrame {
 		lblNewLabel_10.setBounds(491, 36, 46, 14);
 		panel_3.add(lblNewLabel_10);
 
-		txtkodu = new JTextField();
+		txtkodu = new Obs_TextFIeld(12);
 		txtkodu.setBounds(572, 8, 122, 20);
-		txtkodu.setDocument(new JTextFieldLimit(12));
 		panel_3.add(txtkodu);
 		txtkodu.setColumns(10);
 

@@ -140,6 +140,7 @@ import OBS_C_2025.LOG_MAIL_OKU;
 import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SMS_MSSQL;
 import OBS_C_2025.SMS_MYSQL;
@@ -172,7 +173,7 @@ public class LOGIN extends JDialog {
 	boolean GUN_DOS_VAR;
 	boolean KER_DOS_VAR;
 	private JPanel contentPane;
-	private JTextField txtUser;
+	private Obs_TextFIeld txtUser;
 	private JPasswordField txtpwd;
 	private JProgressBar progressBar;
 	private static  JCheckBox chckbxhatirla;
@@ -189,6 +190,7 @@ public class LOGIN extends JDialog {
 	boolean tx = false;
 	boolean em = false;
 	public Thread t = null ;
+	private JLabel lblNewLabel_1;
 	/**
 	 * Launch the application.
 	 */
@@ -352,7 +354,7 @@ public class LOGIN extends JDialog {
 		lblicon.setHorizontalAlignment(SwingConstants.CENTER);
 		lblicon.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/icons8-application-96.png")));
 
-		txtUser = new JTextField();
+		txtUser = new Obs_TextFIeld(10);
 		txtUser.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -364,22 +366,15 @@ public class LOGIN extends JDialog {
 		});
 		txtUser.setBounds(310, 11, 151, 20);
 		txtUser.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtUser.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON, new ImageIcon(LOGIN.class.getResource("/ICONLAR/userb-16.png")));
-
-		txtUser.setDocument(new JTextFieldLimit(10));
-		txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Kullanici");
-		txtUser.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtUser.setColumns(10);
 		JTextFieldRegularPopupMenu.addTo(txtUser);
-		txtUser.setColumns(10);
 		txtUser.setOpaque(false);
 		txtUser.setBorder(new EmptyBorder(0, 0, 0, 0));
-
 		panel.add(txtUser);
 
 		JSeparator separator = new JSeparator();
 		separator.setForeground(Color.WHITE);
-		separator.setBounds(309, 31, 110, 7);
+		separator.setBounds(309, 31, 150, 7);
 		panel.add(separator);
 		
 		txtpwd = new JPasswordField();
@@ -388,11 +383,8 @@ public class LOGIN extends JDialog {
 		txtpwd.setBounds(310, 37, 151, 20);
 		txtpwd.setOpaque(false);
 		txtpwd.setBorder(new EmptyBorder(0, 0, 0, 0));
-		txtpwd.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
 		txtpwd.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		txtpwd.putClientProperty(FlatClientProperties.TEXT_FIELD_TRAILING_ICON,new ImageIcon(LOGIN.class.getResource("/ICONLAR/password-16.png")));
 		txtpwd.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true");
-
 		txtpwd.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -402,7 +394,6 @@ public class LOGIN extends JDialog {
 				}
 			}
 		});
-
 		panel.add(txtpwd);
 		txtpwd.setFont(new Font("Tahoma", Font.BOLD, 12));
 		JTextFieldRegularPopupMenu.addTo(txtpwd);
@@ -678,8 +669,20 @@ public class LOGIN extends JDialog {
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setForeground(Color.WHITE);
-		separator_1.setBounds(310, 57, 110, 7);
+		separator_1.setBounds(310, 57, 150, 7);
 		panel.add(separator_1);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/userb-16.png")));
+		lblNewLabel.setBounds(269, 10, 31, 23);
+		panel.add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(LOGIN.class.getResource("/ICONLAR/password-16.png")));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_1.setBounds(269, 36, 31, 23);
+		panel.add(lblNewLabel_1);
 		
 	
 		progressBar = new JProgressBar();

@@ -1675,8 +1675,9 @@ public class OBS_BACKUP extends JFrame {
 				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
 					try {
+						Thread.sleep(500);
 						bckp.backup_al(dosADI, tarr + "_" + dosADI);
-						Thread.sleep(1000);
+						Thread.sleep(500);
 					} catch (Exception e) {
 						bckp.log_kayit(emirADI, new Date(),"1662=" + e.getMessage());
 					}
@@ -1701,28 +1702,28 @@ public class OBS_BACKUP extends JFrame {
 				{
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
-				path = Paths.get(glb.BACKUP_YERI + dosya);
-				isfileVAR(path);
+				//path = Paths.get(glb.BACKUP_YERI + dosya);
+				//isfileVAR(path);
 				dzip = tarr + "_" + dosADI + ".zip";
-				Thread.sleep(500);
-				isReadiable(path);
+				Thread.sleep(1000);
+				//isReadiable(path);
 				try {
 					bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
 				} catch (Exception e) {
 					bckp.log_kayit(emirADI, new Date(),"1709=" + e.getMessage());
 				}
-				path = Paths.get(glb.BACKUP_YERI + dzip);
-				isfileVAR(path);
-				isReadiable(path);
-				Thread.sleep(500);
+				//path = Paths.get(glb.BACKUP_YERI + dzip);
+				//isfileVAR(path);
+				//isReadiable(path);
+				Thread.sleep(1000);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "Zip Haline Getirildi...");
 				try {
 					UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
 				} catch (Exception e) {
 					bckp.log_kayit(emirADI, new Date(),"1719=" + e.getMessage());
 				}
-				isReadiable(path);
-				Thread.sleep(500);
+				//isReadiable(path);
+				//Thread.sleep(500);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "FTP Yuklendi...");
 				if( serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{

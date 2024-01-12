@@ -816,14 +816,11 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		//***********************************BASLAMA*********************************************
-		
-			try {
-				checkWORK();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		
+		try {
+			checkWORK();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		try 
 		{
 			glb.backup_surucu_kontrol();

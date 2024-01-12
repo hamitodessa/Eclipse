@@ -1466,19 +1466,19 @@ public class OBS_BACKUP extends JFrame {
 				{
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
-				path = Paths.get(glb.BACKUP_YERI + dosya);
-				isfileVAR(path);
+				//path = Paths.get(glb.BACKUP_YERI + dosya);
+				//isfileVAR(path);
 				dzip = tarr + "_" + dosADI + ".zip";
-				path = Paths.get(glb.BACKUP_YERI + dosya);
-				isReadiable(path);
-				Thread.sleep(500);
+				//path = Paths.get(glb.BACKUP_YERI + dosya);
+				//isReadiable(path);
+				//Thread.sleep(500);
 				try {
 					bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
 				} catch (Exception e) {
 					bckp.log_kayit(emirADI, new Date(), "1477=" +e.getMessage());
 				}
-				path = Paths.get(glb.BACKUP_YERI + dzip);
-				isReadiable(path);
+				//path = Paths.get(glb.BACKUP_YERI + dzip);
+				//isReadiable(path);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
 				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 				boolean exists = tmpDir.exists();
@@ -1675,9 +1675,9 @@ public class OBS_BACKUP extends JFrame {
 				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
 					try {
-						Thread.sleep(500);
+						//Thread.sleep(500);
 						bckp.backup_al(dosADI, tarr + "_" + dosADI);
-						Thread.sleep(500);
+						//Thread.sleep(500);
 					} catch (Exception e) {
 						bckp.log_kayit(emirADI, new Date(),"1662=" + e.getMessage());
 					}
@@ -1687,7 +1687,7 @@ public class OBS_BACKUP extends JFrame {
 					try {
 						bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),
 								sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");	
-						Thread.sleep(1000);
+						//Thread.sleep(1000);
 					} catch (Exception e) {
 						bckp.log_kayit(emirADI, new Date(),"1688=" + e.getMessage());
 					}
@@ -1705,7 +1705,7 @@ public class OBS_BACKUP extends JFrame {
 				//path = Paths.get(glb.BACKUP_YERI + dosya);
 				//isfileVAR(path);
 				dzip = tarr + "_" + dosADI + ".zip";
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				//isReadiable(path);
 				try {
 					bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
@@ -1715,7 +1715,7 @@ public class OBS_BACKUP extends JFrame {
 				//path = Paths.get(glb.BACKUP_YERI + dzip);
 				//isfileVAR(path);
 				//isReadiable(path);
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				bckp.log_kayit(emirADI, new Date(), dosADI + "Zip Haline Getirildi...");
 				try {
 					UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
@@ -1965,11 +1965,11 @@ public class OBS_BACKUP extends JFrame {
 				boolean exists = tmpDir.exists();
 				if (!exists)
 					tmpDir.mkdirs();
-				path = Paths.get(glb.BACKUP_YERI + dzip);
-				isfileVAR(path);
-				path = Paths.get(glb.BACKUP_YERI + dzip);
-				isReadiable(path);
-				Thread.sleep(500);
+				//path = Paths.get(glb.BACKUP_YERI + dzip);
+				//isfileVAR(path);
+				//path = Paths.get(glb.BACKUP_YERI + dzip);
+				//isReadiable(path);
+				//Thread.sleep(500);
 				File okunanFile = new File(glb.BACKUP_YERI + dzip);
 				try {
 					fileCOPY(glb.BACKUP_YERI + dzip, ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip);
@@ -2173,12 +2173,12 @@ public class OBS_BACKUP extends JFrame {
 						bckp.log_kayit(emirADI, new Date(), "2169=" + e.getMessage());
 					}
 				}
-				path = Paths.get(glb.BACKUP_YERI + dzip);
-				isfileVAR(path);
-				path = Paths.get(glb.BACKUP_YERI + dzip);
-				isReadiable(path);
+				//path = Paths.get(glb.BACKUP_YERI + dzip);
+				//isfileVAR(path);
+				//path = Paths.get(glb.BACKUP_YERI + dzip);
+				//isReadiable(path);
 				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
-				Thread.sleep(500);
+				//Thread.sleep(500);
 				try {
 					UploadFTPFiles(ftp, surucu, glb.BACKUP_YERI, dzip, kull, sifre, port, zmnasimi);
 				} catch (Exception e) {
@@ -2310,7 +2310,6 @@ public class OBS_BACKUP extends JFrame {
 			outputStream.close();
 			ftp.completePendingCommand();
 			inputStream.close();
-			
 			ftp.logout();
 			ftp.disconnect();
 			uplpnl.RPB2.setStringPainted(false);
@@ -2320,7 +2319,7 @@ public class OBS_BACKUP extends JFrame {
 			outputStream = null;
 			
 		} catch (Exception ex) {
-			bckp.log_kayit("Sistem", new Date(), "2334=" + ex.getMessage());
+			bckp.log_kayit("Sistem", new Date(), "2322=" + ex.getMessage());
 		}
 	}
 	private void emirBOSALT(String emirADI)

@@ -292,9 +292,10 @@ public class OBS_GOREV extends JFrame  {
 		try {
 			if (glb.dos_kontrol(glb.SURUCU + glb.OBS_DOSYA))
 			{
+				
+				glb.gorev_surucu_kontrol();
 				pidKONTROL();
 				pidTimerBasla();
-				glb.gorev_surucu_kontrol();
 				List<g_bilgiler> rSet = grvglb.gorev_bilgi_oku();
 				if ( rSet.size() == 0 ) {  
 				} 
@@ -622,16 +623,17 @@ public class OBS_GOREV extends JFrame  {
 	}
 	private void secondRUN()
 	{
-		ArrayList<String> cmds = new ArrayList<String>();
-		File myObj = new File(glb.GOREV_PID_DOSYA);
-		Scanner myReader;
+		//ArrayList<String> cmds = new ArrayList<String>();
+		//File myObj = new File(glb.GOREV_PID_DOSYA);
+		//Scanner myReader;
 		try {
-			myReader = new Scanner(myObj);
+			//myReader = new Scanner(myObj);
 			int dosyaPID = 0 ; 
-			while (myReader.hasNextLine()) {
-				dosyaPID = Integer.valueOf( myReader.nextLine().toString());
-			}
-			myReader.close();
+			//while (myReader.hasNextLine()) {
+			//	dosyaPID = Integer.valueOf( myReader.nextLine().toString());
+			//}
+			//myReader.close();
+			dosyaPID = grvglb.pid_oku() ; 
 			if(dosyaPID != (int) ProcessHandle.current().pid())
 			{
 				timerr.cancel();
@@ -642,20 +644,22 @@ public class OBS_GOREV extends JFrame  {
 	            pidtimer = null;
 				System.exit(0);
 			}
-		} catch (FileNotFoundException e) {
+		} catch ( ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	private void pidKONTROL() throws IOException
+	private void pidKONTROL() throws IOException, ClassNotFoundException, SQLException
 	{
-		File file = new File(glb.GOREV_PID_DOSYA);
-		if (!file.exists()) {
-			file.createNewFile();
-		}
+		//File file = new File(glb.GOREV_PID_DOSYA);
+		//if (!file.exists()) {
+		//	file.createNewFile();
+		//}
 		int ownPID = (int) ProcessHandle.current().pid();
-		FileWriter myWriter = new FileWriter(glb.GOREV_PID_DOSYA);
-		myWriter.write(Integer.toString(ownPID));
-		myWriter.close();
+		grvglb.pid_sil();
+		grvglb.pid_kayit(ownPID);
+		//FileWriter myWriter = new FileWriter(glb.GOREV_PID_DOSYA);
+		//myWriter.write(Integer.toString(ownPID));
+		//myWriter.close();
 	}
 
 }

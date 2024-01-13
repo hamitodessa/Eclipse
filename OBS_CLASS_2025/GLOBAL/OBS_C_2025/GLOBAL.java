@@ -345,6 +345,9 @@ public class GLOBAL {
 	    stmt.execute(sorgu);
 	    sorgu = "CREATE TABLE BILGILER ( OBS_KULLANICI nvarchar(25 ),Durum INTEGER) ";
 	    stmt = con.createStatement();  
+	    stmt.execute(sorgu); 
+	    sorgu = "CREATE TABLE PID ( PID_NO INTEGER) ";
+	    stmt = con.createStatement();  
 		stmt.execute(sorgu); 
 		stmt.close();
 		con.close();
@@ -382,7 +385,8 @@ public class GLOBAL {
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE YONETICI (SIFRE nvarchar(200) ) ";
 			backup_tablo_yap(sorgu);
-			
+			sorgu = "CREATE TABLE PID ( PID_NO INTEGER) ";
+			backup_tablo_yap(sorgu);
 	
 			con = myBackupConnection();
 			byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("obs") ;

@@ -2599,34 +2599,38 @@ public class OBS_BACKUP extends JFrame {
 			btnMinimize.doClick();
 		}
 	}
-	private void pidKONTROL() throws IOException
+	private void pidKONTROL() throws IOException, ClassNotFoundException, SQLException
 	{
-		File file = new File(glb.BACKUP_PID_DOSYA);
-		if (!file.exists()) {
-			file.createNewFile();
-		}
+//		File file = new File(glb.BACKUP_PID_DOSYA);
+//		if (!file.exists()) {
+//			file.createNewFile();
+//		}
+//		int ownPID = (int) ProcessHandle.current().pid();
+//		FileWriter myWriter = new FileWriter(glb.BACKUP_PID_DOSYA);
+//		myWriter.write(Integer.toString(ownPID));
+//		myWriter.close();
 		int ownPID = (int) ProcessHandle.current().pid();
-		FileWriter myWriter = new FileWriter(glb.BACKUP_PID_DOSYA);
-		myWriter.write(Integer.toString(ownPID));
-		myWriter.close();
+		bckp.pid_sil();
+		bckp.pid_kayit(ownPID);
 	}
 	private void secondRUN()
 	{
-		ArrayList<String> cmds = new ArrayList<String>();
-		File myObj = new File(glb.BACKUP_PID_DOSYA);
-		Scanner myReader;
+		//ArrayList<String> cmds = new ArrayList<String>();
+		//File myObj = new File(glb.BACKUP_PID_DOSYA);
+		//Scanner myReader;
 		try {
-			myReader = new Scanner(myObj);
+			//myReader = new Scanner(myObj);
 			int dosyaPID = 0 ; 
-			while (myReader.hasNextLine()) {
-				dosyaPID = Integer.valueOf( myReader.nextLine().toString());
-			}
-			myReader.close();
+			//while (myReader.hasNextLine()) {
+			//	dosyaPID = Integer.valueOf( myReader.nextLine().toString());
+			//}
+			//myReader.close();
+			dosyaPID = bckp.pid_oku() ; 
 			if(dosyaPID != (int) ProcessHandle.current().pid())
 			{
 				btnKapat.doClick();
 			}
-		} catch (FileNotFoundException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 	}

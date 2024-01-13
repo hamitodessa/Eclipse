@@ -202,6 +202,52 @@ public class BACKUP_GLOBAL {
 		con.close();
 		con = null;
 	}
+	public void pid_kayit(int pid)throws ClassNotFoundException, SQLException
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		PreparedStatement stmt = null;
+		con = glb.myBackupConnection();
+		String sql = "";
+		sql = "INSERT INTO PID (PID_NO) "
+				+ "VALUES (?)";
+		stmt = con.prepareStatement(sql);
+		stmt.setInt(1, pid);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+		con = null;
+	}
+	public void pid_sil()throws ClassNotFoundException, SQLException
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		PreparedStatement stmt = null;
+		con = glb.myBackupConnection();
+		String sql = "";
+		sql = "DELETE FROM PID ";
+		stmt = con.prepareStatement(sql);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+		con = null;
+	}
+	public int pid_oku() throws ClassNotFoundException, SQLException 
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		PreparedStatement stmt = null;
+		ResultSet	rss = null;
+		con = glb.myBackupConnection();
+		String sql = "SELECT PID_NO FROM PID ";
+		stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		rss.next();
+		int pidno = rss.getInt("PID_NO");
+		stmt.close();
+		con.close();
+		return pidno;
+	}
 
 	public void instance_update(String eismi,  String ins)throws ClassNotFoundException, SQLException
 	{

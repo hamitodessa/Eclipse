@@ -824,16 +824,10 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		//***********************************BASLAMA*********************************************
-			//checkWORK();
-		try {
-			pidKONTROL();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		try 
 		{
 			glb.backup_surucu_kontrol();
+			pidKONTROL();
 			bckp.log_kayit("Sistem", new Date(), "Program Baslangici");
 			emir_yukle("EMIR_ISMI") ;
 			jobTimerBasla();
@@ -2608,19 +2602,19 @@ public class OBS_BACKUP extends JFrame {
 	}
 	private void pidKONTROL() throws IOException
 	{
-		File file = new File(glb.PID_DOSYA);
+		File file = new File(glb.BACKUP_PID_DOSYA);
 		if (!file.exists()) {
 			file.createNewFile();
 		}
 		int ownPID = (int) ProcessHandle.current().pid();
-		FileWriter myWriter = new FileWriter(glb.PID_DOSYA);
+		FileWriter myWriter = new FileWriter(glb.BACKUP_PID_DOSYA);
 		myWriter.write(Integer.toString(ownPID));
 		myWriter.close();
 	}
 	private void secondRUN()
 	{
 		ArrayList<String> cmds = new ArrayList<String>();
-		File myObj = new File(glb.PID_DOSYA);
+		File myObj = new File(glb.BACKUP_PID_DOSYA);
 		Scanner myReader;
 		try {
 			myReader = new Scanner(myObj);

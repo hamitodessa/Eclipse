@@ -16,17 +16,22 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -113,6 +118,7 @@ public class OBS_GOREV extends JFrame  {
 	public USER_ISLEMLERI uSER_ISL = new USER_ISLEMLERI();
 	public SIFRE_DONDUR sDONDUR = new     SIFRE_DONDUR();
 	static Timer timerr ;
+	static Timer pidtimer ;
 	String[] kurrakkam;
 	private JTextField textKurKullanici;
 	int x ,y ;
@@ -286,6 +292,8 @@ public class OBS_GOREV extends JFrame  {
 		try {
 			if (glb.dos_kontrol(glb.SURUCU + glb.OBS_DOSYA))
 			{
+				pidKONTROL();
+				pidTimerBasla();
 				glb.gorev_surucu_kontrol();
 				List<g_bilgiler> rSet = grvglb.gorev_bilgi_oku();
 				if ( rSet.size() == 0 ) {  
@@ -328,7 +336,6 @@ public class OBS_GOREV extends JFrame  {
 		    	try {
 					merkez_oku_kayit();
 				} catch (Exception e) {
-					
 					e.printStackTrace();
 				}
 		    };  
@@ -336,6 +343,22 @@ public class OBS_GOREV extends JFrame  {
 		timerr.schedule(tt,getTomorrowMorning2AM(),  1000*60*60*24); 
 		//merkez_oku_kayit();
 	}
+	private void pidTimerBasla()
+	{
+		pidtimer = new Timer();  
+		TimerTask tt = new TimerTask() {  
+			@Override  
+			public void run() {  
+				try {
+					secondRUN();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			};  
+		};  
+		pidtimer.scheduleAtFixedRate(tt, 100, 1000);
+	}
+
 	private static Date getTomorrowMorning2AM( ) throws ParseException
 	{
 		Date datet = (Date) (timeBaslangic.getValue());
@@ -372,7 +395,6 @@ public class OBS_GOREV extends JFrame  {
 	{
 		List<g_bilgiler> rSet = grvglb.gorev_kur_oku();
 		if ( rSet.size() == 0 ) {  
-			//kur cinsi secilmemis
 		} 
 		else {
 			for (int i = 0; i <=  list.getModel().getSize() -1 ;i++) {
@@ -598,4 +620,42 @@ public class OBS_GOREV extends JFrame  {
 		}
 			
 	}
+	private void secondRUN()
+	{
+		ArrayList<String> cmds = new ArrayList<String>();
+		File myObj = new File(glb.GOREV_PID_DOSYA);
+		Scanner myReader;
+		try {
+			myReader = new Scanner(myObj);
+			int dosyaPID = 0 ; 
+			while (myReader.hasNextLine()) {
+				dosyaPID = Integer.valueOf( myReader.nextLine().toString());
+			}
+			myReader.close();
+			if(dosyaPID != (int) ProcessHandle.current().pid())
+			{
+				timerr.cancel();
+	            timerr.purge();
+	            timerr = null;
+	            pidtimer.cancel();
+	            pidtimer.purge();
+	            pidtimer = null;
+				System.exit(0);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	private void pidKONTROL() throws IOException
+	{
+		File file = new File(glb.GOREV_PID_DOSYA);
+		if (!file.exists()) {
+			file.createNewFile();
+		}
+		int ownPID = (int) ProcessHandle.current().pid();
+		FileWriter myWriter = new FileWriter(glb.GOREV_PID_DOSYA);
+		myWriter.write(Integer.toString(ownPID));
+		myWriter.close();
+	}
+
 }

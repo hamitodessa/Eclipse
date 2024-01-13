@@ -22,7 +22,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
+
 import com.toedter.calendar.JDateChooser;
 
 import OBS_C_2025.BAGLAN_LOG;
@@ -34,6 +34,7 @@ import OBS_C_2025.ImagePanel;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.NextCellActioin;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
@@ -96,10 +97,10 @@ public class IMALAT extends JInternalFrame {
 
 
 	private static JTable table;
-	public static JTextField textField;
-	public static JTextField textField_1;
-	private static JTextField txtrecete;
-	private static JTextField txtdoviz;
+	public static Obs_TextFIeld textField;
+	public static Obs_TextFIeld textField_1;
+	private static Obs_TextFIeld txtrecete;
+	private static Obs_TextFIeld txtdoviz;
 	public static JTextArea textArea;
 
 	private ArrayList<String> listkodlar = null ;
@@ -171,7 +172,7 @@ public class IMALAT extends JInternalFrame {
 		lblNewLabel_1.setBounds(20, 11, 46, 14);
 		panel_2.add(lblNewLabel_1);
 
-		textField = new JTextField();
+		textField = new Obs_TextFIeld(10);
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -216,7 +217,7 @@ public class IMALAT extends JInternalFrame {
 				});
 			}
 		});
-		textField.setDocument(new JTextFieldLimit(10));
+		
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
@@ -386,7 +387,7 @@ public class IMALAT extends JInternalFrame {
 		lblUrunKodu.setBounds(10, 21, 67, 14);
 		panel_5.add(lblUrunKodu);
 
-		textField_1 = new JTextField();
+		textField_1 = new Obs_TextFIeld(12);
 		textField_1.addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
 			@Override
@@ -402,7 +403,7 @@ public class IMALAT extends JInternalFrame {
 				}
 			}
 		});
-		textField_1.setDocument(new JTextFieldLimit(12));
+		
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
@@ -449,8 +450,7 @@ public class IMALAT extends JInternalFrame {
 		lblReceteKodu.setBounds(258, 22, 73, 14);
 		panel_5.add(lblReceteKodu);
 
-		txtrecete = new JTextField();
-		txtrecete.setDocument(new JTextFieldLimit(10));
+		txtrecete = new Obs_TextFIeld(10);
 		txtrecete.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtrecete.setColumns(10);
 		txtrecete.setBounds(341, 19, 109, 20);
@@ -505,8 +505,8 @@ public class IMALAT extends JInternalFrame {
 		lblNewLabel_3.setBounds(701, 21, 80, 14);
 		panel_5.add(lblNewLabel_3);
 
-		txtdoviz = new JTextField();
-		txtdoviz.setDocument(new JTextFieldLimit(3));
+		txtdoviz = new Obs_TextFIeld(3);
+	
 		txtdoviz.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtdoviz.setBounds(791, 18, 86, 20);
 		panel_5.add(txtdoviz);
@@ -792,7 +792,7 @@ public class IMALAT extends JInternalFrame {
 		col.setHeaderRenderer(new SOLA());
 
 		col = table.getColumnModel().getColumn(3);  //Izahat
-		col.setCellEditor(new TABLO_TEXTBOX(new JTextField() ,40,table.getFont(),JTextField.LEFT));
+		col.setCellEditor(new TABLO_TEXTBOX(new Obs_TextFIeld() ,40,table.getFont(),Obs_TextFIeld.LEFT));
 		col.setMinWidth(200);
 		col.setHeaderRenderer(new SOLA());
 

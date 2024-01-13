@@ -44,6 +44,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
@@ -80,10 +81,10 @@ public class STK_YIL_SONU extends JInternalFrame {
 	
 	private static final Vector<?> Boolean = null;
 	public static JTable table;
-	private static JTextField textField;
+	private static Obs_TextFIeld textField;
 	private static JDateChooser dtc ;
 	private static  String tar = "" ;
-	private static JTextField textField_1;
+	private static Obs_TextFIeld textField_1;
 	private static JLabel lblNewLabel_1 ;
 	private JLabel lblNewLabel_3 ;
 	/**
@@ -222,7 +223,7 @@ public class STK_YIL_SONU extends JInternalFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		textField = new JTextField();
+		textField = new Obs_TextFIeld();
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setBounds(26, 20, 85, 20);
 		panel_1.add(textField);
@@ -234,8 +235,8 @@ public class STK_YIL_SONU extends JInternalFrame {
 		panel_2.setBounds(655, 8, 416, 51);
 		panel.add(panel_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setDocument(new JTextFieldLimit(12));
+		textField_1 = new Obs_TextFIeld(12);
+		
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
 					lblNewLabel_1.setText(CARI_ISIM_OKU.isim(textField_1.getText())[0]);

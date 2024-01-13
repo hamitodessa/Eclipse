@@ -13,7 +13,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.SystemColor;
 
-import javax.swing.JTextField;
+
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -26,6 +26,7 @@ import OBS_C_2025.FIT_IMAGE;
 import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.ImagePanel;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.STOK_ACCESS;
 import raven.toast.Notifications;
 
@@ -62,16 +63,16 @@ public class URUN_KART extends JInternalFrame {
 	private static ResultSet rss = null ;
 	private static int kayit_sayi = 0 ;
 	private static JLabel lbluser ;
-	private static JTextField txtkayit;
-	public static  JTextField textField_1;
-	private static JTextField txtkodu;
-	private static JTextField txtadi;
-	private static JTextField txtbirim;
-	private static JTextField txtsinif;
-	private static JTextField txtacik1;
-	private static JTextField txtacik2;
-	private static JTextField txtrecete;
-	private static JTextField txtbarkod;
+	private static Obs_TextFIeld txtkayit;
+	public static  Obs_TextFIeld textField_1;
+	private static Obs_TextFIeld txtkodu;
+	private static Obs_TextFIeld txtadi;
+	private static Obs_TextFIeld txtbirim;
+	private static Obs_TextFIeld txtsinif;
+	private static Obs_TextFIeld txtacik1;
+	private static Obs_TextFIeld txtacik2;
+	private static Obs_TextFIeld txtrecete;
+	private static Obs_TextFIeld txtbarkod;
 	private static JComboBox<String> cmbmensei ;
 	private static JComboBox<String> cmbanagrup ;
 	private static JComboBox<String> cmbaltgrup ;
@@ -132,7 +133,7 @@ public class URUN_KART extends JInternalFrame {
 		button_1.setBounds(151, 17, 54, 30);
 		panel.add(button_1);
 
-		txtkayit = new JTextField();
+		txtkayit = new Obs_TextFIeld();
 		txtkayit.setHorizontalAlignment(SwingConstants.CENTER);
 		txtkayit.setForeground(new Color(0, 0, 205));
 		txtkayit.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -165,7 +166,7 @@ public class URUN_KART extends JInternalFrame {
 		button_3.setBounds(338, 17, 64, 30);
 		panel.add(button_3);
 
-		textField_1 = new JTextField();
+		textField_1 = new Obs_TextFIeld();
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				if (textField_1.getText().equals(""))   { hisset("Kodu",""); return ;};
@@ -364,7 +365,7 @@ public class URUN_KART extends JInternalFrame {
 		lblNewLabel_2.setBounds(10, 110, 54, 14);
 		panel.add(lblNewLabel_2);
 
-		txtkodu = new JTextField();
+		txtkodu = new Obs_TextFIeld(12);
 		txtkodu.setForeground(Color.BLACK);
 		txtkodu.setEnabled(false);
 		txtkodu.addKeyListener(new KeyAdapter() {
@@ -403,7 +404,7 @@ public class URUN_KART extends JInternalFrame {
 		lblNewLabel_3.setBounds(251, 110, 46, 14);
 		panel.add(lblNewLabel_3);
 
-		txtadi = new JTextField();
+		txtadi = new Obs_TextFIeld(40);
 		txtadi.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtadi.setBounds(314, 105, 287, 20);
 		panel.add(txtadi);
@@ -414,13 +415,13 @@ public class URUN_KART extends JInternalFrame {
 		lblNewLabel_4.setBounds(10, 136, 46, 14);
 		panel.add(lblNewLabel_4);
 
-		txtbirim = new JTextField();
+		txtbirim = new Obs_TextFIeld(5);
 		txtbirim.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtbirim.setBounds(88, 132, 86, 20);
 		panel.add(txtbirim);
 		txtbirim.setColumns(10);
 
-		txtsinif = new JTextField();
+		txtsinif = new Obs_TextFIeld(5);
 		txtsinif.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtsinif.setBounds(88, 159, 86, 20);
 		panel.add(txtsinif);
@@ -506,13 +507,13 @@ public class URUN_KART extends JInternalFrame {
 		label_2.setBounds(10, 51, 46, 14);
 		panel_4.add(label_2);
 
-		txtacik1 = new JTextField();
+		txtacik1 = new Obs_TextFIeld(25);
 		txtacik1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtacik1.setBounds(78, 23, 397, 20);
 		panel_4.add(txtacik1);
 		txtacik1.setColumns(10);
 
-		txtacik2 = new JTextField();
+		txtacik2 = new Obs_TextFIeld(25);
 		txtacik2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtacik2.setBounds(78, 48, 397, 20);
 		panel_4.add(txtacik2);
@@ -617,7 +618,7 @@ public class URUN_KART extends JInternalFrame {
 		panel_7.setLayout(null);
 		panel_7.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 191, 255), new Color(160, 160, 160)), "Recete", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 
-		txtrecete = new JTextField();
+		txtrecete = new Obs_TextFIeld(10);
 		txtrecete.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtrecete.setColumns(10);
 		txtrecete.setBounds(50, 20, 126, 20);
@@ -683,7 +684,7 @@ public class URUN_KART extends JInternalFrame {
 		panel_8.setBounds(10, 481, 624, 58);
 		panel.add(panel_8);
 
-		txtbarkod = new JTextField();
+		txtbarkod = new Obs_TextFIeld(20);
 		txtbarkod.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtbarkod.setColumns(10);
 		txtbarkod.setBounds(78, 20, 172, 20);

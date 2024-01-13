@@ -21,6 +21,7 @@ import javax.swing.table.TableStringConverter;
 
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
@@ -32,7 +33,6 @@ import raven.toast.Notifications;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -44,7 +44,7 @@ public class URUN_ARAMA extends JDialog {
 	static OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
 	static STOK_ACCESS f_Access = new STOK_ACCESS(OBS_SIS_2025_ANA_CLASS._IStok , OBS_SIS_2025_ANA_CLASS._IFatura_Loger);
 	
-	private JTextField textField;
+	private Obs_TextFIeld textField;
 	/**
 	 * Create the dialog.
 	 */
@@ -72,7 +72,7 @@ public class URUN_ARAMA extends JDialog {
 		lblNewLabel.setBounds(10, 11, 38, 14);
 		panel.add(lblNewLabel);
 
-		textField = new JTextField();
+		textField = new Obs_TextFIeld();
 		textField.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);

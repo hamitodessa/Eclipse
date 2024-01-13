@@ -26,6 +26,7 @@ import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.NextCellActioin;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
@@ -36,7 +37,6 @@ import raven.toast.Notifications;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
@@ -75,8 +75,8 @@ public class RECETE extends JInternalFrame {
 	private static JComboBox<String> cmbaltgrup ;
 	private static JComboBox<String> comboBox_2 ;
 
-	public static JTextField textField;
-	private static JTextField textField_1;
+	public static Obs_TextFIeld textField;
+	private static Obs_TextFIeld textField_1;
 	private static JTable table;
 	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_5;
@@ -112,8 +112,8 @@ public class RECETE extends JInternalFrame {
 		lblNewLabel.setBounds(10, 28, 46, 14);
 		panel_1.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setDocument(new JTextFieldLimit(10));
+		textField = new Obs_TextFIeld(10);
+		
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -287,7 +287,7 @@ public class RECETE extends JInternalFrame {
 		label.setBounds(10, 28, 46, 14);
 		panel_2.add(label);
 		
-		textField_1 =  new JTextField();
+		textField_1 =  new Obs_TextFIeld(12);
 		textField_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -302,7 +302,7 @@ public class RECETE extends JInternalFrame {
 				}
 			}
 		});
-		textField_1.setDocument(new JTextFieldLimit(12));
+		
 		textField_1.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void insertUpdate(DocumentEvent e) {

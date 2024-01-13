@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -28,6 +28,7 @@ import OBS_C_2025.BAGLAN_LOG;
 import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
 import OBS_C_2025.ScrollPaneWin11;
@@ -46,12 +47,12 @@ public class GIDECEGI_YER extends JInternalFrame {
 
 	
 	private static JTable table;
-	private static JTextField textField;
-	public static JTextField textField_1;
-	public static JTextField textField_2;
-	public static JTextField textField_3;
-	public static JTextField textField_4;
-	private static JTextField textField_5;
+	private static Obs_TextFIeld textField;
+	public static Obs_TextFIeld textField_1;
+	public static Obs_TextFIeld textField_2;
+	public static Obs_TextFIeld textField_3;
+	public static Obs_TextFIeld textField_4;
+	private static Obs_TextFIeld textField_5;
 
 
 	/**
@@ -85,13 +86,13 @@ public class GIDECEGI_YER extends JInternalFrame {
 		lblNewLabel.setBounds(10, 11, 46, 14);
 		panel_1.add(lblNewLabel);
 		
-		textField = new JTextField();
+		textField = new Obs_TextFIeld();
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setBounds(77, 8, 340, 20);
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
-		textField_5 = new JTextField();
+		textField_5 = new Obs_TextFIeld();
 		textField_5.setVisible(false);
 		textField_5.setBounds(495, 8, 86, 20);
 		panel_1.add(textField_5);
@@ -108,7 +109,7 @@ public class GIDECEGI_YER extends JInternalFrame {
 		lblNewLabel_1.setBounds(10, 23, 46, 14);
 		panel_2.add(lblNewLabel_1);
 		
-		textField_1 = new JTextField();
+		textField_1 = new Obs_TextFIeld();
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_1.setBounds(77, 20, 524, 20);
 		panel_2.add(textField_1);
@@ -119,7 +120,7 @@ public class GIDECEGI_YER extends JInternalFrame {
 		lblNewLabel_2.setBounds(10, 50, 46, 14);
 		panel_2.add(lblNewLabel_2);
 		
-		textField_2 = new JTextField();
+		textField_2 = new Obs_TextFIeld();
 		textField_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_2.setBounds(77, 47, 524, 20);
 		panel_2.add(textField_2);
@@ -130,13 +131,13 @@ public class GIDECEGI_YER extends JInternalFrame {
 		lblNewLabel_3.setBounds(10, 75, 46, 14);
 		panel_2.add(lblNewLabel_3);
 		
-		textField_3 = new JTextField();
+		textField_3 = new Obs_TextFIeld();
 		textField_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_3.setBounds(77, 72, 524, 20);
 		panel_2.add(textField_3);
 		textField_3.setColumns(10);
 		
-		textField_4 = new JTextField();
+		textField_4 = new Obs_TextFIeld();
 		textField_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_4.setBounds(77, 97, 524, 20);
 		panel_2.add(textField_4);

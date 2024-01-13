@@ -20,7 +20,7 @@ import javax.swing.JTable;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -32,6 +32,7 @@ import OBS_C_2025.CARI_ACCESS;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
@@ -52,8 +53,8 @@ public class IRSALIYE_ARA extends JDialog {
 	static CARI_ACCESS c_Access = new CARI_ACCESS(OBS_SIS_2025_ANA_CLASS._ICar , OBS_SIS_2025_ANA_CLASS._ICari_Loger);	
 
 	private JTable table;
-	private JTextField textField;
-	private JTextField textField_1;
+	private Obs_TextFIeld textField;
+	private Obs_TextFIeld textField_1;
 	private static JLabel lblNewLabel_1;
 	private static JComboBox<String> cmbanagrup ;
 	private static JComboBox<String> cmbaltgrup ;
@@ -127,7 +128,7 @@ public class IRSALIYE_ARA extends JDialog {
 		lblNewLabel.setBounds(10, 15, 68, 14);
 		panel.add(lblNewLabel);
 		
-		textField = new JTextField();
+		textField = new Obs_TextFIeld();
 		textField.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField.setBounds(88, 10, 113, 20);
 		textField.getDocument().addDocumentListener(new DocumentListener() {
@@ -155,7 +156,7 @@ public class IRSALIYE_ARA extends JDialog {
 		lblHesapKodu.setBounds(10, 42, 68, 14);
 		panel.add(lblHesapKodu);
 		
-		textField_1 = new JTextField();
+		textField_1 = new Obs_TextFIeld();
 		textField_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		textField_1.setColumns(10);
 		textField_1.setBounds(88, 37, 113, 20);

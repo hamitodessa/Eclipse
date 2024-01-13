@@ -36,7 +36,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
@@ -79,6 +78,7 @@ import OBS_C_2025.MAIL_AT;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.OBS_ORTAK_MSSQL;
 import OBS_C_2025.OBS_ORTAK_MYSQL;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SMS_ACCESS;
 import OBS_C_2025.SMS_MSSQL;
 import OBS_C_2025.SMS_MYSQL;
@@ -117,13 +117,13 @@ public class CAL_DIZIN extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private static JPanel contentPane;
-	private static JTextField txtKodu;
-	private static JTextField txtIp;
-	private static JTextField txtkul;
+	private static Obs_TextFIeld txtKodu;
+	private static Obs_TextFIeld txtIp;
+	private static Obs_TextFIeld txtkul;
 	private static JPasswordField txtsifr;
-	private static JTextField txtdiz;
+	private static Obs_TextFIeld txtdiz;
 	private static JLabel lblysif;
-	private static JTextField txtyenisif;
+	private static Obs_TextFIeld txtyenisif;
 	private static JComboBox<String> comboBox;
 	private static JComboBox<String> cmbip;
 	private static JComboBox<String> cmbhangisql;
@@ -144,12 +144,12 @@ public class CAL_DIZIN extends JFrame {
 	private static JTable tblGunluk;
 	private static JTable tblKereste;
 	private static JPasswordField txtsif;
-	private static	JTextField txt_Lmaill ;
+	private static	Obs_TextFIeld txt_Lmaill ;
 	private static MaterialTabbed tabbedPane;
 	private static int activ_sayfa =0;
 	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
 	static Cursor DEFAULT_CURSOR =  Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
-	private static JTextField txtcdid;
+	private static Obs_TextFIeld txtcdid;
 	private JLabel lblNewLabel_2;
 	boolean vt = false;
 	boolean ds = false;
@@ -217,7 +217,7 @@ public class CAL_DIZIN extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		txtKodu = new JTextField();
+		txtKodu = new Obs_TextFIeld(10);
 		txtKodu.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtKodu.setBounds(102, 71, 78, 20);
 		txtKodu.setEnabled(false);
@@ -420,7 +420,7 @@ public class CAL_DIZIN extends JFrame {
 		chckbxS.setBounds(181, 95, 78, 23);
 		panel.add(chckbxS);
 
-		txtIp = new JTextField();
+		txtIp = new Obs_TextFIeld(50);
 		txtIp.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtIp.setBounds(102, 180, 157, 20);
 		panel.add(txtIp);
@@ -438,7 +438,7 @@ public class CAL_DIZIN extends JFrame {
 		cmbip.setBounds(102, 205, 157, 22);
 		panel.add(cmbip);
 
-		txtkul = new JTextField();
+		txtkul = new Obs_TextFIeld(50);
 		txtkul.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtkul.setBounds(102, 229, 157, 20);
 		panel.add(txtkul);
@@ -494,7 +494,7 @@ public class CAL_DIZIN extends JFrame {
 		});
 		chckbxO.setBounds(162, 283, 97, 23);
 		panel.add(chckbxO);
-		txtdiz = new JTextField();
+		txtdiz = new Obs_TextFIeld(200);
 		txtdiz.setEnabled(false);
 		txtdiz.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtdiz.setBounds(51, 313,255,20);
@@ -948,7 +948,7 @@ public class CAL_DIZIN extends JFrame {
 		panel_1.add(txtsif);
 		txtsif.setColumns(10);
 
-		txtyenisif = new JTextField();
+		txtyenisif = new Obs_TextFIeld(20);
 		txtyenisif.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtyenisif.setColumns(10);
 		txtyenisif.setBounds(196, 125, 147, 20);
@@ -1031,7 +1031,7 @@ public class CAL_DIZIN extends JFrame {
 		lblNewLabel_2.setBounds(10, 39, 78, 14);
 		panel_3.add(lblNewLabel_2);
 
-		txt_Lmaill = new JTextField();
+		txt_Lmaill = new Obs_TextFIeld(50);
 		txt_Lmaill.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -1316,7 +1316,7 @@ public class CAL_DIZIN extends JFrame {
 		comboBox.setBounds(102, 155, 157, 22);
 		panel.add(comboBox);
 
-		txtcdid = new JTextField();
+		txtcdid = new Obs_TextFIeld();
 		txtcdid.setBounds(34, 99, 38, 20);
 		txtcdid.setVisible(false);
 		panel.add(txtcdid);

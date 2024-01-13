@@ -67,6 +67,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.NextCellActioin;
+import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SAGA;
 import OBS_C_2025.SOLA;
 import OBS_C_2025.STOK_ACCESS;
@@ -84,10 +85,10 @@ public class ZAYI extends JInternalFrame {
 	private ArrayList<String> listSomeString = null ;
 	private ArrayList<String> listBarkod = null ;
 	private ArrayList<String> listdepo = null ;
-	private static JTextField textField;
-	private JTextField textField_4;
-	private static JTextField textField_9;
-	private static JTextField textField_10;
+	private static Obs_TextFIeld textField;
+	private Obs_TextFIeld textField_4;
+	private static Obs_TextFIeld textField_9;
+	private static Obs_TextFIeld textField_10;
 	private static JTable table;
 	private static JDateChooser dtc ;
 	private static JLabel lblNewLabel_12 ;
@@ -139,8 +140,8 @@ public class ZAYI extends JInternalFrame {
 		lblNewLabel_1.setBounds(10, 11, 69, 14);
 		panel_2.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setDocument(new JTextFieldLimit(10));
+		textField = new Obs_TextFIeld(10);
+		
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -357,17 +358,17 @@ public class ZAYI extends JInternalFrame {
 		lblNewLabel_19.setBounds(10, 38, 34, 14);
 		panel_5.add(lblNewLabel_19);
 		
-		textField_9 = new JTextField();
+		textField_9 = new Obs_TextFIeld(50);
 		textField_9.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_9.setBounds(54, 8, 447, 20);
-		textField_9.setDocument(new JTextFieldLimit(50));
+		
 		panel_5.add(textField_9);
 		textField_9.setColumns(10);
 		
-		textField_10 = new JTextField();
+		textField_10 = new Obs_TextFIeld(50);
 		textField_10.setFont(new Font("Tahoma", Font.BOLD, 12));
 		textField_10.setBounds(54, 33, 447, 20);
-		textField_10.setDocument(new JTextFieldLimit(50));
+		
 		panel_5.add(textField_10);
 		textField_10.setColumns(10);
 		
@@ -443,7 +444,7 @@ public class ZAYI extends JInternalFrame {
 		lblNewLabel_11.setBounds(10, 11, 46, 14);
 		panel_1.add(lblNewLabel_11);
 		
-		textField_4 = new JTextField();
+		textField_4 = new Obs_TextFIeld();
 		textField_4.setBounds(66, 8, 156, 20);
 		panel_1.add(textField_4);
 		textField_4.setColumns(10);

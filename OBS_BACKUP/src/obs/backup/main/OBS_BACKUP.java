@@ -2631,7 +2631,7 @@ public class OBS_BACKUP extends JFrame {
 			myReader.close();
 			if(dosyaPID != (int) ProcessHandle.current().pid())
 			{
-				System.exit(0);
+				btnKapat.doClick();
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

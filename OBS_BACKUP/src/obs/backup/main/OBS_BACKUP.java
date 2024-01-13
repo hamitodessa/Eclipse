@@ -76,17 +76,22 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FilePermission;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
@@ -817,7 +822,8 @@ public class OBS_BACKUP extends JFrame {
 		});
 		//***********************************BASLAMA*********************************************
 		try {
-			checkWORK();
+			//checkWORK();
+			pidKONTROL();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -2633,6 +2639,38 @@ public class OBS_BACKUP extends JFrame {
 			}
 
 		}
+	}
+	private void pidKONTROL() throws IOException
+	{
+		File file = new File(glb.PID_DOSYA);
+		if (!file.exists()) {
+			file.createNewFile();
+		}
+		int counter = 0;
+		String line = null;
+		int dosyaPID = 0 ; 
+		ArrayList<String> cmds = new ArrayList<String>();
+		File myObj = new File(glb.PID_DOSYA);
+		Scanner myReader = new Scanner(myObj);
+		while (myReader.hasNextLine()) {
+			dosyaPID = Integer.valueOf( myReader.nextLine().toString());
+		}
+		myReader.close();
+		int ownPID = (int) ProcessHandle.current().pid();
+		if(dosyaPID !=  ownPID)
+		{
+			cmds = new ArrayList<String>();
+			cmds.add("taskkill");
+			cmds.add("/T");
+			cmds.add("/F");
+			cmds.add("/PID");
+			cmds.add("" + dosyaPID);
+			ProcessBuilder pb = new ProcessBuilder(cmds);
+			pb.start();
+		}
+		FileWriter myWriter = new FileWriter(glb.PID_DOSYA);
+		myWriter.write(Integer.toString(ownPID));
+		myWriter.close();
 	}
 	//	@Override
 	//	public Dimension getPreferredSize() {

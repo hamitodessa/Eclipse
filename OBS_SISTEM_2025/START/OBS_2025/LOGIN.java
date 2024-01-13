@@ -248,7 +248,8 @@ public class LOGIN extends JDialog {
 			} 
 			else if( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("GraphiteLookAndFeel")) 
 			{
-				UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel"); }
+				UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+			}
 			else if (GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("HiFiLookAndFeel")) 
 			{
 				UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel"); 

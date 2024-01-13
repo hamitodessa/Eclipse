@@ -2598,7 +2598,6 @@ public class OBS_BACKUP extends JFrame {
 		} else {
 			btnMinimize.doClick();
 		}
-		
 	}
 	private void pidKONTROL() throws IOException
 	{

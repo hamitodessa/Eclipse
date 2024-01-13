@@ -821,12 +821,8 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 		//***********************************BASLAMA*********************************************
-		try {
 			//checkWORK();
-			pidKONTROL();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+			//pidKONTROL();
 		try 
 		{
 			glb.backup_surucu_kontrol();

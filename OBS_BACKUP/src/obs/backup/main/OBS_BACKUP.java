@@ -82,6 +82,7 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FilePermission;
 import java.io.FileReader;
@@ -824,7 +825,12 @@ public class OBS_BACKUP extends JFrame {
 		});
 		//***********************************BASLAMA*********************************************
 			//checkWORK();
-			//pidKONTROL();
+		try {
+			pidKONTROL();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try 
 		{
 			glb.backup_surucu_kontrol();
@@ -851,6 +857,7 @@ public class OBS_BACKUP extends JFrame {
 			public void run() {  
 				try {
 					yEDEKLE();
+					secondRUN();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -2599,96 +2606,76 @@ public class OBS_BACKUP extends JFrame {
 		}
 		
 	}
-	private void checkWORK() throws IOException 
-	{
-		ArrayList<String> cmds = new ArrayList<String>();
-		cmds.add("wmic");
-		cmds.add("process");
-		cmds.add("get");
-		cmds.add("commandline,processid");
-		ProcessBuilder pb = new ProcessBuilder(cmds);
-		Process p = pb.start();
-		//p.waitFor();
-		BufferedReader rd = new BufferedReader(new InputStreamReader(p.getInputStream()));
-		String line;
-		int pid=0;
-		int ownPID = 0 ;
-		while((line = rd.readLine()) != null)
-		{
-			if(line.contains("OBS_BACKUP.exe"))
-			{
-				//System.out.println("OK" + line);
-				String[] split = line.split(" ");
-				pid=Integer.parseInt(split[split.length - 1]);
-				//System.out.println("pid=" + pid);
-				ownPID = (int) ProcessHandle.current().pid() ;
-				if(pid != ownPID)
-				{
-					cmds = new ArrayList<String>();
-					cmds.add("taskkill");
-					cmds.add("/T");
-					cmds.add("/F");
-					cmds.add("/PID");
-					cmds.add("" + pid);
-					pb = new ProcessBuilder(cmds);
-					pb.start();
-					break;
-				}
-			}
-
-		}
-	}
 	private void pidKONTROL() throws IOException
 	{
 		File file = new File(glb.PID_DOSYA);
 		if (!file.exists()) {
 			file.createNewFile();
 		}
-		int counter = 0;
-		String line = null;
-		int dosyaPID = 0 ; 
-		ArrayList<String> cmds = new ArrayList<String>();
-		File myObj = new File(glb.PID_DOSYA);
-		Scanner myReader = new Scanner(myObj);
-		while (myReader.hasNextLine()) {
-			dosyaPID = Integer.valueOf( myReader.nextLine().toString());
-		}
-		myReader.close();
 		int ownPID = (int) ProcessHandle.current().pid();
-		if(dosyaPID !=  ownPID)
-		{
-			cmds = new ArrayList<String>();
-			cmds.add("taskkill");
-			cmds.add("/T");
-			cmds.add("/F");
-			cmds.add("/PID");
-			cmds.add("" + dosyaPID);
-			ProcessBuilder pb = new ProcessBuilder(cmds);
-			pb.start();
-		}
 		FileWriter myWriter = new FileWriter(glb.PID_DOSYA);
 		myWriter.write(Integer.toString(ownPID));
 		myWriter.close();
 	}
-	//	@Override
-	//	public Dimension getPreferredSize() {
-	//		Dimension superSz = super.getPreferredSize();
-	//		if (isPreferredSizeSet()) {
-	//			return superSz;
-	//		}
-	//		return new Dimension(900, 700);
-	//	}
+	private void secondRUN()
+	{
+		ArrayList<String> cmds = new ArrayList<String>();
+		File myObj = new File(glb.PID_DOSYA);
+		Scanner myReader;
+		try {
+			myReader = new Scanner(myObj);
+			int dosyaPID = 0 ; 
+			while (myReader.hasNextLine()) {
+				dosyaPID = Integer.valueOf( myReader.nextLine().toString());
+			}
+			myReader.close();
+			if(dosyaPID != (int) ProcessHandle.current().pid())
+			{
+				System.exit(0);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 }
 
 
-//Instant start = Instant.now() ;
-//Instant stop = start.plusSeconds( 135L ) ;
-//Duration d = Duration.between( start , stop ) ;
-//long minutesPart = d.toMinutes(); 
-//long secondsPart = d.minusMinutes( minutesPart ).getSeconds() ;
-//
-//System.out.println( "Interval: " + start + "/" + stop );
-//System.out.println( "d.toString(): " + d );
-//System.out.println( "d.getSeconds(): " + d.getSeconds() );
-//System.out.println( "Elapsed: " + minutesPart + "M " + secondsPart + "S" );
-//
+//private void checkWORK() throws IOException 
+//{
+//	ArrayList<String> cmds = new ArrayList<String>();
+//	cmds.add("wmic");
+//	cmds.add("process");
+//	cmds.add("get");
+//	cmds.add("commandline,processid");
+//	ProcessBuilder pb = new ProcessBuilder(cmds);
+//	Process p = pb.start();
+//	//p.waitFor();
+//	BufferedReader rd = new BufferedReader(new InputStreamReader(p.getInputStream()));
+//	String line;
+//	int pid=0;
+//	int ownPID = 0 ;
+//	while((line = rd.readLine()) != null)
+//	{
+//		if(line.contains("OBS_BACKUP.exe"))
+//		{
+//			//System.out.println("OK" + line);
+//			String[] split = line.split(" ");
+//			pid=Integer.parseInt(split[split.length - 1]);
+//			//System.out.println("pid=" + pid);
+//			ownPID = (int) ProcessHandle.current().pid() ;
+//			if(pid != ownPID)
+//			{
+//				cmds = new ArrayList<String>();
+//				cmds.add("taskkill");
+//				cmds.add("/T");
+//				cmds.add("/F");
+//				cmds.add("/PID");
+//				cmds.add("" + pid);
+//				pb = new ProcessBuilder(cmds);
+//				pb.start();
+//				break;
+//			}
+//		}
+//	}
+//}
+

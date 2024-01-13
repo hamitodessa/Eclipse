@@ -195,7 +195,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		df.setMinimumFractionDigits(4);
 		df.setMaximumFractionDigits(4);
 		formattedTextField.setFormatterFactory(f_dob);
-		formattedTextField.setBounds(26, 21, 75, 20);
+		formattedTextField.setBounds(15, 21, 90, 20);
 		panel_1.add(formattedTextField);
 
 		formattedTextField_1 = new JFormattedTextField();
@@ -216,7 +216,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		df.setMaximumFractionDigits(4);
 		formattedTextField_1.setFormatterFactory(f_dob1);
 		formattedTextField_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		formattedTextField_1.setBounds(26, 45, 75, 20);
+		formattedTextField_1.setBounds(15, 45, 90, 20);
 		
 		panel_1.add(formattedTextField_1);
 
@@ -235,7 +235,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		df.setMaximumFractionDigits(4);
 		formattedTextField_2.setFormatterFactory(f_dob2);
 		formattedTextField_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		formattedTextField_2.setBounds(26, 21, 75, 20);
+		formattedTextField_2.setBounds(15, 21, 90, 20);
 		panel_1_1.add(formattedTextField_2);
 
 		formattedTextField_1_1 = new JFormattedTextField();
@@ -256,7 +256,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		df.setMaximumFractionDigits(4);
 		formattedTextField_1_1.setFormatterFactory(f_dob11);
 		formattedTextField_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		formattedTextField_1_1.setBounds(26, 45, 75, 20);
+		formattedTextField_1_1.setBounds(15, 45, 90, 20);
 		panel_1_1.add(formattedTextField_1_1);
 
 		JPanel panel_1_2 = new JPanel();
@@ -274,7 +274,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		df.setMaximumFractionDigits(4);
 		formattedTextField_3.setFormatterFactory(f_dob3);
 		formattedTextField_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		formattedTextField_3.setBounds(26, 21, 75, 20);
+		formattedTextField_3.setBounds(15, 21, 90, 20);
 		panel_1_2.add(formattedTextField_3);
 
 		formattedTextField_1_2 = new JFormattedTextField();
@@ -295,7 +295,7 @@ public class KUR_GIRIS extends JInternalFrame {
 		df.setMaximumFractionDigits(4);
 		formattedTextField_1_2.setFormatterFactory(f_dob12);
 		formattedTextField_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		formattedTextField_1_2.setBounds(26, 45, 75, 20);
+		formattedTextField_1_2.setBounds(15, 45, 90, 20);
 		panel_1_2.add(formattedTextField_1_2);
 
 		JLabel lblNewLabel = new JLabel("Alis");

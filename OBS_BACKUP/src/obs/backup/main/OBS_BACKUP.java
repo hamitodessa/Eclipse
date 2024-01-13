@@ -24,6 +24,7 @@ import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatNordIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
@@ -275,6 +276,7 @@ public class OBS_BACKUP extends JFrame {
 		//FlatMacDarkLaf.setup();
 
 		FlatCarbonIJTheme.setup();
+		//FlatNordIJTheme.setup();
 		//FlatHighContrastIJTheme.setup();
 		addMouseListener(new MouseAdapter() {
 			@Override

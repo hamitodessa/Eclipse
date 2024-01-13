@@ -344,7 +344,6 @@ public class OBS_GOREV extends JFrame  {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		int hour = calendar.get(Calendar.HOUR_OF_DAY);
-	
 		hour =  hour < targetHour ? targetHour - hour : targetHour - hour + 24;
 		Calendar c = Calendar.getInstance(); 
 		c.setTime(date); 

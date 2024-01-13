@@ -417,13 +417,13 @@ public class URUN_KART extends JInternalFrame {
 
 		txtbirim = new Obs_TextFIeld(5);
 		txtbirim.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtbirim.setBounds(88, 132, 86, 20);
+		txtbirim.setBounds(88, 132, 70, 20);
 		panel.add(txtbirim);
 		txtbirim.setColumns(10);
 
 		txtsinif = new Obs_TextFIeld(5);
 		txtsinif.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtsinif.setBounds(88, 159, 86, 20);
+		txtsinif.setBounds(88, 159, 70, 20);
 		panel.add(txtsinif);
 		txtsinif.setColumns(10);
 
@@ -759,7 +759,7 @@ public class URUN_KART extends JInternalFrame {
 		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Adet", "Kg", "Ton", "m3", "m2", "m/Tul"}));
-		comboBox.setBounds(184, 132, 57, 22);
+		comboBox.setBounds(168, 132, 73, 22);
 		comboBox.addItemListener(new ItemListener() 
 		{
 			public void itemStateChanged(ItemEvent e) {

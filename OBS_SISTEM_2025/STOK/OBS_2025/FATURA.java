@@ -28,7 +28,7 @@ import OBS_C_2025.FORMATLAMA;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.ImagePanel;
-import OBS_C_2025.JTextFieldLimit;
+
 import OBS_C_2025.MaterialTabbed;
 import OBS_C_2025.NextCellActioin;
 import OBS_C_2025.Obs_TextFIeld;
@@ -1220,8 +1220,8 @@ public class FATURA extends JInternalFrame {
 
 		col = table.getColumnModel().getColumn(9);
 		col.setMinWidth(200);
-		JTextField atf = new JTextField();
-		atf.setDocument(new JTextFieldLimit(40));
+		Obs_TextFIeld atf = new Obs_TextFIeld(40);
+		
 		col.setCellEditor(new DefaultCellEditor(atf));
 		col.setHeaderRenderer(new SOLA());
 

@@ -384,7 +384,7 @@ public class LOGIN extends JDialog {
 		txtpwd.setOpaque(false);
 		txtpwd.setBorder(new EmptyBorder(0, 0, 0, 0));
 		txtpwd.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		txtpwd.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true");
+		//txtpwd.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true");
 		txtpwd.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {

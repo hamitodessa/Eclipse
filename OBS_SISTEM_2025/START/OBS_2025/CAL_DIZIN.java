@@ -47,6 +47,8 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import com.formdev.flatlaf.FlatClientProperties;
+
 import LOGER_KAYIT.DOSYA_MSSQL;
 import LOGER_KAYIT.DOSYA_MYSQL;
 import LOGER_KAYIT.SQLITE_LOG;
@@ -445,6 +447,8 @@ public class CAL_DIZIN extends JFrame {
 		txtkul.setColumns(10);
 
 		txtsifr = new JPasswordField();
+		txtsifr.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		//txtsifr.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true");
 		txtsifr.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtsifr.setBounds(102, 252, 157, 20);
 
@@ -911,6 +915,7 @@ public class CAL_DIZIN extends JFrame {
 		panel_1.add(lblNewLabel);
 
 		txtsif = new JPasswordField();
+		txtsif.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtsif.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {

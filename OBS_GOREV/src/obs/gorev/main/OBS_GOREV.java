@@ -142,7 +142,7 @@ public class OBS_GOREV extends JFrame  {
 		});
 	}
 
-	public OBS_GOREV() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+	public OBS_GOREV() {
 		setUndecorated(true);
 		addMouseListener(new MouseAdapter() {
 			@Override
@@ -222,7 +222,6 @@ public class OBS_GOREV extends JFrame  {
 				CheckListItem item = (CheckListItem) list.getModel().getElementAt(index);
 				item.setSelected(!item.isSelected()); // Toggle selected state
 				list.repaint(list.getCellBounds(index, index));// Repaint cell
-
 			}
 		});
 		model.addElement( new CheckListItem("USD",""));
@@ -233,20 +232,16 @@ public class OBS_GOREV extends JFrame  {
 		model.addElement( new CheckListItem("SEK",""));
 		model.addElement( new CheckListItem("NOK",""));
 		model.addElement( new CheckListItem("SAR",""));
-
 		list.repaint();
-
 		scrollPane.setViewportView(list);
-
 		JButton btnNewButton_1 = new JButton("Kayit");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					kayit();
-					 sirala();
-						JOptionPane.showMessageDialog(null, "Kaydedildi......");
+					sirala();
+					JOptionPane.showMessageDialog(null, "Kaydedildi......");
 				} catch (Exception e1) {
-
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
@@ -317,7 +312,10 @@ public class OBS_GOREV extends JFrame  {
 					}
 				}
 			}
-			
+			else {
+				JOptionPane.showMessageDialog(null, "Oncelikle OBS Sistem Yuklu olmasi lazim...");
+				System.exit(0);
+			}
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, ex.getMessage());
 		}
@@ -329,10 +327,6 @@ public class OBS_GOREV extends JFrame  {
 		TimerTask tt = new TimerTask() {  
 		    @Override  
 		    public void run() {  
-		    	 //long currennTime = System.currentTimeMillis();
-		         //long stopTime = currennTime + 2000;//provide the 2hrs time it should execute 1000*60*60*2
-		         //  while(stopTime != System.currentTimeMillis()){
-		         //}
 		    	try {
 					merkez_oku_kayit();
 				} catch (Exception e) {
@@ -341,7 +335,6 @@ public class OBS_GOREV extends JFrame  {
 		    };  
 		};  
 		timerr.schedule(tt,getTomorrowMorning2AM(),  1000*60*60*24); 
-		//merkez_oku_kayit();
 	}
 	private void pidTimerBasla()
 	{
@@ -408,7 +401,6 @@ public class OBS_GOREV extends JFrame  {
 			}
 		}
 		 sirala();
-		
 	}
 	void sirala()
 	{
@@ -422,7 +414,6 @@ public class OBS_GOREV extends JFrame  {
 				item2.setSelected(true);
 				model.remove(i);
 				model.insertElementAt(item2, dosyaSAYI);
-
 				dosyaSAYI += 1;
 			}
 		}
@@ -538,13 +529,11 @@ public class OBS_GOREV extends JFrame  {
 		}
 		catch (Exception ex )
 		{
-
 		}
 		return kurrakkam;
 	}
 	private void cONN_AKTAR(String hangi)
 	{
-	
 		switch(hangi) {
 		case "MS SQL":
 			_IKurCon = new OBS_ORTAK_MSSQL() ;
@@ -587,7 +576,6 @@ public class OBS_GOREV extends JFrame  {
 			float adjustmentRatio = 1.2f; 
 			float newFontSize = defaultFont.getSize() * adjustmentRatio ; 
 			Font derivedFont = defaultFont.deriveFont(newFontSize);
-			
 			MenuItem buyultITEM = new MenuItem("Buyult");
 			buyultITEM.setFont(derivedFont);
 			buyultITEM.addActionListener(listener);
@@ -616,20 +604,11 @@ public class OBS_GOREV extends JFrame  {
 		{
 			btnMinimize.doClick();
 		}
-			
 	}
 	private void secondRUN()
 	{
-		//ArrayList<String> cmds = new ArrayList<String>();
-		//File myObj = new File(glb.GOREV_PID_DOSYA);
-		//Scanner myReader;
 		try {
-			//myReader = new Scanner(myObj);
 			int dosyaPID = 0 ; 
-			//while (myReader.hasNextLine()) {
-			//	dosyaPID = Integer.valueOf( myReader.nextLine().toString());
-			//}
-			//myReader.close();
 			dosyaPID = grvglb.pid_oku() ; 
 			if(dosyaPID != (int) ProcessHandle.current().pid())
 			{
@@ -645,18 +624,14 @@ public class OBS_GOREV extends JFrame  {
 			e.printStackTrace();
 		}
 	}
-	private void pidKONTROL() throws IOException, ClassNotFoundException, SQLException
+	private void pidKONTROL() 
 	{
-		//File file = new File(glb.GOREV_PID_DOSYA);
-		//if (!file.exists()) {
-		//	file.createNewFile();
-		//}
 		int ownPID = (int) ProcessHandle.current().pid();
-		grvglb.pid_sil();
-		grvglb.pid_kayit(ownPID);
-		//FileWriter myWriter = new FileWriter(glb.GOREV_PID_DOSYA);
-		//myWriter.write(Integer.toString(ownPID));
-		//myWriter.close();
+		try {
+			grvglb.pid_sil();
+			grvglb.pid_kayit(ownPID);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 	}
-
 }

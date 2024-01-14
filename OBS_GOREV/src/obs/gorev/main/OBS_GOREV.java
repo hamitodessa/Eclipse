@@ -292,7 +292,6 @@ public class OBS_GOREV extends JFrame  {
 		try {
 			if (glb.dos_kontrol(glb.SURUCU + glb.OBS_DOSYA))
 			{
-				
 				glb.gorev_surucu_kontrol();
 				pidKONTROL();
 				pidTimerBasla();
@@ -512,9 +511,7 @@ public class OBS_GOREV extends JFrame  {
 				DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 				String tarString = df.format(new Date());
 				k_Access.kur_sil(tarString,item.toString());
-				k_Access.kur_kayit(tarString,item.toString() ,
-						Double.parseDouble(kurString[0]),Double.parseDouble(kurString[1]),
-						0,0,0,0);
+				k_Access.kur_kayit(tarString,item.toString() ,Double.parseDouble(kurString[0]),Double.parseDouble(kurString[1]),0,0,0,0);
 				}
 			}
 		}

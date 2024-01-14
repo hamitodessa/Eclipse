@@ -231,10 +231,12 @@ public class LOGIN extends JDialog {
 			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AcrylLookAndFeel"))
 			{ 
 				UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-			} else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AeroLookAndFeel"))
+			} 
+			else if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AeroLookAndFeel"))
 			{ 
 				UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel"); 
-			} else  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AluminiumLookAndFeel"))
+			} 
+			else  if ( GLOBAL.setting_oku("PRG_GORUNUM").toString().equals("AluminiumLookAndFeel"))
 			{
 				UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
 			} 
@@ -1493,7 +1495,7 @@ public class LOGIN extends JDialog {
 			BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
 			String ip = in.readLine(); //you get the IP as a String
 			//System.out.println(ip);
-			if(ip.equals("78.189.76.2477")) return;
+			//if(ip.equals("78.189.76.247")) return;
 			if (oac.glb.internet_kontrol() == false)
 			{
 				return ;
@@ -1614,7 +1616,6 @@ public class LOGIN extends JDialog {
 						+ System.lineSeparator()
 						+ "Yeni Version = " + yeniver 
 						+ System.lineSeparator();
-				
 				OBS_MAIN.mesaj_goster(15000,Notifications.Type.INFO,  String.format(html));
 			}
 		}

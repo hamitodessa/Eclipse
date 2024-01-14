@@ -112,12 +112,12 @@ public class LoglamaRapor extends JPanel {
 		
 		txtArama = new Obs_TextFIeld(50,"");
 		txtArama.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtArama.setBounds(79, 10, 298, 25);
+		txtArama.setBounds(79, 10, 250, 25);
 		panel.add(txtArama);
 		txtArama.setColumns(10);
 		
 		comboBox = new JComboBox<String>();
-		comboBox.setBounds(398, 11, 140, 22);
+		comboBox.setBounds(358, 11, 275, 22);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -163,7 +163,7 @@ public class LoglamaRapor extends JPanel {
 				}
 			}
 		});
-		btnNewButton.setBounds(548, 11, 100, 23);
+		btnNewButton.setBounds(650, 11, 50, 23);
 		panel.add(btnNewButton);
 		
 		JButton btnExcell = new JButton("");
@@ -174,13 +174,13 @@ public class LoglamaRapor extends JPanel {
 			}
 		});
 		btnExcell.setIcon(new ImageIcon(LoglamaRapor.class.getResource("/ICONLAR/excel-icon_16.png")));
-		btnExcell.setBounds(655, 11, 23, 23);
+		btnExcell.setBounds(705, 11, 23, 23);
 		panel.add(btnExcell);
 		
 		JButton btnMail = new JButton("");
 		btnMail.setVisible(false);
 		btnMail.setIcon(new ImageIcon(LoglamaRapor.class.getResource("/ICONLAR/mail-16.png")));
-		btnMail.setBounds(681, 11, 23, 23);
+		btnMail.setBounds(730, 11, 23, 23);
 		panel.add(btnMail);
 		txtArama.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {

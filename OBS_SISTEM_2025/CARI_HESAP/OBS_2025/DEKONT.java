@@ -620,6 +620,7 @@ public class DEKONT extends JInternalFrame {
 		panel_1.add(cmbb);
 
 		txtbtutar = new JFormattedTextField();
+		JTextFieldRegularPopupMenu.addTo(txtbtutar);
 		txtbtutar.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtbtutar.addFocusListener(new FocusAdapter() {
 			@Override
@@ -1178,6 +1179,7 @@ public class DEKONT extends JInternalFrame {
 		panel_1_1.add(cmba);
 
 		txtatutar = new JFormattedTextField();
+		JTextFieldRegularPopupMenu.addTo(txtatutar);
 		txtatutar.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtatutar.addFocusListener(new FocusAdapter() {
 			@Override

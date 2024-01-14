@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
@@ -67,13 +68,13 @@ public class GOREV_GIRIS extends JInternalFrame {
 	private static JTextField txtYer;
 	private static JTextField txtDeger;
 	static JPanel panel;
-	
+
 	public GOREV_GIRIS() {
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(100, 100, 483, 271);
 		setTitle("GOREV GIRIS");
-		
+
 		panel = new JPanel();
 		panel.setLayout(null);
 		getContentPane().add(panel, BorderLayout.CENTER);
@@ -251,20 +252,20 @@ public class GOREV_GIRIS extends JInternalFrame {
 		cmbBaslamaSaat.setBounds(245, 173, 80, 25);
 		panel.add(cmbBaslamaSaat);
 
-		
+
 		cmbBitisSaat = new JComboBox<String>();
 		cmbBitisSaat.setModel(new DefaultComboBoxModel<String>(new String[] {"06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}));
 		cmbBitisSaat.setFont(new Font("Tahoma", Font.BOLD, 14));
 		cmbBitisSaat.setBounds(245, 200, 80, 25);
 		panel.add(cmbBitisSaat);
-		
-		
+
+
 		txtGID = new JTextField();
 		txtGID.setBounds(10, 135, 39, 20);
 
 		txtGID.setVisible(false);
 		panel.add(txtGID);
-		
+
 		dtcBitis = new JDateChooser();
 		dtcBitis.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dtcBitis.setDateFormatString("dd.MM.yyyy");
@@ -364,45 +365,45 @@ public class GOREV_GIRIS extends JInternalFrame {
 			}
 		});
 		panel.add(dtcBitis);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("Yer");
 		lblNewLabel_3.setBounds(10, 39, 80, 14);
 		panel.add(lblNewLabel_3);
-		
+
 		txtYer = new JTextField(30);
 		txtYer.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		txtYer.setBounds(100, 35, 354, 20);
 		panel.add(txtYer);
 		txtYer.setColumns(10);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("Baslama");
 		lblNewLabel_4.setBounds(10, 177, 69, 14);
 		panel.add(lblNewLabel_4);
-		
+
 		lblBitis = new JLabel("Bitis");
 		lblBitis.setBounds(10, 205, 48, 14);
 		panel.add(lblBitis);
-		
+
 		cmbSecenek = new JComboBox<String>();
 		cmbSecenek.setFont(new Font("Tahoma", Font.BOLD, 14));
 		cmbSecenek.setModel(new DefaultComboBoxModel<String>(new String[] {"Ayda", "Haftada", "Gunde", "Saatte"}));
 		cmbSecenek.setBounds(355, 173, 100, 25);
 		panel.add(cmbSecenek);
-		
+
 		txtDeger = new JTextField();
 		txtDeger.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtDeger.setFont(new Font("Tahoma", Font.BOLD, 14));
 		txtDeger.setBounds(415, 202, 39, 20);
 		panel.add(txtDeger);
 		txtDeger.setColumns(10);
-		
+
 		JLabel lblNewLabel_5 = new JLabel("Deger");
 		lblNewLabel_5.setBounds(355, 205, 50, 14);
 		panel.add(lblNewLabel_5);
-		
 
-		
-		
+
+
+
 		sifirla();
 
 
@@ -412,97 +413,104 @@ public class GOREV_GIRIS extends JInternalFrame {
 		//
 		Runnable runner = new Runnable()
 		{ public void run() {
-		//
-		try
-		{
-			if (txtIsim.getText().equals(""))return;
-			if (txtGorev.getText().equals(""))return;
-			if (txtDeger.getText().equals(""))return;
-			if (dtcBaslama.getDate() == null) return;
-			if (dtcBitis.getDate() == null) return;
-			boolean isInteger = Pattern.matches("^\\d*$", txtDeger.getText());
-			if(! isInteger) return;
-			
-		   
-			String mesaj = "" ;
-			mesaj = "Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + 
-			" Mesaj="  ;
-			if( mesaj.length() +  txtMesaj.getText().length() <= 95)
+			//
+			try
 			{
-				mesaj = mesaj + " Msj:" + txtMesaj.getText().toString() + " Silme " ;
-			}
-			else
-			{
-				mesaj = mesaj + " Msj:" + txtMesaj.getText().toString().substring(0, 89  -(mesaj.length()) ) + "Silme" ;
-			}
-			if (! txtGID.getText().toString().equals(""))
-			{
-				int g =  JOptionPane.showOptionDialog( null,  "Gorev Onceden Kayitli Guncellenecek  ..?", "Bilgi Guncelleme",   JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
-				if(g != 0 )
-				{ 
-					GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
-					return;	
+				SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.ENGLISH);
+				String qweString = TARIH_CEVIR.tarih_geri(dtcBaslama);
+				qweString = qweString + " " + cmbBaslamaSaat.getSelectedItem().toString() ;
+				Date basDate = df.parse(qweString);
+				qweString = TARIH_CEVIR.tarih_geri(dtcBitis);
+				qweString = qweString + " " + cmbBitisSaat.getSelectedItem().toString() ;
+				Date bitDate = df.parse(qweString);
+				if(bitDate.before(basDate))
+				{
+					OBS_MAIN.mesaj_goster(5000,Notifications.Type.WARNING,  "Bitis Tarihi Baslangic Tarihinden Kucuk Olamaz....");		
+					return;
 				}
-				
+				if (txtIsim.getText().equals(""))return;
+				if (txtGorev.getText().equals(""))return;
+				if (txtDeger.getText().equals(""))return;
+				if (dtcBaslama.getDate() == null) return;
+				if (dtcBitis.getDate() == null) return;
+				boolean isInteger = Pattern.matches("^\\d*$", txtDeger.getText());
+				if(! isInteger) return;
+				String mesaj = "" ;
+				mesaj = "Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + 
+						" Mesaj="  ;
+				if( mesaj.length() +  txtMesaj.getText().length() <= 95)
+				{
+					mesaj = mesaj + " Msj:" + txtMesaj.getText().toString() + " Silme " ;
+				}
+				else
+				{
+					mesaj = mesaj + " Msj:" + txtMesaj.getText().toString().substring(0, 89  -(mesaj.length()) ) + "Silme" ;
+				}
+				if (! txtGID.getText().toString().equals(""))
+				{
+					int g =  JOptionPane.showOptionDialog( null,  "Gorev Onceden Kayitli Guncellenecek  ..?", "Bilgi Guncelleme",   JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
+					if(g != 0 )
+					{ 
+						GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
+						return;	
+					}
+
+					lOG_BILGI lBILGI = new lOG_BILGI();
+					lBILGI.setmESAJ(mesaj);
+					lBILGI.seteVRAK(txtGID.getText());
+					g_Access.gorev_sil(Integer.parseInt(txtGID.getText()),lBILGI, BAGLAN_LOG.gunLogDizin  );
+				}
+				GuiUtil.setWaitCursor(GOREV_GIRIS.panel,true);	
+				String str1 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBaslama) ;
+				String str2 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBitis) ;
+				Gunluk_Bilgi gbilgi = new Gunluk_Bilgi() ;
+				gbilgi.tarih1 = str1;
+				gbilgi.tarih2 = str2;
+				gbilgi.saat1 =cmbBaslamaSaat.getSelectedItem().toString() ;
+				gbilgi.saat2 =cmbBitisSaat.getSelectedItem().toString() ;
+				gbilgi.isim = txtIsim.getText();
+				gbilgi.gorev = txtGorev.getText();
+				gbilgi.tekrarla = true;
+				gbilgi.yer = txtYer.getText();
+				gbilgi.mesaj = txtMesaj.getText() ;
+				gbilgi.user =  GLOBAL.KULL_ADI ;
+				gbilgi.secenek = cmbSecenek.getSelectedItem().toString();
+				gbilgi.deger = Integer.parseInt(txtDeger.getText());
+				mesaj = "" ;
+				mesaj = "Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + 
+						" Mesaj="  ;
+				if( mesaj.length() +  txtMesaj.getText().length() <= 95)
+				{
+					mesaj = mesaj + " Msj:" + txtMesaj.getText().toString()  ;
+				}
+				else
+				{
+					mesaj = mesaj + " Msj:" + txtMesaj.getText().toString().substring(0, 89  -(mesaj.length()) ) + " Kayit" ;
+				}
+
 				lOG_BILGI lBILGI = new lOG_BILGI();
 				lBILGI.setmESAJ(mesaj);
-				lBILGI.seteVRAK(txtGID.getText());
-				g_Access.gorev_sil(Integer.parseInt(txtGID.getText()),lBILGI, BAGLAN_LOG.gunLogDizin  );
+				lBILGI.seteVRAK("");
+
+				g_Access.gorev_kayit(gbilgi,lBILGI, BAGLAN_LOG.gunLogDizin );
+				gbilgi.gid = g_Access.gid_ogren(gbilgi);
+				g_Access.gunluk_farkli_kayit(gbilgi);
+				sifirla();
+				Thread.currentThread().isInterrupted();
+				GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
+
 			}
-			GuiUtil.setWaitCursor(GOREV_GIRIS.panel,true);	
-			String str1 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBaslama) ;
-			String str2 = TARIH_CEVIR.gunluk_t_ffmmyyyy(dtcBitis) ;
-			Gunluk_Bilgi gbilgi = new Gunluk_Bilgi() ;
-			gbilgi.tarih1 = str1;
-			gbilgi.tarih2 = str2;
-			gbilgi.saat1 =cmbBaslamaSaat.getSelectedItem().toString() ;
-			gbilgi.saat2 =cmbBitisSaat.getSelectedItem().toString() ;
-			gbilgi.isim = txtIsim.getText();
-			gbilgi.gorev = txtGorev.getText();
-			gbilgi.tekrarla = true;
-			gbilgi.yer = txtYer.getText();
-			gbilgi.mesaj = txtMesaj.getText() ;
-			gbilgi.user =  GLOBAL.KULL_ADI ;
-			gbilgi.secenek = cmbSecenek.getSelectedItem().toString();
-			gbilgi.deger = Integer.parseInt(txtDeger.getText());
-			mesaj = "" ;
-			mesaj = "Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + 
-			" Mesaj="  ;
-			if( mesaj.length() +  txtMesaj.getText().length() <= 95)
+			catch (Exception ex)
 			{
-				mesaj = mesaj + " Msj:" + txtMesaj.getText().toString()  ;
+				GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
+				OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
 			}
-			else
-			{
-				mesaj = mesaj + " Msj:" + txtMesaj.getText().toString().substring(0, 89  -(mesaj.length()) ) + " Kayit" ;
-			}
-			
-			lOG_BILGI lBILGI = new lOG_BILGI();
-			lBILGI.setmESAJ(mesaj);
-			lBILGI.seteVRAK("");
-			
-			g_Access.gorev_kayit(gbilgi,lBILGI, BAGLAN_LOG.gunLogDizin );
-			gbilgi.gid = g_Access.gid_ogren(gbilgi);
-			g_Access.gunluk_farkli_kayit(gbilgi);
-			sifirla();
-			Thread.currentThread().isInterrupted();
-			GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
-			
-		}
-		catch (Exception ex)
-		{
-			GuiUtil.setWaitCursor(GOREV_GIRIS.panel,false);	
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
-			//JOptionPane.showMessageDialog(null,  ex.getMessage(), "Gorev  Kaydetme", JOptionPane.ERROR_MESSAGE);
-		}
-	    //
+			//
 		}
 		};
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
-	    //
-
 	}
 	public static void sil() 
 	{
@@ -515,11 +523,11 @@ public class GOREV_GIRIS extends JInternalFrame {
 			int g =  JOptionPane.showOptionDialog( null,  "Islem Dosyadan Silinecek ..?", "Gunluk Dosyasindan Gorev Silme",   JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE,	   			 	null,   	oac.options,   	oac.options[1]); 
 			if(g != 0 ) { return;	}
-			
+
 			lOG_BILGI lBILGI = new lOG_BILGI();
 			lBILGI.setmESAJ("Isim="+ txtIsim.getText() + " Gorev="+ txtGorev.getText() + " Mesaj="+ txtMesaj.getText() + " Silme ");
 			lBILGI.seteVRAK(txtGID.getText());
-			
+
 			g_Access.gorev_sil(Integer.parseInt(txtGID.getText())  ,lBILGI, BAGLAN_LOG.gunLogDizin  );
 			sifirla();
 		}

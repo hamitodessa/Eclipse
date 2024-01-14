@@ -127,7 +127,7 @@ public class DownloadFile extends JPanel {
 				}
 			}
 		});
-		comboBox.setBounds(84, 11, 233, 25);
+		comboBox.setBounds(84, 11, 300, 25);
 		panel.add(comboBox);
 
 		JButton btnNewButton = new JButton("Indir");
@@ -143,7 +143,7 @@ public class DownloadFile extends JPanel {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		btnNewButton.setBounds(327, 11, 100, 23);
+		btnNewButton.setBounds(400, 11, 100, 23);
 		panel.add(btnNewButton);
 
 		scrollPane = new ScrollPaneWin11();

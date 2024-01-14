@@ -139,7 +139,7 @@ public class H_PLANI extends JInternalFrame {
 		panel.add(btnNewButton_1);
 
 		txtkayit = new JTextField();
-		txtkayit.setForeground(new Color(0, 0, 205));
+		//txtkayit.setForeground(new Color(0, 0, 205));
 		txtkayit.setEditable(false);
 		txtkayit.setHorizontalAlignment(SwingConstants.CENTER);
 		txtkayit.setFont(new Font("Tahoma", Font.BOLD, 11));

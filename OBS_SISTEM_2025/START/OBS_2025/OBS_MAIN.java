@@ -1253,7 +1253,7 @@ public class OBS_MAIN extends JFrame  {
 		///*******
 		tabbedPane.setTabLayoutPolicy(MaterialTabbed.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255), 0, true));
-		tabbedPane.setForeground(new Color(25, 25, 112));
+		//tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setFont(new Font("Calibri", Font.BOLD, 20));
 		splitPane.setLeftComponent(tabbedPane);
 //******************************************************* CARI HESAP *******************************************************
@@ -3472,7 +3472,7 @@ public class OBS_MAIN extends JFrame  {
 		lblNewLabel_9.setOpaque(true);
 		
 		lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_9.setForeground(new Color(0, 0, 128));
+		//lblNewLabel_9.setForeground(new Color(0, 0, 128));
 		lblNewLabel_9 .setMinimumSize(size);
 		lblNewLabel_9 .setPreferredSize(new Dimension(250, 14));
 		toolBar.add(lblNewLabel_9);
@@ -3482,9 +3482,6 @@ public class OBS_MAIN extends JFrame  {
 		toolBar_1 = new JToolBar();
 		toolBar_1.setBorder(new LineBorder(new Color(0, 191, 255)));
 		toolBar_1.setFloatable(false);
-		
-		
-		
 		progressBar = new JProgressBar();
 		progressBar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		progressBar.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);

@@ -147,7 +147,7 @@ public class MAIL extends JInternalFrame {
 		panel.add(lblNewLabel_12);
 
 		tabbedPane = new MaterialTabbed();
-		tabbedPane.setForeground(new Color(0, 0, 128));
+		//tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		tabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {

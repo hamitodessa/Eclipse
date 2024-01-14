@@ -1632,10 +1632,9 @@ public class DEKONT extends JInternalFrame {
 		panel_1_1.add(btnHYenileA);
 
 		lblNewLabel = new JLabel(".");
-		lblNewLabel.setForeground(Color.BLUE);
+		//lblNewLabel.setForeground(Color.BLUE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel.setBounds(568, 340, 152, 14);
-		//getContentPane().add(lblNewLabel);
+		lblNewLabel.setBounds(568, 350, 152, 14);
 		panelANA.add(lblNewLabel);
 		
 		btnAciksil = new JButton("X");

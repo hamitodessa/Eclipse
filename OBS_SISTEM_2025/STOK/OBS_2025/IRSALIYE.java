@@ -172,7 +172,7 @@ public class IRSALIYE extends JInternalFrame {
 		splitPane.setLeftComponent(panel);
 		
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
-		tabbedPane_1.setForeground(new Color(0, 0, 128));
+		//tabbedPane_1.setForeground(new Color(0, 0, 128));
 		tabbedPane_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 		
@@ -1000,7 +1000,7 @@ public class IRSALIYE extends JInternalFrame {
 		toolBar_1.add(btnNewButton_3);
 		
 		MaterialTabbed tabbedPane = new MaterialTabbed();
-		tabbedPane.setForeground(new Color(0, 0, 128));
+		//tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_2.setRightComponent(tabbedPane);
 		

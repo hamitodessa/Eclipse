@@ -157,7 +157,7 @@ public class IMALAT extends JInternalFrame {
 
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		tabbedPane_1.setForeground(new Color(0, 0, 128));
+		//tabbedPane_1.setForeground(new Color(0, 0, 128));
 
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 

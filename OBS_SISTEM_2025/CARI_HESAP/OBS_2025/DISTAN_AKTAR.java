@@ -535,7 +535,7 @@ public class DISTAN_AKTAR extends JInternalFrame {
 				}
 			}
 		});
-		tabbedPane.setForeground(new Color(0, 0, 128));
+		//tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_1.setLeftComponent(tabbedPane);
 

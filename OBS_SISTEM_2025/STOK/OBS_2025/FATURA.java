@@ -177,7 +177,7 @@ public class FATURA extends JInternalFrame {
 		panel.setLayout(new BorderLayout(0, 0));
 
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
-		tabbedPane_1.setForeground(new Color(0, 0, 128));
+		//tabbedPane_1.setForeground(new Color(0, 0, 128));
 		tabbedPane_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
@@ -758,7 +758,7 @@ public class FATURA extends JInternalFrame {
 		
 		
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
-		tabbedPane_2.setForeground(new Color(0, 0, 128));
+		//tabbedPane_2.setForeground(new Color(0, 0, 128));
 		tabbedPane_2.setFont(new Font("Tahoma", Font.BOLD, 10));
 		splitPane_11.setRightComponent(panell);
 		panell.add(tabbedPane_2, BorderLayout.CENTER);
@@ -1054,7 +1054,7 @@ public class FATURA extends JInternalFrame {
 		toolBar_1.add(btnNewButton_5);
 
 		tabbedPane = new MaterialTabbed();
-		tabbedPane.setForeground(new Color(0, 0, 128));
+		//tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_2.setRightComponent(tabbedPane);
 

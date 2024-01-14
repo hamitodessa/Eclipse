@@ -218,7 +218,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		scrollPaneust.setViewportView( panel);
 
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
-		tabbedPane_1.setForeground(new Color(0, 0, 128));
+		//tabbedPane_1.setForeground(new Color(0, 0, 128));
 		tabbedPane_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 
@@ -854,7 +854,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 		scrollPanealt.setViewportView(panel_21);
 		
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed(); 
-		tabbedPane_2.setForeground(new Color(0, 0, 128));
+		//tabbedPane_2.setForeground(new Color(0, 0, 128));
 		tabbedPane_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		panel_21.add(tabbedPane_2, BorderLayout.CENTER); 
 
@@ -1073,7 +1073,7 @@ public class KERESTE_CIKIS extends JInternalFrame {
 
 		//////////////////////////////ARA BOLUM********************************
 		tabbedPane = new MaterialTabbed();
-		tabbedPane.setForeground(new Color(0, 0, 128));
+		//tabbedPane.setForeground(new Color(0, 0, 128));
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		splitPane_2.setRightComponent(tabbedPane);
 

@@ -127,7 +127,7 @@ public class ZAYI extends JInternalFrame {
 		
 		MaterialTabbed tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		tabbedPane_1.setForeground(new Color(0, 0, 128));
+		//tabbedPane_1.setForeground(new Color(0, 0, 128));
 		panel.add(tabbedPane_1, BorderLayout.CENTER);
 		
 		JPanel panel_2 = new JPanel();
@@ -432,7 +432,7 @@ public class ZAYI extends JInternalFrame {
 		
 		MaterialTabbed tabbedPane_2 = new MaterialTabbed();
 		tabbedPane_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		tabbedPane_2.setForeground(new Color(0, 0, 128));
+		//tabbedPane_2.setForeground(new Color(0, 0, 128));
 		panel_711.add(tabbedPane_2,BorderLayout.CENTER);
 
 		JPanel panel_1 = new JPanel();

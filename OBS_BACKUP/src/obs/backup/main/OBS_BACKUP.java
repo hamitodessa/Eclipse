@@ -1578,6 +1578,7 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setPreferredSize(new Dimension(0,00));
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
+			bckp.log_kayit(emirADI, new Date(), dosADI + " Yedekleme Islemi Sona Erdi...");
 			emirYENIDENBASLAT(emirADI);
 			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1780,6 +1781,7 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setPreferredSize(new Dimension(0,00));
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
+			bckp.log_kayit(emirADI, new Date(), dosADI + " Yedekleme Islemi Sona Erdi...");
 			emirYENIDENBASLAT(emirADI);
 			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -2005,6 +2007,7 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setPreferredSize(new Dimension(0,00));
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
+			bckp.log_kayit(emirADI, new Date(), dosADI + " Yedekleme Islemi Sona Erdi...");
 			emirYENIDENBASLAT(emirADI);
 			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -2186,6 +2189,7 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setPreferredSize(new Dimension(0,00));
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
+			bckp.log_kayit(emirADI, new Date(), dosADI + " Yedekleme Islemi Sona Erdi...");
 			emirYENIDENBASLAT(emirADI);
 			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

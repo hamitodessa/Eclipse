@@ -130,17 +130,14 @@ public class YedeklemeAraligi extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				try {
-					OBS_BACKUP.	yedeklemeKaydet();
+					OBS_BACKUP.yedeklemeKaydet();
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 				} catch (Exception e1) {
-				
 					e1.printStackTrace();
 				}
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 		});
 		 add(btnNewButton_9);
-
 	}
-	
 }

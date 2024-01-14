@@ -77,7 +77,6 @@ public class Bilgilendirme extends JPanel {
 				if(chckbxHata.isSelected())
 				{
 					chckbxIslem.setSelected(false);
-			
 				}
 		}
 		});
@@ -154,7 +153,6 @@ public class Bilgilendirme extends JPanel {
 		panel_1_1.add(textKull);
 		
 		textSifre = new JPasswordField();
-		//textSifre.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
 		textSifre.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(textSifre);
 		textSifre.setColumns(10);
@@ -193,7 +191,6 @@ public class Bilgilendirme extends JPanel {
 		btnNewButton_9.setBounds(624, 550, 100, 23);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.BilgilendirmeKaydet();
@@ -205,5 +202,4 @@ public class Bilgilendirme extends JPanel {
 		});
 		 add(btnNewButton_9);
 	}
-	
 }

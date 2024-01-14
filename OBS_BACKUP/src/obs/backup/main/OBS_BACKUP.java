@@ -1042,15 +1042,17 @@ public class OBS_BACKUP extends JFrame {
 				return;
 			}
 			bckp.yedekleme_kayit_sil(emirAnaGirisPanel.txtEmir.getText());
-			bckp.yedekleme_ismi_kayit(emirAnaGirisPanel.txtEmir.getText(), yedekaraligiPanel.textHerDakka.getText(), yedekaraligiPanel.chckbxPtesi.isSelected(),
+			bckp.yedekleme_ismi_kayit(emirAnaGirisPanel.txtEmir.getText(), 
+					yedekaraligiPanel.textHerDakka.getText(), 
+					yedekaraligiPanel.chckbxPtesi.isSelected(),
 					yedekaraligiPanel.chckbxSali.isSelected(), 
 					yedekaraligiPanel.chckbxCarsamba.isSelected(), 
 					yedekaraligiPanel.chckbxPersembe.isSelected(),
 					yedekaraligiPanel.chckbxCuma.isSelected(),
 					yedekaraligiPanel.chckbxCumartesi.isSelected(),
-					yedekaraligiPanel.chckbxPazar.isSelected(), date, date2);
+					yedekaraligiPanel.chckbxPazar.isSelected(), 
+					date, date2);
 			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText(), new Date(), "Emir Yedekleme Bilgileri  Kaydedildi...");
-			tabbedPane_1.setSelectedIndex(1); 
 		}
 		catch (Exception ex)
 		{
@@ -1093,7 +1095,12 @@ public class OBS_BACKUP extends JFrame {
 				neresi = "SUR";
 			}
 			SIFRE_DONDUR sdon = new SIFRE_DONDUR();
-			bckp.ftp_ismi_kayit(emirAnaGirisPanel.txtEmir.getText().toString(), sunucuayarPanel.textHost.getText(), sunucuayarPanel.textKull.getText(), sdon.sDONDUR(sunucuayarPanel.textSifre), sunucuayarPanel.textFtpSurucu.getText(),  sunucuayarPanel.textPort.getText(),sunucuayarPanel.textZmnasm.getText().equals("") ? 0 : Integer.parseInt( sunucuayarPanel.textZmnasm.getText())  , sunucuayarPanel.textEskisilme.getText(), neresi,  sunucuayarPanel.textSurucu.getText());
+			bckp.ftp_ismi_kayit(emirAnaGirisPanel.txtEmir.getText().toString(), 
+					sunucuayarPanel.textHost.getText(), 
+					sunucuayarPanel.textKull.getText(), 
+					sdon.sDONDUR(sunucuayarPanel.textSifre), 
+					sunucuayarPanel.textFtpSurucu.getText(),  
+					sunucuayarPanel.textPort.getText(),sunucuayarPanel.textZmnasm.getText().equals("") ? 0 : Integer.parseInt( sunucuayarPanel.textZmnasm.getText())  , sunucuayarPanel.textEskisilme.getText(), neresi,  sunucuayarPanel.textSurucu.getText());
 			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText().toString(),new Date(), "Emir FTP Bilgileri  Kaydedildi...");
 			tabbedPane_1.setSelectedIndex(1);
 		}
@@ -1113,7 +1120,10 @@ public class OBS_BACKUP extends JFrame {
 		SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 		String response =sdon.sDONDUR(serverBilgileriPanel.textMSsifre);
 
-		bckp.MsSql_baglan( serverBilgileriPanel.textMSServer.getText() ,serverBilgileriPanel.textMSkull.getText(),response,serverBilgileriPanel.textMSPort.getText());
+		bckp.MsSql_baglan( serverBilgileriPanel.textMSServer.getText() ,
+				serverBilgileriPanel.textMSkull.getText(),
+				response,
+				serverBilgileriPanel.textMSPort.getText());
 		ResultSet rs;
 		rs = bckp.db_ismi();
 		emirAnaGirisPanel.list.removeAll();
@@ -1202,7 +1212,11 @@ public class OBS_BACKUP extends JFrame {
 		try
 		{
 			bckp.server_kayit_sil(emirAnaGirisPanel.txtEmir.getText().toString());
-			bckp.server_ismi_kayit(emirAnaGirisPanel.txtEmir.getText().toString(), "localhost", true, true, serverBilgileriPanel.textMykull.getText(), response, "My Sql",  serverBilgileriPanel.textMYPort.getText(),
+			bckp.server_ismi_kayit(emirAnaGirisPanel.txtEmir.getText().toString(), 
+					"localhost", true, true, 
+					serverBilgileriPanel.textMykull.getText(), 
+					response, "My Sql",  
+					serverBilgileriPanel.textMYPort.getText(),
 					serverBilgileriPanel.textMyDump.getText());
 			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText().toString(), new Date(), "MY SQL SERVER Instance Bilgileri Kaydedildi...");
 			bckp.instance_update(emirAnaGirisPanel.txtEmir.getText().toString(), "My Sql");

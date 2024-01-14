@@ -243,7 +243,7 @@ public class OBS_BACKUP extends JFrame {
 
 
 
-	public OBS_BACKUP() throws ClassNotFoundException, SQLException {
+	public OBS_BACKUP() {
 		
 		addWindowListener(new WindowListener() {
 
@@ -834,8 +834,12 @@ public class OBS_BACKUP extends JFrame {
 			tabbedPane.setSelectedIndex(4);
 		} catch (Exception ex) 
 		{
-			bckp.log_kayit("Sistem", new Date(), ex.getMessage());
-			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			try {
+				bckp.log_kayit("Sistem", new Date(), ex.getMessage());
+				mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			} catch (ClassNotFoundException | SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 	public void sifreden() throws ClassNotFoundException, SQLException
@@ -2599,38 +2603,26 @@ public class OBS_BACKUP extends JFrame {
 			btnMinimize.doClick();
 		}
 	}
-	private void pidKONTROL() throws IOException, ClassNotFoundException, SQLException
+	private void pidKONTROL() 
 	{
-//		File file = new File(glb.BACKUP_PID_DOSYA);
-//		if (!file.exists()) {
-//			file.createNewFile();
-//		}
-//		int ownPID = (int) ProcessHandle.current().pid();
-//		FileWriter myWriter = new FileWriter(glb.BACKUP_PID_DOSYA);
-//		myWriter.write(Integer.toString(ownPID));
-//		myWriter.close();
 		int ownPID = (int) ProcessHandle.current().pid();
-		bckp.pid_sil();
-		bckp.pid_kayit(ownPID);
+		try {
+			bckp.pid_sil();
+			bckp.pid_kayit(ownPID);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	private void secondRUN()
 	{
-		//ArrayList<String> cmds = new ArrayList<String>();
-		//File myObj = new File(glb.BACKUP_PID_DOSYA);
-		//Scanner myReader;
 		try {
-			//myReader = new Scanner(myObj);
 			int dosyaPID = 0 ; 
-			//while (myReader.hasNextLine()) {
-			//	dosyaPID = Integer.valueOf( myReader.nextLine().toString());
-			//}
-			//myReader.close();
 			dosyaPID = bckp.pid_oku() ; 
 			if(dosyaPID != (int) ProcessHandle.current().pid())
 			{
 				btnKapat.doClick();
 			}
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

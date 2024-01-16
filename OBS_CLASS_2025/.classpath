@@ -45,5 +45,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/hsqldb-2.5.0.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/flatlaf-3.2.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/flatlaf-extras-3.2.5.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/gradient-icon-font.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

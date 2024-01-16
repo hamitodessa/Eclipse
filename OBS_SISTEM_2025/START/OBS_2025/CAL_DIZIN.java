@@ -200,7 +200,17 @@ public class CAL_DIZIN extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		contentPane.add(new Title_Bar(this), BorderLayout.NORTH);
+		Title_Bar tBar = new Title_Bar(this);
+		ActionListener btnCLOSED = new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	btnNewButton_5.doClick();
+		    }
+		};
+		tBar.btnClose.addActionListener(btnCLOSED);
+		
+		
+		contentPane.add(tBar, BorderLayout.NORTH);
 		
 		JPanel anaPanel = new JPanel();
 		contentPane.add(anaPanel, BorderLayout.CENTER);

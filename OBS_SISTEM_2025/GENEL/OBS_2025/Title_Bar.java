@@ -33,6 +33,7 @@ public class Title_Bar extends javax.swing.JPanel{
 	private javaswingdev.GoogleMaterialIcon iconMinimize;
 	public javaswingdev.GoogleMaterialIcon iconRestore;
 	public Buttont btnNewButton_1;   
+	public Buttont btnClose;
 	public Title_Bar(JFrame frame) {
 
 		setMinimumSize(new Dimension(0, 18));
@@ -94,21 +95,15 @@ public class Title_Bar extends javax.swing.JPanel{
 		btnNewButton_1.setIcon(iconRestore.toIcon());
 		//add(btnNewButton_1);
 
-		Buttont btnNewButton_2 = new Buttont();
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CAL_DIZIN.btnNewButton_5.doClick();
-				//System.exit(1);
-			}
-		});
-		btnNewButton_2.setPreferredSize(new Dimension(18, 17));
+		btnClose = new Buttont();
+		btnClose.setPreferredSize(new Dimension(18, 17));
 		iconClose = new javaswingdev.GoogleMaterialIcon();
 		iconClose.setColor1(new java.awt.Color(111, 111, 111));
 		iconClose.setColor2(new java.awt.Color(215, 215, 215));
 		iconClose.setIcon(javaswingdev.GoogleMaterialDesignIcon.CLOSE);
 		iconClose.setSize(17);
-		btnNewButton_2.setIcon(iconClose.toIcon());
-		add(btnNewButton_2);
+		btnClose.setIcon(iconClose.toIcon());
+		add(btnClose);
 	}
 
 

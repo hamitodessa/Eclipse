@@ -73,8 +73,6 @@ public class GLOBAL {
 	public static final String GOREV_DOSYA = System.getProperty("user.name") + "_OBS_GOREV.DB";
 	public static final String BACKUP_DOSYA = System.getProperty("user.name") + "_SQL_BACKUP.DB";
 	public static final String LOG_DOSYA = System.getProperty("user.name") + "_SQL_LOG.DB";
-	public static final String BACKUP_PID_DOSYA = SURUCU + "BACKUP_PID.txt";
-	public static final String GOREV_PID_DOSYA = SURUCU + "GOREV_PID.txt";
 	static Connection con ;
 	static Connection Ekstrecon ;
 	static String ayarlar[][]; // = new String[5][5];

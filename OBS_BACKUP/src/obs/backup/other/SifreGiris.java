@@ -10,6 +10,7 @@ import javax.swing.event.AncestorListener;
 import com.formdev.flatlaf.FlatClientProperties;
 
 import OBS_C_2025.BACKUP_GLOBAL;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.SIFRE_DONDUR;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -99,9 +100,8 @@ public class SifreGiris extends JPanel {
 		lblDefaultpwd.setVisible(false);
 		lblDefaultpwd.setBounds(329, 241, 248, 14);
 		add(lblDefaultpwd);
-
-
 		try {
+			if(! GLOBAL.dos_kontrol(GLOBAL.SURUCU + GLOBAL.BACKUP_DOSYA)) return ;
 			String varmi =	bckp.backup_sifre_oku();
 			if(varmi.equals("obs")) 
 				lblDefaultpwd.setVisible(true);

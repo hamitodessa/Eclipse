@@ -248,7 +248,7 @@ public class ServerBilgileri extends JPanel {
 		lblNewLabel_5.setBounds(26, 189, 96, 14);
 		panel_1.add(lblNewLabel_5);
 		
-		textMyDump = new Obs_TextFIeld(200,"");
+		textMyDump = new Obs_TextFIeld(200,"C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\");
 		JTextFieldRegularPopupMenu.addTo(textMyDump);
 		textMyDump.setBounds(120, 183, 450, 20);
 		panel_1.add(textMyDump);

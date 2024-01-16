@@ -133,14 +133,16 @@ public class DownloadFile extends JPanel {
 		JButton btnNewButton = new JButton("Indir");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				try {
+					if(comboBox.getItemCount() == 0 ) return ;
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					inDIR();
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) 
 				{
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					e1.printStackTrace();
 				}
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		btnNewButton.setBounds(400, 11, 100, 23);
@@ -296,7 +298,7 @@ public class DownloadFile extends JPanel {
 					GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
 					GuiUtil.setWaitCursor(panelalt,false);
 					try {
-						bckp.log_kayit(OBS_BACKUP.gelenISIM, new Date(), ex.getMessage());
+						bckp.log_kayit("Sistem", new Date(), ex.getMessage());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

@@ -140,6 +140,7 @@ public class LoglamaRapor extends JPanel {
 		JButton btnNewButton = new JButton("Sil");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(comboBox.getItemCount() == 0 ) return ;
 				int g = JOptionPane.showOptionDialog(null,comboBox.getSelectedItem().toString() + " -  Log  Silinecek ..?" ,
 						"OBS BACKUP ", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
 				if(g ==  1) {

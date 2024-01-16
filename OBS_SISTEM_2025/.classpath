@@ -92,5 +92,6 @@
 	<classpathentry kind="lib" path="C:/ELIF/2025/jasperreports-6.18.1.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/jasperreports-fonts-6.20.5.jar"/>
 	<classpathentry kind="lib" path="C:/ELIF/2025/RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="C:/ELIF/2025/gradient-icon-font.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

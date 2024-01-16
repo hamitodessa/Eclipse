@@ -169,6 +169,7 @@ public class CAL_DIZIN extends JFrame {
 	private static JTable table_1;
 	private JButton btnNewButton_4;
 	private JPanel panel_5;
+	public static JButton btnNewButton_5;
 	
 	public CAL_DIZIN() {
 		
@@ -355,7 +356,7 @@ public class CAL_DIZIN extends JFrame {
 
 		
 
-		JButton btnNewButton_5 = new JButton("");
+		btnNewButton_5 = new JButton("");
 		btnNewButton_5.setToolTipText("Kapat");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

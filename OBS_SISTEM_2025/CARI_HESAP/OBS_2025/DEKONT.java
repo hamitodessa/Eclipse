@@ -296,7 +296,7 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(DEKONT.class.getResource("/ICONLAR/yeni.png")));
-		btnNewButton.setBounds(638, 25, 38, 30);
+		btnNewButton.setBounds(650, 25, 38, 30);
 		btnNewButton.addAncestorListener(new AncestorListener() {
 			@Override
 			public void ancestorRemoved(AncestorEvent pEvent) {
@@ -395,7 +395,7 @@ public class DEKONT extends JInternalFrame {
 		});
 		txtevrak.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtevrak.setFont(new Font("Tahoma", Font.BOLD, 22));
-		txtevrak.setBounds(511, 25, 117, 30);
+		txtevrak.setBounds(511, 25, 127, 30);
 		txtevrak.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -27,6 +27,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -112,7 +113,7 @@ import java.awt.event.FocusEvent;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings({"static-access","serial"})
-public class CAL_DIZIN extends JFrame {
+public class CAL_DIZIN extends JDialog {
 
 
 	OBS_SIS_2025_ANA_CLASS oac = new OBS_SIS_2025_ANA_CLASS();
@@ -169,53 +170,47 @@ public class CAL_DIZIN extends JFrame {
 	private JButton btnNewButton_4;
 	private JPanel panel_5;
 	public static JButton btnNewButton_5;
-	
+
 	public CAL_DIZIN() {
-		
-		  addMouseMotionListener(new MouseMotionAdapter() {
-		  @Override 
-		  public void mouseDragged(MouseEvent e) 
-		  { 
-			  int xx = e.getXOnScreen();
-			  int yy = e.getYOnScreen(); 
-			  setLocation(xx-x,yy-y);
-		  } 
-		  }); 
-		  addMouseListener(new MouseAdapter() {
-		  @Override 
-		  public void mousePressed(MouseEvent e) 
-		  { 
-			  x = e.getX(); 
-			  y = e.getY(); 
-		  } 
-		  });
-		setUndecorated(true);
+
+		addMouseMotionListener(new MouseMotionAdapter() {
+			@Override 
+			public void mouseDragged(MouseEvent e) 
+			{ 
+				int xx = e.getXOnScreen();
+				int yy = e.getYOnScreen(); 
+				setLocation(xx-x,yy-y);
+			} 
+		}); 
+		addMouseListener(new MouseAdapter() {
+			@Override 
+			public void mousePressed(MouseEvent e) 
+			{ 
+				x = e.getX(); 
+				y = e.getY(); 
+			} 
+		});
+		addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				cIKIS();
+			}
+		});
 		setTitle("CALISMA DIZINI");
 		setResizable(false);
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 1120, 425);
+		setBounds(100, 100, 1120, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-			
+
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		Title_Bar tBar = new Title_Bar(this);
-		ActionListener btnCLOSED = new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		    	btnNewButton_5.doClick();
-		    }
-		};
-		tBar.btnClose.addActionListener(btnCLOSED);
-		
-		
-		contentPane.add(tBar, BorderLayout.NORTH);
-		
 		JPanel anaPanel = new JPanel();
 		contentPane.add(anaPanel, BorderLayout.CENTER);
 		anaPanel.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		panel.setBounds(775, 10, 316, 381);
@@ -251,7 +246,6 @@ public class CAL_DIZIN extends JFrame {
 					{
 						contentPane.setCursor(DEFAULT_CURSOR);
 						OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
-						//JOptionPane.showMessageDialog(null, ex.getMessage().toString(),  "Server Kontrol", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
@@ -274,7 +268,6 @@ public class CAL_DIZIN extends JFrame {
 				{
 					contentPane.setCursor(DEFAULT_CURSOR);
 					OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage().toString() );
-					//JOptionPane.showMessageDialog(null, ex.getMessage().toString(),  "Veritabani Kontrol", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 

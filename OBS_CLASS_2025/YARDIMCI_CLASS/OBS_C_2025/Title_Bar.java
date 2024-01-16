@@ -34,7 +34,8 @@ public class Title_Bar extends javax.swing.JPanel{
 	public javaswingdev.GoogleMaterialIcon iconRestore;
 	public Buttont btnMax;   
 	public Buttont btnClose;
-	public Title_Bar(JFrame frame,boolean minimizeButton,boolean maxButton,String titLE) {
+	public Buttont btnMin ;
+	public Title_Bar(JFrame frame,boolean minimizeButton,boolean maxButton,String titLE,int gen , int yuk) {
 
 		setMinimumSize(new Dimension(0, 18));
 		setMaximumSize(new Dimension(0, 18));
@@ -47,7 +48,7 @@ public class Title_Bar extends javax.swing.JPanel{
 		Component horizontalGlue = Box.createHorizontalGlue();
 		add(horizontalGlue);
 
-		Buttont btnMin = new Buttont();
+		btnMin = new Buttont();
 		btnMin.setToolTipText("");
 
 		iconMinimize = new javaswingdev.GoogleMaterialIcon();
@@ -57,15 +58,15 @@ public class Title_Bar extends javax.swing.JPanel{
 		iconMinimize.setSize(17);
 		btnMin.setIcon(iconMinimize.toIcon());
 		btnMin.setPreferredSize(new Dimension(18, 17));
-		add(btnMin);
+		if(minimizeButton)
+			add(btnMin);
 
 		btnMax = new Buttont();
 		btnMax.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				if(frame. getExtendedState() == Frame.MAXIMIZED_BOTH){
 					btnMax.setIcon(iconRestore.toIcon() );
-				//frame.setBounds(0, 0, 900, 700);
+				frame.setBounds(0, 0, gen, yuk);
 				}
 				else {
 				frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -87,7 +88,8 @@ public class Title_Bar extends javax.swing.JPanel{
 		iconRestore.setIcon(javaswingdev.GoogleMaterialDesignIcon.CROP_DIN);
 		iconRestore.setSize(17);
 		btnMax.setIcon(iconRestore.toIcon());
-		add(btnMax);
+		if(maxButton)
+			add(btnMax);
 
 		btnClose = new Buttont();
 		btnClose.setPreferredSize(new Dimension(18, 17));
@@ -99,6 +101,15 @@ public class Title_Bar extends javax.swing.JPanel{
 		btnClose.setIcon(iconClose.toIcon());
 		add(btnClose);
 	}
-
-
 }
+
+//Title_Bar tBar = new Title_Bar(null,false,false,"CALISMA DIZINI",1120,425);
+//ActionListener btnCLOSED = new ActionListener() {
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//    	btnNewButton_5.doClick();
+//    }
+//};
+//tBar.btnClose.addActionListener(btnCLOSED);
+////contentPane.add(tBar, BorderLayout.NORTH);
+

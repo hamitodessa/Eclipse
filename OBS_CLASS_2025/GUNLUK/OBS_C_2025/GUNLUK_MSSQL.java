@@ -352,11 +352,14 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 		stmt.executeUpdate();
 		stmt.close();
 	}
+	@SuppressWarnings( "deprecation" )
 	@Override
 	public void gunluk_farkli_kayit(Gunluk_Bilgi gbilgi) throws ClassNotFoundException, SQLException, ParseException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Date son_tarih ;
 		Date bas_tarih;
+		String basSAAT = gbilgi.saat1 ;
+		String bitisSAAT = gbilgi.saat2 ;
 		if (gbilgi.secenek == "Saatte")
 		{
 			son_tarih = new SimpleDateFormat("yyyy.MM.dd HH:mm").parse(gbilgi.tarih2 + " "+ gbilgi.saat2);
@@ -412,6 +415,36 @@ public class GUNLUK_MSSQL implements IGUNLUK {
 				saatCalendar.setTime(secSAAT);
 				saatCalendar.add(Calendar.HOUR, gbilgi.deger );
 				bas_tarih = saatCalendar.getTime();
+				//
+				Date kontroldate = new SimpleDateFormat("HH:mm").parse(bitisSAAT);
+				Date kontrolBasladate = new SimpleDateFormat("HH:mm").parse(basSAAT);
+				kontroldate.setYear(bas_tarih.getYear());
+				kontroldate.setMonth(bas_tarih.getMonth());
+				kontroldate.setDate(bas_tarih.getDate());
+				if (bas_tarih.equals(kontroldate) )
+				{
+					//
+					anl_t = bas_tarih.getTime() ;
+					SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
+					gbilgi.saat1 =  format2.format(saatCalendar.getTime());
+					stmt.setInt(1, gbilgi.gid);
+					stmt.setString(2, anl_tS);
+					stmt.setString(3, gbilgi.saat1);
+					stmt.setString(4, gbilgi.isim);
+					stmt.setString(5, gbilgi.gorev);
+					stmt.setString(6, gbilgi.yer);
+					stmt.setString(7, gbilgi.mesaj);
+					stmt.setString(8, gbilgi.user);
+					stmt.addBatch();
+					//
+					saatCalendar.setTime(secSAAT);
+					saatCalendar.add(Calendar.DATE, 1 );
+					bas_tarih = saatCalendar.getTime();
+					bas_tarih.setHours(kontrolBasladate.getHours());
+					bas_tarih.setMinutes(kontrolBasladate.getMinutes());
+					saatCalendar.setTime(bas_tarih);
+				}
+				//
 				secSAAT = bas_tarih;
 				SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
 				gbilgi.saat1 =  format2.format(saatCalendar.getTime());

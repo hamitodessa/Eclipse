@@ -164,11 +164,11 @@ public class Bilgilendirme extends JPanel {
 		panel_1_1.add(chckbxSSL);
 		
 		chckbxTSL = new JCheckBox("TSL");
-		chckbxTSL.setBounds(252, 100, 99, 23);
+		chckbxTSL.setBounds(252, 100, 87, 23);
 		panel_1_1.add(chckbxTSL);
 		
 		JButton btnDenemeMail = new JButton("Deneme Maili");
-		btnDenemeMail.setBounds(364, 100, 100, 23);
+		btnDenemeMail.setBounds(344, 100, 120, 23);
 		panel_1_1.add(btnDenemeMail);
 		
 		JLabel lblNewLabel_5 = new JLabel("SMTP Server");

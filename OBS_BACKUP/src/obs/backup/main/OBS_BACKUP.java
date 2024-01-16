@@ -274,9 +274,9 @@ public class OBS_BACKUP extends JFrame {
 		FlatRobotoFont.install();
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
 		UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
-		//FlatMacDarkLaf.setup();
-
 		FlatCarbonIJTheme.setup();
+		
+		//FlatMacDarkLaf.setup();
 		//FlatNordIJTheme.setup();
 		//FlatHighContrastIJTheme.setup();
 		addMouseListener(new MouseAdapter() {

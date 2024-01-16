@@ -171,7 +171,7 @@ public class SunucuAyarlari extends JPanel {
 				}
 			}
 		});
-		btnNewButton_6.setBounds(502, 68, 115, 23);
+		btnNewButton_6.setBounds(497, 68, 120, 23);
 		panel_12_1.add(btnNewButton_6);
 		
 		lblNewLabel_3 = new JLabel("Surucu");
@@ -187,7 +187,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_9 = new JLabel("sn.");
-		lblNewLabel_9.setBounds(209, 49, 48, 14);
+		lblNewLabel_9.setBounds(215, 49, 48, 14);
 		panel_12_1.add(lblNewLabel_9);
 		
 		JPanel panel_12_1_1 = new JPanel();
@@ -226,7 +226,7 @@ public class SunucuAyarlari extends JPanel {
 				}
 			}
 		});
-		btnNewButton_7.setBounds(502, 45, 115, 23);
+		btnNewButton_7.setBounds(497, 45, 120, 23);
 		panel_12_1_1.add(btnNewButton_7);
 		
 		lblNewLabel_8 = new JLabel("Surucu");

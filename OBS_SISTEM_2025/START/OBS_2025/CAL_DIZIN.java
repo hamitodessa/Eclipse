@@ -16,7 +16,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -98,6 +97,7 @@ import OBS_C_2025.USER_ISLEMLERI;
 import OBS_C_2025.ValidEmailAddress;
 import OBS_C_2025.lOG_BILGI;
 import net.proteanit.sql.DbUtils;
+
 import raven.toast.Notifications;
 
 import javax.swing.border.TitledBorder;
@@ -165,7 +165,6 @@ public class CAL_DIZIN extends JFrame {
 	private JPopupMenu menu;
 	private JButton btnNewButton_2_2;
 	int x ,y ;
-	private JButton btnNewButton_5_2;
 	private static JTable table_1;
 	private JButton btnNewButton_4;
 	private JPanel panel_5;
@@ -190,34 +189,27 @@ public class CAL_DIZIN extends JFrame {
 			  y = e.getY(); 
 		  } 
 		  });
-		  addWindowListener(new java.awt.event.WindowAdapter() {
-			    @Override
-			    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-			    	cIKIS();	
-			    }
-			    @Override
-			      public void windowIconified(java.awt.event.WindowEvent we) {
-			        setState(JFrame.NORMAL);
-			      }
-			});
-		  
 		setUndecorated(true);
 		setTitle("CALISMA DIZINI");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1120, 425);
-		setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 15, 15));
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(null);
-		
+			
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new BorderLayout(0, 0));
 
+		contentPane.add(new Title_Bar(this), BorderLayout.NORTH);
+		
+		JPanel anaPanel = new JPanel();
+		contentPane.add(anaPanel, BorderLayout.CENTER);
+		anaPanel.setLayout(null);
+		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 191, 255)));
 		panel.setBounds(775, 10, 316, 381);
-		contentPane.add(panel);
+		anaPanel.add(panel);
 		panel.setLayout(null);
 
 		txtKodu = new Obs_TextFIeld(10);
@@ -357,13 +349,12 @@ public class CAL_DIZIN extends JFrame {
 		
 
 		btnNewButton_5 = new JButton("");
-		btnNewButton_5.setToolTipText("Kapat");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cIKIS();			}
 		});
-		btnNewButton_5.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/exit.png")));
-		toolBar.add(btnNewButton_5);
+		//btnNewButton_5.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/exit.png")));
+		//toolBar.add(btnNewButton_5);
 		
 
 		JLabel lblNewLabel_1 = new JLabel("Kodu");
@@ -613,7 +604,7 @@ public class CAL_DIZIN extends JFrame {
 		tabbedPane.setForeground(new Color(25, 25, 112));
 		tabbedPane.setTabLayoutPolicy(MaterialTabbed.SCROLL_TAB_LAYOUT);
 		tabbedPane.setBorder(new LineBorder(new Color(0, 191, 255)));
-		contentPane.add(tabbedPane, BorderLayout.CENTER);
+		anaPanel.add(tabbedPane);
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		tabbedPane.addTab("Cari Hesap", null, scrollPane, null);
 		tblCari = new JTable() {
@@ -1007,17 +998,6 @@ public class CAL_DIZIN extends JFrame {
 		btnNewButton_2_1_1.setBounds(362, 124, 25, 23);
 		panel_1.add(btnNewButton_2_1_1);
 		
-		JButton btnNewButton_5_1 = new JButton("");
-		btnNewButton_5_1.setToolTipText("Kapat");
-		btnNewButton_5_1.setBounds(663, 11, 23, 23);
-		btnNewButton_5_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cIKIS();			}
-		});
-		btnNewButton_5_1.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/exit.png")));
-		
-		panel_1.add(btnNewButton_5_1);
-
 		tabbedPane.setEnabledAt(7, true);
 
 		ScrollPaneWin11 scrollPane_8 = new ScrollPaneWin11();
@@ -1080,16 +1060,6 @@ public class CAL_DIZIN extends JFrame {
 		btnNewButton_7.setBounds(465, 36, 142, 23);
 		panel_3.add(btnNewButton_7);
 		
-		btnNewButton_5_2 = new JButton("");
-		btnNewButton_5_2.setToolTipText("Kapat");
-		btnNewButton_5_2.setBounds(713, 11, 23, 23);
-		btnNewButton_5_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cIKIS();			}
-		});
-		btnNewButton_5_2.setIcon(new ImageIcon(CAL_DIZIN.class.getResource("/ICONLAR/exit.png")));
-		
-		panel_2.add(btnNewButton_5_2);
 		
 		ScrollPaneWin11 scrollPane_10 = new ScrollPaneWin11();
 	

@@ -239,7 +239,7 @@ public class IMALAT extends JInternalFrame {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
-		textField.setBounds(96, 8, 90, 20);
+		textField.setBounds(96, 8, 110, 20);
 		panel_2.add(textField);
 		textField.setColumns(10);
 
@@ -267,7 +267,7 @@ public class IMALAT extends JInternalFrame {
 				}
 			}
 		});
-		button.setBounds(190, 7, 28, 23);
+		button.setBounds(210, 7, 28, 23);
 		button.setIcon(new ImageIcon(FATURA.class.getResource("/ICONLAR/icons8-view-16.png")));
 		panel_2.add(button);
 
@@ -453,7 +453,7 @@ public class IMALAT extends JInternalFrame {
 		txtrecete = new Obs_TextFIeld(10);
 		txtrecete.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtrecete.setColumns(10);
-		txtrecete.setBounds(341, 19, 109, 20);
+		txtrecete.setBounds(341, 19, 110, 20);
 		panel_5.add(txtrecete);
 
 		JButton button_4 = new JButton("");

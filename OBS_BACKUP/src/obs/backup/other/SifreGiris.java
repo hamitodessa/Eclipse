@@ -96,7 +96,7 @@ public class SifreGiris extends JPanel {
 		add(passwordField);
 		
 		lblDefaultpwd = new JLabel("Varsayilan Sifre :       obs");
-		lblDefaultpwd.setFont(new Font("Tahoma", Font.BOLD, 11));
+		//lblDefaultpwd.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblDefaultpwd.setVisible(false);
 		lblDefaultpwd.setBounds(329, 241, 248, 14);
 		add(lblDefaultpwd);

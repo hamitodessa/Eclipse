@@ -24,6 +24,8 @@ import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatMonocaiIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatMonokaiProIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatNordIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDeepOceanIJTheme;
@@ -277,11 +279,11 @@ public class OBS_BACKUP extends JFrame {
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
 		UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
 		//FlatCarbonIJTheme.setup();
-		
+		FlatMonocaiIJTheme.setup();
 		//FlatMacDarkLaf.setup();
 		//FlatNordIJTheme.setup();
 		//FlatHighContrastIJTheme.setup();
-		FlatMaterialPalenightIJTheme.setup();
+		//FlatMaterialPalenightIJTheme.setup();
 		//FlatMaterialDeepOceanIJTheme.setup();
 		addMouseListener(new MouseAdapter() {
 			@Override

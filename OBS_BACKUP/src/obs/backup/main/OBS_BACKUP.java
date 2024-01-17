@@ -49,7 +49,6 @@ import obs.backup.other.ServerBilgileri;
 import obs.backup.other.SifreGiris;
 import obs.backup.other.SifreYenile;
 import obs.backup.other.SunucuAyarlari;
-import obs.backup.other.Title_Bar;
 import obs.backup.other.UploadPanel;
 import obs.backup.other.YedeklemeAraligi;
 import raven.toast.Notifications;
@@ -143,6 +142,7 @@ import javax.swing.JOptionPane;
 import OBS_C_2025.SIFRE_DONDUR;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.Title_Bar;
 import OBS_C_2025.bilgilendirme_bilgiler;
 import OBS_C_2025.db_List;
 import OBS_C_2025.emir_bilgiler;
@@ -305,14 +305,29 @@ public class OBS_BACKUP extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		contentPane.add(new Title_Bar(this), BorderLayout.NORTH);
+		Title_Bar tBAR = new Title_Bar(null,true,false,"OBS BACKUP",900,700);
+		ActionListener btnCLOSED = new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	btnKapat.doClick();
+		    }
+		};
+		tBAR.btnClose.addActionListener(btnCLOSED);
+		ActionListener btnMINIMIZ = new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	btntry.doClick();
+		    }
+		};
+		tBAR.btnMin.addActionListener(btnMINIMIZ);
+		contentPane.add(tBAR, BorderLayout.NORTH);
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setDividerSize(0);
 		contentPane.add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(40,0));//160
+		panel.setPreferredSize(new Dimension(40,0));
 		splitPane.setLeftComponent(panel);
 
 		//***************

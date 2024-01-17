@@ -68,12 +68,12 @@ import OBS_C_2025.OBS_ORTAK_MYSQL;
 import OBS_C_2025.SIFRE_DONDUR;
 import OBS_C_2025.Server_Bilgi;
 import OBS_C_2025.TARIH_CEVIR;
+import OBS_C_2025.Title_Bar;
 import OBS_C_2025.USER_ISLEMLERI;
 import OBS_C_2025.g_bilgiler;
 
 import fih.FIHRIST_ACCESS;
 
-import obs.gorev.theme.Title_Bar;
 
 import javax.swing.JTabbedPane;
 import javax.swing.SpinnerDateModel;
@@ -168,12 +168,28 @@ public class OBS_GOREV extends JFrame  {
 		
 		setTitle("OBS MERKEZ KUR");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 248);
+		setBounds(100, 100, 450, 250);
 		setResizable(false);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
-		getContentPane().add(new Title_Bar(this), BorderLayout.NORTH);
+		Title_Bar tBAR = new Title_Bar(null,true,false,"OBS GOREV",0,0);
+		ActionListener btnCLOSED = new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	System.exit(0);
+		    }
+		};
+		tBAR.btnClose.addActionListener(btnCLOSED);
+		ActionListener btnMINIMIZ = new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	btntry.doClick();
+		    }
+		};
+		tBAR.btnMin.addActionListener(btnMINIMIZ);
+		
+		getContentPane().add( tBAR, BorderLayout.NORTH);
 
 		JPanel panelalt = new JPanel();
 		panelalt.setPreferredSize(new Dimension(0,30));

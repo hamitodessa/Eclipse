@@ -402,7 +402,7 @@ public  class gOREV_TAKIP extends JPanel {
 					try {
 						emirBILGIYUKLE();
 						basla();
-					} catch (ClassNotFoundException | SQLException | ParseException e1) {
+					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
 				}
@@ -418,6 +418,7 @@ public  class gOREV_TAKIP extends JPanel {
 			timerDURDUR=true;
 			tt.cancel();
 		}
+		bckp.log_kayit(eADI, new Date(), "Yedekleme Sirasina Konuldu");
 		lblSonDurum.setText("Yedekleme Sirasina Konuldu");
 		lblSonDurum.setForeground(Color.GREEN);
 	    OBS_BACKUP.gorevLER.add(eADI);
@@ -430,7 +431,7 @@ public  class gOREV_TAKIP extends JPanel {
 			run();
 		}
 	}
-	public void ilkBasla() throws ClassNotFoundException, SQLException
+	public void ilkBasla() 
 	{
 		try
 		{
@@ -442,7 +443,11 @@ public  class gOREV_TAKIP extends JPanel {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			bckp.log_kayit(eADI, new Date(), ex.getMessage());
+			try {
+				bckp.log_kayit(eADI, new Date(), ex.getMessage());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	private void emirBILGIYUKLE() throws SQLException, ClassNotFoundException, ParseException
@@ -674,7 +679,6 @@ public  class gOREV_TAKIP extends JPanel {
 							else
 							{
 								guniciKONTROL();
-
 								bckp.log_kayit(eADI,new Date(), "p.tesi else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}
@@ -720,7 +724,6 @@ public  class gOREV_TAKIP extends JPanel {
 							else
 							{
 								guniciKONTROL();
-
 								bckp.log_kayit(eADI, new Date(), "sali else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}
@@ -811,7 +814,6 @@ public  class gOREV_TAKIP extends JPanel {
 							else
 							{
 								guniciKONTROL();
-
 								bckp.log_kayit(eADI, new Date(), "Pers else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}
@@ -860,7 +862,6 @@ public  class gOREV_TAKIP extends JPanel {
 							else
 							{
 								guniciKONTROL();
-
 								bckp.log_kayit(eADI, new Date(), "cuma else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}
@@ -906,7 +907,6 @@ public  class gOREV_TAKIP extends JPanel {
 							else
 							{
 								guniciKONTROL();
-
 								bckp.log_kayit(eADI, new Date(), "Ctesi else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}
@@ -952,7 +952,6 @@ public  class gOREV_TAKIP extends JPanel {
 							else
 							{
 								guniciKONTROL();
-
 								bckp.log_kayit(eADI, new Date(), "pazar else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}

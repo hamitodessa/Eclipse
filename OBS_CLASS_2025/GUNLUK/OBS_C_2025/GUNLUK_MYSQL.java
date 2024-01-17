@@ -404,7 +404,6 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 				saatCalendar.setTime(secSAAT);
 				saatCalendar.add(Calendar.HOUR, gbilgi.deger );
 				bas_tarih = saatCalendar.getTime();
-				//
 				Date kontroldate = new SimpleDateFormat("HH:mm").parse(bitisSAAT);
 				Date kontrolBasladate = new SimpleDateFormat("HH:mm").parse(basSAAT);
 				kontroldate.setYear(bas_tarih.getYear());
@@ -412,7 +411,6 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 				kontroldate.setDate(bas_tarih.getDate());
 				if (bas_tarih.equals(kontroldate) )
 				{
-					//
 					anl_t = bas_tarih.getTime() ;
 					SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
 					gbilgi.saat1 =  format2.format(saatCalendar.getTime());
@@ -425,7 +423,6 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 					stmt.setString(7, gbilgi.mesaj);
 					stmt.setString(8, gbilgi.user);
 					stmt.addBatch();
-					//
 					saatCalendar.setTime(secSAAT);
 					saatCalendar.add(Calendar.DATE, 1 );
 					bas_tarih = saatCalendar.getTime();
@@ -433,7 +430,6 @@ public class GUNLUK_MYSQL implements IGUNLUK{
 					bas_tarih.setMinutes(kontrolBasladate.getMinutes());
 					saatCalendar.setTime(bas_tarih);
 				}
-				//
 				secSAAT = bas_tarih;
 				SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
 				gbilgi.saat1 =  format2.format(saatCalendar.getTime());

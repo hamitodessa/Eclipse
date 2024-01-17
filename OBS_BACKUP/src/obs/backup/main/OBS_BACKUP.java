@@ -276,7 +276,7 @@ public class OBS_BACKUP extends JFrame {
 		FlatRobotoFont.install();
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
 		UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
-		FlatCarbonIJTheme.setup();
+		//FlatCarbonIJTheme.setup();
 		
 		//FlatMacDarkLaf.setup();
 		//FlatNordIJTheme.setup();
@@ -309,7 +309,7 @@ public class OBS_BACKUP extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		Title_Bar tBAR = new Title_Bar(null,true,false,"OBS BACKUP",900,700);
+		Title_Bar tBAR = new Title_Bar(null,true,false,"OBS BACKUP",0,0);
 		ActionListener btnCLOSED = new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {

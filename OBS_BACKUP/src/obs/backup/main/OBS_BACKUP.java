@@ -244,9 +244,6 @@ public class OBS_BACKUP extends JFrame {
 			}
 		});
 	}
-
-
-
 	public OBS_BACKUP() {
 		
 		addWindowListener(new WindowListener() {
@@ -1198,7 +1195,6 @@ public class OBS_BACKUP extends JFrame {
 		}
 		SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 		String response =sdon.sDONDUR(serverBilgileriPanel.textMySifre);
-
 		bckp.MySql_baglan( serverBilgileriPanel.textMykull.getText(),response,serverBilgileriPanel.textMYPort.getText());
 		ResultSet rs;
 		rs = bckp.db_ismiMySql();
@@ -1209,7 +1205,6 @@ public class OBS_BACKUP extends JFrame {
 			emirAnaGirisPanel.model.addElement(new CheckListItem(rs.getString("Database"),""));
 			emirAnaGirisPanel.list.repaint();
 		}
-
 		List<String> dbliste =  bckp.db_liste(emirAnaGirisPanel.txtEmir.getText().toString());
 		int sayi = emirAnaGirisPanel.list.getModel().getSize() - 1;
 		int dosyaSAYI = 0;
@@ -1661,7 +1656,6 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.revalidate();
 				bckp.log_kayit(emirADI, new Date(), "Internet Baglantisi Yok...");
 				emirtekSIL_HATA(emirADI);
-				bckp.log_kayit(emirADI, new Date(), "Emir Yuklendi...");
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				return;
@@ -1676,7 +1670,6 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.revalidate();
 				bckp.log_kayit(emirADI, new Date(), "FTP Surucu Bulunamadi...");
 				emirtekSIL_HATA(emirADI);
-				bckp.log_kayit(emirADI, new Date(), "Emir Yuklendi...");
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				return;
@@ -2089,7 +2082,6 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.revalidate();
 				bckp.log_kayit(emirADI, new Date(), "Internet Baglantisi Yok...");
 				emirtekSIL_HATA(emirADI);
-				bckp.log_kayit(emirADI, new Date(), "Emir Yuklendi...");
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				return;
@@ -2104,12 +2096,10 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.revalidate();
 				bckp.log_kayit(emirADI, new Date(), "FTP Surucu Bulunamadi...");
 				emirtekSIL_HATA(emirADI);
-				bckp.log_kayit(emirADI, new Date(), "Emir Yuklendi...");
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				return;
 			}
-
 			String tarr =  TARIH_CEVIR.tarihddMMyyyyHHmm(new Date());
 			bckp.log_kayit(emirADI, new Date(), "Yedeklemeye Baslandi....");
 			String dosADI = "";
@@ -2222,8 +2212,8 @@ public class OBS_BACKUP extends JFrame {
 				mesaj = mesaj.length() > 40 ? mesaj.substring(0, 40) :mesaj;  
 				bckp.genel_kayit_durum(emirADI, false, new Date(), mesaj);
 				bckp.log_kayit(emirADI, new Date(), ex.getMessage());
-				uplpnl. Progres_Bar_Temizle_1();
-				uplpnl. Progres_Bar_Temizle_2();
+				uplpnl.Progres_Bar_Temizle_1();
+				uplpnl.Progres_Bar_Temizle_2();
 				uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
@@ -2515,7 +2505,6 @@ public class OBS_BACKUP extends JFrame {
 			component.revalidate();
 		}
 		container.revalidate();
-
 	}
 	private void gorevSETCURSOR(int crsr)
 	{
@@ -2528,30 +2517,8 @@ public class OBS_BACKUP extends JFrame {
 			component.revalidate();
 		}
 	}
-	private void isReadiable(Path pathh)
-	{
-		File file = new File(pathh.toString());
-		while (!file.canRead() && !file.canWrite()) {
-			try {
-				Thread.sleep(1000); // Sleep for 1 second (adjust as needed)
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	private void isfileVAR(Path pathh)
-	{
-		File file = new File(pathh.toString());
-		while (!glb.dos_kontrol(pathh.toString())) {
-			try {
-				Thread.sleep(1000); // Sleep for 1 second (adjust as needed)
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
 	private boolean fileESITMI(String ftpDOSYA , String dosYA)
-	{;
+	{
 		boolean result = false;
 		if(ftpDOSYA.length() < 13) return false;
 		String dosADIOGREN = ftpDOSYA.substring(13,ftpDOSYA.lastIndexOf("."));
@@ -2605,7 +2572,7 @@ public class OBS_BACKUP extends JFrame {
 			};
 			ActionListener kapat = new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.exit(1);
+					System.exit(0);
 				}
 			};
 			popup = new PopupMenu();

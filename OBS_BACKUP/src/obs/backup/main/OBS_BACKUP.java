@@ -26,6 +26,8 @@ import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatNordIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDeepOceanIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialPalenightIJTheme;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 import LOGER_KAYIT.TXT_LOG;
@@ -279,6 +281,8 @@ public class OBS_BACKUP extends JFrame {
 		//FlatMacDarkLaf.setup();
 		//FlatNordIJTheme.setup();
 		//FlatHighContrastIJTheme.setup();
+		FlatMaterialPalenightIJTheme.setup();
+		//FlatMaterialDeepOceanIJTheme.setup();
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {

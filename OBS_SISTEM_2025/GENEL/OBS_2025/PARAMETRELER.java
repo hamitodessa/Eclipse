@@ -360,7 +360,7 @@ public class PARAMETRELER   extends JInternalFrame   {
 
 		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"Windows" ,"TextureLookAndFeel","FlatSolarizedLightIJTheme" ,"FlatArcOrangeIJTheme" ,
 				"FlatSpacegrayIJTheme","FlatArcIJTheme","FlatCyanLightIJTheme","FlatHighContrastIJTheme","FlatGrayIJTheme","FlatNordIJTheme",
-				"FlatGradiantoNatureGreenIJTheme", "SmartLookAndFeel","NoireLookAndFeel","AcrylLookAndFeel" ,
+				"FlatGradiantoNatureGreenIJTheme","FlatMaterial" , "SmartLookAndFeel","NoireLookAndFeel","AcrylLookAndFeel" ,
 				"AeroLookAndFeel","AluminiumLookAndFeel","BernsteinLookAndFeel","FastLookAndFeel","GraphiteLookAndFeel","HiFiLookAndFeel",
 				"LunaLookAndFeel","McWinLookAndFeel","MintLookAndFeel"}));
 		comboBox_2.setBounds(151, 163, 230, 22);

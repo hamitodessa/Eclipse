@@ -575,7 +575,7 @@ public class GLOBAL {
 			prop.setProperty("PRG_YENILE",  ",, ");
 			prop.setProperty("PRG_KAYDET",  ",, ");
 			prop.setProperty("PRG_SIL",  ",, ");
-			prop.setProperty("PRG_GORUNUM",  "McWinLookAndFeel");
+			prop.setProperty("PRG_GORUNUM",  "FlatSolarizedLightIJTheme");
 			prop.setProperty("PRG_GRID_RENK",  "255, 255, 255");
 			prop.setProperty("PRG_GRID_FORE_RENK", "255,255,255");
 			prop.setProperty("PRG_GRID_BACK_RENK", "73, 113, 131");

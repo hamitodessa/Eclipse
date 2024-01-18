@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.text.Position;
@@ -75,6 +76,8 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -208,7 +211,6 @@ public class OBS_BACKUP extends JFrame {
 
 	private ScrollPaneWin11 scrollPane;
 	public static JButton btnYeni_Gorev;
-	public static JButton btnNewButton_2;
 	public static JButton btnLoglama;
 	public static JButton btnKayitliEmirler;
 	public static JButton btnGorevler;
@@ -223,6 +225,10 @@ public class OBS_BACKUP extends JFrame {
 	public static JButton btnHepsiAktiv;
 	public static JButton btnHepsiPasiv;
 
+	public static JButton btnHakkinda;
+	public static JButton btnAyarlar;
+	public static JButton btnKapat;
+	
 	public static JLabel lblemirSAYI;
 	public static JLabel lblEmir ;
 
@@ -230,7 +236,7 @@ public class OBS_BACKUP extends JFrame {
 	static Component horizontalGlue = null ;
 	
 	public static JButton btntry;
-	public static JButton btnKapat;
+	
 	static JButton btnBuyult;
 	static JButton btnMinimize;
 	static TrayIcon trayIcon = null ;
@@ -703,6 +709,8 @@ public class OBS_BACKUP extends JFrame {
 				btnFileIndir.setEnabled(false);
 				btnHepsiAktiv.setEnabled(false);
 				btnHepsiPasiv.setEnabled(false);
+				btnHakkinda.setEnabled(false);
+				btnAyarlar.setEnabled(false);
 				sifreGirisPanel.passwordField.setText("");
 				tabbedPane.setSelectedIndex(4);
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -712,8 +720,9 @@ public class OBS_BACKUP extends JFrame {
 		toolBar.add(sprt );
 		
 		//
-		JButton btnHakkinda= new JButton("");
-		btnHakkinda.setToolTipText("Kapat");
+		btnHakkinda= new JButton("");
+		btnHakkinda.setToolTipText("Hakkinda");
+		btnHakkinda.setEnabled(false);
 		btnHakkinda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedIndex(7);
@@ -723,8 +732,9 @@ public class OBS_BACKUP extends JFrame {
 		toolBar.add(btnHakkinda);
 		//
 		//
-		JButton btnAyarlar= new JButton("");
-		btnAyarlar.setToolTipText("Kapat");
+		btnAyarlar= new JButton("");
+		btnAyarlar.setToolTipText("Ayarlar");
+		btnAyarlar.setEnabled(false);
 		btnAyarlar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedIndex(8);
@@ -882,6 +892,7 @@ public class OBS_BACKUP extends JFrame {
 			glb.backup_surucu_kontrol();
 			pidKONTROL();
 			bckp.log_kayit("Sistem", new Date(), "Program Baslangici");
+			dil();
 			emir_yukle("EMIR_ISMI") ;
 			jobTimerBasla();
 			tabbedPane.setSelectedIndex(4);
@@ -2667,19 +2678,107 @@ public class OBS_BACKUP extends JFrame {
 			e.printStackTrace();
 		}
 	}
-	public void dil(String dil)
+	public void dil() throws ClassNotFoundException, SQLException
 	{
-		if(dil.equals("Turkce"))
+		String dilString[] =  bckp.ayar_oku() ;
+		if(dilString[0].equals("Turkce"))
 		{
 			btnGorevler.setToolTipText("Gorevler");
+			btnYeni_Gorev.setToolTipText("Yeni Gorev");
+			btnLoglama.setToolTipText("Loglama");
+			btnKayitliEmirler.setToolTipText("Kayitli Emirler");
+			btnHepsiYukari.setToolTipText("Hepsini Kucult");
+			btnHepsiAsagi.setToolTipText("Hepsi Buyult");
+			btnYeniSifre.setToolTipText("Sifre Yenile");
+			btnUploadAll.setToolTipText("Gorevleri Yedekle");
+			btnStartAll.setToolTipText("Gorevleri Baslat");
+			btnStopAll.setToolTipText("Gorevleri Durdur");
+			btnFileIndir.setToolTipText("Dosya Indir");
+			btnSifreEkrani.setToolTipText("Sifre Ekrani");
+			btnHepsiAktiv.setToolTipText("Gorevleri Aktif Yap");
+			btnHepsiPasiv.setToolTipText("Gorevleri Pasiv Yap");
+			btnHakkinda.setToolTipText("Hakkinda");
+			btnAyarlar.setToolTipText("Ayarlar");
+			btnKapat.setToolTipText("Kapat");
+			lblEmir.setText("Emir Sayisi");
+			
+			sifreGirisPanel.lblNewLabel.setText("Sifre");
+			sifreGirisPanel.lblDefaultpwd.setText("Varsayilan Sifre :       obs");
+			
+			bilgilendirmePanel.lblNewLabel.setText("Durum");
+			bilgilendirmePanel.chckbxAktifPasif.setText("Aktif / Pasif");
+			bilgilendirmePanel.chckbxIslem.setText("Islem Gerceklestiginde");
+			bilgilendirmePanel.chckbxHata.setText("Hata Durumunda");
+			bilgilendirmePanel.lblNewLabel_1.setText("Gonderen Isim");
+			bilgilendirmePanel.lblNewLabel_2.setText("Gonderen Hesap");
+			TitledBorder titledBorder = (TitledBorder)bilgilendirmePanel.panel.getBorder();
+		    titledBorder.setTitle("Gonderme Durumu");
+			bilgilendirmePanel.panel.setBorder(titledBorder);
+			bilgilendirmePanel.lblNewLabel_3.setText("Alici");
+			bilgilendirmePanel.lblNewLabel_4.setText("Konu");
+			titledBorder = (TitledBorder)bilgilendirmePanel.panel_1_1.getBorder();
+			titledBorder.setTitle("Server Ayarlari");
+			bilgilendirmePanel.panel_1_1.setBorder(titledBorder);
+			bilgilendirmePanel.btnDenemeMail.setText("Deneme Maili");
+			bilgilendirmePanel.lblNewLabel_7.setText("Kullanici");
+			bilgilendirmePanel.lblNewLabel_8.setText("Sifre");
+			bilgilendirmePanel.btnNewButton_9.setText("Kaydet");
+			
+			ayarlarPanel.lblNewLabel.setText("Gorunum");
+			ayarlarPanel.lblNewLabel_1.setText("Dil");
+			ayarlarPanel.btnKaydet.setText("Kaydet");
+			
 		}
 		else {
 			btnGorevler.setToolTipText(dilSecenek.dil("Gorevler"));
+			btnYeni_Gorev.setToolTipText(dilSecenek.dil("Yeni Gorev"));
+			btnLoglama.setToolTipText(dilSecenek.dil("Loglama"));
+			btnKayitliEmirler.setToolTipText(dilSecenek.dil("Kayitli Emirler"));
+			btnHepsiYukari.setToolTipText(dilSecenek.dil("Hepsini Kucult"));
+			btnHepsiAsagi.setToolTipText(dilSecenek.dil("Hepsini Buyult"));
+			btnYeniSifre.setToolTipText(dilSecenek.dil("Sifre Yenile"));
+			btnUploadAll.setToolTipText(dilSecenek.dil("Gorevleri Yedekle"));
+			btnStartAll.setToolTipText(dilSecenek.dil("Gorevleri Baslat"));
+			btnStopAll.setToolTipText(dilSecenek.dil("Gorevleri Durdur"));
+			btnFileIndir.setToolTipText(dilSecenek.dil("Dosya Indir"));
+			btnSifreEkrani.setToolTipText(dilSecenek.dil("Sifre Ekrani"));
+			btnHepsiAktiv.setToolTipText(dilSecenek.dil("Gorevleri Aktif Yap"));
+			btnHepsiPasiv.setToolTipText(dilSecenek.dil("Gorevleri Pasiv Yap"));
+			lblEmir.setText(dilSecenek.dil("Emir Sayisi"));
+			
+			btnHakkinda.setToolTipText(dilSecenek.dil("Hakkinda"));
+			btnAyarlar.setToolTipText(dilSecenek.dil("Ayarlar"));
+			btnKapat.setToolTipText(dilSecenek.dil("Kapat"));
+			
+			sifreGirisPanel.lblNewLabel.setText(dilSecenek.dil("Sifre"));
+			sifreGirisPanel.lblDefaultpwd.setText(dilSecenek.dil("Varsayilan Sifre :       obs"));
+			
+			bilgilendirmePanel.lblNewLabel.setText(dilSecenek.dil("Durum"));
+			bilgilendirmePanel.chckbxAktifPasif.setText(dilSecenek.dil("Aktif / Pasif"));
+			bilgilendirmePanel.chckbxIslem.setText(dilSecenek.dil("Islem Gerceklestiginde"));
+			bilgilendirmePanel.chckbxHata.setText(dilSecenek.dil("Hata Durumunda"));
+			bilgilendirmePanel.lblNewLabel_1.setText(dilSecenek.dil("Gonderen Isim"));
+			bilgilendirmePanel.lblNewLabel_2.setText(dilSecenek.dil("Gonderen Hesap"));
+			TitledBorder titledBorder = (TitledBorder)bilgilendirmePanel.panel.getBorder();
+		    titledBorder.setTitle(dilSecenek.dil("Gonderme Durumu"));
+			bilgilendirmePanel.panel.setBorder(titledBorder);
+			bilgilendirmePanel.lblNewLabel_3.setText(dilSecenek.dil("Alici"));
+			bilgilendirmePanel.lblNewLabel_4.setText(dilSecenek.dil("Konu"));
+			titledBorder = (TitledBorder)bilgilendirmePanel.panel_1_1.getBorder();
+			titledBorder.setTitle(dilSecenek.dil("Server Ayarlari"));
+			bilgilendirmePanel.panel_1_1.setBorder(titledBorder);
+			bilgilendirmePanel.btnDenemeMail.setText(dilSecenek.dil("Deneme Maili"));
+			bilgilendirmePanel.lblNewLabel_7.setText(dilSecenek.dil("Kullanici"));
+			bilgilendirmePanel.lblNewLabel_8.setText(dilSecenek.dil("Sifre"));
+			bilgilendirmePanel.btnNewButton_9.setText(dilSecenek.dil("Kaydet"));
+			
+			ayarlarPanel.lblNewLabel.setText(dilSecenek.dil("Tema"));
+			ayarlarPanel.lblNewLabel_1.setText(dilSecenek.dil("Dil"));
+			ayarlarPanel.btnKaydet.setText(dilSecenek.dil("Kaydet"));
 		}
 		
 	}
 }
-
 
 //private void checkWORK() throws IOException 
 //{

@@ -24,14 +24,15 @@ public class SifreGiris extends JPanel {
 	private static final long serialVersionUID = 1L;
 	public JPasswordField passwordField;
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
-	JLabel lblDefaultpwd;
+	public JLabel lblDefaultpwd;
+	public JLabel lblNewLabel ;
 	/**
 	 * Create the panel.
 	 */
 	public SifreGiris() {
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Sifre");
+		lblNewLabel = new JLabel("Sifre");
 		lblNewLabel.setBounds(217, 285, 86, 20);
 		add(lblNewLabel);
 		
@@ -81,7 +82,10 @@ public class SifreGiris extends JPanel {
 						OBS_BACKUP.btnSifreEkrani.setVisible(true);
 						OBS_BACKUP.btnHepsiAktiv.setEnabled(true);
 						OBS_BACKUP.btnHepsiPasiv.setEnabled(true);
+						OBS_BACKUP.btnHakkinda.setEnabled(true);
+						OBS_BACKUP.btnAyarlar.setEnabled(true);
 						OBS_BACKUP.btnHepsiYukari.doClick();
+						
 					}
 					else {
 						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,"Sifre Yanlis");

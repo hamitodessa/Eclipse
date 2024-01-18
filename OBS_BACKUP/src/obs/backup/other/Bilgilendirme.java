@@ -34,7 +34,19 @@ public class Bilgilendirme extends JPanel {
 	public JCheckBox chckbxAktifPasif;
 	public JCheckBox chckbxSSL ;
 	public JCheckBox chckbxTSL ;
-
+	public JLabel lblNewLabel;
+	public JLabel lblNewLabel_1;
+	public JLabel lblNewLabel_2;
+	public JLabel lblNewLabel_3;
+	public JLabel lblNewLabel_4;
+	public JLabel lblNewLabel_7 ;
+	public JLabel lblNewLabel_8;
+	
+	public JButton btnDenemeMail;
+	public JButton btnNewButton_9;
+	
+	public JPanel panel;
+	public JPanel panel_1_1;
 	/**
 	 * Create the panel.
 	 */
@@ -42,7 +54,7 @@ public class Bilgilendirme extends JPanel {
 		
 		setLayout(null);
 		setName("bilgilendirmePanel");
-		JLabel lblNewLabel = new JLabel("Durum");
+		lblNewLabel = new JLabel("Durum");
 		lblNewLabel.setBounds(37, 28, 48, 14);
 		add(lblNewLabel);
 		
@@ -51,7 +63,7 @@ public class Bilgilendirme extends JPanel {
 		chckbxAktifPasif.setBounds(172, 24, 157, 23);
 		add(chckbxAktifPasif);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Gonderme Durumu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(37, 70, 580, 71);
 		add(panel);
@@ -112,23 +124,23 @@ public class Bilgilendirme extends JPanel {
 		textKonu.setBounds(135, 92, 329, 20);
 		panel_1.add(textKonu);
 		
-		JLabel lblNewLabel_1 = new JLabel("Gonderen Isim");
+		lblNewLabel_1 = new JLabel("Gonderen Isim");
 		lblNewLabel_1.setBounds(21, 26, 88, 14);
 		panel_1.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Gonderen Hesap");
+		lblNewLabel_2 = new JLabel("Gonderen Hesap");
 		lblNewLabel_2.setBounds(21, 49, 98, 14);
 		panel_1.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Alici");
+		lblNewLabel_3 = new JLabel("Alici");
 		lblNewLabel_3.setBounds(21, 72, 48, 14);
 		panel_1.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Konu");
+		lblNewLabel_4 = new JLabel("Konu");
 		lblNewLabel_4.setBounds(21, 95, 48, 14);
 		panel_1.add(lblNewLabel_4);
 		
-		JPanel panel_1_1 = new JPanel();
+		panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
 		panel_1_1.setBorder(new TitledBorder(null, "Server Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1.setBounds(37, 285, 580, 132);
@@ -167,7 +179,7 @@ public class Bilgilendirme extends JPanel {
 		chckbxTSL.setBounds(252, 100, 87, 23);
 		panel_1_1.add(chckbxTSL);
 		
-		JButton btnDenemeMail = new JButton("Deneme Maili");
+		btnDenemeMail = new JButton("Deneme Maili");
 		btnDenemeMail.setBounds(344, 100, 120, 23);
 		panel_1_1.add(btnDenemeMail);
 		
@@ -179,15 +191,15 @@ public class Bilgilendirme extends JPanel {
 		lblNewLabel_6.setBounds(357, 26, 49, 14);
 		panel_1_1.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_7 = new JLabel("Kullanici");
+		lblNewLabel_7 = new JLabel("Kullanici");
 		lblNewLabel_7.setBounds(22, 49, 87, 14);
 		panel_1_1.add(lblNewLabel_7);
 		
-		JLabel lblNewLabel_8 = new JLabel("Sifre");
+		lblNewLabel_8 = new JLabel("Sifre");
 		lblNewLabel_8.setBounds(22, 72, 87, 14);
 		panel_1_1.add(lblNewLabel_8);
 		
-		JButton btnNewButton_9 = new JButton("Kaydet");
+		btnNewButton_9 = new JButton("Kaydet");
 		btnNewButton_9.setBounds(624, 550, 100, 23);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

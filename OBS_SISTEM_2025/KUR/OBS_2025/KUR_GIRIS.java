@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
@@ -26,6 +27,9 @@ import raven.toast.Notifications;
 
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -108,6 +112,31 @@ public class KUR_GIRIS extends JInternalFrame {
 		{
 			table.setGridColor(oac.gridcolor);
 		}
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				if (model.getRowCount() > 0) 
+				{
+					if(table.getSelectedRow() < 0) return;
+					kutu_doldur(table.getSelectedRow());
+				}
+			}
+		});
+		ListSelectionModel selectionModel = table.getSelectionModel();
+		selectionModel.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				if (model.getRowCount() > 0) 
+				{
+					if(table.getSelectedRow() < 0) return;
+					kutu_doldur(table.getSelectedRow());
+				}
+			}
+		});
+
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setSurrendersFocusOnKeystroke(true);
 		table.setShowHorizontalLines(true);
 		table.setShowVerticalLines(true);
 		scrollPane.setViewportView(table);
@@ -120,18 +149,27 @@ public class KUR_GIRIS extends JInternalFrame {
 
 		comboBox = new JComboBox<String>();
 		comboBox.setForeground(new Color(0, 0, 128));
+		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR", "RUB", "GBR", "CHF", "SEK", "NOK", "SAR"}));
+		comboBox.setEditable(true);
+		comboBox.setBounds(75, 9, 67, 30);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().setCursor(oac.WAIT_CURSOR);
-				kur_liste();
-				kur_oku();
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				for (int i = 0; i <= table.getRowCount() -1; i++) {
+					
+					if(model.getValueAt(i, 0).equals(comboBox.getSelectedItem()))
+					{
+						sifirla();
+						kutu_doldur(i);
+						break;
+					}
+				}
 				getContentPane().setCursor(oac.DEFAULT_CURSOR);
 			}
 		});
-		comboBox.setFont(new Font("Tahoma", Font.BOLD, 11));
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"USD", "EUR", "GBR", "CHF", "SEK", "NOK", "SAR", "RUB"}));
-		comboBox.setEditable(true);
-		comboBox.setBounds(75, 9, 67, 30);
+
 		panel.add(comboBox);
 
 		dateChooser = new JDateChooser();
@@ -155,7 +193,7 @@ public class KUR_GIRIS extends JInternalFrame {
 						if ("date".equals(e.getPropertyName())) {
 							getContentPane().setCursor(oac.WAIT_CURSOR);
 							kur_liste();
-							kur_oku();
+							//kur_oku();
 							getContentPane().setCursor(oac.DEFAULT_CURSOR);
 						}
 					}
@@ -362,20 +400,22 @@ public class KUR_GIRIS extends JInternalFrame {
 		btnNewButton_1.setBounds(344, 9, 30, 30);
 		panel.add(btnNewButton_1);
 		kur_liste();
-		kur_oku();
+		kutu_doldur(0);
+		//kur_oku();
 	}
 	private static void kur_liste()
 	{
 		try
 		{
 			ResultSet rs ;
+			sifirla();
+			GRID_TEMIZLE.grid_temizle(table);
 			rs = k_Access.kur_liste(TARIH_CEVIR.tarih_geri_SQL(dateChooser));
 			if (!rs.isBeforeFirst() ) {  
-				GRID_TEMIZLE.grid_temizle(table);
+				comboBox.setSelectedIndex(0);
 				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + 0 + " saniye");
 				return ;
 			} 
-			GRID_TEMIZLE.grid_temizle(table);
 			table.setModel(DbUtils.resultSetToTableModel(rs));
 			JTableHeader th = table.getTableHeader();
 
@@ -428,43 +468,19 @@ public class KUR_GIRIS extends JInternalFrame {
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
 		}
 	}
-	private void kur_oku()
+	
+	private void kutu_doldur(int satir)
 	{
-		ResultSet rs ;
-		try
+		if( table.getRowCount()  > 0)  
 		{
-			rs = k_Access.kur_oku(TARIH_CEVIR.tarih_geri_SQL(dateChooser),comboBox.getItemAt(comboBox.getSelectedIndex()));
-
-			if (!rs.isBeforeFirst() ) {  
-				OBS_MAIN.lblNewLabel_9.setText("Son Raporlama Suresi : " + 0 + " saniye");
-				getContentPane().setCursor(oac.DEFAULT_CURSOR);
-				sifirla ();
-				return ;
-			} 
-			rs.next ();
-			DecimalFormat decimal4 = new DecimalFormat("#,##0.0000");
-
-			String tut = decimal4.format(rs.getDouble("MA"));
-			formattedTextField.setText((String.valueOf(tut)));
-
-			tut = decimal4.format(rs.getDouble("MS"));
-			formattedTextField_1.setText((String.valueOf(tut)));
-
-			tut = decimal4.format(rs.getDouble("SA"));
-			formattedTextField_2.setText((String.valueOf(tut)));
-
-			tut = decimal4.format(rs.getDouble("SS"));
-			formattedTextField_1_1.setText((String.valueOf(tut)));
-
-			tut = decimal4.format(rs.getDouble("BA"));
-			formattedTextField_3.setText((String.valueOf(tut)));
-
-			tut = decimal4.format(rs.getDouble("BS"));
-			formattedTextField_1_2.setText((String.valueOf(tut)));
-		}
-		catch (Exception ex)
-		{
-			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage());
+		comboBox.setSelectedItem(table.getValueAt(satir, 0));
+		DecimalFormat decimal4 = new DecimalFormat("#,##0.0000");
+		formattedTextField.setText((String.valueOf(decimal4.format(table.getValueAt(satir, 1)))));
+		formattedTextField_1.setText((String.valueOf(decimal4.format(table.getValueAt(satir, 2)))));
+		formattedTextField_2.setText((String.valueOf( decimal4.format(table.getValueAt(satir, 3)))));
+		formattedTextField_1_1.setText((String.valueOf(decimal4.format(table.getValueAt(satir, 4)))));
+		formattedTextField_3.setText((String.valueOf( decimal4.format(table.getValueAt(satir, 5)))));
+		formattedTextField_1_2.setText((String.valueOf(decimal4.format(table.getValueAt(satir, 6)))));
 		}
 	}
 	private static void sifirla()

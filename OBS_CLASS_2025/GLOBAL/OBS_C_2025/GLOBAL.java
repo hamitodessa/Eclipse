@@ -385,6 +385,8 @@ public class GLOBAL {
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE PID ( PID_NO INTEGER) ";
 			backup_tablo_yap(sorgu);
+			sorgu = "CREATE TABLE AYARLAR (  DIL nvarchar(10) ,THEMA nvarchar(50)) ";
+			backup_tablo_yap(sorgu);
 	
 			con = myBackupConnection();
 			byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("obs") ;

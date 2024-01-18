@@ -42,6 +42,7 @@ import OBS_C_2025.GRID_TEMIZLE;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.MaterialTabbed;
 import javazoom.jl.player.Player;
+import obs.backup.ayarlar.dilSecenek;
 import obs.backup.gorev.gOREV_TAKIP;
 import obs.backup.other.Ayarlar;
 import obs.backup.other.Bilgilendirme;
@@ -2665,6 +2666,17 @@ public class OBS_BACKUP extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public void dil(String dil)
+	{
+		if(dil.equals("Turkce"))
+		{
+			btnGorevler.setToolTipText("Gorevler");
+		}
+		else {
+			btnGorevler.setToolTipText(dilSecenek.dil("Gorevler"));
+		}
+		
 	}
 }
 

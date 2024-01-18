@@ -43,10 +43,12 @@ import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.MaterialTabbed;
 import javazoom.jl.player.Player;
 import obs.backup.gorev.gOREV_TAKIP;
+import obs.backup.other.Ayarlar;
 import obs.backup.other.Bilgilendirme;
 import obs.backup.other.DownloadFile;
 import obs.backup.other.EmirAnaGiris;
 import obs.backup.other.EmirKopyala;
+import obs.backup.other.Hakkinda;
 import obs.backup.other.KayitliEmirler;
 import obs.backup.other.LoglamaRapor;
 import obs.backup.other.ServerBilgileri;
@@ -200,6 +202,8 @@ public class OBS_BACKUP extends JFrame {
 	public static SifreGiris sifreGirisPanel;
 	public static SifreYenile sifreYenilePanel;
 	public static DownloadFile downloadFilePanel;
+	public static Hakkinda hakkindaPanel;
+	public static Ayarlar ayarlarPanel;
 
 	private ScrollPaneWin11 scrollPane;
 	public static JButton btnYeni_Gorev;
@@ -706,6 +710,28 @@ public class OBS_BACKUP extends JFrame {
 		toolBar.add(btnSifreEkrani );
 		toolBar.add(sprt );
 		
+		//
+		JButton btnHakkinda= new JButton("");
+		btnHakkinda.setToolTipText("Kapat");
+		btnHakkinda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedIndex(7);
+			}
+		});
+		btnHakkinda.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/about-24.png")));
+		toolBar.add(btnHakkinda);
+		//
+		//
+		JButton btnAyarlar= new JButton("");
+		btnAyarlar.setToolTipText("Kapat");
+		btnAyarlar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedIndex(8);
+			}
+		});
+		btnAyarlar.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/settings-24.png")));
+		toolBar.add(btnAyarlar);
+		
 		JButton btnkapat= new JButton("");
 		btnkapat.setToolTipText("Kapat");
 		btnkapat.addActionListener(new ActionListener() {
@@ -746,6 +772,10 @@ public class OBS_BACKUP extends JFrame {
 
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("Yeni Gorev", null, panel_3, null);
+		
+		
+		
+		
 		panel_3.setLayout(new BorderLayout(0, 0));
 
 		tabbedPane_1 = new MaterialTabbed();
@@ -803,6 +833,10 @@ public class OBS_BACKUP extends JFrame {
 		tabbedPane.addTab("Sifre Yenile", null, sifreYenilePanel, null);
 		downloadFilePanel = new DownloadFile();
 		tabbedPane.addTab("Dosya Indir", null, downloadFilePanel, null);
+		hakkindaPanel = new Hakkinda();
+		tabbedPane.addTab("Hakkinda", null, hakkindaPanel, null);
+		ayarlarPanel = new Ayarlar();
+		tabbedPane.addTab("Ayarlar", null, ayarlarPanel, null);
 		//***********************************************************************************
 		btntry= new JButton("");
 		btntry.setVisible(false);

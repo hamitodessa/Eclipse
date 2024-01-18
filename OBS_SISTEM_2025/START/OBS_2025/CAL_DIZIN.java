@@ -195,7 +195,6 @@ public class CAL_DIZIN extends JDialog {
 		});
 		setTitle("CALISMA DIZINI");
 		setResizable(false);
-
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1120, 450);
 		contentPane = new JPanel();

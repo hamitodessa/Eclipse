@@ -173,23 +173,23 @@ public class CAL_DIZIN extends JDialog {
 
 	public CAL_DIZIN() {
 
-		addMouseMotionListener(new MouseMotionAdapter() {
-			@Override 
-			public void mouseDragged(MouseEvent e) 
-			{ 
-				int xx = e.getXOnScreen();
-				int yy = e.getYOnScreen(); 
-				setLocation(xx-x,yy-y);
-			} 
-		}); 
-		addMouseListener(new MouseAdapter() {
-			@Override 
-			public void mousePressed(MouseEvent e) 
-			{ 
-				x = e.getX(); 
-				y = e.getY(); 
-			} 
-		});
+//		addMouseMotionListener(new MouseMotionAdapter() {
+//			@Override 
+//			public void mouseDragged(MouseEvent e) 
+//			{ 
+//				int xx = e.getXOnScreen();
+//				int yy = e.getYOnScreen(); 
+//				setLocation(xx-x,yy-y);
+//			} 
+//		}); 
+//		addMouseListener(new MouseAdapter() {
+//			@Override 
+//			public void mousePressed(MouseEvent e) 
+//			{ 
+//				x = e.getX(); 
+//				y = e.getY(); 
+//			} 
+//		});
 		addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {

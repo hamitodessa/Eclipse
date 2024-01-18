@@ -669,7 +669,7 @@ public class H_PLANI extends JInternalFrame {
 		});
 		AUTO_HESAP_KODU.auto_doldur(cmbKodu);
 		
-		cmbKodu.setBounds(102, 88, 206, 22);
+		cmbKodu.setBounds(102, 88, 137, 22);
 		panel.add(cmbKodu);
 		
 		JButton btnNewButton_6_1 = new JButton("");
@@ -680,7 +680,7 @@ public class H_PLANI extends JInternalFrame {
 			}
 		});
 		btnNewButton_6_1.setToolTipText("Hesap Plani");
-		btnNewButton_6_1.setBounds(318, 88, 22, 23);
+		btnNewButton_6_1.setBounds(242, 87, 22, 23);
 		panel.add(btnNewButton_6_1);
 		
 		hisset("");

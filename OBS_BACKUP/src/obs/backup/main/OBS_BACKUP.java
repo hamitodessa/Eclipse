@@ -106,6 +106,7 @@ import java.io.Writer;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -191,7 +192,7 @@ public class OBS_BACKUP extends JFrame {
 	public static JPanel container ;
 	public static JToolBar toolBar;
 	public static JTabbedPane tabbedPane ;
-	public static MaterialTabbed tabbedPane_1;
+	public static JTabbedPane tabbedPane_1;
 	int x ,y ;
 	public static YedeklemeAraligi yedekaraligiPanel;
 	public static SunucuAyarlari sunucuayarPanel;
@@ -286,13 +287,6 @@ public class OBS_BACKUP extends JFrame {
 		FlatRobotoFont.install();
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
 		UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
-		//FlatCarbonIJTheme.setup();
-		FlatMonocaiIJTheme.setup();
-		//FlatMacDarkLaf.setup();
-		//FlatNordIJTheme.setup();
-		//FlatHighContrastIJTheme.setup();
-		//FlatMaterialPalenightIJTheme.setup();
-		//FlatMaterialDeepOceanIJTheme.setup();
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -756,13 +750,7 @@ public class OBS_BACKUP extends JFrame {
 		//*********************************************************************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
-		final boolean showTabsHeader = false; tabbedPane.setUI(new
-				javax.swing.plaf.metal.MetalTabbedPaneUI() {
-			@Override protected int calculateTabAreaHeight(int tabPlacement, int
-					horizRunCount, int maxTabHeight) { if (showTabsHeader) {return
-							super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight); }
-					else {return 0;} } protected void paintTabArea(Graphics g,int
-							tabPlacement,int selectedIndex){} });
+		
 
 		splitPane.setRightComponent(tabbedPane);
 
@@ -789,7 +777,7 @@ public class OBS_BACKUP extends JFrame {
 		
 		panel_3.setLayout(new BorderLayout(0, 0));
 
-		tabbedPane_1 = new MaterialTabbed();
+		tabbedPane_1 = new JTabbedPane();
 		tabbedPane_1.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				if(tabbedPane_1.getSelectedIndex()==4)
@@ -849,6 +837,25 @@ public class OBS_BACKUP extends JFrame {
 		ayarlarPanel = new Ayarlar();
 		tabbedPane.addTab("Ayarlar", null, ayarlarPanel, null);
 		//***********************************************************************************
+		try {
+			String diltemaString[] = bckp.ayar_oku();
+			tema(diltemaString[1]);
+			ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
+			ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
+		} catch (Exception e1) {
+			
+			e1.printStackTrace();
+		}
+		
+		final boolean showTabsHeader = false; tabbedPane.setUI(new
+				javax.swing.plaf.metal.MetalTabbedPaneUI() {
+			@Override protected int calculateTabAreaHeight(int tabPlacement, int
+					horizRunCount, int maxTabHeight) { if (showTabsHeader) {return
+							super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight); }
+					else {return 0;} } protected void paintTabArea(Graphics g,int
+							tabPlacement,int selectedIndex){} });
+		
+		
 		btntry= new JButton("");
 		btntry.setVisible(false);
 		btntry.addActionListener(new ActionListener() {
@@ -862,9 +869,12 @@ public class OBS_BACKUP extends JFrame {
 		btnKapat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				emirleriSTOPYAP();
-				timerr.cancel();
-	            timerr.purge();
-	            timerr = null;
+				if(timerr != null)
+				{
+					timerr.cancel();
+		            timerr.purge();
+		            timerr = null;
+				}
 				System.exit(0);
 			}
 		});
@@ -1095,6 +1105,15 @@ public class OBS_BACKUP extends JFrame {
 				emirAnaGirisPanel. chckbxDurum.setSelected(false);
 				mesaj_goster(5000,Notifications.Type.WARNING, "Yedekleme Icin Gun secilmediginden " + System.lineSeparator() + System.lineSeparator()  + "Emir durumu Pasiv olarak Degistirildi");
 			}
+			if(drm)
+			{
+				if(yedekaraligiPanel.textHerDakka.getText().equals(""))
+				{
+					mesaj_goster(5000,Notifications.Type.WARNING, "Yedekleme Aralik Zamani Girilmemis ");
+					return;
+				}
+			}
+				
 			Date date = (Date) (yedekaraligiPanel.timeBaslangic.getValue());
 			Date date2 = (Date) (yedekaraligiPanel.timeBitis.getValue());
 			date2.setYear(date.getYear());
@@ -1164,7 +1183,10 @@ public class OBS_BACKUP extends JFrame {
 					sunucuayarPanel.textKull.getText(), 
 					sdon.sDONDUR(sunucuayarPanel.textSifre), 
 					sunucuayarPanel.textFtpSurucu.getText(),  
-					sunucuayarPanel.textPort.getText(),sunucuayarPanel.textZmnasm.getText().equals("") ? 0 : Integer.parseInt( sunucuayarPanel.textZmnasm.getText())  , sunucuayarPanel.textEskisilme.getText(), neresi,  sunucuayarPanel.textSurucu.getText());
+					sunucuayarPanel.textPort.getText(),
+					sunucuayarPanel.textZmnasm.getText().equals("") ? 120 : Integer.parseInt( sunucuayarPanel.textZmnasm.getText())  ,
+					sunucuayarPanel.textEskisilme.getText().equals("") ? 0 :Integer.parseInt( sunucuayarPanel.textEskisilme.getText()) , 
+					neresi, sunucuayarPanel.textSurucu.getText());
 			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText().toString(),new Date(), "Emir FTP Bilgileri  Kaydedildi...");
 			tabbedPane_1.setSelectedIndex(1);
 		}
@@ -1519,7 +1541,7 @@ public class OBS_BACKUP extends JFrame {
 			int eskiyedek, zmnasimi;
 			eskiyedek =  Integer.valueOf(ftpBilgi.get(0).getESKI_YEDEK());
 			zmnasimi = Integer.valueOf(ftpBilgi.get(0).getZMN_ASIMI());
-			surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
+			surucu_yer = ftpBilgi.get(0).getSURUCU_YER();
 			String sqlsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 			if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 			{
@@ -2476,7 +2498,6 @@ public class OBS_BACKUP extends JFrame {
 				}
 			}
 		}
-
 	}
 	private void yapilmadiMAILI(String emirADI,String mesaj) throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
@@ -2622,7 +2643,7 @@ public class OBS_BACKUP extends JFrame {
 				}
 			};
 			popup = new PopupMenu();
-			Font defaultFont = new Font("Tahoma", Font.PLAIN, 11); //Font.decode(null); // default font 
+			Font defaultFont = new Font("Tahoma", Font.PLAIN, 11); 
 			float adjustmentRatio = 1.2f; 
 			float newFontSize = defaultFont.getSize() * adjustmentRatio ; 
 			Font derivedFont = defaultFont.deriveFont(newFontSize);
@@ -2678,7 +2699,7 @@ public class OBS_BACKUP extends JFrame {
 			e.printStackTrace();
 		}
 	}
-	public void dil() throws ClassNotFoundException, SQLException
+	public static void dil() throws ClassNotFoundException, SQLException
 	{
 		String dilString[] =  bckp.ayar_oku() ;
 		if(dilString[0].equals("Turkce"))
@@ -2704,14 +2725,17 @@ public class OBS_BACKUP extends JFrame {
 			
 			sifreGirisPanel.lblNewLabel.setText("Sifre");
 			sifreGirisPanel.lblDefaultpwd.setText("Varsayilan Sifre :       obs");
-			
+			//******************************************************************************************
 			bilgilendirmePanel.lblNewLabel.setText("Durum");
 			bilgilendirmePanel.chckbxAktifPasif.setText("Aktif / Pasif");
 			bilgilendirmePanel.chckbxIslem.setText("Islem Gerceklestiginde");
 			bilgilendirmePanel.chckbxHata.setText("Hata Durumunda");
+			TitledBorder titledBorder = (TitledBorder)bilgilendirmePanel.panel_1.getBorder();
+			titledBorder.setTitle("Mail Bilgileri");
+			bilgilendirmePanel.panel_1.setBorder(titledBorder);
 			bilgilendirmePanel.lblNewLabel_1.setText("Gonderen Isim");
 			bilgilendirmePanel.lblNewLabel_2.setText("Gonderen Hesap");
-			TitledBorder titledBorder = (TitledBorder)bilgilendirmePanel.panel.getBorder();
+			titledBorder = (TitledBorder)bilgilendirmePanel.panel.getBorder();
 		    titledBorder.setTitle("Gonderme Durumu");
 			bilgilendirmePanel.panel.setBorder(titledBorder);
 			bilgilendirmePanel.lblNewLabel_3.setText("Alici");
@@ -2723,7 +2747,62 @@ public class OBS_BACKUP extends JFrame {
 			bilgilendirmePanel.lblNewLabel_7.setText("Kullanici");
 			bilgilendirmePanel.lblNewLabel_8.setText("Sifre");
 			bilgilendirmePanel.btnNewButton_9.setText("Kaydet");
-			
+			//*****************************************************************************************
+			yedekaraligiPanel.lblNewLabel.setText("Her");
+			yedekaraligiPanel.lblNewLabel_1.setText("dakkada bir");
+			yedekaraligiPanel.lblNewLabel_2.setText("Gunler");
+			yedekaraligiPanel.chckbxPtesi.setText("Pazartesi");
+			yedekaraligiPanel.chckbxSali.setText("Sali");
+			yedekaraligiPanel.chckbxCarsamba.setText("Carsamba");
+			yedekaraligiPanel.chckbxPersembe.setText("Persembe");
+			yedekaraligiPanel.chckbxCuma.setText("Cuma");
+			yedekaraligiPanel.chckbxCumartesi.setText("Cumartesi");
+			yedekaraligiPanel.chckbxPazar.setText("Pazar");
+			yedekaraligiPanel.lblNewLabel_3.setText("Baslangic");
+			yedekaraligiPanel.lblNewLabel_3_1.setText("Bitis");
+			titledBorder = (TitledBorder)yedekaraligiPanel.panel.getBorder();
+			titledBorder.setTitle("Yedekleme Araligi");
+			yedekaraligiPanel.panel.setBorder(titledBorder);
+			yedekaraligiPanel.btnNewButton_9.setText("Kaydet");
+			//****************************************************************************************
+			emirKopyalaPanel.lblNewLabel.setText("Yeni Emir Ismi");
+			emirKopyalaPanel.btnNewButton_9.setText("Kaydet");
+			//****************************************************************************************
+			sifreYenilePanel.lblNewLabel.setText("Gecerli Sifreniz");
+			sifreYenilePanel.lblysif.setText("Yeni Sifreniz");
+			sifreYenilePanel.lblNewLabel_1.setText("Sifre Yenileme");
+			//****************************************************************************************
+			loglamaPanel.lblNewLabel.setText("Arama");
+			loglamaPanel.btnNewButton.setText("Sil");
+			loglamaPanel.btnExcell.setToolTipText("Excell Aktarma");
+			//****************************************************************************************
+			kayitliEmirlerPanelEmirler.lblNewLabel.setText("Arama");
+			//****************************************************************************************
+			emirAnaGirisPanel.btnDosyaSec.setText("Dosya Sec");
+			emirAnaGirisPanel.btnSurucuSec.setText("Surucu Sec");
+			emirAnaGirisPanel.btnServer.setText("Server Baglanti");
+			emirAnaGirisPanel.lblNewLabel.setText("Durum");
+			emirAnaGirisPanel.lblNewLabel_1.setText("Emir Ismi");
+			emirAnaGirisPanel.lblNewLabel_4.setText("Dosya Sayisi");
+			emirAnaGirisPanel.chckbxServerDosya.setText("Sql Server / Diger Dosya Yedekleme");
+			emirAnaGirisPanel.lblNewLabel_2.setText("Aciklama");
+			//***************************************************************************************
+			serverBilgileriPanel.lblNewLabel_1.setText("Kullanici");
+			serverBilgileriPanel.lblNewLabel_2.setText("Sifre");
+			titledBorder = (TitledBorder)serverBilgileriPanel.panel_2.getBorder();
+			titledBorder.setTitle("Baglanti");
+			serverBilgileriPanel.panel_2.setBorder(titledBorder);
+			serverBilgileriPanel.btnMSkaydet.setText("Kaydet");
+			serverBilgileriPanel.btnMSTest.setText("Baglanti Test");
+			titledBorder = (TitledBorder)serverBilgileriPanel.panel_2_2.getBorder();
+			titledBorder.setTitle("Baglanti");
+			serverBilgileriPanel.panel_2_2.setBorder(titledBorder);
+			serverBilgileriPanel.lblNewLabel_1_2.setText("Kullanici");
+			serverBilgileriPanel.lblNewLabel_2_2.setText("Sifre");
+			serverBilgileriPanel.btnDumpSec.setText("Sec");
+			serverBilgileriPanel.btnMyKaydet.setText("Kaydet");
+			serverBilgileriPanel.btnMyTest.setText("Baglanti Test");
+			//**********
 			ayarlarPanel.lblNewLabel.setText("Gorunum");
 			ayarlarPanel.lblNewLabel_1.setText("Dil");
 			ayarlarPanel.btnKaydet.setText("Kaydet");
@@ -2752,14 +2831,17 @@ public class OBS_BACKUP extends JFrame {
 			
 			sifreGirisPanel.lblNewLabel.setText(dilSecenek.dil("Sifre"));
 			sifreGirisPanel.lblDefaultpwd.setText(dilSecenek.dil("Varsayilan Sifre :       obs"));
-			
+			//************************************************************************************************
 			bilgilendirmePanel.lblNewLabel.setText(dilSecenek.dil("Durum"));
 			bilgilendirmePanel.chckbxAktifPasif.setText(dilSecenek.dil("Aktif / Pasif"));
 			bilgilendirmePanel.chckbxIslem.setText(dilSecenek.dil("Islem Gerceklestiginde"));
 			bilgilendirmePanel.chckbxHata.setText(dilSecenek.dil("Hata Durumunda"));
+			TitledBorder titledBorder = (TitledBorder)bilgilendirmePanel.panel_1.getBorder();
+			titledBorder.setTitle(dilSecenek.dil("Mail Bilgileri"));
+			bilgilendirmePanel.panel_1.setBorder(titledBorder);
 			bilgilendirmePanel.lblNewLabel_1.setText(dilSecenek.dil("Gonderen Isim"));
 			bilgilendirmePanel.lblNewLabel_2.setText(dilSecenek.dil("Gonderen Hesap"));
-			TitledBorder titledBorder = (TitledBorder)bilgilendirmePanel.panel.getBorder();
+			titledBorder = (TitledBorder)bilgilendirmePanel.panel.getBorder();
 		    titledBorder.setTitle(dilSecenek.dil("Gonderme Durumu"));
 			bilgilendirmePanel.panel.setBorder(titledBorder);
 			bilgilendirmePanel.lblNewLabel_3.setText(dilSecenek.dil("Alici"));
@@ -2771,15 +2853,109 @@ public class OBS_BACKUP extends JFrame {
 			bilgilendirmePanel.lblNewLabel_7.setText(dilSecenek.dil("Kullanici"));
 			bilgilendirmePanel.lblNewLabel_8.setText(dilSecenek.dil("Sifre"));
 			bilgilendirmePanel.btnNewButton_9.setText(dilSecenek.dil("Kaydet"));
-			
+			//*****************************************************************************************
+			yedekaraligiPanel.lblNewLabel.setText(dilSecenek.dil("Her"));
+			yedekaraligiPanel.lblNewLabel_1.setText(dilSecenek.dil("dakkada bir"));
+			yedekaraligiPanel.lblNewLabel_2.setText(dilSecenek.dil("Gunler"));
+			yedekaraligiPanel.chckbxPtesi.setText(dilSecenek.dil("Pazartesi"));
+			yedekaraligiPanel.chckbxSali.setText(dilSecenek.dil("Sali"));
+			yedekaraligiPanel.chckbxCarsamba.setText(dilSecenek.dil("Carsamba"));
+			yedekaraligiPanel.chckbxPersembe.setText(dilSecenek.dil("Persembe"));
+			yedekaraligiPanel.chckbxCuma.setText(dilSecenek.dil("Cuma"));
+			yedekaraligiPanel.chckbxCumartesi.setText(dilSecenek.dil("Cumartesi"));
+			yedekaraligiPanel.chckbxPazar.setText(dilSecenek.dil("Pazar"));
+			yedekaraligiPanel.lblNewLabel_3.setText(dilSecenek.dil("Baslangic"));
+			yedekaraligiPanel.lblNewLabel_3_1.setText(dilSecenek.dil("Bitis"));
+			titledBorder = (TitledBorder)yedekaraligiPanel.panel.getBorder();
+			titledBorder.setTitle(dilSecenek.dil("Aralik"));
+			yedekaraligiPanel.panel.setBorder(titledBorder);
+			yedekaraligiPanel.btnNewButton_9.setText(dilSecenek.dil("Kaydet"));
+			//****************************************************************************************
+			emirKopyalaPanel.lblNewLabel.setText(dilSecenek.dil("Yeni Emir Ismi"));
+			emirKopyalaPanel.btnNewButton_9.setText(dilSecenek.dil("Kaydet"));
+			//****************************************************************************************
+			sifreYenilePanel.lblNewLabel.setText(dilSecenek.dil("Gecerli Sifreniz"));
+			sifreYenilePanel.lblysif.setText(dilSecenek.dil("Yeni Sifreniz"));
+			sifreYenilePanel.lblNewLabel_1.setText(dilSecenek.dil("Sifre Yenileme"));
+			//****************************************************************************************
+			loglamaPanel.lblNewLabel.setText(dilSecenek.dil("Arama"));
+			loglamaPanel.btnNewButton.setText(dilSecenek.dil("Sil"));
+			loglamaPanel.btnExcell.setToolTipText(dilSecenek.dil("Excell Aktarma"));
+			//****************************************************************************************
+			kayitliEmirlerPanelEmirler.lblNewLabel.setText(dilSecenek.dil("Arama"));
+			//****************************************************************************************
+			emirAnaGirisPanel.btnDosyaSec.setText(dilSecenek.dil("Dosya Sec"));
+			emirAnaGirisPanel.btnSurucuSec.setText(dilSecenek.dil("Surucu Sec"));
+			emirAnaGirisPanel.btnServer.setText(dilSecenek.dil("Server Baglanti"));
+			emirAnaGirisPanel.lblNewLabel.setText(dilSecenek.dil("Durum"));
+			emirAnaGirisPanel.lblNewLabel_1.setText(dilSecenek.dil("Emir Ismi"));
+			emirAnaGirisPanel.lblNewLabel_4.setText(dilSecenek.dil("Dosya Sayisi"));
+			emirAnaGirisPanel.chckbxServerDosya.setText(dilSecenek.dil("Sql Server / Diger Dosya Yedekleme"));
+			emirAnaGirisPanel.lblNewLabel_2.setText(dilSecenek.dil("Aciklama"));
+			//***************************************************************************************
+			serverBilgileriPanel.lblNewLabel_1.setText(dilSecenek.dil("Kullanici"));
+			serverBilgileriPanel.lblNewLabel_2.setText(dilSecenek.dil("Sifre"));
+			titledBorder = (TitledBorder)serverBilgileriPanel.panel_2.getBorder();
+			titledBorder.setTitle(dilSecenek.dil("Baglanti"));
+			serverBilgileriPanel.panel_2.setBorder(titledBorder);
+			serverBilgileriPanel.btnMSkaydet.setText(dilSecenek.dil("Kaydet"));
+			serverBilgileriPanel.btnMSTest.setText(dilSecenek.dil("Baglanti Test"));
+			titledBorder = (TitledBorder)serverBilgileriPanel.panel_2_2.getBorder();
+			titledBorder.setTitle(dilSecenek.dil("Baglanti"));
+			serverBilgileriPanel.panel_2_2.setBorder(titledBorder);
+			serverBilgileriPanel.lblNewLabel_1_2.setText(dilSecenek.dil("Kullanici"));
+			serverBilgileriPanel.lblNewLabel_2_2.setText(dilSecenek.dil("Sifre"));
+			serverBilgileriPanel.btnDumpSec.setText(dilSecenek.dil("Sec"));
+			serverBilgileriPanel.btnMyKaydet.setText(dilSecenek.dil("Kaydet"));
+			serverBilgileriPanel.btnMyTest.setText(dilSecenek.dil("Baglanti Test"));
+			//
 			ayarlarPanel.lblNewLabel.setText(dilSecenek.dil("Tema"));
 			ayarlarPanel.lblNewLabel_1.setText(dilSecenek.dil("Dil"));
 			ayarlarPanel.btnKaydet.setText(dilSecenek.dil("Kaydet"));
 		}
-		
+	}
+	private void tema(String tema)
+	{
+		switch (tema) {
+		case "FlatCarbonIJ": 
+		{
+			FlatCarbonIJTheme.setup();
+			break;
+		}
+		case "FlatMonocaiIJ": 
+		{
+			FlatMonocaiIJTheme.setup();
+			break;
+		}
+		case "FlatMacDarkLaf": 
+		{
+			FlatMacDarkLaf.setup();
+			break;
+		}
+		case "FlatNordIJ": 
+		{
+			FlatNordIJTheme.setup();
+			break;
+		}
+		case "FlatHighContrastIJ": 
+		{
+			FlatHighContrastIJTheme.setup();
+			break;
+		}
+		case "FlatMaterialPalenightIJ": 
+		{
+			FlatMaterialPalenightIJTheme.setup();
+			break;
+		}
+		case "FlatMaterialDeepOceanIJ": 
+		{
+			FlatMaterialDeepOceanIJTheme.setup();
+			break;
+		}
+		}
+		 FlatLaf.updateUI();
 	}
 }
-
 //private void checkWORK() throws IOException 
 //{
 //	ArrayList<String> cmds = new ArrayList<String>();

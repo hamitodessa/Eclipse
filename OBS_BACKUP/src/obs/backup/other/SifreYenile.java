@@ -29,16 +29,18 @@ public class SifreYenile extends JPanel {
 	private static final long serialVersionUID = 1L;
 	public static JPasswordField txtsif;
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
-	private static JLabel lblysif;
+	public static JLabel lblysif;
 	private static Obs_TextFIeld txtyenisif;
-	private JButton btnNewButton;
+	public JButton btnNewButton;
+	public JLabel lblNewLabel;
+	public JLabel lblNewLabel_1;
 	/**
 	 * Create the panel.
 	 */
 	public SifreYenile() {
 		setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Gecerli Sifreniz");
+		lblNewLabel = new JLabel("Gecerli Sifreniz");
 		lblNewLabel.setBounds(217, 288, 102, 20);
 		add(lblNewLabel);
 
@@ -143,7 +145,7 @@ public class SifreYenile extends JPanel {
 		btnNewButton.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/save.png")));
 		add(btnNewButton);
 		
-		JLabel lblNewLabel_1 = new JLabel("Sifre Yenileme");
+		lblNewLabel_1 = new JLabel("Sifre Yenileme");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1.setBounds(329, 202, 248, 14);
 		add(lblNewLabel_1);

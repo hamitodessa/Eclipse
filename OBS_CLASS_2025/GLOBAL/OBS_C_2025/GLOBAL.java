@@ -389,10 +389,15 @@ public class GLOBAL {
 			backup_tablo_yap(sorgu);
 	
 			con = myBackupConnection();
+			sorgu = "INSERT INTO AYARLAR(DIL,TEMA)  VALUES('Turkce','FlatCarbonIJ')" ;
+			Statement pstmt = con.prepareStatement(sorgu) ;
+			pstmt = con.createStatement();  
+			pstmt.execute(sorgu);  
+			
 			byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("obs") ;
 			String encodedString = Arrays.toString(qaz);
 			sorgu = "INSERT INTO YONETICI(SIFRE)  VALUES('"+ encodedString+"')" ;
-			Statement pstmt = con.prepareStatement(sorgu) ;
+			pstmt = con.prepareStatement(sorgu) ;
 			pstmt = con.createStatement();  
 			pstmt.execute(sorgu);  
 			con.close();

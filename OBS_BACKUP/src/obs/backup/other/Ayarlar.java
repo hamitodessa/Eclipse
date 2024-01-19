@@ -1,15 +1,14 @@
 package obs.backup.other;
 
 import javax.swing.JPanel;
-
 import OBS_C_2025.BACKUP_GLOBAL;
 import obs.backup.ayarlar.dilSecenek;
+import obs.backup.main.OBS_BACKUP;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
-
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 
@@ -22,7 +21,7 @@ public class Ayarlar extends JPanel {
 	public JComboBox<String> comboBox;
 	public JComboBox<String> comboBox_1;
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
-	
+	final boolean showTabsHeader = false;
 	public Ayarlar()
 	{
 		setLayout(null);
@@ -33,7 +32,7 @@ public class Ayarlar extends JPanel {
 		
 		comboBox = new JComboBox<String>();
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"FlatCarbonIJ", "FlatMonocaiIJ", "FlatMacDarkLaf", "FlatNordIJ", "FlatHighContrastIJ", "FlatMaterialPalenightIJ", "FlatMaterialDeepOceanIJ"}));
-		comboBox.setBounds(137, 83, 180, 22);
+		comboBox.setBounds(137, 83, 254, 22);
 		add(comboBox);
 		
 		lblNewLabel_1 = new JLabel("Dil");
@@ -66,6 +65,7 @@ public class Ayarlar extends JPanel {
 				try {
 					bckp.ayar_sil();
 					bckp.ayar_kayit(comboBox_1.getSelectedItem().toString(), comboBox.getSelectedItem().toString());
+					OBS_BACKUP.dil();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

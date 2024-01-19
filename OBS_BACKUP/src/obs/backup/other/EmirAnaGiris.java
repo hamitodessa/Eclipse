@@ -57,18 +57,19 @@ public class EmirAnaGiris extends JPanel {
 	
 	public Obs_TextFIeld txtEmir;
 	public JTextArea textAciklama;
-	private JButton btnServer ;
-	private JButton btnSurucuSec ;
-	private JButton btnDosyaSec ;
+	public JButton btnServer ;
+	public JButton btnSurucuSec ;
+	public JButton btnDosyaSec ;
 	
 	public static JCheckBox chckbxDurum;
 	public JCheckBox chckbxServerDosya ;
 	
 	public static JLabel lblNewLabel_6 ;
 	public static JLabel lblNewLabel_5;
-
-
-
+	public static JLabel lblNewLabel;
+	public static JLabel lblNewLabel_1;
+	public static JLabel lblNewLabel_4;
+	public static JLabel lblNewLabel_2;
 	public static JList list;
 	public static DefaultListModel<CheckListItem> model ;
 	/**
@@ -92,16 +93,16 @@ public class EmirAnaGiris extends JPanel {
 		splitPane_2.setRightComponent(panel_10);
 		panel_10.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Durum");
-		lblNewLabel.setBounds(25, 68, 86, 14);
+		lblNewLabel = new JLabel("Durum");
+		lblNewLabel.setBounds(25, 72, 86, 14);
 		panel_10.add(lblNewLabel);
 		
 		chckbxDurum = new JCheckBox("");
 		chckbxDurum.setBounds(150, 68, 99, 23);
 		panel_10.add(chckbxDurum);
 		
-		JLabel lblNewLabel_1 = new JLabel("Emir Ismi");
-		lblNewLabel_1.setBounds(25, 100, 99, 14);
+		lblNewLabel_1 = new JLabel("Emir Ismi");
+		lblNewLabel_1.setBounds(25, 104, 99, 14);
 		panel_10.add(lblNewLabel_1);
 		
 		txtEmir = new Obs_TextFIeld(30,"");
@@ -111,7 +112,7 @@ public class EmirAnaGiris extends JPanel {
 		panel_10.add(txtEmir);
 		txtEmir.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Aciklama");
+		lblNewLabel_2 = new JLabel("Aciklama");
 		lblNewLabel_2.setBounds(25, 150, 99, 14);
 		panel_10.add(lblNewLabel_2);
 		
@@ -146,8 +147,8 @@ public class EmirAnaGiris extends JPanel {
 		chckbxServerDosya.setBounds(150, 302, 250, 23);
 		panel_10.add(chckbxServerDosya);
 		
-		JLabel lblNewLabel_4 = new JLabel("Dosya Sayisi");
-		lblNewLabel_4.setBounds(25, 450, 100, 14);
+		lblNewLabel_4 = new JLabel("Dosya Sayisi");
+		lblNewLabel_4.setBounds(25, 450, 115, 14);
 		panel_10.add(lblNewLabel_4);
 		
 		lblNewLabel_5 = new JLabel("0");
@@ -354,6 +355,7 @@ public class EmirAnaGiris extends JPanel {
 		}
 	}
 
+	@SuppressWarnings("static-access")
 	private void emirBilgiDoldur() throws ClassNotFoundException, SQLException
 	{
         try
@@ -599,6 +601,7 @@ public class EmirAnaGiris extends JPanel {
         	OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());        
         	}
 	}
+	@SuppressWarnings("static-access")
 	private void temizle()
 	{
 		model.clear();
@@ -616,9 +619,9 @@ public class EmirAnaGiris extends JPanel {
         OBS_BACKUP.sunucuayarPanel.textKull.setText("");
 		OBS_BACKUP.sunucuayarPanel.textSifre.setText("");
 		OBS_BACKUP.sunucuayarPanel.textFtpSurucu.setText("");
-		OBS_BACKUP.sunucuayarPanel.textPort.setText("");
-		OBS_BACKUP.sunucuayarPanel.textZmnasm.setText("");
-		OBS_BACKUP.sunucuayarPanel.textEskisilme.setText("");
+		OBS_BACKUP.sunucuayarPanel.textPort.setText("21");
+		OBS_BACKUP.sunucuayarPanel.textZmnasm.setText("120");
+		OBS_BACKUP.sunucuayarPanel.textEskisilme.setText("0");
 		OBS_BACKUP.sunucuayarPanel.textSurucu.setText("");
 		
        	OBS_BACKUP.bilgilendirmePanel.chckbxAktifPasif.setSelected(false);

@@ -37,6 +37,20 @@ public class ServerBilgileri extends JPanel {
 	public Obs_TextFIeld textMyDump;
 	public Obs_TextFIeld textMSPort;
 	public JTabbedPane tabbedPane ;
+	
+	public JPanel panel_2;
+	public JPanel panel_2_2 ;
+	
+	public JButton btnMSkaydet;
+	public JButton btnMSTest;
+	public JButton btnDumpSec;
+	public JButton btnMyTest;
+	public JButton btnMyKaydet;
+	
+	public static JLabel lblNewLabel_1;
+	public static JLabel lblNewLabel_2 ;
+	public static JLabel lblNewLabel_2_2;
+	public static JLabel lblNewLabel_1_2;
 	/**
 	 * Create the panel.
 	 */
@@ -51,7 +65,7 @@ public class ServerBilgileri extends JPanel {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Instance");
-		lblNewLabel.setBounds(26, 38, 71, 14);
+		lblNewLabel.setBounds(26, 38, 83, 14);
 		panel.add(lblNewLabel);
 		
 		textMSServer = new Obs_TextFIeld(50,"");
@@ -60,34 +74,34 @@ public class ServerBilgileri extends JPanel {
 		panel.add(textMSServer);
 		textMSServer.setColumns(10);
 		
-		JPanel panel_2 = new JPanel();
+		panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Baglanti", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(26, 94, 339, 104);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Kullanici");
-		lblNewLabel_1.setBounds(10, 30, 71, 14);
+		lblNewLabel_1 = new JLabel("Kullanici");
+		lblNewLabel_1.setBounds(10, 30, 93, 14);
 		panel_2.add(lblNewLabel_1);
 		
 		textMSkull = new Obs_TextFIeld(50,"");
 		JTextFieldRegularPopupMenu.addTo(textMSkull);
-		textMSkull.setBounds(91, 27, 162, 20);
+		textMSkull.setBounds(103, 27, 188, 20);
 		panel_2.add(textMSkull);
 		textMSkull.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Sifre");
-		lblNewLabel_2.setBounds(10, 66, 48, 14);
+		lblNewLabel_2 = new JLabel("Sifre");
+		lblNewLabel_2.setBounds(10, 66, 83, 14);
 		panel_2.add(lblNewLabel_2);
 		
 		textMSsifre = new JPasswordField();
 		//textMSsifre.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
 		textMSsifre.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(textMSsifre);
-		textMSsifre.setBounds(91, 63, 162, 20);
+		textMSsifre.setBounds(103, 63, 188, 20);
 		panel_2.add(textMSsifre);
 		
-		JButton btnMSTest = new JButton("Baglanti Test");
+		btnMSTest = new JButton("Baglanti Test");
 		btnMSTest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -118,7 +132,7 @@ public class ServerBilgileri extends JPanel {
 		btnMSTest.setBounds(10, 517, 129, 23);
 		panel.add(btnMSTest);
 		
-		JButton btnMSkaydet = new JButton("Kaydet");
+		btnMSkaydet = new JButton("Kaydet");
 		btnMSkaydet.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
@@ -155,14 +169,14 @@ public class ServerBilgileri extends JPanel {
 		panel_1.setLayout(null);
 		
 
-		JPanel panel_2_2 = new JPanel();
+		panel_2_2 = new JPanel();
 		panel_2_2.setLayout(null);
 		panel_2_2.setBorder(new TitledBorder(null, "Baglanti", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2_2.setBounds(26, 70, 339, 104);
 		panel_1.add(panel_2_2);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Kullanici");
-		lblNewLabel_1_2.setBounds(10, 30, 71, 14);
+		lblNewLabel_1_2 = new JLabel("Kullanici");
+		lblNewLabel_1_2.setBounds(10, 30, 82, 14);
 		panel_2_2.add(lblNewLabel_1_2);
 		
 		textMykull = new Obs_TextFIeld(50,"");
@@ -171,8 +185,8 @@ public class ServerBilgileri extends JPanel {
 		textMykull.setBounds(91, 27, 209, 20);
 		panel_2_2.add(textMykull);
 		
-		JLabel lblNewLabel_2_2 = new JLabel("Sifre");
-		lblNewLabel_2_2.setBounds(10, 66, 48, 14);
+		lblNewLabel_2_2 = new JLabel("Sifre");
+		lblNewLabel_2_2.setBounds(10, 66, 71, 14);
 		panel_2_2.add(lblNewLabel_2_2);
 		
 		textMySifre = new JPasswordField();
@@ -182,7 +196,7 @@ public class ServerBilgileri extends JPanel {
 		textMySifre.setBounds(91, 63, 209, 20);
 		panel_2_2.add(textMySifre);
 		
-		JButton btnMyTest = new JButton("Baglanti Test");
+		btnMyTest = new JButton("Baglanti Test");
 		btnMyTest.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
@@ -213,7 +227,7 @@ public class ServerBilgileri extends JPanel {
 		btnMyTest.setBounds(10, 517, 129, 23);
 		panel_1.add(btnMyTest);
 		
-		JButton btnMyKaydet = new JButton("Kaydet");
+		btnMyKaydet = new JButton("Kaydet");
 		btnMyKaydet.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
@@ -221,6 +235,11 @@ public class ServerBilgileri extends JPanel {
 					if(textMYPort.getText().equals("")) return ;
 					if(textMykull.getText().equals("")) return ;
 					if(textMySifre.getText().equals("")) return ;
+					if(textMyDump.getText().equals(""))
+					{
+						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "Backup islemi icin  'mysqldump.exe'  surucusu belirtilmelidir");
+						return;
+					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.MY_Server_Kayit();
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
@@ -254,7 +273,7 @@ public class ServerBilgileri extends JPanel {
 		panel_1.add(textMyDump);
 		textMyDump.setColumns(10);
 		
-		JButton btnDumpSec = new JButton("Sec");
+		btnDumpSec = new JButton("Sec");
 		btnDumpSec.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -276,7 +295,7 @@ public class ServerBilgileri extends JPanel {
 				}
 			}
 		});
-		btnDumpSec.setBounds(470, 214, 100, 23);
+		btnDumpSec.setBounds(430, 214, 140, 23);
 		panel_1.add(btnDumpSec);
 
 	}

@@ -16,6 +16,7 @@ import javax.swing.border.TitledBorder;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
 import obs.backup.main.OBS_BACKUP;
+import raven.toast.Notifications;
 
 import javax.swing.JSpinner;
 
@@ -24,16 +25,25 @@ public class YedeklemeAraligi extends JPanel {
 	private static final long serialVersionUID = 1L;
 	public Obs_TextFIeld textHerDakka;
 	
-	public JCheckBox chckbxPtesi;
-	public JCheckBox chckbxSali ;
-	public JCheckBox chckbxCarsamba ;
-	public JCheckBox chckbxPersembe ;
-	public JCheckBox chckbxCuma ;
-	public JCheckBox chckbxCumartesi ;
-	public JCheckBox chckbxPazar ;
+	public static JCheckBox chckbxPtesi;
+	public static JCheckBox chckbxSali ;
+	public static JCheckBox chckbxCarsamba ;
+	public static JCheckBox chckbxPersembe ;
+	public static JCheckBox chckbxCuma ;
+	public static JCheckBox chckbxCumartesi ;
+	public static JCheckBox chckbxPazar ;
 	
 	public JSpinner timeBaslangic;
 	public JSpinner timeBitis;
+	
+	public static JLabel lblNewLabel;
+	public static JLabel lblNewLabel_1;
+	public static JLabel lblNewLabel_2;
+	public static JLabel lblNewLabel_3;
+	public static JLabel lblNewLabel_3_1;
+	public JPanel panel;
+	
+	public JButton btnNewButton_9;
 	/**
 	 * Create the panel.
 	 */
@@ -41,7 +51,7 @@ public class YedeklemeAraligi extends JPanel {
 	public YedeklemeAraligi() {
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Her");
+		lblNewLabel = new JLabel("Her");
 		lblNewLabel.setBounds(43, 35, 48, 14);
 		add(lblNewLabel);
 		
@@ -51,11 +61,11 @@ public class YedeklemeAraligi extends JPanel {
 		add(textHerDakka);
 		textHerDakka.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("dakkada bir");
+		lblNewLabel_1 = new JLabel("dakkada bir");
 		lblNewLabel_1.setBounds(205, 35, 81, 14);
 		add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Gunler");
+		lblNewLabel_2 = new JLabel("Gunler");
 		lblNewLabel_2.setBounds(43, 100, 48, 14);
 		add(lblNewLabel_2);
 		
@@ -87,17 +97,17 @@ public class YedeklemeAraligi extends JPanel {
 		chckbxPazar.setBounds(118, 258, 99, 23);
 		add(chckbxPazar);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Yedekleme Araligi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(43, 322, 380, 112);
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_3 = new JLabel("Baslangic");
+		lblNewLabel_3 = new JLabel("Baslangic");
 		lblNewLabel_3.setBounds(30, 34, 71, 14);
 		panel.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("Bitis");
+		lblNewLabel_3_1 = new JLabel("Bitis");
 		lblNewLabel_3_1.setBounds(30, 67, 71, 14);
 		panel.add(lblNewLabel_3_1);
 		
@@ -124,12 +134,22 @@ public class YedeklemeAraligi extends JPanel {
 		qweDate.setMinutes(00);
 		timeBitis.setValue(qweDate);
 			
-		JButton btnNewButton_9 = new JButton("Kaydet");
+		btnNewButton_9 = new JButton("Kaydet");
 		btnNewButton_9.setBounds(624, 550, 100, 23);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));	
 				try {
+					Date date = (Date) (timeBaslangic.getValue());
+					Date date2 = (Date) (timeBitis.getValue());
+					date2.setYear(date.getYear());
+					date2.setMonth(date.getMonth());
+					date2.setDate(date.getDate());
+					if (date.after(date2) )
+					{
+					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,  "Bitis Zamani Baslangic Zamanindan Kucuk olamaz");
+						return;
+					}
 					OBS_BACKUP.yedeklemeKaydet();
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 				} catch (Exception e1) {

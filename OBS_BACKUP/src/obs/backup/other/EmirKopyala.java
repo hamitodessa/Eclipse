@@ -21,13 +21,15 @@ public class EmirKopyala extends JPanel {
 	private static final long serialVersionUID = 1L;
 	public Obs_TextFIeld textField;
 
+	public static JLabel lblNewLabel;
+	public JButton btnNewButton_9;
 	/**
 	 * Create the panel.
 	 */
 	public EmirKopyala() {
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Yeni Emir Ismi");
+		lblNewLabel = new JLabel("Yeni Emir Ismi");
 		lblNewLabel.setBounds(56, 86, 107, 14);
 		add(lblNewLabel);
 		
@@ -37,7 +39,7 @@ public class EmirKopyala extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton_9 = new JButton("Kaydet");
+		btnNewButton_9 = new JButton("Kaydet");
 		btnNewButton_9.setBounds(624, 550, 100, 23);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

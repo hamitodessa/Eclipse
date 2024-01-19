@@ -41,6 +41,7 @@ public class KayitliEmirler extends JPanel {
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private JTable tblEmir;
 	private Obs_TextFIeld txtArama;
+	public JLabel lblNewLabel;
 	/**
 	 * Create the panel.
 	 */
@@ -53,7 +54,7 @@ public class KayitliEmirler extends JPanel {
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Arama");
+		lblNewLabel = new JLabel("Arama");
 		lblNewLabel.setBounds(10, 15, 48, 14);
 		panel.add(lblNewLabel);
 		

@@ -258,9 +258,31 @@ public class SunucuAyarlari extends JPanel {
 	
 		JButton btnNewButton_9 = new JButton("Kaydet");
 		btnNewButton_9.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 			
 				try {
+					if(chckbxYerel.isSelected())
+					{
+						if(textSurucu.getText().equals(""))
+						{
+							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "Surucu Secilmemis");
+							return;
+						}
+					}
+					else if(chckbxFtp.isSelected())
+					{
+						if(textHost.getText().equals("") || textKull.getText().equals("") || textSifre.getText().equals(""))
+						{
+							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "FTP Baglanti Bilgileri Eksik");
+							return;
+						}
+						else if(textFtpSurucu.getText().equals(""))
+						{
+							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "FTP Surucu Secilmemis");
+							return;
+						}
+					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.sunucuKaydet();
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
@@ -279,11 +301,8 @@ public class SunucuAyarlari extends JPanel {
 		 btnftpkont.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				try {
-					
 					AnaFtpKontrol();
-					
 				} catch (Exception e1) {
-					
 					e1.printStackTrace();
 				}
 				}

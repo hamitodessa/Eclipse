@@ -112,6 +112,108 @@ public class dilSecenek {
 		  case "Kullanici":
 			  tEXT = "User Name"  ;
 			  break;
+		  case "Her":
+			  tEXT = "Every"  ;
+			  break;
+		  case "dakkada bir":
+			  tEXT = "minute(s)"  ;
+			  break;
+		  case "Gunler":
+			  tEXT = "Days"  ;
+			  break;
+		  case "Pazartesi":
+			  tEXT = "Monday"  ;
+			  break;
+		  case "Sali":
+			  tEXT = "Tuesday"  ;
+			  break;
+		  case "Carsamba":
+			  tEXT = "Wednesday"  ;
+			  break;
+		  case "Persembe":
+			  tEXT = "Thursday"  ;
+			  break;
+		  case "Cuma":
+			  tEXT = "Friday"  ;
+			  break;
+		  case "Cumartesi":
+			  tEXT = "Saturday"  ;
+			  break;
+		  case "Pazar":
+			  tEXT = "Sunday"  ;
+			  break;
+		  case "Baslangic":
+			  tEXT = "Starts"  ;
+			  break;
+		  case "Bitis":
+			  tEXT = "Ends"  ;
+			  break;
+		  case "Yedekleme Araligi":
+			  tEXT = "Backup Interval"  ;
+			  break;
+		  case "Aralik":
+			  tEXT = "Interval"  ;
+			  break;
+		  case "Yeni Emir Ismi" :
+			  tEXT = "New Job Name"  ;
+			  break;
+		  case "Gecerli Sifreniz":
+			  tEXT = "Current Password"  ;
+			  break;
+		  case "Yeni Sifreniz":
+			  tEXT = "New Password"  ;
+			  break;
+		  case "Sifre Yenileme":
+			  tEXT = "Change Password"  ;
+			  break;
+		  case "Arama":
+			  tEXT = "Search"  ;
+			  break;
+		  case "Sil":
+			  tEXT = "Delete"  ;
+			  break;
+		  case "Excell Aktarma":
+			  tEXT = "Export to Excell"  ;
+			  break;  
+		  case "Dosya Sec":
+			  tEXT = "Select File(s)"  ;
+			  break;  
+		  case "Surucu Sec":
+			  tEXT = "Select Folder(s)"  ;
+			  break;  
+		  case "Server Baglanti" :
+			  tEXT = "Server Connect"  ;
+			  break;  
+		  case "Emir Ismi" :
+			  tEXT = "Job Name"  ;
+			  break;	
+		  case "Dosya Sayisi" :
+			  tEXT = "Selected Counts"  ;
+			  break;	
+		  case "Sql Server / Diger Dosya Yedekleme" :
+			  tEXT = "Sql Server / Another Files & Folders"  ;
+			  break;
+		  case "Aciklama" :
+			  tEXT = "Descriptions"  ;
+			  break;
+		  case "Mail Bilgileri" :
+			  tEXT = "Email Information"  ;
+			  break;
+		  case "Baglanti" :
+			  tEXT = "Connect"  ;
+			  break;
+		  case "Baglanti Test" :
+			  tEXT = "Connection Test"  ;
+			  break;
+		  case "Sec" :
+			  tEXT = "Select Folder"  ;
+			  break;
+			  
+			  
+			  
+			  
+			  
+			        
 			  
 		}  
 		return tEXT;

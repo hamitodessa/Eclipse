@@ -427,7 +427,7 @@ public class BACKUP_GLOBAL {
 		con = null;
 	}
 	public void ftp_ismi_kayit(String eismi, String hst, String kll, String sif, String sur
-			, String prt, int zmn, String esy, String neresi, String surucu)throws ClassNotFoundException, SQLException
+			, String prt, int zmn, int esy, String neresi, String surucu)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -450,7 +450,7 @@ public class BACKUP_GLOBAL {
 		stmt.setString(5, sur);
 		stmt.setString(6, prt);
 		stmt.setInt(7, zmn);
-		stmt.setString(8, esy);
+		stmt.setInt(8, esy);
 		stmt.setString(9, neresi);
 		stmt.setString(10, surucu);
 		stmt.executeUpdate();

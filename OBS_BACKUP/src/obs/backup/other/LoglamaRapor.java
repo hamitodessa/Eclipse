@@ -92,8 +92,12 @@ public class LoglamaRapor extends JPanel {
 	private Obs_TextFIeld txtArama;
 	private JComboBox<String> comboBox ;
 	private boolean ilkBASLA= true;
+	public JLabel lblNewLabel;
+	public JButton btnExcell ;
 	JPanel panel;
 	ScrollPaneWin11 scrollPane ;
+	
+	public JButton btnNewButton;
 	/**
 	 * Create the panel.
 	 */
@@ -106,7 +110,7 @@ public class LoglamaRapor extends JPanel {
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Arama");
+		lblNewLabel = new JLabel("Arama");
 		lblNewLabel.setBounds(10, 15, 48, 14);
 		panel.add(lblNewLabel);
 		
@@ -137,7 +141,7 @@ public class LoglamaRapor extends JPanel {
 
 		panel.add(comboBox);
 		
-		JButton btnNewButton = new JButton("Sil");
+		btnNewButton = new JButton("Sil");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(comboBox.getItemCount() == 0 ) return ;
@@ -167,7 +171,7 @@ public class LoglamaRapor extends JPanel {
 		btnNewButton.setBounds(650, 11, 50, 23);
 		panel.add(btnNewButton);
 		
-		JButton btnExcell = new JButton("");
+		btnExcell = new JButton("");
 		btnExcell.setToolTipText("Excell Aktarma");
 		btnExcell.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

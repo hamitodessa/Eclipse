@@ -11,6 +11,8 @@ import com.formdev.flatlaf.FlatClientProperties;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
 import obs.backup.main.OBS_BACKUP;
+import raven.toast.Notifications;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.Cursor;
@@ -46,6 +48,7 @@ public class Bilgilendirme extends JPanel {
 	public JButton btnNewButton_9;
 	
 	public JPanel panel;
+	public JPanel panel_1;
 	public JPanel panel_1_1;
 	/**
 	 * Create the panel.
@@ -94,7 +97,7 @@ public class Bilgilendirme extends JPanel {
 		});
 		panel.add(chckbxHata);
 		
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBorder(new TitledBorder(null, "Mail Bilgileri", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(37, 153, 580, 125);
@@ -202,8 +205,22 @@ public class Bilgilendirme extends JPanel {
 		btnNewButton_9 = new JButton("Kaydet");
 		btnNewButton_9.setBounds(624, 550, 100, 23);
 		btnNewButton_9.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(chckbxAktifPasif.isSelected())
+					{
+						if(textGonHesap.getText().equals("") || textAlici.getText().equals(""))
+						{
+							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "Gonderen Bilgileri Eksik");
+							return;
+						}
+						else if(textSmtp.getText().equals("") || textPort.getText().equals("") || textKull.getText().equals("") || textSifre.getText().equals(""))
+						{
+							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "Smtp Bilgileri Eksik");
+							return;
+						}
+					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.BilgilendirmeKaydet();
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);

@@ -94,7 +94,54 @@ public class dilAciklamalar {
 			case "Hata Durumundan Emir Bosaldi": 
 				acikLAMAString = " Jobr Discharged Due to Error Status" ;
 				break;
-				
+			case "Emir Duzelt": 
+				acikLAMAString = "Change" ;
+				break;
+			case "Sil": 
+				acikLAMAString = "Delete" ;
+				break;
+			case "Emir Dosyadan Silinecek ..?": 
+				acikLAMAString = "The Job Will Be Deleted ?" ;
+				break;
+			case "Yedekle": 
+				acikLAMAString = "Backup" ;
+				break;
+			case "Pasiv Durumda": 
+				acikLAMAString = "In Passive State" ;
+				break;
+			case "Son Durum": 
+				acikLAMAString = "Last Situation" ;
+				break;
+			case "Dosya Sayisi": 
+				acikLAMAString = "File Counts" ;
+				break;
+			case "Surucu": 
+				acikLAMAString = "Folder" ;
+				break;
+			case "Son Yedekleme": 
+				acikLAMAString = "Last Backup" ;
+				break;
+			case "Gel.Yedekleme": 
+				acikLAMAString = "Next Backup" ;
+				break;
+			case "Aciklama": 
+				acikLAMAString = "Description" ;
+				break;
+			case "- Isimli Emir Pasiv Durumda !!! ,  Oncelikle aktivlestirin....": 
+				acikLAMAString = "- Named Job is in Passive Status!!! , Activate it first...." ;
+				break;
+			case "Yedekleme Sirasina Konuldu": 
+				acikLAMAString = "Placed in the Backup Queue" ;
+				break;
+			case "0 Adet Dosya": 
+				acikLAMAString = "0 Files" ;
+				break;
+			case " Adet Dosya - ": 
+				acikLAMAString = " Files - " ;
+				break;
+			case " Adet Dosya": 
+				acikLAMAString = " Files" ;
+				break;
 			}
 		
 		

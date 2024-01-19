@@ -11,6 +11,7 @@ import OBS_C_2025.db_List;
 import OBS_C_2025.emir_bilgiler;
 import OBS_C_2025.ftp_bilgiler;
 import OBS_C_2025.yedekleme_bilgiler;
+import obs.backup.ayarlar.dilAciklamalar;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -92,7 +93,7 @@ public  class gOREV_TAKIP extends JPanel {
 		setPreferredSize(new Dimension(800,175));
 		setLayout(null);
 
-		JButton btnDuzelt = new JButton("Emir Duzelt");
+		JButton btnDuzelt = new JButton( dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Duzelt")    );
 		btnDuzelt.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnDuzelt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -111,12 +112,12 @@ public  class gOREV_TAKIP extends JPanel {
 		btnDuzelt.setBounds(675, 26, 110, 25);
 		add(btnDuzelt);
 
-		JButton btnSil = new JButton("Sil");
+		JButton btnSil = new JButton( dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Sil")   );
 		btnSil.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnSil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				int g = JOptionPane.showOptionDialog(null,"Emir Dosyadan Silinecek ..?" ,
+				int g = JOptionPane.showOptionDialog(null, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Dosyadan Silinecek ..?")  ,
 						"OBS BACKUP ", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
 				if(g ==  1) {
 					return;
@@ -135,13 +136,13 @@ public  class gOREV_TAKIP extends JPanel {
 		btnSil.setBounds(675, 75, 110, 25);
 		add(btnSil);
 
-		btnYedekle = new JButton("Yedekle");
+		btnYedekle = new JButton(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Yedekle") );
 		btnYedekle.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnYedekle.setName("btnYedekle");
 		btnYedekle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(lblDurum.getText().equals("Pasiv Durumda")) return;
+					if(lblDurum.getText().equals( dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Pasiv Durumda") )) return;
 					yedekSirasinaKoy();
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -199,27 +200,27 @@ public  class gOREV_TAKIP extends JPanel {
 		lblKalanZaman.setFont(new Font("Tahoma", Font.BOLD, 11));
 		add(lblKalanZaman);
 
-		JLabel lblNewLabel = new JLabel("Son Durum");
+		JLabel lblNewLabel = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Son Durum") );
 		lblNewLabel.setBounds(131, 47, 83, 14);
 		add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("Dosya Sayisi");
+		JLabel lblNewLabel_1 = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Dosya Sayisi") );
 		lblNewLabel_1.setBounds(131, 68, 99, 14);
 		add(lblNewLabel_1);
 
-		JLabel lblNewLabel_1_1 = new JLabel("Surucu");
+		JLabel lblNewLabel_1_1 = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Surucu") );
 		lblNewLabel_1_1.setBounds(131, 89, 99, 14);
 		add(lblNewLabel_1_1);
 
-		JLabel lblNewLabel_1_2 = new JLabel("Son Yedekleme");
+		JLabel lblNewLabel_1_2 = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Son Yedekleme") );
 		lblNewLabel_1_2.setBounds(131, 111, 99, 14);
 		add(lblNewLabel_1_2);
 
-		JLabel lblNewLabel_1_3 = new JLabel("Gel.Yedekleme");
+		JLabel lblNewLabel_1_3 = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Gel.Yedekleme") );
 		lblNewLabel_1_3.setBounds(131, 132, 99, 14);
 		add(lblNewLabel_1_3);
 
-		JLabel lblNewLabel_1_4 = new JLabel("Aciklama");
+		JLabel lblNewLabel_1_4 = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Aciklama"));
 		lblNewLabel_1_4.setBounds(131, 153, 99, 14);
 		add(lblNewLabel_1_4);
 
@@ -279,13 +280,14 @@ public  class gOREV_TAKIP extends JPanel {
 		btnStart.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/start16.png")));
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(! lblDurum.getText().equals("Pasiv Durumda"))
+				if(! lblDurum.getText().equals(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Pasiv Durumda") ))
 				{
 					timerDURDUR = false;
 					run();
 				}
 				else {
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,emirADI + "- Isimli Emir Pasiv Durumda !!! ,  Oncelikle aktivlestirin....");       
+					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,emirADI + 
+							dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"- Isimli Emir Pasiv Durumda !!! ,  Oncelikle aktivlestirin...."));       
 				}
 			}
 		});
@@ -361,7 +363,7 @@ public  class gOREV_TAKIP extends JPanel {
 		}
 	}
 	public void run() {
-		if (lblDurum.getText().equals("Pasiv Durumda"))
+		if (lblDurum.getText().equals(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Pasiv Durumda") ))
 		{
 			timerDURDUR = true;
 		return;
@@ -418,15 +420,15 @@ public  class gOREV_TAKIP extends JPanel {
 			timerDURDUR=true;
 			tt.cancel();
 		}
-		bckp.log_kayit(eADI, new Date(), "Yedekleme Sirasina Konuldu");
-		lblSonDurum.setText("Yedekleme Sirasina Konuldu");
+		bckp.log_kayit(eADI, new Date(), dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Yedekleme Sirasina Konuldu") );
+		lblSonDurum.setText(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Yedekleme Sirasina Konuldu"));
 		lblSonDurum.setForeground(Color.GREEN);
 	    OBS_BACKUP.gorevLER.add(eADI);
 	}
 	private void basla() throws ClassNotFoundException, ParseException, SQLException
 	{
 		GunLERE_BAK();
-		if (! lblDurum.getText().equals("Pasiv Durumda"))
+		if (! lblDurum.getText().equals(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Pasiv Durumda") ))
 		{
 			run();
 		}
@@ -479,7 +481,7 @@ public  class gOREV_TAKIP extends JPanel {
 		{
 			lblDurum.setVisible(true);
 			timerDURDUR = true;
-			lblDurum.setText("Pasiv Durumda");
+			lblDurum.setText(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Pasiv Durumda"));
 		}
 		else
 		{
@@ -491,7 +493,7 @@ public  class gOREV_TAKIP extends JPanel {
 		if (kontrol)
 		{
 			lblSonDurum.setForeground(Color.GREEN);
-			lblSonDurum.setText("Yedeklendi");
+			lblSonDurum.setText(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Yedeklendi"));
 			lblSonDurum.setToolTipText("");
 		}
 		else
@@ -511,10 +513,10 @@ public  class gOREV_TAKIP extends JPanel {
 			{
 				List<String> dbliste = bckp.db_liste(eADI);
 				if (dbliste.size() == 0 ) {  
-					lblDosyaSayisi.setText("0 Adet Dosya");
+					lblDosyaSayisi.setText(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"0 Adet Dosya") );
 				}
 				else {
-					lblDosyaSayisi.setText(dbliste.size() + " Adet Dosya - " + insTANCE);
+					lblDosyaSayisi.setText(dbliste.size() + dilAciklamalar.dilAciklama(OBS_BACKUP.dILS," Adet Dosya - ")  + insTANCE);
 					lblSurucu.setText(ftpBilgi.get(0).getHOST() + "\\" + ftpBilgi.get(0).getSURUCU().replace("/", "\\"));
 				}
 			}
@@ -527,7 +529,7 @@ public  class gOREV_TAKIP extends JPanel {
 				}
 				else
 				{
-					lblDosyaSayisi.setText(dbliste.size() +  " Adet Dosya");
+					lblDosyaSayisi.setText(dbliste.size() + dilAciklamalar.dilAciklama(OBS_BACKUP.dILS," Adet Dosya")  );
 					lblSurucu.setText(ftpBilgi.get(0).getSURUCU_YER());
 				}
 			}
@@ -538,11 +540,11 @@ public  class gOREV_TAKIP extends JPanel {
 			{
 				List<db_List> dosliste = bckp.diger_dosya_liste(lblemirISMI.getText());
 				if (dosliste.size() == 0 ) {  
-					lblDosyaSayisi.setText("0 Adet Dosya");
+					lblDosyaSayisi.setText(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"0 Adet Dosya"));
 				}
 				else
 				{
-					lblDosyaSayisi.setText(dosliste.size() +  " Adet Dosya");
+					lblDosyaSayisi.setText(dosliste.size() +  dilAciklamalar.dilAciklama(OBS_BACKUP.dILS," Adet Dosya"));
 					lblSurucu.setText(ftpBilgi.get(0).getHOST() + "\\" + ftpBilgi.get(0).getSURUCU().replace("/", "\\"));
 				}
 			}
@@ -556,7 +558,7 @@ public  class gOREV_TAKIP extends JPanel {
 				}
 				else
 				{
-					lblDosyaSayisi.setText(dosliste.size() +  " Adet Dosya");
+					lblDosyaSayisi.setText(dosliste.size() +   dilAciklamalar.dilAciklama(OBS_BACKUP.dILS," Adet Dosya"));
 					lblSurucu.setText(ftpBilgi.get(0).getSURUCU_YER());
 				}
 			}

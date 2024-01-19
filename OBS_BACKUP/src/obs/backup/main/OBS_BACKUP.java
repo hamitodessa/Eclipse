@@ -1624,7 +1624,7 @@ public class OBS_BACKUP extends JFrame {
 				}
 			}
 			Date nowwDate = new Date();
-			durumYAZ(emirADI,nowwDate);					
+			durumYAZ(emirADI,nowwDate);			
 			bckp.genel_kayit_durum(emirADI, true, nowwDate, dilAciklamalar.dilAciklama(dILS,"Yedeklendi") );
 			if (eskiyedek > 0) // **************SURUCU ESKILERI SIL ************************************************
 			{

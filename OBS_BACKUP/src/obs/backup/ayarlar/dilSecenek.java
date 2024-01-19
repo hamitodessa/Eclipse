@@ -3,8 +3,6 @@ package obs.backup.ayarlar;
 public class dilSecenek {
 	
 	static String tEXT = "" ;
-	
-
 	public static String dil(String text) {
 		switch(text) {
 		  case "Dil":
@@ -241,11 +239,6 @@ public class dilSecenek {
 		  case  "sn.":
 			  tEXT = "seconds"  ;
 			  break;
-			  
-			  
-			  
-			    	  	  
-			        
 			  
 		}  
 		return tEXT;

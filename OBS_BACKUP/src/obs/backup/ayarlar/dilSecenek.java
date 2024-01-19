@@ -208,11 +208,43 @@ public class dilSecenek {
 		  case "Sec" :
 			  tEXT = "Select Folder"  ;
 			  break;
+		  case "Yerel Surucu" :
+			  tEXT = "Local Folder"  ;
+			  break;	  
+		  case "FTP Ayarlari" :
+			  tEXT = "FTP Settings"  ;
+			  break;	
+		  case "FTP Diger Ayarlar" :
+			  tEXT = "FTP Another Settings"  ;
+			  break;	
+		  case "Surucu" :
+			  tEXT = "Folder"  ;
+			  break;	
+		  case "Zaman Asimi" :
+			  tEXT = "Time out"  ;
+			  break;	
+		  case "Surucu Kontrol" :
+			  tEXT = "Check Folder"  ;
+			  break;
+		  case "Eski Yedek" :
+			  tEXT = "Check Old Backups"  ;
+			  break;
+		  case  "Eski Yed.Silme":
+			  tEXT = "Delete Old Backups"  ;
+			  break;
+		  case  "gunden eski olanari silme (0 Silinmez)":
+			  tEXT = "day(s) Delete backups older than  (0 Not deleted)"  ;
+			  break;
+		  case  "Ftp Kontrol":
+			  tEXT = "Check FTP"  ;
+			  break;
+		  case  "sn.":
+			  tEXT = "seconds"  ;
+			  break;
 			  
 			  
 			  
-			  
-			  
+			    	  	  
 			        
 			  
 		}  

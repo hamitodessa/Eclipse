@@ -178,6 +178,7 @@ import javax.mail.internet.MimeMultipart;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 @SuppressWarnings({ "static-access" ,"resource","unused","deprecation"})
 public class OBS_BACKUP extends JFrame {
@@ -241,6 +242,8 @@ public class OBS_BACKUP extends JFrame {
 	static JButton btnBuyult;
 	static JButton btnMinimize;
 	static TrayIcon trayIcon = null ;
+	
+	public static String dILS = "" ;
 	/**
 	 * Hamit.
 	 */
@@ -750,8 +753,6 @@ public class OBS_BACKUP extends JFrame {
 		//*********************************************************************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
-		
-
 		splitPane.setRightComponent(tabbedPane);
 
 		JPanel panel_1 = new JPanel();
@@ -801,7 +802,7 @@ public class OBS_BACKUP extends JFrame {
 		altPane.setLayout(null);
 		contentPane.add(altPane, BorderLayout.SOUTH);
 
-		lblEmir = new JLabel("Emir Sayisi");
+		lblEmir = new JLabel("");
 		lblEmir.setBounds(40, 5, 75, 14);
 		altPane.add(lblEmir);
 
@@ -840,6 +841,7 @@ public class OBS_BACKUP extends JFrame {
 		try {
 			String diltemaString[] = bckp.ayar_oku();
 			tema(diltemaString[1]);
+			dILS = diltemaString[0];
 			ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
 			ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
 		} catch (Exception e1) {
@@ -1360,7 +1362,14 @@ public class OBS_BACKUP extends JFrame {
 				say +=1 ;			
 		}
 		lblemirSAYI.setText(Integer.toString(say));
-		lblEmir.setText("Emir Sayisi"); ;
+		if(dILS.equals("Turkce"))
+		{
+			lblEmir.setText("Emir Sayisi");
+		}
+		else {
+			lblEmir.setText(dilSecenek.dil("Emir Sayisi")); ;
+		}
+		
 	}
 	public void emirtekSIL_HATA(String eadi)
 	{
@@ -2802,10 +2811,48 @@ public class OBS_BACKUP extends JFrame {
 			serverBilgileriPanel.btnDumpSec.setText("Sec");
 			serverBilgileriPanel.btnMyKaydet.setText("Kaydet");
 			serverBilgileriPanel.btnMyTest.setText("Baglanti Test");
-			//**********
+			//**************************************************************************************
+			sunucuayarPanel.chckbxYerel.setText("Yerel Surucu");
+			titledBorder = (TitledBorder)sunucuayarPanel.panel_12.getBorder();
+			titledBorder.setTitle("FTP Ayarlari");
+			sunucuayarPanel.panel_12.setBorder(titledBorder);
+			sunucuayarPanel.lblNewLabel_1.setText("Kullanici");
+			sunucuayarPanel.lblNewLabel_2.setText("Sifre");
+			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1.getBorder();
+			titledBorder.setTitle("FTP Diger Ayarlar");
+			sunucuayarPanel.panel_12_1.setBorder(titledBorder);
+			sunucuayarPanel.lblNewLabel_3.setText("Surucu");
+			sunucuayarPanel.lblNewLabel_5.setText("Zaman Asimi");
+			sunucuayarPanel.btnNewButton_6.setText("Surucu Kontrol");
+			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1_1.getBorder();
+			titledBorder.setTitle("Yerel Surucu");
+			sunucuayarPanel.panel_12_1_1.setBorder(titledBorder);
+			sunucuayarPanel.lblNewLabel_8.setText("Surucu");
+			sunucuayarPanel.btnNewButton_7.setText("Surucu Sec");
+			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1_1_1.getBorder();
+			titledBorder.setTitle("Eski Yedek");
+			sunucuayarPanel.panel_12_1_1_1.setBorder(titledBorder);
+			sunucuayarPanel.lblNewLabel_6.setText("Eski Yed.Silme");
+			sunucuayarPanel.lblNewLabel_7.setText("gunden eski olanari silme (0 Silinmez)");
+			sunucuayarPanel.btnftpkont.setText("Ftp Kontrol");
+			sunucuayarPanel.btnNewButton_9.setText("Kaydet");
+			sunucuayarPanel.lblNewLabel_9.setText("sn.");
+			//************************************************************************************
 			ayarlarPanel.lblNewLabel.setText("Gorunum");
 			ayarlarPanel.lblNewLabel_1.setText("Dil");
 			ayarlarPanel.btnKaydet.setText("Kaydet");
+			//************************************************************************************
+			tabbedPane_1.setTitleAt(0, "Emir");
+			tabbedPane_1.setTitleAt(1, "Sunucu Ayarlari");
+			tabbedPane_1.setTitleAt(2, "Bilgilendirme");
+			tabbedPane_1.setTitleAt(3, "Yedekleme Araligi");
+			tabbedPane_1.setTitleAt(4, "Server Bilgileri");
+			tabbedPane_1.setTitleAt(5, "Emir Kopyala");
+			
+			
+			
+			
+			
 			
 		}
 		else {
@@ -2908,10 +2955,44 @@ public class OBS_BACKUP extends JFrame {
 			serverBilgileriPanel.btnDumpSec.setText(dilSecenek.dil("Sec"));
 			serverBilgileriPanel.btnMyKaydet.setText(dilSecenek.dil("Kaydet"));
 			serverBilgileriPanel.btnMyTest.setText(dilSecenek.dil("Baglanti Test"));
-			//
+			//**************************************************************************************
+			sunucuayarPanel.chckbxYerel.setText(dilSecenek.dil("Yerel Surucu"));
+			titledBorder = (TitledBorder)sunucuayarPanel.panel_12.getBorder();
+			titledBorder.setTitle(dilSecenek.dil("FTP Ayarlari"));
+			sunucuayarPanel.panel_12.setBorder(titledBorder);
+			sunucuayarPanel.lblNewLabel_1.setText(dilSecenek.dil("Kullanici"));
+			sunucuayarPanel.lblNewLabel_2.setText(dilSecenek.dil("Sifre"));
+			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1.getBorder();
+			titledBorder.setTitle(dilSecenek.dil("FTP Diger Ayarlar"));
+			sunucuayarPanel.panel_12_1.setBorder(titledBorder);
+			sunucuayarPanel.lblNewLabel_3.setText(dilSecenek.dil("Surucu"));
+			sunucuayarPanel.lblNewLabel_5.setText(dilSecenek.dil("Zaman Asimi"));
+			sunucuayarPanel.btnNewButton_6.setText(dilSecenek.dil("Surucu Kontrol"));
+			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1_1.getBorder();
+			titledBorder.setTitle(dilSecenek.dil("Yerel Surucu"));
+			sunucuayarPanel.panel_12_1_1.setBorder(titledBorder);
+			sunucuayarPanel.lblNewLabel_8.setText(dilSecenek.dil("Surucu"));
+			sunucuayarPanel.btnNewButton_7.setText(dilSecenek.dil("Surucu Sec"));
+			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1_1_1.getBorder();
+			titledBorder.setTitle(dilSecenek.dil("Eski Yedek"));
+			sunucuayarPanel.panel_12_1_1_1.setBorder(titledBorder);
+			sunucuayarPanel.lblNewLabel_6.setText(dilSecenek.dil("Eski Yed.Silme"));
+			sunucuayarPanel.lblNewLabel_7.setText(dilSecenek.dil("gunden eski olanari silme (0 Silinmez)"));
+			sunucuayarPanel.btnftpkont.setText(dilSecenek.dil("Ftp Kontrol"));
+			sunucuayarPanel.btnNewButton_9.setText(dilSecenek.dil("Kaydet"));
+			sunucuayarPanel.lblNewLabel_9.setText(dilSecenek.dil("sn."));
+			//**********************************************************************************************
 			ayarlarPanel.lblNewLabel.setText(dilSecenek.dil("Tema"));
 			ayarlarPanel.lblNewLabel_1.setText(dilSecenek.dil("Dil"));
 			ayarlarPanel.btnKaydet.setText(dilSecenek.dil("Kaydet"));
+			//**********************************************************************************************
+			tabbedPane_1.setTitleAt(0, "Job");
+			tabbedPane_1.setTitleAt(1, "Setting Ftp/Folders");
+			tabbedPane_1.setTitleAt(2, "To inform");
+			tabbedPane_1.setTitleAt(3, "Backup Time");
+			tabbedPane_1.setTitleAt(4, "Server Settings");
+			tabbedPane_1.setTitleAt(5, "Copy Job");
+			
 		}
 	}
 	private void tema(String tema)

@@ -42,18 +42,25 @@ public class SunucuAyarlari extends JPanel {
 	public JCheckBox chckbxFtp;
 	public JCheckBox chckbxYerel ;
 	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
+	public JLabel lblNewLabel_1;
+	public JLabel lblNewLabel_2;
+	public JLabel lblNewLabel_3;
 	private JLabel lblNewLabel_4;
-	private JLabel lblNewLabel_5;
-	private JLabel lblNewLabel_6;
-	private JLabel lblNewLabel_7;
-	private JLabel lblNewLabel_8;
+	public JLabel lblNewLabel_5;
+	public JLabel lblNewLabel_6;
+	public JLabel lblNewLabel_7;
+	public JLabel lblNewLabel_8;
+	public JLabel lblNewLabel_9;
 	
 	public JButton btnNewButton_6 ;
 	public JButton btnNewButton_7 ;
-	private static JButton btnftpkont;
+	public JButton btnNewButton_9;
+	public static JButton btnftpkont;
+	
+	public JPanel panel_12 ;
+	public JPanel panel_12_1;
+	public JPanel panel_12_1_1;
+	public JPanel panel_12_1_1_1;
 	/**
 	 * Create the panel.
 	 */
@@ -94,7 +101,7 @@ public class SunucuAyarlari extends JPanel {
 		});
 		 add(chckbxYerel);
 		
-		JPanel panel_12 = new JPanel();
+		panel_12 = new JPanel();
 		panel_12.setBorder(new TitledBorder(null, "FTP Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_12.setBounds(10, 75, 627, 100);
 		 add(panel_12);
@@ -126,14 +133,14 @@ public class SunucuAyarlari extends JPanel {
 		panel_12.add(lblNewLabel);
 		
 		lblNewLabel_1 = new JLabel("Kullanici");
-		lblNewLabel_1.setBounds(20, 49, 48, 14);
+		lblNewLabel_1.setBounds(20, 49, 105, 14);
 		panel_12.add(lblNewLabel_1);
 		
 		lblNewLabel_2 = new JLabel("Sifre");
-		lblNewLabel_2.setBounds(20, 72, 48, 14);
+		lblNewLabel_2.setBounds(20, 72, 105, 14);
 		panel_12.add(lblNewLabel_2);
 		
-		JPanel panel_12_1 = new JPanel();
+		panel_12_1 = new JPanel();
 		panel_12_1.setLayout(null);
 		panel_12_1.setBorder(new TitledBorder(null, "FTP Diger Ayarlar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		//, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -175,7 +182,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.add(btnNewButton_6);
 		
 		lblNewLabel_3 = new JLabel("Surucu");
-		lblNewLabel_3.setBounds(25, 25, 48, 14);
+		lblNewLabel_3.setBounds(25, 25, 100, 14);
 		panel_12_1.add(lblNewLabel_3);
 		
 		lblNewLabel_4 = new JLabel("Port");
@@ -183,14 +190,14 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.add(lblNewLabel_4);
 		
 		lblNewLabel_5 = new JLabel("Zaman Asimi");
-		lblNewLabel_5.setBounds(25, 49, 89, 14);
+		lblNewLabel_5.setBounds(25, 49, 110, 14);
 		panel_12_1.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_9 = new JLabel("sn.");
-		lblNewLabel_9.setBounds(215, 49, 48, 14);
+		lblNewLabel_9 = new JLabel("sn.");
+		lblNewLabel_9.setBounds(215, 49, 70, 14);
 		panel_12_1.add(lblNewLabel_9);
 		
-		JPanel panel_12_1_1 = new JPanel();
+		panel_12_1_1 = new JPanel();
 		panel_12_1_1.setLayout(null);
 		panel_12_1_1.setBorder(new TitledBorder(null, "Yerel Surucu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
@@ -230,10 +237,10 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1_1.add(btnNewButton_7);
 		
 		lblNewLabel_8 = new JLabel("Surucu");
-		lblNewLabel_8.setBounds(22, 25, 92, 14);
+		lblNewLabel_8.setBounds(22, 25, 103, 14);
 		panel_12_1_1.add(lblNewLabel_8);
 		
-		JPanel panel_12_1_1_1 = new JPanel();
+		panel_12_1_1_1 = new JPanel();
 		panel_12_1_1_1.setLayout(null);
 		panel_12_1_1_1.setBorder(new TitledBorder(null, "Eski Yedek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
@@ -248,15 +255,15 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1_1_1.add(textEskisilme);
 		
 		lblNewLabel_6 = new JLabel("Eski Yed.Silme");
-		lblNewLabel_6.setBounds(10, 25, 104, 14);
+		lblNewLabel_6.setBounds(10, 25, 115, 14);
 		panel_12_1_1_1.add(lblNewLabel_6);
 		
 		lblNewLabel_7 = new JLabel("gunden eski olanari silme (0 Silinmez)");
-		lblNewLabel_7.setBounds(210, 25, 252, 14);
+		lblNewLabel_7.setBounds(210, 25, 324, 14);
 		panel_12_1_1_1.add(lblNewLabel_7);
 		
 	
-		JButton btnNewButton_9 = new JButton("Kaydet");
+		btnNewButton_9 = new JButton("Kaydet");
 		btnNewButton_9.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
@@ -360,10 +367,10 @@ public class SunucuAyarlari extends JPanel {
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		if(result)
 		{
-		OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Baglanti Gerceklesti  ");
+		OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Baglanti Gerceklesti");
 		}
 		else {
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "Baglanti Hata ");
+			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "Baglanti Hata");
 		}
 	}
 }

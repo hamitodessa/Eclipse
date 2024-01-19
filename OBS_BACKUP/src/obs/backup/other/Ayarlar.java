@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import OBS_C_2025.BACKUP_GLOBAL;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
+import raven.toast.Notifications;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -66,6 +67,14 @@ public class Ayarlar extends JPanel {
 					bckp.ayar_sil();
 					bckp.ayar_kayit(comboBox_1.getSelectedItem().toString(), comboBox.getSelectedItem().toString());
 					OBS_BACKUP.dil();
+					if(OBS_BACKUP.dILS.equals("Turkce"))
+					{
+						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Tema Guncellemesi icin Programi Yeniden Baslatin");
+					}
+					else {
+						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Restart the Program for Theme Update");
+					}
+				
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

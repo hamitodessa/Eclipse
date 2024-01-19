@@ -773,9 +773,6 @@ public class OBS_BACKUP extends JFrame {
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("Yeni Gorev", null, panel_3, null);
 		
-		
-		
-		
 		panel_3.setLayout(new BorderLayout(0, 0));
 
 		tabbedPane_1 = new JTabbedPane();
@@ -903,7 +900,13 @@ public class OBS_BACKUP extends JFrame {
 		{
 			glb.backup_surucu_kontrol();
 			pidKONTROL();
-			bckp.log_kayit("Sistem", new Date(), "Program Baslangici");
+			if(dILS.equals("Turkce"))
+			{
+				bckp.log_kayit("Sistem", new Date(), "Program Baslangici");
+			}
+			else {
+				bckp.log_kayit("System", new Date(), "Application Started");
+			}
 			dil();
 			emir_yukle("EMIR_ISMI") ;
 			jobTimerBasla();
@@ -2838,7 +2841,7 @@ public class OBS_BACKUP extends JFrame {
 			sunucuayarPanel.btnNewButton_9.setText("Kaydet");
 			sunucuayarPanel.lblNewLabel_9.setText("sn.");
 			//************************************************************************************
-			ayarlarPanel.lblNewLabel.setText("Gorunum");
+			ayarlarPanel.lblNewLabel.setText("Tema");
 			ayarlarPanel.lblNewLabel_1.setText("Dil");
 			ayarlarPanel.btnKaydet.setText("Kaydet");
 			//************************************************************************************

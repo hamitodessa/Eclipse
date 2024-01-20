@@ -64,7 +64,7 @@ public class UploadPanel extends JPanel {
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS, "Dosya Adet:"));
-		lblNewLabel.setBounds(10, 31, 58, 14);
+		lblNewLabel.setBounds(10, 31, 69, 14);
 		panel_1.add(lblNewLabel);
 		
 		lblDosAdet = new JLabel("0");

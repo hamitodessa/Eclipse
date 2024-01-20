@@ -245,6 +245,12 @@ public class dilSecenek {
 			case  "sn.":
 				tEXT = "seconds"  ;
 				break;
+			case  "Hepsi":
+				tEXT = "All"  ;
+				break;
+			case  "Vazgec":
+				tEXT = "Cancel"  ;
+				break;
 
 			}  
 		}

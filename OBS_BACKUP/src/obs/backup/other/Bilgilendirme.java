@@ -10,6 +10,7 @@ import com.formdev.flatlaf.FlatClientProperties;
 
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
+import obs.backup.ayarlar.dilAciklamalar;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -212,12 +213,12 @@ public class Bilgilendirme extends JPanel {
 					{
 						if(textGonHesap.getText().equals("") || textAlici.getText().equals(""))
 						{
-							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "Gonderen Bilgileri Eksik");
+							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Gonderen Bilgileri Eksik"));
 							return;
 						}
 						else if(textSmtp.getText().equals("") || textPort.getText().equals("") || textKull.getText().equals("") || textSifre.getText().equals(""))
 						{
-							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "Smtp Bilgileri Eksik");
+							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Smtp Bilgileri Eksik") );
 							return;
 						}
 					}

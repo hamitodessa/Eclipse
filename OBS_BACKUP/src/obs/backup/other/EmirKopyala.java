@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
+import obs.backup.ayarlar.dilAciklamalar;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -46,7 +47,7 @@ public class EmirKopyala extends JPanel {
 				try {
 					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
 					{
-						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "Kopyalanacak Emir ismi Bos.....");
+						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Kopyalanacak Emir ismi Bos") );
 						return;
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -67,13 +68,13 @@ public class EmirKopyala extends JPanel {
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			bckp.kopyala(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText(), textField.getText());
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Emir Kopyalama Gerceklestirildi....");
+			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO,dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Emir Kopyalama Gerceklestirildi")  );
 			OBS_BACKUP.btnGorevler.doClick();
 		}
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			bckp.log_kayit(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText(), new Date(), "Emir Kopyalama " + ex.getMessage());
+			bckp.log_kayit(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText(), new Date(), ex.getMessage());
 			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
 		}
 	}

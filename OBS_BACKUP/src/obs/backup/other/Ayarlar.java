@@ -6,8 +6,6 @@ import javax.swing.JPanel;
 import OBS_C_2025.BACKUP_GLOBAL;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
-import raven.toast.Notifications;
-
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -29,40 +27,32 @@ public class Ayarlar extends JPanel {
 	public Ayarlar()
 	{
 		setLayout(null);
-		
+
 		lblNewLabel = new JLabel("Gorunum");
 		lblNewLabel.setBounds(42, 87, 85, 14);
 		add(lblNewLabel);
-		
+
 		comboBox = new JComboBox<String>();
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"FlatCarbonIJ", "FlatMonocaiIJ", "FlatMacDarkLaf", "FlatNordIJ", "FlatHighContrastIJ", "FlatMaterialPalenightIJ", "FlatMaterialDeepOceanIJ","FlatSolarizedLightIJ"}));
 		comboBox.setBounds(137, 83, 254, 22);
 		add(comboBox);
-		
+
 		lblNewLabel_1 = new JLabel("Dil");
 		lblNewLabel_1.setBounds(42, 24, 85, 14);
 		add(lblNewLabel_1);
-		
+
 		comboBox_1 = new JComboBox<String>();
 		comboBox_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//if(comboBox_1.getSelectedIndex() == 1)
-				//{
 				lblNewLabel.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Tema"));
 				lblNewLabel_1.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Dil"));
 				btnKaydet.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Kaydet"));
-				//}
-				//else {
-				//	lblNewLabel.setText("Tema");
-				//	lblNewLabel_1.setText("Dil");
-				//	btnKaydet.setText("Kaydet");
-				//}
 			}
 		});
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Turkce", "English"}));
 		comboBox_1.setBounds(137, 20, 105, 22);
 		add(comboBox_1);
-		
+
 		btnKaydet = new JButton("Kaydet");
 		btnKaydet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -73,14 +63,6 @@ public class Ayarlar extends JPanel {
 					OBS_BACKUP.dil();
 					OBS_BACKUP.btnfont_tema.doClick();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					if(OBS_BACKUP.dILS.equals("Turkce"))
-					{
-						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Tema Guncellemesi icin Programi Yeniden Baslatin");
-					}
-					else {
-						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Restart the Program for Theme Update");
-					}
-				
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

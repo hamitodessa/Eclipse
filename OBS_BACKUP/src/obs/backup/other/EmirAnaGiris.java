@@ -296,26 +296,24 @@ public class EmirAnaGiris extends JPanel {
 			}
 		});
 		list.setDropTarget(new DropTarget() {
-			
+
 			public synchronized void drop(DropTargetDropEvent evt) {
 				try {
 					evt.acceptDrop(DnDConstants.ACTION_COPY);
 					List<File> droppedFiles = (List<File>) evt .getTransferable().getTransferData(  DataFlavor.javaFileListFlavor);
-					if(droppedFiles.size() > 1){
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,  "Tek Seferde 1 Dosya Ekleyebilirsiniz.....!!");
-					}
-					else{
-						File droppedFile = (File) droppedFiles.get(0);
-						model.addElement( new CheckListItem(droppedFile.getName(),droppedFile.getParent() ));
+					for(int i=0;i<= droppedFiles.size() -1;i++)
+					{
+						model.addElement( new CheckListItem(droppedFiles.get(i).getName(),droppedFiles.get(i).getParent()));
 						list.repaint();
 					}
+
 				} catch (Exception ex) {
-				OBS_BACKUP.	mesaj_goster(15000,Notifications.Type.ERROR, ex.getMessage() );
+					OBS_BACKUP.	mesaj_goster(15000,Notifications.Type.ERROR, ex.getMessage() );
 				}
 			}
 		});	
 		scrollPane_1.setViewportView(list);
-		
+
 	}
 	private void dosyaSAYI()
 	{

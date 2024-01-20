@@ -60,6 +60,8 @@ import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA_DUZ_RENK;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.bilgilendirme_bilgiler;
+import obs.backup.ayarlar.dilAciklamalar;
+import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -145,14 +147,14 @@ public class LoglamaRapor extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(comboBox.getItemCount() == 0 ) return ;
-				int g = JOptionPane.showOptionDialog(null,comboBox.getSelectedItem().toString() + " -  Log  Silinecek ..?" ,
+				int g = JOptionPane.showOptionDialog(null,comboBox.getSelectedItem().toString() + dilAciklamalar.dilAciklama(OBS_BACKUP.dILS," -  Log  Silinecek ?") ,
 						"OBS BACKUP ", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
 				if(g ==  1) {
 					return;
 				}
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					if(comboBox.getSelectedItem().toString().equals("Hepsi"))
+					if(comboBox.getSelectedItem().toString().equals(dilSecenek.dil(OBS_BACKUP.dILS, "Hepsi")))
 					{
 						bckp.log_kayit_komple_sil();
 					}
@@ -249,7 +251,7 @@ public class LoglamaRapor extends JPanel {
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 		else {
-			comboBox.addItem("Hepsi");
+			comboBox.addItem(dilSecenek.dil(OBS_BACKUP.dILS, "Hepsi"));
 			for (int i =0; i<= emirliste.size()-1; i++) {
 				comboBox.addItem(emirliste.get(i));
 			}
@@ -332,7 +334,7 @@ public class LoglamaRapor extends JPanel {
 
 		if (mdl.getRowCount() == 0 )
 		{
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, "Aktarilacak Bilgi Yok....." );
+			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Aktarilacak Bilgi Yok") );
 		}
 		else
 		{
@@ -345,22 +347,22 @@ public class LoglamaRapor extends JPanel {
 		try 
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			UIManager.put("FileChooser.cancelButtonText", "Vazgec");
-			UIManager.put("FileChooser.saveButtonText", "Kaydet");
+			UIManager.put("FileChooser.cancelButtonText", dilSecenek.dil(OBS_BACKUP.dILS,"Vazgec"));
+			UIManager.put("FileChooser.saveButtonText", dilSecenek.dil(OBS_BACKUP.dILS,"Kaydet"));
 			JFileChooser fileChooser = new JFileChooser();
 			fileChooser.resetChoosableFileFilters();
 			fileChooser.setAcceptAllFileFilterUsed(false);
 			FileFilter xlxs = new FileNameExtensionFilter("Microsoft Excel Worksheet (.xlsx) ", "xlsx");
 			fileChooser.addChoosableFileFilter(xlxs);
 			fileChooser.setCurrentDirectory(new java.io.File("."));
-			fileChooser.setApproveButtonText("Kaydet");
-			fileChooser.setDialogTitle("Excell Kayit");   
+			fileChooser.setApproveButtonText(dilSecenek.dil(OBS_BACKUP.dILS,"Kaydet"));
+			fileChooser.setDialogTitle("Excell");   
 
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm");  
 			LocalDateTime now = LocalDateTime.now();  
 			String zaman = dtf.format(now)  ;
 
-			File outputfile = new File("Log_Rapor");
+			File outputfile = new File("Log_");
 			fileChooser.setSelectedFile(outputfile);
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			int returnVal = fileChooser.showSaveDialog(null);
@@ -376,7 +378,7 @@ public class LoglamaRapor extends JPanel {
 			//
 			//************************************** XLXS *****************************************************
 				XSSFWorkbook workbook = new XSSFWorkbook();
-				XSSFSheet sheet = workbook.createSheet("Log_Rapor");
+				XSSFSheet sheet = workbook.createSheet("Log_");
 				XSSFFont headerFont = workbook.createFont();
 				headerFont.setBold(true);
 				headerFont.setColor(IndexedColors.BLUE.getIndex()); 
@@ -419,7 +421,7 @@ public class LoglamaRapor extends JPanel {
 				sheet.addMergedRegion(new CellRangeAddress(0,0,0,2));
 				Cell baslikname = baslikRow.createCell(0);
 
-				baslikname.setCellValue("Log Raporlama");
+				baslikname.setCellValue("Log");
 				baslikname.setCellStyle(acikStyle);
 				
 				Row headerRow = sheet.createRow(1);
@@ -466,7 +468,7 @@ public class LoglamaRapor extends JPanel {
 					workbook.write(out);
 					out.close();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Aktarma Islemi Tamamlandi....." );
+					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Aktarma Islemi Tamamlandi") );
 				}
 				
 			
@@ -544,7 +546,7 @@ public class LoglamaRapor extends JPanel {
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messagePart);
 			message.setSentDate(new Date());
-			message.setSubject("OBS BACKUP YEDEKLEME" , "UTF-8");
+			message.setSubject("OBS BACKUP " , "UTF-8");
 			message.setContent(multipart);
 			Transport.send(message);
 			message= null;

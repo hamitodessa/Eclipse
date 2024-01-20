@@ -184,8 +184,47 @@ public class dilAciklamalar {
 			case "Arka Plan basladi": 
 				acikLAMAString = "System tray started" ;
 				break;
+			case "Gonderen Bilgileri Eksik": 
+				acikLAMAString = "Sender Information Missing" ;
+				break;
+			case "Smtp Bilgileri Eksik": 
+				acikLAMAString = "Smtp Information Missing" ;
+				break;
+			case "Surucusune Indirilmistir": 
+				acikLAMAString = "Downloaded to its Folder" ;
+				break;
+			case "Dos.Boyut": 
+				acikLAMAString = "File Size" ;
+				break;
+			case "Dosya Adi": 
+				acikLAMAString = "File Name" ;
+				break;
+			case "Hiz": 
+				acikLAMAString = "Speed" ;
+				break;
+			case "Inen": 
+				acikLAMAString = "Downloaded" ;
+				break;
+			case "Kalan": 
+				acikLAMAString = "Remainder" ;
+				break;
+			case "Kopyalanacak Emir ismi Bos": 
+				acikLAMAString = "The Job name to be copied is Empty" ;
+				break;
+			case "Emir Kopyalama Gerceklestirildi": 
+				acikLAMAString = "Job Copy Completed" ;
+				break;
+			case " -  Log  Silinecek ?": 
+				acikLAMAString = " - Log will be deleted  ?" ;
+				break;
+			case "Aktarilacak Bilgi Yok": 
+				acikLAMAString = "No Information to Transfer" ;
+				break;
+			case "Aktarma Islemi Tamamlandi": 
+				acikLAMAString = "Transfer Completed";
+				break;
 				
-				
+//				
 			}
 		}
 		return acikLAMAString;

@@ -31,6 +31,7 @@ import OBS_C_2025.CheckBoxRenderer;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA_DUZ_RENK;
 import OBS_C_2025.ScrollPaneWin11;
+import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 import java.awt.Font;
@@ -164,9 +165,9 @@ public class KayitliEmirler extends JPanel {
 				tblEmir.setRowSelectionInterval(lastRow, lastRow);
 			}
 			OBS_BACKUP.lblemirSAYI.setText(Integer.toString(tblEmir.getRowCount()));
-			OBS_BACKUP.lblEmir.setText("Emir Sayisi"); 
+			OBS_BACKUP.lblEmir.setText( dilSecenek.dil(OBS_BACKUP.dILS,"Emir Sayisi")); 
 		} catch (Exception ex) {
-			bckp.log_kayit("Kayitli Emir", new Date(), ex.getMessage());
+			bckp.log_kayit("System", new Date(), ex.getMessage());
 			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());	
 		}
 	}

@@ -72,6 +72,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.emir_bilgiler;
 import OBS_C_2025.ftp_bilgiler;
+import obs.backup.ayarlar.dilAciklamalar;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -224,13 +225,15 @@ public class DownloadFile extends JPanel {
 								if(!ftpc.login(kull, sifre))
 								{
 									ftpc.logout();
-									JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS  Backup", JOptionPane.ERROR_MESSAGE);   
+									OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR,dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "FTP Baglanti Hatasi Login") );
+									return; 
 								}
 								int reply = ftpc.getReplyCode();
 								if (!FTPReply.isPositiveCompletion(reply))
 								{
 									ftpc.disconnect();
-									JOptionPane.showMessageDialog(null, "Baglanti Hatasi.......",  "OBS Backup", JOptionPane.ERROR_MESSAGE);   
+									OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR,dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "FTP Baglanti Hatasi isPositiveCompletion") );
+									return;  
 								}
 								ftpc.enterLocalPassiveMode();
 								ftpc.changeWorkingDirectory(surucu);
@@ -279,7 +282,7 @@ public class DownloadFile extends JPanel {
 									}
 									panelalt.Progres_Bar_Temizle_2();
 								}	
-								OBS_BACKUP.mesaj_goster(15000,Notifications.Type.INFO, glb.BACKUP_YERI + " Surucusune Indirilmistir.." );  
+								OBS_BACKUP.mesaj_goster(15000,Notifications.Type.INFO, glb.BACKUP_YERI + " " + dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Surucusune Indirilmistir")  );  
 							}
 						}
 					}
@@ -298,7 +301,7 @@ public class DownloadFile extends JPanel {
 					GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
 					GuiUtil.setWaitCursor(panelalt,false);
 					try {
-						bckp.log_kayit("Sistem", new Date(), ex.getMessage());
+						bckp.log_kayit("System", new Date(), ex.getMessage());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

@@ -2691,156 +2691,162 @@ public class OBS_BACKUP extends JFrame {
 	}
 	public static void dil() throws ClassNotFoundException, SQLException
 	{
-			btnGorevler.setToolTipText(dilSecenek.dil(dILS,"Gorevler"));
-			btnYeni_Gorev.setToolTipText(dilSecenek.dil(dILS,"Yeni Gorev"));
-			btnLoglama.setToolTipText(dilSecenek.dil(dILS,"Loglama"));
-			btnKayitliEmirler.setToolTipText(dilSecenek.dil(dILS,"Kayitli Emirler"));
-			btnHepsiYukari.setToolTipText(dilSecenek.dil(dILS,"Hepsini Kucult"));
-			btnHepsiAsagi.setToolTipText(dilSecenek.dil(dILS,"Hepsini Buyult"));
-			btnYeniSifre.setToolTipText(dilSecenek.dil(dILS,"Sifre Yenile"));
-			btnUploadAll.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Yedekle"));
-			btnStartAll.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Baslat"));
-			btnStopAll.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Durdur"));
-			btnFileIndir.setToolTipText(dilSecenek.dil(dILS,"Dosya Indir"));
-			btnSifreEkrani.setToolTipText(dilSecenek.dil(dILS,"Sifre Ekrani"));
-			btnHepsiAktiv.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Aktif Yap"));
-			btnHepsiPasiv.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Pasiv Yap"));
-			lblEmir.setText(dilSecenek.dil(dILS,"Emir Sayisi"));
-			
-			btnHakkinda.setToolTipText(dilSecenek.dil(dILS,"Hakkinda"));
-			btnAyarlar.setToolTipText(dilSecenek.dil(dILS,"Ayarlar"));
-			btnKapat.setToolTipText(dilSecenek.dil(dILS,"Kapat"));
-			
-			sifreGirisPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Sifre"));
-			sifreGirisPanel.lblDefaultpwd.setText(dilSecenek.dil(dILS,"Varsayilan Sifre :       obs"));
-			//************************************************************************************************
-			bilgilendirmePanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Durum"));
-			bilgilendirmePanel.chckbxAktifPasif.setText(dilSecenek.dil(dILS,"Aktif / Pasif"));
-			bilgilendirmePanel.chckbxIslem.setText(dilSecenek.dil(dILS,"Islem Gerceklestiginde"));
-			bilgilendirmePanel.chckbxHata.setText(dilSecenek.dil(dILS,"Hata Durumunda"));
-			TitledBorder titledBorder = (TitledBorder)bilgilendirmePanel.panel_1.getBorder();
-			titledBorder.setTitle(dilSecenek.dil(dILS,"Mail Bilgileri"));
-			bilgilendirmePanel.panel_1.setBorder(titledBorder);
-			bilgilendirmePanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Gonderen Isim"));
-			bilgilendirmePanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Gonderen Hesap"));
-			titledBorder = (TitledBorder)bilgilendirmePanel.panel.getBorder();
-		    titledBorder.setTitle(dilSecenek.dil(dILS,"Gonderme Durumu"));
-			bilgilendirmePanel.panel.setBorder(titledBorder);
-			bilgilendirmePanel.lblNewLabel_3.setText(dilSecenek.dil(dILS,"Alici"));
-			bilgilendirmePanel.lblNewLabel_4.setText(dilSecenek.dil(dILS,"Konu"));
-			titledBorder = (TitledBorder)bilgilendirmePanel.panel_1_1.getBorder();
-			titledBorder.setTitle(dilSecenek.dil(dILS,"Server Ayarlari"));
-			bilgilendirmePanel.panel_1_1.setBorder(titledBorder);
-			bilgilendirmePanel.btnDenemeMail.setText(dilSecenek.dil(dILS,"Deneme Maili"));
-			bilgilendirmePanel.lblNewLabel_7.setText(dilSecenek.dil(dILS,"Kullanici"));
-			bilgilendirmePanel.lblNewLabel_8.setText(dilSecenek.dil(dILS,"Sifre"));
-			bilgilendirmePanel.btnNewButton_9.setText(dilSecenek.dil(dILS,"Kaydet"));
-			//*****************************************************************************************
-			yedekaraligiPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Her"));
-			yedekaraligiPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"dakkada bir"));
-			yedekaraligiPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Gunler"));
-			yedekaraligiPanel.chckbxPtesi.setText(dilSecenek.dil(dILS,"Pazartesi"));
-			yedekaraligiPanel.chckbxSali.setText(dilSecenek.dil(dILS,"Sali"));
-			yedekaraligiPanel.chckbxCarsamba.setText(dilSecenek.dil(dILS,"Carsamba"));
-			yedekaraligiPanel.chckbxPersembe.setText(dilSecenek.dil(dILS,"Persembe"));
-			yedekaraligiPanel.chckbxCuma.setText(dilSecenek.dil(dILS,"Cuma"));
-			yedekaraligiPanel.chckbxCumartesi.setText(dilSecenek.dil(dILS,"Cumartesi"));
-			yedekaraligiPanel.chckbxPazar.setText(dilSecenek.dil(dILS,"Pazar"));
-			yedekaraligiPanel.lblNewLabel_3.setText(dilSecenek.dil(dILS,"Baslangic"));
-			yedekaraligiPanel.lblNewLabel_3_1.setText(dilSecenek.dil(dILS,"Bitis"));
-			titledBorder = (TitledBorder)yedekaraligiPanel.panel.getBorder();
-			titledBorder.setTitle(dilSecenek.dil(dILS,"Aralik"));
-			yedekaraligiPanel.panel.setBorder(titledBorder);
-			yedekaraligiPanel.btnNewButton_9.setText(dilSecenek.dil(dILS,"Kaydet"));
-			//****************************************************************************************
-			emirKopyalaPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Yeni Emir Ismi"));
-			emirKopyalaPanel.btnNewButton_9.setText(dilSecenek.dil(dILS,"Kaydet"));
-			//****************************************************************************************
-			sifreYenilePanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Gecerli Sifreniz"));
-			sifreYenilePanel.lblysif.setText(dilSecenek.dil(dILS,"Yeni Sifreniz"));
-			sifreYenilePanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Sifre Yenileme"));
-			//****************************************************************************************
-			loglamaPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Arama"));
-			loglamaPanel.btnNewButton.setText(dilSecenek.dil(dILS,"Sil"));
-			loglamaPanel.btnExcell.setToolTipText(dilSecenek.dil(dILS,"Excell Aktarma"));
-			//****************************************************************************************
-			kayitliEmirlerPanelEmirler.lblNewLabel.setText(dilSecenek.dil(dILS,"Arama"));
-			//****************************************************************************************
-			emirAnaGirisPanel.btnDosyaSec.setText(dilSecenek.dil(dILS,"Dosya Sec"));
-			emirAnaGirisPanel.btnSurucuSec.setText(dilSecenek.dil(dILS,"Surucu Sec"));
-			emirAnaGirisPanel.btnServer.setText(dilSecenek.dil(dILS,"Server Baglanti"));
-			emirAnaGirisPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Durum"));
-			emirAnaGirisPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Emir Ismi"));
-			emirAnaGirisPanel.lblNewLabel_4.setText(dilSecenek.dil(dILS,"Dosya Sayisi"));
-			emirAnaGirisPanel.chckbxServerDosya.setText(dilSecenek.dil(dILS,"Sql Server / Diger Dosya Yedekleme"));
-			emirAnaGirisPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Aciklama"));
-			//***************************************************************************************
-			serverBilgileriPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Kullanici"));
-			serverBilgileriPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Sifre"));
-			titledBorder = (TitledBorder)serverBilgileriPanel.panel_2.getBorder();
-			titledBorder.setTitle(dilSecenek.dil(dILS,"Baglanti"));
-			serverBilgileriPanel.panel_2.setBorder(titledBorder);
-			serverBilgileriPanel.btnMSkaydet.setText(dilSecenek.dil(dILS,"Kaydet"));
-			serverBilgileriPanel.btnMSTest.setText(dilSecenek.dil(dILS,"Baglanti Test"));
-			titledBorder = (TitledBorder)serverBilgileriPanel.panel_2_2.getBorder();
-			titledBorder.setTitle(dilSecenek.dil(dILS,"Baglanti"));
-			serverBilgileriPanel.panel_2_2.setBorder(titledBorder);
-			serverBilgileriPanel.lblNewLabel_1_2.setText(dilSecenek.dil(dILS,"Kullanici"));
-			serverBilgileriPanel.lblNewLabel_2_2.setText(dilSecenek.dil(dILS,"Sifre"));
-			serverBilgileriPanel.btnDumpSec.setText(dilSecenek.dil(dILS,"Sec"));
-			serverBilgileriPanel.btnMyKaydet.setText(dilSecenek.dil(dILS,"Kaydet"));
-			serverBilgileriPanel.btnMyTest.setText(dilSecenek.dil(dILS,"Baglanti Test"));
-			//**************************************************************************************
-			sunucuayarPanel.chckbxYerel.setText(dilSecenek.dil(dILS,"Yerel Surucu"));
-			titledBorder = (TitledBorder)sunucuayarPanel.panel_12.getBorder();
-			titledBorder.setTitle(dilSecenek.dil(dILS,"FTP Ayarlari"));
-			sunucuayarPanel.panel_12.setBorder(titledBorder);
-			sunucuayarPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Kullanici"));
-			sunucuayarPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Sifre"));
-			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1.getBorder();
-			titledBorder.setTitle(dilSecenek.dil(dILS,"FTP Diger Ayarlar"));
-			sunucuayarPanel.panel_12_1.setBorder(titledBorder);
-			sunucuayarPanel.lblNewLabel_3.setText(dilSecenek.dil(dILS,"Surucu"));
-			sunucuayarPanel.lblNewLabel_5.setText(dilSecenek.dil(dILS,"Zaman Asimi"));
-			sunucuayarPanel.btnNewButton_6.setText(dilSecenek.dil(dILS,"Surucu Kontrol"));
-			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1_1.getBorder();
-			titledBorder.setTitle(dilSecenek.dil(dILS,"Yerel Surucu"));
-			sunucuayarPanel.panel_12_1_1.setBorder(titledBorder);
-			sunucuayarPanel.lblNewLabel_8.setText(dilSecenek.dil(dILS,"Surucu"));
-			sunucuayarPanel.btnNewButton_7.setText(dilSecenek.dil(dILS,"Surucu Sec"));
-			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1_1_1.getBorder();
-			titledBorder.setTitle(dilSecenek.dil(dILS,"Eski Yedek"));
-			sunucuayarPanel.panel_12_1_1_1.setBorder(titledBorder);
-			sunucuayarPanel.lblNewLabel_6.setText(dilSecenek.dil(dILS,"Eski Yed.Silme"));
-			sunucuayarPanel.lblNewLabel_7.setText(dilSecenek.dil(dILS,"gunden eski olanari silme (0 Silinmez)"));
-			sunucuayarPanel.btnftpkont.setText(dilSecenek.dil(dILS,"Ftp Kontrol"));
-			sunucuayarPanel.btnNewButton_9.setText(dilSecenek.dil(dILS,"Kaydet"));
-			sunucuayarPanel.lblNewLabel_9.setText(dilSecenek.dil(dILS,"sn."));
-			//**********************************************************************************************
-			ayarlarPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Tema"));
-			ayarlarPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Dil"));
-			ayarlarPanel.btnKaydet.setText(dilSecenek.dil(dILS,"Kaydet"));
-			//**********************************************************************************************
-			if(dILS.equals("Turkce"))
-			{
-				tabbedPane_1.setTitleAt(0, "Emir");
-				tabbedPane_1.setTitleAt(1, "Sunucu Ayarlari");
-				tabbedPane_1.setTitleAt(2, "Bilgilendirme");
-				tabbedPane_1.setTitleAt(3, "Yedekleme Araligi");
-				tabbedPane_1.setTitleAt(4, "Server Bilgileri");
-				tabbedPane_1.setTitleAt(5, "Emir Kopyala");
-			}
-			else {
-				tabbedPane_1.setTitleAt(0, "Job");
-				tabbedPane_1.setTitleAt(1, "Setting Ftp/Folders");
-				tabbedPane_1.setTitleAt(2, "To inform");
-				tabbedPane_1.setTitleAt(3, "Backup Time");
-				tabbedPane_1.setTitleAt(4, "Server Settings");
-				tabbedPane_1.setTitleAt(5, "Copy Job");
-			}
+		if(dILS.equals("")) dILS = "Turkce";
+		btnGorevler.setToolTipText(dilSecenek.dil(dILS,"Gorevler"));
+		btnYeni_Gorev.setToolTipText(dilSecenek.dil(dILS,"Yeni Gorev"));
+		btnLoglama.setToolTipText(dilSecenek.dil(dILS,"Loglama"));
+		btnKayitliEmirler.setToolTipText(dilSecenek.dil(dILS,"Kayitli Emirler"));
+		btnHepsiYukari.setToolTipText(dilSecenek.dil(dILS,"Hepsini Kucult"));
+		btnHepsiAsagi.setToolTipText(dilSecenek.dil(dILS,"Hepsini Buyult"));
+		btnYeniSifre.setToolTipText(dilSecenek.dil(dILS,"Sifre Yenile"));
+		btnUploadAll.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Yedekle"));
+		btnStartAll.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Baslat"));
+		btnStopAll.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Durdur"));
+		btnFileIndir.setToolTipText(dilSecenek.dil(dILS,"Dosya Indir"));
+		btnSifreEkrani.setToolTipText(dilSecenek.dil(dILS,"Sifre Ekrani"));
+		btnHepsiAktiv.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Aktif Yap"));
+		btnHepsiPasiv.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Pasiv Yap"));
+		lblEmir.setText(dilSecenek.dil(dILS,"Emir Sayisi"));
+
+		btnHakkinda.setToolTipText(dilSecenek.dil(dILS,"Hakkinda"));
+		btnAyarlar.setToolTipText(dilSecenek.dil(dILS,"Ayarlar"));
+		btnKapat.setToolTipText(dilSecenek.dil(dILS,"Kapat"));
+
+		sifreGirisPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Sifre"));
+		sifreGirisPanel.lblDefaultpwd.setText(dilSecenek.dil(dILS,"Varsayilan Sifre :       obs"));
+		//************************************************************************************************
+		bilgilendirmePanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Durum"));
+		bilgilendirmePanel.chckbxAktifPasif.setText(dilSecenek.dil(dILS,"Aktif / Pasif"));
+		bilgilendirmePanel.chckbxIslem.setText(dilSecenek.dil(dILS,"Islem Gerceklestiginde"));
+		bilgilendirmePanel.chckbxHata.setText(dilSecenek.dil(dILS,"Hata Durumunda"));
+		TitledBorder titledBorder = (TitledBorder)bilgilendirmePanel.panel_1.getBorder();
+		titledBorder.setTitle(dilSecenek.dil(dILS,"Mail Bilgileri"));
+		bilgilendirmePanel.panel_1.setBorder(titledBorder);
+		bilgilendirmePanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Gonderen Isim"));
+		bilgilendirmePanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Gonderen Hesap"));
+		titledBorder = (TitledBorder)bilgilendirmePanel.panel.getBorder();
+		titledBorder.setTitle(dilSecenek.dil(dILS,"Gonderme Durumu"));
+		bilgilendirmePanel.panel.setBorder(titledBorder);
+		bilgilendirmePanel.lblNewLabel_3.setText(dilSecenek.dil(dILS,"Alici"));
+		bilgilendirmePanel.lblNewLabel_4.setText(dilSecenek.dil(dILS,"Konu"));
+		titledBorder = (TitledBorder)bilgilendirmePanel.panel_1_1.getBorder();
+		titledBorder.setTitle(dilSecenek.dil(dILS,"Server Ayarlari"));
+		bilgilendirmePanel.panel_1_1.setBorder(titledBorder);
+		bilgilendirmePanel.btnDenemeMail.setText(dilSecenek.dil(dILS,"Deneme Maili"));
+		bilgilendirmePanel.lblNewLabel_7.setText(dilSecenek.dil(dILS,"Kullanici"));
+		bilgilendirmePanel.lblNewLabel_8.setText(dilSecenek.dil(dILS,"Sifre"));
+		bilgilendirmePanel.btnNewButton_9.setText(dilSecenek.dil(dILS,"Kaydet"));
+		//*****************************************************************************************
+		yedekaraligiPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Her"));
+		yedekaraligiPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"dakkada bir"));
+		yedekaraligiPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Gunler"));
+		yedekaraligiPanel.chckbxPtesi.setText(dilSecenek.dil(dILS,"Pazartesi"));
+		yedekaraligiPanel.chckbxSali.setText(dilSecenek.dil(dILS,"Sali"));
+		yedekaraligiPanel.chckbxCarsamba.setText(dilSecenek.dil(dILS,"Carsamba"));
+		yedekaraligiPanel.chckbxPersembe.setText(dilSecenek.dil(dILS,"Persembe"));
+		yedekaraligiPanel.chckbxCuma.setText(dilSecenek.dil(dILS,"Cuma"));
+		yedekaraligiPanel.chckbxCumartesi.setText(dilSecenek.dil(dILS,"Cumartesi"));
+		yedekaraligiPanel.chckbxPazar.setText(dilSecenek.dil(dILS,"Pazar"));
+		yedekaraligiPanel.lblNewLabel_3.setText(dilSecenek.dil(dILS,"Baslangic"));
+		yedekaraligiPanel.lblNewLabel_3_1.setText(dilSecenek.dil(dILS,"Bitis"));
+		titledBorder = (TitledBorder)yedekaraligiPanel.panel.getBorder();
+		titledBorder.setTitle(dilSecenek.dil(dILS,"Aralik"));
+		yedekaraligiPanel.panel.setBorder(titledBorder);
+		yedekaraligiPanel.btnNewButton_9.setText(dilSecenek.dil(dILS,"Kaydet"));
+		//****************************************************************************************
+		emirKopyalaPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Yeni Emir Ismi"));
+		emirKopyalaPanel.btnNewButton_9.setText(dilSecenek.dil(dILS,"Kaydet"));
+		//****************************************************************************************
+		sifreYenilePanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Gecerli Sifreniz"));
+		sifreYenilePanel.lblysif.setText(dilSecenek.dil(dILS,"Yeni Sifreniz"));
+		sifreYenilePanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Sifre Yenileme"));
+		//****************************************************************************************
+		loglamaPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Arama"));
+		loglamaPanel.btnNewButton.setText(dilSecenek.dil(dILS,"Sil"));
+		loglamaPanel.btnExcell.setToolTipText(dilSecenek.dil(dILS,"Excell Aktarma"));
+		//****************************************************************************************
+		kayitliEmirlerPanelEmirler.lblNewLabel.setText(dilSecenek.dil(dILS,"Arama"));
+		//****************************************************************************************
+		emirAnaGirisPanel.btnDosyaSec.setText(dilSecenek.dil(dILS,"Dosya Sec"));
+		emirAnaGirisPanel.btnSurucuSec.setText(dilSecenek.dil(dILS,"Surucu Sec"));
+		emirAnaGirisPanel.btnServer.setText(dilSecenek.dil(dILS,"Server Baglanti"));
+		emirAnaGirisPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Durum"));
+		emirAnaGirisPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Emir Ismi"));
+		emirAnaGirisPanel.lblNewLabel_4.setText(dilSecenek.dil(dILS,"Dosya Sayisi"));
+		emirAnaGirisPanel.chckbxServerDosya.setText(dilSecenek.dil(dILS,"Sql Server / Diger Dosya Yedekleme"));
+		emirAnaGirisPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Aciklama"));
+		//***************************************************************************************
+		serverBilgileriPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Kullanici"));
+		serverBilgileriPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Sifre"));
+		titledBorder = (TitledBorder)serverBilgileriPanel.panel_2.getBorder();
+		titledBorder.setTitle(dilSecenek.dil(dILS,"Baglanti"));
+		serverBilgileriPanel.panel_2.setBorder(titledBorder);
+		serverBilgileriPanel.btnMSkaydet.setText(dilSecenek.dil(dILS,"Kaydet"));
+		serverBilgileriPanel.btnMSTest.setText(dilSecenek.dil(dILS,"Baglanti Test"));
+		titledBorder = (TitledBorder)serverBilgileriPanel.panel_2_2.getBorder();
+		titledBorder.setTitle(dilSecenek.dil(dILS,"Baglanti"));
+		serverBilgileriPanel.panel_2_2.setBorder(titledBorder);
+		serverBilgileriPanel.lblNewLabel_1_2.setText(dilSecenek.dil(dILS,"Kullanici"));
+		serverBilgileriPanel.lblNewLabel_2_2.setText(dilSecenek.dil(dILS,"Sifre"));
+		serverBilgileriPanel.btnDumpSec.setText(dilSecenek.dil(dILS,"Sec"));
+		serverBilgileriPanel.btnMyKaydet.setText(dilSecenek.dil(dILS,"Kaydet"));
+		serverBilgileriPanel.btnMyTest.setText(dilSecenek.dil(dILS,"Baglanti Test"));
+		//**************************************************************************************
+		sunucuayarPanel.chckbxYerel.setText(dilSecenek.dil(dILS,"Yerel Surucu"));
+		titledBorder = (TitledBorder)sunucuayarPanel.panel_12.getBorder();
+		titledBorder.setTitle(dilSecenek.dil(dILS,"FTP Ayarlari"));
+		sunucuayarPanel.panel_12.setBorder(titledBorder);
+		sunucuayarPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Kullanici"));
+		sunucuayarPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Sifre"));
+		titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1.getBorder();
+		titledBorder.setTitle(dilSecenek.dil(dILS,"FTP Diger Ayarlar"));
+		sunucuayarPanel.panel_12_1.setBorder(titledBorder);
+		sunucuayarPanel.lblNewLabel_3.setText(dilSecenek.dil(dILS,"Surucu"));
+		sunucuayarPanel.lblNewLabel_5.setText(dilSecenek.dil(dILS,"Zaman Asimi"));
+		sunucuayarPanel.btnNewButton_6.setText(dilSecenek.dil(dILS,"Surucu Kontrol"));
+		titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1_1.getBorder();
+		titledBorder.setTitle(dilSecenek.dil(dILS,"Yerel Surucu"));
+		sunucuayarPanel.panel_12_1_1.setBorder(titledBorder);
+		sunucuayarPanel.lblNewLabel_8.setText(dilSecenek.dil(dILS,"Surucu"));
+		sunucuayarPanel.btnNewButton_7.setText(dilSecenek.dil(dILS,"Surucu Sec"));
+		titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1_1_1.getBorder();
+		titledBorder.setTitle(dilSecenek.dil(dILS,"Eski Yedek"));
+		sunucuayarPanel.panel_12_1_1_1.setBorder(titledBorder);
+		sunucuayarPanel.lblNewLabel_6.setText(dilSecenek.dil(dILS,"Eski Yed.Silme"));
+		sunucuayarPanel.lblNewLabel_7.setText(dilSecenek.dil(dILS,"gunden eski olanari silme (0 Silinmez)"));
+		sunucuayarPanel.btnftpkont.setText(dilSecenek.dil(dILS,"Ftp Kontrol"));
+		sunucuayarPanel.btnNewButton_9.setText(dilSecenek.dil(dILS,"Kaydet"));
+		sunucuayarPanel.lblNewLabel_9.setText(dilSecenek.dil(dILS,"sn."));
+		//**********************************************************************************************
+		ayarlarPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Tema"));
+		ayarlarPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Dil"));
+		ayarlarPanel.btnKaydet.setText(dilSecenek.dil(dILS,"Kaydet"));
+		//**********************************************************************************************
+		if(dILS.equals("Turkce"))
+		{
+			tabbedPane_1.setTitleAt(0, "Emir");
+			tabbedPane_1.setTitleAt(1, "Sunucu Ayarlari");
+			tabbedPane_1.setTitleAt(2, "Bilgilendirme");
+			tabbedPane_1.setTitleAt(3, "Yedekleme Araligi");
+			tabbedPane_1.setTitleAt(4, "Server Bilgileri");
+			tabbedPane_1.setTitleAt(5, "Emir Kopyala");
+		}
+		else {
+			tabbedPane_1.setTitleAt(0, "Job");
+			tabbedPane_1.setTitleAt(1, "Setting Ftp/Folders");
+			tabbedPane_1.setTitleAt(2, "To inform");
+			tabbedPane_1.setTitleAt(3, "Backup Time");
+			tabbedPane_1.setTitleAt(4, "Server Settings");
+			tabbedPane_1.setTitleAt(5, "Copy Job");
+		}
 	}
 	private void tema(String tema)
 	{
+		if (tema ==null)
+		{
+			FlatCarbonIJTheme.setup();
+			return;
+		}
 		switch (tema) {
 		case "FlatCarbonIJ": 
 		{
@@ -2882,7 +2888,7 @@ public class OBS_BACKUP extends JFrame {
 			FlatSolarizedLightIJTheme.setup();
 			break;
 		}
-		
+
 		}
 		// FlatLaf.updateUI();
 	}

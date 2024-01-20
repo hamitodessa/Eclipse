@@ -14,6 +14,7 @@ import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SIFRE_DONDUR;
+import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -211,18 +212,18 @@ public class SunucuAyarlari extends JPanel {
 		textSurucu.setBounds(135, 22, 482, 20);
 		panel_12_1_1.add(textSurucu);
 		
-		btnNewButton_7 = new JButton("Surucu Sec");
+		btnNewButton_7 = new JButton( dilSecenek.dil(OBS_BACKUP.dILS, "Surucu Sec"));
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
+				UIManager.put("FileChooser.cancelButtonText",  dilSecenek.dil(OBS_BACKUP.dILS, "Vazgec"));
 				JFileChooser chooser = new JFileChooser();
 				chooser.setCurrentDirectory(new java.io.File("."));
-				chooser.setDialogTitle("Surucu Seciniz");
+				chooser.setDialogTitle(dilSecenek.dil(OBS_BACKUP.dILS, "Surucu Sec"));
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				chooser.setAcceptAllFileFilterUsed(false);
-				chooser.setApproveButtonText("Surucu Sec");
-				chooser.setApproveButtonToolTipText("Surucu Sec");
+				chooser.setApproveButtonText(dilSecenek.dil(OBS_BACKUP.dILS, "Surucu Sec"));
+				chooser.setApproveButtonToolTipText(dilSecenek.dil(OBS_BACKUP.dILS, "Surucu Sec"));
 				chooser.setApproveButtonMnemonic('s');
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
@@ -273,7 +274,7 @@ public class SunucuAyarlari extends JPanel {
 					{
 						if(textSurucu.getText().equals(""))
 						{
-							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "Surucu Secilmemis");
+							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS, "Surucu Secilmemis") );
 							return;
 						}
 					}
@@ -281,12 +282,12 @@ public class SunucuAyarlari extends JPanel {
 					{
 						if(textHost.getText().equals("") || textKull.getText().equals("") || textSifre.getText().equals(""))
 						{
-							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "FTP Baglanti Bilgileri Eksik");
+							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS, "FTP Baglanti Bilgileri Eksik") );
 							return;
 						}
 						else if(textFtpSurucu.getText().equals(""))
 						{
-							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "FTP Surucu Secilmemis");
+							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS, "FTP Surucu Secilmemis") );
 							return;
 						}
 					}
@@ -339,10 +340,10 @@ public class SunucuAyarlari extends JPanel {
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		if(result)
 		{
-		OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Baglanti Gerceklesti  ");
+		OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO,dilSecenek.dil(OBS_BACKUP.dILS, "Baglanti Gerceklesti") );
 		}
 		else {
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "Baglanti Hata ");
+			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Hata"));
 		}
 	}
 	private void FtpKontrol() throws SocketException, IOException 
@@ -367,10 +368,10 @@ public class SunucuAyarlari extends JPanel {
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		if(result)
 		{
-		OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Baglanti Gerceklesti");
+		OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, dilSecenek.dil(OBS_BACKUP.dILS, "Baglanti Gerceklesti"));
 		}
 		else {
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "Baglanti Hata");
+			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Hata"));
 		}
 	}
 }

@@ -15,6 +15,7 @@ import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SIFRE_DONDUR;
+import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -117,10 +118,10 @@ public class ServerBilgileri extends JPanel {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				if(result)
 			{
-				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Baglanti Saglandi");
+				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglandi"));
 			}
 			else {
-				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, "Baglanti Saglanmadi");
+				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglanamadi"));
 			}
 			} catch (Exception e1) {
 			
@@ -212,10 +213,10 @@ public class ServerBilgileri extends JPanel {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			if(result)
 			{
-				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Baglanti Saglandi");
+				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO,dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglandi") );
 			}
 			else {
-				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, "Baglanti Saglanmadi");
+				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglanamadi"));
 			}
 			} catch (Exception e1) {
 			
@@ -237,7 +238,7 @@ public class ServerBilgileri extends JPanel {
 					if(textMySifre.getText().equals("")) return ;
 					if(textMyDump.getText().equals(""))
 					{
-						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, "Backup islemi icin  'mysqldump.exe'  surucusu belirtilmelidir");
+						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS,"Backup islemi icin  'mysqldump.exe'  surucusu belirtilmelidir") );
 						return;
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -273,18 +274,18 @@ public class ServerBilgileri extends JPanel {
 		panel_1.add(textMyDump);
 		textMyDump.setColumns(10);
 		
-		btnDumpSec = new JButton("Sec");
+		btnDumpSec = new JButton( dilSecenek.dil(OBS_BACKUP.dILS,"Sec"));
 		btnDumpSec.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				UIManager.put("FileChooser.cancelButtonText", "Vazgec");
+				UIManager.put("FileChooser.cancelButtonText", dilSecenek.dil(OBS_BACKUP.dILS,"Vazgec"));
 				JFileChooser chooser = new JFileChooser();
 				chooser.setCurrentDirectory(new java.io.File("."));
-				chooser.setDialogTitle("Surucu Seciniz");
+				chooser.setDialogTitle(dilSecenek.dil(OBS_BACKUP.dILS,"Surucu Sec"));
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				chooser.setAcceptAllFileFilterUsed(false);
-				chooser.setApproveButtonText("Surucu Sec");
-				chooser.setApproveButtonToolTipText("Surucu Sec");
+				chooser.setApproveButtonText( dilSecenek.dil(OBS_BACKUP.dILS,"Surucu Sec"));
+				chooser.setApproveButtonToolTipText(dilSecenek.dil(OBS_BACKUP.dILS,"Surucu Sec"));
 				chooser.setApproveButtonMnemonic('s');
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 

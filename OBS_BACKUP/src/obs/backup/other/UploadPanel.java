@@ -14,6 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import obs.backup.ayarlar.dilAciklamalar;
+import obs.backup.ayarlar.dilSecenek;
+import obs.backup.main.OBS_BACKUP;
+
 public class UploadPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -59,7 +63,7 @@ public class UploadPanel extends JPanel {
 		splitPane.setLeftComponent(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Dos.Adet:");
+		JLabel lblNewLabel = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS, "Dosya Adet:"));
 		lblNewLabel.setBounds(10, 31, 58, 14);
 		panel_1.add(lblNewLabel);
 		
@@ -68,7 +72,7 @@ public class UploadPanel extends JPanel {
 		lblDosAdet.setBounds(78, 31, 48, 14);
 		panel_1.add(lblDosAdet);
 		
-		JLabel lblNewLabel_2 = new JLabel("Emir Adi");
+		JLabel lblNewLabel_2 = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS,"Emir Ismi"));
 		lblNewLabel_2.setBounds(10, 11, 58, 14);
 		panel_1.add(lblNewLabel_2);
 		
@@ -77,7 +81,7 @@ public class UploadPanel extends JPanel {
 		lblEmirAdi.setBounds(78, 11, 237, 14);
 		panel_1.add(lblEmirAdi);
 		
-		JLabel lblNewLabel_4 = new JLabel("Hiz");
+		JLabel lblNewLabel_4 = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Hiz"));
 		lblNewLabel_4.setBounds(690, 31, 40, 14);
 		panel_1.add(lblNewLabel_4);
 		
@@ -87,7 +91,7 @@ public class UploadPanel extends JPanel {
 		lblHiz.setBounds(710, 31, 124, 14);
 		panel_1.add(lblHiz);
 		
-		JLabel lblNewLabel_6 = new JLabel("Aciklama");
+		JLabel lblNewLabel_6 = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS,"Aciklama"));
 		lblNewLabel_6.setBounds(325, 11, 58, 14);
 		panel_1.add(lblNewLabel_6);
 		
@@ -96,7 +100,7 @@ public class UploadPanel extends JPanel {
 		lblAciklama.setBounds(383, 11, 417, 14);
 		panel_1.add(lblAciklama);
 		
-		JLabel lblNewLabel_8 = new JLabel("Surucu");
+		JLabel lblNewLabel_8 = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS,"Surucu"));
 		lblNewLabel_8.setBounds(325, 31, 58, 14);
 		panel_1.add(lblNewLabel_8);
 		

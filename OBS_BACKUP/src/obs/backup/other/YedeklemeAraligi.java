@@ -15,6 +15,7 @@ import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
+import obs.backup.ayarlar.dilAciklamalar;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -147,7 +148,7 @@ public class YedeklemeAraligi extends JPanel {
 					date2.setDate(date.getDate());
 					if (date.after(date2) )
 					{
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,  "Bitis Zamani Baslangic Zamanindan Kucuk olamaz");
+					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Bitis Zamani Baslangic Zamanindan Kucuk olamaz"));
 						return;
 					}
 					OBS_BACKUP.yedeklemeKaydet();

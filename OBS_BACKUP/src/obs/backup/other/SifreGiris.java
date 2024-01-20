@@ -12,6 +12,7 @@ import com.formdev.flatlaf.FlatClientProperties;
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.SIFRE_DONDUR;
+import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -88,7 +89,7 @@ public class SifreGiris extends JPanel {
 						
 					}
 					else {
-						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,"Sifre Yanlis");
+						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,  dilSecenek.dil(OBS_BACKUP.dILS, "Sifre Yanlis"));
 					}
 					} catch (Exception e1) {
 						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e1.getMessage());

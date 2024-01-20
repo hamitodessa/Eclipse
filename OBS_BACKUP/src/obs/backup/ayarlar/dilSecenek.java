@@ -38,6 +38,9 @@ public class dilSecenek {
 			case "Sifre Yenile":
 				tEXT = "Change Password";
 				break;
+			case "Sifre Yanlis":
+				tEXT = "Wrong password";
+				break;
 			case "Gorevleri Yedekle":
 				tEXT = "Upload All Jobs";
 				break;
@@ -194,6 +197,9 @@ public class dilSecenek {
 			case "Dosya Sayisi" :
 				tEXT = "Selected Counts"  ;
 				break;	
+			case "Dosya Adet:" :
+				tEXT = "File Counts"  ;
+				break;	
 			case "Sql Server / Diger Dosya Yedekleme" :
 				tEXT = "Sql Server /  Files & Folders"  ;
 				break;
@@ -251,7 +257,32 @@ public class dilSecenek {
 			case  "Vazgec":
 				tEXT = "Cancel"  ;
 				break;
+			case  "Baglanti Saglandi":
+				tEXT = "Connection Established"  ;
+				break;
+			case  "Baglanti Saglanamadi":
+				tEXT = "Connection Failed"  ;
+				break;
+			case  "Backup islemi icin  'mysqldump.exe'  surucusu belirtilmelidir":
+				tEXT = "'Mysqldump.exe' fo;der must be specified for the backup process"  ;
+				break;
+			case  "Surucu Secilmemis":
+				tEXT = "Folder Not Selected"  ;
+				break;
+			case  "FTP Baglanti Bilgileri Eksik":
+				tEXT = "FTP Connection Information is Missing"  ;
+				break;
+			case  "FTP Surucu Secilmemis"	:
+				tEXT = "FTP Folder Not Selected"  ;
+				break;
+			case  "Baglanti Gerceklesti":
+				tEXT = "Connection Completed"  ;
+				break;
+			case  "Baglanti Hata":
+				tEXT = "Connection Error"  ;
+				break;
 
+				
 			}  
 		}
 		return tEXT;

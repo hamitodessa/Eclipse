@@ -195,7 +195,7 @@ public class dilSecenek {
 				tEXT = "Selected Counts"  ;
 				break;	
 			case "Sql Server / Diger Dosya Yedekleme" :
-				tEXT = "Sql Server / Another Files & Folders"  ;
+				tEXT = "Sql Server /  Files & Folders"  ;
 				break;
 			case "Aciklama" :
 				tEXT = "Descriptions"  ;

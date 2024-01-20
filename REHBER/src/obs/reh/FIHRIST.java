@@ -34,6 +34,7 @@ import fih.FIHRIST_MYSQL;
 import fih.FIHRIST_SQLITE;
 import javazoom.jl.player.Player;
 import net.proteanit.sql.DbUtils;
+import obs.ayarlar.MaterialTabbed;
 import obs.ayarlar.aNA_Class;
 import raven.toast.Notifications;
 
@@ -130,7 +131,7 @@ public class FIHRIST extends JFrame {
 	aNA_Class oac = new aNA_Class();
 	FIHRIST_ACCESS  fih_Access ;
 	boolean surucubilgi = false;
-	obs.ayarlar.MaterialTabbed tabbedPane;
+	MaterialTabbed tabbedPane;
 
 	private JTable table_1;
 	private JTable table;

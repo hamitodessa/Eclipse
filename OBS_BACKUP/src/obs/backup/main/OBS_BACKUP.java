@@ -21,7 +21,7 @@ import org.apache.commons.net.ftp.FTPReply;
 import org.apache.commons.net.io.CopyStreamAdapter;
 
 import com.formdev.flatlaf.FlatLaf;
-import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
+
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
@@ -194,7 +194,7 @@ public class OBS_BACKUP extends JFrame {
 	public static JPanel container ;
 	public static JToolBar toolBar;
 	public static JTabbedPane tabbedPane ;
-	public static JTabbedPane tabbedPane_1;
+	public static MaterialTabbed tabbedPane_1;
 	int x ,y ;
 	public static YedeklemeAraligi yedekaraligiPanel;
 	public static SunucuAyarlari sunucuayarPanel;
@@ -242,9 +242,12 @@ public class OBS_BACKUP extends JFrame {
 	
 	static JButton btnBuyult;
 	static JButton btnMinimize;
+	public static JButton btnfont_tema;
 	static TrayIcon trayIcon = null ;
 	
 	public static String dILS = "" ;
+	
+	String diltemaString[] =  {"", ""};
 	/**
 	 * Hamit.
 	 */
@@ -262,35 +265,26 @@ public class OBS_BACKUP extends JFrame {
 	}
 	public OBS_BACKUP() {
 		
-		addWindowListener(new WindowListener() {
-
-			@Override
-			public void windowOpened(WindowEvent e) {
-			}
-			@Override
-			public void windowClosing(WindowEvent e) {
-			}
-			@Override
-			public void windowClosed(WindowEvent e) {
-				btnKapat.doClick();
-			}
-			@Override
-			public void windowIconified(WindowEvent e) {
-			}
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-			}
-			@Override
-			public void windowActivated(WindowEvent e) {
-			}
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-			}
-	    });		
 		setUndecorated(true);
-		FlatRobotoFont.install();
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
-		UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
+		try {
+			//
+			if(glb.dos_kontrol(glb.SURUCU + glb.BACKUP_DOSYA))
+			{
+				diltemaString = bckp.ayar_oku();
+				tema(diltemaString[1]);
+				dILS = diltemaString[0];
+			}
+			else {
+				FlatCarbonIJTheme.setup();
+				diltemaString[0] = "Turkce" ;
+				diltemaString[1] = "FlatCarbonIJ" ;
+			}
+			
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -306,9 +300,10 @@ public class OBS_BACKUP extends JFrame {
 				setLocation(xx-x,yy-y);
 			}
 		});
-
-		setBounds(100, 100, 900, 700);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0, 0, 900, 700);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(OBS_BACKUP.class.getResource("/obs/backup/icons/backup-100.png")));
 		contentPane = new JPanel();
 
@@ -316,7 +311,7 @@ public class OBS_BACKUP extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-
+		
 		Title_Bar tBAR = new Title_Bar(null,true,false,"OBS BACKUP",0,0);
 		ActionListener btnCLOSED = new ActionListener() {
 		    @Override
@@ -342,6 +337,7 @@ public class OBS_BACKUP extends JFrame {
 		panel.setPreferredSize(new Dimension(40,0));
 		splitPane.setLeftComponent(panel);
 
+		
 		//***************
 		toolBar = new JToolBar();
 		toolBar.setFloatable(false);
@@ -751,6 +747,7 @@ public class OBS_BACKUP extends JFrame {
 		btnkapat.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/exit.png")));
 		toolBar.add(btnkapat);
 		toolBar.add(sprt );
+		
 		//*********************************************************************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
@@ -776,7 +773,7 @@ public class OBS_BACKUP extends JFrame {
 		
 		panel_3.setLayout(new BorderLayout(0, 0));
 
-		tabbedPane_1 = new JTabbedPane();
+		tabbedPane_1 = new MaterialTabbed();
 		tabbedPane_1.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				if(tabbedPane_1.getSelectedIndex()==4)
@@ -794,7 +791,7 @@ public class OBS_BACKUP extends JFrame {
 		});
 
 		panel_3.add(tabbedPane_1, BorderLayout.CENTER);
-
+		
 		JPanel altPane = new JPanel();
 		altPane.setPreferredSize(new Dimension(0,25));
 		altPane.setLayout(null);
@@ -821,6 +818,7 @@ public class OBS_BACKUP extends JFrame {
 		tabbedPane_1.addTab("Server Bilgileri", null, serverBilgileriPanel, null);
 		emirKopyalaPanel = new EmirKopyala();
 		tabbedPane_1.addTab("Emir Kopyala", null, emirKopyalaPanel, null);
+		//***********************************************************************************
 		loglamaPanel = new LoglamaRapor();
 		tabbedPane.addTab("Loglama", null, loglamaPanel, null);
 		kayitliEmirlerPanelEmirler = new KayitliEmirler();
@@ -836,16 +834,9 @@ public class OBS_BACKUP extends JFrame {
 		ayarlarPanel = new Ayarlar();
 		tabbedPane.addTab("Ayarlar", null, ayarlarPanel, null);
 		//***********************************************************************************
-		try {
-			String diltemaString[] = bckp.ayar_oku();
-			tema(diltemaString[1]);
-			dILS = diltemaString[0];
+		
 			ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
 			ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
-		} catch (Exception e1) {
-			
-			e1.printStackTrace();
-		}
 		
 		final boolean showTabsHeader = false; tabbedPane.setUI(new
 				javax.swing.plaf.metal.MetalTabbedPaneUI() {
@@ -894,6 +885,15 @@ public class OBS_BACKUP extends JFrame {
 		btnMinimize.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setState(Frame.ICONIFIED);
+			}
+		});
+		
+		btnfont_tema  = new JButton("");
+		btnfont_tema.setVisible(false);
+		btnfont_tema.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FONT_TEMA frame = new FONT_TEMA();
+				dispose();
 			}
 		});
 		//***********************************BASLAMA*********************************************
@@ -961,7 +961,7 @@ public class OBS_BACKUP extends JFrame {
 						break;
 					}
 				}
-				Thread.sleep(1000);
+				Thread.sleep(500);
 				List<emir_bilgiler> ebilgiler = bckp.emir_tek(eISMI);
 				boolean SQL_YEDEK_MI;
 				SQL_YEDEK_MI = ebilgiler.get(0).isSQL_YEDEK();
@@ -1362,14 +1362,7 @@ public class OBS_BACKUP extends JFrame {
 				say +=1 ;			
 		}
 		lblemirSAYI.setText(Integer.toString(say));
-		if(dILS.equals("Turkce"))
-		{
-			lblEmir.setText("Emir Sayisi");
-		}
-		else {
-			lblEmir.setText( dilSecenek.dil("Emir Sayisi")); ;
-		}
-		
+		lblEmir.setText( dilSecenek.dil(dILS,"Emir Sayisi")); ;
 	}
 	public void emirtekSIL_HATA(String eadi)
 	{
@@ -1725,12 +1718,11 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.lblSurucu.setText( ftp + "\\" + surucu.replace("/", "\\"));
 			if (glb.internet_kontrol() == false)
 			{
-				bckp.genel_kayit_durum(emirADI, false, new Date(), "Yedeklenmedi Internet Baglantisi Yok...");
-				bckp.log_kayit(emirADI, new Date(), "Yedeklenmedi Internet Baglantisi Yok...");
+				bckp.genel_kayit_durum(emirADI, false, new Date(),dilAciklamalar.dilAciklama(dILS,"Yedeklenmedi Internet Baglantisi Yok")  );
+				bckp.log_kayit(emirADI, new Date(), dilAciklamalar.dilAciklama(dILS,"Yedeklenmedi Internet Baglantisi Yok"));
 				uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
-				bckp.log_kayit(emirADI, new Date(), "Internet Baglantisi Yok...");
 				emirtekSIL_HATA(emirADI);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
@@ -1739,12 +1731,11 @@ public class OBS_BACKUP extends JFrame {
 			boolean result =   bckp.DoesFtpDirectoryExist(ftp ,surucu,Integer.valueOf(port),kull, sifre);
 			if (result == false)
 			{
-				bckp.genel_kayit_durum(emirADI, false, new Date(), "Yedeklenmedi FTP Surucu Bulunamadi...");
-				bckp.log_kayit(emirADI, new Date(), "Yedeklenmedi FTP Surucu Bulunamadi...");
+				bckp.genel_kayit_durum(emirADI, false, new Date(),dilAciklamalar.dilAciklama(dILS,"Yedeklenmedi FTP Surucu Bulunamadi") );
+				bckp.log_kayit(emirADI, new Date(), dilAciklamalar.dilAciklama(dILS,"Yedeklenmedi FTP Surucu Bulunamadi"));
 				uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
-				bckp.log_kayit(emirADI, new Date(), "FTP Surucu Bulunamadi...");
 				emirtekSIL_HATA(emirADI);
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1769,7 +1760,7 @@ public class OBS_BACKUP extends JFrame {
 				bckp.MySql_baglan( serverBilgi.get(0).getKULLANICI(),sqlsifre,serverBilgi.get(0).getPORT());   
 			}
 			String tarr =  TARIH_CEVIR.tarihddMMyyyyHHmm(new Date());
-			bckp.log_kayit(emirADI, new Date(), "Yedeklemeye Baslandi....");
+			bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS,"Yedeklemeye Baslandi")  );
 			String dosADI = "";
 			List<String> dbliste = bckp.db_liste(emirADI);
 			uplpnl.RPB1.setMaximum(dbliste.size());
@@ -1787,7 +1778,7 @@ public class OBS_BACKUP extends JFrame {
 						bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),
 								sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");	
 				}
-				bckp.log_kayit(emirADI, new Date(), dosADI + " Backup Alindi...");
+				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Backup Alindi")  );
 				String dosya, dzip;
 				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
@@ -1799,37 +1790,34 @@ public class OBS_BACKUP extends JFrame {
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
-				bckp.log_kayit(emirADI, new Date(), dosADI + "Zip Haline Getirildi...");
+				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Zip Haline Getirildi") );
 				UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
-				bckp.log_kayit(emirADI, new Date(), dosADI + "FTP Yuklendi...");
+				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," FTP Yuklendi")  );
 				if( serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
-					bckp.log_kayit(emirADI, new Date(), dosADI + " BAK Dosyasi Kontrol...");
 					File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
 					boolean exists = tmpDir.exists();
 					if(exists)
 						tmpDir.delete();
-					bckp.log_kayit(emirADI, new Date(), dosADI + " BAK Dosyasi Silindi...");
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," BAK Dosyasi Silindi")  );
 				}
 				else
 				{
-					bckp.log_kayit(emirADI, new Date(), dosADI + " Sql Dosyasi Kontrol...");
 					File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
 					boolean exists = tmpDir.exists();
 					if(exists)
 						tmpDir.delete();
-					bckp.log_kayit(emirADI, new Date(), dosADI + ".sql" + " Dosyasi Silindi...");
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," sql Dosyasi Silindi") );
 				}
 				File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".zip");
-				bckp.log_kayit(emirADI, new Date(), dosADI + " ZIP Dosyasi Kontrol...");
 				boolean exists = tmpDir.exists();
 				if(exists)
 					tmpDir.delete();
-				bckp.log_kayit(emirADI, new Date(), dosADI + " ZIP Dosyasi Silindi...");
+				bckp.log_kayit(emirADI, new Date(), dosADI +  dilAciklamalar.dilAciklama(dILS," ZIP Dosyasi Silindi") );
 			}
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);		
-			bckp.genel_kayit_durum(emirADI, true,nowwDate, "Yedeklendi.....");
+			bckp.genel_kayit_durum(emirADI, true,nowwDate, dilAciklamalar.dilAciklama(dILS,"Yedeklendi")  );
 			if (eskiyedek > 0) //**************FTP ESKILERI SIL
 			{
 				uplpnl.Progres_Bar_Temizle_1();
@@ -1859,9 +1847,9 @@ public class OBS_BACKUP extends JFrame {
 							int araFARK = (int)TimeUnit.HOURS.convert(timeDiff, TimeUnit.MILLISECONDS);
 							if (araFARK> (eskiyedek*24)) 
 							{
-								bckp.log_kayit(emirADI, new Date(),  dosADI + " FTP ye Silmeye Gitti...");
+								bckp.log_kayit(emirADI, new Date(),  dosADI + dilAciklamalar.dilAciklama(dILS," FTP Silmeye Gitti") );
 								bckp.ftp_sil( ftp, surucu, ls.get(r).getDosyaADI(), kull, sifre, port);
-								bckp.log_kayit(emirADI, new Date(), dosADI + " Dosya FTP Eski Tarihli Silindi...");
+								bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," FTP Eski Tarihli Silindi") );
 							}
 						}
 					}
@@ -1871,7 +1859,7 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setPreferredSize(new Dimension(0,00));
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
-			bckp.log_kayit(emirADI, new Date(), dosADI + " Yedekleme Islemi Sona Erdi...");
+			bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Yedekleme Islemi Sona Erdi") );
 			emirYENIDENBASLAT(emirADI);
 			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1889,7 +1877,7 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
 				yapilmadiMAILI( emirADI,ex.getMessage());
-				bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
+				bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS,"Hata Durumundan Emir Bosaldi")  );
 				emirtekSIL_HATA(emirADI);
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -1937,12 +1925,10 @@ public class OBS_BACKUP extends JFrame {
 
 		if (dbliste.size() == 0)
 		{
-			bckp.log_kayit(emirADI, new Date(), "Yuklenecek Dosya Secilmemis....");
-			bckp.genel_kayit_durum(emirADI, false, sonyuk, "Yuklenecek Dosya Secilmemis....");
+			bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS, "Yuklenecek Dosya Secilmemis")  );
+			bckp.genel_kayit_durum(emirADI, false, sonyuk, dilAciklamalar.dilAciklama(dILS, "Yuklenecek Dosya Secilmemis"));
 			uplpnl.setVisible(false);
-
-			bckp.log_kayit(emirADI, new Date(), "Dosya Secilmemis...");
-			bckp.log_kayit(emirADI, new Date(), "Emir Yuklendi...");
+			bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS, "Emir Yuklendi")  );
 			emir_yukle("EMIR_ISMI") ;
 			return;
 		}
@@ -1957,12 +1943,10 @@ public class OBS_BACKUP extends JFrame {
 		{
 			if(ftpBilgi.get(0).getSURUCU().equals(""))
 			{
-				bckp.log_kayit(emirADI, new Date(), "FTP Surucu Secilmemis....");
-				bckp.genel_kayit_durum(emirADI, false, sonyuk, "FTP Surucu Secilmemis....");
+				bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS, "FTP Surucu Secilmemis")  );
+				bckp.genel_kayit_durum(emirADI, false, sonyuk, dilAciklamalar.dilAciklama(dILS, "FTP Surucu Secilmemis"));
 				uplpnl.setVisible(false);
-				bckp.log_kayit(emirADI, new Date(), "FTP Surucu Secilmemis....");
-				bckp.log_kayit(emirADI, new Date(), "Emir Yuklendi...");
-				mesaj_goster(5000,Notifications.Type.WARNING, "FTP Surucu Secilmemis....");	
+				bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS, "Emir Yuklendi")  );
 				emir_yukle("EMIR_ISMI") ;
 				return;
 			}
@@ -1982,7 +1966,7 @@ public class OBS_BACKUP extends JFrame {
 			eskiyedek =  Integer.valueOf(ftpBilgi.get(0).getESKI_YEDEK());
 			uplpnl.lblSurucu.setText( ftpBilgi.get(0).getSURUCU_YER().replace("/", "\\"));
 			String tarr =  TARIH_CEVIR.tarihddMMyyyyHHmm(new Date());
-			bckp.log_kayit(emirADI, new Date(), "Yedeklemeye Baslandi....");
+			bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS, "Yedeklemeye Baslandi")  );
 			String dosADI = "";
 			Boolean folderMI = false;
 			List<db_List>  dbliste = bckp.diger_dosya_liste (emirADI);
@@ -2016,7 +2000,7 @@ public class OBS_BACKUP extends JFrame {
 				dzip = tarr + "_" + uzantisiz + ".zip";
 				if (folderMI)
 				{
-					uplpnl.RPB2.setString("Zip Haline Getiriliyor..........");
+					uplpnl.RPB2.setString(dilAciklamalar.dilAciklama(dILS, "Zip Haline Getiriliyor")  );
 					dzip = tarr + "_" + dbliste.get(i).getAdi() + ".zip";
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()+"\\";
 					Path pathokuma = Paths.get(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()); 
@@ -2026,12 +2010,12 @@ public class OBS_BACKUP extends JFrame {
 				}
 				else
 				{
-					uplpnl.RPB2.setString("Zip Haline Getiriliyor..........");
+					uplpnl.RPB2.setString(dilAciklamalar.dilAciklama(dILS, "Zip Haline Getiriliyor"));
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
 					bckp.diger_zip_yap(okumadosyaadi, glb.BACKUP_YERI, dzip, false, "");
 					uplpnl.RPB2.setString("");
 				}
-				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
+				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Zip Haline Getirildi")  );
 				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 				boolean exists = tmpDir.exists();
 				if (!exists)
@@ -2042,12 +2026,12 @@ public class OBS_BACKUP extends JFrame {
 				{ 
 					glb.dos_sil( glb.BACKUP_YERI + "\\" + dzip);
 				}
-				bckp.log_kayit(emirADI, new Date(), dosADI + " Surucuye Yuklendi...");
-				bckp.log_kayit(emirADI,new Date(), uzantisiz + " ZIP Dosyasi Silindi...");
+				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Surucuye Yuklendi")  );
+				bckp.log_kayit(emirADI,new Date(), uzantisiz + dilAciklamalar.dilAciklama(dILS, " ZIP Dosyasi Silindi")  );
 			}
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);
-			bckp.genel_kayit_durum(emirADI, true,nowwDate, "Yedeklendi.....");
+			bckp.genel_kayit_durum(emirADI, true,nowwDate, dilAciklamalar.dilAciklama(dILS, "Yedeklendi") );
 			if (eskiyedek > 0) // **************FTP ESKILERI SIL
 			{
 				uplpnl.Progres_Bar_Temizle_1();
@@ -2082,12 +2066,12 @@ public class OBS_BACKUP extends JFrame {
 							int araFARK = (int)TimeUnit.HOURS.convert(timeDiff, TimeUnit.MILLISECONDS);
 							if (araFARK> (eskiyedek*24)) 
 							{
-								bckp.log_kayit(emirADI, new Date(),ls.get(r).getDosyaADI() + " Surucuye Silmeye Gitti...");
+								bckp.log_kayit(emirADI, new Date(),ls.get(r).getDosyaADI() + dilAciklamalar.dilAciklama(dILS, " Surucuye Silmeye Gitti") );
 								if (glb.dos_kontrol(ls.get(r).getFilePATH()+"\\"+  ls.get(r).getDosyaADI()))
 								{ 
 									glb.dos_sil(ls.get(r).getFilePATH()+"\\"+ ls.get(r).getDosyaADI());
 								}
-								bckp.log_kayit(emirADI, new Date(), dosADI + " Dosya Surucuden Eski Tarihli Silindi...");
+								bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Surucuden Eski Tarihli Silindi") );
 							}
 						}
 					}
@@ -2097,7 +2081,7 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setPreferredSize(new Dimension(0,00));
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
-			bckp.log_kayit(emirADI, new Date(), dosADI + " Yedekleme Islemi Sona Erdi...");
+			bckp.log_kayit(emirADI, new Date(), dosADI +  dilAciklamalar.dilAciklama(dILS, " Yedekleme Islemi Sona Erdi")  );
 			emirYENIDENBASLAT(emirADI);
 			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -2115,7 +2099,7 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
 				yapilmadiMAILI( emirADI,ex.getMessage());
-				bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
+				bckp.log_kayit(emirADI, new Date(), dilAciklamalar.dilAciklama(dILS, "Hata Durumundan Emir Bosaldi") );
 				emirtekSIL_HATA(emirADI);
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -2151,12 +2135,11 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.lblSurucu.setText( ftp + "\\" + surucu.replace("/", "\\"));
 			if (glb.internet_kontrol() == false)
 			{
-				bckp.genel_kayit_durum(emirADI, false, new Date(), "Yedeklenmedi Internet Baglantisi Yok...");
-				bckp.log_kayit(emirADI, new Date(), "Yedeklenmedi Internet Baglantisi Yok...");
+				bckp.genel_kayit_durum(emirADI, false, new Date(), dilAciklamalar.dilAciklama(dILS, "Yedeklenmedi Internet Baglantisi Yok") );
+				bckp.log_kayit(emirADI, new Date(),  dilAciklamalar.dilAciklama(dILS, "Yedeklenmedi Internet Baglantisi Yok"));
 				uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
-				bckp.log_kayit(emirADI, new Date(), "Internet Baglantisi Yok...");
 				emirtekSIL_HATA(emirADI);
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -2165,19 +2148,18 @@ public class OBS_BACKUP extends JFrame {
 			boolean result =   bckp.DoesFtpDirectoryExist(ftp ,surucu,Integer.valueOf(port),kull, sifre);
 			if (result == false)
 			{
-				bckp.genel_kayit_durum(emirADI, false, new Date(), "Yedeklenmedi FTP Surucu Bulunamadi...");
-				bckp.log_kayit(emirADI, new Date(), "Yedeklenmedi FTP Surucu Bulunamadi...");
+				bckp.genel_kayit_durum(emirADI, false, new Date(),  dilAciklamalar.dilAciklama(dILS, "Yedeklenmedi FTP Surucu Bulunamadi")  );
+				bckp.log_kayit(emirADI, new Date(), dilAciklamalar.dilAciklama(dILS, "Yedeklenmedi FTP Surucu Bulunamadi"));
 				uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
-				bckp.log_kayit(emirADI, new Date(), "FTP Surucu Bulunamadi...");
 				emirtekSIL_HATA(emirADI);
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				return;
 			}
 			String tarr =  TARIH_CEVIR.tarihddMMyyyyHHmm(new Date());
-			bckp.log_kayit(emirADI, new Date(), "Yedeklemeye Baslandi....");
+			bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS, "Yedeklemeye Baslandi")  );
 			String dosADI = "";
 			Boolean folderMI = false;
 			List<db_List>  dbliste = bckp.diger_dosya_liste (emirADI);
@@ -2223,10 +2205,10 @@ public class OBS_BACKUP extends JFrame {
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
 					bckp.diger_zip_yap(okumadosyaadi, glb.BACKUP_YERI, dzip, false, "");
 				}
-				bckp.log_kayit(emirADI, new Date(), dosADI + " Zip Haline Getirildi...");
+				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Zip Haline Getirildi")  );
 				UploadFTPFiles(ftp, surucu, glb.BACKUP_YERI, dzip, kull, sifre, port, zmnasimi);
-				bckp.log_kayit(emirADI, new Date(), dosADI + " FTP Yuklendi...");
-				bckp.log_kayit(emirADI,new Date(), uzantisiz + " ZIP Dosyasi Silindi...");
+				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS,  " FTP Yuklendi") );
+				bckp.log_kayit(emirADI,new Date(), uzantisiz + dilAciklamalar.dilAciklama(dILS,  " ZIP Dosyasi Silindi") );
 				File tmpDir = new File(glb.BACKUP_YERI + dzip);
 				boolean exists = tmpDir.exists();
 				if(exists)
@@ -2234,7 +2216,7 @@ public class OBS_BACKUP extends JFrame {
 			}
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);		
-			bckp.genel_kayit_durum(emirADI, true,nowwDate, "Yedeklendi.....");
+			bckp.genel_kayit_durum(emirADI, true,nowwDate,dilAciklamalar.dilAciklama(dILS, "Yedeklendi")  );
 			if (eskiyedek > 0) // **************FTP ESKILERI SIL
 			{
 				uplpnl.Progres_Bar_Temizle_1();
@@ -2264,9 +2246,9 @@ public class OBS_BACKUP extends JFrame {
 							int araFARK = (int)TimeUnit.HOURS.convert(timeDiff, TimeUnit.MILLISECONDS);
 							if (araFARK> (eskiyedek*24)) 
 							{
-								bckp.log_kayit(emirADI, new Date(), dosADI + " FTP ye Silmeye Gitti...");
+								bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " FTP ye Silmeye Gitti")  );
 								bckp.ftp_sil( ftp, surucu, ls.get(r).getDosyaADI(), kull, sifre, port);
-								bckp.log_kayit(emirADI, new Date(), dosADI + " Dosya FTP Eski Tarihli Silindi...");
+								bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " FTP Eski Tarihli Silindi") );
 							}
 						}
 					}
@@ -2276,7 +2258,7 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.setPreferredSize(new Dimension(0,00));
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
-			bckp.log_kayit(emirADI, new Date(), dosADI + " Yedekleme Islemi Sona Erdi...");
+			bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Yedekleme Islemi Sona Erdi") );
 			emirYENIDENBASLAT(emirADI);
 			gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -2294,7 +2276,7 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
 				yapilmadiMAILI( emirADI,ex.getMessage());
-				bckp.log_kayit(emirADI, new Date(), "Hata Durumundan Emir Bosaldi...");
+				bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS, "Hata Durumundan Emir Bosaldi") );
 				emirtekSIL_HATA(emirADI);
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -2315,13 +2297,13 @@ public class OBS_BACKUP extends JFrame {
 			if(!ftp.login(kull, sifre))
 			{
 				ftp.logout();
-				bckp.genel_kayit_durum("Sistem", false, new Date(), "FTP Baglanti Hatasi Login"); 
+				bckp.genel_kayit_durum("System", false, new Date(), dilAciklamalar.dilAciklama(dILS, "FTP Baglanti Hatasi Login")  ); 
 			}
 			int reply = ftp.getReplyCode();
 			if (!FTPReply.isPositiveCompletion(reply))
 			{
 				ftp.disconnect();
-				bckp.genel_kayit_durum("Sistem", false, new Date(), "FTP Baglanti Hatasi isPositiveCompletion");  
+				bckp.genel_kayit_durum("System", false, new Date(),  dilAciklamalar.dilAciklama(dILS, "FTP Baglanti Hatasi isPositiveCompletion") );  
 			}
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
 			ftp.enterLocalPassiveMode();
@@ -2361,7 +2343,7 @@ public class OBS_BACKUP extends JFrame {
 			outputStream = null;
 			
 		} catch (Exception ex) {
-			bckp.log_kayit("Sistem", new Date(), "2322=" + ex.getMessage());
+			bckp.log_kayit("System", new Date(), "2322=" + ex.getMessage());
 		}
 	}
 	private void emirBOSALT(String emirADI)
@@ -2448,7 +2430,7 @@ public class OBS_BACKUP extends JFrame {
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messagePart);
 			message.setSentDate(new Date());
-			message.setSubject("OBS BACKUP YEDEKLEME" , "UTF-8");
+			message.setSubject("OBS BACKUP " , "UTF-8");
 			message.setContent(multipart);
 			Transport.send(message);
 			message= null;
@@ -2456,7 +2438,7 @@ public class OBS_BACKUP extends JFrame {
 		}
 		catch (Exception ex)
 		{
-			bckp.log_kayit(eADI, new Date(), "Mail Gonderirken Hata Olustu...");
+			bckp.log_kayit(eADI, new Date(), dilAciklamalar.dilAciklama(dILS, "Mail Gonderirken Hata Olustu")  );
 		}
 	}
 	private void durumYAZ(String emirADI,Date nowwDate)
@@ -2474,7 +2456,7 @@ public class OBS_BACKUP extends JFrame {
 							if(compo.getName().equals("lblSonDurum"))
 							{
 								JLabel sndrm = (JLabel) compo;
-								sndrm.setText("Yedeklendi");
+								sndrm.setText( dilAciklamalar.dilAciklama(dILS, "Yedeklendi") );
 							}
 							if(compo.getName().equals("lblSonYedek"))
 							{
@@ -2501,8 +2483,8 @@ public class OBS_BACKUP extends JFrame {
 				{
 					SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH.mm:ss");
 					Date today = new Date();        
-					bilgilendirme_oku(emirADI, emirADI + "    " + df.format(today) + "     Yedekleme Yapildi",bilgiBilgi);
-					bckp.log_kayit(emirADI, new Date(), "Yedekleme Yapildi Maili gonderildi...");
+					bilgilendirme_oku(emirADI, emirADI + "    " + df.format(today) +  "     " + dilAciklamalar.dilAciklama(dILS, "Yedeklendi"),bilgiBilgi);
+					bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS, "Yedekleme Yapildi Maili gonderildi")  );
 				}
 			}
 		}
@@ -2520,7 +2502,7 @@ public class OBS_BACKUP extends JFrame {
 					SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH.mm:ss");
 					Date today = new Date();        
 					bilgilendirme_oku(emirADI, emirADI + "    " + df.format(today) + " =" + mesaj,bilgiBilgi);
-					bckp.log_kayit(emirADI, new Date(), "Yedekleme Yapilamadi Maili gonderildi...");
+					bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS, "Yedekleme Yapilamadi Maili gonderildi") );
 				}
 			}
 		}
@@ -2656,10 +2638,10 @@ public class OBS_BACKUP extends JFrame {
 			float newFontSize = defaultFont.getSize() * adjustmentRatio ; 
 			Font derivedFont = defaultFont.deriveFont(newFontSize);
 			
-			MenuItem buyultITEM = new MenuItem("Buyult");
+			MenuItem buyultITEM = new MenuItem(dilSecenek.dil(dILS,"Buyult"));
 			buyultITEM.setFont(derivedFont);
 			buyultITEM.addActionListener(listener);
-			MenuItem kapatItem = new MenuItem("Kapat");
+			MenuItem kapatItem = new MenuItem(dilSecenek.dil(dILS,"Kapat"));
 			kapatItem.setFont(derivedFont);
 			kapatItem.addActionListener(kapat);
 			popup.addSeparator();
@@ -2672,7 +2654,7 @@ public class OBS_BACKUP extends JFrame {
 			trayIcon.addActionListener(listener);
 			try {
 				tray.add(trayIcon);
-				trayIcon.displayMessage("OBS BACKUP", "Arka Plan basladi", MessageType.INFO);
+				trayIcon.displayMessage("OBS BACKUP", dilAciklamalar.dilAciklama(dILS, "Arka Plan basladi")    , MessageType.INFO);
 				trayIcon.setToolTip("OBS BACKUP");
 			} catch (AWTException e) {
 				mesaj_goster(5000,Notifications.Type.WARNING, e.getMessage());	
@@ -2709,290 +2691,153 @@ public class OBS_BACKUP extends JFrame {
 	}
 	public static void dil() throws ClassNotFoundException, SQLException
 	{
-		String dilString[] =  bckp.ayar_oku() ;
-		if(dilString[0].equals("Turkce"))
-		{
-			btnGorevler.setToolTipText("Gorevler");
-			btnYeni_Gorev.setToolTipText("Yeni Gorev");
-			btnLoglama.setToolTipText("Loglama");
-			btnKayitliEmirler.setToolTipText("Kayitli Emirler");
-			btnHepsiYukari.setToolTipText("Hepsini Kucult");
-			btnHepsiAsagi.setToolTipText("Hepsi Buyult");
-			btnYeniSifre.setToolTipText("Sifre Yenile");
-			btnUploadAll.setToolTipText("Gorevleri Yedekle");
-			btnStartAll.setToolTipText("Gorevleri Baslat");
-			btnStopAll.setToolTipText("Gorevleri Durdur");
-			btnFileIndir.setToolTipText("Dosya Indir");
-			btnSifreEkrani.setToolTipText("Sifre Ekrani");
-			btnHepsiAktiv.setToolTipText("Gorevleri Aktif Yap");
-			btnHepsiPasiv.setToolTipText("Gorevleri Pasiv Yap");
-			btnHakkinda.setToolTipText("Hakkinda");
-			btnAyarlar.setToolTipText("Ayarlar");
-			btnKapat.setToolTipText("Kapat");
-			lblEmir.setText("Emir Sayisi");
+			btnGorevler.setToolTipText(dilSecenek.dil(dILS,"Gorevler"));
+			btnYeni_Gorev.setToolTipText(dilSecenek.dil(dILS,"Yeni Gorev"));
+			btnLoglama.setToolTipText(dilSecenek.dil(dILS,"Loglama"));
+			btnKayitliEmirler.setToolTipText(dilSecenek.dil(dILS,"Kayitli Emirler"));
+			btnHepsiYukari.setToolTipText(dilSecenek.dil(dILS,"Hepsini Kucult"));
+			btnHepsiAsagi.setToolTipText(dilSecenek.dil(dILS,"Hepsini Buyult"));
+			btnYeniSifre.setToolTipText(dilSecenek.dil(dILS,"Sifre Yenile"));
+			btnUploadAll.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Yedekle"));
+			btnStartAll.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Baslat"));
+			btnStopAll.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Durdur"));
+			btnFileIndir.setToolTipText(dilSecenek.dil(dILS,"Dosya Indir"));
+			btnSifreEkrani.setToolTipText(dilSecenek.dil(dILS,"Sifre Ekrani"));
+			btnHepsiAktiv.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Aktif Yap"));
+			btnHepsiPasiv.setToolTipText(dilSecenek.dil(dILS,"Gorevleri Pasiv Yap"));
+			lblEmir.setText(dilSecenek.dil(dILS,"Emir Sayisi"));
 			
-			sifreGirisPanel.lblNewLabel.setText("Sifre");
-			sifreGirisPanel.lblDefaultpwd.setText("Varsayilan Sifre :       obs");
-			//******************************************************************************************
-			bilgilendirmePanel.lblNewLabel.setText("Durum");
-			bilgilendirmePanel.chckbxAktifPasif.setText("Aktif / Pasif");
-			bilgilendirmePanel.chckbxIslem.setText("Islem Gerceklestiginde");
-			bilgilendirmePanel.chckbxHata.setText("Hata Durumunda");
-			TitledBorder titledBorder = (TitledBorder)bilgilendirmePanel.panel_1.getBorder();
-			titledBorder.setTitle("Mail Bilgileri");
-			bilgilendirmePanel.panel_1.setBorder(titledBorder);
-			bilgilendirmePanel.lblNewLabel_1.setText("Gonderen Isim");
-			bilgilendirmePanel.lblNewLabel_2.setText("Gonderen Hesap");
-			titledBorder = (TitledBorder)bilgilendirmePanel.panel.getBorder();
-		    titledBorder.setTitle("Gonderme Durumu");
-			bilgilendirmePanel.panel.setBorder(titledBorder);
-			bilgilendirmePanel.lblNewLabel_3.setText("Alici");
-			bilgilendirmePanel.lblNewLabel_4.setText("Konu");
-			titledBorder = (TitledBorder)bilgilendirmePanel.panel_1_1.getBorder();
-			titledBorder.setTitle("Server Ayarlari");
-			bilgilendirmePanel.panel_1_1.setBorder(titledBorder);
-			bilgilendirmePanel.btnDenemeMail.setText("Deneme Maili");
-			bilgilendirmePanel.lblNewLabel_7.setText("Kullanici");
-			bilgilendirmePanel.lblNewLabel_8.setText("Sifre");
-			bilgilendirmePanel.btnNewButton_9.setText("Kaydet");
-			//*****************************************************************************************
-			yedekaraligiPanel.lblNewLabel.setText("Her");
-			yedekaraligiPanel.lblNewLabel_1.setText("dakkada bir");
-			yedekaraligiPanel.lblNewLabel_2.setText("Gunler");
-			yedekaraligiPanel.chckbxPtesi.setText("Pazartesi");
-			yedekaraligiPanel.chckbxSali.setText("Sali");
-			yedekaraligiPanel.chckbxCarsamba.setText("Carsamba");
-			yedekaraligiPanel.chckbxPersembe.setText("Persembe");
-			yedekaraligiPanel.chckbxCuma.setText("Cuma");
-			yedekaraligiPanel.chckbxCumartesi.setText("Cumartesi");
-			yedekaraligiPanel.chckbxPazar.setText("Pazar");
-			yedekaraligiPanel.lblNewLabel_3.setText("Baslangic");
-			yedekaraligiPanel.lblNewLabel_3_1.setText("Bitis");
-			titledBorder = (TitledBorder)yedekaraligiPanel.panel.getBorder();
-			titledBorder.setTitle("Yedekleme Araligi");
-			yedekaraligiPanel.panel.setBorder(titledBorder);
-			yedekaraligiPanel.btnNewButton_9.setText("Kaydet");
-			//****************************************************************************************
-			emirKopyalaPanel.lblNewLabel.setText("Yeni Emir Ismi");
-			emirKopyalaPanel.btnNewButton_9.setText("Kaydet");
-			//****************************************************************************************
-			sifreYenilePanel.lblNewLabel.setText("Gecerli Sifreniz");
-			sifreYenilePanel.lblysif.setText("Yeni Sifreniz");
-			sifreYenilePanel.lblNewLabel_1.setText("Sifre Yenileme");
-			//****************************************************************************************
-			loglamaPanel.lblNewLabel.setText("Arama");
-			loglamaPanel.btnNewButton.setText("Sil");
-			loglamaPanel.btnExcell.setToolTipText("Excell Aktarma");
-			//****************************************************************************************
-			kayitliEmirlerPanelEmirler.lblNewLabel.setText("Arama");
-			//****************************************************************************************
-			emirAnaGirisPanel.btnDosyaSec.setText("Dosya Sec");
-			emirAnaGirisPanel.btnSurucuSec.setText("Surucu Sec");
-			emirAnaGirisPanel.btnServer.setText("Server Baglanti");
-			emirAnaGirisPanel.lblNewLabel.setText("Durum");
-			emirAnaGirisPanel.lblNewLabel_1.setText("Emir Ismi");
-			emirAnaGirisPanel.lblNewLabel_4.setText("Dosya Sayisi");
-			emirAnaGirisPanel.chckbxServerDosya.setText("Sql Server / Diger Dosya Yedekleme");
-			emirAnaGirisPanel.lblNewLabel_2.setText("Aciklama");
-			//***************************************************************************************
-			serverBilgileriPanel.lblNewLabel_1.setText("Kullanici");
-			serverBilgileriPanel.lblNewLabel_2.setText("Sifre");
-			titledBorder = (TitledBorder)serverBilgileriPanel.panel_2.getBorder();
-			titledBorder.setTitle("Baglanti");
-			serverBilgileriPanel.panel_2.setBorder(titledBorder);
-			serverBilgileriPanel.btnMSkaydet.setText("Kaydet");
-			serverBilgileriPanel.btnMSTest.setText("Baglanti Test");
-			titledBorder = (TitledBorder)serverBilgileriPanel.panel_2_2.getBorder();
-			titledBorder.setTitle("Baglanti");
-			serverBilgileriPanel.panel_2_2.setBorder(titledBorder);
-			serverBilgileriPanel.lblNewLabel_1_2.setText("Kullanici");
-			serverBilgileriPanel.lblNewLabel_2_2.setText("Sifre");
-			serverBilgileriPanel.btnDumpSec.setText("Sec");
-			serverBilgileriPanel.btnMyKaydet.setText("Kaydet");
-			serverBilgileriPanel.btnMyTest.setText("Baglanti Test");
-			//**************************************************************************************
-			sunucuayarPanel.chckbxYerel.setText("Yerel Surucu");
-			titledBorder = (TitledBorder)sunucuayarPanel.panel_12.getBorder();
-			titledBorder.setTitle("FTP Ayarlari");
-			sunucuayarPanel.panel_12.setBorder(titledBorder);
-			sunucuayarPanel.lblNewLabel_1.setText("Kullanici");
-			sunucuayarPanel.lblNewLabel_2.setText("Sifre");
-			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1.getBorder();
-			titledBorder.setTitle("FTP Diger Ayarlar");
-			sunucuayarPanel.panel_12_1.setBorder(titledBorder);
-			sunucuayarPanel.lblNewLabel_3.setText("Surucu");
-			sunucuayarPanel.lblNewLabel_5.setText("Zaman Asimi");
-			sunucuayarPanel.btnNewButton_6.setText("Surucu Kontrol");
-			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1_1.getBorder();
-			titledBorder.setTitle("Yerel Surucu");
-			sunucuayarPanel.panel_12_1_1.setBorder(titledBorder);
-			sunucuayarPanel.lblNewLabel_8.setText("Surucu");
-			sunucuayarPanel.btnNewButton_7.setText("Surucu Sec");
-			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1_1_1.getBorder();
-			titledBorder.setTitle("Eski Yedek");
-			sunucuayarPanel.panel_12_1_1_1.setBorder(titledBorder);
-			sunucuayarPanel.lblNewLabel_6.setText("Eski Yed.Silme");
-			sunucuayarPanel.lblNewLabel_7.setText("gunden eski olanari silme (0 Silinmez)");
-			sunucuayarPanel.btnftpkont.setText("Ftp Kontrol");
-			sunucuayarPanel.btnNewButton_9.setText("Kaydet");
-			sunucuayarPanel.lblNewLabel_9.setText("sn.");
-			//************************************************************************************
-			ayarlarPanel.lblNewLabel.setText("Tema");
-			ayarlarPanel.lblNewLabel_1.setText("Dil");
-			ayarlarPanel.btnKaydet.setText("Kaydet");
-			//************************************************************************************
-			tabbedPane_1.setTitleAt(0, "Emir");
-			tabbedPane_1.setTitleAt(1, "Sunucu Ayarlari");
-			tabbedPane_1.setTitleAt(2, "Bilgilendirme");
-			tabbedPane_1.setTitleAt(3, "Yedekleme Araligi");
-			tabbedPane_1.setTitleAt(4, "Server Bilgileri");
-			tabbedPane_1.setTitleAt(5, "Emir Kopyala");
+			btnHakkinda.setToolTipText(dilSecenek.dil(dILS,"Hakkinda"));
+			btnAyarlar.setToolTipText(dilSecenek.dil(dILS,"Ayarlar"));
+			btnKapat.setToolTipText(dilSecenek.dil(dILS,"Kapat"));
 			
-			
-			
-			
-			
-			
-		}
-		else {
-			btnGorevler.setToolTipText(dilSecenek.dil("Gorevler"));
-			btnYeni_Gorev.setToolTipText(dilSecenek.dil("Yeni Gorev"));
-			btnLoglama.setToolTipText(dilSecenek.dil("Loglama"));
-			btnKayitliEmirler.setToolTipText(dilSecenek.dil("Kayitli Emirler"));
-			btnHepsiYukari.setToolTipText(dilSecenek.dil("Hepsini Kucult"));
-			btnHepsiAsagi.setToolTipText(dilSecenek.dil("Hepsini Buyult"));
-			btnYeniSifre.setToolTipText(dilSecenek.dil("Sifre Yenile"));
-			btnUploadAll.setToolTipText(dilSecenek.dil("Gorevleri Yedekle"));
-			btnStartAll.setToolTipText(dilSecenek.dil("Gorevleri Baslat"));
-			btnStopAll.setToolTipText(dilSecenek.dil("Gorevleri Durdur"));
-			btnFileIndir.setToolTipText(dilSecenek.dil("Dosya Indir"));
-			btnSifreEkrani.setToolTipText(dilSecenek.dil("Sifre Ekrani"));
-			btnHepsiAktiv.setToolTipText(dilSecenek.dil("Gorevleri Aktif Yap"));
-			btnHepsiPasiv.setToolTipText(dilSecenek.dil("Gorevleri Pasiv Yap"));
-			lblEmir.setText(dilSecenek.dil("Emir Sayisi"));
-			
-			btnHakkinda.setToolTipText(dilSecenek.dil("Hakkinda"));
-			btnAyarlar.setToolTipText(dilSecenek.dil("Ayarlar"));
-			btnKapat.setToolTipText(dilSecenek.dil("Kapat"));
-			
-			sifreGirisPanel.lblNewLabel.setText(dilSecenek.dil("Sifre"));
-			sifreGirisPanel.lblDefaultpwd.setText(dilSecenek.dil("Varsayilan Sifre :       obs"));
+			sifreGirisPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Sifre"));
+			sifreGirisPanel.lblDefaultpwd.setText(dilSecenek.dil(dILS,"Varsayilan Sifre :       obs"));
 			//************************************************************************************************
-			bilgilendirmePanel.lblNewLabel.setText(dilSecenek.dil("Durum"));
-			bilgilendirmePanel.chckbxAktifPasif.setText(dilSecenek.dil("Aktif / Pasif"));
-			bilgilendirmePanel.chckbxIslem.setText(dilSecenek.dil("Islem Gerceklestiginde"));
-			bilgilendirmePanel.chckbxHata.setText(dilSecenek.dil("Hata Durumunda"));
+			bilgilendirmePanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Durum"));
+			bilgilendirmePanel.chckbxAktifPasif.setText(dilSecenek.dil(dILS,"Aktif / Pasif"));
+			bilgilendirmePanel.chckbxIslem.setText(dilSecenek.dil(dILS,"Islem Gerceklestiginde"));
+			bilgilendirmePanel.chckbxHata.setText(dilSecenek.dil(dILS,"Hata Durumunda"));
 			TitledBorder titledBorder = (TitledBorder)bilgilendirmePanel.panel_1.getBorder();
-			titledBorder.setTitle(dilSecenek.dil("Mail Bilgileri"));
+			titledBorder.setTitle(dilSecenek.dil(dILS,"Mail Bilgileri"));
 			bilgilendirmePanel.panel_1.setBorder(titledBorder);
-			bilgilendirmePanel.lblNewLabel_1.setText(dilSecenek.dil("Gonderen Isim"));
-			bilgilendirmePanel.lblNewLabel_2.setText(dilSecenek.dil("Gonderen Hesap"));
+			bilgilendirmePanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Gonderen Isim"));
+			bilgilendirmePanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Gonderen Hesap"));
 			titledBorder = (TitledBorder)bilgilendirmePanel.panel.getBorder();
-		    titledBorder.setTitle(dilSecenek.dil("Gonderme Durumu"));
+		    titledBorder.setTitle(dilSecenek.dil(dILS,"Gonderme Durumu"));
 			bilgilendirmePanel.panel.setBorder(titledBorder);
-			bilgilendirmePanel.lblNewLabel_3.setText(dilSecenek.dil("Alici"));
-			bilgilendirmePanel.lblNewLabel_4.setText(dilSecenek.dil("Konu"));
+			bilgilendirmePanel.lblNewLabel_3.setText(dilSecenek.dil(dILS,"Alici"));
+			bilgilendirmePanel.lblNewLabel_4.setText(dilSecenek.dil(dILS,"Konu"));
 			titledBorder = (TitledBorder)bilgilendirmePanel.panel_1_1.getBorder();
-			titledBorder.setTitle(dilSecenek.dil("Server Ayarlari"));
+			titledBorder.setTitle(dilSecenek.dil(dILS,"Server Ayarlari"));
 			bilgilendirmePanel.panel_1_1.setBorder(titledBorder);
-			bilgilendirmePanel.btnDenemeMail.setText(dilSecenek.dil("Deneme Maili"));
-			bilgilendirmePanel.lblNewLabel_7.setText(dilSecenek.dil("Kullanici"));
-			bilgilendirmePanel.lblNewLabel_8.setText(dilSecenek.dil("Sifre"));
-			bilgilendirmePanel.btnNewButton_9.setText(dilSecenek.dil("Kaydet"));
+			bilgilendirmePanel.btnDenemeMail.setText(dilSecenek.dil(dILS,"Deneme Maili"));
+			bilgilendirmePanel.lblNewLabel_7.setText(dilSecenek.dil(dILS,"Kullanici"));
+			bilgilendirmePanel.lblNewLabel_8.setText(dilSecenek.dil(dILS,"Sifre"));
+			bilgilendirmePanel.btnNewButton_9.setText(dilSecenek.dil(dILS,"Kaydet"));
 			//*****************************************************************************************
-			yedekaraligiPanel.lblNewLabel.setText(dilSecenek.dil("Her"));
-			yedekaraligiPanel.lblNewLabel_1.setText(dilSecenek.dil("dakkada bir"));
-			yedekaraligiPanel.lblNewLabel_2.setText(dilSecenek.dil("Gunler"));
-			yedekaraligiPanel.chckbxPtesi.setText(dilSecenek.dil("Pazartesi"));
-			yedekaraligiPanel.chckbxSali.setText(dilSecenek.dil("Sali"));
-			yedekaraligiPanel.chckbxCarsamba.setText(dilSecenek.dil("Carsamba"));
-			yedekaraligiPanel.chckbxPersembe.setText(dilSecenek.dil("Persembe"));
-			yedekaraligiPanel.chckbxCuma.setText(dilSecenek.dil("Cuma"));
-			yedekaraligiPanel.chckbxCumartesi.setText(dilSecenek.dil("Cumartesi"));
-			yedekaraligiPanel.chckbxPazar.setText(dilSecenek.dil("Pazar"));
-			yedekaraligiPanel.lblNewLabel_3.setText(dilSecenek.dil("Baslangic"));
-			yedekaraligiPanel.lblNewLabel_3_1.setText(dilSecenek.dil("Bitis"));
+			yedekaraligiPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Her"));
+			yedekaraligiPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"dakkada bir"));
+			yedekaraligiPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Gunler"));
+			yedekaraligiPanel.chckbxPtesi.setText(dilSecenek.dil(dILS,"Pazartesi"));
+			yedekaraligiPanel.chckbxSali.setText(dilSecenek.dil(dILS,"Sali"));
+			yedekaraligiPanel.chckbxCarsamba.setText(dilSecenek.dil(dILS,"Carsamba"));
+			yedekaraligiPanel.chckbxPersembe.setText(dilSecenek.dil(dILS,"Persembe"));
+			yedekaraligiPanel.chckbxCuma.setText(dilSecenek.dil(dILS,"Cuma"));
+			yedekaraligiPanel.chckbxCumartesi.setText(dilSecenek.dil(dILS,"Cumartesi"));
+			yedekaraligiPanel.chckbxPazar.setText(dilSecenek.dil(dILS,"Pazar"));
+			yedekaraligiPanel.lblNewLabel_3.setText(dilSecenek.dil(dILS,"Baslangic"));
+			yedekaraligiPanel.lblNewLabel_3_1.setText(dilSecenek.dil(dILS,"Bitis"));
 			titledBorder = (TitledBorder)yedekaraligiPanel.panel.getBorder();
-			titledBorder.setTitle(dilSecenek.dil("Aralik"));
+			titledBorder.setTitle(dilSecenek.dil(dILS,"Aralik"));
 			yedekaraligiPanel.panel.setBorder(titledBorder);
-			yedekaraligiPanel.btnNewButton_9.setText(dilSecenek.dil("Kaydet"));
+			yedekaraligiPanel.btnNewButton_9.setText(dilSecenek.dil(dILS,"Kaydet"));
 			//****************************************************************************************
-			emirKopyalaPanel.lblNewLabel.setText(dilSecenek.dil("Yeni Emir Ismi"));
-			emirKopyalaPanel.btnNewButton_9.setText(dilSecenek.dil("Kaydet"));
+			emirKopyalaPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Yeni Emir Ismi"));
+			emirKopyalaPanel.btnNewButton_9.setText(dilSecenek.dil(dILS,"Kaydet"));
 			//****************************************************************************************
-			sifreYenilePanel.lblNewLabel.setText(dilSecenek.dil("Gecerli Sifreniz"));
-			sifreYenilePanel.lblysif.setText(dilSecenek.dil("Yeni Sifreniz"));
-			sifreYenilePanel.lblNewLabel_1.setText(dilSecenek.dil("Sifre Yenileme"));
+			sifreYenilePanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Gecerli Sifreniz"));
+			sifreYenilePanel.lblysif.setText(dilSecenek.dil(dILS,"Yeni Sifreniz"));
+			sifreYenilePanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Sifre Yenileme"));
 			//****************************************************************************************
-			loglamaPanel.lblNewLabel.setText(dilSecenek.dil("Arama"));
-			loglamaPanel.btnNewButton.setText(dilSecenek.dil("Sil"));
-			loglamaPanel.btnExcell.setToolTipText(dilSecenek.dil("Excell Aktarma"));
+			loglamaPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Arama"));
+			loglamaPanel.btnNewButton.setText(dilSecenek.dil(dILS,"Sil"));
+			loglamaPanel.btnExcell.setToolTipText(dilSecenek.dil(dILS,"Excell Aktarma"));
 			//****************************************************************************************
-			kayitliEmirlerPanelEmirler.lblNewLabel.setText(dilSecenek.dil("Arama"));
+			kayitliEmirlerPanelEmirler.lblNewLabel.setText(dilSecenek.dil(dILS,"Arama"));
 			//****************************************************************************************
-			emirAnaGirisPanel.btnDosyaSec.setText(dilSecenek.dil("Dosya Sec"));
-			emirAnaGirisPanel.btnSurucuSec.setText(dilSecenek.dil("Surucu Sec"));
-			emirAnaGirisPanel.btnServer.setText(dilSecenek.dil("Server Baglanti"));
-			emirAnaGirisPanel.lblNewLabel.setText(dilSecenek.dil("Durum"));
-			emirAnaGirisPanel.lblNewLabel_1.setText(dilSecenek.dil("Emir Ismi"));
-			emirAnaGirisPanel.lblNewLabel_4.setText(dilSecenek.dil("Dosya Sayisi"));
-			emirAnaGirisPanel.chckbxServerDosya.setText(dilSecenek.dil("Sql Server / Diger Dosya Yedekleme"));
-			emirAnaGirisPanel.lblNewLabel_2.setText(dilSecenek.dil("Aciklama"));
+			emirAnaGirisPanel.btnDosyaSec.setText(dilSecenek.dil(dILS,"Dosya Sec"));
+			emirAnaGirisPanel.btnSurucuSec.setText(dilSecenek.dil(dILS,"Surucu Sec"));
+			emirAnaGirisPanel.btnServer.setText(dilSecenek.dil(dILS,"Server Baglanti"));
+			emirAnaGirisPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Durum"));
+			emirAnaGirisPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Emir Ismi"));
+			emirAnaGirisPanel.lblNewLabel_4.setText(dilSecenek.dil(dILS,"Dosya Sayisi"));
+			emirAnaGirisPanel.chckbxServerDosya.setText(dilSecenek.dil(dILS,"Sql Server / Diger Dosya Yedekleme"));
+			emirAnaGirisPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Aciklama"));
 			//***************************************************************************************
-			serverBilgileriPanel.lblNewLabel_1.setText(dilSecenek.dil("Kullanici"));
-			serverBilgileriPanel.lblNewLabel_2.setText(dilSecenek.dil("Sifre"));
+			serverBilgileriPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Kullanici"));
+			serverBilgileriPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Sifre"));
 			titledBorder = (TitledBorder)serverBilgileriPanel.panel_2.getBorder();
-			titledBorder.setTitle(dilSecenek.dil("Baglanti"));
+			titledBorder.setTitle(dilSecenek.dil(dILS,"Baglanti"));
 			serverBilgileriPanel.panel_2.setBorder(titledBorder);
-			serverBilgileriPanel.btnMSkaydet.setText(dilSecenek.dil("Kaydet"));
-			serverBilgileriPanel.btnMSTest.setText(dilSecenek.dil("Baglanti Test"));
+			serverBilgileriPanel.btnMSkaydet.setText(dilSecenek.dil(dILS,"Kaydet"));
+			serverBilgileriPanel.btnMSTest.setText(dilSecenek.dil(dILS,"Baglanti Test"));
 			titledBorder = (TitledBorder)serverBilgileriPanel.panel_2_2.getBorder();
-			titledBorder.setTitle(dilSecenek.dil("Baglanti"));
+			titledBorder.setTitle(dilSecenek.dil(dILS,"Baglanti"));
 			serverBilgileriPanel.panel_2_2.setBorder(titledBorder);
-			serverBilgileriPanel.lblNewLabel_1_2.setText(dilSecenek.dil("Kullanici"));
-			serverBilgileriPanel.lblNewLabel_2_2.setText(dilSecenek.dil("Sifre"));
-			serverBilgileriPanel.btnDumpSec.setText(dilSecenek.dil("Sec"));
-			serverBilgileriPanel.btnMyKaydet.setText(dilSecenek.dil("Kaydet"));
-			serverBilgileriPanel.btnMyTest.setText(dilSecenek.dil("Baglanti Test"));
+			serverBilgileriPanel.lblNewLabel_1_2.setText(dilSecenek.dil(dILS,"Kullanici"));
+			serverBilgileriPanel.lblNewLabel_2_2.setText(dilSecenek.dil(dILS,"Sifre"));
+			serverBilgileriPanel.btnDumpSec.setText(dilSecenek.dil(dILS,"Sec"));
+			serverBilgileriPanel.btnMyKaydet.setText(dilSecenek.dil(dILS,"Kaydet"));
+			serverBilgileriPanel.btnMyTest.setText(dilSecenek.dil(dILS,"Baglanti Test"));
 			//**************************************************************************************
-			sunucuayarPanel.chckbxYerel.setText(dilSecenek.dil("Yerel Surucu"));
+			sunucuayarPanel.chckbxYerel.setText(dilSecenek.dil(dILS,"Yerel Surucu"));
 			titledBorder = (TitledBorder)sunucuayarPanel.panel_12.getBorder();
-			titledBorder.setTitle(dilSecenek.dil("FTP Ayarlari"));
+			titledBorder.setTitle(dilSecenek.dil(dILS,"FTP Ayarlari"));
 			sunucuayarPanel.panel_12.setBorder(titledBorder);
-			sunucuayarPanel.lblNewLabel_1.setText(dilSecenek.dil("Kullanici"));
-			sunucuayarPanel.lblNewLabel_2.setText(dilSecenek.dil("Sifre"));
+			sunucuayarPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Kullanici"));
+			sunucuayarPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Sifre"));
 			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1.getBorder();
-			titledBorder.setTitle(dilSecenek.dil("FTP Diger Ayarlar"));
+			titledBorder.setTitle(dilSecenek.dil(dILS,"FTP Diger Ayarlar"));
 			sunucuayarPanel.panel_12_1.setBorder(titledBorder);
-			sunucuayarPanel.lblNewLabel_3.setText(dilSecenek.dil("Surucu"));
-			sunucuayarPanel.lblNewLabel_5.setText(dilSecenek.dil("Zaman Asimi"));
-			sunucuayarPanel.btnNewButton_6.setText(dilSecenek.dil("Surucu Kontrol"));
+			sunucuayarPanel.lblNewLabel_3.setText(dilSecenek.dil(dILS,"Surucu"));
+			sunucuayarPanel.lblNewLabel_5.setText(dilSecenek.dil(dILS,"Zaman Asimi"));
+			sunucuayarPanel.btnNewButton_6.setText(dilSecenek.dil(dILS,"Surucu Kontrol"));
 			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1_1.getBorder();
-			titledBorder.setTitle(dilSecenek.dil("Yerel Surucu"));
+			titledBorder.setTitle(dilSecenek.dil(dILS,"Yerel Surucu"));
 			sunucuayarPanel.panel_12_1_1.setBorder(titledBorder);
-			sunucuayarPanel.lblNewLabel_8.setText(dilSecenek.dil("Surucu"));
-			sunucuayarPanel.btnNewButton_7.setText(dilSecenek.dil("Surucu Sec"));
+			sunucuayarPanel.lblNewLabel_8.setText(dilSecenek.dil(dILS,"Surucu"));
+			sunucuayarPanel.btnNewButton_7.setText(dilSecenek.dil(dILS,"Surucu Sec"));
 			titledBorder = (TitledBorder)sunucuayarPanel.panel_12_1_1_1.getBorder();
-			titledBorder.setTitle(dilSecenek.dil("Eski Yedek"));
+			titledBorder.setTitle(dilSecenek.dil(dILS,"Eski Yedek"));
 			sunucuayarPanel.panel_12_1_1_1.setBorder(titledBorder);
-			sunucuayarPanel.lblNewLabel_6.setText(dilSecenek.dil("Eski Yed.Silme"));
-			sunucuayarPanel.lblNewLabel_7.setText(dilSecenek.dil("gunden eski olanari silme (0 Silinmez)"));
-			sunucuayarPanel.btnftpkont.setText(dilSecenek.dil("Ftp Kontrol"));
-			sunucuayarPanel.btnNewButton_9.setText(dilSecenek.dil("Kaydet"));
-			sunucuayarPanel.lblNewLabel_9.setText(dilSecenek.dil("sn."));
+			sunucuayarPanel.lblNewLabel_6.setText(dilSecenek.dil(dILS,"Eski Yed.Silme"));
+			sunucuayarPanel.lblNewLabel_7.setText(dilSecenek.dil(dILS,"gunden eski olanari silme (0 Silinmez)"));
+			sunucuayarPanel.btnftpkont.setText(dilSecenek.dil(dILS,"Ftp Kontrol"));
+			sunucuayarPanel.btnNewButton_9.setText(dilSecenek.dil(dILS,"Kaydet"));
+			sunucuayarPanel.lblNewLabel_9.setText(dilSecenek.dil(dILS,"sn."));
 			//**********************************************************************************************
-			ayarlarPanel.lblNewLabel.setText(dilSecenek.dil("Tema"));
-			ayarlarPanel.lblNewLabel_1.setText(dilSecenek.dil("Dil"));
-			ayarlarPanel.btnKaydet.setText(dilSecenek.dil("Kaydet"));
+			ayarlarPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Tema"));
+			ayarlarPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Dil"));
+			ayarlarPanel.btnKaydet.setText(dilSecenek.dil(dILS,"Kaydet"));
 			//**********************************************************************************************
-			tabbedPane_1.setTitleAt(0, "Job");
-			tabbedPane_1.setTitleAt(1, "Setting Ftp/Folders");
-			tabbedPane_1.setTitleAt(2, "To inform");
-			tabbedPane_1.setTitleAt(3, "Backup Time");
-			tabbedPane_1.setTitleAt(4, "Server Settings");
-			tabbedPane_1.setTitleAt(5, "Copy Job");
-			
-		}
+			if(dILS.equals("Turkce"))
+			{
+				tabbedPane_1.setTitleAt(0, "Emir");
+				tabbedPane_1.setTitleAt(1, "Sunucu Ayarlari");
+				tabbedPane_1.setTitleAt(2, "Bilgilendirme");
+				tabbedPane_1.setTitleAt(3, "Yedekleme Araligi");
+				tabbedPane_1.setTitleAt(4, "Server Bilgileri");
+				tabbedPane_1.setTitleAt(5, "Emir Kopyala");
+			}
+			else {
+				tabbedPane_1.setTitleAt(0, "Job");
+				tabbedPane_1.setTitleAt(1, "Setting Ftp/Folders");
+				tabbedPane_1.setTitleAt(2, "To inform");
+				tabbedPane_1.setTitleAt(3, "Backup Time");
+				tabbedPane_1.setTitleAt(4, "Server Settings");
+				tabbedPane_1.setTitleAt(5, "Copy Job");
+			}
 	}
 	private void tema(String tema)
 	{
@@ -3032,8 +2877,14 @@ public class OBS_BACKUP extends JFrame {
 			FlatMaterialDeepOceanIJTheme.setup();
 			break;
 		}
+		case "FlatSolarizedLightIJ": 
+		{
+			FlatSolarizedLightIJTheme.setup();
+			break;
 		}
-		 FlatLaf.updateUI();
+		
+		}
+		// FlatLaf.updateUI();
 	}
 }
 //private void checkWORK() throws IOException 

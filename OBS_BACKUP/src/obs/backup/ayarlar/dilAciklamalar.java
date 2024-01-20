@@ -1,9 +1,9 @@
 package obs.backup.ayarlar;
 
 public class dilAciklamalar {
-	
+
 	static String acikLAMAString = "";
-	
+
 	public static String dilAciklama(String dilString , String mesaj)
 	{
 		acikLAMAString = mesaj ;
@@ -73,11 +73,23 @@ public class dilAciklamalar {
 			case " Zip Haline Getirildi": 
 				acikLAMAString = " Created ZIP" ;
 				break;
+			case "Zip Haline Getiriliyor": 
+				acikLAMAString = "File is zipping" ;
+				break;
 			case " Surucuye Yuklendi": 
 				acikLAMAString = " Copied to Folder" ;
 				break;
+			case " FTP Yuklendi": 
+				acikLAMAString = " Uploaded to FTP" ;
+				break;
 			case " BAK Dosyasi Silindi": 
 				acikLAMAString = " Bak File Deleted" ;
+				break;
+			case " sql Dosyasi Silindi": 
+				acikLAMAString = " sql File Deleted" ;
+				break;
+			case " ZIP Dosyasi Silindi": 
+				acikLAMAString = " ZIP File Deleted" ;
 				break;
 			case "Yedeklendi": 
 				acikLAMAString = "Backuped" ;
@@ -85,8 +97,14 @@ public class dilAciklamalar {
 			case " Surucuye Silmeye Gitti": 
 				acikLAMAString = " Went to Folder to Delete" ;
 				break;
+			case " FTP Silmeye Gitti": 
+				acikLAMAString = " Went to FTP to Delete" ;
+				break;
 			case " Dosya Surucuden Eski Tarihli Silindi": 
 				acikLAMAString = " Older File Deleted from Folder" ;
+				break;
+			case " FTP Eski Tarihli Silindi": 
+				acikLAMAString = " Older File Deleted from FTP" ;
 				break;
 			case " Yedekleme Islemi Sona Erdi": 
 				acikLAMAString = " Backup Process Completed" ;
@@ -142,14 +160,34 @@ public class dilAciklamalar {
 			case " Adet Dosya": 
 				acikLAMAString = " Files" ;
 				break;
+			case "Yedeklenmedi Internet Baglantisi Yok": 
+				acikLAMAString = "Not Backuped No Internet Connection" ;
+				break;
+			case "Yedeklenmedi FTP Surucu Bulunamadi": 
+				acikLAMAString = "Not Backuped, FTP Folder Not Found" ;
+				break;
+			case "FTP Baglanti Hatasi Login": 
+				acikLAMAString = "FTP Connection Error Login" ;
+				break;
+			case "FTP Baglanti Hatasi isPositiveCompletion": 
+				acikLAMAString = "FTP Connection Error isPositiveCompletion" ;
+				break;
+			case "Mail Gonderirken Hata Olustu": 
+				acikLAMAString = "An Error Occurred While Sending Email" ;
+				break;
+			case "Yedekleme Yapildi Maili gonderildi": 
+				acikLAMAString = "Backup Done Email was sent" ;
+				break;
+			case "Yedekleme Yapilamadi Maili gonderildi": 
+				acikLAMAString = "Backup Failed Email was sent" ;
+				break;
+			case "Arka Plan basladi": 
+				acikLAMAString = "System tray started" ;
+				break;
+				
+				
 			}
-		
-		
 		}
-	return acikLAMAString;
-
-}
-
-//
-
+		return acikLAMAString;
+	}
 }

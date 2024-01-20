@@ -1,6 +1,8 @@
 package obs.backup.other;
 
 import javax.swing.JPanel;
+
+
 import OBS_C_2025.BACKUP_GLOBAL;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
@@ -10,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 
@@ -32,7 +35,7 @@ public class Ayarlar extends JPanel {
 		add(lblNewLabel);
 		
 		comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"FlatCarbonIJ", "FlatMonocaiIJ", "FlatMacDarkLaf", "FlatNordIJ", "FlatHighContrastIJ", "FlatMaterialPalenightIJ", "FlatMaterialDeepOceanIJ"}));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"FlatCarbonIJ", "FlatMonocaiIJ", "FlatMacDarkLaf", "FlatNordIJ", "FlatHighContrastIJ", "FlatMaterialPalenightIJ", "FlatMaterialDeepOceanIJ","FlatSolarizedLightIJ"}));
 		comboBox.setBounds(137, 83, 254, 22);
 		add(comboBox);
 		
@@ -43,17 +46,17 @@ public class Ayarlar extends JPanel {
 		comboBox_1 = new JComboBox<String>();
 		comboBox_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(comboBox_1.getSelectedIndex() == 1)
-				{
-				lblNewLabel.setText(dilSecenek.dil("Tema"));
-				lblNewLabel_1.setText(dilSecenek.dil("Dil"));
-				btnKaydet.setText(dilSecenek.dil("Kaydet"));
-				}
-				else {
-					lblNewLabel.setText("Tema");
-					lblNewLabel_1.setText("Dil");
-					btnKaydet.setText("Kaydet");
-				}
+				//if(comboBox_1.getSelectedIndex() == 1)
+				//{
+				lblNewLabel.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Tema"));
+				lblNewLabel_1.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Dil"));
+				btnKaydet.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Kaydet"));
+				//}
+				//else {
+				//	lblNewLabel.setText("Tema");
+				//	lblNewLabel_1.setText("Dil");
+				//	btnKaydet.setText("Kaydet");
+				//}
 			}
 		});
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Turkce", "English"}));
@@ -64,9 +67,12 @@ public class Ayarlar extends JPanel {
 		btnKaydet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					bckp.ayar_sil();
 					bckp.ayar_kayit(comboBox_1.getSelectedItem().toString(), comboBox.getSelectedItem().toString());
 					OBS_BACKUP.dil();
+					OBS_BACKUP.btnfont_tema.doClick();
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					if(OBS_BACKUP.dILS.equals("Turkce"))
 					{
 						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, "Tema Guncellemesi icin Programi Yeniden Baslatin");

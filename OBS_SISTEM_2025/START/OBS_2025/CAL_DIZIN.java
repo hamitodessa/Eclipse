@@ -144,7 +144,7 @@ public class CAL_DIZIN extends JDialog {
 	private static JTable tblGunluk;
 	private static JTable tblKereste;
 	private static JPasswordField txtsif;
-	private static	Obs_TextFIeld txt_Lmaill ;
+	private static Obs_TextFIeld txt_Lmaill ;
 	private static MaterialTabbed tabbedPane;
 	private static int activ_sayfa =0;
 	static Cursor WAIT_CURSOR =  Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);

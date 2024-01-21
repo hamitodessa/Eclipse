@@ -92,21 +92,21 @@ public class UploadPanel extends JPanel {
 		panel_1.add(lblHiz);
 		
 		JLabel lblNewLabel_6 = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS,"Aciklama"));
-		lblNewLabel_6.setBounds(325, 11, 58, 14);
+		lblNewLabel_6.setBounds(330, 11, 75, 14);
 		panel_1.add(lblNewLabel_6);
 		
 		lblAciklama = new JLabel("");
 		lblAciklama.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblAciklama.setBounds(383, 11, 417, 14);
+		lblAciklama.setBounds(405, 11, 417, 14);
 		panel_1.add(lblAciklama);
 		
 		JLabel lblNewLabel_8 = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS,"Surucu"));
-		lblNewLabel_8.setBounds(325, 31, 58, 14);
+		lblNewLabel_8.setBounds(330, 31, 58, 14);
 		panel_1.add(lblNewLabel_8);
 		
 		lblSurucu = new JLabel("");
 		lblSurucu.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblSurucu.setBounds(383, 31, 300, 14);
+		lblSurucu.setBounds(405, 31, 285, 14);
 		panel_1.add(lblSurucu);
 
 	}

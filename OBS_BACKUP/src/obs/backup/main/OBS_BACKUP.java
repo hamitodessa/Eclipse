@@ -944,8 +944,8 @@ public class OBS_BACKUP extends JFrame {
 		{
 			if(gorevLER.size() == 0) return;
 			timerr.cancel();
-            timerr.purge();
-            timerr = null;
+			timerr.purge();
+			timerr = null;
 			for (int g = 0; g <= gorevLER.size()-1; g++)
 			{
 				String eISMI = gorevLER.get(g);

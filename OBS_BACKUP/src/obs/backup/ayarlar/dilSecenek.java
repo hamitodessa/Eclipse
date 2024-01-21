@@ -204,7 +204,7 @@ public class dilSecenek {
 				tEXT = "Sql Server /  Files & Folders"  ;
 				break;
 			case "Aciklama" :
-				tEXT = "Descriptions"  ;
+				tEXT = "Description"  ;
 				break;
 			case "Mail Bilgileri" :
 				tEXT = "Email Information"  ;

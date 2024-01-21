@@ -156,9 +156,6 @@ public class Font_Sec extends JComponent {
       if (sizeInt == null) {
           return null;
       }
-      
-  
-      
       return new Font(fontName,
               (italicCheckBox.isSelected() ? Font.ITALIC : Font.PLAIN)
              

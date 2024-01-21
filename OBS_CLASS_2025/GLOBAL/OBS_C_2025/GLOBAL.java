@@ -361,7 +361,6 @@ public class GLOBAL {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			String sorgu= null;
-
 			sorgu = "CREATE TABLE EMIRLER ( EMIR_ISMI nvarchar(30) CONSTRAINT EMIR_ISMI PRIMARY KEY,DURUM INTEGER,EMIR_ACIKLAMA nvarchar(50),INSTANCE nvarchar(30),SON_DURUM INTEGER ,SON_YUKLEME DATETIME,SQL_YEDEK INTEGER,MESAJ nvarchar(40),OLUSTURMA DATETIME) ";
 			backup_tablo_yap(sorgu);
 			sorgu =  "CREATE TABLE FTP ( EMIR_ISMI nvarchar(30),NERESI nvarchar(3),HOST nvarchar(30) ,KULLANICI nvarchar(50), " + 
@@ -396,7 +395,7 @@ public class GLOBAL {
 			
 			byte[]  qaz =	ENCRYPT_DECRYPT_STRING.eNCRYPT_manual("obs") ;
 			String encodedString = Arrays.toString(qaz);
-			sorgu = "INSERT INTO YONETICI(SIFRE)  VALUES('"+ encodedString+"')" ;
+			sorgu = "INSERT INTO YONETICI(SIFRE)  VALUES('" + encodedString + "')" ;
 			pstmt = con.prepareStatement(sorgu) ;
 			pstmt = con.createStatement();  
 			pstmt.execute(sorgu);  
@@ -679,7 +678,6 @@ public class GLOBAL {
 			props.put("mail.smtp.port", "587");
 			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.ssl.protocols", "TLSv1.2");
-
 			Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication("info@okumus.gen.tr", "oOk271972");
@@ -709,9 +707,6 @@ public class GLOBAL {
 		}
 		catch (Exception ex)
 		{
-			
 		}
 	}
-	
-
 }

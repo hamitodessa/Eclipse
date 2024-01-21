@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -21,15 +22,19 @@ import org.apache.commons.net.ftp.FTPReply;
 import org.apache.commons.net.io.CopyStreamAdapter;
 
 import com.formdev.flatlaf.FlatLaf;
-
+import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatGradiantoNatureGreenIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatGrayIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatMonocaiIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatMonokaiProIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatNordIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatSolarizedLightIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDarkerIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialDeepOceanIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialPalenightIJTheme;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
@@ -2849,48 +2854,49 @@ public class OBS_BACKUP extends JFrame {
 		}
 		switch (tema) {
 		case "FlatCarbonIJ": 
-		{
 			FlatCarbonIJTheme.setup();
 			break;
-		}
 		case "FlatMonocaiIJ": 
-		{
 			FlatMonocaiIJTheme.setup();
 			break;
-		}
 		case "FlatMacDarkLaf": 
-		{
 			FlatMacDarkLaf.setup();
 			break;
-		}
 		case "FlatNordIJ": 
-		{
 			FlatNordIJTheme.setup();
 			break;
-		}
 		case "FlatHighContrastIJ": 
-		{
 			FlatHighContrastIJTheme.setup();
 			break;
-		}
 		case "FlatMaterialPalenightIJ": 
-		{
 			FlatMaterialPalenightIJTheme.setup();
 			break;
-		}
 		case "FlatMaterialDeepOceanIJ": 
-		{
 			FlatMaterialDeepOceanIJTheme.setup();
 			break;
-		}
-		case "FlatSolarizedLightIJ": 
-		{
-			FlatSolarizedLightIJTheme.setup();
+		case "FlatArcDarkIJ": 
+			FlatArcDarkIJTheme.setup();
+			break;
+		case "FlatGradiantoNatureGreenIJ": 
+			FlatGradiantoNatureGreenIJTheme.setup();
+			break;
+		case "FlatGrayIJ": 
+			FlatGrayIJTheme.setup();
+			break;
+		case "FlatMaterial": 
+			FlatMaterialLighterIJTheme.setup();
+			//FlatMaterialDarkerIJTheme.setup();
+			break;	
+			
+		case "Java": 
+			try {
+				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
 			break;
 		}
-
-		}
-		// FlatLaf.updateUI();
 	}
 }
 //private void checkWORK() throws IOException 

@@ -2885,9 +2885,10 @@ public class OBS_BACKUP extends JFrame {
 			break;
 		case "FlatMaterial": 
 			FlatMaterialLighterIJTheme.setup();
-			//FlatMaterialDarkerIJTheme.setup();
 			break;	
-			
+		case "FlatArcOrangeIJ": 
+			FlatArcOrangeIJTheme.setup();
+			break;		
 		case "Java": 
 			try {
 				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );

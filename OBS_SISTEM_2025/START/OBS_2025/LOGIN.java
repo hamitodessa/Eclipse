@@ -277,7 +277,7 @@ public class LOGIN extends JDialog {
 				//FlatAnimatedLafChange.showSnapshot();
 				FlatSolarizedLightIJTheme.setup();
 				//	FlatDarkLaf.setup();
-				 FlatLaf.updateUI();
+				// FlatLaf.updateUI();
 				// FlatAnimatedLafChange.hideSnapshotWithAnimation();
 
 			} 

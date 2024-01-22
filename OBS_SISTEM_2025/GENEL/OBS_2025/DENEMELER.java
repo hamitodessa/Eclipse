@@ -41,9 +41,9 @@ import LOGER_KAYIT.TXT_LOG;
 import OBS_C_2025.BACKUP_RESTORE;
 import OBS_C_2025.BadgeButton;
 
-import OBS_C_2025.CustomResultSetMetaData;
+
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
-import OBS_C_2025.ManualResultSet;
+
 import OBS_C_2025.SearchOption;
 import OBS_C_2025.TextFieldSearchOption;
 
@@ -111,15 +111,6 @@ public class DENEMELER extends JInternalFrame {
 		getContentPane().add(panel, BorderLayout.CENTER);
 		
 		
-		
-		JButton btnNewButton_8_1 = new JButton("yeni Clone");
-		btnNewButton_8_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				clone_yap();
-			}
-		});
-		btnNewButton_8_1.setBounds(503, 59, 89, 23);
-		panel.add(btnNewButton_8_1);
 		
 		JButton btnNewButton_5 = new JButton("Access");
 		btnNewButton_5.addActionListener(new ActionListener() {
@@ -462,35 +453,4 @@ public class DENEMELER extends JInternalFrame {
 
 		
 	}
-	private void clone_yap()
-	{
-		 String[] columnNames = {"TARIH", "EVRAK", "IZAHAT","KOD","KUR","BORC","ALACAK","BAKIYE"};
-	        String[] columnTypes = {"VARCHAR","INTEGER" ,"VARCHAR", "VARCHAR","DOUBLE","DOUBLE","DOUBLE","DOUBLE"};
-
-	        ManualResultSet customResultSet;
-			try {
-				customResultSet = createCustomResultSet(columnNames, columnTypes);
-			
-	        
-	        // Add rows to the custom result set
-	        customResultSet.addRow("01.01.2023", 1,"DENEME","",0,0,0,0);
-
-	        // Iterate through the custom result set
-	        while (customResultSet.next()) {
-	            String tarih = (String) customResultSet.getObject(1);
-	            int evrak = (int) customResultSet.getObject(2);
-	            String izahat = (String) customResultSet.getObject(3);
-	           
-
-	            System.out.println("TARIH: " + tarih + ", Evrak: " + evrak + ", Izahat: " + izahat);
-	        }
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	}
-	private static ManualResultSet createCustomResultSet(String[] columnNames, String[] columnTypes) throws SQLException {
-        ResultSetMetaData metaData = new CustomResultSetMetaData(columnNames, columnTypes);
-        return new ManualResultSet(metaData);
-    }
 }

@@ -273,7 +273,6 @@ public class OBS_BACKUP extends JFrame {
 		setUndecorated(true);
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
 		try {
-			//
 			if(glb.dos_kontrol(glb.SURUCU + glb.BACKUP_DOSYA))
 			{
 				diltemaString = bckp.ayar_oku();
@@ -289,7 +288,6 @@ public class OBS_BACKUP extends JFrame {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -313,7 +311,6 @@ public class OBS_BACKUP extends JFrame {
 		contentPane = new JPanel();
 
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
@@ -342,7 +339,6 @@ public class OBS_BACKUP extends JFrame {
 		panel.setPreferredSize(new Dimension(40,0));
 		splitPane.setLeftComponent(panel);
 
-		
 		//***************
 		toolBar = new JToolBar();
 		toolBar.setFloatable(false);
@@ -839,9 +835,8 @@ public class OBS_BACKUP extends JFrame {
 		ayarlarPanel = new Ayarlar();
 		tabbedPane.addTab("Ayarlar", null, ayarlarPanel, null);
 		//***********************************************************************************
-		
-			ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
-			ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
+		ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
+		ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
 		
 		final boolean showTabsHeader = false; tabbedPane.setUI(new
 				javax.swing.plaf.metal.MetalTabbedPaneUI() {
@@ -968,10 +963,8 @@ public class OBS_BACKUP extends JFrame {
 				}
 				Thread.sleep(1000);
 				List<emir_bilgiler> ebilgiler = bckp.emir_tek(eISMI);
-				boolean SQL_YEDEK_MI;
-				SQL_YEDEK_MI = ebilgiler.get(0).isSQL_YEDEK();
 				uplpnl.temizLE();
-				if (SQL_YEDEK_MI == false)
+				if (ebilgiler.get(0).isSQL_YEDEK() == false)
 				{
 					diger_dosya(eISMI, ebilgiler);   // DIGER DOSYA 
 				}
@@ -1009,7 +1002,6 @@ public class OBS_BACKUP extends JFrame {
 		if (drm == false) // ' Isaretli olan yok 
 		{
 			emirAnaGirisPanel. chckbxDurum.setSelected(false);
-			
 			mesaj_goster(5000,Notifications.Type.WARNING,dilAciklamalar.dilAciklama(dILS,"Yedekleme Icin Gun secilmediginden ")  + System.lineSeparator() + System.lineSeparator()  +
 					dilAciklamalar.dilAciklama(dILS,"Emir durumu Pasiv olarak Degistirildi"));
 		}
@@ -1470,8 +1462,6 @@ public class OBS_BACKUP extends JFrame {
 		uplpnl.setPreferredSize(new Dimension(0,100));
 		uplpnl.setMaximumSize(new Dimension(0,100));
 		uplpnl.revalidate();
-		//List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
-		//emirBilgi = bckp.emir_tek(emirADI);
 		Date sonyuk ;
 		if(emirBilgi.get(0).getSON_YUKLEME().toString().equals("Mon Jan 01 00:00:00 TRT 1900"))
 		{
@@ -1716,10 +1706,10 @@ public class OBS_BACKUP extends JFrame {
 			sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 			surucu = ftpBilgi.get(0).getSURUCU();
 			int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
-			eskiyedek =  Integer.valueOf(ftpBilgi.get(0).getESKI_YEDEK());
+			eskiyedek = Integer.valueOf(ftpBilgi.get(0).getESKI_YEDEK());
 			zmnasimi = Integer.valueOf(ftpBilgi.get(0).getZMN_ASIMI());
-			neresi =ftpBilgi.get(0).getNERESI();
-			surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
+			neresi = ftpBilgi.get(0).getNERESI();
+			surucu_yer = ftpBilgi.get(0).getSURUCU_YER();
 			uplpnl.lblSurucu.setText( ftp + "\\" + surucu.replace("/", "\\"));
 			if (glb.internet_kontrol() == false)
 			{
@@ -1776,12 +1766,11 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.Progres_Bar_1( i + 1);
 				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
-						bckp.backup_al(dosADI, tarr + "_" + dosADI);
+					bckp.backup_al(dosADI, tarr + "_" + dosADI);
 				}
 				else
 				{
-						bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),
-								sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");	
+					bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");	
 				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Backup Alindi")  );
 				String dosya, dzip;
@@ -1796,7 +1785,7 @@ public class OBS_BACKUP extends JFrame {
 				dzip = tarr + "_" + dosADI + ".zip";
 				bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip, false, "");
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Zip Haline Getirildi") );
-				UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);
+				UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);// FTP Yukleme
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," FTP Yuklendi")  );
 				if( serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
@@ -2301,12 +2290,14 @@ public class OBS_BACKUP extends JFrame {
 			{
 				ftp.logout();
 				bckp.genel_kayit_durum("System", false, new Date(), dilAciklamalar.dilAciklama(dILS, "FTP Baglanti Hatasi Login")  ); 
+				return;
 			}
 			int reply = ftp.getReplyCode();
 			if (!FTPReply.isPositiveCompletion(reply))
 			{
 				ftp.disconnect();
-				bckp.genel_kayit_durum("System", false, new Date(),  dilAciklamalar.dilAciklama(dILS, "FTP Baglanti Hatasi isPositiveCompletion") );  
+				bckp.genel_kayit_durum("System", false, new Date(),  dilAciklamalar.dilAciklama(dILS, "FTP Baglanti Hatasi isPositiveCompletion") ); 
+				return;
 			}
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
 			ftp.enterLocalPassiveMode();
@@ -2591,8 +2582,7 @@ public class OBS_BACKUP extends JFrame {
 	private Date dosyaTAIRIHI(String ftpDOSYA) throws ParseException
 	{
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.ENGLISH);
-		String dateInString = ftpDOSYA.substring(4,8) + "." +  ftpDOSYA.substring(2,4) +"." +
-						ftpDOSYA.substring(0,2) +" " + ftpDOSYA.substring(8,10)  +":" + ftpDOSYA.substring(10,12)  ;
+		String dateInString = ftpDOSYA.substring(4,8) + "." +  ftpDOSYA.substring(2,4) +"." + ftpDOSYA.substring(0,2) +" " + ftpDOSYA.substring(8,10)  +":" + ftpDOSYA.substring(10,12)  ;
 		Date ftar = formatter.parse(dateInString);
 		return ftar;
 	}

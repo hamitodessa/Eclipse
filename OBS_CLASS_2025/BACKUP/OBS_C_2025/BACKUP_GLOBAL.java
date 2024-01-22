@@ -92,7 +92,6 @@ public class BACKUP_GLOBAL {
 			S_CONN = null ;
 		}  
 	}
-
 	public boolean MsSql_server_test(String inss, String user, String pwd, String port) throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -133,7 +132,6 @@ public class BACKUP_GLOBAL {
 		rss = stmt.executeQuery("SHOW DATABASES;");
 		return rss;
 	}
-
 	public void genel_kayit(String eismi, boolean drm, String konu, String inst, boolean sdrm, Date syukl, boolean sqlyed, String mesaj, Date ilkkayit)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
@@ -159,7 +157,6 @@ public class BACKUP_GLOBAL {
 		stmt.close();
 		con.close();
 		con = null;
-
 	}
 	public void log_kayit(String eismi, Date tar, String msj)throws ClassNotFoundException, SQLException
 	{
@@ -218,7 +215,6 @@ public class BACKUP_GLOBAL {
 		con.close();
 		con = null;
 	}
-
 	public void pid_sil()throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
@@ -293,16 +289,13 @@ public class BACKUP_GLOBAL {
 		String[] ayarlar = new String[2];
 		while (rss.next())
 		{
-			
 			ayarlar[0] = rss.getString("DIL");
 			ayarlar[1] = rss.getString("TEMA");
 		}
-		
 		stmt.close();
 		con.close();
 		return ayarlar;
 	}
-
 	public void instance_update(String eismi,  String ins)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
@@ -318,7 +311,6 @@ public class BACKUP_GLOBAL {
 		con.close();
 		con = null;
 	}
-
 	public void durum_kayit_durum(String eismi, Boolean drm, String mesaj)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
@@ -669,11 +661,16 @@ public class BACKUP_GLOBAL {
 			{
 				Date sonyuk =	new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("SON_YUKLEME"));
 				Date olus =	new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("OLUSTURMA"));
-				emir_bilgiler liste  = new emir_bilgiler(rss.getString("EMIR_ISMI") ,rss.getInt("DURUM") == 0 ? false:true,
-						rss.getString("EMIR_ACIKLAMA"),rss.getString("INSTANCE"),rss.getInt("SON_DURUM")== 0 ? false:true,
-								sonyuk, rss.getInt("SQL_YEDEK")== 0 ? false:true,
-										rss.getString("MESAJ"),olus);
-
+				emir_bilgiler liste  = new emir_bilgiler(
+						rss.getString("EMIR_ISMI") ,
+						rss.getInt("DURUM") == 0 ? false:true,
+						rss.getString("EMIR_ACIKLAMA"),
+						rss.getString("INSTANCE"),
+						rss.getInt("SON_DURUM")== 0 ? false:true,
+						sonyuk, 
+						rss.getInt("SQL_YEDEK")== 0 ? false:true,
+						rss.getString("MESAJ"),
+						olus);
 				emirBilgi.add(liste);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -693,7 +690,6 @@ public class BACKUP_GLOBAL {
 		String sql = "";
 		sql = "SELECT * FROM EMIRLER , FTP "
 				+	" WHERE FTP.EMIR_ISMI = EMIRLER.EMIR_ISMI AND FTP.NERESI = 'FTP'  ORDER BY EMIRLER.EMIR_ISMI COLLATE NOCASE ASC ";
-
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
@@ -704,11 +700,16 @@ public class BACKUP_GLOBAL {
 			{
 				Date sonyuk =	new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("SON_YUKLEME"));
 				Date olus =	new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("OLUSTURMA"));
-				emir_bilgiler liste  = new emir_bilgiler(rss.getString("EMIR_ISMI") ,rss.getInt("DURUM") == 0 ? false:true,
-						rss.getString("EMIR_ACIKLAMA"),rss.getString("INSTANCE"),rss.getInt("SON_DURUM")== 0 ? false:true,
-								sonyuk, rss.getInt("SQL_YEDEK")== 0 ? false:true,
-										rss.getString("MESAJ"),olus);
-
+				emir_bilgiler liste  = new emir_bilgiler(
+						rss.getString("EMIR_ISMI") ,
+						rss.getInt("DURUM") == 0 ? false:true,
+						rss.getString("EMIR_ACIKLAMA"),
+						rss.getString("INSTANCE"),
+						rss.getInt("SON_DURUM")== 0 ? false:true,
+						sonyuk, 
+						rss.getInt("SQL_YEDEK")== 0 ? false:true,
+						rss.getString("MESAJ"),
+						olus);
 				emirBilgi.add(liste);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -737,10 +738,16 @@ public class BACKUP_GLOBAL {
 			try {
 				Date sonyuk =	new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("SON_YUKLEME"));
 				Date olus = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("OLUSTURMA"));
-				emir_bilgiler liste  = new emir_bilgiler(rss.getString("EMIR_ISMI") ,rss.getInt("DURUM") == 0 ? false:true,
-						rss.getString("EMIR_ACIKLAMA"),rss.getString("INSTANCE"),rss.getInt("SON_DURUM") == 0 ? false:true,
-								sonyuk, rss.getInt("SQL_YEDEK")== 0 ? false:true,
-										rss.getString("MESAJ"),olus);
+				emir_bilgiler liste  = new emir_bilgiler(
+						rss.getString("EMIR_ISMI") ,
+						rss.getInt("DURUM") == 0 ? false:true,
+						rss.getString("EMIR_ACIKLAMA"),
+						rss.getString("INSTANCE"),
+						rss.getInt("SON_DURUM") == 0 ? false:true,
+						sonyuk, 
+						rss.getInt("SQL_YEDEK")== 0 ? false:true,
+						rss.getString("MESAJ"),
+						olus);
 				emirBilgi.add(liste);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -750,7 +757,7 @@ public class BACKUP_GLOBAL {
 		con.close();
 		return emirBilgi ;
 	}
-	public List<String>  db_liste(String eismi)throws ClassNotFoundException, SQLException
+	public List<String> db_liste(String eismi)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -762,11 +769,9 @@ public class BACKUP_GLOBAL {
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<String>  dbadi =new ArrayList<String>();
-		int i = 0 ;
 		while (rss.next())
 		{              
 			dbadi.add(rss.getString("DB_ADI").toString());
-			i +=1 ;
 		}
 		stmt.close();
 		con.close();
@@ -787,9 +792,10 @@ public class BACKUP_GLOBAL {
 		int i = 0 ;
 		while (rss.next())
 		{     
-			db_List liste  = new db_List(rss.getString("DOSYA_ADI") ,rss.getString("DOSYA_PATH"));
+			db_List liste  = new db_List(
+					rss.getString("DOSYA_ADI") ,
+					rss.getString("DOSYA_PATH"));
 			dbliste.add(liste);
-
 		}
 		stmt.close();
 		con.close();
@@ -810,9 +816,17 @@ public class BACKUP_GLOBAL {
 		int i = 0 ;
 		while (rss.next())
 		{     
-			ftp_bilgiler liste  = new ftp_bilgiler(rss.getString("EMIR_ISMI") ,rss.getString("NERESI"),
-					rss.getString("HOST"),rss.getString("KULLANICI"),rss.getString("SIFRE"),rss.getString("SURUCU"),
-					rss.getString("PORT"),rss.getString("ZMN_ASIMI"),rss.getString("ESKI_YEDEK"),rss.getString("SURUCU_YER"));
+			ftp_bilgiler liste  = new ftp_bilgiler(
+					rss.getString("EMIR_ISMI") ,
+					rss.getString("NERESI"),
+					rss.getString("HOST"),
+					rss.getString("KULLANICI"),
+					rss.getString("SIFRE"),
+					rss.getString("SURUCU"),
+					rss.getString("PORT"),
+					rss.getString("ZMN_ASIMI"),
+					rss.getString("ESKI_YEDEK"),
+					rss.getString("SURUCU_YER"));
 			ftpBilgi.add(liste);
 		}
 		stmt.close();
@@ -868,7 +882,6 @@ public class BACKUP_GLOBAL {
 		con.close();
 		return sonucString;
 	}
-
 	public String surucu_bilgi(String eismi, String nerden)throws ClassNotFoundException, SQLException
 	{Class.forName("org.sqlite.JDBC");
 	if (con != null && ! con.isClosed()) con.close();
@@ -910,11 +923,19 @@ public class BACKUP_GLOBAL {
 		while (rss.next())
 		{     
 			bilgilendirme_bilgiler liste  = new bilgilendirme_bilgiler(rss.getString("EMIR_ISMI") ,
-					rss.getInt("DURUM") == 0 ? false:true,rss.getInt("GONDERILDIGINDE") == 0 ? false:true,
+					rss.getInt("DURUM") == 0 ? false:true,
+							rss.getInt("GONDERILDIGINDE") == 0 ? false:true,
 							rss.getInt("HATA_DURUMUNDA") == 0 ? false:true ,
-									rss.getString("GON_ISIM"),rss.getString("GON_HESAP"),rss.getString("ALICI"),rss.getString("KONU"),
-									rss.getString("SMTP"),rss.getString("SMTP_PORT"),rss.getString("KULLANICI"),rss.getString("SIFRE"),
-									rss.getInt("SSL") == 0 ? false:true ,rss.getInt("TSL") == 0 ? false:true );
+							rss.getString("GON_ISIM"),
+							rss.getString("GON_HESAP"),
+							rss.getString("ALICI"),
+							rss.getString("KONU"),
+							rss.getString("SMTP"),
+							rss.getString("SMTP_PORT"),
+							rss.getString("KULLANICI"),
+							rss.getString("SIFRE"),
+							rss.getInt("SSL") == 0 ? false:true ,
+							rss.getInt("TSL") == 0 ? false:true );
 			bilgiBilgi.add(liste);
 		}
 		stmt.close();
@@ -939,11 +960,18 @@ public class BACKUP_GLOBAL {
 			try {
 				Date bas =	new SimpleDateFormat("HH:mm").parse(rss.getString("BASLAMA"));
 				Date bit= new SimpleDateFormat("HH:mm").parse(rss.getString("BITIS"));
-				yedekleme_bilgiler liste  = new yedekleme_bilgiler(rss.getString("EMIR_ISMI") ,rss.getString("SAAT"),
-						rss.getInt("P_TESI") == 0 ? false:true,rss.getInt("SALI") == 0 ? false:true,
-								rss.getInt("CARS") == 0 ? false:true ,rss.getInt("PERS") == 0 ? false:true ,
-										rss.getInt("CUMA") == 0 ? false:true ,rss.getInt("C_TESI") == 0 ? false:true ,
-												rss.getInt("PAZAR") == 0 ? false:true ,bas,bit);
+				yedekleme_bilgiler liste  = new yedekleme_bilgiler(
+						rss.getString("EMIR_ISMI") ,
+						rss.getString("SAAT"),
+						rss.getInt("P_TESI") == 0 ? false:true,
+						rss.getInt("SALI") == 0 ? false:true,
+						rss.getInt("CARS") == 0 ? false:true ,
+						rss.getInt("PERS") == 0 ? false:true ,
+						rss.getInt("CUMA") == 0 ? false:true ,
+						rss.getInt("C_TESI") == 0 ? false:true ,
+						rss.getInt("PAZAR") == 0 ? false:true ,
+						bas,
+						bit);
 				bilgiBilgi.add(liste);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -983,12 +1011,16 @@ public class BACKUP_GLOBAL {
 		List<server_bilgiler> bilgiBilgi = new ArrayList<server_bilgiler>();
 		while (rss.next())
 		{     
-			server_bilgiler liste  = new server_bilgiler(rss.getString("EMIR_ISMI") ,
+			server_bilgiler liste  = new server_bilgiler(
+					rss.getString("EMIR_ISMI") ,
 					rss.getString("HANGI_SQL"),
 					rss.getString("INSTANCE"),
 					rss.getInt("WIN") == 0 ? false:true,
-							rss.getInt("SERV") == 0 ? false:true,
-									rss.getString("KULLANICI"),rss.getString("SIFRE"),rss.getString("PORT"),rss.getString("MY_DUMP"));
+					rss.getInt("SERV") == 0 ? false:true,
+					rss.getString("KULLANICI"),
+					rss.getString("SIFRE"),
+					rss.getString("PORT"),
+					rss.getString("MY_DUMP"));
 			bilgiBilgi.add(liste);
 		}
 		stmt.close();
@@ -1242,7 +1274,6 @@ public class BACKUP_GLOBAL {
 		}
 		return filelists;
 	}
-
 	public void zip_yap(String dosadi, String dosyolu, String dosadi_zip, Boolean Sifrele, String Sifre) throws IOException
 	{
 		String sourceFile = dosyolu + dosadi;

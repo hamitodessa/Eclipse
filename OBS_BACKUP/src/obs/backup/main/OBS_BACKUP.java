@@ -1829,7 +1829,7 @@ public class OBS_BACKUP extends JFrame {
 					uplpnl. Progres_Bar_1( i + 1);
 					for (int r = 0; r <= ls.size() - 1; r++)
 					{
-						uplpnl.  Progres_Bar_2( r + 1);
+						uplpnl.Progres_Bar_2(r + 1);
 						String ftpDOSYA = ls.get(r).getDosyaADI();
 						boolean found = fileESITMI(ftpDOSYA,dosADI); 
 						if (found)

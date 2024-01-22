@@ -973,11 +973,11 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.temizLE();
 				if (SQL_YEDEK_MI == false)
 				{
-					diger_dosya(eISMI, ebilgiler.get(0).getEMIR_ACIKLAMA());   // DIGER DOSYA 
+					diger_dosya(eISMI, ebilgiler);   // DIGER DOSYA 
 				}
 				else
 				{
-					yedekLEE_SQL(eISMI); // Ms Sql ve My Sql
+					yedekLEE_SQL(eISMI , ebilgiler); // Ms Sql ve My Sql
 				}
 			}
 			jobTimerBasla();
@@ -1465,13 +1465,13 @@ public class OBS_BACKUP extends JFrame {
 		} catch (Exception ex) {
 		}
 	}
-	private void yedekLEE_SQL(String emirADI) throws ClassNotFoundException, SQLException, ParseException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, NumberFormatException, SocketException, IOException, InterruptedException
+	private void yedekLEE_SQL(String emirADI,List<emir_bilgiler> emirBilgi) throws ClassNotFoundException, SQLException, ParseException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, NumberFormatException, SocketException, IOException, InterruptedException
 	{
 		uplpnl.setPreferredSize(new Dimension(0,100));
 		uplpnl.setMaximumSize(new Dimension(0,100));
 		uplpnl.revalidate();
-		List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
-		emirBilgi = bckp.emir_tek(emirADI);
+		//List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
+		//emirBilgi = bckp.emir_tek(emirADI);
 		Date sonyuk ;
 		if(emirBilgi.get(0).getSON_YUKLEME().toString().equals("Mon Jan 01 00:00:00 TRT 1900"))
 		{
@@ -1530,7 +1530,7 @@ public class OBS_BACKUP extends JFrame {
 			sql_yerel_surucu( emirADI  ,ftpBilgi);
 		}
 	}
-	private void sql_yerel_surucu( String emirADI,     List<ftp_bilgiler> ftpBilgi) 
+	private void sql_yerel_surucu( String emirADI,List<ftp_bilgiler> ftpBilgi) 
 	{
 		try {
 			contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -1850,7 +1850,7 @@ public class OBS_BACKUP extends JFrame {
 							long dateAfterInMs = new Date().getTime();
 							long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
 							int araFARK = (int)TimeUnit.HOURS.convert(timeDiff, TimeUnit.MILLISECONDS);
-							if (araFARK> (eskiyedek*24)) 
+							if (araFARK> (eskiyedek * 24)) 
 							{
 								bckp.log_kayit(emirADI, new Date(),  dosADI + dilAciklamalar.dilAciklama(dILS," FTP Silmeye Gitti") );
 								bckp.ftp_sil( ftp, surucu, ls.get(r).getDosyaADI(), kull, sifre, port);
@@ -1861,7 +1861,7 @@ public class OBS_BACKUP extends JFrame {
 				}
 			}
 			yapildiMAILI(emirADI);
-			uplpnl.setPreferredSize(new Dimension(0,00));
+			uplpnl.setPreferredSize(new Dimension(0,0));
 			uplpnl.setMaximumSize(new Dimension(0,0));
 			uplpnl.revalidate();
 			bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Yedekleme Islemi Sona Erdi") );
@@ -1900,13 +1900,11 @@ public class OBS_BACKUP extends JFrame {
 			mail_at( bilgiBilgi , mesaj,emir);
 		}
 	}
-	private void diger_dosya(String emirADI, String aciklama) throws ClassNotFoundException, SQLException, ParseException, InterruptedException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, NumberFormatException, SocketException, IOException
+	private void diger_dosya(String emirADI,List<emir_bilgiler> emirBilgi) throws ClassNotFoundException, SQLException, ParseException, InterruptedException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, NumberFormatException, SocketException, IOException
 	{
 		uplpnl.setPreferredSize(new Dimension(0,100));
 		uplpnl.setMaximumSize(new Dimension(0,100));
 		uplpnl.revalidate();
-		List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
-		emirBilgi = bckp.emir_tek(emirADI);
 		Date sonyuk ;
 		if(emirBilgi.get(0).getSON_YUKLEME().toString().equals("Mon Jan 01 00:00:00 TRT 1900"))
 		{
@@ -2135,8 +2133,8 @@ public class OBS_BACKUP extends JFrame {
 			int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
 			eskiyedek =  Integer.valueOf(ftpBilgi.get(0).getESKI_YEDEK());
 			zmnasimi = Integer.valueOf(ftpBilgi.get(0).getZMN_ASIMI());
-			neresi =ftpBilgi.get(0).getNERESI();
-			surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
+			neresi = ftpBilgi.get(0).getNERESI();
+			surucu_yer = ftpBilgi.get(0).getSURUCU_YER();
 			uplpnl.lblSurucu.setText( ftp + "\\" + surucu.replace("/", "\\"));
 			if (glb.internet_kontrol() == false)
 			{
@@ -2557,8 +2555,8 @@ public class OBS_BACKUP extends JFrame {
 						{
 							if(compo.getName().equals("btnyenidenBASLAT"))
 							{
-								JButton sndrm = (JButton) compo;
-								sndrm.doClick();
+								JButton yndbslt = (JButton) compo;
+								yndbslt.doClick();
 							}
 						}
 					}
@@ -2598,7 +2596,7 @@ public class OBS_BACKUP extends JFrame {
 		Date ftar = formatter.parse(dateInString);
 		return ftar;
 	}
-	private void emirleriSTOPYAP()
+	public static void emirleriSTOPYAP()
 	{
 		Component[] components = container.getComponents();
 		for (Component component : components) {

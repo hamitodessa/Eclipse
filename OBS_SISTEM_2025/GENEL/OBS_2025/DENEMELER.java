@@ -40,7 +40,7 @@ import com.healthmarketscience.jackcess.crypt.CryptCodecProvider;
 import LOGER_KAYIT.TXT_LOG;
 import OBS_C_2025.BACKUP_RESTORE;
 import OBS_C_2025.BadgeButton;
-import OBS_C_2025.CLONE_RESULTSET;
+
 import OBS_C_2025.CustomResultSetMetaData;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 import OBS_C_2025.ManualResultSet;
@@ -111,27 +111,6 @@ public class DENEMELER extends JInternalFrame {
 		getContentPane().add(panel, BorderLayout.CENTER);
 		
 		
-		JButton btnNewButton_8 = new JButton("Clone");
-		btnNewButton_8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try  {
-					CLONE_RESULTSET clrsClone_RESULTSET = new CLONE_RESULTSET();
-		            
-					ResultSet clonedResultSet = clrsClone_RESULTSET.cloneResultSet( oac.uSER_ISL.user_details_bak());
-		           System.out.println(clrsClone_RESULTSET.cnames[1].toString()); 
-			            //oac.uSER_ISL.con.close();
-			            // Process the cloned result set
-		            while (clonedResultSet.next()) {
-		                String data = clonedResultSet.getString(1) + " - " +clonedResultSet.getString(2) + " - " + clonedResultSet.getString(3) + " - " +clonedResultSet.getString(4);
-		                System.out.println(data);
-			            }
-			        } catch (SQLException | ClassNotFoundException ex) {
-			            ex.printStackTrace();
-			        }
-			}
-		});
-		btnNewButton_8.setBounds(503, 25, 89, 23);
-		panel.add(btnNewButton_8);
 		
 		JButton btnNewButton_8_1 = new JButton("yeni Clone");
 		btnNewButton_8_1.addActionListener(new ActionListener() {

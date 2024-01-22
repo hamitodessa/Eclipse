@@ -106,8 +106,8 @@ public class dilAciklamalar {
 			case " FTP Eski Tarihli Silindi": 
 				acikLAMAString = " Older File Deleted from FTP" ;
 				break;
-			case " Yedekleme Islemi Sona Erdi": 
-				acikLAMAString = " Backup Process Completed" ;
+			case "Yedekleme Islemi Sona Erdi": 
+				acikLAMAString = "Backup Process Completed" ;
 				break;
 			case "Hata Durumundan Emir Bosaldi": 
 				acikLAMAString = " Jobr Discharged Due to Error Status" ;

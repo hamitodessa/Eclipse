@@ -273,13 +273,19 @@ public class LoglamaRapor extends JPanel {
 			TableColumn tc;
 			tc = tcm.getColumn(0);
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("DATE");
 			tc.setMinWidth(140);
 			tc.setMaxWidth(140);
 
 			tc = tcm.getColumn(1);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("DESCRIPTION");
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 
 			tc = tcm.getColumn(2);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("JOB NAME");
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setMinWidth(200);
 			tc.setMaxWidth(200);

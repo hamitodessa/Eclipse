@@ -128,17 +128,23 @@ public class KayitliEmirler extends JPanel {
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
 			tc = tcm.getColumn(0);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("JOB NAME");
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setMinWidth(140);
 			tc.setMaxWidth(140);
 
 			tc = tcm.getColumn(1);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("STATUS");
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setCellRenderer(new CheckBoxRenderer());
 			tc.setMinWidth(50);
 			tc.setMaxWidth(50);
 
 			tc = tcm.getColumn(2);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("MESSAGE");
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			
 			tc = tcm.getColumn(3);
@@ -147,6 +153,8 @@ public class KayitliEmirler extends JPanel {
 			tc.setMaxWidth(100);
 			
 			tc = tcm.getColumn(4);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("LAST BACKUP");
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setMinWidth(140);
 			tc.setMaxWidth(140);

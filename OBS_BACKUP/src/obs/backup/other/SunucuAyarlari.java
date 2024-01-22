@@ -320,14 +320,28 @@ public class SunucuAyarlari extends JPanel {
 	private void AnaFtpKontrol() throws SocketException, IOException 
 	{
 		if (chckbxYerel.isSelected()) return;
-		if (textHost.getText().equals("")) return;
-		if (textKull.getText().equals("")) return;
-		if (textSifre.getPassword().length == 0) return;
-		
-		if (textPort.getText().equals("")) return;
+		if (textHost.getText().equals("")) 
+			{
+			textHost.requestFocus();
+			return;
+			}
+		if (textKull.getText().equals("")) 
+			{
+			textKull.requestFocus();
+			return;
+			}
+		if (textSifre.getPassword().length == 0) 
+			{
+			textSifre.requestFocus();
+			return;
+			}
+		if (textPort.getText().equals("")) 
+			{
+			textPort.requestFocus();
+			return;
+			}
 		int portt = 21 ;
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		
 		if(!  textPort.getText().equals("21"))
 		{
 			portt = Integer.parseInt(textPort.getText());
@@ -349,15 +363,35 @@ public class SunucuAyarlari extends JPanel {
 	private void FtpKontrol() throws SocketException, IOException 
 	{
 		if (chckbxYerel.isSelected()) return;
-		if (textHost.getText().equals("")) return;
-		if (textKull.getText().equals("")) return;
-		if (textSifre.getPassword().length == 0) return;
-		if (textFtpSurucu.getText().equals("")) return;
-		if (textPort.getText().equals("")) return;
+		if (textHost.getText().equals("")) 
+			{
+			textHost.requestFocus();
+			return;
+			}
+		if (textKull.getText().equals(""))
+			{
+			textKull.requestFocus();
+			return;
+			}
+		if (textSifre.getPassword().length == 0) 
+			{
+			textSifre.requestFocus();
+			return;
+			}
+		if (textFtpSurucu.getText().equals("")) 
+			{
+			textFtpSurucu.requestFocus();
+			return;
+			}
+		if (textPort.getText().equals("")) 
+			{
+			textPort.requestFocus();
+			return;
+			}
 		int portt = 21 ;
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		
-		if(!  textPort.getText().equals("21"))
+		if(! textPort.getText().equals("21"))
 		{
 			portt = Integer.parseInt(textPort.getText());
 		}
@@ -368,7 +402,7 @@ public class SunucuAyarlari extends JPanel {
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		if(result)
 		{
-		OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, dilSecenek.dil(OBS_BACKUP.dILS, "Baglanti Gerceklesti"));
+			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, dilSecenek.dil(OBS_BACKUP.dILS, "Baglanti Gerceklesti"));
 		}
 		else {
 			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Hata"));

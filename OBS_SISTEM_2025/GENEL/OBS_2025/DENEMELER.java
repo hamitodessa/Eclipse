@@ -272,26 +272,12 @@ public class DENEMELER extends JInternalFrame {
 		btnNewButton_2.setBounds(503, 294, 89, 23);
 		panel.add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("zip");
+		JButton btnNewButton_3 = new JButton("zip file sifre");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					StringBuilder sb = new StringBuilder();
-					sb.append("Test String");
-					
-					File f = new File("c:\\OBS_SISTEM\\test.zip");
-					ZipOutputStream out = new ZipOutputStream(new FileOutputStream(f));
-					ZipEntry eo = new ZipEntry("mytext.txt");
-					out.putNextEntry(eo);
-					byte[] data = sb.toString().getBytes();
-					out.write(data, 0, data.length);
-					out.closeEntry();
-
-					out.close();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				
+			ENCRYPT_DECRYPT_STRING.zip_file_sifrele("C:\\OBS_SISTEM\\BACKUP\\SQL_LOG.MDB", "C:\\OBS_SISTEM\\BACKUP\\SQL_LOG.ZIP","oOk271972");
+				
 
 			}
 		});
@@ -414,6 +400,45 @@ public class DENEMELER extends JInternalFrame {
 		});
 		btnNewButton_10.setBounds(54, 359, 89, 23);
 		panel.add(btnNewButton_10);
+		
+		JButton btnNewButton_8 = new JButton("File Sifrele");
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ENCRYPT_DECRYPT_STRING.encryptedFile( "C:\\OBS_SISTEM\\BACKUP\\SQL_LOG.MDB", "C:\\OBS_SISTEM\\BACKUP\\DENEME.OBS");
+				} catch (Exception e1) {
+				
+					e1.printStackTrace();
+				}			}
+		});
+		btnNewButton_8.setBounds(54, 222, 89, 23);
+		panel.add(btnNewButton_8);
+		
+		JButton btnNewButton_11 = new JButton("File Coz");
+		btnNewButton_11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ENCRYPT_DECRYPT_STRING.decryptedFile("C:\\OBS_SISTEM\\BACKUP\\DENEME.OBS", "C:\\OBS_SISTEM\\BACKUP\\COZULMUS.MDB");
+				} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+						| IllegalBlockSizeException | BadPaddingException | IOException e1) {
+					
+					e1.printStackTrace();
+				}
+
+			}
+		});
+		btnNewButton_11.setBounds(176, 222, 89, 23);
+		panel.add(btnNewButton_11);
+		
+		JButton btnNewButton_12 = new JButton("zip folder sifre");
+		btnNewButton_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ENCRYPT_DECRYPT_STRING.zip_folder_sifrele("C:\\ydk\\", "C:\\OBS_SISTEM\\BACKUP\\ydk.ZIP","oOk271972");
+	
+			}
+		});
+		btnNewButton_12.setBounds(620, 346, 103, 23);
+		panel.add(btnNewButton_12);
 		
 
 	}

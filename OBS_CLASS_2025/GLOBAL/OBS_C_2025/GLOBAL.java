@@ -383,7 +383,7 @@ public class GLOBAL {
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE YONETICI (SIFRE nvarchar(200) ) ";
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE AYARLAR (  DIL nvarchar(10) ,TEMA nvarchar(50)) ";
+			sorgu = "CREATE TABLE AYARLAR (  DIL nvarchar(10) ,TEMA nvarchar(50),SIFRELE INTEGER, SIFRE BLOB) ";
 			backup_tablo_yap(sorgu);
 	
 			con = myBackupConnection();

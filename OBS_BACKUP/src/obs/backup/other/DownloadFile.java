@@ -376,15 +376,21 @@ public class DownloadFile extends JPanel {
 			tc.setMaxWidth(50);
 
 			tc = tcm.getColumn(1);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("FILE NAME");
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 
 			tc = tcm.getColumn(2);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("SIZE");
 			tc.setHeaderRenderer(new SAGA_DUZ_RENK());
 			tc.setCellRenderer(new TABLO_RENDERER(0,false));
 			tc.setMinWidth(100);
 			tc.setMaxWidth(100);
 
 			tc = tcm.getColumn(3);
+			if(! OBS_BACKUP.dILS.equals("Turkce"))
+				tc.setHeaderValue("DATE");
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			tc.setMinWidth(150);
 			tc.setMaxWidth(150);

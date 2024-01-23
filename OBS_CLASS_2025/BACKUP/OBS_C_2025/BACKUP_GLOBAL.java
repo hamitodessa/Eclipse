@@ -47,8 +47,14 @@ import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 import org.hsqldb.lib.CountdownInputStream;
 
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.exception.ZipException;
+import net.lingala.zip4j.model.ZipParameters;
+import net.lingala.zip4j.model.enums.CompressionLevel;
+import net.lingala.zip4j.model.enums.EncryptionMethod;
 
-@SuppressWarnings({"static-access","unused","rawtypes","unchecked"})
+
+@SuppressWarnings({"static-access","unused","rawtypes","unchecked","resource"})
 public class BACKUP_GLOBAL {
 	public Connection S_CONN;
 	public Connection MY_CONN; //= new MySqlConnection();
@@ -223,17 +229,27 @@ public class BACKUP_GLOBAL {
 		}
 		return pidno;
 	}
-	public void ayar_kayit(String dil, String tema)throws ClassNotFoundException, SQLException
+	public void ayar_kayit(String dil, String tema,int sifrele,String sifre)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
 		String sql = "";
-		sql = "INSERT INTO AYARLAR (DIL,TEMA) VALUES (?,?)";
+		sql = "INSERT INTO AYARLAR (DIL,TEMA,SIFRELE,SIFRE) VALUES (?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, dil);
 		stmt.setString(2, tema);
+		stmt.setInt(3, sifrele);
+		String encodedString = "";
+		byte[] qaz;
+		try {
+			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
+			encodedString = Arrays.toString(qaz);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		stmt.setString(4, encodedString);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -263,11 +279,13 @@ public class BACKUP_GLOBAL {
 		String sql = "SELECT * FROM AYARLAR ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		String[] ayarlar = new String[2];
+		String[] ayarlar = new String[4];
 		while (rss.next())
 		{
 			ayarlar[0] = rss.getString("DIL");
 			ayarlar[1] = rss.getString("TEMA");
+			ayarlar[2] = rss.getString("SIFRELE");
+			ayarlar[3] = rss.getString("SIFRE");
 		}
 		stmt.close();
 		con.close();
@@ -1244,7 +1262,7 @@ public class BACKUP_GLOBAL {
 		}
 		return filelists;
 	}
-	public void zip_yap(String dosadi, String dosyolu, String dosadi_zip, Boolean Sifrele, String Sifre) throws IOException
+	public void zip_yap(String dosadi, String dosyolu, String dosadi_zip) throws IOException
 	{
 		String sourceFile = dosyolu + dosadi;
 		FileOutputStream fos = new FileOutputStream(dosyolu +dosadi_zip);
@@ -1262,10 +1280,25 @@ public class BACKUP_GLOBAL {
 		fis.close();
 		fos.close();
 	}
-	public void diger_zip_yap(String okumadosyaadii, String dosyolu, String dosadi_zip, Boolean Sifrele, String Sifre) throws IOException
+	public void zip_yap_sifrele(String dosadi, String dosyolu, String dosadi_zip, Boolean Sifrele, String sifre) 
+	{
+		ZipParameters zipParameters = new ZipParameters();
+		zipParameters.setEncryptFiles(true);
+		zipParameters.setCompressionLevel(CompressionLevel.HIGHER);
+		zipParameters.setEncryptionMethod(EncryptionMethod.AES);
+
+		ZipFile zipFile = new ZipFile(dosyolu +dosadi_zip, sifre.toCharArray());
+		try {
+			zipFile.addFile(new File(dosyolu + dosadi), zipParameters);
+		} catch (ZipException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void diger_zip_yap(String okumadosyaadii, String dosyolu, String dosadi_zip) throws IOException
 	{
 		String sourceFile = okumadosyaadii;
-		FileOutputStream fos = new FileOutputStream(dosyolu +dosadi_zip);
+		FileOutputStream fos = new FileOutputStream(dosyolu + dosadi_zip);
 		ZipOutputStream zipOut = new ZipOutputStream(fos);
 		File fileToZip = new File(sourceFile);
 		FileInputStream fis = new FileInputStream(fileToZip);
@@ -1280,6 +1313,20 @@ public class BACKUP_GLOBAL {
 		fis.close();
 		fos.close();
 	}
+	public void diger_zip_yap_sifrele(String okumadosyaadii, String dosyolu, String dosadi_zip, Boolean Sifrele, String sifre) 
+	{
+		ZipParameters zipParameters = new ZipParameters();
+		zipParameters.setEncryptFiles(true);
+		zipParameters.setCompressionLevel(CompressionLevel.HIGHER);
+		zipParameters.setEncryptionMethod(EncryptionMethod.AES);
+		ZipFile zipFile = new ZipFile(dosyolu +dosadi_zip, sifre.toCharArray());
+		try {
+			zipFile.addFile(new File(okumadosyaadii), zipParameters);
+		} catch (ZipException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public  void zipFolder(Path sourceFolderPath, Path zipPath) throws Exception {
 		ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipPath.toFile()));
 		Files.walkFileTree(sourceFolderPath, new SimpleFileVisitor<Path>() 
@@ -1292,6 +1339,19 @@ public class BACKUP_GLOBAL {
 			}
 		});
 		zos.close();
+	}
+	public void zip_folder_sifrele(Path sourceFolderPath, Path zipPath, Boolean Sifrele, String sifre) 
+	{
+		ZipParameters zipParameters = new ZipParameters();
+		zipParameters.setEncryptFiles(true);
+		zipParameters.setCompressionLevel(CompressionLevel.HIGHER);
+		zipParameters.setEncryptionMethod(EncryptionMethod.AES);
+		ZipFile zipFile = new ZipFile(zipPath.toString(), sifre.toCharArray());
+		try {
+			zipFile.addFolder(new File(sourceFolderPath.toString()), zipParameters);
+		} catch (ZipException e) {
+			e.printStackTrace();
+		}
 	}
 	public void backup_al(String dbismi, String dbyer) throws ClassNotFoundException, SQLException
 	{

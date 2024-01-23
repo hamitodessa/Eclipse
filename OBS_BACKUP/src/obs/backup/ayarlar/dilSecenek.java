@@ -281,6 +281,9 @@ public class dilSecenek {
 			case  "Baglanti Hata":
 				tEXT = "Connection Error"  ;
 				break;
+			case  "Sifrele":
+				tEXT = "Set Password"  ;
+				break;
 
 				
 			}  

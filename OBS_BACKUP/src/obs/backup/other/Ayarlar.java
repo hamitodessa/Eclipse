@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 
 import OBS_C_2025.BACKUP_GLOBAL;
+import OBS_C_2025.SIFRE_DONDUR;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import javax.swing.JLabel;
@@ -13,6 +14,10 @@ import java.awt.event.ActionListener;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JPasswordField;
+
+import com.formdev.flatlaf.FlatClientProperties;
 
 @SuppressWarnings("serial")
 public class Ayarlar extends JPanel {
@@ -22,8 +27,10 @@ public class Ayarlar extends JPanel {
 	public JLabel lblNewLabel_1;
 	public JComboBox<String> comboBox;
 	public JComboBox<String> comboBox_1;
+	public JCheckBox chckbxSifrele;
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	final boolean showTabsHeader = false;
+	public JPasswordField passwordText;
 	public Ayarlar()
 	{
 		setLayout(null);
@@ -60,7 +67,9 @@ public class Ayarlar extends JPanel {
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					bckp.ayar_sil();
-					bckp.ayar_kayit(comboBox_1.getSelectedItem().toString(), comboBox.getSelectedItem().toString());
+					SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
+					bckp.ayar_kayit(comboBox_1.getSelectedItem().toString(), comboBox.getSelectedItem().toString(),chckbxSifrele.isSelected() ? 1:0,
+							sDondur.sDONDUR(passwordText)		);
 					OBS_BACKUP.dil();
 					OBS_BACKUP.emirleriSTOPYAP();
 					OBS_BACKUP.btnfont_tema.doClick();
@@ -72,5 +81,35 @@ public class Ayarlar extends JPanel {
 		});
 		btnKaydet.setBounds(137, 471, 89, 23);
 		add(btnKaydet);
+		
+		chckbxSifrele = new JCheckBox("");
+		chckbxSifrele.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(chckbxSifrele.isSelected())
+				{
+					passwordText.setVisible(true);
+				}
+				else {
+					passwordText.setVisible(false);
+				}
+			}
+		});
+		chckbxSifrele.setBounds(137, 161, 99, 23);
+		add(chckbxSifrele);
+		
+		JLabel lblNewLabel_2 = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS,"Sifrele"));
+		lblNewLabel_2.setBounds(42, 165, 105, 14);
+		add(lblNewLabel_2);
+		
+		passwordText = new JPasswordField();
+		passwordText.setVisible(false);
+		passwordText.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true");
+		passwordText.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+		
+		passwordText.setBounds(137, 201, 189, 20);
+		add(passwordText);
 	}
 }
+
+//			SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
+//System.out.println(sDondur.sDONDUR(ayarlarPanel.passwordText));

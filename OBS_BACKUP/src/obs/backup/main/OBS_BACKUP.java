@@ -2286,19 +2286,20 @@ public class OBS_BACKUP extends JFrame {
 		{
 			ftp.setConnectTimeout(zmn * 1000);
 			ftp.connect(ftpp,port);
-			if(!ftp.login(kull, sifre))
-			{
-				ftp.logout();
-				bckp.genel_kayit_durum("System", false, new Date(), dilAciklamalar.dilAciklama(dILS, "FTP Baglanti Hatasi Login")  ); 
-				return;
-			}
-			int reply = ftp.getReplyCode();
-			if (!FTPReply.isPositiveCompletion(reply))
-			{
-				ftp.disconnect();
-				bckp.genel_kayit_durum("System", false, new Date(),  dilAciklamalar.dilAciklama(dILS, "FTP Baglanti Hatasi isPositiveCompletion") ); 
-				return;
-			}
+			ftp.login(kull, sifre);
+//			if(!ftp.login(kull, sifre))
+//			{
+//				ftp.logout();
+//				bckp.genel_kayit_durum("System", false, new Date(), dilAciklamalar.dilAciklama(dILS, "FTP Baglanti Hatasi Login")  ); 
+//				return;
+//			}
+//			int reply = ftp.getReplyCode();
+//			if (!FTPReply.isPositiveCompletion(reply))
+//			{
+//				ftp.disconnect();
+//				bckp.genel_kayit_durum("System", false, new Date(),  dilAciklamalar.dilAciklama(dILS, "FTP Baglanti Hatasi isPositiveCompletion") ); 
+//				return;
+//			}
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
 			ftp.enterLocalPassiveMode();
 			ftp.changeWorkingDirectory(ftpsurucu);
@@ -2879,7 +2880,9 @@ public class OBS_BACKUP extends JFrame {
 			break;		
 		case "Java": 
 			try {
-				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
+				//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
+				UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel"); 
+				SwingUtilities.updateComponentTreeUI(this); //UIManager.setLookAndFeel(new
 			} catch (Exception e) {
 				
 				e.printStackTrace();

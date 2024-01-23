@@ -220,6 +220,7 @@ public class BACKUP_GLOBAL {
 			while (myReader.hasNextLine()) {
 				pidno = Integer.valueOf(myReader.nextLine());
 			}
+			 myReader.close();
 		}
 		return pidno;
 	}

@@ -3,6 +3,8 @@ package OBS_C_2025;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.SocketException;
@@ -28,6 +30,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 import java.util.Vector;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -45,7 +48,7 @@ import org.apache.commons.net.ftp.FTPReply;
 import org.hsqldb.lib.CountdownInputStream;
 
 
-@SuppressWarnings({"static-access","unused","rawtypes","unchecked"})
+@SuppressWarnings({"static-access","unused","rawtypes","unchecked","resource"})
 public class BACKUP_GLOBAL {
 	public Connection S_CONN;
 	public Connection MY_CONN; //= new MySqlConnection();
@@ -198,50 +201,26 @@ public class BACKUP_GLOBAL {
 		con.close();
 		con = null;
 	}
-	public void pid_kayit(int pid)throws ClassNotFoundException, SQLException
+	public void pid_kayit(int pid)throws ClassNotFoundException, SQLException, IOException
 	{
-		Class.forName("org.sqlite.JDBC");
-		if (con != null && ! con.isClosed()) con.close();
-		PreparedStatement stmt = null;
-		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "INSERT INTO PID (PID_NO) "
-				+ "VALUES (?)";
-		stmt = con.prepareStatement(sql);
-		stmt.setInt(1, pid);
-		stmt.executeUpdate();
-		stmt.close();
-		con.close();
-		con = null;
+		File file = new File(glb.SURUCU + glb.BACKUP_PID);
+		if (!file.exists()) {
+			file.createNewFile();
+		}
+		FileWriter myWriter = new FileWriter(glb.SURUCU + glb.BACKUP_PID);
+		myWriter.write(String.valueOf(pid));
+		myWriter.close();
 	}
-	public void pid_sil()throws ClassNotFoundException, SQLException
+	public int pid_oku() throws ClassNotFoundException, SQLException, IOException 
 	{
-		Class.forName("org.sqlite.JDBC");
-		if (con != null && ! con.isClosed()) con.close();
-		PreparedStatement stmt = null;
-		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "DELETE FROM PID ";
-		stmt = con.prepareStatement(sql);
-		stmt.executeUpdate();
-		stmt.close();
-		con.close();
-		con = null;
-	}
-	public int pid_oku() throws ClassNotFoundException, SQLException 
-	{
-		Class.forName("org.sqlite.JDBC");
-		if (con != null && ! con.isClosed()) con.close();
-		PreparedStatement stmt = null;
-		ResultSet	rss = null;
-		con = glb.myBackupConnection();
-		String sql = "SELECT PID_NO FROM PID ";
-		stmt = con.prepareStatement(sql);
-		rss = stmt.executeQuery();
-		rss.next();
-		int pidno = rss.getInt("PID_NO");
-		stmt.close();
-		con.close();
+		int pidno = 0 ;
+		File file = new File(glb.SURUCU + glb.BACKUP_PID);  //.txt
+		if (file.exists()) {
+			Scanner myReader = new Scanner(file);
+			while (myReader.hasNextLine()) {
+				pidno = Integer.valueOf(myReader.nextLine());
+			}
+		}
 		return pidno;
 	}
 	public void ayar_kayit(String dil, String tema)throws ClassNotFoundException, SQLException

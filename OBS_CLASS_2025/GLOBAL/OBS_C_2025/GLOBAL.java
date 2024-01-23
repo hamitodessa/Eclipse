@@ -72,6 +72,7 @@ public class GLOBAL {
 	public static final String BACKUP_YERI = "C:\\OBS_SISTEM\\BACKUP\\";
 	public static final String GOREV_DOSYA = System.getProperty("user.name") + "_OBS_GOREV.DB";
 	public static final String BACKUP_DOSYA = System.getProperty("user.name") + "_SQL_BACKUP.DB";
+	public static final String BACKUP_PID = System.getProperty("user.name") + "_BACKUP_PID.txt";
 	public static final String LOG_DOSYA = System.getProperty("user.name") + "_SQL_LOG.DB";
 	static Connection con ;
 	static Connection Ekstrecon ;
@@ -381,8 +382,6 @@ public class GLOBAL {
 			sorgu = "CREATE TABLE DIGER_DOSYA_ISIM (EMIR_ISMI nvarchar(30) ,DOSYA_ADI nvarchar(200),DOSYA_PATH nvarchar(200)) ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE YONETICI (SIFRE nvarchar(200) ) ";
-			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE PID ( PID_NO INTEGER) ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE AYARLAR (  DIL nvarchar(10) ,TEMA nvarchar(50)) ";
 			backup_tablo_yap(sorgu);

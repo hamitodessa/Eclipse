@@ -239,6 +239,7 @@ public class OBS_BACKUP extends JFrame {
 	
 	public static JLabel lblemirSAYI;
 	public static JLabel lblEmir ;
+	private JLabel pidlb ;
 
 	private Path path;
 	static Component horizontalGlue = null ;
@@ -806,6 +807,14 @@ public class OBS_BACKUP extends JFrame {
 		lblemirSAYI.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblemirSAYI.setBounds(125, 5, 48, 14);
 		altPane.add(lblemirSAYI);
+		
+		
+		
+		pidlb = new JLabel("");
+		pidlb.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		pidlb.setHorizontalAlignment(SwingConstants.RIGHT);
+		pidlb.setBounds(780, 5, 95, 14);
+		altPane.add(pidlb);
 
 		emirAnaGirisPanel = new EmirAnaGiris();
 		tabbedPane_1.addTab("Emir", null,emirAnaGirisPanel, null);
@@ -900,9 +909,9 @@ public class OBS_BACKUP extends JFrame {
 		try 
 		{
 			glb.backup_surucu_kontrol();
-			pidKONTROL();
 			bckp.log_kayit("System", new Date(),dilAciklamalar.dilAciklama(dILS,"Program Baslangici"));
 			dil();
+			pidKONTROL();
 			emir_yukle("EMIR_ISMI") ;
 			jobTimerBasla();
 			tabbedPane.setSelectedIndex(4);
@@ -981,7 +990,7 @@ public class OBS_BACKUP extends JFrame {
 			jobTimerBasla();
 		}
 	}
-	public static void genelKayit() throws ClassNotFoundException, SQLException
+	public static void genelKayit() 
 	{
 		if (emirAnaGirisPanel.txtEmir.getText().toString().equals("")) return;
 		Boolean drm = false;
@@ -1076,8 +1085,12 @@ public class OBS_BACKUP extends JFrame {
 		}
 		catch (Exception ex)
 		{
-			bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText(), new Date(), ex.getMessage());
-			mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			try {
+				bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText(), new Date(), ex.getMessage());
+				mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	public static void yedeklemeKaydet() throws ClassNotFoundException, SQLException
@@ -2652,27 +2665,34 @@ public class OBS_BACKUP extends JFrame {
 			btnMinimize.doClick();
 		}
 	}
-	private void pidKONTROL() 
+	private void pidKONTROL()
 	{
-		int ownPID = (int) ProcessHandle.current().pid();
 		try {
-			bckp.pid_sil();
-			bckp.pid_kayit(ownPID);
-		} catch (Exception e) {
-			e.printStackTrace();
+			bckp.pid_kayit((int) ProcessHandle.current().pid());
+		} catch (Exception ex) {
+			try {
+				bckp.log_kayit("System", new Date(), ex.getMessage().length() > 150 ? ex.getMessage().substring(0, 150) :ex.getMessage());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
-	private void secondRUN()
+	private void secondRUN() 
 	{
 		try {
-			int dosyaPID = 0 ; 
-			dosyaPID = bckp.pid_oku() ; 
+			int dosyaPID = bckp.pid_oku() ; 
+			pidlb.setText("PID : " + String.valueOf(dosyaPID));
+			if(dosyaPID == 0) return ; // Dosyada Kayit Yok 
 			if(dosyaPID != (int) ProcessHandle.current().pid())
 			{
 				btnKapat.doClick();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			try {
+				bckp.log_kayit("System", new Date(), ex.getMessage().length() > 150 ? ex.getMessage().substring(0, 150) :ex.getMessage());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	public static void dil() throws ClassNotFoundException, SQLException
@@ -2870,13 +2890,6 @@ public class OBS_BACKUP extends JFrame {
 		case "FlatArcOrangeIJ": 
 			FlatArcOrangeIJTheme.setup();
 			break;		
-		case "Black": 
-			try {
-				UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel"); 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			break;
 		}
 	}
 }

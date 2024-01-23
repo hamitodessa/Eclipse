@@ -207,6 +207,7 @@ public class EmirAnaGiris extends JPanel {
 					}
 				}
 				list.repaint();
+				dosyaSAYI();
 			}
 		});
 		chckbxNewCheckBox.setBounds(25, 550, 97, 23);

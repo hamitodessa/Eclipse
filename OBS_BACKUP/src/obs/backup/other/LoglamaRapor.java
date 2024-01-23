@@ -68,6 +68,10 @@ import raven.toast.Notifications;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JButton;
@@ -84,6 +88,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings({"serial","unused","resource"})
 public class LoglamaRapor extends JPanel {
@@ -236,6 +242,20 @@ public class LoglamaRapor extends JPanel {
 		tblLog = new JTable(){
 			public boolean isCellEditable(int row, int column) {     return false;          }
 		};
+		tblLog.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(SwingUtilities.isRightMouseButton(e) == true)
+				{
+				String mesaj = 	tblLog.getValueAt(tblLog.getSelectedRow(),1).toString();
+				
+		        Clipboard clip = Toolkit.getDefaultToolkit()
+		                             .getSystemClipboard();
+		        StringSelection strse1 = new StringSelection(mesaj);
+		        clip.setContents(strse1, strse1);
+				}
+			}
+		});
 		tblLog.setShowHorizontalLines(true);
 		tblLog.setShowVerticalLines(true);
 		tblLog.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

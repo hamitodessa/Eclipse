@@ -48,7 +48,7 @@ import org.apache.commons.net.ftp.FTPReply;
 import org.hsqldb.lib.CountdownInputStream;
 
 
-@SuppressWarnings({"static-access","unused","rawtypes","unchecked","resource"})
+@SuppressWarnings({"static-access","unused","rawtypes","unchecked"})
 public class BACKUP_GLOBAL {
 	public Connection S_CONN;
 	public Connection MY_CONN; //= new MySqlConnection();
@@ -167,8 +167,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		con = glb.myBackupLogConnection();
 		String sql = "";
-		sql  = "INSERT INTO LOG ([EMIR_ISMI],[TARIH],[ACIKLAMA]) "
-				+ "VALUES (?,?,?)";
+		sql  = "INSERT INTO LOG ([EMIR_ISMI],[TARIH],[ACIKLAMA]) VALUES (?,?,?)";
 		stmt = con.prepareStatement(sql);
 		String str = TARIH_CEVIR.milis_yyyymmss(tar.getTime());
 		stmt.setString(1, eismi);
@@ -214,7 +213,7 @@ public class BACKUP_GLOBAL {
 	public int pid_oku() throws ClassNotFoundException, SQLException, IOException 
 	{
 		int pidno = 0 ;
-		File file = new File(glb.SURUCU + glb.BACKUP_PID);  //.txt
+		File file = new File(glb.SURUCU + glb.BACKUP_PID); 
 		if (file.exists()) {
 			Scanner myReader = new Scanner(file);
 			while (myReader.hasNextLine()) {
@@ -231,8 +230,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
 		String sql = "";
-		sql = "INSERT INTO AYARLAR (DIL,TEMA) "
-				+ "VALUES (?,?)";
+		sql = "INSERT INTO AYARLAR (DIL,TEMA) VALUES (?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, dil);
 		stmt.setString(2, tema);

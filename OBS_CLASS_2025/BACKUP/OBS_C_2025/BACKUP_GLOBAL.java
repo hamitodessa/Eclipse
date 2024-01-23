@@ -118,7 +118,7 @@ public class BACKUP_GLOBAL {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
 		//F_CCMD.CommandText = "SELECT name FROM master.dbo.sysdatabases where name like 'OK_ % ' "
-		String sql  = "SELECT NAME FROM master.dbo.sysdatabases ORDER BY NAME ASC ";
+		String sql  = "SELECT NAME FROM master.dbo.sysdatabases  Where NAME <> 'tempdb' ORDER BY NAME ASC ";
 		PreparedStatement stmt = S_CONN.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		return rss ;

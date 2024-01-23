@@ -1666,10 +1666,8 @@ public class OBS_BACKUP extends JFrame {
 		catch (Exception ex)
 		{
 			try {
-				String mesaj= ex.getMessage();
-				mesaj = mesaj.length() > 40 ? mesaj.substring(0, 40) :mesaj;  
-				bckp.genel_kayit_durum(emirADI, false, new Date(),  mesaj);
-				bckp.log_kayit(emirADI, new Date(), mesaj);
+				bckp.genel_kayit_durum(emirADI, false, new Date(),  ex.getMessage().length() > 40 ? ex.getMessage().substring(0, 40) : ex.getMessage());
+				bckp.log_kayit(emirADI, new Date(), ex.getMessage().length() > 150 ? ex.getMessage().substring(0, 150) :ex.getMessage());
 				uplpnl. Progres_Bar_Temizle_1();
 				uplpnl. Progres_Bar_Temizle_2();
 				uplpnl.setPreferredSize(new Dimension(0,00));
@@ -1861,10 +1859,8 @@ public class OBS_BACKUP extends JFrame {
 		catch (Exception ex)
 		{
 			try {
-				String mesaj= ex.getMessage();
-				mesaj = mesaj.length() > 40 ? mesaj.substring(0, 40) :mesaj;  
-				bckp.genel_kayit_durum(emirADI, false, new Date(), mesaj);
-				bckp.log_kayit(emirADI, new Date(), ex.getMessage());
+				bckp.genel_kayit_durum(emirADI, false, new Date(),  ex.getMessage().length() > 40 ? ex.getMessage().substring(0, 40) : ex.getMessage());
+				bckp.log_kayit(emirADI, new Date(), ex.getMessage().length() > 150 ? ex.getMessage().substring(0, 150) :ex.getMessage());
 				uplpnl. Progres_Bar_Temizle_1();
 				uplpnl. Progres_Bar_Temizle_2();
 				uplpnl.setPreferredSize(new Dimension(0,00));
@@ -2081,10 +2077,8 @@ public class OBS_BACKUP extends JFrame {
 		catch (Exception ex)
 		{
 			try {
-				String mesaj= ex.getMessage();
-				mesaj = mesaj.length() > 40 ? mesaj.substring(0, 40) :mesaj;  
-				bckp.genel_kayit_durum(emirADI, false, new Date(),mesaj);
-				bckp.log_kayit(emirADI, new Date(), ex.getMessage());
+				bckp.genel_kayit_durum(emirADI, false, new Date(),  ex.getMessage().length() > 40 ? ex.getMessage().substring(0, 40) : ex.getMessage());
+				bckp.log_kayit(emirADI, new Date(), ex.getMessage().length() > 150 ? ex.getMessage().substring(0, 150) :ex.getMessage());
 				uplpnl. Progres_Bar_Temizle_1();
 				uplpnl. Progres_Bar_Temizle_2();
 				uplpnl.setPreferredSize(new Dimension(0,00));
@@ -2258,10 +2252,8 @@ public class OBS_BACKUP extends JFrame {
 		catch (Exception ex)
 		{
 			try {
-				String mesaj= ex.getMessage();
-				mesaj = mesaj.length() > 40 ? mesaj.substring(0, 40) :mesaj;  
-				bckp.genel_kayit_durum(emirADI, false, new Date(), mesaj);
-				bckp.log_kayit(emirADI, new Date(), ex.getMessage());
+				bckp.genel_kayit_durum(emirADI, false, new Date(),  ex.getMessage().length() > 40 ? ex.getMessage().substring(0, 40) : ex.getMessage());
+				bckp.log_kayit(emirADI, new Date(), ex.getMessage().length() > 150 ? ex.getMessage().substring(0, 150) :ex.getMessage());
 				uplpnl.Progres_Bar_Temizle_1();
 				uplpnl.Progres_Bar_Temizle_2();
 				uplpnl.setPreferredSize(new Dimension(0,00));

@@ -44,6 +44,7 @@ import OBS_C_2025.emir_bilgiler;
 import OBS_C_2025.ftp_bilgiler;
 import OBS_C_2025.server_bilgiler;
 import OBS_C_2025.yedekleme_bilgiler;
+import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 import java.awt.Font;
@@ -189,7 +190,7 @@ public class EmirAnaGiris extends JPanel {
 		btnNewButton_4.setBounds(324, 550, 100, 23);
 		panel_10.add(btnNewButton_4);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Hepsini Sec");
+		JCheckBox chckbxNewCheckBox = new JCheckBox(dilSecenek.dil(OBS_BACKUP.dILS,"Hepsi"));
 		chckbxNewCheckBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxNewCheckBox.isSelected())

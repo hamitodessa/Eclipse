@@ -48,7 +48,8 @@ import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 import java.awt.Font;
 
-@SuppressWarnings({"rawtypes","unchecked","serial","deprecation"})
+
+@SuppressWarnings({"rawtypes","unchecked","serial","deprecation","static-access"})
 public class EmirAnaGiris extends JPanel {
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private static final long serialVersionUID = 1L;
@@ -161,15 +162,55 @@ public class EmirAnaGiris extends JPanel {
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.genelKayit();
+					///
+					int dosyaSAYI = 0;
+            		for (int i = 0; i <= list.getModel().getSize() - 1; i++)
+            		{
+            			CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
+            			if (item.isSelected)
+            			{
+            				CheckListItem item2 = item;
+            				item2.setSelected(true);
+            				model.remove(i);
+            				model.insertElementAt(item2, dosyaSAYI);
+            				dosyaSAYI += 1;
+            			}
+            		}
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				} catch (Exception e1) {
-					e1.printStackTrace();
+				} catch (Exception ex) {
+					try {
+						bckp.log_kayit("System", new Date(), ex.getMessage());
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
 		btnNewButton_4.setBounds(324, 550, 100, 23);
 		panel_10.add(btnNewButton_4);
 		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Hepsini Sec");
+		chckbxNewCheckBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(chckbxNewCheckBox.isSelected())
+				{
+					for (int i = 0; i<= model.size() -1;i++) {
+						CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
+						item.setSelected(true);
+					}
+				}
+				else {
+					for (int i = 0; i<= model.size() -1;i++) {
+						CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
+						item.setSelected(false);
+					}
+				}
+				list.repaint();
+			}
+		});
+		chckbxNewCheckBox.setBounds(25, 550, 97, 23);
+		panel_10.add(chckbxNewCheckBox);
+
 		JPanel panel_9 = new JPanel();
 		panel_9.setPreferredSize(new Dimension(300,0));
 		splitPane_2.setLeftComponent(panel_9);
@@ -348,8 +389,6 @@ public class EmirAnaGiris extends JPanel {
 			  txtEmir .setEnabled(true);
 		}
 	}
-
-	@SuppressWarnings("static-access")
 	private void emirBilgiDoldur() throws ClassNotFoundException, SQLException
 	{
         try
@@ -595,7 +634,6 @@ public class EmirAnaGiris extends JPanel {
         	OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());        
         	}
 	}
-	@SuppressWarnings("static-access")
 	private void temizle()
 	{
 		model.clear();

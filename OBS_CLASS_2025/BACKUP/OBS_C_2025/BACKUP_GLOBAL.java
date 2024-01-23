@@ -138,9 +138,8 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql= "";
-		sql = "INSERT INTO EMIRLER ([EMIR_ISMI],[DURUM],[EMIR_ACIKLAMA],[INSTANCE],[SON_DURUM] ,[SON_YUKLEME] ,[SQL_YEDEK],[MESAJ],[OLUSTURMA]) "
-				+ "VALUES (?,?,?,?, ?,?,?,?,?)";
+		String sql = "INSERT INTO EMIRLER ([EMIR_ISMI],[DURUM],[EMIR_ACIKLAMA],[INSTANCE],[SON_DURUM] ,[SON_YUKLEME] ,[SQL_YEDEK],[MESAJ],[OLUSTURMA]) "
+				+ "VALUES (?,?,?,?,?,?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
 		stmt.setBoolean(2, drm);
@@ -333,8 +332,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "DELETE FROM EMIRLER  WHERE EMIR_ISMI = '" + eismi + "'";
+		String sql = "DELETE FROM EMIRLER  WHERE EMIR_ISMI = '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -347,8 +345,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "INSERT INTO DB_ISIM ([EMIR_ISMI],[DB_ADI]) "
+		String sql = "INSERT INTO DB_ISIM ([EMIR_ISMI],[DB_ADI]) "
 				+ "VALUES (?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
@@ -364,8 +361,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con =  glb.myBackupConnection();
-		String sql = "";
-		sql = "DELETE FROM DB_ISIM WHERE EMIR_ISMI = '" + eismi + "'";
+		String sql = "DELETE FROM DB_ISIM WHERE EMIR_ISMI = '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -378,8 +374,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "INSERT INTO DIGER_DOSYA_ISIM ([EMIR_ISMI],[DOSYA_ADI],[DOSYA_PATH]) "
+		String sql = "INSERT INTO DIGER_DOSYA_ISIM ([EMIR_ISMI],[DOSYA_ADI],[DOSYA_PATH]) "
 				+ "VALUES (?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
@@ -396,8 +391,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "DELETE FROM DIGER_DOSYA_ISIM WHERE EMIR_ISMI = '" + eismi + "'";
+		String sql = "DELETE FROM DIGER_DOSYA_ISIM WHERE EMIR_ISMI = '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -410,8 +404,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "DELETE FROM FTP  WHERE EMIR_ISMI =  '" + eismi + "'";
+		String sql = "DELETE FROM FTP  WHERE EMIR_ISMI =  '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -425,8 +418,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "INSERT INTO FTP ([EMIR_ISMI],[HOST],[KULLANICI],[SIFRE],[SURUCU],[PORT],[ZMN_ASIMI],[ESKI_YEDEK],[NERESI],[SURUCU_YER]) "
+		String sql = "INSERT INTO FTP ([EMIR_ISMI],[HOST],[KULLANICI],[SIFRE],[SURUCU],[PORT],[ZMN_ASIMI],[ESKI_YEDEK],[NERESI],[SURUCU_YER]) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);

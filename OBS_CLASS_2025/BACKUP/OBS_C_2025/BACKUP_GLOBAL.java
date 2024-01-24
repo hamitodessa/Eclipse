@@ -220,7 +220,8 @@ public class BACKUP_GLOBAL {
 	{
 		int pidno = 0 ;
 		File file = new File(glb.SURUCU + glb.BACKUP_PID); 
-		if (file.exists()) {
+		if (file.exists()) 
+		{
 			Scanner myReader = new Scanner(file);
 			while (myReader.hasNextLine()) {
 				pidno = Integer.valueOf(myReader.nextLine());

@@ -252,8 +252,8 @@ public class OBS_BACKUP extends JFrame {
 	static TrayIcon trayIcon = null ;
 	
 	public static String dILS = "" ;
-	public boolean sifRELE = false;
-	public String ZIPsifre = "" ;
+	public static boolean sifRELE = false;
+	public static String ZIPsifre = "" ;
 	String diltemaString[] = new String[4];
 	/**
 	 * Hamit.

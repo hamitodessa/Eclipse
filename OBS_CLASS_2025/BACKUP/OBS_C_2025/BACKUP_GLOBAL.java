@@ -1280,12 +1280,12 @@ public class BACKUP_GLOBAL {
 //		fis.close();
 //		fos.close();
 //	}
-	public void zip_yap_sifrele(String dosadi, String dosyolu, String dosadi_zip, Boolean Sifrele, String sifre) 
+	public void zip_yap_sifrele(String dosadi, String dosyolu, String dosadi_zip, Boolean sifrele, String sifre) 
 	{
 		ZipParameters zipParameters = new ZipParameters();
 		zipParameters.setCompressionLevel(CompressionLevel.HIGHER);
 		ZipFile zipFile ;
-		if(Sifrele)
+		if(sifrele)
 		{
 			zipParameters.setEncryptFiles(true);
 			zipParameters.setEncryptionMethod(EncryptionMethod.AES);
@@ -1320,12 +1320,12 @@ public class BACKUP_GLOBAL {
 //		fis.close();
 //		fos.close();
 //	}
-	public void diger_zip_yap_sifrele(String okumadosyaadii, String dosyolu, String dosadi_zip, Boolean Sifrele, String sifre) 
+	public void diger_zip_yap_sifrele(String okumadosyaadii, String dosyolu, String dosadi_zip, Boolean sifrele, String sifre) 
 	{
 		ZipParameters zipParameters = new ZipParameters();
 		zipParameters.setCompressionLevel(CompressionLevel.HIGHER);
 		ZipFile zipFile ;
-		if(Sifrele)
+		if(sifrele)
 		{
 		zipParameters.setEncryptFiles(true);
 		zipParameters.setEncryptionMethod(EncryptionMethod.AES);
@@ -1355,12 +1355,12 @@ public class BACKUP_GLOBAL {
 //		});
 //		zos.close();
 //	}
-	public void zip_folder_sifrele(Path sourceFolderPath, Path zipPath, Boolean Sifrele, String sifre) 
+	public void zip_folder_sifrele(Path sourceFolderPath, Path zipPath, Boolean sifrele, String sifre) 
 	{
 		ZipParameters zipParameters = new ZipParameters();
 		zipParameters.setCompressionLevel(CompressionLevel.HIGHER);
 		ZipFile zipFile ;
-		if(Sifrele)
+		if(sifrele)
 		{
 			zipParameters.setEncryptFiles(true);
 			zipParameters.setEncryptionMethod(EncryptionMethod.AES);

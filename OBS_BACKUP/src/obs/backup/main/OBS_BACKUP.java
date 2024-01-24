@@ -848,26 +848,24 @@ public class OBS_BACKUP extends JFrame {
 		//*************************************************************************************************************
 		ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
 		ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
-		ayarlarPanel.chckbxSifrele.setSelected(Integer.valueOf(diltemaString[2]) == 1 ? true:false);
-		if(ayarlarPanel.chckbxSifrele.isSelected())
+		boolean sfrDURUM = Integer.valueOf(diltemaString[2]) == 1 ? true:false ;
+		ayarlarPanel.chckbxSifrele.setSelected(sfrDURUM);
+		if(sfrDURUM)
 		{
 			ayarlarPanel.passwordText.setVisible(true);
 			sifRELE = true;
 			String decodedString = diltemaString[3];
-			if(! decodedString.equals("") || decodedString != null )
-			{
-				String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
-				byte[] bytes = new byte[byteValues.length];
-				for (int i=0, len=bytes.length; i<len; i++) {
-					bytes[i] = Byte.parseByte(byteValues[i].trim());     
-				}
-				try {
-					ayarlarPanel.passwordText.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
-					SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
-					ZIPsifre = sDondur.sDONDUR(ayarlarPanel.passwordText);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
+			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+			byte[] bytes = new byte[byteValues.length];
+			for (int i=0, len=bytes.length; i<len; i++) {
+				bytes[i] = Byte.parseByte(byteValues[i].trim());     
+			}
+			try {
+				ayarlarPanel.passwordText.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
+				SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
+				ZIPsifre = sDondur.sDONDUR(ayarlarPanel.passwordText);
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
 		}
 		else {

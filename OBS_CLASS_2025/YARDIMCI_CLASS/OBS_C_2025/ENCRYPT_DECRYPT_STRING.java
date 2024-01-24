@@ -136,6 +136,7 @@ public class ENCRYPT_DECRYPT_STRING {
 		zipParameters.setCompressionLevel(CompressionLevel.HIGHER);
 		zipParameters.setEncryptionMethod(EncryptionMethod.AES);
 
+		
 		ZipFile zipFile = new ZipFile(fileOutPath, sifre.toCharArray());
 		try {
 			zipFile.addFile(new File(fileInputPath), zipParameters);

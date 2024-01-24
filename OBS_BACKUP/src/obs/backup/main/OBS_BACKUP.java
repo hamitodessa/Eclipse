@@ -846,7 +846,7 @@ public class OBS_BACKUP extends JFrame {
 		tabbedPane.addTab("Hakkinda", null, hakkindaPanel, null);
 		ayarlarPanel = new Ayarlar();
 		tabbedPane.addTab("Ayarlar", null, ayarlarPanel, null);
-		//***********************************************************************************
+		//*************************************************************************************************************
 		ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
 		ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
 		ayarlarPanel.chckbxSifrele.setSelected(Integer.valueOf(diltemaString[2]) == 1 ? true:false);
@@ -877,7 +877,7 @@ public class OBS_BACKUP extends JFrame {
 			ZIPsifre = "" ;
 			ayarlarPanel.passwordText.setText("");
 		}
-		
+		//*************************************************************************************************************
 		final boolean showTabsHeader = false; tabbedPane.setUI(new
 				javax.swing.plaf.metal.MetalTabbedPaneUI() {
 			@Override protected int calculateTabAreaHeight(int tabPlacement, int

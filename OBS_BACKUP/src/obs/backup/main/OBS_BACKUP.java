@@ -854,28 +854,30 @@ public class OBS_BACKUP extends JFrame {
 		{
 			ayarlarPanel.passwordText.setVisible(true);
 			sifRELE = true;
+			String decodedString = diltemaString[3];
+			if(! decodedString.equals("") || decodedString != null )
+			{
+				String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+				byte[] bytes = new byte[byteValues.length];
+				for (int i=0, len=bytes.length; i<len; i++) {
+					bytes[i] = Byte.parseByte(byteValues[i].trim());     
+				}
+				try {
+					ayarlarPanel.passwordText.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
+					SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
+					ZIPsifre = sDondur.sDONDUR(ayarlarPanel.passwordText);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
 		}
 		else {
 			ayarlarPanel.passwordText.setVisible(false);
 			sifRELE = false ;
+			ZIPsifre = "" ;
+			ayarlarPanel.passwordText.setText("");
 		}
-		String decodedString = diltemaString[3];
-		if(! decodedString.equals("") || decodedString != null )
-		{
-			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
-			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) {
-				bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
-			try {
-				ayarlarPanel.passwordText.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
-				SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
-				ZIPsifre = sDondur.sDONDUR(ayarlarPanel.passwordText);
-			} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedEncodingException
-					| IllegalBlockSizeException | BadPaddingException e1) {
-				e1.printStackTrace();
-			}
-		}
+		
 		final boolean showTabsHeader = false; tabbedPane.setUI(new
 				javax.swing.plaf.metal.MetalTabbedPaneUI() {
 			@Override protected int calculateTabAreaHeight(int tabPlacement, int

@@ -336,11 +336,11 @@ public class OBS_BACKUP extends JFrame {
 		contentPane.add(tBAR, BorderLayout.NORTH);
 
 		JSplitPane splitPane = new JSplitPane();
+		splitPane.setDividerLocation(40);
 		splitPane.setDividerSize(0);
 		contentPane.add(splitPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(40,0));
 		splitPane.setLeftComponent(panel);
 
 		//***************

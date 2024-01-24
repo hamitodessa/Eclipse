@@ -1289,14 +1289,15 @@ public class BACKUP_GLOBAL {
 		{
 			zipParameters.setEncryptFiles(true);
 			zipParameters.setEncryptionMethod(EncryptionMethod.AES);
-			zipFile = new ZipFile(dosyolu +dosadi_zip, sifre.toCharArray());
+			zipFile = new ZipFile(dosyolu + dosadi_zip, sifre.toCharArray());
 		}
 		else {
 			zipFile = new ZipFile(dosyolu + dosadi_zip);
 		}
 		try {
 			zipFile.addFile(new File(dosyolu + dosadi), zipParameters);
-		} catch (ZipException e) {
+			zipFile.close();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1335,7 +1336,8 @@ public class BACKUP_GLOBAL {
 		}
 		try {
 			zipFile.addFile(new File(okumadosyaadii), zipParameters);
-		} catch (ZipException e) {
+			zipFile.close();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1369,7 +1371,8 @@ public class BACKUP_GLOBAL {
 		}
 		try {
 			zipFile.addFolder(new File(sourceFolderPath.toString()), zipParameters);
-		} catch (ZipException e) {
+			zipFile.close();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

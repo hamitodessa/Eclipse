@@ -1623,7 +1623,7 @@ public class OBS_BACKUP extends JFrame {
 				dzip = tarr + "_" + dosADI + ".zip";
 				//if(sifRELE)
 				//{
-					bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE,ZIPsifre );
+					bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE , ZIPsifre );
 				//}
 				//else {
 				//	bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip);

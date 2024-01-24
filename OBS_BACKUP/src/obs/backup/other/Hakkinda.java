@@ -7,10 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -150,8 +147,15 @@ public class Hakkinda extends JPanel {
 			try {
 				URI uri = new URI(sayfa);
 				Desktop.getDesktop().browse(uri);
-			} catch (IOException | URISyntaxException e) { /* TODO: error handling */ }
-		} else { /* TODO: error handling */ }
+			} catch (Exception e)
+			{ 
+				/* TODO: error handling */ 
+			}
+		}
+		else 
+		{
+			/* TODO: error handling */
+		}
 	}
 	private static int getVersion() {
 		String version = System.getProperty("java.version");

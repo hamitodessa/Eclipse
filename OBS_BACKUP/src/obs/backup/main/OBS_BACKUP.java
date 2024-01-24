@@ -2907,8 +2907,8 @@ public class OBS_BACKUP extends JFrame {
 		else {
 			tabbedPane_1.setTitleAt(0, "Job");
 			tabbedPane_1.setTitleAt(1, "Setting Ftp/Folders");
-			tabbedPane_1.setTitleAt(2, "To inform");
-			tabbedPane_1.setTitleAt(3, "Backup Time");
+			tabbedPane_1.setTitleAt(2, "Send Confirmation");
+			tabbedPane_1.setTitleAt(3, "Schedule Backups");
 			tabbedPane_1.setTitleAt(4, "Server Settings");
 			tabbedPane_1.setTitleAt(5, "Copy Job");
 		}

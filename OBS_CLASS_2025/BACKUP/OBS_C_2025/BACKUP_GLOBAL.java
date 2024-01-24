@@ -54,7 +54,7 @@ import net.lingala.zip4j.model.enums.CompressionLevel;
 import net.lingala.zip4j.model.enums.EncryptionMethod;
 
 
-@SuppressWarnings({"static-access","unused","rawtypes","unchecked","resource"})
+@SuppressWarnings({"static-access","unused","rawtypes","unchecked","resource","deprecation"})
 public class BACKUP_GLOBAL {
 	public Connection S_CONN;
 	public Connection MY_CONN; //= new MySqlConnection();
@@ -1262,32 +1262,38 @@ public class BACKUP_GLOBAL {
 		}
 		return filelists;
 	}
-	public void zip_yap(String dosadi, String dosyolu, String dosadi_zip) throws IOException
-	{
-		String sourceFile = dosyolu + dosadi;
-		FileOutputStream fos = new FileOutputStream(dosyolu +dosadi_zip);
-		ZipOutputStream zipOut = new ZipOutputStream(fos);
-		File fileToZip = new File(sourceFile);
-		FileInputStream fis = new FileInputStream(fileToZip);
-		ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
-		zipOut.putNextEntry(zipEntry);
-		byte[] bytes = new byte[1024];
-		int length;
-		while((length = fis.read(bytes)) >= 0) {
-			zipOut.write(bytes, 0, length);
-		}
-		zipOut.close();
-		fis.close();
-		fos.close();
-	}
+//	public void zip_yap(String dosadi, String dosyolu, String dosadi_zip) throws IOException
+//	{
+//		String sourceFile = dosyolu + dosadi;
+//		FileOutputStream fos = new FileOutputStream(dosyolu +dosadi_zip);
+//		ZipOutputStream zipOut = new ZipOutputStream(fos);
+//		File fileToZip = new File(sourceFile);
+//		FileInputStream fis = new FileInputStream(fileToZip);
+//		ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
+//		zipOut.putNextEntry(zipEntry);
+//		byte[] bytes = new byte[1024];
+//		int length;
+//		while((length = fis.read(bytes)) >= 0) {
+//			zipOut.write(bytes, 0, length);
+//		}
+//		zipOut.close();
+//		fis.close();
+//		fos.close();
+//	}
 	public void zip_yap_sifrele(String dosadi, String dosyolu, String dosadi_zip, Boolean Sifrele, String sifre) 
 	{
 		ZipParameters zipParameters = new ZipParameters();
-		zipParameters.setEncryptFiles(true);
 		zipParameters.setCompressionLevel(CompressionLevel.HIGHER);
-		zipParameters.setEncryptionMethod(EncryptionMethod.AES);
-
-		ZipFile zipFile = new ZipFile(dosyolu +dosadi_zip, sifre.toCharArray());
+		ZipFile zipFile ;
+		if(Sifrele)
+		{
+			zipParameters.setEncryptFiles(true);
+			zipParameters.setEncryptionMethod(EncryptionMethod.AES);
+			zipFile = new ZipFile(dosyolu +dosadi_zip, sifre.toCharArray());
+		}
+		else {
+			zipFile = new ZipFile(dosyolu + dosadi_zip);
+		}
 		try {
 			zipFile.addFile(new File(dosyolu + dosadi), zipParameters);
 		} catch (ZipException e) {
@@ -1295,31 +1301,38 @@ public class BACKUP_GLOBAL {
 		}
 	}
 
-	public void diger_zip_yap(String okumadosyaadii, String dosyolu, String dosadi_zip) throws IOException
-	{
-		String sourceFile = okumadosyaadii;
-		FileOutputStream fos = new FileOutputStream(dosyolu + dosadi_zip);
-		ZipOutputStream zipOut = new ZipOutputStream(fos);
-		File fileToZip = new File(sourceFile);
-		FileInputStream fis = new FileInputStream(fileToZip);
-		ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
-		zipOut.putNextEntry(zipEntry);
-		byte[] bytes = new byte[1024];
-		int length;
-		while((length = fis.read(bytes)) >= 0) {
-			zipOut.write(bytes, 0, length);
-		}
-		zipOut.close();
-		fis.close();
-		fos.close();
-	}
+//	public void diger_zip_yap(String okumadosyaadii, String dosyolu, String dosadi_zip) throws IOException
+//	{
+//		String sourceFile = okumadosyaadii;
+//		FileOutputStream fos = new FileOutputStream(dosyolu + dosadi_zip);
+//		ZipOutputStream zipOut = new ZipOutputStream(fos);
+//		File fileToZip = new File(sourceFile);
+//		FileInputStream fis = new FileInputStream(fileToZip);
+//		ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
+//		zipOut.putNextEntry(zipEntry);
+//		byte[] bytes = new byte[1024];
+//		int length;
+//		while((length = fis.read(bytes)) >= 0) {
+//			zipOut.write(bytes, 0, length);
+//		}
+//		zipOut.close();
+//		fis.close();
+//		fos.close();
+//	}
 	public void diger_zip_yap_sifrele(String okumadosyaadii, String dosyolu, String dosadi_zip, Boolean Sifrele, String sifre) 
 	{
 		ZipParameters zipParameters = new ZipParameters();
-		zipParameters.setEncryptFiles(true);
 		zipParameters.setCompressionLevel(CompressionLevel.HIGHER);
+		ZipFile zipFile ;
+		if(Sifrele)
+		{
+		zipParameters.setEncryptFiles(true);
 		zipParameters.setEncryptionMethod(EncryptionMethod.AES);
-		ZipFile zipFile = new ZipFile(dosyolu +dosadi_zip, sifre.toCharArray());
+		zipFile = new ZipFile(dosyolu +dosadi_zip, sifre.toCharArray());
+		}
+		else {
+			zipFile = new ZipFile(dosyolu +dosadi_zip);
+		}
 		try {
 			zipFile.addFile(new File(okumadosyaadii), zipParameters);
 		} catch (ZipException e) {
@@ -1327,26 +1340,33 @@ public class BACKUP_GLOBAL {
 		}
 	}
 
-	public  void zipFolder(Path sourceFolderPath, Path zipPath) throws Exception {
-		ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipPath.toFile()));
-		Files.walkFileTree(sourceFolderPath, new SimpleFileVisitor<Path>() 
-		{
-			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-				zos.putNextEntry(new ZipEntry(sourceFolderPath.relativize(file).toString()));
-				Files.copy(file, zos);
-				zos.closeEntry();
-				return FileVisitResult.CONTINUE;
-			}
-		});
-		zos.close();
-	}
+//	public  void zipFolder(Path sourceFolderPath, Path zipPath) throws Exception {
+//		ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipPath.toFile()));
+//		Files.walkFileTree(sourceFolderPath, new SimpleFileVisitor<Path>() 
+//		{
+//			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+//				zos.putNextEntry(new ZipEntry(sourceFolderPath.relativize(file).toString()));
+//				Files.copy(file, zos);
+//				zos.closeEntry();
+//				return FileVisitResult.CONTINUE;
+//			}
+//		});
+//		zos.close();
+//	}
 	public void zip_folder_sifrele(Path sourceFolderPath, Path zipPath, Boolean Sifrele, String sifre) 
 	{
 		ZipParameters zipParameters = new ZipParameters();
-		zipParameters.setEncryptFiles(true);
 		zipParameters.setCompressionLevel(CompressionLevel.HIGHER);
-		zipParameters.setEncryptionMethod(EncryptionMethod.AES);
-		ZipFile zipFile = new ZipFile(zipPath.toString(), sifre.toCharArray());
+		ZipFile zipFile ;
+		if(Sifrele)
+		{
+			zipParameters.setEncryptFiles(true);
+			zipParameters.setEncryptionMethod(EncryptionMethod.AES);
+			zipFile = new ZipFile(zipPath.toString(), sifre.toCharArray());
+		}
+		else {
+			zipFile = new ZipFile(zipPath.toString());
+		}
 		try {
 			zipFile.addFolder(new File(sourceFolderPath.toString()), zipParameters);
 		} catch (ZipException e) {
@@ -1364,7 +1384,7 @@ public class BACKUP_GLOBAL {
 		stmt.execute(sql);  
 		stmt.close();
 	}
-	@SuppressWarnings("deprecation")
+
 	public void mySQL_backup( String myDUMP, String dbUser, String dbPass, String dbName,String savePath) throws IOException, InterruptedException
 	{
 		String executeCmd = myDUMP +"\\mysqldump.exe -u" + dbUser + " -p" + dbPass + " -B " + dbName + " -r " + savePath;

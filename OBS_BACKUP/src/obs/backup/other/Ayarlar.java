@@ -19,7 +19,7 @@ import javax.swing.JPasswordField;
 
 import com.formdev.flatlaf.FlatClientProperties;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","deprecation"})
 public class Ayarlar extends JPanel {
 
 	public JButton btnKaydet;
@@ -63,8 +63,20 @@ public class Ayarlar extends JPanel {
 
 		btnKaydet = new JButton("Kaydet");
 		btnKaydet.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(chckbxSifrele.isSelected())
+					{
+						if(passwordText.getText().equals(""))
+						{
+							passwordText.requestFocus();
+							return;
+						}
+					}
+					else {
+						passwordText.setText("");
+					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					bckp.ayar_sil();
 					SIFRE_DONDUR sDondur = new SIFRE_DONDUR();

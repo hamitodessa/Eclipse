@@ -387,7 +387,7 @@ public class GLOBAL {
 			backup_tablo_yap(sorgu);
 	
 			con = myBackupConnection();
-			sorgu = "INSERT INTO AYARLAR(DIL,TEMA)  VALUES('Turkce','FlatCarbonIJ')" ;
+			sorgu = "INSERT INTO AYARLAR(DIL,TEMA,SIFRELE,SIFRE)  VALUES('Turkce','FlatCarbonIJ','0','')" ;
 			Statement pstmt = con.prepareStatement(sorgu) ;
 			pstmt = con.createStatement();  
 			pstmt.execute(sorgu);  

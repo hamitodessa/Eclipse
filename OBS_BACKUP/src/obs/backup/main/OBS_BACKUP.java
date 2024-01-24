@@ -254,7 +254,7 @@ public class OBS_BACKUP extends JFrame {
 	public static String dILS = "" ;
 	public static boolean sifRELE = false;
 	public static String ZIPsifre = "" ;
-	String diltemaString[] = new String[4];
+	private static String diltemaString[] = new String[4];
 	/**
 	 * Hamit.
 	 */
@@ -288,7 +288,6 @@ public class OBS_BACKUP extends JFrame {
 				diltemaString[2] = "0" ;
 				diltemaString[3] = "" ;
 			}
-			
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -873,9 +872,9 @@ public class OBS_BACKUP extends JFrame {
 		}
 		else {
 			ayarlarPanel.passwordText.setVisible(false);
+			ayarlarPanel.passwordText.setText("");
 			sifRELE = false ;
 			ZIPsifre = "" ;
-			ayarlarPanel.passwordText.setText("");
 		}
 		//*************************************************************************************************************
 		final boolean showTabsHeader = false; tabbedPane.setUI(new

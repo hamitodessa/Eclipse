@@ -1298,8 +1298,12 @@ public class BACKUP_GLOBAL {
 		try {
 			zipFile.addFile(new File(dosyolu + dosadi), zipParameters);
 			zipFile.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			try {
+				log_kayit("System", new Date(), ex.getMessage());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -1338,8 +1342,12 @@ public class BACKUP_GLOBAL {
 		try {
 			zipFile.addFile(new File(okumadosyaadii), zipParameters);
 			zipFile.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			try {
+				log_kayit("System", new Date(), ex.getMessage());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -1373,8 +1381,12 @@ public class BACKUP_GLOBAL {
 		try {
 			zipFile.addFolder(new File(sourceFolderPath.toString()), zipParameters);
 			zipFile.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			try {
+				log_kayit("System", new Date(), ex.getMessage());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	public void backup_al(String dbismi, String dbyer) throws ClassNotFoundException, SQLException

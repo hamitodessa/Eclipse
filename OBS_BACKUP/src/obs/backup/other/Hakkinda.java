@@ -78,7 +78,8 @@ public class Hakkinda extends JPanel {
 				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
 		});
-		lblNewLabel_1.setText("<html><font ><u>www.okumus.gen.tr</u></font></html>"); //$NON-NLS-1$ //$NON-NLS-2$
+		
+		lblNewLabel_1.setText("<HTML><U>www.okumus.gen.tr</U></HTML>"); 
 		lblNewLabel_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
 		lblNewLabel_1.setBounds(173, 129, 261, 14);
@@ -87,7 +88,7 @@ public class Hakkinda extends JPanel {
 		lblNewLabel_2 = new JLabel();
 		lblNewLabel_2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setText("<html><font ><u>info@okumus.gen.tr</u></font></html>");
+		lblNewLabel_2.setText("<html><u>info@okumus.gen.tr</u></html>");
 		lblNewLabel_2.setBounds(173, 155, 261, 14);
 		add(lblNewLabel_2);
 
@@ -126,7 +127,7 @@ public class Hakkinda extends JPanel {
 			}
 
 		});
-		lblNewLabel_1_1.setText("<html><font ><u>www.obs-web.com</u></font></html>");
+		lblNewLabel_1_1.setText("<html><u>www.obs-web.com</u></html>");
 		lblNewLabel_1_1.setBounds(173, 180, 261, 14);
 		lblNewLabel_1_1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		add(lblNewLabel_1_1);

@@ -54,7 +54,7 @@ import net.lingala.zip4j.model.enums.CompressionLevel;
 import net.lingala.zip4j.model.enums.EncryptionMethod;
 
 
-@SuppressWarnings({"static-access","unused","rawtypes","unchecked","resource","deprecation"})
+@SuppressWarnings({"static-access","unused","rawtypes","unchecked","deprecation"})
 public class BACKUP_GLOBAL {
 	public Connection S_CONN;
 	public Connection MY_CONN; //= new MySqlConnection();
@@ -1032,7 +1032,7 @@ public class BACKUP_GLOBAL {
 		ftp.connect(ftpp, port);
 		ftp.login(kull, sifre);
 		ftp.changeWorkingDirectory(dirPath);
-		int    returnCode = ftp.getReplyCode();
+		int returnCode = ftp.getReplyCode();
 		if (ftp != null && ftp.isConnected()) {
 			ftp.logout();
 			ftp.disconnect();
@@ -1051,7 +1051,7 @@ public class BACKUP_GLOBAL {
 		FTPClient ftp = new FTPClient();
 		ftp.connect(ftpp, port);
 		ftp.login(kull, sifre);
-		int    returnCode = ftp.getReplyCode();
+		int returnCode = ftp.getReplyCode();
 		boolean result = false;
 		if (ftp != null && ftp.isConnected()) {
 			ftp.logout();
@@ -1069,15 +1069,16 @@ public class BACKUP_GLOBAL {
 	{
 		FTPClient ftp = new FTPClient();
 		ftp.connect(ftpp, port);
-		if(!ftp.login(kull, sifre))
-		{
-			ftp.logout();
-		}
-		int reply = ftp.getReplyCode();
-		if (!FTPReply.isPositiveCompletion(reply))
-		{
-			ftp.disconnect();
-		}
+		ftp.login(kull, sifre);
+//		if(!ftp.login(kull, sifre))
+//		{
+//			ftp.logout();
+//		}
+//		int reply = ftp.getReplyCode();
+//		if (!FTPReply.isPositiveCompletion(reply))
+//		{
+//			ftp.disconnect();
+//		}
 		ftp.setFileType(FTP.BINARY_FILE_TYPE);
 		ftp.enterLocalPassiveMode();
 		ftp.changeWorkingDirectory(ftpsurucu);
@@ -1089,15 +1090,16 @@ public class BACKUP_GLOBAL {
 	{
 		FTPClient ftp = new FTPClient();
 		ftp.connect(ftpAddress, port);
-		if(!ftp.login(ftpUser, ftpPassword))
-		{
-			ftp.logout();
-		}
-		int reply = ftp.getReplyCode();
-		if (!FTPReply.isPositiveCompletion(reply))
-		{
-			ftp.disconnect();
-		}
+		ftp.login(ftpUser, ftpPassword);
+//		if(!ftp.login(ftpUser, ftpPassword))
+//		{
+//			ftp.logout();
+//		}
+//		int reply = ftp.getReplyCode();
+//		if (!FTPReply.isPositiveCompletion(reply))
+//		{
+//			ftp.disconnect();
+//		}
 		ftp.enterLocalPassiveMode();
 		ftp.changeWorkingDirectory(surucu);
 		ftp.setFileType(FTP.BINARY_FILE_TYPE);
@@ -1111,16 +1113,11 @@ public class BACKUP_GLOBAL {
 			}
 			else 
 			{
-				//if (file.isDirectory()) 
-				//{
-				//	remote_filelist	filebilgi = new remote_filelist("[" + file.getName().toString()+ "]",(int) file.getSize(), dateFormater.format(file.getTimestamp().getTime()),"");
-				//	filelists.add(filebilgi);
-				//}
-					if (! file.isDirectory()) 
-					{
-						remote_filelist	filebilgi = new remote_filelist(file.getName().toString(),(int) file.getSize(), dateFormater.format(file.getTimestamp().getTime()),"");
-						filelists.add(filebilgi);
-					}
+				if (! file.isDirectory()) 
+				{
+					remote_filelist	filebilgi = new remote_filelist(file.getName().toString(),(int) file.getSize(), dateFormater.format(file.getTimestamp().getTime()),"");
+					filelists.add(filebilgi);
+				}
 			}
 		}
 		ftp.logout();
@@ -1263,24 +1260,6 @@ public class BACKUP_GLOBAL {
 		}
 		return filelists;
 	}
-//	public void zip_yap(String dosadi, String dosyolu, String dosadi_zip) throws IOException
-//	{
-//		String sourceFile = dosyolu + dosadi;
-//		FileOutputStream fos = new FileOutputStream(dosyolu +dosadi_zip);
-//		ZipOutputStream zipOut = new ZipOutputStream(fos);
-//		File fileToZip = new File(sourceFile);
-//		FileInputStream fis = new FileInputStream(fileToZip);
-//		ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
-//		zipOut.putNextEntry(zipEntry);
-//		byte[] bytes = new byte[1024];
-//		int length;
-//		while((length = fis.read(bytes)) >= 0) {
-//			zipOut.write(bytes, 0, length);
-//		}
-//		zipOut.close();
-//		fis.close();
-//		fos.close();
-//	}
 	public void zip_yap_sifrele(String dosadi, String dosyolu, String dosadi_zip, Boolean sifrele, String sifre) 
 	{
 		ZipParameters zipParameters = new ZipParameters();
@@ -1306,25 +1285,6 @@ public class BACKUP_GLOBAL {
 			}
 		}
 	}
-
-//	public void diger_zip_yap(String okumadosyaadii, String dosyolu, String dosadi_zip) throws IOException
-//	{
-//		String sourceFile = okumadosyaadii;
-//		FileOutputStream fos = new FileOutputStream(dosyolu + dosadi_zip);
-//		ZipOutputStream zipOut = new ZipOutputStream(fos);
-//		File fileToZip = new File(sourceFile);
-//		FileInputStream fis = new FileInputStream(fileToZip);
-//		ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
-//		zipOut.putNextEntry(zipEntry);
-//		byte[] bytes = new byte[1024];
-//		int length;
-//		while((length = fis.read(bytes)) >= 0) {
-//			zipOut.write(bytes, 0, length);
-//		}
-//		zipOut.close();
-//		fis.close();
-//		fos.close();
-//	}
 	public void diger_zip_yap_sifrele(String okumadosyaadii, String dosyolu, String dosadi_zip, Boolean sifrele, String sifre) 
 	{
 		ZipParameters zipParameters = new ZipParameters();
@@ -1350,20 +1310,6 @@ public class BACKUP_GLOBAL {
 			}
 		}
 	}
-
-//	public  void zipFolder(Path sourceFolderPath, Path zipPath) throws Exception {
-//		ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipPath.toFile()));
-//		Files.walkFileTree(sourceFolderPath, new SimpleFileVisitor<Path>() 
-//		{
-//			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-//				zos.putNextEntry(new ZipEntry(sourceFolderPath.relativize(file).toString()));
-//				Files.copy(file, zos);
-//				zos.closeEntry();
-//				return FileVisitResult.CONTINUE;
-//			}
-//		});
-//		zos.close();
-//	}
 	public void zip_folder_sifrele(Path sourceFolderPath, Path zipPath, Boolean sifrele, String sifre) 
 	{
 		ZipParameters zipParameters = new ZipParameters();
@@ -1400,7 +1346,6 @@ public class BACKUP_GLOBAL {
 		stmt.execute(sql);  
 		stmt.close();
 	}
-
 	public void mySQL_backup( String myDUMP, String dbUser, String dbPass, String dbName,String savePath) throws IOException, InterruptedException
 	{
 		String executeCmd = myDUMP +"\\mysqldump.exe -u" + dbUser + " -p" + dbPass + " -B " + dbName + " -r " + savePath;
@@ -1462,4 +1407,58 @@ public class BACKUP_GLOBAL {
 		con.close();
 	}
 }
+
+//public  void zipFolder(Path sourceFolderPath, Path zipPath) throws Exception {
+//ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipPath.toFile()));
+//Files.walkFileTree(sourceFolderPath, new SimpleFileVisitor<Path>() 
+//{
+//	public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+//		zos.putNextEntry(new ZipEntry(sourceFolderPath.relativize(file).toString()));
+//		Files.copy(file, zos);
+//		zos.closeEntry();
+//		return FileVisitResult.CONTINUE;
+//	}
+//});
+//zos.close();
+//}
+
+
+//public void diger_zip_yap(String okumadosyaadii, String dosyolu, String dosadi_zip) throws IOException
+//{
+//	String sourceFile = okumadosyaadii;
+//	FileOutputStream fos = new FileOutputStream(dosyolu + dosadi_zip);
+//	ZipOutputStream zipOut = new ZipOutputStream(fos);
+//	File fileToZip = new File(sourceFile);
+//	FileInputStream fis = new FileInputStream(fileToZip);
+//	ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
+//	zipOut.putNextEntry(zipEntry);
+//	byte[] bytes = new byte[1024];
+//	int length;
+//	while((length = fis.read(bytes)) >= 0) {
+//		zipOut.write(bytes, 0, length);
+//	}
+//	zipOut.close();
+//	fis.close();
+//	fos.close();
+//}
+
+//public void zip_yap(String dosadi, String dosyolu, String dosadi_zip) throws IOException
+//{
+//	String sourceFile = dosyolu + dosadi;
+//	FileOutputStream fos = new FileOutputStream(dosyolu +dosadi_zip);
+//	ZipOutputStream zipOut = new ZipOutputStream(fos);
+//	File fileToZip = new File(sourceFile);
+//	FileInputStream fis = new FileInputStream(fileToZip);
+//	ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
+//	zipOut.putNextEntry(zipEntry);
+//	byte[] bytes = new byte[1024];
+//	int length;
+//	while((length = fis.read(bytes)) >= 0) {
+//		zipOut.write(bytes, 0, length);
+//	}
+//	zipOut.close();
+//	fis.close();
+//	fos.close();
+//}
+
 

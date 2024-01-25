@@ -75,6 +75,7 @@ import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
@@ -200,7 +201,8 @@ public class FIHRIST extends JFrame {
 		//FlatMacDarkLaf.setup();
 		//FlatLightFlatIJTheme.setup();
 		//FlatLightLaf.setup();
-		FlatDarculaLaf.setup();
+		FlatCarbonIJTheme.setup();
+		//FlatDarculaLaf.setup();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 700);
 		setTitle("FIHRIST");

@@ -1504,9 +1504,7 @@ public class OBS_BACKUP extends JFrame {
 		{
 			bckp.log_kayit(emirADI, new Date(), dilAciklamalar.dilAciklama(dILS,"Yuklenecek Dosya Secilmemis") );
 			bckp.genel_kayit_durum(emirADI, false, sonyuk, dilAciklamalar.dilAciklama(dILS,"Yuklenecek Dosya Secilmemis"));
-
 			uplpnl.setVisible(false);
-			
 			bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS,"Emir Yuklendi") );
 			emir_yukle("EMIR_ISMI") ;
 			return;
@@ -1555,6 +1553,7 @@ public class OBS_BACKUP extends JFrame {
 			eskiyedek =  Integer.valueOf(ftpBilgi.get(0).getESKI_YEDEK());
 			zmnasimi = Integer.valueOf(ftpBilgi.get(0).getZMN_ASIMI());
 			surucu_yer = ftpBilgi.get(0).getSURUCU_YER();
+			uplpnl.lblSurucu.setText( ftpBilgi.get(0).getSURUCU_YER().replace("/", "\\"));
 			String sqlsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 			if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 			{

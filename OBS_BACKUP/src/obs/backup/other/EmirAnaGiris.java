@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -27,14 +28,12 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckListItem;
 import OBS_C_2025.CheckListRenderer;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
-import OBS_C_2025.JTextFieldLimit;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SIFRE_DONDUR;
@@ -57,7 +56,7 @@ public class EmirAnaGiris extends JPanel {
 	public static JPanel container ;
 	
 	public Obs_TextFIeld txtEmir;
-	public JTextArea textAciklama;
+	public Obs_TextFIeld textAciklama;
 	public JButton btnServer ;
 	public JButton btnSurucuSec ;
 	public JButton btnDosyaSec ;
@@ -109,7 +108,7 @@ public class EmirAnaGiris extends JPanel {
 		txtEmir = new Obs_TextFIeld(30,"");
 		JTextFieldRegularPopupMenu.addTo(txtEmir);
 		txtEmir.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtEmir.setBounds(150, 100, 300, 23);
+		txtEmir.setBounds(150, 100, 250, 23);
 		panel_10.add(txtEmir);
 		txtEmir.setColumns(10);
 		
@@ -117,13 +116,10 @@ public class EmirAnaGiris extends JPanel {
 		lblNewLabel_2.setBounds(25, 150, 99, 14);
 		panel_10.add(lblNewLabel_2);
 		
-		textAciklama = new JTextArea();
-		textAciklama.setBounds(150, 150, 219, 77);
-		textAciklama.setDocument(new JTextFieldLimit(50));
-		JTextFieldRegularPopupMenu.addTo(textAciklama,50);
-		//textAciklama.setBorder(txtEmir.getBorder());
-		//Border borderr = BorderFactory.createLineBorder(new Color(235,235,235));
-		//textAciklama.setBorder(BorderFactory.createCompoundBorder(borderr, null));
+		textAciklama = new Obs_TextFIeld(50);
+		textAciklama.setBounds(150, 150, 376, 23);
+		
+		
 		panel_10.add(textAciklama);
 		
 		

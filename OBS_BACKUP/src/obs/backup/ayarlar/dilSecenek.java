@@ -200,8 +200,8 @@ public class dilSecenek {
 			case "Dosya Adet:" :
 				tEXT = "File Counts"  ;
 				break;	
-			case "Sql Server / Diger Dosya Yedekleme" :
-				tEXT = "Sql Server /  Files & Folders"  ;
+			case "Sql Veritabani / Dosya-Surucu Yedekleme" :
+				tEXT = "Sql Databases /  Files & Folders"  ;
 				break;
 			case "Aciklama" :
 				tEXT = "Description"  ;

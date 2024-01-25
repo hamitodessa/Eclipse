@@ -2800,7 +2800,7 @@ public class OBS_BACKUP extends JFrame {
 		emirAnaGirisPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Durum"));
 		emirAnaGirisPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Emir Ismi"));
 		emirAnaGirisPanel.lblNewLabel_4.setText(dilSecenek.dil(dILS,"Dosya Sayisi"));
-		emirAnaGirisPanel.chckbxServerDosya.setText(dilSecenek.dil(dILS,"Sql Server / Diger Dosya Yedekleme"));
+		emirAnaGirisPanel.chckbxServerDosya.setText(dilSecenek.dil(dILS,"Sql Veritabani / Dosya-Surucu Yedekleme"));
 		emirAnaGirisPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"Aciklama"));
 		//***************************************************************************************
 		serverBilgileriPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Kullanici"));

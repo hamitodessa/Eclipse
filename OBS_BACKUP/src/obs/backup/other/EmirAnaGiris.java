@@ -123,7 +123,7 @@ public class EmirAnaGiris extends JPanel {
 		panel_10.add(textAciklama);
 		
 		
-		chckbxServerDosya = new JCheckBox("Sql Server / Diger Dosya Yedekleme");
+		chckbxServerDosya = new JCheckBox("Sql / Dosya-Surucu Yedekleme");
 		chckbxServerDosya.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.clear();

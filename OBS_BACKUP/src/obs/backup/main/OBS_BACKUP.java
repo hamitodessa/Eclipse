@@ -1596,9 +1596,7 @@ public class OBS_BACKUP extends JFrame {
 				dzip = tarr + "_" + dosADI + ".zip";
 				//if(sifRELE)
 				//{
-				uplpnl.RPB2.setString(dilAciklamalar.dilAciklama(dILS, "Zip Haline Getiriliyor"));
 					bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE , ZIPsifre );
-					uplpnl.RPB2.setString("");
 				//}
 				//else {
 				//	bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip);

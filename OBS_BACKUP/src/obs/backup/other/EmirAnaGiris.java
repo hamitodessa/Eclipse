@@ -130,6 +130,9 @@ public class EmirAnaGiris extends JPanel {
 		chckbxServerDosya = new JCheckBox("Sql Server / Diger Dosya Yedekleme");
 		chckbxServerDosya.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				model.clear();
+				list.revalidate();
+				list.repaint();
 				if(chckbxServerDosya.isSelected())
 				{
 					btnServer.setVisible(true);

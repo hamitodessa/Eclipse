@@ -192,7 +192,7 @@ public class OBS_BACKUP extends JFrame {
 	GLOBAL glb = new GLOBAL();
 	public static List<String> gorevLER = new ArrayList<String>();
 	Timer timerr;
-	public static String gelenISIM ="";
+	
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
@@ -232,7 +232,6 @@ public class OBS_BACKUP extends JFrame {
 	public static JButton btnSifreEkrani;
 	public static JButton btnHepsiAktiv;
 	public static JButton btnHepsiPasiv;
-
 	public static JButton btnHakkinda;
 	public static JButton btnAyarlar;
 	public static JButton btnKapat;
@@ -242,18 +241,21 @@ public class OBS_BACKUP extends JFrame {
 	private JLabel pidlb ;
 
 	private Path path;
-	static Component horizontalGlue = null ;
+	
 	
 	public static JButton btntry;
-	
+	public static JButton btnfont_tema;
 	static JButton btnBuyult;
 	static JButton btnMinimize;
-	public static JButton btnfont_tema;
+	
 	static TrayIcon trayIcon = null ;
 	
 	public static String dILS = "" ;
-	public static boolean sifRELE = false;
 	public static String ZIPsifre = "" ;
+	public static String gelenISIM ="";
+	public static boolean sifRELE = false;
+	
+	static Component horizontalGlue = null ;
 	private static String diltemaString[] = new String[4];
 	/**
 	 * Hamit.
@@ -1594,7 +1596,9 @@ public class OBS_BACKUP extends JFrame {
 				dzip = tarr + "_" + dosADI + ".zip";
 				//if(sifRELE)
 				//{
+				uplpnl.RPB2.setString(dilAciklamalar.dilAciklama(dILS, "Zip Haline Getiriliyor"));
 					bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE , ZIPsifre );
+					uplpnl.RPB2.setString("");
 				//}
 				//else {
 				//	bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip);

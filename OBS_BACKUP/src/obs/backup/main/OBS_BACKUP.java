@@ -735,6 +735,16 @@ public class OBS_BACKUP extends JFrame {
 		btnAyarlar.setEnabled(false);
 		btnAyarlar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
+				ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
+				if(ayarlarPanel.chckbxSifrele.isSelected())
+				{
+					ayarlarPanel.passwordText.setVisible(true);
+				}
+				else 
+				{
+					ayarlarPanel.passwordText.setVisible(false);
+				}
 				tabbedPane.setSelectedIndex(8);
 			}
 		});
@@ -846,34 +856,7 @@ public class OBS_BACKUP extends JFrame {
 		ayarlarPanel = new Ayarlar();
 		tabbedPane.addTab("Ayarlar", null, ayarlarPanel, null);
 		//*************************************************************************************************************
-		ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
-		ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
-		boolean sfrDURUM = Integer.valueOf(diltemaString[2]) == 1 ? true:false ;
-		ayarlarPanel.chckbxSifrele.setSelected(sfrDURUM);
-		if(sfrDURUM)
-		{
-			ayarlarPanel.passwordText.setVisible(true);
-			sifRELE = true;
-			String decodedString = diltemaString[3];
-			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
-			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) {
-				bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
-			try {
-				ayarlarPanel.passwordText.setText( ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
-				SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
-				ZIPsifre = sDondur.sDONDUR(ayarlarPanel.passwordText);
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		}
-		else {
-			ayarlarPanel.passwordText.setVisible(false);
-			ayarlarPanel.passwordText.setText("");
-			sifRELE = false ;
-			ZIPsifre = "" ;
-		}
+		sifre_durumu_bak();
 		//*************************************************************************************************************
 		final boolean showTabsHeader = false; tabbedPane.setUI(new
 				javax.swing.plaf.metal.MetalTabbedPaneUI() {
@@ -2757,6 +2740,32 @@ public class OBS_BACKUP extends JFrame {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	private void sifre_durumu_bak()
+	{
+		if(Integer.valueOf(diltemaString[2].toString()) == 1 ? true:false)
+		{
+			sifRELE = true;
+			String decodedString = diltemaString[3];
+			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+			byte[] bytes = new byte[byteValues.length];
+			for (int i=0, len=bytes.length; i<len; i++) {
+				bytes[i] = Byte.parseByte(byteValues[i].trim());     
+			}
+			try {
+				ayarlarPanel.chckbxSifrele.setSelected(true);
+				ayarlarPanel.passwordText.setText(ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
+				ZIPsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+		else {
+			ayarlarPanel.passwordText.setText("");
+			ayarlarPanel.chckbxSifrele.setSelected(false);
+			sifRELE = false ;
+			ZIPsifre = "" ;
 		}
 	}
 	public static void dil() throws ClassNotFoundException, SQLException

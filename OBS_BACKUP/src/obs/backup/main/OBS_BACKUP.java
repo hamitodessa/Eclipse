@@ -275,19 +275,10 @@ public class OBS_BACKUP extends JFrame {
 		setUndecorated(true);
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
 		try {
-			if(glb.dos_kontrol(glb.SURUCU + glb.BACKUP_DOSYA))
-			{
-				diltemaString = bckp.ayar_oku();
-				dILS = diltemaString[0];
-				tema(diltemaString[1]);
-			}
-			else {
-				FlatCarbonIJTheme.setup();
-				diltemaString[0] = "Turkce" ;
-				diltemaString[1] = "FlatCarbonIJ" ;
-				diltemaString[2] = "0" ;
-				diltemaString[3] = "" ;
-			}
+			glb.backup_surucu_kontrol();
+			diltemaString = bckp.ayar_oku();
+			dILS = diltemaString[0];
+			tema(diltemaString[1]);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -919,7 +910,7 @@ public class OBS_BACKUP extends JFrame {
 		//***********************************BASLAMA*********************************************
 		try 
 		{
-			glb.backup_surucu_kontrol();
+			
 			bckp.log_kayit("System", new Date(),dilAciklamalar.dilAciklama(dILS,"Program Baslangici"));
 			dil();
 			pidKONTROL();
@@ -2718,7 +2709,7 @@ public class OBS_BACKUP extends JFrame {
 			bckp.pid_kayit((int) ProcessHandle.current().pid());
 		} catch (Exception ex) {
 			try {
-				bckp.log_kayit("System", new Date(), ex.getMessage().length() > 150 ? ex.getMessage().substring(0, 150) :ex.getMessage());
+				bckp.log_kayit("System", new Date(), ex.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -2736,7 +2727,7 @@ public class OBS_BACKUP extends JFrame {
 			}
 		} catch (Exception ex) {
 			try {
-				bckp.log_kayit("System", new Date(), ex.getMessage().length() > 150 ? ex.getMessage().substring(0, 150) :ex.getMessage());
+				bckp.log_kayit("System", new Date(), ex.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -2750,14 +2741,17 @@ public class OBS_BACKUP extends JFrame {
 			String decodedString = diltemaString[3];
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) {
+			for (int i=0, len=bytes.length; i<len; i++) 
+			{
 				bytes[i] = Byte.parseByte(byteValues[i].trim());     
 			}
-			try {
+			try 
+			{
 				ayarlarPanel.chckbxSifrele.setSelected(true);
 				ayarlarPanel.passwordText.setText(ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
 				ZIPsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
-			} catch (Exception e1) {
+			} catch (Exception e1) 
+			{
 				e1.printStackTrace();
 			}
 		}

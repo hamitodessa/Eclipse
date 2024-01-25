@@ -813,8 +813,6 @@ public class OBS_BACKUP extends JFrame {
 		lblemirSAYI.setBounds(125, 5, 48, 14);
 		altPane.add(lblemirSAYI);
 		
-		
-		
 		pidlb = new JLabel("");
 		pidlb.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		pidlb.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -852,12 +850,12 @@ public class OBS_BACKUP extends JFrame {
 		sifre_durumu_bak();
 		//*************************************************************************************************************
 		final boolean showTabsHeader = false; tabbedPane.setUI(new
-				javax.swing.plaf.metal.MetalTabbedPaneUI() {
+			javax.swing.plaf.metal.MetalTabbedPaneUI() {
 			@Override protected int calculateTabAreaHeight(int tabPlacement, int
-					horizRunCount, int maxTabHeight) { if (showTabsHeader) {return
-							super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight); }
-					else {return 0;} } protected void paintTabArea(Graphics g,int
-							tabPlacement,int selectedIndex){} });
+			horizRunCount, int maxTabHeight) { if (showTabsHeader) {return
+			super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight); }
+			else {return 0;} } protected void paintTabArea(Graphics g,int
+			tabPlacement,int selectedIndex){} });
 		
 		
 		btntry= new JButton("");
@@ -909,10 +907,9 @@ public class OBS_BACKUP extends JFrame {
 				dispose();
 			}
 		});
-		//***********************************BASLAMA*********************************************
+		//***********************************BASLAMA********************************************************************************
 		try 
 		{
-			
 			bckp.log_kayit("System", new Date(),dilAciklamalar.dilAciklama(dILS,"Program Baslangici"));
 			dil();
 			pidKONTROL();
@@ -924,10 +921,11 @@ public class OBS_BACKUP extends JFrame {
 			try {
 				bckp.log_kayit("System", new Date(), ex.getMessage());
 				mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());
-			} catch (ClassNotFoundException | SQLException e1) {
+			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		}
+		//**************************************************************************************************************************
 	}
 	public void sifreden() throws ClassNotFoundException, SQLException
 	{
@@ -1593,13 +1591,7 @@ public class OBS_BACKUP extends JFrame {
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
-				//if(sifRELE)
-				//{
-					bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE , ZIPsifre );
-				//}
-				//else {
-				//	bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip);
-				//}
+				bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE , ZIPsifre );
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Zip Haline Getirildi") );
 				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 				boolean exists = tmpDir.exists();
@@ -1803,13 +1795,7 @@ public class OBS_BACKUP extends JFrame {
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
-				//if(sifRELE)
-				//{
-					bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE, ZIPsifre);
-				//}
-				//else {
-				//	bckp.zip_yap(dosya, glb.BACKUP_YERI, dzip);
-				//}
+				bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE, ZIPsifre);
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Zip Haline Getirildi") );
 				UploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);// FTP Yukleme
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," FTP Yuklendi")  );
@@ -2021,26 +2007,14 @@ public class OBS_BACKUP extends JFrame {
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()+"\\";
 					Path pathokuma = Paths.get(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()); 
 					Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
-					//if(sifRELE)
-					//{
-						bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, ZIPsifre);
-					//}
-					//else {
-					//	bckp. zipFolder(pathokuma,pathyazma);
-					//}
+					bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, ZIPsifre);
 					uplpnl.RPB2.setString("");
 				}
 				else
 				{
 					uplpnl.RPB2.setString(dilAciklamalar.dilAciklama(dILS, "Zip Haline Getiriliyor"));
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
-					//if(sifRELE)
-					//{
-						bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, ZIPsifre);
-					//}
-					//else {
-					//	bckp.diger_zip_yap(okumadosyaadi, glb.BACKUP_YERI, dzip);
-					//}
+					bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, ZIPsifre);
 					uplpnl.RPB2.setString("");
 				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Zip Haline Getirildi")  );
@@ -2224,24 +2198,12 @@ public class OBS_BACKUP extends JFrame {
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()+"\\";
 					Path pathokuma = Paths.get(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()); 
 					Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
-					//if(sifRELE)
-					//{
-						bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, ZIPsifre);
-					//}
-					//else {
-					//	bckp. zipFolder(pathokuma,pathyazma);
-					//}
+					bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, ZIPsifre);
 				}
 				else
 				{
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
-					//if(sifRELE)
-					//{
-						bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, ZIPsifre);
-					//}
-					//else {
-					//	bckp.diger_zip_yap(okumadosyaadi, glb.BACKUP_YERI, dzip);
-					//}
+					bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, ZIPsifre);
 				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Zip Haline Getirildi")  );
 				UploadFTPFiles(ftp, surucu, glb.BACKUP_YERI, dzip, kull, sifre, port, zmnasimi);
@@ -2323,7 +2285,7 @@ public class OBS_BACKUP extends JFrame {
 			}
 		} 
 	}
-	private void UploadFTPFiles(String ftpp, String ftpsurucu, String dosyayolu, String dosadi, String kull, String sifre, int port, int zmn) throws IOException, InterruptedException, ClassNotFoundException, SQLException
+	private void UploadFTPFiles(String ftpp, String ftpsurucu, String dosyayolu, String dosadi, String kull, String sifre, int port, int zmn)
 	{
 		FTPClient ftp = new FTPClient();
 		try 
@@ -2331,19 +2293,6 @@ public class OBS_BACKUP extends JFrame {
 			ftp.setConnectTimeout(zmn * 1000);
 			ftp.connect(ftpp,port);
 			ftp.login(kull, sifre);
-//			if(!ftp.login(kull, sifre))
-//			{
-//				ftp.logout();
-//				bckp.genel_kayit_durum("System", false, new Date(), dilAciklamalar.dilAciklama(dILS, "FTP Baglanti Hatasi Login")  ); 
-//				return;
-//			}
-//			int reply = ftp.getReplyCode();
-//			if (!FTPReply.isPositiveCompletion(reply))
-//			{
-//				ftp.disconnect();
-//				bckp.genel_kayit_durum("System", false, new Date(),  dilAciklamalar.dilAciklama(dILS, "FTP Baglanti Hatasi isPositiveCompletion") ); 
-//				return;
-//			}
 			ftp.setFileType(FTP.BINARY_FILE_TYPE);
 			ftp.enterLocalPassiveMode();
 			ftp.changeWorkingDirectory(ftpsurucu);
@@ -2382,7 +2331,11 @@ public class OBS_BACKUP extends JFrame {
 			outputStream = null;
 			
 		} catch (Exception ex) {
-			bckp.log_kayit("System", new Date(), "2322=" + ex.getMessage());
+			try {
+				bckp.log_kayit("System", new Date(), "2337=" + ex.getMessage());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	private void emirBOSALT(String emirADI)

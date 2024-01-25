@@ -122,7 +122,7 @@ public  class gOREV_TAKIP extends JPanel {
 				if(g ==  1) {
 					return;
 				}
-				timerDURDUR=true;
+				timerDURDUR = true;
 				tt.cancel();
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

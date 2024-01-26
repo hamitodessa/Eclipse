@@ -353,7 +353,7 @@ public class EmirAnaGiris extends JPanel {
 		scrollPane_1.setViewportView(list);
 
 	}
-	private void dosyaSAYI()
+	public void dosyaSAYI()
 	{
 		if (list.getModel().getSize() != 0) 
 		{

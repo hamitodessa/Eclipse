@@ -1209,7 +1209,7 @@ public class OBS_BACKUP extends JFrame {
 				serverBilgileriPanel.textMSPort.getText());
 		ResultSet rs;
 		rs = bckp.db_ismi();
-		emirAnaGirisPanel.list.removeAll();
+		emirAnaGirisPanel.model.clear();
 		emirAnaGirisPanel.lblNewLabel_5.setText(Integer.toString(0));
 		while (rs.next())
 		{
@@ -1235,6 +1235,7 @@ public class OBS_BACKUP extends JFrame {
 			}
 			emirAnaGirisPanel.list.repaint();
 		}
+		emirAnaGirisPanel.dosyaSAYI();
 		bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText().toString(), new Date(),dilAciklamalar.dilAciklama(dILS,"Veritabani Isimleri yuklendi") );
 		emirAnaGirisPanel.lblNewLabel_6.setText("Ms Sql");
 		try
@@ -1263,7 +1264,7 @@ public class OBS_BACKUP extends JFrame {
 		bckp.MySql_baglan( serverBilgileriPanel.textMykull.getText(),response,serverBilgileriPanel.textMYPort.getText());
 		ResultSet rs;
 		rs = bckp.db_ismiMySql();
-		emirAnaGirisPanel.list.removeAll();
+		emirAnaGirisPanel.model.clear();
 		emirAnaGirisPanel.lblNewLabel_5.setText(Integer.toString(0));
 		while (rs.next())
 		{
@@ -1290,6 +1291,7 @@ public class OBS_BACKUP extends JFrame {
 		}
 		bckp.log_kayit(emirAnaGirisPanel.txtEmir.getText().toString(), new Date(),dilAciklamalar.dilAciklama(dILS,"Veritabani Isimleri yuklendi") );
 		emirAnaGirisPanel.lblNewLabel_6.setText("My Sql");
+		emirAnaGirisPanel.dosyaSAYI();
 		try
 		{
 			bckp.server_kayit_sil(emirAnaGirisPanel.txtEmir.getText().toString());

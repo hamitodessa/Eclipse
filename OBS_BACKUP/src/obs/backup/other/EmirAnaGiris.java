@@ -346,7 +346,7 @@ public class EmirAnaGiris extends JPanel {
 					}
 
 				} catch (Exception ex) {
-					OBS_BACKUP.	mesaj_goster(15000,Notifications.Type.ERROR, ex.getMessage() );
+					OBS_BACKUP.	mesajGoster(15000,Notifications.Type.ERROR, ex.getMessage() );
 				}
 			}
 		});	
@@ -632,7 +632,7 @@ public class EmirAnaGiris extends JPanel {
         {
         	setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         	bckp.log_kayit(OBS_BACKUP.gelenISIM, new Date(), ex.getMessage());
-        	OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());        
+        	OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, ex.getMessage());        
         	}
 	}
 	private void temizle()

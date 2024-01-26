@@ -126,7 +126,7 @@ public  class gOREV_TAKIP extends JPanel {
 				tt.cancel();
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					OBS_BACKUP.emirSIL(eADI);
+					OBS_BACKUP.emirSil(eADI);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -258,13 +258,13 @@ public  class gOREV_TAKIP extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (btn1.getName().equals("⇈"))
 				{
-					OBS_BACKUP.gorevYUKARI(eADI);
+					OBS_BACKUP.gorevYukari(eADI);
 					btn1.setIcon(new ImageIcon(gOREV_TAKIP.class.getResource("/obs/backup/icons/down-16.png")));
 					btn1.setName("⇊");
 				}
 				else
 				{
-					OBS_BACKUP.gorevASAGI(eADI);
+					OBS_BACKUP.gorevAsagi(emirADI);
 					btn1.setName( "⇈");
 				}
 			}
@@ -286,7 +286,7 @@ public  class gOREV_TAKIP extends JPanel {
 					run();
 				}
 				else {
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,emirADI + 
+					OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,emirADI + 
 							dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"- Isimli Emir Pasiv Durumda !!! ,  Oncelikle aktivlestirin...."));       
 				}
 			}

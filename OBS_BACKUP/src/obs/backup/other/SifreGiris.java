@@ -89,10 +89,10 @@ public class SifreGiris extends JPanel {
 						
 					}
 					else {
-						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,  dilSecenek.dil(OBS_BACKUP.dILS, "Sifre Yanlis"));
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,  dilSecenek.dil(OBS_BACKUP.dILS, "Sifre Yanlis"));
 					}
 					} catch (Exception e1) {
-						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e1.getMessage());
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, e1.getMessage());
 					}
 				}
 			}

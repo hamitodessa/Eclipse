@@ -190,7 +190,7 @@ public class Hakkinda extends JPanel {
 			bufferedReader.close();
 		}catch (Exception ex)
 		{
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() ); 
+			OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, ex.getMessage() ); 
 		}
 
 	}

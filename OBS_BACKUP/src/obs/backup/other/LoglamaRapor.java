@@ -327,7 +327,7 @@ public class LoglamaRapor extends JPanel {
 		} catch (Exception ex) 
 		{
 			bckp.log_kayit("Loglama", new Date(), ex.getMessage());
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());	
+			OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, ex.getMessage());	
 		}
 	}
 	public void arama()  
@@ -360,7 +360,7 @@ public class LoglamaRapor extends JPanel {
 
 		if (mdl.getRowCount() == 0 )
 		{
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Aktarilacak Bilgi Yok") );
+			OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Aktarilacak Bilgi Yok") );
 		}
 		else
 		{
@@ -494,7 +494,7 @@ public class LoglamaRapor extends JPanel {
 					workbook.write(out);
 					out.close();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Aktarma Islemi Tamamlandi") );
+					OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Aktarma Islemi Tamamlandi") );
 				}
 				
 			
@@ -503,7 +503,7 @@ public class LoglamaRapor extends JPanel {
 		catch (Exception ex)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR,ex.getMessage() );
+			OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
 	}
 

@@ -118,10 +118,10 @@ public class ServerBilgileri extends JPanel {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				if(result)
 			{
-				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglandi"));
+				OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglandi"));
 			}
 			else {
-				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglanamadi"));
+				OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglanamadi"));
 			}
 			} catch (Exception e1) {
 			
@@ -142,12 +142,12 @@ public class ServerBilgileri extends JPanel {
 					if(textMSkull.getText().equals("")) return ;
 					if(textMSsifre.getText().equals("")) return ;
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					OBS_BACKUP.MS_Server_Kayit();
+					OBS_BACKUP.msServerKayit();
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 				
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e1.getMessage());
+					OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, e1.getMessage());
 				}
 			}
 		});
@@ -213,10 +213,10 @@ public class ServerBilgileri extends JPanel {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			if(result)
 			{
-				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO,dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglandi") );
+				OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO,dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglandi") );
 			}
 			else {
-				OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglanamadi"));
+				OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglanamadi"));
 			}
 			} catch (Exception e1) {
 			
@@ -238,16 +238,16 @@ public class ServerBilgileri extends JPanel {
 					if(textMySifre.getText().equals("")) return ;
 					if(textMyDump.getText().equals(""))
 					{
-						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS,"Backup islemi icin  'mysqldump.exe'  surucusu belirtilmelidir") );
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS,"Backup islemi icin  'mysqldump.exe'  surucusu belirtilmelidir") );
 						return;
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					OBS_BACKUP.MY_Server_Kayit();
+					OBS_BACKUP.myServerKayit();
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 				
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e1.getMessage());
+					OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, e1.getMessage());
 				}
 			}
 		});

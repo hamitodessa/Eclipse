@@ -225,14 +225,14 @@ public class DownloadFile extends JPanel {
 								if(!ftpc.login(kull, sifre))
 								{
 									ftpc.logout();
-									OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR,dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "FTP Baglanti Hatasi Login") );
+									OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR,dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "FTP Baglanti Hatasi Login") );
 									return; 
 								}
 								int reply = ftpc.getReplyCode();
 								if (!FTPReply.isPositiveCompletion(reply))
 								{
 									ftpc.disconnect();
-									OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR,dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "FTP Baglanti Hatasi isPositiveCompletion") );
+									OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR,dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "FTP Baglanti Hatasi isPositiveCompletion") );
 									return;  
 								}
 								ftpc.enterLocalPassiveMode();
@@ -282,7 +282,7 @@ public class DownloadFile extends JPanel {
 									}
 									panelalt.Progres_Bar_Temizle_2();
 								}	
-								OBS_BACKUP.mesaj_goster(15000,Notifications.Type.INFO, glb.BACKUP_YERI + " " + dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Surucusune Indirilmistir")  );  
+								OBS_BACKUP.mesajGoster(15000,Notifications.Type.INFO, glb.BACKUP_YERI + " " + dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Surucusune Indirilmistir")  );  
 							}
 						}
 					}
@@ -305,7 +305,7 @@ public class DownloadFile extends JPanel {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());        
+					OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, ex.getMessage());        
 				}
 			}
 		};

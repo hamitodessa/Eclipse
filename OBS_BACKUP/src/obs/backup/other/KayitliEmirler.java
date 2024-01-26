@@ -176,7 +176,7 @@ public class KayitliEmirler extends JPanel {
 			OBS_BACKUP.lblEmir.setText( dilSecenek.dil(OBS_BACKUP.dILS,"Emir Sayisi")); 
 		} catch (Exception ex) {
 			bckp.log_kayit("System", new Date(), ex.getMessage());
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage());	
+			OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, ex.getMessage());	
 		}
 	}
 	public void arama()  

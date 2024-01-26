@@ -148,7 +148,7 @@ public class YedeklemeAraligi extends JPanel {
 					date2.setDate(date.getDate());
 					if (date.after(date2) )
 					{
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Bitis Zamani Baslangic Zamanindan Kucuk olamaz"));
+					OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Bitis Zamani Baslangic Zamanindan Kucuk olamaz"));
 						return;
 					}
 					OBS_BACKUP.yedeklemeKaydet();

@@ -82,13 +82,13 @@ public class SifreYenile extends JPanel {
 							txtyenisif.requestFocus();
 						}
 						else {
-							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS, "Sifre Yanlis"));
+							OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS, "Sifre Yanlis"));
 							lblysif.setVisible(false);
 							txtyenisif.setVisible(false);
 							btnNewButton.setVisible(false);
 						}
 					} catch (Exception e1) {
-						OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e1.getMessage());
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, e1.getMessage());
 					}
 				}
 			}
@@ -137,7 +137,7 @@ public class SifreYenile extends JPanel {
 				} catch (Exception ex)
 				{
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR,  ex.getMessage() );
+					OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR,  ex.getMessage() );
 					txtsif.requestFocus();		
 				}		
 			}

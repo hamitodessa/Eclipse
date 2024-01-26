@@ -274,7 +274,7 @@ public class SunucuAyarlari extends JPanel {
 					{
 						if(textSurucu.getText().equals(""))
 						{
-							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS, "Surucu Secilmemis") );
+							OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS, "Surucu Secilmemis") );
 							return;
 						}
 					}
@@ -282,12 +282,12 @@ public class SunucuAyarlari extends JPanel {
 					{
 						if(textHost.getText().equals("") || textKull.getText().equals("") || textSifre.getText().equals(""))
 						{
-							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS, "FTP Baglanti Bilgileri Eksik") );
+							OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS, "FTP Baglanti Bilgileri Eksik") );
 							return;
 						}
 						else if(textFtpSurucu.getText().equals(""))
 						{
-							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS, "FTP Surucu Secilmemis") );
+							OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS, "FTP Surucu Secilmemis") );
 							return;
 						}
 					}
@@ -297,7 +297,7 @@ public class SunucuAyarlari extends JPanel {
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 				
-					OBS_BACKUP.mesaj_goster(5000,Notifications.Type.ERROR, e1.getMessage());
+					OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, e1.getMessage());
 				}
 			}
 		});
@@ -354,10 +354,10 @@ public class SunucuAyarlari extends JPanel {
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		if(result)
 		{
-		OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO,dilSecenek.dil(OBS_BACKUP.dILS, "Baglanti Gerceklesti") );
+		OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO,dilSecenek.dil(OBS_BACKUP.dILS, "Baglanti Gerceklesti") );
 		}
 		else {
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Hata"));
+			OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Hata"));
 		}
 	}
 	private void FtpKontrol() throws SocketException, IOException 
@@ -402,10 +402,10 @@ public class SunucuAyarlari extends JPanel {
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		if(result)
 		{
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.INFO, dilSecenek.dil(OBS_BACKUP.dILS, "Baglanti Gerceklesti"));
+			OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO, dilSecenek.dil(OBS_BACKUP.dILS, "Baglanti Gerceklesti"));
 		}
 		else {
-			OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Hata"));
+			OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Hata"));
 		}
 	}
 }

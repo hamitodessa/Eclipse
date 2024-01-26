@@ -213,17 +213,17 @@ public class Bilgilendirme extends JPanel {
 					{
 						if(textGonHesap.getText().equals("") || textAlici.getText().equals(""))
 						{
-							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Gonderen Bilgileri Eksik"));
+							OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Gonderen Bilgileri Eksik"));
 							return;
 						}
 						else if(textSmtp.getText().equals("") || textPort.getText().equals("") || textKull.getText().equals("") || textSifre.getText().equals(""))
 						{
-							OBS_BACKUP.mesaj_goster(5000,Notifications.Type.WARNING,dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Smtp Bilgileri Eksik") );
+							OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Smtp Bilgileri Eksik") );
 							return;
 						}
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-					OBS_BACKUP.BilgilendirmeKaydet();
+					OBS_BACKUP.bilgilendirmeKaydet();
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {

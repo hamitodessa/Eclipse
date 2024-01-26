@@ -325,6 +325,7 @@ public class OBS_BACKUP extends JFrame {
 		    }
 		};
 		tBAR.btnMin.addActionListener(btnMINIMIZ);
+		tBAR.setBorder(new EmptyBorder(0, 0, 10, 00));
 		contentPane.add(tBAR, BorderLayout.NORTH);
 
 		JSplitPane splitPane = new JSplitPane();

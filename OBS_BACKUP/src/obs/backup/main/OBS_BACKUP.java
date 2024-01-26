@@ -950,45 +950,35 @@ public class OBS_BACKUP extends JFrame {
 	}
 	private void yEDEKLE() throws ClassNotFoundException, SQLException
 	{
-		String hataEMIR = "";
+		String eISMI = "" ;
 		try
 		{
 			if(gorevLER.size() == 0) return;
 			timerr.cancel();
 			timerr.purge();
 			timerr = null;
-			for (int g = 0; g <= gorevLER.size()-1; g++)
+			while(gorevLER.size() > 0)
 			{
-				String eISMI = gorevLER.get(g);
-				hataEMIR = eISMI;
-				for (int i = 0; i <= gorevLER.size() - 1; i++)
-				{
-					if (gorevLER.get(i).equals(eISMI))
-					{
-						gorevLER.remove(eISMI);
-					}
-					if (gorevLER.size() == 0)
-					{
-						break;
-					}
-				}
+				eISMI = gorevLER.get(0);
+				gorevLER.remove(eISMI);
 				Thread.sleep(1000);
 				List<emir_bilgiler> ebilgiler = bckp.emir_tek(eISMI);
 				uplpnl.temizLE();
 				if (ebilgiler.get(0).isSQL_YEDEK() == false)
 				{
-					diger_dosya(eISMI, ebilgiler);   // DIGER DOSYA 
+					diger_dosya(eISMI, ebilgiler);   //Dosya - Surucu
 				}
 				else
 				{
-					yedekLEE_SQL(eISMI , ebilgiler); // Ms Sql ve My Sql
+					yedekLEE_SQL(eISMI , ebilgiler); // Ms Sql - My Sql
 				}
+				 eISMI = "" ;
 			}
 			jobTimerBasla();
 		}
 		catch (Exception ex)
 		{
-			bckp.log_kayit(hataEMIR, new Date(), ex.getMessage());
+			bckp.log_kayit(eISMI, new Date(), ex.getMessage());
 			jobTimerBasla();
 		}
 	}
@@ -2013,7 +2003,7 @@ public class OBS_BACKUP extends JFrame {
 				else
 				{
 					uplpnl.RPB2.setString(dilAciklamalar.dilAciklama(dILS, "Zip Haline Getiriliyor"));
-					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
+					String okumadosyaadi = dbliste.get(i).getPath() + "\\" + dbliste.get(i).getAdi();
 					bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, ZIPsifre);
 					uplpnl.RPB2.setString("");
 				}
@@ -2507,7 +2497,7 @@ public class OBS_BACKUP extends JFrame {
 		OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(destFile));
 		InputStream inputStream =new FileInputStream(sourceFile);
 		long inen= 0;
-		byte[] bytesArray = new byte[16384];
+		byte[] bytesArray = new byte[4096];
 		int bytesRead = -1;
 		uplpnl.RPB2.setMaximum((int) toplam);
 		uplpnl.RPB2.setStringPainted(true);

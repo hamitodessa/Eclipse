@@ -924,11 +924,6 @@ public class OBS_BACKUP extends JFrame {
 		}
 		//**************************************************************************************************************************
 	}
-	public void sifreden() throws ClassNotFoundException, SQLException
-	{
-		emirYukle("EMIR_ISMI") ;
-		jobTimerBasla();
-	}
 	private void jobTimerBasla()
 	{
 		timerr = new Timer();  

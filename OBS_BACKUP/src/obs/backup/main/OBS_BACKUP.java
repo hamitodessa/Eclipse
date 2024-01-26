@@ -847,7 +847,7 @@ public class OBS_BACKUP extends JFrame {
 		ayarlarPanel = new Ayarlar();
 		tabbedPane.addTab("Ayarlar", null, ayarlarPanel, null);
 		//*************************************************************************************************************
-		sifre_durumu_bak();
+		sifreDurumu();
 		//*************************************************************************************************************
 		final boolean showTabsHeader = false; tabbedPane.setUI(new
 			javax.swing.plaf.metal.MetalTabbedPaneUI() {
@@ -1487,7 +1487,6 @@ public class OBS_BACKUP extends JFrame {
 		}
 		bckp.genel_kayit_durum(emirADI, false, sonyuk, "");// Herhalukarda islem baslangici yedeklenemdi notu
 		List<String> dbliste = bckp.db_liste(emirADI);
-
 		if (dbliste.size() == 0)
 		{
 			bckp.log_kayit(emirADI, new Date(), dilAciklamalar.dilAciklama(dILS,"Yuklenecek Dosya Secilmemis") );
@@ -1500,13 +1499,12 @@ public class OBS_BACKUP extends JFrame {
 		uplpnl.lblEmirAdi.setText(emirADI);
 		uplpnl.lblDosAdet.setText(Integer.toString(dbliste.size()));
 		uplpnl.lblAciklama.setText(emirBilgi.get(0).getEMIR_ACIKLAMA());
-		// ***FTP BILGILERI AL
-		List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
+		List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();	// *************FTP BILGILERI AL
 		ftpBilgi = bckp.ftp_bilgi(emirADI);
-		String neresi =ftpBilgi.get(0).getNERESI();
+		String neresi = ftpBilgi.get(0).getNERESI();
 		if(neresi.equals("FTP"))
 		{
-			if(ftpBilgi.get(0).getSURUCU().equals(""))
+			if(ftpBilgi.get(0).getSURUCU().equals("")) // "FTP Surucu Secilmemis"
 			{
 				bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS,"FTP Surucu Secilmemis") );
 				bckp.genel_kayit_durum(emirADI, false, sonyuk, dilAciklamalar.dilAciklama(dILS,"FTP Surucu Secilmemis"));
@@ -1520,6 +1518,16 @@ public class OBS_BACKUP extends JFrame {
 		}
 		else 
 		{
+			if(ftpBilgi.get(0).getSURUCU_YER().equals(""))  // "Surucu Secilmemis"
+			{
+				bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS,"Surucu Secilmemis") );
+				bckp.genel_kayit_durum(emirADI, false, sonyuk, dilAciklamalar.dilAciklama(dILS,"Surucu Secilmemis"));
+				uplpnl.setVisible(false);
+				bckp.log_kayit(emirADI, new Date(), dilAciklamalar.dilAciklama(dILS,"Emir Yuklendi"));
+				mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(dILS,"Surucu Secilmemis"));	
+				emirYukle("EMIR_ISMI") ;
+				return;
+			}
 			sqlYerelsurucu( emirADI  ,ftpBilgi);
 		}
 	}
@@ -1533,7 +1541,8 @@ public class OBS_BACKUP extends JFrame {
 			String decodedString = serverBilgi.get(0).getSIFRE();
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) {
+			for (int i=0, len=bytes.length; i<len; i++) 
+			{
 				bytes[i] = Byte.parseByte(byteValues[i].trim());     
 			}
 			String ftp, kull, sifre, surucu, port, neresi, surucu_yer;
@@ -1882,11 +1891,11 @@ public class OBS_BACKUP extends JFrame {
 			}
 		} 
 	}
-	private void bilgilendirme_oku(String emir, String mesaj ,List<bilgilendirme_bilgiler> bilgiBilgi) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException, SQLException
+	private void bilgilendirmeOku(String emir, String mesaj ,List<bilgilendirme_bilgiler> bilgiBilgi) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, ClassNotFoundException, SQLException
 	{
 		if (bilgiBilgi.size() > 0)
 		{
-			mail_at( bilgiBilgi , mesaj,emir);
+			mailAt( bilgiBilgi , mesaj,emir);
 		}
 	}
 	private void dosyaSurucu(String emirADI,List<emir_bilgiler> emirBilgi) throws ClassNotFoundException, SQLException, ParseException, InterruptedException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, NumberFormatException, SocketException, IOException
@@ -2301,7 +2310,7 @@ public class OBS_BACKUP extends JFrame {
 			while ((read = inputStream.read(bytesIn)) != -1) {
 				outputStream.write(bytesIn, 0, read);
 				toplam += read;
-				uplpnl.Progres_Bar_2( (int)toplam);
+				uplpnl.Progres_Bar_2((int)toplam);
 				Instant finish = Instant.now();
 				long timeElapsed = Duration.between(start, finish).toMillis();
 				int seconds = (int)((timeElapsed / 1000) % 60);
@@ -2349,7 +2358,7 @@ public class OBS_BACKUP extends JFrame {
 		container.repaint();
 		emirSayiCount();
 	}
-	private static void mail_at(List<bilgilendirme_bilgiler> bilgiBilgi,String mesaj ,String eADI) throws ClassNotFoundException, SQLException
+	private static void mailAt(List<bilgilendirme_bilgiler> bilgiBilgi,String mesaj ,String eADI) throws ClassNotFoundException, SQLException
 	{
 		try {
 			String gonisim, gonhesap, alici, konu, smtp, port, kull, sifre;
@@ -2465,7 +2474,7 @@ public class OBS_BACKUP extends JFrame {
 				{
 					SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH.mm:ss");
 					Date today = new Date();        
-					bilgilendirme_oku(emirADI, emirADI + "    " + df.format(today) +  "     " + dilAciklamalar.dilAciklama(dILS, "Yedeklendi"),bilgiBilgi);
+					bilgilendirmeOku(emirADI, emirADI + "    " + df.format(today) +  "     " + dilAciklamalar.dilAciklama(dILS, "Yedeklendi"),bilgiBilgi);
 					bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS, "Yedekleme Yapildi Maili gonderildi")  );
 				}
 			}
@@ -2483,7 +2492,7 @@ public class OBS_BACKUP extends JFrame {
 				{
 					SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH.mm:ss");
 					Date today = new Date();        
-					bilgilendirme_oku(emirADI, emirADI + "    " + df.format(today) + " =" + mesaj,bilgiBilgi);
+					bilgilendirmeOku(emirADI, emirADI + "    " + df.format(today) + " =" + mesaj,bilgiBilgi);
 					bckp.log_kayit(emirADI, new Date(),dilAciklamalar.dilAciklama(dILS, "Yedekleme Yapilamadi Maili gonderildi") );
 				}
 			}
@@ -2677,7 +2686,7 @@ public class OBS_BACKUP extends JFrame {
 			}
 		}
 	}
-	private void sifre_durumu_bak()
+	private void sifreDurumu()
 	{
 		if(Integer.valueOf(diltemaString[2].toString()) == 1 ? true:false)
 		{

@@ -64,6 +64,9 @@ public class dilAciklamalar {
 			case "FTP Surucu Secilmemis": 
 				acikLAMAString = "FTP Folder Not Selected" ;
 				break;
+			case "Surucu Secilmemis": 
+				acikLAMAString = "Folder Not Selected" ;
+				break;	
 			case "Yedeklemeye Baslandi": 
 				acikLAMAString = "Backup Started" ;
 				break;

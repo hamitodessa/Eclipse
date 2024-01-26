@@ -53,7 +53,7 @@ public class YedeklemeAraligi extends JPanel {
 		setLayout(null);
 		
 		lblNewLabel = new JLabel("Her");
-		lblNewLabel.setBounds(43, 35, 48, 14);
+		lblNewLabel.setBounds(37, 35, 48, 14);
 		add(lblNewLabel);
 		
 		textHerDakka = new Obs_TextFIeld(2, "");
@@ -67,7 +67,7 @@ public class YedeklemeAraligi extends JPanel {
 		add(lblNewLabel_1);
 		
 		lblNewLabel_2 = new JLabel("Gunler");
-		lblNewLabel_2.setBounds(43, 100, 48, 14);
+		lblNewLabel_2.setBounds(37, 100, 48, 14);
 		add(lblNewLabel_2);
 		
 		chckbxPtesi = new JCheckBox("Pazartesi");
@@ -100,7 +100,7 @@ public class YedeklemeAraligi extends JPanel {
 		
 		panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Yedekleme Araligi", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(43, 322, 380, 112);
+		panel.setBounds(37, 322, 380, 112);
 		add(panel);
 		panel.setLayout(null);
 		

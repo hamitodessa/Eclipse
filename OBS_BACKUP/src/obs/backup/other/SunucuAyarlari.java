@@ -104,7 +104,7 @@ public class SunucuAyarlari extends JPanel {
 		
 		panel_12 = new JPanel();
 		panel_12.setBorder(new TitledBorder(null, "FTP Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_12.setBounds(10, 75, 627, 100);
+		panel_12.setBounds(37, 75, 627, 100);
 		 add(panel_12);
 		panel_12.setLayout(null);
 		
@@ -145,7 +145,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.setLayout(null);
 		panel_12_1.setBorder(new TitledBorder(null, "FTP Diger Ayarlar", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		//, TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_12_1.setBounds(10, 180, 627, 100);
+		panel_12_1.setBounds(37, 180, 627, 100);
 		 add(panel_12_1);
 		
 		textFtpSurucu = new Obs_TextFIeld(200,"");
@@ -202,7 +202,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1_1.setLayout(null);
 		panel_12_1_1.setBorder(new TitledBorder(null, "Yerel Surucu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
-		panel_12_1_1.setBounds(10, 285, 627, 75);
+		panel_12_1_1.setBounds(37, 285, 627, 75);
 		 add(panel_12_1_1);
 		
 		textSurucu = new Obs_TextFIeld(200,"");
@@ -245,7 +245,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1_1_1.setLayout(null);
 		panel_12_1_1_1.setBorder(new TitledBorder(null, "Eski Yedek", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
-		panel_12_1_1_1.setBounds(10, 365, 627, 75);
+		panel_12_1_1_1.setBounds(37, 365, 627, 75);
 		 add(panel_12_1_1_1);
 		
 		textEskisilme = new Obs_TextFIeld(3,"");
@@ -305,7 +305,7 @@ public class SunucuAyarlari extends JPanel {
 		 add(btnNewButton_9);
 		 
 		 btnftpkont = new JButton("Ftp Kontrol");
-		 btnftpkont.setBounds(10, 550, 100, 23);
+		 btnftpkont.setBounds(37, 550, 100, 23);
 		 btnftpkont.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				try {

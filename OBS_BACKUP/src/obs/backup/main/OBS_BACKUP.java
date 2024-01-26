@@ -939,7 +939,7 @@ public class OBS_BACKUP extends JFrame {
 			@Override  
 			public void run() {  
 				try {
-					yEDEKLE();
+					yedekLE();
 					secondRUN();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -948,7 +948,7 @@ public class OBS_BACKUP extends JFrame {
 		};  
 		timerr.scheduleAtFixedRate(tt, 100, 5000);
 	}
-	private void yEDEKLE() throws ClassNotFoundException, SQLException
+	private void yedekLE() throws ClassNotFoundException, SQLException
 	{
 		String eISMI = "" ;
 		try
@@ -964,13 +964,13 @@ public class OBS_BACKUP extends JFrame {
 				Thread.sleep(1000);
 				List<emir_bilgiler> ebilgiler = bckp.emir_tek(eISMI);
 				uplpnl.temizLE();
-				if (ebilgiler.get(0).isSQL_YEDEK() == false)
+				if (ebilgiler.get(0).isSQL_YEDEK())
 				{
-					dosyaSurucu(eISMI, ebilgiler);   //Dosya - Surucu
+					sQL(eISMI , ebilgiler); // Ms Sql - My Sql
 				}
 				else
 				{
-					sQL(eISMI , ebilgiler); // Ms Sql - My Sql
+					dosyaSurucu(eISMI, ebilgiler);   //Dosya - Surucu
 				}
 				 eISMI = "" ;
 			}

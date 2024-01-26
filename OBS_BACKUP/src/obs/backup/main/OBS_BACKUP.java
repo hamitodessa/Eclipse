@@ -849,12 +849,9 @@ public class OBS_BACKUP extends JFrame {
 		//*************************************************************************************************************
 		sifreDurumu();
 		//*************************************************************************************************************
-		final boolean showTabsHeader = false; tabbedPane.setUI(new
-			javax.swing.plaf.metal.MetalTabbedPaneUI() {
-			@Override protected int calculateTabAreaHeight(int tabPlacement, int
-			horizRunCount, int maxTabHeight) { if (showTabsHeader) {return
-			super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight); }
-			else {return 0;} } protected void paintTabArea(Graphics g,int
+		final boolean showTabsHeader = false; tabbedPane.setUI(new javax.swing.plaf.metal.MetalTabbedPaneUI() {
+			@Override protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) { if (showTabsHeader) {return
+			super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight); }	else {return 0;} } protected void paintTabArea(Graphics g,int
 			tabPlacement,int selectedIndex){} });
 		
 		

@@ -80,6 +80,10 @@ public class SunucuAyarlari extends JPanel {
 					btnNewButton_6.setEnabled(true);
 					btnNewButton_7.setEnabled(false);
 					btnftpkont.setEnabled(true);
+					
+					textHost.setEnabled(true);
+					textKull.setEnabled(true);
+					textSifre.setEnabled(true);
 				}
 			}
 		});
@@ -97,6 +101,9 @@ public class SunucuAyarlari extends JPanel {
 					btnNewButton_6.setEnabled(false);
 					btnNewButton_7.setEnabled(true);
 					btnftpkont.setEnabled(false);
+					textHost.setEnabled(false);
+					textKull.setEnabled(false);
+					textSifre.setEnabled(false);
 				}
 			}
 		});

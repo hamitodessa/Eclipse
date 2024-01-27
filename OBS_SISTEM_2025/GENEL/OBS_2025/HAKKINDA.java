@@ -31,10 +31,11 @@ public class HAKKINDA extends JInternalFrame {
 	private JLabel lbltar ;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
+	private JLabel lblPid;
 	public HAKKINDA()  {
 		setTitle("HAKKINDA");
 		setClosable(true);
-		setBounds(100, 100, 450, 250);
+		setBounds(100, 100, 450, 274);
 
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
@@ -144,6 +145,18 @@ public class HAKKINDA extends JInternalFrame {
 		lblNewLabel_3_1.setIcon(new ImageIcon(HAKKINDA.class.getResource("/ICONLAR/skype.png")));
 		lblNewLabel_3_1.setBounds(101, 184, 19, 22);
 		panel.add(lblNewLabel_3_1);
+		
+		JSeparator separator_1_1 = new JSeparator();
+		separator_1_1.setBounds(26, 215, 379, 2);
+		panel.add(separator_1_1);
+		
+		JLabel lblNewLabel_4 = new JLabel("PID");
+		lblNewLabel_4.setBounds(26, 220, 46, 14);
+		panel.add(lblNewLabel_4);
+		
+		lblPid = new JLabel("...");
+		lblPid.setBounds(144, 220, 121, 14);
+		panel.add(lblPid);
 
 		versiyon_oku();
 	}
@@ -187,6 +200,8 @@ public class HAKKINDA extends JInternalFrame {
 				}
 			}   
 			bufferedReader.close();
+			int dosyaPID = (int) ProcessHandle.current().pid();
+			lblPid.setText(String.valueOf(dosyaPID));
 		}catch (Exception ex)
 		{
 			OBS_MAIN.mesaj_goster(5000,Notifications.Type.ERROR, ex.getMessage() ); 

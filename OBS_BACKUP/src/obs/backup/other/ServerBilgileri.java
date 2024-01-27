@@ -105,10 +105,22 @@ public class ServerBilgileri extends JPanel {
 		btnMSTest = new JButton("Baglanti Test");
 		btnMSTest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if(textMSServer.getText().equals("")) return;
-				if(textMSkull.getText().equals("")) return;
-				if(textMSServer.getText().equals("")) return;
+
+				if(textMSServer.getText().equals(""))
+				{
+					textMSServer.requestFocus();
+					return;
+				}
+				if(textMSkull.getText().equals("")) 
+				{
+					textMSkull.requestFocus();
+					return;
+				}
+				if(textMSServer.getText().equals(""))
+				{
+					textMSServer.requestFocus();
+					return;
+				}
 				SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 				String response =sdon.sDONDUR(textMSsifre);
 				BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
@@ -138,9 +150,21 @@ public class ServerBilgileri extends JPanel {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(textMSServer.getText().equals("")) return ;
-					if(textMSkull.getText().equals("")) return ;
-					if(textMSsifre.getText().equals("")) return ;
+					if(textMSServer.getText().equals(""))
+					{
+						textMSServer.requestFocus();
+						return ;
+					}
+					if(textMSkull.getText().equals(""))
+					{
+						textMSkull.requestFocus();
+						return ;
+					}
+					if(textMSsifre.getText().equals(""))
+					{
+						textMSsifre.requestFocus();
+						return ;
+					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.msServerKayit();
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
@@ -201,9 +225,21 @@ public class ServerBilgileri extends JPanel {
 		btnMyTest.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				if(textMYPort.getText().equals("")) return;
-				if(textMykull.getText().equals("")) return;
-				if(textMySifre.getText().equals("")) return;
+				if(textMYPort.getText().equals(""))
+				{
+					textMYPort.requestFocus();
+					return;
+				}
+				if(textMykull.getText().equals(""))
+				{
+					textMykull.requestFocus();
+					return;
+				}
+				if(textMySifre.getText().equals(""))
+				{
+					textMySifre.requestFocus();
+					return;
+				}
 				SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 				String response =sdon.sDONDUR(textMySifre);
 				BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
@@ -233,9 +269,21 @@ public class ServerBilgileri extends JPanel {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(textMYPort.getText().equals("")) return ;
-					if(textMykull.getText().equals("")) return ;
-					if(textMySifre.getText().equals("")) return ;
+					if(textMYPort.getText().equals(""))
+					{
+						textMYPort.requestFocus();
+						return ;
+					}
+					if(textMykull.getText().equals(""))
+					{
+						textMykull.requestFocus();
+						return ;
+					}
+					if(textMySifre.getText().equals(""))
+					{
+						textMySifre.requestFocus();
+						return ;
+					}
 					if(textMyDump.getText().equals(""))
 					{
 						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS,"Backup islemi icin  'mysqldump.exe'  surucusu belirtilmelidir") );

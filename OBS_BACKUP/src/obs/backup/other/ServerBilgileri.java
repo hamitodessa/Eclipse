@@ -197,7 +197,7 @@ public class ServerBilgileri extends JPanel {
 		panel_2_2 = new JPanel();
 		panel_2_2.setLayout(null);
 		panel_2_2.setBorder(new TitledBorder(null, "Baglanti", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2_2.setBounds(37, 70, 339, 104);
+		panel_2_2.setBounds(37, 94, 440, 104);
 		panel_1.add(panel_2_2);
 		
 		lblNewLabel_1_2 = new JLabel("Kullanici");
@@ -207,7 +207,7 @@ public class ServerBilgileri extends JPanel {
 		textMykull = new Obs_TextFIeld(50,"");
 		JTextFieldRegularPopupMenu.addTo(textMykull);
 		textMykull.setColumns(10);
-		textMykull.setBounds(90, 27, 209, 20);
+		textMykull.setBounds(103, 27, 209, 20);
 		panel_2_2.add(textMykull);
 		
 		lblNewLabel_2_2 = new JLabel("Sifre");
@@ -218,7 +218,7 @@ public class ServerBilgileri extends JPanel {
 		//textMySifre.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
 		textMySifre.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(textMySifre);
-		textMySifre.setBounds(90, 63, 209, 20);
+		textMySifre.setBounds(103, 63, 209, 20);
 		panel_2_2.add(textMySifre);
 		
 		btnMyTest = new JButton("Baglanti Test");
@@ -308,17 +308,17 @@ public class ServerBilgileri extends JPanel {
 		
 		textMYPort = new Obs_TextFIeld(10,"");
 		JTextFieldRegularPopupMenu.addTo(textMYPort);
-		textMYPort.setBounds(127, 38, 73, 20);
+		textMYPort.setBounds(140, 35, 73, 20);
 		panel_1.add(textMYPort);
 		textMYPort.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("My Sql Dump");
-		lblNewLabel_5.setBounds(37, 189, 89, 14);
+		lblNewLabel_5.setBounds(47, 219, 89, 14);
 		panel_1.add(lblNewLabel_5);
 		
 		textMyDump = new Obs_TextFIeld(200,"C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\");
 		JTextFieldRegularPopupMenu.addTo(textMyDump);
-		textMyDump.setBounds(127, 183, 440, 20);
+		textMyDump.setBounds(137, 213, 587, 20);
 		panel_1.add(textMyDump);
 		textMyDump.setColumns(10);
 		
@@ -344,7 +344,7 @@ public class ServerBilgileri extends JPanel {
 				}
 			}
 		});
-		btnDumpSec.setBounds(430, 214, 137, 23);
+		btnDumpSec.setBounds(587, 245, 137, 23);
 		panel_1.add(btnDumpSec);
 
 	}

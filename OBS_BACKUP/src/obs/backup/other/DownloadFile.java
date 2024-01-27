@@ -250,31 +250,38 @@ public class DownloadFile extends JPanel {
 									{
 										panelalt.lblEmirAdi.setText(modell.getValueAt(ii,1).toString());
 										toplam =  files[i].getSize();
-										panelalt.lblDosBoyut.setText( FORMATLAMA.doub_0(toplam/1024));
+										//panelalt.lblDosBoyut.setText( FORMATLAMA.doub_0(toplam/1024));
+										panelalt.lblDosBoyut.setText( FORMATLAMA.doub_0(toplam)+ " Bytes");
 										double topl =  toplam ;
 										String remoteFile2 =   files[i].getName();
 										File downloadFile2 = new File(glb.BACKUP_YERI +  files[i].getName());
 										OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
 										InputStream inputStream = ftpc.retrieveFileStream(remoteFile2);
 										double inen= 0;
-										byte[] bytesArray = new byte[4096];
+										byte[] bytesArray = new byte[2048];
 										int bytesRead = -1;
-										panelalt.Progres_Bar_Temizle_2();
+										//panelalt.Progres_Bar_Temizle_2();
 										panelalt.RPB2.setStringPainted(true);
-										panelalt.RPB2.setMaximum((int)toplam/1024);
+										panelalt.RPB2.setMaximum((int)toplam);
+										//panelalt.RPB2.setMaximum((int)toplam/1024);
 										Long start = System.currentTimeMillis();
 										long timeInSecs = 0;
 										while ((bytesRead = inputStream.read(bytesArray)) != -1)
 										{
 											outputStream2.write(bytesArray, 0, bytesRead);
 											inen += bytesRead ;
-											panelalt.lblInen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
-											panelalt.lblKalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
-											panelalt.Progres_Bar_2((int) inen /1024);
+											//panelalt.lblInen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
+											panelalt.lblInen.setText(FORMATLAMA.doub_0(inen )+ " Bytes");
+											//panelalt.lblKalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
+											panelalt.lblKalan.setText(FORMATLAMA.doub_0((toplam  - inen)  )+ " Bytes");
+											//panelalt.Progres_Bar_2((int) inen /1024);
+											panelalt.Progres_Bar_2((int) inen);
 											double speedInKBps = 0.00;
 											timeInSecs = (System.currentTimeMillis() - start) ; 
 											speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
-											panelalt.lblHiz.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
+											//panelalt.lblHiz.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
+											panelalt.lblHiz.setText(FORMATLAMA.doub_0( speedInKBps) + " Bytes");
+											//System.out.println(files[i].getName() +"=="+ (int)toplam + "=="+  (int) inen );
 										}
 										success = ftpc.completePendingCommand();
 										outputStream2.close();
@@ -323,7 +330,6 @@ public class DownloadFile extends JPanel {
 		Runnable runner = new Runnable()
 		{ 
 			public void run() {
-
 		try 
 		{
 			GuiUtil.setWaitCursor(tblFile,true);
@@ -392,8 +398,8 @@ public class DownloadFile extends JPanel {
 			if(! OBS_BACKUP.dILS.equals("Turkce"))
 				tc.setHeaderValue("DATE");
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-			tc.setMinWidth(150);
-			tc.setMaxWidth(150);
+			tc.setMinWidth(115);
+			tc.setMaxWidth(115);
 
 			Dimension dd = tblFile.getPreferredSize();
 			dd.height = 30;

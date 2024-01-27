@@ -251,7 +251,7 @@ public class OBS_BACKUP extends JFrame {
 	static TrayIcon trayIcon = null ;
 	
 	public static String dILS = "" ;
-	public static String ZIPsifre = "" ;
+	public static String zipSIFRE = "" ;
 	public static String gelenISIM ="";
 	public static boolean sifRELE = false;
 	
@@ -1586,7 +1586,7 @@ public class OBS_BACKUP extends JFrame {
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
-				bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE , ZIPsifre );
+				bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE , zipSIFRE );
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Zip Haline Getirildi") );
 				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 				boolean exists = tmpDir.exists();
@@ -1790,7 +1790,7 @@ public class OBS_BACKUP extends JFrame {
 					dosya = tarr + "_" + dosADI + ".sql";
 				}
 				dzip = tarr + "_" + dosADI + ".zip";
-				bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE, ZIPsifre);
+				bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Zip Haline Getirildi") );
 				uploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);// FTP Yukleme
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," FTP Yuklendi")  );
@@ -2002,14 +2002,14 @@ public class OBS_BACKUP extends JFrame {
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()+"\\";
 					Path pathokuma = Paths.get(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()); 
 					Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
-					bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, ZIPsifre);
+					bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, zipSIFRE);
 					uplpnl.RPB2.setString("");
 				}
 				else
 				{
 					uplpnl.RPB2.setString(dilAciklamalar.dilAciklama(dILS, "Zip Haline Getiriliyor"));
 					String okumadosyaadi = dbliste.get(i).getPath() + "\\" + dbliste.get(i).getAdi();
-					bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, ZIPsifre);
+					bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
 					uplpnl.RPB2.setString("");
 				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Zip Haline Getirildi")  );
@@ -2193,12 +2193,12 @@ public class OBS_BACKUP extends JFrame {
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()+"\\";
 					Path pathokuma = Paths.get(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()); 
 					Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
-					bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, ZIPsifre);
+					bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, zipSIFRE);
 				}
 				else
 				{
 					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
-					bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, ZIPsifre);
+					bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
 				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Zip Haline Getirildi")  );
 				uploadFTPFiles(ftp, surucu, glb.BACKUP_YERI, dzip, kull, sifre, port, zmnasimi);
@@ -2698,7 +2698,7 @@ public class OBS_BACKUP extends JFrame {
 			{
 				ayarlarPanel.chckbxSifrele.setSelected(true);
 				ayarlarPanel.passwordText.setText(ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes));
-				ZIPsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
+				zipSIFRE = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
 			} catch (Exception e1) 
 			{
 				e1.printStackTrace();
@@ -2708,7 +2708,7 @@ public class OBS_BACKUP extends JFrame {
 			ayarlarPanel.passwordText.setText("");
 			ayarlarPanel.chckbxSifrele.setSelected(false);
 			sifRELE = false ;
-			ZIPsifre = "" ;
+			zipSIFRE = "" ;
 		}
 	}
 	public static void dil() throws ClassNotFoundException, SQLException

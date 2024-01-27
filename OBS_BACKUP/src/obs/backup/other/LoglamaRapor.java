@@ -295,8 +295,8 @@ public class LoglamaRapor extends JPanel {
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
 			if(! OBS_BACKUP.dILS.equals("Turkce"))
 				tc.setHeaderValue("DATE");
-			tc.setMinWidth(140);
-			tc.setMaxWidth(140);
+			tc.setMinWidth(115);
+			tc.setMaxWidth(115);
 
 			tc = tcm.getColumn(1);
 			if(! OBS_BACKUP.dILS.equals("Turkce"))

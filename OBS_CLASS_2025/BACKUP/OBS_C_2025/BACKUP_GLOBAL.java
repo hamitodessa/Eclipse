@@ -147,7 +147,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "INSERT INTO EMIRLER ([EMIR_ISMI],[DURUM],[EMIR_ACIKLAMA],[INSTANCE],[SON_DURUM] ,[SON_YUKLEME] ,[SQL_YEDEK],[MESAJ],[OLUSTURMA]) "
+		String sql = "INSERT INTO EMIRLER (EMIR_ISMI,DURUM,EMIR_ACIKLAMA,INSTANCE,SON_DURUM ,SON_YUKLEME ,SQL_YEDEK,MESAJ,OLUSTURMA) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
@@ -173,15 +173,13 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		con = glb.myBackupLogConnection();
 		String sql = "";
-		sql  = "INSERT INTO LOG ([EMIR_ISMI],[TARIH],[ACIKLAMA]) VALUES (?,?,?)";
+		sql  = "INSERT INTO LOG (EMIR_ISMI,TARIH,ACIKLAMA) VALUES (?,?,?)";
 		stmt = con.prepareStatement(sql);
 		String str = TARIH_CEVIR.milis_yyyymmss(tar.getTime());
 		stmt.setString(1, eismi);
 		stmt.setString(2, str);
 		if (msj.length() > 150)
-		{
 			msj = msj.substring(0, 150).toString();
-		}
 		stmt.setString(3, msj);
 		stmt.executeUpdate();
 		stmt.close();
@@ -236,8 +234,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "INSERT INTO AYARLAR (DIL,TEMA,SIFRELE,SIFRE) VALUES (?,?,?,?)";
+		String sql = "INSERT INTO AYARLAR (DIL,TEMA,SIFRELE,SIFRE) VALUES (?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, dil);
 		stmt.setString(2, tema);
@@ -298,8 +295,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "UPDATE EMIRLER SET INSTANCE = @ins WHERE EMIR_ISMI = '" + eismi + "'";
+		String sql = "UPDATE EMIRLER SET INSTANCE = @ins WHERE EMIR_ISMI = '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, ins);
 		stmt.executeUpdate();
@@ -313,8 +309,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "UPDATE EMIRLER SET DURUM = @dur ,MESAJ = @msg WHERE EMIR_ISMI = '" + eismi + "'";
+		String sql = "UPDATE EMIRLER SET DURUM = @dur ,MESAJ = @msg WHERE EMIR_ISMI = '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.setBoolean(1, drm);
 		stmt.setString(2, mesaj);
@@ -342,8 +337,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "INSERT INTO DB_ISIM ([EMIR_ISMI],[DB_ADI]) "
-				+ "VALUES (?,?)";
+		String sql = "INSERT INTO DB_ISIM (EMIR_ISMI,DB_ADI) VALUES (?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
 		stmt.setString(2, dad);
@@ -371,8 +365,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "INSERT INTO DIGER_DOSYA_ISIM ([EMIR_ISMI],[DOSYA_ADI],[DOSYA_PATH]) "
-				+ "VALUES (?,?,?)";
+		String sql = "INSERT INTO DIGER_DOSYA_ISIM (EMIR_ISMI,DOSYA_ADI,DOSYA_PATH) VALUES (?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
 		stmt.setString(2, dad);
@@ -415,7 +408,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "INSERT INTO FTP ([EMIR_ISMI],[HOST],[KULLANICI],[SIFRE],[SURUCU],[PORT],[ZMN_ASIMI],[ESKI_YEDEK],[NERESI],[SURUCU_YER]) "
+		String sql = "INSERT INTO FTP (EMIR_ISMI,HOST,KULLANICI,SIFRE,SURUCU,PORT,ZMN_ASIMI,ESKI_YEDEK,NERESI,SURUCU_YER) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
@@ -445,8 +438,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "DELETE FROM BILGILENDIRME  WHERE EMIR_ISMI =  '" + eismi + "'";
+		String sql = "DELETE FROM BILGILENDIRME  WHERE EMIR_ISMI =  '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -461,8 +453,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "INSERT INTO BILGILENDIRME (EMIR_ISMI,DURUM,GONDERILDIGINDE,HATA_DURUMUNDA,GON_ISIM,GON_HESAP, " + 
+		String sql = "INSERT INTO BILGILENDIRME (EMIR_ISMI,DURUM,GONDERILDIGINDE,HATA_DURUMUNDA,GON_ISIM,GON_HESAP, " + 
 				" ALICI,KONU,SMTP,SMTP_PORT,KULLANICI,SIFRE,SSL,TSL) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		stmt = con.prepareStatement(sql);
@@ -497,8 +488,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "DELETE FROM YEDEKLEME  WHERE EMIR_ISMI =  '" + eismi + "'";
+		String sql = "DELETE FROM YEDEKLEME  WHERE EMIR_ISMI =  '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -512,8 +502,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "INSERT INTO YEDEKLEME ([EMIR_ISMI],[SAAT],[P_TESI],[SALI],[CARS],[PERS],[CUMA],[C_TESI],[PAZAR],[BASLAMA],[BITIS]) "
+		String sql = "INSERT INTO YEDEKLEME (EMIR_ISMI,SAAT,P_TESI,SALI,CARS,PERS,CUMA,C_TESI,PAZAR,BASLAMA,BITIS) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
@@ -540,8 +529,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql ="DELETE FROM SERVER  WHERE EMIR_ISMI =  '" + eismi + "'";
+		String sql ="DELETE FROM SERVER WHERE EMIR_ISMI ='" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -554,8 +542,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupLogConnection();
-		String sql = "";
-		sql ="DELETE FROM LOG  WHERE EMIR_ISMI =  '" + eismi + "'";
+		String sql ="DELETE FROM LOG  WHERE EMIR_ISMI =  '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -568,8 +555,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupLogConnection();
-		String sql = "";
-		sql = "DELETE FROM LOG ";
+		String sql = "DELETE FROM LOG ";
 		stmt = con.prepareStatement(sql);
 		stmt.executeUpdate();
 		stmt.close();
@@ -582,8 +568,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "INSERT INTO SERVER (EMIR_ISMI,INSTANCE,WIN,SERV,KULLANICI,SIFRE,HANGI_SQL,PORT,MY_DUMP) "
+		String sql = "INSERT INTO SERVER (EMIR_ISMI,INSTANCE,WIN,SERV,KULLANICI,SIFRE,HANGI_SQL,PORT,MY_DUMP) "
 				+ "VALUES (?,?,?,?,?,?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, eismi);
@@ -613,8 +598,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "SELECT * FROM EMIRLER WHERE EMIR_ISMI  = '" + emir + "'";
+		String sql = "SELECT * FROM EMIRLER WHERE EMIR_ISMI = '" + emir + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -676,9 +660,9 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "SELECT * FROM EMIRLER , FTP "
-				+	" WHERE FTP.EMIR_ISMI = EMIRLER.EMIR_ISMI AND FTP.NERESI = 'FTP'  ORDER BY EMIRLER.EMIR_ISMI COLLATE NOCASE ASC ";
+		String sql = "SELECT * FROM EMIRLER , FTP "
+				 	+ " WHERE FTP.EMIR_ISMI = EMIRLER.EMIR_ISMI AND FTP.NERESI = 'FTP' " 
+				 	+ " ORDER BY EMIRLER.EMIR_ISMI COLLATE NOCASE ASC ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
@@ -716,8 +700,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "SELECT * FROM EMIRLER WHERE EMIR_ISMI ='" + eismi + "'";
+		String sql = "SELECT * FROM EMIRLER WHERE EMIR_ISMI ='" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
@@ -725,7 +708,7 @@ public class BACKUP_GLOBAL {
 		while (rss.next())
 		{     
 			try {
-				Date sonyuk =	new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("SON_YUKLEME"));
+				Date sonyuk = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("SON_YUKLEME"));
 				Date olus = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rss.getString("OLUSTURMA"));
 				emir_bilgiler liste  = new emir_bilgiler(
 						rss.getString("EMIR_ISMI") ,
@@ -753,8 +736,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "SELECT * FROM DB_ISIM WHERE  EMIR_ISMI= '" + eismi + "' ORDER BY DB_ADI COLLATE NOCASE ASC ";
+		String sql = "SELECT * FROM DB_ISIM WHERE  EMIR_ISMI= '" + eismi + "' ORDER BY DB_ADI COLLATE NOCASE ASC ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<String>  dbadi =new ArrayList<String>();
@@ -773,17 +755,14 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "SELECT * FROM DIGER_DOSYA_ISIM WHERE  EMIR_ISMI= '" + eismi + "'";
+		String sql = "SELECT * FROM DIGER_DOSYA_ISIM WHERE  EMIR_ISMI= '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<db_List> dbliste = new ArrayList<db_List>();
 		int i = 0 ;
 		while (rss.next())
 		{     
-			db_List liste  = new db_List(
-					rss.getString("DOSYA_ADI") ,
-					rss.getString("DOSYA_PATH"));
+			db_List liste  = new db_List(rss.getString("DOSYA_ADI") ,rss.getString("DOSYA_PATH"));
 			dbliste.add(liste);
 		}
 		stmt.close();
@@ -797,8 +776,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "SELECT * FROM FTP WHERE  EMIR_ISMI= '" + eismi + "'";
+		String sql = "SELECT * FROM FTP WHERE  EMIR_ISMI= '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
@@ -829,8 +807,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "SELECT NERESI FROM FTP WHERE  EMIR_ISMI= '" + eismi + "'";
+		String sql = "SELECT NERESI FROM FTP WHERE  EMIR_ISMI= '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -838,9 +815,7 @@ public class BACKUP_GLOBAL {
 		count = rss.getRow();
 		String sonucString = "" ;
 		if (count  > 0)
-		{
 			sonucString =  rss.getString("NERESI");
-		}
 		stmt.close();
 		con.close();
 		return sonucString;
@@ -852,8 +827,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "SELECT SIFRE FROM YONETICI ";
+		String sql = "SELECT SIFRE FROM YONETICI ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		rss.next();
@@ -866,7 +840,7 @@ public class BACKUP_GLOBAL {
 		for (int i=0, len=bytes.length; i<len; i++) {
 			bytes[i] = Byte.parseByte(byteValues[i].trim());     
 		}
-		sonucString =ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
+		sonucString = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes);
 		stmt.close();
 		con.close();
 		return sonucString;
@@ -877,8 +851,7 @@ public class BACKUP_GLOBAL {
 	PreparedStatement stmt = null;
 	ResultSet	rss = null;
 	con = glb.myBackupConnection();
-	String sql = "";
-	sql =  "SELECT " + nerden + " FROM FTP WHERE  EMIR_ISMI= '" + eismi + "'";
+	String sql =  "SELECT " + nerden + " FROM FTP WHERE  EMIR_ISMI= '" + eismi + "'";
 	stmt = con.prepareStatement(sql);
 	rss = stmt.executeQuery();
 	rss.next();
@@ -886,12 +859,7 @@ public class BACKUP_GLOBAL {
 	count = rss.getRow();
 	String qweString = "" ;
 	if (count  > 0)
-	{
 		qweString = rss.getString(nerden);
-		stmt.close();
-		con.close();
-		return qweString ;
-	}
 	stmt.close();
 	con.close();
 	return qweString ;
@@ -903,8 +871,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "SELECT * FROM BILGILENDIRME WHERE  EMIR_ISMI= '" + eismi + "'";
+		String sql = "SELECT * FROM BILGILENDIRME WHERE  EMIR_ISMI= '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<bilgilendirme_bilgiler> bilgiBilgi = new ArrayList<bilgilendirme_bilgiler>();
@@ -938,8 +905,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql =  "SELECT * FROM YEDEKLEME WHERE  EMIR_ISMI= '" + eismi + "'";
+		String sql =  "SELECT * FROM YEDEKLEME WHERE  EMIR_ISMI= '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<yedekleme_bilgiler> bilgiBilgi = new ArrayList<yedekleme_bilgiler>();
@@ -993,8 +959,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql =  "SELECT * FROM SERVER WHERE  EMIR_ISMI= '" + eismi + "'";
+		String sql =  "SELECT * FROM SERVER WHERE  EMIR_ISMI= '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<server_bilgiler> bilgiBilgi = new ArrayList<server_bilgiler>();
@@ -1131,8 +1096,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "SELECT * FROM EMIRLER ORDER BY   EMIR_ISMI COLLATE NOCASE ASC  ";
+		String sql = "SELECT * FROM EMIRLER ORDER BY   EMIR_ISMI COLLATE NOCASE ASC  ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		DefaultTableModel model = new DefaultTableModel();
@@ -1165,16 +1129,10 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupLogConnection();
-		String sql = "";
 		String where = "" ;
-		if(eismi.equals("Hepsi"))
-		{
-			where = "";
-		}
-		else {
+		if(! eismi.equals("Hepsi"))
 			where = " WHERE EMIR_ISMI = '" + eismi + "'";
-		}
-		sql =  "SELECT TARIH,ACIKLAMA,EMIR_ISMI FROM LOG " 
+		String sql =  "SELECT TARIH,ACIKLAMA,EMIR_ISMI FROM LOG " 
 				+ where
 				+ " ORDER BY TARIH COLLATE NOCASE ASC";
 		stmt = con.prepareStatement(sql);
@@ -1202,8 +1160,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupLogConnection();
-		String sql = "";
-		sql =  "SELECT DISTINCT EMIR_ISMI FROM LOG ORDER BY EMIR_ISMI COLLATE NOCASE ASC";
+		String sql =  "SELECT DISTINCT EMIR_ISMI FROM LOG ORDER BY EMIR_ISMI COLLATE NOCASE ASC";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		ArrayList<String> listeStrings = new ArrayList<String>();
@@ -1294,10 +1251,10 @@ public class BACKUP_GLOBAL {
 		{
 		zipParameters.setEncryptFiles(true);
 		zipParameters.setEncryptionMethod(EncryptionMethod.AES);
-		zipFile = new ZipFile(dosyolu +dosadi_zip, sifre.toCharArray());
+		zipFile = new ZipFile(dosyolu + dosadi_zip, sifre.toCharArray());
 		}
 		else {
-			zipFile = new ZipFile(dosyolu +dosadi_zip);
+			zipFile = new ZipFile(dosyolu + dosadi_zip);
 		}
 		try {
 			zipFile.addFile(new File(okumadosyaadii), zipParameters);
@@ -1339,8 +1296,7 @@ public class BACKUP_GLOBAL {
 	{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		ResultSet	rss = null;
-		String sql = "BACKUP DATABASE [" + dbismi + "] TO  DISK = N'"+ glb.BACKUP_YERI +  dbyer + ".bak'" +
-				" WITH  NAME = N'" + dbismi + "'   ";
+		String sql = "BACKUP DATABASE [" + dbismi + "] TO DISK = N'" + glb.BACKUP_YERI +  dbyer + ".bak' WITH NAME = N'" + dbismi + "'";
 		Statement stmt ;
 		stmt = S_CONN.createStatement();  
 		stmt.execute(sql);  

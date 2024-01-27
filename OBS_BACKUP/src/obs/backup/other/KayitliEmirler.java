@@ -131,8 +131,8 @@ public class KayitliEmirler extends JPanel {
 			if(! OBS_BACKUP.dILS.equals("Turkce"))
 				tc.setHeaderValue("JOB NAME");
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-			tc.setMinWidth(140);
-			tc.setMaxWidth(140);
+			tc.setMinWidth(200);
+			tc.setMaxWidth(200);
 
 			tc = tcm.getColumn(1);
 			if(! OBS_BACKUP.dILS.equals("Turkce"))
@@ -156,8 +156,8 @@ public class KayitliEmirler extends JPanel {
 			if(! OBS_BACKUP.dILS.equals("Turkce"))
 				tc.setHeaderValue("LAST BACKUP");
 			tc.setHeaderRenderer(new SOLA_DUZ_RENK());
-			tc.setMinWidth(140);
-			tc.setMaxWidth(140);
+			tc.setMinWidth(115);
+			tc.setMaxWidth(115);
 			
 
 			Dimension dd = th.getPreferredSize();

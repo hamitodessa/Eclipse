@@ -68,7 +68,7 @@ public class DownloadPanel extends JPanel {
 		
 		lblDosBoyut = new JLabel("0");
 		lblDosBoyut.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDosBoyut.setBounds(78, 31, 100, 14);
+		lblDosBoyut.setBounds(78, 31, 118, 14);
 		panel_1.add(lblDosBoyut);
 		
 		JLabel lblNewLabel_2 = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Dosya Adi") );
@@ -77,7 +77,7 @@ public class DownloadPanel extends JPanel {
 		
 		lblEmirAdi = new JLabel(".....");
 		lblEmirAdi.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblEmirAdi.setBounds(78, 11, 237, 14);
+		lblEmirAdi.setBounds(78, 11, 281, 14);
 		panel_1.add(lblEmirAdi);
 		
 		JLabel lblNewLabel_4 = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Hiz") );
@@ -86,7 +86,7 @@ public class DownloadPanel extends JPanel {
 		
 		lblHiz = new JLabel("0.00 kb/sec");
 		lblHiz.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblHiz.setHorizontalAlignment(SwingConstants.LEFT);
+		lblHiz.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblHiz.setBounds(700, 31, 124, 14);
 		panel_1.add(lblHiz);
 		
@@ -96,16 +96,16 @@ public class DownloadPanel extends JPanel {
 		
 		lblSurucu = new JLabel(".....");
 		lblSurucu.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblSurucu.setBounds(454, 11, 337, 14);
+		lblSurucu.setBounds(454, 11, 370, 14);
 		panel_1.add(lblSurucu);
 		
 		JLabel lblInenn = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Inen") );
-		lblInenn.setBounds(188, 31, 58, 14);
+		lblInenn.setBounds(206, 31, 58, 14);
 		panel_1.add(lblInenn);
 		
 		lblInen = new JLabel("0");
 		lblInen.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblInen.setBounds(256, 31, 103, 14);
+		lblInen.setBounds(269, 31, 117, 14);
 		panel_1.add(lblInen);
 		
 		JLabel lblKalann = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Kalan") );
@@ -114,7 +114,7 @@ public class DownloadPanel extends JPanel {
 		
 		lblKalan = new JLabel("0");
 		lblKalan.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblKalan.setBounds(454, 31, 108, 14);
+		lblKalan.setBounds(454, 31, 168, 14);
 		panel_1.add(lblKalan);
 
 	}

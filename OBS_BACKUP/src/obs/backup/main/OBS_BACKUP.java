@@ -1210,6 +1210,7 @@ public class OBS_BACKUP extends JFrame {
 				serverBilgileriPanel.textMSPort.getText());
 		ResultSet rs;
 		rs = bckp.db_ismi();
+		emirAnaGirisPanel.chckbxServerDosya.setSelected(true);
 		emirAnaGirisPanel.model.clear();
 		emirAnaGirisPanel.lblNewLabel_5.setText(Integer.toString(0));
 		while (rs.next())
@@ -1265,6 +1266,7 @@ public class OBS_BACKUP extends JFrame {
 		bckp.MySql_baglan( serverBilgileriPanel.textMykull.getText(),response,serverBilgileriPanel.textMYPort.getText());
 		ResultSet rs;
 		rs = bckp.db_ismiMySql();
+		emirAnaGirisPanel.chckbxServerDosya.setSelected(true);
 		emirAnaGirisPanel.model.clear();
 		emirAnaGirisPanel.lblNewLabel_5.setText(Integer.toString(0));
 		while (rs.next())

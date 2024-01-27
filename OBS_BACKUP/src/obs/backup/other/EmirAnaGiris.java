@@ -450,6 +450,15 @@ public class EmirAnaGiris extends JPanel {
                    OBS_BACKUP.sunucuayarPanel.chckbxYerel.setSelected(false);
                    OBS_BACKUP.sunucuayarPanel.btnNewButton_6.setEnabled(true);
                    OBS_BACKUP.sunucuayarPanel.btnNewButton_7.setEnabled(false);
+                   OBS_BACKUP.sunucuayarPanel.textHost.setEnabled(true);
+                   OBS_BACKUP.sunucuayarPanel.textKull.setEnabled(true);
+                   OBS_BACKUP.sunucuayarPanel.textSifre.setEnabled(true);
+                   OBS_BACKUP.sunucuayarPanel.textSurucu.setEnabled(false);
+                   OBS_BACKUP.sunucuayarPanel.textFtpSurucu.setEnabled(true);
+                   OBS_BACKUP.sunucuayarPanel.textZmnasm.setEnabled(true);
+                   OBS_BACKUP.sunucuayarPanel.textPort.setEnabled(true);
+                   
+                   
                 }
                 else
                 {
@@ -457,6 +466,13 @@ public class EmirAnaGiris extends JPanel {
                     OBS_BACKUP.sunucuayarPanel.chckbxYerel.setSelected(true);
                     OBS_BACKUP.sunucuayarPanel.btnNewButton_6.setEnabled(false);
                     OBS_BACKUP.sunucuayarPanel.btnNewButton_7.setEnabled(true);
+                    OBS_BACKUP.sunucuayarPanel.textHost.setEnabled(false);
+                    OBS_BACKUP.sunucuayarPanel.textKull.setEnabled(false);
+                    OBS_BACKUP.sunucuayarPanel.textSifre.setEnabled(false);
+                    OBS_BACKUP.sunucuayarPanel.textSurucu.setEnabled(true);
+                    OBS_BACKUP.sunucuayarPanel.textFtpSurucu.setEnabled(false);
+                    OBS_BACKUP.sunucuayarPanel.textZmnasm.setEnabled(false);
+                    OBS_BACKUP.sunucuayarPanel.textPort.setEnabled(false);
 
                 }
                 OBS_BACKUP.sunucuayarPanel.textHost.setText(ftpBilgiler.get(0).getHOST());

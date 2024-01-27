@@ -80,10 +80,16 @@ public class SunucuAyarlari extends JPanel {
 					btnNewButton_6.setEnabled(true);
 					btnNewButton_7.setEnabled(false);
 					btnftpkont.setEnabled(true);
-					
 					textHost.setEnabled(true);
 					textKull.setEnabled(true);
 					textSifre.setEnabled(true);
+					textSurucu.setEnabled(false);
+					textFtpSurucu.setEnabled(true);
+					textZmnasm.setEnabled(true);
+					textPort.setEnabled(true);
+				}
+				else {
+					chckbxYerel.setSelected(true);
 				}
 			}
 		});
@@ -104,6 +110,13 @@ public class SunucuAyarlari extends JPanel {
 					textHost.setEnabled(false);
 					textKull.setEnabled(false);
 					textSifre.setEnabled(false);
+					textSurucu.setEnabled(true);
+					textFtpSurucu.setEnabled(false);
+					textZmnasm.setEnabled(false);
+					textPort.setEnabled(false);
+				}
+				else {
+					chckbxFtp.setSelected(true);
 				}
 			}
 		});
@@ -213,6 +226,7 @@ public class SunucuAyarlari extends JPanel {
 		 add(panel_12_1_1);
 		
 		textSurucu = new Obs_TextFIeld(200,"");
+		textSurucu.setEnabled(false);
 		JTextFieldRegularPopupMenu.addTo(textSurucu);
 		textSurucu.setToolTipText("");
 		textSurucu.setColumns(10);
@@ -220,6 +234,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1_1.add(textSurucu);
 		
 		btnNewButton_7 = new JButton( dilSecenek.dil(OBS_BACKUP.dILS, "Surucu Sec"));
+		btnNewButton_7.setEnabled(false);
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

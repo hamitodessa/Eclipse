@@ -18,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -250,10 +249,19 @@ public class EmirAnaGiris extends JPanel {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
 					File selected[] = chooser.getSelectedFiles();
+					boolean kontROL = false;
 					for(int i=0;i<= selected.length-1;i++)
 					{
-					model.addElement( new CheckListItem(selected[i].getName(),selected[i].getParent()));
-					list.repaint();
+						for (int ii = 0; ii<= model.size() -1;ii++) {
+							if(model.getElementAt(ii).toString().equals(selected[i].getName().toString()))
+							{
+								kontROL = true ;
+								break;
+							}
+						}
+						if(kontROL == false)
+							model.addElement( new CheckListItem(selected[i].getName(),selected[i].getParent()));
+						kontROL = false;
 					}
 				}
 				else {
@@ -281,14 +289,22 @@ public class EmirAnaGiris extends JPanel {
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
 					File selected[] = chooser.getSelectedFiles();
+					boolean kontROL =false;
 					for(int i=0;i<= selected.length-1;i++)
 					{
-					model.addElement( new CheckListItem(selected[i].getName(),selected[i].getParent()));
-					list.repaint();
+						for (int ii = 0; ii<= model.size() -1;ii++) {
+							if(model.getElementAt(ii).toString().equals(selected[i].getName().toString()))
+							{
+								kontROL = true ;
+								break;
+							}
+						}
+						if(kontROL == false)
+							model.addElement( new CheckListItem(selected[i].getName(),selected[i].getParent()));
+						kontROL = false;
 					}
 				}
 				else {
-					// System.out.println("No Selection ");
 				}
 			}
 		});
@@ -339,12 +355,20 @@ public class EmirAnaGiris extends JPanel {
 				try {
 					evt.acceptDrop(DnDConstants.ACTION_COPY);
 					List<File> droppedFiles = (List<File>) evt .getTransferable().getTransferData(  DataFlavor.javaFileListFlavor);
-					for(int i=0;i<= droppedFiles.size() -1;i++)
+					boolean kontROL = false;
+					for(int i = 0;i<= droppedFiles.size() -1;i++)
 					{
-						model.addElement( new CheckListItem(droppedFiles.get(i).getName(),droppedFiles.get(i).getParent()));
-						list.repaint();
+						for (int ii = 0; ii<= model.size() -1;ii++) {
+							if(model.getElementAt(ii).toString().equals(droppedFiles.get(i).getName().toString()))
+							{
+								kontROL = true ;
+								break;
+							}
+						}
+						if(kontROL == false)
+							model.addElement( new CheckListItem(droppedFiles.get(i).getName(),droppedFiles.get(i).getParent()));
+						kontROL = false;
 					}
-
 				} catch (Exception ex) {
 					OBS_BACKUP.	mesajGoster(15000,Notifications.Type.ERROR, ex.getMessage() );
 				}

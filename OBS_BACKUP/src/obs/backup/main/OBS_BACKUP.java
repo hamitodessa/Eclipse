@@ -1129,11 +1129,11 @@ public class OBS_BACKUP extends JFrame {
 			date2.setYear(date.getYear());
 			date2.setMonth(date.getMonth());
 			date2.setDate(date.getDate());
-			if (date.after(date2) )
-			{
-				mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(dILS,"Bitis Zamani Baslangic Zamanindan Kucuk olamaz") );
-				return;
-			}
+//			if (date.after(date2) )
+//			{
+//				mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(dILS,"Bitis Zamani Baslangic Zamanindan Kucuk olamaz") );
+//				return;
+//			}
 			bckp.yedekleme_kayit_sil(emirAnaGirisPanel.txtEmir.getText());
 			bckp.yedekleme_ismi_kayit(emirAnaGirisPanel.txtEmir.getText(), 
 					yedekaraligiPanel.textHerDakka.getText(), 

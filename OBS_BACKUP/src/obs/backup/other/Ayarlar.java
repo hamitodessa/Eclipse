@@ -28,6 +28,7 @@ public class Ayarlar extends JPanel {
 	public JComboBox<String> comboBox;
 	public JComboBox<String> comboBox_1;
 	public JCheckBox chckbxSifrele;
+	public JCheckBox chckbxPrgSifre;
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	final boolean showTabsHeader = false;
 	public JPasswordField passwordText;
@@ -81,7 +82,7 @@ public class Ayarlar extends JPanel {
 					bckp.ayar_sil();
 					SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
 					bckp.ayar_kayit(comboBox_1.getSelectedItem().toString(), comboBox.getSelectedItem().toString(),chckbxSifrele.isSelected() ? 1:0,
-							sDondur.sDONDUR(passwordText)		);
+							sDondur.sDONDUR(passwordText) , chckbxPrgSifre.isSelected() ? 1:0);
 					OBS_BACKUP.emirleriSTOPYAP();
 					OBS_BACKUP.btnfont_tema.doClick();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -119,6 +120,14 @@ public class Ayarlar extends JPanel {
 		
 		passwordText.setBounds(137, 201, 189, 20);
 		add(passwordText);
+		
+		JLabel lblNewLabel_3 = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS,"Sifre Sor"));
+		lblNewLabel_3.setBounds(42, 310, 105, 14);
+		add(lblNewLabel_3);
+		
+		chckbxPrgSifre = new JCheckBox("");
+		chckbxPrgSifre.setBounds(137, 306, 99, 23);
+		add(chckbxPrgSifre);
 	}
 }
 

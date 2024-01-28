@@ -381,13 +381,13 @@ public class GLOBAL {
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE DIGER_DOSYA_ISIM (EMIR_ISMI nvarchar(30) ,DOSYA_ADI nvarchar(200),DOSYA_PATH nvarchar(200)) ";
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE YONETICI (SIFRE nvarchar(200) ) ";
+			sorgu = "CREATE TABLE YONETICI (SIFRE BLOB ) ";
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE AYARLAR (  DIL nvarchar(10) ,TEMA nvarchar(50),SIFRELE INTEGER, SIFRE BLOB) ";
+			sorgu = "CREATE TABLE AYARLAR (  DIL nvarchar(10) ,TEMA nvarchar(50),SIFRELE INTEGER, SIFRE BLOB,PRG_SIFRELE) ";
 			backup_tablo_yap(sorgu);
 	
 			con = myBackupConnection();
-			sorgu = "INSERT INTO AYARLAR(DIL,TEMA,SIFRELE,SIFRE)  VALUES('Turkce','FlatCarbonIJ','0','')" ;
+			sorgu = "INSERT INTO AYARLAR(DIL,TEMA,SIFRELE,SIFRE)  VALUES('Turkce','FlatCarbonIJ','0','','0')" ;
 			Statement pstmt = con.prepareStatement(sorgu) ;
 			pstmt = con.createStatement();  
 			pstmt.execute(sorgu);  

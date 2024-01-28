@@ -228,13 +228,13 @@ public class BACKUP_GLOBAL {
 		}
 		return pidno;
 	}
-	public void ayar_kayit(String dil, String tema,int sifrele,String sifre)throws ClassNotFoundException, SQLException
+	public void ayar_kayit(String dil, String tema,int sifrele,String sifre,int prg_sifrele)throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "INSERT INTO AYARLAR (DIL,TEMA,SIFRELE,SIFRE) VALUES (?,?,?,?)";
+		String sql = "INSERT INTO AYARLAR (DIL,TEMA,SIFRELE,SIFRE,PRG_SIFRELE) VALUES (?,?,?,?,?)";
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, dil);
 		stmt.setString(2, tema);
@@ -248,6 +248,7 @@ public class BACKUP_GLOBAL {
 			e.printStackTrace();
 		}
 		stmt.setString(4, encodedString);
+		stmt.setInt(5, prg_sifrele);
 		stmt.executeUpdate();
 		stmt.close();
 		con.close();
@@ -277,13 +278,14 @@ public class BACKUP_GLOBAL {
 		String sql = "SELECT * FROM AYARLAR ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
-		String[] ayarlar = new String[4];
+		String[] ayarlar = new String[5];
 		while (rss.next())
 		{
 			ayarlar[0] = rss.getString("DIL");
 			ayarlar[1] = rss.getString("TEMA");
 			ayarlar[2] = rss.getString("SIFRELE");
 			ayarlar[3] = rss.getString("SIFRE");
+			ayarlar[4] = rss.getString("PRG_SIFRELE");
 		}
 		stmt.close();
 		con.close();

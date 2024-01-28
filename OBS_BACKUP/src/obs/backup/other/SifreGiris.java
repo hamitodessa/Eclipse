@@ -68,25 +68,7 @@ public class SifreGiris extends JPanel {
 					String varmi =	bckp.backup_sifre_oku();
 					if (varmi.equals(sDondur.sDONDUR(passwordField)) == true)
 					{
-						OBS_BACKUP.tabbedPane.setSelectedIndex(0);
-						OBS_BACKUP.btnGorevler.setEnabled(true);
-						OBS_BACKUP.btnYeni_Gorev.setEnabled(true);
-						OBS_BACKUP.btnLoglama.setEnabled(true);
-						OBS_BACKUP.btnKayitliEmirler.setEnabled(true);
-						OBS_BACKUP.btnHepsiYukari.setEnabled(true);
-						OBS_BACKUP.btnHepsiAsagi.setEnabled(true);
-						OBS_BACKUP.btnYeniSifre.setEnabled(true);
-						OBS_BACKUP.btnUploadAll.setEnabled(true);
-						OBS_BACKUP.btnStartAll.setEnabled(true);
-						OBS_BACKUP.btnStopAll.setEnabled(true);
-						OBS_BACKUP.btnFileIndir.setEnabled(true);
-						OBS_BACKUP.btnSifreEkrani.setVisible(true);
-						OBS_BACKUP.btnHepsiAktiv.setEnabled(true);
-						OBS_BACKUP.btnHepsiPasiv.setEnabled(true);
-						OBS_BACKUP.btnHakkinda.setEnabled(true);
-						OBS_BACKUP.btnAyarlar.setEnabled(true);
-						OBS_BACKUP.btnHepsiYukari.doClick();
-						
+						OBS_BACKUP.buttonlariGOSTER();
 					}
 					else {
 						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,  dilSecenek.dil(OBS_BACKUP.dILS, "Sifre Yanlis"));
@@ -101,7 +83,6 @@ public class SifreGiris extends JPanel {
 		add(passwordField);
 		
 		lblDefaultpwd = new JLabel("Varsayilan Sifre :       obs");
-		//lblDefaultpwd.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblDefaultpwd.setVisible(false);
 		lblDefaultpwd.setBounds(329, 241, 248, 14);
 		add(lblDefaultpwd);

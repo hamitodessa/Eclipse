@@ -284,6 +284,9 @@ public class dilSecenek {
 			case  "Sifrele":
 				tEXT = "Set Password"  ;
 				break;
+			case  "Sifre Sor":
+				tEXT = "Show Login"  ;
+				break;
 
 				
 			}  

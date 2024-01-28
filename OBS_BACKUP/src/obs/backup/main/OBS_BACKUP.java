@@ -256,7 +256,7 @@ public class OBS_BACKUP extends JFrame {
 	public static boolean sifRELE = false;
 	
 	static Component horizontalGlue = null ;
-	private static String diltemaString[] = new String[4];
+	private static String diltemaString[] = new String[5];
 	/**
 	 * Hamit.
 	 */
@@ -732,6 +732,7 @@ public class OBS_BACKUP extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
 				ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
+				ayarlarPanel.chckbxPrgSifre.setSelected(Integer.valueOf(diltemaString[4]) == 0 ? false:true);
 				if(ayarlarPanel.chckbxSifrele.isSelected())
 				{
 					ayarlarPanel.passwordText.setVisible(true);
@@ -914,7 +915,15 @@ public class OBS_BACKUP extends JFrame {
 			pidKONTROL();
 			emirYukle("EMIR_ISMI") ;
 			jobTimerBasla();
-			tabbedPane.setSelectedIndex(4);
+			// SIFRE EKRANI KONTROL***************************************
+			if(Integer.valueOf(diltemaString[4]) == 1 )
+			{
+				tabbedPane.setSelectedIndex(4);
+			}
+			else {
+				buttonlariGOSTER();
+			}
+			//************************************************************
 		} catch (Exception ex) 
 		{
 			try {
@@ -2909,6 +2918,27 @@ public class OBS_BACKUP extends JFrame {
 			FlatArcOrangeIJTheme.setup();
 			break;		
 		}
+	}
+	public static void buttonlariGOSTER()
+	{
+		 tabbedPane.setSelectedIndex(0);
+		 btnGorevler.setEnabled(true);
+		 btnYeni_Gorev.setEnabled(true);
+		 btnLoglama.setEnabled(true);
+		 btnKayitliEmirler.setEnabled(true);
+		 btnHepsiYukari.setEnabled(true);
+		 btnHepsiAsagi.setEnabled(true);
+		 btnYeniSifre.setEnabled(true);
+		 btnUploadAll.setEnabled(true);
+		 btnStartAll.setEnabled(true);
+		 btnStopAll.setEnabled(true);
+		 btnFileIndir.setEnabled(true);
+		 btnSifreEkrani.setVisible(true);
+		 btnHepsiAktiv.setEnabled(true);
+		 btnHepsiPasiv.setEnabled(true);
+		 btnHakkinda.setEnabled(true);
+		 btnAyarlar.setEnabled(true);
+		 btnHepsiYukari.doClick();
 	}
 }
 //private void checkWORK() throws IOException 

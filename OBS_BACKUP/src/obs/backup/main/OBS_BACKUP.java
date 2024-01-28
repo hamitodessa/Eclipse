@@ -2857,6 +2857,8 @@ public class OBS_BACKUP extends JFrame {
 		ayarlarPanel.lblNewLabel.setText(dilSecenek.dil(dILS,"Tema"));
 		ayarlarPanel.lblNewLabel_1.setText(dilSecenek.dil(dILS,"Dil"));
 		ayarlarPanel.btnKaydet.setText(dilSecenek.dil(dILS,"Kaydet"));
+		ayarlarPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"ZIP Sifrele"));
+		ayarlarPanel.lblNewLabel_3.setText(dilSecenek.dil(dILS,"Acilis Sifre Sor"));
 		//**********************************************************************************************
 		if(dILS.equals("Turkce"))
 		{

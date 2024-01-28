@@ -25,6 +25,8 @@ public class Ayarlar extends JPanel {
 	public JButton btnKaydet;
 	public JLabel lblNewLabel;
 	public JLabel lblNewLabel_1;
+	public JLabel lblNewLabel_2 ;
+	public JLabel lblNewLabel_3;
 	public JComboBox<String> comboBox;
 	public JComboBox<String> comboBox_1;
 	public JCheckBox chckbxSifrele;
@@ -42,7 +44,7 @@ public class Ayarlar extends JPanel {
 
 		comboBox = new JComboBox<String>();
 		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"FlatCarbonIJ", "FlatMonocaiIJ", "FlatMacDarkLaf", "FlatNordIJ", "FlatHighContrastIJ", "FlatMaterialPalenightIJ", "FlatMaterialDeepOceanIJ","FlatArcDarkIJ","FlatGradiantoNatureGreenIJ","FlatGrayIJ","FlatMaterial","FlatArcOrangeIJ","Java"}));
-		comboBox.setBounds(137, 83, 254, 22);
+		comboBox.setBounds(160, 83, 254, 22);
 		add(comboBox);
 
 		lblNewLabel_1 = new JLabel("Dil");
@@ -56,10 +58,12 @@ public class Ayarlar extends JPanel {
 				lblNewLabel.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Tema"));
 				lblNewLabel_1.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Dil"));
 				btnKaydet.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Kaydet"));
+				lblNewLabel_2.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"ZIP Sifrele"));
+				lblNewLabel_3.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Acilis Sifre Sor"));
 			}
 		});
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Turkce", "English"}));
-		comboBox_1.setBounds(137, 20, 105, 22);
+		comboBox_1.setBounds(160, 20, 105, 22);
 		add(comboBox_1);
 
 		btnKaydet = new JButton("Kaydet");
@@ -106,10 +110,10 @@ public class Ayarlar extends JPanel {
 				}
 			}
 		});
-		chckbxSifrele.setBounds(137, 161, 99, 23);
+		chckbxSifrele.setBounds(160, 161, 99, 23);
 		add(chckbxSifrele);
 		
-		JLabel lblNewLabel_2 = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS,"Sifrele"));
+		lblNewLabel_2 = new JLabel("ZIP Sifrele");
 		lblNewLabel_2.setBounds(42, 165, 105, 14);
 		add(lblNewLabel_2);
 		
@@ -118,15 +122,15 @@ public class Ayarlar extends JPanel {
 		passwordText.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true");
 		passwordText.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		
-		passwordText.setBounds(137, 201, 189, 20);
+		passwordText.setBounds(160, 201, 189, 20);
 		add(passwordText);
 		
-		JLabel lblNewLabel_3 = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS,"Sifre Sor"));
-		lblNewLabel_3.setBounds(42, 310, 105, 14);
+		lblNewLabel_3 = new JLabel("Acilis Sifre Sor");
+		lblNewLabel_3.setBounds(42, 310, 123, 14);
 		add(lblNewLabel_3);
 		
 		chckbxPrgSifre = new JCheckBox("");
-		chckbxPrgSifre.setBounds(137, 306, 99, 23);
+		chckbxPrgSifre.setBounds(160, 306, 99, 23);
 		add(chckbxPrgSifre);
 	}
 }

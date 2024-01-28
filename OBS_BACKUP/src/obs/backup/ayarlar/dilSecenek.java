@@ -281,11 +281,11 @@ public class dilSecenek {
 			case  "Baglanti Hata":
 				tEXT = "Connection Error"  ;
 				break;
-			case  "Sifrele":
-				tEXT = "Set Password"  ;
+			case  "ZIP Sifrele":
+				tEXT = "Set Password to ZIP"  ;
 				break;
-			case  "Sifre Sor":
-				tEXT = "Show Login"  ;
+			case  "Acilis Sifre Sor":
+				tEXT = "Start Login Page"  ;
 				break;
 
 				

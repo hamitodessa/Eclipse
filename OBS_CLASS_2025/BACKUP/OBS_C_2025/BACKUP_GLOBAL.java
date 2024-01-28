@@ -1185,7 +1185,7 @@ public class BACKUP_GLOBAL {
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("SEC");
 		model.addColumn("DOSYA_ADI");
-		model.addColumn("BOYUT");
+		model.addColumn("BOYUT Bytes");
 		model.addColumn("TARIH");
 		SimpleDateFormat dateFormater = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 		for (FTPFile file : files) {

@@ -856,7 +856,10 @@ public class OBS_BACKUP extends JFrame {
 			@Override protected int calculateTabAreaHeight(int tabPlacement, int horizRunCount, int maxTabHeight) { if (showTabsHeader) {return
 			super.calculateTabAreaHeight(tabPlacement, horizRunCount, maxTabHeight); }	else {return 0;} } protected void paintTabArea(Graphics g,int
 			tabPlacement,int selectedIndex){} });
-		
+		for(int i = 0;i <= tabbedPane.getTabCount() - 1;i++)
+		{
+			tabbedPane.setEnabledAt(i, false);
+		}
 		
 		btntry= new JButton("");
 		btntry.setVisible(false);

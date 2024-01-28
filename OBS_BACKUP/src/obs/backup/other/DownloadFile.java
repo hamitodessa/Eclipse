@@ -179,142 +179,132 @@ public class DownloadFile extends JPanel {
 	private void inDIR() throws InterruptedException, ClassNotFoundException, SQLException
 	{
 		Runnable runner = new Runnable()
-		{ 
-			public void run() {
-				////////////////
-				try {
-					GuiUtil.setWaitCursor(tblFile,true);
-					GuiUtil.setWaitCursor(panel,true);
-					GuiUtil.setWaitCursor(scrollPane,true);
-					GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,true);
-					GuiUtil.setWaitCursor(panelalt,true);
-					panelalt.setPreferredSize(new Dimension(0, 100));
-					panelalt.revalidate();
-					DefaultTableModel modell = (DefaultTableModel)tblFile.getModel();
-					panelalt.Progres_Bar_Temizle_1();
-					panelalt.RPB1.setMaximum(satir_kontrol());
-					panelalt.RPB1.setStringPainted(true);
-					List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
-					ftpBilgi = bckp.ftp_bilgi(comboBox.getSelectedItem().toString());
-					for ( int ii = 0; ii <=  modell.getRowCount() -1;ii++)
+		{public void run() {
+			try {
+				GuiUtil.setWaitCursor(tblFile,true);
+				GuiUtil.setWaitCursor(panel,true);
+				GuiUtil.setWaitCursor(scrollPane,true);
+				GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,true);
+				GuiUtil.setWaitCursor(panelalt,true);
+				panelalt.setPreferredSize(new Dimension(0, 100));
+				panelalt.revalidate();
+				DefaultTableModel modell = (DefaultTableModel)tblFile.getModel();
+				panelalt.Progres_Bar_Temizle_1();
+				panelalt.RPB1.setMaximum(satir_kontrol());
+				panelalt.RPB1.setStringPainted(true);
+				List<ftp_bilgiler> ftpBilgi = new ArrayList<ftp_bilgiler>();
+				ftpBilgi = bckp.ftp_bilgi(comboBox.getSelectedItem().toString());
+				for ( int ii = 0; ii <=  modell.getRowCount() -1;ii++)
+				{
+					if ( modell.getValueAt(ii,0) != null) 
 					{
-						if ( modell.getValueAt(ii,0) != null) 
+						if (  modell.getValueAt(ii,0).toString().equals("true")   )
 						{
-							if (  modell.getValueAt(ii,0).toString().equals("true")   )
-							{
-								satir +=1;
-								panelalt.Progres_Bar_1(satir);
-								String ftp, kull, sifre, surucu,  neresi, surucu_yer;
-								ftp = ftpBilgi.get(0).getHOST();
-								kull = ftpBilgi.get(0).getKULLANICI();
+							satir +=1;
+							panelalt.Progres_Bar_1(satir);
+							String ftp, kull, sifre, surucu,  neresi, surucu_yer;
+							ftp = ftpBilgi.get(0).getHOST();
+							kull = ftpBilgi.get(0).getKULLANICI();
 
-								String decodedString = ftpBilgi.get(0).getSIFRE();
-								String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
-								byte[] bytes = new byte[byteValues.length];
-								for (int i=0, len=bytes.length; i<len; i++) {
-									bytes[i] = Byte.parseByte(byteValues[i].trim());     
-								}
-								sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
-								surucu = ftpBilgi.get(0).getSURUCU();
-								int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
-								surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
-								FTPClient ftpc = new FTPClient();
-								ftpc.setConnectTimeout(120 * 1000);
-								ftpc.connect(ftp, port);
-								
-								if(!ftpc.login(kull, sifre))
-								{
-									ftpc.logout();
-									OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR,dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "FTP Baglanti Hatasi Login") );
-									return; 
-								}
-								int reply = ftpc.getReplyCode();
-								if (!FTPReply.isPositiveCompletion(reply))
-								{
-									ftpc.disconnect();
-									OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR,dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "FTP Baglanti Hatasi isPositiveCompletion") );
-									return;  
-								}
-								ftpc.enterLocalPassiveMode();
-								ftpc.changeWorkingDirectory(surucu);
-								ftpc.setFileType(FTP.BINARY_FILE_TYPE);
-								ftpc.enterLocalPassiveMode();
-								boolean success ;
-								//******************************
-								double toplam = 0 ;
-								FTPFile[] files = ftpc.listFiles();
-								panelalt.lblSurucu.setText(glb.BACKUP_YERI);
-								for (int i=0;i<= files.length-1;i++) 
-								{
-									if (files[i].getName().equals(modell.getValueAt(ii,1).toString()))  
-									{
-										panelalt.lblEmirAdi.setText(modell.getValueAt(ii,1).toString());
-										toplam =  files[i].getSize();
-										//panelalt.lblDosBoyut.setText( FORMATLAMA.doub_0(toplam/1024));
-										panelalt.lblDosBoyut.setText( FORMATLAMA.doub_0(toplam)+ " Bytes");
-										double topl =  toplam ;
-										String remoteFile2 =   files[i].getName();
-										File downloadFile2 = new File(glb.BACKUP_YERI +  files[i].getName());
-										OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
-										InputStream inputStream = ftpc.retrieveFileStream(remoteFile2);
-										double inen= 0;
-										byte[] bytesArray = new byte[2048];
-										int bytesRead = -1;
-										//panelalt.Progres_Bar_Temizle_2();
-										panelalt.RPB2.setStringPainted(true);
-										panelalt.RPB2.setMaximum((int)toplam);
-										//panelalt.RPB2.setMaximum((int)toplam/1024);
-										Long start = System.currentTimeMillis();
-										long timeInSecs = 0;
-										while ((bytesRead = inputStream.read(bytesArray)) != -1)
-										{
-											outputStream2.write(bytesArray, 0, bytesRead);
-											inen += bytesRead ;
-											//panelalt.lblInen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
-											panelalt.lblInen.setText(FORMATLAMA.doub_0(inen )+ " Bytes");
-											//panelalt.lblKalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
-											panelalt.lblKalan.setText(FORMATLAMA.doub_0((toplam  - inen)  )+ " Bytes");
-											//panelalt.Progres_Bar_2((int) inen /1024);
-											panelalt.Progres_Bar_2((int) inen);
-											double speedInKBps = 0.00;
-											timeInSecs = (System.currentTimeMillis() - start) ; 
-											speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
-											//panelalt.lblHiz.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
-											panelalt.lblHiz.setText(FORMATLAMA.doub_0( speedInKBps) + " Bytes");
-											//System.out.println(files[i].getName() +"=="+ (int)toplam + "=="+  (int) inen );
-										}
-										success = ftpc.completePendingCommand();
-										outputStream2.close();
-										inputStream.close();
-									}
-									panelalt.Progres_Bar_Temizle_2();
-								}	
-								OBS_BACKUP.mesajGoster(15000,Notifications.Type.INFO, glb.BACKUP_YERI + " " + dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Surucusune Indirilmistir")  );  
+							String decodedString = ftpBilgi.get(0).getSIFRE();
+							String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
+							byte[] bytes = new byte[byteValues.length];
+							for (int i=0, len=bytes.length; i<len; i++) {
+								bytes[i] = Byte.parseByte(byteValues[i].trim());     
 							}
+							sifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
+							surucu = ftpBilgi.get(0).getSURUCU();
+							int port = Integer.valueOf( ftpBilgi.get(0).getPORT());
+							surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
+							FTPClient ftpc = new FTPClient();
+							ftpc.setConnectTimeout(120 * 1000);
+							ftpc.connect(ftp, port);
+							ftpc.login(kull, sifre);
+							ftpc.enterLocalPassiveMode();
+							ftpc.changeWorkingDirectory(surucu);
+							ftpc.setFileType(FTP.BINARY_FILE_TYPE);
+							boolean success ;
+							//******************************
+							double toplam = 0 ;
+							FTPFile[] files = ftpc.listFiles();
+							panelalt.lblSurucu.setText(glb.BACKUP_YERI);
+							for (int i=0;i<= files.length-1;i++) 
+							{
+								if (files[i].getName().equals(modell.getValueAt(ii,1).toString()))  
+								{
+									panelalt.lblEmirAdi.setText(modell.getValueAt(ii,1).toString());
+									toplam =  files[i].getSize();
+									//panelalt.lblDosBoyut.setText( FORMATLAMA.doub_0(toplam/1024));
+									panelalt.lblDosBoyut.setText( FORMATLAMA.doub_0(toplam)+ " Bytes");
+									double topl =  toplam ;
+									String remoteFile2 =   files[i].getName();
+									File downloadFile2 = new File(glb.BACKUP_YERI +  files[i].getName());
+									OutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(downloadFile2));
+									InputStream inputStream = ftpc.retrieveFileStream(remoteFile2);
+									double inen= 0;
+									byte[] bytesArray = new byte[2048];
+									int bytesRead = -1;
+									//panelalt.Progres_Bar_Temizle_2();
+									panelalt.RPB2.setStringPainted(true);
+									panelalt.RPB2.setMaximum((int)toplam);
+									//panelalt.RPB2.setMaximum((int)toplam/1024);
+									Long start = System.currentTimeMillis();
+									long timeInSecs = 0;
+									while ((bytesRead = inputStream.read(bytesArray)) != -1)
+									{
+										outputStream2.write(bytesArray, 0, bytesRead);
+										inen += bytesRead ;
+										//panelalt.lblInen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
+										panelalt.lblInen.setText(FORMATLAMA.doub_0(inen )+ " Bytes");
+										//panelalt.lblKalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
+										panelalt.lblKalan.setText(FORMATLAMA.doub_0((toplam  - inen)  )+ " Bytes");
+										//panelalt.Progres_Bar_2((int) inen /1024);
+										panelalt.Progres_Bar_2((int) inen);
+										double speedInKBps = 0.00;
+										timeInSecs = (System.currentTimeMillis() - start) ; 
+										speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
+										//panelalt.lblHiz.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
+										panelalt.lblHiz.setText(FORMATLAMA.doub_0( speedInKBps) + " Bytes");
+										//System.out.println(files[i].getName() +"=="+ (int)toplam + "=="+  (int) inen );
+									}
+									success = ftpc.completePendingCommand();
+									outputStream2.close();
+									inputStream.close();
+								}
+								panelalt.Progres_Bar_Temizle_2();
+							}	
+							ftpc.logout();
+							ftpc.disconnect();
+							OBS_BACKUP.mesajGoster(7500,Notifications.Type.INFO,  modell.getValueAt(ii,1).toString() 
+									+ System.lineSeparator()
+									+ glb.BACKUP_YERI  
+									+ System.lineSeparator()  
+									+ dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Surucusune Indirilmistir")  );  
 						}
 					}
-					panelalt.Progres_Bar_Temizle_1();
-					panelalt.setPreferredSize(new Dimension(0, 0));
-					panelalt.revalidate();
-					GuiUtil.setWaitCursor(tblFile,false);
-					GuiUtil.setWaitCursor(panel,false);
-					GuiUtil.setWaitCursor(scrollPane,false);
-					GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
-					GuiUtil.setWaitCursor(panelalt,false);
-				} catch (Exception ex) {
-					GuiUtil.setWaitCursor(tblFile,false);
-					GuiUtil.setWaitCursor(panel,false);
-					GuiUtil.setWaitCursor(scrollPane,false);
-					GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
-					GuiUtil.setWaitCursor(panelalt,false);
-					try {
-						bckp.log_kayit("System", new Date(), ex.getMessage());
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, ex.getMessage());        
 				}
+				panelalt.Progres_Bar_Temizle_1();
+				panelalt.setPreferredSize(new Dimension(0, 0));
+				panelalt.revalidate();
+				GuiUtil.setWaitCursor(tblFile,false);
+				GuiUtil.setWaitCursor(panel,false);
+				GuiUtil.setWaitCursor(scrollPane,false);
+				GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
+				GuiUtil.setWaitCursor(panelalt,false);
+			} catch (Exception ex) {
+				GuiUtil.setWaitCursor(tblFile,false);
+				GuiUtil.setWaitCursor(panel,false);
+				GuiUtil.setWaitCursor(scrollPane,false);
+				GuiUtil.setWaitCursor(OBS_BACKUP.toolBar,false);
+				GuiUtil.setWaitCursor(panelalt,false);
+				try {
+					bckp.log_kayit("System", new Date(), ex.getMessage());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, ex.getMessage());        
 			}
+		}
 		};
 		Thread t = new Thread(runner, "Code Executer");
 		t.start();
@@ -388,7 +378,7 @@ public class DownloadFile extends JPanel {
 
 			tc = tcm.getColumn(2);
 			if(! OBS_BACKUP.dILS.equals("Turkce"))
-				tc.setHeaderValue("SIZE");
+				tc.setHeaderValue("SIZE Bytes");
 			tc.setHeaderRenderer(new SAGA_DUZ_RENK());
 			tc.setCellRenderer(new TABLO_RENDERER(0,false));
 			tc.setMinWidth(100);

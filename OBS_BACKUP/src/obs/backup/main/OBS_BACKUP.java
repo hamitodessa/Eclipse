@@ -1383,10 +1383,8 @@ public class OBS_BACKUP extends JFrame {
 		{
 			if(component.getName()!= null)
 			{
-				if (component.getName().toString().equals(eadi)) 
-				{
+				if (component.getName().toString().equals(eadi))
 					container.remove(component);
-				}
 			}
 			else if(component.getName()== null)
 			{
@@ -1404,10 +1402,8 @@ public class OBS_BACKUP extends JFrame {
 		{
 			if(component.getName()!= null)
 			{
-				if (component.getName().toString().equals(eadi)) 
-				{
+				if (component.getName().toString().equals(eadi))
 					container.remove(component);
-				}
 			}
 		}
 		container.repaint();
@@ -1426,9 +1422,7 @@ public class OBS_BACKUP extends JFrame {
 			for (int gg = 0; gg < gorevLER.size() ; gg++)
 			{
 				if (gorevLER.get(gg).toString() == eadi)
-				{
 					gorevLER.remove(gg);
-				}
 			}
 		}
 		catch (Exception ex)
@@ -1607,15 +1601,11 @@ public class OBS_BACKUP extends JFrame {
 				if (!exists)
 					tmpDir.mkdirs();
 				if (glb.dos_kontrol(surucu_yer + "\\" + dzip))
-				{ 
 					glb.dos_sil(surucu_yer + "\\" + dzip);
-				}
 				File okunanFile = new File(glb.BACKUP_YERI + dzip);
 				fileCOPY(glb.BACKUP_YERI + dzip,surucu_yer + "\\" + dzip);
 				if (glb.dos_kontrol(glb.BACKUP_YERI + dzip))
-				{ 
 					glb.dos_sil(glb.BACKUP_YERI + dzip);
-				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Surucuye Yuklendi")  );
 				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
@@ -1989,23 +1979,13 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl. Progres_Bar_1( i + 1);
 				dosADI = dbliste.get(i).getAdi();
 				File file = new File(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi());
-				boolean deGER = file.isDirectory(); // Check if it's a directory
-				if (deGER)
-				{
-					folderMI = true;
-				}
-				else
-				{
-					folderMI = false;
-				}
+				folderMI = file.isDirectory(); // Check if it's a directory
 				uplpnl.Progres_Bar_1( i + 1);
 				String dosya, dzip,  dpath,uzantisiz = "";
 				String input = dosADI;
 				int index = dosADI.lastIndexOf(".");
 				if (index >= 0)
-				{
 					uzantisiz = input.substring(0, index); // or index + 1 to keep slash
-				}
 				dosya = dbliste.get(i).getPath() + "\\" + dosADI;
 				dpath = dbliste.get(i).getPath() + "\\";
 				dzip = tarr + "_" + uzantisiz + ".zip";
@@ -2034,9 +2014,7 @@ public class OBS_BACKUP extends JFrame {
 				File okunanFile = new File(glb.BACKUP_YERI + dzip);
 				fileCOPY(glb.BACKUP_YERI + dzip, ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip);
 				if (glb.dos_kontrol( glb.BACKUP_YERI + "\\" + dzip))
-				{ 
 					glb.dos_sil( glb.BACKUP_YERI + "\\" + dzip);
-				}
 				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Surucuye Yuklendi")  );
 				bckp.log_kayit(emirADI,new Date(), uzantisiz + dilAciklamalar.dilAciklama(dILS, " ZIP Dosyasi Silindi")  );
 			}
@@ -2180,23 +2158,13 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl. Progres_Bar_1( i + 1);
 				dosADI = dbliste.get(i).getAdi();
 				File file = new File(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi());
-				boolean deGER = file.isDirectory(); // Check if it's a directory
-				if (deGER)
-				{
-					folderMI = true;
-				}
-				else
-				{
-					folderMI = false;
-				}
+				folderMI = file.isDirectory(); // Check if it's a directory
 				uplpnl.Progres_Bar_1( i + 1);
 				String dosya, dzip,  dpath,uzantisiz = "";
 				String input = dosADI;
 				int index = input.lastIndexOf(".");
 				if (index >= 0)
-				{
 					uzantisiz = input.substring(0, index); // or index + 1 to keep slash
-				}
 				dosya = dbliste.get(i).getPath() + "\\" + dosADI;
 				dpath = dbliste.get(i).getPath() + "\\";
 				dzip = tarr + "_" + uzantisiz + ".zip";

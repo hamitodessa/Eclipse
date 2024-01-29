@@ -2945,48 +2945,47 @@ public class OBS_BACKUP extends JFrame {
 		 btnAyarlar.setEnabled(true);
 		 btnHepsiYukari.doClick();
 	}
-	private void createScheduler() throws IOException, InterruptedException
-	{
-		List<String> commands = new ArrayList<String>();
-
-		  commands.add("schtasks.exe");
-		  commands.add("/CREATE");
-		  commands.add("/TN");
-		  commands.add("\"OBS_BACKUP\"");
-		  commands.add("/TR");
-		  commands.add("\"C:/OBS_SISTEM/OBS_BACKUP.jar\"");
-		  commands.add("/SC");
-		  commands.add(" ONSTART" );
-		  commands.add("/F" );
-		  //commands.add("/RU");
-		  //commands.add("SYSTEM");
-		 // commands.add(System.getProperty("user.name") );
-		  //commands.add("/RP");
-		  //commands.add("197227oOk");
-		
-
-		  ProcessBuilder builder = new ProcessBuilder(commands);
-		  Process p = builder.start();
-		  p.waitFor();
-		  System.out.println(p.exitValue()); // 0 : OK
-		  
-		  InputStream is = p.getInputStream();
-		  InputStreamReader isr = new InputStreamReader(is);
-		  BufferedReader br = new BufferedReader(isr);
-		  String line;
-		  while ((line = br.readLine()) != null) {
-		    System.out.println(line);
-		  }
-//		  //stderr
-		  is = p.getErrorStream();
-		  isr = new InputStreamReader(is);
-		  br = new BufferedReader(isr);
-		  while ((line = br.readLine()) != null) {
-		    System.out.println(line);
-		  }
-		                            
-	}
 }
+//	private void createScheduler() throws IOException, InterruptedException
+//	{
+//		List<String> commands = new ArrayList<String>();
+//
+//		  commands.add("schtasks.exe");
+//		  commands.add("/CREATE");
+//		  commands.add("/TN");
+//		  commands.add("\"OBS_BACKUP\"");
+//		  commands.add("/TR");
+//		  commands.add("\"C:/OBS_SISTEM/OBS_BACKUP.jar\"");
+//		  commands.add("/SC");
+//		  commands.add(" ONSTART" );
+//		  commands.add("/F" );
+//		  //commands.add("/RU");
+//		  //commands.add("SYSTEM");
+//		 // commands.add(System.getProperty("user.name") );
+//		  //commands.add("/RP");
+//		  //commands.add("197227oOk");
+//		  ProcessBuilder builder = new ProcessBuilder(commands);
+//		  Process p = builder.start();
+//		  p.waitFor();
+//		  System.out.println(p.exitValue()); // 0 : OK
+//		  
+//		  InputStream is = p.getInputStream();
+//		  InputStreamReader isr = new InputStreamReader(is);
+//		  BufferedReader br = new BufferedReader(isr);
+//		  String line;
+//		  while ((line = br.readLine()) != null) {
+//		    System.out.println(line);
+//		  }
+////		  //stderr
+//		  is = p.getErrorStream();
+//		  isr = new InputStreamReader(is);
+//		  br = new BufferedReader(isr);
+//		  while ((line = br.readLine()) != null) {
+//		    System.out.println(line);
+//		  }
+		                            
+//	}
+
 //private void checkWORK() throws IOException 
 //{
 //	ArrayList<String> cmds = new ArrayList<String>();

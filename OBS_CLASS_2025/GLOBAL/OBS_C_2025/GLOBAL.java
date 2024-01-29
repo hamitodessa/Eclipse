@@ -72,8 +72,8 @@ public class GLOBAL {
 	public static final String BACKUP_YERI = "C:\\OBS_SISTEM\\BACKUP\\";
 	public static final String GOREV_DOSYA = System.getProperty("user.name") + "_OBS_GOREV.DB";
 	public static final String BACKUP_DOSYA = System.getProperty("user.name") + "_SQL_BACKUP.DB";
+	public static final String BACKUP_LOG_DOSYA = System.getProperty("user.name") + "_SQL_LOG.DB";
 	public static final String BACKUP_PID = System.getProperty("user.name") + "_BACKUP_PID.txt";
-	public static final String LOG_DOSYA = System.getProperty("user.name") + "_SQL_LOG.DB";
 	static Connection con ;
 	static Connection Ekstrecon ;
 	static String ayarlar[][]; // = new String[5][5];
@@ -119,7 +119,7 @@ public class GLOBAL {
 		Connection conn = null;  
 		try 
 		{  
-			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + LOG_DOSYA );  
+			conn = DriverManager.getConnection("jdbc:sqlite:" + SURUCU + BACKUP_LOG_DOSYA );  
 		} 
 		catch (SQLException e) 
 		{	}  
@@ -136,7 +136,6 @@ public class GLOBAL {
 		{	}  
 		return conn;  
 	}  
-
 	public static Connection   myEkstreConnection ()
 	{
 		Connection conn = null;  
@@ -173,9 +172,6 @@ public class GLOBAL {
 			tablo_yap(sorgu); 
 			sorgu = "CREATE TABLE LOG_MAIL (USER_NAME	CHAR(20),E_MAIL 	CHAR(50), AKTIV  INTEGER); " ;
 			tablo_yap(sorgu); 
-			//sorgu = "CREATE INDEX IDX_USER_NAME  ON USER_DETAILS  (USER_NAME) ; " ;
-			//tablo_yap(sorgu); 
-			Class.forName("org.sqlite.JDBC");
 			Connection conn = null;
 			conn = myConnection();
 			sorgu = "INSERT INTO USERS(USER_NAME,USER_PWD,USER_LEVEL,USER_DB_IZIN,USER_MAIL,USER_YENI_DOSYA_ACMA,USER_YENI_DOSYA_ACMA_SERVER)  VALUES(?,?,?,?,?,?,?); " ;
@@ -245,13 +241,8 @@ public class GLOBAL {
 		}
 		tmpDir = new File(DBYERI);
 		exists = tmpDir.exists();
-		if (exists)
-		{       
-		}
-		else
-		{
+		if (! exists)
 			tmpDir.mkdirs();
-		}
 		if (dos_kontrol(SURUCU + OBS_DOSYA))
 		{   
 			if (! dos_kontrol(SURUCU + EKSTRE_DOSYA))
@@ -287,30 +278,16 @@ public class GLOBAL {
 	{
 		File tmpDir = new File(SURUCU);
 		boolean exists = tmpDir.exists();
-		if (exists)
-		{  
-			
-		}
-		else {
+		if (! exists)
 			tmpDir.mkdirs();
-		}
 		tmpDir = new File(BACKUP_YERI);
 		exists = tmpDir.exists();
-		if (exists)
-		{  
-			
-		}
-		else {
+		if (! exists)
 			tmpDir.mkdirs();
-		}
 	    if( ! dos_kontrol(SURUCU + BACKUP_DOSYA))
-	    {
 	    	backup_obs_dosya_olustur(); // OBS SISTEM BACKUP DOSYASI KONTROL
-	    }
-	    if( ! dos_kontrol(SURUCU + LOG_DOSYA))
-	    {
+	    if( ! dos_kontrol(SURUCU + BACKUP_LOG_DOSYA))
 	    	backup_log_dosya_olustur(); // OBS SISTEM BACKUP LOGDOSYASI KONTROL
-	    }
 	}
 	public void gorev_surucu_kontrol() throws ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
@@ -325,9 +302,7 @@ public class GLOBAL {
 		}
 		
 	    if( ! dos_kontrol(SURUCU + GOREV_DOSYA))
-	    {
 	    	gorev_dosya_olustur(); // OBS SISTEM BACKUP DOSYASI KONTROL
-	    }
 	}
 	public void gorev_dosya_olustur() throws ClassNotFoundException
 	{
@@ -356,7 +331,6 @@ public class GLOBAL {
 			JOptionPane.showMessageDialog(null, ex.getMessage());  
 		}  
 	}
-
 	public void backup_obs_dosya_olustur() throws ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		try {
@@ -424,7 +398,7 @@ public class GLOBAL {
 			JOptionPane.showMessageDialog(null, ex.getMessage());  
 		}  
 	}
-	 private static void backup_tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {
+	private static void backup_tablo_yap(String sorgu) throws ClassNotFoundException, SQLException {
 			Class.forName("org.sqlite.JDBC");
 			con = myBackupConnection();
 			Statement stmt = null;
@@ -458,7 +432,6 @@ public class GLOBAL {
 		} catch (Exception e1) {
 		}
 	}
-	
 	public static void set_doldur() throws IOException {
 		InputStream input;
 		Properties prop = new Properties();
@@ -615,7 +588,6 @@ public class GLOBAL {
 		} catch (IOException e1) {
 		}
 	}
-	
 	public boolean internet_kontrol()
 	{
 		boolean result = false ;
@@ -634,15 +606,7 @@ public class GLOBAL {
 	public static boolean dos_kontrol(String dosya)
 	{
 		File  tmpDir = new File( dosya);
-		boolean exists = tmpDir.exists();
-		if (exists)
-		{   
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return tmpDir.exists();
 	}
 	public void dos_sil(String dosya)
 	{

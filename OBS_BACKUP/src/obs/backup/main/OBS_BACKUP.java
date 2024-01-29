@@ -2341,7 +2341,7 @@ public class OBS_BACKUP extends JFrame {
 			
 		} catch (Exception ex) {
 			try {
-				bckp.log_kayit("System", new Date(), "2337=" + ex.getMessage());
+				bckp.log_kayit("System", new Date(), "2344=" + ex.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

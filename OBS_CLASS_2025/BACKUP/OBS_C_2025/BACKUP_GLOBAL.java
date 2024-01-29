@@ -87,9 +87,7 @@ public class BACKUP_GLOBAL {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String porttString="" ;
 		if ( ! port.equals("") )
-		{
 			porttString= ":" + port;
-		}
 		try
 		{
 			String cumle = "";
@@ -107,9 +105,7 @@ public class BACKUP_GLOBAL {
 		String porttString="" ;
 		Connection con ;
 		if ( ! port.equals("") )
-		{
 			porttString= ":" + port;
-		}
 		try
 		{
 			String cumle = "";
@@ -207,9 +203,8 @@ public class BACKUP_GLOBAL {
 	public void pid_kayit(int pid)throws ClassNotFoundException, SQLException, IOException
 	{
 		File file = new File(glb.SURUCU + glb.BACKUP_PID);
-		if (!file.exists()) {
+		if (!file.exists())
 			file.createNewFile();
-		}
 		FileWriter myWriter = new FileWriter(glb.SURUCU + glb.BACKUP_PID);
 		myWriter.write(String.valueOf(pid));
 		myWriter.close();
@@ -1037,15 +1032,6 @@ public class BACKUP_GLOBAL {
 		FTPClient ftp = new FTPClient();
 		ftp.connect(ftpp, port);
 		ftp.login(kull, sifre);
-//		if(!ftp.login(kull, sifre))
-//		{
-//			ftp.logout();
-//		}
-//		int reply = ftp.getReplyCode();
-//		if (!FTPReply.isPositiveCompletion(reply))
-//		{
-//			ftp.disconnect();
-//		}
 		ftp.setFileType(FTP.BINARY_FILE_TYPE);
 		ftp.enterLocalPassiveMode();
 		ftp.changeWorkingDirectory(ftpsurucu);
@@ -1058,15 +1044,6 @@ public class BACKUP_GLOBAL {
 		FTPClient ftp = new FTPClient();
 		ftp.connect(ftpAddress, port);
 		ftp.login(ftpUser, ftpPassword);
-//		if(!ftp.login(ftpUser, ftpPassword))
-//		{
-//			ftp.logout();
-//		}
-//		int reply = ftp.getReplyCode();
-//		if (!FTPReply.isPositiveCompletion(reply))
-//		{
-//			ftp.disconnect();
-//		}
 		ftp.enterLocalPassiveMode();
 		ftp.changeWorkingDirectory(surucu);
 		ftp.setFileType(FTP.BINARY_FILE_TYPE);

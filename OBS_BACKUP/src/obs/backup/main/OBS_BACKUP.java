@@ -910,11 +910,6 @@ public class OBS_BACKUP extends JFrame {
 				dispose();
 			}
 		});
-		try {
-			createScheduler();
-		} catch (Exception e1) {
-			System.out.println(e1.getMessage());
-		}
 		//***********************************BASLAMA********************************************************************************
 		try 
 		{
@@ -2959,18 +2954,13 @@ public class OBS_BACKUP extends JFrame {
 		  commands.add("/TN");
 		  commands.add("\"OBS_BACKUP\"");
 		  commands.add("/TR");
-		  commands.add("\"C:/OBS_SISTEM/OBS_BACKUP.exe\"");
+		  commands.add("\"C:/OBS_SISTEM/OBS_BACKUP.jar\"");
 		  commands.add("/SC");
 		  commands.add(" ONSTART" );
-		
-		  //commands.add("/ST");
-		  //commands.add("00:00:00");
-		  //commands.add("/SD");
-		 // commands.add("01/02/2024");
-		 
-		  commands.add("/RU");
-		  commands.add("SYSTEM");
-		  //commands.add(System.getProperty("user.name") );
+		  commands.add("/F" );
+		  //commands.add("/RU");
+		  //commands.add("SYSTEM");
+		 // commands.add(System.getProperty("user.name") );
 		  //commands.add("/RP");
 		  //commands.add("197227oOk");
 		

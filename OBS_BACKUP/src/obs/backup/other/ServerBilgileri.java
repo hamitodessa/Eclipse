@@ -15,6 +15,7 @@ import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SIFRE_DONDUR;
+import obs.backup.ayarlar.dilAciklamalar;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -165,6 +166,11 @@ public class ServerBilgileri extends JPanel {
 						textMSsifre.requestFocus();
 						return ;
 					}
+					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
+					{
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
+						return;
+					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.msServerKayit();
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
@@ -287,6 +293,11 @@ public class ServerBilgileri extends JPanel {
 					if(textMyDump.getText().equals(""))
 					{
 						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS,"Backup islemi icin  'mysqldump.exe'  surucusu belirtilmelidir") );
+						return;
+					}
+					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
+					{
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
 						return;
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

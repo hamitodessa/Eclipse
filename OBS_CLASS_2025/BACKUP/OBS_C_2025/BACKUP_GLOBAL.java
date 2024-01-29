@@ -843,23 +843,24 @@ public class BACKUP_GLOBAL {
 		return sonucString;
 	}
 	public String surucu_bilgi(String eismi, String nerden)throws ClassNotFoundException, SQLException
-	{Class.forName("org.sqlite.JDBC");
-	if (con != null && ! con.isClosed()) con.close();
-	PreparedStatement stmt = null;
-	ResultSet	rss = null;
-	con = glb.myBackupConnection();
-	String sql =  "SELECT " + nerden + " FROM FTP WHERE  EMIR_ISMI= '" + eismi + "'";
-	stmt = con.prepareStatement(sql);
-	rss = stmt.executeQuery();
-	rss.next();
-	int count=0;
-	count = rss.getRow();
-	String qweString = "" ;
-	if (count  > 0)
-		qweString = rss.getString(nerden);
-	stmt.close();
-	con.close();
-	return qweString ;
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		PreparedStatement stmt = null;
+		ResultSet	rss = null;
+		con = glb.myBackupConnection();
+		String sql =  "SELECT " + nerden + " FROM FTP WHERE  EMIR_ISMI= '" + eismi + "'";
+		stmt = con.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		rss.next();
+		int count=0;
+		count = rss.getRow();
+		String qweString = "" ;
+		if (count  > 0)
+			qweString = rss.getString(nerden);
+		stmt.close();
+		con.close();
+		return qweString ;
 	}
 	public List<bilgilendirme_bilgiler> bilgilendirme_bilgi(String eismi)throws ClassNotFoundException, SQLException
 	{
@@ -1213,8 +1214,10 @@ public class BACKUP_GLOBAL {
 		try {
 			zipFile.addFile(new File(dosyolu + dosadi), zipParameters);
 			zipFile.close();
-		} catch (Exception ex) {
-			try {
+		} catch (Exception ex) 
+		{
+			try 
+			{
 				log_kayit("System", new Date(), ex.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -1232,7 +1235,8 @@ public class BACKUP_GLOBAL {
 		zipParameters.setEncryptionMethod(EncryptionMethod.AES);
 		zipFile = new ZipFile(dosyolu + dosadi_zip, sifre.toCharArray());
 		}
-		else {
+		else 
+		{
 			zipFile = new ZipFile(dosyolu + dosadi_zip);
 		}
 		try {

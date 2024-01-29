@@ -148,17 +148,25 @@ public class YedeklemeAraligi extends JPanel {
 					date2.setDate(date.getDate());
 					if (date.after(date2) )
 					{
-					OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Bitis Zamani Baslangic Zamanindan Kucuk olamaz"));
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Bitis Zamani Baslangic Zamanindan Kucuk olamaz"));
+						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
+						return;
+					}
+					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
+					{
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
+						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 						return;
 					}
 					OBS_BACKUP.yedeklemeKaydet();
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 			}
 		});
-		 add(btnNewButton_9);
+		add(btnNewButton_9);
 	}
 }

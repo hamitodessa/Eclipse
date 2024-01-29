@@ -336,20 +336,23 @@ public class GLOBAL {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			String sorgu= null;
-			sorgu = "CREATE TABLE EMIRLER ( EMIR_ISMI nvarchar(30) CONSTRAINT EMIR_ISMI PRIMARY KEY,DURUM INTEGER,EMIR_ACIKLAMA nvarchar(50),INSTANCE nvarchar(30),SON_DURUM INTEGER ,SON_YUKLEME DATETIME,SQL_YEDEK INTEGER,MESAJ nvarchar(40),OLUSTURMA DATETIME) ";
+			sorgu = "CREATE TABLE EMIRLER ( EMIR_ISMI nvarchar(30) CONSTRAINT EMIR_ISMI PRIMARY KEY,DURUM INTEGER,EMIR_ACIKLAMA nvarchar(50)," +  
+					"INSTANCE nvarchar(30),SON_DURUM INTEGER ,SON_YUKLEME DATETIME,SQL_YEDEK INTEGER,MESAJ nvarchar(40),OLUSTURMA DATETIME) ";
 			backup_tablo_yap(sorgu);
 			sorgu =  "CREATE TABLE FTP ( EMIR_ISMI nvarchar(30),NERESI nvarchar(3),HOST nvarchar(30) ,KULLANICI nvarchar(50), " + 
-					"SIFRE nvarchar(200),SURUCU nvarchar(200),PORT nvarchar(3),ZMN_ASIMI nvarchar(10),ESKI_YEDEK nvarchar(3), " + 
+					"SIFRE BLOB,SURUCU nvarchar(200),PORT nvarchar(3),ZMN_ASIMI nvarchar(10),ESKI_YEDEK nvarchar(3), " + 
 					"SURUCU_YER nvarchar(200)) ";
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE BILGILENDIRME ( EMIR_ISMI nvarchar(30) ,DURUM INTEGER,GONDERILDIGINDE INTEGER,HATA_DURUMUNDA INTEGER ,GON_ISIM  nvarchar(50),GON_HESAP nvarchar(50), ALICI nvarchar(50), KONU nvarchar(50), SMTP nvarchar(30), SMTP_PORT nvarchar(3), KULLANICI nvarchar(50), SIFRE nvarchar(200), SSL INTEGER,TSL INTEGER) ";
+			sorgu = "CREATE TABLE BILGILENDIRME ( EMIR_ISMI nvarchar(30) ,DURUM INTEGER,GONDERILDIGINDE INTEGER,HATA_DURUMUNDA INTEGER , " + 
+					"GON_ISIM  nvarchar(50),GON_HESAP nvarchar(50), ALICI nvarchar(50), KONU nvarchar(50), SMTP nvarchar(30), SMTP_PORT nvarchar(3), " + 
+					" KULLANICI nvarchar(50), SIFRE BLOB, SSL INTEGER,TSL INTEGER) ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE YEDEKLEME (EMIR_ISMI nvarchar(30) , SAAT nvarchar(2),P_TESI INTEGER,SALI INTEGER " +
 					" ,CARS INTEGER,PERS INTEGER,CUMA INTEGER,C_TESI INTEGER,PAZAR INTEGER,BASLAMA DATETIME,BITIS DATETIME ) ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE SERVER (  EMIR_ISMI nvarchar(30) ,HANGI_SQL nvarchar(6) ,INSTANCE nvarchar(50) " +
 					" ,WIN INTEGER,SERV INTEGER,KULLANICI nvarchar(50) " +
-					" ,SIFRE nvarchar(200) , PORT nvarchar(10),MY_DUMP nvarchar(200)) ";
+					" ,SIFRE BLOB , PORT nvarchar(10),MY_DUMP nvarchar(200)) ";
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE DB_ISIM (  EMIR_ISMI nvarchar(30) ,DB_ADI nvarchar(100)) ";
 			backup_tablo_yap(sorgu);
@@ -357,11 +360,11 @@ public class GLOBAL {
 			backup_tablo_yap(sorgu);
 			sorgu = "CREATE TABLE YONETICI (SIFRE BLOB ) ";
 			backup_tablo_yap(sorgu);
-			sorgu = "CREATE TABLE AYARLAR (  DIL nvarchar(10) ,TEMA nvarchar(50),SIFRELE INTEGER, SIFRE BLOB,PRG_SIFRELE) ";
+			sorgu = "CREATE TABLE AYARLAR (  DIL nvarchar(10) ,TEMA nvarchar(50),SIFRELE INTEGER, SIFRE BLOB,PRG_SIFRELE INTEGER) ";
 			backup_tablo_yap(sorgu);
 	
 			con = myBackupConnection();
-			sorgu = "INSERT INTO AYARLAR(DIL,TEMA,SIFRELE,SIFRE)  VALUES('Turkce','FlatCarbonIJ','0','','0')" ;
+			sorgu = "INSERT INTO AYARLAR(DIL,TEMA,SIFRELE,SIFRE,PRG_SIFRELE)  VALUES('Turkce','FlatCarbonIJ','0','','0')" ;
 			Statement pstmt = con.prepareStatement(sorgu) ;
 			pstmt = con.createStatement();  
 			pstmt.execute(sorgu);  

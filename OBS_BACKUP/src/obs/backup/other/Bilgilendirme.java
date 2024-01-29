@@ -222,6 +222,11 @@ public class Bilgilendirme extends JPanel {
 							return;
 						}
 					}
+					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
+					{
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
+						return;
+					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.bilgilendirmeKaydet();
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);

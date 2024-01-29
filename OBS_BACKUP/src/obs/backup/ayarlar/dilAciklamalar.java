@@ -226,7 +226,6 @@ public class dilAciklamalar {
 			case "Aktarma Islemi Tamamlandi": 
 				acikLAMAString = "Transfer Completed";
 				break;
-				
 //				
 			}
 		}

@@ -990,7 +990,6 @@ public class OBS_BACKUP extends JFrame {
 	}
 	public static void genelKayit() 
 	{
-		if (emirAnaGirisPanel.txtEmir.getText().toString().equals("")) return;
 		Boolean drm = false;
 		if (yedekaraligiPanel.chckbxPtesi.isSelected())
 			drm = true;

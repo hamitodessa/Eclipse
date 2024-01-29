@@ -234,7 +234,6 @@ public class DownloadFile extends JPanel {
 								{
 									panelalt.lblEmirAdi.setText(modell.getValueAt(ii,1).toString());
 									toplam =  files[i].getSize();
-									//panelalt.lblDosBoyut.setText( FORMATLAMA.doub_0(toplam/1024));
 									panelalt.lblDosBoyut.setText( FORMATLAMA.doub_0(toplam)+ " Bytes");
 									double topl =  toplam ;
 									String remoteFile2 =   files[i].getName();
@@ -247,25 +246,19 @@ public class DownloadFile extends JPanel {
 									//panelalt.Progres_Bar_Temizle_2();
 									panelalt.RPB2.setStringPainted(true);
 									panelalt.RPB2.setMaximum((int)toplam);
-									//panelalt.RPB2.setMaximum((int)toplam/1024);
 									Long start = System.currentTimeMillis();
 									long timeInSecs = 0;
 									while ((bytesRead = inputStream.read(bytesArray)) != -1)
 									{
 										outputStream2.write(bytesArray, 0, bytesRead);
 										inen += bytesRead ;
-										//panelalt.lblInen.setText(FORMATLAMA.doub_0(inen /1024 )+ " KBytes");
 										panelalt.lblInen.setText(FORMATLAMA.doub_0(inen )+ " Bytes");
-										//panelalt.lblKalan.setText(FORMATLAMA.doub_0((toplam  - inen) /1024 )+ " KBytes");
 										panelalt.lblKalan.setText(FORMATLAMA.doub_0((toplam  - inen)  )+ " Bytes");
-										//panelalt.Progres_Bar_2((int) inen /1024);
 										panelalt.Progres_Bar_2((int) inen);
 										double speedInKBps = 0.00;
 										timeInSecs = (System.currentTimeMillis() - start) ; 
 										speedInKBps = ( (inen * 1000) / (timeInSecs + 1))  ;
-										//panelalt.lblHiz.setText(FORMATLAMA.doub_0( speedInKBps /1024) + " KBytes");
 										panelalt.lblHiz.setText(FORMATLAMA.doub_0( speedInKBps) + " Bytes");
-										//System.out.println(files[i].getName() +"=="+ (int)toplam + "=="+  (int) inen );
 									}
 									success = ftpc.completePendingCommand();
 									outputStream2.close();

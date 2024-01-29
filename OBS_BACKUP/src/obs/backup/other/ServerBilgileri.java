@@ -151,6 +151,11 @@ public class ServerBilgileri extends JPanel {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
+					{
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
+						return;
+					}
 					if(textMSServer.getText().equals(""))
 					{
 						textMSServer.requestFocus();
@@ -166,17 +171,11 @@ public class ServerBilgileri extends JPanel {
 						textMSsifre.requestFocus();
 						return ;
 					}
-					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
-					{
-						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
-						return;
-					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					OBS_BACKUP.msServerKayit();
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
-				
 					OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, e1.getMessage());
 				}
 			}
@@ -275,6 +274,11 @@ public class ServerBilgileri extends JPanel {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
+					{
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
+						return;
+					}
 					if(textMYPort.getText().equals(""))
 					{
 						textMYPort.requestFocus();
@@ -293,11 +297,6 @@ public class ServerBilgileri extends JPanel {
 					if(textMyDump.getText().equals(""))
 					{
 						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS,"Backup islemi icin  'mysqldump.exe'  surucusu belirtilmelidir") );
-						return;
-					}
-					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
-					{
-						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
 						return;
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

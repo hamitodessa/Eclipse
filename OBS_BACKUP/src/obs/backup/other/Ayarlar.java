@@ -20,6 +20,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -39,8 +43,10 @@ import com.formdev.flatlaf.FlatClientProperties;
 import javax.swing.border.TitledBorder;
 
 import java.io.File;
+import java.io.FileOutputStream;
 
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -184,9 +190,9 @@ public class Ayarlar extends JPanel {
 					if (chckbxNewCheckBox.isSelected())  // Secili
 					{
 						createSchedulerStartup();
-						taskRunStartup();
-						createSchedulerLogin();
-						taskRunLogin();
+						//taskRunStartup();
+						//createSchedulerLogin();
+						//taskRunLogin();
 					}
 					else {
 						taskDeleteStartUp();
@@ -203,59 +209,50 @@ public class Ayarlar extends JPanel {
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Path currentRelativePath = Paths.get("");
-				//String s = currentRelativePath.toAbsolutePath().toString();
-				//System.out.println("Current absolute path is: " + s);
-				String  s = "C:\\OBS_SISTEM" ;
-				try {
-					
-				
-				
-				String inputFile = s + "\\OBS_BACKUP.xml";
-				String outputFile = s + "\\Renamed.xml";
-				
-				Document doc = DocumentBuilderFactory.newInstance()
-						.newDocumentBuilder().parse(new InputSource(inputFile));
-
-				// Use XPath to find all nodes where student is named 'Suresh'
-				XPath xpath = XPathFactory.newInstance().newXPath();
-				NodeList nodes = (NodeList)xpath
-					.evaluate("//Command[text()='C:\\OBS_SISTEM\\OBS_BACKUP.exe']", doc, XPathConstants.NODESET);
-
-				// Rename these nodes
-				for (int idx = 0; idx < nodes.getLength(); idx++) {
-					nodes.item(idx).setTextContent(s + "\\OBS_BACKUP.exe");
-				}
-
-				// Write the DOM document to the file
-				Transformer xformer = TransformerFactory.newInstance().newTransformer();
-				xformer.transform(new DOMSource(doc), new StreamResult(new File(outputFile)));
-				
-				File qweFile = new File(inputFile);
-				qweFile.delete();
-				File file = new File(outputFile); 
-				
-		        File rename = new File(inputFile); 
-		        boolean flag = file.renameTo(rename); 
-		        if (flag == true) { 
-		            System.out.println("File Successfully Rename"); 
-		        } 
-		        else { 
-		            System.out.println("Operation Failed"); 
-		        } 
-				
-				} catch (Exception e2) {
-					System.out.println("==: " + e2.getMessage());
-				}
 			}
 		});
 		btnNewButton_1.setBounds(388, 446, 89, 23);
 		add(btnNewButton_1);
 	}
+
+	private String kopyaYaz(String dosyaAdi)
+	{
+		Path currentRelativePath = Paths.get("");
+		String s = currentRelativePath.toAbsolutePath().toString();
+		s= "C:\\OBS_SISTEM" ;
+		try {
+			
+		InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/" + dosyaAdi + ".xml");
+		
+		String inputFile = s + "\\" + dosyaAdi + ".xml";
+		Document doc = DocumentBuilderFactory.newInstance()
+				.newDocumentBuilder().parse(new InputSource(iss));
+		XPath xpath = XPathFactory.newInstance().newXPath();
+		NodeList nodes = (NodeList)xpath
+			.evaluate("//Command[text()='C:\\OBS_SISTEM\\OBS_BACKUP.exe']", doc, XPathConstants.NODESET);
+		for (int idx = 0; idx < nodes.getLength(); idx++) {
+			nodes.item(idx).setTextContent(s + "\\OBS_BACKUP.exe");
+		}
+		Transformer xformer = TransformerFactory.newInstance().newTransformer();
+		xformer.setOutputProperty(OutputKeys.ENCODING,  "encoding=UTF-16");
+	
+		StreamResult sr = new StreamResult(new FileOutputStream(new File(inputFile),false));
+		
+		
+		xformer.transform(new DOMSource(doc), sr);
+		sr.getOutputStream().close();
+		
+		  
+		} catch (Exception e2) {
+			System.out.println("==: " + e2.getMessage());
+		}
+		return s ;
+	}
 	private void createSchedulerStartup() throws IOException, InterruptedException, ClassNotFoundException, SQLException
 	{
-		InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/OBS_BACKUP.xml");
-		Files.copy(iss, Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"),StandardCopyOption.REPLACE_EXISTING);
+		String patHString =  kopyaYaz("OBS_BACKUP");
+		//InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/OBS_BACKUP.xml");
+		//Files.copy(iss, Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"),StandardCopyOption.REPLACE_EXISTING);
 		
 		Runtime rt = Runtime.getRuntime();
 		Process p = rt.exec("schtasks.exe /Create /XML C:\\OBS_SISTEM\\OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
@@ -285,7 +282,7 @@ public class Ayarlar extends JPanel {
 			}
 			
 		}
-		Files.delete( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"));
+		//Files.delete( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"));
 		
 		
 	}

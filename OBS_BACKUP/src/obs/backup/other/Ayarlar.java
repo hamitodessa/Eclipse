@@ -24,6 +24,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -209,6 +210,18 @@ public class Ayarlar extends JPanel {
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+				Path path = Paths.get("C:\\OBS_SISTEM\\OBS_BACKUP.xml");
+				Charset charset = StandardCharsets.UTF_8;
+
+				String content = new String(Files.readAllBytes(path), charset);
+				content = content.replaceAll("encoding=\"UTF-8\"", "");
+					Files.write(path, content.getBytes(charset));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnNewButton_1.setBounds(388, 446, 89, 23);
@@ -255,6 +268,14 @@ public class Ayarlar extends JPanel {
 		//InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/OBS_BACKUP.xml");
 		//Files.copy(iss, Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"),StandardCopyOption.REPLACE_EXISTING);
 		
+		Path path = Paths.get(patHString + "\\OBS_BACKUP.xml");
+		Charset charset = StandardCharsets.UTF_8;
+
+		String content = new String(Files.readAllBytes(path), charset);
+		content = content.replaceAll("encoding=\"UTF-8\"", "");
+			Files.write(path, content.getBytes(charset));
+			
+			
 		Runtime rt = Runtime.getRuntime();
 		Process p = rt.exec("schtasks.exe /Create /XML C:\\OBS_SISTEM\\OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
 	

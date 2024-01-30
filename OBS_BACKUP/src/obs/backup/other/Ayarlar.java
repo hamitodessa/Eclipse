@@ -247,15 +247,9 @@ public class Ayarlar extends JPanel {
 			nodes.item(idx).setTextContent(s + "\\OBS_BACKUP.exe");
 		}
 		Transformer xformer = TransformerFactory.newInstance().newTransformer();
-		xformer.setOutputProperty(OutputKeys.ENCODING,  "UTF-16LE");
-	
 		StreamResult sr = new StreamResult(new FileOutputStream(new File(inputFile),false));
-		
-		
 		xformer.transform(new DOMSource(doc), sr);
 		sr.getOutputStream().close();
-				
-		
 		  
 		} catch (Exception e2) {
 			System.out.println("==: " + e2.getMessage());

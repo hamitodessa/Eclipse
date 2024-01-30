@@ -267,7 +267,7 @@ public class Ayarlar extends JPanel {
 
 		String content = new String(Files.readAllBytes(path), charset);
 		content = content.replaceAll("encoding=\"UTF-8\"", "");
-			Files.write(path, content.getBytes(charset));
+		Files.write(path, content.getBytes(charset));
 			
 			
 		Runtime rt = Runtime.getRuntime();

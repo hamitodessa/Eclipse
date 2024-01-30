@@ -4,13 +4,28 @@ import javax.swing.JPanel;
 
 
 import OBS_C_2025.BACKUP_GLOBAL;
+import OBS_C_2025.GLOBAL;
 import OBS_C_2025.SIFRE_DONDUR;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
+import raven.toast.Notifications;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.sql.SQLException;
+import java.util.Date;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -18,6 +33,25 @@ import javax.swing.JCheckBox;
 import javax.swing.JPasswordField;
 
 import com.formdev.flatlaf.FlatClientProperties;
+
+
+
+import javax.swing.border.TitledBorder;
+
+import java.io.File;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 @SuppressWarnings({"serial","deprecation"})
 public class Ayarlar extends JPanel {
@@ -95,7 +129,7 @@ public class Ayarlar extends JPanel {
 				}
 			}
 		});
-		btnKaydet.setBounds(137, 471, 89, 23);
+		btnKaydet.setBounds(160, 347, 89, 23);
 		add(btnKaydet);
 		
 		chckbxSifrele = new JCheckBox("");
@@ -126,12 +160,262 @@ public class Ayarlar extends JPanel {
 		add(passwordText);
 		
 		lblNewLabel_3 = new JLabel("Acilis Sifre Sor");
-		lblNewLabel_3.setBounds(42, 310, 123, 14);
+		lblNewLabel_3.setBounds(42, 271, 120, 14);
 		add(lblNewLabel_3);
 		
 		chckbxPrgSifre = new JCheckBox("");
-		chckbxPrgSifre.setBounds(160, 306, 99, 23);
+		chckbxPrgSifre.setBounds(160, 267, 99, 23);
 		add(chckbxPrgSifre);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Windows Scheduler", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(42, 432, 336, 53);
+		add(panel);
+		panel.setLayout(null);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Windows ile Baslat");
+		chckbxNewCheckBox.setBounds(115, 17, 157, 23);
+		panel.add(chckbxNewCheckBox);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if (chckbxNewCheckBox.isSelected())  // Secili
+					{
+						createSchedulerStartup();
+						taskRunStartup();
+						createSchedulerLogin();
+						taskRunLogin();
+					}
+					else {
+						taskDeleteStartUp();
+						taskDeleteLogin();
+					}
+				} catch (Exception e2) {
+				}
+			}
+		});
+		btnNewButton.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/save.png")));
+		btnNewButton.setBounds(293, 17, 25, 23);
+		panel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Path currentRelativePath = Paths.get("");
+				//String s = currentRelativePath.toAbsolutePath().toString();
+				//System.out.println("Current absolute path is: " + s);
+				String  s = "C:\\OBS_SISTEM" ;
+				try {
+					
+				
+				
+				String inputFile = s + "\\OBS_BACKUP.xml";
+				String outputFile = s + "\\Renamed.xml";
+				
+				Document doc = DocumentBuilderFactory.newInstance()
+						.newDocumentBuilder().parse(new InputSource(inputFile));
+
+				// Use XPath to find all nodes where student is named 'Suresh'
+				XPath xpath = XPathFactory.newInstance().newXPath();
+				NodeList nodes = (NodeList)xpath
+					.evaluate("//Command[text()='C:\\OBS_SISTEM\\OBS_BACKUP.exe']", doc, XPathConstants.NODESET);
+
+				// Rename these nodes
+				for (int idx = 0; idx < nodes.getLength(); idx++) {
+					nodes.item(idx).setTextContent(s + "\\OBS_BACKUP.exe");
+				}
+
+				// Write the DOM document to the file
+				Transformer xformer = TransformerFactory.newInstance().newTransformer();
+				xformer.transform(new DOMSource(doc), new StreamResult(new File(outputFile)));
+				
+				File qweFile = new File(inputFile);
+				qweFile.delete();
+				File file = new File(outputFile); 
+				
+		        File rename = new File(inputFile); 
+		        boolean flag = file.renameTo(rename); 
+		        if (flag == true) { 
+		            System.out.println("File Successfully Rename"); 
+		        } 
+		        else { 
+		            System.out.println("Operation Failed"); 
+		        } 
+				
+				} catch (Exception e2) {
+					System.out.println("==: " + e2.getMessage());
+				}
+			}
+		});
+		btnNewButton_1.setBounds(388, 446, 89, 23);
+		add(btnNewButton_1);
+	}
+	private void createSchedulerStartup() throws IOException, InterruptedException, ClassNotFoundException, SQLException
+	{
+		InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/OBS_BACKUP.xml");
+		Files.copy(iss, Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"),StandardCopyOption.REPLACE_EXISTING);
+		
+		Runtime rt = Runtime.getRuntime();
+		Process p = rt.exec("schtasks.exe /Create /XML C:\\OBS_SISTEM\\OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
+	
+		// stdout
+		InputStream is = p.getInputStream();
+		InputStreamReader isr = new InputStreamReader(is);
+		BufferedReader br = new BufferedReader(isr);
+		String line;
+		while ((line = br.readLine()) != null) 
+		{
+			if(! line.equals("")) 
+			{
+				bckp.log_kayit("System", new Date(), line);
+				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
+			}  
+		}
+		//stderr
+		is = p.getErrorStream();
+		isr = new InputStreamReader(is);
+		br = new BufferedReader(isr);
+		while ((line = br.readLine()) != null) {
+			if(! line.equals("")) 
+			{
+				bckp.log_kayit("System", new Date(), line);
+				OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+			}
+			
+		}
+		Files.delete( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"));
+		
+		
+	}
+	private void createSchedulerLogin() throws IOException, InterruptedException, ClassNotFoundException, SQLException
+	{
+		InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/OBS_BACKUP_LOGIN.xml");
+		Files.copy(iss, Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP_LOGIN.xml"),StandardCopyOption.REPLACE_EXISTING);
+		
+		iss.close();
+		Runtime rt = Runtime.getRuntime();
+		Process p = rt.exec("schtasks.exe /Create /XML C:\\OBS_SISTEM\\OBS_BACKUP_LOGIN.xml /TN OBS_BACKUP_LOGIN ");
+	
+		// stdout
+		InputStream is = p.getInputStream();
+		InputStreamReader isr = new InputStreamReader(is);
+		BufferedReader br = new BufferedReader(isr);
+		String line;
+		while ((line = br.readLine()) != null) {
+			bckp.log_kayit("System", new Date(), line);
+		OBS_BACKUP.	mesajGoster(10000,Notifications.Type.INFO, line);     
+		}
+		//stderr
+		is = p.getErrorStream();
+		isr = new InputStreamReader(is);
+		br = new BufferedReader(isr);
+		while ((line = br.readLine()) != null) {
+			bckp.log_kayit("System", new Date(), line);
+			OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+		}
+		Files.delete( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP_LOGIN.xml"));
+		
+		
+	}
+	private void taskRunStartup() throws IOException, ClassNotFoundException, SQLException 
+	{
+		Runtime rt = Runtime.getRuntime();
+		Process p = rt.exec("schtasks.exe /RUN /TN OBS_BACKUP");
+
+		InputStream is = p.getInputStream();
+		InputStreamReader isr = new InputStreamReader(is);
+		BufferedReader br = new BufferedReader(isr);
+		String line;
+		is = p.getInputStream();
+		isr = new InputStreamReader(is);
+		br = new BufferedReader(isr);
+
+		while ((line = br.readLine()) != null) {
+			bckp.log_kayit("System", new Date(), line);
+			OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
+		}
+		//stderr
+		is = p.getErrorStream();
+		isr = new InputStreamReader(is);
+		br = new BufferedReader(isr);
+		while ((line = br.readLine()) != null) {
+			bckp.log_kayit("System", new Date(), line);
+			OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+		}
+	}
+	private void taskRunLogin() throws IOException, ClassNotFoundException, SQLException 
+	{
+		Runtime rt = Runtime.getRuntime();
+		Process p = rt.exec("schtasks.exe /RUN /TN OBS_BACKUP_LOGIN");
+
+		InputStream is = p.getInputStream();
+		InputStreamReader isr = new InputStreamReader(is);
+		BufferedReader br = new BufferedReader(isr);
+		String line;
+		is = p.getInputStream();
+		isr = new InputStreamReader(is);
+		br = new BufferedReader(isr);
+
+		while ((line = br.readLine()) != null) {
+			bckp.log_kayit("System", new Date(), line);
+			OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
+		}
+		//stderr
+		is = p.getErrorStream();
+		isr = new InputStreamReader(is);
+		br = new BufferedReader(isr);
+		while ((line = br.readLine()) != null) {
+			bckp.log_kayit("System", new Date(), line);
+			OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+		}
+	}
+	private void taskDeleteStartUp() throws IOException, ClassNotFoundException, SQLException
+	{
+		Runtime rt = Runtime.getRuntime();
+		Process p = rt.exec("schtasks.exe /Delete /TN OBS_BACKUP /F");
+		InputStream is = p.getInputStream();
+		InputStreamReader isr = new InputStreamReader(is);
+		BufferedReader br = new BufferedReader(isr);
+		String line;
+		while ((line = br.readLine()) != null) {
+			bckp.log_kayit("System", new Date(), line);
+			OBS_BACKUP.mesajGoster(7500,Notifications.Type.INFO, line); 
+		}
+
+		//stderr
+		is = p.getErrorStream();
+		isr = new InputStreamReader(is);
+		br = new BufferedReader(isr);
+		while ((line = br.readLine()) != null) {
+			bckp.log_kayit("System", new Date(), line);
+			OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+		}
+
+	}
+	private void taskDeleteLogin() throws IOException, ClassNotFoundException, SQLException
+	{
+		Runtime rt = Runtime.getRuntime();
+		Process p = rt.exec("schtasks.exe /Delete /TN OBS_BACKUP_LOGIN /F");
+		InputStream is = p.getInputStream();
+		InputStreamReader isr = new InputStreamReader(is);
+		BufferedReader br = new BufferedReader(isr);
+		String line;
+		while ((line = br.readLine()) != null) {
+			bckp.log_kayit("System", new Date(), line);
+			OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
+		}
+
+		//stderr
+		is = p.getErrorStream();
+		isr = new InputStreamReader(is);
+		br = new BufferedReader(isr);
+		while ((line = br.readLine()) != null) {
+			bckp.log_kayit("System", new Date(), line);
+			OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+		}
+
 	}
 }
 

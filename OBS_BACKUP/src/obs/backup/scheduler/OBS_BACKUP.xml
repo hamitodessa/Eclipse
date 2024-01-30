@@ -2,7 +2,7 @@
 <Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
   <RegistrationInfo>
     <Date>2024-01-30T12:54:45.9480162</Date>
-    <Author>PALSTBAK-HAMIT\hamit</Author>
+    <Author>hamit</Author>
     <URI>\OBS_BACKUP</URI>
   </RegistrationInfo>
   <Triggers>
@@ -38,7 +38,7 @@
   </Settings>
   <Actions Context="Author">
     <Exec>
-      <Command>C:\OBS_SISTEM\OBS_BACKUP.exe</Command>
+      <Command>DOSYA</Command>
     </Exec>
   </Actions>
 </Task>

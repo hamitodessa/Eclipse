@@ -20,17 +20,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.regex.Matcher;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -43,22 +40,7 @@ import com.formdev.flatlaf.FlatClientProperties;
 
 import javax.swing.border.TitledBorder;
 
-import java.io.File;
 import java.io.FileOutputStream;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathFactory;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 
 @SuppressWarnings({"serial","deprecation"})
 public class Ayarlar extends JPanel {
@@ -191,8 +173,8 @@ public class Ayarlar extends JPanel {
 					if (chckbxNewCheckBox.isSelected())  // Secili
 					{
 						createSchedulerStartup();
+						createSchedulerLogin();
 						//taskRunStartup();
-						//createSchedulerLogin();
 						//taskRunLogin();
 					}
 					else {
@@ -207,71 +189,43 @@ public class Ayarlar extends JPanel {
 		btnNewButton.setBounds(293, 17, 25, 23);
 		panel.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-				Path path = Paths.get("C:\\OBS_SISTEM\\OBS_BACKUP.xml");
-				Charset charset = StandardCharsets.UTF_8;
-
-				String content = new String(Files.readAllBytes(path), charset);
-				content = content.replaceAll("encoding=\"UTF-8\"", "");
-					Files.write(path, content.getBytes(charset));
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-			}
-		});
-		btnNewButton_1.setBounds(388, 446, 89, 23);
-		add(btnNewButton_1);
 	}
-
-	private String kopyaYaz(String dosyaAdi)
+	private String xmlDegis(String dosya, String xmlDosya)
 	{
-		Path currentRelativePath = Paths.get("");
-		String s = currentRelativePath.toAbsolutePath().toString();
-		s= "C:\\OBS_SISTEM" ;
+		String s ="";
 		try {
-			
-		InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/" + dosyaAdi + ".xml");
-		
-		String inputFile = s + "\\" + dosyaAdi + ".xml";
-		Document doc = DocumentBuilderFactory.newInstance()
-				.newDocumentBuilder().parse(new InputSource(iss));
-		XPath xpath = XPathFactory.newInstance().newXPath();
-		NodeList nodes = (NodeList)xpath
-			.evaluate("//Command[text()='C:\\OBS_SISTEM\\OBS_BACKUP.exe']", doc, XPathConstants.NODESET);
-		for (int idx = 0; idx < nodes.getLength(); idx++) {
-			nodes.item(idx).setTextContent(s + "\\OBS_BACKUP.exe");
+			Path currentRelativePath = Paths.get("");
+			s = currentRelativePath.toAbsolutePath().toString() + "\\";
+			s = "C:\\OBS_SISTEM\\" ;
+			InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/" + xmlDosya + ".xml");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(iss));
+			String content,str; 
+			StringBuffer buf = new StringBuffer();      
+			while ((str = reader.readLine()) != null) {   
+				buf.append(str + "\n" );
+			}                
+			content = buf.toString();
+			content = content.replaceAll("encoding=\"UTF-8\"", "");
+			content = content.replaceAll("DOSYA", Matcher.quoteReplacement(s + dosya));
+			if(xmlDosya.equals("OBS_BACKUP_LOGIN"))
+			{
+				content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
+			}
+			OutputStreamWriter writer =new OutputStreamWriter(new FileOutputStream(GLOBAL.SURUCU  +  xmlDosya + ".xml"), 
+					StandardCharsets.UTF_8);
+			writer.write(content);
+			writer.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
-		Transformer xformer = TransformerFactory.newInstance().newTransformer();
-		StreamResult sr = new StreamResult(new FileOutputStream(new File(inputFile),false));
-		xformer.transform(new DOMSource(doc), sr);
-		sr.getOutputStream().close();
-		  
-		} catch (Exception e2) {
-			System.out.println("==: " + e2.getMessage());
-		}
-		return s ;
+		return s;
 	}
+	
 	private void createSchedulerStartup() throws IOException, InterruptedException, ClassNotFoundException, SQLException
 	{
-		String patHString =  kopyaYaz("OBS_BACKUP");
-		//InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/OBS_BACKUP.xml");
-		//Files.copy(iss, Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"),StandardCopyOption.REPLACE_EXISTING);
-		
-		Path path = Paths.get(patHString + "\\OBS_BACKUP.xml");
-		Charset charset = StandardCharsets.UTF_8;
-
-		String content = new String(Files.readAllBytes(path), charset);
-		content = content.replaceAll("encoding=\"UTF-8\"", "");
-		Files.write(path, content.getBytes(charset));
-			
-			
+		String pathString =  xmlDegis("OBS_BACKUP.exe","OBS_BACKUP");
 		Runtime rt = Runtime.getRuntime();
-		Process p = rt.exec("schtasks.exe /Create /XML C:\\OBS_SISTEM\\OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
+		Process p = rt.exec("schtasks.exe /Create /XML "+ pathString +"OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
 	
 		// stdout
 		InputStream is = p.getInputStream();
@@ -293,23 +247,26 @@ public class Ayarlar extends JPanel {
 		while ((line = br.readLine()) != null) {
 			if(! line.equals("")) 
 			{
-				bckp.log_kayit("System", new Date(), line);
-				OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+				if(line.equals("ERROR: Access is denied."))
+				{
+					bckp.log_kayit("System", new Date(), line);
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz..."); 
+				}
+				else {
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+				}
+
 			}
-			
+
 		}
-		//Files.delete( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"));
-		
-		
+		Files.delete( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"));
 	}
 	private void createSchedulerLogin() throws IOException, InterruptedException, ClassNotFoundException, SQLException
 	{
-		InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/OBS_BACKUP_LOGIN.xml");
-		Files.copy(iss, Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP_LOGIN.xml"),StandardCopyOption.REPLACE_EXISTING);
+		String pathString =  xmlDegis("OBS_BACKUP.exe","OBS_BACKUP_LOGIN");
 		
-		iss.close();
 		Runtime rt = Runtime.getRuntime();
-		Process p = rt.exec("schtasks.exe /Create /XML C:\\OBS_SISTEM\\OBS_BACKUP_LOGIN.xml /TN OBS_BACKUP_LOGIN ");
+		Process p = rt.exec("schtasks.exe /Create /XML " + pathString + "OBS_BACKUP_LOGIN.xml /TN OBS_BACKUP_LOGIN ");
 	
 		// stdout
 		InputStream is = p.getInputStream();
@@ -317,20 +274,33 @@ public class Ayarlar extends JPanel {
 		BufferedReader br = new BufferedReader(isr);
 		String line;
 		while ((line = br.readLine()) != null) {
-			bckp.log_kayit("System", new Date(), line);
-		OBS_BACKUP.	mesajGoster(10000,Notifications.Type.INFO, line);     
+			
+			if(! line.equals("")) 
+			{
+				bckp.log_kayit("System", new Date(), line);
+				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
+			}  
 		}
 		//stderr
 		is = p.getErrorStream();
 		isr = new InputStreamReader(is);
 		br = new BufferedReader(isr);
 		while ((line = br.readLine()) != null) {
-			bckp.log_kayit("System", new Date(), line);
-			OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+			
+			if(! line.equals("")) 
+			{
+				if(line.equals("ERROR: Access is denied."))
+				{
+					bckp.log_kayit("System", new Date(), line);
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz..."); 
+				
+				}
+				else {
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+				}
+			}
 		}
 		Files.delete( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP_LOGIN.xml"));
-		
-		
 	}
 	private void taskRunStartup() throws IOException, ClassNotFoundException, SQLException 
 	{
@@ -346,16 +316,22 @@ public class Ayarlar extends JPanel {
 		br = new BufferedReader(isr);
 
 		while ((line = br.readLine()) != null) {
-			bckp.log_kayit("System", new Date(), line);
-			OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
+			if(! line.equals("")) 
+			{
+				bckp.log_kayit("System", new Date(), line);
+				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
+			}
 		}
 		//stderr
 		is = p.getErrorStream();
 		isr = new InputStreamReader(is);
 		br = new BufferedReader(isr);
 		while ((line = br.readLine()) != null) {
-			bckp.log_kayit("System", new Date(), line);
-			OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+			if(! line.equals("")) 
+			{
+				bckp.log_kayit("System", new Date(), line);
+				OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+			}
 		}
 	}
 	private void taskRunLogin() throws IOException, ClassNotFoundException, SQLException 
@@ -372,16 +348,22 @@ public class Ayarlar extends JPanel {
 		br = new BufferedReader(isr);
 
 		while ((line = br.readLine()) != null) {
-			bckp.log_kayit("System", new Date(), line);
-			OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
+			if(! line.equals("")) 
+			{
+				bckp.log_kayit("System", new Date(), line);
+				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
+			}
 		}
 		//stderr
 		is = p.getErrorStream();
 		isr = new InputStreamReader(is);
 		br = new BufferedReader(isr);
 		while ((line = br.readLine()) != null) {
-			bckp.log_kayit("System", new Date(), line);
-			OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+			if(! line.equals("")) 
+			{
+				bckp.log_kayit("System", new Date(), line);
+				OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+			}
 		}
 	}
 	private void taskDeleteStartUp() throws IOException, ClassNotFoundException, SQLException

@@ -734,8 +734,8 @@ public class OBS_BACKUP extends JFrame {
 				ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
 				ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
 				ayarlarPanel.chckbxPrgSifre.setSelected(Integer.valueOf(diltemaString[4]) == 0 ? false:true);
-				ayarlarPanel.chckbxNewCheckBox.setSelected(Integer.valueOf(diltemaString[5]) == 0 ? false:true);
-				ayarlarPanel.chckbxNewCheckBox_1.setSelected(Integer.valueOf(diltemaString[6]) == 0 ? false:true);
+				ayarlarPanel.chckbxWinStart.setSelected(Integer.valueOf(diltemaString[5]) == 0 ? false:true);
+				ayarlarPanel.chckbxVersion.setSelected(Integer.valueOf(diltemaString[6]) == 0 ? false:true);
 				ayarlarPanel.passwordText.setVisible(ayarlarPanel.chckbxSifrele.isSelected());
 				tabbedPane.setSelectedIndex(8);
 			}
@@ -945,6 +945,7 @@ public class OBS_BACKUP extends JFrame {
 			public void run() {  
 				try {
 					yedekLE();
+					//if(Integer.valueOf(diltemaString[5]) == 0 ? false:true)
 					secondRUN();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -2820,7 +2821,7 @@ public class OBS_BACKUP extends JFrame {
 		ayarlarPanel.btnKaydet.setText(dilSecenek.dil(dILS,"Kaydet"));
 		ayarlarPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"ZIP Sifrele"));
 		ayarlarPanel.lblNewLabel_3.setText(dilSecenek.dil(dILS,"Acilis Sifre Sor"));
-		ayarlarPanel.chckbxNewCheckBox.setText(dilSecenek.dil(dILS,"Windows ile Baslat")); 
+		ayarlarPanel.chckbxWinStart.setText(dilSecenek.dil(dILS,"Windows ile Baslat")); 
 		ayarlarPanel.lblNewLabel_4.setText(dilSecenek.dil(dILS,"Version Kontrol")); 
 		//**********************************************************************************************
 		if(dILS.equals("Turkce"))

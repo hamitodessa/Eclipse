@@ -251,6 +251,20 @@ public class BACKUP_GLOBAL {
 		con.close();
 		con = null;
 	}
+	public void ayarSchedulerUpdate(int win_start)throws ClassNotFoundException, SQLException
+	{
+		Class.forName("org.sqlite.JDBC");
+		if (con != null && ! con.isClosed()) con.close();
+		PreparedStatement stmt = null;
+		con = glb.myBackupConnection();
+		String sql = "UPDATE AYARLAR SET WIN_START = @vstr ";
+		stmt = con.prepareStatement(sql);
+		stmt.setInt(1, win_start);
+		stmt.executeUpdate();
+		stmt.close();
+		con.close();
+		con = null;
+	}
 	public void ayar_sil()throws ClassNotFoundException, SQLException
 	{
 		Class.forName("org.sqlite.JDBC");

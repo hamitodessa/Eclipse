@@ -56,8 +56,8 @@ public class Ayarlar extends JPanel {
 	public JComboBox<String> comboBox_1;
 	public JCheckBox chckbxSifrele;
 	public JCheckBox chckbxPrgSifre;
-	public JCheckBox chckbxNewCheckBox;
-	public JCheckBox chckbxNewCheckBox_1;
+	public JCheckBox chckbxWinStart;
+	public JCheckBox chckbxVersion;
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	final boolean showTabsHeader = false;
 	public JPasswordField passwordText;
@@ -87,7 +87,7 @@ public class Ayarlar extends JPanel {
 				btnKaydet.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Kaydet"));
 				lblNewLabel_2.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"ZIP Sifrele"));
 				lblNewLabel_3.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Acilis Sifre Sor"));
-				chckbxNewCheckBox.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Windows ile Baslat")); 
+				chckbxWinStart.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Windows ile Baslat")); 
 				lblNewLabel_4.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Version Kontrol")); 
 			}
 		});
@@ -115,7 +115,7 @@ public class Ayarlar extends JPanel {
 					bckp.ayar_sil();
 					SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
 					bckp.ayar_kayit(comboBox_1.getSelectedItem().toString(), comboBox.getSelectedItem().toString(),chckbxSifrele.isSelected() ? 1:0,
-							sDondur.sDONDUR(passwordText) , chckbxPrgSifre.isSelected() ? 1:0, chckbxNewCheckBox.isSelected() ? 1:0,chckbxNewCheckBox_1.isSelected() ? 1:0);
+							sDondur.sDONDUR(passwordText) , chckbxPrgSifre.isSelected() ? 1:0, chckbxWinStart.isSelected() ? 1:0,chckbxVersion.isSelected() ? 1:0);
 					OBS_BACKUP.emirleriSTOPYAP();
 					OBS_BACKUP.btnfont_tema.doClick();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -168,15 +168,16 @@ public class Ayarlar extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 
-		chckbxNewCheckBox = new JCheckBox("Windows ile Baslat");
-		chckbxNewCheckBox.setBounds(115, 17, 157, 23);
-		panel.add(chckbxNewCheckBox);
+		chckbxWinStart = new JCheckBox("Windows ile Baslat");
+		chckbxWinStart.setBounds(115, 17, 157, 23);
+		panel.add(chckbxWinStart);
 
-		JButton btnNewButton = new JButton("");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnSchedulerSave = new JButton("");
+		btnSchedulerSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (chckbxNewCheckBox.isSelected())  // Secili
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					if (chckbxWinStart.isSelected())  // Secili
 					{
 						createSchedulerStartup();
 						createSchedulerLogin();
@@ -187,23 +188,25 @@ public class Ayarlar extends JPanel {
 						taskDeleteStartUp();
 						taskDeleteLogin();
 					}
-					btnKaydet.doClick();
+					bckp.ayarSchedulerUpdate(chckbxWinStart.isSelected() ? 1:0);
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e2) 
 				{
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				}
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/save.png")));
-		btnNewButton.setBounds(293, 17, 25, 23);
-		panel.add(btnNewButton);
+		btnSchedulerSave.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/save.png")));
+		btnSchedulerSave.setBounds(293, 17, 25, 23);
+		panel.add(btnSchedulerSave);
 		
 		lblNewLabel_4 = new JLabel("Version Kontrol");
 		lblNewLabel_4.setBounds(42, 292, 120, 14);
 		add(lblNewLabel_4);
 		
-		chckbxNewCheckBox_1 = new JCheckBox("");
-		chckbxNewCheckBox_1.setBounds(160, 288, 40, 23);
-		add(chckbxNewCheckBox_1);
+		chckbxVersion = new JCheckBox("");
+		chckbxVersion.setBounds(160, 288, 40, 23);
+		add(chckbxVersion);
 	}
 	private String xmlDegis(String dosya, String xmlDosya) throws IOException
 	{

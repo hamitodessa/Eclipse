@@ -170,7 +170,9 @@ public class Hakkinda extends JPanel {
 	private void versiyon_oku()
 	{
 		try {
+			
 			String fileName = GLOBAL.SURUCU + "\\OBS_BACKUP_VERSION.txt";
+			if(GLOBAL.dos_kontrol(fileName) == false) return;
 			String line = null;
 			FileReader fileReader = null;
 			int counter = 0;

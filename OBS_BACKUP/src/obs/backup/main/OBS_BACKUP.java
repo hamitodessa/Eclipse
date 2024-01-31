@@ -257,7 +257,7 @@ public class OBS_BACKUP extends JFrame {
 	public static boolean sifRELE = false;
 	
 	static Component horizontalGlue = null ;
-	private static String diltemaString[] = new String[5];
+	private static String diltemaString[] = new String[6];
 	/**
 	 * Hamit.
 	 */
@@ -734,6 +734,7 @@ public class OBS_BACKUP extends JFrame {
 				ayarlarPanel.comboBox_1.setSelectedItem(diltemaString[0]);
 				ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
 				ayarlarPanel.chckbxPrgSifre.setSelected(Integer.valueOf(diltemaString[4]) == 0 ? false:true);
+				ayarlarPanel.chckbxNewCheckBox.setSelected(Integer.valueOf(diltemaString[5]) == 0 ? false:true);
 				if(ayarlarPanel.chckbxSifrele.isSelected())
 				{
 					ayarlarPanel.passwordText.setVisible(true);
@@ -2827,6 +2828,7 @@ public class OBS_BACKUP extends JFrame {
 		ayarlarPanel.btnKaydet.setText(dilSecenek.dil(dILS,"Kaydet"));
 		ayarlarPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"ZIP Sifrele"));
 		ayarlarPanel.lblNewLabel_3.setText(dilSecenek.dil(dILS,"Acilis Sifre Sor"));
+		ayarlarPanel.chckbxNewCheckBox.setText(dilSecenek.dil(dILS,"Windows ile Baslat")); 
 		//**********************************************************************************************
 		if(dILS.equals("Turkce"))
 		{

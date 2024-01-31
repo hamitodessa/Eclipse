@@ -55,6 +55,7 @@ public class Ayarlar extends JPanel {
 	public JComboBox<String> comboBox_1;
 	public JCheckBox chckbxSifrele;
 	public JCheckBox chckbxPrgSifre;
+	public JCheckBox chckbxNewCheckBox;
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	final boolean showTabsHeader = false;
 	public JPasswordField passwordText;
@@ -84,6 +85,7 @@ public class Ayarlar extends JPanel {
 				btnKaydet.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Kaydet"));
 				lblNewLabel_2.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"ZIP Sifrele"));
 				lblNewLabel_3.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Acilis Sifre Sor"));
+				chckbxNewCheckBox.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Windows ile Baslat")); 
 			}
 		});
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Turkce", "English"}));
@@ -110,7 +112,7 @@ public class Ayarlar extends JPanel {
 					bckp.ayar_sil();
 					SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
 					bckp.ayar_kayit(comboBox_1.getSelectedItem().toString(), comboBox.getSelectedItem().toString(),chckbxSifrele.isSelected() ? 1:0,
-							sDondur.sDONDUR(passwordText) , chckbxPrgSifre.isSelected() ? 1:0);
+							sDondur.sDONDUR(passwordText) , chckbxPrgSifre.isSelected() ? 1:0, chckbxNewCheckBox.isSelected() ? 1:0);
 					OBS_BACKUP.emirleriSTOPYAP();
 					OBS_BACKUP.btnfont_tema.doClick();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -163,7 +165,7 @@ public class Ayarlar extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Windows ile Baslat");
+		chckbxNewCheckBox = new JCheckBox("Windows ile Baslat");
 		chckbxNewCheckBox.setBounds(115, 17, 157, 23);
 		panel.add(chckbxNewCheckBox);
 		
@@ -182,6 +184,7 @@ public class Ayarlar extends JPanel {
 						taskDeleteStartUp();
 						taskDeleteLogin();
 					}
+					btnKaydet.doClick();
 				} catch (Exception e2) {
 				}
 			}
@@ -200,18 +203,15 @@ public class Ayarlar extends JPanel {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(iss));
 			String content,str; 
 			StringBuffer buf = new StringBuffer();      
-			while ((str = reader.readLine()) != null) {   
+			while ((str = reader.readLine()) != null) 
+			{   
 				buf.append(str + "\n" );
 			}                
 			content = buf.toString();
 			content = content.replaceAll("encoding=\"UTF-8\"", "");
 			content = content.replaceAll("DOSYA", Matcher.quoteReplacement(s + dosya));
-			//if(xmlDosya.equals("OBS_BACKUP_LOGIN"))
-			//{
-				content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
-			//}
-			OutputStreamWriter writer =new OutputStreamWriter(new FileOutputStream(GLOBAL.SURUCU  +  xmlDosya + ".xml"), 
-					StandardCharsets.UTF_8);
+			content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
+			OutputStreamWriter writer =new OutputStreamWriter(new FileOutputStream(GLOBAL.SURUCU  +  xmlDosya + ".xml"),StandardCharsets.UTF_8);
 			writer.write(content);
 			writer.close();
 		} catch (IOException e1) {
@@ -222,17 +222,11 @@ public class Ayarlar extends JPanel {
 	
 	private void createSchedulerStartup() throws IOException, InterruptedException, ClassNotFoundException, SQLException
 	{
-		String pathString = "" ;
+		String pathString = xmlDegis("OBS_BACKUP.jar","OBS_BACKUP");
 		if(GLOBAL.dos_kontrol(GLOBAL.pathApp() + "OBS_BACKUP.exe" ))
-		{
 			pathString =  xmlDegis("OBS_BACKUP.exe","OBS_BACKUP");
-		}
-		else {
-			pathString =  xmlDegis("OBS_BACKUP.jar","OBS_BACKUP");
-		}
 		Runtime rt = Runtime.getRuntime();
 		Process p = rt.exec("schtasks.exe /Create /XML "+ GLOBAL.SURUCU + "OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
-	
 		// stdout
 		InputStream is = p.getInputStream();
 		InputStreamReader isr = new InputStreamReader(is);
@@ -267,17 +261,11 @@ public class Ayarlar extends JPanel {
 	}
 	private void createSchedulerLogin() throws IOException, InterruptedException, ClassNotFoundException, SQLException
 	{
-		String pathString = "" ;
+		String pathString =  xmlDegis("OBS_BACKUP.jar","OBS_BACKUP_LOGIN");
 		if(GLOBAL.dos_kontrol(GLOBAL.pathApp() + "OBS_BACKUP.exe" ))
-		{
 			pathString =  xmlDegis("OBS_BACKUP.exe","OBS_BACKUP_LOGIN");
-		}
-		else {
-			pathString =  xmlDegis("OBS_BACKUP.jar","OBS_BACKUP_LOGIN");
-		}
 		Runtime rt = Runtime.getRuntime();
 		Process p = rt.exec("schtasks.exe /Create /XML " + GLOBAL.SURUCU + "OBS_BACKUP_LOGIN.xml /TN OBS_BACKUP_LOGIN ");
-	
 		// stdout
 		InputStream is = p.getInputStream();
 		InputStreamReader isr = new InputStreamReader(is);
@@ -295,15 +283,14 @@ public class Ayarlar extends JPanel {
 		is = p.getErrorStream();
 		isr = new InputStreamReader(is);
 		br = new BufferedReader(isr);
-		while ((line = br.readLine()) != null) {
-			
+		while ((line = br.readLine()) != null) 
+		{
 			if(! line.equals("")) 
 			{
 				if(line.equals("ERROR: Access is denied."))
 				{
 					bckp.log_kayit("System", new Date(), line);
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz")); 
-				
 				}
 				else {
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
@@ -316,7 +303,6 @@ public class Ayarlar extends JPanel {
 	{
 		Runtime rt = Runtime.getRuntime();
 		Process p = rt.exec("schtasks.exe /RUN /TN OBS_BACKUP");
-
 		InputStream is = p.getInputStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
@@ -348,7 +334,6 @@ public class Ayarlar extends JPanel {
 	{
 		Runtime rt = Runtime.getRuntime();
 		Process p = rt.exec("schtasks.exe /RUN /TN OBS_BACKUP_LOGIN");
-
 		InputStream is = p.getInputStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
@@ -385,19 +370,23 @@ public class Ayarlar extends JPanel {
 		BufferedReader br = new BufferedReader(isr);
 		String line;
 		while ((line = br.readLine()) != null) {
-			bckp.log_kayit("System", new Date(), line);
-			OBS_BACKUP.mesajGoster(7500,Notifications.Type.INFO, line); 
+			if(! line.equals("")) 
+			{
+				bckp.log_kayit("System", new Date(), line);
+				OBS_BACKUP.mesajGoster(7500,Notifications.Type.INFO, line); 
+			}
 		}
-
 		//stderr
 		is = p.getErrorStream();
 		isr = new InputStreamReader(is);
 		br = new BufferedReader(isr);
 		while ((line = br.readLine()) != null) {
-			bckp.log_kayit("System", new Date(), line);
-			OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+			if(! line.equals("")) 
+			{
+				bckp.log_kayit("System", new Date(), line);
+				OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+			}
 		}
-
 	}
 	private void taskDeleteLogin() throws IOException, ClassNotFoundException, SQLException
 	{
@@ -408,19 +397,23 @@ public class Ayarlar extends JPanel {
 		BufferedReader br = new BufferedReader(isr);
 		String line;
 		while ((line = br.readLine()) != null) {
-			bckp.log_kayit("System", new Date(), line);
-			OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
+			if(! line.equals("")) 
+			{
+				bckp.log_kayit("System", new Date(), line);
+				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
+			}
 		}
-
 		//stderr
 		is = p.getErrorStream();
 		isr = new InputStreamReader(is);
 		br = new BufferedReader(isr);
 		while ((line = br.readLine()) != null) {
-			bckp.log_kayit("System", new Date(), line);
-			OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+			if(! line.equals("")) 
+			{
+				bckp.log_kayit("System", new Date(), line);
+				OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+			}
 		}
-
 	}
 }
 

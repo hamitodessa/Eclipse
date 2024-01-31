@@ -287,8 +287,11 @@ public class dilSecenek {
 			case  "Acilis Sifre Sor":
 				tEXT = "Start Login Page"  ;
 				break;
+			case  "Windows ile Baslat":
+				tEXT = "Start with Windows"  ;
+				break;
 
-				
+//				
 			}  
 		}
 		return tEXT;

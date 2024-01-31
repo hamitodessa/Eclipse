@@ -285,13 +285,13 @@ public class SunucuAyarlari extends JPanel {
 		lblNewLabel_7 = new JLabel("gunden eski olanari silme (0 Silinmez)");
 		lblNewLabel_7.setBounds(210, 25, 324, 14);
 		panel_12_1_1_1.add(lblNewLabel_7);
-		
-	
+
+
 		btnNewButton_9 = new JButton("Kaydet");
 		btnNewButton_9.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-			
+
 				try {
 					if(chckbxYerel.isSelected())
 					{
@@ -324,65 +324,63 @@ public class SunucuAyarlari extends JPanel {
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
-				
+
 					OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, e1.getMessage());
 				}
 			}
 		});
 		btnNewButton_9.setBounds(624, 550, 100, 23);
-		 add(btnNewButton_9);
-		 
-		 btnftpkont = new JButton("Ftp Kontrol");
-		 btnftpkont.setBounds(37, 550, 100, 23);
-		 btnftpkont.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+		add(btnNewButton_9);
+
+		btnftpkont = new JButton("Ftp Kontrol");
+		btnftpkont.setBounds(37, 550, 100, 23);
+		btnftpkont.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
 					AnaFtpKontrol();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				}
-			});
-		 add(btnftpkont);
+			}
+		});
+		add(btnftpkont);
 	}
 	private void AnaFtpKontrol() throws SocketException, IOException 
 	{
 		if (chckbxYerel.isSelected()) return;
 		if (textHost.getText().equals("")) 
-			{
+		{
 			textHost.requestFocus();
 			return;
-			}
+		}
 		if (textKull.getText().equals("")) 
-			{
+		{
 			textKull.requestFocus();
 			return;
-			}
+		}
 		if (textSifre.getPassword().length == 0) 
-			{
+		{
 			textSifre.requestFocus();
 			return;
-			}
+		}
 		if (textPort.getText().equals("")) 
-			{
+		{
 			textPort.requestFocus();
 			return;
-			}
+		}
 		int portt = 21 ;
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		if(!  textPort.getText().equals("21"))
-		{
 			portt = Integer.parseInt(textPort.getText());
-		}
 	
 		SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 		String response =sdon.sDONDUR(textSifre);
-		
+
 		boolean result =   bckp.DoesFtpExist(textHost.getText() ,portt,textKull.getText(), response);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		if(result)
 		{
-		OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO,dilSecenek.dil(OBS_BACKUP.dILS, "Baglanti Gerceklesti") );
+			OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO,dilSecenek.dil(OBS_BACKUP.dILS, "Baglanti Gerceklesti") );
 		}
 		else {
 			OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Hata"));
@@ -392,37 +390,35 @@ public class SunucuAyarlari extends JPanel {
 	{
 		if (chckbxYerel.isSelected()) return;
 		if (textHost.getText().equals("")) 
-			{
+		{
 			textHost.requestFocus();
 			return;
-			}
+		}
 		if (textKull.getText().equals(""))
-			{
+		{
 			textKull.requestFocus();
 			return;
-			}
+		}
 		if (textSifre.getPassword().length == 0) 
-			{
+		{
 			textSifre.requestFocus();
 			return;
-			}
+		}
 		if (textFtpSurucu.getText().equals("")) 
-			{
+		{
 			textFtpSurucu.requestFocus();
 			return;
-			}
+		}
 		if (textPort.getText().equals("")) 
-			{
+		{
 			textPort.requestFocus();
 			return;
-			}
+		}
 		int portt = 21 ;
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		
 		if(! textPort.getText().equals("21"))
-		{
 			portt = Integer.parseInt(textPort.getText());
-		}
 		SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 		String response =sdon.sDONDUR(textSifre);
 		

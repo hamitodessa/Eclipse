@@ -103,8 +103,6 @@ public class KayitliEmirler extends JPanel {
 				});
 			}
 		});
-
-
 		ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
 		add(scrollPane, BorderLayout.CENTER);
 
@@ -122,8 +120,6 @@ public class KayitliEmirler extends JPanel {
 		try {
 			DefaultTableModel tbm   = 	bckp.emir_liste();
 			tblEmir.setModel(tbm);
-
-
 			JTableHeader th = tblEmir.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
@@ -159,7 +155,6 @@ public class KayitliEmirler extends JPanel {
 			tc.setMinWidth(115);
 			tc.setMaxWidth(115);
 			
-
 			Dimension dd = th.getPreferredSize();
 			dd.height = 30;
 			th.setPreferredSize(dd); 
@@ -181,7 +176,6 @@ public class KayitliEmirler extends JPanel {
 	}
 	public void arama()  
 	{
-	
 		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		if (txtArama.getText().equals(""))
 		{

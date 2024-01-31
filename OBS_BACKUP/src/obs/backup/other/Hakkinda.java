@@ -150,12 +150,10 @@ public class Hakkinda extends JPanel {
 				Desktop.getDesktop().browse(uri);
 			} catch (Exception e)
 			{ 
-				/* TODO: error handling */ 
 			}
 		}
 		else 
 		{
-			/* TODO: error handling */
 		}
 	}
 	private static int getVersion() {
@@ -170,7 +168,6 @@ public class Hakkinda extends JPanel {
 	private void versiyon_oku()
 	{
 		try {
-			
 			String fileName = GLOBAL.SURUCU + "\\OBS_BACKUP_VERSION.txt";
 			if(GLOBAL.dos_kontrol(fileName) == false) return;
 			String line = null;
@@ -195,6 +192,5 @@ public class Hakkinda extends JPanel {
 		{
 			OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, ex.getMessage() ); 
 		}
-
 	}
 }

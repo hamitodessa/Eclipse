@@ -143,6 +143,5 @@ public class UploadPanel extends JPanel {
 		RPB2.setMaximum(0);
 		RPB2.setValue(0);
 		RPB2.setStringPainted(false);
-
 	}
 }

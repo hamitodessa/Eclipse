@@ -366,7 +366,7 @@ public  class gOREV_TAKIP extends JPanel {
 		if (lblDurum.getText().equals(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Pasiv Durumda") ))
 		{
 			timerDURDUR = true;
-		return;
+			return;
 		}
 		timerr = new Timer();  
 		tt = new TimerTask() {  
@@ -429,9 +429,7 @@ public  class gOREV_TAKIP extends JPanel {
 	{
 		GunLERE_BAK();
 		if (! lblDurum.getText().equals(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Pasiv Durumda") ))
-		{
 			run();
-		}
 	}
 	public void ilkBasla() 
 	{
@@ -622,33 +620,29 @@ public  class gOREV_TAKIP extends JPanel {
 		dateNOW  = new Date();
 		dateBIT = (Date) (tsbit.getValue());
 		dateBAS = (Date) (tsbas.getValue());
-		if (hangiGUNDEYIZ == 1)
-		{
+		
+		switch (hangiGUNDEYIZ) {
+		case 1: 
 			hangiGUN_P_TESI(varmi, 0, false);
-		}
-		else if (hangiGUNDEYIZ == 2)
-		{
+			break;
+		case 2: 
 			hangiGUN_SALI(varmi, 0, false);
-		}
-		if (hangiGUNDEYIZ == 3)
-		{
+			break;
+		case 3: 
 			hangiGUN_CARS(varmi, 0, false);
-		}
-		if (hangiGUNDEYIZ == 4)
-		{
+			break;
+		case 4: 
 			hangiGUN_PERS(varmi, 0, false);
-		}
-		if (hangiGUNDEYIZ == 5)
-		{
+			break;
+		case 5: 
 			hangiGUN_CUMA(varmi, 0, false);
-		}
-		if (hangiGUNDEYIZ == 6)
-		{
+			break;
+		case 6: 
 			hangiGUN_C_TESI(varmi, 0, false);
-		}
-		if (hangiGUNDEYIZ == 7)
-		{
+			break;
+		case 7: 
 			hangiGUN_PAZAR(varmi, 0, false);
+			break;
 		}
 	}
 	private void hangiGUN_P_TESI(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException

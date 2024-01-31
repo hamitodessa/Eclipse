@@ -356,6 +356,5 @@ public class ServerBilgileri extends JPanel {
 		});
 		btnDumpSec.setBounds(587, 245, 137, 23);
 		panel_1.add(btnDumpSec);
-
 	}
 }

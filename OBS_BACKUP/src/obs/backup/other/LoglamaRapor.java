@@ -234,8 +234,6 @@ public class LoglamaRapor extends JPanel {
 				});
 			}
 		});
-
-
 		scrollPane = new ScrollPaneWin11();
 		add(scrollPane, BorderLayout.CENTER);
 
@@ -260,7 +258,6 @@ public class LoglamaRapor extends JPanel {
 		tblLog.setShowVerticalLines(true);
 		tblLog.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(tblLog);
-
 	}
 	public void doldur() throws ClassNotFoundException, SQLException
 	{
@@ -454,9 +451,8 @@ public class LoglamaRapor extends JPanel {
 				for (int q =0;q<= mdl.getColumnCount()-1 ;q++)
 				{
 					Cell bname = headerRow.createCell(q);
-					
-						bname.setCellValue(mdl.getColumnName(q));
-						bname.setCellStyle(headerSolaStyle);
+					bname.setCellValue(mdl.getColumnName(q));
+					bname.setCellStyle(headerSolaStyle);
 				}
 				for (int i =0;i< mdl.getRowCount() ;i++)
 				{
@@ -466,8 +462,8 @@ public class LoglamaRapor extends JPanel {
 						Cell hname = satirRow.createCell(s);
 						if ( mdl.getValueAt(i, s) != null)
 						{
-								hname.setCellValue( mdl.getValueAt(i,s).toString());
-								hname.setCellStyle(solaStyle); 
+							hname.setCellValue( mdl.getValueAt(i,s).toString());
+							hname.setCellStyle(solaStyle); 
 						}
 						else
 						{
@@ -496,9 +492,6 @@ public class LoglamaRapor extends JPanel {
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 					OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Aktarma Islemi Tamamlandi") );
 				}
-				
-			
-				
 		}
 		catch (Exception ex)
 		{
@@ -506,8 +499,6 @@ public class LoglamaRapor extends JPanel {
 			OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR,ex.getMessage() );
 		}
 	}
-
-
 	private static void mail_at(List<bilgilendirme_bilgiler> bilgiBilgi,String mesaj ,String eADI) throws ClassNotFoundException, SQLException
 	{
 		try {

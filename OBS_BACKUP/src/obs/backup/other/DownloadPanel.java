@@ -152,6 +152,5 @@ public class DownloadPanel extends JPanel {
 		RPB2.setMaximum(0);
 		RPB2.setValue(0);
 		RPB2.setStringPainted(false);
-
 	}
 }

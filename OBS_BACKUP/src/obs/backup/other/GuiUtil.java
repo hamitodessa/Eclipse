@@ -15,7 +15,6 @@ public class GuiUtil {
 	 public static void setWaitCursor(Component c, boolean yesno)
 	  {
 		Cursor.getPredefinedCursor(yesno ? Cursor.WAIT_CURSOR :Cursor.DEFAULT_CURSOR);
-		
 	    c.setCursor(yesno ? waitCursor : defCursor);
 	    getFrame(c).setCursor(yesno ? waitCursor : defCursor);
 	  }

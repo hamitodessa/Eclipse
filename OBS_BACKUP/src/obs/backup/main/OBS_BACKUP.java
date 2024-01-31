@@ -3004,13 +3004,13 @@ public class OBS_BACKUP extends JFrame {
 			}
 			ftp.enterLocalPassiveMode();
 			String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_BACKUP_VERSION.txt";
-			File downloadFile1 = new File( GLOBAL.SURUCU + "/OBS_BACKUP_VERSIONS.txt");
+			File downloadFile1 = new File( GLOBAL.SURUCU + "\\OBS_BACKUP_VERSIONS.txt");
 			OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
 			boolean success = ftp.retrieveFile(remoteFile1, outputStream1);
 			outputStream1.close();
 			if (success == false )
 				{
-				Path path = Paths.get(GLOBAL.SURUCU + "/OBS_BACKUP_VERSIONS.txt"); 
+				Path path = Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP_VERSIONS.txt"); 
 	            Files.deleteIfExists(path); 
 				ftp.logout();
 				ftp.disconnect();
@@ -3023,7 +3023,6 @@ public class OBS_BACKUP extends JFrame {
 			fileName = GLOBAL.SURUCU + "\\OBS_BACKUP_VERSIONS.txt";
 			fileReader = null;
 			fileReader =  new FileReader(fileName);
-			// Always wrap FileReader in BufferedReader.
 			bufferedReader = null;
 			bufferedReader =  new BufferedReader(fileReader);
 			counter = 0;

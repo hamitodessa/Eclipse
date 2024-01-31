@@ -441,10 +441,8 @@ public class DownloadFile extends JPanel {
 		{
 			if ( modell.getValueAt(i,0) != null) 
 			{
-				if (  modell.getValueAt(i,0).toString().equals("true")   )
-				{
+				if (modell.getValueAt(i,0).toString().equals("true"))
 					satir += 1 ;
-				}	
 			};
 		}
 		return satir ;

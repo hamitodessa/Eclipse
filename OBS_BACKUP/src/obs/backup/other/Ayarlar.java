@@ -164,7 +164,7 @@ public class Ayarlar extends JPanel {
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Windows Scheduler", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(42, 432, 372, 53);
+		panel.setBounds(42, 475, 372, 53);
 		add(panel);
 		panel.setLayout(null);
 

@@ -735,14 +735,14 @@ public class OBS_BACKUP extends JFrame {
 				ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
 				ayarlarPanel.chckbxPrgSifre.setSelected(Integer.valueOf(diltemaString[4]) == 0 ? false:true);
 				ayarlarPanel.chckbxNewCheckBox.setSelected(Integer.valueOf(diltemaString[5]) == 0 ? false:true);
-				if(ayarlarPanel.chckbxSifrele.isSelected())
-				{
-					ayarlarPanel.passwordText.setVisible(true);
-				}
-				else 
-				{
-					ayarlarPanel.passwordText.setVisible(false);
-				}
+				//if(ayarlarPanel.chckbxSifrele.isSelected())
+				//{
+				ayarlarPanel.passwordText.setVisible(ayarlarPanel.chckbxSifrele.isSelected());
+				//}
+				//else 
+				//{
+				//	ayarlarPanel.passwordText.setVisible(false);
+				//}
 				tabbedPane.setSelectedIndex(8);
 			}
 		});
@@ -1130,11 +1130,6 @@ public class OBS_BACKUP extends JFrame {
 			date2.setYear(date.getYear());
 			date2.setMonth(date.getMonth());
 			date2.setDate(date.getDate());
-//			if (date.after(date2) )
-//			{
-//				mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(dILS,"Bitis Zamani Baslangic Zamanindan Kucuk olamaz") );
-//				return;
-//			}
 			bckp.yedekleme_kayit_sil(emirAnaGirisPanel.txtEmir.getText());
 			bckp.yedekleme_ismi_kayit(emirAnaGirisPanel.txtEmir.getText(), 
 					yedekaraligiPanel.textHerDakka.getText(), 
@@ -2915,47 +2910,4 @@ public class OBS_BACKUP extends JFrame {
 		 btnAyarlar.setEnabled(true);
 		 btnHepsiYukari.doClick();
 	}
-
-
 }
-
-
-//private void checkWORK() throws IOException 
-//{
-//	ArrayList<String> cmds = new ArrayList<String>();
-//	cmds.add("wmic");
-//	cmds.add("process");
-//	cmds.add("get");
-//	cmds.add("commandline,processid");
-//	ProcessBuilder pb = new ProcessBuilder(cmds);
-//	Process p = pb.start();
-//	//p.waitFor();
-//	BufferedReader rd = new BufferedReader(new InputStreamReader(p.getInputStream()));
-//	String line;
-//	int pid=0;
-//	int ownPID = 0 ;
-//	while((line = rd.readLine()) != null)
-//	{
-//		if(line.contains("OBS_BACKUP.exe"))
-//		{
-//			//System.out.println("OK" + line);
-//			String[] split = line.split(" ");
-//			pid=Integer.parseInt(split[split.length - 1]);
-//			//System.out.println("pid=" + pid);
-//			ownPID = (int) ProcessHandle.current().pid() ;
-//			if(pid != ownPID)
-//			{
-//				cmds = new ArrayList<String>();
-//				cmds.add("taskkill");
-//				cmds.add("/T");
-//				cmds.add("/F");
-//				cmds.add("/PID");
-//				cmds.add("" + pid);
-//				pb = new ProcessBuilder(cmds);
-//				pb.start();
-//				break;
-//			}
-//		}
-//	}
-//}
-

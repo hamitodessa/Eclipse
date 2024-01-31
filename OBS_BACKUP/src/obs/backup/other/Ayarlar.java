@@ -58,6 +58,7 @@ public class Ayarlar extends JPanel {
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	final boolean showTabsHeader = false;
 	public JPasswordField passwordText;
+	private JLabel lblPath;
 	public Ayarlar()
 	{
 		setLayout(null);
@@ -190,6 +191,10 @@ public class Ayarlar extends JPanel {
 		btnNewButton.setBounds(293, 17, 25, 23);
 		panel.add(btnNewButton);
 		
+		lblPath = new JLabel("New label");
+		lblPath.setBounds(42, 485, 430, 14);
+		add(lblPath);
+		
 	}
 	
 	private String xmlDegis(String dosya, String xmlDosya)
@@ -197,7 +202,6 @@ public class Ayarlar extends JPanel {
 		String s ="";
 		try {
 			s = GLOBAL.pathApp();
-			s = "C:\\OBS_SISTEM\\" ;
 			InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/" + xmlDosya + ".xml");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(iss));
 			String content,str; 
@@ -232,8 +236,9 @@ public class Ayarlar extends JPanel {
 		else {
 			pathString =  xmlDegis("OBS_BACKUP.jar","OBS_BACKUP");
 		}
+		lblPath.setText(pathString);
 		Runtime rt = Runtime.getRuntime();
-		Process p = rt.exec("schtasks.exe /Create /XML "+ pathString +"OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
+		Process p = rt.exec("schtasks.exe /Create /XML "+ GLOBAL.SURUCU +"OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
 	
 		// stdout
 		InputStream is = p.getInputStream();
@@ -263,9 +268,7 @@ public class Ayarlar extends JPanel {
 				else {
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
 				}
-
 			}
-
 		}
 		Files.delete( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"));
 	}
@@ -280,7 +283,7 @@ public class Ayarlar extends JPanel {
 			pathString =  xmlDegis("OBS_BACKUP.jar","OBS_BACKUP_LOGIN");
 		}
 		Runtime rt = Runtime.getRuntime();
-		Process p = rt.exec("schtasks.exe /Create /XML " + pathString + "OBS_BACKUP_LOGIN.xml /TN OBS_BACKUP_LOGIN ");
+		Process p = rt.exec("schtasks.exe /Create /XML " + GLOBAL.SURUCU + "OBS_BACKUP_LOGIN.xml /TN OBS_BACKUP_LOGIN ");
 	
 		// stdout
 		InputStream is = p.getInputStream();

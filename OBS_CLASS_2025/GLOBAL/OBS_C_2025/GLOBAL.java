@@ -15,6 +15,8 @@ import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -631,6 +633,11 @@ public class GLOBAL {
 		}
 	
 		return result ;
+	}
+	public static String pathApp()
+	{
+		Path currentRelativePath = Paths.get("");
+		return  currentRelativePath.toAbsolutePath().toString() + "\\";
 	}
 	private static void mail_at()
 	{

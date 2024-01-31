@@ -226,6 +226,9 @@ public class dilAciklamalar {
 			case "Aktarma Islemi Tamamlandi": 
 				acikLAMAString = "Transfer Completed";
 				break;
+			case "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz": 
+				acikLAMAString = "Must run the program as an Administrator and create job";
+				break;
 //				
 			}
 		}

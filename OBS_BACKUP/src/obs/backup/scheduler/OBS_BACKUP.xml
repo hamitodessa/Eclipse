@@ -12,7 +12,7 @@
   </Triggers>
   <Principals>
     <Principal id="Author">
-      <UserId>S-1-5-21-1190373537-2036872330-4285950947-1002</UserId>
+      <UserId>KULLANICI</UserId>
       <LogonType>Password</LogonType>
       <RunLevel>LeastPrivilege</RunLevel>
     </Principal>

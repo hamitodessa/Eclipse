@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.SIFRE_DONDUR;
+import obs.backup.ayarlar.dilAciklamalar;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -42,7 +43,7 @@ import javax.swing.border.TitledBorder;
 
 import java.io.FileOutputStream;
 
-@SuppressWarnings({"serial","deprecation"})
+@SuppressWarnings({"serial","deprecation","unused"})
 public class Ayarlar extends JPanel {
 
 	public JButton btnKaydet;
@@ -190,12 +191,12 @@ public class Ayarlar extends JPanel {
 		panel.add(btnNewButton);
 		
 	}
+	
 	private String xmlDegis(String dosya, String xmlDosya)
 	{
 		String s ="";
 		try {
-			Path currentRelativePath = Paths.get("");
-			s = currentRelativePath.toAbsolutePath().toString() + "\\";
+			s = GLOBAL.pathApp();
 			s = "C:\\OBS_SISTEM\\" ;
 			InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/" + xmlDosya + ".xml");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(iss));
@@ -207,10 +208,10 @@ public class Ayarlar extends JPanel {
 			content = buf.toString();
 			content = content.replaceAll("encoding=\"UTF-8\"", "");
 			content = content.replaceAll("DOSYA", Matcher.quoteReplacement(s + dosya));
-			if(xmlDosya.equals("OBS_BACKUP_LOGIN"))
-			{
+			//if(xmlDosya.equals("OBS_BACKUP_LOGIN"))
+			//{
 				content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
-			}
+			//}
 			OutputStreamWriter writer =new OutputStreamWriter(new FileOutputStream(GLOBAL.SURUCU  +  xmlDosya + ".xml"), 
 					StandardCharsets.UTF_8);
 			writer.write(content);
@@ -223,7 +224,14 @@ public class Ayarlar extends JPanel {
 	
 	private void createSchedulerStartup() throws IOException, InterruptedException, ClassNotFoundException, SQLException
 	{
-		String pathString =  xmlDegis("OBS_BACKUP.exe","OBS_BACKUP");
+		String pathString = "" ;
+		if(GLOBAL.dos_kontrol(GLOBAL.pathApp() + "OBS_BACKUP.exe" ))
+		{
+			pathString =  xmlDegis("OBS_BACKUP.exe","OBS_BACKUP");
+		}
+		else {
+			pathString =  xmlDegis("OBS_BACKUP.jar","OBS_BACKUP");
+		}
 		Runtime rt = Runtime.getRuntime();
 		Process p = rt.exec("schtasks.exe /Create /XML "+ pathString +"OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
 	
@@ -250,7 +258,7 @@ public class Ayarlar extends JPanel {
 				if(line.equals("ERROR: Access is denied."))
 				{
 					bckp.log_kayit("System", new Date(), line);
-					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz..."); 
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING,  dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz")); 
 				}
 				else {
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
@@ -263,8 +271,14 @@ public class Ayarlar extends JPanel {
 	}
 	private void createSchedulerLogin() throws IOException, InterruptedException, ClassNotFoundException, SQLException
 	{
-		String pathString =  xmlDegis("OBS_BACKUP.exe","OBS_BACKUP_LOGIN");
-		
+		String pathString = "" ;
+		if(GLOBAL.dos_kontrol(GLOBAL.pathApp() + "OBS_BACKUP.exe" ))
+		{
+			pathString =  xmlDegis("OBS_BACKUP.exe","OBS_BACKUP_LOGIN");
+		}
+		else {
+			pathString =  xmlDegis("OBS_BACKUP.jar","OBS_BACKUP_LOGIN");
+		}
 		Runtime rt = Runtime.getRuntime();
 		Process p = rt.exec("schtasks.exe /Create /XML " + pathString + "OBS_BACKUP_LOGIN.xml /TN OBS_BACKUP_LOGIN ");
 	
@@ -292,7 +306,7 @@ public class Ayarlar extends JPanel {
 				if(line.equals("ERROR: Access is denied."))
 				{
 					bckp.log_kayit("System", new Date(), line);
-					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz..."); 
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz")); 
 				
 				}
 				else {

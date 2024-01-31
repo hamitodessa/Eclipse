@@ -1506,7 +1506,7 @@ public class LOGIN extends JDialog {
 			String eskitar = "" ;
 			String eskiver = "";
 			String yeniver = "";
-			String fileName = "C:/OBS_SISTEM" + "/OBS_VERSION.txt";
+			String fileName = GLOBAL.SURUCU  + "\\OBS_VERSION.txt";
 			String line = null;
 			FileReader fileReader = null;
 			int counter = 0;

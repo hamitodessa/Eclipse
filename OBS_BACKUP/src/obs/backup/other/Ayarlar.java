@@ -51,11 +51,13 @@ public class Ayarlar extends JPanel {
 	public JLabel lblNewLabel_1;
 	public JLabel lblNewLabel_2 ;
 	public JLabel lblNewLabel_3;
+	public JLabel lblNewLabel_4 ;
 	public JComboBox<String> comboBox;
 	public JComboBox<String> comboBox_1;
 	public JCheckBox chckbxSifrele;
 	public JCheckBox chckbxPrgSifre;
 	public JCheckBox chckbxNewCheckBox;
+	public JCheckBox chckbxNewCheckBox_1;
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	final boolean showTabsHeader = false;
 	public JPasswordField passwordText;
@@ -86,6 +88,7 @@ public class Ayarlar extends JPanel {
 				lblNewLabel_2.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"ZIP Sifrele"));
 				lblNewLabel_3.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Acilis Sifre Sor"));
 				chckbxNewCheckBox.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Windows ile Baslat")); 
+				lblNewLabel_4.setText(dilSecenek.dil(comboBox_1.getSelectedItem().toString(),"Version Kontrol")); 
 			}
 		});
 		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Turkce", "English"}));
@@ -112,7 +115,7 @@ public class Ayarlar extends JPanel {
 					bckp.ayar_sil();
 					SIFRE_DONDUR sDondur = new SIFRE_DONDUR();
 					bckp.ayar_kayit(comboBox_1.getSelectedItem().toString(), comboBox.getSelectedItem().toString(),chckbxSifrele.isSelected() ? 1:0,
-							sDondur.sDONDUR(passwordText) , chckbxPrgSifre.isSelected() ? 1:0, chckbxNewCheckBox.isSelected() ? 1:0);
+							sDondur.sDONDUR(passwordText) , chckbxPrgSifre.isSelected() ? 1:0, chckbxNewCheckBox.isSelected() ? 1:0,chckbxNewCheckBox_1.isSelected() ? 1:0);
 					OBS_BACKUP.emirleriSTOPYAP();
 					OBS_BACKUP.btnfont_tema.doClick();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -156,7 +159,7 @@ public class Ayarlar extends JPanel {
 		add(lblNewLabel_3);
 
 		chckbxPrgSifre = new JCheckBox("");
-		chckbxPrgSifre.setBounds(160, 267, 99, 23);
+		chckbxPrgSifre.setBounds(160, 267, 49, 23);
 		add(chckbxPrgSifre);
 
 		JPanel panel = new JPanel();
@@ -193,6 +196,14 @@ public class Ayarlar extends JPanel {
 		btnNewButton.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/save.png")));
 		btnNewButton.setBounds(293, 17, 25, 23);
 		panel.add(btnNewButton);
+		
+		lblNewLabel_4 = new JLabel("Version Kontrol");
+		lblNewLabel_4.setBounds(42, 292, 120, 14);
+		add(lblNewLabel_4);
+		
+		chckbxNewCheckBox_1 = new JCheckBox("");
+		chckbxNewCheckBox_1.setBounds(160, 288, 40, 23);
+		add(chckbxNewCheckBox_1);
 	}
 	private String xmlDegis(String dosya, String xmlDosya) throws IOException
 	{

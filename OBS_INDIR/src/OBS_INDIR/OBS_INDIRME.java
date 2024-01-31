@@ -18,7 +18,7 @@ import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
-
+import OBS_C_2025.GLOBAL;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -391,7 +391,7 @@ public class OBS_INDIRME extends JFrame {
 					inputStream.close();
 					//Version dosyasi Indir
 					String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_VERSION.txt";
-					File downloadFile1 = new File( "C:/OBS_SISTEM" + "/OBS_VERSION.txt");
+					File downloadFile1 = new File(GLOBAL.SURUCU + "\\OBS_VERSION.txt");
 					OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
 					ftp.retrieveFile(remoteFile1, outputStream1);
 					outputStream1.close();
@@ -485,6 +485,13 @@ public class OBS_INDIRME extends JFrame {
 					success = ftp.completePendingCommand();
 					outputStream2.close();
 					inputStream.close();
+					
+					//Version dosyasi Indir
+					String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_BACKUP_VERSION.txt";
+					File downloadFile1 = new File(GLOBAL.SURUCU + "\\OBS_BACKUP_VERSION.txt");
+					OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
+					ftp.retrieveFile(remoteFile1, outputStream1);
+					outputStream1.close();
 					//*******************************
 					if (success) {
 						JOptionPane.showMessageDialog(null, "Indirme Islemi Basari ile tamamlandi....",   "OBS Backup Indirme", JOptionPane.PLAIN_MESSAGE);   

@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
+import OBS_C_2025.GLOBAL;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -169,7 +170,7 @@ public class Hakkinda extends JPanel {
 	private void versiyon_oku()
 	{
 		try {
-			String fileName = "C:/OBS_SISTEM" + "/OBS_VERSION.txt";
+			String fileName = GLOBAL.SURUCU + "\\OBS_BACKUP_VERSION.txt";
 			String line = null;
 			FileReader fileReader = null;
 			int counter = 0;

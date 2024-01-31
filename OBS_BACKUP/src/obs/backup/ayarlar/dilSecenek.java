@@ -290,6 +290,9 @@ public class dilSecenek {
 			case  "Windows ile Baslat":
 				tEXT = "Start with Windows"  ;
 				break;
+			case  "Version Kontrol":
+				tEXT = "Check Version"  ;
+				break;
 
 //				
 			}  

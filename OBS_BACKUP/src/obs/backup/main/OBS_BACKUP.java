@@ -39,7 +39,6 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialPaleni
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 import LOGER_KAYIT.TXT_LOG;
-
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.CheckListItem;
 import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
@@ -113,6 +112,7 @@ import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -257,7 +257,7 @@ public class OBS_BACKUP extends JFrame {
 	public static boolean sifRELE = false;
 	
 	static Component horizontalGlue = null ;
-	private static String diltemaString[] = new String[6];
+	private static String diltemaString[] = new String[7];
 	/**
 	 * Hamit.
 	 */
@@ -735,14 +735,8 @@ public class OBS_BACKUP extends JFrame {
 				ayarlarPanel.comboBox.setSelectedItem(diltemaString[1]);
 				ayarlarPanel.chckbxPrgSifre.setSelected(Integer.valueOf(diltemaString[4]) == 0 ? false:true);
 				ayarlarPanel.chckbxNewCheckBox.setSelected(Integer.valueOf(diltemaString[5]) == 0 ? false:true);
-				//if(ayarlarPanel.chckbxSifrele.isSelected())
-				//{
+				ayarlarPanel.chckbxNewCheckBox_1.setSelected(Integer.valueOf(diltemaString[6]) == 0 ? false:true);
 				ayarlarPanel.passwordText.setVisible(ayarlarPanel.chckbxSifrele.isSelected());
-				//}
-				//else 
-				//{
-				//	ayarlarPanel.passwordText.setVisible(false);
-				//}
 				tabbedPane.setSelectedIndex(8);
 			}
 		});
@@ -912,6 +906,9 @@ public class OBS_BACKUP extends JFrame {
 				dispose();
 			}
 		});
+		//******************************* VERSIYON KONTROL *************************************************************************
+		if(Integer.valueOf(diltemaString[6]) == 1 )
+			versiyon_oku();
 		//***********************************BASLAMA********************************************************************************
 		try 
 		{
@@ -2824,6 +2821,7 @@ public class OBS_BACKUP extends JFrame {
 		ayarlarPanel.lblNewLabel_2.setText(dilSecenek.dil(dILS,"ZIP Sifrele"));
 		ayarlarPanel.lblNewLabel_3.setText(dilSecenek.dil(dILS,"Acilis Sifre Sor"));
 		ayarlarPanel.chckbxNewCheckBox.setText(dilSecenek.dil(dILS,"Windows ile Baslat")); 
+		ayarlarPanel.lblNewLabel_4.setText(dilSecenek.dil(dILS,"Version Kontrol")); 
 		//**********************************************************************************************
 		if(dILS.equals("Turkce"))
 		{
@@ -2909,5 +2907,141 @@ public class OBS_BACKUP extends JFrame {
 		 btnHakkinda.setEnabled(true);
 		 btnAyarlar.setEnabled(true);
 		 btnHepsiYukari.doClick();
+	}
+	private void versiyon_oku()
+	{
+		try 
+		{
+			URL whatismyip = new URL("http://checkip.amazonaws.com");
+			BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
+			String ip = in.readLine(); //you get the IP as a String
+			//System.out.println(ip);
+			if(ip.equals("78.189.76.247")) return;
+			if (glb.internet_kontrol() == false)
+			{
+				return ;
+			}
+			String eskitar = "" ;
+			String eskiver = "";
+			String yeniver = "";
+			String fileName = GLOBAL.SURUCU  + "\\OBS_BACKUP_VERSION.txt";
+			String line = null;
+			FileReader fileReader = null;
+			int counter = 0;
+			fileReader =  new FileReader(fileName);
+			BufferedReader bufferedReader =    new BufferedReader(fileReader);
+			while((line = bufferedReader.readLine()) != null) {
+				counter++;
+				if(counter == 1)
+				{
+					eskitar = line.toString();
+				}
+				else  if(counter == 2)
+				{
+					eskiver = line.toString();
+				}
+			}   
+			bufferedReader.close();
+			//
+			String serverAddress = "78.189.76.247";
+			String userId ="hamitadmin";
+			String password ="SDFks9hfji3#DEd";
+			//***********************************************************************************
+//			File fILEFTP = new File( GLOBAL.SURUCU + "/OBS_SISTEM_FTP.txt"); 
+//			fileReader =  new FileReader(fILEFTP); 
+//			bufferedReader = new BufferedReader(fileReader);
+//			counter = 0; 
+//			while((line = bufferedReader.readLine()) != null) 
+//			{ 
+//				counter++;
+//				if(counter == 1) 
+//				{ 
+//					serverAddress = line.toString(); 
+//				} 
+//				else if(counter == 2) 
+//				{
+//					userId = line.toString(); 
+//				} 
+//				else if(counter == 3) 
+//				{ 
+//					password =  line.toString(); 
+//				}
+//			}
+//			bufferedReader.close();
+			//*************************************************************************************
+			FTPClient ftp = new FTPClient();
+			ftp.connect(serverAddress);
+			if(!ftp.login(userId, password))
+			{
+				ftp.logout();
+				ftp.disconnect();
+				return ;
+			}
+			int reply = ftp.getReplyCode();
+			if (!FTPReply.isPositiveCompletion(reply))
+			{
+				ftp.disconnect();
+				return ;
+			}
+			ftp.enterLocalPassiveMode();
+			String remoteFile1 = ftp.printWorkingDirectory() + "/OBS_BACKUP_VERSION.txt";
+			File downloadFile1 = new File( GLOBAL.SURUCU + "/OBS_BACKUP_VERSIONS.txt");
+			OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
+			boolean success = ftp.retrieveFile(remoteFile1, outputStream1);
+			outputStream1.close();
+			if (success == false )
+				{
+				Path path = Paths.get(GLOBAL.SURUCU + "/OBS_BACKUP_VERSIONS.txt"); 
+	            Files.deleteIfExists(path); 
+				ftp.logout();
+				ftp.disconnect();
+				return ;
+				}
+			//************************************
+			ftp.logout();
+			ftp.disconnect();
+			fileName = "" ;
+			fileName = GLOBAL.SURUCU + "\\OBS_BACKUP_VERSIONS.txt";
+			fileReader = null;
+			fileReader =  new FileReader(fileName);
+			// Always wrap FileReader in BufferedReader.
+			bufferedReader = null;
+			bufferedReader =  new BufferedReader(fileReader);
+			counter = 0;
+			String yenitar = "" ;
+			while((line = bufferedReader.readLine()) != null) {
+				counter++;
+				if(counter == 1)
+				{
+					yenitar = line.toString();
+				}
+				else  if(counter == 2)
+				{
+					yeniver = line.toString();
+				}
+			}   
+			bufferedReader.close();
+			if (eskiver.equals(yeniver))
+			{
+				Path path   = Paths.get(GLOBAL.SURUCU +"\\OBS_BACKUP_VERSIONS.txt"); 
+	            Files.deleteIfExists(path); 
+			}
+			else
+			{
+				Path path   = Paths.get(GLOBAL.SURUCU +"\\OBS_BACKUP_VERSIONS.txt"); 
+	            Files.deleteIfExists(path); 
+				String html = "Yeni Versiyon Mevcut"
+						+ System.lineSeparator()
+						+ "Mevcut Version = " + eskiver + "      "
+						+ System.lineSeparator()
+						+ "Yeni Version = " + yeniver 
+						+ System.lineSeparator();
+				mesajGoster(15000,Notifications.Type.INFO,  String.format(html));
+			}
+		}
+		catch (Exception ex)
+		{
+			mesajGoster(15000,Notifications.Type.INFO,  ex.getMessage());
+		}
 	}
 }

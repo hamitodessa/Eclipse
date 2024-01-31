@@ -201,11 +201,11 @@ public class Ayarlar extends JPanel {
 		panel.add(btnSchedulerSave);
 		
 		lblNewLabel_4 = new JLabel("Version Kontrol");
-		lblNewLabel_4.setBounds(42, 292, 120, 14);
+		lblNewLabel_4.setBounds(42, 294, 120, 14);
 		add(lblNewLabel_4);
 		
 		chckbxVersion = new JCheckBox("");
-		chckbxVersion.setBounds(160, 288, 40, 23);
+		chckbxVersion.setBounds(160, 290, 40, 23);
 		add(chckbxVersion);
 	}
 	private String xmlDegis(String dosya, String xmlDosya) throws IOException

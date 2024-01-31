@@ -73,7 +73,7 @@ public class Ayarlar extends JPanel {
 		add(comboBox);
 
 		lblNewLabel_1 = new JLabel("Dil");
-		
+
 		lblNewLabel_1.setBounds(42, 24, 85, 14);
 		add(lblNewLabel_1);
 
@@ -94,7 +94,7 @@ public class Ayarlar extends JPanel {
 
 		btnKaydet = new JButton("Kaydet");
 		btnKaydet.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if(chckbxSifrele.isSelected())
@@ -123,7 +123,7 @@ public class Ayarlar extends JPanel {
 		});
 		btnKaydet.setBounds(160, 347, 89, 23);
 		add(btnKaydet);
-		
+
 		chckbxSifrele = new JCheckBox("");
 		chckbxSifrele.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -138,37 +138,37 @@ public class Ayarlar extends JPanel {
 		});
 		chckbxSifrele.setBounds(160, 161, 99, 23);
 		add(chckbxSifrele);
-		
+
 		lblNewLabel_2 = new JLabel("ZIP Sifrele");
 		lblNewLabel_2.setBounds(42, 165, 105, 14);
 		add(lblNewLabel_2);
-		
+
 		passwordText = new JPasswordField();
 		passwordText.setVisible(false);
 		passwordText.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true");
 		passwordText.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
-		
+
 		passwordText.setBounds(160, 201, 189, 20);
 		add(passwordText);
-		
+
 		lblNewLabel_3 = new JLabel("Acilis Sifre Sor");
 		lblNewLabel_3.setBounds(42, 271, 120, 14);
 		add(lblNewLabel_3);
-		
+
 		chckbxPrgSifre = new JCheckBox("");
 		chckbxPrgSifre.setBounds(160, 267, 99, 23);
 		add(chckbxPrgSifre);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Windows Scheduler", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(42, 432, 336, 53);
+		panel.setBounds(42, 432, 372, 53);
 		add(panel);
 		panel.setLayout(null);
-		
+
 		chckbxNewCheckBox = new JCheckBox("Windows ile Baslat");
 		chckbxNewCheckBox.setBounds(115, 17, 157, 23);
 		panel.add(chckbxNewCheckBox);
-		
+
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -185,7 +185,8 @@ public class Ayarlar extends JPanel {
 						taskDeleteLogin();
 					}
 					btnKaydet.doClick();
-				} catch (Exception e2) {
+				} catch (Exception e2) 
+				{
 				}
 			}
 		});
@@ -193,33 +194,26 @@ public class Ayarlar extends JPanel {
 		btnNewButton.setBounds(293, 17, 25, 23);
 		panel.add(btnNewButton);
 	}
-	
-	private String xmlDegis(String dosya, String xmlDosya)
+	private String xmlDegis(String dosya, String xmlDosya) throws IOException
 	{
-		String s ="";
-		try {
-			s = GLOBAL.pathApp();
-			InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/" + xmlDosya + ".xml");
-			BufferedReader reader = new BufferedReader(new InputStreamReader(iss));
-			String content,str; 
-			StringBuffer buf = new StringBuffer();      
-			while ((str = reader.readLine()) != null) 
-			{   
-				buf.append(str + "\n" );
-			}                
-			content = buf.toString();
-			content = content.replaceAll("encoding=\"UTF-8\"", "");
-			content = content.replaceAll("DOSYA", Matcher.quoteReplacement(s + dosya));
-			content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
-			OutputStreamWriter writer =new OutputStreamWriter(new FileOutputStream(GLOBAL.SURUCU  +  xmlDosya + ".xml"),StandardCharsets.UTF_8);
-			writer.write(content);
-			writer.close();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		String 	s = GLOBAL.pathApp();
+		InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/" + xmlDosya + ".xml");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(iss));
+		String content,str; 
+		StringBuffer buf = new StringBuffer();      
+		while ((str = reader.readLine()) != null) 
+		{   
+			buf.append(str + "\n" );
+		}                
+		content = buf.toString();
+		content = content.replaceAll("encoding=\"UTF-8\"", "");
+		content = content.replaceAll("DOSYA", Matcher.quoteReplacement(s + dosya));
+		content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
+		OutputStreamWriter writer =new OutputStreamWriter(new FileOutputStream(GLOBAL.SURUCU + xmlDosya + ".xml"),StandardCharsets.UTF_8);
+		writer.write(content);
+		writer.close();
 		return s;
 	}
-	
 	private void createSchedulerStartup() throws IOException, InterruptedException, ClassNotFoundException, SQLException
 	{
 		String pathString = xmlDegis("OBS_BACKUP.jar","OBS_BACKUP");
@@ -257,7 +251,7 @@ public class Ayarlar extends JPanel {
 				}
 			}
 		}
-		Files.delete( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"));
+		Files.deleteIfExists( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"));
 	}
 	private void createSchedulerLogin() throws IOException, InterruptedException, ClassNotFoundException, SQLException
 	{
@@ -272,7 +266,6 @@ public class Ayarlar extends JPanel {
 		BufferedReader br = new BufferedReader(isr);
 		String line;
 		while ((line = br.readLine()) != null) {
-			
 			if(! line.equals("")) 
 			{
 				bckp.log_kayit("System", new Date(), line);
@@ -297,7 +290,7 @@ public class Ayarlar extends JPanel {
 				}
 			}
 		}
-		Files.delete( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP_LOGIN.xml"));
+		Files.deleteIfExists( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP_LOGIN.xml"));
 	}
 	private void taskRunStartup() throws IOException, ClassNotFoundException, SQLException 
 	{
@@ -310,7 +303,6 @@ public class Ayarlar extends JPanel {
 		is = p.getInputStream();
 		isr = new InputStreamReader(is);
 		br = new BufferedReader(isr);
-
 		while ((line = br.readLine()) != null) {
 			if(! line.equals("")) 
 			{
@@ -341,7 +333,6 @@ public class Ayarlar extends JPanel {
 		is = p.getInputStream();
 		isr = new InputStreamReader(is);
 		br = new BufferedReader(isr);
-
 		while ((line = br.readLine()) != null) {
 			if(! line.equals("")) 
 			{

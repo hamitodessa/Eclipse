@@ -631,7 +631,6 @@ public class GLOBAL {
         else {
         	 result = true;
 		}
-	
 		return result ;
 	}
 	public static String pathApp()

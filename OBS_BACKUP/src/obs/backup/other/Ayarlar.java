@@ -210,7 +210,7 @@ public class Ayarlar extends JPanel {
 	}
 	private String xmlDegis(String dosya, String xmlDosya) throws IOException
 	{
-		String 	s = GLOBAL.pathApp();
+		String appPath = GLOBAL.pathApp();
 		InputStream iss = this.getClass().getClassLoader().getResourceAsStream("obs/backup/scheduler/" + xmlDosya + ".xml");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(iss));
 		String content,str; 
@@ -221,12 +221,13 @@ public class Ayarlar extends JPanel {
 		}                
 		content = buf.toString();
 		content = content.replaceAll("encoding=\"UTF-8\"", "");
-		content = content.replaceAll("DOSYA", Matcher.quoteReplacement(s + dosya));
+		content = content.replaceAll("DOSYA", Matcher.quoteReplacement(appPath + dosya));
 		content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
 		OutputStreamWriter writer =new OutputStreamWriter(new FileOutputStream(GLOBAL.SURUCU + xmlDosya + ".xml"),StandardCharsets.UTF_8);
 		writer.write(content);
 		writer.close();
-		return s;
+		reader.close();//
+		return appPath;
 	}
 	private void createSchedulerStartup() throws IOException, InterruptedException, ClassNotFoundException, SQLException
 	{

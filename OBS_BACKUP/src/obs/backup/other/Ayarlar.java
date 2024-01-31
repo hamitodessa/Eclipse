@@ -58,7 +58,6 @@ public class Ayarlar extends JPanel {
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	final boolean showTabsHeader = false;
 	public JPasswordField passwordText;
-	private JLabel lblPath;
 	public Ayarlar()
 	{
 		setLayout(null);
@@ -190,11 +189,6 @@ public class Ayarlar extends JPanel {
 		btnNewButton.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/save.png")));
 		btnNewButton.setBounds(293, 17, 25, 23);
 		panel.add(btnNewButton);
-		
-		lblPath = new JLabel("New label");
-		lblPath.setBounds(42, 485, 430, 14);
-		add(lblPath);
-		
 	}
 	
 	private String xmlDegis(String dosya, String xmlDosya)
@@ -236,9 +230,8 @@ public class Ayarlar extends JPanel {
 		else {
 			pathString =  xmlDegis("OBS_BACKUP.jar","OBS_BACKUP");
 		}
-		lblPath.setText(pathString);
 		Runtime rt = Runtime.getRuntime();
-		Process p = rt.exec("schtasks.exe /Create /XML "+ GLOBAL.SURUCU +"OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
+		Process p = rt.exec("schtasks.exe /Create /XML "+ GLOBAL.SURUCU + "OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
 	
 		// stdout
 		InputStream is = p.getInputStream();

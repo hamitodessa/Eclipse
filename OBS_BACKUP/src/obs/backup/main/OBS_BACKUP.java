@@ -758,7 +758,6 @@ public class OBS_BACKUP extends JFrame {
 		btnkapat.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/exit.png")));
 		toolBar.add(btnkapat);
 		toolBar.add(sprt );
-		
 		//*********************************************************************************
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
@@ -870,7 +869,7 @@ public class OBS_BACKUP extends JFrame {
 				systemTRY();
 			}
 		});
-		btnKapat= new JButton("");
+		btnKapat = new JButton("");
 		btnKapat.setVisible(false);
 		btnKapat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -919,7 +918,6 @@ public class OBS_BACKUP extends JFrame {
 		{
 			bckp.log_kayit("System", new Date(),dilAciklamalar.dilAciklama(dILS,"Program Baslangici"));
 			dil();
-			//pidKONTROL();
 			emirYukle("EMIR_ISMI") ;
 			jobTimerBasla();
 			// SIFRE EKRANI KONTROL***************************************

@@ -231,7 +231,8 @@ public class Ayarlar extends JPanel {
 		}                
 		content = buf.toString();
 		content = content.replaceAll("DOSYA", Matcher.quoteReplacement(appPath + dosya));
-		content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
+		java.net.InetAddress localMachine = java.net.InetAddress.getLocalHost();
+		content = content.replaceAll("KULLANICI", localMachine.getHostName() +"\\"+ System.getProperty("user.name"));	
 		OutputStreamWriter writer =new OutputStreamWriter(new FileOutputStream(GLOBAL.SURUCU + xmlDosya + ".xml"),StandardCharsets.UTF_8);
 		writer.write(content);
 		writer.close();
@@ -246,7 +247,6 @@ public class Ayarlar extends JPanel {
 		Runtime rt = Runtime.getRuntime();
 		// [/RU username [/RP password]] /SC schedule [/MO modifier] [/D day]   System.getProperty("user.name")
 		//Process p = rt.exec("schtasks.exe /Create /XML "+ GLOBAL.SURUCU + "OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
-		
 		java.net.InetAddress localMachine = java.net.InetAddress.getLocalHost();
 		String usERString = localMachine.getHostName() +"\\"+  System.getProperty("user.name") ;
 		Process p = rt.exec("schtasks.exe /Create /XML "+ GLOBAL.SURUCU + "OBS_BACKUP.xml /TN OBS_BACKUP /RU " + usERString +  " /RP " + schSifresi + "");

@@ -1364,6 +1364,8 @@ public class BACKUP_GLOBAL {
 		con.close();
 	}
 }
+//https://www.baeldung.com/java-password-protected-zip-unzip
+
 
 //public  void zipFolder(Path sourceFolderPath, Path zipPath) throws Exception {
 //ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipPath.toFile()));

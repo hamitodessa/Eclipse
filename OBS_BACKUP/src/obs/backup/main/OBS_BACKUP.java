@@ -279,6 +279,7 @@ public class OBS_BACKUP extends JFrame {
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
 		try {
 			glb.backup_surucu_kontrol();
+			pidlb = new JLabel("");
 			pidKONTROL(); // PID yaz
 			secondRUN(); // Baska Calisan Kopya varsa kendini kapa
 			diltemaString = bckp.ayar_oku();
@@ -816,7 +817,7 @@ public class OBS_BACKUP extends JFrame {
 		lblemirSAYI.setBounds(125, 5, 48, 14);
 		altPane.add(lblemirSAYI);
 		
-		pidlb = new JLabel("");
+		
 		pidlb.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		pidlb.setHorizontalAlignment(SwingConstants.RIGHT);
 		pidlb.setBounds(780, 5, 95, 14);

@@ -231,8 +231,7 @@ public class Ayarlar extends JPanel {
 		}                
 		content = buf.toString();
 		content = content.replaceAll("DOSYA", Matcher.quoteReplacement(appPath + dosya));
-		java.net.InetAddress localMachine = java.net.InetAddress.getLocalHost();
-		content = content.replaceAll("KULLANICI", localMachine.getHostName() +"\\"+ System.getProperty("user.name"));	
+		content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
 		OutputStreamWriter writer =new OutputStreamWriter(new FileOutputStream(GLOBAL.SURUCU + xmlDosya + ".xml"),StandardCharsets.UTF_8);
 		writer.write(content);
 		writer.close();

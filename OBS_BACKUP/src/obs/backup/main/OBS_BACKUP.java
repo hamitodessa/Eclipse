@@ -239,7 +239,7 @@ public class OBS_BACKUP extends JFrame {
 	
 	public static JLabel lblemirSAYI;
 	public static JLabel lblEmir ;
-	private JLabel pidlb ;
+	private static  JLabel pidlb ;
 
 	private Path path;
 	
@@ -817,7 +817,7 @@ public class OBS_BACKUP extends JFrame {
 		lblemirSAYI.setBounds(125, 5, 48, 14);
 		altPane.add(lblemirSAYI);
 		
-		
+		pidlb = new JLabel("");
 		pidlb.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		pidlb.setHorizontalAlignment(SwingConstants.RIGHT);
 		pidlb.setBounds(780, 5, 95, 14);

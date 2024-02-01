@@ -279,8 +279,8 @@ public class OBS_BACKUP extends JFrame {
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
 		try {
 			glb.backup_surucu_kontrol();
-			pidKONTROL();
-			secondRUN();
+			pidKONTROL(); // PID yaz
+			secondRUN(); // Baska Calisan Kopya varsa kendini kapa
 			diltemaString = bckp.ayar_oku();
 			dILS = diltemaString[0];
 			tema(diltemaString[1]);

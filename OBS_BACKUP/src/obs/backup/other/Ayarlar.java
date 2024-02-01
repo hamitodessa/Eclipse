@@ -61,6 +61,7 @@ public class Ayarlar extends JPanel {
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	final boolean showTabsHeader = false;
 	public JPasswordField passwordText;
+	boolean schDurum = false;
 	public Ayarlar()
 	{
 		setLayout(null);
@@ -188,7 +189,8 @@ public class Ayarlar extends JPanel {
 						taskDeleteStartUp();
 						taskDeleteLogin();
 					}
-					bckp.ayarSchedulerUpdate(chckbxWinStart.isSelected() ? 1:0);
+					if(schDurum) // Hata Yoksa Degisikligi Kaydet
+						bckp.ayarSchedulerUpdate(chckbxWinStart.isSelected() ? 1:0);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e2) 
 				{
@@ -284,6 +286,7 @@ public class Ayarlar extends JPanel {
 			if(! line.equals("")) 
 			{
 				bckp.log_kayit("System", new Date(), line);
+				schDurum = true;
 				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
 			}  
 		}
@@ -298,6 +301,7 @@ public class Ayarlar extends JPanel {
 				if(line.equals("ERROR: Access is denied."))
 				{
 					bckp.log_kayit("System", new Date(), line);
+					schDurum = false;
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz")); 
 				}
 				else {
@@ -322,6 +326,7 @@ public class Ayarlar extends JPanel {
 			if(! line.equals("")) 
 			{
 				bckp.log_kayit("System", new Date(), line);
+				schDurum = true ;
 				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
 			}
 		}
@@ -333,6 +338,7 @@ public class Ayarlar extends JPanel {
 			if(! line.equals("")) 
 			{
 				bckp.log_kayit("System", new Date(), line);
+				schDurum = false ;
 				OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
 			}
 		}
@@ -352,6 +358,7 @@ public class Ayarlar extends JPanel {
 			if(! line.equals("")) 
 			{
 				bckp.log_kayit("System", new Date(), line);
+				schDurum = true ;
 				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
 			}
 		}
@@ -363,6 +370,7 @@ public class Ayarlar extends JPanel {
 			if(! line.equals("")) 
 			{
 				bckp.log_kayit("System", new Date(), line);
+				schDurum = false ;
 				OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
 			}
 		}
@@ -379,6 +387,7 @@ public class Ayarlar extends JPanel {
 			if(! line.equals("")) 
 			{
 				bckp.log_kayit("System", new Date(), line);
+				schDurum = true ;
 				OBS_BACKUP.mesajGoster(7500,Notifications.Type.INFO, line); 
 			}
 		}
@@ -390,6 +399,7 @@ public class Ayarlar extends JPanel {
 			if(! line.equals("")) 
 			{
 				bckp.log_kayit("System", new Date(), line);
+				schDurum = false ;
 				OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
 			}
 		}

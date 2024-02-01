@@ -751,7 +751,7 @@ public class BACKUP_GLOBAL {
 		PreparedStatement stmt = null;
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
-		String sql = "SELECT * FROM DB_ISIM WHERE  EMIR_ISMI= '" + eismi + "' ORDER BY DB_ADI COLLATE NOCASE ASC ";
+		String sql = "SELECT * FROM DB_ISIM WHERE EMIR_ISMI= '" + eismi + "' ORDER BY DB_ADI COLLATE NOCASE ASC ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<String>  dbadi =new ArrayList<String>();
@@ -789,7 +789,7 @@ public class BACKUP_GLOBAL {
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
-		ResultSet	rss = null;
+		ResultSet rss = null;
 		con = glb.myBackupConnection();
 		String sql = "SELECT * FROM FTP WHERE  EMIR_ISMI= '" + eismi + "'";
 		stmt = con.prepareStatement(sql);

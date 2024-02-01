@@ -181,7 +181,7 @@ public class Ayarlar extends JPanel {
 				try {
 					if (chckbxWinStart.isSelected())  // Secili
 					{
-						schSifresi = JOptionPane.showInputDialog(null,System.getProperty("user.name")  + "  Kullanici Sifresini Giriniz");      
+						schSifresi = JOptionPane.showInputDialog(null,System.getProperty("user.name")  + " - Kullanici Sifresini Giriniz");      
 						if (schSifresi == null || schSifresi.equals("") )
 						{
 							return ;

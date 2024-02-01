@@ -12,6 +12,7 @@ import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -61,7 +62,8 @@ public class Ayarlar extends JPanel {
 	static BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	final boolean showTabsHeader = false;
 	public JPasswordField passwordText;
-	boolean schDurum = false;
+	static boolean schDurum = false;
+	static String schSifresi = "" ;
 	public Ayarlar()
 	{
 		setLayout(null);
@@ -177,15 +179,21 @@ public class Ayarlar extends JPanel {
 		btnSchedulerSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					if (chckbxWinStart.isSelected())  // Secili
 					{
+						schSifresi = JOptionPane.showInputDialog(null,System.getProperty("user.name")  + "  Kullanici Sifresini Giriniz");      
+						if (schSifresi == null || schSifresi.equals("") )
+						{
+							return ;
+						}
+						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 						createSchedulerStartup();
 						createSchedulerLogin();
 						//taskRunStartup();
 						//taskRunLogin();
 					}
 					else {
+						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 						taskDeleteStartUp();
 						taskDeleteLogin();
 					}
@@ -222,7 +230,6 @@ public class Ayarlar extends JPanel {
 			buf.append(str + "\n" );
 		}                
 		content = buf.toString();
-		content = content.replaceAll("encoding=\"UTF-8\"", "");
 		content = content.replaceAll("DOSYA", Matcher.quoteReplacement(appPath + dosya));
 		content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
 		OutputStreamWriter writer =new OutputStreamWriter(new FileOutputStream(GLOBAL.SURUCU + xmlDosya + ".xml"),StandardCharsets.UTF_8);
@@ -237,7 +244,12 @@ public class Ayarlar extends JPanel {
 		if(GLOBAL.dos_kontrol(GLOBAL.pathApp() + "OBS_BACKUP.exe" ))
 			pathString =  xmlDegis("OBS_BACKUP.exe","OBS_BACKUP");
 		Runtime rt = Runtime.getRuntime();
-		Process p = rt.exec("schtasks.exe /Create /XML "+ GLOBAL.SURUCU + "OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
+		// [/RU username [/RP password]] /SC schedule [/MO modifier] [/D day]   System.getProperty("user.name")
+		//Process p = rt.exec("schtasks.exe /Create /XML "+ GLOBAL.SURUCU + "OBS_BACKUP.xml /TN OBS_BACKUP /RU SYSTEM");
+		
+		java.net.InetAddress localMachine = java.net.InetAddress.getLocalHost();
+		String usERString = localMachine.getHostName() +"\\"+  System.getProperty("user.name") ;
+		Process p = rt.exec("schtasks.exe /Create /XML "+ GLOBAL.SURUCU + "OBS_BACKUP.xml /TN OBS_BACKUP /RU " + usERString +  " /RP " + schSifresi + "");
 		// stdout
 		InputStream is = p.getInputStream();
 		InputStreamReader isr = new InputStreamReader(is);

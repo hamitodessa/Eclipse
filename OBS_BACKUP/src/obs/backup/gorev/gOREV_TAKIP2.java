@@ -44,7 +44,7 @@ import java.beans.PropertyChangeListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings({"serial","deprecation"})
-public  class gOREV_TAKIP extends JPanel { 
+public  class gOREV_TAKIP2 extends JPanel { 
 	public TimerTask tt;
 	Timer timerr;
 	JLabel lblNewLabel;
@@ -85,7 +85,7 @@ public  class gOREV_TAKIP extends JPanel {
 	BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
 	public JButton btnyenidenBASLAT;
 	public JButton btnHepsiPasivden;
-	public gOREV_TAKIP(String emirADI) {
+	public gOREV_TAKIP2(String emirADI) {
 		
 		eADI = emirADI;
 		setBorder(new CompoundBorder(new EmptyBorder(5, 5, 0, 5), BorderFactory.createLineBorder(new Color(235, 235, 235))));
@@ -225,7 +225,7 @@ public  class gOREV_TAKIP extends JPanel {
 		add(lblNewLabel_1_4);
 
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(gOREV_TAKIP.class.getResource("/obs/backup/icons/icons8-backup-100.png")));
+		lblNewLabel_2.setIcon(new ImageIcon(gOREV_TAKIP2.class.getResource("/obs/backup/icons/icons8-backup-100.png")));
 		lblNewLabel_2.setBounds(20, 65, 100, 100);
 		add(lblNewLabel_2);
 
@@ -253,13 +253,13 @@ public  class gOREV_TAKIP extends JPanel {
 
 		btn1 = new JButton();
 		btn1.setName("⇈");
-		btn1.setIcon(new ImageIcon(gOREV_TAKIP.class.getResource("/obs/backup/icons/double-up-16.png")));
+		btn1.setIcon(new ImageIcon(gOREV_TAKIP2.class.getResource("/obs/backup/icons/double-up-16.png")));
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (btn1.getName().equals("⇈"))
 				{
 					OBS_BACKUP.gorevYukari(eADI);
-					btn1.setIcon(new ImageIcon(gOREV_TAKIP.class.getResource("/obs/backup/icons/down-16.png")));
+					btn1.setIcon(new ImageIcon(gOREV_TAKIP2.class.getResource("/obs/backup/icons/down-16.png")));
 					btn1.setName("⇊");
 				}
 				else
@@ -345,12 +345,12 @@ public  class gOREV_TAKIP extends JPanel {
 			public void propertyChange(PropertyChangeEvent evt) {
 				if(getPreferredSize().height == 175)
 				{
-					btn1.setIcon(new ImageIcon(gOREV_TAKIP.class.getResource("/obs/backup/icons/double-up-16.png")));
+					btn1.setIcon(new ImageIcon(gOREV_TAKIP2.class.getResource("/obs/backup/icons/double-up-16.png")));
 					lblNewLabel_6.setBounds(450, 132, 20, 14);
 					lblKalanZaman.setBounds(465, 132, 164, 14);
 				}
 				else {
-					btn1.setIcon(new ImageIcon(gOREV_TAKIP.class.getResource("/obs/backup/icons/down-16.png")));
+					btn1.setIcon(new ImageIcon(gOREV_TAKIP2.class.getResource("/obs/backup/icons/down-16.png")));
 					lblNewLabel_6.setBounds(450, 47, 20, 14);
 					lblKalanZaman.setBounds(465, 47, 164, 14);
 				}
@@ -411,6 +411,7 @@ public  class gOREV_TAKIP extends JPanel {
 			};  
 		};
 		timerr.schedule(tt,0,  1000);;  
+
 	}
 	private void yedekSirasinaKoy() throws ClassNotFoundException, SQLException, InterruptedException
 	{
@@ -427,7 +428,7 @@ public  class gOREV_TAKIP extends JPanel {
 	private void basla() throws ClassNotFoundException, ParseException, SQLException
 	{
 		GunLERE_BAK();
-		if (! lblDurum.getText().equals(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Pasiv Durumda")))
+		if (! lblDurum.getText().equals(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Pasiv Durumda") ))
 			run();
 	}
 	public void ilkBasla() 
@@ -661,9 +662,20 @@ public  class gOREV_TAKIP extends JPanel {
 								hangiGUN_SALI(varmi, kacGUN + 1, true);
 								return;
 							}
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
+							{
+								guniciKONTROL();
+								return; 
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+								guniciKONTROL();
+								return;
+							}
 							else
 							{
 								guniciKONTROL();
+								bckp.log_kayit(eADI,new Date(), "p.tesi else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}
 						}
@@ -695,9 +707,20 @@ public  class gOREV_TAKIP extends JPanel {
 								hangiGUN_CARS(varmi, kacGUN + 1, true);
 								return;
 							}
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
+							{
+								guniciKONTROL();
+								return; 
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+								guniciKONTROL();
+								return;
+							}
 							else
 							{
 								guniciKONTROL();
+								bckp.log_kayit(eADI, new Date(), "sali else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}
 						}
@@ -729,9 +752,20 @@ public  class gOREV_TAKIP extends JPanel {
 								hangiGUN_PERS(varmi, kacGUN + 1, true);
 								return;
 							}
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
+							{
+								guniciKONTROL();
+								return; 
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+								guniciKONTROL();
+								return;
+							}
 							else
 							{
 								guniciKONTROL();
+								bckp.log_kayit(eADI, new Date(), "Cars else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}
 						}
@@ -763,9 +797,20 @@ public  class gOREV_TAKIP extends JPanel {
 								hangiGUN_CUMA(varmi, kacGUN + 1, true);
 								return;
 							}
-							else 
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
 							{
 								guniciKONTROL();
+								return;
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+								guniciKONTROL();
+								return;
+							}
+							else
+							{
+								guniciKONTROL();
+								bckp.log_kayit(eADI, new Date(), "Pers else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}
 						}
@@ -799,9 +844,21 @@ public  class gOREV_TAKIP extends JPanel {
 								hangiGUN_C_TESI(varmi, kacGUN + 1, true);
 								return;
 							}
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
+							{
+								guniciKONTROL();
+								return;
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+
+								guniciKONTROL();
+								return;
+							}
 							else
 							{
 								guniciKONTROL();
+								bckp.log_kayit(eADI, new Date(), "cuma else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}
 						}
@@ -833,9 +890,20 @@ public  class gOREV_TAKIP extends JPanel {
 								hangiGUN_PAZAR(varmi, kacGUN + 1, true);
 								return;
 							}
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
+							{
+								guniciKONTROL();
+								return; 
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+								guniciKONTROL();
+								return;
+							}
 							else
 							{
 								guniciKONTROL();
+								bckp.log_kayit(eADI, new Date(), "Ctesi else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}
 						}
@@ -867,9 +935,20 @@ public  class gOREV_TAKIP extends JPanel {
 								hangiGUN_P_TESI(varmi, kacGUN + 1, true);
 								return;
 							}
+							else if (dateNOW.after(dateBAS) && dateNOW.before(dateBIT) )
+							{
+								guniciKONTROL();
+								return;
+							}
+							else if (dateNOW.before(dateBAS) || dateNOW == dateBAS)
+							{
+								guniciKONTROL();
+								return;
+							}
 							else
 							{
 								guniciKONTROL();
+								bckp.log_kayit(eADI, new Date(), "pazar else  now=" + tsNOW + "=bas=" + tsbas + "=bit=" + tsbit);
 								return;
 							}
 						}

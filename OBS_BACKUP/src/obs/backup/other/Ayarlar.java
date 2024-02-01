@@ -28,6 +28,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.awt.Cursor;
@@ -167,7 +168,7 @@ public class Ayarlar extends JPanel {
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Windows Scheduler", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(42, 475, 372, 53);
+		panel.setBounds(42, 475, 372, 60);
 		add(panel);
 		panel.setLayout(null);
 
@@ -231,6 +232,9 @@ public class Ayarlar extends JPanel {
 			buf.append(str + "\n" );
 		}                
 		content = buf.toString();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+		String tarIH = sdf.format(new Date());
+		content = content.replaceAll("TARIH", tarIH);
 		content = content.replaceAll("DOSYA", Matcher.quoteReplacement(appPath + dosya));
 		content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
 		OutputStreamWriter writer =new OutputStreamWriter(new FileOutputStream(GLOBAL.SURUCU + xmlDosya + ".xml"),StandardCharsets.UTF_8);
@@ -410,9 +414,12 @@ public class Ayarlar extends JPanel {
 		while ((line = br.readLine()) != null) {
 			if(! line.equals("")) 
 			{
-				bckp.log_kayit("System", new Date(), line);
-				schDurum = false ;
-				OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+				if(! line.equals("ERROR: The system cannot find the file specified."))
+				{
+					bckp.log_kayit("System", new Date(), line);
+					schDurum = true ;
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+				}
 			}
 		}
 	}
@@ -428,6 +435,7 @@ public class Ayarlar extends JPanel {
 			if(! line.equals("")) 
 			{
 				bckp.log_kayit("System", new Date(), line);
+				schDurum = true ;
 				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
 			}
 		}
@@ -438,8 +446,12 @@ public class Ayarlar extends JPanel {
 		while ((line = br.readLine()) != null) {
 			if(! line.equals("")) 
 			{
-				bckp.log_kayit("System", new Date(), line);
-				OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+				if(! line.equals("ERROR: The system cannot find the file specified."))
+				{
+					bckp.log_kayit("System", new Date(), line);
+					schDurum = true ;
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+				}
 			}
 		}
 	}

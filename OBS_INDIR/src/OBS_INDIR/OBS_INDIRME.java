@@ -149,7 +149,7 @@ public class OBS_INDIRME extends JFrame {
 
 		txtdiz = new JTextField();
 		//txtdiz.setForeground(new Color(0, 0, 128));
-		txtdiz.setText("C:\\OBS_SISTEM");
+		txtdiz.setText(GLOBAL.SURUCU);
 		txtdiz.setFont(new Font("Tahoma", Font.BOLD, 11));
 		txtdiz.setBounds(52, 24, 399, 23);
 		panel.add(txtdiz);
@@ -314,7 +314,13 @@ public class OBS_INDIRME extends JFrame {
 		});
 		btnNewButton_3_2_1.setBounds(456, 150, 80, 23);
 		panel.add(btnNewButton_3_2_1);
-
+		basla();
+	}
+	private void basla()
+	{
+		File tmpDir = new File(GLOBAL.SURUCU);
+		if (! tmpDir.exists())
+			tmpDir.mkdirs();
 	}
 	private void indir(String hangi)
 	{

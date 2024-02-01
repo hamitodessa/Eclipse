@@ -279,6 +279,8 @@ public class OBS_BACKUP extends JFrame {
 		FlatLaf.registerCustomDefaultsSource("obs.backup.theme");
 		try {
 			glb.backup_surucu_kontrol();
+			pidKONTROL();
+			secondRUN();
 			diltemaString = bckp.ayar_oku();
 			dILS = diltemaString[0];
 			tema(diltemaString[1]);
@@ -917,7 +919,7 @@ public class OBS_BACKUP extends JFrame {
 		{
 			bckp.log_kayit("System", new Date(),dilAciklamalar.dilAciklama(dILS,"Program Baslangici"));
 			dil();
-			pidKONTROL();
+			//pidKONTROL();
 			emirYukle("EMIR_ISMI") ;
 			jobTimerBasla();
 			// SIFRE EKRANI KONTROL***************************************
@@ -948,7 +950,6 @@ public class OBS_BACKUP extends JFrame {
 			public void run() {  
 				try {
 					yedekLE();
-					//if(Integer.valueOf(diltemaString[5]) == 0 ? false:true)
 					secondRUN();
 				} catch (Exception e) {
 					e.printStackTrace();

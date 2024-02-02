@@ -1647,8 +1647,7 @@ public class OBS_BACKUP extends JFrame {
 					{
 						uplpnl.  Progres_Bar_2( r + 1);
 						String ftpDOSYA = ls.get(r).getDosyaADI();
-						boolean found = fileESITMI(ftpDOSYA,dosADI);
-						if (found)
+						if (fileESITMI(ftpDOSYA,dosADI))
 						{
 							Date ftar = dosyaTAIRIHI(ls.get(r).getDosyaADI().toString());
 							long dateBeforeInMs = ftar.getTime();
@@ -1851,8 +1850,7 @@ public class OBS_BACKUP extends JFrame {
 					{
 						uplpnl.Progres_Bar_2(r + 1);
 						String ftpDOSYA = ls.get(r).getDosyaADI();
-						boolean found = fileESITMI(ftpDOSYA,dosADI); 
-						if (found)
+						if (fileESITMI(ftpDOSYA,dosADI))
 						{
 							Date ftar = dosyaTAIRIHI(ls.get(r).getDosyaADI().toString());
 							long dateBeforeInMs = ftar.getTime();
@@ -2062,8 +2060,7 @@ public class OBS_BACKUP extends JFrame {
 						int index = dosADI.lastIndexOf(".");
 						if (index >= 0)
 							dosADI = dosADI.substring(0, index); 
-						boolean found = fileESITMI(ftpDOSYA,dosADI);
-						if (found)
+						if (fileESITMI(ftpDOSYA,dosADI))
 						{
 							Date ftar = dosyaTAIRIHI(ls.get(r).getDosyaADI().toString());
 							long dateBeforeInMs = ftar.getTime();
@@ -2237,8 +2234,7 @@ public class OBS_BACKUP extends JFrame {
 						uplpnl.  Progres_Bar_2( r + 1);
 						dosADI = dbliste.get(i).getAdi();
 						String ftpDOSYA = ls.get(r).getDosyaADI();
-						boolean found = fileESITMI(ftpDOSYA,dosADI);
-						if (found)
+						if (fileESITMI(ftpDOSYA,dosADI))
 						{
 							Date ftar = dosyaTAIRIHI(ls.get(r).getDosyaADI().toString());
 							long dateBeforeInMs = ftar.getTime();

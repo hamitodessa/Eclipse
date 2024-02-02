@@ -1620,7 +1620,7 @@ public class OBS_BACKUP extends JFrame {
 				}
 				else 
 				{
-					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Bulunamadi")  );
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Bulunamadi***************")  );
 				}
 			}
 			Date nowwDate = new Date();
@@ -1824,7 +1824,7 @@ public class OBS_BACKUP extends JFrame {
 				}
 				else 
 				{
-					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Bulunamadi")  );
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Bulunamadi***************")  );
 				}
 			}
 			Date nowwDate = new Date();
@@ -2032,7 +2032,7 @@ public class OBS_BACKUP extends JFrame {
 				}
 				else 
 				{
-					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Bulunamadi")  );
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Bulunamadi***************")  );
 				}
 			}
 			Date nowwDate = new Date();
@@ -2210,7 +2210,7 @@ public class OBS_BACKUP extends JFrame {
 						tmpDir.delete();
 				}
 				else {
-					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Bulunamadi")  );
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Bulunamadi***************")  );
 				}
 			}
 			Date nowwDate = new Date();

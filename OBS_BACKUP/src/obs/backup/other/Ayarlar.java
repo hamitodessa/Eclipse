@@ -28,6 +28,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.awt.Cursor;
@@ -100,7 +101,6 @@ public class Ayarlar extends JPanel {
 
 		btnKaydet = new JButton("Kaydet");
 		btnKaydet.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if(chckbxSifrele.isSelected())
@@ -167,7 +167,7 @@ public class Ayarlar extends JPanel {
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Windows Scheduler", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(42, 475, 372, 53);
+		panel.setBounds(42, 475, 372, 60);
 		add(panel);
 		panel.setLayout(null);
 
@@ -188,9 +188,7 @@ public class Ayarlar extends JPanel {
 						schSifresi = JOptionPane.showInputDialog(null,System.getProperty("user.name")  + " - Kullanici Sifresini Giriniz","Windows Kullanici Sifresi",
 								JOptionPane.QUESTION_MESSAGE);      
 						if (schSifresi == null || schSifresi.equals("") )
-						{
 							return ;
-						}
 						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 						createSchedulerStartup();
 						createSchedulerLogin();
@@ -233,6 +231,9 @@ public class Ayarlar extends JPanel {
 		while ((str = reader.readLine()) != null)
 			buf.append(str + "\n" );
 		content = buf.toString();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+		String tarIH = sdf.format(new Date());
+		content = content.replaceAll("TARIH", tarIH);
 		content = content.replaceAll("DOSYA", Matcher.quoteReplacement(appPath + dosya));
 		content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
 		OutputStreamWriter writer =new OutputStreamWriter(new FileOutputStream(GLOBAL.SURUCU + xmlDosya + ".xml"),StandardCharsets.UTF_8);
@@ -272,7 +273,7 @@ public class Ayarlar extends JPanel {
 		java.net.InetAddress localMachine = java.net.InetAddress.getLocalHost();
 		String usERString = localMachine.getHostName() +"\\"+  System.getProperty("user.name") ;
 		Process p = rt.exec("schtasks.exe /Create /XML "+ GLOBAL.SURUCU + "OBS_BACKUP.xml /TN OBS_BACKUP /RU " + usERString +  " /RP " + schSifresi + "");
-		// stdout
+		// Normal
 		InputStream is = p.getInputStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
@@ -285,7 +286,7 @@ public class Ayarlar extends JPanel {
 				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
 			}  
 		}
-		//stderr
+		//Hata Durumunda
 		is = p.getErrorStream();
 		isr = new InputStreamReader(is);
 		br = new BufferedReader(isr);
@@ -432,9 +433,12 @@ public class Ayarlar extends JPanel {
 		while ((line = br.readLine()) != null) {
 			if(! line.equals("")) 
 			{
-				bckp.log_kayit("System", new Date(), line);
-				schDurum = false ;
-				OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+				if(! line.equals("ERROR: The system cannot find the file specified."))
+				{
+					bckp.log_kayit("System", new Date(), line);
+					schDurum = true ;
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+				}
 			}
 		}
 	}
@@ -450,6 +454,7 @@ public class Ayarlar extends JPanel {
 			if(! line.equals("")) 
 			{
 				bckp.log_kayit("System", new Date(), line);
+				schDurum = true ;
 				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
 			}
 		}
@@ -460,8 +465,12 @@ public class Ayarlar extends JPanel {
 		while ((line = br.readLine()) != null) {
 			if(! line.equals("")) 
 			{
-				bckp.log_kayit("System", new Date(), line);
-				OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+				if(! line.equals("ERROR: The system cannot find the file specified."))
+				{
+					bckp.log_kayit("System", new Date(), line);
+					schDurum = true ;
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
+				}
 			}
 		}
 	}

@@ -179,16 +179,15 @@ public class Ayarlar extends JPanel {
 		btnSchedulerSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(jobKontrol("OBS_BACKUP"))
-						taskDeleteStartUp();
-					if(jobKontrol("OBS_BACKUP_LOGIN"))
-							taskDeleteLogin();
 					if (chckbxWinStart.isSelected())  // Secili
 					{
-						schSifresi = JOptionPane.showInputDialog(null,System.getProperty("user.name")  + " - Kullanici Sifresini Giriniz","Windows Kullanici Sifresi",
-								JOptionPane.QUESTION_MESSAGE);      
+						schSifresi = JOptionPane.showInputDialog(null,System.getProperty("user.name")  + " - Kullanici Sifresini Giriniz","Windows Kullanici Sifresi",JOptionPane.QUESTION_MESSAGE);      
 						if (schSifresi == null || schSifresi.equals("") )
 							return ;
+						if(jobKontrol("OBS_BACKUP"))
+							taskDeleteStartUp();
+						if(jobKontrol("OBS_BACKUP_LOGIN"))
+								taskDeleteLogin();
 						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 						createSchedulerStartup();
 						createSchedulerLogin();
@@ -197,8 +196,10 @@ public class Ayarlar extends JPanel {
 					}
 					else {
 						setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-						taskDeleteStartUp();
-						taskDeleteLogin();
+						if(jobKontrol("OBS_BACKUP"))
+							taskDeleteStartUp();
+						if(jobKontrol("OBS_BACKUP_LOGIN"))
+								taskDeleteLogin();
 					}
 					if(schDurum) // Hata Yoksa Degisikligi Kaydet
 						bckp.ayarSchedulerUpdate(chckbxWinStart.isSelected() ? 1:0);
@@ -422,23 +423,7 @@ public class Ayarlar extends JPanel {
 			if(! line.equals("")) 
 			{
 				bckp.log_kayit("System", new Date(), line);
-				schDurum = true ;
 				OBS_BACKUP.mesajGoster(7500,Notifications.Type.INFO, line); 
-			}
-		}
-		//stderr
-		is = p.getErrorStream();
-		isr = new InputStreamReader(is);
-		br = new BufferedReader(isr);
-		while ((line = br.readLine()) != null) {
-			if(! line.equals("")) 
-			{
-				if(! line.equals("ERROR: The system cannot find the file specified."))
-				{
-					bckp.log_kayit("System", new Date(), line);
-					schDurum = true ;
-					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
-				}
 			}
 		}
 	}
@@ -454,23 +439,7 @@ public class Ayarlar extends JPanel {
 			if(! line.equals("")) 
 			{
 				bckp.log_kayit("System", new Date(), line);
-				schDurum = true ;
 				OBS_BACKUP.mesajGoster(10000,Notifications.Type.INFO, line); 
-			}
-		}
-		//stderr
-		is = p.getErrorStream();
-		isr = new InputStreamReader(is);
-		br = new BufferedReader(isr);
-		while ((line = br.readLine()) != null) {
-			if(! line.equals("")) 
-			{
-				if(! line.equals("ERROR: The system cannot find the file specified."))
-				{
-					bckp.log_kayit("System", new Date(), line);
-					schDurum = true ;
-					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
-				}
 			}
 		}
 	}

@@ -1175,15 +1175,9 @@ public class OBS_BACKUP extends JFrame {
 		{
 			if (emirAnaGirisPanel.txtEmir.getText().toString().equals("")) return;
 			bckp.ftp_kayit_sil(emirAnaGirisPanel.txtEmir.getText().toString());
-			String neresi = "";
+			String neresi = "SUR";
 			if ( sunucuayarPanel.chckbxFtp.isSelected())
-			{
 				neresi = "FTP";
-			}
-			else
-			{
-				neresi = "SUR";
-			}
 			SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 			bckp.ftp_ismi_kayit(emirAnaGirisPanel.txtEmir.getText().toString(), 
 					sunucuayarPanel.textHost.getText(), 
@@ -1655,9 +1649,7 @@ public class OBS_BACKUP extends JFrame {
 							{
 								bckp.log_kayit(emirADI, new Date(),ls.get(r).getDosyaADI() + dilAciklamalar.dilAciklama(dILS," Surucuye Silmeye Gitti") );
 								if (glb.dos_kontrol(surucu_yer + "\\" + ls.get(r).getDosyaADI()))
-								{ 
 									glb.dos_sil(surucu_yer + "\\" +  ls.get(r).getDosyaADI());
-								}
 								bckp.log_kayit(emirADI, new Date(), ls.get(r).getDosyaADI() + dilAciklamalar.dilAciklama(dILS," Dosya Surucuden Eski Tarihli Silindi") );
 							}
 						}
@@ -2039,9 +2031,7 @@ public class OBS_BACKUP extends JFrame {
 						String ftpDOSYA = ls.get(r).getDosyaADI();
 						int index = dosADI.lastIndexOf(".");
 						if (index >= 0)
-						{
-							dosADI = dosADI.substring(0, index); // or index + 1 to keep slash
-						}
+							dosADI = dosADI.substring(0, index); 
 						boolean found = fileESITMI(ftpDOSYA,dosADI);
 						if (found)
 						{
@@ -2054,9 +2044,7 @@ public class OBS_BACKUP extends JFrame {
 							{
 								bckp.log_kayit(emirADI, new Date(),ls.get(r).getDosyaADI() + dilAciklamalar.dilAciklama(dILS, " Surucuye Silmeye Gitti") );
 								if (glb.dos_kontrol(ls.get(r).getFilePATH()+"\\"+  ls.get(r).getDosyaADI()))
-								{ 
 									glb.dos_sil(ls.get(r).getFilePATH()+"\\"+ ls.get(r).getDosyaADI());
-								}
 								bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Surucuden Eski Tarihli Silindi") );
 							}
 						}
@@ -2319,15 +2307,11 @@ public class OBS_BACKUP extends JFrame {
 		{
 			if(component.getName()!= null)
 			{
-				if (component.getName().toString().equals(emirADI)) 
-				{
+				if (component.getName().toString().equals(emirADI))
 					container.remove(component);
-				}
 			}
 			else if (component.getName() == null)
-			{
 				container.remove(component);
-			}
 		}
 		container.revalidate();
 		container.repaint();
@@ -2371,10 +2355,8 @@ public class OBS_BACKUP extends JFrame {
 			props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 			props.put("mail.smtp.starttls.enable", tsl);
 			if (ssl)
-			{
 				props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");   
 				//props.put("mail.smtp.startsls.enable", SSL);
-			}
 			Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication(kull, sifre);
@@ -2534,9 +2516,7 @@ public class OBS_BACKUP extends JFrame {
 		Component[] components = container.getComponents();
 		for (Component component : components) {
 			if (component.getName()!= null)
-			{
 				component.setCursor( Cursor.getPredefinedCursor(crsr));
-			}
 			component.revalidate();
 		}
 	}
@@ -2546,9 +2526,7 @@ public class OBS_BACKUP extends JFrame {
 		if(ftpDOSYA.length() < 13) return false;
 		String dosADIOGREN = ftpDOSYA.substring(13,ftpDOSYA.lastIndexOf("."));
 		if(dosADIOGREN.equals(dosYA))
-		{
 			result = true ;
-		}
 		return result;
 	}
 	private Date dosyaTAIRIHI(String ftpDOSYA) throws ParseException
@@ -2650,9 +2628,7 @@ public class OBS_BACKUP extends JFrame {
 			pidlb.setText("PID : " + String.valueOf(dosyaPID));
 			if(dosyaPID == 0) return ; // Dosyada Kayit Yok 
 			if(dosyaPID != (int) ProcessHandle.current().pid())
-			{
 				btnKapat.doClick();
-			}
 		} catch (Exception ex) {
 			try {
 				bckp.log_kayit("System", new Date(), ex.getMessage());

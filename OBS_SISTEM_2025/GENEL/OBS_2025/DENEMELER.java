@@ -457,18 +457,18 @@ public class DENEMELER extends JInternalFrame {
 			    char[] messChar = textField_1.getText() .toCharArray();
 
 			    for (int i = 0; i < messChar.length; i++) {
-			        result += Integer.toBinaryString(messChar[i]) ;//+ " ";
+			        result += Integer.toBinaryString(messChar[i]) + " ";
 			    }
 
 			    System.out.println(result);
 			    
-			    String[] singleBinaryArray = result.toString().split("\\s");
-			    String finalResult = "";
-			    for (String string : singleBinaryArray) {
-			    Character c = (char) Integer.parseInt(string, 2);
-			        finalResult += c.toString();
-			    }
-			    System.out.println("String " + finalResult);
+//			    String[] singleBinaryArray = result.toString().split("\\s");
+//			    String finalResult = "";
+//			    for (String string : singleBinaryArray) {
+//			    Character c = (char) Integer.parseInt(string, 2);
+//			        finalResult += c.toString();
+//			    }
+//			    System.out.println("String " + finalResult);
 			}
 		});
 		btnNewButton_13.setBounds(54, 393, 89, 23);

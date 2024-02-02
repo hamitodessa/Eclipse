@@ -2853,42 +2853,18 @@ public class OBS_BACKUP extends JFrame {
 			return;
 		}
 		switch (tema) {
-		case "FlatCarbonIJ": 
-			FlatCarbonIJTheme.setup();
-			break;
-		case "FlatMonocaiIJ": 
-			FlatMonocaiIJTheme.setup();
-			break;
-		case "FlatMacDarkLaf": 
-			FlatMacDarkLaf.setup();
-			break;
-		case "FlatNordIJ": 
-			FlatNordIJTheme.setup();
-			break;
-		case "FlatHighContrastIJ": 
-			FlatHighContrastIJTheme.setup();
-			break;
-		case "FlatMaterialPalenightIJ": 
-			FlatMaterialPalenightIJTheme.setup();
-			break;
-		case "FlatMaterialDeepOceanIJ": 
-			FlatMaterialDeepOceanIJTheme.setup();
-			break;
-		case "FlatArcDarkIJ": 
-			FlatArcDarkIJTheme.setup();
-			break;
-		case "FlatGradiantoNatureGreenIJ": 
-			FlatGradiantoNatureGreenIJTheme.setup();
-			break;
-		case "FlatGrayIJ": 
-			FlatGrayIJTheme.setup();
-			break;
-		case "FlatMaterial": 
-			FlatMaterialLighterIJTheme.setup();
-			break;	
-		case "FlatArcOrangeIJ": 
-			FlatArcOrangeIJTheme.setup();
-			break;		
+		case "FlatCarbonIJ" -> FlatCarbonIJTheme.setup();
+		case "FlatMonocaiIJ" ->	FlatMonocaiIJTheme.setup();
+		case "FlatMacDarkLaf" -> FlatMacDarkLaf.setup();
+		case "FlatNordIJ" -> FlatNordIJTheme.setup();
+		case "FlatHighContrastIJ" -> FlatHighContrastIJTheme.setup();
+		case "FlatMaterialPalenightIJ" -> FlatMaterialPalenightIJTheme.setup();
+		case "FlatMaterialDeepOceanIJ" -> FlatMaterialDeepOceanIJTheme.setup();
+		case "FlatArcDarkIJ" -> FlatArcDarkIJTheme.setup();
+		case "FlatGradiantoNatureGreenIJ" -> FlatGradiantoNatureGreenIJTheme.setup();
+		case "FlatGrayIJ" -> FlatGrayIJTheme.setup();
+		case "FlatMaterial" -> FlatMaterialLighterIJTheme.setup();
+		case "FlatArcOrangeIJ" -> FlatArcOrangeIJTheme.setup();
 		}
 	}
 	public static void buttonlariGOSTER()

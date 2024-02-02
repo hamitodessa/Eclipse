@@ -620,28 +620,15 @@ public  class gOREV_TAKIP extends JPanel {
 		dateBIT = (Date) (tsbit.getValue());
 		dateBAS = (Date) (tsbas.getValue());
 		
-		switch (hangiGUNDEYIZ) {
-		case 1: 
-			hangiGUN_P_TESI(varmi, 0, false);
-			break;
-		case 2: 
-			hangiGUN_SALI(varmi, 0, false);
-			break;
-		case 3: 
-			hangiGUN_CARS(varmi, 0, false);
-			break;
-		case 4: 
-			hangiGUN_PERS(varmi, 0, false);
-			break;
-		case 5: 
-			hangiGUN_CUMA(varmi, 0, false);
-			break;
-		case 6: 
-			hangiGUN_C_TESI(varmi, 0, false);
-			break;
-		case 7: 
-			hangiGUN_PAZAR(varmi, 0, false);
-			break;
+		switch (hangiGUNDEYIZ) 
+		{
+		case 1 -> hangiGUN_P_TESI(varmi, 0, false);
+		case 2 -> hangiGUN_SALI(varmi, 0, false);
+		case 3 -> hangiGUN_CARS(varmi, 0, false);
+		case 4 -> hangiGUN_PERS(varmi, 0, false);
+		case 5 -> hangiGUN_CUMA(varmi, 0, false);
+		case 6 -> hangiGUN_C_TESI(varmi, 0, false);
+		case 7 -> hangiGUN_PAZAR(varmi, 0, false);
 		}
 	}
 	private void hangiGUN_P_TESI(Boolean varmi, int kacGUN, Boolean disardan) throws ClassNotFoundException, SQLException, ParseException

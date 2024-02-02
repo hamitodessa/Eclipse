@@ -229,6 +229,9 @@ public class dilAciklamalar {
 			case "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz": 
 				acikLAMAString = "Must run the program as an Administrator and create job";
 				break;
+			case " Dosya Bulunamadi": 
+				acikLAMAString = " File Not Found";
+				break;
 //				
 			}
 		}

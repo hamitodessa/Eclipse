@@ -60,10 +60,8 @@ public class OBS_ORTAK_MSSQL implements IConnection {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		Connection conn = null;  
 		String cumle = "";
-		if ( ! sbilgi.getPort().toString().equals("") )
-		{
+		if ( ! sbilgi.getPort().toString().equals(""))
 			sbilgi.setPort( ":" + sbilgi.getPort());
-		}
 		cumle ="jdbc:sqlserver://localhost" + sbilgi.getPort() + ";instanceName=" + sbilgi.getIns() + ";";
 		conn = DriverManager.getConnection(cumle,sbilgi.getKull(),sbilgi.getSifre());
 		PreparedStatement stmt = conn.prepareStatement("SELECT * FROM sys.databases where name = '" + sbilgi.getDb() + "'");

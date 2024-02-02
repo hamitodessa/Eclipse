@@ -1566,54 +1566,61 @@ public class OBS_BACKUP extends JFrame {
 				dosADI = dbliste.get(i); // Dosya Adi
 				uplpnl.lblDosyaAdi.setText(dosADI);
 				uplpnl.Progres_Bar_1( i + 1);
-				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
+				if(serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql") ? bckp.dosyaKontrolMS(dosADI) : bckp.dosyaKontrolMY(dosADI))
 				{
-					bckp.backup_al(dosADI, tarr + "_" + dosADI);
-				}
-				else
-				{
-					bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),
-							sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
-				}
-				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Backup Alindi") );
-				String dosya, dzip;
-				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
-				{
-					dosya = tarr + "_" + dosADI + ".bak";
-				}
-				else
-				{
-					dosya = tarr + "_" + dosADI + ".sql";
-				}
-				dzip = tarr + "_" + dosADI + ".zip";
-				bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE , zipSIFRE );
-				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Zip Haline Getirildi") );
-				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
-				boolean exists = tmpDir.exists();
-				if (!exists)
-					tmpDir.mkdirs();
-				if (glb.dos_kontrol(surucu_yer + "\\" + dzip))
-					glb.dos_sil(surucu_yer + "\\" + dzip);
-				File okunanFile = new File(glb.BACKUP_YERI + dzip);
-				fileCOPY(glb.BACKUP_YERI + dzip,surucu_yer + "\\" + dzip);
-				if (glb.dos_kontrol(glb.BACKUP_YERI + dzip))
-					glb.dos_sil(glb.BACKUP_YERI + dzip);
-				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Surucuye Yuklendi")  );
-				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
-				{
-					if (glb.dos_kontrol(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak"))
-					{ 
-						glb.dos_sil(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
-						bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," BAK Dosyasi Silindi") );
+					if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
+					{
+						bckp.backup_al(dosADI, tarr + "_" + dosADI);
+					}
+					else
+					{
+						bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),
+								sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
+					}
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Backup Alindi") );
+					String dosya, dzip;
+					if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
+					{
+						dosya = tarr + "_" + dosADI + ".bak";
+					}
+					else
+					{
+						dosya = tarr + "_" + dosADI + ".sql";
+					}
+					dzip = tarr + "_" + dosADI + ".zip";
+					bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE , zipSIFRE );
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Zip Haline Getirildi") );
+					File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
+					boolean exists = tmpDir.exists();
+					if (!exists)
+						tmpDir.mkdirs();
+					if (glb.dos_kontrol(surucu_yer + "\\" + dzip))
+						glb.dos_sil(surucu_yer + "\\" + dzip);
+					File okunanFile = new File(glb.BACKUP_YERI + dzip);
+					fileCOPY(glb.BACKUP_YERI + dzip,surucu_yer + "\\" + dzip);
+					if (glb.dos_kontrol(glb.BACKUP_YERI + dzip))
+						glb.dos_sil(glb.BACKUP_YERI + dzip);
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Surucuye Yuklendi")  );
+					if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
+					{
+						if (glb.dos_kontrol(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak"))
+						{ 
+							glb.dos_sil(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
+							bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," BAK Dosyasi Silindi") );
+						}
+					}
+					else
+					{
+						if (glb.dos_kontrol(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql"))
+						{ 
+							glb.dos_sil(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
+							bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," BAK Dosyasi Silindi"));
+						}
 					}
 				}
-				else
+				else 
 				{
-					if (glb.dos_kontrol(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql"))
-					{ 
-						glb.dos_sil(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
-						bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," BAK Dosyasi Silindi"));
-					}
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Bulunamadi")  );
 				}
 			}
 			Date nowwDate = new Date();
@@ -1768,50 +1775,57 @@ public class OBS_BACKUP extends JFrame {
 				dosADI = dbliste.get(i); // Dosya Adi
 				uplpnl.lblDosyaAdi.setText(dosADI);
 				uplpnl.Progres_Bar_1( i + 1);
-				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
+				if(serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql") ? bckp.dosyaKontrolMS(dosADI) : bckp.dosyaKontrolMY(dosADI))
 				{
-					bckp.backup_al(dosADI, tarr + "_" + dosADI);
-				}
-				else
-				{
-					bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");	
-				}
-				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Backup Alindi")  );
-				String dosya, dzip;
-				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
-				{
-					dosya = tarr + "_" + dosADI + ".bak";
-				}
-				else
-				{
-					dosya = tarr + "_" + dosADI + ".sql";
-				}
-				dzip = tarr + "_" + dosADI + ".zip";
-				bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
-				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Zip Haline Getirildi") );
-				uploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);// FTP Yukleme
-				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," FTP Yuklendi")  );
-				if( serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
-				{
-					File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
+					if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
+					{
+						bckp.backup_al(dosADI, tarr + "_" + dosADI);
+					}
+					else
+					{
+						bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");	
+					}
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Backup Alindi")  );
+					String dosya, dzip;
+					if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
+					{
+						dosya = tarr + "_" + dosADI + ".bak";
+					}
+					else
+					{
+						dosya = tarr + "_" + dosADI + ".sql";
+					}
+					dzip = tarr + "_" + dosADI + ".zip";
+					bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," Zip Haline Getirildi") );
+					uploadFTPFiles( ftp, surucu, glb.BACKUP_YERI, tarr + "_" + dosADI + ".zip", kull, sifre, port, zmnasimi);// FTP Yukleme
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," FTP Yuklendi")  );
+					if( serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
+					{
+						File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
+						boolean exists = tmpDir.exists();
+						if(exists)
+							tmpDir.delete();
+						bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," BAK Dosyasi Silindi")  );
+					}
+					else
+					{
+						File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
+						boolean exists = tmpDir.exists();
+						if(exists)
+							tmpDir.delete();
+						bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," sql Dosyasi Silindi") );
+					}
+					File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".zip");
 					boolean exists = tmpDir.exists();
 					if(exists)
 						tmpDir.delete();
-					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," BAK Dosyasi Silindi")  );
+					bckp.log_kayit(emirADI, new Date(), dosADI +  dilAciklamalar.dilAciklama(dILS," ZIP Dosyasi Silindi") );
 				}
-				else
+				else 
 				{
-					File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
-					boolean exists = tmpDir.exists();
-					if(exists)
-						tmpDir.delete();
-					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS," sql Dosyasi Silindi") );
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Bulunamadi")  );
 				}
-				File tmpDir = new File(glb.BACKUP_YERI + tarr + "_" + dosADI + ".zip");
-				boolean exists = tmpDir.exists();
-				if(exists)
-					tmpDir.delete();
-				bckp.log_kayit(emirADI, new Date(), dosADI +  dilAciklamalar.dilAciklama(dILS," ZIP Dosyasi Silindi") );
 			}
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);		
@@ -1974,45 +1988,52 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl. Progres_Bar_1( i + 1);
 				uplpnl.lblDosyaAdi.setText(dosADI);
 				dosADI = dbliste.get(i).getAdi();
-				File file = new File(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi());
-				folderMI = file.isDirectory(); // Check if it's a directory
-				uplpnl.Progres_Bar_1( i + 1);
-				String dosya, dzip,  dpath,uzantisiz = "";
-				String input = dosADI;
-				int index = dosADI.lastIndexOf(".");
-				if (index >= 0)
-					uzantisiz = input.substring(0, index); // or index + 1 to keep slash
-				dosya = dbliste.get(i).getPath() + "\\" + dosADI;
-				dpath = dbliste.get(i).getPath() + "\\";
-				dzip = tarr + "_" + uzantisiz + ".zip";
-				if (folderMI)
+				File file = new File(dbliste.get(i).getPath() +"\\" + dbliste.get(i).getAdi());
+				if( file.exists())
 				{
-					uplpnl.RPB2.setString(dilAciklamalar.dilAciklama(dILS, "Zip Haline Getiriliyor")  );
-					dzip = tarr + "_" + dbliste.get(i).getAdi() + ".zip";
-					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()+"\\";
-					Path pathokuma = Paths.get(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()); 
-					Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
-					bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, zipSIFRE);
-					uplpnl.RPB2.setString("");
+					folderMI = file.isDirectory(); // Check if it's a directory
+					uplpnl.Progres_Bar_1( i + 1);
+					String dosya, dzip,  dpath,uzantisiz = "";
+					String input = dosADI;
+					int index = dosADI.lastIndexOf(".");
+					if (index >= 0)
+						uzantisiz = input.substring(0, index); // or index + 1 to keep slash
+					dosya = dbliste.get(i).getPath() + "\\" + dosADI;
+					dpath = dbliste.get(i).getPath() + "\\";
+					dzip = tarr + "_" + uzantisiz + ".zip";
+					if (folderMI)
+					{
+						uplpnl.RPB2.setString(dilAciklamalar.dilAciklama(dILS, "Zip Haline Getiriliyor")  );
+						dzip = tarr + "_" + dbliste.get(i).getAdi() + ".zip";
+						String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()+"\\";
+						Path pathokuma = Paths.get(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()); 
+						Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
+						bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, zipSIFRE);
+						uplpnl.RPB2.setString("");
+					}
+					else
+					{
+						uplpnl.RPB2.setString(dilAciklamalar.dilAciklama(dILS, "Zip Haline Getiriliyor"));
+						String okumadosyaadi = dbliste.get(i).getPath() + "\\" + dbliste.get(i).getAdi();
+						bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
+						uplpnl.RPB2.setString("");
+					}
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Zip Haline Getirildi")  );
+					File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
+					boolean exists = tmpDir.exists();
+					if (!exists)
+						tmpDir.mkdirs();
+					File okunanFile = new File(glb.BACKUP_YERI + dzip);
+					fileCOPY(glb.BACKUP_YERI + dzip, ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip);
+					if (glb.dos_kontrol( glb.BACKUP_YERI + "\\" + dzip))
+						glb.dos_sil( glb.BACKUP_YERI + "\\" + dzip);
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Surucuye Yuklendi")  );
+					bckp.log_kayit(emirADI,new Date(), uzantisiz + dilAciklamalar.dilAciklama(dILS, " ZIP Dosyasi Silindi")  );
 				}
-				else
+				else 
 				{
-					uplpnl.RPB2.setString(dilAciklamalar.dilAciklama(dILS, "Zip Haline Getiriliyor"));
-					String okumadosyaadi = dbliste.get(i).getPath() + "\\" + dbliste.get(i).getAdi();
-					bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
-					uplpnl.RPB2.setString("");
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Bulunamadi")  );
 				}
-				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Zip Haline Getirildi")  );
-				File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
-				boolean exists = tmpDir.exists();
-				if (!exists)
-					tmpDir.mkdirs();
-				File okunanFile = new File(glb.BACKUP_YERI + dzip);
-				fileCOPY(glb.BACKUP_YERI + dzip, ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip);
-				if (glb.dos_kontrol( glb.BACKUP_YERI + "\\" + dzip))
-					glb.dos_sil( glb.BACKUP_YERI + "\\" + dzip);
-				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Surucuye Yuklendi")  );
-				bckp.log_kayit(emirADI,new Date(), uzantisiz + dilAciklamalar.dilAciklama(dILS, " ZIP Dosyasi Silindi")  );
 			}
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);
@@ -2153,38 +2174,44 @@ public class OBS_BACKUP extends JFrame {
 				uplpnl.lblDosyaAdi.setText(dosADI);
 				dosADI = dbliste.get(i).getAdi();
 				File file = new File(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi());
-				folderMI = file.isDirectory(); // Check if it's a directory
-				uplpnl.Progres_Bar_1( i + 1);
-				String dosya, dzip,  dpath,uzantisiz = "";
-				String input = dosADI;
-				int index = input.lastIndexOf(".");
-				if (index >= 0)
-					uzantisiz = input.substring(0, index); // or index + 1 to keep slash
-				dosya = dbliste.get(i).getPath() + "\\" + dosADI;
-				dpath = dbliste.get(i).getPath() + "\\";
-				dzip = tarr + "_" + uzantisiz + ".zip";
-				uplpnl.Progres_Bar_Temizle_2();
-				if (folderMI)
+				if( file.exists())
 				{
-					dzip = tarr + "_" + dbliste.get(i).getAdi() + ".zip";
-					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()+"\\";
-					Path pathokuma = Paths.get(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()); 
-					Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
-					bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, zipSIFRE);
+					folderMI = file.isDirectory(); // Check if it's a directory
+					uplpnl.Progres_Bar_1( i + 1);
+					String dosya, dzip,  dpath,uzantisiz = "";
+					String input = dosADI;
+					int index = input.lastIndexOf(".");
+					if (index >= 0)
+						uzantisiz = input.substring(0, index); // or index + 1 to keep slash
+					dosya = dbliste.get(i).getPath() + "\\" + dosADI;
+					dpath = dbliste.get(i).getPath() + "\\";
+					dzip = tarr + "_" + uzantisiz + ".zip";
+					uplpnl.Progres_Bar_Temizle_2();
+					if (folderMI)
+					{
+						dzip = tarr + "_" + dbliste.get(i).getAdi() + ".zip";
+						String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()+"\\";
+						Path pathokuma = Paths.get(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()); 
+						Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
+						bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, zipSIFRE);
+					}
+					else
+					{
+						String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
+						bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
+					}
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Zip Haline Getirildi")  );
+					uploadFTPFiles(ftp, surucu, glb.BACKUP_YERI, dzip, kull, sifre, port, zmnasimi);
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS,  " FTP Yuklendi") );
+					bckp.log_kayit(emirADI,new Date(), uzantisiz + dilAciklamalar.dilAciklama(dILS,  " ZIP Dosyasi Silindi") );
+					File tmpDir = new File(glb.BACKUP_YERI + dzip);
+					boolean exists = tmpDir.exists();
+					if(exists)
+						tmpDir.delete();
 				}
-				else
-				{
-					String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
-					bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
+				else {
+					bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Dosya Bulunamadi")  );
 				}
-				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS, " Zip Haline Getirildi")  );
-				uploadFTPFiles(ftp, surucu, glb.BACKUP_YERI, dzip, kull, sifre, port, zmnasimi);
-				bckp.log_kayit(emirADI, new Date(), dosADI + dilAciklamalar.dilAciklama(dILS,  " FTP Yuklendi") );
-				bckp.log_kayit(emirADI,new Date(), uzantisiz + dilAciklamalar.dilAciklama(dILS,  " ZIP Dosyasi Silindi") );
-				File tmpDir = new File(glb.BACKUP_YERI + dzip);
-				boolean exists = tmpDir.exists();
-				if(exists)
-					tmpDir.delete();
 			}
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);		

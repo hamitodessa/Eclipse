@@ -128,6 +128,35 @@ public class BACKUP_GLOBAL {
 		rss = stmt.executeQuery();
 		return rss ;
 	}
+	public boolean dosyaKontrolMS(String dosADI) throws ClassNotFoundException, SQLException 
+	{
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		ResultSet	rss = null;
+		boolean result;
+		String sql  = "SELECT NAME FROM master.dbo.sysdatabases  Where NAME = '" + dosADI + "'";
+		PreparedStatement stmt = S_CONN.prepareStatement(sql);
+		rss = stmt.executeQuery();
+		ResultSet rs = stmt.executeQuery();
+		result = !rs.isBeforeFirst() ? false :true ;
+		stmt.close();
+		return result;
+	}
+	public boolean dosyaKontrolMY(String dosADI) throws SQLException, ClassNotFoundException
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Statement stmt = null;
+		ResultSet rss = null;
+		boolean result = false;
+		stmt = MY_CONN.createStatement();
+		rss = stmt.executeQuery("SHOW DATABASES;");
+		while (rss.next()) 
+		{
+			if(rss.getString("Database").equals(dosADI.toLowerCase()))
+				result = true;
+		}
+		stmt.close();
+		return result;
+	}
 	public ResultSet db_ismiMySql()throws ClassNotFoundException, SQLException
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");

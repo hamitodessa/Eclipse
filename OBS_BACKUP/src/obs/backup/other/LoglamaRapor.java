@@ -150,6 +150,7 @@ public class LoglamaRapor extends JPanel {
 		panel.add(comboBox);
 		
 		btnNewButton = new JButton("Sil");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(comboBox.getItemCount() == 0 ) return ;

@@ -3,6 +3,7 @@ package obs.backup.other;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
+import java.awt.Font;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
@@ -104,6 +105,7 @@ public class ServerBilgileri extends JPanel {
 		panel_2.add(textMSsifre);
 		
 		btnMSTest = new JButton("Baglanti Test");
+		btnMSTest.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnMSTest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -147,6 +149,7 @@ public class ServerBilgileri extends JPanel {
 		panel.add(btnMSTest);
 		
 		btnMSkaydet = new JButton("Kaydet");
+		btnMSkaydet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnMSkaydet.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
@@ -227,6 +230,7 @@ public class ServerBilgileri extends JPanel {
 		panel_2_2.add(textMySifre);
 		
 		btnMyTest = new JButton("Baglanti Test");
+		btnMyTest.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnMyTest.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
@@ -270,6 +274,7 @@ public class ServerBilgileri extends JPanel {
 		panel_1.add(btnMyTest);
 		
 		btnMyKaydet = new JButton("Kaydet");
+		btnMyKaydet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnMyKaydet.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
@@ -333,6 +338,7 @@ public class ServerBilgileri extends JPanel {
 		textMyDump.setColumns(10);
 		
 		btnDumpSec = new JButton( dilSecenek.dil(OBS_BACKUP.dILS,"Sec"));
+		btnDumpSec.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnDumpSec.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

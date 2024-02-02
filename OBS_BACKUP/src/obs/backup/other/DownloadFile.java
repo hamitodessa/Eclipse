@@ -132,6 +132,7 @@ public class DownloadFile extends JPanel {
 		panel.add(comboBox);
 
 		JButton btnNewButton = new JButton("Indir");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

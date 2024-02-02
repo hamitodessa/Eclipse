@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.SpinnerDateModel;
 
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -136,6 +137,7 @@ public class YedeklemeAraligi extends JPanel {
 		timeBitis.setValue(qweDate);
 			
 		btnNewButton_9 = new JButton("Kaydet");
+		btnNewButton_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_9.setBounds(624, 550, 100, 23);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

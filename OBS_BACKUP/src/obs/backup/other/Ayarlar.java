@@ -44,6 +44,7 @@ import com.formdev.flatlaf.FlatClientProperties;
 import javax.swing.border.TitledBorder;
 
 import java.io.FileOutputStream;
+import java.awt.Font;
 
 @SuppressWarnings({"serial","deprecation","unused"})
 public class Ayarlar extends JPanel {
@@ -100,6 +101,7 @@ public class Ayarlar extends JPanel {
 		add(comboBox_1);
 
 		btnKaydet = new JButton("Kaydet");
+		btnKaydet.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnKaydet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

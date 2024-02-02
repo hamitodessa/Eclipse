@@ -190,6 +190,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1.add(textPort);
 		
 		btnNewButton_6 = new JButton("Surucu Kontrol");
+		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -236,6 +237,7 @@ public class SunucuAyarlari extends JPanel {
 		
 		btnNewButton_7 = new JButton( dilSecenek.dil(OBS_BACKUP.dILS, "Surucu Sec"));
 		btnNewButton_7.setEnabled(false);
+		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -288,6 +290,7 @@ public class SunucuAyarlari extends JPanel {
 
 
 		btnNewButton_9 = new JButton("Kaydet");
+		btnNewButton_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_9.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
@@ -333,6 +336,7 @@ public class SunucuAyarlari extends JPanel {
 		add(btnNewButton_9);
 
 		btnftpkont = new JButton("Ftp Kontrol");
+		btnftpkont.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnftpkont.setBounds(37, 550, 100, 23);
 		btnftpkont.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

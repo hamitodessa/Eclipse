@@ -205,6 +205,7 @@ public class Bilgilendirme extends JPanel {
 		
 		btnNewButton_9 = new JButton("Kaydet");
 		btnNewButton_9.setBounds(624, 550, 100, 23);
+		btnNewButton_9.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_9.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {

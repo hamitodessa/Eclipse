@@ -157,6 +157,7 @@ public class EmirAnaGiris extends JPanel {
 		panel_10.add(lblNewLabel_5);
 		
 		JButton btnNewButton_4 = new JButton("Kayit");
+		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

@@ -179,6 +179,10 @@ public class Ayarlar extends JPanel {
 		btnSchedulerSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(jobKontrol("OBS_BACKUP"))
+						taskDeleteStartUp();
+					if(jobKontrol("OBS_BACKUP_LOGIN"))
+							taskDeleteLogin();
 					if (chckbxWinStart.isSelected())  // Secili
 					{
 						schSifresi = JOptionPane.showInputDialog(null,System.getProperty("user.name")  + " - Kullanici Sifresini Giriniz","Windows Kullanici Sifresi",
@@ -226,10 +230,8 @@ public class Ayarlar extends JPanel {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(iss));
 		String content,str; 
 		StringBuffer buf = new StringBuffer();      
-		while ((str = reader.readLine()) != null) 
-		{   
+		while ((str = reader.readLine()) != null)
 			buf.append(str + "\n" );
-		}                
 		content = buf.toString();
 		content = content.replaceAll("DOSYA", Matcher.quoteReplacement(appPath + dosya));
 		content = content.replaceAll("KULLANICI", System.getProperty("user.name"));	
@@ -238,6 +240,26 @@ public class Ayarlar extends JPanel {
 		writer.close();
 		reader.close();//
 		return appPath;
+	}
+	private boolean jobKontrol(String jobName) throws IOException, ClassNotFoundException, SQLException
+	{
+		boolean result = false;
+		Runtime rt = Runtime.getRuntime();
+		Process p = rt.exec("schtasks.exe /QUERY  /TN "+ jobName);
+		InputStream is = p.getInputStream();
+		InputStreamReader isr = new InputStreamReader(is);
+		BufferedReader br = new BufferedReader(isr);
+		String line;
+		while ((line = br.readLine()) != null) 
+		{
+			String[] token = line.split(" ");
+			if(token[0].equals(jobName)) 
+			{
+				result =true ;
+				break;
+			}  
+		}
+		return result;
 	}
 	private void createSchedulerStartup() throws IOException, InterruptedException, ClassNotFoundException, SQLException
 	{

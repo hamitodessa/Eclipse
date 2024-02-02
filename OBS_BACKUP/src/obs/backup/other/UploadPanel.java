@@ -25,6 +25,7 @@ public class UploadPanel extends JPanel {
 	public JLabel lblDosAdet;
 	public JLabel lblSurucu;
 	public static JLabel lblHiz ;
+	public static JLabel lblDosyaAdi;
 	public JLabel lblAciklamaJLabel;
 	public JLabel lblAciklama;
 	
@@ -63,13 +64,14 @@ public class UploadPanel extends JPanel {
 		splitPane.setLeftComponent(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS, "Dosya Adet:"));
-		lblNewLabel.setBounds(10, 31, 69, 14);
+		JLabel lblNewLabel = new JLabel("Dosya Adet");
+		lblNewLabel.setBounds(690, 11, 69, 14);
 		panel_1.add(lblNewLabel);
 		
 		lblDosAdet = new JLabel("0");
+		lblDosAdet.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDosAdet.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDosAdet.setBounds(78, 31, 48, 14);
+		lblDosAdet.setBounds(786, 11, 48, 14);
 		panel_1.add(lblDosAdet);
 		
 		JLabel lblNewLabel_2 = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS,"Emir Ismi"));
@@ -106,8 +108,13 @@ public class UploadPanel extends JPanel {
 		
 		lblSurucu = new JLabel("");
 		lblSurucu.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblSurucu.setBounds(368, 11, 466, 14);
+		lblSurucu.setBounds(368, 11, 317, 14);
 		panel_1.add(lblSurucu);
+		
+		lblDosyaAdi = new JLabel("");
+		lblDosyaAdi.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblDosyaAdi.setBounds(10, 31, 280, 14);
+		panel_1.add(lblDosyaAdi);
 
 	}
 	public void temizLE()

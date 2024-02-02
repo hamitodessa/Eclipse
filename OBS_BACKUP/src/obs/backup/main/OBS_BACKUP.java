@@ -1564,6 +1564,7 @@ public class OBS_BACKUP extends JFrame {
 			for (int i = 0; i <= dbliste.size() - 1; i++)
 			{
 				dosADI = dbliste.get(i); // Dosya Adi
+				uplpnl.lblDosyaAdi.setText(dosADI);
 				uplpnl.Progres_Bar_1( i + 1);
 				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
@@ -1616,7 +1617,8 @@ public class OBS_BACKUP extends JFrame {
 				}
 			}
 			Date nowwDate = new Date();
-			durumYAZ(emirADI,nowwDate);			
+			durumYAZ(emirADI,nowwDate);	
+			uplpnl.lblDosyaAdi.setText("");
 			bckp.genel_kayit_durum(emirADI, true, nowwDate, dilAciklamalar.dilAciklama(dILS,"Yedeklendi") );
 			if (eskiyedek > 0) // **************SURUCU ESKILERI SIL ************************************************
 			{
@@ -1632,6 +1634,7 @@ public class OBS_BACKUP extends JFrame {
 				for (int i = 0; i <= dbliste.size() - 1; i++)
 				{
 					dosADI = dbliste.get(i);
+					uplpnl.lblDosyaAdi.setText(dosADI);
 					uplpnl. Progres_Bar_1( i + 1);
 					for (int r = 0; r <= ls.size() - 1; r++)
 					{
@@ -1763,6 +1766,7 @@ public class OBS_BACKUP extends JFrame {
 			for (int i = 0; i <= dbliste.size() - 1; i++)
 			{
 				dosADI = dbliste.get(i); // Dosya Adi
+				uplpnl.lblDosyaAdi.setText(dosADI);
 				uplpnl.Progres_Bar_1( i + 1);
 				if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 				{
@@ -1812,6 +1816,7 @@ public class OBS_BACKUP extends JFrame {
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);		
 			bckp.genel_kayit_durum(emirADI, true,nowwDate, dilAciklamalar.dilAciklama(dILS,"Yedeklendi")  );
+			uplpnl.lblDosyaAdi.setText("");
 			if (eskiyedek > 0) //**************FTP ESKILERI SIL
 			{
 				uplpnl.Progres_Bar_Temizle_1();
@@ -1827,6 +1832,7 @@ public class OBS_BACKUP extends JFrame {
 				{
 					dosADI = dbliste.get(i);
 					uplpnl. Progres_Bar_1( i + 1);
+					uplpnl.lblDosyaAdi.setText(dosADI);
 					for (int r = 0; r <= ls.size() - 1; r++)
 					{
 						uplpnl.Progres_Bar_2(r + 1);
@@ -1966,6 +1972,7 @@ public class OBS_BACKUP extends JFrame {
 			for (int i = 0; i <= dbliste.size() - 1; i++)
 			{
 				uplpnl. Progres_Bar_1( i + 1);
+				uplpnl.lblDosyaAdi.setText(dosADI);
 				dosADI = dbliste.get(i).getAdi();
 				File file = new File(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi());
 				folderMI = file.isDirectory(); // Check if it's a directory
@@ -2009,6 +2016,7 @@ public class OBS_BACKUP extends JFrame {
 			}
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);
+			uplpnl.lblDosyaAdi.setText("");
 			bckp.genel_kayit_durum(emirADI, true,nowwDate, dilAciklamalar.dilAciklama(dILS, "Yedeklendi") );
 			if (eskiyedek > 0) // **************FTP ESKILERI SIL
 			{
@@ -2024,6 +2032,7 @@ public class OBS_BACKUP extends JFrame {
 				for (int i = 0; i <= dbliste.size() - 1; i++)
 				{
 					dosADI = dbliste.get(i).getAdi();
+					uplpnl.lblDosyaAdi.setText(dosADI);
 					uplpnl. Progres_Bar_1( i + 1);
 					for (int r = 0; r <= ls.size() - 1; r++)
 					{
@@ -2141,6 +2150,7 @@ public class OBS_BACKUP extends JFrame {
 			for (int i = 0; i <= dbliste.size() - 1; i++)
 			{
 				uplpnl. Progres_Bar_1( i + 1);
+				uplpnl.lblDosyaAdi.setText(dosADI);
 				dosADI = dbliste.get(i).getAdi();
 				File file = new File(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi());
 				folderMI = file.isDirectory(); // Check if it's a directory
@@ -2178,11 +2188,13 @@ public class OBS_BACKUP extends JFrame {
 			}
 			Date nowwDate = new Date();
 			durumYAZ(emirADI,nowwDate);		
+			uplpnl.lblDosyaAdi.setText("");
 			bckp.genel_kayit_durum(emirADI, true,nowwDate,dilAciklamalar.dilAciklama(dILS, "Yedeklendi")  );
 			if (eskiyedek > 0) // **************FTP ESKILERI SIL
 			{
 				uplpnl.Progres_Bar_Temizle_1();
 				uplpnl.Progres_Bar_Temizle_2();
+				uplpnl.lblDosyaAdi.setText(dosADI);
 				dosADI = "";
 				List<remote_filelist> ls = new ArrayList<remote_filelist>();
 				ls = bckp.ListRmtFiles( ftp , surucu, kull, sifre,port);

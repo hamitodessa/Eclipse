@@ -380,7 +380,6 @@ public class OBS_BACKUP extends JFrame {
 		btnYeni_Gorev = new JButton();
 		btnYeni_Gorev.setToolTipText("Yeni Gorev");
 		btnYeni_Gorev.setEnabled(false);
-
 		btnYeni_Gorev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				while (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) )
@@ -566,7 +565,7 @@ public class OBS_BACKUP extends JFrame {
 		btnHepsiAktiv.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/activ-24.png")));
 		toolBar.add(btnHepsiAktiv);
 
-		btnHepsiPasiv= new JButton("");
+		btnHepsiPasiv = new JButton("");
 		btnHepsiPasiv.setToolTipText("Hepsini Pasivlestir");
 		btnHepsiPasiv.setEnabled(false);
 		btnHepsiPasiv.addActionListener(new ActionListener() {
@@ -797,6 +796,11 @@ public class OBS_BACKUP extends JFrame {
 					{
 						OBS_BACKUP.serverBilgileriPanel.tabbedPane.setSelectedIndex(1);
 					}
+				}
+				else if(tabbedPane_1.getSelectedIndex() == 5)
+				{
+					OBS_BACKUP.emirKopyalaPanel.lblEmirIsmi.setText(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText());
+					OBS_BACKUP.emirKopyalaPanel.textField.requestFocus();
 				}
 			}
 		});

@@ -25,6 +25,7 @@ public class EmirKopyala extends JPanel {
 
 	public static JLabel lblNewLabel;
 	public JButton btnNewButton_9;
+	public static JLabel lblEmirIsmi;
 	/**
 	 * Create the panel.
 	 */
@@ -32,12 +33,12 @@ public class EmirKopyala extends JPanel {
 		setLayout(null);
 		
 		lblNewLabel = new JLabel("Yeni Emir Ismi");
-		lblNewLabel.setBounds(56, 86, 107, 14);
+		lblNewLabel.setBounds(56, 129, 107, 14);
 		add(lblNewLabel);
 		
 		textField = new Obs_TextFIeld(30,"");
 		JTextFieldRegularPopupMenu.addTo(textField);
-		textField.setBounds(185, 83, 300, 20);
+		textField.setBounds(185, 126, 300, 20);
 		add(textField);
 		textField.setColumns(10);
 		
@@ -52,6 +53,12 @@ public class EmirKopyala extends JPanel {
 						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS, "Kopyalanacak Emir ismi Bos") );
 						return;
 					}
+					if(! bckp. emir_kontrol(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText()))
+					{
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText() + System.lineSeparator() +
+								dilSecenek.dil(OBS_BACKUP.dILS, "Kayitli Emir Yok") );
+						return;
+					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					kopyala();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -61,6 +68,11 @@ public class EmirKopyala extends JPanel {
 			}
 		});
 		 add(btnNewButton_9);
+		 
+		 lblEmirIsmi = new JLabel("");
+		 lblEmirIsmi.setFont(new Font("Tahoma", Font.BOLD, 12));
+		 lblEmirIsmi.setBounds(185, 71, 300, 14);
+		 add(lblEmirIsmi);
 	}
 	private void kopyala() throws ClassNotFoundException, SQLException
 	{

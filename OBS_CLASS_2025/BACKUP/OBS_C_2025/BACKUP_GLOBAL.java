@@ -700,8 +700,8 @@ public class BACKUP_GLOBAL {
 		ResultSet	rss = null;
 		con = glb.myBackupConnection();
 		String sql = "SELECT * FROM EMIRLER , FTP "
-				 	+ " WHERE FTP.EMIR_ISMI = EMIRLER.EMIR_ISMI AND FTP.NERESI = 'FTP' " 
-				 	+ " ORDER BY EMIRLER.EMIR_ISMI COLLATE NOCASE ASC ";
+				+ " WHERE FTP.EMIR_ISMI = EMIRLER.EMIR_ISMI AND FTP.NERESI = 'FTP' " 
+				+ " ORDER BY EMIRLER.EMIR_ISMI COLLATE NOCASE ASC ";
 		stmt = con.prepareStatement(sql);
 		rss = stmt.executeQuery();
 		List<emir_bilgiler> emirBilgi = new ArrayList<emir_bilgiler>();
@@ -715,13 +715,13 @@ public class BACKUP_GLOBAL {
 				emir_bilgiler liste  = new emir_bilgiler(
 						rss.getString("EMIR_ISMI") ,
 						rss.getInt("DURUM") == 0 ? false:true,
-						rss.getString("EMIR_ACIKLAMA"),
-						rss.getString("INSTANCE"),
-						rss.getInt("SON_DURUM")== 0 ? false:true,
-						sonyuk, 
-						rss.getInt("SQL_YEDEK")== 0 ? false:true,
-						rss.getString("MESAJ"),
-						olus);
+								rss.getString("EMIR_ACIKLAMA"),
+								rss.getString("INSTANCE"),
+								rss.getInt("SON_DURUM")== 0 ? false:true,
+										sonyuk, 
+										rss.getInt("SQL_YEDEK")== 0 ? false:true,
+												rss.getString("MESAJ"),
+												olus);
 				emirBilgi.add(liste);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -752,13 +752,13 @@ public class BACKUP_GLOBAL {
 				emir_bilgiler liste  = new emir_bilgiler(
 						rss.getString("EMIR_ISMI") ,
 						rss.getInt("DURUM") == 0 ? false:true,
-						rss.getString("EMIR_ACIKLAMA"),
-						rss.getString("INSTANCE"),
-						rss.getInt("SON_DURUM") == 0 ? false:true,
-						sonyuk, 
-						rss.getInt("SQL_YEDEK")== 0 ? false:true,
-						rss.getString("MESAJ"),
-						olus);
+								rss.getString("EMIR_ACIKLAMA"),
+								rss.getString("INSTANCE"),
+								rss.getInt("SON_DURUM") == 0 ? false:true,
+										sonyuk, 
+										rss.getInt("SQL_YEDEK")== 0 ? false:true,
+												rss.getString("MESAJ"),
+												olus);
 				emirBilgi.add(liste);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -921,17 +921,17 @@ public class BACKUP_GLOBAL {
 			bilgilendirme_bilgiler liste  = new bilgilendirme_bilgiler(rss.getString("EMIR_ISMI") ,
 					rss.getInt("DURUM") == 0 ? false:true,
 							rss.getInt("GONDERILDIGINDE") == 0 ? false:true,
-							rss.getInt("HATA_DURUMUNDA") == 0 ? false:true ,
-							rss.getString("GON_ISIM"),
-							rss.getString("GON_HESAP"),
-							rss.getString("ALICI"),
-							rss.getString("KONU"),
-							rss.getString("SMTP"),
-							rss.getString("SMTP_PORT"),
-							rss.getString("KULLANICI"),
-							rss.getString("SIFRE"),
-							rss.getInt("SSL") == 0 ? false:true ,
-							rss.getInt("TSL") == 0 ? false:true );
+									rss.getInt("HATA_DURUMUNDA") == 0 ? false:true ,
+											rss.getString("GON_ISIM"),
+											rss.getString("GON_HESAP"),
+											rss.getString("ALICI"),
+											rss.getString("KONU"),
+											rss.getString("SMTP"),
+											rss.getString("SMTP_PORT"),
+											rss.getString("KULLANICI"),
+											rss.getString("SIFRE"),
+											rss.getInt("SSL") == 0 ? false:true ,
+													rss.getInt("TSL") == 0 ? false:true );
 			bilgiBilgi.add(liste);
 		}
 		stmt.close();
@@ -959,14 +959,14 @@ public class BACKUP_GLOBAL {
 						rss.getString("EMIR_ISMI") ,
 						rss.getString("SAAT"),
 						rss.getInt("P_TESI") == 0 ? false:true,
-						rss.getInt("SALI") == 0 ? false:true,
-						rss.getInt("CARS") == 0 ? false:true ,
-						rss.getInt("PERS") == 0 ? false:true ,
-						rss.getInt("CUMA") == 0 ? false:true ,
-						rss.getInt("C_TESI") == 0 ? false:true ,
-						rss.getInt("PAZAR") == 0 ? false:true ,
-						bas,
-						bit);
+								rss.getInt("SALI") == 0 ? false:true,
+										rss.getInt("CARS") == 0 ? false:true ,
+												rss.getInt("PERS") == 0 ? false:true ,
+														rss.getInt("CUMA") == 0 ? false:true ,
+																rss.getInt("C_TESI") == 0 ? false:true ,
+																		rss.getInt("PAZAR") == 0 ? false:true ,
+																				bas,
+																				bit);
 				bilgiBilgi.add(liste);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -1010,11 +1010,11 @@ public class BACKUP_GLOBAL {
 					rss.getString("HANGI_SQL"),
 					rss.getString("INSTANCE"),
 					rss.getInt("WIN") == 0 ? false:true,
-					rss.getInt("SERV") == 0 ? false:true,
-					rss.getString("KULLANICI"),
-					rss.getString("SIFRE"),
-					rss.getString("PORT"),
-					rss.getString("MY_DUMP"));
+							rss.getInt("SERV") == 0 ? false:true,
+									rss.getString("KULLANICI"),
+									rss.getString("SIFRE"),
+									rss.getString("PORT"),
+									rss.getString("MY_DUMP"));
 			bilgiBilgi.add(liste);
 		}
 		stmt.close();
@@ -1273,9 +1273,9 @@ public class BACKUP_GLOBAL {
 		ZipFile zipFile ;
 		if(sifrele)
 		{
-		zipParameters.setEncryptFiles(true);
-		zipParameters.setEncryptionMethod(EncryptionMethod.AES);
-		zipFile = new ZipFile(dosyolu + dosadi_zip, sifre.toCharArray());
+			zipParameters.setEncryptFiles(true);
+			zipParameters.setEncryptionMethod(EncryptionMethod.AES);
+			zipFile = new ZipFile(dosyolu + dosadi_zip, sifre.toCharArray());
 		}
 		else 
 		{

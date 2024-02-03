@@ -46,6 +46,7 @@ import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 import java.awt.Font;
+import java.awt.Rectangle;
 
 
 @SuppressWarnings({"rawtypes","unchecked","serial","deprecation","static-access"})
@@ -340,9 +341,7 @@ public class EmirAnaGiris extends JPanel {
 		splitPane_3.setRightComponent(scrollPane_1);
 
 		model = new DefaultListModel<>();
-		
 		list = new JList(model);
-				
 		list.setCellRenderer(new CheckListRenderer());
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.addMouseListener(new MouseAdapter() {
@@ -394,9 +393,7 @@ public class EmirAnaGiris extends JPanel {
 				CheckListItem item = (CheckListItem) list.getModel().getElementAt(i);
 				item = (CheckListItem) list.getModel().getElementAt(i);
 				if(item.isSelected)
-				{
 					dosyaSayi +=1 ;
-				}
 			} 
 			lblNewLabel_5.setText(Integer.toString(dosyaSayi));
 		}
@@ -413,7 +410,6 @@ public class EmirAnaGiris extends JPanel {
 				OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			} catch (Exception e1) {
-		
 				e1.printStackTrace();
 			}
 		}
@@ -427,7 +423,6 @@ public class EmirAnaGiris extends JPanel {
         {
         	setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             List<emir_bilgiler> emirBilgiler =  bckp.emir_tek(OBS_BACKUP.gelenISIM);
-           
             if (emirBilgiler.size()  == 0) return;
             txtEmir.setText(OBS_BACKUP.gelenISIM);
             txtEmir .setEnabled(false);
@@ -445,7 +440,6 @@ public class EmirAnaGiris extends JPanel {
 				btnDosyaSec.setVisible(true);
 				btnSurucuSec.setVisible(true);
 			}
-            
             chckbxDurum.setSelected( emirBilgiler.get(0).isDURUM());
            //'**********FTP DOLDUR
             List<ftp_bilgiler> ftpBilgiler =   bckp.ftp_bilgi(OBS_BACKUP.gelenISIM);
@@ -464,8 +458,6 @@ public class EmirAnaGiris extends JPanel {
                    OBS_BACKUP.sunucuayarPanel.textFtpSurucu.setEnabled(true);
                    OBS_BACKUP.sunucuayarPanel.textZmnasm.setEnabled(true);
                    OBS_BACKUP.sunucuayarPanel.textPort.setEnabled(true);
-                   
-                   
                 }
                 else
                 {
@@ -480,7 +472,6 @@ public class EmirAnaGiris extends JPanel {
                     OBS_BACKUP.sunucuayarPanel.textFtpSurucu.setEnabled(false);
                     OBS_BACKUP.sunucuayarPanel.textZmnasm.setEnabled(false);
                     OBS_BACKUP.sunucuayarPanel.textPort.setEnabled(false);
-
                 }
                 OBS_BACKUP.sunucuayarPanel.textHost.setText(ftpBilgiler.get(0).getHOST());
                 OBS_BACKUP.sunucuayarPanel.textKull.setText(ftpBilgiler.get(0).getKULLANICI());
@@ -637,7 +628,6 @@ public class EmirAnaGiris extends JPanel {
             				}
             			}
             		}
-            		//RadLabel32.Text = "0";
             		int dosyaSAYI = 0;
             		for (int i = 0; i <= list.getModel().getSize() - 1; i++)
             		{
@@ -652,7 +642,6 @@ public class EmirAnaGiris extends JPanel {
             				dosyaSAYI += 1;
             			}
             		}
-            		// RadLabel32.Text = dosyaSAYI.ToString();
             		if (list.getModel().getSize() > 0)
             		{
             			list.setSelectedIndex(0);;
@@ -668,10 +657,10 @@ public class EmirAnaGiris extends JPanel {
             		CheckListItem item = (CheckListItem) new CheckListItem(dosliste.get(i).getAdi(),dosliste.get(i).getPath());
             		item.setSelected(true);
             		model.addElement(item);
-            		//    RadLabel32.Text = (r + 1).ToString();
             	}
             }
-            //'************
+            Rectangle r = list.getCellBounds(0, 0);
+            list.scrollRectToVisible(r);
             dosyaSAYI();
             setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }

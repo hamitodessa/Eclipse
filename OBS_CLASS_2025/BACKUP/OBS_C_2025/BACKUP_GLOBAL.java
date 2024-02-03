@@ -1343,32 +1343,9 @@ public class BACKUP_GLOBAL {
 		Statement stmt = null;
 		con = glb.myBackupConnection();
 		String sql = "";
-		sql =  "INSERT INTO EMIRLER  (EMIR_ISMI, DURUM,EMIR_ACIKLAMA,INSTANCE,SON_DURUM,SON_YUKLEME,SQL_YEDEK,MESAJ,OLUSTURMA)" 
-				+ "SELECT '" + yeni + "', DURUM,EMIR_ACIKLAMA,INSTANCE,SON_DURUM,SON_YUKLEME,SQL_YEDEK,MESAJ,OLUSTURMA FROM EMIRLER  " 
-				+ "WHERE EMIR_ISMI = '" + eski + "' " ;
-		stmt = con.createStatement();  
-		stmt.execute(sql);  
-		// '**************** YEDEKLEME
-		sql =  "INSERT INTO YEDEKLEME  (EMIR_ISMI, SAAT ,P_TESI ,SALI  ,CARS ,PERS ,CUMA ,C_TESI ,PAZAR ,BASLAMA ,BITIS )" 
-				+ " SELECT '" + yeni + "',  SAAT ,P_TESI ,SALI  ,CARS ,PERS ,CUMA ,C_TESI ,PAZAR ,BASLAMA ,BITIS  FROM YEDEKLEME  " 
-				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
-		stmt = con.createStatement();  
-		stmt.execute(sql);  
-		//'**************** FTP
-		sql =  "INSERT INTO FTP  (EMIR_ISMI, NERESI ,HOST  ,KULLANICI ,SIFRE ,SURUCU ,PORT ,ZMN_ASIMI ,ESKI_YEDEK,SURUCU_YER )" 
-				+ " SELECT '" + yeni + "',  NERESI ,HOST  ,KULLANICI ,SIFRE ,SURUCU ,PORT ,ZMN_ASIMI ,ESKI_YEDEK,SURUCU_YER  FROM FTP  " 
-				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
-		stmt = con.createStatement();  
-		stmt.execute(sql);  
 		//'**************** BILGILENDIRME
 		sql =  "INSERT INTO BILGILENDIRME  (EMIR_ISMI, DURUM ,GONDERILDIGINDE ,HATA_DURUMUNDA ,GON_ISIM,GON_HESAP , ALICI , KONU , SMTP, SMTP_PORT, KULLANICI , SIFRE, SSL,TSL )" 
 				+ " SELECT '" + yeni + "',  DURUM ,GONDERILDIGINDE ,HATA_DURUMUNDA ,GON_ISIM,GON_HESAP , ALICI , KONU , SMTP, SMTP_PORT, KULLANICI , SIFRE, SSL,TSL  FROM BILGILENDIRME  " 
-				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
-		stmt = con.createStatement();  
-		stmt.execute(sql);  
-		//'**************** SERVER
-		sql =  "INSERT INTO SERVER  (EMIR_ISMI,HANGI_SQL ,INSTANCE,WIN ,SERV ,KULLANICI,SIFRE , PORT ,MY_DUMP  )" 
-				+ " SELECT '" + yeni + "', HANGI_SQL ,INSTANCE,WIN ,SERV ,KULLANICI,SIFRE , PORT ,MY_DUMP   FROM SERVER  " 
 				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
 		stmt = con.createStatement();  
 		stmt.execute(sql);  
@@ -1381,6 +1358,30 @@ public class BACKUP_GLOBAL {
 		//'**************** DIGER DOSYA ISIM
 		sql =  "INSERT INTO DIGER_DOSYA_ISIM  (EMIR_ISMI,DOSYA_ADI ,DOSYA_PATH   )" 
 				+ " SELECT '" + yeni + "', DOSYA_ADI ,DOSYA_PATH   FROM DIGER_DOSYA_ISIM  " 
+				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);  
+		// '**************** EMIRLER
+		sql =  "INSERT INTO EMIRLER  (EMIR_ISMI, DURUM,EMIR_ACIKLAMA,INSTANCE,SON_DURUM,SON_YUKLEME,SQL_YEDEK,MESAJ,OLUSTURMA)" 
+				+ "SELECT '" + yeni + "', DURUM,EMIR_ACIKLAMA,INSTANCE,SON_DURUM,SON_YUKLEME,SQL_YEDEK,MESAJ,OLUSTURMA FROM EMIRLER  " 
+				+ "WHERE EMIR_ISMI = '" + eski + "' " ;
+		stmt = con.createStatement();  
+		stmt.execute(sql); 
+		//'**************** FTP
+		sql =  "INSERT INTO FTP  (EMIR_ISMI, NERESI ,HOST  ,KULLANICI ,SIFRE ,SURUCU ,PORT ,ZMN_ASIMI ,ESKI_YEDEK,SURUCU_YER )" 
+				+ " SELECT '" + yeni + "',  NERESI ,HOST  ,KULLANICI ,SIFRE ,SURUCU ,PORT ,ZMN_ASIMI ,ESKI_YEDEK,SURUCU_YER  FROM FTP  " 
+				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);  
+		//'**************** SERVER
+		sql =  "INSERT INTO SERVER  (EMIR_ISMI,HANGI_SQL ,INSTANCE,WIN ,SERV ,KULLANICI,SIFRE , PORT ,MY_DUMP  )" 
+				+ " SELECT '" + yeni + "', HANGI_SQL ,INSTANCE,WIN ,SERV ,KULLANICI,SIFRE , PORT ,MY_DUMP   FROM SERVER  " 
+				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
+		stmt = con.createStatement();  
+		stmt.execute(sql);  
+		// '**************** YEDEKLEME
+		sql =  "INSERT INTO YEDEKLEME  (EMIR_ISMI, SAAT ,P_TESI ,SALI  ,CARS ,PERS ,CUMA ,C_TESI ,PAZAR ,BASLAMA ,BITIS )" 
+				+ " SELECT '" + yeni + "',  SAAT ,P_TESI ,SALI  ,CARS ,PERS ,CUMA ,C_TESI ,PAZAR ,BASLAMA ,BITIS  FROM YEDEKLEME  " 
 				+ " WHERE EMIR_ISMI = '" + eski + "' " ;
 		stmt = con.createStatement();  
 		stmt.execute(sql);  

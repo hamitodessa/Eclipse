@@ -61,7 +61,6 @@ public class EmirKopyala extends JPanel {
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					kopyala();
-					OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS, "Kopyalama Islemi Gerceklesti") );
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

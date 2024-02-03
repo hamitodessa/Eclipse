@@ -324,7 +324,6 @@ public class OBS_INDIRME extends JFrame {
 	}
 	private void indir(String hangi)
 	{
-
 		Runnable runner = new Runnable()
 		{ 
 			public void run() {

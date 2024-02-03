@@ -179,11 +179,11 @@ public class BACKUP_GLOBAL {
 		stmt.setBoolean(2, drm);
 		stmt.setString(3, konu);
 		stmt.setString(4, inst);
-		stmt.setBoolean(5,  sdrm);
+		stmt.setBoolean(5, sdrm);
 		String str = TARIH_CEVIR.milis_yyyymmss(syukl.getTime());
 		stmt.setString(6, str);
 		stmt.setBoolean(7, sqlyed);
-		stmt.setString(8,  mesaj);
+		stmt.setString(8, mesaj);
 		str = TARIH_CEVIR.milis_yyyymmss(ilkkayit.getTime());
 		stmt.setString(9, str);
 		stmt.executeUpdate();
@@ -197,8 +197,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupLogConnection();
-		String sql = "";
-		sql  = "INSERT INTO LOG (EMIR_ISMI,TARIH,ACIKLAMA) VALUES (?,?,?)";
+		String sql  = "INSERT INTO LOG (EMIR_ISMI,TARIH,ACIKLAMA) VALUES (?,?,?)";
 		stmt = con.prepareStatement(sql);
 		String str = TARIH_CEVIR.milis_yyyymmss(tar.getTime());
 		stmt.setString(1, eismi);
@@ -252,7 +251,7 @@ public class BACKUP_GLOBAL {
 		}
 		return pidno;
 	}
-	public void ayar_kayit(String dil, String tema,int sifrele,String sifre,int prg_sifrele,int win_start,int verkontrol)throws ClassNotFoundException, SQLException
+	public void ayar_kayit(String dil, String tema,int sifrele,String sifre,int prg_sifrele,int win_start,int verkontrol)throws ClassNotFoundException, SQLException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		Class.forName("org.sqlite.JDBC");
 		if (con != null && ! con.isClosed()) con.close();
@@ -265,12 +264,8 @@ public class BACKUP_GLOBAL {
 		stmt.setInt(3, sifrele);
 		String encodedString = "";
 		byte[] qaz;
-		try {
-			qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
-			encodedString = Arrays.toString(qaz);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		qaz = ENCRYPT_DECRYPT_STRING.eNCRYPT_manual(sifre);
+		encodedString = Arrays.toString(qaz);
 		stmt.setString(4, encodedString);
 		stmt.setInt(5, prg_sifrele);
 		stmt.setInt(6, win_start);

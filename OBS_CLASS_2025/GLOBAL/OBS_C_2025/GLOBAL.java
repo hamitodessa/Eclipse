@@ -15,6 +15,7 @@ import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.InvalidKeyException;
@@ -222,12 +223,10 @@ public class GLOBAL {
 	public static void surucu_kontrol() 
 	{
 		File tmpDir = new File(SURUCU);
-		boolean exists = tmpDir.exists();
-		if (exists)
+		if (tmpDir.exists())
 		{    
 			tmpDir = new File(LOG_SURUCU);
-			exists = tmpDir.exists();
-			if (! exists)
+			if (! tmpDir.exists())
 			{
 				tmpDir.mkdirs();
 				File logDir = new File(LOG_SURUCU);
@@ -242,8 +241,7 @@ public class GLOBAL {
 			mail_at();
 		}
 		tmpDir = new File(DBYERI);
-		exists = tmpDir.exists();
-		if (! exists)
+		if (! tmpDir.exists())
 			tmpDir.mkdirs();
 		if (dos_kontrol(SURUCU + OBS_DOSYA))
 		{   
@@ -279,12 +277,10 @@ public class GLOBAL {
 	public void backup_surucu_kontrol() throws ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		File tmpDir = new File(SURUCU);
-		boolean exists = tmpDir.exists();
-		if (! exists)
+		if (! tmpDir.exists())
 			tmpDir.mkdirs();
 		tmpDir = new File(BACKUP_YERI);
-		exists = tmpDir.exists();
-		if (! exists)
+		if (! tmpDir.exists())
 			tmpDir.mkdirs();
 	    if( ! dos_kontrol(SURUCU + BACKUP_DOSYA))
 	    	backup_obs_dosya_olustur(); // OBS SISTEM BACKUP DOSYASI KONTROL
@@ -294,17 +290,12 @@ public class GLOBAL {
 	public void gorev_surucu_kontrol() throws ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException
 	{
 		File tmpDir = new File(SURUCU);
-		boolean exists = tmpDir.exists();
-		if (exists)
-		{  
-			
-		}
-		else {
+		if (! tmpDir.exists())
+		{
 			tmpDir.mkdirs();
 		}
-		
-	    if( ! dos_kontrol(SURUCU + GOREV_DOSYA))
-	    	gorev_dosya_olustur(); // OBS SISTEM BACKUP DOSYASI KONTROL
+		if( ! dos_kontrol(SURUCU + GOREV_DOSYA))
+			gorev_dosya_olustur(); // OBS SISTEM BACKUP DOSYASI KONTROL
 	}
 	public void gorev_dosya_olustur() throws ClassNotFoundException
 	{
@@ -610,13 +601,14 @@ public class GLOBAL {
 	}
 	public static boolean dos_kontrol(String dosya)
 	{
-		File  tmpDir = new File( dosya);
+		File  tmpDir = new File(dosya);
 		return tmpDir.exists();
 	}
-	public void dos_sil(String dosya)
+	public boolean dos_sil(String dosya) throws IOException
 	{
-		 File myObj = new File(dosya); 
-		 myObj.delete() ; 
+        Path path = Paths.get(dosya); 
+        boolean result = Files.deleteIfExists(path); 
+        return result;
 	}
 	public static String char_degis (String degisken)
 	{
@@ -625,11 +617,11 @@ public class GLOBAL {
 	public static boolean validCheck(String value)
 	{
 		boolean result ;
-        if(value.trim().length() == 0) {
-          result = false;
-        }
-        else {
-        	 result = true;
+		if(value.trim().length() == 0) {
+			result = false;
+		}
+		else {
+			result = true;
 		}
 		return result ;
 	}

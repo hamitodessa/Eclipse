@@ -565,6 +565,7 @@ public class DEKONT extends JInternalFrame {
 		panel_1.add(lblb);
 
 		cmbb = new JComboBox<String>();
+		cmbb.setModel(new DefaultComboBoxModel<String>(new String[] {"", "MA", "MS", "SA", "SS", "BA", "BS"}));
 		cmbb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				double bkur = 1 ;
@@ -615,7 +616,6 @@ public class DEKONT extends JInternalFrame {
 		});
 		cmbb.setEnabled(false);
 		cmbb.setFont(new Font("Tahoma", Font.BOLD, 12));
-		cmbb.setModel(new DefaultComboBoxModel<String>(new String[] {"", "MA", "MS", "SA", "SS", "BA", "BS"}));
 		cmbb.setBounds(290, 45, 70, 25);
 		panel_1.add(cmbb);
 
@@ -1125,6 +1125,7 @@ public class DEKONT extends JInternalFrame {
 		panel_1_1.add(lbla);
 
 		cmba = new JComboBox<String>();
+		cmba.setModel(new DefaultComboBoxModel<String>(new String[] {"", "MA", "MS", "SA", "SS", "BA", "BS"}));
 		cmba.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				double akur = 1 ;
@@ -1173,7 +1174,6 @@ public class DEKONT extends JInternalFrame {
 			}
 		});
 		cmba.setEnabled(false);
-		cmba.setModel(new DefaultComboBoxModel<String>(new String[] {"", "MA", "MS", "SA", "SS", "BA", "BS"}));
 		cmba.setFont(new Font("Tahoma", Font.BOLD, 12));
 		cmba.setBounds(290, 45, 70, 25);
 		panel_1_1.add(cmba);
@@ -1812,19 +1812,22 @@ public class DEKONT extends JInternalFrame {
 			lBILGI.seteVRAK(txtevrak.getText());
 			c_Access.evrak_yoket(Integer.parseInt(txtevrak.getText()),lBILGI, BAGLAN_LOG.cariLogDizin);
 			dEKONT_BILGI dBilgi = new dEKONT_BILGI();
-			dBilgi.setbHES(cmbbhes.getSelectedItem().toString());
 			dBilgi.settAR(str);
 			dBilgi.seteVRAK(Integer.parseInt(txtevrak.getText()));
-			dBilgi.setbCINS(cmbb.getItemAt(cmbb.getSelectedIndex()).toString());
+			
+			dBilgi.setbHES(cmbbhes.getSelectedItem().toString());
+			dBilgi.setbCINS(cmbb.getSelectedItem().toString());
 			dBilgi.setbKUR(Double.parseDouble(txtbkur.getText()));
 			dBilgi.setbORC(DecimalFormat.getNumberInstance().parse(txtbtutar.getText()).doubleValue());
+			
 			dBilgi.setaHES(cmbahes.getSelectedItem().toString());
-			dBilgi.setaCINS(cmba.getItemAt(cmbb.getSelectedIndex()).toString());
+			dBilgi.setaCINS(cmba.getSelectedItem().toString());
 			dBilgi.setaKUR(Double.parseDouble(txtakur.getText()));
 			dBilgi.setaLACAK(DecimalFormat.getNumberInstance().parse(txtatutar.getText()).doubleValue());
+			
 			dBilgi.setiZAHAT(txtaciklama.getText());
 			dBilgi.setkOD(txtkod.getText());
-			dBilgi.setuSER( GLOBAL.KULL_ADI);
+			dBilgi.setuSER(GLOBAL.KULL_ADI);
 			lBILGI.setmESAJ(mesaj);
 			
 			c_Access.cari_dekont_kaydet(dBilgi,	lBILGI ,BAGLAN_LOG.cariLogDizin	);

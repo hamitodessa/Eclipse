@@ -13,8 +13,6 @@ import javax.swing.JProgressBar;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-
-import obs.backup.ayarlar.dilAciklamalar;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 
@@ -83,7 +81,7 @@ public class UploadPanel extends JPanel {
 		lblEmirAdi.setBounds(78, 11, 220, 14);
 		panel_1.add(lblEmirAdi);
 		
-		JLabel lblNewLabel_4 = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Hiz"));
+		JLabel lblNewLabel_4 = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS,"Hiz"));
 		lblNewLabel_4.setBounds(690, 31, 40, 14);
 		panel_1.add(lblNewLabel_4);
 		

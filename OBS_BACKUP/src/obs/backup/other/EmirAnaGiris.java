@@ -42,7 +42,6 @@ import OBS_C_2025.emir_bilgiler;
 import OBS_C_2025.ftp_bilgiler;
 import OBS_C_2025.server_bilgiler;
 import OBS_C_2025.yedekleme_bilgiler;
-import obs.backup.ayarlar.dilAciklamalar;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -163,7 +162,7 @@ public class EmirAnaGiris extends JPanel {
 				try {
 					if(txtEmir.getText().equals(""))
 					{
-						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
 						txtEmir.requestFocus();
 						return;
 					}

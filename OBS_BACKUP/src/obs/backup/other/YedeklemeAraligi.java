@@ -16,7 +16,7 @@ import javax.swing.border.TitledBorder;
 
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
-import obs.backup.ayarlar.dilAciklamalar;
+import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -150,13 +150,13 @@ public class YedeklemeAraligi extends JPanel {
 					date2.setDate(date.getDate());
 					if (date.after(date2) )
 					{
-						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Bitis Zamani Baslangic Zamanindan Kucuk olamaz"));
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Bitis Zamani Baslangic Zamanindan Kucuk olamaz"));
 						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 						return;
 					}
 					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
 					{
-						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
 						setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));	
 						return;
 					}

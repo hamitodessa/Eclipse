@@ -72,7 +72,7 @@ import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.TABLO_RENDERER;
 import OBS_C_2025.emir_bilgiler;
 import OBS_C_2025.ftp_bilgiler;
-import obs.backup.ayarlar.dilAciklamalar;
+import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -273,7 +273,7 @@ public class DownloadFile extends JPanel {
 									+ System.lineSeparator()
 									+ glb.BACKUP_YERI  
 									+ System.lineSeparator()  
-									+ dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Surucusune Indirilmistir")  );  
+									+ dilSecenek.dil(OBS_BACKUP.dILS, "Surucusune Indirilmistir")  );  
 						}
 					}
 				}

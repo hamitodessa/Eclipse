@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import obs.backup.ayarlar.dilAciklamalar;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 
@@ -62,7 +61,7 @@ public class DownloadPanel extends JPanel {
 		splitPane.setLeftComponent(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel( dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Dos.Boyut"));
+		JLabel lblNewLabel = new JLabel( dilSecenek.dil(OBS_BACKUP.dILS, "Dos.Boyut"));
 		lblNewLabel.setBounds(10, 31, 69, 14);
 		panel_1.add(lblNewLabel);
 		
@@ -71,7 +70,7 @@ public class DownloadPanel extends JPanel {
 		lblDosBoyut.setBounds(78, 31, 118, 14);
 		panel_1.add(lblDosBoyut);
 		
-		JLabel lblNewLabel_2 = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Dosya Adi") );
+		JLabel lblNewLabel_2 = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS, "Dosya Adi") );
 		lblNewLabel_2.setBounds(10, 11, 58, 14);
 		panel_1.add(lblNewLabel_2);
 		
@@ -80,7 +79,7 @@ public class DownloadPanel extends JPanel {
 		lblEmirAdi.setBounds(78, 11, 281, 14);
 		panel_1.add(lblEmirAdi);
 		
-		JLabel lblNewLabel_4 = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Hiz") );
+		JLabel lblNewLabel_4 = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS, "Hiz") );
 		lblNewLabel_4.setBounds(632, 31, 58, 14);
 		panel_1.add(lblNewLabel_4);
 		
@@ -99,7 +98,7 @@ public class DownloadPanel extends JPanel {
 		lblSurucu.setBounds(454, 11, 370, 14);
 		panel_1.add(lblSurucu);
 		
-		JLabel lblInenn = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Inen") );
+		JLabel lblInenn = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS, "Inen") );
 		lblInenn.setBounds(206, 31, 58, 14);
 		panel_1.add(lblInenn);
 		
@@ -108,7 +107,7 @@ public class DownloadPanel extends JPanel {
 		lblInen.setBounds(269, 31, 117, 14);
 		panel_1.add(lblInen);
 		
-		JLabel lblKalann = new JLabel(dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Kalan") );
+		JLabel lblKalann = new JLabel(dilSecenek.dil(OBS_BACKUP.dILS, "Kalan") );
 		lblKalann.setBounds(386, 31, 58, 14);
 		panel_1.add(lblKalann);
 		

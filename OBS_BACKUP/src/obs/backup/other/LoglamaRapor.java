@@ -60,7 +60,6 @@ import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SOLA_DUZ_RENK;
 import OBS_C_2025.ScrollPaneWin11;
 import OBS_C_2025.bilgilendirme_bilgiler;
-import obs.backup.ayarlar.dilAciklamalar;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -154,7 +153,7 @@ public class LoglamaRapor extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(comboBox.getItemCount() == 0 ) return ;
-				int g = JOptionPane.showOptionDialog(null,comboBox.getSelectedItem().toString() + dilAciklamalar.dilAciklama(OBS_BACKUP.dILS," -  Log  Silinecek ?") ,
+				int g = JOptionPane.showOptionDialog(null,comboBox.getSelectedItem().toString() + dilSecenek.dil(OBS_BACKUP.dILS," -  Log  Silinecek ?") ,
 						"OBS BACKUP ", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE, null, 	new String[] {"Yes", "No"}, "No");
 				if(g ==  1) {
 					return;
@@ -358,7 +357,7 @@ public class LoglamaRapor extends JPanel {
 
 		if (mdl.getRowCount() == 0 )
 		{
-			OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Aktarilacak Bilgi Yok") );
+			OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Aktarilacak Bilgi Yok") );
 		}
 		else
 		{
@@ -491,7 +490,7 @@ public class LoglamaRapor extends JPanel {
 					workbook.write(out);
 					out.close();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-					OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Aktarma Islemi Tamamlandi") );
+					OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO, dilSecenek.dil(OBS_BACKUP.dILS,"Aktarma Islemi Tamamlandi") );
 				}
 		}
 		catch (Exception ex)

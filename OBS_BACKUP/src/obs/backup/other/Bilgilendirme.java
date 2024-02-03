@@ -10,7 +10,7 @@ import com.formdev.flatlaf.FlatClientProperties;
 
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
-import obs.backup.ayarlar.dilAciklamalar;
+import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
 
@@ -214,18 +214,18 @@ public class Bilgilendirme extends JPanel {
 					{
 						if(textGonHesap.getText().equals("") || textAlici.getText().equals(""))
 						{
-							OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Gonderen Bilgileri Eksik"));
+							OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS, "Gonderen Bilgileri Eksik"));
 							return;
 						}
 						else if(textSmtp.getText().equals("") || textPort.getText().equals("") || textKull.getText().equals("") || textSifre.getText().equals(""))
 						{
-							OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Smtp Bilgileri Eksik") );
+							OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,dilSecenek.dil(OBS_BACKUP.dILS, "Smtp Bilgileri Eksik") );
 							return;
 						}
 					}
 					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
 					{
-						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
 						return;
 					}
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

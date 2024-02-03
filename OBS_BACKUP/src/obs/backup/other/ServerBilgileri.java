@@ -16,7 +16,6 @@ import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.JTextFieldRegularPopupMenu;
 import OBS_C_2025.Obs_TextFIeld;
 import OBS_C_2025.SIFRE_DONDUR;
-import obs.backup.ayarlar.dilAciklamalar;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -156,7 +155,7 @@ public class ServerBilgileri extends JPanel {
 				try {
 					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
 					{
-						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
 						return;
 					}
 					if(textMSServer.getText().equals(""))
@@ -281,7 +280,7 @@ public class ServerBilgileri extends JPanel {
 				try {
 					if(OBS_BACKUP.emirAnaGirisPanel.txtEmir.getText().equals(""))
 					{
-						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Emir Adi Bos Olamaz"));  
 						return;
 					}
 					if(textMYPort.getText().equals(""))

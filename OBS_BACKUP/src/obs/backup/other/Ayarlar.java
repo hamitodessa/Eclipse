@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import OBS_C_2025.BACKUP_GLOBAL;
 import OBS_C_2025.GLOBAL;
 import OBS_C_2025.SIFRE_DONDUR;
-import obs.backup.ayarlar.dilAciklamalar;
+import obs.backup.ayarlar.dilSecenek;
 import obs.backup.ayarlar.dilSecenek;
 import obs.backup.main.OBS_BACKUP;
 import raven.toast.Notifications;
@@ -299,7 +299,7 @@ public class Ayarlar extends JPanel {
 				if(line.equals("ERROR: Access is denied."))
 				{
 					bckp.log_kayit("System", new Date(), line);
-					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING,  dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz")); 
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING,  dilSecenek.dil(OBS_BACKUP.dILS, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz")); 
 				}
 				else {
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
@@ -340,7 +340,7 @@ public class Ayarlar extends JPanel {
 				{
 					bckp.log_kayit("System", new Date(), line);
 					schDurum = false;
-					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, dilAciklamalar.dilAciklama(OBS_BACKUP.dILS, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz")); 
+					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz")); 
 				}
 				else {
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 

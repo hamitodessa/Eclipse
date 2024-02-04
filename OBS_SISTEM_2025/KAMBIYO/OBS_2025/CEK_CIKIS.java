@@ -771,7 +771,7 @@ public class CEK_CIKIS extends JInternalFrame {
 						String vade = "";
 						if (model.getValueAt(i , 1).toString().length() >  10)
 						{
-							vade = dateFormater(model.getValueAt(i , 1).toString() , "dd.MM.yyyy HH:mm:ss.sss", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
+							vade = dateFormater(model.getValueAt(i , 1).toString() , "dd.MM.yyyy", "EEE MMM dd kk:mm:ss zzzz yyyy" ) ;
 						}
 						else
 						{

@@ -779,7 +779,7 @@ public class CEK_CIKIS extends JInternalFrame {
 							vade  = qwe;
 						}
 
-						str_4 = textField.getText()+  "'Bordro ile " + model.getValueAt(i , 0).toString() + " Nolu " + vade + " Vadeli Çek" ;
+						str_4 = textField.getText()+  "'Bordro ile " + model.getValueAt(i , 0).toString() + " Nolu " + vade + " Vadeli Ã‡ek" ;
 						dEKONT_BILGI dBilgi = new dEKONT_BILGI();
 						dBilgi.setbHES(textField_1.getText());
 						dBilgi.settAR(TARIH_CEVIR.tarih_geri(dateChooser));

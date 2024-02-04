@@ -490,11 +490,11 @@ public class CEK_TAKIP extends JInternalFrame {
 			}
 			int eno =0;
 			eno = c_Access.cari_fisno_al();
-			str_4 = lblNewLabel_10.getText() + " Nolu Cek " + str_1;
+			str_4 = lblNewLabel_10.getText() + " Nolu Çek " + str_1;
 			///
 			String str = TARIH_CEVIR.tarih_geri_saatli(dateChooser_3) ;
-			String mesaj = "Cek no :" +lblNewLabel_10.getText()  + " A. Hes:" + alh + " Tut:" + lblNewLabel_22.getText() +
-					" B. Hes:"+ bh + " Tut:" + lblNewLabel_22.getText() + " Cek " + str_1;
+			String mesaj = "Çek no :" +lblNewLabel_10.getText()  + " A. Hes:" + alh + " Tut:" + lblNewLabel_22.getText() +
+					" B. Hes:"+ bh + " Tut:" + lblNewLabel_22.getText() + " Çek " + str_1;
 			String mesaj1 = mesaj;
 			if( mesaj.length() + mesaj1.length() <= 95)
 			{
@@ -519,7 +519,7 @@ public class CEK_TAKIP extends JInternalFrame {
 			dBilgi.setaKUR(1);
 			dBilgi.setaLACAK(tutar);
 
-			str_4 = lblNewLabel_10.getText() + " Nolu Cek " + str_1;
+			str_4 = lblNewLabel_10.getText() + " Nolu Çek " + str_1;
 			dBilgi.setiZAHAT(str_4);
 			dBilgi.setkOD("");
 			dBilgi.setuSER( GLOBAL.KULL_ADI);

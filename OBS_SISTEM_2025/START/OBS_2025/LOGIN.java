@@ -1836,30 +1836,14 @@ public class LOGIN extends JDialog {
 	private void lAktar(String mODUL , ILOGGER[] ilogg)
 	{
 		switch(mODUL) {
-		case "Cari Hesap":
-			oac._ICari_Loger = ilogg;
-			break;
-		case "Kur":
-			oac._IKur_Loger = ilogg;
-			break;
-		case "Adres":
-			oac._IAdres_Loger = ilogg;
-			break;
-		case "Fatura":
-			oac._IFatura_Loger = ilogg;
-			break;
-		case "Sms":
-			oac._ISms_Loger = ilogg;
-			break;
-		case "Gunluk":
-			oac._IGunluk_Loger = ilogg;
-			break;
-		case "Kambiyo":
-			oac._IKambiyo_Loger = ilogg;
-			break;
-		case "Kereste":
-			oac._IKereste_Loger = ilogg;
-			break;
+		case "Cari Hesap" ->	oac._ICari_Loger = ilogg;
+		case "Kur" -> oac._IKur_Loger = ilogg;
+		case "Adres" -> oac._IAdres_Loger = ilogg;
+		case "Fatura" -> oac._IFatura_Loger = ilogg;
+		case "Sms" -> oac._ISms_Loger = ilogg;
+		case "Gunluk" -> oac._IGunluk_Loger = ilogg;
+		case "Kambiyo" -> oac._IKambiyo_Loger = ilogg;
+		case "Kereste" -> oac._IKereste_Loger = ilogg;
 		}
 	}
 }

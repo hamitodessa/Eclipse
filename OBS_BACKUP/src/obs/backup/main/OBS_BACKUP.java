@@ -925,13 +925,10 @@ public class OBS_BACKUP extends JFrame {
 			jobTimerBasla();
 			// SIFRE EKRANI KONTROL***************************************
 			if(Integer.valueOf(diltemaString[4]) == 1 )
-			{
 				tabbedPane.setSelectedIndex(4);
-			}
-			else {
+			else
 				buttonlariGOSTER();
-			}
-			//************************************************************
+		//************************************************************
 		} catch (Exception ex) 
 		{
 			try {
@@ -976,14 +973,10 @@ public class OBS_BACKUP extends JFrame {
 				List<emir_bilgiler> ebilgiler = bckp.emir_tek(eISMI);
 				uplpnl.temizLE();
 				if (ebilgiler.get(0).isSQL_YEDEK())
-				{
 					sQL(eISMI , ebilgiler); // Ms Sql - My Sql
-				}
 				else
-				{
 					dosyaSurucu(eISMI, ebilgiler);   //Dosya - Surucu
-				}
-				 eISMI = "" ;
+				eISMI = "" ;
 			}
 			jobTimerBasla();
 		}
@@ -1061,9 +1054,8 @@ public class OBS_BACKUP extends JFrame {
 			cal.set(Calendar.SECOND,0);
 			cal.set(Calendar.MILLISECOND,0);
 			Date sonyuk = cal.getTime();
-			if (emirBilgiler.size() == 0 ) {  
+			if (emirBilgiler.size() == 0 )
 				kontrol = false;
-			}
 			else
 			{
 				sondurum = emirBilgiler.get(0).isSON_DURUM();
@@ -1077,13 +1069,9 @@ public class OBS_BACKUP extends JFrame {
 			}
 			bckp.genel_kayit_sil(emirAnaGirisPanel.txtEmir.getText());
 			if (kontrol)
-			{
 				bckp.genel_kayit(emirAnaGirisPanel.txtEmir.getText(), emirAnaGirisPanel.chckbxDurum.isSelected(),emirAnaGirisPanel. textAciklama.getText(), emirAnaGirisPanel.lblNewLabel_6.getText(), sondurum, sonyuk,emirAnaGirisPanel. chckbxServerDosya.isSelected(), mesaj, ilkkayit);
-			}
 			else
-			{
 				bckp.genel_kayit(emirAnaGirisPanel.txtEmir.getText(),emirAnaGirisPanel. chckbxDurum.isSelected(),emirAnaGirisPanel. textAciklama.getText(), emirAnaGirisPanel.lblNewLabel_6.getText(), false, sonyuk, emirAnaGirisPanel. chckbxServerDosya.isSelected(), mesaj, ilkkayit);
-			}
 		}
 		catch (Exception ex)
 		{
@@ -2937,7 +2925,6 @@ public class OBS_BACKUP extends JFrame {
 				ftp.disconnect();
 				return ;
 				}
-			//************************************
 			ftp.logout();
 			ftp.disconnect();
 			fileName = "" ;
@@ -2962,11 +2949,11 @@ public class OBS_BACKUP extends JFrame {
 			bufferedReader.close();
 			if (eskiver.equals(yeniver))
 			{
-				glb.dos_sil(GLOBAL.SURUCU +"\\OBS_BACKUP_VERSIONS.txt");
+				glb.dos_sil(GLOBAL.SURUCU + "\\OBS_BACKUP_VERSIONS.txt");
 			}
 			else
 			{
-				glb.dos_sil(GLOBAL.SURUCU +"\\OBS_BACKUP_VERSIONS.txt");
+				glb.dos_sil(GLOBAL.SURUCU + "\\OBS_BACKUP_VERSIONS.txt");
 				String html = "Yeni Versiyon Mevcut"
 						+ System.lineSeparator()
 						+ "Mevcut Version = " + eskiver + "      "

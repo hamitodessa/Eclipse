@@ -136,12 +136,9 @@ public class Ayarlar extends JPanel {
 		chckbxSifrele.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxSifrele.isSelected())
-				{
 					passwordText.setVisible(true);
-				}
-				else {
+				else
 					passwordText.setVisible(false);
-				}
 			}
 		});
 		chckbxSifrele.setBounds(160, 161, 99, 23);
@@ -301,9 +298,8 @@ public class Ayarlar extends JPanel {
 					bckp.log_kayit("System", new Date(), line);
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING,  dilSecenek.dil(OBS_BACKUP.dILS, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz")); 
 				}
-				else {
+				else
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
-				}
 			}
 		}
 		Files.deleteIfExists( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP.xml"));
@@ -342,9 +338,8 @@ public class Ayarlar extends JPanel {
 					schDurum = false;
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS, "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz")); 
 				}
-				else {
+				else
 					OBS_BACKUP.mesajGoster(10000,Notifications.Type.ERROR, line); 
-				}
 			}
 		}
 		Files.deleteIfExists( Paths.get(GLOBAL.SURUCU + "\\OBS_BACKUP_LOGIN.xml"));

@@ -88,9 +88,8 @@ public class SunucuAyarlari extends JPanel {
 					textZmnasm.setEnabled(true);
 					textPort.setEnabled(true);
 				}
-				else {
+				else
 					chckbxYerel.setSelected(true);
-				}
 			}
 		});
 		chckbxFtp.setBounds(135, 22, 99, 23);
@@ -115,9 +114,8 @@ public class SunucuAyarlari extends JPanel {
 					textZmnasm.setEnabled(false);
 					textPort.setEnabled(false);
 				}
-				else {
+				else
 					chckbxFtp.setSelected(true);
-				}
 			}
 		});
 		 add(chckbxYerel);
@@ -125,7 +123,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12 = new JPanel();
 		panel_12.setBorder(new TitledBorder(null, "FTP Ayarlari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_12.setBounds(37, 75, 627, 100);
-		 add(panel_12);
+		add(panel_12);
 		panel_12.setLayout(null);
 		
 		textHost = new Obs_TextFIeld(30,"");
@@ -195,7 +193,6 @@ public class SunucuAyarlari extends JPanel {
 				try {
 					FtpKontrol();
 				} catch (Exception e1) {
-				
 					e1.printStackTrace();
 				}
 			}
@@ -224,7 +221,7 @@ public class SunucuAyarlari extends JPanel {
 		panel_12_1_1.setBorder(new TitledBorder(null, "Yerel Surucu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		panel_12_1_1.setBounds(37, 285, 627, 75);
-		 add(panel_12_1_1);
+		add(panel_12_1_1);
 		
 		textSurucu = new Obs_TextFIeld(200,"");
 		textSurucu.setEnabled(false);
@@ -250,12 +247,8 @@ public class SunucuAyarlari extends JPanel {
 				chooser.setApproveButtonToolTipText(dilSecenek.dil(OBS_BACKUP.dILS, "Surucu Sec"));
 				chooser.setApproveButtonMnemonic('s');
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 					textSurucu.setText(chooser.getSelectedFile().toString());
-				}
-				else {
-					// System.out.println("No Selection ");
-				}
 			}
 		});
 		btnNewButton_7.setBounds(497, 45, 120, 23);
@@ -293,7 +286,6 @@ public class SunucuAyarlari extends JPanel {
 		btnNewButton_9.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-
 				try {
 					if(chckbxYerel.isSelected())
 					{
@@ -326,7 +318,6 @@ public class SunucuAyarlari extends JPanel {
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
-
 					OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, e1.getMessage());
 				}
 			}
@@ -382,12 +373,9 @@ public class SunucuAyarlari extends JPanel {
 		boolean result =   bckp.DoesFtpExist(textHost.getText() ,portt,textKull.getText(), response);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		if(result)
-		{
 			OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO,dilSecenek.dil(OBS_BACKUP.dILS, "Baglanti Gerceklesti") );
-		}
-		else {
+		else
 			OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Hata"));
-		}
 	}
 	private void FtpKontrol() throws SocketException, IOException 
 	{
@@ -428,11 +416,8 @@ public class SunucuAyarlari extends JPanel {
 		boolean result =   bckp.DoesFtpDirectoryExist(textHost.getText() ,textFtpSurucu.getText(),portt,textKull.getText(), response);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		if(result)
-		{
 			OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO, dilSecenek.dil(OBS_BACKUP.dILS, "Baglanti Gerceklesti"));
-		}
-		else {
+		else
 			OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Hata"));
-		}
 	}
 }

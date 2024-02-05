@@ -305,7 +305,6 @@ public class DownloadFile extends JPanel {
 	}
 	private void lisTELE() 
 	{
-		
 		if(comboBox.getSelectedItem() == null) return;
 		GRID_TEMIZLE.grid_temizle(tblFile);
 		if(comboBox.getSelectedItem().toString().equals("")) {
@@ -313,7 +312,7 @@ public class DownloadFile extends JPanel {
 		}
 		Runnable runner = new Runnable()
 		{ 
-			public void run() {
+		public void run() {
 		try 
 		{
 			GuiUtil.setWaitCursor(tblFile,true);
@@ -325,7 +324,6 @@ public class DownloadFile extends JPanel {
 			String ftp, kull, sifre, surucu,  neresi, surucu_yer;
 			ftp = ftpBilgi.get(0).getHOST();
 			kull = ftpBilgi.get(0).getKULLANICI();
-
 			String decodedString = ftpBilgi.get(0).getSIFRE();
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
@@ -338,12 +336,10 @@ public class DownloadFile extends JPanel {
 			surucu_yer =ftpBilgi.get(0).getSURUCU_YER();
 
 			GRID_TEMIZLE.grid_temizle(tblFile);
-
 			tblFile.setModel(bckp.file_liste( ftp , surucu, kull, sifre,port));
 			JTableHeader th = tblFile.getTableHeader();
 			TableColumnModel tcm = th.getColumnModel();
 			TableColumn tc;
-
 			tc = tcm.getColumn(0);
 			JCheckBox checkBox = new JCheckBox();
 			checkBox.addActionListener(new ActionListener() {

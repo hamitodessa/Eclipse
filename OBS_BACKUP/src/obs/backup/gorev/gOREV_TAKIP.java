@@ -285,7 +285,8 @@ public  class gOREV_TAKIP extends JPanel {
 					timerDURDUR = false;
 					run();
 				}
-				else {
+				else 
+				{
 					OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,emirADI + 
 							dilSecenek.dil(OBS_BACKUP.dILS,"- Isimli Emir Pasiv Durumda !!! ,  Oncelikle aktivlestirin...."));       
 				}
@@ -297,7 +298,6 @@ public  class gOREV_TAKIP extends JPanel {
 		btnStop.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/stop16.png")));
 		btnStop.setName("btnStop");
 		btnStop.setToolTipText("Durdur");
-		//btnStop.setVisible(false);
 		btnStop.setBounds(675, 133, 45, 25);
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -334,7 +334,6 @@ public  class gOREV_TAKIP extends JPanel {
 				try {
 					ilkBasla();
 				} catch (Exception e1) {
-				
 					e1.printStackTrace();
 				}
 			}
@@ -466,7 +465,8 @@ public  class gOREV_TAKIP extends JPanel {
 			lblSonYedek.setText("01.01.1900 00:00:00");
 			lblSonYedek.setVisible(false);
 		}
-		else {
+		else 
+		{
 			lblSonYedek.setVisible(true);
 			SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 			SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH);
@@ -512,7 +512,8 @@ public  class gOREV_TAKIP extends JPanel {
 				if (dbliste.size() == 0 ) {  
 					lblDosyaSayisi.setText(dilSecenek.dil(OBS_BACKUP.dILS,"0 Adet Dosya") );
 				}
-				else {
+				else 
+				{
 					lblDosyaSayisi.setText(dbliste.size() + dilSecenek.dil(OBS_BACKUP.dILS," Adet Dosya - ")  + insTANCE);
 					lblSurucu.setText(ftpBilgi.get(0).getHOST() + "\\" + ftpBilgi.get(0).getSURUCU().replace("/", "\\"));
 				}
@@ -520,7 +521,8 @@ public  class gOREV_TAKIP extends JPanel {
 			else
 			{
 				List<String> dbliste = bckp.db_liste(eADI);
-				if (dbliste.size() == 0 ) {  
+				if (dbliste.size() == 0 ) 
+				{  
 					lblDosyaSayisi.setText("0 Adet Dosya");
 					lblSurucu.setText(ftpBilgi.get(0).getSURUCU_YER());
 				}

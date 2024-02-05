@@ -118,11 +118,8 @@ public class EmirAnaGiris extends JPanel {
 		
 		textAciklama = new Obs_TextFIeld(50);
 		textAciklama.setBounds(150, 150, 376, 23);
-		
-		
 		panel_10.add(textAciklama);
-		
-		
+
 		chckbxServerDosya = new JCheckBox("Sql / Dosya-Surucu Yedekleme");
 		chckbxServerDosya.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -324,13 +321,9 @@ public class EmirAnaGiris extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				OBS_BACKUP.tabbedPane_1.setSelectedIndex(4);
 				if(lblNewLabel_6.getText().equals("My Sql"))
-				{
 					OBS_BACKUP.serverBilgileriPanel.tabbedPane.setSelectedIndex(1);
-				}
 				else if(lblNewLabel_6.getText().equals("Ms Sql"))
-				{
 					OBS_BACKUP.serverBilgileriPanel.tabbedPane.setSelectedIndex(0);
-				}
 			}
 		});
 		btnServer.setVisible(false);
@@ -594,9 +587,7 @@ public class EmirAnaGiris extends JPanel {
             				int index = dbList.indexOf(dsss.getString("name"));
             				CheckListItem item = (CheckListItem) new CheckListItem(dsss.getString("name"),"");
             				if (index != -1)
-            				{
             					item.setSelected(true);
-            				}
             				model.addElement(item);
             				list.repaint();
             			}
@@ -620,9 +611,7 @@ public class EmirAnaGiris extends JPanel {
             					int index = dbList.indexOf(dsss.getString("Database"));
             					CheckListItem item = (CheckListItem) new CheckListItem(dsss.getString("Database"),"");
             					if (index != -1)
-            					{
             						item.setSelected(true);
-            					}
             					model.addElement(item);
             					list.repaint();
             				}
@@ -643,9 +632,7 @@ public class EmirAnaGiris extends JPanel {
             			}
             		}
             		if (list.getModel().getSize() > 0)
-            		{
             			list.setSelectedIndex(0);;
-            		}
             	}
             }
             else // 'DIGER DOSYA

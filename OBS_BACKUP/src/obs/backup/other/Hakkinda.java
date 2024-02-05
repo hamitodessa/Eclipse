@@ -143,7 +143,6 @@ public class Hakkinda extends JPanel {
 		versiyon_oku();
 	}
 	private static void open(String sayfa) {
-
 		if (Desktop.isDesktopSupported()) {
 			try {
 				URI uri = new URI(sayfa);
@@ -151,9 +150,6 @@ public class Hakkinda extends JPanel {
 			} catch (Exception e)
 			{ 
 			}
-		}
-		else 
-		{
 		}
 	}
 	private static int getVersion() {
@@ -179,13 +175,9 @@ public class Hakkinda extends JPanel {
 			{
 				counter++;
 				if(counter == 1)
-				{
 					lbltar.setText( line.toString());
-				}
 				else if(counter == 2)
-				{
 					lblver.setText( line.toString());
-				}
 			}   
 			bufferedReader.close();
 		}catch (Exception ex)

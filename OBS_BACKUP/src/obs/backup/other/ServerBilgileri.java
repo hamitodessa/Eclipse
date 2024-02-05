@@ -138,7 +138,6 @@ public class ServerBilgileri extends JPanel {
 				OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglanamadi"));
 			}
 			} catch (Exception e1) {
-			
 				e1.printStackTrace();
 			}
 
@@ -220,14 +219,14 @@ public class ServerBilgileri extends JPanel {
 		lblNewLabel_2_2 = new JLabel("Sifre");
 		lblNewLabel_2_2.setBounds(10, 66, 71, 14);
 		panel_2_2.add(lblNewLabel_2_2);
-		
+
 		textMySifre = new JPasswordField();
 		//textMySifre.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Sifre");
 		textMySifre.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
 		JTextFieldRegularPopupMenu.addTo(textMySifre);
 		textMySifre.setBounds(103, 63, 209, 20);
 		panel_2_2.add(textMySifre);
-		
+
 		btnMyTest = new JButton("Baglanti Test");
 		btnMyTest.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnMyTest.addActionListener(new ActionListener() {
@@ -251,22 +250,18 @@ public class ServerBilgileri extends JPanel {
 				SIFRE_DONDUR sdon = new SIFRE_DONDUR();
 				String response =sdon.sDONDUR(textMySifre);
 				BACKUP_GLOBAL bckp = new BACKUP_GLOBAL();
-			try {
-				setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-				Boolean result =	bckp.MySql_server_test( textMykull.getText(),response,textMYPort.getText());
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-			if(result)
-			{
-				OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO,dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglandi") );
-			}
-			else {
-				OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglanamadi"));
-			}
-			} catch (Exception e1) {
-			
-				e1.printStackTrace();
-			}
-
+				try 
+				{
+					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+					Boolean result =	bckp.MySql_server_test( textMykull.getText(),response,textMYPort.getText());
+					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+					if(result)
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.INFO,dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglandi") );
+					else
+						OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, dilSecenek.dil(OBS_BACKUP.dILS,"Baglanti Saglanamadi"));
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnMyTest.setBounds(37, 517, 129, 23);
@@ -308,7 +303,6 @@ public class ServerBilgileri extends JPanel {
 					OBS_BACKUP.tabbedPane_1.setSelectedIndex(0);
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) {
-				
 					OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, e1.getMessage());
 				}
 			}
@@ -351,12 +345,8 @@ public class ServerBilgileri extends JPanel {
 				chooser.setApproveButtonToolTipText(dilSecenek.dil(OBS_BACKUP.dILS,"Surucu Sec"));
 				chooser.setApproveButtonMnemonic('s');
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+				if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 					textMyDump.setText(chooser.getSelectedFile().toString());
-				}
-				else {
-					// System.out.println("No Selection ");
-				}
 			}
 		});
 		btnDumpSec.setBounds(587, 245, 137, 23);

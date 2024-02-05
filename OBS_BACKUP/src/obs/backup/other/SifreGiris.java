@@ -67,13 +67,11 @@ public class SifreGiris extends JPanel {
 					try {
 					String varmi =	bckp.backup_sifre_oku();
 					if (varmi.equals(sDondur.sDONDUR(passwordField)) == true)
-					{
 						OBS_BACKUP.buttonlariGOSTER();
-					}
-					else {
+					else
 						OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING,  dilSecenek.dil(OBS_BACKUP.dILS, "Sifre Yanlis"));
-					}
-					} catch (Exception e1) {
+					} catch (Exception e1) 
+					{
 						OBS_BACKUP.mesajGoster(5000,Notifications.Type.ERROR, e1.getMessage());
 					}
 				}

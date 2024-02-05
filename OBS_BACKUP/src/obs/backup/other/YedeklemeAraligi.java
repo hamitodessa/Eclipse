@@ -113,8 +113,6 @@ public class YedeklemeAraligi extends JPanel {
 		lblNewLabel_3_1.setBounds(30, 67, 71, 14);
 		panel.add(lblNewLabel_3_1);
 		
-		
-
 		timeBaslangic = new JSpinner( new SpinnerDateModel() );
 		timeBaslangic.setBounds(111, 29, 75, 25);
 		panel.add(timeBaslangic);

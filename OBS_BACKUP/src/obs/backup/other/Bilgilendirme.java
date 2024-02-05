@@ -78,9 +78,7 @@ public class Bilgilendirme extends JPanel {
 		chckbxIslem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxIslem.isSelected())
-				{
 					chckbxHata.setSelected(false);
-				}
 			}
 		});
 		chckbxIslem.setBounds(135, 28, 184, 23);
@@ -91,9 +89,7 @@ public class Bilgilendirme extends JPanel {
 		chckbxHata.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxHata.isSelected())
-				{
 					chckbxIslem.setSelected(false);
-				}
 		}
 		});
 		panel.add(chckbxHata);

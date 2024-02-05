@@ -161,12 +161,9 @@ public class LoglamaRapor extends JPanel {
 				try {
 					setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					if(comboBox.getSelectedItem().toString().equals(dilSecenek.dil(OBS_BACKUP.dILS, "Hepsi")))
-					{
 						bckp.log_kayit_komple_sil();
-					}
-					else {
+					else
 						bckp.log_kayit_sil(comboBox.getSelectedItem().toString());
-					}
 					doldur();
 					setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				} catch (Exception e1) 
@@ -246,9 +243,7 @@ public class LoglamaRapor extends JPanel {
 				if(SwingUtilities.isRightMouseButton(e) == true)
 				{
 				String mesaj = 	tblLog.getValueAt(tblLog.getSelectedRow(),1).toString();
-				
-		        Clipboard clip = Toolkit.getDefaultToolkit()
-		                             .getSystemClipboard();
+		        Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
 		        StringSelection strse1 = new StringSelection(mesaj);
 		        clip.setContents(strse1, strse1);
 				}
@@ -356,13 +351,9 @@ public class LoglamaRapor extends JPanel {
 		DefaultTableModel mdl = (DefaultTableModel) tblLog.getModel();
 
 		if (mdl.getRowCount() == 0 )
-		{
 			OBS_BACKUP.mesajGoster(5000,Notifications.Type.WARNING, dilSecenek.dil(OBS_BACKUP.dILS,"Aktarilacak Bilgi Yok") );
-		}
 		else
-		{
 			write(false) ;	
-		}
 	}
 
 	private void write(boolean mail)
@@ -390,9 +381,7 @@ public class LoglamaRapor extends JPanel {
 			setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			int returnVal = fileChooser.showSaveDialog(null);
 			if ( returnVal != JFileChooser.APPROVE_OPTION )
-			{
 				return;
-			}
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			//
 			String uzanti ="";

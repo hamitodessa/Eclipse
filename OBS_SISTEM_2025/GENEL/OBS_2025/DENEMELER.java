@@ -47,7 +47,6 @@ import OBS_C_2025.ENCRYPT_DECRYPT_STRING;
 
 import OBS_C_2025.SearchOption;
 import OBS_C_2025.TextFieldSearchOption;
-import OBS_C_2025.FileVersionInfo.VS_FIXEDFILEINFO;
 
 import java.awt.AWTKeyStroke;
 import java.awt.BorderLayout;
@@ -477,15 +476,6 @@ public class DENEMELER extends JInternalFrame {
 		btnNewButton_13.setBounds(54, 393, 89, 23);
 		panel.add(btnNewButton_13);
 		
-		JButton btnNewButton_14 = new JButton("Version");
-		btnNewButton_14.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				versions();	
-				}
-		});
-		btnNewButton_14.setBounds(54, 260, 89, 23);
-		panel.add(btnNewButton_14);
-		
 		
 		
 
@@ -526,37 +516,5 @@ public class DENEMELER extends JInternalFrame {
 
 		
 	}
-	void versions()
-	{
-		 int dwDummy = 0;
-	        int versionlength = Version   .INSTANCE.GetFileVersionInfoSizeW(
-	                "C:\\Test\\chromeinstall.exe", dwDummy);
 
-	        byte[] bufferarray = new byte[versionlength];
-	        Pointer lpData = new Memory(bufferarray.length);    
-
-	        PointerByReference lplpBuffer = new PointerByReference();
-	        IntByReference puLen = new IntByReference();
-	        boolean FileInfoResult = Version.INSTANCE.GetFileVersionInfoW(
-	                "C:\\Test\\chromeinstall.exe",
-	                0, versionlength, lpData);
-	        System.out.println(FileInfoResult);
-	        int verQueryVal = Version.INSTANCE.VerQueryValueW(lpData,
-	                "\\", lplpBuffer,
-	                puLen);
-
-	        VS_FIXEDFILEINFO lplpBufStructure = new VS_FIXEDFILEINFO(
-	                lplpBuffer.getValue());
-	        lplpBufStructure.read();
-
-	        short[] rtnData = new short[4];
-	        rtnData[0] = (short) (lplpBufStructure.dwFileVersionMS >> 16);
-	        rtnData[1] = (short) (lplpBufStructure.dwFileVersionMS & 0xffff);
-	        rtnData[2] = (short) (lplpBufStructure.dwFileVersionLS >> 16);
-	        rtnData[3] = (short) (lplpBufStructure.dwFileVersionLS & 0xffff);
-
-	        for (int i = 0; i < rtnData.length; i++) {
-	            System.out.println(rtnData[i]);
-	        }
-	}
 }

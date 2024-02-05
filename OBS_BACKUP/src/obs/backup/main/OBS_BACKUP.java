@@ -1543,10 +1543,8 @@ public class OBS_BACKUP extends JFrame {
 			String decodedString = serverBilgi.get(0).getSIFRE();
 			String[] byteValues = decodedString.substring(1, decodedString.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
-			for (int i=0, len=bytes.length; i<len; i++) 
-			{
+			for (int i=0, len=bytes.length; i<len; i++)
 				bytes[i] = Byte.parseByte(byteValues[i].trim());     
-			}
 			String ftp, kull, sifre, surucu, port, neresi, surucu_yer;
 			int eskiyedek, zmnasimi;
 			eskiyedek =  Integer.valueOf(ftpBilgi.get(0).getESKI_YEDEK());
@@ -1555,13 +1553,9 @@ public class OBS_BACKUP extends JFrame {
 			uplpnl.lblSurucu.setText( ftpBilgi.get(0).getSURUCU_YER().replace("/", "\\"));
 			String sqlsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 			if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
-			{
 				bckp.MsSql_baglan(serverBilgi.get(0).getINSTANCE() ,serverBilgi.get(0).getKULLANICI(),sqlsifre,serverBilgi.get(0).getPORT());
-			}
-			else  //My sql
-			{
+			else //My sql
 				bckp.MySql_baglan( serverBilgi.get(0).getKULLANICI(),sqlsifre,serverBilgi.get(0).getPORT());   
-			}
 			String tarr =  TARIH_CEVIR.tarihddMMyyyyHHmm(new Date());
 			String dosADI = "";
 			bckp.log_kayit(emirADI, new Date(),dilSecenek.dil(dILS,"Yedeklemeye Baslandi") );
@@ -1576,23 +1570,15 @@ public class OBS_BACKUP extends JFrame {
 				if(serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql") ? bckp.dosyaKontrolMS(dosADI) : bckp.dosyaKontrolMY(dosADI))
 				{
 					if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
-					{
 						bckp.backup_al(dosADI, tarr + "_" + dosADI);
-					}
 					else
-					{
 						bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
-					}
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," Backup Alindi") );
 					String dosya, dzip;
 					if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
-					{
 						dosya = tarr + "_" + dosADI + ".bak";
-					}
 					else
-					{
 						dosya = tarr + "_" + dosADI + ".sql";
-					}
 					dzip = tarr + "_" + dosADI + ".zip";
 					bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE , zipSIFRE );
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," Zip Haline Getirildi") );
@@ -1600,7 +1586,6 @@ public class OBS_BACKUP extends JFrame {
 					if (! tmpDir.exists())
 						tmpDir.mkdirs();
 					glb.dos_sil(surucu_yer + "\\" + dzip);
-					File okunanFile = new File(glb.BACKUP_YERI + dzip);
 					fileCOPY(glb.BACKUP_YERI + dzip,surucu_yer + "\\" + dzip);
 					glb.dos_sil(glb.BACKUP_YERI + dzip);
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," Surucuye Yuklendi")  );
@@ -1752,13 +1737,9 @@ public class OBS_BACKUP extends JFrame {
 			}
 			String sqlsifre = ENCRYPT_DECRYPT_STRING.dCRYPT_manual(bytes) ;
 			if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
-			{
 				bckp.MsSql_baglan(serverBilgi.get(0).getINSTANCE() ,serverBilgi.get(0).getKULLANICI(),sqlsifre,serverBilgi.get(0).getPORT());
-			}
-			else  //My sql
-			{
+			else //My sql
 				bckp.MySql_baglan( serverBilgi.get(0).getKULLANICI(),sqlsifre,serverBilgi.get(0).getPORT());   
-			}
 			String tarr =  TARIH_CEVIR.tarihddMMyyyyHHmm(new Date());
 			bckp.log_kayit(emirADI, new Date(),dilSecenek.dil(dILS,"Yedeklemeye Baslandi")  );
 			String dosADI = "";
@@ -1773,23 +1754,15 @@ public class OBS_BACKUP extends JFrame {
 				if(serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql") ? bckp.dosyaKontrolMS(dosADI) : bckp.dosyaKontrolMY(dosADI))
 				{
 					if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
-					{
 						bckp.backup_al(dosADI, tarr + "_" + dosADI);
-					}
 					else
-					{
 						bckp.mySQL_backup(serverBilgi.get(0).getMY_DUMP(), serverBilgi.get(0).getKULLANICI(),sqlsifre,dosADI, glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");	
-					}
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," Backup Alindi")  );
 					String dosya, dzip;
 					if (serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
-					{
 						dosya = tarr + "_" + dosADI + ".bak";
-					}
 					else
-					{
 						dosya = tarr + "_" + dosADI + ".sql";
-					}
 					dzip = tarr + "_" + dosADI + ".zip";
 					bckp.zip_yap_sifrele(dosya, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," Zip Haline Getirildi") );
@@ -1798,15 +1771,15 @@ public class OBS_BACKUP extends JFrame {
 					if( serverBilgi.get(0).getHANGI_SQL().equals("Ms Sql"))
 					{
 						glb.dos_sil(glb.BACKUP_YERI + tarr + "_" + dosADI + ".bak");
-						bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," BAK Dosyasi Silindi")  );
+						bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," BAK Dosyasi Silindi"));
 					}
 					else
 					{
 						glb.dos_sil(glb.BACKUP_YERI + tarr + "_" + dosADI + ".sql");
-						bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," sql Dosyasi Silindi") );
+						bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS," sql Dosyasi Silindi"));
 					}
 					glb.dos_sil(glb.BACKUP_YERI + tarr + "_" + dosADI + ".zip");
-					bckp.log_kayit(emirADI, new Date(), dosADI +  dilSecenek.dil(dILS," ZIP Dosyasi Silindi") );
+					bckp.log_kayit(emirADI, new Date(), dosADI +  dilSecenek.dil(dILS," ZIP Dosyasi Silindi"));
 				}
 				else 
 				{
@@ -1957,7 +1930,7 @@ public class OBS_BACKUP extends JFrame {
 			gorevSETCURSOR(Cursor.WAIT_CURSOR);
 			int eskiyedek;
 			eskiyedek =  Integer.valueOf(ftpBilgi.get(0).getESKI_YEDEK());
-			uplpnl.lblSurucu.setText( ftpBilgi.get(0).getSURUCU_YER().replace("/", "\\"));
+			uplpnl.lblSurucu.setText(ftpBilgi.get(0).getSURUCU_YER().replace("/", "\\"));
 			String tarr =  TARIH_CEVIR.tarihddMMyyyyHHmm(new Date());
 			bckp.log_kayit(emirADI, new Date(),dilSecenek.dil(dILS, "Yedeklemeye Baslandi")  );
 			String dosADI = "";
@@ -2005,7 +1978,6 @@ public class OBS_BACKUP extends JFrame {
 					File tmpDir = new File(ftpBilgi.get(0).getSURUCU_YER());
 					if (! tmpDir.exists())
 						tmpDir.mkdirs();
-					File okunanFile = new File(glb.BACKUP_YERI + dzip);
 					fileCOPY(glb.BACKUP_YERI + dzip, ftpBilgi.get(0).getSURUCU_YER() + "\\" + dzip);
 					glb.dos_sil(glb.BACKUP_YERI + "\\" + dzip);
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS, " Surucuye Yuklendi")  );
@@ -2169,14 +2141,14 @@ public class OBS_BACKUP extends JFrame {
 					if (folderMI)
 					{
 						dzip = tarr + "_" + dbliste.get(i).getAdi() + ".zip";
-						String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()+"\\";
-						Path pathokuma = Paths.get(dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi()); 
+						String okumadosyaadi = dbliste.get(i).getPath() + "\\" + dbliste.get(i).getAdi()+"\\";
+						Path pathokuma = Paths.get(dbliste.get(i).getPath() + "\\" + dbliste.get(i).getAdi()); 
 						Path pathyazma = Paths.get(glb.BACKUP_YERI, dzip); 
 						bckp. zip_folder_sifrele(pathokuma,pathyazma,sifRELE, zipSIFRE);
 					}
 					else
 					{
-						String okumadosyaadi = dbliste.get(i).getPath() +"\\"+dbliste.get(i).getAdi();
+						String okumadosyaadi = dbliste.get(i).getPath() + "\\" + dbliste.get(i).getAdi();
 						bckp.diger_zip_yap_sifrele(okumadosyaadi, glb.BACKUP_YERI, dzip, sifRELE, zipSIFRE);
 					}
 					bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS, " Zip Haline Getirildi")  );
@@ -2220,7 +2192,7 @@ public class OBS_BACKUP extends JFrame {
 							long dateAfterInMs = new Date().getTime();
 							long timeDiff = Math.abs(dateAfterInMs - dateBeforeInMs);
 							int araFARK = (int)TimeUnit.HOURS.convert(timeDiff, TimeUnit.MILLISECONDS);
-							if (araFARK > (eskiyedek*24)) 
+							if (araFARK > (eskiyedek * 24)) 
 							{
 								bckp.log_kayit(emirADI, new Date(), dosADI + dilSecenek.dil(dILS, " FTP ye Silmeye Gitti")  );
 								bckp.ftp_sil( ftp, surucu, ls.get(r).getDosyaADI(), kull, sifre, port);
@@ -2242,14 +2214,14 @@ public class OBS_BACKUP extends JFrame {
 		catch (Exception ex)
 		{
 			try {
-				bckp.genel_kayit_durum(emirADI, false, new Date(),  ex.getMessage().length() > 40 ? ex.getMessage().substring(0, 40) : ex.getMessage());
+				bckp.genel_kayit_durum(emirADI, false, new Date(),ex.getMessage().length() > 40 ? ex.getMessage().substring(0, 40) : ex.getMessage());
 				bckp.log_kayit(emirADI, new Date(), ex.getMessage());
 				uplpnl.Progres_Bar_Temizle_1();
 				uplpnl.Progres_Bar_Temizle_2();
 				uplpnl.setPreferredSize(new Dimension(0,00));
 				uplpnl.setMaximumSize(new Dimension(0,0));
 				uplpnl.revalidate();
-				yapilmadiMAILI( emirADI,ex.getMessage());
+				yapilmadiMAILI(emirADI,ex.getMessage());
 				bckp.log_kayit(emirADI, new Date(),dilSecenek.dil(dILS, "Hata Durumundan Emir Bosaldi") );
 				emirTeksilHata(emirADI);
 				gorevSETCURSOR(Cursor.DEFAULT_CURSOR);
@@ -2548,7 +2520,7 @@ public class OBS_BACKUP extends JFrame {
 	private Date dosyaTAIRIHI(String ftpDOSYA) throws ParseException
 	{
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.ENGLISH);
-		String dateInString = ftpDOSYA.substring(4,8) + "." +  ftpDOSYA.substring(2,4) +"." + ftpDOSYA.substring(0,2) +" " + ftpDOSYA.substring(8,10)  +":" + ftpDOSYA.substring(10,12)  ;
+		String dateInString = ftpDOSYA.substring(4,8) + "." +  ftpDOSYA.substring(2,4) + "." + ftpDOSYA.substring(0,2) + " " + ftpDOSYA.substring(8,10)  + ":" + ftpDOSYA.substring(10,12)  ;
 		Date ftar = formatter.parse(dateInString);
 		return ftar;
 	}
@@ -2573,7 +2545,7 @@ public class OBS_BACKUP extends JFrame {
 			}
 		}
 	}
-	public static  void systemTRY()
+	public static void systemTRY()
 	{
 		PopupMenu popup;
 		Image image;
@@ -2618,9 +2590,8 @@ public class OBS_BACKUP extends JFrame {
 			} catch (AWTException e) {
 				mesajGoster(5000,Notifications.Type.WARNING, e.getMessage());	
 			}
-			if (trayIcon != null) {
+			if (trayIcon != null)
 				trayIcon.setImage(Toolkit.getDefaultToolkit().getImage(OBS_BACKUP.class.getResource("/obs/backup/icons/backup-100.png")));
-			}
 		} else {
 			btnMinimize.doClick();
 		}
@@ -2959,7 +2930,7 @@ public class OBS_BACKUP extends JFrame {
 			OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
 			boolean success = ftp.retrieveFile(remoteFile1, outputStream1);
 			outputStream1.close();
-			if (success == false )
+			if (success == false)
 				{
 	            glb.dos_sil(GLOBAL.SURUCU +"\\OBS_BACKUP_VERSIONS.txt");
 				ftp.logout();

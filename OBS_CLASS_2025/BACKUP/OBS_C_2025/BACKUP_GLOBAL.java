@@ -216,8 +216,7 @@ public class BACKUP_GLOBAL {
 		if (con != null && ! con.isClosed()) con.close();
 		PreparedStatement stmt = null;
 		con = glb.myBackupConnection();
-		String sql = "";
-		sql = "UPDATE EMIRLER SET SON_DURUM = @dur,SON_YUKLEME = @yuk ,MESAJ = @msg WHERE EMIR_ISMI = '" + eismi + "'";
+		String sql = "UPDATE EMIRLER SET SON_DURUM = @dur,SON_YUKLEME = @yuk ,MESAJ = @msg WHERE EMIR_ISMI = '" + eismi + "'";
 		stmt = con.prepareStatement(sql);
 		stmt.setBoolean(1, drm);
 		String str = TARIH_CEVIR.milis_yyyymmss(yuk.getTime());

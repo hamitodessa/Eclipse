@@ -264,6 +264,7 @@ public class DownloadFile extends JPanel {
 									success = ftpc.completePendingCommand();
 									outputStream2.close();
 									inputStream.close();
+									bckp.log_kayit("System", new Date(), files[i].getName() + dilSecenek.dil(OBS_BACKUP.dILS,  " Dosyasi Indirildi"));
 								}
 								panelalt.Progres_Bar_Temizle_2();
 							}	

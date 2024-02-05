@@ -172,6 +172,7 @@ public class dilSecenek {
 			case "Programi Yonetici olarak calistirip Oyle Kayit Yapabilirsiniz" -> tEXT = "Must run the program as an Administrator and create job";
 			case " Dosya Bulunamadi***************" -> tEXT = " File Not Found***************";
 			case "Kayitli Emir Yok" -> text = "Job Not Found" ;
+			case " Dosyasi Indirildi" -> text = " File Downloaded";
 			}  
 		}
 		return tEXT;

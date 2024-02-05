@@ -382,6 +382,7 @@ public class OBS_BACKUP extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				while (contentPane.getCursor() == Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR) )
 				gelenISIM = "" ;
+				emirSayiCount();
 				tabbedPane.setSelectedIndex(1);
 				tabbedPane_1.setSelectedIndex(0);
 				emirAnaGirisPanel.emirDOLDUR();
@@ -415,6 +416,7 @@ public class OBS_BACKUP extends JFrame {
 		btnKayitliEmirler.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/jobs.png")));
 		btnKayitliEmirler .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				emirSayiCount();
 				tabbedPane.setSelectedIndex(3);
 				try 
 				{
@@ -439,12 +441,11 @@ public class OBS_BACKUP extends JFrame {
 		btnHepsiYukari .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				emirSayiCount();
 				Component[] components = container.getComponents();
 				for (Component component : components) {
 					if(component.getName() != null)
-					{
 						component.setPreferredSize(new Dimension(00,70));
-					}
 				}
 				container.revalidate();
 				tabbedPane.setSelectedIndex(0);
@@ -460,12 +461,11 @@ public class OBS_BACKUP extends JFrame {
 		btnHepsiAsagi .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				emirSayiCount();
 				Component[] components = container.getComponents();
 				for (Component component : components) {
 					if(component.getName() != null)
-					{
 						component.setPreferredSize(new Dimension(00,175));
-					}
 				}
 				container.revalidate();
 				tabbedPane.setSelectedIndex(0);
@@ -484,6 +484,7 @@ public class OBS_BACKUP extends JFrame {
 		btnStartAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				emirSayiCount();
 				Component[] components = container.getComponents();
 				for (Component component : components) {
 					if (component.getName()!= null)
@@ -515,6 +516,7 @@ public class OBS_BACKUP extends JFrame {
 		btnStopAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				emirSayiCount();
 				emirleriSTOPYAP();
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
@@ -529,6 +531,7 @@ public class OBS_BACKUP extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try 
 				{
+					emirSayiCount();
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					Component[] components = container.getComponents();
 					for (Component component : components) 
@@ -570,6 +573,7 @@ public class OBS_BACKUP extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try 
 				{
+					emirSayiCount();
 					contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 					Component[] components = container.getComponents();
 					for (Component component : components) 
@@ -620,6 +624,7 @@ public class OBS_BACKUP extends JFrame {
 		btnUploadAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor( Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				emirSayiCount();
 				Component[] components = container.getComponents();
 				for (Component component : components) 
 				{
@@ -652,6 +657,7 @@ public class OBS_BACKUP extends JFrame {
 		btnFileIndir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				emirSayiCount();
 				tabbedPane.setSelectedIndex(6);
 				try {
 					GRID_TEMIZLE.grid_temizle(downloadFilePanel.tblFile);
@@ -673,6 +679,7 @@ public class OBS_BACKUP extends JFrame {
 		btnYeniSifre.setIcon(new ImageIcon(OBS_BACKUP.class.getResource("/obs/backup/icons/password.png")));
 		btnYeniSifre .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				emirSayiCount();
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 				sifreYenilePanel.txtsif.setText("");
 				tabbedPane.setSelectedIndex(5);
@@ -692,6 +699,7 @@ public class OBS_BACKUP extends JFrame {
 		btnSifreEkrani .addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+				emirSayiCount();
 				btnSifreEkrani.setVisible(false);
 				btnGorevler.setEnabled(false);
 				btnYeni_Gorev.setEnabled(false);
@@ -722,6 +730,7 @@ public class OBS_BACKUP extends JFrame {
 		btnHakkinda.setEnabled(false);
 		btnHakkinda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				emirSayiCount();
 				tabbedPane.setSelectedIndex(7);
 			}
 		});
@@ -740,6 +749,7 @@ public class OBS_BACKUP extends JFrame {
 				ayarlarPanel.chckbxWinStart.setSelected(Integer.valueOf(diltemaString[5]) == 0 ? false:true);
 				ayarlarPanel.chckbxVersion.setSelected(Integer.valueOf(diltemaString[6]) == 0 ? false:true);
 				ayarlarPanel.passwordText.setVisible(ayarlarPanel.chckbxSifrele.isSelected());
+				emirSayiCount();
 				tabbedPane.setSelectedIndex(8);
 			}
 		});
@@ -1357,7 +1367,7 @@ public class OBS_BACKUP extends JFrame {
 		int say = 0 ;
 		for (Component component : components) {
 			if(component.getName() !=null)
-				say +=1 ;			
+				say += 1 ;			
 		}
 		lblemirSAYI.setText(Integer.toString(say));
 		lblEmir.setText( dilSecenek.dil(dILS,"Emir Sayisi")); ;
